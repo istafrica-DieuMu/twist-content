@@ -1,23 +1,33 @@
-# Anton R&D
+# Schoolido R&D
 
-This folder holds everything captured from anton.app for Schoolido research.
-It is its own git repo and is separate from schoolido-learning.
+Research for Schoolido, kept separate from schoolido-learning. This folder is
+one git repo.
+
+## Layout
+
+- **Source folders** (`anton/` today): everything captured from one source,
+  isolated in its own folder: raw data, media, screenshots, and notes specific
+  to that source. Nothing from a scrape lives outside its source folder.
+- **Root outputs**: what we make from the captured data. These can draw on
+  more than one source.
+  - README.md: entry point.
+  - FINDINGS.md: the findings register.
+  - taxonomy.md: shared names for exercise types and lesson mechanics.
+  - catalogue/: the content catalogue, generated from source data.
+  - crosswalk/: source content mapped to Schoolido modules.
+  - Add other outputs at the root as needed, and list them here and in
+    README.md.
 
 ## Rules for every agent session here
 
 - **Keep everything.** Never delete, move out, overwrite or "clean up" any
-  captured file (api/, media/, screenshots/, snapshots/, notes/). This
-  includes temporary-looking files such as Playwright snapshots and console
-  logs. If disk space or duplicates become a problem, stop and ask.
+  captured file in a source folder. This includes temporary-looking files
+  such as Playwright snapshots and console logs. If disk space or duplicates
+  become a problem, stop and ask.
+- **Generated outputs are rebuilt, never hand-edited.** catalogue/ is built
+  by a script from source data; change the script, not the output.
+- **Every finding links to evidence.** A FINDINGS.md row points at the source
+  files it rests on.
 - **Never write into schoolido-learning.** Reading it for comparison is fine.
-- **One browser at a time.** The Playwright profile at
-  ~/.cache/anton-playwright-profile is shared between Claude Code and Codex.
-  Do not run a crawl while another agent has the browser open.
-- **Save before you parse.** Write every API response to api/ on first fetch,
-  so nothing ever needs fetching twice.
 
-## Where to start
-
-- PHASES.md: the phase plan and what each phase delivers.
-- BRIEF.md: the instructions for the current phase (Phase 1).
-- index.md: what has been captured so far (created by the first crawl).
+Source-specific rules live in each source folder's AGENTS.md.
