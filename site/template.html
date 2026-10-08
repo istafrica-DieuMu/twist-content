@@ -1,0 +1,811 @@
+<title>Schoolido R&amp;D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: research desk. Sticky tab bar over one working pane per tab; English-GB in cobalt, German-DE in ochre throughout. */
+:root {
+  --bg: #f2f5f6;
+  --surface: #ffffff;
+  --sunk: #e8edf0;
+  --ink: #15202a;
+  --muted: #5b6875;
+  --line: #d6dde2;
+  --accent: #0e7169;
+  --en: #2d5bd0;
+  --de: #a96d12;
+  --done: #2c7a50;
+  --gate: #b4383b;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 36px; --s7: 56px;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e141a; --surface: #151d25; --sunk: #1b252f; --ink: #e5ebf0; --muted: #92a0ad;
+    --line: #26323d; --accent: #3fc0b3; --en: #84a5ff; --de: #e0ac55; --done: #5cc08b; --gate: #f07a7c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e141a; --surface: #151d25; --sunk: #1b252f; --ink: #e5ebf0; --muted: #92a0ad;
+  --line: #26323d; --accent: #3fc0b3; --en: #84a5ff; --de: #e0ac55; --done: #5cc08b; --gate: #f07a7c;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(26px, 4vw, 38px); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 16px; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+code, .mono { font-family: var(--mono); font-size: 0.86em; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; }
+.eyebrow { font: 600 11px/1 var(--body); letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+header.top { padding-block: var(--s6) var(--s5); display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: var(--s5) var(--s6); align-items: end; }
+header.top .intro { display: grid; gap: var(--s3); min-width: 0; }
+header.top .sub { color: var(--muted); max-width: 62ch; font-size: 16px; }
+header.top h1 .en { color: var(--en); } header.top h1 .de { color: var(--de); }
+@media (max-width: 820px) { header.top { grid-template-columns: 1fr; } }
+.next { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s4); display: grid; gap: var(--s2); min-width: 0; }
+.next .step-name { font: 700 18px/1.2 var(--display); }
+.next .cmd { display: flex; gap: var(--s2); align-items: stretch; min-width: 0; }
+.next code { flex: 1; min-width: 0; background: var(--sunk); border-radius: 4px; padding: 8px 10px; font-size: 12.5px; line-height: 1.5; overflow-wrap: anywhere; }
+.btn { font: 600 12px/1 var(--body); padding: 0 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--ink); }
+
+/* age ladder */
+.ladder-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.ladder { min-width: 720px; display: grid; grid-template-columns: 120px repeat(8, minmax(0, 1fr)); position: relative; padding: var(--s4) var(--s4) var(--s3); }
+.ladder .band { grid-row: 1 / span 4; position: relative; background: color-mix(in srgb, var(--accent) 9%, transparent); border-inline: 1px dashed color-mix(in srgb, var(--accent) 50%, transparent); border-radius: 4px; z-index: 0; }
+.ladder .ages, .ladder .rowlab, .ladder .cell { position: relative; z-index: 1; }
+.ladder .ages { font: 600 11px var(--mono); color: var(--muted); text-align: center; padding-bottom: var(--s2); }
+.ladder .rowlab { display: grid; align-content: center; gap: 2px; padding-right: var(--s3); }
+.ladder .rowlab b { font: 700 14px/1.2 var(--display); }
+.ladder .rowlab span { font-size: 12px; color: var(--muted); }
+.ladder .cell { display: grid; justify-items: center; gap: 4px; padding: 4px 6px; min-width: 0; background: none; border: 0; font: inherit; color: inherit; }
+.ladder button.cell { cursor: pointer; border-radius: 4px; }
+.ladder button.cell:hover { background: var(--sunk); }
+.ladder .uk { align-content: end; height: 150px; }
+.ladder .dk { align-content: start; height: 150px; }
+.ladder .col { width: 28px; border-radius: 3px 3px 0 0; background: var(--en); }
+.ladder .dk .col { border-radius: 0 0 3px 3px; background: var(--de); }
+.ladder .cell .v { font: 600 13px var(--mono); font-variant-numeric: tabular-nums; }
+.ladder .cell .g { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.ladder .tw { padding: 10px 4px; border-block: 1px solid var(--line); }
+.ladder .tw .tag { font: 700 15px var(--display); color: var(--accent); }
+.ladder .tw .g { white-space: normal; text-align: center; line-height: 1.35; }
+.ladder .older .v { font-size: 15px; }
+.ladder .older { align-content: center; }
+.ladder .none { color: var(--muted); font-size: 12px; opacity: 0.6; align-self: center; }
+.legend { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+
+/* pipeline */
+.pipe { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s3); position: relative; }
+.pipe::before { content: ""; position: absolute; left: 14px; right: 14px; top: 14px; height: 2px; background: var(--line); }
+.node { position: relative; display: grid; gap: var(--s2); align-content: start; min-width: 0; }
+.node .pin { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 700 11px var(--mono); background: var(--surface); border: 2px solid var(--line); color: var(--muted); }
+.node.active .pin { border-color: var(--accent); color: var(--accent); }
+.node.done .pin { background: var(--done); border-color: var(--done); color: var(--surface); }
+.node .t { font: 700 15px/1.25 var(--display); }
+.node .d { font-size: 13px; color: var(--muted); }
+.node .gate-flag { justify-self: start; }
+@media (max-width: 820px) {
+  .pipe { grid-template-columns: 1fr; gap: var(--s4); }
+  .pipe::before { left: 14px; right: auto; top: 14px; bottom: 14px; width: 2px; height: auto; }
+  .node { grid-template-columns: 30px 1fr; column-gap: var(--s3); }
+  .node > :not(.pin) { grid-column: 2; }
+  .node .pin { grid-row: 1 / span 4; }
+}
+
+/* folder map */
+.fmap { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+@media (max-width: 820px) { .fmap { grid-template-columns: 1fr; } }
+.fmap dl { margin: 0; display: grid; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+.fmap dl > div { display: grid; grid-template-columns: 9.5em 1fr; gap: var(--s3); padding: 10px var(--s4); border-bottom: 1px solid var(--line); }
+.fmap dl > div:last-child { border-bottom: 0; }
+.fmap dt { font: 600 13px var(--mono); }
+.fmap dd { margin: 0; font-size: 14px; color: var(--muted); min-width: 0; }
+@media (max-width: 520px) { .fmap dl > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* phase rail */
+.phase { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--s4); }
+.phase .no { font: 700 40px/1 var(--display); color: var(--line); }
+.phase.current .no { color: var(--accent); }
+.phase .body { display: grid; gap: var(--s4); min-width: 0; padding-bottom: var(--s5); border-bottom: 1px solid var(--line); }
+.phase:last-child .body { border-bottom: 0; }
+@media (max-width: 520px) { .phase { grid-template-columns: 1fr; gap: var(--s2); } .phase .no { font-size: 28px; } }
+
+nav.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+nav.tabs .wrap { display: flex; gap: var(--s1); overflow-x: auto; scrollbar-width: none; }
+nav.tabs button {
+  font: 600 14px/1 var(--body); color: var(--muted); background: none; border: 0;
+  padding: 14px 12px 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap;
+}
+nav.tabs button:hover { color: var(--ink); }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+nav.tabs .count { font: 600 11px var(--mono); color: var(--muted); margin-left: 4px; }
+
+main { padding-block: var(--s5) var(--s7); }
+section.pane { display: grid; gap: var(--s6); }
+.block { display: grid; gap: var(--s4); min-width: 0; align-content: start; }
+td .chip, .chip { white-space: nowrap; }
+section.pane > *, .block > *, .panel > * { min-width: 0; }
+.node .chip, .panel .chip { justify-self: start; }
+.block-head { display: grid; gap: var(--s2); }
+
+/* chips and status */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; font: 600 12px/1 var(--body);
+  padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+}
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.chip.todo { color: var(--muted); }
+.chip.active { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.chip.done { color: var(--done); border-color: color-mix(in srgb, var(--done) 45%, var(--line)); }
+.chip.gate { color: var(--gate); border-color: color-mix(in srgb, var(--gate) 45%, var(--line)); }
+.chip.en { color: var(--en); } .chip.de { color: var(--de); }
+button.chip { cursor: pointer; }
+button.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* counters */
+.counters { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.counter { padding: var(--s4); display: grid; gap: 4px; border-right: 1px solid var(--line); }
+.counter:last-child { border-right: 0; }
+.counter b { font: 700 30px/1 var(--display); font-variant-numeric: tabular-nums; }
+.counter.zero b { color: var(--muted); opacity: 0.55; }
+.counter span { font-size: 13px; color: var(--muted); }
+
+/* step track */
+.track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s2); }
+.step { border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: var(--s3); display: grid; gap: var(--s2); align-content: start; min-width: 0; }
+.step .id { font: 700 20px/1 var(--display); }
+.step .what { font-size: 13px; color: var(--muted); }
+.step.gated { border-top: 3px solid var(--gate); }
+@media (max-width: 760px) { .track { grid-template-columns: 1fr 1fr; } }
+
+/* two-col */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s4); display: grid; gap: var(--s3); align-content: start; min-width: 0; }
+.panel.en { border-top: 3px solid var(--en); } .panel.de { border-top: 3px solid var(--de); }
+
+/* bars */
+.bars { display: grid; gap: 6px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 15em) 1fr 3.5em; gap: var(--s3); align-items: center; font-size: 13px; }
+.bar-row .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-row .val { text-align: right; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
+.bar { height: 12px; background: var(--sunk); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.en .bar i, .bar.en i { background: var(--en); }
+.de .bar i, .bar.de i { background: var(--de); }
+@media (max-width: 520px) { .bar-row { grid-template-columns: minmax(0, 9em) 1fr 3em; } }
+
+/* curriculum explorer */
+.explorer { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: var(--s5); align-items: start; }
+@media (max-width: 820px) { .explorer { grid-template-columns: 1fr; } }
+.grade-list { display: grid; gap: var(--s4); }
+.grade-group { display: grid; gap: 4px; }
+.grade-btn {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px var(--s2); text-align: left; width: 100%;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 9px 11px; cursor: pointer; color: var(--ink); font: inherit;
+}
+.grade-btn:hover { border-color: var(--muted); }
+.grade-btn[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--cur, var(--ink)); }
+.grade-btn .g { font-weight: 600; }
+.grade-btn .n { font: 12px var(--mono); color: var(--muted); }
+.grade-btn .bar { grid-column: 1 / -1; height: 5px; }
+.sec-list { display: grid; gap: 2px; }
+details.sec { border-bottom: 1px solid var(--line); }
+details.sec summary { list-style: none; cursor: pointer; padding: 8px 0; }
+details.sec summary::-webkit-details-marker { display: none; }
+details.sec .detail { padding: 0 0 var(--s3); font-size: 14px; color: var(--muted); max-width: 72ch; }
+
+/* tables */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 11px/1.3 var(--body); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); background: var(--sunk); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* lists */
+ul.items { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s3); }
+ul.items li { display: grid; gap: 2px; font-size: 14px; }
+ul.items li b { font-weight: 600; }
+ul.items li span { color: var(--muted); }
+ol.payoff { margin: 0; padding: 0; list-style: none; counter-reset: p; display: grid; gap: var(--s3); }
+ol.payoff li { counter-increment: p; display: grid; grid-template-columns: 2.2em 1fr; gap: var(--s2); font-size: 14px; }
+ol.payoff li::before { content: counter(p); font: 700 18px/1.2 var(--display); color: var(--accent); }
+
+.empty { border: 1px dashed var(--line); border-radius: var(--r); padding: var(--s5); display: grid; gap: var(--s2); background: var(--surface); }
+.note { font-size: 13px; color: var(--muted); }
+.toolbar { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+input[type="search"] { font: inherit; padding: 7px 11px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); color: var(--ink); min-width: 0; flex: 1 1 200px; }
+
+/* docs */
+.docs { display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: var(--s5); align-items: start; }
+@media (max-width: 820px) { .docs { grid-template-columns: 1fr; } }
+.doc-list { display: grid; gap: 2px; position: sticky; top: 60px; }
+@media (max-width: 820px) { .doc-list { position: static; } }
+.doc-list button { text-align: left; font: 13px var(--mono); background: none; border: 0; padding: 6px 8px; border-radius: 4px; color: var(--muted); cursor: pointer; overflow-wrap: anywhere; }
+.doc-list button:hover { color: var(--ink); background: var(--sunk); }
+.doc-list button[aria-current="true"] { color: var(--ink); background: var(--sunk); font-weight: 600; }
+.doc-list .dir { font: 600 11px var(--body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 12px 8px 4px; }
+.prose { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s5); min-width: 0; overflow-wrap: anywhere; }
+.prose > * + * { margin-top: 0.8em; }
+.prose h1 { font-size: 26px; } .prose h2 { font-size: 20px; margin-top: 1.4em; } .prose h3 { font-size: 16px; margin-top: 1.2em; }
+.prose p, .prose li { max-width: 72ch; }
+.prose pre { background: var(--sunk); padding: var(--s3); border-radius: 4px; overflow-x: auto; font-size: 13px; }
+.prose table { display: block; overflow-x: auto; }
+.prose blockquote { margin: 0; padding: var(--s2) var(--s4); border-left: 3px solid var(--accent); background: var(--sunk); color: var(--muted); }
+
+
+/* course grid */
+.cg-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.cg { display: grid; min-width: 760px; padding: var(--s3) var(--s4) var(--s4); row-gap: 4px; position: relative; }
+.cg-h { font: 600 11px var(--mono); color: var(--muted); text-align: center; padding-bottom: 6px; position: relative; z-index: 1; }
+.cg-h:first-child { text-align: left; }
+.cg-col { z-index: 0; }
+.cg-col.tw { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.cg-subj { display: flex; gap: var(--s3); align-items: baseline; padding: var(--s3) 0 2px; border-top: 1px solid var(--line); position: relative; z-index: 1; }
+.cg-subj b { font: 700 14px var(--display); }
+.cg-subj span { font-size: 12px; color: var(--muted); }
+.cg-name { grid-column: 1; font-size: 13px; padding-right: var(--s3); align-self: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; position: relative; z-index: 1; }
+.cg-bar { position: relative; z-index: 1; height: 24px; margin: 0 2px; border-radius: 4px; border: 1px solid color-mix(in srgb, currentColor 40%, transparent); background: color-mix(in srgb, currentColor 10%, var(--surface)); cursor: pointer; overflow: hidden; padding: 0; font: 600 11px var(--mono); text-align: left; }
+.cg-bar.en { color: var(--en); } .cg-bar.de { color: var(--de); }
+.cg-bar i { position: absolute; inset: 0 auto 0 0; width: var(--w); background: color-mix(in srgb, currentColor 28%, transparent); }
+.cg-bar span { position: relative; padding-inline: 6px; white-space: nowrap; color: var(--ink); line-height: 22px; }
+.cg-bar:hover, .cg-bar.sel { border-color: currentColor; box-shadow: 0 0 0 1px currentColor; }
+.cg-bar.outdated { opacity: 0.5; border-style: dashed; }
+footer { padding-block: var(--s5); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width 0.4s ease; } }
+</style>
+
+<header class="top wrap">
+  <div class="intro">
+    <span class="eyebrow">Schoolido R&amp;D · source: anton.app</span>
+    <h1 id="headline">Anton, <span class="en">English-GB</span> and <span class="de">German-DE</span></h1>
+    <p class="sub" id="subline"></p>
+  </div>
+  <aside class="next" id="next" aria-label="Next step"></aside>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" role="tablist" id="tabs"></div>
+</nav>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap" id="foot"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js" integrity="sha384-QsSpx6a0USazT7nK7w8qXDgpSAPhFsb2XtpoLFQ5+X2yFN6hvCKnwEzN8M5FWaJb" crossorigin="anonymous"></script>
+<script>
+const D = /*DATA*/null;
+
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const inl = (s) => (window.marked ? marked.parseInline(String(s ?? "")) : esc(s));
+const h = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content; };
+const fmt = (n) => (n == null ? "n/a" : n.toLocaleString("en-GB"));
+const lang = (curr) => (/English|UK/i.test(curr) ? "en" : "de");
+
+const grades = D.prior.grades;
+const ukGrades = grades.filter((g) => g.curriculum === "UK English");
+const deGrades = grades.filter((g) => g.curriculum === "Deutsch");
+const sum = (arr, k) => arr.reduce((a, g) => a + (g[k] || 0), 0);
+const phase1 = D.plan.find((p) => p.steps.length) || { steps: [] };
+const stepLabel = { todo: "not started", active: "in progress", done: "done" };
+
+// ---------- tabs ----------
+const TABS = [
+  ["overview", "Overview"],
+  ["plan", "Plan"],
+  ["catalogue", "Catalogue", D.cat ? D.cat.totals.courses : null],
+  ["exercises", "Exercise types"],
+  ["gaps", "Gaps vs Twist"],
+  ["findings", "Findings", D.findings.length],
+  ["crosswalk", "Crosswalk"],
+  ["docs", "Docs", D.docs.length],
+];
+const tabsEl = document.getElementById("tabs");
+const mainEl = document.getElementById("main");
+const panes = {};
+for (const [id, label, count] of TABS) {
+  const b = document.createElement("button");
+  b.role = "tab"; b.id = "tab-" + id; b.dataset.tab = id;
+  b.innerHTML = esc(label) + (count != null ? `<span class="count">${count}</span>` : "");
+  b.addEventListener("click", () => show(id, true));
+  tabsEl.append(b);
+  const s = document.createElement("section");
+  s.className = "pane"; s.id = "pane-" + id; s.hidden = true; s.setAttribute("role", "tabpanel");
+  mainEl.append(s);
+  panes[id] = s;
+}
+function show(id, push) {
+  if (!panes[id]) id = "overview";
+  for (const [t] of TABS) {
+    panes[t].hidden = t !== id;
+    document.getElementById("tab-" + t).setAttribute("aria-selected", String(t === id));
+  }
+  if (push) { history.replaceState(null, "", "#" + id); window.scrollTo({ top: 0 }); }
+  try { localStorage.setItem("rnd-tab", id); } catch (e) {}
+}
+
+// ---------- overview ----------
+const ageOf = (g) => {
+  if (/Reception/.test(g)) return 4;
+  const y = g.match(/Year (\d+)/); if (y) return +y[1] + 4;
+  const k = g.match(/Klasse (\d+)/); if (k) return +k[1] + 5;
+  const t = g.match(/^G(\d+)/); if (t) return +t[1] + 5;
+  return null;
+};
+const AGES = [4, 5, 6, 7, 8, 9, 10, 11];
+function splitStep(what) {
+  const m = what.match(/^([^.]+)\.\s*(.*)$/);
+  return m ? { t: m[1], d: m[2] } : { t: what, d: "" };
+}
+function renderOverview() {
+  const c = D.captures;
+  const next = phase1.steps.find((s) => s.status !== "done");
+  const started = phase1.steps.some((s) => s.status !== "todo");
+  document.getElementById("subline").textContent =
+    "Every subject, grade and lesson in both curricula, captured once and kept. " +
+    (D.cat ? `The full course structure is captured: ${fmt(D.cat.totals.courses)} courses, ${fmt(D.cat.totals.lessons)} lessons, ${fmt(D.cat.totals.exercises)} exercises. Exercise content so far: ${fmt(D.cat.capture.captured)} files.`
+      : started ? "The crawl is under way." : "Nothing is captured yet.");
+
+  const nx = document.getElementById("next");
+  if (next) {
+    const cmd = `cd ~/ist/b2c/rnd/anton, then: Run step ${next.id} from BRIEF.md.`;
+    nx.innerHTML = `<span class="eyebrow">Next step</span>
+      <span class="step-name">${esc(next.id)} · ${inl(splitStep(next.what).t)}</span>
+      <span class="note">${next.gate ? "Ends with a check before the next step. " : ""}Open a Claude Code or Codex session in the Anton folder.</span>
+      <div class="cmd"><code id="next-cmd">${esc(cmd)}</code><button class="btn" id="copy-cmd" type="button">Copy</button></div>`;
+    document.getElementById("copy-cmd").addEventListener("click", (e) => {
+      const btn = e.currentTarget;
+      const done = () => { btn.textContent = "Copied"; setTimeout(() => (btn.textContent = "Copy"), 1500); };
+      try {
+        navigator.clipboard.writeText(cmd).then(done, () => selectText("next-cmd"));
+      } catch (err) { selectText("next-cmd"); }
+    });
+  } else {
+    nx.innerHTML = `<span class="eyebrow">Phase 1</span><span class="step-name">All five steps done</span>`;
+  }
+
+  // ladder
+  // Rows come from the catalogue: single-grade English and Deutsch courses by age; older grades fold into the last column.
+  const ladderRow = (cur, subj, offset, label) => {
+    const cells = {}, older = { lessons: 0, n: 0 };
+    for (const k of (D.cat ? D.cat.curricula[cur] : []).filter((k) => k.subject === subj && !k.outdated)) {
+      const age = k.grade_min + offset;
+      if (k.grades.length === 1 && age <= AGES[AGES.length - 2]) cells[age] = { name: label(k.grade_min), lessons: k.lessons, id: k.id, cur };
+      else { older.lessons += k.lessons; older.n++; }
+    }
+    if (older.n) cells[AGES[AGES.length - 1]] = { name: `${older.n} more courses`, lessons: older.lessons, older: true, cur };
+    return cells;
+  };
+  const uk = ladderRow("en_gb", "nateng", 4, (g) => (g === 0 ? "Reception" : "Year " + g));
+  const de = ladderRow("de", "natdeu", 5, (g) => "Klasse " + g);
+  const rowSum = (r) => Object.values(r).reduce((a, x) => a + x.lessons, 0);
+  const size = D.prior.gaps.size ? D.prior.gaps.size.rows : [];
+  const tw = Object.fromEntries(size.map((r) => [ageOf(r[0]), { name: r[0], en: (r[1].match(/\d+/) || [""])[0], de: (r[3].match(/\d+/) || [""])[0] }]));
+  const max = Math.max(...[...Object.values(uk), ...Object.values(de)].filter((x) => !x.older).map((x) => x.lessons), 1);
+  const colH = (n) => Math.max(4, Math.min(118, Math.round((n / max) * 110)));
+  const twAges = Object.keys(tw).map(Number);
+  const bandStart = Math.min(...twAges), bandEnd = Math.max(...twAges);
+  const open = (x) => (x.older ? `data-cur="${x.cur}"` : `data-course="${esc(x.id)}" data-cur="${x.cur}"`);
+  const cellUK = (a) => uk[a]
+    ? `<button class="cell uk ${uk[a].older ? "older" : ""}" ${open(uk[a])} type="button" title="Open ${esc(uk[a].name)}"><span class="v">${fmt(uk[a].lessons)}</span>${uk[a].older ? "" : `<span class="col" style="height:${colH(uk[a].lessons)}px"></span>`}<span class="g">${esc(uk[a].name)}</span></button>`
+    : `<div class="cell uk"></div>`;
+  const cellDE = (a) => de[a]
+    ? `<button class="cell dk ${de[a].older ? "older" : ""}" ${open(de[a])} type="button" title="Open ${esc(de[a].name)}"><span class="g">${esc(de[a].name)}</span>${de[a].older ? "" : `<span class="col" style="height:${colH(de[a].lessons)}px"></span>`}<span class="v">${fmt(de[a].lessons)}</span></button>`
+    : `<div class="cell dk"></div>`;
+  const cellTW = (a) => tw[a]
+    ? `<div class="cell tw"><span class="tag">${esc(tw[a].name)}</span><span class="g">${tw[a].en} en · ${tw[a].de} de topics</span></div>`
+    : `<div class="cell tw"><span class="none">${a > bandEnd ? "not yet in Twist" : ""}</span></div>`;
+  const bandCol = 2 + AGES.indexOf(bandStart), bandSpan = bandEnd - bandStart + 1;
+
+  const pane = panes.overview;
+  pane.append(h(`
+    <div class="block">
+      <div class="block-head">
+        <span class="eyebrow">Where each side sits, by age</span>
+        <h2>Anton's grades against Twist G1 to G4</h2>
+        <p class="muted">Lessons per grade in Anton's English and Deutsch courses, from the full course structure. UK years run above, Deutsch Klassen below, Twist in the middle. Click a grade to open it in the catalogue.</p>
+      </div>
+      <div class="ladder-scroll"><div class="ladder" id="ladder">
+        <div class="band" style="grid-column:${bandCol} / span ${bandSpan}"></div>
+        <div class="ages" style="grid-row:1;grid-column:1;text-align:left">age</div>
+        ${AGES.map((a, i) => `<div class="ages" style="grid-row:1;grid-column:${i + 2}">${i === AGES.length - 1 ? a + " and up" : a + "–" + (a + 1)}</div>`).join("")}
+        <div class="rowlab" style="grid-row:2;grid-column:1"><b style="color:var(--en)">UK English</b><span>${fmt(rowSum(uk))} lessons</span></div>
+        ${AGES.map((a, i) => `<div style="grid-row:2;grid-column:${i + 2};display:grid">${cellUK(a)}</div>`).join("")}
+        <div class="rowlab" style="grid-row:3;grid-column:1"><b style="color:var(--accent)">Twist</b><span>topics per grade</span></div>
+        ${AGES.map((a, i) => `<div style="grid-row:3;grid-column:${i + 2};display:grid">${cellTW(a)}</div>`).join("")}
+        <div class="rowlab" style="grid-row:4;grid-column:1"><b style="color:var(--de)">Deutsch</b><span>${fmt(rowSum(de))} lessons</span></div>
+        ${AGES.map((a, i) => `<div style="grid-row:4;grid-column:${i + 2};display:grid">${cellDE(a)}</div>`).join("")}
+      </div></div>
+      <div class="legend">
+        <span><i style="background:var(--en)"></i>UK English lessons</span>
+        <span><i style="background:var(--de)"></i>Deutsch lessons</span>
+        <span><i style="background:color-mix(in srgb, var(--accent) 25%, transparent)"></i>Twist's current grade range</span>
+        <span>Last column: KS3 for English; Klasse 6 to Oberstufe for Deutsch.</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <span class="eyebrow">Phase 1 · ${phase1.steps.filter((s) => s.status === "done").length} of ${phase1.steps.length} steps done</span>
+        <h2>Structure first, then a text sample, then the browser</h2>
+      </div>
+      <div class="pipe">${phase1.steps.map(stepNode).join("")}</div>
+    </div>
+
+    <div class="block">
+      <div class="block-head"><span class="eyebrow">Captured so far</span></div>
+      ${c.api + c.screenshots + c.snapshots + c.media + c.notes + D.findings.length === 0
+        ? `<div class="empty"><b>Nothing captured yet.</b><span class="muted">API responses, screenshots, snapshots, media packs, notes and findings are counted here as the crawl saves them into <code>anton/</code>.</span></div>`
+        : `<div class="counters">${[
+            ["Course files", c.plans, "every course in both curricula"],
+            ["Exercise files", c.levels, D.cat ? `of ${fmt(D.cat.totals.exercises)} listed` : "text only"],
+            ["Screenshots", c.screenshots, "exercise types and lesson stages"],
+            ["Media files", c.media, "spot-downloaded lesson packs"],
+            ["Notes written", c.notes, "of 6 in anton/notes"],
+            ["Findings", D.findings.length, "rows in FINDINGS.md"],
+          ].map(([l, n, s]) => `<div class="counter ${n ? "" : "zero"}"><span>${esc(l)}</span><b>${fmt(n)}</b><span>${esc(s)}</span></div>`).join("")}</div>`}
+    </div>
+
+    <div class="block">
+      <div class="block-head"><span class="eyebrow">How rnd is organised</span><h2>Raw captures stay in the source folder, outputs sit at the root</h2></div>
+      <div class="fmap">
+        <div class="block"><span class="eyebrow">Sources</span>
+          <dl>${D.readme.sources.map((r) => `<div><dt>${inl(r[1])}</dt><dd><b>${inl(r[0])}</b><br>${inl(r[2])}</dd></div>`).join("")}</dl>
+        </div>
+        <div class="block"><span class="eyebrow">Outputs</span>
+          <dl>${D.readme.outputs.map((r) => `<div><dt>${inl(r[0])}</dt><dd>${inl(r[1])}</dd></div>`).join("")}</dl>
+        </div>
+      </div>
+    </div>
+  `));
+  pane.querySelectorAll("#ladder button.cell").forEach((b) => b.addEventListener("click", () => openCourse(b.dataset.cur, b.dataset.course)));
+}
+function selectText(id) {
+  const r = document.createRange(); r.selectNodeContents(document.getElementById(id));
+  const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+function stepNode(s) {
+  const { t, d } = splitStep(s.what);
+  return `<div class="node ${s.status}">
+    <span class="pin">${s.status === "done" ? "✓" : esc(s.id)}</span>
+    <span class="t">${inl(t)}</span>
+    <span class="chip ${s.status}"><span class="dot"></span>${stepLabel[s.status]}</span>
+    ${s.gate ? `<span class="chip gate gate-flag">check before moving on</span>` : ""}
+    <span class="d">${inl(d)}</span>
+  </div>`;
+}
+function barRows(rows, max) {
+  return rows.map(([label, v]) => `<div class="bar-row"><span class="label" title="${esc(label)}">${inl(label)}</span><span class="bar"><i style="width:${max && v ? (v / max) * 100 : 0}%"></i></span><span class="val">${fmt(v)}</span></div>`).join("");
+}
+function tableHtml(head, rows, numCols = []) {
+  if (!rows.length) return `<div class="empty"><span class="muted">No rows yet.</span></div>`;
+  return `<div class="tbl-wrap"><table><thead><tr>${head.map((x, i) => `<th class="${numCols.includes(i) ? "num" : ""}">${inl(x)}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map((r) => `<tr>${r.map((x, i) => `<td class="${numCols.includes(i) ? "num" : ""}">${inl(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+
+// ---------- plan ----------
+function renderPlan() {
+  const pane = panes.plan;
+  D.plan.forEach((p, idx) => {
+    let body = "";
+    if (p.steps.length) {
+      body += `<div class="tbl-wrap"><table><thead><tr><th>Step</th><th>Status</th><th>What</th><th>Done when</th></tr></thead><tbody>
+        ${p.steps.map((s) => `<tr><td><b>${esc(s.id)}</b></td><td><span class="chip ${s.status}"><span class="dot"></span>${stepLabel[s.status]}</span></td><td>${inl(s.what)}</td><td>${inl(s.done)}</td></tr>`).join("")}
+      </tbody></table></div>`;
+    }
+    const isPayoff = /put the data to work/i.test(p.title);
+    if (p.items.length) {
+      body += isPayoff
+        ? `<ol class="payoff">${p.items.map((it) => `<li><div>${it.lead ? `<b>${inl(it.lead)}.</b> ` : ""}<span class="muted">${inl(it.rest)}</span></div></li>`).join("")}</ol>`
+        : `<ul class="items">${p.items.map((it) => `<li>${it.lead ? `<b>${inl(it.lead)}</b>` : ""}<span>${inl(it.rest)}</span></li>`).join("")}</ul>`;
+    }
+    body += p.paras.map((x) => `<p class="muted">${inl(x)}</p>`).join("");
+    const [name, ...rest] = p.title.split(": ");
+    const current = /\(current\)/.test(p.title);
+    const heading = (rest.join(": ") || name).replace(/\s*\((current|optional)\)/, "");
+    const tag = current ? `<span class="chip active"><span class="dot"></span>current</span>` : /\(optional\)/.test(p.title) ? `<span class="chip">optional</span>` : "";
+    pane.append(h(`<div class="phase ${current ? "current" : ""}"><span class="no">${idx + 1}</span>
+      <div class="body"><div class="block-head"><div class="toolbar"><span class="eyebrow">${esc(name)}</span>${tag}</div><h2>${inl(heading.charAt(0).toUpperCase() + heading.slice(1))}</h2></div>${body}</div></div>`));
+  });
+}
+
+// ---------- catalogue ----------
+const catState = { cur: "en_gb", course: null, q: "" };
+const CUR_NAME = { en_gb: "English-GB", de: "German-DE" };
+const gLabel = (g, cur) => (g === 0 ? "R" : g === 99 ? "–" : String(g));
+function renderCatalogue() {
+  const pane = panes.catalogue;
+  if (!D.cat) { pane.append(h(`<div class="empty"><b>No catalogue yet.</b><span class="muted">Run <code>node catalogue/build.mjs</code> after the structure pass.</span></div>`)); return; }
+  pane.append(h(`
+    <div class="block-head">
+      <span class="eyebrow">catalogue.db · built from ${fmt(D.captures.plans)} course files</span>
+      <h2>Every Anton course, by subject and grade</h2>
+      <p class="muted">Each bar spans the grades a course covers. Click a course to see its topics and lessons, with the exercise count per lesson in brackets. Search finds lessons by title across the whole curriculum.</p>
+      <div class="toolbar" id="cat-cur">
+        ${Object.entries(CUR_NAME).map(([k, v]) => `<button class="chip ${k === "en_gb" ? "en" : "de"}" data-v="${k}" aria-pressed="${k === catState.cur}">${v}</button>`).join("")}
+        <input type="search" id="cat-q" placeholder="Search lessons, e.g. fractions, Satzglieder" aria-label="Search lessons">
+      </div>
+    </div>
+    <div id="cat-body" class="block"></div>
+  `));
+  pane.querySelectorAll("#cat-cur button").forEach((b) => b.addEventListener("click", () => { catState.cur = b.dataset.v; catState.course = null; drawCatalogue(); }));
+  pane.querySelector("#cat-q").addEventListener("input", (e) => { catState.q = e.target.value.trim().toLowerCase(); drawCatalogue(); });
+  drawCatalogue();
+}
+function openCourse(cur, id) {
+  catState.cur = cur; catState.course = id || null; catState.q = "";
+  const q = document.getElementById("cat-q"); if (q) q.value = "";
+  show("catalogue", true); drawCatalogue();
+  if (id) document.getElementById("cat-detail")?.scrollIntoView({ block: "start" });
+}
+function drawCatalogue() {
+  const cur = catState.cur, L = cur === "en_gb" ? "en" : "de";
+  document.querySelectorAll("#cat-cur button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.v === cur)));
+  const courses = D.cat.curricula[cur];
+  const body = document.getElementById("cat-body");
+  if (catState.q) {
+    const hits = [];
+    for (const c of courses) for (const t of D.cat.topics[c.id] || []) for (const [title, n] of t.lessons)
+      if (title.toLowerCase().includes(catState.q) || t.title.toLowerCase().includes(catState.q)) hits.push({ c, t, title, n });
+    body.innerHTML = `<p class="note">${hits.length} lessons match in ${CUR_NAME[cur]}${hits.length > 300 ? ", first 300 shown" : ""}.</p>` +
+      (hits.length ? tableHtml(["Lesson", "Topic", "Course", "Grades", "Exercises"], hits.slice(0, 300).map((x) => [x.title, x.t.title, x.c.title + " · " + x.c.subject_name, x.c.grades.map((g) => gLabel(g, cur)).join(", "), String(x.n)]), [4]) : "");
+    return;
+  }
+  const graded = [...new Set(courses.flatMap((c) => c.grades).filter((g) => g !== 99))].sort((a, b) => a - b);
+  const cols = [...graded, ...(courses.some((c) => c.grades.includes(99)) ? [99] : [])];
+  const colOf = (g) => cols.indexOf(g) + 2;
+  const bySubj = {};
+  for (const c of courses) (bySubj[c.subject_name] ||= []).push(c);
+  const maxL = Math.max(...courses.map((c) => c.lessons), 1);
+  let rows = "", r = 2;
+  for (const [subj, cs] of Object.entries(bySubj).sort((a, b) => b[1].reduce((s, c) => s + c.lessons, 0) - a[1].reduce((s, c) => s + c.lessons, 0))) {
+    const total = cs.reduce((s, c) => s + c.lessons, 0);
+    rows += `<div class="cg-subj" style="grid-row:${r};grid-column:1 / -1"><b>${esc(subj)}</b><span>${cs.length} courses · ${fmt(total)} lessons</span></div>`; r++;
+    for (const c of cs) {
+      const gs = c.grades.filter((g) => cols.includes(g));
+      const a = Math.min(...gs.map(colOf)), b = Math.max(...gs.map(colOf));
+      rows += `<div class="cg-name" style="grid-row:${r}">${esc(c.title)}</div>
+        <button class="cg-bar ${L} ${c.outdated ? "outdated" : ""} ${catState.course === c.id ? "sel" : ""}" style="grid-row:${r};grid-column:${a} / ${b + 1};--w:${Math.max(6, (c.lessons / maxL) * 100)}%" data-id="${esc(c.id)}" type="button" title="${esc(c.title)}: ${c.lessons} lessons, ${c.exercises} exercises">
+          <i></i><span>${fmt(c.lessons)}${c.outdated ? " · outdated" : ""}</span></button>`;
+      r++;
+    }
+  }
+  body.innerHTML = `
+    <div class="cg-scroll"><div class="cg" style="grid-template-columns: minmax(150px, 220px) repeat(${cols.length}, minmax(44px, 1fr))">
+      <div class="cg-h" style="grid-row:1;grid-column:1">${cur === "de" ? "Klasse" : "Year"}</div>
+      ${cols.map((g) => `<div class="cg-h" style="grid-row:1;grid-column:${colOf(g)}">${g === 99 ? "not graded" : gLabel(g, cur)}</div>`).join("")}
+      ${cols.map((g) => `<div class="cg-col ${g >= 1 && g <= 4 ? "tw" : ""}" style="grid-row:2 / ${r};grid-column:${colOf(g)}"></div>`).join("")}
+      ${rows}
+    </div></div>
+    <div class="legend"><span><i style="background:color-mix(in srgb, var(--accent) 25%, transparent)"></i>Grades 1 to 4, Twist's current range</span><span>Bar shading shows lesson count against the largest course.</span></div>
+    <div class="panel ${L}" id="cat-detail">${courseDetail(cur)}</div>`;
+  body.querySelectorAll(".cg-bar").forEach((b) => b.addEventListener("click", () => {
+    catState.course = b.dataset.id; drawCatalogue();
+    document.getElementById("cat-detail").scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }));
+}
+function courseDetail(cur) {
+  const c = D.cat.curricula[cur].find((x) => x.id === catState.course);
+  if (!c) return `<span class="eyebrow">Course detail</span><p class="muted">Pick a course bar above to list its topics and lessons.</p>`;
+  const ts = D.cat.topics[c.id] || [];
+  return `<span class="eyebrow">${esc(c.subject_name)} · <code>${esc(c.id)}</code></span>
+    <h2>${esc(c.title)}</h2>
+    <div class="toolbar">
+      <span class="chip">${c.grades.map((g) => (g === 99 ? "not graded" : (cur === "de" ? "Klasse " : "Year ") + gLabel(g, cur))).join(", ")}</span>
+      <span class="chip">${fmt(ts.length)} topics</span><span class="chip">${fmt(c.lessons)} lessons</span><span class="chip">${fmt(c.exercises)} exercises</span>
+      ${c.outdated ? `<span class="chip gate">marked outdated by Anton</span>` : ""}
+    </div>
+    <div class="sec-list">${ts.map((t) => `<details class="sec"><summary><div class="bar-row"><span class="label" title="${esc(t.title)}">${esc(t.title)}</span><span class="bar"><i style="width:${(t.lessons.length / Math.max(...ts.map((x) => x.lessons.length), 1)) * 100}%"></i></span><span class="val">${t.lessons.length}</span></div></summary>
+      <div class="detail">${t.lessons.map(([title, n]) => `${esc(title)} <span class="mono">[${n}]</span>`).join(" · ")}</div></details>`).join("")}</div>`;
+}
+
+// ---------- exercises ----------
+function renderExercises() {
+  const pane = panes.exercises;
+  const rows = D.prior.types.rows;
+  const max = Math.max(...rows.map((r) => r.pct || 0));
+  const tx = D.taxonomy.types;
+  const tr = D.cat ? D.cat.trainers : [];
+  const trMax = Math.max(...tr.map((t) => t.exercises), 1);
+  pane.append(h(`
+    <div class="block">
+      <div class="block-head"><span class="eyebrow">taxonomy.md</span><h2>Shared exercise types, mapped to Twist</h2>
+        <p class="muted">One shared name per kind of interaction, with the Anton trainers that implement it and the matching Twist question-type schema.</p></div>
+      ${tx.rows.length ? tableHtml(tx.head, tx.rows) : `<div class="empty"><b>Not filled yet.</b><span class="muted">Filled from the trainer counts below once the 1c sample finishes.</span></div>`}
+    </div>
+    <div class="block">
+      <div class="block-head">
+        <span class="eyebrow">Anton trainers · ${fmt(D.cat ? D.cat.capture.captured : 0)} of ${fmt(D.cat ? D.cat.capture.total : 0)} exercise files captured</span>
+        <h2>${tr.length} trainer types seen so far</h2>
+        <p class="muted">A trainer is Anton's own name for an interaction. Counts are exercises that use it in the captured files; open a row for subjects and example exercises.</p>
+      </div>
+      ${tr.length ? `<div class="sec-list">${tr.map((t) => `<details class="sec"><summary>
+          <div class="bar-row"><span class="label mono" title="${esc(t.trainer)}">${esc(t.trainer)}</span><span class="bar"><i style="width:${(t.exercises / trMax) * 100}%"></i></span><span class="val">${fmt(t.exercises)}</span></div>
+        </summary><div class="detail"><b>${fmt(t.items)}</b> items across <b>${t.courses}</b> courses.<br><b>Subjects:</b> ${esc(t.subjects.join(", "))}<br><b>Examples:</b> ${esc(t.examples.join("; "))}</div></details>`).join("")}</div>`
+        : `<div class="empty"><span class="muted">No exercise files captured yet.</span></div>`}
+    </div>
+    <details class="block panel">
+      <summary><b>First crawl's title-based guess</b> <span class="muted">(33 sampled lessons, 2026-10-07)</span></summary>
+      <p class="muted">${inl(D.prior.types.intro)}</p>
+      <div class="sec-list">
+        ${rows.map((r) => `<details class="sec"><summary>
+          <div class="bar-row"><span class="label" title="${esc(r.type)}">${inl(r.type.split(" (")[0])}</span><span class="bar"><i style="width:${r.pct ? (r.pct / max) * 100 : 0}%"></i></span><span class="val">${r.pct != null ? r.pct + "%" : "n/a"}</span></div>
+        </summary><div class="detail"><b>Anton labels:</b> ${inl(r.type)}<br><b>Share:</b> ${inl(r.share)}${r.notes ? `<br>${inl(r.notes)}` : ""}</div></details>`).join("")}
+      </div>
+    </details>
+  `));
+}
+
+// ---------- gaps ----------
+let gapLang = "all";
+function renderGaps() {
+  const pane = panes.gaps;
+  const g = D.prior.gaps;
+  pane.append(h(`
+    <div class="block-head">
+      <span class="eyebrow">Prior baseline · capped at Twist G1 to G4</span>
+      <h2>What each side has that the other lacks</h2>
+      <p class="muted">From the first crawl's comparison against the Twist catalogues. The crosswalk in Phase 3 redoes this lesson by lesson, across all of Anton's grades.</p>
+      <div class="toolbar" id="gap-filter">
+        ${["all", "en", "de"].map((x) => `<button class="chip ${x === "all" ? "" : x}" data-l="${x}" aria-pressed="${x === gapLang}">${{ all: "Both", en: "English", de: "German" }[x]}</button>`).join("")}
+      </div>
+    </div>
+    <div id="gap-body" class="block"></div>
+    ${g.size ? `<div class="block"><div class="block-head"><span class="eyebrow">Size</span><h3>Twist topics and parts vs Anton lessons</h3></div>${tableHtml(g.size.head, g.size.rows)}<p class="note">${inl(g.size.note)}</p></div>` : ""}
+    <div class="block">
+      <div class="block-head"><span class="eyebrow">Read against Anton</span><h2>Twist strengths, weaknesses and follow-ups</h2></div>
+      <div class="cols">${D.prior.strengths.slice(0, 2).map(listPanel).join("")}</div>
+      ${D.prior.strengths[2] ? `<div class="panel"><h3>${esc(D.prior.strengths[2].title)}</h3><ol class="payoff">${D.prior.strengths[2].items.map((it) => `<li><div>${inl((it.lead ? `**${it.lead}** ` : "") + it.rest)}</div></li>`).join("")}</ol></div>` : ""}
+    </div>
+  `));
+  pane.querySelectorAll("#gap-filter button").forEach((b) => b.addEventListener("click", () => {
+    gapLang = b.dataset.l;
+    pane.querySelectorAll("#gap-filter button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    drawGaps();
+  }));
+  drawGaps();
+}
+function listPanel(grp, cls = "") {
+  return `<div class="panel ${cls}"><h3>${esc(grp.title)}</h3>
+    ${grp.items.length ? `<ul class="items">${grp.items.map((it) => `<li>${it.lead ? `<b>${inl(it.lead)}</b>` : ""}<span>${inl(it.rest)}</span></li>`).join("")}</ul>` : ""}
+    ${(grp.text || []).map((t) => `<p class="muted">${inl(t)}</p>`).join("")}</div>`;
+}
+function drawGaps() {
+  const groups = D.prior.gaps.groups.map((x) => ({ ...x, L: /^English/.test(x.title) ? "en" : "de" }));
+  const show = groups.filter((x) => gapLang === "all" || x.L === gapLang);
+  const paired = show.filter((x) => x.items.length);
+  const notes = show.filter((x) => !x.items.length);
+  document.getElementById("gap-body").innerHTML =
+    `<div class="cols">${paired.map((x) => listPanel(x, x.L)).join("")}</div>` + notes.map((x) => listPanel(x, x.L)).join("");
+}
+
+// ---------- findings ----------
+const fState = { area: "all", status: "all", q: "" };
+function renderFindings() {
+  const pane = panes.findings;
+  const areas = ["curriculum", "exercise-types", "mechanics", "media", "audio", "api", "other"];
+  pane.append(h(`
+    <div class="block-head">
+      <span class="eyebrow">FINDINGS.md</span>
+      <h2>What we learned, with evidence</h2>
+      <p class="muted">One row per finding, each linked to the captured files it rests on. Status shows whether it changed Schoolido work yet.</p>
+    </div>
+    <div class="toolbar">
+      <input type="search" id="f-q" placeholder="Search findings" aria-label="Search findings">
+    </div>
+    <div class="toolbar" id="f-area">${["all", ...areas].map((a) => `<button class="chip" data-v="${a}" aria-pressed="${a === "all"}">${a === "all" ? "All areas" : a}</button>`).join("")}</div>
+    <div class="toolbar" id="f-status">${["all", "open", "applied", "rejected"].map((a) => `<button class="chip" data-v="${a}" aria-pressed="${a === "all"}">${a === "all" ? "Any status" : a}</button>`).join("")}</div>
+    <div id="f-body"></div>
+  `));
+  const bind = (id, key) => pane.querySelectorAll(`#${id} button`).forEach((b) => b.addEventListener("click", () => {
+    fState[key] = b.dataset.v;
+    pane.querySelectorAll(`#${id} button`).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    drawFindings();
+  }));
+  bind("f-area", "area"); bind("f-status", "status");
+  pane.querySelector("#f-q").addEventListener("input", (e) => { fState.q = e.target.value.toLowerCase(); drawFindings(); });
+  drawFindings();
+}
+function drawFindings() {
+  const body = document.getElementById("f-body");
+  if (!D.findings.length) {
+    body.innerHTML = `<div class="empty"><b>No findings yet.</b><span class="muted">Rows get added in step 1e, once the full capture exists. Each one names its area and status and links to the evidence in <code>anton/</code>. Until then, the prior baseline in the Gaps tab holds the first round of observations.</span></div>`;
+    return;
+  }
+  const rows = D.findings.filter((f) =>
+    (fState.area === "all" || f.area === fState.area) &&
+    (fState.status === "all" || f.status === fState.status) &&
+    (!fState.q || Object.values(f).join(" ").toLowerCase().includes(fState.q)));
+  body.innerHTML = rows.length
+    ? tableHtml(["id", "source", "area", "finding", "evidence", "status", "fed into"], rows.map((f) => [f.id, f.source, f.area, f.finding, f.evidence, f.status, f.fedInto]))
+    : `<div class="empty"><span class="muted">No findings match these filters.</span></div>`;
+}
+
+// ---------- crosswalk ----------
+function renderCrosswalk() {
+  const pane = panes.crosswalk;
+  const a = D.prior.alignment;
+  pane.append(h(`
+    <div class="block-head">
+      <span class="eyebrow">crosswalk/ · ${D.crosswalkBuilt ? D.crosswalkBuilt + " files built" : "not built yet, Phase 3"}</span>
+      <h2>Anton lessons against Twist lessons</h2>
+      <p class="muted">One file per source, Twist language of instruction and subject. Twist's side reads the 24 module catalogues in schoolido-learning, <code>content/{en,de}/grade-{1..4}/{english,german,math}/module-catalog.md</code>.</p>
+    </div>
+    <div class="block">
+      <div class="block-head"><span class="eyebrow">What each crosswalk file holds</span></div>
+      <ol class="payoff">${D.crosswalkSpec.map((it) => `<li><div><b>${inl(it.lead)}.</b> <span class="muted">${inl(it.rest)}</span></div></li>`).join("")}</ol>
+    </div>
+    <div class="block">
+      <div class="block-head"><span class="eyebrow">Starting point</span><h3>Grade alignment by age</h3></div>
+      ${tableHtml(a.head, a.rows)}
+      <p class="note">${inl(a.note || "")}</p>
+    </div>
+  `));
+}
+
+// ---------- docs ----------
+let curDoc = "README.md";
+function renderDocs() {
+  const pane = panes.docs;
+  const byDir = {};
+  for (const d of D.docs) { const dir = d.path.includes("/") ? d.path.slice(0, d.path.lastIndexOf("/")) : "rnd"; (byDir[dir] ||= []).push(d); }
+  pane.append(h(`<div class="docs">
+    <nav class="doc-list" aria-label="Documents">${Object.entries(byDir).map(([dir, ds]) => `<div class="dir">${esc(dir)}</div>${ds.map((d) => `<button data-p="${esc(d.path)}">${esc(d.path.split("/").pop())}</button>`).join("")}`).join("")}</nav>
+    <article class="prose" id="doc-body"></article>
+  </div>`));
+  pane.querySelectorAll(".doc-list button").forEach((b) => b.addEventListener("click", () => openDoc(b.dataset.p, true)));
+  pane.querySelector("#doc-body").addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    const href = a.getAttribute("href") || "";
+    if (/^[a-z]+:/i.test(href) || href.startsWith("#")) return;
+    const target = resolve(curDoc, href.split("#")[0]);
+    const hit = D.docs.find((d) => d.path === target || d.path === target.replace(/\/$/, "") + "/README.md");
+    e.preventDefault();
+    if (hit) openDoc(hit.path, true);
+  });
+  openDoc(curDoc, false);
+}
+function resolve(from, rel) {
+  const parts = from.split("/").slice(0, -1);
+  for (const p of rel.split("/")) { if (p === "..") parts.pop(); else if (p && p !== ".") parts.push(p); }
+  return parts.join("/");
+}
+function openDoc(path, scroll) {
+  const d = D.docs.find((x) => x.path === path) || D.docs[0];
+  curDoc = d.path;
+  document.querySelectorAll(".doc-list button").forEach((b) => b.setAttribute("aria-current", String(b.dataset.p === d.path)));
+  const body = document.getElementById("doc-body");
+  body.innerHTML = `<p class="eyebrow">${esc(d.path)}</p>` + (window.marked ? marked.parse(d.md) : `<pre>${esc(d.md)}</pre>`);
+  if (scroll) body.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+
+// ---------- boot ----------
+renderOverview(); renderPlan(); renderCatalogue(); renderExercises(); renderGaps(); renderFindings(); renderCrosswalk(); renderDocs();
+let start = (location.hash || "").slice(1);
+if (!panes[start]) { try { start = localStorage.getItem("rnd-tab") || "overview"; } catch (e) { start = "overview"; } }
+show(start, false);
+window.addEventListener("hashchange", () => show(location.hash.slice(1), false));
+document.getElementById("foot").innerHTML =
+  `Generated by <code>site/build.mjs</code> from the rnd docs on ${new Date(D.built).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })}. Rebuild after each crawl step.`;
+</script>

@@ -15,6 +15,11 @@ one git repo.
   - taxonomy.md: shared names for exercise types and lesson mechanics.
   - catalogue/: the content catalogue, generated from source data.
   - crosswalk/: source content mapped to Schoolido modules.
+  - site/: one interactive page over the docs and captures. index.html is
+    a standalone page, tracked in git; dist/artifact.html is the same page
+    as a fragment for the claude.ai publisher, gitignored. Edit build.mjs or
+    template.html, then run `node site/build.mjs`; never edit the outputs by
+    hand. Rebuild after each capture step.
   - Add other outputs at the root as needed, and list them here and in
     README.md.
 
