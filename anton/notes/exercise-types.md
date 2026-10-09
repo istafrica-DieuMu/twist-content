@@ -17,8 +17,9 @@ inventory says.
 2. **Checked in the browser.** Step 1d opened one exercise per type and
    screenshotted it (20 of 23 types; `notes/1d-log.md`). Four mappings were
    corrected (see below).
-3. **Widened by the full text.** The 1f pass added 3 trainers the sample
-   missed (`syllabifier`, `selectFrom100`, `squareMirror`). 65 so far.
+3. **Widened by the full text.** The complete 1f capture added 4 trainers
+   the sample missed (`syllabifier`, `selectFrom100`, `squareMirror`,
+   `squareShader`). 66 in all.
 
 ## What the inventory says
 

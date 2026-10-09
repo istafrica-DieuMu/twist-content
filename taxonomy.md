@@ -9,10 +9,11 @@ Version 1, 2026-10-09, from the Anton 1c text sample: 2,514 exercise files
 from 399 lessons across all 121 courses. All 62 Anton trainers seen are
 mapped below. The sample looked saturated (shuffled, the count of distinct
 trainers levelled off at 62), but the full-text pass (1f) has since turned up
-3 more trainers that live in a handful of lessons the sample did not reach:
-`syllabifier`, `selectFrom100`, `squareMirror`. 65 in all so far; the table
-lists them. Counts for the 62 are from the sample; the 3 new ones count 1f
-files captured by 2026-10-09.
+4 more trainers that live in a handful of lessons the sample did not reach:
+`syllabifier`, `selectFrom100`, `squareMirror` (German-DE) and `squareShader`
+(English-GB Maths). 66 in all, from the complete capture of 31,804
+exercise files. Counts for the 62 are from the sample; the 4 new ones count
+the full text.
 
 **schoolido** is the closest file in schoolido-learning/schemas/question-types/,
 or "none" when Twist has no equivalent. Mappings come from each trainer's
@@ -47,7 +48,7 @@ exercise can use several trainers.
 | count | Count objects or mark a quantity | `mathFillStripe` 3, `kidCount` 1 | 4 | tap-to-count |
 | set-clock | Set a clock to a given time | `digitalClock` 2 | 2 | clock-hands-drag (analogue only) |
 | mark-syllables | Mark the syllables of a word (German syllable arcs); found in 1f, not in the 1c sample | `syllabifier` 42 (1f so far) | 42 | none |
-| hundred-square | Select or colour numbers on a hundred square; found in 1f | `selectFrom100` 13 (1f so far) | 13 | none |
+| grid-shading | Select or shade squares on a grid: numbers on a hundred square, shaded parts of a grid; found in 1f | `selectFrom100` 13, `squareShader` 8 (1f so far) | 21 | none |
 
 Twist question types with no Anton trainer of their own in the sample:
 `true-false`, `pick-side`, `point-on-line` and `speak`. (`drag-and-drop-count`

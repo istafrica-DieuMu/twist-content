@@ -42,4 +42,4 @@ Lessons and exercises per subject and curriculum. A course listed in both curric
 
 ## Capture
 
-20768 of 31804 exercise files captured. 65 distinct trainer types seen in captured files: [anton-trainers.md](anton-trainers.md).
+31804 of 31804 exercise files captured. 66 distinct trainer types seen in captured files: [anton-trainers.md](anton-trainers.md).
