@@ -1,10 +1,12 @@
 # Anton R&D crawl brief: Phase 1 (English-GB and German-DE)
 
-See PHASES.md for where this phase fits. Phase 1 runs as the sub-steps 1a to
-1e listed there; stop at the 1a gate before the full crawl.
+See PHASES.md for where this phase fits. Phase 1 runs as the layered steps
+1a to 1h listed there, cheapest first; 1f to 1h are optional.
 
-R&D crawl of anton.app with the Playwright MCP (persistent profile at
-~/.cache/anton-playwright-profile). I'm allowed to view and keep everything
+R&D capture of anton.app. Course and exercise content comes from Anton's
+public content CDN with tools/fetch.mjs (see notes/api.md). The browser pass
+(1d) uses the Playwright MCP with the persistent profile at
+~/.cache/anton-playwright-profile. I'm allowed to view and keep everything
 on this account.
 
 ## Goal
@@ -50,28 +52,29 @@ disk space or duplicates become a problem, stop and ask.
     screenshots/  per exercise type and per lesson stage
     snapshots/    Playwright page snapshots and console logs
     notes/        analysis docs (below)
-    index.md      what was captured, when, and where it lives
+    index.md      what was captured, when, and where it lives. Starts with a
+                  "## Status" section, one line per step: "1a: done",
+                  "1b: in progress", and so on. The R&D page reads these.
 
 ## Steps
 
-1. Open https://anton.app headed. I sign in.
-2. Find the JSON API behind the course tree and lessons. Save every response
-   to api/ on first fetch so nothing ever needs fetching twice.
-3. Subject list: every subject in English-GB and German-DE, with grades. Also
-   save the full plan index for every language version and country variant
-   Anton offers (structure only at this stage), as input for Phase 2.
-4. For each subject: the full tree (grades, topics, chapters, lessons) and
-   every lesson's content (questions, answers, hints, feedback text, audio
-   and image references).
-5. Media: spot-download a few complete media packs (all audio and images of a
-   lesson) for lessons spread across different subjects and grades, in both
-   curricula. Record which lessons were picked and why in index.md.
-6. Exercise types: play whole exercises across different lessons until every
-   type is covered. Screenshot each type's start, interaction and feedback.
-7. Lesson mechanics: items per lesson, sequencing (intro, practice, test),
-   retry and mastery rules, hints, feedback, rewards, progression, streaks.
-8. Pace: human speed, no parallel tabs, no bot-detection workarounds. Stop and
-   tell me on paywall, captcha or rate limit.
+1. Structure (1b): fetch every course file listed in English-GB or German
+   with `node tools/fetch.mjs plans --include-outdated`, then rebuild the
+   catalogue with `node catalogue/build.mjs` from the rnd root.
+2. Text sample (1c): fetch the list in tools/lists/sample-1c.txt with
+   `node tools/fetch.mjs levels tools/lists/sample-1c.txt`. Rerun the same
+   command to retry failures; existing files are skipped. Rebuild the
+   catalogue, then fill ../taxonomy.md from the trainer counts.
+3. Browser pass (1d): open https://anton.app headed; I sign in. Play one
+   exercise per trainer type in the taxonomy. Screenshot each type's start,
+   interaction and feedback into screenshots/. Record items per lesson,
+   sequencing, retry and mastery rules, hints, feedback, rewards,
+   progression and streaks.
+4. Full text, images, audio (1f to 1h): only when asked, in the priority
+   order in PHASES.md. Record every chunk and media pack in index.md.
+5. Pace: a fixed delay between requests (1 s for exercise files), no
+   parallel requests, no bot-detection workarounds. Stop and tell me on
+   HTTP 403 or 429, a paywall or a captcha.
 
 ## Notes to write in notes/
 
@@ -87,11 +90,13 @@ disk space or duplicates become a problem, stop and ask.
 
 - FINDINGS.md: add one row per finding during 1e, source "anton", each with
   links to the evidence in this folder.
-- taxonomy.md: fill the exercise-type and lesson-mechanics tables from
-  exercise-types.md and lesson-mechanics.md, with Anton's labels mapped on.
-- catalogue/ and crosswalk/: not part of Phase 1. They are built in Phase 3.
+- taxonomy.md: exercise-type table from the 1c trainer counts; lesson-mechanics
+  table after 1d.
+- catalogue/: built in 1b, rebuilt after every capture step.
+- crosswalk/: built in Phase 3.
 
 ## Progress
 
-Commit in the rnd repo after each subject. Update me in short lines as you
+Commit in the rnd repo after each subject. After each step, update the Status
+lines in index.md and run `node site/build.mjs` from the rnd root. Update me in short lines as you
 go. Report crawl progress and cost at each subject boundary.

@@ -185,7 +185,7 @@ button.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); bor
 
 /* bars */
 .bars { display: grid; gap: 6px; }
-.bar-row { display: grid; grid-template-columns: minmax(0, 15em) 1fr 3.5em; gap: var(--s3); align-items: center; font-size: 13px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 15em) 1fr minmax(3.5em, auto); gap: var(--s3); align-items: center; font-size: 13px; }
 .bar-row .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bar-row .val { text-align: right; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
 .bar { height: 12px; background: var(--sunk); border-radius: 3px; overflow: hidden; }
@@ -271,6 +271,28 @@ input[type="search"] { font: inherit; padding: 7px 11px; border: 1px solid var(-
 .cg-bar span { position: relative; padding-inline: 6px; white-space: nowrap; color: var(--ink); line-height: 22px; }
 .cg-bar:hover, .cg-bar.sel { border-color: currentColor; box-shadow: 0 0 0 1px currentColor; }
 .cg-bar.outdated { opacity: 0.5; border-style: dashed; }
+
+/* anatomy */
+.anat { display: grid; gap: var(--s3); }
+.anat-head, .anat-row { display: grid; grid-template-columns: 9em minmax(0, 1fr) minmax(0, 1fr); gap: var(--s3); align-items: stretch; }
+.anat-head span { font: 600 11px var(--body); letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.anat-head .tw { color: var(--accent); } .anat-head .an { color: var(--en); }
+.anat-level { font: 700 15px/1.25 var(--display); padding-top: 12px; }
+.anat-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s3) var(--s4); display: grid; gap: 6px; align-content: start; min-width: 0; font-size: 14px; }
+.anat-card.tw { border-left: 3px solid var(--accent); }
+.anat-card.an { border-left: 3px solid var(--en); }
+.anat-card .size { font: 600 12px var(--mono); color: var(--muted); }
+.anat-card .labels { font-size: 12.5px; color: var(--muted); }
+.anat-card.none { background: var(--sunk); border-style: dashed; color: var(--muted); }
+.anat-note { grid-column: 2 / -1; font-size: 13px; color: var(--muted); margin-top: -4px; }
+@media (max-width: 760px) {
+  .anat-head { display: none; }
+  .anat-row { grid-template-columns: 1fr; }
+  .anat-level { padding-top: var(--s3); }
+  .anat-card.tw::before { content: "Twist"; font: 600 11px var(--body); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+  .anat-card.an::before { content: "Anton"; font: 600 11px var(--body); letter-spacing: 0.09em; text-transform: uppercase; color: var(--en); }
+  .anat-note { grid-column: 1; }
+}
 footer { padding-block: var(--s5); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 @media (prefers-reduced-motion: no-preference) { .bar i { transition: width 0.4s ease; } }
 </style>
@@ -297,6 +319,18 @@ footer { padding-block: var(--s5); border-top: 1px solid var(--line); color: var
 const D = /*DATA*/null;
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+// Markdown comes from our docs and from captured source data. Raw HTML in it is shown as text,
+// and links keep only http(s), mailto, anchors and relative paths.
+if (window.marked) {
+  const safeHref = (href) => (/^(https?:|mailto:|#|\.{0,2}\/|[\w.-]+(\/|\.md|$))/i.test(String(href || "").trim()) && !/^\s*(javascript|data|vbscript):/i.test(href) ? href : null);
+  marked.use({
+    renderer: {
+      html: (html) => esc(html),
+      link: (href, title, text) => { const h = safeHref(href); return h ? `<a href="${esc(h)}"${title ? ` title="${esc(title)}"` : ""}>${text}</a>` : text; },
+      image: (href, title, text) => esc(text || ""),
+    },
+  });
+}
 const inl = (s) => (window.marked ? marked.parseInline(String(s ?? "")) : esc(s));
 const h = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content; };
 const fmt = (n) => (n == null ? "n/a" : n.toLocaleString("en-GB"));
@@ -314,6 +348,7 @@ const TABS = [
   ["overview", "Overview"],
   ["plan", "Plan"],
   ["catalogue", "Catalogue", D.cat ? D.cat.totals.courses : null],
+  ["anatomy", "Anatomy"],
   ["exercises", "Exercise types"],
   ["gaps", "Gaps vs Twist"],
   ["findings", "Findings", D.findings.length],
@@ -452,6 +487,8 @@ function renderOverview() {
       <div class="pipe">${phase1.steps.map(stepNode).join("")}</div>
     </div>
 
+    ${c.chunks && c.chunks.length ? fullTextBlock(c.chunks) : ""}
+
     <div class="block">
       <div class="block-head"><span class="eyebrow">Captured so far</span></div>
       ${c.api + c.screenshots + c.snapshots + c.media + c.notes + D.findings.length === 0
@@ -479,6 +516,23 @@ function renderOverview() {
     </div>
   `));
   pane.querySelectorAll("#ladder button.cell").forEach((b) => b.addEventListener("click", () => openCourse(b.dataset.cur, b.dataset.course)));
+}
+function fullTextBlock(chunks) {
+  const SUBJ = { natdeu: "Deutsch", nateng: "English", mat: "Maths", deu: "DaZ", eng: "English (foreign / EAL)", sci: "Science", preschool: "Preschool", mus: "Music", geo: "Geography", his: "History", com: "Computing", sel: "PSHE", bio: "Biology", chem: "Chemistry", phy: "Physics", lang: "Foreign languages", outdated: "Outdated courses" };
+  const tot = chunks.reduce((a, x) => a + x.total, 0), done = chunks.reduce((a, x) => a + x.done, 0);
+  const row = (x) => {
+    const st = x.done >= x.total ? "done" : x.started && !x.finished ? "active" : "todo";
+    const lab = { done: "done", active: "running", todo: "waiting" }[st];
+    return `<div class="bar-row"><span class="label">${esc(x.file.slice(0, 2))} · ${x.curriculum === "de" ? "DE" : "GB"} · ${esc(SUBJ[x.subject] || x.subject)}</span>
+      <span class="bar ${x.curriculum === "de" ? "de" : "en"}"><i style="width:${x.total ? (x.done / x.total) * 100 : 0}%"></i></span>
+      <span class="val" style="width:auto;white-space:nowrap">${fmt(x.done)} / ${fmt(x.total)} <span class="chip ${st}" style="margin-left:6px"><span class="dot"></span>${lab}</span></span></div>`;
+  };
+  return `<div class="block">
+      <div class="block-head"><span class="eyebrow">Step 1f · full text, chunk by chunk</span>
+        <h2>${fmt(done)} of ${fmt(tot)} remaining exercise files fetched</h2>
+        <p class="muted">German-DE chunks run first, then English-GB, a few at a time. Deutsch, Mathe and Englisch now run as 3 parallel downloaders (0.3 s pause each, about 5 requests a second in total). Counts are files on disk; the page is rebuilt every few minutes while a run is going.</p></div>
+      <div class="bars" style="grid-template-columns:1fr">${chunks.map(row).join("")}</div>
+    </div>`;
 }
 function selectText(id) {
   const r = document.createRange(); r.selectNodeContents(document.getElementById(id));
@@ -617,6 +671,32 @@ function courseDetail(cur) {
     </div>
     <div class="sec-list">${ts.map((t) => `<details class="sec"><summary><div class="bar-row"><span class="label" title="${esc(t.title)}">${esc(t.title)}</span><span class="bar"><i style="width:${(t.lessons.length / Math.max(...ts.map((x) => x.lessons.length), 1)) * 100}%"></i></span><span class="val">${t.lessons.length}</span></div></summary>
       <div class="detail">${t.lessons.map(([title, n]) => `${esc(title)} <span class="mono">[${n}]</span>`).join(" · ")}</div></details>`).join("")}</div>`;
+}
+
+// ---------- anatomy ----------
+function renderAnatomy() {
+  const pane = panes.anatomy, A = D.anatomy;
+  if (!A || !A.rows.length) { pane.append(h(`<div class="empty"><b>No anatomy.md yet.</b></div>`)); return; }
+  const card = (cls, main, size, labels) => {
+    const empty = !main || /^none/i.test(main);
+    return `<div class="anat-card ${cls} ${empty ? "none" : ""}"><div>${inl(main || "none")}</div>${size ? `<span class="size">${inl(size)}</span>` : ""}${labels ? `<span class="labels">${inl(labels)}</span>` : ""}</div>`;
+  };
+  pane.append(h(`
+    <div class="block-head">
+      <span class="eyebrow">anatomy.md</span>
+      <h2>How a lesson is built: Twist and Anton, level by level</h2>
+      ${A.intro.map((p) => `<p class="muted">${inl(p)}</p>`).join("")}
+    </div>
+    <div class="anat">
+      <div class="anat-head"><span></span><span class="tw">Twist</span><span class="an">Anton</span></div>
+      ${A.rows.map((r) => `<div class="anat-row">
+        <div class="anat-level">${inl(r.level)}</div>
+        ${card("tw", r.twist, r.twistSize, "")}
+        ${card("an", r.anton, r.antonSize, r.labels)}
+        ${r.note ? `<div class="anat-note">${inl(r.note)}</div>` : ""}
+      </div>`).join("")}
+    </div>
+  `));
 }
 
 // ---------- exercises ----------
@@ -801,7 +881,7 @@ function openDoc(path, scroll) {
 }
 
 // ---------- boot ----------
-renderOverview(); renderPlan(); renderCatalogue(); renderExercises(); renderGaps(); renderFindings(); renderCrosswalk(); renderDocs();
+renderOverview(); renderPlan(); renderCatalogue(); renderAnatomy(); renderExercises(); renderGaps(); renderFindings(); renderCrosswalk(); renderDocs();
 let start = (location.hash || "").slice(1);
 if (!panes[start]) { try { start = localStorage.getItem("rnd-tab") || "overview"; } catch (e) { start = "overview"; } }
 show(start, false);

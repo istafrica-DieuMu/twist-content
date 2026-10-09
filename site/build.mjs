@@ -190,6 +190,24 @@ function taxonomy(md) {
 
 // ---------- capture counts ----------
 
+// Step 1f: one row per chunk list, with how many of its files exist on disk.
+function fullTextChunks() {
+  const dir = join(ANTON, "tools/lists/1f");
+  if (!existsSync(dir)) return [];
+  // A parallel run splits some chunks into shards; those chunks count as running while any shard runs.
+  const manifest = existsSync(join(dir, "shards/manifest.json")) ? JSON.parse(read(join(dir, "shards/manifest.json"))) : null;
+  const shardLogs = manifest ? manifest.shards.map((s) => read(join(dir, "shards", s + ".run.log"))) : [];
+  const shardsRunning = shardLogs.some((l) => l && !/^fetched \d+/m.test(l));
+  return readdirSync(dir).filter((f) => /^\d\d-.*\.txt$/.test(f)).sort().map((f) => {
+    const files = read(join(dir, f)).split("\n").map((l) => l.trim().split(/\s+/)[0]).filter(Boolean);
+    const done = files.filter((id) => existsSync(join(ANTON, "api", id + ".json"))).length;
+    const inShards = manifest && manifest.chunks.includes(f);
+    const log = inShards && shardsRunning ? "running in shards" : read(join(dir, f.replace(/\.txt$/, ".run.log")));
+    const [, cur, sub] = f.replace(/\.txt$/, "").match(/^\d\d-(de|en_gb)-(.+)$/) || [];
+    return { file: f, curriculum: cur, subject: sub, total: files.length, done, started: !!log, finished: /^fetched \d+/m.test(log) };
+  });
+}
+
 function captures() {
   const count = (sub) => walk(join(ANTON, sub)).length;
   const api = walk(join(ANTON, "api")).map((p) => relative(ANTON, p)).filter((p) => p.endsWith(".json"));
@@ -201,6 +219,8 @@ function captures() {
     screenshots: count("screenshots"),
     snapshots: count("snapshots"),
     notes: walk(join(ANTON, "notes"), ["prior"]).filter((p) => p.endsWith(".md")).length,
+    chunks: fullTextChunks(),
+    screenshots1d: walk(join(ANTON, "screenshots/1d")).length,
     index: existsSync(join(ANTON, "index.md")),
   };
 }
@@ -282,6 +302,15 @@ const data = {
   },
   findings: findings(read(join(ROOT, "FINDINGS.md"))),
   taxonomy: taxonomy(read(join(ROOT, "taxonomy.md"))),
+  anatomy: (() => {
+    const md = read(join(ROOT, "anatomy.md"));
+    const sec = sections(md, 2).find((x) => x.title === "Side by side");
+    const t = sec ? table(sec.lines) : { rows: [] };
+    return {
+      intro: paragraphs(md.split("\n").slice(1)).slice(0, 2),
+      rows: t.rows.map(([level, twist, twistSize, anton, antonSize, labels, note]) => ({ level, twist, twistSize, anton, antonSize, labels, note })),
+    };
+  })(),
   cat: await catalogue(),
   readme: readme(read(join(ROOT, "README.md"))),
   crosswalkSpec: crosswalkSpec(read(join(ROOT, "crosswalk/README.md"))),
@@ -295,7 +324,8 @@ const json = JSON.stringify(data).replace(/</g, "\\u003c");
 // - index.html: a complete standalone page, tracked in the repo, opens from disk.
 // - dist/artifact.html: the same page without <html>/<head>/<body>, which the
 //   claude.ai publisher wraps itself. Gitignored.
-const fragment = read(join(SITE, "template.html")).replace("/*DATA*/null", json);
+// Function replacer: a string replacement would treat $&, $' and $` in the data as patterns.
+const fragment = read(join(SITE, "template.html")).replace("/*DATA*/null", () => json);
 const cut = fragment.indexOf("</style>") + "</style>".length;
 const page =
   '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n' +

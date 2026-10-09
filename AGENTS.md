@@ -14,6 +14,7 @@ one git repo.
   - FINDINGS.md: the findings register.
   - taxonomy.md: shared names for exercise types and lesson mechanics.
   - catalogue/: the content catalogue, generated from source data.
+  - anatomy.md: Twist and each source's lesson structure side by side.
   - crosswalk/: source content mapped to Schoolido modules.
   - site/: one interactive page over the docs and captures. index.html is
     a standalone page, tracked in git; dist/artifact.html is the same page
