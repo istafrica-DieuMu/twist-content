@@ -8,8 +8,8 @@
 - 1d: done (20 of 23 types; count, set-clock and colour-in not opened, see notes/1d-log.md)
 - 1e: done (notes written; counts from full text to refresh when 1f finishes)
 - 1f: done (all 31,804 exercise files, both curricula; tools/lists/1f/README.md)
-- 1g: not started
-- 1h: not started
+- 1g: done (12 lessons, 540 visual files; notes/media.md)
+- 1h: done (12 lessons, 603 audio clips; notes/media.md)
 
 ## Captured
 
@@ -31,4 +31,4 @@ Recon notes: [notes/api.md](notes/api.md). Every request is logged in `api/fetch
 
 ## Media packs
 
-None downloaded yet (step 1d).
+12 lessons, 6 per curriculum (list and reasons: `tools/lists/media/lessons.json`). 1g: 540 images and graphics, 8.4 MB. 1h: 603 MP3 clips, 9.9 MB, 27.6 min. All in `media/` (gitignored). Details: [notes/media.md](notes/media.md).

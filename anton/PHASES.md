@@ -1,6 +1,6 @@
 # Anton R&D phases
 
-## Phase 1: capture English-GB and German-DE (current)
+## Phase 1: capture English-GB and German-DE (done 2026-10-09)
 
 Revised 2026-10-09 after recon. All content is public JSON with a known file
 list and byte size per file (notes/api.md), so the course structure alone
@@ -17,13 +17,13 @@ and only where an output needs them.
 | 1d | Browser pass. Needs the Playwright MCP and a sign-in. Play one exercise per trainer type and screenshot start, interaction and feedback; record lesson mechanics, rewards and progression. | Every trainer type in the taxonomy has screenshots; lesson-mechanics.md written. |
 | 1e | Notes. subjects.md, topic-maps.md, exercise-types.md, lesson-mechanics.md, usefulness.md in notes/; findings rows in ../FINDINGS.md. | All notes written from captured data, findings filed. |
 | 1f | Full text. Done 2026-10-09: all 31,804 exercise files. The remaining ~29,000 exercise files (about 167 MB), in 27 per-subject chunks (tools/lists/1f/README.md), all German-DE chunks first, then English-GB, run a few at a time. Run only when an output needs item-level data, such as difficulty calibration or the reference set. | Each chunk logged in index.md with captured vs listed counts. |
-| 1g | Images, optional. Image files for chosen lessons, listed per exercise in mediaFiles. | Lessons and reasons listed in index.md. |
-| 1h | Audio, optional and last. Clips for a few lessons only, to judge voice and pacing. | Lessons listed in index.md. |
+| 1g | Images. Done 2026-10-09: 12 lessons, 540 files. Image files for chosen lessons, listed per exercise in mediaFiles. | Lessons and reasons listed in index.md. |
+| 1h | Audio. Done 2026-10-09: 12 lessons, 603 clips. Clips for a few lessons only, to judge voice and pacing. | Lessons listed in index.md. |
 
 The fetch tool is tools/fetch.mjs: resumable through api/fetch-log.jsonl,
 fixed delay between requests, and it never refetches or overwrites a file.
 
-## Phase 2: other curricula
+## Phase 2: other curricula (next)
 
 Same brief and layout, every grade. Steps 1b and 1c only at first (the plan
 index from 1a already lists every version); the browser pass (1d) only for

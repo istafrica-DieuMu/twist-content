@@ -2,9 +2,12 @@
 //
 //   node tools/fetch.mjs plans [--delay 1.5] [--include-outdated]
 //   node tools/fetch.mjs levels <list.txt> [--delay 1]
+//   node tools/fetch.mjs media <list.tsv> [--delay 1]
 //
 // "plans" fetches plan/<project> for every plan listed in English-GB or German.
 // "levels" fetches the level fileIds listed one per line in <list.txt>.
+// "media" fetches image, lsg, svg and sound fileIds ("fileId<TAB>etag" per line) into media/,
+// keeping the bytes as served; the extension comes from the content type.
 //
 // Keep rule: a file that already exists is never refetched or overwritten.
 // Every request is appended to api/fetch-log.jsonl, so a stopped run resumes.
@@ -41,7 +44,14 @@ function targets() {
       return { fileId, etag, out: join(API, fileId + ".json") };
     });
   }
-  console.error("usage: node tools/fetch.mjs plans|levels <list.txt> [--delay s]");
+  if (mode === "media") {
+    return readFileSync(args[1], "utf8").split("\n").filter(Boolean).map((line) => {
+      const [fileId, etag] = line.split("\t");
+      const safe = fileId.replace(/[<>:"\\|?*]/g, "_").replace(/\s+$/g, "").replace(/ /g, "_");
+      return { fileId, etag, out: join(ANTON, "media", safe), media: true };
+    });
+  }
+  console.error("usage: node tools/fetch.mjs plans|levels|media <list> [--delay s]");
   process.exit(2);
 }
 
@@ -52,7 +62,7 @@ const started = Date.now();
 const STOP = join(ANTON, "tools", "STOP");
 for (const t of list) {
   if (existsSync(STOP)) { console.log("Stopped: tools/STOP exists. Delete it to allow runs again."); break; }
-  if (existsSync(t.out)) { skipped++; continue; }
+  if (existsSync(t.out) || (t.media && existsSync(t.out + ".mp3")) || (t.media && ["png", "jpg", "svg", "lsg", "json", "ogg", "m4a", "webp"].some((x) => existsSync(t.out + "." + x)))) { skipped++; continue; }
   const url = `${BASE}?fileId=${encodeURIComponent(t.fileId)}&etag=${encodeURIComponent(t.etag || "latest")}`;
   let status = 0, size = 0, error = null;
   try {
@@ -61,8 +71,21 @@ for (const t of list) {
     const body = Buffer.from(await res.arrayBuffer());
     size = body.length;
     if (res.ok) {
-      mkdirSync(dirname(t.out), { recursive: true });
-      writeFileSync(t.out, body);
+      let out = t.out;
+      if (t.media) {
+        // Prefer the file's own signature; servers label some PNGs as image/jpeg.
+        const sig = body.subarray(0, 12);
+        const sniffed = sig[0] === 0x89 && sig[1] === 0x50 ? "png" : sig[0] === 0xff && sig[1] === 0xd8 ? "jpg"
+          : sig.toString("latin1", 0, 4) === "RIFF" && sig.toString("latin1", 8, 12) === "WEBP" ? "webp"
+          : sig.toString("latin1", 0, 3) === "ID3" || (sig[0] === 0xff && (sig[1] & 0xe0) === 0xe0) ? "mp3"
+          : sig.toString("latin1", 0, 4) === "OggS" ? "ogg" : sig.toString("latin1", 0, 5) === "<?xml" || sig.toString("latin1", 0, 4) === "<svg" ? "svg"
+          : sig[0] === 0x7b || sig[0] === 0x5b ? "json" : null;
+        const ct = (res.headers.get("content-type") || "").split(";")[0];
+        const ext = sniffed || { "audio/mpeg": "mp3", "audio/mp3": "mp3", "audio/ogg": "ogg", "audio/mp4": "m4a", "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp", "image/svg+xml": "svg", "application/json": "json" }[ct];
+        if (ext && !out.endsWith("." + ext)) out += "." + ext;
+      }
+      mkdirSync(dirname(out), { recursive: true });
+      writeFileSync(out, body);
       fetched++; bytes += size;
     } else {
       failed++;
