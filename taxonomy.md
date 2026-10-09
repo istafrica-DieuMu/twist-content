@@ -41,7 +41,7 @@ exercise can use several trainers.
 | written-maths | Work a calculation in a grid or formula, typed | `mathGrid` 43, `mathFormula` 41, `mathFreeGrid` 5 | 89 | text-input (no column-arithmetic grid) |
 | put-in-order | Arrange steps, items or sounds in sequence | `dragSort` 59, `kidSoundSequence` 8, `listSort` 3 | 70 | ordering |
 | trace-path | Follow or draw a path | `followPath` 58 | 58 | tracing |
-| colour-in | Colour parts of a picture by rule | `kidColorize` 17 | 17 | none |
+| colour-in | Colour parts of a picture by rule: pick a colour, then tap a region (part of a square, a circle, ...); checked by hand by the user | `kidColorize` 17 | 17 | none |
 | timed | Answer against a clock or in a race game | `flashRead` 11, `buttonsAnimationTime` 3, `buttonsAnimation` 2 | 16 | none (no timed mode) |
 | odd-one-out | Remove the items that do not belong | `kickItem` 15 | 15 | multi-select |
 | geometry | Move, mirror or transform a shape; `squareMirror` found in 1f | `shapes` 4, `shapeMirror` 2, `squareMirror` 6 (1f so far) | 12 | none |

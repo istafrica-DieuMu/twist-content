@@ -5,7 +5,7 @@
 - 1a: done
 - 1b: done
 - 1c: done
-- 1d: done (20 of 23 types; count, set-clock and colour-in not opened, see notes/1d-log.md)
+- 1d: done (21 of 23 types; colour-in checked by hand; count and set-clock not opened, see notes/1d-log.md)
 - 1e: done (notes written; counts from full text to refresh when 1f finishes)
 - 1f: done (all 31,804 exercise files, both curricula; tools/lists/1f/README.md)
 - 1g: done (12 lessons, 540 visual files; notes/media.md)

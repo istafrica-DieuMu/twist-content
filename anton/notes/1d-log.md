@@ -218,5 +218,8 @@ then lesson and exercise by position.
   exercises are only in English-GB courses, and the account is set to the
   German version, so English-GB URLs redirect. 1 and 2 exercises in the
   sample. Needs a language switch.
-- colour-in (kidColorize): behind a preschool lock (see above).
+- colour-in (kidColorize): behind a preschool lock for the automated pass.
+  Checked by hand by the user on 2026-10-09: pick a colour, then tap a region
+  of the picture; regions are parts of shapes (part of a square, a circle,
+  and so on). No screenshot.
 - Meine Ergebnisse (results page) and how a whole lesson completes.

@@ -56,7 +56,7 @@ Twist types with no Anton trainer of their own: `true-false`, `pick-side`,
 
 ## Gaps in this note
 
-- count (`kidCount`), set-clock (`digitalClock`) and colour-in
-  (`kidColorize`) were not opened in the browser (English-GB only, or behind
-  a preschool lock).
+- count (`kidCount`) and set-clock (`digitalClock`) were not opened in the
+  browser (English-GB only). colour-in (`kidColorize`) was checked by hand by
+  the user: pick a colour, then tap a region of a shape.
 - Shares per type will be recounted from the full text when 1f finishes.
