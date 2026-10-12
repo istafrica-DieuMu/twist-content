@@ -1,0 +1,277 @@
+<title>Twist Germany Readiness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a school report. Squared-paper header with the verdict, a sticky contents rail, then scorecard, areas, priorities, standards. Royal-blue ink for structure, red correction pen for gaps. */
+:root {
+  --paper: #f6f7f3;
+  --sheet: #ffffff;
+  --grid: #e3e8ee;
+  --ink: #1b2440;
+  --muted: #5d6680;
+  --line: #d9dee6;
+  --blue: #2a4ea3;
+  --red: #c2352b;
+  --amber: #a86d10;
+  --green: #2c7a4b;
+  --display: "Bitter", "Rockwell", Georgia, serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10141d; --sheet: #171d29; --grid: #1f2736; --ink: #e6eaf2; --muted: #9aa4ba; --line: #2a3346;
+    --blue: #8aa8f0; --red: #f07a70; --amber: #e2ad55; --green: #6cc795; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10141d; --sheet: #171d29; --grid: #1f2736; --ink: #e6eaf2; --muted: #9aa4ba; --line: #2a3346;
+  --blue: #8aa8f0; --red: #f07a70; --amber: #e2ad55; --green: #6cc795; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--body); }
+a { color: var(--blue); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 4.5vw, 46px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 26px; font-weight: 700; }
+h3 { font-size: 18px; font-weight: 700; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 700 12px/1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--mono); font-size: 0.88em; }
+.muted { color: var(--muted); }
+
+/* header on squared paper */
+header.hero {
+  background-color: var(--sheet);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 22px 22px; border-bottom: 1px solid var(--line);
+}
+.hero-in { max-width: 1160px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 340px); gap: 32px; align-items: start; }
+@media (max-width: 860px) { .hero-in { grid-template-columns: 1fr; } }
+.hero-text { display: grid; gap: 14px; min-width: 0; }
+.hero-text .sub { font-size: 18px; color: var(--muted); }
+.stamp { background: var(--sheet); border: 2px solid var(--blue); border-radius: var(--r); padding: 18px; display: grid; gap: 10px; box-shadow: 4px 4px 0 color-mix(in srgb, var(--blue) 18%, transparent); }
+.stamp .label { font: 800 24px/1.1 var(--display); }
+.stamp.ok { border-color: var(--green); } .stamp.ok .label { color: var(--green); }
+.stamp.cond { border-color: var(--amber); } .stamp.cond .label { color: var(--amber); }
+.stamp.no { border-color: var(--red); } .stamp.no .label { color: var(--red); }
+.gauge { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: center; }
+.gauge svg { width: 92px; height: 92px; }
+.gauge .num { font: 800 26px var(--display); fill: var(--ink); }
+.gauge .basis { font-size: 13px; color: var(--muted); }
+.summary { display: grid; gap: 8px; }
+.summary p { font-size: 16.5px; }
+
+/* layout */
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 36px; }
+@media (max-width: 860px) { .wrap { grid-template-columns: 1fr; gap: 20px; } }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; display: grid; gap: 2px; }
+nav.toc a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14.5px; padding: 6px 10px; border-left: 3px solid transparent; }
+nav.toc a:hover { color: var(--ink); }
+nav.toc a.on { color: var(--ink); border-left-color: var(--blue); background: color-mix(in srgb, var(--blue) 7%, transparent); }
+nav.toc .sub { padding-left: 22px; font-weight: 400; font-size: 13.5px; }
+@media (max-width: 860px) {
+  nav.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; display: flex; overflow-x: auto; background: var(--paper); border-bottom: 1px solid var(--line); padding-block: 6px; scrollbar-width: none; }
+  nav.toc a { white-space: nowrap; border-left: 0; border-bottom: 3px solid transparent; }
+  nav.toc a.on { border-bottom-color: var(--blue); background: none; }
+  nav.toc .sub { display: none; }
+}
+main { display: grid; gap: 48px; min-width: 0; }
+section { display: grid; gap: 18px; scroll-margin-top: 70px; min-width: 0; }
+.head { display: grid; gap: 6px; }
+
+/* conditions */
+ol.conds { margin: 0; padding: 0; list-style: none; counter-reset: c; display: grid; gap: 8px; }
+ol.conds li { counter-increment: c; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 14px; }
+ol.conds li::before { content: counter(c); font: 800 18px/1.3 var(--display); color: var(--blue); }
+
+/* chips */
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--body); padding: 5px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.r-meets { color: var(--green); } .r-partial { color: var(--amber); } .r-gap { color: var(--red); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.toolbar button { font: 600 13.5px var(--body); color: var(--ink); background: var(--sheet); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.toolbar button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* scorecard */
+.score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.score-card { text-align: left; background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 8px; cursor: pointer; font: inherit; color: inherit; border-top: 4px solid var(--line); }
+.score-card:hover { border-color: var(--muted); }
+.score-card.r-meets { border-top-color: var(--green); } .score-card.r-partial { border-top-color: var(--amber); } .score-card.r-gap { border-top-color: var(--red); }
+.score-card .nm { font: 700 16.5px/1.25 var(--display); color: var(--ink); }
+.score-card .fd { font-size: 14px; color: var(--muted); }
+.score-card .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.pips { display: inline-flex; gap: 3px; }
+.pips i { width: 14px; height: 6px; border-radius: 2px; background: var(--line); }
+.pips i.on { background: currentColor; }
+
+/* area detail */
+.area { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; gap: 16px; scroll-margin-top: 70px; border-left: 5px solid var(--line); }
+.area.r-meets { border-left-color: var(--green); } .area.r-partial { border-left-color: var(--amber); } .area.r-gap { border-left-color: var(--red); }
+.area .top { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .cmp { grid-template-columns: 1fr; } }
+.cmp > div { border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.cmp .std { background: color-mix(in srgb, var(--blue) 6%, var(--sheet)); }
+.finding { font-size: 16.5px; font-weight: 600; }
+.evid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.evid div { border-top: 2px solid var(--blue); padding-top: 8px; display: grid; gap: 2px; min-width: 0; }
+.evid b { font: 800 22px/1.1 var(--display); color: var(--blue); overflow-wrap: anywhere; }
+.evid span { font-size: 13.5px; }
+.evid small { font-size: 12px; color: var(--muted); }
+details.ex { border: 1px solid var(--line); border-radius: var(--r); }
+details.ex summary { cursor: pointer; padding: 10px 14px; font-weight: 600; list-style: none; display: flex; gap: 8px; align-items: center; }
+details.ex summary::-webkit-details-marker { display: none; }
+details.ex summary::before { content: "+"; font: 700 16px var(--mono); color: var(--blue); width: 14px; }
+details.ex[open] summary::before { content: "−"; }
+.exs { display: grid; gap: 10px; padding: 0 14px 14px; }
+.exi { display: grid; gap: 4px; padding: 10px 12px; border-radius: 4px; background: color-mix(in srgb, var(--grid) 55%, var(--sheet)); min-width: 0; }
+.exi .k { font: 700 11px var(--body); letter-spacing: 0.08em; text-transform: uppercase; }
+.exi .k.twist { color: var(--blue); } .exi .k.standard { color: var(--green); } .exi .k.benchmark { color: var(--amber); }
+.exi q { font-family: var(--mono); font-size: 13.5px; quotes: none; overflow-wrap: anywhere; }
+.exi .p { font: 12px var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+.fix { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; border-top: 1px dashed var(--line); padding-top: 12px; }
+.fix .tag { font: 700 12px var(--mono); padding: 3px 7px; border-radius: 4px; background: var(--ink); color: var(--paper); }
+
+/* strengths, priorities, standards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.card { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.card.strength { border-left: 4px solid var(--green); }
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 860px) { .lanes { grid-template-columns: 1fr; } }
+.lane { display: grid; gap: 10px; align-content: start; }
+.lane > .eyebrow { padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+.prio { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 6px; }
+.prio .n { font: 800 20px/1 var(--display); color: var(--red); }
+.prio .meta { display: flex; gap: 8px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.prio button { justify-self: start; font: 600 12.5px var(--body); color: var(--blue); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; }
+dl.gloss { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; }
+dl.gloss dt { font-weight: 700; font-family: var(--display); }
+dl.gloss dd { margin: 0; color: var(--muted); }
+@media (max-width: 520px) { dl.gloss { grid-template-columns: 1fr; } dl.gloss dd { margin-bottom: 8px; } }
+ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+footer { max-width: 1160px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: no-preference) { .gauge .arc { transition: stroke-dashoffset 0.8s ease-out; } }
+</style>
+
+<header class="hero"><div class="hero-in">
+  <div class="hero-text">
+    <span class="eyebrow">Content review · Germany launch</span>
+    <h1 id="h-title"></h1>
+    <p class="sub" id="h-sub"></p>
+    <div class="summary" id="h-summary"></div>
+  </div>
+  <aside class="stamp" id="stamp" aria-label="Verdict"></aside>
+</div></header>
+
+<div class="wrap">
+  <nav class="toc" id="toc" aria-label="Contents"></nav>
+  <main id="main"></main>
+</div>
+<footer id="foot"></footer>
+
+<script>
+const R = /*DATA*/null;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const RLAB = { meets: "Meets", partial: "Partly meets", gap: "Gap" };
+const chip = (r) => `<span class="chip r-${esc(r)}"><span class="dot"></span>${RLAB[r] || esc(r)}</span>`;
+const pips = (n, r) => `<span class="pips r-${esc(r)}" aria-label="${n} of 5">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
+
+// header
+document.getElementById("h-title").textContent = R.title;
+document.getElementById("h-sub").textContent = R.subtitle;
+document.getElementById("h-summary").innerHTML = (R.verdict.summary || []).map((s) => `<p>${esc(s)}</p>`).join("");
+const vcls = { "Ready": "ok", "Ready with conditions": "cond", "Not ready": "no" }[R.verdict.label] || "cond";
+const sc = Math.max(0, Math.min(100, +R.verdict.score || 0)), C = 2 * Math.PI * 38;
+const stamp = document.getElementById("stamp");
+stamp.classList.add(vcls);
+stamp.innerHTML = `<span class="eyebrow">Verdict</span><span class="label">${esc(R.verdict.label)}</span>
+  <div class="gauge"><svg viewBox="0 0 92 92" role="img" aria-label="Readiness ${sc} of 100">
+    <circle cx="46" cy="46" r="38" fill="none" stroke="var(--line)" stroke-width="9"/>
+    <circle class="arc" cx="46" cy="46" r="38" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"
+      stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - sc / 100)).toFixed(1)}" transform="rotate(-90 46 46)"
+      style="color: var(--${vcls === "ok" ? "green" : vcls === "no" ? "red" : "amber"})"/>
+    <text class="num" x="46" y="54" text-anchor="middle">${sc}</text></svg>
+    <span class="basis">Readiness out of 100. ${esc(R.verdict.basis)}</span></div>
+  <p style="font-weight:600">${esc(R.verdict.headline)}</p>`;
+
+// sections
+const A = R.areas || [];
+const subjects = ["All", ...new Set(A.map((a) => a.subject).filter((s) => s && s !== "All"))];
+const counts = { meets: 0, partial: 0, gap: 0 }; A.forEach((a) => counts[a.rating] = (counts[a.rating] || 0) + 1);
+const main = document.getElementById("main");
+main.innerHTML = `
+${R.verdict.beta ? `<section id="beta"><div class="head"><span class="eyebrow">Beta</span><h2>${esc(R.verdict.beta.label)}</h2></div>
+  <div class="cmp"><div class="std" style="background:color-mix(in srgb, var(--red) 6%, var(--sheet))"><span class="eyebrow">Why</span><ul class="plain">${R.verdict.beta.why.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></div>
+  <div><span class="eyebrow">Possible now</span><p>${esc(R.verdict.beta.ready_for)}</p><span class="eyebrow" style="margin-top:10px">Gate for a beta with children</span><ul class="plain">${R.verdict.beta.gate.map((g) => `<li>${esc(g)}</li>`).join("")}</ul></div></div></section>` : ""}
+<section id="conditions"><div class="head"><span class="eyebrow">Before launch</span><h2>Conditions for a launch in Germany</h2></div>
+  <ol class="conds">${(R.verdict.conditions || []).map((c) => `<li><span>${esc(c)}</span></li>`).join("")}</ol></section>
+
+<section id="scorecard"><div class="head"><span class="eyebrow">Scorecard · ${A.length} areas</span><h2>Where Twist stands against German expectations</h2>
+  <p class="muted">${counts.meets} meet the standard, ${counts.partial} partly, ${counts.gap} have a gap. Open a card for the detail.</p></div>
+  <div class="toolbar" id="filters" role="group" aria-label="Filter by subject">${subjects.map((s, i) => `<button type="button" data-s="${esc(s)}" aria-pressed="${i === 0}">${esc(s === "All" ? "All subjects" : s)}</button>`).join("")}</div>
+  <div class="score-grid" id="cards">${A.map((a) => `<button type="button" class="score-card r-${esc(a.rating)}" data-id="${esc(a.id)}" data-s="${esc(a.subject)}">
+    <span class="row"><span class="eyebrow">${esc(a.subject)}</span>${chip(a.rating)}</span>
+    <span class="nm">${esc(a.name)}</span><span class="fd">${esc(a.finding)}</span>
+    <span class="row">${pips(a.score, a.rating)}<span class="mono muted">${esc(a.effort ? "effort " + a.effort : "")}</span></span></button>`).join("")}</div></section>
+
+<section id="areas"><div class="head"><span class="eyebrow">Detail</span><h2>Area by area</h2></div>
+  ${A.map((a) => `<article class="area r-${esc(a.rating)}" id="area-${esc(a.id)}">
+    <div class="top"><div class="head"><span class="eyebrow">${esc(a.subject)}</span><h3>${esc(a.name)}</h3></div><span class="toolbar">${chip(a.rating)}${pips(a.score, a.rating)}</span></div>
+    <p class="finding">${esc(a.finding)}</p>
+    <div class="cmp"><div class="std"><span class="eyebrow">What Germany expects</span><span>${esc(a.standard)}</span></div><div><span class="eyebrow">Twist today</span><span>${esc(a.twist_today)}</span></div></div>
+    ${(a.evidence || []).length ? `<div class="evid">${a.evidence.map((e) => `<div><b>${esc(e.value)}</b><span>${esc(e.metric)}</span>${e.note ? `<small>${esc(e.note)}</small>` : ""}</div>`).join("")}</div>` : ""}
+    ${(a.examples || []).length ? `<details class="ex"><summary>Examples (${a.examples.length})</summary><div class="exs">${a.examples.map((x) => `<div class="exi"><span class="k ${esc(x.kind)}">${esc({ twist: "Twist", standard: "Standard", benchmark: "Benchmark" }[x.kind] || x.kind)} · ${esc(x.label)}</span><q>${esc(x.text)}</q>${x.path ? `<span class="p">${esc(x.path)}</span>` : ""}<span>${esc(x.comment)}</span></div>`).join("")}</div></details>` : ""}
+    <div class="fix"><span class="tag">${esc(a.effort || "?")}</span><span><b>Fix:</b> ${esc(a.fix)}</span></div>
+  </article>`).join("")}</section>
+
+${R.comparison ? `<section id="numbers"><div class="head"><span class="eyebrow">In numbers</span><h2>Twist next to Anton</h2><p class="muted">${esc(R.comparison.intro)}</p></div>
+  <div style="overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--sheet)"><table style="border-collapse:collapse;width:100%;font-size:14.5px;min-width:620px">
+  <thead><tr>${["Measure", "Twist", "Anton", "Note"].map((x) => `<th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">${x}</th>`).join("")}</tr></thead>
+  <tbody>${R.comparison.rows.map((r) => `<tr><td style="padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600">${esc(r.metric)}</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);color:var(--blue);font-weight:700">${esc(r.twist)}</td><td style="padding:10px 12px;border-bottom:1px solid var(--line)">${esc(r.anton)}</td><td style="padding:10px 12px;border-bottom:1px solid var(--line);color:var(--muted)">${esc(r.note)}</td></tr>`).join("")}</tbody></table></div></section>` : ""}
+<section id="strengths"><div class="head"><span class="eyebrow">Keep</span><h2>What Twist already does well</h2></div>
+  <div class="cards">${(R.strengths || []).map((s) => `<div class="card strength"><h3>${esc(s.title)}</h3><p>${esc(s.detail)}</p><span class="mono muted">${esc(s.evidence)}</span></div>`).join("")}</div></section>
+
+<section id="priorities"><div class="head"><span class="eyebrow">Plan</span><h2>Priorities</h2></div>
+  <div class="lanes">${["before launch", "first 3 months", "later"].map((w) => `<div class="lane"><span class="eyebrow">${esc(w)}</span>${(R.priorities || []).filter((p) => (p.when || "").toLowerCase() === w).map((p) => `<div class="prio"><span class="n">${esc(p.rank)}</span><b>${esc(p.action)}</b><span class="muted">${esc(p.why)}</span>
+    <span class="meta"><span>effort ${esc(p.effort)}</span></span>${p.area ? `<button type="button" data-go="${esc(p.area)}">See the area</button>` : ""}</div>`).join("") || `<span class="muted">None</span>`}</div>`).join("")}</div></section>
+
+<section id="standards"><div class="head"><span class="eyebrow">Reference</span><h2>Standards this review uses</h2></div>
+  <div class="cards">${(R.standards || []).map((s) => `<div class="card"><span class="eyebrow mono">${esc(s.id)}</span><h3>${esc(s.name)}</h3><p>${esc(s.requires)}</p>${s.source ? `<a href="${esc(s.source)}" target="_blank" rel="noopener">Source</a>` : ""}</div>`).join("")}</div></section>
+
+<section id="method"><div class="head"><span class="eyebrow">How</span><h2>Method and scope</h2></div>
+  <ul class="plain">${(R.method || []).map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
+  <div class="cmp"><div><span class="eyebrow">Reviewed</span><ul class="plain">${((R.scope || {}).reviewed || []).map((m) => `<li>${esc(m)}</li>`).join("")}</ul></div>
+  <div><span class="eyebrow">Not reviewed</span><ul class="plain">${((R.scope || {}).not_reviewed || []).map((m) => `<li>${esc(m)}</li>`).join("")}</ul></div></div></section>
+
+<section id="glossary"><div class="head"><span class="eyebrow">Terms</span><h2>Glossary</h2></div>
+  <dl class="gloss">${(R.glossary || []).map((g) => `<dt>${esc(g.term)}</dt><dd>${esc(g.meaning)}</dd>`).join("")}</dl></section>`;
+
+// contents rail
+const toc = [...(R.verdict.beta ? [["beta", "Beta verdict"]] : []), ["conditions", "Conditions"], ["scorecard", "Scorecard"], ["areas", "Areas"], ...A.map((a) => ["area-" + a.id, a.name, true]), ...(R.comparison ? [["numbers", "Twist and Anton"]] : []), ["strengths", "Strengths"], ["priorities", "Priorities"], ["standards", "Standards"], ["method", "Method"], ["glossary", "Glossary"]];
+const nav = document.getElementById("toc");
+nav.innerHTML = toc.map(([id, l, sub]) => `<a href="#${id}" data-id="${id}" class="${sub ? "sub" : ""}">${esc(l)}</a>`).join("");
+const go = (id) => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }); };
+nav.addEventListener("click", (e) => { const a = e.target.closest("a"); if (!a) return; e.preventDefault(); go(a.dataset.id); });
+document.querySelectorAll(".score-card").forEach((b) => b.addEventListener("click", () => go("area-" + b.dataset.id)));
+document.querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => go("area-" + b.dataset.go)));
+document.getElementById("filters").addEventListener("click", (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  document.querySelectorAll("#filters button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  const s = b.dataset.s;
+  document.querySelectorAll(".score-card").forEach((c) => (c.hidden = s !== "All" && c.dataset.s !== s && c.dataset.s !== "All"));
+});
+const ids = toc.map(([id]) => id);
+const obs = new IntersectionObserver((ents) => {
+  const vis = ents.filter((x) => x.isIntersecting).map((x) => x.target.id);
+  if (!vis.length) return;
+  const cur = ids.filter((id) => vis.includes(id)).pop();
+  nav.querySelectorAll("a").forEach((a) => a.classList.toggle("on", a.dataset.id === cur));
+}, { rootMargin: "-20% 0px -60% 0px" });
+ids.forEach((id) => { const el = document.getElementById(id); if (el) obs.observe(el); });
+document.getElementById("foot").textContent = `Review dated ${R.date}. Built from the Schoolido R&D research folder and the Twist content repository.`;
+</script>

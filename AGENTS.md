@@ -16,11 +16,19 @@ one git repo.
   - catalogue/: the content catalogue, generated from source data.
   - anatomy.md: Twist and each source's lesson structure side by side.
   - crosswalk/: source content mapped to Schoolido modules.
+  - Phase 3 analyses: type-gaps.md, mechanics-benchmark.md, calibration.md,
+    media-benchmark.md, reference-set.md, german-insight.md.
   - site/: one interactive page over the docs and captures. index.html is
     a standalone page, tracked in git; dist/artifact.html is the same page
     as a fragment for the claude.ai publisher, gitignored. Edit build.mjs or
     template.html, then run `node site/build.mjs`; never edit the outputs by
     hand. Rebuild after each capture step.
+  - review/: the Twist Germany readiness review, one page built from
+    de-launch-review.json (de-launch-review.v1.json is the earlier draft).
+    Same output layout as site/: index.html tracked, dist/ gitignored.
+    Edit the JSON or template.html, then run `node review/build.mjs`; never
+    edit the outputs by hand. The build refuses data that mentions Anton's
+    internal course ids or exercise-type names.
   - Add other outputs at the root as needed, and list them here and in
     README.md.
 

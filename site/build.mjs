@@ -311,6 +311,11 @@ const data = {
       rows: t.rows.map(([level, twist, twistSize, anton, antonSize, labels, note]) => ({ level, twist, twistSize, anton, antonSize, labels, note })),
     };
   })(),
+  crosswalks: walk(join(ROOT, "crosswalk")).filter((p) => p.endsWith(".md") && !p.endsWith("README.md")).sort().map((p) => {
+    const md = read(p);
+    const sum = sections(md, 2).find((x) => /summary/i.test(x.title));
+    return { path: relative(ROOT, p), title: (md.match(/^# (.+)$/m) || [, relative(ROOT, p)])[1], summary: sum ? listItems(sum.lines) : [] };
+  }),
   cat: await catalogue(),
   readme: readme(read(join(ROOT, "README.md"))),
   crosswalkSpec: crosswalkSpec(read(join(ROOT, "crosswalk/README.md"))),

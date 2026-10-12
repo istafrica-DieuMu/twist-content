@@ -23,7 +23,7 @@ and only where an output needs them.
 The fetch tool is tools/fetch.mjs: resumable through api/fetch-log.jsonl,
 fixed delay between requests, and it never refetches or overwrites a file.
 
-## Phase 2: other curricula (next)
+## Phase 2: other curricula
 
 Same brief and layout, every grade. Steps 1b and 1c only at first (the plan
 index from 1a already lists every version); the browser pass (1d) only for
@@ -39,7 +39,7 @@ trainer types not already seen in Phase 1.
   from English-GB and German-DE, so it gets its own recon (1a) and its own
   mapping into the catalogue rather than reusing the EU shape.
 
-## Phase 3: put the data to work
+## Phase 3: put the data to work (done 2026-10-09)
 
 Suggestions, roughly in order of payoff. Outputs land at the rnd root. Any
 change to Schoolido itself is a separate piece of work in schoolido-learning,
@@ -72,9 +72,13 @@ planned on its own when we get there.
 8. **German-DE insight for the de/ repair.** How Anton sequences German for
    German-speaking children, as input to the German en-LOI repair plan.
 
-Phase 3 should learn from Anton's patterns, structure and mechanics. Reusing
-Anton's actual questions, audio or images inside Schoolido content is a
-different matter and needs a legal check first.
+Outputs, all at the rnd root: catalogue/ (1), type-gaps.md (2),
+mechanics-benchmark.md (3), crosswalk/anton-{en,de}-{english,german,math}.md
+(4, six files), calibration.md (5), media-benchmark.md (6), reference-set.md
+(7), german-insight.md (8). Findings F-014 to F-021.
+
+Anton is used for inspiration only: its patterns, structure and mechanics.
+No Anton questions, audio or images go into Schoolido content.
 
 ## Phase 4: keep it current (optional)
 

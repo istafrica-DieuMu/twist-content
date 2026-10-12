@@ -827,10 +827,17 @@ function renderCrosswalk() {
   const a = D.prior.alignment;
   pane.append(h(`
     <div class="block-head">
-      <span class="eyebrow">crosswalk/ · ${D.crosswalkBuilt ? D.crosswalkBuilt + " files built" : "not built yet, Phase 3"}</span>
+      <span class="eyebrow">crosswalk/ · ${D.crosswalkBuilt ? D.crosswalkBuilt + " files built" : "not built yet"}</span>
       <h2>Anton lessons against Twist lessons</h2>
       <p class="muted">One file per source, Twist language of instruction and subject. Twist's side reads the 24 module catalogues in schoolido-learning, <code>content/{en,de}/grade-{1..4}/{english,german,math}/module-catalog.md</code>.</p>
     </div>
+    ${(D.crosswalks || []).length ? `<div class="block">
+      <div class="block-head"><span class="eyebrow">Built so far · ${D.crosswalks.length} of 6</span><h2>Crosswalk summaries</h2></div>
+      <div class="cols">${D.crosswalks.map((c) => `<div class="panel">
+        <span class="eyebrow mono">${esc(c.path)}</span><h3>${inl(c.title)}</h3>
+        <ul class="items">${c.summary.map((x) => `<li><span>${inl(x)}</span></li>`).join("")}</ul>
+        <button class="btn" data-doc="${esc(c.path)}" type="button" style="justify-self:start;padding:8px 12px">Open full file</button></div>`).join("")}</div>
+    </div>` : ""}
     <div class="block">
       <div class="block-head"><span class="eyebrow">What each crosswalk file holds</span></div>
       <ol class="payoff">${D.crosswalkSpec.map((it) => `<li><div><b>${inl(it.lead)}.</b> <span class="muted">${inl(it.rest)}</span></div></li>`).join("")}</ol>
@@ -841,6 +848,7 @@ function renderCrosswalk() {
       <p class="note">${inl(a.note || "")}</p>
     </div>
   `));
+  pane.querySelectorAll("button[data-doc]").forEach((b) => b.addEventListener("click", () => { show("docs", true); openDoc(b.dataset.doc, true); }));
 }
 
 // ---------- docs ----------
