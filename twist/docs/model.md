@@ -134,7 +134,8 @@ actually work.
 
 ## Lessons
 
-A lesson teaches one step, or two steps that cannot be taught apart.
+A lesson teaches one step, or two steps that cannot be taught apart, over
+2 to 6 short parts.
 
 - `id`: `<domain>.<slug>`; for `fl`, `fl.<language>.<slug>` (`fl.en.`,
   `fl.fr.`).
@@ -150,7 +151,8 @@ A lesson teaches one step, or two steps that cannot be taught apart.
   with `fit` (`as-is`, `adapt`, `rewrite`).
 - `status`: `draft`, `checked`, `reviewed`.
 
-Lessons come after the curriculum (plan step C5).
+Lessons come after the curriculum (plan step C5). How a lesson is built (parts,
+activities, items) and the mastery rule are in [lesson-anatomy.md](lesson-anatomy.md).
 
 ## Locale facets
 

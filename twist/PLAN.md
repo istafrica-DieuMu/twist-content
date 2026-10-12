@@ -47,7 +47,11 @@ from their age. These are three separate fields, never one.
   Every statutory objective is reached or out of scope with a reason, and
   every step sits within the year its objectives name.
 - Two curricula share one library: 63 progressions, 661 steps.
-- Next: de-DE lessons (phase 2), starting with the lesson grain decision.
+- Lesson anatomy decided (docs/lesson-anatomy.md): a lesson teaches one
+  step over 2 to 6 short parts; activity sequences vary by subject and step
+  size; items are hand-authored; mastery runs not started, learning,
+  practised, secure, mastered, with delayed reviews and diagnostics.
+- Next: de-DE lessons, one model lesson per subject first.
 
 ## Scope
 
