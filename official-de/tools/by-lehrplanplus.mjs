@@ -67,7 +67,7 @@ url: ${q(doc.pages[0][3])}
 country: DE
 land: BY
 domain: ${doc.domain}
-objectives:
+standards:
 `;
 for (const o of objectives) {
   out += `  - code: ${o.code}\n    kind: ${o.kind}\n    area: ${q(o.area)}\n    group: ${q(o.group)}\n    band: ${o.band}\n`;

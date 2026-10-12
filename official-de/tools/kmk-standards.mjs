@@ -143,7 +143,7 @@ url: ${q(doc.url)}
 country: DE
 domain: ${doc.domain}
 band: end-klasse-4
-objectives:
+standards:
 `;
 for (const o of objectives) {
   out += `  - code: ${o.code}\n    kind: ${o.kind}\n    area: ${q(o.area)}\n`;

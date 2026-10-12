@@ -1,5 +1,9 @@
 # Twist curriculum, phase 1: the curriculum itself
 
+> Written before the names were settled. Read step as skill, profile as
+> curriculum, stage as year, objective as standard, part as lesson. The
+> current names are in docs/lesson-anatomy.md.
+
 Branch `curriculum-phase1`, started 2026-10-12. Revised the same day after
 the decisions at the end of this file. Everything this plan produces lives
 in `twist/`; layout in twist/README.md.
@@ -51,6 +55,10 @@ from their age. These are three separate fields, never one.
   step over 2 to 6 short parts; activity sequences vary by subject and step
   size; items are hand-authored; mastery runs not started, learning,
   practised, secure, mastered, with delayed reviews and diagnostics.
+- Names settled: Curriculum, Subject, Year, Topic, Skill, Lesson,
+  Activity, Task; four activities (Warm-up, Learn, Practise, Check) with
+  settings. Record fields and folders renamed to match (curricula/, years/,
+  skills, standards).
 - Next: de-DE lessons, one model lesson per subject first.
 
 ## Scope

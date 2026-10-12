@@ -61,7 +61,7 @@ country: DE
 domain: ${doc.domain}
 band: ${doc.band}
 level: A1
-objectives:
+standards:
 `;
 find(doc.level);
 for (const [code, area, text] of doc.objectives) out += `  - code: ${doc.id}.${code}\n    kind: content\n    area: ${q(area)}\n    page: ${find(text)}\n    text: ${q(text)}\n`;

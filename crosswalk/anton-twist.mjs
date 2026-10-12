@@ -1,7 +1,7 @@
 // Compares Anton's German-DE primary courses with the Twist de-DE curriculum.
 //   node crosswalk/anton-twist.mjs   (from the rnd root)
 // Reads catalogue/catalogue.db (Anton lessons), crosswalk/anton-twist-de.rules.yaml
-// (which Anton lesson went to which Twist step) and the twist/ records; writes
+// (which Anton lesson went to which Twist skill) and the twist/ records; writes
 // crosswalk/anton-twist-de.md. Fails if an Anton lesson matches no rule or a
 // rule names a step that does not exist. Generated output: never edit the .md.
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
@@ -19,9 +19,9 @@ const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return
 const steps = new Map();
 for (const p of walk(join(ROOT, "twist/competencies")).filter((p) => p.endsWith(".yaml"))) {
   const d = YAML.parse(readFileSync(p, "utf8"));
-  for (const s of d?.steps ?? []) steps.set(s.id, { ...s, progression: d.progression });
+  for (const s of d?.skills ?? []) steps.set(s.id, { ...s, progression: d.progression });
 }
-const profile = read("twist/profiles/de-DE.yaml");
+const profile = read("twist/curricula/de-DE.yaml");
 const stageOf = new Map(), orderOf = new Map();
 const STAGES = ["klasse-1", "klasse-2", "klasse-3", "klasse-4", "stufe-0", "lernjahr-1", "lernjahr-2"];
 for (const [stage, list] of Object.entries(profile.placement)) list.forEach((id, i) => { stageOf.set(id, stage); orderOf.set(id, i); });
@@ -70,11 +70,11 @@ anton-twist-de.rules.yaml and the twist/ records. Do not edit.
 Anton courses: Mathe c-mat-1 to c-mat-4, Deutsch c-natdeu-1 to c-natdeu-4,
 Englisch c-mono-eng-gb-0 (Stufe 0), c-eng-3, c-eng-4 and the ungraded
 vocabulary course c-mono-eng-gb-1. Anton's Klasse is compared with the Klasse
-(or learning year) where de-DE places the step.
+(or learning year) where de-DE places the skill.
 
 ## Summary
 
-| Subject | Anton lessons | mapped | excluded | Twist steps | steps with an Anton lesson | Twist-only steps |
+| Subject | Anton lessons | mapped | excluded | Twist skills | skills with an Anton lesson | Twist-only skills |
 |---|---|---|---|---|---|---|
 `;
 for (const [domain, name] of Object.entries(SUBJECT)) {
@@ -84,26 +84,26 @@ for (const [domain, name] of Object.entries(SUBJECT)) {
   out += `| ${name} | ${r.length} | ${r.filter((x) => x.ids.length).length} | ${r.filter((x) => !x.ids.length).length} | ${ids.length} | ${withAnton.length} | ${ids.length - withAnton.length} |\n`;
 }
 
-out += `\n## Size by stage\n\nAnton lessons per course against Twist steps placed in the same stage.\n\n| Stage | Mathe: Anton | Mathe: Twist | Deutsch: Anton | Deutsch: Twist | Englisch: Anton | Englisch: Twist |\n|---|---|---|---|---|---|---|\n`;
+out += `\n## Size by stage\n\nAnton lessons per course against Twist skills placed in the same year.\n\n| Year | Mathe: Anton | Mathe: Twist | Deutsch: Anton | Deutsch: Twist | Englisch: Anton | Englisch: Twist |\n|---|---|---|---|---|---|---|\n`;
 for (const st of STAGES) {
   const cell = (domain) => [rows.filter((r) => r.domain === domain && r.grade === st).length, [...stageOf].filter(([id, s]) => s === st && id.startsWith(domain + ".")).length];
   const [ma, mt] = cell("math"), [da, dt] = cell("lit-de"), [ea, et] = cell("fl");
   out += `| ${label(st)} | ${ma || ""} | ${mt || ""} | ${da || ""} | ${dt || ""} | ${ea || ""} | ${et || ""} |\n`;
 }
 
-out += `\n## Placement against Anton\n\nSteps that de-DE places in a different stage from where Anton first teaches them. Steps Anton places in several grades count from the first.\n\n`;
+out += `\n## Placement against Anton\n\nSkills that de-DE places in a different year from where Anton first teaches them. Skills Anton places in several grades count from the first.\n\n`;
 for (const [domain, name] of Object.entries(SUBJECT)) {
   const diffs = [...stageOf.keys()].filter((id) => id.startsWith(domain + ".")).map((id) => ({ id, t: stageOf.get(id), a: earliest(id) })).filter((d) => d.a && d.a !== d.t);
   const later = diffs.filter((d) => STAGES.indexOf(d.t) > STAGES.indexOf(d.a)), earlier = diffs.filter((d) => STAGES.indexOf(d.t) < STAGES.indexOf(d.a));
   out += `### ${name}: ${later.length} later than Anton, ${earlier.length} earlier\n\n`;
   if (diffs.length) {
-    out += `| step | Twist | Anton first | Anton lessons |\n|---|---|---|---|\n`;
+    out += `| skill | Twist | Anton first | Anton lessons |\n|---|---|---|---|\n`;
     for (const d of [...later, ...earlier]) out += `| \`${d.id}\` | ${label(d.t)} | ${label(d.a)} | ${md(anton.get(d.id).filter((r) => r.grade === d.a).map((r) => r.key.split(" » ")[1]).slice(0, 3).join("; "))} |\n`;
     out += "\n";
   }
 }
 
-out += `## Twist steps with no Anton lesson\n\nWhat the curriculum adds to Anton, mostly from the KMK standards.\n\n`;
+out += `## Twist skills with no Anton lesson\n\nWhat the curriculum adds to Anton, mostly from the KMK standards.\n\n`;
 for (const [domain, name] of Object.entries(SUBJECT)) {
   const only = [...stageOf.keys()].filter((id) => id.startsWith(domain + ".") && !anton.has(id));
   out += `### ${name} (${only.length})\n\n`;
@@ -111,7 +111,7 @@ for (const [domain, name] of Object.entries(SUBJECT)) {
   out += "\n";
 }
 
-out += `## Where Anton has several lessons for one step\n\nAnton splits topics into numbered parts, per-letter and per-table lessons and reviews; Twist keeps one step and leaves the split to the lessons in phase 2.\n\n| step | Anton lessons |\n|---|---|\n`;
+out += `## Where Anton has several lessons for one skill\n\nAnton splits topics into numbered parts, per-letter and per-table lessons and reviews; Twist keeps one skill and splits it into lessons.\n\n| skill | Anton lessons |\n|---|---|\n`;
 for (const [id, list] of [...anton].sort((a, b) => b[1].length - a[1].length).filter(([, l]) => l.length >= 4)) out += `| \`${id}\` | ${list.length} |\n`;
 
 const excluded = rows.filter((r) => !r.ids.length);

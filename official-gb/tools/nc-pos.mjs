@@ -139,7 +139,7 @@ framework: ${doc.id}
 title: ${q(doc.title)}
 url: ${q(doc.url)}
 country: GB-ENG
-${doc.domain ? `domain: ${doc.domain}\n` : ""}objectives:
+${doc.domain ? `domain: ${doc.domain}\n` : ""}standards:
 `;
 for (const o of objectives) {
   out += `  - code: ${o.code}\n    kind: content\n    area: ${q(o.area)}\n`;

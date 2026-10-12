@@ -6,11 +6,11 @@ anton-twist-de.rules.yaml and the twist/ records. Do not edit.
 Anton courses: Mathe c-mat-1 to c-mat-4, Deutsch c-natdeu-1 to c-natdeu-4,
 Englisch c-mono-eng-gb-0 (Stufe 0), c-eng-3, c-eng-4 and the ungraded
 vocabulary course c-mono-eng-gb-1. Anton's Klasse is compared with the Klasse
-(or learning year) where de-DE places the step.
+(or learning year) where de-DE places the skill.
 
 ## Summary
 
-| Subject | Anton lessons | mapped | excluded | Twist steps | steps with an Anton lesson | Twist-only steps |
+| Subject | Anton lessons | mapped | excluded | Twist skills | skills with an Anton lesson | Twist-only skills |
 |---|---|---|---|---|---|---|
 | Mathe | 296 | 296 | 0 | 203 | 161 | 42 |
 | Deutsch | 393 | 392 | 1 | 174 | 139 | 35 |
@@ -18,9 +18,9 @@ vocabulary course c-mono-eng-gb-1. Anton's Klasse is compared with the Klasse
 
 ## Size by stage
 
-Anton lessons per course against Twist steps placed in the same stage.
+Anton lessons per course against Twist skills placed in the same year.
 
-| Stage | Mathe: Anton | Mathe: Twist | Deutsch: Anton | Deutsch: Twist | Englisch: Anton | Englisch: Twist |
+| Year | Mathe: Anton | Mathe: Twist | Deutsch: Anton | Deutsch: Twist | Englisch: Anton | Englisch: Twist |
 |---|---|---|---|---|---|---|
 | Kl. 1 | 54 | 41 | 91 | 51 |  |  |
 | Kl. 2 | 88 | 63 | 135 | 46 |  |  |
@@ -32,11 +32,11 @@ Anton lessons per course against Twist steps placed in the same stage.
 
 ## Placement against Anton
 
-Steps that de-DE places in a different stage from where Anton first teaches them. Steps Anton places in several grades count from the first.
+Skills that de-DE places in a different year from where Anton first teaches them. Skills Anton places in several grades count from the first.
 
 ### Mathe: 3 later than Anton, 3 earlier
 
-| step | Twist | Anton first | Anton lessons |
+| skill | Twist | Anton first | Anton lessons |
 |---|---|---|---|
 | `math.time.durations` | Kl. 3 | Kl. 2 | Zeitpunkt und Zeitdauer bestimmen |
 | `math.length.word-problems` | Kl. 4 | Kl. 3 | Sachaufgaben mit Längen |
@@ -47,7 +47,7 @@ Steps that de-DE places in a different stage from where Anton first teaches them
 
 ### Deutsch: 4 later than Anton, 9 earlier
 
-| step | Twist | Anton first | Anton lessons |
+| skill | Twist | Anton first | Anton lessons |
 |---|---|---|---|
 | `lit-de.fluency.sight-words-longer` | Kl. 2 | Kl. 1 | Blitzlesen – mittel; Blitzlesen – schwer |
 | `lit-de.comprehension.key-words` | Kl. 2 | Kl. 1 | Wichtige Wörter |
@@ -65,7 +65,7 @@ Steps that de-DE places in a different stage from where Anton first teaches them
 
 ### Englisch: 0 later than Anton, 0 earlier
 
-## Twist steps with no Anton lesson
+## Twist skills with no Anton lesson
 
 What the curriculum adds to Anton, mostly from the KMK standards.
 
@@ -192,11 +192,11 @@ What the curriculum adds to Anton, mostly from the KMK standards.
 - LJ 2: `fl.culture-strategies.compare-daily-life` I can compare children's daily lives in other countries with mine (school, food, celebrations) and name what is the same and what differs.
 - LJ 2: `fl.culture-strategies.self-check` I can judge what I can already do in the new language and set myself a next goal.
 
-## Where Anton has several lessons for one step
+## Where Anton has several lessons for one skill
 
-Anton splits topics into numbered parts, per-letter and per-table lessons and reviews; Twist keeps one step and leaves the split to the lessons in phase 2.
+Anton splits topics into numbered parts, per-letter and per-table lessons and reviews; Twist keeps one skill and splits it into lessons.
 
-| step | Anton lessons |
+| skill | Anton lessons |
 |---|---|
 | `lit-de.handwriting.joined-lowercase` | 60 |
 | `lit-de.handwriting.joined-capitals` | 60 |

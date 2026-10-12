@@ -1,57 +1,77 @@
 # Lesson anatomy
 
 How Twist content is organised, from a whole curriculum down to a single
-task, and how the app decides that a child has mastered a learning goal.
-Decided 2026-10-12. The data model behind the upper levels is in
-[model.md](model.md).
+task, and how the app decides that a child has mastered a skill. Decided
+2026-10-12. The data model behind it is in [model.md](model.md).
 
 > Grade determines curriculum expectations, proficiency determines learning
 > level, and age determines presentation.
 
-## The names
+## The chain
 
-The levels use the words teachers already use in each country, so that a
-teacher, a parent and the app mean the same thing.
+**Curriculum, Subject, Year, Topic, Skill, Lesson, Activity, Task.**
 
-| Level | English (England) | Deutsch (Deutschland) | What it is | Example |
-|---|---|---|---|---|
-| 1 | Curriculum | Lehrplan | Everything taught in one country, in its own language | Lehrplan Deutschland; England |
-| 2 | Subject | Fach | Maths, English, French; Mathe, Deutsch, Englisch | Mathe |
-| 3 | Year | Klasse | The school year a child is in. Foreign languages count by learning year: French year 1 to 4; Stufe 0, 1. and 2. Lernjahr | Klasse 1; Year 2 |
-| 4 | Unit | Thema | A block of related learning goals, the sections a child sees in a year | Rechnen bis 20 |
-| 5 | Learning goal | Lernziel | One thing the child learns to do, said as "I can ..." or "Ich kann ...". Placement and mastery are recorded per learning goal | Ich kann Plusaufgaben mit Zehnerübergang lösen. |
-| 6 | Lesson | Lektion | One short sitting. A learning goal is taught over 2 to 6 lessons | Lektion 2 von 4 |
-| 7 | Activity | Phase | One block inside a lesson with one job: starter, teaching, guided practice, practice, apply, recap, quick check | Gemeinsam üben |
-| 8 | Task | Aufgabe | One thing the child does: answer, tap, drag, say, write | Aufgabe 6 |
+Each level has a name for the team (and the records), a name teachers use
+in each country, and sometimes a different name for children. The team
+name is the same in every market; the other two follow the school.
 
-How it reads in a sentence: *In Year 2 Maths, the unit "Adding and
-subtracting to 20" has six learning goals. "I can add across ten" is taught
-in three lessons; each lesson has a starter, teaching, practice and a
-quick check, about 15 tasks in all.*
+| Level | Team name | England: teachers | England: children | Deutschland: Lehrkräfte | Deutschland: Kinder |
+|---|---|---|---|---|---|
+| 1 | Curriculum | Curriculum | | Lehrplan | |
+| 2 | Subject | Subject | Maths, English, French | Fach | Mathe, Deutsch, Englisch |
+| 3 | Year | Year group; learning year for French | Year 2; French year 1 | Klasse; Lernjahr | Klasse 2; Stufe 0, 1. Lernjahr |
+| 4 | Topic | Topic | Topic | Thema | Thema |
+| 5 | Skill | Skill (learning objective) | "I can ..." | Kompetenz (Lernziel) | "Ich kann ..." |
+| 6 | Lesson | Lesson | Lesson 2 of 4 | Lektion | Lektion 2 von 4 |
+| 7 | Activity | Activity (lesson phase) | Warm up, Learn, Practise, Show what you know | Phase | Aufwärmen, Entdecken, Üben, Zeig, was du kannst |
+| 8 | Task | Task, question | (no label; just the next thing to do) | Aufgabe | Aufgabe |
 
-Behind the curriculum, two levels are for the team and teachers only:
+How it reads in a sentence: *In Year 2 Maths, the topic "Adding and
+subtracting to 20" has six skills. "I can add across ten" is taught in
+three lessons. Each lesson is a few activities (warm up, learn, practise,
+show what you know) made of about 15 tasks.*
 
-| Level | English | Deutsch | What it is |
+What each level is:
+
+- **Curriculum**: everything taught in one country, in its own language.
+  Two for now: Deutschland (de-DE) and England (en-GB).
+- **Subject**: one school subject in that curriculum. Behind it sits a
+  shared domain (`math`, `lit-de`, `lit-en`, `fl`), so Mathe and Maths use
+  the same skills where the learning is the same.
+- **Year**: the school year a child is in, which sets what their curriculum
+  expects by the end of it. Foreign languages count by learning year,
+  because schools start them at different ages.
+- **Topic**: a block of related skills; the sections a child sees in a year.
+- **Skill**: one thing the child learns to do, said as "I can ..." or "Ich
+  kann ...". Placement in a year, mastery and the child's level are all
+  recorded per skill.
+- **Lesson**: one short sitting. A skill is taught over 2 to 6 lessons.
+- **Activity**: one block inside a lesson with one job (below).
+- **Task**: one thing the child does: answer, tap, drag, say, write.
+
+Two more levels are for the team and teachers only:
+
+| Team name | England | Deutschland | What it is |
 |---|---|---|---|
-| Learning progression | Learning progression | Lernstrang | The learning goals of one skill in teaching order, across all years (place value, spelling strategies) |
-| Standard | Standard (statutory requirement, early learning goal) | Kompetenzerwartung (Bildungsstandard) | One line of an official document, quoted, that learning goals are mapped to |
+| Learning progression | Learning progression | Lernstrang | The skills of one strand in teaching order, across all years (place value, spelling strategies) |
+| Standard | Statutory requirement; early learning goal | Kompetenzerwartung; Bildungsstandard | One line of an official document, quoted, that skills are mapped to |
 
-Older names, for reading earlier notes: a learning goal was called a step
-(and a skill in schoolido-learning); a lesson was called a part; a task was
-called an item or a question; a unit was called a topic; a year was called
-a stage. The field names in the records still use the older words until
-they are renamed (see model.md).
+Earlier names, for reading older notes: a skill was called a step (and a
+learning goal for a short while); a lesson was called a part; a task was
+called an item or a question; a topic was called a unit; a year was called
+a stage; a curriculum was called a profile; a standard was called an
+objective. In schoolido-learning a skill is still a `skill` and a lesson
+part is still a `module`.
 
-## Learning goals and lessons
+## Skills and lessons
 
-A learning goal is taught over several short lessons because the learners
-are young: attention is short, and a skill sticks better when it comes back
+A skill is taught over several short lessons because the learners are
+young: attention is short, and a skill sticks better when it comes back
 over several sittings than when it is drilled in one.
 
-- A learning goal has as many lessons as it needs: a small one (read and
-  set half past) may need 2, a large one (written subtraction with
-  exchange) 5 or 6. Sometimes two goals that cannot be taught apart share
-  their lessons.
+- A skill has as many lessons as it needs: a small one (read and set half
+  past) may need 2, a large one (written subtraction with exchange) 5 or 6.
+  Sometimes two skills that cannot be taught apart share their lessons.
 - Lesson length follows the child's age:
 
 | Age | Lesson length | Tasks per lesson |
@@ -61,78 +81,127 @@ over several sittings than when it is drilled in one.
 | 8 to 10 | about 10 to 12 minutes | 15 to 25 |
 
 - Each lesson can be finished and left. The next lesson opens straight
-  away; when a goal has more than two lessons, the app suggests the next one
-  on a later day, so the goal spreads over several sittings.
+  away; when a skill has more than two lessons, the app suggests the next
+  one on a later day, so the skill spreads over several sittings.
 - Each lesson builds on the one before: a new part of the skill, the same
   skill with less help, or a new way of showing it.
-- The last lesson of a goal ends with the goal check (see Mastery).
+- The last lesson of a skill ends with the skill check (see Mastery).
 
 ## Activities
 
-Seven kinds of activity, named the way teachers name the phases of a
-lesson. Every lesson uses some of them; which ones, in what order and how
-long, depends on the subject and the size of the goal.
+Four general activities make up every lesson. They are deliberately few:
+the differences between lessons come from settings on the activity, not
+from more activity names.
 
-| Activity | Phase | Job | Hints | Counts for mastery |
-|---|---|---|---|---|
-| Starter | Einstieg | Says the goal in child language and warms up with 2 or 3 tasks from earlier goals it builds on | no | no |
-| Teaching | Erklärung | Shows how: worked examples, a narrated demonstration, a model text, a sound and its letter. No answers asked, or only "do it with me" taps | n/a | no |
-| Guided practice | Gemeinsam üben | First tries with full support | 3 levels | no |
-| Practice | Üben | Tries with less support, tasks getting harder; after two misses on a task the answer is shown and the task counts as neither right nor wrong | 1 level | no |
-| Apply | Anwenden | The skill in a new setting: a word problem, a sentence, a short text, a speaking task | 1 level | no |
-| Recap | Wiederholung | Mixed tasks from earlier lessons or earlier goals | no | yes, as delayed evidence |
-| Quick check | Kurzer Check | Short, no hints, first try counts | no | yes |
+| Activity | Children see | Deutsch | Job |
+|---|---|---|---|
+| **Warm-up** | Warm up | Aufwärmen | Recall what this builds on, or what the last lesson taught |
+| **Learn** | Learn | Entdecken | Teaching: examples, a demonstration, a model text, a new sound |
+| **Practise** | Practise | Üben | Doing it, with a support setting |
+| **Check** | Show what you know | Zeig, was du kannst | Short, no help, counts toward mastery |
 
-Rules for every lesson, whatever the subject:
+### What each activity can be set to
 
-1. Teaching comes before the first practice of anything new.
-2. Every lesson ends with something the child can succeed at (a quick
-   check, a recap or a short apply), never in the middle of teaching.
-3. The last lesson of a goal ends with the goal check.
-4. From the second lesson on, each lesson starts with a short recap of the
-   one before.
+**Warm-up** draws its tasks from one of two places:
 
-### Typical sequences by subject
+| Setting | Means |
+|---|---|
+| from: earlier skills | The skills this one builds on (what used to be the "starter") |
+| from: last lesson | The previous lesson of the same skill (what used to be the "recap") |
 
-Starting shapes, not fixed templates. Authors change them when a goal is
+**Learn** is shown in one of these ways; no answers are scored:
+
+| Setting | Means |
+|---|---|
+| worked examples | 2 to 4 solved examples, one step at a time |
+| demonstration | a narrated animation of the drawn model (ten-frame, number line, letter formation) |
+| model text | a text to read or hear before writing or answering |
+| new sound or word | hear it, see it, say it (phonics, foreign language) |
+| do it with me | the child taps along; nothing is marked |
+
+**Practise** is one activity with two settings. What used to be called
+guided practice, practice and apply are all Practise:
+
+| Setting | Values | Example |
+|---|---|---|
+| support | full: 3 hint levels (strategy, think aloud, direct cue) | first tries after Learn |
+| | some: 1 hint | second lesson onwards |
+| | none: no hints; after two misses the answer is shown and the task counts as neither right nor wrong | late practice, facts to know by heart |
+| setting | plain: the skill on its own | 8 + 5 = ? |
+| | in context: a word problem, a sentence, a short text, a speaking task | Lena has 8 marbles and gets 5 more ... |
+
+So guided practice is Practise with full support; apply is Practise with no
+support in context.
+
+**Check** comes in three sizes, all without help, where only the first try
+counts:
+
+| Setting | Means | Counts for mastery |
+|---|---|---|
+| quick check | 3 tasks at the end of a lesson, so the lesson ends on success | no; it tells the app whether to slow down |
+| skill check | 4 or 5 tasks at the end of the last lesson of a skill | yes |
+| timed | a skill check with a time per task, for facts to know by heart | yes |
+
+### Leaving activities out
+
+Any activity can be left out, depending on the lesson, the subject and the
+child's age. Two rules always hold:
+
+1. Anything new gets a Learn before the first Practise.
+2. The last lesson of a skill ends with a skill check.
+
+Examples:
+
+| Lesson | Activities |
+|---|---|
+| First lesson of a new idea | Warm-up (earlier skills), Learn, Practise (full support) |
+| A middle lesson | Warm-up (last lesson), Practise (some support), Practise (no support, in context), Check (quick) |
+| A recap lesson | Warm-up, Practise, Check; no Learn |
+| Ages 4 to 5 | Learn, Practise (full support), Check (quick, 3 tasks); no Warm-up |
+| A times-table lesson after the first | Warm-up, Practise (no support), Check (timed) |
+| Last lesson of a skill | Warm-up (last lesson), Practise (no support, in context), Check (skill check) |
+
+### Typical lesson plans by subject
+
+Starting shapes, not fixed templates. Authors change them when a skill is
 bigger or smaller.
 
 **Maths / Mathe, a new idea** (place value, a new operation): 3 to 4
-lessons. Lesson 1: starter, teaching with a drawn model (ten-frame,
-Zwanzigerfeld, number line), guided practice. Lesson 2: recap, teaching
-with a second model, guided practice, practice. Lesson 3: recap, practice,
-apply (a word problem, Sachaufgabe). Lesson 4: recap, goal check.
+lessons. Lesson 1: warm-up, learn with a drawn model (ten-frame,
+Zwanzigerfeld, number line), practise with full support. Lesson 2:
+warm-up, learn with a second model, practise. Lesson 3: warm-up, practise
+in context (a word problem, Sachaufgabe). Lesson 4: warm-up, practise, skill check.
 
 **Maths / Mathe, facts to know by heart** (the 7 times table, number bonds
-to 10): 2 to 3 lessons with short teaching of the strategy (work it out
-from a fact you know), then long practice with rising speed, goal check at
-the end. Most of the work then happens in practice sessions outside the
-lessons.
+to 10): 2 to 3 lessons with a short learn (work it out from a fact you
+know), then long practise with no support and rising speed, timed skill
+check at the end. Most of the work then happens in practice sessions
+outside the lessons.
 
 **Deutsch, a group of letters** (L, O, A, M): one lesson per letter plus
-one mixed lesson. Each lesson: hear the sound, see the letter, find it at
-the start of words, blend syllables with letters already known, write the
-letter (trace, then copy). Mixed lesson: read and write short words with
-all four letters, goal check.
+one mixed lesson. Each letter lesson: learn (hear the sound, see the
+letter), practise (find it at the start of words, blend syllables with
+letters already known, trace and copy it). Mixed lesson: warm-up, practise
+reading and writing short words with all four, skill check.
 
 **English, phonics** (s, a, t, p): the same shape as the German letter
 group, following the school's phonics order.
 
 **Reading** (find information, read between the lines): 2 to 3 lessons.
-Teach the strategy on a short text read aloud, guided questions on a
-second text, then a new text with practice questions and the goal check.
-Texts match the child's age; for ages 4 to 7 they are read aloud.
+Learn the strategy on a short text read aloud, practise with full support
+on a second text, then a new text with practise and the skill check. Texts
+match the child's age; for ages 4 to 7 they are read aloud.
 
-**Writing and grammar** (direct speech, a report): teach with a model
-text, guided sentence work (complete, reorder, correct), then an apply
-activity where the child writes their own sentences or a short text. The
-goal check uses tasks with answers to choose or short answers to write;
+**Writing and grammar** (direct speech, a report): learn from a model
+text, practise on sentences (complete, reorder, correct), then practise in
+context where the child writes their own sentences or a short text. The
+skill check uses tasks with answers to choose or short answers to write;
 free writing is not marked automatically.
 
-**Englisch / French** (a theme, a language pattern): hear and repeat
-(speaking), match word and picture or meaning, use it in a short dialogue
-or phrase, quick check. Listening and speaking come before reading and
-writing, especially in Stufe 0 and for ages 4 to 7.
+**Englisch / French** (a theme, a language pattern): learn (hear and
+repeat), practise (match word and picture or meaning, then use it in a
+short dialogue or phrase, speaking), check. Listening and speaking come
+before reading and writing, especially in Stufe 0 and for ages 4 to 7.
 
 ## Tasks
 
@@ -147,15 +216,15 @@ Each task records:
   available for ages 4 to 7);
 - how it is shown (below) and the data needed to draw it;
 - the correct answer and feedback for each typical wrong answer;
-- for guided practice, three hint levels: a strategy, thinking aloud, a
-  direct cue;
+- for Practise with full support, three hint levels: a strategy, thinking
+  aloud, a direct cue;
 - difficulty (easy, core, stretch) and the local details it depends on
   (currency, number format, handwriting script, written-subtraction
   method).
 
 ### Fewer images
 
-Each task uses the least image-heavy form that still teaches the goal.
+Each task uses the least image-heavy form that still teaches the skill.
 The lesson records which form it relies on.
 
 | Form | Use it for | Made by |
@@ -171,11 +240,11 @@ one picture of a cat serves Deutsch, English, Englisch and French.
 
 ### Versions of a task
 
-A task can have versions; the goal and what the task asks stay the same.
+A task can have versions; the skill and what the task asks stay the same.
 
 - **By age**: 4 to 5 (led by audio, no reading needed, big targets, fewer
   tasks), 6 to 7 (audio support, short text), 8 to 10 (led by text). An
-  older beginner gets the 8 to 10 version of an early goal.
+  older beginner gets the 8 to 10 version of an early skill.
 - **By country**: € or £, 3,5 or 3.5, `·` or `×`, the written-subtraction
   method, the handwriting script.
 - **By target language**, for Englisch and French lessons: the words,
@@ -183,7 +252,7 @@ A task can have versions; the goal and what the task asks stay the same.
 
 ## Mastery
 
-Mastery is recorded per child and per learning goal. It decides where a
+Mastery is recorded per child and per skill. It decides where a
 child works, what is suggested next, what comes back for recap, and how the
 child stands against what their year expects.
 
@@ -192,66 +261,66 @@ child stands against what their year expects.
 | State | English | Deutsch | Means | Reached by |
 |---|---|---|---|---|
 | 1 | Not started | Noch nicht begonnen | No evidence yet | |
-| 2 | Learning | Lerne ich gerade | The child has started the goal's lessons | Opening lesson 1 |
-| 3 | Practised | Geübt | The child finished the lessons but has not yet shown the goal reliably | Finishing the last lesson below the pass mark |
-| 4 | Secure | Kann ich | The child can do it now, without help | Passing the goal check, or a placement check |
+| 2 | Learning | Lerne ich gerade | The child has started its lessons | Opening lesson 1 |
+| 3 | Practised | Geübt | The child finished the lessons but has not yet shown the skill reliably | Finishing the last lesson below the pass mark |
+| 4 | Secure | Kann ich | The child can do it now, without help | Passing the skill check, or a placement check |
 | 5 | Mastered | Kann ich sicher | The child can still do it later | Passing recaps on two days at least a week apart |
-| 6 | Needs a recap | Wiederholen | A later recap was missed | Failing a recap of a secure or mastered goal |
+| 6 | Needs a recap | Wiederholen | A later recap was missed | Failing a recap of a secure or mastered skill |
 
-A child sees the states as stars or a badge on each "I can" goal. `Needs a
-recap` puts the goal back into practice sessions; passing the next recap
+A child sees the states as stars or a badge on each "I can" skill. `Needs a
+recap` puts the skill back into practice sessions; passing the next recap
 returns it to the state it had.
 
-### The goal check
+### The skill check
 
 - 5 tasks for ages 6 and up, 4 for ages 4 to 5, taken from across the
-  goal's lessons and covering each part of the skill at least once.
+  skill's lessons and covering each part of the skill at least once.
 - No hints. Only the first try counts. A shown answer counts as wrong.
 - Pass mark: at least 4 of 5 (3 of 4 for ages 4 to 5), and every core task
-  of the goal answered correctly at least once in its lessons.
-- If the child does not pass, the goal stays at `Practised`. The app
-  offers one short extra lesson (taught again in a different way, then
-  guided practice) and a new goal check with different tasks. A child is
+  of the skill answered correctly at least once in its lessons.
+- If the child does not pass, the skill stays at `Practised`. The app
+  offers one short extra lesson (Learn again in a different way, then
+  Practise with full support) and a new skill check with different tasks. A child is
   never asked to repeat all the lessons.
 
 ### Recaps: from secure to mastered
 
 Remembering later is the real aim, so `Secure` is not the end.
 
-- Recaps come back in practice sessions and unit recaps, spaced out: about
-  2 days, 1 week, 3 weeks and 2 months after the goal became secure.
-- A recap of one goal is 2 or 3 tasks, mixed with tasks from other goals.
-- Mastered: the goal was secure, and the child passed recaps on two
+- Recaps come back in practice sessions and topic recaps, spaced out: about
+  2 days, 1 week, 3 weeks and 2 months after the skill became secure.
+- A recap of one skill is 2 or 3 tasks, mixed with tasks from other skills.
+- Mastered: the skill was secure, and the child passed recaps on two
   different days at least a week apart.
 - A failed recap (fewer than 2 of 3, or 1 of 2) sets `Needs a recap` and
   brings the next recap closer.
 
 ### Placement checks: where a child really is
 
-A child does not have to start at the first goal of their year, and does
-not have to sit through goals they already know.
+A child does not have to start at the first skill of their year, and does
+not have to sit through skills they already know.
 
 - A placement check (Einstufung) for one learning progression asks 1 or 2
-  tasks per learning goal, starting at what the child's year expects and
+  tasks per skill, starting at what the child's year expects and
   moving up after success and down after mistakes, until it finds the edge.
-- A goal passed in a placement check (2 of 2, or 1 of 1 for ages 4 to 5)
-  becomes `Secure`, and its first recap is scheduled. Goals it builds on in
+- A skill passed in a placement check (2 of 2, or 1 of 1 for ages 4 to 5)
+  becomes `Secure`, and its first recap is scheduled. Skills it builds on in
   the same progression count as secure too.
-- The first goal the child misses becomes the next one to learn.
+- The first skill the child misses becomes the next one to learn.
 
-### What a goal needs first, and access
+### What a skill needs first, and access
 
-- A goal is suggested when every goal it builds on is at least
+- A skill is suggested when every skill it builds on is at least
   `Practised`.
-- A child can still open any goal. If something it builds on is not secure,
+- A child can still open any skill. If something it builds on is not secure,
   its first lesson starts with a short recap of that.
 
 ### Level and standing
 
-- **Level** in a learning progression: the furthest goal the child has
+- **Level** in a learning progression: the furthest skill the child has
   reached with everything it builds on secure. This is where the child
   works in that progression.
-- **Standing** in a subject, shown to parents: the share of the goals in
+- **Standing** in a subject, shown to parents: the share of the skills in
   the child's year that are secure or mastered, compared with how far the
   school year has run. Shown as ahead, on track or catching up. It never
   blocks the child.
@@ -260,27 +329,27 @@ not have to sit through goals they already know.
 
 | Counts | Does not count |
 |---|---|
-| Goal checks, first try | Guided practice, with or without hints |
-| Recaps | Practice tasks inside lessons |
-| Placement checks | Answers shown after two misses |
-| Start-of-year and end-of-year checks | Speed, except for facts to know by heart, where a time target is part of the goal |
+| Skill checks, first try | Quick checks at the end of a lesson |
+| Warm-up tasks that recall earlier skills, after the skill is secure | Practise tasks inside lessons |
+| Recaps in practice sessions | Answers shown after two misses |
+| Placement checks; start-of-year and end-of-year checks | Speed, except in a timed skill check |
 
-Goals that are facts to know by heart (number bonds, times tables,
-Blitzlesen) add a time target to the goal check: correct, and within a set
-time per task for the child's age.
+Skills that are facts to know by heart (number bonds, times tables,
+Blitzlesen) use the timed skill check: correct, and within a set time per
+task for the child's age.
 
 ### Practice outside lessons
 
 | English | Deutsch | What it is |
 |---|---|---|
-| Practice session | Übungsrunde | About 14 tasks of one goal, or a mix of due recaps |
-| Unit recap | Themenwiederholung | Mixed tasks from all goals of a unit |
+| Practice session | Übungsrunde | About 14 tasks of one skill, or a mix of due recaps |
+| Topic recap | Themenwiederholung | Mixed tasks from all skills of a topic |
 | Placement check | Einstufung | Finds the child's level in one learning progression |
-| Start-of-year and end-of-year check | Eingangs- und Abschlusscheck | A check across the year's goals, for the whole subject |
+| Start-of-year and end-of-year check | Eingangs- und Abschlusscheck | A check across the year's skills, for the whole subject |
 
 ### Numbers to tune
 
-All thresholds above are starting values: goal check length, pass mark,
+All thresholds above are starting values: skill check length, pass mark,
 recap spacing, the mastered rule, the placement rule and the time targets.
 They are set per age in the app's configuration, not in the content, and
 should be adjusted from real data once children use the app.

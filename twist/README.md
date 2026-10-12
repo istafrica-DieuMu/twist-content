@@ -8,8 +8,12 @@ root and in the source folders.
 
 Plan and status: [PLAN.md](PLAN.md). Rules: [AGENTS.md](AGENTS.md).
 
+The chain: **Curriculum, Subject, Year, Topic, Skill, Lesson, Activity,
+Task**, named for teachers and children in
+[docs/lesson-anatomy.md](docs/lesson-anatomy.md).
+
 Two curricula for now, on one shared library: **de-DE** (Germany, KMK) and
-**en-GB** (England, EYFS and National Curriculum). Steps per stage and
+**en-GB** (England, EYFS and National Curriculum). Skills per year and
 subject for both: [views/placements.md](views/placements.md).
 
 ## Layout
@@ -18,11 +22,11 @@ subject for both: [views/placements.md](views/placements.md).
 |---|---|---|
 | [docs/](docs/) | The spec: the model, naming, age bands, locale facets, id rules | written |
 | [schema/](schema/) | JSON Schema for each record type | written |
-| [stages/](stages/) | The stages each market uses: Reception, Year 1 to 6, Klasse 1 to 4, Stufe 0, Lernjahr 1 and 2 | records |
+| [years/](years/) | The years each market uses: Reception, Year 1 to 6, Klasse 1 to 4, Stufe 0, Lernjahr 1 and 2, French years 1 to 4 | records |
 | [frameworks/](frameworks/) | Official documents as coded objectives, verbatim quotes with page references, generated from the captured documents. `de/` for the KMK standards, `gb/` for EYFS and the National Curriculum | generated |
-| [competencies/](competencies/) | The competency library: progressions and their steps, one folder per domain (`math`, `lit-de`, `lit-en`, `fl`) | records |
+| [competencies/](competencies/) | The competency library: learning progressions and their skills, one folder per domain (`math`, `lit-de`, `lit-en`, `fl`) | records |
 | [lessons/](lessons/) | The lesson library, one folder per domain; each lesson teaches one step | records |
-| [profiles/](profiles/) | One curriculum per market (`de-DE`, later `en-GB`): which frameworks apply and where each step is placed | records |
+| [curricula/](curricula/) | One curriculum per market (`de-DE`, `en-GB`): which frameworks apply and in which year each skill is placed | records |
 | [views/](views/) | Generated: grade and year views per profile, the competency library by domain, and coverage of each framework | generated |
 
 Records are YAML. Views are built from the records by `build.mjs` (step C6

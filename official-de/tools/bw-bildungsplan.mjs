@@ -53,7 +53,7 @@ url: ${q(doc.url)}
 country: DE
 land: BW
 domain: ${doc.domain}
-objectives:
+standards:
 `;
 for (const o of objectives) out += `  - code: ${o.code}\n    kind: content\n    area: ${q(o.area)}\n    group: ${q(o.group)}\n    band: ${o.band}\n    text: ${q(o.text)}\n`;
 writeFileSync(join(ROOT, `official-de/frameworks/${doc.id}.yaml`), out);
