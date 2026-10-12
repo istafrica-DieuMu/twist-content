@@ -77,8 +77,11 @@ mechanics-benchmark.md (3), crosswalk/anton-{en,de}-{english,german,math}.md
 (4, six files), calibration.md (5), media-benchmark.md (6), reference-set.md
 (7), german-insight.md (8). Findings F-014 to F-021.
 
-Anton is used for inspiration only: its patterns, structure and mechanics.
-No Anton questions, audio or images go into Schoolido content.
+Anton is the reference for patterns, structure, mechanics and wording.
+Since 2026-10-12, Anton's text may be used as reference when writing Twist
+competencies and questions, and may match where that is the natural
+wording; scenarios and examples stay custom. No Anton audio or images go
+into Schoolido content, and twist/ records do not cite Anton.
 
 ## Phase 4: keep it current (optional)
 

@@ -5,7 +5,7 @@ one git repo.
 
 ## Layout
 
-- **Source folders** (`anton/` today): everything captured from one source,
+- **Source folders** (`anton/`, `official-de/`, `official-gb/`): everything captured from one source,
   isolated in its own folder: raw data, media, screenshots, and notes specific
   to that source. Nothing from a scrape lives outside its source folder.
 - **Root outputs**: what we make from the captured data. These can draw on
@@ -15,7 +15,9 @@ one git repo.
   - taxonomy.md: shared names for exercise types and lesson mechanics.
   - catalogue/: the content catalogue, generated from source data.
   - anatomy.md: Twist and each source's lesson structure side by side.
-  - crosswalk/: source content mapped to Schoolido modules.
+  - crosswalk/: source content mapped to Schoolido modules, and
+    anton-twist-de.md, built by `node crosswalk/anton-twist.mjs` from
+    anton-twist-de.rules.yaml (edit the rules, never the .md).
   - Phase 3 analyses: type-gaps.md, mechanics-benchmark.md, calibration.md,
     media-benchmark.md, reference-set.md, german-insight.md.
   - site/: one interactive page over the docs and captures. index.html is
@@ -23,6 +25,11 @@ one git repo.
     as a fragment for the claude.ai publisher, gitignored. Edit build.mjs or
     template.html, then run `node site/build.mjs`; never edit the outputs by
     hand. Rebuild after each capture step.
+  - twist/: the clean Twist curriculum, competency first, with two
+    curricula for now (de-DE and en-GB) on one shared library: stages,
+    frameworks, competencies, lessons, profiles, and generated views.
+    Only our own content goes in; research inputs stay outside it.
+    PLAN.md holds the steps; twist/AGENTS.md adds its own rules.
   - review/: the Twist Germany readiness review, one page built from
     de-launch-review.json (de-launch-review.v1.json is the earlier draft).
     Same output layout as site/: index.html tracked, dist/ gitignored.

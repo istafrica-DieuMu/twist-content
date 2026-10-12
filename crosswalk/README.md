@@ -35,4 +35,13 @@ their grade, as a view of where Twist's progression could lead.
 Each row links to the source lesson's raw files and to the Twist catalogue
 line. Findings worth acting on go to ../FINDINGS.md.
 
-Not built yet. Comes after the catalogue exists (Anton Phase 3).
+Built in Anton Phase 3: one file per source, LOI and subject (above).
+
+## Anton and the new Twist curriculum
+
+anton-twist-de.md compares Anton's German-DE primary courses with the
+twist/ de-DE curriculum: every Anton lesson is mapped to the step that took
+it or excluded with a reason (rules in anton-twist-de.rules.yaml), with
+sizes by stage, placement differences and Twist-only steps. Built by
+`node crosswalk/anton-twist.mjs`; the link runs from here to twist/, never
+back.

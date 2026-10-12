@@ -1,0 +1,29 @@
+# Twist curriculum
+
+The clean Twist curriculum for primary school: competencies, lessons, the
+official frameworks they map to, and the grade and year placement per
+curriculum profile. Everything here is our own work. Research inputs
+(Anton captures, crosswalks, analyses) stay outside this folder, at the rnd
+root and in the source folders.
+
+Plan and status: [PLAN.md](PLAN.md). Rules: [AGENTS.md](AGENTS.md).
+
+Two curricula for now, on one shared library: **de-DE** (Germany, KMK) and
+**en-GB** (England, EYFS and National Curriculum). Steps per stage and
+subject for both: [views/placements.md](views/placements.md).
+
+## Layout
+
+| Folder | What goes in it | Kind |
+|---|---|---|
+| [docs/](docs/) | The spec: the model, naming, age bands, locale facets, id rules | written |
+| [schema/](schema/) | JSON Schema for each record type | written |
+| [stages/](stages/) | The stages each market uses: Reception, Year 1 to 6, Klasse 1 to 4, Stufe 0, Lernjahr 1 and 2 | records |
+| [frameworks/](frameworks/) | Official documents as coded objectives, verbatim quotes with page references, generated from the captured documents. `de/` for the KMK standards, `gb/` for EYFS and the National Curriculum | generated |
+| [competencies/](competencies/) | The competency library: progressions and their steps, one folder per domain (`math`, `lit-de`, `lit-en`, `fl`) | records |
+| [lessons/](lessons/) | The lesson library, one folder per domain; each lesson teaches one step | records |
+| [profiles/](profiles/) | One curriculum per market (`de-DE`, later `en-GB`): which frameworks apply and where each step is placed | records |
+| [views/](views/) | Generated: grade and year views per profile, the competency library by domain, and coverage of each framework | generated |
+
+Records are YAML. Views are built from the records by `build.mjs` (step C6
+in the plan) and are never edited by hand.
