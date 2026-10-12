@@ -6,6 +6,25 @@ what. If the two disagree, this file wins and PLAN.md gets fixed.
 > Grade determines curriculum expectations, proficiency determines learning
 > level, and age determines presentation.
 
+## Names
+
+The names teachers and children see are set in
+[lesson-anatomy.md](lesson-anatomy.md). The record fields still use the
+earlier working names:
+
+| Name | English | Deutsch | Record field today |
+|---|---|---|---|
+| Curriculum | Curriculum | Lehrplan | `profile` |
+| Subject | Subject | Fach | `domain` (with `subjects` in the profile) |
+| Year | Year, learning year | Klasse, Lernjahr | `stage` |
+| Unit | Unit | Thema | `topic` |
+| Learning goal | Learning goal | Lernziel | step (`steps`, `id`) |
+| Learning progression | Learning progression | Lernstrang | `progression` |
+| Standard | Standard | Kompetenzerwartung | `objectives` (framework `objectives`) |
+| Lesson | Lesson | Lektion | not in records yet |
+| Activity | Activity | Phase | not in records yet |
+| Task | Task | Aufgabe | not in records yet |
+
 ## Records
 
 | Record | Folder | One file holds | Key |
