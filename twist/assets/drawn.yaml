@@ -1,0 +1,85 @@
+# Components the app draws from data. No artwork per task: a task names the
+# component and passes its data. Facets (currency, number format) change how
+# a component looks per curriculum.
+components:
+  - id: dots
+    what: A group of dots, loose or in a dice pattern, for counting and seeing amounts at a glance
+    data: "count: 1-20, layout: [scattered, dice, row, five-structure]"
+
+  - id: ten-frame
+    what: A 2 x 5 frame with counters
+    data: "filled: 0-10, colour_split: optional, e.g. [6, 2]"
+    names: { de: Zehnerfeld, en: ten-frame }
+
+  - id: zwanzigerfeld
+    what: Two ten-frames, one above the other, for numbers to 20 and adding across ten
+    data: "filled: '[first, second] counters, e.g. [8, 5]', move: optional counters moved from the second frame to the first"
+    names: { de: Zwanzigerfeld, en: twenty-frame }
+
+  - id: number-line
+    what: A number line with ticks, labels and jumps
+    data: "from: 0, to: 20, labels: [all, tens, ends], jumps: 'list of [start, size]'"
+    names: { de: Zahlenstrahl, en: number line }
+
+  - id: rechenstrich
+    what: An empty number line with jumps and their sizes written above
+    data: "start: 8, jumps: [2, 3]"
+    names: { de: Rechenstrich, en: empty number line }
+
+  - id: equation
+    what: A calculation with optional gaps and highlighted parts
+    data: "text: '8 + 5 = _', gaps: positions, split: optional '5 = 2 + 3' under a number"
+    facets: [operation-signs]
+
+  - id: number-house
+    what: A number house (Zahlenhaus) showing a number and its parts
+    data: "roof: 10, rows: '[[8, 2], [7, 3]]'"
+    names: { de: Zahlenhaus, en: number bonds house }
+
+  - id: base-ten
+    what: Tens rods and ones cubes
+    data: "tens: 0-9, ones: 0-9"
+
+  - id: hundred-square
+    what: A 10 x 10 number square with highlights
+    data: "highlight: list, hide: list"
+
+  - id: clock
+    what: An analogue clock face, with or without a digital display
+    data: "hour: 1-12, minute: 0-59, digital: optional"
+    facets: [time-format]
+
+  - id: coins
+    what: Coins and notes of the curriculum's currency
+    data: "values: list"
+    facets: [currency]
+
+  - id: shape
+    what: A 2D shape or a 3D solid, outline or filled
+    data: "kind: [circle, triangle, square, rectangle, hexagon, cube, cuboid, sphere, cylinder, cone, pyramid], colour: optional"
+
+  - id: letter-card
+    what: A letter or a group of letters on a card, upper and lower case
+    data: "text: 'Mm', style: [print, highlight-first]"
+
+  - id: syllable-arcs
+    what: A word with syllable arcs drawn under it (Silbenbögen)
+    data: "word: Lama, syllables: [La, ma]"
+    names: { de: Silbenbögen, en: syllable arcs }
+
+  - id: writing-lines
+    what: School writing lines with a letter or word to trace or copy, in the curriculum's script
+    data: "text: 'l', mode: [trace, copy], arrows: true"
+    facets: [script]
+
+  - id: word-card
+    what: A word or short sentence in large print, for reading tasks
+    data: "text: 'Mama', syllable_colours: optional"
+
+  - id: colour-swatch
+    what: A plain round patch of one colour
+    data: "colour: [red, blue, yellow, green, orange, purple, pink, brown, black, white]"
+
+  - id: bar-chart
+    what: A bar chart or pictogram from a small table
+    data: "rows: '[[label, value]]', pictogram_object: optional object id"

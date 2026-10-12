@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync, existsSy
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
+import { checkLessons } from "./lessons-check.mjs";
 
 const T = dirname(fileURLToPath(import.meta.url));
 const errors = [], warnings = [];
@@ -158,6 +159,9 @@ for (const { file, data } of profileFiles) {
   profiles.push({ file, ...data, market, pos, rows });
 }
 
+// ---------- lessons and assets ----------
+const L = checkLessons({ T, steps, profiles, err, warn });
+
 // ---------- views ----------
 const V = join(T, "views");
 mkdirSync(V, { recursive: true });
@@ -238,6 +242,37 @@ for (const pr of profiles) {
   write("placements.md", out);
 }
 
+// Lessons: one row per lesson set, then its lessons.
+{
+  let out = header("Lessons", "One section per lesson set: its skill, metadata, and each lesson's activities.");
+  out += `${L.sets.length} lesson sets, ${L.sets.reduce((n, s) => n + s.summary.length, 0)} lessons, ${L.sets.reduce((n, s) => n + s.summary.reduce((m, l) => m + l.tasks, 0), 0)} tasks.\n\n`;
+  for (const { d, summary, typeMix } of L.sets) {
+    const meta = d.metadata ?? {};
+    out += `## ${d.title.de} (${d.title.en})\n\n\`${d.id}\` teaches \`${d.skill}\` in ${d.curriculum}, ${meta.year}. Ages ${(meta.ages ?? []).join(", ")}, about ${meta.lesson_minutes} minutes a lesson. Status: ${meta.status}, version ${meta.version}.\n\n`;
+    out += `${md(d.summary)}\n\n`;
+    out += `| Lesson | New | Tasks | Activities |\n|---|---|---|---|\n`;
+    for (const l of summary) out += `| ${l.n}. ${md(l.title.de)} | ${l.new ? "yes" : "no"} | ${l.tasks} | ${l.seq.join(", ")} |\n`;
+    out += `\nTask types: ${Object.entries(typeMix).map(([k, v]) => `${k} ${v}`).join(", ")}. Builds on: ${(meta.builds_on ?? []).map((x) => `\`${x}\``).join(", ")}. Misconceptions addressed: ${(meta.misconceptions ?? []).length}.\n\n`;
+  }
+  write("lessons.md", out);
+}
+
+// Asset bank: what exists, what lessons use, what is still needed.
+{
+  let out = header("Asset bank", "Every bank entry with the lesson sets that use it.");
+  const row = (kind, map, id, extra) => { const u = L.used[kind].get(id); return `| \`${id}\` | ${extra} | ${u ? u.size : 0} | ${map.get(id)?.status ?? ""} |\n`; };
+  const objs = [...L.objects.values()];
+  out += `## Objects (${objs.length})\n\n${objs.filter((o) => L.used.object.has(o.id)).length} used by lessons so far; ${objs.filter((o) => o.colour_slot).length} have a colour slot.\n\n| id | de / en / fr | used by | status |\n|---|---|---|---|\n`;
+  for (const o of objs.sort((a, b) => a.category.localeCompare(b.category) || a.id.localeCompare(b.id))) out += row("object", L.objects, o.id, `${o.labels.de} / ${o.labels.en} / ${o.labels.fr}${o.colour_slot ? " (colour slot)" : ""}`);
+  out += `\n## Drawn by the app (${L.drawn.size})\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
+  for (const c of L.drawn.values()) out += row("drawn", L.drawn, c.id, md(c.what));
+  out += `\n## Characters (${L.characters.size})\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
+  for (const c of L.characters.values()) out += row("character", L.characters, c.id, md(c.what));
+  out += `\n## Recorded sounds (${L.sounds.size})\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
+  for (const c of L.sounds.values()) out += row("sound", L.sounds, c.id, md(c.what));
+  write("assets.md", out);
+}
+
 // Framework coverage.
 for (const [fid, f] of frameworks) {
   let out = header(`Coverage: ${f.title}`);
@@ -256,6 +291,7 @@ for (const pr of profiles) {
   const by = {}; for (const r of pr.rows) by[r.stage] = (by[r.stage] ?? 0) + 1;
   console.log(`  ${pr.curriculum}: ${pr.rows.length} placed`, by);
 }
+console.log(`  lessons: ${L.sets.length} lesson sets; assets: ${L.objects.size} objects, ${L.drawn.size} drawn components`);
 console.log(`  views: ${written.join(", ")}`);
 if (warnings.length) { console.log(`\n${warnings.length} warnings:`); for (const w of warnings) console.log("  - " + w); }
 if (errors.length) { console.log(`\n${errors.length} errors:`); for (const e of errors) console.log("  - " + e); process.exit(1); }

@@ -153,25 +153,13 @@ actually work.
 
 ## Lessons
 
-A skill is taught over 2 to 6 lessons, each one short sitting. The lessons
-of one skill (sometimes two skills that cannot be taught apart) live in one
-record:
-
-- `id`: `<domain>.<slug>`; for `fl`, `fl.<language>.<slug>` (`fl.en.`,
-  `fl.fr.`).
-- `teaches`: the skill ids.
-- `age_bands`: the presentation variants it needs: `a4-5` (audio-led, no
-  reading), `a6-7` (audio support, short text), `a8-10` (text-led).
-- `representation`: the most image-light form that still teaches the skill:
-  `text`, `audio`, `drawn` (the app draws it from data: ten-frames, number
-  lines, clocks, shapes), `picture` (a commissioned illustration), `photo`.
-- `facets`: the locale facets the lesson depends on.
-- `task_types_likely`: Twist question types its tasks will probably use.
-- `twist_reuse`: today's schoolido-learning module ids it can adapt, each
-  with `fit` (`as-is`, `adapt`, `rewrite`).
-- `status`: `draft`, `checked`, `reviewed`.
-
-How lessons are built (activities and tasks) and the mastery rule are in [lesson-anatomy.md](lesson-anatomy.md).
+A skill is taught over 2 to 6 lessons, each one short sitting. All lessons
+of one skill in one curriculum live in one file,
+`lessons/<curriculum>/<domain>/<slug>.yaml`, written in that curriculum's
+language. The record format is in [../lessons/README.md](../lessons/README.md);
+how lessons are built and the mastery rule are in
+[lesson-anatomy.md](lesson-anatomy.md). Pictures, drawn components,
+characters and sounds come from the asset bank ([../assets/](../assets/)).
 
 ## Locale facets
 

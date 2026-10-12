@@ -76,9 +76,13 @@ over several sittings than when it is drilled in one.
 
 | Age | Lesson length | Tasks per lesson |
 |---|---|---|
-| 4 to 5 | about 5 minutes | 8 to 12 |
-| 6 to 7 | about 8 minutes | 12 to 18 |
-| 8 to 10 | about 10 to 12 minutes | 15 to 25 |
+| 4 to 5 | about 5 minutes | 6 to 12 |
+| 6 to 7 | about 8 minutes | 8 to 16 |
+| 8 to 10 | about 10 to 12 minutes | 12 to 25 |
+
+Learn screens and tracing take longer than a tap, so a lesson with several
+of them sits at the low end. (Lowered after the model lessons: early
+Klasse 1 letter lessons came out at 8 to 10 tasks.)
 
 - Each lesson can be finished and left. The next lesson opens straight
   away; when a skill has more than two lessons, the app suggests the next
@@ -141,6 +145,32 @@ counts:
 | quick check | 3 tasks at the end of a lesson, so the lesson ends on success | no; it tells the app whether to slow down |
 | skill check | 4 or 5 tasks at the end of the last lesson of a skill | yes |
 | timed | a skill check with a time per task, for facts to know by heart | yes |
+
+### Rules from the model lessons
+
+Writing the first three model lessons (Mathe, Deutsch, Englisch) added
+these. The build checks every one of them.
+
+1. **Tracing carries its own support.** The trace guide and arrows are the
+   help, so tracing tasks take no text hints, even under full support.
+2. **A skill check never copies a task.** It may test the same thing again
+   (with four letters there are only so many sounds), but not the identical
+   task with the same options. Quick checks may repeat.
+3. **Oral lessons need no reading.** A lesson marked `no_reading` (Stufe 0,
+   ages 4 to 5) has no task where the child must read an option or a
+   prompt; instructions are spoken, options are pictures or sounds.
+4. **Speaking is practised, not marked.** Speech recognition for young
+   children is not reliable enough to decide mastery, so `speak` tasks
+   belong in Practise and are left out of skill checks.
+5. **Instructions in the home language, at first.** In Stufe 0 and the
+   first French lessons the instructions are spoken in German or English and
+   only the target words in the new language; classroom phrases in the new
+   language come in as the child learns them.
+6. **Warm-ups draw only on what came before.** `builds_on` must be a
+   prerequisite of the skill, directly or further back.
+7. **Metadata matches the tasks.** The drawn components and sounds a lesson
+   declares are exactly the ones its tasks use, so the asset lists stay true.
+8. **A lesson ends on something the child does,** never on Learn.
 
 ### Leaving activities out
 
