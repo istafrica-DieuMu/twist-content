@@ -559,4 +559,5 @@ en-GB is its own step later.
 | 8 | Maths | Year 5 | Numbers to 1 000 000 | 2, both drafted 2026-10-13: 4 lessons, 92 tasks; six-column chart, powers of ten, sensible rounding in contexts |
 | 9 | Maths | Year 6 | Numbers to 10 000 000 | 1, drafted 2026-10-13: 2 lessons, 46 tasks; the chart gains a millions column |
 | 10 | English | Year 1 | Phonics | 3, all drafted 2026-10-13: new graphemes, split digraphs, alternative pronunciations, 6 lessons; 14 new pictures for the words |
+| 11 | English | Year 2 | Reading words | 2, both drafted 2026-10-13: reading fluently (words flash, odd word in a sentence) and suffixes, 4 lessons |
 

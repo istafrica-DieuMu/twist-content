@@ -155,6 +155,8 @@ Interactions:
 | Hear an instruction, find the action (English) | hears "Stand up!", taps the child standing up of three action pictures | classroom-phrases |
 | Hear a word, find the picture (English) | hears "Mouse.", taps the mouse; the words sound like German ones (Maus, mouse) | familiar-words |
 | Read a word, find its picture (English) | `show: { drawn: letter-card, text: "cloud" }`, options cloud, clown, clock (same first sounds, so only reading works) | en-GB new-graphemes |
+| Read a word at a glance | as above, with `flash: 2` on the letter card, so the word must be read whole | en-GB automatic-decoding |
+| Read a sentence, find what it is about | text "The bird is in the tree.", options bird, bread, bee | en-GB automatic-decoding |
 | Blocks or chart for a number | "Wo sind 36?" options three `base-ten` pictures; or "Welche Stellentafel zeigt 53?" three `place-value-chart` pictures | bundle-tens, place-value-to-100 |
 | Hundred field for a number | "Wo sind 50?" three `hundred-field` pictures | hundred-field |
 
@@ -320,6 +322,8 @@ Interactions:
 |---|---|---|
 | Every form of a letter | every upper- and lower-case L in "L o l M L a" | letters-l-o-a-m |
 | Every noun in a sentence written in small letters | "die übung macht mir freude", spans übung, freude | noun-endings, abstract-nouns |
+| The word that does not fit | "I eat cake with a sock", spans sock | en-GB automatic-decoding |
+| Root word or suffixes of a split word | "care less ness", spans less, ness | en-GB suffixes-y2 |
 
 ## `tracing`
 
