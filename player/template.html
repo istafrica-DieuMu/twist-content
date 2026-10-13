@@ -283,6 +283,17 @@ function writtenCalc(o) {
   return `<svg viewBox="0 0 ${W} ${y + 10}" width="${Math.min(W * 1.1, 260)}">${s}</svg>`;
 }
 // A Zahlenmauer: rows from the bottom up, each brick the sum of the two below; null is a gap.
+// An analogue clock: hour 1-12, minute 0-59; the hour hand moves on with the minutes.
+function clock(o) {
+  const c = 90, r = 80, ang = (f) => (f * 2 * Math.PI) - Math.PI / 2, hand = (f, len, w, col) => `<line x1="${c}" y1="${c}" x2="${c + len * Math.cos(ang(f))}" y2="${c + len * Math.sin(ang(f))}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
+  let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="#fff" stroke="#2b0f45" stroke-width="5"/>`;
+  for (let i = 1; i <= 12; i++) s += `<text x="${c + 64 * Math.cos(ang(i / 12))}" y="${c + 64 * Math.sin(ang(i / 12)) + 8}" text-anchor="middle" font-size="22" font-weight="700" fill="#2b0f45">${i}</text>`;
+  for (let i = 0; i < 60; i++) if (i % 5) s += `<circle cx="${c + 74 * Math.cos(ang(i / 60))}" cy="${c + 74 * Math.sin(ang(i / 60))}" r="1.6" fill="#2b0f45"/>`;
+  const m = o.minute ?? 0, h = ((o.hour ?? 12) % 12) + m / 60;
+  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
+  const dig = o.digital ? `<div style="font:700 26px Andika,sans-serif;text-align:center">${esc(String(o.hour))}:${String(m).padStart(2, "0")}</div>` : "";
+  return `<div><svg viewBox="0 0 180 180" width="160" height="160">${s}</svg>${dig}</div>`;
+}
 function numberWall(rows) {
   const n = rows[0].length, w = 66, h = 44, W = n * w + 8, H = rows.length * h + 8;
   let s = "";
@@ -442,6 +453,7 @@ function drawn(o, ctx = {}) {
     case "syllable-arcs": return `<div class="word">${o.syllables.map((s) => `<span class="syl">${esc(s)}</span>`).join("")}</div>`;
     case "word-card": return `<div class="word"><span class="wordcard">${esc(o.text)}</span></div>`;
     case "colour-swatch": return swatch(o.colour);
+    case "clock": return clock(o);
   }
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }
@@ -620,7 +632,7 @@ function optEl(o, t, i) {
   if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
   return b;
 }
-const keyOf = (o) => typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
+const keyOf = (o) => typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "clock" ? `${o.hour}:${String(o.minute ?? 0).padStart(2, "0")}` : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
 function choice({ t, body, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const grid = document.createElement("div"); grid.className = "opts";
