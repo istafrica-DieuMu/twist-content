@@ -10,8 +10,8 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 |---|---|---|---|---|
 | de-DE | Mathe | 39% (79 / 203) | 31% (9 / 29) | 74% (6645 / 9031) |
 | de-DE | Deutsch | 21% (36 / 174) | 17% (16 / 94) | 51% (2255 / 4382) |
-| de-DE | Englisch | 33% (19 / 58) | 32% (12 / 38) | 24% (403 / 1653) |
-| **de-DE** | **all** | **31% (134 / 435)** | **23% (37 / 161)** | **62% (9304 / 15066)** |
+| de-DE | Englisch | 34% (20 / 58) | 34% (13 / 38) | 24% (403 / 1653) |
+| **de-DE** | **all** | **31% (135 / 435)** | **24% (38 / 161)** | **62% (9304 / 15066)** |
 | en-GB | Maths | 19% (49 / 259) | 13% (18 / 139) | 85% (4380 / 5177) |
 | en-GB | English | 12% (20 / 163) | 8% (5 / 61) | 81% (1504 / 1861) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (539 / 540) |
@@ -21,7 +21,7 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
-| Pictures | openai/gpt-image-2.5-sunburst | 186 files (177 priced) | $3.77 | logged per picture by pictures.py |
+| Pictures | openai/gpt-image-2.5-sunburst | 191 files (182 priced) | $3.89 | logged per picture by pictures.py |
 | Narration | google/gemini-3.8-flash-tts | 15750 clips, 19.6 h | about $24 | estimated from clip length, text and tries |
 | Listening check | google/gemini-3.8-flash | 15750 clips | about $12 | estimated the same way |
 | **Total** | | | **about $40** | |
@@ -39,7 +39,7 @@ Per voice:
 
 ## de-DE
 
-134 of 435 placed skills drafted (31%): 134 lesson sets, 283 lessons, 6219 tasks. Narration so far about $21; 5763 clips still to make.
+135 of 435 placed skills drafted (31%): 135 lesson sets, 285 lessons, 6261 tasks. Narration so far about $21; 5763 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -48,7 +48,7 @@ Per voice:
 | klasse-3 | 19 / 51 | 10 / 42 |  | 29 / 93 |
 | klasse-4 | 9 / 48 | 10 / 35 |  | 19 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
-| lernjahr-1 |  |  | 8 / 28 | 8 / 28 |
+| lernjahr-1 |  |  | 9 / 28 | 9 / 28 |
 | lernjahr-2 |  |  | 2 / 16 | 2 / 16 |
 
 Topics, in placement order. A topic is done when every skill in it has a lesson set.
@@ -197,7 +197,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | lernjahr-1 | Englisch | Kleidung | 1 / 1 done | 2 | $0.00 |
 | lernjahr-1 | Englisch | Zu Hause | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | In der Stadt | 0 / 1 |  |  |
-| lernjahr-1 | Englisch | Gefühle | 0 / 1 |  |  |
+| lernjahr-1 | Englisch | Gefühle | 1 / 1 done | 2 |  |
 | lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.00 |
 | lernjahr-1 | Englisch | Kalender | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Wetter | 1 / 1 done | 2 |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 301 | $0.26 | $78 |
+| de-DE | 300 | $0.26 | $77 |
 | en-GB | 409 | $0.24 | $99 |
 
-Pictures: 137 of 137 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
+Pictures: 142 of 142 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
