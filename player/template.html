@@ -386,7 +386,7 @@ function writtenCalc(o) {
   let y = above.trim() ? 56 : 34, s = "";
   if (above.trim()) put(above, 26, 16, "#8e3bd1");
   rows.forEach((r, i) => { put(r, y, 28, "#2b0f45");
-    if (i === 0 && cross.includes("x")) { const k = n - cross.length; [...cross].forEach((ch, j) => { if (ch !== "x") return; const x = 8 + (k + j) * cw + cw / 2; s += `<line x1="${x - 10}" y1="${y + 2}" x2="${x + 10}" y2="${y - 22}" stroke="#8e3bd1" stroke-width="3"/>`; }); } if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" ? "−" : "+"}</text>`; y += 36; });
+    if (i === 0 && cross.includes("x")) { const k = n - cross.length; [...cross].forEach((ch, j) => { if (ch !== "x") return; const x = 8 + (k + j) * cw + cw / 2; s += `<line x1="${x - 10}" y1="${y + 2}" x2="${x + 10}" y2="${y - 22}" stroke="#8e3bd1" stroke-width="3"/>`; }); } if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" || o.op === "−" ? "−" : o.op === "·" ? "·" : "+"}</text>`; y += 36; });
   if (carry.trim()) { put(carry, y - 6, 16, "#8e3bd1"); y += 6; }
   s += `<line x1="8" y1="${y - 22}" x2="${W - 8}" y2="${y - 22}" stroke="#2b0f45" stroke-width="3"/>`;
   if (res) { y += 12; put(res, y, 28, "#2b0f45"); }

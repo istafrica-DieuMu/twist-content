@@ -508,7 +508,8 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 34 | Deutsch | Klasse 3 | Rechtschreibung | 4 drafted 2026-10-13: doppelte Mitlaute and when not to double; s, ss and ß; ck and tz; ie for the long i, with the exceptions and ih |
 | 35 | Deutsch | Klasse 3 | Trennen, ABC, Großschreibung, Verlängern | 4 drafted 2026-10-13: Wörter trennen (ch, sch, ck together, tz and double Mitlaute split); ABC by the second and third letter; Nominalisierung after das, beim, zum, Eigennamen and Zeitangaben; Verlängern for double Mitlaute in Nomen, Wiewörter and Tunwörter |
 | 36 | Deutsch | Klasse 3 | Strategien, Wörterbuch, Fehler | 3 drafted 2026-10-13: choosing Schwingen, Verlängern, Ableiten or Merken; the Wörterbuch (part of the book, Leitwörter, Grundform); finding and fixing mistakes in sentences and short texts |
-| 37 | Mathe | Klasse 3 | Malnehmen und Teilen | 4 of 9 drafted 2026-10-14: mit Zehnerzahlen; Vielfache und Teiler; Punkt vor Strich and Klammern; Malaufgaben zerlegen |
+| 37 | Mathe | Klasse 3 | Malnehmen und Teilen | 8 drafted 2026-10-14: mit Zehnerzahlen; Vielfache und Teiler; Punkt vor Strich and Klammern; Malaufgaben zerlegen; halbschriftlich malnehmen (Malkreuz) and teilen (mit Rest); Überschlag; Faktor, Produkt, Quotient |
+| 38 | Mathe | Klasse 3 | Schriftlich rechnen | 1 drafted 2026-10-14: schriftliche Rechnungen prüfen with Überschlag, Umkehraufgabe and typical mistakes |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
