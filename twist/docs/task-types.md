@@ -47,7 +47,7 @@ for amounts:
 | `ten-frame` | `filled`, `colour_split: [5, 2]`, `cross: 2` | a 2 by 5 frame with counters; `cross` crosses out the last counters (taken away), or the first with `cross_from: start` |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
-| `written-calc` | `rows: ["457", "326"]`, `op: +`, `carry: " 1 "`, `result: "7_3"` | numbers right-aligned in columns, the sign before the last row, the Übertrag small above the line, the result with gaps; as an option its key is the rows joined with | ("457|326") |
+| `written-calc` | `rows: ["457", "326"]`, `op: +`, `carry: " 1 "`, `result: "7_3"` | numbers right-aligned in columns, the sign before the last row, the Übertrag small above the line, the result with gaps; for Entbündeln `above: " 41"` writes small digits over the first number and `cross: " x "` crosses a digit of it out; as an option its key is the rows joined with | ("457|326") |
 | `number-wall` | `rows: [[3, 5, 2], [8, 7], [null]]`, bottom row first | the Zahlenmauer: each brick is the sum of the two under it, `null` is a gap |
 | `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
 | `hundred-square` | `highlight: [..]`, `hide: [..]` | 1 to 100 in rows of ten; hidden cells show ? |
@@ -121,6 +121,7 @@ Interactions:
 | Where the sound is | over a picture, "Wo hörst du das sss?", options am Anfang, in der Mitte, am Ende | sounds-in-words |
 | Which pronoun fits | "Der Hund bellt. Welches Pronomen passt?" options er, sie, es; or "Wer ist mit sie gemeint?" options the nouns of the text | pronouns |
 | Which text reads better | two short texts, one repeating the noun, one with a pronoun, `option_audio: false` | pronouns |
+| Which sentence pattern | "Du willst sagen, was du magst. Welcher Satzanfang passt?", options I like …, I am …, I can … | en-about-me |
 | Name the tense | a sentence in `text`, "Welche Zeitform ist das?", options Präsens, Präteritum, Perfekt, Futur | verbs-tenses-mixed |
 | Word type of a word | "Was ist laufen?" options Verb, Nomen, Adjektiv (the word shown lowercase so capitals do not decide) | verbs-recognise |
 | Sensible rounding in a context | "Was schreibt die Zeitung am sinnvollsten?" over an exact count, options are roundings to different places | order-to-million |
@@ -475,6 +476,7 @@ Interactions:
 | Interaction | Example | Used in |
 |---|---|---|
 | Numbers from small to big | 4, 2, 5, 3 into four slots: 2, 3, 4, 5 | order-to-10 |
+| Words of a sentence in order | chunks of an English sentence ("got", "a fish", "I", "have") into slots: I have got a fish; the German meaning is spoken | en-about-me |
 | Count backwards | 7, 9, 8, 6 from big to small: 9, 8, 7, 6 | order-to-10 |
 | Amounts from few to many | three dot pictures, fewest first | compare-to-10 |
 | Two-digit numbers | 45, 18, 81, 54, smallest first | order-compare-to-100 |
