@@ -612,7 +612,7 @@ const TYPES = {
     let v = ""; const e = document.createElement("div"); e.className = "entry"; e.textContent = "?"; body.appendChild(e);
     const pad = document.createElement("div"); pad.className = "pad"; body.appendChild(pad);
     const set_ = (x) => { v = x; e.textContent = v || "?"; btn.disabled = !v; };
-    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""].forEach((k) => { const b = document.createElement("button"); b.className = "opt"; b.textContent = k; if (!k) b.style.visibility = "hidden"; b.onclick = () => { if (st.over) return; set_(k === "⌫" ? v.slice(0, -1) : (v + k).slice(0, 3)); }; pad.appendChild(b); });
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""].forEach((k) => { const b = document.createElement("button"); b.className = "opt"; b.textContent = k; if (!k) b.style.visibility = "hidden"; b.onclick = () => { if (st.over) return; set_(k === "⌫" ? v.slice(0, -1) : (v + k).slice(0, 8)); }; pad.appendChild(b); });
     const btn = nextBtn(foot, UI.check, () => { const ok = v === String(t.answer); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
     btn.disabled = true;
   },
