@@ -544,7 +544,7 @@ A picture or a short story asks a question, and the child finds the sum, works i
 | 1. Was will die Geschichte wissen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Frage, Rechnung, Antwort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: text_input 16, multiple_choice 23, true_false 3. Builds on: `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 3.
+Task types: text_input 13, multiple_choice 23, true_false 3, fill_in_blank 3. Builds on: `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 3.
 
 ## Die Stellentafel (The place-value chart)
 
@@ -1289,7 +1289,7 @@ A picture or a short story asks a question, and the child finds the number sente
 | 1. Was will die Geschichte wissen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Frage, Rechnung, Antwort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: text_input 16, multiple_choice 23, true_false 3. Builds on: `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 3.
+Task types: text_input 13, multiple_choice 23, true_false 3, fill_in_blank 3. Builds on: `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 3.
 
 ## Stellenwert bis 100 (Place value to 100)
 

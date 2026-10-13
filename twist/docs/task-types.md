@@ -256,6 +256,7 @@ Interactions:
 | Record facts from two texts | "In autumn they go to: _  Their nests are made of: _" | en-GB retrieve-present |
 | Missing to 100 | over a hundred field with 70, frame "70 + _ = 100" | hundred-field |
 | Neighbouring tens | "Nachbarzehner: _ , 27, _" options 20, 26, 28, 30 | order-compare-to-100 |
+| The whole calculation for a story | a story in `say`, frame "_ _ _ = _", options the numbers, +, − and one wrong number, answer e.g. 6, −, 4, 2 | picture-stories |
 | Continue a sequence | "42, 44, 46, _ , _" | sequences-to-100 |
 | Double by tens and ones | "Das Doppelte von 32", frame "60 + _ = _" | double-halve-to-100 |
 | Split into place values | "Zerlege 683.", frame "683 = _ + _ + _" | place-value-to-1000 |
@@ -312,7 +313,7 @@ A number line; the child taps a tick and taps Prüfen. The marker shows
 where they tapped, never the number.
 
 Fields: `show: { drawn: number-line, from, to, labels, jumps, step }`,
-`answer` (a number). `step` (1, 5, 10, 100, 1000 or 100000; 1 if left out) sets which ticks
+`answer` (a number), `feedback` keyed by a tapped value. `step` (1, 5, 10, 100, 1000 or 100000; 1 if left out) sets which ticks
 are drawn and can be tapped, so a line from 0 to 100 or 1000 has ticks a child's
 finger can hit. The answer must sit on a tick.
 

@@ -24,15 +24,15 @@ metadata:
   drawn: [ten-frame]
   facets: []
   misconceptions:
-    - id: numbers-in-order
-      what: Writes the numbers in the order they are heard, also when the story takes away (2 − 6 for "6 Vögel, 2 fliegen weg")
+    - id: wrong-start
+      what: Starts the minus sum with the number taken away (2 − 6 for "6 Vögel, 2 fliegen weg")
       addressed: Learn says the first number is how many there were at the start; options always include the swapped sum
     - id: answer-without-thing
       what: Gives a bare number as the answer and loses what it counts
       addressed: lesson 2 chooses the answer sentence; the wrong options put the right number on the wrong thing
     - id: keyword-only
       what: Picks plus or minus from one word without picturing the story
-      addressed: the word noch appears in both plus and minus stories; hints ask whether there are more or fewer at the end
+      addressed: the word noch appears in both plus and minus stories, and some plus stories have no signal word (Oma legt vier hinein); hints ask whether there are more or fewer at the end
   twist_reuse: []
   status: draft
   version: 1
@@ -144,7 +144,7 @@ lessons:
                 text: "9 − 4 = _"
                 say: "Wie viele Ameisen sind noch auf dem Weg?"
                 answer: "5"
-                hints: ["Neun, acht, sieben, sechs, fünf."]
+                hints: ["Zähl von neun vier zurück."]
               - id: l1-s3
                 type: multiple_choice
                 text: "Was sollst du herausfinden?"
@@ -173,7 +173,7 @@ lessons:
               - id: l1-n1
                 type: multiple_choice
                 text: "Welche Aufgabe passt?"
-                say: "Acht Fische schwimmen im Glas. Mia nimmt zwei heraus für das andere Glas. Wie viele sind noch im ersten Glas?"
+                say: "Acht Fische schwimmen im Glas. Mia setzt zwei Fische in ein anderes Glas. Wie viele sind noch im ersten Glas?"
                 show: { object: fish, count: 8 }
                 options: ["2 − 8", "8 − 2", "8 + 2"]
                 answer: "8 − 2"
@@ -213,11 +213,13 @@ lessons:
             options: ["5 − 2", "2 − 5", "5 + 2"]
             answer: "5 + 2"
           - id: l1-c2
-            type: text_input
-            text: "6 − 4 = _"
+            type: fill_in_blank
+            text: "Schreib die Rechnung."
             say: "Sechs Bananen liegen auf dem Tisch. Die Kinder essen vier. Wie viele Bananen liegen noch da?"
             show: { object: banana, count: 6 }
-            answer: "2"
+            frame: "_ _ _ = _"
+            options: ["2", "4", "6", "10", "+", "−"]
+            answer: ["6", "−", "4", "2"]
           - id: l1-c3
             type: true_false
             text: "Passt 3 − 9?"
@@ -247,12 +249,12 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - say: "Im Schrank stehen sieben Löffel. Papa nimmt drei für den Tisch. Wie viele Löffel stehen noch im Schrank?"
+          - say: "In der Schublade liegen sieben Löffel. Papa nimmt drei für den Tisch. Wie viele Löffel liegen noch in der Schublade?"
             show: { object: spoon, count: 7 }
-          - say: "Die Frage: Wie viele Löffel stehen noch im Schrank? Die Rechnung: sieben minus drei ist vier."
+          - say: "Die Frage: Wie viele Löffel liegen noch in der Schublade? Die Rechnung: sieben minus drei ist vier."
             text: "7 − 3 = 4"
-          - say: "Die Antwort sagst du in einem ganzen Satz, mit der Zahl und mit dem, was du gezählt hast: Im Schrank stehen noch vier Löffel."
-            text: "Im Schrank stehen noch 4 Löffel."
+          - say: "Die Antwort sagst du in einem ganzen Satz, mit der Zahl und mit dem, was du gezählt hast: In der Schublade liegen noch vier Löffel."
+            text: "In der Schublade liegen noch 4 Löffel."
           - say: "Pass auf: Das Wort noch steht in Plusgeschichten und in Minusgeschichten. Frag dich immer: Sind es am Ende mehr oder weniger?"
 
       - activity: practise
@@ -303,7 +305,7 @@ lessons:
               - id: l2-f5
                 type: multiple_choice
                 text: "Welche Aufgabe passt?"
-                say: "In der Schachtel sind zwei Murmeln. Oma legt noch vier hinein. Wie viele Murmeln sind jetzt in der Schachtel?"
+                say: "In der Schachtel sind zwei Murmeln. Oma legt vier hinein. Wie viele Murmeln sind jetzt in der Schachtel?"
                 show: { object: marble, count: 2 }
                 options: ["4 − 2", "2 − 4", "2 + 4"]
                 answer: "2 + 4"
@@ -327,11 +329,11 @@ lessons:
                 say: "Wie viele Buntstifte sind noch in der Dose?"
                 options: ["In der Dose sind noch 4 Buntstifte.", "In der Dose sind noch 6 Buntstifte.", "Ali hat 6 Dosen."]
                 answer: "In der Dose sind noch 6 Buntstifte."
-                hints: ["Zehn minus vier ist sechs."]
+                hints: ["Wie viel ist zehn minus vier?"]
               - id: l2-s3
                 type: multiple_choice
                 text: "Welche Aufgabe passt?"
-                say: "Am Morgen sind fünf Eier im Nest. Am Mittag liegen noch zwei dazu. Wie viele Eier sind jetzt im Nest?"
+                say: "Am Morgen sind fünf Eier im Nest. Bis zum Mittag legt die Henne noch zwei dazu. Wie viele Eier sind jetzt im Nest?"
                 show: { object: egg, count: 5 }
                 options: ["5 + 2", "5 − 2", "2 − 5"]
                 answer: "5 + 2"
@@ -392,11 +394,13 @@ lessons:
             options: ["6 + 1", "6 − 1", "1 − 6"]
             answer: "6 − 1"
           - id: l2-c2
-            type: text_input
-            text: "2 + 6 = _"
-            say: "Im Garten stehen zwei Bäume. Opa pflanzt noch sechs. Wie viele Bäume stehen jetzt im Garten?"
+            type: fill_in_blank
+            text: "Schreib die Rechnung."
+            say: "Im Garten stehen zwei Bäume. Opa pflanzt sechs neue Bäume. Wie viele Bäume stehen jetzt im Garten?"
             show: { object: tree, count: 2 }
-            answer: "8"
+            frame: "_ _ _ = _"
+            options: ["2", "6", "8", "4", "+", "−"]
+            answer: ["2", "+", "6", "8"]
           - id: l2-c3
             type: multiple_choice
             text: "Welcher Antwortsatz passt?"
@@ -404,10 +408,12 @@ lessons:
             options: ["Es warten noch 4 Busse.", "Es warten noch 4 Kinder.", "Es warten noch 8 Kinder."]
             answer: "Es warten noch 4 Kinder."
           - id: l2-c4
-            type: text_input
-            text: "10 − 7 = _"
+            type: fill_in_blank
+            text: "Schreib die Rechnung."
             say: "Zehn Kerzen brennen auf dem Kuchen. Lea pustet sieben aus. Wie viele brennen noch?"
-            answer: "3"
+            frame: "_ _ _ = _"
+            options: ["3", "7", "10", "5", "+", "−"]
+            answer: ["10", "−", "7", "3"]
           - id: l2-c5
             type: multiple_choice
             text: "Was sollst du herausfinden?"

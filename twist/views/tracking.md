@@ -17,14 +17,14 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 522 | 520 (100%) | 163 | 26 min | $0.94 |
-| gemini-puck-en | 399 | 395 (99%) | 294 | 20 min | $0.73 |
+| gemini-puck | 522 | 520 (100%) | 165 | 26 min | $0.94 |
+| gemini-puck-en | 399 | 395 (99%) | 296 | 20 min | $0.73 |
 | gemini-sulafat | 5137 | 5082 (99%) | 175 | 360 min | $11 |
 | gemini-sulafat-en | 2928 | 2864 (98%) | 2175 | 231 min | $7.06 |
 
 ## de-DE
 
-49 of 435 placed skills drafted (11%): 49 lesson sets, 109 lessons, 2496 tasks. Narration so far about $12; 340 clips still to make.
+49 of 435 placed skills drafted (11%): 49 lesson sets, 109 lessons, 2496 tasks. Narration so far about $12; 342 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -205,7 +205,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-51 of 483 placed skills drafted (11%): 51 lesson sets, 105 lessons, 2313 tasks. Narration so far about $7.77; 2467 clips still to make.
+51 of 483 placed skills drafted (11%): 51 lesson sets, 105 lessons, 2313 tasks. Narration so far about $7.77; 2469 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -241,7 +241,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | English | Speaking and listening | 0 / 4 |  |  |
 | year-1 | Maths | Numbers to 10 | 1 / 1 done | 3 | $0.28 |
 | year-1 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.00 |
-| year-1 | Maths | Word problems | 1 / 1 done | 2 |  |
+| year-1 | Maths | Word problems | 1 / 1 done | 2 | $0.00 |
 | year-1 | Maths | Numbers to 20 | 0 / 1 |  |  |
 | year-1 | Maths | Adding and subtracting to 20 | 0 / 5 |  |  |
 | year-1 | Maths | Counting in tens | 0 / 1 |  |  |
