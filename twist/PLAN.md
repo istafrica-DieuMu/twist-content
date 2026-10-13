@@ -564,4 +564,5 @@ en-GB is its own step later.
 | 13 | English | Year 4 | Stories and poems | 1, drafted 2026-10-13: themes and conventions, 2 lessons, every story written for Twist |
 | 14 | English | Year 5 | Information texts | 2, both drafted 2026-10-13: finding and presenting information, fact and opinion, 4 lessons |
 | 15 | English | Year 6 | How texts work | 1, drafted 2026-10-13: backing up views with evidence (point, evidence, explain), 2 lessons |
+| 16 | French | Learning year 2 | Listening | 1, drafted 2026-10-13: short conversations, 2 lessons |
 
