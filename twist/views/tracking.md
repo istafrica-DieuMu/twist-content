@@ -26,7 +26,7 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | Listening check | google/gemini-3.8-flash | 15750 clips | about $12 | estimated the same way |
 | **Total** | | | **about $41** | |
 
-The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $366 in total on 2026-10-13 ($34 that day, $43 that week; limit $450). The key is shared with schoolido-learning authoring, so not all of that is Twist.
+The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $376 in total on 2026-10-13 ($43 that day, $53 that week; limit $450). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
 Per voice:
 
