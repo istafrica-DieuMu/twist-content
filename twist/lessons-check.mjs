@@ -216,7 +216,7 @@ function typeMix(lessons) {
 
 function checkAnswer(t, tw, file, err) {
   // A group of counted things is keyed by its count ("Wo sind 2 Bananen?" answer "2").
-  const opt = (o) => (typeof o === "string" ? o : o.count != null ? String(o.count) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.text ?? o.colour ?? o.object ?? o.drawn);
+  const opt = (o) => (typeof o === "string" ? o : o.count != null ? String(o.count) : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.text ?? o.colour ?? o.object ?? o.drawn);
   const options = (t.options ?? []).map(opt);
   switch (t.type) {
     case "multiple_choice": case "audio_choice": case "image_multiple_choice":

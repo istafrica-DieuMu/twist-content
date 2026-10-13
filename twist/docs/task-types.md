@@ -171,7 +171,11 @@ components.
 
 Fields: `options` (list of `{ object }`, `{ object, colour }`,
 `{ object, count, layout }` or `{ drawn, ... }`), `answer`: the object id,
-the colour for colour versions, or the count for groups of counted things.
+the colour for colour versions, or the count for groups of counted things;
+for drawn amounts the number shown (ten-frame and hundred-field: `filled`,
+zwanzigerfeld: both frames together, dots with `groups`: the parts
+joined with + ("4+4"), base-ten and place-value-chart: the
+number they make).
 
 Interactions:
 
