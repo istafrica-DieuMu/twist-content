@@ -495,6 +495,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 21 | Deutsch | Klasse 4 | Verben | 2 drafted 2026-10-13: Aufforderungsform for du, ihr and Sie with e/i change and split Vorsilben; trennbare and nicht trennbare Verben, Perfekt with ge in the middle or without ge |
 | 22 | Deutsch | Klasse 4 | Satzglieder | 2 drafted 2026-10-13: Akkusativobjekt (Wen oder was?) and Dativobjekt (Wem?); Ortsangabe (Wo? Wohin? Woher?) and Zeitangabe (Wann? Wie lange?) |
 | 23 | Deutsch | Klasse 4 | Sätze verbinden, Zeichensetzung | 2 drafted 2026-10-13: und, oder, aber with the comma before aber; weil, dass, wenn with the verb at the end and the comma; commas in lists of words, word groups and adjectives |
+| 24 | Mathe | Klasse 4 | Rechnen mit großen Zahlen | 2 of 4 drafted 2026-10-13: large round numbers in your head with the Analogieaufgabe; Überschlag and schrittweise + and − with four-digit numbers |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
