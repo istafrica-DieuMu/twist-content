@@ -35,8 +35,8 @@ OUT = ASSETS / "narration"
 SL = TWIST.parents[1] / "schoolido-learning"
 LISTEN_MODEL = "google/gemini-3.8-flash"
 MAX_SOUND = 1.5
-READ_MATHS = {"de": [(" = ?", " gleich wie viel?"), (" + ", " plus "), (" − ", " minus "), (" = ", " gleich "), ("_", "wie viel"), (" → ", ", dann ")],
-              "en": [(" = ?", " equals what?"), (" + ", " plus "), (" − ", " minus "), (" = ", " equals "), ("_", "what"), (" → ", ", then ")]}
+READ_MATHS = {"de": [(" = ?", " gleich wie viel?"), (" < ", " ist kleiner als "), (" > ", " ist größer als "), (" + ", " plus "), (" − ", " minus "), (" = ", " gleich "), ("_", "wie viel"), (" → ", ", dann ")],
+              "en": [(" = ?", " equals what?"), (" < ", " is less than "), (" > ", " is greater than "), (" + ", " plus "), (" − ", " minus "), (" = ", " equals "), ("_", "what"), (" → ", ", then ")]}
 
 
 class _Dumper(yaml.SafeDumper):

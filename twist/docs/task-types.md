@@ -26,6 +26,22 @@ Shared fields on every task: `id`, `type`, `text` (what the screen shows),
 lessons), `show` (a picture or drawn component), `hints`, `feedback`
 (per wrong option), `difficulty` (easy, core, stretch; core if left out).
 
+`show` can carry `flash: 2`: the picture is shown for that many seconds
+and then covered, so the child has to see the amount at a glance instead
+of counting. A "Nochmal sehen" button shows it again for the same time;
+in a Check it is not there.
+
+Drawn components used by tasks are listed in assets/drawn.yaml. The ones
+for amounts:
+
+| Component | Data | Looks like |
+|---|---|---|
+| `dots` | `count`, `layout: dice / five-structure / row / scattered`, `colour_split: [3, 2]` | dice pips (1 to 6; 7 to 10 as two dice), rows of five (Kraft der 5), a row, or scattered dots |
+| `dots` with `groups` | `groups: [4, 3]`, `layout: row / dice` | two amounts to compare: in rows, one under the other and lined up (red over blue, so pairs show); as dice, side by side |
+| `ten-frame` | `filled`, `colour_split: [5, 2]` | a 2 by 5 frame with counters |
+| `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
+| `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
+
 ## Types in use
 
 | Type | What the child does | Player | First used |
@@ -44,9 +60,10 @@ lessons), `show` (a picture or drawn component), `hints`, `feedback`
 | `speak` | says a word aloud | yes (no listening yet) | en-colours |
 | `matching` | links each left item with its right item | yes | en-colours |
 | `sorting` | puts each item into its bin | yes | en-colours |
+| `ordering` | puts cards into slots in the right order | yes | order-to-10 |
 
 Twist types not used yet: `clock_hands_drag`, `drag_and_drop`,
-`multi_select`, `ordering`, `pick_side`. Each gets a section here when a
+`multi_select`, `pick_side`. Each gets a section here when a
 lesson first needs it.
 
 ## `multiple_choice`
@@ -65,6 +82,11 @@ Interactions:
 | How many | "Wie viele Bälle sind es?" over `{ object: ball, count: 3 }`, options 1, 2, 3 | count-to-5 |
 | Which jump first | "Welcher Sprung kommt zuerst?" over an empty Rechenstrich, options 1, 3, 4 | add-bridge-10 |
 | Which sum fits the story | "Welche Aufgabe passt? Tom hat 7 Sticker ...", options 7 + 6, 7 − 6, 6 + 6 | add-bridge-10 |
+| How many, at a glance | "Wie viele Punkte?" over `{ drawn: dots, count: 4, layout: dice, flash: 2 }` | subitize-to-10 |
+| Which numeral for this amount | four dots shown, options 3, 4, 5, with `option_audio: false` (hearing "vier" on the option would give the answer) | write-numerals-to-10 |
+| Before or after | "Welche Zahl kommt nach 6?", options 5, 7, 8 | order-to-10 |
+| Which statement is true | "Welches stimmt?" options 3 < 5, 5 < 3, 3 = 5 | compare-to-10 |
+| Missing part | "7 = 3 + _" over a split ten-frame, options 3, 4, 5 | partition-to-10 |
 
 Twist: `options` become objects with `label`; `answer` becomes the
 correct option's id.
@@ -85,6 +107,11 @@ Interactions:
 | Picture that starts with a sound | "Was fängt mit L an?" lamp, sun, fish; answer `lamp` | letters-l-o-a-m |
 | Read a word, find its picture | `show: { drawn: syllable-arcs, word: Oma }`, options grandma, mum, llama | letters-l-o-a-m |
 | Group with a given number | "Wo sind 2 Bananen?" three banana groups of 1, 2 and 3; answer `"2"` | count-to-5 |
+| Which has more, fewer | "Wo sind mehr?" two groups; answer is the count of the one with more | compare-to-10 |
+| Dot pattern with a given number | "Wo sind 6 Punkte?" three dot patterns; answer `"6"` | subitize-to-10 |
+
+A drawn component as an option is keyed like a group: by its `count`
+(dots) or `filled` (ten-frame).
 
 ## `audio_choice`
 
@@ -104,6 +131,7 @@ Interactions:
 | English word to colour | hears "Red.", taps the red swatch | en-colours |
 | English word to picture | hears "Green.", taps the frog | en-colours |
 | English word to coloured object | hears "Blue.", taps the blue car of three | en-colours |
+| Number word to numeral | hears "Sieben." (`audio: { de: "Sieben." }`), taps 7 among 1, 7, 9 | write-numerals-to-10 |
 
 ## `true_false`
 
@@ -118,7 +146,10 @@ Interactions:
 |---|---|---|
 | Do you hear this sound at the start? | "Hörst du am Anfang ein L?" with a ladder | letters-l-o-a-m |
 | Is this the right number? | "Sind das 3 Fische?" over `{ object: fish, count: 3 }` | count-to-5 |
+| The same amount? | "Sind es rote und blaue Punkte gleich viele?" over `{ drawn: dots, groups: [4, 3], layout: row }` | compare-to-10 |
+| Is this comparison true? | "Stimmt das? 6 > 3", the voice reads "sechs ist größer als drei" | compare-to-10 |
 | Does this split work? | "Stimmt das? 8 + 5 = 8 + 1 + 4" | add-bridge-10 |
+| Is this the numeral? | a card shows 6, the voice asks "Ist das die Neun?"; the screen says only "Stimmt das?", so the answer cannot be read off the screen | write-numerals-to-10 |
 
 ## `fill_in_blank`
 
@@ -133,6 +164,11 @@ Interactions:
 |---|---|---|
 | Split a number to make ten | "8 + 6 = 8 + _ + _", answer 2, 4 | add-bridge-10 |
 | Missing letter in a word | "_ama" with a llama, options L, M, O | letters-l-o-a-m |
+| Neighbours of a number | "_ , 5, _" options 3, 4, 6, 7, answer 4, 6 | order-to-10 |
+| Sign between two numbers | "6 _ 4" options <, >, =, answer >, `option_audio: false` (hearing "größer als" would give it away); with two dice above it in the full stage | compare-to-10 |
+| A number that makes it true | "_ > 6" options 4, 6, 8, answer 8 | compare-to-10 |
+| Split of a number | "6 = _ + _" with a split dot picture, answer 4, 2 | partition-to-10 |
+| Number house | `show: { drawn: number-house, roof: 7, rows: [[3, null]] }`, frame "3 + _ = 7" | partition-to-10 |
 
 ## `text_input`
 
@@ -204,7 +240,8 @@ app will compare the strokes.
 Fields: `show: { drawn: writing-lines, text, mode: trace | copy, arrows }`,
 `char`. No hints in any stage: the guide is the help.
 
-Interactions: trace a letter; copy a letter (letters-l-o-a-m).
+Interactions: trace a letter; copy a letter (letters-l-o-a-m); trace and
+copy a numeral, 0 to 10 (write-numerals-to-10).
 
 ## `speak`
 
@@ -234,6 +271,8 @@ Interactions:
 | Interaction | Example | Used in |
 |---|---|---|
 | Colour with a thing that has it | yellow ↔ banana, green ↔ frog, red ↔ strawberry; tapping a colour says "Yellow." | en-colours |
+| Numeral with its amount | 3 ↔ three dots on a dice, 5 ↔ five apples; a side can be `{ text: "3" }` | write-numerals-to-10 |
+| Number with a split | 7 ↔ 4 + 3, 5 ↔ 2 + 3 | partition-to-10 |
 
 Twist: `pairs[].left` and `right` become `{ label, image_url }`; `say`
 becomes the narration of that side.
@@ -252,6 +291,24 @@ Interactions:
 | Interaction | Example | Used in |
 |---|---|---|
 | Pictures by colour | strawberry, apple → red; frog, leaf → green | en-colours |
+
+## `ordering`
+
+Number or picture cards above, empty slots below. The child taps cards in
+order to fill the slots from the left; tapping a filled slot empties it.
+Prüfen checks the whole order; wrong cards go back.
+
+Fields: `options` (strings or bank pictures; may include extra cards that
+do not belong), `slot_count`, `answer` (the cards in slot order). Twist
+calls the answer `correct_arrangement` and gives options ids.
+
+Interactions:
+
+| Interaction | Example | Used in |
+|---|---|---|
+| Numbers from small to big | 4, 2, 5, 3 into four slots: 2, 3, 4, 5 | order-to-10 |
+| Count backwards | 7, 9, 8, 6 from big to small: 9, 8, 7, 6 | order-to-10 |
+| Amounts from few to many | three dot pictures, fewest first | compare-to-10 |
 
 ## Option audio
 

@@ -61,7 +61,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .spk.playing{background:var(--accent-soft)}
 .visual{display:flex;justify-content:center;align-items:center;min-height:40px;width:100%}
 .visual img{width:150px;height:150px;object-fit:contain}
-.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:12px;margin-top:auto}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:14px;margin-top:auto;padding-top:10px}
 .opt{position:relative;border:3px solid var(--plum);background:#fff;border-radius:20px;min-height:76px;font:700 30px Andika,sans-serif;color:var(--plum);cursor:pointer;display:grid;place-items:center;padding:8px;box-shadow:0 4px 0 var(--plum);transition:transform .08s}
 .opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--plum)}
 .opt img{width:84px;height:84px;object-fit:contain}
@@ -69,7 +69,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .opt.bad{background:var(--bad-soft);border-color:var(--bad);box-shadow:0 4px 0 var(--bad);animation:shake .3s}
 .opt.sel{background:var(--accent-soft)}
 .opt.dim{opacity:.45}
-.opt .os{position:absolute;top:4px;right:4px;width:28px;height:28px;border-radius:50%;border:2px solid var(--plum);background:#fff;display:grid;place-items:center;cursor:pointer}
+.opt .os{position:absolute;top:-10px;right:-10px;width:28px;height:28px;border-radius:50%;border:2px solid var(--plum);background:#fff;display:grid;place-items:center;cursor:pointer;z-index:1}
 .opt .os svg{width:14px;height:14px}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .foot{padding:10px 20px 26px;flex:none;display:flex;flex-direction:column;gap:10px}
@@ -99,7 +99,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .frame{font:700 40px Andika,sans-serif;text-align:center;display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap}
 .gap{min-width:52px;height:62px;border-bottom:5px solid var(--accent);display:inline-grid;place-items:center;color:var(--accent);cursor:pointer;border-radius:6px 6px 0 0;background:var(--accent-soft)}
 .gap.filled{color:var(--plum)}
-.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:auto}
+.chips{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:auto;padding-top:10px}
 .chips .opt{min-width:72px;min-height:68px}
 .entry{font:700 48px Andika,sans-serif;text-align:center;border:3px solid var(--plum);border-radius:18px;background:#fff;min-height:76px;display:grid;place-items:center;margin:0 auto;width:160px}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}
@@ -117,7 +117,7 @@ svg text{font-family:Andika,sans-serif}
 .stars{font-size:44px;letter-spacing:6px}
 .badge{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--good-soft);color:var(--good);font-weight:700;font-size:18px}
 .badge.no{background:var(--hint-soft);color:#8a6400}
-.pairs{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:auto}
+.pairs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 28px;margin-top:auto}
 .bins{display:grid;gap:12px;margin-top:auto}
 .bin{border:3px dashed var(--plum);border-radius:20px;min-height:220px;padding:8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;cursor:pointer}
 .grp{width:100%}
@@ -233,11 +233,13 @@ function zwanziger(a, b, moved = 0) {
   for (let i = 0; i < b - moved; i++) bot[i] = { fill: "#1E88E5" };
   return field([top, bot]);
 }
-function tenFrame(n) { const r1 = Array(5).fill(null).map((_, i) => i < n ? { fill: "#E53935" } : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? { fill: "#E53935" } : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
+function tenFrame(n, split) { const col = (i) => ({ fill: split && i >= split[0] ? "#1E88E5" : "#E53935" }); const r1 = Array(5).fill(null).map((_, i) => i < n ? col(i) : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? col(i + 5) : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
 function house(roof, rows) {
+  // More than four floors get shorter floors, so a whole house fits the screen.
+  const rh = rows.length > 4 ? 34 : 52, fs = rows.length > 4 ? 24 : 30;
   let s = `<path d="M20 70 L90 12 L160 70 Z" fill="#efe0fb" stroke="#2b0f45" stroke-width="4" stroke-linejoin="round"/><text x="90" y="58" text-anchor="middle" font-size="30" font-weight="700" fill="#2b0f45">${roof}</text>`;
-  rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * 52; s += `<rect x="${x}" y="${y}" width="62" height="52" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + 37}" text-anchor="middle" font-size="30" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
-  return `<svg viewBox="0 0 180 ${80 + rows.length * 52}" width="180">${s}</svg>`;
+  rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * rh; s += `<rect x="${x}" y="${y}" width="62" height="${rh}" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + rh / 2 + fs / 3}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
+  return `<svg viewBox="0 0 180 ${80 + rows.length * rh}" width="${rows.length > 4 ? 150 : 180}">${s}</svg>`;
 }
 function equation(text, split) {
   const tokens = text.split(" ");
@@ -280,13 +282,41 @@ function writing(text, mode) {
   const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="290" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
   const glyph = mode === "trace"
     ? `<text x="150" y="130" text-anchor="middle" font-size="130" fill="#efe0fb" stroke="#a58bc4" stroke-width="2.5" stroke-dasharray="6 5">${esc(text)}</text><circle cx="${/[a-z]/.test(text) ? 132 : 112}" cy="${/[ao]/.test(text) ? 86 : 42}" r="8" fill="#2e9e48"/>`
-    : `<text x="50" y="130" text-anchor="middle" font-size="100" fill="#2b0f45">${esc(text)}</text>`;
+    : `<text x="${text.length > 1 ? 62 : 50}" y="130" text-anchor="middle" font-size="${text.length > 1 ? 70 : 100}" fill="#2b0f45">${esc(text)}</text>`;
   return `<svg viewBox="0 0 300 200">${lines}${glyph}</svg>`;
+}
+// Dots: dice pips (two dice from 7 on: a five and the rest), rows of five
+// (Kraft der 5), a row, or scattered. colour_split colours the parts.
+const PIPS = { 1: [[50, 50]], 2: [[28, 28], [72, 72]], 3: [[25, 25], [50, 50], [75, 75]], 4: [[28, 28], [72, 28], [28, 72], [72, 72]], 5: [[26, 26], [74, 26], [50, 50], [26, 74], [74, 74]], 6: [[30, 22], [70, 22], [30, 50], [70, 50], [30, 78], [70, 78]] };
+function dots(o, small) {
+  if (o.groups) {
+    // Two amounts to compare: lined-up rows (red over blue) or dice side by side.
+    const cols = ["#E53935", "#1E88E5"];
+    if (o.layout === "dice") return `<div style="display:flex;gap:${small ? 6 : 22}px;justify-content:center">${o.groups.map((g, k) => dots({ count: g, layout: "dice", colour_split: k ? [0, g] : [g] }, small)).join("")}</div>`;
+    const max = Math.max(...o.groups), w = max * 30 + 10;
+    const rows = o.groups.map((g, k) => Array.from({ length: g }, (_, i) => `<circle cx="${20 + i * 30}" cy="${20 + k * 34}" r="11" fill="${cols[k]}" stroke="#2b0f45" stroke-width="2"/>`).join("")).join("");
+    return `<svg viewBox="0 0 ${w} ${o.groups.length * 34 + 8}" width="${Math.min(small ? 90 : 300, w * (small ? 0.6 : 1.4))}">${rows}</svg>`;
+  }
+  const n = o.count, split = o.colour_split ?? [n], fill = (i) => (i < split[0] ? "#E53935" : "#1E88E5");
+  const dot = (x, y, r, i) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill(i)}" stroke="#2b0f45" stroke-width="2"/>`;
+  if (o.layout === "dice") {
+    const parts = n <= 6 ? [n] : [5, n - 5]; let i = 0;
+    const dice = parts.map((p) => `<svg viewBox="0 0 100 100" width="${small ? 46 : 110}"><rect x="4" y="4" width="92" height="92" rx="18" fill="#fff" stroke="#2b0f45" stroke-width="5"/>${PIPS[p].map(([x, y]) => dot(x, y, 9, i++)).join("")}</svg>`);
+    return `<div style="display:flex;gap:${small ? 4 : 12}px;justify-content:center">${dice.join("")}</div>`;
+  }
+  if (o.layout === "five-structure" || o.layout === "row") {
+    const per = o.layout === "row" ? n : 5, rows = Math.ceil(n / per), w = per * 30 + 10;
+    let g = ""; for (let i = 0; i < n; i++) g += dot(20 + (i % per) * 30 + (o.layout === "five-structure" ? 0 : 0), 20 + Math.floor(i / per) * 32, 11, i);
+    return `<svg viewBox="0 0 ${w} ${rows * 32 + 8}" width="${Math.min(small ? 90 : 300, w * (small ? 0.6 : 1.4))}">${g}</svg>`;
+  }
+  const grp = group({ object: "_", count: n, layout: "scattered" }, { small });
+  let i = 0; return grp.replace(/<span class="it"([^>]*)>[\s\S]*?<\/span>/g, (m, a) => `<span class="it"${a}><svg viewBox="0 0 30 30" width="100%">${dot(15, 15, 11, i++)}</svg></span>`);
 }
 function drawn(o, ctx = {}) {
   switch (o.drawn) {
+    case "dots": return dots(o, ctx.small);
     case "zwanzigerfeld": return zwanziger(o.filled[0], o.filled[1], ctx.moved ?? 0);
-    case "ten-frame": return tenFrame(o.filled);
+    case "ten-frame": return tenFrame(o.filled, o.colour_split);
     case "number-house": return house(o.roof, o.rows);
     case "equation": return equation(o.text, o.split);
     case "rechenstrich": return rechenstrich(o.start, o.jumps ?? []);
@@ -299,7 +329,7 @@ function drawn(o, ctx = {}) {
   }
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }
-const show = (o, ctx) => !o ? "" : o.drawn ? drawn(o, ctx) : pic(o);
+const show = (o, ctx) => !o ? "" : o.drawn ? drawn(o, ctx) : o.text != null ? `<span style="font:700 40px Andika,sans-serif">${esc(o.text)}</span>` : pic(o);
 // A "_" in screen text is a gap to fill: drawn as a box, never as an underscore.
 const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?</span>');
 
@@ -452,15 +482,27 @@ function renderTask(step) {
   }
   (TYPES[t.type] || TYPES._unknown)({ t, step, body, foot, vis, answer, st });
   body.appendChild(msg);
+  if (t.show?.flash) flash(vis, t.show.flash * 1000, mode !== "check", step);
+}
+// Show an amount briefly, then cover it, so it has to be seen at a glance.
+function flash(vis, ms, again, step) {
+  vis.style.position = "relative";
+  const cover = document.createElement("div");
+  cover.style.cssText = "position:absolute;inset:0;background:var(--app);display:none;place-items:center;border-radius:16px";
+  cover.innerHTML = '<div style="font:700 60px Andika,sans-serif;color:#d6c2e8">?</div>';
+  vis.appendChild(cover);
+  const hide = () => { if (steps[at] === step) cover.style.display = "grid"; };
+  setTimeout(hide, ms);
+  if (again) { const b = document.createElement("button"); b.className = "sound"; b.textContent = "Nochmal sehen"; b.onclick = () => { cover.style.display = "none"; setTimeout(hide, ms); }; vis.after(b); }
 }
 function optEl(o, t, i) {
   const b = document.createElement("button"); b.className = "opt";
-  b.innerHTML = typeof o === "string" ? esc(o) : o.count != null ? pic(o, { small: true }) : show(o);
+  b.innerHTML = typeof o === "string" ? esc(o) : o.drawn ? drawn(o, { small: true }) : o.count != null ? pic(o, { small: true }) : show(o);
   const src = t._options?.[i];
   if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
   return b;
 }
-const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : (o.colour ?? o.object ?? o.drawn);
+const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : o.drawn === "ten-frame" ? String(o.filled) : (o.text ?? o.colour ?? o.object ?? o.drawn);
 function choice({ t, body, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const grid = document.createElement("div"); grid.className = "opts";
@@ -531,7 +573,7 @@ const TYPES = {
     cv.onpointerdown = (e) => { down = true; cv.setPointerCapture(e.pointerId); g.beginPath(); g.moveTo(...pos(e)); };
     cv.onpointermove = (e) => { if (!down) return; g.lineTo(...pos(e)); g.stroke(); ink++; if (ink > 12) btn.disabled = false; };
     cv.onpointerup = () => { down = false; };
-    const n = document.createElement("div"); n.className = "note"; n.textContent = t.show.mode === "trace" ? "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt." : "Schreib den Buchstaben rechts daneben."; body.appendChild(n);
+    const n = document.createElement("div"); n.className = "note"; n.textContent = t.show.mode === "trace" ? "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt." : "Schreib es rechts daneben."; body.appendChild(n);
     const btn = nextBtn(foot, UI.done, () => answer(true, "", () => {})); btn.disabled = true;
   },
   speak({ t, body, foot, vis, answer }) {
@@ -544,11 +586,15 @@ const TYPES = {
     const n = t.pairs.length, order = t.pairs.map((_, i) => (i + 1) % n); // right side shown in another order
     const link = Array(n).fill(null); let sel = null; // link[left] = right index
     const g = document.createElement("div"); g.className = "pairs";
-    const L = t.pairs.map((p, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(p.left); return b; });
-    const R = order.map((pi) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(t.pairs[pi].right); b.dataset.pi = pi; return b; });
+    // Sides render at option size, so scattered dots and groups fit their tile.
+    const side = (o) => o.drawn === "dots" ? drawn(o, { small: o.layout !== "dice" }) : o.count != null ? pic(o, { small: true }) : o.text != null ? `<span style="font:700 30px Andika,sans-serif;white-space:nowrap">${esc(o.text)}</span>` : show(o);
+    const L = t.pairs.map((p, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = side(p.left); return b; });
+    const R = order.map((pi) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = side(t.pairs[pi].right); b.dataset.pi = pi; return b; });
     for (let i = 0; i < n; i++) { g.appendChild(L[i]); g.appendChild(R[i]); }
     body.appendChild(g);
-    const ring = (i) => D.colours[t.pairs[i].left.colour] ?? "#8e3bd1";
+    // A colour side marks its pair in that colour; other pairs get one each.
+    const PAIR = ["#8e3bd1", "#1E88E5", "#F57C00", "#2e9e48", "#d4483f", "#00897b"];
+    const ring = (i) => D.colours[t.pairs[i].left.colour] ?? PAIR[i % PAIR.length];
     const draw = () => {
       L.forEach((b, i) => { b.classList.toggle("sel", sel === i); b.style.outline = link[i] != null ? `5px solid ${ring(i)}` : ""; });
       R.forEach((b, ri) => { const li = link.indexOf(ri); b.style.borderColor = li >= 0 ? ring(li) : ""; b.style.boxShadow = li >= 0 ? `0 4px 0 ${ring(li)}` : ""; });
@@ -589,6 +635,25 @@ const TYPES = {
     let n = 0;
     vis.querySelectorAll(".it").forEach((it) => it.onclick = () => { if (st.over || it.classList.contains("tapped")) return; n++; it.dataset.n = n; it.classList.add("tapped"); });
     choice({ t, body, vis: { set innerHTML(v) {} }, answer, st });
+  },
+  ordering({ t, body, foot, answer, st }) {
+    // Tap cards in order to fill the slots; tap a filled slot to empty it.
+    const slots = Array(t.slot_count).fill(null);
+    const row = document.createElement("div"); row.className = "chips"; row.style.marginTop = "0"; body.appendChild(row);
+    const sl = document.createElement("div"); sl.className = "frame"; sl.style.gap = "10px"; body.appendChild(sl);
+    const cards = t.options.map((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over || slots.includes(i)) return; const k = slots.indexOf(null); if (k >= 0) { slots[k] = i; draw(); } }; row.appendChild(b); return b; });
+    const draw = () => {
+      sl.innerHTML = ""; slots.forEach((ci, k) => { const g = document.createElement("span"); g.className = "gap" + (ci != null ? " filled" : ""); g.style.minWidth = "62px"; g.style.height = "72px"; g.innerHTML = ci == null ? "" : (typeof t.options[ci] === "string" ? esc(t.options[ci]) : show(t.options[ci], { small: true })); g.onclick = () => { if (!st.over && ci != null) { slots[k] = null; draw(); } }; sl.appendChild(g); });
+      cards.forEach((b, i) => b.classList.toggle("dim", slots.includes(i)));
+      btn.disabled = slots.includes(null);
+    };
+    const btn = nextBtn(foot, UI.check, () => {
+      const got = slots.map((ci) => keyOf(t.options[ci])), ok = got.every((g, k) => g === String(t.answer[k]));
+      sl.querySelectorAll(".gap").forEach((g, k) => g.style.background = got[k] === String(t.answer[k]) ? "var(--good-soft)" : "var(--bad-soft)");
+      answer(ok, got.join(","), () => { t.answer.forEach((a, k) => slots[k] = t.options.findIndex((o) => keyOf(o) === String(a))); draw(); sl.querySelectorAll(".gap").forEach((g) => g.style.background = "var(--good-soft)"); });
+      if (!ok && !st.over) setTimeout(() => { got.forEach((g, k) => { if (g !== String(t.answer[k])) slots[k] = null; }); draw(); }, 1000);
+    });
+    draw();
   },
   _unknown({ t, foot, body }) { body.insertAdjacentHTML("beforeend", `<div class="note">Typ ${esc(t.type)} ist im Player noch nicht umgesetzt.</div>`); nextBtn(foot); },
 };

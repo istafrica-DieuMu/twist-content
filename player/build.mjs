@@ -19,8 +19,8 @@ const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return
 
 // Must match READ_MATHS in narration.py.
 const READ_MATHS = {
-  de: [[" = ?", " gleich wie viel?"], [" + ", " plus "], [" − ", " minus "], [" = ", " gleich "], ["_", "wie viel"], [" → ", ", dann "]],
-  en: [[" = ?", " equals what?"], [" + ", " plus "], [" − ", " minus "], [" = ", " equals "], ["_", "what"], [" → ", ", then "]],
+  de: [[" = ?", " gleich wie viel?"], [" < ", " ist kleiner als "], [" > ", " ist größer als "], [" + ", " plus "], [" − ", " minus "], [" = ", " gleich "], ["_", "wie viel"], [" → ", ", dann "]],
+  en: [[" = ?", " equals what?"], [" < ", " is less than "], [" > ", " is greater than "], [" + ", " plus "], [" − ", " minus "], [" = ", " equals "], ["_", "what"], [" → ", ", then "]],
 };
 const spoken = (text, lang) => (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim());
 const lineId = (lang, t) => createHash("sha1").update(`${lang}|${t}`).digest("hex").slice(0, 10);

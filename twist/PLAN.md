@@ -455,7 +455,7 @@ topic: stop and check in before the next.
 
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
-| 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7 (2 drafted) |
+| 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7, all drafted 2026-10-13: 17 lessons, 386 tasks |
 | 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10 |
 | 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8 |
 | 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2 |
@@ -487,9 +487,9 @@ Klasse 1 Mathe, topic Zahlen bis 10:
 |---|---|---|
 | count-to-5 | 2: count to 3, count to 5 | drafted 2026-10-13, 42 tasks, played through |
 | count-to-10 | 2: count to 10 in a row, count scattered things | drafted 2026-10-13, 42 tasks, played through |
-| subitize-to-10 | 2: dice and fingers, Kraft der 5 on the ten-frame | next |
-| write-numerals-to-10 | 3: 0 to 5, 6 to 10, numeral and amount | |
-| order-to-10 | 2: in order, before and after | |
-| compare-to-10 | 3: more and fewer, the signs, using the signs | |
-| partition-to-10 | 3: split with counters, number house, all splits | |
+| subitize-to-10 | 2: dice patterns, Kraft der 5 on the ten-frame | drafted 2026-10-13, 44 tasks |
+| write-numerals-to-10 | 3: 1 to 5, 6 to 10, zero with numeral and amount | drafted 2026-10-13, 68 tasks |
+| order-to-10 | 2: in order, before and after | drafted 2026-10-13, 44 tasks |
+| compare-to-10 | 3: more and fewer, the signs, using the signs | drafted 2026-10-13, 66 tasks |
+| partition-to-10 | 3: split with counters, number house, all splits | drafted 2026-10-13, 69 tasks |
 

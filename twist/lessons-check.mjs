@@ -166,7 +166,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (d.metadata?.no_reading && t.type === "audio_choice" && typeof (t.options ?? [])[0] === "string") err(`${file}: ${tw}: no_reading lesson, but the child must read the options`);
           if (a.activity === "check" && ["skill", "timed"].includes(a.size) && t.type === "speak") warn(`${file}: ${tw}: speaking in a skill check; speech recognition for young children is not reliable enough to decide mastery`);
           refs(t, tw, file);
-          const sig = JSON.stringify([t.type, t.text ?? t.say, t.answer, t.show ?? null, t.audio ?? null, t.options ?? null]);
+          const sig = JSON.stringify([t.type, t.text ?? t.say, t.answer, t.show ?? null, t.audio ?? null, t.options ?? null, t.pairs ?? null, t.bins ?? null, t.frame ?? null, t.say ?? null]);
           if (a.activity === "check") checkTasks.push([t.id, sig, a.size]); else nonCheck.set(sig, t.id);
         }
       });
@@ -199,7 +199,7 @@ function typeMix(lessons) {
 
 function checkAnswer(t, tw, file, err) {
   // A group of counted things is keyed by its count ("Wo sind 2 Bananen?" answer "2").
-  const opt = (o) => (typeof o === "string" ? o : o.count != null ? String(o.count) : o.colour ?? o.object ?? o.drawn);
+  const opt = (o) => (typeof o === "string" ? o : o.count != null ? String(o.count) : o.drawn === "ten-frame" ? String(o.filled) : o.text ?? o.colour ?? o.object ?? o.drawn);
   const options = (t.options ?? []).map(opt);
   switch (t.type) {
     case "multiple_choice": case "audio_choice": case "image_multiple_choice":
@@ -227,6 +227,12 @@ function checkAnswer(t, tw, file, err) {
     case "tracing": if (!t.char) err(`${file}: ${tw}: tracing needs char`); break;
     case "speak": if (!t.expected_text) err(`${file}: ${tw}: speak needs expected_text`); break;
     case "highlight_in_text": if (!t.spans) err(`${file}: ${tw}: highlight_in_text needs spans`); break;
+    case "ordering": {
+      // Twist: options, slot_count, correct_arrangement (our `answer`).
+      if (!Array.isArray(t.answer) || t.answer.length !== t.slot_count) err(`${file}: ${tw}: ordering answer must list slot_count (${t.slot_count}) cards`);
+      for (const a of t.answer ?? []) if (!options.includes(String(a))) err(`${file}: ${tw}: answer card ${a} is not one of the options`);
+      break;
+    }
     case "matching": {
       // Twist: pairs of left and right, 2 to 6; the app shuffles the right side.
       const n = t.pairs?.length ?? 0;
