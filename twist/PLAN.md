@@ -473,6 +473,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 |---|---|---|---|---|
 | 1 | Mathe | Klasse 1 | Rechnen bis 10 | 8, all drafted 2026-10-13: 16 lessons, with Rechengeschichten |
 | 2 | Maths | Reception | Adding and subtracting to 10 | 3, all drafted 2026-10-13: 6 lessons, First Then Now stories, counting on, bonds to 10 |
+| 3 | Maths | Year 1 | Subtracting to 10 and number stories | 3, all drafted 2026-10-13: 6 lessons, taking away, counting back, number stories with answer sentences |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
