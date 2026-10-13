@@ -176,6 +176,7 @@ Interactions:
 | Which English article | "_ orange" over the picture, options a, an; or "two _" over a group, options dogs, dog, a dog | en-plurals-articles |
 | Which reply fits | the voice asks "Do you like milk?" after saying in German whether you like it, options Yes, I do. / Yes, I like. / No, I don't. | en-food |
 | Which Bindewort fits | "Es regnet, _ wir gehen trotzdem raus.", options aber, und, oder (or weil, dass, wenn) | sentences-conjunctions |
+| Ersatzprobe for das or dass | "Passt „dieses“ oder „welches“ in die Lücke? „_ Lied gefällt mir.“", options Ja, also das / Nein, also dass with `keep_order: true` | spelling-das-dass |
 | Who is speaking | "Ben antwortet: „Ich war das.“ Wer spricht?", options the people in the sentence | sentences-direct-speech |
 | Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
 
@@ -326,6 +327,7 @@ Interactions:
 | Noun ending | "die Ehrlich_", options heit, keit, ung | noun-endings |
 | Missing grapheme | over a bird picture, frame "b_rd", options ir, ou, ay | en-GB new-graphemes |
 | Article in a case | "Ich gebe _ Katze _ Futter.", options der, die, das, dem | noun-cases |
+| das or dass in a gap | "Das Pferd, _ dort steht, heißt Blitz.", options das, dass; two gaps for "dass das" | spelling-das-dass |
 | The punctuation mark in a gap | "Der Hund ist klein_ aber er bellt laut.", options , . ! (also ! . ? after an Aufforderung) | sentences-conjunctions, verbs-imperative |
 | The ending a short word takes | "do_" for doll, options ll, l, ff; "ro_" for rock, options ck, c, g | en-GB phonics-ck-e-u-r, phonics-h-b-f-l |
 
