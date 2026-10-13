@@ -589,7 +589,11 @@ function choice({ t, body, vis, answer, st }) {
   // Long text options get a smaller font, very long ones a single column.
   const maxLen = Math.max(0, ...(t.options ?? []).filter((o) => typeof o === "string").map((o) => o.length));
   if (maxLen > 14) grid.classList.add("long"); else if (maxLen > 5) grid.classList.add("mid");
-  const els = (t.options ?? []).map((o, i) => { const b = optEl(o, t, i); grid.appendChild(b); return b; });
+  const els = (t.options ?? []).map((o, i) => optEl(o, t, i));
+  // Options are shown in a new random order each time, unless the task keeps its order.
+  const order = els.map((_, i) => i);
+  if (!t.keep_order) for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+  order.forEach((i) => grid.appendChild(els[i]));
   const reveal = () => els.forEach((b, i) => { if (keyOf(t.options[i]) === String(t.answer)) b.classList.add("good"); else b.classList.add("dim"); });
   els.forEach((b, i) => b.onclick = () => {
     if (st.over || b.classList.contains("bad")) return;

@@ -82,7 +82,13 @@ The child taps one text option. Right: green and a praise phrase. Wrong:
 red, that option's feedback if there is any, then the hint for the stage.
 
 Fields: `options` (strings), `answer` (one of them), `feedback` keyed by
-wrong option.
+wrong option, `keep_order` (optional).
+
+The app shows the options in a new random order each time the task is
+shown, so where an option sits in the record says nothing. `keep_order:
+true` keeps the record order, for options that read as a scale or a
+fixed pair (always, sometimes, never; Ja, Nein). The same holds for
+image_multiple_choice and audio_choice.
 
 Interactions:
 

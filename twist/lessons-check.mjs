@@ -20,6 +20,7 @@ const NO_OPTION_AUDIO = new Set(["audio_choice", "true_false", "highlight_in_tex
 const TASKS_PER_LESSON = { "4-5": [14, 24], "6-7": [18, 28], "8-10": [20, 32] };
 // Task types whose support is built in (the trace guide), so they take no text hints.
 const SELF_SUPPORTED = new Set(["tracing"]);
+const CHOICE_TYPES = new Set(["multiple_choice", "image_multiple_choice", "audio_choice"]);
 
 export function checkLessons({ T, steps, profiles, err, warn }) {
   const walk = (d) => (existsSync(d) ? readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; }) : []);
@@ -106,7 +107,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     if (lessons.length < 2 || lessons.length > 6) warn(`${file}: ${lessons.length} lessons; a skill usually has 2 to 6`);
     const taskIds = new Set();
     const nonCheck = new Map();
-    const checkTasks = [], looseCheck = [], looseNon = new Map(), positions = [];
+    const checkTasks = [], looseCheck = [], looseNon = new Map();
     const summary = [];
     lessons.forEach((l, i) => {
       const lw = `lesson ${l.n}`;
@@ -182,7 +183,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (a.activity === "check") checkTasks.push([t.id, sig, a.size]); else nonCheck.set(sig, t.id);
           const loose = JSON.stringify([t.type, t.text ?? null, t.say ?? null, t.answer, t.audio ?? null, t.show ?? null]);
           if (a.activity === "check") looseCheck.push([t.id, loose, a.size]); else looseNon.set(loose, t.id);
-          if (t.type === "multiple_choice" && (t.options ?? []).length >= 3 && typeof t.answer === "string") positions.push(t.options.indexOf(t.answer));
+          if (t.keep_order !== undefined && (typeof t.keep_order !== "boolean" || !CHOICE_TYPES.has(t.type))) err(`${file}: ${tw}: keep_order is true or false, on a choice task only`);
         }
       });
       const age = (md.ages ?? [])[0];
@@ -192,8 +193,6 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     });
     for (const [id, sig, size] of checkTasks) if (size !== "quick" && nonCheck.has(sig)) err(`${file}: skill check task ${id} repeats task ${nonCheck.get(sig)}`);
     for (const [id, sig, size] of looseCheck) if (size !== "quick" && looseNon.has(sig) && !nonCheck.has(checkTasks.find((c) => c[0] === id)[1])) warn(`${file}: skill check task ${id} asks the same as task ${looseNon.get(sig)}`);
-    // Options are shown in record order, so answers must not bunch in one place.
-    if (positions.length >= 6) { const top = Math.max(...[0, 1, 2, 3].map((i) => positions.filter((p) => p === i).length)); if (top / positions.length > 0.6) warn(`${file}: ${top} of ${positions.length} multiple-choice answers sit in the same option position; vary the order`); }
     // Metadata must match what the tasks actually use.
     const usedHere = { drawn: new Set(), sound: new Set() };
     const collect = (v) => { if (Array.isArray(v)) return v.forEach(collect); if (!v || typeof v !== "object") return; if (v.drawn) usedHere.drawn.add(v.drawn); if (v.sound) usedHere.sound.add(v.sound); Object.values(v).forEach((x) => typeof x === "object" && collect(x)); };
