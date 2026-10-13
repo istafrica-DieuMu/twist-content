@@ -9,13 +9,13 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | narration made |
 |---|---|---|---|---|
 | de-DE | Mathe | 40% (81 / 203) | 34% (10 / 29) | 74% (6645 / 9031) |
-| de-DE | Deutsch | 21% (36 / 174) | 17% (16 / 94) | 51% (2255 / 4382) |
-| de-DE | Englisch | 34% (20 / 58) | 34% (13 / 38) | 24% (403 / 1653) |
-| **de-DE** | **all** | **31% (137 / 435)** | **24% (39 / 161)** | **62% (9304 / 15066)** |
+| de-DE | Deutsch | 22% (38 / 174) | 18% (17 / 94) | 51% (2255 / 4382) |
+| de-DE | Englisch | 38% (22 / 58) | 39% (15 / 38) | 24% (403 / 1653) |
+| **de-DE** | **all** | **32% (141 / 435)** | **26% (42 / 161)** | **62% (9304 / 15066)** |
 | en-GB | Maths | 19% (49 / 259) | 13% (18 / 139) | 85% (4380 / 5177) |
-| en-GB | English | 13% (21 / 163) | 8% (5 / 61) | 81% (1504 / 1861) |
+| en-GB | English | 13% (22 / 163) | 8% (5 / 61) | 81% (1504 / 1861) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (539 / 540) |
-| **en-GB** | **all** | **16% (75 / 483)** | **10% (24 / 241)** | **85% (6423 / 7578)** |
+| **en-GB** | **all** | **16% (76 / 483)** | **10% (24 / 241)** | **85% (6423 / 7578)** |
 
 ## OpenRouter cost
 
@@ -39,17 +39,17 @@ Per voice:
 
 ## de-DE
 
-137 of 435 placed skills drafted (31%): 137 lesson sets, 289 lessons, 6345 tasks. Narration so far about $21; 5763 clips still to make.
+141 of 435 placed skills drafted (32%): 141 lesson sets, 297 lessons, 6513 tasks. Narration so far about $21; 5763 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 28 / 41 | 5 / 51 |  | 33 / 92 |
 | klasse-2 | 23 / 63 | 11 / 46 |  | 34 / 109 |
-| klasse-3 | 19 / 51 | 10 / 42 |  | 29 / 93 |
+| klasse-3 | 19 / 51 | 12 / 42 |  | 31 / 93 |
 | klasse-4 | 11 / 48 | 10 / 35 |  | 21 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 9 / 28 | 9 / 28 |
-| lernjahr-2 |  |  | 2 / 16 | 2 / 16 |
+| lernjahr-2 |  |  | 4 / 16 | 4 / 16 |
 
 Topics, in placement order. A topic is done when every skill in it has a lesson set.
 
@@ -127,7 +127,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.53 |
 | klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $0.01 |
 | klasse-3 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.01 |
-| klasse-3 | Deutsch | Wörtliche Rede | 0 / 2 |  |  |
+| klasse-3 | Deutsch | Wörtliche Rede | 2 / 2 done | 4 |  |
 | klasse-3 | Deutsch | Kurze und lange Selbstlaute | 0 / 3 |  |  |
 | klasse-3 | Deutsch | Besondere Laute | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Silben und Trennung | 0 / 1 |  |  |
@@ -205,8 +205,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | lernjahr-1 | Englisch | Lernstrategien | 0 / 2 |  |  |
 | lernjahr-1 | Englisch | Sprachmittlung | 0 / 1 |  |  |
 | lernjahr-2 | Englisch | Hobbys und Sport | 1 / 1 done | 2 | $0.13 |
-| lernjahr-2 | Englisch | Zahlen | 0 / 1 |  |  |
-| lernjahr-2 | Englisch | Uhrzeit | 0 / 1 |  |  |
+| lernjahr-2 | Englisch | Zahlen | 1 / 1 done | 2 |  |
+| lernjahr-2 | Englisch | Uhrzeit | 1 / 1 done | 2 |  |
 | lernjahr-2 | Englisch | Sprachmuster | 1 / 2 started | 2 | $0.00 |
 | lernjahr-2 | Englisch | Berufe | 0 / 1 |  |  |
 | lernjahr-2 | Englisch | Feste | 0 / 1 |  |  |
@@ -219,11 +219,11 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-75 of 483 placed skills drafted (16%): 75 lesson sets, 153 lessons, 3290 tasks. Narration so far about $15; 1155 clips still to make.
+76 of 483 placed skills drafted (16%): 76 lesson sets, 155 lessons, 3327 tasks. Narration so far about $15; 1155 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
-| reception | 13 / 14 | 10 / 32 |  | 23 / 46 |
+| reception | 13 / 14 | 11 / 32 |  | 24 / 46 |
 | year-1 | 11 / 29 | 3 / 32 |  | 14 / 61 |
 | year-2 | 10 / 53 | 2 / 29 |  | 12 / 82 |
 | year-3 | 10 / 50 | 2 / 20 |  | 12 / 70 |
@@ -244,7 +244,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.01 |
 | reception | Maths | Division | 0 / 1 |  |  |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $0.79 |
-| reception | English | Phonics | 6 / 12 started | 12 | $0.03 |
+| reception | English | Phonics | 7 / 12 started | 14 | $0.03 |
 | reception | English | Reading words | 0 / 3 |  |  |
 | reception | English | Understanding stories | 0 / 2 |  |  |
 | reception | English | Spelling | 0 / 1 |  |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 298 | $0.25 | $75 |
-| en-GB | 408 | $0.24 | $98 |
+| de-DE | 294 | $0.25 | $72 |
+| en-GB | 407 | $0.24 | $96 |
 
 Pictures: 150 of 150 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

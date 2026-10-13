@@ -53,6 +53,7 @@ for amounts:
 | `hundred-square` | `highlight: [..]`, `hide: [..]` | 1 to 100 in rows of ten; hidden cells show ? |
 | `base-ten` | `hundreds`, `tens`, `ones` | hundred flats (10 by 10, two to a column), tens rods and ones cubes; more than ten loose cubes start a new pair of columns |
 | `place-value-chart` | `columns: [tens, ones]` (or with `hundreds`, `thousands`, `ten-thousands`, `hundred-thousands`, `millions` in front), `values: [4, null]` | Stellentafel; HT ZT T H Z E in German, HTh TTh Th H T O in English; six columns shrink to fit; null is a gap |
+| `clock` | `hour: 1-12`, `minute: 0-59`, `digital: true` | an analogue clock face; the hour hand moves on with the minutes; `digital` adds the time below; as an option its key is "3:30" |
 | `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
 
 ## Types in use
@@ -175,6 +176,7 @@ Interactions:
 | Which English article | "_ orange" over the picture, options a, an; or "two _" over a group, options dogs, dog, a dog | en-plurals-articles |
 | Which reply fits | the voice asks "Do you like milk?" after saying in German whether you like it, options Yes, I do. / Yes, I like. / No, I don't. | en-food |
 | Which Bindewort fits | "Es regnet, _ wir gehen trotzdem raus.", options aber, und, oder (or weil, dass, wenn) | sentences-conjunctions |
+| Who is speaking | "Ben antwortet: „Ich war das.“ Wer spricht?", options the people in the sentence | sentences-direct-speech |
 | Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
 
 An option's key (what `answer` names) is the string itself, or for a
@@ -414,6 +416,7 @@ Interactions:
 | Root word or suffixes of a split word | "care less ness", spans less, ness | en-GB suffixes-y2 |
 | The silent letter | "i s l a n d" split into letters, spans s | en-GB exception-words-ks2 |
 | Every word of the Subjekt | "Mein großer Bruder spielt Gitarre.", spans Mein, großer, Bruder; spans match cards without trailing punctuation, so "Paul" finds the card "Paul." | sentences-subject-predicate |
+| The spoken words or the Begleitsatz | "Tom ruft: „Komm schnell her!“", spans „Komm, schnell, her!“ (cards keep their Anführungszeichen) or Tom, ruft: | sentences-direct-speech, sentences-direct-speech-positions |
 | Both parts of a split Prädikat | "Der Unterricht hört um zwölf auf.", spans hört, auf. | sentences-subject-predicate |
 
 ## `tracing`

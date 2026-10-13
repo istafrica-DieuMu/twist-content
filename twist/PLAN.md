@@ -497,6 +497,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 23 | Deutsch | Klasse 4 | Sätze verbinden, Zeichensetzung | 2 drafted 2026-10-13: und, oder, aber with the comma before aber; weil, dass, wenn with the verb at the end and the comma; commas in lists of words, word groups and adjectives |
 | 24 | Mathe | Klasse 4 | Rechnen mit großen Zahlen | 6 drafted 2026-10-13: large round numbers in your head with the Analogieaufgabe; Überschlag and schrittweise + and − with four-digit numbers; schriftlich with five-digit numbers and the Probe; choosing and justifying a way; malnehmen and teilen with Stufenzahlen; halbschriftlich multiplying two-digit numbers and dividing by two-digit numbers |
 | 25 | Deutsch | Klasse 2 | Satzarten | 2, all drafted 2026-10-13: Aussagesatz, Fragesatz and Ausrufesatz with their end marks; questions with a question word and with the verb first |
+| 26 | Deutsch | Klasse 3 | Wörtliche Rede | 2, all drafted 2026-10-13: Begleitsatz vorn with Doppelpunkt and Anführungszeichen; Begleitsatz hinten and in der Mitte with the Komma rules |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
