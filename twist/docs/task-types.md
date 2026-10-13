@@ -473,6 +473,7 @@ Interactions:
 | Words by first sound | bins headed by a sun and a fish; Sonne, Socke / Fisch, Frosch | initial-sound |
 | Words by the sound a spelling makes | bins headed by a cow and a snowman; text cards now, show, town, slow with `option_audio: false` (hearing the cards would give the sound away). Options can be `{ text, bin }` and bins can be `{ show: { text }, say }` | en-GB alternative-pronunciations |
 | Sentences into fact and opinion | bins fact and opinion, text cards with `option_audio: false`; long text cards get a smaller font | en-GB fact-opinion |
+| Verbs into trennbar and nicht trennbar | bins trennbar and nicht trennbar, text cards aufräumen, verlieren, weglaufen, bekommen | verbs-compound |
 
 ## `ordering`
 
