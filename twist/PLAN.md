@@ -503,6 +503,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 29 | Mathe | Klasse 2 | Einmaleins | 8 drafted 2026-10-13: Kernaufgaben (mal 1, 2, 5, 10), Fünfer- und Zehnerreihe, ableiten mit Nachbaraufgaben, Verdoppeln und Zerlegen; Zweier-, Vierer- und Achterreihe by doubling; Dreier-, Sechser- and Neunerreihe; Siebenerreihe from fünf mal sieben, Tauschaufgaben and the Zehnerreihe; Quadratzahlen as square Punktefelder; all facts mixed, with the hard ones (6 · 7, 6 · 8, 7 · 8) and missing factors |
 | 30 | Mathe | Klasse 2 | Geteiltaufgaben | 4, all drafted 2026-10-13: Aufteilen and Verteilen with ":" as geteilt durch; the Umkehraufgabe and Aufgabenfamilien; all division facts with the Probe; Rest, and what the Rest means in a story |
 | 31 | Deutsch | Klasse 2 | Rechtschreibstrategien | 4 drafted 2026-10-13: Verlängern for d and t, and for b, p, g and k (nouns by the plural, Wiewörter with a noun); Wortstamm and Wortfamilie with look-alikes; ableiten ä from a and äu from au |
+| 32 | Deutsch | Klasse 2 | Laute und Silben | 4 drafted 2026-10-13: Selbstlaute, Mitlaute, Umlaute and Zwielaute; kurze and lange Selbstlaute with minimal pairs (Hüte, Hütte); Silben schwingen and mitsprechen; Silbenkern, offene and geschlossene Silben |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
