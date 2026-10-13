@@ -133,6 +133,9 @@ def tappable(t, objects, lang, target):
         if isinstance(x.get("say"), dict):
             out += list(x["say"].items())
             continue
+        if isinstance(x.get("say"), str):
+            out.append((lang, x["say"]))  # a bin or side with its own line in the lesson language
+            continue
         o = x.get("show", x)
         if not target and isinstance(o, dict) and o.get("object") and o.get("count") is None:
             out.append((lang, word(objects, o["object"], lang)))
