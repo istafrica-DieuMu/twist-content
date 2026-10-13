@@ -478,6 +478,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 4 | Maths | Year 1 | Subtracting to 10 and number stories | 3, all drafted 2026-10-13: 6 lessons, taking away, counting back, number stories with answer sentences |
 | 5 | Maths | Year 2 | Addition and subtraction facts | 4, all drafted 2026-10-13: 8 lessons, any order, inverse and fact families with the part-whole model, near doubles, number walls and chains (number-wall component) |
 | 6 | Maths | Year 3 | Numbers to 100 (hundred square and 100-dot grid) | 2, both drafted 2026-10-13: 4 lessons, brisk revision for Year 3 with jumps of 9 and 11 and complements to 100 |
+| 7 | Mathe | Klasse 3 | Rechnen bis 1000 | 6, all drafted 2026-10-13: 12 lessons; hundreds and Analogieaufgaben, Zehner- and Hunderterübergang, halbschriftlich (schrittweise, stellenweise, ergänzen), choosing a way, Überschlag, Summe and Differenz |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen

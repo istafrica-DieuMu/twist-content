@@ -117,6 +117,7 @@ Interactions:
 | Where the sound is | over a picture, "Wo hörst du das sss?", options am Anfang, in der Mitte, am Ende | sounds-in-words |
 | Which pronoun fits | "Der Hund bellt. Welches Pronomen passt?" options er, sie, es; or "Wer ist mit sie gemeint?" options the nouns of the text | pronouns |
 | Which text reads better | two short texts, one repeating the noun, one with a pronoun, `option_audio: false` | pronouns |
+| Word type of a word | "Was ist laufen?" options Verb, Nomen, Adjektiv (the word shown lowercase so capitals do not decide) | verbs-recognise |
 | Sensible rounding in a context | "Was schreibt die Zeitung am sinnvollsten?" over an exact count, options are roundings to different places | order-to-million |
 | Name the part of a calculation | "Wie heißt 587 in 362 + 225 = 587?", options Summe, Summand, Differenz, Minuend, Subtrahend | vocabulary-add-sub |
 | From the term to the calculation | "Bilde die Differenz von 500 und 180", as text_input or with options 500 − 180, 500 + 180, 180 − 500 | vocabulary-add-sub |
@@ -265,6 +266,8 @@ Interactions:
 |---|---|---|
 | Split a number to make ten | "8 + 6 = 8 + _ + _", answer 2, 4 | add-bridge-10 |
 | Missing letter in a word | "_ama" with a llama, options L, M, O | letters-l-o-a-m |
+| Ending after a stem | "ich lach_" or "du malst → mal_", chips are endings (e, st, t, en) | verbs-conjugate, verbs-base-form |
+| Prefix in a sentence gap | "Der Zug soll gleich _fahren.", chips are prefixes (ab, auf, ver) | verbs-prefixes |
 | Neighbours of a number | "_ , 5, _" options 3, 4, 6, 7, answer 4, 6 | order-to-10 |
 | Sign between two numbers | "6 _ 4" options <, >, =, answer >, `option_audio: false` (hearing "größer als" would give it away); with two dice above it in the full stage | compare-to-10 |
 | A number that makes it true | "_ > 6" options 4, 6, 8, answer 8 | compare-to-10 |
@@ -370,6 +373,7 @@ Interactions:
 | Every form of a letter | every upper- and lower-case L in "L o l M L a" | letters-l-o-a-m |
 | Every noun in a sentence written in small letters | "die übung macht mir freude", spans übung, freude | noun-endings, abstract-nouns |
 | The word that does not fit | "I eat cake with a sock", spans sock | en-GB automatic-decoding |
+| The verb in a sentence | "Der Hund schläft im Korb.", spans schläft; a split verb gives two spans ("Der Zug fährt gleich ab.": fährt, ab) or the moved prefix alone | verbs-recognise, verbs-prefixes |
 | Root word or suffixes of a split word | "care less ness", spans less, ness | en-GB suffixes-y2 |
 | The silent letter | "i s l a n d" split into letters, spans s | en-GB exception-words-ks2 |
 
