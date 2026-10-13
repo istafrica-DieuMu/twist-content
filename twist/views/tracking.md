@@ -9,19 +9,19 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | narration made |
 |---|---|---|---|---|
 | de-DE | Mathe | 39% (79 / 203) | 31% (9 / 29) | 74% (6645 / 9031) |
-| de-DE | Deutsch | 20% (34 / 174) | 16% (15 / 94) | 51% (2255 / 4382) |
-| de-DE | Englisch | 31% (18 / 58) | 29% (11 / 38) | 24% (403 / 1653) |
-| **de-DE** | **all** | **30% (131 / 435)** | **22% (35 / 161)** | **62% (9304 / 15066)** |
-| en-GB | Maths | 18% (47 / 259) | 12% (16 / 139) | 85% (4380 / 5177) |
+| de-DE | Deutsch | 21% (36 / 174) | 17% (16 / 94) | 51% (2255 / 4382) |
+| de-DE | Englisch | 33% (19 / 58) | 32% (12 / 38) | 24% (403 / 1653) |
+| **de-DE** | **all** | **31% (134 / 435)** | **23% (37 / 161)** | **62% (9304 / 15066)** |
+| en-GB | Maths | 19% (49 / 259) | 13% (18 / 139) | 85% (4380 / 5177) |
 | en-GB | English | 12% (20 / 163) | 8% (5 / 61) | 81% (1504 / 1861) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (539 / 540) |
-| **en-GB** | **all** | **15% (72 / 483)** | **9% (22 / 241)** | **85% (6423 / 7578)** |
+| **en-GB** | **all** | **15% (74 / 483)** | **10% (24 / 241)** | **85% (6423 / 7578)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
-| Pictures | openai/gpt-image-2.5-sunburst | 183 files (174 priced) | $3.70 | logged per picture by pictures.py |
+| Pictures | openai/gpt-image-2.5-sunburst | 186 files (177 priced) | $3.77 | logged per picture by pictures.py |
 | Narration | google/gemini-3.8-flash-tts | 15750 clips, 19.6 h | about $24 | estimated from clip length, text and tries |
 | Listening check | google/gemini-3.8-flash | 15750 clips | about $12 | estimated the same way |
 | **Total** | | | **about $40** | |
@@ -39,16 +39,16 @@ Per voice:
 
 ## de-DE
 
-131 of 435 placed skills drafted (30%): 131 lesson sets, 277 lessons, 6093 tasks. Narration so far about $21; 5763 clips still to make.
+134 of 435 placed skills drafted (31%): 134 lesson sets, 283 lessons, 6219 tasks. Narration so far about $21; 5763 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 28 / 41 | 5 / 51 |  | 33 / 92 |
-| klasse-2 | 23 / 63 | 9 / 46 |  | 32 / 109 |
+| klasse-2 | 23 / 63 | 11 / 46 |  | 34 / 109 |
 | klasse-3 | 19 / 51 | 10 / 42 |  | 29 / 93 |
 | klasse-4 | 9 / 48 | 10 / 35 |  | 19 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
-| lernjahr-1 |  |  | 7 / 28 | 7 / 28 |
+| lernjahr-1 |  |  | 8 / 28 | 8 / 28 |
 | lernjahr-2 |  |  | 2 / 16 | 2 / 16 |
 
 Topics, in placement order. A topic is done when every skill in it has a lesson set.
@@ -95,7 +95,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.24 |
 | klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.75 |
 | klasse-2 | Deutsch | Adjektive | 3 / 3 done | 6 | $0.02 |
-| klasse-2 | Deutsch | Satzarten | 0 / 2 |  |  |
+| klasse-2 | Deutsch | Satzarten | 2 / 2 done | 4 |  |
 | klasse-2 | Deutsch | Wortschatz | 0 / 1 |  |  |
 | klasse-2 | Deutsch | Laute und Buchstaben | 0 / 1 |  |  |
 | klasse-2 | Deutsch | Kurze und lange Selbstlaute | 0 / 1 |  |  |
@@ -200,7 +200,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | lernjahr-1 | Englisch | Gefühle | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.00 |
 | lernjahr-1 | Englisch | Kalender | 0 / 1 |  |  |
-| lernjahr-1 | Englisch | Wetter | 0 / 1 |  |  |
+| lernjahr-1 | Englisch | Wetter | 1 / 1 done | 2 |  |
 | lernjahr-1 | Englisch | Die Welt der Sprache | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Lernstrategien | 0 / 2 |  |  |
 | lernjahr-1 | Englisch | Sprachmittlung | 0 / 1 |  |  |
@@ -219,13 +219,13 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-72 of 483 placed skills drafted (15%): 72 lesson sets, 147 lessons, 3169 tasks. Narration so far about $15; 1155 clips still to make.
+74 of 483 placed skills drafted (15%): 74 lesson sets, 151 lessons, 3253 tasks. Narration so far about $15; 1155 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
 | reception | 13 / 14 | 9 / 32 |  | 22 / 46 |
-| year-1 | 10 / 29 | 3 / 32 |  | 13 / 61 |
-| year-2 | 9 / 53 | 2 / 29 |  | 11 / 82 |
+| year-1 | 11 / 29 | 3 / 32 |  | 14 / 61 |
+| year-2 | 10 / 53 | 2 / 29 |  | 12 / 82 |
 | year-3 | 10 / 50 | 2 / 20 |  | 12 / 70 |
 | year-4 | 2 / 39 | 1 / 16 |  | 3 / 55 |
 | year-5 | 2 / 49 | 2 / 17 |  | 4 / 66 |
@@ -258,7 +258,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-1 | Maths | Word problems | 1 / 1 done | 2 | $0.35 |
 | year-1 | Maths | Numbers to 20 | 1 / 1 done | 2 | $0.01 |
 | year-1 | Maths | Adding and subtracting to 20 | 5 / 5 done | 10 | $0.04 |
-| year-1 | Maths | Counting in tens | 0 / 1 |  |  |
+| year-1 | Maths | Counting in tens | 1 / 1 done | 2 |  |
 | year-1 | Maths | Money | 0 / 1 |  |  |
 | year-1 | Maths | Time | 0 / 1 |  |  |
 | year-1 | Maths | Telling the time | 0 / 1 |  |  |
@@ -287,7 +287,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.69 |
 | year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.47 |
 | year-2 | Maths | Word problems | 0 / 2 |  |  |
-| year-2 | Maths | Adding and subtracting tens | 0 / 1 |  |  |
+| year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 |  |
 | year-2 | Maths | Money | 0 / 4 |  |  |
 | year-2 | Maths | Shapes | 0 / 2 |  |  |
 | year-2 | Maths | Patterns | 0 / 1 |  |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 304 | $0.26 | $80 |
-| en-GB | 411 | $0.25 | $103 |
+| de-DE | 301 | $0.26 | $78 |
+| en-GB | 409 | $0.24 | $99 |
 
-Pictures: 134 of 134 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
+Pictures: 137 of 137 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
