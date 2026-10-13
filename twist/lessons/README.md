@@ -22,7 +22,7 @@ skill: math.add-sub-to-20.add-bridge-10
 curriculum: de-DE
 language: de                          # language of the instructions
 target_language: en                   # foreign-language lessons only
-title: { de: "...", en: "..." }       # quote titles that contain commas
+title: { de: "...", en: "..." }       # quote titles that contain commas or question marks
 summary: >                            # what the lessons do, in English, for the team
   ...
 metadata:

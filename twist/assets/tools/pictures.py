@@ -187,7 +187,7 @@ def main():
     total = [0.0]
 
     def make_base(o):
-        face = FACE if o["category"] in ("animal", "people") else NO_FACE
+        face = FACE if o["category"] in ("animal", "people", "action") else NO_FACE
         prompt = f"{STYLE}\n\nSubject: {o['draw']}. {face}"
         raw, cost = call(k, prompt, refs)
         (RAW / f"{o['id']}.png").write_bytes(raw)

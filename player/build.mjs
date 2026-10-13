@@ -53,10 +53,12 @@ const objectRecs = Object.fromEntries((read("assets/objects.yaml").objects ?? []
 function optionText(t, o, lang) {
   if (t.option_audio === false || (t.option_audio === undefined && NO_OPTION_AUDIO.has(t.type))) return null;
   if (o && typeof o === "object" && o.count != null) return null;
-  if (o && typeof o === "object" && o.object) { const l = objectRecs[o.object].labels[lang]; return ["de", "fr"].includes(lang) ? l.split(" ").slice(1).join(" ") || l : l; }
+  if (o && typeof o === "object" && o.object) return word(o.object, lang);
   if (typeof o === "string" && (t.option_audio || !LETTERISH.test(o))) return o;
   return null;
 }
+
+const word = (oid, lang) => { const l = objectRecs[oid].labels[lang]; return ["de", "fr"].includes(lang) && l.includes(" ") ? l.split(" ").slice(1).join(" ") : l; };
 
 const sets = [];
 for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort()) {
@@ -77,11 +79,20 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
         else if (t.audio) t._target = sayClips(Object.fromEntries(Object.entries(t.audio).filter(([k]) => k !== "sound")), lang, a.activity, w)[0];
         t._hints = (t.hints ?? []).map((h) => clip(lang, h, a.activity, null, w));
         t._options = (t.options ?? []).map((o) => { const x = optionText(t, o, lang); return x ? clip(lang, x, a.activity, null, w) : null; });
-        // Pair sides, bins and options with their own `say` (a swatch saying "Yellow.").
-        const tap = (x) => x && typeof x === "object" && x.say ? sayClips(x.say, lang, a.activity, w)[0] : null;
+        // Tapping a pair side, bin, sorting item or shown picture says its own
+        // `say`, or a picture's word (not in target-language lessons).
+        // Must match tappable() in narration.py.
+        const target = d.target_language;
+        const tap = (x) => {
+          if (!x || typeof x !== "object") return null;
+          if (x.say) return sayClips(x.say, lang, a.activity, w)[0];
+          const o = x.show ?? x;
+          return !target && o.object && o.count == null ? clip(lang, word(o.object, lang), a.activity, null, w) : null;
+        };
         if (t.pairs) t._pairs = t.pairs.map((p) => ({ left: tap(p.left), right: tap(p.right) }));
         if (t.bins) t._bins = t.bins.map(tap);
-        (t.options ?? []).forEach((o, i) => { const c = tap(o); if (c) t._options[i] = c; });
+        if (t.type === "sorting") (t.options ?? []).forEach((o, i) => { const c = tap(o); if (c) t._options[i] = c; });
+        if (t.show?.objects) t._showWords = t.show.objects.map((oid) => (target ? null : clip(lang, word(oid, lang), a.activity, null, w)));
         t._feedback = Object.fromEntries(Object.entries(t.feedback ?? {}).map(([k, v]) => [String(k), clip(lang, v, a.activity, null, w)]));
       }
     }

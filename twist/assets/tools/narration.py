@@ -68,6 +68,7 @@ def spoken(text, lang):
 
 
 SEQ = []  # (where, line id, voice) in the order the lessons say them
+MIXED = None  # target language of the lesson being gathered
 
 # Options get a speaker when hearing them does not give the answer away.
 # Never on audio_choice (the sound is the question), and never for a letter
@@ -77,10 +78,33 @@ NO_OPTION_AUDIO = {"audio_choice", "true_false", "highlight_in_text", "tracing",
 LETTERISH = re.compile(r"[A-Za-zÄÖÜäöüß]{1,3}")
 
 
-def tappable(t):
-    """Pair sides, bins and options that carry their own `say`."""
-    parts = [x for p in t.get("pairs", []) for x in (p.get("left"), p.get("right"))] + t.get("bins", []) + t.get("options", [])
-    return [x for x in parts if isinstance(x, dict) and isinstance(x.get("say"), dict)]
+def tappable(t, objects, lang, target):
+    """What tapping a pair side, a bin, a sorting item or a shown picture
+    says: its own `say`, or a picture's word (not in target-language
+    lessons, which must not say German words). Must match player/build.mjs."""
+    parts = [x for p in t.get("pairs", []) for x in (p.get("left"), p.get("right"))] + t.get("bins", [])
+    if t["type"] == "sorting":
+        parts += t.get("options", [])
+    out = []
+    for x in parts:
+        if not isinstance(x, dict):
+            continue
+        if isinstance(x.get("say"), dict):
+            out += list(x["say"].items())
+            continue
+        o = x.get("show", x)
+        if not target and isinstance(o, dict) and o.get("object") and o.get("count") is None:
+            out.append((lang, word(objects, o["object"], lang)))
+    for oid in (t.get("show") or {}).get("objects", []):
+        if not target:
+            out.append((lang, word(objects, oid, lang)))
+    return out
+
+
+def word(objects, oid, lang):
+    """An object's word without its article: der Löwe -> Löwe."""
+    label = objects[oid]["labels"][lang]
+    return label.split(" ", 1)[-1] if lang in ("de", "fr") and " " in label else label
 
 
 def option_texts(t, objects, lang):
@@ -92,7 +116,7 @@ def option_texts(t, objects, lang):
         if isinstance(o, dict) and "count" in o:
             continue  # "Wo sind 2 Bananen?": hearing the group would give the answer
         if isinstance(o, dict) and "object" in o:
-            out.append(objects[o["object"]]["labels"][lang].split(" ", 1)[-1] if lang in ("de", "fr") else objects[o["object"]]["labels"][lang])
+            out.append(word(objects, o["object"], lang))
         elif isinstance(o, str) and (t.get("option_audio") or not LETTERISH.fullmatch(o)):
             out.append(o)
     return out
@@ -116,14 +140,18 @@ def gather(cfg):
         lid = hashlib.sha1(f"{lang}|{t}".encode()).hexdigest()[:10]
         v = voice_for(cfg, activity, phrase)
         e = lines.setdefault(lid, {"lang": lang, "text": t, "kind": kind, "voices": [], "used": []})
+        if MIXED and lang != MIXED:
+            e["mixed"] = True  # a home-language line in a lesson that teaches MIXED
         e["used"].append(where)
         if v not in e["voices"]:
             e["voices"].append(v)
         SEQ.append((where, lid, v))
 
+    global MIXED
     for p in sorted((TWIST / "lessons").rglob("*.yaml")):
         d = yaml.safe_load(p.read_text())
         lang, rel = d["language"], p.relative_to(TWIST / "lessons").with_suffix("")
+        MIXED = d.get("target_language")
         for l in d["lessons"]:
             add(lang, l["title"].get(lang), "title", f"{rel}#{l['n']}")
             for a in l["activities"]:
@@ -147,9 +175,9 @@ def gather(cfg):
                         add(lang, v, "option", w, a["activity"])
                     # A pair side, bin or option can carry its own `say` (a
                     # colour swatch saying "Yellow." when tapped).
-                    for part in tappable(t):
-                        for lg, v in part["say"].items():
-                            add(lg, v, "option", w, a["activity"])
+                    for lg, v in tappable(t, objects, lang, d.get("target_language")):
+                        add(lg, v, "option", w, a["activity"])
+    MIXED = None
     for lang, groups in yaml.safe_load((ASSETS / "phrases.yaml").read_text()).items():
         for g, items in groups.items():
             for x in items:
@@ -235,7 +263,7 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
         kind, iid, e = item
         if kind == "line":
             dest, text = vdir / f"{iid}.mp3", e["text"]
-            direction = brief + (" " + cfg["en_note"] if e["lang"] == "en" else "")
+            direction = brief + (" " + cfg["en_note"] if e["lang"] == "en" else " " + cfg["mixed_note"] if e.get("mixed") else "")
             expect, cap = f'"{text}" ({"English" if e["lang"] == "en" else "German"})', None
         else:
             dest, text = vdir / "sounds" / f"{iid.replace(':', '-long')}.mp3", e["say"]

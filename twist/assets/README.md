@@ -94,6 +94,12 @@ fails is remade once, and the results are in narration/<voice>.yaml.
 `--page` writes narration/pilot.html, where any lesson can be played in
 any voice. The audio and the page are not in git; the tool remakes them.
 
+German lines in English lessons often hold English words ("Listen heißt:
+Hör zu"). They get `mixed_note` in voices.yaml added to the brief: English
+words in English, German words in German. Without it the voice read
+"Listen" as "Lesen". English titles of English lessons are avoided for the
+same reason: titles are German.
+
 Maths written for the screen is read with one rule for every voice: "+"
 plus, "−" minus, "=" gleich, "_" wie viel, "= ?" gleich wie viel.
 
@@ -135,7 +141,7 @@ ElevenLabs will not say a bare sound reliably.
 - id: apple                 # lowercase English, singular; never changes
   draw: "a red apple with a short brown stem and one green leaf"   # what the picture shows, hand-written
                             # colour-slot objects add: recolour: { part: "the balloon and its knot", base: red }
-  category: food            # food, animal, body, clothes, home, school, toy, transport, nature, people, place, tool
+  category: food            # food, animal, body, clothes, home, school, toy, transport, nature, people, place, tool, action (a child doing something)
   labels: { de: der Apfel, en: apple, fr: la pomme }
   initial: { de: a, en: a, fr: p }       # first sound (phoneme, lowercase) per language
   syllables: { de: Ap-fel, en: ap-ple, fr: pomme }

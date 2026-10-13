@@ -459,11 +459,11 @@ topic: stop and check in before the next.
 | 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10 |
 | 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8 |
 | 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2 |
-| 5 | Deutsch | Klasse 1 | Laute hören | 3 |
+| 5 | Deutsch | Klasse 1 | Laute hören | 3, all drafted 2026-10-13: 6 lessons, 134 tasks |
 | 6 | Deutsch | Klasse 2 | Nomen | 1 |
 | 7 | Deutsch | Klasse 3 | Nomen | 2 |
 | 8 | Deutsch | Klasse 4 | Die vier Fälle | 1 |
-| 9 | Englisch | Stufe 0 | Hören | 2 |
+| 9 | Englisch | Stufe 0 | Hören | 2, all drafted 2026-10-13: 4 lessons, 89 tasks |
 | 10 | Englisch | Lernjahr 1 | Hören | 1 |
 | 11 | Englisch | Lernjahr 2 | Hobbys und Sport | 1 |
 

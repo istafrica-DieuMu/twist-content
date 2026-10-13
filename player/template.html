@@ -64,7 +64,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:14px;margin-top:auto;padding-top:10px}
 .opt{position:relative;border:3px solid var(--plum);background:#fff;border-radius:20px;min-height:76px;font:700 30px Andika,sans-serif;color:var(--plum);cursor:pointer;display:grid;place-items:center;padding:8px;box-shadow:0 4px 0 var(--plum);transition:transform .08s}
 .opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--plum)}
-.opt img{width:84px;height:84px;object-fit:contain}
+.opt img{width:96px;height:96px;object-fit:contain}
 .opt.good{background:var(--good-soft);border-color:var(--good);box-shadow:0 4px 0 var(--good)}
 .opt.bad{background:var(--bad-soft);border-color:var(--bad);box-shadow:0 4px 0 var(--bad);animation:shake .3s}
 .opt.sel{background:var(--accent-soft)}
@@ -129,6 +129,9 @@ svg text{font-family:Andika,sans-serif}
 .opt .grp.scat{width:100%}
 .it.tapped::after{content:attr(data-n);position:absolute;right:-4px;top:-6px;min-width:26px;height:26px;border-radius:13px;background:var(--accent);color:#fff;font:700 17px/26px Andika,sans-serif;text-align:center;border:2px solid #fff}
 .it.tapped img{opacity:.55}
+.pairview{display:flex;gap:28px;justify-content:center}
+.pairview .pv{cursor:pointer;display:grid;place-items:center}
+.pairview img{width:130px;height:130px;object-fit:contain}
 .list{display:flex;flex-direction:column;gap:10px;width:100%}
 .list .btn{font-size:19px;text-align:left;display:flex;justify-content:space-between}
 </style>
@@ -329,7 +332,7 @@ function drawn(o, ctx = {}) {
   }
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }
-const show = (o, ctx) => !o ? "" : o.drawn ? drawn(o, ctx) : o.text != null ? `<span style="font:700 40px Andika,sans-serif">${esc(o.text)}</span>` : pic(o);
+const show = (o, ctx) => !o ? "" : o.objects ? `<div class="pairview">${o.objects.map((id, i) => `<span class="pv" data-i="${i}">${pic({ object: id })}</span>`).join("")}</div>` : o.drawn ? drawn(o, ctx) : o.text != null ? `<span style="font:700 40px Andika,sans-serif">${esc(o.text)}</span>` : pic(o);
 // A "_" in screen text is a gap to fill: drawn as a box, never as an underscore.
 const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?</span>');
 
@@ -481,6 +484,8 @@ function renderTask(step) {
     play(queue);
   }
   (TYPES[t.type] || TYPES._unknown)({ t, step, body, foot, vis, answer, st });
+  // Two pictures side by side: tapping one says its word.
+  vis.querySelectorAll(".pv").forEach((p) => p.onclick = () => { const c = t._showWords?.[+p.dataset.i]; if (c) play(c); });
   body.appendChild(msg);
   if (t.show?.flash) flash(vis, t.show.flash * 1000, mode !== "check", step);
 }
@@ -615,7 +620,7 @@ const TYPES = {
     const place = t.options.map(() => null); let sel = null;
     const pool = document.createElement("div"); pool.className = "chips"; pool.style.marginTop = "0"; vis.appendChild(pool);
     const binsEl = document.createElement("div"); binsEl.className = "bins"; binsEl.style.gridTemplateColumns = `repeat(${t.bins.length},1fr)`; body.appendChild(binsEl);
-    const items = t.options.map((o, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(o); b.style.minHeight = "84px"; b.onclick = () => { if (st.over) return; if (place[i] != null) { place[i] = null; sel = null; } else sel = sel === i ? null : i; draw(); }; return b; });
+    const items = t.options.map((o, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(o); b.style.minHeight = "84px"; b.onclick = () => { if (st.over) return; if (t._options?.[i]) play(t._options[i]); if (place[i] != null) { place[i] = null; sel = null; } else sel = sel === i ? null : i; draw(); }; return b; });
     const boxes = t.bins.map((bn, bi) => { const box = document.createElement("div"); box.className = "bin"; const head = document.createElement("div"); head.innerHTML = show(bn.show); head.firstElementChild?.setAttribute("width", "56"); head.firstElementChild?.setAttribute("height", "56"); box.appendChild(head); const inner = document.createElement("div"); inner.style.cssText = "display:flex;flex-wrap:wrap;gap:6px;justify-content:center"; box.appendChild(inner); box.onclick = (e) => { if (st.over || e.target.closest(".opt")) return; if (t._bins?.[bi]) play(t._bins[bi]); if (sel != null) { place[sel] = bn.id; sel = null; draw(); } }; binsEl.appendChild(box); return inner; });
     const draw = () => {
       items.forEach((b, i) => { b.classList.toggle("sel", sel === i); const target = place[i] == null ? pool : boxes[t.bins.findIndex((bn) => bn.id === place[i])]; b.style.minHeight = place[i] == null ? "84px" : "60px"; b.querySelector("img")?.style.setProperty("width", place[i] == null ? "84px" : "52px"); b.querySelector("img")?.style.setProperty("height", place[i] == null ? "84px" : "52px"); if (b.parentElement !== target) target.appendChild(b); });

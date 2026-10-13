@@ -26,6 +26,9 @@ Shared fields on every task: `id`, `type`, `text` (what the screen shows),
 lessons), `show` (a picture or drawn component), `hints`, `feedback`
 (per wrong option), `difficulty` (easy, core, stretch; core if left out).
 
+`show` can be two pictures side by side: `show: { objects: [house, mouse] }`
+(for "Reimt sich das?"); each picture says its word when tapped.
+
 `show` can carry `flash: 2`: the picture is shown for that many seconds
 and then covered, so the child has to see the amount at a glance instead
 of counting. A "Nochmal sehen" button shows it again for the same time;
@@ -109,6 +112,13 @@ Interactions:
 | Group with a given number | "Wo sind 2 Bananen?" three banana groups of 1, 2 and 3; answer `"2"` | count-to-5 |
 | Which has more, fewer | "Wo sind mehr?" two groups; answer is the count of the one with more | compare-to-10 |
 | Dot pattern with a given number | "Wo sind 6 Punkte?" three dot patterns; answer `"6"` | subitize-to-10 |
+| What rhymes with this? | "Was reimt sich auf Haus?" over `{ object: house }`, options mouse, ball, tree | rhymes |
+| Odd one out | "Welches Wort reimt sich nicht?" options dog, mouth, cat; answer cat | rhymes |
+| How many syllables (claps)? | over `{ object: banana }`, options three dot rows of 1, 2 and 3 claps; answer `"3"` | syllables |
+| Word with n syllables | "Welches Wort hat 3 Silben?" options pictures; each says its word | syllables |
+| Same first sound | "Was fängt so an wie Sonne?" over `{ object: sun }`, options sock, fish, ball | initial-sound |
+| Hear an instruction, find the action (English) | hears "Stand up!", taps the child standing up of three action pictures | classroom-phrases |
+| Hear a word, find the picture (English) | hears "Mouse.", taps the mouse; the words sound like German ones (Maus, mouse) | familiar-words |
 
 A drawn component as an option is keyed like a group: by its `count`
 (dots) or `filled` (ten-frame).
@@ -148,6 +158,8 @@ Interactions:
 | Is this the right number? | "Sind das 3 Fische?" over `{ object: fish, count: 3 }` | count-to-5 |
 | The same amount? | "Sind es rote und blaue Punkte gleich viele?" over `{ drawn: dots, groups: [4, 3], layout: row }` | compare-to-10 |
 | Is this comparison true? | "Stimmt das? 6 > 3", the voice reads "sechs ist größer als drei" | compare-to-10 |
+| Do these rhyme? | "Reimt sich das?" over `{ objects: [house, mouse] }`; the voice says "Haus, Maus" | rhymes |
+| Same first sound? | "Fangen sie gleich an?" over `{ objects: [sun, sock] }` | initial-sound |
 | Does this split work? | "Stimmt das? 8 + 5 = 8 + 1 + 4" | add-bridge-10 |
 | Is this the numeral? | a card shows 6, the voice asks "Ist das die Neun?"; the screen says only "Stimmt das?", so the answer cannot be read off the screen | write-numerals-to-10 |
 
@@ -273,6 +285,8 @@ Interactions:
 | Colour with a thing that has it | yellow ↔ banana, green ↔ frog, red ↔ strawberry; tapping a colour says "Yellow." | en-colours |
 | Numeral with its amount | 3 ↔ three dots on a dice, 5 ↔ five apples; a side can be `{ text: "3" }` | write-numerals-to-10 |
 | Number with a split | 7 ↔ 4 + 3, 5 ↔ 2 + 3 | partition-to-10 |
+| Rhyming pairs | Haus ↔ Maus, Tisch ↔ Fisch, Hose ↔ Rose; every picture says its word | rhymes |
+| Same first sound | Sonne ↔ Socke, Fisch ↔ Frosch, Ball ↔ Banane | initial-sound |
 
 Twist: `pairs[].left` and `right` become `{ label, image_url }`; `say`
 becomes the narration of that side.
@@ -291,6 +305,8 @@ Interactions:
 | Interaction | Example | Used in |
 |---|---|---|
 | Pictures by colour | strawberry, apple → red; frog, leaf → green | en-colours |
+| Words by syllables | bins of one, two and three claps; Ball, Hase, Banane ... (each picture says its word) | syllables |
+| Words by first sound | bins headed by a sun and a fish; Sonne, Socke / Fisch, Frosch | initial-sound |
 
 ## `ordering`
 
@@ -318,8 +334,10 @@ An option gets a speaker when hearing it does not give the answer away:
   ("13", "7 plus 6"), and a word option is read;
 - never on audio_choice (the sound is the question), never for a letter
   or syllable option, never for a group of counted things ("Wo sind 2
-  Bananen?"), and not by default on matching and sorting, whose items
-  carry their own `say` instead;
+  Bananen?");
+- matching and sorting: a side, bin or item with its own `say` says that;
+  a picture with no `say` says its word, unless the lesson has a target
+  language (an Englisch lesson must not say German words);
 - a task can set `option_audio: true` or `false` to override.
 
 narration.py and the player both follow these rules; the player build

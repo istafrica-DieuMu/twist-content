@@ -50,6 +50,11 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       if (o && v.colour && !o.recolour) err(`${file}: ${where}: object ${v.object} has no recolour entry, so no ${v.colour} version can be made`);
       use("object", v.object, file);
     }
+    if (Array.isArray(v.objects)) for (const id of v.objects) {
+      if (!objects.has(id)) err(`${file}: ${where}: unknown object ${id}`);
+      else if (!existsSync(join(T, "assets/objects", `${id}.png`))) warn(`${file}: ${where}: no picture yet for ${id} (run assets/tools/pictures.py)`);
+      use("object", id, file);
+    }
     if (v.drawn !== undefined) { if (!drawn.has(v.drawn)) err(`${file}: ${where}: unknown drawn component ${v.drawn}`); use("drawn", v.drawn, file); }
     if (v.character !== undefined) err(`${file}: ${where}: lessons use no character art`);
     if (v.sound !== undefined) {
