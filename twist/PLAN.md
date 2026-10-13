@@ -451,14 +451,15 @@ Order (decided 2026-10-13): the first topic of each subject in every
 year first, so every year has real lessons early; then the remaining
 topics. Subjects: Mathe, Deutsch, Englisch. Within a topic, the
 curriculum's placement order (views/curriculum-de-DE.md). After each
-topic: stop and check in before the next.
+topic: review, commit and push, then go on (2026-10-13: alternate with
+en-GB, more de-DE topics than en-GB, without stopping).
 
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
 | 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7, all drafted 2026-10-13: 17 lessons, 386 tasks |
 | 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10, all drafted 2026-10-13: 20 lessons, 460 tasks |
 | 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8, all drafted 2026-10-13: 16 lessons, 384 tasks |
-| 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2, both drafted 2026-10-13: 6 lessons, 142 tasks; the Stellentafel gained a T column |
+| 4 | Mathe | Klasse 4 | Große Zahlen | 5, all drafted 2026-10-13: 15 lessons; to 10 000 (the Stellentafel gained a T column), then to a million: Stellenwerttafel to HT, Zahlenstrahl, Nachbarzahlen, sensible rounding, counting in big steps across boundaries |
 | 5 | Deutsch | Klasse 1 | Laute hören | 3, all drafted 2026-10-13: 6 lessons, 134 tasks |
 | 6 | Deutsch | Klasse 2 | Nomen | 1, drafted 2026-10-13: compound nouns, 3 lessons |
 | 7 | Deutsch | Klasse 3 | Nomen | 2, both drafted 2026-10-13: noun endings and abstract nouns, 4 lessons |

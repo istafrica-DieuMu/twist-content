@@ -114,6 +114,9 @@ Interactions:
 | Which Rechenweg suits | "Welcher Weg passt gut zu 56 + 19?", options name methods; the answer is the one the sum invites (19 is near 20: Hilfsaufgabe) and the record says why in `feedback` | describe-methods, clever |
 | Where is the mistake | a worked calculation with one wrong step, options are its steps or short descriptions of the error | check |
 | Überschlag | "Ungefähr wie viel ist 48 + 29?", options are round numbers (60, 80, 100) | check |
+| Where the sound is | over a picture, "Wo hörst du das sss?", options am Anfang, in der Mitte, am Ende | sounds-in-words |
+| Which pronoun fits | "Der Hund bellt. Welches Pronomen passt?" options er, sie, es; or "Wer ist mit sie gemeint?" options the nouns of the text | pronouns |
+| Which text reads better | two short texts, one repeating the noun, one with a pronoun, `option_audio: false` | pronouns |
 | Sensible rounding in a context | "Was schreibt die Zeitung am sinnvollsten?" over an exact count, options are roundings to different places | order-to-million |
 | Name the part of a calculation | "Wie heißt 587 in 362 + 225 = 587?", options Summe, Summand, Differenz, Minuend, Subtrahend | vocabulary-add-sub |
 | From the term to the calculation | "Bilde die Differenz von 500 und 180", as text_input or with options 500 − 180, 500 + 180, 180 − 500 | vocabulary-add-sub |
@@ -173,15 +176,17 @@ Interactions:
 | Interaction | Example | Used in |
 |---|---|---|
 | Picture that starts with a sound | "Was fängt mit L an?" lamp, sun, fish; answer `lamp` | letters-l-o-a-m |
+| Picture that ends with a sound | "Bei welchem Wort hörst du das mmm am Ende?" options pictures | sounds-in-words |
 | Read a word, find its picture | `show: { drawn: syllable-arcs, word: Oma }`, options grandma, mum, llama | letters-l-o-a-m |
 | Group with a given number | "Wo sind 2 Bananen?" three banana groups of 1, 2 and 3; answer `"2"` | count-to-5 |
 | Which has more, fewer | "Wo sind mehr?" two groups; answer is the count of the one with more | compare-to-10 |
 | Dot pattern with a given number | "Wo sind 6 Punkte?" three dot patterns; answer `"6"` | subitize-to-10 |
 | What rhymes with this? | "Was reimt sich auf Haus?" over `{ object: house }`, options mouse, ball, tree | rhymes |
 | Odd one out | "Welches Wort reimt sich nicht?" options dog, mouth, cat; answer cat | rhymes |
-| How many sounds? | over `{ object: fish }`, options dot rows of 2, 3 and 4; f ... i ... sh is three sounds | en-GB oral-blending |
+| How many sounds? | over `{ object: fish }`, options dot rows of 2, 3 and 4; f ... i ... sh is three sounds | en-GB oral-blending, sounds-in-words |
 | How many syllables (claps)? | over `{ object: banana }`, options three dot rows of 1, 2 and 3 claps; answer `"3"` | syllables |
 | Word with n syllables | "Welches Wort hat 3 Silben?" options pictures; each says its word | syllables |
+| Word with n sounds | "Welches Wort hat vier Laute?" options pictures; each says its word | sounds-in-words |
 | Same first sound | "Was fängt so an wie Sonne?" over `{ object: sun }`, options sock, fish, ball | initial-sound |
 | Hear an instruction, find the action (English) | hears "Stand up!", taps the child standing up of three action pictures | classroom-phrases |
 | Hear a word, find the picture (English) | hears "Mouse.", taps the mouse; the words sound like German ones (Maus, mouse) | familiar-words |
@@ -215,7 +220,7 @@ Interactions:
 | English word to picture | hears "Green.", taps the frog | en-colours |
 | English word to coloured object | hears "Blue.", taps the blue car of three | en-colours |
 | Number word to numeral | hears "Sieben." (`audio: { de: "Sieben." }`), taps 7 among 1, 7, 9 | write-numerals-to-10 |
-| Blend sounds into a word | hears "c ... a ... t." (pure sounds, never letter names), taps the cat of cat, car, cup | en-GB oral-blending |
+| Blend sounds into a word | hears "c ... a ... t." or `{ de: "Fff ... i ... sch." }` (pure sounds, never letter names), taps the picture | en-GB oral-blending, sounds-in-words |
 | A heard word's first or last sound | hears "Bus.", taps the picture that starts with the same sound (ball) | en-GB oral-blending |
 | Hear a tricky word, choose its spelling | hears "Heart.", options hart, heart, haert; the sound-alike spelling is always there | en-GB exception-words-ks2 |
 | What a conversation is about | hears "I'm hungry. Can I have an apple, please?", taps "um Essen" of three German options | en-short-dialogues |
