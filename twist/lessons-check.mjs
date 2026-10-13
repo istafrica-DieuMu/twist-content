@@ -163,6 +163,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (!TASK_TYPES.has(t.type)) err(`${file}: ${tw}: unknown task type ${t.type}`);
           else if (!DOCUMENTED.has(t.type)) err(`${file}: ${tw}: task type ${t.type} has no section in docs/task-types.md; document it before using it`);
           if (!t.text && !t.say) err(`${file}: ${tw}: needs text or say`);
+          if (!t.text && !d.metadata?.no_reading && typeof t.say !== "object" && !["audio_choice", "speak"].includes(t.type)) warn(`${file}: ${tw}: no text, so the screen shows no question`);
           // difficulty defaults to core
           if (t.difficulty !== undefined && !["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);
           checkAnswer(t, tw, file, err);

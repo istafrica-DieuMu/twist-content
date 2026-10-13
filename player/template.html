@@ -60,12 +60,17 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .spk{flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--plum);background:#fff;cursor:pointer;display:grid;place-items:center}
 .spk svg{width:26px;height:26px}.spk.big{width:96px;height:96px;margin:8px auto}.spk.big svg{width:48px;height:48px}
 .spk.playing{background:var(--accent-soft)}
-.visual{display:flex;justify-content:center;align-items:center;min-height:40px;width:100%}
+.visual{display:flex;justify-content:center;align-items:center;min-height:40px;width:100%;flex-shrink:0}
 .visual img{width:150px;height:150px;object-fit:contain}
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:14px;margin-top:auto;padding-top:10px}
 .opt{position:relative;border:3px solid var(--plum);background:#fff;border-radius:20px;min-height:76px;font:700 30px Andika,sans-serif;color:var(--plum);cursor:pointer;display:grid;place-items:center;padding:8px;box-shadow:0 4px 0 var(--plum);transition:transform .08s}
 .opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--plum)}
 .opt img{width:96px;height:96px;object-fit:contain}
+.opt > svg{max-width:100%;height:auto}
+.opts.mid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.opts.mid .opt{font-size:22px}
+.opts.long{grid-template-columns:1fr!important}
+.opts.long .opt{font-size:18px;min-height:52px;text-align:left;place-items:center start;padding:10px 16px}
 .opt.good{background:var(--good-soft);border-color:var(--good);box-shadow:0 4px 0 var(--good)}
 .opt.bad{background:var(--bad-soft);border-color:var(--bad);box-shadow:0 4px 0 var(--bad);animation:shake .3s}
 .opt.sel{background:var(--accent-soft)}
@@ -334,7 +339,10 @@ function numberLine(o, pick) {
     // Long ticks every ten steps, a middle tick at five (on a line in fives, long ticks at the tens).
     const big = v % (step === 5 ? 10 : 10 * step) === 0, mid = step !== 5 && v % (5 * step) === 0;
     s += `<line x1="${sc(v)}" y1="${y - (big ? 14 : mid ? 10 : 6)}" x2="${sc(v)}" y2="${y + (big ? 14 : mid ? 10 : 6)}" stroke="#2b0f45" stroke-width="${big ? 4 : 2.5}"/>`;
-    if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${sc(v)}" y="${y + 40}" text-anchor="middle" font-size="20" font-weight="700" fill="#2b0f45">${v}</text>`;
+    // Long labels get the curriculum's thousands separator; the end labels stay inside the line.
+    const lab = v >= 10000 ? v.toLocaleString(set?.language === "de" ? "de-DE" : "en-GB").replace(/\./g, " ") : String(v), long = lab.length > 4;
+    const anchor = long && v === to ? "end" : long && v === from ? "start" : "middle", lx = anchor === "end" ? 326 : anchor === "start" ? 4 : sc(v);
+    if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${lx}" y="${y + 40}" text-anchor="${anchor}" font-size="${long ? 17 : 20}" font-weight="700" fill="#2b0f45">${lab}</text>`;
     if (pick) s += `<rect data-v="${v}" x="${sc(v) - 7}" y="${y - 30}" width="14" height="60" fill="transparent" style="cursor:pointer"/>`;
   }
   s += arcs(o.jumps ?? [], sc, y);
@@ -578,6 +586,9 @@ function choice({ t, body, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const grid = document.createElement("div"); grid.className = "opts";
   if ((t.options ?? []).length === 2) grid.style.gridTemplateColumns = "1fr 1fr";
+  // Long text options get a smaller font, very long ones a single column.
+  const maxLen = Math.max(0, ...(t.options ?? []).filter((o) => typeof o === "string").map((o) => o.length));
+  if (maxLen > 14) grid.classList.add("long"); else if (maxLen > 5) grid.classList.add("mid");
   const els = (t.options ?? []).map((o, i) => { const b = optEl(o, t, i); grid.appendChild(b); return b; });
   const reveal = () => els.forEach((b, i) => { if (keyOf(t.options[i]) === String(t.answer)) b.classList.add("good"); else b.classList.add("dim"); });
   els.forEach((b, i) => b.onclick = () => {
