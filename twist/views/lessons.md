@@ -190,7 +190,7 @@ Task types: audio_choice 22, true_false 7, speak 4, sorting 1, image_multiple_ch
 
 `de-DE.fl.en-jobs` teaches `fl.themes.jobs` in de-DE, lernjahr-2. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Naming jobs and saying what someone does at work. Lesson 1 brings doctor, teacher, farmer, cook, police officer and firefighter with "He's a …" and "She's a …"; lesson 2 says what each one does (A cook cooks food.) and asks "What do you want to be?", and ends with the skill check. Instructions are in German; the English is spoken and shown in short form.
+Naming jobs and saying what someone does at work. Lesson 1 brings doctor, teacher, farmer, cook, police officer and firefighter with "He's a …" and "She's a …" (the English job word is the same for women and men); lesson 2 says what each one does (A cook cooks food.) and asks "What do you want to be?", with "I want", not "I will", for ich will, and ends with the skill check. Instructions are in German; the English is spoken and shown in short form.
 
 
 | Lesson | New | Tasks | Activities |
