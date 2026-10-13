@@ -64,11 +64,51 @@ def spoken(text, lang):
     t = str(text).strip()
     for a, b in READ_MATHS.get(lang, []):
         t = t.replace(a, b)
+    if lang == "de":
+        t = say_numbers_de(t)
     return t
+
+
+# German numbers are spoken as words: the voice swaps or spells out bare
+# numerals ("46" came out as vierundsechzig). Must match sayNumbersDe() in
+# player/build.mjs.
+ONES_DE = ["null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn",
+           "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"]
+TENS_DE = ["", "", "zwanzig", "dreißig", "vierzig", "fünfzig", "sechzig", "siebzig", "achtzig", "neunzig"]
+
+
+def de_words(n):
+    def under_100(x):
+        if x < 20:
+            return ONES_DE[x]
+        o, z = x % 10, x // 10
+        return (("ein" if o == 1 else ONES_DE[o]) + "und" if o else "") + TENS_DE[z]
+
+    def under_1000(x):
+        h, r = divmod(x, 100)
+        head = "" if not h else ("hundert" if h == 1 else ONES_DE[h] + "hundert")
+        return head + (under_100(r) if r or not h else "")
+
+    if n < 1000:
+        return under_1000(n)
+    k, r = divmod(n, 1000)
+    return ("tausend" if k == 1 else under_1000(k).removesuffix("eins") + ("ein" if k % 100 == 1 else "") + "tausend") + (under_1000(r) if r else "")
+
+
+DE_PLACES = [(re.compile(r"\bH: "), "Hunderter "), (re.compile(r"\bZ: "), "Zehner "), (re.compile(r"\bE: "), "Einer "),
+             (re.compile(r"(\S+) H, (\S+) Z, (\S+) E\b"), r"\1 Hunderter, \2 Zehner, \3 Einer")]
+
+
+def say_numbers_de(t):
+    for rx, b in DE_PLACES:
+        t = rx.sub(b, t)
+    t = re.sub(r"(?<![\d,.:])(\d{1,3}) (\d{3})(?![\d,.:]?\d)", r"\1\2", t)  # 10 000
+    return re.sub(r"(?<![\d,.:])\d{1,6}(?![,.:]?\d)", lambda m: de_words(int(m.group())), t)
 
 
 SEQ = []  # (where, line id, voice) in the order the lessons say them
 MIXED = None  # target language of the lesson being gathered
+LANG_NAME = {"de": "German", "en": "English", "fr": "French"}  # what the listening check expects
 CUR = None  # its curriculum
 
 # Options get a speaker when hearing them does not give the answer away.
@@ -96,6 +136,8 @@ def tappable(t, objects, lang, target):
         o = x.get("show", x)
         if not target and isinstance(o, dict) and o.get("object") and o.get("count") is None:
             out.append((lang, word(objects, o["object"], lang)))
+        elif t.get("option_audio") is not False and isinstance(x.get("text"), str) and not LETTERISH.fullmatch(x["text"]):
+            out.append((lang, x["text"]))  # a number or sum card reads itself ("2 + 2")
     for oid in (t.get("show") or {}).get("objects", []):
         if not target:
             out.append((lang, word(objects, oid, lang)))
@@ -282,8 +324,14 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
         if kind == "line":
             dest, text = vdir / f"{iid}.mp3", e["text"]
             vlang = v.get("language", "de")
-            direction = brief + (" " + cfg["en_note"] if e["lang"] == "en" and vlang != "en" else " " + cfg["mixed_note"] if e.get("mixed") else "")
-            expect, cap = f'"{text}" ({"English" if e["lang"] == "en" else "German"})', None
+            if e["lang"] != vlang:  # a target-language line: that language's note
+                note = cfg["en_note"] if e["lang"] == "en" else cfg["target_notes"][e["lang"]]
+            elif e.get("mixed"):  # a home-language line in a foreign-language lesson
+                note = (cfg.get("mixed_notes") or {}).get(e["lang"], cfg["mixed_note"])
+            else:
+                note = ""
+            direction = brief + (" " + note if note else "")
+            expect, cap = f'"{text}" ({LANG_NAME[e["lang"]]})', None
         else:
             dest, text = vdir / "sounds" / f"{iid.replace(':', '-long')}.mp3", e["say"]
             direction, expect, cap = brief + " " + e["how"], e["what"], MAX_SOUND

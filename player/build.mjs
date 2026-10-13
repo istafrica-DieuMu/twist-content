@@ -22,7 +22,18 @@ const READ_MATHS = {
   de: [[" = ?", " gleich wie viel?"], [" < ", " ist kleiner als "], [" > ", " ist größer als "], [" + ", " plus "], [" − ", " minus "], [" = ", " gleich "], ["_", "wie viel"], [" → ", ", dann "]],
   en: [[" = ?", " equals what?"], [" < ", " is less than "], [" > ", " is greater than "], [" + ", " plus "], [" − ", " minus "], [" = ", " equals "], ["_", "what"], [" → ", ", then "]],
 };
-const spoken = (text, lang) => (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim());
+// German numbers are spoken as words; must match say_numbers_de() in narration.py.
+const ONES_DE = ["null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
+const TENS_DE = ["", "", "zwanzig", "dreißig", "vierzig", "fünfzig", "sechzig", "siebzig", "achtzig", "neunzig"];
+const under100 = (x) => x < 20 ? ONES_DE[x] : (x % 10 ? (x % 10 === 1 ? "ein" : ONES_DE[x % 10]) + "und" : "") + TENS_DE[Math.floor(x / 10)];
+const under1000 = (x) => { const h = Math.floor(x / 100), r = x % 100; return (!h ? "" : h === 1 ? "hundert" : ONES_DE[h] + "hundert") + (r || !h ? under100(r) : ""); };
+const deWords = (n) => { if (n < 1000) return under1000(n); const k = Math.floor(n / 1000), r = n % 1000, kw = under1000(k);
+  return (k === 1 ? "tausend" : (kw.endsWith("eins") ? kw.slice(0, -4) : kw) + (k % 100 === 1 ? "ein" : "") + "tausend") + (r ? under1000(r) : ""); };
+const DE_PLACES = [[/\bH: /g, "Hunderter "], [/\bZ: /g, "Zehner "], [/\bE: /g, "Einer "], [/(\S+) H, (\S+) Z, (\S+) E\b/g, "$1 Hunderter, $2 Zehner, $3 Einer"]];
+const sayNumbersDe = (t) => DE_PLACES.reduce((s, [rx, b]) => s.replace(rx, b), t)
+  .replace(/(?<![\d,.:])(\d{1,3}) (\d{3})(?![\d,.:]?\d)/g, "$1$2")
+  .replace(/(?<![\d,.:])\d{1,6}(?![,.:]?\d)/g, (m) => deWords(+m));
+const spoken = (text, lang) => { const t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim()); return lang === "de" ? sayNumbersDe(t) : t; };
 const lineId = (lang, t) => createHash("sha1").update(`${lang}|${t}`).digest("hex").slice(0, 10);
 
 const voices = read("assets/voices.yaml");
@@ -92,7 +103,9 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
           if (!x || typeof x !== "object") return null;
           if (x.say) return sayClips(x.say, lang, a.activity, w)[0];
           const o = x.show ?? x;
-          return !target && o.object && o.count == null ? clip(lang, word(o.object, lang), a.activity, null, w) : null;
+          if (!target && o.object && o.count == null) return clip(lang, word(o.object, lang), a.activity, null, w);
+          if (t.option_audio !== false && typeof x.text === "string" && !LETTERISH.test(x.text)) return clip(lang, x.text, a.activity, null, w); // a number or sum card reads itself
+          return null;
         };
         if (t.pairs) t._pairs = t.pairs.map((p) => ({ left: tap(p.left), right: tap(p.right) }));
         if (t.bins) t._bins = t.bins.map(tap);

@@ -456,9 +456,9 @@ topic: stop and check in before the next.
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
 | 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7, all drafted 2026-10-13: 17 lessons, 386 tasks |
-| 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10 |
-| 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8 |
-| 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2 |
+| 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10, all drafted 2026-10-13: 20 lessons, 460 tasks |
+| 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8, all drafted 2026-10-13: 16 lessons, 384 tasks |
+| 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2, both drafted 2026-10-13: 6 lessons, 142 tasks; the Stellentafel gained a T column |
 | 5 | Deutsch | Klasse 1 | Laute hören | 3, all drafted 2026-10-13: 6 lessons, 134 tasks |
 | 6 | Deutsch | Klasse 2 | Nomen | 1 |
 | 7 | Deutsch | Klasse 3 | Nomen | 2 |
@@ -493,6 +493,41 @@ Klasse 1 Mathe, topic Zahlen bis 10:
 | compare-to-10 | 3: more and fewer, the signs, using the signs | drafted 2026-10-13, 66 tasks |
 | partition-to-10 | 3: split with counters, number house, all splits | drafted 2026-10-13, 69 tasks |
 
+Klasse 2 Mathe, topic Zahlen bis 100 (2 lessons each, 46 tasks each,
+drafted 2026-10-13). The number line gained `step` and `mark` so 0 to 100
+stays tappable; the place-value chart is an option key.
+
+| Skill | Lessons |
+|---|---|
+| bundle-tens | tens and ones; estimate and check |
+| place-value | tens left, ones right; zero and too many ones |
+| read-write | hear and write; reading number words |
+| hundred-field | reading rows; at a glance |
+| hundred-square | neighbours on the square; moves and patterns |
+| number-line | tens and ticks; where the arrow points |
+| order-compare | compare the tens first; neighbouring numbers and tens |
+| sequences | counting in steps; finding the rule |
+| double-halve | doubling; halving |
+| number-puzzles | two clues; three clues |
+
+Klasse 3 Mathe, topic Zahlen bis 1000 (2 lessons each, drafted
+2026-10-13). base-ten gained hundred flats; tick lengths on the number
+line follow its step.
+
+| Skill | Lessons |
+|---|---|
+| hundreds | ten tens make a hundred; hundreds, tens and ones |
+| place-value | H, Z and E; what is the digit worth? |
+| read-write | hear and write; number words to 1000 |
+| number-line | finding hundreds and tens; reading arrows |
+| order-compare | compare from the left; neighbouring tens and hundreds |
+| sequences | counting in big steps; finding and explaining rules |
+| round | rounding to tens; rounding to hundreds |
+| number-puzzles | solving riddles; checking and making riddles |
+
+German numbers are now spoken as words (narration.py and the player
+build share the rule): the voice swapped bare numerals such as 46.
+
 ### en-GB, same order
 
 Started 2026-10-13. Topic 1 is Maths, Reception, Numbers to 10: the same
@@ -504,7 +539,19 @@ in Year 1, so Reception orders and compares amounts and spoken numbers;
 number bonds use England's part-whole model. British English voices with
 their own brief (voices.yaml curricula: en-GB).
 
+Placement order (decided 2026-10-13): en-GB placement within a year was
+not a teaching order (Year 6 Maths opened with written multiplication of
+money). Each year's natural opening topic now comes first: place value in
+Maths (Numbers to 100, 1000, 10 000, 1 000 000, 10 000 000), Phonics in
+Year 1 English, Reading words in Years 2 and 3, Information texts in
+Year 5. The rest of each year is unchanged; a full sequence review of
+en-GB is its own step later.
+
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
 | 1 | Maths | Reception | Numbers to 10 | 6, all drafted 2026-10-13: 12 lessons, 222 tasks |
+| 2 | English | Reception | Hearing sounds | 4, all drafted 2026-10-13: 8 lessons, 148 tasks |
+| 3 | French | Learning year 1 | Listening | 2, all drafted 2026-10-13: 4 lessons, 92 tasks |
+| 4 | Maths | Year 1 | Numbers to 10 | 1, drafted 2026-10-13: 3 lessons, 68 tasks; adds the number words one to ten, which Year 1 asks for |
+| 5 | Maths | Year 2 | Numbers to 100 | 5, all drafted 2026-10-13: 10 lessons, 230 tasks; place value adds the part-whole model and partitioning in more than one way (34 = 20 + 14), comparing uses <, > and = and adds one more, ten more |
 

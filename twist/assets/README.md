@@ -55,8 +55,9 @@ mascot and the apple sprite from schoolido-learning, read only) to
 `openai/gpt-image-2.5-sunburst` on OpenRouter at low quality, about $0.023
 a picture and $0.015 a colour version. Pillow does the trimming and
 compression. [objects/pictures.yaml](objects/pictures.yaml) records what
-made each file; the full-size model output goes to objects/raw/, which git
-ignores.
+made each file. The full-size model output is kept in memory only while
+the tool runs, and colour versions of an existing picture are made from
+the finished file.
 
 ```
 python3 -m venv twist/.venv && twist/.venv/bin/pip install -r twist/assets/tools/requirements.txt

@@ -46,6 +46,10 @@ for amounts:
 | `ten-frame` | `filled`, `colour_split: [5, 2]` | a 2 by 5 frame with counters |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
+| `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
+| `hundred-square` | `highlight: [..]`, `hide: [..]` | 1 to 100 in rows of ten; hidden cells show ? |
+| `base-ten` | `hundreds`, `tens`, `ones` | hundred flats (10 by 10, two to a column), tens rods and ones cubes; more than ten loose cubes start a new pair of columns |
+| `place-value-chart` | `columns: [tens, ones]` (or with `hundreds`, `thousands` in front), `values: [4, null]` | Stellentafel; T H Z E in German, Th H T O in English; null is a gap |
 | `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
 
 ## Types in use
@@ -97,6 +101,21 @@ Interactions:
 | How many more to make ten | over a ten frame with 7, options 2, 3, 4 | en-GB partition-to-10 |
 | One more, one less | "Here are three apples. One more apple comes. How many now?" | en-GB order-to-10 |
 | Which is more, said aloud | "Which is more, three or seven?", options 3, 7 (they say themselves) | en-GB compare-to-10 |
+| How many tens and ones | over `{ drawn: base-ten, tens: 3, ones: 4 }`, options 7, 34, 43 | bundle-tens |
+| Estimate at a glance | "Wie viele sind es ungefähr?" over `{ drawn: hundred-field, filled: 30, flash: 2 }`, options etwa 10, etwa 30, etwa 90 | bundle-tens |
+| Read a place-value chart | over `{ drawn: place-value-chart, columns: [tens, ones], values: [2, 6] }`, options 26, 62, 8 | place-value-to-100 |
+| Hear a number, find its digits | the voice says "Sechsunddreißig", options 36, 63, 30 with `option_audio: false` | read-write-to-100 |
+| Read a number word | the screen says "dreiundvierzig", options 34, 43, 40 with `option_audio: false` | read-write-to-100 |
+| Read the hundred field | over `{ drawn: hundred-field, filled: 45 }`, options 45, 54, 40 | hundred-field |
+| Hidden number on the hundred square | over `{ drawn: hundred-square, highlight: [46], hide: [56] }`, "unter 46", options 47, 56, 66 | hundred-square |
+| A move on the hundred square | "Start 14, 2 Zeilen nach unten", options 16, 24, 34 | hundred-square |
+| Where the arrow points | over `{ drawn: number-line, from: 30, to: 40, labels: ends, mark: 32 }`, options 32, 23, 38 | number-line-to-100 |
+| The rule of a sequence | "31, 41, 51, 61", options +1, +10, −10 with `option_audio: false` | sequences-to-100 |
+| Which number does not fit | "10, 20, 30, 45, 50", options 20, 45, 50 | sequences-to-100 |
+| Number riddle | "Größer als 30. Kleiner als 40. Die Einerziffer ist 8.", options 38, 48, 83 | number-puzzles-to-100 |
+| What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
+| Round to tens or hundreds | "Runde 471 auf Hunderter." over a number line with the arrow at 471, options 400, 500, 470 | round-to-1000 |
+| Which clue makes the riddle unique | options are clue sentences; one names the missing digit | number-puzzles-to-1000 |
 
 Twist: `options` become objects with `label`; `answer` becomes the
 correct option's id.
@@ -121,14 +140,19 @@ Interactions:
 | Dot pattern with a given number | "Wo sind 6 Punkte?" three dot patterns; answer `"6"` | subitize-to-10 |
 | What rhymes with this? | "Was reimt sich auf Haus?" over `{ object: house }`, options mouse, ball, tree | rhymes |
 | Odd one out | "Welches Wort reimt sich nicht?" options dog, mouth, cat; answer cat | rhymes |
+| How many sounds? | over `{ object: fish }`, options dot rows of 2, 3 and 4; f ... i ... sh is three sounds | en-GB oral-blending |
 | How many syllables (claps)? | over `{ object: banana }`, options three dot rows of 1, 2 and 3 claps; answer `"3"` | syllables |
 | Word with n syllables | "Welches Wort hat 3 Silben?" options pictures; each says its word | syllables |
 | Same first sound | "Was fängt so an wie Sonne?" over `{ object: sun }`, options sock, fish, ball | initial-sound |
 | Hear an instruction, find the action (English) | hears "Stand up!", taps the child standing up of three action pictures | classroom-phrases |
 | Hear a word, find the picture (English) | hears "Mouse.", taps the mouse; the words sound like German ones (Maus, mouse) | familiar-words |
+| Blocks or chart for a number | "Wo sind 36?" options three `base-ten` pictures; or "Welche Stellentafel zeigt 53?" three `place-value-chart` pictures | bundle-tens, place-value-to-100 |
+| Hundred field for a number | "Wo sind 50?" three `hundred-field` pictures | hundred-field |
 
 A drawn component as an option is keyed like a group: by its `count`
-(dots) or `filled` (ten-frame).
+(dots), `filled` (ten-frame, hundred-field), tens × 10 + ones (base-ten)
+or its digits read as a number (place-value-chart, `[5, 3]` is 53).
+Drawn options never speak.
 
 ## `audio_choice`
 
@@ -149,6 +173,8 @@ Interactions:
 | English word to picture | hears "Green.", taps the frog | en-colours |
 | English word to coloured object | hears "Blue.", taps the blue car of three | en-colours |
 | Number word to numeral | hears "Sieben." (`audio: { de: "Sieben." }`), taps 7 among 1, 7, 9 | write-numerals-to-10 |
+| Blend sounds into a word | hears "c ... a ... t." (pure sounds, never letter names), taps the cat of cat, car, cup | en-GB oral-blending |
+| A heard word's first or last sound | hears "Bus.", taps the picture that starts with the same sound (ball) | en-GB oral-blending |
 
 ## `true_false`
 
@@ -169,11 +195,16 @@ Interactions:
 | Same first sound? | "Fangen sie gleich an?" over `{ objects: [sun, sock] }` | initial-sound |
 | Does this split work? | "Stimmt das? 8 + 5 = 8 + 1 + 4" | add-bridge-10 |
 | Is this the numeral? | a card shows 6, the voice asks "Ist das die Neun?"; the screen says only "Stimmt das?", so the answer cannot be read off the screen | write-numerals-to-10 |
+| Is this chart right? | "Tim hört dreiundsiebzig und schreibt: drei, sieben" over a chart showing 3, 7 | read-write-to-100 |
+| Is the estimate good? | "Tom schätzt: etwa siebzig" over a hundred field with 68 | bundle-tens |
+| Does the answer fit every clue? | "Stimmt 75? Größer als 70. Ungerade. Die Einerziffer ist 3." | number-puzzles-to-100 |
+| Is the riddle unique? | "Ist das Rätsel eindeutig? Meine Zahl ist gerade und liegt zwischen 200 und 300." | number-puzzles-to-1000 |
 
 ## `fill_in_blank`
 
 A frame with gaps (`_`); the child taps option chips to fill the gaps in
-order and taps Prüfen. Tapping a filled gap empties it.
+order and taps Prüfen. Tapping a filled gap empties it. A chip can fill more
+than one gap (H: 3, Z: 3, E: 8 needs one 3 chip).
 
 Fields: `frame`, `options`, `answer` (a list, one per gap).
 
@@ -188,6 +219,13 @@ Interactions:
 | A number that makes it true | "_ > 6" options 4, 6, 8, answer 8 | compare-to-10 |
 | Split of a number | "6 = _ + _" with a split dot picture, answer 4, 2 | partition-to-10 |
 | Number house | `show: { drawn: number-house, roof: 7, rows: [[3, null]] }`, frame "3 + _ = 7" | partition-to-10 |
+| Tens and ones of an amount | over base-ten blocks, frame "_ Zehner und _ Einer" or "Z: _  E: _" | bundle-tens, place-value-to-100 |
+| Missing to 100 | over a hundred field with 70, frame "70 + _ = 100" | hundred-field |
+| Neighbouring tens | "Nachbarzehner: _ , 27, _" options 20, 26, 28, 30 | order-compare-to-100 |
+| Continue a sequence | "42, 44, 46, _ , _" | sequences-to-100 |
+| Double by tens and ones | "Das Doppelte von 32", frame "60 + _ = _" | double-halve-to-100 |
+| Split into place values | "Zerlege 683.", frame "683 = _ + _ + _" | place-value-to-1000 |
+| Round two ways | "Runde 738.", frame "auf Zehner: _   auf Hunderter: _" | round-to-1000 |
 
 ## `text_input`
 
@@ -197,7 +235,10 @@ when choosing from options would make the task too easy.
 Fields: `answer` (a string).
 
 Interactions: the result of a sum ("9 + 7 = _"); the answer to a story
-problem. Used in add-bridge-10.
+problem (add-bridge-10). Hear a number and write it ("Einundfünfzig.
+Schreib die Zahl."); read a number word and write it; the end of a
+hundred-square move; double or halve; solve a riddle (Zahlen bis 100
+lessons).
 
 ## `tap_to_count`
 
@@ -232,11 +273,22 @@ Interactions: fill up to ten (add-bridge-10).
 A number line; the child taps a tick and taps Prüfen. The marker shows
 where they tapped, never the number.
 
-Fields: `show: { drawn: number-line, from, to, labels, jumps }`,
-`answer` (a number).
+Fields: `show: { drawn: number-line, from, to, labels, jumps, step }`,
+`answer` (a number). `step` (1, 5, 10, 100 or 1000; 1 if left out) sets which ticks
+are drawn and can be tapped, so a line from 0 to 100 or 1000 has ticks a child's
+finger can hit. The answer must sit on a tick.
 
-Interactions: where a sum lands, with or without jump arcs shown
-(add-bridge-10).
+Interactions:
+
+| Interaction | Example | Used in |
+|---|---|---|
+| Where a sum lands, with or without jump arcs | 0 to 20, "8 + 5" | add-bridge-10 |
+| Find a ten on a long line | 0 to 100, `step: 10`, labels ends, "Wo ist 60?" | number-line-to-100 |
+| Find a number on a section | 40 to 60, labels tens, "Wo ist 47?" | number-line-to-100 |
+
+A number line can also be a picture to read: `show` with `mark: 35`
+draws the marker at 35, and a multiple_choice asks which number it marks
+(number-line-to-100).
 
 ## `highlight_in_text`
 
@@ -292,6 +344,7 @@ Interactions:
 | Colour with a thing that has it | yellow ↔ banana, green ↔ frog, red ↔ strawberry; tapping a colour says "Yellow." | en-colours |
 | Numeral with its amount | 3 ↔ three dots on a dice, 5 ↔ five apples; a side can be `{ text: "3" }` | write-numerals-to-10 |
 | Number with a split | 7 ↔ 4 + 3, 5 ↔ 2 + 3 | partition-to-10 |
+| Number with its number word | 17 ↔ siebzehn, 70 ↔ siebzig, 71 ↔ einundsiebzig, with `option_audio: false` (hearing the cards would give the pairs) | read-write-to-100 |
 | Rhyming pairs | Haus ↔ Maus, Tisch ↔ Fisch, Hose ↔ Rose; every picture says its word | rhymes |
 | Same first sound | Sonne ↔ Socke, Fisch ↔ Frosch, Ball ↔ Banane | initial-sound |
 
@@ -332,6 +385,8 @@ Interactions:
 | Numbers from small to big | 4, 2, 5, 3 into four slots: 2, 3, 4, 5 | order-to-10 |
 | Count backwards | 7, 9, 8, 6 from big to small: 9, 8, 7, 6 | order-to-10 |
 | Amounts from few to many | three dot pictures, fewest first | compare-to-10 |
+| Two-digit numbers | 45, 18, 81, 54, smallest first | order-compare-to-100 |
+| A sequence in steps | 38, 18, 28, 48 into tens steps | sequences-to-100 |
 
 ## Option audio
 
@@ -344,7 +399,10 @@ An option gets a speaker when hearing it does not give the answer away:
   Bananen?");
 - matching and sorting: a side, bin or item with its own `say` says that;
   a picture with no `say` says its word, unless the lesson has a target
-  language (an Englisch lesson must not say German words);
+  language (an Englisch lesson must not say German words); a number or
+  sum card ("3", "2 + 2") reads itself, unless the task sets
+  `option_audio: false` (matching a numeral to its amount, where hearing
+  "drei" would give it away);
 - a task can set `option_audio: true` or `false` to override.
 
 narration.py and the player both follow these rules; the player build

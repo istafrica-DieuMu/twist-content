@@ -257,6 +257,43 @@ function house(roof, rows) {
   rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * rh; s += `<rect x="${x}" y="${y}" width="62" height="${rh}" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + rh / 2 + fs / 3}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
   return `<svg viewBox="0 0 180 ${80 + rows.length * rh}" width="${rows.length > 4 ? 150 : 180}">${s}</svg>`;
 }
+// The Hunderterfeld: 10 by 10 dots, gaps after five each way, filled row by row.
+function hundredField(filled, split) {
+  let g = "";
+  for (let i = 0; i < 100; i++) { const r = Math.floor(i / 10), c = i % 10, x = 14 + c * 26 + (c >= 5 ? 8 : 0), y = 14 + r * 26 + (r >= 5 ? 8 : 0);
+    g += `<circle cx="${x}" cy="${y}" r="10" fill="${i < filled ? (split && i >= split[0] ? "#1E88E5" : "#E53935") : "#fff"}" stroke="${i < filled ? "#2b0f45" : "#cbb9dd"}" stroke-width="2"/>`; }
+  return `<svg viewBox="0 0 280 280" width="260">${g}</svg>`;
+}
+// The Hundertertafel / hundred square: 1 to 100; highlight and hide lists.
+function hundredSquare(o) {
+  const hl = new Set(o.highlight ?? []), hide = new Set(o.hide ?? []); let g = "";
+  for (let n = 1; n <= 100; n++) { const r = Math.floor((n - 1) / 10), c = (n - 1) % 10, x = c * 30, y = r * 30;
+    g += `<rect x="${x + 1}" y="${y + 1}" width="28" height="28" rx="4" fill="${hide.has(n) ? "#efe0fb" : hl.has(n) ? "#ffe08a" : "#fff"}" stroke="#2b0f45" stroke-width="1.5"/><text x="${x + 15}" y="${y + 20}" text-anchor="middle" font-size="12" font-weight="700" fill="${hide.has(n) ? "#8e3bd1" : "#2b0f45"}">${hide.has(n) ? "?" : n}</text>`; }
+  return `<svg viewBox="0 0 302 302" width="300">${g}</svg>`;
+}
+// Base-ten blocks: tens as rods of ten, ones as single cubes.
+function baseTen(tens, ones, hundreds = 0) {
+  let g = "", x = 4;
+  // Hundreds as flats of 10 by 10, two to a column, beside the rods.
+  for (let h = 0; h < hundreds; h++) { const fx = x + Math.floor(h / 2) * 78, fy = 4 + (h % 2) * 78;
+    g += `<rect x="${fx}" y="${fy}" width="72" height="72" fill="#7E57C2" stroke="#2b0f45" stroke-width="1.5"/>`;
+    for (let k = 1; k < 10; k++) g += `<line x1="${fx + k * 7.2}" y1="${fy}" x2="${fx + k * 7.2}" y2="${fy + 72}" stroke="#2b0f45" stroke-width=".6"/><line x1="${fx}" y1="${fy + k * 7.2}" x2="${fx + 72}" y2="${fy + k * 7.2}" stroke="#2b0f45" stroke-width=".6"/>`; }
+  if (hundreds) x += Math.ceil(hundreds / 2) * 78 + 6;
+  for (let t = 0; t < tens; t++) { for (let k = 0; k < 10; k++) g += `<rect x="${x}" y="${4 + k * 15}" width="15" height="15" fill="#4C8DF6" stroke="#2b0f45" stroke-width="1.5"/>`; x += 22; }
+  x += 8;
+  // Ones stack two wide, five high; more than ten start a new pair of columns.
+  for (let o = 0; o < ones; o++) g += `<rect x="${x + (Math.floor(o / 10) * 2 + (o % 2)) * 19}" y="${124 - Math.floor((o % 10) / 2) * 19}" width="15" height="15" fill="#F5A524" stroke="#2b0f45" stroke-width="1.5"/>`;
+  const w = x + (ones ? 44 + (ones > 10 ? 38 : 0) : 0);
+  return `<svg viewBox="0 0 ${Math.max(w, 40)} 160" width="${Math.min(320, Math.max(w, 40) * 1.4)}">${g}</svg>`;
+}
+// Place-value chart; column letters follow the lesson's language.
+function placeValue(columns, values) {
+  const L = { de: { thousands: "T", hundreds: "H", tens: "Z", ones: "E" }, en: { thousands: "Th", hundreds: "H", tens: "T", ones: "O" } }[set?.language ?? "de"] ?? { thousands: "Th", hundreds: "H", tens: "T", ones: "O" };
+  let g = ""; columns.forEach((c, i) => { const x = i * 80, v = values?.[i];
+    g += `<rect x="${x + 2}" y="2" width="76" height="40" fill="#efe0fb" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="31" text-anchor="middle" font-size="26" font-weight="700" fill="#2b0f45">${L[c]}</text>`;
+    g += `<rect x="${x + 2}" y="42" width="76" height="60" fill="#fff" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="86" text-anchor="middle" font-size="38" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; });
+  return `<svg viewBox="0 0 ${columns.length * 80 + 4} 106" width="${columns.length * 80 + 4}">${g}</svg>`;
+}
 // The part-whole model (England): whole above, two parts below; null is a gap.
 function partWhole(whole, parts) {
   const c = (x, y, v, big) => `<circle cx="${x}" cy="${y}" r="${big ? 38 : 32}" fill="${v == null ? "#efe0fb" : "#fff"}" stroke="#2b0f45" stroke-width="4"/><text x="${x}" y="${y + 12}" text-anchor="middle" font-size="34" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`;
@@ -289,14 +326,18 @@ function rechenstrich(start, jumps) {
 function numberLine(o, pick) {
   const from = o.from ?? 0, to = o.to ?? 20, sc = (v) => 15 + ((v - from) / (to - from)) * 300, y = 120;
   let s = `<line x1="8" y1="${y}" x2="322" y2="${y}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/>`;
-  for (let v = from; v <= to; v++) {
-    const big = v % 10 === 0, mid = v % 5 === 0;
+  // step: ticks every 1 (default), 5 or 10, so 0 to 100 stays tappable.
+  const step = o.step ?? 1;
+  for (let v = from; v <= to; v += step) {
+    // Long ticks every ten steps, a middle tick at five (on a line in fives, long ticks at the tens).
+    const big = v % (step === 5 ? 10 : 10 * step) === 0, mid = step !== 5 && v % (5 * step) === 0;
     s += `<line x1="${sc(v)}" y1="${y - (big ? 14 : mid ? 10 : 6)}" x2="${sc(v)}" y2="${y + (big ? 14 : mid ? 10 : 6)}" stroke="#2b0f45" stroke-width="${big ? 4 : 2.5}"/>`;
     if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${sc(v)}" y="${y + 40}" text-anchor="middle" font-size="20" font-weight="700" fill="#2b0f45">${v}</text>`;
     if (pick) s += `<rect data-v="${v}" x="${sc(v) - 7}" y="${y - 30}" width="14" height="60" fill="transparent" style="cursor:pointer"/>`;
   }
   s += arcs(o.jumps ?? [], sc, y);
-  if (pick != null && pick !== true) s += `<path d="M${sc(pick)} ${y - 18} l-10 -18 h20 z" fill="#8e3bd1" stroke="#2b0f45" stroke-width="2"/>`;
+  const mark = pick != null && pick !== true ? pick : o.mark;
+  if (mark != null) s += `<path d="M${sc(mark)} ${y - 18} l-10 -18 h20 z" fill="#8e3bd1" stroke="#2b0f45" stroke-width="2"/>`;
   return `<svg viewBox="0 0 330 170" width="100%" style="max-width:330px">${s}</svg>`;
 }
 function writing(text, mode) {
@@ -340,6 +381,10 @@ function drawn(o, ctx = {}) {
     case "ten-frame": return tenFrame(o.filled, o.colour_split);
     case "number-house": return house(o.roof, o.rows);
     case "part-whole": return partWhole(o.whole, o.parts);
+    case "hundred-field": return hundredField(o.filled, o.colour_split);
+    case "hundred-square": return hundredSquare(o);
+    case "base-ten": return baseTen(o.tens ?? 0, o.ones ?? 0, o.hundreds ?? 0);
+    case "place-value-chart": return placeValue(o.columns, o.values);
     case "equation": return equation(o.text, o.split);
     case "rechenstrich": return rechenstrich(o.start, o.jumps ?? []);
     case "number-line": return numberLine(o);
@@ -526,7 +571,7 @@ function optEl(o, t, i) {
   if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
   return b;
 }
-const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : o.drawn === "ten-frame" ? String(o.filled) : (o.text ?? o.colour ?? o.object ?? o.drawn);
+const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
 function choice({ t, body, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const grid = document.createElement("div"); grid.className = "opts";
@@ -625,7 +670,7 @@ const TYPES = {
       btn.disabled = link.includes(null);
     };
     L.forEach((b, i) => b.onclick = () => { if (st.over) return; if (t._pairs?.[i]?.left) play(t._pairs[i].left); sel = sel === i ? null : i; draw(); });
-    R.forEach((b, ri) => b.onclick = () => { if (st.over) return; const had = link.indexOf(ri); if (sel == null) { if (had >= 0) { link[had] = null; draw(); } return; } if (had >= 0) link[had] = null; link[sel] = ri; sel = null; draw(); });
+    R.forEach((b, ri) => b.onclick = () => { if (st.over) return; const rc = t._pairs?.[+b.dataset.pi]?.right; if (rc) play(rc); const had = link.indexOf(ri); if (sel == null) { if (had >= 0) { link[had] = null; draw(); } return; } if (had >= 0) link[had] = null; link[sel] = ri; sel = null; draw(); });
     const btn = nextBtn(foot, UI.check, () => {
       const right = link.map((ri, li) => +R[ri].dataset.pi === li), ok = right.every(Boolean);
       if (!ok) right.forEach((r, li) => { if (!r) { L[li].classList.add("bad"); R[link[li]].classList.add("bad"); } });

@@ -28,7 +28,6 @@ from PIL import Image, ImageDraw
 TWIST = Path(__file__).resolve().parents[2]
 ASSETS = TWIST / "assets"
 OUT = ASSETS / "objects"
-RAW = OUT / "raw"            # model output at full size; gitignored
 LOG = OUT / "pictures.yaml"  # what made each file
 SL = TWIST.parents[1] / "schoolido-learning"
 
@@ -170,7 +169,7 @@ def main():
     hexes = yaml.safe_load((ASSETS / "drawn.yaml").read_text())["colours"]
     only = set(a.only.split(",")) if a.only else None
     used = colours_used()
-    OUT.mkdir(exist_ok=True); RAW.mkdir(exist_ok=True)
+    OUT.mkdir(exist_ok=True)
     log = yaml.safe_load(LOG.read_text()) if LOG.exists() else {}
     log = log or {}
 
@@ -185,12 +184,13 @@ def main():
 
     k, refs = key(), style_refs()
     total = [0.0]
+    raws = {}  # full-size model output of this run, kept in memory only
 
     def make_base(o):
         face = FACE if o["category"] in ("animal", "people", "action") else NO_FACE
         prompt = f"{STYLE}\n\nSubject: {o['draw']}. {face}"
         raw, cost = call(k, prompt, refs)
-        (RAW / f"{o['id']}.png").write_bytes(raw)
+        raws[o["id"]] = raw
         size = finish(raw, OUT / f"{o['id']}.png")
         total[0] += cost or 0
         log[o["id"]] = {"file": f"{o['id']}.png", "model": MODEL, "quality": QUALITY, "draw": o["draw"], "cost": cost, "bytes": size, "made": str(date.today()), "transparent": has_alpha(raw)}
@@ -202,11 +202,12 @@ def main():
             shutil.copyfile(OUT / f"{o['id']}.png", OUT / f"{name}.png")
             log[name] = {"file": f"{name}.png", "copy_of": f"{o['id']}.png", "made": str(date.today())}
             return
-        base = Image.open(RAW / f"{o['id']}.png").convert("RGBA")
+        # The base from this run at full size, or else the finished picture.
+        src = io.BytesIO(raws[o["id"]]) if o["id"] in raws else OUT / f"{o['id']}.png"
+        base = Image.open(src).convert("RGBA")
         bg = Image.new("RGBA", base.size, "white"); bg.alpha_composite(base)
         prompt = RECOLOUR.format(part=o["recolour"]["part"], name=c, hex=hexes[c])
         raw, cost = call(k, prompt, [data_url(bg.convert("RGB"))])
-        (RAW / f"{name}.png").write_bytes(raw)
         size = finish(raw, OUT / f"{name}.png")
         total[0] += cost or 0
         log[name] = {"file": f"{name}.png", "model": MODEL, "quality": QUALITY, "from": f"{o['id']}.png", "colour": c, "cost": cost, "bytes": size, "made": str(date.today()), "transparent": has_alpha(raw)}
