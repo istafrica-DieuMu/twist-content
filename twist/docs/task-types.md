@@ -119,6 +119,8 @@ Interactions:
 | Make a noun with an ending | "hoffen → ?", options die Hoffnung, die hoffnung, die Hoffheit | noun-endings |
 | Which word is (not) a noun | "Welches Wort ist ein Nomen?" mutig, Mut, mutiger; the article test | abstract-nouns |
 | Which sentence is written correctly | three spellings of one sentence, `option_audio: false` | abstract-nouns |
+| Theme of a short story | a two-sentence story in `text`, "What is the theme?", options friendship, a sandwich, school dinners (a plot detail is always one option) | en-GB themes-conventions |
+| The moral of a fable | options: the moral, a fact from the fable, a detail | en-GB themes-conventions |
 | Ask the case question | "Wen oder was? \"Die Katze fängt eine Maus.\"" with the question in `say`, options the noun groups | noun-cases |
 | Which case is it in | "In welchem Fall steht \"dem Kind\"?", options Nominativ, Dativ, Akkusativ | noun-cases |
 | What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
@@ -418,6 +420,7 @@ Interactions:
 | Two-digit numbers | 45, 18, 81, 54, smallest first | order-compare-to-100 |
 | Build an English sentence from word cards | "Bau den Satz: Ich mag Fußball." cards football, I, like into I like football, `option_audio: false` | en-hobbies |
 | A sequence in steps | 38, 18, 28, 48 into tens steps | sequences-to-100 |
+| Steps of a story pattern | the hero's journey: leaves home, goes on a journey, faces a big challenge, comes home changed | en-GB themes-conventions |
 
 ## Option audio
 
