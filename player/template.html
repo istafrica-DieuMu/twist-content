@@ -288,11 +288,11 @@ function baseTen(tens, ones, hundreds = 0) {
 }
 // Place-value chart; column letters follow the lesson's language.
 function placeValue(columns, values) {
-  const L = { de: { thousands: "T", hundreds: "H", tens: "Z", ones: "E" }, en: { thousands: "Th", hundreds: "H", tens: "T", ones: "O" } }[set?.language ?? "de"] ?? { thousands: "Th", hundreds: "H", tens: "T", ones: "O" };
+  const L = { de: { millions: "M", "hundred-thousands": "HT", "ten-thousands": "ZT", thousands: "T", hundreds: "H", tens: "Z", ones: "E" }, en: { millions: "M", "hundred-thousands": "HTh", "ten-thousands": "TTh", thousands: "Th", hundreds: "H", tens: "T", ones: "O" } }[set?.language ?? "de"] ?? { millions: "M", "hundred-thousands": "HTh", "ten-thousands": "TTh", thousands: "Th", hundreds: "H", tens: "T", ones: "O" };
   let g = ""; columns.forEach((c, i) => { const x = i * 80, v = values?.[i];
     g += `<rect x="${x + 2}" y="2" width="76" height="40" fill="#efe0fb" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="31" text-anchor="middle" font-size="26" font-weight="700" fill="#2b0f45">${L[c]}</text>`;
     g += `<rect x="${x + 2}" y="42" width="76" height="60" fill="#fff" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="86" text-anchor="middle" font-size="38" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; });
-  return `<svg viewBox="0 0 ${columns.length * 80 + 4} 106" width="${columns.length * 80 + 4}">${g}</svg>`;
+  return `<svg viewBox="0 0 ${columns.length * 80 + 4} 106" width="${Math.min(columns.length * 80 + 4, 330)}">${g}</svg>`;
 }
 // The part-whole model (England): whole above, two parts below; null is a gap.
 function partWhole(whole, parts) {

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twist Curriculum Handoff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working document. Sticky contents rail on wide screens, one column on phones.
+   Team chips (backend, app, dashboard) colour-code every action so each team can scan for its own. */
+:root{
+  --paper:#f7f8fb; --sheet:#ffffff; --ink:#1b2130; --muted:#5a6276; --rule:#dde1ea; --tint:#eef1f7;
+  --accent:#2a4bd1; --accent-soft:#e3e8fb;
+  --be:#8a3fbf; --be-soft:#f1e6fa; --app:#0f7f6e; --app-soft:#ddf3ef; --pd:#b8580b; --pd-soft:#fbecdd;
+  --ok:#1f7a3d; --ok-soft:#e1f3e7; --warn:#a36a00; --warn-soft:#fbf0d6; --no:#b3261e; --no-soft:#fbe3e1;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12151d; --sheet:#181c26; --ink:#e6e9f1; --muted:#a2a9ba; --rule:#2c3242; --tint:#1f2431;
+  --accent:#8ea4ff; --accent-soft:#232b4d;
+  --be:#cf9bf2; --be-soft:#2f2140; --app:#5fd3c0; --app-soft:#16332f; --pd:#f1a866; --pd-soft:#3a2716;
+  --ok:#73d18f; --ok-soft:#173523; --warn:#e9be5c; --warn-soft:#3a2f12; --no:#f08c84; --no-soft:#3d1d1b;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12151d; --sheet:#181c26; --ink:#e6e9f1; --muted:#a2a9ba; --rule:#2c3242; --tint:#1f2431;
+  --accent:#8ea4ff; --accent-soft:#232b4d;
+  --be:#cf9bf2; --be-soft:#2f2140; --app:#5fd3c0; --app-soft:#16332f; --pd:#f1a866; --pd-soft:#3a2716;
+  --ok:#73d18f; --ok-soft:#173523; --warn:#e9be5c; --warn-soft:#3a2f12; --no:#f08c84; --no-soft:#3d1d1b;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15.5px/1.6 var(--f-body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.rail{display:none}}
+.rail{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-top:40px;font-size:13.5px}
+.rail b{display:block;font:600 11px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rail a{color:var(--muted);text-decoration:none}
+.rail a:hover,.rail a:focus-visible{color:var(--accent)}
+main{min-width:0;padding-top:40px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header.top{padding-bottom:28px;border-bottom:1px solid var(--rule);margin-bottom:32px}
+.eyebrow{font:600 11.5px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+h1{font:750 clamp(30px,5vw,46px)/1.05 var(--f-display);letter-spacing:-.02em;margin:12px 0 14px;text-wrap:balance}
+h2{font:700 26px/1.15 var(--f-display);letter-spacing:-.01em;margin:56px 0 10px;text-wrap:balance;scroll-margin-top:24px}
+h3{font:600 18px/1.3 var(--f-display);margin:30px 0 8px;text-wrap:balance}
+p{margin:0 0 12px;max-width:72ch}
+.lede{font-size:17px;color:var(--muted);max-width:68ch}
+pre{background:var(--tint);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:13px;margin:8px 0}
+pre code{background:none;padding:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--muted);margin-top:16px}
+.meta span b{color:var(--ink);font-weight:600}
+code{font:500 .86em/1 var(--f-mono);background:var(--tint);padding:.15em .38em;border-radius:4px;word-break:break-word}
+
+/* TLDR */
+.tldr{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:24px 26px}
+.tldr h2{margin-top:0}
+.tldr ul{margin:0;padding-left:20px;display:grid;gap:9px;max-width:80ch}
+.teams{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+@media (max-width:760px){.teams{grid-template-columns:minmax(0,1fr)}}
+.team{border-radius:8px;padding:16px 18px;background:var(--tint);min-width:0}
+.team h3{margin:0 0 8px;font-size:16px;display:flex;align-items:center;gap:8px}
+.team ol{margin:0;padding-left:18px;font-size:14px;display:grid;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.be .dot{background:var(--be)} .app .dot{background:var(--app)} .pd .dot{background:var(--pd)}
+
+/* chips */
+.chip{display:inline-block;font:600 11px/1.5 var(--f-body);letter-spacing:.04em;padding:1px 8px;border-radius:999px;white-space:nowrap;vertical-align:1px}
+.c-be{background:var(--be-soft);color:var(--be)} .c-app{background:var(--app-soft);color:var(--app)} .c-pd{background:var(--pd-soft);color:var(--pd)}
+.s-ok{background:var(--ok-soft);color:var(--ok)} .s-warn{background:var(--warn-soft);color:var(--warn)} .s-no{background:var(--no-soft);color:var(--no)}
+
+/* tables */
+.tbl{overflow-x:auto;margin:12px 0 18px;border:1px solid var(--rule);border-radius:8px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{font:600 11.5px/1.3 var(--f-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--tint)}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+td.k{font-family:var(--f-mono);font-size:13px;white-space:nowrap}
+
+/* chain diagram */
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0 6px}
+.chain span{font:600 13.5px/1 var(--f-body);padding:8px 11px;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
+.chain.old span{background:var(--tint);color:var(--muted)}
+.chain i{color:var(--muted);font-style:normal}
+.chainlbl{font:600 11px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:18px}
+
+ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
+.rule{border-left:3px solid var(--accent);background:var(--sheet);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;max-width:78ch}
+.work{display:grid;gap:10px;margin:10px 0 0;padding:0;list-style:none;counter-reset:w}
+.work li{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:12px 16px 12px 48px;position:relative;counter-increment:w;max-width:86ch}
+.work li::before{content:counter(w);position:absolute;left:14px;top:12px;font:700 15px/1.4 var(--f-display);color:var(--muted)}
+.work li b{display:block;margin-bottom:2px}
+.work li p{margin:0;font-size:14.5px}
+.foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<nav class="rail" aria-label="Contents">
+  <b>Contents</b>
+  <ol>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#source">Source and status</a></li>
+    <li><a href="#chain">The lesson chain</a></li>
+    <li><a href="#mastery">Mastery and what comes next</a></li>
+    <li><a href="#curricula">Curricula and standards</a></li>
+    <li><a href="#player">Task player</a></li>
+    <li><a href="#dashboard">Parent dashboard</a></li>
+    <li><a href="#backend">Work: backend</a></li>
+    <li><a href="#app">Work: mobile app</a></li>
+    <li><a href="#parents">Work: dashboard</a></li>
+    <li><a href="#open">Open decisions</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top">
+  <div class="eyebrow">Handoff · Schoolido Twist</div>
+  <h1>Twist curriculum handoff</h1>
+  <p class="lede">The new curriculum model from R&amp;D, and what it asks of the backend API (IST-B2C/backend), the mobile app (ist-schoolido) and the parent dashboard (IST-B2C/Parent-dashboard).</p>
+  <div class="meta">
+    <span>Source <b>rnd repo, branch <code>curriculum-phase1</code>, folder <code>twist/</code></b></span>
+    <span>Written <b>13 October 2026</b></span>
+    <span>Content status <b>draft, not yet teacher-reviewed</b></span>
+  </div>
+</header>
+
+<section class="tldr" id="tldr">
+  <h2>TL;DR</h2>
+  <ul>
+    <li><b>New chain.</b> Grade, Subject, Unit, Lesson, Module, Step, Question becomes <b>Curriculum, Subject, Year, Topic, Skill, Lesson, Activity, Task</b>. The skill becomes the unit of progress: mastery, recaps, placement and parent reporting all count skills, not modules.</li>
+    <li><b>Two curricula, one shared skill library.</b> de-DE (KMK Bildungsstandards) and en-GB (EYFS and the National Curriculum in England), built from 7 official documents and 697 quoted standards. de-DE places 435 skills, en-GB 483, and 257 skills are shared between them.</li>
+    <li><b>Three fields where there is one today.</b> Year sets what the curriculum expects, the child's level on each learning progression sets where they work, and age sets how a lesson looks. Today one integer <code>gradeLevel</code> does all three.</li>
+    <li><b>Every lesson has the same four activities.</b> Warm-up, Learn, Practise (three stages with hints fading from 3 to 1 to none) and Check. A skill is secure after a 4-of-5 skill check and mastered after spaced recaps; there are six states.</li>
+    <li><b>Player.</b> 1,047 drafted tasks use 15 task types. 10 render in the app today. <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> have components that the question mapper drops. <code>highlight_in_text</code> and <code>drag_and_drop_count</code> have no component. 13 drawn components (dots, ten-frame, number house, part-whole …) are drawn from data; the app draws only the number line today.</li>
+    <li><b>Dashboard.</b> Grade pills (Pre-K, Grade 1 to 12) become curriculum plus year (Klasse 1 to 4, Reception and Year 1 to 6), with a foreign-language learning year. Module-percentage status ("On track", "Gap identified", "Week behind") becomes standing per subject (ahead, on track, catching up) from secure skills, plus a skill list with states.</li>
+    <li><b>Content source.</b> Lessons are hand-written YAML records that point at an asset bank by id. No converter to the backend importer's JSON exists yet, and the importer today turns any unknown task type into <code>multiple_choice</code> without failing.</li>
+  </ul>
+  <div class="teams">
+    <div class="team be"><h3><span class="dot"></span>Backend first</h3><ol><li>Curriculum, year and learning year on the child; allow age 4</li><li>Skill, standard and placement tables; skill mastery per child</li><li>Import twist records and fail on unknown task types</li></ol></div>
+    <div class="team app"><h3><span class="dot"></span>Mobile app first</h3><ol><li>Map the 3 dropped types; build the 2 missing ones</li><li>Draw the 13 components from data</li><li>Stage-aware hints, show answer after two misses, check mode</li></ol></div>
+    <div class="team pd"><h3><span class="dot"></span>Dashboard first</h3><ol><li>Curriculum and year selector in place of grade pills</li><li>Subjects per curriculum, not hard-coded</li><li>Skill list with states; standing per subject</li></ol></div>
+  </div>
+</section>
+
+<section id="source">
+  <h2>Source and status</h2>
+  <p>Everything below comes from <code>rnd/twist/</code>. The records there are the source of truth; the docs describe them.</p>
+  <div class="tbl"><table>
+    <tr><th>File</th><th>What it holds</th></tr>
+    <tr><td class="k">docs/lesson-anatomy.md</td><td>The chain, activities, the mastery rule, recaps, placement checks, standing</td></tr>
+    <tr><td class="k">docs/model.md</td><td>Every record type and field: years, frameworks, progressions, skills, curricula, locale facets, id rules</td></tr>
+    <tr><td class="k">docs/task-types.md</td><td>Every task type and interaction, its fields, how it maps to the Twist question schemas</td></tr>
+    <tr><td class="k">lessons/README.md</td><td>The lesson record and task record format</td></tr>
+    <tr><td class="k">curricula/de-DE.yaml, en-GB.yaml</td><td>Frameworks per curriculum, out-of-scope standards with reasons, skill placement per year in teaching order</td></tr>
+    <tr><td class="k">competencies/&lt;domain&gt;/*.yaml</td><td>63 learning progressions and their skills, with prerequisites and standard codes</td></tr>
+    <tr><td class="k">frameworks/de, frameworks/gb</td><td>The official documents as coded standards, quoted verbatim with page numbers</td></tr>
+    <tr><td class="k">assets/</td><td>The asset bank: pictures, drawn components, sounds, voices, phrases between tasks</td></tr>
+    <tr><td class="k">views/</td><td>Generated overviews: placements, curriculum per year, lessons, coverage of each framework</td></tr>
+    <tr><td class="k">rnd/player/index.html</td><td>A prototype player in a phone frame that plays the drafted lessons with pictures, drawn components and narration. Use it as the reference for behaviour.</td></tr>
+  </table></div>
+  <h3>Run the lesson player</h3>
+  <ol>
+    <li><b>Get the repo.</b> <code>git clone git@github.com:istafrica-DieuMu/twist-content.git</code> and <code>cd twist-content</code>.</li>
+    <li><b>Open it.</b> Open <code>player/index.html</code> in Chrome or Safari, straight from disk; no server is needed. It loads the pictures from <code>twist/assets/</code> next to it. Pick a lesson set and a lesson from the two menus above the phone, then tap through it as a child would.</li>
+    <li><b>Add the voice (optional).</b> The narration clips are not in git, so a fresh clone plays silently. To make them you need Python 3.9 or later and an OpenRouter key:
+      <pre><code>python3 -m venv twist/.venv
+twist/.venv/bin/pip install -r twist/assets/tools/requirements.txt
+OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --voice all</code></pre>
+      It makes every missing clip, checks each one by listening, and skips clips that already exist, so it can be rerun at any time.</li>
+    <li><b>After a lesson record changes.</b> With Node 18 or later: <code>cd twist &amp;&amp; npm install &amp;&amp; cd ..</code> once, then <code>node twist/build.mjs</code> (checks every record), run narration as above for the new lines, then <code>node player/build.mjs</code> to rebuild <code>player/index.html</code>. The player build stops if a spoken line has no entry in <code>twist/assets/narration/lines.yaml</code>; it only reports audio files that are missing on your machine.</li>
+  </ol>
+  <h3>What is drafted</h3>
+  <div class="tbl"><table>
+    <tr><th>Curriculum</th><th>Subject and year</th><th>Topic</th><th class="n">Skills</th><th class="n">Lessons</th></tr>
+    <tr><td>de-DE</td><td>Mathe, Klasse 1</td><td>Zahlen bis 10</td><td class="n">7</td><td class="n">17</td></tr>
+    <tr><td>de-DE</td><td>Deutsch, Klasse 1</td><td>Laute hören</td><td class="n">3</td><td class="n">6</td></tr>
+    <tr><td>de-DE</td><td>Englisch, Stufe 0</td><td>Hören</td><td class="n">2</td><td class="n">4</td></tr>
+    <tr><td>de-DE</td><td>Model lessons</td><td>Adding across ten; the letters L, O, A, M; colours in English</td><td class="n">3</td><td class="n">10</td></tr>
+    <tr><td>en-GB</td><td>Maths, Reception</td><td>Numbers to 10</td><td class="n">6</td><td class="n">12</td></tr>
+    <tr><td colspan="3"><b>Total</b>: 21 lesson sets, 1,047 tasks (de-DE 825, en-GB 222)</td><td class="n"><b>21</b></td><td class="n"><b>49</b></td></tr>
+  </table></div>
+  <p>The skill library and the placement of every skill in both curricula are complete. Lessons are being written topic by topic: the first topic of each subject in every year, then the rest. Narration audio is not in git; <code>twist/assets/tools/narration.py</code> regenerates it.</p>
+</section>
+
+<section id="chain">
+  <h2>The lesson chain</h2>
+  <div class="chainlbl">Today, in backend and app</div>
+  <div class="chain old"><span>Grade</span><i>›</i><span>Subject</span><i>›</i><span>Unit</span><i>›</i><span>Lesson</span><i>›</i><span>Module</span><i>›</i><span>Step</span><i>›</i><span>Question</span></div>
+  <div class="chainlbl">New</div>
+  <div class="chain"><span>Curriculum</span><i>›</i><span>Subject</span><i>›</i><span>Year</span><i>›</i><span>Topic</span><i>›</i><span>Skill</span><i>›</i><span>Lesson</span><i>›</i><span>Activity</span><i>›</i><span>Task</span></div>
+
+  <div class="tbl"><table>
+    <tr><th>New level</th><th>What it is</th><th>Closest thing today</th></tr>
+    <tr><td><b>Curriculum</b></td><td>Everything taught in one country, in its language. <code>de-DE</code> or <code>en-GB</code>.</td><td>None. <code>EntityGrade.region</code> exists but is always <code>DEFAULT</code>.</td></tr>
+    <tr><td><b>Subject</b></td><td>A school subject, backed by a shared domain: <code>math</code>, <code>lit-de</code>, <code>lit-en</code>, <code>fl</code>. Named per curriculum (Mathe, Deutsch, Englisch; Maths, English, French).</td><td><code>EntitySubject</code>, one row per grade, <code>EnumSubjectCode</code>. There is no FRENCH.</td></tr>
+    <tr><td><b>Year</b></td><td>Where a curriculum places a skill. Fixed ids: <code>klasse-1</code> to <code>klasse-4</code>, <code>reception</code>, <code>year-1</code> to <code>year-6</code>, and learning years for the foreign language: <code>stufe-0</code>, <code>lernjahr-1</code>, <code>lernjahr-2</code>, <code>ly-1</code> to <code>ly-4</code>.</td><td><code>EntityGrade.gradeLevel</code>, an integer.</td></tr>
+    <tr><td><b>Topic</b></td><td>The sections a child sees in a year. A label on each skill; skills with the same label in the same year form one topic.</td><td><code>EntityUnit</code></td></tr>
+    <tr><td><b>Skill</b></td><td>One "I can …" / "Ich kann …" statement, small enough to check with one or two tasks. Has hard and soft prerequisites and the standard codes it satisfies. Placement, mastery and level are all per skill.</td><td>A <code>skillId</code> string on SKILL_PRACTICE modules only</td></tr>
+    <tr><td><b>Lesson</b></td><td>One short sitting. A skill has 2 to 6 lessons.</td><td>A LESSON_PART module (today's "Lesson" entity is closer to a topic)</td></tr>
+    <tr><td><b>Activity</b></td><td>One of four blocks in a lesson: Warm-up, Learn, Practise, Check.</td><td><code>EntityLearningStep</code> with OPENER, WARMUP, TEACH, GUIDED_PRACTICE, APPLIED_PRACTICE, CHALLENGE, ASSESSMENT</td></tr>
+    <tr><td><b>Task</b></td><td>One thing the child does: tap, drag, type, trace, say.</td><td>Question</td></tr>
+  </table></div>
+
+  <div class="rule"><b>Grade determines curriculum expectations, proficiency determines learning level, and age determines presentation.</b> The child's year says what the curriculum expects by the end of the year. Their level on each learning progression says where they actually work, above or below their year. Their age says how a lesson looks and sounds. Keep these as three fields.</div>
+
+  <h3>Ids</h3>
+  <ul class="plain">
+    <li>Ids never contain a grade or year, because the same skill sits in different years in different curricula. Skill: <code>math.numbers-to-20.compare-to-10</code>. Lesson set: <code>de-DE.math.compare-to-10</code>. Task: <code>l1-f3</code>, unique inside its lesson set.</li>
+    <li>Lowercase ASCII, umlauts written out (ä as ae). Once published an id never changes; a rename is a new id with a <code>replaces</code> field.</li>
+  </ul>
+
+  <h3>Lesson size by age</h3>
+  <div class="tbl"><table>
+    <tr><th>Age</th><th>Typically</th><th>Lesson length</th><th class="n">Tasks per lesson</th><th>Presentation</th></tr>
+    <tr><td>4 to 5</td><td>Reception, Stufe 0</td><td>about 8 min</td><td class="n">14 to 24</td><td>Led by audio, no reading needed, big targets</td></tr>
+    <tr><td>6 to 7</td><td>Klasse 1 to 2, Year 1 to 2</td><td>10 to 12 min</td><td class="n">18 to 28</td><td>Audio support, short text, drawn support</td></tr>
+    <tr><td>8 to 10</td><td>Klasse 3 to 4, Year 3 to 6</td><td>12 to 15 min</td><td class="n">20 to 32</td><td>Led by text, less audio</td></tr>
+  </table></div>
+  <p>The backend's <code>AgeTier</code> (5 to 7, 8 to 10, 11 plus) does not match these bands, and its age validation (5 to 17) rejects Reception children.</p>
+
+  <h3>The four activities</h3>
+  <div class="tbl"><table>
+    <tr><th>Activity</th><th>Child sees (en / de)</th><th>Settings</th><th>Scored</th></tr>
+    <tr><td><b>Warm-up</b></td><td>Warm up / Aufwärmen</td><td><code>from: earlier-skills</code> or <code>from: last-lesson</code>. Draws only on prerequisites. Left out of the first lesson of a topic and for ages 4 to 5.</td><td>Yes; counts for mastery only once the recalled skill is secure</td></tr>
+    <tr><td><b>Learn</b></td><td>Learn / Entdecken</td><td><code>mode</code>: worked-examples, demonstration, model-text, new-sound, new-word, do-it-with-me. Screens of text, spoken line, picture or drawn component, sound.</td><td>No</td></tr>
+    <tr><td><b>Practise</b></td><td>Practise / Üben</td><td>Always three stages in order, 5 or 6 tasks each. <code>setting</code>: plain or in-context (word problem, sentence, speaking), for the whole activity or one stage.</td><td>No</td></tr>
+    <tr><td><b>Check</b></td><td>Show what you know / Zeig, was du kannst</td><td><code>size</code>: quick (3 tasks), skill (4 or 5, last lesson only), timed (skill check with a time per task)</td><td>Skill and timed checks count</td></tr>
+  </table></div>
+
+  <h3>Practise stages</h3>
+  <div class="tbl"><table>
+    <tr><th>Stage</th><th class="n">Hints</th><th>On a miss</th></tr>
+    <tr><td><code>full</code></td><td class="n">3</td><td>The next hint opens: a strategy, then thinking aloud, then a direct cue</td></tr>
+    <tr><td><code>some</code></td><td class="n">1</td><td>The one hint opens</td></tr>
+    <tr><td><code>none</code></td><td class="n">0</td><td>After two misses the answer is shown, and the task counts as neither right nor wrong</td></tr>
+  </table></div>
+  <p>Tasks also get harder across the stages: the full stage starts easy and shows the drawn model, and by the none stage the model is often gone and the answer is typed rather than chosen. Between stages the player shows a short marker ("Now with less help").</p>
+
+  <h3>Rules every lesson follows (the rnd build checks them)</h3>
+  <ul class="plain">
+    <li>Anything new gets a Learn before the first Practise. A lesson never ends on Learn.</li>
+    <li>The last lesson of a skill ends with the skill check. A skill check never repeats a task from the lessons word for word.</li>
+    <li>Tracing tasks take no text hints; the trace guide is the help.</li>
+    <li><code>speak</code> tasks are practice only and never in a skill check, because speech recognition for young children is not reliable enough to mark.</li>
+    <li>A lesson marked <code>no_reading</code> (Stufe 0, ages 4 to 5) has no task where the child must read; instructions are spoken and options are pictures, sounds or numbers that say themselves.</li>
+    <li>In Stufe 0 and the first French lessons, instructions are in the home language and only the target words are in the new one.</li>
+  </ul>
+
+  <h3>Between lessons</h3>
+  <ul class="plain">
+    <li>Each lesson can be finished and left. The next lesson opens straight away.</li>
+    <li>When a skill has more than two lessons, the app suggests the next one on a later day, so the skill spreads over several sittings.</li>
+  </ul>
+</section>
+
+<section id="mastery">
+  <h2>Mastery and what comes next</h2>
+  <p>Mastery is stored per child and per skill. Today the backend stores status and 0 to 3 stars per module from the score percentage (<code>EnumStudentModuleStatus</code>), and the app passes a step at 50 % correct.</p>
+  <div class="tbl"><table>
+    <tr><th>State</th><th>English</th><th>Deutsch</th><th>Reached by</th></tr>
+    <tr><td class="k">not_started</td><td>Not started</td><td>Noch nicht begonnen</td><td>No evidence yet</td></tr>
+    <tr><td class="k">learning</td><td>Learning</td><td>Lerne ich gerade</td><td>Opening lesson 1</td></tr>
+    <tr><td class="k">practised</td><td>Practised</td><td>Geübt</td><td>Finishing the last lesson below the pass mark</td></tr>
+    <tr><td class="k">secure</td><td>Secure</td><td>Kann ich</td><td>Passing the skill check, or a placement check</td></tr>
+    <tr><td class="k">mastered</td><td>Mastered</td><td>Kann ich sicher</td><td>Secure, then recaps passed on two days at least a week apart</td></tr>
+    <tr><td class="k">needs_recap</td><td>Needs a recap</td><td>Wiederholen</td><td>Failing a recap of a secure or mastered skill. Passing the next recap restores the earlier state.</td></tr>
+  </table></div>
+  <p>The keys in the first column (<code>not_started</code>, <code>needs_recap</code> and so on) are a proposal for the API, made for this handoff. <code>twist/docs/lesson-anatomy.md</code> names the states in English and German but sets no keys.</p>
+
+  <h3>Skill check</h3>
+  <ul class="plain">
+    <li>5 tasks for ages 6 and up, 4 for ages 4 to 5, covering every part of the skill. No hints, first try only, a shown answer counts as wrong.</li>
+    <li>Pass: at least 4 of 5 (3 of 4 for ages 4 to 5), and every core task of the skill answered correctly at least once in its lessons.</li>
+    <li>On a fail the skill stays Practised. The app offers one short extra lesson (Learn in a different way, then Practise with full support) and a new skill check with different tasks. The child never repeats all the lessons.</li>
+  </ul>
+
+  <h3>Recaps</h3>
+  <ul class="plain">
+    <li>Spaced about 2 days, 1 week, 3 weeks and 2 months after the skill became secure. Today the backend has one rule: modules completed more than 7 days ago get a recommendation.</li>
+    <li>A recap is 2 or 3 tasks of one skill, mixed into a practice session with other skills. Fewer than 2 of 3 (or 1 of 2) sets Needs a recap and brings the next recap closer.</li>
+  </ul>
+
+  <h3>Placement check (Einstufung)</h3>
+  <ul class="plain">
+    <li>Per learning progression, 1 or 2 tasks per skill. It starts at what the child's year expects, moves up after success and down after mistakes, and stops at the edge.</li>
+    <li>A skill passed there (2 of 2, or 1 of 1 for ages 4 to 5) becomes Secure and gets its first recap scheduled. Earlier skills in the same progression count as secure too. The first skill missed is the next one to learn.</li>
+    <li>The backend has placement fields on <code>EntityStudentBaselineResult</code>, but nothing writes them and the app has no placement UI.</li>
+  </ul>
+
+  <h3>Suggestions, level and standing</h3>
+  <ul class="plain">
+    <li><b>Suggested next:</b> a skill whose prerequisites are all at least Practised. A child can still open any skill; if a prerequisite is not secure, the first lesson starts with a short recap of it.</li>
+    <li><b>Level</b> in a learning progression: the furthest skill reached with everything it builds on secure.</li>
+    <li><b>Standing</b> in a subject, for parents: the share of the child's year's skills that are secure or mastered, against how far the school year has run. Shown as ahead, on track or catching up. It never blocks the child.</li>
+  </ul>
+
+  <h3>What counts for mastery</h3>
+  <div class="tbl"><table>
+    <tr><th>Counts</th><th>Does not count</th></tr>
+    <tr><td>Skill checks, first try</td><td>Quick checks at the end of a lesson</td></tr>
+    <tr><td>Warm-up tasks that recall a skill already secure</td><td>Practise tasks inside lessons</td></tr>
+    <tr><td>Recaps in practice sessions</td><td>Answers shown after two misses</td></tr>
+    <tr><td>Placement checks; start-of-year and end-of-year checks</td><td>Speed, except in a timed skill check</td></tr>
+  </table></div>
+  <p>Practice outside lessons comes in four forms: a practice session (about 14 tasks of one skill or a mix of due recaps), a topic recap, a placement check, and a start-of-year or end-of-year check across the whole subject.</p>
+  <p>All thresholds (check length, pass marks, recap spacing, the mastered rule, placement rule, time targets) are starting values. They belong in app configuration per age, not in the content, and get tuned from real data.</p>
+</section>
+
+<section id="curricula">
+  <h2>Curricula and standards</h2>
+  <p>One de-DE curriculum on the KMK standards; no curricula per Bundesland for now (NRW, Bayern, Baden-Württemberg and Berlin/Brandenburg Lehrpläne are kept as reference only). One en-GB curriculum for England.</p>
+
+  <h3>Frameworks</h3>
+  <div class="tbl"><table>
+    <tr><th>Id</th><th>Document</th><th class="n">Standards</th><th>Used by</th></tr>
+    <tr><td class="k">kmk-mathe-2022</td><td>KMK Bildungsstandards Mathematik, Primarbereich (23.06.2022)</td><td class="n">65</td><td>de-DE Mathe</td></tr>
+    <tr><td class="k">kmk-deutsch-2022</td><td>KMK Bildungsstandards Deutsch, Primarbereich (23.06.2022)</td><td class="n">114</td><td>de-DE Deutsch</td></tr>
+    <tr><td class="k">kmk-fremdsprachen-gs-2013</td><td>KMK report, Fremdsprachen in der Grundschule (2013), target A1 by end of Klasse 4</td><td class="n">9</td><td>de-DE Englisch</td></tr>
+    <tr><td class="k">eyfs-2026</td><td>EYFS statutory framework, from 1 September 2026 (Early Learning Goals)</td><td class="n">36</td><td>en-GB Reception</td></tr>
+    <tr><td class="k">nc-maths-2014</td><td>National Curriculum in England, mathematics, KS1 and KS2</td><td class="n">241</td><td>en-GB Maths</td></tr>
+    <tr><td class="k">nc-english-2014</td><td>National Curriculum in England, English, KS1 and KS2</td><td class="n">220</td><td>en-GB English</td></tr>
+    <tr><td class="k">nc-languages-2014</td><td>National Curriculum in England, languages, KS2</td><td class="n">12</td><td>en-GB French</td></tr>
+  </table></div>
+  <p>Each standard has a <code>code</code> (for example <code>kmk-m22.zo.2.3</code>), the document's own <code>text</code> verbatim, a <code>page</code> and a <code>band</code> (<code>end-klasse-4</code>, <code>year-3</code>, <code>ks2</code>, <code>elg</code>). Each skill lists the codes it satisfies. Standards an app cannot teach (group discussion, a library visit, scenic play) are listed as out of scope with a reason: 10 in de-DE, 23 in en-GB.</p>
+
+  <h3>Skills placed per year</h3>
+  <div class="tbl"><table>
+    <tr><th>de-DE year</th><th class="n">Mathe</th><th class="n">Deutsch</th><th class="n">Englisch</th><th>en-GB year</th><th class="n">Maths</th><th class="n">English</th><th class="n">French</th></tr>
+    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Reception</td><td class="n">14</td><td class="n">32</td><td class="n"></td></tr>
+    <tr><td>Klasse 1</td><td class="n">41</td><td class="n">51</td><td class="n"></td><td>Year 1</td><td class="n">29</td><td class="n">32</td><td class="n"></td></tr>
+    <tr><td>Klasse 2</td><td class="n">63</td><td class="n">46</td><td class="n"></td><td>Year 2</td><td class="n">53</td><td class="n">29</td><td class="n"></td></tr>
+    <tr><td>Klasse 3</td><td class="n">51</td><td class="n">42</td><td class="n"></td><td>Year 3</td><td class="n">50</td><td class="n">20</td><td class="n"></td></tr>
+    <tr><td>Klasse 4</td><td class="n">48</td><td class="n">35</td><td class="n"></td><td>Year 4</td><td class="n">39</td><td class="n">16</td><td class="n"></td></tr>
+    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Year 5</td><td class="n">49</td><td class="n">17</td><td class="n"></td></tr>
+    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Year 6</td><td class="n">25</td><td class="n">17</td><td class="n"></td></tr>
+    <tr><td>Stufe 0</td><td class="n"></td><td class="n"></td><td class="n">14</td><td>French year 1</td><td class="n"></td><td class="n"></td><td class="n">14</td></tr>
+    <tr><td>1. Lernjahr</td><td class="n"></td><td class="n"></td><td class="n">28</td><td>French year 2</td><td class="n"></td><td class="n"></td><td class="n">28</td></tr>
+    <tr><td>2. Lernjahr</td><td class="n"></td><td class="n"></td><td class="n">16</td><td>French year 3</td><td class="n"></td><td class="n"></td><td class="n">11</td></tr>
+    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>French year 4</td><td class="n"></td><td class="n"></td><td class="n">8</td></tr>
+    <tr><td><b>Total</b></td><td class="n"><b>203</b></td><td class="n"><b>174</b></td><td class="n"><b>58</b></td><td><b>Total</b></td><td class="n"><b>259</b></td><td class="n"><b>163</b></td><td class="n"><b>61</b></td></tr>
+  </table></div>
+
+  <h3>Foreign-language learning years</h3>
+  <p>The foreign language counts by learning year, because schools start it at different ages. Placement in a learning year is an expectation, not a gate.</p>
+  <div class="tbl"><table>
+    <tr><th>Learning year</th><th>Usually in</th><th>Note</th></tr>
+    <tr><td><code>stufe-0</code> (Englisch)</td><td>Klasse 1 or 2, optional</td><td>Oral only: listening, songs, first words, no reading</td></tr>
+    <tr><td><code>lernjahr-1</code></td><td>Klasse 3</td><td>Where most Länder start English</td></tr>
+    <tr><td><code>lernjahr-2</code></td><td>Klasse 4</td><td></td></tr>
+    <tr><td><code>ly-1</code> to <code>ly-4</code> (French)</td><td>Year 3 to Year 6</td><td>KS2 languages are statutory from Year 3</td></tr>
+  </table></div>
+  <p>A child ready early in Stufe 0 moves on to Lernjahr 1. An older beginner starts Lernjahr 1 and gets the Stufe 0 skills first, in the 8 to 10 presentation.</p>
+
+  <h3>Locale facets</h3>
+  <p>Market differences that need no separate skill. The app applies them.</p>
+  <div class="tbl"><table>
+    <tr><th>Facet</th><th>de-DE</th><th>en-GB</th></tr>
+    <tr><td class="k">currency</td><td>euro, cent</td><td>pound, pence</td></tr>
+    <tr><td class="k">number-format</td><td>3.847 and 2,5</td><td>3,847 and 2.5</td></tr>
+    <tr><td class="k">operation-signs</td><td>· and :</td><td>× and ÷</td></tr>
+    <tr><td class="k">time-format</td><td>24-hour in writing, "Viertel nach"</td><td>12-hour with am and pm, "quarter past"</td></tr>
+    <tr><td class="k">date-format</td><td>12.10.2026</td><td>12/10/2026</td></tr>
+    <tr><td class="k">written-subtraction</td><td>abziehen</td><td>column method with exchange</td></tr>
+    <tr><td class="k">script</td><td>Druckschrift, then a Schreibschrift</td><td>print, then joined</td></tr>
+  </table></div>
+</section>
+
+<section id="player">
+  <h2>Task player</h2>
+  <p>Field names follow the Twist question schemas in schoolido-learning (<code>schemas/question-types</code>), with asset bank ids where those schemas have image and audio URLs. Counts are tasks in the drafted lessons.</p>
+
+  <div class="tbl"><table>
+    <tr><th>Type</th><th class="n">Tasks</th><th>Backend enum</th><th>App today</th><th>Needed</th></tr>
+    <tr><td class="k">multiple_choice</td><td class="n">267</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Per-option feedback and audio</td></tr>
+    <tr><td class="k">true_false</td><td class="n">195</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Question spoken from <code>say</code>; buttons read Ja / Nein, Yes / No</td></tr>
+    <tr><td class="k">image_multiple_choice</td><td class="n">185</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Options can be counted groups (<code>{object, count, layout}</code>) or drawn components (dots, ten-frame)</td></tr>
+    <tr><td class="k">audio_choice</td><td class="n">136</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Add a case to <code>mapByType</code>; options can be text, pictures or colour swatches</td></tr>
+    <tr><td class="k">fill_in_blank</td><td class="n">73</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Several gaps, list <code>answer</code>; drawn component above the frame</td></tr>
+    <tr><td class="k">tap_to_count</td><td class="n">52</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Any bank picture, row or scattered on a loose grid; today 14 bundled items</td></tr>
+    <tr><td class="k">matching</td><td class="n">33</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Sides can be picture, drawn component or text, each with its own spoken line</td></tr>
+    <tr><td class="k">tracing</td><td class="n">24</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Writing lines; <code>mode: copy</code> (model on the left, no guide); numeral 10; never hints</td></tr>
+    <tr><td class="k">ordering</td><td class="n">23</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Picture cards (dot patterns) as well as numbers; extra cards that do not belong</td></tr>
+    <tr><td class="k">speak</td><td class="n">18</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it. Keep it unmarked: an "I said it" button in place of the 1.8 s auto-correct</td></tr>
+    <tr><td class="k">point_on_line</td><td class="n">12</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Labels and jump arcs; marker never shows the number</td></tr>
+    <tr><td class="k">sorting</td><td class="n">10</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Map it; 2 to 5 bins, a bin can show a picture or swatch and speak</td></tr>
+    <tr><td class="k">text_input</td><td class="n">10</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Number keypad</td></tr>
+    <tr><td class="k">highlight_in_text</td><td class="n">7</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: letter or word cards, tap every match, then Prüfen / Check</td></tr>
+    <tr><td class="k">drag_and_drop_count</td><td class="n">2</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: move counters in a Zwanzigerfeld until the first row is full</td></tr>
+  </table></div>
+  <p>Not used yet: <code>clock_hands_drag</code>, <code>drag_and_drop</code>, <code>multi_select</code>, <code>pick_side</code>. Each gets documented in <code>docs/task-types.md</code> when a lesson first needs it, and that file lists every interaction of each type with a lesson that uses it.</p>
+
+  <h3>Behaviour across all types</h3>
+  <div class="tbl"><table>
+    <tr><th>Behaviour</th><th>New</th><th>App today</th></tr>
+    <tr><td>Hints</td><td>3 in the full stage, 1 in some, none in the none stage or a Check. Each opens on a miss, with its own audio.</td><td>Any number on a bulb tap, text only, hint audio ignored</td></tr>
+    <tr><td>Feedback</td><td>Per wrong option (<code>feedback</code> keyed by option)</td><td>One correct and one incorrect message per question</td></tr>
+    <tr><td>Misses</td><td>Practise: retry; in the none stage the answer is shown after two misses. Check: first try only, no retry.</td><td>Unlimited retries; the correct answer is never shown</td></tr>
+    <tr><td>Option audio</td><td>A speaker on each option when hearing it does not give the answer away. Never on audio_choice, letters or syllables, or counted groups. <code>option_audio</code> overrides per task.</td><td>None</td></tr>
+    <tr><td>Flash</td><td><code>show.flash: 2</code> shows the picture for 2 seconds and covers it; "See it again" repeats it, except in a Check</td><td>None</td></tr>
+    <tr><td>Voices</td><td>Two per curriculum: one teaches and practises, a second, calmer one speaks every Check. Both arrive as recorded clips.</td><td>One clip per question</td></tr>
+    <tr><td>Between tasks</td><td>Short spoken phrases per curriculum (correct, try again, hint, show answer, stage done, check start, lesson done), picked at random from <code>assets/phrases.yaml</code></td><td>Sound effects only</td></tr>
+    <tr><td>Learn screens</td><td>Text, spoken line, picture or drawn component; not scored</td><td>Content steps submit <code>correct: true</code> with full XP</td></tr>
+  </table></div>
+
+  <h3>Drawn components</h3>
+  <p>The app draws these from data in the task; none of them is a picture file. Uses are references in the drafted lessons, including options.</p>
+  <div class="tbl"><table>
+    <tr><th>Component</th><th>Data</th><th class="n">Uses</th><th>App today</th></tr>
+    <tr><td class="k">dots</td><td><code>count</code>, <code>layout</code> (dice, five-structure, row, scattered), <code>colour_split</code>, or <code>groups: [4, 3]</code> to compare</td><td class="n">303</td><td><span class="chip s-no">no</span> dice are images</td></tr>
+    <tr><td class="k">ten-frame</td><td><code>filled</code>, <code>colour_split</code></td><td class="n">105</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">colour-swatch</td><td><code>colour</code>; values shared with recoloured pictures</td><td class="n">44</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">number-house</td><td><code>roof</code>, <code>rows: [[3, null]]</code></td><td class="n">35</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">zwanzigerfeld</td><td><code>filled: [8, 5]</code>, <code>move</code></td><td class="n">26</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">writing-lines</td><td><code>text</code>, <code>mode</code> (trace, copy), <code>arrows</code></td><td class="n">26</td><td><span class="chip s-warn">partial</span> glyph guides, no lines</td></tr>
+    <tr><td class="k">letter-card</td><td><code>text</code>, cards split on spaces</td><td class="n">25</td><td><span class="chip s-warn">partial</span> plain text cards</td></tr>
+    <tr><td class="k">part-whole</td><td><code>whole</code>, <code>parts: [2, null]</code> (England)</td><td class="n">20</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">number-line</td><td><code>from</code>, <code>to</code>, <code>labels</code>, <code>jumps</code></td><td class="n">16</td><td><span class="chip s-ok">yes</span> no jumps; <code>step</code> not mapped</td></tr>
+    <tr><td class="k">rechenstrich</td><td>empty number line with jumps</td><td class="n">6</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">syllable-arcs</td><td><code>word</code></td><td class="n">4</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">word-card</td><td><code>text</code></td><td class="n">2</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">equation</td><td>an equation</td><td class="n">1</td><td><span class="chip s-no">no</span></td></tr>
+  </table></div>
+  <p><code>assets/drawn.yaml</code> also lists components no lesson uses yet: base-ten, hundred-square, clock, coins, shape, bar-chart.</p>
+
+  <h3>Assets</h3>
+  <ul class="plain">
+    <li>Tasks name a bank id (<code>object: apple</code>, <code>drawn: ten-frame</code>, <code>sound: de.l</code>), never a file. One picture per concept serves every language.</li>
+    <li>Pictures: 512 px transparent PNGs, 8 to 23 KB each, 74 so far. Colour versions are <code>objects/&lt;id&gt;.&lt;colour&gt;.png</code>.</li>
+    <li>Sounds: phonemes and syllables per language in <code>assets/sounds.yaml</code>. Narration clips per task line, option, hint and phrase are generated by <code>narration.py</code>.</li>
+  </ul>
+
+  <h3>Record fields that differ from the Twist schemas</h3>
+  <div class="tbl"><table>
+    <tr><th>Type</th><th>Lesson record</th><th>Twist schema</th></tr>
+    <tr><td class="k">multiple_choice</td><td><code>options</code> as strings, <code>answer</code> as the value</td><td>options as objects with <code>label</code>; answer as the correct option's id</td></tr>
+    <tr><td class="k">ordering</td><td><code>answer</code></td><td><code>correct_arrangement</code>; options get ids</td></tr>
+    <tr><td class="k">sorting</td><td>option <code>bin</code></td><td><code>correct_bin_id</code></td></tr>
+    <tr><td class="k">matching</td><td><code>pairs[].left</code>, <code>right</code> as bank ids with <code>say</code></td><td><code>{ label, image_url }</code>; <code>say</code> becomes that side's narration</td></tr>
+    <tr><td class="k">all</td><td><code>object</code>, <code>drawn</code>, <code>sound</code> bank ids</td><td>image and audio URLs</td></tr>
+  </table></div>
+</section>
+
+<section id="dashboard">
+  <h2>Parent dashboard</h2>
+  <h3>Options a parent sets</h3>
+  <div class="tbl"><table>
+    <tr><th>Option</th><th>Today</th><th>New</th></tr>
+    <tr><td><b>Curriculum</b></td><td>Not asked</td><td>Deutschland (de-DE) or England (en-GB). Sets the subjects, the year list and the wording.</td></tr>
+    <tr><td><b>Year</b></td><td>Grade pills from <code>/content/grades/active</code>; fallback Pre-K, Kindergarten, Grade 1 to 8 (add child) or 1 to 12 (settings); level parsed from the label with <code>/\d+/</code></td><td>The curriculum's years: Klasse 1 to 4, or Reception and Year 1 to 6. Send the year id; "Reception" has no digit to parse.</td></tr>
+    <tr><td><b>Foreign language</b></td><td>Not asked</td><td>de-DE: English since Klasse 1 or 2 (Stufe 0), from Klasse 3 (1. Lernjahr), or not yet. en-GB: French year 1 to 4. Default from the year; see open decisions.</td></tr>
+    <tr><td><b>Subjects</b></td><td>MainDashboard hard-codes german, maths, english; the learning goal lists math, english, german, science, reading, writing (stored in localStorage only)</td><td>From the curriculum: Mathe, Deutsch, Englisch, or Maths, English, French. Reading and writing sit inside Deutsch and English; there is no science.</td></tr>
+    <tr><td><b>Date of birth</b></td><td>Any date in the form; backend accepts ages 5 to 17</td><td>From age 4 (Reception). Age picks the presentation, separately from the year.</td></tr>
+    <tr><td><b>Narration</b></td><td>On / off toggle</td><td>Lessons for ages 4 to 7 depend on audio, and <code>no_reading</code> lessons cannot be done without it. Hide or lock the toggle for those ages.</td></tr>
+    <tr><td><b>Difficulty</b></td><td>EASY, ADAPTIVE, CHALLENGING</td><td>Placement checks and the level per progression decide where a child works. Keep, repurpose or drop; see open decisions.</td></tr>
+    <tr><td><b>Session length</b></td><td>10 to 45 min (add child), 15 to 60 (settings)</td><td>Lessons run 8 to 15 min by age. The daily goal can stay; it now means about one to three lessons.</td></tr>
+    <tr><td><b>Primary language</b></td><td>English, French, German, Spanish …</td><td>Unchanged, and separate from the curriculum.</td></tr>
+  </table></div>
+
+  <h3>What parents see</h3>
+  <div class="tbl"><table>
+    <tr><th>View</th><th>Today</th><th>New</th></tr>
+    <tr><td>Subject status</td><td>"On track" at 70 % module completion or more, "Gap identified" at 40 to 69 %, "Week behind" below</td><td>Standing: ahead, on track or catching up, from the share of the year's skills secure or mastered against how far the school year has run</td></tr>
+    <tr><td>Progress unit</td><td>Module completion and score %</td><td>Skills, each shown as its "I can …" / "Ich kann …" statement with one of six states, grouped by topic</td></tr>
+    <tr><td>Milestones</td><td>Modules needed for the next subject level</td><td>Skills secure in the year; skills that need a recap</td></tr>
+    <tr><td>Curriculum link</td><td>None</td><td>Optional: per skill, the standards it satisfies, with code and quoted text</td></tr>
+    <tr><td>Placement</td><td>None</td><td>Result of a placement check: the level per learning progression</td></tr>
+    <tr><td>XP, streaks, minutes, attendance</td><td>Shown</td><td>Unchanged</td></tr>
+  </table></div>
+  <p>The dashboard UI ships in en and de. An en-GB parent needs British wording (Maths, Year 2, Practise), and year labels should come from the backend in the parent's language instead of the untranslated "Grade N".</p>
+</section>
+
+<section id="backend">
+  <h2>Work: backend <span class="chip c-be">IST-B2C/backend</span></h2>
+  <ol class="work">
+    <li><b>Child profile</b><p>Add curriculum (<code>de-DE</code>, <code>en-GB</code>), year id and foreign-language learning year to <code>EntityStudent</code> and the create and update DTOs. Allow age 4 in <code>ValidStudentAge</code>. Replace or extend <code>AgeTier</code> with the bands 4 to 5, 6 to 7 and 8 to 10.</p></li>
+    <li><b>Curriculum tables</b><p>Curriculum, year, framework, standard, learning progression, skill (with can-do in de and en, hard and soft prerequisites, standard codes, topic label), and placement (curriculum, year, skill, position). Ids are strings from the records. Add FRENCH to <code>EnumSubjectCode</code>, or key subjects by domain.</p></li>
+    <li><b>Lessons, activities, tasks</b><p>A lesson belongs to one skill and one curriculum. An activity has a kind (warm-up, learn, practise, check) and its setting; a practise task carries its stage (full, some, none); a check carries its size (quick, skill, timed). This can extend <code>EntityLearningModule</code> and <code>EntityLearningStep</code> or be new tables.</p></li>
+    <li><b>Import</b><p>Read the twist records (through a converter, see open decisions). Fail on an unknown task type instead of falling back to MULTIPLE_CHOICE (<code>ServiceContentImport.mapQuestionType</code>). Take question language from the record instead of the hard-coded <code>"en"</code>; foreign-language lessons have <code>language</code> and <code>target_language</code>. Store hints per question in order, feedback per option, <code>option_audio</code>, <code>flash</code> and drawn-component data.</p></li>
+    <li><b>Assets</b><p>Resolve bank ids to URLs: pictures and colour versions, sounds, narration clips per task line, option, hint and phrase, and per voice.</p></li>
+    <li><b>Answer events</b><p>Record per task: first try right or wrong, hints opened, answer shown, activity, stage, check size, time. Mastery is computed from these, using the "what counts" table.</p></li>
+    <li><b>Skill mastery</b><p>A table per child and skill: state, when it became secure, recap schedule and results. Module stars can stay as a per-lesson reward but no longer stand for mastery.</p></li>
+    <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with spacing at about 2 days, 1 week, 3 weeks and 2 months; failed recaps set needs_recap. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
+    <li><b>Placement check</b><p>An adaptive endpoint per learning progression that writes Secure for passed skills and returns the next skill to learn.</p></li>
+    <li><b>Next and standing</b><p>Suggest the next skill from prerequisites at least Practised. Compute standing per subject for the dashboard, which needs a school-year start date per curriculum. Keep thresholds in configuration per age.</p></li>
+  </ol>
+</section>
+
+<section id="app">
+  <h2>Work: mobile app <span class="chip c-app">ist-schoolido</span></h2>
+  <ol class="work">
+    <li><b>Map the dropped types</b><p>Add <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> to <code>mapByType</code> in <code>components/quiz/utils/questionMapper.ts</code>. Change <code>Speak.tsx</code> from auto-correct after 1.8 s to an "I said it" button, unmarked.</p></li>
+    <li><b>Build the missing types</b><p><code>highlight_in_text</code> and <code>drag_and_drop_count</code>, registered in <code>components/quiz/index.ts</code>, <code>useQuiz.ts</code> answer checking and <code>canSubmit.ts</code>.</p></li>
+    <li><b>Drawn components</b><p>One renderer for the 13 components above, usable as the task's <code>show</code>, as an option and as a matching or sorting side. Start with dots, ten-frame, colour-swatch and number-house, which cover most uses.</p></li>
+    <li><b>Activity-aware player</b><p>Play Warm-up, Learn, Practise and Check in order. Show the stage marker between Practise stages and a Check intro ("5 questions, no hints, your first try counts"). Learn screens are not scored.</p></li>
+    <li><b>Hints and misses</b><p>Hints open on a miss, limited by stage (3, 1, 0), with audio. In the none stage show the answer after two misses. In a Check allow one try and no hints.</p></li>
+    <li><b>Feedback and audio</b><p>Per-option feedback, a speaker on each option following the option-audio rules, the second voice in Checks, and phrases between tasks.</p></li>
+    <li><b>Smaller additions</b><p><code>show.flash</code> with "See it again"; tracing copy mode, writing lines and the numeral 10; tap_to_count with any bank picture; counted groups and dot patterns as options in image_multiple_choice and ordering; two pictures side by side in <code>show</code>.</p></li>
+    <li><b>Child profile and next</b><p>Store curriculum, year and age band; take the content language from the curriculum instead of the device locale. Suggest the next skill and, for skills with more than two lessons, the next lesson on a later day. Add practice sessions, topic recaps and the placement check.</p></li>
+  </ol>
+</section>
+
+<section id="parents">
+  <h2>Work: parent dashboard <span class="chip c-pd">IST-B2C/Parent-dashboard</span></h2>
+  <ol class="work">
+    <li><b>Curriculum and year</b><p>Add the curriculum choice to <code>ChildInfoForm.tsx</code> and <code>StudentDefaultSettings.tsx</code>. Load years per curriculum from the backend and send the year id. Retire the grade fallbacks (<code>DEFAULT_GRADE_PILLS</code>, <code>GRADE_OPTIONS</code>) and the label parsing in <code>utils/studentMapper.ts</code> and <code>utils/storage.ts</code>.</p></li>
+    <li><b>Foreign language</b><p>A learning-year option, defaulted from the year.</p></li>
+    <li><b>Subjects</b><p>Subjects from the curriculum in <code>MainDashboard.tsx</code> and the learning goal, instead of the hard-coded lists.</p></li>
+    <li><b>Skills view</b><p>Per subject and topic, each skill's statement and state, using the existing unused <code>DomainProgress</code> and <code>TopicProgress</code> types as a starting point. Optionally the standards per skill.</p></li>
+    <li><b>Standing</b><p>Replace track, gap and behind in <code>KidsPerformancePage.tsx</code> with ahead, on track and catching up from the backend.</p></li>
+    <li><b>Age and narration</b><p>Allow a date of birth from age 4; hide or lock the narration toggle for ages 4 to 7.</p></li>
+  </ol>
+</section>
+
+<section id="open">
+  <h2>Open decisions</h2>
+  <div class="tbl"><table>
+    <tr><th>Question</th><th>Who</th><th>Note</th></tr>
+    <tr><td>Who builds the converter from twist YAML to the importer's JSON, and where it lives</td><td><span class="chip c-be">backend</span> R&amp;D</td><td>R&amp;D never writes into schoolido-learning, so the converter cannot write there</td></tr>
+    <tr><td>Does the parent set the foreign-language learning year, or does the app infer it from the year and a short check?</td><td><span class="chip c-pd">dashboard</span> product</td><td>Most Länder start English in Klasse 3; some in Klasse 1</td></tr>
+    <tr><td>School-year start per curriculum for standing</td><td><span class="chip c-be">backend</span> product</td><td>England starts in September; German Länder start between late July and mid September</td></tr>
+    <tr><td>Keep, repurpose or drop the difficulty preference</td><td>product</td><td>Placement and level take over its job</td></tr>
+    <tr><td>Today's Twist modules: keep, adapt or archive</td><td>R&amp;D product</td><td>Lessons can reference a reused module in <code>twist_reuse</code>; 19 DaZ-style German lessons and first-language English in the German app fit no skill</td></tr>
+    <tr><td>Handwriting scripts in Germany</td><td>R&amp;D</td><td>All four as options, or the one the reference Länder share</td></tr>
+    <tr><td>British or American English for Englisch in Germany</td><td>R&amp;D</td><td>Drafts use British English</td></tr>
+    <tr><td>Who owns the mastery thresholds config</td><td><span class="chip c-be">backend</span> <span class="chip c-app">app</span></td><td>Thresholds are per age and tuned from data</td></tr>
+  </table></div>
+</section>
+
+<p class="foot">Built from <code>rnd/twist</code> on branch <code>curriculum-phase1</code> (commit 4f0100f8) and a read of the three repos on 13 October 2026. File and line references for the current code come from that read; check them against your branch before acting.</p>
+</main>
+</div>
+</body>
+</html>

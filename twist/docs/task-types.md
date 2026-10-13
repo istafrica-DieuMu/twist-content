@@ -49,7 +49,7 @@ for amounts:
 | `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
 | `hundred-square` | `highlight: [..]`, `hide: [..]` | 1 to 100 in rows of ten; hidden cells show ? |
 | `base-ten` | `hundreds`, `tens`, `ones` | hundred flats (10 by 10, two to a column), tens rods and ones cubes; more than ten loose cubes start a new pair of columns |
-| `place-value-chart` | `columns: [tens, ones]` (or with `hundreds`, `thousands` in front), `values: [4, null]` | Stellentafel; T H Z E in German, Th H T O in English; null is a gap |
+| `place-value-chart` | `columns: [tens, ones]` (or with `hundreds`, `thousands`, `ten-thousands`, `hundred-thousands`, `millions` in front), `values: [4, null]` | Stellentafel; HT ZT T H Z E in German, HTh TTh Th H T O in English; six columns shrink to fit; null is a gap |
 | `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
 
 ## Types in use
@@ -116,6 +116,11 @@ Interactions:
 | Build a compound from two pictures | "Apfel und Baum. Welches Wort entsteht?" over `{ objects: [apple, tree] }`, options Apfelbaum, Baumapfel, Apfelhaus | compound-nouns |
 | What a compound means | "Was ist ein Baumhaus?", options ein Haus, ein Baum | compound-nouns |
 | Article of a compound | "der, die oder das? Baumhaus" over the two pictures; the last word decides | compound-nouns |
+| Make a noun with an ending | "hoffen → ?", options die Hoffnung, die hoffnung, die Hoffheit | noun-endings |
+| Which word is (not) a noun | "Welches Wort ist ein Nomen?" mutig, Mut, mutiger; the article test | abstract-nouns |
+| Which sentence is written correctly | three spellings of one sentence, `option_audio: false` | abstract-nouns |
+| Ask the case question | "Wen oder was? \"Die Katze fängt eine Maus.\"" with the question in `say`, options the noun groups | noun-cases |
+| Which case is it in | "In welchem Fall steht \"dem Kind\"?", options Nominativ, Dativ, Akkusativ | noun-cases |
 | What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
 | Round to tens or hundreds | "Runde 471 auf Hunderter." over a number line with the arrow at 471, options 400, 500, 470 | round-to-1000 |
 | Which clue makes the riddle unique | options are clue sentences; one names the missing digit | number-puzzles-to-1000 |
@@ -149,6 +154,7 @@ Interactions:
 | Same first sound | "Was fängt so an wie Sonne?" over `{ object: sun }`, options sock, fish, ball | initial-sound |
 | Hear an instruction, find the action (English) | hears "Stand up!", taps the child standing up of three action pictures | classroom-phrases |
 | Hear a word, find the picture (English) | hears "Mouse.", taps the mouse; the words sound like German ones (Maus, mouse) | familiar-words |
+| Read a word, find its picture (English) | `show: { drawn: letter-card, text: "cloud" }`, options cloud, clown, clock (same first sounds, so only reading works) | en-GB new-graphemes |
 | Blocks or chart for a number | "Wo sind 36?" options three `base-ten` pictures; or "Welche Stellentafel zeigt 53?" three `place-value-chart` pictures | bundle-tens, place-value-to-100 |
 | Hundred field for a number | "Wo sind 50?" three `hundred-field` pictures | hundred-field |
 
@@ -178,6 +184,8 @@ Interactions:
 | Number word to numeral | hears "Sieben." (`audio: { de: "Sieben." }`), taps 7 among 1, 7, 9 | write-numerals-to-10 |
 | Blend sounds into a word | hears "c ... a ... t." (pure sounds, never letter names), taps the cat of cat, car, cup | en-GB oral-blending |
 | A heard word's first or last sound | hears "Bus.", taps the picture that starts with the same sound (ball) | en-GB oral-blending |
+| What a conversation is about | hears "I'm hungry. Can I have an apple, please?", taps "um Essen" of three German options | en-short-dialogues |
+| A detail from a conversation | hears "Is your bag green? No, it's yellow.", taps "gelb"; the wrong word comes first so the child listens to the end | en-short-dialogues |
 
 ## `true_false`
 
@@ -230,6 +238,9 @@ Interactions:
 | Split into place values | "Zerlege 683.", frame "683 = _ + _ + _" | place-value-to-1000 |
 | Round two ways | "Runde 738.", frame "auf Zehner: _   auf Hunderter: _" | round-to-1000 |
 | Join or split a compound | "Hand + Schuh = _" (options include HandSchuh for the one-capital rule); "Schneemann = _ + _" | compound-nouns |
+| Noun ending | "die Ehrlich_", options heit, keit, ung | noun-endings |
+| Missing grapheme | over a bird picture, frame "b_rd", options ir, ou, ay | en-GB new-graphemes |
+| Article in a case | "Ich gebe _ Katze _ Futter.", options der, die, das, dem | noun-cases |
 
 ## `text_input`
 
@@ -278,7 +289,7 @@ A number line; the child taps a tick and taps Prüfen. The marker shows
 where they tapped, never the number.
 
 Fields: `show: { drawn: number-line, from, to, labels, jumps, step }`,
-`answer` (a number). `step` (1, 5, 10, 100 or 1000; 1 if left out) sets which ticks
+`answer` (a number). `step` (1, 5, 10, 100, 1000 or 100000; 1 if left out) sets which ticks
 are drawn and can be tapped, so a line from 0 to 100 or 1000 has ticks a child's
 finger can hit. The answer must sit on a tick.
 
@@ -302,8 +313,12 @@ Prüfen.
 Fields: `show: { drawn: letter-card, text: "L o l M L a" }` (cards split
 on spaces), `spans` (the cards to find).
 
-Interactions: every upper- and lower-case form of a letter
-(letters-l-o-a-m).
+Interactions:
+
+| Interaction | Example | Used in |
+|---|---|---|
+| Every form of a letter | every upper- and lower-case L in "L o l M L a" | letters-l-o-a-m |
+| Every noun in a sentence written in small letters | "die übung macht mir freude", spans übung, freude | noun-endings, abstract-nouns |
 
 ## `tracing`
 
@@ -353,6 +368,7 @@ Interactions:
 | Same first sound | Sonne ↔ Socke, Fisch ↔ Frosch, Ball ↔ Banane | initial-sound |
 | First word with its compound | a tree picture ↔ Baumhaus; the picture says its word | compound-nouns |
 | Compound with its last part or its article | Regenschirm ↔ Schirm; Haustür ↔ die, with `option_audio: false` | compound-nouns |
+| Case question with its case | Wem? ↔ Dativ, four pairs | noun-cases |
 
 Twist: `pairs[].left` and `right` become `{ label, image_url }`; `say`
 becomes the narration of that side.
@@ -373,6 +389,7 @@ Interactions:
 | Pictures by colour | strawberry, apple → red; frog, leaf → green | en-colours |
 | Words by syllables | bins of one, two and three claps; Ball, Hase, Banane ... (each picture says its word) | syllables |
 | Words by first sound | bins headed by a sun and a fish; Sonne, Socke / Fisch, Frosch | initial-sound |
+| Words by the sound a spelling makes | bins headed by a cow and a snowman; text cards now, show, town, slow with `option_audio: false` (hearing the cards would give the sound away). Options can be `{ text, bin }` and bins can be `{ show: { text }, say }` | en-GB alternative-pronunciations |
 
 ## `ordering`
 

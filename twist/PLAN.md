@@ -461,10 +461,10 @@ topic: stop and check in before the next.
 | 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2, both drafted 2026-10-13: 6 lessons, 142 tasks; the Stellentafel gained a T column |
 | 5 | Deutsch | Klasse 1 | Laute hören | 3, all drafted 2026-10-13: 6 lessons, 134 tasks |
 | 6 | Deutsch | Klasse 2 | Nomen | 1, drafted 2026-10-13: compound nouns, 3 lessons |
-| 7 | Deutsch | Klasse 3 | Nomen | 2 |
-| 8 | Deutsch | Klasse 4 | Die vier Fälle | 1 |
+| 7 | Deutsch | Klasse 3 | Nomen | 2, both drafted 2026-10-13: noun endings and abstract nouns, 4 lessons |
+| 8 | Deutsch | Klasse 4 | Die vier Fälle | 1, drafted 2026-10-13: 3 lessons |
 | 9 | Englisch | Stufe 0 | Hören | 2, all drafted 2026-10-13: 4 lessons, 89 tasks |
-| 10 | Englisch | Lernjahr 1 | Hören | 1 |
+| 10 | Englisch | Lernjahr 1 | Hören | 1, drafted 2026-10-13: short conversations, 2 lessons |
 | 11 | Englisch | Lernjahr 2 | Hobbys und Sport | 1 |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
@@ -556,4 +556,7 @@ en-GB is its own step later.
 | 5 | Maths | Year 2 | Numbers to 100 | 5, all drafted 2026-10-13: 10 lessons, 230 tasks; place value adds the part-whole model and partitioning in more than one way (34 = 20 + 14), comparing uses <, > and = and adds one more, ten more |
 | 6 | Maths | Year 3 | Numbers to 1000 | 8, all drafted 2026-10-13: 16 lessons, 384 tasks; England's own content: 10 or 100 more or less, counting in 4s, 8s and 50s, digit cards, estimating with money |
 | 7 | Maths | Year 4 | Numbers to 10 000 | 2, both drafted 2026-10-13: 6 lessons, 142 tasks; adds 1000 more or less and rounding to the nearest 1000 |
+| 8 | Maths | Year 5 | Numbers to 1 000 000 | 2, both drafted 2026-10-13: 4 lessons, 92 tasks; six-column chart, powers of ten, sensible rounding in contexts |
+| 9 | Maths | Year 6 | Numbers to 10 000 000 | 1, drafted 2026-10-13: 2 lessons, 46 tasks; the chart gains a millions column |
+| 10 | English | Year 1 | Phonics | 3, all drafted 2026-10-13: new graphemes, split digraphs, alternative pronunciations, 6 lessons; 14 new pictures for the words |
 

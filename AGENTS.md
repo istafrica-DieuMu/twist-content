@@ -42,6 +42,12 @@ one git repo.
     never edit index.html by hand. It reads the lesson records directly
     and plays the audio from twist/assets/narration/, which is not in git
     (remake it with twist/assets/tools/narration.py).
+  - handoff/: the Twist curriculum handoff to the backend, mobile app and
+    parent dashboard teams (IST-B2C/backend, ist-schoolido,
+    IST-B2C/Parent-dashboard). index.html is a standalone page, written by
+    hand, tracked in git; a copy is published as a claude.ai artifact.
+    Update it by hand when twist/ changes what those teams build, and keep
+    the published copy in step.
   - Add other outputs at the root as needed, and list them here and in
     README.md.
 
