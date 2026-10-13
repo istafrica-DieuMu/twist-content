@@ -170,6 +170,10 @@ Interactions:
 | Subjekt or Prädikat | "„Oma singt ein Lied.“ Was ist „singt“?", options Prädikat, Subjekt | sentences-subject-predicate |
 | Which words stay together | "„Die Kinder spielen im Garten.“ Welche Wörter bleiben beim Umstellen zusammen?", options one Satzglied and two word pairs that cross a boundary | sentences-move-parts |
 | How many Satzglieder | a sentence in `text`, options counts; the word count is always one distractor | sentences-move-parts |
+| Which question finds the Satzglied | "„Lena geht in die Bücherei.“ Mit welcher Frage findest du „in die Bücherei“?", options Wohin?, Woher?, Wen oder was? (or Wem?, Wann?) | sentences-objects, sentences-place-time |
+| Name the Satzglied | "Was ist „eine Geschichte“?", options Akkusativobjekt, Dativobjekt, Subjekt; or Ortsangabe, Zeitangabe | sentences-objects, sentences-place-time |
+| Which English article | "_ orange" over the picture, options a, an; or "two _" over a group, options dogs, dog, a dog | en-plurals-articles |
+| Which reply fits | the voice asks "Do you like milk?" after saying in German whether you like it, options Yes, I do. / Yes, I like. / No, I don't. | en-food |
 | Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
 
 Twist: `options` become objects with `label`; `answer` becomes the
@@ -244,6 +248,9 @@ Interactions:
 | What a conversation is about | hears "I'm hungry. Can I have an apple, please?", taps "um Essen" of three German options | en-short-dialogues |
 | A detail from a conversation | hears "Is your bag green? No, it's yellow.", taps "gelb"; the wrong word comes first so the child listens to the end | en-short-dialogues |
 | What someone can or likes to do | hears "I can swim, but I can't dance.", taps the swimming picture | en-hobbies |
+| A sound, then the picture that starts with it | plays a bank sound (`audio: { sound: en.k }`), options pictures (kite, goat, sun); each picture says its word when tapped | en-GB phonics-g-o-c-k |
+| One or many | hears "Cats." or "A frog.", options one picture and a group of the same picture (`{ object: cat, count: 4, layout: row }`, key "4") | en-plurals-articles |
+| Likes or does not like | hears "I don't like eggs.", taps one of two German sentences ("Nein, es mag keine Eier."), `option_audio: false` | en-food |
 
 ## `true_false`
 
@@ -474,6 +481,7 @@ Interactions:
 | Words by the sound a spelling makes | bins headed by a cow and a snowman; text cards now, show, town, slow with `option_audio: false` (hearing the cards would give the sound away). Options can be `{ text, bin }` and bins can be `{ show: { text }, say }` | en-GB alternative-pronunciations |
 | Sentences into fact and opinion | bins fact and opinion, text cards with `option_audio: false`; long text cards get a smaller font | en-GB fact-opinion |
 | Verbs into trennbar and nicht trennbar | bins trennbar and nicht trennbar, text cards aufräumen, verlieren, weglaufen, bekommen | verbs-compound |
+| Phrases into Ortsangabe and Zeitangabe | bins "Ortsangabe (Wo?)" and "Zeitangabe (Wann?)", cards with im and am of both kinds (im Keller, im Herbst, am Strand, am Abend) | sentences-place-time |
 
 ## `ordering`
 

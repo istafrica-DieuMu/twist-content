@@ -24,16 +24,16 @@ Per voice:
 
 ## de-DE
 
-121 of 435 placed skills drafted (28%): 121 lesson sets, 257 lessons, 5673 tasks. Narration so far about $21; 4118 clips still to make.
+124 of 435 placed skills drafted (29%): 124 lesson sets, 263 lessons, 5799 tasks. Narration so far about $21; 4118 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 28 / 41 | 5 / 51 |  | 33 / 92 |
 | klasse-2 | 23 / 63 | 9 / 46 |  | 32 / 109 |
 | klasse-3 | 19 / 51 | 10 / 42 |  | 29 / 93 |
-| klasse-4 | 5 / 48 | 7 / 35 |  | 12 / 83 |
+| klasse-4 | 5 / 48 | 8 / 35 |  | 13 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
-| lernjahr-1 |  |  | 4 / 28 | 4 / 28 |
+| lernjahr-1 |  |  | 6 / 28 | 6 / 28 |
 | lernjahr-2 |  |  | 2 / 16 | 2 / 16 |
 
 Topics, in placement order. A topic is done when every skill in it has a lesson set.
@@ -147,7 +147,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Die vier Fälle | 1 / 1 done | 3 | $0.32 |
 | klasse-4 | Deutsch | Zeitformen | 3 / 3 done | 6 | $0.71 |
 | klasse-4 | Deutsch | Verben | 2 / 2 done | 4 |  |
-| klasse-4 | Deutsch | Satzglieder | 1 / 2 started | 2 |  |
+| klasse-4 | Deutsch | Satzglieder | 2 / 2 done | 4 |  |
 | klasse-4 | Deutsch | Sätze verbinden | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Zeichensetzung | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Besondere Laute | 0 / 2 |  |  |
@@ -174,7 +174,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | stufe-0 | Englisch | Tiere und Natur | 1 / 1 done | 2 | $0.00 |
 | stufe-0 | Englisch | Sprachen vergleichen | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Hören | 1 / 3 started | 2 | $0.26 |
-| lernjahr-1 | Englisch | Sprachmuster | 1 / 4 started | 2 | $0.00 |
+| lernjahr-1 | Englisch | Sprachmuster | 3 / 4 started | 6 | $0.00 |
 | lernjahr-1 | Englisch | Sprechen | 0 / 4 |  |  |
 | lernjahr-1 | Englisch | Lesen | 0 / 3 |  |  |
 | lernjahr-1 | Englisch | Schreiben | 0 / 2 |  |  |
@@ -470,7 +470,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 314 | $0.25 | $80 |
+| de-DE | 311 | $0.25 | $77 |
 | en-GB | 412 | $0.24 | $99 |
 
 Pictures: 130 of 130 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
