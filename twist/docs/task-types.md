@@ -186,6 +186,7 @@ Interactions:
 | Number word to numeral | hears "Sieben." (`audio: { de: "Sieben." }`), taps 7 among 1, 7, 9 | write-numerals-to-10 |
 | Blend sounds into a word | hears "c ... a ... t." (pure sounds, never letter names), taps the cat of cat, car, cup | en-GB oral-blending |
 | A heard word's first or last sound | hears "Bus.", taps the picture that starts with the same sound (ball) | en-GB oral-blending |
+| Hear a tricky word, choose its spelling | hears "Heart.", options hart, heart, haert; the sound-alike spelling is always there | en-GB exception-words-ks2 |
 | What a conversation is about | hears "I'm hungry. Can I have an apple, please?", taps "um Essen" of three German options | en-short-dialogues |
 | A detail from a conversation | hears "Is your bag green? No, it's yellow.", taps "gelb"; the wrong word comes first so the child listens to the end | en-short-dialogues |
 | What someone can or likes to do | hears "I can swim, but I can't dance.", taps the swimming picture | en-hobbies |
@@ -324,6 +325,7 @@ Interactions:
 | Every noun in a sentence written in small letters | "die übung macht mir freude", spans übung, freude | noun-endings, abstract-nouns |
 | The word that does not fit | "I eat cake with a sock", spans sock | en-GB automatic-decoding |
 | Root word or suffixes of a split word | "care less ness", spans less, ness | en-GB suffixes-y2 |
+| The silent letter | "i s l a n d" split into letters, spans s | en-GB exception-words-ks2 |
 
 ## `tracing`
 
