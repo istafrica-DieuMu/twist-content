@@ -264,6 +264,20 @@ function house(roof, rows) {
   rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * rh; s += `<rect x="${x}" y="${y}" width="62" height="${rh}" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + rh / 2 + fs / 3}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
   return `<svg viewBox="0 0 180 ${80 + rows.length * rh}" width="${rows.length > 4 ? 150 : 180}">${s}</svg>`;
 }
+// Schriftliches Rechnen: numbers right-aligned in columns, the sign before the last row, the
+// Übertrag small above the line, then the result; "_" in a result is a gap, "?" a highlighted digit.
+function writtenCalc(o) {
+  const rows = o.rows ?? [], res = o.result ?? "", carry = o.carry ?? "";
+  const n = Math.max(...rows.map((r) => r.length), res.length, carry.length) + 1, cw = 30, W = n * cw + 16;
+  let y = 34, s = "";
+  const put = (str, yy, size, colour) => { const k = n - str.length; [...str].forEach((ch, i) => { if (ch === " ") return; const x = 8 + (k + i) * cw + cw / 2;
+    s += ch === "_" ? `<rect x="${x - 11}" y="${yy - 24}" width="22" height="28" rx="4" fill="#f6effc" stroke="#8e3bd1" stroke-width="2"/>` : `<text x="${x}" y="${yy}" text-anchor="middle" font-size="${size}" font-weight="700" fill="${ch === "?" ? "#8e3bd1" : colour}">${esc(ch)}</text>`; }); };
+  rows.forEach((r, i) => { put(r, y, 28, "#2b0f45"); if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" ? "−" : "+"}</text>`; y += 36; });
+  if (carry.trim()) { put(carry, y - 6, 16, "#8e3bd1"); y += 6; }
+  s += `<line x1="8" y1="${y - 22}" x2="${W - 8}" y2="${y - 22}" stroke="#2b0f45" stroke-width="3"/>`;
+  if (res) { y += 12; put(res, y, 28, "#2b0f45"); }
+  return `<svg viewBox="0 0 ${W} ${y + 10}" width="${Math.min(W * 1.1, 260)}">${s}</svg>`;
+}
 // A Zahlenmauer: rows from the bottom up, each brick the sum of the two below; null is a gap.
 function numberWall(rows) {
   const n = rows[0].length, w = 66, h = 44, W = n * w + 8, H = rows.length * h + 8;
@@ -373,6 +387,13 @@ function writing(text, mode) {
 // (Kraft der 5), a row, or scattered. colour_split colours the parts.
 const PIPS = { 1: [[50, 50]], 2: [[28, 28], [72, 72]], 3: [[25, 25], [50, 50], [75, 75]], 4: [[28, 28], [72, 28], [28, 72], [72, 72]], 5: [[26, 26], [74, 26], [50, 50], [26, 74], [74, 74]], 6: [[30, 22], [70, 22], [30, 50], [70, 50], [30, 78], [70, 78]] };
 function dots(o, small) {
+  if (o.array) {
+    // A Punktefeld: rows by columns; split_rows colours the first rows red and the rest blue.
+    const [r, c] = o.array, g = Math.min(26, 300 / Math.max(c, 1), 220 / Math.max(r, 1)), w = c * g + 8, h = r * g + 8;
+    let s = "";
+    for (let i = 0; i < r; i++) for (let j = 0; j < c; j++) s += `<circle cx="${4 + g / 2 + j * g}" cy="${4 + g / 2 + i * g}" r="${g * 0.38}" fill="${o.split_rows != null && i >= o.split_rows ? "#1E88E5" : "#E53935"}" stroke="#2b0f45" stroke-width="1.5"/>`;
+    return `<svg viewBox="0 0 ${w} ${h}" width="${Math.min(small ? 100 : 300, w * (small ? 0.5 : 1.2))}">${s}</svg>`;
+  }
   if (o.groups) {
     // Two amounts to compare: lined-up rows (red over blue) or dice side by side.
     const cols = ["#E53935", "#1E88E5"];
@@ -404,6 +425,7 @@ function drawn(o, ctx = {}) {
     case "number-house": return house(o.roof, o.rows);
     case "part-whole": return partWhole(o.whole, o.parts);
     case "number-wall": return numberWall(o.rows);
+    case "written-calc": return writtenCalc(o);
     case "hundred-field": return hundredField(o.filled, o.colour_split);
     case "hundred-square": return hundredSquare(o);
     case "base-ten": return baseTen(o.tens ?? 0, o.ones ?? 0, o.hundreds ?? 0);
@@ -594,7 +616,7 @@ function optEl(o, t, i) {
   if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
   return b;
 }
-const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
+const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
 function choice({ t, body, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const grid = document.createElement("div"); grid.className = "opts";

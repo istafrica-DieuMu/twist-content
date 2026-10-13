@@ -42,10 +42,12 @@ for amounts:
 | Component | Data | Looks like |
 |---|---|---|
 | `dots` | `count`, `layout: dice / five-structure / row / scattered`, `colour_split: [3, 2]` | dice pips (1 to 6; 7 to 10 as two dice), rows of five (Kraft der 5), a row, or scattered dots |
+| `dots` with `array` | `array: [3, 4]` (rows, columns), `split_rows: 2` | a Punktefeld of 3 rows of 4; `split_rows` colours the first rows red and the rest blue (7 · 6 = 5 · 6 + 2 · 6); as an option its key is "3x4" |
 | `dots` with `groups` | `groups: [4, 3]`, `layout: row / dice` | two amounts to compare: in rows, one under the other and lined up (red over blue, so pairs show); as dice, side by side |
 | `ten-frame` | `filled`, `colour_split: [5, 2]`, `cross: 2` | a 2 by 5 frame with counters; `cross` crosses out the last counters (taken away), or the first with `cross_from: start` |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
+| `written-calc` | `rows: ["457", "326"]`, `op: +`, `carry: " 1 "`, `result: "7_3"` | numbers right-aligned in columns, the sign before the last row, the Übertrag small above the line, the result with gaps; as an option its key is the rows joined with | ("457|326") |
 | `number-wall` | `rows: [[3, 5, 2], [8, 7], [null]]`, bottom row first | the Zahlenmauer: each brick is the sum of the two under it, `null` is a gap |
 | `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
 | `hundred-square` | `highlight: [..]`, `hide: [..]` | 1 to 100 in rows of ten; hidden cells show ? |
