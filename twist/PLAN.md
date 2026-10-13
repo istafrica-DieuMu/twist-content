@@ -467,6 +467,12 @@ topic: stop and check in before the next.
 | 10 | Englisch | Lernjahr 1 | Hören | 1, drafted 2026-10-13: short conversations, 2 lessons |
 | 11 | Englisch | Lernjahr 2 | Hobbys und Sport | 1, drafted 2026-10-13: 2 lessons, 9 new hobby pictures |
 
+Second topics, started 2026-10-13, in the same subject and year order:
+
+| # | Subject | Year | Second topic | Skills |
+|---|---|---|---|---|
+| 1 | Mathe | Klasse 1 | Rechnen bis 10 | 7, all drafted 2026-10-13: 14 lessons |
+
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
 und Teilen (decided 2026-10-13).

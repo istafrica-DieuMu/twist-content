@@ -96,6 +96,10 @@ Interactions:
 | Which numeral for this amount | four dots shown, options 3, 4, 5, with `option_audio: false` (hearing "vier" on the option would give the answer) | write-numerals-to-10 |
 | Before or after | "Welche Zahl kommt nach 6?", options 5, 7, 8 | order-to-10 |
 | Which statement is true | "Welches stimmt?" options 3 < 5, 5 < 3, 3 = 5 | compare-to-10 |
+| The sum for a story or picture | "Fünf Kinder sitzen im Bus. Zwei steigen ein." or a ten-frame with `cross`, options 5 + 2, 5 − 2, 2 − 5 | add-meaning, sub-meaning |
+| Plus or minus? | a story in `say`, options plus, minus | sub-meaning |
+| The story for a sum | "Welche Geschichte passt zu 5 − 1?", options are short stories | add-meaning, sub-meaning |
+| Umkehraufgabe or family member | options are whole sums, one is the Tauschaufgabe | inverse |
 | Missing part | "7 = 3 + _" over a split ten-frame, options 3, 4, 5 | partition-to-10 |
 | Missing part or whole (England) | "The whole is five. One part is four. What is the other part?" over `{ drawn: part-whole, whole: 5, parts: [4, null] }` | en-GB partition-to-10 |
 | How many more to make ten | over a ten frame with 7, options 2, 3, 4 | en-GB partition-to-10 |
@@ -379,6 +383,7 @@ Interactions:
 | Colour with a thing that has it | yellow ↔ banana, green ↔ frog, red ↔ strawberry; tapping a colour says "Yellow." | en-colours |
 | Numeral with its amount | 3 ↔ three dots on a dice, 5 ↔ five apples; a side can be `{ text: "3" }` | write-numerals-to-10 |
 | Number with a split | 7 ↔ 4 + 3, 5 ↔ 2 + 3 | partition-to-10 |
+| A sum with its Tauschaufgabe | 1 + 8 ↔ 8 + 1 | commutative |
 | Number with its number word | 17 ↔ siebzehn, 70 ↔ siebzig, 71 ↔ einundsiebzig, with `option_audio: false` (hearing the cards would give the pairs) | read-write-to-100 |
 | Rhyming pairs | Haus ↔ Maus, Tisch ↔ Fisch, Hose ↔ Rose; every picture says its word | rhymes |
 | Same first sound | Sonne ↔ Socke, Fisch ↔ Frosch, Ball ↔ Banane | initial-sound |
