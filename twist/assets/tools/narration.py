@@ -69,6 +69,7 @@ def spoken(text, lang):
 
 SEQ = []  # (where, line id, voice) in the order the lessons say them
 MIXED = None  # target language of the lesson being gathered
+CUR = None  # its curriculum
 
 # Options get a speaker when hearing them does not give the answer away.
 # Never on audio_choice (the sound is the question), and never for a letter
@@ -122,10 +123,24 @@ def option_texts(t, objects, lang):
     return out
 
 
-def voice_for(cfg, activity=None, phrase=None):
-    """The voice for one use of a line: `assign` in voices.yaml, else chosen."""
-    a = cfg.get("assign") or {}
-    return a.get(f"phrases.{phrase}") if phrase and f"phrases.{phrase}" in a else a.get(activity, cfg["chosen"])
+def voice_cfg(cfg, curriculum):
+    """chosen and assign for a curriculum (curricula: in voices.yaml), else the default."""
+    return (cfg.get("curricula") or {}).get(curriculum) or cfg
+
+
+def curriculum_for_language(cfg, lang):
+    for cur, c in (cfg.get("curricula") or {}).items():
+        if c.get("language") == lang:
+            return cur
+    return None
+
+
+def voice_for(cfg, curriculum, activity=None, phrase=None):
+    """The voice for one use of a line: `assign`, else `chosen`, per curriculum.
+    Must match voiceFor() in player/build.mjs."""
+    c = voice_cfg(cfg, curriculum)
+    a = c.get("assign") or {}
+    return a.get(f"phrases.{phrase}") if phrase and f"phrases.{phrase}" in a else a.get(activity, c["chosen"])
 
 
 def gather(cfg):
@@ -138,7 +153,7 @@ def gather(cfg):
             return
         t = spoken(text, lang)
         lid = hashlib.sha1(f"{lang}|{t}".encode()).hexdigest()[:10]
-        v = voice_for(cfg, activity, phrase)
+        v = voice_for(cfg, CUR, activity, phrase)
         e = lines.setdefault(lid, {"lang": lang, "text": t, "kind": kind, "voices": [], "used": []})
         if MIXED and lang != MIXED:
             e["mixed"] = True  # a home-language line in a lesson that teaches MIXED
@@ -147,11 +162,12 @@ def gather(cfg):
             e["voices"].append(v)
         SEQ.append((where, lid, v))
 
-    global MIXED
+    global MIXED, CUR
     for p in sorted((TWIST / "lessons").rglob("*.yaml")):
         d = yaml.safe_load(p.read_text())
         lang, rel = d["language"], p.relative_to(TWIST / "lessons").with_suffix("")
         MIXED = d.get("target_language")
+        CUR = d["curriculum"]
         for l in d["lessons"]:
             add(lang, l["title"].get(lang), "title", f"{rel}#{l['n']}")
             for a in l["activities"]:
@@ -179,6 +195,7 @@ def gather(cfg):
                         add(lg, v, "option", w, a["activity"])
     MIXED = None
     for lang, groups in yaml.safe_load((ASSETS / "phrases.yaml").read_text()).items():
+        CUR = curriculum_for_language(cfg, lang)
         for g, items in groups.items():
             for x in items:
                 add(lang, x, "phrase", f"phrases/{lang}/{g}", phrase=g)
@@ -251,6 +268,7 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
     vdir, logf = OUT / v["id"], OUT / f"{v['id']}.yaml"
     log = (yaml.safe_load(logf.read_text()) if logf.exists() else None) or {}
     brief = v.get("brief", cfg["brief"])
+    sounds = [x for x in sounds if x["id"].split(".")[0] == v.get("language", "de")]  # a voice makes the sounds of its language
     mine = {lid: e for lid, e in lines.items() if v["id"] in e["voices"]}
     # Drop clips this voice no longer says (text changed, or assigned to
     # another voice), and any to redo.
@@ -263,7 +281,8 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
         kind, iid, e = item
         if kind == "line":
             dest, text = vdir / f"{iid}.mp3", e["text"]
-            direction = brief + (" " + cfg["en_note"] if e["lang"] == "en" else " " + cfg["mixed_note"] if e.get("mixed") else "")
+            vlang = v.get("language", "de")
+            direction = brief + (" " + cfg["en_note"] if e["lang"] == "en" and vlang != "en" else " " + cfg["mixed_note"] if e.get("mixed") else "")
             expect, cap = f'"{text}" ({"English" if e["lang"] == "en" else "German"})', None
         else:
             dest, text = vdir / "sounds" / f"{iid.replace(':', '-long')}.mp3", e["say"]

@@ -21,6 +21,7 @@ mixed_note: >
   This German line comes from an English lesson and may contain English
   words or short English phrases (Listen, Stand up, boat): say those in
   clear British English, and every German word in German.
+language: de
 chosen: gemini-sulafat
 # Puck speaks every Check and the phrase that opens it, so the child hears
 # that this part counts. Sulafat teaches and practises; she comes back for
@@ -28,6 +29,15 @@ chosen: gemini-sulafat
 assign:
   check: gemini-puck
   phrases.check_start: gemini-puck
+# Each curriculum has its own voices with its own brief; the voices above
+# (chosen, assign) are de-DE's, and the default.
+curricula:
+  en-GB:
+    language: en
+    chosen: gemini-sulafat-en
+    assign:
+      check: gemini-puck-en
+      phrases.check_start: gemini-puck-en
 candidates:
   - { id: gemini-sulafat, model: google/gemini-3.8-flash-tts, voice: Sulafat, note: "female, warm; teaches and practises" }
   - id: gemini-puck
@@ -42,3 +52,27 @@ candidates:
       or cold. Speaks slowly and clearly for six-year-olds, with a short
       pause after a question. A single letter in a sentence (L, M, O, A) is
       said as its sound (lll, mmm, ooo, aaa), never as its letter name.
+  - id: gemini-sulafat-en
+    model: google/gemini-3.8-flash-tts
+    voice: Sulafat
+    language: en
+    note: "female, warm; teaches and practises in en-GB"
+    brief: >
+      A warm, bright young primary school teacher in England whom children
+      like, talking to four- and five-year-olds in Reception. Clear, natural
+      British English (southern standard), no strong regional accent. Speaks
+      slowly and clearly, with a smile in the voice; encouraging, never
+      babyish, never sing-song, never over-excited. A short pause after a
+      question.
+  - id: gemini-puck-en
+    model: google/gemini-3.8-flash-tts
+    voice: Puck
+    language: en
+    note: "male; speaks the Checks in en-GB"
+    brief: >
+      A calm, friendly young primary school teacher in England running a
+      short check with four- and five-year-olds. Clear, natural British
+      English, no strong regional accent. A little more focused and serious
+      than in the lesson: steady, even pace, quiet confidence, no jokes, no
+      extra cheer. Still kind; never strict or cold. A short pause after a
+      question.

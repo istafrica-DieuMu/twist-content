@@ -27,8 +27,12 @@ const lineId = (lang, t) => createHash("sha1").update(`${lang}|${t}`).digest("he
 
 const voices = read("assets/voices.yaml");
 const lines = existsSync(join(T, "assets/narration/lines.yaml")) ? read("assets/narration/lines.yaml") ?? {} : {};
-const assign = voices.assign ?? {};
-const voiceFor = (activity, phrase) => (phrase && assign[`phrases.${phrase}`]) || assign[activity] || voices.chosen;
+// Voices per curriculum (voices.yaml curricula:), else the default. Must
+// match voice_for() in narration.py.
+let CUR = null;
+const vcfg = (cur) => voices.curricula?.[cur] ?? voices;
+const voiceFor = (activity, phrase) => { const c = vcfg(CUR), a = c.assign ?? {}; return (phrase && a[`phrases.${phrase}`]) || a[activity] || c.chosen; };
+const curForLang = (lang) => Object.entries(voices.curricula ?? {}).find(([, c]) => c.language === lang)?.[0] ?? null;
 const problems = [];
 let clips = 0, missingFiles = 0;
 
@@ -65,6 +69,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
   const d = YAML.parse(readFileSync(p, "utf8"));
   const rel = relative(join(T, "lessons"), p);
   const lang = d.language;
+  CUR = d.curriculum;
   for (const l of d.lessons) {
     l._title = clip(lang, l.title[lang], null, null, `${rel} lesson ${l.n}`);
     for (const a of l.activities) {
@@ -103,15 +108,15 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
 
 const phrases = {};
 for (const [lang, groups] of Object.entries(read("assets/phrases.yaml")))
-  for (const [g, items] of Object.entries(groups))
-    (phrases[lang] ??= {})[g] = items.map((x) => ({ text: x, src: clip(lang, x, null, g, `phrases ${g}`) }));
+  for (const [g, items] of Object.entries(groups)) { CUR = curForLang(lang);
+    (phrases[lang] ??= {})[g] = items.map((x) => ({ text: x, src: clip(lang, x, null, g, `phrases ${g}`) })); }
 
 const objects = Object.fromEntries((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, { de: o.labels.de, en: o.labels.en }]));
 const colours = read("assets/drawn.yaml").colours;
 const pics = readdirSync(join(T, "assets/objects")).filter((f) => f.endsWith(".png"));
 
 if (problems.length) { console.error(problems.join("\n")); process.exit(1); }
-const data = { built: new Date().toISOString().slice(0, 10), assets: "../twist/assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign } };
+const data = { built: new Date().toISOString().slice(0, 10), assets: "../twist/assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign } };
 const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c"));
 writeFileSync(join(HERE, "index.html"), html);
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);

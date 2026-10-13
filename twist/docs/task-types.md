@@ -7,6 +7,8 @@ an object that has it, a word with its picture, a sum with its result).
 
 Rules:
 
+- Lessons in every curriculum use the same types. en-GB lessons are
+  named "en-GB <lesson>" where an interaction is England's own.
 - Write the type or interaction here before the first lesson uses it.
   The build rejects a task type that has no section in this file.
 - Each interaction names a lesson that uses it, so there is always a
@@ -44,6 +46,7 @@ for amounts:
 | `ten-frame` | `filled`, `colour_split: [5, 2]` | a 2 by 5 frame with counters |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
+| `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
 
 ## Types in use
 
@@ -90,6 +93,10 @@ Interactions:
 | Before or after | "Welche Zahl kommt nach 6?", options 5, 7, 8 | order-to-10 |
 | Which statement is true | "Welches stimmt?" options 3 < 5, 5 < 3, 3 = 5 | compare-to-10 |
 | Missing part | "7 = 3 + _" over a split ten-frame, options 3, 4, 5 | partition-to-10 |
+| Missing part or whole (England) | "The whole is five. One part is four. What is the other part?" over `{ drawn: part-whole, whole: 5, parts: [4, null] }` | en-GB partition-to-10 |
+| How many more to make ten | over a ten frame with 7, options 2, 3, 4 | en-GB partition-to-10 |
+| One more, one less | "Here are three apples. One more apple comes. How many now?" | en-GB order-to-10 |
+| Which is more, said aloud | "Which is more, three or seven?", options 3, 7 (they say themselves) | en-GB compare-to-10 |
 
 Twist: `options` become objects with `label`; `answer` becomes the
 correct option's id.

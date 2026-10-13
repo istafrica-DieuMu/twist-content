@@ -181,7 +181,8 @@ these. The build checks every one of them.
    task with the same options. Quick checks may repeat.
 3. **Oral lessons need no reading.** A lesson marked `no_reading` (Stufe 0,
    ages 4 to 5) has no task where the child must read an option or a
-   prompt; instructions are spoken, options are pictures or sounds.
+   prompt; instructions are spoken, options are pictures or sounds. Number
+   options are allowed when each one can be heard (its speaker says it).
 4. **Speaking is practised, not marked.** Speech recognition for young
    children is not reliable enough to decide mastery, so `speak` tasks
    belong in Practise and are left out of skill checks.

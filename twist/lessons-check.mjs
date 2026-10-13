@@ -15,6 +15,8 @@ const ACTIVITY = {
 // Practise runs three stages in this order; each holds 5 or 6 tasks.
 const STAGES = ["full", "some", "none"];
 const STAGE_TASKS = [5, 6];
+// Types whose options never get a speaker (must match narration.py).
+const NO_OPTION_AUDIO = new Set(["audio_choice", "true_false", "highlight_in_text", "tracing", "speak", "text_input", "drag_and_drop_count", "point_on_line", "matching", "sorting"]);
 const TASKS_PER_LESSON = { "4-5": [14, 24], "6-7": [18, 28], "8-10": [20, 32] };
 // Task types whose support is built in (the trace guide), so they take no text hints.
 const SELF_SUPPORTED = new Set(["tracing"]);
@@ -167,7 +169,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (support === "full" && hints !== 3 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: full support needs 3 hints, has ${hints}`);
           if (support === "some" && hints !== 1 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: some support needs one hint, has ${hints}`);
           if ((a.activity === "check" || support === "none") && hints) err(`${file}: ${tw}: no hints allowed here`);
-          if (d.metadata?.no_reading && typeof (t.options ?? [])[0] === "string" && !["audio_choice"].includes(t.type)) err(`${file}: ${tw}: no_reading lesson, but options are text`);
+          // A pre-reader lesson may show numbers as options when each can be heard (its speaker says it).
+          const speakable = t.option_audio !== false && !NO_OPTION_AUDIO.has(t.type) && (t.options ?? []).every((o) => typeof o === "string" && !/^[A-Za-zÄÖÜäöüß]{1,3}$/.test(o));
+          if (d.metadata?.no_reading && typeof (t.options ?? [])[0] === "string" && !["audio_choice"].includes(t.type) && !speakable) err(`${file}: ${tw}: no_reading lesson, but options are text the child cannot hear`);
           if (d.metadata?.no_reading && t.type === "audio_choice" && typeof (t.options ?? [])[0] === "string") err(`${file}: ${tw}: no_reading lesson, but the child must read the options`);
           if (a.activity === "check" && ["skill", "timed"].includes(a.size) && t.type === "speak") warn(`${file}: ${tw}: speaking in a skill check; speech recognition for young children is not reliable enough to decide mastery`);
           refs(t, tw, file);

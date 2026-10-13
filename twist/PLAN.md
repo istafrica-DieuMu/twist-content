@@ -493,3 +493,18 @@ Klasse 1 Mathe, topic Zahlen bis 10:
 | compare-to-10 | 3: more and fewer, the signs, using the signs | drafted 2026-10-13, 66 tasks |
 | partition-to-10 | 3: split with counters, number house, all splits | drafted 2026-10-13, 69 tasks |
 
+### en-GB, same order
+
+Started 2026-10-13. Topic 1 is Maths, Reception, Numbers to 10: the same
+six library skills as de-DE topic 1, written again for England, not
+translated. Children are 4 to 5 (EYFS), so the lessons are oral (number
+options say themselves), have no warm-ups, three Practise stages of 5, a
+3-task check and a 4-task skill check. Numerals and the signs < > = come
+in Year 1, so Reception orders and compares amounts and spoken numbers;
+number bonds use England's part-whole model. British English voices with
+their own brief (voices.yaml curricula: en-GB).
+
+| # | Subject | Year | First topic | Skills |
+|---|---|---|---|---|
+| 1 | Maths | Reception | Numbers to 10 | 6, all drafted 2026-10-13: 12 lessons, 222 tasks |
+

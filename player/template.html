@@ -140,7 +140,7 @@ svg text{font-family:Andika,sans-serif}
 <div class="wrap">
   <aside class="side">
     <h1>Twist lesson player</h1>
-    <p>The de-DE model lessons rendered from their records, with pictures, drawn components and narration. Built <span id="built"></span>; rebuild with <code>node player/build.mjs</code>.</p>
+    <p>The Twist lessons (de-DE and en-GB) rendered from their records, with pictures, drawn components and narration. Built <span id="built"></span>; rebuild with <code>node player/build.mjs</code>.</p>
     <label for="set">Lesson set</label><select id="set"></select>
     <label for="les">Lesson</label><select id="les"></select>
     <div class="toggles"><label style="all:unset;display:flex;gap:6px;align-items:center"><input type="checkbox" id="auto" checked> Play audio automatically</label></div>
@@ -156,7 +156,20 @@ const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="#2b0f45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#2b0f45"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
 const NAMES = { de: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Üben", check: "Zeig, was du kannst" }, en: { "warm-up": "Warm up", learn: "Learn", practise: "Practise", check: "Show what you know" } };
-const UI = { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde" };
+// Interface text in the lesson's language.
+const TXT = {
+  de: { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde",
+    lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
+    score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, secure: "Kann ich! (Secure)", practised: "Noch üben (Practised)", doneTitle: "Geschafft!",
+    counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
+    speakNote: "Im Prototyp hört die App nicht zu: Sag das Wort und tippe dann auf den Knopf.", seeAgain: "Nochmal sehen", tip: "Tipp: " },
+  en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
+    lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
+    score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, secure: "I can do it! (Secure)", practised: "Keep practising (Practised)", doneTitle: "Well done!",
+    counters: "Tap a counter at the bottom to move it up.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
+    speakNote: "In this prototype the app does not listen: say the word, then tap the button.", seeAgain: "See it again", tip: "Hint: " },
+};
+const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
 
 /* ---------- audio: one queue, cancelled on every step change ---------- */
@@ -185,7 +198,7 @@ function spk(srcs, cls = "") {
 }
 // How a sound id reads on its button: de.l -> lll, de.o: -> ooo, de.ma -> Ma.
 const lines_sound = (id) => { const x = id.split(".")[1]; return x.endsWith(":") ? x[0].repeat(3) : x.length === 1 && !"aeiou".includes(x) ? x.repeat(3) : x[0].toUpperCase() + x.slice(1); };
-const phrase = (g) => { const list = D.phrases.de?.[g] ?? []; return list[Math.floor(Math.random() * list.length)]; };
+const phrase = (g) => { const list = D.phrases[set?.language ?? "de"]?.[g] ?? []; return list[Math.floor(Math.random() * list.length)]; };
 
 /* ---------- pictures and drawn components ---------- */
 // "Scattered" groups sit on a loose grid: one cell each, some cells empty,
@@ -243,6 +256,11 @@ function house(roof, rows) {
   let s = `<path d="M20 70 L90 12 L160 70 Z" fill="#efe0fb" stroke="#2b0f45" stroke-width="4" stroke-linejoin="round"/><text x="90" y="58" text-anchor="middle" font-size="30" font-weight="700" fill="#2b0f45">${roof}</text>`;
   rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * rh; s += `<rect x="${x}" y="${y}" width="62" height="${rh}" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + rh / 2 + fs / 3}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
   return `<svg viewBox="0 0 180 ${80 + rows.length * rh}" width="${rows.length > 4 ? 150 : 180}">${s}</svg>`;
+}
+// The part-whole model (England): whole above, two parts below; null is a gap.
+function partWhole(whole, parts) {
+  const c = (x, y, v, big) => `<circle cx="${x}" cy="${y}" r="${big ? 38 : 32}" fill="${v == null ? "#efe0fb" : "#fff"}" stroke="#2b0f45" stroke-width="4"/><text x="${x}" y="${y + 12}" text-anchor="middle" font-size="34" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`;
+  return `<svg viewBox="0 0 240 200" width="220"><line x1="120" y1="60" x2="62" y2="140" stroke="#2b0f45" stroke-width="4"/><line x1="120" y1="60" x2="178" y2="140" stroke="#2b0f45" stroke-width="4"/>${c(120, 48, whole, true)}${c(62, 150, parts[0])}${c(178, 150, parts[1])}</svg>`;
 }
 function equation(text, split) {
   const tokens = text.split(" ");
@@ -321,6 +339,7 @@ function drawn(o, ctx = {}) {
     case "zwanzigerfeld": return zwanziger(o.filled[0], o.filled[1], ctx.moved ?? 0);
     case "ten-frame": return tenFrame(o.filled, o.colour_split);
     case "number-house": return house(o.roof, o.rows);
+    case "part-whole": return partWhole(o.whole, o.parts);
     case "equation": return equation(o.text, o.split);
     case "rechenstrich": return rechenstrich(o.start, o.jumps ?? []);
     case "number-line": return numberLine(o);
@@ -389,7 +408,7 @@ function go(i) {
 function renderStart() {
   const { body, foot } = frameUI({});
   const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
-  body.innerHTML = `<div class="center">${first ? pic(first) : ""}<p>${esc(set.title[lang()] ?? set.title.de)} · Stunde ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
+  body.innerHTML = `<div class="center">${first ? pic(first) : ""}<p>${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 function renderLearn(step) {
@@ -406,14 +425,14 @@ function renderLearn(step) {
 }
 function renderStage(step) {
   const { body, foot } = frameUI(step), p = phrase("stage_done");
-  const label = { some: "Jetzt mit weniger Hilfe", none: "Jetzt ganz allein" }[step.st.support];
+  const label = { some: UI.less, none: UI.alone }[step.st.support];
   body.innerHTML = `<div class="center"><div class="stars">★</div><h2>${esc(p?.text ?? "Prima!")}</h2><p>${esc(label)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
 function renderCheckIntro(step) {
   const { body, foot } = frameUI(step), p = phrase("check_start");
-  body.innerHTML = `<div class="center"><h2>${esc(p?.text ?? "Zeig, was du kannst")}</h2><p>${step.a.tasks.length} Aufgaben, ohne Tipps. Es zählt der erste Versuch.</p></div>`;
+  body.innerHTML = `<div class="center"><h2>${esc(p?.text ?? UI.checkTitle)}</h2><p>${UI.checkInfo(step.a.tasks.length)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
@@ -424,9 +443,9 @@ function renderEnd() {
   const skill = checkSteps[0]?.[0].a.size === "skill";
   const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
   const p = phrase("lesson_done");
-  body.innerHTML = `<div class="center"><div class="stars">${"★".repeat(Math.max(1, Math.round((3 * right) / Math.max(1, checkSteps.length))))}</div><h2>${esc(p?.text ?? "Geschafft!")}</h2>
-    <p>${checkSteps.length ? `${right} von ${checkSteps.length} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig` : ""}</p>
-    ${pass === null ? "" : pass ? `<span class="badge">Kann ich! (Secure)</span>` : `<span class="badge no">Noch üben (Practised)</span>`}</div>`;
+  body.innerHTML = `<div class="center"><div class="stars">${"★".repeat(Math.max(1, Math.round((3 * right) / Math.max(1, checkSteps.length))))}</div><h2>${esc(p?.text ?? UI.doneTitle)}</h2>
+    <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
+    ${pass === null ? "" : pass ? `<span class="badge">${UI.secure}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
   if (p) play(p.src);
   const nextL = set.lessons.find((l) => l.n === lesson.n + 1);
   if (nextL) nextBtn(foot, UI.nextLesson, () => pickLesson(nextL.n));
@@ -472,7 +491,7 @@ function renderTask(step) {
     const hints = t.hints ?? [];
     const canHint = (mode === "full" && st.hintShown < hints.length) || (mode === "some" && st.hintShown < 1 && hints.length);
     if (canHint) {
-      bubble("hint", "Tipp: " + hints[st.hintShown], t._hints[st.hintShown]);
+      bubble("hint", UI.tip + hints[st.hintShown], t._hints[st.hintShown]);
       if (!fbText) { const p = phrase("hint"); if (p) queue.push(p.src); }
       queue.push(t._hints[st.hintShown]); st.hintShown++; st.helped = true;
     } else if (mode === "none" && st.misses < 2) {
@@ -498,7 +517,7 @@ function flash(vis, ms, again, step) {
   vis.appendChild(cover);
   const hide = () => { if (steps[at] === step) cover.style.display = "grid"; };
   setTimeout(hide, ms);
-  if (again) { const b = document.createElement("button"); b.className = "sound"; b.textContent = "Nochmal sehen"; b.onclick = () => { cover.style.display = "none"; setTimeout(hide, ms); }; vis.after(b); }
+  if (again) { const b = document.createElement("button"); b.className = "sound"; b.textContent = UI.seeAgain; b.onclick = () => { cover.style.display = "none"; setTimeout(hide, ms); }; vis.after(b); }
 }
 function optEl(o, t, i) {
   const b = document.createElement("button"); b.className = "opt";
@@ -553,7 +572,7 @@ const TYPES = {
   drag_and_drop_count({ t, body, foot, vis, answer, st }) {
     const [a, b] = t.show.filled; let moved = 0;
     const draw = () => { const top = Array(10).fill(null), bot = Array(10).fill(null); for (let i = 0; i < a; i++) top[i] = { fill: "#E53935" }; for (let i = 0; i < moved; i++) top[a + i] = { fill: "#1E88E5" }; for (let i = 0; i < b - moved; i++) bot[i] = { fill: "#1E88E5" }; vis.innerHTML = field([top, bot], { tap: true }); vis.querySelectorAll("g[data-r]").forEach((g) => g.onclick = () => { if (st.over) return; const r = +g.dataset.r; if (r === 1 && a + moved < 10) moved++; else if (r === 0 && +g.dataset.i >= a) moved--; draw(); }); };
-    const n = document.createElement("div"); n.className = "note"; n.textContent = "Tippe unten auf ein Plättchen, um es nach oben zu schieben."; body.appendChild(n);
+    const n = document.createElement("div"); n.className = "note"; n.textContent = UI.counters; body.appendChild(n);
     draw();
     nextBtn(foot, UI.check, () => { const ok = moved === t.answer; answer(ok, String(moved), () => { moved = t.answer; draw(); }); if (!ok && !st.over) setTimeout(() => { moved = 0; draw(); }, 900); });
   },
@@ -578,12 +597,12 @@ const TYPES = {
     cv.onpointerdown = (e) => { down = true; cv.setPointerCapture(e.pointerId); g.beginPath(); g.moveTo(...pos(e)); };
     cv.onpointermove = (e) => { if (!down) return; g.lineTo(...pos(e)); g.stroke(); ink++; if (ink > 12) btn.disabled = false; };
     cv.onpointerup = () => { down = false; };
-    const n = document.createElement("div"); n.className = "note"; n.textContent = t.show.mode === "trace" ? "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt." : "Schreib es rechts daneben."; body.appendChild(n);
+    const n = document.createElement("div"); n.className = "note"; n.textContent = t.show.mode === "trace" ? UI.trace : UI.copy; body.appendChild(n);
     const btn = nextBtn(foot, UI.done, () => answer(true, "", () => {})); btn.disabled = true;
   },
   speak({ t, body, foot, vis, answer }) {
     vis.innerHTML = show(t.show);
-    const n = document.createElement("div"); n.className = "note"; n.textContent = "Im Prototyp hört die App nicht zu: Sag das Wort und tippe dann auf den Knopf."; body.appendChild(n);
+    const n = document.createElement("div"); n.className = "note"; n.textContent = UI.speakNote; body.appendChild(n);
     const b = nextBtn(foot, "🎤 " + UI.said, () => { b.disabled = true; b.textContent = "…"; setTimeout(() => answer(true, "", () => {}), 900); });
   },
   matching({ t, body, foot, vis, answer, st }) {
@@ -667,10 +686,10 @@ const TYPES = {
 function sidebar() {
   const ul = $("#steps"); ul.innerHTML = ""; let last = null;
   steps.forEach((s, i) => {
-    const grp = s.a ? actName(s.a) + (s.kind === "task" && s.a.activity === "practise" ? ` · ${{ full: "volle Hilfe", some: "ein Tipp", none: "ohne Tipp" }[s.stage]}` : "") : null;
+    const grp = s.a ? actName(s.a) + (s.kind === "task" && s.a.activity === "practise" ? ` · ${{ full: "full hints", some: "one hint", none: "no hints" }[s.stage]}` : "") : null;
     if (grp && grp !== last) { const g = document.createElement("li"); g.className = "grp"; g.textContent = grp; ul.appendChild(g); last = grp; }
     const li = document.createElement("li"); if (i === at) li.className = "on";
-    li.textContent = s.kind === "task" ? `${s.t.id} · ${s.t.type}${results[i] ? " · " + results[i] : ""}` : s.kind === "learn" ? `Bildschirm ${s.i + 1}` : { start: "Start", stage: "Stufenwechsel", checkIntro: "Check beginnt", end: "Ende" }[s.kind];
+    li.textContent = s.kind === "task" ? `${s.t.id} · ${s.t.type}${results[i] ? " · " + results[i] : ""}` : s.kind === "learn" ? `Screen ${s.i + 1}` : { start: "Start", stage: "Stage change", checkIntro: "Check starts", end: "End" }[s.kind];
     li.onclick = () => go(i); ul.appendChild(li);
   });
   const s = steps[at], rec = s.t ?? s.s ?? (s.kind === "start" ? { lesson: lesson.n, title: lesson.title, activities: lesson.activities.map((a) => a.activity) } : s.st ? { stage: s.st.support, setting: s.st.setting } : { kind: s.kind });
@@ -681,7 +700,7 @@ function sidebar() {
 }
 function pickSet(i) {
   set = D.sets[i]; const L = $("#les"); L.innerHTML = "";
-  set.lessons.forEach((l) => L.add(new Option(`${l.n}. ${l.title.de}`, l.n)));
+  set.lessons.forEach((l) => L.add(new Option(`${l.n}. ${l.title[set.language] ?? l.title.de}`, l.n)));
   pickLesson(set.lessons[0].n);
 }
 function pickLesson(n) {
@@ -689,7 +708,7 @@ function pickLesson(n) {
   try { localStorage.setItem("twist-pos", JSON.stringify([D.sets.indexOf(set), lesson.n])); } catch (e) {}
 }
 $("#built").textContent = D.built;
-D.sets.forEach((s, i) => $("#set").add(new Option(`${s.title.de} (${s.year})`, i)));
+D.sets.forEach((s, i) => $("#set").add(new Option(`${s.id.split(".")[0]} · ${s.title[s.language] ?? s.title.de} (${s.year})`, i)));
 $("#set").onchange = (e) => pickSet(+e.target.value);
 $("#les").onchange = (e) => pickLesson(e.target.value);
 $("#auto").onchange = (e) => { try { localStorage.setItem("twist-auto", e.target.checked ? "1" : "0"); } catch (x) {} };

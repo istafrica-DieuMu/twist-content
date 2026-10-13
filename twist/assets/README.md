@@ -123,6 +123,13 @@ directions) and 73 for MAI Mia (numbers misread). After listening, the
 team chose **Gemini Sulafat**, with Puck kept as the alternate; the other
 five voices were removed.
 
+Each curriculum has its own voices (voices.yaml `curricula:`). de-DE uses
+Sulafat and Puck with German briefs; en-GB uses the same two voices with
+British English briefs (gemini-sulafat-en, gemini-puck-en), so the
+characters stay the same while the English sounds native. A line that is
+not in its voice's language gets the foreign-language note, and a voice
+only makes the sounds of its own language.
+
 Two voices share the lessons: Sulafat teaches and practises, and Puck
 speaks every Check and the phrase that opens it ("Jetzt zeigst du, was du
 kannst."), with his own brief: a little more focused and serious, still
