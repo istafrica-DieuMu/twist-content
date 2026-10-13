@@ -56,6 +56,10 @@ for amounts:
 | `clock` | `hour: 1-12`, `minute: 0-59`, `digital: true` | an analogue clock face; the hour hand moves on with the minutes; `digital` adds the time below; as an option its key is "3:30" |
 | `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
 | `ruler` | `to: 15`, `length: 7`, `start: 2`, `colour` | a ruler in cm with mm ticks (cm and half cm only past 20) and a coloured strip above it, dashed lines from its ends to the scale; `start` sets the strip off zero for the reading-from-zero mistake |
+| `shape` | `kind: circle / triangle / square / rectangle / hexagon / cube / cuboid / sphere / cylinder / cone / pyramid`, `colour`, `size` | a flat shape, or a solid in a simple oblique view with hidden edges dashed; as an option its key is the kind ("cube") |
+| `shape` with `row` or `column` | `row: [circle, square, triangle, "?"]`, `colours: [red, blue, red, null]` or one colour | shapes side by side (left to right) or stacked (top to bottom); `"?"` is a dashed gap, for patterns to continue and for position words (links, rechts, zwischen, oben, unten) |
+| `bar-chart` | `rows: [[Hund, 5], [Katze, 8]]`, `step`; or `tally: true` | a bar chart with a scale from 0 (steps of 1, 2 or 5 by the largest value), or with `tally` a Strichliste table, the fifth stroke across each four |
+| `coins` | `values: [200, 50, 10]` in cent (or pence) | coins and notes of the curriculum's currency, 500 and up as notes; 1 € and 2 € (£2) two-coloured; as an option its key is the total ("260") |
 
 ## Types in use
 
@@ -115,6 +119,7 @@ Interactions:
 | Which fact is not needed | a story with one fact too many, "Welche Angabe brauchst du nicht?", options are the story's sentences | question-calc-answer |
 | What the picture is asking | a picture with a story, "Was sollst du herausfinden?", options are short questions | picture-stories |
 | Which part changes | "34 + 5: Was ändert sich?" options die Einer, die Zehner, beide | ones-no-bridge, tens-to-two-digit |
+| Read a Strichliste or survey | over a `bar-chart` with `tally: true`, "Wie viele Kinder mögen Rot?", "Welche Farbe mögen die meisten?", "Wie viele mehr?" | tally |
 | Which Rechenweg is this | a worked calculation in `text` ("45 + 38 = 45 + 30 + 8"), "Welcher Rechenweg ist das?", options schrittweise, stellenweise, mit Hilfsaufgabe, ergänzen | describe-methods |
 | Which trick fits | "Welcher Trick hilft bei 9 + 9?", options verdoppeln, Zehnerfreunde, weiterzählen, kleine Aufgabe; feedback on the slow way | fluency-to-20 |
 | Which Rechenweg suits | "Welcher Weg passt gut zu 56 + 19?", options name methods; the answer is the one the sum invites (19 is near 20: Hilfsaufgabe) and the record says why in `feedback` | describe-methods, clever |
@@ -227,6 +232,8 @@ Interactions:
 | Read a sentence, find what it is about | text "The bird is in the tree.", options bird, bread, bee | en-GB automatic-decoding |
 | Blocks or chart for a number | "Wo sind 36?" options three `base-ten` pictures; or "Welche Stellentafel zeigt 53?" three `place-value-chart` pictures | bundle-tens, place-value-to-100 |
 | Hundred field for a number | "Wo sind 50?" three `hundred-field` pictures | hundred-field |
+| Strichliste for a number | "Welche Strichliste zeigt 7?" options three `bar-chart` tallies with one unlabelled row, each with an explicit `key` ("7") | tally |
+| Shape by its name or a property | "Wo ist das Dreieck?" or "Wo sind alle Seiten gleich lang?", options three `shape` pictures in one colour; answer the kind (`square`), `option_audio: false` | basic-shapes |
 
 A drawn component as an option is keyed like a group: by its `count`
 (dots), `filled` (ten-frame, hundred-field), tens × 10 + ones (base-ten)
@@ -490,6 +497,7 @@ Interactions:
 | First word with its compound | a tree picture ↔ Baumhaus; the picture says its word | compound-nouns |
 | Compound with its last part or its article | Regenschirm ↔ Schirm; Haustür ↔ die, with `option_audio: false` | compound-nouns |
 | Case question with its case | Wem? ↔ Dativ, four pairs | noun-cases |
+| Shape with its name or its corners | a `shape` picture ↔ Kreis, or ↔ "3 Ecken" | basic-shapes |
 
 Twist: `pairs[].left` and `right` become `{ label, image_url }`; `say`
 becomes the narration of that side.
