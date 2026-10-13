@@ -9,10 +9,13 @@ const TASK_TYPES = new Set(["audio_choice", "clock_hands_drag", "drag_and_drop_c
 const ACTIVITY = {
   "warm-up": { from: ["earlier-skills", "last-lesson"] },
   learn: { mode: ["worked-examples", "demonstration", "model-text", "new-sound", "new-word", "do-it-with-me"] },
-  practise: { support: ["full", "some", "none"], setting: ["plain", "in-context"] },
+  practise: { setting: ["plain", "in-context"] },
   check: { size: ["quick", "skill", "timed"] },
 };
-const TASKS_PER_LESSON = { "4-5": [6, 12], "6-7": [8, 16], "8-10": [12, 25] };
+// Practise runs three stages in this order; each holds 5 or 6 tasks.
+const STAGES = ["full", "some", "none"];
+const STAGE_TASKS = [5, 6];
+const TASKS_PER_LESSON = { "4-5": [14, 24], "6-7": [18, 28], "8-10": [20, 32] };
 // Task types whose support is built in (the trace guide), so they take no text hints.
 const SELF_SUPPORTED = new Set(["tracing"]);
 
@@ -23,13 +26,13 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
   // ---- asset bank ----
   const objects = new Map((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, o]));
   const drawn = new Map((read("assets/drawn.yaml").components ?? []).map((o) => [o.id, o]));
-  const characters = new Map((read("assets/characters.yaml").characters ?? []).map((o) => [o.id, o]));
   const sounds = new Map((read("assets/sounds.yaml").sounds ?? []).map((o) => [o.id, o]));
+  const chosenVoice = read("assets/voices.yaml").chosen;
   for (const [id, o] of objects) {
-    for (const k of ["category", "labels", "initial", "syllables", "status"]) if (o[k] === undefined) err(`assets/objects.yaml: ${id} has no ${k}`);
+    for (const k of ["draw", "category", "labels", "initial", "syllables", "status"]) if (o[k] === undefined) err(`assets/objects.yaml: ${id} has no ${k}`);
     if (!/^[a-z0-9-]+$/.test(id)) err(`assets/objects.yaml: id ${id} must be lowercase English`);
   }
-  const used = { object: new Map(), drawn: new Map(), character: new Map(), sound: new Map() };
+  const used = { object: new Map(), drawn: new Map(), sound: new Map() };
   const use = (kind, id, where) => { if (!used[kind].has(id)) used[kind].set(id, new Set()); used[kind].get(id).add(where); };
 
   // Walk any value for asset references.
@@ -40,11 +43,17 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       const o = objects.get(v.object);
       if (!o) err(`${file}: ${where}: unknown object ${v.object}`);
       else if (v.colour && !o.colour_slot) err(`${file}: ${where}: object ${v.object} has no colour slot, so it cannot be shown in ${v.colour}`);
+      else if (!existsSync(join(T, "assets/objects", `${v.object}${v.colour ? "." + v.colour : ""}.png`))) warn(`${file}: ${where}: no picture yet for ${v.object}${v.colour ? " in " + v.colour : ""} (run assets/tools/pictures.py)`);
+      if (o && v.colour && !o.recolour) err(`${file}: ${where}: object ${v.object} has no recolour entry, so no ${v.colour} version can be made`);
       use("object", v.object, file);
     }
     if (v.drawn !== undefined) { if (!drawn.has(v.drawn)) err(`${file}: ${where}: unknown drawn component ${v.drawn}`); use("drawn", v.drawn, file); }
-    if (v.character !== undefined) { if (!characters.has(v.character)) err(`${file}: ${where}: unknown character ${v.character}`); use("character", v.character, file); }
-    if (v.sound !== undefined) { if (!sounds.has(v.sound)) err(`${file}: ${where}: unknown sound ${v.sound}`); use("sound", v.sound, file); }
+    if (v.character !== undefined) err(`${file}: ${where}: lessons use no character art`);
+    if (v.sound !== undefined) {
+      if (!sounds.has(v.sound)) err(`${file}: ${where}: unknown sound ${v.sound}`);
+      else if (chosenVoice && !existsSync(join(T, "assets/narration", chosenVoice, "sounds", `${v.sound.replace(":", "-long")}.mp3`))) warn(`${file}: ${where}: no audio yet for sound ${v.sound} in voice ${chosenVoice} (run assets/tools/narration.py)`);
+      use("sound", v.sound, file);
+    }
     for (const [k, x] of Object.entries(v)) if (typeof x === "object") refs(x, where, file);
   };
 
@@ -114,22 +123,41 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
         const spec = ACTIVITY[a.activity];
         if (!spec) { err(`${file}: ${aw}: unknown activity`); return; }
         for (const [k, values] of Object.entries(spec)) if (!values.includes(a[k])) err(`${file}: ${aw}: ${k} must be one of ${values.join(", ")}`);
-        seq.push(a.activity === "practise" ? `practise (${a.support}${a.setting === "in-context" ? ", in context" : ""})` : a.activity === "check" ? `check (${a.size})` : a.activity);
-        if (a.activity === "learn") { if (!a.screens?.length) err(`${file}: ${aw}: Learn needs screens`); refs(a.screens, aw, file); return; }
-        if (!a.tasks?.length) err(`${file}: ${aw}: no tasks`);
-        for (const t of a.tasks ?? []) {
+        if (a.activity === "learn") { seq.push("learn"); if (!a.screens?.length) err(`${file}: ${aw}: Learn needs screens`); refs(a.screens, aw, file); return; }
+        // Practise: three stages, full hints, then one hint, then none.
+        let groups;
+        if (a.activity === "practise") {
+          if (a.tasks || a.support) err(`${file}: ${aw}: practise holds its tasks in stages (full, some, none)`);
+          const st = a.stages ?? [];
+          if (st.map((s) => s.support).join() !== STAGES.join()) err(`${file}: ${aw}: stages must be ${STAGES.join(", ")} in that order`);
+          groups = st.map((s) => {
+            const setting = s.setting ?? a.setting;
+            if (!ACTIVITY.practise.setting.includes(setting)) err(`${file}: ${aw}: stage ${s.support}: setting must be plain or in-context`);
+            const n = s.tasks?.length ?? 0;
+            if (n < STAGE_TASKS[0] || n > STAGE_TASKS[1]) warn(`${file}: ${aw}: stage ${s.support} has ${n} tasks; usually ${STAGE_TASKS.join(" to ")}`);
+            return { support: s.support, tasks: s.tasks ?? [] };
+          });
+          seq.push(`practise (${st.map((s) => `${s.tasks?.length ?? 0} ${s.support}${(s.setting ?? a.setting) === "in-context" ? " in context" : ""}`).join(", ")})`);
+        } else {
+          seq.push(a.activity === "check" ? `check (${a.size})` : a.activity);
+          if (!a.tasks?.length) err(`${file}: ${aw}: no tasks`);
+          groups = [{ support: null, tasks: a.tasks ?? [] }];
+        }
+        for (const { support, tasks } of groups) for (const t of tasks) {
           count++;
           const tw = `${aw} task ${t.id}`;
           if (taskIds.has(t.id)) err(`${file}: duplicate task id ${t.id}`);
           taskIds.add(t.id);
           if (!TASK_TYPES.has(t.type)) err(`${file}: ${tw}: unknown task type ${t.type}`);
           if (!t.text && !t.say) err(`${file}: ${tw}: needs text or say`);
-          if (!["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);
+          // difficulty defaults to core
+          if (t.difficulty !== undefined && !["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);
           checkAnswer(t, tw, file, err);
+          if (t.option_audio !== undefined && typeof t.option_audio !== "boolean") err(`${file}: ${tw}: option_audio must be true or false`);
           const hints = t.hints?.length ?? 0;
-          if (a.activity === "practise" && a.support === "full" && hints !== 3 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: full support needs 3 hints, has ${hints}`);
-          if (a.activity === "practise" && a.support === "some" && hints < 1) err(`${file}: ${tw}: some support needs a hint`);
-          if ((a.activity === "check" || (a.activity === "practise" && a.support === "none")) && hints) err(`${file}: ${tw}: no hints allowed here`);
+          if (support === "full" && hints !== 3 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: full support needs 3 hints, has ${hints}`);
+          if (support === "some" && hints !== 1 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: some support needs one hint, has ${hints}`);
+          if ((a.activity === "check" || support === "none") && hints) err(`${file}: ${tw}: no hints allowed here`);
           if (d.metadata?.no_reading && typeof (t.options ?? [])[0] === "string" && !["audio_choice"].includes(t.type)) err(`${file}: ${tw}: no_reading lesson, but options are text`);
           if (d.metadata?.no_reading && t.type === "audio_choice" && typeof (t.options ?? [])[0] === "string") err(`${file}: ${tw}: no_reading lesson, but the child must read the options`);
           if (a.activity === "check" && ["skill", "timed"].includes(a.size) && t.type === "speak") warn(`${file}: ${tw}: speaking in a skill check; speech recognition for young children is not reliable enough to decide mastery`);
@@ -156,12 +184,12 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     for (const x of md.drawn ?? []) if (!drawn.has(x)) err(`${file}: metadata.drawn names unknown component ${x}`);
     sets.push({ file, d, summary, typeMix: typeMix(lessons) });
   }
-  return { sets, objects, drawn, characters, sounds, used };
+  return { sets, objects, drawn, sounds, used };
 }
 
 function typeMix(lessons) {
   const m = {};
-  for (const l of lessons) for (const a of l.activities ?? []) for (const t of a.tasks ?? []) m[t.type] = (m[t.type] ?? 0) + 1;
+  for (const l of lessons) for (const a of l.activities ?? []) for (const t of [...(a.tasks ?? []), ...(a.stages ?? []).flatMap((s) => s.tasks ?? [])]) m[t.type] = (m[t.type] ?? 0) + 1;
   return m;
 }
 
@@ -189,5 +217,21 @@ function checkAnswer(t, tw, file, err) {
     case "tracing": if (!t.char) err(`${file}: ${tw}: tracing needs char`); break;
     case "speak": if (!t.expected_text) err(`${file}: ${tw}: speak needs expected_text`); break;
     case "highlight_in_text": if (!t.spans) err(`${file}: ${tw}: highlight_in_text needs spans`); break;
+    case "matching": {
+      // Twist: pairs of left and right, 2 to 6; the app shuffles the right side.
+      const n = t.pairs?.length ?? 0;
+      if (n < 2 || n > 6) err(`${file}: ${tw}: matching needs 2 to 6 pairs, has ${n}`);
+      for (const p of t.pairs ?? []) if (!p.left || !p.right) err(`${file}: ${tw}: every pair needs left and right`);
+      break;
+    }
+    case "sorting": {
+      // Twist: 2 to 5 bins; every option names its bin.
+      const bins = new Set((t.bins ?? []).map((b) => b.id));
+      if (bins.size < 2 || bins.size > 5) err(`${file}: ${tw}: sorting needs 2 to 5 bins, has ${bins.size}`);
+      if ((t.options ?? []).length < 2) err(`${file}: ${tw}: sorting needs at least 2 options`);
+      for (const o of t.options ?? []) if (!bins.has(o.bin)) err(`${file}: ${tw}: option ${o.object ?? o.text} names unknown bin ${o.bin}`);
+      for (const b of bins) if (!(t.options ?? []).some((o) => o.bin === b)) err(`${file}: ${tw}: bin ${b} gets no option`);
+      break;
+    }
   }
 }

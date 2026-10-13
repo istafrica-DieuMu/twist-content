@@ -158,8 +158,8 @@ of one skill in one curriculum live in one file,
 `lessons/<curriculum>/<domain>/<slug>.yaml`, written in that curriculum's
 language. The record format is in [../lessons/README.md](../lessons/README.md);
 how lessons are built and the mastery rule are in
-[lesson-anatomy.md](lesson-anatomy.md). Pictures, drawn components,
-characters and sounds come from the asset bank ([../assets/](../assets/)).
+[lesson-anatomy.md](lesson-anatomy.md). Pictures, drawn components
+and sounds come from the asset bank ([../assets/](../assets/)).
 
 ## Locale facets
 

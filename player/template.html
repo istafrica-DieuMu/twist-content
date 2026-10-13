@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Twist Lesson Player</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#efe9f5; --panel:#ffffff; --ink:#2b0f45; --muted:#6d5f7b; --line:#e3dbea;
+  --app:#fbf7ff; --card:#ffffff; --plum:#2b0f45; --accent:#8e3bd1; --accent-soft:#efe0fb;
+  --good:#2e9e48; --good-soft:#dff4e3; --bad:#d4483f; --bad-soft:#fbe3e1; --hint:#f6b400; --hint-soft:#fff3cc;
+  --red:#E53935; --blue:#1E88E5; --frame:#1d1426;
+  --check:#2d5f8a; --check-soft:#e2eef8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --page:#14101a; --panel:#1e1826; --ink:#f1eaf8; --muted:#a99bb8; --line:#352c40; }
+}
+:root[data-theme="dark"]{ --page:#14101a; --panel:#1e1826; --ink:#f1eaf8; --muted:#a99bb8; --line:#352c40; }
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{display:flex;gap:28px;justify-content:center;align-items:flex-start;padding:24px 16px}
+/* side panel */
+.side{width:340px;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
+.side h1{font-size:18px;margin:0 0 4px}.side p{margin:0 0 12px;color:var(--muted);font-size:13px}
+.side label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+.side select{width:100%;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.steps{list-style:none;padding:0;margin:6px 0 0;font-size:13px}
+.steps li{padding:4px 8px;border-radius:8px;cursor:pointer;display:flex;gap:6px}
+.steps li:hover{background:var(--accent-soft);color:#2b0f45}
+.steps li.on{background:var(--accent);color:#fff}
+.steps .grp{font-weight:700;margin-top:8px;cursor:default;background:none!important;color:var(--muted)!important}
+pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);border-radius:10px;padding:10px;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow:auto;margin:6px 0 0}
+.toggles{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;margin-top:8px}
+/* phone */
+.phone{width:390px;height:844px;border-radius:54px;background:var(--frame);padding:12px;box-shadow:0 30px 60px -20px rgba(43,15,69,.45);flex:none;position:relative}
+.phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#000;z-index:5}
+.screen{width:100%;height:100%;border-radius:44px;background:var(--app);overflow:hidden;display:flex;flex-direction:column;color:#2b0f45;font-family:Andika,system-ui,sans-serif;position:relative}
+@media (max-width:820px){
+  .wrap{flex-direction:column;align-items:center;padding:0 0 24px}
+  .phone{width:100%;max-width:430px;height:100svh;border-radius:0;padding:0;box-shadow:none;order:-1}
+  .phone::before{display:none}
+  .screen{border-radius:0}
+  .side{position:static;width:100%;max-width:430px;max-height:none;border-radius:0;border-left:0;border-right:0}
+}
+.status{height:52px;flex:none}
+.top{display:flex;align-items:center;gap:10px;padding:4px 18px 8px;flex:none}
+.x{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:18px;color:var(--muted);cursor:pointer}
+.bar{flex:1;height:14px;border-radius:8px;background:#eadff3;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:8px;transition:width .35s}
+.chip{display:inline-flex;align-items:center;gap:6px;margin:0 18px;padding:4px 12px;border-radius:999px;font-size:14px;font-weight:700;background:var(--accent-soft);color:#5b1f8f;align-self:flex-start}
+.chip.check{background:var(--check-soft);color:var(--check)}
+.dots{display:inline-flex;gap:4px;margin-left:4px}.dots b{width:8px;height:8px;border-radius:50%;background:#d6c2e8}.dots b.on{background:#5b1f8f}
+.body{flex:1;overflow:auto;padding:12px 20px 8px;display:flex;flex-direction:column;gap:14px}
+.prompt{display:flex;gap:12px;align-items:flex-start}
+.prompt .t{font-size:24px;line-height:1.25;font-weight:700;flex:1}
+.spk{flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--plum);background:#fff;cursor:pointer;display:grid;place-items:center}
+.spk svg{width:26px;height:26px}.spk.big{width:96px;height:96px;margin:8px auto}.spk.big svg{width:48px;height:48px}
+.spk.playing{background:var(--accent-soft)}
+.visual{display:flex;justify-content:center;align-items:center;min-height:40px}
+.visual img{width:150px;height:150px;object-fit:contain}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:12px;margin-top:auto}
+.opt{position:relative;border:3px solid var(--plum);background:#fff;border-radius:20px;min-height:76px;font:700 30px Andika,sans-serif;color:var(--plum);cursor:pointer;display:grid;place-items:center;padding:8px;box-shadow:0 4px 0 var(--plum);transition:transform .08s}
+.opt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--plum)}
+.opt img{width:84px;height:84px;object-fit:contain}
+.opt.good{background:var(--good-soft);border-color:var(--good);box-shadow:0 4px 0 var(--good)}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad);box-shadow:0 4px 0 var(--bad);animation:shake .3s}
+.opt.sel{background:var(--accent-soft)}
+.opt.dim{opacity:.45}
+.opt .os{position:absolute;top:4px;right:4px;width:28px;height:28px;border-radius:50%;border:2px solid var(--plum);background:#fff;display:grid;place-items:center;cursor:pointer}
+.opt .os svg{width:14px;height:14px}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.foot{padding:10px 20px 26px;flex:none;display:flex;flex-direction:column;gap:10px}
+.btn{width:100%;border:3px solid var(--plum);background:var(--accent);color:#fff;border-radius:18px;padding:14px;font:700 22px Andika,sans-serif;cursor:pointer;box-shadow:0 4px 0 var(--plum)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.light{background:#fff;color:var(--plum)}
+.bubble{border-radius:16px;padding:10px 14px;font-size:18px;display:flex;gap:10px;align-items:flex-start}
+.bubble.hint{background:var(--hint-soft);border:2px solid var(--hint)}
+.bubble.fb{background:var(--bad-soft);border:2px solid var(--bad)}
+.bubble.ok{background:var(--good-soft);border:2px solid var(--good)}
+.bubble .spk{width:36px;height:36px;border-width:2px}.bubble .spk svg{width:18px;height:18px}
+.center{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
+.center h2{font-size:30px;margin:0}.center p{font-size:18px;margin:0;color:#6d5f7b}
+.center img{width:180px;height:180px;object-fit:contain}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:auto}
+.tf .opt{font-size:26px;min-height:96px}
+/* drawn */
+.cards{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.card{min-width:52px;height:72px;padding:0 10px;border:3px solid var(--plum);border-radius:16px;background:#fff;display:grid;place-items:center;font:700 40px Andika,sans-serif;cursor:default}
+.card.tap{cursor:pointer;box-shadow:0 4px 0 var(--plum)}.card.sel{background:var(--accent-soft);border-color:var(--accent)}
+.card.good{background:var(--good-soft);border-color:var(--good)}.card.bad{background:var(--bad-soft);border-color:var(--bad)}
+.word{font:700 54px Andika,sans-serif;letter-spacing:.02em;text-align:center}
+.syl{display:inline-block;position:relative;padding:0 2px 18px}
+.syl::after{content:"";position:absolute;left:4%;right:4%;bottom:2px;height:14px;border:4px solid currentColor;border-top:0;border-radius:0 0 60px 60px}
+.syl:nth-child(odd){color:#1E6FD9}.syl:nth-child(even){color:#D63A2F}
+.wordcard{padding:12px 26px;border:3px solid var(--plum);border-radius:18px;background:#fff}
+.frame{font:700 40px Andika,sans-serif;text-align:center;display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap}
+.gap{min-width:52px;height:62px;border-bottom:5px solid var(--accent);display:inline-grid;place-items:center;color:var(--accent);cursor:pointer;border-radius:6px 6px 0 0;background:var(--accent-soft)}
+.gap.filled{color:var(--plum)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:auto}
+.chips .opt{min-width:72px;min-height:68px}
+.entry{font:700 48px Andika,sans-serif;text-align:center;border:3px solid var(--plum);border-radius:18px;background:#fff;min-height:76px;display:grid;place-items:center;margin:0 auto;width:160px}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}
+.pad .opt{min-height:58px;font-size:26px}
+.trace{position:relative;width:300px;height:200px;margin:0 auto}
+.trace svg,.trace canvas{position:absolute;inset:0;width:300px;height:200px}
+.trace canvas{touch-action:none;cursor:crosshair}
+.note{font-size:13px;color:#6d5f7b;text-align:center}
+.blank{display:inline-block;min-width:1.4em;padding:0 .2em;margin:0 .1em;border-radius:8px;background:var(--accent-soft);color:var(--accent);border-bottom:3px solid var(--accent);text-align:center;line-height:1.1}
+.sound{align-self:center;border:3px solid var(--plum);border-radius:999px;background:#fff;padding:6px 18px;font:700 26px Andika,sans-serif;color:var(--plum);cursor:pointer;box-shadow:0 3px 0 var(--plum);display:flex;gap:8px;align-items:center}
+.sound svg{width:20px;height:20px}
+svg text{font-family:Andika,sans-serif}
+.moved{animation:slideup .7s ease-out both}
+@keyframes slideup{from{transform:translateY(34px)}to{transform:none}}
+.stars{font-size:44px;letter-spacing:6px}
+.badge{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--good-soft);color:var(--good);font-weight:700;font-size:18px}
+.badge.no{background:var(--hint-soft);color:#8a6400}
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:auto}
+.bins{display:grid;gap:12px;margin-top:auto}
+.bin{border:3px dashed var(--plum);border-radius:20px;min-height:220px;padding:8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;cursor:pointer}
+.list{display:flex;flex-direction:column;gap:10px;width:100%}
+.list .btn{font-size:19px;text-align:left;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="side">
+    <h1>Twist lesson player</h1>
+    <p>The de-DE model lessons rendered from their records, with pictures, drawn components and narration. Built <span id="built"></span>; rebuild with <code>node player/build.mjs</code>.</p>
+    <label for="set">Lesson set</label><select id="set"></select>
+    <label for="les">Lesson</label><select id="les"></select>
+    <div class="toggles"><label style="all:unset;display:flex;gap:6px;align-items:center"><input type="checkbox" id="auto" checked> Play audio automatically</label></div>
+    <label>Steps</label><ul class="steps" id="steps"></ul>
+    <label>Record of this step</label><pre class="rec" id="rec"></pre>
+  </aside>
+  <div class="phone"><div class="screen" id="screen"></div></div>
+</div>
+<script>
+const D = __DATA__;
+const A = D.assets;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="#2b0f45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#2b0f45"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
+const NAMES = { de: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Üben", check: "Zeig, was du kannst" }, en: { "warm-up": "Warm up", learn: "Learn", practise: "Practise", check: "Show what you know" } };
+const UI = { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde" };
+try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
+
+/* ---------- audio: one queue, cancelled on every step change ---------- */
+const player = new Audio();
+let queue = [], qToken = 0, onQueueEnd = null;
+function play(srcs, done) {
+  qToken++; const tok = qToken;
+  queue = (Array.isArray(srcs) ? srcs : [srcs]).filter(Boolean);
+  onQueueEnd = done || null;
+  const next = () => {
+    if (tok !== qToken) return;
+    if (!queue.length) { document.querySelectorAll(".spk.playing").forEach((b) => b.classList.remove("playing")); if (onQueueEnd) onQueueEnd(); return; }
+    player.src = A + queue.shift();
+    player.onended = () => setTimeout(next, 250);
+    player.onerror = () => next();
+    player.play().catch(() => next());
+  };
+  next();
+}
+function stopAudio() { qToken++; player.pause(); queue = []; }
+const auto = () => document.getElementById("auto").checked;
+function spk(srcs, cls = "") {
+  const b = document.createElement("button"); b.className = "spk " + cls; b.innerHTML = SPK; b.setAttribute("aria-label", "Anhören");
+  b.onclick = (e) => { e.stopPropagation(); b.classList.add("playing"); play(srcs); };
+  return b;
+}
+// How a sound id reads on its button: de.l -> lll, de.o: -> ooo, de.ma -> Ma.
+const lines_sound = (id) => { const x = id.split(".")[1]; return x.endsWith(":") ? x[0].repeat(3) : x.length === 1 && !"aeiou".includes(x) ? x.repeat(3) : x[0].toUpperCase() + x.slice(1); };
+const phrase = (g) => { const list = D.phrases.de?.[g] ?? []; return list[Math.floor(Math.random() * list.length)]; };
+
+/* ---------- pictures and drawn components ---------- */
+function pic(o) {
+  if (!o) return "";
+  if (o.drawn === "colour-swatch") return swatch(o.colour);
+  const f = o.colour && D.pics.includes(`${o.object}.${o.colour}.png`) ? `${o.object}.${o.colour}.png` : `${o.object}.png`;
+  return `<img src="${A}objects/${f}" alt="${esc(D.objects[o.object]?.de ?? o.object)}">`;
+}
+const swatch = (c) => `<svg viewBox="0 0 100 100" width="84" height="84"><path d="M50 8c22 0 40 14 40 38 0 26-18 46-42 46S10 76 10 52 28 8 50 8z" fill="${D.colours[c]}" stroke="#2b0f45" stroke-width="5"/><path d="M30 34c4-8 12-12 20-12" stroke="#fff" stroke-opacity=".6" stroke-width="6" stroke-linecap="round" fill="none"/></svg>`;
+function counter(x, y, fill, cls = "") { return `<circle class="${cls}" cx="${x}" cy="${y}" r="12" fill="${fill}" stroke="#2b0f45" stroke-width="2.5"/>`; }
+function field(rows, opts = {}) {
+  // rows: [[colour per cell or null] x10] ; two rows for a Zwanzigerfeld, one for a ten-frame (2x5)
+  const W = 330, cell = 31, gap = 8;
+  let s = "";
+  rows.forEach((row, r) => row.forEach((c, i) => {
+    const x = 8 + i * cell + (i >= 5 ? gap : 0), y = 8 + r * (cell + 6);
+    s += `<rect x="${x}" y="${y}" width="${cell - 3}" height="${cell - 3}" rx="6" fill="#fff" stroke="#c9b8da" stroke-width="2"/>`;
+    if (c) s += `<g data-r="${r}" data-i="${i}" style="cursor:${opts.tap && r === 1 ? "pointer" : "default"}">${counter(x + 14, y + 14, c.fill, c.cls)}</g>`;
+  }));
+  return `<svg viewBox="0 0 ${W} ${16 + rows.length * (cell + 6)}" width="100%" style="max-width:${W}px">${s}</svg>`;
+}
+function zwanziger(a, b, moved = 0) {
+  const top = Array(10).fill(null), bot = Array(10).fill(null);
+  for (let i = 0; i < a; i++) top[i] = { fill: "#E53935" };
+  for (let i = 0; i < moved; i++) top[a + i] = { fill: "#1E88E5", cls: "moved" };
+  for (let i = 0; i < b - moved; i++) bot[i] = { fill: "#1E88E5" };
+  return field([top, bot]);
+}
+function tenFrame(n) { const r1 = Array(5).fill(null).map((_, i) => i < n ? { fill: "#E53935" } : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? { fill: "#E53935" } : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
+function house(roof, rows) {
+  let s = `<path d="M20 70 L90 12 L160 70 Z" fill="#efe0fb" stroke="#2b0f45" stroke-width="4" stroke-linejoin="round"/><text x="90" y="58" text-anchor="middle" font-size="30" font-weight="700" fill="#2b0f45">${roof}</text>`;
+  rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * 52; s += `<rect x="${x}" y="${y}" width="62" height="52" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + 37}" text-anchor="middle" font-size="30" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
+  return `<svg viewBox="0 0 180 ${80 + rows.length * 52}" width="180">${s}</svg>`;
+}
+function equation(text, split) {
+  const tokens = text.split(" ");
+  const m = split?.match(/^(\d+) = (\d+) \+ (\d+)$/);
+  let idx = m ? tokens.findIndex((t, i) => i > 0 && t === m[1]) : -1;
+  const parts = tokens.map((t, i) => `<span style="display:inline-block;position:relative;min-width:30px;text-align:center">${t === "_" ? '<span style="color:#8e3bd1">?</span>' : esc(t)}${i === idx ? `<svg viewBox="0 0 80 70" width="80" style="position:absolute;left:50%;top:100%;transform:translateX(-50%)"><path d="M40 4 L18 34 M40 4 L62 34" stroke="#8e3bd1" stroke-width="4" stroke-linecap="round"/><text x="14" y="62" text-anchor="middle" font-size="26" font-weight="700" fill="#2b0f45">${m[2]}</text><text x="66" y="62" text-anchor="middle" font-size="26" font-weight="700" fill="#2b0f45">${m[3]}</text></svg>` : ""}</span>`).join(" ");
+  return `<div class="frame" style="padding-bottom:70px">${parts}</div>`;
+}
+function arcs(points, scale, y0, labelAll) {
+  // points: [[from, size], ...] drawn as hops above the line
+  return points.map(([f, n]) => { const x1 = scale(f), x2 = scale(f + n), mx = (x1 + x2) / 2, h = Math.max(26, (x2 - x1) * 0.45);
+    return `<path d="M${x1} ${y0} Q ${mx} ${y0 - h * 2} ${x2} ${y0}" fill="none" stroke="#8e3bd1" stroke-width="3.5"/><path d="M${x2 - 7} ${y0 - 9} L${x2} ${y0} L${x2 + 3} ${y0 - 11}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-linecap="round"/><text x="${mx}" y="${y0 - h - 6}" text-anchor="middle" font-size="18" font-weight="700" fill="#8e3bd1">+${n}</text>`; }).join("");
+}
+function rechenstrich(start, jumps) {
+  const end = jumps.length ? jumps.reduce((a, b) => a + b, start) : start + 5, span = Math.max(end - start, 1);
+  const sc = (v) => 24 + ((v - start) / span) * 282, y = 110;
+  let s = `<line x1="10" y1="${y}" x2="320" y2="${y}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/>`;
+  let at = start; const hops = [];
+  jumps.forEach((j) => { hops.push([at, j]); at += j; });
+  const marks = [start, ...hops.map(([f, n]) => f + n)];
+  s += arcs(hops, sc, y);
+  marks.forEach((v) => { s += `<line x1="${sc(v)}" y1="${y - 10}" x2="${sc(v)}" y2="${y + 10}" stroke="#2b0f45" stroke-width="4"/><text x="${sc(v)}" y="${y + 36}" text-anchor="middle" font-size="22" font-weight="700" fill="#2b0f45">${v}</text>`; });
+  if (!jumps.length) s += `<path d="M${sc(start)} ${y} Q ${sc(start + 1.5)} ${y - 70} ${sc(start + 3)} ${y}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-dasharray="7 7"/><text x="${sc(start + 1.5)}" y="${y - 44}" text-anchor="middle" font-size="22" font-weight="700" fill="#8e3bd1">?</text>`;
+  return `<svg viewBox="0 0 330 160" width="100%" style="max-width:330px">${s}</svg>`;
+}
+function numberLine(o, pick) {
+  const from = o.from ?? 0, to = o.to ?? 20, sc = (v) => 15 + ((v - from) / (to - from)) * 300, y = 120;
+  let s = `<line x1="8" y1="${y}" x2="322" y2="${y}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/>`;
+  for (let v = from; v <= to; v++) {
+    const big = v % 10 === 0, mid = v % 5 === 0;
+    s += `<line x1="${sc(v)}" y1="${y - (big ? 14 : mid ? 10 : 6)}" x2="${sc(v)}" y2="${y + (big ? 14 : mid ? 10 : 6)}" stroke="#2b0f45" stroke-width="${big ? 4 : 2.5}"/>`;
+    if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${sc(v)}" y="${y + 40}" text-anchor="middle" font-size="20" font-weight="700" fill="#2b0f45">${v}</text>`;
+    if (pick) s += `<rect data-v="${v}" x="${sc(v) - 7}" y="${y - 30}" width="14" height="60" fill="transparent" style="cursor:pointer"/>`;
+  }
+  s += arcs(o.jumps ?? [], sc, y);
+  if (pick != null && pick !== true) s += `<path d="M${sc(pick)} ${y - 18} l-10 -18 h20 z" fill="#8e3bd1" stroke="#2b0f45" stroke-width="2"/>`;
+  return `<svg viewBox="0 0 330 170" width="100%" style="max-width:330px">${s}</svg>`;
+}
+function writing(text, mode) {
+  const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="290" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
+  const glyph = mode === "trace"
+    ? `<text x="150" y="130" text-anchor="middle" font-size="130" fill="#efe0fb" stroke="#a58bc4" stroke-width="2.5" stroke-dasharray="6 5">${esc(text)}</text><circle cx="${/[a-z]/.test(text) ? 132 : 112}" cy="${/[ao]/.test(text) ? 86 : 42}" r="8" fill="#2e9e48"/>`
+    : `<text x="50" y="130" text-anchor="middle" font-size="100" fill="#2b0f45">${esc(text)}</text>`;
+  return `<svg viewBox="0 0 300 200">${lines}${glyph}</svg>`;
+}
+function drawn(o, ctx = {}) {
+  switch (o.drawn) {
+    case "zwanzigerfeld": return zwanziger(o.filled[0], o.filled[1], ctx.moved ?? 0);
+    case "ten-frame": return tenFrame(o.filled);
+    case "number-house": return house(o.roof, o.rows);
+    case "equation": return equation(o.text, o.split);
+    case "rechenstrich": return rechenstrich(o.start, o.jumps ?? []);
+    case "number-line": return numberLine(o);
+    case "letter-card": return `<div class="cards">${(o.text.includes(" ") ? o.text.split(" ") : [o.text]).map((t) => `<div class="card">${esc(t)}</div>`).join("")}</div>`;
+    case "writing-lines": return `<div class="trace">${writing(o.text, o.mode)}</div>`;
+    case "syllable-arcs": return `<div class="word">${o.syllables.map((s) => `<span class="syl">${esc(s)}</span>`).join("")}</div>`;
+    case "word-card": return `<div class="word"><span class="wordcard">${esc(o.text)}</span></div>`;
+    case "colour-swatch": return swatch(o.colour);
+  }
+  return `<div class="note">[${esc(o.drawn)}]</div>`;
+}
+const show = (o, ctx) => !o ? "" : o.drawn ? drawn(o, ctx) : pic(o);
+// A "_" in screen text is a gap to fill: drawn as a box, never as an underscore.
+const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?</span>');
+
+/* ---------- lesson as a list of steps ---------- */
+let set, lesson, steps = [], at = 0, results = [];
+function buildSteps() {
+  steps = [{ kind: "start" }];
+  for (const a of lesson.activities) {
+    if (a.activity === "learn") a.screens.forEach((s, i) => steps.push({ kind: "learn", a, s, i }));
+    else if (a.activity === "practise") a.stages.forEach((st, si) => {
+      if (si > 0) steps.push({ kind: "stage", a, st, si });
+      st.tasks.forEach((t) => steps.push({ kind: "task", a, t, stage: st.support, si, setting: st.setting ?? a.setting }));
+    });
+    else {
+      if (a.activity === "check") steps.push({ kind: "checkIntro", a });
+      a.tasks.forEach((t) => steps.push({ kind: "task", a, t, stage: a.activity === "check" ? "check" : "none" }));
+    }
+  }
+  steps.push({ kind: "end" });
+  results = steps.map(() => null);
+}
+const lang = () => set.language;
+const actName = (a) => (NAMES[lang()] ?? NAMES.en)[a.activity];
+const taskCount = () => steps.filter((s) => s.kind === "task" || s.kind === "learn").length;
+const doneCount = () => steps.slice(0, at).filter((s) => s.kind === "task" || s.kind === "learn").length;
+
+function frameUI(step) {
+  const scr = $("#screen");
+  scr.innerHTML = `<div class="status"></div><div class="top"><button class="x" aria-label="Schließen">✕</button><div class="bar"><i style="width:${(100 * doneCount()) / Math.max(1, taskCount())}%"></i></div></div>`;
+  $(".x", scr).onclick = () => go(0);
+  if (step.a) {
+    const c = document.createElement("div");
+    c.className = "chip" + (step.a.activity === "check" ? " check" : "");
+    c.innerHTML = esc(actName(step.a)) + (step.a.activity === "practise" ? `<span class="dots">${step.a.stages.map((_, i) => `<b class="${i <= (step.si ?? 0) ? "on" : ""}"></b>`).join("")}</span>` : "");
+    scr.appendChild(c);
+  }
+  const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
+  const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
+  return { body, foot };
+}
+function nextBtn(foot, label = UI.next, onClick) {
+  const b = document.createElement("button"); b.className = "btn"; b.textContent = label;
+  b.onclick = onClick || (() => go(at + 1)); foot.appendChild(b); return b;
+}
+
+function go(i) {
+  stopAudio();
+  at = Math.max(0, Math.min(steps.length - 1, i));
+  const step = steps[at];
+  ({ start: renderStart, learn: renderLearn, stage: renderStage, checkIntro: renderCheckIntro, task: renderTask, end: renderEnd })[step.kind](step);
+  sidebar();
+}
+
+function renderStart() {
+  const { body, foot } = frameUI({});
+  const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
+  body.innerHTML = `<div class="center">${first ? pic(first) : ""}<p>${esc(set.title[lang()] ?? set.title.de)} · Stunde ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
+  nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
+}
+function renderLearn(step) {
+  const { body, foot } = frameUI(step), s = step.s;
+  const vis = document.createElement("div"); vis.className = "visual"; vis.innerHTML = show(s.show); body.appendChild(vis);
+  const cardShown = ["letter-card", "word-card", "syllable-arcs"].includes(s.show?.drawn);
+  if (s.text && !set.no_reading && !cardShown) { const t = document.createElement("div"); t.className = "word"; t.style.fontSize = "40px"; t.innerHTML = withGaps(s.text); body.appendChild(t); }
+  const srcs = [...s._audio, s._sound].filter(Boolean);
+  const sp = spk(srcs, "big"); body.appendChild(sp);
+  if (s._sound) { const b = document.createElement("button"); b.className = "sound"; b.innerHTML = SPK + esc(lines_sound(s.sound)); b.onclick = () => play(s._sound); body.appendChild(b); }
+  if (auto()) play(srcs);
+  if (s.show?.drawn === "zwanzigerfeld" && s.show.move) setTimeout(() => { if (steps[at] === step) vis.innerHTML = drawn(s.show, { moved: s.show.move }); }, 1600);
+  nextBtn(foot);
+}
+function renderStage(step) {
+  const { body, foot } = frameUI(step), p = phrase("stage_done");
+  const label = { some: "Jetzt mit weniger Hilfe", none: "Jetzt ganz allein" }[step.st.support];
+  body.innerHTML = `<div class="center"><div class="stars">★</div><h2>${esc(p?.text ?? "Prima!")}</h2><p>${esc(label)}</p></div>`;
+  if (p) play(p.src);
+  nextBtn(foot);
+}
+function renderCheckIntro(step) {
+  const { body, foot } = frameUI(step), p = phrase("check_start");
+  body.innerHTML = `<div class="center"><h2>${esc(p?.text ?? "Zeig, was du kannst")}</h2><p>${step.a.tasks.length} Aufgaben, ohne Tipps. Es zählt der erste Versuch.</p></div>`;
+  if (p) play(p.src);
+  nextBtn(foot);
+}
+function renderEnd() {
+  const { body, foot } = frameUI({});
+  const checkSteps = steps.map((s, i) => [s, results[i]]).filter(([s]) => s.kind === "task" && s.stage === "check");
+  const right = checkSteps.filter(([, r]) => r === "first").length;
+  const skill = checkSteps[0]?.[0].a.size === "skill";
+  const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
+  const p = phrase("lesson_done");
+  body.innerHTML = `<div class="center"><div class="stars">${"★".repeat(Math.max(1, Math.round((3 * right) / Math.max(1, checkSteps.length))))}</div><h2>${esc(p?.text ?? "Geschafft!")}</h2>
+    <p>${checkSteps.length ? `${right} von ${checkSteps.length} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig` : ""}</p>
+    ${pass === null ? "" : pass ? `<span class="badge">Kann ich! (Secure)</span>` : `<span class="badge no">Noch üben (Practised)</span>`}</div>`;
+  if (p) play(p.src);
+  const nextL = set.lessons.find((l) => l.n === lesson.n + 1);
+  if (nextL) nextBtn(foot, UI.nextLesson, () => pickLesson(nextL.n));
+  nextBtn(foot, UI.again, () => go(0)).classList.add("light");
+}
+
+/* ---------- tasks ---------- */
+function renderTask(step) {
+  const { body, foot } = frameUI(step), t = step.t;
+  const st = { misses: 0, hintShown: 0, over: false };
+  const mode = step.stage; // full, some, none, check
+  // prompt
+  const pr = document.createElement("div"); pr.className = "prompt";
+  const promptAudio = [...t._prompt, t._target].filter(Boolean);
+  if (t.type === "audio_choice") {
+    const txt = document.createElement("div"); txt.className = "t"; txt.textContent = set.no_reading ? "" : (t.text ?? ""); pr.appendChild(txt);
+    pr.appendChild(spk(t._prompt));
+    body.appendChild(pr);
+    const big = spk([t._target].filter(Boolean), "big"); body.appendChild(big);
+  } else {
+    const txt = document.createElement("div"); txt.className = "t"; txt.innerHTML = set.no_reading ? "" : withGaps(t.text); pr.appendChild(txt);
+    pr.appendChild(spk(promptAudio)); body.appendChild(pr);
+  }
+  const vis = document.createElement("div"); vis.className = "visual"; body.appendChild(vis);
+  const msg = document.createElement("div"); msg.className = "msgs"; msg.style.display = "flex"; msg.style.flexDirection = "column"; msg.style.gap = "8px";
+  if (auto()) play(promptAudio);
+
+  const finish = (kind) => { st.over = true; results[at] = kind; foot.innerHTML = ""; nextBtn(foot); };
+  const bubble = (cls, text, src) => { const b = document.createElement("div"); b.className = "bubble " + cls; const s = document.createElement("div"); s.textContent = text; s.style.flex = "1"; b.appendChild(s); if (src) b.prepend(spk(src)); msg.appendChild(b); return b; };
+  // Called by each type with right/wrong, the chosen key, and how to show the answer.
+  function answer(ok, key, reveal) {
+    if (st.over) return;
+    if (ok) {
+      const p = mode === "check" ? null : phrase("correct");
+      if (p) { bubble("ok", p.text); play(p.src); }
+      return finish(st.misses ? (st.helped ? "helped" : "second") : "first");
+    }
+    st.misses++;
+    if (mode === "check") { reveal(false); return finish("wrong"); }
+    const fbText = t.feedback?.[String(key)], fbSrc = t._feedback?.[String(key)];
+    const queue = [];
+    if (fbText) { bubble("fb", fbText, fbSrc); queue.push(fbSrc); }
+    const hints = t.hints ?? [];
+    const canHint = (mode === "full" && st.hintShown < hints.length) || (mode === "some" && st.hintShown < 1 && hints.length);
+    if (canHint) {
+      bubble("hint", "Tipp: " + hints[st.hintShown], t._hints[st.hintShown]);
+      if (!fbText) { const p = phrase("hint"); if (p) queue.push(p.src); }
+      queue.push(t._hints[st.hintShown]); st.hintShown++; st.helped = true;
+    } else if (mode === "none" && st.misses < 2) {
+      if (!fbText) { const p = phrase("try_again"); if (p) { bubble("fb", p.text); queue.push(p.src); } }
+    } else {
+      const p = phrase("show_answer"); if (p) { bubble("ok", p.text); queue.push(p.src); }
+      reveal(true); play(queue); return finish("shown");
+    }
+    play(queue);
+  }
+  (TYPES[t.type] || TYPES._unknown)({ t, step, body, foot, vis, answer, st });
+  body.appendChild(msg);
+}
+function optEl(o, t, i) {
+  const b = document.createElement("button"); b.className = "opt";
+  b.innerHTML = typeof o === "string" ? esc(o) : show(o);
+  const src = t._options?.[i];
+  if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
+  return b;
+}
+const keyOf = (o) => typeof o === "string" ? o : (o.colour ?? o.object ?? o.drawn);
+function choice({ t, body, vis, answer, st }) {
+  vis.innerHTML = show(t.show);
+  const grid = document.createElement("div"); grid.className = "opts";
+  if ((t.options ?? []).length === 2) grid.style.gridTemplateColumns = "1fr 1fr";
+  const els = (t.options ?? []).map((o, i) => { const b = optEl(o, t, i); grid.appendChild(b); return b; });
+  const reveal = () => els.forEach((b, i) => { if (keyOf(t.options[i]) === String(t.answer)) b.classList.add("good"); else b.classList.add("dim"); });
+  els.forEach((b, i) => b.onclick = () => {
+    if (st.over || b.classList.contains("bad")) return;
+    const ok = keyOf(t.options[i]) === String(t.answer);
+    b.classList.add(ok ? "good" : "bad");
+    answer(ok, keyOf(t.options[i]), reveal);
+  });
+  body.appendChild(grid);
+}
+const TYPES = {
+  multiple_choice: choice, image_multiple_choice: choice, audio_choice: choice,
+  true_false({ t, body, vis, answer, st }) {
+    vis.innerHTML = show(t.show);
+    const g = document.createElement("div"); g.className = "tf"; body.appendChild(g);
+    const els = [[true, "✓ " + UI.yes], [false, "✗ " + UI.no]].map(([v, label]) => { const b = document.createElement("button"); b.className = "opt"; b.textContent = label; b.dataset.v = v; g.appendChild(b); return b; });
+    const reveal = () => els.forEach((b) => b.classList.add(String(t.answer) === b.dataset.v ? "good" : "dim"));
+    els.forEach((b) => b.onclick = () => { if (st.over || b.classList.contains("bad")) return; const ok = String(t.answer) === b.dataset.v; b.classList.add(ok ? "good" : "bad"); answer(ok, b.dataset.v, reveal); });
+  },
+  fill_in_blank({ t, body, foot, vis, answer, st }) {
+    vis.innerHTML = show(t.show);
+    const parts = t.frame.split("_"), n = parts.length - 1, fill = Array(n).fill(null);
+    const fr = document.createElement("div"); fr.className = "frame"; body.appendChild(fr);
+    const chips = document.createElement("div"); chips.className = "chips"; body.appendChild(chips);
+    const draw = () => { fr.innerHTML = ""; parts.forEach((p, i) => { if (p) { const s = document.createElement("span"); s.textContent = p.trim() ? p : " "; fr.appendChild(s); } if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; fr.appendChild(g); } }); btn.disabled = fill.includes(null); };
+    t.options.forEach((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over) return; const k = fill.indexOf(null); if (k >= 0) { fill[k] = o; draw(); } }; chips.appendChild(b); });
+    const btn = nextBtn(foot, UI.check, () => { const ok = fill.every((v, i) => String(v) === String(t.answer[i])); if (!ok) { fr.querySelectorAll(".gap").forEach((g, i) => g.style.background = String(fill[i]) === String(t.answer[i]) ? "var(--good-soft)" : "var(--bad-soft)"); } answer(ok, fill.join(","), () => { t.answer.forEach((v, i) => fill[i] = v); draw(); fr.querySelectorAll(".gap").forEach((g) => g.style.background = "var(--good-soft)"); }); if (!ok && !st.over) setTimeout(() => { fill.fill(null); draw(); }, 900); });
+    draw();
+  },
+  text_input({ t, body, foot, vis, answer, st }) {
+    vis.innerHTML = show(t.show);
+    let v = ""; const e = document.createElement("div"); e.className = "entry"; e.textContent = "?"; body.appendChild(e);
+    const pad = document.createElement("div"); pad.className = "pad"; body.appendChild(pad);
+    const set_ = (x) => { v = x; e.textContent = v || "?"; btn.disabled = !v; };
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""].forEach((k) => { const b = document.createElement("button"); b.className = "opt"; b.textContent = k; if (!k) b.style.visibility = "hidden"; b.onclick = () => { if (st.over) return; set_(k === "⌫" ? v.slice(0, -1) : (v + k).slice(0, 3)); }; pad.appendChild(b); });
+    const btn = nextBtn(foot, UI.check, () => { const ok = v === String(t.answer); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
+    btn.disabled = true;
+  },
+  drag_and_drop_count({ t, body, foot, vis, answer, st }) {
+    const [a, b] = t.show.filled; let moved = 0;
+    const draw = () => { const top = Array(10).fill(null), bot = Array(10).fill(null); for (let i = 0; i < a; i++) top[i] = { fill: "#E53935" }; for (let i = 0; i < moved; i++) top[a + i] = { fill: "#1E88E5" }; for (let i = 0; i < b - moved; i++) bot[i] = { fill: "#1E88E5" }; vis.innerHTML = field([top, bot], { tap: true }); vis.querySelectorAll("g[data-r]").forEach((g) => g.onclick = () => { if (st.over) return; const r = +g.dataset.r; if (r === 1 && a + moved < 10) moved++; else if (r === 0 && +g.dataset.i >= a) moved--; draw(); }); };
+    const n = document.createElement("div"); n.className = "note"; n.textContent = "Tippe unten auf ein Plättchen, um es nach oben zu schieben."; body.appendChild(n);
+    draw();
+    nextBtn(foot, UI.check, () => { const ok = moved === t.answer; answer(ok, String(moved), () => { moved = t.answer; draw(); }); if (!ok && !st.over) setTimeout(() => { moved = 0; draw(); }, 900); });
+  },
+  point_on_line({ t, body, foot, vis, answer, st }) {
+    let pick = null;
+    const draw = () => { vis.innerHTML = numberLine(t.show, pick ?? true); vis.querySelectorAll("rect[data-v]").forEach((r) => r.onclick = () => { if (st.over) return; pick = +r.dataset.v; draw(); btn.disabled = false; }); };
+    const btn = nextBtn(foot, UI.check, () => { const ok = pick === t.answer; answer(ok, String(pick), () => { pick = t.answer; draw(); }); if (!ok && !st.over) setTimeout(() => { pick = null; draw(); btn.disabled = true; }, 900); });
+    btn.disabled = true; draw();
+  },
+  highlight_in_text({ t, body, foot, vis, answer, st }) {
+    const toks = t.show.text.split(" "), sel = new Set();
+    const wrap = document.createElement("div"); wrap.className = "cards"; vis.appendChild(wrap);
+    const els = toks.map((x, i) => { const c = document.createElement("div"); c.className = "card tap"; c.textContent = x; c.onclick = () => { if (st.over) return; sel.has(i) ? sel.delete(i) : sel.add(i); c.classList.toggle("sel"); }; wrap.appendChild(c); return c; });
+    const want = [...t.spans].sort().join(","), letters = new Set(t.spans);
+    nextBtn(foot, UI.check, () => { const got = [...sel].map((i) => toks[i]).sort().join(","); const ok = got === want; if (!ok) els.forEach((c, i) => { if (sel.has(i)) c.classList.add(letters.has(toks[i]) ? "good" : "bad"); }); answer(ok, got, () => els.forEach((c, i) => { c.classList.remove("sel", "bad"); if (letters.has(toks[i])) c.classList.add("good"); })); if (!ok && !st.over) setTimeout(() => { sel.clear(); els.forEach((c) => c.classList.remove("sel", "good", "bad")); }, 1100); });
+  },
+  tracing({ t, body, foot, vis, answer }) {
+    vis.innerHTML = `<div class="trace">${writing(t.show.text, t.show.mode)}<canvas width="600" height="400"></canvas></div>`;
+    const cv = vis.querySelector("canvas"), g = cv.getContext("2d"); let ink = 0, down = false;
+    g.lineWidth = 16; g.lineCap = "round"; g.lineJoin = "round"; g.strokeStyle = "#8e3bd1";
+    const pos = (e) => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 2, (e.clientY - r.top) * 2]; };
+    cv.onpointerdown = (e) => { down = true; cv.setPointerCapture(e.pointerId); g.beginPath(); g.moveTo(...pos(e)); };
+    cv.onpointermove = (e) => { if (!down) return; g.lineTo(...pos(e)); g.stroke(); ink++; if (ink > 12) btn.disabled = false; };
+    cv.onpointerup = () => { down = false; };
+    const n = document.createElement("div"); n.className = "note"; n.textContent = t.show.mode === "trace" ? "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt." : "Schreib den Buchstaben rechts daneben."; body.appendChild(n);
+    const btn = nextBtn(foot, UI.done, () => answer(true, "", () => {})); btn.disabled = true;
+  },
+  speak({ t, body, foot, vis, answer }) {
+    vis.innerHTML = show(t.show);
+    const n = document.createElement("div"); n.className = "note"; n.textContent = "Im Prototyp hört die App nicht zu: Sag das Wort und tippe dann auf den Knopf."; body.appendChild(n);
+    const b = nextBtn(foot, "🎤 " + UI.said, () => { b.disabled = true; b.textContent = "…"; setTimeout(() => answer(true, "", () => {}), 900); });
+  },
+  matching({ t, body, foot, vis, answer, st }) {
+    // Tap a left item (it says its word), then the right item it belongs to.
+    const n = t.pairs.length, order = t.pairs.map((_, i) => (i + 1) % n); // right side shown in another order
+    const link = Array(n).fill(null); let sel = null; // link[left] = right index
+    const g = document.createElement("div"); g.className = "pairs";
+    const L = t.pairs.map((p, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(p.left); return b; });
+    const R = order.map((pi) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(t.pairs[pi].right); b.dataset.pi = pi; return b; });
+    for (let i = 0; i < n; i++) { g.appendChild(L[i]); g.appendChild(R[i]); }
+    body.appendChild(g);
+    const ring = (i) => D.colours[t.pairs[i].left.colour] ?? "#8e3bd1";
+    const draw = () => {
+      L.forEach((b, i) => { b.classList.toggle("sel", sel === i); b.style.outline = link[i] != null ? `5px solid ${ring(i)}` : ""; });
+      R.forEach((b, ri) => { const li = link.indexOf(ri); b.style.borderColor = li >= 0 ? ring(li) : ""; b.style.boxShadow = li >= 0 ? `0 4px 0 ${ring(li)}` : ""; });
+      btn.disabled = link.includes(null);
+    };
+    L.forEach((b, i) => b.onclick = () => { if (st.over) return; if (t._pairs?.[i]?.left) play(t._pairs[i].left); sel = sel === i ? null : i; draw(); });
+    R.forEach((b, ri) => b.onclick = () => { if (st.over) return; const had = link.indexOf(ri); if (sel == null) { if (had >= 0) { link[had] = null; draw(); } return; } if (had >= 0) link[had] = null; link[sel] = ri; sel = null; draw(); });
+    const btn = nextBtn(foot, UI.check, () => {
+      const right = link.map((ri, li) => +R[ri].dataset.pi === li), ok = right.every(Boolean);
+      if (!ok) right.forEach((r, li) => { if (!r) { L[li].classList.add("bad"); R[link[li]].classList.add("bad"); } });
+      answer(ok, link.join(","), () => { t.pairs.forEach((_, li) => link[li] = order.indexOf(li)); L.forEach((b) => b.classList.remove("bad")); R.forEach((b) => b.classList.remove("bad")); draw(); L.concat(R).forEach((b) => b.classList.add("good")); });
+      if (!ok && !st.over) setTimeout(() => { right.forEach((r, li) => { if (!r) { L[li].classList.remove("bad"); R[link[li]].classList.remove("bad"); link[li] = null; } }); draw(); }, 1000);
+    });
+    draw();
+  },
+  sorting({ t, body, foot, vis, answer, st }) {
+    // Tap a picture, then the box it belongs in. Tapping a box says its word.
+    const place = t.options.map(() => null); let sel = null;
+    const pool = document.createElement("div"); pool.className = "chips"; pool.style.marginTop = "0"; vis.appendChild(pool);
+    const binsEl = document.createElement("div"); binsEl.className = "bins"; binsEl.style.gridTemplateColumns = `repeat(${t.bins.length},1fr)`; body.appendChild(binsEl);
+    const items = t.options.map((o, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = show(o); b.style.minHeight = "84px"; b.onclick = () => { if (st.over) return; if (place[i] != null) { place[i] = null; sel = null; } else sel = sel === i ? null : i; draw(); }; return b; });
+    const boxes = t.bins.map((bn, bi) => { const box = document.createElement("div"); box.className = "bin"; const head = document.createElement("div"); head.innerHTML = show(bn.show); head.firstElementChild?.setAttribute("width", "56"); head.firstElementChild?.setAttribute("height", "56"); box.appendChild(head); const inner = document.createElement("div"); inner.style.cssText = "display:flex;flex-wrap:wrap;gap:6px;justify-content:center"; box.appendChild(inner); box.onclick = (e) => { if (st.over || e.target.closest(".opt")) return; if (t._bins?.[bi]) play(t._bins[bi]); if (sel != null) { place[sel] = bn.id; sel = null; draw(); } }; binsEl.appendChild(box); return inner; });
+    const draw = () => {
+      items.forEach((b, i) => { b.classList.toggle("sel", sel === i); const target = place[i] == null ? pool : boxes[t.bins.findIndex((bn) => bn.id === place[i])]; b.style.minHeight = place[i] == null ? "84px" : "60px"; b.querySelector("img")?.style.setProperty("width", place[i] == null ? "84px" : "52px"); b.querySelector("img")?.style.setProperty("height", place[i] == null ? "84px" : "52px"); if (b.parentElement !== target) target.appendChild(b); });
+      btn.disabled = place.includes(null);
+    };
+    const btn = nextBtn(foot, UI.check, () => {
+      const right = place.map((p, i) => p === t.options[i].bin), ok = right.every(Boolean);
+      if (!ok) right.forEach((r, i) => { if (!r) items[i].classList.add("bad"); });
+      answer(ok, place.join(","), () => { t.options.forEach((o, i) => place[i] = o.bin); items.forEach((b) => { b.classList.remove("bad"); b.classList.add("good"); }); draw(); });
+      if (!ok && !st.over) setTimeout(() => { right.forEach((r, i) => { if (!r) { items[i].classList.remove("bad"); place[i] = null; } }); draw(); }, 1000);
+    });
+    draw();
+  },
+  _unknown({ t, foot, body }) { body.insertAdjacentHTML("beforeend", `<div class="note">Typ ${esc(t.type)} ist im Player noch nicht umgesetzt.</div>`); nextBtn(foot); },
+};
+
+/* ---------- side panel ---------- */
+function sidebar() {
+  const ul = $("#steps"); ul.innerHTML = ""; let last = null;
+  steps.forEach((s, i) => {
+    const grp = s.a ? actName(s.a) + (s.kind === "task" && s.a.activity === "practise" ? ` · ${{ full: "volle Hilfe", some: "ein Tipp", none: "ohne Tipp" }[s.stage]}` : "") : null;
+    if (grp && grp !== last) { const g = document.createElement("li"); g.className = "grp"; g.textContent = grp; ul.appendChild(g); last = grp; }
+    const li = document.createElement("li"); if (i === at) li.className = "on";
+    li.textContent = s.kind === "task" ? `${s.t.id} · ${s.t.type}${results[i] ? " · " + results[i] : ""}` : s.kind === "learn" ? `Bildschirm ${s.i + 1}` : { start: "Start", stage: "Stufenwechsel", checkIntro: "Check beginnt", end: "Ende" }[s.kind];
+    li.onclick = () => go(i); ul.appendChild(li);
+  });
+  const s = steps[at], rec = s.t ?? s.s ?? (s.kind === "start" ? { lesson: lesson.n, title: lesson.title, activities: lesson.activities.map((a) => a.activity) } : s.st ? { stage: s.st.support, setting: s.st.setting } : { kind: s.kind });
+  $("#rec").textContent = JSON.stringify(rec, (k, v) => k.startsWith("_") && k !== "_audio" ? undefined : v, 2);
+  // Keep the current step in view inside the desktop panel; never scroll the page.
+  const side = $(".side"), li = ul.querySelector(".on");
+  if (li && getComputedStyle(side).position === "sticky") side.scrollTop = Math.max(0, li.offsetTop - side.clientHeight / 2);
+}
+function pickSet(i) {
+  set = D.sets[i]; const L = $("#les"); L.innerHTML = "";
+  set.lessons.forEach((l) => L.add(new Option(`${l.n}. ${l.title.de}`, l.n)));
+  pickLesson(set.lessons[0].n);
+}
+function pickLesson(n) {
+  lesson = set.lessons.find((l) => l.n === +n); $("#les").value = String(n); buildSteps(); go(0);
+  try { localStorage.setItem("twist-pos", JSON.stringify([D.sets.indexOf(set), lesson.n])); } catch (e) {}
+}
+$("#built").textContent = D.built;
+D.sets.forEach((s, i) => $("#set").add(new Option(`${s.title.de} (${s.year})`, i)));
+$("#set").onchange = (e) => pickSet(+e.target.value);
+$("#les").onchange = (e) => pickLesson(e.target.value);
+$("#auto").onchange = (e) => { try { localStorage.setItem("twist-auto", e.target.checked ? "1" : "0"); } catch (x) {} };
+let pos = [0, 1]; try { pos = JSON.parse(localStorage.getItem("twist-pos")) || pos; } catch (e) {}
+$("#set").value = String(pos[0] ?? 0); pickSet(pos[0] ?? 0); if (pos[1]) pickLesson(pos[1]);
+</script>
+</body>
+</html>

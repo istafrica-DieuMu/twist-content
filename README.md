@@ -30,6 +30,7 @@ folder.
 | [crosswalk/](crosswalk/) | Source topics and lessons mapped to Schoolido modules, with match quality; anton-twist-de.md maps every Anton German-DE primary lesson onto the new twist/ curriculum. |
 | [site/](site/) | One interactive page over all of the above. Open `site/index.html` in a browser; it is a standalone file with all data embedded. `node site/build.mjs` regenerates it from the docs, the catalogue and what is on disk. |
 | [twist/](twist/) | The clean Twist primary curriculum, competency first: stages, frameworks, competencies, lessons, curriculum profiles and generated grade views. Only our own content; research inputs stay outside it. Plan: [twist/PLAN.md](twist/PLAN.md). |
+| [player/](player/) | The de-DE model lessons rendered in a phone frame with pictures, drawn components and narration, to see how lessons render. Open `player/index.html`; `node player/build.mjs` regenerates it from the twist/ records. Audio needs `twist/assets/tools/narration.py` run first. |
 | [review/](review/) | Twist Germany readiness review: verdict, area scores, launch conditions and beta gate. Open `review/index.html`; `node review/build.mjs` regenerates it from `review/de-launch-review.json`. |
 
 Rules for agents working here: [AGENTS.md](AGENTS.md).

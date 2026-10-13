@@ -12,12 +12,15 @@ summary: >
   only: every task can be done without reading. Instructions are spoken in
   German, the colour words in English. Lesson 1 brings red, blue, yellow and
   green; lesson 2 adds orange, purple, pink and brown and ends with the
-  skill check.
+  skill check. Practice runs in three stages: full hints, one hint, no
+  hints, and the last stage puts the colours on things. Each lesson also
+  pairs colours with things that have them (matching) and sorts pictures by
+  colour (sorting); tapping a colour says its English name.
 metadata:
   year: stufe-0
   topic: { de: Colours, en: Colours }
   ages: [6-7]
-  lesson_minutes: 6
+  lesson_minutes: 9
   builds_on: []
   also_practises: [fl.speaking.imitate, fl.listening.classroom-phrases]
   vocabulary:
@@ -29,13 +32,13 @@ metadata:
   misconceptions:
     - id: german-sound
       what: Says English colour words with German sounds (rot for red, "blau" for blue)
-      addressed: every word is heard twice before the child says it; speak tasks replay the model
+      addressed: every word is heard before the child says it; speak tasks replay the model, and their hints break the word into its start and end
     - id: purple-pink
       what: Mixes up purple and pink
-      addressed: lesson 2 contrasts them directly
+      addressed: lesson 2 sets them side by side in every stage
   twist_reuse: []
   status: draft
-  version: 1
+  version: 2
   authored: 2026-10-12
 
 lessons:
@@ -48,7 +51,6 @@ lessons:
         screens:
           - say: { de: "Hör zu und sprich nach.", en: "Red." }
             show: { object: crayon, colour: red }
-            character: pip-wave
           - say: { en: "Blue." }
             show: { object: crayon, colour: blue }
           - say: { en: "Yellow." }
@@ -57,162 +59,231 @@ lessons:
             show: { object: crayon, colour: green }
 
       - activity: practise
-        support: full
         setting: plain
-        tasks:
-          - id: l1-p1
-            type: audio_choice
-            say: { de: "Hör zu. Tippe auf die Farbe." }
-            audio: { en: "Red." }
-            options:
-              [
-                { drawn: colour-swatch, colour: red },
-                { drawn: colour-swatch, colour: blue },
-                { drawn: colour-swatch, colour: green },
-              ]
-            answer: red
-            hints:
-              [
-                "Hör noch einmal: red.",
-                "Red ist wie eine Erdbeere.",
-                "Tippe auf Rot.",
-              ]
-            difficulty: easy
-          - id: l1-p2
-            type: audio_choice
-            say: { de: "Hör zu. Tippe auf die Farbe." }
-            audio: { en: "Yellow." }
-            options:
-              [
-                { drawn: colour-swatch, colour: yellow },
-                { drawn: colour-swatch, colour: red },
-                { drawn: colour-swatch, colour: blue },
-              ]
-            answer: yellow
-            hints:
-              [
-                "Hör noch einmal: yellow.",
-                "Yellow ist wie eine Banane.",
-                "Tippe auf Gelb.",
-              ]
-            difficulty: easy
-          - id: l1-p3
-            type: speak
-            say: { de: "Sag es auf Englisch.", en: "Blue." }
-            show: { object: crayon, colour: blue }
-            expected_text: "blue"
-            hints:
-              [
-                "Hör noch einmal zu: blue.",
-                "Der Anfang klingt wie bl.",
-                "Sag: blue.",
-              ]
-            difficulty: easy
-          - id: l1-p4
-            type: audio_choice
-            say: { de: "Hör zu. Tippe auf das Bild." }
-            audio: { en: "Green." }
-            options:
-              [{ object: frog }, { object: banana }, { object: strawberry }]
-            answer: frog
-            hints:
-              [
-                "Hör noch einmal: green.",
-                "Green ist die Farbe von Gras.",
-                "Der Frosch ist grün.",
-              ]
-            difficulty: core
-          - id: l1-p5
-            type: speak
-            say: { de: "Welche Farbe hat die Banane? Sag es auf Englisch." }
-            show: { object: banana }
-            expected_text: "yellow"
-            hints:
-              [
-                "Die Banane ist gelb.",
-                "Gelb heißt auf Englisch yel...",
-                "Sag: yellow.",
-              ]
-            difficulty: core
+        stages:
+          - support: full
+            tasks:
+              - id: l1-f1
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf die Farbe." }
+                audio: { en: "Red." }
+                options:
+                  - { drawn: colour-swatch, colour: red }
+                  - { drawn: colour-swatch, colour: blue }
+                  - { drawn: colour-swatch, colour: green }
+                answer: red
+                hints:
+                  - "Hör noch einmal: red."
+                  - "Red ist die Farbe einer Erdbeere."
+                  - "Tippe auf Rot."
+                difficulty: easy
+              - id: l1-f2
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf die Farbe." }
+                audio: { en: "Yellow." }
+                options:
+                  - { drawn: colour-swatch, colour: blue }
+                  - { drawn: colour-swatch, colour: yellow }
+                  - { drawn: colour-swatch, colour: red }
+                answer: yellow
+                hints:
+                  - "Hör noch einmal: yellow."
+                  - "Yellow ist die Farbe einer Banane."
+                  - "Tippe auf Gelb."
+                difficulty: easy
+              - id: l1-f3
+                type: speak
+                say: { de: "Sag es auf Englisch.", en: "Blue." }
+                show: { object: crayon, colour: blue }
+                expected_text: blue
+                hints:
+                  - "Hör noch einmal zu: blue."
+                  - "Es fängt an wie Blume, dann kommt ein langes u: bluuu."
+                  - "Sag mit mir: blue."
+                difficulty: easy
+              - id: l1-f4
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Bild." }
+                audio: { en: "Green." }
+                options: [{ object: banana }, { object: frog }, { object: strawberry }]
+                answer: frog
+                hints:
+                  - "Hör noch einmal: green."
+                  - "Green ist die Farbe von Gras."
+                  - "Der Frosch ist grün."
+              - id: l1-f5
+                type: speak
+                say: { de: "Welche Farbe hat die Banane? Sag es auf Englisch." }
+                show: { object: banana }
+                expected_text: yellow
+                hints:
+                  - "Die Banane ist gelb."
+                  - "Gelb heißt auf Englisch yel... ?"
+                  - "Sag mit mir: yellow."
+
+          - support: some
+            tasks:
+              - id: l1-s1
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf die Farbe." }
+                audio: { en: "Blue." }
+                options:
+                  - { drawn: colour-swatch, colour: green }
+                  - { drawn: colour-swatch, colour: blue }
+                  - { drawn: colour-swatch, colour: yellow }
+                answer: blue
+                hints: ["Blue ist die Farbe vom Himmel."]
+              - id: l1-s2
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Bild." }
+                audio: { en: "Red." }
+                options: [{ object: strawberry }, { object: frog }, { object: banana }]
+                answer: strawberry
+                hints: ["Was davon ist rot?"]
+              - id: l1-s3
+                type: speak
+                say: { de: "Sag es auf Englisch.", en: "Green." }
+                show: { object: crayon, colour: green }
+                expected_text: green
+                hints: ["Hör noch einmal: green. Das i ist lang: griiin."]
+              - id: l1-s4
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf den Ball in dieser Farbe." }
+                audio: { en: "Yellow." }
+                options:
+                  - { object: ball, colour: red }
+                  - { object: ball, colour: blue }
+                  - { object: ball, colour: yellow }
+                answer: yellow
+                hints: ["Yellow ist die Farbe der Sonne."]
+              - id: l1-s5
+                type: speak
+                say: { de: "Sag es auf Englisch.", en: "Red." }
+                show: { object: crayon, colour: red }
+                expected_text: red
+                hints: ["Hör noch einmal: red. Ganz kurz."]
+              - id: l1-s6
+                type: matching
+                say: { de: "Was passt zusammen? Tippe auf eine Farbe und dann auf das Bild." }
+                pairs:
+                  - left: { drawn: colour-swatch, colour: yellow, say: { en: "Yellow." } }
+                    right: { object: banana }
+                  - left: { drawn: colour-swatch, colour: green, say: { en: "Green." } }
+                    right: { object: frog }
+                  - left: { drawn: colour-swatch, colour: red, say: { en: "Red." } }
+                    right: { object: strawberry }
+                hints: ["Tippe auf eine Farbe und hör zu. Welches Bild hat diese Farbe?"]
+
+          - support: none
+            setting: in-context
+            tasks:
+              - id: l1-n1
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Bild." }
+                audio: { en: "Yellow." }
+                options: [{ object: frog }, { object: strawberry }, { object: sun }]
+                answer: sun
+              - id: l1-n2
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Auto in dieser Farbe." }
+                audio: { en: "Blue." }
+                options:
+                  - { object: car, colour: red }
+                  - { object: car, colour: blue }
+                  - { object: car, colour: yellow }
+                answer: blue
+              - id: l1-n3
+                type: speak
+                say: { de: "Welche Farbe hat der Frosch? Sag es auf Englisch." }
+                show: { object: frog }
+                expected_text: green
+              - id: l1-n4
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf den Luftballon in dieser Farbe." }
+                audio: { en: "Red." }
+                options:
+                  - { object: balloon, colour: green }
+                  - { object: balloon, colour: blue }
+                  - { object: balloon, colour: red }
+                answer: red
+              - id: l1-n5
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Blatt in dieser Farbe." }
+                audio: { en: "Green." }
+                options:
+                  - { object: leaf, colour: green }
+                  - { object: leaf, colour: yellow }
+                  - { object: leaf, colour: red }
+                answer: green
+                difficulty: easy
+              - id: l1-n6
+                type: sorting
+                say: { de: "Sortiere die Bilder nach Farben.", en: "Red. Green." }
+                bins:
+                  - { id: red, show: { drawn: colour-swatch, colour: red }, say: { en: "Red." } }
+                  - { id: green, show: { drawn: colour-swatch, colour: green }, say: { en: "Green." } }
+                options:
+                  - { object: strawberry, bin: red }
+                  - { object: frog, bin: green }
+                  - { object: apple, bin: red }
+                  - { object: leaf, bin: green }
+                difficulty: stretch
 
       - activity: check
         size: quick
         tasks:
-          - {
-              id: l1-c1,
-              type: audio_choice,
-              say: { de: "Tippe auf die Farbe." },
-              audio: { en: "Blue." },
-              options:
-                [
-                  { drawn: colour-swatch, colour: green },
-                  { drawn: colour-swatch, colour: blue },
-                  { drawn: colour-swatch, colour: yellow },
-                ],
-              answer: blue,
-              difficulty: core,
-            }
-          - {
-              id: l1-c2,
-              type: audio_choice,
-              say: { de: "Tippe auf die Farbe." },
-              audio: { en: "Green." },
-              options:
-                [
-                  { drawn: colour-swatch, colour: red },
-                  { drawn: colour-swatch, colour: green },
-                ],
-              answer: green,
-              difficulty: core,
-            }
-          - {
-              id: l1-c3,
-              type: audio_choice,
-              say: { de: "Tippe auf das Bild." },
-              audio: { en: "Red." },
-              options:
-                [{ object: strawberry }, { object: frog }, { object: banana }],
-              answer: strawberry,
-              difficulty: core,
-            }
+          - id: l1-c1
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf die Farbe." }
+            audio: { en: "Blue." }
+            options:
+              - { drawn: colour-swatch, colour: yellow }
+              - { drawn: colour-swatch, colour: green }
+              - { drawn: colour-swatch, colour: blue }
+            answer: blue
+          - id: l1-c2
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf die Farbe." }
+            audio: { en: "Green." }
+            options:
+              - { drawn: colour-swatch, colour: green }
+              - { drawn: colour-swatch, colour: red }
+            answer: green
+          - id: l1-c3
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf das Bild." }
+            audio: { en: "Red." }
+            options: [{ object: banana }, { object: frog }, { object: strawberry }]
+            answer: strawberry
 
   - n: 2
-    title:
-      { de: "Orange, purple, pink, brown", en: "Orange, purple, pink, brown" }
+    title: { de: "Orange, purple, pink, brown", en: "Orange, purple, pink, brown" }
     new_content: true
     activities:
       - activity: warm-up
         from: last-lesson
         tasks:
-          - {
-              id: l2-w1,
-              type: audio_choice,
-              say: { de: "Tippe auf die Farbe." },
-              audio: { en: "Yellow." },
-              options:
-                [
-                  { drawn: colour-swatch, colour: yellow },
-                  { drawn: colour-swatch, colour: blue },
-                ],
-              answer: yellow,
-              difficulty: easy,
-            }
-          - {
-              id: l2-w2,
-              type: speak,
-              say: { de: "Sag es auf Englisch." },
-              show: { object: crayon, colour: red },
-              expected_text: "red",
-              difficulty: easy,
-            }
+          - id: l2-w1
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf die Farbe." }
+            audio: { en: "Yellow." }
+            options:
+              - { drawn: colour-swatch, colour: yellow }
+              - { drawn: colour-swatch, colour: blue }
+            answer: yellow
+            difficulty: easy
+          - id: l2-w2
+            type: speak
+            say: { de: "Sag es auf Englisch.", en: "Red." }
+            show: { object: crayon, colour: red }
+            expected_text: red
+            difficulty: easy
 
       - activity: learn
         mode: new-word
         screens:
-          - say:
-              { de: "Vier neue Farben. Hör zu und sprich nach.", en: "Orange." }
-            show: { object: carrot }
-            character: pip-wave
+          - say: { de: "Vier neue Farben. Hör zu und sprich nach.", en: "Orange." }
+            show: { object: crayon, colour: orange }
           - say: { en: "Purple." }
             show: { object: crayon, colour: purple }
           - say: { en: "Pink." }
@@ -221,149 +292,224 @@ lessons:
             show: { object: crayon, colour: brown }
 
       - activity: practise
-        support: some
         setting: plain
-        tasks:
-          - id: l2-p1
-            type: audio_choice
-            say: { de: "Purple oder pink? Tippe auf die Farbe." }
-            audio: { en: "Purple." }
-            options:
-              [
-                { drawn: colour-swatch, colour: purple },
-                { drawn: colour-swatch, colour: pink },
-              ]
-            answer: purple
-            feedback:
-              { pink: "Das ist pink. Purple ist dunkler, wie eine Pflaume." }
-            hints: ["Purple ist das dunklere von beiden."]
-            difficulty: core
-          - id: l2-p2
-            type: audio_choice
-            say: { de: "Hör zu. Tippe auf das Bild." }
-            audio: { en: "Orange." }
-            options:
-              [{ object: carrot }, { object: leaf }, { object: strawberry }]
-            answer: carrot
-            hints: ["Hör noch einmal: orange."]
-            difficulty: core
-          - id: l2-p3
-            type: speak
-            say: { de: "Sag es auf Englisch." }
-            show: { object: crayon, colour: pink }
-            expected_text: "pink"
-            hints: ["Hör noch einmal: pink."]
-            difficulty: easy
-          - id: l2-p4
-            type: speak
-            say: { de: "Sag es auf Englisch." }
-            show: { object: crayon, colour: brown }
-            expected_text: "brown"
-            hints: ["Hör noch einmal: brown."]
-            difficulty: core
+        stages:
+          - support: full
+            tasks:
+              - id: l2-f1
+                type: audio_choice
+                say: { de: "Purple oder pink? Tippe auf die Farbe." }
+                audio: { en: "Purple." }
+                options:
+                  - { drawn: colour-swatch, colour: pink }
+                  - { drawn: colour-swatch, colour: purple }
+                answer: purple
+                feedback:
+                  pink: "Das ist pink. Purple ist dunkler, wie eine Pflaume."
+                hints:
+                  - "Hör noch einmal: purple."
+                  - "Purple ist die dunklere Farbe, wie eine Pflaume."
+                  - "Tippe auf Lila."
+              - id: l2-f2
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Bild." }
+                audio: { en: "Orange." }
+                options: [{ object: frog }, { object: carrot }, { object: strawberry }]
+                answer: carrot
+                hints:
+                  - "Hör noch einmal: orange."
+                  - "Orange ist die Farbe einer Möhre."
+                  - "Tippe auf die Möhre."
+                difficulty: easy
+              - id: l2-f3
+                type: speak
+                say: { de: "Sag es auf Englisch.", en: "Pink." }
+                show: { object: crayon, colour: pink }
+                expected_text: pink
+                hints:
+                  - "Hör noch einmal: pink."
+                  - "Es ist ganz kurz, wie im Deutschen: pink."
+                  - "Sag mit mir: pink."
+                difficulty: easy
+              - id: l2-f4
+                type: speak
+                say: { de: "Sag es auf Englisch.", en: "Brown." }
+                show: { object: crayon, colour: brown }
+                expected_text: brown
+                hints:
+                  - "Hör noch einmal: brown."
+                  - "Es klingt fast wie das deutsche Wort braun, nur mit n am Ende."
+                  - "Sag mit mir: brown."
+              - id: l2-f5
+                type: matching
+                say: { de: "Was passt zusammen? Tippe auf eine Farbe und dann auf das Bild." }
+                pairs:
+                  - left: { drawn: colour-swatch, colour: orange, say: { en: "Orange." } }
+                    right: { object: carrot }
+                  - left: { drawn: colour-swatch, colour: purple, say: { en: "Purple." } }
+                    right: { object: octopus }
+                  - left: { drawn: colour-swatch, colour: brown, say: { en: "Brown." } }
+                    right: { object: dog }
+                hints:
+                  - "Tippe auf eine Farbe und hör zu."
+                  - "Die Möhre ist orange: orange."
+                  - "Der Oktopus ist purple. Der Hund ist brown."
+              - id: l2-f6
+                type: audio_choice
+                say: { de: "Purple oder pink? Tippe auf die Farbe." }
+                audio: { en: "Pink." }
+                options:
+                  - { drawn: colour-swatch, colour: purple }
+                  - { drawn: colour-swatch, colour: pink }
+                answer: pink
+                feedback:
+                  purple: "Das ist purple, die dunklere Farbe. Pink ist heller."
+                hints:
+                  - "Hör noch einmal: pink."
+                  - "Pink ist die hellere Farbe."
+                  - "Tippe auf Rosa."
 
-      - activity: practise
-        support: none
-        setting: in-context
-        tasks:
-          - {
-              id: l2-q1,
-              type: audio_choice,
-              say:
-                {
-                  de: "Pip sagt dir eine Farbe. Tippe auf den Ball in dieser Farbe.",
-                },
-              audio: { en: "Blue." },
-              options:
-                [
-                  { object: ball, colour: blue },
-                  { object: ball, colour: purple },
-                  { object: ball, colour: green },
-                ],
-              answer: blue,
-              difficulty: core,
-            }
-          - {
-              id: l2-q2,
-              type: audio_choice,
-              say: { de: "Tippe auf den Ballon in dieser Farbe." },
-              audio: { en: "Pink." },
-              options:
-                [
-                  { object: balloon, colour: pink },
-                  { object: balloon, colour: orange },
-                  { object: balloon, colour: purple },
-                ],
-              answer: pink,
-              difficulty: core,
-            }
+          - support: some
+            tasks:
+              - id: l2-s1
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf den Luftballon in dieser Farbe." }
+                audio: { en: "Orange." }
+                options:
+                  - { object: balloon, colour: pink }
+                  - { object: balloon, colour: orange }
+                  - { object: balloon, colour: purple }
+                answer: orange
+                hints: ["Orange wie eine Möhre."]
+              - id: l2-s2
+                type: speak
+                say: { de: "Sag es auf Englisch.", en: "Purple." }
+                show: { object: crayon, colour: purple }
+                expected_text: purple
+                hints: ["Hör noch einmal: pur-ple. Zwei Teile."]
+              - id: l2-s3
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf den Ball in dieser Farbe." }
+                audio: { en: "Brown." }
+                options:
+                  - { object: ball, colour: green }
+                  - { object: ball, colour: brown }
+                  - { object: ball, colour: blue }
+                answer: brown
+                hints: ["Brown wie Schokolade."]
+              - id: l2-s4
+                type: speak
+                say: { de: "Welche Farbe hat die Möhre? Sag es auf Englisch." }
+                show: { object: carrot }
+                expected_text: orange
+                hints: ["Auf Deutsch heißt die Farbe auch so, auf Englisch klingt sie nur anders: orange."]
+              - id: l2-s5
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf die Farbe." }
+                audio: { en: "Purple." }
+                options:
+                  - { drawn: colour-swatch, colour: blue }
+                  - { drawn: colour-swatch, colour: pink }
+                  - { drawn: colour-swatch, colour: purple }
+                answer: purple
+                hints: ["Purple ist die dunklere von Pink und Lila."]
+
+          - support: none
+            setting: in-context
+            tasks:
+              - id: l2-n1
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das T-Shirt in dieser Farbe." }
+                audio: { en: "Purple." }
+                options:
+                  - { object: t-shirt, colour: pink }
+                  - { object: t-shirt, colour: purple }
+                  - { object: t-shirt, colour: blue }
+                answer: purple
+              - id: l2-n2
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf den Luftballon in dieser Farbe." }
+                audio: { en: "Pink." }
+                options:
+                  - { object: balloon, colour: orange }
+                  - { object: balloon, colour: purple }
+                  - { object: balloon, colour: pink }
+                answer: pink
+              - id: l2-n3
+                type: speak
+                say: { de: "Welche Farbe hat das T-Shirt? Sag es auf Englisch." }
+                show: { object: t-shirt, colour: brown }
+                expected_text: brown
+              - id: l2-n4
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Bild." }
+                audio: { en: "Orange." }
+                options: [{ object: banana }, { object: frog }, { object: orange }]
+                answer: orange
+                difficulty: easy
+              - id: l2-n5
+                type: sorting
+                say: { de: "Sortiere die Bilder nach Farben.", en: "Orange. Brown." }
+                bins:
+                  - { id: orange, show: { drawn: colour-swatch, colour: orange }, say: { en: "Orange." } }
+                  - { id: brown, show: { drawn: colour-swatch, colour: brown }, say: { en: "Brown." } }
+                options:
+                  - { object: carrot, bin: orange }
+                  - { object: dog, bin: brown }
+                  - { object: orange, bin: orange }
+                  - { object: monkey, bin: brown }
+              - id: l2-n6
+                type: audio_choice
+                say: { de: "Hör zu. Tippe auf das Auto in dieser Farbe." }
+                audio: { en: "Yellow." }
+                options:
+                  - { object: car, colour: orange }
+                  - { object: car, colour: brown }
+                  - { object: car, colour: yellow }
+                answer: yellow
 
       - activity: check
         size: skill
         tasks:
-          - {
-              id: l2-c1,
-              type: audio_choice,
-              say: { de: "Tippe auf die Farbe." },
-              audio: { en: "Brown." },
-              options:
-                [
-                  { drawn: colour-swatch, colour: brown },
-                  { drawn: colour-swatch, colour: orange },
-                  { drawn: colour-swatch, colour: red },
-                ],
-              answer: brown,
-              difficulty: core,
-            }
-          - {
-              id: l2-c2,
-              type: audio_choice,
-              say: { de: "Tippe auf die Farbe." },
-              audio: { en: "Purple." },
-              options:
-                [
-                  { drawn: colour-swatch, colour: pink },
-                  { drawn: colour-swatch, colour: purple },
-                  { drawn: colour-swatch, colour: blue },
-                ],
-              answer: purple,
-              difficulty: core,
-            }
-          - {
-              id: l2-c3,
-              type: audio_choice,
-              say: { de: "Tippe auf das Bild." },
-              audio: { en: "Yellow." },
-              options:
-                [{ object: frog }, { object: banana }, { object: carrot }],
-              answer: banana,
-              difficulty: core,
-            }
-          - {
-              id: l2-c4,
-              type: audio_choice,
-              say: { de: "Tippe auf das Auto in dieser Farbe." },
-              audio: { en: "Green." },
-              options:
-                [
-                  { object: car, colour: red },
-                  { object: car, colour: green },
-                  { object: car, colour: orange },
-                ],
-              answer: green,
-              difficulty: core,
-            }
-          - {
-              id: l2-c5,
-              type: audio_choice,
-              say: { de: "Tippe auf die Farbe." },
-              audio: { en: "Orange." },
-              options:
-                [
-                  { drawn: colour-swatch, colour: orange },
-                  { drawn: colour-swatch, colour: yellow },
-                  { drawn: colour-swatch, colour: brown },
-                ],
-              answer: orange,
-              difficulty: core,
-            }
+          - id: l2-c1
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf die Farbe." }
+            audio: { en: "Brown." }
+            options:
+              - { drawn: colour-swatch, colour: red }
+              - { drawn: colour-swatch, colour: brown }
+              - { drawn: colour-swatch, colour: orange }
+            answer: brown
+          - id: l2-c2
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf die Farbe." }
+            audio: { en: "Purple." }
+            options:
+              - { drawn: colour-swatch, colour: pink }
+              - { drawn: colour-swatch, colour: blue }
+              - { drawn: colour-swatch, colour: purple }
+            answer: purple
+          - id: l2-c3
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf das Bild." }
+            audio: { en: "Yellow." }
+            options: [{ object: frog }, { object: banana }, { object: carrot }]
+            answer: banana
+          - id: l2-c4
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf das Auto in dieser Farbe." }
+            audio: { en: "Green." }
+            options:
+              - { object: car, colour: red }
+              - { object: car, colour: orange }
+              - { object: car, colour: green }
+            answer: green
+          - id: l2-c5
+            type: audio_choice
+            say: { de: "Hör zu. Tippe auf die Farbe." }
+            audio: { en: "Orange." }
+            options:
+              - { drawn: colour-swatch, colour: orange }
+              - { drawn: colour-swatch, colour: yellow }
+              - { drawn: colour-swatch, colour: brown }
+            answer: orange

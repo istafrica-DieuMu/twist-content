@@ -76,13 +76,15 @@ over several sittings than when it is drilled in one.
 
 | Age | Lesson length | Tasks per lesson |
 |---|---|---|
-| 4 to 5 | about 5 minutes | 6 to 12 |
-| 6 to 7 | about 8 minutes | 8 to 16 |
-| 8 to 10 | about 10 to 12 minutes | 12 to 25 |
+| 4 to 5 | about 8 minutes | 14 to 24 |
+| 6 to 7 | about 10 to 12 minutes | 18 to 28 |
+| 8 to 10 | about 12 to 15 minutes | 20 to 32 |
 
-Learn screens and tracing take longer than a tap, so a lesson with several
-of them sits at the low end. (Lowered after the model lessons: early
-Klasse 1 letter lessons came out at 8 to 10 tasks.)
+Most of a lesson is Practise: three stages of 5 or 6 tasks each, so 15 to
+18 practice tasks before the check. Learn screens and tracing take longer
+than a tap, so a lesson with several of them sits at the low end.
+(Raised after the second round of model lessons, when Practise became
+three stages; they came out at 18 to 24 tasks.)
 
 - Each lesson can be finished and left. The next lesson opens straight
   away; when a skill has more than two lessons, the app suggests the next
@@ -101,7 +103,7 @@ from more activity names.
 |---|---|---|---|
 | **Warm-up** | Warm up | Aufwärmen | Recall what this builds on, or what the last lesson taught |
 | **Learn** | Learn | Entdecken | Teaching: examples, a demonstration, a model text, a new sound |
-| **Practise** | Practise | Üben | Doing it, with a support setting |
+| **Practise** | Practise | Üben | The long part of the lesson: three stages, from full hints to none |
 | **Check** | Show what you know | Zeig, was du kannst | Short, no help, counts toward mastery |
 
 ### What each activity can be set to
@@ -123,19 +125,34 @@ from more activity names.
 | new sound or word | hear it, see it, say it (phonics, foreign language) |
 | do it with me | the child taps along; nothing is marked |
 
-**Practise** is one activity with two settings. What used to be called
-guided practice, practice and apply are all Practise:
+**Practise** is where the child does most of the work, so it is the
+longest activity in every lesson. It always runs in three stages, in this
+order, and the Check comes after the third:
 
-| Setting | Values | Example |
+| Stage | Hints | Tasks | What happens on a miss |
+|---|---|---|---|
+| full | 3 hint levels: a strategy, thinking aloud, a direct cue | 5 or 6 | the next hint opens |
+| some | 1 hint | 5 or 6 | the hint opens |
+| none | no hints | 5 or 6 | after two misses the answer is shown and the task counts as neither right nor wrong |
+
+What used to be three activities (guided practice, practice, apply) is now
+one Practise whose help fades as the child goes. The child sees one
+activity; the app may show a small marker between stages.
+
+Practise also has a setting, for the whole activity or for one stage:
+
+| Setting | Means | Example |
 |---|---|---|
-| support | full: 3 hint levels (strategy, think aloud, direct cue) | first tries after Learn |
-| | some: 1 hint | second lesson onwards |
-| | none: no hints; after two misses the answer is shown and the task counts as neither right nor wrong | late practice, facts to know by heart |
-| setting | plain: the skill on its own | 8 + 5 = ? |
-| | in context: a word problem, a sentence, a short text, a speaking task | Lena has 8 marbles and gets 5 more ... |
+| plain | the skill on its own | 8 + 5 = ? |
+| in context | a word problem, a sentence, a short text, a speaking task | Lena has 8 marbles and gets 5 more ... |
 
-So guided practice is Practise with full support; apply is Practise with no
-support in context.
+A common shape is plain for the first two stages and in context for the
+last, so the child applies the skill once the hints are gone. A whole
+Practise can be in context, as in a story lesson.
+
+Tasks get harder across the stages as well as losing hints: the full stage
+starts easy and shows the drawn model; by the none stage the model is
+often gone and the answer is typed rather than chosen.
 
 **Check** comes in three sizes, all without help, where only the first try
 counts:
@@ -146,13 +163,19 @@ counts:
 | skill check | 4 or 5 tasks at the end of the last lesson of a skill | yes |
 | timed | a skill check with a time per task, for facts to know by heart | yes |
 
+Every check is spoken by a second voice, a little more focused and serious
+than the teaching voice, so the child hears that this part counts. The
+teaching voice comes back when the lesson ends. Which voices these are is
+set in assets/voices.yaml.
+
 ### Rules from the model lessons
 
 Writing the first three model lessons (Mathe, Deutsch, Englisch) added
 these. The build checks every one of them.
 
 1. **Tracing carries its own support.** The trace guide and arrows are the
-   help, so tracing tasks take no text hints, even under full support.
+   help, so tracing tasks take no text hints in any stage. In the none
+   stage the child copies the letter without the guide.
 2. **A skill check never copies a task.** It may test the same thing again
    (with four letters there are only so many sounds), but not the identical
    task with the same options. Quick checks may repeat.
@@ -184,12 +207,15 @@ Examples:
 
 | Lesson | Activities |
 |---|---|
-| First lesson of a new idea | Warm-up (earlier skills), Learn, Practise (full support) |
-| A middle lesson | Warm-up (last lesson), Practise (some support), Practise (no support, in context), Check (quick) |
+| First lesson of a new idea | Warm-up (earlier skills), Learn, Practise, Check (quick) |
+| A middle lesson | Warm-up (last lesson), Learn (a second model), Practise, Check (quick) |
 | A recap lesson | Warm-up, Practise, Check; no Learn |
-| Ages 4 to 5 | Learn, Practise (full support), Check (quick, 3 tasks); no Warm-up |
-| A times-table lesson after the first | Warm-up, Practise (no support), Check (timed) |
-| Last lesson of a skill | Warm-up (last lesson), Practise (no support, in context), Check (skill check) |
+| Ages 4 to 5 | Learn, Practise, Check (quick, 3 tasks); no Warm-up |
+| A times-table lesson after the first | Warm-up, Practise, Check (timed) |
+| Last lesson of a skill | Warm-up (last lesson), Practise (last stage in context), Check (skill check) |
+
+Practise always has all three stages; what changes between lessons is
+what the tasks ask and whether a stage is in context.
 
 ### Typical lesson plans by subject
 
@@ -198,13 +224,14 @@ bigger or smaller.
 
 **Maths / Mathe, a new idea** (place value, a new operation): 3 to 4
 lessons. Lesson 1: warm-up, learn with a drawn model (ten-frame,
-Zwanzigerfeld, number line), practise with full support. Lesson 2:
-warm-up, learn with a second model, practise. Lesson 3: warm-up, practise
-in context (a word problem, Sachaufgabe). Lesson 4: warm-up, practise, skill check.
+Zwanzigerfeld, number line), practise, quick check. Lesson 2: warm-up,
+learn with a second model, practise, quick check. Lesson 3: warm-up,
+practise in context (a word problem, Sachaufgabe). Lesson 4: warm-up,
+practise, skill check.
 
 **Maths / Mathe, facts to know by heart** (the 7 times table, number bonds
 to 10): 2 to 3 lessons with a short learn (work it out from a fact you
-know), then long practise with no support and rising speed, timed skill
+know), then long practise whose last stage adds speed, timed skill
 check at the end. Most of the work then happens in practice sessions
 outside the lessons.
 
@@ -246,8 +273,12 @@ Each task records:
   available for ages 4 to 7);
 - how it is shown (below) and the data needed to draw it;
 - the correct answer and feedback for each typical wrong answer;
-- for Practise with full support, three hint levels: a strategy, thinking
-  aloud, a direct cue;
+- whether its options can be heard: a picture option says its word and a
+  number is read aloud, unless hearing it would give the answer away (a
+  letter, a syllable, or any option in a "which one sounds like this" task);
+- the hints its Practise stage asks for: three in the full stage (a
+  strategy, thinking aloud, a direct cue), one in the some stage, none in
+  the none stage or in a Check;
 - difficulty (easy, core, stretch) and the local details it depends on
   (currency, number format, handwriting script, written-subtraction
   method).

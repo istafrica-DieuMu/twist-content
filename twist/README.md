@@ -26,7 +26,7 @@ subject for both: [views/placements.md](views/placements.md).
 | [frameworks/](frameworks/) | Official documents as coded objectives, verbatim quotes with page references, generated from the captured documents. `de/` for the KMK standards, `gb/` for EYFS and the National Curriculum | generated |
 | [competencies/](competencies/) | The competency library: learning progressions and their skills, one folder per domain (`math`, `lit-de`, `lit-en`, `fl`) | records |
 | [lessons/](lessons/) | Hand-authored lessons, one file per skill and curriculum (`lessons/de-DE/math/...`) | records |
-| [assets/](assets/) | The asset bank: objects (one SVG per concept), components the app draws, Pip, recorded sounds | records |
+| [assets/](assets/) | The asset bank: objects (one picture per concept, in the mascot style, made by assets/tools/pictures.py), components the app draws, sounds, and the voice pilot (assets/tools/narration.py) | records |
 | [curricula/](curricula/) | One curriculum per market (`de-DE`, `en-GB`): which frameworks apply and in which year each skill is placed | records |
 | [views/](views/) | Generated: grade and year views per profile, the competency library by domain, and coverage of each framework | generated |
 

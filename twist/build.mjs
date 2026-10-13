@@ -262,14 +262,25 @@ for (const pr of profiles) {
   let out = header("Asset bank", "Every bank entry with the lesson sets that use it.");
   const row = (kind, map, id, extra) => { const u = L.used[kind].get(id); return `| \`${id}\` | ${extra} | ${u ? u.size : 0} | ${map.get(id)?.status ?? ""} |\n`; };
   const objs = [...L.objects.values()];
-  out += `## Objects (${objs.length})\n\n${objs.filter((o) => L.used.object.has(o.id)).length} used by lessons so far; ${objs.filter((o) => o.colour_slot).length} have a colour slot.\n\n| id | de / en / fr | used by | status |\n|---|---|---|---|\n`;
-  for (const o of objs.sort((a, b) => a.category.localeCompare(b.category) || a.id.localeCompare(b.id))) out += row("object", L.objects, o.id, `${o.labels.de} / ${o.labels.en} / ${o.labels.fr}${o.colour_slot ? " (colour slot)" : ""}`);
+  const pics = existsSync(join(T, "assets/objects")) ? readdirSync(join(T, "assets/objects")).filter((f) => f.endsWith(".png")) : [];
+  const picCell = (id) => { const base = pics.includes(`${id}.png`) ? `[png](../assets/objects/${id}.png)` : "missing"; const cols = pics.filter((f) => f.startsWith(id + ".") && f !== `${id}.png`).map((f) => f.slice(id.length + 1, -4)); return cols.length ? `${base}; ${cols.join(", ")}` : base; };
+  out += `## Objects (${objs.length})\n\n${objs.filter((o) => L.used.object.has(o.id)).length} used by lessons so far; ${objs.filter((o) => o.colour_slot).length} have a colour slot; ${objs.filter((o) => pics.includes(`${o.id}.png`)).length} have a picture. Pictures are made by assets/tools/pictures.py from each object's \`draw\` line.\n\n| id | de / en / fr | used by | status | picture |\n|---|---|---|---|---|\n`;
+  for (const o of objs.sort((a, b) => a.category.localeCompare(b.category) || a.id.localeCompare(b.id))) out += row("object", L.objects, o.id, `${o.labels.de} / ${o.labels.en} / ${o.labels.fr}${o.colour_slot ? " (colour slot)" : ""}`).replace(/ \|\n$/, ` | ${picCell(o.id)} |\n`);
   out += `\n## Drawn by the app (${L.drawn.size})\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
   for (const c of L.drawn.values()) out += row("drawn", L.drawn, c.id, md(c.what));
-  out += `\n## Characters (${L.characters.size})\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
-  for (const c of L.characters.values()) out += row("character", L.characters, c.id, md(c.what));
-  out += `\n## Recorded sounds (${L.sounds.size})\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
+  out += `\n## Recorded sounds (${L.sounds.size})\n\nEach voice has its own copy, in assets/narration/<voice>/sounds/. Status \`test\` means made for the voice pilot.\n\n| id | what | used by | status |\n|---|---|---|---|\n`;
   for (const c of L.sounds.values()) out += row("sound", L.sounds, c.id, md(c.what));
+  // Voices: what the narration tool has made for each candidate.
+  const V = YAML.parse(readFileSync(join(T, "assets/voices.yaml"), "utf8"));
+  const linesFile = join(T, "assets/narration/lines.yaml");
+  const nLines = existsSync(linesFile) ? Object.keys(YAML.parse(readFileSync(linesFile, "utf8")) ?? {}).length : 0;
+  out += `\n## Voices (${V.candidates.length} in the pilot)\n\nOne voice speaks every line, sound and phrase. ${nLines} lines in assets/narration/lines.yaml plus ${L.sounds.size} sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: ${V.chosen ? "\`" + V.chosen + "\`" : "not yet"}.\n\n| voice | model | clips | passed the check | minutes | MB | note |\n|---|---|---|---|---|---|---|\n`;
+  for (const v of V.candidates) {
+    const f = join(T, "assets/narration", `${v.id}.yaml`);
+    const log = existsSync(f) ? Object.values(YAML.parse(readFileSync(f, "utf8")) ?? {}) : [];
+    const sum = (k) => log.reduce((a, x) => a + (x[k] ?? 0), 0);
+    out += `| \`${v.id}\` | ${v.model}, ${v.voice} | ${log.length} | ${log.filter((x) => x.check?.correct).length} | ${(sum("seconds") / 60).toFixed(1)} | ${(sum("bytes") / 1048576).toFixed(1)} | ${md(v.note ?? "")} |\n`;
+  }
   write("assets.md", out);
 }
 

@@ -54,11 +54,17 @@ lessons:
         tasks: [...]
       - activity: learn
         mode: demonstration           # worked-examples, demonstration, model-text, new-sound, new-word, do-it-with-me
-        screens: [{ text, say, show, sound, character }]
+        screens: [{ text, say, show, sound }]
       - activity: practise
-        support: full                 # full (3 hints), some (1 hint), none
-        setting: plain                # plain or in-context
-        tasks: [...]
+        setting: plain                # plain or in-context; a stage may set its own
+        stages:                       # always full, some, none, in that order; 5 or 6 tasks each
+          - support: full             # 3 hints per task
+            tasks: [...]
+          - support: some             # 1 hint per task
+            tasks: [...]
+          - support: none             # no hints
+            setting: in-context
+            tasks: [...]
       - activity: check
         size: quick                   # quick, skill (last lesson only), timed
         tasks: [...]
@@ -67,7 +73,7 @@ lessons:
 ## Task
 
 ```yaml
-- id: l1-p3                    # unique in the file
+- id: l1-f3                    # unique in the file: w warm-up, f/s/n the three Practise stages, c check
   type: multiple_choice        # a Twist question type
   text: "9 + 3 = _"            # what the screen shows
   say: "..."                   # what the voice says, if different from text
@@ -77,12 +83,35 @@ lessons:
   options: ["10", "11", "12"]  # strings, or { object: ... } / { drawn: ..., colour: ... }
   answer: "12"
   feedback: { "10": "..." }    # per wrong option
-  hints: ["strategy", "think aloud", "direct cue"]  # 3 for full support, 1 for some, none otherwise
-  difficulty: core             # easy, core, stretch
+  hints: ["strategy", "think aloud", "direct cue"]  # 3 in the full stage, 1 in some, none otherwise; tracing never
+  difficulty: easy             # easy, core, stretch; leave out for core
+  option_audio: false          # rarely needed; see below
+```
+
+Matching and sorting mirror the Twist schemas, with bank ids in place of
+image URLs. Any pair side, bin or option can carry its own `say`, spoken
+when the child taps it:
+
+```yaml
+- type: matching                # 2 to 6 pairs; the app shuffles the right side
+  pairs:
+    - left: { drawn: colour-swatch, colour: yellow, say: { en: "Yellow." } }
+      right: { object: banana }
+- type: sorting                 # 2 to 5 bins; every option names its bin
+  bins:
+    - { id: red, show: { drawn: colour-swatch, colour: red }, say: { en: "Red." } }
+  options:
+    - { object: strawberry, bin: red }
 ```
 
 Type-specific fields follow the Twist schemas: `frame` and a list `answer`
 for fill_in_blank, `total_items` for drag_and_drop_count, `char` for tracing,
 `expected_text` for speak, `spans` for highlight_in_text. Pictures, drawn
-components, characters and sounds are named by their asset bank id
+components and sounds are named by their asset bank id
 ([../assets/](../assets/)); the build rejects any id the bank does not have.
+
+Options get a speaker when hearing them does not give the answer away: a
+picture says its word ("Lampe"), a number or sum is read ("7 plus 6").
+There is no option audio on audio_choice, where the sound is the question,
+and none for a letter or syllable option. Set `option_audio` on a task only
+when that default is wrong; narration.py and the player both follow it.

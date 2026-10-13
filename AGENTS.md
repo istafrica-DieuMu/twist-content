@@ -36,6 +36,12 @@ one git repo.
     Edit the JSON or template.html, then run `node review/build.mjs`; never
     edit the outputs by hand. The build refuses data that mentions Anton's
     internal course ids or exercise-type names.
+  - player/: the twist/ model lessons rendered in a phone frame, with the
+    pictures, drawn components and narration, to see how a lesson renders.
+    Edit build.mjs or template.html, then run `node player/build.mjs`;
+    never edit index.html by hand. It reads the lesson records directly
+    and plays the audio from twist/assets/narration/, which is not in git
+    (remake it with twist/assets/tools/narration.py).
   - Add other outputs at the root as needed, and list them here and in
     README.md.
 
