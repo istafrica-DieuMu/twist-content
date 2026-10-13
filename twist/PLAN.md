@@ -601,4 +601,5 @@ en-GB is its own step later.
 | 18 | French | Learning year 4 | Language patterns | 1, drafted 2026-10-13: now and every day (en train de, tous les jours), 2 lessons |
 | 19 | English | Reception | Phonics | 7 drafted 2026-10-13: s a t p, i n m d, g o c k, ck e u r, h b f l with ff ll ss, j v w x, y z zz qu, letter to sound and blending CVC words, 14 lessons; 25 English phonemes added to the sound bank |
 | 20 | Maths | Year 1 and Year 2 | Counting in tens; Adding and subtracting tens | 2 drafted 2026-10-13: multiples of ten with tens rods, number words and fifteen against fifty; adding and subtracting tens with related facts, missing number to 100 |
+| 21 | English | Reception | Reading words | 2 of 3 drafted 2026-10-13: blending CVC words read from a card, words that differ in one sound; the first 16 tricky words |
 
