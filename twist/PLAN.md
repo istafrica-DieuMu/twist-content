@@ -507,6 +507,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 33 | Deutsch | Klasse 2 | Merkwörter und besondere Laute | 3 drafted 2026-10-13: Merkwörter with Dehnungs-h and double Selbstlaut, Wochentage, Monate and Zahlwörter; Sp, St, Qu, V, X and chs; the most common Grundwortschatz words (writing them in a dictation waits for the letter keyboard) |
 | 34 | Deutsch | Klasse 3 | Rechtschreibung | 4 drafted 2026-10-13: doppelte Mitlaute and when not to double; s, ss and ß; ck and tz; ie for the long i, with the exceptions and ih |
 | 35 | Deutsch | Klasse 3 | Trennen, ABC, Großschreibung, Verlängern | 4 drafted 2026-10-13: Wörter trennen (ch, sch, ck together, tz and double Mitlaute split); ABC by the second and third letter; Nominalisierung after das, beim, zum, Eigennamen and Zeitangaben; Verlängern for double Mitlaute in Nomen, Wiewörter and Tunwörter |
+| 36 | Deutsch | Klasse 3 | Strategien, Wörterbuch, Fehler | 3 drafted 2026-10-13: choosing Schwingen, Verlängern, Ableiten or Merken; the Wörterbuch (part of the book, Leitwörter, Grundform); finding and fixing mistakes in sentences and short texts |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
