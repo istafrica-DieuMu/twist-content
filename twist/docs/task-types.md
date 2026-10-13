@@ -123,6 +123,8 @@ Interactions:
 | The moral of a fable | options: the moral, a fact from the fable, a detail | en-GB themes-conventions |
 | Find a fact in a short text | a text with headings in `text` (lines split with `\n`; the player sets it as a passage), question at the bottom | en-GB retrieve-present |
 | Fact or opinion | "\"Pizza is the tastiest food.\" Fact or opinion?", options fact, opinion | en-GB fact-opinion |
+| Evidence for a view | a short passage and a view in `text`, options three quotations; one is from the text but does not support the view | en-GB justify-views |
+| How a word sounds, read from a card | the word on a letter card, the voice says "Read the word on the card", so the child must read it (never say the target word in a reading task) | en-GB alternative-pronunciations |
 | Ask the case question | "Wen oder was? \"Die Katze fängt eine Maus.\"" with the question in `say`, options the noun groups | noun-cases |
 | Which case is it in | "In welchem Fall steht \"dem Kind\"?", options Nominativ, Dativ, Akkusativ | noun-cases |
 | What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
@@ -425,6 +427,7 @@ Interactions:
 | Build an English sentence from word cards | "Bau den Satz: Ich mag Fußball." cards football, I, like into I like football, `option_audio: false` | en-hobbies |
 | A sequence in steps | 38, 18, 28, 48 into tens steps | sequences-to-100 |
 | Steps of a story pattern | the hero's journey: leaves home, goes on a journey, faces a big challenge, comes home changed | en-GB themes-conventions |
+| Point, evidence, explain | three sentences of an answer into order | en-GB justify-views |
 
 ## Option audio
 
