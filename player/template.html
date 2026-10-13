@@ -269,10 +269,14 @@ function house(roof, rows) {
 function writtenCalc(o) {
   const rows = o.rows ?? [], res = o.result ?? "", carry = o.carry ?? "";
   const n = Math.max(...rows.map((r) => r.length), res.length, carry.length) + 1, cw = 30, W = n * cw + 16;
-  let y = 34, s = "";
   const put = (str, yy, size, colour) => { const k = n - str.length; [...str].forEach((ch, i) => { if (ch === " ") return; const x = 8 + (k + i) * cw + cw / 2;
     s += ch === "_" ? `<rect x="${x - 11}" y="${yy - 24}" width="22" height="28" rx="4" fill="#f6effc" stroke="#8e3bd1" stroke-width="2"/>` : `<text x="${x}" y="${yy}" text-anchor="middle" font-size="${size}" font-weight="700" fill="${ch === "?" ? "#8e3bd1" : colour}">${esc(ch)}</text>`; }); };
-  rows.forEach((r, i) => { put(r, y, 28, "#2b0f45"); if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" ? "−" : "+"}</text>`; y += 36; });
+  // above: small digits written over the first number when entbündelt; cross: "x" marks a crossed-out digit of the first row.
+  const above = o.above ?? "", cross = o.cross ?? "";
+  let y = above.trim() ? 56 : 34, s = "";
+  if (above.trim()) put(above, 26, 16, "#8e3bd1");
+  rows.forEach((r, i) => { put(r, y, 28, "#2b0f45");
+    if (i === 0 && cross.includes("x")) { const k = n - cross.length; [...cross].forEach((ch, j) => { if (ch !== "x") return; const x = 8 + (k + j) * cw + cw / 2; s += `<line x1="${x - 10}" y1="${y + 2}" x2="${x + 10}" y2="${y - 22}" stroke="#8e3bd1" stroke-width="3"/>`; }); } if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" ? "−" : "+"}</text>`; y += 36; });
   if (carry.trim()) { put(carry, y - 6, 16, "#8e3bd1"); y += 6; }
   s += `<line x1="8" y1="${y - 22}" x2="${W - 8}" y2="${y - 22}" stroke="#2b0f45" stroke-width="3"/>`;
   if (res) { y += 12; put(res, y, 28, "#2b0f45"); }
