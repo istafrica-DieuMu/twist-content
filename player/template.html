@@ -394,6 +394,15 @@ function writtenCalc(o) {
 }
 // A Zahlenmauer: rows from the bottom up, each brick the sum of the two below; null is a gap.
 // An analogue clock: hour 1-12, minute 0-59; the hour hand moves on with the minutes.
+// A ruler in cm with a strip to measure above it; the strip starts at `start` (0 if left out).
+function ruler(o) {
+  const to = o.to ?? 15, w = 300, x0 = 14, sc = (v) => x0 + (v / to) * w, y = 70, start = o.start ?? 0;
+  let s = `<rect x="${x0 - 6}" y="${y}" width="${w + 12}" height="50" rx="5" fill="#fff6c9" stroke="#2b0f45" stroke-width="2.5"/>`;
+  for (let mm = 0; mm <= to * 10; mm++) { const v = mm / 10, big = mm % 10 === 0, mid = mm % 5 === 0; if (to > 20 && !big && !mid) continue; s += `<line x1="${sc(v)}" y1="${y}" x2="${sc(v)}" y2="${y + (big ? 18 : mid ? 12 : 7)}" stroke="#2b0f45" stroke-width="${big ? 2 : 1}"/>`; if (big) s += `<text x="${sc(v)}" y="${y + 38}" text-anchor="middle" font-size="${to > 20 ? 10 : 14}" font-weight="700" fill="#2b0f45">${v}</text>`; }
+  s += `<text x="${x0 + 4}" y="${y + 47}" font-size="11" fill="#2b0f45">cm</text>`;
+  if (o.length != null) s += `<rect x="${sc(start)}" y="${y - 30}" width="${sc(start + o.length) - sc(start)}" height="22" rx="4" fill="${o.colour === "blue" ? "#1E88E5" : o.colour === "green" ? "#43A047" : "#E53935"}" stroke="#2b0f45" stroke-width="2"/><line x1="${sc(start)}" y1="${y - 8}" x2="${sc(start)}" y2="${y}" stroke="#2b0f45" stroke-width="1.5" stroke-dasharray="3 3"/><line x1="${sc(start + o.length)}" y1="${y - 8}" x2="${sc(start + o.length)}" y2="${y}" stroke="#2b0f45" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+  return `<svg viewBox="0 0 330 130" width="100%" style="max-width:360px">${s}</svg>`;
+}
 function clock(o) {
   const c = 90, r = 80, ang = (f) => (f * 2 * Math.PI) - Math.PI / 2, hand = (f, len, w, col) => `<line x1="${c}" y1="${c}" x2="${c + len * Math.cos(ang(f))}" y2="${c + len * Math.sin(ang(f))}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
   let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="#fff" stroke="#2b0f45" stroke-width="5"/>`;
@@ -564,6 +573,7 @@ function drawn(o, ctx = {}) {
     case "word-card": return `<div class="word"><span class="wordcard">${esc(o.text)}</span></div>`;
     case "colour-swatch": return swatch(o.colour);
     case "clock": return clock(o);
+    case "ruler": return ruler(o);
   }
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }

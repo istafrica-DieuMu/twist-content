@@ -513,6 +513,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 39 | Mathe | Klasse 1 to 3 | Uhrzeit | 6 drafted 2026-10-14: volle und halbe Stunden; Viertelstunden; fünf Minuten genau and fünf vor/nach halb; minutengenau and 13 bis 24 Uhr; Zeitpunkt und Zeitspanne; Zeiteinheiten. Setting the hands waits for clock_hands_drag; the calendar for its component |
 | 40 | Mathe | Klasse 2 and 3 | Geld | 6 drafted 2026-10-14: Euro und Cent; Geldbeträge bis 100 €; Einkaufen und Rückgeld; Kommaschreibweise; mit Kommabeträgen rechnen; Sachaufgaben mit Preisvergleich und Angeboten. Laying coins waits for the coin component |
 | 41 | Mathe | Klasse 2 | Sachaufgaben | 5 drafted 2026-10-14: Fragen stellen und beantwortbare Fragen erkennen; Rechenstrich und Tabelle als Skizze; Rechengeschichten erfinden; Sachaufgaben mit zwei Schritten; Zahlenmuster und schöne Päckchen |
+| 42 | Mathe | Klasse 2 | Längen | 5 drafted 2026-10-14: vergleichen und ordnen; mit Körpermaßen messen; cm am Lineal (new ruler component) und 1 m = 100 cm; schätzen mit Stützpunkten; mit m und cm rechnen. Drawing a line of a given length waits for a drawing task |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
