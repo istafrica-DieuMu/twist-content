@@ -231,7 +231,7 @@ function pic(o, opts) {
   return `<img src="${A}objects/${f}" alt="${esc(D.objects[o.object]?.de ?? o.object)}">`;
 }
 const swatch = (c) => `<svg viewBox="0 0 100 100" width="84" height="84"><path d="M50 8c22 0 40 14 40 38 0 26-18 46-42 46S10 76 10 52 28 8 50 8z" fill="${D.colours[c]}" stroke="#2b0f45" stroke-width="5"/><path d="M30 34c4-8 12-12 20-12" stroke="#fff" stroke-opacity=".6" stroke-width="6" stroke-linecap="round" fill="none"/></svg>`;
-function counter(x, y, fill, cls = "") { return `<circle class="${cls}" cx="${x}" cy="${y}" r="12" fill="${fill}" stroke="#2b0f45" stroke-width="2.5"/>`; }
+function counter(x, y, fill, cls = "") { return `<circle class="${cls}" cx="${x}" cy="${y}" r="12" fill="${fill}" stroke="#2b0f45" stroke-width="2.5" ${cls === "gone" ? 'opacity=".45"' : ""}/>` + (cls === "gone" ? `<path d="M${x - 11} ${y - 11} L${x + 11} ${y + 11} M${x + 11} ${y - 11} L${x - 11} ${y + 11}" stroke="#2b0f45" stroke-width="3.5" stroke-linecap="round"/>` : ""); }
 function field(rows, opts = {}) {
   // rows: [[colour per cell or null] x10] ; two rows for a Zwanzigerfeld, one for a ten-frame (2x5)
   const W = 330, cell = 31, gap = 8;
@@ -250,7 +250,8 @@ function zwanziger(a, b, moved = 0) {
   for (let i = 0; i < b - moved; i++) bot[i] = { fill: "#1E88E5" };
   return field([top, bot]);
 }
-function tenFrame(n, split) { const col = (i) => ({ fill: split && i >= split[0] ? "#1E88E5" : "#E53935" }); const r1 = Array(5).fill(null).map((_, i) => i < n ? col(i) : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? col(i + 5) : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
+// cross: the last k counters are crossed out (taken away).
+function tenFrame(n, split, cross = 0) { const col = (i) => ({ fill: split && i >= split[0] ? "#1E88E5" : "#E53935", cls: i >= n - cross ? "gone" : "" }); const r1 = Array(5).fill(null).map((_, i) => i < n ? col(i) : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? col(i + 5) : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
 function house(roof, rows) {
   // More than four floors get shorter floors, so a whole house fits the screen.
   const rh = rows.length > 4 ? 34 : 52, fs = rows.length > 4 ? 24 : 30;
@@ -310,7 +311,7 @@ function equation(text, split) {
 function arcs(points, scale, y0, labelAll) {
   // points: [[from, size], ...] drawn as hops above the line
   return points.map(([f, n]) => { const x1 = scale(f), x2 = scale(f + n), mx = (x1 + x2) / 2, h = Math.max(26, (x2 - x1) * 0.45);
-    return `<path d="M${x1} ${y0} Q ${mx} ${y0 - h * 2} ${x2} ${y0}" fill="none" stroke="#8e3bd1" stroke-width="3.5"/><path d="M${x2 - 7} ${y0 - 9} L${x2} ${y0} L${x2 + 3} ${y0 - 11}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-linecap="round"/><text x="${mx}" y="${y0 - h - 6}" text-anchor="middle" font-size="18" font-weight="700" fill="#8e3bd1">+${n}</text>`; }).join("");
+    return `<path d="M${x1} ${y0} Q ${mx} ${y0 - h * 2} ${x2} ${y0}" fill="none" stroke="#8e3bd1" stroke-width="3.5"/><path d="M${x2 - 7 * Math.sign(n)} ${y0 - 9} L${x2} ${y0} L${x2 + 3 * Math.sign(n)} ${y0 - 11}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-linecap="round"/><text x="${mx}" y="${y0 - h - 6}" text-anchor="middle" font-size="18" font-weight="700" fill="#8e3bd1">${n < 0 ? "−" + -n : "+" + n}</text>`; }).join("");
 }
 function rechenstrich(start, jumps) {
   const end = jumps.length ? jumps.reduce((a, b) => a + b, start) : start + 5, span = Math.max(end - start, 1);
@@ -379,7 +380,7 @@ function drawn(o, ctx = {}) {
   switch (o.drawn) {
     case "dots": return dots(o, ctx.small);
     case "zwanzigerfeld": return zwanziger(o.filled[0], o.filled[1], ctx.moved ?? 0);
-    case "ten-frame": return tenFrame(o.filled, o.colour_split);
+    case "ten-frame": return tenFrame(o.filled, o.colour_split, o.cross);
     case "number-house": return house(o.roof, o.rows);
     case "part-whole": return partWhole(o.whole, o.parts);
     case "hundred-field": return hundredField(o.filled, o.colour_split);

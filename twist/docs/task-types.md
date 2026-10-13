@@ -43,7 +43,7 @@ for amounts:
 |---|---|---|
 | `dots` | `count`, `layout: dice / five-structure / row / scattered`, `colour_split: [3, 2]` | dice pips (1 to 6; 7 to 10 as two dice), rows of five (Kraft der 5), a row, or scattered dots |
 | `dots` with `groups` | `groups: [4, 3]`, `layout: row / dice` | two amounts to compare: in rows, one under the other and lined up (red over blue, so pairs show); as dice, side by side |
-| `ten-frame` | `filled`, `colour_split: [5, 2]` | a 2 by 5 frame with counters |
+| `ten-frame` | `filled`, `colour_split: [5, 2]`, `cross: 2` | a 2 by 5 frame with counters; `cross` crosses out the last counters (taken away) |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
 | `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
@@ -311,6 +311,8 @@ Interactions:
 | Where a sum lands, with or without jump arcs | 0 to 20, "8 + 5" | add-bridge-10 |
 | Find a ten on a long line | 0 to 100, `step: 10`, labels ends, "Wo ist 60?" | number-line-to-100 |
 | Find a number on a section | 40 to 60, labels tens, "Wo ist 47?" | number-line-to-100 |
+
+A jump with a negative size (`jumps: [[5, -1]]`) hops back and is labelled −1 (sub-to-10).
 
 A number line can also be a picture to read: `show` with `mark: 35`
 draws the marker at 35, and a multiple_choice asks which number it marks
