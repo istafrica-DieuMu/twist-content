@@ -9,9 +9,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | narration made |
 |---|---|---|---|---|
 | de-DE | Mathe | 47% (95 / 203) | 38% (11 / 29) | 86% (9030 / 10499) |
-| de-DE | Deutsch | 35% (61 / 174) | 34% (32 / 94) | 79% (4381 / 5532) |
+| de-DE | Deutsch | 36% (62 / 174) | 35% (33 / 94) | 79% (4381 / 5532) |
 | de-DE | Englisch | 41% (24 / 58) | 45% (17 / 38) | 75% (1655 / 2206) |
-| **de-DE** | **all** | **41% (180 / 435)** | **37% (60 / 161)** | **83% (15066 / 18238)** |
+| **de-DE** | **all** | **42% (181 / 435)** | **38% (61 / 161)** | **83% (15066 / 18238)** |
 | en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 94% (5176 / 5492) |
 | en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 87% (1861 / 2133) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (539 / 539) |
@@ -39,13 +39,13 @@ Per voice:
 
 ## de-DE
 
-180 of 435 placed skills drafted (41%): 180 lesson sets, 375 lessons, 8151 tasks. Narration so far about $34; 3172 clips still to make.
+181 of 435 placed skills drafted (42%): 181 lesson sets, 377 lessons, 8193 tasks. Narration so far about $34; 3172 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 28 / 41 | 5 / 51 |  | 33 / 92 |
 | klasse-2 | 35 / 63 | 22 / 46 |  | 57 / 109 |
-| klasse-3 | 19 / 51 | 22 / 42 |  | 41 / 93 |
+| klasse-3 | 19 / 51 | 23 / 42 |  | 42 / 93 |
 | klasse-4 | 13 / 48 | 12 / 35 |  | 25 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 9 / 28 | 9 / 28 |
@@ -135,7 +135,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Rechtschreibstrategien | 2 / 2 done | 4 |  |
 | klasse-3 | Deutsch | Das ABC | 1 / 1 done | 2 |  |
 | klasse-3 | Deutsch | Wörterbuch | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Fehler berichtigen | 0 / 1 |  |  |
+| klasse-3 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 |  |
 | klasse-3 | Deutsch | Blitzlesen | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Flüssig lesen | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Vorlesen | 0 / 1 |  |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 255 | $0.23 | $59 |
+| de-DE | 254 | $0.23 | $58 |
 | en-GB | 404 | $0.25 | $100 |
 
 Pictures: 156 of 156 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
