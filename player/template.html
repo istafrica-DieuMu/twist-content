@@ -264,6 +264,14 @@ function house(roof, rows) {
   rows.forEach((r, i) => r.forEach((v, j) => { const x = 28 + j * 62, y = 74 + i * rh; s += `<rect x="${x}" y="${y}" width="62" height="${rh}" fill="#fff" stroke="#2b0f45" stroke-width="4"/><text x="${x + 31}" y="${y + rh / 2 + fs / 3}" text-anchor="middle" font-size="${fs}" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
   return `<svg viewBox="0 0 180 ${80 + rows.length * rh}" width="${rows.length > 4 ? 150 : 180}">${s}</svg>`;
 }
+// A Zahlenmauer: rows from the bottom up, each brick the sum of the two below; null is a gap.
+function numberWall(rows) {
+  const n = rows[0].length, w = 66, h = 44, W = n * w + 8, H = rows.length * h + 8;
+  let s = "";
+  rows.forEach((r, i) => r.forEach((v, j) => { const x = 4 + (i * w) / 2 + j * w, y = H - 4 - (i + 1) * h;
+    s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${v == null ? "#f6effc" : "#fff"}" stroke="#2b0f45" stroke-width="4"/><text x="${x + w / 2}" y="${y + h / 2 + 10}" text-anchor="middle" font-size="28" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; }));
+  return `<svg viewBox="0 0 ${W} ${H}" width="${Math.min(W, 330)}" style="max-width:100%">${s}</svg>`;
+}
 // The Hunderterfeld: 10 by 10 dots, gaps after five each way, filled row by row.
 function hundredField(filled, split) {
   let g = "";
@@ -318,16 +326,20 @@ function arcs(points, scale, y0, labelAll) {
   return points.map(([f, n]) => { const x1 = scale(f), x2 = scale(f + n), mx = (x1 + x2) / 2, h = Math.max(26, (x2 - x1) * 0.45);
     return `<path d="M${x1} ${y0} Q ${mx} ${y0 - h * 2} ${x2} ${y0}" fill="none" stroke="#8e3bd1" stroke-width="3.5"/><path d="M${x2 - 7 * Math.sign(n)} ${y0 - 9} L${x2} ${y0} L${x2 + 3 * Math.sign(n)} ${y0 - 11}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-linecap="round"/><text x="${mx}" y="${y0 - h - 6}" text-anchor="middle" font-size="18" font-weight="700" fill="#8e3bd1">${n < 0 ? "−" + -n : "+" + n}</text>`; }).join("");
 }
-function rechenstrich(start, jumps) {
-  const end = jumps.length ? jumps.reduce((a, b) => a + b, start) : start + 5, span = Math.max(end - start, 1);
-  const sc = (v) => 24 + ((v - start) / span) * 282, y = 110;
+function rechenstrich(start, jumps, back = false) {
+  // Minus jumps go left; the line spans every point the jumps reach.
+  let pos = start; const pts = [start, ...jumps.map((j) => (pos += j))];
+  if (!jumps.length) pts.push(back ? start - 5 : start + 5);
+  const lo = Math.min(...pts), span = Math.max(Math.max(...pts) - lo, 1);
+  const sc = (v) => 24 + ((v - lo) / span) * 282, y = 110;
   let s = `<line x1="10" y1="${y}" x2="320" y2="${y}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/>`;
   let at = start; const hops = [];
   jumps.forEach((j) => { hops.push([at, j]); at += j; });
   const marks = [start, ...hops.map(([f, n]) => f + n)];
   s += arcs(hops, sc, y);
   marks.forEach((v) => { s += `<line x1="${sc(v)}" y1="${y - 10}" x2="${sc(v)}" y2="${y + 10}" stroke="#2b0f45" stroke-width="4"/><text x="${sc(v)}" y="${y + 36}" text-anchor="middle" font-size="22" font-weight="700" fill="#2b0f45">${v}</text>`; });
-  if (!jumps.length) s += `<path d="M${sc(start)} ${y} Q ${sc(start + 1.5)} ${y - 70} ${sc(start + 3)} ${y}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-dasharray="7 7"/><text x="${sc(start + 1.5)}" y="${y - 44}" text-anchor="middle" font-size="22" font-weight="700" fill="#8e3bd1">?</text>`;
+  const d = back ? -1 : 1;
+  if (!jumps.length) s += `<path d="M${sc(start)} ${y} Q ${sc(start + 1.5 * d)} ${y - 70} ${sc(start + 3 * d)} ${y}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-dasharray="7 7"/><text x="${sc(start + 1.5 * d)}" y="${y - 44}" text-anchor="middle" font-size="22" font-weight="700" fill="#8e3bd1">?</text>`;
   return `<svg viewBox="0 0 330 160" width="100%" style="max-width:330px">${s}</svg>`;
 }
 function numberLine(o, pick) {
@@ -391,12 +403,13 @@ function drawn(o, ctx = {}) {
     case "ten-frame": return tenFrame(o.filled, o.colour_split, o.cross, o.cross_from === "start");
     case "number-house": return house(o.roof, o.rows);
     case "part-whole": return partWhole(o.whole, o.parts);
+    case "number-wall": return numberWall(o.rows);
     case "hundred-field": return hundredField(o.filled, o.colour_split);
     case "hundred-square": return hundredSquare(o);
     case "base-ten": return baseTen(o.tens ?? 0, o.ones ?? 0, o.hundreds ?? 0);
     case "place-value-chart": return placeValue(o.columns, o.values);
     case "equation": return equation(o.text, o.split);
-    case "rechenstrich": return rechenstrich(o.start, o.jumps ?? []);
+    case "rechenstrich": return rechenstrich(o.start, o.jumps ?? [], o.back);
     case "number-line": return numberLine(o);
     case "letter-card": return `<div class="cards">${(o.text.includes(" ") ? o.text.split(" ") : [o.text]).map((t) => `<div class="card">${esc(t)}</div>`).join("")}</div>`;
     case "writing-lines": return `<div class="trace">${writing(o.text, o.mode)}</div>`;

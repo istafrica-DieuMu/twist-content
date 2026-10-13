@@ -46,6 +46,7 @@ for amounts:
 | `ten-frame` | `filled`, `colour_split: [5, 2]`, `cross: 2` | a 2 by 5 frame with counters; `cross` crosses out the last counters (taken away), or the first with `cross_from: start` |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
+| `number-wall` | `rows: [[3, 5, 2], [8, 7], [null]]`, bottom row first | the Zahlenmauer: each brick is the sum of the two under it, `null` is a gap |
 | `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
 | `hundred-square` | `highlight: [..]`, `hide: [..]` | 1 to 100 in rows of ten; hidden cells show ? |
 | `base-ten` | `hundreds`, `tens`, `ones` | hundred flats (10 by 10, two to a column), tens rods and ones cubes; more than ten loose cubes start a new pair of columns |
@@ -108,6 +109,14 @@ Interactions:
 | Umkehraufgabe or family member | options are whole sums, one is the Tauschaufgabe | inverse |
 | The answer sentence | a story and its sum, "Welcher Antwortsatz passt?", options are short sentences with the right number in the wrong thing, a wrong number, and the right one | picture-stories |
 | What the picture is asking | a picture with a story, "Was sollst du herausfinden?", options are short questions | picture-stories |
+| Which part changes | "34 + 5: Was ändert sich?" options die Einer, die Zehner, beide | ones-no-bridge, tens-to-two-digit |
+| Which Rechenweg is this | a worked calculation in `text` ("45 + 38 = 45 + 30 + 8"), "Welcher Rechenweg ist das?", options schrittweise, stellenweise, mit Hilfsaufgabe, ergänzen | describe-methods |
+| Which Rechenweg suits | "Welcher Weg passt gut zu 56 + 19?", options name methods; the answer is the one the sum invites (19 is near 20: Hilfsaufgabe) and the record says why in `feedback` | describe-methods, clever |
+| Where is the mistake | a worked calculation with one wrong step, options are its steps or short descriptions of the error | check |
+| Überschlag | "Ungefähr wie viel ist 48 + 29?", options are round numbers (60, 80, 100) | check |
+| Which sums make 100 | "Welche Aufgabe ergibt 100?", options are whole sums (82 + 18, 82 + 28, 82 + 8) | complement |
+| Which way to put it right | after a Hilfsaufgabe ("72 − 30 = 42"), options eins dazulegen, eins wegnehmen | clever |
+| Who calculated right | two children's worked ways side by side, "Wer hat richtig gerechnet?", options beide, nur A, nur B | describe-methods |
 | Missing part | "7 = 3 + _" over a split ten-frame, options 3, 4, 5 | partition-to-10 |
 | Missing part or whole (England) | "The whole is five. One part is four. What is the other part?" over `{ drawn: part-whole, whole: 5, parts: [4, null] }` | en-GB partition-to-10 |
 | How many more to make ten | over a ten frame with 7, options 2, 3, 4 | en-GB partition-to-10 |
@@ -257,6 +266,12 @@ Interactions:
 | Missing to 100 | over a hundred field with 70, frame "70 + _ = 100" | hundred-field |
 | Neighbouring tens | "Nachbarzehner: _ , 27, _" options 20, 26, 28, 30 | order-compare-to-100 |
 | The whole calculation for a story | a story in `say`, frame "_ _ _ = _", options the numbers, +, − and one wrong number, answer e.g. 6, −, 4, 2 | picture-stories |
+| Analogieaufgabe | "4 + 3 = _ · 34 + 3 = _", the small sum first, then the one it helps with | ones-no-bridge, tens-to-two-digit |
+| Rechenweg in steps | "38 + 5 = 38 + 2 + _ = _" or "72 − 35 = 72 − 30 − _ = _", the child fills the next step and the result; ergänzen in two jumps: "53 + _ = 60 · 60 + _ = 100 · 53 + _ = 100" | ones-bridge, add-two-digit, sub-two-digit, clever, complement |
+| Stellenweise | "45 + 38: 40 + 30 = _ · 5 + 8 = _ · _ + _ = _" | add-two-digit |
+| Placeholder | "45 + _ = 72", "_ − 20 = 35", "48 + 30 _ 80" with signs | equations |
+| Number wall brick | over a number wall with gaps, frame "_" or "_ · _" for the gaps from left to right, bottom row first; a gap at the bottom is found by subtracting | number-walls |
+| Number chain | "4 → +3 → _ → +5 → _", each arrow does what it says | number-walls |
 | Continue a sequence | "42, 44, 46, _ , _" | sequences-to-100 |
 | Double by tens and ones | "Das Doppelte von 32", frame "60 + _ = _" | double-halve-to-100 |
 | Split into place values | "Zerlege 683.", frame "683 = _ + _ + _" | place-value-to-1000 |

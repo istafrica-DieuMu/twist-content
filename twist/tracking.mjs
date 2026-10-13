@@ -43,7 +43,8 @@ function placements(cur, subjects) {
     if (/^\S/.test(line)) break;
     let m;
     if ((m = line.match(/^  ([a-z0-9-]+):\s*$/))) { year = m[1]; topic = null; }
-    else if ((m = line.match(/^\s+#\s*(.+?)\s*$/))) topic = subjectNames.has(m[1]) ? null : m[1];
+    // A short comment names a topic; a longer one with a date or a reason is a note and changes nothing.
+    else if ((m = line.match(/^\s+#\s*(.+?)\s*$/))) { if (subjectNames.has(m[1])) topic = null; else if (m[1].length <= 40 && !/[(,:]/.test(m[1])) topic = m[1]; }
     else if ((m = line.match(/^\s+-\s+([a-z0-9.-]+)/))) rows.push({ year, skill: m[1], topic });
   }
   return rows;

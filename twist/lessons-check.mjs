@@ -181,7 +181,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           refs(t, tw, file);
           const sig = JSON.stringify([t.type, t.text ?? t.say, t.answer, t.show ?? null, t.audio ?? null, t.options ?? null, t.pairs ?? null, t.bins ?? null, t.frame ?? null, t.say ?? null]);
           if (a.activity === "check") checkTasks.push([t.id, sig, a.size]); else nonCheck.set(sig, t.id);
-          const loose = JSON.stringify([t.type, t.text ?? null, t.say ?? null, t.answer, t.audio ?? null, t.show ?? null]);
+          const loose = JSON.stringify([t.type, t.text ?? null, t.say ?? null, t.answer, t.audio ?? null, t.show ?? null, t.frame ?? null]);
           if (a.activity === "check") looseCheck.push([t.id, loose, a.size]); else looseNon.set(loose, t.id);
           if (t.keep_order !== undefined && (typeof t.keep_order !== "boolean" || !CHOICE_TYPES.has(t.type))) err(`${file}: ${tw}: keep_order is true or false, on a choice task only`);
         }
