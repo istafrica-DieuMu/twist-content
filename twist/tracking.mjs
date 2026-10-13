@@ -66,7 +66,8 @@ function lessonSets(cur) {
   const out = new Map(), dir = join(T, "lessons", cur);
   if (!existsSync(dir)) return out;
   for (const dom of readdirSync(dir)) for (const f of readdirSync(join(dir, dom)).filter((x) => x.endsWith(".yaml"))) {
-    const d = load(join("lessons", cur, dom, f));
+    let d;
+    try { d = load(join("lessons", cur, dom, f)); } catch { continue; } // the checker reports the YAML error
     let tasks = 0;
     for (const l of d.lessons ?? []) for (const a of l.activities ?? []) {
       tasks += (a.tasks ?? []).length;
