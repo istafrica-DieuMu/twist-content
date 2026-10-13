@@ -30,6 +30,9 @@ one git repo.
     frameworks, competencies, lessons, profiles, and generated views.
     Only our own content goes in; research inputs stay outside it.
     PLAN.md holds the steps; twist/AGENTS.md adds its own rules.
+    views/tracking.md tracks progress per curriculum, year and topic
+    and the OpenRouter cost of pictures and narration; build.mjs writes
+    it, and `node twist/tracking.mjs --live` adds what the key has spent.
   - review/: the Twist Germany readiness review, one page built from
     de-launch-review.json (de-launch-review.v1.json is the earlier draft).
     Same output layout as site/: index.html tracked, dist/ gitignored.

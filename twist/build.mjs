@@ -7,6 +7,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
 import { checkLessons } from "./lessons-check.mjs";
+import { tracking } from "./tracking.mjs";
 
 const T = dirname(fileURLToPath(import.meta.url));
 const errors = [], warnings = [];
@@ -294,6 +295,9 @@ for (const [fid, f] of frameworks) {
   for (const o of objs) out += `| ${o.code.slice(fid.length + 1)} | ${o.band ?? f.band ?? ""} | ${md(o.text)} | ${(stepsFor.get(o.code) ?? []).map((s) => `\`${s}\``).join(", ") || (outOfScope.has(o.code) ? `out of scope: ${md(outOfScope.get(o.code))}` : o.kind === "process" ? "(process)" : "**none**")} |\n`;
   write(`coverage-${fid}.md`, out);
 }
+
+// Progress and OpenRouter cost.
+write("tracking.md", tracking());
 
 // ---------- report ----------
 const n = (m) => [...m.values()].length;
