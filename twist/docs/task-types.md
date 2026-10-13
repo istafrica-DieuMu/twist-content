@@ -55,6 +55,7 @@ for amounts:
 | `place-value-chart` | `columns: [tens, ones]` (or with `hundreds`, `thousands`, `ten-thousands`, `hundred-thousands`, `millions` in front), `values: [4, null]` | Stellentafel; HT ZT T H Z E in German, HTh TTh Th H T O in English; six columns shrink to fit; null is a gap |
 | `clock` | `hour: 1-12`, `minute: 0-59`, `digital: true` | an analogue clock face; the hour hand moves on with the minutes; `digital` adds the time below; as an option its key is "3:30" |
 | `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
+| `ruler` | `to: 15`, `length: 7`, `start: 2`, `colour` | a ruler in cm with mm ticks (cm and half cm only past 20) and a coloured strip above it, dashed lines from its ends to the scale; `start` sets the strip off zero for the reading-from-zero mistake |
 
 ## Types in use
 
@@ -513,6 +514,7 @@ Interactions:
 | Sentences into fact and opinion | bins fact and opinion, text cards with `option_audio: false`; long text cards get a smaller font | en-GB fact-opinion |
 | Verbs into trennbar and nicht trennbar | bins trennbar and nicht trennbar, text cards aufräumen, verlieren, weglaufen, bekommen | verbs-compound |
 | Phrases into Ortsangabe and Zeitangabe | bins "Ortsangabe (Wo?)" and "Zeitangabe (Wann?)", cards with im and am of both kinds (im Keller, im Herbst, am Strand, am Abend) | sentences-place-time |
+| Questions a story can or cannot answer | bins "kann ich beantworten" and "kann ich nicht beantworten"; after a short story, cards such as "Wie viele springen nicht?" and "Wie tief ist das Becken?" | ask-questions |
 
 ## `ordering`
 
@@ -539,6 +541,7 @@ Interactions:
 | Point, evidence, explain | three sentences of an answer into order | en-GB justify-views |
 | The part after weil, dass or wenn | the whole sentence is spoken, the cards are the second part ("weil", "er", "Hunger", "hat"); the verb goes last, `option_audio: false` | sentences-conjunctions |
 | Umstellprobe | the sentence is spoken, its Satzglieder are cards, "Beginne mit „Am Morgen“": the named Satzglied first, the verb second (Am Morgen, trinkt, Opa, einen Kaffee); with a split Prädikat the second part goes last, `option_audio: false` | sentences-move-parts |
+| Parts of a number story | "Bau eine Geschichte zu 50 − 20.", sentence cards for the start, what happens and the question ("Lisa hat 50 Cent.", "Sie kauft einen Lolli für 20 Cent.", "Wie viel Geld hat sie noch?"), `option_audio: false` | write-stories |
 
 ## Option audio
 
