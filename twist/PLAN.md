@@ -490,6 +490,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 16 | Mathe | Klasse 3 | Schriftlich rechnen | 5 of 6 drafted 2026-10-13: 10 lessons; addition without and with Übertrag, several numbers (carry 2), subtraction without and with Entbündeln (Abziehen), new written-calc component; the check skill is still to do |
 | 17 | Englisch | Stufe 0, Lernjahr 1, Lernjahr 2 | Zahlen, Hallo, Körper, Familie, Tiere, Sprachmuster | 7 drafted 2026-10-13: numbers to 10, Hello, body, family and animals (Stufe 0), I am / I have got / I can (Lernjahr 1), now against every day (Lernjahr 2); Englisch was behind, so de-DE takes Englisch and Deutsch topics next |
 | 18 | Deutsch | Klasse 2 | Adjektive | 3 drafted 2026-10-13: recognise with the Wie-Frage, describe more precisely, endings after der, die, das and ein, eine |
+| 19 | Deutsch | Klasse 3 | Adjektive | 4 drafted 2026-10-13: Vergleichsstufen with als and so … wie, Gegenteile with and without un-, -ig, -lich, -isch and -bar, zusammengesetzte Adjektive |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
