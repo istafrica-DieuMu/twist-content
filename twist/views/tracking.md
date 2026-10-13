@@ -13,9 +13,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | de-DE | Englisch | 34% (20 / 58) | 34% (13 / 38) | 24% (403 / 1653) |
 | **de-DE** | **all** | **31% (137 / 435)** | **24% (39 / 161)** | **62% (9304 / 15066)** |
 | en-GB | Maths | 19% (49 / 259) | 13% (18 / 139) | 85% (4380 / 5177) |
-| en-GB | English | 12% (20 / 163) | 8% (5 / 61) | 81% (1504 / 1861) |
+| en-GB | English | 13% (21 / 163) | 8% (5 / 61) | 81% (1504 / 1861) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (539 / 540) |
-| **en-GB** | **all** | **15% (74 / 483)** | **10% (24 / 241)** | **85% (6423 / 7578)** |
+| **en-GB** | **all** | **16% (75 / 483)** | **10% (24 / 241)** | **85% (6423 / 7578)** |
 
 ## OpenRouter cost
 
@@ -219,11 +219,11 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-74 of 483 placed skills drafted (15%): 74 lesson sets, 151 lessons, 3253 tasks. Narration so far about $15; 1155 clips still to make.
+75 of 483 placed skills drafted (16%): 75 lesson sets, 153 lessons, 3290 tasks. Narration so far about $15; 1155 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
-| reception | 13 / 14 | 9 / 32 |  | 22 / 46 |
+| reception | 13 / 14 | 10 / 32 |  | 23 / 46 |
 | year-1 | 11 / 29 | 3 / 32 |  | 14 / 61 |
 | year-2 | 10 / 53 | 2 / 29 |  | 12 / 82 |
 | year-3 | 10 / 50 | 2 / 20 |  | 12 / 70 |
@@ -244,7 +244,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.01 |
 | reception | Maths | Division | 0 / 1 |  |  |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $0.79 |
-| reception | English | Phonics | 5 / 12 started | 10 | $0.03 |
+| reception | English | Phonics | 6 / 12 started | 12 | $0.03 |
 | reception | English | Reading words | 0 / 3 |  |  |
 | reception | English | Understanding stories | 0 / 2 |  |  |
 | reception | English | Spelling | 0 / 1 |  |  |
@@ -486,6 +486,6 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
 | de-DE | 298 | $0.25 | $75 |
-| en-GB | 409 | $0.24 | $99 |
+| en-GB | 408 | $0.24 | $98 |
 
 Pictures: 150 of 150 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
