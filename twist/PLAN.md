@@ -482,6 +482,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 8 | Deutsch | Klasse 2 | Pronomen and Verben | 5, all drafted 2026-10-13: 10 lessons; er, sie, es by the article, wir and ihr, Verben erkennen with the ich-Probe, Personalformen, Grundform with the wir-Probe, Vorsilben and moving prefixes |
 | 9 | Deutsch | Klasse 3 | Zeitformen | 2, both drafted 2026-10-13: 4 lessons; Präsens with vowel change, Präteritum of weak and strong verbs |
 | 10 | Deutsch | Klasse 4 | Zeitformen | 3, all drafted 2026-10-13: 6 lessons; Perfekt with haben and sein, Futur and Präsens for the future, naming tenses and keeping to one in a text |
+| 11 | Mathe | Klasse 1 | Zahlen bis 20 | 5, all drafted 2026-10-13: 10 lessons; teens as one ten and ones (German says the Einer first), Zahlenstrahl to 20 and counting across ten, comparing and how many more, doubling and halving, gerade and ungerade |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
