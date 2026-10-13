@@ -73,6 +73,12 @@ function optionText(t, o, lang) {
   return null;
 }
 
+// What a speak task's model says. Must match speak_model() in narration.py.
+function speakModel(t, tl) {
+  if (t.say && typeof t.say === "object" && t.say[tl]) return t.say[tl];
+  let x = String(t.expected_text).trim(); x = x[0].toUpperCase() + x.slice(1);
+  return /[.!?]$/.test(x) ? x : x + ".";
+}
 const word = (oid, lang) => { const l = objectRecs[oid].labels[lang]; return ["de", "fr"].includes(lang) && l.includes(" ") ? l.split(" ").slice(1).join(" ") : l; };
 
 const sets = [];
@@ -93,6 +99,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
         t._prompt = sayClips(t.say ?? t.text, lang, a.activity, w);
         if (t.audio?.sound) t._target = soundClip(t.audio.sound, a.activity);
         else if (t.audio) t._target = sayClips(Object.fromEntries(Object.entries(t.audio).filter(([k]) => k !== "sound")), lang, a.activity, w)[0];
+        if (t.type === "speak") { const tl = d.target_language ?? lang; t._model = clip(tl, speakModel(t, tl), a.activity, null, w); }
         t._hints = (t.hints ?? []).map((h) => clip(lang, h, a.activity, null, w));
         t._options = (t.options ?? []).map((o) => { const x = optionText(t, o, lang); return x ? clip(lang, x, a.activity, null, w) : null; });
         // Tapping a pair side, bin, sorting item or shown picture says its own

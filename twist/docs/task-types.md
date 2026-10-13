@@ -71,7 +71,7 @@ for amounts:
 | `point_on_line` | taps a point on a number line | yes | add-bridge-10 |
 | `highlight_in_text` | taps every card that has a letter | yes | letters-l-o-a-m |
 | `tracing` | traces or copies a letter with a finger | yes (any ink counts) | letters-l-o-a-m |
-| `speak` | says a word aloud | yes (no listening yet) | en-colours |
+| `speak` | says a word aloud | yes (fallback: record, compare with the model, self-check) | en-colours |
 | `matching` | links each left item with its right item | yes | en-colours |
 | `sorting` | puts each item into its bin | yes | en-colours |
 | `ordering` | puts cards into slots in the right order | yes | order-to-10 |
@@ -438,8 +438,26 @@ copy a numeral, 0 to 10 (write-numerals-to-10).
 
 The child hears the model and says the word. Speech recognition for
 young children is not reliable enough to mark, so speak tasks are
-practice only, never in a skill check (the build warns). The prototype
-does not listen.
+practice only, never in a skill check (the build warns).
+
+Until speech is marked, every speak task runs as the fallback below. It
+needs no extra fields, so the same records work when listening arrives.
+
+1. The prompt plays (the instruction, and the model when `say` has one).
+2. The child taps the microphone ("Jetzt du") and speaks. The app
+   records for up to 4 seconds; a second tap stops early.
+3. The app plays the child's recording, then the model. Both stay on
+   screen as speaker chips ("Du", "So klingt es").
+4. The child taps "Klingt gleich" to go on, or "Nochmal" to record again.
+
+The task is never scored and is never wrong. With no microphone (or no
+permission) step 2 is skipped: the child speaks, then hears the model
+and taps "Klingt gleich". The recording stays on the device and is
+deleted when the task closes.
+
+The model is `say` in the target language, or else `expected_text` as a
+sentence ("a skirt" is said as "A skirt."), so a none-stage task that
+gives no model up front still lets the child check themselves.
 
 Fields: `say` (`{ de: instruction, en: model }`), `show`, `expected_text`.
 

@@ -51,6 +51,12 @@ one git repo.
     hand, tracked in git; a copy is published as a claude.ai artifact.
     Update it by hand when twist/ changes what those teams build, and keep
     the published copy in step.
+  - types/: every Twist task type on one page, with a screen for each:
+    shots from the player for built types, rough mocks (mocks.html) for
+    types still to build. index.html and mocks.html are written by hand;
+    `node types/shots.cjs` (needs Playwright) retakes shots/. A copy is
+    published as a claude.ai artifact; keep it in step with
+    twist/docs/task-types.md and the player.
   - Add other outputs at the root as needed, and list them here and in
     README.md.
 

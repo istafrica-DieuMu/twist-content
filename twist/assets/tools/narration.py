@@ -111,6 +111,16 @@ MIXED = None  # target language of the lesson being gathered
 LANG_NAME = {"de": "German", "en": "English", "fr": "French"}  # what the listening check expects
 CUR = None  # its curriculum
 
+def speak_model(t, tl):
+    """What a speak task's model says: the target-language say, else expected_text as a sentence."""
+    say = t.get("say")
+    if isinstance(say, dict) and say.get(tl):
+        return say[tl]
+    x = t["expected_text"].strip()
+    x = x[0].upper() + x[1:]
+    return x if x[-1] in ".!?" else x + "."
+
+
 # Options get a speaker when hearing them does not give the answer away.
 # Never on audio_choice (the sound is the question), and never for a letter
 # or syllable option. A task's `option_audio: true/false` overrides this.
@@ -228,6 +238,12 @@ def gather(cfg):
                     for lg, v in (t.get("audio") or {}).items():
                         if lg != "sound":
                             add(lg, v, "target", w, a["activity"])
+                    # A speak task plays the model after the child has spoken
+                    # (the fallback while speech is not marked). Must match
+                    # speakModel() in player/build.mjs.
+                    if t["type"] == "speak":
+                        tl = d.get("target_language") or lang
+                        add(tl, speak_model(t, tl), "target", w, a["activity"])
                     for h in t.get("hints", []):
                         add(lang, h, "hint", w, a["activity"])
                     for v in (t.get("feedback") or {}).values():

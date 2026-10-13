@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Type Mocks</title>
+<!-- Rough screens for task types the player does not have yet. types/shots.cjs
+     adds the player's own stylesheet, so the mocks match the player's look. -->
+<style>
+body{display:flex;flex-wrap:wrap;gap:30px;padding:30px}
+.m-clock{width:240px;height:240px;margin:0 auto;display:block}
+.purse{border:3px dashed var(--accent);border-radius:24px;min-height:150px;background:var(--accent-soft);display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:12px}
+.coin{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font:700 17px Andika,sans-serif;border:3px solid #8a6d1d;background:radial-gradient(circle at 35% 35%,#ffe9a0,#d9b23a);color:#4a3608;box-shadow:0 3px 0 #8a6d1d}
+.coin.two{background:radial-gradient(circle at 35% 35%,#fff7d1,#d9b23a 55%,#b9bcc2 56%);}
+.coin.ct{width:50px;height:50px;font-size:14px;background:radial-gradient(circle at 35% 35%,#ffe3b5,#c98a3b);border-color:#7a4a12;color:#3d2405;box-shadow:0 3px 0 #7a4a12}
+.note5{width:104px;height:56px;border-radius:8px;border:3px solid #6d6d6d;background:linear-gradient(135deg,#d7d7d7,#a7a7a7);display:grid;place-items:center;font:700 20px Andika,sans-serif;color:#2b2b2b;box-shadow:0 3px 0 #6d6d6d}
+.bank{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:auto}
+.grid3{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.grid3 .opt{min-height:64px;font-size:26px}
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sides .opt{min-height:150px;font-size:40px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;font:700 17px Andika,sans-serif}
+.cal b{font-size:13px;color:var(--muted)}
+.cal span{background:#fff;border:2px solid var(--line);border-radius:10px;padding:8px 0}
+.cal span.we{background:#f4eefa}
+.cal span.tap{border:3px solid var(--accent);background:var(--accent-soft)}
+.calhead{text-align:center;font:700 20px Andika,sans-serif}
+.cells{display:grid;grid-template-columns:repeat(4,64px);grid-template-rows:repeat(2,64px);gap:0;margin:0 auto;border:3px solid var(--plum)}
+.cells i{border:2px solid var(--plum);background:#fff}.cells i.on{background:#F57C00}
+.paper{width:300px;height:300px;margin:0 auto;display:block}
+.chart{width:310px;height:260px;margin:0 auto;display:block}
+.mic{width:120px;height:120px;border-radius:50%;margin:0 auto;border:4px solid var(--plum);background:var(--bad);display:grid;place-items:center;font-size:52px;color:#fff;box-shadow:0 5px 0 var(--plum)}
+.readcard{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;font:500 19px/1.5 Andika,sans-serif}
+.textbox{background:#fff;border:3px solid var(--plum);border-radius:16px;padding:12px 14px;min-height:120px;font:500 20px/1.45 Andika,sans-serif}
+.textbox .cur{display:inline-block;width:2px;height:22px;background:var(--accent);vertical-align:middle;animation:pulse 1s infinite}
+.kb{display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.kb div{display:flex;gap:4px;justify-content:center}
+.kb span{flex:1;max-width:32px;height:44px;border-radius:8px;background:#fff;border:2px solid var(--plum);display:grid;place-items:center;font:700 18px Andika,sans-serif;box-shadow:0 2px 0 var(--plum)}
+.kb span.w{max-width:64px;font-size:14px}.kb span.uml{background:var(--accent-soft)}
+.chat{display:flex;flex-direction:column;gap:10px}
+.say{display:flex;gap:10px;align-items:flex-end}
+.say img{width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--line);object-fit:contain}
+.say p{margin:0;padding:10px 14px;border-radius:18px 18px 18px 4px;background:#fff;border:2px solid var(--line);font:700 19px Andika,sans-serif}
+.say.me{flex-direction:row-reverse}.say.me p{border-radius:18px 18px 4px 18px;background:var(--accent-soft);border-color:var(--accent)}
+.faces{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:auto}
+.faces .opt{font-size:54px;min-height:110px;display:flex;flex-direction:column;gap:4px}
+.faces .opt small{font-size:15px}
+.picbig{width:160px;height:160px;object-fit:contain;margin:0 auto;display:block}
+.sel3{background:var(--accent-soft)!important;border-color:var(--accent)!important}
+.tag{display:inline-block;font:700 12px system-ui;background:#fff3cc;border:1px solid #f6b400;border-radius:999px;padding:2px 8px;margin:0 18px;align-self:flex-start;color:#6b4e00}
+</style>
+</head>
+<body>
+
+<!-- clock_hands_drag -->
+<div class="phone" id="clock_hands_drag"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Stell die Uhr auf halb vier.</div><button class="spk"></button></div></div>
+<svg class="m-clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" fill="#fff" stroke="#2b0f45" stroke-width="6"/>
+<g font-family="Andika" font-weight="700" font-size="18" text-anchor="middle" fill="#2b0f45"><text x="100" y="40">12</text><text x="132" y="49">1</text><text x="154" y="72">2</text><text x="163" y="106">3</text><text x="154" y="139">4</text><text x="132" y="162">5</text><text x="100" y="171">6</text><text x="68" y="162">7</text><text x="46" y="139">8</text><text x="37" y="106">9</text><text x="46" y="72">10</text><text x="68" y="49">11</text></g>
+<line x1="100" y1="100" x2="131" y2="118" stroke="#2b0f45" stroke-width="9" stroke-linecap="round"/><line x1="100" y1="100" x2="100" y2="160" stroke="#8e3bd1" stroke-width="6" stroke-linecap="round"/>
+<circle cx="131" cy="118" r="11" fill="#2b0f45" opacity=".25"/><circle cx="100" cy="160" r="12" fill="#8e3bd1" opacity=".3"/><circle cx="100" cy="100" r="6" fill="#2b0f45"/></svg>
+<div class="note">Zieh die Zeiger an den Punkten. Der große Zeiger rastet in Minutenschritten ein.</div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- drag_and_drop -->
+<div class="phone" id="drag_and_drop"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Leg 3,70 € in die Geldbörse.</div><button class="spk"></button></div></div>
+<div class="purse"><div class="coin two">2 €</div><div class="coin">1 €</div><div class="coin ct">50 ct</div></div>
+<div class="note">Zieh Münzen und Scheine in die Geldbörse. Zieh sie wieder heraus, um sie wegzunehmen.</div>
+<div class="bank"><div class="note5">5 €</div><div class="coin two">2 €</div><div class="coin">1 €</div><div class="coin ct">50 ct</div><div class="coin ct">20 ct</div><div class="coin ct">10 ct</div></div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- multi_select -->
+<div class="phone" id="multi_select"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Tippe alle Zahlen an, die durch 4 teilbar sind.</div><button class="spk"></button></div></div>
+<div class="note">Es können mehrere richtig sein.</div>
+<div class="grid3" style="margin-top:auto"><button class="opt">14</button><button class="opt sel3">16</button><button class="opt">18</button><button class="opt">22</button><button class="opt sel3">24</button><button class="opt">26</button><button class="opt">30</button><button class="opt">32</button></div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- pick_side -->
+<div class="phone" id="pick_side"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Welche Zahl ist größer?</div><button class="spk"></button></div></div>
+<div class="sides" style="margin-top:auto"><button class="opt">478</button><button class="opt">487</button></div>
+<button class="opt" style="min-height:56px;font-size:22px">gleich groß</button></div>
+<div class="foot"></div></div></div>
+
+<!-- tap_in_picture -->
+<div class="phone" id="tap_in_picture"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Heute ist der 14. Oktober. Tippe auf übermorgen.</div><button class="spk"></button></div></div>
+<div class="calhead">Oktober</div>
+<div class="cal"><b>Mo</b><b>Di</b><b>Mi</b><b>Do</b><b>Fr</b><b>Sa</b><b>So</b>
+<i></i><i></i><span>1</span><span>2</span><span>3</span><span class="we">4</span><span class="we">5</span>
+<span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span class="we">11</span><span class="we">12</span>
+<span>13</span><span style="outline:2px dashed var(--muted)">14</span><span>15</span><span class="tap">16</span><span>17</span><span class="we">18</span><span class="we">19</span>
+<span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span class="we">25</span><span class="we">26</span>
+<span>27</span><span>28</span><span>29</span><span>30</span><span>31</span></div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- shade_cells -->
+<div class="phone" id="shade_cells"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Male ein Viertel an.</div><button class="spk"></button></div></div>
+<div class="cells" style="margin-top:30px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+<div class="note">Tippe auf ein Feld, um es anzumalen. Nochmal tippen macht es wieder weiß.</div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- draw_on_grid -->
+<div class="phone" id="draw_on_grid"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Zeichne das Spiegelbild.</div><button class="spk"></button></div></div>
+<svg class="paper" viewBox="0 0 300 300"><defs><pattern id="sq" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#b9cbe6" stroke-width="1"/></pattern></defs>
+<rect width="300" height="300" fill="#fff"/><rect width="300" height="300" fill="url(#sq)"/>
+<line x1="150" y1="0" x2="150" y2="300" stroke="#d4483f" stroke-width="3" stroke-dasharray="8 6"/>
+<polyline points="150,50 75,100 75,200 125,250 150,250" fill="none" stroke="#2b0f45" stroke-width="5" stroke-linejoin="round"/>
+<polyline points="150,50 225,100 225,175" fill="none" stroke="#8e3bd1" stroke-width="5" stroke-linecap="round"/>
+<g fill="#2b0f45" opacity=".35"><circle cx="225" cy="175" r="7"/></g></svg>
+<div class="note">Zieh von Gitterpunkt zu Gitterpunkt. Linien rasten an den Punkten ein.</div></div>
+<div class="foot"><button class="btn">Prüfen</button><button class="btn light">Löschen</button></div></div></div>
+
+<!-- build_chart -->
+<div class="phone" id="build_chart"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Hund 6, Katze 4, Hase 3. Zeichne das Säulendiagramm fertig.</div><button class="spk"></button></div></div>
+<svg class="chart" viewBox="0 0 310 260"><g stroke="#e3dbea">
+<line x1="40" y1="20" x2="300" y2="20"/><line x1="40" y1="50" x2="300" y2="50"/><line x1="40" y1="80" x2="300" y2="80"/><line x1="40" y1="110" x2="300" y2="110"/><line x1="40" y1="140" x2="300" y2="140"/><line x1="40" y1="170" x2="300" y2="170"/><line x1="40" y1="200" x2="300" y2="200"/></g>
+<g font-family="Andika" font-size="14" fill="#6d5f7b" text-anchor="end"><text x="32" y="235">0</text><text x="32" y="175">2</text><text x="32" y="115">4</text><text x="32" y="55">6</text></g>
+<line x1="40" y1="230" x2="300" y2="230" stroke="#2b0f45" stroke-width="3"/><line x1="40" y1="10" x2="40" y2="230" stroke="#2b0f45" stroke-width="3"/>
+<rect x="60" y="50" width="56" height="180" fill="#1E88E5" rx="4"/><rect x="146" y="110" width="56" height="120" fill="#F57C00" rx="4"/>
+<rect x="232" y="200" width="56" height="30" fill="#2e9e48" rx="4" opacity=".55"/><rect x="236" y="190" width="48" height="12" rx="6" fill="#2b0f45"/>
+<g font-family="Andika" font-weight="700" font-size="15" fill="#2b0f45" text-anchor="middle"><text x="88" y="250">Hund</text><text x="174" y="250">Katze</text><text x="260" y="250">Hase</text></g></svg>
+<div class="note">Zieh die Säule am Griff nach oben oder unten.</div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- record_audio -->
+<div class="phone" id="record_audio"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Lies die Sätze laut vor.</div><button class="spk"></button></div></div>
+<div class="readcard">Ole hat einen Hund. Der Hund heißt Bello. Jeden Morgen gehen sie zusammen in den Park.</div>
+<div class="mic" style="margin-top:auto">●</div><div class="note">0:07 · Tippe nochmal, wenn du fertig bist.</div></div>
+<div class="foot"><button class="btn light">Nochmal von vorn</button></div></div></div>
+
+<!-- write_text -->
+<div class="phone" id="write_text"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Schreib zwei Sätze über dein Lieblingstier.</div><button class="spk"></button></div></div>
+<div class="textbox">Mein Lieblingstier ist der Igel. Er hat Stacheln und fr<span class="cur"></span></div>
+<div class="note">2 Sätze · Wörter, die du brauchst: Stacheln, frisst, Garten</div>
+<div class="kb"><div><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>z</span><span>u</span><span>i</span><span>o</span><span>p</span><span class="uml">ü</span></div>
+<div><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span class="uml">ö</span><span class="uml">ä</span></div>
+<div><span class="w">⇧</span><span>y</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span class="uml">ß</span><span class="w">⌫</span></div>
+<div><span class="w">,</span><span style="max-width:180px">Leertaste</span><span class="w">.</span></div></div></div>
+<div class="foot"><button class="btn">Fertig</button></div></div></div>
+
+<!-- text_input with letters -->
+<div class="phone" id="text_input-letters"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Schreib das Wort.</div><button class="spk"></button></div></div>
+<img class="picbig" src="../twist/assets/objects/hedgehog.png" alt="">
+<div class="entry" style="width:220px;font-size:40px"><span>Ige<span style="display:inline-block;width:3px;height:40px;background:var(--accent);vertical-align:middle"></span></span></div>
+<div class="kb"><div><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>z</span><span>u</span><span>i</span><span>o</span><span>p</span><span class="uml">ü</span></div>
+<div><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span class="uml">ö</span><span class="uml">ä</span></div>
+<div><span class="w">⇧</span><span>y</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span class="uml">ß</span><span class="w">⌫</span></div></div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
+
+<!-- show: passage -->
+<div class="phone" id="passage"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="readcard" style="max-height:330px;overflow:hidden">
+<b>Der kleine Igel</b><br>Im Herbst sucht der kleine Igel ein warmes Versteck. Unter der Hecke liegt ein großer Haufen Laub. Dort baut er sich ein Nest. Vorher frisst er sich noch einen dicken Bauch an: Käfer, Würmer und Schnecken. Dann rollt er sich zusammen und schläft bis zum Frühling.</div>
+<div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wo baut der Igel sein Nest?</div><button class="spk"></button></div></div>
+<div class="opts long"><button class="opt">im Laub unter der Hecke</button><button class="opt">in einem Baum</button><button class="opt">im Gartenhaus</button></div></div>
+<div class="foot"></div></div></div>
+
+<!-- dialogue -->
+<div class="phone" id="dialogue"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Du bist im Café. Was antwortest du?</div><button class="spk"></button></div></div>
+<div class="chat"><div class="say"><img src="../twist/assets/objects/cook.png" alt=""><p>🔊 Hello! What would you like?</p></div>
+<div class="say me"><img src="../twist/assets/objects/child.png" alt=""><p>Can I have some juice, please?</p></div>
+<div class="say"><img src="../twist/assets/objects/cook.png" alt=""><p>🔊 Here you are.</p></div></div>
+<div class="opts long"><button class="opt">Thank you!</button><button class="opt">I'm nine.</button></div></div>
+<div class="foot"></div></div></div>
+
+<!-- self_rating -->
+<div class="phone" id="self_rating"><div class="screen"><div class="status"></div>
+<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>4</b></span><span class="st">Zum Schluss</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:90%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wie gut kannst du jetzt die Viererreihe?</div><button class="spk"></button></div></div>
+<div class="faces"><button class="opt">😟<small>Noch nicht</small></button><button class="opt">🙂<small>Ein bisschen</small></button><button class="opt">😄<small>Richtig gut</small></button></div></div>
+<div class="foot"></div></div></div>
+
+</body>
+</html>

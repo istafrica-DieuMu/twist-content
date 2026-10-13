@@ -172,7 +172,7 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
   <h3>Run the lesson player</h3>
   <ol>
     <li><b>Get the repo.</b> <code>git clone git@github.com:istafrica-DieuMu/twist-content.git</code> and <code>cd twist-content</code>.</li>
-    <li><b>Open it.</b> Open <code>player/index.html</code> in Chrome or Safari, straight from disk; no server is needed. It loads the pictures from <code>twist/assets/</code> next to it. Pick a lesson set and a lesson from the two menus above the phone, then tap through it as a child would.</li>
+    <li><b>Open it.</b> Open <code>player/index.html</code> in Chrome or Safari, straight from disk; no server is needed. It loads the pictures from <code>twist/assets/</code> next to it. In the panel next to the phone, search or filter by curriculum, subject, year and task type, then tap a lesson number; tap through it as a child would. The arrow keys step through a lesson, and with a task type chosen, "Next" jumps to its next task. The screen follows the app: header with lesson menu and step badge, the mascot's speech bubble, select then Prüfen, and the result sheet.</li>
     <li><b>Add the voice (optional).</b> The narration clips are not in git, so a fresh clone plays silently. To make them you need Python 3.9 or later and an OpenRouter key:
       <pre><code>python3 -m venv twist/.venv
 twist/.venv/bin/pip install -r twist/assets/tools/requirements.txt
@@ -379,6 +379,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
 <section id="player">
   <h2>Task player</h2>
   <p>Field names follow the Twist question schemas in schoolido-learning (<code>schemas/question-types</code>), with asset bank ids where those schemas have image and audio URLs. Counts are tasks in the drafted lessons: 10,417 tasks in 231 lesson sets (2026-10-13).</p>
+  <p>Each type with its screen, behaviour, marking and fields, and mocks of the types still to build, is on <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b">Twist task types</a> (<code>types/index.html</code>).</p>
 
   <div class="tbl"><table>
     <tr><th>Type</th><th class="n">Tasks</th><th class="n">de-DE</th><th class="n">en-GB</th><th>Backend enum</th><th>App today</th><th>Needed</th></tr>
@@ -392,7 +393,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td class="k">matching</td><td class="n">175</td><td class="n">143</td><td class="n">32</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Sides can be picture, drawn component or text, each with its own spoken line</td></tr>
     <tr><td class="k">point_on_line</td><td class="n">170</td><td class="n">107</td><td class="n">63</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Labels and jump arcs; marker never shows the number</td></tr>
     <tr><td class="k">ordering</td><td class="n">166</td><td class="n">109</td><td class="n">57</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Picture cards (dot patterns) as well as numbers; extra cards that do not belong</td></tr>
-    <tr><td class="k">speak</td><td class="n">144</td><td class="n">128</td><td class="n">16</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it. Keep it unmarked: an "I said it" button in place of the 1.8 s auto-correct</td></tr>
+    <tr><td class="k">speak</td><td class="n">144</td><td class="n">128</td><td class="n">16</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it, unmarked, with the fallback: record up to 4 s, play the recording and then the model, the child taps "Klingt gleich" or "Nochmal". No microphone: hear the model, then "Klingt gleich". See <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b#speak">task types</a></td></tr>
     <tr><td class="k">sorting</td><td class="n">78</td><td class="n">57</td><td class="n">21</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Map it; 2 to 5 bins, a bin can show a picture or swatch and speak</td></tr>
     <tr><td class="k">tap_to_count</td><td class="n">53</td><td class="n">30</td><td class="n">23</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Any bank picture, row or scattered on a loose grid; today 14 bundled items</td></tr>
     <tr><td class="k">tracing</td><td class="n">38</td><td class="n">24</td><td class="n">14</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Writing lines; <code>mode: copy</code> (model on the left, no guide); numeral 10; never hints</td></tr>
@@ -512,7 +513,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <h3>Decisions needed before building</h3>
   <ul class="plain">
     <li><b>Marking writing.</b> 21 skills ask for free writing. Options: self-check against a checklist, a grown-up confirms in the parent dashboard, or a language model gives feedback. Until this is decided, write_text stays unmarked and does not count towards mastery.</li>
-    <li><b>Marking speech.</b> 20 skills ask the child to speak at length. The current speak type is unmarked ("I said it"). Decide whether recordings are kept, shown to parents, or scored by speech recognition, and what consent that needs.</li>
+    <li><b>Marking speech.</b> 20 skills ask the child to speak at length. Short speak tasks now use an unmarked fallback (record, compare with the model, self-check); the recording stays on the device. Decide whether recordings are kept, shown to parents, or scored by speech recognition, and what consent that needs.</li>
     <li><b>Video and media making.</b> Two skills need video, and two ask the child to make a small media product. Decide whether these stay in the app or become offline tasks the parent ticks off.</li>
     <li><b>Physical skills.</b> Pencil grip, cutting and building with real cubes (about 4 skills) cannot be checked on a screen; they can be offline tasks with a parent tick.</li>
   </ul>
@@ -576,7 +577,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
 <section id="app">
   <h2>Work: mobile app <span class="chip c-app">ist-schoolido</span></h2>
   <ol class="work">
-    <li><b>Map the dropped types</b><p>Add <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> to <code>mapByType</code> in <code>components/quiz/utils/questionMapper.ts</code>. Change <code>Speak.tsx</code> from auto-correct after 1.8 s to an "I said it" button, unmarked.</p></li>
+    <li><b>Map the dropped types</b><p>Add <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> to <code>mapByType</code> in <code>components/quiz/utils/questionMapper.ts</code>. Change <code>Speak.tsx</code> from auto-correct after 1.8 s to the unmarked fallback: record, play back next to the model, self-check.</p></li>
     <li><b>Shuffle choice options</b><p>Shuffle the options of multiple_choice, image_multiple_choice and audio_choice each time the task is shown, unless <code>keep_order</code> is true. <code>components/quiz/utils/shuffle.ts</code> already has <code>seededShuffle</code>; seed it per lesson attempt, so the order changes when the lesson is played again and stays put while the child retries a task.</p></li>
     <li><b>Build the missing types</b><p><code>highlight_in_text</code> and <code>drag_and_drop_count</code>, registered in <code>components/quiz/index.ts</code>, <code>useQuiz.ts</code> answer checking and <code>canSubmit.ts</code>.</p></li>
     <li><b>Drawn components</b><p>One renderer for the 13 components above, usable as the task's <code>show</code>, as an option and as a matching or sorting side. Start with dots, ten-frame, colour-swatch and number-house, which cover most uses.</p></li>

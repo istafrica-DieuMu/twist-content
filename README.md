@@ -33,5 +33,6 @@ folder.
 | [player/](player/) | The de-DE model lessons rendered in a phone frame with pictures, drawn components and narration, to see how lessons render. Open `player/index.html`; `node player/build.mjs` regenerates it from the twist/ records. Audio needs `twist/assets/tools/narration.py` run first. |
 | [review/](review/) | Twist Germany readiness review: verdict, area scores, launch conditions and beta gate. Open `review/index.html`; `node review/build.mjs` regenerates it from `review/de-launch-review.json`. |
 | [handoff/](handoff/) | Handoff of the new Twist curriculum model to the backend API, mobile app and parent dashboard teams: the lesson chain, mastery, curricula and standards, task types for the player, dashboard options, and work per team. Open `handoff/index.html`. Written by hand on 2026-10-13 from twist/ and a read of the three repos; update it by hand when twist/ changes what those teams build. |
+| [types/](types/) | Every Twist task type with its screen, behaviour, marking and record fields: shots from the player for the 15 built types, mocks for the 12 still to build and for new options. Open `types/index.html`; `node types/shots.cjs` retakes the shots (needs Playwright). Written by hand; keep it in step with twist/docs/task-types.md. |
 
 Rules for agents working here: [AGENTS.md](AGENTS.md).

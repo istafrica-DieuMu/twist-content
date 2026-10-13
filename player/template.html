@@ -6,7 +6,7 @@
 <title>Twist Lesson Player</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Red+Hat+Display:wght@700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --page:#efe9f5; --panel:#ffffff; --ink:#2b0f45; --muted:#6d5f7b; --line:#e3dbea;
@@ -114,6 +114,11 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .trace svg,.trace canvas{position:absolute;inset:0;width:300px;height:200px}
 .trace canvas{touch-action:none;cursor:crosshair}
 .note{font-size:13px;color:#6d5f7b;text-align:center}
+.speakrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.spkchip{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:2px solid #e3d6f0;background:#fff;font:700 16px Andika,sans-serif;color:#2b0f45;cursor:pointer}
+.spkchip svg{width:22px;height:22px}
+.btn.rec{background:#d4483f;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.7}}
 .blank{display:inline-block;min-width:1.4em;padding:0 .2em;margin:0 .1em;border-radius:8px;background:var(--accent-soft);color:var(--accent);border-bottom:3px solid var(--accent);text-align:center;line-height:1.1}
 .sound{align-self:center;border:3px solid var(--plum);border-radius:999px;background:#fff;padding:6px 18px;font:700 26px Andika,sans-serif;color:var(--plum);cursor:pointer;box-shadow:0 3px 0 var(--plum);display:flex;gap:8px;align-items:center}
 .sound svg{width:20px;height:20px}
@@ -140,6 +145,103 @@ svg text{font-family:Andika,sans-serif}
 .pairview img{width:130px;height:130px;object-fit:contain}
 .list{display:flex;flex-direction:column;gap:10px;width:100%}
 .list .btn{font-size:19px;text-align:left;display:flex;justify-content:space-between}
+
+/* ---------- the app's look (ist-schoolido: QuizHeader, OptionCard, Button, FeedbackBanner) ---------- */
+.screen{background:#fff;color:#303030;font-family:"Red Hat Text",system-ui,sans-serif}
+.status{height:48px}
+.hdr{display:flex;align-items:center;gap:8px;padding:0 16px 12px;min-height:50px;border-bottom:1px solid #dfdfdf;flex:none}
+.ib{width:40px;height:40px;border:0;background:none;cursor:pointer;display:grid;place-items:center;border-radius:10px;flex:none}
+.ib:hover{background:#f4f2fb}
+.stepb{flex:1;min-width:0;display:flex;align-items:center;gap:8px;justify-content:center;font:500 16px/24px "Red Hat Text",sans-serif;color:#303030}
+.stepb .st{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stepb .sub{color:#8a8a8a}
+.badge-n{width:30px;height:30px;border-radius:50%;background:#6849dd40;display:grid;place-items:center;position:relative;flex:none}
+.badge-n b{width:22px;height:22px;border-radius:50%;background:#6849dd;color:#fff;font:700 12px/22px "Red Hat Display",sans-serif;text-align:center}
+.badge-n::before{content:"";position:absolute;top:6px;left:7px;width:4px;height:4px;border-radius:50%;background:#fff;z-index:1}
+.pbar{height:8px;border-radius:8px;background:#e5e5e5;margin:8px 20px 0;overflow:hidden;flex:none}
+.pbar i{display:block;height:100%;background:#6849dd;border-radius:8px;transition:width .35s}
+.body{padding:16px 20px 8px;gap:16px}
+.prompt{align-items:center;gap:8px}
+.prompt .mascot{width:86px;height:86px;flex:none;object-fit:contain}
+.bubbleq{flex:1;min-width:0;position:relative;background:#FAF9FF;border-radius:16px;padding:12px 12px 12px 16px;display:flex;gap:8px;align-items:center;box-shadow:0 4px 13px rgba(56,43,103,.13)}
+.bubbleq::before{content:"";position:absolute;left:-8px;top:50%;margin-top:-8px;border:8px solid transparent;border-left:0;border-right-color:#FAF9FF}
+.bubbleq .t{font:700 19px/1.3 "Red Hat Display",sans-serif;color:#303030}
+.bubbleq .t.short{font-size:28px}
+.bubbleq.only{flex:none}
+.bubbleq .spk{width:40px;height:40px;border:2px solid #efebff;background:#fff}
+.bubbleq .spk svg{width:20px;height:20px}
+.spk{border-color:#6849dd}.spk svg path{stroke:#6849dd}.spk svg path:first-child{fill:#6849dd}
+.spk.big{border-width:3px}
+.visual{flex:1 1 auto;min-height:0}
+.visual img{width:min(200px,100%);height:auto;max-height:200px}
+.opt{border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px;background:#fff;box-shadow:none;font:700 40px "Red Hat Display",sans-serif;color:#303030;min-height:60px}
+.opt:active{transform:translateY(2px);box-shadow:none}
+.opt.sel{background:#efebff;border-color:#947dec;color:#947dec}
+.opt.good{background:#e7ffe0;border-color:#5cba41;color:#46972e;box-shadow:none}
+.opt.bad{background:#fbe3e1;border-color:#d4483f;color:#b3261e;box-shadow:none}
+.opt .os{border:2px solid #dfdfdf;top:-9px;right:-9px;width:26px;height:26px}
+.opt .os svg path{stroke:#6849dd}.opt .os svg path:first-child{fill:#6849dd}
+.opts{grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:7px;margin-top:auto}
+.opts.sq .opt{aspect-ratio:1;padding:6px}
+.opts.big{display:flex;flex-wrap:wrap;justify-content:center;margin-block:auto}
+.opts.big .opt{width:calc((100% - 7px) / 2);max-width:200px}
+.opts.sq .opt img{width:100%;height:100%;max-width:none;object-fit:contain}
+.opts.sq .opt > svg{width:100%;height:100%}
+.opts.tx .opt{aspect-ratio:1.3}
+.opts.mid .opt{font-size:24px;aspect-ratio:auto;min-height:76px}
+.opts.long .opt{font-size:18px;min-height:64px;aspect-ratio:auto}
+.tf .opt{font-size:28px;min-height:110px}
+.chips .opt{min-width:68px;min-height:64px}
+.pad{gap:7px}.pad .opt{min-height:54px;font-size:26px;border-bottom-width:4px}
+.entry{font-family:"Red Hat Display",sans-serif;border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px}
+.card{border:2px solid #dfdfdf;border-bottom-width:5px;box-shadow:none!important}
+.card.sel{border-color:#947dec;background:#efebff}
+.foot{padding:12px 20px 28px;gap:10px}
+.btn{height:52px;padding:8px;border:0;border-radius:12px;background:#6849dd;color:#fff;font:800 14px "Red Hat Display",sans-serif;text-transform:uppercase;letter-spacing:1.68px;box-shadow:none}
+.btn:disabled{background:#d3d3d3;opacity:1}
+.btn.light{background:#fff;color:#6849dd;border:2px solid #dfdfdf}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:6;border-radius:32px 32px 0 0;padding:16px 20px 28px;box-shadow:0 -4px 10px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:10px;animation:sheetup .22s ease-out;max-height:70%;overflow:auto}
+@keyframes sheetup{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+.sheet.ok{background:#c1ffaf}.sheet.bad{background:#f4ebff}
+.sheet .msg{display:flex;gap:10px;align-items:center;font:800 18px/28px "Red Hat Display",sans-serif}
+.sheet.ok .msg{color:#46972e}.sheet.bad .msg{color:#524682}
+.sheet .line{display:flex;gap:10px;align-items:center;font:500 16px/1.4 "Red Hat Text",sans-serif;color:#524682}
+.sheet .line .spk{width:34px;height:34px;border-width:2px;background:#fff;flex:none}.sheet .line .spk svg{width:16px;height:16px}
+.sheet .line.hint{background:#fff;border-radius:14px;padding:8px 10px}
+.sheet.ok .btn{background:#69be4f}
+.sheet.ok .btn.go{background:linear-gradient(to right,#46972e var(--p,0%),#69be4f var(--p,0%))}
+.menu-sheet{background:#fff;border-top:1px solid #dfdfdf}
+.menu-sheet .mrow{display:flex;align-items:center;gap:12px;border:2px solid #dfdfdf;border-radius:14px;background:#fff;padding:10px 12px;font:600 16px "Red Hat Text",sans-serif;color:#303030;cursor:pointer;text-align:left}
+.menu-sheet .mrow span:nth-child(2){flex:1}.menu-sheet .mrow small{color:#8a8a8a}
+.center h2{font:800 28px/1.2 "Red Hat Display",sans-serif;color:#303030}
+.center p{color:#525252}
+.stars{color:#f6b400}
+
+/* lesson picker */
+.pick{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.pick input[type=search]{width:100%;font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.pick input[type=search]:focus-visible,.fchip:focus-visible,.lbtn:focus-visible{outline:2px solid #6849dd;outline-offset:1px}
+.frow{display:flex;gap:6px;flex-wrap:wrap}
+.fchip{font:600 12px system-ui,sans-serif;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.fchip.on{background:#6849dd;border-color:#6849dd;color:#fff}
+.fsel{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.fsel select{width:100%;font:13px system-ui,sans-serif;padding:7px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.rcount{font-size:12px;color:var(--muted)}
+.results{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:4px}
+.rgrp{position:sticky;top:-4px;background:var(--panel);font:700 11px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:8px 8px 4px}
+.rset{padding:6px 8px;border-radius:10px;display:flex;flex-direction:column;gap:4px}
+.rset.on{background:var(--accent-soft)}
+.rset .rt{font-size:14px;font-weight:600;cursor:pointer}
+.rset .rl{display:flex;gap:4px;flex-wrap:wrap}
+.lbtn{min-width:28px;height:26px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 12px system-ui,sans-serif;cursor:pointer}
+.lbtn.on{background:#6849dd;border-color:#6849dd;color:#fff}
+.empty{font-size:13px;color:var(--muted);padding:8px;margin:0}
+.now{margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--page);display:flex;flex-direction:column;gap:4px}
+.now .nt{font-size:12px;color:var(--muted)}.now .nl{font-weight:700}
+.now .nb{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.nbtn{font:600 12px system-ui,sans-serif;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.nbtn:disabled{opacity:.4;cursor:default}
+.toggles{flex-direction:column;gap:4px}.toggles label{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--ink);text-transform:none;letter-spacing:0;margin:0}
 </style>
 </head>
 <body>
@@ -147,9 +249,16 @@ svg text{font-family:Andika,sans-serif}
   <aside class="side">
     <h1>Twist lesson player</h1>
     <p>The Twist lessons (de-DE and en-GB) rendered from their records, with pictures, drawn components and narration. Built <span id="built"></span>; rebuild with <code>node player/build.mjs</code>.</p>
-    <label for="set">Lesson set</label><select id="set"></select>
-    <label for="les">Lesson</label><select id="les"></select>
-    <div class="toggles"><label style="all:unset;display:flex;gap:6px;align-items:center"><input type="checkbox" id="auto" checked> Play audio automatically</label></div>
+    <div class="pick">
+      <input id="q" type="search" placeholder="Search: Einmaleins, phonics, clothes …" autocomplete="off" aria-label="Search lessons">
+      <div class="frow" id="f-cur" role="group" aria-label="Curriculum"></div>
+      <div class="frow" id="f-sub" role="group" aria-label="Subject"></div>
+      <div class="fsel"><select id="f-year" aria-label="Year"></select><select id="f-type" aria-label="Task type"></select></div>
+      <div class="rcount" id="rcount"></div>
+      <div class="results" id="results"></div>
+    </div>
+    <div class="now" id="now"></div>
+    <div class="toggles"><label><input type="checkbox" id="auto" checked> Play audio automatically</label><label><input type="checkbox" id="autonext" checked> Next after a right answer (3 s)</label></div>
     <label>Steps</label><ul class="steps" id="steps"></ul>
     <label>Record of this step</label><pre class="rec" id="rec"></pre>
   </aside>
@@ -168,12 +277,12 @@ const TXT = {
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, secure: "Kann ich! (Secure)", practised: "Noch üben (Practised)", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
-    speakNote: "Im Prototyp hört die App nicht zu: Sag das Wort und tippe dann auf den Knopf.", seeAgain: "Nochmal sehen", tip: "Tipp: " },
+    speakNote: "Tippe auf das Mikrofon und sprich.", stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, secure: "I can do it! (Secure)", practised: "Keep practising (Practised)", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
-    speakNote: "In this prototype the app does not listen: say the word, then tap the button.", seeAgain: "See it again", tip: "Hint: " },
+    speakNote: "Tap the microphone and speak.", stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
@@ -197,6 +306,7 @@ function play(srcs, done) {
 }
 function stopAudio() { qToken++; player.pause(); queue = []; }
 const auto = () => document.getElementById("auto").checked;
+const autoNext = () => document.getElementById("autonext").checked;
 function spk(srcs, cls = "") {
   const b = document.createElement("button"); b.className = "spk " + cls; b.innerHTML = SPK; b.setAttribute("aria-label", "Anhören");
   b.onclick = (e) => { e.stopPropagation(); b.classList.add("playing"); play(srcs); };
@@ -485,19 +595,40 @@ const taskCount = () => steps.filter((s) => s.kind === "task" || s.kind === "lea
 const doneCount = () => steps.slice(0, at).filter((s) => s.kind === "task" || s.kind === "learn").length;
 
 function frameUI(step) {
+  // The app's header: lesson menu, the step badge and title, close; the progress bar under it.
   const scr = $("#screen");
-  scr.innerHTML = `<div class="status"></div><div class="top"><button class="x" aria-label="Schließen">✕</button><div class="bar"><i style="width:${(100 * doneCount()) / Math.max(1, taskCount())}%"></i></div></div>`;
+  const acts = lesson.activities.map((a) => a.activity), n = step.a ? acts.indexOf(step.a.activity) + 1 : 0;
+  const sub = step.a?.activity === "practise" ? ` · ${{ full: UI.stFull, some: UI.stSome, none: UI.stNone }[step.a.stages[step.si ?? 0]?.support] ?? ""}` : "";
+  const title = step.a ? esc(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : esc(lesson.title[lang()] ?? lesson.title.de);
+  scr.innerHTML = `<div class="status"></div><div class="hdr"><button class="ib menu" aria-label="Lesson menu">${ICON.list}</button>
+    <div class="stepb">${n ? `<span class="badge-n"><b>${n}</b></span>` : ""}<span class="st">${title}</span></div>
+    <button class="ib x" aria-label="Close">${ICON.close}</button></div>
+    <div class="pbar"><i style="width:${(100 * doneCount()) / Math.max(1, taskCount())}%"></i></div>`;
   $(".x", scr).onclick = () => go(0);
-  if (step.a) {
-    const c = document.createElement("div");
-    c.className = "chip" + (step.a.activity === "check" ? " check" : "");
-    c.innerHTML = esc(actName(step.a)) + (step.a.activity === "practise" ? `<span class="dots">${step.a.stages.map((_, i) => `<b class="${i <= (step.si ?? 0) ? "on" : ""}"></b>`).join("")}</span>` : "");
-    scr.appendChild(c);
-  }
+  $(".menu", scr).onclick = () => lessonMenu(scr);
   const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
   const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
   return { body, foot };
 }
+// The lesson menu sheet: every activity of the lesson, tap one to jump there.
+function lessonMenu(scr) {
+  const m = document.createElement("div"); m.className = "sheet menu-sheet";
+  m.innerHTML = `<div class="msg">${esc(lesson.title[lang()] ?? lesson.title.de)}</div>`;
+  lesson.activities.forEach((a, i) => {
+    const first = steps.findIndex((s) => s.a === a), b = document.createElement("button"); b.className = "mrow";
+    const tasks = steps.filter((s) => s.a === a && (s.kind === "task" || s.kind === "learn")).length;
+    b.innerHTML = `<span class="badge-n"><b>${i + 1}</b></span><span>${esc(actName(a))}</span><small>${tasks}</small>`;
+    b.onclick = () => go(first); m.appendChild(b);
+  });
+  const c = document.createElement("button"); c.className = "btn light"; c.textContent = UI.close; c.onclick = () => m.remove(); m.appendChild(c);
+  scr.appendChild(m);
+}
+const ICON = {
+  list: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg>',
+  close: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  check: '<svg viewBox="0 0 24 24" width="30" height="30"><circle cx="12" cy="12" r="11" fill="#46972e"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  cross: '<svg viewBox="0 0 24 24" width="30" height="30"><circle cx="12" cy="12" r="11" fill="#524682"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
+};
 function nextBtn(foot, label = UI.next, onClick) {
   const b = document.createElement("button"); b.className = "btn"; b.textContent = label;
   b.onclick = onClick || (() => go(at + 1)); foot.appendChild(b); return b;
@@ -575,12 +706,37 @@ function renderTask(step) {
     const txt = document.createElement("div"); txt.className = (t.text ?? "").includes("\n") || (t.text ?? "").length > 90 ? "t passage" : "t"; txt.innerHTML = set.no_reading ? "" : withGaps(t.text); pr.appendChild(txt);
     pr.appendChild(spk(promptAudio)); body.appendChild(pr);
   }
+  // The app's prompt: the mascot with a speech bubble that holds the question and its speaker.
+  const bq = document.createElement("div"); bq.className = "bubbleq"; while (pr.firstChild) bq.appendChild(pr.firstChild);
+  const qt = bq.querySelector(".t"); if (!qt?.textContent.trim()) bq.classList.add("only"); else if (qt.textContent.trim().length <= 14) qt.classList.add("short");
+  pr.innerHTML = `<img class="mascot" src="mascot.png" alt="">`; pr.appendChild(bq);
   const vis = document.createElement("div"); vis.className = "visual"; body.appendChild(vis);
   const msg = document.createElement("div"); msg.className = "msgs"; msg.style.display = "flex"; msg.style.flexDirection = "column"; msg.style.gap = "8px";
   if (auto()) play(promptAudio);
 
-  const finish = (kind) => { st.over = true; results[at] = kind; foot.innerHTML = ""; nextBtn(foot); };
-  const bubble = (cls, text, src) => { const b = document.createElement("div"); b.className = "bubble " + cls; const s = document.createElement("div"); s.textContent = text; s.style.flex = "1"; b.appendChild(s); if (src) b.prepend(spk(src)); msg.appendChild(b); return b; };
+  // Feedback slides up from the bottom, as in the app: green when right, lilac when not.
+  const scr = $("#screen"); let sheet = null;
+  const openSheet = (kind) => {
+    if (sheet?.dataset.kind === kind) return sheet;
+    sheet?.remove(); sheet = document.createElement("div"); sheet.className = "sheet " + kind; sheet.dataset.kind = kind;
+    const h = document.createElement("div"); h.className = "msg"; h.innerHTML = (kind === "ok" ? ICON.check : ICON.cross) + `<span>${esc(kind === "ok" ? UI.rightShort : UI.notQuite)}</span>`;
+    sheet.appendChild(h); scr.appendChild(sheet); foot.style.visibility = "hidden"; return sheet;
+  };
+  const closeSheet = () => { sheet?.remove(); sheet = null; foot.style.visibility = ""; };
+  const bubble = (cls, text, src) => {
+    const s = openSheet(cls === "ok" && !st.revealed ? "ok" : "bad");
+    if (cls === "ok" && !st.revealed) { s.querySelector(".msg span").textContent = text; return; }
+    const b = document.createElement("div"); b.className = "line " + cls; if (src) b.appendChild(spk(src));
+    const x = document.createElement("div"); x.textContent = text; b.appendChild(x); s.appendChild(b);
+  };
+  const finish = (kind) => {
+    st.over = true; results[at] = kind;
+    const good = ["first", "second", "helped"].includes(kind), s = openSheet(good ? "ok" : "bad");
+    if (!good && kind === "wrong") bubble("fb", UI.shownAnswer);
+    const b = document.createElement("button"); b.className = "btn" + (good ? " go" : ""); b.textContent = UI.next; b.onclick = () => go(at + 1); s.appendChild(b);
+    // Right answers move on by themselves after three seconds, as in the app.
+    if (good && autoNext()) { const t0 = performance.now(), me = steps[at]; const tick = (now) => { if (steps[at] !== me || !b.isConnected) return; const p = Math.min(1, (now - t0) / 3000); b.style.setProperty("--p", (p * 100).toFixed(1) + "%"); if (p < 1) requestAnimationFrame(tick); else go(at + 1); }; requestAnimationFrame(tick); }
+  };
   // Called by each type with right/wrong, the chosen key, and how to show the answer.
   function answer(ok, key, reveal) {
     if (st.over) return;
@@ -589,8 +745,8 @@ function renderTask(step) {
       if (p) { bubble("ok", p.text); play(p.src); }
       return finish(st.misses ? (st.helped ? "helped" : "second") : "first");
     }
-    st.misses++;
-    if (mode === "check") { reveal(false); return finish("wrong"); }
+    st.misses++; closeSheet();
+    if (mode === "check") { st.revealed = true; reveal(false); return finish("wrong"); }
     const fbText = t.feedback?.[String(key)], fbSrc = t._feedback?.[String(key)];
     const queue = [];
     if (fbText) { bubble("fb", fbText, fbSrc); queue.push(fbSrc); }
@@ -603,9 +759,10 @@ function renderTask(step) {
     } else if (mode === "none" && st.misses < 2) {
       if (!fbText) { const p = phrase("try_again"); if (p) { bubble("fb", p.text); queue.push(p.src); } }
     } else {
-      const p = phrase("show_answer"); if (p) { bubble("ok", p.text); queue.push(p.src); }
+      st.revealed = true; const p = phrase("show_answer"); if (p) { bubble("ok", p.text); queue.push(p.src); }
       reveal(true); play(queue); return finish("shown");
     }
+    if (sheet) { const b = document.createElement("button"); b.className = "btn"; b.textContent = UI.tryAgain; b.onclick = () => { closeSheet(); stopAudio(); }; sheet.appendChild(b); }
     play(queue);
   }
   (TYPES[t.type] || TYPES._unknown)({ t, step, body, foot, vis, answer, st });
@@ -633,35 +790,51 @@ function optEl(o, t, i) {
   return b;
 }
 const keyOf = (o) => typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "clock" ? `${o.hour}:${String(o.minute ?? 0).padStart(2, "0")}` : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
-function choice({ t, body, vis, answer, st }) {
+function choice({ t, body, foot, vis, answer, st }) {
   vis.innerHTML = show(t.show);
-  const grid = document.createElement("div"); grid.className = "opts";
-  if ((t.options ?? []).length === 2) grid.style.gridTemplateColumns = "1fr 1fr";
-  // Long text options get a smaller font, very long ones a single column.
-  const maxLen = Math.max(0, ...(t.options ?? []).filter((o) => typeof o === "string").map((o) => o.length));
-  if (maxLen > 14) grid.classList.add("long"); else if (maxLen > 5) grid.classList.add("mid");
-  const els = (t.options ?? []).map((o, i) => optEl(o, t, i));
+  const opts = t.options ?? [], n = opts.length, grid = document.createElement("div"); grid.className = "opts";
+  // Tiles as in the app: pictures are squares, two or three in a row (four make two rows);
+  // short text sits in one row, longer text in two columns, long text one per line.
+  const pics = opts.some((o) => typeof o !== "string");
+  const maxLen = Math.max(0, ...opts.filter((o) => typeof o === "string").map((o) => o.length));
+  let cols = n === 4 ? (pics || maxLen > 3 ? 2 : 4) : Math.min(n, 3);
+  if (!pics && maxLen > 14) { grid.classList.add("long"); cols = 1; } else if (!pics && maxLen > 6) { grid.classList.add("mid"); cols = Math.min(cols, 2); }
+  // With no picture above, picture tiles take the free space: two to a row, centred.
+  const bare = !t.show && t.type !== "audio_choice" && t.type !== "tap_to_count";
+  if (pics && bare && n >= 3) { cols = 2; grid.classList.add("big"); }
+  grid.style.setProperty("--cols", cols); if (pics) grid.classList.add("sq"); else if (cols > 1) grid.classList.add("tx");
+  const els = opts.map((o, i) => optEl(o, t, i));
   // Options are shown in a new random order each time, unless the task keeps its order.
   const order = els.map((_, i) => i);
   if (!t.keep_order) for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
   order.forEach((i) => grid.appendChild(els[i]));
-  const reveal = () => els.forEach((b, i) => { if (keyOf(t.options[i]) === String(t.answer)) b.classList.add("good"); else b.classList.add("dim"); });
+  const reveal = () => els.forEach((b, i) => { b.classList.remove("sel", "bad"); if (keyOf(opts[i]) === String(t.answer)) b.classList.add("good"); else b.classList.add("dim"); });
+  let pick = null;
   els.forEach((b, i) => b.onclick = () => {
-    if (st.over || b.classList.contains("bad")) return;
-    const ok = keyOf(t.options[i]) === String(t.answer);
-    b.classList.add(ok ? "good" : "bad");
-    answer(ok, keyOf(t.options[i]), reveal);
+    if (st.over) return;
+    els.forEach((x) => x.classList.remove("sel", "bad")); pick = i; b.classList.add("sel"); btn.disabled = false;
   });
+  const btn = nextBtn(foot, UI.answerBtn, () => {
+    if (pick == null || st.over) return;
+    const b = els[pick], ok = keyOf(opts[pick]) === String(t.answer);
+    b.classList.remove("sel"); b.classList.add(ok ? "good" : "bad");
+    answer(ok, keyOf(opts[pick]), reveal);
+    if (!ok && !st.over) { pick = null; btn.disabled = true; }
+  });
+  btn.disabled = true;
   body.appendChild(grid);
 }
 const TYPES = {
   multiple_choice: choice, image_multiple_choice: choice, audio_choice: choice,
-  true_false({ t, body, vis, answer, st }) {
+  true_false({ t, body, foot, vis, answer, st }) {
     vis.innerHTML = show(t.show);
     const g = document.createElement("div"); g.className = "tf"; body.appendChild(g);
     const els = [[true, "✓ " + UI.yes], [false, "✗ " + UI.no]].map(([v, label]) => { const b = document.createElement("button"); b.className = "opt"; b.textContent = label; b.dataset.v = v; g.appendChild(b); return b; });
-    const reveal = () => els.forEach((b) => b.classList.add(String(t.answer) === b.dataset.v ? "good" : "dim"));
-    els.forEach((b) => b.onclick = () => { if (st.over || b.classList.contains("bad")) return; const ok = String(t.answer) === b.dataset.v; b.classList.add(ok ? "good" : "bad"); answer(ok, b.dataset.v, reveal); });
+    const reveal = () => els.forEach((b) => { b.classList.remove("sel", "bad"); b.classList.add(String(t.answer) === b.dataset.v ? "good" : "dim"); });
+    let pick = null;
+    els.forEach((b) => b.onclick = () => { if (st.over) return; els.forEach((x) => x.classList.remove("sel", "bad")); pick = b; b.classList.add("sel"); btn.disabled = false; });
+    const btn = nextBtn(foot, UI.answerBtn, () => { if (!pick || st.over) return; const ok = String(t.answer) === pick.dataset.v; pick.classList.remove("sel"); pick.classList.add(ok ? "good" : "bad"); answer(ok, pick.dataset.v, reveal); if (!ok && !st.over) { pick = null; btn.disabled = true; } });
+    btn.disabled = true;
   },
   fill_in_blank({ t, body, foot, vis, answer, st }) {
     vis.innerHTML = show(t.show);
@@ -718,9 +891,40 @@ const TYPES = {
     const btn = nextBtn(foot, UI.done, () => answer(true, "", () => {})); btn.disabled = true;
   },
   speak({ t, body, foot, vis, answer }) {
+    // Fallback while speech is not marked: the child speaks, hears their own
+    // recording next to the model, and decides whether it sounded the same.
+    // Never scored; with no microphone the recording step is skipped.
     vis.innerHTML = show(t.show);
     const n = document.createElement("div"); n.className = "note"; n.textContent = UI.speakNote; body.appendChild(n);
-    const b = nextBtn(foot, "🎤 " + UI.said, () => { b.disabled = true; b.textContent = "…"; setTimeout(() => answer(true, "", () => {}), 900); });
+    const row = document.createElement("div"); row.className = "speakrow"; body.appendChild(row);
+    let rec = null, url = null;
+    const mine = new Audio();
+    const compare = () => {
+      foot.innerHTML = ""; row.innerHTML = "";
+      const chip = (label, onPlay) => { const c = document.createElement("button"); c.className = "spkchip"; c.innerHTML = SPK + `<span>${esc(label)}</span>`; c.onclick = onPlay; row.appendChild(c); return c; };
+      const playModel = () => play(t._model);
+      if (url) chip(UI.you, () => { stopAudio(); mine.src = url; mine.play(); });
+      chip(UI.model, playModel);
+      n.textContent = url ? UI.speakCompare : UI.speakListen;
+      if (url) { mine.src = url; mine.onended = () => { mine.onended = null; setTimeout(playModel, 300); }; mine.play().catch(playModel); } else playModel();
+      nextBtn(foot, "👍 " + UI.same, () => answer(true, "", () => {}));
+      nextBtn(foot, "🔁 " + UI.again, () => start()).classList.add("light");
+    };
+    const start = () => {
+      foot.innerHTML = ""; row.innerHTML = ""; n.textContent = UI.speakNote;
+      const b = nextBtn(foot, "🎤 " + UI.speakNow, async () => {
+        if (rec) { rec.stop(); return; }
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const parts = []; rec = new MediaRecorder(stream);
+          rec.ondataavailable = (e) => parts.push(e.data);
+          rec.onstop = () => { stream.getTracks().forEach((x) => x.stop()); if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(new Blob(parts, { type: rec.mimeType })); rec = null; compare(); };
+          rec.start(); b.classList.add("rec"); b.textContent = "● " + UI.listening;
+          setTimeout(() => rec?.state === "recording" && rec.stop(), 4000);
+        } catch (e) { url = null; compare(); }
+      });
+    };
+    start();
   },
   matching({ t, body, foot, vis, answer, st }) {
     // Tap a left item (it says its word), then the right item it belongs to.
@@ -728,7 +932,7 @@ const TYPES = {
     const link = Array(n).fill(null); let sel = null; // link[left] = right index
     const g = document.createElement("div"); g.className = "pairs";
     // Sides render at option size, so scattered dots and groups fit their tile.
-    const side = (o) => o.drawn === "dots" ? drawn(o, { small: o.layout !== "dice" }) : o.count != null ? pic(o, { small: true }) : o.text != null ? `<span style="font:700 30px Andika,sans-serif;white-space:nowrap">${esc(o.text)}</span>` : show(o);
+    const side = (o) => o.drawn === "dots" ? drawn(o, { small: o.layout !== "dice" }) : o.count != null ? pic(o, { small: true }) : o.text != null ? `<span style="font:700 ${String(o.text).length > 9 ? 20 : String(o.text).length > 5 ? 24 : 30}px Andika,sans-serif;text-align:center;overflow-wrap:anywhere">${esc(o.text)}</span>` : show(o);
     const L = t.pairs.map((p, i) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = side(p.left); return b; });
     const R = order.map((pi) => { const b = document.createElement("button"); b.className = "opt"; b.innerHTML = side(t.pairs[pi].right); b.dataset.pi = pi; return b; });
     for (let i = 0; i < n; i++) { g.appendChild(L[i]); g.appendChild(R[i]); }
@@ -770,12 +974,12 @@ const TYPES = {
     });
     draw();
   },
-  tap_to_count({ t, body, vis, answer, st }) {
+  tap_to_count({ t, body, foot, vis, answer, st }) {
     // Tap each picture once (it gets its number), then choose how many.
     vis.innerHTML = pic(t.show); vis.style.width = "100%";
     let n = 0;
     vis.querySelectorAll(".it").forEach((it) => it.onclick = () => { if (st.over || it.classList.contains("tapped")) return; n++; it.dataset.n = n; it.classList.add("tapped"); });
-    choice({ t, body, vis: { set innerHTML(v) {} }, answer, st });
+    choice({ t, body, foot, vis: { set innerHTML(v) {} }, answer, st });
   },
   ordering({ t, body, foot, answer, st }) {
     // Tap cards in order to fill the slots; tap a filled slot to empty it.
@@ -815,22 +1019,92 @@ function sidebar() {
   const side = $(".side"), li = ul.querySelector(".on");
   if (li && getComputedStyle(side).position === "sticky") side.scrollTop = Math.max(0, li.offsetTop - side.clientHeight / 2);
 }
-function pickSet(i) {
-  set = D.sets[i]; const L = $("#les"); L.innerHTML = "";
-  set.lessons.forEach((l) => L.add(new Option(`${l.n}. ${l.title[set.language] ?? l.title.de}`, l.n)));
-  pickLesson(set.lessons[0].n);
+function pickSet(i, n) {
+  set = D.sets[i];
+  pickLesson(n ?? set.lessons[0].n);
 }
-function pickLesson(n) {
-  lesson = set.lessons.find((l) => l.n === +n); $("#les").value = String(n); buildSteps(); go(0);
+function pickLesson(n, type) {
+  lesson = set.lessons.find((l) => l.n === +n) ?? set.lessons[0]; buildSteps();
+  const j = type ? steps.findIndex((s) => s.kind === "task" && s.t.type === type) : -1;
+  go(j > 0 ? j : 0); renderNow(); markCurrent();
   try { localStorage.setItem("twist-pos", JSON.stringify([D.sets.indexOf(set), lesson.n])); } catch (e) {}
 }
+
+/* ---------- lesson picker: search, filters, a list grouped by year ---------- */
+const YEARS = ["reception", "year-1", "year-2", "year-3", "year-4", "year-5", "year-6", "ly-1", "ly-2", "ly-3", "ly-4", "klasse-1", "klasse-2", "klasse-3", "klasse-4", "stufe-0", "lernjahr-1", "lernjahr-2"];
+const yearName = (y) => !y ? "No year" : y === "reception" ? "Reception" : y.replace(/^ly-/, "French year ").replace(/^year-/, "Year ").replace(/^klasse-/, "Klasse ").replace(/^stufe-/, "Englisch Stufe ").replace(/^lernjahr-/, "Englisch Lernjahr ");
+const SUBJ = { "de-DE.math": "Mathe", "de-DE.lit-de": "Deutsch", "de-DE.fl": "Englisch", "en-GB.math": "Maths", "en-GB.lit-en": "English", "en-GB.fl": "French" };
+const subjOf = (s) => s.id.split(".").slice(0, 2).join(".");
+const typesOf = (s) => s._types ??= new Set(s.lessons.flatMap((l) => l.activities.flatMap((a) => [...(a.tasks ?? []), ...(a.stages ?? []).flatMap((st) => st.tasks)].map((t) => t.type))));
+const titleOf = (x) => x[set?.language] ?? x.de ?? x.en ?? Object.values(x)[0];
+const tOf = (s, x) => x[s.language] ?? Object.values(x)[0];
+let F = { q: "", cur: "", sub: "", year: "", type: "" };
+try { F = { ...F, ...JSON.parse(localStorage.getItem("twist-filter") || "{}") }; } catch (e) {}
+const saveF = () => { try { localStorage.setItem("twist-filter", JSON.stringify(F)); } catch (e) {} };
+function chips(el, items, key) {
+  el.innerHTML = "";
+  items.forEach(([v, label]) => { const b = document.createElement("button"); b.className = "fchip" + (F[key] === v ? " on" : ""); b.textContent = label; b.setAttribute("aria-pressed", F[key] === v); b.onclick = () => { F[key] = v; if (key === "cur" && F.sub && !F.sub.startsWith(v)) F.sub = ""; saveF(); renderPicker(); }; el.appendChild(b); });
+}
+function matches(s) {
+  if (F.cur && s.language !== F.cur.slice(0, 2) && !s.id.startsWith(F.cur)) return false;
+  if (F.sub && subjOf(s) !== F.sub) return false;
+  if (F.year && s.year !== F.year) return false;
+  if (F.type && !typesOf(s).has(F.type)) return false;
+  if (F.q) {
+    const hay = [s.id, ...Object.values(s.title), s.summary && typeof s.summary === "object" ? Object.values(s.summary).join(" ") : s.summary ?? "", ...s.lessons.flatMap((l) => Object.values(l.title))].join(" ").toLowerCase();
+    if (!F.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
+  }
+  return true;
+}
+function renderPicker() {
+  chips($("#f-cur"), [["", "All"], ["de-DE", "de-DE"], ["en-GB", "en-GB"]], "cur");
+  chips($("#f-sub"), [["", "All subjects"], ...Object.entries(SUBJ).filter(([k]) => !F.cur || k.startsWith(F.cur))], "sub");
+  const ys = YEARS.filter((y) => D.sets.some((s) => s.year === y && (!F.cur || s.id.startsWith(F.cur))));
+  $("#f-year").innerHTML = `<option value="">All years</option>` + ys.map((y) => `<option value="${y}"${F.year === y ? " selected" : ""}>${yearName(y)}</option>`).join("");
+  const all = [...new Set(D.sets.flatMap((s) => [...typesOf(s)]))].sort();
+  $("#f-type").innerHTML = `<option value="">Any task type</option>` + all.map((t) => `<option value="${t}"${F.type === t ? " selected" : ""}>${t}</option>`).join("");
+  if ($("#q").value !== F.q) $("#q").value = F.q;
+  const list = D.sets.map((s, i) => [s, i]).filter(([s]) => matches(s));
+  const order = (y) => { const k = YEARS.indexOf(y); return k < 0 ? 99 : k; };
+  list.sort(([a], [b]) => order(a.year) - order(b.year) || subjOf(a).localeCompare(subjOf(b)) || tOf(a, a.title).localeCompare(tOf(b, b.title)));
+  $("#rcount").textContent = `${list.length} of ${D.sets.length} lesson sets` + (F.type ? ` with ${F.type}` : "");
+  const R = $("#results"); R.innerHTML = ""; let last = null;
+  for (const [s, i] of list) {
+    const g = `${yearName(s.year)} · ${SUBJ[subjOf(s)] ?? subjOf(s)}`;
+    if (g !== last) { const h = document.createElement("div"); h.className = "rgrp"; h.textContent = g; R.appendChild(h); last = g; }
+    const row = document.createElement("div"); row.className = "rset"; row.dataset.i = i;
+    row.innerHTML = `<div class="rt">${esc(tOf(s, s.title))}</div><div class="rl"></div>`;
+    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn"; b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); }; row.querySelector(".rl").appendChild(b); });
+    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(s.lessons[0].n, F.type); };
+    R.appendChild(row);
+  }
+  if (!list.length) R.innerHTML = `<p class="empty">No lesson set matches. Clear a filter or the search.</p>`;
+  markCurrent();
+}
+function markCurrent() {
+  document.querySelectorAll(".rset").forEach((r) => { const on = D.sets[+r.dataset.i] === set; r.classList.toggle("on", on); r.querySelectorAll(".lbtn").forEach((b) => b.classList.toggle("on", on && +b.dataset.n === lesson?.n)); });
+}
+function renderNow() {
+  const i = D.sets.indexOf(set), el = $("#now");
+  el.innerHTML = `<div class="nt">${esc(tOf(set, set.title))} · ${yearName(set.year)}</div><div class="nl">Lesson ${lesson.n}: ${esc(tOf(set, lesson.title))}</div><div class="nb"></div>`;
+  const nb = el.querySelector(".nb");
+  const add = (label, fn, dis) => { const b = document.createElement("button"); b.className = "nbtn"; b.textContent = label; b.disabled = !!dis; b.onclick = fn; nb.appendChild(b); };
+  const li = set.lessons.indexOf(lesson);
+  add("◀ Lesson", () => pickLesson(set.lessons[li - 1].n), li <= 0);
+  add("Lesson ▶", () => pickLesson(set.lessons[li + 1].n), li >= set.lessons.length - 1);
+  if (F.type) add(`Next ${F.type} ▶`, () => { const k = steps.findIndex((s, j) => j > at && s.kind === "task" && s.t.type === F.type); if (k > 0) go(k); });
+}
 $("#built").textContent = D.built;
-D.sets.forEach((s, i) => $("#set").add(new Option(`${s.id.split(".")[0]} · ${s.title[s.language] ?? s.title.de} (${s.year})`, i)));
-$("#set").onchange = (e) => pickSet(+e.target.value);
-$("#les").onchange = (e) => pickLesson(e.target.value);
+$("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
+$("#f-year").onchange = (e) => { F.year = e.target.value; saveF(); renderPicker(); };
+$("#f-type").onchange = (e) => { F.type = e.target.value; saveF(); renderPicker(); renderNow(); };
 $("#auto").onchange = (e) => { try { localStorage.setItem("twist-auto", e.target.checked ? "1" : "0"); } catch (x) {} };
+$("#autonext").onchange = (e) => { try { localStorage.setItem("twist-autonext", e.target.checked ? "1" : "0"); } catch (x) {} };
+try { $("#autonext").checked = localStorage.getItem("twist-autonext") !== "0"; } catch (e) {}
+// Arrow keys step through the lesson (outside the search box).
+document.addEventListener("keydown", (e) => { if (e.target.closest("input,select,textarea")) return; if (e.key === "ArrowRight") go(at + 1); if (e.key === "ArrowLeft") go(at - 1); });
 let pos = [0, 1]; try { pos = JSON.parse(localStorage.getItem("twist-pos")) || pos; } catch (e) {}
-$("#set").value = String(pos[0] ?? 0); pickSet(pos[0] ?? 0); if (pos[1]) pickLesson(pos[1]);
+set = D.sets[pos[0]] ?? D.sets[0]; renderPicker(); pickSet(D.sets.indexOf(set), pos[1]);
 </script>
 </body>
 </html>
