@@ -493,6 +493,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 19 | Deutsch | Klasse 3 | Adjektive | 4 drafted 2026-10-13: Vergleichsstufen with als and so … wie, Gegenteile with and without un-, -ig, -lich, -isch and -bar, zusammengesetzte Adjektive |
 | 20 | Deutsch | Klasse 3 | Satzglieder | 2 drafted 2026-10-13: Subjekt and Prädikat with Wer oder was?, split Prädikat, agreement; Umstellprobe, counting Satzglieder, verb in second place |
 | 21 | Deutsch | Klasse 4 | Verben | 2 drafted 2026-10-13: Aufforderungsform for du, ihr and Sie with e/i change and split Vorsilben; trennbare and nicht trennbare Verben, Perfekt with ge in the middle or without ge |
+| 22 | Deutsch | Klasse 4 | Satzglieder | 2 drafted 2026-10-13: Akkusativobjekt (Wen oder was?) and Dativobjekt (Wem?); Ortsangabe (Wo? Wohin? Woher?) and Zeitangabe (Wann? Wie lange?) |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
