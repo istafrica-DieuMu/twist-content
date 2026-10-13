@@ -501,6 +501,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 27 | Deutsch | Klasse 4 | Rechtschreibung | 2 drafted 2026-10-13: das or dass with the Ersatzprobe; words that sound the same (Wal, Wahl; Lid, Lied; Meer, mehr; Rad, Rat; seid, seit; Seite, Saite) |
 | 28 | Mathe | Klasse 4 | Schriftlich malnehmen und teilen | 2 of 6 drafted 2026-10-13: schriftlich multiplying by a one-digit number with Übertrag; dividing by a one-digit number with the Rest and the Probe |
 | 29 | Mathe | Klasse 2 | Einmaleins | 8 drafted 2026-10-13: Kernaufgaben (mal 1, 2, 5, 10), Fünfer- und Zehnerreihe, ableiten mit Nachbaraufgaben, Verdoppeln und Zerlegen; Zweier-, Vierer- und Achterreihe by doubling; Dreier-, Sechser- and Neunerreihe; Siebenerreihe from fünf mal sieben, Tauschaufgaben and the Zehnerreihe; Quadratzahlen as square Punktefelder; all facts mixed, with the hard ones (6 · 7, 6 · 8, 7 · 8) and missing factors |
+| 30 | Mathe | Klasse 2 | Geteiltaufgaben | 4, all drafted 2026-10-13: Aufteilen and Verteilen with ":" as geteilt durch; the Umkehraufgabe and Aufgabenfamilien; all division facts with the Probe; Rest, and what the Rest means in a story |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
