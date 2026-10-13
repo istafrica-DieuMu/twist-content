@@ -123,6 +123,7 @@ Interactions:
 | Which text reads better | two short texts, one repeating the noun, one with a pronoun, `option_audio: false` | pronouns |
 | Which sentence pattern | "Du willst sagen, was du magst. Welcher Satzanfang passt?", options I like …, I am …, I can … | en-about-me |
 | Name the tense | a sentence in `text`, "Welche Zeitform ist das?", options Präsens, Präteritum, Perfekt, Futur | verbs-tenses-mixed |
+| Which description says more | options are noun phrases with no, a vague, or two precise adjectives ("eine schöne Katze", "eine kleine, graue Katze") | adjectives-describe |
 | Word type of a word | "Was ist laufen?" options Verb, Nomen, Adjektiv (the word shown lowercase so capitals do not decide) | verbs-recognise |
 | Sensible rounding in a context | "Was schreibt die Zeitung am sinnvollsten?" over an exact count, options are roundings to different places | order-to-million |
 | Name the part of a calculation | "Wie heißt 587 in 362 + 225 = 587?", options Summe, Summand, Differenz, Minuend, Subtrahend | vocabulary-add-sub |
@@ -187,6 +188,7 @@ Interactions:
 | Interaction | Example | Used in |
 |---|---|---|
 | Picture that starts with a sound | "Was fängt mit L an?" lamp, sun, fish; answer `lamp` | letters-l-o-a-m |
+| Riddle from adjectives | "Es ist gelb, krumm und süß. Was ist es?", options pictures | adjectives-describe |
 | Picture that ends with a sound | "Bei welchem Wort hörst du das mmm am Ende?" options pictures | sounds-in-words |
 | Read a word, find its picture | `show: { drawn: syllable-arcs, word: Oma }`, options grandma, mum, llama | letters-l-o-a-m |
 | Group with a given number | "Wo sind 2 Bananen?" three banana groups of 1, 2 and 3; answer `"2"` | count-to-5 |
