@@ -460,7 +460,7 @@ en-GB, more de-DE topics than en-GB, without stopping).
 | 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10, all drafted 2026-10-13: 20 lessons, 460 tasks |
 | 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8, all drafted 2026-10-13: 16 lessons, 384 tasks |
 | 4 | Mathe | Klasse 4 | Große Zahlen | 5, all drafted 2026-10-13: 15 lessons; to 10 000 (the Stellentafel gained a T column), then to a million: Stellenwerttafel to HT, Zahlenstrahl, Nachbarzahlen, sensible rounding, counting in big steps across boundaries |
-| 5 | Deutsch | Klasse 1 | Laute hören | 3, all drafted 2026-10-13: 6 lessons, 134 tasks |
+| 5 | Deutsch | Klasse 1 | Laute hören | 4, all drafted 2026-10-13: 8 lessons; adds sounds at the start, middle and end, counting and blending sounds |
 | 6 | Deutsch | Klasse 2 | Nomen | 1, drafted 2026-10-13: compound nouns, 3 lessons |
 | 7 | Deutsch | Klasse 3 | Nomen | 2, both drafted 2026-10-13: noun endings and abstract nouns, 4 lessons |
 | 8 | Deutsch | Klasse 4 | Die vier Fälle | 1, drafted 2026-10-13: 3 lessons |
@@ -479,6 +479,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 5 | Maths | Year 2 | Addition and subtraction facts | 4, all drafted 2026-10-13: 8 lessons, any order, inverse and fact families with the part-whole model, near doubles, number walls and chains (number-wall component) |
 | 6 | Maths | Year 3 | Numbers to 100 (hundred square and 100-dot grid) | 2, both drafted 2026-10-13: 4 lessons, brisk revision for Year 3 with jumps of 9 and 11 and complements to 100 |
 | 7 | Mathe | Klasse 3 | Rechnen bis 1000 | 6, all drafted 2026-10-13: 12 lessons; hundreds and Analogieaufgaben, Zehner- and Hunderterübergang, halbschriftlich (schrittweise, stellenweise, ergänzen), choosing a way, Überschlag, Summe and Differenz |
+| 8 | Deutsch | Klasse 2 | Pronomen and Verben | 5, all drafted 2026-10-13: 10 lessons; er, sie, es by the article, wir and ihr, Verben erkennen with the ich-Probe, Personalformen, Grundform with the wir-Probe, Vorsilben and moving prefixes |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
