@@ -465,7 +465,7 @@ topic: stop and check in before the next.
 | 8 | Deutsch | Klasse 4 | Die vier Fälle | 1, drafted 2026-10-13: 3 lessons |
 | 9 | Englisch | Stufe 0 | Hören | 2, all drafted 2026-10-13: 4 lessons, 89 tasks |
 | 10 | Englisch | Lernjahr 1 | Hören | 1, drafted 2026-10-13: short conversations, 2 lessons |
-| 11 | Englisch | Lernjahr 2 | Hobbys und Sport | 1 |
+| 11 | Englisch | Lernjahr 2 | Hobbys und Sport | 1, drafted 2026-10-13: 2 lessons, 9 new hobby pictures |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen

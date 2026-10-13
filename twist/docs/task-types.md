@@ -186,6 +186,7 @@ Interactions:
 | A heard word's first or last sound | hears "Bus.", taps the picture that starts with the same sound (ball) | en-GB oral-blending |
 | What a conversation is about | hears "I'm hungry. Can I have an apple, please?", taps "um Essen" of three German options | en-short-dialogues |
 | A detail from a conversation | hears "Is your bag green? No, it's yellow.", taps "gelb"; the wrong word comes first so the child listens to the end | en-short-dialogues |
+| What someone can or likes to do | hears "I can swim, but I can't dance.", taps the swimming picture | en-hobbies |
 
 ## `true_false`
 
@@ -409,6 +410,7 @@ Interactions:
 | Count backwards | 7, 9, 8, 6 from big to small: 9, 8, 7, 6 | order-to-10 |
 | Amounts from few to many | three dot pictures, fewest first | compare-to-10 |
 | Two-digit numbers | 45, 18, 81, 54, smallest first | order-compare-to-100 |
+| Build an English sentence from word cards | "Bau den Satz: Ich mag Fußball." cards football, I, like into I like football, `option_audio: false` | en-hobbies |
 | A sequence in steps | 38, 18, 28, 48 into tens steps | sequences-to-100 |
 
 ## Option audio
