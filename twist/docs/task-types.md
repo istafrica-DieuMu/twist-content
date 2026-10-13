@@ -166,6 +166,11 @@ Interactions:
 | What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
 | Round to tens or hundreds | "Runde 471 auf Hunderter." over a number line with the arrow at 471, options 400, 500, 470 | round-to-1000 |
 | Which clue makes the riddle unique | options are clue sentences; one names the missing digit | number-puzzles-to-1000 |
+| Find the Subjekt with Wer oder was? | "„Im Sommer fahren wir ans Meer.“ Wer oder was fährt ans Meer?", options the sentence's Satzglieder (wir, Im Sommer, ans Meer) | sentences-subject-predicate |
+| Subjekt or Prädikat | "„Oma singt ein Lied.“ Was ist „singt“?", options Prädikat, Subjekt | sentences-subject-predicate |
+| Which words stay together | "„Die Kinder spielen im Garten.“ Welche Wörter bleiben beim Umstellen zusammen?", options one Satzglied and two word pairs that cross a boundary | sentences-move-parts |
+| How many Satzglieder | a sentence in `text`, options counts; the word count is always one distractor | sentences-move-parts |
+| Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
 
 Twist: `options` become objects with `label`; `answer` becomes the
 correct option's id.
@@ -263,6 +268,8 @@ Interactions:
 | Is the estimate good? | "Tom schätzt: etwa siebzig" over a hundred field with 68 | bundle-tens |
 | Does the answer fit every clue? | "Stimmt 75? Größer als 70. Ungerade. Die Einerziffer ist 3." | number-puzzles-to-100 |
 | Is the riddle unique? | "Ist das Rätsel eindeutig? Meine Zahl ist gerade und liegt zwischen 200 und 300." | number-puzzles-to-1000 |
+| Is this the Subjekt or Prädikat? | "„Der Ball rollt unter das Sofa.“ Ist „unter das Sofa“ das Subjekt?" | sentences-subject-predicate |
+| Rearranged correctly? Verb in second place? | a rearranged sentence on a letter card, the original spoken; "Steht das Verb an zweiter Stelle?" | sentences-move-parts |
 
 ## `fill_in_blank`
 
@@ -376,7 +383,9 @@ Letter or word cards; the child taps every card that matches and taps
 Prüfen.
 
 Fields: `show: { drawn: letter-card, text: "L o l M L a" }` (cards split
-on spaces), `spans` (the cards to find).
+on spaces), `spans` (the cards to find). A card matches a span without its
+trailing punctuation: the span `hoch` finds the card `hoch.`; the build
+rejects a span that matches no card.
 
 Interactions:
 
@@ -389,6 +398,8 @@ Interactions:
 | The verb in a sentence | "Der Hund schläft im Korb.", spans schläft; a split verb gives two spans ("Der Zug fährt gleich ab.": fährt, ab) or the moved prefix alone | verbs-recognise, verbs-prefixes |
 | Root word or suffixes of a split word | "care less ness", spans less, ness | en-GB suffixes-y2 |
 | The silent letter | "i s l a n d" split into letters, spans s | en-GB exception-words-ks2 |
+| Every word of the Subjekt | "Mein großer Bruder spielt Gitarre.", spans Mein, großer, Bruder; spans match cards without trailing punctuation, so "Paul" finds the card "Paul." | sentences-subject-predicate |
+| Both parts of a split Prädikat | "Der Unterricht hört um zwölf auf.", spans hört, auf. | sentences-subject-predicate |
 
 ## `tracing`
 
@@ -486,6 +497,7 @@ Interactions:
 | A sequence in steps | 38, 18, 28, 48 into tens steps | sequences-to-100 |
 | Steps of a story pattern | the hero's journey: leaves home, goes on a journey, faces a big challenge, comes home changed | en-GB themes-conventions |
 | Point, evidence, explain | three sentences of an answer into order | en-GB justify-views |
+| Umstellprobe | the sentence is spoken, its Satzglieder are cards, "Beginne mit „Am Morgen“": the named Satzglied first, the verb second (Am Morgen, trinkt, Opa, einen Kaffee); with a split Prädikat the second part goes last, `option_audio: false` | sentences-move-parts |
 
 ## Option audio
 

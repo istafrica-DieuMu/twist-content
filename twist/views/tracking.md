@@ -17,20 +17,20 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 1096 | 1086 (99%) | 405 | 65 min | $2.17 |
-| gemini-puck-en | 399 | 395 (99%) | 460 | 20 min | $0.73 |
-| gemini-sulafat | 8211 | 8113 (99%) | 3102 | 621 min | $19 |
-| gemini-sulafat-en | 2928 | 2864 (98%) | 3444 | 231 min | $7.06 |
+| gemini-puck | 1096 | 1086 (99%) | 486 | 65 min | $2.17 |
+| gemini-puck-en | 399 | 395 (99%) | 473 | 20 min | $0.73 |
+| gemini-sulafat | 8211 | 8113 (99%) | 3638 | 621 min | $19 |
+| gemini-sulafat-en | 2928 | 2864 (98%) | 3577 | 231 min | $7.06 |
 
 ## de-DE
 
-114 of 435 placed skills drafted (26%): 114 lesson sets, 243 lessons, 5379 tasks. Narration so far about $21; 3500 clips still to make.
+116 of 435 placed skills drafted (27%): 116 lesson sets, 247 lessons, 5463 tasks. Narration so far about $21; 4117 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 28 / 41 | 5 / 51 |  | 33 / 92 |
 | klasse-2 | 23 / 63 | 9 / 46 |  | 32 / 109 |
-| klasse-3 | 19 / 51 | 8 / 42 |  | 27 / 93 |
+| klasse-3 | 19 / 51 | 10 / 42 |  | 29 / 93 |
 | klasse-4 | 5 / 48 | 4 / 35 |  | 9 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 2 / 28 | 2 / 28 |
@@ -78,7 +78,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 0 / 4 |  |  |
 | klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.35 |
 | klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.24 |
-| klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.76 |
+| klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.75 |
 | klasse-2 | Deutsch | Adjektive | 3 / 3 done | 6 | $0.02 |
 | klasse-2 | Deutsch | Satzarten | 0 / 2 |  |  |
 | klasse-2 | Deutsch | Wortschatz | 0 / 1 |  |  |
@@ -110,8 +110,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 0 / 3 |  |  |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.31 |
 | klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.54 |
-| klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $0.00 |
-| klasse-3 | Deutsch | Satzglieder | 0 / 2 |  |  |
+| klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $0.01 |
+| klasse-3 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.01 |
 | klasse-3 | Deutsch | Wörtliche Rede | 0 / 2 |  |  |
 | klasse-3 | Deutsch | Kurze und lange Selbstlaute | 0 / 3 |  |  |
 | klasse-3 | Deutsch | Besondere Laute | 0 / 1 |  |  |
@@ -170,7 +170,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | stufe-0 | Englisch | Sprechen | 0 / 3 |  |  |
 | stufe-0 | Englisch | Körper | 1 / 1 done | 2 | $0.01 |
 | stufe-0 | Englisch | Familie | 1 / 1 done | 2 | $0.00 |
-| stufe-0 | Englisch | Schule | 1 / 1 done | 2 |  |
+| stufe-0 | Englisch | Schule | 1 / 1 done | 2 | $0.00 |
 | stufe-0 | Englisch | Tiere und Natur | 1 / 1 done | 2 | $0.00 |
 | stufe-0 | Englisch | Sprachen vergleichen | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Hören | 1 / 3 started | 2 | $0.26 |
@@ -204,7 +204,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-69 of 483 placed skills drafted (14%): 69 lesson sets, 141 lessons, 3058 tasks. Narration so far about $7.77; 3911 clips still to make.
+69 of 483 placed skills drafted (14%): 69 lesson sets, 141 lessons, 3058 tasks. Narration so far about $7.77; 4057 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -228,8 +228,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.01 |
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.01 |
 | reception | Maths | Division | 0 / 1 |  |  |
-| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.80 |
-| reception | English | Phonics | 2 / 12 started | 4 |  |
+| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.79 |
+| reception | English | Phonics | 2 / 12 started | 4 | $0.01 |
 | reception | English | Reading words | 0 / 3 |  |  |
 | reception | English | Understanding stories | 0 / 2 |  |  |
 | reception | English | Spelling | 0 / 1 |  |  |
@@ -470,7 +470,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 321 | $0.26 | $82 |
-| en-GB | 414 | $0.24 | $101 |
+| de-DE | 319 | $0.26 | $84 |
+| en-GB | 414 | $0.25 | $103 |
 
-Pictures: 81 of 124 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
+Pictures: 124 of 124 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

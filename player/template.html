@@ -689,8 +689,10 @@ const TYPES = {
     const toks = t.show.text.split(" "), sel = new Set();
     const wrap = document.createElement("div"); wrap.className = "cards"; vis.appendChild(wrap);
     const els = toks.map((x, i) => { const c = document.createElement("div"); c.className = "card tap"; c.textContent = x; c.onclick = () => { if (st.over) return; sel.has(i) ? sel.delete(i) : sel.add(i); c.classList.toggle("sel"); }; wrap.appendChild(c); return c; });
-    const want = [...t.spans].sort().join(","), letters = new Set(t.spans);
-    nextBtn(foot, UI.check, () => { const got = [...sel].map((i) => toks[i]).sort().join(","); const ok = got === want; if (!ok) els.forEach((c, i) => { if (sel.has(i)) c.classList.add(letters.has(toks[i]) ? "good" : "bad"); }); answer(ok, got, () => els.forEach((c, i) => { c.classList.remove("sel", "bad"); if (letters.has(toks[i])) c.classList.add("good"); })); if (!ok && !st.over) setTimeout(() => { sel.clear(); els.forEach((c) => c.classList.remove("sel", "good", "bad")); }, 1100); });
+    // A card is matched without its trailing punctuation, so "hoch" finds the card "hoch.".
+    const bare = (x) => String(x).replace(/[.,!?;:]+$/, ""), keys = toks.map(bare);
+    const want = t.spans.map(bare).sort().join(","), letters = new Set(t.spans.map(bare));
+    nextBtn(foot, UI.check, () => { const got = [...sel].map((i) => keys[i]).sort().join(","); const ok = got === want; if (!ok) els.forEach((c, i) => { if (sel.has(i)) c.classList.add(letters.has(keys[i]) ? "good" : "bad"); }); answer(ok, got, () => els.forEach((c, i) => { c.classList.remove("sel", "bad"); if (letters.has(keys[i])) c.classList.add("good"); })); if (!ok && !st.over) setTimeout(() => { sel.clear(); els.forEach((c) => c.classList.remove("sel", "good", "bad")); }, 1100); });
   },
   tracing({ t, body, foot, vis, answer }) {
     vis.innerHTML = `<div class="trace">${writing(t.show.text, t.show.mode)}<canvas width="600" height="400"></canvas></div>`;

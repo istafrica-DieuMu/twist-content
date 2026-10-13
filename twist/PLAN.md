@@ -488,7 +488,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 14 | Maths | Year 1 | Numbers to 20 and adding and subtracting to 20 | 6, all drafted 2026-10-13: 12 lessons; comparing to 20 and how many more, related facts across the ten, making ten to add, back through ten to subtract, number facts to 20, the equals sign and missing numbers (7 = _ − 9) |
 | 15 | Mathe | Klasse 2 | Malaufgaben | 3, all drafted 2026-10-13: 6 lessons; equal groups and the Malaufgabe, Punktefelder read rows first (new dots array layout), Tauschaufgaben |
 | 16 | Mathe | Klasse 3 | Schriftlich rechnen | 5 of 6 drafted 2026-10-13: 10 lessons; addition without and with Übertrag, several numbers (carry 2), subtraction without and with Entbündeln (Abziehen), new written-calc component; the check skill is still to do |
-| 17 | Englisch | Stufe 0, Lernjahr 1, Lernjahr 2 | Zahlen, Hallo, Körper, Familie, Tiere, Sprachmuster | 7 drafted 2026-10-13: numbers to 10, Hello, body, family and animals (Stufe 0), I am / I have got / I can (Lernjahr 1), now against every day (Lernjahr 2); Englisch was behind, so de-DE takes Englisch and Deutsch topics next |
+| 17 | Englisch | Stufe 0, Lernjahr 1, Lernjahr 2 | Zahlen, Hallo, Körper, Familie, Tiere, Schule, Sprachmuster | 8 drafted 2026-10-13: numbers to 10, Hello, body, family, animals and school things with Can I have …, please? (Stufe 0), I am / I have got / I can (Lernjahr 1), now against every day (Lernjahr 2); Englisch was behind, so de-DE takes Englisch and Deutsch topics next |
 | 18 | Deutsch | Klasse 2 | Adjektive | 3 drafted 2026-10-13: recognise with the Wie-Frage, describe more precisely, endings after der, die, das and ein, eine |
 | 19 | Deutsch | Klasse 3 | Adjektive | 4 drafted 2026-10-13: Vergleichsstufen with als and so … wie, Gegenteile with and without un-, -ig, -lich, -isch and -bar, zusammengesetzte Adjektive |
 
@@ -592,4 +592,5 @@ en-GB is its own step later.
 | 16 | French | Learning year 2 | Listening | 1, drafted 2026-10-13: short conversations, 2 lessons |
 | 17 | French | Learning year 3 | Hobbies and sport | 1, drafted 2026-10-13: 2 lessons, with jouer au and jouer de la, j'aime and je sais |
 | 18 | French | Learning year 4 | Language patterns | 1, drafted 2026-10-13: now and every day (en train de, tous les jours), 2 lessons |
+| 19 | English | Reception | Phonics | 2 drafted 2026-10-13: s a t p and i n m d, letter to sound and blending CVC words, 4 lessons; 8 English phonemes added to the sound bank |
 

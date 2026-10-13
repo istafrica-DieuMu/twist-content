@@ -33,7 +33,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
   const objects = new Map((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, o]));
   const drawn = new Map((read("assets/drawn.yaml").components ?? []).map((o) => [o.id, o]));
   const sounds = new Map((read("assets/sounds.yaml").sounds ?? []).map((o) => [o.id, o]));
-  const chosenVoice = read("assets/voices.yaml").chosen;
+  const voicesCfg = read("assets/voices.yaml");
+  // A sound is spoken by the chosen voice of its language (en.s by the en-GB voice).
+  const voiceFor = (sound) => Object.values(voicesCfg.curricula ?? {}).find((c) => c.language === sound.split(".")[0])?.chosen ?? voicesCfg.chosen;
   for (const [id, o] of objects) {
     for (const k of ["draw", "category", "labels", "initial", "syllables", "status"]) if (o[k] === undefined) err(`assets/objects.yaml: ${id} has no ${k}`);
     if (!/^[a-z0-9-]+$/.test(id)) err(`assets/objects.yaml: id ${id} must be lowercase English`);
@@ -56,13 +58,14 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     if (Array.isArray(v.objects)) for (const id of v.objects) {
       if (!objects.has(id)) err(`${file}: ${where}: unknown object ${id}`);
       else if (!existsSync(join(T, "assets/objects", `${id}.png`))) warn(`${file}: ${where}: no picture yet for ${id} (run assets/tools/pictures.py)`);
+      else if (objects.get?.(id)?.status && objects.get(id).status !== "drawn") warn(`${file}: ${where}: ${id}.png exists but objects.yaml says status ${objects.get(id).status}; look at the picture and set drawn`);
       use("object", id, file);
     }
     if (v.drawn !== undefined) { if (!drawn.has(v.drawn)) err(`${file}: ${where}: unknown drawn component ${v.drawn}`); use("drawn", v.drawn, file); }
     if (v.character !== undefined) err(`${file}: ${where}: lessons use no character art`);
     if (v.sound !== undefined) {
       if (!sounds.has(v.sound)) err(`${file}: ${where}: unknown sound ${v.sound}`);
-      else if (chosenVoice && !existsSync(join(T, "assets/narration", chosenVoice, "sounds", `${v.sound.replace(":", "-long")}.mp3`))) warn(`${file}: ${where}: no audio yet for sound ${v.sound} in voice ${chosenVoice} (run assets/tools/narration.py)`);
+      else if (voiceFor(v.sound) && !existsSync(join(T, "assets/narration", voiceFor(v.sound), "sounds", `${v.sound.replace(":", "-long")}.mp3`))) warn(`${file}: ${where}: no audio yet for sound ${v.sound} in voice ${voiceFor(v.sound)} (run assets/tools/narration.py)`);
       use("sound", v.sound, file);
     }
     for (const [k, x] of Object.entries(v)) if (typeof x === "object") refs(x, where, file);
@@ -247,7 +250,13 @@ function checkAnswer(t, tw, file, err) {
       break;
     case "tracing": if (!t.char) err(`${file}: ${tw}: tracing needs char`); break;
     case "speak": if (!t.expected_text) err(`${file}: ${tw}: speak needs expected_text`); break;
-    case "highlight_in_text": if (!t.spans) err(`${file}: ${tw}: highlight_in_text needs spans`); break;
+    case "highlight_in_text": {
+      if (!t.spans) { err(`${file}: ${tw}: highlight_in_text needs spans`); break; }
+      // Cards split on spaces and match without trailing punctuation, as in the player.
+      const bare = (x) => String(x).replace(/[.,!?;:]+$/, ""), cards = String(t.show?.text ?? "").split(" ").map(bare);
+      for (const sp of t.spans) if (!cards.includes(bare(sp))) err(`${file}: ${tw}: span "${sp}" is not one of the cards`);
+      break;
+    }
     case "ordering": {
       // Twist: options, slot_count, correct_arrangement (our `answer`).
       if (!Array.isArray(t.answer) || t.answer.length !== t.slot_count) err(`${file}: ${tw}: ordering answer must list slot_count (${t.slot_count}) cards`);
