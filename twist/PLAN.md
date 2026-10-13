@@ -504,6 +504,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 30 | Mathe | Klasse 2 | Geteiltaufgaben | 4, all drafted 2026-10-13: Aufteilen and Verteilen with ":" as geteilt durch; the Umkehraufgabe and Aufgabenfamilien; all division facts with the Probe; Rest, and what the Rest means in a story |
 | 31 | Deutsch | Klasse 2 | Rechtschreibstrategien | 4 drafted 2026-10-13: Verlängern for d and t, and for b, p, g and k (nouns by the plural, Wiewörter with a noun); Wortstamm and Wortfamilie with look-alikes; ableiten ä from a and äu from au |
 | 32 | Deutsch | Klasse 2 | Laute und Silben | 4 drafted 2026-10-13: Selbstlaute, Mitlaute, Umlaute and Zwielaute; kurze and lange Selbstlaute with minimal pairs (Hüte, Hütte); Silben schwingen and mitsprechen; Silbenkern, offene and geschlossene Silben |
+| 33 | Deutsch | Klasse 2 | Merkwörter und besondere Laute | 3 drafted 2026-10-13: Merkwörter with Dehnungs-h and double Selbstlaut, Wochentage, Monate and Zahlwörter; Sp, St, Qu, V, X and chs; the most common Grundwortschatz words (writing them in a dictation waits for the letter keyboard) |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
