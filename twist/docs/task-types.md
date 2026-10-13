@@ -108,9 +108,11 @@ Interactions:
 | The story for a sum | "Welche Geschichte passt zu 5 − 1?", options are short stories | add-meaning, sub-meaning |
 | Umkehraufgabe or family member | options are whole sums, one is the Tauschaufgabe | inverse |
 | The answer sentence | a story and its sum, "Welcher Antwortsatz passt?", options are short sentences with the right number in the wrong thing, a wrong number, and the right one | picture-stories |
+| Which fact is not needed | a story with one fact too many, "Welche Angabe brauchst du nicht?", options are the story's sentences | question-calc-answer |
 | What the picture is asking | a picture with a story, "Was sollst du herausfinden?", options are short questions | picture-stories |
 | Which part changes | "34 + 5: Was ändert sich?" options die Einer, die Zehner, beide | ones-no-bridge, tens-to-two-digit |
 | Which Rechenweg is this | a worked calculation in `text` ("45 + 38 = 45 + 30 + 8"), "Welcher Rechenweg ist das?", options schrittweise, stellenweise, mit Hilfsaufgabe, ergänzen | describe-methods |
+| Which trick fits | "Welcher Trick hilft bei 9 + 9?", options verdoppeln, Zehnerfreunde, weiterzählen, kleine Aufgabe; feedback on the slow way | fluency-to-20 |
 | Which Rechenweg suits | "Welcher Weg passt gut zu 56 + 19?", options name methods; the answer is the one the sum invites (19 is near 20: Hilfsaufgabe) and the record says why in `feedback` | describe-methods, clever |
 | Where is the mistake | a worked calculation with one wrong step, options are its steps or short descriptions of the error | check |
 | Überschlag | "Ungefähr wie viel ist 48 + 29?", options are round numbers (60, 80, 100) | check |
