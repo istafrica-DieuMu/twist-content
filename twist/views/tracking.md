@@ -8,14 +8,14 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | narration made |
 |---|---|---|---|---|
-| de-DE | Mathe | 43% (88 / 203) | 34% (10 / 29) | 72% (6646 / 9245) |
-| de-DE | Deutsch | 23% (40 / 174) | 19% (18 / 94) | 48% (2254 / 4722) |
-| de-DE | Englisch | 41% (24 / 58) | 45% (17 / 38) | 19% (405 / 2100) |
-| **de-DE** | **all** | **35% (152 / 435)** | **28% (45 / 161)** | **58% (9305 / 16066)** |
-| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 82% (4379 / 5351) |
+| de-DE | Mathe | 43% (88 / 203) | 34% (10 / 29) | 68% (6646 / 9821) |
+| de-DE | Deutsch | 23% (40 / 174) | 19% (18 / 94) | 47% (2254 / 4804) |
+| de-DE | Englisch | 41% (24 / 58) | 45% (17 / 38) | 18% (405 / 2199) |
+| **de-DE** | **all** | **35% (152 / 435)** | **28% (45 / 161)** | **55% (9305 / 16823)** |
+| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 80% (4379 / 5492) |
 | en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 71% (1504 / 2133) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (538 / 539) |
-| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **80% (6421 / 8023)** |
+| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **79% (6421 / 8164)** |
 
 ## OpenRouter cost
 
@@ -32,14 +32,14 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 1096 | 1086 (99%) | 814 | 65 min | $2.17 |
-| gemini-puck-en | 775 | 749 (97%) | 159 | 43 min | $1.55 |
-| gemini-sulafat | 8211 | 8113 (99%) | 5959 | 621 min | $19 |
-| gemini-sulafat-en | 5668 | 5523 (97%) | 1431 | 450 min | $14 |
+| gemini-puck | 1096 | 1086 (99%) | 890 | 65 min | $2.17 |
+| gemini-puck-en | 775 | 749 (97%) | 178 | 43 min | $1.55 |
+| gemini-sulafat | 8211 | 8113 (99%) | 6640 | 621 min | $19 |
+| gemini-sulafat-en | 5668 | 5523 (97%) | 1553 | 450 min | $14 |
 
 ## de-DE
 
-152 of 435 placed skills drafted (35%): 152 lesson sets, 319 lessons, 6975 tasks. Narration so far about $21; 6762 clips still to make.
+152 of 435 placed skills drafted (35%): 152 lesson sets, 319 lessons, 6975 tasks. Narration so far about $21; 7519 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -57,7 +57,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 |---|---|---|---|---|---|
 | klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $1.63 |
 | klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $1.99 |
-| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $0.03 |
+| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $0.02 |
 | klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $0.41 |
 | klasse-1 | Mathe | Zehnerzahlen bis 100 | 0 / 2 |  |  |
 | klasse-1 | Mathe | Größen | 0 / 4 |  |  |
@@ -84,9 +84,9 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Deutsch | Sprache untersuchen | 0 / 1 |  |  |
 | klasse-1 | Deutsch | Texte schreiben | 0 / 1 |  |  |
 | klasse-1 | Deutsch | Wortschatz | 0 / 1 |  |  |
-| klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.28 |
-| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $2.92 |
-| klasse-2 | Mathe | Malaufgaben und Einmaleins | 8 / 15 started | 16 | $0.02 |
+| klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.27 |
+| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $2.91 |
+| klasse-2 | Mathe | Malaufgaben und Einmaleins | 8 / 15 started | 16 | $0.05 |
 | klasse-2 | Mathe | Sachaufgaben | 0 / 5 |  |  |
 | klasse-2 | Mathe | Größen | 0 / 12 |  |  |
 | klasse-2 | Mathe | Geometrie | 0 / 7 |  |  |
@@ -118,7 +118,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Sprechen und Zuhören | 0 / 2 |  |  |
 | klasse-2 | Deutsch | Schreibschrift | 0 / 3 |  |  |
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.22 |
-| klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.16 |
+| klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.15 |
 | klasse-3 | Mathe | Schriftlich rechnen | 5 / 15 started | 10 | $0.02 |
 | klasse-3 | Mathe | Größen | 0 / 12 |  |  |
 | klasse-3 | Mathe | Geometrie | 0 / 7 |  |  |
@@ -153,7 +153,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Texte gestalten | 0 / 2 |  |  |
 | klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.24 |
 | klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $0.06 |
-| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 2 / 6 started | 4 |  |
+| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 2 / 6 started | 4 | $0.00 |
 | klasse-4 | Mathe | Sachaufgaben | 0 / 5 |  |  |
 | klasse-4 | Mathe | Größen | 0 / 8 |  |  |
 | klasse-4 | Mathe | Geometrie | 0 / 11 |  |  |
@@ -166,7 +166,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Sätze verbinden | 1 / 1 done | 2 |  |
 | klasse-4 | Deutsch | Zeichensetzung | 1 / 1 done | 2 | $0.00 |
 | klasse-4 | Deutsch | Besondere Laute | 1 / 2 started | 2 |  |
-| klasse-4 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 |  |
+| klasse-4 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 | $0.00 |
 | klasse-4 | Deutsch | Fehler berichtigen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Texte verstehen | 0 / 3 |  |  |
 | klasse-4 | Deutsch | Märchen | 0 / 2 |  |  |
@@ -208,7 +208,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | lernjahr-2 | Englisch | Zahlen | 1 / 1 done | 2 | $0.00 |
 | lernjahr-2 | Englisch | Uhrzeit | 1 / 1 done | 2 | $0.00 |
 | lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.00 |
-| lernjahr-2 | Englisch | Berufe | 1 / 1 done | 2 |  |
+| lernjahr-2 | Englisch | Berufe | 1 / 1 done | 2 | $0.00 |
 | lernjahr-2 | Englisch | Feste | 0 / 1 |  |  |
 | lernjahr-2 | Englisch | Hören | 0 / 1 |  |  |
 | lernjahr-2 | Englisch | Lesen | 0 / 2 |  |  |
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $15; 1601 clips still to make.
+79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $15; 1742 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -283,10 +283,10 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-1 | English | Handwriting | 0 / 2 |  |  |
 | year-1 | English | Speaking and listening | 0 / 2 |  |  |
 | year-1 | English | Words in texts | 0 / 1 |  |  |
-| year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.31 |
+| year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.30 |
 | year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.69 |
 | year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.47 |
-| year-2 | Maths | Word problems | 1 / 2 started | 2 |  |
+| year-2 | Maths | Word problems | 1 / 2 started | 2 | $0.00 |
 | year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.01 |
 | year-2 | Maths | Money | 0 / 4 |  |  |
 | year-2 | Maths | Shapes | 0 / 2 |  |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 283 | $0.24 | $69 |
-| en-GB | 404 | $0.24 | $97 |
+| de-DE | 283 | $0.25 | $72 |
+| en-GB | 404 | $0.25 | $99 |
 
 Pictures: 156 of 156 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

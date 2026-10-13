@@ -500,7 +500,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 26 | Deutsch | Klasse 3 | Wörtliche Rede | 2, all drafted 2026-10-13: Begleitsatz vorn with Doppelpunkt and Anführungszeichen; Begleitsatz hinten and in der Mitte with the Komma rules |
 | 27 | Deutsch | Klasse 4 | Rechtschreibung | 2 drafted 2026-10-13: das or dass with the Ersatzprobe; words that sound the same (Wal, Wahl; Lid, Lied; Meer, mehr; Rad, Rat; seid, seit; Seite, Saite) |
 | 28 | Mathe | Klasse 4 | Schriftlich malnehmen und teilen | 2 of 6 drafted 2026-10-13: schriftlich multiplying by a one-digit number with Übertrag; dividing by a one-digit number with the Rest and the Probe |
-| 29 | Mathe | Klasse 2 | Einmaleins | 3 drafted 2026-10-13: Kernaufgaben (mal 1, 2, 5, 10), Fünfer- und Zehnerreihe, ableiten mit Nachbaraufgaben, Verdoppeln und Zerlegen |
+| 29 | Mathe | Klasse 2 | Einmaleins | 5 drafted 2026-10-13: Kernaufgaben (mal 1, 2, 5, 10), Fünfer- und Zehnerreihe, ableiten mit Nachbaraufgaben, Verdoppeln und Zerlegen; Zweier-, Vierer- und Achterreihe by doubling; Dreier-, Sechser- and Neunerreihe (neun mal as zehn mal minus one row) |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen

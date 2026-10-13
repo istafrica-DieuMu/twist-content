@@ -2010,7 +2010,7 @@ Task types: tap_to_count 1, multiple_choice 26, image_multiple_choice 9, true_fa
 
 `de-DE.math.table-2-4-8` teaches `math.mult-div.table-2-4-8` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-The Einmaleinsreihen of 2, 4 and 8, linked by verdoppeln. Lesson 1 takes the Zweierreihe and the Viererreihe as its double (3 · 4 is double 3 · 2); lesson 2 takes the Achterreihe as the double of the Viererreihe (6 · 8 is double 6 · 4), and ends with the skill check.
+The Einmaleinsreihen of 2, 4 and 8, linked by verdoppeln. Lesson 1 takes the Zweierreihe and the Viererreihe as its double (3 · 4 is double 3 · 2); lesson 2 takes the Achterreihe as the double of the Viererreihe (4 · 8 is double 4 · 4), and ends with the skill check.
 
 
 | Lesson | New | Tasks | Activities |
@@ -2018,7 +2018,7 @@ The Einmaleinsreihen of 2, 4 and 8, linked by verdoppeln. Lesson 1 takes the Zwe
 | 1. Zweier und Vierer | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Die Achterreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: text_input 15, fill_in_blank 12, multiple_choice 7, true_false 8. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 2.
+Task types: text_input 14, fill_in_blank 13, multiple_choice 7, true_false 8. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 2.
 
 ## Die Dreier-, Sechser- und Neunerreihe (The 3, 6 and 9 times tables)
 
@@ -2032,7 +2032,7 @@ The Einmaleinsreihen of 3, 6 and 9. Lesson 1 takes the Dreierreihe and the Sechs
 | 1. Dreier und Sechser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Die Neunerreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: text_input 15, fill_in_blank 12, true_false 8, multiple_choice 7. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 2.
+Task types: text_input 13, fill_in_blank 14, true_false 8, multiple_choice 7. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 2.
 
 ## Die Fünfer- und die Zehnerreihe (The 5 and 10 times tables)
 
