@@ -487,6 +487,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 13 | Mathe | Klasse 1 | Rechnen bis 20 | 8, all drafted 2026-10-13: 17 lessons; Verdopplungs- and Nachbaraufgaben, Zahlenmauern and Rechenketten, Analogieaufgaben, Zehnerübergang plus and minus, das kleine Einspluseins, Gleichungen with <, > and =, Sachaufgaben with Frage, Rechnung, Antwort |
 | 14 | Maths | Year 1 | Numbers to 20 and adding and subtracting to 20 | 6, all drafted 2026-10-13: 12 lessons; comparing to 20 and how many more, related facts across the ten, making ten to add, back through ten to subtract, number facts to 20, the equals sign and missing numbers (7 = _ − 9) |
 | 15 | Mathe | Klasse 2 | Malaufgaben | 3, all drafted 2026-10-13: 6 lessons; equal groups and the Malaufgabe, Punktefelder read rows first (new dots array layout), Tauschaufgaben |
+| 16 | Mathe | Klasse 3 | Schriftlich rechnen | 5 of 6 drafted 2026-10-13: 10 lessons; addition without and with Übertrag, several numbers (carry 2), subtraction without and with Entbündeln (Abziehen), new written-calc component; the check skill is still to do |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
