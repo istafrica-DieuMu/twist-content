@@ -511,6 +511,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 37 | Mathe | Klasse 3 | Malnehmen und Teilen | 8 drafted 2026-10-14: mit Zehnerzahlen; Vielfache und Teiler; Punkt vor Strich and Klammern; Malaufgaben zerlegen; halbschriftlich malnehmen (Malkreuz) and teilen (mit Rest); Überschlag; Faktor, Produkt, Quotient |
 | 38 | Mathe | Klasse 3 | Schriftlich rechnen | 1 drafted 2026-10-14: schriftliche Rechnungen prüfen with Überschlag, Umkehraufgabe and typical mistakes |
 | 39 | Mathe | Klasse 1 to 3 | Uhrzeit | 6 drafted 2026-10-14: volle und halbe Stunden; Viertelstunden; fünf Minuten genau and fünf vor/nach halb; minutengenau and 13 bis 24 Uhr; Zeitpunkt und Zeitspanne; Zeiteinheiten. Setting the hands waits for clock_hands_drag; the calendar for its component |
+| 40 | Mathe | Klasse 2 and 3 | Geld | 6 drafted 2026-10-14: Euro und Cent; Geldbeträge bis 100 €; Einkaufen und Rückgeld; Kommaschreibweise; mit Kommabeträgen rechnen; Sachaufgaben mit Preisvergleich und Angeboten. Laying coins waits for the coin component |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
