@@ -491,6 +491,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 17 | Englisch | Stufe 0, Lernjahr 1, Lernjahr 2 | Zahlen, Hallo, Körper, Familie, Tiere, Schule, Sprachmuster | 8 drafted 2026-10-13: numbers to 10, Hello, body, family, animals and school things with Can I have …, please? (Stufe 0), I am / I have got / I can (Lernjahr 1), now against every day (Lernjahr 2); Englisch was behind, so de-DE takes Englisch and Deutsch topics next |
 | 18 | Deutsch | Klasse 2 | Adjektive | 3 drafted 2026-10-13: recognise with the Wie-Frage, describe more precisely, endings after der, die, das and ein, eine |
 | 19 | Deutsch | Klasse 3 | Adjektive | 4 drafted 2026-10-13: Vergleichsstufen with als and so … wie, Gegenteile with and without un-, -ig, -lich, -isch and -bar, zusammengesetzte Adjektive |
+| 20 | Deutsch | Klasse 3 | Satzglieder | 2 drafted 2026-10-13: Subjekt and Prädikat with Wer oder was?, split Prädikat, agreement; Umstellprobe, counting Satzglieder, verb in second place |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
