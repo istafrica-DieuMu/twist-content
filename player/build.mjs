@@ -52,6 +52,7 @@ const LETTERISH = /^[A-Za-zÄÖÜäöüß]{1,3}$/;
 const objectRecs = Object.fromEntries((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, o]));
 function optionText(t, o, lang) {
   if (t.option_audio === false || (t.option_audio === undefined && NO_OPTION_AUDIO.has(t.type))) return null;
+  if (o && typeof o === "object" && o.count != null) return null;
   if (o && typeof o === "object" && o.object) { const l = objectRecs[o.object].labels[lang]; return ["de", "fr"].includes(lang) ? l.split(" ").slice(1).join(" ") || l : l; }
   if (typeof o === "string" && (t.option_audio || !LETTERISH.test(o))) return o;
   return null;

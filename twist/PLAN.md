@@ -59,7 +59,9 @@ from their age. These are three separate fields, never one.
   Activity, Task; four activities (Warm-up, Learn, Practise, Check) with
   settings. Record fields and folders renamed to match (curricula/, years/,
   skills, standards).
-- Next: de-DE lessons, one model lesson per subject first.
+- Model lessons done (2026-10-13): one set per subject, Practise in three
+  stages, pictures, voice (Sulafat teaches, Puck checks) and the player.
+- Now: phase 2, every de-DE lesson. See "Phase 2: de-DE lessons" below.
 
 ## Scope
 
@@ -438,3 +440,56 @@ documents captured in C1.
    is c-mono-eng-gb, British.
 4. **Review profile.** NRW as the one profile the German teacher reviews
    first?
+
+## Phase 2: de-DE lessons
+
+Started 2026-10-13. Every placed de-DE skill gets its lesson set, written
+by hand (no generator scripts), checked by the build and played through in
+the player before it counts as drafted.
+
+Order (decided 2026-10-13): the first topic of each subject in every
+year first, so every year has real lessons early; then the remaining
+topics. Subjects: Mathe, Deutsch, Englisch. Within a topic, the
+curriculum's placement order (views/curriculum-de-DE.md). After each
+topic: stop and check in before the next.
+
+| # | Subject | Year | First topic | Skills |
+|---|---|---|---|---|
+| 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7 (2 drafted) |
+| 2 | Mathe | Klasse 2 | Zahlen bis 100 | 10 |
+| 3 | Mathe | Klasse 3 | Zahlen bis 1000 | 8 |
+| 4 | Mathe | Klasse 4 | Zahlen bis 10 000 | 2 |
+| 5 | Deutsch | Klasse 1 | Laute hören | 3 |
+| 6 | Deutsch | Klasse 2 | Nomen | 1 |
+| 7 | Deutsch | Klasse 3 | Nomen | 2 |
+| 8 | Deutsch | Klasse 4 | Die vier Fälle | 1 |
+| 9 | Englisch | Stufe 0 | Hören | 2 |
+| 10 | Englisch | Lernjahr 1 | Hören | 1 |
+| 11 | Englisch | Lernjahr 2 | Hobbys und Sport | 1 |
+
+Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
+of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
+und Teilen (decided 2026-10-13).
+
+Every task type and interaction used is documented in docs/task-types.md
+before its first lesson.
+
+Per skill: 2 to 3 lessons for a small skill, up to 6 for a large one. Each
+lesson is Warm-up (not in the very first lesson of a topic), Learn when
+something is new, Practise in three stages of 5 or 6 tasks, and a Check;
+the last lesson ends with the skill check. New pictures go into the bank
+first (assets/tools/pictures.py), then the lessons, then the narration
+(assets/tools/narration.py) and the player.
+
+Klasse 1 Mathe, topic Zahlen bis 10:
+
+| Skill | Lessons | Status |
+|---|---|---|
+| count-to-5 | 2: count to 3, count to 5 | drafted 2026-10-13, 42 tasks, played through |
+| count-to-10 | 2: count to 10 in a row, count scattered things | drafted 2026-10-13, 42 tasks, played through |
+| subitize-to-10 | 2: dice and fingers, Kraft der 5 on the ten-frame | next |
+| write-numerals-to-10 | 3: 0 to 5, 6 to 10, numeral and amount | |
+| order-to-10 | 2: in order, before and after | |
+| compare-to-10 | 3: more and fewer, the signs, using the signs | |
+| partition-to-10 | 3: split with counters, number house, all splits | |
+

@@ -23,6 +23,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
   const walk = (d) => (existsSync(d) ? readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; }) : []);
   const read = (p) => YAML.parse(readFileSync(join(T, p), "utf8"));
 
+  // Every task type in use must have a "## `type`" section in docs/task-types.md.
+  const DOCUMENTED = new Set([...readFileSync(join(T, "docs/task-types.md"), "utf8").matchAll(/^## `([a-z_]+)`/gm)].map((m) => m[1]));
+
   // ---- asset bank ----
   const objects = new Map((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, o]));
   const drawn = new Map((read("assets/drawn.yaml").components ?? []).map((o) => [o.id, o]));
@@ -149,6 +152,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (taskIds.has(t.id)) err(`${file}: duplicate task id ${t.id}`);
           taskIds.add(t.id);
           if (!TASK_TYPES.has(t.type)) err(`${file}: ${tw}: unknown task type ${t.type}`);
+          else if (!DOCUMENTED.has(t.type)) err(`${file}: ${tw}: task type ${t.type} has no section in docs/task-types.md; document it before using it`);
           if (!t.text && !t.say) err(`${file}: ${tw}: needs text or say`);
           // difficulty defaults to core
           if (t.difficulty !== undefined && !["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);
@@ -194,7 +198,8 @@ function typeMix(lessons) {
 }
 
 function checkAnswer(t, tw, file, err) {
-  const opt = (o) => (typeof o === "string" ? o : o.colour ?? o.object ?? o.drawn);
+  // A group of counted things is keyed by its count ("Wo sind 2 Bananen?" answer "2").
+  const opt = (o) => (typeof o === "string" ? o : o.count != null ? String(o.count) : o.colour ?? o.object ?? o.drawn);
   const options = (t.options ?? []).map(opt);
   switch (t.type) {
     case "multiple_choice": case "audio_choice": case "image_multiple_choice":
@@ -210,7 +215,12 @@ function checkAnswer(t, tw, file, err) {
       break;
     }
     case "true_false": if (typeof t.answer !== "boolean") err(`${file}: ${tw}: answer must be true or false`); break;
-    case "text_input": case "point_on_line": case "drag_and_drop_count": case "tap_to_count":
+    case "tap_to_count":
+      if (!t.show?.count) err(`${file}: ${tw}: tap_to_count needs show with an object count`);
+      if (!options.includes(String(t.answer))) err(`${file}: ${tw}: answer ${t.answer} is not one of the options`);
+      if (String(t.answer) !== String(t.show?.count)) err(`${file}: ${tw}: answer ${t.answer} is not the number of things shown (${t.show?.count})`);
+      break;
+    case "text_input": case "point_on_line": case "drag_and_drop_count":
       if (t.answer === undefined) err(`${file}: ${tw}: needs an answer`);
       if (t.type === "drag_and_drop_count" && !(t.answer <= t.total_items)) err(`${file}: ${tw}: answer is more than total_items`);
       break;

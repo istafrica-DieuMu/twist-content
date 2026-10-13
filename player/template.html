@@ -59,7 +59,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .spk{flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--plum);background:#fff;cursor:pointer;display:grid;place-items:center}
 .spk svg{width:26px;height:26px}.spk.big{width:96px;height:96px;margin:8px auto}.spk.big svg{width:48px;height:48px}
 .spk.playing{background:var(--accent-soft)}
-.visual{display:flex;justify-content:center;align-items:center;min-height:40px}
+.visual{display:flex;justify-content:center;align-items:center;min-height:40px;width:100%}
 .visual img{width:150px;height:150px;object-fit:contain}
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:12px;margin-top:auto}
 .opt{position:relative;border:3px solid var(--plum);background:#fff;border-radius:20px;min-height:76px;font:700 30px Andika,sans-serif;color:var(--plum);cursor:pointer;display:grid;place-items:center;padding:8px;box-shadow:0 4px 0 var(--plum);transition:transform .08s}
@@ -120,6 +120,15 @@ svg text{font-family:Andika,sans-serif}
 .pairs{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:auto}
 .bins{display:grid;gap:12px;margin-top:auto}
 .bin{border:3px dashed var(--plum);border-radius:20px;min-height:220px;padding:8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;cursor:pointer}
+.grp{width:100%}
+.grp .it{display:inline-grid;place-items:center;position:relative}
+.grp .it img{width:100%;height:100%;object-fit:contain}
+.grp.row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}
+.grp.scat{position:relative}
+.grp.scat .it{position:absolute}
+.opt .grp.scat{width:100%}
+.it.tapped::after{content:attr(data-n);position:absolute;right:-4px;top:-6px;min-width:26px;height:26px;border-radius:13px;background:var(--accent);color:#fff;font:700 17px/26px Andika,sans-serif;text-align:center;border:2px solid #fff}
+.it.tapped img{opacity:.55}
 .list{display:flex;flex-direction:column;gap:10px;width:100%}
 .list .btn{font-size:19px;text-align:left;display:flex;justify-content:space-between}
 </style>
@@ -176,8 +185,30 @@ const lines_sound = (id) => { const x = id.split(".")[1]; return x.endsWith(":")
 const phrase = (g) => { const list = D.phrases.de?.[g] ?? []; return list[Math.floor(Math.random() * list.length)]; };
 
 /* ---------- pictures and drawn components ---------- */
-function pic(o) {
+// "Scattered" groups sit on a loose grid: one cell each, some cells empty,
+// a small fixed offset per cell. Nothing overlaps, and a group looks the
+// same every time, so it can be counted.
+const SCATTER_GRID = { 4: [3, 2, [0, 4, 2, 3, 1, 5]], 6: [3, 3, [0, 5, 7, 2, 3, 8, 1, 6, 4]], 12: [4, 3, [0, 6, 11, 3, 9, 1, 4, 10, 7, 2, 8, 5]] };
+const JITTER = [[.12, -.10], [-.10, .08], [.08, .12], [-.12, -.06], [.10, -.12], [-.08, .10], [.06, .08], [-.06, -.12], [.12, .06], [-.12, .04], [.04, .10], [-.04, -.08]];
+function group(o, opts = {}) {
+  const one = pic({ ...o, count: undefined });
+  const n = o.count, small = opts.small;
+  if (o.layout === "scattered") {
+    const [cols, rows, order] = n <= 4 ? SCATTER_GRID[4] : n <= 6 ? SCATTER_GRID[6] : SCATTER_GRID[12];
+    const W = small ? 96 : 330, H = small ? 110 : 240, cw = W / cols, ch = H / rows, size = Math.floor(Math.min(cw, ch) * 0.74);
+    const items = Array.from({ length: n }, (_, i) => {
+      const cell = order[i], c = cell % cols, r = Math.floor(cell / cols), [jx, jy] = JITTER[cell];
+      const x = (c + 0.5 + jx) * cw - size / 2, y = (r + 0.5 + jy) * ch - size / 2;
+      return `<span class="it" data-i="${i}" style="left:${(100 * x) / W}%;top:${(100 * y) / H}%;width:${size}px;height:${size}px">${one}</span>`;
+    });
+    return `<div class="grp scat" style="height:${H}px;max-width:${W}px;margin:0 auto">${items.join("")}</div>`;
+  }
+  const size = small ? (n > 6 ? 20 : n > 3 ? 24 : 30) : n > 5 ? 52 : n > 3 ? 62 : 80;
+  return `<div class="grp row">${Array.from({ length: n }, (_, i) => `<span class="it" data-i="${i}" style="width:${size}px;height:${size}px">${one}</span>`).join("")}</div>`;
+}
+function pic(o, opts) {
   if (!o) return "";
+  if (o.count != null && o.object) return group(o, opts);
   if (o.drawn === "colour-swatch") return swatch(o.colour);
   const f = o.colour && D.pics.includes(`${o.object}.${o.colour}.png`) ? `${o.object}.${o.colour}.png` : `${o.object}.png`;
   return `<img src="${A}objects/${f}" alt="${esc(D.objects[o.object]?.de ?? o.object)}">`;
@@ -424,12 +455,12 @@ function renderTask(step) {
 }
 function optEl(o, t, i) {
   const b = document.createElement("button"); b.className = "opt";
-  b.innerHTML = typeof o === "string" ? esc(o) : show(o);
+  b.innerHTML = typeof o === "string" ? esc(o) : o.count != null ? pic(o, { small: true }) : show(o);
   const src = t._options?.[i];
   if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
   return b;
 }
-const keyOf = (o) => typeof o === "string" ? o : (o.colour ?? o.object ?? o.drawn);
+const keyOf = (o) => typeof o === "string" ? o : o.count != null ? String(o.count) : (o.colour ?? o.object ?? o.drawn);
 function choice({ t, body, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const grid = document.createElement("div"); grid.className = "opts";
@@ -551,6 +582,13 @@ const TYPES = {
       if (!ok && !st.over) setTimeout(() => { right.forEach((r, i) => { if (!r) { items[i].classList.remove("bad"); place[i] = null; } }); draw(); }, 1000);
     });
     draw();
+  },
+  tap_to_count({ t, body, vis, answer, st }) {
+    // Tap each picture once (it gets its number), then choose how many.
+    vis.innerHTML = pic(t.show); vis.style.width = "100%";
+    let n = 0;
+    vis.querySelectorAll(".it").forEach((it) => it.onclick = () => { if (st.over || it.classList.contains("tapped")) return; n++; it.dataset.n = n; it.classList.add("tapped"); });
+    choice({ t, body, vis: { set innerHTML(v) {} }, answer, st });
   },
   _unknown({ t, foot, body }) { body.insertAdjacentHTML("beforeend", `<div class="note">Typ ${esc(t.type)} ist im Player noch nicht umgesetzt.</div>`); nextBtn(foot); },
 };

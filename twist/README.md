@@ -10,7 +10,8 @@ Plan and status: [PLAN.md](PLAN.md). Rules: [AGENTS.md](AGENTS.md).
 
 The chain: **Curriculum, Subject, Year, Topic, Skill, Lesson, Activity,
 Task**, named for teachers and children in
-[docs/lesson-anatomy.md](docs/lesson-anatomy.md).
+[docs/lesson-anatomy.md](docs/lesson-anatomy.md). Every task type and the
+interactions it supports: [docs/task-types.md](docs/task-types.md).
 
 Two curricula for now, on one shared library: **de-DE** (Germany, KMK) and
 **en-GB** (England, EYFS and National Curriculum). Skills per year and

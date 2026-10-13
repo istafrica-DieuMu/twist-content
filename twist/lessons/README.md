@@ -104,7 +104,9 @@ when the child taps it:
     - { object: strawberry, bin: red }
 ```
 
-Type-specific fields follow the Twist schemas: `frame` and a list `answer`
+Every task type and interaction, with its fields and an example, is in
+[../docs/task-types.md](../docs/task-types.md): the one source of truth
+for types. Type-specific fields follow the Twist schemas: `frame` and a list `answer`
 for fill_in_blank, `total_items` for drag_and_drop_count, `char` for tracing,
 `expected_text` for speak, `spans` for highlight_in_text. Pictures, drawn
 components and sounds are named by their asset bank id

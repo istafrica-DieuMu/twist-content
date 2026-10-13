@@ -20,5 +20,10 @@ The root AGENTS.md applies. On top of it:
   change the records or the script, never the views.
 - **Every skill maps to the framework standards that ask for
   it**, or is marked `enrichment` with a reason.
+- **Task types live in docs/task-types.md.** Before a lesson uses a new
+  task type or a new interaction of an existing one, add it there with an
+  example; the build rejects undocumented types.
+- **Lessons are written by hand.** No scripts that template tasks, hints
+  or lesson text. Tools may check, render, draw and speak records.
 - **Never write into schoolido-learning.** Today's Twist modules are
   referenced by module id in a lesson's `twist_reuse` field.

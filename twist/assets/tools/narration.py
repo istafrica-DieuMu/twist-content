@@ -89,6 +89,8 @@ def option_texts(t, objects, lang):
         return []
     out = []
     for o in t.get("options", []):
+        if isinstance(o, dict) and "count" in o:
+            continue  # "Wo sind 2 Bananen?": hearing the group would give the answer
         if isinstance(o, dict) and "object" in o:
             out.append(objects[o["object"]]["labels"][lang].split(" ", 1)[-1] if lang in ("de", "fr") else objects[o["object"]]["labels"][lang])
         elif isinstance(o, str) and (t.get("option_audio") or not LETTERISH.fullmatch(o)):
