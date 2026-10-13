@@ -92,6 +92,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       else if (md.year !== placed.stage) err(`${file}: metadata.year is ${md.year} but ${d.curriculum} places the skill in ${placed.stage}`);
     }
     for (const k of ["year", "topic", "ages", "lesson_minutes", "builds_on", "forms", "misconceptions", "status", "version"]) if (md[k] === undefined) err(`${file}: metadata has no ${k}`);
+    for (const a of md.ages ?? []) if (!["4-5", "6-7", "8-10"].includes(a)) err(`${file}: metadata ages ${a} is not a band (4-5, 6-7 or 8-10)`);
     if (!d.title?.de || !d.title?.en) err(`${file}: title needs de and en`);
     // narration.py reads these files with PyYAML, which rejects a plain "?" inside a { } title.
     // House style: no em or en dashes in lesson text (the minus sign − is a different character).

@@ -8,23 +8,23 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | narration made |
 |---|---|---|---|---|
-| de-DE | Mathe | 56% (113 / 203) | 41% (12 / 29) | 100% (10499 / 10499) |
+| de-DE | Mathe | 59% (119 / 203) | 41% (12 / 29) | 100% (10499 / 10499) |
 | de-DE | Deutsch | 36% (62 / 174) | 35% (33 / 94) | 100% (5532 / 5532) |
-| de-DE | Englisch | 41% (24 / 58) | 45% (17 / 38) | 100% (2202 / 2206) |
-| **de-DE** | **all** | **46% (199 / 435)** | **39% (62 / 161)** | **100% (18233 / 18238)** |
-| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 94% (5180 / 5492) |
-| en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 87% (1861 / 2133) |
+| de-DE | Englisch | 41% (24 / 58) | 45% (17 / 38) | 100% (2206 / 2206) |
+| **de-DE** | **all** | **47% (205 / 435)** | **39% (62 / 161)** | **100% (18237 / 18238)** |
+| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 99% (5455 / 5492) |
+| en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 99% (2107 / 2133) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 100% (539 / 539) |
-| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **93% (7581 / 8164)** |
+| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **99% (8101 / 8164)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 205 files (196 priced) | $4.21 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 25838 clips, 32.0 h | about $39 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 25838 clips | about $20 | estimated the same way |
-| **Total** | | | **about $64** | |
+| Narration | google/gemini-3.8-flash-tts | 26362 clips, 32.7 h | about $40 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 26362 clips | about $21 | estimated the same way |
+| **Total** | | | **about $65** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $376 in total on 2026-10-13 ($43 that day, $53 that week; limit $450). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -35,17 +35,17 @@ Per voice:
 | gemini-puck | 2141 | 2103 (98%) | 0 | 124 min | $4.27 |
 | gemini-puck-en | 889 | 863 (97%) | 64 | 50 min | $1.77 |
 | gemini-sulafat | 16111 | 15835 (98%) | 0 | 1205 min | $37 |
-| gemini-sulafat-en | 6697 | 6544 (98%) | 524 | 537 min | $16 |
+| gemini-sulafat-en | 7221 | 7059 (98%) | 0 | 583 min | $18 |
 
 ## de-DE
 
-199 of 435 placed skills drafted (46%): 199 lesson sets, 413 lessons, 8949 tasks. Narration so far about $42; 5 clips still to make.
+205 of 435 placed skills drafted (47%): 205 lesson sets, 425 lessons, 9201 tasks. Narration so far about $42; 1 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 29 / 41 | 5 / 51 |  | 34 / 92 |
-| klasse-2 | 37 / 63 | 22 / 46 |  | 59 / 109 |
-| klasse-3 | 29 / 51 | 23 / 42 |  | 52 / 93 |
+| klasse-2 | 40 / 63 | 22 / 46 |  | 62 / 109 |
+| klasse-3 | 32 / 51 | 23 / 42 |  | 55 / 93 |
 | klasse-4 | 18 / 48 | 12 / 35 |  | 30 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 9 / 28 | 9 / 28 |
@@ -88,7 +88,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.02 |
 | klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.35 |
 | klasse-2 | Mathe | Sachaufgaben | 0 / 5 |  |  |
-| klasse-2 | Mathe | Größen | 2 / 12 started | 4 |  |
+| klasse-2 | Mathe | Größen | 5 / 12 started | 10 |  |
 | klasse-2 | Mathe | Geometrie | 0 / 7 |  |  |
 | klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 0 / 4 |  |  |
 | klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.38 |
@@ -120,7 +120,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.29 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.17 |
 | klasse-3 | Mathe | Schriftlich rechnen | 14 / 15 started | 28 | $1.37 |
-| klasse-3 | Mathe | Größen | 1 / 12 started | 2 |  |
+| klasse-3 | Mathe | Größen | 4 / 12 started | 8 |  |
 | klasse-3 | Mathe | Geometrie | 0 / 7 |  |  |
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 0 / 3 |  |  |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.39 |
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $18; 583 clips still to make.
+79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $19; 64 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -244,8 +244,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.63 |
 | reception | Maths | Division | 0 / 1 |  |  |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $0.78 |
-| reception | English | Phonics | 7 / 12 started | 14 | $0.91 |
-| reception | English | Reading words | 2 / 3 started | 4 | $0.02 |
+| reception | English | Phonics | 7 / 12 started | 14 | $1.24 |
+| reception | English | Reading words | 2 / 3 started | 4 | $0.27 |
 | reception | English | Understanding stories | 0 / 2 |  |  |
 | reception | English | Spelling | 0 / 1 |  |  |
 | reception | English | Stories and poems | 0 / 2 |  |  |
@@ -258,7 +258,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-1 | Maths | Word problems | 1 / 1 done | 2 | $0.35 |
 | year-1 | Maths | Numbers to 20 | 1 / 1 done | 2 | $0.23 |
 | year-1 | Maths | Adding and subtracting to 20 | 5 / 5 done | 10 | $1.10 |
-| year-1 | Maths | Counting in tens | 1 / 1 done | 2 | $0.02 |
+| year-1 | Maths | Counting in tens | 1 / 1 done | 2 | $0.20 |
 | year-1 | Maths | Money | 0 / 1 |  |  |
 | year-1 | Maths | Time | 0 / 1 |  |  |
 | year-1 | Maths | Telling the time | 0 / 1 |  |  |
@@ -286,8 +286,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.30 |
 | year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.69 |
 | year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.47 |
-| year-2 | Maths | Word problems | 1 / 2 started | 2 | $0.00 |
-| year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.01 |
+| year-2 | Maths | Word problems | 1 / 2 started | 2 | $0.40 |
+| year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.22 |
 | year-2 | Maths | Money | 0 / 4 |  |  |
 | year-2 | Maths | Shapes | 0 / 2 |  |  |
 | year-2 | Maths | Patterns | 0 / 1 |  |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 236 | $0.21 | $49 |
+| de-DE | 230 | $0.20 | $47 |
 | en-GB | 404 | $0.25 | $100 |
 
 Pictures: 156 of 156 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
