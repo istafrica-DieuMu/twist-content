@@ -94,6 +94,8 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     for (const k of ["year", "topic", "ages", "lesson_minutes", "builds_on", "forms", "misconceptions", "status", "version"]) if (md[k] === undefined) err(`${file}: metadata has no ${k}`);
     if (!d.title?.de || !d.title?.en) err(`${file}: title needs de and en`);
     // narration.py reads these files with PyYAML, which rejects a plain "?" inside a { } title.
+    // House style: no em or en dashes in lesson text (the minus sign − is a different character).
+    readFileSync(join(T, file), "utf8").split("\n").forEach((l, i) => { if (!/^\s*#/.test(l) && /[\u2013\u2014]/.test(l)) warn(`${file}:${i + 1}: em or en dash in lesson text`); });
     for (const m of readFileSync(join(T, file), "utf8").matchAll(/^\s*title: \{[^}\n]*\}/gm)) if (/(de|en|fr): [^"\s][^,}]*\?/.test(m[0])) err(`${file}: quote titles that contain a question mark (${m[0].trim()})`);
     const xt = Object.keys(d.title ?? {}).filter((k) => !["de", "en", "fr"].includes(k));
     if (xt.length) err(`${file}: title has unexpected keys (${xt.join(", ")}); quote titles that contain commas`);
