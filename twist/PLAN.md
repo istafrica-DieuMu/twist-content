@@ -494,6 +494,7 @@ Second topics, started 2026-10-13, in the same subject and year order:
 | 20 | Deutsch | Klasse 3 | Satzglieder | 2 drafted 2026-10-13: Subjekt and Prädikat with Wer oder was?, split Prädikat, agreement; Umstellprobe, counting Satzglieder, verb in second place |
 | 21 | Deutsch | Klasse 4 | Verben | 2 drafted 2026-10-13: Aufforderungsform for du, ihr and Sie with e/i change and split Vorsilben; trennbare and nicht trennbare Verben, Perfekt with ge in the middle or without ge |
 | 22 | Deutsch | Klasse 4 | Satzglieder | 2 drafted 2026-10-13: Akkusativobjekt (Wen oder was?) and Dativobjekt (Wem?); Ortsangabe (Wo? Wohin? Woher?) and Zeitangabe (Wann? Wie lange?) |
+| 23 | Deutsch | Klasse 4 | Sätze verbinden | 1 drafted 2026-10-13: und, oder, aber with the comma before aber; weil, dass, wenn with the verb at the end and the comma |
 
 Klasse 3 starts with Zahlen bis 1000, as the school year does; the words
 of multiplying and dividing (mult-div.vocabulary) moved to open Malnehmen
@@ -595,5 +596,5 @@ en-GB is its own step later.
 | 16 | French | Learning year 2 | Listening | 1, drafted 2026-10-13: short conversations, 2 lessons |
 | 17 | French | Learning year 3 | Hobbies and sport | 1, drafted 2026-10-13: 2 lessons, with jouer au and jouer de la, j'aime and je sais |
 | 18 | French | Learning year 4 | Language patterns | 1, drafted 2026-10-13: now and every day (en train de, tous les jours), 2 lessons |
-| 19 | English | Reception | Phonics | 4 drafted 2026-10-13: s a t p, i n m d, g o c k and ck e u r, letter to sound and blending CVC words, 8 lessons; 14 English phonemes added to the sound bank |
+| 19 | English | Reception | Phonics | 5 drafted 2026-10-13: s a t p, i n m d, g o c k, ck e u r and h b f l with ff ll ss, letter to sound and blending CVC words, 10 lessons; 18 English phonemes added to the sound bank |
 
