@@ -177,6 +177,11 @@ Interactions:
 | Which Bindewort fits | "Es regnet, _ wir gehen trotzdem raus.", options aber, und, oder (or weil, dass, wenn) | sentences-conjunctions |
 | Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
 
+An option's key (what `answer` names) is the string itself, or for a
+picture its count, its colour, or its object, in that order. When two
+options would share a key (a yellow skirt and a yellow dress), give each
+an explicit `key` (`{ object: skirt, colour: yellow, key: skirt-yellow }`).
+
 Twist: `options` become objects with `label`; `answer` becomes the
 correct option's id.
 

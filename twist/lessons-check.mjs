@@ -219,7 +219,7 @@ function typeMix(lessons) {
 
 function checkAnswer(t, tw, file, err) {
   // A group of counted things is keyed by its count ("Wo sind 2 Bananen?" answer "2").
-  const opt = (o) => (typeof o === "string" ? o : o.count != null ? String(o.count) : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.text ?? o.colour ?? o.object ?? o.drawn);
+  const opt = (o) => (typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.text ?? o.colour ?? o.object ?? o.drawn);
   const options = (t.options ?? []).map(opt);
   switch (t.type) {
     case "multiple_choice": case "audio_choice": case "image_multiple_choice":
@@ -242,6 +242,8 @@ function checkAnswer(t, tw, file, err) {
       break;
     case "text_input": case "point_on_line": case "drag_and_drop_count":
       if (t.answer === undefined) err(`${file}: ${tw}: needs an answer`);
+      // The keypad has only digits (up to 8), so a typed answer is digits only: "70000", never "70 000".
+      if (t.type === "text_input" && !/^\d{1,8}$/.test(String(t.answer))) err(`${file}: ${tw}: text_input answer must be up to 8 digits, no spaces`);
       if (t.type === "drag_and_drop_count" && !(t.answer <= t.total_items)) err(`${file}: ${tw}: answer is more than total_items`);
       if (t.type === "point_on_line") {
         const nl = t.show ?? {}, from = nl.from ?? 0, to = nl.to ?? 20, step = nl.step ?? 1;
