@@ -113,6 +113,9 @@ Interactions:
 | The rule of a sequence | "31, 41, 51, 61", options +1, +10, −10 with `option_audio: false` | sequences-to-100 |
 | Which number does not fit | "10, 20, 30, 45, 50", options 20, 45, 50 | sequences-to-100 |
 | Number riddle | "Größer als 30. Kleiner als 40. Die Einerziffer ist 8.", options 38, 48, 83 | number-puzzles-to-100 |
+| Build a compound from two pictures | "Apfel und Baum. Welches Wort entsteht?" over `{ objects: [apple, tree] }`, options Apfelbaum, Baumapfel, Apfelhaus | compound-nouns |
+| What a compound means | "Was ist ein Baumhaus?", options ein Haus, ein Baum | compound-nouns |
+| Article of a compound | "der, die oder das? Baumhaus" over the two pictures; the last word decides | compound-nouns |
 | What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
 | Round to tens or hundreds | "Runde 471 auf Hunderter." over a number line with the arrow at 471, options 400, 500, 470 | round-to-1000 |
 | Which clue makes the riddle unique | options are clue sentences; one names the missing digit | number-puzzles-to-1000 |
@@ -226,6 +229,7 @@ Interactions:
 | Double by tens and ones | "Das Doppelte von 32", frame "60 + _ = _" | double-halve-to-100 |
 | Split into place values | "Zerlege 683.", frame "683 = _ + _ + _" | place-value-to-1000 |
 | Round two ways | "Runde 738.", frame "auf Zehner: _   auf Hunderter: _" | round-to-1000 |
+| Join or split a compound | "Hand + Schuh = _" (options include HandSchuh for the one-capital rule); "Schneemann = _ + _" | compound-nouns |
 
 ## `text_input`
 
@@ -347,6 +351,8 @@ Interactions:
 | Number with its number word | 17 ↔ siebzehn, 70 ↔ siebzig, 71 ↔ einundsiebzig, with `option_audio: false` (hearing the cards would give the pairs) | read-write-to-100 |
 | Rhyming pairs | Haus ↔ Maus, Tisch ↔ Fisch, Hose ↔ Rose; every picture says its word | rhymes |
 | Same first sound | Sonne ↔ Socke, Fisch ↔ Frosch, Ball ↔ Banane | initial-sound |
+| First word with its compound | a tree picture ↔ Baumhaus; the picture says its word | compound-nouns |
+| Compound with its last part or its article | Regenschirm ↔ Schirm; Haustür ↔ die, with `option_audio: false` | compound-nouns |
 
 Twist: `pairs[].left` and `right` become `{ label, image_url }`; `say`
 becomes the narration of that side.
