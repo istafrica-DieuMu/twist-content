@@ -43,7 +43,7 @@ for amounts:
 |---|---|---|
 | `dots` | `count`, `layout: dice / five-structure / row / scattered`, `colour_split: [3, 2]` | dice pips (1 to 6; 7 to 10 as two dice), rows of five (Kraft der 5), a row, or scattered dots |
 | `dots` with `groups` | `groups: [4, 3]`, `layout: row / dice` | two amounts to compare: in rows, one under the other and lined up (red over blue, so pairs show); as dice, side by side |
-| `ten-frame` | `filled`, `colour_split: [5, 2]`, `cross: 2` | a 2 by 5 frame with counters; `cross` crosses out the last counters (taken away) |
+| `ten-frame` | `filled`, `colour_split: [5, 2]`, `cross: 2` | a 2 by 5 frame with counters; `cross` crosses out the last counters (taken away), or the first with `cross_from: start` |
 | `zwanzigerfeld` | `filled: [8, 5]`, `move` | two ten-frames |
 | `number-house` | `roof`, `rows: [[3, null]]` | a roof number over pairs of cells, `null` is a gap |
 | `hundred-field` | `filled`, `colour_split` | the Hunderterfeld: 10 by 10 dots with gaps after five each way |
@@ -100,6 +100,8 @@ Interactions:
 | Plus or minus? | a story in `say`, options plus, minus | sub-meaning |
 | The story for a sum | "Welche Geschichte passt zu 5 − 1?", options are short stories | add-meaning, sub-meaning |
 | Umkehraufgabe or family member | options are whole sums, one is the Tauschaufgabe | inverse |
+| The answer sentence | a story and its sum, "Welcher Antwortsatz passt?", options are short sentences with the right number in the wrong thing, a wrong number, and the right one | picture-stories |
+| What the picture is asking | a picture with a story, "Was sollst du herausfinden?", options are short questions | picture-stories |
 | Missing part | "7 = 3 + _" over a split ten-frame, options 3, 4, 5 | partition-to-10 |
 | Missing part or whole (England) | "The whole is five. One part is four. What is the other part?" over `{ drawn: part-whole, whole: 5, parts: [4, null] }` | en-GB partition-to-10 |
 | How many more to make ten | over a ten frame with 7, options 2, 3, 4 | en-GB partition-to-10 |

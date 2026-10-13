@@ -255,8 +255,8 @@ function zwanziger(a, b, moved = 0) {
   for (let i = 0; i < b - moved; i++) bot[i] = { fill: "#1E88E5" };
   return field([top, bot]);
 }
-// cross: the last k counters are crossed out (taken away).
-function tenFrame(n, split, cross = 0) { const col = (i) => ({ fill: split && i >= split[0] ? "#1E88E5" : "#E53935", cls: i >= n - cross ? "gone" : "" }); const r1 = Array(5).fill(null).map((_, i) => i < n ? col(i) : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? col(i + 5) : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
+// cross: the last k counters are crossed out (taken away); fromStart crosses the first k.
+function tenFrame(n, split, cross = 0, fromStart = false) { const col = (i) => ({ fill: split && i >= split[0] ? "#1E88E5" : "#E53935", cls: (fromStart ? i < cross : i >= n - cross) ? "gone" : "" }); const r1 = Array(5).fill(null).map((_, i) => i < n ? col(i) : null), r2 = Array(5).fill(null).map((_, i) => i + 5 < n ? col(i + 5) : null); return field([r1.concat(Array(5).fill(null)).slice(0, 5), r2.slice(0, 5)]).replace(/viewBox="0 0 330/, 'viewBox="0 0 170'); }
 function house(roof, rows) {
   // More than four floors get shorter floors, so a whole house fits the screen.
   const rh = rows.length > 4 ? 34 : 52, fs = rows.length > 4 ? 24 : 30;
@@ -388,7 +388,7 @@ function drawn(o, ctx = {}) {
   switch (o.drawn) {
     case "dots": return dots(o, ctx.small);
     case "zwanzigerfeld": return zwanziger(o.filled[0], o.filled[1], ctx.moved ?? 0);
-    case "ten-frame": return tenFrame(o.filled, o.colour_split, o.cross);
+    case "ten-frame": return tenFrame(o.filled, o.colour_split, o.cross, o.cross_from === "start");
     case "number-house": return house(o.roof, o.rows);
     case "part-whole": return partWhole(o.whole, o.parts);
     case "hundred-field": return hundredField(o.filled, o.colour_split);
