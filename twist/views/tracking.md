@@ -24,14 +24,14 @@ Per voice:
 
 ## de-DE
 
-124 of 435 placed skills drafted (29%): 124 lesson sets, 263 lessons, 5799 tasks. Narration so far about $21; 4118 clips still to make.
+126 of 435 placed skills drafted (29%): 126 lesson sets, 267 lessons, 5883 tasks. Narration so far about $21; 4118 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 28 / 41 | 5 / 51 |  | 33 / 92 |
 | klasse-2 | 23 / 63 | 9 / 46 |  | 32 / 109 |
 | klasse-3 | 19 / 51 | 10 / 42 |  | 29 / 93 |
-| klasse-4 | 5 / 48 | 8 / 35 |  | 13 / 83 |
+| klasse-4 | 5 / 48 | 10 / 35 |  | 15 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 6 / 28 | 6 / 28 |
 | lernjahr-2 |  |  | 2 / 16 | 2 / 16 |
@@ -148,8 +148,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Zeitformen | 3 / 3 done | 6 | $0.71 |
 | klasse-4 | Deutsch | Verben | 2 / 2 done | 4 |  |
 | klasse-4 | Deutsch | Satzglieder | 2 / 2 done | 4 |  |
-| klasse-4 | Deutsch | Sätze verbinden | 0 / 1 |  |  |
-| klasse-4 | Deutsch | Zeichensetzung | 0 / 1 |  |  |
+| klasse-4 | Deutsch | Sätze verbinden | 1 / 1 done | 2 |  |
+| klasse-4 | Deutsch | Zeichensetzung | 1 / 1 done | 2 |  |
 | klasse-4 | Deutsch | Besondere Laute | 0 / 2 |  |  |
 | klasse-4 | Deutsch | Groß- und Kleinschreibung | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Fehler berichtigen | 0 / 1 |  |  |
@@ -204,11 +204,11 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-71 of 483 placed skills drafted (15%): 71 lesson sets, 145 lessons, 3132 tasks. Narration so far about $7.77; 4061 clips still to make.
+72 of 483 placed skills drafted (15%): 72 lesson sets, 147 lessons, 3169 tasks. Narration so far about $7.77; 4061 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
-| reception | 13 / 14 | 8 / 32 |  | 21 / 46 |
+| reception | 13 / 14 | 9 / 32 |  | 22 / 46 |
 | year-1 | 10 / 29 | 3 / 32 |  | 13 / 61 |
 | year-2 | 9 / 53 | 2 / 29 |  | 11 / 82 |
 | year-3 | 10 / 50 | 2 / 20 |  | 12 / 70 |
@@ -229,7 +229,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.01 |
 | reception | Maths | Division | 0 / 1 |  |  |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $0.79 |
-| reception | English | Phonics | 4 / 12 started | 8 | $0.01 |
+| reception | English | Phonics | 5 / 12 started | 10 | $0.01 |
 | reception | English | Reading words | 0 / 3 |  |  |
 | reception | English | Understanding stories | 0 / 2 |  |  |
 | reception | English | Spelling | 0 / 1 |  |  |
@@ -470,7 +470,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 311 | $0.25 | $77 |
-| en-GB | 412 | $0.24 | $99 |
+| de-DE | 309 | $0.24 | $75 |
+| en-GB | 411 | $0.24 | $98 |
 
 Pictures: 130 of 130 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

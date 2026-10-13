@@ -174,6 +174,7 @@ Interactions:
 | Name the Satzglied | "Was ist „eine Geschichte“?", options Akkusativobjekt, Dativobjekt, Subjekt; or Ortsangabe, Zeitangabe | sentences-objects, sentences-place-time |
 | Which English article | "_ orange" over the picture, options a, an; or "two _" over a group, options dogs, dog, a dog | en-plurals-articles |
 | Which reply fits | the voice asks "Do you like milk?" after saying in German whether you like it, options Yes, I do. / Yes, I like. / No, I don't. | en-food |
+| Which Bindewort fits | "Es regnet, _ wir gehen trotzdem raus.", options aber, und, oder (or weil, dass, wenn) | sentences-conjunctions |
 | Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
 
 Twist: `options` become objects with `label`; `answer` becomes the
@@ -318,6 +319,8 @@ Interactions:
 | Noun ending | "die Ehrlich_", options heit, keit, ung | noun-endings |
 | Missing grapheme | over a bird picture, frame "b_rd", options ir, ou, ay | en-GB new-graphemes |
 | Article in a case | "Ich gebe _ Katze _ Futter.", options der, die, das, dem | noun-cases |
+| The punctuation mark in a gap | "Der Hund ist klein_ aber er bellt laut.", options , . ! (also ! . ? after an Aufforderung) | sentences-conjunctions, verbs-imperative |
+| The ending a short word takes | "do_" for doll, options ll, l, ff; "ro_" for rock, options ck, c, g | en-GB phonics-ck-e-u-r, phonics-h-b-f-l |
 
 ## `text_input`
 
@@ -506,6 +509,7 @@ Interactions:
 | A sequence in steps | 38, 18, 28, 48 into tens steps | sequences-to-100 |
 | Steps of a story pattern | the hero's journey: leaves home, goes on a journey, faces a big challenge, comes home changed | en-GB themes-conventions |
 | Point, evidence, explain | three sentences of an answer into order | en-GB justify-views |
+| The part after weil, dass or wenn | the whole sentence is spoken, the cards are the second part ("weil", "er", "Hunger", "hat"); the verb goes last, `option_audio: false` | sentences-conjunctions |
 | Umstellprobe | the sentence is spoken, its Satzglieder are cards, "Beginne mit „Am Morgen“": the named Satzglied first, the verb second (Am Morgen, trinkt, Opa, einen Kaffee); with a split Prädikat the second part goes last, `option_audio: false` | sentences-move-parts |
 
 ## Option audio
