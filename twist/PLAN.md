@@ -562,4 +562,5 @@ en-GB is its own step later.
 | 11 | English | Year 2 | Reading words | 2, both drafted 2026-10-13: reading fluently (words flash, odd word in a sentence) and suffixes, 4 lessons |
 | 12 | English | Year 3 | Reading words | 2, both drafted 2026-10-13: prefixes and root words, exception words, 4 lessons |
 | 13 | English | Year 4 | Stories and poems | 1, drafted 2026-10-13: themes and conventions, 2 lessons, every story written for Twist |
+| 14 | English | Year 5 | Information texts | 2, both drafted 2026-10-13: finding and presenting information, fact and opinion, 4 lessons |
 

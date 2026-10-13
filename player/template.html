@@ -56,6 +56,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .body{flex:1;overflow:auto;padding:12px 20px 8px;display:flex;flex-direction:column;gap:14px}
 .prompt{display:flex;gap:12px;align-items:flex-start}
 .prompt .t{font-size:24px;line-height:1.25;font-weight:700;flex:1}
+.prompt .t.passage,.word.passage{font-size:16px!important;line-height:1.45;font-weight:500;white-space:pre-line;text-align:left}
 .spk{flex:none;width:52px;height:52px;border-radius:50%;border:3px solid var(--plum);background:#fff;cursor:pointer;display:grid;place-items:center}
 .spk svg{width:26px;height:26px}.spk.big{width:96px;height:96px;margin:8px auto}.spk.big svg{width:48px;height:48px}
 .spk.playing{background:var(--accent-soft)}
@@ -396,7 +397,7 @@ function drawn(o, ctx = {}) {
   }
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }
-const show = (o, ctx) => !o ? "" : o.objects ? `<div class="pairview">${o.objects.map((id, i) => `<span class="pv" data-i="${i}">${pic({ object: id })}</span>`).join("")}</div>` : o.drawn ? drawn(o, ctx) : o.text != null ? `<span style="font:700 40px Andika,sans-serif">${esc(o.text)}</span>` : pic(o);
+const show = (o, ctx) => !o ? "" : o.objects ? `<div class="pairview">${o.objects.map((id, i) => `<span class="pv" data-i="${i}">${pic({ object: id })}</span>`).join("")}</div>` : o.drawn ? drawn(o, ctx) : o.text != null ? `<span style="font:700 ${String(o.text).length > 14 ? 17 : String(o.text).length > 5 ? 26 : 40}px Andika,sans-serif">${esc(o.text)}</span>` : pic(o);
 // A "_" in screen text is a gap to fill: drawn as a box, never as an underscore.
 const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?</span>');
 
@@ -460,7 +461,7 @@ function renderLearn(step) {
   const { body, foot } = frameUI(step), s = step.s;
   const vis = document.createElement("div"); vis.className = "visual"; vis.innerHTML = show(s.show); body.appendChild(vis);
   const cardShown = ["letter-card", "word-card", "syllable-arcs"].includes(s.show?.drawn);
-  if (s.text && !set.no_reading && !cardShown) { const t = document.createElement("div"); t.className = "word"; t.style.fontSize = "40px"; t.innerHTML = withGaps(s.text); body.appendChild(t); }
+  if (s.text && !set.no_reading && !cardShown) { const t = document.createElement("div"); t.className = s.text.includes("\n") || s.text.length > 60 ? "word passage" : "word"; t.style.fontSize = t.className === "word" ? (s.text.length > 24 ? "26px" : "40px") : ""; t.innerHTML = withGaps(s.text); body.appendChild(t); }
   const srcs = [...s._audio, s._sound].filter(Boolean);
   const sp = spk(srcs, "big"); body.appendChild(sp);
   if (s._sound) { const b = document.createElement("button"); b.className = "sound"; b.innerHTML = SPK + esc(lines_sound(s.sound)); b.onclick = () => play(s._sound); body.appendChild(b); }
@@ -511,7 +512,7 @@ function renderTask(step) {
     body.appendChild(pr);
     const big = spk([t._target].filter(Boolean), "big"); body.appendChild(big);
   } else {
-    const txt = document.createElement("div"); txt.className = "t"; txt.innerHTML = set.no_reading ? "" : withGaps(t.text); pr.appendChild(txt);
+    const txt = document.createElement("div"); txt.className = (t.text ?? "").includes("\n") || (t.text ?? "").length > 90 ? "t passage" : "t"; txt.innerHTML = set.no_reading ? "" : withGaps(t.text); pr.appendChild(txt);
     pr.appendChild(spk(promptAudio)); body.appendChild(pr);
   }
   const vis = document.createElement("div"); vis.className = "visual"; body.appendChild(vis);

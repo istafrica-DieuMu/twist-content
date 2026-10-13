@@ -121,6 +121,8 @@ Interactions:
 | Which sentence is written correctly | three spellings of one sentence, `option_audio: false` | abstract-nouns |
 | Theme of a short story | a two-sentence story in `text`, "What is the theme?", options friendship, a sandwich, school dinners (a plot detail is always one option) | en-GB themes-conventions |
 | The moral of a fable | options: the moral, a fact from the fable, a detail | en-GB themes-conventions |
+| Find a fact in a short text | a text with headings in `text` (lines split with `\n`; the player sets it as a passage), question at the bottom | en-GB retrieve-present |
+| Fact or opinion | "\"Pizza is the tastiest food.\" Fact or opinion?", options fact, opinion | en-GB fact-opinion |
 | Ask the case question | "Wen oder was? \"Die Katze fängt eine Maus.\"" with the question in `say`, options the noun groups | noun-cases |
 | Which case is it in | "In welchem Fall steht \"dem Kind\"?", options Nominativ, Dativ, Akkusativ | noun-cases |
 | What is the digit worth? | "Wie viel ist die 4 in 247 wert?", options 4, 40, 400 | place-value-to-1000 |
@@ -237,6 +239,7 @@ Interactions:
 | Split of a number | "6 = _ + _" with a split dot picture, answer 4, 2 | partition-to-10 |
 | Number house | `show: { drawn: number-house, roof: 7, rows: [[3, null]] }`, frame "3 + _ = 7" | partition-to-10 |
 | Tens and ones of an amount | over base-ten blocks, frame "_ Zehner und _ Einer" or "Z: _  E: _" | bundle-tens, place-value-to-100 |
+| Record facts from two texts | "In autumn they go to: _  Their nests are made of: _" | en-GB retrieve-present |
 | Missing to 100 | over a hundred field with 70, frame "70 + _ = 100" | hundred-field |
 | Neighbouring tens | "Nachbarzehner: _ , 27, _" options 20, 26, 28, 30 | order-compare-to-100 |
 | Continue a sequence | "42, 44, 46, _ , _" | sequences-to-100 |
@@ -399,6 +402,7 @@ Interactions:
 | Words by syllables | bins of one, two and three claps; Ball, Hase, Banane ... (each picture says its word) | syllables |
 | Words by first sound | bins headed by a sun and a fish; Sonne, Socke / Fisch, Frosch | initial-sound |
 | Words by the sound a spelling makes | bins headed by a cow and a snowman; text cards now, show, town, slow with `option_audio: false` (hearing the cards would give the sound away). Options can be `{ text, bin }` and bins can be `{ show: { text }, say }` | en-GB alternative-pronunciations |
+| Sentences into fact and opinion | bins fact and opinion, text cards with `option_audio: false`; long text cards get a smaller font | en-GB fact-opinion |
 
 ## `ordering`
 
