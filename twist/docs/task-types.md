@@ -114,6 +114,10 @@ Interactions:
 | Which Rechenweg suits | "Welcher Weg passt gut zu 56 + 19?", options name methods; the answer is the one the sum invites (19 is near 20: Hilfsaufgabe) and the record says why in `feedback` | describe-methods, clever |
 | Where is the mistake | a worked calculation with one wrong step, options are its steps or short descriptions of the error | check |
 | Überschlag | "Ungefähr wie viel ist 48 + 29?", options are round numbers (60, 80, 100) | check |
+| Sensible rounding in a context | "Was schreibt die Zeitung am sinnvollsten?" over an exact count, options are roundings to different places | order-to-million |
+| Name the part of a calculation | "Wie heißt 587 in 362 + 225 = 587?", options Summe, Summand, Differenz, Minuend, Subtrahend | vocabulary-add-sub |
+| From the term to the calculation | "Bilde die Differenz von 500 und 180", as text_input or with options 500 − 180, 500 + 180, 180 − 500 | vocabulary-add-sub |
+| Which result fits the Überschlag | "Welches Ergebnis passt zum Überschlag? 512 + 289", options 801, 701, 901; or true_false "Passt das zum Überschlag?"; or whole worked calculations as options, one far from its Überschlag | estimate-to-1000 |
 | Which sums make 100 | "Welche Aufgabe ergibt 100?", options are whole sums (82 + 18, 82 + 28, 82 + 8) | complement |
 | Which way to put it right | after a Hilfsaufgabe ("72 − 30 = 42"), options eins dazulegen, eins wegnehmen | clever |
 | Who calculated right | two children's worked ways side by side, "Wer hat richtig gerechnet?", options beide, nur A, nur B | describe-methods |
@@ -328,7 +332,7 @@ A number line; the child taps a tick and taps Prüfen. The marker shows
 where they tapped, never the number.
 
 Fields: `show: { drawn: number-line, from, to, labels, jumps, step }`,
-`answer` (a number), `feedback` keyed by a tapped value. `step` (1, 5, 10, 100, 1000 or 100000; 1 if left out) sets which ticks
+`answer` (a number), `feedback` keyed by a tapped value. `step` (1, 5, 10, 100, 1000, 10000 or 100000; 1 if left out) sets which ticks
 are drawn and can be tapped, so a line from 0 to 100 or 1000 has ticks a child's
 finger can hit. The answer must sit on a tick.
 

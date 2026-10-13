@@ -323,7 +323,7 @@ function equation(text, split) {
 }
 function arcs(points, scale, y0, labelAll) {
   // points: [[from, size], ...] drawn as hops above the line
-  return points.map(([f, n]) => { const x1 = scale(f), x2 = scale(f + n), mx = (x1 + x2) / 2, h = Math.max(26, (x2 - x1) * 0.45);
+  return points.map(([f, n]) => { const x1 = scale(f), x2 = scale(f + n), mx = (x1 + x2) / 2, h = Math.min(42, Math.max(26, Math.abs(x2 - x1) * 0.45));
     return `<path d="M${x1} ${y0} Q ${mx} ${y0 - h * 2} ${x2} ${y0}" fill="none" stroke="#8e3bd1" stroke-width="3.5"/><path d="M${x2 - 7 * Math.sign(n)} ${y0 - 9} L${x2} ${y0} L${x2 + 3 * Math.sign(n)} ${y0 - 11}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-linecap="round"/><text x="${mx}" y="${y0 - h - 6}" text-anchor="middle" font-size="18" font-weight="700" fill="#8e3bd1">${n < 0 ? "−" + -n : "+" + n}</text>`; }).join("");
 }
 function rechenstrich(start, jumps, back = false) {
@@ -629,6 +629,8 @@ const TYPES = {
     vis.innerHTML = show(t.show);
     const parts = t.frame.split("_"), n = parts.length - 1, fill = Array(n).fill(null);
     const fr = document.createElement("div"); fr.className = "frame"; body.appendChild(fr);
+    // Long frames (a Rechenweg in steps, a fact family) get a smaller font so they stay on one or two lines.
+    if (t.frame.length > 28) fr.style.fontSize = "22px"; else if (t.frame.length > 16) fr.style.fontSize = "28px";
     const chips = document.createElement("div"); chips.className = "chips"; body.appendChild(chips);
     const draw = () => { fr.innerHTML = ""; parts.forEach((p, i) => { if (p) { const s = document.createElement("span"); s.textContent = p.trim() ? p : " "; fr.appendChild(s); } if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; fr.appendChild(g); } }); btn.disabled = fill.includes(null); };
     t.options.forEach((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over) return; const k = fill.indexOf(null); if (k >= 0) { fill[k] = o; draw(); } }; chips.appendChild(b); });
