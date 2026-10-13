@@ -166,7 +166,7 @@ Each voice has its own copy, in assets/narration/<voice>/sounds/. Status `test` 
 
 ## Voices (4 in the pilot)
 
-One voice speaks every line, sound and phrase. 9682 lines in assets/narration/lines.yaml plus 12 sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: `gemini-sulafat`.
+One voice speaks every line, sound and phrase. 9685 lines in assets/narration/lines.yaml plus 12 sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: `gemini-sulafat`.
 
 | voice | model | clips | passed the check | minutes | MB | note |
 |---|---|---|---|---|---|---|

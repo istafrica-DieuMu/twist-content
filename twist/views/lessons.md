@@ -621,7 +621,7 @@ Task types: audio_choice 28, true_false 12, speak 6. Builds on: `fl.listening.cl
 
 `en-GB.fl.fr-hobbies` teaches `fl.themes.hobbies` in en-GB, ly-3. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-French learning year 3 opens with hobbies: jouer au foot, nager, danser, peindre, lire, jouer au tennis, jouer de la guitare, faire du vélo, chanter, and two patterns to talk about them, j'aime ... and je sais ... . Lesson 1 learns the words by ear and picture; lesson 2 reads and builds short sentences, including je n'aime pas, and ends with the skill check. Speaking tasks are practice only.
+French learning year 3 opens with hobbies: jouer au foot, nager, danser, peindre, lire, jouer au tennis, jouer de la guitare, faire du vélo, chanter, and two patterns to talk about them, j'aime ... and je sais ... Lesson 1 learns the words by ear and picture; lesson 2 reads and builds short sentences, including je n'aime pas, and ends with the skill check. Speaking tasks are practice only.
 
 
 | Lesson | New | Tasks | Activities |
@@ -713,7 +713,7 @@ A fact can be checked and shown to be true; an opinion is what someone thinks or
 | 1. Prüfen oder meinen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
 | 2. Gemischt in einem Text | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
 
-Task types: multiple_choice 23, true_false 9, sorting 6, highlight_in_text 8. Builds on: `lit-en.comprehension.retrieve-present`. Misconceptions addressed: 2.
+Task types: multiple_choice 23, true_false 9, sorting 6, highlight_in_text 8. Builds on: `lit-en.comprehension.retrieve`. Misconceptions addressed: 2.
 
 ## Anlaute hören (Hearing first sounds)
 
@@ -789,7 +789,7 @@ Task types: audio_choice 20, true_false 9, image_multiple_choice 8. Builds on: `
 
 `en-GB.lit-en.retrieve-present` teaches `lit-en.comprehension.retrieve-present` in en-GB, year-5. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Finding information in non-fiction quickly, using headings and key words, and recording it. Lesson 1 finds facts in one short text by skimming headings and scanning for key words; lesson 2 brings together facts from two texts, records them in a table and ends with the skill check. The texts are written for Twist and use well-established facts.
+Finding information in non-fiction quickly, using headings and key words, and recording it. Lesson 1 finds facts in one short text by skimming headings and scanning for key words; lesson 2 brings together facts from two texts, records the key facts in short frames and ends with the skill check. The texts are written for Twist and use well-established facts.
 
 
 | Lesson | New | Tasks | Activities |
