@@ -131,7 +131,7 @@ for (const [lang, groups] of Object.entries(read("assets/phrases.yaml")))
   for (const [g, items] of Object.entries(groups)) { CUR = curForLang(lang);
     (phrases[lang] ??= {})[g] = items.map((x) => ({ text: x, src: clip(lang, x, null, g, `phrases ${g}`) })); }
 
-const objects = Object.fromEntries((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, { de: o.labels.de, en: o.labels.en }]));
+const objects = Object.fromEntries((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, { de: o.labels.de, en: o.labels.en, initial: o.initial?.de, drawn: o.status === "drawn" }]));
 const colours = read("assets/drawn.yaml").colours;
 const pics = readdirSync(join(T, "assets/objects")).filter((f) => f.endsWith(".png"));
 

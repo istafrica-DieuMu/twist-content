@@ -35,6 +35,10 @@ A picture can be crossed out, for a "not allowed" sign:
 `show: { object: dog, crossed: true }` draws a red ring with a line across
 it ("Was heißt das Schild?").
 
+`show` can be an Anlauttabelle: `show: { drawn: sound-chart, letters: [m, a,
+s, l], mark: m }` draws each letter with a picture that starts with its
+sound; `gaps` shows fields as "?", `pictures` names the picture per letter.
+
 `show` can carry `flash: 2`: the picture is shown for that many seconds
 and then covered, so the child has to see the amount at a glance instead
 of counting. A "Nochmal sehen" button shows it again for the same time;
@@ -460,8 +464,13 @@ green start dot and the child traces it; in copy mode a model sits on the
 left and the child writes beside it. The prototype accepts any ink; the
 app will compare the strokes.
 
-Fields: `show: { drawn: writing-lines, text, mode: trace | copy, arrows }`,
+Fields: `show: { drawn: writing-lines, text, mode: trace | copy, arrows, script }`,
 `char`. No hints in any stage: the guide is the help.
+
+`script: joined` writes the model in Schreibschrift. Which Ausgangsschrift
+(SAS, LA, VA or Grundschrift) is the school's choice by Land, so it is a
+setting, not part of the task; a task about joining never names a join
+that only one script has.
 
 Interactions: trace a letter; copy a letter (letters-l-o-a-m); trace and
 copy a numeral, 0 to 10 (write-numerals-to-10).

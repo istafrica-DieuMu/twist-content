@@ -15,8 +15,15 @@ summary: >
   L) and from sounds later in the word. Lesson 2 goes through a whole
   short word sound by sound (Hut: H wie Hund, U wie Uhr, T wie Tisch),
   puts the chart pictures in order and ends with the skill check. The
-  chart is never on screen as a whole: bins and options carry its fields,
-  and tapping one says it ("M wie Maus").
+  Learn screens show a small chart (sound-chart, six fields) with the
+  field being talked about marked, and Oma as the three fields O, M, A.
+  Tasks that ask for a sound's field show a short chart of four fields
+  with every option on it and nothing marked, so the child has to find
+  the field; l1-s1 shows one letter as a gap with two options that are
+  not on the chart. Pictures are always named, so each field's word
+  starts with exactly its sound (no Ohr for O, no Elefant for L).
+  Sorting bins and options also carry fields, and tapping one says it
+  ("M wie Maus").
 metadata:
   year: klasse-1
   topic: { de: Buchstaben, en: Letters }
@@ -26,8 +33,8 @@ metadata:
   also_practises: [lit-de.phonological.initial-sound, lit-de.phonological.sounds-in-words]
   vocabulary: { de: [Anlauttabelle, Anlaut, Laut, Buchstabe, Bild] }
   forms: [audio, picture, drawn]
-  drawn: [letter-card, word-card]
-  sounds: ["de.m", "de.l", "de.s", "de.f", "de.n", "de.a:"]
+  drawn: [sound-chart]
+  sounds: ["de.m", "de.l", "de.f", "de.n", "de.a:"]
   facets: []
   misconceptions:
     - id: letter-name
@@ -74,11 +81,11 @@ lessons:
         mode: demonstration
         screens:
           - text: "Die Anlauttabelle"
-            say: "Das ist ein Feld aus der Anlauttabelle. In der Tabelle steht bei jedem Buchstaben ein Bild. Das Wort zum Bild fängt mit dem Laut an, den der Buchstabe macht."
-            show: { drawn: letter-card, text: "Mm" }
+            say: "Das ist eine Anlauttabelle. Bei jedem Buchstaben steht ein Bild. Das Wort zum Bild fängt mit dem Laut an, den der Buchstabe macht."
+            show: { drawn: sound-chart, letters: [m, a, l, s, o, f], pictures: { m: mouse, a: ant, l: lamp, s: sun, o: oven, f: fish }, columns: 3 }
           - text: "M wie Maus"
-            say: "Beim M ist eine Maus. Maus fängt mit mmm an. Also klingt das M so: mmm. Die Tabelle zeigt dir, wie ein Buchstabe klingt. Nicht, wie er heißt."
-            show: { object: mouse }
+            say: "Schau auf das M. Dort ist eine Maus. Maus fängt mit mmm an. Also klingt das M so: mmm. Die Tabelle zeigt dir, wie ein Buchstabe klingt, nicht, wie er heißt."
+            show: { drawn: sound-chart, letters: [m, a, l, s, o, f], pictures: { m: mouse, a: ant, l: lamp, s: sun, o: oven, f: fish }, mark: m, columns: 3 }
             sound: de.m
           - text: "Mond"
             say: "Du willst Mond schreiben. Sprich ganz langsam: Mmm ... ond. Der erste Laut ist mmm. Welches Bild fängt auch mit mmm an? Die Maus. Bei der Maus steht das M. Hör immer auf den ganzen ersten Laut."
@@ -171,13 +178,14 @@ lessons:
           - support: some
             tasks:
               - id: l1-s1
-                type: audio_choice
-                text: "Welches Bild fängt mit diesem Laut an?"
-                say: "Hör gut zu. Welches Bild aus der Anlauttabelle fängt mit diesem Laut an?"
-                audio: { sound: de.s }
-                options: [{ object: fish }, { object: mouse }, { object: sun }]
-                answer: sun
-                hints: ["Tippe auf jedes Bild. Welches fängt mit sss an?"]
+                type: multiple_choice
+                text: "Welcher Buchstabe fehlt beim Fisch?"
+                say: "In der Anlauttabelle fehlt ein Buchstabe. Welcher Buchstabe gehört zum Fisch?"
+                show: { drawn: sound-chart, letters: [m, s, f, l], pictures: { m: mouse, s: sun, f: fish, l: lamp }, gaps: [f], columns: 4 }
+                options: ["F", "W", "H"]
+                answer: "F"
+                option_audio: false
+                hints: ["Sprich langsam: Fff ... isch. Welchen Laut hörst du zuerst?"]
               - id: l1-s2
                 type: sorting
                 text: "Wohin gehört das Bild?"
@@ -202,7 +210,7 @@ lessons:
                 type: multiple_choice
                 text: "Du willst Kuh schreiben. Welches Feld hilft dir beim ersten Laut?"
                 say: "Du willst Kuh schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
-                show: { object: cow }
+                show: { drawn: sound-chart, letters: [u, k, h, m], pictures: { u: clock, k: cat, h: dog, m: mouse }, columns: 4 }
                 options: ["U wie Uhr", "K wie Katze", "H wie Hund"]
                 answer: "K wie Katze"
                 feedback:
@@ -242,7 +250,7 @@ lessons:
                 type: multiple_choice
                 text: "Du willst Elefant schreiben. Welches Feld hilft dir beim ersten Laut?"
                 say: "Du willst Elefant schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
-                show: { object: elephant }
+                show: { drawn: sound-chart, letters: [l, e, a, m], pictures: { l: lamp, e: duck, a: ant, m: mouse }, columns: 4 }
                 options: ["L wie Lampe", "E wie Ente", "A wie Ameise"]
                 answer: "E wie Ente"
               - id: l1-n4
@@ -316,7 +324,7 @@ lessons:
             show: { object: grandma }
           - text: "O wie Ofen, M wie Maus, A wie Ameise"
             say: "O wie Ofen. M wie Maus. A wie Ameise. Bei den Bildern stehen O, M und A. Also schreibst du: Oma."
-            show: { drawn: word-card, text: "Oma" }
+            show: { drawn: sound-chart, letters: [o, m, a], pictures: { o: oven, m: mouse, a: ant }, columns: 3 }
           - text: "Hör bis zum Ende."
             say: "Hör auf jeden Laut, nicht nur auf den ersten. Schreib die Buchstaben in der Reihenfolge, in der du sie hörst. Sprich das Wort danach noch einmal: Fehlt noch ein Laut?"
 
@@ -444,6 +452,7 @@ lessons:
                 type: multiple_choice
                 text: "Du willst Zelt schreiben. Welches Feld hilft dir beim ersten Laut?"
                 say: "Du willst Zelt schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
+                show: { drawn: sound-chart, letters: [s, z, t, w], pictures: { s: sun, z: zebra, t: table, w: whale }, columns: 4 }
                 options: ["S wie Sonne", "Z wie Zebra", "T wie Tisch"]
                 answer: "Z wie Zebra"
               - id: l2-n4
@@ -485,6 +494,7 @@ lessons:
             type: multiple_choice
             text: "Du willst Esel schreiben. Welches Feld hilft dir beim ersten Laut?"
             say: "Du willst Esel schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
+            show: { drawn: sound-chart, letters: [s, l, e, m], pictures: { s: sun, l: lamp, e: duck, m: mouse }, columns: 4 }
             options: ["S wie Sonne", "L wie Lampe", "E wie Ente"]
             answer: "E wie Ente"
           - id: l2-c4

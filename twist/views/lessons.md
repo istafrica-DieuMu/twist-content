@@ -965,7 +965,7 @@ Saying what you think and why, and asking politely. Lesson 1 tells an opinion fr
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ich finde, weil … | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
+| 1. Ich finde …, weil … | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
 | 2. Höflich bitten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
 
 Task types: multiple_choice 14, fill_in_blank 7, sorting 7, ordering 5, true_false 5, speak 4. Builds on: `lit-de.speaking.describe-explain`. Misconceptions addressed: 2.
@@ -1521,7 +1521,7 @@ Task types: fill_in_blank 1, multiple_choice 20, sorting 4, ordering 4, speak 6,
 
 `de-DE.lit-de.joined-capitals` teaches `lit-de.handwriting.joined-capitals` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Children write the capital letters in Schreibschrift and go on from them into the small letters of the word. Lesson 1 sets out where the capitals live (from the line up to the Dach) and when a word starts with one (Satzanfang, Nomen, Namen); lesson 2 joins a capital to the rest of the word, and where a capital is not joined, sets the next letter close beside it so the word stays together; it ends with the skill check. Which capitals join depends on the school's Ausgangsschrift, so the tasks never name one and only say that some capitals join and some do not. The player still draws the writing lines in print, so no task says the child can see a join. Word options for "which word do you write with a capital" are shown in small letters, so the capital does not give the answer away.
+Children write the capital letters in Schreibschrift and go on from them into the small letters of the word. Lesson 1 sets out where the capitals live (from the line up to the Dach) and when a word starts with one (Satzanfang, Nomen, Namen); lesson 2 joins a capital to the rest of the word, and where a capital is not joined, sets the next letter close beside it so the word stays together; it ends with the skill check. Every writing-lines task uses `script: joined`, so the child sees the model in the school's Ausgangsschrift (SAS, LA, VA or Grundschrift, a setting) and can see where a capital joins on. Which capitals join differs between these scripts, so the lesson teaches only what holds in all of them: some capitals join on and some do not, the child follows the model on the lines, and the one capital named as not joining is O, which ends at the top in SAS, LA and VA. Word options for "which word do you write with a capital" are shown in small letters, so the capital does not give the answer away.
 
 
 | Lesson | New | Tasks | Activities |
@@ -2654,7 +2654,7 @@ Task types: multiple_choice 24, image_multiple_choice 5, true_false 7, sorting 3
 
 `de-DE.lit-de.sound-chart` teaches `lit-de.letters.sound-chart` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Using an Anlauttabelle before the letters are taught one by one. Each field of the chart is a letter with a picture whose word starts with that letter's sound (M wie Maus). Lesson 1: hear a sound or a word, find the chart picture that starts the same, and with it the letter; keep the sound apart from the letter name (Elefant does not start with L) and from sounds later in the word. Lesson 2 goes through a whole short word sound by sound (Hut: H wie Hund, U wie Uhr, T wie Tisch), puts the chart pictures in order and ends with the skill check. The chart is never on screen as a whole: bins and options carry its fields, and tapping one says it ("M wie Maus").
+Using an Anlauttabelle before the letters are taught one by one. Each field of the chart is a letter with a picture whose word starts with that letter's sound (M wie Maus). Lesson 1: hear a sound or a word, find the chart picture that starts the same, and with it the letter; keep the sound apart from the letter name (Elefant does not start with L) and from sounds later in the word. Lesson 2 goes through a whole short word sound by sound (Hut: H wie Hund, U wie Uhr, T wie Tisch), puts the chart pictures in order and ends with the skill check. The Learn screens show a small chart (sound-chart, six fields) with the field being talked about marked, and Oma as the three fields O, M, A. Tasks that ask for a sound's field show a short chart of four fields with every option on it and nothing marked, so the child has to find the field; l1-s1 shows one letter as a gap with two options that are not on the chart. Pictures are always named, so each field's word starts with exactly its sound (no Ohr for O, no Elefant for L). Sorting bins and options also carry fields, and tapping one says it ("M wie Maus").
 
 
 | Lesson | New | Tasks | Activities |
@@ -2662,7 +2662,7 @@ Using an Anlauttabelle before the letters are taught one by one. Each field of t
 | 1. Bild und Buchstabe | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 2. Laut für Laut | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: image_multiple_choice 1, true_false 9, audio_choice 13, sorting 4, multiple_choice 9, ordering 7. Builds on: `lit-de.phonological.initial-sound`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 1, true_false 9, audio_choice 12, sorting 4, multiple_choice 10, ordering 7. Builds on: `lit-de.phonological.initial-sound`. Misconceptions addressed: 4.
 
 ## Laute im Wort (Sounds in a word)
 
@@ -3993,7 +3993,7 @@ Every division fact of the kleines Einmaleins. Lesson 1 takes two divisions from
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
 | 1. Zwei Geteiltaufgaben aus einer Malaufgabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Geteilt mit Probe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 2. Geteiltaufgaben mit Probe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
 Task types: fill_in_blank 8, text_input 18, multiple_choice 8, true_false 8. Builds on: `math.mult-div.div-inverse`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
 
@@ -4319,7 +4319,7 @@ Mental addition and subtraction with large round numbers, helped by a small sum.
 
 Task types: text_input 13, multiple_choice 15, fill_in_blank 6, true_false 8. Builds on: `math.large-numbers.to-million`, `math.add-sub-to-1000.hundreds`. Misconceptions addressed: 2.
 
-## Mit Stufenzahlen malnehmen und teilen (Multiplying and dividing with round numbers)
+## Mit runden Zahlen malnehmen und teilen (Multiplying and dividing with round numbers)
 
 `de-DE.math.large-mult-mental` teaches `math.mult-div-larger.large-mental` in de-DE, klasse-4. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
@@ -4328,8 +4328,8 @@ Mental multiplication and division with round numbers, helped by a small times-t
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Malnehmen mit Stufenzahlen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Teilen mit Stufenzahlen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Malnehmen mit runden Zahlen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
+| 2. Teilen mit runden Zahlen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
 Task types: text_input 12, multiple_choice 17, fill_in_blank 6, true_false 7. Builds on: `math.mult-div-larger.tens`, `math.large-numbers.to-million`. Misconceptions addressed: 3.
 
@@ -6100,7 +6100,7 @@ Multiplying amounts in Euro with a decimal comma. Lesson 1 turns the amount into
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Über die Cent rechnen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
+| 1. In Cent rechnen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Einkaufen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
 
 Task types: multiple_choice 11, text_input 10, fill_in_blank 13, true_false 8. Builds on: `math.written-mult-div.mult-one-digit`, `math.money.decimal-notation`. Misconceptions addressed: 2.

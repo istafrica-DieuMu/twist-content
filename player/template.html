@@ -6,7 +6,7 @@
 <title>Twist Lesson Player</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Red+Hat+Display:wght@700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Playwrite+DE+Grund&family=Playwrite+DE+LA&family=Playwrite+DE+SAS&family=Playwrite+DE+VA&family=Red+Hat+Display:wght@700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --page:#efe9f5; --panel:#ffffff; --ink:#2b0f45; --muted:#6d5f7b; --line:#e3dbea;
@@ -123,6 +123,11 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .sound{align-self:center;border:3px solid var(--plum);border-radius:999px;background:#fff;padding:6px 18px;font:700 26px Andika,sans-serif;color:var(--plum);cursor:pointer;box-shadow:0 3px 0 var(--plum);display:flex;gap:8px;align-items:center}
 .sound svg{width:20px;height:20px}
 svg text{font-family:Andika,sans-serif}
+.soundchart{display:grid;gap:6px;width:100%;max-width:330px;margin:0 auto}
+.soundchart .sc{border:2px solid #cbb9dd;border-radius:12px;background:#fff;display:flex;flex-direction:column;align-items:center;padding:3px 2px}
+.soundchart .sc b{font:700 18px Andika,sans-serif;color:#2b0f45}
+.soundchart .sc img{width:40px;height:40px;object-fit:contain}
+.soundchart .sc.mark{border-color:#8e3bd1;background:#f4eafd;box-shadow:0 0 0 3px #8e3bd133}
 .moved{animation:slideup .7s ease-out both}
 @keyframes slideup{from{transform:translateY(34px)}to{transform:none}}
 .stars{font-size:44px;letter-spacing:6px}
@@ -260,6 +265,8 @@ svg text{font-family:Andika,sans-serif}
     </div>
     <div class="now" id="now"></div>
     <div class="toggles"><label><input type="checkbox" id="auto" checked> Play audio automatically</label><label><input type="checkbox" id="autonext" checked> Next after a right answer (3 s)</label></div>
+    <label for="script">Schreibschrift (joined-up writing lines)</label>
+    <div class="fsel"><select id="script" aria-label="Schreibschrift"><option value="sas">Schulausgangsschrift (SAS)</option><option value="la">Lateinische Ausgangsschrift (LA)</option><option value="va">Vereinfachte Ausgangsschrift (VA)</option><option value="grund">Grundschrift</option></select></div>
     <label>Steps</label><ul class="steps" id="steps"></ul>
     <label>Record of this step</label><pre class="rec" id="rec"></pre>
   </aside>
@@ -569,12 +576,31 @@ function numberLine(o, pick) {
   if (mark != null) s += `<path d="M${sc(mark)} ${y - 18} l-10 -18 h20 z" fill="#8e3bd1" stroke="#2b0f45" stroke-width="2"/>`;
   return `<svg viewBox="0 0 330 170" width="100%" style="max-width:330px">${s}</svg>`;
 }
-function writing(text, mode) {
+// The school's Ausgangsschrift for joined writing; schools choose it by Land, so it is a setting.
+const SCRIPTS = { sas: "Playwrite DE SAS", la: "Playwrite DE LA", va: "Playwrite DE VA", grund: "Playwrite DE Grund" };
+let SCRIPT = (() => { try { return localStorage.getItem("twist-script") || "sas"; } catch { return "sas"; } })();
+function writing(text, mode, joined) {
+  if (joined) {
+    const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="${Math.max(290, 20 + text.length * 34)}" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
+    const w = Math.max(300, 30 + text.length * 34), fill = mode === "trace" ? 'fill="#efe0fb" stroke="#a58bc4" stroke-width="1.5" stroke-dasharray="5 4"' : 'fill="#2b0f45"';
+    return `<svg viewBox="0 0 ${w} 200" style="max-width:100%"><g>${lines}</g><text x="16" y="130" font-family="'${SCRIPTS[SCRIPT]}', cursive" font-size="${text.length > 6 ? 46 : 64}" ${fill}>${esc(text)}</text></svg>`;
+  }
   const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="290" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
   const glyph = mode === "trace"
     ? `<text x="150" y="130" text-anchor="middle" font-size="130" fill="#efe0fb" stroke="#a58bc4" stroke-width="2.5" stroke-dasharray="6 5">${esc(text)}</text><circle cx="${/[a-z]/.test(text) ? 132 : 112}" cy="${/[ao]/.test(text) ? 86 : 42}" r="8" fill="#2e9e48"/>`
     : `<text x="${text.length > 1 ? 62 : 50}" y="130" text-anchor="middle" font-size="${text.length > 1 ? 70 : 100}" fill="#2b0f45">${esc(text)}</text>`;
   return `<svg viewBox="0 0 300 200">${lines}${glyph}</svg>`;
+}
+// Anlauttabelle: each field a letter with a picture whose word starts with its sound.
+// Pictures come from data (pictures: {m: mouse}) or the first drawn bank object with that initial.
+function soundChart(o) {
+  const letters = o.letters ?? ["a", "e", "i", "o", "u", "m", "l", "s", "t", "n", "r", "f", "h", "b", "d", "k", "p", "w", "z", "g"];
+  const pick = (l) => (o.pictures ?? {})[l] ?? Object.keys(D.objects).find((id) => D.objects[id].drawn && D.objects[id].initial === l);
+  const cells = letters.map((l) => {
+    const id = pick(l), gap = (o.gaps ?? []).includes(l), mark = o.mark === l;
+    return `<div class="sc${mark ? " mark" : ""}"><b>${gap ? "?" : esc(l.length === 1 ? l.toUpperCase() + l : l[0].toUpperCase() + l.slice(1) + " " + l)}</b>${id ? `<img src="${A}objects/${id}.png" alt="${esc(D.objects[id]?.de ?? id)}">` : ""}</div>`;
+  }).join("");
+  return `<div class="soundchart" style="grid-template-columns:repeat(${o.columns ?? Math.min(5, letters.length)},1fr)">${cells}</div>`;
 }
 // Dots: dice pips (two dice from 7 on: a five and the rest), rows of five
 // (Kraft der 5), a row, or scattered. colour_split colours the parts.
@@ -714,7 +740,8 @@ function drawn(o, ctx = {}) {
     case "rechenstrich": return rechenstrich(o.start, o.jumps ?? [], o.back);
     case "number-line": return numberLine(o);
     case "letter-card": return `<div class="cards">${(o.text.includes(" ") ? o.text.split(" ") : [o.text]).map((t) => `<div class="card">${esc(t)}</div>`).join("")}</div>`;
-    case "writing-lines": return `<div class="trace">${writing(o.text, o.mode)}</div>`;
+    case "writing-lines": return `<div class="trace">${writing(o.text, o.mode, o.script === "joined")}</div>`;
+    case "sound-chart": return soundChart(o);
     case "syllable-arcs": return `<div class="word">${o.syllables.map((s) => `<span class="syl">${esc(s)}</span>`).join("")}</div>`;
     case "word-card": return `<div class="word"><span class="wordcard">${esc(o.text)}</span></div>`;
     case "colour-swatch": return swatch(o.colour);
@@ -1255,6 +1282,8 @@ function renderNow() {
 }
 $("#built").textContent = D.built;
 $("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
+$("#script").value = SCRIPT;
+$("#script").onchange = (e) => { SCRIPT = e.target.value; try { localStorage.setItem("twist-script", SCRIPT); } catch {} go(at); };
 $("#f-year").onchange = (e) => { F.year = e.target.value; saveF(); renderPicker(); };
 $("#f-type").onchange = (e) => { F.type = e.target.value; saveF(); renderPicker(); renderNow(); };
 $("#auto").onchange = (e) => { try { localStorage.setItem("twist-auto", e.target.checked ? "1" : "0"); } catch (x) {} };
