@@ -67,7 +67,8 @@ for amounts:
 | `shape` | `kind: circle / triangle / square / rectangle / pentagon / hexagon / octagon / parallelogram / trapezoid / cube / cuboid / sphere / cylinder / cone / pyramid`, `colour`, `size` | a flat shape, or a solid in a simple oblique view with hidden edges dashed; as an option its key is the kind ("cube") |
 | `shape` with `row` or `column` | `row: [circle, square, triangle, "?"]`, `colours: [red, blue, red, null]` or one colour | shapes side by side (left to right) or stacked (top to bottom); `"?"` is a dashed gap, for patterns to continue and for position words (links, rechts, zwischen, oben, unten) |
 | `bar-chart` | `rows: [[Hund, 5], [Katze, 8]]`, `step`, `from`; or `tally: true` | a bar chart with a scale from 0, or from `from` for a cut-off axis (steps of 1, 2 or 5 by the range), or with `tally` a Strichliste table, the fifth stroke across each four |
-| `coins` | `values: [200, 50, 10]` in cent (or pence) | coins and notes of the curriculum's currency, 500 and up as notes; 1 € and 2 € (£2) two-coloured; as an option its key is the total ("260") |
+| `circle` | `parts: [centre, radius, diameter, circumference, chord]`, `labels: true`, `highlight: radius`, `values: { radius: "4 cm" }` | a circle with the parts listed drawn in; `labels` names them, `highlight` colours one red for "which part is this?", `values` writes a length on it |
+| `coins` | `values: [200, 50, 10]` in cent (or pence), `currency: eur` | coins and notes of the curriculum's currency, or of `currency` (euro coins in en-GB French lessons), 500 and up as notes; 1 € and 2 € (£2) two-coloured; as an option its key is the total ("260") |
 | `grid` | `cols: 8`, `rows: 6`, `cells: [[1, 2, blue]]`, `halves: [[3, 2, tl, red]]`, `lines: [[0, 0, 4, 0]]`, `axis: 4`, `labels: [[0, 0, A]]`, `dots: true` | Karopapier (or a dot grid) counted from the top left; whole squares and corner triangles coloured, lines between grid points, a dashed red mirror line, letters in squares; for area in unit squares, drawing on the grid, symmetry, nets and laying shapes; as an option it needs a `key` |
 | `cubes` | `plan: [[2, 1], [1, 0]]`, `mode: building / plan / front / side / top`, `colour` | a cube building: plan rows run back to front, each number a stack height; `building` draws it in a slanted view, `plan` the Bauplan with the heights, `front`, `side` (from the right) and `top` the views as squares; as an option it needs a `key` |
 | `fraction` | `kind: circle / bar / rect`, `parts: 4`, `shaded: 1`, `rows`, `colour` | a pie, a bar or a rectangle in equal parts with the first `shaded` coloured; as an option its key is "1/4" |
@@ -93,9 +94,11 @@ for amounts:
 | `matching` | links each left item with its right item | yes | en-colours |
 | `sorting` | puts each item into its bin | yes | en-colours |
 | `ordering` | puts cards into slots in the right order | yes | order-to-10 |
+| `clock_hands_drag` | drags the hands of a clock to a time | yes | time-full-half |
+| `point_on_grid` | taps a crossing on a coordinate grid | yes | first-quadrant |
 
-Twist types not used yet: `clock_hands_drag`, `drag_and_drop`,
-`multi_select`, `pick_side`. Each gets a section here when a
+Twist types not used yet: `drag_and_drop`, `multi_select`,
+`pick_side`. Each gets a section here when a
 lesson first needs it.
 
 ## `multiple_choice`
@@ -443,6 +446,48 @@ A jump with a negative size (`jumps: [[5, -1]]`) hops back and is labelled −1 
 A number line can also be a picture to read: `show` with `mark: 35`
 draws the marker at 35, and a multiple_choice asks which number it marks
 (number-line-to-100).
+
+## `point_on_grid`
+
+A coordinate grid; the child taps a crossing and taps Check. A blue ring
+shows the point they picked; any crossing can be picked, so the grid
+gives nothing away.
+
+Fields: `show: { drawn: coordinates, quadrants: 1 or 4, max, points, shape }`
+(the coordinates component; points and shape already on the grid stay),
+`answer: [x, y]`, `feedback` keyed by a tapped point as "x,y" (for the
+swapped point, "3,5" when the answer is [5, 3]). The build checks that the
+answer is a crossing on the grid.
+
+Interactions:
+
+| Interaction | Example | Used in |
+|---|---|---|
+| Plot a point | first quadrant, "Plot (4, 2)." | first-quadrant |
+| Complete a shape | three corners of a square drawn, "Tap the fourth corner." | first-quadrant |
+| Plot in four quadrants | `quadrants: 4`, "Plot (−3, 2)." | four-quadrants |
+| Plot a moved or reflected point | a shape and its translation, "Where does corner A go?" | translate, reflect-translate |
+
+## `clock_hands_drag`
+
+A clock face with round grips on both hands. The child drags a hand and
+taps Check; the hand nearest the finger moves. The minute hand snaps to
+`step` minutes, the hour hand to whole hours, and the hour hand sits
+between hours as the minutes go on, as on a real clock.
+
+Fields: `show: { drawn: clock, hour, minute, roman }` (the start, 12:00 if
+left out; never the answer), `answer` ("3:30", a 12-hour time),
+`step` (1, 5, 15 or 30 minutes; 5 if left out), `feedback` keyed by a
+set time ("6:15"). The build checks that the minutes sit on a step.
+
+Interactions:
+
+| Interaction | Example | Used in |
+|---|---|---|
+| Set o'clock and half past | `step: 30`, "Show half past 4." | time-full-half |
+| Set quarter past and to | `step: 15`, "Show quarter to 9." | time-quarter |
+| Set to five minutes | "Show 25 past 7." | time-five-minutes |
+| Set to the minute | `step: 1`, "Show 7:43." | time-minutes |
 
 ## `highlight_in_text`
 

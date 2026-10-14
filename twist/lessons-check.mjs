@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
 import YAML from "yaml";
 
-const TASK_TYPES = new Set(["audio_choice", "clock_hands_drag", "drag_and_drop_count", "drag_and_drop", "fill_in_blank", "highlight_in_text", "image_multiple_choice", "matching", "multi_select", "multiple_choice", "ordering", "pick_side", "point_on_line", "sorting", "speak", "tap_to_count", "text_input", "tracing", "true_false"]);
+const TASK_TYPES = new Set(["audio_choice", "clock_hands_drag", "drag_and_drop_count", "drag_and_drop", "fill_in_blank", "highlight_in_text", "image_multiple_choice", "matching", "multi_select", "multiple_choice", "ordering", "pick_side", "point_on_grid", "point_on_line", "sorting", "speak", "tap_to_count", "text_input", "tracing", "true_false"]);
 const ACTIVITY = {
   "warm-up": { from: ["earlier-skills", "last-lesson"] },
   learn: { mode: ["worked-examples", "demonstration", "model-text", "new-sound", "new-word", "do-it-with-me"] },
@@ -192,6 +192,10 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           // difficulty defaults to core
           if (t.difficulty !== undefined && !["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);
           checkAnswer(t, tw, file, err);
+          // A character speaking in the first person gets a voice of their kind.
+          if (t.audio?.speaker != null && !["male", "female"].includes(t.audio.speaker)) err(`${file}: ${tw}: audio speaker is male or female`);
+          if (t.audio && !t.audio.speaker && Object.entries(t.audio).some(([k, v]) => k !== "sound" && /\b(I'm|I am|My name is|my name is|Je m'appelle|je m'appelle|Ich heiße|ich heiße|Ich bin) [A-ZÄÖÜÉ][a-zäöüéèëï]+/.test(String(v))))
+            warn(`${file}: ${tw}: audio has a character saying their name; add speaker: male or female so the voice fits`);
           if (t.option_audio !== undefined && typeof t.option_audio !== "boolean") err(`${file}: ${tw}: option_audio must be true or false`);
           const hints = t.hints?.length ?? 0;
           if (support === "full" && hints !== 3 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: full support needs 3 hints, has ${hints}`);
@@ -296,6 +300,22 @@ function checkAnswer(t, tw, file, err) {
         if (t.answer < from || t.answer > to || Math.abs((t.answer - from) / step - Math.round((t.answer - from) / step)) > 1e-6) err(`${file}: ${tw}: answer ${t.answer} is not a tick on the line (${from} to ${to}, step ${step})`);
       }
       break;
+    case "point_on_grid": {
+      const g = t.show ?? {}, four = g.quadrants === 4, m = g.max ?? (four ? 6 : 10), lo = four ? -m : 0;
+      if (g.drawn !== "coordinates") err(`${file}: ${tw}: point_on_grid shows a coordinates grid`);
+      if (!Array.isArray(t.answer) || t.answer.length !== 2 || t.answer.some((v) => !Number.isInteger(v) || v < lo || v > m)) err(`${file}: ${tw}: answer must be [x, y], whole numbers on the grid (${lo} to ${m})`);
+      for (const k of Object.keys(t.feedback ?? {})) if (!/^-?\d+,-?\d+$/.test(k)) err(`${file}: ${tw}: feedback key ${k} must be "x,y"`);
+      break;
+    }
+    case "clock_hands_drag": {
+      const step = t.step ?? 5, mt = /^(\d{1,2}):(\d{2})$/.exec(String(t.answer));
+      if (![1, 5, 15, 30].includes(step)) err(`${file}: ${tw}: step must be 1, 5, 15 or 30 minutes`);
+      if (!mt || +mt[1] < 1 || +mt[1] > 12 || +mt[2] > 59) err(`${file}: ${tw}: answer must be a 12-hour time like "3:30"`);
+      else if (+mt[2] % step) err(`${file}: ${tw}: answer minutes ${mt[2]} are not on a ${step}-minute step`);
+      if (t.show && t.show.drawn !== "clock") err(`${file}: ${tw}: clock_hands_drag shows a clock`);
+      if (mt && t.show && (t.show.hour ?? 12) % 12 === +mt[1] % 12 && (t.show.minute ?? 0) === +mt[2]) err(`${file}: ${tw}: the clock already shows the answer`);
+      break;
+    }
     case "tracing": if (!t.char) err(`${file}: ${tw}: tracing needs char`); break;
     case "speak": if (!t.expected_text) err(`${file}: ${tw}: speak needs expected_text`); break;
     case "highlight_in_text": {

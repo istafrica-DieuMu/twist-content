@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync, existsSync, unlinkSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadBig } from "./yaml-cache.mjs";
 import YAML from "yaml";
 import { checkLessons } from "./lessons-check.mjs";
 import { tracking } from "./tracking.mjs";
@@ -127,6 +128,16 @@ for (const { file, data } of profileFiles) {
     });
   }
   const lt = (a, b) => a[0] < b[0] || (a[0] === b[0] && a[1] < b[1]);
+  // Enrichment: placed skills that no standard of this curriculum's frameworks
+  // asks for, each with a reason. Every other placed skill maps to one.
+  const own = (id) => (steps.get(id).standards ?? []).some((c) => (data.frameworks ?? []).includes(objectives.get(c)?.framework));
+  for (const [id, why] of Object.entries(data.enrichment ?? {})) {
+    if (!pos.has(id)) err(`${file}: enrichment names ${id}, which this curriculum does not place`);
+    else if (!why) err(`${file}: enrichment ${id} needs a reason`);
+    else if (own(id)) warn(`${file}: ${id} is listed as enrichment but maps to a standard of this curriculum`);
+  }
+  for (const id of pos.keys()) if (!own(id) && !(data.enrichment ?? {})[id] && !steps.get(id).enrichment)
+    warn(`${file}: ${id} maps to no standard of this curriculum's frameworks; map it or list it under enrichment with a reason`);
   for (const [id, p] of pos) {
     for (const r of before.get(id)) {
       if (!pos.has(r)) { warn(`${file}: ${id} needs ${r}, which this curriculum does not place`); continue; }
@@ -289,7 +300,8 @@ for (const pr of profiles) {
         const st = steps.get(r.id), x = bySkill.get(r.id);
         if (st.topic[lang] !== topic) { topic = st.topic[lang]; out += `\n#### ${md(topic)}\n\n`; }
         if (!x) { out += `- *${lang === "de" ? "noch keine Lektionen" : "no lessons yet"}*: ${md(st.can_do[lang])} <sub>\`${r.id}\`</sub>\n`; continue; }
-        out += `- **${md(x.d.title[lang] ?? x.d.title.de)}**: ${x.summary.length} ${lang === "de" ? "Lektionen" : "lessons"}, ${tasks(x)} ${lang === "de" ? "Aufgaben" : "tasks"}. <sub>\`twist/${x.file}\`</sub>\n`;
+        const extra = (pr.enrichment ?? {})[r.id] || st.enrichment ? ` *(${lang === "de" ? "Erweiterung" : "enrichment"})*` : "";
+        out += `- **${md(x.d.title[lang] ?? x.d.title.de)}**${extra}: ${x.summary.length} ${lang === "de" ? "Lektionen" : "lessons"}, ${tasks(x)} ${lang === "de" ? "Aufgaben" : "tasks"}. <sub>\`twist/${x.file}\`</sub>\n`;
         out += `  ${x.summary.map((l) => `${l.n}. ${md(l.title[lang] ?? l.title.de)} (${l.tasks})`).join(" · ")}\n`;
       }
       out += "\n";
@@ -314,11 +326,11 @@ for (const pr of profiles) {
   // Voices: what the narration tool has made for each candidate.
   const V = YAML.parse(readFileSync(join(T, "assets/voices.yaml"), "utf8"));
   const linesFile = join(T, "assets/narration/lines.yaml");
-  const nLines = existsSync(linesFile) ? Object.keys(YAML.parse(readFileSync(linesFile, "utf8")) ?? {}).length : 0;
+  const nLines = Object.keys(loadBig(linesFile) ?? {}).length;
   out += `\n## Voices (${V.candidates.length} in the pilot)\n\nOne voice speaks every line, sound and phrase. ${nLines} lines in assets/narration/lines.yaml plus ${L.sounds.size} sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: ${V.chosen ? "\`" + V.chosen + "\`" : "not yet"}.\n\n| voice | model | clips | passed the check | minutes | MB | note |\n|---|---|---|---|---|---|---|\n`;
   for (const v of V.candidates) {
     const f = join(T, "assets/narration", `${v.id}.yaml`);
-    const log = existsSync(f) ? Object.values(YAML.parse(readFileSync(f, "utf8")) ?? {}) : [];
+    const log = Object.values(loadBig(f) ?? {});
     const sum = (k) => log.reduce((a, x) => a + (x[k] ?? 0), 0);
     out += `| \`${v.id}\` | ${v.model}, ${v.voice} | ${log.length} | ${log.filter((x) => x.check?.correct).length} | ${(sum("seconds") / 60).toFixed(1)} | ${(sum("bytes") / 1048576).toFixed(1)} | ${md(v.note ?? "")} |\n`;
   }

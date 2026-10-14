@@ -5661,7 +5661,7 @@ Task types: audio_choice 22, multiple_choice 8, speak 3, matching 2, true_false 
 
 `de-DE.fl.en-weather` teaches `fl.themes.weather` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Describing the weather and understanding a short weather report. Lesson 1 brings sunny, rainy, cloudy, snowy and windy with "It's …"; lesson 2 adds hot and cold, asks "What's the weather like?", picks out the weather in a short report for two days, and ends with the skill check. Instructions are in German; the English is spoken and shown in short form.
+Describing the weather and understanding a short weather report. Lesson 1 brings "It's sunny / cloudy / windy." and "It's raining." and "It's snowing."; lesson 2 adds hot and cold, asks "What's the weather like?", picks out the weather in a short report for two days, and ends with the skill check. Instructions are in German; the English is spoken and shown in short form.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6809,7 +6809,7 @@ Task types: audio_choice 18, multiple_choice 8, speak 6, true_false 3, fill_in_b
 
 `en-GB.fl.fr-numbers-to-100` teaches `fl.themes.numbers-to-100` in en-GB, ly-3. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-The tens and the two-digit numbers to 100 in French, and prices in euros. Lesson 1 brings vingt to soixante and the numbers between, with et un (vingt et un) and the sound-alikes (quarante and quatorze, soixante and seize); lesson 2 brings the numbers that count in twenties: soixante-dix (60 + 10), quatre-vingts (4 × 20) and quatre-vingt-dix, and cent; lesson 3 asks Ça coûte combien ? and gives prices in euros and cents (deux euros cinquante), and ends with the skill check. Instructions are in English; children read numerals and the French is spoken and shown in short form.
+The tens and the two-digit numbers to 100 in French, and prices in euros. Lesson 1 brings vingt to soixante and the numbers between, with et un (vingt et un) and the sound-alikes (quarante and quatorze, soixante and seize); lesson 2 brings the numbers that count in twenties: soixante-dix (60 + 10), quatre-vingts (4 × 20) and quatre-vingt-dix, and cent; lesson 3 asks Ça coûte combien ? and gives prices in euros and cents written the French way (2,50 €, said deux euros cinquante), and ends with the skill check. Instructions are in English; children read numerals and the French is spoken and shown in short form.
 
 
 | Lesson | New | Tasks | Activities |
@@ -9690,7 +9690,7 @@ Task types: multiple_choice 24, highlight_in_text 5, true_false 6, fill_in_blank
 
 `en-GB.lit-en.joined-legible` teaches `lit-en.handwriting.joined-legible` in en-GB, year-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Children make their joined handwriting easy to read. Lesson 1 takes size and slope: small letters the same height, tall letters reaching higher, tails going below the line, and downstrokes that are parallel (all leaning the same way). Lesson 2 takes spacing: even gaps between letters, a clear gap between words, and joining whole words and short phrases neatly; it ends with the skill check. Every writing-lines task uses `script: joined`, so the model follows the school's handwriting scheme, a setting; tasks teach only what holds in every scheme. The app does not yet judge the size, slope or spacing of the child's own writing: any ink counts, so the skill check uses choice tasks.
+Children make their joined handwriting easy to read. Lesson 1 takes size and slope: small letters the same height, tall letters reaching higher, tails going below the line, and downstrokes that are parallel (all leaning the same way). Lesson 2 takes spacing: even gaps between letters, a clear gap between words, and joining whole words and short phrases neatly; it ends with the skill check. Every writing-lines task uses `script: joined`, so the model follows the school's handwriting scheme, a setting; tasks teach only what holds in every scheme. Capitals are left unjoined in this lesson, and Learn says that many schools do this and the teacher shows the school's own way. The app does not yet judge the size, slope or spacing of the child's own writing: any ink counts, so the skill check uses choice tasks.
 
 
 | Lesson | New | Tasks | Activities |
@@ -10191,19 +10191,19 @@ Lesson 1 adds and subtracts lengths in cm and in m and cm, and always says the u
 
 Task types: multiple_choice 24, text_input 15, true_false 3. Builds on: `math.length.cm-m`, `math.add-sub-to-100.sub-two-digit`. Misconceptions addressed: 3.
 
-## Millimeter und Kilometer (Millimetres and kilometres)
+## Millimeter, Zentimeter und Meter (Millimetres, centimetres and metres)
 
 `en-GB.math.length-mm-km` teaches `math.length.mm-km` in en-GB, year-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 reads strips on a ruler in centimetres and millimetres (4 cm 5 mm = 45 mm), converts between cm and mm and picks mm for very small things; lesson 2 learns 1 km = 1000 m, converts between km and m (1 km 200 m = 1200 m) and between m and cm, picks the unit that fits and estimates a walk (1 km takes about 15 minutes), and ends with the skill check. Drawing a line of a given length waits for a drawing task.
+Lesson 1 reads strips on a ruler in centimetres and millimetres (4 cm 5 mm = 45 mm), converts between cm and mm and picks mm for very small things; lesson 2 converts between m and cm (1 m 40 cm = 140 cm), compares lengths in mm and cm, picks mm, cm or m for a thing, meets the word kilometre once for long distances, and ends with the skill check. Converting kilometres waits for Year 4. Drawing a line of a given length waits for a drawing task.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
 | 1. Zentimeter und Millimeter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Meter und Kilometer | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
+| 2. Zentimeter und Meter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
 
-Task types: multiple_choice 25, fill_in_blank 3, text_input 10, true_false 4. Builds on: `math.length.estimate`, `math.numbers-to-1000.place-value`. Misconceptions addressed: 3.
+Task types: multiple_choice 26, fill_in_blank 3, text_input 9, true_false 4. Builds on: `math.length.estimate`, `math.numbers-to-1000.place-value`. Misconceptions addressed: 4.
 
 ## Linien und Strecken (Lines, line segments and curves)
 
@@ -11036,7 +11036,7 @@ Task types: multiple_choice 26, fill_in_blank 8, true_false 4, matching 1, text_
 
 `en-GB.math.length-notation` teaches `math.length.notation` in en-GB, year-4. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 writes metres and centimetres with a decimal point, like pounds and pence (1.25 m = 1 m 25 cm = 125 cm, 1.5 m = 150 cm, 1.05 m = 105 cm), and centimetres and millimetres on a ruler (4.5 cm = 45 mm). Lesson 2 does the same for kilometres and metres (2.5 km = 2 km 500 m = 2500 m, 0.25 km = 250 m), compares lengths written in different ways, and ends with the skill check.
+Lesson 1 writes metres and centimetres with a decimal point, like pounds and pence (1.25 m = 1 m 25 cm = 125 cm, 1.5 m = 150 cm, 1.05 m = 105 cm), and centimetres and millimetres on a ruler (4.5 cm = 45 mm). Lesson 2 learns 1 km = 1000 m (2 km 300 m = 2300 m), then does the same for kilometres and metres (2.5 km = 2 km 500 m = 2500 m, 0.25 km = 250 m), compares lengths written in different ways, and ends with the skill check.
 
 
 | Lesson | New | Tasks | Activities |
@@ -11064,13 +11064,13 @@ Task types: multiple_choice 22, text_input 8, true_false 7, image_multiple_choic
 
 `en-GB.math.mass-estimate` teaches `math.mass-capacity.estimate-mass` in en-GB, year-4. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 learns benchmarks to compare with (a paper clip is about 1 g, a packet of pasta 500 g, a bag of sugar 1 kg) and estimates fruit, eggs, pets, a child and a school bag with them; lesson 2 learns 1 tonne = 1000 kg with a small car as the benchmark, picks grams, kilograms or tonnes for a thing, changes between tonnes and kilograms, and ends with the skill check. Weighing on a real scale stays in the classroom.
+Lesson 1 learns benchmarks to compare with (a paper clip is about 1 g, a packet of pasta 500 g, a bag of sugar 1 kg) and estimates fruit, eggs, pets, a child and a school bag with them; lesson 2 changes between kilograms and grams (1 kg = 1000 g, 1 kg 500 g = 1500 g, 2500 g = 2 kg 500 g, half a kilogram = 500 g), picks grams or kilograms for a thing, and ends with the skill check. Tonnes are left out, as the National Curriculum does not name them in key stage 2. Weighing on a real scale stays in the classroom.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
 | 1. Mit Stützpunkten schätzen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Tonne | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
+| 2. Kilogramm und Gramm umrechnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
 
 Task types: multiple_choice 21, image_multiple_choice 5, true_false 7, text_input 5, fill_in_blank 3, sorting 1. Builds on: `math.mass-capacity.g-kg`. Misconceptions addressed: 2.
 
@@ -11706,20 +11706,6 @@ Choosing how to calculate and saying why. Lesson 1 sorts calculations into menta
 | 2. Begründen und clever rechnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
 Task types: text_input 6, fill_in_blank 4, multiple_choice 27, sorting 3, true_false 2. Builds on: `math.written-add-sub.large`, `math.add-sub-to-1000.large-semi-written`. Misconceptions addressed: 3.
-
-## Kreise mit dem Zirkel (Circles and compasses)
-
-`en-GB.math.circles-compass` teaches `math.shapes.circles-compass` in en-GB, year-5. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
-
-Lesson 1 names the centre and the radius of a circle (every point on the circle is the same distance from the centre) and the diameter, which is twice the radius; lesson 2 opens a pair of compasses on a ruler to the radius, keeps the point on the centre, draws arcs and circles round one centre, and ends with the skill check. Drawing a circle with the compasses on screen waits for a drawing task.
-
-
-| Lesson | New | Tasks | Activities |
-|---|---|---|---|
-| 1. Mittelpunkt, Radius, Durchmesser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Mit dem Zirkel zeichnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
-
-Task types: multiple_choice 31, true_false 7, text_input 4. Builds on: `math.shapes.lines-segments`. Misconceptions addressed: 2.
 
 ## Geheimcodes mit Zahlen (Secret number codes)
 
@@ -12631,6 +12617,20 @@ The centre, radius, diameter and circumference of a circle. Lesson 1 names the p
 | 2. Durchmesser und Radius | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
 
 Task types: multiple_choice 22, matching 1, true_false 8, fill_in_blank 1, text_input 10. Builds on: `math.shapes.circles-compass`. Misconceptions addressed: 4.
+
+## Kreise mit dem Zirkel (Circles and compasses)
+
+`en-GB.math.circles-compass` teaches `math.shapes.circles-compass` in en-GB, year-6. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
+
+Lesson 1 names the centre and the radius of a circle (every point on the circle is the same distance from the centre) and the diameter, which is twice the radius; lesson 2 opens a pair of compasses on a ruler to the radius, keeps the point on the centre, draws arcs and circles round one centre, and ends with the skill check. Drawing a circle with the compasses on screen waits for a drawing task.
+
+
+| Lesson | New | Tasks | Activities |
+|---|---|---|---|
+| 1. Mittelpunkt, Radius, Durchmesser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
+| 2. Mit dem Zirkel zeichnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+
+Task types: multiple_choice 31, true_false 7, text_input 4. Builds on: `math.shapes.lines-segments`. Misconceptions addressed: 2.
 
 ## Figuren genau zeichnen (Drawing shapes accurately)
 

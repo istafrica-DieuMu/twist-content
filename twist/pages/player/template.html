@@ -286,12 +286,12 @@ const TXT = {
   de: { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde",
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, secure: "Kann ich! (Secure)", practised: "Noch üben (Practised)", doneTitle: "Geschafft!",
-    counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
+    counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
     speakNote: "Tippe auf das Mikrofon und sprich.", stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, secure: "I can do it! (Secure)", practised: "Keep practising (Practised)", doneTitle: "Well done!",
-    counters: "Tap a counter at the bottom to move it up.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
+    counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
     speakNote: "Tap the microphone and speak.", stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
@@ -470,9 +470,9 @@ function barChart(o) {
   s += `<line x1="${x0}" y1="${10 + H}" x2="320" y2="${10 + H}" stroke="#2b0f45" stroke-width="2.5"/><line x1="${x0}" y1="10" x2="${x0}" y2="${10 + H}" stroke="#2b0f45" stroke-width="2.5"/>`;
   return `<svg viewBox="0 0 330 ${H + 34}" width="100%" style="max-width:360px">${s}</svg>`;
 }
-// Coins and notes by value in cent (or pence): 1, 2, 5, 10, 20, 50, 100, 200 are coins, 500 and up are notes.
+// Coins and notes by value in cent (or pence), in the curriculum's currency or `currency: eur|gbp`: 1, 2, 5, 10, 20, 50, 100, 200 are coins, 500 and up are notes.
 function coins(o) {
-  const gb = (set?.curriculum ?? "").startsWith("en"), lab = (v) => gb ? (v >= 100 ? `£${v / 100}` : `${v}p`) : (v >= 100 ? `${v / 100} €` : `${v} ct`);
+  const gb = o.currency ? o.currency === "gbp" : (set?.curriculum ?? "").startsWith("en"), lab = (v) => gb ? (v >= 100 ? `£${v / 100}` : `${v}p`) : (v >= 100 ? `${v / 100} €` : `${v} ct`);
   return `<div class="coins">${(o.values ?? []).map((v) => {
     if (v >= 500) { const c = gb ? { 500: "#7fb7a4", 1000: "#e08a4a", 2000: "#9b7bc8", 5000: "#d9534f" }[v] : { 500: "#9e9e9e", 1000: "#e57373", 2000: "#64b5f6", 5000: "#ffb74d", 10000: "#81c784" }[v]; return `<svg viewBox="0 0 120 64" width="96" height="51"><rect x="3" y="3" width="114" height="58" rx="6" fill="${c ?? "#bbb"}" stroke="#2b0f45" stroke-width="3"/><rect x="12" y="12" width="96" height="40" rx="4" fill="none" stroke="#ffffff99" stroke-width="2"/><text x="60" y="41" text-anchor="middle" font-size="22" font-weight="800" fill="#2b0f45">${lab(v)}</text></svg>`; }
     // Real relative sizes: euro coins, or UK coins (2p bigger than 5p, 10p bigger than 20p).
@@ -494,6 +494,21 @@ function ruler(o) {
   if (o.length != null) s += `<rect x="${sc(start)}" y="${y - 30}" width="${sc(start + o.length) - sc(start)}" height="22" rx="4" fill="${o.colour === "blue" ? "#1E88E5" : o.colour === "green" ? "#43A047" : "#E53935"}" stroke="#2b0f45" stroke-width="2"/><line x1="${sc(start)}" y1="${y - 8}" x2="${sc(start)}" y2="${y}" stroke="#2b0f45" stroke-width="1.5" stroke-dasharray="3 3"/><line x1="${sc(start + o.length)}" y1="${y - 8}" x2="${sc(start + o.length)}" y2="${y}" stroke="#2b0f45" stroke-width="1.5" stroke-dasharray="3 3"/>`;
   return `<svg viewBox="0 0 330 130" width="100%" style="max-width:360px">${s}</svg>`;
 }
+// A circle with its parts: `parts` lists which to draw (centre, radius,
+// diameter, circumference, chord), `labels: true` names them, `highlight`
+// colours one part red, `values` writes a length on radius or diameter.
+function circleParts(o) {
+  const c = 110, r = 76, en = (set?.language ?? "de") === "en", parts = o.parts ?? ["centre", "radius"], hi = o.highlight;
+  const NAME = en ? { centre: "centre", radius: "radius", diameter: "diameter", circumference: "circumference", chord: "chord" } : { centre: "Mittelpunkt", radius: "Radius", diameter: "Durchmesser", circumference: "Umfang", chord: "Sehne" };
+  const col = (p) => p === hi ? "#E53935" : "#2b0f45", w = (p) => p === hi ? 5 : 3, lab = (p) => (o.labels ? NAME[p] : "") + (o.values?.[p] ? `${o.labels ? " " : ""}${o.values[p]}` : "");
+  let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="#f3eefc" stroke="${parts.includes("circumference") ? col("circumference") : "#2b0f45"}" stroke-width="${parts.includes("circumference") ? w("circumference") : 3}"/>`;
+  if (parts.includes("diameter")) s += `<line x1="${c - r}" y1="${c}" x2="${c + r}" y2="${c}" stroke="${col("diameter")}" stroke-width="${w("diameter")}"/>` + (lab("diameter") ? `<text x="${c - r / 2}" y="${c + 18}" text-anchor="middle" font-size="13" font-weight="700" fill="${col("diameter")}">${esc(lab("diameter"))}</text>` : "");
+  if (parts.includes("radius")) { const a = -Math.PI / 3, x2 = c + r * Math.cos(a), y2 = c + r * Math.sin(a); s += `<line x1="${c}" y1="${c}" x2="${x2}" y2="${y2}" stroke="${col("radius")}" stroke-width="${w("radius")}"/>` + (lab("radius") ? `<text x="${c + 34}" y="${c - 34}" font-size="13" font-weight="700" fill="${col("radius")}">${esc(lab("radius"))}</text>` : ""); }
+  if (parts.includes("chord")) { const a1 = Math.PI * 0.62, a2 = Math.PI * 0.12; s += `<line x1="${c + r * Math.cos(a1)}" y1="${c + r * Math.sin(a1)}" x2="${c + r * Math.cos(a2)}" y2="${c + r * Math.sin(a2)}" stroke="${col("chord")}" stroke-width="${w("chord")}"/>` + (lab("chord") ? `<text x="${c + 18}" y="${c + 72}" text-anchor="middle" font-size="13" font-weight="700" fill="${col("chord")}">${esc(lab("chord"))}</text>` : ""); }
+  if (parts.includes("circumference") && lab("circumference")) s += `<text x="${c - 30}" y="${c - r - 8}" text-anchor="middle" font-size="13" font-weight="700" fill="${col("circumference")}">${esc(lab("circumference"))}</text>`;
+  if (parts.includes("centre")) s += `<circle cx="${c}" cy="${c}" r="${hi === "centre" ? 6 : 4.5}" fill="${col("centre")}"/>` + (lab("centre") ? `<text x="${c - 8}" y="${c - 10}" text-anchor="end" font-size="13" font-weight="700" fill="${col("centre")}">${esc(lab("centre"))}</text>` : "");
+  return `<svg viewBox="0 0 220 220" width="100%" style="max-width:240px">${s}</svg>`;
+}
 function clock(o) {
   const c = 90, r = 80, ang = (f) => (f * 2 * Math.PI) - Math.PI / 2, hand = (f, len, w, col) => `<line x1="${c}" y1="${c}" x2="${c + len * Math.cos(ang(f))}" y2="${c + len * Math.sin(ang(f))}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
   let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="#fff" stroke="#2b0f45" stroke-width="5"/>`;
@@ -502,9 +517,11 @@ function clock(o) {
   for (let i = 1; i <= 12; i++) s += `<text x="${c + (o.roman ? 55 : 64) * Math.cos(ang(i / 12))}" y="${c + (o.roman ? 55 : 64) * Math.sin(ang(i / 12)) + (o.roman ? 5 : 8)}" text-anchor="middle" font-size="${o.roman ? (ROM[i].length > 2 ? 13 : 16) : 22}" font-weight="700" fill="#2b0f45">${o.roman ? ROM[i] : i}</text>`;
   for (let i = 0; i < 60; i++) if (i % 5) s += `<circle cx="${c + 74 * Math.cos(ang(i / 60))}" cy="${c + 74 * Math.sin(ang(i / 60))}" r="1.6" fill="#2b0f45"/>`;
   const m = o.minute ?? 0, h = ((o.hour ?? 12) % 12) + m / 60;
-  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
+  // clock_hands_drag: round grips on the hand ends show they can be moved.
+  const grip = (f, len, col) => o._drag ? `<circle cx="${c + len * Math.cos(ang(f))}" cy="${c + len * Math.sin(ang(f))}" r="7" fill="${col}" stroke="#fff" stroke-width="2"/>` : "";
+  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + grip(h / 12, 34, "#2b0f45") + grip(m / 60, 50, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
   const dig = o.digital ? `<div style="font:700 26px Andika,sans-serif;text-align:center">${esc(String(o.hour))}:${String(m).padStart(2, "0")}</div>` : "";
-  return `<div><svg viewBox="0 0 180 180" width="160" height="160">${s}</svg>${dig}</div>`;
+  return `<div><svg viewBox="0 0 180 180" width="${o._drag ? 220 : 160}" height="${o._drag ? 220 : 160}" ${o._drag ? 'style="touch-action:none;cursor:grab"' : ""}>${s}</svg>${dig}</div>`;
 }
 function numberWall(rows) {
   const n = rows[0].length, w = 66, h = 44, W = n * w + 8, H = rows.length * h + 8;
@@ -661,6 +678,9 @@ function coordinates(o) {
   s += poly(o.shape, "#8e3bd1") + poly(o.moved, "#43A047", true);
   if (o.mirror) s += o.mirror.axis === "x" ? `<line x1="${X(lo)}" y1="${Yc(o.mirror.at ?? 0)}" x2="${X(m)}" y2="${Yc(o.mirror.at ?? 0)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="8 5"/>` : `<line x1="${X(o.mirror.at ?? 0)}" y1="${Yc(lo)}" x2="${X(o.mirror.at ?? 0)}" y2="${Yc(m)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="8 5"/>`;
   for (const [x, y, l] of o.points ?? []) s += `<circle cx="${X(x)}" cy="${Yc(y)}" r="5.5" fill="#E53935" stroke="#2b0f45" stroke-width="1.5"/>${l ? `<text x="${X(x) + 8}" y="${Yc(y) - 7}" font-size="14" font-weight="700" fill="#2b0f45">${esc(l)}</text>` : ""}`;
+  // point_on_grid: every crossing can be tapped; the picked one gets a blue ring.
+  if (o._pick) { const [px, py] = o._pick; s += `<circle cx="${X(px)}" cy="${Yc(py)}" r="9" fill="#1E88E5" fill-opacity=".35" stroke="#1E88E5" stroke-width="3"/>`; }
+  if (o._tap) for (let x = lo; x <= m; x++) for (let y = lo; y <= m; y++) s += `<circle data-x="${x}" data-y="${y}" cx="${X(x)}" cy="${Yc(y)}" r="${u / 2}" fill="transparent" style="cursor:pointer"/>`;
   return `<svg viewBox="0 0 335 ${W + 32}" width="100%" style="max-width:335px">${s}</svg>`;
 }
 // Line graph: points joined by lines over labelled x positions, with a scale.
@@ -857,6 +877,7 @@ function drawn(o, ctx = {}) {
     case "word-card": return `<div class="word"><span class="wordcard">${esc(o.text)}</span></div>`;
     case "colour-swatch": return swatch(o.colour);
     case "clock": return clock(o);
+    case "circle": return circleParts(o);
     case "ruler": return ruler(o);
     case "shape": return shape(o);
     case "bar-chart": return barChart(o);
@@ -1198,6 +1219,32 @@ const TYPES = {
     const draw = () => { vis.innerHTML = numberLine(t.show, pick ?? true); vis.querySelectorAll("rect[data-v]").forEach((r) => r.onclick = () => { if (st.over) return; pick = +r.dataset.v; draw(); btn.disabled = false; }); };
     const btn = nextBtn(foot, UI.check, () => { const ok = pick === t.answer; answer(ok, String(pick), () => { pick = t.answer; draw(); }); if (!ok && !st.over) setTimeout(() => { pick = null; draw(); btn.disabled = true; }, 900); });
     btn.disabled = true; draw();
+  },
+  // Tap a crossing on a coordinate grid; answer [x, y].
+  point_on_grid({ t, body, foot, vis, answer, st }) {
+    let pick = null;
+    const n = document.createElement("div"); n.className = "note"; n.textContent = UI.gridTap; body.appendChild(n);
+    const draw = () => { vis.innerHTML = coordinates({ ...t.show, _tap: true, _pick: pick }); vis.querySelectorAll("circle[data-x]").forEach((c) => c.onclick = () => { if (st.over) return; pick = [+c.dataset.x, +c.dataset.y]; draw(); btn.disabled = false; }); };
+    const btn = nextBtn(foot, UI.check, () => { const ok = pick[0] === t.answer[0] && pick[1] === t.answer[1]; answer(ok, pick.join(","), () => { pick = [...t.answer]; draw(); }); if (!ok && !st.over) setTimeout(() => { pick = null; draw(); btn.disabled = true; }, 900); });
+    btn.disabled = true; draw();
+  },
+  // Drag the hands to a time; answer "h:mm". The minute hand snaps to `step`
+  // minutes (5 if left out), the hour hand to whole hours and sits between
+  // hours as the minutes go on, as on a real clock.
+  clock_hands_drag({ t, body, foot, vis, answer, st }) {
+    const step = t.step ?? 5; let h = t.show?.hour ?? 12, m = t.show?.minute ?? 0, which = null, moved = false;
+    const n = document.createElement("div"); n.className = "note"; n.textContent = UI.hands; body.appendChild(n);
+    const draw = () => { vis.innerHTML = clock({ ...(t.show ?? {}), hour: h, minute: m, digital: false, _drag: true }); };
+    const frac = (e) => { const b = vis.querySelector("svg").getBoundingClientRect(), x = e.clientX - b.left - b.width / 2, y = e.clientY - b.top - b.height / 2; return ((Math.atan2(y, x) + Math.PI / 2) / (2 * Math.PI) + 1) % 1; };
+    const near = (a, b) => Math.min(Math.abs(a - b), 1 - Math.abs(a - b));
+    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; const f = frac(e); which = near(f, m / 60) <= near(f, ((h % 12) + m / 60) / 12) ? "m" : "h"; vis.setPointerCapture(e.pointerId); vis.onpointermove(e); };
+    vis.onpointermove = (e) => { if (!which) return; const f = frac(e);
+      if (which === "m") m = (Math.round((f * 60) / step) * step) % 60; else { const x = Math.round(f * 12 - m / 60); h = ((x % 12) + 12) % 12 || 12; }
+      moved = true; btn.disabled = false; draw(); };
+    vis.onpointerup = vis.onpointercancel = () => { which = null; };
+    const [ah, am] = String(t.answer).split(":").map(Number);
+    const btn = nextBtn(foot, UI.check, () => { const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { h = ah % 12 || 12; m = am; draw(); }); if (!ok && !st.over) setTimeout(() => { h = t.show?.hour ?? 12; m = t.show?.minute ?? 0; draw(); }, 900); });
+    btn.disabled = !moved; draw();
   },
   highlight_in_text({ t, body, foot, vis, answer, st }) {
     const toks = t.show.text.split(" "), sel = new Set();

@@ -33,7 +33,28 @@ const DE_PLACES = [[/\bH: /g, "Hunderter "], [/\bZ: /g, "Zehner "], [/\bE: /g, "
 const sayNumbersDe = (t) => DE_PLACES.reduce((s, [rx, b]) => s.replace(rx, b), t)
   .replace(/(?<![\d,.:])(\d{1,3}) (\d{3})(?![\d,.:]?\d)/g, "$1$2")
   .replace(/(?<![\d,.:])\d{1,6}(?![,.:]?\d)/g, (m) => deWords(+m));
-const spoken = (text, lang) => { const t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim()); return lang === "de" ? sayNumbersDe(t) : t; };
+// Symbols spoken as words; must match say_symbols_en() in narration.py.
+const DEN_EN = { 2: "half", 3: "third", 4: "quarter", 5: "fifth", 6: "sixth", 7: "seventh", 8: "eighth", 9: "ninth", 10: "tenth",
+  11: "eleventh", 12: "twelfth", 13: "thirteenth", 14: "fourteenth", 15: "fifteenth", 16: "sixteenth", 17: "seventeenth",
+  18: "eighteenth", 19: "nineteenth", 20: "twentieth", 24: "twenty-fourth", 25: "twenty-fifth", 30: "thirtieth", 40: "fortieth",
+  50: "fiftieth", 60: "sixtieth", 100: "hundredth", 1000: "thousandth" };
+const VULGAR_EN = [["½ hour", "half an hour"], ["½", "a half"], ["¼", "a quarter"], ["¾", "three quarters"], ["⅓", "a third"], ["⅔", "two thirds"], ["⅛", "an eighth"]];
+const VULGAR_DE = [["½", "ein halb"], ["¼", "ein Viertel"], ["¾", "drei Viertel"]];
+const UNITS_EN = { mm: "millimetres", cm: "centimetres", m: "metres", km: "kilometres" };
+const fractionEn = (n, d) => { const w = DEN_EN[+d]; return !w ? `${n} over ${d}` : +n === 1 ? `one ${w}` : `${n} ${w === "half" ? "halves" : w + "s"}`; };
+const saySymbolsEn = (t) => VULGAR_EN.reduce((s, [a, b]) => s.split(a).join(b), t
+  .replace(/(?<![\d/.])(\d+) (\d+)\/(\d+)(?![\d/])/g, (m, w, n, d) => `${w} and ${fractionEn(n, d)}`)
+  .replace(/(?<![\d/.])(\d+)\/(\d+)(?![\d/])/g, (m, n, d) => fractionEn(n, d))
+  .replace(/(\d) ?½/g, "$1 and a half"))
+  .replace(/ ?°C\b/g, " degrees Celsius").replace(/ ?°/g, " degrees")
+  .replace(/\b(mm|cm|km|m)²/g, (m, u) => "square " + UNITS_EN[u]).replace(/\b(mm|cm|km|m)³/g, (m, u) => "cubic " + UNITS_EN[u])
+  .replace(/(\d) ?%/g, "$1 per cent")
+  .split(" × ").join(" times ").split(" ÷ ").join(" divided by ")
+  .replace(/−(?=\d)/g, "minus ");
+const spoken = (text, lang) => { let t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim());
+  if (lang === "en") t = saySymbolsEn(t);
+  if (lang === "de") t = sayNumbersDe(VULGAR_DE.reduce((s, [a, b]) => s.split(a).join(b), t));
+  return t; };
 const lineId = (lang, t) => createHash("sha1").update(`${lang}|${t}`).digest("hex").slice(0, 10);
 
 const voices = read("assets/voices.yaml");
@@ -42,16 +63,16 @@ const lines = existsSync(join(T, "assets/narration/lines.yaml")) ? read("assets/
 // match voice_for() in narration.py.
 let CUR = null;
 const vcfg = (cur) => voices.curricula?.[cur] ?? voices;
-const voiceFor = (activity, phrase) => { const c = vcfg(CUR), a = c.assign ?? {}; return (phrase && a[`phrases.${phrase}`]) || a[activity] || c.chosen; };
+const voiceFor = (activity, phrase, speaker) => { const c = vcfg(CUR), a = c.assign ?? {}; return speaker ? c.speakers[speaker] : (phrase && a[`phrases.${phrase}`]) || a[activity] || c.chosen; };
 const curForLang = (lang) => Object.entries(voices.curricula ?? {}).find(([, c]) => c.language === lang)?.[0] ?? null;
 const problems = [];
 let clips = 0, missingFiles = 0;
 
-function clip(lang, text, activity, phrase, where) {
+function clip(lang, text, activity, phrase, where, speaker) {
   if (!text) return null;
   const t = spoken(text, lang), id = lineId(lang, t);
   if (!lines[id]) problems.push(`${where}: no narration line for "${t}" (run twist/assets/tools/narration.py --list and a voice)`);
-  const f = `narration/${voiceFor(activity, phrase)}/${id}.mp3`;
+  const f = `narration/${voiceFor(activity, phrase, speaker)}/${id}.mp3`;
   clips++;
   if (!existsSync(join(T, "assets", f))) missingFiles++;
   return f;
@@ -98,7 +119,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
         const w = `${rel} ${t.id}`;
         t._prompt = sayClips(t.say ?? t.text, lang, a.activity, w);
         if (t.audio?.sound) t._target = soundClip(t.audio.sound, a.activity);
-        else if (t.audio) t._target = sayClips(Object.fromEntries(Object.entries(t.audio).filter(([k]) => k !== "sound")), lang, a.activity, w)[0];
+        else if (t.audio) t._target = Object.entries(t.audio).filter(([k]) => k !== "sound" && k !== "speaker").map(([lg, v]) => clip(lg, v, a.activity, null, w, t.audio.speaker))[0];
         if (t.type === "speak") { const tl = d.target_language ?? lang; t._model = clip(tl, speakModel(t, tl), a.activity, null, w); }
         t._hints = (t.hints ?? []).map((h) => clip(lang, h, a.activity, null, w));
         t._options = (t.options ?? []).map((o) => { const x = optionText(t, o, lang); return x ? clip(lang, x, a.activity, null, w) : null; });
@@ -142,8 +163,12 @@ const objects = Object.fromEntries((read("assets/objects.yaml").objects ?? []).m
 const colours = read("assets/drawn.yaml").colours;
 const pics = readdirSync(join(T, "assets/objects")).filter((f) => f.endsWith(".png"));
 
-if (problems.length) { console.error(problems.join("\n")); process.exit(1); }
+// --draft <file> writes a test copy even with lines not narrated yet.
+const draft = process.argv.includes("--draft") ? process.argv[process.argv.indexOf("--draft") + 1] : null;
+if (problems.length && !draft) { console.error(problems.join("\n")); process.exit(1); }
+if (problems.length) console.error(`${problems.length} lines not narrated yet (draft)`);
 const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign } };
 const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c"));
-writeFileSync(join(HERE, "index.html"), html);
+writeFileSync(draft ?? join(HERE, "index.html"), html);
+if (draft) { writeFileSync(draft, html.replace('"assets":"../../assets/"', `"assets":${JSON.stringify("file://" + join(HERE, "../../assets") + "/")}`)); }
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);

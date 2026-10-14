@@ -65,9 +65,46 @@ def spoken(text, lang):
     t = str(text).strip()
     for a, b in READ_MATHS.get(lang, []):
         t = t.replace(a, b)
+    if lang == "en":
+        t = say_symbols_en(t)
     if lang == "de":
+        for a, b in VULGAR_DE:
+            t = t.replace(a, b)
         t = say_numbers_de(t)
     return t
+
+
+# Symbols the voice misread ("7/5" came out as "seven take away five") are
+# spoken as words. Must match saySymbolsEn() in player/build.mjs.
+DEN_EN = {2: "half", 3: "third", 4: "quarter", 5: "fifth", 6: "sixth", 7: "seventh", 8: "eighth", 9: "ninth", 10: "tenth",
+          11: "eleventh", 12: "twelfth", 13: "thirteenth", 14: "fourteenth", 15: "fifteenth", 16: "sixteenth", 17: "seventeenth",
+          18: "eighteenth", 19: "nineteenth", 20: "twentieth", 24: "twenty-fourth", 25: "twenty-fifth", 30: "thirtieth", 40: "fortieth",
+          50: "fiftieth", 60: "sixtieth", 100: "hundredth", 1000: "thousandth"}
+VULGAR_EN = [("½ hour", "half an hour"), ("½", "a half"), ("¼", "a quarter"), ("¾", "three quarters"), ("⅓", "a third"), ("⅔", "two thirds"), ("⅛", "an eighth")]
+VULGAR_DE = [("½", "ein halb"), ("¼", "ein Viertel"), ("¾", "drei Viertel")]
+UNITS_EN = {"mm": "millimetres", "cm": "centimetres", "m": "metres", "km": "kilometres"}
+
+
+def fraction_en(n, d):
+    w = DEN_EN.get(int(d))
+    if not w:
+        return f"{n} over {d}"
+    return f"one {w}" if int(n) == 1 else f"{n} {'halves' if w == 'half' else w + 's'}"
+
+
+def say_symbols_en(t):
+    t = re.sub(r"(?<![\d/.])(\d+) (\d+)/(\d+)(?![\d/])", lambda m: f"{m.group(1)} and {fraction_en(m.group(2), m.group(3))}", t)
+    t = re.sub(r"(?<![\d/.])(\d+)/(\d+)(?![\d/])", lambda m: fraction_en(m.group(1), m.group(2)), t)
+    t = re.sub(r"(\d) ?½", r"\1 and a half", t)
+    for a, b in VULGAR_EN:
+        t = t.replace(a, b)
+    t = re.sub(r" ?°C\b", " degrees Celsius", t)
+    t = re.sub(r" ?°", " degrees", t)
+    t = re.sub(r"\b(mm|cm|km|m)²", lambda m: "square " + UNITS_EN[m.group(1)], t)
+    t = re.sub(r"\b(mm|cm|km|m)³", lambda m: "cubic " + UNITS_EN[m.group(1)], t)
+    t = re.sub(r"(\d) ?%", r"\1 per cent", t)
+    t = t.replace(" × ", " times ").replace(" ÷ ", " divided by ")
+    return re.sub(r"−(?=\d)", "minus ", t)
 
 
 # German numbers are spoken as words: the voice swaps or spells out bare
@@ -191,10 +228,13 @@ def curriculum_for_language(cfg, lang):
     return None
 
 
-def voice_for(cfg, curriculum, activity=None, phrase=None):
-    """The voice for one use of a line: `assign`, else `chosen`, per curriculum.
-    Must match voiceFor() in player/build.mjs."""
+def voice_for(cfg, curriculum, activity=None, phrase=None, speaker=None):
+    """The voice for one use of a line: the `speakers` voice for a character
+    (audio `speaker: male|female`), else `assign`, else `chosen`, per
+    curriculum. Must match voiceFor() in player/build.mjs."""
     c = voice_cfg(cfg, curriculum)
+    if speaker:
+        return c["speakers"][speaker]
     a = c.get("assign") or {}
     return a.get(f"phrases.{phrase}") if phrase and f"phrases.{phrase}" in a else a.get(activity, c["chosen"])
 
@@ -204,12 +244,12 @@ def gather(cfg):
     lines = {}
     objects = {o["id"]: o for o in yaml.safe_load((ASSETS / "objects.yaml").read_text())["objects"]}
 
-    def add(lang, text, kind, where, activity=None, phrase=None):
+    def add(lang, text, kind, where, activity=None, phrase=None, speaker=None):
         if not text:
             return
         t = spoken(text, lang)
         lid = hashlib.sha1(f"{lang}|{t}".encode()).hexdigest()[:10]
-        v = voice_for(cfg, CUR, activity, phrase)
+        v = voice_for(cfg, CUR, activity, phrase, speaker)
         e = lines.setdefault(lid, {"lang": lang, "text": t, "kind": kind, "voices": [], "used": []})
         if MIXED and lang != MIXED:
             e["mixed"] = True  # a home-language line in a lesson that teaches MIXED
@@ -240,9 +280,10 @@ def gather(cfg):
                     say = t.get("say") or t.get("text")
                     for lg, v in (say.items() if isinstance(say, dict) else [(lang, say)]):
                         add(lg, v, "prompt", w, a["activity"])
-                    for lg, v in (t.get("audio") or {}).items():
-                        if lg != "sound":
-                            add(lg, v, "target", w, a["activity"])
+                    au = t.get("audio") or {}
+                    for lg, v in au.items():
+                        if lg not in ("sound", "speaker"):
+                            add(lg, v, "target", w, a["activity"], speaker=au.get("speaker"))
                     # A speak task plays the model after the child has spoken
                     # (the fallback while speech is not marked). Must match
                     # speakModel() in player/build.mjs.

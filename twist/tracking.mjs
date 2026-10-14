@@ -7,6 +7,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
+import { loadBig } from "./yaml-cache.mjs";
 
 const T = dirname(fileURLToPath(import.meta.url));
 const load = (p) => YAML.parse(readFileSync(join(T, p), "utf8"));
@@ -83,9 +84,9 @@ function lessonSets(cur) {
 
 export function tracking() {
   const topics = skillTopics();
-  const lines = load("assets/narration/lines.yaml") ?? {};
+  const lines = loadBig(join(T, "assets/narration/lines.yaml")) ?? {};
   const voiceLogs = {};
-  for (const f of readdirSync(join(T, "assets/narration")).filter((x) => /^[a-z0-9-]+\.yaml$/.test(x) && x !== "lines.yaml")) voiceLogs[f.replace(/\.yaml$/, "")] = load(join("assets/narration", f)) ?? {};
+  for (const f of readdirSync(join(T, "assets/narration")).filter((x) => /^[a-z0-9-]+\.yaml$/.test(x) && x !== "lines.yaml")) voiceLogs[f.replace(/\.yaml$/, "")] = loadBig(join(T, "assets/narration", f)) ?? {};
   const pictures = load("assets/objects/pictures.yaml") ?? {};
   const objects = load("assets/objects.yaml").objects;
   const live = existsSync(join(T, COSTS)) ? load(COSTS) : null;
