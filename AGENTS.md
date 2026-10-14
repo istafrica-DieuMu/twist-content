@@ -34,6 +34,8 @@ one git repo.
     opening with coverage percentages per subject,
     and the OpenRouter cost of pictures and narration; build.mjs writes
     it, and `node twist/tracking.mjs --live` adds what the key has spent.
+    Its Reviews section comes from twist/reviews.yaml: add a pass there
+    after each review, and close open points as they are done.
   - review/: the Twist Germany readiness review, one page built from
     de-launch-review.json (de-launch-review.v1.json is the earlier draft).
     Same output layout as site/: index.html tracked, dist/ gitignored.

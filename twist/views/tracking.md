@@ -489,3 +489,22 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | en-GB | 404 | $0.25 | $100 |
 
 Pictures: 202 of 202 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
+
+## Reviews
+
+From reviews.yaml: each pass over the lessons, what it read and where its fixes went.
+
+| date | pass | lesson sets | what it covered | result | commit |
+|---|---|---|---|---|---|
+| 2026-10-14 | Full de-DE review | 338 | all 338 de-DE lesson sets drafted at the time (Mathe, Deutsch, Englisch) | about 220 lesson sets fixed; letter groups chained as prerequisites | 7d039b19 |
+| 2026-10-14 | Review follow-up and authoring checks | 30 | open points of the full review, and the 30 drafts the parallel session left (Deutsch Klasse 4 media and language, Englisch) | Klasse 4 divisors, Klasse 2 Cent range, Nomen/Verb/Adjektiv in every year, timed check for fluency-to-20, new shape kinds and the table component; "Authoring checks" written into docs/lesson-anatomy.md and lessons-check.mjs | 3d944218 |
+| 2026-10-14 | Review of the parallel session's committed sets | 67 | the 67 lesson sets committed by the parallel session (Mathe geometry, data, chance, fractions; Deutsch Klasse 1 to 4) | fixes in about 50 sets; bars take the colour their label names; crossed-out pictures for "not allowed" signs; true/false statements on screen | 0afae4f6 |
+| 2026-10-14 | Pictures and narration |  | pictures the lessons asked for; narration for every line | 45 pictures added and used in 25 lesson sets; 51 204 de-DE clips made, none missing | dcfe4254 |
+
+Open points (5):
+
+- A native German speaker reads the screens (a teacher, not a model)
+- joined-capitals states which letters join; that depends on the school's script (VA, LA, SAS)
+- No Anlauttabelle component; sound-chart lessons show single pictures
+- The player draws print on writing lines, never joined-up script (Schreibschrift)
+- en-weather teaches "It's rainy"; a native English speaker could weigh it against "It's raining"
