@@ -56,7 +56,7 @@ for amounts:
 | `clock` | `hour: 1-12`, `minute: 0-59`, `digital: true` | an analogue clock face; the hour hand moves on with the minutes; `digital` adds the time below; as an option its key is "3:30" |
 | `part-whole` | `whole`, `parts: [2, null]` | England's part-whole model: the whole in a circle above two part circles, `null` is a gap |
 | `ruler` | `to: 15`, `length: 7`, `start: 2`, `colour` | a ruler in cm with mm ticks (cm and half cm only past 20) and a coloured strip above it, dashed lines from its ends to the scale; `start` sets the strip off zero for the reading-from-zero mistake |
-| `shape` | `kind: circle / triangle / square / rectangle / hexagon / cube / cuboid / sphere / cylinder / cone / pyramid`, `colour`, `size` | a flat shape, or a solid in a simple oblique view with hidden edges dashed; as an option its key is the kind ("cube") |
+| `shape` | `kind: circle / triangle / square / rectangle / pentagon / hexagon / octagon / parallelogram / trapezoid / cube / cuboid / sphere / cylinder / cone / pyramid`, `colour`, `size` | a flat shape, or a solid in a simple oblique view with hidden edges dashed; as an option its key is the kind ("cube") |
 | `shape` with `row` or `column` | `row: [circle, square, triangle, "?"]`, `colours: [red, blue, red, null]` or one colour | shapes side by side (left to right) or stacked (top to bottom); `"?"` is a dashed gap, for patterns to continue and for position words (links, rechts, zwischen, oben, unten) |
 | `bar-chart` | `rows: [[Hund, 5], [Katze, 8]]`, `step`, `from`; or `tally: true` | a bar chart with a scale from 0, or from `from` for a cut-off axis (steps of 1, 2 or 5 by the range), or with `tally` a Strichliste table, the fifth stroke across each four |
 | `coins` | `values: [200, 50, 10]` in cent (or pence) | coins and notes of the curriculum's currency, 500 and up as notes; 1 € and 2 € (£2) two-coloured; as an option its key is the total ("260") |
@@ -198,6 +198,8 @@ Interactions:
 | Ersatzprobe for das or dass | "Passt „dieses“ oder „welches“ in die Lücke? „_ Lied gefällt mir.“", options Ja, also das / Nein, also dass with `keep_order: true` | spelling-das-dass |
 | Who is speaking | "Ben antwortet: „Ich war das.“ Wer spricht?", options the people in the sentence | sentences-direct-speech |
 | Which sentence is rearranged correctly | the original is spoken, options three orders, only one with the verb in second place, `option_audio: false` | sentences-move-parts |
+| Read a table | over a `table`, "Wie viele Bücher hat Mia gelesen?" or "Was hat die Klasse am Mittwoch in der 2. Stunde?"; the table's title stands in `text` above the question | read-tables, sketches |
+| How much money | over `coins`, "Wie viel Geld ist das?", options "1 € 30 ct", "1 € 3 ct", "3 €" | money-euro-cent |
 
 An option's key (what `answer` names) is the string itself, or for a
 picture its count, its colour, or its object, in that order. When two
@@ -247,6 +249,8 @@ Interactions:
 | Hundred field for a number | "Wo sind 50?" three `hundred-field` pictures | hundred-field |
 | Strichliste for a number | "Welche Strichliste zeigt 7?" options three `bar-chart` tallies with one unlabelled row, each with an explicit `key` ("7") | tally |
 | Shape by its name or a property | "Wo ist das Dreieck?" or "Wo sind alle Seiten gleich lang?", options three `shape` pictures in one colour; answer the kind (`square`), `option_audio: false` | basic-shapes |
+| Coins that make an amount | "Wo ist genau 1 €?", options three `coins` groups; answer the total in cent ("100") | money-euro-cent |
+| More or fewer, against the look | "Wo sind mehr Äpfel?", a scattered group of 3 against a row of 5, answer "5"; the wide group looks bigger but has fewer | compare-to-10, sort-classify |
 
 A drawn component as an option is keyed like a group: by its `count`
 (dots), `filled` (ten-frame, hundred-field), tens × 10 + ones (base-ten)
@@ -351,6 +355,8 @@ Interactions:
 | das or dass in a gap | "Das Pferd, _ dort steht, heißt Blitz.", options das, dass; two gaps for "dass das" | spelling-das-dass |
 | The punctuation mark in a gap | "Der Hund ist klein_ aber er bellt laut.", options , . ! (also ! . ? after an Aufforderung) | sentences-conjunctions, verbs-imperative |
 | The ending a short word takes | "do_" for doll, options ll, l, ff; "ro_" for rock, options ck, c, g | en-GB phonics-ck-e-u-r, phonics-h-b-f-l |
+| Euro and Cent from coins | over `coins`, frame "_ € _ ct" | money-euro-cent |
+| Fill the gaps of a table | over a `table` with "?" gaps, frame "2 Tickets: _ €, 3 Tickets: _ €" | sketches |
 
 ## `text_input`
 

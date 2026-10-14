@@ -219,7 +219,11 @@ def gather(cfg):
 
     global MIXED, CUR
     for p in sorted((TWIST / "lessons").rglob("*.yaml")):
-        d = yaml.safe_load(p.read_text())
+        try:
+            d = yaml.safe_load(p.read_text())
+        except yaml.YAMLError as e:
+            print(f"skipped {p.relative_to(TWIST)}: not valid YAML ({str(e).splitlines()[0]})", file=sys.stderr)
+            continue
         lang, rel = d["language"], p.relative_to(TWIST / "lessons").with_suffix("")
         MIXED = d.get("target_language")
         CUR = d["curriculum"]

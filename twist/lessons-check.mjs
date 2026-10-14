@@ -97,6 +97,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     // narration.py reads these files with PyYAML, which rejects a plain "?" inside a { } title.
     // House style: no em or en dashes in lesson text (the minus sign − is a different character).
     readFileSync(join(T, file), "utf8").split("\n").forEach((l, i) => { if (!/^\s*#/.test(l) && /[\u2013\u2014]/.test(l)) warn(`${file}:${i + 1}: em or en dash in lesson text`); });
+    readFileSync(join(T, file), "utf8").split("\n").forEach((l, i) => { if (!/^\s*#/.test(l) && /^[^"'\n]*\[[^\]"'\n]*[^\s"'\[,]\?\s*[,\]]/.test(l)) err(`${file}:${i + 1}: quote list items that contain a question mark; PyYAML (narration.py) cannot read them`); });
     for (const m of readFileSync(join(T, file), "utf8").matchAll(/^\s*title: \{[^}\n]*\}/gm)) if (/(de|en|fr): [^"\s][^,}]*\?/.test(m[0])) err(`${file}: quote titles that contain a question mark (${m[0].trim()})`);
     const xt = Object.keys(d.title ?? {}).filter((k) => !["de", "en", "fr"].includes(k));
     if (xt.length) err(`${file}: title has unexpected keys (${xt.join(", ")}); quote titles that contain commas`);
@@ -115,6 +116,15 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     const nonCheck = new Map();
     const checkTasks = [], looseCheck = [], looseNon = new Map();
     const summary = [];
+    // Rules from the 2026-10-14 review (docs/lesson-anatomy.md, "Authoring checks").
+    const german = d.curriculum === "de-DE" && d.language === "de" && !d.target_language;
+    const deNum = (v, where) => {
+      if (!german || typeof v !== "string") return;
+      if (/(^|[^\d ])\d \d{3}(?![\d]| \d)/.test(v)) warn(`${file}: ${where}: four-digit number with a space (${v.slice(0, 40)}); write 4380`);
+      if (/(^|[^\d.,:\/])\d{5,}(?![\d])/.test(v)) warn(`${file}: ${where}: five or more digits without spaces (${v.slice(0, 40)}); write 34 500`);
+    };
+    const sayNum = (v, where) => { if (typeof v === "string" && /\d{1,3}( \d{3})+|\d{5,}/.test(v)) warn(`${file}: ${where}: say has a number of 10 000 or more in digits; write it in words so the voice reads it right`); };
+    const tf = [];
     lessons.forEach((l, i) => {
       const lw = `lesson ${l.n}`;
       if (l.n !== i + 1) err(`${file}: lessons must be numbered 1, 2, 3 ...; found ${l.n} at position ${i + 1}`);
@@ -143,6 +153,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
         if (!spec) { err(`${file}: ${aw}: unknown activity`); return; }
         for (const [k, values] of Object.entries(spec)) if (!values.includes(a[k])) err(`${file}: ${aw}: ${k} must be one of ${values.join(", ")}`);
         if (i === 0 && a.activity === "warm-up" && a.from === "last-lesson") warn(`${file}: ${aw}: lesson 1 has no last lesson; use from: earlier-skills`);
+        if (a.activity === "learn") for (const sc of a.screens ?? []) { deNum(sc.text, `${aw} screen`); sayNum(sc.say, `${aw} screen`); }
         if (a.activity === "learn") { seq.push("learn"); if (!a.screens?.length) err(`${file}: ${aw}: Learn needs screens`); refs(a.screens, aw, file); return; }
         // Practise: three stages, full hints, then one hint, then none.
         let groups;
@@ -193,6 +204,15 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (a.activity === "check") checkTasks.push([t.id, sig, a.size]); else nonCheck.set(sig, t.id);
           const loose = JSON.stringify([t.type, t.text ?? null, t.say ?? null, t.answer, t.audio ?? null, t.show ?? null, t.frame ?? null]);
           if (a.activity === "check") looseCheck.push([t.id, loose, a.size]); else looseNon.set(loose, t.id);
+          deNum(t.text, tw); for (const o of t.options ?? []) deNum(o, tw); sayNum(t.say, tw);
+          if (t.type === "true_false") tf.push(t.answer);
+          for (const h of t.hints ?? []) if (typeof h === "string") {
+            if (/Lernteil|Learn-Teil|the Learn part/i.test(h)) warn(`${file}: ${tw}: hint points at "the Learn part"; say the idea itself`);
+          }
+          if (/Wo ist der Fehler|Where is the mistake/i.test(t.text ?? "") && /kein(en)? Fehler|no mistake/i.test(JSON.stringify(t.answer ?? ""))) warn(`${file}: ${tw}: asks where the mistake is, but the answer is that there is none; ask whether there is a mistake`);
+          const spoken = t.option_audio !== false && !NO_OPTION_AUDIO.has(t.type);
+          const flat = (t.options ?? []).filter((o) => typeof o === "string").map((o) => o.toLowerCase().replace(/[\s\-]/g, ""));
+          if (spoken && new Set(flat).size < flat.length) warn(`${file}: ${tw}: two options sound the same (they differ only in capitals, spaces or hyphens); set option_audio: false`);
           if (t.keep_order !== undefined && (typeof t.keep_order !== "boolean" || !CHOICE_TYPES.has(t.type))) err(`${file}: ${tw}: keep_order is true or false, on a choice task only`);
         }
       });
@@ -201,6 +221,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       if (count < lo || count > hi) warn(`${file}: ${lw} has ${count} tasks; ages ${age} usually ${lo} to ${hi}`);
       summary.push({ n: l.n, title: l.title, new: l.new_content, tasks: count, seq });
     });
+    if (tf.length >= 4 && new Set(tf.map(String)).size === 1) warn(`${file}: all ${tf.length} true/false tasks have the answer ${tf[0]}; mix true and false`);
+    const w1 = lessons[0]?.activities?.[0];
+    if (w1?.activity === "warm-up" && w1.from === "earlier-skills" && !(md.builds_on ?? []).length) warn(`${file}: lesson 1 warm-up recalls earlier skills, but builds_on is empty; name them`);
     for (const [id, sig, size] of checkTasks) if (size !== "quick" && nonCheck.has(sig)) err(`${file}: skill check task ${id} repeats task ${nonCheck.get(sig)}`);
     for (const [id, sig, size] of looseCheck) if (size !== "quick" && looseNon.has(sig) && !nonCheck.has(checkTasks.find((c) => c[0] === id)[1])) warn(`${file}: skill check task ${id} asks the same as task ${looseNon.get(sig)}`);
     // Metadata must match what the tasks actually use.

@@ -312,6 +312,58 @@ A task can have versions; the skill and what the task asks stay the same.
 - **By target language**, for Englisch and French lessons: the words,
   audio and examples in that language.
 
+### Authoring checks
+
+Written after the full de-DE review of 2026-10-14, which fixed about 220
+lesson sets for the same few mistakes. Each lesson set meets these before
+it counts as drafted.
+
+The build warns on these (lessons-check.mjs):
+
+- Lesson 1's warm-up comes from earlier skills, never from the last
+  lesson, and those skills are named in `builds_on` as prerequisites.
+- A skill check never repeats a Practise or Warm-up task; change the
+  numbers, the words or the question.
+- True/false tasks in a set do not all have the same answer.
+- Options that differ only in capitals, spaces or hyphens (Dunkelrot,
+  dunkelrot, dunkel rot) sound the same, so they carry
+  `option_audio: false`.
+- A "Wo ist der Fehler?" task always has a mistake; when "no mistake" is
+  a possible answer, ask "Gibt es einen Fehler?".
+- German numbers: four digits without a space (4380), five or more grouped
+  with a space (34 500). In `say`, numbers of 10 000 or more are written
+  in words; the voice misreads them in digits. A text with `·` or `|` gets
+  its own `say`, because the voice reads the sign.
+- Hints say the idea itself, never "Denk an den Lernteil".
+- List items with a question mark are quoted (`"Wer?"`); narration.py
+  reads the files with PyYAML, which rejects them bare.
+
+The author checks these by reading every task:
+
+- **One right answer.** Work out every answer. No distractor may also be
+  right (a square is also a Parallelogramm; 285 is divisible by 3 as well
+  as 5; Delfin and Delphin are both in the Duden).
+- **What the screen shows.** The question and its data are on screen, not
+  only in `say`. Text, `say`, drawn data and hints give the same numbers.
+  A drawn component shows what the text claims, and only what the
+  component can draw (drawn.yaml).
+- **Hints climb.** A nudge, then the strategy, then the answer. No hint
+  gives the answer away early or repeats the one before.
+- **Learn teaches what Practise asks.** Every word, rule or shape a task
+  needs appears in Learn first (Trapez, über, ß). Metadata
+  `misconceptions.addressed` names the tasks that really address it.
+- **The year fits.** Numbers stay in the year's range (Cent to 100 in
+  Klasse 2), methods follow the Lehrplan (one-digit divisors in Klasse 4),
+  and a Klasse 1 letter task uses only letters already taught.
+- **German as a teacher says it.** Nomen, Verb, Adjektiv in every year
+  (Klasse 1 and 2 may add "Tunwort" once, where the term is introduced);
+  German quotes „…“; du-form, short sentences. In Englisch, hints are in
+  German and never mix English nouns into German sentences ("auf einem
+  chair").
+- **No accidental giveaways.** A noun is not the only capitalised option;
+  a spoken picture name does not say the answer; options in a sound task
+  are not read aloud.
+
 ## Mastery
 
 Mastery is recorded per child and per skill. It decides where a

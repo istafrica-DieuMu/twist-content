@@ -116,7 +116,7 @@ export function tracking() {
   out += `| **Total** | | | **about ${usd(pictureCost + narrTotal)}** | |\n\n`;
   out += `The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. `;
   out += live
-    ? `The key itself had spent ${usd(live.usage)} in total on ${live.checked} (${usd(live.usage_daily)} that day, ${usd(live.usage_weekly)} that week; limit ${usd(live.limit)}). The key is shared with schoolido-learning authoring, so not all of that is Twist.\n\n`
+    ? `The key itself had spent ${usd(live.usage)} in total on ${live.checked} (${usd(live.usage_daily)} that day, ${usd(live.usage_weekly)} that week; ${live.limit == null ? "no limit" : `limit ${usd(live.limit)}`}). The key is shared with schoolido-learning authoring, so not all of that is Twist.\n\n`
     : `Run \`node tracking.mjs --live\` to add what the key has actually spent.\n\n`;
 
   out += `Per voice:\n\n| voice | clips | passed the check | missing | audio | cost |\n|---|---|---|---|---|---|\n`;

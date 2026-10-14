@@ -23,6 +23,11 @@ The root AGENTS.md applies. On top of it:
 - **Task types live in docs/task-types.md.** Before a lesson uses a new
   task type or a new interaction of an existing one, add it there with an
   example; the build rejects undocumented types.
+- **Authoring checks.** Every lesson set meets the list in
+  docs/lesson-anatomy.md ("Authoring checks") and builds with no warnings
+  before it is committed. Give authoring and review agents that list. When
+  a review finds a new kind of mistake, add it there, and to
+  lessons-check.mjs if a rule can catch it.
 - **Lessons are written by hand.** No scripts that template tasks, hints
   or lesson text. Tools may check, render, draw and speak records.
 - **Never write into schoolido-learning.** Today's Twist modules are

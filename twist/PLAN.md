@@ -460,12 +460,18 @@ correct answers, native German, hint order, Learn matching Practise,
 skill checks that do not repeat earlier tasks, and year fit; about 220
 files fixed. The checker now also flags a lesson-1 warm-up from the last
 lesson and a "·" or "|" the voice would read aloud. The letter groups now
-chain as prerequisites in Fibel order. Narration for the changed and newly
-drafted lines is still to make. Open points for a teacher or a decision:
-two-digit divisors in Klasse 4 (multi-digit-semi), Cent up to 999 in
-Klasse 2 (money-euro-cent), Tunwort/Wiewort against Verb/Adjektiv in
-Klasse 2, nouns-recognise giving the answer by its capital letter, a
-timed check for fluency-to-20, and "It's rainy" in en-weather.
+chain as prerequisites in Fibel order. Follow-up the same day: the open
+points are fixed (one-digit divisors in Klasse 4 multi-digit-semi, Cent
+to 100 in Klasse 2 money-euro-cent, Nomen/Verb/Adjektiv in every year,
+nouns-recognise options in capitals, a timed check for fluency-to-20,
+picture groups in sort-classify, pentagon, octagon, parallelogram and
+trapezoid in the shape component, tables through the table component).
+The 30 drafts from the parallel run (Deutsch Klasse 4 media and language,
+Englisch) are reviewed; the ballads quotes are checked against Wikisource.
+What the review kept finding is now in docs/lesson-anatomy.md ("Authoring
+checks") and, where a rule can catch it, in lessons-check.mjs. Narration
+for the changed and new lines is running. Still for a teacher: a native
+read of the German, and en-weather's "It's rainy" against "It's raining".
 
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
