@@ -389,8 +389,8 @@ function house(roof, rows) {
 // Schriftliches Rechnen: numbers right-aligned in columns, the sign before the last row, the
 // Übertrag small above the line, then the result; "_" in a result is a gap, "?" a highlighted digit.
 function writtenCalc(o) {
-  const rows = o.rows ?? [], res = o.result ?? "", carry = o.carry ?? "";
-  const n = Math.max(...rows.map((r) => r.length), res.length, carry.length) + 1, cw = 30, W = n * cw + 16;
+  const rows = o.rows ?? [], res = o.result ?? "", carry = o.carry ?? "", partials = o.partials ?? [];
+  const n = Math.max(...rows.map((r) => r.length), res.length, carry.length, ...partials.map((r) => r.length)) + 1, cw = 30, W = n * cw + 16;
   const put = (str, yy, size, colour) => { const k = n - str.length; [...str].forEach((ch, i) => { if (ch === " ") return; const x = 8 + (k + i) * cw + cw / 2;
     s += ch === "_" ? `<rect x="${x - 11}" y="${yy - 24}" width="22" height="28" rx="4" fill="#f6effc" stroke="#8e3bd1" stroke-width="2"/>` : `<text x="${x}" y="${yy}" text-anchor="middle" font-size="${size}" font-weight="700" fill="${ch === "?" ? "#8e3bd1" : colour}">${esc(ch)}</text>`; }); };
   // above: small digits written over the first number when entbündelt; cross: "x" marks a crossed-out digit of the first row.
@@ -401,8 +401,22 @@ function writtenCalc(o) {
     if (i === 0 && cross.includes("x")) { const k = n - cross.length; [...cross].forEach((ch, j) => { if (ch !== "x") return; const x = 8 + (k + j) * cw + cw / 2; s += `<line x1="${x - 10}" y1="${y + 2}" x2="${x + 10}" y2="${y - 22}" stroke="#8e3bd1" stroke-width="3"/>`; }); } if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" || o.op === "−" ? "−" : o.op === "·" ? "·" : o.op === "×" || o.op === "x" ? "×" : "+"}</text>`; y += 36; });
   if (carry.trim()) { put(carry, y - 6, 16, "#8e3bd1"); y += 6; }
   s += `<line x1="8" y1="${y - 22}" x2="${W - 8}" y2="${y - 22}" stroke="#2b0f45" stroke-width="3"/>`;
+  // Long multiplication: the partial products sit between two lines, the total below the second.
+  if (partials.length) { y += 12; partials.forEach((r) => { put(r, y, 28, "#2b0f45"); y += 36; }); s += `<line x1="8" y1="${y - 22}" x2="${W - 8}" y2="${y - 22}" stroke="#2b0f45" stroke-width="3"/>`; }
   if (res) { y += 12; put(res, y, 28, "#2b0f45"); }
   return `<svg viewBox="0 0 ${W} ${y + 10}" width="${Math.min(W * 1.1, 260)}">${s}</svg>`;
+}
+// Short division, the bus stop: divisor outside, dividend under the bar, quotient on top;
+// carries are small digits written before a dividend digit; "_" in the quotient is a gap; remainder adds "r n".
+function shortDivision(o) {
+  const dd = String(o.dividend ?? ""), q = String(o.quotient ?? "").padStart(dd.length, " "), cr = String(o.carries ?? "").padStart(dd.length, " "), cw = 34, x0 = 64, W = x0 + dd.length * cw + (o.remainder != null ? 70 : 16);
+  let s = `<text x="${x0 - 14}" y="92" text-anchor="end" font-size="30" font-weight="700" fill="#2b0f45">${esc(String(o.divisor ?? ""))}</text>`;
+  s += `<path d="M${x0 - 6} 104 Q ${x0 + 4} 82 ${x0 - 6} 60 L ${x0 + dd.length * cw + 6} 60" fill="none" stroke="#2b0f45" stroke-width="3.5"/>`;
+  [...dd].forEach((ch, i) => { const x = x0 + i * cw + cw / 2; s += `<text x="${x}" y="92" text-anchor="middle" font-size="30" font-weight="700" fill="#2b0f45">${esc(ch)}</text>`;
+    if (cr[i] && cr[i] !== " ") s += `<text x="${x - 13}" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#8e3bd1">${esc(cr[i])}</text>`;
+    const c = q[i]; if (c && c !== " ") s += c === "_" ? `<rect x="${x - 12}" y="22" width="24" height="30" rx="4" fill="#f6effc" stroke="#8e3bd1" stroke-width="2"/>` : `<text x="${x}" y="48" text-anchor="middle" font-size="30" font-weight="700" fill="${c === "?" ? "#8e3bd1" : "#2b0f45"}">${esc(c)}</text>`; });
+  if (o.remainder != null) s += `<text x="${x0 + dd.length * cw + 10}" y="48" font-size="24" font-weight="700" fill="#2b0f45">r ${esc(String(o.remainder))}</text>`;
+  return `<svg viewBox="0 0 ${W} 112" width="${Math.min(W * 1.1, 320)}">${s}</svg>`;
 }
 // A Zahlenmauer: rows from the bottom up, each brick the sum of the two below; null is a gap.
 // An analogue clock: hour 1-12, minute 0-59; the hour hand moves on with the minutes.
@@ -485,7 +499,7 @@ function clock(o) {
   let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="#fff" stroke="#2b0f45" stroke-width="5"/>`;
   // roman: true writes I to XII, which Year 3 in England reads.
   const ROM = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
-  for (let i = 1; i <= 12; i++) s += `<text x="${c + 64 * Math.cos(ang(i / 12))}" y="${c + 64 * Math.sin(ang(i / 12)) + (o.roman ? 6 : 8)}" text-anchor="middle" font-size="${o.roman ? (ROM[i].length > 2 ? 13 : 16) : 22}" font-weight="700" fill="#2b0f45">${o.roman ? ROM[i] : i}</text>`;
+  for (let i = 1; i <= 12; i++) s += `<text x="${c + (o.roman ? 55 : 64) * Math.cos(ang(i / 12))}" y="${c + (o.roman ? 55 : 64) * Math.sin(ang(i / 12)) + (o.roman ? 5 : 8)}" text-anchor="middle" font-size="${o.roman ? (ROM[i].length > 2 ? 13 : 16) : 22}" font-weight="700" fill="#2b0f45">${o.roman ? ROM[i] : i}</text>`;
   for (let i = 0; i < 60; i++) if (i % 5) s += `<circle cx="${c + 74 * Math.cos(ang(i / 60))}" cy="${c + 74 * Math.sin(ang(i / 60))}" r="1.6" fill="#2b0f45"/>`;
   const m = o.minute ?? 0, h = ((o.hour ?? 12) % 12) + m / 60;
   s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
@@ -821,6 +835,7 @@ function drawn(o, ctx = {}) {
     case "part-whole": return partWhole(o.whole, o.parts);
     case "number-wall": return numberWall(o.rows);
     case "written-calc": return writtenCalc(o);
+    case "short-division": return shortDivision(o);
     case "hundred-field": return hundredField(o.filled, o.colour_split);
     case "hundred-square": return hundredSquare(o);
     case "base-ten": return baseTen(o.tens ?? 0, o.ones ?? 0, o.hundreds ?? 0);
