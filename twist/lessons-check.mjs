@@ -284,13 +284,13 @@ function checkAnswer(t, tw, file, err) {
         const kb = t.keyboard ?? "digits", a = String(t.answer);
         if (!["digits", "decimal", "letters"].includes(kb)) err(`${file}: ${tw}: keyboard must be digits, decimal or letters`);
         else if (kb === "digits" && !/^\d{1,8}$/.test(a)) err(`${file}: ${tw}: text_input answer must be up to 8 digits, no spaces (or set keyboard: decimal or letters)`);
-        else if (kb === "decimal" && !(d.curriculum === "de-DE" ? /^[-−]?\d{1,8}(,\d{1,3})?$/ : /^[-−]?\d{1,8}(\.\d{1,3})?$/).test(a)) err(`${file}: ${tw}: decimal answer must be like ${d.curriculum === "de-DE" ? "2,5" : "2.5"} (a minus allowed)`);
+        else if (kb === "decimal" && !(file.includes("lessons/de-DE/") ? /^[-−]?\d{1,8}(,\d{1,3})?$/ : /^[-−]?\d{1,8}(\.\d{1,3})?$/).test(a)) err(`${file}: ${tw}: decimal answer must be like ${file.includes("lessons/de-DE/") ? "2,5" : "2.5"} (a minus allowed)`);
         else if (kb === "letters" && !/^[\p{L}' ]{1,24}$/u.test(a)) err(`${file}: ${tw}: letters answer must be letters, apostrophes or spaces, up to 24`);
       }
       if (t.type === "drag_and_drop_count" && !(t.answer <= t.total_items)) err(`${file}: ${tw}: answer is more than total_items`);
       if (t.type === "point_on_line") {
         const nl = t.show ?? {}, from = nl.from ?? 0, to = nl.to ?? 20, step = nl.step ?? 1;
-        if (t.answer < from || t.answer > to || (t.answer - from) % step) err(`${file}: ${tw}: answer ${t.answer} is not a tick on the line (${from} to ${to}, step ${step})`);
+        if (t.answer < from || t.answer > to || Math.abs((t.answer - from) / step - Math.round((t.answer - from) / step)) > 1e-6) err(`${file}: ${tw}: answer ${t.answer} is not a tick on the line (${from} to ${to}, step ${step})`);
       }
       break;
     case "tracing": if (!t.char) err(`${file}: ${tw}: tracing needs char`); break;

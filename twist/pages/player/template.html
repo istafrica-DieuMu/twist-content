@@ -398,7 +398,7 @@ function writtenCalc(o) {
   let y = above.trim() ? 56 : 34, s = "";
   if (above.trim()) put(above, 26, 16, "#8e3bd1");
   rows.forEach((r, i) => { put(r, y, 28, "#2b0f45");
-    if (i === 0 && cross.includes("x")) { const k = n - cross.length; [...cross].forEach((ch, j) => { if (ch !== "x") return; const x = 8 + (k + j) * cw + cw / 2; s += `<line x1="${x - 10}" y1="${y + 2}" x2="${x + 10}" y2="${y - 22}" stroke="#8e3bd1" stroke-width="3"/>`; }); } if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" || o.op === "−" ? "−" : o.op === "·" ? "·" : "+"}</text>`; y += 36; });
+    if (i === 0 && cross.includes("x")) { const k = n - cross.length; [...cross].forEach((ch, j) => { if (ch !== "x") return; const x = 8 + (k + j) * cw + cw / 2; s += `<line x1="${x - 10}" y1="${y + 2}" x2="${x + 10}" y2="${y - 22}" stroke="#8e3bd1" stroke-width="3"/>`; }); } if (i === rows.length - 1) s += `<text x="${8 + cw / 2}" y="${y}" text-anchor="middle" font-size="28" font-weight="700" fill="#2b0f45">${o.op === "-" || o.op === "−" ? "−" : o.op === "·" ? "·" : o.op === "×" || o.op === "x" ? "×" : "+"}</text>`; y += 36; });
   if (carry.trim()) { put(carry, y - 6, 16, "#8e3bd1"); y += 6; }
   s += `<line x1="8" y1="${y - 22}" x2="${W - 8}" y2="${y - 22}" stroke="#2b0f45" stroke-width="3"/>`;
   if (res) { y += 12; put(res, y, 28, "#2b0f45"); }
@@ -483,7 +483,9 @@ function ruler(o) {
 function clock(o) {
   const c = 90, r = 80, ang = (f) => (f * 2 * Math.PI) - Math.PI / 2, hand = (f, len, w, col) => `<line x1="${c}" y1="${c}" x2="${c + len * Math.cos(ang(f))}" y2="${c + len * Math.sin(ang(f))}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
   let s = `<circle cx="${c}" cy="${c}" r="${r}" fill="#fff" stroke="#2b0f45" stroke-width="5"/>`;
-  for (let i = 1; i <= 12; i++) s += `<text x="${c + 64 * Math.cos(ang(i / 12))}" y="${c + 64 * Math.sin(ang(i / 12)) + 8}" text-anchor="middle" font-size="22" font-weight="700" fill="#2b0f45">${i}</text>`;
+  // roman: true writes I to XII, which Year 3 in England reads.
+  const ROM = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+  for (let i = 1; i <= 12; i++) s += `<text x="${c + 64 * Math.cos(ang(i / 12))}" y="${c + 64 * Math.sin(ang(i / 12)) + (o.roman ? 6 : 8)}" text-anchor="middle" font-size="${o.roman ? (ROM[i].length > 2 ? 13 : 16) : 22}" font-weight="700" fill="#2b0f45">${o.roman ? ROM[i] : i}</text>`;
   for (let i = 0; i < 60; i++) if (i % 5) s += `<circle cx="${c + 74 * Math.cos(ang(i / 60))}" cy="${c + 74 * Math.sin(ang(i / 60))}" r="1.6" fill="#2b0f45"/>`;
   const m = o.minute ?? 0, h = ((o.hour ?? 12) % 12) + m / 60;
   s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
@@ -738,6 +740,7 @@ function grid(o) {
   for (const [c, r, k] of o.cells ?? []) s += `<rect x="${X(c)}" y="${Y(r)}" width="${g}" height="${g}" fill="none" stroke="#2b0f45" stroke-width="1.5"/>`;
   for (const [c1, r1, c2, r2] of o.lines ?? []) s += `<line x1="${X(c1)}" y1="${Y(r1)}" x2="${X(c2)}" y2="${Y(r2)}" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`;
   if (o.axis != null) s += `<line x1="${X(o.axis)}" y1="${p - 4}" x2="${X(o.axis)}" y2="${H - p + 4}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+  if (o.diagonal) s += o.diagonal === "down" ? `<line x1="${X(0)}" y1="${Y(0)}" x2="${X(Math.min(C, R))}" y2="${Y(Math.min(C, R))}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>` : `<line x1="${X(0)}" y1="${Y(Math.min(C, R))}" x2="${X(Math.min(C, R))}" y2="${Y(0)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>`;
   if (o.axis_row != null) s += `<line x1="${p - 4}" y1="${Y(o.axis_row)}" x2="${W - p + 4}" y2="${Y(o.axis_row)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>`;
   for (const [c, r, t] of o.labels ?? []) s += `<text x="${X(c) + g / 2}" y="${Y(r) + g * 0.68}" text-anchor="middle" font-size="${g * 0.55}" font-weight="800" fill="#2b0f45">${esc(t)}</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="${Math.min(320, W * 1.1)}">${s}</svg>`;
