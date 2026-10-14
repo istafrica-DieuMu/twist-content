@@ -441,6 +441,7 @@ Interactions:
 | Every word of the Subjekt | "Mein großer Bruder spielt Gitarre.", spans Mein, großer, Bruder; spans match cards without trailing punctuation, so "Paul" finds the card "Paul." | sentences-subject-predicate |
 | The spoken words or the Begleitsatz | "Tom ruft: „Komm schnell her!“", spans „Komm, schnell, her!“ (cards keep their Anführungszeichen) or Tom, ruft: | sentences-direct-speech, sentences-direct-speech-positions |
 | Both parts of a split Prädikat | "Der Unterricht hört um zwölf auf.", spans hört, auf. | sentences-subject-predicate |
+| Where to pause | a sentence to read aloud, spans the word after which you pause (at a comma or a full stop) | record-voice |
 
 ## `tracing`
 
@@ -511,6 +512,7 @@ Interactions:
 | Compound with its last part or its article | Regenschirm ↔ Schirm; Haustür ↔ die, with `option_audio: false` | compound-nouns |
 | Case question with its case | Wem? ↔ Dativ, four pairs | noun-cases |
 | Shape with its name or its corners | a `shape` picture ↔ Kreis, or ↔ "3 Ecken" | basic-shapes |
+| Problem and its fix | a recording problem ("zu leise") ↔ what helps ("näher ans Mikrofon"); a statement ↔ zustimmen, widersprechen, nachfragen; an interview answer ↔ its Stichwort | record-voice, conversation-rules, interview |
 
 Twist: `pairs[].left` and `right` become `{ label, image_url }`; `say`
 becomes the narration of that side.
@@ -536,6 +538,10 @@ Interactions:
 | Verbs into trennbar and nicht trennbar | bins trennbar and nicht trennbar, text cards aufräumen, verlieren, weglaufen, bekommen | verbs-compound |
 | Phrases into Ortsangabe and Zeitangabe | bins "Ortsangabe (Wo?)" and "Zeitangabe (Wann?)", cards with im and am of both kinds (im Keller, im Herbst, am Strand, am Abend) | sentences-place-time |
 | Questions a story can or cannot answer | bins "kann ich beantworten" and "kann ich nicht beantworten"; after a short story, cards such as "Wie viele springen nicht?" and "Wie tief ist das Becken?" | ask-questions |
+| Opinion and reason, argument or not | bins "Meinung" and "Grund", or "Argument" and "kein Argument", cards from one short discussion | argue, opinion |
+| What belongs in a report | bins "gehört in den Bericht" and "gehört nicht hinein", cards with facts and feelings | report |
+| Open or yes/no question | bins "offene Frage" and "Ja-Nein-Frage" | interview |
+| Said, shown or thought | bins "gesagt", "gezeigt" and "gedacht", cards with ways a character's feelings come across | write-feelings |
 
 ## `ordering`
 
