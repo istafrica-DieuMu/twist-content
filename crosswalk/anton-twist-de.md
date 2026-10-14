@@ -89,8 +89,8 @@ What the curriculum adds to Anton, mostly from the KMK standards.
 - Kl. 2: `math.data.read-tables` I can read information from tables and calendars and use it to answer questions.
 - Kl. 2: `math.chance.combinations` I can work out systematically how many possibilities there are (for example outfits), using a table or tree diagram.
 - Kl. 2: `math.chance.certain-possible-impossible` I can describe events as certain, likely, unlikely or impossible.
-- Kl. 3: `math.mult-div.vocabulary` I can use the words times, divided by, product and quotient correctly.
 - Kl. 3: `math.written-add-sub.add-several` I can add more than two numbers in columns, also with different numbers of digits.
+- Kl. 3: `math.mult-div.vocabulary` I can use the words times, divided by, product and quotient correctly.
 - Kl. 3: `math.patterns.functional-tables` I can show relationships such as quantity and price in tables and fill in missing values.
 - Kl. 3: `math.money.decimal-notation` I can read and write money amounts with a decimal point (£3.50 = £3 and 50p = 350p).
 - Kl. 3: `math.fractions.halves-quarters` I can split a whole into halves and quarters and check whether the parts are equal.
