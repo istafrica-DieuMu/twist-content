@@ -8,38 +8,38 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 91% (185 / 203) | 69% (20 / 29) | 381 | 100% (13281 / 13281) |
-| de-DE | Deutsch | 67% (116 / 174) | 62% (58 / 94) | 258 | 100% (6921 / 6922) |
-| de-DE | Englisch | 64% (37 / 58) | 61% (23 / 38) | 74 | 100% (2206 / 2206) |
-| **de-DE** | **all** | **78% (338 / 435)** | **63% (101 / 161)** | **713** | **100% (22408 / 22409)** |
-| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 103 | 100% (5492 / 5492) |
-| en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 48 | 100% (2133 / 2133) |
+| de-DE | Mathe | 91% (185 / 203) | 69% (20 / 29) | 381 | 62% (13228 / 21200) |
+| de-DE | Deutsch | 67% (116 / 174) | 62% (58 / 94) | 258 | 49% (6808 / 13866) |
+| de-DE | Englisch | 64% (37 / 58) | 61% (23 / 38) | 74 | 64% (2174 / 3385) |
+| **de-DE** | **all** | **78% (338 / 435)** | **63% (101 / 161)** | **713** | **58% (22210 / 38451)** |
+| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 103 | 100% (5491 / 5492) |
+| en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 48 | 100% (2131 / 2133) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 10 | 100% (539 / 539) |
-| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **161** | **100% (8164 / 8164)** |
+| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **161** | **100% (8162 / 8164)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 205 files (196 priced) | $4.21 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 30596 clips, 38.2 h | about $47 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 30596 clips | about $24 | estimated the same way |
+| Narration | google/gemini-3.8-flash-tts | 30396 clips, 37.9 h | about $47 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 30396 clips | about $24 | estimated the same way |
 | **Total** | | | **about $75** | |
 
-The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $376 in total on 2026-10-13 ($43 that day, $53 that week; limit $450). The key is shared with schoolido-learning authoring, so not all of that is Twist.
+The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; limit $450). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
 Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 2636 | 2586 (98%) | 0 | 157 min | $5.34 |
+| gemini-puck | 2590 | 2540 (98%) | 2217 | 154 min | $5.25 |
 | gemini-puck-en | 953 | 925 (97%) | 0 | 54 min | $1.92 |
-| gemini-sulafat | 19786 | 19402 (98%) | 1 | 1497 min | $46 |
+| gemini-sulafat | 19632 | 19258 (98%) | 14026 | 1484 min | $46 |
 | gemini-sulafat-en | 7221 | 7059 (98%) | 0 | 583 min | $18 |
 
 ## de-DE
 
-338 of 435 placed skills drafted (78%): 338 lesson sets, 713 lessons, 15258 tasks. Narration so far about $52; 1 clips still to make.
+338 of 435 placed skills drafted (78%): 338 lesson sets, 713 lessons, 15258 tasks. Narration so far about $51; 16241 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -55,22 +55,22 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
-| klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $1.69 |
-| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.02 |
-| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $0.89 |
-| klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.01 |
-| klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 |  |
-| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $0.18 |
-| klasse-1 | Mathe | Geometrie | 4 / 5 started | 8 |  |
-| klasse-1 | Mathe | Daten | 2 / 2 done | 4 |  |
-| klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $0.95 |
-| klasse-1 | Deutsch | Buchstaben | 9 / 12 started | 42 | $0.34 |
-| klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 |  |
-| klasse-1 | Deutsch | Silben lesen | 4 / 4 done | 8 |  |
-| klasse-1 | Deutsch | Erste Wörter schreiben | 3 / 3 done | 6 |  |
-| klasse-1 | Deutsch | Blitzlesen | 1 / 2 started | 2 |  |
-| klasse-1 | Deutsch | Erste Wörter lesen | 2 / 2 done | 4 |  |
-| klasse-1 | Deutsch | Nomen | 2 / 3 started | 4 |  |
+| klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $1.67 |
+| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.01 |
+| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $0.88 |
+| klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $1.99 |
+| klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.01 |
+| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $0.20 |
+| klasse-1 | Mathe | Geometrie | 4 / 5 started | 8 | $0.00 |
+| klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.01 |
+| klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $0.89 |
+| klasse-1 | Deutsch | Buchstaben | 9 / 12 started | 42 | $0.38 |
+| klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 | $0.00 |
+| klasse-1 | Deutsch | Silben lesen | 4 / 4 done | 8 | $0.02 |
+| klasse-1 | Deutsch | Erste Wörter schreiben | 3 / 3 done | 6 | $0.00 |
+| klasse-1 | Deutsch | Blitzlesen | 1 / 2 started | 2 | $0.00 |
+| klasse-1 | Deutsch | Erste Wörter lesen | 2 / 2 done | 4 | $0.01 |
+| klasse-1 | Deutsch | Nomen | 2 / 3 started | 4 | $0.02 |
 | klasse-1 | Deutsch | Erste Sätze lesen | 0 / 2 |  |  |
 | klasse-1 | Deutsch | Erste Sätze schreiben | 0 / 3 |  |  |
 | klasse-1 | Deutsch | Das ABC | 0 / 1 |  |  |
@@ -84,31 +84,31 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Deutsch | Sprache untersuchen | 0 / 1 |  |  |
 | klasse-1 | Deutsch | Texte schreiben | 0 / 1 |  |  |
 | klasse-1 | Deutsch | Wortschatz | 0 / 1 |  |  |
-| klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.35 |
-| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.01 |
-| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.32 |
-| klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 |  |
-| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $1.41 |
-| klasse-2 | Mathe | Geometrie | 6 / 7 started | 12 |  |
-| klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 3 / 4 started | 6 |  |
-| klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.38 |
-| klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.29 |
-| klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.83 |
-| klasse-2 | Deutsch | Adjektive | 3 / 3 done | 6 | $0.71 |
+| klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.32 |
+| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $2.95 |
+| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.29 |
+| klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $0.02 |
+| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $1.37 |
+| klasse-2 | Mathe | Geometrie | 6 / 7 started | 12 | $0.01 |
+| klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 3 / 4 started | 6 | $0.01 |
+| klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.37 |
+| klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.28 |
+| klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.81 |
+| klasse-2 | Deutsch | Adjektive | 3 / 3 done | 6 | $0.70 |
 | klasse-2 | Deutsch | Satzarten | 2 / 2 done | 4 | $0.38 |
-| klasse-2 | Deutsch | Wortschatz | 1 / 1 done | 2 |  |
-| klasse-2 | Deutsch | Laute und Buchstaben | 1 / 1 done | 2 | $0.19 |
-| klasse-2 | Deutsch | Kurze und lange Selbstlaute | 1 / 1 done | 2 | $0.22 |
+| klasse-2 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.01 |
+| klasse-2 | Deutsch | Laute und Buchstaben | 1 / 1 done | 2 | $0.18 |
+| klasse-2 | Deutsch | Kurze und lange Selbstlaute | 1 / 1 done | 2 | $0.20 |
 | klasse-2 | Deutsch | Besondere Laute | 1 / 1 done | 2 | $0.22 |
-| klasse-2 | Deutsch | Rechtschreibstrategien | 5 / 5 done | 10 | $1.22 |
+| klasse-2 | Deutsch | Rechtschreibstrategien | 5 / 5 done | 10 | $1.20 |
 | klasse-2 | Deutsch | Wortstamm und Wortfamilie | 1 / 1 done | 2 | $0.30 |
-| klasse-2 | Deutsch | Merkwörter | 1 / 1 done | 2 | $0.22 |
+| klasse-2 | Deutsch | Merkwörter | 1 / 1 done | 2 | $0.21 |
 | klasse-2 | Deutsch | Rechtschreibung üben | 1 / 1 done | 2 | $0.18 |
-| klasse-2 | Deutsch | Blitzlesen | 1 / 1 done | 2 |  |
-| klasse-2 | Deutsch | Genau lesen | 1 / 1 done | 2 |  |
-| klasse-2 | Deutsch | Texte verstehen | 4 / 4 done | 8 |  |
-| klasse-2 | Deutsch | Textarten | 2 / 2 done | 4 |  |
-| klasse-2 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 |  |
+| klasse-2 | Deutsch | Blitzlesen | 1 / 1 done | 2 | $0.00 |
+| klasse-2 | Deutsch | Genau lesen | 1 / 1 done | 2 | $0.01 |
+| klasse-2 | Deutsch | Texte verstehen | 4 / 4 done | 8 | $0.01 |
+| klasse-2 | Deutsch | Textarten | 2 / 2 done | 4 | $0.00 |
+| klasse-2 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 | $0.01 |
 | klasse-2 | Deutsch | Texte schreiben | 0 / 2 |  |  |
 | klasse-2 | Deutsch | Beschreiben | 0 / 2 |  |  |
 | klasse-2 | Deutsch | Erzählen | 0 / 1 |  |  |
@@ -117,69 +117,69 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Texte überarbeiten | 0 / 1 |  |  |
 | klasse-2 | Deutsch | Sprechen und Zuhören | 0 / 2 |  |  |
 | klasse-2 | Deutsch | Schreibschrift | 0 / 3 |  |  |
-| klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.27 |
+| klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.25 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.16 |
-| klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $3.79 |
+| klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $3.76 |
 | klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $1.24 |
-| klasse-3 | Mathe | Geometrie | 4 / 7 started | 8 |  |
+| klasse-3 | Mathe | Geometrie | 4 / 7 started | 8 | $0.01 |
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 0 / 3 |  |  |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.38 |
-| klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.63 |
-| klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $1.21 |
+| klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.62 |
+| klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $1.15 |
 | klasse-3 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.48 |
-| klasse-3 | Deutsch | Wörtliche Rede | 2 / 2 done | 4 | $0.25 |
-| klasse-3 | Deutsch | Kurze und lange Selbstlaute | 3 / 3 done | 6 | $0.65 |
+| klasse-3 | Deutsch | Wörtliche Rede | 2 / 2 done | 4 | $0.24 |
+| klasse-3 | Deutsch | Kurze und lange Selbstlaute | 3 / 3 done | 6 | $0.64 |
 | klasse-3 | Deutsch | Besondere Laute | 1 / 1 done | 2 | $0.22 |
 | klasse-3 | Deutsch | Silben und Trennung | 1 / 1 done | 2 | $0.18 |
 | klasse-3 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 | $0.16 |
-| klasse-3 | Deutsch | Rechtschreibstrategien | 2 / 2 done | 4 | $0.46 |
-| klasse-3 | Deutsch | Das ABC | 1 / 1 done | 2 | $0.25 |
-| klasse-3 | Deutsch | Wörterbuch | 1 / 1 done | 2 | $0.25 |
-| klasse-3 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 | $0.15 |
-| klasse-3 | Deutsch | Blitzlesen | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Flüssig lesen | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Vorlesen | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Texte verstehen | 2 / 2 done | 4 |  |
-| klasse-3 | Deutsch | Märchen | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 |  |
-| klasse-3 | Deutsch | Medien | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Bücher | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Erzählen | 2 / 2 done | 4 |  |
-| klasse-3 | Deutsch | Texte planen | 1 / 1 done | 2 |  |
+| klasse-3 | Deutsch | Rechtschreibstrategien | 2 / 2 done | 4 | $0.43 |
+| klasse-3 | Deutsch | Das ABC | 1 / 1 done | 2 | $0.22 |
+| klasse-3 | Deutsch | Wörterbuch | 1 / 1 done | 2 | $0.24 |
+| klasse-3 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 | $0.14 |
+| klasse-3 | Deutsch | Blitzlesen | 1 / 1 done | 2 | $0.00 |
+| klasse-3 | Deutsch | Flüssig lesen | 1 / 1 done | 2 | $0.00 |
+| klasse-3 | Deutsch | Vorlesen | 1 / 1 done | 2 | $0.00 |
+| klasse-3 | Deutsch | Texte verstehen | 2 / 2 done | 4 | $0.01 |
+| klasse-3 | Deutsch | Märchen | 1 / 1 done | 2 | $0.00 |
+| klasse-3 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 | $0.01 |
+| klasse-3 | Deutsch | Medien | 1 / 1 done | 2 | $0.00 |
+| klasse-3 | Deutsch | Bücher | 1 / 1 done | 2 | $0.00 |
+| klasse-3 | Deutsch | Erzählen | 2 / 2 done | 4 | $0.00 |
+| klasse-3 | Deutsch | Texte planen | 1 / 1 done | 2 | $0.00 |
 | klasse-3 | Deutsch | Texte überarbeiten | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Gespräche führen | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Sprechen und Zuhören | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Vor anderen sprechen | 0 / 1 |  |  |
 | klasse-3 | Deutsch | Texte gestalten | 0 / 2 |  |  |
-| klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.31 |
-| klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $1.73 |
-| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.90 |
-| klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 |  |
-| klasse-4 | Mathe | Größen | 6 / 8 started | 12 |  |
-| klasse-4 | Mathe | Geometrie | 9 / 11 started | 18 |  |
+| klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.28 |
+| klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $1.72 |
+| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.88 |
+| klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $0.02 |
+| klasse-4 | Mathe | Größen | 6 / 8 started | 12 | $0.02 |
+| klasse-4 | Mathe | Geometrie | 9 / 11 started | 18 | $0.01 |
 | klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 0 / 3 |  |  |
-| klasse-4 | Mathe | Erweiterung | 2 / 4 started | 4 | $0.24 |
+| klasse-4 | Mathe | Erweiterung | 2 / 4 started | 4 | $0.23 |
 | klasse-4 | Deutsch | Die vier Fälle | 1 / 1 done | 3 | $0.35 |
 | klasse-4 | Deutsch | Zeitformen | 3 / 3 done | 6 | $0.82 |
-| klasse-4 | Deutsch | Verben | 2 / 2 done | 4 | $0.66 |
-| klasse-4 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.54 |
+| klasse-4 | Deutsch | Verben | 2 / 2 done | 4 | $0.64 |
+| klasse-4 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.53 |
 | klasse-4 | Deutsch | Sätze verbinden | 1 / 1 done | 2 | $0.21 |
 | klasse-4 | Deutsch | Zeichensetzung | 1 / 1 done | 2 | $0.12 |
-| klasse-4 | Deutsch | Besondere Laute | 2 / 2 done | 4 | $0.15 |
-| klasse-4 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 | $0.16 |
-| klasse-4 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 |  |
-| klasse-4 | Deutsch | Texte verstehen | 3 / 3 done | 6 |  |
-| klasse-4 | Deutsch | Märchen | 1 / 2 started | 2 |  |
-| klasse-4 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 |  |
-| klasse-4 | Deutsch | Vortragen | 1 / 1 done | 2 |  |
-| klasse-4 | Deutsch | Medien | 1 / 3 started | 2 |  |
+| klasse-4 | Deutsch | Besondere Laute | 2 / 2 done | 4 | $0.16 |
+| klasse-4 | Deutsch | Rechtschreibung üben | 1 / 1 done | 2 | $0.15 |
+| klasse-4 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 | $0.01 |
+| klasse-4 | Deutsch | Texte verstehen | 3 / 3 done | 6 | $0.00 |
+| klasse-4 | Deutsch | Märchen | 1 / 2 started | 2 | $0.00 |
+| klasse-4 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 | $0.00 |
+| klasse-4 | Deutsch | Vortragen | 1 / 1 done | 2 | $0.01 |
+| klasse-4 | Deutsch | Medien | 1 / 3 started | 2 | $0.00 |
 | klasse-4 | Deutsch | Erzählen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Berichten | 0 / 2 |  |  |
 | klasse-4 | Deutsch | Vor anderen sprechen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Gespräche führen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Sprache untersuchen | 0 / 6 |  |  |
-| stufe-0 | Englisch | Hören | 2 / 3 started | 4 | $0.32 |
-| stufe-0 | Englisch | Hallo | 1 / 1 done | 2 | $0.18 |
+| stufe-0 | Englisch | Hören | 2 / 3 started | 4 | $0.30 |
+| stufe-0 | Englisch | Hallo | 1 / 1 done | 2 | $0.17 |
 | stufe-0 | Englisch | Farben | 1 / 1 done | 2 | $0.14 |
 | stufe-0 | Englisch | Zahlen | 1 / 1 done | 2 | $0.11 |
 | stufe-0 | Englisch | Sprechen | 0 / 3 |  |  |
@@ -188,26 +188,26 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | stufe-0 | Englisch | Schule | 1 / 1 done | 2 | $0.15 |
 | stufe-0 | Englisch | Tiere und Natur | 1 / 1 done | 2 | $0.13 |
 | stufe-0 | Englisch | Sprachen vergleichen | 0 / 1 |  |  |
-| lernjahr-1 | Englisch | Hören | 3 / 3 done | 6 | $0.30 |
-| lernjahr-1 | Englisch | Sprachmuster | 4 / 4 done | 8 | $0.64 |
-| lernjahr-1 | Englisch | Sprechen | 3 / 4 started | 6 |  |
-| lernjahr-1 | Englisch | Lesen | 3 / 3 done | 6 |  |
-| lernjahr-1 | Englisch | Schreiben | 2 / 2 done | 4 |  |
+| lernjahr-1 | Englisch | Hören | 3 / 3 done | 6 | $0.28 |
+| lernjahr-1 | Englisch | Sprachmuster | 4 / 4 done | 8 | $0.62 |
+| lernjahr-1 | Englisch | Sprechen | 3 / 4 started | 6 | $0.02 |
+| lernjahr-1 | Englisch | Lesen | 3 / 3 done | 6 | $0.01 |
+| lernjahr-1 | Englisch | Schreiben | 2 / 2 done | 4 | $0.00 |
 | lernjahr-1 | Englisch | Zahlen | 1 / 1 done | 2 | $0.18 |
 | lernjahr-1 | Englisch | Kleidung | 1 / 1 done | 2 | $0.17 |
-| lernjahr-1 | Englisch | Zu Hause | 1 / 1 done | 2 |  |
-| lernjahr-1 | Englisch | In der Stadt | 1 / 1 done | 2 |  |
+| lernjahr-1 | Englisch | Zu Hause | 1 / 1 done | 2 | $0.00 |
+| lernjahr-1 | Englisch | In der Stadt | 1 / 1 done | 2 | $0.00 |
 | lernjahr-1 | Englisch | Gefühle | 1 / 1 done | 2 | $0.16 |
-| lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.20 |
+| lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.19 |
 | lernjahr-1 | Englisch | Kalender | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Wetter | 1 / 1 done | 2 | $0.17 |
 | lernjahr-1 | Englisch | Die Welt der Sprache | 0 / 1 |  |  |
 | lernjahr-1 | Englisch | Lernstrategien | 0 / 2 |  |  |
 | lernjahr-1 | Englisch | Sprachmittlung | 0 / 1 |  |  |
-| lernjahr-2 | Englisch | Hobbys und Sport | 1 / 1 done | 2 | $0.20 |
+| lernjahr-2 | Englisch | Hobbys und Sport | 1 / 1 done | 2 | $0.19 |
 | lernjahr-2 | Englisch | Zahlen | 1 / 1 done | 2 | $0.23 |
 | lernjahr-2 | Englisch | Uhrzeit | 1 / 1 done | 2 | $0.17 |
-| lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.43 |
+| lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.42 |
 | lernjahr-2 | Englisch | Berufe | 1 / 1 done | 2 | $0.20 |
 | lernjahr-2 | Englisch | Feste | 0 / 1 |  |  |
 | lernjahr-2 | Englisch | Hören | 0 / 1 |  |  |
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $20; 0 clips still to make.
+79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $20; 2 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -243,7 +243,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.56 |
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.63 |
 | reception | Maths | Division | 0 / 1 |  |  |
-| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.79 |
+| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.78 |
 | reception | English | Phonics | 7 / 12 started | 14 | $1.26 |
 | reception | English | Reading words | 2 / 3 started | 4 | $0.29 |
 | reception | English | Understanding stories | 0 / 2 |  |  |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 97 | $0.15 | $15 |
+| de-DE | 97 | $0.26 | $26 |
 | en-GB | 404 | $0.25 | $100 |
 
 Pictures: 156 of 156 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

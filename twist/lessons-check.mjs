@@ -142,6 +142,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
         const spec = ACTIVITY[a.activity];
         if (!spec) { err(`${file}: ${aw}: unknown activity`); return; }
         for (const [k, values] of Object.entries(spec)) if (!values.includes(a[k])) err(`${file}: ${aw}: ${k} must be one of ${values.join(", ")}`);
+        if (i === 0 && a.activity === "warm-up" && a.from === "last-lesson") warn(`${file}: ${aw}: lesson 1 has no last lesson; use from: earlier-skills`);
         if (a.activity === "learn") { seq.push("learn"); if (!a.screens?.length) err(`${file}: ${aw}: Learn needs screens`); refs(a.screens, aw, file); return; }
         // Practise: three stages, full hints, then one hint, then none.
         let groups;
@@ -170,6 +171,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (!TASK_TYPES.has(t.type)) err(`${file}: ${tw}: unknown task type ${t.type}`);
           else if (!DOCUMENTED.has(t.type)) err(`${file}: ${tw}: task type ${t.type} has no section in docs/task-types.md; document it before using it`);
           if (!t.text && !t.say) err(`${file}: ${tw}: needs text or say`);
+          // The voice reads text when there is no say; it turns + - = _ into words but not these.
+          if (typeof t.text === "string" && /[·|]/.test(t.text) && t.say === undefined) warn(`${file}: ${tw}: text has · or | and no say, so the voice reads the sign`);
+          if (typeof t.say === "string" && /[·|]/.test(t.say)) warn(`${file}: ${tw}: say has · or |, which the voice reads as a sign`);
           if (!t.text && !d.metadata?.no_reading && typeof t.say !== "object" && !["audio_choice", "speak"].includes(t.type)) warn(`${file}: ${tw}: no text, so the screen shows no question`);
           // difficulty defaults to core
           if (t.difficulty !== undefined && !["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);

@@ -72,7 +72,7 @@ The very first English lessons. Children hear short classroom instructions (Stan
 | 1. Aufstehen, hinsetzen | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
 | 2. Klatschen, springen, winken | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
 
-Task types: audio_choice 28, true_false 13, speak 3. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 26, true_false 15, speak 3. Builds on: . Misconceptions addressed: 3.
 
 ## Kleidung auf Englisch (Clothes in English)
 
@@ -156,7 +156,7 @@ Children hear English words and tap the matching picture. The first words sound 
 | 1. Das klingt wie Deutsch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 2. Zeig auf das Bild | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
 
-Task types: audio_choice 31, true_false 10, speak 4. Builds on: `fl.listening.classroom-phrases`. Misconceptions addressed: 2.
+Task types: audio_choice 29, true_false 12, speak 4. Builds on: `fl.listening.classroom-phrases`. Misconceptions addressed: 2.
 
 ## Meine Familie auf Englisch (My family in English)
 
@@ -646,7 +646,7 @@ Ordering words alphabetically, the step before using a Wörterbuch. Lesson 1 ord
 | 1. Erster und zweiter Buchstabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Auch der dritte Buchstabe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: ordering 17, multiple_choice 17, true_false 8. Builds on: . Misconceptions addressed: 2.
+Task types: ordering 17, multiple_choice 17, true_false 8. Builds on: `lit-de.letters.alphabet`. Misconceptions addressed: 2.
 
 ## Silben lesen (Reading syllables)
 
@@ -793,7 +793,7 @@ Task types: tracing 11, image_multiple_choice 1, multiple_choice 18, true_false 
 
 `de-DE.lit-de.core-vocabulary` teaches `lit-de.spelling.core-vocabulary` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-The most common words of the Grundwortschatz. Lesson 1 takes small words that come in almost every sentence (und, ist, nicht, auch, sehr, schon, immer); lesson 2 takes common Tunwörter and Nomen (gehen, sehen, heute, wieder, Freund, Schule, nach Hause), finds a misspelt word in a sentence, and ends with the skill check. Writing the words in a dictation waits for the letter keyboard (text_input with letters).
+The most common words of the Grundwortschatz. Lesson 1 takes small words that come in almost every sentence (und, ist, nicht, auch, sehr, schon, immer); lesson 2 takes common Verben and Nomen (gehen, sehen, heute, wieder, Freund, Schule, nach Hause), finds a misspelt word in a sentence, and ends with the skill check. Writing the words in a dictation waits for the letter keyboard (text_input with letters).
 
 
 | Lesson | New | Tasks | Activities |
@@ -877,7 +877,7 @@ Task types: audio_choice 1, multiple_choice 11, fill_in_blank 16, true_false 8, 
 
 `de-DE.lit-de.fables-legends` teaches `lit-de.texts-media.fables-legends` in de-DE, klasse-4. Ages 8-10, about 15 minutes a lesson. Status: draft, version 1.
 
-Fables, legends and how they differ from fairy tales. Lesson 1 reads short fables in which animals talk and act like people, names the animals' typical traits and finds the moral; lesson 2 reads legends tied to real places (Hameln, the Loreley, the Mäuseturm in Bingen), says what a legend explains, sorts fairy tale, fable and legend, and ends with the skill check. Every fable is written for Twist in the classic style; the well-known legends are retold in our own words.
+Fables, legends and how they differ from fairy tales. Lesson 1 reads short fables in which animals talk and act like people, names the animals' typical traits and finds the moral; lesson 2 reads legends tied to real places (Hameln, the Loreley, the Mäuseturm in Bingen), says what a legend explains, sorts fairy tale, fable and legend, and ends with the skill check. Most fables are written for Twist in the classic style; two traditional ones (the two frogs in the milk, the wolf and the lamb) and the well-known legends are retold in our own words.
 
 
 | Lesson | New | Tasks | Activities |
@@ -1042,7 +1042,7 @@ The third letter group in Fibel order. One lesson each for E, N, D and U: hear t
 | 4. Das U | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 5. Wörter mit E, N, D und U | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 27, image_multiple_choice 24, true_false 19, highlight_in_text 10, fill_in_blank 13, tracing 12, matching 1. Builds on: . Misconceptions addressed: 4.
+Task types: audio_choice 27, image_multiple_choice 24, true_false 19, highlight_in_text 10, fill_in_blank 13, tracing 12, matching 1. Builds on: `lit-de.letters.i-ie-s-t`. Misconceptions addressed: 4.
 
 ## Ei, R, H und W (Ei, R, H and W)
 
@@ -1059,7 +1059,7 @@ The fifth letter group in Fibel order. Lesson 1 brings ei, two letters for one s
 | 4. Das W | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 5. Wörter mit Ei, R, H und W | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 18, image_multiple_choice 31, true_false 23, highlight_in_text 9, fill_in_blank 11, tracing 12, sorting 1, matching 1. Builds on: . Misconceptions addressed: 4.
+Task types: audio_choice 18, image_multiple_choice 31, true_false 23, highlight_in_text 9, fill_in_blank 11, tracing 12, sorting 1, matching 1. Builds on: `lit-de.letters.p-k-b-f`. Misconceptions addressed: 4.
 
 ## Eu, Ch und J (Eu, Ch and J)
 
@@ -1075,7 +1075,7 @@ The seventh letter group in Fibel order. Lesson 1 brings eu, written e and u but
 | 3. Das J | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 4. Wörter mit Eu, Ch und J | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 23, image_multiple_choice 16, true_false 17, highlight_in_text 8, fill_in_blank 9, tracing 9, sorting 2, matching 1. Builds on: . Misconceptions addressed: 4.
+Task types: audio_choice 23, image_multiple_choice 16, true_false 17, highlight_in_text 8, fill_in_blank 9, tracing 9, sorting 2, matching 1. Builds on: `lit-de.letters.g-au-sch-z`. Misconceptions addressed: 4.
 
 ## G, Au, Sch und Z (G, Au, Sch and Z)
 
@@ -1092,7 +1092,7 @@ The sixth letter group in Fibel order. One lesson each: G (against K), au (two l
 | 4. Das Z | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 5. Wörter mit G, Au, Sch und Z | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 20, image_multiple_choice 29, true_false 23, highlight_in_text 6, tracing 12, fill_in_blank 14, sorting 1, matching 1. Builds on: . Misconceptions addressed: 4.
+Task types: audio_choice 20, image_multiple_choice 29, true_false 23, highlight_in_text 6, tracing 12, fill_in_blank 14, sorting 1, matching 1. Builds on: `lit-de.letters.ei-r-h-w`. Misconceptions addressed: 4.
 
 ## Die Buchstaben I, S, T und ie (The letters I, S, T and ie)
 
@@ -1109,7 +1109,7 @@ The second letter group in Fibel order. One lesson each for I, S and T: hear the
 | 4. Das ie | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 5. Wörter mit I, S, T und ie | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 18, image_multiple_choice 22, true_false 28, highlight_in_text 9, fill_in_blank 14, tracing 12, sorting 2, matching 1. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 18, image_multiple_choice 22, true_false 28, highlight_in_text 9, fill_in_blank 14, tracing 12, sorting 2, matching 1. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 3.
 
 ## Die Buchstaben L, O, A und M (The letters L, O, A and M)
 
@@ -1126,7 +1126,7 @@ The first four letters in Fibel order, chosen because their sounds can be held (
 | 4. Das M | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 5. L, O, A und M zusammen | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: image_multiple_choice 30, true_false 17, highlight_in_text 7, audio_choice 33, tracing 12, fill_in_blank 5. Builds on: `lit-de.letters.sound-chart`, `lit-de.phonological.initial-sound`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 31, true_false 18, highlight_in_text 7, audio_choice 30, tracing 12, fill_in_blank 6. Builds on: `lit-de.letters.sound-chart`, `lit-de.phonological.initial-sound`. Misconceptions addressed: 3.
 
 ## Die Buchstaben P, K, B und F (The letters P, K, B and F)
 
@@ -1143,7 +1143,7 @@ The fourth letter group in Fibel order. One lesson each for P, K, B and F: hear 
 | 4. Das F | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 5. Wörter mit P, K, B und F | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: image_multiple_choice 31, audio_choice 23, true_false 21, highlight_in_text 7, tracing 12, fill_in_blank 10, sorting 1, matching 1. Builds on: . Misconceptions addressed: 4.
+Task types: image_multiple_choice 31, audio_choice 23, true_false 21, highlight_in_text 7, tracing 12, fill_in_blank 10, sorting 1, matching 1. Builds on: `lit-de.letters.e-n-d-u`. Misconceptions addressed: 4.
 
 ## St, Sp und Pf (St, Sp and Pf)
 
@@ -1159,7 +1159,7 @@ Three letter pairs for the start of words. Lessons 1 and 2: St and Sp are spoken
 | 3. Das Pf | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 4. Wörter mit St, Sp und Pf | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 27, image_multiple_choice 18, true_false 15, fill_in_blank 11, tracing 9, highlight_in_text 3, sorting 1, matching 1. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 27, image_multiple_choice 18, true_false 15, fill_in_blank 11, tracing 9, highlight_in_text 3, sorting 1, matching 1. Builds on: `lit-de.letters.umlauts`. Misconceptions addressed: 3.
 
 ## Die Umlaute Ä, Ö und Ü (The umlauts Ä, Ö and Ü)
 
@@ -1175,7 +1175,7 @@ One lesson each for Ä, Ö and Ü: hear the sound, set it against the vowel with
 | 3. Das Ü | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 4. Wörter mit Ä, Ö und Ü | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 24, image_multiple_choice 18, true_false 15, highlight_in_text 4, fill_in_blank 13, tracing 9, sorting 1, matching 1. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 24, image_multiple_choice 18, true_false 15, highlight_in_text 4, fill_in_blank 13, tracing 9, sorting 1, matching 1. Builds on: `lit-de.letters.eu-ch-j`. Misconceptions addressed: 3.
 
 ## Logicals und genaues Lesen (Logic puzzles and close reading)
 
@@ -1358,7 +1358,7 @@ Children write print letters in the Häuschen of four lines: small letters like 
 | 1. Das Häuschen | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 2. Striche und Bögen | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 1, highlight_in_text 1, tracing 18, multiple_choice 16, true_false 8. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 2.
+Task types: audio_choice 1, highlight_in_text 1, tracing 16, multiple_choice 17, true_false 9. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 2.
 
 ## Reizwörter, weiterschreiben, umschreiben (Prompt words, continuing and rewriting)
 
@@ -1672,7 +1672,7 @@ Task types: multiple_choice 8, image_multiple_choice 6, audio_choice 17, true_fa
 
 `de-DE.lit-de.sight-words-easy` teaches `lit-de.fluency.sight-words-easy` in de-DE, klasse-1. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-Children learn to know short frequent words at a glance, the way a Blitzlesen card game trains them: the word appears for two seconds and is covered, and the child says which word it was. Lesson 1 works with und, ist, im, am, in and an; lesson 2 with mit, da, du, so, es and um, and ends with the skill check. Words that look alike (im, in; am, an; um, und) are always set side by side, because that is where a quick look goes wrong.
+Children learn to know short frequent words at a glance, the way a Blitzlesen card game trains them: the word appears for two seconds and is covered, and the child says which word it was. Lesson 1 works with und, ist, im, am, in and an; lesson 2 with mit, da, du, so and es, and ends with the skill check. Words that look alike (im, in; am, an; um, und) are always set side by side, because that is where a quick look goes wrong.
 
 
 | Lesson | New | Tasks | Activities |
@@ -2550,7 +2550,7 @@ Lesson 1 combines clothes and food systematically: take one T-Shirt and go throu
 | 1. Kleidung kombinieren | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
 | 2. Zahlen legen und Spiele zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 31, sorting 1, fill_in_blank 3, true_false 7. Builds on: `math.data.sort-classify`. Misconceptions addressed: 2.
+Task types: multiple_choice 32, sorting 1, fill_in_blank 3, true_false 6. Builds on: `math.data.sort-classify`. Misconceptions addressed: 2.
 
 ## Tauschaufgaben (Turnaround sums)
 
@@ -3355,7 +3355,7 @@ Task types: text_input 26, true_false 8, multiple_choice 8. Builds on: `math.mon
 
 `de-DE.math.money-to-100` teaches `math.money.amounts-to-100` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 adds up Scheine and Münzen to an amount (50 € + 20 € + 5 € = 75 €), starting with the biggest; lesson 2 puts an amount together in different ways, finds the way with the fewest pieces, compares amounts, and ends with the skill check. Laying coins by dragging waits for drag_and_drop and the coins component.
+Lesson 1 adds up Scheine and Münzen to an amount (50 € + 20 € + 5 € = 75 €), starting with the biggest; lesson 2 puts an amount together in different ways, finds the way with the fewest pieces, compares amounts, and ends with the skill check. Laying coins by dragging waits for drag_and_drop.
 
 
 | Lesson | New | Tasks | Activities |

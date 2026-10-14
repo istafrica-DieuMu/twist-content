@@ -454,6 +454,19 @@ curriculum's placement order (views/curriculum-de-DE.md). After each
 topic: review, commit and push, then go on (2026-10-13: alternate with
 en-GB, more de-DE topics than en-GB, without stopping).
 
+Full review (2026-10-14), once every de-DE subject passed 50% (Mathe 91%,
+Deutsch 67%, Englisch 64%): all 338 lesson sets read task by task for
+correct answers, native German, hint order, Learn matching Practise,
+skill checks that do not repeat earlier tasks, and year fit; about 220
+files fixed. The checker now also flags a lesson-1 warm-up from the last
+lesson and a "·" or "|" the voice would read aloud. The letter groups now
+chain as prerequisites in Fibel order. Narration for the changed and newly
+drafted lines is still to make. Open points for a teacher or a decision:
+two-digit divisors in Klasse 4 (multi-digit-semi), Cent up to 999 in
+Klasse 2 (money-euro-cent), Tunwort/Wiewort against Verb/Adjektiv in
+Klasse 2, nouns-recognise giving the answer by its capital letter, a
+timed check for fluency-to-20, and "It's rainy" in en-weather.
+
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
 | 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7, all drafted 2026-10-13: 17 lessons, 386 tasks |
