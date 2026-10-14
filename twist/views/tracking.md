@@ -9,9 +9,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 62% (13228 / 21200) |
-| de-DE | Deutsch | 93% (161 / 174) | 93% (87 / 94) | 350 | 49% (6808 / 13866) |
+| de-DE | Deutsch | 95% (165 / 174) | 96% (90 / 94) | 358 | 49% (6808 / 13866) |
 | de-DE | Englisch | 64% (37 / 58) | 61% (23 / 38) | 74 | 64% (2174 / 3385) |
-| **de-DE** | **all** | **92% (401 / 435)** | **86% (139 / 161)** | **841** | **58% (22210 / 38451)** |
+| **de-DE** | **all** | **93% (405 / 435)** | **88% (142 / 161)** | **849** | **58% (22210 / 38451)** |
 | en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 103 | 100% (5491 / 5492) |
 | en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 48 | 100% (2131 / 2133) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 10 | 100% (539 / 539) |
@@ -39,14 +39,14 @@ Per voice:
 
 ## de-DE
 
-401 of 435 placed skills drafted (92%): 401 lesson sets, 841 lessons, 18019 tasks. Narration so far about $51; 16241 clips still to make.
+405 of 435 placed skills drafted (93%): 405 lesson sets, 849 lessons, 18189 tasks. Narration so far about $51; 16241 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
 | klasse-1 | 41 / 41 | 51 / 51 |  | 92 / 92 |
-| klasse-2 | 63 / 63 | 44 / 46 |  | 107 / 109 |
-| klasse-3 | 51 / 51 | 41 / 42 |  | 92 / 93 |
-| klasse-4 | 48 / 48 | 25 / 35 |  | 73 / 83 |
+| klasse-2 | 63 / 63 | 45 / 46 |  | 108 / 109 |
+| klasse-3 | 51 / 51 | 42 / 42 |  | 93 / 93 |
+| klasse-4 | 48 / 48 | 27 / 35 |  | 75 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 22 / 28 | 22 / 28 |
 | lernjahr-2 |  |  | 6 / 16 | 6 / 16 |
@@ -113,7 +113,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Beschreiben | 2 / 2 done | 4 |  |
 | klasse-2 | Deutsch | Erzählen | 1 / 1 done | 2 |  |
 | klasse-2 | Deutsch | Gedichte schreiben | 1 / 1 done | 2 |  |
-| klasse-2 | Deutsch | Texte planen | 0 / 1 |  |  |
+| klasse-2 | Deutsch | Texte planen | 1 / 1 done | 2 |  |
 | klasse-2 | Deutsch | Texte überarbeiten | 0 / 1 |  |  |
 | klasse-2 | Deutsch | Sprechen und Zuhören | 2 / 2 done | 4 |  |
 | klasse-2 | Deutsch | Schreibschrift | 3 / 3 done | 6 |  |
@@ -150,7 +150,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Gespräche führen | 1 / 1 done | 2 |  |
 | klasse-3 | Deutsch | Sprechen und Zuhören | 1 / 1 done | 2 |  |
 | klasse-3 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 |  |
-| klasse-3 | Deutsch | Texte gestalten | 1 / 2 started | 2 |  |
+| klasse-3 | Deutsch | Texte gestalten | 2 / 2 done | 4 |  |
 | klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.28 |
 | klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $1.72 |
 | klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.88 |
@@ -176,8 +176,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Erzählen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Berichten | 0 / 2 |  |  |
 | klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 |  |
-| klasse-4 | Deutsch | Gespräche führen | 0 / 1 |  |  |
-| klasse-4 | Deutsch | Sprache untersuchen | 0 / 6 |  |  |
+| klasse-4 | Deutsch | Gespräche führen | 1 / 1 done | 2 |  |
+| klasse-4 | Deutsch | Sprache untersuchen | 1 / 6 started | 2 |  |
 | stufe-0 | Englisch | Hören | 2 / 3 started | 4 | $0.30 |
 | stufe-0 | Englisch | Hallo | 1 / 1 done | 2 | $0.17 |
 | stufe-0 | Englisch | Farben | 1 / 1 done | 2 | $0.14 |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 34 | $0.22 | $7.54 |
+| de-DE | 30 | $0.22 | $6.59 |
 | en-GB | 404 | $0.25 | $100 |
 
 Pictures: 156 of 156 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
