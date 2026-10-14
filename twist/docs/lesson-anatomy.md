@@ -335,6 +335,8 @@ The build warns on these (lessons-check.mjs):
   in words; the voice misreads them in digits. A text with `·` or `|` gets
   its own `say`, because the voice reads the sign.
 - Hints say the idea itself, never "Denk an den Lernteil".
+- A true/false task shows its statement on screen, not only "Stimmt das?"
+  with the statement in `say`.
 - List items with a question mark are quoted (`"Wer?"`); narration.py
   reads the files with PyYAML, which rejects them bare.
 

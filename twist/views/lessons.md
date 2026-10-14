@@ -1684,7 +1684,7 @@ The last letter group of Klasse 1: rare letters and spellings the child meets in
 | 2. äu, C, Y und X | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
 | 3. Wörter mit seltenen Buchstaben | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: audio_choice 10, multiple_choice 9, image_multiple_choice 14, fill_in_blank 12, true_false 7, tracing 6, highlight_in_text 2, matching 4. Builds on: `lit-de.letters.ng-nk-qu-v`. Misconceptions addressed: 4.
+Task types: audio_choice 10, multiple_choice 10, image_multiple_choice 13, fill_in_blank 12, true_false 7, tracing 6, highlight_in_text 2, matching 4. Builds on: `lit-de.letters.ng-nk-qu-v`. Misconceptions addressed: 4.
 
 ## Die Buchstaben E, N, D und U (The letters E, N, D and U)
 

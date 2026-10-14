@@ -22,8 +22,9 @@ Maths written for the screen is read with one rule for every voice:
 OPENROUTER_API_KEY, or OPENROUTER_AUTHORING_API_KEY in
 ../schoolido-learning/.env.
 """
-import argparse, base64, hashlib, json, os, re, subprocess, sys, tempfile, time, urllib.request, urllib.error, wave
+import argparse, base64, hashlib, json, os, random, re, subprocess, sys, tempfile, time, urllib.request, urllib.error, wave
 from concurrent.futures import ThreadPoolExecutor
+import threading
 from datetime import date
 from pathlib import Path
 
@@ -270,18 +271,21 @@ def gather(cfg):
 def post(k, path, body, raw=False):
     req = urllib.request.Request(f"https://openrouter.ai/api/v1/{path}", data=json.dumps(body).encode(),
                                  headers={"Authorization": f"Bearer {k}", "Content-Type": "application/json"})
-    for attempt in range(4):
+    tries = 8
+    for attempt in range(tries):
         try:
             with urllib.request.urlopen(req, timeout=180) as r:
                 data = r.read()
             return data if raw else json.loads(data)
         except urllib.error.HTTPError as e:
-            if attempt == 3 or e.code not in (408, 429, 500, 502, 503, 504):
+            if attempt == tries - 1 or e.code not in (408, 429, 500, 502, 503, 504):
                 raise RuntimeError(f"HTTP {e.code}: {e.read().decode('utf-8', 'replace')[:300]}")
         except (urllib.error.URLError, OSError):
-            if attempt == 3:
+            if attempt == tries - 1:
                 raise
-        time.sleep(8 * (attempt + 1))
+        # Back off longer each time, with jitter so parallel jobs spread out
+        # (a rate limit is per minute).
+        time.sleep(min(120, 10 * 2 ** attempt) * (0.5 + random.random()))
 
 
 def tts(k, v, text, direction):
@@ -341,6 +345,12 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
     for iid in [i for i in log if i not in keep or i in redo]:
         (vdir / log.pop(iid)["file"]).unlink(missing_ok=True)
     work = [("line", lid, e) for lid, e in mine.items()] + [("sound", s["id"], s) for s in sounds]
+    lock, done = threading.Lock(), [0]
+
+    def save():
+        with lock:
+            snap = dict(sorted(log.items()))
+        logf.write_text(f"# Written by tools/narration.py: {v['model']}, voice {v['voice']}.\n" + dump(snap))
 
     def one(item):
         kind, iid, e = item
@@ -362,23 +372,32 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
         # Remade when the direction changed (a new brief), not only when missing.
         if dest.exists() and iid in log and log[iid].get("direction", dhash) == dhash:
             return
+        # A clip on disk with no log entry (a run stopped before it saved its
+        # log): the id is a hash of the text, so keep it and only listen to it.
+        adopt = dest.exists() and iid not in log
         try:
             for attempt in (1, 2):
-                audio, fmt = tts(k, v, text, direction)
-                finish(audio, fmt, dest, cap)
+                if not (adopt and attempt == 1):
+                    audio, fmt = tts(k, v, text, direction)
+                    finish(audio, fmt, dest, cap)
                 r = listen(k, dest, expect) if check else {}
                 if not check or r.get("correct"):
                     break
             log[iid] = {"file": str(dest.relative_to(vdir)), "text": text, "seconds": duration(dest), "bytes": dest.stat().st_size,
                         "made": str(date.today()), "tries": attempt, "direction": dhash, **({"check": r} if check else {})}
+            with lock:
+                done[0] += 1
+                n = done[0]
+            if n % 100 == 0:  # save as it goes, so a stopped run keeps its log
+                save()
+                print(f"  {v['id']}: {n} made", flush=True)
         except Exception as ex:
-            print(f"  {v['id']} {iid} FAILED {str(ex)[:120]}")
+            print(f"  {v['id']} {iid} FAILED {str(ex)[:120]}", flush=True)
 
     with ThreadPoolExecutor(jobs) as ex:
         list(ex.map(one, work))
     ok = sum(1 for x in log.values() if x.get("check", {}).get("correct"))
-    logf.write_text(f"# Written by tools/narration.py: {v['model']}, voice {v['voice']}.\n"
-                    + dump(dict(sorted(log.items()))))
+    save()
     print(f"{v['id']}: {len(log)} clips, {ok} passed the listening check, {len(work) - len(log)} missing")
 
 
@@ -461,8 +480,9 @@ def main():
     if not subprocess.run(["which", "ffmpeg"], capture_output=True).returncode == 0:
         sys.exit("ffmpeg is needed.")
     k = key()
-    for v in voices:
-        run_voice(k, cfg, v, lines, sounds, not a.no_check, a.jobs, set(a.redo.split(",")) if a.redo else set())
+    # Voices run side by side; each has its own clips and log.
+    with ThreadPoolExecutor(len(voices)) as ex:
+        list(ex.map(lambda v: run_voice(k, cfg, v, lines, sounds, not a.no_check, a.jobs, set(a.redo.split(",")) if a.redo else set()), voices))
 
 
 if __name__ == "__main__":

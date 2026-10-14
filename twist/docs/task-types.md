@@ -31,6 +31,10 @@ lessons), `show` (a picture or drawn component), `hints`, `feedback`
 `show` can be two pictures side by side: `show: { objects: [house, mouse] }`
 (for "Reimt sich das?"); each picture says its word when tapped.
 
+A picture can be crossed out, for a "not allowed" sign:
+`show: { object: dog, crossed: true }` draws a red ring with a line across
+it ("Was heißt das Schild?").
+
 `show` can carry `flash: 2`: the picture is shown for that many seconds
 and then covered, so the child has to see the amount at a glance instead
 of counting. A "Nochmal sehen" button shows it again for the same time;

@@ -206,6 +206,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (a.activity === "check") looseCheck.push([t.id, loose, a.size]); else looseNon.set(loose, t.id);
           deNum(t.text, tw); for (const o of t.options ?? []) deNum(o, tw); sayNum(t.say, tw);
           if (t.type === "true_false") tf.push(t.answer);
+          // The question and its data belong on screen, not only in the voice.
+          if (t.type === "true_false" && typeof t.text === "string" && typeof t.say === "string" && !t.show && !t.audio && !d.metadata?.no_reading
+              && !/[=\d]/.test(t.text) && t.text.trim().split(/\s+/).length <= 3 && t.say.trim().split(/\s+/).length >= 6) warn(`${file}: ${tw}: the screen says only "${t.text}" and the rest is in say; put the statement or data on screen`);
           for (const h of t.hints ?? []) if (typeof h === "string") {
             if (/Lernteil|Learn-Teil|the Learn part/i.test(h)) warn(`${file}: ${tw}: hint points at "the Learn part"; say the idea itself`);
           }
