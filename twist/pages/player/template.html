@@ -600,7 +600,9 @@ function numberLine(o, pick) {
     // Long labels get the curriculum's thousands separator; the end labels stay inside the line.
     const de = set?.language === "de", lab = (Math.abs(v) >= 10000 ? v.toLocaleString(de ? "de-DE" : "en-GB").replace(/\./g, " ") : String(v).replace(".", de ? "," : ".")).replace("-", "−"), long = lab.length > 4;
     const anchor = long && v === to ? "end" : long && v === from ? "start" : "middle", lx = anchor === "end" ? 326 : anchor === "start" ? 4 : sc(v);
-    if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${lx}" y="${y + 40}" text-anchor="${anchor}" font-size="${long ? 17 : lab.includes(".") || lab.includes(",") ? (n > 10 ? 11 : 15) : 20}" font-weight="700" fill="#2b0f45">${lab}</text>`;
+    // labels: fractions names every tick as a fraction of the whole (step 1/8 on 0 to 1: 1/8, 2/8 ...); fractions_of sets the denominator.
+    if (o.labels === "fractions") { const den = o.fractions_of ?? Math.round(1 / step), num = Math.round(v * den); s += `<text x="${sc(v)}" y="${y + 40}" text-anchor="middle" font-size="${n > 10 ? 11 : 15}" font-weight="700" fill="#2b0f45">${num % den === 0 ? num / den : num + "/" + den}</text>`; }
+    else if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${lx}" y="${y + 40}" text-anchor="${anchor}" font-size="${long ? 17 : lab.includes(".") || lab.includes(",") ? (n > 10 ? 11 : 15) : 20}" font-weight="700" fill="#2b0f45">${lab}</text>`;
     if (pick) s += `<rect data-v="${v}" x="${sc(v) - 7}" y="${y - 30}" width="14" height="60" fill="transparent" style="cursor:pointer"/>`;
   }
   s += arcs(o.jumps ?? [], sc, y);
@@ -1180,7 +1182,7 @@ const TYPES = {
       pad.classList.add("letters"); pad.style.gridTemplateColumns = `repeat(${w}, 1fr)`;
       rows.forEach((r) => { [...r].forEach((c) => key(c)); for (let i = r.length; i < w; i++) key(""); });
       key("⇧", 2); key("␣", w - 4); key("⌫", 2);
-    } else (kb === "decimal" ? ["1", "2", "3", "4", "5", "6", "7", "8", "9", "−", "0", point, "", "⌫", ""] : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""]).forEach((k) => key(k));
+    } else (kb === "decimal" ? ["1", "2", "3", "4", "5", "6", "7", "8", "9", "−", "0", point, "", "⌫", ""] : kb === "fraction" ? ["1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "0", "␣", "", "⌫", ""] : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""]).forEach((k) => key(k));
     const btn = nextBtn(foot, UI.check, () => { const ok = v.replace("−", "-").trim() === String(t.answer).replace("−", "-"); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
     btn.disabled = true;
   },

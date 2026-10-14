@@ -209,6 +209,8 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (a.activity === "check") looseCheck.push([t.id, loose, a.size]); else looseNon.set(loose, t.id);
           deNum(t.text, tw); for (const o of t.options ?? []) deNum(o, tw); sayNum(t.say, tw);
           if (t.type === "true_false") tf.push(t.answer);
+          // The player shows ordering cards as stored, so cards stored in answer order give it away.
+          if (t.type === "ordering" && Array.isArray(t.options) && Array.isArray(t.answer) && t.options.length > 1 && JSON.stringify(t.options.map((o) => o?.id ?? o?.text ?? o)) === JSON.stringify(t.answer)) warn(`${file}: ${tw}: ordering cards are stored in answer order; shuffle them`);
           // The question and its data belong on screen, not only in the voice.
           if (t.type === "true_false" && typeof t.text === "string" && typeof t.say === "string" && !t.show && !t.audio && !d.metadata?.no_reading
               && !/[=\d]/.test(t.text) && t.text.trim().split(/\s+/).length <= 3 && t.say.trim().split(/\s+/).length >= 6) warn(`${file}: ${tw}: the screen says only "${t.text}" and the rest is in say; put the statement or data on screen`);
@@ -282,7 +284,8 @@ function checkAnswer(t, tw, file, err) {
       // The keypad has only digits (up to 8), so a typed answer is digits only: "70000", never "70 000".
       if (t.type === "text_input") {
         const kb = t.keyboard ?? "digits", a = String(t.answer);
-        if (!["digits", "decimal", "letters"].includes(kb)) err(`${file}: ${tw}: keyboard must be digits, decimal or letters`);
+        if (!["digits", "decimal", "letters", "fraction"].includes(kb)) err(`${file}: ${tw}: keyboard must be digits, decimal, fraction or letters`);
+        else if (kb === "fraction" && !/^\d{1,4}( \d{1,3}\/\d{1,3}|\/\d{1,3})?$/.test(a)) err(`${file}: ${tw}: fraction answer must be like 7/5, 1 2/5 or 3`);
         else if (kb === "digits" && !/^\d{1,8}$/.test(a)) err(`${file}: ${tw}: text_input answer must be up to 8 digits, no spaces (or set keyboard: decimal or letters)`);
         else if (kb === "decimal" && !(file.includes("lessons/de-DE/") ? /^[-−]?\d{1,8}(,\d{1,3})?$/ : /^[-−]?\d{1,8}(\.\d{1,3})?$/).test(a)) err(`${file}: ${tw}: decimal answer must be like ${file.includes("lessons/de-DE/") ? "2,5" : "2.5"} (a minus allowed)`);
         else if (kb === "letters" && !/^[\p{L}' ]{1,24}$/u.test(a)) err(`${file}: ${tw}: letters answer must be letters, apostrophes or spaces, up to 24`);

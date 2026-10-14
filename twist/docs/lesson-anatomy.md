@@ -346,6 +346,11 @@ The build warns on these (lessons-check.mjs):
 - Hints say the idea itself, never "Denk an den Lernteil".
 - A true/false task shows its statement on screen, not only "Stimmt das?"
   with the statement in `say`.
+- Ordering cards are stored shuffled, never in answer order: the app
+  shows them as stored.
+- No dash characters in records. A set that teaches dashes (parenthesis,
+  semicolons and colons) writes them as a spaced hyphen (" - ") and sets
+  `metadata.dashes: true`; the app shows them as dashes.
 - List items with a question mark are quoted (`"Wer?"`); narration.py
   reads the files with PyYAML, which rejects them bare.
 

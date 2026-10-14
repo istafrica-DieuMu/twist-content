@@ -377,6 +377,8 @@ Fields: `answer` (a string), `keyboard`:
 - `digits` (default): 0 to 9, answers up to 8 digits.
 - `decimal`: digits, a decimal point (. in en-GB, , in de-DE) and a minus
   key; answers like 2.5, −3 or 0.25.
+- `fraction`: digits, a fraction bar / and a space; answers like 7/5, a
+  mixed number 1 2/5 (whole, space, fraction) or a whole number.
 - `letters`: a letter keyboard in the lesson's language (QWERTY for
   English, QWERTZ with ä ö ü ß for German, AZERTY with é è à ç for French),
   a shift key for one capital, space and apostrophe; answers up to 24
