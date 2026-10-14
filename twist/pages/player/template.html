@@ -1183,7 +1183,7 @@ const TYPES = {
       rows.forEach((r) => { [...r].forEach((c) => key(c)); for (let i = r.length; i < w; i++) key(""); });
       key("⇧", 2); key("␣", w - 4); key("⌫", 2);
     } else (kb === "decimal" ? ["1", "2", "3", "4", "5", "6", "7", "8", "9", "−", "0", point, "", "⌫", ""] : kb === "fraction" ? ["1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "0", "␣", "", "⌫", ""] : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""]).forEach((k) => key(k));
-    const btn = nextBtn(foot, UI.check, () => { const ok = v.replace("−", "-").trim() === String(t.answer).replace("−", "-"); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
+    const btn = nextBtn(foot, UI.check, () => { const norm = (x) => String(x).replace("−", "-").replace(",", ".").trim(), ok = kb === "decimal" ? norm(v) !== "" && Number(norm(v)) === Number(norm(t.answer)) : v.replace("−", "-").trim() === String(t.answer).replace("−", "-"); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
     btn.disabled = true;
   },
   drag_and_drop_count({ t, body, foot, vis, answer, st }) {
