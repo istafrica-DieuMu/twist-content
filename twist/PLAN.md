@@ -473,6 +473,14 @@ checks") and, where a rule can catch it, in lessons-check.mjs. Narration
 for the changed and new lines is running. Still for a teacher: a native
 read of the German, and en-weather's "It's rainy" against "It's raining".
 
+Same day, later: the other session's 67 lesson sets and its 30 drafts are
+reviewed; 45 pictures added to the bank (rooms, places, pictogram signs,
+the letter-lesson words) and used in the lessons; narration made for every
+line. de-DE stands at 100% of placed skills (435), 909 lessons, and all
+51 204 de-DE clips made. Open: joined-capitals' joining rules depend on
+the school's script (VA, LA, SAS); no Anlauttabelle component; the player
+draws print, not Schreibschrift.
+
 | # | Subject | Year | First topic | Skills |
 |---|---|---|---|---|
 | 1 | Mathe | Klasse 1 | Zahlen bis 10 | 7, all drafted 2026-10-13: 17 lessons, 386 tasks |

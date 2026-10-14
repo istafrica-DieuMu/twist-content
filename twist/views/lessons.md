@@ -344,7 +344,7 @@ Task types: audio_choice 21, multiple_choice 1, true_false 7, speak 4, sorting 1
 
 `de-DE.fl.en-home` teaches `fl.themes.home` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Rooms and furniture. Lesson 1 learns the furniture and things in a house by ear and picture (bed, table, chair, lamp, mirror, clock, telephone, oven); lesson 2 learns the rooms (kitchen, bathroom, bedroom, living room, garden), says which room something is in (The oven is in the kitchen.), and ends with the skill check. The rooms have no pictures yet, so they are given as German words or read in English. Speaking tasks are practice only.
+Rooms and furniture. Lesson 1 learns the furniture and things in a house by ear and picture (bed, table, chair, lamp, mirror, clock, telephone, oven); lesson 2 learns the rooms (kitchen, bathroom, bedroom, living room, garden), says which room something is in (The oven is in the kitchen.), and ends with the skill check. The rooms and the garden are shown as pictures. Speaking tasks are practice only.
 
 
 | Lesson | New | Tasks | Activities |
@@ -702,7 +702,7 @@ Words, greetings and customs for special days in England. Lesson 1 brings birthd
 | 1. Geburtstag und Weihnachten | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick) |
 | 2. Ostern, Halloween und Bonfire Night | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill) |
 
-Task types: audio_choice 14, image_multiple_choice 5, multiple_choice 13, fill_in_blank 5, true_false 3, matching 4, sorting 2. Builds on: `fl.themes.calendar`. Misconceptions addressed: 3.
+Task types: audio_choice 14, image_multiple_choice 6, multiple_choice 12, fill_in_blank 5, true_false 3, matching 4, sorting 2. Builds on: `fl.themes.calendar`. Misconceptions addressed: 3.
 
 ## Geschichten hören (Listening to stories)
 
@@ -736,7 +736,7 @@ Task types: audio_choice 12, multiple_choice 16, speak 6, true_false 8. Builds o
 
 `de-DE.fl.en-town` teaches `fl.themes.town` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Places in town and simple directions. Lesson 1 learns the places (school, park, shop, library, station, swimming pool, bus stop) and what you do there; lesson 2 understands turn left, turn right and go straight on, follows a short way to a place, and ends with the skill check. The places have no pictures yet, so they are given as German words or read in English; directions are shown as arrows. Following a way on a map waits for a map component.
+Places in town and simple directions. Lesson 1 learns the places (school, park, shop, library, station, swimming pool, bus stop) and what you do there; lesson 2 understands turn left, turn right and go straight on, follows a short way to a place, and ends with the skill check. The places are shown as pictures (the bus stop as its sign). Directions are shown as arrows. Following a way on a map waits for a map component.
 
 
 | Lesson | New | Tasks | Activities |
@@ -2150,7 +2150,7 @@ Task types: multiple_choice 24, true_false 8, matching 7, ordering 3. Builds on:
 
 `de-DE.lit-de.pictograms` teaches `lit-de.texts-media.pictograms` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Reading the picture signs of everyday life. Lesson 1 reads the Bildzeichen that tell a child in a workbook what to do (pencil: write, scissors: cut out, ear: listen, eye: look closely, mouth: say it, crayon: colour in, open book: read) and learns that a sign means an action, not just the thing on it; lesson 2 reads signs outside: the traffic light, the signs for the way to the bus, cycle path, café and telephone, and a red line across a picture that means "not allowed", and ends with the skill check.
+Reading the picture signs of everyday life. Lesson 1 reads the Bildzeichen that tell a child in a workbook what to do (pencil: write, scissors: cut out, ear: listen, eye: look closely, mouth: say it, crayon: colour in, open book: read) and learns that a sign means an action, not just the thing on it; lesson 2 reads signs outside: the traffic light (one picture with the red man lit, one with the green man lit), the signs for the bus stop, cycle path, toilet, emergency exit and a café, and a red line across a picture that means "not allowed", and ends with the skill check.
 
 
 | Lesson | New | Tasks | Activities |

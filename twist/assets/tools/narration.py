@@ -324,7 +324,7 @@ def listen(k, f, expect):
     d = post(k, "chat/completions", {"model": LISTEN_MODEL, "temperature": 0, "response_format": {"type": "json_object"},
         "messages": [{"role": "user", "content": [{"type": "text", "text": prompt},
             {"type": "input_audio", "input_audio": {"data": base64.b64encode(f.read_bytes()).decode(), "format": "mp3"}}]}]})
-    m = re.search(r"\{.*\}", d["choices"][0]["message"]["content"], re.S)
+    m = re.search(r"\{.*\}", d["choices"][0]["message"].get("content") or "", re.S)
     return json.loads(m.group(0)) if m else {"heard": "", "correct": False, "issues": "unreadable reply"}
 
 

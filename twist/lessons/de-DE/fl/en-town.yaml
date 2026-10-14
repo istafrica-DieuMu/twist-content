@@ -12,9 +12,8 @@ summary: >
   (school, park, shop, library, station, swimming pool, bus stop) and what
   you do there; lesson 2 understands turn left, turn right and go straight
   on, follows a short way to a place, and ends with the skill check. The
-  places have no pictures yet, so they are given as German words or read
-  in English; directions are shown as arrows. Following a way on a map
-  waits for a map component.
+  places are shown as pictures (the bus stop as its sign). Directions are shown as arrows. Following a way on a map waits for a map
+  component.
 metadata:
   year: lernjahr-1
   topic: { de: In der Stadt, en: In town }
@@ -23,7 +22,7 @@ metadata:
   builds_on: [fl.grammar.questions]
   also_practises: [fl.listening.details, fl.listening.short-dialogues]
   vocabulary: { en: [school, park, shop, library, station, swimming pool, bus stop, turn left, turn right, go straight on, "Excuse me, where's ...?"] }
-  forms: [audio, text]
+  forms: [audio, picture, text]
   drawn: []
   facets: []
   misconceptions:
@@ -32,7 +31,7 @@ metadata:
       addressed: lesson 2 Learn links left with links (both start with l); l2-f2 gives feedback when the left arrow is tapped for turn right, and every stage of lesson 2 and the skill check asks for both
     - id: shop-stop
       what: Hears shop and bus stop as the same word
-      addressed: lesson 1 Learn says shop and stop sound alike; l1-f3 gives feedback when Bushaltestelle is chosen for shop, and l1-c1 asks for bus stop with Laden among the options
+      addressed: lesson 1 Learn says shop and stop sound alike; l1-f3 gives feedback when the bus stop sign is chosen for shop, and l1-c1 asks for bus stop with the shop among the options
   twist_reuse: []
   status: draft
   version: 1
@@ -57,8 +56,8 @@ lessons:
             type: audio_choice
             say: { de: "Hör zu. Wo ist der Hund?" }
             audio: { en: "Where's the dog? He's in the garden." }
-            options: ["im Garten", "in der Küche", "im Bett"]
-            answer: "im Garten"
+            options: [{ object: garden }, { object: kitchen }, { object: bedroom }]
+            answer: garden
             difficulty: easy
 
       - activity: learn
@@ -66,11 +65,13 @@ lessons:
         screens:
           - text: "school, park, shop"
             say: { de: "Das sind Orte in der Stadt. School ist die Schule, park der Park, shop der Laden.", en: "School. Park. Shop." }
+            show: { objects: [school, park, shop] }
           - text: "library, station, swimming pool"
             say: { de: "Library ist die Bücherei, station der Bahnhof, swimming pool das Schwimmbad.", en: "Library. Station. Swimming pool." }
+            show: { objects: [library, station, swimming-pool] }
           - text: "bus stop, shop"
             say: { de: "Bus stop ist die Bushaltestelle. Dort wartest du auf den Bus. Hör genau hin: stop und shop klingen ähnlich.", en: "Bus stop. Shop." }
-            show: { object: bus }
+            show: { objects: [sign-bus-stop, shop] }
 
       - activity: practise
         setting: plain
@@ -81,8 +82,8 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Welcher Ort ist das?" }
                 audio: { en: "School." }
-                options: ["die Schule", "der Park", "der Laden"]
-                answer: "die Schule"
+                options: [{ object: school }, { object: park }, { object: shop }]
+                answer: school
                 hints:
                   - "Hör noch einmal: school."
                   - "School klingt fast wie Schule."
@@ -92,8 +93,8 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Welcher Ort ist das?" }
                 audio: { en: "Library." }
-                options: ["die Bücherei", "der Bahnhof", "die Schule"]
-                answer: "die Bücherei"
+                options: [{ object: library }, { object: station }, { object: school }]
+                answer: library
                 hints:
                   - "Dort gibt es viele Bücher zum Ausleihen."
                   - "Library ist ein neues Wort. Es klingt nicht wie ein deutsches."
@@ -102,10 +103,10 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Welcher Ort ist das?" }
                 audio: { en: "Shop." }
-                options: ["der Laden", "die Bushaltestelle", "das Schwimmbad"]
-                answer: "der Laden"
+                options: [{ object: shop }, { object: sign-bus-stop }, { object: park }]
+                answer: shop
                 feedback:
-                  "die Bushaltestelle": "Du hast shop gehört, mit sch am Anfang. Die Bushaltestelle heißt bus stop."
+                  sign-bus-stop: "Du hast shop gehört, mit sch am Anfang. Die Bushaltestelle heißt bus stop."
                 hints:
                   - "Hör auf den Anfang: sch oder st?"
                   - "Es war shop, mit sch."
@@ -124,6 +125,7 @@ lessons:
               - id: l1-f5
                 type: speak
                 say: { de: "Sag auf Englisch: der Park.", en: "Park." }
+                show: { object: park }
                 expected_text: "park"
                 hints:
                   - "Es klingt fast wie im Deutschen."
@@ -136,8 +138,8 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Welcher Ort ist das?" }
                 audio: { en: "Station." }
-                options: ["der Bahnhof", "die Bücherei", "die Schule"]
-                answer: "der Bahnhof"
+                options: [{ object: station }, { object: library }, { object: school }]
+                answer: station
                 hints: ["An diesem Ort hält der Zug."]
               - id: l1-s2
                 type: multiple_choice
@@ -151,25 +153,26 @@ lessons:
                 type: matching
                 option_audio: false
                 text: "Was passt zusammen?"
-                say: { de: "Was heißt das auf Deutsch? Tippe auf ein englisches Wort und dann auf das deutsche." }
+                say: { de: "Lies die Wörter. Tippe auf ein Wort und dann auf das Bild." }
                 pairs:
                   - left: { text: "school" }
-                    right: { text: "Schule" }
+                    right: { object: school }
                   - left: { text: "park" }
-                    right: { text: "Park" }
+                    right: { object: park }
                   - left: { text: "station" }
-                    right: { text: "Bahnhof" }
+                    right: { object: station }
                 hints: ["School und park klingen fast wie im Deutschen."]
               - id: l1-s4
                 type: audio_choice
                 say: { de: "Hör zu. Wo ist Tom?" }
                 audio: { en: "Where's Tom? He's at the park." }
-                options: ["im Park", "in der Schule", "am Bahnhof"]
-                answer: "im Park"
+                options: [{ object: park }, { object: school }, { object: station }]
+                answer: park
                 hints: ["Hör auf das letzte Wort."]
               - id: l1-s5
                 type: speak
                 say: { de: "Sag auf Englisch: die Schule.", en: "School." }
+                show: { object: school }
                 expected_text: "school"
                 hints: ["Sag mit mir: school. Es fängt mit sk an."]
 
@@ -179,8 +182,8 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Welcher Ort ist das?" }
                 audio: { en: "Swimming pool." }
-                options: ["das Schwimmbad", "der Spielplatz", "der Bahnhof"]
-                answer: "das Schwimmbad"
+                options: [{ object: swimming-pool }, { object: park }, { object: station }]
+                answer: swimming-pool
               - id: l1-n2
                 type: multiple_choice
                 option_audio: false
@@ -192,20 +195,20 @@ lessons:
                 type: matching
                 option_audio: false
                 text: "Was passt zusammen?"
-                say: { de: "Was heißt das auf Deutsch? Tippe auf ein englisches Wort und dann auf das deutsche." }
+                say: { de: "Lies die Wörter. Tippe auf ein Wort und dann auf das Bild." }
                 pairs:
                   - left: { text: "shop" }
-                    right: { text: "Laden" }
+                    right: { object: shop }
                   - left: { text: "library" }
-                    right: { text: "Bücherei" }
+                    right: { object: library }
                   - left: { text: "bus stop" }
-                    right: { text: "Bushaltestelle" }
+                    right: { object: sign-bus-stop }
               - id: l1-n4
                 type: audio_choice
                 say: { de: "Hör zu. Wo ist Mama?" }
                 audio: { en: "Where's Mum? She's at the station." }
-                options: ["am Bahnhof", "im Laden", "in der Bücherei"]
-                answer: "am Bahnhof"
+                options: [{ object: station }, { object: shop }, { object: library }]
+                answer: station
               - id: l1-n5
                 type: true_false
                 text: "You can read books at the library."
@@ -219,8 +222,8 @@ lessons:
             type: audio_choice
             say: { de: "Hör zu. Welcher Ort ist das?" }
             audio: { en: "Bus stop." }
-            options: ["die Bushaltestelle", "der Laden", "der Bahnhof"]
-            answer: "die Bushaltestelle"
+            options: [{ object: sign-bus-stop }, { object: shop }, { object: station }]
+            answer: sign-bus-stop
           - id: l1-c2
             type: multiple_choice
             option_audio: false
@@ -245,8 +248,8 @@ lessons:
             type: audio_choice
             say: { de: "Hör zu. Welcher Ort ist das?" }
             audio: { en: "Park." }
-            options: ["der Park", "der Laden", "die Schule"]
-            answer: "der Park"
+            options: [{ object: park }, { object: shop }, { object: school }]
+            answer: park
             difficulty: easy
           - id: l2-w2
             type: multiple_choice
@@ -330,8 +333,8 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Wo biegt Emma links ab?" }
                 audio: { en: "Go straight on, and turn left at the park." }
-                options: ["am Park", "an der Schule", "am Bahnhof"]
-                answer: "am Park"
+                options: [{ object: park }, { object: school }, { object: station }]
+                answer: park
                 hints: ["Hör auf das Ende: at the ..."]
               - id: l2-s2
                 type: multiple_choice
@@ -425,8 +428,8 @@ lessons:
             type: audio_choice
             say: { de: "Hör zu. Wo ist Mia?" }
             audio: { en: "Where's Mia? She's at the library." }
-            options: ["in der Bücherei", "im Laden", "am Bahnhof"]
-            answer: "in der Bücherei"
+            options: [{ object: library }, { object: shop }, { object: station }]
+            answer: library
           - id: l2-c5
             type: true_false
             text: "←"

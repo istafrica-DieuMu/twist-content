@@ -12,9 +12,8 @@ summary: >
   by ear and picture (bed, table, chair, lamp, mirror, clock, telephone,
   oven); lesson 2 learns the rooms (kitchen, bathroom, bedroom, living
   room, garden), says which room something is in (The oven is in the
-  kitchen.), and ends with the skill check. The rooms have no pictures yet,
-  so they are given as German words or read in English. Speaking tasks are
-  practice only.
+  kitchen.), and ends with the skill check. The rooms and the garden are
+  shown as pictures. Speaking tasks are practice only.
 metadata:
   year: lernjahr-1
   topic: { de: Zu Hause, en: At home }
@@ -29,7 +28,7 @@ metadata:
   misconceptions:
     - id: bedroom-bathroom
       what: Mixes up bedroom and bathroom because they sound alike
-      addressed: lesson 2 Learn sets bedroom (bed) against bathroom (bath); l2-f2 gives feedback when the bed is put in the bathroom, and l2-c1 asks for bedroom with Badezimmer among the options
+      addressed: lesson 2 Learn sets bedroom (bed) against bathroom (bath); l2-f2 gives feedback when the bed is put in the bathroom, and l2-c1 asks for bedroom with the bathroom picture among the options
     - id: chair-table
       what: Mixes up chair and table
       addressed: l1-f2 gives feedback when table is tapped for chair; chair and table appear together in lesson 1 tasks
@@ -255,12 +254,15 @@ lessons:
           - text: "kitchen, bathroom, bedroom, living room, garden"
             say: { de: "Das sind die Zimmer. Kitchen ist die Küche, bathroom das Badezimmer, bedroom das Schlafzimmer, living room das Wohnzimmer. Draußen ist der garden, der Garten.", en: "Kitchen. Bathroom. Bedroom. Living room. Garden." }
             show: { object: house }
+          - text: "kitchen, living room"
+            say: { de: "Links die Küche, kitchen. Rechts das Wohnzimmer, living room.", en: "Kitchen. Living room." }
+            show: { objects: [kitchen, living-room] }
           - text: "bedroom, bathroom"
             say: { de: "Hör genau hin, die zwei klingen ähnlich. In bedroom steckt bed, das Bett: Das ist das Schlafzimmer. In bathroom steckt bath, die Badewanne: Das ist das Badezimmer.", en: "Bedroom. Bathroom." }
-            show: { object: bed }
+            show: { objects: [bedroom, bathroom] }
           - text: "The oven is in the kitchen."
             say: { de: "So sagst du, wo etwas ist: The oven is in the kitchen. Vor dem Zimmer steht immer the.", en: "The oven is in the kitchen." }
-            show: { object: oven }
+            show: { object: kitchen }
 
       - activity: practise
         setting: in-context
@@ -269,10 +271,10 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
-                say: { de: "Hör zu. Welches Zimmer ist das?" }
+                say: { de: "Hör zu. Tippe auf das Zimmer." }
                 audio: { en: "Kitchen." }
-                options: ["die Küche", "das Badezimmer", "das Schlafzimmer"]
-                answer: "die Küche"
+                options: [{ object: kitchen }, { object: bathroom }, { object: bedroom }]
+                answer: kitchen
                 hints:
                   - "Hör noch einmal: kitchen."
                   - "In diesem Zimmer steht der Ofen."
@@ -282,10 +284,10 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Wo ist das Bett?" }
                 audio: { en: "Where's the bed? It's in the bedroom." }
-                options: ["im Schlafzimmer", "im Badezimmer", "in der Küche"]
-                answer: "im Schlafzimmer"
+                options: [{ object: bedroom }, { object: bathroom }, { object: kitchen }]
+                answer: bedroom
                 feedback:
-                  "im Badezimmer": "Bedroom ist das Schlafzimmer, dort steht das Bett. Das Badezimmer heißt bathroom."
+                  bathroom: "Bedroom ist das Schlafzimmer, dort steht das Bett. Das Badezimmer heißt bathroom."
                 hints:
                   - "Hör auf das letzte Wort."
                   - "Bedroom: Darin steckt bed."
@@ -327,10 +329,10 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
-                say: { de: "Hör zu. Welches Zimmer ist das?" }
+                say: { de: "Hör zu. Tippe auf das Zimmer." }
                 audio: { en: "Living room." }
-                options: ["das Wohnzimmer", "die Küche", "der Garten"]
-                answer: "das Wohnzimmer"
+                options: [{ object: living-room }, { object: kitchen }, { object: bedroom }]
+                answer: living-room
                 hints: ["Living kommt von live, wohnen."]
               - id: l2-s2
                 type: true_false
@@ -342,8 +344,8 @@ lessons:
                 type: audio_choice
                 say: { de: "Hör zu. Wo ist das Telefon?" }
                 audio: { en: "Mum, where's the telephone? It's in the living room." }
-                options: ["im Wohnzimmer", "in der Küche", "im Garten"]
-                answer: "im Wohnzimmer"
+                options: [{ object: living-room }, { object: kitchen }, { object: garden }]
+                answer: living-room
                 hints: ["Hör auf die Antwort von Mama."]
               - id: l2-s4
                 type: multiple_choice
@@ -367,16 +369,16 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
-                say: { de: "Hör zu. Welches Zimmer ist das?" }
+                say: { de: "Hör zu. Tippe auf das Zimmer." }
                 audio: { en: "Bathroom." }
-                options: ["das Badezimmer", "das Schlafzimmer", "die Küche"]
-                answer: "das Badezimmer"
+                options: [{ object: bathroom }, { object: bedroom }, { object: living-room }]
+                answer: bathroom
               - id: l2-n2
                 type: audio_choice
                 say: { de: "Hör zu. Wo ist der Ball?" }
                 audio: { en: "Where's my ball? It's in the garden." }
-                options: ["im Garten", "im Wohnzimmer", "in der Küche"]
-                answer: "im Garten"
+                options: [{ object: garden }, { object: living-room }, { object: kitchen }]
+                answer: garden
               - id: l2-n3
                 type: multiple_choice
                 option_audio: false
@@ -403,16 +405,16 @@ lessons:
         tasks:
           - id: l2-c1
             type: audio_choice
-            say: { de: "Hör zu. Welches Zimmer ist das?" }
+            say: { de: "Hör zu. Tippe auf das Zimmer." }
             audio: { en: "Bedroom." }
-            options: ["das Schlafzimmer", "das Badezimmer", "das Wohnzimmer"]
-            answer: "das Schlafzimmer"
+            options: [{ object: bedroom }, { object: bathroom }, { object: kitchen }]
+            answer: bedroom
           - id: l2-c2
             type: audio_choice
             say: { de: "Hör zu. Wo ist die Katze?" }
             audio: { en: "Where's the cat? She's in the kitchen." }
-            options: ["in der Küche", "im Badezimmer", "im Garten"]
-            answer: "in der Küche"
+            options: [{ object: kitchen }, { object: bathroom }, { object: garden }]
+            answer: kitchen
           - id: l2-c3
             type: ordering
             option_audio: false
