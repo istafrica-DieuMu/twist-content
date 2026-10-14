@@ -58,12 +58,13 @@ for amounts:
 | `ruler` | `to: 15`, `length: 7`, `start: 2`, `colour` | a ruler in cm with mm ticks (cm and half cm only past 20) and a coloured strip above it, dashed lines from its ends to the scale; `start` sets the strip off zero for the reading-from-zero mistake |
 | `shape` | `kind: circle / triangle / square / rectangle / hexagon / cube / cuboid / sphere / cylinder / cone / pyramid`, `colour`, `size` | a flat shape, or a solid in a simple oblique view with hidden edges dashed; as an option its key is the kind ("cube") |
 | `shape` with `row` or `column` | `row: [circle, square, triangle, "?"]`, `colours: [red, blue, red, null]` or one colour | shapes side by side (left to right) or stacked (top to bottom); `"?"` is a dashed gap, for patterns to continue and for position words (links, rechts, zwischen, oben, unten) |
-| `bar-chart` | `rows: [[Hund, 5], [Katze, 8]]`, `step`; or `tally: true` | a bar chart with a scale from 0 (steps of 1, 2 or 5 by the largest value), or with `tally` a Strichliste table, the fifth stroke across each four |
+| `bar-chart` | `rows: [[Hund, 5], [Katze, 8]]`, `step`, `from`; or `tally: true` | a bar chart with a scale from 0, or from `from` for a cut-off axis (steps of 1, 2 or 5 by the range), or with `tally` a Strichliste table, the fifth stroke across each four |
 | `coins` | `values: [200, 50, 10]` in cent (or pence) | coins and notes of the curriculum's currency, 500 and up as notes; 1 € and 2 € (£2) two-coloured; as an option its key is the total ("260") |
 | `grid` | `cols: 8`, `rows: 6`, `cells: [[1, 2, blue]]`, `halves: [[3, 2, tl, red]]`, `lines: [[0, 0, 4, 0]]`, `axis: 4`, `labels: [[0, 0, A]]`, `dots: true` | Karopapier (or a dot grid) counted from the top left; whole squares and corner triangles coloured, lines between grid points, a dashed red mirror line, letters in squares; for area in unit squares, drawing on the grid, symmetry, nets and laying shapes; as an option it needs a `key` |
 | `cubes` | `plan: [[2, 1], [1, 0]]`, `mode: building / plan / front / side / top`, `colour` | a cube building: plan rows run back to front, each number a stack height; `building` draws it in a slanted view, `plan` the Bauplan with the heights, `front`, `side` (from the right) and `top` the views as squares; as an option it needs a `key` |
 | `fraction` | `kind: circle / bar / rect`, `parts: 4`, `shaded: 1`, `rows`, `colour` | a pie, a bar or a rectangle in equal parts with the first `shaded` coloured; as an option its key is "1/4" |
 | `spinner` | `sectors: [red, red, blue]` | a Glücksrad with equal sectors and a pointer at the top; as an option it needs a `key` |
+| `table` | `rows: [[Tag, Fach], [Montag, Mathe]]`, `header: false`, `sheet: true`, `mark: [[1, 1]]` | a table, the first row a header; `sheet` adds column letters (A, B, C) and row numbers like a spreadsheet, so cell B2 is `rows[1][1]`; `mark` colours cells yellow; `"?"` is a gap; as an option it needs a `key` |
 
 ## Types in use
 
@@ -124,6 +125,14 @@ Interactions:
 | What the picture is asking | a picture with a story, "Was sollst du herausfinden?", options are short questions | picture-stories |
 | Which part changes | "34 + 5: Was ändert sich?" options die Einer, die Zehner, beide | ones-no-bridge, tens-to-two-digit |
 | Read a Strichliste or survey | over a `bar-chart` with `tally: true`, "Wie viele Kinder mögen Rot?", "Welche Farbe mögen die meisten?", "Wie viele mehr?" | tally |
+| Area in unit squares | "Wie viele Kästchen groß ist die Fläche?" over a `grid` with coloured `cells` and `halves` | area-unit-squares |
+| Copy on the grid | "Welche Abzeichnung ist richtig?" options three `grid` drawings, each with a `key` | grid-drawing |
+| Cube net or not | "Ist das ein Würfelnetz?" over a `grid` of six `cells`; or "Wo fehlt das sechste Quadrat?" with `labels` A to D in candidate squares | nets |
+| View of a building | "Wie sieht das Gebäude von vorne aus?" over `cubes` in `mode: building`, options `cubes` in `front`, `side` or `top`, each with a `key` | views |
+| Count cubes from a plan | "Wie viele Würfel braucht man?" over `cubes` in `mode: plan` | complex-buildings |
+| Name a fraction | "Welcher Teil ist rot?" over a `fraction`, options "1/4", "3/4", "1/3", `option_audio: false` | name-fractions |
+| Sure, possible, impossible | "Der Zeiger bleibt auf Gelb stehen." over a `spinner`, options sicher, möglich, unmöglich with `keep_order` | certain-possible-impossible |
+| Misleading chart | "Warum täuscht das Diagramm?" over a `bar-chart` with `from` | data-critical |
 | Which Rechenweg is this | a worked calculation in `text` ("45 + 38 = 45 + 30 + 8"), "Welcher Rechenweg ist das?", options schrittweise, stellenweise, mit Hilfsaufgabe, ergänzen | describe-methods |
 | Which trick fits | "Welcher Trick hilft bei 9 + 9?", options verdoppeln, Zehnerfreunde, weiterzählen, kleine Aufgabe; feedback on the slow way | fluency-to-20 |
 | Which Rechenweg suits | "Welcher Weg passt gut zu 56 + 19?", options name methods; the answer is the one the sum invites (19 is near 20: Hilfsaufgabe) and the record says why in `feedback` | describe-methods, clever |

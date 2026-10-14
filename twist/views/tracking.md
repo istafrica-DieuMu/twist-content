@@ -8,10 +8,10 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 91% (185 / 203) | 69% (20 / 29) | 381 | 62% (13228 / 21200) |
-| de-DE | Deutsch | 67% (116 / 174) | 62% (58 / 94) | 258 | 49% (6808 / 13866) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 62% (13228 / 21200) |
+| de-DE | Deutsch | 93% (161 / 174) | 93% (87 / 94) | 350 | 49% (6808 / 13866) |
 | de-DE | Englisch | 64% (37 / 58) | 61% (23 / 38) | 74 | 64% (2174 / 3385) |
-| **de-DE** | **all** | **78% (338 / 435)** | **63% (101 / 161)** | **713** | **58% (22210 / 38451)** |
+| **de-DE** | **all** | **92% (401 / 435)** | **86% (139 / 161)** | **841** | **58% (22210 / 38451)** |
 | en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 103 | 100% (5491 / 5492) |
 | en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 48 | 100% (2131 / 2133) |
 | en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 10 | 100% (539 / 539) |
@@ -39,14 +39,14 @@ Per voice:
 
 ## de-DE
 
-338 of 435 placed skills drafted (78%): 338 lesson sets, 713 lessons, 15258 tasks. Narration so far about $51; 16241 clips still to make.
+401 of 435 placed skills drafted (92%): 401 lesson sets, 841 lessons, 18019 tasks. Narration so far about $51; 16241 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
-| klasse-1 | 40 / 41 | 26 / 51 |  | 66 / 92 |
-| klasse-2 | 61 / 63 | 33 / 46 |  | 94 / 109 |
-| klasse-3 | 45 / 51 | 36 / 42 |  | 81 / 93 |
-| klasse-4 | 39 / 48 | 21 / 35 |  | 60 / 83 |
+| klasse-1 | 41 / 41 | 51 / 51 |  | 92 / 92 |
+| klasse-2 | 63 / 63 | 44 / 46 |  | 107 / 109 |
+| klasse-3 | 51 / 51 | 41 / 42 |  | 92 / 93 |
+| klasse-4 | 48 / 48 | 25 / 35 |  | 73 / 83 |
 | stufe-0 |  |  | 9 / 14 | 9 / 14 |
 | lernjahr-1 |  |  | 22 / 28 | 22 / 28 |
 | lernjahr-2 |  |  | 6 / 16 | 6 / 16 |
@@ -61,36 +61,36 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $1.99 |
 | klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.01 |
 | klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $0.20 |
-| klasse-1 | Mathe | Geometrie | 4 / 5 started | 8 | $0.00 |
+| klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $0.00 |
 | klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.01 |
 | klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $0.89 |
-| klasse-1 | Deutsch | Buchstaben | 9 / 12 started | 42 | $0.38 |
+| klasse-1 | Deutsch | Buchstaben | 12 / 12 done | 50 | $0.38 |
 | klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 | $0.00 |
 | klasse-1 | Deutsch | Silben lesen | 4 / 4 done | 8 | $0.02 |
 | klasse-1 | Deutsch | Erste Wörter schreiben | 3 / 3 done | 6 | $0.00 |
-| klasse-1 | Deutsch | Blitzlesen | 1 / 2 started | 2 | $0.00 |
+| klasse-1 | Deutsch | Blitzlesen | 2 / 2 done | 4 | $0.00 |
 | klasse-1 | Deutsch | Erste Wörter lesen | 2 / 2 done | 4 | $0.01 |
-| klasse-1 | Deutsch | Nomen | 2 / 3 started | 4 | $0.02 |
-| klasse-1 | Deutsch | Erste Sätze lesen | 0 / 2 |  |  |
-| klasse-1 | Deutsch | Erste Sätze schreiben | 0 / 3 |  |  |
-| klasse-1 | Deutsch | Das ABC | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Erste Texte lesen | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Texte verstehen | 0 / 2 |  |  |
-| klasse-1 | Deutsch | Groß- und Kleinschreibung | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Sprechen und Zuhören | 0 / 3 |  |  |
-| klasse-1 | Deutsch | Erzählen | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Geschichten und Gedichte | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Bildzeichen und Diagramme | 0 / 2 |  |  |
-| klasse-1 | Deutsch | Sprache untersuchen | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Texte schreiben | 0 / 1 |  |  |
-| klasse-1 | Deutsch | Wortschatz | 0 / 1 |  |  |
+| klasse-1 | Deutsch | Nomen | 3 / 3 done | 6 | $0.02 |
+| klasse-1 | Deutsch | Erste Sätze lesen | 2 / 2 done | 4 |  |
+| klasse-1 | Deutsch | Erste Sätze schreiben | 3 / 3 done | 6 |  |
+| klasse-1 | Deutsch | Das ABC | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Erste Texte lesen | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Texte verstehen | 2 / 2 done | 4 |  |
+| klasse-1 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Sprechen und Zuhören | 3 / 3 done | 6 |  |
+| klasse-1 | Deutsch | Erzählen | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Bildzeichen und Diagramme | 2 / 2 done | 4 |  |
+| klasse-1 | Deutsch | Sprache untersuchen | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Texte schreiben | 1 / 1 done | 2 |  |
+| klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 |  |
 | klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.32 |
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $2.95 |
 | klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.29 |
 | klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $0.02 |
 | klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $1.37 |
-| klasse-2 | Mathe | Geometrie | 6 / 7 started | 12 | $0.01 |
-| klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 3 / 4 started | 6 | $0.01 |
+| klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $0.01 |
+| klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 4 / 4 done | 8 | $0.01 |
 | klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.37 |
 | klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.28 |
 | klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.81 |
@@ -109,20 +109,20 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Texte verstehen | 4 / 4 done | 8 | $0.01 |
 | klasse-2 | Deutsch | Textarten | 2 / 2 done | 4 | $0.00 |
 | klasse-2 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 | $0.01 |
-| klasse-2 | Deutsch | Texte schreiben | 0 / 2 |  |  |
-| klasse-2 | Deutsch | Beschreiben | 0 / 2 |  |  |
-| klasse-2 | Deutsch | Erzählen | 0 / 1 |  |  |
-| klasse-2 | Deutsch | Gedichte schreiben | 0 / 1 |  |  |
+| klasse-2 | Deutsch | Texte schreiben | 2 / 2 done | 4 |  |
+| klasse-2 | Deutsch | Beschreiben | 2 / 2 done | 4 |  |
+| klasse-2 | Deutsch | Erzählen | 1 / 1 done | 2 |  |
+| klasse-2 | Deutsch | Gedichte schreiben | 1 / 1 done | 2 |  |
 | klasse-2 | Deutsch | Texte planen | 0 / 1 |  |  |
 | klasse-2 | Deutsch | Texte überarbeiten | 0 / 1 |  |  |
-| klasse-2 | Deutsch | Sprechen und Zuhören | 0 / 2 |  |  |
-| klasse-2 | Deutsch | Schreibschrift | 0 / 3 |  |  |
+| klasse-2 | Deutsch | Sprechen und Zuhören | 2 / 2 done | 4 |  |
+| klasse-2 | Deutsch | Schreibschrift | 3 / 3 done | 6 |  |
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.25 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.16 |
 | klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $3.76 |
 | klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $1.24 |
-| klasse-3 | Mathe | Geometrie | 4 / 7 started | 8 | $0.01 |
-| klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 0 / 3 |  |  |
+| klasse-3 | Mathe | Geometrie | 7 / 7 done | 14 | $0.01 |
+| klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 |  |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.38 |
 | klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.62 |
 | klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $1.15 |
@@ -146,19 +146,19 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Bücher | 1 / 1 done | 2 | $0.00 |
 | klasse-3 | Deutsch | Erzählen | 2 / 2 done | 4 | $0.00 |
 | klasse-3 | Deutsch | Texte planen | 1 / 1 done | 2 | $0.00 |
-| klasse-3 | Deutsch | Texte überarbeiten | 0 / 1 |  |  |
-| klasse-3 | Deutsch | Gespräche führen | 0 / 1 |  |  |
-| klasse-3 | Deutsch | Sprechen und Zuhören | 0 / 1 |  |  |
-| klasse-3 | Deutsch | Vor anderen sprechen | 0 / 1 |  |  |
-| klasse-3 | Deutsch | Texte gestalten | 0 / 2 |  |  |
+| klasse-3 | Deutsch | Texte überarbeiten | 1 / 1 done | 2 |  |
+| klasse-3 | Deutsch | Gespräche führen | 1 / 1 done | 2 |  |
+| klasse-3 | Deutsch | Sprechen und Zuhören | 1 / 1 done | 2 |  |
+| klasse-3 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 |  |
+| klasse-3 | Deutsch | Texte gestalten | 1 / 2 started | 2 |  |
 | klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.28 |
 | klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $1.72 |
 | klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.88 |
 | klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $0.02 |
-| klasse-4 | Mathe | Größen | 6 / 8 started | 12 | $0.02 |
-| klasse-4 | Mathe | Geometrie | 9 / 11 started | 18 | $0.01 |
-| klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 0 / 3 |  |  |
-| klasse-4 | Mathe | Erweiterung | 2 / 4 started | 4 | $0.23 |
+| klasse-4 | Mathe | Größen | 8 / 8 done | 16 | $0.02 |
+| klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $0.01 |
+| klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 |  |
+| klasse-4 | Mathe | Erweiterung | 4 / 4 done | 8 | $0.23 |
 | klasse-4 | Deutsch | Die vier Fälle | 1 / 1 done | 3 | $0.35 |
 | klasse-4 | Deutsch | Zeitformen | 3 / 3 done | 6 | $0.82 |
 | klasse-4 | Deutsch | Verben | 2 / 2 done | 4 | $0.64 |
@@ -169,13 +169,13 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Rechtschreibung üben | 1 / 1 done | 2 | $0.15 |
 | klasse-4 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 | $0.01 |
 | klasse-4 | Deutsch | Texte verstehen | 3 / 3 done | 6 | $0.00 |
-| klasse-4 | Deutsch | Märchen | 1 / 2 started | 2 | $0.00 |
+| klasse-4 | Deutsch | Märchen | 2 / 2 done | 4 | $0.00 |
 | klasse-4 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 | $0.00 |
 | klasse-4 | Deutsch | Vortragen | 1 / 1 done | 2 | $0.01 |
-| klasse-4 | Deutsch | Medien | 1 / 3 started | 2 | $0.00 |
+| klasse-4 | Deutsch | Medien | 3 / 3 done | 6 | $0.00 |
 | klasse-4 | Deutsch | Erzählen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Berichten | 0 / 2 |  |  |
-| klasse-4 | Deutsch | Vor anderen sprechen | 0 / 1 |  |  |
+| klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 |  |
 | klasse-4 | Deutsch | Gespräche führen | 0 / 1 |  |  |
 | klasse-4 | Deutsch | Sprache untersuchen | 0 / 6 |  |  |
 | stufe-0 | Englisch | Hören | 2 / 3 started | 4 | $0.30 |
@@ -485,7 +485,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 97 | $0.26 | $26 |
+| de-DE | 34 | $0.22 | $7.54 |
 | en-GB | 404 | $0.25 | $100 |
 
 Pictures: 156 of 156 bank objects drawn, about $0.02 each, so new pictures cost about $0.21 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

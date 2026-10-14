@@ -424,10 +424,11 @@ function barChart(o) {
     const marks = (n) => { let t = ""; for (let i = 0; i < n; i += 5) { const k = Math.min(5, n - i), x = (i / 5) * 46; for (let j = 0; j < Math.min(k, 4); j++) t += `<line x1="${x + j * 9}" y1="4" x2="${x + j * 9}" y2="30" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`; if (k === 5) t += `<line x1="${x - 4}" y1="26" x2="${x + 31}" y2="8" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`; } return `<svg viewBox="-6 0 ${Math.max(1, Math.ceil(n / 5)) * 46 + 6} 34" height="30">${t}</svg>`; };
     return `<table class="tally">${rows.map(([l, v]) => `<tr>${l ? `<td>${esc(l)}</td>` : ""}<td>${marks(v)}</td></tr>`).join("")}</table>`;
   }
-  const max = Math.max(...rows.map((r) => r[1]), 1), step = o.step ?? (max > 20 ? 5 : max > 10 ? 2 : 1), top = Math.ceil(max / step) * step, H = 150, bw = Math.min(56, 260 / rows.length - 12), x0 = 34;
+  // from: the scale starts above 0 (a cut-off axis, for spotting misleading charts).
+  const lo = o.from ?? 0, max = Math.max(...rows.map((r) => r[1]), lo + 1), step = o.step ?? (max - lo > 20 ? 5 : max - lo > 10 ? 2 : 1), top = lo + Math.ceil((max - lo) / step) * step, H = 150, bw = Math.min(56, 260 / rows.length - 12), x0 = 34;
   let s = "";
-  for (let v = 0; v <= top; v += step) { const y = 10 + H - (v / top) * H; s += `<line x1="${x0}" y1="${y}" x2="320" y2="${y}" stroke="#e3dcf7" stroke-width="1"/><text x="${x0 - 6}" y="${y + 4}" text-anchor="end" font-size="11" fill="#2b0f45">${v}</text>`; }
-  rows.forEach(([l, v], i) => { const x = x0 + 12 + i * (bw + 12), h = (v / top) * H, c = Object.values(SHAPE_COL)[i % 8]; s += `<rect x="${x}" y="${10 + H - h}" width="${bw}" height="${h}" fill="${c}" stroke="#2b0f45" stroke-width="2"/><text x="${x + bw / 2}" y="${H + 26}" text-anchor="middle" font-size="12" font-weight="700" fill="#2b0f45">${esc(l)}</text>`; });
+  for (let v = lo; v <= top; v += step) { const y = 10 + H - ((v - lo) / (top - lo)) * H; s += `<line x1="${x0}" y1="${y}" x2="320" y2="${y}" stroke="#e3dcf7" stroke-width="1"/><text x="${x0 - 6}" y="${y + 4}" text-anchor="end" font-size="11" fill="#2b0f45">${v}</text>`; }
+  rows.forEach(([l, v], i) => { const x = x0 + 12 + i * (bw + 12), h = (Math.max(v, lo) - lo) / (top - lo) * H, c = Object.values(SHAPE_COL)[i % 8]; s += `<rect x="${x}" y="${10 + H - h}" width="${bw}" height="${h}" fill="${c}" stroke="#2b0f45" stroke-width="2"/><text x="${x + bw / 2}" y="${H + 26}" text-anchor="middle" font-size="12" font-weight="700" fill="#2b0f45">${esc(l)}</text>`; });
   s += `<line x1="${x0}" y1="${10 + H}" x2="320" y2="${10 + H}" stroke="#2b0f45" stroke-width="2.5"/><line x1="${x0}" y1="10" x2="${x0}" y2="${10 + H}" stroke="#2b0f45" stroke-width="2.5"/>`;
   return `<svg viewBox="0 0 330 ${H + 34}" width="100%" style="max-width:360px">${s}</svg>`;
 }
@@ -672,8 +673,19 @@ function spinner(o) {
   for (let i = 0; i < n; i++) { const a0 = (i / n) * 2 * Math.PI - Math.PI / 2, a1 = ((i + 1) / n) * 2 * Math.PI - Math.PI / 2; s += n === 1 ? `<circle cx="60" cy="64" r="50" fill="${SHAPE_COL[sec[0]] ?? "#ccc"}" stroke="#2b0f45" stroke-width="2.5"/>` : `<path d="M60 64 L${60 + 50 * Math.cos(a0)} ${64 + 50 * Math.sin(a0)} A50 50 0 ${1 / n > 0.5 ? 1 : 0} 1 ${60 + 50 * Math.cos(a1)} ${64 + 50 * Math.sin(a1)} Z" fill="${SHAPE_COL[sec[i]] ?? (sec[i] === "white" ? "#fff" : "#ccc")}" stroke="#2b0f45" stroke-width="2.5"/>`; }
   return `<svg viewBox="0 0 120 120" width="130">${s}<circle cx="60" cy="64" r="5" fill="#2b0f45"/><polygon points="52,4 68,4 60,20" fill="#2b0f45"/></svg>`;
 }
+// A table: rows of cells, the first row a header unless header: false; sheet: true adds column letters and row numbers
+// like a spreadsheet; mark: [[r, c]] highlights cells (rows and columns count from 0 in `rows`); "?" is a gap.
+function table(o) {
+  const rows = o.rows ?? [], head = o.header !== false, marks = new Set((o.mark ?? []).map(([r, c]) => `${r},${c}`)), n = Math.max(...rows.map((r) => r.length), 0);
+  const td = (v, r, c, th) => `<${th ? "th" : "td"} style="border:1.5px solid #2b0f45;padding:4px 8px;${th ? "background:#efeafd;" : ""}${marks.has(`${r},${c}`) ? "background:#FDD835;" : ""}">${v === "?" ? '<span class="blank">?</span>' : esc(v ?? "")}</${th ? "th" : "td"}>`;
+  const side = (x) => `<th style="border:1px solid #c9bdf0;padding:2px 6px;color:#7a6a9e;font-weight:600;background:#f6f3ff">${x}</th>`;
+  let h = o.sheet ? `<tr>${side("")}${[...Array(n)].map((_, c) => side(String.fromCharCode(65 + c))).join("")}</tr>` : "";
+  rows.forEach((row, r) => { h += `<tr>${o.sheet ? side(r + 1) : ""}${[...Array(n)].map((_, c) => td(row[c], r, c, head && r === 0 && !o.sheet)).join("")}</tr>`; });
+  return `<table style="border-collapse:collapse;font:600 15px Andika,sans-serif;color:#2b0f45;margin:0 auto">${h}</table>`;
+}
 function drawn(o, ctx = {}) {
   switch (o.drawn) {
+    case "table": return table(o);
     case "grid": return grid(o);
     case "cubes": return cubes(o);
     case "fraction": return fraction(o);
