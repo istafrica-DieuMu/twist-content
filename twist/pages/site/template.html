@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twist content guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf8f4;--panel:#ffffff;--ink:#22192e;--muted:#6d6478;--line:#e7e1d8;--accent:#6b3fd1;--accent-soft:#efe8fd;--good:#2e8b57;--warn:#b7791f;--new:#d9480f;--code:#f4f0ea}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17131d;--panel:#211b29;--ink:#efe9f6;--muted:#a79db3;--line:#352c40;--accent:#a98af0;--accent-soft:#2e2540;--good:#5fc28d;--warn:#e0b25c;--new:#ff8a5c;--code:#2a2333}}
+:root[data-theme="dark"]{--bg:#17131d;--panel:#211b29;--ink:#efe9f6;--muted:#a79db3;--line:#352c40;--accent:#a98af0;--accent-soft:#2e2540;--good:#5fc28d;--warn:#e0b25c;--new:#ff8a5c;--code:#2a2333}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif}
+a{color:var(--accent)}
+code,pre{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em;background:var(--code);border-radius:5px}
+code{padding:1px 5px}
+pre{padding:12px;overflow:auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.2;letter-spacing:-.01em}
+h1{font-size:34px;margin:0 0 6px}
+h2{font-size:26px;margin:38px 0 10px}
+h3{font-size:19px;margin:26px 0 8px}
+h4{font-size:15px;margin:18px 0 6px}
+.wrap{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh}
+nav{position:sticky;top:0;height:100vh;overflow:auto;padding:22px 16px;border-right:1px solid var(--line);background:var(--panel)}
+nav .brand{font-family:Fraunces,serif;font-weight:700;font-size:20px;margin-bottom:2px}
+nav .sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+nav a{display:block;padding:7px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-weight:500}
+nav a.on,nav a:hover{background:var(--accent-soft);color:var(--accent)}
+main{padding:28px 40px 80px;max-width:1120px}
+section{display:none}
+section.on{display:block}
+.lead{color:var(--muted);font-size:16px;max-width:760px}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:20px 0}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-size:24px;font-family:Fraunces,serif}
+.stat span{color:var(--muted);font-size:12.5px}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:14px 0}
+.chain .lv{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:118px;flex:1}
+.chain .lv b{display:block;font-size:14px}
+.chain .lv small{color:var(--muted);display:block;font-size:12px}
+.chain .lv .ex{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--accent);margin-top:4px;display:block}
+.chain .ar{align-self:center;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.tw{overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);text-align:left;padding:7px 9px;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tabs button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:999px;font:inherit;font-size:13.5px;cursor:pointer}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+input[type=search]{width:100%;max-width:440px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.topic{margin:18px 0 6px;font-weight:600;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:6px 0}
+.skill summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline}
+.skill summary::-webkit-details-marker{display:none}
+.skill .can{flex:1}
+.skill .meta{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.skill .id{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted)}
+.skill .body{margin-top:8px;font-size:14px}
+.pill{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-right:4px}
+.pill.todo{background:transparent;border:1px dashed var(--line);color:var(--muted)}
+.new{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--new);color:#fff;margin-left:6px;vertical-align:middle;letter-spacing:.03em}
+.types{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.type{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.type img{width:100%;max-height:330px;object-fit:contain;background:var(--code);display:block}
+.type .tb{padding:12px 14px}
+.type .tb h4{margin:0 0 4px;font-family:"JetBrains Mono",monospace;font-size:14px}
+.type details{font-size:13.5px}
+.type summary{cursor:pointer;color:var(--accent);font-size:13px;margin-top:6px}
+.mocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.mocks figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center}
+.mocks img{width:100%;border-radius:8px}
+.mocks figcaption{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted)}
+.doc h3{border-top:1px solid var(--line);padding-top:18px}
+.tree{font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.75;white-space:pre;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.tree i{color:var(--muted);font-style:normal}
+.open li{margin:4px 0}
+.ok{color:var(--good)}
+.foot{color:var(--muted);font-size:12.5px;margin-top:40px}
+.menu{display:none}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}nav{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px;padding:12px 16px}nav .brand,nav .sub{width:100%}main{padding:18px 16px 60px}.skill summary{flex-wrap:wrap}.skill .meta{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav id="nav">
+    <div class="brand">Twist</div>
+    <div class="sub">How the content works</div>
+  </nav>
+  <main id="main"></main>
+</div>
+<script>
+const D = __DATA__;
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const PAGES = [
+  ["overview", "Overview"], ["works", "How a lesson works"], ["model", "The data model"], ["curricula", "Curricula"],
+  ["types", "Task types"], ["components", "Components"], ["quality", "Quality and reviews"], ["rnd", "R&D"], ["where", "Where things live"],
+];
+const subj = (c, d) => c.subjects?.[d] ?? d;
+
+function overview() {
+  const t = D.totals;
+  const chain = [
+    ["Curriculum", "everything one country teaches", "de-DE"],
+    ["Subject", "a school subject, on a shared domain", "Mathe (math)"],
+    ["Year", "Klasse, or Lernjahr for a language", "klasse-1"],
+    ["Topic", "a block of skills a child sees", "Zahlen bis 10"],
+    ["Skill", "one \"Ich kann\": the learning objective", "math.numbers-to-20.count-to-5"],
+    ["Lesson", "one sitting, 8 to 12 minutes", "Lektion 1 von 2"],
+    ["Activity", "warm-up, learn, practise, check", "Üben"],
+    ["Task", "one thing the child does", "multiple_choice"],
+  ];
+  return `<h1>How the Twist content works</h1>
+  <p class="lead">Twist is a primary curriculum written competency first: each country's curriculum places shared skills into school years, and every skill is taught by a short set of hand-written lessons. This page explains the pieces and how they fit, from the curricula down to a single task. It is built from the records, so it stays in step as lessons are written (built ${D.built}).</p>
+  <div class="stats">
+    <div class="stat"><b>${t.curricula}</b><span>curricula</span></div>
+    <div class="stat"><b>${t.skills}</b><span>skills in the library</span></div>
+    <div class="stat"><b>${t.sets}</b><span>lesson sets</span></div>
+    <div class="stat"><b>${t.lessons}</b><span>lessons</span></div>
+    <div class="stat"><b>${t.tasks.toLocaleString("en")}</b><span>tasks</span></div>
+    <div class="stat"><b>${t.types}</b><span>task types</span></div>
+    <div class="stat"><b>${t.components}</b><span>drawn components</span></div>
+    <div class="stat"><b>${t.pictures}</b><span>pictures in the bank</span></div>
+  </div>
+  <h2>The chain</h2>
+  <p>Every piece of content sits on one chain. Each level has a name for the team, a name teachers use, and sometimes one for children.</p>
+  <div class="chain">${chain.map(([n, w, e], i) => `${i ? '<span class="ar">→</span>' : ""}<div class="lv"><b>${n}</b><small>${w}</small><span class="ex">${esc(e)}</span></div>`).join("")}</div>
+  <div class="card"><b>A skill and a lesson set.</b> A skill is one learning objective, "Ich kann bis zu 5 Dinge sicher abzählen". It lives once in the shared library (competencies/) and can be placed in any curriculum. A <b>lesson set</b> is the file that teaches one skill in one curriculum: 2 to 6 lessons, ending in the skill check that decides mastery. de-DE has ${D.curricula.find((c) => c.id === "de-DE")?.years.reduce((n, y) => n + y.skills.filter((s) => s.set).length, 0) ?? 0} lesson sets.</div>
+  <h2>How the parts connect</h2>
+  <div class="tw"><table><thead><tr><th>Part</th><th>What it holds</th><th>Lives in</th></tr></thead><tbody>
+  <tr><td>Frameworks</td><td>The official standards, quoted verbatim with a page reference (KMK, National Curriculum, EYFS)</td><td><code>twist/frameworks/</code></td></tr>
+  <tr><td>Competency library</td><td>Every skill, its "Ich kann / I can", prerequisites and the standards it meets</td><td><code>twist/competencies/</code></td></tr>
+  <tr><td>Curricula</td><td>Which skills each year places, in teaching order, and the market facets (€, decimal comma, script)</td><td><code>twist/curricula/</code></td></tr>
+  <tr><td>Lessons</td><td>One lesson set per placed skill, in the folder of its year</td><td><code>twist/lessons/&lt;curriculum&gt;/&lt;year&gt;/&lt;subject&gt;/</code></td></tr>
+  <tr><td>Asset bank</td><td>Pictures, drawn components, sounds and narration</td><td><code>twist/assets/</code></td></tr>
+  <tr><td>Views</td><td>Generated overviews: the course as authored, coverage, tracking</td><td><code>twist/views/</code></td></tr>
+  </tbody></table></div>`;
+}
+
+function docPage(title, lead, secs) {
+  const tabs = secs.map((s, i) => `<button data-i="${i}" class="${i ? "" : "on"}">${esc(s.title)}</button>`).join("");
+  return `<h1>${title}</h1><p class="lead">${lead}</p><div class="tabs doc-tabs">${tabs}</div><div class="doc">${secs.map((s, i) => `<div class="sec" data-i="${i}" ${i ? "hidden" : ""}><h2>${esc(s.title)}</h2>${s.html}</div>`).join("")}</div>`;
+}
+
+let CUR = "de-DE", YEAR = null, SUBJ = "", Q = "";
+function curricula() {
+  const c = D.curricula.find((x) => x.id === CUR) ?? D.curricula[0];
+  if (!YEAR || !c.years.find((y) => y.id === YEAR)) YEAR = c.years[0]?.id;
+  const year = c.years.find((y) => y.id === YEAR);
+  const done = c.years.reduce((n, y) => n + y.skills.filter((s) => s.set).length, 0), all = c.years.reduce((n, y) => n + y.skills.length, 0);
+  const domains = [...new Set(year.skills.map((s) => s.domain))];
+  const q = Q.toLowerCase();
+  const list = (q ? c.years.flatMap((y) => y.skills.map((s) => ({ ...s, y }))) : year.skills.map((s) => ({ ...s, y: year })))
+    .filter((s) => !SUBJ || s.domain === SUBJ)
+    .filter((s) => !q || [s.can, s.topic, s.id, s.set?.title, s.set?.file].join(" ").toLowerCase().includes(q));
+  let html = "", topic = null, yr = null;
+  for (const s of list) {
+    if (q && s.y.id !== yr) { yr = s.y.id; html += `<h3>${esc(s.y.label)}</h3>`; topic = null; }
+    if (s.topic !== topic) { topic = s.topic; html += `<div class="topic">${esc(subj(c, s.domain))} · ${esc(topic)}</div>`; }
+    html += `<details class="skill"><summary><span class="can">${esc(s.can)}</span><span class="meta">${s.set ? `<span class="pill">${s.set.lessons.length} lessons · ${s.set.tasks} tasks</span>` : '<span class="pill todo">no lessons yet</span>'}</span></summary>
+      <div class="body"><div class="id">${esc(s.id)}</div>${s.set ? `<p><b>${esc(s.set.title)}</b>: ${esc(s.set.summary)}</p><ol>${s.set.lessons.map((l) => `<li>${esc(l.title)} <span class="id">${l.tasks} tasks · ${l.acts.join(", ")}</span></li>`).join("")}</ol><div class="id">${esc(s.set.file)}</div>` : ""}
+      ${s.standards.length ? `<p class="id">Standards: ${s.standards.map(esc).join(", ")}</p>` : ""}</div></details>`;
+  }
+  return `<h1>Curricula</h1>
+  <p class="lead">Each curriculum places skills from the shared library into its school years, in teaching order (twist/curricula/). Open a skill to see its lesson set: the lessons in it, what each one does, and the file it lives in.</p>
+  <div class="tabs" id="cur-tabs">${D.curricula.map((x) => `<button data-c="${x.id}" class="${x.id === c.id ? "on" : ""}">${esc(x.title)} (${x.id})</button>`).join("")}</div>
+  <div class="card">${done} of ${all} placed skills have lessons. Frameworks: ${c.frameworks.map((f) => `<code>${esc(f)}</code>`).join(" ")}. Facets: ${Object.entries(c.facets).map(([k, v]) => `${esc(k)} <code>${esc(v)}</code>`).join(", ")}.</div>
+  <input type="search" id="q" placeholder="Search skills, topics, lesson titles, files" value="${esc(Q)}">
+  <div class="tabs" id="year-tabs">${c.years.map((y) => `<button data-y="${y.id}" class="${y.id === YEAR && !q ? "on" : ""}">${esc(y.label)} <span class="id">${y.skills.filter((s) => s.set).length}/${y.skills.length}</span></button>`).join("")}</div>
+  <div class="tabs" id="subj-tabs"><button data-s="" class="${SUBJ ? "" : "on"}">All subjects</button>${Object.entries(c.subjects).map(([d, n]) => `<button data-s="${d}" class="${SUBJ === d ? "on" : ""}">${esc(n)}</button>`).join("")}</div>
+  <div id="skills">${html || "<p>No skills match.</p>"}</div>`;
+}
+
+function types() {
+  return `<h1>Task types</h1>
+  <p class="lead">Every task a child does is one of these types. A lesson may only use a type once it is documented in twist/docs/task-types.md; the build refuses the rest. Counts are tasks in the lessons today.</p>
+  <div class="types">${D.typeSecs.map((t) => `<div class="type">${t.shot ? `<img src="${t.shot}" alt="${t.id}" loading="lazy">` : ""}<div class="tb"><h4>${esc(t.id)}</h4><div class="id">de-DE ${t.uses["de-DE"] ?? 0} · en-GB ${t.uses["en-GB"] ?? 0} tasks</div><details><summary>How it works</summary>${t.html}</details></div></div>`).join("")}</div>
+  ${D.mocks.length ? `<h2>Still to build</h2><p>Rough screens for types and interactions the lessons will need next.</p><div class="mocks">${D.mocks.map((m) => `<figure><img src="${m.shot}" alt="${m.id}" loading="lazy"><figcaption>${esc(m.id)}</figcaption></figure>`).join("")}</div>` : ""}`;
+}
+
+function components() {
+  return `<h1>Components</h1>
+  <p class="lead">Drawn components are pictures the app draws from data in the task (a ten-frame from <code>filled: 7</code>), so one component serves thousands of tasks with no artwork. Marked <span class="new">NEW</span> are the ones added most recently.</p>
+  <div class="tw"><table><thead><tr><th>Component</th><th>What it draws</th><th>Data</th><th>Uses</th></tr></thead><tbody>
+  ${[...D.components].sort((a, b) => (b.isNew - a.isNew) || b.uses - a.uses).map((c) => `<tr><td><code>${esc(c.id)}</code>${c.isNew ? '<span class="new">NEW</span>' : ""}</td><td>${esc(c.what)}</td><td class="id">${esc(c.data ?? "")}</td><td>${c.uses}</td></tr>`).join("")}
+  </tbody></table></div>`;
+}
+
+function quality() {
+  const r = D.reviews, open = (r.open ?? []).filter((o) => o.status !== "done"), closed = (r.open ?? []).filter((o) => o.status === "done");
+  const checks = D.anatomy.find((s) => s.title === "Tasks");
+  return `<h1>Quality and reviews</h1>
+  <p class="lead">Lessons are written by hand and checked twice: by the build (lessons-check.mjs refuses broken records and warns on known mistakes) and by review passes that read every task. Each pass is recorded in twist/reviews.yaml.</p>
+  <h2>Review passes</h2><div class="tw"><table><thead><tr><th>Date</th><th>Pass</th><th>Sets</th><th>Result</th><th>Commit</th></tr></thead><tbody>
+  ${(r.passes ?? []).map((p) => `<tr><td>${esc(p.date)}</td><td><b>${esc(p.name)}</b><div class="id">${esc(p.scope)}</div></td><td>${p.sets ?? ""}</td><td>${esc(p.result)}</td><td><code>${esc(p.commit ?? "")}</code></td></tr>`).join("")}
+  </tbody></table></div>
+  <h2>Open points</h2><ul class="open">${open.map((o) => `<li>${esc(o.what)}</li>`).join("") || "<li>none</li>"}</ul>
+  ${closed.length ? `<h3>Closed</h3><ul class="open">${closed.map((o) => `<li><span class="ok">✓</span> ${esc(o.what)}${o.how ? `: <span class="id">${esc(o.how)}</span>` : ""}</li>`).join("")}</ul>` : ""}`;
+}
+
+function rnd() {
+  return `<h1>R&amp;D</h1>
+  <p class="lead">The research behind the content: what was studied and what it decided. The material itself is kept in <code>rnd/</code>, out of the way of the content.</p>
+  <h2>What was studied</h2>
+  <div class="card"><b>Official curricula.</b> The KMK Bildungsstandards for Mathe and Deutsch (2022) and the KMK report on foreign languages in primary school, checked against the Lehrpläne of NRW, Bayern, Baden-Württemberg and Berlin-Brandenburg; for England, the National Curriculum and the EYFS framework. The standards are quoted verbatim in twist/frameworks/ and every skill maps to the standards that ask for it.</div>
+  <div class="card"><b>How strong learning apps build lessons.</b> Lesson structure, exercise types, difficulty, media and how German is sequenced in a leading app were captured and compared. That work set the lesson anatomy (warm-up, learn, practise in three support stages, check), the mastery rule, the task types and the decision to draw most visuals from data.</div>
+  <div class="card"><b>The content itself.</b> Every lesson has been reviewed: correctness, native German, hint order, year fit, and a dedicated native-German reading of every screen (see Quality and reviews).</div>
+  <h2>Frameworks</h2><div class="tw"><table><thead><tr><th>Framework</th><th>Country</th><th>Standards</th></tr></thead><tbody>
+  ${D.frameworks.map((f) => `<tr><td><code>${esc(f.id)}</code><div class="id">${esc(f.title)}</div></td><td>${esc(f.country)}</td><td>${f.count}</td></tr>`).join("")}</tbody></table></div>
+  <h2>Research documents</h2><ul>${D.rnd.map((r) => `<li>${esc(r.title)} <span class="id">${esc(r.file)}</span></li>`).join("")}</ul>
+  <p>Official documents as captured: ${D.official.map((o) => `<code>${esc(o.dir)}</code> (${o.parts.map(esc).join(", ")})`).join("; ")}.</p>`;
+}
+
+function where() {
+  return `<h1>Where things live</h1>
+  <p class="lead">The root holds the content and the research, kept apart. To find a lesson, go by curriculum, year and subject: the folders follow the curriculum file.</p>
+  <div class="tree">README.md            <i>start here</i>
+twist/               <i>the content</i>
+  curricula/         <i>de-DE.yaml, en-GB.yaml: which skills each year places</i>
+  competencies/      <i>the shared skill library, by domain and progression</i>
+  lessons/           <i>one lesson set per skill</i>
+    de-DE/klasse-1/math/count-to-5.yaml
+    de-DE/lernjahr-1/fl/en-weather.yaml
+  assets/            <i>pictures, drawn components, sounds, narration</i>
+  docs/              <i>lesson-anatomy.md, model.md, task-types.md</i>
+  views/             <i>generated: course-de-DE.md, tracking.md, coverage</i>
+  frameworks/        <i>official standards, quoted</i>
+  pages/             <i>this site, the lesson player, the task-type page, the team handoff</i>
+rnd/                 <i>research: captures, official documents, write-ups</i></div>
+  <h2>Build and check</h2>
+  <pre><code>node twist/build.mjs                 # check every record, write the views
+node twist/pages/site/build.mjs      # this page
+node twist/pages/player/build.mjs    # the lesson player</code></pre>
+  <p>The course as authored, year by year with every lesson's file: <code>twist/views/course-de-DE.md</code>. Play any lesson in <code>twist/pages/player/index.html</code>.</p>`;
+}
+
+const RENDER = {
+  overview, curricula, types, components, quality, rnd, where,
+  works: () => docPage("How a lesson works", "From twist/docs/lesson-anatomy.md: the chain, how a skill is split into lessons, the four activities, tasks, the authoring checks and how mastery is decided.", D.anatomy),
+  model: () => docPage("The data model", "From twist/docs/model.md: the records, ids, domains, progressions, years, frameworks, placement and locale facets.", D.model),
+};
+let PAGE = (location.hash || "#overview").slice(1);
+function render() {
+  if (!RENDER[PAGE]) PAGE = "overview";
+  $("#nav").innerHTML = `<div class="brand">Twist</div><div class="sub">How the content works</div>` + PAGES.map(([id, n]) => `<a href="#${id}" class="${id === PAGE ? "on" : ""}">${n}</a>`).join("");
+  $("#main").innerHTML = `<section class="on">${RENDER[PAGE]()}</section><p class="foot">Generated by twist/pages/site/build.mjs from the records, ${D.built}.</p>`;
+  bind();
+}
+function bind() {
+  document.querySelectorAll(".doc-tabs button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll(".doc-tabs button").forEach((x) => x.classList.toggle("on", x === b));
+    document.querySelectorAll(".doc .sec").forEach((s) => s.hidden = s.dataset.i !== b.dataset.i);
+  });
+  document.querySelectorAll("#cur-tabs button").forEach((b) => b.onclick = () => { CUR = b.dataset.c; YEAR = null; SUBJ = ""; render(); });
+  document.querySelectorAll("#year-tabs button").forEach((b) => b.onclick = () => { YEAR = b.dataset.y; Q = ""; render(); });
+  document.querySelectorAll("#subj-tabs button").forEach((b) => b.onclick = () => { SUBJ = b.dataset.s; render(); });
+  const q = $("#q"); if (q) { q.oninput = () => { Q = q.value; const pos = q.selectionStart; render(); const n = $("#q"); n.focus(); n.setSelectionRange(pos, pos); }; }
+}
+window.addEventListener("hashchange", () => { PAGE = location.hash.slice(1); render(); scrollTo(0, 0); });
+render();
+</script>
+</body>
+</html>

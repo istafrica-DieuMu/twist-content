@@ -2,7 +2,10 @@
 
 > Written before the names were settled. Read step as skill, profile as
 > curriculum, stage as year, objective as standard, part as lesson. The
-> current names are in docs/lesson-anatomy.md.
+> current names are in docs/lesson-anatomy.md. Paths written before
+> 2026-10-14 refer to the old layout: research folders (anton/,
+> official-de/, official-gb/, catalogue/, crosswalk/) now live under rnd/,
+> and the pages (player/, types/, handoff/) under twist/pages/.
 
 Branch `curriculum-phase1`, started 2026-10-12. Revised the same day after
 the decisions at the end of this file. Everything this plan produces lives

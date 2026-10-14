@@ -113,7 +113,7 @@ has:
   `klasse-1-2`, `year-3`, `ks2`, `elg`).
 
 Land Lehrpläne (NRW, Bayern, Baden-Württemberg, Berlin/Brandenburg) are
-kept as reference files in official-de/frameworks/, outside twist/. They
+kept as reference files in rnd/official-de/frameworks/, outside twist/. They
 are not part of the de-DE curriculum.
 
 The KMK standards describe the end of Klasse 4. They are the competency

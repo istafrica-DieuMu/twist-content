@@ -150,6 +150,6 @@ for (const o of objectives) {
   if (o.group) out += `    group: ${q(o.group)}\n`;
   out += `    page: ${o.page}\n    text: ${q(o.text)}\n`;
 }
-writeFileSync(join(ROOT, `twist/frameworks/de/${doc.id}.yaml`), out);
+writeFileSync(join(ROOT, `../twist/frameworks/de/${doc.id}.yaml`), out);
 const by = objectives.reduce((m, o) => ((m[o.area] = (m[o.area] ?? 0) + 1), m), {});
 console.log(`twist/frameworks/de/${doc.id}.yaml: ${objectives.length} objectives`, by);

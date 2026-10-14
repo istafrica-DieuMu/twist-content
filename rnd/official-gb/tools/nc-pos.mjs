@@ -150,6 +150,6 @@ for (const o of objectives) {
   out += `    page: ${o.page}\n    text: ${q(o.text)}\n`;
   if (o.fixed) out += `    fixed: true\n`;
 }
-writeFileSync(join(ROOT, `twist/frameworks/gb/${doc.id}.yaml`), out);
+writeFileSync(join(ROOT, `../twist/frameworks/gb/${doc.id}.yaml`), out);
 const by = {}; for (const o of objectives) { const k = `${o.code.split(".")[1]} ${o.area}`; by[k] = (by[k] ?? 0) + 1; }
 console.log(`twist/frameworks/gb/${doc.id}.yaml: ${objectives.length} objectives`); console.table(by);

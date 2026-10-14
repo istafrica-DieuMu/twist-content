@@ -11,17 +11,17 @@ import { DatabaseSync } from "node:sqlite";
 import { createRequire } from "node:module";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const YAML = createRequire(join(ROOT, "twist/package.json"))("yaml");
+const YAML = createRequire(join(ROOT, "../twist/package.json"))("yaml");
 const read = (p) => YAML.parse(readFileSync(join(ROOT, p), "utf8"));
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 
 // Twist side.
 const steps = new Map();
-for (const p of walk(join(ROOT, "twist/competencies")).filter((p) => p.endsWith(".yaml"))) {
+for (const p of walk(join(ROOT, "../twist/competencies")).filter((p) => p.endsWith(".yaml"))) {
   const d = YAML.parse(readFileSync(p, "utf8"));
   for (const s of d?.skills ?? []) steps.set(s.id, { ...s, progression: d.progression });
 }
-const profile = read("twist/curricula/de-DE.yaml");
+const profile = read("../twist/curricula/de-DE.yaml");
 const stageOf = new Map(), orderOf = new Map();
 const STAGES = ["klasse-1", "klasse-2", "klasse-3", "klasse-4", "stufe-0", "lernjahr-1", "lernjahr-2"];
 for (const [stage, list] of Object.entries(profile.placement)) list.forEach((id, i) => { stageOf.set(id, stage); orderOf.set(id, i); });

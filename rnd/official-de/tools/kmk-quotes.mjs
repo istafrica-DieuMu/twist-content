@@ -65,5 +65,5 @@ standards:
 `;
 find(doc.level);
 for (const [code, area, text] of doc.objectives) out += `  - code: ${doc.id}.${code}\n    kind: content\n    area: ${q(area)}\n    page: ${find(text)}\n    text: ${q(text)}\n`;
-writeFileSync(join(ROOT, `twist/frameworks/de/${doc.id}.yaml`), out);
+writeFileSync(join(ROOT, `../twist/frameworks/de/${doc.id}.yaml`), out);
 console.log(`twist/frameworks/de/${doc.id}.yaml: ${doc.objectives.length} objectives, all quotes found`);

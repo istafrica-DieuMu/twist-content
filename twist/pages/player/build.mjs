@@ -12,7 +12,7 @@ import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const T = join(HERE, "..", "twist");
+const T = join(HERE, "..", "..");
 const YAML = createRequire(join(T, "package.json"))("yaml");
 const read = (p) => YAML.parse(readFileSync(join(T, p), "utf8"));
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
@@ -136,7 +136,7 @@ const colours = read("assets/drawn.yaml").colours;
 const pics = readdirSync(join(T, "assets/objects")).filter((f) => f.endsWith(".png"));
 
 if (problems.length) { console.error(problems.join("\n")); process.exit(1); }
-const data = { built: new Date().toISOString().slice(0, 10), assets: "../twist/assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign } };
+const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign } };
 const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c"));
 writeFileSync(join(HERE, "index.html"), html);
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);
