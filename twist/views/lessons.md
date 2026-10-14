@@ -11472,7 +11472,7 @@ Task types: multiple_choice 28, highlight_in_text 4, sorting 2, true_false 8. Bu
 
 `en-GB.lit-en.fluent-speed` teaches `lit-en.handwriting.fluent-speed` in en-GB, year-5. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Children choose how to write for the job in hand. Lesson 1 takes when to join and when not to: lower-case letters in a word join, capital letters stand alone, and printed letters suit labels, forms and email addresses. Lesson 2 takes speed and tools: quick but legible notes, a best copy for display, and the right pen or pencil for the task; it ends with the skill check. Writing-lines tasks use `script: joined`, so the model follows the school's scheme. The app does not yet time or judge the child's own writing (any ink counts), so the skill check uses choice tasks.
+Children choose how to write for the job in hand. Lesson 1 takes when to join and when not to: lower-case letters in a word join, capital letters stand alone (as in most schools' schemes; the lesson says the teacher shows the school's own way), and printed letters suit labels, forms and email addresses. Lesson 2 takes speed and tools: quick but legible notes, a best copy for display, and the right pen or pencil for the task; it ends with the skill check. Writing-lines tasks use `script: joined`, so the model follows the school's scheme. The app does not yet time or judge the child's own writing (any ink counts), so the skill check uses choice tasks.
 
 
 | Lesson | New | Tasks | Activities |

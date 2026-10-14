@@ -68,7 +68,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       else if (voiceFor(v.sound) && !existsSync(join(T, "assets/narration", voiceFor(v.sound), "sounds", `${v.sound.replace(":", "-long")}.mp3`))) warn(`${file}: ${where}: no audio yet for sound ${v.sound} in voice ${voiceFor(v.sound)} (run assets/tools/narration.py)`);
       use("sound", v.sound, file);
     }
-    for (const [k, x] of Object.entries(v)) if (typeof x === "object") refs(x, where, file);
+    // audio.sounds: a word said sound by sound from the bank ("p ... i ... g").
+    if (Array.isArray(v.sounds) && v.sounds.every((x) => typeof x === "string")) for (const x of v.sounds) refs({ sound: x }, where, file);
+    for (const [k, x] of Object.entries(v)) if (typeof x === "object" && k !== "sounds") refs(x, where, file);
   };
 
   // ---- lessons ----
@@ -198,7 +200,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
             const NAME = /\b(I'm|I am|My name is|my name is|Je m'appelle|je m'appelle|Je suis|Ich heiße|ich heiße|Ich bin) [A-ZÄÖÜÉ][a-zäöüéèëï]+/g;
             for (const turn of t.audio.turns ?? [t.audio]) {
               if (turn.speaker != null && !["male", "female"].includes(turn.speaker)) err(`${file}: ${tw}: audio speaker is male or female`);
-              const said = Object.entries(turn).filter(([k]) => !["sound", "speaker", "turns"].includes(k)).map(([, v]) => String(v)).join(" ");
+              const said = Object.entries(turn).filter(([k]) => !["sound", "sounds", "speaker", "turns"].includes(k)).map(([, v]) => String(v)).join(" ");
               const names = said.match(NAME) ?? [];
               if (names.length && !turn.speaker) warn(`${file}: ${tw}: audio has a character saying their name; add speaker: male or female so the voice fits`);
               if (names.length > 1) warn(`${file}: ${tw}: audio has two characters saying their names; write it as turns, each with its speaker`);
@@ -248,7 +250,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     for (const [id, sig, size] of looseCheck) if (size !== "quick" && looseNon.has(sig) && !nonCheck.has(checkTasks.find((c) => c[0] === id)[1])) warn(`${file}: skill check task ${id} asks the same as task ${looseNon.get(sig)}`);
     // Metadata must match what the tasks actually use.
     const usedHere = { drawn: new Set(), sound: new Set() };
-    const collect = (v) => { if (Array.isArray(v)) return v.forEach(collect); if (!v || typeof v !== "object") return; if (v.drawn) usedHere.drawn.add(v.drawn); if (v.sound) usedHere.sound.add(v.sound); Object.values(v).forEach((x) => typeof x === "object" && collect(x)); };
+    const collect = (v) => { if (Array.isArray(v)) return v.forEach(collect); if (!v || typeof v !== "object") return; if (v.drawn) usedHere.drawn.add(v.drawn); if (v.sound) usedHere.sound.add(v.sound); if (Array.isArray(v.sounds)) v.sounds.forEach((x) => typeof x === "string" && usedHere.sound.add(x)); Object.values(v).forEach((x) => typeof x === "object" && collect(x)); };
     collect(d.lessons);
     for (const [k, key] of [["drawn", "drawn"], ["sounds", "sound"]]) {
       const declared = new Set(md[k] ?? []);

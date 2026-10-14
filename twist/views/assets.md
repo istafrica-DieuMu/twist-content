@@ -349,30 +349,30 @@ Each voice has its own copy, in assets/narration/<voice>/sounds/. Status `test` 
 | `de.s` | German /s/ as in Sonne at the start of a word, held: sss | 0 | needed |
 | `de.f` | German /f/ as in Fisch, held: fff | 1 | needed |
 | `de.n` | German /n/ as in Nase, held: nnn | 1 | needed |
-| `en.s` | English /s/ as in sun, held: sss | 3 | needed |
-| `en.a` | English short /a/ as in ant | 3 | needed |
-| `en.t` | English /t/ as in tap | 3 | needed |
-| `en.p` | English /p/ as in pig | 3 | needed |
-| `en.i` | English short /i/ as in insect | 1 | needed |
-| `en.n` | English /n/ as in net, held: nnn | 1 | needed |
-| `en.m` | English /m/ as in moon, held: mmm | 2 | needed |
-| `en.d` | English /d/ as in dog | 2 | needed |
-| `en.g` | English /g/ as in goat | 1 | needed |
-| `en.o` | English short /o/ as in octopus | 2 | needed |
-| `en.k` | English /k/ as in kite and cat (the letters c and k) | 4 | needed |
-| `en.e` | English short /e/ as in egg | 1 | needed |
-| `en.u` | English short /u/ as in up | 1 | needed |
+| `en.s` | English /s/ as in sun, held: sss | 4 | needed |
+| `en.a` | English short /a/ as in ant | 4 | needed |
+| `en.t` | English /t/ as in tap | 4 | needed |
+| `en.p` | English /p/ as in pig | 4 | needed |
+| `en.i` | English short /i/ as in insect | 2 | needed |
+| `en.n` | English /n/ as in net, held: nnn | 2 | needed |
+| `en.m` | English /m/ as in moon, held: mmm | 3 | needed |
+| `en.d` | English /d/ as in dog | 3 | needed |
+| `en.g` | English /g/ as in goat | 2 | needed |
+| `en.o` | English short /o/ as in octopus | 3 | needed |
+| `en.k` | English /k/ as in kite and cat (the letters c and k) | 5 | needed |
+| `en.e` | English short /e/ as in egg | 2 | needed |
+| `en.u` | English short /u/ as in up | 2 | needed |
 | `en.r` | English /r/ as in rabbit, held: rrr | 2 | needed |
-| `en.h` | English /h/ as in hat | 2 | needed |
-| `en.b` | English /b/ as in ball | 3 | needed |
-| `en.f` | English /f/ as in fish, held: fff | 2 | needed |
-| `en.l` | English /l/ as in lion, held: lll | 1 | needed |
-| `en.j` | English /dʒ/ as in jam | 1 | needed |
+| `en.h` | English /h/ as in hat | 3 | needed |
+| `en.b` | English /b/ as in ball | 4 | needed |
+| `en.f` | English /f/ as in fish, held: fff | 3 | needed |
+| `en.l` | English /l/ as in lion, held: lll | 2 | needed |
+| `en.j` | English /dʒ/ as in jam | 2 | needed |
 | `en.v` | English /v/ as in van, held: vvv | 1 | needed |
 | `en.w` | English /w/ as in web | 2 | needed |
 | `en.ks` | English /ks/ as at the end of fox (the letter x) | 1 | needed |
 | `en.y` | English /j/ as in yes (the letter y) | 1 | needed |
-| `en.z` | English /z/ as in zip, held: zzz | 1 | needed |
+| `en.z` | English /z/ as in zip, held: zzz | 2 | needed |
 | `en.kw` | English /kw/ as in queen (the letters qu) | 1 | needed |
 | `en.ch` | English /ch/ as in chip | 1 | needed |
 | `en.sh` | English /sh/ as in ship, held: shhh | 2 | needed |
@@ -402,5 +402,5 @@ One voice speaks every line, sound and phrase. 100700 lines in assets/narration/
 |---|---|---|---|---|---|---|
 | `gemini-sulafat` | google/gemini-3.8-flash-tts, Sulafat | 44799 | 43951 | 3402.9 | 1193.8 | female, warm; teaches and practises |
 | `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 6428 | 6326 | 373.1 | 131.8 | male; speaks the Checks |
-| `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 22535 | 21972 | 1858.7 | 651.0 | female, warm; teaches and practises in en-GB |
+| `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 23235 | 22666 | 1926.6 | 674.7 | female, warm; teaches and practises in en-GB |
 | `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 6487 | 6275 | 422.2 | 148.6 | male; speaks the Checks in en-GB |

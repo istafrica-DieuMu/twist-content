@@ -285,6 +285,8 @@ after the other, each in its speaker's voice:
 `audio: { turns: [{ en: "Hi! I'm Tom. What's your name?", speaker: male },
 { en: "My name is Emma.", speaker: female }] }`. Any task with `audio` takes
 both (short-dialogues).
+A word said sound by sound plays bank sounds in order, never letters
+through the voice: `audio: { sounds: [en.p, en.i, en.g] }` (oral-blending).
 
 Interactions:
 

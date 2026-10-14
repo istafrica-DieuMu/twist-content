@@ -120,8 +120,10 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
         const w = `${rel} ${t.id}`;
         t._prompt = sayClips(t.say ?? t.text, lang, a.activity, w);
         if (t.audio?.sound) t._target = soundClip(t.audio.sound, a.activity);
+        // `sounds`: a word said sound by sound from the bank, played in order.
+        else if (t.audio?.sounds) t._target = t.audio.sounds.map((x) => soundClip(x, a.activity));
         // `turns`: a dialogue, one clip per turn in that speaker's voice, played in order.
-        else if (t.audio) t._target = (t.audio.turns ?? [t.audio]).map((turn) => Object.entries(turn).filter(([k]) => !["sound", "speaker", "turns"].includes(k)).map(([lg, v]) => clip(lg, v, a.activity, null, w, turn.speaker))[0]).filter(Boolean);
+        else if (t.audio) t._target = (t.audio.turns ?? [t.audio]).map((turn) => Object.entries(turn).filter(([k]) => !["sound", "sounds", "speaker", "turns"].includes(k)).map(([lg, v]) => clip(lg, v, a.activity, null, w, turn.speaker))[0]).filter(Boolean);
         if (t.type === "speak") { const tl = d.target_language ?? lang; t._model = clip(tl, speakModel(t, tl), a.activity, null, w); }
         t._hints = (t.hints ?? []).map((h) => clip(lang, h, a.activity, null, w));
         t._options = (t.options ?? []).map((o) => { const x = optionText(t, o, lang); return x ? clip(lang, x, a.activity, null, w) : null; });

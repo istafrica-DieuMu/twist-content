@@ -286,7 +286,7 @@ def gather(cfg):
                     # `turns`: a dialogue, each turn a line with its own speaker.
                     for turn in au.get("turns", [au]):
                         for lg, v in turn.items():
-                            if lg not in ("sound", "speaker", "turns"):
+                            if lg not in ("sound", "sounds", "speaker", "turns"):
                                 add(lg, v, "target", w, a["activity"], speaker=turn.get("speaker"))
                     # A speak task plays the model after the child has spoken
                     # (the fallback while speech is not marked). Must match

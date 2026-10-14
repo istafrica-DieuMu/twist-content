@@ -12,19 +12,19 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21510 / 21510) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6278 / 6278) |
 | **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51170 / 51170)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 39% (11676 / 29872) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 62% (10738 / 17317) |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 41% (12374 / 29872) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 62% (10739 / 17317) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6505 / 6506) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **54% (28919 / 53695)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **55% (29618 / 53695)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 347 files (338 priced) | $7.51 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 80150 clips, 100.9 h | about $125 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 80150 clips | about $63 | estimated the same way |
-| **Total** | | | **about $196** | |
+| Narration | google/gemini-3.8-flash-tts | 80850 clips, 102.1 h | about $126 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 80850 clips | about $64 | estimated the same way |
+| **Total** | | | **about $198** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -35,7 +35,7 @@ Per voice:
 | gemini-puck | 6413 | 6313 (98%) | 0 | 373 min | $13 |
 | gemini-puck-en | 6443 | 6232 (97%) | 0 | 422 min | $14 |
 | gemini-sulafat | 44784 | 43936 (98%) | 0 | 3403 min | $105 |
-| gemini-sulafat-en | 22510 | 21949 (98%) | 24873 | 1858 min | $56 |
+| gemini-sulafat-en | 23210 | 22643 (98%) | 24173 | 1926 min | $58 |
 
 ## de-DE
 
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20677 tasks. Narration so far about $71; 24873 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20677 tasks. Narration so far about $72; 24173 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -286,9 +286,9 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.23 |
 | year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.68 |
 | year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.46 |
-| year-2 | Maths | Word problems | 2 / 2 done | 4 | $0.52 |
+| year-2 | Maths | Word problems | 2 / 2 done | 4 | $0.53 |
 | year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.23 |
-| year-2 | Maths | Money | 4 / 4 done | 8 | $0.12 |
+| year-2 | Maths | Money | 4 / 4 done | 8 | $0.72 |
 | year-2 | Maths | Shapes | 2 / 2 done | 4 | $0.34 |
 | year-2 | Maths | Patterns | 1 / 1 done | 2 | $0.03 |
 | year-2 | Maths | Symmetry | 1 / 1 done | 2 | $0.02 |
@@ -298,13 +298,13 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.23 |
 | year-2 | Maths | Division | 1 / 1 done | 2 | $0.32 |
 | year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.07 |
-| year-2 | Maths | Length | 1 / 1 done | 2 | $0.04 |
-| year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.08 |
+| year-2 | Maths | Length | 1 / 1 done | 2 | $0.28 |
+| year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.46 |
 | year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.04 |
-| year-2 | Maths | Mass | 1 / 1 done | 2 | $0.05 |
+| year-2 | Maths | Mass | 1 / 1 done | 2 | $0.29 |
 | year-2 | Maths | 3D shapes | 1 / 1 done | 2 | $0.02 |
 | year-2 | Maths | Capacity | 1 / 1 done | 2 | $0.32 |
-| year-2 | Maths | Fractions | 3 / 3 done | 7 | $0.30 |
+| year-2 | Maths | Fractions | 3 / 3 done | 7 | $0.66 |
 | year-2 | English | Reading words | 4 / 4 done | 8 | $0.70 |
 | year-2 | English | Stories and poems | 1 / 1 done | 2 | $0.23 |
 | year-2 | English | Handwriting | 2 / 2 done | 4 | $0.43 |
@@ -357,16 +357,16 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-4 | Maths | Multiplying and dividing | 2 / 2 done | 4 | $0.06 |
 | year-4 | Maths | Informal multiplication and division | 2 / 2 done | 4 | $0.09 |
 | year-4 | Maths | Relationships | 2 / 2 done | 4 | $0.07 |
-| year-4 | Maths | Mass | 1 / 1 done | 2 | $0.04 |
+| year-4 | Maths | Mass | 1 / 1 done | 2 | $0.05 |
 | year-4 | Maths | Geometry | 2 / 2 done | 5 | $0.04 |
 | year-4 | Maths | Position and direction | 2 / 2 done | 4 | $0.07 |
 | year-4 | Maths | Area and perimeter | 1 / 1 done | 2 | $0.01 |
-| year-4 | Maths | Data | 2 / 2 done | 4 | $0.08 |
+| year-4 | Maths | Data | 2 / 2 done | 4 | $0.09 |
 | year-4 | Maths | Chance | 1 / 1 done | 2 | $0.03 |
 | year-4 | Maths | Numbers to 1 000 000 | 1 / 1 done | 2 | $0.06 |
 | year-4 | Maths | Calculating with large numbers | 1 / 1 done | 2 | $0.06 |
 | year-4 | Maths | Written multiplication | 1 / 1 done | 2 | $0.04 |
-| year-4 | Maths | Length | 1 / 1 done | 2 | $0.04 |
+| year-4 | Maths | Length | 1 / 1 done | 2 | $0.05 |
 | year-4 | Maths | Coordinates | 2 / 2 done | 4 | $0.09 |
 | year-4 | Maths | Decimals | 4 / 4 done | 8 | $0.16 |
 | year-4 | Maths | Angles | 1 / 1 done | 2 | $0.02 |
@@ -392,7 +392,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-5 | Maths | Word problems | 2 / 2 done | 4 | $0.14 |
 | year-5 | Maths | Patterns | 1 / 1 done | 2 | $0.05 |
 | year-5 | Maths | Length | 2 / 2 done | 4 | $0.12 |
-| year-5 | Maths | Mass | 1 / 1 done | 2 | $0.06 |
+| year-5 | Maths | Mass | 1 / 1 done | 2 | $0.07 |
 | year-5 | Maths | Capacity | 1 / 1 done | 2 | $0.07 |
 | year-5 | Maths | Fractions | 2 / 2 done | 4 | $0.06 |
 | year-5 | Maths | Geometry | 3 / 3 done | 6 | $0.14 |
@@ -502,23 +502,26 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-14 | Pictures and narration |  | pictures the lessons asked for; narration for every line | 45 pictures added and used in 25 lesson sets; 51 204 de-DE clips made, none missing | dcfe4254 |
 | 2026-10-14 | Native German pass | 433 | every screen of all 433 de-DE lesson sets read as a German Grundschule teacher would (what the child sees and hears), about 21 000 screens, then a consistency sweep | about 2 500 small fixes in about 330 sets; house choices for the carry ("Schreib 3, übertrag 1"), "Es ist alles richtig.", "|" for separators; joined-capitals names no join that differs by script | f20878ae |
 | 2026-10-14 | en-GB review, year by year | 483 | all 483 en-GB lesson sets (Reception to Year 6 Maths and English, French learning years 1 to 4), each batch read by a review agent after it was written | fixes in most sets; table-2-4-8 and derive-facts moved to Year 3; semicolons in lists added to Year 6; bus stop, long multiplication, protractor, coordinates, line graph, pie chart and thermometer components; digit, decimal, fraction and letter keyboards for typed answers | 5215cf76 |
+| 2026-10-14 | Native English and French pass | 541 | every screen of the en-GB lessons (Reception to Year 6, French years 1 to 4) and the English in the de-DE Englisch sets, read as a native British teacher or a French professeur des écoles would, by model agents | about 220 sets changed, about 240 speaker tags, seven dialogues as turns; year-fit fixes (tonnes, km, compasses, capitals) and the enrichment map | 2e4fa07c |
 
-Open points (10):
+Open points (6):
 
 - A native German speaker reads the screens (a teacher, not a model)
-- en-weather teaches "It's rainy"; a native English speaker could weigh it against "It's raining"
 - Regional words for a teacher to weigh: Mäppchen or Federtasche (an ä task relies on Mäppchen), Möhre or Karotte (picture-name tasks rely on Möhre), Fasching, Geldbeutel, Brötchen, Pulli
 - Terms that differ by Land or textbook: the carry phrase (now 'Schreib 3, übertrag 1'), entbündeln, Nachbarzehner, Zehnerfreunde, Silbenschwingen, Verbzusatz or Vorsilbe, Wen-Fall or Akkusativ, Viertel vier
-- A native English and a native French speaker read the en-GB screens
-- Year fit beyond the National Curriculum for a teacher to weigh: probability in Years 3 and 4, tonnes in Year 4, km in Year 3, circles with compasses in Year 5 (the NC has Year 6); fair games, codes, complex buildings and digital tools have no NC statement
-- Joined handwriting says capitals stay unjoined, which is not true in every continuous-cursive scheme
-- French prices are written the English way (2.50 euros as €2.50) and euro coins are not drawn in en-GB
-- Narration to listen to: speaker gender against the voice, and how the voice reads ½, ° and 1/2
-- No interaction yet for drawing with a ruler, protractor or compasses, plotting by tapping a grid point, marked free writing or speech, a drag clock, a scene for prepositions, or labelled circle parts; those lessons use choices, ordering and planning instead
+- A native English and a native French speaker read the en-GB screens (people, not a model)
+- Still no interaction for drawing with a ruler, protractor or compasses, a scene for prepositions, or marked free writing and speech; marking speech and writing is a product decision for the app teams
+- Points from the native passes for a teacher: "I have got" against "I've got" across the Englisch sets; "a dice"; "Fill the gap" against "Fill in the gap"; single quotes for speech in stories while inverted-commas teaches double; Je suis fatigué with a picture of a girl in fr-sentences; first-person lines inside Learn say cannot carry a speaker
 
 Closed:
 
 - joined-capitals states which letters join; that depends on the school's script (VA, LA, SAS): the lesson names no join that differs between SAS, LA and VA (only O, which does not join in any), and the model is drawn in the school's script
 - No Anlauttabelle component; sound-chart lessons show single pictures: a sound-chart component in the player; the sound-chart lesson shows it in Learn and on the "which field" tasks
 - The player draws print on writing lines, never joined-up script (Schreibschrift): writing-lines takes script joined and draws it in the school's Ausgangsschrift (SAS, LA, VA or Grundschrift, a player setting); the three joined-writing lessons use it
+- en-weather teaches "It's rainy"; a native English speaker could weigh it against "It's raining": the Englisch weather sets teach "It's raining" and "It's snowing" for weather now and "It will rain" for tomorrow; "rainy" stays only before a noun or in a description
 - Stop sounds written as single letters in say ("fängt mit b an") may be read as the letter name; listen to a sample: the listening model was asked sound or letter name on a sample of 12 clips; 11 were the bare sound, the 12th is a spelling question ("Warum endet Feld mit d"), where the letter name is right
+- Year fit beyond the National Curriculum for a teacher to weigh: probability in Years 3 and 4, tonnes in Year 4, km in Year 3, circles with compasses in Year 5 (the NC has Year 6); fair games, codes, complex buildings and digital tools have no NC statement: tonnes left Year 4 (kilograms and grams instead); Year 3 length keeps to mm, cm and m and Year 4 teaches km; circles with compasses moved to Year 6; every placed skill now maps to a standard of its own curriculum or is listed under enrichment with a reason (15 in en-GB, among them probability, codes and digital tools; 3 in de-DE), and the build enforces it
+- Joined handwriting says capitals stay unjoined, which is not true in every continuous-cursive scheme: the Year 3 and Year 5 sets say many schools do not join capitals and the teacher shows how the school does it; the lessons leave them unjoined
+- French prices are written the English way (2.50 euros as €2.50) and euro coins are not drawn in en-GB: French text writes 2,50 €, taught once in fr-numbers-to-100 with euro coins (coins take currency eur)
+- Narration to listen to: speaker gender against the voice, and how the voice reads ½, ° and 1/2: the listening check showed fractions misread ("seven take away five" for 7/5); the voice now gets fractions, ½, ×, ÷, °C, cm², %, ratios, remainders and negatives as words. Character lines carry speaker male or female (about 240) and dialogues are turns; the checker asks for a speaker when a character says their name
+- No interaction yet for drawing with a ruler, protractor or compasses, plotting by tapping a grid point, marked free writing or speech, a drag clock, a scene for prepositions, or labelled circle parts; those lessons use choices, ordering and planning instead: clock_hands_drag (8 time sets), point_on_grid (4 coordinate sets) and a circle component with its parts (2 sets) are built and used
