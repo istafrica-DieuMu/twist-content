@@ -60,6 +60,10 @@ for amounts:
 | `shape` with `row` or `column` | `row: [circle, square, triangle, "?"]`, `colours: [red, blue, red, null]` or one colour | shapes side by side (left to right) or stacked (top to bottom); `"?"` is a dashed gap, for patterns to continue and for position words (links, rechts, zwischen, oben, unten) |
 | `bar-chart` | `rows: [[Hund, 5], [Katze, 8]]`, `step`; or `tally: true` | a bar chart with a scale from 0 (steps of 1, 2 or 5 by the largest value), or with `tally` a Strichliste table, the fifth stroke across each four |
 | `coins` | `values: [200, 50, 10]` in cent (or pence) | coins and notes of the curriculum's currency, 500 and up as notes; 1 € and 2 € (£2) two-coloured; as an option its key is the total ("260") |
+| `grid` | `cols: 8`, `rows: 6`, `cells: [[1, 2, blue]]`, `halves: [[3, 2, tl, red]]`, `lines: [[0, 0, 4, 0]]`, `axis: 4`, `labels: [[0, 0, A]]`, `dots: true` | Karopapier (or a dot grid) counted from the top left; whole squares and corner triangles coloured, lines between grid points, a dashed red mirror line, letters in squares; for area in unit squares, drawing on the grid, symmetry, nets and laying shapes; as an option it needs a `key` |
+| `cubes` | `plan: [[2, 1], [1, 0]]`, `mode: building / plan / front / side / top`, `colour` | a cube building: plan rows run back to front, each number a stack height; `building` draws it in a slanted view, `plan` the Bauplan with the heights, `front`, `side` (from the right) and `top` the views as squares; as an option it needs a `key` |
+| `fraction` | `kind: circle / bar / rect`, `parts: 4`, `shaded: 1`, `rows`, `colour` | a pie, a bar or a rectangle in equal parts with the first `shaded` coloured; as an option its key is "1/4" |
+| `spinner` | `sectors: [red, red, blue]` | a Glücksrad with equal sectors and a pointer at the top; as an option it needs a `key` |
 
 ## Types in use
 

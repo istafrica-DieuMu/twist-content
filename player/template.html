@@ -600,8 +600,84 @@ function dots(o, small) {
   const grp = group({ object: "_", count: n, layout: "scattered" }, { small });
   let i = 0; return grp.replace(/<span class="it"([^>]*)>[\s\S]*?<\/span>/g, (m, a) => `<span class="it"${a}><svg viewBox="0 0 30 30" width="100%">${dot(15, 15, 11, i++)}</svg></span>`);
 }
+// Karopapier: cols by rows of squares. cells [[c, r, colour]] fill whole squares, halves [[c, r, corner, colour]] fill the
+// triangle in one corner (tl, tr, bl, br), lines [[c1, r1, c2, r2]] run between grid points, axis: c is a dashed mirror line,
+// labels [[c, r, text]] write into a square; dots: true draws a dot grid instead of lines. Columns and rows count from 0, top left.
+function grid(o) {
+  const C = o.cols ?? 6, R = o.rows ?? 6, g = Math.min(34, 300 / C, 240 / R), p = 6, W = C * g + 2 * p, H = R * g + 2 * p;
+  const X = (c) => p + c * g, Y = (r) => p + r * g, col = (k) => SHAPE_COL[k] ?? "#b9a6f5";
+  let s = "";
+  for (const [c, r, k] of o.cells ?? []) s += `<rect x="${X(c)}" y="${Y(r)}" width="${g}" height="${g}" fill="${col(k)}"/>`;
+  for (const [c, r, corner, k] of o.halves ?? []) {
+    const pts = { tl: [[c, r], [c + 1, r], [c, r + 1]], tr: [[c, r], [c + 1, r], [c + 1, r + 1]], bl: [[c, r], [c, r + 1], [c + 1, r + 1]], br: [[c + 1, r], [c + 1, r + 1], [c, r + 1]] }[corner] ?? [];
+    s += `<polygon points="${pts.map(([a, b]) => `${X(a)},${Y(b)}`).join(" ")}" fill="${col(k)}"/>`;
+  }
+  if (o.dots) { for (let i = 0; i <= C; i++) for (let j = 0; j <= R; j++) s += `<circle cx="${X(i)}" cy="${Y(j)}" r="2" fill="#7a6a9e"/>`; }
+  else { for (let i = 0; i <= C; i++) s += `<line x1="${X(i)}" y1="${p}" x2="${X(i)}" y2="${H - p}" stroke="#c9bdf0" stroke-width="1"/>`; for (let j = 0; j <= R; j++) s += `<line x1="${p}" y1="${Y(j)}" x2="${W - p}" y2="${Y(j)}" stroke="#c9bdf0" stroke-width="1"/>`; }
+  for (const [c, r, k] of o.cells ?? []) s += `<rect x="${X(c)}" y="${Y(r)}" width="${g}" height="${g}" fill="none" stroke="#2b0f45" stroke-width="1.5"/>`;
+  for (const [c1, r1, c2, r2] of o.lines ?? []) s += `<line x1="${X(c1)}" y1="${Y(r1)}" x2="${X(c2)}" y2="${Y(r2)}" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`;
+  if (o.axis != null) s += `<line x1="${X(o.axis)}" y1="${p - 4}" x2="${X(o.axis)}" y2="${H - p + 4}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+  for (const [c, r, t] of o.labels ?? []) s += `<text x="${X(c) + g / 2}" y="${Y(r) + g * 0.68}" text-anchor="middle" font-size="${g * 0.55}" font-weight="800" fill="#2b0f45">${esc(t)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="${Math.min(320, W * 1.1)}">${s}</svg>`;
+}
+// A cube building from its plan: plan rows run from back to front, columns left to right, each number a stack height.
+// mode: building (drawn in a slanted view), plan (the Bauplan, heights in squares), front, side (from the right) or top.
+function cubes(o) {
+  const plan = o.plan ?? [[1]], rows = plan.length, cols = Math.max(...plan.map((r) => r.length)), h = (r, c) => plan[r]?.[c] ?? 0, mode = o.mode ?? "building";
+  const f = SHAPE_COL[o.colour] ?? "#b9a6f5", st = `stroke="#2b0f45" stroke-width="2" stroke-linejoin="round"`;
+  const squares = (heights, label) => {
+    // heights: one column height per position, drawn as stacked squares standing on a line.
+    const top = Math.max(...heights, 1), g = Math.min(34, 260 / heights.length, 180 / top), W = heights.length * g + 12, H = top * g + 12;
+    let s = "";
+    heights.forEach((n, i) => { for (let k = 0; k < n; k++) s += `<rect x="${6 + i * g}" y="${H - 6 - (k + 1) * g}" width="${g}" height="${g}" fill="${f}" ${st}/>`; });
+    return `<svg viewBox="0 0 ${W} ${H}" width="${Math.min(260, W * 1.2)}">${s}<line x1="2" y1="${H - 6}" x2="${W - 2}" y2="${H - 6}" stroke="#2b0f45" stroke-width="2.5"/></svg>`;
+  };
+  if (mode === "front") return squares([...Array(cols)].map((_, c) => Math.max(...plan.map((_, r) => h(r, c)))));
+  if (mode === "side") return squares([...Array(rows)].map((_, i) => Math.max(...[...Array(cols)].map((_, c) => h(rows - 1 - i, c)))));
+  if (mode === "plan" || mode === "top") {
+    const filled = plan.flatMap((r, i) => r.map((n, c) => [c, i, n])).filter(([, , n]) => n);
+    return grid({ cols, rows, cells: filled.map(([c, i]) => [c, i, o.colour]), labels: mode === "plan" ? filled.map(([c, i, n]) => [c, i, String(n)]) : [] });
+  }
+  const s0 = 30, d = s0 * 0.5, top = Math.max(...plan.flat(), 1), W = cols * s0 + rows * d + 12, H = top * s0 + rows * d + 12;
+  let s = "";
+  for (let r = 0; r < rows; r++) {
+    const dep = rows - 1 - r; // 0 is the front row
+    for (let c = 0; c < cols; c++) for (let k = 0; k < h(r, c); k++) {
+      const x = 6 + c * s0 + dep * d, y = H - 6 - k * s0 - dep * d;
+      s += `<polygon points="${x},${y} ${x + s0},${y} ${x + s0},${y - s0} ${x},${y - s0}" fill="${f}" ${st}/>`;
+      s += `<polygon points="${x},${y - s0} ${x + d},${y - s0 - d} ${x + s0 + d},${y - s0 - d} ${x + s0},${y - s0}" fill="${f}" ${st}/><polygon points="${x},${y - s0} ${x + d},${y - s0 - d} ${x + s0 + d},${y - s0 - d} ${x + s0},${y - s0}" fill="#ffffff44"/>`;
+      s += `<polygon points="${x + s0},${y} ${x + s0 + d},${y - d} ${x + s0 + d},${y - s0 - d} ${x + s0},${y - s0}" fill="${f}" ${st}/><polygon points="${x + s0},${y} ${x + s0 + d},${y - d} ${x + s0 + d},${y - s0 - d} ${x + s0},${y - s0}" fill="#00000022"/>`;
+    }
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" width="${Math.min(280, W * 1.3)}">${s}</svg>`;
+}
+// A fraction picture: kind circle (pie), bar or rect (rows x cols), split into equal parts with the first `shaded` coloured.
+function fraction(o) {
+  const n = o.parts ?? 4, k = o.shaded ?? 1, f = SHAPE_COL[o.colour] ?? "#E53935", st = `stroke="#2b0f45" stroke-width="2.5"`;
+  if (o.kind === "circle") {
+    if (n === 1) return `<svg viewBox="0 0 120 120" width="120"><circle cx="60" cy="60" r="52" fill="${k ? f : "#fff"}" ${st}/></svg>`;
+    let s = "";
+    for (let i = 0; i < n; i++) { const a0 = (i / n) * 2 * Math.PI - Math.PI / 2, a1 = ((i + 1) / n) * 2 * Math.PI - Math.PI / 2; s += `<path d="M60 60 L${60 + 52 * Math.cos(a0)} ${60 + 52 * Math.sin(a0)} A52 52 0 ${1 / n > 0.5 ? 1 : 0} 1 ${60 + 52 * Math.cos(a1)} ${60 + 52 * Math.sin(a1)} Z" fill="${i < k ? f : "#fff"}" ${st}/>`; }
+    return `<svg viewBox="0 0 120 120" width="120">${s}</svg>`;
+  }
+  const [rr, cc] = o.kind === "rect" ? [o.rows ?? 2, Math.ceil(n / (o.rows ?? 2))] : [1, n], w = 220 / cc, hh = o.kind === "rect" ? Math.min(w, 120 / rr) : 46;
+  let s = "", i = 0;
+  for (let r = 0; r < rr; r++) for (let c = 0; c < cc; c++, i++) s += `<rect x="${4 + c * w}" y="${4 + r * hh}" width="${w}" height="${hh}" fill="${i < k ? f : "#fff"}" ${st}/>`;
+  return `<svg viewBox="0 0 228 ${rr * hh + 8}" width="228">${s}</svg>`;
+}
+// A spinner (Glücksrad): equal sectors, one colour each, with a pointer at the top.
+function spinner(o) {
+  const sec = o.sectors ?? ["red", "blue"], n = sec.length;
+  let s = "";
+  for (let i = 0; i < n; i++) { const a0 = (i / n) * 2 * Math.PI - Math.PI / 2, a1 = ((i + 1) / n) * 2 * Math.PI - Math.PI / 2; s += n === 1 ? `<circle cx="60" cy="64" r="50" fill="${SHAPE_COL[sec[0]] ?? "#ccc"}" stroke="#2b0f45" stroke-width="2.5"/>` : `<path d="M60 64 L${60 + 50 * Math.cos(a0)} ${64 + 50 * Math.sin(a0)} A50 50 0 ${1 / n > 0.5 ? 1 : 0} 1 ${60 + 50 * Math.cos(a1)} ${64 + 50 * Math.sin(a1)} Z" fill="${SHAPE_COL[sec[i]] ?? (sec[i] === "white" ? "#fff" : "#ccc")}" stroke="#2b0f45" stroke-width="2.5"/>`; }
+  return `<svg viewBox="0 0 120 120" width="130">${s}<circle cx="60" cy="64" r="5" fill="#2b0f45"/><polygon points="52,4 68,4 60,20" fill="#2b0f45"/></svg>`;
+}
 function drawn(o, ctx = {}) {
   switch (o.drawn) {
+    case "grid": return grid(o);
+    case "cubes": return cubes(o);
+    case "fraction": return fraction(o);
+    case "spinner": return spinner(o);
     case "dots": return dots(o, ctx.small);
     case "zwanzigerfeld": return zwanziger(o.filled[0], o.filled[1], ctx.moved ?? 0);
     case "ten-frame": return tenFrame(o.filled, o.colour_split, o.cross, o.cross_from === "start");
@@ -851,7 +927,7 @@ function optEl(o, t, i) {
   if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
   return b;
 }
-const keyOf = (o) => typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "clock" ? `${o.hour}:${String(o.minute ?? 0).padStart(2, "0")}` : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.drawn === "shape" ? o.kind : o.drawn === "coins" ? String(o.values.reduce((a, v) => a + v, 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
+const keyOf = (o) => typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "clock" ? `${o.hour}:${String(o.minute ?? 0).padStart(2, "0")}` : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.drawn === "shape" ? o.kind : o.drawn === "fraction" ? `${o.shaded}/${o.parts}` : o.drawn === "coins" ? String(o.values.reduce((a, v) => a + v, 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
 function choice({ t, body, foot, vis, answer, st }) {
   vis.innerHTML = show(t.show);
   const opts = t.options ?? [], n = opts.length, grid = document.createElement("div"); grid.className = "opts";
