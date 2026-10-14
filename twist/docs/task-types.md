@@ -256,6 +256,8 @@ Interactions:
 | Blocks or chart for a number | "Wo sind 36?" options three `base-ten` pictures; or "Welche Stellentafel zeigt 53?" three `place-value-chart` pictures | bundle-tens, place-value-to-100 |
 | Hundred field for a number | "Wo sind 50?" three `hundred-field` pictures | hundred-field |
 | Strichliste for a number | "Welche Strichliste zeigt 7?" options three `bar-chart` tallies with one unlabelled row, each with an explicit `key` ("7") | tally |
+| Tally chart for a survey | "Which tally chart shows the survey?" options three multi-row `bar-chart` tallies that differ in several rows, each with an explicit `key` naming its counts ("4-2-1") | en-GB tally |
+| Shape by kind and colour | options `shape` drawings keyed by both ("circle-green"), when two options share a kind or a colour | en-GB repeating-patterns |
 | Shape by its name or a property | "Wo ist das Dreieck?" or "Wo sind alle Seiten gleich lang?", options three `shape` pictures in one colour; answer the kind (`square`), `option_audio: false` | basic-shapes |
 | Coins that make an amount | "Wo ist genau 1 €?", options three `coins` groups; answer the total in cent ("100") | money-euro-cent |
 | More or fewer, against the look | "Wo sind mehr Äpfel?", a scattered group of 3 against a row of 5, answer "5"; the wide group looks bigger but has fewer | compare-to-10, sort-classify |
@@ -368,16 +370,25 @@ Interactions:
 
 ## `text_input`
 
-The child types a number on an on-screen keypad and taps Prüfen. Used
-when choosing from options would make the task too easy.
+The child types on an on-screen keyboard and taps Prüfen. Used when
+choosing from options would make the task too easy.
 
-Fields: `answer` (a string).
+Fields: `answer` (a string), `keyboard`:
+- `digits` (default): 0 to 9, answers up to 8 digits.
+- `decimal`: digits, a decimal point (. in en-GB, , in de-DE) and a minus
+  key; answers like 2.5, −3 or 0.25.
+- `letters`: a letter keyboard in the lesson's language (QWERTY for
+  English, QWERTZ with ä ö ü ß for German, AZERTY with é è à ç for French),
+  a shift key for one capital, space and apostrophe; answers up to 24
+  characters, checked exactly, capitals included. Use it to spell a word
+  from memory, write a word from dictation or type a short answer.
 
 Interactions: the result of a sum ("9 + 7 = _"); the answer to a story
 problem (add-bridge-10). Hear a number and write it ("Einundfünfzig.
 Schreib die Zahl."); read a number word and write it; the end of a
 hundred-square move; double or halve; solve a riddle (Zahlen bis 100
-lessons).
+lessons). Type a decimal ("0.7 + 0.5 = _", keyboard decimal). Spell a heard
+word ("Write the word: friend", keyboard letters).
 
 ## `tap_to_count`
 
@@ -561,6 +572,7 @@ Interactions:
 | What belongs in a report | bins "gehört in den Bericht" and "gehört nicht hinein", cards with facts and feelings | report |
 | Open or yes/no question | bins "offene Frage" and "Ja-Nein-Frage" | interview |
 | Said, shown or thought | bins "gesagt", "gezeigt" and "gedacht", cards with ways a character's feelings come across | write-feelings |
+| Pictures into text bins | bins headed by text cards ("animals", "food"), items are pictures that say their word | en-GB sort-classify |
 
 ## `ordering`
 

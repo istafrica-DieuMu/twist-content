@@ -139,7 +139,10 @@ def colours_used():
                 for x in v.values(): walk(x)
             elif isinstance(v, list):
                 for x in v: walk(x)
-        walk(yaml.safe_load(p.read_text()))
+        try:
+            walk(yaml.safe_load(p.read_text()))
+        except yaml.YAMLError:
+            print(f"skipped {p.relative_to(TWIST)}: not valid YAML", file=sys.stderr)
     return used
 
 

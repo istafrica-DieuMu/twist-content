@@ -199,6 +199,7 @@ svg text{font-family:Andika,sans-serif}
 .tf .opt{font-size:28px;min-height:110px}
 .chips .opt{min-width:68px;min-height:64px}
 .pad{gap:7px}.pad .opt{min-height:54px;font-size:26px;border-bottom-width:4px}
+.pad.letters{gap:3px}.pad.letters .opt{min-height:42px;font-size:18px;border-radius:9px;border-bottom-width:3px;padding:0;min-width:0}
 .entry{font-family:"Red Hat Display",sans-serif;border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px}
 .card{border:2px solid #dfdfdf;border-bottom-width:5px;box-shadow:none!important}
 .card.sel{border-color:#947dec;background:#efebff}
@@ -437,6 +438,12 @@ const COLOUR_WORDS = { rot: "red", red: "red", blau: "blue", blue: "blue", gelb:
 const barColour = (label, i) => { const w = String(label ?? "").toLowerCase().split(/[^a-zäöüß]+/).find((x) => COLOUR_WORDS[x]); return w ? SHAPE_COL[COLOUR_WORDS[w]] : Object.values(SHAPE_COL)[i % 8]; };
 function barChart(o) {
   const rows = o.rows ?? [];
+  // Pictogram: each row repeats a picture value / key times; a remainder of half a key shows half a picture.
+  if (o.pictogram_object) {
+    const key = o.key ?? 1, src = `${A}objects/${o.pictogram_object}.png`;
+    const row = (v) => { const full = Math.floor(v / key), half = v % key ? 1 : 0; return `${'<img src="' + src + '" style="width:30px;height:30px">'.repeat(full)}${half ? `<span style="display:inline-block;width:15px;overflow:hidden;vertical-align:top"><img src="${src}" style="width:30px;height:30px;max-width:none"></span>` : ""}`; };
+    return `<table class="tally">${rows.map(([l, v]) => `<tr><td>${esc(l)}</td><td style="text-align:left">${row(v)}</td></tr>`).join("")}</table>${key > 1 ? `<div style="font:600 14px Andika,sans-serif;margin-top:6px"><img src="${src}" style="width:22px;height:22px;vertical-align:middle"> = ${key}</div>` : ""}`;
+  }
   if (o.tally) {
     const marks = (n) => { let t = ""; for (let i = 0; i < n; i += 5) { const k = Math.min(5, n - i), x = (i / 5) * 46; for (let j = 0; j < Math.min(k, 4); j++) t += `<line x1="${x + j * 9}" y1="4" x2="${x + j * 9}" y2="30" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`; if (k === 5) t += `<line x1="${x - 4}" y1="26" x2="${x + 31}" y2="8" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`; } return `<svg viewBox="-6 0 ${Math.max(1, Math.ceil(n / 5)) * 46 + 6} 34" height="30">${t}</svg>`; };
     return `<table class="tally">${rows.map(([l, v]) => `<tr>${l ? `<td>${esc(l)}</td>` : ""}<td>${marks(v)}</td></tr>`).join("")}</table>`;
@@ -728,6 +735,7 @@ function grid(o) {
   for (const [c, r, k] of o.cells ?? []) s += `<rect x="${X(c)}" y="${Y(r)}" width="${g}" height="${g}" fill="none" stroke="#2b0f45" stroke-width="1.5"/>`;
   for (const [c1, r1, c2, r2] of o.lines ?? []) s += `<line x1="${X(c1)}" y1="${Y(r1)}" x2="${X(c2)}" y2="${Y(r2)}" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/>`;
   if (o.axis != null) s += `<line x1="${X(o.axis)}" y1="${p - 4}" x2="${X(o.axis)}" y2="${H - p + 4}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>`;
+  if (o.axis_row != null) s += `<line x1="${p - 4}" y1="${Y(o.axis_row)}" x2="${W - p + 4}" y2="${Y(o.axis_row)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="7 5"/>`;
   for (const [c, r, t] of o.labels ?? []) s += `<text x="${X(c) + g / 2}" y="${Y(r) + g * 0.68}" text-anchor="middle" font-size="${g * 0.55}" font-weight="800" fill="#2b0f45">${esc(t)}</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="${Math.min(320, W * 1.1)}">${s}</svg>`;
 }
@@ -1134,8 +1142,25 @@ const TYPES = {
     let v = ""; const e = document.createElement("div"); e.className = "entry"; e.textContent = "?"; body.appendChild(e);
     const pad = document.createElement("div"); pad.className = "pad"; body.appendChild(pad);
     const set_ = (x) => { v = x; e.textContent = v || "?"; btn.disabled = !v; };
-    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""].forEach((k) => { const b = document.createElement("button"); b.className = "opt"; b.textContent = k; if (!k) b.style.visibility = "hidden"; b.onclick = () => { if (st.over) return; set_(k === "⌫" ? v.slice(0, -1) : (v + k).slice(0, 8)); }; pad.appendChild(b); });
-    const btn = nextBtn(foot, UI.check, () => { const ok = v === String(t.answer); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
+    // keyboard: digits (default), decimal (point and minus), or letters in the lesson's language.
+    const kb = t.keyboard ?? "digits", tl = set.target_language ?? set.language, point = set.curriculum === "de-DE" ? "," : ".";
+    let shift = false;
+    const relabel = () => pad.querySelectorAll(".key").forEach((x) => { if (x.textContent.length === 1) x.textContent = shift ? x.textContent.toUpperCase() : x.textContent.toLowerCase(); });
+    const key = (k, grow) => { const b = document.createElement("button"); b.className = "opt" + (kb === "letters" && k.length === 1 && k !== "⌫" ? " key" : ""); b.textContent = k; if (!k) b.style.visibility = "hidden"; if (grow) b.style.gridColumn = `span ${grow}`;
+      b.onclick = () => { if (st.over) return;
+        if (k === "⌫") return set_(v.slice(0, -1));
+        if (k === "⇧") { shift = !shift; relabel(); return; }
+        set_((v + (k === "␣" ? " " : b.textContent)).slice(0, kb === "letters" ? 24 : 9));
+        if (shift) { shift = false; relabel(); } };
+      pad.appendChild(b); };
+    if (kb === "letters") {
+      const rows = { de: ["qwertzuiopü", "asdfghjklöä", "yxcvbnmß'"], fr: ["azertyuiop", "qsdfghjklm", "wxcvbn'éèàç"], en: ["qwertyuiop", "asdfghjkl'", "zxcvbnm"] }[tl] ?? ["qwertyuiop", "asdfghjkl'", "zxcvbnm"];
+      const w = Math.max(...rows.map((r) => r.length));
+      pad.classList.add("letters"); pad.style.gridTemplateColumns = `repeat(${w}, 1fr)`;
+      rows.forEach((r) => { [...r].forEach((c) => key(c)); for (let i = r.length; i < w; i++) key(""); });
+      key("⇧", 2); key("␣", w - 4); key("⌫", 2);
+    } else (kb === "decimal" ? ["1", "2", "3", "4", "5", "6", "7", "8", "9", "−", "0", point, "", "⌫", ""] : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0", ""]).forEach((k) => key(k));
+    const btn = nextBtn(foot, UI.check, () => { const ok = v.replace("−", "-").trim() === String(t.answer).replace("−", "-"); e.style.borderColor = ok ? "var(--good)" : "var(--bad)"; answer(ok, v, () => { e.textContent = t.answer; e.style.borderColor = "var(--good)"; }); if (!ok && !st.over) setTimeout(() => { set_(""); e.style.borderColor = ""; }, 900); });
     btn.disabled = true;
   },
   drag_and_drop_count({ t, body, foot, vis, answer, st }) {

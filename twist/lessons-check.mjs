@@ -280,7 +280,13 @@ function checkAnswer(t, tw, file, err) {
     case "text_input": case "point_on_line": case "drag_and_drop_count":
       if (t.answer === undefined) err(`${file}: ${tw}: needs an answer`);
       // The keypad has only digits (up to 8), so a typed answer is digits only: "70000", never "70 000".
-      if (t.type === "text_input" && !/^\d{1,8}$/.test(String(t.answer))) err(`${file}: ${tw}: text_input answer must be up to 8 digits, no spaces`);
+      if (t.type === "text_input") {
+        const kb = t.keyboard ?? "digits", a = String(t.answer);
+        if (!["digits", "decimal", "letters"].includes(kb)) err(`${file}: ${tw}: keyboard must be digits, decimal or letters`);
+        else if (kb === "digits" && !/^\d{1,8}$/.test(a)) err(`${file}: ${tw}: text_input answer must be up to 8 digits, no spaces (or set keyboard: decimal or letters)`);
+        else if (kb === "decimal" && !(d.curriculum === "de-DE" ? /^[-−]?\d{1,8}(,\d{1,3})?$/ : /^[-−]?\d{1,8}(\.\d{1,3})?$/).test(a)) err(`${file}: ${tw}: decimal answer must be like ${d.curriculum === "de-DE" ? "2,5" : "2.5"} (a minus allowed)`);
+        else if (kb === "letters" && !/^[\p{L}' ]{1,24}$/u.test(a)) err(`${file}: ${tw}: letters answer must be letters, apostrophes or spaces, up to 24`);
+      }
       if (t.type === "drag_and_drop_count" && !(t.answer <= t.total_items)) err(`${file}: ${tw}: answer is more than total_items`);
       if (t.type === "point_on_line") {
         const nl = t.show ?? {}, from = nl.from ?? 0, to = nl.to ?? 20, step = nl.step ?? 1;
