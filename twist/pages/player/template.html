@@ -21,21 +21,41 @@
 :root[data-theme="dark"]{ --page:#14101a; --panel:#1e1826; --ink:#f1eaf8; --muted:#a99bb8; --line:#352c40; }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{display:flex;gap:28px;justify-content:center;align-items:flex-start;padding:24px 16px}
-/* side panel */
-.side{width:340px;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}
-.side h1{font-size:18px;margin:0 0 4px}.side p{margin:0 0 12px;color:var(--muted);font-size:13px}
-.side label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.04em}
-.side select{width:100%;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
-.steps{list-style:none;padding:0;margin:6px 0 0;font-size:13px}
-.steps li{padding:4px 8px;border-radius:8px;cursor:pointer;display:flex;gap:6px}
+/* page: a top bar, the phone in the middle, the steps beside it */
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:10px 20px;background:var(--panel);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand .logo{width:34px;height:34px;border-radius:10px;background:#6849dd;color:#fff;display:grid;place-items:center;font:800 18px "Red Hat Display",sans-serif;flex:none}
+.brand b{display:block;font:700 15px "Red Hat Display",sans-serif}.brand small{display:block;font-size:11px;color:var(--muted)}
+.brand code{font-size:10.5px}
+.pickbtn{display:flex;align-items:center;gap:10px;min-width:0;max-width:420px;flex:1 1 260px;padding:6px 12px;border-radius:12px;border:1px solid var(--line);background:var(--page);color:var(--ink);cursor:pointer;text-align:left}
+.pickbtn:hover,.pickbtn[aria-expanded="true"]{border-color:#6849dd}
+.pickbtn .pk{flex:1;min-width:0;display:flex;flex-direction:column}
+.pickbtn small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pickbtn b{font:600 14px "Red Hat Text",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.now{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tb-right{margin-left:auto;position:relative}
+.tbtn{display:flex;align-items:center;gap:6px;font:600 13px system-ui,sans-serif;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.pop[hidden]{display:none}
+.pop{position:absolute;right:0;top:calc(100% + 8px);width:300px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;z-index:30}
+.pop .tg{display:flex;gap:8px;align-items:center;font-size:13px}
+.pop .pl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+.pop select{width:100%;font:13px system-ui,sans-serif;padding:7px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.pop .pn{margin:0;font-size:12px;color:var(--muted)}
+.drawer{position:fixed;z-index:25;top:70px;left:20px;width:min(460px,calc(100vw - 40px));max-height:calc(100vh - 90px);display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 20px 50px -15px rgba(0,0,0,.45)}
+.drawer[hidden]{display:none}
+.wrap{display:flex;gap:24px;justify-content:center;align-items:flex-start;padding:24px 16px}
+.side{width:300px;height:min(844px,calc(100vh - 110px));min-height:640px;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 10px 10px;position:sticky;top:86px}
+.sideh{font:700 12px system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:0 8px 6px}
+.steps{list-style:none;padding:0;margin:0;font-size:13px;flex:1;min-height:0;overflow:auto}
+.steps li{padding:5px 8px;border-radius:8px;cursor:pointer;display:flex;gap:6px}
 .steps li:hover{background:var(--accent-soft);color:#2b0f45}
-.steps li.on{background:var(--accent);color:#fff}
+.steps li.on{background:#6849dd;color:#fff}
 .steps .grp{font-weight:700;margin-top:8px;cursor:default;background:none!important;color:var(--muted)!important}
-pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);border-radius:10px;padding:10px;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow:auto;margin:6px 0 0}
-.toggles{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;margin-top:8px}
+.recd{border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
+.recd summary{font-size:12px;color:var(--muted);cursor:pointer;padding:0 8px}
+pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);border-radius:10px;padding:10px;white-space:pre-wrap;word-break:break-word;max-height:260px;overflow:auto;margin:6px 0 0}
 /* phone */
-.phone{width:390px;height:844px;border-radius:54px;background:var(--frame);padding:12px;box-shadow:0 30px 60px -20px rgba(43,15,69,.45);flex:none;position:relative}
+.phone{height:min(844px,calc(100vh - 110px));min-height:640px;aspect-ratio:390/844;width:auto;border-radius:54px;background:var(--frame);padding:12px;box-shadow:0 30px 60px -20px rgba(43,15,69,.45);flex:none;position:relative}
 .phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#000;z-index:5}
 .screen{width:100%;height:100%;border-radius:44px;background:var(--app);overflow:hidden;display:flex;flex-direction:column;color:#2b0f45;font-family:Andika,system-ui,sans-serif;position:relative}
 @media (max-width:820px){
@@ -43,7 +63,8 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
   .phone{width:100%;max-width:430px;height:100svh;border-radius:0;padding:0;box-shadow:none;order:-1}
   .phone::before{display:none}
   .screen{border-radius:0}
-  .side{position:static;width:100%;max-width:430px;max-height:none;border-radius:0;border-left:0;border-right:0}
+  .side{position:static;width:100%;max-width:430px;height:auto;max-height:60vh;border-radius:0;border-left:0;border-right:0}
+  .topbar{padding:8px 12px;gap:8px}.brand small{display:none}.drawer{top:auto;bottom:0;left:0;width:100%;max-height:80vh;border-radius:16px 16px 0 0}
 }
 .status{height:52px;flex:none}
 .top{display:flex;align-items:center;gap:10px;padding:4px 18px 8px;flex:none}
@@ -178,7 +199,7 @@ svg text{font-family:Andika,sans-serif}
 .bubbleq .spk svg{width:20px;height:20px}
 .spk{border-color:#6849dd}.spk svg path{stroke:#6849dd}.spk svg path:first-child{fill:#6849dd}
 .spk.big{border-width:3px}
-.visual{flex:1 1 auto;min-height:0}
+.visual{flex:0 0 auto;min-height:0}
 .visual img{width:min(200px,100%);height:auto;max-height:200px}
 .opt{border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px;background:#fff;box-shadow:none;font:700 40px "Red Hat Display",sans-serif;color:#303030;min-height:60px}
 .opt:active{transform:translateY(2px);box-shadow:none}
@@ -224,55 +245,108 @@ svg text{font-family:Andika,sans-serif}
 .center p{color:#525252}
 .stars{color:#f6b400}
 
-/* lesson picker */
-.pick{display:flex;flex-direction:column;gap:8px;margin-top:10px}
-.pick input[type=search]{width:100%;font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
-.pick input[type=search]:focus-visible,.fchip:focus-visible,.lbtn:focus-visible{outline:2px solid #6849dd;outline-offset:1px}
+/* lesson picker (in the drawer) */
+.pick{display:flex;flex-direction:column;gap:8px}
+.pick input[type=search]{width:100%;font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--page);color:var(--ink)}
+.pick input[type=search]:focus-visible,.fchip:focus-visible,.lbtn:focus-visible,.pickbtn:focus-visible{outline:2px solid #6849dd;outline-offset:1px}
 .frow{display:flex;gap:6px;flex-wrap:wrap}
 .fchip{font:600 12px system-ui,sans-serif;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .fchip.on{background:#6849dd;border-color:#6849dd;color:#fff}
 .fsel{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .fsel select{width:100%;font:13px system-ui,sans-serif;padding:7px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
 .rcount{font-size:12px;color:var(--muted)}
-.results{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:4px}
-.rgrp{position:sticky;top:-4px;background:var(--panel);font:700 11px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:8px 8px 4px}
-.rset{padding:6px 8px;border-radius:10px;display:flex;flex-direction:column;gap:4px}
-.rset.on{background:var(--accent-soft)}
-.rset .rt{font-size:14px;font-weight:600;cursor:pointer}
+.results{flex:1;min-height:120px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:4px}
+.rgrp{position:sticky;top:-4px;background:var(--panel);font:700 11px system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:8px 8px 4px;z-index:1}
+.rset{padding:6px 8px;border-radius:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rset.on{background:var(--accent-soft)}.rset.on .rt{color:#2b0f45}
+.rset .rt{flex:1 1 160px;font-size:14px;font-weight:600;cursor:pointer}
 .rset .rl{display:flex;gap:4px;flex-wrap:wrap}
 .lbtn{min-width:28px;height:26px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 12px system-ui,sans-serif;cursor:pointer}
 .lbtn.on{background:#6849dd;border-color:#6849dd;color:#fff}
 .empty{font-size:13px;color:var(--muted);padding:8px;margin:0}
-.now{margin-top:12px;padding:10px 12px;border-radius:12px;background:var(--page);display:flex;flex-direction:column;gap:4px}
-.now .nt{font-size:12px;color:var(--muted)}.now .nl{font-weight:700}
-.now .nb{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.nbtn{font:600 12px system-ui,sans-serif;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.nbtn{font:600 12px system-ui,sans-serif;padding:7px 10px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap}
 .nbtn:disabled{opacity:.4;cursor:default}
-.toggles{flex-direction:column;gap:4px}.toggles label{display:flex;gap:6px;align-items:center;font-size:13px;color:var(--ink);text-transform:none;letter-spacing:0;margin:0}
+.nbtn.on{border-color:#6849dd;color:#6849dd}
+/* ---------- closer to the app (ist-schoolido constants/colors.ts, quizTokens.ts) ---------- */
+.screen{--subj:#6849dd}
+.badge-n{background:color-mix(in srgb,var(--subj) 25%,transparent)}.badge-n b{background:var(--subj)}
+.pbar i{background:var(--subj)}
+.prompt .mascot{width:96px;height:96px}
+.bubbleq{border:1px solid #dfdfdf;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:14px 14px 14px 18px}
+.bubbleq::before{left:-9px;border-right-color:#dfdfdf}
+.bubbleq::after{content:"";position:absolute;left:-7px;top:50%;margin-top:-7px;border:7px solid transparent;border-left:0;border-right-color:#FAF9FF}
+.bubbleq .t{font:500 17px/1.4 "Red Hat Text",sans-serif;color:#303030}
+.bubbleq .t.short{font:700 28px/1.2 "Red Hat Display",sans-serif}
+.bubbleq .spk,.sheet .line .spk{border:0;background:none;width:34px;height:34px}
+.bubbleq .spk svg{width:28px;height:28px}
+.opt{color:#525252;transition:transform .08s,opacity .08s}
+.opt:active{transform:scale(.98);opacity:.9}
+.opts.tx .opt,.opts.mid .opt,.opts.long .opt,.chips .opt,.pad .opt,.card{border-radius:12px}
+.opts.long .opt{min-height:76px;font:700 18px "Red Hat Display",sans-serif;color:#525252;padding:10px 18px}
+.opt.bad,.card.bad{background:#efebff;border-color:#947dec;color:#947dec;animation:shake .3s}
+.opt.good{color:#46972e}
+.tf .opt{font-size:32px;min-height:142px;border-radius:20px}
+.spk.big{width:66px;height:66px;border:0;border-radius:50%;background:linear-gradient(135deg,#8A4BF8,#6242DD);box-shadow:0 0 0 7px #B5A2FF;margin:18px auto}
+.spk.big svg{width:30px;height:30px}.spk.big svg path{stroke:#fff}.spk.big svg path:first-child{fill:#fff}
+.spk.big.playing{filter:brightness(1.1)}
+.pad .opt{background:#E3D9EA;border:0;border-radius:8px;min-height:46px;font:700 20px "Red Hat Display",sans-serif;color:#303030}
+.pad.letters .opt{background:#E3D9EA;border:0}
+.entry{width:100%;max-width:240px;min-height:52px;border:2px solid #d3d3d3;border-radius:12px;background:#fefcff;font:700 30px "Red Hat Display",sans-serif;color:#303030}
+.entry.typed{border-color:#947dec}
+.gap{background:none;border-bottom:4px solid #c9c9c9;border-radius:2px;color:#6849dd}
+.gap.filled{border-bottom-color:#6849dd;color:#6849dd}
+.chips .opt{font:700 32px "Red Hat Display",sans-serif}
+.bin{border:2px solid #6849dd;border-radius:16px;background:#fff;padding:0 6px 8px;overflow:hidden}
+.bin > div:first-child{width:calc(100% + 12px);margin:0 -6px 6px;background:#f4ebff;display:grid;place-items:center;padding:6px 0}
+.bins .bin:nth-child(2){border-color:#13a4e9}.bins .bin:nth-child(2) > div:first-child{background:#E4F6FF}
+.bins .bin:nth-child(3){border-color:#46972e}.bins .bin:nth-child(3) > div:first-child{background:#e7ffe0}
+.sheet .msg{font:800 18px/28px "Red Hat Display",sans-serif}
+.score{width:100%;max-width:330px;background:#fff3d7;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left}
+.score .sc{flex:1;display:flex;flex-direction:column;gap:6px;font:700 16px "Red Hat Display",sans-serif;color:#c28903}
+.score .sb{height:17px;border-radius:9px;background:#fff;overflow:hidden;position:relative}
+.score .sb i{position:absolute;inset:0 auto 0 0;background:#f2af0f;border-radius:9px}
+.score .sb span{position:relative;display:block;text-align:center;font:700 11px/17px "Red Hat Text",sans-serif;color:#7a5600}
+.score .dart{font-size:40px}
+.center h2.done{font:800 32px/1.2 "Red Hat Display",sans-serif;color:#e5ac24}
+/* ordering: square drop slots, as the app's NumberOrdering */
+.slots .gap{border:2px dashed #c9c9c9;border-radius:12px;background:#fafafa;font:700 30px "Red Hat Display",sans-serif;color:#525252}
+.slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
 .coins{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}.tally{border-collapse:collapse;margin:0 auto;font:700 16px "Red Hat Text",sans-serif;color:#2b0f45}.tally td{border:2px solid #dfdfdf;padding:4px 10px;text-align:left}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <aside class="side">
-    <h1>Twist lesson player</h1>
-    <p>The Twist lessons (de-DE and en-GB) rendered from their records, with pictures, drawn components and narration. Built <span id="built"></span>; rebuild with <code>node player/build.mjs</code>.</p>
-    <div class="pick">
-      <input id="q" type="search" placeholder="Search: Einmaleins, phonics, clothes …" autocomplete="off" aria-label="Search lessons">
-      <div class="frow" id="f-cur" role="group" aria-label="Curriculum"></div>
-      <div class="frow" id="f-sub" role="group" aria-label="Subject"></div>
-      <div class="fsel"><select id="f-year" aria-label="Year"></select><select id="f-type" aria-label="Task type"></select></div>
-      <div class="rcount" id="rcount"></div>
-      <div class="results" id="results"></div>
+<header class="topbar">
+  <div class="brand"><span class="logo" aria-hidden="true">T</span><div><b>Twist lesson player</b><small>Built <span id="built"></span> · <code>node twist/pages/player/build.mjs</code></small></div></div>
+  <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <div class="now" id="now"></div>
+  <div class="tb-right">
+    <button class="tbtn" id="openSet" aria-expanded="false" aria-controls="setPop"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/></svg>Settings</button>
+    <div class="pop" id="setPop" hidden>
+      <label class="tg"><input type="checkbox" id="auto" checked> Play audio automatically</label>
+      <label class="tg"><input type="checkbox" id="autonext" checked> Next after a right answer (3 s)</label>
+      <label for="script" class="pl">Schreibschrift for de-DE writing lines</label>
+      <select id="script" aria-label="Schreibschrift"><option value="sas">Schulausgangsschrift (SAS)</option><option value="la">Lateinische Ausgangsschrift (LA)</option><option value="va">Vereinfachte Ausgangsschrift (VA)</option><option value="grund">Grundschrift</option></select>
+      <p class="pn">en-GB writing lines use an English joined style.</p>
     </div>
-    <div class="now" id="now"></div>
-    <div class="toggles"><label><input type="checkbox" id="auto" checked> Play audio automatically</label><label><input type="checkbox" id="autonext" checked> Next after a right answer (3 s)</label></div>
-    <label for="script">Schreibschrift (joined-up writing lines)</label>
-    <div class="fsel"><select id="script" aria-label="Schreibschrift"><option value="sas">Schulausgangsschrift (SAS)</option><option value="la">Lateinische Ausgangsschrift (LA)</option><option value="va">Vereinfachte Ausgangsschrift (VA)</option><option value="grund">Grundschrift</option></select></div>
-    <label>Steps</label><ul class="steps" id="steps"></ul>
-    <label>Record of this step</label><pre class="rec" id="rec"></pre>
-  </aside>
+  </div>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <div class="pick">
+    <input id="q" type="search" placeholder="Search: Einmaleins, phonics, clothes …" autocomplete="off" aria-label="Search lessons">
+    <div class="frow" id="f-cur" role="group" aria-label="Curriculum"></div>
+    <div class="frow" id="f-sub" role="group" aria-label="Subject"></div>
+    <div class="fsel"><select id="f-year" aria-label="Year"></select><select id="f-type" aria-label="Task type"></select></div>
+    <div class="rcount" id="rcount"></div>
+  </div>
+  <div class="results" id="results"></div>
+</div>
+<div class="wrap">
   <div class="phone"><div class="screen" id="screen"></div></div>
+  <aside class="side" aria-label="Steps of this lesson">
+    <div class="sideh">Steps</div>
+    <ul class="steps" id="steps"></ul>
+    <details class="recd"><summary>Record of this step</summary><pre class="rec" id="rec"></pre></details>
+  </aside>
 </div>
 <script>
 const D = __DATA__;
@@ -287,12 +361,12 @@ const TXT = {
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, secure: "Kann ich! (Secure)", practised: "Noch üben (Practised)", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
-    speakNote: "Tippe auf das Mikrofon und sprich.", stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
+    speakNote: "Tippe auf das Mikrofon und sprich.", nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, secure: "I can do it! (Secure)", practised: "Keep practising (Practised)", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
-    speakNote: "Tap the microphone and speak.", stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
+    speakNote: "Tap the microphone and speak.", nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
@@ -922,6 +996,7 @@ function frameUI(step) {
   const acts = lesson.activities.map((a) => a.activity), n = step.a ? acts.indexOf(step.a.activity) + 1 : 0;
   const sub = step.a?.activity === "practise" ? ` · ${{ full: UI.stFull, some: UI.stSome, none: UI.stNone }[step.a.stages[step.si ?? 0]?.support] ?? ""}` : "";
   const title = step.a ? esc(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : esc(lesson.title[lang()] ?? lesson.title.de);
+  scr.style.setProperty("--subj", SUBJ_COLOUR[subjOf(set)] ?? "#6849dd");
   scr.innerHTML = `<div class="status"></div><div class="hdr"><button class="ib menu" aria-label="Lesson menu">${ICON.list}</button>
     <div class="stepb">${n ? `<span class="badge-n"><b>${n}</b></span>` : ""}<span class="st">${title}</span></div>
     <button class="ib x" aria-label="Close">${ICON.close}</button></div>
@@ -945,6 +1020,8 @@ function lessonMenu(scr) {
   const c = document.createElement("button"); c.className = "btn light"; c.textContent = UI.close; c.onclick = () => m.remove(); m.appendChild(c);
   scr.appendChild(m);
 }
+// Subject colours from the app (constants/subjects.ts): maths green, English blue, German orange.
+const SUBJ_COLOUR = { "de-DE.math": "#0E8654", "en-GB.math": "#0E8654", "de-DE.lit-de": "#C44D00", "en-GB.lit-en": "#1971C0", "de-DE.fl": "#1971C0", "en-GB.fl": "#6849dd" };
 const ICON = {
   list: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg>',
   close: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
@@ -1015,7 +1092,9 @@ function renderEnd() {
   const skill = checkSteps[0]?.[0].a.size === "skill";
   const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
   const p = phrase("lesson_done");
-  body.innerHTML = `<div class="center">${mascotPose("end")}<div class="stars">${"★".repeat(Math.max(1, Math.round((3 * right) / Math.max(1, checkSteps.length))))}</div><h2>${esc(p?.text ?? UI.doneTitle)}</h2>
+  const pct = checkSteps.length ? Math.round((100 * right) / checkSteps.length) : null;
+  body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(UI.finished)}</h2><p>${esc(p?.text ?? UI.doneTitle)}</p>
+    ${pct == null ? "" : `<div class="score"><div class="sc">${esc(UI.percent(pct))}<div class="sb"><i style="width:${pct}%"></i><span>${right} / ${checkSteps.length}</span></div></div><span class="dart" aria-hidden="true">🎯</span></div>`}
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
     ${pass === null ? "" : pass ? `<span class="badge">${UI.secure}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
   if (p) play(p.src);
@@ -1070,7 +1149,7 @@ function renderTask(step) {
     if (!good && kind === "wrong") bubble("fb", UI.shownAnswer);
     const b = document.createElement("button"); b.className = "btn" + (good ? " go" : ""); b.textContent = UI.next; b.onclick = () => go(at + 1); s.appendChild(b);
     // Right answers move on by themselves after three seconds, as in the app.
-    if (good && autoNext()) { const t0 = performance.now(), me = steps[at]; const tick = (now) => { if (steps[at] !== me || !b.isConnected) return; const p = Math.min(1, (now - t0) / 3000); b.style.setProperty("--p", (p * 100).toFixed(1) + "%"); if (p < 1) requestAnimationFrame(tick); else go(at + 1); }; requestAnimationFrame(tick); }
+    if (good && autoNext()) { const t0 = performance.now(), me = steps[at]; const tick = (now) => { if (steps[at] !== me || !b.isConnected) return; const p = Math.min(1, (now - t0) / 3000); b.style.setProperty("--p", (p * 100).toFixed(1) + "%"); b.textContent = `${UI.nextIn} ${Math.max(1, Math.ceil(3 - p * 3))}`; if (p < 1) requestAnimationFrame(tick); else go(at + 1); }; requestAnimationFrame(tick); }
   };
   // Called by each type with right/wrong, the chosen key, and how to show the answer.
   function answer(ok, key, reveal) {
@@ -1105,6 +1184,63 @@ function renderTask(step) {
   vis.querySelectorAll(".pv").forEach((p) => p.onclick = () => { const c = t._showWords?.[+p.dataset.i]; if (c) play(c); });
   body.appendChild(msg);
   if (t.show?.flash) flash(vis, t.show.flash * 1000, mode !== "check", step);
+  fitScreen(body, vis);
+}
+// Use the screen: answer tiles grow into the free height, then the picture or
+// drawing above them scales up into what is left (never past the screen width).
+function fitScreen(body, vis) {
+  const run = () => {
+    if (!body.isConnected) return;
+    const gap = parseFloat(getComputedStyle(body).rowGap) || 16;
+    const free = () => body.clientHeight - parseFloat(getComputedStyle(body).paddingTop) - parseFloat(getComputedStyle(body).paddingBottom) - [...body.children].reduce((h, c) => h + c.offsetHeight, 0) - gap * Math.max(0, body.children.length - 1);
+    const hasVis = vis && vis.firstElementChild && vis.offsetHeight > 10;
+    // Picture tiles: pick the column count that gives the biggest squares.
+    const grid = body.querySelector(".opts.sq");
+    if (grid) {
+      const els = [...grid.children], n = els.length, g = 7, W = grid.clientWidth, H = grid.offsetHeight + free() * (hasVis ? 0.5 : 1);
+      let best = { size: 0, cols: 1 };
+      for (let c = 1; c <= n; c++) { const r = Math.ceil(n / c), size = Math.min((W - g * (c - 1)) / c, (H - g * (r - 1)) / r); if (size > best.size) best = { size, cols: c }; }
+      const size = Math.min(best.size, 210);
+      grid.style.display = "flex"; grid.style.flexWrap = "wrap"; grid.style.justifyContent = "center"; grid.style.gap = `${g}px`;
+      els.forEach((b) => { b.style.width = b.style.height = `${Math.floor(size)}px`; b.style.maxWidth = "none"; });
+    }
+    // Text tiles and true/false cards get taller, up to a comfortable size.
+    const tiles = body.querySelector(".opts.tx, .opts.mid, .opts.long, .tf");
+    if (tiles && free() > 0) {
+      const els = [...tiles.children], cols = Math.max(1, Math.round(tiles.clientWidth / (els[0]?.offsetWidth || tiles.clientWidth))), rows = Math.ceil(els.length / cols);
+      const cap = tiles.classList.contains("tf") ? 190 : tiles.classList.contains("long") ? 96 : 130;
+      const h = Math.min(cap, (els[0]?.offsetHeight || 0) + (free() * (hasVis ? 0.4 : 0.8)) / rows);
+      els.forEach((b) => { b.style.minHeight = `${Math.floor(h)}px`; b.style.aspectRatio = "auto"; });
+    }
+    // Letter chips, word cards and matching pairs grow a little into what is left.
+    const grow = [...body.children].filter((c) => c.matches(".chips, .cards, .pairs, .frame, .bins, .speakrow"));
+    if (grow.length && free() > 12) {
+      const each = free() * (hasVis ? 0.5 : 1) / grow.length;
+      grow.forEach((c) => {
+        const r = c.getBoundingClientRect(), kids = [...c.children];
+        // Never zoom past the width the row needs, so cards do not wrap onto a new line.
+        const rowW = kids.reduce((w, k) => w + k.getBoundingClientRect().width, 0) + 10 * Math.max(0, kids.length - 1);
+        const rows = new Set(kids.map((k) => Math.round(k.getBoundingClientRect().top))).size;
+        const wCap = rows === 1 && rowW > 0 ? (c.clientWidth - 4) / rowW : 1.5;
+        let z = Math.max(1, Math.min(1.5, wCap, (r.height + each) / r.height)); c.style.zoom = z.toFixed(3);
+        const rowsNow = () => new Set(kids.map((k) => Math.round(k.getBoundingClientRect().top))).size;
+        while (z > 1 && rowsNow() > rows) { z = Math.max(1, z - 0.05); c.style.zoom = z.toFixed(3); }
+      });
+    }
+    // The picture or drawing: scale it into the rest of the space.
+    if (hasVis) {
+      const c = vis.firstElementChild; c.style.zoom = "";
+      const f = free(), w = c.getBoundingClientRect().width, h = c.getBoundingClientRect().height;
+      if (f > 8 && w > 0 && h > 0) c.style.zoom = Math.max(1, Math.min(2.2, (h + f) / h, (body.clientWidth - 40) / w)).toFixed(3);
+    }
+    // Nothing may push the answers off the screen: take back zoom while it overflows.
+    for (const el of [vis?.firstElementChild, ...body.querySelectorAll("[style*='zoom']")].filter(Boolean)) {
+      const over = body.scrollHeight - body.clientHeight; if (over <= 0) break;
+      const z = parseFloat(el.style.zoom || "1"); if (z <= 1) continue;
+      const h = el.getBoundingClientRect().height; el.style.zoom = Math.max(1, z * (h - over) / h).toFixed(3);
+    }
+  };
+  requestAnimationFrame(run);
 }
 // Show an amount briefly, then cover it, so it has to be seen at a glance.
 function flash(vis, ms, again, step) {
@@ -1133,7 +1269,8 @@ function choice({ t, body, foot, vis, answer, st }) {
   const pics = opts.some((o) => typeof o !== "string");
   const maxLen = Math.max(0, ...opts.filter((o) => typeof o === "string").map((o) => o.length));
   let cols = n === 4 ? (pics || maxLen > 3 ? 2 : 4) : Math.min(n, 3);
-  if (!pics && maxLen > 14) { grid.classList.add("long"); cols = 1; } else if (!pics && maxLen > 6) { grid.classList.add("mid"); cols = Math.min(cols, 2); }
+  const wordy = !pics && opts.some((o) => /[A-Za-zÄÖÜäöüßéèàç]{2}/.test(String(o)));
+  if (!pics && (maxLen > 14 || (wordy && !t.show && t.type !== "tap_to_count"))) { grid.classList.add("long"); cols = 1; } else if (!pics && maxLen > 6) { grid.classList.add("mid"); cols = Math.min(cols, 2); }
   // With no picture above, picture tiles take the free space: two to a row, centred.
   const bare = !t.show && t.type !== "audio_choice" && t.type !== "tap_to_count";
   if (pics && bare && n >= 3) { cols = 2; grid.classList.add("big"); }
@@ -1187,7 +1324,7 @@ const TYPES = {
     vis.innerHTML = show(t.show);
     let v = ""; const e = document.createElement("div"); e.className = "entry"; e.textContent = "?"; body.appendChild(e);
     const pad = document.createElement("div"); pad.className = "pad"; body.appendChild(pad);
-    const set_ = (x) => { v = x; e.textContent = v || "?"; btn.disabled = !v; };
+    const set_ = (x) => { v = x; e.textContent = v || "?"; e.classList.toggle("typed", !!v); btn.disabled = !v; };
     // keyboard: digits (default), decimal (point and minus), or letters in the lesson's language.
     const kb = t.keyboard ?? "digits", tl = set.target_language ?? set.language, point = set.curriculum === "de-DE" ? "," : ".";
     let shift = false;
@@ -1316,11 +1453,13 @@ const TYPES = {
     for (let i = 0; i < n; i++) { g.appendChild(L[i]); g.appendChild(R[i]); }
     body.appendChild(g);
     // A colour side marks its pair in that colour; other pairs get one each.
-    const PAIR = ["#8e3bd1", "#1E88E5", "#F57C00", "#2e9e48", "#d4483f", "#00897b"];
-    const ring = (i) => D.colours[t.pairs[i].left.colour] ?? PAIR[i % PAIR.length];
+    // Each linked pair gets one of the app's pair colours (Matching.tsx), a colour side its own colour.
+    const PAIR = [["#EEF4FF", "#2F6BED"], ["#EEFFFD", "#0E9E8E"], ["#FFF4E9", "#E87C1A"], ["#FFECF9", "#B00E7A"], ["#ECFFF3", "#2FED75"], ["#FFFDEE", "#ECD64A"]];
+    const ring = (i) => { const c = D.colours[t.pairs[i].left.colour]; return c ? [c + "1f", c] : PAIR[i % PAIR.length]; };
+    const paint = (b, c) => { b.style.background = c ? c[0] : ""; b.style.borderColor = c ? c[1] : ""; };
     const draw = () => {
-      L.forEach((b, i) => { b.classList.toggle("sel", sel === i); b.style.outline = link[i] != null ? `5px solid ${ring(i)}` : ""; });
-      R.forEach((b, ri) => { const li = link.indexOf(ri); b.style.borderColor = li >= 0 ? ring(li) : ""; b.style.boxShadow = li >= 0 ? `0 4px 0 ${ring(li)}` : ""; });
+      L.forEach((b, i) => { b.classList.toggle("sel", sel === i && link[i] == null); paint(b, link[i] != null ? ring(i) : null); });
+      R.forEach((b, ri) => { const li = link.indexOf(ri); paint(b, li >= 0 ? ring(li) : null); });
       btn.disabled = link.includes(null);
     };
     L.forEach((b, i) => b.onclick = () => { if (st.over) return; if (t._pairs?.[i]?.left) play(t._pairs[i].left); sel = sel === i ? null : i; draw(); });
@@ -1363,7 +1502,7 @@ const TYPES = {
     // Tap cards in order to fill the slots; tap a filled slot to empty it.
     const slots = Array(t.slot_count).fill(null);
     const row = document.createElement("div"); row.className = "chips"; row.style.marginTop = "0"; body.appendChild(row);
-    const sl = document.createElement("div"); sl.className = "frame"; sl.style.gap = "10px"; body.appendChild(sl);
+    const sl = document.createElement("div"); sl.className = "frame slots"; sl.style.gap = "10px"; body.appendChild(sl);
     const cards = t.options.map((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over || slots.includes(i)) return; const k = slots.indexOf(null); if (k >= 0) { slots[k] = i; draw(); } }; row.appendChild(b); return b; });
     const draw = () => {
       sl.innerHTML = ""; slots.forEach((ci, k) => { const g = document.createElement("span"); g.className = "gap" + (ci != null ? " filled" : ""); g.style.minWidth = "62px"; g.style.height = "72px"; g.innerHTML = ci == null ? "" : (typeof t.options[ci] === "string" ? esc(t.options[ci]) : show(t.options[ci], { small: true })); g.onclick = () => { if (!st.over && ci != null) { slots[k] = null; draw(); } }; sl.appendChild(g); });
@@ -1394,8 +1533,8 @@ function sidebar() {
   const s = steps[at], rec = s.t ?? s.s ?? (s.kind === "start" ? { lesson: lesson.n, title: lesson.title, activities: lesson.activities.map((a) => a.activity) } : s.st ? { stage: s.st.support, setting: s.st.setting } : { kind: s.kind });
   $("#rec").textContent = JSON.stringify(rec, (k, v) => k.startsWith("_") && k !== "_audio" ? undefined : v, 2);
   // Keep the current step in view inside the desktop panel; never scroll the page.
-  const side = $(".side"), li = ul.querySelector(".on");
-  if (li && getComputedStyle(side).position === "sticky") side.scrollTop = Math.max(0, li.offsetTop - side.clientHeight / 2);
+  const li = ul.querySelector(".on");
+  if (li) ul.scrollTop = Math.max(0, li.offsetTop - ul.offsetTop - ul.clientHeight / 2);
 }
 function pickSet(i, n) {
   set = D.sets[i];
@@ -1452,8 +1591,8 @@ function renderPicker() {
     if (g !== last) { const h = document.createElement("div"); h.className = "rgrp"; h.textContent = g; R.appendChild(h); last = g; }
     const row = document.createElement("div"); row.className = "rset"; row.dataset.i = i;
     row.innerHTML = `<div class="rt">${esc(tOf(s, s.title))}</div><div class="rl"></div>`;
-    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn"; b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); }; row.querySelector(".rl").appendChild(b); });
-    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(s.lessons[0].n, F.type); };
+    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn"; b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
+    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(s.lessons[0].n, F.type); toggle($("#openPick"), $("#drawer"), false); };
     R.appendChild(row);
   }
   if (!list.length) R.innerHTML = `<p class="empty">No lesson set matches. Clear a filter or the search.</p>`;
@@ -1463,16 +1602,30 @@ function markCurrent() {
   document.querySelectorAll(".rset").forEach((r) => { const on = D.sets[+r.dataset.i] === set; r.classList.toggle("on", on); r.querySelectorAll(".lbtn").forEach((b) => b.classList.toggle("on", on && +b.dataset.n === lesson?.n)); });
 }
 function renderNow() {
-  const i = D.sets.indexOf(set), el = $("#now");
-  el.innerHTML = `<div class="nt">${esc(tOf(set, set.title))} · ${yearName(set.year)}</div><div class="nl">Lesson ${lesson.n}: ${esc(tOf(set, lesson.title))}</div><div class="nb"></div>`;
-  const nb = el.querySelector(".nb");
+  const el = $("#now");
+  $("#pickSub").textContent = `${yearName(set.year)} · ${SUBJ[subjOf(set)] ?? subjOf(set)} · ${tOf(set, set.title)}`;
+  $("#pickLabel").textContent = `Lesson ${lesson.n} of ${set.lessons.length}: ${tOf(set, lesson.title)}`;
+  el.innerHTML = ""; const nb = el;
   const add = (label, fn, dis) => { const b = document.createElement("button"); b.className = "nbtn"; b.textContent = label; b.disabled = !!dis; b.onclick = fn; nb.appendChild(b); };
   const li = set.lessons.indexOf(lesson);
   add("◀ Lesson", () => pickLesson(set.lessons[li - 1].n), li <= 0);
   add("Lesson ▶", () => pickLesson(set.lessons[li + 1].n), li >= set.lessons.length - 1);
+  const si = D.sets.indexOf(set);
+  add("Next set ▶", () => pickSet(si + 1), si >= D.sets.length - 1);
   if (F.type) add(`Next ${F.type} ▶`, () => { const k = steps.findIndex((s, j) => j > at && s.kind === "task" && s.t.type === F.type); if (k > 0) go(k); });
 }
 $("#built").textContent = D.built;
+// The lesson drawer and the settings pop-over open from the top bar and close on Escape or a click outside.
+const toggle = (btn, panel, open) => { const o = open ?? panel.hidden; panel.hidden = !o; btn.setAttribute("aria-expanded", o); if (o && panel.id === "drawer") setTimeout(() => { $("#q").focus(); panel.querySelector(".rset.on")?.scrollIntoView({ block: "center" }); }); };
+$("#openPick").onclick = () => toggle($("#openPick"), $("#drawer"));
+$("#openSet").onclick = () => toggle($("#openSet"), $("#setPop"));
+document.addEventListener("click", (e) => {
+  if (!$("#drawer").hidden && !e.target.closest("#drawer,#openPick")) toggle($("#openPick"), $("#drawer"), false);
+  if (!$("#setPop").hidden && !e.target.closest("#setPop,#openSet")) toggle($("#openSet"), $("#setPop"), false);
+});
+// Re-render on resize, so the layout pass fits the new screen size.
+let rsz; window.addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(() => { if (steps?.[at]?.kind === "task") go(at); }, 200); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") { toggle($("#openPick"), $("#drawer"), false); toggle($("#openSet"), $("#setPop"), false); } });
 $("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
 // Load the chosen Schreibschrift before drawing with it, then redraw.
 const loadScript = () => Promise.all([document.fonts?.load(`64px "${SCRIPTS[SCRIPT]}"`), document.fonts?.load(`64px "Playwrite GB J"`)]).then(() => { if (typeof at === "number" && steps?.length) go(at); }).catch(() => {});
