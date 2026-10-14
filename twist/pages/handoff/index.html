@@ -129,9 +129,9 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
   <h1>Twist curriculum handoff</h1>
   <p class="lede">The new curriculum model from R&amp;D, and what it asks of the backend API (IST-B2C/backend), the mobile app (ist-schoolido) and the parent dashboard (IST-B2C/Parent-dashboard).</p>
   <div class="meta">
-    <span>Source <b>rnd repo, branch <code>curriculum-phase1</code>, folder <code>twist/</code></b></span>
-    <span>Written <b>13 October 2026</b></span>
-    <span>Content status <b>draft, not yet teacher-reviewed</b></span>
+    <span>Source <b>rnd repo, branch <code>main</code>, folder <code>twist/</code></b></span>
+    <span>Written <b>13 October 2026</b>, updated <b>14 October 2026</b></span>
+    <span>Content status <b>every placed skill drafted; model-reviewed, not yet teacher-reviewed</b></span>
   </div>
 </header>
 
@@ -142,13 +142,15 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
     <li><b>Two curricula, one shared skill library.</b> de-DE (KMK Bildungsstandards) and en-GB (EYFS and the National Curriculum in England), built from 7 official documents and 697 quoted standards. de-DE places 435 skills, en-GB 483, and 257 skills are shared between them.</li>
     <li><b>Three fields where there is one today.</b> Year sets what the curriculum expects, the child's level on each learning progression sets where they work, and age sets how a lesson looks. Today one integer <code>gradeLevel</code> does all three.</li>
     <li><b>Every lesson has the same four activities.</b> Warm-up, Learn, Practise (three stages with hints fading from 3 to 1 to none) and Check. A skill is secure after a 4-of-5 skill check and mastered after spaced recaps; there are six states.</li>
-    <li><b>Player.</b> 1,047 drafted tasks use 15 task types. 10 render in the app today. <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> have components that the question mapper drops. <code>highlight_in_text</code> and <code>drag_and_drop_count</code> have no component. Drawn components (dots, ten-frame, number house, part-whole, an analogue clock …) are drawn from data; the app draws only the number line today. The clock takes <code>hour</code> and <code>minute</code>; as an answer option its key is the time, e.g. <code>4:30</code>.</li>
-    <li><b>Dashboard.</b> Grade pills (Pre-K, Grade 1 to 12) become curriculum plus year (Klasse 1 to 4, Reception and Year 1 to 6), with a foreign-language learning year. Module-percentage status ("On track", "Gap identified", "Week behind") becomes standing per subject (ahead, on track, catching up) from secure skills, plus a skill list with states.</li>
+    <li><b>All of it is drafted.</b> Every placed skill in both curricula has a lesson set: 918 lesson sets, 1,892 lessons and 40,180 tasks (de-DE 435 sets and 19,503 tasks, en-GB 483 sets and 20,677 tasks). Model agents have reviewed every set; no teacher has yet.</li>
+    <li><b>Player.</b> The tasks use 17 task types. At the 13 October read of the app, 10 of them render. <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> have components that the question mapper drops. <code>highlight_in_text</code>, <code>drag_and_drop_count</code>, <code>clock_hands_drag</code> and <code>point_on_grid</code> have no component. <code>text_input</code> now has four keyboards (digits, decimal, fraction, letters). 37 drawn components (dots, ten-frame, clock, coins, protractor, coordinates, bar chart …) are drawn from data; the app draws only the number line.</li>
+    <li><b>Audio.</b> A character's line names <code>speaker: male</code> or <code>female</code> and a dialogue is a list of <code>turns</code>, each in its speaker's voice. The voice reads maths symbols as words (7/5 as "7 fifths", −4 as "negative 4"); any text-to-speech or clip lookup in the app must use the same spoken form.</li>
+    <li><b>Dashboard.</b> Grade pills (Pre-K, Grade 1 to 12) become curriculum plus year (Klasse 1 to 4, Reception and Year 1 to 6), with a foreign-language learning year. Module-percentage status ("On track", "Gap identified", "Week behind") becomes standing per subject (ahead, on track, catching up) from secure skills, plus a skill list with states. 18 skills are enrichment (no standard of the curriculum asks for them) and can be shown as "extra".</li>
     <li><b>Content source.</b> Lessons are hand-written YAML records that point at an asset bank by id. No converter to the backend importer's JSON exists yet, and the importer today turns any unknown task type into <code>multiple_choice</code> without failing.</li>
   </ul>
   <div class="teams">
-    <div class="team be"><h3><span class="dot"></span>Backend first</h3><ol><li>Curriculum, year and learning year on the child; allow age 4</li><li>Skill, standard and placement tables; skill mastery per child</li><li>Import twist records and fail on unknown task types</li></ol></div>
-    <div class="team app"><h3><span class="dot"></span>Mobile app first</h3><ol><li>Map the 3 dropped types; build the 2 missing ones</li><li>Draw the 13 components from data</li><li>Stage-aware hints, show answer after two misses, check mode</li></ol></div>
+    <div class="team be"><h3><span class="dot"></span>Backend first</h3><ol><li>Curriculum, year and learning year on the child; allow age 4</li><li>Skill, standard, placement and enrichment tables; skill mastery per child</li><li>Import twist records and fail on unknown task types</li></ol></div>
+    <div class="team app"><h3><span class="dot"></span>Mobile app first</h3><ol><li>Map the 3 dropped types; build the 4 missing ones</li><li>Draw the 37 components from data; the four keyboards</li><li>Stage-aware hints, show answer after two misses, check mode</li></ol></div>
     <div class="team pd"><h3><span class="dot"></span>Dashboard first</h3><ol><li>Curriculum and year selector in place of grade pills</li><li>Subjects per curriculum, not hard-coded</li><li>Skill list with states; standing per subject</li></ol></div>
   </div>
 </section>
@@ -167,30 +169,32 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
     <tr><td class="k">frameworks/de, frameworks/gb</td><td>The official documents as coded standards, quoted verbatim with page numbers</td></tr>
     <tr><td class="k">assets/</td><td>The asset bank: pictures, drawn components, sounds, voices, phrases between tasks</td></tr>
     <tr><td class="k">views/</td><td>Generated overviews: placements, curriculum per year, lessons, coverage of each framework</td></tr>
-    <tr><td class="k">rnd/player/index.html</td><td>A prototype player in a phone frame that plays the drafted lessons with pictures, drawn components and narration. Use it as the reference for behaviour.</td></tr>
+    <tr><td class="k">assets/tools/narration.py</td><td>Makes the narration clips. Its <code>spoken()</code> function is the rule for how text is read aloud (symbols as words, German numbers as words)</td></tr>
+    <tr><td class="k">pages/player/index.html</td><td>A prototype player in a phone frame that plays every lesson with pictures, drawn components and narration. Use it as the reference for behaviour.</td></tr>
   </table></div>
   <h3>Run the lesson player</h3>
   <ol>
     <li><b>Get the repo.</b> <code>git clone git@github.com:istafrica-DieuMu/twist-content.git</code> and <code>cd twist-content</code>.</li>
-    <li><b>Open it.</b> Open <code>player/index.html</code> in Chrome or Safari, straight from disk; no server is needed. It loads the pictures from <code>twist/assets/</code> next to it. In the panel next to the phone, search or filter by curriculum, subject, year and task type, then tap a lesson number; tap through it as a child would. The arrow keys step through a lesson, and with a task type chosen, "Next" jumps to its next task. The screen follows the app: header with lesson menu and step badge, the mascot's speech bubble, select then Prüfen, and the result sheet.</li>
+    <li><b>Open it.</b> Open <code>twist/pages/player/index.html</code> in Chrome or Safari, straight from disk; no server is needed. It loads the pictures and narration from <code>twist/assets/</code> in the same clone. In the panel next to the phone, search or filter by curriculum, subject, year and task type, then tap a lesson number; tap through it as a child would. The arrow keys step through a lesson, and with a task type chosen, "Next" jumps to its next task. The screen follows the app: header with lesson menu and step badge, the mascot's speech bubble, select then Prüfen, and the result sheet.</li>
     <li><b>Add the voice (optional).</b> The narration clips are not in git, so a fresh clone plays silently. To make them you need Python 3.9 or later and an OpenRouter key:
       <pre><code>python3 -m venv twist/.venv
 twist/.venv/bin/pip install -r twist/assets/tools/requirements.txt
 OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --voice all</code></pre>
       It makes every missing clip, checks each one by listening, and skips clips that already exist, so it can be rerun at any time.</li>
-    <li><b>After a lesson record changes.</b> With Node 18 or later: <code>cd twist &amp;&amp; npm install &amp;&amp; cd ..</code> once, then <code>node twist/build.mjs</code> (checks every record), run narration as above for the new lines, then <code>node player/build.mjs</code> to rebuild <code>player/index.html</code>. The player build stops if a spoken line has no entry in <code>twist/assets/narration/lines.yaml</code>; it only reports audio files that are missing on your machine.</li>
+    <li><b>After a lesson record changes.</b> With Node 18 or later: <code>cd twist &amp;&amp; npm install &amp;&amp; cd ..</code> once, then <code>node twist/build.mjs</code> (checks every record), run narration as above for the new lines, then <code>node twist/pages/player/build.mjs</code> to rebuild <code>twist/pages/player/index.html</code>. The player build stops if a spoken line has no entry in <code>twist/assets/narration/lines.yaml</code>; it only reports audio files that are missing on your machine.</li>
   </ol>
   <h3>What is drafted</h3>
   <div class="tbl"><table>
-    <tr><th>Curriculum</th><th>Subject and year</th><th>Topic</th><th class="n">Skills</th><th class="n">Lessons</th></tr>
-    <tr><td>de-DE</td><td>Mathe, Klasse 1</td><td>Zahlen bis 10</td><td class="n">7</td><td class="n">17</td></tr>
-    <tr><td>de-DE</td><td>Deutsch, Klasse 1</td><td>Laute hören</td><td class="n">3</td><td class="n">6</td></tr>
-    <tr><td>de-DE</td><td>Englisch, Stufe 0</td><td>Hören</td><td class="n">2</td><td class="n">4</td></tr>
-    <tr><td>de-DE</td><td>Model lessons</td><td>Adding across ten; the letters L, O, A, M; colours in English</td><td class="n">3</td><td class="n">10</td></tr>
-    <tr><td>en-GB</td><td>Maths, Reception</td><td>Numbers to 10</td><td class="n">6</td><td class="n">12</td></tr>
-    <tr><td colspan="3"><b>Total</b>: 21 lesson sets, 1,047 tasks (de-DE 825, en-GB 222)</td><td class="n"><b>21</b></td><td class="n"><b>49</b></td></tr>
+    <tr><th>Curriculum</th><th>Subject</th><th>Years</th><th class="n">Topics</th><th class="n">Lesson sets</th><th class="n">Lessons</th><th class="n">Tasks</th></tr>
+    <tr><td>de-DE</td><td>Mathe</td><td>Klasse 1 to 4</td><td class="n">29</td><td class="n">203</td><td class="n">417</td><td class="n">9,021</td></tr>
+    <tr><td>de-DE</td><td>Deutsch</td><td>Klasse 1 to 4</td><td class="n">94</td><td class="n">174</td><td class="n">376</td><td class="n">7,992</td></tr>
+    <tr><td>de-DE</td><td>Englisch</td><td>Stufe 0, 1. and 2. Lernjahr</td><td class="n">38</td><td class="n">58</td><td class="n">116</td><td class="n">2,490</td></tr>
+    <tr><td>en-GB</td><td>Maths</td><td>Reception, Year 1 to 6</td><td class="n">139</td><td class="n">259</td><td class="n">527</td><td class="n">11,118</td></tr>
+    <tr><td>en-GB</td><td>English</td><td>Reception, Year 1 to 6</td><td class="n">61</td><td class="n">163</td><td class="n">332</td><td class="n">6,925</td></tr>
+    <tr><td>en-GB</td><td>French</td><td>French years 1 to 4</td><td class="n">41</td><td class="n">61</td><td class="n">124</td><td class="n">2,634</td></tr>
+    <tr><td colspan="3"><b>Total</b> (de-DE 435 sets, 909 lessons, 19,503 tasks; en-GB 483 sets, 983 lessons, 20,677 tasks)</td><td class="n"><b>402</b></td><td class="n"><b>918</b></td><td class="n"><b>1,892</b></td><td class="n"><b>40,180</b></td></tr>
   </table></div>
-  <p>The skill library and the placement of every skill in both curricula are complete. Lessons are being written topic by topic: the first topic of each subject in every year, then the rest. Narration audio is not in git; <code>twist/assets/tools/narration.py</code> regenerates it.</p>
+  <p>One lesson set per placed skill, so every skill both curricula place has its lessons. A skill shared by both curricula has a separate lesson set in each, written for that country. Narration audio is not in git; <code>twist/assets/tools/narration.py</code> regenerates it. All de-DE clips are made (51,170); en-GB was about half done on 14 October (about 29,000 of 53,700 clips), so some en-GB lessons still play partly silent.</p>
 </section>
 
 <section id="chain">
@@ -333,23 +337,26 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td class="k">nc-languages-2014</td><td>National Curriculum in England, languages, KS2</td><td class="n">12</td><td>en-GB French</td></tr>
   </table></div>
   <p>Each standard has a <code>code</code> (for example <code>kmk-m22.zo.2.3</code>), the document's own <code>text</code> verbatim, a <code>page</code> and a <code>band</code> (<code>end-klasse-4</code>, <code>year-3</code>, <code>ks2</code>, <code>elg</code>). Each skill lists the codes it satisfies. Standards an app cannot teach (group discussion, a library visit, scenic play) are listed as out of scope with a reason: 10 in de-DE, 23 in en-GB.</p>
+  <h3>Enrichment</h3>
+  <p>Every placed skill maps to at least one standard of its own curriculum's frameworks, or is listed in that curriculum file's <code>enrichment:</code> map as <code>skill id: reason</code>. The build fails otherwise. de-DE has 3 enrichment skills (written division and its remainders, which some Länder such as Bavaria still teach in Klasse 4; Roman numerals). en-GB has 15 (among them tangrams, chance and fair games, number codes, misleading charts, making charts with a digital tool, typing, and where French is spoken). The backend should store the map with the placement; the dashboard may label these skills "extra", and the standing calculation can leave them out or count them, a product choice.</p>
 
   <h3>Skills placed per year</h3>
   <div class="tbl"><table>
     <tr><th>de-DE year</th><th class="n">Mathe</th><th class="n">Deutsch</th><th class="n">Englisch</th><th>en-GB year</th><th class="n">Maths</th><th class="n">English</th><th class="n">French</th></tr>
     <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Reception</td><td class="n">14</td><td class="n">32</td><td class="n"></td></tr>
     <tr><td>Klasse 1</td><td class="n">41</td><td class="n">51</td><td class="n"></td><td>Year 1</td><td class="n">29</td><td class="n">32</td><td class="n"></td></tr>
-    <tr><td>Klasse 2</td><td class="n">63</td><td class="n">46</td><td class="n"></td><td>Year 2</td><td class="n">53</td><td class="n">29</td><td class="n"></td></tr>
-    <tr><td>Klasse 3</td><td class="n">51</td><td class="n">42</td><td class="n"></td><td>Year 3</td><td class="n">50</td><td class="n">20</td><td class="n"></td></tr>
+    <tr><td>Klasse 2</td><td class="n">63</td><td class="n">46</td><td class="n"></td><td>Year 2</td><td class="n">51</td><td class="n">29</td><td class="n"></td></tr>
+    <tr><td>Klasse 3</td><td class="n">51</td><td class="n">42</td><td class="n"></td><td>Year 3</td><td class="n">52</td><td class="n">20</td><td class="n"></td></tr>
     <tr><td>Klasse 4</td><td class="n">48</td><td class="n">35</td><td class="n"></td><td>Year 4</td><td class="n">39</td><td class="n">16</td><td class="n"></td></tr>
-    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Year 5</td><td class="n">49</td><td class="n">17</td><td class="n"></td></tr>
-    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Year 6</td><td class="n">25</td><td class="n">17</td><td class="n"></td></tr>
+    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Year 5</td><td class="n">48</td><td class="n">17</td><td class="n"></td></tr>
+    <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>Year 6</td><td class="n">26</td><td class="n">17</td><td class="n"></td></tr>
     <tr><td>Stufe 0</td><td class="n"></td><td class="n"></td><td class="n">14</td><td>French year 1</td><td class="n"></td><td class="n"></td><td class="n">14</td></tr>
     <tr><td>1. Lernjahr</td><td class="n"></td><td class="n"></td><td class="n">28</td><td>French year 2</td><td class="n"></td><td class="n"></td><td class="n">28</td></tr>
     <tr><td>2. Lernjahr</td><td class="n"></td><td class="n"></td><td class="n">16</td><td>French year 3</td><td class="n"></td><td class="n"></td><td class="n">11</td></tr>
     <tr><td></td><td class="n"></td><td class="n"></td><td class="n"></td><td>French year 4</td><td class="n"></td><td class="n"></td><td class="n">8</td></tr>
     <tr><td><b>Total</b></td><td class="n"><b>203</b></td><td class="n"><b>174</b></td><td class="n"><b>58</b></td><td><b>Total</b></td><td class="n"><b>259</b></td><td class="n"><b>163</b></td><td class="n"><b>61</b></td></tr>
   </table></div>
+  <p>Changes since 13 October, from the en-GB year-fit review: <code>math.mult-div.table-2-4-8</code> and <code>math.mult-div.derive-facts</code> moved from Year 2 to Year 3, and <code>math.shapes.circles-compass</code> from Year 5 to Year 6. Skill ids are unchanged, so only the placement rows move.</p>
 
   <h3>Foreign-language learning years</h3>
   <p>The foreign language counts by learning year, because schools start it at different ages. Placement in a learning year is an expectation, not a gate.</p>
@@ -372,34 +379,47 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td class="k">time-format</td><td>24-hour in writing, "Viertel nach"</td><td>12-hour with am and pm, "quarter past"</td></tr>
     <tr><td class="k">date-format</td><td>12.10.2026</td><td>12/10/2026</td></tr>
     <tr><td class="k">written-subtraction</td><td>abziehen</td><td>column method with exchange</td></tr>
-    <tr><td class="k">script</td><td>Druckschrift, then a Schreibschrift</td><td>print, then joined</td></tr>
+    <tr><td class="k">decimal keyboard</td><td>comma (2,5)</td><td>point (2.5)</td></tr>
+    <tr><td class="k">script</td><td>Druckschrift, then a Schreibschrift: SAS, LA, VA or Grundschrift, chosen by the school and differing by Land</td><td>print, then joined, in a common English joined style (the player uses Playwrite GB J); schemes differ by school</td></tr>
   </table></div>
 </section>
 
 <section id="player">
   <h2>Task player</h2>
-  <p>Field names follow the Twist question schemas in schoolido-learning (<code>schemas/question-types</code>), with asset bank ids where those schemas have image and audio URLs. Counts are tasks in the drafted lessons: 10,417 tasks in 231 lesson sets (2026-10-13).</p>
-  <p>Each type with its screen, behaviour, marking and fields, and mocks of the types still to build, is on <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b">Twist task types</a> (<code>types/index.html</code>).</p>
+  <p>Field names follow the Twist question schemas in schoolido-learning (<code>schemas/question-types</code>), with asset bank ids where those schemas have image and audio URLs. Counts are tasks in the lessons: 40,180 tasks in 918 lesson sets (14 October 2026). "App today" is from the read of ist-schoolido on 13 October.</p>
+  <p>Each type with its screen, behaviour, marking and fields is on <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b">Twist task types</a> (<code>pages/types/index.html</code>).</p>
 
   <div class="tbl"><table>
     <tr><th>Type</th><th class="n">Tasks</th><th class="n">de-DE</th><th class="n">en-GB</th><th>Backend enum</th><th>App today</th><th>Needed</th></tr>
-    <tr><td class="k">multiple_choice</td><td class="n">3,630</td><td class="n">2,374</td><td class="n">1,256</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Per-option feedback and audio</td></tr>
-    <tr><td class="k">true_false</td><td class="n">1,708</td><td class="n">1,135</td><td class="n">573</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Question spoken from <code>say</code>; buttons read Ja / Nein, Yes / No</td></tr>
-    <tr><td class="k">fill_in_blank</td><td class="n">1,537</td><td class="n">1,131</td><td class="n">406</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Several gaps, list <code>answer</code>; drawn component above the frame</td></tr>
-    <tr><td class="k">text_input</td><td class="n">1,119</td><td class="n">840</td><td class="n">279</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Number keypad</td></tr>
-    <tr><td class="k">audio_choice</td><td class="n">842</td><td class="n">529</td><td class="n">313</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Add a case to <code>mapByType</code>; options can be text, pictures or colour swatches</td></tr>
-    <tr><td class="k">image_multiple_choice</td><td class="n">535</td><td class="n">219</td><td class="n">316</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Options can be counted groups (<code>{object, count, layout}</code>) or drawn components (dots, ten-frame)</td></tr>
-    <tr><td class="k">highlight_in_text</td><td class="n">220</td><td class="n">147</td><td class="n">73</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: letter or word cards (the text split on spaces), tap every match, then Prüfen / Check. Compare cards with <code>spans</code> after stripping trailing punctuation, so the span <code>hoch</code> matches the card <code>hoch.</code></td></tr>
-    <tr><td class="k">matching</td><td class="n">175</td><td class="n">143</td><td class="n">32</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Sides can be picture, drawn component or text, each with its own spoken line</td></tr>
-    <tr><td class="k">point_on_line</td><td class="n">170</td><td class="n">107</td><td class="n">63</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Labels and jump arcs; marker never shows the number</td></tr>
-    <tr><td class="k">ordering</td><td class="n">166</td><td class="n">109</td><td class="n">57</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Picture cards (dot patterns) as well as numbers; extra cards that do not belong</td></tr>
-    <tr><td class="k">speak</td><td class="n">144</td><td class="n">128</td><td class="n">16</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it, unmarked, with the fallback: record up to 4 s, play the recording and then the model, the child taps "Klingt gleich" or "Nochmal". No microphone: hear the model, then "Klingt gleich". See <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b#speak">task types</a></td></tr>
-    <tr><td class="k">sorting</td><td class="n">78</td><td class="n">57</td><td class="n">21</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Map it; 2 to 5 bins, a bin can show a picture or swatch and speak</td></tr>
-    <tr><td class="k">tap_to_count</td><td class="n">53</td><td class="n">30</td><td class="n">23</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Any bank picture, row or scattered on a loose grid; today 14 bundled items</td></tr>
-    <tr><td class="k">tracing</td><td class="n">38</td><td class="n">24</td><td class="n">14</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Writing lines; <code>mode: copy</code> (model on the left, no guide); numeral 10; never hints</td></tr>
+    <tr><td class="k">multiple_choice</td><td class="n">16,314</td><td class="n">7,484</td><td class="n">8,830</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Per-option feedback and audio</td></tr>
+    <tr><td class="k">true_false</td><td class="n">6,337</td><td class="n">3,376</td><td class="n">2,961</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Statement on screen, spoken from <code>say</code>; buttons read Ja / Nein, Yes / No</td></tr>
+    <tr><td class="k">fill_in_blank</td><td class="n">4,124</td><td class="n">2,222</td><td class="n">1,902</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Several gaps, list <code>answer</code>; drawn component above the frame</td></tr>
+    <tr><td class="k">text_input</td><td class="n">3,727</td><td class="n">1,505</td><td class="n">2,222</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Four keyboards set by <code>keyboard</code>; see below</td></tr>
+    <tr><td class="k">audio_choice</td><td class="n">2,711</td><td class="n">1,324</td><td class="n">1,387</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Add a case to <code>mapByType</code>; options can be text, pictures or colour swatches; <code>audio</code> can name a speaker or be a dialogue of turns</td></tr>
+    <tr><td class="k">image_multiple_choice</td><td class="n">2,084</td><td class="n">1,033</td><td class="n">1,051</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Options can be counted groups (<code>{object, count, layout}</code>) or drawn components</td></tr>
+    <tr><td class="k">ordering</td><td class="n">1,223</td><td class="n">624</td><td class="n">599</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Picture cards and sentence chunks as well as numbers; extra cards that do not belong; cards stored shuffled and shown as stored</td></tr>
+    <tr><td class="k">highlight_in_text</td><td class="n">1,022</td><td class="n">467</td><td class="n">555</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: letter or word cards (the text split on spaces), tap every match, then Prüfen / Check. Compare cards with <code>spans</code> after stripping trailing punctuation, so the span <code>hoch</code> matches the card <code>hoch.</code></td></tr>
+    <tr><td class="k">sorting</td><td class="n">658</td><td class="n">364</td><td class="n">294</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Map it; 2 to 5 bins, a bin can show a picture or swatch and speak</td></tr>
+    <tr><td class="k">speak</td><td class="n">651</td><td class="n">326</td><td class="n">325</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it, unmarked, with the fallback: record up to 4 s, play the recording and then the model, the child taps "Klingt gleich" or "Nochmal". No microphone: hear the model, then "Klingt gleich". See <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b#speak">task types</a></td></tr>
+    <tr><td class="k">matching</td><td class="n">592</td><td class="n">385</td><td class="n">207</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Sides can be picture, drawn component or text, each with its own spoken line</td></tr>
+    <tr><td class="k">tracing</td><td class="n">351</td><td class="n">214</td><td class="n">137</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Writing lines; <code>mode: copy</code> (model on the left, no guide); <code>script: joined</code> draws the model in the school's joined script; numeral 10; never hints</td></tr>
+    <tr><td class="k">point_on_line</td><td class="n">218</td><td class="n">114</td><td class="n">104</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Labels and jump arcs; <code>step</code> from 1 to 100000 sets the tappable ticks; marker never shows the number</td></tr>
+    <tr><td class="k">tap_to_count</td><td class="n">69</td><td class="n">31</td><td class="n">38</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Any bank picture, row or scattered on a loose grid; today 14 bundled items</td></tr>
+    <tr><td class="k">clock_hands_drag</td><td class="n">64</td><td class="n">32</td><td class="n">32</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: a clock face with a grip on each hand; the hand nearest the finger moves. The minute hand snaps to <code>step</code> (1, 5, 15 or 30 minutes; 5 if left out), the hour hand to whole hours and sits between hours as the minutes go on. <code>show</code> sets the start (12:00 if left out, never the answer). <code>answer</code> is <code>"h:mm"</code> in 12-hour form (<code>"3:30"</code>); <code>feedback</code> is keyed by a set time (<code>"6:15"</code>)</td></tr>
+    <tr><td class="k">point_on_grid</td><td class="n">33</td><td class="n">0</td><td class="n">33</td><td><span class="chip s-no">no</span></td><td><span class="chip s-no">missing</span></td><td>New component: the <code>coordinates</code> grid; the child taps any crossing (a blue ring marks it), then Check. <code>answer: [x, y]</code>; <code>feedback</code> keyed <code>"x,y"</code>, e.g. <code>"3,5"</code> for the swapped point when the answer is [5, 3]. Points and shapes already on the grid stay</td></tr>
     <tr><td class="k">drag_and_drop_count</td><td class="n">2</td><td class="n">2</td><td class="n">0</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: move counters in a Zwanzigerfeld until the first row is full</td></tr>
   </table></div>
-  <p>The backend enum also has <code>clock_hands_drag</code>, <code>drag_and_drop</code>, <code>multi_select</code> and <code>pick_side</code>; no lesson uses them yet, but the rest of the curriculum will (see <a href="#tobuild">Still to build</a>). <code>docs/task-types.md</code> lists every interaction of each type with a lesson that uses it.</p>
+  <p>The backend enum also has <code>drag_and_drop</code>, <code>multi_select</code> and <code>pick_side</code>; no lesson uses them. <code>point_on_grid</code> needs a new enum value. <code>docs/task-types.md</code> lists every interaction of each type with a lesson that uses it. The clock tasks sit in the four time lesson sets of each curriculum (o'clock and half past, quarter past and to, five minutes, to the minute); the grid tasks in four en-GB sets from Year 4 to Year 6 (first quadrant, four quadrants, translate, reflect and translate).</p>
+
+  <h3>text_input keyboards</h3>
+  <div class="tbl"><table>
+    <tr><th>keyboard</th><th>Keys</th><th>Answer and marking</th><th class="n">Tasks</th></tr>
+    <tr><td class="k">digits</td><td>0 to 9, delete. The default</td><td>Up to 8 digits, no spaces (70000, never 70 000); compared exactly</td><td class="n">3,449</td></tr>
+    <tr><td class="k">decimal</td><td>Digits, a decimal separator (comma in de-DE, point in en-GB) and a minus key</td><td>Up to 3 decimal places, a minus allowed (2.5, −3, 0.25). Compared by value, so 0.50 matches 0.5</td><td class="n">88</td></tr>
+    <tr><td class="k">fraction</td><td>Digits, a fraction bar <code>/</code> and a space key</td><td>7/5, a mixed number 1 2/5 (whole, space, fraction) or a whole number; compared exactly</td><td class="n">10</td></tr>
+    <tr><td class="k">letters</td><td>The lesson's language: QWERTZ with ä ö ü ß for German, QWERTY for English, AZERTY with é è à ç for French; a shift key for one capital, space and apostrophe</td><td>Up to 24 characters, compared exactly, capitals included</td><td class="n">180</td></tr>
+  </table></div>
+  <p>All decimal, fraction and letters tasks are in en-GB lessons today (the letters ones in English, French and 9 in Maths); de-DE lessons use only digits, but the checker already accepts a de-DE decimal answer with a comma. The keyboard rules are in <code>docs/task-types.md</code> and enforced by <code>lessons-check.mjs</code>.</p>
 
   <h3>Behaviour across all types</h3>
   <div class="tbl"><table>
@@ -410,42 +430,64 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td>Option audio</td><td>A speaker on each option when hearing it does not give the answer away. Never on audio_choice, letters or syllables, or counted groups. <code>option_audio</code> overrides per task.</td><td>None</td></tr>
     <tr><td>Option order</td><td>multiple_choice, image_multiple_choice and audio_choice options appear in a new random order each time the lesson is played; records put the answer anywhere, often first. <code>keep_order: true</code> keeps the record order for scales and fixed pairs.</td><td>Record order (<code>MultipleChoice.tsx</code> passes <code>question.options</code> through)</td></tr>
     <tr><td>Flash</td><td><code>show.flash: 2</code> shows the picture for 2 seconds and covers it; "See it again" repeats it, except in a Check</td><td>None</td></tr>
-    <tr><td>Voices</td><td>Two per curriculum: one teaches and practises, a second, calmer one speaks every Check. Both arrive as recorded clips.</td><td>One clip per question</td></tr>
+    <tr><td>Voices</td><td>Two per curriculum: a female voice teaches and practises, a male one speaks every Check. Both arrive as recorded clips. A character's line in <code>audio</code> names <code>speaker: male</code> or <code>female</code> and is spoken by the curriculum's voice of that kind, whatever the activity (about 250 tasks). A dialogue is <code>audio: { turns: [{ en, speaker }, ...] }</code>, played in order, each turn in its speaker's voice (7 tasks in 4 sets: Englisch and French role play, short dialogues, greetings)</td><td>One clip per question</td></tr>
+    <tr><td>Spoken form</td><td>The voice reads symbols as words. In both languages + − = &lt; &gt; and the gap _ become words ("8 + 5 = _" is "8 plus 5 equals what"). In English also fractions (7/5 as "7 fifths", 1 2/5 as "1 and 2 fifths"), ½ ¼ ¾, × and ÷, °C and °, cm² and cm³, %, ratios (3 : 2 as "3 to 2"), remainders (7 r 2 as "7 remainder 2") and negative numbers (−4 as "negative 4"). In German ½ ¼ ¾ become words and numerals are spoken as number words. <code>spoken()</code> in <code>assets/tools/narration.py</code> is the rule, and the player build shares it. A clip is stored under its line; any app text-to-speech, or a lookup of a clip from a line, must apply the same rule first</td><td>None</td></tr>
     <tr><td>Between tasks</td><td>Short spoken phrases per curriculum (correct, try again, hint, show answer, stage done, check start, lesson done), picked at random from <code>assets/phrases.yaml</code></td><td>Sound effects only</td></tr>
+    <tr><td>Intro screens</td><td>The lesson start, each activity's intro (the mascot, the activity's name, one spoken line such as "Wir wärmen uns auf."), each Practise stage change and the lesson end are static mascot screens. Seven screen kinds with three poses each, in <code>assets/mascot.yaml</code> and <code>assets/mascot/</code>; the app rotates them so neighbouring lessons and the two stage changes in one lesson show different poses</td><td>None</td></tr>
     <tr><td>Learn screens</td><td>Text, spoken line, picture or drawn component; not scored</td><td>Content steps submit <code>correct: true</code> with full XP</td></tr>
+    <tr><td>Long texts</td><td>About 3,600 tasks have a <code>text</code> with line breaks (<code>\n</code>): a short story, a notice, a text with headings, the question at the bottom. Keep the breaks and let a long one scroll above the answer area; the player sets it as a passage</td><td>One line of question text</td></tr>
+    <tr><td>Dashes</td><td>Records hold no dash characters. A set that teaches dashes (en-GB Year 6 parenthesis, and semicolons and colons) sets <code>metadata.dashes: true</code> and writes a dash as a spaced hyphen; in those sets show " - " as a dash</td><td>None</td></tr>
+    <tr><td>Crossed pictures</td><td><code>show: { object: dog, crossed: true }</code> draws a red ring with a line across the picture, for a "not allowed" sign</td><td>None</td></tr>
   </table></div>
 
   <h3>Drawn components</h3>
-  <p>The app draws these from data in the task; none of them is a picture file. Uses are references in the drafted lessons, including options.</p>
+  <p>The app draws these from data in the task; none of them is a picture file. All 37 in <code>assets/drawn.yaml</code> are used by lessons and drawn by the player in <code>twist/pages/player</code>, which is the reference for how each looks. Uses are references in the lessons, in Learn screens, tasks and options.</p>
   <div class="tbl"><table>
     <tr><th>Component</th><th>Data</th><th class="n">Uses</th><th>App today</th></tr>
-    <tr><td class="k">letter-card</td><td><code>text</code>, cards split on spaces; also the base of highlight_in_text</td><td class="n">760</td><td><span class="chip s-warn">partial</span> plain text cards</td></tr>
-    <tr><td class="k">dots</td><td><code>count</code>, <code>layout</code> (dice, five-structure, row, scattered), <code>colour_split</code>; <code>groups: [4, 3]</code> to compare; <code>array: [3, 4]</code> with <code>split_rows</code> (Punktefeld)</td><td class="n">741</td><td><span class="chip s-no">no</span> dice are images</td></tr>
-    <tr><td class="k">number-line</td><td><code>from</code>, <code>to</code>, <code>step</code>, <code>labels</code>, <code>jumps</code>, <code>mark</code></td><td class="n">372</td><td><span class="chip s-ok">yes</span> no jumps; <code>step</code> not mapped</td></tr>
-    <tr><td class="k">ten-frame</td><td><code>filled</code>, <code>colour_split</code>, <code>cross</code>, <code>cross_from</code></td><td class="n">308</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">base-ten</td><td><code>hundreds</code>, <code>tens</code>, <code>ones</code> (flats, rods, cubes)</td><td class="n">280</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">written-calc</td><td><code>rows</code>, <code>op</code>, <code>carry</code>, <code>result</code> with gaps, <code>above</code> and <code>cross</code> for Entbündeln</td><td class="n">258</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">place-value-chart</td><td><code>columns</code> (ones to millions), <code>values</code> with gaps</td><td class="n">197</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">hundred-field</td><td><code>filled</code>, <code>colour_split</code>, <code>flash</code></td><td class="n">163</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">letter-card</td><td><code>text</code> (<code>Mm</code>), <code>style</code>: print, highlight-first; also the base of highlight_in_text</td><td class="n">2,435</td><td><span class="chip s-warn">partial</span> plain text cards</td></tr>
+    <tr><td class="k">dots</td><td><code>count</code>, <code>layout</code> (dice, five-structure, row, scattered), <code>colour_split</code>; <code>groups: [4, 3]</code> to compare; <code>array: [3, 4]</code> with <code>split_rows</code> (Punktefeld)</td><td class="n">1,329</td><td><span class="chip s-no">no</span> dice are images</td></tr>
+    <tr><td class="k">shape</td><td><code>kind</code>: circle, triangle, square, rectangle, pentagon, hexagon, octagon, parallelogram, trapezoid, and the solids cube, cuboid, sphere, cylinder, cone, pyramid; <code>colour</code>, <code>size</code>; <code>row</code> or <code>column</code> of shapes with a <code>"?"</code> gap</td><td class="n">1,020</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">grid</td><td><code>cols</code>, <code>rows</code>, <code>cells</code>, <code>halves</code>, <code>lines</code>, mirror lines <code>axis</code>, <code>axis_row</code>, <code>diagonal</code>; <code>labels</code>, <code>dots: true</code> for a dot grid (Karopapier)</td><td class="n">878</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">number-line</td><td><code>from</code>, <code>to</code> (negatives allowed), <code>step</code> (1 to 100000, or 0.1 and 0.01), <code>labels</code> (all, tens, ends, fractions with <code>fractions_of</code>), <code>jumps</code>, <code>mark</code>; decimals print as 0.5 in en-GB and 0,5 in de-DE</td><td class="n">599</td><td><span class="chip s-ok">yes</span> no jumps; <code>step</code> not mapped</td></tr>
+    <tr><td class="k">table</td><td><code>rows</code> of cells, <code>header: false</code>, <code>sheet: true</code> (column letters and row numbers), <code>mark</code>; <code>"?"</code> is a gap</td><td class="n">578</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">clock</td><td><code>hour</code>, <code>minute</code>, <code>digital</code>, <code>roman: true</code> (I to XII); as an option its key is the time (<code>4:30</code>); the face for clock_hands_drag</td><td class="n">555</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">written-calc</td><td><code>rows</code>, <code>op</code> (+, −, ×), <code>carry</code>, <code>result</code> with gaps, <code>partials</code> for long multiplication, <code>above</code> and <code>cross</code> for Entbündeln</td><td class="n">540</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">bar-chart</td><td><code>rows: [[label, value]]</code>, <code>step</code>, <code>from</code> (cut-off axis), <code>tally: true</code> (Strichliste); <code>pictogram_object</code> and <code>key</code> draw a pictogram; a label naming a colour colours its bar</td><td class="n">525</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">word-card</td><td><code>text</code>, <code>syllable_colours</code></td><td class="n">521</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">cubes</td><td><code>plan: [[2, 1], [1, 0]]</code> (stack heights), <code>mode</code>: building, plan, front, side, top; <code>colour</code> (Würfelgebäude)</td><td class="n">471</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">writing-lines</td><td><code>text</code>, <code>mode</code> (trace, copy), <code>arrows</code>, <code>script: joined</code> draws the school's joined script (in de-DE SAS, LA, VA or Grundschrift, a setting by Land); print if left out</td><td class="n">417</td><td><span class="chip s-warn">partial</span> glyph guides, no lines</td></tr>
+    <tr><td class="k">coins</td><td><code>values</code> in cent or pence, <code>currency: eur | gbp</code> (else the curriculum's); coins at their real relative sizes (UK 2p bigger than 5p), 500 and up as notes; as an option its key is the total</td><td class="n">380</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">base-ten</td><td><code>hundreds</code>, <code>tens</code>, <code>ones</code> (flats, rods, cubes; up to 18 ones before bundling)</td><td class="n">321</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">ten-frame</td><td><code>filled</code>, <code>colour_split</code>, <code>cross</code>, <code>cross_from</code></td><td class="n">307</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">fraction</td><td><code>kind</code> (circle, bar, rect), <code>parts</code>, <code>shaded</code>, <code>rows</code>, <code>colour</code>; as an option its key is <code>1/4</code></td><td class="n">240</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">place-value-chart</td><td><code>columns</code> from millions to ones, then tenths, hundredths, thousandths (a decimal point is drawn); <code>values</code> with gaps</td><td class="n">238</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">hundred-field</td><td><code>filled</code>, <code>colour_split</code>, <code>flash</code></td><td class="n">198</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">spinner</td><td><code>sectors: [red, red, blue]</code>, one colour per equal sector (Glücksrad)</td><td class="n">187</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">colour-swatch</td><td><code>colour</code>; values shared with recoloured pictures</td><td class="n">180</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">coordinates</td><td><code>quadrants</code> (1 or 4), <code>max</code>, <code>points: [[x, y, "A"]]</code>, <code>shape</code>, <code>moved</code> (dashed copy), <code>mirror</code>; the grid for point_on_grid</td><td class="n">170</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">rechenstrich</td><td><code>start</code>, <code>jumps</code> (minus jumps go left), <code>back</code> (empty number line)</td><td class="n">162</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">ruler</td><td><code>to</code> (15 cm if left out), <code>length</code> to the mm, <code>start</code>, <code>colour</code> of the strip to measure</td><td class="n">151</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">angle</td><td><code>degrees</code> (0 to 360), <code>rotate</code>, <code>label</code>, <code>protractor: true</code> (0 to 180, inner and outer scales); a right-angle square at 90°</td><td class="n">149</td><td><span class="chip s-no">no</span></td></tr>
     <tr><td class="k">zwanzigerfeld</td><td><code>filled: [8, 5]</code>, <code>move</code></td><td class="n">139</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">hundred-square</td><td><code>highlight</code>, <code>hide</code> (1 to 100 in rows of ten)</td><td class="n">110</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">part-whole</td><td><code>whole</code>, <code>parts: [2, null]</code> (England)</td><td class="n">67</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">hundred-square</td><td><code>highlight</code>, <code>hide</code> (1 to 100 in rows of ten)</td><td class="n">125</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">syllable-arcs</td><td><code>word</code>, <code>syllables</code></td><td class="n">113</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">part-whole</td><td><code>whole</code>, <code>parts: [2, null]</code> (England)</td><td class="n">76</td><td><span class="chip s-no">no</span></td></tr>
     <tr><td class="k">number-wall</td><td><code>rows</code>, bottom row first, <code>null</code> gaps (Zahlenmauer)</td><td class="n">66</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">rechenstrich</td><td><code>start</code>, <code>jumps</code>, <code>back</code> (empty number line)</td><td class="n">60</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">clock</td><td><code>hour</code>, <code>minute</code>, <code>digital</code>; as an option its key is the time (<code>4:30</code>)</td><td class="n">57</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">colour-swatch</td><td><code>colour</code>; values shared with recoloured pictures</td><td class="n">51</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">thermometer</td><td><code>from</code>, <code>to</code>, <code>step</code>, <code>value</code> (°C, negatives allowed), <code>mark</code></td><td class="n">60</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">line-graph</td><td><code>rows: [[label, value]]</code>, <code>step</code>, <code>ylabel</code></td><td class="n">56</td><td><span class="chip s-no">no</span></td></tr>
     <tr><td class="k">number-house</td><td><code>roof</code>, <code>rows: [[3, null]]</code></td><td class="n">47</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">writing-lines</td><td><code>text</code>, <code>mode</code> (trace, copy), <code>arrows</code></td><td class="n">41</td><td><span class="chip s-warn">partial</span> glyph guides, no lines</td></tr>
-    <tr><td class="k">equation</td><td>an equation with an optional split</td><td class="n">12</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">syllable-arcs</td><td><code>word</code>, <code>syllables</code></td><td class="n">4</td><td><span class="chip s-no">no</span></td></tr>
-    <tr><td class="k">word-card</td><td><code>text</code></td><td class="n">2</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">pie-chart</td><td><code>parts: [[label, value]]</code>, sectors in proportion with a key; colour words pick their colour</td><td class="n">28</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">short-division</td><td><code>divisor</code>, <code>dividend</code>, <code>quotient</code> (gaps as _), <code>carries</code>, <code>remainder</code> (bus stop layout)</td><td class="n">25</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">circle</td><td><code>parts</code> (centre, radius, diameter, circumference, chord), <code>labels</code>, <code>highlight</code>, <code>values</code></td><td class="n">24</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">equation</td><td><code>text</code> with gaps, <code>split</code> under a number</td><td class="n">20</td><td><span class="chip s-no">no</span></td></tr>
+    <tr><td class="k">sound-chart</td><td><code>letters</code>, <code>pictures</code>, <code>mark</code>, <code>gaps</code>, <code>columns</code> (Anlauttabelle)</td><td class="n">8</td><td><span class="chip s-no">no</span></td></tr>
   </table></div>
-  <p>The player in <code>rnd/player</code> draws all twenty from data and is the reference for how each looks. <code>assets/drawn.yaml</code> also lists coins, shape and bar-chart, which no lesson uses yet.</p>
+  <p>As an option, a component needs a key the answer can name. Most have one built in (clock <code>4:30</code>, fraction <code>1/4</code>, coins the total, shape the kind, written-calc the rows joined with |); grid, cubes, spinner and table take an explicit <code>key</code>.</p>
 
   <h3>Assets</h3>
   <ul class="plain">
     <li>Tasks name a bank id (<code>object: apple</code>, <code>drawn: ten-frame</code>, <code>sound: de.l</code>), never a file. One picture per concept serves every language.</li>
-    <li>Pictures: 512 px transparent PNGs, 8 to 28 KB each, 156 so far plus colour versions. Colour versions are <code>objects/&lt;id&gt;.&lt;colour&gt;.png</code>.</li>
+    <li>Pictures: 512 px transparent PNGs, 8 to 28 KB each, 277 in the bank plus colour versions, and 21 mascot poses for the intro screens. Colour versions are <code>objects/&lt;id&gt;.&lt;colour&gt;.png</code>.</li>
     <li>Sounds: phonemes and syllables per language in <code>assets/sounds.yaml</code>. Narration clips per task line, option, hint and phrase are generated by <code>narration.py</code>.</li>
   </ul>
 
@@ -461,72 +503,45 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
 </section>
 
 <section id="tobuild">
-  <h2>Still to build: the rest of Reception and the Grundschule</h2>
-  <p>The tables above cover the drafted lessons: 147 of 435 de-DE skills and 79 of 483 en-GB skills. This section lists what the remaining skills will need, so the app can be built ahead of the content. It was worked out skill by skill from the 290 open de-DE skills (Klasse 1 to 4, Englisch Stufe 0 to Lernjahr 2) and the 26 open Reception skills. Years 1 to 6 in England need the same pieces. Counts are open skills that need the item; one skill often needs several.</p>
+  <h2>Still to build</h2>
+  <p>Every placed skill has its lessons, so the app can be built against real content now. The gaps are on the app side, in a handful of interactions the lessons work around, and in some R&amp;D finishing work.</p>
 
-  <h3>New task types</h3>
-  <div class="tbl"><table>
-    <tr><th>Type</th><th>What the child does</th><th>Needed for</th><th class="n">Skills</th><th>Backend enum</th></tr>
-    <tr><td class="k">clock_hands_drag</td><td>Drags the hour and minute hands of an analogue clock to a given time; the hour hand follows the minute hand</td><td>Uhrzeit: volle und halbe Stunden, Viertelstunden, fünf Minuten, minutengenau</td><td class="n">4</td><td><span class="chip s-ok">yes</span></td></tr>
-    <tr><td class="k">drag_and_drop</td><td>Drags items onto targets: coins and notes into a purse until the amount is right, labels onto a picture, an object to a place in a scene, a shape piece into an outline. Checked by target, by count or by total value</td><td>Geld (legen, bezahlen, Rückgeld), Lage (rechts, links, auf, unter, in), Englisch prepositions and home, Tangram, labelling</td><td class="n">16</td><td><span class="chip s-ok">yes</span></td></tr>
-    <tr><td class="k">multi_select</td><td>Taps every option that fits, then Prüfen (all triangles, all solids that roll, every word of a Wortfeld)</td><td>Formen, Körper, Symmetrie, Wortfelder, Oberbegriffe, Daten sortieren</td><td class="n">14</td><td><span class="chip s-ok">yes</span></td></tr>
-    <tr><td class="k">pick_side</td><td>Two things side by side, taps the one that is heavier, longer, holds more or is more likely</td><td>Längen und Gewichte vergleichen (Balkenwaage), Rauminhalte, Wahrscheinlichkeit</td><td class="n">5</td><td><span class="chip s-ok">yes</span></td></tr>
-    <tr><td class="k">tap_in_picture</td><td>Taps a place in a picture or drawn component: a day in a calendar, a square on a map (B3), the symmetry axis of a shape, the part of a picture a sentence describes</td><td>Kalender, Pläne und Karten, Symmetrie, Lagebeziehungen, Anlauttabelle, listen-and-do instructions (Reception and Klasse 1)</td><td class="n">12</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">shade_cells</td><td>Taps cells or parts to colour them: a quarter of a circle, squares on Kästchenpapier for an area or a mirror image, a region in a picture ("Male den Ball rot an")</td><td>Brüche, Flächeninhalt, Symmetrie ergänzen, Parkettierung, read-and-do</td><td class="n">10</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">draw_on_grid</td><td>Joins points on a grid or ruler with straight lines: a 6 cm Strecke, a figure, its mirror image, a path on a map, parallel lines</td><td>Längen zeichnen, Geometrie, Symmetrie an schrägen Achsen, Maßstab, Wege</td><td class="n">10</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">build_chart</td><td>Sets the height of each bar, or the number of pictures or tally marks in each row, from a list or a survey</td><td>Strichlisten, Bild- und Säulendiagramme, Umfragen</td><td class="n">5</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">record_audio</td><td>Records an answer, plays it back, and rates it (or a grown-up does). Not auto-marked until speech scoring is decided</td><td>Vorlesen, Gedichte vortragen, Zungenbrecher, kurzer Vortrag, Erzählen, Stimme aufnehmen; Englisch greet, about me, present, describe; Reception speaking</td><td class="n">20</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">write_text</td><td>Types a short text with a scaffold (a model text, sentence starters, a word bank) and a checklist; not auto-marked</td><td>Texte schreiben (Einladung, Brief, Steckbrief, Bericht, Geschichte, Elfchen), Texte planen und überarbeiten; Englisch short texts; Reception phrases and sentences</td><td class="n">21</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">dialogue</td><td>A scripted conversation of several turns; the child chooses or says each of their lines</td><td>Englisch role play (shopping, café), greetings, ask and answer; Gespräche führen, Interview</td><td class="n">5</td><td><span class="chip s-no">new</span></td></tr>
-    <tr><td class="k">self_rating</td><td>Picks how well they can do something (three faces); unscored, feeds the parent view</td><td>Englisch self-check and learning strategies, reflection after writing</td><td class="n">3</td><td><span class="chip s-no">new</span></td></tr>
-  </table></div>
+  <h3>What the app needs to play the lessons it has</h3>
+  <p>About 11,000 of the 40,180 tasks (a little over a quarter) use a task type the app did not render on 13 October or a drawn component it does not draw, counting letter cards and writing lines as shown. In order of tasks unlocked:</p>
+  <ul class="plain">
+    <li>Map <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> (4,020 tasks).</li>
+    <li>Draw the components: of the 37, the app draws only the number line (without jumps or <code>step</code>) and letter cards and writing lines in part. About 6,200 tasks use at least one of the other 34.</li>
+    <li>Build <code>highlight_in_text</code> (1,022 tasks), <code>clock_hands_drag</code> (64), <code>point_on_grid</code> (33) and <code>drag_and_drop_count</code> (2).</li>
+    <li>The decimal, fraction and letters keyboards (278 tasks), passages for texts with line breaks, speaker voices and dialogue turns, the spoken form of symbols, intro screens with the mascot, dashes in the two dash sets, crossed pictures.</li>
+  </ul>
 
-  <h3>New options on existing types</h3>
+  <h3>Interactions the lessons work around</h3>
+  <p>Where an interaction is missing, the lessons teach the skill with choices, ordering, gaps and drawn pictures, and the lesson summary says what waits. Counts are lesson sets whose summary names the gap, so they are a floor. Once an interaction exists, the lessons get tasks that use it; each new type gets its section in <code>docs/task-types.md</code> and its first use in the prototype player before the app builds it.</p>
   <div class="tbl"><table>
-    <tr><th>Type</th><th>Addition</th><th>Needed for</th><th class="n">Skills</th></tr>
-    <tr><td class="k">text_input</td><td><code>keyboard: letters</code>: a letter keyboard with capitals, Umlaute and ß for de-DE, and grapheme tiles (sh, ch, ee) for England; the answer is a word or short sentence. Matching rules for capitals and spaces to agree with the backend</td><td>Schreiben nach Gehör, Lückenwörter, Abschreiben, Diktat, Grundwortschatz, Englisch words from memory, Reception spelling</td><td class="n">10</td></tr>
-    <tr><td class="k">tracing</td><td><code>script: joined</code> (Schreibschrift, lower case and capitals, joining strokes) and stroke order checking for print letters</td><td>Schreibschrift (3 skills), Druckschrift, Reception lower-case letters</td><td class="n">6</td></tr>
-    <tr><td class="k">all reading tasks</td><td><code>show: passage</code>: a text of several paragraphs with a heading, scrollable above the question, paragraph numbers and highlight support</td><td>Texte verstehen, Märchen, Fabeln, Sachtexte, Anleitungen, Logicals, Englisch short texts and notices</td><td class="n">24</td></tr>
-    <tr><td class="k">all listening tasks</td><td><code>audio: passage</code>: a longer recording with play, pause and replay before the questions</td><td>Zuhören, Geschichten hören, Hörtexte, Englisch stories and details, Reception stories</td><td class="n">9</td></tr>
-    <tr><td class="k">all tasks</td><td><code>show: video</code>: a short clip with replay</td><td>Englisch video, digital texts</td><td class="n">2</td></tr>
-    <tr><td class="k">ordering</td><td>Picture and sentence cards for story order; letter cards to build a word</td><td>Geschichte ordnen, Tagesablauf, Anleitungen, ABC, words from letters</td><td class="n">8</td></tr>
+    <tr><th>Missing</th><th>What the child would do</th><th>Lessons that wait for it</th><th class="n">Sets</th><th>Backend enum</th></tr>
+    <tr><td class="k">drawing</td><td>Draws on squared paper or a blank sheet: a line of a given length with a ruler, an angle with a protractor, a circle with compasses, a mirror half, tally strokes, chart bars, a parallel or a perpendicular</td><td>Längen zeichnen, Symmetrie, Maßstab, Parkettierung, Diagramme; England length, angles, constructions, pie charts, circles</td><td class="n">35</td><td><span class="chip s-no">new</span></td></tr>
+    <tr><td class="k">drag_and_drop</td><td>Drags things onto targets: coins onto a tray, tiles over a shape, counters into an array, tangram pieces into an outline, an object into a scene (a cat under a table)</td><td>Geld, Flächen vergleichen, Kombinatorik, Arrays; Englisch and French prepositions</td><td class="n">14</td><td><span class="chip s-ok">yes</span></td></tr>
+    <tr><td class="k">free writing</td><td>Writes their own text with a scaffold: a story, a letter, a report, a poem, a plan</td><td>Texte schreiben and überarbeiten; England composition from Year 1; Englisch and French short texts</td><td class="n">38</td><td><span class="chip s-no">new</span></td></tr>
+    <tr><td class="k">marked speech</td><td>Speaks at length and the answer counts: reading aloud, reciting, retelling, presenting a book</td><td>Vortragen, Erzählen; England spoken language; most Englisch and French speaking</td><td class="n">32</td><td><span class="chip s-no">new</span></td></tr>
+    <tr><td class="k">components</td><td>A calendar month to tap, a balance and a dial scale, a measuring jug with a level, a street map, a prepositions scene, tangram pieces, turned shapes and dice in an oblique view, isosceles and scalene triangles, several angles at one point, a turnable 3D building and net</td><td>Kalender, Gewichte, Rauminhalte, Wege, Kopfgeometrie, Würfelnetze; England mass, capacity, angles, triangles</td><td class="n">24</td><td>n/a</td></tr>
+    <tr><td class="k">experiment</td><td>Spins a spinner or rolls a dice in the app many times and records the results</td><td>Wahrscheinlichkeit, fair games</td><td class="n">5</td><td><span class="chip s-no">new</span></td></tr>
+    <tr><td class="k">column input</td><td>Types digits into the columns of a written calculation</td><td>England written methods</td><td class="n">2</td><td><span class="chip s-no">new</span></td></tr>
   </table></div>
-
-  <h3>New drawn components</h3>
-  <div class="tbl"><table>
-    <tr><th>Component</th><th>What it shows</th><th>Needed for</th><th class="n">Skills</th></tr>
-    <tr><td class="k">coins</td><td>Euro coins and notes (de-DE) and pound coins and notes (en-GB), as a set or a total; draggable</td><td>Geld in Klasse 1 to 4</td><td class="n">9</td></tr>
-    <tr><td class="k">calendar</td><td>A month grid with weekdays, marked days and a date to find</td><td>Kalender, Wochentage und Monate, Tabellen lesen, Englisch calendar</td><td class="n">4</td></tr>
-    <tr><td class="k">ruler</td><td>A centimetre ruler (mm and m variants) with an object or a line laid along it</td><td>Längen messen, schätzen, zeichnen, umrechnen</td><td class="n">9</td></tr>
-    <tr><td class="k">scale</td><td>A balance (two pans) and a dial scale with a pointer, in g and kg</td><td>Gewichte vergleichen, ablesen, schätzen</td><td class="n">4</td></tr>
-    <tr><td class="k">measuring-jug</td><td>A jug or glass with a level, marked in ml and l</td><td>Rauminhalte</td><td class="n">3</td></tr>
-    <tr><td class="k">shape</td><td>2D figures (circle, triangle, square, rectangle, hexagon, octagon, parallelogram) with optional labels for corners and sides, a symmetry axis, divisions</td><td>Formen, Muster, Symmetrie, Parkettierung, Tangram</td><td class="n">8</td></tr>
-    <tr><td class="k">fraction</td><td>A circle, rectangle or bar cut into equal or unequal parts, some shaded</td><td>Hälften und Viertel, Brüche benennen, Brüche bei Größen</td><td class="n">3</td></tr>
-    <tr><td class="k">grid</td><td>Kästchenpapier or a dot grid with shaded cells, lines, an axis, and letter and number coordinates</td><td>Zeichnen, Symmetrie, Flächeninhalt, Umfang, Maßstab, Pläne, Wege</td><td class="n">10</td></tr>
-    <tr><td class="k">solid</td><td>3D figures (Würfel, Quader, Kugel, Pyramide, Zylinder, Kegel), with edges and corners highlightable</td><td>Körper</td><td class="n">3</td></tr>
-    <tr><td class="k">cube-building</td><td>An isometric building of unit cubes, its Bauplan (top view with numbers), and its views from the front, side and top; a cube net</td><td>Würfelgebäude, Ansichten, Würfelnetze, Rauminhalt, Kopfgeometrie</td><td class="n">6</td></tr>
-    <tr><td class="k">chart</td><td>A tally chart, a pictogram, a bar chart (bar-chart is in the asset bank) and a simple table; scales with steps of 1, 2, 5, 10</td><td>Daten in Klasse 1 to 4</td><td class="n">8</td></tr>
-    <tr><td class="k">chance</td><td>A spinner with coloured sectors, a coin, a dice (dots already has dice), a bag of counters</td><td>Wahrscheinlichkeit, Kombinatorik</td><td class="n">4</td></tr>
-    <tr><td class="k">sound-chart</td><td>The Anlauttabelle: a grid of pictures, each with its letter, tappable</td><td>Buchstaben in Klasse 1 (all 11 letter sets use it as a reference)</td><td class="n">12</td></tr>
-  </table></div>
+  <p><code>multi_select</code> and <code>pick_side</code> are in the backend enum but no lesson needed them: "tap every triangle" and "which is heavier" run as multiple choice. Three de-DE lesson sets (Schreiben nach Gehör, Grundwortschatz, Englisch words from memory) still say they wait for a letter keyboard; the keyboard exists now and those sets can take typed spelling. Hands-on work (pencil grip, building with real cubes, folding paper) stays off screen; the lessons ask about it in pictures and an adult watching is the real check.</p>
 
   <h3>Decisions needed before building</h3>
   <ul class="plain">
-    <li><b>Marking writing.</b> 21 skills ask for free writing. Options: self-check against a checklist, a grown-up confirms in the parent dashboard, or a language model gives feedback. Until this is decided, write_text stays unmarked and does not count towards mastery.</li>
-    <li><b>Marking speech.</b> 20 skills ask the child to speak at length. Short speak tasks now use an unmarked fallback (record, compare with the model, self-check); the recording stays on the device. Decide whether recordings are kept, shown to parents, or scored by speech recognition, and what consent that needs.</li>
-    <li><b>Video and media making.</b> Two skills need video, and two ask the child to make a small media product. Decide whether these stay in the app or become offline tasks the parent ticks off.</li>
-    <li><b>Physical skills.</b> Pencil grip, cutting and building with real cubes (about 4 skills) cannot be checked on a screen; they can be offline tasks with a parent tick.</li>
+    <li><b>Marking free writing.</b> About 38 lesson sets stop short of the child writing their own text. Options: self-check against a checklist, a grown-up confirms in the parent dashboard, or a language model gives feedback. Until this is decided, free writing is not a task type and does not count towards mastery.</li>
+    <li><b>Marking speech.</b> 651 speak tasks use the unmarked fallback (record, compare with the model, self-check), and the recording stays on the device. Decide whether recordings are kept, shown to parents, or scored by speech recognition, and what consent that needs. Until then speak tasks stay out of skill checks.</li>
+    <li><b>Drawing with a ruler, protractor and compasses.</b> About 35 lesson sets need the child to draw. Decide how a drawing is marked (snap to grid points and compare, or tolerance in mm and degrees) and whether the tools are drawn on screen and moved by the child or the child draws straight lines between points.</li>
   </ul>
 
-  <h3>Suggested build order</h3>
-  <ol>
-    <li>What the drafted lessons already need: map audio_choice, sorting and speak; build highlight_in_text and drag_and_drop_count; draw the 20 components above. Without these, about a third of the drafted tasks (3,300 of 10,417) cannot be shown in the app.</li>
-    <li>text_input with a letter keyboard, show: passage and audio: passage. They unlock spelling, reading and listening, the largest remaining part of Deutsch and Englisch.</li>
-    <li>multi_select, pick_side, tap_in_picture and clock_hands_drag, with the coins, calendar, ruler, scale, shape and chart components. They unlock Größen, Daten and most of Geometrie.</li>
-    <li>drag_and_drop, shade_cells and draw_on_grid, with grid, fraction, solid, cube-building and chance. Rest of Geometrie, Brüche and Wahrscheinlichkeit.</li>
-    <li>record_audio, write_text, dialogue and self_rating, once the decisions above are made.</li>
-  </ol>
-  <p>Each new type gets a row in <code>docs/task-types.md</code>, with an example, before the first lesson uses it. The prototype player in <code>rnd/player</code> will get each one first, so the app team has a working reference.</p>
+  <h3>Still open in R&amp;D</h3>
+  <ul class="plain">
+    <li>en-GB narration: about half the clips are made; the rest are generated with <code>narration.py</code>.</li>
+    <li>People, not models, read the screens: a German Grundschule teacher, a native English and a native French speaker. Model reviews of every set are done.</li>
+    <li>Regional and textbook terms for a German teacher to weigh (Mäppchen or Federtasche, the carry phrase, entbündeln, Zehnerfreunde and others), and points from the native passes (listed in <code>views/tracking.md</code>).</li>
+  </ul>
 </section>
 
 <section id="dashboard">
@@ -539,6 +554,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td><b>Foreign language</b></td><td>Not asked</td><td>de-DE: English since Klasse 1 or 2 (Stufe 0), from Klasse 3 (1. Lernjahr), or not yet. en-GB: French year 1 to 4. Default from the year; see open decisions.</td></tr>
     <tr><td><b>Subjects</b></td><td>MainDashboard hard-codes german, maths, english; the learning goal lists math, english, german, science, reading, writing (stored in localStorage only)</td><td>From the curriculum: Mathe, Deutsch, Englisch, or Maths, English, French. Reading and writing sit inside Deutsch and English; there is no science.</td></tr>
     <tr><td><b>Date of birth</b></td><td>Any date in the form; backend accepts ages 5 to 17</td><td>From age 4 (Reception). Age picks the presentation, separately from the year.</td></tr>
+    <tr><td><b>Schreibschrift</b></td><td>Not asked</td><td>de-DE only: the school's Ausgangsschrift (SAS, LA, VA or Grundschrift), which differs by Land and school. Joined writing lines are drawn in it. A default is an open decision.</td></tr>
     <tr><td><b>Narration</b></td><td>On / off toggle</td><td>Lessons for ages 4 to 7 depend on audio, and <code>no_reading</code> lessons cannot be done without it. Hide or lock the toggle for those ages.</td></tr>
     <tr><td><b>Difficulty</b></td><td>EASY, ADAPTIVE, CHALLENGING</td><td>Placement checks and the level per progression decide where a child works. Keep, repurpose or drop; see open decisions.</td></tr>
     <tr><td><b>Session length</b></td><td>10 to 45 min (add child), 15 to 60 (settings)</td><td>Lessons run 8 to 15 min by age. The daily goal can stay; it now means about one to three lessons.</td></tr>
@@ -549,9 +565,9 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <div class="tbl"><table>
     <tr><th>View</th><th>Today</th><th>New</th></tr>
     <tr><td>Subject status</td><td>"On track" at 70 % module completion or more, "Gap identified" at 40 to 69 %, "Week behind" below</td><td>Standing: ahead, on track or catching up, from the share of the year's skills secure or mastered against how far the school year has run</td></tr>
-    <tr><td>Progress unit</td><td>Module completion and score %</td><td>Skills, each shown as its "I can …" / "Ich kann …" statement with one of six states, grouped by topic</td></tr>
+    <tr><td>Progress unit</td><td>Module completion and score %</td><td>Skills, each shown as its "I can …" / "Ich kann …" statement with one of six states, grouped by topic. Enrichment skills (3 in de-DE, 15 in en-GB) can carry an "extra" label, because no standard of the curriculum asks for them</td></tr>
     <tr><td>Milestones</td><td>Modules needed for the next subject level</td><td>Skills secure in the year; skills that need a recap</td></tr>
-    <tr><td>Curriculum link</td><td>None</td><td>Optional: per skill, the standards it satisfies, with code and quoted text</td></tr>
+    <tr><td>Curriculum link</td><td>None</td><td>Optional: per skill, the standards it satisfies, with code and quoted text; for an enrichment skill, its reason</td></tr>
     <tr><td>Placement</td><td>None</td><td>Result of a placement check: the level per learning progression</td></tr>
     <tr><td>XP, streaks, minutes, attendance</td><td>Shown</td><td>Unchanged</td></tr>
   </table></div>
@@ -562,10 +578,10 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <h2>Work: backend <span class="chip c-be">IST-B2C/backend</span></h2>
   <ol class="work">
     <li><b>Child profile</b><p>Add curriculum (<code>de-DE</code>, <code>en-GB</code>), year id and foreign-language learning year to <code>EntityStudent</code> and the create and update DTOs. Allow age 4 in <code>ValidStudentAge</code>. Replace or extend <code>AgeTier</code> with the bands 4 to 5, 6 to 7 and 8 to 10.</p></li>
-    <li><b>Curriculum tables</b><p>Curriculum, year, framework, standard, learning progression, skill (with can-do in de and en, hard and soft prerequisites, standard codes, topic label), and placement (curriculum, year, skill, position). Ids are strings from the records. Add FRENCH to <code>EnumSubjectCode</code>, or key subjects by domain.</p></li>
+    <li><b>Curriculum tables</b><p>Curriculum, year, framework, standard, learning progression, skill (with can-do in de and en, hard and soft prerequisites, standard codes, topic label), placement (curriculum, year, skill, position) and enrichment (curriculum, skill, reason, from the curriculum file's <code>enrichment:</code> map). Ids are strings from the records. Add FRENCH to <code>EnumSubjectCode</code>, or key subjects by domain.</p></li>
     <li><b>Lessons, activities, tasks</b><p>A lesson belongs to one skill and one curriculum. An activity has a kind (warm-up, learn, practise, check) and its setting; a practise task carries its stage (full, some, none); a check carries its size (quick, skill, timed). This can extend <code>EntityLearningModule</code> and <code>EntityLearningStep</code> or be new tables.</p></li>
-    <li><b>Import</b><p>Read the twist records (through a converter, see open decisions). Fail on an unknown task type instead of falling back to MULTIPLE_CHOICE (<code>ServiceContentImport.mapQuestionType</code>). Take question language from the record instead of the hard-coded <code>"en"</code>; foreign-language lessons have <code>language</code> and <code>target_language</code>. Store hints per question in order, feedback per option, <code>option_audio</code>, <code>flash</code> and drawn-component data.</p></li>
-    <li><b>Assets</b><p>Resolve bank ids to URLs: pictures and colour versions, sounds, narration clips per task line, option, hint and phrase, and per voice.</p></li>
+    <li><b>Import</b><p>Read the twist records (through a converter, see open decisions). Fail on an unknown task type instead of falling back to MULTIPLE_CHOICE (<code>ServiceContentImport.mapQuestionType</code>). Take question language from the record instead of the hard-coded <code>"en"</code>; foreign-language lessons have <code>language</code> and <code>target_language</code>. Store hints per question in order, feedback per option, <code>option_audio</code>, <code>flash</code>, <code>keyboard</code>, the clock <code>step</code>, <code>audio.speaker</code> and <code>audio.turns</code>, <code>show.crossed</code>, <code>metadata.dashes</code> and drawn-component data as it is (37 components, data fields in <code>assets/drawn.yaml</code>). Add <code>point_on_grid</code> to the task type enum. Mark a decimal answer by value and every other typed answer exactly.</p></li>
+    <li><b>Assets</b><p>Resolve bank ids to URLs: pictures and colour versions, mascot poses, sounds, narration clips per task line, option, hint, phrase and dialogue turn, and per voice (two per curriculum, picked by activity or by <code>speaker</code>). A clip is found by its spoken line, after the <code>spoken()</code> rule in <code>narration.py</code>.</p></li>
     <li><b>Answer events</b><p>Record per task: first try right or wrong, hints opened, answer shown, activity, stage, check size, time. Mastery is computed from these, using the "what counts" table.</p></li>
     <li><b>Skill mastery</b><p>A table per child and skill: state, when it became secure, recap schedule and results. Module stars can stay as a per-lesson reward but no longer stand for mastery.</p></li>
     <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with spacing at about 2 days, 1 week, 3 weeks and 2 months; failed recaps set needs_recap. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
@@ -579,12 +595,12 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <ol class="work">
     <li><b>Map the dropped types</b><p>Add <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> to <code>mapByType</code> in <code>components/quiz/utils/questionMapper.ts</code>. Change <code>Speak.tsx</code> from auto-correct after 1.8 s to the unmarked fallback: record, play back next to the model, self-check.</p></li>
     <li><b>Shuffle choice options</b><p>Shuffle the options of multiple_choice, image_multiple_choice and audio_choice each time the task is shown, unless <code>keep_order</code> is true. <code>components/quiz/utils/shuffle.ts</code> already has <code>seededShuffle</code>; seed it per lesson attempt, so the order changes when the lesson is played again and stays put while the child retries a task.</p></li>
-    <li><b>Build the missing types</b><p><code>highlight_in_text</code> and <code>drag_and_drop_count</code>, registered in <code>components/quiz/index.ts</code>, <code>useQuiz.ts</code> answer checking and <code>canSubmit.ts</code>.</p></li>
-    <li><b>Drawn components</b><p>One renderer for the 13 components above, usable as the task's <code>show</code>, as an option and as a matching or sorting side. Start with dots, ten-frame, colour-swatch and number-house, which cover most uses.</p></li>
+    <li><b>Build the missing types</b><p><code>highlight_in_text</code>, <code>clock_hands_drag</code>, <code>point_on_grid</code> and <code>drag_and_drop_count</code>, registered in <code>components/quiz/index.ts</code>, <code>useQuiz.ts</code> answer checking and <code>canSubmit.ts</code>.</p></li>
+    <li><b>Drawn components</b><p>One renderer for the 37 components above, usable as the task's <code>show</code>, as an option and as a matching or sorting side. By uses, start with dots, shape, grid, table, clock, written-calc and bar-chart, and finish letter-card and the number line. Coins follow the curriculum's currency unless <code>currency</code> says otherwise, at real relative sizes.</p></li>
     <li><b>Activity-aware player</b><p>Play Warm-up, Learn, Practise and Check in order. Show the stage marker between Practise stages and a Check intro ("5 questions, no hints, your first try counts"). Learn screens are not scored.</p></li>
     <li><b>Hints and misses</b><p>Hints open on a miss, limited by stage (3, 1, 0), with audio. In the none stage show the answer after two misses. In a Check allow one try and no hints.</p></li>
-    <li><b>Feedback and audio</b><p>Per-option feedback, a speaker on each option following the option-audio rules, the second voice in Checks, and phrases between tasks.</p></li>
-    <li><b>Smaller additions</b><p><code>show.flash</code> with "See it again"; tracing copy mode, writing lines and the numeral 10; tap_to_count with any bank picture; counted groups and dot patterns as options in image_multiple_choice and ordering; two pictures side by side in <code>show</code>.</p></li>
+    <li><b>Feedback and audio</b><p>Per-option feedback, a speaker on each option following the option-audio rules, the second voice in Checks, phrases between tasks, a character's line in the voice its <code>speaker</code> names, and dialogue turns played in order. Any text-to-speech the app does itself follows the <code>spoken()</code> rule.</p></li>
+    <li><b>Smaller additions</b><p>The four <code>text_input</code> keyboards; passages for texts with line breaks; mascot intro screens; <code>metadata.dashes</code>; crossed pictures; joined writing lines in the school's script; <code>show.flash</code> with "See it again"; tracing copy mode, writing lines and the numeral 10; tap_to_count with any bank picture; counted groups and dot patterns as options in image_multiple_choice and ordering; two pictures side by side in <code>show</code>.</p></li>
     <li><b>Child profile and next</b><p>Store curriculum, year and age band; take the content language from the curriculum instead of the device locale. Suggest the next skill and, for skills with more than two lessons, the next lesson on a later day. Add practice sessions, topic recaps and the placement check.</p></li>
   </ol>
 </section>
@@ -595,8 +611,9 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Curriculum and year</b><p>Add the curriculum choice to <code>ChildInfoForm.tsx</code> and <code>StudentDefaultSettings.tsx</code>. Load years per curriculum from the backend and send the year id. Retire the grade fallbacks (<code>DEFAULT_GRADE_PILLS</code>, <code>GRADE_OPTIONS</code>) and the label parsing in <code>utils/studentMapper.ts</code> and <code>utils/storage.ts</code>.</p></li>
     <li><b>Foreign language</b><p>A learning-year option, defaulted from the year.</p></li>
     <li><b>Subjects</b><p>Subjects from the curriculum in <code>MainDashboard.tsx</code> and the learning goal, instead of the hard-coded lists.</p></li>
-    <li><b>Skills view</b><p>Per subject and topic, each skill's statement and state, using the existing unused <code>DomainProgress</code> and <code>TopicProgress</code> types as a starting point. Optionally the standards per skill.</p></li>
+    <li><b>Skills view</b><p>Per subject and topic, each skill's statement and state, using the existing unused <code>DomainProgress</code> and <code>TopicProgress</code> types as a starting point. Optionally the standards per skill, and an "extra" label on enrichment skills.</p></li>
     <li><b>Standing</b><p>Replace track, gap and behind in <code>KidsPerformancePage.tsx</code> with ahead, on track and catching up from the backend.</p></li>
+    <li><b>Schreibschrift</b><p>For de-DE, a choice of the school's Ausgangsschrift (SAS, LA, VA, Grundschrift), sent to the app.</p></li>
     <li><b>Age and narration</b><p>Allow a date of birth from age 4; hide or lock the narration toggle for ages 4 to 7.</p></li>
   </ol>
 </section>
@@ -610,13 +627,14 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td>School-year start per curriculum for standing</td><td><span class="chip c-be">backend</span> product</td><td>England starts in September; German Länder start between late July and mid September</td></tr>
     <tr><td>Keep, repurpose or drop the difficulty preference</td><td>product</td><td>Placement and level take over its job</td></tr>
     <tr><td>Today's Twist modules: keep, adapt or archive</td><td>R&amp;D product</td><td>Lessons can reference a reused module in <code>twist_reuse</code>; 19 DaZ-style German lessons and first-language English in the German app fit no skill</td></tr>
-    <tr><td>Handwriting scripts in Germany</td><td>R&amp;D</td><td>All four as options, or the one the reference Länder share</td></tr>
-    <tr><td>British or American English for Englisch in Germany</td><td>R&amp;D</td><td>Drafts use British English</td></tr>
+    <tr><td>Default Schreibschrift when the parent does not know it</td><td><span class="chip c-pd">dashboard</span> product</td><td>All four Ausgangsschriften are supported as a setting; a default by Land would need the Land</td></tr>
+    <tr><td>Whether enrichment skills count towards standing</td><td><span class="chip c-be">backend</span> product</td><td>18 skills no standard asks for; counting them makes "on track" harder to reach</td></tr>
+    <tr><td>British or American English for Englisch in Germany</td><td>R&amp;D</td><td>The lessons use British English and had a native British read by model</td></tr>
     <tr><td>Who owns the mastery thresholds config</td><td><span class="chip c-be">backend</span> <span class="chip c-app">app</span></td><td>Thresholds are per age and tuned from data</td></tr>
   </table></div>
 </section>
 
-<p class="foot">Built from <code>rnd/twist</code> on branch <code>curriculum-phase1</code> (commit 4f0100f8) and a read of the three repos on 13 October 2026. File and line references for the current code come from that read; check them against your branch before acting.</p>
+<p class="foot">Built from <code>rnd/twist</code> on branch <code>main</code> (commit 2e4fa07c) on 14 October 2026, and a read of the three repos on 13 October 2026. "App today", file and line references for the current code come from that read; check them against your branch before acting.</p>
 </main>
 </div>
 </body>

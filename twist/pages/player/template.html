@@ -6,7 +6,7 @@
 <title>Twist Lesson Player</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Playwrite+DE+Grund&family=Playwrite+DE+LA&family=Playwrite+DE+SAS&family=Playwrite+DE+VA&family=Red+Hat+Display:wght@700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Playwrite+DE+Grund&family=Playwrite+GB+J&family=Playwrite+DE+LA&family=Playwrite+DE+SAS&family=Playwrite+DE+VA&family=Red+Hat+Display:wght@700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --page:#efe9f5; --panel:#ffffff; --ink:#2b0f45; --muted:#6d5f7b; --line:#e3dbea;
@@ -629,12 +629,14 @@ function numberLine(o, pick) {
 }
 // The school's Ausgangsschrift for joined writing; schools choose it by Land, so it is a setting.
 const SCRIPTS = { sas: "Playwrite DE SAS", la: "Playwrite DE LA", va: "Playwrite DE VA", grund: "Playwrite DE Grund" };
+// England has no national script; Playwrite GB J follows the joined style English schools teach.
+const scriptFont = () => (set?.curriculum ?? "").startsWith("en") ? "Playwrite GB J" : SCRIPTS[SCRIPT];
 let SCRIPT = (() => { try { return localStorage.getItem("twist-script") || "sas"; } catch { return "sas"; } })();
 function writing(text, mode, joined) {
   if (joined) {
     const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="${Math.max(290, 20 + text.length * 34)}" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
     const w = Math.max(300, 60 + text.length * 34), fill = mode === "trace" ? 'fill="#efe0fb" stroke="#a58bc4" stroke-width="1.5" stroke-dasharray="5 4"' : 'fill="#2b0f45"';
-    return `<svg viewBox="0 0 ${w} 200" style="max-width:100%"><g>${lines}</g><text x="${w / 2}" y="130" text-anchor="middle" style="font-family:'${SCRIPTS[SCRIPT]}', cursive" font-size="${text.length > 6 ? 40 : 56}" ${fill}>${esc(text)}</text></svg>`;
+    return `<svg viewBox="0 0 ${w} 200" style="max-width:100%"><g>${lines}</g><text x="${w / 2}" y="130" text-anchor="middle" style="font-family:'${scriptFont()}', cursive" font-size="${text.length > 6 ? 40 : 56}" ${fill}>${esc(text)}</text></svg>`;
   }
   const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="290" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
   const glyph = mode === "trace"
@@ -1473,7 +1475,7 @@ function renderNow() {
 $("#built").textContent = D.built;
 $("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
 // Load the chosen Schreibschrift before drawing with it, then redraw.
-const loadScript = () => document.fonts?.load(`64px "${SCRIPTS[SCRIPT]}"`).then(() => { if (typeof at === "number" && steps?.length) go(at); }).catch(() => {});
+const loadScript = () => Promise.all([document.fonts?.load(`64px "${SCRIPTS[SCRIPT]}"`), document.fonts?.load(`64px "Playwrite GB J"`)]).then(() => { if (typeof at === "number" && steps?.length) go(at); }).catch(() => {});
 loadScript();
 $("#script").value = SCRIPT;
 $("#script").onchange = (e) => { SCRIPT = e.target.value; try { localStorage.setItem("twist-script", SCRIPT); } catch {} go(at); loadScript(); };
