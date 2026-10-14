@@ -4,194 +4,299 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Type Mocks</title>
-<!-- Rough screens for task types the player does not have yet. types/shots.cjs
-     adds the player's own stylesheet, so the mocks match the player's look. -->
+<!-- Rough screens for task types the player does not have yet, in the app's look.
+     types/shots.cjs adds the player's own stylesheet (twist/pages/player/template.html),
+     so .phone, .hdr, .pbar, .prompt, .opt, .btn and the rest match the player exactly.
+     The script at the end only fills in the header icons, the speaker icon and coins. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Red+Hat+Display:wght@700;800&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 body{display:flex;flex-wrap:wrap;gap:30px;padding:30px}
-.m-clock{width:240px;height:240px;margin:0 auto;display:block}
-.purse{border:3px dashed var(--accent);border-radius:24px;min-height:150px;background:var(--accent-soft);display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:12px}
-.coin{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font:700 17px Andika,sans-serif;border:3px solid #8a6d1d;background:radial-gradient(circle at 35% 35%,#ffe9a0,#d9b23a);color:#4a3608;box-shadow:0 3px 0 #8a6d1d}
-.coin.two{background:radial-gradient(circle at 35% 35%,#fff7d1,#d9b23a 55%,#b9bcc2 56%);}
-.coin.ct{width:50px;height:50px;font-size:14px;background:radial-gradient(circle at 35% 35%,#ffe3b5,#c98a3b);border-color:#7a4a12;color:#3d2405;box-shadow:0 3px 0 #7a4a12}
-.note5{width:104px;height:56px;border-radius:8px;border:3px solid #6d6d6d;background:linear-gradient(135deg,#d7d7d7,#a7a7a7);display:grid;place-items:center;font:700 20px Andika,sans-serif;color:#2b2b2b;box-shadow:0 3px 0 #6d6d6d}
-.bank{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:auto}
-.grid3{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.grid3 .opt{min-height:64px;font-size:26px}
-.sides{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.sides .opt{min-height:150px;font-size:40px}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;font:700 17px Andika,sans-serif}
-.cal b{font-size:13px;color:var(--muted)}
-.cal span{background:#fff;border:2px solid var(--line);border-radius:10px;padding:8px 0}
-.cal span.we{background:#f4eefa}
-.cal span.tap{border:3px solid var(--accent);background:var(--accent-soft)}
-.calhead{text-align:center;font:700 20px Andika,sans-serif}
-.cells{display:grid;grid-template-columns:repeat(4,64px);grid-template-rows:repeat(2,64px);gap:0;margin:0 auto;border:3px solid var(--plum)}
-.cells i{border:2px solid var(--plum);background:#fff}.cells i.on{background:#F57C00}
-.paper{width:300px;height:300px;margin:0 auto;display:block}
-.chart{width:310px;height:260px;margin:0 auto;display:block}
-.mic{width:120px;height:120px;border-radius:50%;margin:0 auto;border:4px solid var(--plum);background:var(--bad);display:grid;place-items:center;font-size:52px;color:#fff;box-shadow:0 5px 0 var(--plum)}
-.readcard{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px;font:500 19px/1.5 Andika,sans-serif}
-.textbox{background:#fff;border:3px solid var(--plum);border-radius:16px;padding:12px 14px;min-height:120px;font:500 20px/1.45 Andika,sans-serif}
-.textbox .cur{display:inline-block;width:2px;height:22px;background:var(--accent);vertical-align:middle;animation:pulse 1s infinite}
-.kb{display:flex;flex-direction:column;gap:6px;margin-top:auto}
-.kb div{display:flex;gap:4px;justify-content:center}
-.kb span{flex:1;max-width:32px;height:44px;border-radius:8px;background:#fff;border:2px solid var(--plum);display:grid;place-items:center;font:700 18px Andika,sans-serif;box-shadow:0 2px 0 var(--plum)}
-.kb span.w{max-width:64px;font-size:14px}.kb span.uml{background:var(--accent-soft)}
-.chat{display:flex;flex-direction:column;gap:10px}
-.say{display:flex;gap:10px;align-items:flex-end}
-.say img{width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--line);object-fit:contain}
-.say p{margin:0;padding:10px 14px;border-radius:18px 18px 18px 4px;background:#fff;border:2px solid var(--line);font:700 19px Andika,sans-serif}
-.say.me{flex-direction:row-reverse}.say.me p{border-radius:18px 18px 4px 18px;background:var(--accent-soft);border-color:var(--accent)}
-.faces{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:auto}
-.faces .opt{font-size:54px;min-height:110px;display:flex;flex-direction:column;gap:4px}
-.faces .opt small{font-size:15px}
-.picbig{width:160px;height:160px;object-fit:contain;margin:0 auto;display:block}
-.sel3{background:var(--accent-soft)!important;border-color:var(--accent)!important}
-.tag{display:inline-block;font:700 12px system-ui;background:#fff3cc;border:1px solid #f6b400;border-radius:999px;padding:2px 8px;margin:0 18px;align-self:flex-start;color:#6b4e00}
+.m-lbl{font:700 13px "Red Hat Display",sans-serif;color:#8a8a8a;text-transform:uppercase;letter-spacing:1.2px}
+.m-pill{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font:600 14px "Red Hat Text",sans-serif}
+.m-pill.cyan{background:#E4F6FF;color:#0b7fb8}
+.m-pill.gold{background:#fff3d7;color:#c28903}
+.m-pill.purple{background:#efebff;color:#6849dd}
+.m-tick{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;background:#6849dd;display:grid;place-items:center}
+.m-tick svg{width:16px;height:16px}
+.m-cap{font:700 18px "Red Hat Display",sans-serif;color:#525252}
+.m-row{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.foot .m-row .btn{width:100%}
+
+/* drag_and_drop: a purse to drop money into, a tray of coins and notes */
+.m-purse{position:relative;flex:1;min-height:0;border:2px dashed #947dec;border-radius:20px;background:#FAF9FF;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.m-purse .lid{display:flex;align-items:center;gap:10px}
+.m-purse .lid img{width:52px;height:52px;object-fit:contain}
+.m-purse .in{flex:1;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:10px}
+.m-tray{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.m-tray .opt{min-height:88px;border-radius:12px;padding:4px}
+.m-tray .opt.ghost{opacity:.35}
+.m-drag{position:absolute;right:18px;bottom:-26px;filter:drop-shadow(0 8px 10px rgba(56,43,103,.35));transform:rotate(-8deg)}
+
+/* multi_select: picture tiles, two of the right ones picked */
+.m-tiles{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;padding-top:6px}
+.m-tiles .opt{min-height:0;padding:10px}
+.m-tiles .opt img{width:100%;height:100%;object-fit:contain}
+.m-tiles .opt.sel img{opacity:.92}
+
+/* pick_side: two big cards and the app's swipe slider */
+.m-sides{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.m-sides .opt{display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:0;padding:14px}
+.m-sides .opt img{width:100%;max-width:140px;height:auto;aspect-ratio:1;object-fit:contain}
+.m-sides .opt.sel .m-cap{color:#6849dd}
+.m-slider{position:relative;width:240px;height:52px;margin:4px auto 0}
+.m-slider .track{position:absolute;left:0;right:0;top:7px;height:38px;border-radius:19px;background:#CBC1D2}
+.m-slider .fill{position:absolute;left:0;top:7px;height:38px;width:240px;border-radius:19px;background:linear-gradient(to right,#7B64D2,#A894F6)}
+.m-slider .thumb{position:absolute;left:0;top:0;width:119px;height:52px;border-radius:26px;background:#fff;box-shadow:0 3px 8px rgba(56,43,103,.25);display:flex;align-items:center;justify-content:center;gap:24px}
+.m-slider .thumb svg{width:22px;height:22px}
+.m-equal{align-self:center;border:2px solid #dfdfdf;border-bottom-width:4px;border-radius:12px;background:#fff;padding:10px 26px;font:700 16px "Red Hat Display",sans-serif;color:#525252}
+
+/* tap_in_picture: a month calendar */
+.m-cal{flex:1;min-height:0;border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px;background:#fff;padding:14px 12px 12px;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:auto auto repeat(5,1fr);gap:6px}
+.m-cal h3{grid-column:1/-1;margin:0 0 4px;text-align:center;font:800 20px "Red Hat Display",sans-serif;color:#303030}
+.m-cal b{font:600 13px "Red Hat Text",sans-serif;color:#8a8a8a;text-align:center}
+.m-cal span{position:relative;display:grid;place-items:center;border:2px solid #dfdfdf;border-bottom-width:4px;border-radius:12px;font:700 18px "Red Hat Display",sans-serif;color:#525252;background:#fff}
+.m-cal span.we{background:#f7f5fc}
+.m-cal span.today{border-color:#13a4e9;background:#E4F6FF;color:#0b7fb8}
+.m-cal span.pick{border-color:#947dec;background:#efebff;color:#6849dd}
+.m-legend{display:flex;gap:16px;justify-content:center;font:500 14px "Red Hat Text",sans-serif;color:#525252}
+.m-legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;vertical-align:-2px}
+
+/* shade_cells: one whole in 16 parts */
+.m-cells{width:100%;max-width:312px;aspect-ratio:1;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:#303030;border:3px solid #303030;border-radius:14px;overflow:hidden}
+.m-cells i{background:#fff}.m-cells i.on{background:#947dec}
+
+/* draw_on_grid and build_chart: drawings that fill the width */
+.m-paper{width:100%;height:auto;display:block;margin:auto;border-radius:12px;border:2px solid #dfdfdf}
+.m-chart{width:100%;flex:1;min-height:0;display:block}
+
+/* record_audio */
+.m-read{border:2px solid #dfdfdf;border-radius:20px;background:#fff;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.m-read .th{display:flex;align-items:center;gap:10px;font:800 20px "Red Hat Display",sans-serif;color:#303030}
+.m-read .th img{width:44px;height:44px;object-fit:contain;margin-left:auto}
+.m-read p{margin:0;font:500 19px/1.5 "Red Hat Text",sans-serif;color:#303030}
+.m-read p mark{background:#fff3d7;color:inherit;border-radius:4px;padding:0 2px}
+.m-wave{display:flex;align-items:center;justify-content:center;gap:4px;height:46px;margin-top:auto}
+.m-wave i{width:5px;border-radius:3px;background:#947dec}
+.m-rec{display:flex;flex-direction:column;align-items:center;gap:8px}
+.m-rec .t{display:flex;align-items:center;gap:8px;font:700 18px "Red Hat Display",sans-serif;color:#303030}
+.m-rec .t i{width:12px;height:12px;border-radius:50%;background:#d4483f}
+.m-mic{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#8A4BF8,#6242DD);box-shadow:0 0 0 9px #B5A2FF;display:grid;place-items:center;margin:8px 0 4px}
+.m-mic i{width:24px;height:24px;border-radius:6px;background:#fff}
+
+/* write_text */
+.m-text{flex:1;border:2px solid #947dec;border-radius:12px;background:#fefcff;padding:12px 14px;min-height:118px;font:500 19px/1.5 "Red Hat Text",sans-serif;color:#303030}
+.m-text .cur{display:inline-block;width:2px;height:22px;background:#6849dd;vertical-align:-4px}
+.m-words{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.m-words .opt{min-height:40px;padding:4px 12px;font:700 16px "Red Hat Display",sans-serif;border-bottom-width:4px;border-radius:12px}
+.pad.m-kb{margin-top:auto;grid-template-columns:repeat(11,1fr)}
+.pad.m-kb .opt{min-height:44px!important}
+
+/* passage */
+.m-pass{position:relative;max-height:228px;overflow:hidden;border:2px solid #dfdfdf;border-radius:20px;background:#fff;padding:14px 16px 0;flex:none}
+.m-pass::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(transparent,#fff)}
+.m-pass .th{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.m-pass .th b{font:800 20px "Red Hat Display",sans-serif;color:#303030}
+.m-pass .th img{width:46px;height:46px;object-fit:contain;margin-left:auto}
+.m-pass .th .spk{border:0;background:none;width:30px;height:30px}
+.m-pass p{margin:0 0 8px;font:500 17px/1.55 "Red Hat Text",sans-serif;color:#303030}
+.m-bar{position:absolute;right:5px;top:14px;width:4px;height:70px;border-radius:2px;background:#d3d3d3;z-index:1}
+.m-q .opt{min-height:62px!important}
+
+/* dialogue */
+.m-chat{display:flex;flex-direction:column;gap:10px}
+.m-say{display:flex;gap:10px;align-items:flex-end}
+.m-say img{width:46px;height:46px;flex:none;border-radius:50%;background:#FAF9FF;border:2px solid #dfdfdf;object-fit:contain;padding:2px}
+.m-say p{margin:0;display:flex;gap:8px;align-items:center;padding:10px 14px;border-radius:16px 16px 16px 4px;background:#FAF9FF;border:1px solid #dfdfdf;font:500 17px/1.35 "Red Hat Text",sans-serif;color:#303030}
+.m-say p .spk{border:0;background:none;width:26px;height:26px;flex:none}.m-say p .spk svg{width:22px;height:22px}
+.m-say.me{flex-direction:row-reverse}
+.m-say.me p{border-radius:16px 16px 4px 16px;background:#efebff;border-color:#947dec;color:#524682}
+.m-say.wait p{background:#fff;border:2px dashed #c9c9c9;color:#8a8a8a;font-weight:500}
+
+/* self_rating */
+.m-can{border:2px solid #dfdfdf;border-radius:20px;background:#fff3d7;padding:14px 16px;display:flex;gap:12px;align-items:center}
+.m-can b{font:800 20px/1.3 "Red Hat Display",sans-serif;color:#7a5600}
+.m-can small{display:block;font:600 15px "Red Hat Text",sans-serif;color:#c28903;margin-top:2px}
+.m-rate{flex:1;min-height:0;display:grid;grid-template-rows:repeat(3,1fr);gap:10px}
+.m-rate .opt{display:flex;align-items:center;gap:16px;justify-content:flex-start;padding:10px 18px;min-height:0;border-radius:20px}
+.m-rate .opt svg{width:64px;height:64px;flex:none}
+.m-rate .opt span{font:700 22px "Red Hat Display",sans-serif}
 </style>
 </head>
 <body>
 
-<!-- clock_hands_drag -->
-<div class="phone" id="clock_hands_drag"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Stell die Uhr auf halb vier.</div><button class="spk"></button></div></div>
-<svg class="m-clock" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" fill="#fff" stroke="#2b0f45" stroke-width="6"/>
-<g font-family="Andika" font-weight="700" font-size="18" text-anchor="middle" fill="#2b0f45"><text x="100" y="40">12</text><text x="132" y="49">1</text><text x="154" y="72">2</text><text x="163" y="106">3</text><text x="154" y="139">4</text><text x="132" y="162">5</text><text x="100" y="171">6</text><text x="68" y="162">7</text><text x="46" y="139">8</text><text x="37" y="106">9</text><text x="46" y="72">10</text><text x="68" y="49">11</text></g>
-<line x1="100" y1="100" x2="131" y2="118" stroke="#2b0f45" stroke-width="9" stroke-linecap="round"/><line x1="100" y1="100" x2="100" y2="160" stroke="#8e3bd1" stroke-width="6" stroke-linecap="round"/>
-<circle cx="131" cy="118" r="11" fill="#2b0f45" opacity=".25"/><circle cx="100" cy="160" r="12" fill="#8e3bd1" opacity=".3"/><circle cx="100" cy="100" r="6" fill="#2b0f45"/></svg>
-<div class="note">Zieh die Zeiger an den Punkten. Der große Zeiger rastet in Minutenschritten ein.</div></div>
+<!-- drag_and_drop: Geld legen, Klasse 2. Three coins are in the purse, the 20 ct is on its way in. -->
+<div class="phone" id="drag_and_drop"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:38%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Leg genau 3,70 € in die Geldbörse.</div><button class="spk"></button></div></div>
+<div class="m-purse"><div class="lid"><img src="../../assets/objects/purse.png" alt=""><span class="m-lbl">Geldbörse</span></div>
+<div class="in"><i data-coin="200" data-s="1.45"></i><i data-coin="100" data-s="1.45"></i><i data-coin="50" data-s="1.45"></i></div>
+<div class="m-drag"><i data-coin="20" data-s="1.9"></i></div></div>
+<div class="m-tray"><button class="opt"><i data-coin="500" data-s="0.9"></i></button><button class="opt"><i data-coin="200" data-s="1.4"></i></button><button class="opt"><i data-coin="100" data-s="1.4"></i></button>
+<button class="opt"><i data-coin="50" data-s="1.4"></i></button><button class="opt ghost"><i data-coin="20" data-s="1.4"></i></button><button class="opt"><i data-coin="10" data-s="1.4"></i></button></div></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- drag_and_drop -->
-<div class="phone" id="drag_and_drop"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Leg 3,70 € in die Geldbörse.</div><button class="spk"></button></div></div>
-<div class="purse"><div class="coin two">2 €</div><div class="coin">1 €</div><div class="coin ct">50 ct</div></div>
-<div class="note">Zieh Münzen und Scheine in die Geldbörse. Zieh sie wieder heraus, um sie wegzunehmen.</div>
-<div class="bank"><div class="note5">5 €</div><div class="coin two">2 €</div><div class="coin">1 €</div><div class="coin ct">50 ct</div><div class="coin ct">20 ct</div><div class="coin ct">10 ct</div></div></div>
+<!-- multi_select: Anlaute, Klasse 1. Fisch and Fuchs picked, Frosch still to find. -->
+<div class="phone" id="multi_select"><div class="screen" style="--subj:#C44D00"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:45%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Tippe alle Bilder an, die mit F anfangen.</div><button class="spk"></button></div></div>
+<span class="m-pill cyan">Es sind mehrere richtig.</span>
+<div class="m-tiles">
+<button class="opt sel"><img src="../../assets/objects/fish.png" alt="Fisch"><span class="m-tick" data-tick></span><span class="os spk"></span></button>
+<button class="opt"><img src="../../assets/objects/dog.png" alt="Hund"><span class="os spk"></span></button>
+<button class="opt"><img src="../../assets/objects/apple.png" alt="Apfel"><span class="os spk"></span></button>
+<button class="opt"><img src="../../assets/objects/frog.png" alt="Frosch"><span class="os spk"></span></button>
+<button class="opt sel"><img src="../../assets/objects/fox.png" alt="Fuchs"><span class="m-tick" data-tick></span><span class="os spk"></span></button>
+<button class="opt"><img src="../../assets/objects/mouse.png" alt="Maus"><span class="os spk"></span></button></div></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- multi_select -->
-<div class="phone" id="multi_select"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Tippe alle Zahlen an, die durch 4 teilbar sind.</div><button class="spk"></button></div></div>
-<div class="note">Es können mehrere richtig sein.</div>
-<div class="grid3" style="margin-top:auto"><button class="opt">14</button><button class="opt sel3">16</button><button class="opt">18</button><button class="opt">22</button><button class="opt sel3">24</button><button class="opt">26</button><button class="opt">30</button><button class="opt">32</button></div></div>
+<!-- pick_side: Rauminhalte, Klasse 2. The slider is pushed to the bucket. -->
+<div class="phone" id="pick_side"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="weniger Hilfe"></div><div class="pbar"><i style="width:60%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wo passt mehr Wasser hinein?</div><button class="spk"></button></div></div>
+<div class="m-sides"><button class="opt sel"><img src="../../assets/objects/bucket.png" alt=""><span class="m-cap">der Eimer</span></button><button class="opt"><img src="../../assets/objects/cup.png" alt=""><span class="m-cap">die Tasse</span></button></div>
+<div class="m-slider"><div class="track"></div><div class="fill"></div><div class="thumb"><svg viewBox="0 0 24 24" fill="none" stroke="#6849dd" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="#6849dd" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".6"><path d="M9 5l7 7-7 7"/></svg></div></div>
+<div class="note">Schieb den Regler zu deiner Antwort.</div>
+<button class="m-equal">Gleich viel</button></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- pick_side -->
-<div class="phone" id="pick_side"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Welche Zahl ist größer?</div><button class="spk"></button></div></div>
-<div class="sides" style="margin-top:auto"><button class="opt">478</button><button class="opt">487</button></div>
-<button class="opt" style="min-height:56px;font-size:22px">gleich groß</button></div>
-<div class="foot"></div></div></div>
-
-<!-- tap_in_picture -->
-<div class="phone" id="tap_in_picture"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Heute ist der 14. Oktober. Tippe auf übermorgen.</div><button class="spk"></button></div></div>
-<div class="calhead">Oktober</div>
-<div class="cal"><b>Mo</b><b>Di</b><b>Mi</b><b>Do</b><b>Fr</b><b>Sa</b><b>So</b>
-<i></i><i></i><span>1</span><span>2</span><span>3</span><span class="we">4</span><span class="we">5</span>
-<span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span class="we">11</span><span class="we">12</span>
-<span>13</span><span style="outline:2px dashed var(--muted)">14</span><span>15</span><span class="tap">16</span><span>17</span><span class="we">18</span><span class="we">19</span>
-<span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span class="we">25</span><span class="we">26</span>
-<span>27</span><span>28</span><span>29</span><span>30</span><span>31</span></div></div>
+<!-- tap_in_picture: Kalender, Klasse 2. October 2026: the 1st is a Thursday, today is Wednesday the 14th. -->
+<div class="phone" id="tap_in_picture"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:30%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Heute ist Mittwoch, der 14. Oktober. Tippe auf übermorgen.</div><button class="spk"></button></div></div>
+<div class="m-cal"><h3>Oktober 2026</h3><b>Mo</b><b>Di</b><b>Mi</b><b>Do</b><b>Fr</b><b>Sa</b><b>So</b>
+<i></i><i></i><i></i><span>1</span><span>2</span><span class="we">3</span><span class="we">4</span>
+<span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span class="we">10</span><span class="we">11</span>
+<span>12</span><span>13</span><span class="today">14</span><span>15</span><span class="pick">16</span><span class="we">17</span><span class="we">18</span>
+<span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span class="we">24</span><span class="we">25</span>
+<span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span class="we">31</span><i></i></div>
+<div class="m-legend"><span><i style="background:#E4F6FF;border:2px solid #13a4e9"></i>heute</span><span><i style="background:#efebff;border:2px solid #947dec"></i>dein Tipp</span></div></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- shade_cells -->
-<div class="phone" id="shade_cells"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Male ein Viertel an.</div><button class="spk"></button></div></div>
-<div class="cells" style="margin-top:30px"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div>
+<!-- shade_cells: Brüche, Klasse 3. Two of the four cells are shaded. -->
+<div class="phone" id="shade_cells"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:42%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Male ein Viertel des Quadrats an.</div><button class="spk"></button></div></div>
+<div class="m-cells"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<span class="m-pill purple" style="align-self:center">2 von 16 Feldern angemalt</span>
 <div class="note">Tippe auf ein Feld, um es anzumalen. Nochmal tippen macht es wieder weiß.</div></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- draw_on_grid -->
-<div class="phone" id="draw_on_grid"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Zeichne das Spiegelbild.</div><button class="spk"></button></div></div>
-<svg class="paper" viewBox="0 0 300 300"><defs><pattern id="sq" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#b9cbe6" stroke-width="1"/></pattern></defs>
-<rect width="300" height="300" fill="#fff"/><rect width="300" height="300" fill="url(#sq)"/>
-<line x1="150" y1="0" x2="150" y2="300" stroke="#d4483f" stroke-width="3" stroke-dasharray="8 6"/>
-<polyline points="150,50 75,100 75,200 125,250 150,250" fill="none" stroke="#2b0f45" stroke-width="5" stroke-linejoin="round"/>
-<polyline points="150,50 225,100 225,175" fill="none" stroke="#8e3bd1" stroke-width="5" stroke-linecap="round"/>
-<g fill="#2b0f45" opacity=".35"><circle cx="225" cy="175" r="7"/></g></svg>
-<div class="note">Zieh von Gitterpunkt zu Gitterpunkt. Linien rasten an den Punkten ein.</div></div>
-<div class="foot"><button class="btn">Prüfen</button><button class="btn light">Löschen</button></div></div></div>
+<!-- draw_on_grid: Achsensymmetrie, Klasse 3. Half a fir tree is given; the child has drawn three lines of the mirror half and drags the fourth. -->
+<div class="phone" id="draw_on_grid"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:50%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Zeichne die andere Hälfte des Tannenbaums.</div><button class="spk"></button></div></div>
+<svg class="m-paper" viewBox="0 0 324 324"><defs><pattern id="sq" width="27" height="27" patternUnits="userSpaceOnUse"><path d="M27 0H0V27" fill="none" stroke="#cfdcf0" stroke-width="1.2"/></pattern></defs>
+<rect width="324" height="324" fill="#fff"/><rect width="324" height="324" fill="url(#sq)"/>
+<line x1="162" y1="0" x2="162" y2="324" stroke="#d4483f" stroke-width="3" stroke-dasharray="9 6"/>
+<polyline points="162,27 81,108 108,108 54,189 108,189 27,270 135,270 135,297 162,297" fill="none" stroke="#303030" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="162,27 243,108 216,108 270,189" fill="none" stroke="#6849dd" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="270" y1="189" x2="224" y2="191" stroke="#6849dd" stroke-width="4" stroke-dasharray="6 6" stroke-linecap="round"/>
+<g fill="#6849dd"><circle cx="162" cy="27" r="5"/><circle cx="243" cy="108" r="5"/><circle cx="216" cy="108" r="5"/><circle cx="270" cy="189" r="7"/></g>
+<circle cx="224" cy="191" r="16" fill="#6849dd" opacity=".22"/><circle cx="224" cy="191" r="7" fill="#fff" stroke="#6849dd" stroke-width="3"/></svg>
+<div class="note">Zieh von Gitterpunkt zu Gitterpunkt. Die Linien rasten an den Punkten ein.</div></div>
+<div class="foot"><div class="m-row"><button class="btn light">Löschen</button><button class="btn">Prüfen</button></div></div></div></div>
 
-<!-- build_chart -->
-<div class="phone" id="build_chart"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Hund 6, Katze 4, Hase 3. Zeichne das Säulendiagramm fertig.</div><button class="spk"></button></div></div>
-<svg class="chart" viewBox="0 0 310 260"><g stroke="#e3dbea">
-<line x1="40" y1="20" x2="300" y2="20"/><line x1="40" y1="50" x2="300" y2="50"/><line x1="40" y1="80" x2="300" y2="80"/><line x1="40" y1="110" x2="300" y2="110"/><line x1="40" y1="140" x2="300" y2="140"/><line x1="40" y1="170" x2="300" y2="170"/><line x1="40" y1="200" x2="300" y2="200"/></g>
-<g font-family="Andika" font-size="14" fill="#6d5f7b" text-anchor="end"><text x="32" y="235">0</text><text x="32" y="175">2</text><text x="32" y="115">4</text><text x="32" y="55">6</text></g>
-<line x1="40" y1="230" x2="300" y2="230" stroke="#2b0f45" stroke-width="3"/><line x1="40" y1="10" x2="40" y2="230" stroke="#2b0f45" stroke-width="3"/>
-<rect x="60" y="50" width="56" height="180" fill="#1E88E5" rx="4"/><rect x="146" y="110" width="56" height="120" fill="#F57C00" rx="4"/>
-<rect x="232" y="200" width="56" height="30" fill="#2e9e48" rx="4" opacity=".55"/><rect x="236" y="190" width="48" height="12" rx="6" fill="#2b0f45"/>
-<g font-family="Andika" font-weight="700" font-size="15" fill="#2b0f45" text-anchor="middle"><text x="88" y="250">Hund</text><text x="174" y="250">Katze</text><text x="260" y="250">Hase</text></g></svg>
-<div class="note">Zieh die Säule am Griff nach oben oder unten.</div></div>
+<!-- build_chart: Diagramme, Klasse 2. Hund and Katze are set; the Hase bar is being dragged up. -->
+<div class="phone" id="build_chart"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:55%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">6 Kinder mögen Hunde, 4 Katzen und 3 Hasen. Zieh die Säulen hoch.</div><button class="spk"></button></div></div>
+<svg class="m-chart" viewBox="0 0 326 410" preserveAspectRatio="xMidYMid meet">
+<g stroke="#ececec" stroke-width="1.5"><line x1="36" y1="34" x2="320" y2="34"/><line x1="36" y1="74" x2="320" y2="74"/><line x1="36" y1="114" x2="320" y2="114"/><line x1="36" y1="154" x2="320" y2="154"/><line x1="36" y1="194" x2="320" y2="194"/><line x1="36" y1="234" x2="320" y2="234"/><line x1="36" y1="274" x2="320" y2="274"/><line x1="36" y1="314" x2="320" y2="314"/></g>
+<g font-family="Red Hat Text" font-weight="600" font-size="15" fill="#8a8a8a" text-anchor="end"><text x="26" y="359">0</text><text x="26" y="319">1</text><text x="26" y="279">2</text><text x="26" y="239">3</text><text x="26" y="199">4</text><text x="26" y="159">5</text><text x="26" y="119">6</text><text x="26" y="79">7</text><text x="26" y="39">8</text></g>
+<line x1="36" y1="354" x2="320" y2="354" stroke="#303030" stroke-width="3" stroke-linecap="round"/><line x1="36" y1="20" x2="36" y2="354" stroke="#303030" stroke-width="3" stroke-linecap="round"/>
+<rect x="54" y="114" width="70" height="240" rx="8" fill="#6849dd"/>
+<rect x="146" y="194" width="70" height="160" rx="8" fill="#13a4e9"/>
+<rect x="238" y="274" width="70" height="80" rx="8" fill="#e5ac24"/>
+<g transform="translate(273 274)"><rect x="-30" y="-17" width="60" height="34" rx="17" fill="#fff" stroke="#dfdfdf" stroke-width="2" style="filter:drop-shadow(0 3px 5px rgba(56,43,103,.3))"/><path d="M-8 -3l8 -7 8 7M-8 4l8 7 8 -7" fill="none" stroke="#6849dd" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+<image href="../../assets/objects/dog.png" x="65" y="362" width="48" height="48"/><image href="../../assets/objects/cat.png" x="157" y="362" width="48" height="48"/><image href="../../assets/objects/rabbit.png" x="249" y="362" width="48" height="48"/></svg></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- record_audio -->
-<div class="phone" id="record_audio"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Lies die Sätze laut vor.</div><button class="spk"></button></div></div>
-<div class="readcard">Ole hat einen Hund. Der Hund heißt Bello. Jeden Morgen gehen sie zusammen in den Park.</div>
-<div class="mic" style="margin-top:auto">●</div><div class="note">0:07 · Tippe nochmal, wenn du fertig bist.</div></div>
-<div class="foot"><button class="btn light">Nochmal von vorn</button></div></div></div>
+<!-- record_audio: Vorlesen, Klasse 2. Recording runs, the child is at the second sentence. -->
+<div class="phone" id="record_audio"><div class="screen" style="--subj:#C44D00"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="allein"></div><div class="pbar"><i style="width:70%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Lies die Geschichte laut vor.</div><button class="spk"></button></div></div>
+<div class="m-read"><div class="th">Ole und Bello<img src="../../assets/objects/dog.png" alt=""></div>
+<p>Ole hat einen Hund. <mark>Der Hund heißt Bello.</mark> Jeden Morgen gehen sie zusammen in den Park. Dort spielt Bello mit dem Ball.</p></div>
+<div class="m-wave" data-wave></div>
+<div class="m-rec"><div class="t"><i></i>0:07</div><div class="m-mic"><i></i></div><div class="note">Tippe auf Stopp, wenn du fertig bist.</div></div></div>
+<div class="foot"><button class="btn" disabled>Weiter</button></div></div></div>
 
-<!-- write_text -->
-<div class="phone" id="write_text"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
+<!-- write_text: Texte schreiben, Klasse 2. The first sentence is done, the second is being typed. -->
+<div class="phone" id="write_text"><div class="screen" style="--subj:#C44D00"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="mit Hilfe"></div><div class="pbar"><i style="width:50%"></i></div>
 <div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Schreib zwei Sätze über dein Lieblingstier.</div><button class="spk"></button></div></div>
-<div class="textbox">Mein Lieblingstier ist der Igel. Er hat Stacheln und fr<span class="cur"></span></div>
-<div class="note">2 Sätze · Wörter, die du brauchst: Stacheln, frisst, Garten</div>
-<div class="kb"><div><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>z</span><span>u</span><span>i</span><span>o</span><span>p</span><span class="uml">ü</span></div>
-<div><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span class="uml">ö</span><span class="uml">ä</span></div>
-<div><span class="w">⇧</span><span>y</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span class="uml">ß</span><span class="w">⌫</span></div>
-<div><span class="w">,</span><span style="max-width:180px">Leertaste</span><span class="w">.</span></div></div></div>
+<div class="m-text">Mein Lieblingstier ist der Igel. Er hat Stacheln und fr<span class="cur"></span></div>
+<div class="m-words"><span class="m-lbl" style="margin-right:2px">Wörter</span><button class="opt">frisst</button><button class="opt">Käfer</button><button class="opt">Garten</button><button class="opt">schläft</button></div>
+<div class="pad letters m-kb" data-kb="qwertzuiopü|asdfghjklöä|yxcvbnmß.,"></div></div>
 <div class="foot"><button class="btn">Fertig</button></div></div></div>
 
-<!-- text_input with letters -->
-<div class="phone" id="text_input-letters"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Schreib das Wort.</div><button class="spk"></button></div></div>
-<img class="picbig" src="../twist/assets/objects/hedgehog.png" alt="">
-<div class="entry" style="width:220px;font-size:40px"><span>Ige<span style="display:inline-block;width:3px;height:40px;background:var(--accent);vertical-align:middle"></span></span></div>
-<div class="kb"><div><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>z</span><span>u</span><span>i</span><span>o</span><span>p</span><span class="uml">ü</span></div>
-<div><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span class="uml">ö</span><span class="uml">ä</span></div>
-<div><span class="w">⇧</span><span>y</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span class="uml">ß</span><span class="w">⌫</span></div></div></div>
+<!-- show: passage. Leseverstehen, Klasse 2. The text scrolls above; one answer is picked. -->
+<div class="phone" id="passage"><div class="screen" style="--subj:#C44D00"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="weniger Hilfe"></div><div class="pbar"><i style="width:56%"></i></div>
+<div class="body"><div class="m-pass"><span class="m-bar"></span><div class="th"><b>Der kleine Igel</b><button class="spk"></button><img src="../../assets/objects/hedgehog.png" alt=""></div>
+<p>Im Herbst sucht der kleine Igel ein warmes Versteck. Unter der Hecke liegt ein großer Haufen Laub. Dort baut er sich ein Nest.</p>
+<p>Vorher frisst er sich noch einen dicken Bauch an: Käfer, Würmer und Schnecken. Dann rollt er sich zusammen und schläft bis zum Frühling.</p></div>
+<div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wo baut der Igel sein Nest?</div><button class="spk"></button></div></div>
+<div class="opts long m-q"><button class="opt sel">im Laub unter der Hecke</button><button class="opt">oben in einem Baum</button><button class="opt">im Gartenhaus</button></div></div>
 <div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- show: passage -->
-<div class="phone" id="passage"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="readcard" style="max-height:330px;overflow:hidden">
-<b>Der kleine Igel</b><br>Im Herbst sucht der kleine Igel ein warmes Versteck. Unter der Hecke liegt ein großer Haufen Laub. Dort baut er sich ein Nest. Vorher frisst er sich noch einen dicken Bauch an: Käfer, Würmer und Schnecken. Dann rollt er sich zusammen und schläft bis zum Frühling.</div>
-<div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wo baut der Igel sein Nest?</div><button class="spk"></button></div></div>
-<div class="opts long"><button class="opt">im Laub unter der Hecke</button><button class="opt">in einem Baum</button><button class="opt">im Gartenhaus</button></div></div>
-<div class="foot"></div></div></div>
+<!-- dialogue: Englisch, Lernjahr 2. Three lines are done; the child picks the last reply. -->
+<div class="phone" id="dialogue"><div class="screen" style="--subj:#1971C0"><div class="status"></div>
+<div class="hdr" data-n="3" data-t="Üben" data-sub="weniger Hilfe"></div><div class="pbar"><i style="width:62%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Du bist im Café. Was sagst du?</div><button class="spk"></button></div></div>
+<div class="m-chat"><div class="m-say"><img src="../../assets/objects/cook.png" alt=""><p><button class="spk"></button>Hello! What would you like?</p></div>
+<div class="m-say me"><img src="../../assets/objects/child.png" alt=""><p>Can I have some juice, please?</p></div>
+<div class="m-say"><img src="../../assets/objects/cook.png" alt=""><p><button class="spk"></button>Here you are.</p></div>
+<div class="m-say me wait"><img src="../../assets/objects/child.png" alt=""><p>…</p></div></div>
+<div class="opts long m-q"><button class="opt sel">Thank you!</button><button class="opt">I'm nine.</button></div></div>
+<div class="foot"><button class="btn">Prüfen</button></div></div></div>
 
-<!-- dialogue -->
-<div class="phone" id="dialogue"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>3</b></span><span class="st">Üben</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:40%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Du bist im Café. Was antwortest du?</div><button class="spk"></button></div></div>
-<div class="chat"><div class="say"><img src="../twist/assets/objects/cook.png" alt=""><p>🔊 Hello! What would you like?</p></div>
-<div class="say me"><img src="../twist/assets/objects/child.png" alt=""><p>Can I have some juice, please?</p></div>
-<div class="say"><img src="../twist/assets/objects/cook.png" alt=""><p>🔊 Here you are.</p></div></div>
-<div class="opts long"><button class="opt">Thank you!</button><button class="opt">I'm nine.</button></div></div>
-<div class="foot"></div></div></div>
+<!-- self_rating: after the Check of a 4er-Reihe lesson. "Ein bisschen" is picked. -->
+<div class="phone" id="self_rating"><div class="screen" style="--subj:#0E8654"><div class="status"></div>
+<div class="hdr" data-n="4" data-t="Zeig, was du kannst"></div><div class="pbar"><i style="width:100%"></i></div>
+<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wie gut kannst du das jetzt?</div><button class="spk"></button></div></div>
+<div class="m-can"><div><b>Ich kann die Aufgaben der Viererreihe.</b><small>4 · 8 · 12 · 16 · 20 · 24 · 28 · 32 · 36 · 40</small></div></div>
+<div class="m-rate">
+<button class="opt"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="#E4F6FF" stroke="#13a4e9" stroke-width="3"/><circle cx="22" cy="27" r="3.5" fill="#303030"/><circle cx="42" cy="27" r="3.5" fill="#303030"/><path d="M21 45q11-8 22 0" fill="none" stroke="#303030" stroke-width="3.5" stroke-linecap="round"/></svg><span>Noch nicht</span></button>
+<button class="opt sel"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="#fff3d7" stroke="#e5ac24" stroke-width="3"/><circle cx="22" cy="27" r="3.5" fill="#303030"/><circle cx="42" cy="27" r="3.5" fill="#303030"/><path d="M21 42q11 5 22 0" fill="none" stroke="#303030" stroke-width="3.5" stroke-linecap="round"/></svg><span>Ein bisschen</span></button>
+<button class="opt"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29" fill="#e7ffe0" stroke="#5cba41" stroke-width="3"/><circle cx="22" cy="26" r="3.5" fill="#303030"/><circle cx="42" cy="26" r="3.5" fill="#303030"/><path d="M18 38q14 16 28 0z" fill="#303030"/></svg><span>Richtig gut</span></button></div></div>
+<div class="foot"><button class="btn">Weiter</button></div></div></div>
 
-<!-- self_rating -->
-<div class="phone" id="self_rating"><div class="screen"><div class="status"></div>
-<div class="hdr"><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg></button><div class="stepb"><span class="badge-n"><b>4</b></span><span class="st">Zum Schluss</span></div><button class="ib"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="pbar"><i style="width:90%"></i></div>
-<div class="body"><div class="prompt"><img class="mascot" src="../player/mascot.png" alt=""><div class="bubbleq"><div class="t">Wie gut kannst du jetzt die Viererreihe?</div><button class="spk"></button></div></div>
-<div class="faces"><button class="opt">😟<small>Noch nicht</small></button><button class="opt">🙂<small>Ein bisschen</small></button><button class="opt">😄<small>Richtig gut</small></button></div></div>
-<div class="foot"></div></div></div>
-
+<script>
+// Fills in what repeats on every screen: the app header, the speaker icon, coins,
+// the tick on picked tiles, the letter keyboard and a waveform. Same icons as the player.
+const LIST = '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg>';
+const CLOSE = '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#303030" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="#2b0f45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#2b0f45"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
+const TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+document.querySelectorAll(".hdr[data-n]").forEach((h) => {
+  const sub = h.dataset.sub ? `<span class="sub"> · ${h.dataset.sub}</span>` : "";
+  h.innerHTML = `<button class="ib">${LIST}</button><div class="stepb"><span class="badge-n"><b>${h.dataset.n}</b></span><span class="st">${h.dataset.t}${sub}</span></div><button class="ib">${CLOSE}</button>`;
+});
+document.querySelectorAll(".spk").forEach((x) => x.innerHTML = SPK);
+document.querySelectorAll("[data-tick]").forEach((x) => x.innerHTML = TICK);
+// Euro coins and a 5 € note, drawn as the player's coins component draws them.
+const lab = (v) => v >= 100 ? `${v / 100} €` : `${v} ct`;
+function coin(v, s) {
+  if (v >= 500) return `<svg viewBox="0 0 120 64" width="${110 * s}" height="${59 * s}"><rect x="3" y="3" width="114" height="58" rx="6" fill="#9e9e9e" stroke="#2b0f45" stroke-width="3"/><rect x="12" y="12" width="96" height="40" rx="4" fill="none" stroke="#ffffff99" stroke-width="2"/><text x="60" y="41" text-anchor="middle" font-family="Red Hat Display" font-size="22" font-weight="800" fill="#2b0f45">${lab(v)}</text></svg>`;
+  const r = { 10: 19, 20: 21, 50: 24, 100: 23, 200: 26 }[v], gold = v <= 50, bi = v >= 100;
+  const ring = bi ? (v === 200 ? "#cfd4da" : "#e7c25a") : gold ? "#e7c25a" : "#c8794a";
+  const inner = bi ? `<circle cx="30" cy="30" r="${r * 0.68}" fill="${v === 200 ? "#e7c25a" : "#cfd4da"}" stroke="#2b0f4566" stroke-width="1.5"/>` : "";
+  const px = (r * 2 + 8) * s;
+  return `<svg viewBox="0 0 60 60" width="${px}" height="${px}"><circle cx="30" cy="30" r="${r}" fill="${ring}" stroke="#2b0f45" stroke-width="2.5"/>${inner}<text x="30" y="${30 + (lab(v).length > 4 ? 4 : 5)}" text-anchor="middle" font-family="Red Hat Display" font-size="${lab(v).length > 4 ? 10 : 13}" font-weight="800" fill="#2b0f45">${lab(v)}</text></svg>`;
+}
+document.querySelectorAll("[data-coin]").forEach((x) => x.outerHTML = coin(+x.dataset.coin, +(x.dataset.s || 1)));
+// The player's letter keyboard: rows of keys, then shift, space and delete.
+document.querySelectorAll("[data-kb]").forEach((pad) => {
+  const rows = pad.dataset.kb.split("|"), w = Math.max(...rows.map((r) => r.length)), key = (k, n) => `<button class="opt"${n ? ` style="grid-column:span ${n}"` : ""}>${k}</button>`;
+  pad.innerHTML = rows.map((r) => [...r].map((c) => key(c)).join("") + "<i></i>".repeat(w - r.length)).join("") + key("⇧", 2) + key("␣", w - 4) + key("⌫", 2);
+});
+// A recording level: a row of bars of varying height.
+document.querySelectorAll("[data-wave]").forEach((x) => {
+  x.innerHTML = [8, 14, 22, 30, 18, 36, 44, 28, 20, 34, 46, 38, 24, 16, 30, 40, 26, 14, 22, 32, 18, 10, 8, 6, 6, 6].map((h, i) => `<i style="height:${h}px;${i > 21 ? "background:#dfdfdf" : ""}"></i>`).join("");
+});
+</script>
 </body>
 </html>

@@ -64,7 +64,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
   .phone::before{display:none}
   .screen{border-radius:0}
   .side{position:static;width:100%;max-width:430px;height:auto;max-height:60vh;border-radius:0;border-left:0;border-right:0}
-  .topbar{padding:8px 12px;gap:8px}.brand small{display:none}.drawer{top:auto;bottom:0;left:0;width:100%;max-height:80vh;border-radius:16px 16px 0 0}
+  .topbar{position:static;padding:8px 12px;gap:8px}.brand small{display:none}.drawer{top:auto;bottom:0;left:0;width:100%;max-height:80vh;border-radius:16px 16px 0 0}
 }
 .status{height:52px;flex:none}
 .top{display:flex;align-items:center;gap:10px;padding:4px 18px 8px;flex:none}
@@ -308,6 +308,11 @@ svg text{font-family:Andika,sans-serif}
 .score .sb span{position:relative;display:block;text-align:center;font:700 11px/17px "Red Hat Text",sans-serif;color:#7a5600}
 .score .dart{font-size:40px}
 .center h2.done{font:800 32px/1.2 "Red Hat Display",sans-serif;color:#e5ac24}
+.wordcard{border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:16px;font-family:"Red Hat Display",sans-serif;color:#303030}
+.body > .visual:not(:empty){margin-top:4px}
+.visual svg{user-select:none;-webkit-user-select:none}
+.sound{border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:12px;box-shadow:none;font:700 26px "Red Hat Display",sans-serif;color:#303030;padding:6px 16px}
+.sound svg path{stroke:#6849dd}.sound svg path:first-child{fill:#6849dd}
 /* ordering: square drop slots, as the app's NumberOrdering */
 .slots .gap{border:2px dashed #c9c9c9;border-radius:12px;background:#fafafa;font:700 30px "Red Hat Display",sans-serif;color:#525252}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
@@ -1071,6 +1076,8 @@ function renderLearn(step) {
   if (auto()) play(srcs);
   if (s.show?.drawn === "zwanzigerfeld" && s.show.move) setTimeout(() => { if (steps[at] === step) vis.innerHTML = drawn(s.show, { moved: s.show.move }); }, 1600);
   nextBtn(foot);
+  // Learn screens sit in the middle and their picture grows into the space, as tasks do.
+  body.style.justifyContent = "center"; fitScreen(body, vis);
 }
 function renderStage(step) {
   const { body, foot } = frameUI(step), p = phrase("stage_done");
@@ -1231,7 +1238,11 @@ function fitScreen(body, vis) {
     if (hasVis) {
       const c = vis.firstElementChild; c.style.zoom = "";
       const f = free(), w = c.getBoundingClientRect().width, h = c.getBoundingClientRect().height;
-      if (f > 8 && w > 0 && h > 0) c.style.zoom = Math.max(1, Math.min(2.2, (h + f) / h, (body.clientWidth - 40) / w)).toFixed(3);
+      if (f > 8 && w > 0 && h > 0) {
+        let z = Math.max(1, Math.min(2.2, (h + f) / h, (body.clientWidth - 40) / w)); c.style.zoom = z.toFixed(3);
+        // Text that wraps when it grows (a word card) gets less zoom, so it stays on its lines.
+        while (z > 1 && c.getBoundingClientRect().height > h * z * 1.08) { z = Math.max(1, z - 0.05); c.style.zoom = z.toFixed(3); }
+      }
     }
     // Nothing may push the answers off the screen: take back zoom while it overflows.
     for (const el of [vis?.firstElementChild, ...body.querySelectorAll("[style*='zoom']")].filter(Boolean)) {

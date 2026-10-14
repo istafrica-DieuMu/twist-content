@@ -107,6 +107,8 @@ html{scroll-behavior:smooth}
   <a href="#tap_to_count">tap_to_count</a>
   <a href="#drag_and_drop_count">drag_and_drop_count</a>
   <a href="#point_on_line">point_on_line</a>
+  <a href="#point_on_grid">point_on_grid</a>
+  <a href="#clock_hands_drag">clock_hands_drag</a>
   <a href="#highlight_in_text">highlight_in_text</a>
   <a href="#tracing">tracing</a>
   <a href="#speak">speak</a>
@@ -114,7 +116,6 @@ html{scroll-behavior:smooth}
   <a href="#sorting">sorting</a>
   <a href="#ordering">ordering</a>
   <b>To build</b>
-  <a href="#clock_hands_drag">clock_hands_drag</a>
   <a href="#drag_and_drop">drag_and_drop</a>
   <a href="#multi_select">multi_select</a>
   <a href="#pick_side">pick_side</a>
@@ -127,7 +128,6 @@ html{scroll-behavior:smooth}
   <a href="#dialogue">dialogue</a>
   <a href="#self_rating">self_rating</a>
   <b>New options</b>
-  <a href="#letters">text_input letters</a>
   <a href="#passage">show: passage</a>
 </nav>
 
@@ -135,7 +135,7 @@ html{scroll-behavior:smooth}
 <header>
   <h1>Twist task types</h1>
   <p>Every task type a Twist lesson uses, with the screen for each one, what the child does, how the answer is marked and the fields a lesson record carries. The screens for built types are taken from the prototype lesson player, which plays the drafted lessons for de-DE and en-GB. The screens for types still to build are rough mocks of the intended behaviour.</p>
-  <p>The source of truth for fields and interactions is <code>twist/docs/task-types.md</code>; this page follows it. Task counts are drafted tasks on 13 October 2026: 10,417 in all, 6,975 in de-DE and 3,442 in en-GB.</p>
+  <p>The source of truth for fields and interactions is <code>twist/docs/task-types.md</code>; this page follows it. Task counts are drafted tasks on 14 October 2026: 40,180 in all, 19,503 in de-DE and 20,677 in en-GB.</p>
   <div class="legend"><span class="pill">built</span> plays in the prototype player <span class="pill new">to build</span> needed by skills not yet drafted <span class="pill opt">new option</span> an addition to a built type</div>
 </header>
 
@@ -168,7 +168,7 @@ html{scroll-behavior:smooth}
       <dl>
         <dt>Header</dt><dd>Lesson menu (jumps to an activity), activity badge 1 to 4 with the title ("Üben · weniger Hilfe"), close. The progress bar counts Learn screens and tasks.</dd>
         <dt>Prompt</dt><dd>The mascot and a speech bubble with the question and a speaker. <code>text</code> is shown and <code>say</code> is spoken (or <code>text</code> when there is no <code>say</code>). The prompt plays when the task opens; the speaker plays it again. Pre-reader lessons (<code>no_reading</code>) show no prompt text.</dd>
-        <dt>Visual</dt><dd><code>show</code>: a picture from the bank (<code>object</code>, with <code>colour</code> and <code>count</code>), two pictures, or a drawn component (<code>drawn</code>). 24 drawn components are in use: dots, ten-frame, zwanzigerfeld, number-house, written-calc, number-wall, hundred-field, hundred-square, base-ten, place-value-chart, clock, ruler (a cm ruler with a strip to measure, which can start off zero), shape (flat shapes and solids), bar-chart (bars or a Strichliste), coins (coins and notes in the curriculum currency), part-whole, number-line, rechenstrich, equation, letter-card, word-card, syllable-arcs, writing-lines and the picture groups. Each is drawn from data, never from an image file.</dd>
+        <dt>Visual</dt><dd><code>show</code>: a picture from the bank (<code>object</code>, with <code>colour</code> and <code>count</code>), two pictures, or a drawn component (<code>drawn</code>). Drawn components in use include dots, ten-frame, zwanzigerfeld, number-house, written-calc, number-wall, hundred-field, hundred-square, base-ten, place-value-chart, clock, ruler (a cm ruler with a strip to measure, which can start off zero), shape (flat shapes and solids), bar-chart (bars or a Strichliste), coins (coins and notes in the curriculum currency), part-whole, number-line, rechenstrich, equation, letter-card, word-card, syllable-arcs, writing-lines, circle (with its parts named or highlighted), coordinates (a grid of one or four quadrants with points and shapes) and the picture groups. Each is drawn from data, never from an image file.</dd>
         <dt>Feedback</dt><dd>A sheet slides up over the main button. Right: green, a praise phrase, Weiter (moves on by itself after three seconds). Wrong: lilac, "Nicht ganz.", the <code>feedback</code> for the chosen option and then the hint, each with a speaker, and Nochmal versuchen. In a Check a wrong answer shows the right one in green and Weiter.</dd>
         <dt>Hints</dt><dd>Full stage: up to three, one per miss, in order (strategy, think aloud, direct cue). Some stage: one. None stage and Check: none. After the last hint the next miss shows the answer.</dd>
         <dt>Flash</dt><dd><code>show.flash: 2</code> shows the visual for two seconds, then covers it; a "Nochmal sehen" button shows it again, except in a Check.</dd>
@@ -188,12 +188,12 @@ html{scroll-behavior:smooth}
 </section>
 
 <h2>Built types</h2>
-<p class="lede">Fifteen types play in the prototype player today. Counts are drafted tasks, de-DE and en-GB.</p>
+<p class="lede">Seventeen types play in the prototype player today. Counts are drafted tasks, de-DE and en-GB.</p>
 
 <section class="spec" id="multiple_choice">
-  <div class="shots"><figure><img src="shots/multiple_choice.png" alt="multiple_choice with a Zwanzigerfeld" loading="lazy"><figcaption>7 + 5 with a Zwanzigerfeld</figcaption></figure></div>
+  <div class="shots"><figure><img src="shots/multiple_choice.png" alt="multiple_choice with a Zwanzigerfeld" loading="lazy"><figcaption>7 + 5 with a Zwanzigerfeld</figcaption></figure><figure><img src="shots/circle.png" alt="multiple_choice with a circle whose radius is red" loading="lazy"><figcaption>"Which part of the circle is red?"</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">multiple_choice</span><span class="pill">built</span><span class="count">2,374 de-DE · 1,256 en-GB</span></div>
+    <div class="head"><span class="name">multiple_choice</span><span class="pill">built</span><span class="count">7,478 de-DE · 8,830 en-GB</span></div>
     <p>The child taps one of two to four text options to select it, then Prüfen. Tapping another option moves the selection.</p>
     <dl>
       <dt>Fields</dt><dd><code>options</code> (strings), <code>answer</code>, <code>feedback</code> keyed by wrong option, <code>keep_order</code></dd>
@@ -206,7 +206,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="image_multiple_choice">
   <div class="shots"><figure><img src="shots/image_multiple_choice.png" alt="image_multiple_choice with three pictures" loading="lazy"><figcaption>"I can ride a bike."</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">image_multiple_choice</span><span class="pill">built</span><span class="count">219 de-DE · 316 en-GB</span></div>
+    <div class="head"><span class="name">image_multiple_choice</span><span class="pill">built</span><span class="count">1,033 de-DE · 1,051 en-GB</span></div>
     <p>As multiple_choice, with pictures or drawn components as the options. Tiles are square. With a picture above, two or three sit in a row; with no picture above, the tiles take the free space, two to a row and centred.</p>
     <dl>
       <dt>Fields</dt><dd><code>options</code>: <code>{ object }</code>, <code>{ object, colour }</code>, <code>{ object, count, layout }</code> or <code>{ drawn, … }</code>; <code>answer</code> is the option's key</dd>
@@ -219,7 +219,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="audio_choice">
   <div class="shots"><figure><img src="shots/audio_choice.png" alt="audio_choice with a big speaker and dice options" loading="lazy"><figcaption>Hear a number, tap its dice</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">audio_choice</span><span class="pill">built</span><span class="count">529 de-DE · 313 en-GB</span></div>
+    <div class="head"><span class="name">audio_choice</span><span class="pill">built</span><span class="count">1,324 de-DE · 1,387 en-GB</span></div>
     <p>The child hears a sound, word or sentence and taps the option that matches. A big speaker plays it again. The sound is the question, so options never speak.</p>
     <dl>
       <dt>Fields</dt><dd><code>audio</code>: <code>{ sound: de.l }</code> from the sound bank, or <code>{ en: "Red." }</code>; <code>options</code> (strings, pictures or colour swatches); <code>answer</code></dd>
@@ -232,7 +232,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="true_false">
   <div class="shots"><figure><img src="shots/true_false.png" alt="true_false with a Zahlenmauer" loading="lazy"><figcaption>"Stimmt die Mauer?"</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">true_false</span><span class="pill">built</span><span class="count">1,135 de-DE · 573 en-GB</span></div>
+    <div class="head"><span class="name">true_false</span><span class="pill">built</span><span class="count">3,376 de-DE · 2,961 en-GB</span></div>
     <p>Two big buttons, Ja and Nein (Yes and No): select one, then Prüfen. The question usually sits in <code>say</code>, so the voice can ask it naturally.</p>
     <dl>
       <dt>Fields</dt><dd><code>answer</code>: true or false</dd>
@@ -244,7 +244,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="fill_in_blank">
   <div class="shots"><figure><img src="shots/fill_in_blank.png" alt="fill_in_blank with a Zahlenmauer gap" loading="lazy"><figcaption>Fill the top brick</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">fill_in_blank</span><span class="pill">built</span><span class="count">1,134 de-DE · 406 en-GB</span></div>
+    <div class="head"><span class="name">fill_in_blank</span><span class="pill">built</span><span class="count">2,214 de-DE · 1,902 en-GB</span></div>
     <p>A frame with gaps. The child taps chips to fill the gaps from the left, taps a filled gap to empty it, then taps Prüfen. A gap inside a drawn component (a brick, a cell, a digit) fills the same way.</p>
     <dl>
       <dt>Fields</dt><dd><code>frame</code> with <code>_</code> for each gap, <code>options</code>, <code>answer</code> (a list, one per gap). Steps in a frame are separated by <code>" | "</code>.</dd>
@@ -255,14 +255,24 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="spec" id="text_input">
-  <div class="shots"><figure><img src="shots/text_input.png" alt="text_input with a written addition and keypad" loading="lazy"><figcaption>Schriftlich addieren</figcaption></figure></div>
+  <div class="shots">
+    <figure><img src="shots/text_input.png" alt="text_input with a written addition and keypad" loading="lazy"><figcaption>Digits: Schriftlich addieren</figcaption></figure>
+    <figure><img src="shots/text_input-fraction.png" alt="text_input with the fraction keyboard" loading="lazy"><figcaption>Fraction: 23/5 as a mixed number</figcaption></figure>
+    <figure><img src="shots/text_input-letters.png" alt="text_input with the French letter keyboard" loading="lazy"><figcaption>Letters: copy l'école</figcaption></figure>
+  </div>
   <div class="txt">
-    <div class="head"><span class="name">text_input</span><span class="pill">built</span><span class="count">837 de-DE · 279 en-GB</span></div>
-    <p>The child types a number on an on-screen keypad and taps Prüfen. Used where choosing from options would make the task too easy, mostly in the none stage and the Check.</p>
+    <div class="head"><span class="name">text_input</span><span class="pill">built</span><span class="count">1,529 de-DE · 2,222 en-GB</span></div>
+    <p>The child types the answer on an on-screen keyboard and taps Prüfen. Used where choosing from options would make the task too easy, mostly in the none stage and the Check. The entry field shows ? until the first key and turns purple once something is typed.</p>
     <dl>
-      <dt>Fields</dt><dd><code>answer</code>: a string of up to eight digits, no spaces</dd>
-      <dt>Marking</dt><dd>The typed string equals <code>answer</code>.</dd>
-      <dt>Coming</dt><dd>A letter keyboard; see <a href="#letters">text_input letters</a>.</dd>
+      <dt>Keyboards</dt><dd><ul>
+        <li><code>digits</code> (the default): 0 to 9 and delete, answers up to 8 digits.</li>
+        <li><code>decimal</code>: digits, a decimal point (. in en-GB, , in de-DE) and a minus key; 2.5, −3, 0.25.</li>
+        <li><code>fraction</code>: digits, a fraction bar / and a space; 7/5, a mixed number 1 2/5 (whole, space, fraction) or a whole number.</li>
+        <li><code>letters</code>: a letter keyboard in the lesson's language, QWERTY for English, QWERTZ with ä ö ü ß for German, AZERTY with é è à ç for French, with an apostrophe, a shift key for one capital, space and delete; answers up to 24 characters.</li>
+      </ul></dd>
+      <dt>Fields</dt><dd><code>answer</code> (a string), <code>keyboard</code> (<code>digits</code> if left out)</dd>
+      <dt>Marking</dt><dd>The typed string equals <code>answer</code>, capitals included. With <code>decimal</code> the value counts, so 2.50 is right for 2.5 and a comma works as the point.</dd>
+      <dt>Uses</dt><dd>The result of a sum, a heard or written number, a decimal sum, a mixed number, a spelling from memory or dictation, a copied word in a French lesson.</dd>
     </dl>
   </div>
 </section>
@@ -270,7 +280,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="tap_to_count">
   <div class="shots"><figure><img src="shots/tap_to_count.png" alt="tap_to_count with apples" loading="lazy"><figcaption>Tap each apple once, then how many</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">tap_to_count</span><span class="pill">built</span><span class="count">30 de-DE · 23 en-GB</span></div>
+    <div class="head"><span class="name">tap_to_count</span><span class="pill">built</span><span class="count">31 de-DE · 38 en-GB</span></div>
     <p>Pictures of one thing. Each tap numbers a picture (1, 2, 3 …) and a picture can be tapped only once, so nothing is counted twice. Then the child taps how many.</p>
     <dl>
       <dt>Fields</dt><dd><code>show: { object, count, layout: row | scattered }</code>, <code>options</code>, <code>answer</code></dd>
@@ -295,7 +305,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="point_on_line">
   <div class="shots"><figure><img src="shots/point_on_line.png" alt="point_on_line with jumps" loading="lazy"><figcaption>"Wo landest du? 9 + 4"</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">point_on_line</span><span class="pill">built</span><span class="count">107 de-DE · 63 en-GB</span></div>
+    <div class="head"><span class="name">point_on_line</span><span class="pill">built</span><span class="count">114 de-DE · 104 en-GB</span></div>
     <p>A number line. The child taps a tick, a marker shows where (never the number), then Prüfen.</p>
     <dl>
       <dt>Fields</dt><dd><code>show: { drawn: number-line, from, to, labels, jumps, step }</code>, <code>answer</code>, <code>feedback</code> keyed by tapped value. <code>step</code> sets which ticks can be tapped (1, 5, 10, 100 …).</dd>
@@ -304,15 +314,41 @@ html{scroll-behavior:smooth}
   </div>
 </section>
 
+<section class="spec" id="point_on_grid">
+  <div class="shots"><figure><img src="shots/point_on_grid.png" alt="point_on_grid with a first quadrant grid and a picked point" loading="lazy"><figcaption>"Tap the point at (3, 1)."</figcaption></figure></div>
+  <div class="txt">
+    <div class="head"><span class="name">point_on_grid</span><span class="pill">built</span><span class="count">33 en-GB</span></div>
+    <p>A coordinate grid. The child taps a crossing, a blue ring shows the point they picked, then Check. Any crossing can be picked, so the grid gives nothing away. Points and shapes already drawn on the grid stay.</p>
+    <dl>
+      <dt>Fields</dt><dd><code>show: { drawn: coordinates, quadrants: 1 | 4, max, points, shape }</code>, <code>answer: [x, y]</code>, <code>feedback</code> keyed by a tapped point as <code>"x,y"</code> (for the swapped point, <code>"3,5"</code> when the answer is [5, 3])</dd>
+      <dt>Marking</dt><dd>The tapped crossing equals <code>answer</code>. The build checks that the answer is a crossing on the grid.</dd>
+      <dt>Uses</dt><dd>Plot a point, complete a shape (the fourth corner of a square), plot in four quadrants, plot a translated or reflected corner (first-quadrant, four-quadrants, translate, reflect-translate).</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="spec" id="clock_hands_drag">
+  <div class="shots"><figure><img src="shots/clock_hands_drag.png" alt="clock_hands_drag set to half past nine" loading="lazy"><figcaption>"Show half past 9 on the clock."</figcaption></figure></div>
+  <div class="txt">
+    <div class="head"><span class="name">clock_hands_drag</span><span class="pill">built</span><span class="count">32 de-DE · 32 en-GB</span></div>
+    <p>A clock face with round grips on both hands. The child drags a hand and taps Check; the hand nearest the finger moves. The minute hand snaps to <code>step</code> minutes and the hour hand to whole hours, and the hour hand sits between hours as the minutes go on, as on a real clock.</p>
+    <dl>
+      <dt>Fields</dt><dd><code>show: { drawn: clock, hour, minute, roman }</code> as the start (12:00 if left out, never the answer), <code>answer</code> (<code>"3:30"</code>, a 12-hour time), <code>step</code> (1, 5, 15 or 30 minutes; 5 if left out), <code>feedback</code> keyed by a set time (<code>"6:15"</code>)</dd>
+      <dt>Marking</dt><dd>Hour and minute equal <code>answer</code>; 12-hour, so 15 Uhr is set as 3:00. The build checks that the minutes sit on a step.</dd>
+      <dt>Uses</dt><dd>O'clock and half past (<code>step: 30</code>), quarter past and to (<code>step: 15</code>), five minutes, to the minute (<code>step: 1</code>): time-full-half, time-quarter, time-five-minutes, time-minutes.</dd>
+    </dl>
+  </div>
+</section>
+
 <section class="spec" id="highlight_in_text">
   <div class="shots"><figure><img src="shots/highlight_in_text.png" alt="highlight_in_text with word cards" loading="lazy"><figcaption>"Tippe auf jedes Nomen."</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">highlight_in_text</span><span class="pill">built</span><span class="count">147 de-DE · 73 en-GB</span></div>
+    <div class="head"><span class="name">highlight_in_text</span><span class="pill">built</span><span class="count">467 de-DE · 555 en-GB</span></div>
     <p>Letter or word cards. The child taps every card that matches, then Prüfen. Tapping again unselects.</p>
     <dl>
       <dt>Fields</dt><dd><code>show: { drawn: letter-card, text }</code> (cards split on spaces), <code>spans</code> (the cards to find)</dd>
       <dt>Marking</dt><dd>The set of tapped cards equals the set of spans. Trailing <code>. , ! ? ; :</code> are ignored when comparing, so the span <code>hoch</code> finds the card <code>hoch.</code>; quotation marks are not ignored.</dd>
-      <dt>Wrong</dt><dd>Wrongly tapped cards turn red, then all cards clear for the next try.</dd>
+      <dt>Wrong</dt><dd>Wrongly tapped cards shake and stay purple (the app never shows a wrong pick in red), then all cards clear for the next try.</dd>
     </dl>
   </div>
 </section>
@@ -320,7 +356,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="tracing">
   <div class="shots"><figure><img src="shots/tracing.png" alt="tracing a letter l" loading="lazy"><figcaption>Trace mode, green start dot</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">tracing</span><span class="pill">built</span><span class="count">24 de-DE · 14 en-GB</span></div>
+    <div class="head"><span class="name">tracing</span><span class="pill">built</span><span class="count">214 de-DE · 137 en-GB</span></div>
     <p>Writing lines with a letter or numeral. Trace mode draws it dashed with a green start dot; copy mode shows a model on the left and the child writes beside it. Fertig ends the task.</p>
     <dl>
       <dt>Fields</dt><dd><code>show: { drawn: writing-lines, text, mode: trace | copy, arrows }</code>, <code>char</code></dd>
@@ -338,7 +374,7 @@ html{scroll-behavior:smooth}
     <figure><img src="shots/speak-compare.png" alt="speak, compare" loading="lazy"><figcaption>3. Hear yourself, then the model</figcaption></figure>
   </div>
   <div class="txt">
-    <div class="head"><span class="name">speak</span><span class="pill">built</span><span class="count">128 de-DE · 16 en-GB</span></div>
+    <div class="head"><span class="name">speak</span><span class="pill">built</span><span class="count">326 de-DE · 325 en-GB</span></div>
     <p>The child says a word or short sentence aloud. Speech is not marked yet, so every speak task runs as a fallback: the child records, hears the recording next to the model and decides whether it sounded the same.</p>
     <dl>
       <dt>Steps</dt><dd><ul>
@@ -358,7 +394,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="matching">
   <div class="shots"><figure><img src="shots/matching.png" alt="matching English and German clothes words" loading="lazy"><figcaption>English word to German word</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">matching</span><span class="pill">built</span><span class="count">143 de-DE · 32 en-GB</span></div>
+    <div class="head"><span class="name">matching</span><span class="pill">built</span><span class="count">385 de-DE · 207 en-GB</span></div>
     <p>Two columns. The child taps a left item, then the right item it belongs to; a made pair gets a coloured border (the left item's colour when it is a colour). Prüfen checks all pairs; wrong pairs are undone.</p>
     <dl>
       <dt>Fields</dt><dd><code>pairs</code> (2 to 6), each <code>{ left, right }</code>; a side is a picture, a drawn component or text, with its own <code>say</code> if it should speak</dd>
@@ -370,7 +406,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="sorting">
   <div class="shots"><figure><img src="shots/sorting.png" alt="sorting hobbies into two bins" loading="lazy"><figcaption>Mit „play“ oder ohne?</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">sorting</span><span class="pill">built</span><span class="count">57 de-DE · 21 en-GB</span></div>
+    <div class="head"><span class="name">sorting</span><span class="pill">built</span><span class="count">364 de-DE · 294 en-GB</span></div>
     <p>Items at the top, two to five bins below. The child taps an item, then a bin; tapping an item in a bin puts it back. Prüfen checks every item; wrong ones go back.</p>
     <dl>
       <dt>Fields</dt><dd><code>bins</code> (<code>{ id, show, say }</code>), <code>options</code> (<code>{ object, bin }</code>; Twist calls the bin <code>correct_bin_id</code>)</dd>
@@ -382,7 +418,7 @@ html{scroll-behavior:smooth}
 <section class="spec" id="ordering">
   <div class="shots"><figure><img src="shots/ordering.png" alt="ordering word cards into a sentence" loading="lazy"><figcaption>Build "I have got a fish."</figcaption></figure></div>
   <div class="txt">
-    <div class="head"><span class="name">ordering</span><span class="pill">built</span><span class="count">109 de-DE · 57 en-GB</span></div>
+    <div class="head"><span class="name">ordering</span><span class="pill">built</span><span class="count">614 de-DE · 599 en-GB</span></div>
     <p>Cards above, empty slots below. The child taps cards in order to fill the slots from the left; tapping a filled slot empties it. Prüfen checks the whole order; wrong cards go back.</p>
     <dl>
       <dt>Fields</dt><dd><code>options</code> (strings or pictures, may include extra cards), <code>slot_count</code>, <code>answer</code> (cards in slot order; Twist calls it <code>correct_arrangement</code>)</dd>
@@ -393,22 +429,10 @@ html{scroll-behavior:smooth}
 </section>
 
 <h2>Types to build</h2>
-<p class="lede">The skills not yet drafted need twelve more types. The first four are already in the backend's type list. Screens are mocks; fields are a proposal to settle when the first lesson uses the type. The skill counts are open skills that need the type.</p>
-
-<section class="spec" id="clock_hands_drag">
-  <div class="shots"><figure><img src="shots/mock-clock_hands_drag.png" alt="Mock: set a clock to half past three" loading="lazy"><figcaption>"Stell die Uhr auf halb vier."</figcaption></figure></div>
-  <div class="txt">
-    <div class="head"><span class="name">clock_hands_drag</span><span class="pill new">to build</span><span class="count">4 skills · Uhrzeit</span></div>
-    <p>The child drags the hands of the drawn clock to a time. The minute hand snaps to steps; the hour hand moves on with it, as on a real clock, and can also be dragged.</p>
-    <dl>
-      <dt>Fields</dt><dd><code>show: { drawn: clock, hour, minute }</code> as the start, <code>snap</code> (30, 15, 5 or 1 minutes), <code>answer: "3:30"</code></dd>
-      <dt>Marking</dt><dd>Minute hand on the answer's minute; hour hand within the right hour's sector.</dd>
-    </dl>
-  </div>
-</section>
+<p class="lede">The skills not yet drafted need eleven more types. The first three are already in the backend's type list. Screens are mocks; fields are a proposal to settle when the first lesson uses the type. The skill counts are open skills that need the type.</p>
 
 <section class="spec" id="drag_and_drop">
-  <div class="shots"><figure><img src="shots/mock-drag_and_drop.png" alt="Mock: put 3,70 euro in a purse" loading="lazy"><figcaption>Geld legen</figcaption></figure></div>
+  <div class="shots"><figure><img src="shots/mock-drag_and_drop.png" alt="Mock: put 3,70 euro in a purse, the 20 cent coin on its way in" loading="lazy"><figcaption>Geld legen: 3,70 €</figcaption></figure></div>
   <div class="txt">
     <div class="head"><span class="name">drag_and_drop</span><span class="pill new">to build</span><span class="count">16 skills · Geld, Lage, Tangram, labels</span></div>
     <p>The child drags items onto targets: coins and notes into a purse, a label onto a picture, an object to a place in a scene, a piece into an outline. Dragging an item out takes it back.</p>
@@ -420,25 +444,25 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="spec" id="multi_select">
-  <div class="shots"><figure><img src="shots/mock-multi_select.png" alt="Mock: tap all numbers divisible by 4" loading="lazy"><figcaption>Several right answers</figcaption></figure></div>
+  <div class="shots"><figure><img src="shots/mock-multi_select.png" alt="Mock: tap all pictures that start with F, two picked" loading="lazy"><figcaption>Alle Bilder mit F</figcaption></figure></div>
   <div class="txt">
     <div class="head"><span class="name">multi_select</span><span class="pill new">to build</span><span class="count">14 skills · Formen, Körper, Wortfelder</span></div>
     <p>The child taps every option that fits, then Prüfen. A line under the prompt says that more than one can be right.</p>
     <dl>
       <dt>Fields</dt><dd><code>options</code> (as image_multiple_choice), <code>answer</code> (a list of keys)</dd>
-      <dt>Marking</dt><dd>The tapped set equals the answer set. On a miss, wrong taps turn red and missing ones are not revealed until the hint says so.</dd>
+      <dt>Marking</dt><dd>The tapped set equals the answer set. On a miss, wrong taps shake and stay purple, as in the app, and missing ones are not revealed until the hint says so.</dd>
     </dl>
   </div>
 </section>
 
 <section class="spec" id="pick_side">
-  <div class="shots"><figure><img src="shots/mock-pick_side.png" alt="Mock: which number is bigger" loading="lazy"><figcaption>Two sides and "gleich"</figcaption></figure></div>
+  <div class="shots"><figure><img src="shots/mock-pick_side.png" alt="Mock: which holds more water, the slider pushed to the bucket" loading="lazy"><figcaption>Eimer oder Tasse, with the slider</figcaption></figure></div>
   <div class="txt">
     <div class="head"><span class="name">pick_side</span><span class="pill new">to build</span><span class="count">5 skills · Längen, Gewichte, Rauminhalte</span></div>
-    <p>Two things side by side; the child taps the one that is heavier, longer, bigger or more likely. An optional third button says they are the same.</p>
+    <p>Two things side by side with the app's swipe slider under them (SwipeCompare): the child pushes the thumb toward the one that is heavier, longer, bigger or holds more, and the track fills purple on that side. An optional button below says they are the same.</p>
     <dl>
       <dt>Fields</dt><dd><code>sides: [left, right]</code> (each a picture, drawn component or text), <code>allow_equal</code>, <code>answer: left | right | equal</code></dd>
-      <dt>Marking</dt><dd>The tapped side equals <code>answer</code>. The app may swap the sides; the answer follows.</dd>
+      <dt>Marking</dt><dd>The chosen side equals <code>answer</code>. The app may swap the sides; the answer follows.</dd>
     </dl>
   </div>
 </section>
@@ -468,7 +492,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="spec" id="draw_on_grid">
-  <div class="shots"><figure><img src="shots/mock-draw_on_grid.png" alt="Mock: draw the mirror image" loading="lazy"><figcaption>Spiegelbild on Kästchenpapier</figcaption></figure></div>
+  <div class="shots"><figure><img src="shots/mock-draw_on_grid.png" alt="Mock: draw the other half of a fir tree on squared paper" loading="lazy"><figcaption>Spiegelbild on Kästchenpapier</figcaption></figure></div>
   <div class="txt">
     <div class="head"><span class="name">draw_on_grid</span><span class="pill new">to build</span><span class="count">10 skills · Strecken, Symmetrie, Wege</span></div>
     <p>The child joins grid points with straight lines by dragging from point to point. Lines snap to the points. Löschen clears the child's lines; given lines stay.</p>
@@ -540,18 +564,6 @@ html{scroll-behavior:smooth}
 </section>
 
 <h2>New options on built types</h2>
-
-<section class="spec" id="letters">
-  <div class="shots"><figure><img src="shots/mock-text_input-letters.png" alt="Mock: type a word with a letter keyboard" loading="lazy"><figcaption>Schreib das Wort: Igel</figcaption></figure></div>
-  <div class="txt">
-    <div class="head"><span class="name">text_input · keyboard: letters</span><span class="pill opt">new option</span><span class="count">10 skills · Rechtschreibung, Diktat, Englisch words</span></div>
-    <p>A letter keyboard in place of the keypad: QWERTZ with Umlaute and ß for de-DE, QWERTY with grapheme tiles (sh, ch, ee) for England. Shift gives a capital. The answer is a word or short sentence.</p>
-    <dl>
-      <dt>Fields</dt><dd><code>keyboard: letters</code>, <code>answer</code>, <code>accept</code> (other right spellings)</dd>
-      <dt>Marking</dt><dd>Exact match, capitals included (Nomen are capitalised in German). Leading and trailing spaces are ignored; inner spaces count.</dd>
-    </dl>
-  </div>
-</section>
 
 <section class="spec" id="passage">
   <div class="shots"><figure><img src="shots/mock-passage.png" alt="Mock: a reading text above a question" loading="lazy"><figcaption>Text, then question</figcaption></figure></div>
