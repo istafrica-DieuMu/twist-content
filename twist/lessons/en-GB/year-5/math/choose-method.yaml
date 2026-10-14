@@ -1,0 +1,443 @@
+# Lesson set: Maths, Year 5. Hand-authored draft.
+id: en-GB.math.choose-method
+skill: math.written-add-sub.choose-method
+curriculum: en-GB
+language: en
+title:
+  de: Kopf, halbschriftlich oder schriftlich?
+  en: Mental, informal or column method?
+summary: >
+  Choosing how to calculate and saying why. Lesson 1 sorts calculations
+  into mental (round numbers, 8000 + 5000), informal steps (a few jumps,
+  6280 + 3450) and the column method (many digits and exchanges); lesson
+  2 gives the reason for a choice, spots shortcuts (29,999 + 1, adjusting
+  by 1 for 4999), and ends with the skill check. More than one way can
+  work; each task asks for the way that suits best and the feedback says
+  why.
+metadata:
+  year: year-5
+  topic: { de: Rechnen mit großen Zahlen, en: Calculating with large numbers }
+  ages: [8-10]
+  lesson_minutes: 13
+  builds_on: [math.written-add-sub.large, math.add-sub-to-1000.large-semi-written]
+  also_practises: [math.add-sub-to-1000.large-mental, math.written-add-sub.large]
+  vocabulary: { en: [mentally, informal method, column method, exchange, efficient, reason, adjust] }
+  forms: [drawn, text, audio]
+  drawn: [written-calc]
+  facets: []
+  misconceptions:
+    - id: always-columns
+      what: Uses the column method for every calculation, even 10,000 + 5000
+      addressed: lesson 1 Learn solves a round calculation in one step; l1-f1, l1-s1, l1-n1 and l1-c1 have mental as the best choice, with feedback in l1-f1
+    - id: no-reason
+      what: Chooses a method but cannot say why
+      addressed: lesson 2 asks for the reason in every stage (l2-f1, l2-f3, l2-s1, l2-s3, l2-n1, l2-n3), with reasons as options
+    - id: miss-shortcut
+      what: Does not see a number close to a round number (4999 is 5000 − 1)
+      addressed: lesson 2 Learn adjusts by 1; l2-f4, l2-s4, l2-n4 and l2-c4 use a near-round number, with feedback in l2-f4
+  twist_reuse: []
+  status: draft
+  version: 1
+  authored: 2026-10-14
+
+lessons:
+  - n: 1
+    title: { de: "Welcher Rechenweg passt?", en: "Which method suits?" }
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: earlier-skills
+        tasks:
+          - id: l1-w1
+            type: text_input
+            text: "Work it out in columns."
+            show: { drawn: written-calc, rows: ["4568", "2375"], op: "+", result: "____" }
+            answer: "6943"
+            difficulty: easy
+          - id: l1-w2
+            type: fill_in_blank
+            text: "Add 5200 + 3450 in steps."
+            frame: "5200 + 3000 = _; then + 400 = _; then + 50 = _"
+            options: ["8200", "8600", "8650", "8250"]
+            answer: ["8200", "8600", "8650"]
+            difficulty: easy
+
+      - activity: learn
+        mode: worked-examples
+        screens:
+          - text: "30,000 + 40,000 → mentally"
+            say: "With round numbers, calculate in your head. Three add four is seven, so seventy thousand. You do not need paper."
+          - text: "6280 + 3450 → informal steps"
+            say: "Six thousand two hundred and eighty add three thousand four hundred and fifty. A few steps are enough, so use an informal method: thousands, then hundreds, then tens. Jot down the answers to each step."
+          - text: "47,386 + 28,759 → column method"
+            say: "With lots of digits and lots of exchanges, use the column method. Lining up the digits means you do not lose a place."
+            show: { drawn: written-calc, rows: ["47386", "28759"], op: "+" }
+          - text: "Ask: Are the numbers round? Is a number close to a round number? How many exchanges?"
+            say: "Before you start, look at the numbers. Are they round? Is one of them close to a round number? Will there be many exchanges? Then choose."
+
+      - activity: practise
+        setting: plain
+        stages:
+          - support: full
+            tasks:
+              - id: l1-f1
+                type: multiple_choice
+                text: "20,000 + 50,000. Which method suits best?"
+                say: "Twenty thousand add fifty thousand. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "mentally"
+                keep_order: true
+                feedback:
+                  "column method": "That works, but it is slow. 2 + 5 = 7, so 70,000 in one step."
+                hints:
+                  - "Are the numbers round?"
+                  - "Both are whole ten thousands. Use 2 + 5."
+                  - "Mentally: 70,000."
+                difficulty: easy
+              - id: l1-f2
+                type: multiple_choice
+                text: "4300 + 2540. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "informal steps"
+                keep_order: true
+                hints:
+                  - "How many steps would you need?"
+                  - "There are no exchanges: add 2000, then 500, then 40."
+                  - "Informal steps."
+              - id: l1-f3
+                type: multiple_choice
+                text: "58,467 + 36,875. Which method suits best?"
+                say: "Fifty-eight thousand four hundred and sixty-seven add thirty-six thousand eight hundred and seventy-five. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "column method"
+                keep_order: true
+                feedback:
+                  "mentally": "There are exchanges in nearly every column. That is a lot to hold in your head."
+                hints:
+                  - "How many digits? How many exchanges?"
+                  - "7 + 5, 6 + 7, 4 + 8 and 8 + 6 all go over ten."
+                  - "The column method."
+              - id: l1-f4
+                type: sorting
+                text: "Sort by the method that suits best."
+                option_audio: false
+                bins:
+                  - { id: mental, show: { text: "mentally" }, say: "Mentally." }
+                  - { id: columns, show: { text: "column method" }, say: "Column method." }
+                options:
+                  - { text: "9000 − 4000", bin: mental }
+                  - { text: "63,758 − 28,469", bin: columns }
+                  - { text: "500,000 + 300,000", bin: mental }
+                  - { text: "47,295 + 38,867", bin: columns }
+                hints:
+                  - "Look for round numbers first."
+                  - "9000 − 4000 and 500,000 + 300,000 are round."
+                  - "The two with five different digits and exchanges go to the column method."
+              - id: l1-f5
+                type: true_false
+                text: "7999 + 1 is best worked out in columns."
+                answer: false
+                hints:
+                  - "What happens when you add 1 to 7999?"
+                  - "It goes up to the next thousand."
+                  - "No. Mentally: 8000."
+
+          - support: some
+            tasks:
+              - id: l1-s1
+                type: multiple_choice
+                text: "60,000 − 20,000. Which method suits best?"
+                say: "Sixty thousand subtract twenty thousand. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "mentally"
+                keep_order: true
+                hints: ["6 − 2."]
+              - id: l1-s2
+                type: multiple_choice
+                text: "8750 − 3200. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "informal steps"
+                keep_order: true
+                hints: ["Two steps with no exchanges: take away 3000, then 200."]
+              - id: l1-s3
+                type: multiple_choice
+                text: "72,304 − 48,679. Which method suits best?"
+                say: "Seventy-two thousand three hundred and four subtract forty-eight thousand six hundred and seventy-nine. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "column method"
+                keep_order: true
+                hints: ["Count the exchanges you would need."]
+              - id: l1-s4
+                type: sorting
+                text: "Sort by the method that suits best."
+                option_audio: false
+                bins:
+                  - { id: mental, show: { text: "mentally" }, say: "Mentally." }
+                  - { id: steps, show: { text: "informal steps" }, say: "Informal steps." }
+                  - { id: columns, show: { text: "column method" }, say: "Column method." }
+                options:
+                  - { text: "40,000 + 30,000", bin: mental }
+                  - { text: "5400 + 2300", bin: steps }
+                  - { text: "86,947 − 39,658", bin: columns }
+                hints: ["One is round, one has easy steps, one has many exchanges."]
+              - id: l1-s5
+                type: true_false
+                text: "6500 + 2400 can be done in two easy steps."
+                answer: true
+                hints: ["6500 + 2000, then + 400."]
+
+          - support: none
+            tasks:
+              - id: l1-n1
+                type: multiple_choice
+                text: "300,000 + 700,000. Which method suits best?"
+                say: "Three hundred thousand add seven hundred thousand. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "mentally"
+                keep_order: true
+              - id: l1-n2
+                type: multiple_choice
+                text: "7620 + 1300. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "informal steps"
+                keep_order: true
+              - id: l1-n3
+                type: multiple_choice
+                text: "35,867 + 47,598. Which method suits best?"
+                say: "Thirty-five thousand eight hundred and sixty-seven add forty-seven thousand five hundred and ninety-eight. Which method suits best?"
+                options: ["mentally", "informal steps", "column method"]
+                answer: "column method"
+                keep_order: true
+              - id: l1-n4
+                type: sorting
+                text: "Sort by the method that suits best."
+                option_audio: false
+                bins:
+                  - { id: mental, show: { text: "mentally" }, say: "Mentally." }
+                  - { id: columns, show: { text: "column method" }, say: "Column method." }
+                options:
+                  - { text: "15,000 − 5000", bin: mental }
+                  - { text: "91,463 − 57,786", bin: columns }
+                  - { text: "49,999 + 1", bin: mental }
+                  - { text: "28,576 + 64,749", bin: columns }
+              - id: l1-n5
+                type: text_input
+                text: "Choose your method. 80,000 − 50,000 = _"
+                say: "Choose your method. Eighty thousand subtract fifty thousand."
+                answer: "30000"
+
+      - activity: check
+        size: quick
+        tasks:
+          - id: l1-c1
+            type: multiple_choice
+            text: "90,000 − 40,000. Which method suits best?"
+            say: "Ninety thousand subtract forty thousand. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "mentally"
+            keep_order: true
+          - id: l1-c2
+            type: multiple_choice
+            text: "64,587 − 29,798. Which method suits best?"
+            say: "Sixty-four thousand five hundred and eighty-seven subtract twenty-nine thousand seven hundred and ninety-eight. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "column method"
+            keep_order: true
+          - id: l1-c3
+            type: multiple_choice
+            text: "3600 + 5200. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "informal steps"
+            keep_order: true
+
+  - n: 2
+    title: { de: "Begründen und clever rechnen", en: "Give a reason, spot a shortcut" }
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: last-lesson
+        tasks:
+          - id: l2-w1
+            type: multiple_choice
+            text: "70,000 + 20,000. Which method suits best?"
+            say: "Seventy thousand add twenty thousand. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "mentally"
+            keep_order: true
+            difficulty: easy
+          - id: l2-w2
+            type: multiple_choice
+            text: "46,758 + 37,469. Which method suits best?"
+            say: "Forty-six thousand seven hundred and fifty-eight add thirty-seven thousand four hundred and sixty-nine. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "column method"
+            keep_order: true
+            difficulty: easy
+
+      - activity: learn
+        mode: worked-examples
+        screens:
+          - text: "40,000 + 30,000: mentally, because both numbers are round."
+            say: "A good reason names something about the numbers. Forty thousand and thirty thousand are both round, so four add three is enough."
+          - text: "38,476 + 45,869: column method, because there are many exchanges."
+            say: "Here almost every column goes over ten. In columns you write each exchange down, so you do not forget one."
+          - text: "6250 + 4999\n= 6250 + 5000 − 1\n= 11,250 − 1 = 11,249"
+            say: "Four thousand nine hundred and ninety-nine is one less than five thousand. Add five thousand, then take one away. This is called adjusting, and it is quicker than columns."
+          - text: "29,999 + 1 = 30,000"
+            say: "Always look at the numbers before you start. Twenty-nine thousand nine hundred and ninety-nine add one makes thirty thousand. No columns needed."
+
+      - activity: practise
+        setting: plain
+        stages:
+          - support: full
+            tasks:
+              - id: l2-f1
+                type: multiple_choice
+                text: "Why is 50,000 + 40,000 best done mentally?"
+                say: "Why is fifty thousand add forty thousand best done mentally?"
+                options: ["Both numbers are round.", "The numbers are big.", "There are many exchanges."]
+                answer: "Both numbers are round."
+                feedback:
+                  "The numbers are big.": "Big numbers can still be easy. What matters is that they are round."
+                hints:
+                  - "What do you notice about the digits?"
+                  - "Only the ten thousands digit is not 0, so 5 + 4 is enough."
+                  - "Both numbers are round."
+                difficulty: easy
+              - id: l2-f2
+                type: fill_in_blank
+                text: "Adjust: 3480 + 1999"
+                frame: "3480 + 2000 = _; then − 1 = _"
+                options: ["5480", "5479", "5481", "5470"]
+                answer: ["5480", "5479"]
+                hints:
+                  - "1999 is close to a round number."
+                  - "Add 2000, then take away the 1 you added too many."
+                  - "5480, then 5479."
+              - id: l2-f3
+                type: multiple_choice
+                text: "Why is 67,385 − 29,748 best done in columns?"
+                say: "Why is sixty-seven thousand three hundred and eighty-five subtract twenty-nine thousand seven hundred and forty-eight best done in columns?"
+                options: ["There are many exchanges.", "Both numbers are round.", "One number is close to a round number."]
+                answer: "There are many exchanges."
+                hints:
+                  - "Look at each column. Is the top digit smaller?"
+                  - "5 − 8, 3 − 7 and 7 − 9 all need an exchange."
+                  - "There are many exchanges."
+              - id: l2-f4
+                type: multiple_choice
+                text: "What is the quickest way to work out 7350 + 2999?"
+                options: ["Add 3000, then take away 1.", "Add 2000, then 900, then 90, then 9.", "Use the column method."]
+                answer: "Add 3000, then take away 1."
+                feedback:
+                  "Add 2000, then 900, then 90, then 9.": "That works, but it takes four steps. 2999 is 1 less than 3000."
+                hints:
+                  - "Is 2999 close to a round number?"
+                  - "2999 is 3000 − 1."
+                  - "Add 3000, then take away 1."
+              - id: l2-f5
+                type: text_input
+                text: "Choose your method. 8250 + 2999 = _"
+                answer: "11249"
+                hints:
+                  - "2999 is 1 less than 3000."
+                  - "8250 + 3000 = 11,250."
+                  - "11,250 − 1 = 11,249."
+
+          - support: some
+            tasks:
+              - id: l2-s1
+                type: multiple_choice
+                text: "Why is 5300 + 2600 good for informal steps?"
+                options: ["Two easy steps with no exchanges.", "Both numbers are round.", "There are many exchanges."]
+                answer: "Two easy steps with no exchanges."
+                hints: ["5300 + 2000, then + 600."]
+              - id: l2-s2
+                type: fill_in_blank
+                text: "Adjust: 6400 − 999"
+                frame: "6400 − 1000 = _; then + 1 = _"
+                options: ["5400", "5401", "5399", "7400"]
+                answer: ["5400", "5401"]
+                hints: ["You took away 1 too many, so add 1 back."]
+              - id: l2-s3
+                type: multiple_choice
+                text: "Why is 99,999 + 1 best done mentally?"
+                say: "Why is ninety-nine thousand nine hundred and ninety-nine add one best done mentally?"
+                options: ["Adding 1 makes the next round number.", "There are many exchanges.", "The numbers are both big."]
+                answer: "Adding 1 makes the next round number."
+                hints: ["What comes after 99,999?"]
+              - id: l2-s4
+                type: multiple_choice
+                text: "What is the quickest way to work out 9600 − 4998?"
+                options: ["Take away 5000, then add 2.", "Take away 4000, then 900, then 90, then 8.", "Use the column method."]
+                answer: "Take away 5000, then add 2."
+                hints: ["4998 is 2 less than 5000."]
+              - id: l2-s5
+                type: text_input
+                text: "Choose your method. 34,000 + 6000 = _"
+                say: "Choose your method. Thirty-four thousand add six thousand."
+                answer: "40000"
+                hints: ["34 + 6 thousands."]
+
+          - support: none
+            tasks:
+              - id: l2-n1
+                type: multiple_choice
+                text: "Why is 800,000 − 200,000 best done mentally?"
+                say: "Why is eight hundred thousand subtract two hundred thousand best done mentally?"
+                options: ["Both numbers are round.", "There are many exchanges.", "The answer is small."]
+                answer: "Both numbers are round."
+              - id: l2-n2
+                type: fill_in_blank
+                text: "Adjust: 5720 + 3999"
+                frame: "5720 + 4000 = _; then − 1 = _"
+                options: ["9720", "9719", "9721", "8720"]
+                answer: ["9720", "9719"]
+              - id: l2-n3
+                type: multiple_choice
+                text: "Why is 53,276 − 18,589 best done in columns?"
+                say: "Why is fifty-three thousand two hundred and seventy-six subtract eighteen thousand five hundred and eighty-nine best done in columns?"
+                options: ["There are many exchanges.", "Both numbers are round.", "One number is close to a round number."]
+                answer: "There are many exchanges."
+              - id: l2-n4
+                type: multiple_choice
+                text: "What is the quickest way to work out 12,500 + 1998?"
+                say: "What is the quickest way to work out twelve thousand five hundred add one thousand nine hundred and ninety-eight?"
+                options: ["Add 2000, then take away 2.", "Add 1000, then 900, then 90, then 8.", "Use the column method."]
+                answer: "Add 2000, then take away 2."
+              - id: l2-n5
+                type: text_input
+                text: "Choose your method. 7300 − 1999 = _"
+                answer: "5301"
+
+      - activity: check
+        size: skill
+        tasks:
+          - id: l2-c1
+            type: multiple_choice
+            text: "600,000 + 300,000. Which method suits best?"
+            say: "Six hundred thousand add three hundred thousand. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "mentally"
+            keep_order: true
+          - id: l2-c2
+            type: multiple_choice
+            text: "Why is 84,163 − 37,895 best done in columns?"
+            say: "Why is eighty-four thousand one hundred and sixty-three subtract thirty-seven thousand eight hundred and ninety-five best done in columns?"
+            options: ["There are many exchanges.", "Both numbers are round.", "One number is close to a round number."]
+            answer: "There are many exchanges."
+          - id: l2-c3
+            type: multiple_choice
+            text: "8120 + 1700. Which method suits best?"
+            options: ["mentally", "informal steps", "column method"]
+            answer: "informal steps"
+            keep_order: true
+          - id: l2-c4
+            type: multiple_choice
+            text: "What is the quickest way to work out 4600 + 3999?"
+            options: ["Add 4000, then take away 1.", "Add 3000, then 900, then 90, then 9.", "Use the column method."]
+            answer: "Add 4000, then take away 1."
+          - id: l2-c5
+            type: text_input
+            text: "Choose your method. 9450 − 2999 = _"
+            answer: "6451"
