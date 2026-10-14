@@ -12,7 +12,9 @@ summary: >
   first quadrant, and that the shape itself does not change. Lesson 1
   reflects points and shapes and counts squares to the mirror line;
   lesson 2 translates and describes translations, tells a reflection from
-  a translation, and ends with the skill check.
+  a translation, and ends with the skill check. In every stage and both
+  checks the child also taps where a reflected or translated point lands
+  (point_on_grid).
 metadata:
   year: year-5
   topic: { de: Koordinaten, en: Coordinates }
@@ -33,7 +35,7 @@ metadata:
       addressed: lesson 1 Learn counts squares to the line; l1-f3, l1-n4 and l2-c1 offer an image one square too far, l1-n5 asks for the distance
     - id: swaps-directions
       what: Swaps right and up when translating (moves 3 up and 2 right for 3 right and 2 up)
-      addressed: lesson 2 Learn says right and left change x, up and down change y; l2-f1 has feedback, l2-f2, l2-s1, l2-s3 and l2-c2 offer the swap
+      addressed: lesson 2 Learn says right and left change x, up and down change y; l2-f1 has feedback, l2-f2 and l2-s3 offer the swap, and the taps in l2-f3, l2-s1 and l2-c2 have feedback on it
     - id: shape-changes
       what: Thinks a reflected or translated shape changes size or angles, or that a translation flips it
       addressed: lesson 1 Learn and lesson 2 Learn say the shape stays the same; l1-f4, l1-n3, l2-s4, l2-s5, l2-n4 and l2-c5 ask it
@@ -84,17 +86,17 @@ lessons:
           - support: full
             tasks:
               - id: l1-f1
-                type: multiple_choice
-                text: "A at (2, 6) is reflected in the red mirror line. Where is its image?"
+                type: point_on_grid
+                text: "A at (2, 6) is reflected in the red mirror line. Tap where its image goes."
                 show: { drawn: coordinates, quadrants: 1, max: 10, points: [[2, 6, A]], mirror: { axis: y, at: 4 } }
-                options: ["(6, 6)", "(2, 2)", "(8, 6)"]
-                answer: "(6, 6)"
+                answer: [6, 6]
                 feedback:
-                  "(2, 2)": "This mirror line goes up and down, so the point moves left or right. The y-coordinate stays 6."
+                  "2,2": "This mirror line goes up and down, so the point moves left or right. The y-coordinate stays 6."
+                  "8,6": "That is 4 squares from the line. A is only 2 squares from it, so its image is 2 squares away on the other side."
                 hints:
                   - "How far is A from the mirror line?"
                   - "A is 2 squares to the left of the line, so its image is 2 squares to the right of it."
-                  - "The line is at 4, and 4 + 2 = 6. The image is at (6, 6)."
+                  - "The line is at 4, and 4 + 2 = 6. Tap (6, 6)."
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
@@ -140,11 +142,13 @@ lessons:
           - support: some
             tasks:
               - id: l1-s1
-                type: multiple_choice
-                text: "C at (3, 4) is reflected in the red mirror line. Where is its image?"
+                type: point_on_grid
+                text: "C at (3, 4) is reflected in the red mirror line. Tap where its image goes."
                 show: { drawn: coordinates, quadrants: 1, max: 10, points: [[3, 4, C]], mirror: { axis: y, at: 6 } }
-                options: ["(9, 4)", "(3, 8)", "(6, 4)"]
-                answer: "(9, 4)"
+                answer: [9, 4]
+                feedback:
+                  "3,8": "This mirror line goes up and down, so the point moves left or right. The y-coordinate stays 4."
+                  "6,4": "That is on the mirror line. The image is as far from the line as C is, on the other side."
                 hints: ["C is 3 squares to the left of the line."]
               - id: l1-s2
                 type: multiple_choice
@@ -184,11 +188,13 @@ lessons:
                 options: ["(9, 8)", "(1, 2)", "(8, 8)"]
                 answer: "(9, 8)"
               - id: l1-n2
-                type: multiple_choice
-                text: "G at (4, 9) is reflected in the red mirror line. Where is its image?"
+                type: point_on_grid
+                text: "G at (4, 9) is reflected in the red mirror line. Tap where its image goes."
                 show: { drawn: coordinates, quadrants: 1, max: 10, points: [[4, 9, G]], mirror: { axis: x, at: 6 } }
-                options: ["(4, 3)", "(4, 2)", "(8, 9)"]
-                answer: "(4, 3)"
+                answer: [4, 3]
+                feedback:
+                  "4,2": "That is 4 squares below the line. G is 3 squares above it, so its image is 3 squares below."
+                  "8,9": "This mirror line goes across, so the point moves up or down. The x-coordinate stays 4."
               - id: l1-n3
                 type: true_false
                 text: "Is it true? A reflected shape is a different size from the shape it came from."
@@ -211,11 +217,13 @@ lessons:
         size: quick
         tasks:
           - id: l1-c1
-            type: multiple_choice
-            text: "J at (1, 6) is reflected in the red mirror line. Where is its image?"
+            type: point_on_grid
+            text: "J at (1, 6) is reflected in the red mirror line. Tap where its image goes."
             show: { drawn: coordinates, quadrants: 1, max: 10, points: [[1, 6, J]], mirror: { axis: y, at: 3 } }
-            options: ["(5, 6)", "(1, 0)", "(6, 6)"]
-            answer: "(5, 6)"
+            answer: [5, 6]
+            feedback:
+              "6,6": "That is 3 squares from the line. J is 2 squares from it, so its image is 2 squares away on the other side."
+              "1,0": "This mirror line goes up and down, so the point moves left or right. The y-coordinate stays 6."
           - id: l1-c2
             type: multiple_choice
             text: "K at (6, 5) is reflected in the red mirror line. Where is its image?"
@@ -290,15 +298,16 @@ lessons:
                   - "The corner at (1, 2) moves to (6, 3). How far right? How far up?"
                   - "6 − 1 = 5 right, 3 − 2 = 1 up."
               - id: l2-f3
-                type: multiple_choice
-                text: "Point P at (8, 7) is translated 5 left and 4 down. Where is it now?"
+                type: point_on_grid
+                text: "Point P at (8, 7) is translated 5 left and 4 down. Tap where it lands."
                 show: { drawn: coordinates, quadrants: 1, max: 10, points: [[8, 7, P]] }
-                options: ["(3, 3)", "(13, 11)", "(3, 11)"]
-                answer: "(3, 3)"
+                answer: [3, 3]
+                feedback:
+                  "4,2": "That is 4 left and 5 down. Left changes x: 8 − 5 = 3. Down changes y: 7 − 4 = 3."
                 hints:
                   - "Left and down mean take away."
                   - "x: 8 − 5. y: 7 − 4."
-                  - "P is now at (3, 3)."
+                  - "Tap (3, 3)."
               - id: l2-f4
                 type: multiple_choice
                 text: "Was the purple triangle reflected or translated to make the green one?"
@@ -322,11 +331,13 @@ lessons:
           - support: some
             tasks:
               - id: l2-s1
-                type: multiple_choice
-                text: "The point at (2, 5) is translated 4 right and 3 down. Where is it now?"
+                type: point_on_grid
+                text: "Point A at (2, 5) is translated 4 right and 3 down. Tap where it lands."
                 show: { drawn: coordinates, quadrants: 1, max: 10, points: [[2, 5, A]] }
-                options: ["(6, 2)", "(6, 8)", "(5, 1)"]
-                answer: "(6, 2)"
+                answer: [6, 2]
+                feedback:
+                  "6,8": "That is 3 up. Down takes away from y: 5 − 3 = 2."
+                  "5,1": "That is 3 right and 4 down. Right changes x: 2 + 4 = 6. Down changes y: 5 − 3 = 2."
                 hints: ["Right adds to x. Down takes away from y."]
               - id: l2-s2
                 type: multiple_choice
@@ -360,10 +371,13 @@ lessons:
             setting: in-context
             tasks:
               - id: l2-n1
-                type: multiple_choice
-                text: "In a computer game, a robot at (2, 3) moves 6 right and 4 up. Where does it stop?"
-                options: ["(8, 7)", "(7, 8)", "(6, 4)"]
-                answer: "(8, 7)"
+                type: point_on_grid
+                text: "In a computer game, robot R at (2, 3) moves 6 right and 4 up. Tap where it stops."
+                show: { drawn: coordinates, quadrants: 1, max: 10, points: [[2, 3, R]] }
+                answer: [8, 7]
+                feedback:
+                  "7,8": "You swapped the numbers. x comes first: 2 + 6 = 8. Then y: 3 + 4 = 7."
+                  "6,9": "That is 4 right and 6 up. Right changes x by 6, up changes y by 4."
               - id: l2-n2
                 type: multiple_choice
                 text: "On a garden plan, the shed is moved from the purple place to the green place. Describe the translation."
@@ -397,10 +411,12 @@ lessons:
             options: ["(8, 2)", "(4, 10)", "(9, 2)"]
             answer: "(8, 2)"
           - id: l2-c2
-            type: multiple_choice
-            text: "The point at (3, 8) is translated 4 right and 5 down. Where is it now?"
-            options: ["(7, 3)", "(8, 4)", "(7, 13)"]
-            answer: "(7, 3)"
+            type: point_on_grid
+            text: "Point B at (3, 8) is translated 4 right and 5 down. Tap where it lands."
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[3, 8, B]] }
+            answer: [7, 3]
+            feedback:
+              "8,4": "That is 5 right and 4 down. Right changes x: 3 + 4 = 7. Down changes y: 8 − 5 = 3."
           - id: l2-c3
             type: multiple_choice
             text: "The purple triangle is translated to the green one. Describe the translation."

@@ -10,7 +10,9 @@ summary: >
   Lesson 1 reads the clock to the minute by counting from the last
   Fünferschritt (on the 4 plus 3 small marks is 23 minutes); lesson 2
   gives afternoon and evening times with 13 to 24 Uhr (3 Uhr nachmittags
-  is 15 Uhr), and ends with the skill check.
+  is 15 Uhr), and ends with the skill check. Every practise stage and
+  both checks also ask the child to set the hands to the minute
+  (clock_hands_drag); in lesson 2 the time is given as 13 to 24 Uhr.
 metadata:
   year: klasse-3
   topic: { de: Uhrzeit, en: Time }
@@ -107,18 +109,19 @@ lessons:
                   - "Drei Striche weiter."
                   - "Ja, es ist 10:48 Uhr."
               - id: l1-f4
-                type: image_multiple_choice
-                text: "Welche Uhr zeigt 4:17 Uhr?"
-                say: "Welche Uhr zeigt vier Uhr siebzehn?"
-                options:
-                  - { drawn: clock, hour: 4, minute: 17 }
-                  - { drawn: clock, hour: 4, minute: 15 }
-                  - { drawn: clock, hour: 3, minute: 20 }
+                type: clock_hands_drag
+                text: "Stell die Uhr auf 4:17 Uhr."
+                say: "Stell die Uhr auf vier Uhr siebzehn. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
                 answer: "4:17"
+                feedback:
+                  "4:15": "Das ist 4:15 Uhr. Zieh den großen Zeiger noch zwei Striche weiter."
+                  "3:20": "Du hast die Zeiger vertauscht. Der kleine Zeiger zeigt die Stunde: Er gehört auf die Vier."
                 hints:
-                  - "Siebzehn Minuten: zwei Striche nach der Drei."
-                  - "Der kleine Zeiger ist kurz nach der Vier."
-                  - "Die Uhr mit 4:17 Uhr."
+                  - "Zähle zuerst in Fünferschritten: Fünfzehn Minuten sind bei der Drei."
+                  - "Siebzehn Minuten: zwei Striche nach der Drei. Der kleine Zeiger zeigt auf die Vier."
+                  - "Zieh den großen Zeiger zwei Striche hinter die Drei und den kleinen Zeiger auf die Vier."
               - id: l1-f5
                 type: multiple_choice
                 text: "Wie spät ist es?"
@@ -156,15 +159,16 @@ lessons:
                 answer: false
                 hints: ["Bis zur Eins sind es fünf Minuten. Zähle die Striche."]
               - id: l1-s4
-                type: image_multiple_choice
-                text: "Welche Uhr zeigt 9:52 Uhr?"
-                say: "Welche Uhr zeigt neun Uhr zweiundfünfzig?"
-                options:
-                  - { drawn: clock, hour: 9, minute: 50 }
-                  - { drawn: clock, hour: 9, minute: 52 }
-                  - { drawn: clock, hour: 10, minute: 52 }
+                type: clock_hands_drag
+                text: "Stell die Uhr auf 9:52 Uhr."
+                say: "Stell die Uhr auf neun Uhr zweiundfünfzig. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
                 answer: "9:52"
-                hints: ["Zweiundfünfzig: zwei Striche nach der Zehn."]
+                feedback:
+                  "9:50": "Das ist 9:50 Uhr. Zieh den großen Zeiger noch zwei Striche weiter."
+                  "10:52": "Das ist 10:52 Uhr. Es ist noch vor zehn Uhr: Zieh den kleinen Zeiger auf die Neun."
+                hints: ["Zweiundfünfzig: zwei Striche nach der Zehn. Der kleine Zeiger gehört auf die Neun."]
               - id: l1-s5
                 type: multiple_choice
                 text: "Wie spät ist es?"
@@ -196,14 +200,15 @@ lessons:
                 show: { drawn: clock, hour: 8, minute: 44 }
                 answer: true
               - id: l1-n4
-                type: image_multiple_choice
-                text: "Welche Uhr zeigt 2:38 Uhr?"
-                say: "Welche Uhr zeigt zwei Uhr achtunddreißig?"
-                options:
-                  - { drawn: clock, hour: 2, minute: 38 }
-                  - { drawn: clock, hour: 2, minute: 35 }
-                  - { drawn: clock, hour: 8, minute: 10 }
+                type: clock_hands_drag
+                text: "Stell die Uhr auf 2:38 Uhr."
+                say: "Stell die Uhr auf zwei Uhr achtunddreißig. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
                 answer: "2:38"
+                feedback:
+                  "2:35": "Das ist 2:35 Uhr. Zieh den großen Zeiger noch drei Striche weiter."
+                  "8:10": "Du hast die Zeiger vertauscht. Der große Zeiger zeigt die Minuten, der kleine die Stunde."
               - id: l1-n5
                 type: multiple_choice
                 text: "Wie spät ist es?"
@@ -216,12 +221,14 @@ lessons:
         size: quick
         tasks:
           - id: l1-c1
-            type: multiple_choice
-            text: "Wie spät ist es?"
-            say: "Wie spät ist es genau?"
-            show: { drawn: clock, hour: 3, minute: 27 }
-            options: ["3:27", "3:25", "3:07"]
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 3:27 Uhr."
+            say: "Stell die Uhr auf drei Uhr siebenundzwanzig. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
             answer: "3:27"
+            feedback:
+              "3:25": "Das ist 3:25 Uhr. Zieh den großen Zeiger noch zwei Striche weiter."
           - id: l1-c2
             type: text_input
             text: "Wie viele Minuten nach 9 Uhr?"
@@ -264,7 +271,7 @@ lessons:
             say: "Der kleine Zeiger läuft an einem Tag zweimal herum. Am Nachmittag zählst du die Stunden einfach weiter: Nach zwölf Uhr mittags kommt dreizehn Uhr. Drei Uhr nachmittags ist fünfzehn Uhr."
             show: { drawn: clock, hour: 3, minute: 0 }
           - text: "+ 12"
-            say: "Für die Zeit am Nachmittag und am Abend rechnest du plus zwölf: Sieben Uhr abends ist sieben plus zwölf, also neunzehn Uhr."
+            say: "Für die Zeit am Nachmittag und am Abend rechnest du plus zwölf: Sieben Uhr abends ist sieben plus zwölf, also neunzehn Uhr. Die Zeigeruhr hat nur zwölf Stunden. Neunzehn Uhr stellst du dort wie sieben Uhr ein."
           - text: "18:30 = halb 7 abends"
             say: "Andersherum rechnest du minus zwölf: Achtzehn Uhr dreißig ist halb sieben abends."
 
@@ -287,15 +294,19 @@ lessons:
                   - "16 Uhr."
                 difficulty: easy
               - id: l2-f2
-                type: multiple_choice
-                text: "Der Film beginnt um 19 Uhr. Wann ist das?"
-                say: "Der Film beginnt um neunzehn Uhr. Wann ist das?"
-                options: ["7 Uhr abends", "9 Uhr abends", "7 Uhr morgens"]
-                answer: "7 Uhr abends"
+                type: clock_hands_drag
+                text: "Der Film beginnt um 19:20 Uhr. Stell die Uhr auf diese Zeit."
+                say: "Der Film beginnt um neunzehn Uhr zwanzig. Stell die Uhr auf diese Zeit. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
+                answer: "7:20"
+                feedback:
+                  "9:20": "Rechne minus zwölf, nicht minus zehn: Neunzehn minus zwölf ist sieben."
+                  "4:35": "Du hast die Zeiger vertauscht. Der kleine Zeiger zeigt die Stunde: Er gehört auf die Sieben."
                 hints:
-                  - "Rechne minus zwölf."
-                  - "Was ist neunzehn minus zwölf? Ist das vor oder nach Mittag?"
-                  - "7 Uhr abends."
+                  - "Die Zeigeruhr hat nur zwölf Stunden. Rechne minus zwölf."
+                  - "Neunzehn minus zwölf ist sieben. Zwanzig Minuten: Der große Zeiger zeigt auf die Vier."
+                  - "Zieh den kleinen Zeiger auf die Sieben und den großen Zeiger auf die Vier."
               - id: l2-f3
                 type: text_input
                 text: "Halb 3 nachmittags = _:30 Uhr"
@@ -335,12 +346,15 @@ lessons:
                 answer: "18 Uhr"
                 hints: ["Rechne plus zwölf."]
               - id: l2-s2
-                type: multiple_choice
-                text: "Das Schwimmbad schließt um 21 Uhr. Wann ist das?"
-                say: "Das Schwimmbad schließt um einundzwanzig Uhr. Wann ist das?"
-                options: ["9 Uhr abends", "11 Uhr abends", "9 Uhr morgens"]
-                answer: "9 Uhr abends"
-                hints: ["Rechne minus zwölf."]
+                type: clock_hands_drag
+                text: "Das Schwimmbad schließt um 21:45 Uhr. Stell die Uhr auf diese Zeit."
+                say: "Das Schwimmbad schließt um einundzwanzig Uhr fünfundvierzig. Stell die Uhr auf diese Zeit. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
+                answer: "9:45"
+                feedback:
+                  "11:45": "Rechne minus zwölf, nicht minus zehn: Einundzwanzig minus zwölf ist neun."
+                hints: ["Rechne minus zwölf. Fünfundvierzig Minuten: Der große Zeiger zeigt auf die Neun."]
               - id: l2-s3
                 type: text_input
                 text: "1 Uhr mittags = _ Uhr"
@@ -370,11 +384,15 @@ lessons:
                 options: ["21 Uhr", "19 Uhr", "9 Uhr"]
                 answer: "21 Uhr"
               - id: l2-n2
-                type: multiple_choice
-                text: "Der Zug fährt um 13:45 Uhr. Wann ist das?"
-                say: "Der Zug fährt um dreizehn Uhr fünfundvierzig. Wann ist das?"
-                options: ["Viertel vor 2 nachmittags", "Viertel vor 1 nachmittags", "Viertel nach 1 nachmittags"]
-                answer: "Viertel vor 2 nachmittags"
+                type: clock_hands_drag
+                text: "Der Zug fährt um 13:48 Uhr. Stell die Uhr auf diese Zeit."
+                say: "Der Zug fährt um dreizehn Uhr achtundvierzig. Stell die Uhr auf diese Zeit. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
+                answer: "1:48"
+                feedback:
+                  "3:48": "Rechne minus zwölf, nicht minus zehn: Dreizehn minus zwölf ist eins."
+                  "1:45": "Das ist 1:45 Uhr. Zieh den großen Zeiger noch drei Striche weiter."
               - id: l2-n3
                 type: text_input
                 text: "Halb 6 abends = _:30 Uhr"
@@ -403,14 +421,15 @@ lessons:
             options: ["8:22", "8:20", "8:02"]
             answer: "8:22"
           - id: l2-c2
-            type: image_multiple_choice
-            text: "Welche Uhr zeigt 11:39 Uhr?"
-            say: "Welche Uhr zeigt elf Uhr neununddreißig?"
-            options:
-              - { drawn: clock, hour: 11, minute: 39 }
-              - { drawn: clock, hour: 11, minute: 35 }
-              - { drawn: clock, hour: 7, minute: 55 }
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 11:39 Uhr."
+            say: "Stell die Uhr auf elf Uhr neununddreißig. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
             answer: "11:39"
+            feedback:
+              "11:35": "Das ist 11:35 Uhr. Zieh den großen Zeiger noch vier Striche weiter."
+              "8:55": "Du hast die Zeiger vertauscht. Der große Zeiger zeigt die Minuten, der kleine die Stunde."
           - id: l2-c3
             type: multiple_choice
             text: "5 Uhr nachmittags. Wie viel Uhr ist das?"

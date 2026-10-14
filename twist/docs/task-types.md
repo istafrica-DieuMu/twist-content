@@ -279,6 +279,13 @@ their own audio.
 Fields: `audio` (`{ sound: de.l }` from the bank, or `{ en: "Red." }`),
 `options` (strings, pictures or swatches), `answer`.
 
+A character speaking gets a voice of their kind: `audio: { en: "Hi, I'm
+Tom.", speaker: male }` (or `female`). A dialogue is `turns`, played one
+after the other, each in its speaker's voice:
+`audio: { turns: [{ en: "Hi! I'm Tom. What's your name?", speaker: male },
+{ en: "My name is Emma.", speaker: female }] }`. Any task with `audio` takes
+both (short-dialogues).
+
 Interactions:
 
 | Interaction | Example | Used in |

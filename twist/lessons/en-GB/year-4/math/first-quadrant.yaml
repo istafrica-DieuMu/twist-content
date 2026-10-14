@@ -10,11 +10,10 @@ summary: >
   Lesson 1 reads the position of a point as coordinates (x, y) in the
   first quadrant, along first and then up ("along the corridor, then up
   the stairs"), including points on the axes and the origin. Lesson 2
-  plots points by choosing the grid that shows them, joins points to make
-  polygons, finds the missing vertex of a square or rectangle, and ends
-  with the skill check. Plotting by tapping the grid and drawing the sides
-  wait for a coordinate input; the child chooses between drawn grids for
-  now.
+  plots points by tapping the crossing on the grid (point_on_grid), joins
+  points to make polygons, finds the missing vertex of a square or
+  rectangle, and ends with the skill check. In lesson 1 the child also
+  taps the point at given coordinates among labelled points.
 metadata:
   year: year-4
   topic: { de: Koordinaten, en: Coordinates }
@@ -29,13 +28,13 @@ metadata:
   misconceptions:
     - id: swap-x-y
       what: Reads or plots up first and along second, so writes (1, 4) for the point (4, 1)
-      addressed: lesson 1 Learn says along the corridor, then up the stairs, and shows (2, 4) and (4, 2); l1-f1 and l1-f3 have feedback on the swapped point, l2-f1 has feedback on (5, 3); every stage offers the swapped pair
+      addressed: lesson 1 Learn says along the corridor, then up the stairs, and shows (2, 4) and (4, 2); l1-f1 and l1-f3 have feedback on the swapped point, l2-f1 has feedback on a tap at (5, 3); every stage offers the swapped pair or gives feedback on it
     - id: axis-zero
       what: Is unsure about points on an axis and the origin, and puts (0, 5) on the x-axis
       addressed: lesson 1 Learn puts (0, 3) on the y-axis and (5, 0) on the x-axis; l1-f4, l1-s3, l1-n4, l2-s4 and l2-n1 use a zero coordinate
     - id: missing-vertex
       what: Finds the missing vertex of a square or rectangle by copying a known vertex or swapping its coordinates
-      addressed: lesson 2 Learn finds the fourth vertex from the two sides it shares; l2-f3, l2-s2, l2-s5, l2-n2, l2-n5 and l2-c4 offer a swapped or copied vertex
+      addressed: lesson 2 Learn finds the fourth vertex from the two sides it shares; l2-s2, l2-s5, l2-n5 and l2-c4 offer a swapped or copied vertex; l2-f3 and l2-n2 have the child tap it, with feedback on a miscounted or swapped vertex
   twist_reuse: []
   status: draft
   version: 1
@@ -109,18 +108,17 @@ lessons:
                   - "B is 2 along and 5 up."
                   - "(2, 5)."
               - id: l1-f3
-                type: multiple_choice
-                text: "Which point is at (3, 1)?"
+                type: point_on_grid
+                text: "Tap the point at (3, 1)."
+                say: "Tap the point at three, one."
                 show: { drawn: coordinates, quadrants: 1, max: 6, points: [[1, 3, "A"], [3, 1, "B"], [3, 3, "C"]] }
-                options: ["A", "B", "C"]
-                answer: "B"
-                option_audio: false
+                answer: [3, 1]
                 feedback:
-                  "A": "A is at (1, 3): 1 along and 3 up. For (3, 1) go 3 along first, then 1 up."
+                  "1,3": "A is at (1, 3): 1 along and 3 up. For (3, 1) go 3 along first, then 1 up."
                 hints:
                   - "The first number tells you how far along."
                   - "Go 3 along, then 1 up."
-                  - "That is point B."
+                  - "Tap point B: 3 along and 1 up."
               - id: l1-f4
                 type: multiple_choice
                 text: "What are the coordinates of D?"
@@ -152,12 +150,13 @@ lessons:
                 answer: "(6, 3)"
                 hints: ["Along first, then up."]
               - id: l1-s2
-                type: multiple_choice
-                text: "Which point is at (5, 4)?"
+                type: point_on_grid
+                text: "Tap the point at (5, 4)."
+                say: "Tap the point at five, four."
                 show: { drawn: coordinates, quadrants: 1, max: 6, points: [[2, 2, "A"], [4, 5, "B"], [5, 4, "C"]] }
-                options: ["A", "B", "C"]
-                answer: "C"
-                option_audio: false
+                answer: [5, 4]
+                feedback:
+                  "4,5": "B is at (4, 5): 4 along. For (5, 4) go 5 along first, then 4 up."
                 hints: ["Go 5 along first."]
               - id: l1-s3
                 type: true_false
@@ -189,12 +188,13 @@ lessons:
                 options: ["(5, 1)", "(1, 5)", "(5, 0)"]
                 answer: "(5, 1)"
               - id: l1-n2
-                type: multiple_choice
-                text: "Which point is at (6, 2)?"
+                type: point_on_grid
+                text: "Tap the point at (6, 2)."
+                say: "Tap the point at six, two."
                 show: { drawn: coordinates, quadrants: 1, max: 6, points: [[2, 6, "A"], [6, 2, "B"], [2, 2, "C"]] }
-                options: ["A", "B", "C"]
-                answer: "B"
-                option_audio: false
+                answer: [6, 2]
+                feedback:
+                  "2,6": "A is at (2, 6): 2 along. For (6, 2) go 6 along first, then 2 up."
               - id: l1-n3
                 type: true_false
                 text: "Q is at (4, 4)."
@@ -225,12 +225,13 @@ lessons:
             options: ["(2, 3)", "(3, 2)", "(2, 2)"]
             answer: "(2, 3)"
           - id: l1-c2
-            type: multiple_choice
-            text: "Which point is at (2, 4)?"
+            type: point_on_grid
+            text: "Tap the point at (2, 4)."
+            say: "Tap the point at two, four."
             show: { drawn: coordinates, quadrants: 1, max: 6, points: [[4, 2, "A"], [2, 4, "B"], [4, 4, "C"]] }
-            options: ["A", "B", "C"]
-            answer: "B"
-            option_audio: false
+            answer: [2, 4]
+            feedback:
+              "4,2": "A is at (4, 2): 4 along. For (2, 4) go 2 along first, then 4 up."
           - id: l1-c3
             type: true_false
             text: "T is at (1, 6)."
@@ -283,19 +284,17 @@ lessons:
           - support: full
             tasks:
               - id: l2-f1
-                type: image_multiple_choice
-                text: "Which grid shows the point (3, 5)?"
-                options:
-                  - { drawn: coordinates, quadrants: 1, max: 6, points: [[3, 5, "P"]], key: a }
-                  - { drawn: coordinates, quadrants: 1, max: 6, points: [[5, 3, "P"]], key: b }
-                  - { drawn: coordinates, quadrants: 1, max: 6, points: [[3, 4, "P"]], key: c }
-                answer: a
+                type: point_on_grid
+                text: "Plot the point (3, 5)."
+                say: "Plot the point three, five. Tap where it goes."
+                show: { drawn: coordinates, quadrants: 1, max: 6 }
+                answer: [3, 5]
                 feedback:
-                  b: "That point is at (5, 3): 5 along. For (3, 5) go 3 along first, then 5 up."
+                  "5,3": "That point is at (5, 3): 5 along. For (3, 5) go 3 along first, then 5 up."
                 hints:
-                  - "Go 3 along first."
-                  - "Then go 5 up."
-                  - "The point is 3 along and 5 up."
+                  - "Start at the origin and go 3 along first."
+                  - "Then go 5 up from there."
+                  - "Tap the crossing 3 along and 5 up."
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
@@ -310,15 +309,16 @@ lessons:
                   - "From A to B is 4 along. From B to C is 2 up."
                   - "4 by 2 with right angles: a rectangle."
               - id: l2-f3
-                type: multiple_choice
-                text: "A, B and C are three vertices of a square. Where is the fourth vertex?"
+                type: point_on_grid
+                text: "A, B and C are three vertices of a square. Tap the fourth vertex."
                 show: { drawn: coordinates, quadrants: 1, max: 6, points: [[1, 1, "A"], [4, 1, "B"], [4, 4, "C"]] }
-                options: ["(1, 4)", "(4, 1)", "(1, 3)"]
-                answer: "(1, 4)"
+                answer: [1, 4]
+                feedback:
+                  "1,3": "That is only 3 up. Level with C means the same up number as C: 4."
                 hints:
                   - "The fourth vertex is above A and level with C."
                   - "Above A: the same along number, 1. Level with C: the same up number, 4."
-                  - "(1, 4)."
+                  - "Tap (1, 4)."
               - id: l2-f4
                 type: image_multiple_choice
                 text: "Which grid shows the triangle with vertices (1, 1), (5, 1) and (1, 4)?"
@@ -344,13 +344,13 @@ lessons:
           - support: some
             tasks:
               - id: l2-s1
-                type: image_multiple_choice
-                text: "Which grid shows the point (4, 1)?"
-                options:
-                  - { drawn: coordinates, quadrants: 1, max: 6, points: [[1, 4, "P"]], key: a }
-                  - { drawn: coordinates, quadrants: 1, max: 6, points: [[4, 1, "P"]], key: b }
-                  - { drawn: coordinates, quadrants: 1, max: 6, points: [[4, 2, "P"]], key: c }
-                answer: b
+                type: point_on_grid
+                text: "Plot the point (4, 1)."
+                say: "Plot the point four, one. Tap where it goes."
+                show: { drawn: coordinates, quadrants: 1, max: 6 }
+                answer: [4, 1]
+                feedback:
+                  "1,4": "That point is at (1, 4): 1 along. For (4, 1) go 4 along first, then 1 up."
                 hints: ["4 along, then 1 up."]
               - id: l2-s2
                 type: multiple_choice
@@ -391,11 +391,12 @@ lessons:
                   - { drawn: coordinates, quadrants: 1, max: 6, points: [[3, 3, "P"]], key: c }
                 answer: a
               - id: l2-n2
-                type: multiple_choice
-                text: "A, B and C are three vertices of a square. Where is the fourth vertex?"
+                type: point_on_grid
+                text: "A, B and C are three vertices of a square. Tap the fourth vertex."
                 show: { drawn: coordinates, quadrants: 1, max: 8, points: [[3, 2, "A"], [6, 2, "B"], [6, 5, "C"]] }
-                options: ["(3, 5)", "(5, 3)", "(3, 6)"]
-                answer: "(3, 5)"
+                answer: [3, 5]
+                feedback:
+                  "5,3": "That is (5, 3), the swapped point. The fourth vertex is above A, so 3 along, and level with C, so 5 up."
               - id: l2-n3
                 type: multiple_choice
                 text: "What are the coordinates of the top right vertex of this rectangle?"
@@ -430,13 +431,13 @@ lessons:
             answer: "B"
             option_audio: false
           - id: l2-c3
-            type: image_multiple_choice
-            text: "Which grid shows the point (2, 6)?"
-            options:
-              - { drawn: coordinates, quadrants: 1, max: 6, points: [[6, 2, "P"]], key: a }
-              - { drawn: coordinates, quadrants: 1, max: 6, points: [[2, 6, "P"]], key: b }
-              - { drawn: coordinates, quadrants: 1, max: 6, points: [[2, 5, "P"]], key: c }
-            answer: b
+            type: point_on_grid
+            text: "Plot the point (2, 6)."
+            say: "Plot the point two, six. Tap where it goes."
+            show: { drawn: coordinates, quadrants: 1, max: 6 }
+            answer: [2, 6]
+            feedback:
+              "6,2": "That point is at (6, 2): 6 along. For (2, 6) go 2 along first, then 6 up."
           - id: l2-c4
             type: multiple_choice
             text: "A, B and C are three vertices of a square. Where is the fourth vertex?"

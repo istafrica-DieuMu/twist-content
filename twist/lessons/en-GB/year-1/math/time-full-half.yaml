@@ -12,8 +12,8 @@ summary: >
   hour hand on the hour) and on a digital clock (3:00); lesson 2 reads
   half past (the minute hand on 6, the hour hand halfway to the next
   number, 3:30 on a digital clock), sets a time by choosing the clock
-  face that shows it, and ends with the skill check. Moving the hands
-  waits for clock_hands_drag.
+  face that shows it, and ends with the skill check. Every practise stage
+  and both checks also ask the child to set the hands (clock_hands_drag).
 metadata:
   year: year-1
   topic: { de: Uhrzeit, en: Telling the time }
@@ -28,7 +28,7 @@ metadata:
   misconceptions:
     - id: hands-swapped
       what: Reads the long minute hand as the hour (sees 12 o'clock when the minute hand is on 12)
-      addressed: lesson 1 Learn names the short hour hand and the long minute hand; l1-f2 (with feedback), l1-s2 and l1-f3, whose distractor clock has the hands swapped
+      addressed: lesson 1 Learn names the short hour hand and the long minute hand; l1-f2 (with feedback), l1-s2 and l1-f3, whose distractor clock has the hands swapped; l1-c2 and l2-n3 set the hands, with feedback for the swapped hands
     - id: half-past-next-hour
       what: At half past, reads the hour the short hand is moving towards (half past 3 read as half past 4)
       addressed: lesson 2 Learn shows the hour hand halfway between 3 and 4 and says to read the number it has passed; l2-f2 (with feedback), l2-s2, l2-n2 and l2-c2 offer the next hour
@@ -83,16 +83,18 @@ lessons:
           - support: full
             tasks:
               - id: l1-f1
-                type: multiple_choice
-                text: "What time is it?"
-                say: "Look at the clock. What time is it?"
-                show: { drawn: clock, hour: 5, minute: 0 }
-                options: ["5 o'clock", "12 o'clock", "6 o'clock"]
-                answer: "5 o'clock"
+                type: clock_hands_drag
+                text: "Show 5 o'clock on the clock."
+                say: "Show five o'clock on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
+                answer: "5:00"
+                feedback:
+                  "5:30": "At 5 o'clock the long minute hand points to 12, not to 6."
                 hints:
-                  - "The minute hand is on 12, so it is o'clock."
-                  - "Now look at the short hour hand. Which number does it point to?"
-                  - "5 o'clock."
+                  - "At o'clock the long minute hand points to 12."
+                  - "The short hour hand shows the hour. Which number does it need to point to?"
+                  - "Leave the long hand on 12 and drag the short hand to 5."
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
@@ -161,14 +163,14 @@ lessons:
                 answer: "6 o'clock"
                 hints: ["The long hand is the minute hand. The short hand shows the hour."]
               - id: l1-s3
-                type: image_multiple_choice
-                text: "Which clock shows 11 o'clock?"
-                say: "Which clock shows eleven o'clock?"
-                options:
-                  - { drawn: clock, hour: 1, minute: 0 }
-                  - { drawn: clock, hour: 11, minute: 0 }
-                  - { drawn: clock, hour: 12, minute: 55 }
+                type: clock_hands_drag
+                text: "Show 11 o'clock on the clock."
+                say: "Show eleven o'clock on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
                 answer: "11:00"
+                feedback:
+                  "1:00": "That is 1 o'clock. Drag the short hand to 11."
                 hints: ["The short hand points to 11, the long hand to 12."]
               - id: l1-s4
                 type: true_false
@@ -204,12 +206,14 @@ lessons:
                   - { drawn: clock, hour: 8, minute: 0 }
                 answer: "8:00"
               - id: l1-n3
-                type: multiple_choice
-                text: "What time is it?"
-                say: "Look at the clock. What time is it?"
-                show: { drawn: clock, hour: 4, minute: 0 }
-                options: ["4 o'clock", "12 o'clock", "3 o'clock"]
-                answer: "4 o'clock"
+                type: clock_hands_drag
+                text: "Show 4 o'clock on the clock."
+                say: "Show four o'clock on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
+                answer: "4:00"
+                feedback:
+                  "4:30": "At 4 o'clock the long minute hand points to 12."
               - id: l1-n4
                 type: true_false
                 text: "Is it 11 o'clock?"
@@ -234,14 +238,14 @@ lessons:
             options: ["2 o'clock", "12 o'clock", "3 o'clock"]
             answer: "2 o'clock"
           - id: l1-c2
-            type: image_multiple_choice
-            text: "Which clock shows 6 o'clock?"
-            say: "Which clock shows six o'clock?"
-            options:
-              - { drawn: clock, hour: 6, minute: 0 }
-              - { drawn: clock, hour: 12, minute: 30 }
-              - { drawn: clock, hour: 7, minute: 0 }
+            type: clock_hands_drag
+            text: "Show 6 o'clock on the clock."
+            say: "Show six o'clock on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
             answer: "6:00"
+            feedback:
+              "12:30": "You swapped the hands. The short hour hand goes on 6 and the long minute hand stays on 12."
           - id: l1-c3
             type: true_false
             text: "Is it 3 o'clock?"
@@ -316,18 +320,19 @@ lessons:
                   - "The hour hand is between 5 and 6. Which number has it passed?"
                   - "Half past 5."
               - id: l2-f3
-                type: image_multiple_choice
-                text: "Which clock shows half past 9?"
-                say: "Which clock shows half past nine?"
-                options:
-                  - { drawn: clock, hour: 9, minute: 30 }
-                  - { drawn: clock, hour: 9, minute: 0 }
-                  - { drawn: clock, hour: 6, minute: 45 }
+                type: clock_hands_drag
+                text: "Show half past 9 on the clock."
+                say: "Show half past nine on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
                 answer: "9:30"
+                feedback:
+                  "9:00": "That is 9 o'clock. At half past, the long minute hand points to 6."
+                  "10:30": "That is half past 10. At half past 9 the short hand has just passed 9."
                 hints:
                   - "At half past, the long minute hand points to 6."
-                  - "The short hour hand is just past 9."
-                  - "The clock with the long hand on 6 and the short hand between 9 and 10."
+                  - "The short hour hand has just passed 9, on its way to 10."
+                  - "Drag the long hand to 6 and the short hand to 9. It moves on to halfway between 9 and 10."
               - id: l2-f4
                 type: multiple_choice
                 text: "What time does the digital clock show?"
@@ -371,15 +376,16 @@ lessons:
                 answer: "half past 1"
                 hints: ["Read the number the hour hand has passed."]
               - id: l2-s3
-                type: image_multiple_choice
-                text: "Which clock shows 4 o'clock?"
-                say: "Which clock shows four o'clock?"
-                options:
-                  - { drawn: clock, hour: 4, minute: 30 }
-                  - { drawn: clock, hour: 4, minute: 0 }
-                  - { drawn: clock, hour: 12, minute: 20 }
-                answer: "4:00"
-                hints: ["At o'clock the long hand points to 12."]
+                type: clock_hands_drag
+                text: "Show half past 4 on the clock."
+                say: "Show half past four on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
+                answer: "4:30"
+                feedback:
+                  "4:00": "That is 4 o'clock. At half past, the long hand points to 6."
+                  "5:30": "That is half past 5. At half past 4 the short hand has just passed 4."
+                hints: ["The long hand on 6 means half past. The short hand has passed 4."]
               - id: l2-s4
                 type: multiple_choice
                 text: "What time does the digital clock show?"
@@ -413,14 +419,15 @@ lessons:
                 options: ["half past 6", "half past 7", "6 o'clock"]
                 answer: "half past 6"
               - id: l2-n3
-                type: image_multiple_choice
-                text: "Which clock shows half past 3?"
-                say: "Which clock shows half past three?"
-                options:
-                  - { drawn: clock, hour: 6, minute: 15 }
-                  - { drawn: clock, hour: 3, minute: 0 }
-                  - { drawn: clock, hour: 3, minute: 30 }
+                type: clock_hands_drag
+                text: "Show half past 3 on the clock."
+                say: "Show half past three on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
                 answer: "3:30"
+                feedback:
+                  "4:30": "That is half past 4. At half past 3 the short hand has just passed 3."
+                  "3:00": "That is 3 o'clock. At half past, the long hand points to 6."
               - id: l2-n4
                 type: true_false
                 text: "Is it 2 o'clock?"
@@ -452,14 +459,15 @@ lessons:
             options: ["half past 9", "half past 10", "9 o'clock"]
             answer: "half past 9"
           - id: l2-c3
-            type: image_multiple_choice
-            text: "Which clock shows half past 12?"
-            say: "Which clock shows half past twelve?"
-            options:
-              - { drawn: clock, hour: 12, minute: 30 }
-              - { drawn: clock, hour: 6, minute: 0 }
-              - { drawn: clock, hour: 12, minute: 0 }
+            type: clock_hands_drag
+            text: "Show half past 12 on the clock."
+            say: "Show half past twelve on the clock. Drag the hands."
+            show: { drawn: clock, hour: 3, minute: 0 }
+            step: 30
             answer: "12:30"
+            feedback:
+              "6:00": "You swapped the hands. The long minute hand goes on 6 and the short hour hand just past 12."
+              "1:30": "That is half past 1. At half past 12 the short hand has just passed 12."
           - id: l2-c4
             type: multiple_choice
             text: "What time does the digital clock show?"

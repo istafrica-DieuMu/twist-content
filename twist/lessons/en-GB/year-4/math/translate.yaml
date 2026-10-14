@@ -11,7 +11,9 @@ summary: >
   quadrant. Lesson 1 describes a translation by following one corner
   (3 right, 2 up) and finds where a point lands; lesson 2 carries out a
   translation of a whole shape, slides it back the opposite way, tells a
-  translation from a flip, and ends with the skill check.
+  translation from a flip, and ends with the skill check. In every stage
+  and both checks the child also taps where a moved point or corner lands
+  (point_on_grid).
 metadata:
   year: year-4
   topic: { de: Koordinaten, en: Coordinates }
@@ -117,15 +119,17 @@ lessons:
                   - "2 and 3 more is 5. The second number stays the same."
                   - "(5, 4)."
               - id: l1-f4
-                type: multiple_choice
-                text: "Point C (6, 5) moves 2 left and 1 down. Where does it land?"
+                type: point_on_grid
+                text: "Point C (6, 5) moves 2 left and 1 down. Tap where it lands."
                 show: { drawn: coordinates, quadrants: 1, max: 8, points: [[6, 5, C]] }
-                options: ["(4, 4)", "(8, 6)", "(4, 6)"]
-                answer: "(4, 4)"
+                answer: [4, 4]
+                feedback:
+                  "8,6": "That is 2 right and 1 up. Left and down both take away."
+                  "4,6": "Down takes away from the second number: 5 take away 1 is 4."
                 hints:
                   - "Left and down both take away."
                   - "6 take away 2, then 5 take away 1."
-                  - "(4, 4)."
+                  - "Tap (4, 4)."
               - id: l1-f5
                 type: multiple_choice
                 text: "The purple triangle slides to the green triangle. Describe the translation."
@@ -168,10 +172,13 @@ lessons:
                 answer: true
                 hints: ["Add 2 to the first number and 5 to the second."]
               - id: l1-s5
-                type: multiple_choice
-                text: "Point D (5, 8) moves 3 right and 4 down. Where does it land?"
-                options: ["(8, 4)", "(8, 12)", "(2, 4)"]
-                answer: "(8, 4)"
+                type: point_on_grid
+                text: "Point D (5, 8) moves 3 right and 4 down. Tap where it lands."
+                show: { drawn: coordinates, quadrants: 1, max: 8, points: [[5, 8, D]] }
+                answer: [8, 4]
+                feedback:
+                  "2,4": "That is 3 left. Right adds to the first number: 5 and 3 more is 8."
+                  "4,8": "You swapped the numbers. Along first: 8 along, then 4 up."
                 hints: ["Right adds to the first number, down takes away from the second."]
 
           - support: none
@@ -198,11 +205,13 @@ lessons:
                 text: "Is it true? After a translation the shape is bigger."
                 answer: false
               - id: l1-n5
-                type: multiple_choice
-                text: "(2, 3) is translated 4 right and 3 up. Which point does it land on?"
-                show: { drawn: coordinates, quadrants: 1, max: 8, points: [[6, 6, A], [6, 3, B], [5, 7, C]] }
-                options: ["A", "B", "C"]
-                answer: "A"
+                type: point_on_grid
+                text: "Point P (2, 3) is translated 4 right and 3 up. Tap where it lands."
+                show: { drawn: coordinates, quadrants: 1, max: 8, points: [[2, 3, P]] }
+                answer: [6, 6]
+                feedback:
+                  "5,7": "That is 3 right and 4 up. Count across first: 4 right."
+                  "6,3": "That is only 4 right. Now go 3 up as well."
 
       - activity: check
         size: quick
@@ -214,11 +223,13 @@ lessons:
             options: ["4 right, 1 up", "2 right, 1 up", "1 right, 4 up"]
             answer: "4 right, 1 up"
           - id: l1-c2
-            type: fill_in_blank
-            text: "Translate (4, 7) 3 right and 2 down."
-            frame: "( _ , _ )"
-            options: ["1", "5", "7", "9"]
-            answer: ["7", "5"]
+            type: point_on_grid
+            text: "Point A (4, 7) is translated 3 right and 2 down. Tap where it lands."
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[4, 7, A]] }
+            answer: [7, 5]
+            feedback:
+              "5,7": "You swapped the numbers. Along first: 7 along, then 5 up."
+              "1,5": "That is 3 left. Right adds to the first number: 4 and 3 more is 7."
           - id: l1-c3
             type: multiple_choice
             text: "E (5, 3) moves to F (5, 8). Describe the translation."
@@ -279,16 +290,16 @@ lessons:
                   - "The green square has its bottom left corner at (4, 3)."
                 difficulty: easy
               - id: l2-f2
-                type: fill_in_blank
-                text: "Translate the triangle 2 right and 3 up. Where does the corner (4, 1) go?"
+                type: point_on_grid
+                text: "Translate the triangle 2 right and 3 up. Tap where the corner (4, 1) goes."
                 show: { drawn: coordinates, quadrants: 1, max: 8, shape: [[1, 1], [4, 1], [1, 3]] }
-                frame: "( _ , _ )"
-                options: ["2", "4", "6", "7"]
-                answer: ["6", "4"]
+                answer: [6, 4]
+                feedback:
+                  "7,3": "That is 3 right and 2 up. Count across first: 2 right, then 3 up."
                 hints:
                   - "Right adds to the first number, up adds to the second."
                   - "4 and 2 more, then 1 and 3 more."
-                  - "(6, 4)."
+                  - "Tap (6, 4)."
               - id: l2-f3
                 type: multiple_choice
                 text: "The purple triangle slides to the green triangle. Describe the translation."
@@ -345,10 +356,13 @@ lessons:
                 answer: "5 right, 5 up"
                 hints: ["How far is it from 2 to 7 across, and from 3 to 8 up?"]
               - id: l2-s4
-                type: multiple_choice
-                text: "In a translation, the corner (5, 2) moves to (8, 6). Where does the corner (1, 2) go?"
-                options: ["(4, 6)", "(8, 6)", "(1, 6)"]
-                answer: "(4, 6)"
+                type: point_on_grid
+                text: "In a translation, corner A (5, 2) moves to B (8, 6). Tap where corner C (1, 2) goes."
+                show: { drawn: coordinates, quadrants: 1, max: 8, points: [[5, 2, A], [8, 6, B], [1, 2, C]] }
+                answer: [4, 6]
+                feedback:
+                  "8,6": "That is where A goes. C moves the same way as A: 3 right and 4 up from (1, 2)."
+                  "1,6": "That is only 4 up. Go 3 right as well."
                 hints: ["Every corner moves the same way: 3 right and 4 up."]
               - id: l2-s5
                 type: true_false
@@ -367,11 +381,12 @@ lessons:
                   - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 4], [4, 4], [4, 6], [1, 6]], moved: [[4, 0], [7, 0], [7, 2], [4, 2]], key: r3d4 }
                 answer: r4d3
               - id: l2-n2
-                type: fill_in_blank
-                text: "Translate (9, 2) 6 left and 7 up."
-                frame: "( _ , _ )"
-                options: ["3", "5", "9", "15"]
-                answer: ["3", "9"]
+                type: point_on_grid
+                text: "Point P (9, 2) is translated 6 left and 7 up. Tap where it lands."
+                show: { drawn: coordinates, quadrants: 1, max: 10, points: [[9, 2, P]] }
+                answer: [3, 9]
+                feedback:
+                  "9,3": "You swapped the numbers. Along first: 3 along, then 9 up."
               - id: l2-n3
                 type: multiple_choice
                 text: "A robot at (1, 1) moves 4 right and 6 up. Then it moves 2 more right. Where is it now?"
@@ -417,7 +432,9 @@ lessons:
             options: ["5 left, 2 down", "5 right, 2 up", "3 left, 6 down"]
             answer: "5 left, 2 down"
           - id: l2-c5
-            type: multiple_choice
-            text: "In a translation, the corner (2, 1) moves to (6, 4). Where does the corner (2, 5) go?"
-            options: ["(6, 8)", "(6, 4)", "(2, 8)"]
-            answer: "(6, 8)"
+            type: point_on_grid
+            text: "In a translation, corner A (2, 1) moves to B (6, 4). Tap where corner C (2, 5) goes."
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[2, 1, A], [6, 4, B], [2, 5, C]] }
+            answer: [6, 8]
+            feedback:
+              "6,4": "That is where A goes. C moves the same way: 4 right and 3 up from (2, 5)."

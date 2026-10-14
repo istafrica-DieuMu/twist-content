@@ -353,6 +353,14 @@ The build warns on these (lessons-check.mjs):
   `metadata.dashes: true`; the app shows them as dashes.
 - List items with a question mark are quoted (`"Wer?"`); narration.py
   reads the files with PyYAML, which rejects them bare.
+- A character who says their name in `audio` ("Hi, I'm Tom.") names the
+  speaker (`speaker: male` or `female`), so a voice of that kind says it.
+  Tag other first-person character lines too; leave narration without.
+- Every placed skill maps to a standard of its own curriculum's frameworks
+  or is listed under `enrichment:` in the curriculum file with a reason;
+  a skill shared with the other country never counts on its standards.
+- `clock_hands_drag` minutes sit on its `step`, and the clock never starts
+  at the answer; `point_on_grid` answers are crossings on the grid.
 
 The author checks these by reading every task:
 
@@ -370,7 +378,17 @@ The author checks these by reading every task:
   `misconceptions.addressed` names the tasks that really address it.
 - **The year fits.** Numbers stay in the year's range (Cent to 100 in
   Klasse 2), methods follow the Lehrplan (one-digit divisors in Klasse 4),
-  and a Klasse 1 letter task uses only letters already taught.
+  and a Klasse 1 letter task uses only letters already taught. In en-GB a
+  unit or idea waits for the year whose programme of study names it (mm,
+  cm and m in Year 3, km in Year 4; no tonnes in key stage 2), and a claim
+  that depends on the school (which letters join, which method) says so.
+- **Symbols and formats.** Write maths as the child sees it (7/5, ½,
+  20 °C, 12 cm², 25%, 4 × 5, 20 ÷ 4); the voice reads them as words. A
+  target language keeps its own formats on screen: French prices 2,50 €,
+  times 16 h 30, a space before ? ! : ; and coins drawn with
+  `currency: eur`.
+- **Native, not textbook.** Weather now is "It's raining" and "It's
+  snowing"; check any set phrase against how a native speaker says it.
 - **German as a teacher says it.** Nomen, Verb, Adjektiv in every year
   (Klasse 1 and 2 may add "Tunwort" once, where the term is introduced);
   German quotes „…“; du-form, short sentences. In Englisch, hints are in

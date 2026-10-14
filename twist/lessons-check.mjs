@@ -192,10 +192,18 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           // difficulty defaults to core
           if (t.difficulty !== undefined && !["easy", "core", "stretch"].includes(t.difficulty)) err(`${file}: ${tw}: difficulty must be easy, core or stretch`);
           checkAnswer(t, tw, file, err);
-          // A character speaking in the first person gets a voice of their kind.
-          if (t.audio?.speaker != null && !["male", "female"].includes(t.audio.speaker)) err(`${file}: ${tw}: audio speaker is male or female`);
-          if (t.audio && !t.audio.speaker && Object.entries(t.audio).some(([k, v]) => k !== "sound" && /\b(I'm|I am|My name is|my name is|Je m'appelle|je m'appelle|Ich heiße|ich heiße|Ich bin) [A-ZÄÖÜÉ][a-zäöüéèëï]+/.test(String(v))))
-            warn(`${file}: ${tw}: audio has a character saying their name; add speaker: male or female so the voice fits`);
+          // A character speaking in the first person gets a voice of their kind;
+          // a dialogue is `turns`, each with its own speaker.
+          if (t.audio) {
+            const NAME = /\b(I'm|I am|My name is|my name is|Je m'appelle|je m'appelle|Je suis|Ich heiße|ich heiße|Ich bin) [A-ZÄÖÜÉ][a-zäöüéèëï]+/g;
+            for (const turn of t.audio.turns ?? [t.audio]) {
+              if (turn.speaker != null && !["male", "female"].includes(turn.speaker)) err(`${file}: ${tw}: audio speaker is male or female`);
+              const said = Object.entries(turn).filter(([k]) => !["sound", "speaker", "turns"].includes(k)).map(([, v]) => String(v)).join(" ");
+              const names = said.match(NAME) ?? [];
+              if (names.length && !turn.speaker) warn(`${file}: ${tw}: audio has a character saying their name; add speaker: male or female so the voice fits`);
+              if (names.length > 1) warn(`${file}: ${tw}: audio has two characters saying their names; write it as turns, each with its speaker`);
+            }
+          }
           if (t.option_audio !== undefined && typeof t.option_audio !== "boolean") err(`${file}: ${tw}: option_audio must be true or false`);
           const hints = t.hints?.length ?? 0;
           if (support === "full" && hints !== 3 && !SELF_SUPPORTED.has(t.type)) err(`${file}: ${tw}: full support needs 3 hints, has ${hints}`);

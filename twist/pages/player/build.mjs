@@ -50,7 +50,8 @@ const saySymbolsEn = (t) => VULGAR_EN.reduce((s, [a, b]) => s.split(a).join(b), 
   .replace(/\b(mm|cm|km|m)²/g, (m, u) => "square " + UNITS_EN[u]).replace(/\b(mm|cm|km|m)³/g, (m, u) => "cubic " + UNITS_EN[u])
   .replace(/(\d) ?%/g, "$1 per cent")
   .split(" × ").join(" times ").split(" ÷ ").join(" divided by ")
-  .replace(/−(?=\d)/g, "minus ");
+  .replace(/(\d) : (\d)/g, "$1 to $2").replace(/(\d) r (\d)/g, "$1 remainder $2")
+  .replace(/−(?=\d)/g, "negative ");
 const spoken = (text, lang) => { let t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim());
   if (lang === "en") t = saySymbolsEn(t);
   if (lang === "de") t = sayNumbersDe(VULGAR_DE.reduce((s, [a, b]) => s.split(a).join(b), t));
@@ -119,7 +120,8 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
         const w = `${rel} ${t.id}`;
         t._prompt = sayClips(t.say ?? t.text, lang, a.activity, w);
         if (t.audio?.sound) t._target = soundClip(t.audio.sound, a.activity);
-        else if (t.audio) t._target = Object.entries(t.audio).filter(([k]) => k !== "sound" && k !== "speaker").map(([lg, v]) => clip(lg, v, a.activity, null, w, t.audio.speaker))[0];
+        // `turns`: a dialogue, one clip per turn in that speaker's voice, played in order.
+        else if (t.audio) t._target = (t.audio.turns ?? [t.audio]).map((turn) => Object.entries(turn).filter(([k]) => !["sound", "speaker", "turns"].includes(k)).map(([lg, v]) => clip(lg, v, a.activity, null, w, turn.speaker))[0]).filter(Boolean);
         if (t.type === "speak") { const tl = d.target_language ?? lang; t._model = clip(tl, speakModel(t, tl), a.activity, null, w); }
         t._hints = (t.hints ?? []).map((h) => clip(lang, h, a.activity, null, w));
         t._options = (t.options ?? []).map((o) => { const x = optionText(t, o, lang); return x ? clip(lang, x, a.activity, null, w) : null; });

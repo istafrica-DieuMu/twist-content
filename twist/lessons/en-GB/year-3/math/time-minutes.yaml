@@ -11,8 +11,9 @@ summary: >
   number and then the small marks (23 minutes past 6, 7 minutes to 9) and
   matches times to clocks; lesson 2 uses am and pm and writes afternoon and
   evening times on the 24-hour clock (3:15 pm is 15:15), and ends with the
-  skill check. Setting the time is done by choosing the clock that shows
-  it; some clocks have Roman numerals I to XII.
+  skill check. Every practise stage and both checks also ask the child to
+  set the hands to the minute (clock_hands_drag); in lesson 2 the time is
+  given on the 24-hour clock. Some clocks have Roman numerals I to XII.
 metadata:
   year: year-3
   topic: { de: Uhrzeit, en: Telling the time }
@@ -27,7 +28,7 @@ metadata:
   misconceptions:
     - id: skip-small-marks
       what: Reads only to the last five minutes (6:23 as 20 past 6)
-      addressed: lesson 1 Learn counts the small marks after the number; l1-f1 has feedback on it; the rounded time is an option in l1-s1, l1-n1, l1-c1, l1-f4, l1-s4, l1-c3, l2-c1 and l2-c3
+      addressed: lesson 1 Learn counts the small marks after the number; l1-f1 has feedback on it; the rounded time is an option in l1-s1, l1-n1, l1-c1 and l2-c1; setting the hands in l1-f4, l1-s4, l1-c3 and l2-c3 gives feedback for the rounded time
     - id: past-to-hour
       what: Names the hour just gone for times to the hour (5:56 as 4 minutes to 5)
       addressed: lesson 1 Learn reads 8:53 as 7 minutes to 9; l1-f5, l1-s5 and l2-c2 offer the hour just gone
@@ -36,7 +37,7 @@ metadata:
       addressed: lesson 2 Learn adds 12; l2-f1 has feedback on it; l2-s1, l2-s4, l2-n1, l2-n5, l2-c4 and l2-c5 offer the wrong hour
     - id: number-is-minutes
       what: Reads the number the minute hand is near as the minutes (8:15 for 8:03)
-      addressed: l1-n4 offers the clock with the minute hand on the 3
+      addressed: l1-n4 sets 8:03, with feedback for the minute hand on the 3 (8:15)
   twist_reuse: []
   status: draft
   version: 1
@@ -114,18 +115,19 @@ lessons:
                   - "Count the small marks after the 9."
                   - "Yes, it is 10:48."
               - id: l1-f4
-                type: image_multiple_choice
-                text: "Which clock shows 4:17?"
-                say: "Which clock shows four seventeen?"
-                options:
-                  - { drawn: clock, hour: 4, minute: 17 }
-                  - { drawn: clock, hour: 4, minute: 15 }
-                  - { drawn: clock, hour: 3, minute: 17 }
+                type: clock_hands_drag
+                text: "Show 4:17 on the clock."
+                say: "Show four seventeen on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
                 answer: "4:17"
+                feedback:
+                  "4:15": "That is 4:15. Move the minute hand on 2 more small marks."
+                  "3:20": "You swapped the hands. The long minute hand shows the minutes and the short hour hand shows the hour."
                 hints:
-                  - "17 minutes is 2 marks past the 3."
-                  - "The hour hand is just past the 4."
-                  - "The clock with the hour hand just past 4 and the minute hand 2 marks past the 3."
+                  - "Count in fives first: 15 minutes is on the 3."
+                  - "17 minutes is 2 marks past the 3. The hour hand goes on the 4."
+                  - "Drag the long hand 2 marks past the 3 and the short hand to the 4."
               - id: l1-f5
                 type: multiple_choice
                 text: "What time is it?"
@@ -160,15 +162,16 @@ lessons:
                 answer: false
                 hints: ["Up to the 6 is 30 minutes. How many marks after it?"]
               - id: l1-s4
-                type: image_multiple_choice
-                text: "Which clock shows 11:52?"
-                say: "Which clock shows eleven fifty-two?"
-                options:
-                  - { drawn: clock, hour: 11, minute: 52 }
-                  - { drawn: clock, hour: 11, minute: 50 }
-                  - { drawn: clock, hour: 12, minute: 52 }
+                type: clock_hands_drag
+                text: "Show 11:52 on the clock."
+                say: "Show eleven fifty-two on the clock. Drag the hands."
+                show: { drawn: clock, hour: 6, minute: 0, roman: true }
+                step: 1
                 answer: "11:52"
-                hints: ["52 minutes is 2 marks past the 10, and it is not yet 12 o'clock."]
+                feedback:
+                  "11:50": "That is 11:50. Move the minute hand on 2 more small marks."
+                  "12:52": "That is 12:52. It is not yet 12 o'clock, so drag the hour hand to XI."
+                hints: ["52 minutes is 2 marks past the 10 (X), and it is not yet 12 o'clock."]
               - id: l1-s5
                 type: multiple_choice
                 text: "What time is it?"
@@ -196,14 +199,15 @@ lessons:
                 show: { drawn: clock, hour: 2, minute: 58 }
                 answer: true
               - id: l1-n4
-                type: image_multiple_choice
-                text: "Which clock shows 8:03?"
-                say: "Which clock shows eight oh three?"
-                options:
-                  - { drawn: clock, hour: 8, minute: 3 }
-                  - { drawn: clock, hour: 8, minute: 15 }
-                  - { drawn: clock, hour: 3, minute: 40 }
+                type: clock_hands_drag
+                text: "Show 8:03 on the clock."
+                say: "Show eight oh three on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
                 answer: "8:03"
+                feedback:
+                  "8:15": "That is 8:15. 3 minutes is 3 small marks past the 12, not the number 3."
+                  "12:40": "You swapped the hands. The long minute hand shows the minutes and the short hour hand shows the hour."
               - id: l1-n5
                 type: multiple_choice
                 text: "What does a digital clock show at this time?"
@@ -226,14 +230,15 @@ lessons:
             show: { drawn: clock, hour: 5, minute: 51 }
             answer: "51"
           - id: l1-c3
-            type: image_multiple_choice
-            text: "Which clock shows 7:44?"
-            say: "Which clock shows seven forty-four?"
-            options:
-              - { drawn: clock, hour: 7, minute: 44 }
-              - { drawn: clock, hour: 7, minute: 40 }
-              - { drawn: clock, hour: 8, minute: 44 }
+            type: clock_hands_drag
+            text: "Show 7:44 on the clock."
+            say: "Show seven forty-four on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
             answer: "7:44"
+            feedback:
+              "7:40": "That is 7:40. Move the minute hand on 4 more small marks."
+              "8:44": "That is 8:44. It is not yet 8 o'clock, so drag the hour hand to the 7."
 
   - n: 2
     title: { de: "Vormittags, nachmittags und 13 bis 24 Uhr", en: "am, pm and the 24-hour clock" }
@@ -265,7 +270,7 @@ lessons:
             say: "A 24-hour clock does not start again after twelve. It carries on: one o'clock in the afternoon is thirteen hundred. So for a pm time, add twelve to the hour. Quarter past three in the afternoon is fifteen fifteen."
             show: { drawn: clock, hour: 3, minute: 15, digital: true }
           - text: "9:40 am = 09:40\nmidday = 12:00\nmidnight = 00:00"
-            say: "Morning times keep their hour, with a zero in front: nine forty in the morning is oh nine forty. Midday is twelve hundred, and midnight is written zero zero, zero zero: the start of a new day."
+            say: "Morning times keep their hour, with a zero in front: nine forty in the morning is oh nine forty. Midday is twelve hundred, and midnight is written zero zero, zero zero: the start of a new day. A clock face only goes up to twelve, so to show seventeen forty-five on it, take twelve away: the hands show five forty-five."
 
       - activity: practise
         setting: plain
@@ -296,15 +301,18 @@ lessons:
                   - "8 + 12."
                   - "20:00."
               - id: l2-f3
-                type: multiple_choice
-                text: "17:45 on a 12-hour clock is _"
-                say: "Seventeen forty-five. What is that on a 12-hour clock?"
-                options: ["5:45 pm", "7:45 pm", "5:45 am"]
-                answer: "5:45 pm"
+                type: clock_hands_drag
+                text: "The bus leaves at 17:45. Show the time on the clock."
+                say: "The bus leaves at seventeen forty-five. Show the time on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
+                answer: "5:45"
+                feedback:
+                  "7:45": "Take 12 away from the hour, not 10: 17 take away 12 is 5."
                 hints:
-                  - "17 is more than 12, so it is pm."
-                  - "Take 12 away from the hour: 17 − 12."
-                  - "5:45 pm."
+                  - "The clock face only goes up to 12. Take 12 away from the hour."
+                  - "17 take away 12 is 5. 45 minutes: the minute hand points to the 9."
+                  - "Drag the short hand to the 5 and the long hand to the 9."
               - id: l2-f4
                 type: true_false
                 text: "Is it true? 10:30 am is 10:30 on a 24-hour clock."
@@ -339,12 +347,15 @@ lessons:
                 answer: "21"
                 hints: ["9 + 12."]
               - id: l2-s3
-                type: multiple_choice
-                text: "14:05 on a 12-hour clock is _"
-                say: "Fourteen oh five. What is that on a 12-hour clock?"
-                options: ["2:05 pm", "4:05 pm", "2:05 am"]
-                answer: "2:05 pm"
-                hints: ["Take 12 away from the hour."]
+                type: clock_hands_drag
+                text: "Lunch ends at 13:08. Show the time on the clock."
+                say: "Lunch ends at thirteen oh eight. Show the time on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
+                answer: "1:08"
+                feedback:
+                  "3:08": "Take 12 away from the hour, not 10: 13 take away 12 is 1."
+                hints: ["Take 12 away from the hour. 8 minutes is 3 small marks past the 1."]
               - id: l2-s4
                 type: true_false
                 text: "Is it true? 7:20 pm is 17:20 on a 24-hour clock."
@@ -371,11 +382,14 @@ lessons:
                 say: "One pm. What is that on a 24-hour clock?"
                 answer: "13"
               - id: l2-n3
-                type: multiple_choice
-                text: "20:40 on a 12-hour clock is _"
-                say: "Twenty forty. What is that on a 12-hour clock?"
-                options: ["8:40 pm", "10:40 pm", "8:40 am"]
-                answer: "8:40 pm"
+                type: clock_hands_drag
+                text: "The film ends at 20:37. Show the time on the clock."
+                say: "The film ends at twenty thirty-seven. Show the time on the clock. Drag the hands."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 1
+                answer: "8:37"
+                feedback:
+                  "10:37": "Take 12 away from the hour, not 10: 20 take away 12 is 8."
               - id: l2-n4
                 type: multiple_choice
                 text: "Which of these times is in the morning?"
@@ -404,14 +418,15 @@ lessons:
             options: ["8 minutes to 7", "8 minutes to 6", "52 minutes to 7"]
             answer: "8 minutes to 7"
           - id: l2-c3
-            type: image_multiple_choice
-            text: "Which clock shows 2:29?"
-            say: "Which clock shows two twenty-nine?"
-            options:
-              - { drawn: clock, hour: 2, minute: 29 }
-              - { drawn: clock, hour: 2, minute: 25 }
-              - { drawn: clock, hour: 3, minute: 29 }
+            type: clock_hands_drag
+            text: "Show 2:29 on the clock."
+            say: "Show two twenty-nine on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
             answer: "2:29"
+            feedback:
+              "2:25": "That is 2:25. Move the minute hand on 4 more small marks."
+              "3:29": "That is 3:29. It is just before half past 2, so the hour hand goes on the 2."
           - id: l2-c4
             type: multiple_choice
             text: "5:10 pm on a 24-hour clock is _"

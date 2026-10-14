@@ -104,7 +104,9 @@ def say_symbols_en(t):
     t = re.sub(r"\b(mm|cm|km|m)³", lambda m: "cubic " + UNITS_EN[m.group(1)], t)
     t = re.sub(r"(\d) ?%", r"\1 per cent", t)
     t = t.replace(" × ", " times ").replace(" ÷ ", " divided by ")
-    return re.sub(r"−(?=\d)", "minus ", t)
+    t = re.sub(r"(\d) : (\d)", r"\1 to \2", t)  # a ratio
+    t = re.sub(r"(\d) r (\d)", r"\1 remainder \2", t)
+    return re.sub(r"−(?=\d)", "negative ", t)  # KS2 says negative 4; " − " between numbers stays minus
 
 
 # German numbers are spoken as words: the voice swaps or spells out bare
@@ -281,9 +283,11 @@ def gather(cfg):
                     for lg, v in (say.items() if isinstance(say, dict) else [(lang, say)]):
                         add(lg, v, "prompt", w, a["activity"])
                     au = t.get("audio") or {}
-                    for lg, v in au.items():
-                        if lg not in ("sound", "speaker"):
-                            add(lg, v, "target", w, a["activity"], speaker=au.get("speaker"))
+                    # `turns`: a dialogue, each turn a line with its own speaker.
+                    for turn in au.get("turns", [au]):
+                        for lg, v in turn.items():
+                            if lg not in ("sound", "speaker", "turns"):
+                                add(lg, v, "target", w, a["activity"], speaker=turn.get("speaker"))
                     # A speak task plays the model after the child has spoken
                     # (the fallback while speech is not marked). Must match
                     # speakModel() in player/build.mjs.

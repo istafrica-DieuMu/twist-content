@@ -1029,12 +1029,12 @@ function renderTask(step) {
   const mode = step.stage; // full, some, none, check
   // prompt
   const pr = document.createElement("div"); pr.className = "prompt";
-  const promptAudio = [...t._prompt, t._target].filter(Boolean);
+  const promptAudio = [...t._prompt, t._target].flat().filter(Boolean);
   if (t.type === "audio_choice") {
     const txt = document.createElement("div"); txt.className = "t"; txt.textContent = set.no_reading ? "" : (t.text ?? ""); pr.appendChild(txt);
     pr.appendChild(spk(t._prompt));
     body.appendChild(pr);
-    const big = spk([t._target].filter(Boolean), "big"); body.appendChild(big);
+    const big = spk([t._target].flat().filter(Boolean), "big"); body.appendChild(big);
   } else {
     const txt = document.createElement("div"); txt.className = (t.text ?? "").includes("\n") || (t.text ?? "").length > 90 ? "t passage" : "t"; txt.innerHTML = set.no_reading ? "" : withGaps(t.text); pr.appendChild(txt);
     pr.appendChild(spk(promptAudio)); body.appendChild(pr);

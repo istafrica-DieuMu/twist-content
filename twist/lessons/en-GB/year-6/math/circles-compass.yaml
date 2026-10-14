@@ -11,8 +11,10 @@ summary: >
   the circle is the same distance from the centre) and the diameter,
   which is twice the radius; lesson 2 opens a pair of compasses on a
   ruler to the radius, keeps the point on the centre, draws arcs and
-  circles round one centre, and ends with the skill check. Drawing a
-  circle with the compasses on screen waits for a drawing task.
+  circles round one centre, and ends with the skill check. Lesson 1 draws
+  the parts on a circle, colours one red to name, and writes the radius
+  or diameter on it. Drawing a circle with the compasses on screen waits
+  for a drawing task.
 metadata:
   year: year-6
   topic: { de: Geometrie, en: Geometry }
@@ -22,7 +24,7 @@ metadata:
   also_practises: [math.length.cm-m]
   vocabulary: { en: [circle, centre, radius, radii, diameter, pair of compasses, point, arc] }
   forms: [text, audio, drawn]
-  drawn: [shape, ruler]
+  drawn: [shape, ruler, circle]
   facets: [units]
   misconceptions:
     - id: radius-is-diameter
@@ -64,12 +66,13 @@ lessons:
         screens:
           - text: "The centre is the point in the very middle of a circle."
             say: "The point in the very middle of a circle is its centre. Every point on the circle is exactly the same distance from the centre. That is what makes it a circle."
-            show: { drawn: shape, kind: circle, colour: green }
+            show: { drawn: circle, parts: [centre], labels: true, highlight: centre }
           - text: "The radius: from the centre to the circle.\nHere the radius is 3 cm."
             say: "A straight line from the centre to the circle is a radius. It is the same length whichever way you measure it. This radius is three centimetres long."
-            show: { drawn: ruler, to: 10, length: 3, colour: blue }
+            show: { drawn: circle, parts: [centre, radius], labels: true, highlight: radius, values: { radius: "3 cm" } }
           - text: "The diameter: right across, through the centre.\ndiameter = 2 × radius\nradius 3 cm, diameter 6 cm"
             say: "A straight line right across the circle through the centre is the diameter. It is made of two radii, so it is twice as long. A circle with a radius of three centimetres is six centimetres wide."
+            show: { drawn: circle, parts: [centre, radius, diameter], labels: true, highlight: diameter, values: { radius: "3 cm", diameter: "6 cm" } }
 
       - activity: practise
         setting: plain
@@ -78,13 +81,14 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "What is a line from the centre to the circle called?"
+                text: "Which part of the circle is red?"
+                show: { drawn: circle, parts: [centre, radius, diameter], highlight: radius }
                 options: ["radius", "diameter", "centre"]
                 answer: "radius"
                 feedback:
-                  "diameter": "The diameter goes right across the circle. This line stops at the centre."
+                  "diameter": "The diameter goes right across the circle. The red line stops at the centre."
                 hints:
-                  - "It starts at the centre."
+                  - "The red line starts at the centre and goes to the circle."
                   - "It is half of the diameter."
                   - "It is the radius."
                 difficulty: easy
@@ -99,6 +103,7 @@ lessons:
               - id: l1-f3
                 type: multiple_choice
                 text: "A circle has a radius of 4 cm. How far is a point on the circle from the centre?"
+                show: { drawn: circle, parts: [centre, radius], values: { radius: "4 cm" } }
                 options: ["4 cm", "8 cm", "2 cm"]
                 answer: "4 cm"
                 feedback:
@@ -133,10 +138,11 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "Where is the centre of a circle?"
-                options: ["exactly in the middle", "on the circle", "outside the circle"]
-                answer: "exactly in the middle"
-                hints: ["It is the same distance from every point on the circle."]
+                text: "Which part of the circle is red?"
+                show: { drawn: circle, parts: [centre, radius, diameter], highlight: diameter }
+                options: ["diameter", "radius", "centre"]
+                answer: "diameter"
+                hints: ["The red line goes right across, through the centre."]
               - id: l1-s2
                 type: true_false
                 text: "If you measure the radius in a different direction, it is longer. Is that true?"
@@ -145,6 +151,7 @@ lessons:
               - id: l1-s3
                 type: multiple_choice
                 text: "A circle is 10 cm across through its centre. What is its radius?"
+                show: { drawn: circle, parts: [centre, diameter], values: { diameter: "10 cm" } }
                 options: ["5 cm", "10 cm", "20 cm"]
                 answer: "5 cm"
                 hints: ["10 cm is the diameter. The radius is half of it."]
@@ -168,6 +175,7 @@ lessons:
               - id: l1-n1
                 type: text_input
                 text: "A circle has a radius of 6 cm. What is its diameter in cm?"
+                show: { drawn: circle, parts: [centre, radius], values: { radius: "6 cm" } }
                 answer: "12"
               - id: l1-n2
                 type: multiple_choice

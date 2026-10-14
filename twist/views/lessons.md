@@ -1298,7 +1298,7 @@ Task types: multiple_choice 19, matching 4, true_false 7, text_input 5, fill_in_
 
 `de-DE.math.time-full-half` teaches `math.time.full-half-hour` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Reading the clock to the hour and the half hour. Lesson 1 reads full hours from the short hand when the long hand points to 12 (drei Uhr, 3:00); lesson 2 reads halbe Stunden, where the long hand points to 6 and the short hand sits between two numbers (halb vier, 3:30), and ends with the skill check. Setting the hands waits for clock_hands_drag.
+Reading the clock to the hour and the half hour. Lesson 1 reads full hours from the short hand when the long hand points to 12 (drei Uhr, 3:00); lesson 2 reads halbe Stunden, where the long hand points to 6 and the short hand sits between two numbers (halb vier, 3:30), and ends with the skill check. Every practise stage and both checks also ask the child to set the hands (clock_hands_drag).
 
 
 | Lesson | New | Tasks | Activities |
@@ -1306,7 +1306,7 @@ Reading the clock to the hour and the half hour. Lesson 1 reads full hours from 
 | 1. Volle Stunden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Halbe Stunden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 25, image_multiple_choice 8, true_false 9. Builds on: `math.numbers-to-20.order-to-20`. Misconceptions addressed: 2.
+Task types: multiple_choice 21, clock_hands_drag 8, image_multiple_choice 4, true_false 9. Builds on: `math.numbers-to-20.order-to-20`. Misconceptions addressed: 2.
 
 ## Die Ziffern 0 bis 10 (The numerals 0 to 10)
 
@@ -2813,7 +2813,7 @@ Task types: multiple_choice 18, text_input 15, fill_in_blank 7, true_false 6. Bu
 
 `de-DE.math.time-five-minutes` teaches `math.time.five-minutes` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Reading the clock in steps of five minutes. Lesson 1 counts the long hand in Fünferschritten (on the 4 it is 20 minutes) and says nach and vor (zehn nach drei, zehn vor vier); lesson 2 reads the times around halb (fünf vor halb vier, fünf nach halb vier), learns that an hour has 60 minutes and a day 24 hours, and ends with the skill check.
+Reading the clock in steps of five minutes. Lesson 1 counts the long hand in Fünferschritten (on the 4 it is 20 minutes) and says nach and vor (zehn nach drei, zehn vor vier); lesson 2 reads the times around halb (fünf vor halb vier, fünf nach halb vier), learns that an hour has 60 minutes and a day 24 hours, and ends with the skill check. Every practise stage and both checks also ask the child to set the hands to five minutes (clock_hands_drag).
 
 
 | Lesson | New | Tasks | Activities |
@@ -2821,13 +2821,13 @@ Reading the clock in steps of five minutes. Lesson 1 counts the long hand in Fü
 | 1. Nach und vor | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Um halb herum | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: fill_in_blank 1, multiple_choice 30, true_false 5, image_multiple_choice 4, text_input 2. Builds on: `math.time.quarter-hours`, `math.mult-div.table-5-10`. Misconceptions addressed: 2.
+Task types: fill_in_blank 1, multiple_choice 26, true_false 5, clock_hands_drag 8, text_input 2. Builds on: `math.time.quarter-hours`, `math.mult-div.table-5-10`. Misconceptions addressed: 2.
 
 ## Viertelstunden (Quarter hours)
 
 `de-DE.math.time-quarter` teaches `math.time.quarter-hours` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Reading quarter hours. Lesson 1 reads Viertel nach (long hand on the 3, 3:15) and Viertel vor (long hand on the 9, 3:45 is Viertel vor vier); lesson 2 mixes all four positions of the long hand with the digital time, mentions Dreiviertel as the regional word, and ends with the skill check. Setting the hands waits for clock_hands_drag.
+Reading quarter hours. Lesson 1 reads Viertel nach (long hand on the 3, 3:15) and Viertel vor (long hand on the 9, 3:45 is Viertel vor vier); lesson 2 mixes all four positions of the long hand with the digital time, mentions Dreiviertel as the regional word, and ends with the skill check. Every practise stage and both checks also ask the child to set the hands to a quarter hour (clock_hands_drag).
 
 
 | Lesson | New | Tasks | Activities |
@@ -2835,7 +2835,7 @@ Reading quarter hours. Lesson 1 reads Viertel nach (long hand on the 3, 3:15) an
 | 1. Viertel nach und Viertel vor | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Alle Viertel | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 24, text_input 1, true_false 7, image_multiple_choice 7, matching 3. Builds on: `math.time.full-half-hour`. Misconceptions addressed: 2.
+Task types: multiple_choice 23, text_input 1, true_false 7, clock_hands_drag 8, matching 3. Builds on: `math.time.full-half-hour`. Misconceptions addressed: 2.
 
 ## Rechengeschichten erfinden (Making up number stories)
 
@@ -4073,7 +4073,7 @@ Task types: text_input 12, multiple_choice 23, true_false 7. Builds on: `math.ti
 
 `de-DE.math.time-minutes` teaches `math.time.minutes` in de-DE, klasse-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 reads the clock to the minute by counting from the last Fünferschritt (on the 4 plus 3 small marks is 23 minutes); lesson 2 gives afternoon and evening times with 13 to 24 Uhr (3 Uhr nachmittags is 15 Uhr), and ends with the skill check.
+Lesson 1 reads the clock to the minute by counting from the last Fünferschritt (on the 4 plus 3 small marks is 23 minutes); lesson 2 gives afternoon and evening times with 13 to 24 Uhr (3 Uhr nachmittags is 15 Uhr), and ends with the skill check. Every practise stage and both checks also ask the child to set the hands to the minute (clock_hands_drag); in lesson 2 the time is given as 13 to 24 Uhr.
 
 
 | Lesson | New | Tasks | Activities |
@@ -4081,7 +4081,7 @@ Lesson 1 reads the clock to the minute by counting from the last Fünferschritt 
 | 1. Auf die Minute genau | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. 13 bis 24 Uhr | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
 
-Task types: multiple_choice 21, text_input 9, true_false 8, image_multiple_choice 4. Builds on: `math.time.five-minutes`, `math.numbers-to-100.sequences`. Misconceptions addressed: 2.
+Task types: multiple_choice 17, text_input 9, true_false 8, clock_hands_drag 8. Builds on: `math.time.five-minutes`, `math.numbers-to-100.sequences`. Misconceptions addressed: 2.
 
 ## Zeiteinheiten umrechnen (Converting units of time)
 
@@ -6231,7 +6231,7 @@ Family members in French and a short way to introduce them. Lesson 1 brings la m
 
 Task types: audio_choice 21, true_false 12, speak 6, fill_in_blank 4. Builds on: . Misconceptions addressed: 3.
 
-## Salut, ça va? (Französisch) (Salut, ça va? in French)
+## Salut, ça va ? (Französisch) (Salut, ça va ? in French)
 
 `en-GB.fl.fr-greet` teaches `fl.speaking.greet` in en-GB, ly-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
@@ -6240,8 +6240,8 @@ Children greet someone in French and keep the talk going. Lesson 1 asks ça va ?
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ça va? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Tu as quel âge? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Ça va ? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
+| 2. Tu as quel âge ? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
 Task types: audio_choice 18, true_false 18, speak 6. Builds on: `fl.speaking.imitate`. Misconceptions addressed: 3.
 
@@ -6282,7 +6282,7 @@ Children see a picture and name it in French. Lesson 1 asks qu'est-ce que c'est 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Qu'est-ce que c'est? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
+| 1. Qu'est-ce que c'est ? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Un ballon rouge | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
 Task types: audio_choice 13, true_false 13, speak 12, multiple_choice 4. Builds on: `fl.speaking.imitate`. Misconceptions addressed: 3.
@@ -6937,7 +6937,7 @@ Task types: audio_choice 14, multiple_choice 7, ordering 8, fill_in_blank 7, spe
 
 `en-GB.fl.fr-read-aloud` teaches `fl.reading.read-aloud` in en-GB, ly-4. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Reading a short familiar French text aloud so that others understand. Lesson 1 works on the sounds: the last consonant you do not say (chat, grand, trois), the silent -ent of ils chantent, and the nasal sounds in bon, blanc and vin. Lesson 2 works on the flow: linking words in a liaison (les amis), pausing at commas and full stops, and letting the voice rise for a question and fall for a statement; the child then reads a short text about a pet. It ends with the skill check. Reading aloud is practised with speak tasks, which are never marked; the skill check asks about silent letters, liaison, pauses and intonation by choosing and tapping.
+Reading a short familiar French text aloud so that others understand. Lesson 1 works on the sounds: the last consonant you do not say (chat, grand, trois), the silent -ent of ils chantent, and the nasal sounds in bon, blanc and pain. Lesson 2 works on the flow: linking words in a liaison (les amis), pausing at commas and full stops, and letting the voice rise for a question and fall for a statement; the child then reads a short text about a pet. It ends with the skill check. Reading aloud is practised with speak tasks, which are never marked; the skill check asks about silent letters, liaison, pauses and intonation by choosing and tapping.
 
 
 | Lesson | New | Tasks | Activities |
@@ -7469,7 +7469,7 @@ Task types: multiple_choice 21, point_on_line 8, true_false 8. Builds on: `math.
 
 `en-GB.math.compare-to-10` teaches `math.numbers-to-20.compare-to-10` in en-GB, reception. Ages 4-5, about 8 minutes a lesson. Status: draft, version 1.
 
-Children compare amounts to 10 with the words more, fewer and the same, as the EYFS asks. Lesson 1 compares groups, lined up so the pairs can be seen; lesson 2 compares numbers out loud ("Which is more, six or four?") and ends with the skill check. The signs < > = come in Year 1.
+Children compare amounts to 10 with the words more, fewer and the same, as the EYFS asks. Lesson 1 compares groups, lined up so the pairs can be seen; lesson 2 compares numbers out loud ("Which number is bigger, six or four?") and ends with the skill check. The signs < > = come in Year 1.
 
 
 | Lesson | New | Tasks | Activities |
@@ -7975,7 +7975,7 @@ Task types: multiple_choice 11, true_false 8, ordering 11, fill_in_blank 8, high
 
 `en-GB.lit-en.short-narrative` teaches `lit-en.composition.short-narrative` in en-GB, year-1. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-A short story has a beginning, a middle and an end, and its sentences only make sense in the right order. Lesson 1 orders three or four sentences and asks what starts the story, what happens next and what ends it; lesson 2 adds the time words first, next, then and at the end, and ends with the skill check. Writing a whole story of their own is not marked yet.
+A short story has a beginning, a middle and an end, and its sentences only make sense in the right order. Lesson 1 orders three or four sentences and asks what starts the story, what happens next and what ends it; lesson 2 adds the time words first, next, then and in the end, and ends with the skill check. Writing a whole story of their own is not marked yet.
 
 
 | Lesson | New | Tasks | Activities |
@@ -8453,7 +8453,7 @@ Task types: multiple_choice 16, point_on_line 8, text_input 16, true_false 6. Bu
 
 `en-GB.math.time-full-half` teaches `math.time.full-half-hour` in en-GB, year-1. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Telling the time to the hour and half past the hour. Lesson 1 reads o'clock on an analogue clock (the long minute hand on 12, the short hour hand on the hour) and on a digital clock (3:00); lesson 2 reads half past (the minute hand on 6, the hour hand halfway to the next number, 3:30 on a digital clock), sets a time by choosing the clock face that shows it, and ends with the skill check. Moving the hands waits for clock_hands_drag.
+Telling the time to the hour and half past the hour. Lesson 1 reads o'clock on an analogue clock (the long minute hand on 12, the short hour hand on the hour) and on a digital clock (3:00); lesson 2 reads half past (the minute hand on 6, the hour hand halfway to the next number, 3:30 on a digital clock), sets a time by choosing the clock face that shows it, and ends with the skill check. Every practise stage and both checks also ask the child to set the hands (clock_hands_drag).
 
 
 | Lesson | New | Tasks | Activities |
@@ -8461,7 +8461,7 @@ Telling the time to the hour and half past the hour. Lesson 1 reads o'clock on a
 | 1. Volle Stunden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Halbe Stunden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 24, fill_in_blank 1, image_multiple_choice 9, true_false 8. Builds on: `math.numbers-to-20.order-to-20`. Misconceptions addressed: 3.
+Task types: multiple_choice 22, fill_in_blank 1, clock_hands_drag 8, image_multiple_choice 3, true_false 8. Builds on: `math.numbers-to-20.order-to-20`. Misconceptions addressed: 3.
 
 ## Ganze, halbe und Vierteldrehungen (Whole, half and quarter turns)
 
@@ -9578,7 +9578,7 @@ Task types: text_input 10, multiple_choice 23, true_false 7, ordering 2. Builds 
 
 `en-GB.math.time-five-minutes` teaches `math.time.five-minutes` in en-GB, year-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Telling the time to five minutes. Lesson 1 counts the minute hand in fives and reads the times past the hour (on the 4 it is twenty past); lesson 2 reads the times to the next hour (twenty-five to four), matches them to digital times, learns that an hour has 60 minutes and a day 24 hours, and ends with the skill check. Setting the time is done by choosing the clock that shows it.
+Telling the time to five minutes. Lesson 1 counts the minute hand in fives and reads the times past the hour (on the 4 it is twenty past); lesson 2 reads the times to the next hour (twenty-five to four), matches them to digital times, learns that an hour has 60 minutes and a day 24 hours, and ends with the skill check. Every practise stage and both checks also ask the child to set the hands to five minutes (clock_hands_drag).
 
 
 | Lesson | New | Tasks | Activities |
@@ -9586,13 +9586,13 @@ Telling the time to five minutes. Lesson 1 counts the minute hand in fives and r
 | 1. Minuten nach der vollen Stunde | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Minuten bis zur vollen Stunde | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: fill_in_blank 1, multiple_choice 28, true_false 5, image_multiple_choice 6, text_input 2. Builds on: `math.time.quarter-hours`, `math.mult-div.table-5-10`. Misconceptions addressed: 3.
+Task types: fill_in_blank 1, multiple_choice 26, true_false 5, clock_hands_drag 8, text_input 2. Builds on: `math.time.quarter-hours`, `math.mult-div.table-5-10`. Misconceptions addressed: 3.
 
 ## Viertel nach und Viertel vor (Quarter past and quarter to)
 
 `en-GB.math.time-quarter` teaches `math.time.quarter-hours` in en-GB, year-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Reading quarter hours on an analogue clock. Lesson 1 reads quarter past (minute hand on the 3, 3:15 is quarter past three) and quarter to (minute hand on the 9, 3:45 is quarter to four); lesson 2 mixes all four positions of the minute hand with o'clock and half past, matches them with the digital time, works with times in a day, and ends with the skill check. Setting the hands by dragging waits for clock_hands_drag, so "set the clock" is practised by choosing the clock that shows a time.
+Reading quarter hours on an analogue clock. Lesson 1 reads quarter past (minute hand on the 3, 3:15 is quarter past three) and quarter to (minute hand on the 9, 3:45 is quarter to four); lesson 2 mixes all four positions of the minute hand with o'clock and half past, matches them with the digital time, works with times in a day, and ends with the skill check. Every practise stage and both checks also ask the child to set the hands to a quarter hour (clock_hands_drag).
 
 
 | Lesson | New | Tasks | Activities |
@@ -9600,7 +9600,7 @@ Reading quarter hours on an analogue clock. Lesson 1 reads quarter past (minute 
 | 1. Viertel nach und Viertel vor | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Alle Viertelstunden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
 
-Task types: multiple_choice 25, true_false 7, image_multiple_choice 8, matching 2. Builds on: `math.time.full-half-hour`. Misconceptions addressed: 3.
+Task types: multiple_choice 25, true_false 7, clock_hands_drag 8, matching 2. Builds on: `math.time.full-half-hour`. Misconceptions addressed: 3.
 
 ## Sachaufgaben: Frage, Rechnung, Antwort (Word problems: question, calculation, answer)
 
@@ -10233,7 +10233,7 @@ Calculating with pounds and pence. Lesson 1 adds pounds to pounds and pence to p
 
 Task types: text_input 9, multiple_choice 28, fill_in_blank 5. Builds on: `math.money.decimal-notation`, `math.add-sub-to-1000.semi-written`. Misconceptions addressed: 3.
 
-## Geldbeträge mit Komma (Pounds and pence with a decimal point)
+## Geldbeträge mit Dezimalpunkt (Pounds and pence with a decimal point)
 
 `en-GB.math.money-decimal` teaches `math.money.decimal-notation` in en-GB, year-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
@@ -10242,8 +10242,8 @@ Reading and writing money with a decimal point. Lesson 1 writes the pounds befor
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Euro vor dem Komma, Cent dahinter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Kleine Centbeträge und vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Pfund vor dem Punkt, Pence dahinter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
+| 2. Kleine Pence-Beträge und vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
 Task types: multiple_choice 26, text_input 11, fill_in_blank 2, ordering 3. Builds on: `math.money.euro-cent`. Misconceptions addressed: 3.
 
@@ -10573,7 +10573,7 @@ Task types: multiple_choice 27, image_multiple_choice 2, fill_in_blank 5, true_f
 
 `en-GB.math.time-minutes` teaches `math.time.minutes` in en-GB, year-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 reads the clock to the minute by counting in fives to the last number and then the small marks (23 minutes past 6, 7 minutes to 9) and matches times to clocks; lesson 2 uses am and pm and writes afternoon and evening times on the 24-hour clock (3:15 pm is 15:15), and ends with the skill check. Setting the time is done by choosing the clock that shows it; some clocks have Roman numerals I to XII.
+Lesson 1 reads the clock to the minute by counting in fives to the last number and then the small marks (23 minutes past 6, 7 minutes to 9) and matches times to clocks; lesson 2 uses am and pm and writes afternoon and evening times on the 24-hour clock (3:15 pm is 15:15), and ends with the skill check. Every practise stage and both checks also ask the child to set the hands to the minute (clock_hands_drag); in lesson 2 the time is given on the 24-hour clock. Some clocks have Roman numerals I to XII.
 
 
 | Lesson | New | Tasks | Activities |
@@ -10581,7 +10581,7 @@ Lesson 1 reads the clock to the minute by counting in fives to the last number a
 | 1. Auf die Minute genau | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Vormittags, nachmittags und 13 bis 24 Uhr | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 23, text_input 9, true_false 5, image_multiple_choice 5. Builds on: `math.time.five-minutes`, `math.numbers-to-100.sequences`. Misconceptions addressed: 4.
+Task types: multiple_choice 20, text_input 9, true_false 5, clock_hands_drag 8. Builds on: `math.time.five-minutes`, `math.numbers-to-100.sequences`. Misconceptions addressed: 4.
 
 ## Zeiteinheiten (Units of time)
 
@@ -10980,7 +10980,7 @@ Task types: multiple_choice 16, text_input 1, fill_in_blank 15, image_multiple_c
 
 `en-GB.math.first-quadrant` teaches `math.coordinates.first-quadrant` in en-GB, year-4. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 reads the position of a point as coordinates (x, y) in the first quadrant, along first and then up ("along the corridor, then up the stairs"), including points on the axes and the origin. Lesson 2 plots points by choosing the grid that shows them, joins points to make polygons, finds the missing vertex of a square or rectangle, and ends with the skill check. Plotting by tapping the grid and drawing the sides wait for a coordinate input; the child chooses between drawn grids for now.
+Lesson 1 reads the position of a point as coordinates (x, y) in the first quadrant, along first and then up ("along the corridor, then up the stairs"), including points on the axes and the origin. Lesson 2 plots points by tapping the crossing on the grid (point_on_grid), joins points to make polygons, finds the missing vertex of a square or rectangle, and ends with the skill check. In lesson 1 the child also taps the point at given coordinates among labelled points.
 
 
 | Lesson | New | Tasks | Activities |
@@ -10988,7 +10988,7 @@ Lesson 1 reads the position of a point as coordinates (x, y) in the first quadra
 | 1. Koordinaten ablesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Punkte eintragen und Vielecke zeichnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 29, true_false 8, image_multiple_choice 5. Builds on: `math.space.plans-maps`. Misconceptions addressed: 3.
+Task types: multiple_choice 23, point_on_grid 9, true_false 8, image_multiple_choice 2. Builds on: `math.space.plans-maps`. Misconceptions addressed: 3.
 
 ## Brüche und Dezimalzahlen (Fractions and decimals)
 
@@ -11332,7 +11332,7 @@ Task types: text_input 13, fill_in_blank 16, true_false 8, multiple_choice 5. Bu
 
 `en-GB.math.translate` teaches `math.coordinates.translate` in en-GB, year-4. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Translating points and shapes on a coordinate grid in the first quadrant. Lesson 1 describes a translation by following one corner (3 right, 2 up) and finds where a point lands; lesson 2 carries out a translation of a whole shape, slides it back the opposite way, tells a translation from a flip, and ends with the skill check.
+Translating points and shapes on a coordinate grid in the first quadrant. Lesson 1 describes a translation by following one corner (3 right, 2 up) and finds where a point lands; lesson 2 carries out a translation of a whole shape, slides it back the opposite way, tells a translation from a flip, and ends with the skill check. In every stage and both checks the child also taps where a moved point or corner lands (point_on_grid).
 
 
 | Lesson | New | Tasks | Activities |
@@ -11340,7 +11340,7 @@ Translating points and shapes on a coordinate grid in the first quadrant. Lesson
 | 1. Eine Verschiebung beschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Eine Figur verschieben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 22, fill_in_blank 10, true_false 5, text_input 1, image_multiple_choice 4. Builds on: `math.coordinates.first-quadrant`. Misconceptions addressed: 4.
+Task types: multiple_choice 17, fill_in_blank 7, point_on_grid 8, true_false 5, text_input 1, image_multiple_choice 4. Builds on: `math.coordinates.first-quadrant`. Misconceptions addressed: 4.
 
 ## Ansichten von vorne, von der Seite und von oben (Views from the front, the side and above)
 
@@ -12132,7 +12132,7 @@ Task types: multiple_choice 26, true_false 5, sorting 1, fill_in_blank 4, text_i
 
 `en-GB.math.reflect-translate` teaches `math.coordinates.reflect-translate` in en-GB, year-5. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Where a shape ends up after a reflection in a mirror line that goes up and down or across, or after a translation, on a coordinate grid in the first quadrant, and that the shape itself does not change. Lesson 1 reflects points and shapes and counts squares to the mirror line; lesson 2 translates and describes translations, tells a reflection from a translation, and ends with the skill check.
+Where a shape ends up after a reflection in a mirror line that goes up and down or across, or after a translation, on a coordinate grid in the first quadrant, and that the shape itself does not change. Lesson 1 reflects points and shapes and counts squares to the mirror line; lesson 2 translates and describes translations, tells a reflection from a translation, and ends with the skill check. In every stage and both checks the child also taps where a reflected or translated point lands (point_on_grid).
 
 
 | Lesson | New | Tasks | Activities |
@@ -12140,7 +12140,7 @@ Where a shape ends up after a reflection in a mirror line that goes up and down 
 | 1. Spiegeln an einer Achse | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Verschieben und vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
 
-Task types: multiple_choice 28, image_multiple_choice 5, true_false 7, text_input 2. Builds on: `math.coordinates.translate`, `math.symmetry.complete`. Misconceptions addressed: 4.
+Task types: multiple_choice 20, point_on_grid 8, image_multiple_choice 5, true_false 7, text_input 2. Builds on: `math.coordinates.translate`, `math.symmetry.complete`. Misconceptions addressed: 4.
 
 ## Römische Zahlen bis 1000 (Roman numerals to 1000)
 
@@ -12608,7 +12608,7 @@ Task types: text_input 3, multiple_choice 30, true_false 6, fill_in_blank 3. Bui
 
 `en-GB.math.circle-parts` teaches `math.shapes.circle-parts` in en-GB, year-6. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-The centre, radius, diameter and circumference of a circle. Lesson 1 names the parts and what each one is. Lesson 2 uses the fact that the diameter is twice the radius: doubling and halving, circles side by side and a circle that fits in a square, and ends with the skill check. A drawn circle with its parts marked waits for a component.
+The centre, radius, diameter and circumference of a circle. Lesson 1 names the parts and what each one is. Lesson 2 uses the fact that the diameter is twice the radius: doubling and halving, circles side by side and a circle that fits in a square, and ends with the skill check. The parts are drawn on a circle and named; "Which part is red?" tasks colour one part, and lesson 2 writes the radius or diameter on the circle.
 
 
 | Lesson | New | Tasks | Activities |
@@ -12622,7 +12622,7 @@ Task types: multiple_choice 22, matching 1, true_false 8, fill_in_blank 1, text_
 
 `en-GB.math.circles-compass` teaches `math.shapes.circles-compass` in en-GB, year-6. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 names the centre and the radius of a circle (every point on the circle is the same distance from the centre) and the diameter, which is twice the radius; lesson 2 opens a pair of compasses on a ruler to the radius, keeps the point on the centre, draws arcs and circles round one centre, and ends with the skill check. Drawing a circle with the compasses on screen waits for a drawing task.
+Lesson 1 names the centre and the radius of a circle (every point on the circle is the same distance from the centre) and the diameter, which is twice the radius; lesson 2 opens a pair of compasses on a ruler to the radius, keeps the point on the centre, draws arcs and circles round one centre, and ends with the skill check. Lesson 1 draws the parts on a circle, colours one red to name, and writes the radius or diameter on it. Drawing a circle with the compasses on screen waits for a drawing task.
 
 
 | Lesson | New | Tasks | Activities |
@@ -12664,7 +12664,7 @@ Task types: text_input 16, multiple_choice 22, fill_in_blank 2, true_false 2. Bu
 
 `en-GB.math.four-quadrants` teaches `math.coordinates.four-quadrants` in en-GB, year-6. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-The coordinate grid with negative numbers. Lesson 1 reads and finds points in all four quadrants, across first and then up or down ((−4, 3), (2, −5)), and finds a missing corner of a shape; lesson 2 translates points and shapes (right adds to x, down takes from y), reflects them in the x-axis and the y-axis, and ends with the skill check.
+The coordinate grid with negative numbers. Lesson 1 reads and finds points in all four quadrants, across first and then up or down ((−4, 3), (2, −5)), and finds a missing corner of a shape; lesson 2 translates points and shapes (right adds to x, down takes from y), reflects them in the x-axis and the y-axis, and ends with the skill check. In every stage and both checks the child also taps a point, a missing corner or where a moved point lands (point_on_grid).
 
 
 | Lesson | New | Tasks | Activities |
@@ -12672,7 +12672,7 @@ The coordinate grid with negative numbers. Lesson 1 reads and finds points in al
 | 1. Punkte in allen Quadranten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Verschieben und spiegeln | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: multiple_choice 32, fill_in_blank 6, true_false 4. Builds on: `math.coordinates.reflect-translate`, `math.large-numbers.negative-numbers`. Misconceptions addressed: 3.
+Task types: multiple_choice 24, point_on_grid 8, fill_in_blank 6, true_false 4. Builds on: `math.coordinates.reflect-translate`, `math.large-numbers.negative-numbers`. Misconceptions addressed: 3.
 
 ## Bruch als Division (Fractions as division)
 

@@ -11,7 +11,9 @@ summary: >
   names the parts and what each one is. Lesson 2 uses the fact that the
   diameter is twice the radius: doubling and halving, circles side by
   side and a circle that fits in a square, and ends with the skill
-  check. A drawn circle with its parts marked waits for a component.
+  check. The parts are drawn on a circle and named; "Which part is red?"
+  tasks colour one part, and lesson 2 writes the radius or diameter on
+  the circle.
 metadata:
   year: year-6
   topic: { de: Geometrie, en: Geometry }
@@ -21,12 +23,12 @@ metadata:
   also_practises: []
   vocabulary: { en: [circle, centre, radius, radii, diameter, circumference, perimeter, compasses] }
   forms: [drawn, text, audio]
-  drawn: [shape]
+  drawn: [circle]
   facets: []
   misconceptions:
     - id: radius-diameter-swapped
       what: Mixes up radius and diameter
-      addressed: lesson 1 Learn shows the diameter as two radii; l1-f2 has feedback, l1-s1, l1-s5 and l1-n3 ask which is which
+      addressed: lesson 1 Learn shows the diameter as two radii; l1-f2 has feedback, l1-s1, l1-s5, l1-n3 and l1-c2 ask which is which, l1-f2, l1-s1 and l1-c2 with the part drawn in red
     - id: halves-for-diameter
       what: Halves the radius to get the diameter, or doubles the diameter to get the radius
       addressed: l2-f1 and l2-f2 have feedback; l2-s3, l2-s2 and l2-c5 offer the wrong way round
@@ -35,7 +37,7 @@ metadata:
       addressed: lesson 1 Learn calls it the perimeter of the circle; l1-f3 has feedback, l1-n1 and l2-c2 ask about the distance round
     - id: any-chord
       what: Calls any line across the circle a diameter, even if it misses the centre
-      addressed: l1-s4 and l1-n4 ask about it
+      addressed: l1-s4 draws a red line that misses the centre and asks whether it is a diameter; l1-n4 asks about it
   twist_reuse: []
   status: draft
   version: 1
@@ -67,13 +69,16 @@ lessons:
         screens:
           - text: "The centre"
             say: "The point in the middle of a circle is its centre. Every point on the edge of the circle is the same distance from the centre."
-            show: { drawn: shape, kind: circle }
+            show: { drawn: circle, parts: [centre], labels: true, highlight: centre }
           - text: "The radius: from the centre to the edge"
             say: "A straight line from the centre to the edge is a radius. A circle has lots of radii, and they are all the same length."
+            show: { drawn: circle, parts: [centre, radius], labels: true, highlight: radius }
           - text: "The diameter: from edge to edge, through the centre"
             say: "A straight line from one edge to the other that goes through the centre is a diameter. It is made of two radii, one on each side of the centre. It is the longest straight line you can draw inside a circle."
+            show: { drawn: circle, parts: [centre, diameter], labels: true, highlight: diameter }
           - text: "The circumference: the distance all the way round"
             say: "The circumference is the distance all the way round the edge. It is the perimeter of the circle. It is not the space inside."
+            show: { drawn: circle, parts: [centre, circumference], labels: true, highlight: circumference }
 
       - activity: practise
         setting: plain
@@ -82,8 +87,8 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "What is the point in the middle of a circle called?"
-                show: { drawn: shape, kind: circle }
+                text: "What is the red point in the middle of the circle called?"
+                show: { drawn: circle, parts: [centre], highlight: centre }
                 options: ["the centre", "the radius", "the diameter"]
                 answer: "the centre"
                 hints:
@@ -93,14 +98,15 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
-                text: "A straight line goes from the centre to the edge. What is it called?"
+                text: "Which part of the circle is red?"
+                show: { drawn: circle, parts: [centre, radius, diameter], highlight: radius }
                 options: ["a radius", "a diameter", "the circumference"]
                 answer: "a radius"
                 feedback:
-                  "a diameter": "A diameter goes right across, from edge to edge. This line stops at the centre."
+                  "a diameter": "A diameter goes right across, from edge to edge. The red line stops at the centre."
                 hints:
-                  - "Does the line go right across, or only from the middle?"
-                  - "It goes from the middle to the edge."
+                  - "Does the red line go right across, or only from the middle?"
+                  - "It goes from the centre to the edge."
                   - "A radius."
               - id: l1-f3
                 type: multiple_choice
@@ -138,10 +144,11 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "A straight line goes from one edge to the other, through the centre. What is it called?"
+                text: "Which part of the circle is red?"
+                show: { drawn: circle, parts: [centre, radius, diameter], highlight: diameter }
                 options: ["a diameter", "a radius", "the circumference"]
                 answer: "a diameter"
-                hints: ["It goes right across."]
+                hints: ["The red line goes right across, through the centre."]
               - id: l1-s2
                 type: true_false
                 text: "Is it true? All the radii of one circle are the same length."
@@ -155,9 +162,10 @@ lessons:
                 hints: ["The perimeter is the distance round."]
               - id: l1-s4
                 type: true_false
-                text: "Is it true? A line from edge to edge that misses the centre is a diameter."
+                text: "Is it true? The red line goes from edge to edge, so it is a diameter."
+                show: { drawn: circle, parts: [centre, chord], highlight: chord }
                 answer: false
-                hints: ["A diameter must go through the centre."]
+                hints: ["A diameter must go through the centre. Does the red line?"]
               - id: l1-s5
                 type: multiple_choice
                 text: "How many radii, end to end, make a diameter?"
@@ -202,7 +210,8 @@ lessons:
             answer: "the circumference"
           - id: l1-c2
             type: multiple_choice
-            text: "What do we call a straight line from the centre of a circle to its edge?"
+            text: "Which part of the circle is red?"
+            show: { drawn: circle, parts: [centre, radius, circumference], highlight: radius }
             options: ["a radius", "a diameter", "the centre"]
             answer: "a radius"
           - id: l1-c3
@@ -235,9 +244,10 @@ lessons:
         screens:
           - text: "Radius 3 cm → diameter 2 × 3 = 6 cm"
             say: "A diameter is two radii. So the diameter is twice the radius. If the radius is three centimetres, the diameter is six centimetres."
-            show: { drawn: shape, kind: circle }
+            show: { drawn: circle, parts: [centre, radius, diameter], values: { radius: "3 cm", diameter: "6 cm" } }
           - text: "Diameter 10 cm → radius 10 ÷ 2 = 5 cm"
             say: "Going the other way, halve. A circle with a diameter of ten centimetres has a radius of five centimetres."
+            show: { drawn: circle, parts: [centre, radius, diameter], values: { radius: "5 cm", diameter: "10 cm" } }
           - text: "3 coins in a row, each 2 cm across: 3 × 2 = 6 cm"
             say: "Three coins lie in a row, touching. Each one is two centimetres across, so that is its diameter. The row is three diameters long: six centimetres."
           - text: "A circle fits exactly in a square with sides of 8 cm: diameter 8 cm, radius 4 cm"
@@ -251,6 +261,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "A circle has a radius of 4 cm. What is its diameter?"
+                show: { drawn: circle, parts: [centre, radius], values: { radius: "4 cm" } }
                 options: ["8 cm", "2 cm", "4 cm"]
                 answer: "8 cm"
                 feedback:
@@ -263,6 +274,7 @@ lessons:
               - id: l2-f2
                 type: multiple_choice
                 text: "A circle has a diameter of 12 cm. What is its radius?"
+                show: { drawn: circle, parts: [centre, diameter], values: { diameter: "12 cm" } }
                 options: ["6 cm", "24 cm", "12 cm"]
                 answer: "6 cm"
                 feedback:
@@ -304,6 +316,7 @@ lessons:
               - id: l2-s1
                 type: text_input
                 text: "A circle has a radius of 15 cm. What is its diameter, in cm?"
+                show: { drawn: circle, parts: [centre, radius], values: { radius: "15 cm" } }
                 answer: "30"
                 hints: ["Double the radius."]
               - id: l2-s2
@@ -361,6 +374,7 @@ lessons:
           - id: l2-c1
             type: multiple_choice
             text: "A pizza is cut once, straight across from edge to edge through the middle. Which part of the circle is the cut?"
+            show: { drawn: circle, parts: [centre, diameter], highlight: diameter }
             options: ["a diameter", "a radius", "the circumference"]
             answer: "a diameter"
           - id: l2-c2
@@ -371,6 +385,7 @@ lessons:
           - id: l2-c3
             type: text_input
             text: "A circle has a radius of 9 cm. What is its diameter, in cm?"
+            show: { drawn: circle, parts: [centre, radius], values: { radius: "9 cm" } }
             answer: "18"
           - id: l2-c4
             type: text_input

@@ -11,7 +11,8 @@ summary: >
   hours from the short hand when the long hand points to 12 (drei Uhr,
   3:00); lesson 2 reads halbe Stunden, where the long hand points to 6
   and the short hand sits between two numbers (halb vier, 3:30), and ends
-  with the skill check. Setting the hands waits for clock_hands_drag.
+  with the skill check. Every practise stage and both checks also ask the
+  child to set the hands (clock_hands_drag).
 metadata:
   year: klasse-1
   topic: { de: Uhrzeit, en: Time }
@@ -26,7 +27,7 @@ metadata:
   misconceptions:
     - id: hands-swapped
       what: Reads the long hand as the hour (sees 12 o'clock when the long hand is on 12)
-      addressed: lesson 1 Learn names the short hand as the hour hand; l1-f2 and l1-s2 offer the time read from the long hand, with feedback in l1-f2
+      addressed: lesson 1 Learn names the short hand as the hour hand; l1-f2 offers the time read from the long hand, with feedback; l1-s2 asks to set 6 Uhr, with feedback for the swapped hands (12:30)
     - id: halb-wrong-hour
       what: Says halb drei for 3:30, naming the hour that has passed
       addressed: lesson 2 Learn says halb vier means half the way to four; every stage of lesson 2 offers the hour that has passed, with feedback in l2-f1
@@ -65,7 +66,7 @@ lessons:
             say: "Die Uhr hat zwei Zeiger. Der kleine Zeiger zeigt die Stunde. Er zeigt auf die Drei. Der große Zeiger zeigt auf die Zwölf. Dann ist es genau drei Uhr."
             show: { drawn: clock, hour: 3, minute: 0 }
           - text: "8 Uhr"
-            say: "Hier zeigt der kleine Zeiger auf die Acht, der große Zeiger auf die Zwölf. Es ist acht Uhr."
+            say: "Hier zeigt der kleine Zeiger auf die Acht, der große Zeiger auf die Zwölf. Es ist acht Uhr. Gleich stellst du die Uhr selbst: Du ziehst die Zeiger mit dem Finger."
             show: { drawn: clock, hour: 8, minute: 0 }
           - text: "3:00"
             say: "Auf einer Digitaluhr steht drei Uhr so: drei, Doppelpunkt, null null."
@@ -77,16 +78,18 @@ lessons:
           - support: full
             tasks:
               - id: l1-f1
-                type: multiple_choice
-                text: "Wie spät ist es?"
-                say: "Schau auf den kleinen Zeiger. Wie spät ist es?"
-                show: { drawn: clock, hour: 5, minute: 0 }
-                options: ["5 Uhr", "6 Uhr", "12 Uhr"]
-                answer: "5 Uhr"
+                type: clock_hands_drag
+                text: "Stell die Uhr auf 5 Uhr."
+                say: "Stell die Uhr auf fünf Uhr. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
+                answer: "5:00"
+                feedback:
+                  "5:30": "Bei 5 Uhr zeigt der große Zeiger auf die Zwölf, nicht auf die Sechs."
                 hints:
-                  - "Der kleine Zeiger zeigt die Stunde."
-                  - "Auf welche Zahl zeigt der kleine Zeiger?"
-                  - "5 Uhr."
+                  - "Bei einer vollen Stunde zeigt der große Zeiger auf die Zwölf."
+                  - "Der kleine Zeiger zeigt die Stunde. Auf welche Zahl muss er?"
+                  - "Lass den großen Zeiger auf der Zwölf und zieh den kleinen Zeiger auf die Fünf."
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
@@ -147,13 +150,15 @@ lessons:
                 answer: "10 Uhr"
                 hints: ["Schau auf den kleinen Zeiger."]
               - id: l1-s2
-                type: multiple_choice
-                text: "Wie spät ist es?"
-                say: "Wie spät ist es?"
-                show: { drawn: clock, hour: 6, minute: 0 }
-                options: ["6 Uhr", "12 Uhr", "7 Uhr"]
-                answer: "6 Uhr"
-                hints: ["Welcher Zeiger zeigt die Stunde?"]
+                type: clock_hands_drag
+                text: "Stell die Uhr auf 6 Uhr."
+                say: "Stell die Uhr auf sechs Uhr. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
+                answer: "6:00"
+                feedback:
+                  "12:30": "Du hast die Zeiger vertauscht. Der kleine Zeiger zeigt die Stunde: Er gehört auf die Sechs. Der große Zeiger bleibt auf der Zwölf."
+                hints: ["Der kleine Zeiger zeigt die Stunde, der große Zeiger bleibt auf der Zwölf."]
               - id: l1-s3
                 type: image_multiple_choice
                 text: "Welche Uhr zeigt 11 Uhr?"
@@ -183,12 +188,14 @@ lessons:
           - support: none
             tasks:
               - id: l1-n1
-                type: multiple_choice
-                text: "Wie spät ist es?"
-                say: "Wie spät ist es?"
-                show: { drawn: clock, hour: 1, minute: 0 }
-                options: ["1 Uhr", "2 Uhr", "12 Uhr"]
-                answer: "1 Uhr"
+                type: clock_hands_drag
+                text: "Stell die Uhr auf 1 Uhr."
+                say: "Stell die Uhr auf ein Uhr. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
+                answer: "1:00"
+                feedback:
+                  "1:30": "Bei 1 Uhr zeigt der große Zeiger auf die Zwölf."
               - id: l1-n2
                 type: multiple_choice
                 text: "Wie spät ist es?"
@@ -223,12 +230,14 @@ lessons:
         size: quick
         tasks:
           - id: l1-c1
-            type: multiple_choice
-            text: "Wie spät ist es?"
-            say: "Wie spät ist es?"
-            show: { drawn: clock, hour: 2, minute: 0 }
-            options: ["2 Uhr", "12 Uhr", "3 Uhr"]
-            answer: "2 Uhr"
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 2 Uhr."
+            say: "Stell die Uhr auf zwei Uhr. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
+            answer: "2:00"
+            feedback:
+              "2:30": "Bei 2 Uhr zeigt der große Zeiger auf die Zwölf."
           - id: l1-c2
             type: image_multiple_choice
             text: "Welche Uhr zeigt 6 Uhr?"
@@ -301,18 +310,19 @@ lessons:
                   - "halb 2."
                 difficulty: easy
               - id: l2-f2
-                type: image_multiple_choice
-                text: "Welche Uhr zeigt halb 5?"
-                say: "Welche Uhr zeigt halb fünf?"
-                options:
-                  - { drawn: clock, hour: 4, minute: 30 }
-                  - { drawn: clock, hour: 5, minute: 30 }
-                  - { drawn: clock, hour: 4, minute: 0 }
+                type: clock_hands_drag
+                text: "Stell die Uhr auf halb 5."
+                say: "Stell die Uhr auf halb fünf. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
                 answer: "4:30"
+                feedback:
+                  "5:30": "Das ist halb sechs. Bei halb fünf läuft der kleine Zeiger erst zur Fünf: Er steht zwischen der Vier und der Fünf."
+                  "4:00": "Das ist 4 Uhr. Bei halb zeigt der große Zeiger auf die Sechs."
                 hints:
                   - "Bei halb zeigt der große Zeiger auf die Sechs."
-                  - "Halb fünf: Der kleine Zeiger läuft gerade zur Fünf. Wo steht er dann?"
-                  - "Die Uhr, bei der der kleine Zeiger zwischen der Vier und der Fünf steht."
+                  - "Halb fünf: Der kleine Zeiger läuft gerade zur Fünf. Er steht zwischen der Vier und der Fünf."
+                  - "Zieh den großen Zeiger auf die Sechs und den kleinen Zeiger auf die Vier. Er rückt dann ein Stück weiter, zwischen Vier und Fünf."
               - id: l2-f3
                 type: multiple_choice
                 text: "Was zeigt die Digitaluhr?"
@@ -357,15 +367,15 @@ lessons:
                 answer: "halb 8"
                 hints: ["Zu welcher Zahl läuft der kleine Zeiger?"]
               - id: l2-s2
-                type: image_multiple_choice
-                text: "Welche Uhr zeigt halb 3?"
-                say: "Welche Uhr zeigt halb drei?"
-                options:
-                  - { drawn: clock, hour: 3, minute: 30 }
-                  - { drawn: clock, hour: 2, minute: 30 }
-                  - { drawn: clock, hour: 3, minute: 0 }
+                type: clock_hands_drag
+                text: "Stell die Uhr auf halb 3."
+                say: "Stell die Uhr auf halb drei. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
                 answer: "2:30"
-                hints: ["Halb drei: Der kleine Zeiger läuft zur Drei."]
+                feedback:
+                  "3:30": "Das ist halb vier. Bei halb drei steht der kleine Zeiger zwischen der Zwei und der Drei."
+                hints: ["Halb drei: Der große Zeiger zeigt auf die Sechs, der kleine Zeiger läuft zur Drei."]
               - id: l2-s3
                 type: multiple_choice
                 text: "Was zeigt die Digitaluhr?"
@@ -400,14 +410,14 @@ lessons:
                 options: ["halb 12", "halb 11", "12 Uhr"]
                 answer: "halb 12"
               - id: l2-n2
-                type: image_multiple_choice
-                text: "Welche Uhr zeigt halb 10?"
-                say: "Welche Uhr zeigt halb zehn?"
-                options:
-                  - { drawn: clock, hour: 10, minute: 30 }
-                  - { drawn: clock, hour: 10, minute: 0 }
-                  - { drawn: clock, hour: 9, minute: 30 }
+                type: clock_hands_drag
+                text: "Stell die Uhr auf halb 10."
+                say: "Stell die Uhr auf halb zehn. Zieh die Zeiger."
+                show: { drawn: clock, hour: 12, minute: 0 }
+                step: 30
                 answer: "9:30"
+                feedback:
+                  "10:30": "Das ist halb elf. Bei halb zehn steht der kleine Zeiger zwischen der Neun und der Zehn."
               - id: l2-n3
                 type: multiple_choice
                 text: "Was zeigt die Digitaluhr?"
@@ -447,14 +457,14 @@ lessons:
             options: ["halb 6", "halb 5", "6 Uhr"]
             answer: "halb 6"
           - id: l2-c3
-            type: image_multiple_choice
-            text: "Welche Uhr zeigt halb 2?"
-            say: "Welche Uhr zeigt halb zwei?"
-            options:
-              - { drawn: clock, hour: 2, minute: 30 }
-              - { drawn: clock, hour: 1, minute: 30 }
-              - { drawn: clock, hour: 1, minute: 0 }
+            type: clock_hands_drag
+            text: "Stell die Uhr auf halb 2."
+            say: "Stell die Uhr auf halb zwei. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
             answer: "1:30"
+            feedback:
+              "2:30": "Das ist halb drei. Bei halb zwei steht der kleine Zeiger zwischen der Eins und der Zwei."
           - id: l2-c4
             type: true_false
             text: "Ist es halb 12?"
