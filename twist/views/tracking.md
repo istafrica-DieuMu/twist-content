@@ -12,19 +12,19 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21510 / 21510) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6278 / 6278) |
 | **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51170 / 51170)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 21% (6354 / 29991) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 18% (3066 / 17317) |
-| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 50% (3235 / 6506) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **24% (12656 / 53814)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 22% (6628 / 29991) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 20% (3399 / 17317) |
+| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 60% (3922 / 6506) |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **26% (13949 / 53814)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 347 files (338 priced) | $7.51 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 63865 clips, 78.3 h | about $97 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 63865 clips | about $50 | estimated the same way |
-| **Total** | | | **about $155** | |
+| Narration | google/gemini-3.8-flash-tts | 65158 clips, 79.7 h | about $99 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 65158 clips | about $51 | estimated the same way |
+| **Total** | | | **about $158** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -33,9 +33,9 @@ Per voice:
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
 | gemini-puck | 6413 | 6313 (98%) | 0 | 373 min | $13 |
-| gemini-puck-en | 3346 | 3263 (98%) | 3097 | 195 min | $6.80 |
+| gemini-puck-en | 3946 | 3856 (98%) | 2497 | 230 min | $7.99 |
 | gemini-sulafat | 44784 | 43936 (98%) | 0 | 3403 min | $105 |
-| gemini-sulafat-en | 9322 | 9062 (97%) | 38061 | 727 min | $23 |
+| gemini-sulafat-en | 10015 | 9729 (97%) | 37368 | 776 min | $24 |
 
 ## de-DE
 
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20677 tasks. Narration so far about $29; 41158 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20677 tasks. Narration so far about $32; 39865 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -297,10 +297,10 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Multiplication | 2 / 2 done | 4 | $0.06 |
 | year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.03 |
 | year-2 | Maths | Division | 1 / 1 done | 2 | $0.04 |
-| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.00 |
+| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.07 |
 | year-2 | Maths | Length | 1 / 1 done | 2 | $0.03 |
 | year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.04 |
-| year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.01 |
+| year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.04 |
 | year-2 | Maths | Mass | 1 / 1 done | 2 | $0.04 |
 | year-2 | Maths | 3D shapes | 1 / 1 done | 2 | $0.02 |
 | year-2 | Maths | Capacity | 1 / 1 done | 2 | $0.04 |
@@ -314,43 +314,43 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | English | Understanding stories | 2 / 2 done | 4 | $0.08 |
 | year-2 | English | Spelling | 5 / 5 done | 10 | $0.07 |
 | year-2 | English | Speaking and listening | 1 / 1 done | 2 | $0.03 |
-| year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.02 |
+| year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.03 |
 | year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $2.58 |
 | year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.47 |
-| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.02 |
-| year-3 | Maths | Word problems | 3 / 3 done | 6 | $0.01 |
+| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.04 |
+| year-3 | Maths | Word problems | 3 / 3 done | 6 | $0.06 |
 | year-3 | Maths | Patterns | 1 / 1 done | 2 | $0.01 |
 | year-3 | Maths | Length | 2 / 2 done | 4 | $0.01 |
-| year-3 | Maths | Shapes | 1 / 1 done | 2 | $0.00 |
-| year-3 | Maths | 3D shapes | 1 / 1 done | 2 | $0.00 |
-| year-3 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.00 |
-| year-3 | Maths | Combinations | 1 / 1 done | 2 | $0.01 |
-| year-3 | Maths | Chance | 1 / 1 done | 2 | $0.00 |
-| year-3 | Maths | Adding and subtracting to 1000 | 5 / 5 done | 10 | $0.04 |
-| year-3 | Maths | Column methods | 6 / 6 done | 12 | $0.01 |
+| year-3 | Maths | Shapes | 1 / 1 done | 2 | $0.03 |
+| year-3 | Maths | 3D shapes | 1 / 1 done | 2 | $0.02 |
+| year-3 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.02 |
+| year-3 | Maths | Combinations | 1 / 1 done | 2 | $0.06 |
+| year-3 | Maths | Chance | 1 / 1 done | 2 | $0.02 |
+| year-3 | Maths | Adding and subtracting to 1000 | 5 / 5 done | 10 | $0.18 |
+| year-3 | Maths | Column methods | 6 / 6 done | 12 | $0.09 |
 | year-3 | Maths | Multiplying and dividing | 1 / 1 done | 2 | $0.00 |
 | year-3 | Maths | Informal multiplication and division | 1 / 1 done | 2 | $0.01 |
 | year-3 | Maths | Calculating with money | 2 / 2 done | 4 | $0.00 |
 | year-3 | Maths | Telling the time | 1 / 1 done | 2 | $0.00 |
 | year-3 | Maths | Time and duration | 1 / 1 done | 2 | $0.00 |
-| year-3 | Maths | Geometry | 2 / 2 done | 4 | $0.00 |
+| year-3 | Maths | Geometry | 2 / 2 done | 4 | $0.01 |
 | year-3 | Maths | Data | 1 / 1 done | 2 | $0.00 |
 | year-3 | Maths | Roman numerals | 1 / 1 done | 2 | $0.00 |
 | year-3 | Maths | Decimals | 1 / 1 done | 2 | $0.00 |
 | year-3 | Maths | Angles | 1 / 1 done | 2 | $0.00 |
-| year-3 | Maths | Fractions | 2 / 2 done | 4 | $0.00 |
+| year-3 | Maths | Fractions | 2 / 2 done | 4 | $0.02 |
 | year-3 | English | Reading words | 2 / 2 done | 4 | $0.43 |
-| year-3 | English | Stories and poems | 2 / 2 done | 4 | $0.00 |
-| year-3 | English | Handwriting | 1 / 1 done | 2 | $0.00 |
-| year-3 | Maths | Calculating with fractions | 1 / 1 done | 2 | $0.00 |
-| year-3 | English | Speaking and listening | 1 / 1 done | 2 | $0.00 |
-| year-3 | English | Reading between the lines | 2 / 2 done | 4 | $0.00 |
-| year-3 | English | Spelling | 1 / 1 done | 3 | $0.00 |
-| year-3 | English | Writing | 5 / 5 done | 10 | $0.01 |
-| year-3 | English | Grammar and punctuation | 5 / 5 done | 10 | $0.01 |
-| year-3 | English | Information texts | 1 / 1 done | 2 | $0.00 |
+| year-3 | English | Stories and poems | 2 / 2 done | 4 | $0.07 |
+| year-3 | English | Handwriting | 1 / 1 done | 2 | $0.03 |
+| year-3 | Maths | Calculating with fractions | 1 / 1 done | 2 | $0.02 |
+| year-3 | English | Speaking and listening | 1 / 1 done | 2 | $0.03 |
+| year-3 | English | Reading between the lines | 2 / 2 done | 4 | $0.08 |
+| year-3 | English | Spelling | 1 / 1 done | 3 | $0.03 |
+| year-3 | English | Writing | 5 / 5 done | 10 | $0.18 |
+| year-3 | English | Grammar and punctuation | 5 / 5 done | 10 | $0.14 |
+| year-3 | English | Information texts | 1 / 1 done | 2 | $0.04 |
 | year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.02 |
-| year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.01 |
+| year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.02 |
 | year-4 | Maths | Division | 3 / 3 done | 6 | $0.00 |
 | year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.00 |
 | year-4 | Maths | Adding and subtracting to 1000 | 1 / 1 done | 2 | $0.00 |
@@ -371,7 +371,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-4 | Maths | Decimals | 4 / 4 done | 8 | $0.01 |
 | year-4 | Maths | Angles | 1 / 1 done | 2 | $0.00 |
 | year-4 | Maths | Negative numbers | 1 / 1 done | 2 | $0.00 |
-| year-4 | English | Stories and poems | 1 / 1 done | 2 | $0.32 |
+| year-4 | English | Stories and poems | 1 / 1 done | 2 | $0.33 |
 | year-4 | Maths | Fractions | 1 / 1 done | 2 | $0.00 |
 | year-4 | English | Speaking and listening | 1 / 1 done | 2 |  |
 | year-4 | English | Spelling | 3 / 3 done | 6 | $0.01 |
@@ -379,7 +379,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-4 | English | Performing texts | 1 / 1 done | 2 | $0.00 |
 | year-4 | English | Reading between the lines | 1 / 1 done | 2 | $0.00 |
 | year-4 | English | How texts work | 1 / 1 done | 2 | $0.00 |
-| year-4 | English | Writing | 1 / 1 done | 2 |  |
+| year-4 | English | Writing | 1 / 1 done | 2 | $0.00 |
 | year-4 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.01 |
 | year-5 | Maths | Numbers to 1 000 000 | 2 / 2 done | 4 | $0.81 |
 | year-5 | Maths | Multiplying and dividing | 3 / 3 done | 6 | $0.01 |
@@ -408,15 +408,15 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-5 | Maths | Decimals | 2 / 2 done | 5 | $0.00 |
 | year-5 | English | Information texts | 2 / 2 done | 4 | $0.42 |
 | year-5 | English | Handwriting | 1 / 1 done | 2 | $0.00 |
-| year-5 | Maths | Negative numbers | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Negative numbers | 1 / 1 done | 2 | $0.01 |
 | year-5 | English | Presenting writing | 1 / 1 done | 2 |  |
 | year-5 | English | Speaking and listening | 1 / 1 done | 2 |  |
 | year-5 | Maths | Calculating with fractions | 2 / 2 done | 4 | $0.00 |
 | year-5 | Maths | Roman numerals | 1 / 1 done | 2 | $0.01 |
 | year-5 | English | Spelling | 2 / 2 done | 5 | $0.00 |
 | year-5 | English | How texts work | 1 / 1 done | 2 | $0.00 |
-| year-5 | English | Writing | 3 / 3 done | 6 | $0.00 |
-| year-5 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.00 |
+| year-5 | English | Writing | 3 / 3 done | 6 | $0.01 |
+| year-5 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.01 |
 | year-6 | Maths | Numbers to 10 000 000 | 1 / 1 done | 2 | $0.43 |
 | year-6 | Maths | Written multiplication | 1 / 1 done | 2 | $0.00 |
 | year-6 | Maths | Word problems | 1 / 1 done | 2 | $0.01 |
@@ -431,13 +431,13 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-6 | Maths | Written division | 1 / 1 done | 2 | $0.00 |
 | year-6 | Maths | Data | 2 / 2 done | 4 | $0.00 |
 | year-6 | English | How texts work | 2 / 2 done | 4 | $0.22 |
-| year-6 | English | Stories and poems | 1 / 1 done | 2 |  |
+| year-6 | English | Stories and poems | 1 / 1 done | 2 | $0.00 |
 | year-6 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.01 |
 | year-6 | English | Speaking and listening | 1 / 1 done | 2 |  |
 | year-6 | Maths | Fractions | 1 / 1 done | 2 | $0.00 |
 | year-6 | Maths | Geometry | 2 / 2 done | 4 | $0.00 |
 | year-6 | Maths | Calculating with fractions | 2 / 2 done | 4 | $0.00 |
-| year-6 | English | Spelling | 2 / 2 done | 4 | $0.00 |
+| year-6 | English | Spelling | 2 / 2 done | 4 | $0.01 |
 | year-6 | English | Writing | 5 / 5 done | 10 | $0.01 |
 | ly-1 | French | Listening | 3 / 3 done | 6 | $0.60 |
 | ly-1 | French | Hello | 1 / 1 done | 2 | $0.24 |
@@ -450,21 +450,21 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | ly-1 | French | Animals and nature | 1 / 1 done | 2 | $0.22 |
 | ly-1 | French | Comparing languages | 1 / 1 done | 2 | $0.27 |
 | ly-2 | French | Listening | 3 / 3 done | 6 | $0.76 |
-| ly-2 | French | Language patterns | 4 / 4 done | 8 | $0.34 |
-| ly-2 | French | Speaking | 4 / 4 done | 8 | $0.58 |
+| ly-2 | French | Language patterns | 4 / 4 done | 8 | $0.64 |
+| ly-2 | French | Speaking | 4 / 4 done | 8 | $0.82 |
 | ly-2 | French | Reading | 3 / 3 done | 6 | $0.05 |
 | ly-2 | French | Writing | 2 / 2 done | 4 | $0.25 |
-| ly-2 | French | Numbers | 1 / 1 done | 2 | $0.03 |
+| ly-2 | French | Numbers | 1 / 1 done | 2 | $0.26 |
 | ly-2 | French | Clothes | 1 / 1 done | 2 | $0.24 |
-| ly-2 | French | At home | 1 / 1 done | 2 | $0.03 |
-| ly-2 | French | In town | 1 / 1 done | 2 | $0.03 |
+| ly-2 | French | At home | 1 / 1 done | 2 | $0.21 |
+| ly-2 | French | In town | 1 / 1 done | 2 | $0.04 |
 | ly-2 | French | Feelings | 1 / 1 done | 2 | $0.24 |
 | ly-2 | French | Food and drink | 1 / 1 done | 2 | $0.24 |
 | ly-2 | French | Calendar | 1 / 1 done | 2 | $0.27 |
 | ly-2 | French | Weather | 1 / 1 done | 2 | $0.03 |
 | ly-2 | French | Where the language is spoken | 1 / 1 done | 2 | $0.04 |
-| ly-2 | French | Learning strategies | 2 / 2 done | 4 | $0.20 |
-| ly-2 | French | Mediation | 1 / 1 done | 2 | $0.04 |
+| ly-2 | French | Learning strategies | 2 / 2 done | 4 | $0.56 |
+| ly-2 | French | Mediation | 1 / 1 done | 2 | $0.33 |
 | ly-3 | French | Hobbies and sport | 1 / 1 done | 2 | $0.20 |
 | ly-3 | French | Numbers | 1 / 1 done | 3 | $0.03 |
 | ly-3 | French | Time | 1 / 1 done | 2 | $0.03 |
@@ -501,13 +501,20 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-14 | Review of the parallel session's committed sets | 67 | the 67 lesson sets committed by the parallel session (Mathe geometry, data, chance, fractions; Deutsch Klasse 1 to 4) | fixes in about 50 sets; bars take the colour their label names; crossed-out pictures for "not allowed" signs; true/false statements on screen | 0afae4f6 |
 | 2026-10-14 | Pictures and narration |  | pictures the lessons asked for; narration for every line | 45 pictures added and used in 25 lesson sets; 51 204 de-DE clips made, none missing | dcfe4254 |
 | 2026-10-14 | Native German pass | 433 | every screen of all 433 de-DE lesson sets read as a German Grundschule teacher would (what the child sees and hears), about 21 000 screens, then a consistency sweep | about 2 500 small fixes in about 330 sets; house choices for the carry ("Schreib 3, übertrag 1"), "Es ist alles richtig.", "|" for separators; joined-capitals names no join that differs by script | f20878ae |
+| 2026-10-14 | en-GB review, year by year | 483 | all 483 en-GB lesson sets (Reception to Year 6 Maths and English, French learning years 1 to 4), each batch read by a review agent after it was written | fixes in most sets; table-2-4-8 and derive-facts moved to Year 3; semicolons in lists added to Year 6; bus stop, long multiplication, protractor, coordinates, line graph, pie chart and thermometer components; digit, decimal, fraction and letter keyboards for typed answers | 5215cf76 |
 
-Open points (4):
+Open points (10):
 
 - A native German speaker reads the screens (a teacher, not a model)
 - en-weather teaches "It's rainy"; a native English speaker could weigh it against "It's raining"
 - Regional words for a teacher to weigh: Mäppchen or Federtasche (an ä task relies on Mäppchen), Möhre or Karotte (picture-name tasks rely on Möhre), Fasching, Geldbeutel, Brötchen, Pulli
 - Terms that differ by Land or textbook: the carry phrase (now 'Schreib 3, übertrag 1'), entbündeln, Nachbarzehner, Zehnerfreunde, Silbenschwingen, Verbzusatz or Vorsilbe, Wen-Fall or Akkusativ, Viertel vier
+- A native English and a native French speaker read the en-GB screens
+- Year fit beyond the National Curriculum for a teacher to weigh: probability in Years 3 and 4, tonnes in Year 4, km in Year 3, circles with compasses in Year 5 (the NC has Year 6); fair games, codes, complex buildings and digital tools have no NC statement
+- Joined handwriting says capitals stay unjoined, which is not true in every continuous-cursive scheme
+- French prices are written the English way (2.50 euros as €2.50) and euro coins are not drawn in en-GB
+- Narration to listen to: speaker gender against the voice, and how the voice reads ½, ° and 1/2
+- No interaction yet for drawing with a ruler, protractor or compasses, plotting by tapping a grid point, marked free writing or speech, a drag clock, a scene for prepositions, or labelled circle parts; those lessons use choices, ordering and planning instead
 
 Closed:
 
