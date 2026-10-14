@@ -734,7 +734,7 @@ Task types: fill_in_blank 10, multiple_choice 15, ordering 9, matching 3, speak 
 
 `de-DE.lit-de.write-by-sound` teaches `lit-de.spelling.write-by-sound` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Children write words whose spelling follows their sounds (Oma, Nase, Limo, Tomate), using the letters they know. The strategy is the Mitsprechen: say the word slowly, one sound at a time, and write a letter for each sound. They build words from letter cards, fill the missing letter, count sounds and spot a spelling with a sound left out. Lesson 1 has short words of two open syllables; lesson 2 longer ones (Ente, Tomate, Esel) and ends with the skill check. Writing a whole word freely waits for a letter keyboard or handwriting recognition.
+Children write words whose spelling follows their sounds (Oma, Nase, Limo, Tomate), using the letters they know. The strategy is the Mitsprechen: say the word slowly, one sound at a time, and write a letter for each sound. They build words from letter cards, fill the missing letter, count sounds, spot a spelling with a sound left out, and type whole words on the letter keyboard (Lama, Oma, Ente, Nadel), about one task in four. Lesson 1 has short words of two open syllables; lesson 2 longer ones (Ente, Tomate, Esel) and ends with the skill check.
 
 
 | Lesson | New | Tasks | Activities |
@@ -742,7 +742,7 @@ Children write words whose spelling follows their sounds (Oma, Nase, Limo, Tomat
 | 1. Langsam mitsprechen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Längere Wörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: image_multiple_choice 4, audio_choice 1, ordering 13, fill_in_blank 15, multiple_choice 9. Builds on: `lit-de.phonological.sounds-in-words`, `lit-de.letters.e-n-d-u`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 4, audio_choice 1, ordering 6, fill_in_blank 14, multiple_choice 9, text_input 8. Builds on: `lit-de.phonological.sounds-in-words`, `lit-de.letters.e-n-d-u`. Misconceptions addressed: 2.
 
 ## Plusaufgaben mit Zehnerübergang (Adding across ten)
 
@@ -1384,7 +1384,7 @@ Task types: multiple_choice 33, fill_in_blank 19, true_false 10, matching 6. Bui
 
 `de-DE.lit-de.core-vocabulary` teaches `lit-de.spelling.core-vocabulary` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-The most common words of the Grundwortschatz. Lesson 1 takes small words that come in almost every sentence (und, ist, nicht, auch, sehr, schon, immer); lesson 2 takes common Verben and Nomen (gehen, sehen, heute, wieder, Freund, Schule, nach Hause), finds a misspelt word in a sentence, and ends with the skill check. Writing the words in a dictation waits for the letter keyboard (text_input with letters).
+The most common words of the Grundwortschatz. Lesson 1 takes small words that come in almost every sentence (und, ist, nicht, auch, sehr, schon, immer); lesson 2 takes common Verben and Nomen (gehen, sehen, heute, wieder, Freund, Schule, nach Hause), finds a misspelt word in a sentence, and ends with the skill check. About one task in four is a short dictation: the child hears a word and types it on the letter keyboard (nicht, ist, sind, immer, Freund, haben, Schule, wieder).
 
 
 | Lesson | New | Tasks | Activities |
@@ -1392,7 +1392,7 @@ The most common words of the Grundwortschatz. Lesson 1 takes small words that co
 | 1. Kleine Wörter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. Wichtige Wörter im Satz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
 
-Task types: true_false 8, multiple_choice 11, fill_in_blank 15, highlight_in_text 8. Builds on: `lit-de.spelling.dictation-short`. Misconceptions addressed: 2.
+Task types: true_false 8, multiple_choice 7, text_input 8, highlight_in_text 8, fill_in_blank 11. Builds on: `lit-de.spelling.dictation-short`. Misconceptions addressed: 2.
 
 ## Ableiten bei ä und äu (Deriving ä and äu)
 
@@ -5703,7 +5703,7 @@ Task types: audio_choice 2, image_multiple_choice 17, matching 7, true_false 9, 
 
 `de-DE.fl.en-words-from-memory` teaches `fl.writing.words-from-memory` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Writing practised words without a model and checking them in a word list. Lesson 1 learns look, cover, write, check: the child sees only the picture and lays the word with letter cards (with one card too many), fills missing letters or picks the right spelling. Lesson 2 checks words in an alphabetical word list, finds and corrects mistakes, and ends with the skill check. Typing whole words waits for a letter keyboard; the letter cards stand in for it.
+Writing practised words without a model and checking them in a word list. Lesson 1 learns look, cover, write, check: the child sees only the picture and types the word on the letter keyboard, lays it with letter cards (with one card too many), fills missing letters or picks the right spelling. Lesson 2 checks words in an alphabetical word list, finds mistakes and types the corrected word, and ends with the skill check. About one task in four is typed.
 
 
 | Lesson | New | Tasks | Activities |
@@ -5711,7 +5711,7 @@ Writing practised words without a model and checking them in a word list. Lesson
 | 1. Ansehen, zudecken, schreiben, prüfen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
 | 2. In der Wörterliste nachschauen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
 
-Task types: multiple_choice 18, audio_choice 1, ordering 12, fill_in_blank 8, true_false 3. Builds on: `fl.writing.copy-words`, `fl.reading.sound-spelling`. Misconceptions addressed: 2.
+Task types: multiple_choice 16, audio_choice 1, ordering 9, fill_in_blank 5, text_input 8, true_false 3. Builds on: `fl.writing.copy-words`, `fl.reading.sound-spelling`. Misconceptions addressed: 2.
 
 ## Sätze nach Muster schreiben (Writing sentences from a model)
 

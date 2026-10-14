@@ -11,8 +11,9 @@ summary: >
   words that come in almost every sentence (und, ist, nicht, auch, sehr,
   schon, immer); lesson 2 takes common Verben and Nomen (gehen, sehen,
   heute, wieder, Freund, Schule, nach Hause), finds a misspelt word in a
-  sentence, and ends with the skill check. Writing the words in a
-  dictation waits for the letter keyboard (text_input with letters).
+  sentence, and ends with the skill check. About one task in four is a
+  short dictation: the child hears a word and types it on the letter
+  keyboard (nicht, ist, sind, immer, Freund, haben, Schule, wieder).
 metadata:
   year: klasse-2
   topic: { de: Rechtschreibung üben, en: Spelling practice }
@@ -27,7 +28,7 @@ metadata:
   misconceptions:
     - id: write-as-heard
       what: Writes the small words as they sound (unt, nich, ser, gehn)
-      addressed: lesson 1 Learn shows und with d and sehr with h; every stage has a misspelt word to find in a sentence and a choice with the as-heard spelling
+      addressed: lesson 1 Learn shows und with d and sehr with h; every stage has a misspelt word to find in a sentence and a choice or a typed word with feedback on the as-heard spelling (nich, isd, sint, gehn)
     - id: h-and-double
       what: Leaves out or adds an h or a double letter (schohn, imer, Schuhle)
       addressed: lesson 1 Learn names sehr, schon and immer; a gap in every stage of lesson 1 asks for h, a double letter or a single o (l1-f5 immer, l1-s2 dann, l1-n2 schon, l1-c3 sehr); misspelt cards l1-s3 schohn, l1-n4 imer, l2-s4 Schuhle and l2-c2 komt
@@ -67,7 +68,7 @@ lessons:
           - text: "und | ist"
             say: "Bei und hörst du am Ende ein t, aber du schreibst d. Bei ist hörst du ein t und schreibst auch t. Präge dir beide Wörter gut ein."
           - text: "sehr | schon | immer"
-            say: "Diese Wörter musst du dir auch merken: sehr mit h, schon ohne h und immer mit zwei m."
+            say: "Diese Wörter musst du dir auch merken: sehr mit h, schon ohne h und immer mit zwei m. Wenn du ein Nomen tippst, tippst du für den großen Buchstaben zuerst auf den Pfeil."
 
       - activity: practise
         setting: plain
@@ -87,16 +88,18 @@ lessons:
                   - "und."
                 difficulty: easy
               - id: l1-f2
-                type: fill_in_blank
-                text: "Was fehlt?"
-                say: "Nicht. Was fehlt?"
-                frame: "ni_t"
-                options: ["ch", "h", "g"]
-                answer: ["ch"]
+                type: text_input
+                keyboard: letters
+                text: "Schreib das Wort."
+                say: "Nicht. Ich komme nicht mit. Schreib das Wort nicht."
+                answer: "nicht"
+                feedback:
+                  nich: "Sprich bis zum Ende: nich ... t. Nicht endet mit t."
+                  Nicht: "Nicht ist kein Nomen. Du schreibst es klein."
                 hints:
-                  - "Sprich das Wort langsam: nicht."
-                  - "Ni, ch, t: In der Mitte höre ich ch wie in ich."
-                  - "ch."
+                  - "Sprich das Wort langsam bis zum Ende."
+                  - "Ni, ch, t: In der Mitte höre ich ch wie in ich, am Ende ein t."
+                  - "nicht"
               - id: l1-f3
                 type: highlight_in_text
                 text: "Tippe auf das falsch geschriebene Wort."
@@ -132,12 +135,14 @@ lessons:
           - support: some
             tasks:
               - id: l1-s1
-                type: multiple_choice
-                text: "Welches Wort ist richtig geschrieben?"
-                say: "Ist. Welches Wort ist richtig geschrieben?"
-                options: ["ist", "isd", "ihst"]
+                type: text_input
+                keyboard: letters
+                text: "Schreib das Wort."
+                say: "Ist. Das Eis ist kalt. Schreib das Wort ist."
                 answer: "ist"
-                option_audio: false
+                feedback:
+                  isd: "Bei ist hörst du ein t und schreibst auch t."
+                  is: "Sprich ist ganz deutlich bis zum Ende: is ... t."
                 hints: ["Sprich ist ganz deutlich bis zum Ende."]
               - id: l1-s2
                 type: fill_in_blank
@@ -173,12 +178,13 @@ lessons:
           - support: none
             tasks:
               - id: l1-n1
-                type: multiple_choice
-                text: "Welches Wort ist richtig geschrieben?"
-                say: "Sind. Welches Wort ist richtig geschrieben?"
-                options: ["sind", "sint", "sindt"]
+                type: text_input
+                keyboard: letters
+                text: "Schreib das Wort."
+                say: "Sind. Wir sind im Garten. Schreib das Wort sind."
                 answer: "sind"
-                option_audio: false
+                feedback:
+                  sint: "Du hörst am Ende ein t, aber sind schreibst du mit d, wie und."
               - id: l1-n2
                 type: fill_in_blank
                 text: "Was fehlt?"
@@ -210,12 +216,13 @@ lessons:
         size: quick
         tasks:
           - id: l1-c1
-            type: multiple_choice
-            text: "Welches Wort ist richtig geschrieben?"
-            say: "Nicht. Welches Wort ist richtig geschrieben?"
-            options: ["nicht", "nich", "nichd"]
-            answer: "nicht"
-            option_audio: false
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Wort."
+            say: "Immer. Ich lache immer. Schreib das Wort immer."
+            answer: "immer"
+            feedback:
+              imer: "Immer schreibst du mit zwei m: im, mer."
           - id: l1-c2
             type: highlight_in_text
             text: "Tippe auf das falsch geschriebene Wort."
@@ -313,16 +320,19 @@ lessons:
                   - "Wieder schreibt man mit ie nach dem w. Steht das auf der Karte?"
                   - "Ja, das ist richtig."
               - id: l2-f5
-                type: fill_in_blank
-                text: "Was fehlt?"
-                say: "Der Freund. Was fehlt?"
-                frame: "Fr_nd"
-                options: ["eu", "äu", "ei"]
-                answer: ["eu"]
+                type: text_input
+                keyboard: letters
+                text: "Schreib das Nomen."
+                say: "Der Freund. Mein Freund spielt mit mir. Schreib das Nomen Freund."
+                answer: "Freund"
+                feedback:
+                  freund: "Freund ist ein Nomen. Nomen schreibst du groß."
+                  Froind: "Du hörst oi, aber du schreibst eu: Freund."
+                  Freunt: "Verlängere das Wort: die Freunde. Du hörst d, also schreibst du Freund mit d."
                 hints:
-                  - "Such ein verwandtes Wort mit au."
-                  - "Freund: Ich finde kein verwandtes Wort mit au. Also schreibe ich eu."
-                  - "eu."
+                  - "Freund ist ein Nomen. Wie fängt es an?"
+                  - "Ich finde kein verwandtes Wort mit au, also eu. Am Ende verlängere ich: Freunde. Ich höre d."
+                  - "Freund"
 
           - support: some
             tasks:
@@ -357,12 +367,13 @@ lessons:
                 answer: false
                 hints: ["Schule schreibst du ohne h."]
               - id: l2-s5
-                type: fill_in_blank
-                text: "Was fehlt?"
-                say: "Haben. Was fehlt?"
-                frame: "ha_en"
-                options: ["b", "p", "w"]
-                answer: ["b"]
+                type: text_input
+                keyboard: letters
+                text: "Schreib das Wort."
+                say: "Haben. Wir haben Hunger. Schreib das Wort haben."
+                answer: "haben"
+                feedback:
+                  habn: "Schwinge das Wort: ha, ben. Die zweite Silbe braucht ein e."
                 hints: ["Schwinge das Wort: ha, ben."]
 
           - support: none
@@ -394,12 +405,14 @@ lessons:
                 show: { drawn: letter-card, text: "haben" }
                 answer: true
               - id: l2-n5
-                type: fill_in_blank
-                text: "Was fehlt?"
-                say: "Die Schule. Was fehlt?"
-                frame: "_ule"
-                options: ["Sch", "Sh", "Ch"]
-                answer: ["Sch"]
+                type: text_input
+                keyboard: letters
+                text: "Schreib das Nomen."
+                say: "Die Schule. Ich gehe gern in die Schule. Schreib das Nomen Schule."
+                answer: "Schule"
+                feedback:
+                  schule: "Schule ist ein Nomen. Nomen schreibst du groß."
+                  Schuhle: "Schule schreibst du ohne h."
 
       - activity: check
         size: skill
@@ -425,12 +438,14 @@ lessons:
             options: ["h", "e", "n"]
             answer: ["h"]
           - id: l2-c4
-            type: multiple_choice
-            text: "Welches Wort ist richtig geschrieben?"
-            say: "Wieder. Welches Wort ist richtig geschrieben?"
-            options: ["wieder", "wieda", "wiehder"]
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Wort."
+            say: "Wieder. Morgen regnet es wieder. Schreib das Wort wieder."
             answer: "wieder"
-            option_audio: false
+            feedback:
+              wieda: "Am Ende hörst du a, aber du schreibst er: wie, der."
+              wider: "Wieder schreibst du mit ie."
           - id: l2-c5
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
