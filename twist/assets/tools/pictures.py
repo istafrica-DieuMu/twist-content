@@ -43,6 +43,9 @@ One subject only, centred, filling about 80% of a square canvas, on a transparen
 Do not draw the mascot."""
 FACE = "Eyes like the mascot's: large, rounded, solid dark plum with one white catchlight. A small friendly smile."
 NO_FACE = "No face: no eyes, no mouth."
+MASCOT = """Draw exactly the character shown in the reference images, the app's purple mascot: the same soft plush 3D look, the same purple fur, round belly patch, floppy ears, two little horns or tufts, big round eyes, round dark purple nose and wide happy mouth, the same proportions. Only the pose changes.
+Pose: {draw}.
+Full body, centred, filling about 85% of a square canvas, on a transparent background. Soft light, no ground shadow, no scene, no frame. No text, letters or numbers anywhere."""
 RECOLOUR = """Redraw this exact picture: same shape, outline, shading, highlight and position. Change only the colour of {part} to {name} ({hex}), with its darker shade in a darker tone of the same {name}. Everything else stays exactly as it is. Transparent background."""
 
 
@@ -102,7 +105,7 @@ def call(k, prompt, refs):
     return base64.b64decode(b64), (data.get("usage") or {}).get("cost")
 
 
-def finish(raw_bytes, dest):
+def finish(raw_bytes, dest, colours=COLOURS):
     """Trim to the subject, pad to a square with a margin, resize, compress."""
     im = Image.open(io.BytesIO(raw_bytes)).convert("RGBA")
     alpha = im.getchannel("A").point(lambda a: 255 if a > 8 else 0)
@@ -113,7 +116,10 @@ def finish(raw_bytes, dest):
     sq = Image.new("RGBA", (side, side), (0, 0, 0, 0))
     sq.alpha_composite(im, ((side - im.width) // 2, (side - im.height) // 2))
     sq = sq.resize((SIZE, SIZE), Image.LANCZOS)
-    sq.quantize(colors=COLOURS, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.NONE).save(dest, "PNG", optimize=True)
+    if colours:
+        sq.quantize(colors=colours, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.NONE).save(dest, "PNG", optimize=True)
+    else:  # full colour, for soft shading such as the 3D mascot
+        sq.save(dest, "PNG", optimize=True)
     return dest.stat().st_size
 
 
@@ -155,15 +161,47 @@ def sheet(dest):
     print(f"sheet: {dest} ({len(files)} pictures)")
 
 
+def mascot(a):
+    """The mascot poses for the lesson's static screens (assets/mascot.yaml), drawn from the app's mascot."""
+    out = ASSETS / "mascot"
+    out.mkdir(exist_ok=True)
+    poses = yaml.safe_load((ASSETS / "mascot.yaml").read_text())["poses"]
+    only = set(a.only.split(",")) if a.only else None
+    jobs = [p for p in poses if (only and p["id"] in only) or (not only and not (out / f"{p['id']}.png").exists())]
+    print(f"{len(jobs)} mascot poses to make")
+    if a.dry_run:
+        for p in jobs: print(" ", p["id"], "-", p["draw"])
+        return
+    refs_dir = SL / "apps/review/public/app"
+    refs = [ref_image(refs_dir / "mascot.png"), ref_image(refs_dir / "mascot-teach.png")]
+    k, log = key(), (yaml.safe_load(LOG.read_text()) if LOG.exists() else None) or {}
+    total = [0.0]
+    def make(p):
+        raw, cost = call(k, MASCOT.format(draw=p["draw"]), refs)
+        size = finish(raw, out / f"{p['id']}.png", colours=0)
+        total[0] += cost or 0
+        log[f"mascot/{p['id']}"] = {"file": f"../mascot/{p['id']}.png", "model": MODEL, "quality": QUALITY, "draw": p["draw"], "cost": cost, "bytes": size, "made": str(date.today()), "transparent": has_alpha(raw)}
+        print(f"  {p['id']}: {size // 1024} KB, ${cost}", flush=True)
+    with ThreadPoolExecutor(a.jobs) as ex:
+        for f in [ex.submit(make, p) for p in jobs]:
+            try: f.result()
+            except Exception as e: print("  failed:", str(e)[:150])
+    LOG.write_text("# Written by tools/pictures.py: what made each picture.\n" + yaml.safe_dump(dict(sorted(log.items())), allow_unicode=True, sort_keys=False))
+    print(f"total ${total[0]:.3f}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="comma-separated object ids; remakes them")
     ap.add_argument("--sheet", help="write a contact sheet PNG and stop")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--jobs", type=int, default=6)
+    ap.add_argument("--mascot", action="store_true", help="make the mascot poses in mascot.yaml instead of bank objects")
     a = ap.parse_args()
     if a.sheet:
         return sheet(Path(a.sheet))
+    if a.mascot:
+        return mascot(a)
 
     objects = yaml.safe_load((ASSETS / "objects.yaml").read_text())["objects"]
     hexes = yaml.safe_load((ASSETS / "drawn.yaml").read_text())["colours"]

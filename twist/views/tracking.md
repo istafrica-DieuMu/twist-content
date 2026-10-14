@@ -21,9 +21,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
-| Pictures | openai/gpt-image-2.5-sunburst | 251 files (242 priced) | $5.28 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 59363 clips, 73.6 h | about $91 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 59363 clips | about $47 | estimated the same way |
+| Pictures | openai/gpt-image-2.5-sunburst | 272 files (263 priced) | $5.77 | logged per picture by pictures.py |
+| Narration | google/gemini-3.8-flash-tts | 59378 clips, 73.6 h | about $91 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 59378 clips | about $47 | estimated the same way |
 | **Total** | | | **about $143** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
@@ -34,8 +34,8 @@ Per voice:
 |---|---|---|---|---|---|
 | gemini-puck | 6413 | 6313 (98%) | 0 | 373 min | $13 |
 | gemini-puck-en | 953 | 925 (97%) | 0 | 55 min | $1.92 |
-| gemini-sulafat | 44776 | 43928 (98%) | 0 | 3402 min | $105 |
-| gemini-sulafat-en | 7221 | 7059 (98%) | 0 | 583 min | $18 |
+| gemini-sulafat | 44784 | 43936 (98%) | 0 | 3403 min | $105 |
+| gemini-sulafat-en | 7228 | 7066 (98%) | 0 | 584 min | $18 |
 
 ## de-DE
 

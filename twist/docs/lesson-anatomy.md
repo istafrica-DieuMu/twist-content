@@ -106,6 +106,15 @@ from more activity names.
 | **Practise** | Practise | Üben | The long part of the lesson: three stages, from full hints to none |
 | **Check** | Show what you know | Zeig, was du kannst | Short, no help, counts toward mastery |
 
+Every activity opens with an intro screen: the mascot, the activity's name
+and one spoken line ("Wir wärmen uns auf.", phrases.yaml). The lesson start,
+each change of practise stage and the lesson end are static screens with the
+mascot too. Each of these seven screen kinds has three mascot poses
+(assets/mascot.yaml, files in assets/mascot/: start, warmup, learn,
+practise, stage, check, end, each -1 to -3). The app picks one by lesson and
+rotates on, so neighbouring lessons and the two stage changes in one lesson
+show different poses.
+
 ### What each activity can be set to
 
 **Warm-up** draws its tasks from one of two places:

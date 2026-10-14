@@ -90,6 +90,7 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .center{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
 .center h2{font-size:30px;margin:0}.center p{font-size:18px;margin:0;color:#6d5f7b}
 .center img{width:180px;height:180px;object-fit:contain}
+.center img.mascot-pose{width:230px;height:230px}
 .tf{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:auto}
 .tf .opt{font-size:26px;min-height:96px}
 /* drawn */
@@ -762,13 +763,15 @@ let set, lesson, steps = [], at = 0, results = [];
 function buildSteps() {
   steps = [{ kind: "start" }];
   for (const a of lesson.activities) {
-    if (a.activity === "learn") a.screens.forEach((s, i) => steps.push({ kind: "learn", a, s, i }));
+    if (a.activity === "learn") { steps.push({ kind: "intro", a }); a.screens.forEach((s, i) => steps.push({ kind: "learn", a, s, i })); }
     else if (a.activity === "practise") a.stages.forEach((st, si) => {
+      if (si === 0) steps.push({ kind: "intro", a });
       if (si > 0) steps.push({ kind: "stage", a, st, si });
       st.tasks.forEach((t) => steps.push({ kind: "task", a, t, stage: st.support, si, setting: st.setting ?? a.setting }));
     });
     else {
       if (a.activity === "check") steps.push({ kind: "checkIntro", a });
+      else steps.push({ kind: "intro", a });
       a.tasks.forEach((t) => steps.push({ kind: "task", a, t, stage: a.activity === "check" ? "check" : "none" }));
     }
   }
@@ -824,14 +827,27 @@ function go(i) {
   stopAudio();
   at = Math.max(0, Math.min(steps.length - 1, i));
   const step = steps[at];
-  ({ start: renderStart, learn: renderLearn, stage: renderStage, checkIntro: renderCheckIntro, task: renderTask, end: renderEnd })[step.kind](step);
+  ({ start: renderStart, intro: renderIntro, learn: renderLearn, stage: renderStage, checkIntro: renderCheckIntro, task: renderTask, end: renderEnd })[step.kind](step);
   sidebar();
 }
 
+// The mascot on static screens: three poses per screen kind (assets/mascot.yaml),
+// rotated by lesson set and lesson so neighbouring lessons show different ones.
+const MASCOT_KIND = { "warm-up": "warmup", learn: "learn", practise: "practise", check: "check" };
+function mascotPose(kind, turn = 0) {
+  const seed = [...(set?.id ?? "")].reduce((n, c) => n + c.charCodeAt(0), 0) + (lesson?.n ?? 1) + turn;
+  return `<img class="mascot-pose" src="${A}mascot/${kind}-${(seed % 3) + 1}.png" alt="">`;
+}
+function renderIntro(step) {
+  const { body, foot } = frameUI(step), key = { "warm-up": "warmup_start", learn: "learn_start", practise: "practise_start" }[step.a.activity], p = phrase(key);
+  body.innerHTML = `<div class="center">${mascotPose(MASCOT_KIND[step.a.activity])}<h2>${esc(actName(step.a))}</h2>${p ? `<p>${esc(p.text)}</p>` : ""}</div>`;
+  if (p) play(p.src);
+  nextBtn(foot);
+}
 function renderStart() {
   const { body, foot } = frameUI({});
   const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
-  body.innerHTML = `<div class="center">${first ? pic(first) : ""}<p>${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
+  body.innerHTML = `<div class="center">${mascotPose("start")}<p>${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 function renderLearn(step) {
@@ -849,13 +865,13 @@ function renderLearn(step) {
 function renderStage(step) {
   const { body, foot } = frameUI(step), p = phrase("stage_done");
   const label = { some: UI.less, none: UI.alone }[step.st.support];
-  body.innerHTML = `<div class="center"><div class="stars">★</div><h2>${esc(p?.text ?? "Prima!")}</h2><p>${esc(label)}</p></div>`;
+  body.innerHTML = `<div class="center">${mascotPose("stage", step.si)}<h2>${esc(p?.text ?? "Prima!")}</h2><p>${esc(label)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
 function renderCheckIntro(step) {
   const { body, foot } = frameUI(step), p = phrase("check_start");
-  body.innerHTML = `<div class="center"><h2>${esc(p?.text ?? UI.checkTitle)}</h2><p>${UI.checkInfo(step.a.tasks.length)}</p></div>`;
+  body.innerHTML = `<div class="center">${mascotPose("check")}<h2>${esc(p?.text ?? UI.checkTitle)}</h2><p>${UI.checkInfo(step.a.tasks.length)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
@@ -866,7 +882,7 @@ function renderEnd() {
   const skill = checkSteps[0]?.[0].a.size === "skill";
   const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
   const p = phrase("lesson_done");
-  body.innerHTML = `<div class="center"><div class="stars">${"★".repeat(Math.max(1, Math.round((3 * right) / Math.max(1, checkSteps.length))))}</div><h2>${esc(p?.text ?? UI.doneTitle)}</h2>
+  body.innerHTML = `<div class="center">${mascotPose("end")}<div class="stars">${"★".repeat(Math.max(1, Math.round((3 * right) / Math.max(1, checkSteps.length))))}</div><h2>${esc(p?.text ?? UI.doneTitle)}</h2>
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
     ${pass === null ? "" : pass ? `<span class="badge">${UI.secure}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
   if (p) play(p.src);
@@ -1196,7 +1212,7 @@ function sidebar() {
     const grp = s.a ? actName(s.a) + (s.kind === "task" && s.a.activity === "practise" ? ` · ${{ full: "full hints", some: "one hint", none: "no hints" }[s.stage]}` : "") : null;
     if (grp && grp !== last) { const g = document.createElement("li"); g.className = "grp"; g.textContent = grp; ul.appendChild(g); last = grp; }
     const li = document.createElement("li"); if (i === at) li.className = "on";
-    li.textContent = s.kind === "task" ? `${s.t.id} · ${s.t.type}${results[i] ? " · " + results[i] : ""}` : s.kind === "learn" ? `Screen ${s.i + 1}` : { start: "Start", stage: "Stage change", checkIntro: "Check starts", end: "End" }[s.kind];
+    li.textContent = s.kind === "task" ? `${s.t.id} · ${s.t.type}${results[i] ? " · " + results[i] : ""}` : s.kind === "learn" ? `Screen ${s.i + 1}` : { start: "Start", intro: "Activity starts", stage: "Stage change", checkIntro: "Check starts", end: "End" }[s.kind];
     li.onclick = () => go(i); ul.appendChild(li);
   });
   const s = steps[at], rec = s.t ?? s.s ?? (s.kind === "start" ? { lesson: lesson.n, title: lesson.title, activities: lesson.activities.map((a) => a.activity) } : s.st ? { stage: s.st.support, setting: s.st.setting } : { kind: s.kind });
