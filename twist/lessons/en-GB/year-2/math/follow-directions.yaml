@@ -1,0 +1,666 @@
+# Lesson set: Maths, Year 2. Hand-authored draft.
+id: en-GB.math.follow-directions
+skill: math.space.follow-directions
+curriculum: en-GB
+language: en
+title:
+  de: Wege und Drehungen
+  en: Routes and turns
+summary: >
+  Lesson 1 follows arrows on a 3 by 3 grid of lettered squares (from G,
+  up two and right one ends on B) and picks the arrows for a route;
+  lesson 2 works on a 4 by 4 grid, describes routes in words (2 right,
+  1 down), finds the shortest route and the way back; lesson 3 turns an
+  arrow by quarter, half and three-quarter turns, clockwise and
+  anticlockwise, as Year 2 asks, and ends with the skill check. Walking
+  a route with a finger and programming a floor robot wait for a drag
+  task.
+metadata:
+  year: year-2
+  topic: { de: Orientierung, en: Position and direction }
+  ages: [6-7]
+  lesson_minutes: 11
+  builds_on: [math.space.position-words]
+  also_practises: [math.space.position-words]
+  vocabulary: { en: [grid, square, arrow, route, up, down, left, right, way back, shortest route, turn, quarter turn, half turn, three-quarter turn, clockwise, anticlockwise, right angle] }
+  forms: [text, audio, drawn]
+  drawn: [shape, grid, clock]
+  facets: []
+  misconceptions:
+    - id: left-right-swap
+      what: Goes right for an arrow pointing left, or the other way round
+      addressed: lesson 1 Learn names each arrow; l1-f2 (with feedback), l1-s2 and l1-c2 offer the square on the wrong side; l2-f3 (with feedback) offers left for right
+    - id: way-back-same-arrows
+      what: Uses the same arrows for the way back, or turns them round without reversing their order
+      addressed: lesson 2 Learn walks a route backwards and turns each arrow; l2-f4 (with feedback), l2-s3, l2-n3, l3-w2 and l3-c3 offer the way there as the way back
+    - id: clockwise-anticlockwise-swap
+      what: Turns the wrong way for clockwise or anticlockwise
+      addressed: lesson 3 Learn shows clockwise with the hands of a clock; l3-f2 has feedback on turning clockwise instead, l3-s1, l3-s4 and l3-n1 turn anticlockwise or test the wrong way
+  twist_reuse: []
+  status: draft
+  version: 1
+  authored: 2026-10-14
+
+lessons:
+  - n: 1
+    title: { de: "Pfeilen folgen", en: "Following arrows" }
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: earlier-skills
+        tasks:
+          - id: l1-w1
+            type: multiple_choice
+            text: "Which shape is on the far right?"
+            show: { drawn: shape, row: [circle, square, triangle], colours: [red, blue, green] }
+            options: ["the triangle", "the circle", "the square"]
+            answer: "the triangle"
+            difficulty: easy
+          - id: l1-w2
+            type: multiple_choice
+            text: "Which shape is at the top?"
+            show: { drawn: shape, column: [square, circle], colours: [yellow, purple] }
+            options: ["the square", "the circle"]
+            answer: "the square"
+            difficulty: easy
+
+      - activity: learn
+        mode: demonstration
+        screens:
+          - text: "↑ up\n↓ down\n← left\n→ right"
+            say: "Arrows show you the way. This arrow points up, this one points down, this one points left and this one points right."
+          - text: "Start on E. Route: →"
+            say: "This is a grid with nine squares. You start on E, the yellow square. The arrow pointing right means one square to the right. Now you are on F."
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+          - text: "Start on G. Route: ↑ ↑ →"
+            say: "Now start on G. Up one: D. Up one more: A. Then right one: B. You end up on B. Follow the arrows one at a time, one square for each arrow."
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+
+      - activity: practise
+        setting: plain
+        stages:
+          - support: full
+            tasks:
+              - id: l1-f1
+                type: multiple_choice
+                text: "Start on E. Route: ↑\nWhere do you end up?"
+                say: "Start on E. Go up one square. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["B", "H", "D"]
+                answer: "B"
+                hints:
+                  - "The arrow points up."
+                  - "Which letter is just above E?"
+                  - "B."
+                difficulty: easy
+              - id: l1-f2
+                type: multiple_choice
+                text: "Start on E. Route: ←\nWhere do you end up?"
+                say: "Start on E. Go left one square. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["D", "F", "B"]
+                answer: "D"
+                feedback:
+                  "F": "F is to the right of E. The arrow points left."
+                hints:
+                  - "Left is the side where you start reading a line."
+                  - "Which letter is just to the left of E?"
+                  - "D."
+              - id: l1-f3
+                type: multiple_choice
+                text: "Start on A. Route: → → ↓\nWhere do you end up?"
+                say: "Start on A. Go right two squares, then down one. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["F", "C", "D"]
+                answer: "F"
+                hints:
+                  - "Follow one arrow at a time, one square each."
+                  - "From A to the right: B, then C. Then go down."
+                  - "F."
+              - id: l1-f4
+                type: true_false
+                text: "Start on I. Route: ↑ ←\nYou end up on E."
+                say: "Start on I. Go up one, then left one. Is it true? You end up on E."
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[2, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                answer: true
+                hints:
+                  - "Go up first."
+                  - "Above I is F. To the left of F is ..."
+                  - "Yes, you end up on E."
+              - id: l1-f5
+                type: multiple_choice
+                text: "Which route goes from G to C?"
+                say: "G is yellow and C is green. Which route goes from G to C?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 2, yellow], [2, 0, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["↑ ↑ → →", "→ → ↓ ↓", "↑ → →"]
+                answer: "↑ ↑ → →"
+                option_audio: false
+                hints:
+                  - "C is at the top right. G is at the bottom left."
+                  - "You need to go up two squares and right two squares."
+                  - "↑ ↑ → →."
+
+          - support: some
+            tasks:
+              - id: l1-s1
+                type: multiple_choice
+                text: "Start on E. Route: ↓\nWhere do you end up?"
+                say: "Start on E. Go down one square. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["H", "B", "F"]
+                answer: "H"
+                hints: ["Which letter is just below E?"]
+              - id: l1-s2
+                type: multiple_choice
+                text: "Start on B. Route: ←\nWhere do you end up?"
+                say: "Start on B. Go left one square. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["A", "C", "E"]
+                answer: "A"
+                hints: ["Left is the side where you start reading a line."]
+              - id: l1-s3
+                type: multiple_choice
+                text: "Start on C. Route: ↓ ↓ ←\nWhere do you end up?"
+                say: "Start on C. Go down two squares, then left one. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[2, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["H", "G", "E"]
+                answer: "H"
+                hints: ["From C go down: F, then I. Then go left."]
+              - id: l1-s4
+                type: true_false
+                text: "Start on H. Route: ↑ ↑\nYou end up on E."
+                say: "Start on H. Go up two squares. Is it true? You end up on E."
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                answer: false
+                hints: ["There are two arrows. Go both squares."]
+              - id: l1-s5
+                type: multiple_choice
+                text: "Which route goes from A to I?"
+                say: "A is yellow and I is green. Which route goes from A to I?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, yellow], [2, 2, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["→ → ↓ ↓", "← ← ↓ ↓", "→ ↓"]
+                answer: "→ → ↓ ↓"
+                option_audio: false
+                hints: ["I is at the bottom right. How many squares right, and how many down?"]
+
+          - support: none
+            tasks:
+              - id: l1-n1
+                type: multiple_choice
+                text: "Start on E. Route: →\nWhere do you end up?"
+                say: "Start on E. Go right one square. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["F", "D", "B"]
+                answer: "F"
+              - id: l1-n2
+                type: multiple_choice
+                text: "Start on F. Route: ↑ ←\nWhere do you end up?"
+                say: "Start on F. Go up one, then left one. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[2, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["B", "A", "E"]
+                answer: "B"
+              - id: l1-n3
+                type: multiple_choice
+                text: "Start on G. Route: → ↑ →\nWhere do you end up?"
+                say: "Start on G. Go right one, up one, then right one. Where do you end up?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["F", "E", "I"]
+                answer: "F"
+              - id: l1-n4
+                type: true_false
+                text: "Start on A. Route: ↓ →\nYou end up on E."
+                say: "Start on A. Go down one, then right one. Is it true? You end up on E."
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                answer: true
+              - id: l1-n5
+                type: multiple_choice
+                text: "Which route goes from I to A?"
+                say: "I is yellow and A is green. Which route goes from I to A?"
+                show: { drawn: grid, cols: 3, rows: 3, cells: [[2, 2, yellow], [0, 0, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+                options: ["← ← ↑ ↑", "→ → ↑ ↑", "↑ ↑ → →"]
+                answer: "← ← ↑ ↑"
+                option_audio: false
+
+      - activity: check
+        size: quick
+        tasks:
+          - id: l1-c1
+            type: multiple_choice
+            text: "Start on B. Route: ↓ ↓\nWhere do you end up?"
+            say: "Start on B. Go down two squares. Where do you end up?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+            options: ["H", "E", "C"]
+            answer: "H"
+          - id: l1-c2
+            type: multiple_choice
+            text: "Start on E. Route: ← ↑\nWhere do you end up?"
+            say: "Start on E. Go left one, then up one. Where do you end up?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+            options: ["A", "C", "G"]
+            answer: "A"
+          - id: l1-c3
+            type: multiple_choice
+            text: "Which route goes from C to G?"
+            say: "C is yellow and G is green. Which route goes from C to G?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[2, 0, yellow], [0, 2, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+            options: ["← ← ↓ ↓", "→ → ↓ ↓", "↓ ↓"]
+            answer: "← ← ↓ ↓"
+            option_audio: false
+
+  - n: 2
+    title: { de: "Wege beschreiben", en: "Describing routes" }
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: last-lesson
+        tasks:
+          - id: l2-w1
+            type: multiple_choice
+            text: "Start on D. Route: → ↑\nWhere do you end up?"
+            say: "Start on D. Go right one, then up one. Where do you end up?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+            options: ["B", "F", "H"]
+            answer: "B"
+            difficulty: easy
+          - id: l2-w2
+            type: multiple_choice
+            text: "Which arrow points left?"
+            options: ["←", "→", "↑"]
+            answer: "←"
+            option_audio: false
+            difficulty: easy
+
+      - activity: learn
+        mode: demonstration
+        screens:
+          - text: "Start on F. 2 right, 1 down"
+            say: "You can describe a route in words too. Start on F. Two squares right: G, then H. Then one square down: L."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[1, 1, yellow], [3, 2, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+          - text: "From F to L: → → ↓"
+            say: "With arrows, the same route is right, right, down."
+          - text: "Way back from L to F: ↑ ← ←"
+            say: "How do you go back the same way? Walk the route backwards. The last arrow comes first, and every arrow turns round: first up, then left twice."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 2, yellow], [1, 1, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+
+      - activity: practise
+        setting: plain
+        stages:
+          - support: full
+            tasks:
+              - id: l2-f1
+                type: multiple_choice
+                text: "Start on A. Go 3 right.\nWhere do you end up?"
+                say: "Start on A. Go three squares to the right. Where do you end up?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["D", "C", "M"]
+                answer: "D"
+                hints:
+                  - "Count the squares as you go: one, two, three."
+                  - "B, C, ..."
+                  - "D."
+                difficulty: easy
+              - id: l2-f2
+                type: multiple_choice
+                text: "Start on P. Go 2 up, 1 left.\nWhere do you end up?"
+                say: "Start on P. Go two squares up, then one square left. Where do you end up?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 3, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["G", "H", "K"]
+                answer: "G"
+                hints:
+                  - "Go up first, then left."
+                  - "From P go up: L, then H. Then one to the left."
+                  - "G."
+              - id: l2-f3
+                type: multiple_choice
+                text: "Which words describe the route from E to K?"
+                say: "E is yellow and K is green. Which words describe the route from E to K?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 1, yellow], [2, 2, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["2 right, 1 down", "2 left, 1 down", "1 right, 2 down"]
+                answer: "2 right, 1 down"
+                feedback:
+                  "2 left, 1 down": "There are no squares to the left of E. K is to the right of E."
+                hints:
+                  - "Is K to the left or the right of E? Higher or lower?"
+                  - "K is two columns to the right and one row lower."
+                  - "2 right, 1 down."
+              - id: l2-f4
+                type: multiple_choice
+                text: "The route from L to F is ← ← ↑.\nWhat is the way back?"
+                say: "The route from L to F is left, left, up. How do you go back the same way to L?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 2, yellow], [1, 1, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["↓ → →", "← ← ↑", "↑ ← ←"]
+                answer: "↓ → →"
+                option_audio: false
+                feedback:
+                  "← ← ↑": "That is the way there. To go back, walk it backwards and turn every arrow round."
+                hints:
+                  - "The last arrow comes first, and it turns round."
+                  - "Up turns into down, and left turns into right."
+                  - "↓ → →."
+              - id: l2-f5
+                type: true_false
+                text: "Start on M. Route: ↑ ↑ → →\nYou end up on G."
+                say: "Start on M. Go up two, then right two. Is it true? You end up on G."
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                answer: true
+                hints:
+                  - "Follow one arrow at a time."
+                  - "From M go up: I, then E. Then right: F, then ..."
+                  - "Yes, you end up on G."
+
+          - support: some
+            tasks:
+              - id: l2-s1
+                type: multiple_choice
+                text: "Start on N. Go 2 up.\nWhere do you end up?"
+                say: "Start on N. Go two squares up. Where do you end up?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[1, 3, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["F", "B", "O"]
+                answer: "F"
+                hints: ["From N go up: J, then ..."]
+              - id: l2-s2
+                type: multiple_choice
+                text: "Which words describe the route from B to H?"
+                say: "B is yellow and H is green. Which words describe the route from B to H?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[1, 0, yellow], [3, 1, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["2 right, 1 down", "1 right, 2 down", "2 right, 1 up"]
+                answer: "2 right, 1 down"
+                hints: ["H is one row lower than B. How many columns to the right?"]
+              - id: l2-s3
+                type: multiple_choice
+                text: "The way there is → → ↓.\nWhat is the way back?"
+                say: "The way there is right, right, down. How do you go back the same way?"
+                options: ["↑ ← ←", "→ → ↓", "↓ → →"]
+                answer: "↑ ← ←"
+                option_audio: false
+                hints: ["Start with the last arrow and turn it round."]
+              - id: l2-s4
+                type: true_false
+                text: "Start on D. Route: ↓ ← ←\nYou end up on G."
+                say: "Start on D. Go down one, then left two. Is it true? You end up on G."
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                answer: false
+                hints: ["There are two arrows pointing left. Go both squares."]
+              - id: l2-s5
+                type: multiple_choice
+                text: "Which route from A to F is the shortest?"
+                say: "A is yellow and F is green. All three routes go from A to F. Which one is the shortest?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow], [1, 1, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["→ ↓", "→ → ↓ ←", "↓ ↓ → ↑"]
+                answer: "→ ↓"
+                option_audio: false
+                hints: ["Count the arrows. The shortest route has the fewest steps."]
+
+          - support: none
+            tasks:
+              - id: l2-n1
+                type: multiple_choice
+                text: "Start on K. Go 1 up, 2 left.\nWhere do you end up?"
+                say: "Start on K. Go one square up, then two squares left. Where do you end up?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[2, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["E", "H", "J"]
+                answer: "E"
+              - id: l2-n2
+                type: multiple_choice
+                text: "Which words describe the route from M to F?"
+                say: "M is yellow and F is green. Which words describe the route from M to F?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow], [1, 1, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["2 up, 1 right", "2 down, 1 right", "1 up, 2 right"]
+                answer: "2 up, 1 right"
+              - id: l2-n3
+                type: multiple_choice
+                text: "The way there is ↑ ↑ ←.\nWhat is the way back?"
+                say: "The way there is up, up, left. How do you go back the same way?"
+                options: ["→ ↓ ↓", "↑ ↑ ←", "↑ ↑ →"]
+                answer: "→ ↓ ↓"
+                option_audio: false
+              - id: l2-n4
+                type: true_false
+                text: "Start on P. Route: ← ← ← ↑\nYou end up on I."
+                say: "Start on P. Go left three, then up one. Is it true? You end up on I."
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 3, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                answer: true
+              - id: l2-n5
+                type: multiple_choice
+                text: "Which route from P to K is the shortest?"
+                say: "P is yellow and K is green. All three routes go from P to K. Which one is the shortest?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 3, yellow], [2, 2, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+                options: ["↑ ←", "← ← ↑ →", "↑ ↑ ← ↓"]
+                answer: "↑ ←"
+                option_audio: false
+
+      - activity: check
+        size: quick
+        tasks:
+          - id: l2-c1
+            type: multiple_choice
+            text: "Start on E. Go 2 right, 2 down.\nWhere do you end up?"
+            say: "Start on E. Go two squares right, then two squares down. Where do you end up?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 1, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+            options: ["O", "K", "N"]
+            answer: "O"
+          - id: l2-c2
+            type: multiple_choice
+            text: "Start on C. Route: ↓ ← ↓\nWhere do you end up?"
+            say: "Start on C. Go down one, left one, then down one. Where do you end up?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[2, 0, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+            options: ["J", "K", "B"]
+            answer: "J"
+          - id: l2-c3
+            type: true_false
+            text: "Start on J. Route: ↑ ↑ →\nYou end up on G."
+            say: "Start on J. Go up two, then right one. Is it true? You end up on G."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[1, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+            answer: false
+
+  - n: 3
+    title: { de: "Vierteldrehung, halbe Drehung", en: "Quarter turns and half turns" }
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: last-lesson
+        tasks:
+          - id: l3-w1
+            type: multiple_choice
+            text: "Which words describe the route from I to C?"
+            say: "I is yellow and C is green. Which words describe the route from I to C?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 2, yellow], [2, 0, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+            options: ["2 up, 2 right", "2 down, 2 right", "2 up, 2 left"]
+            answer: "2 up, 2 right"
+            difficulty: easy
+          - id: l3-w2
+            type: multiple_choice
+            text: "The way there is ↓ →.\nWhat is the way back?"
+            say: "The way there is down, then right. How do you go back the same way?"
+            options: ["← ↑", "↓ →", "→ ↓"]
+            answer: "← ↑"
+            option_audio: false
+            difficulty: easy
+
+      - activity: learn
+        mode: demonstration
+        screens:
+          - text: "Clockwise: the way the hands of a clock turn"
+            say: "Clockwise means turning the same way as the hands of a clock. Turning the other way is called anticlockwise."
+            show: { drawn: clock, hour: 12, minute: 0 }
+          - text: "A quarter turn: from 12 to 3"
+            say: "The minute hand turns from twelve to three. That is a quarter turn clockwise. A quarter turn makes a square corner, a right angle. An arrow pointing up makes a quarter turn clockwise and points right."
+            show: { drawn: clock, hour: 12, minute: 15 }
+          - text: "A half turn: from 12 to 6"
+            say: "From twelve to six is a half turn. That is two quarter turns. After a half turn you face the opposite way: up turns into down. A half turn ends the same way, clockwise or anticlockwise."
+            show: { drawn: clock, hour: 12, minute: 30 }
+          - text: "A three-quarter turn: from 12 to 9"
+            say: "From twelve to nine is a three-quarter turn clockwise: three quarter turns. An arrow pointing up then points left. A quarter turn anticlockwise ends on left too."
+            show: { drawn: clock, hour: 12, minute: 45 }
+
+      - activity: practise
+        setting: plain
+        stages:
+          - support: full
+            tasks:
+              - id: l3-f1
+                type: multiple_choice
+                text: "↑ makes a quarter turn clockwise.\nWhich way does it point now?"
+                say: "The arrow points up. It makes a quarter turn clockwise. Which way does it point now?"
+                options: ["→", "←", "↓"]
+                answer: "→"
+                option_audio: false
+                hints:
+                  - "Clockwise is the way the hands of a clock turn."
+                  - "The minute hand goes from 12 to 3 in a quarter turn."
+                  - "→, it points right."
+                difficulty: easy
+              - id: l3-f2
+                type: multiple_choice
+                text: "↑ makes a quarter turn anticlockwise.\nWhich way does it point now?"
+                say: "The arrow points up. It makes a quarter turn anticlockwise. Which way does it point now?"
+                options: ["←", "→", "↓"]
+                answer: "←"
+                option_audio: false
+                feedback:
+                  "→": "That is a quarter turn clockwise. Anticlockwise turns the other way."
+                hints:
+                  - "Anticlockwise is the opposite way to the hands of a clock."
+                  - "From 12, turn back towards 9."
+                  - "←, it points left."
+              - id: l3-f3
+                type: multiple_choice
+                text: "↑ makes a half turn.\nWhich way does it point now?"
+                say: "The arrow points up. It makes a half turn. Which way does it point now?"
+                options: ["↓", "→", "↑"]
+                answer: "↓"
+                option_audio: false
+                hints:
+                  - "A half turn is two quarter turns."
+                  - "After a half turn you face the opposite way."
+                  - "↓, it points down."
+              - id: l3-f4
+                type: multiple_choice
+                text: "The minute hand turns clockwise from 12 to 6.\nWhat turn is that?"
+                show: { drawn: clock, hour: 12, minute: 30 }
+                options: ["a half turn", "a quarter turn", "a whole turn"]
+                answer: "a half turn"
+                hints:
+                  - "From 12 to 3 is a quarter turn."
+                  - "From 12 to 6 is two quarter turns."
+                  - "A half turn."
+              - id: l3-f5
+                type: true_false
+                text: "→ makes a quarter turn clockwise. Now it points ↓."
+                say: "The arrow points right. It makes a quarter turn clockwise. Is it true? Now it points down."
+                answer: true
+                hints:
+                  - "Think of the minute hand on 3. It turns clockwise."
+                  - "A quarter turn on from 3 is 6, at the bottom."
+                  - "Yes, it points down."
+
+          - support: some
+            tasks:
+              - id: l3-s1
+                type: multiple_choice
+                text: "→ makes a quarter turn anticlockwise.\nWhich way does it point now?"
+                say: "The arrow points right. It makes a quarter turn anticlockwise. Which way does it point now?"
+                options: ["↑", "↓", "←"]
+                answer: "↑"
+                option_audio: false
+                hints: ["Anticlockwise is the opposite way to the hands of a clock: from 3 back to 12."]
+              - id: l3-s2
+                type: multiple_choice
+                text: "← makes a half turn.\nWhich way does it point now?"
+                say: "The arrow points left. It makes a half turn. Which way does it point now?"
+                options: ["→", "↑", "↓"]
+                answer: "→"
+                option_audio: false
+                hints: ["After a half turn you face the opposite way."]
+              - id: l3-s3
+                type: multiple_choice
+                text: "The minute hand turns clockwise from 12 to 9.\nWhat turn is that?"
+                show: { drawn: clock, hour: 12, minute: 45 }
+                options: ["a three-quarter turn", "a quarter turn", "a half turn"]
+                answer: "a three-quarter turn"
+                hints: ["Count the quarter turns: 12 to 3, 3 to 6, 6 to 9."]
+              - id: l3-s4
+                type: true_false
+                text: "↓ makes a quarter turn clockwise. Now it points →."
+                say: "The arrow points down. It makes a quarter turn clockwise. Is it true? Now it points right."
+                answer: false
+                hints: ["Think of the minute hand on 6. Clockwise, it moves on to 9."]
+              - id: l3-s5
+                type: multiple_choice
+                text: "↑ makes a three-quarter turn clockwise.\nWhich way does it point now?"
+                say: "The arrow points up. It makes a three-quarter turn clockwise. Which way does it point now?"
+                options: ["←", "→", "↓"]
+                answer: "←"
+                option_audio: false
+                hints: ["Make three quarter turns clockwise: right, down, then ..."]
+
+          - support: none
+            tasks:
+              - id: l3-n1
+                type: multiple_choice
+                text: "↓ makes a quarter turn anticlockwise.\nWhich way does it point now?"
+                say: "The arrow points down. It makes a quarter turn anticlockwise. Which way does it point now?"
+                options: ["→", "←", "↑"]
+                answer: "→"
+                option_audio: false
+              - id: l3-n2
+                type: multiple_choice
+                text: "How many quarter turns make a half turn?"
+                options: ["2", "3", "4"]
+                answer: "2"
+              - id: l3-n3
+                type: multiple_choice
+                text: "← makes a quarter turn clockwise.\nWhich way does it point now?"
+                say: "The arrow points left. It makes a quarter turn clockwise. Which way does it point now?"
+                options: ["↑", "↓", "→"]
+                answer: "↑"
+                option_audio: false
+              - id: l3-n4
+                type: true_false
+                text: "A half turn clockwise and a half turn anticlockwise end up facing the same way."
+                say: "Is it true? A half turn clockwise and a half turn anticlockwise end up facing the same way."
+                answer: true
+              - id: l3-n5
+                type: multiple_choice
+                text: "Robo faces →. He makes a three-quarter turn anticlockwise.\nWhich way does he face now?"
+                say: "Robo the robot faces right. He makes a three-quarter turn anticlockwise. Which way does he face now?"
+                options: ["↓", "↑", "←"]
+                answer: "↓"
+                option_audio: false
+
+      - activity: check
+        size: skill
+        tasks:
+          - id: l3-c1
+            type: multiple_choice
+            text: "Start on H. Route: ↑ →\nWhere do you end up?"
+            say: "Start on H. Go up one, then right one. Where do you end up?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 2, yellow]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [0, 1, "D"], [1, 1, "E"], [2, 1, "F"], [0, 2, "G"], [1, 2, "H"], [2, 2, "I"]] }
+            options: ["F", "D", "B"]
+            answer: "F"
+          - id: l3-c2
+            type: multiple_choice
+            text: "Which words describe the route from N to H?"
+            say: "N is yellow and H is green. Which words describe the route from N to H?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[1, 3, yellow], [3, 1, green]], labels: [[0, 0, "A"], [1, 0, "B"], [2, 0, "C"], [3, 0, "D"], [0, 1, "E"], [1, 1, "F"], [2, 1, "G"], [3, 1, "H"], [0, 2, "I"], [1, 2, "J"], [2, 2, "K"], [3, 2, "L"], [0, 3, "M"], [1, 3, "N"], [2, 3, "O"], [3, 3, "P"]] }
+            options: ["2 right, 2 up", "2 left, 2 up", "2 right, 2 down"]
+            answer: "2 right, 2 up"
+          - id: l3-c3
+            type: multiple_choice
+            text: "The way there is ↑ → →.\nWhat is the way back?"
+            say: "The way there is up, right, right. How do you go back the same way?"
+            options: ["← ← ↓", "↑ → →", "↓ ← ←"]
+            answer: "← ← ↓"
+            option_audio: false
+          - id: l3-c4
+            type: multiple_choice
+            text: "→ makes a half turn.\nWhich way does it point now?"
+            say: "The arrow points right. It makes a half turn. Which way does it point now?"
+            options: ["←", "↑", "↓"]
+            answer: "←"
+            option_audio: false
+          - id: l3-c5
+            type: true_false
+            text: "← makes a three-quarter turn clockwise. Now it points ↓."
+            say: "The arrow points left. It makes a three-quarter turn clockwise. Is it true? Now it points down."
+            answer: true
