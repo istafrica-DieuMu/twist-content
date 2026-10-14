@@ -582,8 +582,8 @@ let SCRIPT = (() => { try { return localStorage.getItem("twist-script") || "sas"
 function writing(text, mode, joined) {
   if (joined) {
     const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="${Math.max(290, 20 + text.length * 34)}" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
-    const w = Math.max(300, 30 + text.length * 34), fill = mode === "trace" ? 'fill="#efe0fb" stroke="#a58bc4" stroke-width="1.5" stroke-dasharray="5 4"' : 'fill="#2b0f45"';
-    return `<svg viewBox="0 0 ${w} 200" style="max-width:100%"><g>${lines}</g><text x="16" y="130" font-family="'${SCRIPTS[SCRIPT]}', cursive" font-size="${text.length > 6 ? 46 : 64}" ${fill}>${esc(text)}</text></svg>`;
+    const w = Math.max(300, 60 + text.length * 34), fill = mode === "trace" ? 'fill="#efe0fb" stroke="#a58bc4" stroke-width="1.5" stroke-dasharray="5 4"' : 'fill="#2b0f45"';
+    return `<svg viewBox="0 0 ${w} 200" style="max-width:100%"><g>${lines}</g><text x="${w / 2}" y="130" text-anchor="middle" style="font-family:'${SCRIPTS[SCRIPT]}', cursive" font-size="${text.length > 6 ? 40 : 56}" ${fill}>${esc(text)}</text></svg>`;
   }
   const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="290" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
   const glyph = mode === "trace"
@@ -1066,7 +1066,7 @@ const TYPES = {
     nextBtn(foot, UI.check, () => { const got = [...sel].map((i) => keys[i]).sort().join(","); const ok = got === want; if (!ok) els.forEach((c, i) => { if (sel.has(i)) c.classList.add(letters.has(keys[i]) ? "good" : "bad"); }); answer(ok, got, () => els.forEach((c, i) => { c.classList.remove("sel", "bad"); if (letters.has(keys[i])) c.classList.add("good"); })); if (!ok && !st.over) setTimeout(() => { sel.clear(); els.forEach((c) => c.classList.remove("sel", "good", "bad")); }, 1100); });
   },
   tracing({ t, body, foot, vis, answer }) {
-    vis.innerHTML = `<div class="trace">${writing(t.show.text, t.show.mode)}<canvas width="600" height="400"></canvas></div>`;
+    vis.innerHTML = `<div class="trace">${writing(t.show.text, t.show.mode, t.show.script === "joined")}<canvas width="600" height="400"></canvas></div>`;
     const cv = vis.querySelector("canvas"), g = cv.getContext("2d"); let ink = 0, down = false;
     g.lineWidth = 16; g.lineCap = "round"; g.lineJoin = "round"; g.strokeStyle = "#8e3bd1";
     const pos = (e) => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 2, (e.clientY - r.top) * 2]; };
@@ -1282,8 +1282,11 @@ function renderNow() {
 }
 $("#built").textContent = D.built;
 $("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
+// Load the chosen Schreibschrift before drawing with it, then redraw.
+const loadScript = () => document.fonts?.load(`64px "${SCRIPTS[SCRIPT]}"`).then(() => { if (typeof at === "number" && steps?.length) go(at); }).catch(() => {});
+loadScript();
 $("#script").value = SCRIPT;
-$("#script").onchange = (e) => { SCRIPT = e.target.value; try { localStorage.setItem("twist-script", SCRIPT); } catch {} go(at); };
+$("#script").onchange = (e) => { SCRIPT = e.target.value; try { localStorage.setItem("twist-script", SCRIPT); } catch {} go(at); loadScript(); };
 $("#f-year").onchange = (e) => { F.year = e.target.value; saveF(); renderPicker(); };
 $("#f-type").onchange = (e) => { F.type = e.target.value; saveF(); renderPicker(); renderNow(); };
 $("#auto").onchange = (e) => { try { localStorage.setItem("twist-auto", e.target.checked ? "1" : "0"); } catch (x) {} };
