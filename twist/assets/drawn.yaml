@@ -32,7 +32,7 @@ components:
 
   - id: number-line
     what: A number line with ticks, labels and jumps
-    data: "from: 0, to: 20, labels: [all, tens, ends], jumps: 'list of [start, size]', step: 1 / 5 / 10, mark: a value to point at"
+    data: "from: 0, to: 20 (negative numbers allowed), labels: [all, tens, ends], jumps: 'list of [start, size]', step: 1 / 5 / 10, or 0.1 / 0.01 for decimals, mark: a value to point at; decimals print as 0.5 in en-GB and 0,5 in de-DE"
     names: { de: Zahlenstrahl, en: number line }
 
   - id: rechenstrich
@@ -72,7 +72,7 @@ components:
 
   - id: place-value-chart
     what: A place-value chart (Stellentafel), with columns labelled by language (Z E, T O; H Z E, H T O; T H Z E, Th H T O)
-    data: "columns: [tens, ones], [hundreds, tens, ones] up to [millions, hundred-thousands, ten-thousands, thousands, hundreds, tens, ones], values: list with null for a gap"
+    data: "columns: [tens, ones], [hundreds, tens, ones] up to [millions, hundred-thousands, ten-thousands, thousands, hundreds, tens, ones], and after ones the decimal columns tenths, hundredths, thousandths (a decimal point is drawn), values: list with null for a gap"
 
   - id: hundred-square
     what: A 10 x 10 number square with highlights
@@ -151,3 +151,28 @@ components:
     what: A table of rows and columns, with a header row, or as a spreadsheet with column letters and row numbers
     data: "rows: [[cells]], header: false, sheet: true, mark: [[r, c]]; '?' is a gap; as an option it needs a key"
     names: { de: Tabelle, en: table }
+
+  - id: angle
+    what: An angle between two arms, with its arc and size, a right-angle square at 90°, optionally a protractor laid on it
+    data: "degrees: 0 to 360, rotate: turns the whole angle, label: shown text ('?' to ask, false for none, else the degrees), protractor: true (0 to 180 with inner and outer scales)"
+    names: { de: Winkel, en: angle }
+
+  - id: coordinates
+    what: A square grid with numbered x and y axes, in the first quadrant or all four, with points, a shape and a moved copy
+    data: "quadrants: 1 or 4, max: 10 (1st) or 6 (4 quadrants), points: [[x, y, 'A']], shape: [[x, y], ...], moved: [[x, y], ...] (dashed, green), mirror: { axis: x or y, at: 0 }"
+    names: { de: Koordinatensystem, en: coordinate grid }
+
+  - id: line-graph
+    what: A line graph, points joined over labelled positions, with a scale
+    data: "rows: [[label, value]], step, ylabel"
+    names: { de: Liniendiagramm, en: line graph }
+
+  - id: pie-chart
+    what: A pie chart with sectors in proportion and a key; colour words in labels pick their colour
+    data: "parts: [[label, value]]"
+    names: { de: Kreisdiagramm, en: pie chart }
+
+  - id: thermometer
+    what: A thermometer in °C, filled to a temperature, negative temperatures allowed
+    data: "from: -10, to: 30, step: 5, value: -3, mark: a value to point at"
+    names: { de: Thermometer, en: thermometer }

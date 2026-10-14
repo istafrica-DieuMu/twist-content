@@ -518,10 +518,13 @@ function baseTen(tens, ones, hundreds = 0) {
 }
 // Place-value chart; column letters follow the lesson's language.
 function placeValue(columns, values) {
-  const L = { de: { millions: "M", "hundred-thousands": "HT", "ten-thousands": "ZT", thousands: "T", hundreds: "H", tens: "Z", ones: "E" }, en: { millions: "M", "hundred-thousands": "HTh", "ten-thousands": "TTh", thousands: "Th", hundreds: "H", tens: "T", ones: "O" } }[set?.language ?? "de"] ?? { millions: "M", "hundred-thousands": "HTh", "ten-thousands": "TTh", thousands: "Th", hundreds: "H", tens: "T", ones: "O" };
+  const dec = { tenths: "1/10", hundredths: "1/100", thousandths: "1/1000" };
+  const L = { de: { millions: "M", "hundred-thousands": "HT", "ten-thousands": "ZT", thousands: "T", hundreds: "H", tens: "Z", ones: "E", ...dec }, en: { millions: "M", "hundred-thousands": "HTh", "ten-thousands": "TTh", thousands: "Th", hundreds: "H", tens: "T", ones: "O", ...dec } }[set?.language ?? "de"] ?? { millions: "M", "hundred-thousands": "HTh", "ten-thousands": "TTh", thousands: "Th", hundreds: "H", tens: "T", ones: "O", ...dec };
   let g = ""; columns.forEach((c, i) => { const x = i * 80, v = values?.[i];
-    g += `<rect x="${x + 2}" y="2" width="76" height="40" fill="#efe0fb" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="31" text-anchor="middle" font-size="26" font-weight="700" fill="#2b0f45">${L[c]}</text>`;
-    g += `<rect x="${x + 2}" y="42" width="76" height="60" fill="#fff" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="86" text-anchor="middle" font-size="38" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`; });
+    g += `<rect x="${x + 2}" y="2" width="76" height="40" fill="${dec[c] ? "#fde7d4" : "#efe0fb"}" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="31" text-anchor="middle" font-size="${dec[c] ? 20 : 26}" font-weight="700" fill="#2b0f45">${L[c]}</text>`;
+    g += `<rect x="${x + 2}" y="42" width="76" height="60" fill="#fff" stroke="#2b0f45" stroke-width="3"/><text x="${x + 40}" y="86" text-anchor="middle" font-size="38" font-weight="700" fill="${v == null ? "#8e3bd1" : "#2b0f45"}">${v == null ? "?" : v}</text>`;
+    // The decimal point sits on the line between ones and tenths.
+    if (c === "ones" && columns[i + 1] === "tenths") g += `<circle cx="${x + 80}" cy="92" r="6" fill="#2b0f45"/>`; });
   return `<svg viewBox="0 0 ${columns.length * 80 + 4} 106" width="${Math.min(columns.length * 80 + 4, 330)}">${g}</svg>`;
 }
 // The part-whole model (England): whole above, two parts below; null is a gap.
@@ -561,15 +564,17 @@ function numberLine(o, pick) {
   const from = o.from ?? 0, to = o.to ?? 20, sc = (v) => 15 + ((v - from) / (to - from)) * 300, y = 120;
   let s = `<line x1="8" y1="${y}" x2="322" y2="${y}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/>`;
   // step: ticks every 1 (default), 5 or 10, so 0 to 100 stays tappable.
-  const step = o.step ?? 1;
-  for (let v = from; v <= to; v += step) {
+  const step = o.step ?? 1, n = Math.round((to - from) / step);
+  // Count ticks by index so decimal steps (0.1) and negative numbers stay exact.
+  for (let i = 0; i <= n; i++) {
+    const v = Math.round((from + i * step) * 1000) / 1000, k = Math.round(v / step);
     // Long ticks every ten steps, a middle tick at five (on a line in fives, long ticks at the tens).
-    const big = v % (step === 5 ? 10 : 10 * step) === 0, mid = step !== 5 && v % (5 * step) === 0;
+    const big = step === 5 ? Math.round(v) % 10 === 0 : k % 10 === 0, mid = step !== 5 && k % 5 === 0;
     s += `<line x1="${sc(v)}" y1="${y - (big ? 14 : mid ? 10 : 6)}" x2="${sc(v)}" y2="${y + (big ? 14 : mid ? 10 : 6)}" stroke="#2b0f45" stroke-width="${big ? 4 : 2.5}"/>`;
     // Long labels get the curriculum's thousands separator; the end labels stay inside the line.
-    const lab = v >= 10000 ? v.toLocaleString(set?.language === "de" ? "de-DE" : "en-GB").replace(/\./g, " ") : String(v), long = lab.length > 4;
+    const de = set?.language === "de", lab = (Math.abs(v) >= 10000 ? v.toLocaleString(de ? "de-DE" : "en-GB").replace(/\./g, " ") : String(v).replace(".", de ? "," : ".")).replace("-", "−"), long = lab.length > 4;
     const anchor = long && v === to ? "end" : long && v === from ? "start" : "middle", lx = anchor === "end" ? 326 : anchor === "start" ? 4 : sc(v);
-    if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${lx}" y="${y + 40}" text-anchor="${anchor}" font-size="${long ? 17 : 20}" font-weight="700" fill="#2b0f45">${lab}</text>`;
+    if (o.labels === "all" || (o.labels === "tens" && big) || ((o.labels === "ends") && (v === from || v === to))) s += `<text x="${lx}" y="${y + 40}" text-anchor="${anchor}" font-size="${long ? 17 : lab.includes(".") || lab.includes(",") ? (n > 10 ? 11 : 15) : 20}" font-weight="700" fill="#2b0f45">${lab}</text>`;
     if (pick) s += `<rect data-v="${v}" x="${sc(v) - 7}" y="${y - 30}" width="14" height="60" fill="transparent" style="cursor:pointer"/>`;
   }
   s += arcs(o.jumps ?? [], sc, y);
@@ -591,6 +596,75 @@ function writing(text, mode, joined) {
     ? `<text x="150" y="130" text-anchor="middle" font-size="130" fill="#efe0fb" stroke="#a58bc4" stroke-width="2.5" stroke-dasharray="6 5">${esc(text)}</text><circle cx="${/[a-z]/.test(text) ? 132 : 112}" cy="${/[ao]/.test(text) ? 86 : 42}" r="8" fill="#2e9e48"/>`
     : `<text x="${text.length > 1 ? 62 : 50}" y="130" text-anchor="middle" font-size="${text.length > 1 ? 70 : 100}" fill="#2b0f45">${esc(text)}</text>`;
   return `<svg viewBox="0 0 300 200">${lines}${glyph}</svg>`;
+}
+// Angle: two arms from a vertex, an arc with the size, a right-angle square,
+// optionally a protractor laid on it. degrees 0 to 360; label "?" hides the size.
+function angle(o) {
+  const d = o.degrees ?? 60, cx = 165, cy = o.protractor ? 170 : 150, r = 120, rad = (a) => (a * Math.PI) / 180;
+  const base = o.rotate ?? 0, p = (a, rr) => [cx + rr * Math.cos(rad(-(base + a))), cy + rr * Math.sin(rad(-(base + a)))];
+  let s = "";
+  if (o.protractor) {
+    s += `<path d="M${cx - 140} ${cy} A140 140 0 0 1 ${cx + 140} ${cy} Z" fill="#fff8e6" stroke="#b7791f" stroke-width="2.5"/>`;
+    for (let a = 0; a <= 180; a += 5) { const [x1, y1] = [cx + 140 * Math.cos(rad(-a)), cy + 140 * Math.sin(rad(-a))], l = a % 10 ? 7 : 13, [x2, y2] = [cx + (140 - l) * Math.cos(rad(-a)), cy + (140 - l) * Math.sin(rad(-a))];
+      s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#b7791f" stroke-width="${a % 10 ? 1 : 1.6}"/>`;
+      if (a % 30 === 0) { const [tx, ty] = [cx + 116 * Math.cos(rad(-a)), cy + 116 * Math.sin(rad(-a))], [ux, uy] = [cx + 98 * Math.cos(rad(-a)), cy + 98 * Math.sin(rad(-a))];
+        s += `<text x="${tx}" y="${ty + 4}" text-anchor="middle" font-size="11" fill="#8a5a12">${a}</text><text x="${ux}" y="${uy + 4}" text-anchor="middle" font-size="10" fill="#b7791f">${180 - a}</text>`; } }
+    s += `<circle cx="${cx}" cy="${cy}" r="4" fill="#b7791f"/>`;
+  }
+  const [ax, ay] = p(0, r), [bx, by] = p(d, r);
+  if (d === 90 && !o.protractor) { const [q1x, q1y] = p(0, 22), [q2x, q2y] = p(90, 22), [q3x, q3y] = p(45, 31); s += `<path d="M${q1x} ${q1y} L${q3x} ${q3y} L${q2x} ${q2y}" fill="none" stroke="#8e3bd1" stroke-width="3"/>`; }
+  else { const [sx, sy] = p(0, 40), [ex, ey] = p(d, 40); s += `<path d="M${sx} ${sy} A40 40 0 ${d > 180 ? 1 : 0} 0 ${ex} ${ey}" fill="none" stroke="#8e3bd1" stroke-width="3"/>`; }
+  s += `<line x1="${cx}" y1="${cy}" x2="${ax}" y2="${ay}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/><line x1="${cx}" y1="${cy}" x2="${bx}" y2="${by}" stroke="#2b0f45" stroke-width="4" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="5" fill="#2b0f45"/>`;
+  if (o.label !== false) { const [lx, ly] = p(d / 2, 62); s += `<text x="${lx}" y="${ly + 7}" text-anchor="middle" font-size="20" font-weight="700" fill="#8e3bd1">${esc(o.label ?? d + "°")}</text>`; }
+  return `<svg viewBox="0 0 330 ${o.protractor ? 190 : 280}" width="100%" style="max-width:330px">${s}</svg>`;
+}
+// Coordinates: a square grid with numbered axes, first quadrant or all four;
+// points [[x, y, "A"]], a polygon [[x, y], ...] and a moved copy of it.
+function coordinates(o) {
+  const four = o.quadrants === 4, m = o.max ?? (four ? 6 : 10), lo = four ? -m : 0, n = m - lo, W = 300, u = W / n, ox = 20, oy = 10;
+  const X = (x) => ox + (x - lo) * u, Yc = (y) => oy + (m - y) * u;
+  let s = "";
+  for (let i = 0; i <= n; i++) { const v = lo + i;
+    s += `<line x1="${X(v)}" y1="${Yc(m)}" x2="${X(v)}" y2="${Yc(lo)}" stroke="#e3dcf7" stroke-width="1"/><line x1="${X(lo)}" y1="${Yc(v)}" x2="${X(m)}" y2="${Yc(v)}" stroke="#e3dcf7" stroke-width="1"/>`;
+    if (v !== 0 || !four) { s += `<text x="${X(v)}" y="${Yc(four ? 0 : lo) + 15}" text-anchor="middle" font-size="10" fill="#2b0f45">${String(v).replace("-", "−")}</text>`; if (v !== 0) s += `<text x="${X(four ? 0 : lo) - 5}" y="${Yc(v) + 4}" text-anchor="end" font-size="10" fill="#2b0f45">${String(v).replace("-", "−")}</text>`; } }
+  const ax = four ? 0 : lo;
+  s += `<line x1="${X(lo)}" y1="${Yc(ax)}" x2="${X(m) + 6}" y2="${Yc(ax)}" stroke="#2b0f45" stroke-width="2.5"/><line x1="${X(ax)}" y1="${Yc(lo)}" x2="${X(ax)}" y2="${Yc(m) - 6}" stroke="#2b0f45" stroke-width="2.5"/><text x="${X(m) + 8}" y="${Yc(ax) + 4}" font-size="12" font-weight="700" fill="#2b0f45">x</text><text x="${X(ax) + 5}" y="${Yc(m) - 2}" font-size="12" font-weight="700" fill="#2b0f45">y</text>`;
+  const poly = (pts, fill, dash) => pts?.length ? `<polygon points="${pts.map(([x, y]) => `${X(x)},${Yc(y)}`).join(" ")}" fill="${fill}" fill-opacity=".35" stroke="#2b0f45" stroke-width="2.5" ${dash ? 'stroke-dasharray="6 5"' : ""}/>` : "";
+  s += poly(o.shape, "#8e3bd1") + poly(o.moved, "#43A047", true);
+  if (o.mirror) s += o.mirror.axis === "x" ? `<line x1="${X(lo)}" y1="${Yc(o.mirror.at ?? 0)}" x2="${X(m)}" y2="${Yc(o.mirror.at ?? 0)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="8 5"/>` : `<line x1="${X(o.mirror.at ?? 0)}" y1="${Yc(lo)}" x2="${X(o.mirror.at ?? 0)}" y2="${Yc(m)}" stroke="#E53935" stroke-width="2.5" stroke-dasharray="8 5"/>`;
+  for (const [x, y, l] of o.points ?? []) s += `<circle cx="${X(x)}" cy="${Yc(y)}" r="5.5" fill="#E53935" stroke="#2b0f45" stroke-width="1.5"/>${l ? `<text x="${X(x) + 8}" y="${Yc(y) - 7}" font-size="14" font-weight="700" fill="#2b0f45">${esc(l)}</text>` : ""}`;
+  return `<svg viewBox="0 0 335 ${W + 32}" width="100%" style="max-width:335px">${s}</svg>`;
+}
+// Line graph: points joined by lines over labelled x positions, with a scale.
+function lineGraph(o) {
+  const rows = o.rows ?? [], max = Math.max(...rows.map((r) => r[1]), 1), step = o.step ?? (max > 50 ? 10 : max > 20 ? 5 : max > 10 ? 2 : 1), top = Math.ceil(max / step) * step, H = 160, x0 = 40, W = 280;
+  const X = (i) => x0 + 14 + (i * (W - 28)) / Math.max(rows.length - 1, 1), Yv = (v) => 10 + H - (v / top) * H;
+  let s = "";
+  for (let v = 0; v <= top; v += step) s += `<line x1="${x0}" y1="${Yv(v)}" x2="${x0 + W}" y2="${Yv(v)}" stroke="#e3dcf7"/><text x="${x0 - 6}" y="${Yv(v) + 4}" text-anchor="end" font-size="11" fill="#2b0f45">${v}</text>`;
+  s += `<polyline points="${rows.map((r, i) => `${X(i)},${Yv(r[1])}`).join(" ")}" fill="none" stroke="#1E88E5" stroke-width="3"/>`;
+  rows.forEach(([l, v], i) => { s += `<circle cx="${X(i)}" cy="${Yv(v)}" r="4.5" fill="#1E88E5" stroke="#2b0f45" stroke-width="1.5"/><text x="${X(i)}" y="${H + 28}" text-anchor="middle" font-size="11" font-weight="700" fill="#2b0f45">${esc(l)}</text>`; });
+  s += `<line x1="${x0}" y1="${10 + H}" x2="${x0 + W}" y2="${10 + H}" stroke="#2b0f45" stroke-width="2.5"/><line x1="${x0}" y1="10" x2="${x0}" y2="${10 + H}" stroke="#2b0f45" stroke-width="2.5"/>`;
+  if (o.ylabel) s += `<text x="4" y="8" font-size="10" fill="#6d5f7b">${esc(o.ylabel)}</text>`;
+  return `<svg viewBox="0 0 330 ${H + 40}" width="100%" style="max-width:360px">${s}</svg>`;
+}
+// Pie chart: sectors in proportion, each labelled, with a key below.
+function pieChart(o) {
+  const parts = o.parts ?? [], total = parts.reduce((n, p) => n + p[1], 0) || 1, cx = 110, cy = 110, r = 96;
+  let a = -90, s = "", key = "";
+  parts.forEach(([l, v], i) => { const sweep = (v / total) * 360, c = barColour(l, i), a1 = (a * Math.PI) / 180, a2 = ((a + sweep) * Math.PI) / 180;
+    s += sweep >= 359.9 ? `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${c}" stroke="#2b0f45" stroke-width="2.5"/>` : `<path d="M${cx} ${cy} L${cx + r * Math.cos(a1)} ${cy + r * Math.sin(a1)} A${r} ${r} 0 ${sweep > 180 ? 1 : 0} 1 ${cx + r * Math.cos(a2)} ${cy + r * Math.sin(a2)} Z" fill="${c}" stroke="#2b0f45" stroke-width="2.5"/>`;
+    key += `<g transform="translate(232 ${22 + i * 24})"><rect width="16" height="16" rx="3" fill="${c}" stroke="#2b0f45" stroke-width="1.5"/><text x="22" y="13" font-size="13" font-weight="700" fill="#2b0f45">${esc(l)}</text></g>`;
+    a += sweep; });
+  return `<svg viewBox="0 0 330 ${Math.max(225, 30 + parts.length * 24)}" width="100%" style="max-width:340px">${s}${key}</svg>`;
+}
+// Thermometer: a vertical scale (negative numbers allowed) filled to a value.
+function thermometer(o) {
+  const from = o.from ?? -10, to = o.to ?? 30, step = o.step ?? 5, v = o.value ?? 0, top = 16, bot = 250, Yv = (t) => bot - ((t - from) / (to - from)) * (bot - top);
+  let s = `<rect x="150" y="${top - 8}" width="30" height="${bot - top + 16}" rx="15" fill="#fff" stroke="#2b0f45" stroke-width="3"/><circle cx="165" cy="${bot + 24}" r="22" fill="#E53935" stroke="#2b0f45" stroke-width="3"/>`;
+  s += `<rect x="158" y="${Yv(v)}" width="14" height="${bot + 10 - Yv(v)}" fill="#E53935"/>`;
+  for (let t = from; t <= to; t += step) s += `<line x1="180" y1="${Yv(t)}" x2="${t % (2 * step) ? 190 : 196}" y2="${Yv(t)}" stroke="#2b0f45" stroke-width="2"/><text x="202" y="${Yv(t) + 5}" font-size="14" font-weight="${t === 0 ? 800 : 600}" fill="#2b0f45">${String(t).replace("-", "−")}°C</text>`;
+  if (o.mark != null) s += `<path d="M146 ${Yv(o.mark)} l-14 -8 v16 z" fill="#8e3bd1"/>`;
+  return `<svg viewBox="0 0 330 300" width="100%" style="max-width:240px">${s}</svg>`;
 }
 // Anlauttabelle: each field a letter with a picture whose word starts with its sound.
 // Pictures come from data (pictures: {m: mouse}) or the first drawn bank object with that initial.
@@ -743,6 +817,11 @@ function drawn(o, ctx = {}) {
     case "letter-card": return `<div class="cards">${(o.text.includes(" ") ? o.text.split(" ") : [o.text]).map((t) => `<div class="card">${esc(t)}</div>`).join("")}</div>`;
     case "writing-lines": return `<div class="trace">${writing(o.text, o.mode, o.script === "joined")}</div>`;
     case "sound-chart": return soundChart(o);
+    case "angle": return angle(o);
+    case "coordinates": return coordinates(o);
+    case "line-graph": return lineGraph(o);
+    case "pie-chart": return pieChart(o);
+    case "thermometer": return thermometer(o);
     case "syllable-arcs": return `<div class="word">${o.syllables.map((s) => `<span class="syl">${esc(s)}</span>`).join("")}</div>`;
     case "word-card": return `<div class="word"><span class="wordcard">${esc(o.text)}</span></div>`;
     case "colour-swatch": return swatch(o.colour);
