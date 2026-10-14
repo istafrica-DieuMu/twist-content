@@ -90,6 +90,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       const placed = cur.rows.find((r) => r.id === d.skill);
       if (!placed) err(`${file}: ${d.skill} is not placed in ${d.curriculum}`);
       else if (md.year !== placed.stage) err(`${file}: metadata.year is ${md.year} but ${d.curriculum} places the skill in ${placed.stage}`);
+      // Folders follow the curriculum file: lessons/<curriculum>/<year>/<domain>/<file>.
+      const want = `lessons/${d.curriculum}/${placed?.stage}/${d.skill.split(".")[0]}/`;
+      if (placed && !file.startsWith(want)) err(`${file}: belongs in ${want}, where curricula/${d.curriculum}.yaml places ${d.skill}; move the file`);
     }
     for (const k of ["year", "topic", "ages", "lesson_minutes", "builds_on", "forms", "misconceptions", "status", "version"]) if (md[k] === undefined) err(`${file}: metadata has no ${k}`);
     for (const a of md.ages ?? []) if (!["4-5", "6-7", "8-10"].includes(a)) err(`${file}: metadata ages ${a} is not a band (4-5, 6-7 or 8-10)`);

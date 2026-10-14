@@ -30,7 +30,7 @@ Task**. Names for teachers and children in each country are in
 | Year list | years/ | the years of one market | `market` |
 | Framework | frameworks/<country>/ | one official document and its standards | `framework` |
 | Progression | competencies/<domain>/ | one learning progression and its ordered skills | `progression` |
-| Lesson | lessons/<domain>/ | the lessons of one skill | `id` |
+| Lesson | lessons/<curriculum>/<year>/<domain>/ | the lessons of one skill | `id` |
 | Curriculum | curricula/ | one curriculum and its placements | `curriculum` |
 
 The schemas in ../schema/ are the exact shape. build.mjs validates every
@@ -155,8 +155,10 @@ actually work.
 
 A skill is taught over 2 to 6 lessons, each one short sitting. All lessons
 of one skill in one curriculum live in one file,
-`lessons/<curriculum>/<domain>/<slug>.yaml`, written in that curriculum's
-language. The record format is in [../lessons/README.md](../lessons/README.md);
+`lessons/<curriculum>/<year>/<domain>/<slug>.yaml`, written in that
+curriculum's language. The year folder is where curricula/<curriculum>.yaml
+places the skill; the build refuses a file in any other folder, so moving a
+skill to another year means moving its file. The record format is in [../lessons/README.md](../lessons/README.md);
 how lessons are built and the mastery rule are in
 [lesson-anatomy.md](lesson-anatomy.md). Pictures, drawn components
 and sounds come from the asset bank ([../assets/](../assets/)).

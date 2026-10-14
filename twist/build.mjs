@@ -258,6 +258,46 @@ for (const pr of profiles) {
   write("lessons.md", out);
 }
 
+// Course views: each curriculum as it is actually authored, year by year,
+// in placement order; skills without lessons yet are listed so the view
+// grows as lessons are written.
+for (const pr of profiles) {
+  const cur = pr.curriculum, lang = pr.market.market.startsWith("de") ? "de" : "en";
+  const bySkill = new Map(L.sets.filter((x) => x.d.curriculum === cur).map((x) => [x.d.skill, x]));
+  const label = (stage) => [...(pr.market.grades ?? []), ...(pr.market.learning_years ?? [])].find((s) => s.id === stage)?.label?.[lang] ?? stage;
+  const done = pr.rows.filter((r) => bySkill.has(r.id));
+  let out = header(`${pr.title ?? cur} (${cur}): the course as authored`, "Year by year and subject by subject, in placement order: each skill with its lesson set, the lessons in it and the record's path. Skills with no lessons yet are marked, so this view fills in as lessons are written.");
+  const tasks = (x) => x.summary.reduce((n, l) => n + l.tasks, 0);
+  out += `${done.length} of ${pr.rows.length} placed skills have a lesson set: ${done.reduce((n, r) => n + bySkill.get(r.id).summary.length, 0)} lessons, ${done.reduce((n, r) => n + tasks(bySkill.get(r.id)), 0)} tasks.\n\n`;
+  out += `| ${lang === "de" ? "Jahr" : "Year"} | ${Object.values(pr.subjects ?? {}).join(" | ")} |\n|---|${Object.keys(pr.subjects ?? {}).map(() => "---").join("|")}|\n`;
+  for (const stage of pr.market.ids) {
+    const rows = pr.rows.filter((r) => r.stage === stage);
+    if (!rows.length) continue;
+    out += `| ${label(stage)} | ${Object.keys(pr.subjects ?? {}).map((d) => { const inD = rows.filter((r) => r.id.split(".")[0] === d); return inD.length ? `${inD.filter((r) => bySkill.has(r.id)).length} / ${inD.length}` : ""; }).join(" | ")} |\n`;
+  }
+  out += "\n";
+  for (const stage of pr.market.ids) {
+    const rows = pr.rows.filter((r) => r.stage === stage).sort((a, b) => a.order - b.order);
+    if (!rows.length) continue;
+    out += `## ${label(stage)}\n\n`;
+    for (const [domain, name] of Object.entries(pr.subjects ?? {})) {
+      const inDomain = rows.filter((r) => r.id.split(".")[0] === domain);
+      if (!inDomain.length) continue;
+      out += `### ${name}\n`;
+      let topic = null;
+      for (const r of inDomain) {
+        const st = steps.get(r.id), x = bySkill.get(r.id);
+        if (st.topic[lang] !== topic) { topic = st.topic[lang]; out += `\n#### ${md(topic)}\n\n`; }
+        if (!x) { out += `- *${lang === "de" ? "noch keine Lektionen" : "no lessons yet"}*: ${md(st.can_do[lang])} <sub>\`${r.id}\`</sub>\n`; continue; }
+        out += `- **${md(x.d.title[lang] ?? x.d.title.de)}**: ${x.summary.length} ${lang === "de" ? "Lektionen" : "lessons"}, ${tasks(x)} ${lang === "de" ? "Aufgaben" : "tasks"}. <sub>\`twist/${x.file}\`</sub>\n`;
+        out += `  ${x.summary.map((l) => `${l.n}. ${md(l.title[lang] ?? l.title.de)} (${l.tasks})`).join(" · ")}\n`;
+      }
+      out += "\n";
+    }
+  }
+  write(`course-${cur}.md`, out);
+}
+
 // Asset bank: what exists, what lessons use, what is still needed.
 {
   let out = header("Asset bank", "Every bank entry with the lesson sets that use it.");

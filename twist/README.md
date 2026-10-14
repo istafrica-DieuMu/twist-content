@@ -26,7 +26,7 @@ subject for both: [views/placements.md](views/placements.md).
 | [years/](years/) | The years each market uses: Reception, Year 1 to 6, Klasse 1 to 4, Stufe 0, Lernjahr 1 and 2, French years 1 to 4 | records |
 | [frameworks/](frameworks/) | Official documents as coded objectives, verbatim quotes with page references, generated from the captured documents. `de/` for the KMK standards, `gb/` for EYFS and the National Curriculum | generated |
 | [competencies/](competencies/) | The competency library: learning progressions and their skills, one folder per domain (`math`, `lit-de`, `lit-en`, `fl`) | records |
-| [lessons/](lessons/) | Hand-authored lessons, one file per skill and curriculum (`lessons/de-DE/math/...`) | records |
+| [lessons/](lessons/) | Hand-authored lessons, one file per skill and curriculum (`lessons/de-DE/klasse-1/math/...`, by curriculum, year and subject as the curriculum file places them); views/course-de-DE.md shows the course as authored | records |
 | [assets/](assets/) | The asset bank: objects (one picture per concept, in the mascot style, made by assets/tools/pictures.py), components the app draws, sounds, and the voice pilot (assets/tools/narration.py) | records |
 | [curricula/](curricula/) | One curriculum per market (`de-DE`, `en-GB`): which frameworks apply and in which year each skill is placed | records |
 | [views/](views/) | Generated: grade and year views per profile, the competency library by domain, and coverage of each framework | generated |

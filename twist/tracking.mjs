@@ -65,15 +65,18 @@ function skillTopics() {
 function lessonSets(cur) {
   const out = new Map(), dir = join(T, "lessons", cur);
   if (!existsSync(dir)) return out;
-  for (const dom of readdirSync(dir)) for (const f of readdirSync(join(dir, dom)).filter((x) => x.endsWith(".yaml"))) {
+  // lessons/<curriculum>/<year>/<domain>/<skill>.yaml; walk whatever depth is there.
+  const walk = (rel) => readdirSync(join(T, rel), { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(join(rel, e.name)) : e.name.endsWith(".yaml") ? [join(rel, e.name)] : []);
+  for (const rel of walk(join("lessons", cur))) {
+    const f = rel.slice(join("lessons", cur).length + 1);
     let d;
-    try { d = load(join("lessons", cur, dom, f)); } catch { continue; } // the checker reports the YAML error
+    try { d = load(rel); } catch { continue; } // the checker reports the YAML error
     let tasks = 0;
     for (const l of d.lessons ?? []) for (const a of l.activities ?? []) {
       tasks += (a.tasks ?? []).length;
       for (const st of a.stages ?? []) tasks += (st.tasks ?? []).length;
     }
-    out.set(d.skill, { file: `${dom}/${f}`, lessons: (d.lessons ?? []).length, tasks, status: d.metadata?.status ?? "draft" });
+    out.set(d.skill, { file: f, lessons: (d.lessons ?? []).length, tasks, status: d.metadata?.status ?? "draft" });
   }
   return out;
 }

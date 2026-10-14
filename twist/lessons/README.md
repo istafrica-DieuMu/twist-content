@@ -1,10 +1,14 @@
 # lessons
 
 Hand-authored lessons, one file per skill and curriculum:
-`lessons/<curriculum>/<domain>/<slug>.yaml`. How lessons are built is in
+`lessons/<curriculum>/<year>/<domain>/<slug>.yaml`, for example
+`lessons/de-DE/klasse-1/math/count-to-5.yaml`. The year folder follows the
+curriculum file (curricula/de-DE.yaml places count-to-5 in klasse-1), and
+the build refuses a file in any other folder. How lessons are built is in
 [../docs/lesson-anatomy.md](../docs/lesson-anatomy.md); the build checks
 every file against it (lessons-check.mjs) and lists them in
-[../views/lessons.md](../views/lessons.md).
+[../views/lessons.md](../views/lessons.md). [../views/course-de-DE.md](../views/course-de-DE.md)
+shows a curriculum as authored, year by year in placement order.
 
 Model lessons (de-DE, drafts):
 
