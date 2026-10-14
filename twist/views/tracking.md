@@ -10,21 +10,21 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (23383 / 23383) |
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21510 / 21510) |
-| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6284 / 6284) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51177 / 51177)** |
-| en-GB | Maths | 19% (50 / 259) | 13% (18 / 139) | 103 | 100% (5491 / 5491) |
-| en-GB | English | 15% (24 / 163) | 8% (5 / 61) | 48 | 100% (2132 / 2132) |
-| en-GB | French | 8% (5 / 61) | 2% (1 / 41) | 10 | 100% (539 / 539) |
-| **en-GB** | **all** | **16% (79 / 483)** | **10% (24 / 241)** | **161** | **100% (8162 / 8162)** |
+| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6278 / 6278) |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51170 / 51170)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 21% (6354 / 29991) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 18% (3066 / 17317) |
+| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 50% (3235 / 6506) |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **24% (12656 / 53814)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
-| Pictures | openai/gpt-image-2.5-sunburst | 272 files (263 priced) | $5.77 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 59378 clips, 73.6 h | about $91 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 59378 clips | about $47 | estimated the same way |
-| **Total** | | | **about $143** | |
+| Pictures | openai/gpt-image-2.5-sunburst | 347 files (338 priced) | $7.51 | logged per picture by pictures.py |
+| Narration | google/gemini-3.8-flash-tts | 63865 clips, 78.3 h | about $97 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 63865 clips | about $50 | estimated the same way |
+| **Total** | | | **about $155** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -33,9 +33,9 @@ Per voice:
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
 | gemini-puck | 6413 | 6313 (98%) | 0 | 373 min | $13 |
-| gemini-puck-en | 953 | 925 (97%) | 0 | 55 min | $1.92 |
+| gemini-puck-en | 3346 | 3263 (98%) | 3097 | 195 min | $6.80 |
 | gemini-sulafat | 44784 | 43936 (98%) | 0 | 3403 min | $105 |
-| gemini-sulafat-en | 7228 | 7066 (98%) | 0 | 584 min | $18 |
+| gemini-sulafat-en | 9322 | 9062 (97%) | 38061 | 727 min | $23 |
 
 ## de-DE
 
@@ -207,7 +207,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | lernjahr-2 | Englisch | Hobbys und Sport | 1 / 1 done | 2 | $0.19 |
 | lernjahr-2 | Englisch | Zahlen | 1 / 1 done | 2 | $0.23 |
 | lernjahr-2 | Englisch | Uhrzeit | 1 / 1 done | 2 | $0.17 |
-| lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.39 |
+| lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.40 |
 | lernjahr-2 | Englisch | Berufe | 1 / 1 done | 2 | $0.20 |
 | lernjahr-2 | Englisch | Feste | 1 / 1 done | 2 | $0.35 |
 | lernjahr-2 | Englisch | Hören | 1 / 1 done | 2 | $0.39 |
@@ -219,276 +219,276 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-79 of 483 placed skills drafted (16%): 79 lesson sets, 161 lessons, 3442 tasks. Narration so far about $20; 0 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20677 tasks. Narration so far about $29; 41158 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
-| reception | 13 / 14 | 13 / 32 |  | 26 / 46 |
-| year-1 | 11 / 29 | 3 / 32 |  | 14 / 61 |
-| year-2 | 11 / 53 | 2 / 29 |  | 13 / 82 |
-| year-3 | 10 / 50 | 2 / 20 |  | 12 / 70 |
-| year-4 | 2 / 39 | 1 / 16 |  | 3 / 55 |
-| year-5 | 2 / 49 | 2 / 17 |  | 4 / 66 |
-| year-6 | 1 / 25 | 1 / 17 |  | 2 / 42 |
-| ly-1 |  |  | 2 / 14 | 2 / 14 |
-| ly-2 |  |  | 1 / 28 | 1 / 28 |
-| ly-3 |  |  | 1 / 11 | 1 / 11 |
-| ly-4 |  |  | 1 / 8 | 1 / 8 |
+| reception | 14 / 14 | 32 / 32 |  | 46 / 46 |
+| year-1 | 29 / 29 | 32 / 32 |  | 61 / 61 |
+| year-2 | 51 / 51 | 29 / 29 |  | 80 / 80 |
+| year-3 | 52 / 52 | 20 / 20 |  | 72 / 72 |
+| year-4 | 39 / 39 | 16 / 16 |  | 55 / 55 |
+| year-5 | 49 / 49 | 17 / 17 |  | 66 / 66 |
+| year-6 | 25 / 25 | 17 / 17 |  | 42 / 42 |
+| ly-1 |  |  | 14 / 14 | 14 / 14 |
+| ly-2 |  |  | 28 / 28 | 28 / 28 |
+| ly-3 |  |  | 11 / 11 | 11 / 11 |
+| ly-4 |  |  | 8 / 8 | 8 / 8 |
 
 Topics, in placement order. A topic is done when every skill in it has a lesson set.
 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
-| reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.07 |
-| reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.56 |
-| reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.63 |
-| reception | Maths | Division | 0 / 1 |  |  |
-| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.79 |
-| reception | English | Phonics | 7 / 12 started | 14 | $1.26 |
-| reception | English | Reading words | 2 / 3 started | 4 | $0.29 |
-| reception | English | Understanding stories | 0 / 2 |  |  |
-| reception | English | Spelling | 0 / 1 |  |  |
-| reception | English | Stories and poems | 0 / 2 |  |  |
-| reception | English | Handwriting | 0 / 2 |  |  |
-| reception | English | Grammar and punctuation | 0 / 1 |  |  |
-| reception | English | Writing | 0 / 1 |  |  |
-| reception | English | Speaking and listening | 0 / 4 |  |  |
+| reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.06 |
+| reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.55 |
+| reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.62 |
+| reception | Maths | Division | 1 / 1 done | 2 | $0.03 |
+| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.76 |
+| reception | English | Phonics | 12 / 12 done | 24 | $1.33 |
+| reception | English | Reading words | 3 / 3 done | 6 | $0.29 |
+| reception | English | Understanding stories | 2 / 2 done | 4 | $0.08 |
+| reception | English | Spelling | 1 / 1 done | 2 | $0.02 |
+| reception | English | Stories and poems | 2 / 2 done | 4 | $0.09 |
+| reception | English | Handwriting | 2 / 2 done | 4 | $0.05 |
+| reception | English | Grammar and punctuation | 1 / 1 done | 2 | $0.01 |
+| reception | English | Writing | 1 / 1 done | 2 | $0.02 |
+| reception | English | Speaking and listening | 4 / 4 done | 8 | $0.16 |
 | year-1 | Maths | Numbers to 10 | 1 / 1 done | 3 | $0.28 |
-| year-1 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.53 |
+| year-1 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.52 |
 | year-1 | Maths | Word problems | 1 / 1 done | 2 | $0.35 |
-| year-1 | Maths | Numbers to 20 | 1 / 1 done | 2 | $0.23 |
-| year-1 | Maths | Adding and subtracting to 20 | 5 / 5 done | 10 | $1.10 |
-| year-1 | Maths | Counting in tens | 1 / 1 done | 2 | $0.22 |
-| year-1 | Maths | Money | 0 / 1 |  |  |
-| year-1 | Maths | Time | 0 / 1 |  |  |
-| year-1 | Maths | Telling the time | 0 / 1 |  |  |
-| year-1 | Maths | Shapes | 0 / 1 |  |  |
-| year-1 | Maths | Position and direction | 0 / 1 |  |  |
-| year-1 | Maths | Numbers to 100 | 0 / 3 |  |  |
-| year-1 | Maths | Multiplication | 0 / 1 |  |  |
-| year-1 | Maths | Calendar | 0 / 1 |  |  |
-| year-1 | Maths | Length | 0 / 3 |  |  |
-| year-1 | Maths | Capacity | 0 / 1 |  |  |
-| year-1 | Maths | 3D shapes | 0 / 1 |  |  |
-| year-1 | Maths | Mass | 0 / 1 |  |  |
-| year-1 | Maths | Fractions | 0 / 1 |  |  |
-| year-1 | Maths | Turns | 0 / 1 |  |  |
-| year-1 | English | Phonics | 3 / 3 done | 6 | $0.69 |
-| year-1 | English | Reading words | 0 / 5 |  |  |
-| year-1 | English | Spelling | 0 / 5 |  |  |
-| year-1 | English | Stories and poems | 0 / 2 |  |  |
-| year-1 | English | Grammar and punctuation | 0 / 4 |  |  |
-| year-1 | English | Writing | 0 / 4 |  |  |
-| year-1 | English | Understanding stories | 0 / 4 |  |  |
-| year-1 | English | Handwriting | 0 / 2 |  |  |
-| year-1 | English | Speaking and listening | 0 / 2 |  |  |
-| year-1 | English | Words in texts | 0 / 1 |  |  |
-| year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.30 |
-| year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.69 |
-| year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.47 |
-| year-2 | Maths | Word problems | 1 / 2 started | 2 | $0.47 |
-| year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.24 |
-| year-2 | Maths | Money | 0 / 4 |  |  |
-| year-2 | Maths | Shapes | 0 / 2 |  |  |
-| year-2 | Maths | Patterns | 0 / 1 |  |  |
-| year-2 | Maths | Symmetry | 0 / 1 |  |  |
-| year-2 | Maths | Data | 0 / 4 |  |  |
-| year-2 | Maths | Adding and subtracting to 100 | 0 / 10 |  |  |
-| year-2 | Maths | Multiplication | 0 / 2 |  |  |
-| year-2 | Maths | Times tables | 0 / 4 |  |  |
-| year-2 | Maths | Division | 0 / 1 |  |  |
-| year-2 | Maths | Telling the time | 0 / 2 |  |  |
-| year-2 | Maths | Length | 0 / 1 |  |  |
-| year-2 | Maths | Position and direction | 0 / 1 |  |  |
-| year-2 | Maths | Time and duration | 0 / 1 |  |  |
-| year-2 | Maths | Mass | 0 / 1 |  |  |
-| year-2 | Maths | 3D shapes | 0 / 1 |  |  |
-| year-2 | Maths | Capacity | 0 / 1 |  |  |
-| year-2 | Maths | Fractions | 0 / 3 |  |  |
-| year-2 | English | Reading words | 2 / 4 started | 4 | $0.34 |
-| year-2 | English | Stories and poems | 0 / 1 |  |  |
-| year-2 | English | Handwriting | 0 / 2 |  |  |
-| year-2 | English | Information texts | 0 / 1 |  |  |
-| year-2 | English | Grammar and punctuation | 0 / 7 |  |  |
-| year-2 | English | Writing | 0 / 6 |  |  |
-| year-2 | English | Understanding stories | 0 / 2 |  |  |
-| year-2 | English | Spelling | 0 / 5 |  |  |
-| year-2 | English | Speaking and listening | 0 / 1 |  |  |
-| year-2 | Maths | Temperature | 0 / 1 |  |  |
-| year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $2.72 |
-| year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.50 |
-| year-3 | Maths | Times tables | 0 / 2 |  |  |
-| year-3 | Maths | Word problems | 0 / 3 |  |  |
-| year-3 | Maths | Patterns | 0 / 1 |  |  |
-| year-3 | Maths | Length | 0 / 2 |  |  |
-| year-3 | Maths | Shapes | 0 / 1 |  |  |
-| year-3 | Maths | 3D shapes | 0 / 1 |  |  |
-| year-3 | Maths | Area and perimeter | 0 / 2 |  |  |
-| year-3 | Maths | Combinations | 0 / 1 |  |  |
-| year-3 | Maths | Chance | 0 / 1 |  |  |
-| year-3 | Maths | Adding and subtracting to 1000 | 0 / 5 |  |  |
-| year-3 | Maths | Column methods | 0 / 6 |  |  |
-| year-3 | Maths | Multiplying and dividing | 0 / 1 |  |  |
-| year-3 | Maths | Informal multiplication and division | 0 / 1 |  |  |
-| year-3 | Maths | Calculating with money | 0 / 2 |  |  |
-| year-3 | Maths | Telling the time | 0 / 1 |  |  |
-| year-3 | Maths | Time and duration | 0 / 1 |  |  |
-| year-3 | Maths | Geometry | 0 / 2 |  |  |
-| year-3 | Maths | Data | 0 / 1 |  |  |
-| year-3 | Maths | Roman numerals | 0 / 1 |  |  |
-| year-3 | Maths | Decimals | 0 / 1 |  |  |
-| year-3 | Maths | Angles | 0 / 1 |  |  |
-| year-3 | Maths | Fractions | 0 / 2 |  |  |
-| year-3 | English | Reading words | 2 / 2 done | 4 | $0.44 |
-| year-3 | English | Stories and poems | 0 / 2 |  |  |
-| year-3 | English | Handwriting | 0 / 1 |  |  |
-| year-3 | Maths | Calculating with fractions | 0 / 1 |  |  |
-| year-3 | English | Speaking and listening | 0 / 1 |  |  |
-| year-3 | English | Reading between the lines | 0 / 2 |  |  |
-| year-3 | English | Spelling | 0 / 1 |  |  |
-| year-3 | English | Writing | 0 / 5 |  |  |
-| year-3 | English | Grammar and punctuation | 0 / 5 |  |  |
-| year-3 | English | Information texts | 0 / 1 |  |  |
-| year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.06 |
-| year-4 | Maths | Times tables | 0 / 3 |  |  |
-| year-4 | Maths | Division | 0 / 3 |  |  |
-| year-4 | Maths | Symmetry | 0 / 2 |  |  |
-| year-4 | Maths | Adding and subtracting to 1000 | 0 / 1 |  |  |
-| year-4 | Maths | Multiplying and dividing | 0 / 2 |  |  |
-| year-4 | Maths | Informal multiplication and division | 0 / 2 |  |  |
-| year-4 | Maths | Relationships | 0 / 2 |  |  |
-| year-4 | Maths | Mass | 0 / 1 |  |  |
-| year-4 | Maths | Geometry | 0 / 2 |  |  |
-| year-4 | Maths | Position and direction | 0 / 2 |  |  |
-| year-4 | Maths | Area and perimeter | 0 / 1 |  |  |
-| year-4 | Maths | Data | 0 / 2 |  |  |
-| year-4 | Maths | Chance | 0 / 1 |  |  |
-| year-4 | Maths | Numbers to 1 000 000 | 0 / 1 |  |  |
-| year-4 | Maths | Calculating with large numbers | 0 / 1 |  |  |
-| year-4 | Maths | Written multiplication | 0 / 1 |  |  |
-| year-4 | Maths | Length | 0 / 1 |  |  |
-| year-4 | Maths | Coordinates | 0 / 2 |  |  |
-| year-4 | Maths | Decimals | 0 / 4 |  |  |
-| year-4 | Maths | Angles | 0 / 1 |  |  |
-| year-4 | Maths | Negative numbers | 0 / 1 |  |  |
-| year-4 | English | Stories and poems | 1 / 1 done | 2 | $0.33 |
-| year-4 | Maths | Fractions | 0 / 1 |  |  |
-| year-4 | English | Speaking and listening | 0 / 1 |  |  |
-| year-4 | English | Spelling | 0 / 3 |  |  |
-| year-4 | English | Words in texts | 0 / 1 |  |  |
-| year-4 | English | Performing texts | 0 / 1 |  |  |
-| year-4 | English | Reading between the lines | 0 / 1 |  |  |
-| year-4 | English | How texts work | 0 / 1 |  |  |
-| year-4 | English | Writing | 0 / 1 |  |  |
-| year-4 | English | Grammar and punctuation | 0 / 6 |  |  |
-| year-5 | Maths | Numbers to 1 000 000 | 2 / 2 done | 4 | $0.83 |
-| year-5 | Maths | Multiplying and dividing | 0 / 3 |  |  |
-| year-5 | Maths | Calculating with money | 0 / 1 |  |  |
-| year-5 | Maths | Time and duration | 0 / 1 |  |  |
-| year-5 | Maths | 3D shapes | 0 / 2 |  |  |
-| year-5 | Maths | Calculating with large numbers | 0 / 5 |  |  |
-| year-5 | Maths | Written multiplication | 0 / 1 |  |  |
-| year-5 | Maths | Written division | 0 / 3 |  |  |
-| year-5 | Maths | Word problems | 0 / 2 |  |  |
-| year-5 | Maths | Patterns | 0 / 1 |  |  |
-| year-5 | Maths | Length | 0 / 2 |  |  |
-| year-5 | Maths | Mass | 0 / 1 |  |  |
-| year-5 | Maths | Capacity | 0 / 1 |  |  |
-| year-5 | Maths | Fractions | 0 / 2 |  |  |
-| year-5 | Maths | Geometry | 0 / 4 |  |  |
-| year-5 | Maths | Position and direction | 0 / 1 |  |  |
-| year-5 | Maths | Symmetry | 0 / 1 |  |  |
-| year-5 | Maths | Volume | 0 / 1 |  |  |
-| year-5 | Maths | Data | 0 / 2 |  |  |
-| year-5 | Maths | Chance | 0 / 1 |  |  |
-| year-5 | Maths | Percentages | 0 / 2 |  |  |
-| year-5 | Maths | Coordinates | 0 / 1 |  |  |
-| year-5 | Maths | Angles | 0 / 2 |  |  |
-| year-5 | Maths | Area and perimeter | 0 / 1 |  |  |
-| year-5 | Maths | Decimals | 0 / 2 |  |  |
-| year-5 | English | Information texts | 2 / 2 done | 4 | $0.43 |
-| year-5 | English | Handwriting | 0 / 1 |  |  |
-| year-5 | Maths | Negative numbers | 0 / 1 |  |  |
-| year-5 | English | Presenting writing | 0 / 1 |  |  |
-| year-5 | English | Speaking and listening | 0 / 1 |  |  |
-| year-5 | Maths | Calculating with fractions | 0 / 2 |  |  |
-| year-5 | Maths | Roman numerals | 0 / 1 |  |  |
-| year-5 | English | Spelling | 0 / 2 |  |  |
-| year-5 | English | How texts work | 0 / 1 |  |  |
-| year-5 | English | Writing | 0 / 3 |  |  |
-| year-5 | English | Grammar and punctuation | 0 / 6 |  |  |
-| year-6 | Maths | Numbers to 10 000 000 | 1 / 1 done | 2 | $0.44 |
-| year-6 | Maths | Written multiplication | 0 / 1 |  |  |
-| year-6 | Maths | Word problems | 0 / 1 |  |  |
-| year-6 | Maths | Algebra | 0 / 4 |  |  |
-| year-6 | Maths | Percentages | 0 / 1 |  |  |
-| year-6 | Maths | Coordinates | 0 / 1 |  |  |
-| year-6 | Maths | Ratio | 0 / 3 |  |  |
-| year-6 | Maths | Angles | 0 / 1 |  |  |
-| year-6 | Maths | Area and perimeter | 0 / 2 |  |  |
-| year-6 | Maths | Volume | 0 / 1 |  |  |
-| year-6 | Maths | Decimals | 0 / 1 |  |  |
-| year-6 | Maths | Written division | 0 / 1 |  |  |
-| year-6 | Maths | Data | 0 / 2 |  |  |
-| year-6 | English | How texts work | 1 / 2 started | 2 | $0.22 |
-| year-6 | English | Stories and poems | 0 / 1 |  |  |
-| year-6 | English | Grammar and punctuation | 0 / 6 |  |  |
-| year-6 | English | Speaking and listening | 0 / 1 |  |  |
-| year-6 | Maths | Fractions | 0 / 1 |  |  |
-| year-6 | Maths | Geometry | 0 / 2 |  |  |
-| year-6 | Maths | Calculating with fractions | 0 / 2 |  |  |
-| year-6 | English | Spelling | 0 / 2 |  |  |
-| year-6 | English | Writing | 0 / 5 |  |  |
-| ly-1 | French | Listening | 2 / 3 started | 4 | $0.34 |
-| ly-1 | French | Hello | 0 / 1 |  |  |
-| ly-1 | French | Colours | 0 / 1 |  |  |
-| ly-1 | French | Numbers | 0 / 1 |  |  |
-| ly-1 | French | Speaking | 0 / 3 |  |  |
-| ly-1 | French | Body | 0 / 1 |  |  |
-| ly-1 | French | Family | 0 / 1 |  |  |
-| ly-1 | French | School | 0 / 1 |  |  |
-| ly-1 | French | Animals and nature | 0 / 1 |  |  |
-| ly-1 | French | Comparing languages | 0 / 1 |  |  |
-| ly-2 | French | Listening | 1 / 3 started | 2 | $0.33 |
-| ly-2 | French | Language patterns | 0 / 4 |  |  |
-| ly-2 | French | Speaking | 0 / 4 |  |  |
-| ly-2 | French | Reading | 0 / 3 |  |  |
-| ly-2 | French | Writing | 0 / 2 |  |  |
-| ly-2 | French | Numbers | 0 / 1 |  |  |
-| ly-2 | French | Clothes | 0 / 1 |  |  |
-| ly-2 | French | At home | 0 / 1 |  |  |
-| ly-2 | French | In town | 0 / 1 |  |  |
-| ly-2 | French | Feelings | 0 / 1 |  |  |
-| ly-2 | French | Food and drink | 0 / 1 |  |  |
-| ly-2 | French | Calendar | 0 / 1 |  |  |
-| ly-2 | French | Weather | 0 / 1 |  |  |
-| ly-2 | French | Where the language is spoken | 0 / 1 |  |  |
-| ly-2 | French | Learning strategies | 0 / 2 |  |  |
-| ly-2 | French | Mediation | 0 / 1 |  |  |
-| ly-3 | French | Hobbies and sport | 1 / 1 done | 2 | $0.21 |
-| ly-3 | French | Numbers | 0 / 1 |  |  |
-| ly-3 | French | Time | 0 / 1 |  |  |
-| ly-3 | French | Language patterns | 0 / 1 |  |  |
-| ly-3 | French | Jobs | 0 / 1 |  |  |
-| ly-3 | French | Special days | 0 / 1 |  |  |
-| ly-3 | French | Listening | 0 / 1 |  |  |
-| ly-3 | French | Reading | 0 / 2 |  |  |
-| ly-3 | French | Writing | 0 / 1 |  |  |
-| ly-3 | French | Where the language is spoken | 0 / 1 |  |  |
-| ly-4 | French | Language patterns | 1 / 2 started | 2 | $0.26 |
-| ly-4 | French | Writing | 0 / 1 |  |  |
-| ly-4 | French | Speaking | 0 / 2 |  |  |
-| ly-4 | French | Learning strategies | 0 / 2 |  |  |
-| ly-4 | French | Reading | 0 / 1 |  |  |
+| year-1 | Maths | Numbers to 20 | 1 / 1 done | 2 | $0.22 |
+| year-1 | Maths | Adding and subtracting to 20 | 5 / 5 done | 10 | $1.08 |
+| year-1 | Maths | Counting in tens | 1 / 1 done | 2 | $0.21 |
+| year-1 | Maths | Money | 1 / 1 done | 2 | $0.02 |
+| year-1 | Maths | Time | 1 / 1 done | 3 | $0.04 |
+| year-1 | Maths | Telling the time | 1 / 1 done | 2 | $0.02 |
+| year-1 | Maths | Shapes | 1 / 1 done | 2 | $0.01 |
+| year-1 | Maths | Position and direction | 1 / 1 done | 2 | $0.02 |
+| year-1 | Maths | Numbers to 100 | 3 / 3 done | 6 | $0.07 |
+| year-1 | Maths | Multiplication | 1 / 1 done | 2 | $0.03 |
+| year-1 | Maths | Calendar | 1 / 1 done | 2 | $0.04 |
+| year-1 | Maths | Length | 3 / 3 done | 6 | $0.12 |
+| year-1 | Maths | Capacity | 1 / 1 done | 2 | $0.04 |
+| year-1 | Maths | 3D shapes | 1 / 1 done | 2 | $0.03 |
+| year-1 | Maths | Mass | 1 / 1 done | 2 | $0.05 |
+| year-1 | Maths | Fractions | 1 / 1 done | 2 | $0.02 |
+| year-1 | Maths | Turns | 1 / 1 done | 2 | $0.03 |
+| year-1 | English | Phonics | 3 / 3 done | 6 | $0.67 |
+| year-1 | English | Reading words | 5 / 5 done | 11 | $0.10 |
+| year-1 | English | Spelling | 5 / 5 done | 10 | $0.10 |
+| year-1 | English | Stories and poems | 2 / 2 done | 5 | $0.09 |
+| year-1 | English | Grammar and punctuation | 4 / 4 done | 8 | $0.08 |
+| year-1 | English | Writing | 4 / 4 done | 8 | $0.14 |
+| year-1 | English | Understanding stories | 4 / 4 done | 8 | $0.13 |
+| year-1 | English | Handwriting | 2 / 2 done | 5 | $0.06 |
+| year-1 | English | Speaking and listening | 2 / 2 done | 4 | $0.09 |
+| year-1 | English | Words in texts | 1 / 1 done | 2 | $0.05 |
+| year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.23 |
+| year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.68 |
+| year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.46 |
+| year-2 | Maths | Word problems | 2 / 2 done | 4 | $0.52 |
+| year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.23 |
+| year-2 | Maths | Money | 4 / 4 done | 8 | $0.11 |
+| year-2 | Maths | Shapes | 2 / 2 done | 4 | $0.05 |
+| year-2 | Maths | Patterns | 1 / 1 done | 2 | $0.03 |
+| year-2 | Maths | Symmetry | 1 / 1 done | 2 | $0.02 |
+| year-2 | Maths | Data | 4 / 4 done | 8 | $0.12 |
+| year-2 | Maths | Adding and subtracting to 100 | 10 / 10 done | 21 | $0.32 |
+| year-2 | Maths | Multiplication | 2 / 2 done | 4 | $0.06 |
+| year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.03 |
+| year-2 | Maths | Division | 1 / 1 done | 2 | $0.04 |
+| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.00 |
+| year-2 | Maths | Length | 1 / 1 done | 2 | $0.03 |
+| year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.04 |
+| year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.01 |
+| year-2 | Maths | Mass | 1 / 1 done | 2 | $0.04 |
+| year-2 | Maths | 3D shapes | 1 / 1 done | 2 | $0.02 |
+| year-2 | Maths | Capacity | 1 / 1 done | 2 | $0.04 |
+| year-2 | Maths | Fractions | 3 / 3 done | 7 | $0.07 |
+| year-2 | English | Reading words | 4 / 4 done | 8 | $0.35 |
+| year-2 | English | Stories and poems | 1 / 1 done | 2 | $0.02 |
+| year-2 | English | Handwriting | 2 / 2 done | 4 | $0.04 |
+| year-2 | English | Information texts | 1 / 1 done | 2 | $0.03 |
+| year-2 | English | Grammar and punctuation | 7 / 7 done | 15 | $0.12 |
+| year-2 | English | Writing | 6 / 6 done | 12 | $0.10 |
+| year-2 | English | Understanding stories | 2 / 2 done | 4 | $0.08 |
+| year-2 | English | Spelling | 5 / 5 done | 10 | $0.07 |
+| year-2 | English | Speaking and listening | 1 / 1 done | 2 | $0.03 |
+| year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.02 |
+| year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $2.58 |
+| year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.47 |
+| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.02 |
+| year-3 | Maths | Word problems | 3 / 3 done | 6 | $0.01 |
+| year-3 | Maths | Patterns | 1 / 1 done | 2 | $0.01 |
+| year-3 | Maths | Length | 2 / 2 done | 4 | $0.01 |
+| year-3 | Maths | Shapes | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | 3D shapes | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.00 |
+| year-3 | Maths | Combinations | 1 / 1 done | 2 | $0.01 |
+| year-3 | Maths | Chance | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Adding and subtracting to 1000 | 5 / 5 done | 10 | $0.04 |
+| year-3 | Maths | Column methods | 6 / 6 done | 12 | $0.01 |
+| year-3 | Maths | Multiplying and dividing | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Informal multiplication and division | 1 / 1 done | 2 | $0.01 |
+| year-3 | Maths | Calculating with money | 2 / 2 done | 4 | $0.00 |
+| year-3 | Maths | Telling the time | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Time and duration | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Geometry | 2 / 2 done | 4 | $0.00 |
+| year-3 | Maths | Data | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Roman numerals | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Decimals | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Angles | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Fractions | 2 / 2 done | 4 | $0.00 |
+| year-3 | English | Reading words | 2 / 2 done | 4 | $0.43 |
+| year-3 | English | Stories and poems | 2 / 2 done | 4 | $0.00 |
+| year-3 | English | Handwriting | 1 / 1 done | 2 | $0.00 |
+| year-3 | Maths | Calculating with fractions | 1 / 1 done | 2 | $0.00 |
+| year-3 | English | Speaking and listening | 1 / 1 done | 2 | $0.00 |
+| year-3 | English | Reading between the lines | 2 / 2 done | 4 | $0.00 |
+| year-3 | English | Spelling | 1 / 1 done | 3 | $0.00 |
+| year-3 | English | Writing | 5 / 5 done | 10 | $0.01 |
+| year-3 | English | Grammar and punctuation | 5 / 5 done | 10 | $0.01 |
+| year-3 | English | Information texts | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.02 |
+| year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.01 |
+| year-4 | Maths | Division | 3 / 3 done | 6 | $0.00 |
+| year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.00 |
+| year-4 | Maths | Adding and subtracting to 1000 | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Multiplying and dividing | 2 / 2 done | 4 | $0.01 |
+| year-4 | Maths | Informal multiplication and division | 2 / 2 done | 4 | $0.01 |
+| year-4 | Maths | Relationships | 2 / 2 done | 4 | $0.01 |
+| year-4 | Maths | Mass | 1 / 1 done | 2 | $0.01 |
+| year-4 | Maths | Geometry | 2 / 2 done | 5 | $0.00 |
+| year-4 | Maths | Position and direction | 2 / 2 done | 4 | $0.00 |
+| year-4 | Maths | Area and perimeter | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Data | 2 / 2 done | 4 | $0.01 |
+| year-4 | Maths | Chance | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Numbers to 1 000 000 | 1 / 1 done | 2 | $0.02 |
+| year-4 | Maths | Calculating with large numbers | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Written multiplication | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Length | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Coordinates | 2 / 2 done | 4 | $0.00 |
+| year-4 | Maths | Decimals | 4 / 4 done | 8 | $0.01 |
+| year-4 | Maths | Angles | 1 / 1 done | 2 | $0.00 |
+| year-4 | Maths | Negative numbers | 1 / 1 done | 2 | $0.00 |
+| year-4 | English | Stories and poems | 1 / 1 done | 2 | $0.32 |
+| year-4 | Maths | Fractions | 1 / 1 done | 2 | $0.00 |
+| year-4 | English | Speaking and listening | 1 / 1 done | 2 |  |
+| year-4 | English | Spelling | 3 / 3 done | 6 | $0.01 |
+| year-4 | English | Words in texts | 1 / 1 done | 2 | $0.00 |
+| year-4 | English | Performing texts | 1 / 1 done | 2 | $0.00 |
+| year-4 | English | Reading between the lines | 1 / 1 done | 2 | $0.00 |
+| year-4 | English | How texts work | 1 / 1 done | 2 | $0.00 |
+| year-4 | English | Writing | 1 / 1 done | 2 |  |
+| year-4 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.01 |
+| year-5 | Maths | Numbers to 1 000 000 | 2 / 2 done | 4 | $0.81 |
+| year-5 | Maths | Multiplying and dividing | 3 / 3 done | 6 | $0.01 |
+| year-5 | Maths | Calculating with money | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Time and duration | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | 3D shapes | 2 / 2 done | 4 | $0.00 |
+| year-5 | Maths | Calculating with large numbers | 5 / 5 done | 10 | $0.04 |
+| year-5 | Maths | Written multiplication | 1 / 1 done | 2 | $0.01 |
+| year-5 | Maths | Written division | 3 / 3 done | 6 | $0.01 |
+| year-5 | Maths | Word problems | 2 / 2 done | 4 | $0.00 |
+| year-5 | Maths | Patterns | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Length | 2 / 2 done | 4 | $0.01 |
+| year-5 | Maths | Mass | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Capacity | 1 / 1 done | 2 | $0.01 |
+| year-5 | Maths | Fractions | 2 / 2 done | 4 | $0.01 |
+| year-5 | Maths | Geometry | 4 / 4 done | 8 | $0.01 |
+| year-5 | Maths | Position and direction | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Symmetry | 1 / 1 done | 2 | $0.01 |
+| year-5 | Maths | Volume | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Data | 2 / 2 done | 4 | $0.01 |
+| year-5 | Maths | Chance | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Percentages | 2 / 2 done | 4 | $0.00 |
+| year-5 | Maths | Coordinates | 1 / 1 done | 2 |  |
+| year-5 | Maths | Angles | 2 / 2 done | 4 | $0.00 |
+| year-5 | Maths | Area and perimeter | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Decimals | 2 / 2 done | 5 | $0.00 |
+| year-5 | English | Information texts | 2 / 2 done | 4 | $0.42 |
+| year-5 | English | Handwriting | 1 / 1 done | 2 | $0.00 |
+| year-5 | Maths | Negative numbers | 1 / 1 done | 2 | $0.00 |
+| year-5 | English | Presenting writing | 1 / 1 done | 2 |  |
+| year-5 | English | Speaking and listening | 1 / 1 done | 2 |  |
+| year-5 | Maths | Calculating with fractions | 2 / 2 done | 4 | $0.00 |
+| year-5 | Maths | Roman numerals | 1 / 1 done | 2 | $0.01 |
+| year-5 | English | Spelling | 2 / 2 done | 5 | $0.00 |
+| year-5 | English | How texts work | 1 / 1 done | 2 | $0.00 |
+| year-5 | English | Writing | 3 / 3 done | 6 | $0.00 |
+| year-5 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.00 |
+| year-6 | Maths | Numbers to 10 000 000 | 1 / 1 done | 2 | $0.43 |
+| year-6 | Maths | Written multiplication | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Word problems | 1 / 1 done | 2 | $0.01 |
+| year-6 | Maths | Algebra | 4 / 4 done | 8 | $0.01 |
+| year-6 | Maths | Percentages | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Coordinates | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Ratio | 3 / 3 done | 6 | $0.01 |
+| year-6 | Maths | Angles | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.00 |
+| year-6 | Maths | Volume | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Decimals | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Written division | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Data | 2 / 2 done | 4 | $0.00 |
+| year-6 | English | How texts work | 2 / 2 done | 4 | $0.22 |
+| year-6 | English | Stories and poems | 1 / 1 done | 2 |  |
+| year-6 | English | Grammar and punctuation | 6 / 6 done | 12 | $0.01 |
+| year-6 | English | Speaking and listening | 1 / 1 done | 2 |  |
+| year-6 | Maths | Fractions | 1 / 1 done | 2 | $0.00 |
+| year-6 | Maths | Geometry | 2 / 2 done | 4 | $0.00 |
+| year-6 | Maths | Calculating with fractions | 2 / 2 done | 4 | $0.00 |
+| year-6 | English | Spelling | 2 / 2 done | 4 | $0.00 |
+| year-6 | English | Writing | 5 / 5 done | 10 | $0.01 |
+| ly-1 | French | Listening | 3 / 3 done | 6 | $0.60 |
+| ly-1 | French | Hello | 1 / 1 done | 2 | $0.24 |
+| ly-1 | French | Colours | 1 / 1 done | 2 | $0.24 |
+| ly-1 | French | Numbers | 1 / 1 done | 2 | $0.24 |
+| ly-1 | French | Speaking | 3 / 3 done | 6 | $0.66 |
+| ly-1 | French | Body | 1 / 1 done | 2 | $0.18 |
+| ly-1 | French | Family | 1 / 1 done | 2 | $0.22 |
+| ly-1 | French | School | 1 / 1 done | 2 | $0.23 |
+| ly-1 | French | Animals and nature | 1 / 1 done | 2 | $0.22 |
+| ly-1 | French | Comparing languages | 1 / 1 done | 2 | $0.27 |
+| ly-2 | French | Listening | 3 / 3 done | 6 | $0.76 |
+| ly-2 | French | Language patterns | 4 / 4 done | 8 | $0.34 |
+| ly-2 | French | Speaking | 4 / 4 done | 8 | $0.58 |
+| ly-2 | French | Reading | 3 / 3 done | 6 | $0.05 |
+| ly-2 | French | Writing | 2 / 2 done | 4 | $0.25 |
+| ly-2 | French | Numbers | 1 / 1 done | 2 | $0.03 |
+| ly-2 | French | Clothes | 1 / 1 done | 2 | $0.24 |
+| ly-2 | French | At home | 1 / 1 done | 2 | $0.03 |
+| ly-2 | French | In town | 1 / 1 done | 2 | $0.03 |
+| ly-2 | French | Feelings | 1 / 1 done | 2 | $0.24 |
+| ly-2 | French | Food and drink | 1 / 1 done | 2 | $0.24 |
+| ly-2 | French | Calendar | 1 / 1 done | 2 | $0.27 |
+| ly-2 | French | Weather | 1 / 1 done | 2 | $0.03 |
+| ly-2 | French | Where the language is spoken | 1 / 1 done | 2 | $0.04 |
+| ly-2 | French | Learning strategies | 2 / 2 done | 4 | $0.20 |
+| ly-2 | French | Mediation | 1 / 1 done | 2 | $0.04 |
+| ly-3 | French | Hobbies and sport | 1 / 1 done | 2 | $0.20 |
+| ly-3 | French | Numbers | 1 / 1 done | 3 | $0.03 |
+| ly-3 | French | Time | 1 / 1 done | 2 | $0.03 |
+| ly-3 | French | Language patterns | 1 / 1 done | 2 | $0.03 |
+| ly-3 | French | Jobs | 1 / 1 done | 2 | $0.02 |
+| ly-3 | French | Special days | 1 / 1 done | 2 | $0.03 |
+| ly-3 | French | Listening | 1 / 1 done | 2 | $0.05 |
+| ly-3 | French | Reading | 2 / 2 done | 4 | $0.04 |
+| ly-3 | French | Writing | 1 / 1 done | 2 | $0.02 |
+| ly-3 | French | Where the language is spoken | 1 / 1 done | 2 | $0.04 |
+| ly-4 | French | Language patterns | 2 / 2 done | 5 | $0.28 |
+| ly-4 | French | Writing | 1 / 1 done | 2 | $0.02 |
+| ly-4 | French | Speaking | 2 / 2 done | 4 | $0.06 |
+| ly-4 | French | Learning strategies | 2 / 2 done | 4 | $0.06 |
+| ly-4 | French | Reading | 1 / 1 done | 2 | $0.03 |
 
 ## Still to generate
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
 | de-DE | 0 | $0.27 | $0.00 |
-| en-GB | 404 | $0.25 | $100 |
+| en-GB | 0 | $0.26 | $0.00 |
 
-Pictures: 202 of 202 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
+Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
 
 ## Reviews
 
