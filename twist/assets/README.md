@@ -39,8 +39,9 @@ team turns the id into the file.
    shapes, a bold dark aubergine outline, flat cel shading with one darker
    tone per colour, one small white highlight. Low detail, readable at
    64 px, no text inside the picture, transparent background. Animals and
-   people have the mascot's eyes; objects have no face. The mascot itself
-   is only a style reference: lessons use no mascot or character art.
+   people have the mascot's eyes; objects have no face. Lessons name no
+   mascot or character art; the player adds the mascot on its static
+   screens and beside each question.
 
 ## Pictures
 
@@ -51,7 +52,8 @@ to the subject with a 6% margin and reduced to a 64-colour palette: 8 to
 
 [tools/pictures.py](tools/pictures.py) makes them. It sends the shared
 style, the object's hand-written `draw` line and two style references (the
-mascot and the apple sprite from schoolido-learning, read only) to
+mascot's standing drawing, mascot/refs/standing.png, and the bank's own
+apple) to
 `openai/gpt-image-2.5-sunburst` on OpenRouter at low quality, about $0.023
 a picture and $0.015 a colour version. Pillow does the trimming and
 compression. [objects/pictures.yaml](objects/pictures.yaml) records what
@@ -175,3 +177,14 @@ say:  { sound: de.l }                          # a recorded phoneme
 The build checks that every `object`, `drawn` and `sound` a task names
 exists here, and writes a usage view (views/assets.md): which
 lessons use each asset, and which assets are still needed.
+
+## Mascot
+
+The mascot's own drawings are in [mascot/refs/](mascot/refs/): standing,
+with a graduation cap, with a red and a gold cape, with a helmet and on a
+skateboard. `python tools/pictures.py --mascot` draws every pose in
+[mascot.yaml](mascot.yaml) from three of them (standing, cap, red cape):
+21 poses for the static screens (start, warm-up, learn, practise, stage,
+check, end; three each) and 24 topic poses for the lesson start, one per
+topic family (a clock for time, a beret for French). The task-screen
+mascot in pages/player/mascot.png is refs/standing.png.

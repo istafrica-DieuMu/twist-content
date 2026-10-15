@@ -113,7 +113,10 @@ mascot too. Each of these seven screen kinds has three mascot poses
 (assets/mascot.yaml, files in assets/mascot/: start, warmup, learn,
 practise, stage, check, end, each -1 to -3). The app picks one by lesson and
 rotates on, so neighbouring lessons and the two stage changes in one lesson
-show different poses.
+show different poses. The lesson start shows the topic pose instead: one per
+topic family (mascot.yaml `topics`), chosen by the skill's topic, so a time
+lesson starts with the mascot holding a clock and a French lesson with a
+beret. The build warns when a placed skill's topic has no pose.
 
 ### What each activity can be set to
 

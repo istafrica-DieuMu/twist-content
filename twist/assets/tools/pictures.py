@@ -14,8 +14,9 @@ changes colour.
   python pictures.py --dry-run          # list what would be made, no calls
 
 Key: OPENROUTER_API_KEY, or OPENROUTER_AUTHORING_API_KEY in
-../schoolido-learning/.env. Style references: the mascot and the apple
-sprite in schoolido-learning (read only), or STYLE_REFS=path,path.
+../schoolido-learning/.env. Style references: the mascot's standing
+drawing (assets/mascot/refs/standing.png) and the bank's own apple, or
+STYLE_REFS=path,path.
 """
 import argparse, base64, io, json, os, re, shutil, sys, time, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
@@ -76,7 +77,7 @@ def ref_image(path):
 
 def style_refs():
     paths = os.environ.get("STYLE_REFS")
-    paths = paths.split(",") if paths else [SL / "scripts/image-generation/maskot.png", SL / "scripts/image-generation/assets/sprites/apple.png"]
+    paths = paths.split(",") if paths else [ASSETS / "mascot/refs/standing.png", OUT / "apple.png"]
     return [ref_image(p) for p in paths]
 
 
