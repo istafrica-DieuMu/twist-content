@@ -271,6 +271,9 @@ svg text{font-family:Andika,sans-serif}
 .rset .rl{display:flex;gap:4px;flex-wrap:wrap}
 .lbtn{min-width:28px;height:26px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:600 12px system-ui,sans-serif;cursor:pointer}
 .lbtn.on{background:#6849dd;border-color:#6849dd;color:#fff}
+.lbtn.hit{border-color:#13a4e9;box-shadow:0 0 0 2px #13a4e966}
+.rset .rsub{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.rcount b{color:#c26a00;font-weight:600}.rcount .nbtn{padding:3px 8px;margin-left:4px}
 .empty{font-size:13px;color:var(--muted);padding:8px;margin:0}
 .nbtn{font:600 12px system-ui,sans-serif;padding:7px 10px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap}
 .nbtn:disabled{opacity:.4;cursor:default}
@@ -1635,23 +1638,44 @@ const typesOf = (s) => s._types ??= new Set(s.lessons.flatMap((l) => l.activitie
 const titleOf = (x) => x[set?.language] ?? x.de ?? x.en ?? Object.values(x)[0];
 const tOf = (s, x) => x[s.language] ?? Object.values(x)[0];
 let F = { q: "", cur: "", sub: "", year: "", type: "" };
-try { F = { ...F, ...JSON.parse(localStorage.getItem("twist-filter") || "{}") }; } catch (e) {}
+// The list opens with no filters, so every lesson set is listed; old filters are not restored.
 const saveF = () => { try { localStorage.setItem("twist-filter", JSON.stringify(F)); } catch (e) {} };
 function chips(el, items, key) {
   el.innerHTML = "";
   items.forEach(([v, label]) => { const b = document.createElement("button"); b.className = "fchip" + (F[key] === v ? " on" : ""); b.textContent = label; b.setAttribute("aria-pressed", F[key] === v); b.onclick = () => { F[key] = v; if (key === "cur" && F.sub && !F.sub.startsWith(v)) F.sub = ""; saveF(); renderPicker(); }; el.appendChild(b); });
 }
-function matches(s) {
+function passFilters(s) {
   if (F.cur && s.language !== F.cur.slice(0, 2) && !s.id.startsWith(F.cur)) return false;
   if (F.sub && subjOf(s) !== F.sub) return false;
   if (F.year && s.year !== F.year) return false;
   if (F.type && !typesOf(s).has(F.type)) return false;
-  if (F.q) {
-    const hay = [s.id, ...Object.values(s.title), s.summary && typeof s.summary === "object" ? Object.values(s.summary).join(" ") : s.summary ?? "", ...s.lessons.flatMap((l) => Object.values(l.title))].join(" ").toLowerCase();
-    if (!F.q.toLowerCase().split(/\s+/).filter(Boolean).every((w) => hay.includes(w))) return false;
-  }
   return true;
 }
+// How well a set answers the search: lesson titles first, then the set's title,
+// the file and skill, then the summary. 0 when a word is missing everywhere.
+function searchScore(s) {
+  const words = F.q.toLowerCase().split(/\s+/).filter(Boolean); if (!words.length) return 1;
+  // The set's own language counts more than the translation (an en-GB set has German titles too).
+  const own = (x) => String(x[s.language] ?? "").toLowerCase(), other = (x) => Object.entries(x).filter(([k]) => k !== s.language).map(([, v]) => v).join(" ").toLowerCase();
+  const lessons = s.lessons.map((l) => own(l.title)), lessonsO = s.lessons.map((l) => other(l.title));
+  const title = own(s.title), titleO = other(s.title), file = (s.file + " " + s.id).toLowerCase();
+  const summary = (s.summary && typeof s.summary === "object" ? Object.values(s.summary).join(" ") : s.summary ?? "").toLowerCase();
+  let score = 0; s._hit = null;
+  for (const w of words) {
+    const wordStart = (t) => t.split(/[^\p{L}\p{N}]+/u).some((x) => x.startsWith(w));
+    // Best lesson: one whose title starts with the word, then a word in it, then any part.
+    const rank = (t) => !t.includes(w) ? 0 : t.startsWith(w) ? 3 : wordStart(t) ? 2 : 1;
+    let li = -1, lr = 0; lessons.forEach((t, k) => { const r = rank(t); if (r > lr) { lr = r; li = k; } });
+    const lo = li < 0 ? lessonsO.findIndex((t) => t.includes(w)) : -1;
+    const w1 = li >= 0 ? [0, 8, 11, 13][lr] : title.includes(w) ? (title.startsWith(w) ? 10 : wordStart(title) ? 9 : 6) : lo >= 0 ? 3 : titleO.includes(w) ? 3 : file.includes(w) ? 4 : summary.includes(w) ? 1 : 0;
+    if (!w1) return 0;
+    const hitAt = li >= 0 ? li : lo;
+    if (hitAt >= 0 && s._hit == null) s._hit = s.lessons[hitAt].n;
+    score += w1;
+  }
+  return score;
+}
+const matches = (s) => passFilters(s) && searchScore(s) > 0;
 function renderPicker() {
   chips($("#f-cur"), [["", "All"], ["de-DE", "de-DE"], ["en-GB", "en-GB"]], "cur");
   chips($("#f-sub"), [["", "All subjects"], ...Object.entries(SUBJ).filter(([k]) => !F.cur || k.startsWith(F.cur))], "sub");
@@ -1660,21 +1684,33 @@ function renderPicker() {
   const all = [...new Set(D.sets.flatMap((s) => [...typesOf(s)]))].sort();
   $("#f-type").innerHTML = `<option value="">Any task type</option>` + all.map((t) => `<option value="${t}"${F.type === t ? " selected" : ""}>${t}</option>`).join("");
   if ($("#q").value !== F.q) $("#q").value = F.q;
-  const list = D.sets.map((s, i) => [s, i]).filter(([s]) => matches(s));
+  const searching = !!F.q.trim();
+  const list = D.sets.map((s, i) => [s, i, searchScore(s)]).filter(([s, , sc]) => sc > 0 && passFilters(s));
   const order = (y) => { const k = YEARS.indexOf(y); return k < 0 ? 99 : k; };
-  list.sort(([a], [b]) => order(a.year) - order(b.year) || subjOf(a).localeCompare(subjOf(b)) || tOf(a, a.title).localeCompare(tOf(b, b.title)));
-  $("#rcount").textContent = `${list.length} of ${D.sets.length} lesson sets` + (F.type ? ` with ${F.type}` : "");
+  // Searching ranks the best matches first; browsing groups by year and subject.
+  if (searching) list.sort((a, b) => b[2] - a[2] || order(a[0].year) - order(b[0].year));
+  else list.sort(([a], [b]) => order(a.year) - order(b.year) || subjOf(a).localeCompare(subjOf(b)) || tOf(a, a.title).localeCompare(tOf(b, b.title)));
+  let hidden = searching ? D.sets.filter((s) => searchScore(s) > 0 && !passFilters(s)).length : 0;
+  const filtered = F.cur || F.sub || F.year || F.type;
+  // Nothing in the filters but matches elsewhere: show those, never an empty list.
+  let widened = false;
+  if (searching && !list.length && hidden) { D.sets.forEach((s, i) => { const sc = searchScore(s); if (sc > 0) list.push([s, i, sc]); }); list.sort((a, b) => b[2] - a[2] || order(a[0].year) - order(b[0].year)); widened = true; hidden = 0; }
+  $("#rcount").innerHTML = `${list.length} of ${D.sets.length} lesson sets` + (F.type ? ` with ${esc(F.type)}` : "") +
+    (hidden ? ` · <b>${hidden} more match outside your filters</b> <button class="nbtn" id="showAll" type="button">Show all</button>` : "") +
+    (widened ? ` · <b>none in your filters, so every year and subject is searched</b> <button class="nbtn" id="showAll" type="button">Clear filters</button>` : "");
+  if (hidden || widened) $("#showAll").onclick = () => { Object.assign(F, { cur: "", sub: "", year: "", type: "" }); saveF(); renderPicker(); };
   const R = $("#results"); R.innerHTML = ""; let last = null;
   for (const [s, i] of list) {
     const g = `${yearName(s.year)} · ${SUBJ[subjOf(s)] ?? subjOf(s)}`;
-    if (g !== last) { const h = document.createElement("div"); h.className = "rgrp"; h.textContent = g; R.appendChild(h); last = g; }
+    if (!searching && g !== last) { const h = document.createElement("div"); h.className = "rgrp"; h.textContent = g; R.appendChild(h); last = g; }
     const row = document.createElement("div"); row.className = "rset"; row.dataset.i = i;
-    row.innerHTML = `<div class="rt">${esc(tOf(s, s.title))}</div><div class="rl"></div>`;
-    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn"; b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
-    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(s.lessons[0].n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); };
+    const hit = searching && s._hit != null ? s.lessons.find((l) => l.n === s._hit) : null;
+    row.innerHTML = `<div class="rt">${esc(tOf(s, s.title))}${searching ? `<small class="rsub">${esc(g)}${hit ? ` · Lesson ${hit.n}: ${esc(tOf(s, hit.title))}` : ""}</small>` : ""}</div><div class="rl"></div>`;
+    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn" + (hit && hit.n === l.n ? " hit" : ""); b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
+    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(hit?.n ?? s.lessons[0].n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); };
     R.appendChild(row);
   }
-  if (!list.length) R.innerHTML = `<p class="empty">No lesson set matches. Clear a filter or the search.</p>`;
+  if (!list.length) R.innerHTML = `<p class="empty">No lesson set matches${filtered ? " with these filters" : ""}. ${hidden ? "Show all searches every year and subject." : "Clear a filter or the search."}</p>`;
   markCurrent();
 }
 function markCurrent() {
