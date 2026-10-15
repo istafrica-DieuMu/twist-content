@@ -68,6 +68,8 @@ code{font:13px var(--f-mono);background:var(--tint);padding:1px 5px;border-radiu
 .pill.new{background:var(--new-soft);color:var(--new)}
 .play{margin-left:auto;font:600 13px var(--f-body);color:var(--accent);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:3px 10px}
 .play:hover{background:var(--accent-soft)}
+.toplayer{float:right;font:600 13px var(--f-body);color:var(--accent);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:5px 12px}
+.framed .toplayer{display:none}
 .pill.opt{background:var(--hint-soft);color:var(--hint)}
 .count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .spec p{margin:0;max-width:66ch}
@@ -147,6 +149,7 @@ html{scroll-behavior:smooth}
 
 <main>
 <header>
+  <a class="toplayer" href="../player/index.html">Open the lesson player</a>
   <h1>Twist task types</h1>
   <p>Every task type a Twist lesson uses, with the screen for each one, what the child does, how the answer is marked and the fields a lesson record carries. The screens for used types are taken from the lesson player, which plays every de-DE and en-GB lesson; "Open in the lesson player" opens the first lesson with that type, with the list filtered to it. The types to explore are used by no lesson yet; their screens are mocks of the intended behaviour.</p>
   <p>The source of truth for fields and interactions is <code>twist/docs/task-types.md</code>; this page follows it. Task counts are drafted tasks on 14 October 2026: 40,180 in all, 19,503 in de-DE and 20,677 in en-GB.</p>
@@ -157,7 +160,7 @@ html{scroll-behavior:smooth}
   <h2>How a lesson runs</h2>
   <p class="lede">A lesson is Warm-up, Learn, Practise and Check, in that order. Practise has three stages of about five tasks: full support (three hints), some support (one hint) and none. A marker screen sits between stages and before the Check. The Check gives no hints and counts the first try only.</p>
   <div class="flow">
-    <figure><img src="shots/flow-start.png" alt="Lesson start screen" loading="lazy"><figcaption>Start: the topic pose, set, lesson number and title</figcaption></figure>
+    <figure><img src="shots/flow-start.png" alt="Lesson start screen" loading="lazy"><figcaption>Start: the topic pose, subject, lesson title, a dot per lesson and the goal</figcaption></figure>
     <figure><img src="shots/flow-learn.png" alt="Learn screen with a number line" loading="lazy"><figcaption>Learn: a drawn model, a line of text, the voice; not scored</figcaption></figure>
     <figure><img src="shots/flow-stage.png" alt="Stage change marker" loading="lazy"><figcaption>Stage marker: "Jetzt mit weniger Hilfe"</figcaption></figure>
     <figure><img src="shots/flow-check.png" alt="Check intro" loading="lazy"><figcaption>Check intro: how many tasks, no hints, first try counts</figcaption></figure>
@@ -615,6 +618,20 @@ html{scroll-behavior:smooth}
   };
   let raf = 0; addEventListener("scroll", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); }, { passive: true });
   addEventListener("resize", mark); mark();
+})();
+</script>
+<script>
+// Inside the lesson player (one site, two views): "Open in the lesson player"
+// and the player link switch the player's view instead of loading a new page.
+(() => {
+  const framed = window.parent !== window;
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a.play, a.toplayer"); if (!a || !framed) return;
+    e.preventDefault();
+    const ty = new URL(a.href).hash.match(/type=([a-z_]+)/)?.[1];
+    window.parent.postMessage(ty ? { twist: "openType", type: ty } : { twist: "lessons" }, "*");
+  });
+  if (framed) document.documentElement.classList.add("framed");
 })();
 </script>
 </body>

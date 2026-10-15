@@ -34,7 +34,12 @@ html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.4 system-
 .pickbtn b{font:600 14px "Red Hat Text",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .now{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .tb-right{position:relative}
-.topbar > a.tbtn{margin-left:auto;text-decoration:none}
+.views{margin-left:auto;display:flex;background:var(--page);border:1px solid var(--line);border-radius:10px;padding:3px}
+.views button{font:600 13px system-ui,sans-serif;padding:6px 12px;border:0;border-radius:7px;background:none;color:var(--muted);cursor:pointer}
+.views button[aria-selected="true"]{background:#6849dd;color:#fff}
+.typesview{position:fixed;left:0;right:0;bottom:0;top:var(--tb,64px);width:100%;height:calc(100vh - var(--tb,64px));border:0;z-index:15;background:var(--page)}
+.typesview[hidden]{display:none}
+body.types .drawer,body.types .wrap,body.types .pickbtn,body.types .now{display:none!important}
 .tbtn{display:flex;align-items:center;gap:6px;font:600 13px system-ui,sans-serif;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .pop[hidden]{display:none}
 .pop{position:absolute;right:0;top:calc(100% + 8px);width:300px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;z-index:30}
@@ -367,6 +372,21 @@ svg text{font-family:Andika,sans-serif}
   .drawer,.drawer[hidden]{display:flex;top:86px;left:20px;width:440px;height:calc(100vh - 106px);max-height:none;box-shadow:none}
   .wrap{padding-left:480px}
 }
+/* Learn text card */
+.ltext{align-self:stretch;background:#FAF9FF;border:1px solid #dfdfdf;border-radius:16px;padding:16px 18px;font-family:"Red Hat Text",sans-serif;font-weight:500;line-height:1.35;color:#303030;display:flex;flex-direction:column;gap:8px;text-align:left}
+.ltext b{font-weight:700;color:#303030}
+.ltext.arrows{display:grid;grid-template-columns:auto auto auto;justify-content:center;column-gap:14px;row-gap:10px;align-items:baseline;font-family:"Red Hat Display",sans-serif;font-weight:700}
+.ltext .al{text-align:right}.ltext .aa{color:var(--subj,#6849dd)}.ltext .ar{text-align:left;color:var(--subj,#6849dd)}
+/* lesson start: subject chip, lesson dots, the goal */
+.center.start{gap:12px}
+.subj-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,var(--subj) 12%,#fff);color:var(--subj);font:700 14px "Red Hat Display",sans-serif}
+.subj-chip b{width:8px;height:8px;border-radius:50%;background:var(--subj)}
+.ldots{display:flex;gap:8px;justify-content:center}
+.ldots i{width:12px;height:12px;border-radius:50%;background:#e5e5e5}
+.ldots i.done{background:color-mix(in srgb,var(--subj) 45%,#fff)}
+.ldots i.now{background:var(--subj);box-shadow:0 0 0 3px color-mix(in srgb,var(--subj) 25%,transparent)}
+.goal{margin-top:6px;max-width:300px;background:#FAF9FF;border:1px solid #dfdfdf;border-radius:14px;padding:10px 14px;font:500 15px/1.4 "Red Hat Text",sans-serif;color:#525252;text-align:left}
+.goal .gl{display:block;font:700 11px "Red Hat Display",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--subj);margin-bottom:2px}
 /* ordering: square drop slots, as the app's NumberOrdering */
 .slots .gap{border:2px dashed #c9c9c9;border-radius:12px;background:#fafafa;font:700 30px "Red Hat Display",sans-serif;color:#525252}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
@@ -378,7 +398,7 @@ svg text{font-family:Andika,sans-serif}
   <div class="brand"><span class="logo" aria-hidden="true">T</span><div><b>Twist lesson player</b><small>Built <span id="built"></span> · <code>node twist/pages/player/build.mjs</code></small></div></div>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
-  <a class="tbtn" href="../types/index.html" target="_blank" rel="noopener" title="Every task type with its screen and fields">Task types</a>
+  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vLessons" aria-selected="true">Lessons</button><button role="tab" id="vTypes" aria-selected="false">Task types</button></div>
   <div class="tb-right">
     <button class="tbtn" id="openSet" aria-expanded="false" aria-controls="setPop"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/></svg>Settings</button>
     <div class="pop" id="setPop" hidden>
@@ -407,6 +427,7 @@ svg text{font-family:Andika,sans-serif}
   </div>
   <div class="results" id="results"></div>
 </div>
+<iframe class="typesview" id="typesView" hidden title="Task types"></iframe>
 <div class="anat" id="anat" hidden role="dialog" aria-label="Screen anatomy"><div class="anat-in" id="anatBody"></div></div>
 <div class="wrap">
   <div class="phone"><div class="screen" id="screen"></div></div>
@@ -430,12 +451,12 @@ const TXT = {
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, secure: "Kann ich! (Secure)", practised: "Noch üben (Practised)", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
-    speakNote: "Tippe auf das Mikrofon und sprich.", nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
+    speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, secure: "I can do it! (Secure)", practised: "Keep practising (Practised)", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
-    speakNote: "Tap the microphone and speak.", nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
+    speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
@@ -1084,7 +1105,7 @@ function frameUI(step) {
   const scr = $("#screen");
   const acts = lesson.activities.map((a) => a.activity), n = step.a ? acts.indexOf(step.a.activity) + 1 : 0;
   const sub = step.a?.activity === "practise" ? ` · ${{ full: UI.stFull, some: UI.stSome, none: UI.stNone }[step.a.stages[step.si ?? 0]?.support] ?? ""}` : "";
-  const title = step.a ? esc(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : esc(lesson.title[lang()] ?? lesson.title.de);
+  const title = step.a ? esc(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : step.kind === "start" ? esc(set.title[lang()] ?? set.title.de) : esc(lesson.title[lang()] ?? lesson.title.de);
   scr.style.setProperty("--subj", SUBJ_COLOUR[subjOf(set)] ?? "#6849dd");
   scr.innerHTML = `<div class="status"></div><div class="hdr"><button class="ib menu" aria-label="Lesson menu">${ICON.list}</button>
     <div class="stepb">${n ? `<span class="badge-n"><b>${n}</b></span>` : ""}<span class="st">${title}</span></div>
@@ -1144,18 +1165,39 @@ function renderIntro(step) {
   nextBtn(foot);
 }
 function renderStart() {
-  const { body, foot } = frameUI({});
-  const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
+  const { body, foot } = frameUI({ kind: "start" });
   // The lesson starts with the mascot in its topic's pose (a clock for time, a beret for French).
   const pose = set.pose ? `<img class="mascot-pose" src="${A}mascot/${set.pose}.png" alt="">` : mascotPose("start");
-  body.innerHTML = `<div class="center">${pose}<p class="a-set">${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2 class="a-lesson">${esc(lesson.title[lang()] ?? lesson.title.de)}</h2></div>`;
+  // What a child needs here: what today is about, where it sits in the skill (dots,
+  // not "Lesson 2"), and the goal in the skill's own words ("I can ...").
+  const subj = SUBJ[subjOf(set)] ?? "", n = set.lessons.length, k = set.lessons.indexOf(lesson);
+  const dots = n > 1 ? `<div class="ldots" aria-label="${esc(UI.lessonOf(k + 1, n))}">${set.lessons.map((_, i) => `<i class="${i < k ? "done" : i === k ? "now" : ""}"></i>`).join("")}</div>` : "";
+  const goal = set.can_do?.[lang()] ? `<div class="goal"><span class="gl">${esc(UI.goal)}</span>${esc(set.can_do[lang()])}</div>` : "";
+  body.innerHTML = `<div class="center start">${pose}<span class="subj-chip"><b></b>${esc(subj)}</span><h2 class="a-lesson">${esc(lesson.title[lang()] ?? lesson.title.de)}</h2>${dots}${goal}</div>`;
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
+}
+// Learn text: one short line stays big; several lines sit on a card, sized to
+// their length, with "a → b" lines in aligned columns and "Label: value" lines
+// with the label in bold.
+function learnText(text) {
+  const lines = String(text).split("\n").map((x) => x.trim()).filter(Boolean);
+  if (lines.length === 1 && lines[0].length <= 60) { const t = document.createElement("div"); t.className = "word"; t.style.fontSize = lines[0].length > 24 ? "26px" : "40px"; t.innerHTML = withGaps(lines[0]); return t; }
+  const longest = Math.max(...lines.map((l) => l.length)), card = document.createElement("div"); card.className = "ltext";
+  card.style.fontSize = `${longest <= 18 && lines.length <= 4 ? 28 : longest <= 28 ? 24 : longest <= 44 ? 20 : 18}px`;
+  const arrows = lines.filter((l) => l.includes(" → ")).length;
+  if (arrows >= 2 && arrows === lines.length) {
+    card.classList.add("arrows");
+    card.innerHTML = lines.map((l) => { const i = l.indexOf(" → "); return `<span class="al">${withGaps(l.slice(0, i))}</span><span class="aa">→</span><span class="ar">${withGaps(l.slice(i + 3))}</span>`; }).join("");
+  } else {
+    card.innerHTML = lines.map((l) => { const m = /^([^:]{1,24}):\s(.+)$/.exec(l); return `<div class="ll">${m && !/\d$/.test(m[1]) ? `<b>${withGaps(m[1])}:</b> ${withGaps(m[2])}` : withGaps(l)}</div>`; }).join("");
+  }
+  return card;
 }
 function renderLearn(step) {
   const { body, foot } = frameUI(step), s = step.s;
   const vis = document.createElement("div"); vis.className = "visual"; vis.innerHTML = show(s.show); body.appendChild(vis);
   const cardShown = ["letter-card", "word-card", "syllable-arcs"].includes(s.show?.drawn);
-  if (s.text && !set.no_reading && !cardShown) { const t = document.createElement("div"); t.className = s.text.includes("\n") || s.text.length > 60 ? "word passage" : "word"; t.style.fontSize = t.className === "word" ? (s.text.length > 24 ? "26px" : "40px") : ""; t.innerHTML = withGaps(s.text); body.appendChild(t); }
+  if (s.text && !set.no_reading && !cardShown) body.appendChild(learnText(s.text));
   const srcs = [...s._audio, s._sound].filter(Boolean);
   const sp = spk(srcs, "big"); body.appendChild(sp);
   if (s._sound) { const b = document.createElement("button"); b.className = "sound"; b.innerHTML = SPK + esc(lines_sound(s.sound)); b.onclick = () => play(s._sound); body.appendChild(b); }
@@ -1761,7 +1803,7 @@ function renderNow() {
     <dt>Set title</dt><dd>${esc(tOf(set, set.title))} <code>title</code></dd>
     <dt>Lesson title</dt><dd>${esc(tOf(set, lesson.title))} <code>lessons[${set.lessons.indexOf(lesson)}].title</code></dd>
     <dt>Start pose</dt><dd><code>${esc(set.pose ?? "start")}</code></dd></dl>
-    <div class="tyh">Task types in this lesson</div><div class="tys">${lessonTypes().map(([ty, n]) => `<a href="../types/index.html#${esc(ty)}" target="_blank" rel="noopener" title="${esc(ty)} on the task types page">${esc(ty)} <b>${n}</b></a>`).join("")}</div>`;
+    <div class="tyh">Task types in this lesson</div><div class="tys">${lessonTypes().map(([ty, n]) => `<a href="../types/index.html#${esc(ty)}" data-type="${esc(ty)}" title="${esc(ty)} on the task types page">${esc(ty)} <b>${n}</b></a>`).join("")}</div>`;
   const add = (label, fn, dis) => { const b = document.createElement("button"); b.className = "nbtn"; b.textContent = label; b.disabled = !!dis; b.onclick = fn; nb.appendChild(b); };
   const li = set.lessons.indexOf(lesson);
   add("◀ Lesson", () => pickLesson(set.lessons[li - 1].n), li <= 0);
@@ -1790,7 +1832,10 @@ const PARTS = [
   ["*", ".pbar", "Progress bar", "Learn screens and tasks done in this lesson."],
   ["*", ".foot .btn", "Main button", "Continue, Check, Try again; the label follows the screen."],
   ["start", ".mascot-pose", "Topic pose", "assets/mascot.yaml topics, chosen by the skill's topic."],
-  ["start", ".a-set", "Set title and lesson number", "The record's title, then Lesson n."],
+  ["start", ".stepb .st", "Set title", "The record's title: what the lessons of this skill are about."],
+  ["start", ".subj-chip", "Subject", "The subject, in its colour."],
+  ["start", ".ldots", "Lesson dots", "One dot per lesson of the set: done, today, still to come."],
+  ["start", ".goal", "Goal", "The skill's can_do sentence (competencies/), the I can statement."],
   ["start", ".a-lesson", "Lesson title", "lessons[n].title"],
   ["intro", ".mascot-pose", "Activity pose", "assets/mascot.yaml poses (warmup, learn, practise), rotated by lesson."],
   ["intro", ".a-act", "Activity name", "Warm up, Learn, Practise, Show what you know."],
@@ -1895,16 +1940,30 @@ let pos = [0, 1]; try { pos = JSON.parse(localStorage.getItem("twist-pos")) || p
 set = D.sets[pos[0]] ?? D.sets[0]; renderPicker(); pickSet(D.sets.indexOf(set), pos[1]);
 // Opened from the task types page (index.html#type=<type>): filter the list to
 // that type and open the first lesson that uses it, at its first such task.
-function openType() {
-  const ty = new URLSearchParams(location.hash.slice(1)).get("type");
-  if (!ty) return;
+// One site: Lessons and Task types are two views of this page. The types page
+// runs in a frame and asks for a type with postMessage; the lesson panel's
+// type chips open that type's section there.
+function setView(v, anchor) {
+  const types = v === "types", fr = $("#typesView");
+  document.body.classList.toggle("types", types); fr.hidden = !types;
+  $("#vLessons").setAttribute("aria-selected", !types); $("#vTypes").setAttribute("aria-selected", types);
+  document.documentElement.style.setProperty("--tb", $(".topbar").offsetHeight + "px");
+  if (types) { const url = "../types/index.html" + (anchor ? "#" + anchor : ""); if (!fr.src || anchor) fr.src = url; stopAudio(); }
+}
+$("#vLessons").onclick = () => setView("lessons");
+$("#vTypes").onclick = () => setView("types");
+document.addEventListener("click", (e) => { const a = e.target.closest("a[data-type]"); if (a) { e.preventDefault(); setView("types", a.dataset.type); } });
+window.addEventListener("message", (e) => { const m = e.data || {}; if (m.twist === "openType" && m.type) { setView("lessons"); openType(m.type); } if (m.twist === "lessons") setView("lessons"); });
+function openType(want) {
+  const ty = want ?? new URLSearchParams(location.hash.slice(1)).get("type");
+  if (!ty) { if (location.hash === "#types") setView("types"); return; }
   Object.assign(F, { q: "", cur: "", sub: "", year: "", type: ty }); renderPicker();
   const first = $("#results .rset"); if (!first) return;
   set = D.sets[+first.dataset.i];
   const l = set.lessons.find((x) => x.activities.some((a) => [...(a.tasks ?? []), ...(a.stages ?? []).flatMap((s) => s.tasks)].some((t) => t.type === ty)));
   pickLesson(l?.n ?? set.lessons[0].n, ty); renderNow();
 }
-openType(); window.addEventListener("hashchange", openType);
+openType(); window.addEventListener("hashchange", () => openType());
 </script>
 </body>
 </html>
