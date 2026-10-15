@@ -130,7 +130,7 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
   <p class="lede">The new curriculum model from R&amp;D, and what it asks of the backend API (IST-B2C/backend), the mobile app (ist-schoolido) and the parent dashboard (IST-B2C/Parent-dashboard).</p>
   <div class="meta">
     <span>Source <b>rnd repo, branch <code>main</code>, folder <code>twist/</code></b></span>
-    <span>Written <b>13 October 2026</b>, updated <b>14 October 2026</b></span>
+    <span>Written <b>13 October 2026</b>, updated <b>15 October 2026</b></span>
     <span>Content status <b>every placed skill drafted; model-reviewed, not yet teacher-reviewed</b></span>
   </div>
 </header>
@@ -194,7 +194,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td>en-GB</td><td>French</td><td>French years 1 to 4</td><td class="n">41</td><td class="n">61</td><td class="n">124</td><td class="n">2,634</td></tr>
     <tr><td colspan="3"><b>Total</b> (de-DE 435 sets, 909 lessons, 19,503 tasks; en-GB 483 sets, 983 lessons, 20,677 tasks)</td><td class="n"><b>402</b></td><td class="n"><b>918</b></td><td class="n"><b>1,892</b></td><td class="n"><b>40,180</b></td></tr>
   </table></div>
-  <p>One lesson set per placed skill, so every skill both curricula place has its lessons. A skill shared by both curricula has a separate lesson set in each, written for that country. Narration audio is not in git; <code>twist/assets/tools/narration.py</code> regenerates it. All de-DE clips are made (51,170); en-GB was about half done on 14 October (about 29,000 of 53,700 clips), so some en-GB lessons still play partly silent.</p>
+  <p>One lesson set per placed skill, so every skill both curricula place has its lessons. A skill shared by both curricula has a separate lesson set in each, written for that country. All narration is made and in git: 105,335 clips (about 3 GB, in <code>twist/assets/narration/&lt;voice&gt;/</code>), two voices per curriculum, none missing. <code>twist/assets/tools/narration.py</code> makes the clips for new or changed lines.</p>
 </section>
 
 <section id="chain">
@@ -387,20 +387,20 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
 <section id="player">
   <h2>Task player</h2>
   <p>Field names follow the Twist question schemas in schoolido-learning (<code>schemas/question-types</code>), with asset bank ids where those schemas have image and audio URLs. Counts are tasks in the lessons: 40,180 tasks in 918 lesson sets (14 October 2026). "App today" is from the read of ist-schoolido on 13 October.</p>
-  <p>Each type with its screen, behaviour, marking and fields is on <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b">Twist task types</a> (<code>pages/types/index.html</code>).</p>
+  <p>Each type with its screen, behaviour, marking and fields is on the task types page, <code>twist/pages/types/index.html</code> in the repo: the 17 types used in lessons, and 12 to explore that no lesson uses yet. Each used type opens in the lesson player with the list filtered to it (<code>pages/player/index.html#type=clock_hands_drag</code>), and the player's lesson panel links each task type of the open lesson back to that page.</p>
 
   <div class="tbl"><table>
     <tr><th>Type</th><th class="n">Tasks</th><th class="n">de-DE</th><th class="n">en-GB</th><th>Backend enum</th><th>App today</th><th>Needed</th></tr>
-    <tr><td class="k">multiple_choice</td><td class="n">16,314</td><td class="n">7,484</td><td class="n">8,830</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Per-option feedback and audio</td></tr>
+    <tr><td class="k">multiple_choice</td><td class="n">16,308</td><td class="n">7,478</td><td class="n">8,830</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Per-option feedback and audio</td></tr>
     <tr><td class="k">true_false</td><td class="n">6,337</td><td class="n">3,376</td><td class="n">2,961</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Statement on screen, spoken from <code>say</code>; buttons read Ja / Nein, Yes / No</td></tr>
-    <tr><td class="k">fill_in_blank</td><td class="n">4,124</td><td class="n">2,222</td><td class="n">1,902</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Several gaps, list <code>answer</code>; drawn component above the frame</td></tr>
-    <tr><td class="k">text_input</td><td class="n">3,727</td><td class="n">1,505</td><td class="n">2,222</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Four keyboards set by <code>keyboard</code>; see below</td></tr>
+    <tr><td class="k">fill_in_blank</td><td class="n">4,116</td><td class="n">2,214</td><td class="n">1,902</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Several gaps, list <code>answer</code>; drawn component above the frame</td></tr>
+    <tr><td class="k">text_input</td><td class="n">3,751</td><td class="n">1,529</td><td class="n">2,222</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Four keyboards set by <code>keyboard</code>; see below</td></tr>
     <tr><td class="k">audio_choice</td><td class="n">2,711</td><td class="n">1,324</td><td class="n">1,387</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Add a case to <code>mapByType</code>; options can be text, pictures or colour swatches; <code>audio</code> can name a speaker or be a dialogue of turns</td></tr>
     <tr><td class="k">image_multiple_choice</td><td class="n">2,084</td><td class="n">1,033</td><td class="n">1,051</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Options can be counted groups (<code>{object, count, layout}</code>) or drawn components</td></tr>
-    <tr><td class="k">ordering</td><td class="n">1,223</td><td class="n">624</td><td class="n">599</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Picture cards and sentence chunks as well as numbers; extra cards that do not belong; cards stored shuffled and shown as stored</td></tr>
+    <tr><td class="k">ordering</td><td class="n">1,213</td><td class="n">614</td><td class="n">599</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Picture cards and sentence chunks as well as numbers; extra cards that do not belong; cards stored shuffled and shown as stored</td></tr>
     <tr><td class="k">highlight_in_text</td><td class="n">1,022</td><td class="n">467</td><td class="n">555</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-no">missing</span></td><td>New component: letter or word cards (the text split on spaces), tap every match, then Prüfen / Check. Compare cards with <code>spans</code> after stripping trailing punctuation, so the span <code>hoch</code> matches the card <code>hoch.</code></td></tr>
     <tr><td class="k">sorting</td><td class="n">658</td><td class="n">364</td><td class="n">294</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">component, dropped by mapper</span></td><td>Map it; 2 to 5 bins, a bin can show a picture or swatch and speak</td></tr>
-    <tr><td class="k">speak</td><td class="n">651</td><td class="n">326</td><td class="n">325</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it, unmarked, with the fallback: record up to 4 s, play the recording and then the model, the child taps "Klingt gleich" or "Nochmal". No microphone: hear the model, then "Klingt gleich". See <a href="https://claude.ai/artifact/17hMEBaYvqsqJ7za4ssJ7b#speak">task types</a></td></tr>
+    <tr><td class="k">speak</td><td class="n">651</td><td class="n">326</td><td class="n">325</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-warn">mock, dropped by mapper</span></td><td>Map it, unmarked, with the fallback: record up to 4 s, play the recording and then the model, the child taps "Klingt gleich" or "Nochmal". No microphone: hear the model, then "Klingt gleich". See <code>pages/types/index.html#speak</code></td></tr>
     <tr><td class="k">matching</td><td class="n">592</td><td class="n">385</td><td class="n">207</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Sides can be picture, drawn component or text, each with its own spoken line</td></tr>
     <tr><td class="k">tracing</td><td class="n">351</td><td class="n">214</td><td class="n">137</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Writing lines; <code>mode: copy</code> (model on the left, no guide); <code>script: joined</code> draws the model in the school's joined script; numeral 10; never hints</td></tr>
     <tr><td class="k">point_on_line</td><td class="n">218</td><td class="n">114</td><td class="n">104</td><td><span class="chip s-ok">yes</span></td><td><span class="chip s-ok">renders</span></td><td>Labels and jump arcs; <code>step</code> from 1 to 100000 sets the tappable ticks; marker never shows the number</td></tr>
@@ -417,9 +417,9 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td class="k">digits</td><td>0 to 9, delete. The default</td><td>Up to 8 digits, no spaces (70000, never 70 000); compared exactly</td><td class="n">3,449</td></tr>
     <tr><td class="k">decimal</td><td>Digits, a decimal separator (comma in de-DE, point in en-GB) and a minus key</td><td>Up to 3 decimal places, a minus allowed (2.5, −3, 0.25). Compared by value, so 0.50 matches 0.5</td><td class="n">88</td></tr>
     <tr><td class="k">fraction</td><td>Digits, a fraction bar <code>/</code> and a space key</td><td>7/5, a mixed number 1 2/5 (whole, space, fraction) or a whole number; compared exactly</td><td class="n">10</td></tr>
-    <tr><td class="k">letters</td><td>The lesson's language: QWERTZ with ä ö ü ß for German, QWERTY for English, AZERTY with é è à ç for French; a shift key for one capital, space and apostrophe</td><td>Up to 24 characters, compared exactly, capitals included</td><td class="n">180</td></tr>
+    <tr><td class="k">letters</td><td>The lesson's language: QWERTZ with ä ö ü ß for German, QWERTY for English, AZERTY with é è à ç for French; a shift key for one capital, space and apostrophe</td><td>Up to 24 characters, compared exactly, capitals included</td><td class="n">204</td></tr>
   </table></div>
-  <p>All decimal, fraction and letters tasks are in en-GB lessons today (the letters ones in English, French and 9 in Maths); de-DE lessons use only digits, but the checker already accepts a de-DE decimal answer with a comma. The keyboard rules are in <code>docs/task-types.md</code> and enforced by <code>lessons-check.mjs</code>.</p>
+  <p>The decimal and fraction tasks are in en-GB lessons; the letters keyboard is used in en-GB English, French and Maths (180 tasks) and in three de-DE sets (24 tasks: Schreiben nach Gehör, Grundwortschatz, Englisch words from memory). The checker already accepts a de-DE decimal answer with a comma. The keyboard rules are in <code>docs/task-types.md</code> and enforced by <code>lessons-check.mjs</code>.</p>
 
   <h3>Behaviour across all types</h3>
   <div class="tbl"><table>
@@ -527,7 +527,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td class="k">experiment</td><td>Spins a spinner or rolls a dice in the app many times and records the results</td><td>Wahrscheinlichkeit, fair games</td><td class="n">5</td><td><span class="chip s-no">new</span></td></tr>
     <tr><td class="k">column input</td><td>Types digits into the columns of a written calculation</td><td>England written methods</td><td class="n">2</td><td><span class="chip s-no">new</span></td></tr>
   </table></div>
-  <p><code>multi_select</code> and <code>pick_side</code> are in the backend enum but no lesson needed them: "tap every triangle" and "which is heavier" run as multiple choice. Three de-DE lesson sets (Schreiben nach Gehör, Grundwortschatz, Englisch words from memory) still say they wait for a letter keyboard; the keyboard exists now and those sets can take typed spelling. Hands-on work (pencil grip, building with real cubes, folding paper) stays off screen; the lessons ask about it in pictures and an adult watching is the real check.</p>
+  <p><code>multi_select</code> and <code>pick_side</code> are in the backend enum but no lesson needed them: "tap every triangle" and "which is heavier" run as multiple choice. The three de-DE sets that waited for a letter keyboard (Schreiben nach Gehör, Grundwortschatz, Englisch words from memory) now have typed spelling. Hands-on work (pencil grip, building with real cubes, folding paper) stays off screen; the lessons ask about it in pictures and an adult watching is the real check.</p>
 
   <h3>Decisions needed before building</h3>
   <ul class="plain">
@@ -538,7 +538,6 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
 
   <h3>Still open in R&amp;D</h3>
   <ul class="plain">
-    <li>en-GB narration: about half the clips are made; the rest are generated with <code>narration.py</code>.</li>
     <li>People, not models, read the screens: a German Grundschule teacher, a native English and a native French speaker. Model reviews of every set are done.</li>
     <li>Regional and textbook terms for a German teacher to weigh (Mäppchen or Federtasche, the carry phrase, entbündeln, Zehnerfreunde and others), and points from the native passes (listed in <code>views/tracking.md</code>).</li>
   </ul>
@@ -634,7 +633,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   </table></div>
 </section>
 
-<p class="foot">Built from <code>rnd/twist</code> on branch <code>main</code> (commit 2e4fa07c) on 14 October 2026, and a read of the three repos on 13 October 2026. "App today", file and line references for the current code come from that read; check them against your branch before acting.</p>
+<p class="foot">Built from <code>rnd/twist</code> on branch <code>main</code> (commit e7d0b9d0) on 15 October 2026, and a read of the three repos on 13 October 2026. "App today", file and line references for the current code come from that read; check them against your branch before acting.</p>
 </main>
 </div>
 </body>
