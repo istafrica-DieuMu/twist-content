@@ -1072,7 +1072,9 @@ function renderIntro(step) {
 function renderStart() {
   const { body, foot } = frameUI({});
   const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
-  body.innerHTML = `<div class="center">${mascotPose("start")}<p>${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
+  // The lesson starts with the mascot in its topic's pose (a clock for time, a beret for French).
+  const pose = set.pose ? `<img class="mascot-pose" src="${A}mascot/${set.pose}.png" alt="">` : mascotPose("start");
+  body.innerHTML = `<div class="center">${pose}<p>${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 function renderLearn(step) {

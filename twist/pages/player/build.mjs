@@ -103,6 +103,12 @@ function speakModel(t, tl) {
 }
 const word = (oid, lang) => { const l = objectRecs[oid].labels[lang]; return ["de", "fr"].includes(lang) && l.includes(" ") ? l.split(" ").slice(1).join(" ") : l; };
 
+// The start screen's topic pose (assets/mascot.yaml topics): by the skill's
+// topic, or for the language lessons by curriculum. Must match the check in build.mjs.
+const skillTopic = new Map();
+for (const f of walk(join(T, "competencies")).filter((f) => f.endsWith(".yaml"))) for (const k of read(relative(T, f)).skills ?? []) skillTopic.set(k.id, k.topic?.en);
+const topicPoses = read("assets/mascot.yaml").topics ?? [];
+const poseFor = (d) => topicPoses.find((t) => t.domain ? t.domain === d.skill.split(".")[0] && t.curriculum === d.curriculum : (t.topics ?? []).includes(skillTopic.get(d.skill)))?.id ?? null;
 const sets = [];
 for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort()) {
   const d = YAML.parse(readFileSync(p, "utf8"));
@@ -154,7 +160,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
     const DASH = (v) => typeof v === "string" ? v.replace(/ - /g, " \u2013 ") : Array.isArray(v) ? v.map(DASH) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "say" || k === "audio" || k.startsWith("_") ? x : DASH(x)])) : v;
     d.lessons = DASH(d.lessons);
   }
-  sets.push({ file: rel, id: d.id, title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
+  sets.push({ file: rel, id: d.id, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
     no_reading: !!d.metadata?.no_reading, year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons });
 }
 

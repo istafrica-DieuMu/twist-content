@@ -21,10 +21,10 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
-| Pictures | openai/gpt-image-2.5-sunburst | 347 files (338 priced) | $7.51 | logged per picture by pictures.py |
+| Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
 | Narration | google/gemini-3.8-flash-tts | 105134 clips, 144.1 h | about $177 | estimated from clip length, text and tries |
 | Listening check | google/gemini-3.8-flash | 105134 clips | about $84 | estimated the same way |
-| **Total** | | | **about $268** | |
+| **Total** | | | **about $269** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -488,7 +488,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | de-DE | 0 | $0.27 | $0.00 |
 | en-GB | 0 | $0.30 | $0.00 |
 
-Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.22 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
+Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.23 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
 
 ## Reviews
 

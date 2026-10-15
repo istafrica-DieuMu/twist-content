@@ -2,17 +2,18 @@
 # activity's intro, the practise stage change and the lesson end. Three per
 # screen kind; the player and app rotate through them so neighbouring
 # lessons do not show the same one. `draw` is the hand-written pose the
-# picture is made from (tools/pictures.py --mascot), with the app's mascot
-# as reference. Files: assets/mascot/<id>.png.
+# picture is made from (tools/pictures.py --mascot), with the mascot's own
+# drawings in assets/mascot/refs as reference. Files: assets/mascot/<id>.png.
+# The task-screen mascot (pages/player/mascot.png) is refs/standing.png.
 poses:
   - { id: start-1, screen: start, draw: "waving hello with one hand raised high, a small school backpack on its back", status: drawn }
-  - { id: start-2, screen: start, draw: "jumping up happily with both arms in the air", status: drawn }
+  - { id: start-2, screen: start, draw: "riding a green skateboard with arms out for balance, wearing a green bike helmet", status: drawn }
   - { id: start-3, screen: start, draw: "leaning forward with a big welcoming smile, both hands open towards the viewer", status: drawn }
   - { id: warmup-1, screen: warm-up, draw: "stretching both arms up over its head, warming up, eyes half closed with a happy smile", status: drawn }
   - { id: warmup-2, screen: warm-up, draw: "doing a knee lift exercise, one knee up and arms swinging, wearing a red sweatband on its forehead", status: drawn }
   - { id: warmup-3, screen: warm-up, draw: "rolling its shoulders and loosening up, one arm crossed over the chest in a stretch", status: drawn }
   - { id: learn-1, screen: learn, draw: "looking curiously through a big magnifying glass held in one hand", status: drawn }
-  - { id: learn-2, screen: learn, draw: "pointing up at a glowing yellow light bulb floating above its head, with an excited 'I have an idea' face", status: drawn }
+  - { id: learn-2, screen: learn, draw: "pointing up at a glowing yellow light bulb floating above its head, with an excited 'I have an idea' face, no cape and nothing worn", status: drawn }
   - { id: learn-3, screen: learn, draw: "sitting and reading an open picture book held in both hands, the pages blank with no letters", status: drawn }
   - { id: practise-1, screen: practise, draw: "writing with a very big yellow pencil held in both hands, concentrating, tongue slightly out", status: drawn }
   - { id: practise-2, screen: practise, draw: "stacking colourful toy building blocks into a small tower", status: drawn }
@@ -21,8 +22,40 @@ poses:
   - { id: stage-2, screen: stage, draw: "clapping its hands with joy", status: drawn }
   - { id: stage-3, screen: stage, draw: "holding up a shiny gold star in one hand", status: drawn }
   - { id: check-1, screen: check, draw: "holding a clipboard with a big green tick mark, looking proud and ready", status: drawn }
-  - { id: check-2, screen: check, draw: "flexing both arms like a strong hero, confident smile", status: drawn }
+  - { id: check-2, screen: check, draw: "standing like a hero with a red superhero cape blowing behind it, fists on its hips, confident smile", status: drawn }
   - { id: check-3, screen: check, draw: "rolling up its sleeves, determined and cheerful, ready to show what it can do", status: drawn }
-  - { id: end-1, screen: end, draw: "jumping for joy with colourful confetti falling around it", status: drawn }
+  - { id: end-1, screen: end, draw: "flying up with one fist raised high and a golden superhero cape flowing behind it, colourful confetti around it", status: drawn }
   - { id: end-2, screen: end, draw: "holding up a shiny gold trophy cup with both hands", status: drawn }
   - { id: end-3, screen: end, draw: "dancing happily with a gold medal on a red ribbon around its neck", status: drawn }
+
+# Topic poses for the lesson start screen: the lesson's skill topic picks
+# the pose (the competency `topic`, in English), so a time lesson starts with
+# a clock and a French lesson with a beret. `topics` lists the topics a pose
+# stands for; `curriculum` limits it to one curriculum (the language
+# lessons). A topic with no pose here falls back to start-1 to start-3; the
+# build warns about it.
+topics:
+  - { id: topic-numbers, draw: "holding up a long string of colourful counting beads in both hands, counting them happily", topics: ["Numbers to 10", "Numbers to 20", "Numbers to 100", "Numbers to 1000", "Numbers to 10 000", "Numbers to 1 000 000", "Numbers to 10 000 000", "Counting in tens", "Negative numbers", "Roman numerals", "Binary numbers", "Relationships"] }
+  - { id: topic-add, draw: "carrying two small piles of colourful round counters, one pile on each open paw, and putting them together", topics: ["Adding and subtracting to 10", "Adding and subtracting to 20", "Adding and subtracting to 100", "Adding and subtracting to 1000", "Adding and subtracting tens", "Column methods"] }
+  - { id: topic-times, draw: "holding a tray with a neat grid of colourful counters, four rows of three, proudly", topics: ["Times tables", "Multiplication", "Division", "Multiplying and dividing", "Informal multiplication and division", "Written multiplication", "Written division", "Calculating with large numbers"] }
+  - { id: topic-fractions, draw: "holding a round pizza with one slice lifted out, smiling", topics: ["Fractions", "Calculating with fractions", "Decimals", "Percentages", "Ratio"] }
+  - { id: topic-money, draw: "holding up a shiny gold coin in one paw, a pink piggy bank under the other arm", topics: ["Money", "Calculating with money"] }
+  - { id: topic-time, draw: "hugging a big round red alarm clock with two bells on top, the clock face with hands but no numbers", topics: ["Telling the time", "Time and duration", "Time", "Calendar"] }
+  - { id: topic-measure, draw: "stretching a long yellow tape measure between both paws, measuring", topics: ["Length", "Mass", "Capacity", "Volume", "Temperature", "Area and perimeter", "Data sizes"] }
+  - { id: topic-shapes, draw: "holding a red triangle and a blue circle cut out of card, one in each paw", topics: ["Shapes", "Geometry", "3D shapes", "Angles", "Symmetry"] }
+  - { id: topic-position, draw: "holding an open treasure map and pointing the way with the other paw, an explorer hat on its head", topics: ["Position and direction", "Coordinates", "Turns"] }
+  - { id: topic-data, draw: "standing next to a small bar chart with three coloured bars, pointing proudly at the tallest bar", topics: ["Data"] }
+  - { id: topic-chance, draw: "throwing a big white dice with dark dots into the air, excited", topics: ["Chance", "Combinations"] }
+  - { id: topic-patterns, draw: "threading colourful beads on a string in a repeating red, blue, red, blue pattern", topics: ["Patterns", "Algebra"] }
+  - { id: topic-problems, draw: "wearing a brown detective hat and holding a small notebook and pencil, thinking hard with a clever smile", topics: ["Word problems"] }
+  - { id: topic-sounds, draw: "listening with one paw cupped to its big ear, little curved sound waves next to the ear, eyes wide", topics: ["Hearing sounds", "Phonics", "Sounds and letters", "Special sounds", "Short and long vowels", "Reading syllables", "Syllables and hyphenation", "Letters", "The alphabet"] }
+  - { id: topic-reading, draw: "sitting cross-legged and reading a big open book, eyes wide with wonder, the pages blank", topics: ["Reading words", "Flash reading", "Reading aloud", "Reading carefully", "Reading fluently", "Understanding texts", "Understanding stories", "Reading between the lines", "Books", "Words in texts", "Dictionary", "Kinds of text", "How texts work"] }
+  - { id: topic-writing, draw: "writing in an open notebook with a big purple pencil, concentrating with its tongue slightly out", topics: ["Writing", "Writing texts", "Writing first words", "Writing first sentences", "First words", "First sentences", "First texts", "Learning to write", "Planning writing", "Revising writing", "Laying out text", "Presenting writing", "Reporting", "Describing", "Correcting mistakes"] }
+  - { id: topic-handwriting, draw: "tracing a big swirly loop in the air with a feather quill pen, very carefully", topics: ["Handwriting", "Joined handwriting"] }
+  - { id: topic-spelling, draw: "arranging three colourful blank square letter tiles in a row on the ground, one paw on a tile", topics: ["Spelling", "Spelling practice", "Spelling strategies", "Words to learn by heart", "Word stems and families", "Vocabulary", "Capital letters"] }
+  - { id: topic-grammar, draw: "pulling a small toy train of three coloured carriages on a string, each carriage a different colour", topics: ["Grammar and punctuation", "Nouns", "Verbs", "Adjectives", "Pronouns", "Tenses", "The four cases", "Parts of a sentence", "Kinds of sentence", "Joining sentences", "Punctuation", "Direct speech", "Exploring language"] }
+  - { id: topic-stories, draw: "wearing a small gold crown and a red cape, telling a story with one paw raised dramatically", topics: ["Stories and poems", "Fairy tales", "Telling stories", "Writing poems", "Performing", "Performing texts"] }
+  - { id: topic-speaking, draw: "singing happily into a toy microphone, the other paw waving", topics: ["Speaking and listening", "Having conversations", "Speaking to an audience"] }
+  - { id: topic-media, draw: "holding a tablet with a simple picture of a sun on its screen and pointing at it", topics: ["Media", "Information texts", "Signs and charts"] }
+  - { id: topic-english, curriculum: de-DE, domain: fl, draw: "waving a small Union Jack flag and wearing a red cap, cheerful" }
+  - { id: topic-french, curriculum: en-GB, domain: fl, draw: "wearing a navy blue beret and a red and white striped top, holding a baguette under one arm" }

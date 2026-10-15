@@ -43,9 +43,9 @@ One subject only, centred, filling about 80% of a square canvas, on a transparen
 Do not draw the mascot."""
 FACE = "Eyes like the mascot's: large, rounded, solid dark plum with one white catchlight. A small friendly smile."
 NO_FACE = "No face: no eyes, no mouth."
-MASCOT = """Draw exactly the character shown in the reference images, the app's purple mascot: the same soft plush 3D look, the same purple fur, round belly patch, floppy ears, two little horns or tufts, big round eyes, round dark purple nose and wide happy mouth, the same proportions. Only the pose changes.
+MASCOT = """Draw exactly the character shown in the reference images, Twist's purple mascot: a flat 2D vector cartoon with a bold thick dark aubergine (near-black plum) outline, flat cel shading with one darker purple tone, lilac fur with a lighter round belly patch, two big pointed cat-like ears with a darker inner ear, a small fur tuft on top of the head, large round dark plum eyes with one white catchlight, soft pink blush on the cheeks, a small dark plum nose, a wide open happy mouth with a pink tongue and two square buck teeth at the top, short arms and legs with little claw lines on the paws, the same chunky proportions. Keep the character exactly the same; change only the pose and what it holds or wears. It wears a cape, helmet, cap or skateboard only when the pose names one.
 Pose: {draw}.
-Full body, centred, filling about 85% of a square canvas, on a transparent background. Soft light, no ground shadow, no scene, no frame. No text, letters or numbers anywhere."""
+Full body, centred, filling about 85% of a square canvas, on a transparent background. No ground shadow, no scene, no frame. No text, letters or numbers anywhere."""
 RECOLOUR = """Redraw this exact picture: same shape, outline, shading, highlight and position. Change only the colour of {part} to {name} ({hex}), with its darker shade in a darker tone of the same {name}. Everything else stays exactly as it is. Transparent background."""
 
 
@@ -165,18 +165,20 @@ def sheet(dest):
 
 
 def mascot(a):
-    """The mascot poses for the lesson's static screens (assets/mascot.yaml), drawn from the app's mascot."""
+    """The mascot poses for the lesson's static screens and the topic poses (assets/mascot.yaml), drawn from assets/mascot/refs."""
     out = ASSETS / "mascot"
     out.mkdir(exist_ok=True)
-    poses = yaml.safe_load((ASSETS / "mascot.yaml").read_text())["poses"]
+    m = yaml.safe_load((ASSETS / "mascot.yaml").read_text())
+    poses = m["poses"] + m.get("topics", [])
     only = set(a.only.split(",")) if a.only else None
     jobs = [p for p in poses if (only and p["id"] in only) or (not only and not (out / f"{p['id']}.png").exists())]
     print(f"{len(jobs)} mascot poses to make")
     if a.dry_run:
         for p in jobs: print(" ", p["id"], "-", p["draw"])
         return
-    refs_dir = SL / "apps/review/public/app"
-    refs = [ref_image(refs_dir / "mascot.png"), ref_image(refs_dir / "mascot-teach.png")]
+    # The mascot's own drawings (assets/mascot/refs): standing, with a cap, and in motion.
+    refs_dir = out / "refs"
+    refs = [ref_image(refs_dir / f) for f in ("standing.png", "graduate.png", "cape-red.png")]
     k, log = key(), (yaml.safe_load(LOG.read_text()) if LOG.exists() else None) or {}
     total = [0.0]
     def make(p):

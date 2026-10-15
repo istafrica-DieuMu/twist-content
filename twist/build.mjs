@@ -168,6 +168,13 @@ for (const { file, data } of profileFiles) {
     const asked = (s.standards ?? []).some((c) => (data.frameworks ?? []).includes(objectives.get(c)?.framework));
     if (asked) err(`${file}: ${id} serves this curriculum's frameworks but is not placed`);
   }
+  // Every placed skill's topic has a start-screen pose in assets/mascot.yaml.
+  const poses = YAML.parse(readFileSync(join(T, "assets/mascot.yaml"), "utf8")).topics ?? [];
+  for (const id of pos.keys()) {
+    const sk = steps.get(id), dom = id.split(".")[0];
+    if (!poses.some((t) => t.domain ? t.domain === dom && t.curriculum === data.curriculum : (t.topics ?? []).includes(sk.topic?.en)))
+      warn(`${file}: ${id}: topic "${sk.topic?.en}" has no mascot pose in assets/mascot.yaml topics`);
+  }
   profiles.push({ file, ...data, market, pos, rows });
 }
 
