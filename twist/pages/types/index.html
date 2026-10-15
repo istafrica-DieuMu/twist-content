@@ -33,12 +33,13 @@
   color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--f-body)}
-.wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:40px;max-width:1240px;margin:0 auto;padding-inline:24px;padding-block:32px 80px}
+.wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:40px;max-width:1480px;margin:0 auto;padding-inline:24px;padding-block:32px 80px}
 nav.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;max-height:calc(100vh - 40px);overflow:auto;font-size:14px}
 nav.rail b{display:block;font:700 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
 nav.rail a{display:block;color:var(--ink);text-decoration:none;padding:3px 8px;border-radius:6px;font-family:var(--f-mono);font-size:13px}
 nav.rail a.p{font-family:var(--f-body);font-size:14px}
 nav.rail a:hover,nav.rail a:focus-visible{background:var(--accent-soft);outline:none}
+nav.rail a.on{background:var(--accent);color:#fff;font-weight:600}
 main{min-width:0;display:flex;flex-direction:column;gap:28px}
 header h1{font:700 44px/1.1 var(--f-display);margin:0 0 10px;color:var(--plum);text-wrap:balance}
 header p{max-width:68ch;margin:0 0 10px;color:var(--muted)}
@@ -51,6 +52,15 @@ code{font:13px var(--f-mono);background:var(--tint);padding:1px 5px;border-radiu
 .spec figure{margin:0;display:flex;flex-direction:column;gap:6px;align-items:center}
 .spec img{width:210px;max-width:100%;height:auto;display:block;border-radius:24px}
 .spec figcaption{font-size:12px;color:var(--muted);text-align:center;max-width:210px}
+/* Several screens: they take the full width in a row, the text runs below in two columns. */
+.spec:has(.shots figure + figure){grid-template-columns:minmax(0,1fr)}
+.spec:has(.shots figure + figure) .shots{justify-content:flex-start;flex-wrap:wrap;gap:16px}
+.spec:has(.shots figure + figure) figure{flex:0 1 240px}
+.spec:has(.shots figure + figure) img{width:100%;max-width:240px}
+.spec:has(.shots figure + figure) figcaption{max-width:240px}
+.spec:has(.shots figure + figure) .txt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:32px;align-items:start}
+.spec:has(.shots figure + figure) .txt > :not(dl){grid-column:1}
+.spec:has(.shots figure + figure) .txt > dl{grid-column:2;grid-row:1 / span 6}
 .spec .txt{min-width:0;display:flex;flex-direction:column;gap:12px}
 .spec .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
 .spec .head .name{font:600 22px var(--f-mono);color:var(--plum)}
@@ -82,6 +92,8 @@ td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
   nav.rail{position:static;max-height:none;display:flex;flex-wrap:wrap;gap:4px}
   nav.rail b{width:100%}
   .spec{grid-template-columns:1fr}
+  .spec:has(.shots figure + figure) .txt{grid-template-columns:1fr}
+  .spec:has(.shots figure + figure) .txt > dl{grid-column:1;grid-row:auto}
   .spec .shots{overflow-x:auto}
   .spec img{width:170px}
   dl{grid-template-columns:1fr}
@@ -579,5 +591,29 @@ html{scroll-behavior:smooth}
 
 </main>
 </div>
+<script>
+// Scroll tracking: the rail highlights the section in view and keeps it visible.
+(() => {
+  const links = [...document.querySelectorAll("nav.rail a[href^='#']")];
+  const secs = links.map((a) => document.getElementById(a.getAttribute("href").slice(1))).filter(Boolean);
+  const rail = document.querySelector("nav.rail");
+  let cur = null;
+  const mark = () => {
+    // The current section is the last one whose top has passed a line a third down the screen.
+    // The current section is the one that crosses a line a third down the screen
+    // (or, between sections, the nearest one above it).
+    const line = innerHeight / 3; let on = null, best = -Infinity;
+    for (const s of secs) { const r = s.getBoundingClientRect(); if (r.top <= line && r.bottom > line) { on = s; break; } if (r.bottom <= line && r.bottom > best) { best = r.bottom; on = s; } }
+    on ??= secs[0];
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) on = secs.reduce((a, x) => x.getBoundingClientRect().top > a.getBoundingClientRect().top ? x : a);
+    if (on === cur) return; cur = on;
+    links.forEach((a) => { const hit = a.getAttribute("href") === "#" + on.id; a.classList.toggle("on", hit); if (hit) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    const a = links.find((x) => x.classList.contains("on"));
+    if (a && getComputedStyle(rail).position === "sticky") { const r = a.getBoundingClientRect(), rr = rail.getBoundingClientRect(); if (r.top < rr.top + 40 || r.bottom > rr.bottom - 40) rail.scrollTop += r.top - rr.top - rr.height / 2; }
+  };
+  let raf = 0; addEventListener("scroll", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); }, { passive: true });
+  addEventListener("resize", mark); mark();
+})();
+</script>
 </body>
 </html>
