@@ -39,6 +39,14 @@ html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.4 system-
 .pop{position:absolute;right:0;top:calc(100% + 8px);width:300px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;z-index:30}
 .pop .tg{display:flex;gap:8px;align-items:center;font-size:13px}
 .pop .pl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+.scripts{display:flex;flex-direction:column;gap:6px}
+.scr{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:8px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
+.scr:has(input:checked){border-color:#6849dd;background:var(--accent-soft);color:#2b0f45}
+.scr input{grid-row:1 / span 3;margin:0;accent-color:#6849dd}
+.scr .sn{font:600 12px system-ui,sans-serif}
+.scr .ss{font-size:22px;line-height:1.5;color:inherit}
+.scr .sd{font-size:11px;color:var(--muted)}.scr:has(input:checked) .sd{color:#5b4b6b}
+.pop{width:340px;max-height:calc(100vh - 100px);overflow:auto}
 .pop select{width:100%;font:13px system-ui,sans-serif;padding:7px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
 .pop .pn{margin:0;font-size:12px;color:var(--muted)}
 .drawer{position:fixed;z-index:25;top:70px;left:20px;width:min(460px,calc(100vw - 40px));max-height:calc(100vh - 90px);display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 20px 50px -15px rgba(0,0,0,.45)}
@@ -366,9 +374,14 @@ svg text{font-family:Andika,sans-serif}
     <div class="pop" id="setPop" hidden>
       <label class="tg"><input type="checkbox" id="auto" checked> Play audio automatically</label>
       <label class="tg"><input type="checkbox" id="autonext" checked> Next after a right answer (3 s)</label>
-      <label for="script" class="pl">Schreibschrift for de-DE writing lines</label>
-      <select id="script" aria-label="Schreibschrift"><option value="sas">Schulausgangsschrift (SAS)</option><option value="la">Lateinische Ausgangsschrift (LA)</option><option value="va">Vereinfachte Ausgangsschrift (VA)</option><option value="grund">Grundschrift</option></select>
-      <p class="pn">en-GB writing lines use an English joined style.</p>
+      <div class="pl">Schreibschrift for de-DE writing lines</div>
+      <div class="scripts" id="script" role="radiogroup" aria-label="Schreibschrift">
+        <label class="scr"><input type="radio" name="script" value="sas"><span class="sn">Schulausgangsschrift (SAS)</span><span class="ss" style="font-family:'Playwrite DE SAS'">Hallo Mia</span><span class="sd">Rounded, simple shapes; common in eastern Länder. Default.</span></label>
+        <label class="scr"><input type="radio" name="script" value="la"><span class="sn">Lateinische Ausgangsschrift (LA)</span><span class="ss" style="font-family:'Playwrite DE LA'">Hallo Mia</span><span class="sd">The traditional script of 1953, more loops; for example in Bavaria.</span></label>
+        <label class="scr"><input type="radio" name="script" value="va"><span class="sn">Vereinfachte Ausgangsschrift (VA)</span><span class="ss" style="font-family:'Playwrite DE VA'">Hallo Mia</span><span class="sd">Simplified LA of the 1970s; letters start and end at the same height. Western Länder.</span></label>
+        <label class="scr"><input type="radio" name="script" value="grund"><span class="sn">Grundschrift</span><span class="ss" style="font-family:'Playwrite DE Grund'">Hallo Mia</span><span class="sd">Print-like letters with small exit strokes; children find their own joins.</span></label>
+      </div>
+      <p class="pn">en-GB writing lines use an English joined style: <span style="font-family:'Playwrite GB J';font-size:15px">Hello Mia</span>. See twist/docs/handwriting-scripts.md.</p>
       <label class="tg"><input type="checkbox" id="labels"> Label the parts of the screen</label>
       <button class="nbtn" id="openAnat" type="button">Screen anatomy: every screen and its parts</button>
     </div>
@@ -1800,8 +1813,9 @@ $("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
 // Load the chosen Schreibschrift before drawing with it, then redraw.
 const loadScript = () => Promise.all([document.fonts?.load(`64px "${SCRIPTS[SCRIPT]}"`), document.fonts?.load(`64px "Playwrite GB J"`)]).then(() => { if (typeof at === "number" && steps?.length) go(at); }).catch(() => {});
 loadScript();
-$("#script").value = SCRIPT;
-$("#script").onchange = (e) => { SCRIPT = e.target.value; try { localStorage.setItem("twist-script", SCRIPT); } catch {} go(at); loadScript(); };
+// The script picker shows each Ausgangsschrift writing the same words.
+document.querySelectorAll("input[name=script]").forEach((r) => { r.checked = r.value === SCRIPT; r.onchange = () => { SCRIPT = r.value; try { localStorage.setItem("twist-script", SCRIPT); } catch {} go(at); loadScript(); }; });
+Object.values(SCRIPTS).forEach((f) => document.fonts?.load(`20px "${f}"`));
 $("#f-year").onchange = (e) => { F.year = e.target.value; saveF(); renderPicker(); };
 $("#f-type").onchange = (e) => { F.type = e.target.value; saveF(); renderPicker(); renderNow(); };
 $("#auto").onchange = (e) => { try { localStorage.setItem("twist-auto", e.target.checked ? "1" : "0"); } catch (x) {} };

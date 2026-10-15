@@ -35,6 +35,7 @@ twist/lessons/de-DE/lernjahr-1/fl/en-weather.yaml
 | How a lesson is built, mastery, authoring checks | twist/docs/lesson-anatomy.md |
 | Records and ids | twist/docs/model.md |
 | Task types | twist/docs/task-types.md |
+| Joined handwriting scripts (app and backend) | twist/docs/handwriting-scripts.md |
 | Skills ("Ich kann") | twist/competencies/ |
 | Pictures, drawn components, sounds | twist/assets/ |
 | Progress, cost, reviews, open points | twist/views/tracking.md |
