@@ -95,7 +95,8 @@ written as `-long`, held sounds capped at 1.5 s). `google/gemini-3.8-flash`
 then listens to every clip and checks it against its text; a clip that
 fails is remade once, and the results are in narration/<voice>.yaml.
 `--page` writes narration/pilot.html, where any lesson can be played in
-any voice. The audio and the page are not in git; the tool remakes them.
+any voice. The audio is in git (narration/<voice>/, about 3 GB); the
+pilot page is not, and the tool remakes it.
 
 German lines in English lessons often hold English words ("Listen heißt:
 Hör zu"). They get `mixed_note` in voices.yaml added to the brief: English

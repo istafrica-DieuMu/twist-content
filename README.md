@@ -80,10 +80,10 @@ is needed.
    arrow keys step through it. The pictures and the mascot come from
    `twist/assets/` in the same clone.
 
-4. **Audio.** The narration clips (about 3 GB, in
-   `twist/assets/narration/<voice>/`) are not in git; without them the
-   player runs silently. Either copy the `narration` folder from someone who
-   has it into `twist/assets/narration/`, or make the clips:
+4. **Audio.** The narration clips are in git (about 3 GB, in
+   `twist/assets/narration/<voice>/`), so a clone plays with sound; the
+   first clone takes a while. After a content change, make the clips for
+   the new lines, then commit them:
 
    ```
    python3 -m venv twist/.venv
@@ -94,6 +94,5 @@ is needed.
 
    The tool makes only the clips that are missing, so after a content
    change it records just the new lines. Rebuild the player afterwards
-   (step 2). Making every clip from nothing takes several hours and about
-   $180 on OpenRouter (see twist/views/tracking.md); copying the folder is
-   the quick way.
+   (step 2). Making every clip from nothing would take several hours and
+   about $180 on OpenRouter (see twist/views/tracking.md).

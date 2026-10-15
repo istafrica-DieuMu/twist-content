@@ -21,8 +21,9 @@ git repo kept separate from schoolido-learning.
       `node twist/pages/site/build.mjs`; never edit index.html by hand.
     - player/: the lessons in a phone frame, with pictures, drawn
       components and narration. `node twist/pages/player/build.mjs`; it
-      plays audio from twist/assets/narration/, which is not in git (remake
-      it with twist/assets/tools/narration.py).
+      plays audio from twist/assets/narration/<voice>/, which is in git
+      (about 3 GB); after a content change, narrate the new lines with
+      twist/assets/tools/narration.py and commit the new clips.
     - types/: every task type with a screen; `node twist/pages/types/shots.cjs`
       (needs Playwright) retakes the shots. Keep it in step with
       twist/docs/task-types.md. A copy is published as a claude.ai artifact.
