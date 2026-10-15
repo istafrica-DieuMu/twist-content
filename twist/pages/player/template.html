@@ -140,8 +140,9 @@ pre.rec{font:11px/1.35 ui-monospace,Menlo,monospace;background:var(--page);borde
 .entry{font:700 48px Andika,sans-serif;text-align:center;border:3px solid var(--plum);border-radius:18px;background:#fff;min-height:76px;display:grid;place-items:center;margin:0 auto;width:160px}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}
 .pad .opt{min-height:58px;font-size:26px}
-.trace{position:relative;width:300px;height:200px;margin:0 auto}
-.trace svg,.trace canvas{position:absolute;inset:0;width:300px;height:200px}
+.trace{position:relative;width:300px;max-width:100%;margin:0 auto}
+.trace svg{display:block;width:100%;height:auto}
+.trace canvas{position:absolute;inset:0;width:100%;height:100%}
 .trace canvas{touch-action:none;cursor:crosshair}
 .note{font-size:13px;color:#6d5f7b;text-align:center}
 .speakrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -770,9 +771,29 @@ const scriptFont = () => (set?.curriculum ?? "").startsWith("en") ? "Playwrite G
 let SCRIPT = (() => { try { return localStorage.getItem("twist-script") || "sas"; } catch { return "sas"; } })();
 function writing(text, mode, joined) {
   if (joined) {
-    const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="${Math.max(290, 20 + text.length * 34)}" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
-    const w = Math.max(300, 60 + text.length * 34), fill = mode === "trace" ? 'fill="#efe0fb" stroke="#a58bc4" stroke-width="1.5" stroke-dasharray="5 4"' : 'fill="#2b0f45"';
-    return `<svg viewBox="0 0 ${w} 200" style="max-width:100%"><g>${lines}</g><text x="${w / 2}" y="130" text-anchor="middle" style="font-family:'${scriptFont()}', cursive" font-size="${text.length > 6 ? 40 : 56}" ${fill}>${esc(text)}</text></svg>`;
+    // Joined writing: one set of four lines per row of words. Words keep a size
+    // a child can trace and wrap onto more rows; only a single word too long for
+    // a row gets smaller.
+    // A word is written at 52, a sentence at 40 (Playwrite is wide); the four
+    // lines of each row are spaced from the font size, so the letters fill them.
+    const font = scriptFont(), W = 300, maxW = W - 24, words = String(text).split(/\s+/).filter(Boolean);
+    const FS = words.length > 1 ? 40 : 52, MIN = 30;
+    const ctx = (writing.c ??= document.createElement("canvas").getContext("2d"));
+    const width = (t, fs) => { ctx.font = `${fs}px "${font}", cursive`; const m = ctx.measureText(t).width; return m > 0 ? m : t.length * fs * 0.55; };
+    const rows = [];
+    for (const w of words) {
+      const last = rows[rows.length - 1], cand = last ? `${last} ${w}` : w;
+      if (last && width(cand, FS) <= maxW) rows[rows.length - 1] = cand; else rows.push(w);
+    }
+    // Row geometry from the size: top line, dashed middle line, baseline, descender line.
+    const g = { top: 0.75 * FS, mid: 1.53 * FS, base: 2.49 * FS, desc: 3.26 * FS, h: 3.5 * FS };
+    const ink = mode === "trace" ? 'fill="#d4c2f7" stroke="#5a3fb8" stroke-width="2" stroke-linejoin="round" paint-order="stroke"' : 'fill="#2b0f45"';
+    const svg = rows.map((r, k) => {
+      const fs = Math.max(MIN, Math.min(FS, (FS * maxW) / width(r, FS))), y0 = k * g.h;
+      const lines = [g.top, g.mid, g.base, g.desc].map((y, i) => `<line x1="8" x2="${W - 8}" y1="${(y0 + y).toFixed(1)}" y2="${(y0 + y).toFixed(1)}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
+      return `${lines}<text x="${W / 2}" y="${(y0 + g.base).toFixed(1)}" text-anchor="middle" style="font-family:'${font}', cursive" font-size="${fs.toFixed(1)}" ${ink}>${esc(r)}</text>`;
+    }).join("");
+    return `<svg viewBox="0 0 ${W} ${(rows.length * g.h).toFixed(1)}" class="wl">${svg}</svg>`;
   }
   const lines = [40, 80, 130, 170].map((y, i) => `<line x1="10" x2="290" y1="${y}" y2="${y}" stroke="${i === 2 ? "#8e3bd1" : "#cbb9dd"}" stroke-width="${i === 2 ? 3 : 2}" ${i === 1 ? 'stroke-dasharray="6 6"' : ""}/>`).join("");
   const glyph = mode === "trace"
@@ -1465,10 +1486,13 @@ const TYPES = {
     nextBtn(foot, UI.check, () => { const got = [...sel].map((i) => keys[i]).sort().join(","); const ok = got === want; if (!ok) els.forEach((c, i) => { if (sel.has(i)) c.classList.add(letters.has(keys[i]) ? "good" : "bad"); }); answer(ok, got, () => els.forEach((c, i) => { c.classList.remove("sel", "bad"); if (letters.has(keys[i])) c.classList.add("good"); })); if (!ok && !st.over) setTimeout(() => { sel.clear(); els.forEach((c) => c.classList.remove("sel", "good", "bad")); }, 1100); });
   },
   tracing({ t, body, foot, vis, answer }) {
-    vis.innerHTML = `<div class="trace">${writing(t.show.text, t.show.mode, t.show.script === "joined")}<canvas width="600" height="400"></canvas></div>`;
-    const cv = vis.querySelector("canvas"), g = cv.getContext("2d"); let ink = 0, down = false;
+    vis.innerHTML = `<div class="trace">${writing(t.show.text, t.show.mode, t.show.script === "joined")}<canvas></canvas></div>`;
+    // The canvas covers all the writing lines, however many rows they take.
+    const cv = vis.querySelector("canvas"), vb = vis.querySelector("svg").viewBox.baseVal;
+    cv.width = 600; cv.height = Math.round((600 * vb.height) / vb.width);
+    const g = cv.getContext("2d"); let ink = 0, down = false;
     g.lineWidth = 16; g.lineCap = "round"; g.lineJoin = "round"; g.strokeStyle = "#8e3bd1";
-    const pos = (e) => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * 2, (e.clientY - r.top) * 2]; };
+    const pos = (e) => { const r = cv.getBoundingClientRect(); return [((e.clientX - r.left) * cv.width) / r.width, ((e.clientY - r.top) * cv.height) / r.height]; };
     cv.onpointerdown = (e) => { down = true; cv.setPointerCapture(e.pointerId); g.beginPath(); g.moveTo(...pos(e)); };
     cv.onpointermove = (e) => { if (!down) return; g.lineTo(...pos(e)); g.stroke(); ink++; if (ink > 12) btn.disabled = false; };
     cv.onpointerup = () => { down = false; };
