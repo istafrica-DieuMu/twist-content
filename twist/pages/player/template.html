@@ -1118,7 +1118,7 @@ function renderStart() {
   const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
   // The lesson starts with the mascot in its topic's pose (a clock for time, a beret for French).
   const pose = set.pose ? `<img class="mascot-pose" src="${A}mascot/${set.pose}.png" alt="">` : mascotPose("start");
-  body.innerHTML = `<div class="center">${pose}<p class="a-set">${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2 class="a-lesson">${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p class="a-acts">${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
+  body.innerHTML = `<div class="center">${pose}<p class="a-set">${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2 class="a-lesson">${esc(lesson.title[lang()] ?? lesson.title.de)}</h2></div>`;
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 function renderLearn(step) {
@@ -1723,7 +1723,6 @@ const PARTS = [
   ["start", ".mascot-pose", "Topic pose", "assets/mascot.yaml topics, chosen by the skill's topic."],
   ["start", ".a-set", "Set title and lesson number", "The record's title, then Lesson n."],
   ["start", ".a-lesson", "Lesson title", "lessons[n].title"],
-  ["start", ".a-acts", "Activities", "lessons[n].activities, by name."],
   ["intro", ".mascot-pose", "Activity pose", "assets/mascot.yaml poses (warmup, learn, practise), rotated by lesson."],
   ["intro", ".a-act", "Activity name", "Warm up, Learn, Practise, Show what you know."],
   ["intro", ".a-phrase", "Spoken line", "assets/phrases.yaml, read aloud."],
