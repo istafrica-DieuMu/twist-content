@@ -323,6 +323,33 @@ svg text{font-family:Andika,sans-serif}
 .speakrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:10px;width:100%}
 .spkchip{flex-direction:column;justify-content:center;min-height:110px;border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px;font:700 18px "Red Hat Display",sans-serif;color:#303030;gap:10px}
 .spkchip svg{width:34px;height:34px}.spkchip svg path{stroke:#6849dd}.spkchip svg path:first-child{fill:#6849dd}
+/* the lesson file and its names, in the side panel */
+.filebox{border-bottom:1px solid var(--line);margin:0 0 8px;padding:0 8px 8px;font-size:12px}
+.filebox summary{font:700 12px system-ui,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;cursor:pointer;padding:0 0 6px}
+.filebox a{display:block;font:12px ui-monospace,Menlo,monospace;color:#6849dd;word-break:break-all;margin-bottom:6px}
+.filebox dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:3px 8px;margin:0}
+.filebox dt{color:var(--muted)}.filebox dd{margin:0;min-width:0}.filebox code{font-size:11px}
+/* labels over the live screen, and the anatomy reference */
+.plbl{position:absolute;z-index:40;pointer-events:none;border:2px dashed #13a4e9;border-radius:6px}
+.plbl b{position:absolute;left:-2px;top:-2px;transform:translateY(-100%);background:#13a4e9;color:#fff;font:700 10px/1.3 system-ui,sans-serif;padding:1px 5px;border-radius:4px 4px 4px 0;white-space:nowrap}
+.plbl.in b{transform:none;border-radius:0 0 4px 0}
+.anat{position:fixed;inset:0;z-index:50;background:rgba(10,6,20,.55);display:grid;place-items:center;padding:20px}
+.anat[hidden]{display:none}
+.anat-in{background:var(--panel);color:var(--ink);border-radius:16px;max-width:980px;width:100%;max-height:calc(100vh - 40px);overflow:auto;padding:22px 24px}
+.anat-in h2{margin:0 0 4px;font:700 20px "Red Hat Display",sans-serif}.anat-in h3{margin:18px 0 6px;font:700 15px "Red Hat Display",sans-serif}
+.anat-in p{margin:0 0 8px;color:var(--muted);font-size:13px}
+.anat-in table{border-collapse:collapse;width:100%;font-size:13px}
+.anat-in th,.anat-in td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.anat-in th{color:var(--muted);font-weight:600}
+.anat-in code{font-size:12px}
+.anat-in table{table-layout:fixed}.anat-in td:first-child,.anat-in th:first-child{width:210px}
+.plbl.alt b{top:auto;bottom:-2px;transform:translateY(100%);border-radius:0 4px 4px 4px}
+.anat-x{float:right}
+/* wide screens: the lesson list stays open as a left column */
+@media (min-width:1500px){
+  .drawer,.drawer[hidden]{display:flex;top:86px;left:20px;width:440px;height:calc(100vh - 106px);max-height:none;box-shadow:none}
+  .wrap{padding-left:480px}
+}
 /* ordering: square drop slots, as the app's NumberOrdering */
 .slots .gap{border:2px dashed #c9c9c9;border-radius:12px;background:#fafafa;font:700 30px "Red Hat Display",sans-serif;color:#525252}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
@@ -342,6 +369,8 @@ svg text{font-family:Andika,sans-serif}
       <label for="script" class="pl">Schreibschrift for de-DE writing lines</label>
       <select id="script" aria-label="Schreibschrift"><option value="sas">Schulausgangsschrift (SAS)</option><option value="la">Lateinische Ausgangsschrift (LA)</option><option value="va">Vereinfachte Ausgangsschrift (VA)</option><option value="grund">Grundschrift</option></select>
       <p class="pn">en-GB writing lines use an English joined style.</p>
+      <label class="tg"><input type="checkbox" id="labels"> Label the parts of the screen</label>
+      <button class="nbtn" id="openAnat" type="button">Screen anatomy: every screen and its parts</button>
     </div>
   </div>
 </header>
@@ -355,9 +384,11 @@ svg text{font-family:Andika,sans-serif}
   </div>
   <div class="results" id="results"></div>
 </div>
+<div class="anat" id="anat" hidden role="dialog" aria-label="Screen anatomy"><div class="anat-in" id="anatBody"></div></div>
 <div class="wrap">
   <div class="phone"><div class="screen" id="screen"></div></div>
   <aside class="side" aria-label="Steps of this lesson">
+    <details class="filebox" open><summary>Lesson file and names</summary><div id="fileinfo"></div></details>
     <div class="sideh">Steps</div>
     <ul class="steps" id="steps"></ul>
     <details class="recd"><summary>Record of this step</summary><pre class="rec" id="rec"></pre></details>
@@ -1053,7 +1084,7 @@ function go(i) {
   at = Math.max(0, Math.min(steps.length - 1, i));
   const step = steps[at];
   ({ start: renderStart, intro: renderIntro, learn: renderLearn, stage: renderStage, checkIntro: renderCheckIntro, task: renderTask, end: renderEnd })[step.kind](step);
-  sidebar();
+  sidebar(); drawLabels();
 }
 
 // The mascot on static screens: three poses per screen kind (assets/mascot.yaml),
@@ -1065,7 +1096,7 @@ function mascotPose(kind, turn = 0) {
 }
 function renderIntro(step) {
   const { body, foot } = frameUI(step), key = { "warm-up": "warmup_start", learn: "learn_start", practise: "practise_start" }[step.a.activity], p = phrase(key);
-  body.innerHTML = `<div class="center">${mascotPose(MASCOT_KIND[step.a.activity])}<h2>${esc(actName(step.a))}</h2>${p ? `<p>${esc(p.text)}</p>` : ""}</div>`;
+  body.innerHTML = `<div class="center">${mascotPose(MASCOT_KIND[step.a.activity])}<h2 class="a-act">${esc(actName(step.a))}</h2>${p ? `<p class="a-phrase">${esc(p.text)}</p>` : ""}</div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
@@ -1074,7 +1105,7 @@ function renderStart() {
   const first = lesson.activities.find((a) => a.screens)?.screens.find((s) => s.show?.object)?.show;
   // The lesson starts with the mascot in its topic's pose (a clock for time, a beret for French).
   const pose = set.pose ? `<img class="mascot-pose" src="${A}mascot/${set.pose}.png" alt="">` : mascotPose("start");
-  body.innerHTML = `<div class="center">${pose}<p>${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2>${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p>${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
+  body.innerHTML = `<div class="center">${pose}<p class="a-set">${esc(set.title[lang()] ?? set.title.de)} · ${UI.lesson} ${lesson.n}</p><h2 class="a-lesson">${esc(lesson.title[lang()] ?? lesson.title.de)}</h2><p class="a-acts">${lesson.activities.map((a) => esc(actName(a))).join(" · ")}</p></div>`;
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 function renderLearn(step) {
@@ -1094,13 +1125,13 @@ function renderLearn(step) {
 function renderStage(step) {
   const { body, foot } = frameUI(step), p = phrase("stage_done");
   const label = { some: UI.less, none: UI.alone }[step.st.support];
-  body.innerHTML = `<div class="center">${mascotPose("stage", step.si)}<h2>${esc(p?.text ?? "Prima!")}</h2><p>${esc(label)}</p></div>`;
+  body.innerHTML = `<div class="center">${mascotPose("stage", step.si)}<h2 class="a-phrase">${esc(p?.text ?? "Prima!")}</h2><p class="a-stage">${esc(label)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
 function renderCheckIntro(step) {
   const { body, foot } = frameUI(step), p = phrase("check_start");
-  body.innerHTML = `<div class="center">${mascotPose("check")}<h2>${esc(p?.text ?? UI.checkTitle)}</h2><p>${UI.checkInfo(step.a.tasks.length)}</p></div>`;
+  body.innerHTML = `<div class="center">${mascotPose("check")}<h2 class="a-phrase">${esc(p?.text ?? UI.checkTitle)}</h2><p class="a-info">${UI.checkInfo(step.a.tasks.length)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }
@@ -1112,7 +1143,7 @@ function renderEnd() {
   const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
   const p = phrase("lesson_done");
   const pct = checkSteps.length ? Math.round((100 * right) / checkSteps.length) : null;
-  body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(UI.finished)}</h2><p>${esc(p?.text ?? UI.doneTitle)}</p>
+  body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(UI.finished)}</h2><p class="a-phrase">${esc(p?.text ?? UI.doneTitle)}</p>
     ${pct == null ? "" : `<div class="score"><div class="sc">${esc(UI.percent(pct))}<div class="sb"><i style="width:${pct}%"></i><span>${right} / ${checkSteps.length}</span></div></div><span class="dart" aria-hidden="true">🎯</span></div>`}
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
     ${pass === null ? "" : pass ? `<span class="badge">${UI.secure}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
@@ -1626,8 +1657,8 @@ function renderPicker() {
     if (g !== last) { const h = document.createElement("div"); h.className = "rgrp"; h.textContent = g; R.appendChild(h); last = g; }
     const row = document.createElement("div"); row.className = "rset"; row.dataset.i = i;
     row.innerHTML = `<div class="rt">${esc(tOf(s, s.title))}</div><div class="rl"></div>`;
-    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn"; b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
-    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(s.lessons[0].n, F.type); toggle($("#openPick"), $("#drawer"), false); };
+    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn"; b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
+    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(s.lessons[0].n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); };
     R.appendChild(row);
   }
   if (!list.length) R.innerHTML = `<p class="empty">No lesson set matches. Clear a filter or the search.</p>`;
@@ -1641,6 +1672,14 @@ function renderNow() {
   $("#pickSub").textContent = `${yearName(set.year)} · ${SUBJ[subjOf(set)] ?? subjOf(set)} · ${tOf(set, set.title)}`;
   $("#pickLabel").textContent = `Lesson ${lesson.n} of ${set.lessons.length}: ${tOf(set, lesson.title)}`;
   el.innerHTML = ""; const nb = el;
+  // The lesson file, and where each name on screen comes from.
+  const L = lang(), slug = set.file.split("/").pop().replace(/\.yaml$/, "");
+  $("#fileinfo").innerHTML = `<a href="../../lessons/${esc(set.file)}" target="_blank" rel="noopener">twist/lessons/${esc(set.file)}</a>
+    <dl><dt>File name</dt><dd><code>${esc(slug)}</code> (the skill's slug)</dd>
+    <dt>Skill</dt><dd><code>${esc(set.skill ?? "")}</code></dd>
+    <dt>Set title</dt><dd>${esc(tOf(set, set.title))} <code>title</code></dd>
+    <dt>Lesson title</dt><dd>${esc(tOf(set, lesson.title))} <code>lessons[${set.lessons.indexOf(lesson)}].title</code></dd>
+    <dt>Start pose</dt><dd><code>${esc(set.pose ?? "start")}</code></dd></dl>`;
   const add = (label, fn, dis) => { const b = document.createElement("button"); b.className = "nbtn"; b.textContent = label; b.disabled = !!dis; b.onclick = fn; nb.appendChild(b); };
   const li = set.lessons.indexOf(lesson);
   add("◀ Lesson", () => pickLesson(set.lessons[li - 1].n), li <= 0);
@@ -1650,20 +1689,113 @@ function renderNow() {
   if (F.type) add(`Next ${F.type} ▶`, () => { const k = steps.findIndex((s, j) => j > at && s.kind === "task" && s.t.type === F.type); if (k > 0) go(k); });
 }
 $("#built").textContent = D.built;
+// Screen anatomy: what each screen is called and the parts on it, with the
+// record field each part comes from. "Label the parts" outlines them live.
+const SCREENS = [
+  ["start", "Lesson start", "Opens every lesson.", "lessons[n].title, the set's title, the topic pose (assets/mascot.yaml topics, by the skill's topic)"],
+  ["intro", "Activity intro", "Before each activity: Warm up, Learn, Practise, Show what you know.", "lessons[n].activities[k].activity; the spoken line from assets/phrases.yaml (warmup_start, learn_start, practise_start)"],
+  ["learn", "Learn screen", "Each screen of the Learn activity, one idea at a time.", "activities[k].screens[i]: text, say, show, sound"],
+  ["task", "Task screen", "One task in Warm up, Practise or the Check.", "tasks[i] (or stages[s].tasks[i]): type, text, say, show, audio, options, answer, hints, feedback"],
+  ["stage", "Stage change", "Between the Practise stages: with help, less help, on your own.", "stages[s].support; phrases.yaml stage_done"],
+  ["checkIntro", "Check intro", "Before Show what you know (the quick check or the skill check).", "the check activity; phrases.yaml check_start"],
+  ["end", "Lesson end", "After the Check: the score from first tries.", "phrases.yaml lesson_done; results of the Check tasks"],
+];
+const PARTS = [
+  ["*", ".hdr .menu", "Lesson menu button", "Opens the lesson menu: every activity of the lesson."],
+  ["*", ".badge-n", "Activity badge", "The activity's number in the lesson (1 to 4), in the subject colour."],
+  ["*", ".stepb .st", "Activity title", "The activity's name, with the Practise stage (with help, less help, on your own)."],
+  ["*", ".hdr .x", "Close", "Leaves the lesson (here: back to the start)."],
+  ["*", ".pbar", "Progress bar", "Learn screens and tasks done in this lesson."],
+  ["*", ".foot .btn", "Main button", "Continue, Check, Try again; the label follows the screen."],
+  ["start", ".mascot-pose", "Topic pose", "assets/mascot.yaml topics, chosen by the skill's topic."],
+  ["start", ".a-set", "Set title and lesson number", "The record's title, then Lesson n."],
+  ["start", ".a-lesson", "Lesson title", "lessons[n].title"],
+  ["start", ".a-acts", "Activities", "lessons[n].activities, by name."],
+  ["intro", ".mascot-pose", "Activity pose", "assets/mascot.yaml poses (warmup, learn, practise), rotated by lesson."],
+  ["intro", ".a-act", "Activity name", "Warm up, Learn, Practise, Show what you know."],
+  ["intro", ".a-phrase", "Spoken line", "assets/phrases.yaml, read aloud."],
+  ["learn", ".visual", "Visual", "screens[i].show: a bank picture or a drawn component."],
+  ["learn", ".word", "Learn text", "screens[i].text"],
+  ["learn", ".spk.big", "Speaker", "Plays screens[i].say (or the text)."],
+  ["learn", ".sound", "Sound button", "screens[i].sound: a recorded sound from assets/sounds.yaml."],
+  ["task", ".prompt .mascot", "Mascot", "The standing mascot (pages/player/mascot.png)."],
+  ["task", ".bubbleq", "Prompt", "The speech bubble: the task's text on screen, its say spoken (text when there is no say)."],
+  ["task", ".bubbleq .spk", "Prompt speaker", "Plays the prompt again, then audio when there is one."],
+  ["task", ".visual", "Visual", "The task's show: a picture, two pictures or a drawn component."],
+  ["task", ".opts, .tf, .pad, .chips, .pairs, .bins, .slots, .entry, .speakrow, .mic, .saycard, .cards", "Answer area", "By type: options, Yes and No, the keyboard, gap chips, pairs, bins, slots, the microphone."],
+  ["task", ".opt .os", "Option speaker", "Says the option, where hearing it does not give the answer away (option_audio)."],
+  ["task", ".sheet.ok", "Feedback sheet, right", "Green: a praise phrase (phrases.yaml correct), then Next, which moves on by itself."],
+  ["task", ".sheet.bad", "Feedback sheet, not yet", "Lilac: feedback[chosen option], then hints[n] for the stage, and Try again."],
+  ["task", ".sheet .line.hint", "Hint", "hints[n]: one per miss in the full stage, one in the some stage, none after."],
+  ["stage", ".mascot-pose", "Stage pose", "assets/mascot.yaml stage poses."],
+  ["stage", ".a-phrase", "Praise", "phrases.yaml stage_done."],
+  ["stage", ".a-stage", "Next stage", "Now with less help, or on your own."],
+  ["checkIntro", ".mascot-pose", "Check pose", "assets/mascot.yaml check poses."],
+  ["checkIntro", ".a-phrase", "Check title", "phrases.yaml check_start."],
+  ["checkIntro", ".a-info", "Check rules", "How many tasks, no hints, first try counts."],
+  ["end", ".mascot-pose", "End pose", "assets/mascot.yaml end poses."],
+  ["end", "h2.done", "Lesson finished", "The finish title, in gold."],
+  ["end", ".a-phrase", "Spoken line", "phrases.yaml lesson_done."],
+  ["end", ".score", "Score card", "Per cent right first time in the Check."],
+  ["menu", ".menu-sheet", "Lesson menu", "Every activity of the lesson; tap one to jump there."],
+];
+let LABELS = (() => { try { return localStorage.getItem("twist-labels") === "1"; } catch { return false; } })();
+function drawLabels() {
+  const scr = $("#screen"); scr.querySelectorAll(".plbl").forEach((x) => x.remove());
+  if (!LABELS) return;
+  const kind = steps[at]?.kind, z = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pz")) || 1;
+  const sr = scr.getBoundingClientRect(), seen = new Set();
+  for (const [k, sel, name] of PARTS) {
+    if (k !== "*" && k !== kind && !(k === "menu")) continue;
+    for (const el of scr.querySelectorAll(sel)) {
+      if (seen.has(el) || el.closest(".plbl")) continue; seen.add(el);
+      const r = el.getBoundingClientRect(); if (!r.width || !r.height) continue;
+      const box = document.createElement("div"); box.className = "plbl" + (name === "Activity badge" ? " alt" : r.top - sr.top < 16 * z ? " in" : "");
+      Object.assign(box.style, { left: `${(r.left - sr.left) / z}px`, top: `${(r.top - sr.top) / z}px`, width: `${r.width / z}px`, height: `${r.height / z}px` });
+      box.innerHTML = `<b>${esc(name)}</b>`; scr.appendChild(box);
+      if (sel.includes(",")) break; // one answer area per screen
+    }
+  }
+}
+// Redraw the labels whenever the screen changes (sheets, picks, layout).
+new MutationObserver(() => { clearTimeout(drawLabels.t); drawLabels.t = setTimeout(drawLabels, 120); }).observe($("#screen"), { childList: true, subtree: true });
+$("#labels").checked = LABELS;
+$("#labels").onchange = (e) => { LABELS = e.target.checked; try { localStorage.setItem("twist-labels", LABELS ? "1" : "0"); } catch {} drawLabels(); };
+function anatomy() {
+  const rows = (k) => PARTS.filter((p) => p[0] === k).map((p) => `<tr><td><b>${esc(p[2])}</b></td><td>${esc(p[3])}</td></tr>`).join("");
+  $("#anatBody").innerHTML = `<button class="nbtn anat-x" id="anatX">Close</button><h2>Screen anatomy</h2>
+    <p>Every screen a lesson shows, what it is called and the parts on it, with the record field each part comes from. Turn on "Label the parts" in Settings to see the names on the live screen.</p>
+    <h3>Screens, in the order a lesson shows them</h3><table><tr><th>Screen</th><th>When</th><th>From the record</th></tr>${SCREENS.map(([, n, w, f]) => `<tr><td><b>${esc(n)}</b></td><td>${esc(w)}</td><td>${esc(f)}</td></tr>`).join("")}
+    <tr><td><b>Feedback sheet</b></td><td>Slides up over a task after Check.</td><td>phrases.yaml, feedback, hints</td></tr><tr><td><b>Lesson menu</b></td><td>Opens from the header's menu button.</td><td>lessons[n].activities</td></tr></table>
+    <h3>On every screen</h3><table>${rows("*")}</table>
+    ${SCREENS.map(([k, n]) => `<h3>${esc(n)}</h3><table>${rows(k)}</table>`).join("")}
+    <h3>Overlays</h3><table>${rows("menu")}</table>
+    <h3>Names in the record</h3><table>
+      <tr><td><b>File name</b></td><td>The skill's slug: lessons/&lt;curriculum&gt;/&lt;year&gt;/&lt;subject&gt;/&lt;slug&gt;.yaml, where the slug is the last part of the skill id. It never changes once published.</td></tr>
+      <tr><td><b>Set title</b></td><td>The record's <code>title</code> (de and en): the name of the whole lesson set, shown on the lesson start and in the lesson list.</td></tr>
+      <tr><td><b>Lesson title</b></td><td><code>lessons[n].title</code>: the name of one lesson, shown big on the lesson start and in the lesson button.</td></tr>
+      <tr><td><b>Skill</b></td><td><code>skill</code>: the competency the set teaches (competencies/), with its "I can" sentence and its topic, which picks the start pose.</td></tr></table>`;
+  $("#anatX").onclick = () => { $("#anat").hidden = true; };
+}
+$("#openAnat").onclick = () => { anatomy(); $("#anat").hidden = false; toggle($("#openSet"), $("#setPop"), false); };
+$("#anat").onclick = (e) => { if (e.target.id === "anat") $("#anat").hidden = true; };
 // The phone scales to the window: as big as the height allows, up to 1.4 times, never below 0.75.
-const sizePhone = () => { const z = innerWidth <= 820 ? 1 : Math.max(0.75, Math.min(1.4, (innerHeight - 110) / 844, (innerWidth - 400) / 420)); document.documentElement.style.setProperty("--pz", z.toFixed(3)); };
+const sizePhone = () => { const z = innerWidth <= 820 ? 1 : Math.max(0.75, Math.min(1.4, (innerHeight - 110) / 844, (innerWidth - 400 - (innerWidth >= 1500 ? 480 : 0)) / 420)); document.documentElement.style.setProperty("--pz", z.toFixed(3)); };
 sizePhone(); window.addEventListener("resize", sizePhone);
 // The lesson drawer and the settings pop-over open from the top bar and close on Escape or a click outside.
 const toggle = (btn, panel, open) => { const o = open ?? panel.hidden; panel.hidden = !o; btn.setAttribute("aria-expanded", o); if (o && panel.id === "drawer") setTimeout(() => { $("#q").focus(); panel.querySelector(".rset.on")?.scrollIntoView({ block: "center" }); }); };
 $("#openPick").onclick = () => toggle($("#openPick"), $("#drawer"));
 $("#openSet").onclick = () => toggle($("#openSet"), $("#setPop"));
+const docked = () => matchMedia("(min-width:1500px)").matches;
 document.addEventListener("click", (e) => {
-  if (!$("#drawer").hidden && !e.target.closest("#drawer,#openPick")) toggle($("#openPick"), $("#drawer"), false);
+  // A filter chip re-renders itself on click, so its target is no longer in the page: not an outside click.
+  if (!e.target.isConnected) return;
+  if (!docked() && !$("#drawer").hidden && !e.target.closest("#drawer,#openPick")) toggle($("#openPick"), $("#drawer"), false);
   if (!$("#setPop").hidden && !e.target.closest("#setPop,#openSet")) toggle($("#openSet"), $("#setPop"), false);
 });
 // Re-render on resize, so the layout pass fits the new screen size.
 let rsz; window.addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(() => { if (steps?.[at]?.kind === "task") go(at); }, 200); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") { toggle($("#openPick"), $("#drawer"), false); toggle($("#openSet"), $("#setPop"), false); } });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") { $("#anat").hidden = true; if (!docked()) toggle($("#openPick"), $("#drawer"), false); toggle($("#openSet"), $("#setPop"), false); } });
 $("#q").oninput = (e) => { F.q = e.target.value; saveF(); renderPicker(); };
 // Load the chosen Schreibschrift before drawing with it, then redraw.
 const loadScript = () => Promise.all([document.fonts?.load(`64px "${SCRIPTS[SCRIPT]}"`), document.fonts?.load(`64px "Playwrite GB J"`)]).then(() => { if (typeof at === "number" && steps?.length) go(at); }).catch(() => {});

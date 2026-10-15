@@ -160,7 +160,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
     const DASH = (v) => typeof v === "string" ? v.replace(/ - /g, " \u2013 ") : Array.isArray(v) ? v.map(DASH) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "say" || k === "audio" || k.startsWith("_") ? x : DASH(x)])) : v;
     d.lessons = DASH(d.lessons);
   }
-  sets.push({ file: rel, id: d.id, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
+  sets.push({ file: rel, id: d.id, skill: d.skill, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
     no_reading: !!d.metadata?.no_reading, year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons });
 }
 
