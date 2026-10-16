@@ -112,6 +112,7 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
     <li><a href="#source">Source and status</a></li>
     <li><a href="#chain">The lesson chain</a></li>
     <li><a href="#mastery">Mastery and what comes next</a></li>
+    <li><a href="#rewards">Stars and badges</a></li>
     <li><a href="#curricula">Curricula and standards</a></li>
     <li><a href="#player">Task player</a></li>
     <li><a href="#tobuild">Still to build</a></li>
@@ -130,7 +131,7 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
   <p class="lede">The new curriculum model from R&amp;D, and what it asks of the backend API (IST-B2C/backend), the mobile app (ist-schoolido) and the parent dashboard (IST-B2C/Parent-dashboard).</p>
   <div class="meta">
     <span>Source <b>rnd repo, branch <code>main</code>, folder <code>twist/</code></b></span>
-    <span>Written <b>13 October 2026</b>, updated <b>15 October 2026</b></span>
+    <span>Written <b>13 October 2026</b>, updated <b>16 October 2026</b></span>
     <span>Content status <b>every placed skill drafted; model-reviewed, not yet teacher-reviewed</b></span>
   </div>
 </header>
@@ -319,6 +320,62 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   </table></div>
   <p>Practice outside lessons comes in four forms: a practice session (about 14 tasks of one skill or a mix of due recaps), a topic recap, a placement check, and a start-of-year or end-of-year check across the whole subject.</p>
   <p>All thresholds (check length, pass marks, recap spacing, the mastered rule, placement rule, time targets) are starting values. They belong in app configuration per age, not in the content, and get tuned from real data.</p>
+</section>
+
+<section id="rewards">
+  <h2>Stars and badges</h2>
+  <p>Both follow the mastery rule: nothing that does not count for mastery earns a star or a badge. Both curricula use the same designs and rules with translated names. Parents see the same stars and badges on the dashboard. Full rules and every badge are in <code>twist/docs/lesson-anatomy.md</code> (Stars and badges).</p>
+  <h3>Stars per skill</h3>
+  <div class="tbl"><table>
+    <tr><th>Stars</th><th>State</th></tr>
+    <tr><td>0</td><td>not_started, learning</td></tr>
+    <tr><td>1</td><td>practised</td></tr>
+    <tr><td>2</td><td>secure</td></tr>
+    <tr><td>3</td><td>mastered</td></tr>
+  </table></div>
+  <p>needs_recap keeps the stars and adds a refresh mark. Stars are never taken away. This replaces the 0 to 3 stars per module from the score percentage.</p>
+  <h3>Badge rules</h3>
+  <ul class="plain">
+    <li>A badge is never taken away.</li>
+    <li>A badge earned again in a later year levels up and carries the year ("Bookworm Year 3", "Leseratte Klasse 3").</li>
+    <li>When every skill behind a badge is mastered, it turns gold. Same badge, new look.</li>
+    <li>A <b>school day</b> is Monday to Friday without the public and school holidays of the child's region. It counts when the child finishes a lesson, practice session or check. Weekends never break a streak. The best streak stays on show.</li>
+  </ul>
+  <h3>Strand badges: one per strand and year</h3>
+  <p>Earned when every skill of the strand placed in the child's year is secure. Strands group library areas (the second part of a skill id), so both curricula share them.</p>
+  <div class="tbl"><table>
+    <tr><th>Strand</th><th>Library areas</th><th>EN</th><th>DE</th></tr>
+    <tr><td><b>Numbers</b></td><td>numbers-to-20/100/1000, large-numbers, fractions, decimals, percentages-ratio</td><td>Number Navigator</td><td>Zahlenkompass</td></tr>
+    <tr><td><b>Calculating</b></td><td>add-sub-to-20/100/1000, mult-div, mult-div-larger, written-add-sub, written-mult-div, word-problems</td><td>Calculation Ace</td><td>Rechenass</td></tr>
+    <tr><td><b>Shape and space</b></td><td>shapes, solids, space, symmetry, angles, coordinates</td><td>Shape Shifter</td><td>Formenprofi</td></tr>
+    <tr><td><b>Measures</b></td><td>length, mass-capacity, time, money, area-volume</td><td>Measure Master</td><td>Messprofi</td></tr>
+    <tr><td><b>Data and chance</b></td><td>data, chance</td><td>Data Detective</td><td>Datenspürnase</td></tr>
+    <tr><td><b>Patterns</b></td><td>patterns, algebra</td><td>Code Cracker</td><td>Geheimcode</td></tr>
+    <tr><td><b>Reading</b></td><td>phonological, letters, phonics, decoding, word-reading, fluency, comprehension, texts, texts-media</td><td>Bookworm</td><td>Leseratte</td></tr>
+    <tr><td><b>Writing</b></td><td>handwriting, writing, composition</td><td>Wordsmith</td><td>Schreibfeder</td></tr>
+    <tr><td><b>Spelling</b></td><td>spelling, spelling-strategies</td><td>Spelling Wizard</td><td>Fehlerfuchs</td></tr>
+    <tr><td><b>Grammar</b></td><td>nouns, verbs, adjectives, sentences, vocabulary, grammar</td><td>Grammar Guardian</td><td>Sprachlupe</td></tr>
+    <tr><td><b>Speaking</b></td><td>speaking</td><td>Golden Mic</td><td>Goldenes Mikro</td></tr>
+    <tr><td><b>Listen and speak (FL)</b></td><td>listening, speaking</td><td>Chatterbox</td><td>Quasselstrippe</td></tr>
+    <tr><td><b>Read and write (FL)</b></td><td>reading, writing, grammar</td><td>Pen Pal</td><td>Brieftaube</td></tr>
+    <tr><td><b>Culture (FL)</b></td><td>themes, culture-strategies</td><td>Globetrotter</td><td>Globetrotter</td></tr>
+  </table></div>
+  <h3>Other badges</h3>
+  <div class="tbl"><table>
+    <tr><th>Group</th><th>EN / DE</th><th>Earned when</th></tr>
+    <tr><td>Milestone</td><td>Lift-off / Startschuss</td><td>First skill secure</td></tr>
+    <tr><td>Milestone</td><td>Pathfinder / Startklar</td><td>First placement check finished</td></tr>
+    <tr><td>Milestone</td><td>Summit / Gipfel</td><td>End-of-year check passed; one per subject and year</td></tr>
+    <tr><td>Milestone</td><td>Hat Trick / Hattrick</td><td>A strand badge in every subject in the same year</td></tr>
+    <tr><td>Milestone</td><td>Legend / Legende</td><td>Every skill of a subject secure across the whole curriculum</td></tr>
+    <tr><td>Remembering</td><td>Elephant Memory / Elefantengedächtnis</td><td>Levels at 1, 10, 25, 50, 100, 200, 300, 400 skills mastered</td></tr>
+    <tr><td>Remembering</td><td>Comeback Kid / Stehaufmännchen</td><td>Levels at 1, 10, 50 skills brought back from needs_recap</td></tr>
+    <tr><td>Remembering</td><td>Like Clockwork / Wie ein Uhrwerk</td><td>Levels at 4, 12, 26 weeks in a row with every due recap done in its week</td></tr>
+    <tr><td>Streak</td><td>Spark, Flame, Campfire, Torch, Comet, Volcano, Sun, Supernova / Funke, Flamme, Lagerfeuer, Fackel, Komet, Vulkan, Sonne, Supernova</td><td>5, 10, 20, 40, 60, 100, 190, 380 school days in a row</td></tr>
+    <tr><td>Effort</td><td>Busy Bee / Fleißiges Bienchen</td><td>Levels at 10, 50, 100, 250, 500, 1000 practice sessions</td></tr>
+    <tr><td>Curiosity</td><td>Time Traveller / Zeitreise</td><td>Levels at 1, 10, 25 skills from a later year made secure</td></tr>
+  </table></div>
+  <p>A child using all three subjects earns about 20 to 25 badges a school year. Levels and day counts are starting values for configuration.</p>
 </section>
 
 <section id="curricula">
@@ -568,7 +625,8 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td>Milestones</td><td>Modules needed for the next subject level</td><td>Skills secure in the year; skills that need a recap</td></tr>
     <tr><td>Curriculum link</td><td>None</td><td>Optional: per skill, the standards it satisfies, with code and quoted text; for an enrichment skill, its reason</td></tr>
     <tr><td>Placement</td><td>None</td><td>Result of a placement check: the level per learning progression</td></tr>
-    <tr><td>XP, streaks, minutes, attendance</td><td>Shown</td><td>Unchanged</td></tr>
+    <tr><td>Stars and badges</td><td>None</td><td>Stars per skill and every badge the child has, with level and gold, as the child sees them</td></tr>
+    <tr><td>XP, streaks, minutes, attendance</td><td>Shown</td><td>Streaks count school days only (Monday to Friday without regional holidays); the rest unchanged</td></tr>
   </table></div>
   <p>The dashboard UI ships in en and de. An en-GB parent needs British wording (Maths, Year 2, Practise), and year labels should come from the backend in the parent's language instead of the untranslated "Grade N".</p>
 </section>
@@ -582,8 +640,9 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Import</b><p>Read the twist records (through a converter, see open decisions). Fail on an unknown task type instead of falling back to MULTIPLE_CHOICE (<code>ServiceContentImport.mapQuestionType</code>). Take question language from the record instead of the hard-coded <code>"en"</code>; foreign-language lessons have <code>language</code> and <code>target_language</code>. Store hints per question in order, feedback per option, <code>option_audio</code>, <code>flash</code>, <code>keyboard</code>, the clock <code>step</code>, <code>audio.speaker</code> and <code>audio.turns</code>, <code>show.crossed</code>, <code>metadata.dashes</code> and drawn-component data as it is (37 components, data fields in <code>assets/drawn.yaml</code>). Add <code>point_on_grid</code> to the task type enum. Mark a decimal answer by value and every other typed answer exactly.</p></li>
     <li><b>Assets</b><p>Resolve bank ids to URLs: pictures and colour versions, mascot poses, sounds, narration clips per task line, option, hint, phrase and dialogue turn, and per voice (two per curriculum, picked by activity or by <code>speaker</code>). A clip is found by its spoken line, after the <code>spoken()</code> rule in <code>narration.py</code>.</p></li>
     <li><b>Answer events</b><p>Record per task: first try right or wrong, hints opened, answer shown, activity, stage, check size, time. Mastery is computed from these, using the "what counts" table.</p></li>
-    <li><b>Skill mastery</b><p>A table per child and skill: state, when it became secure, recap schedule and results. Module stars can stay as a per-lesson reward but no longer stand for mastery.</p></li>
+    <li><b>Skill mastery</b><p>A table per child and skill: state, when it became secure, recap schedule and results. Module stars are replaced by 0 to 3 stars per skill from its state (see Stars and badges).</p></li>
     <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with spacing at about 2 days, 1 week, 3 weeks and 2 months; failed recaps set needs_recap. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
+    <li><b>Stars and badges</b><p>Stars per skill from the mastery state. A badge table per child (badge id, level, gold, earned at), awarded from mastery changes, finished sessions and checks. Streaks count school days, which needs a holiday calendar per region. Serve badges to the app and the dashboard.</p></li>
     <li><b>Placement check</b><p>An adaptive endpoint per learning progression that writes Secure for passed skills and returns the next skill to learn.</p></li>
     <li><b>Next and standing</b><p>Suggest the next skill from prerequisites at least Practised. Compute standing per subject for the dashboard, which needs a school-year start date per curriculum. Keep thresholds in configuration per age.</p></li>
   </ol>
@@ -599,6 +658,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Activity-aware player</b><p>Play Warm-up, Learn, Practise and Check in order. Show the stage marker between Practise stages and a Check intro ("5 questions, no hints, your first try counts"). Learn screens are not scored.</p></li>
     <li><b>Hints and misses</b><p>Hints open on a miss, limited by stage (3, 1, 0), with audio. In the none stage show the answer after two misses. In a Check allow one try and no hints.</p></li>
     <li><b>Feedback and audio</b><p>Per-option feedback, a speaker on each option following the option-audio rules, the second voice in Checks, phrases between tasks, a character's line in the voice its <code>speaker</code> names, and dialogue turns played in order. Any text-to-speech the app does itself follows the <code>spoken()</code> rule.</p></li>
+    <li><b>Stars and badges</b><p>Stars on each skill, a badge screen with levels and gold, a moment when a badge is earned, and the current and best streak.</p></li>
     <li><b>Smaller additions</b><p>The four <code>text_input</code> keyboards; passages for texts with line breaks; mascot intro screens; <code>metadata.dashes</code>; crossed pictures; joined writing lines in the school's script; <code>show.flash</code> with "See it again"; tracing copy mode, writing lines and the numeral 10; tap_to_count with any bank picture; counted groups and dot patterns as options in image_multiple_choice and ordering; two pictures side by side in <code>show</code>.</p></li>
     <li><b>Child profile and next</b><p>Store curriculum, year and age band; take the content language from the curriculum instead of the device locale. Suggest the next skill and, for skills with more than two lessons, the next lesson on a later day. Add practice sessions, topic recaps and the placement check.</p></li>
   </ol>
@@ -613,6 +673,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Skills view</b><p>Per subject and topic, each skill's statement and state, using the existing unused <code>DomainProgress</code> and <code>TopicProgress</code> types as a starting point. Optionally the standards per skill, and an "extra" label on enrichment skills.</p></li>
     <li><b>Standing</b><p>Replace track, gap and behind in <code>KidsPerformancePage.tsx</code> with ahead, on track and catching up from the backend.</p></li>
     <li><b>Schreibschrift</b><p>For de-DE, a choice of the school's Ausgangsschrift (SAS, LA, VA, Grundschrift), sent to the app as the child's <code>handwriting_script</code>. Values, fonts, drawing rules and the API field are in <code>twist/docs/handwriting-scripts.md</code>.</p></li>
+    <li><b>Badges</b><p>The child's stars and badges, with levels, gold and current and best streak, from the backend.</p></li>
     <li><b>Age and narration</b><p>Allow a date of birth from age 4; hide or lock the narration toggle for ages 4 to 7.</p></li>
   </ol>
 </section>
@@ -629,6 +690,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td>Default Schreibschrift when the parent does not know it</td><td><span class="chip c-pd">dashboard</span> product</td><td>All four Ausgangsschriften are supported as a setting; a default by Land would need the Land</td></tr>
     <tr><td>Whether enrichment skills count towards standing</td><td><span class="chip c-be">backend</span> product</td><td>18 skills no standard asks for; counting them makes "on track" harder to reach</td></tr>
     <tr><td>British or American English for Englisch in Germany</td><td>R&amp;D</td><td>The lessons use British English and had a native British read by model</td></tr>
+    <tr><td>Where the region for school holidays comes from (Bundesland, England)</td><td><span class="chip c-be">backend</span> <span class="chip c-pd">dashboard</span></td><td>Streaks skip school holidays, which differ by Land; the profile has no region yet</td></tr>
     <tr><td>Who owns the mastery thresholds config</td><td><span class="chip c-be">backend</span> <span class="chip c-app">app</span></td><td>Thresholds are per age and tuned from data</td></tr>
   </table></div>
 </section>
