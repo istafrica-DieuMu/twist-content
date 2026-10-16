@@ -119,6 +119,7 @@ const objects = read("assets/objects.yaml").objects ?? [];
 const reviews = existsSync(join(T, "reviews.yaml")) ? read("reviews.yaml") : { passes: [], open: [] };
 const anatomy = sections(text("docs/lesson-anatomy.md"));
 const model = sections(text("docs/model.md"));
+const rewards = sections(text("docs/rewards.md"));
 
 // R&D: the research documents in rnd/, by title; their content stays there.
 const R = join(T, "..", "rnd");
@@ -135,7 +136,7 @@ const totals = {
   types: typeSecs.length,
   components: components.length,
 };
-const data = { built: new Date().toISOString().slice(0, 10), totals, curricula, frameworks, typeSecs, ttIntro, mocks, components, reviews, anatomy, model, rnd, official };
+const data = { built: new Date().toISOString().slice(0, 10), totals, curricula, frameworks, typeSecs, ttIntro, mocks, components, reviews, anatomy, model, rewards, rnd, official };
 const tpl = readFileSync(join(HERE, "template.html"), "utf8");
 writeFileSync(join(HERE, "index.html"), tpl.replace("__DATA__", JSON.stringify(data).replace(/</g, "\\u003c")));
 console.log(`pages/site/index.html: ${totals.sets} lesson sets, ${totals.types} task types, ${totals.components} components, ${curricula.length} curricula`);

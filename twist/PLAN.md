@@ -658,3 +658,21 @@ en-GB is its own step later.
 | 21 | English | Reception | Reading words | 2 of 3 drafted 2026-10-13: blending CVC words read from a card, words that differ in one sound; the first 16 tricky words |
 | 22 | Maths | Year 2 | Word problems | 1 of 2 drafted 2026-10-13: question, calculation and answer sentence to 100 without crossing a ten, and the number you do not need |
 
+
+## Phase 3: gaps, checks and rewards (planned 2026-10-16)
+
+Before the practice exercises. Gap status per item is in
+rnd/gap-status.md; stars and badges are in docs/rewards.md.
+
+| # | Step | What it takes |
+|---|---|---|
+| G1 | Placement and year checks | The rules are in docs/lesson-anatomy.md (Mastery), but no content exists for the placement check (Einstufung) or the start-of-year and end-of-year checks. Decide whether they draw from each skill's check tasks or need their own task pool, so a child does not see the same tasks twice. Then write them per curriculum and year |
+| G2 | Typed and dictated German | Only 28 of 7,992 Deutsch tasks are typed. Add typed and dictated tasks to `spelling.dictation-short`, `write-by-sound`, `core-vocabulary` and the spelling-strategies lessons, Klasse 1 to 4 |
+| G3 | English reading texts | A bank of longer texts in many genres (stories, plays, poems, information) with question sets, Reception to Year 6, reused across lessons |
+| G4 | English spelling and grammar | Year 2 appendix patterns, homographs, sayings and expressions, reflexive and indefinite pronouns, capitals to lower case, word-list drill sets |
+| G5 | Phonics and punctuation review | Cumulative phonics reviews and mixed punctuation sets, as practice sessions |
+| G6 | SATs-style practice | KS1 and KS2 mixed papers for en-GB, as a check form, not as skills |
+| G7 | Fluency | Timed reading for en-GB, like Blitzlesen in de-DE |
+| G8 | Research site | The Gaps tab still shows the 2026-10-07 comparison against the old catalogue. Show rnd/gap-status.md next to it, and mark german-insight.md as describing the old catalogue |
+| G9 | Rewards in the library | The strand-to-area mapping from docs/rewards.md as data the backend can import |
+| G10 | Foreign languages | Compare Englisch (de-DE) and French (en-GB) with a foreign-language course; nothing has been compared yet |

@@ -17,7 +17,8 @@ The root AGENTS.md rules apply.
   - taxonomy.md: shared names for exercise types and lesson mechanics.
   - anatomy.md: Twist and each source's lesson structure side by side.
   - Analyses: type-gaps.md, mechanics-benchmark.md, calibration.md,
-    media-benchmark.md, reference-set.md, german-insight.md.
+    media-benchmark.md, reference-set.md, german-insight.md,
+    gap-status.md (the 2026-10-07 gaps checked against Twist now).
   - catalogue/: the content catalogue, generated from source data by
     `node rnd/catalogue/build.mjs`.
   - crosswalk/: source content mapped to Schoolido modules, and

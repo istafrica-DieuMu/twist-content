@@ -96,7 +96,7 @@ const D = __DATA__;
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const PAGES = [
-  ["overview", "Overview"], ["works", "How a lesson works"], ["model", "The data model"], ["curricula", "Curricula"],
+  ["overview", "Overview"], ["works", "How a lesson works"], ["model", "The data model"], ["rewards", "Stars and badges"], ["curricula", "Curricula"],
   ["types", "Task types"], ["components", "Components"], ["quality", "Quality and reviews"], ["rnd", "R&D"], ["where", "Where things live"],
 ];
 const subj = (c, d) => c.subjects?.[d] ?? d;
@@ -225,10 +225,10 @@ twist/               <i>the content</i>
     de-DE/klasse-1/math/count-to-5.yaml
     de-DE/lernjahr-1/fl/en-weather.yaml
   assets/            <i>pictures, drawn components, sounds, narration</i>
-  docs/              <i>lesson-anatomy.md, model.md, task-types.md</i>
+  docs/              <i>lesson-anatomy.md, model.md, rewards.md, task-types.md</i>
   views/             <i>generated: course-de-DE.md, tracking.md, coverage</i>
   frameworks/        <i>official standards, quoted</i>
-  pages/             <i>this site, the lesson player, the task-type page, the team handoff</i>
+  pages/             <i>this site, the lesson player, the task-type page, stars and badges, the team handoff</i>
 rnd/                 <i>research: captures, official documents, write-ups</i></div>
   <h2>Build and check</h2>
   <pre><code>node twist/build.mjs                 # check every record, write the views
@@ -240,6 +240,7 @@ node twist/pages/player/build.mjs    # the lesson player</code></pre>
 const RENDER = {
   overview, curricula, types, components, quality, rnd, where,
   works: () => docPage("How a lesson works", "From twist/docs/lesson-anatomy.md: the chain, how a skill is split into lessons, the four activities, tasks, the authoring checks and how mastery is decided.", D.anatomy),
+  rewards: () => docPage("Stars and badges", "From twist/docs/rewards.md: stars per skill from the mastery state, and every badge with its condition. The designed page is twist/pages/rewards/index.html.", D.rewards),
   model: () => docPage("The data model", "From twist/docs/model.md: the records, ids, domains, progressions, years, frameworks, placement and locale facets.", D.model),
 };
 let PAGE = (location.hash || "#overview").slice(1);

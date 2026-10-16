@@ -12,6 +12,7 @@ team turns the id into the file.
 | [objects.yaml](objects.yaml) | Objects, animals, food, people and places, one picture per concept; the pictures are in [objects/](objects/) | [tools/pictures.py](tools/pictures.py), checked by the design team |
 | [drawn.yaml](drawn.yaml) | Components the app draws from data: ten-frame, Zwanzigerfeld, number line, Rechenstrich, clock, coins, letter cards, writing lines, colour swatches | the app |
 | [sounds.yaml](sounds.yaml) | Phonemes and syllables per language, each with the text to say and a hand-written direction | spoken in the chosen voice by [tools/narration.py](tools/narration.py) |
+| [badges/](badges/) | The 32 badges of docs/rewards.md as SVG, each earned and gold | [tools/badges.mjs](tools/badges.mjs) |
 | [voices.yaml](voices.yaml), [phrases.yaml](phrases.yaml) | The voice's character brief and the pilot candidates; what the app says between tasks | hand-written |
 
 ## Rules
@@ -189,3 +190,26 @@ skateboard. `python tools/pictures.py --mascot` draws every pose in
 check, end; three each) and 24 topic poses for the lesson start, one per
 topic family (a clock for time, a beret for French). The task-screen
 mascot in pages/player/mascot.png is refs/standing.png.
+
+## Badges
+
+`badges/<id>.svg` is the earned badge, `badges/<id>.gold.svg` the gold one
+(every skill behind it mastered). The id is the English name in kebab case
+(`number-navigator`, `elephant-memory`). [tools/badges.mjs](tools/badges.mjs)
+draws them by hand-written SVG in the mascot's style: aubergine outline
+(#2B0A4F), the drawn.yaml palette with one darker tone, one white highlight,
+no text, 120 x 120.
+
+| Group | Frame | Colour |
+|---|---|---|
+| Strand, Maths | round medal with ribbon tails | blue |
+| Strand, Deutsch and English | round medal | red |
+| Strand, Englisch and French | round medal | green |
+| Milestones | shield | orange |
+| Remembering | hexagon | purple |
+| Streaks | rounded square | flame orange |
+| Effort and curiosity | rosette | pink |
+
+The app adds what the picture leaves out: the level or year as a chip
+below the badge, the name in the child's language, and the not-yet-earned
+look (the earned file greyed out at about 35% opacity).

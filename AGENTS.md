@@ -27,6 +27,8 @@ git repo kept separate from schoolido-learning.
     - types/: every task type with a screen; `node twist/pages/types/shots.cjs`
       (needs Playwright) retakes the shots. Keep it in step with
       twist/docs/task-types.md. A copy is published as a claude.ai artifact.
+    - rewards/: stars and badges, built from twist/docs/rewards.md by
+      `node twist/pages/rewards/build.mjs`; never edit index.html by hand.
     - handoff/: the handoff to the backend, mobile app and parent dashboard
       teams (IST-B2C/backend, ist-schoolido, IST-B2C/Parent-dashboard),
       written by hand; a copy is published as a claude.ai artifact. Update it

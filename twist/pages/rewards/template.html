@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twist Stars and Badges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Same type and tokens as the handoff page. Each badge group has its own medal colour. */
+:root{
+  --paper:#f7f8fb; --sheet:#ffffff; --ink:#1b2130; --muted:#5a6276; --rule:#dde1ea; --tint:#eef1f7;
+  --accent:#2a4bd1; --gold:#c99a1a; --gold-soft:#fbf1d3;
+  --strand:#2a4bd1; --strand-soft:#e3e8fb; --mile:#b8580b; --mile-soft:#fbecdd; --mem:#8a3fbf; --mem-soft:#f1e6fa;
+  --streak:#c4361e; --streak-soft:#fbe4de; --effort:#0f7f6e; --effort-soft:#ddf3ef;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12151d; --sheet:#181c26; --ink:#e6e9f1; --muted:#a2a9ba; --rule:#2c3242; --tint:#1f2431;
+  --accent:#8ea4ff; --gold:#e9c45c; --gold-soft:#3a2f12;
+  --strand:#8ea4ff; --strand-soft:#232b4d; --mile:#f1a866; --mile-soft:#3a2716; --mem:#cf9bf2; --mem-soft:#2f2140;
+  --streak:#f08c76; --streak-soft:#3d1f19; --effort:#5fd3c0; --effort-soft:#16332f;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12151d; --sheet:#181c26; --ink:#e6e9f1; --muted:#a2a9ba; --rule:#2c3242; --tint:#1f2431;
+  --accent:#8ea4ff; --gold:#e9c45c; --gold-soft:#3a2f12;
+  --strand:#8ea4ff; --strand-soft:#232b4d; --mile:#f1a866; --mile-soft:#3a2716; --mem:#cf9bf2; --mem-soft:#2f2140;
+  --streak:#f08c76; --streak-soft:#3d1f19; --effort:#5fd3c0; --effort-soft:#16332f;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15.5px/1.6 var(--f-body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:48px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.rail{display:none}}
+.rail{position:sticky;top:0;align-self:start;padding-top:40px;font-size:13.5px}
+.rail b{display:block;font:600 11px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rail a{color:var(--muted);text-decoration:none}.rail a:hover{color:var(--accent)}
+main{min-width:0}
+header.top{padding:48px 0 8px}
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+h1{font:750 clamp(32px,5vw,48px)/1.05 var(--f-display);margin:10px 0 14px;letter-spacing:-.01em}
+h2{font:700 26px/1.2 var(--f-display);margin:0 0 12px}
+h3.group{font:600 13px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.lede{max-width:68ch;color:var(--muted);font-size:17px}
+.lede p{margin:0 0 10px}
+.count{display:inline-block;margin-top:6px;font:600 13px/1 var(--f-mono);background:var(--tint);border-radius:999px;padding:7px 12px}
+section{margin-top:44px;max-width:900px}
+section > p, section > ul{max-width:70ch}
+ul{padding-left:20px}li{margin:4px 0}
+code{font:13.5px var(--f-mono);background:var(--tint);border-radius:4px;padding:1px 5px}
+
+.stars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 14px}
+@media (max-width:560px){.stars{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stars .step{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:14px;display:grid;gap:6px}
+.stars .row{font-size:24px;letter-spacing:2px;color:var(--rule)}
+.stars .row .on{color:var(--gold)}
+.stars b{font-weight:600;font-size:14px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.badge{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:14px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:center}
+.badge .pics{display:flex;align-items:flex-end;gap:2px}
+.badge .art{width:72px;height:72px}.badge .gold{width:30px;height:30px}
+.badge .names h4{margin:0;font:700 17px/1.2 var(--f-display)}
+.badge .names .de{margin:2px 0 0;color:var(--muted);font-size:14px}
+.badge dl{grid-column:1 / -1;margin:6px 0 0;display:grid;gap:4px;font-size:13.5px}
+.badge dl div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:8px}
+.badge dt{color:var(--muted)}.badge dd{margin:0;overflow-wrap:anywhere}
+.cat h2{display:flex;align-items:center;gap:10px}
+.cat h2::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c)}
+.cat.strand{--c:var(--strand)}.cat.mile{--c:var(--mile)}.cat.mem{--c:var(--mem)}.cat.streak{--c:var(--streak)}.cat.effort{--c:var(--effort)}
+
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:12px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;background:var(--tint)}tr:last-child td{border-bottom:0}
+.foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="rail" aria-label="Contents">
+  <b>Contents</b>
+  <ol>__NAV__</ol>
+</nav>
+<main>
+<header class="top">
+  <div class="eyebrow">Schoolido Twist · de-DE and en-GB</div>
+  <h1>Stars and badges</h1>
+  <div class="lede">__INTRO__</div>
+  <span class="count">__COUNT__ badges, each with English and German names</span>
+</header>
+__BODY__
+<p class="foot">Generated by twist/pages/rewards/build.mjs from twist/docs/rewards.md, __BUILT__. Mastery states are in twist/docs/lesson-anatomy.md.</p>
+</main>
+</div>
+</body>
+</html>
