@@ -415,13 +415,13 @@ child stands against what their year expects.
 | 2 | Learning | Lerne ich gerade | The child has started its lessons | Opening lesson 1 |
 | 3 | Practised | Geübt | The child finished the lessons but has not yet shown the skill reliably | Finishing the last lesson below the pass mark |
 | 4 | Secure | Kann ich | The child can do it now, without help | Passing the skill check, or a placement check |
-| 5 | Mastered | Kann ich sicher | The child can still do it later | Passing recaps on two days at least a week apart |
+| 5 | Mastered | Kann ich sicher | The child can still do it later | Passing the last spaced recap and one earlier one (see Recaps) |
 | 6 | Needs a recap | Wiederholen | A later recap was missed | Failing a recap of a secure or mastered skill |
 
 A child sees the states as stars on each "I can" skill; stars and badges
 are in rewards.md. `Needs a recap` puts the skill back into practice
-sessions; passing the next recap
-returns it to the state it had.
+sessions and warm-ups; passing the next recap returns it to the state it
+had.
 
 ### The skill check
 
@@ -432,20 +432,53 @@ returns it to the state it had.
   of the skill answered correctly at least once in its lessons.
 - If the child does not pass, the skill stays at `Practised`. The app
   offers one short extra lesson (Learn again in a different way, then
-  Practise with full support) and a new skill check with different tasks. A child is
-  never asked to repeat all the lessons.
+  Practise with full support) and a new skill check with different tasks.
+  Each skill has one written skill check, so the new one is drawn from the
+  skill's no-help Practise tasks. A child is never asked to repeat all the
+  lessons.
 
 ### Recaps: from secure to mastered
 
-Remembering later is the real aim, so `Secure` is not the end.
+Remembering later is the real aim, so `Secure` is not the end. Children
+of 4 to 10 forget quickly and need the reward close to the effort, so the
+gaps are shorter for the youngest.
 
-- Recaps come back in practice sessions and topic recaps, spaced out: about
-  2 days, 1 week, 3 weeks and 2 months after the skill became secure.
-- A recap of one skill is 2 or 3 tasks, mixed with tasks from other skills.
-- Mastered: the skill was secure, and the child passed recaps on two
-  different days at least a week apart.
-- A failed recap (fewer than 2 of 3, or 1 of 2) sets `Needs a recap` and
-  brings the next recap closer.
+| Ages | Recaps after the skill became secure | Mastered when | 3rd star after about |
+|---|---|---|---|
+| 4 to 5 | 1 day, 4 days, 10 days | The 10-day recap and one earlier recap are passed | 1.5 weeks |
+| 6 to 7 | 2 days, 1 week, 2 weeks | The 2-week recap and one earlier recap are passed | 2 weeks |
+| 8 to 10 | 2 days, 1 week, 3 weeks | The 3-week recap and one earlier recap are passed | 3 to 4 weeks |
+
+- A recap of one skill is 2 tasks for ages 4 to 5 and 2 or 3 from age 6,
+  never a test of its own. Pass: 2 of 2, or 2 of 3.
+- **Where a recap comes back.** In order:
+  1. **Warm-up of a later lesson.** When a lesson with a warm-up from
+     earlier skills starts and one of its `builds_on` skills has a recap
+     due or is at `Needs a recap`, the app fills the warm-up with that
+     skill's recap tasks in place of the written ones. With nothing due, the
+     written warm-up plays. Warm-ups from the last lesson are never
+     replaced. About two thirds of the skills are built on by a later one
+     (292 of 435 in de-DE, 328 of 483 in en-GB), so most recaps can arrive
+     inside a normal lesson.
+  2. **Practice session or topic recap.** Due recaps not taken by a warm-up
+     are mixed into the next practice session. After a lesson, the app
+     offers a short session when a recap is overdue; it never blocks
+     anything. Skills nothing builds on, and ages 4 to 5 (no warm-up),
+     rely on this.
+- **When a recap counts.** It counts as the scheduled recap once at least
+  80% of its gap has passed (day 6 of a 1-week gap, not day 2). An earlier
+  answer still counts as evidence, but does not move the schedule.
+- **Recap tasks.** The skill's no-help Practise tasks and check tasks
+  (about 18 a skill), the least recently seen first, never the tasks of the
+  child's last skill check, options shuffled each time. Every lesson task
+  has been seen once, so a recap reuses tasks from days before.
+- **Upkeep.** One more recap 2 months after `Mastered`; later, the
+  start-of-year check covers last year's skills.
+- A failed recap sets `Needs a recap`, keeps the stars, and brings the next
+  recap closer. Passing that one restores the earlier state.
+- Timed skills (facts to know by heart) need the time target in their
+  recaps too. So far one skill has a timed check (Klasse 1
+  `fluency-to-20`).
 
 ### Placement checks: where a child really is
 
@@ -482,8 +515,8 @@ not have to sit through skills they already know.
 | Counts | Does not count |
 |---|---|
 | Skill checks, first try | Quick checks at the end of a lesson |
-| Warm-up tasks that recall earlier skills, after the skill is secure | Practise tasks inside lessons |
-| Recaps in practice sessions | Answers shown after two misses |
+| Warm-up tasks that recall earlier skills, after the skill is secure (as a recap once due) | Practise tasks inside lessons |
+| Recaps in warm-ups, practice sessions and topic recaps | Answers shown after two misses |
 | Placement checks; start-of-year and end-of-year checks | Speed, except in a timed skill check |
 
 Skills that are facts to know by heart (number bonds, times tables,
@@ -494,7 +527,7 @@ task for the child's age.
 
 | English | Deutsch | What it is |
 |---|---|---|
-| Practice session | Übungsrunde | About 14 tasks of one skill, or a mix of due recaps |
+| Practice session | Übungsrunde | About 14 tasks of one skill, or a mix of the recaps due and not yet taken by a warm-up |
 | Topic recap | Themenwiederholung | Mixed tasks from all skills of a topic |
 | Placement check | Einstufung | Finds the child's level in one learning progression |
 | Start-of-year and end-of-year check | Eingangs- und Abschlusscheck | A check across the year's skills, for the whole subject |
@@ -502,6 +535,7 @@ task for the child's age.
 ### Numbers to tune
 
 All thresholds above are starting values: skill check length, pass mark,
-recap spacing, the mastered rule, the placement rule and the time targets.
+recap spacing per age, the mastered rule, the 80% window, the placement
+rule and the time targets.
 They are set per age in the app's configuration, not in the content, and
 should be adjusted from real data once children use the app.

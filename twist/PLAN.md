@@ -672,7 +672,8 @@ rnd/gap-status.md; stars and badges are in docs/rewards.md.
 | G4 | English spelling and grammar | Year 2 appendix patterns, homographs, sayings and expressions, reflexive and indefinite pronouns, capitals to lower case, word-list drill sets |
 | G5 | Phonics and punctuation review | Cumulative phonics reviews and mixed punctuation sets, as practice sessions |
 | G6 | SATs-style practice | KS1 and KS2 mixed papers for en-GB, as a check form, not as skills |
-| G7 | Fluency | Timed reading for en-GB, like Blitzlesen in de-DE |
+| G7 | Fluency and timed checks | Timed reading for en-GB, like Blitzlesen in de-DE. Only one skill has a timed check today (Klasse 1 `fluency-to-20`); times tables in both curricula (England has a statutory Year 4 check), number bonds and Blitzlesen need one, since their Mastered state needs the time target |
 | G8 | Research site | The Gaps tab still shows the 2026-10-07 comparison against the old catalogue. Show rnd/gap-status.md next to it, and mark german-insight.md as describing the old catalogue |
 | G9 | Rewards in the library | The strand-to-area mapping from docs/rewards.md as data the backend can import |
 | G10 | Foreign languages | Compare Englisch (de-DE) and French (en-GB) with a foreign-language course; nothing has been compared yet |
+| G11 | Recap-only tasks | Recaps reuse lesson tasks the child has seen. About 6 hand-written recap tasks per skill (about 5,500) give unseen ones; not needed to launch |

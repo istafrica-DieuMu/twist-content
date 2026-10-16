@@ -18,6 +18,14 @@ Each skill shows 0 to 3 stars, set by its mastery state, never by a score.
 | 2 | Secure |
 | 3 | Mastered |
 
+The 3rd star comes when the skill's spaced recaps are passed, about 1.5
+weeks after `Secure` for ages 4 to 5, 2 weeks for ages 6 to 7 and 3 to 4
+weeks for ages 8 to 10 (lesson-anatomy.md, Recaps). Most recaps arrive as
+the warm-up of a later lesson, so the mascot simply brings an old skill back
+("Weißt du das noch?" / "Do you still know this?"). Until then the 3rd star
+shows empty and fills a little each day; from age 8 it also says when the
+skill comes back.
+
 `Needs a recap` keeps the stars and adds a refresh mark. Stars are never
 taken away. Practise tasks inside lessons and practice sessions earn no
 stars; the end of a practice session shows what was done ("3 recaps done").

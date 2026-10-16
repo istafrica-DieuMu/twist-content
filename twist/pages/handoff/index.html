@@ -131,7 +131,7 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
   <p class="lede">The new curriculum model from R&amp;D, and what it asks of the backend API (IST-B2C/backend), the mobile app (ist-schoolido) and the parent dashboard (IST-B2C/Parent-dashboard).</p>
   <div class="meta">
     <span>Source <b>rnd repo, branch <code>main</code>, folder <code>twist/</code></b></span>
-    <span>Written <b>13 October 2026</b>, updated <b>16 October 2026</b></span>
+    <span>Written <b>13 October 2026</b>, updated <b>16 October 2026</b> (recaps)</span>
     <span>Content status <b>every placed skill drafted; model-reviewed, not yet teacher-reviewed</b></span>
   </div>
 </header>
@@ -278,7 +278,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <tr><td class="k">learning</td><td>Learning</td><td>Lerne ich gerade</td><td>Opening lesson 1</td></tr>
     <tr><td class="k">practised</td><td>Practised</td><td>Geübt</td><td>Finishing the last lesson below the pass mark</td></tr>
     <tr><td class="k">secure</td><td>Secure</td><td>Kann ich</td><td>Passing the skill check, or a placement check</td></tr>
-    <tr><td class="k">mastered</td><td>Mastered</td><td>Kann ich sicher</td><td>Secure, then recaps passed on two days at least a week apart</td></tr>
+    <tr><td class="k">mastered</td><td>Mastered</td><td>Kann ich sicher</td><td>Secure, then the last spaced recap and one earlier recap passed (gaps by age, below)</td></tr>
     <tr><td class="k">needs_recap</td><td>Needs a recap</td><td>Wiederholen</td><td>Failing a recap of a secure or mastered skill. Passing the next recap restores the earlier state.</td></tr>
   </table></div>
   <p>The keys in the first column (<code>not_started</code>, <code>needs_recap</code> and so on) are a proposal for the API, made for this handoff. <code>twist/docs/lesson-anatomy.md</code> names the states in English and German but sets no keys.</p>
@@ -287,13 +287,22 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <ul class="plain">
     <li>5 tasks for ages 6 and up, 4 for ages 4 to 5, covering every part of the skill. No hints, first try only, a shown answer counts as wrong.</li>
     <li>Pass: at least 4 of 5 (3 of 4 for ages 4 to 5), and every core task of the skill answered correctly at least once in its lessons.</li>
-    <li>On a fail the skill stays Practised. The app offers one short extra lesson (Learn in a different way, then Practise with full support) and a new skill check with different tasks. The child never repeats all the lessons.</li>
+    <li>On a fail the skill stays Practised. The app offers one short extra lesson (Learn in a different way, then Practise with full support) and a new skill check with different tasks, drawn from the skill's no-help Practise tasks (each skill has one written skill check). The child never repeats all the lessons.</li>
   </ul>
 
   <h3>Recaps</h3>
+  <div class="tbl"><table>
+    <tr><th>Ages</th><th>Recaps after secure</th><th>Mastered when</th></tr>
+    <tr><td>4 to 5</td><td>1 day, 4 days, 10 days</td><td>10-day recap and one earlier recap passed</td></tr>
+    <tr><td>6 to 7</td><td>2 days, 1 week, 2 weeks</td><td>2-week recap and one earlier recap passed</td></tr>
+    <tr><td>8 to 10</td><td>2 days, 1 week, 3 weeks</td><td>3-week recap and one earlier recap passed</td></tr>
+  </table></div>
   <ul class="plain">
-    <li>Spaced about 2 days, 1 week, 3 weeks and 2 months after the skill became secure. Today the backend has one rule: modules completed more than 7 days ago get a recommendation.</li>
-    <li>A recap is 2 or 3 tasks of one skill, mixed into a practice session with other skills. Fewer than 2 of 3 (or 1 of 2) sets Needs a recap and brings the next recap closer.</li>
+    <li>A recap is 2 tasks (ages 4 to 5) or 2 or 3 tasks of one skill; pass 2 of 2 or 2 of 3. A fail sets needs_recap, keeps the stars and brings the next recap closer. Upkeep: one more recap 2 months after mastered. Today the backend has one rule: modules completed more than 7 days ago get a recommendation.</li>
+    <li><b>Warm-up first.</b> When a lesson whose warm-up is <code>from: earlier-skills</code> starts and a <code>builds_on</code> skill has a recap due or is needs_recap, the warm-up plays that skill's recap tasks in place of the written ones. With nothing due, the written warm-up plays. <code>from: last-lesson</code> warm-ups are never replaced. About two thirds of skills are built on by a later one.</li>
+    <li><b>Then practice sessions.</b> Due recaps not taken by a warm-up go into the next practice session or topic recap. After a lesson, offer a short session when a recap is overdue; never block.</li>
+    <li><b>Counts as the recap</b> once 80% of its gap has passed; earlier answers are evidence only.</li>
+    <li><b>Recap tasks</b> come from the skill's no-help Practise and check tasks (about 18), least recently seen first, never the child's last skill-check tasks, options shuffled.</li>
   </ul>
 
   <h3>Placement check (Einstufung)</h3>
@@ -314,8 +323,8 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <div class="tbl"><table>
     <tr><th>Counts</th><th>Does not count</th></tr>
     <tr><td>Skill checks, first try</td><td>Quick checks at the end of a lesson</td></tr>
-    <tr><td>Warm-up tasks that recall a skill already secure</td><td>Practise tasks inside lessons</td></tr>
-    <tr><td>Recaps in practice sessions</td><td>Answers shown after two misses</td></tr>
+    <tr><td>Warm-up tasks that recall a skill already secure (as its recap once due)</td><td>Practise tasks inside lessons</td></tr>
+    <tr><td>Recaps in warm-ups, practice sessions and topic recaps</td><td>Answers shown after two misses</td></tr>
     <tr><td>Placement checks; start-of-year and end-of-year checks</td><td>Speed, except in a timed skill check</td></tr>
   </table></div>
   <p>Practice outside lessons comes in four forms: a practice session (about 14 tasks of one skill or a mix of due recaps), a topic recap, a placement check, and a start-of-year or end-of-year check across the whole subject.</p>
@@ -598,7 +607,8 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Assets</b><p>Resolve bank ids to URLs: pictures and colour versions, mascot poses, sounds, narration clips per task line, option, hint, phrase and dialogue turn, and per voice (two per curriculum, picked by activity or by <code>speaker</code>). A clip is found by its spoken line, after the <code>spoken()</code> rule in <code>narration.py</code>.</p></li>
     <li><b>Answer events</b><p>Record per task: first try right or wrong, hints opened, answer shown, activity, stage, check size, time. Mastery is computed from these, using the "what counts" table.</p></li>
     <li><b>Skill mastery</b><p>A table per child and skill: state, when it became secure, recap schedule and results. Module stars are replaced by 0 to 3 stars per skill from its state (see Stars and badges).</p></li>
-    <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with spacing at about 2 days, 1 week, 3 weeks and 2 months; failed recaps set needs_recap. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
+    <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with the recap schedule per age band (above); failed recaps set needs_recap. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
+    <li><b>Recaps in warm-ups</b><p>When a lesson starts, return the due recaps of its <code>builds_on</code> skills with recap tasks picked as above, so the app can fill an <code>earlier-skills</code> warm-up. Record a warm-up answer as a recap once 80% of the gap has passed.</p></li>
     <li><b>Stars and badges</b><p>Stars per skill from the mastery state. A badge table per child (badge id, level, gold, earned at), awarded from mastery changes, finished sessions and checks. Streaks count school days, which needs a holiday calendar per region. Serve badges to the app and the dashboard.</p></li>
     <li><b>Placement check</b><p>An adaptive endpoint per learning progression that writes Secure for passed skills and returns the next skill to learn.</p></li>
     <li><b>Next and standing</b><p>Suggest the next skill from prerequisites at least Practised. Compute standing per subject for the dashboard, which needs a school-year start date per curriculum. Keep thresholds in configuration per age.</p></li>
@@ -617,7 +627,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Feedback and audio</b><p>Per-option feedback, a speaker on each option following the option-audio rules, the second voice in Checks, phrases between tasks, a character's line in the voice its <code>speaker</code> names, and dialogue turns played in order. Any text-to-speech the app does itself follows the <code>spoken()</code> rule.</p></li>
     <li><b>Stars and badges</b><p>Stars on each skill, a badge screen with levels and gold, a moment when a badge is earned, and the current and best streak.</p></li>
     <li><b>Smaller additions</b><p>The four <code>text_input</code> keyboards; passages for texts with line breaks; mascot intro screens; <code>metadata.dashes</code>; crossed pictures; joined writing lines in the school's script; <code>show.flash</code> with "See it again"; tracing copy mode, writing lines and the numeral 10; tap_to_count with any bank picture; counted groups and dot patterns as options in image_multiple_choice and ordering; two pictures side by side in <code>show</code>.</p></li>
-    <li><b>Child profile and next</b><p>Store curriculum, year and age band; take the content language from the curriculum instead of the device locale. Suggest the next skill and, for skills with more than two lessons, the next lesson on a later day. Add practice sessions, topic recaps and the placement check.</p></li>
+    <li><b>Child profile and next</b><p>Store curriculum, year and age band; take the content language from the curriculum instead of the device locale. Suggest the next skill and, for skills with more than two lessons, the next lesson on a later day. Add practice sessions, topic recaps and the placement check. Fill an <code>earlier-skills</code> warm-up with the due recaps the backend returns, and offer a short session after a lesson when a recap is overdue.</p></li>
   </ol>
 </section>
 
