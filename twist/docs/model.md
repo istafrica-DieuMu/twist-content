@@ -68,7 +68,7 @@ lesson and check with one or two items. Each skill has:
   statement is the one German children and teachers read; the English one is
   for the team and for England. For `lit-de` the German is primary; for
   `lit-en` the English is.
-- `prerequisites.hard`: skills that must be secure first. Can cross
+- `prerequisites.hard`: skills that must be at `Can do it` first. Can cross
   progressions and domains.
 - `prerequisites.soft`: skills that help but do not block.
 - `topic`: the child-facing section label, in German and English. Skills

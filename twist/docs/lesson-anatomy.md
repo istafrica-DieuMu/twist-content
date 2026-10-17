@@ -1,7 +1,7 @@
 # Lesson anatomy
 
 How Twist content is organised, from a whole curriculum down to a single
-task, and how the app decides that a child has mastered a skill. Decided
+task, and how the app decides that a child can do a skill and still remembers it. Decided
 2026-10-12. The data model behind it is in [model.md](model.md).
 
 > Grade determines curriculum expectations, proficiency determines learning
@@ -409,17 +409,21 @@ child stands against what their year expects.
 
 ### States
 
-| State | English | Deutsch | Means | Reached by |
-|---|---|---|---|---|
-| 1 | Not started | Noch nicht begonnen | No evidence yet | |
-| 2 | Learning | Lerne ich gerade | The child has started its lessons | Opening lesson 1 |
-| 3 | Practised | Geübt | The child finished the lessons but has not yet shown the skill reliably | Finishing the last lesson below the pass mark |
-| 4 | Secure | Kann ich | The child can do it now, without help | Passing the skill check, or a placement check |
-| 5 | Mastered | Kann ich sicher | The child can still do it later | Passing the last spaced recap and one earlier one (see Recaps) |
-| 6 | Needs a recap | Wiederholen | A later recap was missed | Failing a recap of a secure or mastered skill |
+| # | API key | Child sees | Kind sieht | Parent sees | Eltern sehen | Means | Reached by |
+|---|---|---|---|---|---|---|---|
+| 1 | `not_started` | Not started | Noch nicht begonnen | Not started | Noch nicht begonnen | No evidence yet | |
+| 2 | `learning` | Learning it | Lerne ich gerade | Learning | Lernt gerade | The child has started its lessons | Opening lesson 1 |
+| 3 | `practised` | Practised | Geübt | Practised | Geübt | The child finished the lessons but has not yet shown the skill reliably | Finishing the last lesson below the pass mark |
+| 4 | `can_do` | I can do it | Kann ich | Can do it | Kann es | The child can do it now, without help | Passing the skill check, or a placement check |
+| 5 | `remembered` | I still know it | Kann ich sicher | Remembers it | Kann es sicher | The child can still do it weeks later | Passing the last spaced recap and one earlier one (see Recaps) |
+| 6 | `needs_refresh` | Let's practise again | Nochmal üben | Needs a refresh | Auffrischen | A later recap was missed | Failing a recap of a skill at `Can do it` or `Remembers it` |
+
+The child sees "I" statements that match each skill's "I can ..." line;
+parents see the same idea in the third person. The docs use the parent
+labels (`Can do it`, `Remembers it`, `Needs a refresh`).
 
 A child sees the states as stars on each "I can" skill; stars and badges
-are in rewards.md. `Needs a recap` puts the skill back into practice
+are in rewards.md. `Needs a refresh` puts the skill back into practice
 sessions and warm-ups; passing the next recap returns it to the state it
 had.
 
@@ -437,13 +441,13 @@ had.
   skill's no-help Practise tasks. A child is never asked to repeat all the
   lessons.
 
-### Recaps: from secure to mastered
+### Recaps: from Can do it to Remembers it
 
-Remembering later is the real aim, so `Secure` is not the end. Children
+Remembering later is the real aim, so `Can do it` is not the end. Children
 of 4 to 10 forget quickly and need the reward close to the effort, so the
 gaps are shorter for the youngest.
 
-| Ages | Recaps after the skill became secure | Mastered when | 3rd star after about |
+| Ages | Recaps after the skill reached Can do it | Remembers it when | 3rd star after about |
 |---|---|---|---|
 | 4 to 5 | 1 day, 4 days, 10 days | The 10-day recap and one earlier recap are passed | 1.5 weeks |
 | 6 to 7 | 2 days, 1 week, 2 weeks | The 2-week recap and one earlier recap are passed | 2 weeks |
@@ -454,7 +458,7 @@ gaps are shorter for the youngest.
 - **Where a recap comes back.** In order:
   1. **Warm-up of a later lesson.** When a lesson with a warm-up from
      earlier skills starts and one of its `builds_on` skills has a recap
-     due or is at `Needs a recap`, the app fills the warm-up with that
+     due or is at `Needs a refresh`, the app fills the warm-up with that
      skill's recap tasks in place of the written ones. With nothing due, the
      written warm-up plays. Warm-ups from the last lesson are never
      replaced. About two thirds of the skills are built on by a later one
@@ -472,9 +476,9 @@ gaps are shorter for the youngest.
   (about 18 a skill), the least recently seen first, never the tasks of the
   child's last skill check, options shuffled each time. Every lesson task
   has been seen once, so a recap reuses tasks from days before.
-- **Upkeep.** One more recap 2 months after `Mastered`; later, the
+- **Upkeep.** One more recap 2 months after `Remembers it`; later, the
   start-of-year check covers last year's skills.
-- A failed recap sets `Needs a recap`, keeps the stars, and brings the next
+- A failed recap sets `Needs a refresh`, keeps the stars, and brings the next
   recap closer. Passing that one restores the earlier state.
 - Timed skills (facts to know by heart) need the time target in their
   recaps too. So far one skill has a timed check (Klasse 1
@@ -489,24 +493,24 @@ not have to sit through skills they already know.
   tasks per skill, starting at what the child's year expects and
   moving up after success and down after mistakes, until it finds the edge.
 - A skill passed in a placement check (2 of 2, or 1 of 1 for ages 4 to 5)
-  becomes `Secure`, and its first recap is scheduled. Skills it builds on in
-  the same progression count as secure too.
+  becomes `Can do it`, and its first recap is scheduled. Skills it builds on
+  in the same progression count as `Can do it` too.
 - The first skill the child misses becomes the next one to learn.
 
 ### What a skill needs first, and access
 
 - A skill is suggested when every skill it builds on is at least
   `Practised`.
-- A child can still open any skill. If something it builds on is not secure,
+- A child can still open any skill. If something it builds on is not yet at `Can do it`,
   its first lesson starts with a short recap of that.
 
 ### Level and standing
 
 - **Level** in a learning progression: the furthest skill the child has
-  reached with everything it builds on secure. This is where the child
+  reached with everything it builds on at `Can do it` or better. This is where the child
   works in that progression.
 - **Standing** in a subject, shown to parents: the share of the skills in
-  the child's year that are secure or mastered, compared with how far the
+  the child's year at `Can do it` or `Remembers it`, compared with how far the
   school year has run. Shown as ahead, on track or catching up. It never
   blocks the child.
 
@@ -515,7 +519,7 @@ not have to sit through skills they already know.
 | Counts | Does not count |
 |---|---|
 | Skill checks, first try | Quick checks at the end of a lesson |
-| Warm-up tasks that recall earlier skills, after the skill is secure (as a recap once due) | Practise tasks inside lessons |
+| Warm-up tasks that recall earlier skills, once the skill is at `Can do it` (as a recap once due) | Practise tasks inside lessons |
 | Recaps in warm-ups, practice sessions and topic recaps | Answers shown after two misses |
 | Placement checks; start-of-year and end-of-year checks | Speed, except in a timed skill check |
 
@@ -535,7 +539,7 @@ task for the child's age.
 ### Numbers to tune
 
 All thresholds above are starting values: skill check length, pass mark,
-recap spacing per age, the mastered rule, the 80% window, the placement
+recap spacing per age, the Remembers it rule, the 80% window, the placement
 rule and the time targets.
 They are set per age in the app's configuration, not in the content, and
 should be adjusted from real data once children use the app.

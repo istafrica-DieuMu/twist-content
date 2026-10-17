@@ -57,7 +57,7 @@ from their age. These are three separate fields, never one.
 - Lesson anatomy decided (docs/lesson-anatomy.md): a lesson teaches one
   step over 2 to 6 short parts; activity sequences vary by subject and step
   size; items are hand-authored; mastery runs not started, learning,
-  practised, secure, mastered, with delayed reviews and diagnostics.
+  practised, can do it, remembers it, with delayed reviews and diagnostics.
 - Names settled: Curriculum, Subject, Year, Topic, Skill, Lesson,
   Activity, Task; four activities (Warm-up, Learn, Practise, Check) with
   settings. Record fields and folders renamed to match (curricula/, years/,
@@ -115,7 +115,7 @@ Each domain is a set of **progressions** (for example `math.place-value`,
 `lit-de.spelling-strategies`, `fl.speaking`), and each progression is an
 ordered list of **steps**. A step is one observable can-do statement, small
 enough for one lesson and one diagnostic check. Steps carry typed
-prerequisites: `hard` (must be secure first) and `soft` (helps).
+prerequisites: `hard` (must be at Can do it first) and `soft` (helps).
 
 Proficiency is a learner's position on a progression. A child can sit at
 different steps in different progressions, and can move ahead of their
@@ -672,7 +672,7 @@ rnd/gap-status.md; stars and badges are in docs/rewards.md.
 | G4 | English spelling and grammar | Year 2 appendix patterns, homographs, sayings and expressions, reflexive and indefinite pronouns, capitals to lower case, word-list drill sets |
 | G5 | Phonics and punctuation review | Cumulative phonics reviews and mixed punctuation sets, as practice sessions |
 | G6 | SATs-style practice | KS1 and KS2 mixed papers for en-GB, as a check form, not as skills |
-| G7 | Fluency and timed checks | Timed reading for en-GB, like Blitzlesen in de-DE. Only one skill has a timed check today (Klasse 1 `fluency-to-20`); times tables in both curricula (England has a statutory Year 4 check), number bonds and Blitzlesen need one, since their Mastered state needs the time target |
+| G7 | Fluency and timed checks | Timed reading for en-GB, like Blitzlesen in de-DE. Only one skill has a timed check today (Klasse 1 `fluency-to-20`); times tables in both curricula (England has a statutory Year 4 check), number bonds and Blitzlesen need one, since their Remembers it state needs the time target |
 | G8 | Research site | The Gaps tab still shows the 2026-10-07 comparison against the old catalogue. Show rnd/gap-status.md next to it, and mark german-insight.md as describing the old catalogue |
 | G9 | Rewards in the library | The strand-to-area mapping from docs/rewards.md as data the backend can import |
 | G10 | Foreign languages | Compare Englisch (de-DE) and French (en-GB) with a foreign-language course; nothing has been compared yet |

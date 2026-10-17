@@ -142,11 +142,11 @@ ul.plain{padding-left:20px;margin:0 0 14px;display:grid;gap:6px;max-width:80ch}
     <li><b>New chain.</b> Grade, Subject, Unit, Lesson, Module, Step, Question becomes <b>Curriculum, Subject, Year, Topic, Skill, Lesson, Activity, Task</b>. The skill becomes the unit of progress: mastery, recaps, placement and parent reporting all count skills, not modules.</li>
     <li><b>Two curricula, one shared skill library.</b> de-DE (KMK Bildungsstandards) and en-GB (EYFS and the National Curriculum in England), built from 7 official documents and 697 quoted standards. de-DE places 435 skills, en-GB 483, and 257 skills are shared between them.</li>
     <li><b>Three fields where there is one today.</b> Year sets what the curriculum expects, the child's level on each learning progression sets where they work, and age sets how a lesson looks. Today one integer <code>gradeLevel</code> does all three.</li>
-    <li><b>Every lesson has the same four activities.</b> Warm-up, Learn, Practise (three stages with hints fading from 3 to 1 to none) and Check. A skill is secure after a 4-of-5 skill check and mastered after spaced recaps; there are six states.</li>
+    <li><b>Every lesson has the same four activities.</b> Warm-up, Learn, Practise (three stages with hints fading from 3 to 1 to none) and Check. A skill reaches Can do it after a 4-of-5 skill check and Remembers it after spaced recaps; there are six states.</li>
     <li><b>All of it is drafted.</b> Every placed skill in both curricula has a lesson set: 918 lesson sets, 1,892 lessons and 40,180 tasks (de-DE 435 sets and 19,503 tasks, en-GB 483 sets and 20,677 tasks). Model agents have reviewed every set; no teacher has yet.</li>
     <li><b>Player.</b> The tasks use 17 task types. At the 13 October read of the app, 10 of them render. <code>audio_choice</code>, <code>sorting</code> and <code>speak</code> have components that the question mapper drops. <code>highlight_in_text</code>, <code>drag_and_drop_count</code>, <code>clock_hands_drag</code> and <code>point_on_grid</code> have no component. <code>text_input</code> now has four keyboards (digits, decimal, fraction, letters). 37 drawn components (dots, ten-frame, clock, coins, protractor, coordinates, bar chart …) are drawn from data; the app draws only the number line.</li>
     <li><b>Audio.</b> A character's line names <code>speaker: male</code> or <code>female</code> and a dialogue is a list of <code>turns</code>, each in its speaker's voice. The voice reads maths symbols as words (7/5 as "7 fifths", −4 as "negative 4"); any text-to-speech or clip lookup in the app must use the same spoken form.</li>
-    <li><b>Dashboard.</b> Grade pills (Pre-K, Grade 1 to 12) become curriculum plus year (Klasse 1 to 4, Reception and Year 1 to 6), with a foreign-language learning year. Module-percentage status ("On track", "Gap identified", "Week behind") becomes standing per subject (ahead, on track, catching up) from secure skills, plus a skill list with states. 18 skills are enrichment (no standard of the curriculum asks for them) and can be shown as "extra".</li>
+    <li><b>Dashboard.</b> Grade pills (Pre-K, Grade 1 to 12) become curriculum plus year (Klasse 1 to 4, Reception and Year 1 to 6), with a foreign-language learning year. Module-percentage status ("On track", "Gap identified", "Week behind") becomes standing per subject (ahead, on track, catching up) from skills at Can do it, plus a skill list with states. 18 skills are enrichment (no standard of the curriculum asks for them) and can be shown as "extra".</li>
     <li><b>Content source.</b> Lessons are hand-written YAML records that point at an asset bank by id. No converter to the backend importer's JSON exists yet, and the importer today turns any unknown task type into <code>multiple_choice</code> without failing.</li>
   </ul>
   <div class="teams">
@@ -237,7 +237,7 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <h3>The four activities</h3>
   <div class="tbl"><table>
     <tr><th>Activity</th><th>Child sees (en / de)</th><th>Settings</th><th>Scored</th></tr>
-    <tr><td><b>Warm-up</b></td><td>Warm up / Aufwärmen</td><td><code>from: earlier-skills</code> or <code>from: last-lesson</code>. Draws only on prerequisites. Left out of the first lesson of a topic and for ages 4 to 5.</td><td>Yes; counts for mastery only once the recalled skill is secure</td></tr>
+    <tr><td><b>Warm-up</b></td><td>Warm up / Aufwärmen</td><td><code>from: earlier-skills</code> or <code>from: last-lesson</code>. Draws only on prerequisites. Left out of the first lesson of a topic and for ages 4 to 5.</td><td>Yes; counts for mastery only once the recalled skill is at Can do it</td></tr>
     <tr><td><b>Learn</b></td><td>Learn / Entdecken</td><td><code>mode</code>: worked-examples, demonstration, model-text, new-sound, new-word, do-it-with-me. Screens of text, spoken line, picture or drawn component, sound.</td><td>No</td></tr>
     <tr><td><b>Practise</b></td><td>Practise / Üben</td><td>Always three stages in order, 5 or 6 tasks each. <code>setting</code>: plain or in-context (word problem, sentence, speaking), for the whole activity or one stage.</td><td>No</td></tr>
     <tr><td><b>Check</b></td><td>Show what you know / Zeig, was du kannst</td><td><code>size</code>: quick (3 tasks), skill (4 or 5, last lesson only), timed (skill check with a time per task)</td><td>Skill and timed checks count</td></tr>
@@ -273,15 +273,15 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <h2>Mastery and what comes next</h2>
   <p>Mastery is stored per child and per skill. Today the backend stores status and 0 to 3 stars per module from the score percentage (<code>EnumStudentModuleStatus</code>), and the app passes a step at 50 % correct.</p>
   <div class="tbl"><table>
-    <tr><th>State</th><th>English</th><th>Deutsch</th><th>Reached by</th></tr>
-    <tr><td class="k">not_started</td><td>Not started</td><td>Noch nicht begonnen</td><td>No evidence yet</td></tr>
-    <tr><td class="k">learning</td><td>Learning</td><td>Lerne ich gerade</td><td>Opening lesson 1</td></tr>
-    <tr><td class="k">practised</td><td>Practised</td><td>Geübt</td><td>Finishing the last lesson below the pass mark</td></tr>
-    <tr><td class="k">secure</td><td>Secure</td><td>Kann ich</td><td>Passing the skill check, or a placement check</td></tr>
-    <tr><td class="k">mastered</td><td>Mastered</td><td>Kann ich sicher</td><td>Secure, then the last spaced recap and one earlier recap passed (gaps by age, below)</td></tr>
-    <tr><td class="k">needs_recap</td><td>Needs a recap</td><td>Wiederholen</td><td>Failing a recap of a secure or mastered skill. Passing the next recap restores the earlier state.</td></tr>
+    <tr><th>API key</th><th>Child sees (EN / DE)</th><th>Parent sees (EN / DE)</th><th>Reached by</th></tr>
+    <tr><td class="k">not_started</td><td>Not started / Noch nicht begonnen</td><td>Not started / Noch nicht begonnen</td><td>No evidence yet</td></tr>
+    <tr><td class="k">learning</td><td>Learning it / Lerne ich gerade</td><td>Learning / Lernt gerade</td><td>Opening lesson 1</td></tr>
+    <tr><td class="k">practised</td><td>Practised / Geübt</td><td>Practised / Geübt</td><td>Finishing the last lesson below the pass mark</td></tr>
+    <tr><td class="k">can_do</td><td>I can do it / Kann ich</td><td>Can do it / Kann es</td><td>Passing the skill check, or a placement check</td></tr>
+    <tr><td class="k">remembered</td><td>I still know it / Kann ich sicher</td><td>Remembers it / Kann es sicher</td><td>can_do, then the last spaced recap and one earlier recap passed (gaps by age, below)</td></tr>
+    <tr><td class="k">needs_refresh</td><td>Let's practise again / Nochmal üben</td><td>Needs a refresh / Auffrischen</td><td>Failing a recap of a can_do or remembered skill. Passing the next recap restores the earlier state.</td></tr>
   </table></div>
-  <p>The keys in the first column (<code>not_started</code>, <code>needs_recap</code> and so on) are a proposal for the API, made for this handoff. <code>twist/docs/lesson-anatomy.md</code> names the states in English and German but sets no keys.</p>
+  <p>The keys in the first column (<code>not_started</code>, <code>can_do</code>, <code>remembered</code>, <code>needs_refresh</code> and so on) are the API keys, also in <code>twist/docs/lesson-anatomy.md</code>. The child sees "I" statements that match each skill's "I can ..." line; parents see the third person. Earlier drafts of this page called them secure, mastered and needs_recap.</p>
 
   <h3>Skill check</h3>
   <ul class="plain">
@@ -292,14 +292,14 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
 
   <h3>Recaps</h3>
   <div class="tbl"><table>
-    <tr><th>Ages</th><th>Recaps after secure</th><th>Mastered when</th></tr>
+    <tr><th>Ages</th><th>Recaps after can_do</th><th>remembered when</th></tr>
     <tr><td>4 to 5</td><td>1 day, 4 days, 10 days</td><td>10-day recap and one earlier recap passed</td></tr>
     <tr><td>6 to 7</td><td>2 days, 1 week, 2 weeks</td><td>2-week recap and one earlier recap passed</td></tr>
     <tr><td>8 to 10</td><td>2 days, 1 week, 3 weeks</td><td>3-week recap and one earlier recap passed</td></tr>
   </table></div>
   <ul class="plain">
-    <li>A recap is 2 tasks (ages 4 to 5) or 2 or 3 tasks of one skill; pass 2 of 2 or 2 of 3. A fail sets needs_recap, keeps the stars and brings the next recap closer. Upkeep: one more recap 2 months after mastered. Today the backend has one rule: modules completed more than 7 days ago get a recommendation.</li>
-    <li><b>Warm-up first.</b> When a lesson whose warm-up is <code>from: earlier-skills</code> starts and a <code>builds_on</code> skill has a recap due or is needs_recap, the warm-up plays that skill's recap tasks in place of the written ones. With nothing due, the written warm-up plays. <code>from: last-lesson</code> warm-ups are never replaced. About two thirds of skills are built on by a later one.</li>
+    <li>A recap is 2 tasks (ages 4 to 5) or 2 or 3 tasks of one skill; pass 2 of 2 or 2 of 3. A fail sets needs_refresh, keeps the stars and brings the next recap closer. Upkeep: one more recap 2 months after remembered. Today the backend has one rule: modules completed more than 7 days ago get a recommendation.</li>
+    <li><b>Warm-up first.</b> When a lesson whose warm-up is <code>from: earlier-skills</code> starts and a <code>builds_on</code> skill has a recap due or is needs_refresh, the warm-up plays that skill's recap tasks in place of the written ones. With nothing due, the written warm-up plays. <code>from: last-lesson</code> warm-ups are never replaced. About two thirds of skills are built on by a later one.</li>
     <li><b>Then practice sessions.</b> Due recaps not taken by a warm-up go into the next practice session or topic recap. After a lesson, offer a short session when a recap is overdue; never block.</li>
     <li><b>Counts as the recap</b> once 80% of its gap has passed; earlier answers are evidence only.</li>
     <li><b>Recap tasks</b> come from the skill's no-help Practise and check tasks (about 18), least recently seen first, never the child's last skill-check tasks, options shuffled.</li>
@@ -308,35 +308,35 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <h3>Placement check (Einstufung)</h3>
   <ul class="plain">
     <li>Per learning progression, 1 or 2 tasks per skill. It starts at what the child's year expects, moves up after success and down after mistakes, and stops at the edge.</li>
-    <li>A skill passed there (2 of 2, or 1 of 1 for ages 4 to 5) becomes Secure and gets its first recap scheduled. Earlier skills in the same progression count as secure too. The first skill missed is the next one to learn.</li>
+    <li>A skill passed there (2 of 2, or 1 of 1 for ages 4 to 5) becomes can_do and gets its first recap scheduled. Earlier skills in the same progression count as can_do too. The first skill missed is the next one to learn.</li>
     <li>The backend has placement fields on <code>EntityStudentBaselineResult</code>, but nothing writes them and the app has no placement UI.</li>
   </ul>
 
   <h3>Suggestions, level and standing</h3>
   <ul class="plain">
-    <li><b>Suggested next:</b> a skill whose prerequisites are all at least Practised. A child can still open any skill; if a prerequisite is not secure, the first lesson starts with a short recap of it.</li>
-    <li><b>Level</b> in a learning progression: the furthest skill reached with everything it builds on secure.</li>
-    <li><b>Standing</b> in a subject, for parents: the share of the child's year's skills that are secure or mastered, against how far the school year has run. Shown as ahead, on track or catching up. It never blocks the child.</li>
+    <li><b>Suggested next:</b> a skill whose prerequisites are all at least Practised. A child can still open any skill; if a prerequisite is not yet at can_do, the first lesson starts with a short recap of it.</li>
+    <li><b>Level</b> in a learning progression: the furthest skill reached with everything it builds on at can_do or better.</li>
+    <li><b>Standing</b> in a subject, for parents: the share of the child's year's skills at can_do or remembered, against how far the school year has run. Shown as ahead, on track or catching up. It never blocks the child.</li>
   </ul>
 
   <h3>What counts for mastery</h3>
   <div class="tbl"><table>
     <tr><th>Counts</th><th>Does not count</th></tr>
     <tr><td>Skill checks, first try</td><td>Quick checks at the end of a lesson</td></tr>
-    <tr><td>Warm-up tasks that recall a skill already secure (as its recap once due)</td><td>Practise tasks inside lessons</td></tr>
+    <tr><td>Warm-up tasks that recall a skill already at can_do (as its recap once due)</td><td>Practise tasks inside lessons</td></tr>
     <tr><td>Recaps in warm-ups, practice sessions and topic recaps</td><td>Answers shown after two misses</td></tr>
     <tr><td>Placement checks; start-of-year and end-of-year checks</td><td>Speed, except in a timed skill check</td></tr>
   </table></div>
   <p>Practice outside lessons comes in four forms: a practice session (about 14 tasks of one skill or a mix of due recaps), a topic recap, a placement check, and a start-of-year or end-of-year check across the whole subject.</p>
-  <p>All thresholds (check length, pass marks, recap spacing, the mastered rule, placement rule, time targets) are starting values. They belong in app configuration per age, not in the content, and get tuned from real data.</p>
+  <p>All thresholds (check length, pass marks, recap spacing, the remembered rule, placement rule, time targets) are starting values. They belong in app configuration per age, not in the content, and get tuned from real data.</p>
 </section>
 
 <section id="rewards">
   <h2>Stars and badges</h2>
   <p>Every badge, its condition and its English and German name are on their own page: <code>twist/pages/rewards/index.html</code>, built from <code>twist/docs/rewards.md</code>. What the teams need from it:</p>
   <ul class="plain">
-    <li><b>Stars:</b> 0 to 3 per skill from its state: practised 1, secure 2, mastered 3. needs_recap keeps the stars and adds a refresh mark. This replaces the 0 to 3 stars per module from the score percentage.</li>
-    <li><b>Badges:</b> 14 strand badges (one per strand and year, all skills of the strand in that year secure), milestones, remembering, streaks, effort and curiosity. A badge is never taken away, levels up each year and turns gold when every skill behind it is mastered.</li>
+    <li><b>Stars:</b> 0 to 3 per skill from its state: practised 1, can_do 2, remembered 3. needs_refresh keeps the stars and adds a refresh mark. This replaces the 0 to 3 stars per module from the score percentage.</li>
+    <li><b>Badges:</b> 14 strand badges (one per strand and year, all skills of the strand in that year at can_do), milestones, remembering, streaks, effort and curiosity. A badge is never taken away, levels up each year and turns gold when every skill behind it is remembered.</li>
     <li><b>Art:</b> <code>twist/assets/badges/&lt;id&gt;.svg</code> and <code>&lt;id&gt;.gold.svg</code>, 32 badges. The app adds the level chip, the name and the not-yet-earned look; see <code>twist/assets/README.md</code> (Badges).</li>
     <li><b>Strands</b> group library areas, the second part of a skill id, so both curricula share them.</li>
     <li><b>Streaks</b> count school days: Monday to Friday without the public and school holidays of the child's region. Weekends never break a streak.</li>
@@ -586,9 +586,9 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
   <h3>What parents see</h3>
   <div class="tbl"><table>
     <tr><th>View</th><th>Today</th><th>New</th></tr>
-    <tr><td>Subject status</td><td>"On track" at 70 % module completion or more, "Gap identified" at 40 to 69 %, "Week behind" below</td><td>Standing: ahead, on track or catching up, from the share of the year's skills secure or mastered against how far the school year has run</td></tr>
+    <tr><td>Subject status</td><td>"On track" at 70 % module completion or more, "Gap identified" at 40 to 69 %, "Week behind" below</td><td>Standing: ahead, on track or catching up, from the share of the year's skills at Can do it or Remembers it against how far the school year has run</td></tr>
     <tr><td>Progress unit</td><td>Module completion and score %</td><td>Skills, each shown as its "I can …" / "Ich kann …" statement with one of six states, grouped by topic. Enrichment skills (3 in de-DE, 15 in en-GB) can carry an "extra" label, because no standard of the curriculum asks for them</td></tr>
-    <tr><td>Milestones</td><td>Modules needed for the next subject level</td><td>Skills secure in the year; skills that need a recap</td></tr>
+    <tr><td>Milestones</td><td>Modules needed for the next subject level</td><td>Skills at Can do it in the year; skills that need a refresh</td></tr>
     <tr><td>Curriculum link</td><td>None</td><td>Optional: per skill, the standards it satisfies, with code and quoted text; for an enrichment skill, its reason</td></tr>
     <tr><td>Placement</td><td>None</td><td>Result of a placement check: the level per learning progression</td></tr>
     <tr><td>Stars and badges</td><td>None</td><td>Stars per skill and every badge the child has, with level and gold, as the child sees them</td></tr>
@@ -606,11 +606,11 @@ OPENROUTER_API_KEY=… twist/.venv/bin/python twist/assets/tools/narration.py --
     <li><b>Import</b><p>Read the twist records (through a converter, see open decisions). Fail on an unknown task type instead of falling back to MULTIPLE_CHOICE (<code>ServiceContentImport.mapQuestionType</code>). Take question language from the record instead of the hard-coded <code>"en"</code>; foreign-language lessons have <code>language</code> and <code>target_language</code>. Store hints per question in order, feedback per option, <code>option_audio</code>, <code>flash</code>, <code>keyboard</code>, the clock <code>step</code>, <code>audio.speaker</code> and <code>audio.turns</code>, <code>show.crossed</code>, <code>metadata.dashes</code> and drawn-component data as it is (37 components, data fields in <code>assets/drawn.yaml</code>). Add <code>point_on_grid</code> to the task type enum. Mark a decimal answer by value and every other typed answer exactly.</p></li>
     <li><b>Assets</b><p>Resolve bank ids to URLs: pictures and colour versions, mascot poses, sounds, narration clips per task line, option, hint, phrase and dialogue turn, and per voice (two per curriculum, picked by activity or by <code>speaker</code>). A clip is found by its spoken line, after the <code>spoken()</code> rule in <code>narration.py</code>.</p></li>
     <li><b>Answer events</b><p>Record per task: first try right or wrong, hints opened, answer shown, activity, stage, check size, time. Mastery is computed from these, using the "what counts" table.</p></li>
-    <li><b>Skill mastery</b><p>A table per child and skill: state, when it became secure, recap schedule and results. Module stars are replaced by 0 to 3 stars per skill from its state (see Stars and badges).</p></li>
-    <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with the recap schedule per age band (above); failed recaps set needs_recap. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
+    <li><b>Skill mastery</b><p>A table per child and skill: state, when it reached can_do, recap schedule and results. Module stars are replaced by 0 to 3 stars per skill from its state (see Stars and badges).</p></li>
+    <li><b>Recaps and practice sessions</b><p>Replace the single 7-day rule in <code>ServiceLearningGuidance</code> with the recap schedule per age band (above); failed recaps set needs_refresh. Serve practice sessions of about 14 tasks mixing due recaps.</p></li>
     <li><b>Recaps in warm-ups</b><p>When a lesson starts, return the due recaps of its <code>builds_on</code> skills with recap tasks picked as above, so the app can fill an <code>earlier-skills</code> warm-up. Record a warm-up answer as a recap once 80% of the gap has passed.</p></li>
     <li><b>Stars and badges</b><p>Stars per skill from the mastery state. A badge table per child (badge id, level, gold, earned at), awarded from mastery changes, finished sessions and checks. Streaks count school days, which needs a holiday calendar per region. Serve badges to the app and the dashboard.</p></li>
-    <li><b>Placement check</b><p>An adaptive endpoint per learning progression that writes Secure for passed skills and returns the next skill to learn.</p></li>
+    <li><b>Placement check</b><p>An adaptive endpoint per learning progression that writes can_do for passed skills and returns the next skill to learn.</p></li>
     <li><b>Next and standing</b><p>Suggest the next skill from prerequisites at least Practised. Compute standing per subject for the dashboard, which needs a school-year start date per curriculum. Keep thresholds in configuration per age.</p></li>
   </ol>
 </section>

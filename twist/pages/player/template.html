@@ -449,12 +449,12 @@ const NAMES = { de: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Ü
 const TXT = {
   de: { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde",
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
-    score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, secure: "Kann ich! (Secure)", practised: "Noch üben (Practised)", doneTitle: "Geschafft!",
+    score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
     speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
-    score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, secure: "I can do it! (Secure)", practised: "Keep practising (Practised)", doneTitle: "Well done!",
+    score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
     speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
 };
@@ -1231,7 +1231,7 @@ function renderEnd() {
   body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(UI.finished)}</h2><p class="a-phrase">${esc(p?.text ?? UI.doneTitle)}</p>
     ${pct == null ? "" : `<div class="score"><div class="sc">${esc(UI.percent(pct))}<div class="sb"><i style="width:${pct}%"></i><span>${right} / ${checkSteps.length}</span></div></div><span class="dart" aria-hidden="true">🎯</span></div>`}
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
-    ${pass === null ? "" : pass ? `<span class="badge">${UI.secure}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
+    ${pass === null ? "" : pass ? `<span class="badge">${UI.canDo}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
   if (p) play(p.src);
   const nextL = set.lessons.find((l) => l.n === lesson.n + 1);
   if (nextL) nextBtn(foot, UI.nextLesson, () => pickLesson(nextL.n));

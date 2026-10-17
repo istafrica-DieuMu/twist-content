@@ -194,7 +194,7 @@ mascot in pages/player/mascot.png is refs/standing.png.
 ## Badges
 
 `badges/<id>.svg` is the earned badge, `badges/<id>.gold.svg` the gold one
-(every skill behind it mastered). The id is the English name in kebab case
+(every skill behind it at Remembers it). The id is the English name in kebab case
 (`number-navigator`, `elephant-memory`). [tools/badges.mjs](tools/badges.mjs)
 draws them by hand-written SVG in the mascot's style: aubergine outline
 (#2B0A4F), the drawn.yaml palette with one darker tone, one white highlight,

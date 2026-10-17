@@ -54,7 +54,7 @@ const HUES = { "Strand badges": "strand", Milestones: "mile", Remembering: "mem"
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 // The badge art from assets/badges (assets/tools/badges.mjs), inlined: the
-// earned look, and the gold look it gets when every skill behind it is mastered.
+// earned look, and the gold look it gets when every skill behind it is at Remembers it.
 const art = (id, gold) => {
   const f = join(T, "assets/badges", `${id}${gold ? ".gold" : ""}.svg`);
   if (!existsSync(f)) throw new Error(`no badge art for ${id}: run assets/tools/badges.mjs`);
