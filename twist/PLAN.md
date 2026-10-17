@@ -676,4 +676,7 @@ rnd/gap-status.md; stars and badges are in docs/rewards.md.
 | G8 | Research site | The Gaps tab still shows the 2026-10-07 comparison against the old catalogue. Show rnd/gap-status.md next to it, and mark german-insight.md as describing the old catalogue |
 | G9 | Rewards in the library | The strand-to-area mapping from docs/rewards.md as data the backend can import |
 | G10 | Foreign languages | Compare Englisch (de-DE) and French (en-GB) with a foreign-language course; nothing has been compared yet |
-| G11 | Recap-only tasks | Recaps reuse lesson tasks the child has seen. About 6 hand-written recap tasks per skill (about 5,500) give unseen ones; not needed to launch |
+| G11 | Practice | docs/practice.md: practice sessions, scoring, the Practice tab in the player, typed requests, drill banks (four starter banks) |
+| G12 | Skill-check pools | Skill checks to 20 tasks a skill, each tagged with the part it covers, so every attempt draws a different 5; the rest feed recaps and practice. About 13,800 hand-written tasks. Replaces the recap-only task pool |
+| G13 | Short checks | Double the short checks, about 2,900 tasks |
+| G14 | Drill banks | Banks for the other skills to know by heart, about 30 in all |
