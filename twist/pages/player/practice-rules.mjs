@@ -223,3 +223,105 @@ export function drillTask(it, format, bank, lang, curriculum, rng) {
   if (format === "flash") return { ...base, type: "multiple_choice", text: L.read, options, answer: w, _flashWord: w };
   return { ...base, type: "multiple_choice", text: L.hear, options, answer: w, _sayWord: w };
 }
+
+// ---------- scoring ----------
+
+const RIGHT = new Set(["first", "second", "helped"]);
+
+export function scoreSession(session, results) {
+  const perSkill = {}; let right = 0, firstTry = 0, ms = 0;
+  session.items.forEach((it, i) => {
+    const r = results[i]; if (!r) return;
+    const p = (perSkill[it.skill] ??= { right: 0, firstTry: 0, total: 0 });
+    p.total++; ms += r.ms ?? 0;
+    if (RIGHT.has(r.outcome)) { right++; p.right++; }
+    if (r.outcome === "first") { firstTry++; p.firstTry++; }
+  });
+  const total = results.filter(Boolean).length;
+  return { right, firstTry, total, perSkill, perMinute: session.kind === "drill" && ms ? Math.round((firstTry / ms) * 60000) : null };
+}
+
+export function applySession(child, session, results, finished = true) {
+  const out = { recaps: {}, record: false };
+  session.items.forEach((it, i) => { if (results[i] && it.lesson != null) child.seen[it.key] = child.today; });
+  if (session.kind === "recaps") {
+    for (const k of session.skills) {
+      const rs = session.items.map((it, i) => [it, results[i]]).filter(([it, r]) => it.skill === k && r && !it.again);
+      if (!rs.length) continue;
+      const firsts = rs.filter(([, r]) => r.outcome === "first").length;
+      out.recaps[k] = recordRecap(child, k, firsts >= 2, child.today);
+    }
+  }
+  if (session.kind === "drill") {
+    const k = session.skills[0], d = (child.drills[k] ??= { best: 0, weak: {} }), limit = (session.seconds ?? 8) * 1000;
+    // An item missed or slow at least once this session gets weaker; one
+    // answered right and fast every time this session gets a little stronger.
+    const bad = {}, seen = new Set();
+    session.items.forEach((it, i) => {
+      const r = results[i]; if (!r) return; const id = String(it.drill.q ?? it.drill.word);
+      seen.add(id); if (r.outcome !== "first" || r.ms > limit) bad[id] = true;
+    });
+    for (const id of seen) d.weak[id] = bad[id] ? (d.weak[id] ?? 0) + 1 : Math.max(0, (d.weak[id] ?? 0) - 1);
+    const rate = scoreSession(session, results).perMinute ?? 0;
+    if (rate > d.best) { d.best = rate; out.record = true; }
+  }
+  if (finished && session.items.length && (session.kind === "drill" || session.items.every((_, i) => results[i]))) child.sessions++;
+  child.lastSkill = session.skills.at(-1) ?? child.lastSkill;
+  return out;
+}
+
+// ---------- suggestions ----------
+
+export function suggestions(child, index) {
+  const cards = [], has = (k) => !!index.bySkill[k];
+  const due = recapsDue(child).filter(has);
+  if (due.length) cards.push({ kind: "recaps", skills: due, reason: { de: `${due.length} ${due.length === 1 ? "Sache" : "Sachen"} zum Wiederholen`, en: `${due.length} ${due.length === 1 ? "skill" : "skills"} to remember` } });
+  const weak = Object.entries(child.states).filter(([k, s]) => has(k) && (s.state === "needs_refresh" || s.state === "practised"))
+    .sort(([, a], [, b]) => (a.state === "needs_refresh" ? 0 : 1) - (b.state === "needs_refresh" ? 0 : 1));
+  if (weak.length) { const [k, s] = weak[0]; cards.push({ kind: "catch-up", skills: [k], reason: s.state === "needs_refresh" ? { de: "Das üben wir nochmal", en: "Let's practise this again" } : { de: "Fast geschafft: übe es noch einmal", en: "Nearly there: practise it once more" } }); }
+  const drillSkills = Object.keys(index.drills);
+  const started = drillSkills.find((k) => child.drills[k]) ?? drillSkills.find((k) => ["learning", "practised", "can_do", "remembered"].includes(child.states[k]?.state)) ?? drillSkills[0];
+  if (started) cards.push({ kind: "drill", skills: [started], reason: child.drills[started]?.best ? { de: `Schlag deinen Rekord: ${child.drills[started].best} pro Minute`, en: `Beat your record: ${child.drills[started].best} a minute` } : { de: "Schnell rechnen und lesen", en: "Quick-fire practice" } });
+  if (cards.length < 3) {
+    const k = child.lastSkill && has(child.lastSkill) ? child.lastSkill : index.sets[0]?.skill;
+    const topic = index.topics.find((t) => t.skills.includes(k));
+    if (topic) cards.push({ kind: "review", skills: topic.skills, topic: topic.key, reason: { de: `Wiederholen: ${topic.name.de}`, en: `Review: ${topic.name.en}` } });
+  }
+  return cards.slice(0, 3);
+}
+
+// ---------- typed requests ----------
+
+const SUBJECT_WORDS = { math: ["mathe", "maths", "math", "rechnen"], "lit-de": ["deutsch"], "lit-en": ["english"], fl: ["englisch", "french", "französisch"] };
+// Walked in this order, so "Blitzlesen wiederholen" is a review, not a drill.
+const KIND_WORDS = {
+  review: ["wiederholen", "wiederholung", "review", "revise"],
+  "catch-up": ["nachholen", "catch up", "catch-up", "nochmal"],
+  drill: ["einmaleins", "times table", "times tables", "blitzlesen", "schnell", "quick", "drill"],
+};
+
+export function parseRequest(text, index) {
+  const t = ` ${String(text).toLowerCase()} `, filters = {}, understood = [];
+  const m = t.match(/(\d+)\s*(min|minuten|minutes|mins)\b/);
+  if (m) { filters.minutes = +m[1]; understood.push(m[0].trim()); }
+  for (const [subject, words] of Object.entries(SUBJECT_WORDS)) {
+    const w = words.find((x) => t.includes(x));
+    if (w && index.subjects.includes(subject)) { filters.subject = subject; understood.push(w); break; }
+  }
+  for (const [kind, words] of Object.entries(KIND_WORDS)) {
+    const w = words.find((x) => t.includes(x));
+    if (w) { filters.kind = kind; understood.push(w); break; }
+  }
+  // A table number: "mit 7", "the 7s", "7er", "table 7"
+  const n = t.match(/\bmit (\d+)\b|\bthe (\d+)s\b|\b(\d+)er\b|\btables? (\d+)\b/);
+  if (n) {
+    const num = n.slice(1).find(Boolean);
+    const hits = Object.keys(index.drills).filter((k) => new RegExp(`table(-\\d+)*-${num}(-|$)`).test(k));
+    const all = hits.length ? hits : Object.keys(index.bySkill).filter((k) => new RegExp(`table(-\\d+)*-${num}(-|$)`).test(k));
+    if (all.length) { filters.skills = all; filters.subject = "math"; understood.push(n[0].trim()); }
+  }
+  if (filters.kind === "drill" && !filters.skills && /einmaleins|times table/.test(t)) filters.subject = "math";
+  const topics = index.topics.filter((tp) => [tp.name.de, tp.name.en].some((x) => x && x.length >= 4 && t.includes(x.toLowerCase())));
+  if (topics.length) { filters.topics = topics.map((x) => x.key); understood.push(...topics.map((x) => x.name.de)); if (!filters.subject) filters.subject = topics[0].subject; }
+  return { filters, understood, unknown: Object.keys(filters).length === 0 };
+}
