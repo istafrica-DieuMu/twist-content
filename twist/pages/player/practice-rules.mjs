@@ -80,3 +80,146 @@ export function recapsDue(child) {
     .sort((a, b) => a[1].day - b[1].day)
     .map(([k]) => k);
 }
+
+// ---------- content: pools per skill ----------
+
+export const taskKey = (setId, n, taskId) => `${setId}#${n}#${taskId}`;
+
+export function pools(set) {
+  const p = { full: [], some: [], none: [], check: [], skillCheck: [] };
+  for (const l of set.lessons) for (const a of l.activities) {
+    if (a.activity === "practise") for (const st of a.stages ?? []) for (const t of st.tasks ?? [])
+      p[st.support]?.push({ key: taskKey(set.id, l.n, t.id), set: set.id, lesson: l.n, task: t, stage: st.support });
+    if (a.activity === "check") for (const t of a.tasks ?? []) {
+      const e = { key: taskKey(set.id, l.n, t.id), set: set.id, lesson: l.n, task: t, stage: "check" };
+      p.check.push(e);
+      if (a.size === "skill" || a.size === "timed") p.skillCheck.push(e.key);
+    }
+  }
+  return p;
+}
+
+export function indexContent(sets, drills, curriculum) {
+  const mine = sets.filter((s) => s.id.startsWith(curriculum + "."));
+  const bySkill = {}, topics = new Map();
+  for (const s of mine) {
+    bySkill[s.skill] = { set: s, pools: pools(s) };
+    const subject = s.id.split(".")[1], name = s.topic ?? { de: "", en: "" };
+    const key = `${subject}|${name.en ?? name.de}`;
+    if (!topics.has(key)) topics.set(key, { key, subject, name, skills: [] });
+    topics.get(key).skills.push(s.skill);
+  }
+  const myDrills = Object.fromEntries(Object.entries(drills).filter(([k]) => bySkill[k]));
+  return { curriculum, sets: mine, bySkill, drills: myDrills, topics: [...topics.values()], subjects: [...new Set(mine.map((s) => s.id.split(".")[1]))] };
+}
+
+// ---------- picking ----------
+
+export function mulberry32(seed) {
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const shuffle = (xs, rng) => { const a = [...xs]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+// Least recently seen first (never seen counts as oldest); ties in random order.
+function leastRecent(entries, child, rng, exclude = new Set()) {
+  return shuffle(entries.filter((e) => !exclude.has(e.key)), rng)
+    .sort((a, b) => (child.seen[a.key] ?? -Infinity) - (child.seen[b.key] ?? -Infinity));
+}
+const seenText = (child, e) => (child.seen[e.key] == null ? "never seen" : `last seen on day ${child.seen[e.key]}`);
+
+// Take n entries from the pools in the order given, falling back to the next
+// pool when one runs out; never the same task twice.
+function take(child, entry, order, n, rng, exclude) {
+  const out = [], used = new Set(exclude);
+  for (const stage of order) {
+    for (const e of leastRecent(entry.pools[stage], child, rng, used)) { if (out.length >= n) break; out.push(e); used.add(e.key); }
+    if (out.length >= n) break;
+  }
+  return out;
+}
+
+export const tasksForMinutes = (m) => Math.round(m * 1.5);
+
+export function interleave(groups) {
+  const qs = groups.map((g) => [...g]).filter((g) => g.length), out = [];
+  while (qs.some((q) => q.length)) for (const q of qs) if (q.length) out.push(q.shift());
+  return out;
+}
+
+export function requeue(items, i) {
+  if (items[i].again || items.some((x, j) => j !== i && x.again && x.key === items[i].key)) return items;
+  return [...items, { ...items[i], again: true, why: items[i].why + "; missed on the first try, so it comes back once" }];
+}
+
+const item = (child, skill, e, mode, recap, why) => ({ key: e.key, skill, set: e.set, lesson: e.lesson, stage: e.stage, task: e.task, mode, recap, why: `${why}; ${e.stage === "check" ? "check task" : e.stage + "-help stage"}; ${seenText(child, e)}` });
+
+export function buildSession({ kind, child, index, skills = [], minutes = null, rng = Math.random }) {
+  const band = BANDS[child.band], length = minutes && kind !== "drill" ? tasksForMinutes(minutes) : band.tasks;
+  const known = skills.filter((k) => index.bySkill[k]);
+  const lastCheck = (k) => new Set(child.lastCheck[k] ?? []);
+  if (kind === "recaps") {
+    const due = (known.length ? known : recapsDue(child)).filter((k) => index.bySkill[k]);
+    const groups = due.map((k) => take(child, index.bySkill[k], ["none", "check", "some", "full"], band.recapTasks, rng, lastCheck(k))
+      .map((e) => item(child, k, e, "none", true, `recap of ${k} is due`)));
+    return { kind, skills: due, mode: "none", items: interleave(groups).slice(0, Math.max(length, groups.length * band.recapTasks)), seconds: null, minutes };
+  }
+  if (kind === "drill") {
+    const k = known[0], bank = index.drills[k], lang = index.bySkill[k].set.language;
+    const weak = child.drills[k]?.weak ?? {}, id = (it) => String(it.q ?? it.word);
+    const order = shuffle(bank.items, rng).sort((a, b) => (weak[id(b)] ?? 0) - (weak[id(a)] ?? 0));
+    const formats = bank.formats.filter((f) => f !== "timed"), n = Math.max(20, (minutes ?? 2) * 30);
+    const items = Array.from({ length: n }, (_, i) => {
+      const it = order[i % order.length], format = formats[i % formats.length];
+      return { key: `drill#${k}#${id(it)}#${i}`, skill: k, set: index.bySkill[k].set.id, lesson: null, stage: "drill", mode: "none", recap: false,
+        task: drillTask(it, format, bank, lang, index.curriculum, rng), drill: { ...it, format },
+        why: `drill bank ${k}; format ${format}; ${weak[id(it)] ? `missed or slow ${weak[id(it)]} times, so it comes early` : "random order"}` };
+    });
+    return { kind, skills: [k], mode: "none", items, seconds: bank.seconds?.[child.band] ?? null, minutes: minutes ?? 2 };
+  }
+  const order = { "catch-up": ["full", "some", "none", "check"], skill: ["full", "some", "none"], review: ["none", "check", "some", "full"], mixed: ["full", "some", "none", "check"] }[kind];
+  const mode = kind === "catch-up" ? "catch" : "none";
+  const per = Math.ceil(length / Math.max(1, known.length));
+  const groups = known.map((k) => {
+    const e = index.bySkill[k];
+    // Skill practice and catch-up climb the stages: a third of the tasks from each.
+    const picked = kind === "skill" || kind === "catch-up"
+      ? order.slice(0, 3).flatMap((st, i) => take(child, e, [st], Math.ceil(per / 3) + (i === 2 ? per : 0), rng, lastCheck(k)).slice(0, i === 2 ? per : Math.ceil(per / 3)))
+      : take(child, e, order, per, rng, lastCheck(k));
+    const uniq = [], seen = new Set(); for (const x of picked) if (!seen.has(x.key)) { seen.add(x.key); uniq.push(x); }
+    const fill = uniq.length < per ? take(child, e, order, per, rng, new Set([...lastCheck(k), ...seen])).slice(0, per - uniq.length) : [];
+    return [...uniq, ...fill].slice(0, per).map((x) => item(child, k, x, mode, false, `${kind} of ${k}`));
+  });
+  let items = known.length > 1 ? interleave(groups) : groups[0] ?? [];
+  if (kind === "skill" || kind === "catch-up") items = items.sort((a, b) => ["full", "some", "none", "check"].indexOf(a.stage) - ["full", "some", "none", "check"].indexOf(b.stage));
+  return { kind, skills: known, mode, items: items.slice(0, length), seconds: null, minutes };
+}
+
+// ---------- drill tasks ----------
+
+const SIGNS = { "de-DE": [["×", "·"], ["÷", ":"]] };
+const signs = (q, cur) => (SIGNS[cur] ?? []).reduce((s, [a, b]) => s.split(a).join(b), q);
+const DRILL_TXT = {
+  de: { hear: "Welches Wort hörst du?", read: "Lies schnell!", write: "Schreib das Wort." },
+  en: { hear: "Which word do you hear?", read: "Read it quickly!", write: "Write the word." },
+};
+
+export function drillTask(it, format, bank, lang, curriculum, rng) {
+  const L = DRILL_TXT[lang] ?? DRILL_TXT.en;
+  const base = { id: `drill-${it.q ?? it.word}`, hints: [], _prompt: [], _target: null, _hints: [], _feedback: {} };
+  if (it.q != null) {
+    const text = `${signs(String(it.q), curriculum)} = _`, a = String(it.a);
+    if (format === "choose") {
+      const near = [...new Set([...bank.items.map((x) => String(x.a)), String(+it.a + 1), String(Math.max(0, +it.a - 1))])].filter((x) => x !== a);
+      const opts = shuffle([a, ...shuffle(near, rng).slice(0, 2)], rng);
+      return { ...base, type: "multiple_choice", text, options: opts, answer: a };
+    }
+    return { ...base, type: "text_input", text, answer: a, keyboard: "digits" };
+  }
+  const w = String(it.word), gap = it.sentence.replace(new RegExp(`(^|[^\\p{L}])${w}(?=[^\\p{L}]|$)`, "iu"), `$1___`);
+  if (format === "say" || format === "type") return { ...base, type: "text_input", text: `${L.write}\n${gap}`, answer: w, keyboard: "letters", _sayWord: w };
+  const others = shuffle(bank.items.filter((x) => x.word && x.word !== w).map((x) => String(x.word)), rng).slice(0, 2);
+  const options = shuffle([w, ...others], rng);
+  if (format === "flash") return { ...base, type: "multiple_choice", text: L.read, options, answer: w, _flashWord: w };
+  return { ...base, type: "multiple_choice", text: L.hear, options, answer: w, _sayWord: w };
+}
