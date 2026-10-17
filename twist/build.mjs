@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { loadBig } from "./yaml-cache.mjs";
 import YAML from "yaml";
 import { checkLessons } from "./lessons-check.mjs";
+import { checkDrills } from "./drills-check.mjs";
 import { tracking } from "./tracking.mjs";
 
 const T = dirname(fileURLToPath(import.meta.url));
@@ -180,6 +181,7 @@ for (const { file, data } of profileFiles) {
 
 // ---------- lessons and assets ----------
 const L = checkLessons({ T, steps, profiles, err, warn });
+const DR = checkDrills({ T, steps, err, warn });
 
 // ---------- views ----------
 const V = join(T, "views");
@@ -366,6 +368,7 @@ for (const pr of profiles) {
   console.log(`  ${pr.curriculum}: ${pr.rows.length} placed`, by);
 }
 console.log(`  lessons: ${L.sets.length} lesson sets; assets: ${L.objects.size} objects, ${L.drawn.size} drawn components`);
+console.log(`  drills: ${DR.banks} banks, ${DR.items} items`);
 console.log(`  views: ${written.join(", ")}`);
 if (warnings.length) { console.log(`\n${warnings.length} warnings:`); for (const w of warnings) console.log("  - " + w); }
 if (errors.length) { console.log(`\n${errors.length} errors:`); for (const e of errors) console.log("  - " + e); process.exit(1); }
