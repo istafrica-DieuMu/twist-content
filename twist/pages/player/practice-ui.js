@@ -77,7 +77,6 @@ function renderPracticeList(q) {
   }
 }
 
-function renderPracticeSide() { $("#practiceSide").textContent = ""; }
 function openMakeSheet() {}
 
 function startSession({ kind, skills = [], minutes = null, topics = [] }) {
@@ -172,4 +171,45 @@ function practiceEnd() {
   PR.on = false; PR.home = true;
   nextBtn(foot, L.back, () => { PR.session = null; renderPracticeHome(); renderPracticeSide(); });
   nextBtn(foot, L.again, () => startSession({ kind: session.kind, skills: session.skills, minutes: session.minutes })).classList.add("light");
+}
+
+const YEAR_OF = (cur) => [...new Set(D.sets.filter((s) => s.id.startsWith(cur + ".")).map((s) => s.year))];
+function renderPracticeSide() {
+  const el = $("#practiceSide"), c = PR.child; if (!el || !c) return;
+  const step = PR.on ? steps[at] : null, it = step?.item;
+  const skills = PR.index.sets.filter((s) => s.year === c.year).map((s) => s.skill);
+  const opt = (v, cur, label = v) => `<option value="${esc(v)}"${v === cur ? " selected" : ""}>${esc(label)}</option>`;
+  el.innerHTML = `<details open><summary><b>Pretend child</b></summary>
+    <div class="pr-grid">
+      <label for="pcCur">Curriculum</label><select id="pcCur">${opt("de-DE", c.curriculum)}${opt("en-GB", c.curriculum)}</select>
+      <label for="pcYear">Year</label><select id="pcYear">${YEAR_OF(c.curriculum).map((y) => opt(y, c.year, yearName(y))).join("")}</select>
+      <label for="pcBand">Age band</label><select id="pcBand">${["4-5", "6-7", "8-10"].map((b) => opt(b, c.band)).join("")}</select>
+      <span>Today: day <b>${c.today}</b></span><span><button class="nbtn" id="pcDay">+1 day</button> <button class="nbtn" id="pcWeek">+1 week</button></span>
+      <span>Sessions finished</span><b>${c.sessions}</b>
+    </div>
+    <p><button class="nbtn" id="pcReset">Reset this child</button></p></details>
+    <details ${it ? "open" : ""}><summary><b>Why this task</b></summary><div class="pr-why">${it ? esc(`Session: ${PR.session.kind}\nSkill: ${it.skill}\nTask: ${it.key}\nPool: ${it.stage}${it.recap ? " (recap)" : ""}\nHelp: ${it.mode === "catch" ? "first hint once, after a wrong answer" : "no hints"}\nRule: ${it.why}`) : "Start a session to see why each task was picked."}</div></details>
+    <details open><summary><b>Skills in ${esc(yearName(c.year))}</b> (${skills.length})</summary><div class="pr-grid" id="pcSkills"></div></details>`;
+  const grid = $("#pcSkills");
+  skills.forEach((k, i) => {
+    const s = c.states[k]?.state ?? "not_started", n = nextRecap(c, k);
+    const row = document.createElement("div"); row.style.cssText = "grid-column:1/-1;display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;border-top:1px solid #eee;padding-top:4px";
+    row.innerHTML = `<span title="${esc(k)}">${esc(canDoOf(k))}<br><small>${n ? `recap due day ${n.day}${n.upkeep ? " (upkeep)" : ""}` : ""}</small></span>
+      <select aria-label="State of ${esc(k)}">${STATES.map((x) => opt(x, s)).join("")}</select>
+      <button class="nbtn" title="Set every skill before this one to can_do">⤒</button>`;
+    row.querySelector("select").onchange = (e) => { setState(c, k, e.target.value); saveChild(); refreshPractice(); };
+    row.querySelector("button").onclick = () => { skills.slice(0, i).forEach((x) => setState(c, x, "can_do")); saveChild(); refreshPractice(); };
+    grid.appendChild(row);
+  });
+  $("#pcCur").onchange = (e) => { const cur = e.target.value, y = YEAR_OF(cur)[0], s = D.sets.find((x) => x.year === y && x.id.startsWith(cur + ".")); PR.child = newChild({ curriculum: cur, year: y, band: ageBand(s?.ages) }); saveChild(); PR.on = false; PR.session = null; refreshPractice(); };
+  $("#pcYear").onchange = (e) => { c.year = e.target.value; const s = D.sets.find((x) => x.year === c.year && x.id.startsWith(c.curriculum + ".")); c.band = ageBand(s?.ages); saveChild(); refreshPractice(); };
+  $("#pcBand").onchange = (e) => { c.band = e.target.value; saveChild(); refreshPractice(); };
+  $("#pcDay").onclick = () => { c.today += 1; saveChild(); refreshPractice(); };
+  $("#pcWeek").onclick = () => { c.today += 7; saveChild(); refreshPractice(); };
+  $("#pcReset").onclick = () => { PR.child = newChild({ curriculum: c.curriculum, year: c.year, band: c.band }); saveChild(); refreshPractice(); };
+}
+function refreshPractice() {
+  PR.index = indexContent(D.sets, D.drills, PR.child.curriculum);
+  if (!PR.on) renderPracticeHome();
+  renderPracticeSide();
 }

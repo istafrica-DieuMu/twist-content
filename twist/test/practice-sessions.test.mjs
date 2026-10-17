@@ -91,3 +91,10 @@ test("interleave and requeue", () => {
 });
 
 test("minutes to tasks", () => assert.equal(tasksForMinutes(10), 15));
+
+test("why names the stage in plain words", () => {
+  const c = newChild({ curriculum: "de-DE", year: "klasse-2", band: "6-7" });
+  const s = buildSession({ kind: "skill", child: c, index, skills: ["math.mult-div.table-7"], rng: mulberry32(11) });
+  const stages = new Set(s.items.map((i) => i.why.match(/; ([a-z-]+ stage|check task);/)[1]));
+  assert.deepEqual([...stages].sort(), ["full-help stage", "no-help stage", "some-help stage"]);
+});

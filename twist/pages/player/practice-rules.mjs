@@ -152,7 +152,8 @@ export function requeue(items, i) {
   return [...items, { ...items[i], again: true, why: items[i].why + "; missed on the first try, so it comes back once" }];
 }
 
-const item = (child, skill, e, mode, recap, why) => ({ key: e.key, skill, set: e.set, lesson: e.lesson, stage: e.stage, task: e.task, mode, recap, why: `${why}; ${e.stage === "check" ? "check task" : e.stage + "-help stage"}; ${seenText(child, e)}` });
+const STAGE_WORDS = { full: "full-help stage", some: "some-help stage", none: "no-help stage", check: "check task" };
+const item = (child, skill, e, mode, recap, why) => ({ key: e.key, skill, set: e.set, lesson: e.lesson, stage: e.stage, task: e.task, mode, recap, why: `${why}; ${STAGE_WORDS[e.stage]}; ${seenText(child, e)}` });
 
 export function buildSession({ kind, child, index, skills = [], minutes = null, rng = Math.random }) {
   const band = BANDS[child.band], length = minutes && kind !== "drill" ? tasksForMinutes(minutes) : band.tasks;
