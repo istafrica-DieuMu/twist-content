@@ -865,12 +865,102 @@ function renderPracticeList(q) {
   }
 }
 
-function startSession(opts) { console.log("startSession", opts); }
-function practiceFrame(step) { return { body: $("#screen"), foot: $("#screen") }; }
-function practiceEnd() {}
-function practiceGo(i) { return false; }
 function renderPracticeSide() { $("#practiceSide").textContent = ""; }
 function openMakeSheet() {}
+
+function startSession({ kind, skills = [], minutes = null, topics = [] }) {
+  const fromTopics = topics.flatMap((key) => PR.index.topics.find((t) => t.key === key)?.skills ?? []);
+  const all = [...new Set([...skills, ...fromTopics])];
+  const session = buildSession({ kind, child: PR.child, index: PR.index, skills: all, minutes, rng: Math.random });
+  if (!session.items.length) { renderPracticeHome(); return; }
+  PR.session = session; PR.items = session.items; PR.res = []; PR.on = true; PR.home = false; PR.t0 = Date.now(); PR.applied = false;
+  steps = PR.items.map((it) => ({ kind: "task", a: { activity: "practise" }, t: it.task, stage: it.mode, item: it })).concat([{ kind: "end" }]);
+  results = steps.map(() => null);
+  at = 0; showPracticeStep(0);
+}
+
+// Practice owns navigation: record the outcome and time of the step being left,
+// bring a first-try miss back once, stop a drill when its time is up.
+function practiceGo(i) {
+  if (!PR.on) return false;
+  const leaving = steps[at];
+  if (leaving?.kind === "task" && results[at] && PR.res[at] == null) {
+    PR.res[at] = { outcome: results[at], ms: Date.now() - PR.shownAt };
+    if (results[at] !== "first" && PR.session.kind !== "drill") {
+      const before = PR.items.length;
+      PR.items = requeue(PR.items, at);
+      if (PR.items.length > before) { const it = PR.items.at(-1); steps.splice(steps.length - 1, 0, { kind: "task", a: { activity: "practise" }, t: it.task, stage: it.mode, item: it }); results.splice(results.length - 1, 0, null); }
+    }
+    // A drill item missed or too slow comes back after 4 other items.
+    const slow = PR.session.seconds && PR.res[at].ms > PR.session.seconds * 1000;
+    if (PR.session.kind === "drill" && (results[at] !== "first" || slow) && !leaving.item.again) {
+      const it = { ...leaving.item, again: true, key: leaving.item.key + "#again", why: leaving.item.why + "; missed or slow, so it comes back after 4 items" };
+      const pos = Math.min(at + 5, steps.length - 1);
+      PR.items.splice(pos, 0, it); steps.splice(pos, 0, { kind: "task", a: { activity: "practise" }, t: it.task, stage: it.mode, item: it }); results.splice(pos, 0, null);
+    }
+  }
+  if (i === 0 && at > 0) { endSession(true); return true; }
+  const timeUp = PR.session.kind === "drill" && Date.now() - PR.t0 >= PR.session.minutes * 60000;
+  showPracticeStep(timeUp ? steps.length - 1 : i);
+  return true;
+}
+
+function showPracticeStep(i) {
+  stopAudio();
+  at = Math.max(0, Math.min(steps.length - 1, i));
+  const step = steps[at];
+  if (step.kind === "end") { practiceEnd(); renderPracticeSide(); return; }
+  set = D.sets.find((s) => s.id === step.item.set); lesson = set.lessons.find((l) => l.n === step.item.lesson) ?? set.lessons[0];
+  PR.shownAt = Date.now();
+  renderTask(step);
+  const t = step.t;
+  if (t._sayWord && "speechSynthesis" in window) { const u = new SpeechSynthesisUtterance(t._sayWord); u.lang = set.language === "de" ? "de-DE" : "en-GB"; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+  if (t._flashWord) {
+    const f = document.createElement("div"); f.className = "pr-flash"; f.textContent = t._flashWord;
+    $("#screen .visual")?.appendChild(f); setTimeout(() => f.remove(), 1500);
+  }
+  renderPracticeSide();
+}
+
+function practiceFrame(step) {
+  const scr = $("#screen"), L = PT();
+  const done = PR.res.filter(Boolean).length, total = PR.items.length;
+  const pct = PR.session.kind === "drill" ? Math.min(100, (100 * (Date.now() - PR.t0)) / (PR.session.minutes * 60000)) : (100 * done) / Math.max(1, total);
+  scr.style.setProperty("--subj", SUBJ_COLOUR[subjOf(set ?? D.sets[0])] ?? "#6849dd");
+  scr.innerHTML = `<div class="status"></div><div class="hdr"><span></span>
+    <div class="stepb"><span class="st">${esc(L.kinds[PR.session.kind] ?? L.title)}</span></div>
+    <button class="ib x" aria-label="Close">${ICON.close}</button></div>
+    <div class="pbar"><i style="width:${pct}%"></i></div>`;
+  $(".x", scr).onclick = () => endSession(true);
+  const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
+  const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
+  return { body, foot };
+}
+
+function endSession(early) {
+  const answered = PR.items.map((_, i) => PR.res[i]).filter(Boolean).length;
+  if (answered && !PR.applied) applySession(PR.child, { ...PR.session, items: PR.items.slice(0, PR.res.length) }, PR.res, false);
+  saveChild();
+  PR.on = false; PR.home = true; PR.session = null;
+  renderPracticeHome(); renderPracticeSide();
+}
+
+function practiceEnd() {
+  // Score what was played: the session's tasks plus any that came back.
+  const L = PT(), lg = PL(), items = PR.items, session = { ...PR.session, items };
+  const res = items.map((_, i) => PR.res[i]);
+  const sc = scoreSession(session, res);
+  const out = applySession(PR.child, session, res, true); PR.applied = true; saveChild();
+  const { body, foot } = practiceFrame({});
+  const better = Object.entries(sc.perSkill).filter(([, p]) => p.right).map(([k]) => canDoOf(k));
+  const big = session.kind === "drill" ? (out.record ? L.record(sc.perMinute) : L.perMin(sc.perMinute ?? 0)) : L.right(sc.right);
+  body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(big)}</h2>
+    ${PR.child.band === "8-10" && session.kind !== "drill" ? `<p>${esc(L.firstOf(sc.firstTry, sc.total))}</p>` : ""}
+    ${better.length ? `<p><b>${esc(L.better)}</b><br>${better.map(esc).join("<br>")}</p>` : ""}</div>`;
+  PR.on = false; PR.home = true;
+  nextBtn(foot, L.back, () => { PR.session = null; renderPracticeHome(); renderPracticeSide(); });
+  nextBtn(foot, L.again, () => startSession({ kind: session.kind, skills: session.skills, minutes: session.minutes })).classList.add("light");
+}
 
 const A = D.assets;
 const $ = (s, el = document) => el.querySelector(s);
