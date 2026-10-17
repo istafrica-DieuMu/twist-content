@@ -107,7 +107,8 @@ const word = (oid, lang) => { const l = objectRecs[oid].labels[lang]; return ["d
 // topic, or for the language lessons by curriculum. Must match the check in build.mjs.
 const skillTopic = new Map();
 const skillCanDo = new Map();
-for (const f of walk(join(T, "competencies")).filter((f) => f.endsWith(".yaml"))) for (const k of read(relative(T, f)).skills ?? []) { skillTopic.set(k.id, k.topic?.en); skillCanDo.set(k.id, k.can_do); }
+const skillRecs = {};
+for (const f of walk(join(T, "competencies")).filter((f) => f.endsWith(".yaml"))) for (const k of read(relative(T, f)).skills ?? []) { skillTopic.set(k.id, k.topic?.en); skillCanDo.set(k.id, k.can_do); skillRecs[k.id] = { can_do: k.can_do, topic: k.topic ?? null, prerequisites: k.prerequisites ?? {} }; }
 const topicPoses = read("assets/mascot.yaml").topics ?? [];
 const poseFor = (d) => topicPoses.find((t) => t.domain ? t.domain === d.skill.split(".")[0] && t.curriculum === d.curriculum : (t.topics ?? []).includes(skillTopic.get(d.skill)))?.id ?? null;
 const sets = [];
@@ -162,7 +163,8 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
     d.lessons = DASH(d.lessons);
   }
   sets.push({ file: rel, id: d.id, skill: d.skill, can_do: skillCanDo.get(d.skill) ?? null, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
-    no_reading: !!d.metadata?.no_reading, year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons });
+    no_reading: !!d.metadata?.no_reading, year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons,
+    curriculum: d.curriculum, topic: d.metadata?.topic ?? null, builds_on: d.metadata?.builds_on ?? [], ages: d.metadata?.ages ?? [] });
 }
 
 const phrases = {};
@@ -178,8 +180,12 @@ const pics = readdirSync(join(T, "assets/objects")).filter((f) => f.endsWith(".p
 const draft = process.argv.includes("--draft") ? process.argv[process.argv.indexOf("--draft") + 1] : null;
 if (problems.length && !draft) { console.error(problems.join("\n")); process.exit(1); }
 if (problems.length) console.error(`${problems.length} lines not narrated yet (draft)`);
-const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign } };
-const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c"));
+const drills = {};
+for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) { const b = YAML.parse(readFileSync(p, "utf8")); drills[b.skill] = b; }
+const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
+const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");
+const ui = readFileSync(join(HERE, "practice-ui.js"), "utf8");
+const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui);
 writeFileSync(draft ?? join(HERE, "index.html"), html);
 if (draft) { writeFileSync(draft, html.replace('"assets":"../../assets/"', `"assets":${JSON.stringify("file://" + join(HERE, "../../assets") + "/")}`)); }
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);

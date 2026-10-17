@@ -391,6 +391,23 @@ svg text{font-family:Andika,sans-serif}
 .slots .gap{border:2px dashed #c9c9c9;border-radius:12px;background:#fafafa;font:700 30px "Red Hat Display",sans-serif;color:#525252}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
 .coins{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}.tally{border-collapse:collapse;margin:0 auto;font:700 16px "Red Hat Text",sans-serif;color:#2b0f45}.tally td{border:2px solid #dfdfdf;padding:4px 10px;text-align:left}
+body.practice .filebox, body.practice .sideh, body.practice .steps, body.practice .recd, body.practice #pickSub, body.practice .pickbtn, body.practice #now { display: none; }
+body.practice #practiceSide { display: block; }
+.pr-home { padding: 14px 16px 90px; overflow-y: auto; height: 100%; display: grid; gap: 14px; align-content: start; }
+.pr-home h2 { margin: 4px 0 0; font-size: 24px; }
+.pr-h { font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: #6b6280; }
+.pr-card { display: grid; grid-template-columns: 44px 1fr; gap: 4px 12px; align-items: center; background: #f4f1fb; border: 2px solid #e2dbf3; border-radius: 16px; padding: 12px; text-align: left; font: inherit; cursor: pointer; }
+.pr-card b { font-size: 16px; } .pr-card small { color: #6b6280; grid-column: 2; }
+.pr-card .ic { grid-row: span 2; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; color: #fff; background: var(--c, #6849dd); }
+.pr-search { width: 100%; font: inherit; font-size: 16px; padding: 10px 14px; border-radius: 12px; border: 2px solid #e2dbf3; }
+.pr-sub { display: grid; gap: 6px; } .pr-sub > summary { font-weight: 700; cursor: pointer; padding: 6px 0; }
+.pr-skill { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 12px; background: #fff; border: 1px solid #e2dbf3; font: inherit; text-align: left; cursor: pointer; }
+.pr-skill .stars { color: #e0a800; letter-spacing: 1px; white-space: nowrap; } .pr-skill .drillb { font-size: 12px; padding: 4px 8px; border-radius: 8px; background: #6849dd; color: #fff; border: 0; cursor: pointer; }
+.pr-fab { position: absolute; right: 18px; bottom: 22px; width: 58px; height: 58px; border-radius: 50%; border: 0; background: #6849dd; color: #fff; font-size: 30px; box-shadow: 0 6px 16px rgba(60, 30, 120, .35); cursor: pointer; z-index: 5; }
+.pr-why { white-space: pre-wrap; font-size: 13px; background: #f7f6fb; border-radius: 10px; padding: 10px; }
+.pr-grid { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; font-size: 13px; align-items: center; }
+.pr-chips { display: flex; flex-wrap: wrap; gap: 6px; } .pr-chips button { font: inherit; font-size: 14px; padding: 6px 10px; border-radius: 999px; border: 2px solid #e2dbf3; background: #fff; cursor: pointer; } .pr-chips button[aria-pressed="true"] { background: #6849dd; border-color: #6849dd; color: #fff; }
+.pr-flash { font-size: 54px; font-weight: 800; text-align: center; padding: 20px 0; }
 </style>
 </head>
 <body>
@@ -398,7 +415,7 @@ svg text{font-family:Andika,sans-serif}
   <div class="brand"><span class="logo" aria-hidden="true">T</span><div><b>Twist lesson player</b><small>Built <span id="built"></span> · <code>node twist/pages/player/build.mjs</code></small></div></div>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
-  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vLessons" aria-selected="true">Lessons</button><button role="tab" id="vTypes" aria-selected="false">Task types</button></div>
+  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vLessons" aria-selected="true">Lessons</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vPractice" aria-selected="false">Practice</button></div>
   <div class="tb-right">
     <button class="tbtn" id="openSet" aria-expanded="false" aria-controls="setPop"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/></svg>Settings</button>
     <div class="pop" id="setPop" hidden>
@@ -432,6 +449,7 @@ svg text{font-family:Andika,sans-serif}
 <div class="wrap">
   <div class="phone"><div class="screen" id="screen"></div></div>
   <aside class="side" aria-label="Steps of this lesson">
+    <div id="practiceSide" hidden></div>
     <details class="filebox" open><summary>Lesson file and names</summary><div id="fileinfo"></div></details>
     <div class="sideh">Steps</div>
     <ul class="steps" id="steps"></ul>
@@ -440,6 +458,7 @@ svg text{font-family:Andika,sans-serif}
 </div>
 <script>
 const D = __DATA__;
+/*__PRACTICE__*/
 const A = D.assets;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -1101,6 +1120,7 @@ const taskCount = () => steps.filter((s) => s.kind === "task" || s.kind === "lea
 const doneCount = () => steps.slice(0, at).filter((s) => s.kind === "task" || s.kind === "learn").length;
 
 function frameUI(step) {
+  if (PR.on) return practiceFrame(step);
   // The app's header: lesson menu, the step badge and title, close; the progress bar under it.
   const scr = $("#screen");
   const acts = lesson.activities.map((a) => a.activity), n = step.a ? acts.indexOf(step.a.activity) + 1 : 0;
@@ -1144,6 +1164,7 @@ function nextBtn(foot, label = UI.next, onClick) {
 }
 
 function go(i) {
+  if (PR.on && practiceGo(i)) return;
   stopAudio();
   at = Math.max(0, Math.min(steps.length - 1, i));
   const step = steps[at];
@@ -1221,6 +1242,7 @@ function renderCheckIntro(step) {
   nextBtn(foot);
 }
 function renderEnd() {
+  if (PR.on) return practiceEnd();
   const { body, foot } = frameUI({});
   const checkSteps = steps.map((s, i) => [s, results[i]]).filter(([s]) => s.kind === "task" && s.stage === "check");
   const right = checkSteps.filter(([, r]) => r === "first").length;
@@ -1300,12 +1322,12 @@ function renderTask(step) {
     const queue = [];
     if (fbText) { bubble("fb", fbText, fbSrc); queue.push(fbSrc); }
     const hints = t.hints ?? [];
-    const canHint = (mode === "full" && st.hintShown < hints.length) || (mode === "some" && st.hintShown < 1 && hints.length);
+    const canHint = (mode === "full" && st.hintShown < hints.length) || (mode === "some" && st.hintShown < 1 && hints.length) || (mode === "catch" && st.hintShown < 1 && hints.length);
     if (canHint) {
       bubble("hint", UI.tip + hints[st.hintShown], t._hints[st.hintShown]);
       if (!fbText) { const p = phrase("hint"); if (p) queue.push(p.src); }
       queue.push(t._hints[st.hintShown]); st.hintShown++; st.helped = true;
-    } else if (mode === "none" && st.misses < 2) {
+    } else if ((mode === "none" || mode === "catch") && st.misses < 2) {
       if (!fbText) { const p = phrase("try_again"); if (p) { bubble("fb", p.text); queue.push(p.src); } }
     } else {
       st.revealed = true; const p = phrase("show_answer"); if (p) { bubble("ok", p.text); queue.push(p.src); }
@@ -1944,14 +1966,16 @@ set = D.sets[pos[0]] ?? D.sets[0]; renderPicker(); pickSet(D.sets.indexOf(set), 
 // runs in a frame and asks for a type with postMessage; the lesson panel's
 // type chips open that type's section there.
 function setView(v, anchor) {
-  const types = v === "types", fr = $("#typesView");
-  document.body.classList.toggle("types", types); fr.hidden = !types;
-  $("#vLessons").setAttribute("aria-selected", !types); $("#vTypes").setAttribute("aria-selected", types);
+  const types = v === "types", practice = v === "practice", fr = $("#typesView");
+  document.body.classList.toggle("types", types); document.body.classList.toggle("practice", practice); fr.hidden = !types;
+  $("#vLessons").setAttribute("aria-selected", v === "lessons"); $("#vTypes").setAttribute("aria-selected", types); $("#vPractice").setAttribute("aria-selected", practice);
   document.documentElement.style.setProperty("--tb", $(".topbar").offsetHeight + "px");
   if (types) { const url = "../types/index.html" + (anchor ? "#" + anchor : ""); if (!fr.src || anchor) fr.src = url; stopAudio(); }
+  if (practice) openPractice(); else if (PR.on || PR.home) closePractice();
 }
 $("#vLessons").onclick = () => setView("lessons");
 $("#vTypes").onclick = () => setView("types");
+$("#vPractice").onclick = () => setView("practice");
 document.addEventListener("click", (e) => { const a = e.target.closest("a[data-type]"); if (a) { e.preventDefault(); setView("types", a.dataset.type); } });
 window.addEventListener("message", (e) => { const m = e.data || {}; if (m.twist === "openType" && m.type) { setView("lessons"); openType(m.type); } if (m.twist === "lessons") setView("lessons"); });
 function openType(want) {
