@@ -20,7 +20,10 @@ git repo kept separate from schoolido-learning.
       task types, components, quality and R&D. Built from the records by
       `node twist/pages/site/build.mjs`; never edit index.html by hand.
     - player/: the lessons in a phone frame, with pictures, drawn
-      components and narration. `node twist/pages/player/build.mjs`; it
+      components and narration, and the Practice tab
+      (twist/docs/practice.md): sessions built by player/practice-rules.mjs
+      (tests: `cd twist && npm test`) for a pretend child, with drill banks
+      from twist/drills/. `node twist/pages/player/build.mjs`; it
       plays audio from twist/assets/narration/<voice>/, which is in git
       (about 3 GB); after a content change, narrate the new lines with
       twist/assets/tools/narration.py and commit the new clips.

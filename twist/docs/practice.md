@@ -6,7 +6,7 @@ drill banks. The lesson player's Practice tab is where these rules are
 tried and tuned before the app builds them. Mastery, recaps and the states
 are in lesson-anatomy.md; stars and badges in rewards.md.
 
-Decided 2026-10-17.
+Decided 2026-10-17. Built in the lesson player's Practice tab, with four starter drill banks in twist/drills/ (G11 in PLAN.md).
 
 ## What practice is for
 
