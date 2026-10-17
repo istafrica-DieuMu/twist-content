@@ -4,8 +4,8 @@
    practice-rules.mjs, inlined above this file by build.mjs. */
 const PR = { on: false, home: false, child: null, index: null, session: null, items: [], res: [], shownAt: 0, saved: null };
 const PTXT = {
-  de: { title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Drill", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Drill", review: "Wiederholen", "catch-up": "Nachholen" }, right: (n) => `${n} richtig!`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
-  en: { title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up" }, right: (n) => `${n} right!`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
+  de: { title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Drill", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Drill", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
+  en: { title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
 };
 const PL = () => (PR.child?.curriculum === "en-GB" ? "en" : "de");
 const PT = () => PTXT[PL()];
@@ -173,6 +173,22 @@ function practiceEnd() {
   nextBtn(foot, L.again, () => startSession({ kind: session.kind, skills: session.skills, minutes: session.minutes })).classList.add("light");
 }
 
+// The reason for the current task, as labelled rows a developer can scan.
+const STAGE_LABEL = { full: "Practise, full help", some: "Practise, some help", none: "Practise, no help", check: "Check task", drill: "Drill bank" };
+function whyBox(it) {
+  const k = PR.session.kind;
+  const PICK = { recaps: "its recap is due", "catch-up": "the skill is at Practised or Needs a refresh", review: "part of the topic review", skill: "the child chose this skill", mixed: "part of a mixed session", drill: "from the skill's drill bank" };
+  const rule = PICK[k] ?? it.why.split("; ")[0];
+  const rows = [
+    ["Session", `${esc(PT().kinds[k] ?? k)} <code>${esc(k)}</code>`],
+    ["Skill", `${esc(canDoOf(it.skill))}<br><code>${esc(it.skill)}</code>`],
+    ["From", esc(STAGE_LABEL[it.stage] ?? it.stage) + (it.recap ? ", as a recap" : "") + (it.again ? ", second time" : "")],
+    ["Help", it.mode === "catch" ? "First hint once, after a wrong answer" : "No hints"],
+    ["Picked", esc([rule, ...it.why.split("; ").slice(1).filter((x) => !/stage$|task$|^drill bank|^format/.test(x))].join("; "))],
+    ["Task", `<code>${esc(it.key)}</code>`],
+  ];
+  return `<dl class="pr-why">${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>`;
+}
 const YEAR_OF = (cur) => [...new Set(D.sets.filter((s) => s.id.startsWith(cur + ".")).map((s) => s.year))];
 function renderPracticeSide() {
   const el = $("#practiceSide"), c = PR.child; if (!el || !c) return;
@@ -188,7 +204,7 @@ function renderPracticeSide() {
       <span>Sessions finished</span><b>${c.sessions}</b>
     </div>
     <p><button class="nbtn" id="pcReset">Reset this child</button></p></details>
-    <details ${it ? "open" : ""}><summary><b>Why this task</b></summary><div class="pr-why">${it ? esc(`Session: ${PR.session.kind}\nSkill: ${it.skill}\nTask: ${it.key}\nPool: ${it.stage}${it.recap ? " (recap)" : ""}\nHelp: ${it.mode === "catch" ? "first hint once, after a wrong answer" : "no hints"}\nRule: ${it.why}`) : "Start a session to see why each task was picked."}</div></details>
+    <details ${it ? "open" : ""}><summary><b>Why this task</b></summary>${it ? whyBox(it) : `<p class="pr-why empty">Start a session to see why each task was picked.</p>`}</details>
     <details open><summary><b>Skills in ${esc(yearName(c.year))}</b> (${skills.length})</summary><div class="pr-grid" id="pcSkills"></div></details>`;
   const grid = $("#pcSkills");
   skills.forEach((k, i) => {

@@ -392,7 +392,10 @@ svg text{font-family:Andika,sans-serif}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
 .coins{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}.tally{border-collapse:collapse;margin:0 auto;font:700 16px "Red Hat Text",sans-serif;color:#2b0f45}.tally td{border:2px solid #dfdfdf;padding:4px 10px;text-align:left}
 body.practice .filebox, body.practice .sideh, body.practice .steps, body.practice .recd, body.practice #pickSub, body.practice .pickbtn, body.practice #now { display: none; }
-body.practice #practiceSide { display: block; }
+body.practice #practiceSide { display: block; flex: 1; min-height: 0; overflow-y: auto; padding-right: 4px; }
+#practiceSide details { margin-bottom: 12px; } #practiceSide summary { cursor: pointer; margin-bottom: 6px; }
+#practiceSide select { font: 13px system-ui, sans-serif; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); max-width: 130px; }
+#pcSkills span { font-size: 13px; } #pcSkills small { color: var(--muted); }
 .pr-home { padding: 14px 16px 90px; overflow-y: auto; height: 100%; display: grid; gap: 14px; align-content: start; }
 .pr-home h2 { margin: 4px 0 0; font-size: 24px; }
 .pr-h { font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: #6b6280; }
@@ -404,7 +407,9 @@ body.practice #practiceSide { display: block; }
 .pr-skill { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 12px; background: #fff; border: 1px solid #e2dbf3; font: inherit; text-align: left; cursor: pointer; }
 .pr-skill .stars { color: #e0a800; letter-spacing: 1px; white-space: nowrap; } .pr-skill .drillb { font-size: 12px; padding: 4px 8px; border-radius: 8px; background: #6849dd; color: #fff; border: 0; cursor: pointer; }
 .pr-fab { position: absolute; right: 18px; bottom: 22px; width: 58px; height: 58px; border-radius: 50%; border: 0; background: #6849dd; color: #fff; font-size: 30px; box-shadow: 0 6px 16px rgba(60, 30, 120, .35); cursor: pointer; z-index: 5; }
-.pr-why { white-space: pre-wrap; font-size: 13px; background: #f7f6fb; border-radius: 10px; padding: 10px; }
+.pr-why { font-size: 13px; background: var(--page); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 6px 10px; margin: 0; }
+.pr-why dt { color: var(--muted); } .pr-why dd { margin: 0; overflow-wrap: anywhere; } .pr-why code { font-size: 11px; color: var(--muted); }
+.pr-why.empty { display: block; color: var(--muted); }
 .pr-grid { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; font-size: 13px; align-items: center; }
 .pr-chips { display: flex; flex-wrap: wrap; gap: 6px; } .pr-chips button { font: inherit; font-size: 14px; padding: 6px 10px; border-radius: 999px; border: 2px solid #e2dbf3; background: #fff; cursor: pointer; } .pr-chips button[aria-pressed="true"] { background: #6849dd; border-color: #6849dd; color: #fff; }
 .pr-flash { font-size: 54px; font-weight: 800; text-align: center; padding: 20px 0; }
@@ -798,8 +803,8 @@ function parseRequest(text, index) {
    practice-rules.mjs, inlined above this file by build.mjs. */
 const PR = { on: false, home: false, child: null, index: null, session: null, items: [], res: [], shownAt: 0, saved: null };
 const PTXT = {
-  de: { title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Drill", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Drill", review: "Wiederholen", "catch-up": "Nachholen" }, right: (n) => `${n} richtig!`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
-  en: { title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up" }, right: (n) => `${n} right!`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
+  de: { title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Drill", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Drill", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
+  en: { title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
 };
 const PL = () => (PR.child?.curriculum === "en-GB" ? "en" : "de");
 const PT = () => PTXT[PL()];
@@ -967,6 +972,22 @@ function practiceEnd() {
   nextBtn(foot, L.again, () => startSession({ kind: session.kind, skills: session.skills, minutes: session.minutes })).classList.add("light");
 }
 
+// The reason for the current task, as labelled rows a developer can scan.
+const STAGE_LABEL = { full: "Practise, full help", some: "Practise, some help", none: "Practise, no help", check: "Check task", drill: "Drill bank" };
+function whyBox(it) {
+  const k = PR.session.kind;
+  const PICK = { recaps: "its recap is due", "catch-up": "the skill is at Practised or Needs a refresh", review: "part of the topic review", skill: "the child chose this skill", mixed: "part of a mixed session", drill: "from the skill's drill bank" };
+  const rule = PICK[k] ?? it.why.split("; ")[0];
+  const rows = [
+    ["Session", `${esc(PT().kinds[k] ?? k)} <code>${esc(k)}</code>`],
+    ["Skill", `${esc(canDoOf(it.skill))}<br><code>${esc(it.skill)}</code>`],
+    ["From", esc(STAGE_LABEL[it.stage] ?? it.stage) + (it.recap ? ", as a recap" : "") + (it.again ? ", second time" : "")],
+    ["Help", it.mode === "catch" ? "First hint once, after a wrong answer" : "No hints"],
+    ["Picked", esc([rule, ...it.why.split("; ").slice(1).filter((x) => !/stage$|task$|^drill bank|^format/.test(x))].join("; "))],
+    ["Task", `<code>${esc(it.key)}</code>`],
+  ];
+  return `<dl class="pr-why">${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>`;
+}
 const YEAR_OF = (cur) => [...new Set(D.sets.filter((s) => s.id.startsWith(cur + ".")).map((s) => s.year))];
 function renderPracticeSide() {
   const el = $("#practiceSide"), c = PR.child; if (!el || !c) return;
@@ -982,7 +1003,7 @@ function renderPracticeSide() {
       <span>Sessions finished</span><b>${c.sessions}</b>
     </div>
     <p><button class="nbtn" id="pcReset">Reset this child</button></p></details>
-    <details ${it ? "open" : ""}><summary><b>Why this task</b></summary><div class="pr-why">${it ? esc(`Session: ${PR.session.kind}\nSkill: ${it.skill}\nTask: ${it.key}\nPool: ${it.stage}${it.recap ? " (recap)" : ""}\nHelp: ${it.mode === "catch" ? "first hint once, after a wrong answer" : "no hints"}\nRule: ${it.why}`) : "Start a session to see why each task was picked."}</div></details>
+    <details ${it ? "open" : ""}><summary><b>Why this task</b></summary>${it ? whyBox(it) : `<p class="pr-why empty">Start a session to see why each task was picked.</p>`}</details>
     <details open><summary><b>Skills in ${esc(yearName(c.year))}</b> (${skills.length})</summary><div class="pr-grid" id="pcSkills"></div></details>`;
   const grid = $("#pcSkills");
   skills.forEach((k, i) => {
