@@ -85,3 +85,9 @@ test("a request with nothing known is unknown", () => {
   const r = parseRequest("blue elephants", index);
   assert.equal(r.unknown, true); assert.deepEqual(r.filters, {});
 });
+
+test("what a request understood lists each word once", () => {
+  const r = parseRequest("10 Minuten Einmaleins mit 3", index);
+  const low = r.understood.map((w) => w.toLowerCase());
+  assert.equal(new Set(low).size, low.length);
+});

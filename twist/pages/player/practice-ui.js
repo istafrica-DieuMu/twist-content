@@ -77,7 +77,6 @@ function renderPracticeList(q) {
   }
 }
 
-function openMakeSheet() {}
 
 function startSession({ kind, skills = [], minutes = null, topics = [] }) {
   const fromTopics = topics.flatMap((key) => PR.index.topics.find((t) => t.key === key)?.skills ?? []);
@@ -212,4 +211,43 @@ function refreshPractice() {
   PR.index = indexContent(D.sets, D.drills, PR.child.curriculum);
   if (!PR.on) renderPracticeHome();
   renderPracticeSide();
+}
+
+function openMakeSheet() {
+  const L = PT(), lg = PL(), scr = $("#screen"), F = { subject: PR.index.subjects[0], topics: [], skills: [], minutes: 10, kind: "mixed" };
+  const m = document.createElement("div"); m.className = "sheet menu-sheet"; m.style.maxHeight = "85%"; m.style.overflowY = "auto";
+  const draw = (note = "") => {
+    const tps = PR.index.topics.filter((t) => t.subject === F.subject);
+    m.innerHTML = `<div class="msg">${esc(L.make)}</div>
+      <label class="pr-h" for="prAsk">${esc(L.ask)}</label>
+      <div style="display:flex;gap:8px"><input class="pr-search" id="prAsk" type="text"><button class="btn light" id="prRead" style="width:auto">${esc(L.read)}</button></div>
+      ${note ? `<p class="note">${esc(note)}</p>` : ""}
+      <div class="pr-chips" id="fcSub">${PR.index.subjects.map((s) => `<button data-v="${s}" aria-pressed="${F.subject === s}">${esc(SUBJ_NAME[PR.child.curriculum][s] ?? s)}</button>`).join("")}</div>
+      <div class="pr-chips" id="fcTop">${tps.map((t) => `<button data-v="${esc(t.key)}" aria-pressed="${F.topics.includes(t.key)}">${esc(t.name[lg] ?? t.name.en)}</button>`).join("")}</div>
+      <div class="pr-chips" id="fcMin">${[5, 10, 15].map((n) => `<button data-v="${n}" aria-pressed="${F.minutes === n}">${n} ${esc(L.minutes)}</button>`).join("")}</div>
+      <div class="pr-chips" id="fcKind">${["mixed", "drill", "review", "catch-up"].map((k) => `<button data-v="${k}" aria-pressed="${F.kind === k}">${esc(L.kinds[k])}</button>`).join("")}</div>`;
+    const ask = $("#prAsk", m);
+    $("#prRead", m).onclick = () => {
+      const r = parseRequest(ask.value, PR.index);
+      if (r.unknown) return draw(L.none);
+      Object.assign(F, { topics: r.filters.topics ?? F.topics, skills: r.filters.skills ?? [], minutes: r.filters.minutes ?? F.minutes, kind: r.filters.kind ?? F.kind, subject: r.filters.subject ?? F.subject });
+      draw(r.understood.join(" · "));
+    };
+    m.querySelectorAll("#fcSub button").forEach((b) => b.onclick = () => { F.subject = b.dataset.v; F.topics = []; F.skills = []; draw(); });
+    m.querySelectorAll("#fcTop button").forEach((b) => b.onclick = () => { const v = b.dataset.v; F.topics = F.topics.includes(v) ? F.topics.filter((x) => x !== v) : [...F.topics, v]; draw(); });
+    m.querySelectorAll("#fcMin button").forEach((b) => b.onclick = () => { F.minutes = +b.dataset.v; draw(); });
+    m.querySelectorAll("#fcKind button").forEach((b) => b.onclick = () => { F.kind = b.dataset.v; draw(); });
+    const go_ = document.createElement("button"); go_.className = "btn"; go_.textContent = L.start;
+    go_.onclick = () => {
+      const fromTopics = F.topics.flatMap((key) => PR.index.topics.find((t) => t.key === key)?.skills ?? []);
+      let skills = [...new Set([...F.skills, ...fromTopics])];
+      if (!skills.length) skills = PR.index.topics.filter((t) => t.subject === F.subject).flatMap((t) => t.skills).filter((k) => PR.index.sets.find((s) => s.skill === k)?.year === PR.child.year);
+      if (F.kind === "drill") skills = skills.filter((k) => PR.index.drills[k]);
+      if (!skills.length) return draw(L.none);
+      m.remove(); startSession({ kind: F.kind, skills: F.kind === "drill" ? [skills[0]] : skills, minutes: F.kind === "drill" ? Math.min(F.minutes, 5) : F.minutes });
+    };
+    const x = document.createElement("button"); x.className = "btn light"; x.textContent = UI.close; x.onclick = () => m.remove();
+    m.appendChild(go_); m.appendChild(x);
+  };
+  draw(); scr.appendChild(m);
 }

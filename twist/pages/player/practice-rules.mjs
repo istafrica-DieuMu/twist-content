@@ -324,5 +324,6 @@ export function parseRequest(text, index) {
   if (filters.kind === "drill" && !filters.skills && /einmaleins|times table/.test(t)) filters.subject = "math";
   const topics = index.topics.filter((tp) => [tp.name.de, tp.name.en].some((x) => x && x.length >= 4 && t.includes(x.toLowerCase())));
   if (topics.length) { filters.topics = topics.map((x) => x.key); understood.push(...topics.map((x) => x.name.de)); if (!filters.subject) filters.subject = topics[0].subject; }
-  return { filters, understood, unknown: Object.keys(filters).length === 0 };
+  const once = understood.filter((w, i) => understood.findIndex((x) => x.toLowerCase() === w.toLowerCase()) === i);
+  return { filters, understood: once, unknown: Object.keys(filters).length === 0 };
 }
