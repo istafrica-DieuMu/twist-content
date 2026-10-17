@@ -36,7 +36,7 @@ export function nextRecap(child, skill) {
   const s = child.states[skill];
   if (!s || s.canDoDay == null) return null;
   const gaps = BANDS[child.band].recaps, last = s.recaps.at(-1);
-  if (s.state === "needs_refresh") return { day: (last?.day ?? child.today) + 1, gap: 1, pos: s.pos, upkeep: false, refresh: true };
+  if (s.state === "needs_refresh") return { day: (last?.day ?? s.canDoDay ?? child.today) + 1, gap: 1, pos: s.pos, upkeep: false, refresh: true };
   if (s.state === "remembered") return s.upkeepDone ? null : { day: s.rememberedDay + UPKEEP_DAYS, gap: UPKEEP_DAYS, pos: gaps.length, upkeep: true, refresh: false };
   if (s.state !== "can_do") return null;
   const step = s.pos === 0 ? gaps[0] : gaps[s.pos] - gaps[s.pos - 1];
@@ -57,7 +57,8 @@ export function recordRecap(child, skill, pass, day) {
   const last = BANDS[child.band].recaps.length - 1;
   if (n.refresh) {
     s.recaps.push({ day, pass, pos: s.pos, refresh: true });
-    if (pass) { s.state = s.prev ?? "can_do"; s.prev = null; }
+    // Restoring Remembers it after a failed upkeep counts as the upkeep done.
+    if (pass) { if (s.prev === "remembered") s.upkeepDone = true; s.state = s.prev ?? "can_do"; s.prev = null; }
     return "counted";
   }
   if (n.upkeep) {
@@ -160,7 +161,8 @@ export function buildSession({ kind, child, index, skills = [], minutes = null, 
   const known = skills.filter((k) => index.bySkill[k]);
   const lastCheck = (k) => new Set(child.lastCheck[k] ?? []);
   if (kind === "recaps") {
-    const due = (known.length ? known : recapsDue(child)).filter((k) => index.bySkill[k]);
+    // At most as many skills as fit the session length; the rest stay due.
+    const due = (known.length ? known : recapsDue(child)).filter((k) => index.bySkill[k]).slice(0, Math.max(1, Math.floor(length / band.recapTasks)));
     const groups = due.map((k) => take(child, index.bySkill[k], ["none", "check", "some", "full"], band.recapTasks, rng, lastCheck(k))
       .map((e) => item(child, k, e, "none", true, `recap of ${k} is due`)));
     return { kind, skills: due, mode: "none", items: interleave(groups).slice(0, Math.max(length, groups.length * band.recapTasks)), seconds: null, minutes };
@@ -217,7 +219,7 @@ export function drillTask(it, format, bank, lang, curriculum, rng) {
     }
     return { ...base, type: "text_input", text, answer: a, keyboard: "digits" };
   }
-  const w = String(it.word), gap = it.sentence.replace(new RegExp(`(^|[^\\p{L}])${w}(?=[^\\p{L}]|$)`, "iu"), `$1___`);
+  const w = String(it.word), gap = it.sentence.replace(new RegExp(`(^|[^\\p{L}])${w}(?=[^\\p{L}]|$)`, "giu"), `$1___`);
   if (format === "say" || format === "type") return { ...base, type: "text_input", text: `${L.write}\n${gap}`, answer: w, keyboard: "letters", _sayWord: w };
   const others = shuffle(bank.items.filter((x) => x.word && x.word !== w).map((x) => String(x.word)), rng).slice(0, 2);
   const options = shuffle([w, ...others], rng);
@@ -247,8 +249,10 @@ export function applySession(child, session, results, finished = true) {
   session.items.forEach((it, i) => { if (results[i] && it.lesson != null) child.seen[it.key] = child.today; });
   if (session.kind === "recaps") {
     for (const k of session.skills) {
-      const rs = session.items.map((it, i) => [it, results[i]]).filter(([it, r]) => it.skill === k && r && !it.again);
-      if (!rs.length) continue;
+      const mine = session.items.map((it, i) => [it, results[i]]).filter(([it]) => it.skill === k && !it.again);
+      // A recap counts only when all its tasks were answered; a session left early leaves it due.
+      if (!mine.length || mine.some(([, r]) => !r)) continue;
+      const rs = mine;
       const firsts = rs.filter(([, r]) => r.outcome === "first").length;
       out.recaps[k] = recordRecap(child, k, firsts >= 2, child.today);
     }
@@ -314,7 +318,7 @@ export function parseRequest(text, index) {
     if (w) { filters.kind = kind; understood.push(w); break; }
   }
   // A table number: "mit 7", "the 7s", "7er", "table 7"
-  const n = t.match(/\bmit (\d+)\b|\bthe (\d+)s\b|\b(\d+)er\b|\btables? (\d+)\b/);
+  const n = t.match(/\bmit (\d+)\b(?!\s*(?:min|minuten|minutes|mins)\b)|\bthe (\d+)s\b|\b(\d+)er\b|\btables? (\d+)\b/);
   if (n) {
     const num = n.slice(1).find(Boolean);
     const hits = Object.keys(index.drills).filter((k) => new RegExp(`table(-\\d+)*-${num}(-|$)`).test(k));

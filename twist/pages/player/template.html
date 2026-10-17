@@ -1165,6 +1165,8 @@ function nextBtn(foot, label = UI.next, onClick) {
 
 function go(i) {
   if (PR.on && practiceGo(i)) return;
+  // On the Practice home or end screen, keys and resizes must not draw a lesson.
+  if (PR.home && !PR.on) return;
   stopAudio();
   at = Math.max(0, Math.min(steps.length - 1, i));
   const step = steps[at];

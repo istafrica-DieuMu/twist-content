@@ -15,7 +15,8 @@ const canDoOf = (k) => { const c = D.skills[k]?.can_do; return c ? c[PL()] ?? c.
 const SUBJ_NAME = { "de-DE": { math: "Mathe", "lit-de": "Deutsch", fl: "Englisch" }, "en-GB": { math: "Maths", "lit-en": "English", fl: "French" } };
 
 function loadChild() {
-  try { const c = JSON.parse(localStorage.getItem("twist-practice-child")); if (c?.states) return c; } catch (e) {}
+  // A saved child from an older build, or a broken one, starts fresh.
+  try { const c = JSON.parse(localStorage.getItem("twist-practice-child")); if (c?.states && BANDS[c.band] && ["de-DE", "en-GB"].includes(c.curriculum) && Number.isFinite(c.today)) return { seen: {}, lastCheck: {}, drills: {}, sessions: 0, lastSkill: null, ...c }; } catch (e) {}
   return newChild({ curriculum: "de-DE", year: "klasse-2", band: "6-7" });
 }
 function saveChild() { try { localStorage.setItem("twist-practice-child", JSON.stringify(PR.child)); } catch (e) {} }
