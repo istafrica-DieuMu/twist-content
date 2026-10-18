@@ -391,6 +391,43 @@ svg text{font-family:Andika,sans-serif}
 .slots .gap{border:2px dashed #c9c9c9;border-radius:12px;background:#fafafa;font:700 30px "Red Hat Display",sans-serif;color:#525252}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:#efebff;color:#6849dd}
 .coins{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}.tally{border-collapse:collapse;margin:0 auto;font:700 16px "Red Hat Text",sans-serif;color:#2b0f45}.tally td{border:2px solid #dfdfdf;padding:4px 10px;text-align:left}
+
+/* Activity screens */
+.actin{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding-top:4px}
+.apath{list-style:none;display:flex;align-items:center;gap:4px;margin:0 0 6px;padding:0}
+.apath li{display:flex;align-items:center;gap:6px;height:34px;border-radius:17px;color:#9a9a9a}
+.apath li span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:2px solid #dfdfdf;background:#fff}
+.apath li svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.apath li.done span{background:var(--subj);border-color:var(--subj);color:#fff}
+.apath li.now{background:color-mix(in srgb,var(--subj) 14%,#fff);color:var(--subj);padding-right:12px}
+.apath li.now span{border-color:var(--subj);background:var(--subj);color:#fff}
+.apath li.now b{font:700 14px "Red Hat Display",sans-serif}
+.apath li.sep{width:12px;height:2px;border-radius:2px;background:#dfdfdf}
+.apath li.sep.done{background:var(--subj)}
+.apath li{flex:none;white-space:nowrap}
+.apath li.now b{display:inline-block;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;font-size:13px;line-height:34px}
+.stagebox{position:relative;width:230px;height:230px;display:grid;place-items:center;margin-top:auto}
+.stagebox .disc{position:absolute;inset:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--subj) 22%,#fff),color-mix(in srgb,var(--subj) 40%,#fff));animation:discIn .5s cubic-bezier(.2,.9,.3,1.3) both}
+.stagebox img.mascot-pose{position:relative;width:200px;height:200px;animation:poseIn .6s .12s cubic-bezier(.3,1.5,.5,1) both}
+.spark{position:absolute;width:14px;height:14px;background:var(--subj);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);opacity:0;animation:spark 1.4s .5s ease-out both}
+.spark.s1{top:10px;right:22px}.spark.s2{bottom:30px;left:4px;width:10px;height:10px;animation-delay:.65s}.spark.s3{top:44px;left:18px;width:8px;height:8px;animation-delay:.8s}
+.actin .a-act{font:800 30px "Red Hat Display",sans-serif;margin:6px 0 0;color:#303030;animation:rise .45s .3s both}
+.actin .a-phrase{font:500 18px "Red Hat Text",sans-serif;color:#6d6d6d;margin:0;animation:rise .45s .38s both}
+.nextcard{width:100%;margin-bottom:auto;margin-top:8px;border:2px solid #dfdfdf;border-bottom-width:5px;border-radius:20px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;align-items:center;animation:rise .45s .46s both}
+.nextcard p{margin:0;font:500 16px "Red Hat Text",sans-serif;color:#303030}
+.hlv{display:flex;gap:6px;width:100%}
+.hlv span{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:12px;background:#f4f4f4;color:#8a8a8a;font:600 13px "Red Hat Text",sans-serif}
+.hlv span i{font-style:normal;letter-spacing:2px;font-size:10px}
+.hlv span.done{background:color-mix(in srgb,var(--subj) 12%,#fff);color:var(--subj)}
+.hlv span.now{background:var(--subj);color:#fff;transform:scale(1.04);transition:transform .3s}
+.cdots{display:flex;gap:8px}.cdots i{width:16px;height:16px;border-radius:50%;border:3px solid var(--subj);animation:rise .3s both}
+.cdots i:nth-child(2){animation-delay:.55s}.cdots i:nth-child(3){animation-delay:.6s}.cdots i:nth-child(4){animation-delay:.65s}.cdots i:nth-child(5){animation-delay:.7s}
+@keyframes discIn{from{transform:scale(.55);opacity:0}to{transform:none;opacity:1}}
+@keyframes poseIn{from{transform:translateY(-36px) scale(.85);opacity:0}to{transform:none;opacity:1}}
+@keyframes rise{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+@keyframes spark{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.2) rotate(45deg)}100%{opacity:0;transform:scale(.6) rotate(90deg)}}
+@media (prefers-reduced-motion: reduce){.actin *,.actin{animation:none!important}.spark{display:none}}
+@media (max-height:760px){.stagebox{width:180px;height:180px}.stagebox img.mascot-pose{width:160px;height:160px}}
 /*__PRACTICE_CSS__*/
 </style>
 </head>
@@ -454,12 +491,14 @@ const TXT = {
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
-    speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: " },
+    speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
+    introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:" },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
-    speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: " },
+    speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
+    introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:" },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
@@ -1169,11 +1208,38 @@ function mascotPose(kind, turn = 0) {
   const seed = [...(set?.id ?? "")].reduce((n, c) => n + c.charCodeAt(0), 0) + (lesson?.n ?? 1) + turn;
   return `<img class="mascot-pose" src="${A}mascot/${kind}-${(seed % 3) + 1}.png" alt="">`;
 }
-function renderIntro(step) {
-  const { body, foot } = frameUI(step), key = { "warm-up": "warmup_start", learn: "learn_start", practise: "practise_start" }[step.a.activity], p = phrase(key);
-  body.innerHTML = `<div class="center">${mascotPose(MASCOT_KIND[step.a.activity])}<h2 class="a-act">${esc(actName(step.a))}</h2>${p ? `<p class="a-phrase">${esc(p.text)}</p>` : ""}</div>`;
-  if (p) play(p.src);
+// Activity screens: where the child is in the lesson (a path of its
+// activities), the mascot on a disc in the subject's colour, and what comes
+// next (how many screens or questions, the help levels, the check's dots).
+// One entrance: the disc grows, the mascot drops in, the text rises.
+const ACT_ICON = {
+  "warm-up": '<path d="M12 3c1 3 4 4.5 4 8.5A4 4 0 0 1 8 11.5C8 9 9.5 8 9.5 6c1.5 1 2.5 2 2.5 4 .9-1 1-3 0-7z"/>',
+  learn: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1.1 1.4 1.1 2.2h5c0-.8.5-1.7 1.1-2.2A6 6 0 0 0 12 3z"/>',
+  practise: '<path d="M4 20l4-1 11-11-3-3L5 16l-1 4zM14 6l3 3"/>',
+  check: '<path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6L12 16.2 6.6 19.2l1.3-6-4.5-4 6-.6z"/>',
+};
+const actIcon = (a) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ACT_ICON[a] ?? ""}</svg>`;
+function actPath(step) {
+  const acts = lesson.activities, cur = acts.indexOf(step.a);
+  return `<ol class="apath" aria-label="${esc(lesson.title[lang()] ?? "")}">${acts.map((a, i) => `${i ? `<li class="sep${i <= cur ? " done" : ""}" aria-hidden="true"></li>` : ""}<li class="${i < cur ? "done" : i === cur ? "now" : ""}"><span>${i < cur ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : actIcon(a.activity)}</span>${i === cur ? `<b>${esc(actName(a))}</b>` : ""}</li>`).join("")}</ol>`;
+}
+function helpLevels(a, now) {
+  const labels = { full: UI.stFull, some: UI.stSome, none: UI.stNone };
+  return `<div class="hlv">${a.stages.map((st, i) => `<span class="${i < now ? "done" : i === now ? "now" : ""}"><i>${"●".repeat(3 - i)}${"○".repeat(i)}</i>${esc(labels[st.support] ?? "")}</span>`).join("")}</div>`;
+}
+function actScreen(step, { pose, title, phrase: ph, card }) {
+  const { body, foot } = frameUI(step);
+  body.innerHTML = `<div class="actin">${actPath(step)}<div class="stagebox"><div class="disc"></div><div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div>${pose}</div>
+    <h2 class="a-act">${esc(title)}</h2>${ph ? `<p class="a-phrase">${esc(ph)}</p>` : ""}${card ? `<div class="nextcard">${card}</div>` : ""}</div>`;
   nextBtn(foot);
+  return body;
+}
+function renderIntro(step) {
+  const a = step.a, key = { "warm-up": "warmup_start", learn: "learn_start", practise: "practise_start" }[a.activity], p = phrase(key);
+  const n = a.activity === "learn" ? a.screens.length : a.activity === "practise" ? a.stages.reduce((k, st) => k + st.tasks.length, 0) : (a.tasks ?? []).length;
+  const card = a.activity === "practise" ? `<p>${esc(UI.introPractise(n))}</p>${helpLevels(a, 0)}` : `<p>${esc(a.activity === "learn" ? UI.introLearn(n) : UI.introWarm(n))}</p>`;
+  actScreen(step, { pose: mascotPose(MASCOT_KIND[a.activity]), title: actName(a), phrase: p?.text, card });
+  if (p) play(p.src);
 }
 function renderStart() {
   const { body, foot } = frameUI({ kind: "start" });
@@ -1219,17 +1285,14 @@ function renderLearn(step) {
   body.style.justifyContent = "center"; fitScreen(body, vis);
 }
 function renderStage(step) {
-  const { body, foot } = frameUI(step), p = phrase("stage_done");
-  const label = { some: UI.less, none: UI.alone }[step.st.support];
-  body.innerHTML = `<div class="center">${mascotPose("stage", step.si)}<h2 class="a-phrase">${esc(p?.text ?? "Prima!")}</h2><p class="a-stage">${esc(label)}</p></div>`;
+  const p = phrase("stage_done"), label = { some: UI.less, none: UI.alone }[step.st.support];
+  actScreen(step, { pose: mascotPose("stage", step.si), title: p?.text ?? "Prima!", phrase: label, card: helpLevels(step.a, step.si) });
   if (p) play(p.src);
-  nextBtn(foot);
 }
 function renderCheckIntro(step) {
-  const { body, foot } = frameUI(step), p = phrase("check_start");
-  body.innerHTML = `<div class="center">${mascotPose("check")}<h2 class="a-phrase">${esc(p?.text ?? UI.checkTitle)}</h2><p class="a-info">${UI.checkInfo(step.a.draw ?? step.a.tasks.length)}</p></div>`;
+  const p = phrase("check_start"), n = step.a.draw ?? step.a.tasks.length;
+  actScreen(step, { pose: mascotPose("check"), title: p?.text ?? UI.checkTitle, card: `<div class="cdots">${"<i></i>".repeat(n)}</div><p>${esc(UI.checkInfo(n))}</p>` });
   if (p) play(p.src);
-  nextBtn(foot);
 }
 function renderEnd() {
   if (PR.on) return practiceEnd();
@@ -1391,7 +1454,21 @@ function fitScreen(body, vis) {
       const h = el.getBoundingClientRect().height; el.style.zoom = Math.max(1, z * (h - over) / h).toFixed(3);
     }
   };
-  requestAnimationFrame(run);
+  requestAnimationFrame(() => { run(); fitTileText(body); });
+}
+// A sum or a number on a tile stays on one line ("3 + 5", never "3 +" over
+// "5"): the tiles of a row shrink to one font size at which every text fits.
+function fitTileText(body) {
+  for (const grid of body.querySelectorAll(".opts.tx, .opts.mid, .pad")) {
+    const texts = (b) => [...b.childNodes].filter((n) => n.nodeType === 3);
+    const tiles = [...grid.querySelectorAll(".opt")].filter((b) => { const t = texts(b).map((n) => n.textContent).join("").trim(); return t && !/[A-Za-zÄÖÜäöüßéèàç]{2}/.test(t); });
+    if (!tiles.length) continue;
+    const range = document.createRange();
+    const width = (b) => texts(b).reduce((w, n) => { range.selectNode(n); return w + range.getBoundingClientRect().width; }, 0);
+    tiles.forEach((b) => { b.style.whiteSpace = "nowrap"; });
+    let fs = parseFloat(getComputedStyle(tiles[0]).fontSize);
+    while (fs > 14 && tiles.some((b) => width(b) > b.clientWidth - 16)) { fs -= 2; tiles.forEach((b) => { b.style.fontSize = `${fs}px`; }); }
+  }
 }
 // Show an amount briefly, then cover it, so it has to be seen at a glance.
 function flash(vis, ms, again, step) {
