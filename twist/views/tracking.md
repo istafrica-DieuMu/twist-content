@@ -8,22 +8,22 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (24367 / 24367) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21533 / 21533) |
-| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6295 / 6295) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (52194 / 52194)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30082 / 30082) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17301 / 17301) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (24364 / 24364) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21585 / 21585) |
+| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6317 / 6317) |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (52266 / 52266)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30081 / 30081) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17323 / 17323) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6521 / 6521) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53903 / 53903)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53925 / 53925)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 106136 clips, 145.3 h | about $178 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 106136 clips | about $85 | estimated the same way |
+| Narration | google/gemini-3.8-flash-tts | 106229 clips, 145.4 h | about $178 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 106229 clips | about $85 | estimated the same way |
 | **Total** | | | **about $272** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
@@ -32,14 +32,14 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 7407 | 7306 (99%) | 0 | 448 min | $15 |
-| gemini-puck-en | 6549 | 6368 (97%) | 0 | 433 min | $14 |
-| gemini-sulafat | 44814 | 43968 (98%) | 0 | 3410 min | $105 |
+| gemini-puck | 7478 | 7379 (99%) | 0 | 452 min | $15 |
+| gemini-puck-en | 6571 | 6390 (97%) | 0 | 434 min | $14 |
+| gemini-sulafat | 44814 | 43982 (98%) | 0 | 3411 min | $105 |
 | gemini-sulafat-en | 47366 | 46234 (98%) | 0 | 4426 min | $128 |
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 20310 tasks. Narration so far about $120; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 20364 tasks. Narration so far about $120; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -60,7 +60,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.07 |
 | klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.46 |
 | klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.45 |
-| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.19 |
+| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.17 |
 | klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $1.34 |
 | klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.45 |
 | klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $0.90 |
@@ -88,7 +88,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.00 |
 | klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.40 |
 | klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $1.77 |
-| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $3.52 |
+| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $3.51 |
 | klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.58 |
 | klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 4 / 4 done | 8 | $1.17 |
 | klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.35 |
@@ -100,13 +100,13 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Laute und Buchstaben | 1 / 1 done | 2 | $0.18 |
 | klasse-2 | Deutsch | Kurze und lange Selbstlaute | 1 / 1 done | 2 | $0.21 |
 | klasse-2 | Deutsch | Besondere Laute | 1 / 1 done | 2 | $0.21 |
-| klasse-2 | Deutsch | Rechtschreibstrategien | 5 / 5 done | 10 | $1.19 |
+| klasse-2 | Deutsch | Rechtschreibstrategien | 5 / 5 done | 10 | $1.24 |
 | klasse-2 | Deutsch | Wortstamm und Wortfamilie | 1 / 1 done | 2 | $0.30 |
 | klasse-2 | Deutsch | Merkwörter | 1 / 1 done | 2 | $0.21 |
 | klasse-2 | Deutsch | Rechtschreibung üben | 1 / 1 done | 2 | $0.23 |
 | klasse-2 | Deutsch | Blitzlesen | 1 / 1 done | 2 | $0.17 |
 | klasse-2 | Deutsch | Genau lesen | 1 / 1 done | 2 | $0.20 |
-| klasse-2 | Deutsch | Texte verstehen | 4 / 4 done | 8 | $1.13 |
+| klasse-2 | Deutsch | Texte verstehen | 4 / 4 done | 8 | $1.18 |
 | klasse-2 | Deutsch | Textarten | 2 / 2 done | 4 | $0.56 |
 | klasse-2 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 | $0.39 |
 | klasse-2 | Deutsch | Texte schreiben | 2 / 2 done | 4 | $0.59 |
@@ -120,7 +120,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.27 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.16 |
 | klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $4.10 |
-| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $3.80 |
+| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $3.81 |
 | klasse-3 | Mathe | Geometrie | 7 / 7 done | 14 | $1.83 |
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.16 |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.38 |
@@ -153,8 +153,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Texte gestalten | 2 / 2 done | 4 | $0.75 |
 | klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.32 |
 | klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $1.75 |
-| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.90 |
-| klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.05 |
+| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.89 |
+| klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.03 |
 | klasse-4 | Mathe | Größen | 8 / 8 done | 16 | $3.11 |
 | klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $3.30 |
 | klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.32 |
@@ -168,9 +168,9 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Besondere Laute | 2 / 2 done | 4 | $0.38 |
 | klasse-4 | Deutsch | Rechtschreibung üben | 1 / 1 done | 2 | $0.15 |
 | klasse-4 | Deutsch | Fehler berichtigen | 1 / 1 done | 2 | $0.39 |
-| klasse-4 | Deutsch | Texte verstehen | 3 / 3 done | 6 | $1.01 |
+| klasse-4 | Deutsch | Texte verstehen | 3 / 3 done | 6 | $1.00 |
 | klasse-4 | Deutsch | Märchen | 2 / 2 done | 4 | $0.78 |
-| klasse-4 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 | $0.31 |
+| klasse-4 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 | $0.30 |
 | klasse-4 | Deutsch | Vortragen | 1 / 1 done | 2 | $0.35 |
 | klasse-4 | Deutsch | Medien | 3 / 3 done | 6 | $1.13 |
 | klasse-4 | Deutsch | Erzählen | 1 / 1 done | 2 | $0.30 |
@@ -190,7 +190,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | stufe-0 | Englisch | Sprachen vergleichen | 1 / 1 done | 2 | $0.22 |
 | lernjahr-1 | Englisch | Hören | 3 / 3 done | 6 | $0.87 |
 | lernjahr-1 | Englisch | Sprachmuster | 4 / 4 done | 8 | $0.84 |
-| lernjahr-1 | Englisch | Sprechen | 4 / 4 done | 8 | $0.95 |
+| lernjahr-1 | Englisch | Sprechen | 4 / 4 done | 8 | $0.94 |
 | lernjahr-1 | Englisch | Lesen | 3 / 3 done | 6 | $0.52 |
 | lernjahr-1 | Englisch | Schreiben | 2 / 2 done | 4 | $0.37 |
 | lernjahr-1 | Englisch | Zahlen | 1 / 1 done | 2 | $0.18 |
@@ -198,7 +198,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | lernjahr-1 | Englisch | Zu Hause | 1 / 1 done | 2 | $0.16 |
 | lernjahr-1 | Englisch | In der Stadt | 1 / 1 done | 2 | $0.21 |
 | lernjahr-1 | Englisch | Gefühle | 1 / 1 done | 2 | $0.16 |
-| lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.19 |
+| lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.23 |
 | lernjahr-1 | Englisch | Kalender | 1 / 1 done | 2 | $0.27 |
 | lernjahr-1 | Englisch | Wetter | 1 / 1 done | 2 | $0.18 |
 | lernjahr-1 | Englisch | Die Welt der Sprache | 1 / 1 done | 2 | $0.37 |
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20731 tasks. Narration so far about $143; 0 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20768 tasks. Narration so far about $143; 0 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -245,7 +245,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | Maths | Division | 1 / 1 done | 2 | $0.25 |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $0.75 |
 | reception | English | Phonics | 12 / 12 done | 24 | $2.32 |
-| reception | English | Reading words | 3 / 3 done | 6 | $0.46 |
+| reception | English | Reading words | 3 / 3 done | 6 | $0.48 |
 | reception | English | Understanding stories | 2 / 2 done | 4 | $0.70 |
 | reception | English | Spelling | 1 / 1 done | 2 | $0.27 |
 | reception | English | Stories and poems | 2 / 2 done | 4 | $0.64 |
@@ -273,7 +273,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-1 | Maths | Mass | 1 / 1 done | 2 | $0.32 |
 | year-1 | Maths | Fractions | 1 / 1 done | 2 | $0.21 |
 | year-1 | Maths | Turns | 1 / 1 done | 2 | $0.29 |
-| year-1 | English | Phonics | 3 / 3 done | 6 | $0.68 |
+| year-1 | English | Phonics | 3 / 3 done | 6 | $0.71 |
 | year-1 | English | Reading words | 5 / 5 done | 11 | $1.28 |
 | year-1 | English | Spelling | 5 / 5 done | 10 | $1.27 |
 | year-1 | English | Stories and poems | 2 / 2 done | 5 | $0.84 |
@@ -374,7 +374,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-4 | English | Stories and poems | 1 / 1 done | 2 | $0.33 |
 | year-4 | Maths | Fractions | 1 / 1 done | 2 | $0.29 |
 | year-4 | English | Speaking and listening | 1 / 1 done | 2 | $0.27 |
-| year-4 | English | Spelling | 3 / 3 done | 6 | $0.89 |
+| year-4 | English | Spelling | 3 / 3 done | 6 | $0.88 |
 | year-4 | English | Words in texts | 1 / 1 done | 2 | $0.44 |
 | year-4 | English | Performing texts | 1 / 1 done | 2 | $0.35 |
 | year-4 | English | Reading between the lines | 1 / 1 done | 2 | $0.43 |
@@ -483,15 +483,15 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 47 of 918 skill checks and 52 of 974 quick checks done; 6 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 52 of 918 skill checks and 57 of 974 quick checks done; 6 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
-| de-DE fl lernjahr-1 | 28 | 0 | 0 of 28 |
+| de-DE fl lernjahr-1 | 28 | 1 | 1 of 28 |
 | de-DE fl lernjahr-2 | 16 | 0 | 0 of 16 |
 | de-DE fl stufe-0 | 14 | 0 | 0 of 14 |
 | de-DE lit-de klasse-1 | 51 | 0 | 0 of 77 |
-| de-DE lit-de klasse-2 | 46 | 0 | 0 of 47 |
+| de-DE lit-de klasse-2 | 46 | 2 | 2 of 47 |
 | de-DE lit-de klasse-3 | 42 | 0 | 0 of 42 |
 | de-DE lit-de klasse-4 | 35 | 0 | 0 of 36 |
 | de-DE math klasse-1 | 41 | 41 | 46 of 46 |
@@ -502,8 +502,8 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 | en-GB fl ly-2 | 28 | 0 | 0 of 28 |
 | en-GB fl ly-3 | 11 | 0 | 0 of 12 |
 | en-GB fl ly-4 | 8 | 0 | 0 of 9 |
-| en-GB lit-en reception | 32 | 0 | 0 of 32 |
-| en-GB lit-en year-1 | 32 | 0 | 0 of 35 |
+| en-GB lit-en reception | 32 | 1 | 1 of 32 |
+| en-GB lit-en year-1 | 32 | 1 | 1 of 35 |
 | en-GB lit-en year-2 | 29 | 0 | 0 of 30 |
 | en-GB lit-en year-3 | 20 | 0 | 0 of 21 |
 | en-GB lit-en year-4 | 16 | 0 | 0 of 16 |

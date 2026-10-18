@@ -21,17 +21,22 @@ metadata:
   lesson_minutes: 10
   builds_on: [fl.grammar.chunks, fl.listening.familiar-words]
   also_practises: [fl.grammar.chunks, fl.speaking.imitate]
-  vocabulary: { en: [bread, cheese, pizza, ice cream, milk, juice, water, "I like …", "I don't like …", "Can I have …, please?", "Do you like …?", "Yes, I do.", "No, I don't."] }
+  vocabulary: { en: [bread, cheese, pizza, ice cream, milk, juice, water, "I like …", "I don't like …", "Can I have …, please?", "Here you are.", "Thank you!", "Do you like …?", "Yes, I do.", "No, I don't."] }
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: words, what: { de: Essen und Getränke auf Englisch verstehen, en: understanding food and drink words in English } }
+    - { id: likes, what: { de: "sagen, was man mag und nicht mag", en: saying what you like and do not like } }
+    - { id: ask-answer, what: { de: "fragen, ob jemand etwas mag, und kurz antworten", en: asking whether someone likes something and giving a short answer } }
+    - { id: order, what: { de: höflich um etwas bitten, en: asking politely for something } }
   misconceptions:
     - id: not-like
       what: Says "I not like" after the German "ich mag nicht"
-      addressed: lesson 1 Learn models "I don't like"; the "Wie sagst du auf Englisch" tasks in every stage of lesson 1 offer "I not like …", with feedback in l1-f3
+      addressed: lesson 1 Learn models "I don't like"; the "Wie sagst du auf Englisch" tasks in every stage of lesson 1 offer "I not like …", with feedback in l1-f3; the skill check tests it in l2-c10 and l2-c12 (a "not" card among the words)
     - id: yes-i-like
       what: Answers "Do you like …?" with "Yes, I like." instead of "Yes, I do."
-      addressed: lesson 2 Learn models the short answers; every stage of lesson 2 has a short-answer task with a wrong form among the options, with feedback in l2-f3
+      addressed: lesson 2 Learn models the short answers; every stage of lesson 2 has a short-answer task with a wrong form among the options, with feedback in l2-f3; the skill check tests it in l2-c3 and l2-c13
   twist_reuse: []
   status: draft
   version: 1
@@ -211,25 +216,51 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
+            text: "Welches Bild passt?"
             say: { de: "Hör zu. Welches Bild passt?" }
             audio: { en: "Pizza." }
             options: [{ object: pie }, { object: pizza }, { object: cake }]
             answer: pizza
           - id: l1-c2
             type: audio_choice
+            text: "Was mag das Kind?"
             say: { de: "Hör zu. Was mag das Kind?" }
-            audio: { en: "I like apples." }
+            audio: { en: "I like apples.", speaker: female }
             options: [{ object: egg }, { object: bread }, { object: apple }]
             answer: apple
           - id: l1-c3
             type: multiple_choice
-            text: "Ich mag keine Karotten."
+            text: "Wie sagst du auf Englisch: „Ich mag keine Karotten“?"
             say: "Wie sagst du auf Englisch: Ich mag keine Karotten?"
             options: ["I don't like carrots.", "I not like carrots.", "I like carrots."]
             answer: "I don't like carrots."
+            option_audio: false
+          - id: l1-c4
+            type: audio_choice
+            text: "Mag das Kind Brot?"
+            say: { de: "Hör zu. Mag das Kind Brot?" }
+            audio: { en: "I like bread.", speaker: male }
+            options: ["Ja, es mag Brot.", "Nein, es mag kein Brot."]
+            answer: "Ja, es mag Brot."
+            option_audio: false
+            keep_order: true
+          - id: l1-c5
+            type: audio_choice
+            text: "Was mag das Kind?"
+            say: { de: "Hör zu. Was mag das Kind?" }
+            audio: { en: "I don't like pizza. I like cheese.", speaker: female }
+            options: [{ object: pizza }, { object: ice-cream }, { object: cheese }]
+            answer: cheese
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wie sagst du auf Englisch: „Ich mag Eis“?"
+            say: "Wie sagst du auf Englisch: Ich mag Eis?"
+            options: ["I don't like ice cream.", "I can ice cream.", "I like ice cream."]
+            answer: "I like ice cream."
             option_audio: false
 
   - n: 2
@@ -409,20 +440,26 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: words
             type: audio_choice
+            text: "Was möchte das Kind trinken?"
             say: { de: "Hör zu. Was möchte das Kind trinken?" }
-            audio: { en: "Some water, please." }
+            audio: { en: "Some water, please.", speaker: male }
             options: [{ object: juice }, { object: milk }, { object: water }]
             answer: water
           - id: l2-c2
+            part: order
             type: audio_choice
+            text: "Was möchte das Kind?"
             say: { de: "Hör zu. Was möchte das Kind?" }
-            audio: { en: "Can I have some cheese, please?" }
+            audio: { en: "Can I have some cheese, please?", speaker: female }
             options: [{ object: pizza }, { object: cake }, { object: cheese }]
             answer: cheese
           - id: l2-c3
+            part: ask-answer
             type: multiple_choice
             text: "„Do you like juice?“ Du magst keinen Saft. Was antwortest du?"
             say: { de: "Du magst keinen Saft. Was antwortest du auf diese Frage?", en: "Do you like juice?" }
@@ -430,17 +467,149 @@ lessons:
             answer: "No, I don't."
             option_audio: false
           - id: l2-c4
+            part: likes
             type: audio_choice
+            text: "Mag das Kind Käse?"
             say: { de: "Hör zu. Mag das Kind Käse?" }
-            audio: { en: "I don't like cheese." }
+            audio: { en: "I don't like cheese.", speaker: male }
             options: ["Ja, es mag Käse.", "Nein, es mag keinen Käse."]
             answer: "Nein, es mag keinen Käse."
             option_audio: false
+            keep_order: true
           - id: l2-c5
+            part: likes
             type: ordering
             text: "Bau den Satz: Ich mag Erdbeeren."
             say: "Bau den Satz: Ich mag Erdbeeren."
             options: ["strawberries.", "I", "like"]
             slot_count: 3
             answer: ["I", "like", "strawberries."]
+            option_audio: false
+          - id: l2-c6
+            part: words
+            type: audio_choice
+            text: "Was heißt das auf Deutsch?"
+            say: { de: "Hör zu. Was heißt das auf Deutsch?" }
+            audio: { en: "Cheese." }
+            options: ["Saft", "Eis", "Käse"]
+            answer: "Käse"
+            option_audio: false
+          - id: l2-c7
+            part: words
+            type: multiple_choice
+            text: "Wie heißt das auf Englisch?"
+            say: "Wie heißt das auf Englisch?"
+            show: { object: ice-cream }
+            options: ["juice", "ice cream", "cheese"]
+            answer: "ice cream"
+            option_audio: false
+          - id: l2-c8
+            part: words
+            type: audio_choice
+            text: "Welches Bild passt?"
+            say: { de: "Hör zu. Welches Bild passt?" }
+            audio: { en: "Bread." }
+            options: [{ object: pizza }, { object: bread }, { object: cheese }]
+            answer: bread
+          - id: l2-c9
+            part: words
+            type: multiple_choice
+            text: "Welches Wort ist ein Getränk?"
+            say: "Welches Wort ist ein Getränk?"
+            options: ["cheese", "milk", "pizza"]
+            answer: "milk"
+            option_audio: false
+          - id: l2-c10
+            part: likes
+            type: multiple_choice
+            text: "Wie sagst du auf Englisch: „Ich mag kein Eis“?"
+            say: "Wie sagst du auf Englisch: Ich mag kein Eis?"
+            options: ["I not like ice cream.", "I like ice cream.", "I don't like ice cream."]
+            answer: "I don't like ice cream."
+            option_audio: false
+          - id: l2-c11
+            part: likes
+            type: audio_choice
+            text: "Was mag das Kind nicht?"
+            say: { de: "Hör zu. Was mag das Kind nicht?" }
+            audio: { en: "I like milk. I don't like juice.", speaker: female }
+            options: [{ object: juice }, { object: milk }, { object: water }]
+            answer: juice
+          - id: l2-c12
+            part: likes
+            type: ordering
+            text: "Bau den Satz: Ich mag keine Pizza."
+            say: "Bau den Satz: Ich mag keine Pizza."
+            options: ["don't", "pizza.", "not", "I", "like"]
+            slot_count: 4
+            answer: ["I", "don't", "like", "pizza."]
+            option_audio: false
+          - id: l2-c13
+            part: ask-answer
+            type: multiple_choice
+            text: "„Do you like bread?“ Du magst Brot. Was antwortest du?"
+            say: { de: "Du magst Brot. Was antwortest du auf diese Frage?", en: "Do you like bread?" }
+            options: ["Yes, I like.", "Yes, I am.", "Yes, I do."]
+            answer: "Yes, I do."
+            option_audio: false
+          - id: l2-c14
+            part: ask-answer
+            type: multiple_choice
+            text: "Du willst wissen, ob dein Freund Käse mag. Was fragst du?"
+            say: "Du willst wissen, ob dein Freund Käse mag. Was fragst du?"
+            options: ["Like you cheese?", "Do you like cheese?", "Can I have some cheese, please?"]
+            answer: "Do you like cheese?"
+            option_audio: false
+          - id: l2-c15
+            part: ask-answer
+            type: audio_choice
+            text: "Mag Ben Wasser?"
+            say: { de: "Hör zu. Mag Ben Wasser?" }
+            audio: { turns: [{ en: "Ben, do you like water?", speaker: female }, { en: "Yes, I do.", speaker: male }] }
+            options: ["Ja, Ben mag Wasser.", "Nein, Ben mag kein Wasser."]
+            answer: "Ja, Ben mag Wasser."
+            option_audio: false
+            keep_order: true
+          - id: l2-c16
+            part: ask-answer
+            type: ordering
+            text: "Bau die Frage: Magst du Eis?"
+            say: "Bau die Frage: Magst du Eis?"
+            options: ["like", "ice cream?", "Do", "you"]
+            slot_count: 4
+            answer: ["Do", "you", "like", "ice cream?"]
+            option_audio: false
+          - id: l2-c17
+            part: order
+            type: audio_choice
+            text: "Was sagt das Kind?"
+            say: { de: "Hör zu. Was sagt das Kind?" }
+            audio: { en: "Can I have a pizza, please?", speaker: male }
+            options: ["Es fragt, ob du Pizza magst.", "Es möchte eine Pizza.", "Es mag keine Pizza."]
+            answer: "Es möchte eine Pizza."
+            option_audio: false
+          - id: l2-c18
+            part: order
+            type: multiple_choice
+            text: "Du möchtest Milch. Wie bittest du höflich darum?"
+            say: "Du möchtest Milch. Wie bittest du höflich darum?"
+            options: ["I like milk.", "Can I have some milk, please?", "Do you like milk?"]
+            answer: "Can I have some milk, please?"
+            option_audio: false
+          - id: l2-c19
+            part: order
+            type: ordering
+            text: "Bau die Frage: Kann ich bitte etwas Wasser haben?"
+            say: "Bau die Frage: Kann ich bitte etwas Wasser haben?"
+            options: ["have", "some water, please?", "Can", "I"]
+            slot_count: 4
+            answer: ["Can", "I", "have", "some water, please?"]
+            option_audio: false
+          - id: l2-c20
+            part: order
+            type: multiple_choice
+            text: "„Here you are.“ Du bekommst deinen Saft. Was antwortest du?"
+            say: { de: "Du bekommst deinen Saft. Was antwortest du darauf?", en: "Here you are." }
+            options: ["Please.", "Thank you!", "Yes, I do."]
+            answer: "Thank you!"
             option_audio: false

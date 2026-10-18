@@ -70,8 +70,18 @@ def spoken(text, lang):
     if lang == "de":
         for a, b in VULGAR_DE:
             t = t.replace(a, b)
+        t = say_money_de(t)
         t = say_numbers_de(t)
+        t = re.sub(r"\beins (Euro|Cent)\b", r"ein \1", t)
     return t
+
+
+# Money after a number, as a German teacher says it: 5,70 € is "fünf Euro
+# siebzig", 50 ct "fünfzig Cent". Must match sayMoneyDe() in player/build.mjs.
+def say_money_de(t):
+    t = re.sub(r"(?<![\d,])(\d+),(\d{2}) €", r"\1 Euro \2", t)
+    t = re.sub(r"(\d) €", r"\1 Euro", t)
+    return re.sub(r"(\d) ct\b", r"\1 Cent", t)
 
 
 # Symbols the voice misread ("7/5" came out as "seven take away five") are

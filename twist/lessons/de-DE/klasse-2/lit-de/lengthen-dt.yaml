@@ -22,13 +22,18 @@ metadata:
   forms: [picture, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: noun, what: { de: "Nomen mit d oder t am Ende, verlängert mit der Mehrzahl", en: "nouns that end in d or t, lengthened with the plural" } }
+    - { id: adjective, what: { de: "Adjektive mit d oder t am Ende, verlängert mit einem Nomen", en: "adjectives that end in d or t, lengthened with a noun" } }
+    - { id: helper-word, what: { de: "das längere Wort finden, das beim Schreiben hilft", en: "choosing the longer word that shows the end letter" } }
+    - { id: in-sentence, what: { de: Nomen und Adjektive im Satz verlängern und richtig schreiben, en: lengthening nouns and adjectives in a sentence to spell them } }
   misconceptions:
     - id: write-what-you-hear
       what: Writes the end letter as it sounds (Hunt for Hund) or guesses the other way (Brod for Brot)
-      addressed: lesson 1 Learn hears Hund as t and shows why it is d; a "d oder t?" gap in every stage, a word card to judge in every stage, misspelt in l1-f4, l1-n4, l2-f4 and l2-c4 (Brod, Hemt, laud, Pfert)
+      addressed: lesson 1 Learn hears Hund as t and shows why it is d; a "d oder t?" gap in every stage, a word card to judge in every stage, misspelt in l1-f4, l1-n4, l1-c6, l2-f4, l2-c4 and l2-c20 (Brod, Hemt, Schilt, laud, Pfert, Wint), sound-alike spellings to choose from in l2-c12 and l2-c19, typed words in l1-c5, l2-c8 and l2-c10
     - id: wrong-helper-word
       what: Picks a word that only looks similar instead of the longer form (Kino for Kind, Mond for Mund)
-      addressed: "every stage has a \"Welches Wort hilft dir?\" task with look-alike words as options"
+      addressed: "every stage has a \"Welches Wort hilft dir?\" task with look-alike words as options; the checks add l1-c4 (leicht for Licht), l2-c13 (das Licht for leicht), l2-c14 (lang for Land), l2-c15 (hell, Helm for Held) and l2-c16 (der Gurt for gut)"
   twist_reuse: []
   status: draft
   version: 1
@@ -220,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -241,6 +247,25 @@ lessons:
             say: "Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Wald" }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welches Wort hilft dir bei Licht?"
+            say: "Welches Wort hilft dir, wenn du Licht schreiben willst?"
+            options: ["Lichter", "leicht", "Leiter"]
+            answer: "Lichter"
+          - id: l1-c5
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Nomen."
+            say: "Der Elefant. Der Elefant hat einen langen Rüssel. Schreib das Nomen Elefant."
+            show: { object: elephant }
+            answer: "Elefant"
+          - id: l1-c6
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Schilt" }
+            answer: false
 
   - n: 2
     title: { de: "Auch Adjektive verlängern", en: "Lengthening describing words" }
@@ -418,8 +443,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: noun
             type: fill_in_blank
             text: "d oder t? Verlängere."
             say: "Das Lied. Welcher Buchstabe fehlt am Ende? Verlängere das Wort."
@@ -427,28 +454,148 @@ lessons:
             options: ["d", "t"]
             answer: ["d"]
           - id: l2-c2
+            part: adjective
             type: fill_in_blank
             text: "d oder t? Verlängere das Adjektiv."
-            say: "Lenas Haar ist blond. Welcher Buchstabe fehlt am Ende von blond? Verlängere das Adjektiv mit einem Nomen."
+            say: "Lenas Haar ist blond. Welcher Buchstabe fehlt am Ende von blond? Verlängere das Adjektiv."
             frame: "blon_"
             options: ["d", "t"]
             answer: ["d"]
           - id: l2-c3
+            part: helper-word
             type: multiple_choice
             text: "Welches Wort hilft dir bei Kleid?"
             say: "Welches Wort hilft dir, wenn du Kleid schreiben willst?"
             options: ["Kleider", "klein", "Kleber"]
             answer: "Kleider"
           - id: l2-c4
+            part: noun
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Pfert" }
             answer: false
           - id: l2-c5
+            part: in-sentence
             type: fill_in_blank
             text: "Setz die Buchstaben ein."
-            say: "Der Mund ist rot. Welche Buchstaben fehlen? Verlängere beide Wörter."
+            say: "Der Mund ist rot. Welche Buchstaben fehlen?"
             frame: "Der Mun_ ist ro_."
             options: ["d", "t"]
             answer: ["d", "t"]
+          - id: l2-c6
+            part: noun
+            type: image_multiple_choice
+            text: "Welches Wort schreibt man am Ende mit t?"
+            say: "Tippe auf die Bilder und hör die Wörter. Welches Wort schreibt man am Ende mit t?"
+            options:
+              - { object: wind }
+              - { object: dog }
+              - { object: juice }
+            answer: juice
+          - id: l2-c7
+            part: noun
+            type: fill_in_blank
+            text: "d oder t? Verlängere."
+            say: "Der Bart. Welcher Buchstabe fehlt am Ende? Verlängere das Wort."
+            frame: "der Bar_"
+            options: ["d", "t"]
+            answer: ["t"]
+          - id: l2-c8
+            part: noun
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Nomen."
+            say: "Der Mond. Nachts scheint der Mond. Schreib das Nomen Mond."
+            show: { object: moon }
+            answer: "Mond"
+          - id: l2-c9
+            part: adjective
+            type: fill_in_blank
+            text: "d oder t? Verlängere das Adjektiv."
+            say: "Der Schal ist bunt. Welcher Buchstabe fehlt am Ende von bunt? Verlängere das Adjektiv."
+            frame: "Der Schal ist bun_."
+            options: ["d", "t"]
+            answer: ["t"]
+          - id: l2-c10
+            part: adjective
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Adjektiv. Das Kind ist _."
+            say: "Das Kind ist wütend. Schreib das Adjektiv wütend."
+            show: { object: angry }
+            answer: "wütend"
+          - id: l2-c11
+            part: adjective
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "spannend" }
+            answer: true
+          - id: l2-c12
+            part: adjective
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Fremd. Den Mann kenne ich nicht, er ist mir fremd. Welches Wort ist richtig geschrieben?"
+            options: ["fremd", "fremt"]
+            answer: "fremd"
+            option_audio: false
+          - id: l2-c13
+            part: helper-word
+            type: multiple_choice
+            text: "Was hilft dir bei leicht?"
+            say: "Was hilft dir, wenn du leicht schreiben willst?"
+            options: ["eine leichte Tasche", "das Licht", "leider"]
+            answer: "eine leichte Tasche"
+          - id: l2-c14
+            part: helper-word
+            type: multiple_choice
+            text: "Welches Wort hilft dir bei Land?"
+            say: "Welches Wort hilft dir, wenn du Land schreiben willst?"
+            options: ["Länder", "Lampe", "lang"]
+            answer: "Länder"
+          - id: l2-c15
+            part: helper-word
+            type: multiple_choice
+            text: "Welches Wort hilft dir bei Held?"
+            say: "Welches Wort hilft dir, wenn du Held schreiben willst?"
+            options: ["Helden", "hell", "Helm"]
+            answer: "Helden"
+          - id: l2-c16
+            part: helper-word
+            type: multiple_choice
+            text: "Was hilft dir bei gut?"
+            say: "Was hilft dir, wenn du gut schreiben willst?"
+            options: ["ein guter Freund", "die Gurke", "der Gurt"]
+            answer: "ein guter Freund"
+          - id: l2-c17
+            part: in-sentence
+            type: fill_in_blank
+            text: "Setz die Buchstaben ein."
+            say: "Das Kind ist gesund. Welche Buchstaben fehlen?"
+            frame: "Das Kin_ ist gesun_."
+            options: ["d", "t"]
+            answer: ["d", "d"]
+          - id: l2-c18
+            part: in-sentence
+            type: fill_in_blank
+            text: "Setz die Buchstaben ein."
+            say: "Der Hut ist rund. Welche Buchstaben fehlen?"
+            frame: "Der Hu_ ist run_."
+            options: ["d", "t"]
+            answer: ["t", "d"]
+          - id: l2-c19
+            part: in-sentence
+            type: multiple_choice
+            text: "Welcher Satz ist richtig geschrieben?"
+            say: "Der Wald ist alt. Welcher Satz ist richtig geschrieben?"
+            options: ["Der Wald ist alt.", "Der Walt ist alt.", "Der Wald ist ald."]
+            answer: "Der Wald ist alt."
+            option_audio: false
+          - id: l2-c20
+            part: in-sentence
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Der Wint ist kalt." }
+            answer: false

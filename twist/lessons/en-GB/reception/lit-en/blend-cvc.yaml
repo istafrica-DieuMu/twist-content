@@ -23,13 +23,18 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: read-find, what: { de: ein kurzes Wort lesen und sein Bild finden, en: reading a short word and finding its picture } }
+    - { id: middle-sound, what: { de: "Wörter unterscheiden, die nur im mittleren Laut verschieden sind (cat, cot, cut)", en: "telling apart words that differ only in the middle sound (cat, cot, cut)" } }
+    - { id: every-sound, what: { de: "Wörter unterscheiden, die im ersten oder letzten Laut verschieden sind (mug, mud, rug)", en: "telling apart words that differ in the first or last sound (mug, mud, rug)" } }
+    - { id: two-letters, what: { de: "Wörter lesen, die mit zwei Buchstaben für einen Laut enden (ck, ll)", en: "reading words that end in two letters for one sound (ck, ll)" } }
   misconceptions:
     - id: first-letter-guess
       what: Reads the first letter and guesses (bus as bed)
-      addressed: in lesson 1 most picture options share the card's first sound (l1-f1, l1-f2, l1-f3, l1-f5, l1-s1, l1-s2, l1-s5, l1-n1, l1-n2, l1-n3, l1-n5, l1-c1, l1-c2), so only reading the whole word works, with feedback in l1-f1; l1-s4 and l1-c3 set a word against a picture that starts the same (big and bed, hat and hand)
+      addressed: in lesson 1 most picture options share the card's first sound (l1-f1, l1-f2, l1-f3, l1-f5, l1-s1, l1-s2, l1-s5, l1-n1, l1-n2, l1-n3, l1-n5, l1-c1, l1-c2), so only reading the whole word works, with feedback in l1-f1; l1-s4 and l1-c3 set a word against a picture that starts the same (big and bed, hat and hand); the checks do the same in l1-c4, l1-c6, l2-c5, l2-c9 and l2-c17 (pen among pear and pizza, bus among bike and bin, map among monkey and milk, pig among puppy and pencil, sun against a sock)
     - id: middle-vowel
       what: Reads the sounds at the ends but not the vowel in the middle (cut as cat)
-      addressed: lesson 2 sets words that differ only in the vowel side by side in every stage, with feedback in l2-f1
+      addressed: lesson 2 sets words that differ only in the vowel side by side in every stage, with feedback in l2-f1; the skill check's middle-sound part (l2-c2, l2-c4, l2-c6, l2-c10, l2-c14) tests it in every draw
   twist_reuse: []
   status: draft
   version: 1
@@ -197,6 +202,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -218,6 +224,26 @@ lessons:
             say: "Read the word at the top. Does it match the picture?"
             show: { object: hand }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "pen" }
+            options: [{ object: pear }, { object: pizza }, { object: pen }]
+            answer: pen
+          - id: l1-c5
+            type: true_false
+            text: "dog"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: dog }
+            answer: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "bus" }
+            options: [{ object: bike }, { object: bus }, { object: bin }]
+            answer: bus
 
   - n: 2
     title: { de: "Genau hinsehen", en: "Look carefully" }
@@ -389,8 +415,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: read-find
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
             say: "Read the word. Which picture is it?"
@@ -398,6 +426,7 @@ lessons:
             options: [{ object: dress }, { object: dad }, { object: dog }]
             answer: dad
           - id: l2-c2
+            part: middle-sound
             type: audio_choice
             text: "Tap the word you hear."
             say: "Which word is it? Listen."
@@ -406,6 +435,7 @@ lessons:
             answer: "hot"
             option_audio: false
           - id: l2-c3
+            part: two-letters
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
             say: "Read the word. Which picture is it?"
@@ -413,8 +443,138 @@ lessons:
             options: [{ object: ball }, { object: bed }, { object: bell }]
             answer: bell
           - id: l2-c4
+            part: middle-sound
             type: true_false
             text: "cap"
             say: "Read the word at the top. Does it match the picture?"
             show: { object: cup }
             answer: false
+          - id: l2-c5
+            part: read-find
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "map" }
+            options: [{ object: monkey }, { object: milk }, { object: map }]
+            answer: map
+          - id: l2-c6
+            part: middle-sound
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "pet" }
+            options: ["pit", "pot", "pet"]
+            answer: "pet"
+            option_audio: false
+          - id: l2-c7
+            part: every-sound
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "man" }
+            options: ["map", "man", "mat"]
+            answer: "man"
+            option_audio: false
+          - id: l2-c8
+            part: two-letters
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "sack" }
+            options: [{ object: sock }, { object: sandcastle }, { object: sack }]
+            answer: sack
+          - id: l2-c9
+            part: read-find
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "pig" }
+            options: [{ object: puppy }, { object: pig }, { object: pencil }]
+            answer: pig
+          - id: l2-c10
+            part: middle-sound
+            type: true_false
+            text: "bun"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: bin }
+            answer: false
+          - id: l2-c11
+            part: every-sound
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "hen" }
+            options: [{ object: pen }, { object: hen }, { object: hat }]
+            answer: hen
+          - id: l2-c12
+            part: two-letters
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "lock" }
+            options: ["log", "lock", "lot"]
+            answer: "lock"
+            option_audio: false
+          - id: l2-c13
+            part: read-find
+            type: true_false
+            text: "van"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: van }
+            answer: true
+          - id: l2-c14
+            part: middle-sound
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "sit" }
+            options: ["sat", "sit", "set"]
+            answer: "sit"
+            option_audio: false
+          - id: l2-c15
+            part: every-sound
+            type: true_false
+            text: "mud"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: mum }
+            answer: false
+          - id: l2-c16
+            part: two-letters
+            type: true_false
+            text: "duck"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: duck }
+            answer: true
+          - id: l2-c17
+            part: read-find
+            type: true_false
+            text: "sun"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: sock }
+            answer: false
+          - id: l2-c18
+            part: every-sound
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "fan" }
+            options: ["van", "pan", "fan"]
+            answer: "fan"
+            option_audio: false
+          - id: l2-c19
+            part: every-sound
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "box" }
+            options: [{ object: fox }, { object: bus }, { object: box }]
+            answer: box
+          - id: l2-c20
+            part: two-letters
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "hill" }
+            options: ["hit", "hill", "hip"]
+            answer: "hill"
+            option_audio: false

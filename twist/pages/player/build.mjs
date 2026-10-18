@@ -33,6 +33,8 @@ const DE_PLACES = [[/\bH: /g, "Hunderter "], [/\bZ: /g, "Zehner "], [/\bE: /g, "
 const sayNumbersDe = (t) => DE_PLACES.reduce((s, [rx, b]) => s.replace(rx, b), t)
   .replace(/(?<![\d,.:])(\d{1,3}) (\d{3})(?![\d,.:]?\d)/g, "$1$2")
   .replace(/(?<![\d,.:])\d{1,6}(?![,.:]?\d)/g, (m) => deWords(+m));
+// Money after a number; must match say_money_de() in narration.py.
+const sayMoneyDe = (t) => t.replace(/(?<![\d,])(\d+),(\d{2}) €/g, "$1 Euro $2").replace(/(\d) €/g, "$1 Euro").replace(/(\d) ct\b/g, "$1 Cent");
 // Symbols spoken as words; must match say_symbols_en() in narration.py.
 const DEN_EN = { 2: "half", 3: "third", 4: "quarter", 5: "fifth", 6: "sixth", 7: "seventh", 8: "eighth", 9: "ninth", 10: "tenth",
   11: "eleventh", 12: "twelfth", 13: "thirteenth", 14: "fourteenth", 15: "fifteenth", 16: "sixteenth", 17: "seventeenth",
@@ -54,7 +56,7 @@ const saySymbolsEn = (t) => VULGAR_EN.reduce((s, [a, b]) => s.split(a).join(b), 
   .replace(/−(?=\d)/g, "negative ");
 const spoken = (text, lang) => { let t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim());
   if (lang === "en") t = saySymbolsEn(t);
-  if (lang === "de") t = sayNumbersDe(VULGAR_DE.reduce((s, [a, b]) => s.split(a).join(b), t));
+  if (lang === "de") t = sayNumbersDe(sayMoneyDe(VULGAR_DE.reduce((s, [a, b]) => s.split(a).join(b), t))).replace(/\beins (Euro|Cent)\b/g, "ein $1");
   return t; };
 const lineId = (lang, t) => createHash("sha1").update(`${lang}|${t}`).digest("hex").slice(0, 10);
 

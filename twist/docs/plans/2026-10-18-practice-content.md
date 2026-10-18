@@ -44,7 +44,46 @@ lesson-anatomy.md and one pilot set of the same subject as the model
 7. **Language.** German written and spoken as a native teacher would;
    British English for en-GB. Foreign-language sets keep instructions in
    the home language as their lessons do.
-8. **Done** when `node twist/build.mjs` shows no warnings for the set.
+8. **On screen, not only in say.** A check is marked, so a story, its
+   numbers and the question stand in `text` too. A `say` never carries a
+   strategy ("Tausch die Zahlen, wenn es hilft"); that is a hint. Fix an
+   existing check task of the set that breaks this.
+9. **Quote a part's `what`** when it holds a comma, `<` or `>`.
+10. **Write every task with Edit**, one at a time; mechanical edits (the
+    `draw:` lines, the parts block) may use a one-line replace.
+11. **Done** when `node twist/build.mjs` shows no warnings for the set.
+
+## Reviewer checklist
+
+A second agent reads every new task of a batch and fixes it in place:
+
+- The answer is right and a choice task has one right option; work every
+  sum, count, clock, tally and drawn figure against its data.
+- Native wording, with `say` matching `text` and numbers in words.
+- The parts fit the "I can" line and each task tests its part.
+- The year fits, and nothing appears that the Learn screens never taught
+  unless it is everyday knowledge.
+- No hints (also none in `say`), no copies of Practise or Warm-up, no near
+  repeats in a pool, true/false mixed, a mix of types, timed tasks quick.
+- The data is on screen (point 8 above).
+- Report per set what changed, and what a human should decide.
+
+## Phases
+
+Run as a workflow, one batch at a time: authors in parallel (about 15
+sets each), then reviewers in parallel, then a clean build, narration in
+the check voices and a commit. The run stops after each phase for a read.
+
+| Phase | What | Batches |
+|---|---|---|
+| 0 | Before scaling: money read as words in German narration, the brief and reviewer checklist from batch 1 | done 2026-10-18 |
+| 1 | Pilots for the formats not yet tried: a Deutsch spelling set, an English phonics set, a Reception set (ages 4 to 5, draw 4), a foreign-language set | 4 sets |
+| 2 | Maths, with a stop after the first en-GB batch to listen to the English check voice | 2 to 11 |
+| 3 | Maths drill banks | 10 banks |
+| 4 | Home languages, read in full by native reviewers | 12 to 22 |
+| 5 | Literacy drill banks, word lists checked against their sources | 10 banks |
+| 6 | Foreign languages: the drill item format first, then the batches and banks | 23 to 29, 4 banks |
+| 7 | Close: 918 of 918 in tracking, a final pass in reviews.yaml, the handoff page | |
 
 ## Batches
 
@@ -54,7 +93,7 @@ tracking table; an agent takes about 15 sets at a time.
 
 | # | Batch | Sets |
 |---|---|---|
-| 1 | de-DE math klasse-1 | 41 |
+| 1 | de-DE math klasse-1 | 41 (done 2026-10-18) |
 | 2 | de-DE math klasse-2 | 63 (3 done) |
 | 3 | de-DE math klasse-3 | 51 |
 | 4 | de-DE math klasse-4 | 48 |

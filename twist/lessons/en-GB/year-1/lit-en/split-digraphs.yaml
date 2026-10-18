@@ -23,13 +23,19 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: a-e, what: { de: "Wörter mit a-e lesen (cake, name)", en: "reading words with a-e (cake, name)" } }
+    - { id: i-e, what: { de: "Wörter mit i-e lesen (kite, time)", en: "reading words with i-e (kite, time)" } }
+    - { id: o-e, what: { de: "Wörter mit o-e lesen (home, nose)", en: "reading words with o-e (home, nose)" } }
+    - { id: u-e-and-e-e, what: { de: "Wörter mit u-e und e-e lesen (cube, these)", en: "reading words with u-e and e-e (cube, these)" } }
+    - { id: mixed, what: { de: alle getrennten Digraphen zwischen anderen Wörtern erkennen, en: spotting split digraphs of every kind among other words } }
   misconceptions:
     - id: silent-e-ignored
       what: Reads cake as cak, kite as kit
-      addressed: Learn sets word pairs (kit, kite; hop, hope) side by side; feedback on a short-vowel picture names the pair
+      addressed: Learn sets word pairs (kit, kite; hop, hope) side by side; feedback on a short-vowel picture names the pair; l2-c18 asks whether rod and rode sound the same
     - id: e-sounded
       what: Sounds the final e (cake as cak-e)
-      addressed: Learn says the e makes no sound of its own; it works with the vowel
+      addressed: Learn says the e makes no sound of its own; it works with the vowel; l1-s4 and l2-c16 ask whether the final e makes its own sound
   twist_reuse: []
   status: draft
   version: 1
@@ -218,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -238,6 +245,25 @@ lessons:
             say: "Tap every word that has i, then one letter, then e."
             show: { drawn: letter-card, text: "five fin wide win line" }
             spans: ["five", "wide", "line"]
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            show: { drawn: letter-card, text: "wave" }
+            options: [{ object: wave }, { object: whale }, { object: witch }]
+            answer: wave
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? Both words have the igh sound."
+            say: "Read the two words yourself. Is it true? Both words have the igh sound."
+            show: { drawn: letter-card, text: "bike bit" }
+            answer: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill the gaps to make the word for the picture."
+            show: { object: snake }
+            frame: "sn_k_"
+            options: ["a", "i", "o", "e"]
+            answer: ["a", "e"]
 
   - n: 2
     title: { de: "o-e, u-e und e-e", en: "o-e, u-e and e-e" }
@@ -421,8 +447,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: a-e
             type: multiple_choice
             text: "Which word says the long sound?"
             say: "Which word has the ay sound? Read them yourself."
@@ -430,6 +458,7 @@ lessons:
             answer: "cane"
             option_audio: false
           - id: l2-c2
+            part: i-e
             type: multiple_choice
             text: "Which word says the long sound?"
             say: "Which word has the igh sound? Read them yourself."
@@ -437,6 +466,7 @@ lessons:
             answer: "hide"
             option_audio: false
           - id: l2-c3
+            part: o-e
             type: multiple_choice
             text: "Which word says the long sound?"
             say: "Which word has the oh sound? Read them yourself."
@@ -444,15 +474,126 @@ lessons:
             answer: "hope"
             option_audio: false
           - id: l2-c4
+            part: mixed
             type: highlight_in_text
             text: "Tap every word with a split digraph."
-            say: "Tap every word with a split digraph, like a-e, i-e, o-e or u-e."
             show: { drawn: letter-card, text: "came cut bike bone bit" }
             spans: ["came", "bike", "bone"]
           - id: l2-c5
+            part: u-e-and-e-e
             type: multiple_choice
             text: "Which word says the long sound?"
             say: "Which word has the yoo sound? Read them yourself."
             options: ["cute", "cut"]
             answer: "cute"
             option_audio: false
+          - id: l2-c6
+            part: a-e
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            show: { drawn: letter-card, text: "pancake" }
+            options: [{ object: cake }, { object: crepe }, { object: pasta }]
+            answer: crepe
+            difficulty: stretch
+          - id: l2-c7
+            part: i-e
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            show: { drawn: letter-card, text: "crocodile" }
+            options: [{ object: crab }, { object: crocodile }, { object: crown }]
+            answer: crocodile
+            difficulty: stretch
+          - id: l2-c8
+            part: o-e
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            show: { drawn: letter-card, text: "stone" }
+            options: [{ object: star }, { object: sock }, { object: stone }]
+            answer: stone
+          - id: l2-c9
+            part: u-e-and-e-e
+            type: highlight_in_text
+            text: "Tap every word with e-e."
+            say: "Tap every word that has e, then one letter, then e."
+            show: { drawn: letter-card, text: "these then complete theme them" }
+            spans: ["these", "complete", "theme"]
+          - id: l2-c10
+            part: mixed
+            type: true_false
+            text: "Is it true? All three words have a split digraph."
+            say: "Read the three words yourself. Is it true? All three words have a split digraph."
+            show: { drawn: letter-card, text: "cat kite cube" }
+            answer: false
+          - id: l2-c11
+            part: a-e
+            type: fill_in_blank
+            text: "Fill the gaps to make the word for the picture."
+            show: { object: whale }
+            frame: "wh_l_"
+            options: ["a", "i", "o", "e"]
+            answer: ["a", "e"]
+          - id: l2-c12
+            part: i-e
+            type: true_false
+            text: "Is it true? This word has the igh sound."
+            say: "Read the word yourself. Is it true? This word has the igh sound."
+            show: { drawn: letter-card, text: "slide" }
+            answer: true
+          - id: l2-c13
+            part: o-e
+            type: fill_in_blank
+            text: "Fill the gaps to make the word for the picture."
+            show: { object: rope }
+            frame: "r_p_"
+            options: ["o", "i", "u", "e"]
+            answer: ["o", "e"]
+          - id: l2-c14
+            part: u-e-and-e-e
+            type: fill_in_blank
+            text: "Fill the gaps to make the word for the picture."
+            show: { object: cube }
+            frame: "c_b_"
+            options: ["u", "a", "o", "e"]
+            answer: ["u", "e"]
+          - id: l2-c15
+            part: mixed
+            type: multiple_choice
+            text: "Which word has no split digraph?"
+            say: "Which word has no split digraph? Read them yourself."
+            options: ["these", "home", "hot", "time"]
+            answer: "hot"
+            option_audio: false
+          - id: l2-c16
+            part: a-e
+            type: true_false
+            text: "Is it true? The e at the end of this word makes its own sound."
+            say: "Read the word yourself. Is it true? The e at the end of this word makes its own sound."
+            show: { drawn: letter-card, text: "plane" }
+            answer: false
+          - id: l2-c17
+            part: i-e
+            type: highlight_in_text
+            text: "Tap every word with i-e."
+            say: "Tap every word that has i, then one letter, then e."
+            show: { drawn: letter-card, text: "smile slim prize spin side" }
+            spans: ["smile", "prize", "side"]
+          - id: l2-c18
+            part: o-e
+            type: true_false
+            text: "Is it true? These two words sound the same."
+            say: "Read the two words yourself. Is it true? These two words sound the same."
+            show: { drawn: letter-card, text: "rod rode" }
+            answer: false
+          - id: l2-c19
+            part: u-e-and-e-e
+            type: true_false
+            text: "Is it true? Only the first word has the ee sound."
+            say: "Read the two words yourself. Is it true? Only the first word has the ee sound."
+            show: { drawn: letter-card, text: "theme them" }
+            answer: true
+          - id: l2-c20
+            part: mixed
+            type: highlight_in_text
+            text: "Tap every word with a split digraph."
+            show: { drawn: letter-card, text: "Kate rode her bike to the lake." }
+            spans: ["Kate", "rode", "bike", "lake"]

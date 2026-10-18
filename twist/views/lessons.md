@@ -1445,10 +1445,10 @@ Finding answers that stand in the text. Lesson 1 reads short stories, takes the 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Antwort steht im Text | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Informationen in Sachtexten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die Antwort steht im Text | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Informationen in Sachtexten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 10, highlight_in_text 6, multiple_choice 19, fill_in_blank 3, sorting 4. Builds on: `lit-de.comprehension.read-precisely`. Misconceptions addressed: 2.
+Task types: true_false 14, highlight_in_text 9, multiple_choice 27, fill_in_blank 5, sorting 5. Builds on: `lit-de.comprehension.read-precisely`. Misconceptions addressed: 2.
 
 ## Unbekannte Wörter verstehen (Working out unknown words)
 
@@ -1543,10 +1543,10 @@ At the end of a word d and t sound the same. Lesson 1 makes a noun longer with i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hund mit d, Brot mit t | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Auch Adjektive verlängern | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Hund mit d, Brot mit t | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Auch Adjektive verlängern | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 10, fill_in_blank 22, true_false 8, image_multiple_choice 2. Builds on: `lit-de.spelling-strategies.syllable-swinging`, `lit-de.nouns.plural`. Misconceptions addressed: 2.
+Task types: multiple_choice 17, fill_in_blank 26, true_false 11, image_multiple_choice 3, text_input 3. Builds on: `lit-de.spelling-strategies.syllable-swinging`, `lit-de.nouns.plural`. Misconceptions addressed: 2.
 
 ## Brief und E-Mail (Letters and emails)
 
@@ -5442,10 +5442,10 @@ Food and drink words, saying what you like and do not like, and asking politely 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. I like pizza | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Can I have some juice, please? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. I like pizza | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Can I have some juice, please? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 22, multiple_choice 10, speak 6, ordering 4. Builds on: `fl.grammar.chunks`, `fl.listening.familiar-words`. Misconceptions addressed: 2.
+Task types: audio_choice 29, multiple_choice 18, speak 6, ordering 7. Builds on: `fl.grammar.chunks`, `fl.listening.familiar-words`. Misconceptions addressed: 2.
 
 ## Neue Wörter erraten (Guessing new words)
 
@@ -7026,10 +7026,10 @@ Reading three-letter words by saying each sound and blending them. Lesson 1 read
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Lesen und finden | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Genau hinsehen | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Lesen und finden | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau hinsehen | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: image_multiple_choice 19, true_false 8, audio_choice 10. Builds on: `lit-en.phonics.s-a-t-p`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 26, true_false 14, audio_choice 16. Builds on: `lit-en.phonics.s-a-t-p`. Misconceptions addressed: 2.
 
 ## Erklären, warum etwas passiert (Explaining why)
 
@@ -8022,10 +8022,10 @@ In a split digraph two letters make one sound, but a consonant sits between them
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. a-e und i-e | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. o-e, u-e und e-e | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. a-e und i-e | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. o-e, u-e und e-e | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 17, highlight_in_text 9, fill_in_blank 3, true_false 6, multiple_choice 11. Builds on: `lit-en.phonics.new-graphemes`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 21, highlight_in_text 12, fill_in_blank 7, true_false 12, multiple_choice 12. Builds on: `lit-en.phonics.new-graphemes`. Misconceptions addressed: 2.
 
 ## Titel und wichtigste Ereignisse (Titles and main events)
 

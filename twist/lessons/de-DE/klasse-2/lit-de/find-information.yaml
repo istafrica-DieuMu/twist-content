@@ -23,13 +23,17 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: who-where-when, what: { de: "Namen, Orte und Zeiten finden (Wer? Wo? Wann?)", en: "finding names, places and times (who, where, when)" } }
+    - { id: numbers-details, what: { de: "Zahlen und Einzelheiten finden (Wie viele? Was? Womit?)", en: "finding numbers and details (how many, what, with what)" } }
+    - { id: in-the-text, what: { de: "prüfen, ob etwas im Text steht", en: checking whether the text says something } }
   misconceptions:
     - id: own-knowledge
       what: Answers from what they already know instead of from the text (Igel trinken Milch, Frösche sind grün, Kaulquappen for the eggs)
-      addressed: "lesson 2 Learn sets Milch against the text; every sorting task in lesson 2 (l2-f3, l2-s3, l2-n3, l2-c3) has true facts that the text does not say; l2-c2 offers Kaulquappen"
+      addressed: "lesson 2 Learn sets Milch against the text; every sorting task in lesson 2 (l2-f3, l2-s3, l2-n3, l2-c3, l2-c15) has true facts that the text does not say; l2-c2 offers Kaulquappen"
     - id: wrong-place
       what: Takes a word from the text that sits near the answer but answers another question (Milas Eis for Opas, rot for the colour of the spots)
-      addressed: "lesson 1 Learn shows Erdbeere and Schokolade; l1-f1, l1-s1, l1-n1 and l2-s1 offer a word from the wrong sentence; l1-f1 gives feedback on it"
+      addressed: "lesson 1 Learn shows Erdbeere and Schokolade; l1-f1, l1-s1, l1-n1 and l2-s1 offer a word from the wrong sentence; l1-f1 gives feedback on it; in the checks l1-c4, l2-c7, l2-c8, l2-c10, l2-c13, l2-c16 and l2-c20 offer one too"
   twist_reuse: []
   status: draft
   version: 1
@@ -197,6 +201,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -215,6 +220,23 @@ lessons:
             say: "Lies den Text und die Frage. Was sieht Ali von seinem Fenster?"
             options: ["den Fluss", "den Park", "die Schule"]
             answer: "den Fluss"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Nele hat eine kleine Schwester.\nIhre Schwester heißt Ida.\nIda ist drei Jahre alt.\nAm Sonntag gehen die beiden mit Papa auf den Spielplatz.\n\nWie heißt Neles Schwester?"
+            say: "Lies den Text und die Frage. Wie heißt Neles Schwester?"
+            options: ["Ida", "Nele", "Lisa"]
+            answer: "Ida"
+          - id: l1-c5
+            type: true_false
+            text: "Nele hat eine kleine Schwester.\nIhre Schwester heißt Ida.\nIda ist drei Jahre alt.\n\nSteht das im Text? Ida ist drei Jahre alt."
+            say: "Lies den Text. Steht das so im Text?"
+            answer: true
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Wann gehen Nele und Ida auf den Spielplatz? Tippe auf das Wort."
+            say: "Lies den Text. Wann gehen Nele und Ida auf den Spielplatz? Tippe auf das Wort."
+            show: { drawn: letter-card, text: "Ida ist drei Jahre alt. Am Sonntag gehen Nele und Ida mit Papa auf den Spielplatz." }
+            spans: ["Sonntag"]
 
   - n: 2
     title: { de: "Informationen in Sachtexten", en: "Information in non-fiction" }
@@ -394,20 +416,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: numbers-details
             type: multiple_choice
             text: "Der Frosch\nDer Frosch lebt am Teich.\nEr hat lange Beine und kann weit springen.\nEr fängt Fliegen mit seiner langen Zunge.\nIm Frühling legt er viele Eier ins Wasser.\nDie Eier heißen Laich.\n\nWomit fängt der Frosch Fliegen?"
             say: "Lies den Text und die Frage. Womit fängt der Frosch Fliegen?"
             options: ["mit seiner Zunge", "mit seinen Beinen", "mit seinen Händen"]
             answer: "mit seiner Zunge"
           - id: l2-c2
+            part: numbers-details
             type: multiple_choice
             text: "Der Frosch\nDer Frosch lebt am Teich.\nIm Frühling legt er viele Eier ins Wasser.\nDie Eier heißen Laich.\n\nWie heißen die Eier des Frosches?"
             say: "Lies den Text und die Frage. Wie heißen die Eier des Frosches?"
             options: ["Laich", "Teich", "Kaulquappen"]
             answer: "Laich"
           - id: l2-c3
+            part: in-the-text
             type: sorting
             text: "Der Frosch\nDer Frosch lebt am Teich.\nEr hat lange Beine und kann weit springen.\nEr fängt Fliegen mit seiner langen Zunge.\n\nSteht das im Text?"
             say: "Lies den Text. Sortiere die Sätze: Steht das im Text oder nicht?"
@@ -420,13 +446,125 @@ lessons:
               - { text: "Er ist grün.", bin: nein }
               - { text: "Er quakt laut.", bin: nein }
           - id: l2-c4
+            part: in-the-text
             type: true_false
             text: "Der Frosch\nDer Frosch lebt am Teich.\nIm Frühling legt er viele Eier ins Wasser.\n\nSteht das im Text? Der Frosch legt im Herbst Eier."
             say: "Lies den Text. Steht das so im Text?"
             answer: false
           - id: l2-c5
+            part: who-where-when
             type: highlight_in_text
             text: "Wo lebt der Frosch? Tippe auf das Wort."
             say: "Lies den Text. Wo lebt der Frosch? Tippe auf das Wort."
             show: { drawn: letter-card, text: "Der Frosch lebt am Teich. Er hat lange Beine und kann weit springen." }
             spans: ["Teich."]
+          - id: l2-c6
+            part: who-where-when
+            type: multiple_choice
+            text: "Heute hat Jonas Geburtstag.\nEr wird acht Jahre alt.\nAm Nachmittag kommen vier Freunde zu Besuch.\nOma bringt einen Schokoladenkuchen mit.\n\nWer bringt den Kuchen mit?"
+            say: "Lies den Text und die Frage. Wer bringt den Kuchen mit?"
+            options: ["Oma", "Jonas", "die Freunde"]
+            answer: "Oma"
+          - id: l2-c7
+            part: numbers-details
+            type: multiple_choice
+            text: "Heute hat Jonas Geburtstag.\nEr wird acht Jahre alt.\nAm Nachmittag kommen vier Freunde zu Besuch.\n\nWie viele Freunde kommen zu Besuch?"
+            say: "Lies den Text und die Frage. Wie viele Freunde kommen zu Besuch?"
+            options: ["vier", "acht", "fünf"]
+            answer: "vier"
+          - id: l2-c8
+            part: who-where-when
+            type: multiple_choice
+            text: "Heute hat Jonas Geburtstag.\nAm Nachmittag kommen vier Freunde zu Besuch.\nOma bringt einen Schokoladenkuchen mit.\nAm Abend spielen alle im Garten Verstecken.\n\nWann spielen alle Verstecken?"
+            say: "Lies den Text und die Frage. Wann spielen alle Verstecken?"
+            options: ["am Abend", "am Nachmittag", "am Morgen"]
+            answer: "am Abend"
+          - id: l2-c9
+            part: in-the-text
+            type: true_false
+            text: "Heute hat Jonas Geburtstag.\nEr wird acht Jahre alt.\nAm Nachmittag kommen vier Freunde zu Besuch.\n\nSteht das im Text? Die Freunde kommen am Nachmittag."
+            say: "Lies den Text. Steht das so im Text?"
+            answer: true
+          - id: l2-c10
+            part: who-where-when
+            type: multiple_choice
+            text: "Lea fährt jeden Morgen mit dem Bus zur Schule.\nIhre Freundin Aylin steigt an der Bäckerei ein.\nZusammen sitzen sie ganz hinten.\nNach zehn Minuten sind sie an der Schule.\n\nWo steigt Aylin ein?"
+            say: "Lies den Text und die Frage. Wo steigt Aylin ein?"
+            options: ["an der Bäckerei", "an der Schule", "ganz hinten"]
+            answer: "an der Bäckerei"
+          - id: l2-c11
+            part: who-where-when
+            type: highlight_in_text
+            text: "Wann fährt Lea mit dem Bus zur Schule? Tippe auf das Wort."
+            say: "Lies den Text. Wann fährt Lea mit dem Bus zur Schule? Tippe auf das Wort."
+            show: { drawn: letter-card, text: "Lea fährt jeden Morgen mit dem Bus zur Schule. Ihre Freundin Aylin steigt an der Bäckerei ein." }
+            spans: ["Morgen"]
+          - id: l2-c12
+            part: in-the-text
+            type: true_false
+            text: "Lea fährt jeden Morgen mit dem Bus zur Schule.\nIhre Freundin Aylin steigt an der Bäckerei ein.\nZusammen sitzen sie ganz hinten.\n\nSteht das im Text? Lea und Aylin sitzen ganz vorne."
+            say: "Lies den Text. Steht das so im Text?"
+            answer: false
+          - id: l2-c13
+            part: numbers-details
+            type: multiple_choice
+            text: "Die Biene\nDie Biene hat sechs Beine und vier Flügel.\nSie fliegt von Blüte zu Blüte.\nDort sammelt sie Nektar.\n\nWie viele Beine hat die Biene?"
+            say: "Lies den Text und die Frage. Wie viele Beine hat die Biene?"
+            options: ["sechs", "vier", "acht"]
+            answer: "sechs"
+          - id: l2-c14
+            part: who-where-when
+            type: highlight_in_text
+            text: "Wo bleiben die Bienen im Winter? Tippe auf das Wort."
+            say: "Lies den Text. Wo bleiben die Bienen im Winter? Tippe auf das Wort."
+            show: { drawn: letter-card, text: "Die Biene fliegt von Blüte zu Blüte. Im Winter bleiben die Bienen im Bienenstock." }
+            spans: ["Bienenstock."]
+          - id: l2-c15
+            part: in-the-text
+            type: sorting
+            text: "Die Biene\nDie Biene hat sechs Beine und vier Flügel.\nSie fliegt von Blüte zu Blüte.\nDort sammelt sie Nektar.\nAus dem Nektar machen die Bienen Honig.\n\nSteht das im Text?"
+            say: "Lies den Text. Sortiere die Sätze: Steht das im Text oder nicht?"
+            bins:
+              - { id: ja, show: { text: "steht im Text" }, say: "steht im Text" }
+              - { id: nein, show: { text: "steht nicht im Text" }, say: "steht nicht im Text" }
+            options:
+              - { text: "Sie hat vier Flügel.", bin: ja }
+              - { text: "Sie sammelt Nektar.", bin: ja }
+              - { text: "Sie kann stechen.", bin: nein }
+              - { text: "Sie ist gelb und schwarz.", bin: nein }
+          - id: l2-c16
+            part: numbers-details
+            type: multiple_choice
+            text: "Der Maulwurf\nDer Maulwurf lebt unter der Erde.\nMit seinen breiten Vorderpfoten gräbt er lange Gänge.\nEr sieht sehr schlecht, aber er riecht sehr gut.\n\nWomit gräbt der Maulwurf seine Gänge?"
+            say: "Lies den Text und die Frage. Womit gräbt der Maulwurf seine Gänge?"
+            options: ["mit seinen Vorderpfoten", "mit seiner Nase", "mit seinen Zähnen"]
+            answer: "mit seinen Vorderpfoten"
+          - id: l2-c17
+            part: numbers-details
+            type: fill_in_blank
+            text: "Der Maulwurf\nDer Maulwurf lebt unter der Erde.\nEr sieht sehr schlecht, aber er riecht sehr gut.\n\nWie gut sieht der Maulwurf? Wie gut riecht er? Füll die Lücken."
+            say: "Lies den Text. Wie gut sieht der Maulwurf? Wie gut riecht er? Füll die Lücken."
+            frame: "Sehen: _   Riechen: _"
+            options: ["schlecht", "gut", "laut"]
+            answer: ["schlecht", "gut"]
+          - id: l2-c18
+            part: in-the-text
+            type: true_false
+            text: "Der Maulwurf\nDer Maulwurf lebt unter der Erde.\nMit seinen breiten Vorderpfoten gräbt er lange Gänge.\nEr frisst Regenwürmer und Käfer.\n\nSteht das im Text? Der Maulwurf frisst Regenwürmer."
+            say: "Lies den Text. Steht das so im Text?"
+            answer: true
+          - id: l2-c19
+            part: numbers-details
+            type: fill_in_blank
+            text: "Tim und Sara gehen auf den Markt.\nSie kaufen drei Gurken und zehn Kartoffeln.\nDer Verkäufer schenkt Sara eine Birne.\n\nWie viele kaufen sie? Füll die Lücken."
+            say: "Lies den Text. Wie viele Gurken und wie viele Kartoffeln kaufen Tim und Sara? Füll die Lücken."
+            frame: "Gurken: _   Kartoffeln: _"
+            options: ["drei", "zehn", "vier"]
+            answer: ["drei", "zehn"]
+          - id: l2-c20
+            part: who-where-when
+            type: multiple_choice
+            text: "Tim und Sara gehen auf den Markt.\nSie kaufen drei Gurken und zehn Kartoffeln.\nDer Verkäufer schenkt Sara eine Birne.\nDann gehen sie nach Hause und kochen Suppe.\n\nWer bekommt eine Birne?"
+            say: "Lies den Text und die Frage. Wer bekommt eine Birne?"
+            options: ["Sara", "Tim", "der Verkäufer"]
+            answer: "Sara"
