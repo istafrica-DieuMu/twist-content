@@ -82,6 +82,29 @@ function lessonSets(cur) {
   return out;
 }
 
+// Check pools and drill banks per batch (curriculum, subject, year), read
+// from the lessons, so the authoring queue shows its own progress.
+function practiceContent() {
+  const rows = new Map(), walk = (rel) => readdirSync(join(T, rel), { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(join(rel, e.name)) : e.name.endsWith(".yaml") ? [join(rel, e.name)] : []);
+  for (const rel of walk("lessons")) {
+    const [, cur, year, subject] = rel.split("/");
+    let d; try { d = load(rel); } catch { continue; }
+    const r = rows.get(`${cur}|${subject}|${year}`) ?? { cur, subject, year, sets: 0, pools: 0, quick: 0, quickDone: 0 };
+    rows.set(`${cur}|${subject}|${year}`, r); r.sets++;
+    for (const l of d.lessons ?? []) for (const a of l.activities ?? []) if (a.activity === "check") {
+      if (a.size === "quick") { r.quick++; if (a.draw) r.quickDone++; } else if (a.draw) r.pools++;
+    }
+  }
+  const all = [...rows.values()], sum = (k) => all.reduce((a, r) => a + r[k], 0);
+  const banks = existsSync(join(T, "drills")) ? walk("drills").filter((f) => !f.endsWith("README.md")).length : 0;
+  let o = `## Practice content
+
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. ${sum("pools")} of ${sum("sets")} skill checks and ${sum("quickDone")} of ${sum("quick")} quick checks done; ${banks} drill banks.\n\n`;
+  o += `| batch | sets | skill checks done | quick checks done |\n|---|---|---|---|\n`;
+  for (const r of all.sort((a, b) => `${a.cur}${a.subject}${a.year}`.localeCompare(`${b.cur}${b.subject}${b.year}`))) o += `| ${r.cur} ${r.subject} ${r.year} | ${r.sets} | ${r.pools} | ${r.quickDone} of ${r.quick} |\n`;
+  return o + "\n";
+}
+
 export function tracking() {
   const topics = skillTopics();
   const lines = loadBig(join(T, "assets/narration/lines.yaml")) ?? {};
@@ -180,6 +203,9 @@ export function tracking() {
     const perSet = sets.size ? (curNarr.cost + curNarr.missing * (narrTotal / Math.max(clips, 1))) / sets.size : 0;
     projections.push({ cur, left: rows.length - done.length, perSet });
   }
+
+  // ---------- practice content (docs/plans/2026-10-18-practice-content.md) ----------
+  out += practiceContent();
 
   // ---------- what is left ----------
   const drawnObjects = objects.filter((o) => o.status === "drawn").length;

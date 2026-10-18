@@ -401,6 +401,6 @@ One voice speaks every line, sound and phrase. 100876 lines in assets/narration/
 | voice | model | clips | passed the check | minutes | MB | note |
 |---|---|---|---|---|---|---|
 | `gemini-sulafat` | google/gemini-3.8-flash-tts, Sulafat | 44829 | 43983 | 3410.6 | 1196.4 | female, warm; teaches and practises |
-| `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 6473 | 6372 | 378.6 | 133.7 | male; speaks the Checks |
+| `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 6525 | 6424 | 382.2 | 134.9 | male; speaks the Checks |
 | `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 47410 | 46274 | 4426.6 | 1546.7 | female, warm; teaches and practises in en-GB |
-| `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 6540 | 6358 | 429.7 | 151.2 | male; speaks the Checks in en-GB |
+| `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 6593 | 6411 | 433.8 | 152.7 | male; speaks the Checks in en-GB |

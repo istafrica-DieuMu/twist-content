@@ -12,18 +12,18 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21532 / 21532) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6295 / 6295) |
 | **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51297 / 51297)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30029 / 30082) |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30082 / 30082) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17301 / 17301) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6521 / 6521) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53850 / 53903)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53903 / 53903)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 105186 clips, 144.1 h | about $177 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 105186 clips | about $84 | estimated the same way |
+| Narration | google/gemini-3.8-flash-tts | 105239 clips, 144.2 h | about $177 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 105239 clips | about $84 | estimated the same way |
 | **Total** | | | **about $270** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
@@ -33,7 +33,7 @@ Per voice:
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
 | gemini-puck | 6510 | 6411 (98%) | 0 | 382 min | $13 |
-| gemini-puck-en | 6496 | 6315 (97%) | 53 | 429 min | $14 |
+| gemini-puck-en | 6549 | 6368 (97%) | 0 | 433 min | $14 |
 | gemini-sulafat | 44814 | 43968 (98%) | 0 | 3410 min | $105 |
 | gemini-sulafat-en | 47366 | 46234 (98%) | 0 | 4426 min | $128 |
 
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20731 tasks. Narration so far about $143; 53 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20731 tasks. Narration so far about $143; 0 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -295,9 +295,9 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Data | 4 / 4 done | 8 | $1.08 |
 | year-2 | Maths | Adding and subtracting to 100 | 10 / 10 done | 21 | $3.05 |
 | year-2 | Maths | Multiplication | 2 / 2 done | 4 | $0.51 |
-| year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.40 |
+| year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.44 |
 | year-2 | Maths | Division | 1 / 1 done | 2 | $0.31 |
-| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.71 |
+| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.72 |
 | year-2 | Maths | Length | 1 / 1 done | 2 | $0.28 |
 | year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.46 |
 | year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.35 |
@@ -317,7 +317,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.25 |
 | year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $2.60 |
 | year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.47 |
-| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.88 |
+| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.91 |
 | year-3 | Maths | Word problems | 3 / 3 done | 6 | $1.36 |
 | year-3 | Maths | Patterns | 1 / 1 done | 2 | $0.39 |
 | year-3 | Maths | Length | 2 / 2 done | 4 | $0.73 |
@@ -350,7 +350,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-3 | English | Grammar and punctuation | 5 / 5 done | 10 | $1.28 |
 | year-3 | English | Information texts | 1 / 1 done | 2 | $0.29 |
 | year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.03 |
-| year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.80 |
+| year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.84 |
 | year-4 | Maths | Division | 3 / 3 done | 6 | $0.93 |
 | year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.46 |
 | year-4 | Maths | Adding and subtracting to 1000 | 1 / 1 done | 2 | $0.39 |
@@ -480,6 +480,42 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | ly-4 | French | Speaking | 2 / 2 done | 4 | $0.63 |
 | ly-4 | French | Learning strategies | 2 / 2 done | 4 | $0.59 |
 | ly-4 | French | Reading | 1 / 1 done | 2 | $0.27 |
+
+## Practice content
+
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 6 of 918 skill checks and 6 of 974 quick checks done; 6 drill banks.
+
+| batch | sets | skill checks done | quick checks done |
+|---|---|---|---|
+| de-DE fl lernjahr-1 | 28 | 0 | 0 of 28 |
+| de-DE fl lernjahr-2 | 16 | 0 | 0 of 16 |
+| de-DE fl stufe-0 | 14 | 0 | 0 of 14 |
+| de-DE lit-de klasse-1 | 51 | 0 | 0 of 77 |
+| de-DE lit-de klasse-2 | 46 | 0 | 0 of 47 |
+| de-DE lit-de klasse-3 | 42 | 0 | 0 of 42 |
+| de-DE lit-de klasse-4 | 35 | 0 | 0 of 36 |
+| de-DE math klasse-1 | 41 | 0 | 0 of 46 |
+| de-DE math klasse-2 | 63 | 3 | 3 of 64 |
+| de-DE math klasse-3 | 51 | 0 | 0 of 51 |
+| de-DE math klasse-4 | 48 | 0 | 0 of 53 |
+| en-GB fl ly-1 | 14 | 0 | 0 of 14 |
+| en-GB fl ly-2 | 28 | 0 | 0 of 28 |
+| en-GB fl ly-3 | 11 | 0 | 0 of 12 |
+| en-GB fl ly-4 | 8 | 0 | 0 of 9 |
+| en-GB lit-en reception | 32 | 0 | 0 of 32 |
+| en-GB lit-en year-1 | 32 | 0 | 0 of 35 |
+| en-GB lit-en year-2 | 29 | 0 | 0 of 30 |
+| en-GB lit-en year-3 | 20 | 0 | 0 of 21 |
+| en-GB lit-en year-4 | 16 | 0 | 0 of 16 |
+| en-GB lit-en year-5 | 17 | 0 | 0 of 18 |
+| en-GB lit-en year-6 | 17 | 0 | 0 of 17 |
+| en-GB math reception | 14 | 0 | 0 of 14 |
+| en-GB math year-1 | 29 | 0 | 0 of 31 |
+| en-GB math year-2 | 51 | 1 | 1 of 54 |
+| en-GB math year-3 | 52 | 1 | 1 of 52 |
+| en-GB math year-4 | 39 | 1 | 1 of 42 |
+| en-GB math year-5 | 48 | 0 | 0 of 49 |
+| en-GB math year-6 | 26 | 0 | 0 of 26 |
 
 ## Still to generate
 
