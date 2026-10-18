@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line, place-value-chart]
   facets: []
+  parts:
+    - { id: step, what: { de: den Schritt einer Folge erkennen, en: spotting the step of a sequence } }
+    - { id: continue, what: { de: Zahlenfolgen vorwärts und rückwärts fortsetzen, en: continuing sequences forwards and backwards } }
+    - { id: boundary, what: { de: über Zehntausender und Hunderttausender bis zur Million zählen, en: counting across ten thousands and hundred thousands up to a million } }
+    - { id: rule, what: { de: die Regel einer Folge finden und prüfen, en: finding and checking the rule of a sequence } }
   misconceptions:
     - id: column-step
       what: Reads the step from the digit that changes but names the wrong column (calls 30 000, 40 000, 50 000 steps of 1000)
@@ -229,6 +234,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -251,6 +257,25 @@ lessons:
             frame: "448 000, 447 000, 446 000, _ , _"
             options: ["445 000", "444 000", "436 000", "345 000"]
             answer: ["445 000", "444 000"]
+          - id: l1-c4
+            type: true_false
+            text: "Stimmt das? 340 000, 350 000, 360 000 geht in Zehntausenderschritten."
+            say: "Die Folge dreihundertvierzigtausend, dreihundertfünfzigtausend, dreihundertsechzigtausend geht in Zehntausenderschritten. Stimmt das?"
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "63 000, 62 000, 61 000, _"
+            say: "Wie geht es weiter? Dreiundsechzigtausend, zweiundsechzigtausend, einundsechzigtausend."
+            options: ["60 000", "51 000", "62 000"]
+            answer: "60 000"
+            option_audio: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Wie geht es weiter?"
+            say: "Wie geht es weiter? Hundertdreißigtausend, zweihundertdreißigtausend, dreihundertdreißigtausend."
+            frame: "130 000, 230 000, 330 000, _ , _"
+            options: ["430 000", "530 000", "340 000", "440 000"]
+            answer: ["430 000", "530 000"]
 
   - n: 2
     title: { de: Über die Grenze zählen, en: Counting across a boundary }
@@ -430,6 +455,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: multiple_choice
@@ -452,6 +478,25 @@ lessons:
             frame: "225 000, 250 000, 275 000, _"
             options: ["300 000", "285 000", "280 000"]
             answer: ["300 000"]
+          - id: l2-c4
+            type: true_false
+            text: "Stimmt das? In Tausenderschritten kommt nach 609 000 die Zahl 700 000."
+            say: "Wir zählen in Tausenderschritten. Nach sechshundertneuntausend kommt siebenhunderttausend. Stimmt das?"
+            answer: false
+          - id: l2-c5
+            type: multiple_choice
+            text: "Rückwärts in Zehntausenderschritten: Was kommt nach 400 000?"
+            say: "Wir zählen in Zehntausenderschritten rückwärts. Was kommt nach vierhunderttausend?"
+            options: ["390 000", "399 000", "300 000"]
+            answer: "390 000"
+            option_audio: false
+          - id: l2-c6
+            type: fill_in_blank
+            text: "Welche Zahl fehlt?"
+            say: "Welche Zahl fehlt in der Folge?"
+            frame: "900 000, _ , 960 000, 990 000"
+            options: ["930 000", "920 000", "940 000"]
+            answer: ["930 000"]
 
   - n: 3
     title: { de: Regeln finden und prüfen, en: Finding and checking rules }
@@ -642,8 +687,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: step
             type: multiple_choice
             text: "Wie groß ist der Schritt? 413 000, 423 000, 433 000"
             say: "Wie groß ist der Schritt in dieser Folge? Vierhundertdreizehntausend, vierhundertdreiundzwanzigtausend, vierhundertdreiunddreißigtausend."
@@ -651,6 +698,7 @@ lessons:
             answer: "10 000"
             option_audio: false
           - id: l3-c2
+            part: boundary
             type: fill_in_blank
             text: "Wie geht es weiter?"
             say: "Wie geht es weiter? Dreihundertachtundsiebzigtausend, dreihundertneunundsiebzigtausend, dreihundertachtzigtausend."
@@ -658,6 +706,7 @@ lessons:
             options: ["381 000", "382 000", "390 000", "480 000"]
             answer: ["381 000", "382 000"]
           - id: l3-c3
+            part: boundary
             type: multiple_choice
             text: "Was kommt nach 590 000 in Zehntausenderschritten?"
             say: "Wir zählen in Zehntausenderschritten. Was kommt nach fünfhundertneunzigtausend?"
@@ -665,6 +714,7 @@ lessons:
             answer: "600 000"
             option_audio: false
           - id: l3-c4
+            part: rule
             type: multiple_choice
             text: "Welche Zahl passt nicht? 100 000, 400 000, 600 000, 800 000, 1 000 000"
             say: "Welche Zahl passt nicht in die Folge? Hunderttausend, vierhunderttausend, sechshunderttausend, achthunderttausend, eine Million."
@@ -672,9 +722,121 @@ lessons:
             answer: "100 000"
             option_audio: false
           - id: l3-c5
+            part: rule
             type: multiple_choice
             text: "Wie heißt die Regel? 880 000, 860 000, 840 000, 820 000"
             say: "Wie heißt die Regel dieser Folge? Achthundertachtzigtausend, achthundertsechzigtausend, achthundertvierzigtausend, achthundertzwanzigtausend."
             options: ["−20 000", "−2000", "+20 000"]
             answer: "−20 000"
             option_audio: false
+          - id: l3-c6
+            part: step
+            type: multiple_choice
+            text: "Wie groß ist der Schritt? 705 000, 805 000, 905 000"
+            say: "Wie groß ist der Schritt in dieser Folge? Siebenhundertfünftausend, achthundertfünftausend, neunhundertfünftausend."
+            options: ["100 000", "10 000", "5000"]
+            answer: "100 000"
+            option_audio: false
+          - id: l3-c7
+            part: step
+            type: true_false
+            text: "Stimmt das? 72 000, 73 000, 74 000 geht in Zehntausenderschritten."
+            say: "Die Folge zweiundsiebzigtausend, dreiundsiebzigtausend, vierundsiebzigtausend geht in Zehntausenderschritten. Stimmt das?"
+            answer: false
+          - id: l3-c8
+            part: step
+            type: multiple_choice
+            text: "Wie groß ist der Schritt? 655 000, 650 000, 645 000"
+            say: "Wie groß ist der Schritt in dieser Folge? Sechshundertfünfundfünfzigtausend, sechshundertfünfzigtausend, sechshundertfünfundvierzigtausend."
+            options: ["5000 weniger", "50 000 weniger", "5000 mehr"]
+            answer: "5000 weniger"
+            option_audio: false
+          - id: l3-c9
+            part: step
+            type: multiple_choice
+            text: "In welcher Spalte ändert sich die Ziffer? 438 000, 448 000, 458 000"
+            say: "In welcher Spalte ändert sich die Ziffer? Vierhundertachtunddreißigtausend, vierhundertachtundvierzigtausend, vierhundertachtundfünfzigtausend."
+            options: ["bei den Zehntausendern", "bei den Tausendern", "bei den Hunderttausendern"]
+            answer: "bei den Zehntausendern"
+          - id: l3-c10
+            part: continue
+            type: fill_in_blank
+            text: "Wie geht es weiter?"
+            say: "Wie geht es weiter? Vierhunderteinundzwanzigtausend, vierhundertdreiundzwanzigtausend, vierhundertfünfundzwanzigtausend."
+            frame: "421 000, 423 000, 425 000, _ , _"
+            options: ["427 000", "429 000", "426 000", "435 000"]
+            answer: ["427 000", "429 000"]
+          - id: l3-c11
+            part: continue
+            type: multiple_choice
+            text: "650 000, 550 000, 450 000, _"
+            say: "Wie geht es weiter? Sechshundertfünfzigtausend, fünfhundertfünfzigtausend, vierhundertfünfzigtausend."
+            options: ["350 000", "440 000", "550 000"]
+            answer: "350 000"
+            option_audio: false
+          - id: l3-c12
+            part: continue
+            type: fill_in_blank
+            text: "Wie geht es weiter?"
+            say: "Wie geht es weiter? Siebenundvierzigtausend, sechsundvierzigtausend, fünfundvierzigtausend."
+            frame: "47 000, 46 000, 45 000, _ , _"
+            options: ["44 000", "43 000", "35 000", "440 000"]
+            answer: ["44 000", "43 000"]
+          - id: l3-c13
+            part: continue
+            type: multiple_choice
+            text: "15 000, 40 000, 65 000, _"
+            say: "Wie geht es weiter? Fünfzehntausend, vierzigtausend, fünfundsechzigtausend."
+            options: ["90 000", "85 000", "75 000"]
+            answer: "90 000"
+            option_audio: false
+          - id: l3-c14
+            part: continue
+            type: true_false
+            text: "Stimmt das? 250 000, 300 000, 350 000 geht so weiter: 400 000, 450 000."
+            say: "Die Folge zweihundertfünfzigtausend, dreihunderttausend, dreihundertfünfzigtausend geht so weiter: vierhunderttausend, vierhundertfünfzigtausend. Stimmt das?"
+            answer: true
+          - id: l3-c15
+            part: boundary
+            type: multiple_choice
+            text: "507 000, 508 000, 509 000, _"
+            say: "Wie geht es weiter? Fünfhundertsiebentausend, fünfhundertachttausend, fünfhundertneuntausend."
+            options: ["510 000", "509 100", "600 000"]
+            answer: "510 000"
+            option_audio: false
+          - id: l3-c16
+            part: boundary
+            type: fill_in_blank
+            text: "Wie geht es weiter?"
+            say: "Wie geht es weiter? Siebenhundertzweitausend, siebenhunderteintausend, siebenhunderttausend."
+            frame: "702 000, 701 000, 700 000, _ , _"
+            options: ["699 000", "698 000", "690 000", "600 000"]
+            answer: ["699 000", "698 000"]
+          - id: l3-c17
+            part: boundary
+            type: true_false
+            text: "Stimmt das? In Tausenderschritten kommt nach 89 000 die Zahl 90 000."
+            say: "Wir zählen in Tausenderschritten. Nach neunundachtzigtausend kommt neunzigtausend. Stimmt das?"
+            answer: true
+          - id: l3-c18
+            part: rule
+            type: multiple_choice
+            text: "Welche Regel erklärt die Folge? 140 000, 190 000, 240 000, 290 000"
+            say: "Welche Regel erklärt die Folge? Hundertvierzigtausend, hundertneunzigtausend, zweihundertvierzigtausend, zweihundertneunzigtausend."
+            options: ["immer 50 000 mehr", "immer 5000 mehr", "immer 50 000 weniger"]
+            answer: "immer 50 000 mehr"
+            option_audio: false
+          - id: l3-c19
+            part: rule
+            type: true_false
+            text: "Stimmt die Regel −25 000? 200 000, 175 000, 150 000, 135 000"
+            say: "Die Regel ist minus fünfundzwanzigtausend. Stimmt sie bei allen Schritten? Zweihunderttausend, hundertfünfundsiebzigtausend, hundertfünfzigtausend, hundertfünfunddreißigtausend."
+            answer: false
+          - id: l3-c20
+            part: rule
+            type: fill_in_blank
+            text: "Die Regel ist +150 000. Setze die Folge fort."
+            say: "Die Regel ist plus hundertfünfzigtausend. Setze die Folge fort."
+            frame: "100 000, 250 000, _ , _"
+            options: ["400 000", "550 000", "350 000", "500 000"]
+            answer: ["400 000", "550 000"]

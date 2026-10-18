@@ -29,6 +29,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, table]
   facets: []
+  parts:
+    - { id: cells, what: { de: Zellen benennen und Daten richtig eintragen, en: naming cells and entering data correctly } }
+    - { id: chart, what: { de: vom Programm ein Diagramm zeichnen lassen, en: letting the program draw a chart } }
+    - { id: check, what: { de: Tabelle und Diagramm prüfen, en: checking the table and the chart } }
   misconceptions:
     - id: row-column-swap
       what: Names a cell row first or mixes up Spalte and Zeile (2B or B2 for Spalte C, Zeile 2)
@@ -247,6 +251,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -268,6 +273,26 @@ lessons:
             show: { drawn: bar-chart, tally: true, rows: [["Rot", 4], ["Gelb", 11]] }
             options: ["11", "elf Striche", "Gelb 11"]
             answer: "11"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie heißt die Zelle in Spalte E und Zeile 2?"
+            say: "Wie heißt die Zelle in Spalte E und Zeile zwei?"
+            options: ["E2", "2E", "B5"]
+            answer: "E2"
+          - id: l1-c5
+            type: multiple_choice
+            text: "In welcher Zelle steht Verstecken?"
+            show: { drawn: table, sheet: true, rows: [["Spiel", "Anzahl"], ["Fangen", 7], ["Verstecken", 12]] }
+            say: "In welcher Zelle steht das Wort Verstecken?"
+            options: ["A3", "B3", "3A"]
+            answer: "A3"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Strichliste: Fangen 7, Verstecken 12\nWelche Zahl in der Tabelle ist falsch eingetippt?"
+            say: "In der Strichliste steht: Fangen sieben, Verstecken zwölf. Vergleiche sie mit der Tabelle. Welche Zahl ist falsch eingetippt?"
+            show: { drawn: table, sheet: true, rows: [["Spiel", "Anzahl"], ["Fangen", 7], ["Verstecken", 21]] }
+            options: ["21 bei Verstecken", "7 bei Fangen", "keine, alles stimmt"]
+            answer: "21 bei Verstecken"
 
   - n: 2
     title: { de: "Ein Diagramm erstellen lassen", en: "Letting the program draw a chart" }
@@ -485,8 +510,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cells
             type: multiple_choice
             text: "In welcher Zelle steht die Anzahl für Milch?"
             show: { drawn: table, sheet: true, rows: [["Getränk", "Anzahl"], ["Wasser", 11], ["Saft", 8], ["Milch", 5]] }
@@ -494,6 +521,7 @@ lessons:
             options: ["B4", "A4", "4B"]
             answer: "B4"
           - id: l2-c2
+            part: chart
             type: image_multiple_choice
             text: "Welches Diagramm zeichnet das Programm?"
             show: { drawn: table, sheet: true, rows: [["Getränk", "Anzahl"], ["Wasser", 11], ["Saft", 8], ["Milch", 5]] }
@@ -504,6 +532,7 @@ lessons:
               - { drawn: bar-chart, rows: [["Wasser", 11], ["Saft", 5], ["Milch", 8]], key: "11-5-8" }
             answer: "11-8-5"
           - id: l2-c3
+            part: chart
             type: multiple_choice
             text: "Du markierst die gelben Zellen. Welche Säule fehlt dann im Diagramm?"
             show: { drawn: table, sheet: true, rows: [["Getränk", "Anzahl"], ["Wasser", 11], ["Saft", 8], ["Milch", 5]], mark: [[0, 0], [0, 1], [1, 0], [1, 1], [2, 0], [2, 1]] }
@@ -511,6 +540,7 @@ lessons:
             options: ["Milch", "Wasser", "Saft"]
             answer: "Milch"
           - id: l2-c4
+            part: check
             type: multiple_choice
             text: "Strichliste: Wasser 11, Saft 8, Milch 5\nWelche Zahl ist falsch eingetippt?"
             say: "In der Strichliste steht: Wasser elf, Saft acht, Milch fünf. Welche Zahl wurde falsch eingetippt?"
@@ -518,8 +548,123 @@ lessons:
             options: ["18 bei Saft", "11 bei Wasser", "5 bei Milch"]
             answer: "18 bei Saft"
           - id: l2-c5
+            part: check
             type: multiple_choice
-            text: "Du änderst B4 von 5 auf 9. Was passiert im Diagramm?"
+            text: "In B4 steht die Anzahl für Milch. Du änderst sie von 5 auf 9. Was passiert im Diagramm?"
             say: "In B vier steht die Anzahl für Milch. Du änderst sie von fünf auf neun. Was passiert im Diagramm?"
             options: ["Die Säule für Milch wird höher.", "Die Säule für Wasser wird höher.", "Nichts, das Diagramm bleibt gleich."]
             answer: "Die Säule für Milch wird höher."
+          - id: l2-c6
+            part: cells
+            type: multiple_choice
+            text: "Wie heißt die Zelle in Spalte C und Zeile 4?"
+            say: "Wie heißt die Zelle in Spalte C und Zeile vier?"
+            options: ["4C", "D3", "C4"]
+            answer: "C4"
+          - id: l2-c7
+            part: cells
+            type: multiple_choice
+            text: "Was steht in Zelle A3?"
+            show: { drawn: table, sheet: true, rows: [["Hobby", "Anzahl"], ["Lesen", 6], ["Malen", 9], ["Tanzen", 4]] }
+            say: "Was steht in der Zelle A drei?"
+            options: ["Malen", "9", "Lesen"]
+            answer: "Malen"
+          - id: l2-c8
+            part: cells
+            type: multiple_choice
+            text: "In welcher Zelle steht die Zahl 6?"
+            show: { drawn: table, sheet: true, rows: [["Hobby", "Anzahl"], ["Lesen", 6], ["Malen", 9], ["Tanzen", 4]] }
+            say: "In welcher Zelle steht die Zahl sechs?"
+            options: ["A2", "B2", "2B"]
+            answer: "B2"
+          - id: l2-c9
+            part: cells
+            type: true_false
+            text: "Die gelbe Zelle heißt C2."
+            show: { drawn: table, sheet: true, header: false, rows: [["", "", ""], ["", "", ""], ["", "", ""]], mark: [[1, 2]] }
+            say: "Stimmt das? Die gelbe Zelle heißt C zwei."
+            answer: true
+          - id: l2-c10
+            part: cells
+            type: true_false
+            text: "In die Zelle tippst du die Striche aus der Strichliste ab."
+            say: "Stimmt das? In die Zelle tippst du die Striche aus der Strichliste ab."
+            answer: false
+          - id: l2-c11
+            part: cells
+            type: multiple_choice
+            text: "In Spalte A stehen die Lieblingsfarben, in Spalte B die Zahlen. Was gehört in Zelle A1?"
+            say: "In Spalte A stehen die Lieblingsfarben, in Spalte B die Zahlen. Was gehört als Überschrift in die Zelle A eins?"
+            options: ["Farbe", "Anzahl", "Rot"]
+            answer: "Farbe"
+          - id: l2-c12
+            part: chart
+            type: image_multiple_choice
+            text: "Welches Diagramm zeichnet das Programm?"
+            show: { drawn: table, sheet: true, rows: [["Hobby", "Anzahl"], ["Lesen", 6], ["Malen", 9], ["Tanzen", 4]] }
+            say: "Welches Säulendiagramm zeichnet das Programm aus dieser Tabelle?"
+            options:
+              - { drawn: bar-chart, rows: [["Lesen", 9], ["Malen", 6], ["Tanzen", 4]], key: "9-6-4" }
+              - { drawn: bar-chart, rows: [["Lesen", 6], ["Malen", 4], ["Tanzen", 9]], key: "6-4-9" }
+              - { drawn: bar-chart, rows: [["Lesen", 6], ["Malen", 9], ["Tanzen", 4]], key: "6-9-4" }
+            answer: "6-9-4"
+          - id: l2-c13
+            part: chart
+            type: multiple_choice
+            text: "Du willst ein Diagramm mit allen Spielen. Welche Zellen markierst du?"
+            show: { drawn: table, sheet: true, rows: [["Spiel", "Anzahl"], ["Fangen", 7], ["Seilspringen", 5], ["Fußball", 12], ["Klettern", 4]] }
+            say: "Die Tabelle zeigt die Lieblingsspiele in der Pause. Du willst ein Diagramm mit allen Spielen. Welche Zellen markierst du?"
+            options: ["A1 bis B4", "A1 bis B5", "B2 bis B5"]
+            answer: "A1 bis B5"
+          - id: l2-c14
+            part: chart
+            type: ordering
+            text: "Was kommt zuerst? Bring die Schritte in die richtige Reihenfolge."
+            say: "Das Programm soll ein Diagramm zeichnen. Was kommt zuerst? Bring die Schritte in die richtige Reihenfolge."
+            options: ["Zellen markieren", "Säulendiagramm einfügen", "Tabelle ausfüllen"]
+            slot_count: 3
+            answer: ["Tabelle ausfüllen", "Zellen markieren", "Säulendiagramm einfügen"]
+          - id: l2-c15
+            part: chart
+            type: multiple_choice
+            text: "Das Diagramm zeigt die Hobbys der Klasse 4c. Welche Überschrift passt?"
+            say: "Das Diagramm zeigt, welche Hobbys die Kinder der Klasse vier c haben. Welche Überschrift passt?"
+            show: { drawn: bar-chart, rows: [["Lesen", 6], ["Malen", 9], ["Tanzen", 4]] }
+            options: ["Säulendiagramm", "Hobbys der 4c", "Malen macht Spaß"]
+            answer: "Hobbys der 4c"
+          - id: l2-c16
+            part: chart
+            type: multiple_choice
+            text: "Du hast nur die gelben Zellen markiert. Was fehlt dem Programm für das Diagramm?"
+            show: { drawn: table, sheet: true, rows: [["Hobby", "Anzahl"], ["Lesen", 6], ["Malen", 9], ["Tanzen", 4]], mark: [[0, 0], [1, 0], [2, 0], [3, 0]] }
+            say: "Du hast nur die gelben Zellen markiert, A eins bis A vier. Was fehlt dem Programm für das Diagramm?"
+            options: ["die Zahlen", "die Hobbys", "die Überschrift der Spalte A"]
+            answer: "die Zahlen"
+          - id: l2-c17
+            part: check
+            type: multiple_choice
+            text: "Strichliste: Lesen 6, Malen 9, Tanzen 4\nWas ist hier passiert?"
+            say: "In der Strichliste steht: Lesen sechs, Malen neun, Tanzen vier. Das Programm hat dieses Diagramm gezeichnet. Was ist passiert?"
+            show: { drawn: bar-chart, step: 5, rows: [["Lesen", 6], ["Malen", 9], ["Tanzen", 40]] }
+            options: ["Bei Tanzen wurde 40 statt 4 eingetippt.", "Das Programm hat sich verrechnet.", "Alles ist richtig."]
+            answer: "Bei Tanzen wurde 40 statt 4 eingetippt."
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Strichliste: Hund 7, Katze 12, Vogel 3\nStimmt die Tabelle?"
+            say: "In der Strichliste steht: Hund sieben, Katze zwölf, Vogel drei. Vergleiche sie mit der Tabelle. Stimmt die Tabelle?"
+            show: { drawn: table, sheet: true, rows: [["Tier", "Anzahl"], ["Hund", 7], ["Katze", 21], ["Vogel", 3]] }
+            answer: false
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "In B3 steht die Anzahl für Malen. Du änderst sie von 9 auf 4. Was passiert im Diagramm?"
+            say: "In B drei steht die Anzahl für Malen. Du änderst sie von neun auf vier. Was passiert im Diagramm?"
+            options: ["Die Säule für Malen wird niedriger.", "Die Säule für Malen wird höher.", "Die Säule für Lesen wird niedriger."]
+            answer: "Die Säule für Malen wird niedriger."
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Das Programm zeichnet auch eine falsch eingetippte Zahl als Säule."
+            say: "Stimmt das? Das Programm zeichnet auch eine falsch eingetippte Zahl als Säule."
+            answer: true

@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: choose, what: { de: "entscheiden, ob du im Kopf, halbschriftlich oder schriftlich rechnest", en: "choosing mental, informal or column calculation" } }
+    - { id: reason, what: { de: die Wahl des Rechenwegs begründen, en: giving a reason for the choice } }
+    - { id: shortcut, what: { de: Aufgaben mit runden Zahlen und Tricks im Kopf lösen, en: solving round-number and shortcut tasks mentally } }
   misconceptions:
     - id: always-written
       what: Writes every task in columns, even 10 000 + 5000
@@ -220,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -238,6 +243,23 @@ lessons:
             text: "Mia rechnet 6270 + 2850 halbschriftlich. Ist das ein guter Weg?"
             say: "Mia rechnet sechstausendzweihundertsiebzig plus zweitausendachthundertfünfzig halbschriftlich. Ist das ein guter Weg?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "5000 + 9000: Wie rechnest du am besten?"
+            say: "Fünftausend plus neuntausend. Wie rechnest du am besten?"
+            options: ["halbschriftlich", "im Kopf", "schriftlich"]
+            answer: "im Kopf"
+          - id: l1-c5
+            type: multiple_choice
+            text: "2530 + 4260: Wie rechnest du am besten?"
+            say: "Zweitausendfünfhundertdreißig plus viertausendzweihundertsechzig. Wie rechnest du am besten?"
+            options: ["schriftlich", "im Kopf", "halbschriftlich"]
+            answer: "halbschriftlich"
+          - id: l1-c6
+            type: true_false
+            text: "Kai rechnet 86 357 − 49 768 im Kopf. Ist das ein guter Weg?"
+            say: "Kai rechnet sechsundachtzigtausenddreihundertsiebenundfünfzig minus neunundvierzigtausendsiebenhundertachtundsechzig im Kopf. Ist das ein guter Weg?"
+            answer: false
 
   - n: 2
     title: { de: "Warum dieser Weg?", en: "Why this way?" }
@@ -405,14 +427,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: choose
             type: multiple_choice
             text: "90 000 − 60 000: Wie rechnest du am besten?"
             say: "Neunzigtausend minus sechzigtausend. Wie rechnest du am besten?"
             options: ["halbschriftlich", "schriftlich", "im Kopf"]
             answer: "im Kopf"
           - id: l2-c2
+            part: reason
             type: multiple_choice
             text: "Warum rechnest du 57 268 + 34 795 schriftlich?"
             say: "Warum rechnest du siebenundfünfzigtausendzweihundertachtundsechzig plus vierunddreißigtausendsiebenhundertfünfundneunzig am besten schriftlich?"
@@ -420,18 +445,130 @@ lessons:
             answer: "weil es viele Überträge gibt"
             option_audio: false
           - id: l2-c3
+            part: shortcut
             type: text_input
             text: "39 999 + 1 = _"
             say: "Neununddreißigtausendneunhundertneunundneunzig plus eins."
             answer: "40000"
           - id: l2-c4
+            part: choose
             type: multiple_choice
             text: "8650 − 3280: Wie rechnest du am besten?"
             say: "Achttausendsechshundertfünfzig minus dreitausendzweihundertachtzig. Wie rechnest du am besten?"
             options: ["schriftlich", "halbschriftlich", "im Kopf"]
             answer: "halbschriftlich"
           - id: l2-c5
+            part: reason
             type: true_false
             text: "Paul sagt: „Ich rechne 20 000 + 70 000 im Kopf, weil zwei plus sieben neun ist.“ Ist das ein guter Grund?"
             say: "Paul sagt: Ich rechne zwanzigtausend plus siebzigtausend im Kopf, weil zwei plus sieben neun ist. Ist das ein guter Grund?"
             answer: true
+          - id: l2-c6
+            part: choose
+            type: multiple_choice
+            text: "36 000 + 8000: Wie rechnest du am besten?"
+            say: "Sechsunddreißigtausend plus achttausend. Wie rechnest du am besten?"
+            options: ["schriftlich", "im Kopf", "halbschriftlich"]
+            answer: "im Kopf"
+          - id: l2-c7
+            part: choose
+            type: multiple_choice
+            text: "75 836 − 48 297: Wie rechnest du am besten?"
+            say: "Fünfundsiebzigtausendachthundertsechsunddreißig minus achtundvierzigtausendzweihundertsiebenundneunzig. Wie rechnest du am besten?"
+            options: ["im Kopf", "halbschriftlich", "schriftlich"]
+            answer: "schriftlich"
+          - id: l2-c8
+            part: choose
+            type: multiple_choice
+            text: "3640 + 2150: Wie rechnest du am besten?"
+            say: "Dreitausendsechshundertvierzig plus zweitausendhundertfünfzig. Wie rechnest du am besten?"
+            options: ["halbschriftlich", "schriftlich", "im Kopf"]
+            answer: "halbschriftlich"
+          - id: l2-c9
+            part: choose
+            type: sorting
+            text: "Welche Aufgaben rechnest du im Kopf, welche schriftlich?"
+            say: "Welche Aufgaben rechnest du besser im Kopf, welche schriftlich? Sortiere sie."
+            bins:
+              - { id: head, show: { text: "im Kopf" }, say: "im Kopf" }
+              - { id: written, show: { text: "schriftlich" }, say: "schriftlich" }
+            options:
+              - { text: "68 254 + 27 389", bin: written }
+              - { text: "40 000 + 50 000", bin: head }
+              - { text: "11 000 − 4000", bin: head }
+              - { text: "94 162 − 38 475", bin: written }
+            option_audio: false
+          - id: l2-c10
+            part: choose
+            type: true_false
+            text: "Emma rechnet 57 694 − 18 836 im Kopf. Ist das der beste Weg?"
+            say: "Emma rechnet siebenundfünfzigtausendsechshundertvierundneunzig minus achtzehntausendachthundertsechsunddreißig im Kopf. Ist das der beste Weg?"
+            answer: false
+          - id: l2-c11
+            part: reason
+            type: multiple_choice
+            text: "Warum rechnest du 400 000 − 100 000 im Kopf?"
+            say: "Warum rechnest du vierhunderttausend minus hunderttausend am besten im Kopf?"
+            options: ["weil die Zahlen sechsstellig sind", "weil die Zahlen rund sind", "weil es minus ist"]
+            answer: "weil die Zahlen rund sind"
+            option_audio: false
+          - id: l2-c12
+            part: reason
+            type: multiple_choice
+            text: "Warum rechnest du 82 503 − 47 865 schriftlich?"
+            say: "Warum rechnest du zweiundachtzigtausendfünfhundertdrei minus siebenundvierzigtausendachthundertfünfundsechzig am besten schriftlich?"
+            options: ["weil die Zahlen fünfstellig sind", "weil die Zahlen rund sind", "weil du oft entbündeln musst"]
+            answer: "weil du oft entbündeln musst"
+            option_audio: false
+          - id: l2-c13
+            part: reason
+            type: multiple_choice
+            text: "Warum rechnest du 4250 + 3120 halbschriftlich?"
+            say: "Warum rechnest du viertausendzweihundertfünfzig plus dreitausendhundertzwanzig am besten halbschriftlich?"
+            options: ["weil ein paar kurze Schritte reichen", "weil es viele Überträge gibt", "weil die Zahlen rund sind"]
+            answer: "weil ein paar kurze Schritte reichen"
+            option_audio: false
+          - id: l2-c14
+            part: reason
+            type: true_false
+            text: "Lea sagt: „Ich rechne 45 000 + 5000 im Kopf, weil 45 plus 5 genau 50 ist.“ Ist das ein guter Grund?"
+            say: "Lea sagt: Ich rechne fünfundvierzigtausend plus fünftausend im Kopf, weil fünfundvierzig plus fünf genau fünfzig ist. Ist das ein guter Grund?"
+            answer: true
+          - id: l2-c15
+            part: reason
+            type: true_false
+            text: "Nico sagt: „Ich rechne 38 469 + 47 857 im Kopf, weil es plus ist.“ Ist das ein guter Grund?"
+            say: "Nico sagt: Ich rechne achtunddreißigtausendvierhundertneunundsechzig plus siebenundvierzigtausendachthundertsiebenundfünfzig im Kopf, weil es plus ist. Ist das ein guter Grund?"
+            answer: false
+          - id: l2-c16
+            part: shortcut
+            type: text_input
+            text: "30 000 − 1 = _"
+            say: "Dreißigtausend minus eins."
+            answer: "29999"
+          - id: l2-c17
+            part: shortcut
+            type: text_input
+            text: "250 000 + 250 000 = _"
+            say: "Zweihundertfünfzigtausend plus zweihundertfünfzigtausend."
+            answer: "500000"
+          - id: l2-c18
+            part: shortcut
+            type: text_input
+            text: "64 000 + 6000 = _"
+            say: "Vierundsechzigtausend plus sechstausend."
+            answer: "70000"
+          - id: l2-c19
+            part: shortcut
+            type: multiple_choice
+            text: "Welche Aufgabe löst du mit einem Trick sofort im Kopf?"
+            say: "Welche Aufgabe löst du mit einem Trick sofort im Kopf?"
+            options: ["59 387 + 1648", "59 999 + 1", "47 826 − 19 359"]
+            answer: "59 999 + 1"
+            option_audio: false
+          - id: l2-c20
+            part: shortcut
+            type: true_false
+            text: "40 000 − 1 = 39 000. Stimmt das?"
+            say: "Vierzigtausend minus eins ist neununddreißigtausend. Stimmt das?"
+            answer: false

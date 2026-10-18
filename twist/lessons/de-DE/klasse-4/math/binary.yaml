@@ -27,6 +27,10 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: places, what: { de: die Stellenwerte und Ziffern des Zweiersystems, en: the place values and digits of binary } }
+    - { id: read, what: { de: Dualzahlen ins Zehnersystem umwandeln, en: converting binary numbers to base ten } }
+    - { id: write, what: { de: Zahlen ins Zweiersystem umwandeln, en: converting numbers to binary } }
   misconceptions:
     - id: read-as-decimal
       what: Reads a Dualzahl as a number in the Zehnersystem (11 as elf, 100 as hundert)
@@ -213,6 +217,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -231,6 +236,28 @@ lessons:
             text: "Im Zweiersystem ist jede Stelle doppelt so viel wert wie die Stelle rechts daneben."
             say: "Stimmt das? Im Zweiersystem ist jede Stelle doppelt so viel wert wie die Stelle rechts daneben."
             answer: true
+          - id: l1-c4
+            type: matching
+            text: "Verbinde jede Dualzahl mit ihrer Zahl."
+            say: "Verbinde jede Dualzahl mit ihrer Zahl im Zehnersystem."
+            pairs:
+              - { left: { text: "10" }, right: { text: "2" } }
+              - { left: { text: "1110" }, right: { text: "14" } }
+              - { left: { text: "111" }, right: { text: "7" } }
+            option_audio: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "4 Lämpchen: an, an, aus, an\nan = 1, aus = 0\nWelche Zahl zeigen sie?"
+            say: "Vier Lämpchen: an, an, aus, an. An heißt eins, aus heißt null. Welche Zahl zeigen die Lämpchen?"
+            options: ["13", "1101", "11"]
+            answer: "13"
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welche Stelle kommt im Zweiersystem rechts vom Vierer?"
+            say: "Welche Stelle kommt im Zweiersystem rechts vom Vierer?"
+            options: ["der Zweier", "der Dreier", "der Zehner"]
+            answer: "der Zweier"
 
   - n: 2
     title: { de: "Zahlen ins Zweiersystem", en: "Writing numbers in binary" }
@@ -402,13 +429,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: text_input
             text: "Dualzahl: 1111 = _"
             say: "Die Dualzahl eins, eins, eins, eins. Welche Zahl ist das?"
             answer: "15"
           - id: l2-c2
+            part: write
             type: multiple_choice
             text: "Schreib 8 im Zweiersystem."
             say: "Schreib acht im Zweiersystem."
@@ -416,19 +446,127 @@ lessons:
             answer: "1000"
             option_audio: false
           - id: l2-c3
+            part: write
             type: text_input
             text: "11 = _ im Zweiersystem"
             say: "Schreib elf im Zweiersystem."
             answer: "1011"
           - id: l2-c4
+            part: read
             type: true_false
             text: "Die Dualzahl 1000 ist größer als die Dualzahl 111."
             say: "Stimmt das? Die Dualzahl eins, null, null, null ist größer als die Dualzahl eins, eins, eins."
             answer: true
           - id: l2-c5
+            part: read
             type: multiple_choice
             text: "4 Lämpchen für 8, 4, 2 und 1: an, aus, an, aus. Welche Zahl ist das?"
             say: "Vier Lämpchen für acht, vier, zwei und eins: an, aus, an, aus. Welche Zahl ist das?"
             options: ["10", "5", "1010"]
             answer: "10"
+            option_audio: false
+          - id: l2-c6
+            part: read
+            type: true_false
+            text: "Die Dualzahl 1110 ist größer als 12."
+            say: "Stimmt das? Die Dualzahl eins, eins, eins, null ist größer als zwölf."
+            answer: true
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Welche Dualzahl ist am größten?"
+            say: "Welche Dualzahl ist am größten?"
+            options: ["111", "1010", "1001"]
+            answer: "1010"
+            option_audio: false
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Die Dualzahl 1101 ist um 1 größer als die Dualzahl 1100."
+            say: "Stimmt das? Die Dualzahl eins, eins, null, eins ist um eins größer als die Dualzahl eins, eins, null, null."
+            answer: true
+          - id: l2-c9
+            part: read
+            type: text_input
+            text: "5 Lämpchen für 16, 8, 4, 2 und 1: an, aus, aus, an, aus. Welche Zahl zeigen sie?"
+            say: "Fünf Lämpchen für sechzehn, acht, vier, zwei und eins: an, aus, aus, an, aus. Welche Zahl zeigen die Lämpchen?"
+            answer: "18"
+          - id: l2-c10
+            part: write
+            type: text_input
+            text: "4 = _ im Zweiersystem"
+            say: "Schreib vier im Zweiersystem."
+            answer: "100"
+          - id: l2-c11
+            part: write
+            type: text_input
+            text: "22 = _ im Zweiersystem"
+            say: "Schreib zweiundzwanzig im Zweiersystem."
+            answer: "10110"
+          - id: l2-c12
+            part: write
+            type: fill_in_blank
+            text: "Schreib 25 im Zweiersystem."
+            say: "Schreib fünfundzwanzig im Zweiersystem."
+            frame: "16er: _   8er: _   4er: _   2er: _   1er: _"
+            options: ["0", "1"]
+            answer: ["1", "1", "0", "0", "1"]
+          - id: l2-c13
+            part: write
+            type: true_false
+            text: "Tim schreibt 9 im Zweiersystem als 11."
+            say: "Tim schreibt neun im Zweiersystem als eins, eins. Stimmt das?"
+            answer: false
+          - id: l2-c14
+            part: write
+            type: multiple_choice
+            text: "5 Lämpchen stehen für 16, 8, 4, 2 und 1. Sie sollen die Zahl 23 zeigen. Welche sind an?"
+            say: "Fünf Lämpchen stehen für sechzehn, acht, vier, zwei und eins. Sie sollen die Zahl dreiundzwanzig zeigen. Welche Lämpchen sind an?"
+            options: ["an, aus, an, an, an", "an, an, aus, an, an", "an, aus, an, aus, an"]
+            answer: "an, aus, an, an, an"
+          - id: l2-c15
+            part: places
+            type: multiple_choice
+            text: "Welche Ziffern gibt es im Zweiersystem?"
+            say: "Welche Ziffern gibt es im Zweiersystem?"
+            options: ["nur 0 und 1", "0 bis 9", "nur 1 und 2"]
+            answer: "nur 0 und 1"
+          - id: l2-c16
+            part: places
+            type: matching
+            text: "Verbinde jede Stelle im Zweiersystem mit ihrem Stellenwert. Die Stellen zählst du von rechts."
+            say: "Verbinde jede Stelle im Zweiersystem mit ihrem Stellenwert. Die Stellen zählst du von rechts."
+            pairs:
+              - { left: { text: "1. Stelle" }, right: { text: "1" } }
+              - { left: { text: "2. Stelle" }, right: { text: "2" } }
+              - { left: { text: "3. Stelle" }, right: { text: "4" } }
+              - { left: { text: "5. Stelle" }, right: { text: "16" } }
+            option_audio: false
+          - id: l2-c17
+            part: places
+            type: true_false
+            text: "Im Zweiersystem kommt links vom Achter der Zehner."
+            say: "Stimmt das? Im Zweiersystem kommt links vom Achter der Zehner."
+            answer: false
+          - id: l2-c18
+            part: places
+            type: fill_in_blank
+            text: "Hier stehen die Stellenwerte im Zweiersystem. Welche fehlen?"
+            say: "Hier stehen die Stellenwerte im Zweiersystem. Welche fehlen?"
+            frame: "_, _, 4, 2, 1"
+            options: ["16", "8", "10", "100"]
+            answer: ["16", "8"]
+          - id: l2-c19
+            part: places
+            type: true_false
+            text: "Im Zweiersystem ist der Achter viermal so viel wert wie der Zweier."
+            say: "Stimmt das? Im Zweiersystem ist der Achter viermal so viel wert wie der Zweier."
+            answer: true
+          - id: l2-c20
+            part: places
+            type: multiple_choice
+            text: "Wie viel ist die linke 1 in der Dualzahl 1011 wert?"
+            say: "Wie viel ist die linke Eins in der Dualzahl eins, null, eins, eins wert?"
+            options: ["8", "1000", "1"]
+            answer: "8"
             option_audio: false

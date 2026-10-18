@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card, shape]
   facets: []
+  parts:
+    - { id: continue, what: { de: Bandornamente fortsetzen, en: continuing frieze patterns } }
+    - { id: move-mirror, what: { de: "beschreiben, ob das Grundmuster verschoben oder gespiegelt wird", en: saying whether the unit is slid or reflected } }
+    - { id: tile, what: { de: "Formen finden, die lückenlos aneinanderpassen", en: finding shapes that fit together without gaps } }
+    - { id: describe, what: { de: Parkette und ihre Ecken beschreiben, en: describing tessellations and their corners } }
   misconceptions:
     - id: copies-last-item
       what: Continues a frieze by repeating the last item or by alternating two items, without finding the whole Grundmuster
@@ -224,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -246,6 +252,26 @@ lessons:
             say: "Was ist ein Bandornament?"
             options: ["ein Muster auf einem Streifen, in dem sich ein Grundmuster wiederholt", "ein einzelnes Bild auf einem Streifen", "ein Muster ohne Regel"]
             answer: "ein Muster auf einem Streifen, in dem sich ein Grundmuster wiederholt"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Was kommt als Nächstes?"
+            say: "Finde das Grundmuster. Welche Form kommt als Nächstes?"
+            show: { drawn: shape, row: [circle, circle, square, square, circle, circle, square, "?"], colours: red }
+            options: ["Quadrat", "Kreis", "Dreieck"]
+            answer: "Quadrat"
+          - id: l1-c5
+            type: true_false
+            text: "In diesem Bandornament wird das d gespiegelt."
+            say: "Stimmt das? In diesem Bandornament wird das d gespiegelt."
+            show: { drawn: letter-card, text: "d d d d" }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wie viele Formen hat das Grundmuster?"
+            say: "Wie viele Formen hat das Grundmuster?"
+            show: { drawn: shape, row: [triangle, square, square, circle, triangle, square, square, circle], colours: orange }
+            options: ["4", "8", "3"]
+            answer: "4"
 
   - n: 2
     title: { de: "Parkette ohne Lücken", en: "Tessellations without gaps" }
@@ -428,8 +454,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: continue
             type: multiple_choice
             text: "Welcher Buchstabe kommt als Nächstes?"
             say: "Finde das Grundmuster. Welcher Buchstabe kommt als Nächstes?"
@@ -438,6 +466,7 @@ lessons:
             answer: "q"
             option_audio: false
           - id: l2-c2
+            part: continue
             type: multiple_choice
             text: "Was kommt als Nächstes?"
             say: "Finde das Grundmuster. Welche Form kommt als Nächstes?"
@@ -445,6 +474,7 @@ lessons:
             options: ["Kreis", "Dreieck", "Quadrat"]
             answer: "Kreis"
           - id: l2-c3
+            part: move-mirror
             type: multiple_choice
             text: "Wie entsteht dieses Bandornament?"
             say: "Wie entsteht dieses Bandornament?"
@@ -452,6 +482,7 @@ lessons:
             options: ["Das d wird gespiegelt.", "Das d wird verschoben.", "Das d wird gedreht."]
             answer: "Das d wird gespiegelt."
           - id: l2-c4
+            part: tile
             type: image_multiple_choice
             text: "Lea will den Boden lückenlos mit gleichen Fliesen auslegen. Welche Form kann sie nehmen?"
             say: "Lea will den Boden lückenlos mit gleichen Fliesen auslegen. Welche Form kann sie nehmen?"
@@ -461,7 +492,120 @@ lessons:
             answer: hexagon
             option_audio: false
           - id: l2-c5
+            part: tile
             type: true_false
             text: "Zwischen gleich großen Sechsecken bleiben im Parkett kleine Lücken."
             say: "Stimmt das? Zwischen gleich großen Sechsecken bleiben im Parkett kleine Lücken."
             answer: false
+          - id: l2-c6
+            part: continue
+            type: multiple_choice
+            text: "Was kommt als Nächstes?"
+            say: "Finde das Grundmuster. Welche Form kommt als Nächstes?"
+            show: { drawn: shape, row: [square, triangle, triangle, circle, square, triangle, triangle, circle, square, "?"], colours: green }
+            options: ["Dreieck", "Kreis", "Quadrat"]
+            answer: "Dreieck"
+          - id: l2-c7
+            part: continue
+            type: multiple_choice
+            text: "Welche Farbe hat das nächste Sechseck?"
+            say: "Finde das Grundmuster. Welche Farbe hat das nächste Sechseck?"
+            show: { drawn: shape, row: [hexagon, hexagon, hexagon, hexagon, hexagon, hexagon, hexagon, hexagon, "?"], colours: [red, blue, blue, blue, red, blue, blue, blue, null] }
+            options: ["rot", "blau", "grün"]
+            answer: "rot"
+          - id: l2-c8
+            part: continue
+            type: multiple_choice
+            text: "Welcher Buchstabe kommt als Nächstes?"
+            say: "Finde das Grundmuster. Welcher Buchstabe kommt als Nächstes?"
+            show: { drawn: letter-card, text: "b b d b b d b ?" }
+            options: ["b", "d", "p"]
+            answer: "b"
+            option_audio: false
+          - id: l2-c9
+            part: move-mirror
+            type: true_false
+            text: "In diesem Bandornament wird das p verschoben."
+            say: "Stimmt das? In diesem Bandornament wird das p verschoben."
+            show: { drawn: letter-card, text: "p p p p" }
+            answer: true
+          - id: l2-c10
+            part: move-mirror
+            type: multiple_choice
+            text: "An welcher Linie wird das q hier gespiegelt?"
+            say: "In diesem Bandornament wird das q gespiegelt. An welcher Linie?"
+            show: { drawn: letter-card, text: "q p q p" }
+            options: ["an einer senkrechten Linie", "an einer waagerechten Linie", "Es wird nicht gespiegelt."]
+            answer: "an einer senkrechten Linie"
+          - id: l2-c11
+            part: move-mirror
+            type: multiple_choice
+            text: "Du spiegelst ein b an einer senkrechten Linie. Welcher Buchstabe entsteht?"
+            say: "Du spiegelst ein b an einer senkrechten Linie. Welcher Buchstabe entsteht?"
+            options: ["d", "p", "q"]
+            answer: "d"
+            option_audio: false
+          - id: l2-c12
+            part: move-mirror
+            type: multiple_choice
+            text: "Bei welchem Bandornament wird das Grundmuster gespiegelt?"
+            say: "Bei welchem Bandornament wird das Grundmuster gespiegelt?"
+            options: ["p q p q", "p p p p", "q q q q"]
+            answer: "p q p q"
+            option_audio: false
+          - id: l2-c13
+            part: tile
+            type: image_multiple_choice
+            text: "Mit welcher Form kannst du eine Fläche lückenlos auslegen?"
+            say: "Mit welcher Form kannst du eine Fläche lückenlos auslegen, wenn alle gleich groß sind?"
+            options:
+              - { drawn: shape, kind: circle, colour: blue }
+              - { drawn: shape, kind: triangle, colour: blue }
+            answer: triangle
+            option_audio: false
+          - id: l2-c14
+            part: tile
+            type: true_false
+            text: "Tom legt gleich große Kreise ganz dicht aneinander. Dann ist die Fläche ohne Lücken bedeckt."
+            say: "Stimmt das? Tom legt gleich große Kreise ganz dicht aneinander. Dann ist die Fläche ohne Lücken bedeckt."
+            answer: false
+          - id: l2-c15
+            part: tile
+            type: multiple_choice
+            text: "Ben will das Bad fliesen, ohne dass Lücken bleiben. Welche Fliesen kann er nehmen?"
+            say: "Ben will das Bad fliesen, ohne dass Lücken bleiben. Welche Fliesen kann er nehmen?"
+            options: ["gleich große Rechtecke", "gleich große Kreise", "Kreise in vielen Größen"]
+            answer: "gleich große Rechtecke"
+          - id: l2-c16
+            part: describe
+            type: multiple_choice
+            text: "Welche zwei Regeln gelten für ein Parkett?"
+            say: "Welche zwei Regeln gelten für ein Parkett?"
+            options: ["keine Lücken und nichts liegt übereinander", "nur eine Farbe und nur Quadrate", "keine Ecken und keine geraden Seiten"]
+            answer: "keine Lücken und nichts liegt übereinander"
+          - id: l2-c17
+            part: describe
+            type: multiple_choice
+            text: "In einem Parkett aus gleich großen Formen treffen sich an jeder Ecke 4 Formen. Welche Form kann das sein?"
+            say: "In einem Parkett aus gleich großen Formen treffen sich an jeder Ecke vier Formen. Welche Form kann das sein?"
+            options: ["das Quadrat", "das Sechseck", "der Kreis"]
+            answer: "das Quadrat"
+          - id: l2-c18
+            part: describe
+            type: true_false
+            text: "In einem Parkett aus gleich großen Sechsecken treffen sich an jeder Ecke drei Sechsecke."
+            say: "Stimmt das? In einem Parkett aus gleich großen Sechsecken treffen sich an jeder Ecke drei Sechsecke."
+            answer: true
+          - id: l2-c19
+            part: describe
+            type: true_false
+            text: "Ein Boden hat quadratische Fliesen, aber zwischen ihnen sind breite Lücken. Ist das ein Parkett?"
+            say: "Ein Boden hat quadratische Fliesen, aber zwischen ihnen sind breite Lücken. Ist das ein Parkett?"
+            answer: false
+          - id: l2-c20
+            part: describe
+            type: multiple_choice
+            text: "Welcher Boden ist ein Parkett?"
+            say: "Welcher Boden ist ein Parkett?"
+            options: ["gleich große Sechseckfliesen ohne Lücken", "runde Fliesen mit Lücken dazwischen", "Fliesen, die zum Teil übereinanderliegen"]
+            answer: "gleich große Sechseckfliesen ohne Lücken"

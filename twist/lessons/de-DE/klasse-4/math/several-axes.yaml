@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card, shape]
   facets: []
+  parts:
+    - { id: shapes, what: { de: Symmetrieachsen von Figuren zählen, en: counting the lines of symmetry of shapes } }
+    - { id: corner, what: { de: Achsen von Ecke zu Ecke bei Quadrat und Rechteck prüfen, en: checking corner-to-corner lines on squares and rectangles } }
+    - { id: letters, what: { de: Symmetrieachsen von Buchstaben finden, en: finding the lines of symmetry of letters } }
+    - { id: mirror, what: { de: an einer schrägen Achse spiegeln, en: reflecting in a diagonal line } }
   misconceptions:
     - id: rectangle-diagonal-axis
       what: Thinks the line from corner to corner is a Symmetrieachse of every rectangle, so gives the rectangle four axes
@@ -228,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -251,6 +257,28 @@ lessons:
             text: "Ein Rechteck, das kein Quadrat ist, hat vier Symmetrieachsen."
             say: "Stimmt das? Ein Rechteck, das kein Quadrat ist, hat vier Symmetrieachsen."
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Jede Linie durch den Mittelpunkt des Kreises ist eine Symmetrieachse."
+            say: "Stimmt das? Jede Linie durch den Mittelpunkt des Kreises ist eine Symmetrieachse."
+            show: { drawn: shape, kind: circle, colour: green }
+            answer: true
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Welche Figur hat keine schräge Symmetrieachse?"
+            say: "Welche Figur hat keine schräge Symmetrieachse?"
+            options:
+              - { drawn: shape, kind: square, colour: red }
+              - { drawn: shape, kind: rectangle, colour: red }
+              - { drawn: shape, kind: hexagon, colour: red }
+            answer: rectangle
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welche Figur hat mehr Symmetrieachsen als das Quadrat?"
+            say: "Welche Figur hat mehr Symmetrieachsen als das Quadrat?"
+            options: ["das Sechseck mit sechs gleich langen Seiten", "das Rechteck", "das Dreieck mit drei gleich langen Seiten"]
+            answer: "das Sechseck mit sechs gleich langen Seiten"
 
   - n: 2
     title: { de: "Buchstaben und schräge Achsen", en: "Letters and diagonal lines" }
@@ -451,19 +479,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: corner
             type: true_false
             text: "Tim faltet ein Rechteck von Ecke zu Ecke. Die Hälften passen genau aufeinander."
             say: "Stimmt das? Tim faltet ein Rechteck, das kein Quadrat ist, von Ecke zu Ecke. Die Hälften passen genau aufeinander."
             answer: false
           - id: l2-c2
+            part: corner
             type: multiple_choice
             text: "Wie viele Symmetrieachsen hat ein Quadrat mehr als ein Rechteck?"
             say: "Wie viele Symmetrieachsen hat ein Quadrat mehr als ein Rechteck, das kein Quadrat ist?"
             options: ["2", "4", "0"]
             answer: "2"
           - id: l2-c3
+            part: letters
             type: multiple_choice
             text: "Wie viele Symmetrieachsen hat das I?"
             say: "Wie viele Symmetrieachsen hat das I?"
@@ -471,14 +503,136 @@ lessons:
             options: ["2", "1", "0"]
             answer: "2"
           - id: l2-c4
+            part: mirror
             type: multiple_choice
             text: "Ein Pfeil zeigt nach unten. Du spiegelst ihn an der schrägen Achse von links unten nach rechts oben. Wohin zeigt er dann?"
             say: "Ein Pfeil zeigt nach unten. Du spiegelst ihn an der schrägen Achse von links unten nach rechts oben. Wohin zeigt er dann?"
             options: ["nach links", "nach oben", "nach rechts"]
             answer: "nach links"
           - id: l2-c5
+            part: shapes
             type: multiple_choice
             text: "Welche Figur hat unendlich viele Symmetrieachsen?"
             say: "Welche Figur hat unendlich viele Symmetrieachsen?"
             options: ["der Kreis", "das Quadrat", "das Sechseck"]
             answer: "der Kreis"
+          - id: l2-c6
+            part: shapes
+            type: image_multiple_choice
+            text: "Welche Figur hat genau sechs Symmetrieachsen?"
+            say: "Welche Figur hat genau sechs Symmetrieachsen?"
+            options:
+              - { drawn: shape, kind: triangle, colour: blue }
+              - { drawn: shape, kind: hexagon, colour: blue }
+              - { drawn: shape, kind: square, colour: blue }
+            answer: hexagon
+            option_audio: false
+          - id: l2-c7
+            part: shapes
+            type: true_false
+            text: "Das Quadrat hat mehr Symmetrieachsen als das Dreieck mit drei gleich langen Seiten."
+            say: "Stimmt das? Das Quadrat hat mehr Symmetrieachsen als das Dreieck mit drei gleich langen Seiten."
+            answer: true
+          - id: l2-c8
+            part: shapes
+            type: multiple_choice
+            text: "Ein Rechteck, das kein Quadrat ist, und ein Quadrat: Wie viele Symmetrieachsen haben sie zusammen?"
+            say: "Ein Rechteck, das kein Quadrat ist, und ein Quadrat. Wie viele Symmetrieachsen haben die beiden zusammen?"
+            options: ["6", "8", "4"]
+            answer: "6"
+          - id: l2-c9
+            part: shapes
+            type: multiple_choice
+            text: "Welche Figur hat eine Symmetrieachse weniger als das Quadrat?"
+            say: "Welche Figur hat eine Symmetrieachse weniger als das Quadrat?"
+            options: ["das Dreieck mit drei gleich langen Seiten", "das Rechteck, das kein Quadrat ist", "der Kreis"]
+            answer: "das Dreieck mit drei gleich langen Seiten"
+          - id: l2-c10
+            part: corner
+            type: true_false
+            text: "Mia faltet ein quadratisches Blatt von Ecke zu Ecke. Liegen die Hälften genau aufeinander?"
+            say: "Mia faltet ein quadratisches Blatt von Ecke zu Ecke. Liegen die Hälften genau aufeinander?"
+            show: { drawn: shape, kind: square, colour: yellow }
+            answer: true
+          - id: l2-c11
+            part: corner
+            type: multiple_choice
+            text: "Welche Linie ist bei einem Rechteck, das kein Quadrat ist, eine Symmetrieachse?"
+            say: "Welche Linie ist bei einem Rechteck, das kein Quadrat ist, eine Symmetrieachse?"
+            show: { drawn: shape, kind: rectangle, colour: green }
+            options: ["die waagerechte Linie durch die Mitte", "die Linie von Ecke zu Ecke", "jede Linie durch die Mitte"]
+            answer: "die waagerechte Linie durch die Mitte"
+          - id: l2-c12
+            part: corner
+            type: multiple_choice
+            text: "Ben sagt: „Ein Rechteck, das kein Quadrat ist, hat 4 Symmetrieachsen. Zwei davon gehen von Ecke zu Ecke.“ Was stimmt?"
+            say: "Ben sagt: Ein Rechteck, das kein Quadrat ist, hat vier Symmetrieachsen. Zwei davon gehen von Ecke zu Ecke. Was stimmt?"
+            options: ["Es hat nur 2 Achsen. Von Ecke zu Ecke passt es nicht.", "Ben hat recht.", "Es hat nur die 2 Achsen von Ecke zu Ecke."]
+            answer: "Es hat nur 2 Achsen. Von Ecke zu Ecke passt es nicht."
+          - id: l2-c13
+            part: letters
+            type: multiple_choice
+            text: "Wie viele Symmetrieachsen hat das B?"
+            say: "Wie viele Symmetrieachsen hat das B?"
+            show: { drawn: letter-card, text: "B" }
+            options: ["1", "2", "0"]
+            answer: "1"
+          - id: l2-c14
+            part: letters
+            type: multiple_choice
+            text: "Welcher Buchstabe hat keine Symmetrieachse?"
+            say: "Welcher Buchstabe hat keine Symmetrieachse?"
+            options: ["R", "M", "C"]
+            answer: "R"
+            option_audio: false
+          - id: l2-c15
+            part: letters
+            type: sorting
+            text: "Sortiere die Buchstaben nach der Zahl ihrer Symmetrieachsen."
+            say: "Sortiere die Buchstaben nach der Zahl ihrer Symmetrieachsen: keine, eine oder zwei."
+            bins:
+              - { id: zero, show: { text: "keine Achse" }, say: "keine Achse" }
+              - { id: one, show: { text: "1 Achse" }, say: "eine Achse" }
+              - { id: two, show: { text: "2 Achsen" }, say: "zwei Achsen" }
+            options:
+              - { text: "M", bin: one }
+              - { text: "X", bin: two }
+              - { text: "P", bin: zero }
+              - { text: "W", bin: one }
+              - { text: "H", bin: two }
+              - { text: "J", bin: zero }
+            option_audio: false
+          - id: l2-c16
+            part: letters
+            type: true_false
+            text: "Das Z hat eine waagerechte Symmetrieachse."
+            say: "Stimmt das? Das Z hat eine waagerechte Symmetrieachse."
+            show: { drawn: letter-card, text: "Z" }
+            answer: false
+          - id: l2-c17
+            part: mirror
+            type: multiple_choice
+            text: "Du spiegelst eine waagerechte Linie an der schrägen Achse von links unten nach rechts oben. Was wird daraus?"
+            say: "Du spiegelst eine waagerechte Linie an der schrägen Achse von links unten nach rechts oben. Was wird daraus?"
+            options: ["eine senkrechte Linie", "eine waagerechte Linie", "eine schräge Linie"]
+            answer: "eine senkrechte Linie"
+          - id: l2-c18
+            part: mirror
+            type: true_false
+            text: "Ein Pfeil zeigt nach oben. An der schrägen Achse von links unten nach rechts oben gespiegelt, zeigt er nach links."
+            say: "Stimmt das? Ein Pfeil zeigt nach oben. Du spiegelst ihn an der schrägen Achse von links unten nach rechts oben. Dann zeigt er nach links."
+            answer: false
+          - id: l2-c19
+            part: mirror
+            type: multiple_choice
+            text: "Nach dem Spiegeln an der schrägen Achse von links unten nach rechts oben zeigt ein Pfeil nach rechts. Wohin hat er vorher gezeigt?"
+            say: "Du hast einen Pfeil an der schrägen Achse von links unten nach rechts oben gespiegelt. Jetzt zeigt er nach rechts. Wohin hat er vorher gezeigt?"
+            options: ["nach oben", "nach unten", "nach links"]
+            answer: "nach oben"
+          - id: l2-c20
+            part: mirror
+            type: multiple_choice
+            text: "Ein Pfeil zeigt nach links. An welcher Achse gespiegelt zeigt er nach unten?"
+            say: "Ein Pfeil zeigt nach links. An welcher Achse musst du ihn spiegeln, damit er nach unten zeigt?"
+            options: ["an der schrägen Achse von links unten nach rechts oben", "an einer senkrechten Achse", "an einer waagerechten Achse"]
+            answer: "an der schrägen Achse von links unten nach rechts oben"

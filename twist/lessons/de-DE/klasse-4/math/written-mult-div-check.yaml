@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: estimate, what: { de: mit einem Überschlag prüfen, en: checking with an estimate } }
+    - { id: swap, what: { de: Malaufgaben mit der Tauschaufgabe prüfen, en: checking multiplications by swapping the factors } }
+    - { id: probe, what: { de: Geteiltaufgaben mit der Umkehraufgabe prüfen, en: checking divisions with the inverse } }
+    - { id: mistakes, what: { de: typische Fehler erkennen, en: spotting typical mistakes } }
   misconceptions:
     - id: probe-wrong-operation
       what: "Checks a division with another division or with the wrong numbers (852 : 6 = 142 with 852 · 6)"
@@ -192,6 +197,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -210,6 +216,23 @@ lessons:
             say: "Einunddreißig mal zwölf ist einunddreißig plus zweiundsechzig, also dreiundneunzig. Welcher Fehler ist passiert?"
             options: ["Das erste Teilprodukt steht nicht stellengerecht.", "Der Übertrag wurde vergessen.", "Es wurde geteilt statt malgenommen."]
             answer: "Das erste Teilprodukt steht nicht stellengerecht."
+          - id: l1-c4
+            type: multiple_choice
+            text: "Mit welcher Tauschaufgabe prüfst du 94 · 17?"
+            say: "Vierundneunzig mal siebzehn. Mit welcher Tauschaufgabe prüfst du das?"
+            options: ["17 · 94", "94 : 17", "49 · 71"]
+            answer: "17 · 94"
+          - id: l1-c5
+            type: true_false
+            text: "Kann 63 · 28 = 17 640 stimmen?"
+            say: "Dreiundsechzig mal achtundzwanzig ist siebzehntausendsechshundertvierzig. Kann das stimmen?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welcher Überschlag passt zu 87 · 33?"
+            say: "Siebenundachtzig mal dreiunddreißig. Welcher Überschlag passt?"
+            options: ["90 · 30", "80 · 30", "90 · 40"]
+            answer: "90 · 30"
 
   - n: 2
     title: { de: "Geteiltaufgaben prüfen", en: "Checking division" }
@@ -362,32 +385,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: estimate
             type: multiple_choice
             text: "Welcher Überschlag passt zu 59 · 42?"
             say: "Neunundfünfzig mal zweiundvierzig. Welcher Überschlag passt?"
             options: ["60 · 40", "50 · 40", "60 · 50"]
             answer: "60 · 40"
           - id: l2-c2
+            part: probe
             type: multiple_choice
             text: "Welche Probe passt zu 868 : 7 = 124?"
             say: "Achthundertachtundsechzig geteilt durch sieben ist hundertvierundzwanzig. Welche Probe passt?"
             options: ["124 · 7", "868 · 7", "124 : 7"]
             answer: "124 · 7"
           - id: l2-c3
+            part: probe
             type: text_input
-            text: "Probe für 868 : 7 = 124: 124 · 7 = _"
-            say: "Rechne die Probe: hundertvierundzwanzig mal sieben."
-            answer: "868"
+            text: "Lara rechnet 756 : 6 = 127. Rechne ihre Probe: 127 · 6 = _"
+            say: "Lara rechnet siebenhundertsechsundfünfzig geteilt durch sechs gleich hundertsiebenundzwanzig. Rechne ihre Probe: hundertsiebenundzwanzig mal sechs."
+            answer: "762"
           - id: l2-c4
+            part: estimate
             type: true_false
             text: "Kann 642 : 6 = 17 stimmen?"
             say: "Sechshundertzweiundvierzig geteilt durch sechs ist siebzehn. Kann das stimmen?"
             answer: false
           - id: l2-c5
+            part: mistakes
             type: multiple_choice
             text: "Welcher Fehler ist bei 51 · 23 = 102 + 153 = 255 passiert?"
             say: "Einundfünfzig mal dreiundzwanzig ist hundertzwei plus hundertdreiundfünfzig, also zweihundertfünfundfünfzig. Welcher Fehler ist passiert?"
             options: ["Das erste Teilprodukt steht nicht stellengerecht.", "Der Übertrag wurde vergessen.", "Es wurde geteilt statt malgenommen."]
             answer: "Das erste Teilprodukt steht nicht stellengerecht."
+          - id: l2-c6
+            part: estimate
+            type: true_false
+            text: "Passt 67 · 38 = 2546 zum Überschlag?"
+            say: "Siebenundsechzig mal achtunddreißig ist zweitausendfünfhundertsechsundvierzig. Passt das zum Überschlag?"
+            answer: true
+          - id: l2-c7
+            part: estimate
+            type: multiple_choice
+            text: "Welches Ergebnis passt zum Überschlag? 52 · 49"
+            say: "Welches Ergebnis passt zum Überschlag? Zweiundfünfzig mal neunundvierzig."
+            options: ["2548", "254", "25 480"]
+            answer: "2548"
+            option_audio: false
+          - id: l2-c8
+            part: estimate
+            type: true_false
+            text: "Kann 768 : 4 = 92 stimmen?"
+            say: "Siebenhundertachtundsechzig geteilt durch vier ist zweiundneunzig. Kann das stimmen?"
+            answer: false
+          - id: l2-c9
+            part: swap
+            type: multiple_choice
+            text: "Mit welcher Tauschaufgabe prüfst du 57 · 34?"
+            say: "Siebenundfünfzig mal vierunddreißig. Mit welcher Tauschaufgabe prüfst du das?"
+            options: ["34 · 57", "57 : 34", "75 · 43"]
+            answer: "34 · 57"
+          - id: l2-c10
+            part: swap
+            type: multiple_choice
+            text: "Tom rechnet 43 · 26 = 1118. Seine Tauschaufgabe 26 · 43 ergibt auch 1118. Was weißt du jetzt?"
+            say: "Tom rechnet dreiundvierzig mal sechsundzwanzig gleich tausendeinhundertachtzehn. Seine Tauschaufgabe sechsundzwanzig mal dreiundvierzig ergibt auch tausendeinhundertachtzehn. Was weißt du jetzt?"
+            options: ["Das Ergebnis stimmt.", "Das Ergebnis ist falsch.", "Die Tauschaufgabe passt nicht."]
+            answer: "Das Ergebnis stimmt."
+          - id: l2-c11
+            part: swap
+            type: true_false
+            text: "Ben prüft 72 · 18 mit 27 · 81. Ist das die Tauschaufgabe?"
+            say: "Ben prüft zweiundsiebzig mal achtzehn mit siebenundzwanzig mal einundachtzig. Ist das die Tauschaufgabe?"
+            answer: false
+          - id: l2-c12
+            part: swap
+            type: multiple_choice
+            text: "Lea rechnet 35 · 24 = 840 und mit der Tauschaufgabe 24 · 35 = 830. Was weißt du jetzt?"
+            say: "Lea rechnet fünfunddreißig mal vierundzwanzig gleich achthundertvierzig. Mit der Tauschaufgabe rechnet sie vierundzwanzig mal fünfunddreißig gleich achthundertdreißig. Was weißt du jetzt?"
+            options: ["Eine der beiden Rechnungen ist falsch.", "Beide Rechnungen stimmen.", "Die Tauschaufgabe ist immer kleiner."]
+            answer: "Eine der beiden Rechnungen ist falsch."
+          - id: l2-c13
+            part: swap
+            type: text_input
+            text: "Rechne die Tauschaufgabe zu 16 · 45: 45 · 16 = _"
+            say: "Rechne die Tauschaufgabe zu sechzehn mal fünfundvierzig: fünfundvierzig mal sechzehn."
+            answer: "720"
+          - id: l2-c14
+            part: probe
+            type: multiple_choice
+            text: "Welche Probe passt zu 763 : 5 = 152 Rest 3?"
+            say: "Siebenhundertdreiundsechzig geteilt durch fünf ist hundertzweiundfünfzig Rest drei. Welche Probe passt?"
+            options: ["152 · 5 + 3", "152 · 5 − 3", "763 · 5 + 3"]
+            answer: "152 · 5 + 3"
+            option_audio: false
+          - id: l2-c15
+            part: probe
+            type: true_false
+            text: "Die Probe 99 · 7 ergibt 693. Also stimmt 693 : 7 = 99."
+            say: "Stimmt das? Die Probe neunundneunzig mal sieben ergibt sechshundertdreiundneunzig. Also stimmt sechshundertdreiundneunzig geteilt durch sieben gleich neunundneunzig."
+            answer: true
+          - id: l2-c16
+            part: probe
+            type: text_input
+            text: "Mia rechnet 917 : 7 = 132. Rechne ihre Probe: 132 · 7 = _"
+            say: "Mia rechnet neunhundertsiebzehn geteilt durch sieben gleich hundertzweiunddreißig. Rechne ihre Probe: hundertzweiunddreißig mal sieben."
+            answer: "924"
+          - id: l2-c17
+            part: mistakes
+            type: multiple_choice
+            text: "Welcher Fehler ist bei 618 : 3 = 26 passiert?"
+            say: "Sechshundertachtzehn geteilt durch drei ist sechsundzwanzig. Welcher Fehler ist passiert?"
+            options: ["Die Null im Ergebnis fehlt.", "Der Rest wurde vergessen.", "Es wurde malgenommen statt geteilt."]
+            answer: "Die Null im Ergebnis fehlt."
+          - id: l2-c18
+            part: mistakes
+            type: multiple_choice
+            text: "Welcher Fehler ist bei 43 · 12 = 43 + 86 = 129 passiert?"
+            say: "Dreiundvierzig mal zwölf ist dreiundvierzig plus sechsundachtzig, also hundertneunundzwanzig. Welcher Fehler ist passiert?"
+            options: ["Die 43 gehört eine Stelle weiter nach links.", "43 · 2 ist nicht 86.", "Man muss 43 und 12 addieren."]
+            answer: "Die 43 gehört eine Stelle weiter nach links."
+          - id: l2-c19
+            part: mistakes
+            type: true_false
+            text: "Bei 26 · 14 = 26 + 104 = 130 stehen die Teilprodukte stellengerecht."
+            say: "Stimmt das? Bei sechsundzwanzig mal vierzehn gleich sechsundzwanzig plus hundertvier gleich hundertdreißig stehen die Teilprodukte stellengerecht."
+            answer: false
+          - id: l2-c20
+            part: mistakes
+            type: multiple_choice
+            text: "Paul rechnet 735 : 7 = 15. Wie findest du den Fehler am schnellsten?"
+            say: "Paul rechnet siebenhundertfünfunddreißig geteilt durch sieben gleich fünfzehn. Wie findest du den Fehler am schnellsten?"
+            options: ["mit dem Überschlag 700 : 7 = 100", "mit der Aufgabe 7 : 735", "gar nicht, denn es stimmt"]
+            answer: "mit dem Überschlag 700 : 7 = 100"

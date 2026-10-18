@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [dots, ruler]
   facets: [units]
+  parts:
+    - { id: enlarge, what: { de: Figuren auf Kästchenpapier vergrößern und verkleinern, en: enlarging and reducing shapes on squared paper } }
+    - { id: plan-to-real, what: { de: mit dem Maßstab vom Plan auf die Wirklichkeit schließen, en: using a scale to go from a plan to real lengths } }
+    - { id: real-to-plan, what: { de: mit dem Maßstab von der Wirklichkeit auf den Plan schließen, en: using a scale to go from real lengths to a plan } }
   misconceptions:
     - id: adds-instead-of-multiplies
       what: Enlarges by adding the same number of Kästchen to every side (2 und 3 become 4 und 5) instead of multiplying every side
@@ -214,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -230,6 +235,28 @@ lessons:
             type: true_false
             text: "Vergrößern heißt: Zu jeder Seite zählst du gleich viele Kästchen dazu."
             say: "Stimmt das? Vergrößern heißt: Zu jeder Seite zählst du gleich viele Kästchen dazu."
+            answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Das Rechteck wird doppelt so groß. Wie hoch ist es dann?"
+            say: "Das Rechteck ist vier Kästchen hoch und ein Kästchen breit. Es wird doppelt so groß. Wie hoch ist es dann?"
+            show: { drawn: dots, array: [4, 1] }
+            options: ["8 Kästchen", "6 Kästchen", "5 Kästchen"]
+            answer: "8 Kästchen"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Welches Quadrat ist halb so groß?"
+            say: "Das Quadrat ist sechs Kästchen hoch und sechs breit. Welches Quadrat ist halb so groß?"
+            show: { drawn: dots, array: [6, 6] }
+            options:
+              - { drawn: dots, array: [3, 3] }
+              - { drawn: dots, array: [4, 4] }
+              - { drawn: dots, array: [2, 2] }
+            answer: "3x3"
+          - id: l1-c6
+            type: true_false
+            text: "Ein Rechteck hat 4 und 5 Kästchen. Doppelt so groß hat es 6 und 7 Kästchen."
+            say: "Stimmt das? Ein Rechteck hat vier und fünf Kästchen. Doppelt so groß hat es sechs und sieben Kästchen."
             answer: false
 
   - n: 2
@@ -396,8 +423,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: enlarge
             type: multiple_choice
             text: "Das Rechteck wird dreimal so groß. Wie groß ist es dann?"
             say: "Das Rechteck ist drei Kästchen hoch und ein Kästchen breit. Es wird dreimal so groß. Wie groß ist es dann?"
@@ -405,11 +434,13 @@ lessons:
             options: ["9 hoch, 3 breit", "6 hoch, 4 breit", "9 hoch, 1 breit"]
             answer: "9 hoch, 3 breit"
           - id: l2-c2
+            part: enlarge
             type: true_false
             text: "Ein Rechteck hat 6 und 9 Kästchen. Du teilst jede Seite durch 3. Dann hat es 2 und 3 Kästchen."
             say: "Stimmt das? Ein Rechteck hat sechs und neun Kästchen. Du teilst jede Seite durch drei. Dann hat es zwei und drei Kästchen."
             answer: true
           - id: l2-c3
+            part: plan-to-real
             type: multiple_choice
             text: "Auf dem Plan ist das Wohnzimmer so lang wie der Streifen. Maßstab 1 : 100. Wie lang ist es wirklich?"
             say: "Auf dem Plan ist das Wohnzimmer so lang wie der Streifen. Der Maßstab ist eins zu hundert. Wie lang ist das Wohnzimmer wirklich?"
@@ -417,13 +448,118 @@ lessons:
             options: ["6 m", "6 cm", "60 m"]
             answer: "6 m"
           - id: l2-c4
+            part: plan-to-real
             type: text_input
             text: "Auf dem Stadtplan entspricht 1 cm 100 m. Der Weg zum Bäcker ist auf dem Plan 7 cm lang. Wie viele Meter ist er wirklich?"
             say: "Auf dem Stadtplan entspricht ein Zentimeter hundert Metern. Der Weg zum Bäcker ist auf dem Plan sieben Zentimeter lang. Wie viele Meter ist er wirklich?"
             answer: "700"
           - id: l2-c5
+            part: real-to-plan
             type: multiple_choice
             text: "Auf einem Plan entspricht 1 cm 2 m. Ein Beet ist wirklich 10 m lang. Wie lang ist es auf dem Plan?"
             say: "Auf einem Plan entspricht ein Zentimeter zwei Metern. Ein Beet ist in Wirklichkeit zehn Meter lang. Wie lang ist es auf dem Plan?"
             options: ["5 cm", "20 cm", "8 cm"]
             answer: "5 cm"
+          - id: l2-c6
+            part: enlarge
+            type: image_multiple_choice
+            text: "Welches Rechteck ist doppelt so groß?"
+            say: "Das Rechteck ist ein Kästchen hoch und vier breit. Welches Rechteck ist doppelt so groß?"
+            show: { drawn: dots, array: [1, 4] }
+            options:
+              - { drawn: dots, array: [2, 8] }
+              - { drawn: dots, array: [3, 6] }
+              - { drawn: dots, array: [2, 5] }
+            answer: "2x8"
+          - id: l2-c7
+            part: enlarge
+            type: text_input
+            text: "Ein Quadrat hat Seiten von 5 Kästchen. Es wird dreimal so groß. Wie viele Kästchen ist eine Seite dann lang?"
+            say: "Ein Quadrat hat Seiten, die fünf Kästchen lang sind. Es wird dreimal so groß. Wie viele Kästchen ist eine Seite dann lang?"
+            answer: "15"
+          - id: l2-c8
+            part: enlarge
+            type: multiple_choice
+            text: "Ein Rechteck ist 8 Kästchen breit und 6 hoch. Du verkleinerst es auf die Hälfte. Wie groß ist es dann?"
+            say: "Ein Rechteck ist acht Kästchen breit und sechs Kästchen hoch. Du verkleinerst es auf die Hälfte. Wie groß ist es dann?"
+            options: ["4 breit, 3 hoch", "6 breit, 4 hoch", "16 breit, 12 hoch"]
+            answer: "4 breit, 3 hoch"
+          - id: l2-c9
+            part: enlarge
+            type: true_false
+            text: "Tom vergrößert ein Rechteck mit 3 und 4 Kästchen auf das Dreifache. Sein Rechteck hat 9 und 12 Kästchen."
+            say: "Stimmt das? Tom vergrößert ein Rechteck mit drei und vier Kästchen auf das Dreifache. Sein Rechteck hat neun und zwölf Kästchen."
+            answer: true
+          - id: l2-c10
+            part: enlarge
+            type: multiple_choice
+            text: "Aus einem Rechteck mit 2 und 6 Kästchen wird eins mit 1 und 3 Kästchen. Was ist passiert?"
+            say: "Aus einem Rechteck mit zwei und sechs Kästchen wird ein Rechteck mit einem und drei Kästchen. Was ist passiert?"
+            options: ["Es wurde auf die Hälfte verkleinert.", "Es wurde auf das Doppelte vergrößert.", "Von jeder Seite wurde 1 Kästchen weggenommen."]
+            answer: "Es wurde auf die Hälfte verkleinert."
+          - id: l2-c11
+            part: plan-to-real
+            type: multiple_choice
+            text: "Auf dem Plan entspricht 1 cm 10 m. Der Schulhof ist auf dem Plan so lang wie der Streifen. Wie lang ist er wirklich?"
+            say: "Auf dem Plan entspricht ein Zentimeter zehn Metern. Der Schulhof ist auf dem Plan so lang wie der Streifen. Wie lang ist er in Wirklichkeit?"
+            show: { drawn: ruler, to: 10, length: 4, colour: blue }
+            options: ["40 m", "4 m", "14 m"]
+            answer: "40 m"
+          - id: l2-c12
+            part: plan-to-real
+            type: text_input
+            text: "Auf der Wanderkarte entspricht 1 cm 500 m. Der Weg zum Bauernhof ist auf der Karte 6 cm lang. Wie viele Meter ist er wirklich?"
+            say: "Auf der Wanderkarte entspricht ein Zentimeter fünfhundert Metern. Der Weg zum Bauernhof ist auf der Karte sechs Zentimeter lang. Wie viele Meter ist er wirklich?"
+            answer: "3000"
+          - id: l2-c13
+            part: plan-to-real
+            type: multiple_choice
+            text: "Auf einem Plan entspricht 1 cm 20 m. Der Parkplatz ist auf dem Plan 5 cm lang. Wie lang ist er wirklich?"
+            say: "Auf einem Plan entspricht ein Zentimeter zwanzig Metern. Der Parkplatz ist auf dem Plan fünf Zentimeter lang. Wie lang ist er wirklich?"
+            options: ["100 m", "25 m", "10 m"]
+            answer: "100 m"
+          - id: l2-c14
+            part: plan-to-real
+            type: true_false
+            text: "Maßstab 1 : 100. Ein Tisch ist auf dem Plan 2 cm lang. In Wirklichkeit ist er 20 cm lang."
+            say: "Stimmt das? Der Plan hat den Maßstab eins zu hundert. Ein Tisch ist auf dem Plan zwei Zentimeter lang. In Wirklichkeit ist er zwanzig Zentimeter lang."
+            answer: false
+          - id: l2-c15
+            part: plan-to-real
+            type: multiple_choice
+            text: "Maßstab 1 : 100. Ein Zimmer ist auf dem Plan 5 cm lang und 4 cm breit. Wie groß ist es wirklich?"
+            say: "Der Plan hat den Maßstab eins zu hundert. Ein Zimmer ist auf dem Plan fünf Zentimeter lang und vier Zentimeter breit. Wie groß ist es in Wirklichkeit?"
+            options: ["5 m lang, 4 m breit", "5 cm lang, 4 cm breit", "50 m lang, 40 m breit"]
+            answer: "5 m lang, 4 m breit"
+          - id: l2-c16
+            part: real-to-plan
+            type: text_input
+            text: "Maßstab 1 : 100. Die Turnhalle ist wirklich 30 m lang. Wie viele cm lang zeichnest du sie auf den Plan?"
+            say: "Der Plan hat den Maßstab eins zu hundert. Die Turnhalle ist in Wirklichkeit dreißig Meter lang. Wie viele Zentimeter lang zeichnest du sie auf den Plan?"
+            answer: "30"
+          - id: l2-c17
+            part: real-to-plan
+            type: multiple_choice
+            text: "Auf dem Stadtplan entspricht 1 cm 100 m. Bis zum Bahnhof sind es wirklich 600 m. Wie lang ist der Weg auf dem Plan?"
+            say: "Auf dem Stadtplan entspricht ein Zentimeter hundert Metern. Bis zum Bahnhof sind es in Wirklichkeit sechshundert Meter. Wie lang ist der Weg auf dem Plan?"
+            options: ["6 cm", "60 cm", "600 cm"]
+            answer: "6 cm"
+          - id: l2-c18
+            part: real-to-plan
+            type: true_false
+            text: "Auf einem Plan entspricht 1 cm 10 m. Stimmt das? Ein 50 m langes Becken ist auf dem Plan 50 cm lang."
+            say: "Auf einem Plan entspricht ein Zentimeter zehn Metern. Stimmt das? Ein fünfzig Meter langes Becken ist auf dem Plan fünfzig Zentimeter lang."
+            answer: false
+          - id: l2-c19
+            part: real-to-plan
+            type: multiple_choice
+            text: "Auf der Wanderkarte entspricht 1 cm 500 m. Der Weg zur Burg ist wirklich 2500 m lang. Wie lang ist er auf der Karte?"
+            say: "Auf der Wanderkarte entspricht ein Zentimeter fünfhundert Metern. Der Weg zur Burg ist in Wirklichkeit zweitausendfünfhundert Meter lang. Wie lang ist er auf der Karte?"
+            options: ["5 cm", "25 cm", "50 cm"]
+            answer: "5 cm"
+          - id: l2-c20
+            part: real-to-plan
+            type: text_input
+            text: "Auf einem Plan entspricht 1 cm 5 m. Ein Garten ist wirklich 40 m lang. Wie viele cm ist er auf dem Plan lang?"
+            say: "Auf einem Plan entspricht ein Zentimeter fünf Metern. Ein Garten ist in Wirklichkeit vierzig Meter lang. Wie viele Zentimeter ist er auf dem Plan lang?"
+            answer: "8"

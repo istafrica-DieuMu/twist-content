@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [dots, shape]
   facets: []
+  parts:
+    - { id: layers, what: { de: den Rauminhalt eines Quaders Schicht für Schicht bestimmen, en: finding the volume of a cuboid layer by layer } }
+    - { id: plan, what: { de: die Würfel eines Gebäudes nach dem Bauplan zählen, en: counting the cubes of a building from its plan } }
+    - { id: compare, what: { de: Rauminhalte vergleichen, en: comparing volumes } }
+    - { id: complete, what: { de: die fehlenden Würfel bis zum Quader finden, en: finding the cubes missing to make a cuboid } }
   misconceptions:
     - id: counts-one-layer
       what: Counts only one layer or only the cubes that can be seen, and forgets the layers and the hidden cubes
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -230,6 +236,24 @@ lessons:
             text: "Ein Quader ist 5 Würfel lang, 3 breit und 2 hoch. Wie viele Würfel sind es?"
             say: "Ein Quader ist fünf Würfel lang, drei Würfel breit und zwei Würfel hoch. Wie viele Würfel sind es?"
             answer: "30"
+          - id: l1-c4
+            type: true_false
+            text: "Ein Quader hat 3 Schichten mit je 7 Würfeln. Das sind 10 Würfel."
+            say: "Stimmt das? Ein Quader hat drei Schichten mit je sieben Würfeln. Das sind zehn Würfel."
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Das ist eine Schicht Würfel von oben. Wie viele Würfel sind es?"
+            say: "Das ist eine Schicht Würfel, von oben gesehen. Wie viele Würfel sind es?"
+            show: { drawn: dots, array: [3, 6] }
+            options: ["18", "9", "15"]
+            answer: "18"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Ein Quader ist 2 Würfel lang, 2 breit und 4 hoch. Wie viele Würfel sind es?"
+            say: "Ein Quader ist zwei Würfel lang, zwei Würfel breit und vier Würfel hoch. Wie viele Würfel sind es?"
+            options: ["16", "8", "4"]
+            answer: "16"
 
   - n: 2
     title: { de: "Würfelgebäude vergleichen", en: "Comparing cube buildings" }
@@ -391,8 +415,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: layers
             type: multiple_choice
             text: "Der Quader hat 3 Schichten wie diese. Wie viele Würfel sind es?"
             say: "Das ist eine Schicht von oben. Der Quader hat drei solche Schichten übereinander. Wie viele Würfel sind es?"
@@ -400,25 +426,129 @@ lessons:
             options: ["24", "8", "11"]
             answer: "24"
           - id: l2-c2
+            part: layers
             type: text_input
             text: "Ein Quader ist 6 Würfel lang, 2 breit und 3 hoch. Wie viele Würfel sind es?"
             say: "Ein Quader ist sechs Würfel lang, zwei Würfel breit und drei Würfel hoch. Wie viele Würfel sind es?"
             answer: "36"
           - id: l2-c3
+            part: plan
             type: multiple_choice
             text: "Bauplan: 2, 4, 1, 3. Wie viele Würfel hat das Gebäude?"
             say: "Auf dem Bauplan stehen die Zahlen zwei, vier, eins und drei. Wie viele Würfel hat das Gebäude?"
             options: ["10", "4", "24"]
             answer: "10"
           - id: l2-c4
+            part: compare
             type: multiple_choice
             text: "Welcher Quader besteht aus mehr Würfeln?"
             say: "Welcher Quader besteht aus mehr Würfeln?"
             options: ["4 Schichten zu je 3 Würfeln", "2 Schichten zu je 5 Würfeln", "beide gleich viele"]
             answer: "4 Schichten zu je 3 Würfeln"
           - id: l2-c5
+            part: complete
             type: multiple_choice
             text: "Ein Gebäude hat 11 Würfel. Daraus soll ein Quader mit 2 Schichten zu je 8 Würfeln werden. Wie viele Würfel fehlen?"
             say: "Ein Gebäude hat elf Würfel. Daraus soll ein Quader mit zwei Schichten zu je acht Würfeln werden. Wie viele Würfel fehlen?"
             options: ["5", "16", "27"]
             answer: "5"
+          - id: l2-c6
+            part: layers
+            type: multiple_choice
+            text: "Der Quader hat 2 Schichten wie diese. Wie viele Würfel sind es?"
+            say: "Das ist eine Schicht von oben. Der Quader hat zwei solche Schichten übereinander. Wie viele Würfel sind es?"
+            show: { drawn: dots, array: [4, 5] }
+            options: ["40", "20", "11"]
+            answer: "40"
+          - id: l2-c7
+            part: layers
+            type: true_false
+            text: "Ein Quader, 4 Würfel lang, 3 breit und 2 hoch, besteht aus 24 Würfeln."
+            say: "Stimmt das? Ein Quader, der vier Würfel lang, drei breit und zwei hoch ist, besteht aus vierundzwanzig Würfeln."
+            answer: true
+          - id: l2-c8
+            part: layers
+            type: text_input
+            text: "Ein Quader ist 7 Würfel lang, 2 breit und 2 hoch. Wie viele Würfel sind es?"
+            say: "Ein Quader ist sieben Würfel lang, zwei Würfel breit und zwei Würfel hoch. Wie viele Würfel sind es?"
+            answer: "28"
+          - id: l2-c9
+            part: plan
+            type: text_input
+            text: "Bauplan: 4, 2, 2, 1, 3. Wie viele Würfel hat das Gebäude?"
+            say: "Auf dem Bauplan stehen die Zahlen vier, zwei, zwei, eins und drei. Wie viele Würfel hat das Gebäude?"
+            answer: "12"
+          - id: l2-c10
+            part: plan
+            type: multiple_choice
+            text: "Bauplan: 1, 1, 3, 1. Wie viele Würfel hat das Gebäude?"
+            say: "Auf dem Bauplan stehen die Zahlen eins, eins, drei und eins. Wie viele Würfel hat das Gebäude?"
+            options: ["6", "4", "3"]
+            answer: "6"
+          - id: l2-c11
+            part: plan
+            type: true_false
+            text: "Für den Bauplan 2, 2, 3 braucht man 3 Würfel, denn er hat 3 Felder."
+            say: "Stimmt das? Für den Bauplan zwei, zwei, drei braucht man drei Würfel, denn er hat drei Felder."
+            answer: false
+          - id: l2-c12
+            part: plan
+            type: multiple_choice
+            text: "Bauplan: 3, 2, _. Das Gebäude hat 9 Würfel. Welche Zahl fehlt auf dem Bauplan?"
+            say: "Auf dem Bauplan stehen drei, zwei und eine Zahl, die fehlt. Das Gebäude hat neun Würfel. Welche Zahl fehlt auf dem Bauplan?"
+            options: ["4", "5", "9"]
+            answer: "4"
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Welches Gebäude hat den größten Rauminhalt?"
+            say: "Welches Gebäude hat den größten Rauminhalt?"
+            options: ["Bauplan 2, 3, 3, 1", "Bauplan 4, 4", "Bauplan 1, 1, 1, 1, 1"]
+            answer: "Bauplan 2, 3, 3, 1"
+          - id: l2-c14
+            part: compare
+            type: true_false
+            text: "Ein Turm aus 8 Würfeln hat einen größeren Rauminhalt als ein Quader aus 2 Schichten zu je 4 Würfeln."
+            say: "Stimmt das? Ein Turm aus acht Würfeln hat einen größeren Rauminhalt als ein Quader aus zwei Schichten zu je vier Würfeln."
+            answer: false
+          - id: l2-c15
+            part: compare
+            type: multiple_choice
+            text: "Ole baut nach dem Bauplan 4, 1, 1. Ida baut einen Quader aus 2 Schichten zu je 4 Würfeln. Wer braucht mehr Würfel?"
+            say: "Ole baut nach dem Bauplan vier, eins, eins. Ida baut einen Quader aus zwei Schichten zu je vier Würfeln. Wer braucht mehr Würfel?"
+            options: ["Ida", "Ole", "beide gleich viele"]
+            answer: "Ida"
+          - id: l2-c16
+            part: compare
+            type: multiple_choice
+            text: "Welcher Quader hat den kleineren Rauminhalt?"
+            say: "Welcher Quader hat den kleineren Rauminhalt?"
+            options: ["3 Schichten zu je 6 Würfeln", "4 Schichten zu je 5 Würfeln", "beide gleich viel"]
+            answer: "3 Schichten zu je 6 Würfeln"
+          - id: l2-c17
+            part: complete
+            type: text_input
+            text: "Ein Gebäude hat 13 Würfel. Daraus soll ein Quader aus 20 Würfeln werden. Wie viele Würfel fehlen?"
+            say: "Ein Gebäude hat dreizehn Würfel. Daraus soll ein Quader aus zwanzig Würfeln werden. Wie viele Würfel fehlen?"
+            answer: "7"
+          - id: l2-c18
+            part: complete
+            type: multiple_choice
+            text: "Ein Quader soll 3 Würfel lang, 2 breit und 3 hoch werden. Du hast schon 12 Würfel verbaut. Wie viele fehlen noch?"
+            say: "Ein Quader soll drei Würfel lang, zwei breit und drei hoch werden. Du hast schon zwölf Würfel verbaut. Wie viele Würfel fehlen noch?"
+            options: ["6", "18", "30"]
+            answer: "6"
+          - id: l2-c19
+            part: complete
+            type: true_false
+            text: "Ein Quader soll 5 Würfel lang, 2 breit und 2 hoch werden. Die unterste Schicht steht schon. Es fehlen noch 10 Würfel."
+            say: "Stimmt das? Ein Quader soll fünf Würfel lang, zwei breit und zwei hoch werden. Die unterste Schicht steht schon. Es fehlen noch zehn Würfel."
+            answer: true
+          - id: l2-c20
+            part: complete
+            type: multiple_choice
+            text: "Bauplan: 2, 1, 1, 2. Jedes Feld soll 2 Würfel hoch werden, damit ein Quader entsteht. Wie viele Würfel fehlen?"
+            say: "Auf dem Bauplan stehen zwei, eins, eins und zwei. Jedes Feld soll zwei Würfel hoch werden, damit ein Quader entsteht. Wie viele Würfel fehlen?"
+            options: ["2", "8", "6"]
+            answer: "2"
+            difficulty: stretch

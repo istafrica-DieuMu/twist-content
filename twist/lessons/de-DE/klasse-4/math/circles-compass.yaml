@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [ruler, shape]
   facets: [units]
+  parts:
+    - { id: names, what: { de: "Mittelpunkt, Kreislinie und Radius benennen", en: "naming the centre, the circle line and the radius" } }
+    - { id: radius, what: { de: Radius und Breite eines Kreises bestimmen, en: finding the radius and width of a circle } }
+    - { id: compass, what: { de: mit dem Zirkel Kreise und Kreisbögen zeichnen, en: drawing circles and arcs with compasses } }
   misconceptions:
     - id: radius-is-whole-width
       what: Takes the radius for the whole width of the circle, so opens the compass to the width it wants the circle to have
@@ -205,6 +209,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -223,6 +228,23 @@ lessons:
             text: "Ein Kreis ist quer durch den Mittelpunkt 8 cm breit. Wie viele cm ist sein Radius lang?"
             say: "Ein Kreis ist quer durch den Mittelpunkt acht Zentimeter breit. Wie viele Zentimeter ist sein Radius lang?"
             answer: "4"
+          - id: l1-c4
+            type: true_false
+            text: "Der Radius ist die Strecke quer durch den ganzen Kreis."
+            say: "Stimmt das? Der Radius ist die Strecke quer durch den ganzen Kreis."
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Der Streifen geht vom Mittelpunkt bis zur Kreislinie. Wie lang ist der Radius?"
+            say: "Der Streifen geht vom Mittelpunkt bis zur Kreislinie. Wie lang ist der Radius?"
+            show: { drawn: ruler, to: 10, length: 2 }
+            options: ["2 cm", "4 cm", "1 cm"]
+            answer: "2 cm"
+          - id: l1-c6
+            type: text_input
+            text: "Ein Kreis hat 5 cm Radius. Wie viele cm ist er quer durch den Mittelpunkt breit?"
+            say: "Ein Kreis hat einen Radius von fünf Zentimetern. Wie viele Zentimeter ist er quer durch den Mittelpunkt breit?"
+            answer: "10"
 
   - n: 2
     title: { de: "Mit dem Zirkel zeichnen", en: "Drawing with compasses" }
@@ -392,8 +414,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compass
             type: multiple_choice
             text: "Die Spitze steht bei 1, die Mine bei 6. Welchen Radius hat der Kreis?"
             say: "Die Spitze des Zirkels steht am Lineal bei eins, die Mine bei sechs. Welchen Radius hat der Kreis?"
@@ -401,24 +425,131 @@ lessons:
             options: ["5 cm", "6 cm", "10 cm"]
             answer: "5 cm"
           - id: l2-c2
+            part: names
             type: multiple_choice
             text: "Was ist der Mittelpunkt eines Kreises?"
             say: "Was ist der Mittelpunkt eines Kreises?"
             options: ["der Punkt, der von allen Punkten der Kreislinie gleich weit entfernt ist", "der oberste Punkt der Kreislinie", "ein Punkt außerhalb des Kreises"]
             answer: "der Punkt, der von allen Punkten der Kreislinie gleich weit entfernt ist"
           - id: l2-c3
+            part: radius
             type: text_input
             text: "Ein runder Teller ist 24 cm breit. Wie viele cm ist sein Radius lang?"
             say: "Ein runder Teller ist vierundzwanzig Zentimeter breit. Wie viele Zentimeter ist sein Radius lang?"
             answer: "12"
           - id: l2-c4
+            part: radius
             type: true_false
             text: "Ein Kreis mit 5 cm Radius ist breiter als ein Kreis, der 8 cm breit ist."
             say: "Stimmt das? Ein Kreis mit fünf Zentimetern Radius ist breiter als ein Kreis, der acht Zentimeter breit ist."
             answer: true
           - id: l2-c5
+            part: compass
             type: multiple_choice
             text: "Lina zeichnet um denselben Mittelpunkt einen Kreis mit 3 cm und einen mit 6 cm Radius. Wie viel breiter ist der große Kreis?"
             say: "Lina zeichnet um denselben Mittelpunkt einen Kreis mit drei Zentimetern Radius und einen mit sechs Zentimetern Radius. Wie viel breiter ist der große Kreis?"
             options: ["6 cm", "3 cm", "12 cm"]
             answer: "6 cm"
+          - id: l2-c6
+            part: names
+            type: multiple_choice
+            text: "Wie heißt die runde Linie eines Kreises?"
+            say: "Wie heißt die runde Linie eines Kreises?"
+            options: ["Kreislinie", "Radius", "Mittelpunkt"]
+            answer: "Kreislinie"
+          - id: l2-c7
+            part: names
+            type: true_false
+            text: "Der Radius geht vom Mittelpunkt bis zur Kreislinie."
+            say: "Stimmt das? Der Radius geht vom Mittelpunkt bis zur Kreislinie."
+            answer: true
+          - id: l2-c8
+            part: names
+            type: matching
+            text: "Verbinde jedes Wort mit dem, was es bedeutet."
+            say: "Verbinde jedes Wort mit dem, was es bedeutet."
+            pairs:
+              - { left: { text: "Mittelpunkt" }, right: { text: "der Punkt in der Mitte" } }
+              - { left: { text: "Kreislinie" }, right: { text: "die runde Linie" } }
+              - { left: { text: "Radius" }, right: { text: "die Strecke von der Mitte bis zur runden Linie" } }
+          - id: l2-c9
+            part: names
+            type: true_false
+            text: "Die Kreislinie ist eine gerade Strecke."
+            say: "Stimmt das? Die Kreislinie ist eine gerade Strecke."
+            answer: false
+          - id: l2-c10
+            part: names
+            type: multiple_choice
+            text: "Ein Kreis hat 3 cm Radius. Welche Punkte sind genau 3 cm vom Mittelpunkt entfernt?"
+            say: "Ein Kreis hat einen Radius von drei Zentimetern. Welche Punkte sind genau drei Zentimeter vom Mittelpunkt entfernt?"
+            options: ["alle Punkte der Kreislinie", "nur der oberste Punkt der Kreislinie", "nur die Punkte rechts und links"]
+            answer: "alle Punkte der Kreislinie"
+          - id: l2-c11
+            part: radius
+            type: multiple_choice
+            text: "Der Streifen geht vom Mittelpunkt bis zur Kreislinie. Wie lang ist der Radius?"
+            say: "Der Streifen geht vom Mittelpunkt bis zur Kreislinie. Wie lang ist der Radius?"
+            show: { drawn: ruler, to: 10, length: 8, colour: green }
+            options: ["8 cm", "16 cm", "4 cm"]
+            answer: "8 cm"
+          - id: l2-c12
+            part: radius
+            type: text_input
+            text: "Ein Kreis hat 11 cm Radius. Wie viele cm ist er quer durch den Mittelpunkt breit?"
+            say: "Ein Kreis hat einen Radius von elf Zentimetern. Wie viele Zentimeter ist er quer durch den Mittelpunkt breit?"
+            answer: "22"
+          - id: l2-c13
+            part: radius
+            type: multiple_choice
+            text: "Eine runde Uhr ist 30 cm breit. Wie lang ist ihr Radius?"
+            say: "Eine runde Uhr ist dreißig Zentimeter breit. Wie lang ist ihr Radius?"
+            options: ["15 cm", "30 cm", "60 cm"]
+            answer: "15 cm"
+          - id: l2-c14
+            part: radius
+            type: multiple_choice
+            text: "Der Streifen geht vom Mittelpunkt bis zur Kreislinie. Er fängt bei 3 an. Wie lang ist der Radius?"
+            say: "Der Streifen geht vom Mittelpunkt bis zur Kreislinie. Er fängt am Lineal bei drei an. Wie lang ist der Radius?"
+            show: { drawn: ruler, to: 10, start: 3, length: 2, colour: blue }
+            options: ["2 cm", "5 cm", "3 cm"]
+            answer: "2 cm"
+          - id: l2-c15
+            part: radius
+            type: true_false
+            text: "Ein Kreis mit 4 cm Radius ist 2 cm breit."
+            say: "Stimmt das? Ein Kreis mit vier Zentimetern Radius ist zwei Zentimeter breit."
+            answer: false
+          - id: l2-c16
+            part: compass
+            type: multiple_choice
+            text: "Der Kreis soll 12 cm breit sein. Wie weit öffnest du den Zirkel?"
+            say: "Du willst einen Kreis zeichnen, der zwölf Zentimeter breit ist. Wie weit öffnest du den Zirkel?"
+            options: ["6 cm", "12 cm", "24 cm"]
+            answer: "6 cm"
+          - id: l2-c17
+            part: compass
+            type: multiple_choice
+            text: "Du willst einen Kreis mit 6 cm Radius zeichnen. Die Spitze des Zirkels steht am Lineal auf der 0. Wo steht die Mine?"
+            say: "Du willst einen Kreis mit sechs Zentimetern Radius zeichnen. Die Spitze des Zirkels steht am Lineal auf der Null. Wo steht die Mine?"
+            options: ["auf der 6", "auf der 12", "auf der 3"]
+            answer: "auf der 6"
+          - id: l2-c18
+            part: compass
+            type: true_false
+            text: "Für einen Kreisbogen drehst du den Zirkel nur ein Stück weit."
+            say: "Stimmt das? Für einen Kreisbogen drehst du den Zirkel nur ein Stück weit."
+            answer: true
+          - id: l2-c19
+            part: compass
+            type: multiple_choice
+            text: "Ole will mit dem Zirkel eine Zielscheibe zeichnen. Worauf muss er achten?"
+            say: "Ole will mit dem Zirkel eine Zielscheibe zeichnen. Worauf muss er achten?"
+            options: ["Alle Kreise bekommen denselben Mittelpunkt.", "Jeder Kreis bekommt einen eigenen Mittelpunkt.", "Alle Kreise bekommen denselben Radius."]
+            answer: "Alle Kreise bekommen denselben Mittelpunkt."
+          - id: l2-c20
+            part: compass
+            type: true_false
+            text: "Beim Kreiszeichnen steckt die Mine im Mittelpunkt."
+            say: "Stimmt das? Beim Kreiszeichnen steckt die Mine im Mittelpunkt."
+            answer: false

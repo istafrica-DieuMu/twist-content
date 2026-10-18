@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line]
   facets: [operation-signs]
+  parts:
+    - { id: number-line, what: { de: Zahlen bis 1 000 000 am Zahlenstrahl finden und ablesen, en: finding and reading numbers to 1 000 000 on a number line } }
+    - { id: compare, what: { de: Zahlen bis 1 000 000 vergleichen und ordnen, en: comparing and ordering numbers to 1 000 000 } }
+    - { id: round, what: { de: "auf Tausender, Zehntausender und Hunderttausender runden", en: "rounding to thousands, ten thousands and hundred thousands" } }
+    - { id: sensible, what: { de: Zahlen aus dem Alltag sinnvoll runden, en: rounding real-life numbers sensibly } }
   misconceptions:
     - id: step-size
       what: Reads each tick on the line to a million as ten thousand, or each tick on a cut-out as a hundred thousand
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: point_on_line
@@ -251,6 +257,26 @@ lessons:
             say: "Tippe auf fünfhundertneuntausend."
             show: { drawn: number-line, from: 500000, to: 510000, step: 1000, labels: ends }
             answer: 509000
+          - id: l1-c4
+            type: point_on_line
+            text: "Tippe auf 800 000."
+            say: "Tippe auf achthunderttausend."
+            show: { drawn: number-line, from: 0, to: 1000000, step: 100000, labels: ends }
+            answer: 800000
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welche Zahl zeigt der Pfeil?"
+            say: "Der Strahl geht von neunzigtausend bis hunderttausend. Welche Zahl zeigt der Pfeil?"
+            show: { drawn: number-line, from: 90000, to: 100000, step: 1000, labels: ends, mark: 93000 }
+            options: ["93 000", "930 000", "90 300"]
+            answer: "93 000"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? Auf dem Strahl von 620 000 bis 630 000 ist ein Schritt 1000."
+            say: "Der Strahl geht von sechshundertzwanzigtausend bis sechshundertdreißigtausend. Ein Schritt ist tausend. Stimmt das?"
+            show: { drawn: number-line, from: 620000, to: 630000, step: 1000, labels: ends }
+            answer: true
 
   - n: 2
     title: { de: Vergleichen und ordnen, en: Comparing and ordering }
@@ -453,6 +479,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: fill_in_blank
@@ -475,6 +502,26 @@ lessons:
             say: "Welche Zahl ist am kleinsten?"
             options: ["90 999", "100 000", "99 090"]
             answer: "90 999"
+            option_audio: false
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen die Zahlen?"
+            frame: "100 000 _ 99 990"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l2-c5
+            type: true_false
+            text: "Stimmt das? 615 200 < 651 200"
+            say: "Sechshundertfünfzehntausendzweihundert ist kleiner als sechshunderteinundfünfzigtausendzweihundert. Stimmt das?"
+            answer: true
+          - id: l2-c6
+            type: multiple_choice
+            text: "Welche Zahl ist am größten?"
+            say: "Welche Zahl ist am größten?"
+            options: ["709 000", "790 000", "97 000"]
+            answer: "790 000"
             option_audio: false
 
   - n: 3
@@ -686,14 +733,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: number-line
             type: point_on_line
             text: "Tippe auf 186 000."
             say: "Tippe auf hundertsechsundachtzigtausend."
             show: { drawn: number-line, from: 180000, to: 190000, step: 1000, labels: ends }
             answer: 186000
           - id: l3-c2
+            part: compare
             type: fill_in_blank
             text: "Welches Zeichen passt?"
             say: "Welches Zeichen passt zwischen die Zahlen?"
@@ -702,6 +752,7 @@ lessons:
             answer: ["<"]
             option_audio: false
           - id: l3-c3
+            part: compare
             type: ordering
             text: "Ordne die Zahlen. Die größte zuerst."
             say: "Ordne die Zahlen. Die größte zuerst."
@@ -709,6 +760,7 @@ lessons:
             slot_count: 4
             answer: ["554 405", "545 540", "545 450", "455 554"]
           - id: l3-c4
+            part: round
             type: multiple_choice
             text: "Runde 836 500 auf Zehntausender."
             say: "Runde achthundertsechsunddreißigtausendfünfhundert auf Zehntausender."
@@ -716,9 +768,123 @@ lessons:
             answer: "840 000"
             option_audio: false
           - id: l3-c5
+            part: sensible
             type: multiple_choice
             text: "Ein Freizeitpark hatte in einem Jahr 318 650 Besucher. Was steht am sinnvollsten im Prospekt?"
             say: "Ein Freizeitpark hatte in einem Jahr dreihundertachtzehntausendsechshundertfünfzig Besucher. Was steht am sinnvollsten im Prospekt?"
             options: ["über 318 000 Besucher", "über 400 000 Besucher", "über 318 650 Besucher"]
             answer: "über 318 000 Besucher"
             option_audio: false
+          - id: l3-c6
+            part: number-line
+            type: point_on_line
+            text: "Tippe auf 600 000."
+            say: "Tippe auf sechshunderttausend."
+            show: { drawn: number-line, from: 0, to: 1000000, step: 100000, labels: ends }
+            answer: 600000
+          - id: l3-c7
+            part: number-line
+            type: multiple_choice
+            text: "Welche Zahl zeigt der Pfeil?"
+            say: "Der Strahl geht von dreihundertzehntausend bis dreihundertzwanzigtausend. Welche Zahl zeigt der Pfeil?"
+            show: { drawn: number-line, from: 310000, to: 320000, step: 1000, labels: ends, mark: 315000 }
+            options: ["315 000", "350 000", "310 500"]
+            answer: "315 000"
+            option_audio: false
+          - id: l3-c8
+            part: number-line
+            type: point_on_line
+            text: "Tippe auf 47 000."
+            say: "Tippe auf siebenundvierzigtausend."
+            show: { drawn: number-line, from: 40000, to: 50000, step: 1000, labels: ends }
+            answer: 47000
+          - id: l3-c9
+            part: number-line
+            type: multiple_choice
+            text: "Ungefähr welche Zahl zeigt der Pfeil?"
+            say: "Der Pfeil steht zwischen zwei Strichen. Ungefähr welche Zahl zeigt er?"
+            show: { drawn: number-line, from: 0, to: 1000000, step: 100000, labels: ends, mark: 150000 }
+            options: ["150 000", "100 000", "250 000"]
+            answer: "150 000"
+            option_audio: false
+          - id: l3-c10
+            part: compare
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen die Zahlen?"
+            frame: "507 300 _ 570 300"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l3-c11
+            part: compare
+            type: true_false
+            text: "Stimmt das? 89 900 > 109 000"
+            say: "Neunundachtzigtausendneunhundert ist größer als hundertneuntausend. Stimmt das?"
+            answer: false
+          - id: l3-c12
+            part: compare
+            type: multiple_choice
+            text: "Welche Zahl ist am kleinsten?"
+            say: "Welche Zahl ist am kleinsten?"
+            options: ["600 600", "600 060", "606 000"]
+            answer: "600 060"
+            option_audio: false
+          - id: l3-c13
+            part: round
+            type: multiple_choice
+            text: "Runde 451 000 auf Hunderttausender."
+            say: "Runde vierhunderteinundfünfzigtausend auf Hunderttausender."
+            options: ["400 000", "500 000", "450 000"]
+            answer: "500 000"
+            option_audio: false
+          - id: l3-c14
+            part: round
+            type: fill_in_blank
+            text: "Runde 263 580."
+            say: "Runde zweihundertdreiundsechzigtausendfünfhundertachtzig auf Tausender, auf Zehntausender und auf Hunderttausender."
+            frame: "Tausender: _  Zehntausender: _  Hunderttausender: _"
+            options: ["264 000", "263 000", "260 000", "270 000", "300 000"]
+            answer: ["264 000", "260 000", "300 000"]
+          - id: l3-c15
+            part: round
+            type: true_false
+            text: "Stimmt das? 725 000 auf Zehntausender gerundet ist 720 000."
+            say: "Siebenhundertfünfundzwanzigtausend, auf Zehntausender gerundet, ist siebenhundertzwanzigtausend. Stimmt das?"
+            answer: false
+          - id: l3-c16
+            part: round
+            type: multiple_choice
+            text: "Welche Zahl ergibt auf Zehntausender gerundet 80 000?"
+            say: "Welche Zahl ergibt, auf Zehntausender gerundet, achtzigtausend?"
+            options: ["74 900", "84 999", "85 000"]
+            answer: "84 999"
+            option_audio: false
+          - id: l3-c17
+            part: sensible
+            type: multiple_choice
+            text: "Ein Schwimmbad hatte im Sommer 47 380 Gäste. Was schreibt die Zeitung am sinnvollsten?"
+            say: "Ein Schwimmbad hatte im Sommer siebenundvierzigtausenddreihundertachtzig Gäste. Was schreibt die Zeitung am sinnvollsten?"
+            options: ["ungefähr 47 000 Gäste", "ungefähr 100 000 Gäste", "ungefähr 47 380 Gäste"]
+            answer: "ungefähr 47 000 Gäste"
+            option_audio: false
+          - id: l3-c18
+            part: sensible
+            type: true_false
+            text: "Zum Stadtfest kamen 89 640 Menschen. Die Zeitung schreibt: „Ungefähr 90 000 Menschen kamen zum Stadtfest.“ Ist das sinnvoll gerundet?"
+            say: "Zum Stadtfest kamen neunundachtzigtausendsechshundertvierzig Menschen. Die Zeitung schreibt: Ungefähr neunzigtausend Menschen kamen zum Stadtfest. Ist das sinnvoll gerundet?"
+            answer: true
+          - id: l3-c19
+            part: sensible
+            type: multiple_choice
+            text: "Ein Auto ist 128 460 Kilometer gefahren. Was sagt die Verkäuferin am sinnvollsten?"
+            say: "Ein Auto ist hundertachtundzwanzigtausendvierhundertsechzig Kilometer gefahren. Was sagt die Verkäuferin am sinnvollsten?"
+            options: ["etwa 128 000 Kilometer", "etwa 100 000 Kilometer", "etwa 128 460 Kilometer"]
+            answer: "etwa 128 000 Kilometer"
+            option_audio: false
+          - id: l3-c20
+            part: sensible
+            type: true_false
+            text: "Eine Stadt hat 52 318 Einwohner. Tim sagt: „Das sind ungefähr 500 000 Einwohner.“ Hat er sinnvoll gerundet?"
+            say: "Eine Stadt hat zweiundfünfzigtausenddreihundertachtzehn Einwohner. Tim sagt: Das sind ungefähr fünfhunderttausend Einwohner. Hat er sinnvoll gerundet?"
+            answer: false

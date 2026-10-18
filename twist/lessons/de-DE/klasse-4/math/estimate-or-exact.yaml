@@ -23,6 +23,10 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: decide, what: { de: "entscheiden, ob ein Überschlag reicht oder ob man genau rechnen muss", en: deciding whether an estimate is enough or an exact answer is needed } }
+    - { id: safe-estimate, what: { de: "mit aufgerundeten Zahlen sicher prüfen, ob etwas reicht", en: rounding up to check safely that something is enough } }
+    - { id: close, what: { de: bei einem knappen Überschlag genau nachrechnen, en: calculating exactly when the estimate is close to the limit } }
   misconceptions:
     - id: always-exact
       what: Thinks every word problem needs an exact answer, even when the question only asks whether something is enough
@@ -221,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -239,6 +244,29 @@ lessons:
             text: "Jonas will wissen, ob sein Taschengeld für ein Spiel reicht. Muss er dafür immer genau rechnen?"
             say: "Jonas will wissen, ob sein Taschengeld für ein Spiel reicht. Muss er dafür immer genau rechnen?"
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Herr Wolf kauft für die Klasse 28 Hefte zu je 1,15 €. Auf der Rechnung stehen 32,20 €. Muss dieser Betrag genau stimmen?"
+            say: "Herr Wolf kauft für die Klasse achtundzwanzig Hefte zu je einem Euro fünfzehn. Auf der Rechnung stehen zweiunddreißig Euro zwanzig. Muss dieser Betrag genau stimmen?"
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Ein Saal hat 400 Plätze. Es kommen 96 Kinder und 103 Eltern. Reichen die Plätze?"
+            say: "Ein Saal hat vierhundert Plätze. Es kommen sechsundneunzig Kinder und hundertdrei Eltern. Reichen die Plätze?"
+            options: ["Ja, es sind ungefähr 200 Leute.", "Nein, es sind zu viele Leute.", "Das weiß man erst, wenn man genau rechnet."]
+            answer: "Ja, es sind ungefähr 200 Leute."
+          - id: l1-c6
+            type: sorting
+            text: "Überschlag oder genau rechnen?"
+            say: "Sortiere die Fragen. Reicht ein Überschlag, oder musst du genau rechnen?"
+            bins:
+              - { id: estimate, show: { text: "Überschlag reicht" }, say: "Überschlag reicht" }
+              - { id: exact, show: { text: "genau rechnen" }, say: "genau rechnen" }
+            options:
+              - { text: "Wie viele Kilometer sind es ungefähr bis Berlin?", bin: estimate }
+              - { text: "Wie viel zahlst du an der Kasse?", bin: exact }
+              - { text: "Reichen 40 Stühle für 25 Gäste?", bin: estimate }
+              - { text: "Wie viele Tropfen Medizin bekommt die Katze?", bin: exact }
 
   - n: 2
     title: { de: "Sicher und knapp", en: "Safe and close" }
@@ -405,31 +433,37 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: decide
             type: multiple_choice
             text: "Wann rechnest du genau?"
             say: "Wann rechnest du genau?"
             options: ["beim Rückgeld an der Kasse", "bei der Frage, ob 500 Stühle für 300 Gäste reichen", "bei der Frage, wie lange eine Fahrt ungefähr dauert"]
             answer: "beim Rückgeld an der Kasse"
           - id: l2-c2
+            part: safe-estimate
             type: multiple_choice
             text: "Jan hat 20 €. Er kauft ein Kartenspiel für 6,90 € und ein Buch für 8,70 €. Reicht das Geld?"
             say: "Jan hat zwanzig Euro. Er kauft ein Kartenspiel für sechs Euro neunzig und ein Buch für acht Euro siebzig. Reicht das Geld?"
             options: ["Ja, aufgerundet sind es 16 €.", "Nein, es fehlt Geld.", "Das weiß man erst, wenn man genau rechnet."]
             answer: "Ja, aufgerundet sind es 16 €."
           - id: l2-c3
+            part: close
             type: multiple_choice
             text: "Ein Boot trägt 400 kg. Vier Leute wiegen 96 kg, 104 kg, 99 kg und 98 kg. Dürfen alle einsteigen?"
             say: "Ein Boot trägt vierhundert Kilogramm. Vier Leute wiegen sechsundneunzig, hundertvier, neunundneunzig und achtundneunzig Kilogramm. Dürfen alle einsteigen?"
             options: ["Knapp. Genau sind es 397 kg. Sie dürfen.", "Ungefähr 400 kg. Sie dürfen nicht.", "Sie sind 3 kg zu schwer."]
             answer: "Knapp. Genau sind es 397 kg. Sie dürfen."
           - id: l2-c4
+            part: safe-estimate
             type: true_false
             text: "Das Geld soll sicher reichen. Rundest du die Preise dann ab?"
             say: "Das Geld soll sicher reichen. Rundest du die Preise dann ab?"
             answer: false
           - id: l2-c5
+            part: decide
             type: sorting
             text: "Welche Fragen beantwortet ein Überschlag?"
             say: "Welche Fragen beantwortet ein Überschlag, und wo musst du genau rechnen? Sortiere."
@@ -441,3 +475,110 @@ lessons:
               - { text: "Was kostet die Pizza laut Rechnung?", bin: exact }
               - { text: "Wie weit ist es ungefähr bis zum Meer?", bin: estimate }
               - { text: "Wie viel Rückgeld gibt der Busfahrer?", bin: exact }
+          - id: l2-c6
+            part: decide
+            type: true_false
+            text: "Tim verteilt Zettel für das Dorffest. Er hat 1000 Zettel. Im Dorf gibt es 734 Häuser. Muss er genau rechnen, ob für jedes Haus ein Zettel reicht?"
+            say: "Tim verteilt Zettel für das Dorffest. Er hat tausend Zettel. Im Dorf gibt es siebenhundertvierunddreißig Häuser. Muss er genau rechnen, ob für jedes Haus ein Zettel reicht?"
+            answer: false
+          - id: l2-c7
+            part: decide
+            type: multiple_choice
+            text: "Bei welcher Frage reicht ein Überschlag?"
+            say: "Bei welcher Frage reicht ein Überschlag?"
+            options: ["Reichen 80 Würstchen für 23 Kinder, wenn jedes zwei bekommt?", "Was steht auf dem Kassenbon?", "Wie viel Wechselgeld gibt die Verkäuferin?"]
+            answer: "Reichen 80 Würstchen für 23 Kinder, wenn jedes zwei bekommt?"
+          - id: l2-c8
+            part: decide
+            type: sorting
+            text: "Wo reicht ein Überschlag, wo rechnest du genau?"
+            say: "Wo reicht ein Überschlag, und wo rechnest du genau? Sortiere die Fragen."
+            bins:
+              - { id: estimate, show: { text: "Überschlag reicht" }, say: "Überschlag reicht" }
+              - { id: exact, show: { text: "genau rechnen" }, say: "genau rechnen" }
+            options:
+              - { text: "Wie schwer ist ein Elefant ungefähr?", bin: estimate }
+              - { text: "Was kostet das Paket bei der Post?", bin: exact }
+              - { text: "Wie viele Leute waren ungefähr beim Konzert?", bin: estimate }
+              - { text: "Wie viel zahlst du für 3 Kinokarten?", bin: exact }
+          - id: l2-c9
+            part: decide
+            type: multiple_choice
+            text: "Die Ärztin sagt: „Geben Sie dem Baby 4 ml von dem Saft.“ Wie misst Papa den Saft ab?"
+            say: "Die Ärztin sagt: Geben Sie dem Baby vier Milliliter von dem Saft. Wie misst Papa den Saft ab?"
+            options: ["genau mit dem Messlöffel", "ungefähr nach Gefühl"]
+            answer: "genau mit dem Messlöffel"
+            keep_order: true
+          - id: l2-c10
+            part: decide
+            type: true_false
+            text: "Clara hat 15 € Taschengeld. Sie will wissen, ob es für ein Buch für 7,99 € reicht. Reicht dafür ein Überschlag?"
+            say: "Clara hat fünfzehn Euro Taschengeld. Sie will wissen, ob es für ein Buch für sieben Euro neunundneunzig reicht. Reicht dafür ein Überschlag?"
+            answer: true
+          - id: l2-c11
+            part: safe-estimate
+            type: multiple_choice
+            text: "Leon hat 15 €. Er kauft Stifte für 3,40 € und einen Block für 2,70 €. Reicht sein Geld?"
+            say: "Leon hat fünfzehn Euro. Er kauft Stifte für drei Euro vierzig und einen Block für zwei Euro siebzig. Reicht sein Geld?"
+            options: ["Ja, aufgerundet sind es 7 €.", "Nein, es fehlt Geld.", "Das weiß man erst, wenn man genau rechnet."]
+            answer: "Ja, aufgerundet sind es 7 €."
+          - id: l2-c12
+            part: safe-estimate
+            type: multiple_choice
+            text: "Sara hat 10 €. Sie kauft Saft für 1,85 € und Brötchen für 2,30 €. Sie will sicher wissen, ob ihr Geld reicht. Wie rechnet sie?"
+            say: "Sara hat zehn Euro. Sie kauft Saft für einen Euro fünfundachtzig und Brötchen für zwei Euro dreißig. Sie will sicher wissen, ob ihr Geld reicht. Wie rechnet sie?"
+            options: ["2 € + 3 €", "1 € + 2 €", "2 € + 2 €"]
+            answer: "2 € + 3 €"
+          - id: l2-c13
+            part: safe-estimate
+            type: true_false
+            text: "Ein Anhänger darf 750 kg laden. Darauf liegen 290 kg Sand und 340 kg Steine. Aufgerundet: 300 kg + 400 kg = 700 kg. Darf er sicher so fahren?"
+            say: "Ein Anhänger darf siebenhundertfünfzig Kilogramm laden. Darauf liegen zweihundertneunzig Kilogramm Sand und dreihundertvierzig Kilogramm Steine. Aufgerundet sind das dreihundert plus vierhundert, also siebenhundert Kilogramm. Darf er sicher so fahren?"
+            answer: true
+          - id: l2-c14
+            part: safe-estimate
+            type: multiple_choice
+            text: "Ida hat 30 €. Sie rundet alle Preise auf und kommt auf 26 €. Was weiß sie jetzt?"
+            say: "Ida hat dreißig Euro. Sie rundet alle Preise auf und kommt auf sechsundzwanzig Euro. Was weiß sie jetzt?"
+            options: ["Ihr Geld reicht sicher.", "Ihr Geld reicht nicht.", "Sie muss noch genau rechnen."]
+            answer: "Ihr Geld reicht sicher."
+          - id: l2-c15
+            part: safe-estimate
+            type: multiple_choice
+            text: "Das Geld soll sicher reichen. Warum rundest du die Preise dann auf?"
+            say: "Das Geld soll sicher reichen. Warum rundest du die Preise dann auf?"
+            options: ["Dann ist der Überschlag eher zu groß als zu klein.", "Dann ist der Überschlag ganz genau.", "Dann wird der Einkauf billiger."]
+            answer: "Dann ist der Überschlag eher zu groß als zu klein."
+          - id: l2-c16
+            part: close
+            type: multiple_choice
+            text: "Tara hat 15 €. Sie kauft ein T-Shirt für 9,90 € und eine Kappe für 4,95 €. Reicht ihr Geld?"
+            say: "Tara hat fünfzehn Euro. Sie kauft ein T-Shirt für neun Euro neunzig und eine Kappe für vier Euro fünfundneunzig. Reicht ihr Geld?"
+            options: ["Knapp. Genau sind es 14,85 €. Es reicht.", "Aufgerundet sind es 15 €. Es reicht nicht.", "Es fehlen 5 €."]
+            answer: "Knapp. Genau sind es 14,85 €. Es reicht."
+          - id: l2-c17
+            part: close
+            type: true_false
+            text: "Eine Brücke trägt 10 000 kg. Ein beladener Lkw wiegt ungefähr 10 000 kg. Weiß der Fahrer damit schon sicher, dass er über die Brücke fahren darf?"
+            say: "Eine Brücke trägt zehntausend Kilogramm. Ein beladener Lastwagen wiegt ungefähr zehntausend Kilogramm. Weiß der Fahrer damit schon sicher, dass er über die Brücke fahren darf?"
+            answer: false
+          - id: l2-c18
+            part: close
+            type: multiple_choice
+            text: "Die Turnhalle hat 250 Plätze. Es kommen 124 Kinder und 129 Eltern. Reichen die Plätze?"
+            say: "Die Turnhalle hat zweihundertfünfzig Plätze. Es kommen hundertvierundzwanzig Kinder und hundertneunundzwanzig Eltern. Reichen die Plätze?"
+            options: ["Nein, genau sind es 253 Gäste.", "Ja, es sind ungefähr 250 Gäste.", "Ja, es bleiben 3 Plätze frei."]
+            answer: "Nein, genau sind es 253 Gäste."
+          - id: l2-c19
+            part: close
+            type: multiple_choice
+            text: "Ein Lkw darf 8000 kg laden. Er hat 20 Säcke zu je 390 kg geladen. Überschlag: 20 · 400 kg = 8000 kg. Was stimmt?"
+            say: "Ein Lastwagen darf achttausend Kilogramm laden. Er hat zwanzig Säcke zu je dreihundertneunzig Kilogramm geladen. Der Überschlag ergibt achttausend Kilogramm. Was stimmt?"
+            options: ["Knapp. Genau sind es 7800 kg. Er darf fahren.", "Er ist zu schwer.", "Er ist 200 kg zu schwer."]
+            answer: "Knapp. Genau sind es 7800 kg. Er darf fahren."
+          - id: l2-c20
+            part: close
+            type: true_false
+            text: "Kai hat 5 €. Er kauft ein Heft für 2,60 € und einen Stift für 2,45 €. Überschlag: 3 € + 2 € = 5 €. Reicht sein Geld?"
+            say: "Kai hat fünf Euro. Er kauft ein Heft für zwei Euro sechzig und einen Stift für zwei Euro fünfundvierzig. Der Überschlag ergibt fünf Euro. Reicht sein Geld?"
+            answer: false

@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [fraction, clock]
   facets: []
+  parts:
+    - { id: time, what: { de: Bruchteile einer Stunde in Minuten, en: fractions of an hour in minutes } }
+    - { id: length, what: { de: Bruchteile eines Meters in Zentimetern, en: fractions of a metre in centimetres } }
+    - { id: capacity, what: { de: Bruchteile eines Liters in Millilitern, en: fractions of a litre in millilitres } }
+    - { id: mass, what: { de: Bruchteile eines Kilogramms in Gramm, en: fractions of a kilogram in grams } }
   misconceptions:
     - id: denominator-as-amount
       what: Takes the number under the fraction line as the amount (¼ h = 4 min, ½ m = 2 cm, ¼ l = 4 ml)
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -233,6 +239,24 @@ lessons:
             say: "Die Pause dauert eine Viertelstunde. Wie lang ist das?"
             options: ["4 min", "25 min", "15 min"]
             answer: "15 min"
+          - id: l1-c4
+            type: text_input
+            text: "Ein Schal ist ¾ m lang. Wie viele Zentimeter sind das?"
+            say: "Ein Schal ist drei Viertel Meter lang. Wie viele Zentimeter sind das?"
+            answer: "75"
+          - id: l1-c5
+            type: true_false
+            text: "Eine Dreiviertelstunde hat 45 Minuten."
+            say: "Stimmt das? Eine Dreiviertelstunde hat fünfundvierzig Minuten."
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Was dauert länger: ¾ h oder 40 min?"
+            say: "Was dauert länger: eine Dreiviertelstunde oder vierzig Minuten?"
+            options: ["¾ h", "40 min", "beide gleich lang"]
+            answer: "¾ h"
+            keep_order: true
+            option_audio: false
 
   - n: 2
     title: { de: "Liter und Kilogramm", en: "Litres and kilograms" }
@@ -407,8 +431,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: time
             type: image_multiple_choice
             text: "Der Bus fährt um 9 Uhr los. Die Fahrt zum Zoo dauert eine Dreiviertelstunde. Wann kommt der Bus an?"
             say: "Der Bus fährt um neun Uhr los. Die Fahrt zum Zoo dauert eine Dreiviertelstunde. Wann kommt der Bus an?"
@@ -419,16 +445,19 @@ lessons:
               - { drawn: clock, hour: 10, minute: 15 }
             answer: "9:45"
           - id: l2-c2
+            part: length
             type: text_input
             text: "Ein Geschenkband ist ½ m lang. Wie viele Zentimeter sind das?"
             say: "Ein Geschenkband ist einen halben Meter lang. Wie viele Zentimeter sind das?"
             answer: "50"
           - id: l2-c3
+            part: capacity
             type: text_input
             text: "¼ l = _ ml"
             say: "Wie viele Milliliter sind ein Viertelliter?"
             answer: "250"
           - id: l2-c4
+            part: mass
             type: multiple_choice
             text: "Was ist schwerer: ¾ kg oder 800 g?"
             say: "Was ist schwerer: ein Dreiviertelkilo oder achthundert Gramm?"
@@ -437,7 +466,116 @@ lessons:
             keep_order: true
             option_audio: false
           - id: l2-c5
+            part: time
             type: true_false
             text: "Eine Viertelstunde ist so lang wie 25 Minuten."
             say: "Stimmt das? Eine Viertelstunde ist so lang wie fünfundzwanzig Minuten."
             answer: false
+          - id: l2-c6
+            part: time
+            type: text_input
+            text: "Eine Schulstunde dauert ¾ h. Wie viele Minuten sind das?"
+            say: "Eine Schulstunde dauert eine Dreiviertelstunde. Wie viele Minuten sind das?"
+            answer: "45"
+          - id: l2-c7
+            part: time
+            type: multiple_choice
+            text: "Ein Hörspiel dauert 1 ½ h. Wie viele Minuten sind das?"
+            say: "Ein Hörspiel dauert anderthalb Stunden. Wie viele Minuten sind das?"
+            options: ["90 min", "150 min", "80 min"]
+            answer: "90 min"
+          - id: l2-c8
+            part: time
+            type: image_multiple_choice
+            text: "Es ist halb 4. Wie spät ist es eine Viertelstunde später?"
+            say: "Es ist halb vier. Wie spät ist es eine Viertelstunde später?"
+            show: { drawn: clock, hour: 3, minute: 30 }
+            options:
+              - { drawn: clock, hour: 4, minute: 0 }
+              - { drawn: clock, hour: 3, minute: 45 }
+              - { drawn: clock, hour: 4, minute: 30 }
+            answer: "3:45"
+          - id: l2-c9
+            part: length
+            type: text_input
+            text: "Ein Tisch ist 1 ½ m lang. Wie viele Zentimeter sind das?"
+            say: "Ein Tisch ist anderthalb Meter lang. Wie viele Zentimeter sind das?"
+            answer: "150"
+          - id: l2-c10
+            part: length
+            type: multiple_choice
+            text: "Der ganze Streifen ist 1 m lang. Wie lang ist der rote Teil?"
+            say: "Der ganze Streifen ist einen Meter lang. Wie lang ist der rote Teil?"
+            show: { drawn: fraction, kind: bar, parts: 4, shaded: 3 }
+            options: ["75 cm", "34 cm", "30 cm"]
+            answer: "75 cm"
+          - id: l2-c11
+            part: length
+            type: true_false
+            text: "Ein Viertelmeter ist länger als 30 cm."
+            say: "Stimmt das? Ein Viertelmeter ist länger als dreißig Zentimeter."
+            answer: false
+          - id: l2-c12
+            part: length
+            type: multiple_choice
+            text: "Was ist länger: ½ m oder 45 cm?"
+            say: "Was ist länger: ein halber Meter oder fünfundvierzig Zentimeter?"
+            options: ["½ m", "45 cm", "beide gleich lang"]
+            answer: "½ m"
+            keep_order: true
+            option_audio: false
+          - id: l2-c13
+            part: capacity
+            type: text_input
+            text: "In einer Flasche ist ¾ l Saft. Wie viele Milliliter sind das?"
+            say: "In einer Flasche ist ein Dreiviertelliter Saft. Wie viele Milliliter sind das?"
+            answer: "750"
+          - id: l2-c14
+            part: capacity
+            type: multiple_choice
+            text: "Ein Glas fasst ¼ l. Wie viele Gläser kannst du mit 1 l Milch füllen?"
+            say: "Ein Glas fasst einen Viertelliter. Wie viele Gläser kannst du mit einem Liter Milch füllen?"
+            options: ["4", "2", "25"]
+            answer: "4"
+          - id: l2-c15
+            part: capacity
+            type: true_false
+            text: "½ l und ¼ l sind zusammen 750 ml."
+            say: "Stimmt das? Ein halber Liter und ein Viertelliter sind zusammen siebenhundertfünfzig Milliliter."
+            answer: true
+          - id: l2-c16
+            part: capacity
+            type: multiple_choice
+            text: "Ein Becher fasst 250 ml. Welcher Teil eines Liters ist das?"
+            say: "Ein Becher fasst zweihundertfünfzig Milliliter. Welcher Teil eines Liters ist das?"
+            options: ["½ l", "¼ l", "¾ l"]
+            answer: "¼ l"
+          - id: l2-c17
+            part: mass
+            type: text_input
+            text: "Papa kauft ein Pfund Erdbeeren. Wie viele Gramm sind das?"
+            say: "Papa kauft ein Pfund Erdbeeren. Wie viele Gramm sind das?"
+            answer: "500"
+          - id: l2-c18
+            part: mass
+            type: multiple_choice
+            text: "Ein Paket wiegt 1 ½ kg. Wie viele Gramm sind das?"
+            say: "Ein Paket wiegt anderthalb Kilogramm. Wie viele Gramm sind das?"
+            options: ["1500 g", "150 g", "1050 g"]
+            answer: "1500 g"
+          - id: l2-c19
+            part: mass
+            type: true_false
+            text: "250 g sind ein Viertelkilo."
+            say: "Stimmt das? Zweihundertfünfzig Gramm sind ein Viertelkilo."
+            answer: true
+          - id: l2-c20
+            part: mass
+            type: matching
+            text: "Was gehört zusammen?"
+            say: "Verbinde jeden Bruch mit dem gleichen Gewicht in Gramm."
+            pairs:
+              - { left: { text: "½ kg" }, right: { text: "500 g" } }
+              - { left: { text: "¼ kg" }, right: { text: "250 g" } }
+              - { left: { text: "¾ kg" }, right: { text: "750 g" } }
+            option_audio: false

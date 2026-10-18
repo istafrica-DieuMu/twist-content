@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: convert, what: { de: "Byte, Kilobyte und Megabyte umrechnen", en: "converting between bytes, kilobytes and megabytes" } }
+    - { id: compare, what: { de: Datenmengen vergleichen und ordnen, en: comparing and ordering data sizes } }
+    - { id: storage, what: { de: "einschätzen, was viel Speicher braucht", en: judging what takes a lot of storage } }
+    - { id: fit, what: { de: "ausrechnen, wie viele Dateien noch passen", en: working out how many files still fit } }
   misconceptions:
     - id: number-not-unit
       what: Compares the numbers and not the units (900 KB is more than 2 MB because 900 is bigger)
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -219,6 +225,24 @@ lessons:
             text: "1 MB = 1000 KB. Stimmt das?"
             say: "Ein Megabyte sind tausend Kilobyte. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "6000 KB = _ MB"
+            say: "Sechstausend Kilobyte sind wie viele Megabyte?"
+            options: ["6", "60", "600"]
+            answer: "6"
+          - id: l1-c5
+            type: ordering
+            text: "Ordne von klein nach groß."
+            say: "Ordne die Größen. Die kleinste kommt zuerst."
+            options: ["5 KB", "5 MB", "500 Byte", "50 KB"]
+            slot_count: 4
+            answer: ["500 Byte", "5 KB", "50 KB", "5 MB"]
+          - id: l1-c6
+            type: true_false
+            text: "1 KB = 100 Byte. Stimmt das?"
+            say: "Ein Kilobyte sind hundert Byte. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Was braucht viel Speicher?", en: "What takes a lot of storage?" }
@@ -393,33 +417,148 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: convert
             type: multiple_choice
             text: "9 MB = _ KB"
             say: "Neun Megabyte sind wie viele Kilobyte?"
             options: ["9000", "900", "90"]
             answer: "9000"
           - id: l2-c2
+            part: compare
             type: multiple_choice
             text: "Was ist mehr: 4 MB oder 4000 Byte?"
             say: "Was ist mehr: vier Megabyte oder viertausend Byte?"
             options: ["4 MB", "4000 Byte", "Beides ist gleich viel."]
             answer: "4 MB"
           - id: l2-c3
+            part: fit
             type: multiple_choice
             text: "Auf der Speicherkarte sind 24 MB frei. Ein Foto braucht 3 MB. Wie viele Fotos passen noch darauf?"
             say: "Auf der Speicherkarte sind vierundzwanzig Megabyte frei. Ein Foto braucht drei Megabyte. Wie viele Fotos passen noch darauf?"
             options: ["8", "21", "72"]
             answer: "8"
           - id: l2-c4
+            part: storage
             type: multiple_choice
             text: "Welche Datei ist am größten?"
             say: "Welche Datei ist am größten?"
             options: ["ein Film", "ein Lied", "ein Buch als Text"]
             answer: "ein Film"
           - id: l2-c5
+            part: storage
             type: true_false
             text: "Ein langer Text braucht mehr Speicher als ein Foto. Stimmt das?"
             say: "Ein langer Text braucht mehr Speicher als ein Foto. Stimmt das?"
             answer: false
+          - id: l2-c6
+            part: convert
+            type: text_input
+            text: "6 KB = _ Byte"
+            say: "Sechs Kilobyte sind wie viele Byte?"
+            answer: "6000"
+          - id: l2-c7
+            part: convert
+            type: multiple_choice
+            text: "5000 KB = _ MB"
+            say: "Fünftausend Kilobyte sind wie viele Megabyte?"
+            options: ["5", "50", "500"]
+            answer: "5"
+          - id: l2-c8
+            part: convert
+            type: true_false
+            text: "2 MB = 200 KB. Stimmt das?"
+            say: "Zwei Megabyte sind zweihundert Kilobyte. Stimmt das?"
+            answer: false
+          - id: l2-c9
+            part: convert
+            type: fill_in_blank
+            text: "Setze ein."
+            say: "Ein Megabyte sind wie viele Kilobyte, und wie viele Byte?"
+            frame: "1 MB = _ KB = _ Byte"
+            options: ["1000", "1 000 000", "100", "10 000"]
+            answer: ["1000", "1 000 000"]
+            option_audio: false
+          - id: l2-c10
+            part: compare
+            type: multiple_choice
+            text: "Was ist weniger: 2500 KB oder 2 MB?"
+            say: "Was ist weniger: zweitausendfünfhundert Kilobyte oder zwei Megabyte?"
+            options: ["2500 KB", "2 MB", "Beides ist gleich viel."]
+            answer: "2 MB"
+          - id: l2-c11
+            part: compare
+            type: ordering
+            text: "Ordne von klein nach groß."
+            say: "Ordne die Größen. Die kleinste kommt zuerst."
+            options: ["1 MB", "90 KB", "9000 Byte", "900 KB"]
+            slot_count: 4
+            answer: ["9000 Byte", "90 KB", "900 KB", "1 MB"]
+          - id: l2-c12
+            part: compare
+            type: true_false
+            text: "3000 Byte sind mehr als 2 KB. Stimmt das?"
+            say: "Dreitausend Byte sind mehr als zwei Kilobyte. Stimmt das?"
+            answer: true
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Was ist genauso viel wie 4 MB?"
+            say: "Was ist genauso viel wie vier Megabyte?"
+            options: ["400 KB", "4000 KB", "40 000 Byte"]
+            answer: "4000 KB"
+            option_audio: false
+          - id: l2-c14
+            part: storage
+            type: multiple_choice
+            text: "Welche Datei braucht am meisten Speicher?"
+            say: "Welche Datei braucht am meisten Speicher?"
+            options: ["ein Lied", "100 kurze Nachrichten", "ein Video von 5 Minuten"]
+            answer: "ein Video von 5 Minuten"
+          - id: l2-c15
+            part: storage
+            type: sorting
+            text: "Wenig oder viel Speicher?"
+            say: "Braucht die Datei wenig Speicher, nur ein paar Kilobyte, oder viel, viele Megabyte? Sortiere."
+            bins:
+              - { id: kb, show: { text: "ein paar KB" }, say: "ein paar Kilobyte" }
+              - { id: mb, show: { text: "viele MB" }, say: "viele Megabyte" }
+            options:
+              - { text: "ein Gedicht als Text", bin: kb }
+              - { text: "ein Hörbuch", bin: mb }
+              - { text: "eine E-Mail ohne Bilder", bin: kb }
+              - { text: "ein Video vom Schulfest", bin: mb }
+          - id: l2-c16
+            part: storage
+            type: true_false
+            text: "Ein Lied braucht weniger Speicher als ein Video von einer Minute. Stimmt das?"
+            say: "Ein Lied braucht weniger Speicher als ein Video von einer Minute. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: fit
+            type: text_input
+            text: "Auf dem Handy sind noch 36 MB frei. Ein Lied braucht 4 MB. Wie viele Lieder passen noch darauf?"
+            say: "Auf dem Handy sind noch sechsunddreißig Megabyte frei. Ein Lied braucht vier Megabyte. Wie viele Lieder passen noch darauf?"
+            answer: "9"
+          - id: l2-c18
+            part: fit
+            type: multiple_choice
+            text: "Eine Minute Video braucht 100 MB. Auf dem Tablet sind noch 500 MB frei. Wie viele Minuten Video passen noch darauf?"
+            say: "Eine Minute Video braucht hundert Megabyte. Auf dem Tablet sind noch fünfhundert Megabyte frei. Wie viele Minuten Video passen noch darauf?"
+            options: ["5", "50", "400"]
+            answer: "5"
+          - id: l2-c19
+            part: fit
+            type: multiple_choice
+            text: "Auf Mias Handy sind noch 12 MB frei. Sie speichert 2 Fotos zu je 3 MB und ein Lied mit 4 MB. Wie viel Speicher ist danach noch frei?"
+            say: "Auf Mias Handy sind noch zwölf Megabyte frei. Sie speichert zwei Fotos zu je drei Megabyte und ein Lied mit vier Megabyte. Wie viel Speicher ist danach noch frei?"
+            options: ["2 MB", "10 MB", "5 MB"]
+            answer: "2 MB"
+          - id: l2-c20
+            part: fit
+            type: true_false
+            text: "Auf dem USB-Stick sind noch 20 MB frei. Paul will 6 Fotos zu je 3 MB speichern. Passen alle darauf?"
+            say: "Auf dem USB-Stick sind noch zwanzig Megabyte frei. Paul will sechs Fotos zu je drei Megabyte speichern. Passen alle Fotos darauf?"
+            answer: true

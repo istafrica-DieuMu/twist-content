@@ -27,6 +27,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [cubes]
   facets: []
+  parts:
+    - { id: count, what: { de: die Würfel eines Gebäudes aus dem Bauplan bestimmen, en: finding the number of cubes from the plan } }
+    - { id: match, what: { de: Bauplan und Schrägbild einander zuordnen, en: matching a plan and its slanted drawing } }
+    - { id: views, what: { de: "die Ansichten von vorne, von rechts und von oben bestimmen", en: "finding the views from the front, from the right and from above" } }
   misconceptions:
     - id: counts-only-visible
       what: Counts only the cubes visible in the Schrägbild and forgets the hidden ones, or counts the fields of the Bauplan instead of adding the numbers
@@ -250,6 +254,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -275,6 +280,30 @@ lessons:
             show: { drawn: cubes, plan: [[2, 2], [1, 1]], mode: building, colour: green }
             options: ["6", "4", "5"]
             answer: "6"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie viele Würfel brauchst du für dieses Gebäude?"
+            say: "Hier ist ein Bauplan mit drei Reihen. Wie viele Würfel brauchst du für das ganze Gebäude?"
+            show: { drawn: cubes, plan: [[1, 1, 2], [2, 0, 1], [1, 1, 0]], mode: plan, colour: purple }
+            options: ["9", "7", "8"]
+            answer: "9"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Welcher Bauplan passt zum Schrägbild?"
+            say: "Hier ist das Schrägbild. Welcher Bauplan passt dazu?"
+            show: { drawn: cubes, plan: [[2, 3], [1, 1]], mode: building, colour: orange }
+            options:
+              - { drawn: cubes, plan: [[1, 1], [2, 3]], mode: plan, colour: orange, key: vertauscht }
+              - { drawn: cubes, plan: [[2, 3], [1, 1]], mode: plan, colour: orange, key: richtig }
+              - { drawn: cubes, plan: [[3, 2], [1, 1]], mode: plan, colour: orange, key: gespiegelt }
+            answer: richtig
+          - id: l1-c6
+            type: multiple_choice
+            text: "Ida will nach diesem Plan einen Quader bauen, überall 2 Würfel hoch. Wie viele Würfel fehlen noch?"
+            say: "Ida will nach diesem Bauplan einen Quader bauen, überall zwei Würfel hoch. Wie viele Würfel fehlen noch?"
+            show: { drawn: cubes, plan: [[2, 1, 2], [2, 2, 1], [1, 2, 2]], mode: plan, colour: blue }
+            options: ["3", "15", "18"]
+            answer: "3"
 
   - n: 2
     title: { de: "Ansichten großer Gebäude", en: "Views of larger buildings" }
@@ -498,8 +527,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: multiple_choice
             text: "Wie viele Würfel brauchst du für dieses Gebäude?"
             say: "Hier ist ein Bauplan mit drei Reihen. Wie viele Würfel brauchst du für das ganze Gebäude?"
@@ -507,6 +538,7 @@ lessons:
             options: ["10", "6", "9"]
             answer: "10"
           - id: l2-c2
+            part: match
             type: image_multiple_choice
             text: "Welcher Bauplan passt zum Schrägbild?"
             say: "Hier ist das Schrägbild. Welcher Bauplan passt dazu?"
@@ -517,6 +549,7 @@ lessons:
               - { drawn: cubes, plan: [[1, 3, 1], [2, 1, 0]], mode: plan, colour: green, key: richtig }
             answer: richtig
           - id: l2-c3
+            part: views
             type: image_multiple_choice
             text: "Welche Ansicht von vorne gehört zum Bauplan?"
             say: "Hier ist der Bauplan. Welche Ansicht von vorne gehört dazu?"
@@ -527,6 +560,7 @@ lessons:
               - { drawn: cubes, plan: [[4, 4, 5]], mode: front, colour: purple, key: summe }
             answer: vorne
           - id: l2-c4
+            part: views
             type: image_multiple_choice
             text: "Welche Ansicht von rechts passt?"
             say: "Du gehst um das Gebäude herum und schaust von rechts. Welches Bild passt?"
@@ -537,9 +571,146 @@ lessons:
               - { drawn: cubes, plan: [[1, 0, 1], [1, 3, 1], [2, 1, 1]], mode: side, colour: orange, key: gedreht }
             answer: seite
           - id: l2-c5
+            part: count
             type: multiple_choice
             text: "Paul will einen Quader bauen, überall 2 Würfel hoch. Wie viele Würfel fehlen noch?"
             say: "Paul will einen Quader bauen, überall zwei Würfel hoch. Wie viele Würfel fehlen noch?"
             show: { drawn: cubes, plan: [[2, 2, 1], [1, 2, 1]], mode: building, colour: yellow }
             options: ["3", "9", "2"]
             answer: "3"
+          - id: l2-c6
+            part: count
+            type: multiple_choice
+            text: "Wie viele Würfel brauchst du für dieses Gebäude?"
+            say: "Hier ist ein Bauplan mit drei Reihen. Wie viele Würfel brauchst du für das ganze Gebäude?"
+            show: { drawn: cubes, plan: [[2, 3, 1], [1, 1, 2], [0, 1, 1]], mode: plan, colour: green }
+            options: ["12", "8", "10"]
+            answer: "12"
+          - id: l2-c7
+            part: count
+            type: text_input
+            text: "Wie viele Würfel hat das Gebäude? _"
+            say: "Hier ist ein Bauplan. Wie viele Würfel hat das Gebäude?"
+            show: { drawn: cubes, plan: [[3, 1], [2, 2], [1, 0]], mode: plan, colour: red }
+            answer: "9"
+          - id: l2-c8
+            part: count
+            type: multiple_choice
+            text: "Lea will nach diesem Plan einen Quader bauen, überall 3 Würfel hoch. Wie viele Würfel fehlen noch?"
+            say: "Lea will nach diesem Bauplan einen Quader bauen, überall drei Würfel hoch. Wie viele Würfel fehlen noch?"
+            show: { drawn: cubes, plan: [[3, 2, 3], [2, 3, 1]], mode: plan, colour: orange }
+            options: ["4", "14", "2"]
+            answer: "4"
+          - id: l2-c9
+            part: count
+            type: true_false
+            text: "Für dieses Gebäude brauchst du 5 Würfel."
+            say: "Hier ist der Bauplan. Stimmt das? Für dieses Gebäude brauchst du fünf Würfel."
+            show: { drawn: cubes, plan: [[1, 2, 0], [3, 1, 1]], mode: plan, colour: purple }
+            answer: false
+          - id: l2-c10
+            part: match
+            type: image_multiple_choice
+            text: "Welches Schrägbild passt zum Bauplan?"
+            say: "Hier ist der Bauplan. Welches Schrägbild passt dazu?"
+            show: { drawn: cubes, plan: [[1, 2, 3], [1, 0, 1]], mode: plan, colour: red }
+            options:
+              - { drawn: cubes, plan: [[3, 2, 1], [1, 0, 1]], mode: building, colour: red, key: gespiegelt }
+              - { drawn: cubes, plan: [[1, 2, 3], [1, 0, 1]], mode: building, colour: red, key: richtig }
+              - { drawn: cubes, plan: [[1, 0, 1], [1, 2, 3]], mode: building, colour: red, key: vertauscht }
+            answer: richtig
+          - id: l2-c11
+            part: match
+            type: image_multiple_choice
+            text: "Welcher Bauplan passt zum Schrägbild?"
+            say: "Hier ist das Schrägbild. Welcher Bauplan passt dazu?"
+            show: { drawn: cubes, plan: [[3, 1, 2], [1, 0, 1]], mode: building, colour: blue }
+            options:
+              - { drawn: cubes, plan: [[3, 1, 2], [1, 0, 1]], mode: plan, colour: blue, key: richtig }
+              - { drawn: cubes, plan: [[1, 0, 1], [3, 1, 2]], mode: plan, colour: blue, key: vertauscht }
+              - { drawn: cubes, plan: [[2, 1, 3], [1, 0, 1]], mode: plan, colour: blue, key: gespiegelt }
+            answer: richtig
+          - id: l2-c12
+            part: match
+            type: true_false
+            text: "Der höchste Turm steht in der mittleren Reihe."
+            say: "Hier ist der Bauplan. Stimmt das? Der höchste Turm steht in der mittleren Reihe."
+            show: { drawn: cubes, plan: [[1, 0, 2], [0, 3, 1], [2, 1, 1]], mode: plan, colour: green }
+            answer: true
+          - id: l2-c13
+            part: match
+            type: multiple_choice
+            text: "Wie viele Würfel stehen in der vorderen Reihe?"
+            say: "Schau auf den Bauplan. Wie viele Würfel stehen in der vorderen Reihe?"
+            show: { drawn: cubes, plan: [[3, 2, 1], [1, 3, 1], [2, 1, 0]], mode: plan, colour: yellow }
+            options: ["3", "6", "5"]
+            answer: "3"
+          - id: l2-c14
+            part: match
+            type: image_multiple_choice
+            text: "Welches Schrägbild passt zum Bauplan?"
+            say: "Hier ist der Bauplan. Welches Schrägbild passt dazu?"
+            show: { drawn: cubes, plan: [[3, 2], [1, 1], [0, 1]], mode: plan, colour: purple }
+            options:
+              - { drawn: cubes, plan: [[0, 1], [1, 1], [3, 2]], mode: building, colour: purple, key: vertauscht }
+              - { drawn: cubes, plan: [[2, 3], [1, 1], [1, 0]], mode: building, colour: purple, key: gespiegelt }
+              - { drawn: cubes, plan: [[3, 2], [1, 1], [0, 1]], mode: building, colour: purple, key: richtig }
+            answer: richtig
+          - id: l2-c15
+            part: match
+            type: image_multiple_choice
+            text: "Hinten links steht ein Turm mit 3 Würfeln. Alle anderen Türme sind 1 Würfel hoch. Welcher Bauplan passt?"
+            say: "Hinten links steht ein Turm mit drei Würfeln. Alle anderen Türme sind einen Würfel hoch. Welcher Bauplan passt?"
+            options:
+              - { drawn: cubes, plan: [[1, 1], [3, 1]], mode: plan, colour: red, key: vertauscht }
+              - { drawn: cubes, plan: [[1, 3], [1, 1]], mode: plan, colour: red, key: gespiegelt }
+              - { drawn: cubes, plan: [[3, 1], [1, 1]], mode: plan, colour: red, key: richtig }
+            answer: richtig
+          - id: l2-c16
+            part: views
+            type: image_multiple_choice
+            text: "Welche Ansicht von vorne gehört zum Bauplan?"
+            say: "Hier ist der Bauplan. Welche Ansicht von vorne gehört dazu?"
+            show: { drawn: cubes, plan: [[1, 3, 0], [2, 1, 1], [1, 1, 2]], mode: plan, colour: blue }
+            options:
+              - { drawn: cubes, plan: [[1, 1, 2]], mode: front, colour: blue, key: vorderreihe }
+              - { drawn: cubes, plan: [[2, 3, 2]], mode: front, colour: blue, key: vorne }
+              - { drawn: cubes, plan: [[4, 5, 3]], mode: front, colour: blue, key: summe }
+            answer: vorne
+          - id: l2-c17
+            part: views
+            type: multiple_choice
+            text: "Wie viele Quadrate siehst du von rechts?"
+            say: "Hier ist der Bauplan. Wie viele Quadrate siehst du, wenn du das Gebäude von rechts anschaust?"
+            show: { drawn: cubes, plan: [[1, 2, 1], [3, 0, 2], [2, 1, 1]], mode: plan, colour: orange }
+            options: ["7", "13", "3"]
+            answer: "7"
+          - id: l2-c18
+            part: views
+            type: image_multiple_choice
+            text: "Welche Ansicht von oben passt?"
+            say: "Wie sieht das Gebäude von oben aus? Welches Bild passt?"
+            show: { drawn: cubes, plan: [[1, 0, 2], [2, 1, 0], [0, 1, 1]], mode: building, colour: green }
+            options:
+              - { drawn: cubes, plan: [[2, 0, 1], [0, 1, 2], [1, 1, 0]], mode: top, colour: green, key: gespiegelt }
+              - { drawn: cubes, plan: [[1, 1, 1], [1, 1, 1], [1, 1, 1]], mode: top, colour: green, key: voll }
+              - { drawn: cubes, plan: [[1, 0, 2], [2, 1, 0], [0, 1, 1]], mode: top, colour: green, key: oben }
+            answer: oben
+          - id: l2-c19
+            part: views
+            type: true_false
+            text: "Von vorne und von rechts sieht dieses Gebäude gleich aus."
+            say: "Hier ist der Bauplan. Stimmt das? Von vorne und von rechts sieht dieses Gebäude gleich aus."
+            show: { drawn: cubes, plan: [[2, 1, 1], [1, 1, 3], [0, 1, 1]], mode: plan, colour: red }
+            answer: false
+          - id: l2-c20
+            part: views
+            type: image_multiple_choice
+            text: "So sieht ein Gebäude von vorne aus. Welches Gebäude ist es?"
+            say: "So sieht ein Gebäude von vorne aus. Welches Gebäude ist es?"
+            show: { drawn: cubes, plan: [[1, 3, 2]], mode: front, colour: yellow }
+            options:
+              - { drawn: cubes, plan: [[2, 3, 1], [1, 1, 1]], mode: building, colour: yellow, key: b }
+              - { drawn: cubes, plan: [[1, 1, 2], [1, 3, 1]], mode: building, colour: yellow, key: a }
+              - { drawn: cubes, plan: [[1, 1, 1], [1, 2, 2]], mode: building, colour: yellow, key: c }
+            answer: a

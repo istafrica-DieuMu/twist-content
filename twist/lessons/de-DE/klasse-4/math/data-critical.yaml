@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart]
   facets: []
+  parts:
+    - { id: cut, what: { de: "eine Skala erkennen, die nicht bei 0 beginnt", en: spotting a scale that does not start at 0 } }
+    - { id: real, what: { de: die wirklichen Werte und Unterschiede ablesen, en: reading the real values and differences } }
+    - { id: scale, what: { de: "ungleiche Schritte, fehlende Zahlen und zu große Bilder erkennen", en: "spotting unequal steps, missing numbers and pictures drawn too big" } }
+    - { id: survey, what: { de: "prüfen, ob eine Aussage zur Umfrage passt", en: checking whether a claim fits the survey } }
   misconceptions:
     - id: bar-length-is-value
       what: Compares the length of the bars instead of the numbers when the Skala does not start at 0 (a bar twice as long means twice as much)
@@ -257,6 +262,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -279,6 +285,28 @@ lessons:
             show: { drawn: bar-chart, from: 60, step: 1, rows: [["Baum 1", 64], ["Baum 2", 62]] }
             options: ["Die Skala beginnt bei 60, nicht bei 0.", "Baum 1 ist größer.", "Es gibt nur zwei Bäume."]
             answer: "Die Skala beginnt bei 60, nicht bei 0."
+          - id: l1-c4
+            type: multiple_choice
+            text: "Verkaufte Waffeln\nWo beginnt die Skala?"
+            show: { drawn: bar-chart, from: 40, step: 1, rows: [["Fr", 45], ["Sa", 49]] }
+            say: "Das Diagramm zeigt, wie viele Waffeln am Freitag und am Samstag verkauft wurden. Wo beginnt die Skala?"
+            options: ["bei 40", "bei 0", "bei 49"]
+            answer: "bei 40"
+          - id: l1-c5
+            type: text_input
+            text: "Verkaufte Waffeln\nWie viele Waffeln wurden am Samstag mehr verkauft?"
+            show: { drawn: bar-chart, from: 40, step: 1, rows: [["Fr", 45], ["Sa", 49]] }
+            say: "Wie viele Waffeln wurden am Samstag wirklich mehr verkauft als am Freitag? Tippe die Zahl ein."
+            answer: "4"
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Freitag 45, Samstag 49. Welches Diagramm zeigt es ehrlich?"
+            say: "Am Freitag wurden fünfundvierzig Waffeln verkauft, am Samstag neunundvierzig. Welches Säulendiagramm mit Skala ab null passt?"
+            options:
+              - { drawn: bar-chart, step: 10, rows: [["Fr", 5], ["Sa", 9]], key: "5-9" }
+              - { drawn: bar-chart, step: 10, rows: [["Fr", 45], ["Sa", 90]], key: "45-90" }
+              - { drawn: bar-chart, step: 10, rows: [["Fr", 45], ["Sa", 49]], key: "45-49" }
+            answer: "45-49"
 
   - n: 2
     title: { de: "Weitere Tricks erkennen", en: "Spotting other tricks" }
@@ -469,31 +497,37 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cut
             type: true_false
             text: "Gesammelte Dosen\nDie 4a hat doppelt so viele Dosen gesammelt wie die 4b."
             show: { drawn: bar-chart, from: 50, step: 1, rows: [["4a", 58], ["4b", 54]] }
             say: "Stimmt das? Die vier a hat doppelt so viele Dosen gesammelt wie die vier b."
             answer: false
           - id: l2-c2
+            part: real
             type: text_input
             text: "Gesammelte Dosen\nWie viele Dosen hat die 4a mehr gesammelt?"
             show: { drawn: bar-chart, from: 50, step: 1, rows: [["4a", 58], ["4b", 54]] }
             say: "Wie viele Dosen hat die vier a wirklich mehr gesammelt? Tippe die Zahl ein."
             answer: "4"
           - id: l2-c3
+            part: scale
             type: multiple_choice
             text: "Skala: 0, 10, 20, 40, 80\nWas ist falsch an dieser Skala?"
             say: "Die Skala geht so: null, zehn, zwanzig, vierzig, achtzig. Was ist daran falsch?"
             options: ["Die Schritte sind nicht gleich groß.", "Sie beginnt bei 0.", "Sie geht nur bis 80."]
             answer: "Die Schritte sind nicht gleich groß."
           - id: l2-c4
+            part: survey
             type: true_false
             text: "Tim hat 3 Freunde aus seiner Musikgruppe gefragt. Alle spielen Gitarre.\nTim sagt: „Alle Kinder spielen Gitarre.“\nDarf Tim das sagen?"
             say: "Tim hat drei Freunde aus seiner Musikgruppe gefragt. Alle spielen Gitarre. Tim sagt: Alle Kinder spielen Gitarre. Darf Tim das sagen?"
             answer: false
           - id: l2-c5
+            part: cut
             type: image_multiple_choice
             text: "4a 58, 4b 54. Welches Diagramm zeigt es ehrlich?"
             say: "Die vier a hat achtundfünfzig Dosen gesammelt, die vier b vierundfünfzig. Welches Säulendiagramm mit Skala ab null passt?"
@@ -502,3 +536,110 @@ lessons:
               - { drawn: bar-chart, step: 10, rows: [["4a", 8], ["4b", 4]], key: "8-4" }
               - { drawn: bar-chart, step: 10, rows: [["4a", 58], ["4b", 54]], key: "58-54" }
             answer: "58-54"
+          - id: l2-c6
+            part: cut
+            type: multiple_choice
+            text: "Besucher im Freibad\nWo beginnt die Skala?"
+            show: { drawn: bar-chart, from: 300, step: 10, rows: [["Juni", 340], ["Juli", 380]] }
+            say: "Das Diagramm zeigt die Besucher im Freibad im Juni und im Juli. Wo beginnt die Skala?"
+            options: ["bei 300", "bei 0", "bei 380"]
+            answer: "bei 300"
+          - id: l2-c7
+            part: cut
+            type: multiple_choice
+            text: "Gesammelte Kastanien in kg\nWas macht dieses Diagramm irreführend?"
+            show: { drawn: bar-chart, from: 70, step: 1, rows: [["4a", 77], ["4b", 72]] }
+            say: "Das Diagramm zeigt, wie viele Kilogramm Kastanien zwei Klassen gesammelt haben. Was macht dieses Diagramm irreführend?"
+            options: ["Die Skala beginnt bei 70, nicht bei 0.", "Die 4a hat mehr gesammelt.", "Es gibt nur zwei Klassen."]
+            answer: "Die Skala beginnt bei 70, nicht bei 0."
+          - id: l2-c8
+            part: cut
+            type: true_false
+            text: "Fahrräder vor der Schule\nSieht der Unterschied in diesem Diagramm größer aus, als er wirklich ist?"
+            show: { drawn: bar-chart, step: 10, rows: [["Mo", 40], ["Di", 45]] }
+            say: "Das Diagramm zeigt, wie viele Fahrräder am Montag und am Dienstag vor der Schule standen. Sieht der Unterschied in diesem Diagramm größer aus, als er wirklich ist?"
+            answer: false
+          - id: l2-c9
+            part: real
+            type: text_input
+            text: "Punkte beim Sportfest\nWie viele Punkte hat die 4a mehr als die 4b?"
+            show: { drawn: bar-chart, from: 80, step: 1, rows: [["4a", 87], ["4b", 81]] }
+            say: "Das Diagramm zeigt die Punkte von zwei Klassen beim Sportfest. Wie viele Punkte hat die vier a wirklich mehr als die vier b? Tippe die Zahl ein."
+            answer: "6"
+          - id: l2-c10
+            part: real
+            type: multiple_choice
+            text: "Punkte beim Sportfest\nWelcher Satz stimmt?"
+            show: { drawn: bar-chart, from: 80, step: 1, rows: [["4a", 87], ["4b", 81]] }
+            say: "Schau auf das Diagramm vom Sportfest. Welcher Satz stimmt?"
+            options: ["Die 4b hat 81 Punkte.", "Die 4b hat 1 Punkt.", "Die 4a hat siebenmal so viele Punkte wie die 4b."]
+            answer: "Die 4b hat 81 Punkte."
+          - id: l2-c11
+            part: real
+            type: true_false
+            text: "Verkaufte Brezeln\nAm Samstag wurden 30 Brezeln mehr verkauft als am Sonntag."
+            show: { drawn: bar-chart, from: 150, step: 10, rows: [["Sa", 190], ["So", 160]] }
+            say: "Stimmt das? Am Samstag wurden dreißig Brezeln mehr verkauft als am Sonntag."
+            answer: true
+          - id: l2-c12
+            part: real
+            type: multiple_choice
+            text: "Werbung: „Unser Ball springt viel höher!“\nSprunghöhe in cm\nWie viel höher springt Ball A?"
+            show: { drawn: bar-chart, from: 60, step: 1, rows: [["Ball A", 66], ["Ball B", 63]] }
+            say: "Eine Werbung sagt: Unser Ball springt viel höher! Das Diagramm zeigt die Sprunghöhe in Zentimetern. Wie viel höher springt Ball A wirklich?"
+            options: ["3 cm", "6 cm", "doppelt so hoch"]
+            answer: "3 cm"
+            keep_order: true
+          - id: l2-c13
+            part: scale
+            type: multiple_choice
+            text: "Welche Skala ist ehrlich?"
+            say: "Welche Skala ist ehrlich?"
+            options: ["0, 25, 50, 100, 200", "0, 25, 50, 75, 100", "0, 10, 25, 50, 100"]
+            answer: "0, 25, 50, 75, 100"
+            option_audio: false
+          - id: l2-c14
+            part: scale
+            type: multiple_choice
+            text: "Skala: 0, 2, 4, 10, 20\nWo ist der erste Schritt, der nicht passt?"
+            say: "Die Skala geht so: null, zwei, vier, zehn, zwanzig. Wo ist der erste Schritt, der nicht zu den anderen passt?"
+            options: ["von 4 bis 10", "von 0 bis 2", "von 2 bis 4"]
+            answer: "von 4 bis 10"
+          - id: l2-c15
+            part: scale
+            type: true_false
+            text: "Im Bilddiagramm ist das Bild für Fußball doppelt so groß gemalt wie das für Tennis. Beide Bilder stehen für ein Kind. Mögen deshalb doppelt so viele Kinder Fußball?"
+            say: "In einem Bilddiagramm ist das Bild für Fußball doppelt so groß gemalt wie das Bild für Tennis. Beide Bilder stehen für ein Kind. Mögen deshalb doppelt so viele Kinder Fußball?"
+            answer: false
+          - id: l2-c16
+            part: scale
+            type: true_false
+            text: "Ein Säulendiagramm hat keine Zahlen an der Skala. Fehlt dann etwas Wichtiges?"
+            say: "Ein Säulendiagramm hat keine Zahlen an der Skala. Fehlt dann etwas Wichtiges?"
+            answer: true
+          - id: l2-c17
+            part: survey
+            type: true_false
+            text: "Lea hat alle 26 Kinder ihrer Klasse gefragt. 19 kommen mit dem Rad.\nLea sagt: „Die meisten Kinder in meiner Klasse kommen mit dem Rad.“\nDarf Lea das sagen?"
+            say: "Lea hat alle sechsundzwanzig Kinder ihrer Klasse gefragt. Neunzehn kommen mit dem Rad zur Schule. Lea sagt: Die meisten Kinder in meiner Klasse kommen mit dem Rad. Darf Lea das sagen?"
+            answer: true
+          - id: l2-c18
+            part: survey
+            type: multiple_choice
+            text: "Jonas will wissen, was die Kinder seiner Schule am liebsten frühstücken. Wen fragt er am besten?"
+            say: "Jonas will wissen, was die Kinder seiner Schule am liebsten frühstücken. Wen fragt er am besten?"
+            options: ["Kinder aus allen Klassen", "nur die Kinder am Müslistand", "nur seine Schwester"]
+            answer: "Kinder aus allen Klassen"
+          - id: l2-c19
+            part: survey
+            type: multiple_choice
+            text: "Umfrage im Schachclub: 15 von 16 Kindern spielen gern Schach.\nDie Zeitung schreibt: „Fast alle Kinder spielen gern Schach.“\nWas ist das Problem?"
+            say: "Eine Umfrage im Schachclub ergibt: Fünfzehn von sechzehn Kindern spielen gern Schach. Die Zeitung schreibt: Fast alle Kinder spielen gern Schach. Was ist das Problem?"
+            options: ["Im Schachclub sind vor allem Schachfans.", "Die Zeitung hat falsch gerechnet.", "Schach ist ein Spiel für Erwachsene."]
+            answer: "Im Schachclub sind vor allem Schachfans."
+          - id: l2-c20
+            part: survey
+            type: true_false
+            text: "Ein Supermarkt fragt 4 Kunden. 3 kaufen gern Bananen.\nAuf dem Plakat steht: „Die meisten Menschen kaufen gern Bananen.“\nDarf der Supermarkt das sagen?"
+            say: "Ein Supermarkt fragt vier Kunden. Drei kaufen gern Bananen. Auf dem Plakat steht: Die meisten Menschen kaufen gern Bananen. Darf der Supermarkt das sagen?"
+            answer: false

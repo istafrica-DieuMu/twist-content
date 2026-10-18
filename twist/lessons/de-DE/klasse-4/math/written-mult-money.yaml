@@ -22,6 +22,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: cent, what: { de: Geldbeträge in Cent umrechnen und malnehmen, en: changing amounts to cents and multiplying } }
+    - { id: comma, what: { de: das Komma im Ergebnis richtig setzen, en: putting the decimal comma in the right place } }
+    - { id: estimate, what: { de: mit einem Überschlag prüfen, en: checking with an estimate } }
+    - { id: shopping, what: { de: Einkaufsaufgaben lösen, en: solving shopping problems } }
   misconceptions:
     - id: comma-in-wrong-place
       what: Puts the comma in the wrong place after multiplying (1,380 € or 138,0 €)
@@ -198,6 +203,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -215,6 +221,24 @@ lessons:
             text: "Stimmt das? 2,25 € · 3 = 6,75 €"
             say: "Zwei Euro fünfundzwanzig mal drei ist sechs Euro fünfundsiebzig. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Rechne in Cent."
+            say: "Drei Euro zwanzig mal vier. Rechne in Cent und dann zurück in Euro."
+            frame: "3,20 € · 4 = 320 ct · 4 = _ ct = _"
+            options: ["1280", "12,80 €", "1,280 €"]
+            answer: ["1280", "12,80 €"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wo steht das Komma? 1505 ct = …"
+            say: "Tausendfünfhundertfünf Cent. Wie viele Euro sind das?"
+            options: ["15,05 €", "1,505 €", "15,50 €"]
+            answer: "15,05 €"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 2,40 € · 3 = 6,40 €"
+            say: "Zwei Euro vierzig mal drei ist sechs Euro vierzig. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Einkaufen", en: "Shopping" }
@@ -377,8 +401,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cent
             type: fill_in_blank
             text: "Rechne in Cent."
             say: "Zwei Euro fünfunddreißig mal vier. Rechne in Cent und dann zurück in Euro."
@@ -386,24 +412,130 @@ lessons:
             options: ["940", "9,40 €", "94,00 €"]
             answer: ["940", "9,40 €"]
           - id: l2-c2
+            part: estimate
             type: multiple_choice
             text: "Ein Kuscheltier kostet 9,95 €. Welcher Überschlag passt für 5 Kuscheltiere?"
             say: "Ein Kuscheltier kostet neun Euro fünfundneunzig. Welcher Überschlag passt für fünf Kuscheltiere?"
             options: ["10 € · 5 = 50 €", "9 € · 5 = 45 €", "5 € · 5 = 25 €"]
             answer: "10 € · 5 = 50 €"
           - id: l2-c3
+            part: shopping
             type: text_input
             text: "Ein Apfel kostet 0,35 €. Wie viele Cent kosten 8 Äpfel?"
             say: "Ein Apfel kostet fünfunddreißig Cent. Wie viele Cent kosten acht Äpfel?"
             answer: "280"
           - id: l2-c4
+            part: cent
             type: true_false
             text: "Stimmt das? 3 · 6,40 € = 19,20 €"
             say: "Drei mal sechs Euro vierzig ist neunzehn Euro zwanzig. Stimmt das?"
             answer: true
           - id: l2-c5
+            part: comma
             type: multiple_choice
             text: "Wo steht das Komma? 3045 ct = …"
             say: "Dreitausendfünfundvierzig Cent. Wie viele Euro sind das?"
             options: ["30,45 €", "3,045 €", "304,5 €"]
             answer: "30,45 €"
+          - id: l2-c6
+            part: cent
+            type: fill_in_blank
+            text: "Rechne in Cent."
+            say: "Vier Euro fünfundsechzig mal drei. Rechne in Cent und dann zurück in Euro."
+            frame: "4,65 € · 3 = 465 ct · 3 = _ ct = _"
+            options: ["1395", "13,95 €", "1,395 €", "12,95 €"]
+            answer: ["1395", "13,95 €"]
+          - id: l2-c7
+            part: cent
+            type: text_input
+            text: "3,15 € · 6 = _ ct"
+            say: "Drei Euro fünfzehn mal sechs. Wie viele Cent sind das?"
+            answer: "1890"
+          - id: l2-c8
+            part: cent
+            type: true_false
+            text: "Stimmt das? 5,25 € · 4 = 20,25 €"
+            say: "Fünf Euro fünfundzwanzig mal vier ist zwanzig Euro fünfundzwanzig. Stimmt das?"
+            answer: false
+          - id: l2-c9
+            part: comma
+            type: multiple_choice
+            text: "Wo steht das Komma? 2070 ct = …"
+            say: "Zweitausendsiebzig Cent. Wie viele Euro sind das?"
+            options: ["20,70 €", "2,070 €", "207,0 €"]
+            answer: "20,70 €"
+          - id: l2-c10
+            part: comma
+            type: multiple_choice
+            text: "Wo steht das Komma? 608 ct = …"
+            say: "Sechshundertacht Cent. Wie viele Euro sind das?"
+            options: ["6,08 €", "60,8 €", "6,80 €"]
+            answer: "6,08 €"
+          - id: l2-c11
+            part: comma
+            type: true_false
+            text: "Stimmt das? 1475 ct = 14,75 €"
+            say: "Tausendvierhundertfünfundsiebzig Cent sind vierzehn Euro fünfundsiebzig. Stimmt das?"
+            answer: true
+          - id: l2-c12
+            part: comma
+            type: multiple_choice
+            text: "Ben rechnet 2,46 € · 5 = 1230 ct. Wie viel Euro sind das?"
+            say: "Ben rechnet zwei Euro sechsundvierzig mal fünf und bekommt tausendzweihundertdreißig Cent. Wie viel Euro sind das?"
+            options: ["12,30 €", "1,230 €", "123,0 €"]
+            answer: "12,30 €"
+          - id: l2-c13
+            part: estimate
+            type: multiple_choice
+            text: "Eine Mütze kostet 5,90 €. Welcher Überschlag passt für 4 Mützen?"
+            say: "Eine Mütze kostet fünf Euro neunzig. Welcher Überschlag passt für vier Mützen?"
+            options: ["6 € · 4 = 24 €", "5 € · 4 = 20 €", "10 € · 4 = 40 €"]
+            answer: "6 € · 4 = 24 €"
+          - id: l2-c14
+            part: estimate
+            type: true_false
+            text: "Kann 7 · 2,95 € = 206,50 € stimmen?"
+            say: "Sieben mal zwei Euro fünfundneunzig ist zweihundertsechs Euro fünfzig. Kann das stimmen?"
+            answer: false
+          - id: l2-c15
+            part: estimate
+            type: multiple_choice
+            text: "Welches Ergebnis passt zum Überschlag? 4 · 8,05 €"
+            say: "Welches Ergebnis passt zum Überschlag? Vier mal acht Euro fünf."
+            options: ["32,20 €", "3,22 €", "322,00 €"]
+            answer: "32,20 €"
+          - id: l2-c16
+            part: estimate
+            type: true_false
+            text: "Kann 3 · 9,90 € = 29,70 € stimmen?"
+            say: "Drei mal neun Euro neunzig ist neunundzwanzig Euro siebzig. Kann das stimmen?"
+            answer: true
+          - id: l2-c17
+            part: shopping
+            type: fill_in_blank
+            text: "Ein Heft kostet 1,45 €. Wie viel kosten 6 Hefte?"
+            say: "Ein Heft kostet einen Euro fünfundvierzig. Wie viel kosten sechs Hefte?"
+            frame: "1,45 € · 6 = _"
+            options: ["8,70 €", "6,45 €", "87,0 €"]
+            answer: ["8,70 €"]
+          - id: l2-c18
+            part: shopping
+            type: text_input
+            text: "Eine Brezel kostet 0,75 €. Wie viele Cent kosten 6 Brezeln?"
+            say: "Eine Brezel kostet fünfundsiebzig Cent. Wie viele Cent kosten sechs Brezeln?"
+            answer: "450"
+          - id: l2-c19
+            part: shopping
+            type: fill_in_blank
+            text: "Paul kauft 3 Bücher zu je 6,20 € und zahlt mit 20 €. Wie viel bekommt er zurück?"
+            say: "Paul kauft drei Bücher. Jedes kostet sechs Euro zwanzig. Er zahlt mit einem Zwanzig-Euro-Schein. Wie viel Geld bekommt er zurück?"
+            frame: "20 € − _ = _"
+            options: ["18,60 €", "1,40 €", "2,40 €", "13,80 €"]
+            answer: ["18,60 €", "1,40 €"]
+          - id: l2-c20
+            part: shopping
+            type: multiple_choice
+            text: "Ein Kinoticket kostet 7,50 €. Lisa hat 25 €. Reicht das für 3 Tickets?"
+            say: "Ein Kinoticket kostet sieben Euro fünfzig. Lisa hat fünfundzwanzig Euro. Reicht das Geld für drei Tickets?"
+            options: ["Ja, es bleiben 2,50 € übrig.", "Nein, es fehlen 2,50 €.", "Ja, es bleibt nichts übrig."]
+            answer: "Ja, es bleiben 2,50 € übrig."

@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line, place-value-chart]
   facets: [operation-signs]
+  parts:
+    - { id: number-line, what: { de: Zahlen bis 10 000 am Zahlenstrahl finden und ablesen, en: finding and reading numbers to 10 000 on a number line } }
+    - { id: compare, what: { de: Zahlen bis 10 000 vergleichen und ordnen, en: comparing and ordering numbers to 10 000 } }
+    - { id: round, what: { de: "auf Zehner, Hunderter und Tausender runden", en: "rounding to tens, hundreds and thousands" } }
   misconceptions:
     - id: step-size
       what: Reads each tick as one hundred on a line in thousands
@@ -221,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: point_on_line
@@ -238,6 +243,23 @@ lessons:
             text: "Wo ist 1800?"
             show: { drawn: number-line, from: 1000, to: 2000, step: 100, labels: ends }
             answer: 1800
+          - id: l1-c4
+            type: point_on_line
+            text: "Wo ist 8600?"
+            show: { drawn: number-line, from: 8000, to: 9000, step: 100, labels: ends }
+            answer: 8600
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wohin zeigt der Pfeil?"
+            show: { drawn: number-line, from: 0, to: 10000, step: 1000, labels: ends, mark: 9000 }
+            options: ["90", "900", "9000"]
+            answer: "9000"
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Zwischen welchen Tausendern liegt 1090?"
+            frame: "1090 liegt zwischen _ und _"
+            options: ["0", "1000", "1100", "2000"]
+            answer: ["1000", "2000"]
 
   - n: 2
     title: { de: Vergleichen und ordnen, en: Comparing and ordering }
@@ -428,6 +450,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: fill_in_blank
@@ -447,6 +470,24 @@ lessons:
             text: "Welche Zahl ist am kleinsten?"
             options: ["5150", "5105", "5510"]
             answer: "5105"
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            frame: "3999 _ 4000"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l2-c5
+            type: true_false
+            text: "Stimmt das? 5612 > 5621"
+            say: "Fünftausendsechshundertzwölf ist größer als fünftausendsechshunderteinundzwanzig. Stimmt das?"
+            answer: false
+          - id: l2-c6
+            type: ordering
+            text: "Ordne die Zahlen. Die größte zuerst."
+            options: ["9009", "909", "9900", "9090"]
+            slot_count: 4
+            answer: ["9900", "9090", "9009", "909"]
 
   - n: 3
     title: { de: Runden bis 10 000, en: Rounding to 10 000 }
@@ -613,13 +654,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: number-line
             type: point_on_line
             text: "Wo ist 3600?"
             show: { drawn: number-line, from: 3000, to: 4000, step: 100, labels: ends }
             answer: 3600
           - id: l3-c2
+            part: compare
             type: fill_in_blank
             text: "Welches Zeichen passt?"
             frame: "5809 _ 5890"
@@ -627,17 +671,117 @@ lessons:
             answer: ["<"]
             option_audio: false
           - id: l3-c3
+            part: compare
             type: ordering
             text: "Ordne die Zahlen. Die kleinste zuerst."
             options: ["1110", "1011", "1101", "111"]
             slot_count: 4
             answer: ["111", "1011", "1101", "1110"]
           - id: l3-c4
+            part: round
             type: multiple_choice
             text: "Runde 4386 auf Tausender."
             options: ["4000", "4400", "5000"]
             answer: "4000"
           - id: l3-c5
+            part: round
             type: text_input
             text: "Runde 7250 auf Hunderter."
             answer: "7300"
+          - id: l3-c6
+            part: number-line
+            type: point_on_line
+            text: "Wo ist 2000?"
+            show: { drawn: number-line, from: 0, to: 10000, step: 1000, labels: ends }
+            answer: 2000
+          - id: l3-c7
+            part: number-line
+            type: point_on_line
+            text: "Wo ist 6400?"
+            show: { drawn: number-line, from: 6000, to: 7000, step: 100, labels: ends }
+            answer: 6400
+          - id: l3-c8
+            part: number-line
+            type: multiple_choice
+            text: "Wohin zeigt der Pfeil?"
+            show: { drawn: number-line, from: 7000, to: 8000, step: 100, labels: ends, mark: 7200 }
+            options: ["7002", "7020", "7200"]
+            answer: "7200"
+          - id: l3-c9
+            part: number-line
+            type: multiple_choice
+            text: "Wohin zeigt der Pfeil?"
+            show: { drawn: number-line, from: 0, to: 10000, step: 1000, labels: ends, mark: 5000 }
+            options: ["50", "500", "5000"]
+            answer: "5000"
+          - id: l3-c10
+            part: number-line
+            type: fill_in_blank
+            text: "Zwischen welchen Tausendern liegt 4920?"
+            frame: "4920 liegt zwischen _ und _"
+            options: ["3000", "4000", "4900", "5000"]
+            answer: ["4000", "5000"]
+          - id: l3-c11
+            part: compare
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            frame: "7310 _ 7301"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l3-c12
+            part: compare
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            frame: "998 _ 1010"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l3-c13
+            part: compare
+            type: ordering
+            text: "Ordne die Zahlen. Die größte zuerst."
+            options: ["4554", "5445", "4545", "5454"]
+            slot_count: 4
+            answer: ["5454", "5445", "4554", "4545"]
+          - id: l3-c14
+            part: compare
+            type: true_false
+            text: "Stimmt das? 6080 < 6800"
+            say: "Sechstausendachtzig ist kleiner als sechstausendachthundert. Stimmt das?"
+            answer: true
+          - id: l3-c15
+            part: compare
+            type: multiple_choice
+            text: "Welche Zahl liegt zwischen 2900 und 3000?"
+            options: ["2090", "2950", "3050"]
+            answer: "2950"
+          - id: l3-c16
+            part: round
+            type: multiple_choice
+            text: "Runde 6510 auf Tausender."
+            options: ["6000", "6500", "7000"]
+            answer: "7000"
+          - id: l3-c17
+            part: round
+            type: text_input
+            text: "Runde 3962 auf Hunderter."
+            answer: "4000"
+          - id: l3-c18
+            part: round
+            type: fill_in_blank
+            text: "Runde 5728 auf Zehner, Hunderter und Tausender."
+            frame: "Zehner: _  Hunderter: _  Tausender: _"
+            options: ["5720", "5730", "5700", "6000"]
+            answer: ["5730", "5700", "6000"]
+          - id: l3-c19
+            part: round
+            type: true_false
+            text: "Stimmt das? 8350 auf Tausender gerundet ist 9000."
+            answer: false
+          - id: l3-c20
+            part: round
+            type: multiple_choice
+            text: "Welche Zahl ergibt auf Hunderter gerundet 4300?"
+            options: ["4240", "4349", "4351"]
+            answer: "4349"

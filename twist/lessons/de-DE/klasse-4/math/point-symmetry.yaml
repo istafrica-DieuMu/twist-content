@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card, shape]
   facets: []
+  parts:
+    - { id: letters, what: { de: "punktsymmetrische Buchstaben, Ziffern und Wörter erkennen", en: "recognising letters, digits and words with rotational symmetry" } }
+    - { id: shapes, what: { de: punktsymmetrische Figuren erkennen, en: recognising shapes with rotational symmetry } }
+    - { id: axis, what: { de: Punktsymmetrie und Achsensymmetrie unterscheiden, en: telling rotational symmetry apart from line symmetry } }
   misconceptions:
     - id: axis-means-point-symmetric
       what: Thinks every figure with a Symmetrieachse is also punktsymmetrisch (A, T, the triangle)
@@ -216,11 +220,12 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
             text: "Ist das N punktsymmetrisch?"
-            say: "Dreh das N in Gedanken eine halbe Drehung. Ist es punktsymmetrisch?"
+            say: "Ist das N punktsymmetrisch?"
             show: { drawn: letter-card, text: "N" }
             answer: true
           - id: l1-c2
@@ -235,6 +240,24 @@ lessons:
             text: "Jeder Buchstabe mit einer Symmetrieachse ist auch punktsymmetrisch."
             say: "Stimmt das? Jeder Buchstabe mit einer Symmetrieachse ist auch punktsymmetrisch."
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Ist das K punktsymmetrisch?"
+            say: "Ist das K punktsymmetrisch?"
+            show: { drawn: letter-card, text: "K" }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welche Ziffer sieht nach einer halben Drehung gleich aus?"
+            say: "Welche Ziffer sieht nach einer halben Drehung genauso aus wie vorher?"
+            options: ["8", "7", "4"]
+            answer: "8"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Das S hat keine Symmetrieachse. Es ist trotzdem punktsymmetrisch."
+            say: "Stimmt das? Das S hat keine Symmetrieachse. Es ist trotzdem punktsymmetrisch."
+            answer: true
 
   - n: 2
     title: { de: "Punktsymmetrische Figuren", en: "Shapes with rotational symmetry" }
@@ -429,14 +452,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: letters
             type: true_false
             text: "Ist das I punktsymmetrisch?"
-            say: "Dreh das I in Gedanken eine halbe Drehung. Ist es punktsymmetrisch?"
+            say: "Ist das I punktsymmetrisch?"
             show: { drawn: letter-card, text: "I" }
             answer: true
           - id: l2-c2
+            part: letters
             type: multiple_choice
             text: "Welcher Buchstabe sieht nach einer halben Drehung genauso aus?"
             say: "Welcher Buchstabe sieht nach einer halben Drehung genauso aus wie vorher?"
@@ -444,6 +470,7 @@ lessons:
             answer: "Z"
             option_audio: false
           - id: l2-c3
+            part: shapes
             type: image_multiple_choice
             text: "Welche Figur sieht nach einer halben Drehung anders aus?"
             say: "Welche Figur sieht nach einer halben Drehung anders aus als vorher?"
@@ -454,14 +481,149 @@ lessons:
             answer: triangle
             option_audio: false
           - id: l2-c4
+            part: axis
             type: true_false
             text: "Ein schiefes Parallelogramm passt nach einer halben Drehung genau auf sich selbst."
             say: "Stimmt das? Ein schiefes Parallelogramm passt nach einer halben Drehung um seine Mitte genau auf sich selbst."
             answer: true
           - id: l2-c5
+            part: letters
             type: multiple_choice
             text: "Welche Zahlenkarte sieht nach einer halben Drehung gleich aus?"
             say: "Welche Zahlenkarte sieht nach einer halben Drehung genauso aus wie vorher?"
             options: ["808", "606", "707"]
             answer: "808"
+            option_audio: false
+          - id: l2-c6
+            part: letters
+            type: true_false
+            text: "Ist die 3 punktsymmetrisch?"
+            say: "Ist die Drei punktsymmetrisch?"
+            show: { drawn: letter-card, text: "3" }
+            answer: false
+          - id: l2-c7
+            part: letters
+            type: sorting
+            text: "Sortiere: punktsymmetrisch oder nicht?"
+            say: "Welche Buchstaben sind punktsymmetrisch, welche nicht? Sortiere sie."
+            bins:
+              - { id: point, show: { text: "punktsymmetrisch" }, say: "punktsymmetrisch" }
+              - { id: not-point, show: { text: "nicht punktsymmetrisch" }, say: "nicht punktsymmetrisch" }
+            options:
+              - { text: "F", bin: not-point }
+              - { text: "I", bin: point }
+              - { text: "R", bin: not-point }
+              - { text: "X", bin: point }
+              - { text: "D", bin: not-point }
+              - { text: "S", bin: point }
+            option_audio: false
+          - id: l2-c8
+            part: letters
+            type: multiple_choice
+            text: "Welcher Buchstabe ist punktsymmetrisch?"
+            say: "Welcher Buchstabe ist punktsymmetrisch?"
+            options: ["O", "G", "J"]
+            answer: "O"
+            option_audio: false
+          - id: l2-c9
+            part: letters
+            type: multiple_choice
+            text: "Auf einer Karte steht ZOO. Du drehst die Karte eine halbe Drehung. Was steht dann da?"
+            say: "Auf einer Karte steht ZOO. Du drehst die Karte eine halbe Drehung. Was steht dann da?"
+            show: { drawn: letter-card, text: "ZOO" }
+            options: ["OOZ", "ZOO", "OOS"]
+            answer: "OOZ"
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c10
+            part: letters
+            type: true_false
+            text: "Ist die Zahl 96 punktsymmetrisch?"
+            say: "Ist die Zahl sechsundneunzig punktsymmetrisch?"
+            show: { drawn: letter-card, text: "96" }
+            answer: true
+          - id: l2-c11
+            part: shapes
+            type: true_false
+            text: "Ist das Rechteck punktsymmetrisch?"
+            say: "Ist das Rechteck punktsymmetrisch?"
+            show: { drawn: shape, kind: rectangle, colour: green }
+            answer: true
+          - id: l2-c12
+            part: shapes
+            type: image_multiple_choice
+            text: "Welche Figur ist punktsymmetrisch?"
+            say: "Welche Figur ist punktsymmetrisch?"
+            options:
+              - { drawn: shape, kind: triangle, colour: red }
+              - { drawn: shape, kind: trapezoid, colour: red }
+              - { drawn: shape, kind: parallelogram, colour: red }
+            answer: parallelogram
+            option_audio: false
+          - id: l2-c13
+            part: shapes
+            type: multiple_choice
+            text: "Welche Figur ist nicht punktsymmetrisch?"
+            say: "Welche Figur ist nicht punktsymmetrisch?"
+            options: ["ein Dreieck", "ein Kreis", "ein Quadrat"]
+            answer: "ein Dreieck"
+          - id: l2-c14
+            part: shapes
+            type: multiple_choice
+            text: "Wann sieht ein Rechteck beim Drehen zum ersten Mal wieder gleich aus?"
+            say: "Du drehst ein Rechteck langsam um seine Mitte. Wann sieht es zum ersten Mal wieder gleich aus?"
+            options: ["nach einer Vierteldrehung", "nach einer halben Drehung", "nach einer ganzen Drehung"]
+            answer: "nach einer halben Drehung"
+            keep_order: true
+            difficulty: stretch
+          - id: l2-c15
+            part: axis
+            type: true_false
+            text: "Das Y hat eine Symmetrieachse. Ist es auch punktsymmetrisch?"
+            say: "Das Y hat eine Symmetrieachse. Ist es auch punktsymmetrisch?"
+            show: { drawn: letter-card, text: "Y" }
+            answer: false
+          - id: l2-c16
+            part: axis
+            type: multiple_choice
+            text: "Welcher Buchstabe hat keine Symmetrieachse, ist aber punktsymmetrisch?"
+            say: "Welcher Buchstabe hat keine Symmetrieachse, ist aber punktsymmetrisch?"
+            options: ["N", "H", "A"]
+            answer: "N"
+            option_audio: false
+          - id: l2-c17
+            part: axis
+            type: true_false
+            text: "Jede punktsymmetrische Figur hat eine Symmetrieachse."
+            say: "Stimmt das? Jede punktsymmetrische Figur hat eine Symmetrieachse."
+            answer: false
+          - id: l2-c18
+            part: axis
+            type: multiple_choice
+            text: "Welcher Buchstabe hat eine Symmetrieachse und ist auch punktsymmetrisch?"
+            say: "Welcher Buchstabe hat eine Symmetrieachse und ist auch punktsymmetrisch?"
+            options: ["X", "W", "S"]
+            answer: "X"
+            option_audio: false
+          - id: l2-c19
+            part: axis
+            type: true_false
+            text: "Ein Quadrat hat Symmetrieachsen und ist auch punktsymmetrisch."
+            say: "Stimmt das? Ein Quadrat hat Symmetrieachsen und ist auch punktsymmetrisch."
+            answer: true
+          - id: l2-c20
+            part: axis
+            type: sorting
+            text: "Jeder Buchstabe hat entweder eine Symmetrieachse oder ist punktsymmetrisch. Sortiere."
+            say: "Jeder Buchstabe hat entweder eine Symmetrieachse oder ist punktsymmetrisch. Sortiere die Buchstaben."
+            bins:
+              - { id: axis, show: { text: "hat eine Symmetrieachse" }, say: "hat eine Symmetrieachse" }
+              - { id: point, show: { text: "ist punktsymmetrisch" }, say: "ist punktsymmetrisch" }
+            options:
+              - { text: "C", bin: axis }
+              - { text: "N", bin: point }
+              - { text: "V", bin: axis }
+              - { text: "Z", bin: point }
+              - { text: "M", bin: axis }
+              - { text: "S", bin: point }
             option_audio: false

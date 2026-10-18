@@ -23,6 +23,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line]
   facets: [units]
+  parts:
+    - { id: convert, what: { de: Liter und Milliliter umrechnen, en: converting between litres and millilitres } }
+    - { id: scale, what: { de: am Messbecher ablesen und eintragen, en: reading and marking a measuring jug } }
+    - { id: estimate, what: { de: Rauminhalte mit passenden Mengen angeben, en: giving sensible capacities for everyday things } }
   misconceptions:
     - id: tick-as-one
       what: Counts each mark on the jug scale as 1 ml or 10 ml when the marks go in steps of 100 ml
@@ -205,6 +209,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -225,6 +230,24 @@ lessons:
             say: "Zeig auf der Skala vom Messbecher, wo siebenhundert Milliliter sind."
             show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends }
             answer: 700
+          - id: l1-c4
+            type: true_false
+            text: "8000 ml = 8 l. Stimmt das?"
+            say: "Achttausend Milliliter sind acht Liter. Stimmt das?"
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Was fasst ungefähr 5 ml?"
+            say: "Was fasst ungefähr fünf Milliliter?"
+            options: ["ein Teelöffel", "ein Glas", "ein Eimer"]
+            answer: "ein Teelöffel"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Messbecher-Skala: Wie viel Saft ist im Becher?"
+            say: "Der Pfeil zeigt, wie hoch der Saft steht. Wie viel Saft ist im Messbecher?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 100 }
+            options: ["100 ml", "1 ml", "10 ml"]
+            answer: "100 ml"
 
   - n: 2
     title: { de: "Liter mit Komma", en: "Litres with decimals" }
@@ -397,14 +420,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: convert
             type: multiple_choice
             text: "4,2 l = _"
             say: "Wie viele Milliliter sind vier Komma zwei Liter?"
             options: ["4200 ml", "4002 ml", "420 ml"]
             answer: "4200 ml"
           - id: l2-c2
+            part: scale
             type: multiple_choice
             text: "Messbecher-Skala: Wie viel Tee ist im Becher?"
             say: "Der Pfeil zeigt, wie hoch der Tee steht. Wie viel Tee ist im Messbecher?"
@@ -412,6 +438,7 @@ lessons:
             options: ["200 ml", "2 ml", "20 ml"]
             answer: "200 ml"
           - id: l2-c3
+            part: convert
             type: fill_in_blank
             text: "Schreib mit Komma."
             say: "Zweitausendfünfzig Milliliter. Schreib das in Litern mit Komma."
@@ -419,13 +446,121 @@ lessons:
             options: ["2,05", "2,5", "20,5"]
             answer: ["2,05"]
           - id: l2-c4
+            part: convert
             type: true_false
             text: "1 l = 100 ml. Stimmt das?"
             say: "Ein Liter sind hundert Milliliter. Stimmt das?"
             answer: false
           - id: l2-c5
+            part: estimate
             type: multiple_choice
             text: "Was fasst ungefähr 1 l?"
             say: "Was fasst ungefähr einen Liter?"
             options: ["eine Milchtüte", "ein Fingerhut", "eine Badewanne"]
             answer: "eine Milchtüte"
+          - id: l2-c6
+            part: convert
+            type: text_input
+            text: "7 l = _ ml"
+            say: "Wie viele Milliliter sind sieben Liter?"
+            answer: "7000"
+          - id: l2-c7
+            part: convert
+            type: multiple_choice
+            text: "0,75 l = _"
+            say: "Wie viele Milliliter sind null Komma sieben fünf Liter?"
+            options: ["750 ml", "75 ml", "7500 ml"]
+            answer: "750 ml"
+          - id: l2-c8
+            part: convert
+            type: multiple_choice
+            text: "1,06 l = _"
+            say: "Wie viele Milliliter sind eins Komma null sechs Liter?"
+            options: ["1060 ml", "1600 ml", "106 ml"]
+            answer: "1060 ml"
+          - id: l2-c9
+            part: convert
+            type: fill_in_blank
+            text: "Wie viele Liter und Milliliter sind das?"
+            say: "Fünftausendsiebzig Milliliter. Wie viele Liter und Milliliter sind das?"
+            frame: "5070 ml = _ l _ ml"
+            options: ["5", "70", "7", "507"]
+            answer: ["5", "70"]
+          - id: l2-c10
+            part: scale
+            type: multiple_choice
+            text: "Messbecher-Skala: Wie viel Öl ist im Becher?"
+            say: "Der Pfeil zeigt, wie hoch das Öl steht. Wie viel Öl ist im Messbecher?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 700 }
+            options: ["700 ml", "7 ml", "70 ml"]
+            answer: "700 ml"
+          - id: l2-c11
+            part: scale
+            type: point_on_line
+            text: "Zeig auf der Skala, wo 300 ml sind."
+            say: "Zeig auf der Skala vom Messbecher, wo dreihundert Milliliter sind."
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends }
+            answer: 300
+          - id: l2-c12
+            part: scale
+            type: multiple_choice
+            text: "Im Messbecher ist Wasser. Wie viel fehlt bis 1 l?"
+            say: "Der Pfeil zeigt, wie hoch das Wasser steht. Wie viel Wasser fehlt noch bis zu einem Liter?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 900 }
+            options: ["100 ml", "900 ml", "1900 ml"]
+            answer: "100 ml"
+          - id: l2-c13
+            part: scale
+            type: true_false
+            text: "Im Messbecher ist ein halber Liter Wasser. Stimmt das?"
+            say: "Der Pfeil zeigt, wie hoch das Wasser steht. Im Messbecher ist ein halber Liter Wasser. Stimmt das?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 500 }
+            answer: true
+          - id: l2-c14
+            part: scale
+            type: text_input
+            text: "Im Messbecher ist Milch. Wie viele Milliliter fehlen bis 1 l?"
+            say: "Der Pfeil zeigt, wie hoch die Milch steht. Wie viele Milliliter fehlen noch bis zu einem Liter?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 400 }
+            answer: "600"
+          - id: l2-c15
+            part: scale
+            type: point_on_line
+            text: "Im Messbecher sind 200 ml Wasser. Lea gießt 600 ml dazu. Zeig auf der Skala, wo das Wasser jetzt steht."
+            say: "Im Messbecher sind zweihundert Milliliter Wasser. Lea gießt sechshundert Milliliter dazu. Zeig auf der Skala, wo das Wasser jetzt steht."
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends }
+            answer: 800
+          - id: l2-c16
+            part: estimate
+            type: multiple_choice
+            text: "Was misst du am besten in Millilitern?"
+            say: "Was misst du am besten in Millilitern?"
+            options: ["die Medizin auf einem Löffel", "das Wasser im Schwimmbad", "das Wasser in einem Eimer"]
+            answer: "die Medizin auf einem Löffel"
+          - id: l2-c17
+            part: estimate
+            type: multiple_choice
+            text: "Wie viel Wasser passt ungefähr in eine Badewanne?"
+            say: "Wie viel Wasser passt ungefähr in eine Badewanne?"
+            options: ["150 l", "15 l", "1500 ml"]
+            answer: "150 l"
+          - id: l2-c18
+            part: estimate
+            type: true_false
+            text: "In eine große Wasserflasche passt ungefähr 1 l. Stimmt das?"
+            say: "In eine große Wasserflasche passt ungefähr ein Liter. Stimmt das?"
+            answer: true
+          - id: l2-c19
+            part: estimate
+            type: fill_in_blank
+            text: "Wie viel Kakao ist ungefähr in einer Tasse?"
+            say: "Wie viel Kakao ist ungefähr in einer Tasse?"
+            frame: "Eine Tasse Kakao: etwa _"
+            options: ["250 ml", "2 l", "25 ml"]
+            answer: ["250 ml"]
+          - id: l2-c20
+            part: estimate
+            type: true_false
+            text: "In eine Gießkanne passen ungefähr 10 ml. Stimmt das?"
+            say: "In eine Gießkanne passen ungefähr zehn Milliliter. Stimmt das?"
+            answer: false

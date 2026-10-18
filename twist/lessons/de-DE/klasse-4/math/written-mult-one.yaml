@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: no-carry, what: { de: Stelle für Stelle ohne Übertrag malnehmen, en: multiplying place by place without carrying } }
+    - { id: carry, what: { de: mit Übertrag malnehmen, en: multiplying with carrying } }
+    - { id: explain, what: { de: den Übertrag erklären und Fehler finden, en: explaining the carrying and finding mistakes } }
+    - { id: estimate, what: { de: mit einem Überschlag prüfen, en: checking with an estimate } }
   misconceptions:
     - id: forget-carry
       what: Writes the Übertrag but does not add it at the next place
@@ -191,6 +196,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -205,10 +211,26 @@ lessons:
           - id: l1-c3
             type: fill_in_blank
             text: "Rechne schriftlich: 221 · 4"
-            say: "Zweihunderteinundzwanzig mal vier. Fang bei den Einern an."
+            say: "Zweihunderteinundzwanzig mal vier. Rechne schriftlich."
             frame: "E: 1 · 4 = _ | Z: 2 · 4 = _ | H: 2 · 4 = _"
             options: ["4", "8", "6", "2"]
             answer: ["4", "8", "8"]
+          - id: l1-c4
+            type: text_input
+            text: "1231 · 3 = _"
+            say: "Tausendzweihunderteinunddreißig mal drei. Rechne schriftlich."
+            answer: "3693"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Überschlag: 203 · 4 ≈ ?"
+            say: "Mach den Überschlag für zweihundertdrei mal vier."
+            options: ["800", "80", "8000"]
+            answer: "800"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 312 · 2 = 634"
+            say: "Dreihundertzwölf mal zwei ist sechshundertvierunddreißig. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: Mit Übertrag, en: With carrying }
@@ -369,30 +391,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: carry
             type: text_input
             text: "364 · 5 = _"
             say: "Dreihundertvierundsechzig mal fünf. Rechne schriftlich."
             answer: "1820"
           - id: l2-c2
+            part: carry
             type: text_input
             text: "1728 · 4 = _"
             say: "Tausendsiebenhundertachtundzwanzig mal vier. Rechne schriftlich."
             answer: "6912"
           - id: l2-c3
+            part: explain
             type: true_false
             text: "Stimmt das? 457 · 6 = 2442"
             say: "Vierhundertsiebenundfünfzig mal sechs ist zweitausendvierhundertzweiundvierzig. Stimmt das?"
             answer: false
           - id: l2-c4
+            part: estimate
             type: multiple_choice
             text: "Überschlag: 612 · 7 ≈ ?"
             say: "Mach den Überschlag für sechshundertzwölf mal sieben."
             options: ["4200", "420", "42 000"]
             answer: "4200"
           - id: l2-c5
+            part: carry
             type: text_input
             text: "809 · 3 = _"
             say: "Achthundertneun mal drei. Rechne schriftlich."
             answer: "2427"
+          - id: l2-c6
+            part: no-carry
+            type: text_input
+            text: "342 · 2 = _"
+            say: "Dreihundertzweiundvierzig mal zwei. Rechne schriftlich."
+            answer: "684"
+          - id: l2-c7
+            part: no-carry
+            type: text_input
+            text: "3021 · 3 = _"
+            say: "Dreitausendeinundzwanzig mal drei. Rechne schriftlich."
+            answer: "9063"
+          - id: l2-c8
+            part: no-carry
+            type: fill_in_blank
+            text: "Rechne schriftlich: 412 · 2"
+            say: "Vierhundertzwölf mal zwei. Rechne schriftlich."
+            frame: "E: 2 · 2 = _ | Z: 1 · 2 = _ | H: 4 · 2 = _"
+            options: ["4", "2", "8", "6"]
+            answer: ["4", "2", "8"]
+          - id: l2-c9
+            part: no-carry
+            type: true_false
+            text: "Stimmt das? 233 · 3 = 699"
+            say: "Zweihundertdreiunddreißig mal drei ist sechshundertneunundneunzig. Stimmt das?"
+            answer: true
+          - id: l2-c10
+            part: no-carry
+            type: multiple_choice
+            text: "Womit fängst du bei 321 · 3 an?"
+            say: "Du rechnest dreihunderteinundzwanzig mal drei schriftlich. Womit fängst du an?"
+            options: ["1 · 3", "3 · 3", "321 : 3"]
+            answer: "1 · 3"
+            option_audio: false
+          - id: l2-c11
+            part: carry
+            type: text_input
+            text: "276 · 7 = _"
+            say: "Zweihundertsechsundsiebzig mal sieben. Rechne schriftlich."
+            answer: "1932"
+          - id: l2-c12
+            part: carry
+            type: text_input
+            text: "2485 · 3 = _"
+            say: "Zweitausendvierhundertfünfundachtzig mal drei. Rechne schriftlich."
+            answer: "7455"
+          - id: l2-c13
+            part: explain
+            type: multiple_choice
+            text: "Wo ist der Fehler? Jan rechnet 258 · 4 = 832."
+            say: "Jan rechnet zweihundertachtundfünfzig mal vier und bekommt achthundertzweiunddreißig heraus. Wo ist der Fehler?"
+            options: ["Bei 2 · 4 fehlt der Übertrag 2.", "Bei 8 · 4 ist falsch gerechnet.", "Er hat bei den Hundertern angefangen."]
+            answer: "Bei 2 · 4 fehlt der Übertrag 2."
+            option_audio: false
+          - id: l2-c14
+            part: explain
+            type: fill_in_blank
+            text: "Rechne schriftlich: 368 · 4"
+            say: "Dreihundertachtundsechzig mal vier. Fülle die Lücken aus."
+            frame: "E: 8 · 4 = 32, schreib _, übertrag _ | Z: 6 · 4 + 3 = 27, schreib _, übertrag 2 | H: 3 · 4 + 2 = _"
+            options: ["2", "3", "7", "14", "12"]
+            answer: ["2", "3", "7", "14"]
+          - id: l2-c15
+            part: explain
+            type: multiple_choice
+            text: "Bei 47 · 8 rechnest du zuerst 7 · 8 = 56. Was schreibst du hin, und was überträgst du?"
+            say: "Bei siebenundvierzig mal acht rechnest du zuerst sieben mal acht gleich sechsundfünfzig. Was schreibst du hin, und was überträgst du?"
+            options: ["schreib 6, übertrag 5", "schreib 5, übertrag 6", "schreib 56, übertrag nichts"]
+            answer: "schreib 6, übertrag 5"
+          - id: l2-c16
+            part: explain
+            type: true_false
+            text: "Bei 135 · 6 überträgst du von den Einern 3 zu den Zehnern."
+            say: "Stimmt das? Bei hundertfünfunddreißig mal sechs überträgst du von den Einern drei zu den Zehnern."
+            answer: true
+          - id: l2-c17
+            part: estimate
+            type: multiple_choice
+            text: "Überschlag: 788 · 4 ≈ ?"
+            say: "Mach den Überschlag für siebenhundertachtundachtzig mal vier."
+            options: ["3200", "2800", "32 000"]
+            answer: "3200"
+          - id: l2-c18
+            part: estimate
+            type: true_false
+            text: "Kann 509 · 6 = 354 stimmen?"
+            say: "Fünfhundertneun mal sechs ist dreihundertvierundfünfzig. Kann das stimmen?"
+            answer: false
+          - id: l2-c19
+            part: estimate
+            type: multiple_choice
+            text: "Welches Ergebnis passt zum Überschlag? 391 · 5"
+            say: "Welches Ergebnis passt zum Überschlag? Dreihunderteinundneunzig mal fünf."
+            options: ["1955", "195", "19 550"]
+            answer: "1955"
+            option_audio: false
+          - id: l2-c20
+            part: estimate
+            type: true_false
+            text: "Passt 296 · 4 = 1184 zum Überschlag?"
+            say: "Zweihundertsechsundneunzig mal vier ist tausendeinhundertvierundachtzig. Passt das zum Überschlag?"
+            answer: true

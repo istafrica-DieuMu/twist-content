@@ -21,6 +21,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: last-digit, what: { de: "an der Endziffer erkennen, ob eine Zahl durch 2, 5 oder 10 teilbar ist", en: "using the last digit to check for 2, 5 or 10" } }
+    - { id: digit-sum, what: { de: mit der Quersumme die Teilbarkeit durch 3 und 9 prüfen, en: using the digit sum to check for 3 and 9 } }
+    - { id: combined, what: { de: mehrere Teilbarkeitsregeln zusammen anwenden, en: using several rules on one number } }
   misconceptions:
     - id: last-digit-for-3
       what: Uses the last digit for 3 and 9 too (thinks 23 is divisible by 3 because it ends in 3)
@@ -190,6 +194,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -208,6 +213,22 @@ lessons:
             say: "Welche Zahl ist durch zehn teilbar?"
             options: ["1230", "1235", "1203"]
             answer: "1230"
+          - id: l1-c4
+            type: true_false
+            text: "Ist 4570 durch 10 teilbar?"
+            say: "Ist viertausendfünfhundertsiebzig durch zehn teilbar?"
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welche Zahl ist durch 5, aber nicht durch 10 teilbar?"
+            say: "Welche Zahl ist durch fünf, aber nicht durch zehn teilbar?"
+            options: ["735", "730", "736"]
+            answer: "735"
+          - id: l1-c6
+            type: true_false
+            text: "Ist 693 durch 2 teilbar?"
+            say: "Ist sechshundertdreiundneunzig durch zwei teilbar?"
+            answer: false
 
   - n: 2
     title: { de: "Teilbar durch 3 und 9", en: "Divisible by 3 and 9" }
@@ -360,31 +381,135 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: last-digit
             type: true_false
             text: "Ist 645 durch 5 teilbar?"
             say: "Ist sechshundertfünfundvierzig durch fünf teilbar?"
             answer: true
           - id: l2-c2
+            part: digit-sum
             type: true_false
             text: "Ist 451 durch 3 teilbar?"
             say: "Ist vierhunderteinundfünfzig durch drei teilbar?"
             answer: false
           - id: l2-c3
+            part: digit-sum
             type: highlight_in_text
             text: "Tippe auf alle Zahlen, die durch 9 teilbar sind."
             say: "Tippe auf alle Zahlen, die durch neun teilbar sind."
             show: { drawn: letter-card, text: "171 270 382 495 520" }
             spans: ["171", "270", "495"]
           - id: l2-c4
+            part: digit-sum
             type: text_input
             text: "Wie groß ist die Quersumme von 3906?"
             say: "Wie groß ist die Quersumme von dreitausendneunhundertsechs?"
             answer: "18"
           - id: l2-c5
+            part: combined
             type: multiple_choice
             text: "Welche Zahl ist durch 10 und durch 3 teilbar?"
             say: "Welche Zahl ist durch zehn und durch drei teilbar?"
             options: ["240", "250", "235"]
             answer: "240"
+          - id: l2-c6
+            part: last-digit
+            type: true_false
+            text: "Ist 2468 durch 5 teilbar?"
+            say: "Ist zweitausendvierhundertachtundsechzig durch fünf teilbar?"
+            answer: false
+          - id: l2-c7
+            part: last-digit
+            type: highlight_in_text
+            text: "Tippe auf alle Zahlen, die durch 2 teilbar sind."
+            say: "Tippe auf alle Zahlen, die durch zwei teilbar sind."
+            show: { drawn: letter-card, text: "246 351 577 830 912" }
+            spans: ["246", "830", "912"]
+          - id: l2-c8
+            part: last-digit
+            type: multiple_choice
+            text: "Welche Zahl ist durch 10 teilbar?"
+            say: "Welche Zahl ist durch zehn teilbar?"
+            options: ["5009", "5090", "5905"]
+            answer: "5090"
+          - id: l2-c9
+            part: last-digit
+            type: true_false
+            text: "Ist 7405 durch 5 teilbar?"
+            say: "Ist siebentausendvierhundertfünf durch fünf teilbar?"
+            answer: true
+          - id: l2-c10
+            part: last-digit
+            type: multiple_choice
+            text: "Welche Zahl ist nicht durch 2 teilbar?"
+            say: "Welche Zahl ist nicht durch zwei teilbar?"
+            options: ["648", "750", "873"]
+            answer: "873"
+          - id: l2-c11
+            part: digit-sum
+            type: text_input
+            text: "Wie groß ist die Quersumme von 2563?"
+            say: "Wie groß ist die Quersumme von zweitausendfünfhundertdreiundsechzig?"
+            answer: "16"
+          - id: l2-c12
+            part: digit-sum
+            type: true_false
+            text: "Ist 738 durch 9 teilbar?"
+            say: "Ist siebenhundertachtunddreißig durch neun teilbar?"
+            answer: true
+          - id: l2-c13
+            part: digit-sum
+            type: true_false
+            text: "Ist 173 durch 3 teilbar?"
+            say: "Ist hundertdreiundsiebzig durch drei teilbar?"
+            answer: false
+          - id: l2-c14
+            part: digit-sum
+            type: highlight_in_text
+            text: "Tippe auf alle Zahlen, die durch 3 teilbar sind."
+            say: "Tippe auf alle Zahlen, die durch drei teilbar sind."
+            show: { drawn: letter-card, text: "214 333 528 613 807" }
+            spans: ["333", "528", "807"]
+          - id: l2-c15
+            part: digit-sum
+            type: multiple_choice
+            text: "Welche Zahl ist durch 9 teilbar?"
+            say: "Welche Zahl ist durch neun teilbar?"
+            options: ["393", "389", "387"]
+            answer: "387"
+          - id: l2-c16
+            part: combined
+            type: multiple_choice
+            text: "Prüfe 2, 3, 5, 9 und 10. Durch welche davon ist 315 teilbar?"
+            say: "Prüfe zwei, drei, fünf, neun und zehn. Durch welche davon ist dreihundertfünfzehn teilbar?"
+            options: ["durch 3, 5 und 9", "nur durch 5", "nur durch 3 und 5"]
+            answer: "durch 3, 5 und 9"
+          - id: l2-c17
+            part: combined
+            type: multiple_choice
+            text: "Welche Zahl ist durch 2 und durch 9 teilbar?"
+            say: "Welche Zahl ist durch zwei und durch neun teilbar?"
+            options: ["495", "486", "484"]
+            answer: "486"
+          - id: l2-c18
+            part: combined
+            type: true_false
+            text: "Ist 1350 durch 9 und durch 10 teilbar?"
+            say: "Ist tausenddreihundertfünfzig durch neun und durch zehn teilbar?"
+            answer: true
+          - id: l2-c19
+            part: combined
+            type: true_false
+            text: "Ist 225 durch 2 und durch 3 teilbar?"
+            say: "Ist zweihundertfünfundzwanzig durch zwei und durch drei teilbar?"
+            answer: false
+          - id: l2-c20
+            part: combined
+            type: multiple_choice
+            text: "Welche Zahl ist durch 3 und durch 5 teilbar?"
+            say: "Welche Zahl ist durch drei und durch fünf teilbar?"
+            options: ["415", "350", "405"]
+            answer: "405"

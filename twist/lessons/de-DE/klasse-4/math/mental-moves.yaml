@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, letter-card, dots]
   facets: []
+  parts:
+    - { id: turn, what: { de: Buchstaben und Figuren im Kopf drehen und vom Spiegelbild unterscheiden, en: turning letters and shapes in your head and telling a turn from a mirror image } }
+    - { id: opposite, what: { de: die gegenüberliegenden Seiten eines Spielwürfels kennen, en: knowing the opposite faces of a dice } }
+    - { id: tip, what: { de: einen Spielwürfel im Kopf kippen, en: tipping a dice in your head } }
   misconceptions:
     - id: turn-is-mirror
       what: Mixes up a half turn with a mirror image (turns b and picks d)
@@ -232,6 +236,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -257,6 +262,28 @@ lessons:
             options: ["98", "89", "68"]
             answer: "98"
             option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Du drehst das liegende Rechteck eine halbe Drehung. Wie liegt es danach?"
+            say: "Du drehst das liegende Rechteck eine halbe Drehung. Wie liegt es danach?"
+            show: { drawn: shape, kind: rectangle, colour: green }
+            options: ["Es liegt wie vorher.", "Es steht hochkant."]
+            answer: "Es liegt wie vorher."
+            keep_order: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Du drehst die Karte mit 66 eine halbe Drehung. Welche Zahl siehst du?"
+            say: "Du drehst eine Karte mit der Zahl sechsundsechzig eine halbe Drehung. Welche Zahl siehst du?"
+            show: { drawn: letter-card, text: "66" }
+            options: ["66", "99", "96"]
+            answer: "99"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Eine halbe Drehung macht aus dem d ein b."
+            say: "Stimmt das? Eine halbe Drehung macht aus dem d ein b."
+            show: { drawn: letter-card, text: "d" }
+            answer: false
 
   - n: 2
     title: { de: "Den Würfel kippen", en: "Tipping a dice" }
@@ -426,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: turn
             type: multiple_choice
             text: "Du drehst das b eine halbe Drehung. Welcher Buchstabe entsteht?"
             say: "Du drehst das b eine halbe Drehung. Welcher Buchstabe entsteht?"
@@ -436,6 +465,7 @@ lessons:
             answer: "q"
             option_audio: false
           - id: l2-c2
+            part: turn
             type: multiple_choice
             text: "Du drehst die Karte mit 18 eine halbe Drehung. Welche Zahl siehst du?"
             say: "Du drehst eine Karte mit der Zahl achtzehn eine halbe Drehung. Welche Zahl siehst du?"
@@ -444,6 +474,7 @@ lessons:
             answer: "81"
             option_audio: false
           - id: l2-c3
+            part: opposite
             type: multiple_choice
             text: "Oben liegt die 4. Welche Zahl liegt unten?"
             say: "Auf dem Würfel liegt die Vier oben. Welche Zahl liegt unten?"
@@ -451,14 +482,126 @@ lessons:
             options: ["3", "4", "2"]
             answer: "3"
           - id: l2-c4
+            part: tip
             type: multiple_choice
             text: "3 oben, 2 vorn. Du kippst den Würfel nach vorn. Welche Zahl ist oben?"
             say: "Der Würfel liegt mit der Drei oben, die Zwei zeigt zu dir. Du kippst ihn nach vorn zu dir. Welche Zahl ist jetzt oben?"
             options: ["5", "2", "4"]
             answer: "5"
           - id: l2-c5
+            part: tip
             type: multiple_choice
             text: "2 oben, 1 rechts. Du kippst den Würfel nach rechts. Welche Zahl ist oben?"
             say: "Der Würfel liegt mit der Zwei oben, die Eins zeigt nach rechts. Du kippst ihn nach rechts. Welche Zahl ist jetzt oben?"
             options: ["6", "1", "5"]
             answer: "6"
+          - id: l2-c6
+            part: turn
+            type: multiple_choice
+            text: "Du drehst das W eine halbe Drehung. Welcher Buchstabe entsteht?"
+            say: "Du drehst das große W eine halbe Drehung. Welcher Buchstabe entsteht?"
+            show: { drawn: letter-card, text: "W" }
+            options: ["W", "M", "V"]
+            answer: "M"
+            option_audio: false
+          - id: l2-c7
+            part: turn
+            type: multiple_choice
+            text: "Du drehst die Karte mit 61 eine halbe Drehung. Welche Zahl siehst du?"
+            say: "Du drehst eine Karte mit der Zahl einundsechzig eine halbe Drehung. Welche Zahl siehst du?"
+            show: { drawn: letter-card, text: "61" }
+            options: ["91", "19", "16"]
+            answer: "19"
+            option_audio: false
+          - id: l2-c8
+            part: turn
+            type: true_false
+            text: "Du spiegelst das p an einem Spiegel daneben. Im Spiegel siehst du ein q."
+            say: "Stimmt das? Du hältst das p an einen Spiegel, der daneben steht. Im Spiegel siehst du ein q."
+            show: { drawn: letter-card, text: "p" }
+            answer: true
+          - id: l2-c9
+            part: turn
+            type: multiple_choice
+            text: "Die Spitze zeigt nach oben. Du drehst das Dreieck eine Vierteldrehung so herum, wie der Uhrzeiger läuft. Wohin zeigt die Spitze dann?"
+            say: "Die Spitze des Dreiecks zeigt nach oben. Du drehst es eine Vierteldrehung so herum, wie der Uhrzeiger läuft. Wohin zeigt die Spitze dann?"
+            show: { drawn: shape, kind: triangle, colour: purple }
+            options: ["nach unten", "nach rechts", "nach oben"]
+            answer: "nach rechts"
+          - id: l2-c10
+            part: turn
+            type: multiple_choice
+            text: "Du drehst das d zweimal eine Vierteldrehung. Welcher Buchstabe entsteht?"
+            say: "Du drehst das d zweimal hintereinander eine Vierteldrehung. Welcher Buchstabe entsteht?"
+            show: { drawn: letter-card, text: "d" }
+            options: ["b", "q", "p"]
+            answer: "p"
+            option_audio: false
+          - id: l2-c11
+            part: opposite
+            type: multiple_choice
+            text: "Oben liegt die 1. Welche Zahl liegt unten?"
+            say: "Auf dem Würfel liegt die Eins oben. Welche Zahl liegt unten?"
+            show: { drawn: dots, count: 1, layout: dice }
+            options: ["5", "1", "6"]
+            answer: "6"
+          - id: l2-c12
+            part: opposite
+            type: true_false
+            text: "Auf einem Spielwürfel liegt die 3 gegenüber der 5."
+            say: "Stimmt das? Auf einem Spielwürfel liegt die Drei gegenüber der Fünf."
+            answer: false
+          - id: l2-c13
+            part: opposite
+            type: multiple_choice
+            text: "Unten liegt die 5. Welche Zahl ist oben?"
+            say: "Auf dem Würfel liegt die Fünf unten. Welche Zahl ist oben?"
+            options: ["2", "5", "1"]
+            answer: "2"
+          - id: l2-c14
+            part: opposite
+            type: multiple_choice
+            text: "Die 4 zeigt zu dir. Welche Zahl ist hinten?"
+            say: "Auf dem Würfel zeigt die Vier zu dir. Welche Zahl ist auf der Seite hinten?"
+            options: ["4", "2", "3"]
+            answer: "3"
+          - id: l2-c15
+            part: opposite
+            type: true_false
+            text: "Zeigt die 2 nach rechts, zeigt die 5 nach links."
+            say: "Stimmt das? Zeigt auf einem Spielwürfel die Zwei nach rechts, zeigt die Fünf nach links."
+            answer: true
+          - id: l2-c16
+            part: tip
+            type: multiple_choice
+            text: "6 oben, 4 vorn. Du kippst den Würfel nach vorn. Welche Zahl ist oben?"
+            say: "Der Würfel liegt mit der Sechs oben, die Vier zeigt zu dir. Du kippst ihn nach vorn zu dir. Welche Zahl ist jetzt oben?"
+            options: ["4", "3", "1"]
+            answer: "3"
+          - id: l2-c17
+            part: tip
+            type: multiple_choice
+            text: "2 oben, 6 rechts. Du kippst den Würfel nach links. Welche Zahl ist oben?"
+            say: "Der Würfel liegt mit der Zwei oben, die Sechs zeigt nach rechts. Du kippst ihn nach links. Welche Zahl ist jetzt oben?"
+            options: ["1", "6", "5"]
+            answer: "6"
+          - id: l2-c18
+            part: tip
+            type: multiple_choice
+            text: "5 oben, 3 vorn. Du kippst den Würfel nach hinten. Welche Zahl ist oben?"
+            say: "Der Würfel liegt mit der Fünf oben, die Drei zeigt zu dir. Du kippst ihn nach hinten, weg von dir. Welche Zahl ist jetzt oben?"
+            options: ["3", "4", "2"]
+            answer: "3"
+          - id: l2-c19
+            part: tip
+            type: multiple_choice
+            text: "4 oben, 5 rechts. Du kippst den Würfel nach rechts. Welche Zahl ist oben?"
+            say: "Der Würfel liegt mit der Vier oben, die Fünf zeigt nach rechts. Du kippst ihn nach rechts. Welche Zahl ist jetzt oben?"
+            options: ["5", "3", "2"]
+            answer: "2"
+          - id: l2-c20
+            part: tip
+            type: true_false
+            text: "Oben liegt die 3. Du kippst den Würfel zweimal nach rechts. Jetzt liegt die 4 oben."
+            say: "Stimmt das? Auf dem Würfel liegt die Drei oben. Du kippst ihn zweimal hintereinander nach rechts. Jetzt liegt die Vier oben."
+            answer: true

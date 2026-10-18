@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: estimate, what: { de: das Ergebnis vorher überschlagen, en: estimating the answer first } }
+    - { id: add, what: { de: große Zahlen schrittweise addieren, en: adding large numbers in steps } }
+    - { id: subtract, what: { de: große Zahlen schrittweise subtrahieren, en: subtracting large numbers in steps } }
+    - { id: check, what: { de: das Ergebnis mit dem Überschlag prüfen, en: checking the answer against the estimate } }
   misconceptions:
     - id: lost-step
       what: Starts the next step from the first number instead of the last result
@@ -198,6 +203,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -217,6 +223,23 @@ lessons:
             text: "3200 + 5400 = _"
             say: "Dreitausendzweihundert plus fünftausendvierhundert. Rechne schrittweise."
             answer: "8600"
+          - id: l1-c4
+            type: true_false
+            text: "Passt das zum Überschlag? 5900 + 2100 = 3800"
+            say: "Fünftausendneunhundert plus zweitausendeinhundert ist dreitausendachthundert. Passt das zum Überschlag?"
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Gibt es einen Fehler? 3500 + 4000 = 7500 | 7500 + 200 = 7700 | 7500 + 40 = 7540"
+            say: "Ben hat dreitausendfünfhundert plus viertausendzweihundertvierzig schrittweise gerechnet. Gibt es einen Fehler?"
+            options: ["Es ist alles richtig.", "Der erste Schritt ist falsch.", "Der letzte Schritt ist falsch."]
+            answer: "Der letzte Schritt ist falsch."
+          - id: l1-c6
+            type: multiple_choice
+            text: "Überschlag: 1700 + 4800 ≈ ?"
+            say: "Mach den Überschlag für tausendsiebenhundert plus viertausendachthundert. Runde auf Tausender."
+            options: ["7000", "6000", "5000"]
+            answer: "7000"
 
   - n: 2
     title: { de: Schrittweise subtrahieren und prüfen, en: Subtract in steps and check }
@@ -376,14 +399,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: estimate
             type: multiple_choice
             text: "Überschlag: 4900 + 3800 ≈ ?"
             say: "Mach den Überschlag für viertausendneunhundert plus dreitausendachthundert. Runde auf Tausender."
             options: ["9000", "8000", "7000"]
             answer: "9000"
           - id: l2-c2
+            part: add
             type: fill_in_blank
             text: "Rechne schrittweise: 3400 + 5270"
             say: "Dreitausendvierhundert plus fünftausendzweihundertsiebzig. Rechne schrittweise."
@@ -391,18 +417,121 @@ lessons:
             options: ["8400", "8600", "8670", "8470"]
             answer: ["8400", "8600", "8670"]
           - id: l2-c3
+            part: subtract
             type: text_input
             text: "8640 − 3200 = _"
             say: "Achttausendsechshundertvierzig minus dreitausendzweihundert. Rechne schrittweise."
             answer: "5440"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Passt das zum Überschlag? 9300 − 2800 = 8500"
             say: "Neuntausenddreihundert minus zweitausendachthundert ist achttausendfünfhundert. Passt das zum Überschlag?"
             answer: false
           - id: l2-c5
+            part: check
             type: multiple_choice
             text: "Welches Ergebnis passt zum Überschlag? 7100 − 3900"
             say: "Siebentausendeinhundert minus dreitausendneunhundert. Welches Ergebnis passt zum Überschlag?"
             options: ["3200", "11 000", "320"]
             answer: "3200"
+          - id: l2-c6
+            part: estimate
+            type: multiple_choice
+            text: "Überschlag: 5300 + 1800 ≈ ?"
+            say: "Mach den Überschlag für fünftausenddreihundert plus tausendachthundert. Runde auf Tausender."
+            options: ["6000", "7000", "8000"]
+            answer: "7000"
+          - id: l2-c7
+            part: estimate
+            type: multiple_choice
+            text: "Überschlag: 8700 − 4100 ≈ ?"
+            say: "Mach den Überschlag für achttausendsiebenhundert minus viertausendeinhundert. Runde auf Tausender."
+            options: ["5000", "4000", "13 000"]
+            answer: "5000"
+          - id: l2-c8
+            part: estimate
+            type: text_input
+            text: "Überschlag: 3900 + 2200 ≈ _"
+            say: "Mach den Überschlag für dreitausendneunhundert plus zweitausendzweihundert. Runde auf Tausender."
+            answer: "6000"
+          - id: l2-c9
+            part: estimate
+            type: true_false
+            text: "Der Überschlag für 7600 − 2400 ist 6000."
+            say: "Stimmt das? Der Überschlag für siebentausendsechshundert minus zweitausendvierhundert ist sechstausend."
+            answer: true
+          - id: l2-c10
+            part: add
+            type: fill_in_blank
+            text: "Rechne schrittweise: 2700 + 6150"
+            say: "Zweitausendsiebenhundert plus sechstausendeinhundertfünfzig. Rechne schrittweise."
+            frame: "2700 + 6000 = _ | 8700 + 100 = _ | 8800 + 50 = _"
+            options: ["8700", "8800", "8850", "8750"]
+            answer: ["8700", "8800", "8850"]
+          - id: l2-c11
+            part: add
+            type: text_input
+            text: "4500 + 3400 = _"
+            say: "Viertausendfünfhundert plus dreitausendvierhundert. Rechne schrittweise."
+            answer: "7900"
+          - id: l2-c12
+            part: add
+            type: multiple_choice
+            text: "Wo ist der Fehler? 6200 + 1000 = 7200 | 6200 + 500 = 6700 | 6700 + 30 = 6730"
+            say: "Jan hat sechstausendzweihundert plus tausendfünfhundertdreißig schrittweise gerechnet. In welchem Schritt ist der Fehler?"
+            options: ["6200 + 1000 = 7200", "6200 + 500 = 6700", "6700 + 30 = 6730"]
+            answer: "6200 + 500 = 6700"
+          - id: l2-c13
+            part: add
+            type: text_input
+            text: "1350 + 5420 = _"
+            say: "Tausenddreihundertfünfzig plus fünftausendvierhundertzwanzig. Rechne schrittweise."
+            answer: "6770"
+          - id: l2-c14
+            part: subtract
+            type: fill_in_blank
+            text: "Rechne schrittweise: 7860 − 2500"
+            say: "Siebentausendachthundertsechzig minus zweitausendfünfhundert. Rechne schrittweise."
+            frame: "7860 − 2000 = _ | 5860 − 500 = _"
+            options: ["5860", "5360", "5560", "10 360"]
+            answer: ["5860", "5360"]
+          - id: l2-c15
+            part: subtract
+            type: text_input
+            text: "9580 − 6300 = _"
+            say: "Neuntausendfünfhundertachtzig minus sechstausenddreihundert. Rechne schrittweise."
+            answer: "3280"
+          - id: l2-c16
+            part: subtract
+            type: multiple_choice
+            text: "Wo ist der Fehler? 8700 − 4000 = 4700 | 8700 − 200 = 8500"
+            say: "Lina hat achttausendsiebenhundert minus viertausendzweihundert schrittweise gerechnet. In welchem Schritt ist der Fehler?"
+            options: ["8700 − 4000 = 4700", "8700 − 200 = 8500"]
+            answer: "8700 − 200 = 8500"
+            keep_order: true
+          - id: l2-c17
+            part: subtract
+            type: text_input
+            text: "6940 − 3720 = _"
+            say: "Sechstausendneunhundertvierzig minus dreitausendsiebenhundertzwanzig. Rechne schrittweise."
+            answer: "3220"
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Passt das zum Überschlag? 5200 + 3700 = 8900"
+            say: "Fünftausendzweihundert plus dreitausendsiebenhundert ist achttausendneunhundert. Passt das zum Überschlag?"
+            answer: true
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "Welches Ergebnis passt zum Überschlag? 4100 + 3850"
+            say: "Viertausendeinhundert plus dreitausendachthundertfünfzig. Welches Ergebnis passt zum Überschlag?"
+            options: ["795", "4950", "7950"]
+            answer: "7950"
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Passt das zum Überschlag? 8200 − 3100 = 11 300"
+            say: "Achttausendzweihundert minus dreitausendeinhundert ist elftausenddreihundert. Passt das zum Überschlag?"
+            answer: false

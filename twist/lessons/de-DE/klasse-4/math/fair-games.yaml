@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [spinner, dots]
   facets: []
+  parts:
+    - { id: one-die, what: { de: "bei einem Würfel oder Glücksrad die Möglichkeiten zählen und sagen, ob ein Spiel fair ist", en: counting the ways with one dice or spinner to tell whether a game is fair } }
+    - { id: two-coins, what: { de: die Möglichkeiten mit zwei Münzen zählen, en: counting the ways with two coins } }
+    - { id: two-dice, what: { de: die Möglichkeiten für eine Augensumme mit zwei Würfeln zählen, en: counting the ways to make a sum with two dice } }
+    - { id: explain-fix, what: { de: begründen und ein Spiel fair machen, en: explaining why a game is fair or not and making it fair } }
   misconceptions:
     - id: one-each-is-fair
       what: Calls a game fair because each player has one colour or one rule, without counting how many ways each has
@@ -256,6 +261,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -274,11 +280,34 @@ lessons:
             keep_order: true
           - id: l1-c3
             type: multiple_choice
-            text: "Sara gewinnt bei einer Zahl größer als 4, Ben bei einer Zahl kleiner als 4. Wer hat die bessere Chance?"
-            say: "Sara gewinnt bei einer Zahl größer als vier. Ben gewinnt bei einer Zahl kleiner als vier. Wer hat die bessere Chance?"
+            text: "Sara und Ben würfeln. Sara gewinnt bei einer Zahl größer als 4, Ben bei einer Zahl kleiner als 4. Wer hat die bessere Chance?"
+            say: "Sara und Ben würfeln. Sara gewinnt bei einer Zahl größer als vier. Ben gewinnt bei einer Zahl kleiner als vier. Wer hat die bessere Chance?"
             options: ["Sara", "Ben", "beide gleich"]
             answer: "Ben"
             keep_order: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Jan gewinnt bei Blau, Rieke bei Rot."
+            say: "Jan gewinnt bei Blau, Rieke gewinnt bei Rot. Wie viele Felder hat jedes Kind?"
+            show: { drawn: spinner, sectors: [blue, red, blue, blue, red, blue] }
+            frame: "Jan: _  Rieke: _"
+            options: ["1", "2", "3", "4"]
+            answer: ["4", "2"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Milan gewinnt bei 5. Gewinnt keiner, würfeln sie noch einmal. Welche Regel für Greta macht das Spiel fair?"
+            say: "Milan gewinnt bei fünf. Gewinnt keiner, würfeln sie noch einmal. Welche Regel für Greta macht das Spiel fair?"
+            options: ["Greta gewinnt bei 2.", "Greta gewinnt bei 1 und 2.", "Greta gewinnt bei 1, 2, 3 und 4."]
+            answer: "Greta gewinnt bei 2."
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Blau gegen Gelb. Welches Glücksrad ist fair?"
+            say: "Ein Kind gewinnt bei Blau, das andere bei Gelb. Welches Glücksrad ist fair?"
+            options:
+              - { drawn: spinner, sectors: [blue, yellow, blue, blue], key: "3-zu-1" }
+              - { drawn: spinner, sectors: [blue, yellow, yellow, blue], key: "2-zu-2" }
+              - { drawn: spinner, sectors: [yellow, yellow, blue, yellow, yellow, blue], key: "2-zu-4" }
+            answer: "2-zu-2"
 
   - n: 2
     title: { de: "Zwei Münzen, zwei Würfel", en: "Two coins, two dice" }
@@ -483,8 +512,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: one-die
             type: multiple_choice
             text: "Jule gewinnt bei Grün, Can bei Gelb. Ist das Spiel fair?"
             say: "Jule gewinnt bei Grün, Can gewinnt bei Gelb. Ist das Spiel fair?"
@@ -493,18 +524,21 @@ lessons:
             answer: "nicht fair"
             keep_order: true
           - id: l2-c2
+            part: explain-fix
             type: multiple_choice
-            text: "Leni gewinnt bei 1 und 6. Welche Regel für Aron macht das Spiel fair?"
+            text: "Leni und Aron würfeln. Leni gewinnt bei 1 und 6. Welche Regel für Aron macht das Spiel fair?"
             say: "Leni und Aron würfeln. Leni gewinnt bei eins oder sechs. Welche Regel für Aron macht das Spiel fair?"
             options: ["Aron gewinnt bei 3 und 4.", "Aron gewinnt bei 2, 3, 4 und 5.", "Aron gewinnt bei 2."]
             answer: "Aron gewinnt bei 3 und 4."
           - id: l2-c3
+            part: two-dice
             type: multiple_choice
             text: "Wie viele Möglichkeiten gibt es für die Augensumme 9?"
             say: "Ein roter und ein blauer Würfel. Wie viele Möglichkeiten gibt es für die Augensumme neun?"
             options: ["4", "2", "3"]
             answer: "4"
           - id: l2-c4
+            part: two-coins
             type: multiple_choice
             text: "Zwei Münzen: Mats gewinnt, wenn beide gleich sind, Ella, wenn sie verschieden sind. Ist das Spiel fair?"
             say: "Zwei Münzen. Mats gewinnt, wenn beide Münzen gleich sind. Ella gewinnt, wenn sie verschieden sind. Ist das Spiel fair?"
@@ -512,8 +546,119 @@ lessons:
             answer: "fair"
             keep_order: true
           - id: l2-c5
+            part: explain-fix
             type: multiple_choice
             text: "Zwei Würfel: Ida gewinnt bei der Augensumme 2, Omar bei 6. Warum ist das Spiel nicht fair?"
             say: "Zwei Würfel. Ida gewinnt bei der Augensumme zwei, Omar bei der Augensumme sechs. Warum ist das Spiel nicht fair?"
             options: ["Summe 6 geht auf 5 Arten, Summe 2 nur auf 1.", "Die 6 ist schwerer zu würfeln.", "Summe 2 ist kleiner, darum kommt sie öfter."]
             answer: "Summe 6 geht auf 5 Arten, Summe 2 nur auf 1."
+          - id: l2-c6
+            part: one-die
+            type: true_false
+            text: "Lina und Tom würfeln. Lina gewinnt bei einer Zahl kleiner als 5, Tom bei einer Zahl größer als 4. Das Spiel ist fair."
+            say: "Lina und Tom würfeln. Lina gewinnt bei einer Zahl kleiner als fünf, Tom bei einer Zahl größer als vier. Das Spiel ist fair. Stimmt das?"
+            answer: false
+          - id: l2-c7
+            part: one-die
+            type: fill_in_blank
+            text: "Kemal gewinnt bei Rot, Sina bei Grün."
+            say: "Kemal gewinnt bei Rot, Sina gewinnt bei Grün. Wie viele Felder hat jedes Kind?"
+            show: { drawn: spinner, sectors: [red, green, red, green, red] }
+            frame: "Kemal: _  Sina: _"
+            options: ["1", "2", "3", "4"]
+            answer: ["3", "2"]
+          - id: l2-c8
+            part: one-die
+            type: multiple_choice
+            text: "Vier Kinder würfeln. Ali gewinnt bei 1, Bea bei 2, Cem bei 3 und Dana bei 4, 5 oder 6. Ist das Spiel fair?"
+            say: "Vier Kinder würfeln. Ali gewinnt bei eins, Bea bei zwei, Cem bei drei und Dana bei vier, fünf oder sechs. Ist das Spiel fair?"
+            options: ["fair", "nicht fair"]
+            answer: "nicht fair"
+            keep_order: true
+          - id: l2-c9
+            part: one-die
+            type: image_multiple_choice
+            text: "Grün gegen Gelb. Welches Glücksrad ist fair?"
+            say: "Ein Kind gewinnt bei Grün, das andere bei Gelb. Welches Glücksrad ist fair?"
+            options:
+              - { drawn: spinner, sectors: [green, yellow, green, yellow, green, green], key: "4-zu-2" }
+              - { drawn: spinner, sectors: [yellow, green, yellow, yellow], key: "1-zu-3" }
+              - { drawn: spinner, sectors: [green, green, yellow, yellow, yellow, green], key: "3-zu-3" }
+            answer: "3-zu-3"
+          - id: l2-c10
+            part: two-coins
+            type: text_input
+            text: "Du wirfst zwei Münzen. Bei wie vielen Möglichkeiten zeigen beide Münzen das Gleiche?"
+            say: "Du wirfst zwei Münzen. Bei wie vielen Möglichkeiten zeigen beide Münzen das Gleiche? Tippe die Zahl ein."
+            answer: "2"
+          - id: l2-c11
+            part: two-coins
+            type: multiple_choice
+            text: "Zwei Münzen: Nele gewinnt bei ZZ, Jonas bei KZ oder ZK. Wer hat die bessere Chance?"
+            say: "Zwei Münzen. Nele gewinnt bei zweimal Zahl. Jonas gewinnt bei Kopf und Zahl oder bei Zahl und Kopf. Wer hat die bessere Chance?"
+            options: ["Nele", "Jonas", "beide gleich"]
+            answer: "Jonas"
+            keep_order: true
+          - id: l2-c12
+            part: two-coins
+            type: true_false
+            text: "Zwei Münzen: Erst Kopf, dann Zahl (KZ) und erst Zahl, dann Kopf (ZK) sind zwei verschiedene Möglichkeiten."
+            say: "Zwei Münzen. Erst Kopf, dann Zahl und erst Zahl, dann Kopf sind zwei verschiedene Möglichkeiten. Stimmt das?"
+            answer: true
+          - id: l2-c13
+            part: two-coins
+            type: multiple_choice
+            text: "Zwei Münzen: Eric gewinnt bei KK, Mona bei ZZ, Lilly bei KZ oder ZK. Ist das Spiel fair?"
+            say: "Zwei Münzen. Eric gewinnt bei zweimal Kopf, Mona bei zweimal Zahl, Lilly bei einmal Kopf und einmal Zahl. Ist das Spiel fair?"
+            options: ["fair", "nicht fair"]
+            answer: "nicht fair"
+            keep_order: true
+          - id: l2-c14
+            part: two-dice
+            type: multiple_choice
+            text: "Wie viele Möglichkeiten gibt es für die Augensumme 8?"
+            say: "Ein roter und ein blauer Würfel. Wie viele Möglichkeiten gibt es für die Augensumme acht?"
+            options: ["5", "3", "4"]
+            answer: "5"
+          - id: l2-c15
+            part: two-dice
+            type: text_input
+            text: "Zwei Würfel: Ein Pasch sind zwei gleiche Zahlen. Wie viele Möglichkeiten gibt es für einen Pasch?"
+            say: "Ein roter und ein blauer Würfel. Ein Pasch sind zwei gleiche Zahlen. Wie viele Möglichkeiten gibt es für einen Pasch? Tippe die Zahl ein."
+            answer: "6"
+          - id: l2-c16
+            part: two-dice
+            type: true_false
+            text: "Zwei Würfel: Für die Augensumme 10 gibt es genauso viele Möglichkeiten wie für die Augensumme 4."
+            say: "Zwei Würfel. Für die Augensumme zehn gibt es genauso viele Möglichkeiten wie für die Augensumme vier. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: two-dice
+            type: multiple_choice
+            text: "Zwei Würfel: Pia gewinnt bei der Augensumme 5, Lars bei der Augensumme 9. Ist das Spiel fair?"
+            say: "Zwei Würfel. Pia gewinnt bei der Augensumme fünf, Lars bei der Augensumme neun. Ist das Spiel fair?"
+            options: ["fair", "nicht fair"]
+            answer: "fair"
+            keep_order: true
+          - id: l2-c18
+            part: explain-fix
+            type: multiple_choice
+            text: "Zwei Münzen: Finn gewinnt bei KK. Gewinnt keiner, werfen sie noch einmal. Welche Regel für Lea macht das Spiel fair?"
+            say: "Zwei Münzen. Finn gewinnt bei zweimal Kopf. Gewinnt keiner, werfen sie noch einmal. Welche Regel für Lea macht das Spiel fair?"
+            options: ["Lea gewinnt bei ZZ.", "Lea gewinnt bei KZ und ZK.", "Lea gewinnt, wenn mindestens einmal Zahl kommt."]
+            answer: "Lea gewinnt bei ZZ."
+          - id: l2-c19
+            part: explain-fix
+            type: multiple_choice
+            text: "Eva gewinnt bei Grün. Welche Regel für Kian macht das Spiel fair?"
+            say: "Eva gewinnt bei Grün. Welche Regel für Kian macht das Spiel fair?"
+            show: { drawn: spinner, sectors: [green, blue, green, yellow, green, red] }
+            options: ["Kian gewinnt bei Blau, Gelb und Rot.", "Kian gewinnt bei Blau und Gelb.", "Kian gewinnt bei Rot."]
+            answer: "Kian gewinnt bei Blau, Gelb und Rot."
+          - id: l2-c20
+            part: explain-fix
+            type: multiple_choice
+            text: "Tom sagt: „Bei zwei Würfeln ist 3 + 4 dasselbe wie 4 + 3. Für die Augensumme 7 gibt es also nur 3 Möglichkeiten.“ Was stimmt?"
+            say: "Tom sagt: Bei zwei Würfeln ist drei plus vier dasselbe wie vier plus drei. Für die Augensumme sieben gibt es also nur drei Möglichkeiten. Was stimmt?"
+            options: ["Tom irrt sich. Es sind 6 Möglichkeiten.", "Tom hat recht.", "Tom irrt sich. Es sind 7 Möglichkeiten."]
+            answer: "Tom irrt sich. Es sind 6 Möglichkeiten."

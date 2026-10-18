@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: decode, what: { de: mit dem Zahlencode entschlüsseln, en: decoding with the number code } }
+    - { id: encode, what: { de: mit dem Zahlencode verschlüsseln, en: encoding with the number code } }
+    - { id: rule, what: { de: Codes mit einer Rechenregel lösen, en: solving codes with a calculation rule } }
+    - { id: invent, what: { de: "beurteilen, ob ein erfundener Code funktioniert", en: judging whether an invented code works } }
   misconceptions:
     - id: digits-as-letters
       what: Reads a two-digit number as two letters (12 as A and B instead of L)
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,26 @@ lessons:
             text: "Im Zahlencode steht 26 für Z. Stimmt das?"
             say: "Steht im Zahlencode die sechsundzwanzig für Z?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\n10 1 8 18"
+            say: "Entschlüssle die Botschaft. Setze die Buchstaben ein."
+            frame: "_ _ _ _"
+            options: ["J", "A", "H", "R", "I", "S"]
+            answer: ["J", "A", "H", "R"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nWie heißt GELD im Zahlencode?"
+            say: "Verschlüssle das Wort Geld."
+            options: ["7 5 12 4", "7 5 11 4", "6 5 12 4"]
+            answer: "7 5 12 4"
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nWelcher Buchstabe steht für 9?"
+            say: "Welcher Buchstabe steht im Zahlencode für neun?"
+            options: ["I", "H", "J"]
+            answer: "I"
 
   - n: 2
     title: { de: "Codes mit Regeln", en: "Codes with rules" }
@@ -393,14 +419,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: decode
             type: multiple_choice
             text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\n11 15 16 6"
             say: "Entschlüssle die Botschaft mit dem Zahlencode. Welches Wort ist das?"
             options: ["KOPF", "KOPE", "LOPF"]
             answer: "KOPF"
           - id: l2-c2
+            part: encode
             type: multiple_choice
             text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nWie heißt MOND im Zahlencode?"
             say: "Verschlüssle das Wort Mond mit dem Zahlencode."
@@ -408,19 +437,129 @@ lessons:
             answer: "13 15 14 4"
             option_audio: false
           - id: l2-c3
+            part: rule
             type: multiple_choice
             text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nRegel: Jede Zahl plus 3.\n21 18 23"
             say: "Diese Botschaft wurde mit der Regel jede Zahl plus drei verschlüsselt. Welches Wort ist das?"
             options: ["ROT", "URW", "XUZ"]
             answer: "ROT"
           - id: l2-c4
+            part: invent
             type: multiple_choice
             text: "Welcher Code ist ein guter Code?"
             say: "Welcher Code ist ein guter Code?"
             options: ["Jeder Buchstabe bekommt seine Zahl plus 10.", "A, E, I, O und U bekommen alle die 0.", "Jedes Wort bekommt die Zahl 1."]
             answer: "Jeder Buchstabe bekommt seine Zahl plus 10."
           - id: l2-c5
+            part: rule
             type: true_false
             text: "Ida verschlüsselt mit der Regel mal 3. Sie schreibt für A eine 3 und für B eine 6. Stimmt das?"
             say: "Ida verschlüsselt mit der Regel mal drei. Sie schreibt für A eine drei und für B eine sechs. Stimmt das?"
             answer: true
+          - id: l2-c6
+            part: decode
+            type: fill_in_blank
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\n20 9 19 3 8"
+            say: "Entschlüssle die Botschaft mit dem Zahlencode. Setze die Buchstaben ein."
+            frame: "_ _ _ _ _"
+            options: ["T", "I", "S", "C", "H", "U"]
+            answer: ["T", "I", "S", "C", "H"]
+          - id: l2-c7
+            part: decode
+            type: multiple_choice
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\n23 15 12 11 5"
+            say: "Entschlüssle die Botschaft mit dem Zahlencode. Welches Wort ist das?"
+            options: ["WOLKE", "WOLLE", "VOLKE"]
+            answer: "WOLKE"
+          - id: l2-c8
+            part: decode
+            type: true_false
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\n1 16 6 5 12 heißt APFEL. Stimmt das?"
+            say: "Heißt die Botschaft eins, sechzehn, sechs, fünf, zwölf wirklich Apfel?"
+            answer: true
+          - id: l2-c9
+            part: decode
+            type: multiple_choice
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\n4 15 19 5"
+            say: "Entschlüssle die Botschaft mit dem Zahlencode. Welches Wort ist das?"
+            options: ["DOSE", "DOSF", "COSE"]
+            answer: "DOSE"
+          - id: l2-c10
+            part: encode
+            type: multiple_choice
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nWie heißt BLUME im Zahlencode?"
+            say: "Verschlüssle das Wort Blume mit dem Zahlencode."
+            options: ["2 12 21 13 5", "2 12 20 13 5", "2 11 21 13 5"]
+            answer: "2 12 21 13 5"
+            option_audio: false
+          - id: l2-c11
+            part: encode
+            type: fill_in_blank
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nVerschlüssle ROSE."
+            say: "Verschlüssle das Wort Rose mit dem Zahlencode. Setze die Zahlen ein."
+            frame: "_ _ _ _"
+            options: ["18", "15", "19", "5", "17", "20"]
+            answer: ["18", "15", "19", "5"]
+            option_audio: false
+          - id: l2-c12
+            part: encode
+            type: true_false
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nLukas schreibt ZUG so: 26 21 6. Stimmt das?"
+            say: "Lukas hat das Wort Zug verschlüsselt. Hat er richtig verschlüsselt?"
+            answer: false
+          - id: l2-c13
+            part: encode
+            type: text_input
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nWelche Zahl steht für W? _"
+            say: "Welche Zahl steht im Zahlencode für W?"
+            answer: "23"
+          - id: l2-c14
+            part: rule
+            type: fill_in_blank
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nRegel: Jede Zahl ist verdoppelt.\n30 16 36"
+            say: "Bei dieser Botschaft wurde jede Zahl verdoppelt. Setze die Buchstaben ein."
+            frame: "_ _ _"
+            options: ["O", "H", "R", "P", "G", "S"]
+            answer: ["O", "H", "R"]
+          - id: l2-c15
+            part: rule
+            type: multiple_choice
+            text: "A=1 B=2 C=3 D=4 E=5 F=6 G=7\nH=8 I=9 J=10 K=11 L=12 M=13 N=14\nO=15 P=16 Q=17 R=18 S=19 T=20 U=21\nV=22 W=23 X=24 Y=25 Z=26\n\nRegel: Jede Zahl plus 4.\nWie verschlüsselst du ARM?"
+            say: "Die Regel heißt: jede Zahl plus vier. Wie verschlüsselst du das Wort Arm?"
+            options: ["5 22 17", "1 18 13", "4 21 16"]
+            answer: "5 22 17"
+            option_audio: false
+          - id: l2-c16
+            part: rule
+            type: multiple_choice
+            text: "Zahlenschloss: Die Zahl hat drei Ziffern. Jede Ziffer ist um 3 kleiner als die davor. Die erste Ziffer ist 9. Wie heißt die Zahl?"
+            say: "Ein Zahlenschloss: Die Zahl hat drei Ziffern. Jede Ziffer ist um drei kleiner als die davor. Die erste Ziffer ist neun. Wie heißt die Zahl?"
+            options: ["963", "987", "369"]
+            answer: "963"
+            option_audio: false
+          - id: l2-c17
+            part: invent
+            type: true_false
+            text: "Nele erfindet einen Code: Jeder Buchstabe bekommt seine Zahl aus dem Zahlencode, nur Y und Z bekommen beide die 25. Ist das ein guter Code?"
+            say: "Nele erfindet einen Code. Jeder Buchstabe bekommt seine Zahl aus dem Zahlencode, nur Y und Z bekommen beide die fünfundzwanzig. Ist das ein guter Code?"
+            answer: false
+          - id: l2-c18
+            part: invent
+            type: multiple_choice
+            text: "Welcher Code funktioniert nicht?"
+            say: "Welcher Code funktioniert nicht?"
+            options: ["Jeder Buchstabe bekommt seine Zahl mal 2.", "Jeder Buchstabe bekommt seine Zahl plus 7.", "A bis M bekommen die 1, N bis Z die 2."]
+            answer: "A bis M bekommen die 1, N bis Z die 2."
+          - id: l2-c19
+            part: invent
+            type: true_false
+            text: "Tom erfindet einen Code: A = 26, B = 25, C = 24 und so weiter bis Z = 1. Ist das ein guter Code?"
+            say: "Tom erfindet einen Code. A bekommt die sechsundzwanzig, B die fünfundzwanzig, C die vierundzwanzig und so weiter bis Z, das die eins bekommt. Ist das ein guter Code?"
+            answer: true
+          - id: l2-c20
+            part: invent
+            type: multiple_choice
+            text: "Mira erfindet einen Code: A = 5, B = 7, C = 5. Was ist das Problem?"
+            say: "Mira erfindet einen Code. A bekommt die fünf, B die sieben und C die fünf. Was ist das Problem?"
+            options: ["A und C haben dieselbe Zahl.", "Die Zahlen sind zu klein.", "B braucht eine gerade Zahl."]
+            answer: "A und C haben dieselbe Zahl."

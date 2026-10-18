@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid]
   facets: []
+  parts:
+    - { id: copy, what: { de: eine Figur auf Karopapier übertragen und eine Kopie prüfen, en: copying a shape on squared paper and checking a copy } }
+    - { id: slant, what: { de: schräge Linien in zwei Schritten abzählen, en: counting a slanted line in two steps } }
+    - { id: dot-grid, what: { de: im Punkteraster von Punkt zu Punkt zählen und übertragen, en: counting and copying from point to point on a dot grid } }
+    - { id: scale, what: { de: eine Figur doppelt oder halb so groß zeichnen, en: drawing a shape twice or half as big } }
   misconceptions:
     - id: slant-by-eye
       what: Copies a slanted line by eye instead of counting how far it goes to the side and up, so the copy is steeper or flatter, or swaps the two steps
@@ -241,6 +246,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -264,6 +270,27 @@ lessons:
             text: "Beim Übertragen zählst du die Kästchen ab."
             say: "Stimmt das? Beim Übertragen zählst du die Kästchen ab."
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Wie geht die schräge Linie von links nach rechts?"
+            say: "Die Linie startet links oben. Wie viele Kästchen geht sie nach rechts, wie viele nach unten?"
+            show: { drawn: grid, cols: 5, rows: 3, lines: [[1, 0, 4, 2]] }
+            frame: "_ nach rechts, _ nach unten"
+            options: ["1", "2", "3", "4"]
+            answer: ["3", "2"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Was ist an der Kopie falsch?"
+            say: "Links ist die Vorlage, rechts die Kopie. Was ist an der Kopie falsch?"
+            show: { drawn: grid, cols: 9, rows: 3, lines: [[0, 1, 3, 1], [3, 1, 3, 3], [3, 3, 0, 3], [0, 3, 0, 1], [5, 1, 7, 1], [7, 1, 7, 3], [7, 3, 5, 3], [5, 3, 5, 1]] }
+            options: ["Die Kopie ist zu kurz.", "Die Kopie ist zu hoch.", "Nichts, sie ist richtig."]
+            answer: "Die Kopie ist zu kurz."
+          - id: l1-c6
+            type: true_false
+            text: "Die Kopie rechts ist genau wie die Vorlage links."
+            say: "Stimmt das? Die Kopie rechts ist genau wie die Vorlage links."
+            show: { drawn: grid, cols: 7, rows: 3, lines: [[0, 3, 2, 3], [2, 3, 2, 1], [2, 1, 0, 3], [4, 3, 6, 3], [6, 3, 6, 0], [6, 0, 4, 3]] }
+            answer: false
 
   - n: 2
     title: { de: "Punkteraster, größer und kleiner", en: "Dot grids, larger and smaller" }
@@ -462,8 +489,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: copy
             type: image_multiple_choice
             text: "Welche Figur ist richtig übertragen?"
             say: "Hier ist die Vorlage. Welche Kopie ist richtig übertragen?"
@@ -474,6 +503,7 @@ lessons:
               - { drawn: grid, cols: 6, rows: 2, lines: [[1, 2, 3, 2], [3, 2, 3, 0], [3, 0, 1, 0], [1, 0, 1, 2]], key: gerade }
             answer: richtig
           - id: l2-c2
+            part: slant
             type: multiple_choice
             text: "Wie geht diese schräge Linie von links nach rechts?"
             say: "Die Linie startet links unten. Wie geht sie bis zu ihrem Ende?"
@@ -481,6 +511,7 @@ lessons:
             options: ["4 nach rechts, 3 nach oben", "3 nach rechts, 4 nach oben", "4 nach rechts, 4 nach oben"]
             answer: "4 nach rechts, 3 nach oben"
           - id: l2-c3
+            part: scale
             type: image_multiple_choice
             text: "Welches Quadrat ist doppelt so groß wie die Vorlage?"
             say: "Hier ist die Vorlage. Welches Quadrat ist doppelt so groß?"
@@ -491,15 +522,138 @@ lessons:
               - { drawn: grid, cols: 5, rows: 4, lines: [[0, 0, 4, 0], [4, 0, 4, 4], [4, 4, 0, 4], [0, 4, 0, 0]], key: doppelt }
             answer: doppelt
           - id: l2-c4
+            part: scale
             type: multiple_choice
             text: "Ein Rechteck ist 8 Kästchen lang und 2 hoch. Du zeichnest es halb so groß. Wie groß wird es?"
             say: "Ein Rechteck ist acht Kästchen lang und zwei Kästchen hoch. Du zeichnest es halb so groß. Wie groß wird es?"
             options: ["4 lang, 2 hoch", "7 lang, 1 hoch", "4 lang, 1 hoch"]
             answer: "4 lang, 1 hoch"
           - id: l2-c5
+            part: dot-grid
             type: multiple_choice
             text: "Wie lang ist diese Linie im Punkteraster?"
             say: "Wie lang ist diese Linie im Punkteraster?"
             show: { drawn: grid, cols: 6, rows: 2, dots: true, lines: [[0, 1, 5, 1]] }
             options: ["5", "6", "4"]
             answer: "5"
+          - id: l2-c6
+            part: copy
+            type: true_false
+            text: "Die Kopie rechts ist genau wie die Vorlage links."
+            say: "Stimmt das? Die Kopie rechts ist genau wie die Vorlage links."
+            show: { drawn: grid, cols: 11, rows: 2, lines: [[0, 2, 4, 2], [4, 2, 3, 0], [3, 0, 1, 0], [1, 0, 0, 2], [6, 2, 10, 2], [10, 2, 9, 0], [9, 0, 7, 0], [7, 0, 6, 2]] }
+            answer: true
+          - id: l2-c7
+            part: copy
+            type: multiple_choice
+            text: "Was ist an der Kopie falsch?"
+            say: "Links ist die Vorlage, rechts die Kopie. Was ist an der Kopie falsch?"
+            show: { drawn: grid, cols: 11, rows: 3, lines: [[0, 3, 4, 3], [4, 3, 2, 1], [2, 1, 0, 3], [6, 3, 10, 3], [10, 3, 8, 0], [8, 0, 6, 3]] }
+            options: ["Die Spitze ist zu hoch.", "Die untere Seite ist zu lang.", "Nichts, sie ist richtig."]
+            answer: "Die Spitze ist zu hoch."
+          - id: l2-c8
+            part: copy
+            type: image_multiple_choice
+            text: "Welches Haus ist richtig übertragen?"
+            say: "Hier ist die Vorlage. Welches Haus ist richtig übertragen?"
+            show: { drawn: grid, cols: 3, rows: 3, lines: [[0, 3, 2, 3], [2, 3, 2, 1], [2, 1, 1, 0], [1, 0, 0, 1], [0, 1, 0, 3]] }
+            options:
+              - { drawn: grid, cols: 4, rows: 3, lines: [[1, 3, 3, 3], [3, 3, 3, 2], [3, 2, 2, 1], [2, 1, 1, 2], [1, 2, 1, 3]], key: niedrig }
+              - { drawn: grid, cols: 4, rows: 3, lines: [[1, 3, 3, 3], [3, 3, 3, 2], [3, 2, 2, 0], [2, 0, 1, 2], [1, 2, 1, 3]], key: spitz }
+              - { drawn: grid, cols: 4, rows: 3, lines: [[1, 3, 3, 3], [3, 3, 3, 1], [3, 1, 2, 0], [2, 0, 1, 1], [1, 1, 1, 3]], key: richtig }
+            answer: richtig
+          - id: l2-c9
+            part: copy
+            type: true_false
+            text: "Beim Übertragen darf die Kopie größer sein als die Vorlage."
+            say: "Stimmt das? Beim Übertragen darf die Kopie größer sein als die Vorlage."
+            answer: false
+          - id: l2-c10
+            part: slant
+            type: multiple_choice
+            text: "Wie geht die schräge Linie von oben nach unten?"
+            say: "Die Linie startet links oben. Wie geht sie bis zu ihrem Ende?"
+            show: { drawn: grid, cols: 4, rows: 3, lines: [[0, 0, 3, 2]] }
+            options: ["3 nach rechts, 2 nach unten", "2 nach rechts, 3 nach unten", "3 nach rechts, 3 nach unten"]
+            answer: "3 nach rechts, 2 nach unten"
+          - id: l2-c11
+            part: slant
+            type: fill_in_blank
+            text: "Wie geht die schräge Linie von links nach rechts?"
+            say: "Die Linie startet links unten. Wie viele Kästchen geht sie nach rechts, wie viele nach oben?"
+            show: { drawn: grid, cols: 6, rows: 2, lines: [[0, 2, 5, 1]] }
+            frame: "_ nach rechts, _ nach oben"
+            options: ["1", "2", "4", "5"]
+            answer: ["5", "1"]
+          - id: l2-c12
+            part: slant
+            type: image_multiple_choice
+            text: "Nils zeichnet eine Linie: 1 nach rechts, 3 nach oben. Welche ist es?"
+            say: "Nils startet links unten und zeichnet eine Linie: eins nach rechts, drei nach oben. Welche ist es?"
+            options:
+              - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 3, 2]], key: vertauscht }
+              - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 1, 0]], key: richtig }
+              - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 2, 0]], key: breit }
+            answer: richtig
+          - id: l2-c13
+            part: slant
+            type: true_false
+            text: "Die Linie geht 2 nach rechts und 3 nach oben."
+            say: "Die Linie startet links unten. Stimmt das? Sie geht zwei nach rechts und drei nach oben."
+            show: { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 3, 1]] }
+            answer: false
+          - id: l2-c14
+            part: dot-grid
+            type: multiple_choice
+            text: "Wie lang ist diese Linie im Punkteraster?"
+            say: "Wie lang ist diese Linie im Punkteraster?"
+            show: { drawn: grid, cols: 2, rows: 4, dots: true, lines: [[1, 0, 1, 4]] }
+            options: ["3", "5", "4"]
+            answer: "4"
+          - id: l2-c15
+            part: dot-grid
+            type: true_false
+            text: "Auf einer Linie im Punkteraster, die 3 lang ist, liegen 3 Punkte."
+            say: "Stimmt das? Auf einer Linie im Punkteraster, die drei lang ist, liegen drei Punkte."
+            answer: false
+          - id: l2-c16
+            part: dot-grid
+            type: image_multiple_choice
+            text: "Welche Figur ist im Punkteraster richtig übertragen?"
+            say: "Hier ist die Vorlage im Punkteraster. Welche Kopie ist richtig übertragen?"
+            show: { drawn: grid, cols: 3, rows: 2, dots: true, lines: [[0, 2, 3, 2], [3, 2, 0, 0], [0, 0, 0, 2]] }
+            options:
+              - { drawn: grid, cols: 5, rows: 2, dots: true, lines: [[1, 2, 3, 2], [3, 2, 1, 0], [1, 0, 1, 2]], key: kurz }
+              - { drawn: grid, cols: 5, rows: 2, dots: true, lines: [[1, 2, 4, 2], [4, 2, 1, 0], [1, 0, 1, 2]], key: richtig }
+              - { drawn: grid, cols: 5, rows: 2, dots: true, lines: [[1, 2, 4, 2], [4, 2, 1, 1], [1, 1, 1, 2]], key: flach }
+            answer: richtig
+          - id: l2-c17
+            part: dot-grid
+            type: fill_in_blank
+            text: "Wie lang und wie hoch ist das Rechteck im Punkteraster?"
+            say: "Wie lang und wie hoch ist das Rechteck im Punkteraster?"
+            show: { drawn: grid, cols: 6, rows: 3, dots: true, lines: [[0, 1, 5, 1], [5, 1, 5, 3], [5, 3, 0, 3], [0, 3, 0, 1]] }
+            frame: "_ lang, _ hoch"
+            options: ["2", "3", "5", "6"]
+            answer: ["5", "2"]
+          - id: l2-c18
+            part: scale
+            type: multiple_choice
+            text: "Eine Seite ist 5 Kästchen lang. Wie lang wird sie, wenn die Figur doppelt so groß wird?"
+            say: "Eine Seite ist fünf Kästchen lang. Du zeichnest die Figur doppelt so groß. Wie lang wird die Seite?"
+            options: ["10", "7", "25"]
+            answer: "10"
+          - id: l2-c19
+            part: scale
+            type: multiple_choice
+            text: "Eine schräge Linie geht 4 nach rechts und 2 nach oben. Wie geht sie, wenn die Figur halb so groß wird?"
+            say: "Eine schräge Linie geht vier nach rechts und zwei nach oben. Wie geht sie, wenn du die Figur halb so groß zeichnest?"
+            options: ["2 nach rechts, 2 nach oben", "2 nach rechts, 1 nach oben", "3 nach rechts, 1 nach oben"]
+            answer: "2 nach rechts, 1 nach oben"
+          - id: l2-c20
+            part: scale
+            type: true_false
+            text: "Die rechte Figur ist doppelt so groß wie die linke."
+            say: "Stimmt das? Die rechte Figur ist doppelt so groß wie die linke."
+            show: { drawn: grid, cols: 11, rows: 2, lines: [[0, 1, 3, 1], [3, 1, 3, 2], [3, 2, 0, 2], [0, 2, 0, 1], [4, 0, 10, 0], [10, 0, 10, 2], [10, 2, 4, 2], [4, 2, 4, 0]] }
+            answer: true
