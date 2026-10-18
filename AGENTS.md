@@ -23,7 +23,8 @@ git repo kept separate from schoolido-learning.
       components and narration, and the Practice tab
       (twist/docs/practice.md): sessions built by player/practice-rules.mjs
       (tests: `cd twist && npm test`) for a pretend child, with drill banks
-      from twist/drills/. `node twist/pages/player/build.mjs`; it
+      from twist/drills/; its screens are player/practice-ui.js and
+      player/practice.css. `node twist/pages/player/build.mjs`; it
       plays audio from twist/assets/narration/<voice>/, which is in git
       (about 3 GB); after a content change, narrate the new lines with
       twist/assets/tools/narration.py and commit the new clips.

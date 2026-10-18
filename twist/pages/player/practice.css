@@ -1,0 +1,128 @@
+/* Practice tab (practice-ui.js), inlined into the player's <style> by build.mjs.
+   The phone follows the app: white screen, Red Hat Display and Text, chunky
+   tiles with a thick bottom edge, subject colours from constants/subjects.ts.
+   The one bold element is the suggestion card in its subject's colour, with
+   the topic's mascot stepping out of it. */
+
+/* ---------- side panel (desktop, themed with the player) ---------- */
+body.practice .filebox, body.practice .sideh, body.practice .steps, body.practice .recd, body.practice #pickSub, body.practice .pickbtn, body.practice #now { display: none; }
+body.practice #practiceSide { display: block; flex: 1; min-height: 0; overflow-y: auto; padding-right: 4px; }
+#practiceSide details { margin-bottom: 12px; } #practiceSide summary { cursor: pointer; margin-bottom: 6px; }
+#practiceSide select { font: 13px system-ui, sans-serif; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); max-width: 130px; }
+#pcSkills span { font-size: 13px; } #pcSkills small { color: var(--muted); }
+.pr-grid { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; font-size: 13px; align-items: center; }
+.pr-why { font-size: 13px; background: var(--page); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 6px 10px; margin: 0; }
+.pr-why dt { color: var(--muted); } .pr-why dd { margin: 0; overflow-wrap: anywhere; } .pr-why code { font-size: 11px; color: var(--muted); }
+.pr-why.empty { display: block; color: var(--muted); }
+
+/* ---------- the phone: home ---------- */
+.pr-home { --ink: #2b0f45; --soft: #6b6280; --edge: #dfdfdf; position: relative; height: 100%; overflow-y: auto; padding: 8px 18px 110px; display: flex; flex-direction: column; gap: 16px; color: var(--ink); font-family: "Red Hat Text", system-ui, sans-serif; scrollbar-width: none; }
+.pr-home::-webkit-scrollbar { display: none; }
+.pr-top { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; }
+.pr-me { width: 44px; height: 44px; object-fit: contain; }
+.pr-top h2 { margin: 0; font: 800 19px/1.2 "Red Hat Display", sans-serif; }
+.pr-done { display: flex; align-items: center; gap: 4px; font: 800 16px "Red Hat Display", sans-serif; padding: 4px 10px 4px 4px; border: 2px solid var(--edge); border-radius: 999px; }
+.pr-done img { width: 26px; height: 26px; }
+
+/* The suggestion card: the one loud thing on the screen. */
+.pr-hero { position: relative; display: grid; gap: 4px; justify-items: start; text-align: left; margin-top: 18px; padding: 18px 18px 18px; padding-right: 116px; border: 0; border-radius: 26px; background: var(--c); color: #fff; font: inherit; cursor: pointer; box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .18); }
+.pr-hero .pr-kind { font: 700 13px "Red Hat Text", sans-serif; opacity: .85; }
+.pr-hero .pr-reason { font: 800 24px/1.12 "Red Hat Display", sans-serif; letter-spacing: -.01em; }
+.pr-hero .pr-sub { font-size: 14px; line-height: 1.35; opacity: .92; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pr-hero .pr-size { font-size: 13px; font-weight: 600; opacity: .85; margin-top: 2px; }
+.pr-go { margin-top: 10px; padding: 10px 22px; border-radius: 14px; background: #fff; color: var(--c); font: 800 15px "Red Hat Display", sans-serif; box-shadow: 0 4px 0 rgba(0, 0, 0, .22); }
+.pr-hero:active .pr-go { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, .22); }
+.pr-art { position: absolute; right: -6px; bottom: 8px; width: 132px; height: 150px; object-fit: contain; object-position: bottom; pointer-events: none; filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .12)); }
+.pr-hero:focus-visible, .pr-mini:focus-visible, .pr-subj:focus-visible, .pr-fab:focus-visible, .pr-skill button:focus-visible { outline: 3px solid #6849dd; outline-offset: 3px; }
+
+.pr-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pr-pair:empty { display: none; }
+.pr-mini { display: grid; grid-template-rows: auto auto 1fr; gap: 2px; text-align: left; padding: 12px; min-height: 128px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: #fff; font: inherit; color: var(--ink); cursor: pointer; }
+.pr-mini img { width: 44px; height: 44px; object-fit: contain; }
+.pr-mini .pr-kind { font: 700 12px "Red Hat Text", sans-serif; color: var(--c); }
+.pr-mini b { font: 800 15px/1.2 "Red Hat Display", sans-serif; }
+.pr-mini:active, .pr-subj:active { transform: translateY(3px); border-bottom-width: 2px; }
+
+.pr-search { display: flex; align-items: center; gap: 8px; padding: 0 14px; border: 2px solid var(--edge); border-radius: 16px; background: #f7f7f7; color: var(--soft); }
+.pr-search svg { width: 20px; height: 20px; flex: none; }
+.pr-search input { flex: 1; min-width: 0; border: 0; background: none; font: 500 16px "Red Hat Text", sans-serif; padding: 12px 0; color: var(--ink); outline: none; }
+.pr-search:focus-within { border-color: #6849dd; background: #fff; }
+
+.pr-h { margin: 6px 0 0; font: 800 17px "Red Hat Display", sans-serif; }
+#prList { display: flex; flex-direction: column; gap: 10px; }
+.pr-subj { display: grid; grid-template-columns: 56px 1fr 22px; gap: 12px; align-items: center; padding: 10px 14px 10px 10px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: #fff; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+.pr-subj img { width: 56px; height: 56px; object-fit: contain; border-radius: 14px; background: color-mix(in srgb, var(--c) 14%, #fff); }
+.pr-subj-t { display: grid; gap: 3px; }
+.pr-subj-t b { font: 800 18px "Red Hat Display", sans-serif; }
+.pr-subj-t small { font-size: 13px; color: var(--soft); }
+.pr-bar { display: block; height: 8px; border-radius: 99px; background: #ececec; overflow: hidden; }
+.pr-bar i { display: block; height: 100%; background: var(--c); border-radius: 99px; }
+.chev { width: 22px; height: 22px; color: #b9b2c4; }
+
+.pr-fab { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 14px 22px 14px 16px; border: 0; border-radius: 999px; background: #6849dd; color: #fff; font: 800 15px "Red Hat Display", sans-serif; white-space: nowrap; box-shadow: 0 5px 0 #4b30b0, 0 12px 24px -8px rgba(60, 30, 140, .55); cursor: pointer; z-index: 5; }
+.pr-fab span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: rgba(255, 255, 255, .22); font-size: 20px; line-height: 1; }
+.pr-fab:active { transform: translate(-50%, 3px); box-shadow: 0 2px 0 #4b30b0; }
+
+/* ---------- subject page ---------- */
+.pr-page { padding-top: 0; }
+.pr-band { position: sticky; top: 0; z-index: 2; margin: 0 -18px; padding: 14px 18px 16px; display: grid; grid-template-columns: 40px 1fr; column-gap: 8px; align-items: center; background: var(--c); color: #fff; border-radius: 0 0 24px 24px; }
+.pr-band h2 { margin: 0; font: 800 24px "Red Hat Display", sans-serif; }
+.pr-band small { grid-column: 2; font-size: 13px; opacity: .85; }
+.pr-back { width: 40px; height: 40px; border: 0; border-radius: 12px; background: rgba(255, 255, 255, .2); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.pr-back .chev { transform: rotate(180deg); color: #fff; }
+#prTopics { display: flex; flex-direction: column; gap: 10px; }
+.pr-topic { border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: #fff; overflow: hidden; }
+.pr-topic > summary { list-style: none; display: grid; grid-template-columns: 40px 1fr 22px; gap: 12px; align-items: center; padding: 12px 14px; cursor: pointer; }
+.pr-topic > summary::-webkit-details-marker { display: none; }
+.pr-topic > summary b { display: block; font: 800 16px "Red Hat Display", sans-serif; }
+.pr-topic > summary small { font-size: 13px; color: var(--soft); }
+.pr-topic[open] > summary .chev { transform: rotate(90deg); }
+.pr-ring { width: 40px; height: 40px; }
+.pr-review { margin: 4px 14px 14px; width: calc(100% - 28px); padding: 10px; border: 2px dashed var(--edge); border-radius: 14px; background: none; font: 700 14px "Red Hat Display", sans-serif; color: var(--ink); cursor: pointer; }
+.pr-more { align-self: center; padding: 8px 16px; border: 0; background: none; font: 700 14px "Red Hat Text", sans-serif; color: #6849dd; text-decoration: underline; cursor: pointer; }
+.pr-empty { color: var(--soft); text-align: center; padding: 18px 8px; }
+
+/* ---------- a skill ---------- */
+.pr-skill { display: grid; grid-template-columns: 1fr auto; gap: 8px 10px; align-items: center; padding: 12px 14px; border-top: 1px solid #f0f0f0; }
+#prList > .pr-skill { border: 2px solid var(--edge); border-radius: 16px; }
+.pr-skill-t { font-size: 14px; line-height: 1.35; }
+.pr-skill-t small { display: block; font: 700 12px "Red Hat Text", sans-serif; color: var(--c); }
+.pr-stars { font-size: 18px; letter-spacing: 1px; color: #e5e1ea; white-space: nowrap; }
+.pr-stars i { font-style: normal; } .pr-stars i.on { color: #f5b400; } .pr-stars em { font-style: normal; font-size: 14px; color: #c44d00; margin-left: 2px; }
+.pr-acts { grid-column: 1 / -1; display: flex; gap: 8px; }
+.pr-acts button { padding: 8px 14px; border-radius: 12px; font: 800 13px "Red Hat Display", sans-serif; cursor: pointer; }
+.pr-play { border: 0; background: var(--c); color: #fff; box-shadow: 0 3px 0 rgba(0, 0, 0, .2); }
+.pr-drill { border: 2px solid var(--c); background: #fff; color: var(--c); }
+
+/* ---------- Make my own sheet ---------- */
+.pr-sheet { max-height: 88%; padding: 8px 20px 0; gap: 14px; background: #fff; font-family: "Red Hat Text", system-ui, sans-serif; color: #2b0f45; }
+.pr-grab { align-self: center; width: 44px; height: 5px; border-radius: 99px; background: #dcdcdc; }
+.pr-sheet-h { margin: 0; font: 800 20px "Red Hat Display", sans-serif; }
+.pr-ask { display: grid; gap: 6px; font-weight: 700; font-size: 14px; }
+.pr-ask-row { display: flex; gap: 8px; }
+.pr-ask input { flex: 1; min-width: 0; font: 500 16px "Red Hat Text", sans-serif; padding: 12px 14px; border: 2px solid #dfdfdf; border-radius: 14px; color: #2b0f45; }
+.pr-ask input:focus { outline: none; border-color: #6849dd; }
+.pr-read { padding: 0 14px; border: 2px solid #6849dd; border-radius: 14px; background: #fff; color: #6849dd; font: 800 14px "Red Hat Display", sans-serif; cursor: pointer; }
+.pr-note { margin: -6px 0 0; padding: 8px 12px; border-radius: 12px; background: #f1edfc; font-size: 13px; }
+.pr-group { display: grid; gap: 6px; }
+.pr-gl { font-weight: 700; font-size: 14px; }
+.pr-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.pr-chips button { --c: #6849dd; font: 600 14px "Red Hat Text", sans-serif; padding: 7px 12px; border-radius: 999px; border: 2px solid #dfdfdf; background: #fff; color: #2b0f45; cursor: pointer; }
+.pr-chips button[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: #fff; }
+.pr-sheet-foot { position: sticky; bottom: 0; display: grid; gap: 8px; padding: 10px 0 22px; background: linear-gradient(transparent, #fff 18px); }
+
+/* ---------- end of a session ---------- */
+.pr-end { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding-top: 8px; font-family: "Red Hat Text", sans-serif; color: #2b0f45; }
+.pr-burst { position: relative; display: grid; place-items: center; }
+.pr-burst .mascot-pose { position: relative; z-index: 1; max-height: 210px; }
+.pr-burst i { position: absolute; left: 50%; top: 45%; font-style: normal; font-size: 26px; color: #f5b400; opacity: 0; animation: pr-pop 900ms cubic-bezier(.2, .9, .3, 1.2) var(--d) forwards; }
+@keyframes pr-pop { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--a)) translateY(0) scale(.4); } 60% { opacity: 1; } 100% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--a)) translateY(-118px) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .pr-burst i { animation: none; opacity: 1; transform: translate(-50%, -50%) rotate(var(--a)) translateY(-118px); } }
+.pr-end h2 { margin: 0; font: 800 34px/1.1 "Red Hat Display", sans-serif; color: var(--c); }
+.pr-first { margin: 0; font-size: 15px; color: #6b6280; }
+.pr-better { width: 100%; text-align: left; padding: 12px 14px; border: 2px solid #dfdfdf; border-bottom-width: 5px; border-radius: 18px; }
+.pr-better b { font: 800 15px "Red Hat Display", sans-serif; }
+.pr-better ul { margin: 6px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.4; }
+
+/* ---------- drills ---------- */
+.pr-flash { font: 800 54px "Red Hat Display", sans-serif; text-align: center; padding: 20px 0; }

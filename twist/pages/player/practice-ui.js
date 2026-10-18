@@ -4,8 +4,8 @@
    practice-rules.mjs, inlined above this file by build.mjs. */
 const PR = { on: false, home: false, child: null, index: null, session: null, items: [], res: [], shownAt: 0, saved: null };
 const PTXT = {
-  de: { title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Drill", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Drill", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
-  en: { title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
+  de: { hello: "Hallo! Was üben wir heute?", doneTitle: "Übungsrunden geschafft", size: (n, m) => `${n} Aufgaben, etwa ${m} Minuten`, drillSize: (m) => `${m} Minuten, so schnell du kannst`, subjects: "Deine Fächer", stars: (a, b) => `${a} von ${b} Sternen`, practise: "Üben", back: "Zurück", allYears: "Alle Klassen", myYear: "Nur meine Klasse", skillsN: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, reviewTopic: "Ganzes Thema wiederholen", noneHere: "Hier gibt es in deiner Klasse nichts. Tippe auf Alle Klassen.", found: (n) => `${n} gefunden`, noHits: "Nichts gefunden. Versuch ein anderes Wort.", gSubject: "Fach", gTopic: "Thema", gTime: "Wie lange?", gKind: "Wie?", understood: (ws) => `Verstanden: ${ws.join(", ")}`, title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Drill", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Drill", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
+  en: { hello: "Hi! What shall we practise today?", doneTitle: "Practice sessions finished", size: (n, m) => `${n} tasks, about ${m} minutes`, drillSize: (m) => `${m} minutes, as fast as you can`, subjects: "Your subjects", stars: (a, b) => `${a} of ${b} stars`, practise: "Practise", back: "Back", allYears: "All years", myYear: "Just my year", skillsN: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, reviewTopic: "Review the whole topic", noneHere: "Nothing here for your year. Tap All years.", found: (n) => `${n} found`, noHits: "Nothing found. Try another word.", gSubject: "Subject", gTopic: "Topic", gTime: "How long?", gKind: "How?", understood: (ws) => `Understood: ${ws.join(", ")}`, title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
 };
 const PL = () => (PR.child?.curriculum === "en-GB" ? "en" : "de");
 const PT = () => PTXT[PL()];
@@ -33,51 +33,118 @@ function closePractice() {
   if (PR.saved) { ({ set, lesson, steps, results, at } = PR.saved); PR.saved = null; go(at); }
 }
 
-const CARD_ICON = { recaps: ["↻", "#6849dd"], "catch-up": ["★", "#c44d00"], drill: ["⚡", "#0e8654"], review: ["✎", "#1971c0"] };
+// The Practice home: one large suggestion in its subject's colour, two smaller
+// ones, search, and the child's subjects with their stars.
+const KIND_POSE = { recaps: "learn-2", "catch-up": "practise-1", drill: "check-2", review: "learn-3", skill: "practise-3", mixed: "practise-2" };
+const setOfSkill = (k) => PR.index.bySkill[k]?.set;
+const subjOfSkill = (k) => setOfSkill(k)?.id.split(".")[1];
+const colourOf = (subj) => SUBJ_COLOUR[`${PR.child.curriculum}.${subj}`] ?? "#6849dd";
+const poseSrc = (card) => `${A}mascot/${setOfSkill(card.skills[0])?.pose ?? KIND_POSE[card.kind]}.png`;
+function sizeOf(card) {
+  const b = BANDS[PR.child.band];
+  if (card.kind === "drill") return PT().drillSize(2);
+  const n = card.kind === "recaps" ? Math.min(card.skills.length, Math.floor(b.tasks / b.recapTasks)) * b.recapTasks : b.tasks;
+  return PT().size(n, Math.max(2, Math.round(n * 0.4)));
+}
+const CHEVRON = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const LENS = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>';
+
 function renderPracticeHome() {
-  const L = PT(), scr = $("#screen"), lg = PL();
-  scr.innerHTML = `<div class="status"></div><div class="pr-home"><h2>${esc(L.title)}</h2>
-    <div class="pr-h">${esc(L.suggested)}</div><div id="prCards" style="display:grid;gap:10px"></div>
-    <input class="pr-search" id="prQ" type="search" placeholder="${esc(L.search)}" aria-label="${esc(L.search)}">
-    <div id="prList" style="display:grid;gap:10px"></div></div>
-    <button class="pr-fab" id="prFab" aria-label="${esc(L.make)}">+</button>`;
-  const cards = $("#prCards");
-  for (const c of suggestions(PR.child, PR.index)) {
-    const [ic, col] = CARD_ICON[c.kind], b = document.createElement("button"); b.className = "pr-card"; b.style.setProperty("--c", col);
-    const sub = c.kind === "recaps" ? c.skills.map(canDoOf).slice(0, 2).join(" · ") : canDoOf(c.skills[0]);
-    b.innerHTML = `<span class="ic">${ic}</span><b>${esc(c.reason[lg])}</b><small>${esc(sub)}</small>`;
-    b.onclick = () => startSession({ kind: c.kind, skills: c.skills });
-    cards.appendChild(b);
-  }
-  $("#prQ").oninput = () => renderPracticeList($("#prQ").value);
+  const L = PT(), lg = PL(), scr = $("#screen");
+  const cards = suggestions(PR.child, PR.index), [hero, ...rest] = cards;
+  const sub = (c) => (c.kind === "recaps" ? c.skills.map(canDoOf).slice(0, 2).join(" ") : canDoOf(c.skills[0]));
+  scr.innerHTML = `<div class="status"></div><div class="pr-home">
+    <header class="pr-top"><img class="pr-me" src="${A}mascot/start-1.png" alt=""><h2>${esc(L.hello)}</h2>
+      <span class="pr-done" title="${esc(L.doneTitle)}"><img src="${A}badges/busy-bee.svg" alt="">${PR.child.sessions}</span></header>
+    ${hero ? `<button class="pr-hero" data-i="0" style="--c:${colourOf(subjOfSkill(hero.skills[0]))}">
+      <span class="pr-kind">${esc(L.kinds[hero.kind] ?? "")}</span>
+      <b class="pr-reason">${esc(hero.reason[lg])}</b>
+      <span class="pr-sub">${esc(sub(hero))}</span>
+      <span class="pr-size">${esc(sizeOf(hero))}</span>
+      <span class="pr-go">${esc(L.start)}</span>
+      <img class="pr-art" src="${poseSrc(hero)}" alt=""></button>` : ""}
+    <div class="pr-pair">${rest.map((c, i) => `<button class="pr-mini" data-i="${i + 1}" style="--c:${colourOf(subjOfSkill(c.skills[0]))}">
+      <img src="${poseSrc(c)}" alt=""><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b>${esc(c.reason[lg])}</b></button>`).join("")}</div>
+    <label class="pr-search">${LENS}<input id="prQ" type="search" placeholder="${esc(L.search)}" aria-label="${esc(L.search)}"></label>
+    <div id="prList"></div></div>
+    <button class="pr-fab" id="prFab"><span aria-hidden="true">+</span>${esc(L.make)}</button>`;
+  scr.querySelectorAll("[data-i]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.i]; startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
+  $("#prQ").oninput = () => { const q = $("#prQ").value; q.trim() ? renderSearch(q) : renderSubjects(); };
   $("#prFab").onclick = () => openMakeSheet();
-  renderPracticeList("");
+  renderSubjects();
 }
 
-function renderPracticeList(q) {
-  const el = $("#prList"), lg = PL(), words = q.toLowerCase().split(/\s+/).filter(Boolean);
-  const hit = (k) => { const tp = D.skills[k]?.topic ?? {}; const hay = [canDoOf(k), tp.de, tp.en, PR.index.drills[k] ? "drill einmaleins times blitzlesen" : ""].join(" ").toLowerCase(); return words.every((w) => hay.includes(w)); };
-  el.innerHTML = `<div class="pr-h">${esc(PT().browse)}</div>`;
-  for (const subject of PR.index.subjects) {
-    const det = document.createElement("details"); det.className = "pr-sub"; det.open = !!words.length;
-    det.innerHTML = `<summary>${esc(SUBJ_NAME[PR.child.curriculum][subject] ?? subject)}</summary>`;
-    let n = 0;
-    for (const tp of PR.index.topics.filter((t) => t.subject === subject)) {
-      const ks = tp.skills.filter((k) => !words.length || hit(k)); if (!ks.length) continue;
-      const h = document.createElement("div"); h.className = "pr-h"; h.textContent = tp.name[lg] ?? tp.name.en; det.appendChild(h);
-      for (const k of ks) {
-        n++;
-        const row = document.createElement("div"); row.className = "pr-skill";
-        row.innerHTML = `<span>${esc(canDoOf(k))}</span><span class="stars">${starsOf(k)}</span>`;
-        row.onclick = (e) => { if (e.target.closest(".drillb")) return; startSession({ kind: ["practised", "needs_refresh"].includes(PR.child.states[k]?.state) ? "catch-up" : "skill", skills: [k] }); };
-        if (PR.index.drills[k]) { const d = document.createElement("button"); d.className = "drillb"; d.textContent = PT().drill; d.onclick = () => startSession({ kind: "drill", skills: [k], minutes: 2 }); row.querySelector(".stars").after(d); }
-        det.appendChild(row);
-      }
-    }
-    if (n) el.appendChild(det);
+// Stars earned out of stars possible, for a list of skills.
+const starCount = (skills) => skills.reduce((n, k) => n + STARS[PR.child.states[k]?.state ?? "not_started"], 0);
+const yearSkills = (subj) => { const mine = PR.index.sets.filter((s) => s.id.split(".")[1] === subj && s.year === PR.child.year); return (mine.length ? mine : PR.index.sets.filter((s) => s.id.split(".")[1] === subj)).map((s) => s.skill); };
+
+function renderSubjects() {
+  const L = PT(), el = $("#prList");
+  el.innerHTML = `<h3 class="pr-h">${esc(L.subjects)}</h3>`;
+  for (const subj of PR.index.subjects) {
+    const ks = yearSkills(subj), got = starCount(ks), max = ks.length * 3, pose = setOfSkill(ks[0])?.pose ?? "start-2";
+    const b = document.createElement("button"); b.className = "pr-subj"; b.style.setProperty("--c", colourOf(subj));
+    b.innerHTML = `<img src="${A}mascot/${pose}.png" alt=""><span class="pr-subj-t"><b>${esc(SUBJ_NAME[PR.child.curriculum][subj] ?? subj)}</b>
+      <small>${esc(L.stars(got, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * got) / max : 0}%"></i></i></span>${CHEVRON}`;
+    b.onclick = () => renderSubject(subj);
+    el.appendChild(b);
   }
 }
 
+// A skill: its "I can" line, its stars, and what the child can start.
+function skillRow(k, withSubject = false) {
+  const L = PT(), row = document.createElement("div"); row.className = "pr-skill"; row.style.setProperty("--c", colourOf(subjOfSkill(k)));
+  const n = STARS[PR.child.states[k]?.state ?? "not_started"], refresh = PR.child.states[k]?.state === "needs_refresh";
+  row.innerHTML = `<span class="pr-skill-t">${withSubject ? `<small>${esc(SUBJ_NAME[PR.child.curriculum][subjOfSkill(k)] ?? "")}</small>` : ""}${esc(canDoOf(k))}</span>
+    <span class="pr-stars" aria-label="${n} / 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}">★</i>`).join("")}${refresh ? '<em title="refresh">↻</em>' : ""}</span>
+    <span class="pr-acts"><button class="pr-play">${esc(L.practise)}</button>${PR.index.drills[k] ? `<button class="pr-drill">${esc(L.drill)}</button>` : ""}</span>`;
+  row.querySelector(".pr-play").onclick = () => startSession({ kind: ["practised", "needs_refresh"].includes(PR.child.states[k]?.state) ? "catch-up" : "skill", skills: [k] });
+  row.querySelector(".pr-drill")?.addEventListener("click", () => startSession({ kind: "drill", skills: [k], minutes: 2 }));
+  return row;
+}
+
+function ring(got, max, colour) {
+  const r = 15, c = 2 * Math.PI * r, f = max ? got / max : 0;
+  return `<svg class="pr-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${r}" fill="none" stroke="#ececec" stroke-width="6"/>
+    <circle cx="20" cy="20" r="${r}" fill="none" stroke="${colour}" stroke-width="6" stroke-linecap="round" stroke-dasharray="${(f * c).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 20 20)"/></svg>`;
+}
+
+function renderSubject(subj, allYears = false) {
+  const L = PT(), lg = PL(), scr = $("#screen"), colour = colourOf(subj);
+  const topics = PR.index.topics.filter((t) => t.subject === subj)
+    .map((t) => ({ ...t, skills: allYears ? t.skills : t.skills.filter((k) => setOfSkill(k)?.year === PR.child.year) }))
+    .filter((t) => t.skills.length);
+  scr.innerHTML = `<div class="status"></div><div class="pr-home pr-page">
+    <header class="pr-band" style="--c:${colour}"><button class="pr-back" aria-label="${esc(L.back)}">${CHEVRON}</button>
+      <h2>${esc(SUBJ_NAME[PR.child.curriculum][subj] ?? subj)}</h2><small>${esc(allYears ? L.allYears : yearName(PR.child.year))}</small></header>
+    <div id="prTopics"></div>
+    <button class="pr-more">${esc(allYears ? L.myYear : L.allYears)}</button></div>`;
+  $(".pr-back", scr).onclick = () => renderPracticeHome();
+  $(".pr-more", scr).onclick = () => renderSubject(subj, !allYears);
+  const box = $("#prTopics", scr);
+  for (const t of topics) {
+    const d = document.createElement("details"); d.className = "pr-topic";
+    const got = starCount(t.skills), max = t.skills.length * 3;
+    d.innerHTML = `<summary>${ring(got, max, colour)}<span><b>${esc(t.name[lg] ?? t.name.en)}</b><small>${esc(L.skillsN(t.skills.length))}</small></span>${CHEVRON}</summary>`;
+    const review = document.createElement("button"); review.className = "pr-review"; review.textContent = L.reviewTopic;
+    review.onclick = () => startSession({ kind: "review", skills: t.skills });
+    t.skills.forEach((k) => d.appendChild(skillRow(k)));
+    if (t.skills.length > 1) d.appendChild(review);
+    box.appendChild(d);
+  }
+  if (!topics.length) box.innerHTML = `<p class="pr-empty">${esc(L.noneHere)}</p>`;
+}
+
+function renderSearch(q) {
+  const L = PT(), el = $("#prList"), words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const hit = (k) => { const tp = D.skills[k]?.topic ?? {}; const hay = [canDoOf(k), tp.de, tp.en, SUBJ_NAME[PR.child.curriculum][subjOfSkill(k)], PR.index.drills[k] ? "drill einmaleins times tables blitzlesen" : ""].join(" ").toLowerCase(); return words.every((w) => hay.includes(w)); };
+  const ks = PR.index.sets.map((s) => s.skill).filter(hit);
+  // The child's own year first.
+  ks.sort((a, b) => (setOfSkill(b).year === PR.child.year) - (setOfSkill(a).year === PR.child.year));
+  el.innerHTML = `<h3 class="pr-h">${esc(L.found(ks.length))}</h3>`;
+  ks.slice(0, 30).forEach((k) => el.appendChild(skillRow(k, true)));
+  if (!ks.length) el.insertAdjacentHTML("beforeend", `<p class="pr-empty">${esc(L.noHits)}</p>`);
+}
 
 function startSession({ kind, skills = [], minutes = null, topics = [] }) {
   const fromTopics = topics.flatMap((key) => PR.index.topics.find((t) => t.key === key)?.skills ?? []);
@@ -165,9 +232,13 @@ function practiceEnd() {
   const { body, foot } = practiceFrame({});
   const better = Object.entries(sc.perSkill).filter(([, p]) => p.right).map(([k]) => canDoOf(k));
   const big = session.kind === "drill" ? (out.record ? L.record(sc.perMinute) : L.perMin(sc.perMinute ?? 0)) : L.right(sc.right);
-  body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(big)}</h2>
-    ${PR.child.band === "8-10" && session.kind !== "drill" ? `<p>${esc(L.firstOf(sc.firstTry, sc.total))}</p>` : ""}
-    ${better.length ? `<p><b>${esc(L.better)}</b><br>${better.map(esc).join("<br>")}</p>` : ""}</div>`;
+  // One moment of motion: stars burst once behind the mascot (none with reduced motion).
+  const col = colourOf(subjOfSkill(session.skills[0]));
+  body.innerHTML = `<div class="pr-end" style="--c:${col}">
+    <div class="pr-burst" aria-hidden="true">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<i style="--a:${i * 51}deg;--d:${i * 40}ms">★</i>`).join("")}${mascotPose("end")}</div>
+    <h2>${esc(big)}</h2>
+    ${PR.child.band === "8-10" && session.kind !== "drill" ? `<p class="pr-first">${esc(L.firstOf(sc.firstTry, sc.total))}</p>` : ""}
+    ${better.length ? `<div class="pr-better"><b>${esc(L.better)}</b><ul>${better.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}</div>`;
   PR.on = false; PR.home = true;
   nextBtn(foot, L.back, () => { PR.session = null; renderPracticeHome(); renderPracticeSide(); });
   nextBtn(foot, L.again, () => startSession({ kind: session.kind, skills: session.skills, minutes: session.minutes })).classList.add("light");
@@ -232,23 +303,30 @@ function refreshPractice() {
 
 function openMakeSheet() {
   const L = PT(), lg = PL(), scr = $("#screen"), F = { subject: PR.index.subjects[0], topics: [], skills: [], minutes: 10, kind: "mixed" };
-  const m = document.createElement("div"); m.className = "sheet menu-sheet"; m.style.maxHeight = "85%"; m.style.overflowY = "auto";
+  const m = document.createElement("div"); m.className = "sheet menu-sheet pr-sheet";
+  let typed = "";
   const draw = (note = "") => {
-    const tps = PR.index.topics.filter((t) => t.subject === F.subject);
-    m.innerHTML = `<div class="msg">${esc(L.make)}</div>
-      <label class="pr-h" for="prAsk">${esc(L.ask)}</label>
-      <div style="display:flex;gap:8px"><input class="pr-search" id="prAsk" type="text"><button class="btn light" id="prRead" style="width:auto">${esc(L.read)}</button></div>
-      ${note ? `<p class="note">${esc(note)}</p>` : ""}
-      <div class="pr-chips" id="fcSub">${PR.index.subjects.map((s) => `<button data-v="${s}" aria-pressed="${F.subject === s}">${esc(SUBJ_NAME[PR.child.curriculum][s] ?? s)}</button>`).join("")}</div>
-      <div class="pr-chips" id="fcTop">${tps.map((t) => `<button data-v="${esc(t.key)}" aria-pressed="${F.topics.includes(t.key)}">${esc(t.name[lg] ?? t.name.en)}</button>`).join("")}</div>
-      <div class="pr-chips" id="fcMin">${[5, 10, 15].map((n) => `<button data-v="${n}" aria-pressed="${F.minutes === n}">${n} ${esc(L.minutes)}</button>`).join("")}</div>
-      <div class="pr-chips" id="fcKind">${["mixed", "drill", "review", "catch-up"].map((k) => `<button data-v="${k}" aria-pressed="${F.kind === k}">${esc(L.kinds[k])}</button>`).join("")}</div>`;
+    // Topics of the child's year first; every topic of the subject if the year has none.
+    const all = PR.index.topics.filter((t) => t.subject === F.subject);
+    const mine = all.filter((t) => t.skills.some((k) => setOfSkill(k)?.year === PR.child.year));
+    const tps = mine.length ? mine : all;
+    const group = (label, id, html) => `<div class="pr-group"><span class="pr-gl">${esc(label)}</span><div class="pr-chips" id="${id}">${html}</div></div>`;
+    m.innerHTML = `<div class="pr-grab" aria-hidden="true"></div><h3 class="pr-sheet-h">${esc(L.make)}</h3>
+      <label class="pr-ask"><span>${esc(L.ask)}</span><span class="pr-ask-row"><input id="prAsk" type="text" value="${esc(typed)}"><button class="pr-read" id="prRead">${esc(L.read)}</button></span></label>
+      ${note ? `<p class="pr-note">${esc(note)}</p>` : ""}
+      ${group(L.gSubject, "fcSub", PR.index.subjects.map((s) => `<button data-v="${esc(s)}" aria-pressed="${F.subject === s}" style="--c:${colourOf(s)}">${esc(SUBJ_NAME[PR.child.curriculum][s] ?? s)}</button>`).join(""))}
+      ${group(L.gTopic, "fcTop", tps.map((t) => `<button data-v="${esc(t.key)}" aria-pressed="${F.topics.includes(t.key)}">${esc(t.name[lg] ?? t.name.en)}</button>`).join(""))}
+      ${group(L.gTime, "fcMin", [5, 10, 15].map((n) => `<button data-v="${n}" aria-pressed="${F.minutes === n}">${n} ${esc(L.minutes)}</button>`).join(""))}
+      ${group(L.gKind, "fcKind", ["mixed", "drill", "review", "catch-up"].map((k) => `<button data-v="${k}" aria-pressed="${F.kind === k}">${esc(L.kinds[k])}</button>`).join(""))}`;
     const ask = $("#prAsk", m);
+    ask.oninput = () => { typed = ask.value; };
     $("#prRead", m).onclick = () => {
-      const r = parseRequest(ask.value, PR.index);
+      typed = ask.value; const r = parseRequest(ask.value, PR.index);
       if (r.unknown) return draw(L.none);
       Object.assign(F, { topics: r.filters.topics ?? F.topics, skills: r.filters.skills ?? [], minutes: r.filters.minutes ?? F.minutes, kind: r.filters.kind ?? F.kind, subject: r.filters.subject ?? F.subject });
-      draw(r.understood.join(" · "));
+      // Show the words as the child typed them, not lowercased.
+      const asTyped = (w) => { const i = typed.toLowerCase().indexOf(w.toLowerCase()); return i < 0 ? w : typed.slice(i, i + w.length); };
+      draw(L.understood([...new Set(r.understood.map(asTyped))]));
     };
     m.querySelectorAll("#fcSub button").forEach((b) => b.onclick = () => { F.subject = b.dataset.v; F.topics = []; F.skills = []; draw(); });
     m.querySelectorAll("#fcTop button").forEach((b) => b.onclick = () => { const v = b.dataset.v; F.topics = F.topics.includes(v) ? F.topics.filter((x) => x !== v) : [...F.topics, v]; draw(); });
@@ -264,7 +342,7 @@ function openMakeSheet() {
       m.remove(); startSession({ kind: F.kind, skills: F.kind === "drill" ? [skills[0]] : skills, minutes: F.kind === "drill" ? Math.min(F.minutes, 5) : F.minutes });
     };
     const x = document.createElement("button"); x.className = "btn light"; x.textContent = UI.close; x.onclick = () => m.remove();
-    m.appendChild(go_); m.appendChild(x);
+    const foot = document.createElement("div"); foot.className = "pr-sheet-foot"; foot.append(go_, x); m.appendChild(foot);
   };
   draw(); scr.appendChild(m);
 }
