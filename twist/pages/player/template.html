@@ -542,10 +542,12 @@ function group(o, opts = {}) {
   const one = pic({ ...o, count: undefined });
   const n = o.count, small = opts.small;
   if (o.layout === "scattered") {
-    const [cols, rows, order] = n <= 4 ? SCATTER_GRID[4] : n <= 6 ? SCATTER_GRID[6] : SCATTER_GRID[12];
+    // More than 12 things: a wider grid, cells taken in a fixed scattered order.
+    const big = (k) => { const cols = Math.ceil(Math.sqrt(k * 1.4)), rows = Math.ceil(k / cols), cells = cols * rows, gcd = (a, b) => (b ? gcd(b, a % b) : a), step = [7, 11, 13, 17].find((k) => gcd(k, cells) === 1); return [cols, rows, Array.from({ length: cells }, (_, i) => (i * step) % cells)]; };
+    const [cols, rows, order] = n <= 4 ? SCATTER_GRID[4] : n <= 6 ? SCATTER_GRID[6] : n <= 12 ? SCATTER_GRID[12] : big(n);
     const W = small ? 96 : 330, H = small ? 110 : 240, cw = W / cols, ch = H / rows, size = Math.floor(Math.min(cw, ch) * 0.74);
     const items = Array.from({ length: n }, (_, i) => {
-      const cell = order[i], c = cell % cols, r = Math.floor(cell / cols), [jx, jy] = JITTER[cell];
+      const cell = order[i], c = cell % cols, r = Math.floor(cell / cols), [jx, jy] = JITTER[cell % JITTER.length];
       const x = (c + 0.5 + jx) * cw - size / 2, y = (r + 0.5 + jy) * ch - size / 2;
       return `<span class="it" data-i="${i}" style="left:${(100 * x) / W}%;top:${(100 * y) / H}%;width:${size}px;height:${size}px">${one}</span>`;
     });
@@ -1454,20 +1456,40 @@ function fitScreen(body, vis) {
       const h = el.getBoundingClientRect().height; el.style.zoom = Math.max(1, z * (h - over) / h).toFixed(3);
     }
   };
-  requestAnimationFrame(() => { run(); fitTileText(body); });
+  requestAnimationFrame(() => { run(); fitTileText(body); shrinkToFit(body, vis); });
+}
+// When a screen still does not fit the phone, things give way in turn so
+// the answer controls stay whole: the picture (down to 64px), then the
+// question text (down to 15px), then the answer area scales down (to 55%).
+function shrinkToFit(body, vis) {
+  const over = () => body.scrollHeight - body.clientHeight;
+  for (let i = 0; i < 3 && vis && over() > 2; i++) {
+    const h = vis.getBoundingClientRect().height; if (h <= 64) break;
+    const target = Math.max(64, h - over() - 2);
+    vis.style.maxHeight = `${target}px`; vis.style.overflow = "hidden";
+    for (const el of vis.querySelectorAll("img, svg")) { el.style.maxHeight = `${target}px`; el.style.width = "auto"; el.style.maxWidth = "100%"; }
+  }
+  const q = body.querySelector(".bubbleq .t");
+  for (let fs = q ? parseFloat(getComputedStyle(q).fontSize) : 0; q && over() > 2 && fs > 15; ) { fs -= 1; q.style.fontSize = `${fs}px`; q.style.lineHeight = "1.25"; }
+  const area = [...body.children].filter((c) => c.matches(".opts, .cards, .pairs, .bins, .chips, .tf, .pad, .frame")).sort((x, y) => y.getBoundingClientRect().height - x.getBoundingClientRect().height)[0];
+  if (area && over() > 2) {
+    const h = area.getBoundingClientRect().height, z = Math.max(0.55, (h - over() - 2) / h);
+    area.style.zoom = z.toFixed(3);
+  }
 }
 // A sum or a number on a tile stays on one line ("3 + 5", never "3 +" over
-// "5"): the tiles of a row shrink to one font size at which every text fits.
+// "5"), and a word never runs past its tile: the tiles of a row shrink to one
+// font size at which every text fits.
 function fitTileText(body) {
-  for (const grid of body.querySelectorAll(".opts.tx, .opts.mid, .pad")) {
-    const texts = (b) => [...b.childNodes].filter((n) => n.nodeType === 3);
-    const tiles = [...grid.querySelectorAll(".opt")].filter((b) => { const t = texts(b).map((n) => n.textContent).join("").trim(); return t && !/[A-Za-zÄÖÜäöüßéèàç]{2}/.test(t); });
+  for (const grid of body.querySelectorAll(".opts.tx, .opts.mid, .opts.long, .pad, .cards, .pairs")) {
+    const texts = (b) => [...b.childNodes].filter((n) => n.nodeType === 3 && n.textContent.trim());
+    const tiles = [...grid.querySelectorAll(".opt, .card")].filter((b) => texts(b).length);
     if (!tiles.length) continue;
     const range = document.createRange();
-    const width = (b) => texts(b).reduce((w, n) => { range.selectNode(n); return w + range.getBoundingClientRect().width; }, 0);
-    tiles.forEach((b) => { b.style.whiteSpace = "nowrap"; });
+    const fits = (b) => { const box = b.getBoundingClientRect(); return texts(b).every((n) => { range.selectNodeContents(n); return [...range.getClientRects()].every((x) => x.left >= box.left + 4 && x.right <= box.right - 4); }); };
+    tiles.forEach((b) => { if (!/[A-Za-zÄÖÜäöüßéèàç]{2}/.test(b.textContent)) b.style.whiteSpace = "nowrap"; });
     let fs = parseFloat(getComputedStyle(tiles[0]).fontSize);
-    while (fs > 14 && tiles.some((b) => width(b) > b.clientWidth - 16)) { fs -= 2; tiles.forEach((b) => { b.style.fontSize = `${fs}px`; }); }
+    while (fs > 14 && !tiles.every(fits)) { fs -= 2; tiles.forEach((b) => { b.style.fontSize = `${fs}px`; }); }
   }
 }
 // Show an amount briefly, then cover it, so it has to be seen at a glance.
@@ -1741,8 +1763,10 @@ const TYPES = {
     vis.querySelectorAll(".it").forEach((it) => it.onclick = () => { if (st.over || it.classList.contains("tapped")) return; n++; it.dataset.n = n; it.classList.add("tapped"); });
     choice({ t, body, foot, vis: { set innerHTML(v) {} }, answer, st });
   },
-  ordering({ t, body, foot, answer, st }) {
+  ordering({ t, body, foot, vis, answer, st }) {
     // Tap cards in order to fill the slots; tap a filled slot to empty it.
+    // A picture or chart to order by stands above the cards.
+    if (t.show) vis.innerHTML = show(t.show);
     const slots = Array(t.slot_count).fill(null);
     const row = document.createElement("div"); row.className = "chips"; row.style.marginTop = "0"; body.appendChild(row);
     const sl = document.createElement("div"); sl.className = "frame slots"; sl.style.gap = "10px"; body.appendChild(sl);
