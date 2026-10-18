@@ -109,3 +109,213 @@ Collected from the workflow reports, one list per chunk: what a reviewer left fo
 - order-to-10's summary says written numerals come in Year 1, yet the existing tasks show digits in text and options (each one is spoken). The new l2-c18 also orders numeral cards (9, 8, 7, 6). Should the summary or the tasks change?
 - Small Reception number ranges leave few distinct tasks. Several skill-check tasks still repeat a Practise fact with a different layout, flash time, noun or distractor. Examples: even-odd l2-c5 and l2-c9 (same count as Practise, row in place of dice), subitize-to-10 l2-c4 and l2-c20 (same scattered count, different flash), div-meaning l2-c19 (9 shared between 3, as in l1-n4). The build accepts them. Is that level of overlap acceptable for ages 4 to 5, or should Practise and the pool be split by number?
 - order-to-10 l2-c11 and compare-to-10 l2-c20 ask for 'most first', but the amounts part reads 'from fewest to most' and Learn orders fewest first. Should the part's wording widen, or should these two tasks go back to fewest first?
+
+## Review of all practice content (225 sets, 2026-10-18)
+
+The language reviewer of each chunk merged the correctness reviewer's questions into its own list.
+
+### de-DE-klasse-1-math-1
+
+- add-bridge-10: before this pass, lesson 3 stories showed one picture of the object on purpose, so the child could not count pictures (misconception count-pictures). The correctness reviewer removed the pictures because a single picture contradicts the story. The other option is to restore them with `count` set to the starting amount. Should story tasks in Klasse 1 show the starting amount or no picture?
+- add-to-10 point_on_line tasks: the correctness reviewer left say as 'Fang bei zwei an, fünf Schritte weiter. Wo landest du?' and asked whether to cut it to the sum. I cut it to 'Wo landest du? Zwei plus fünf.' in the no-help stage and every check (l1-n3, l2-n3, l1-c3, l2-c4, l2-c17, l2-c19), because it tells the child the method and l2-c4 starts from the smaller number. Practise full and some (l1-f3, l1-s3, l2-f3, l2-s3) keep the guided say. Confirm, or revert if the spoken procedure is wanted as part of the task.
+- add-bridge-10 Learn screens (lessons 1 and 2) still have digits in say ('Wir rechnen 8 plus 5 ...'). I changed only task says. Should Learn says also be written in words? They are already narrated.
+- add-meaning: many Practise tasks show 'Welche Aufgabe passt?' or 'Schreib die Aufgabe.' while say has 'Plusaufgabe'. I aligned only the no-help and check tasks where an option is a minus sum (l1-n3, l1-c2, l2-c12). Should all says use the on-screen word, or is 'Plusaufgabe' in say wanted as vocabulary?
+- compare-to-20 l2-c3, l2-f1, l2-c16: the 'sum' distractors 37, 27 and 24 are above 20, the Klasse 1 range. They follow the difference-as-total misconception. Keep them, or swap them for one of the two numbers?
+
+### de-DE-klasse-1-math-2
+
+- From the correctness reviewer: fluency-to-20 (l2-f1, l2-f5, l2-s1, l2-n1, l2-c16; l2-c17 is no longer one, it is now a multiple choice) and inverse (l2-f2, l2-f5, l2-s2, l2-s4, l2-n2, l2-n4, l2-c5, l2-c13 to l2-c16) put a fact family in one fill_in_blank frame split by ' | ', which the player shows as a literal pipe. 42 lesson files use the pattern. Should frames get a line-break separator, or should these use a drawn equation list?
+- From the correctness reviewer, now settled: the inverse l2-f1 and l2-s1 hints now say a family sum uses all three numbers, so the distractor 4 − 2 = 2 no longer looks allowed. Please confirm the new wording.
+- inverse l2-c2 and l2-c7 (skill check) keep the 'Nimm die N wieder weg' cue that the correctness reviewer added to make the answer unique. It works as a pointer more than a hint. Should these frames instead fix the subtrahend (8 − 6 = _), so no cue is needed in a check?
+- missing-addend l2-c16 (skill check) is '3 + _ = 8', the worked example from lesson 1 Learn. No rule forbids a Learn example in a check. Keep it or change it?
+- The inverse family-member tasks (l2-c3, l2-c17) and the fluency-to-20 'Welche Plusaufgabe hilft bei ...?' tasks (l2-c18, l2-c20) each use the same template twice in one pool with other numbers. I left them, since those parts are narrow. Is that close enough to count as a near repeat?
+
+### de-DE-klasse-1-math-3
+
+- picture-stories practise follow-ups (l1-f4, l1-s2, l1-n2, l1-n4, l1-s5, l2-f3, l2-s1, l2-s5, l2-n2, l2-n4) still show only the sum, with the story in say. Each can be answered from the sum, so the correctness reviewer left them. Should they also carry the story, since practice sessions draw tasks on their own? (from the correctness reviewer)
+- picture-stories l1-c2 and l2-c4 ('_ _ _ = _' for take-away stories): the chips also allow '4 + 2 = 6' or '3 + 7 = 10', which are true sums but not the take-away sum. The minus sum is kept as the only answer. Should the first number be fixed in the frame, as in l2-c2 and l2-c11? (from the correctness reviewer)
+- number-walls Learn screen 2 ('4 + 2 = 6 | 2 + 5 = 7 | 6 + 7 = 13'): the correctness reviewer asked whether to split it into lines. I split it with \n. Confirm the player shows line breaks on Learn screens.
+- order-to-20: five true/false tasks start with 'Jemand zählt ...'. A teacher would more likely name a child ('Mia zählt rückwärts'). I kept 'Jemand' to change as little as possible. Should these get names?
+- partition-to-10 l3: tasks like 'Ist zwei und vier eine Zerlegung der Sechs?' use 'ist' with a plural subject when spoken. That is acceptable spoken German, but 'Passen zwei und vier zur Sechs?' would sound more natural. Should these be reworded?
+- neighbour-facts: near doubles to 20 give few sums, so every near-double sum in the skill check also turns up as a 'Welche Verdopplung hilft?' task in the helper part (for example l2-c1 asks the helper for 2 + 3, and l2-c11 asks for 3 + 2). Is that pairing across parts acceptable?
+- Text edits in all nine sets (number-walls most of all, about 15 texts and says) need new narration in the lesson and check voices.
+
+### de-DE-klasse-1-math-4
+
+- sub-meaning keeps 'small − big' distractors such as '2 − 6', '3 − 7' and '1 − 6' in about 12 tasks across all stages and the check pool. Rule 4 allows them because metadata.misconceptions lists wrong-start (2 − 5 for '5, 2 gehen weg'). Confirm that this is wanted for Klasse 1, or replace them as in question-calc-answer. (Language review: the wording of these tasks is fine; this is only about the distractors.)
+- question-calc-answer: the correctness reviewer asked whether the 'Welche Rechnung passt?' say lines should carry the question. I added it to all seven (l1-f4, l1-s4, l1-n4, l1-c1, l1-c6, l2-w2, l2-c11), so those seven lines need new narration in the lesson and check voices.
+- symmetry-identify: 13 shortened say lines ('Ist das X symmetrisch?' and so on) and the new say for subitize-to-10 l2-c2, sort-classify l2-c17, sub-bridge-10 l1-n2, l2-n1, l1-c6 and sequence-of-day l1-c1, l3-c14 need narration.
+- question-calc-answer, sub-bridge-10: Learn screens and two-step frames use '|' as a step separator ('14 − 4 = _ | 10 − 2 = _'). The build accepts it and each has its own say, but task-types.md shows '·' for chained steps. Decide whether to standardise.
+- sort-classify lesson 2, Learn screen 1: the text says '4 Äpfel · 2 Bananen' but the picture shows only the 4 apples. It is a Learn screen, not a task, so it was left. It needs a two-group picture or the text cut to '4 Äpfel'.
+- subitize-to-10 l2-c18 (dice 2, flash 1 s, options 2/3/4) is close to practise l1-f6 (dice 2, flash 2 s, options 1/2/3). I left it because the options and timing differ. Decide whether the copy rule should treat the same picture with different options as a copy.
+- sub-to-10 skill check: the count-back part asks for 6 and 7 steps back (10 − 6, 8 − 6, 9 − 7, 7 − 6), but the Learn screen says counting back is for taking away only a few. The no-help stage already has 9 − 6, so I kept them. Decide whether the long counts back belong in this part.
+
+### de-DE-klasse-1-math-5
+
+- write-numerals-to-10: the 'I can' line says 'lesen, richtig schreiben und der passenden Anzahl zuordnen', but no skill-check part covers writing. The four parts are amount-to-numeral, hear, numeral-to-amount and read, and tracing appears only in Practise. Should a copy-tracing task (mode: copy, no guide) count as a check part, or is writing left to Practise on purpose?
+- teens: the 'Schreib die Zahl.' text_input tasks and the 'Welche Zahl hörst du?' tasks (part write: l2-c2, l2-c3, l2-c8, l2-c11, l2-c14, l2-c17) keep the number only in audio. Hearing it and writing it is the task, and this is a documented text_input interaction, so I left them unchanged, as the correctness reviewer did. Please confirm.
+- teens l2-c15 (zwanzigerfeld 10 and 6, 'Wie viele Punkte sind im Zwanzigerfeld?') and l2-c9 (the same picture, 'Sind das 17 Punkte?') can both come up in one draw. Every teen amount already appears elsewhere in the set, so I found no free picture and left them. Accept, or change one?
+- write-numerals-to-10 hear tasks (l3-c2, l3-c7, l3-c15, l3-c19) have the text 'Hör genau hin. Welche Ziffer ist das?'. It tells the child to listen and does not give a strategy, but 'Hör noch einmal hin' is the first Practise hint. Keep it, or switch to the plain 'Welche Ziffer hörst du?'?
+
+### de-DE-klasse-2-math-1
+
+- check.yaml: some wrong options in the Umkehraufgabe tasks show correct sums above 100 (l1-f6 "83 + 45 = 128", l1-s1 "90 + 34 = 124", l1-n1 "82 + 37 = 119", l2-c1 "85 + 49 = 134", l2-c7 "83 + 54 = 137"). The arithmetic is right, but these numbers are beyond the Klasse 2 range to 100. Keep them, or swap in a wrong-way option that stays under 100?
+- The "Welcher Weg passt am besten?" tasks (add-two-digit l3-f3 and l3-s3, clever l2-s4) are still a judgement call: every Rechenweg gives the right result. The Learn screen backs the Hilfsaufgabe for numbers ending in 9. Keep them as choice tasks, or move them out of graded use?
+- Several skill-check tasks give the method in text and say ("Rechne stellenweise.", "Rechne mit der Hilfsaufgabe.", "Verändere beide Zahlen gleich.", "Prüfe mit der Umkehraufgabe.") because their part is that method. I treated these as task instructions, not hints, and added two more (add-two-digit l3-c14, l3-c16, clever l2-c5). Is that the intended reading of the no-strategy rule, or should a text_input task with a method instruction be swapped for a frame task that shows the method?
+- check.yaml: the Learn and Practise says are now in words, so these lines need new narration in the lesson voice. Other sets' Practise says in this batch already used words.
+
+### de-DE-klasse-2-math-2
+
+- From the correctness reviewer: cube-buildings writes every Bauplan as text ('Bauplan: 3 1 2', or 'hinten: 1 2' and 'vorne: 3 1' on two lines). The drawn cubes component (mode: plan) would draw it, but it has no hinten/vorne labels, and lesson 2 teaches those labels. Should the set move to the drawn component once it can label the rows? l2-c20 also has options like 'hinten: 1 2 | vorne: 3 1'; they read correctly but are cramped.
+- From the correctness reviewer: many fill_in_blank frames across these sets use | between steps (e.g. '5 · 4 = _ | 2 · 4 = _ | 7 · 4 = _'). The frame is not question text, so they were left. Decide whether frames should also avoid |. combinations l1-f3 uses · as its separator instead, which also stands for 'mal' in the same year.
+- Several skill-check tasks in derive-facts (l2-c8, l2-c9, l2-c11, l2-c16, l2-c17) and describe-methods (l2-c16 to l2-c20) name the method in text and say ('Nutze die Kernaufgabe daneben', 'Rechne schrittweise'). I kept them because naming the method is the part being tested (neighbour, double, split, work), but they read close to a strategy hint. Confirm this is acceptable for parts that test working a given way.
+- compare-area should perhaps draw its Flächen with the grid component instead of ■ and □ text before narration. That is a larger change than this pass.
+
+### de-DE-klasse-2-math-3
+
+- follow-directions (from the correctness reviewer): in about 55 tasks, across every stage and both checks, the 3 by 3 and 4 by 4 letter grids are written into the question text as lines of letters ('A B C\nD E F\nG H I'). Should they move to the drawn table component (rows of letters, header: false, mark on the start field), so the grid becomes a plan drawn from data? That means rewriting the whole set and adding table to metadata.drawn. Neither reviewer has done it.
+- hundred-square: the 'I can' line says 'Wege beschreiben', but every moves task has the child follow a route, and none asks the child to describe one (e.g. 'Wie kommst du von 34 nach 54?'). Should the moves part become 'Wegen folgen und Wege beschreiben', with a few check tasks turned into describe tasks?
+- draw-freehand-ruler writes 'frei Hand' as two words all through the set (vocabulary, Learn, options, sorting bins). The Duden spelling is 'freihand' (or 'aus freier Hand'). Should the whole set change to 'freihand'?
+- hundred-field: Learn in lesson 2 only finds what is missing to 100 from full rows. The skill check also asks it from 75, 85 and 95 (l2-c17, l2-c18, l2-c20), which needs the five-gap from lesson 1. Should a Practise task with a half row white be added, or is the five-gap from lesson 1 enough?
+
+### de-DE-klasse-2-math-4
+
+- From the correctness reviewer: mult-meaning l2-f2, l2-s2, l2-n2, l2-c1 and l2-c13 (fill_in_blank "_ · _ = _" over a Punktefeld) accept only the rows-first order (for example 4, 3, 12 for array [4, 3]). Learn sets that convention ("Die erste Zahl sagt, wie viele Gruppen"), but 3 · 4 = 12 is also true for the same field and would be marked wrong. Should these accept both orders, or should the text say "Reihen zuerst"? In the checks l2-c1 and l2-c13 the say is only "Schau dir die Punkte an. Schreib die Malaufgabe.", so the child is not told the order there.
+- From the correctness reviewer: mult-commutative l2-f1, l2-s1, l2-s5, l2-n5 and l2-c17 ("Welche Aufgabe ist leichter?" 10 · n against n · 10) rest on the set's reading of a · b as a groups of b. A child who reads 10 · 3 as "10, three times" could defend the other option. This matches the set's Learn and was left as it is.
+- mult-commutative l2-c19 (9 · 2 = _) and money-euro-cent l2-c1 (70 ct + _ ct = 1 €) are the worked examples from the Learn screens. The rule bans copies of Practise and Warm-up tasks, not of Learn, so both were kept. Should a skill check also avoid the Learn examples?
+- Spelling of the coins differs between sets: money-to-100 writes "Zwei-Euro-Münze" with hyphens, while money-euro-cent and money-shopping write "Zweieuromünze" as one word. Both are correct German. Should one form be used throughout?
+
+### de-DE-klasse-2-math-5
+
+- pictograms-bar-charts writes every Bilddiagramm as text lines ("Hund: ● ● ● ●" with "● = 2 Kinder") and does not use bar-chart with pictogram_object and key. Every count matches its story, and the screen audit had no flags. Should these become the drawn pictogram, given that an object is needed for the dot?
+- ones-bridge and ones-no-bridge keep the Analogieaufgabe frames with | between the two sums. The same convention is used in other sets such as all-tables, add-two-digit and complement, so I left it unchanged. Should it be kept, replaced by ·, or rendered as a line break? A · would clash with mal in Klasse 2.
+- Some-stage tasks in ones-bridge (l1-s2, l2-s2), ones-no-bridge (l1-s3, l2-s2) and place-value-to-100 (l2-s4) still carry a strategy in say ("Erst bis zum vollen Zehner", "Erst die kleine Aufgabe", "Bündle zehn davon") on top of their one hint. I left these because the some stage is allowed help. Should say there stay neutral, so that the stage's only help is its one hint?
+- pictograms-bar-charts l2-c5 and l2-c19 (part show) give the Strichliste only as "Apfel 2, Birne 5" in text and in words in say. No tally is drawn, unlike l2-c20. Should they draw the tally (bar-chart with tally: true) so the task really starts from a Strichliste?
+
+### de-DE-klasse-2-math-6
+
+- Several lines changed and need new clips before the player builds: the read-tables l1-n5 text and say, and the sub-two-digit l2-f4, l2-s4, l2-c17 and l2-c18 texts. Those four have no say, so the voice reads the text.
+- This pass adds more lines that need clips: shape-properties lesson 1 Learn screen 1 say, l2-n5 say, l1-s3 hint, l2-c18; solids l2-c2, l2-c5, l2-c19, l2-c20; sketches l2-n5 say; squares l2-c16, l2-c17 and l2-c19 says; sub-two-digit l2-c15 and l2-c20. The shape-properties l1-c1 and l2-c6 says and the solids l1-c1 say now match lines that have clips already.
+- Frames in sub-two-digit (l2-f1, l2-f5, l2-s1, l2-n1, l2-c4, l2-c13) and squares (l2-s3, l2-c2) separate their steps with ' | '. (squares l2-c19 no longer does; it is now text_input.) task-types.md shows ' · ' as the separator, but in squares a · would read as a times sign. They are left as they are. Should one step separator be agreed for frames?
+- remainder l2-f1 and l2-c17 (boat) and Learn screen 1 (car) show one picture for a story that asks how many boats or cars are needed. It is read here as a picture of 'ein Boot' and not a count, so it is left. A human could drop these pictures if a single boat might suggest the answer 1.
+- sequences-to-100: the checks and the no-help stage name the step in say only ('Zähl in Zehnerschritten weiter: ...'), while the text shows just the numbers. This is read here as the task's instruction for the forward and backward parts, not a hint, since the rule part tests finding the step. Should the step also go into text, or come out of say in checks?
+- shape-properties and solids use pentagon, cylinder and pyramid only as distractors. Klasse 2 Learn names the pyramid but never the Fünfeck or the cylinder. That is fine for a wrong option, but say so if distractors must be taught too.
+
+### de-DE-klasse-2-math-7
+
+- From the correctness reviewer: the symmetry-complete figures are text rows of Kästchen with a box-drawing axis (│), not the grid component from drawn.yaml (axis, axis_row). The answers are correct and the summary says this is deliberate. Should these figures move to the grid component later?
+- From the correctness reviewer, now changed by me (please confirm): in time-quarter l2-f3, l2-s3, l2-n3 and l2-c14 the screen asked 'Was zeigt die Digitaluhr?' while the narration asked 'Wie sagst du dazu?'. Both now read 'Die Digitaluhr zeigt 7:45. Wie sagt man dazu?'. Is that wording acceptable, or would you rather use 'Wie spät ist es?'
+- The times-table sets (table-2-4-8, table-3-6-9, table-5-10 and the pilot table-7) keep the say 'Zähle in der …reihe. Welche Zahl fehlt?' over the text 'Welche Zahl fehlt?', also in the no-help stage and in checks. The table name exists only in the say, and 'Zähle' leans toward a strategy. I followed the pilot and left it. Should the table name move on screen ('Welche Zahl fehlt in der Achterreihe?') across every table set?
+- Check tasks with a helper frame ('Die Zehnerreihe hilft.' with 4 · 10 − 4 in the frame, table-3-6-9 l2-c16; 'Die Hälfte hilft.' in table-5-10 l2-c16) carry the method in the text. In table-7 and table-2-4-8 the method is itself a part (helpers, double). In table-3-6-9 the part is only row-9. Is a helper frame acceptable in a skill check when the part is the fact rather than the method?
+
+### de-DE-klasse-3-math-1
+
+- area-unit-squares l1-w1 (warm-up) draws its two figures as ■ characters in the question text, the same form the prerequisite set de-DE/klasse-2/math/compare-area.yaml uses throughout. The counts are right (A 6, B 8, answer B), so it was left alone. Should these text figures move to the grid component in both sets?
+- distributive l2-c8: the frame "6 · 24 = 6 · _ + 6 · _" expects 20 then 4. A child who fills 4 then 20 is also mathematically right. The text says "Zehner und Einer", which sets the order. Is the strict order acceptable in a skill check?
+- add-carry and add-several: the full and some stages of the fill_in_blank tasks still print the carry in the drawing (carry: " 1 " / "11 ") and say "Denk an den Übertrag" on top of the stage's hint. I removed this only from the no-help stage. Should the some stage also stop printing the carry, so it carries exactly one hint?
+- area-unit-squares l2-n2 and l2-c18 measure gardens in "Kästchen lang/breit" with no plan shown. A teacher would more likely write "Auf dem Plan ist Garten A 8 Kästchen lang ...". I left the wording. Should it change?
+
+### de-DE-klasse-3-math-2
+
+- hundreds, lesson 1 Learn screens draw base-ten with tens: 10 ('10 Zehner') and hundreds: 10 ('10 Hunderter = 1000'), but drawn.yaml documents hundreds 0-9 and tens 0-9. The screen audit raised no flag. Should drawn.yaml be widened to 10, or should these screens use another picture? (from the correctness reviewer)
+- mass-compare, lesson 2 Learn screens 2 and 3 still list weights in cubes as lines of text ('Apfel: 8 Würfel'). These explain and are not tasks, so they were left alone. Should they also become a drawn table, to match the tasks that now use one? (from the correctness reviewer)
+- mass-estimate, l2-c5 ('Ein Liter Wasser wiegt etwa so viel wie eine Packung Mehl.') expects the child to know 1 l of water is about 1 kg. No Learn screen teaches this. Only Practise l1-s2 (milk) and a feedback line in l2-f3 touch on it. Is it everyday enough for Klasse 3, or should lesson 1 Learn say it?
+- length-mm-km, l2-c16 ('Ein Auto fährt auf der Autobahn in einer Stunde etwa 120 _.') expects the child to have a feel for speed. It may be fine as everyday knowledge; a human may want to swap in a plain distance (for example the next town).
+
+### de-DE-klasse-3-math-3
+
+- more-shapes l2-f3 (Practise, full support), raised by the correctness reviewer: the task is "4 gleich lange Seiten und 4 rechte Winkel. Wie heißt es genau?" and one option is Parallelogramm, which is technically true of a square. The word "genau" and the feedback make Quadrat the intended answer, and metadata names the task as addressing that misconception, so it was kept. Is that acceptable, or should the Parallelogramm option be replaced? (Language view: "genau" with the feedback reads naturally to a Klasse 3 child, but the authoring checks name exactly this case, square vs Parallelogramm, as a distractor that is also right.)
+- more-shapes l2-c2 (skill check): "Ein Verkehrsschild sieht fast rund aus. Es hat 8 gerade Seiten." Only the Stoppschild matches this, so "Ein Verkehrsschild" is a little vague. It was kept to avoid copying l1-f4 (the Stoppschild task). Keep it, or name the Stoppschild and change the options?
+- mult-div-tens: the no-help stage and check fill_in_blank tasks now read "Setze die Zahlen ein." The frame ("5 · 9 = _ | 5 · 90 = _") still sets the core fact beside the tens task. That is the task's form, but someone may prefer to see it as built-in support in a check.
+
+### de-DE-klasse-3-math-4
+
+- plans-maps Jahrmarkt plan: I shortened the item names to fit the phone (Autoscooter, Zuckerwatte, Toiletten, Achterbahn, Ausgang became Popcorn, Bühne, WC, Boote, Tor; Eisstand and Losbude became Eis and Lose). Are WC, Lose and Tor acceptable, or should the player's table shrink to fit so the longer names can come back? (Language reviewer: a Klasse 3 child knows WC, Lose and Eis. 'Tor' for the exit and 'Zelt' with no other word are the least clear; 'Ausgang' would read better if the width allows.)
+- plans-maps tables now leave the top-left corner cell empty, where the plan's name (Stadtplan, Zooplan, Insel, Jahrmarkt) used to be. The name is still in say on the Learn screens and on some tasks. Should a caption with the plan name show on screen?
+- plan-survey lesson 2, Learn screen 1, still writes the counts as text lines ('Fangen: 7 ...') next to the tally chart, as the table the class fills in. It is a Learn screen, not a task, so I left it. Should it become a drawn table too? (A screen shows one drawn component, so the table would replace the tally chart or need its own screen.)
+
+### de-DE-klasse-3-math-5
+
+- Correctness reviewer: several Learn screens in time-durations and semi-written-div, and true/false texts in sub-no-regroup, put labelled steps on one line with |. Should they use line breaks? I made that change in all 9 of my sets (Learn screens in semi-written-div, semi-written-mult, sub-no-regroup, sub-regroup and time-durations, plus the 5 Probe true/false tasks), because the player's learnText already lays out multi-line text as a card. Please confirm this as the house style for the other batches. Frames in fill_in_blank still use |.
+- read-write-to-1000, lesson 2 Learn screen 2 keeps "fünfhundert | drei | und | sechzig": the | splits one number word into its parts, and line breaks would read less naturally there. Keep it, or show the parts another way?
+- Narration: these changes alter the say lines of time-durations? No, those says are unchanged. The new says are in sub-no-regroup (l1-n1, l1-c4, l2-c7, l2-f4, l2-s4, l2-n4, l2-c18, l2-c19), semi-written-div (l2-c5, l2-c20), semi-written-mult (l1-f5, l2-s5, l2-n5) and semi-written-to-1000 (l2-c20). They need new clips in the narration step.
+- time-durations has a part 'start' (working out when something began), but the I-can line names only 'wie lange etwas dauert oder wann es endet'. Lesson 2 teaches it, so I kept the part. Should the I-can line say 'wann es beginnt oder endet'?
+- round-to-1000, l2-c9 (skill check) is the only check task that shows a number line with the number marked. It is a picture of the task, not a hint, so I left it, but it makes that task easier than the rest of the pool.
+- time-durations, practise and check tasks with no story use morning or night readings such as "Von 2:50 Uhr bis 3:15 Uhr" (l1-f3), "4:05 Uhr" (l1-n2), "3:25 Uhr" (l1-c1) and "5:40 Uhr" (l2-w1). They are correct as bare clock times, but a Klasse 3 teacher might write 14:50 Uhr. Keep them, or move them to afternoon times?
+
+### de-DE-klasse-3-math-6
+
+- timetables: the new schedule tables have up to 7 rows (Projekttag, Ausflug in den Zoo, Stundenplan Montag), plus a title, the question and 3 options. These screens were not re-rendered because the brief says not to build the player. A screen audit should confirm they fit the phone.
+- timetables: the schedule header is 'Uhrzeit | Programm' for every plan, including the school timetable for Montag. A human may prefer a different column name there, such as 'Fach'.
+- timetables, l2-c17 (part in-time): 'Wie viele Minuten wartet er auf den nächsten Bus?' is a waiting-time sum, not a choice of the ride that arrives in time. l2-c15 ('Wann fährt der nächste Zug?') is close to the part. Decide whether waiting for the next ride belongs under in-time, or whether l2-c17 should be rewritten as an in-time choice.
+- timetables, l2-c3: the Bus 5 table has only two rides, so this skill-check task has two options (a 50% guess). A third ride in the Bus 5 table would fix it, but that changes the table in five check tasks.
+- written-check: the distractors 1205 (l1-f3), 1003 (l1-n3) and 1015 (l2-c9) go past 1000, the Klasse 3 number range. They work as clearly too-big options, but a human may want them under 1000.
+
+### de-DE-klasse-4-math-1
+
+- codes: about 30 tasks show the A=1 ... Z=26 key as 4 lines of text in the question. The lines have no | in them, but strictly read, the key is a table. A drawn table of 4 rows by 7 cells would be about 315px wide and may not fit a phone. Should the key stay as text or become a drawn table?
+- choose-method: the halbschriftlich and im Kopf answers stay a judgement call for 4-digit sums with few steps (for example l2-c6, 36 000 + 8000, and l1-f3). The correctness reviewer removed the two carry-free sums where im Kopf was clearly also right, and this pass changed a third (l2-c13). Is it acceptable that a strong calculator may still pick im Kopf on the rest?
+- complex-problems: the Freibad tasks that do not need the Familienkarte (l1-f1, l1-f4, l1-f5) now open with the Familienkarte sentence. This adds a fact the question does not need, which fits the set's skill. Keep it, or show that sentence only in l1-f2 and l1-f3? For now their say lines leave the sentence out. Only l1-f2, l1-f3 and l2-c18, which need the rule, say it aloud.
+- codes, l2-c13: "Welche Zahl steht für W?" with the key on screen (W=23) is a one-cell lookup. It counts as an encode task in the skill check, but it is much easier than the other encode tasks (whole words). Keep it, or replace it with a short word to encode?
+- choose-method, l1-w2 (warm-up): say adds "Rechne schrittweise.", which is not in the text. A warm-up may carry a strategy, but if warm-up tasks feed practice sessions as checks, this should go.
+
+### de-DE-klasse-4-math-2
+
+- de-DE.math.fractions-measures l1-s2 (from the correctness reviewer): the start clock (3:00) repeats 'Es ist 3 Uhr' from the text. Removing it would fit the screen inside the phone, but the clock also gives the child a picture to count on from. It was kept. Remove it if the 18px matters.
+- de-DE.math.large-mental and de-DE.math.large-mult-mental (from the correctness reviewer): these sets join the small and the big task in a fill_in_blank frame with '|' (for example '15 − 8 = _ | 15 000 − 8000 = _'). task-types.md writes the same Analogieaufgabe with '·' as the separator. A human may want one style everywhere. In the multiplication set '·' is also the times sign, so '|' may be the clearer choice there.
+- de-DE.math.large-mental and de-DE.math.large-mult-mental: the skill-check frames carry the text 'Die kleine Aufgabe hilft.' / 'Das Einmaleins hilft.' and the say 'Rechne erst ..., dann ...'. I kept this because the helper fact is part of the frame the check tests (part helper / the Einmaleins step). Decide whether a check should name the strategy at all, or only show the frame.
+- de-DE.math.large-semi-written: the Überschlag tasks say 'Runde auf Tausender' only in say, while the text shows 'Überschlag: 4900 + 3800 ≈ ?'. The rounding place sets the expected answer, so it could go on screen too (for example 'Überschlag auf Tausender: ...'). Left as is.
+- de-DE.math.digital-tools: after moving l2-c5 and l2-c19 to part chart, the pool splits 7 / 9 / 4 (cells / chart / check). That is above the minimum of 3 but not even. A human may prefer to write one more checking task in place of a chart task.
+
+### de-DE-klasse-4-math-3
+
+- numbers-to-10000, lesson 1 Learn screen 1: it draws base-ten with hundreds: 10, but drawn.yaml gives the range as 0-9. The player draws ten flats (5 columns of 2) and the audit did not flag it. Should drawn.yaml allow 10 hundreds, or should the screen change?
+- order-to-10000, lesson 2 Learn screen 3: the text says "4281 > 4218" but the place-value chart shows 4218 (the smaller number) and screen 2 shows 4281. The two screens do not contradict each other, but showing both charts side by side, or the larger one, may read more clearly.
+- Halbschriftlich frames curriculum-wide: in multi-digit-semi I changed the check and no-help frames so the last line no longer prints the partial results. large-semi-written and large-mental (not my files) use the same pattern ("5200 + 3000 = _ | 8200 + 400 = _ ..."), where each line gives away the gap before it. Should every check and no-help stage follow the new form?
+- multi-digit-semi: should a check's say still carry "Rechne halbschriftlich." or "Teile in Schritten."? I kept them because they name the method the skill asks for and add no step, but a stricter reading of "no strategy in a check's say" would drop them.
+- numbers-to-million: the "I can" line says digits are grouped with a Punkt (250.000), but the lessons write 250 000 with a space (house rule). Learn only says "Manchmal steht dort auch ein Punkt." Is that enough, or should the can_do example change to 250 000?
+- order-to-million, l3-c5: "über 318 000 Besucher" is the keyed answer, but a real brochure would more likely say "über 300 000". That is not an option, so the task has one right answer, but a native reviewer may want the options reworked.
+
+### de-DE-klasse-4-math-4
+
+- proportional (and about 42 lesson files across the repo) uses ' | ' to separate two gaps in fill_in_blank frames, such as '1 Kugel: _ | 3 Kugeln: _'. These are answer gaps, not tables, so the correctness reviewer left them alone. task-types.md documents '·', commas or spaces as separators. Should '|' in frames be replaced across the repo? (Every such task in proportional has its own say, so the voice does not read the sign.)
+- perimeter draws its rectangles as dot arrays (dots) and asks for the edge length. The grid component (Karopapier with filled cells) would show the edges the child has to walk round. Should perimeter, and scale's enlarge tasks, move to grid?
+- symmetry-environment, l2-c19 (Krankenwagen: where can you read the mirror writing?) tests the same fact as Practise l2-f4 (why is it written in mirror writing?), with a different question and different options. It is the only check task on Spiegelschrift, so I left it. Keep it, or replace it with another art task (for example the Swiss flag, 4 axes)?
+- Several check pools keep one fixed template and change only the numbers or the context: the Umfang-oder-Flächeninhalt questions in perimeter, the 'so lang wie der Streifen' and 1 : 100 tasks in scale, the cooking and drying time tasks in proportional. Each pool still mixes task types and none copies a Practise task exactly. Is that enough variety, or should a pool vary the question form inside a part too?
+
+### de-DE-klasse-4-math-5
+
+- volume-cubes: the summary says counting cubes from a drawing 'waits for a cube-building drawn component', but assets/drawn.yaml now has `cubes` (plan, building, front/side/top views). The Bauplan tasks (l1-w2, l2-f1, l2-f3, l2-s1, l2-s2, l2-n1, l2-n2, l2-n4, l2-c3, l2-c9 to l2-c13, l2-c15, l2-c20) give the plan as numbers in the text. That is correct and on screen, but they could show `{ drawn: cubes, mode: plan }` or `mode: building`. Should they switch to the component, and should the summary be updated? (Language reviewer: a drawn plan would read more naturally to a ten-year-old than 'Bauplan: 2, 4, 1, 3', which gives no layout. I left the tasks as they are because the switch changes metadata.drawn and the lesson design.)
+- volume-cubes Learn l1 screen 3 shows a plain `shape: cuboid` for '2 Schichten: 2 · 12 = 24 Würfel'. It contradicts nothing, but a `cubes` building with plan [[2,2,2,2],[2,2,2,2],[2,2,2,2]] would show the 24 cubes. Worth switching?
+- written-mult-money l2-n5: 4 · 1,25 € = 5,00 € gives 10 € − 5,00 € = 5,00 €, so one chip fills both gaps (answer ['5,00 €', '5,00 €']). task-types.md allows this, but a child may doubt a repeated chip. Should the price change so the cost and the change differ (for example 1,35 €, giving 5,40 € and 4,60 €)?
+- written-large: 11 of the 20 skill-check tasks are the bare text_input 'Rechne schriftlich.' over written-calc. Every task differs, but the pool leans on one type. Should some become true/false or error-finding tasks?
+
+### en-GB-reception-math-1
+
+- (Correctness reviewer) The seven sets are no_reading Reception sets. The story and its numbers are now in the text of about 85 Practise and Warm-up tasks, in the same short digit form the check pools use. I added 4 more of these in add-meaning and turned 6 add-to-10 true/false texts from number words into digits, so a pre-reader sees numerals, not words. Point 8 for no_reading sets in docs/plans/2026-10-18-practice-questions.md is still open: should pre-reader screens carry this text, or go back to the bare question with the story in audio only? If the answer is the bare question, revert these text lines, mine included.
+- (Correctness reviewer) Every say is unchanged in these edits, so no new clips should be needed, unless the player narrates text when a say is present. Exceptions from this pass: the new or changed check tasks have a new say and need clips. These are add-to-10 l2-c5, l2-c6 and l2-c12, count-to-10 l2-c4, div-meaning l2-c19, double-halve-to-20 l2-c1, and the Practise lines count-to-5 l1-n3 and div-meaning l2-n3.
+- div-meaning l2-c19 now shares between 4 children. The lessons only show sharing between 2 and 3, using the same 'each row is one child' array. Is 4 sharers acceptable for Reception, or should it go back to a 2-child fact? Every 2-child fact to 10 is already used in Practise.
+- With numbers this small, some fairness pools can't avoid repeating Practise layouts with a new noun. Six things split only as 1+5, 2+4 or 3+3, so div-meaning l2-c15 matches l1-c1 and l1-f1, and double-halve-to-20 l2-c7 matches l2-n3. I left these as they are. Is a noun change enough difference at ages 4 to 5?
+
+### en-GB-reception-math-2
+
+- subitize-to-10 skill check (from the correctness reviewer): l2-c6, l2-c15 and l2-c18 were close to Practise l2-s1, l2-f4 and l2-f1. I gave them new option sets, along with c1, c2, c4, c5 and c20, which had the same problem. Each still shows the same count as its Practise twin, because the counts 1 to 10 run out across about 30 Practise tasks. Are new options enough, or should the counts change too (for example scattered layouts for the small part)?
+- Several Practise tasks show their starting amount only in the picture, with the story in say (from the correctness reviewer). Examples are order-to-10 lesson 2 ('One more. How many now?' over 3 apples), even-odd lesson 1 ('Is one left over?' over dots) and missing-addend lesson 2 ('How many more make ten?' over a ten frame). The picture shows the number, so I left them. Should Practise texts also name the number, as the check tasks do?
+- teens shows numbers as words on screen ('Are there fifteen?', 'Ten and six more') while the other Reception sets use digits ('Is 9 even?'). Words keep the digit pattern of the answer off the screen, but the convention differs between sets. Keep it as it is, or make one convention for all of Reception?
+
+### pilots-languages
+
+- The Learn screens in find-information ("Wer? ein Name | Wo? ein Ort | ..." and "steht im Text | steht nicht im Text") and lengthen-dt ("Hund → zwei Hunde | rund → ein runder Ball") use | as a separator in their text. Each has its own say, so the voice does not read the sign. These are Learn screens, not tasks, so they were left alone. Should they be rewritten as two lines or a drawn component?
+- en-food Practise picture tasks (l1-w1, l1-f1, l1-s1, l1-n1, l2-w1, l2-f1, l2-s1, l2-n1) say only the instruction "Hör zu. Tippe auf das Bild." and show no prompt text, while the matching check tasks show "Welches Bild passt?". Should the Practise ones get the same on-screen line for consistency?
+- lengthen-dt checks keep "Verlängere das Wort." / "Verlängere das Adjektiv." in text and say. I left these as they are: the skill's I-can line is lengthening a word to hear d or t, so the instruction names the skill being tested rather than giving a hint. The checks already drop "mit einem Nomen". Confirm that this counts as the task, not a strategy.
+- en-food yes/no options are phrased "Ja, es mag Eier." / "Nein, es mag keine Eier." across Practise and checks. The grammar is correct, but "Ja, das Kind mag Eier." may read more naturally to a native teacher. I left it unchanged because it touches about ten tasks.
+
+### en-GB-times-tables
+
+- en-GB/year-3/math/table-3-6-9.yaml is placed in Year 3, but the National Curriculum puts the 3, 4 and 8 tables in Year 3 and the 6 and 9 tables in Year 4. The skill's own standards also cite nc-maths-2014.y4. Should the 6 and 9 parts of this set wait until Year 4, or is the early placement intended?
+- Some skill-check tasks name a method in their text: 'Use the 10 times table.' (table-5-10 l2-c13, table-3-6-9 l2-c16), 'Use the 3 times table to find the 6 times table fact.' (table-3-6-9 l2-c11), and 'Use 5 × 7 / Use 10 × 7 / Swap the numbers' (table-7 l2-c12 to l2-c14, part 'helpers'). I left them, because the gapped frame already sets the method and the parts 'half' and 'helpers' test that method. In table-3-6-9 the parts are only row-3, row-6 and row-9, so there the method text works as a strategy hint. Should those two tasks lose the instruction, or should the set get a helper-fact part?
+
+### Drill banks
+
+- math/fluency-to-20: the skill's can_do says 'all addition and subtraction facts to 20' ('alle Aufgaben des kleinen Einspluseins'). The bank holds only the 72 facts that cross ten (sums 11 to 18 with addends 2 to 9, and their inverses). That set is complete and right, but facts within 10 and the 10 + n / teen − n facts are missing. Should the bank grow to cover them, or should the can_do or the docs say the drill targets crossing-ten facts only? Growing it would change the item count in docs/practice.md.
+- math/table-7: the bank has both n × 7 and 7 × n (29 items, with 7 × 7 once). The 3-6-9 and 5-10 banks give each table in one order only (n × 3, n × 5 and so on). Keep both orders on purpose to practise commutativity, or cut to 20 items to match the other banks? Cutting would change the count of 29 in docs/practice.md, which this pass may not edit.
