@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [spinner, dots]
   facets: []
+  parts:
+    - { id: certain, what: { de: "sagen, ob etwas sicher, möglich oder unmöglich ist", en: "saying whether something is certain, possible or impossible" } }
+    - { id: likely, what: { de: wahrscheinlich und unwahrscheinlich unterscheiden, en: telling likely from unlikely } }
+    - { id: wheel, what: { de: das Glücksrad oder Säckchen zu einer Aussage finden, en: finding the spinner or bag that fits a statement } }
   misconceptions:
     - id: possible-is-certain
       what: Calls an event sicher because it can happen (blue is on the wheel, so blue will come)
@@ -258,10 +262,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "Der Zeiger bleibt auf Gelb stehen."
+            text: "Der Zeiger bleibt auf Gelb stehen. Sicher, möglich oder unmöglich?"
             say: "Der Zeiger bleibt auf Gelb stehen. Ist das sicher, möglich oder unmöglich?"
             show: { drawn: spinner, sectors: [green, green, green, green] }
             options: ["sicher", "möglich", "unmöglich"]
@@ -269,19 +274,43 @@ lessons:
             keep_order: true
           - id: l1-c2
             type: multiple_choice
-            text: "Nach Sonntag kommt Montag."
+            text: "Nach Sonntag kommt Montag. Sicher, möglich oder unmöglich?"
             say: "Nach dem Sonntag kommt der Montag. Ist das sicher, möglich oder unmöglich?"
             options: ["sicher", "möglich", "unmöglich"]
             answer: "sicher"
             keep_order: true
           - id: l1-c3
             type: multiple_choice
-            text: "Der Zeiger bleibt auf Gelb stehen."
+            text: "Der Zeiger bleibt auf Gelb stehen. Sicher, möglich oder unmöglich?"
             say: "Der Zeiger bleibt auf Gelb stehen. Ist das sicher, möglich oder unmöglich?"
             show: { drawn: spinner, sectors: [red, yellow] }
             options: ["sicher", "möglich", "unmöglich"]
             answer: "möglich"
             keep_order: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Der Zeiger bleibt auf Rot stehen. Sicher, möglich oder unmöglich?"
+            say: "Der Zeiger bleibt auf Rot stehen. Ist das sicher, möglich oder unmöglich?"
+            show: { drawn: spinner, sectors: [red, red, red] }
+            options: ["sicher", "möglich", "unmöglich"]
+            answer: "sicher"
+            keep_order: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Du würfelst eine 2. Sicher, möglich oder unmöglich?"
+            say: "Du würfelst mit einem normalen Würfel eine Zwei. Ist das sicher, möglich oder unmöglich?"
+            options: ["sicher", "möglich", "unmöglich"]
+            answer: "möglich"
+            keep_order: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Bei welchem Glücksrad ist Grün möglich?"
+            say: "Bei welchem Glücksrad ist Grün möglich?"
+            options:
+              - { drawn: spinner, sectors: [red, red, red, red], key: "rot" }
+              - { drawn: spinner, sectors: [green, red, green, red], key: "gruen-rot" }
+              - { drawn: spinner, sectors: [blue, red, blue, red], key: "blau-rot" }
+            answer: "gruen-rot"
 
   - n: 2
     title: { de: "Wahrscheinlich oder unwahrscheinlich", en: "Likely or unlikely" }
@@ -520,24 +549,28 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: certain
             type: multiple_choice
-            text: "Der Zeiger bleibt auf Rot stehen."
+            text: "Der Zeiger bleibt auf Rot stehen. Welches Wort passt am besten?"
             say: "Der Zeiger bleibt auf Rot stehen. Welches Wort passt am besten?"
             show: { drawn: spinner, sectors: [blue, blue, blue, blue, blue] }
             options: ["unmöglich", "unwahrscheinlich", "wahrscheinlich", "sicher"]
             answer: "unmöglich"
             keep_order: true
           - id: l2-c2
+            part: likely
             type: multiple_choice
-            text: "Du ziehst eine rote Kugel."
+            text: "Du ziehst eine rote Kugel. Welches Wort passt am besten?"
             say: "Im Säckchen sind diese Kugeln. Du ziehst eine rote Kugel. Welches Wort passt am besten?"
             show: { drawn: dots, count: 7, layout: row, colour_split: [1, 6] }
             options: ["unmöglich", "unwahrscheinlich", "wahrscheinlich", "sicher"]
             answer: "unwahrscheinlich"
             keep_order: true
           - id: l2-c3
+            part: likely
             type: multiple_choice
             text: "Welche Farbe kommt wahrscheinlich?"
             say: "Du drehst dieses Glücksrad. Welche Farbe kommt wahrscheinlich?"
@@ -545,13 +578,15 @@ lessons:
             options: ["Rot", "Gelb", "Blau"]
             answer: "Rot"
           - id: l2-c4
+            part: certain
             type: multiple_choice
-            text: "Du würfelst eine Zahl kleiner als 7."
+            text: "Du würfelst eine Zahl kleiner als 7. Welches Wort passt am besten?"
             say: "Du würfelst mit einem normalen Würfel eine Zahl, die kleiner als sieben ist. Welches Wort passt am besten?"
             options: ["unmöglich", "unwahrscheinlich", "wahrscheinlich", "sicher"]
             answer: "sicher"
             keep_order: true
           - id: l2-c5
+            part: wheel
             type: image_multiple_choice
             text: "Bei welchem Glücksrad ist Blau wahrscheinlich?"
             say: "Bei welchem Glücksrad ist Blau wahrscheinlich?"
@@ -559,4 +594,140 @@ lessons:
               - { drawn: spinner, sectors: [blue, yellow, yellow, yellow], key: "wenig-blau" }
               - { drawn: spinner, sectors: [yellow, yellow, yellow, yellow], key: "kein-blau" }
               - { drawn: spinner, sectors: [blue, blue, yellow, blue], key: "viel-blau" }
+            answer: "viel-blau"
+          - id: l2-c6
+            part: certain
+            type: multiple_choice
+            text: "Der Zeiger bleibt auf Grün stehen. Sicher, möglich oder unmöglich?"
+            say: "Der Zeiger bleibt auf Grün stehen. Ist das sicher, möglich oder unmöglich?"
+            show: { drawn: spinner, sectors: [green, red, blue] }
+            options: ["sicher", "möglich", "unmöglich"]
+            answer: "möglich"
+            keep_order: true
+          - id: l2-c7
+            part: certain
+            type: multiple_choice
+            text: "Heute ist Dienstag. Morgen ist Mittwoch. Sicher, möglich oder unmöglich?"
+            say: "Heute ist Dienstag. Morgen ist Mittwoch. Ist das sicher, möglich oder unmöglich?"
+            options: ["sicher", "möglich", "unmöglich"]
+            answer: "sicher"
+            keep_order: true
+          - id: l2-c8
+            part: certain
+            type: multiple_choice
+            text: "Ein Elefant passt in deine Schultasche. Sicher, möglich oder unmöglich?"
+            say: "Ein Elefant passt in deine Schultasche. Ist das sicher, möglich oder unmöglich?"
+            options: ["sicher", "möglich", "unmöglich"]
+            answer: "unmöglich"
+            keep_order: true
+          - id: l2-c9
+            part: certain
+            type: true_false
+            text: "Ben sagt: „Blau ist sicher.“ Stimmt das?"
+            say: "Ben sagt: Bei diesem Glücksrad ist Blau sicher. Stimmt das?"
+            show: { drawn: spinner, sectors: [blue, red, blue, blue] }
+            answer: false
+          - id: l2-c10
+            part: certain
+            type: sorting
+            text: "Ist das sicher, möglich oder unmöglich? Sortiere."
+            say: "Lies jede Karte. Ist das sicher, möglich oder unmöglich? Sortiere."
+            bins:
+              - { id: sicher, show: { text: "sicher" }, say: "sicher" }
+              - { id: moeglich, show: { text: "möglich" }, say: "möglich" }
+              - { id: unmoeglich, show: { text: "unmöglich" }, say: "unmöglich" }
+            options:
+              - { text: "Nach dem Winter kommt der Frühling.", bin: sicher }
+              - { text: "Morgen scheint die Sonne.", bin: moeglich }
+              - { text: "Eine Kuh legt ein Ei.", bin: unmoeglich }
+              - { text: "Du würfelst eine 2.", bin: moeglich }
+          - id: l2-c11
+            part: likely
+            type: multiple_choice
+            text: "Der Zeiger bleibt auf Grün stehen. Wahrscheinlich, unwahrscheinlich oder unmöglich?"
+            say: "Der Zeiger bleibt auf Grün stehen. Ist das wahrscheinlich, unwahrscheinlich oder unmöglich?"
+            show: { drawn: spinner, sectors: [green, green, blue, green, green] }
+            options: ["wahrscheinlich", "unwahrscheinlich", "unmöglich"]
+            answer: "wahrscheinlich"
+            keep_order: true
+          - id: l2-c12
+            part: likely
+            type: multiple_choice
+            text: "Du ziehst eine rote Kugel. Wahrscheinlich, unwahrscheinlich oder unmöglich?"
+            say: "Im Säckchen sind diese Kugeln. Du ziehst eine, ohne hinzuschauen. Du ziehst eine rote Kugel. Ist das wahrscheinlich, unwahrscheinlich oder unmöglich?"
+            show: { drawn: dots, count: 9, layout: row, colour_split: [2, 7] }
+            options: ["wahrscheinlich", "unwahrscheinlich", "unmöglich"]
+            answer: "unwahrscheinlich"
+            keep_order: true
+          - id: l2-c13
+            part: likely
+            type: true_false
+            text: "Lea sagt: „Gelb ist unwahrscheinlich.“ Stimmt das?"
+            say: "Lea sagt: Bei diesem Glücksrad ist Gelb unwahrscheinlich. Stimmt das?"
+            show: { drawn: spinner, sectors: [yellow, blue, blue, blue, blue, blue] }
+            answer: true
+          - id: l2-c14
+            part: likely
+            type: multiple_choice
+            text: "Mia gewinnt bei Rot. Ben gewinnt bei Gelb. Wer gewinnt wahrscheinlich?"
+            say: "Mia und Ben drehen dieses Glücksrad. Mia gewinnt bei Rot, Ben gewinnt bei Gelb. Wer gewinnt wahrscheinlich?"
+            show: { drawn: spinner, sectors: [red, red, yellow, red] }
+            options: ["Mia", "Ben"]
+            answer: "Mia"
+          - id: l2-c15
+            part: likely
+            type: ordering
+            text: "Ordne von sicher bis unmöglich."
+            say: "Ordne die Wörter. Fang mit sicher an und hör mit unmöglich auf."
+            options: ["unwahrscheinlich", "sicher", "unmöglich", "wahrscheinlich"]
+            slot_count: 4
+            answer: ["sicher", "wahrscheinlich", "unwahrscheinlich", "unmöglich"]
+          - id: l2-c16
+            part: wheel
+            type: image_multiple_choice
+            text: "Bei welchem Glücksrad ist Gelb sicher?"
+            say: "Bei welchem Glücksrad ist Gelb sicher?"
+            options:
+              - { drawn: spinner, sectors: [yellow, red, yellow, red], key: "gelb-rot" }
+              - { drawn: spinner, sectors: [yellow, yellow, yellow, yellow], key: "nur-gelb" }
+              - { drawn: spinner, sectors: [red, red, red, red], key: "nur-rot" }
+            answer: "nur-gelb"
+          - id: l2-c17
+            part: wheel
+            type: image_multiple_choice
+            text: "Bei welchem Glücksrad ist Grün unmöglich?"
+            say: "Bei welchem Glücksrad ist Grün unmöglich?"
+            options:
+              - { drawn: spinner, sectors: [green, blue, green, blue], key: "gruen-blau" }
+              - { drawn: spinner, sectors: [green, green, green, green], key: "nur-gruen" }
+              - { drawn: spinner, sectors: [red, blue, red, blue], key: "rot-blau" }
+            answer: "rot-blau"
+          - id: l2-c18
+            part: wheel
+            type: matching
+            text: "Welcher Satz passt zu welchem Glücksrad?"
+            say: "Welcher Satz passt zu welchem Glücksrad? Verbinde."
+            pairs:
+              - { left: { drawn: spinner, sectors: [blue, blue, blue, blue] }, right: { text: "Blau ist sicher." } }
+              - { left: { drawn: spinner, sectors: [blue, red, red, red] }, right: { text: "Blau ist unwahrscheinlich." } }
+              - { left: { drawn: spinner, sectors: [red, red, red, red] }, right: { text: "Blau ist unmöglich." } }
+          - id: l2-c19
+            part: wheel
+            type: image_multiple_choice
+            text: "Rot und Blau sind gleich wahrscheinlich. Welches Glücksrad passt?"
+            say: "Rot und Blau sind gleich wahrscheinlich. Welches Glücksrad passt?"
+            options:
+              - { drawn: spinner, sectors: [red, red, red, blue], key: "viel-rot" }
+              - { drawn: spinner, sectors: [red, blue, red, blue], key: "gleich" }
+              - { drawn: spinner, sectors: [blue, blue, blue, red], key: "viel-blau" }
+            answer: "gleich"
+          - id: l2-c20
+            part: wheel
+            type: image_multiple_choice
+            text: "In welchem Säckchen ziehst du wahrscheinlich eine blaue Kugel?"
+            say: "In welchem Säckchen ziehst du wahrscheinlich eine blaue Kugel?"
+            options:
+              - { drawn: dots, count: 6, layout: row, colour_split: [5, 1], key: "viel-rot" }
+              - { drawn: dots, count: 6, layout: row, colour_split: [1, 5], key: "viel-blau" }
+              - { drawn: dots, count: 6, layout: row, colour_split: [3, 3], key: "gleich" }
             answer: "viel-blau"

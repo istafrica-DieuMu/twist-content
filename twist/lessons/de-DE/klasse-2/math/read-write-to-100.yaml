@@ -22,6 +22,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [place-value-chart]
   facets: []
+  parts:
+    - { id: hear, what: { de: eine gehörte Zahl mit Ziffern schreiben, en: writing a number you hear in digits } }
+    - { id: read, what: { de: ein Zahlwort lesen und als Zahl schreiben, en: reading a number word and writing the number } }
+    - { id: word, what: { de: zu einer Zahl das passende Zahlwort finden, en: finding the number word for a number } }
   misconceptions:
     - id: word-order-digits
       what: Writes the digits in the order they are heard (vierundzwanzig as 42)
@@ -217,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -235,6 +240,24 @@ lessons:
             text: "Hör zu und schreib die Zahl."
             say: "Sechzig. Schreib die Zahl."
             answer: "60"
+          - id: l1-c4
+            type: text_input
+            text: "Hör zu und schreib die Zahl."
+            say: "Neunundsechzig. Schreib die Zahl."
+            answer: "69"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Hör zu. Welche Zahl ist das?"
+            say: "Siebenundzwanzig. Welche Zahl ist das?"
+            options: ["72", "27", "20"]
+            answer: "27"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Lena hört eine Zahl und schreibt sie so. Stimmt das?"
+            say: "Lena hört fünfundsechzig und schreibt die Ziffern sechs und fünf. Stimmt das?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [6, 5] }
+            answer: true
 
   - n: 2
     title: { de: Zahlwörter lesen, en: Reading number words }
@@ -429,13 +452,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: hear
             type: text_input
             text: "Hör zu und schreib die Zahl."
             say: "Sechsundvierzig. Schreib die Zahl."
             answer: "46"
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "vierundachtzig"
             say: "Lies das Zahlwort. Welche Zahl ist das?"
@@ -443,6 +469,7 @@ lessons:
             answer: "84"
             option_audio: false
           - id: l2-c3
+            part: word
             type: multiple_choice
             text: "Welches Wort passt zu 19?"
             say: "Welches Zahlwort passt zu den Ziffern eins und neun?"
@@ -450,12 +477,122 @@ lessons:
             answer: "neunzehn"
             option_audio: false
           - id: l2-c4
+            part: hear
             type: text_input
             text: "Hör zu und schreib die Zahl."
             say: "Zweiundsiebzig. Schreib die Zahl."
             answer: "72"
           - id: l2-c5
+            part: read
             type: text_input
             text: "einundsechzig"
             say: "Lies das Zahlwort und schreib die Zahl."
             answer: "61"
+          - id: l2-c6
+            part: hear
+            type: text_input
+            text: "Hör zu und schreib die Zahl."
+            say: "Dreiundfünfzig. Schreib die Zahl."
+            answer: "53"
+          - id: l2-c7
+            part: hear
+            type: multiple_choice
+            text: "Hör zu. Welche Zahl ist das?"
+            say: "Achtundsiebzig. Welche Zahl ist das?"
+            options: ["87", "78", "70"]
+            answer: "78"
+            option_audio: false
+          - id: l2-c8
+            part: hear
+            type: true_false
+            text: "Paul hört eine Zahl und schreibt sie so. Stimmt das?"
+            say: "Paul hört neunundvierzig und schreibt die Ziffern neun und vier. Stimmt das?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [9, 4] }
+            answer: false
+          - id: l2-c9
+            part: hear
+            type: fill_in_blank
+            text: "Hör zu. Wie viele Zehner, wie viele Einer?"
+            say: "Zweiundvierzig. Wie viele Zehner, wie viele Einer hat die Zahl?"
+            frame: "_ Zehner und _ Einer"
+            options: ["4", "2", "6", "42"]
+            answer: ["4", "2"]
+            option_audio: false
+          - id: l2-c10
+            part: hear
+            type: text_input
+            text: "Hör zu und schreib die Zahl."
+            say: "Fünfundneunzig. Schreib die Zahl."
+            answer: "95"
+          - id: l2-c11
+            part: read
+            type: multiple_choice
+            text: "zweiundneunzig"
+            say: "Lies das Zahlwort. Welche Zahl ist das?"
+            options: ["29", "92", "90"]
+            answer: "92"
+            option_audio: false
+          - id: l2-c12
+            part: read
+            type: text_input
+            text: "achtundfünfzig"
+            say: "Lies das Zahlwort und schreib die Zahl."
+            answer: "58"
+          - id: l2-c13
+            part: read
+            type: true_false
+            text: "vierunddreißig = 43"
+            say: "Lies das Zahlwort und die Zahl. Stimmt das?"
+            answer: false
+          - id: l2-c14
+            part: read
+            type: true_false
+            text: "siebzehn = 17"
+            say: "Lies das Zahlwort und die Zahl. Stimmt das?"
+            answer: true
+          - id: l2-c15
+            part: word
+            type: matching
+            text: "Welches Zahlwort gehört zu welcher Zahl?"
+            say: "Welches Zahlwort gehört zu welcher Zahl? Verbinde."
+            option_audio: false
+            pairs:
+              - { left: { text: "13" }, right: { text: "dreizehn" } }
+              - { left: { text: "30" }, right: { text: "dreißig" } }
+              - { left: { text: "31" }, right: { text: "einunddreißig" } }
+          - id: l2-c16
+            part: word
+            type: multiple_choice
+            text: "Welches Wort passt zu 68?"
+            say: "Welches Zahlwort passt zu den Ziffern sechs und acht?"
+            options: ["sechsundachtzig", "achtundsechzig", "achtzehn"]
+            answer: "achtundsechzig"
+            option_audio: false
+          - id: l2-c17
+            part: word
+            type: multiple_choice
+            text: "Welches Wort passt zu 50?"
+            say: "Welches Zahlwort passt zu den Ziffern fünf und null?"
+            options: ["fünfzehn", "fünfzig", "fünfundzehn"]
+            answer: "fünfzig"
+            option_audio: false
+          - id: l2-c18
+            part: word
+            type: true_false
+            text: "76 = siebenundsechzig"
+            say: "Lies die Zahl und das Zahlwort. Stimmt das?"
+            answer: false
+          - id: l2-c19
+            part: word
+            type: multiple_choice
+            text: "Welches Wort passt zu 12?"
+            say: "Welches Zahlwort passt zu den Ziffern eins und zwei?"
+            options: ["zwanzig", "zweiundzwanzig", "zwölf"]
+            answer: "zwölf"
+            option_audio: false
+          - id: l2-c20
+            part: read
+            type: text_input
+            text: "einundachtzig"
+            say: "Lies das Zahlwort und schreib die Zahl."
+            answer: "81"

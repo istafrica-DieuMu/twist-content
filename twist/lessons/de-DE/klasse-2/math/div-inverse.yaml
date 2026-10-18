@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: [operation-signs]
+  parts:
+    - { id: solve, what: { de: eine Geteiltaufgabe mit der Malaufgabe lösen, en: solving a division with its multiplication } }
+    - { id: inverse, what: { de: die passende Umkehraufgabe finden, en: finding the matching multiplication } }
+    - { id: family, what: { de: eine Aufgabenfamilie ergänzen, en: completing a fact family } }
+    - { id: belongs, what: { de: "erkennen, welche Aufgabe zur Familie gehört", en: spotting which calculation belongs to a family } }
   misconceptions:
     - id: inverse-is-plus
       what: "Takes a plus or a times with the wrong numbers as the Umkehraufgabe (20 : 4 with 4 + 16 or 20 · 4)"
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -217,6 +223,24 @@ lessons:
             text: "Stimmt das? 20 : 2 = 8"
             say: "Zwanzig geteilt durch zwei ist acht. Stimmt das?"
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Die Malaufgabe hilft."
+            say: "Zwölf geteilt durch zwei. Zwei mal wie viel ist zwölf?"
+            frame: "2 · _ = 12 | 12 : 2 = _"
+            options: ["6", "5", "10"]
+            answer: ["6", "6"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welche Umkehraufgabe hilft bei 50 : 10?"
+            say: "Fünfzig geteilt durch zehn. Welche Umkehraufgabe hilft dir?"
+            options: ["10 · 5 = 50", "10 + 40 = 50", "50 − 10 = 40"]
+            answer: "10 · 5 = 50"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 40 : 10 = 4, denn 10 · 4 = 40"
+            say: "Vierzig geteilt durch zehn ist vier, denn zehn mal vier ist vierzig. Stimmt das?"
+            answer: true
 
   - n: 2
     title: { de: "Aufgabenfamilien", en: "Fact families" }
@@ -384,18 +408,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: solve
             type: text_input
             text: "48 : 8 = _"
             say: "Achtundvierzig geteilt durch acht."
             answer: "6"
           - id: l2-c2
+            part: solve
             type: text_input
             text: "42 : 6 = _"
             say: "Zweiundvierzig geteilt durch sechs."
             answer: "7"
           - id: l2-c3
+            part: family
             type: fill_in_blank
             text: "Ergänze die Aufgabenfamilie."
             say: "Ergänze die Aufgabenfamilie von drei, neun und siebenundzwanzig."
@@ -403,13 +431,118 @@ lessons:
             options: ["27", "9", "3", "24"]
             answer: ["27", "9", "3"]
           - id: l2-c4
+            part: belongs
             type: multiple_choice
             text: "Welche Aufgabe gehört nicht zur Familie von 5, 7 und 35?"
             say: "Welche Aufgabe gehört nicht zur Aufgabenfamilie von fünf, sieben und fünfunddreißig?"
             options: ["35 : 7 = 5", "7 · 5 = 35", "35 − 7 = 28"]
             answer: "35 − 7 = 28"
           - id: l2-c5
+            part: solve
             type: true_false
             text: "Stimmt das? 40 : 8 = 4"
             say: "Vierzig geteilt durch acht ist vier. Stimmt das?"
             answer: false
+          - id: l2-c6
+            part: solve
+            type: fill_in_blank
+            text: "Die Malaufgabe hilft."
+            say: "Siebzig geteilt durch zehn. Zehn mal wie viel ist siebzig?"
+            frame: "10 · _ = 70 | 70 : 10 = _"
+            options: ["7", "10", "60"]
+            answer: ["7", "7"]
+          - id: l2-c7
+            part: solve
+            type: text_input
+            text: "25 : 5 = _"
+            say: "Fünfundzwanzig geteilt durch fünf."
+            answer: "5"
+          - id: l2-c8
+            part: inverse
+            type: multiple_choice
+            text: "Welche Umkehraufgabe hilft bei 30 : 3?"
+            say: "Dreißig geteilt durch drei. Welche Umkehraufgabe hilft dir?"
+            options: ["3 · 10 = 30", "3 + 27 = 30", "30 · 3 = 90"]
+            answer: "3 · 10 = 30"
+          - id: l2-c9
+            part: inverse
+            type: multiple_choice
+            text: "Welche Umkehraufgabe hilft bei 12 : 2?"
+            say: "Zwölf geteilt durch zwei. Welche Umkehraufgabe hilft dir?"
+            options: ["12 · 2 = 24", "2 · 6 = 12", "2 + 10 = 12"]
+            answer: "2 · 6 = 12"
+          - id: l2-c10
+            part: inverse
+            type: true_false
+            text: "Stimmt das? 16 : 4 = 4, denn 4 · 4 = 16"
+            say: "Sechzehn geteilt durch vier ist vier, denn vier mal vier ist sechzehn. Stimmt das?"
+            answer: true
+          - id: l2-c11
+            part: inverse
+            type: true_false
+            text: "Stimmt das? 50 : 5 = 9, denn 5 · 9 = 50"
+            say: "Fünfzig geteilt durch fünf ist neun, denn fünf mal neun ist fünfzig. Stimmt das?"
+            answer: false
+          - id: l2-c12
+            part: inverse
+            type: fill_in_blank
+            text: "24 : 6 = 4. Welche Zahl fehlt in der Malaufgabe?"
+            say: "Vierundzwanzig geteilt durch sechs ist vier. Welche Zahl fehlt in der Malaufgabe?"
+            frame: "_ · 4 = 24"
+            options: ["6", "4", "20"]
+            answer: ["6"]
+          - id: l2-c13
+            part: family
+            type: fill_in_blank
+            text: "Ergänze die Aufgabenfamilie."
+            say: "Ergänze die Aufgabenfamilie von zwei, neun und achtzehn."
+            frame: "2 · 9 = 18 | 9 · 2 = _ | 18 : 2 = _ | 18 : 9 = _"
+            options: ["18", "9", "2", "16"]
+            answer: ["18", "9", "2"]
+          - id: l2-c14
+            part: family
+            type: fill_in_blank
+            text: "Ergänze die Aufgabenfamilie."
+            say: "Ergänze die Aufgabenfamilie von drei, zehn und dreißig."
+            frame: "10 · 3 = 30 | 3 · 10 = 30 | 30 : 10 = _ | 30 : 3 = _"
+            options: ["3", "10", "20"]
+            answer: ["3", "10"]
+          - id: l2-c15
+            part: family
+            type: text_input
+            text: "4 · 7 = 28 | 28 : 7 = _"
+            say: "Vier mal sieben ist achtundzwanzig. Wie viel ist achtundzwanzig geteilt durch sieben?"
+            answer: "4"
+          - id: l2-c16
+            part: family
+            type: multiple_choice
+            text: "Mit welchen drei Zahlen bildest du eine Aufgabenfamilie?"
+            say: "Mit welchen drei Zahlen bildest du eine Aufgabenfamilie aus Malaufgaben und Geteiltaufgaben?"
+            options: ["3, 6, 18", "3, 6, 9", "3, 6, 12"]
+            answer: "3, 6, 18"
+          - id: l2-c17
+            part: belongs
+            type: multiple_choice
+            text: "Welche Aufgabe gehört nicht zur Familie von 4, 8 und 32?"
+            say: "Welche Aufgabe gehört nicht zur Aufgabenfamilie von vier, acht und zweiunddreißig?"
+            options: ["32 : 4 = 8", "4 · 8 = 32", "32 : 2 = 16"]
+            answer: "32 : 2 = 16"
+          - id: l2-c18
+            part: belongs
+            type: true_false
+            text: "Gehört 7 · 2 = 14 zur Familie von 14 : 2 = 7?"
+            say: "Gehört sieben mal zwei gleich vierzehn zur Familie von vierzehn geteilt durch zwei gleich sieben?"
+            answer: true
+          - id: l2-c19
+            part: belongs
+            type: true_false
+            text: "Gehört 10 : 5 = 2 zur Familie von 5 · 4 = 20?"
+            say: "Gehört zehn geteilt durch fünf gleich zwei zur Familie von fünf mal vier gleich zwanzig?"
+            answer: false
+          - id: l2-c20
+            part: belongs
+            type: multiple_choice
+            text: "Welche Geteiltaufgabe ist richtig geschrieben?"
+            say: "Welche Geteiltaufgabe ist richtig geschrieben?"
+            options: ["4 : 28 = 7", "28 : 4 = 7", "7 : 28 = 4"]
+            answer: "28 : 4 = 7"

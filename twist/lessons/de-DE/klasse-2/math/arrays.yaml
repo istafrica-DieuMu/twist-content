@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: read, what: { de: ein Punktefeld als Malaufgabe lesen, en: reading an array as a multiplication } }
+    - { id: count, what: { de: die Punkte eines Feldes in Reihen zählen, en: counting the dots of an array in rows } }
+    - { id: show, what: { de: das Punktefeld zu einer Malaufgabe finden, en: finding the array for a multiplication } }
+    - { id: stories, what: { de: die Malaufgabe zu einer Geschichte finden, en: finding the multiplication for a story } }
   misconceptions:
     - id: count-one-by-one
       what: Counts every dot instead of using rows
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +237,26 @@ lessons:
             say: "Welches Feld zeigt fünf mal zwei?"
             options: [{ drawn: dots, array: [5, 2] }, { drawn: dots, array: [4, 2] }, { drawn: dots, array: [5, 3] }]
             answer: "5x2"
+          - id: l1-c4
+            type: true_false
+            text: "Zeigt das Feld 3 · 4?"
+            say: "Zeigt das Feld drei mal vier?"
+            show: { drawn: dots, array: [3, 5] }
+            answer: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Schreib die Malaufgabe zum Feld."
+            say: "Schreib die Malaufgabe: zuerst die Reihen, dann die Punkte in einer Reihe, dann das Ergebnis."
+            show: { drawn: dots, array: [4, 9] }
+            frame: "_ · _ = _"
+            options: ["4", "9", "36", "13"]
+            answer: ["4", "9", "36"]
+          - id: l1-c6
+            type: text_input
+            text: "Wie viele Punkte?"
+            say: "Wie viele Punkte hat das Feld?"
+            show: { drawn: dots, array: [5, 10] }
+            answer: "50"
 
   - n: 2
     title: { de: Malaufgaben im Alltag, en: Arrays around us }
@@ -398,8 +424,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Welche Malaufgabe zeigt das Feld?"
             say: "Lies zuerst die Reihen. Welche Malaufgabe zeigt das Feld?"
@@ -407,12 +435,14 @@ lessons:
             options: ["4 · 7", "4 · 6", "4 + 7"]
             answer: "4 · 7"
           - id: l2-c2
+            part: count
             type: text_input
             text: "Wie viele Punkte?"
             say: "Wie viele Punkte hat das Feld?"
             show: { drawn: dots, array: [3, 8] }
             answer: "24"
           - id: l2-c3
+            part: stories
             type: fill_in_blank
             text: "6 Kinder haben je 2 Murmeln. Schreib die Malaufgabe."
             say: "Sechs Kinder haben je zwei Murmeln. Schreib die Malaufgabe."
@@ -420,13 +450,122 @@ lessons:
             options: ["6", "2", "12", "8"]
             answer: ["6", "2", "12"]
           - id: l2-c4
+            part: show
             type: image_multiple_choice
             text: "Welches Feld zeigt 5 · 6?"
             say: "Welches Feld zeigt fünf mal sechs?"
             options: [{ drawn: dots, array: [5, 6] }, { drawn: dots, array: [5, 5] }, { drawn: dots, array: [4, 6] }]
             answer: "5x6"
           - id: l2-c5
+            part: stories
             type: true_false
             text: "4 Kinder haben je 2 Luftballons. Passt 4 + 2?"
             say: "Vier Kinder haben je zwei Luftballons. Passt vier plus zwei?"
             answer: false
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Welche Malaufgabe zeigt das Feld?"
+            say: "Lies zuerst die Reihen. Welche Malaufgabe zeigt das Feld?"
+            show: { drawn: dots, array: [3, 9] }
+            options: ["3 · 9", "3 · 8", "3 + 9"]
+            answer: "3 · 9"
+          - id: l2-c7
+            part: read
+            type: true_false
+            text: "Zeigt das Feld 6 · 4?"
+            say: "Zeigt das Feld sechs mal vier?"
+            show: { drawn: dots, array: [6, 3] }
+            answer: false
+          - id: l2-c8
+            part: read
+            type: fill_in_blank
+            text: "Schreib die Malaufgabe zum Feld."
+            say: "Schreib die Malaufgabe: zuerst die Reihen, dann die Punkte in einer Reihe, dann das Ergebnis."
+            show: { drawn: dots, array: [4, 6] }
+            frame: "_ · _ = _"
+            options: ["4", "6", "24", "10"]
+            answer: ["4", "6", "24"]
+          - id: l2-c9
+            part: read
+            type: true_false
+            text: "Zeigt das Feld 2 · 10?"
+            say: "Zeigt das Feld zwei mal zehn?"
+            show: { drawn: dots, array: [2, 10] }
+            answer: true
+          - id: l2-c10
+            part: count
+            type: text_input
+            text: "Wie viele Punkte?"
+            say: "Wie viele Punkte hat das Feld?"
+            show: { drawn: dots, array: [6, 5] }
+            answer: "30"
+          - id: l2-c11
+            part: count
+            type: text_input
+            text: "Wie viele Punkte?"
+            say: "Wie viele Punkte hat das Feld?"
+            show: { drawn: dots, array: [4, 8] }
+            answer: "32"
+          - id: l2-c12
+            part: count
+            type: multiple_choice
+            text: "Wie viele Punkte hat das Feld?"
+            say: "Wie viele Punkte hat das Feld?"
+            show: { drawn: dots, array: [6, 2] }
+            options: ["12", "10", "8"]
+            answer: "12"
+          - id: l2-c13
+            part: count
+            type: true_false
+            text: "Hat das Feld 20 Punkte?"
+            say: "Hat das Feld zwanzig Punkte?"
+            show: { drawn: dots, array: [5, 4] }
+            answer: true
+          - id: l2-c14
+            part: show
+            type: image_multiple_choice
+            text: "Welches Feld zeigt 2 · 7?"
+            say: "Welches Feld zeigt zwei mal sieben?"
+            options: [{ drawn: dots, array: [2, 6] }, { drawn: dots, array: [3, 7] }, { drawn: dots, array: [2, 7] }]
+            answer: "2x7"
+          - id: l2-c15
+            part: show
+            type: image_multiple_choice
+            text: "Welches Feld zeigt 4 · 5?"
+            say: "Welches Feld zeigt vier mal fünf?"
+            options: [{ drawn: dots, array: [4, 4] }, { drawn: dots, array: [4, 5] }, { drawn: dots, array: [5, 5] }]
+            answer: "4x5"
+          - id: l2-c16
+            part: show
+            type: image_multiple_choice
+            text: "Welches Feld zeigt 3 · 3?"
+            say: "Welches Feld zeigt drei mal drei?"
+            options: [{ drawn: dots, array: [3, 3] }, { drawn: dots, array: [2, 3] }, { drawn: dots, array: [3, 4] }]
+            answer: "3x3"
+          - id: l2-c17
+            part: show
+            type: image_multiple_choice
+            text: "Welches Feld hat 12 Punkte?"
+            say: "Welches Feld hat zwölf Punkte?"
+            options: [{ drawn: dots, array: [3, 5] }, { drawn: dots, array: [3, 4] }, { drawn: dots, array: [2, 5] }]
+            answer: "3x4"
+          - id: l2-c18
+            part: stories
+            type: multiple_choice
+            text: "Im Garten wachsen 3 Reihen mit je 7 Salatköpfen. Welche Malaufgabe passt?"
+            say: "Im Garten wachsen drei Reihen mit je sieben Salatköpfen. Welche Malaufgabe passt?"
+            options: ["3 · 7", "3 + 7", "7 · 7"]
+            answer: "3 · 7"
+          - id: l2-c19
+            part: stories
+            type: text_input
+            text: "4 Kartons mit je 6 Eiern. Wie viele Eier sind das?"
+            say: "Vier Kartons mit je sechs Eiern. Wie viele Eier sind das?"
+            answer: "24"
+          - id: l2-c20
+            part: stories
+            type: true_false
+            text: "5 Vasen mit je 3 Blumen. Passt 5 · 3?"
+            say: "Fünf Vasen mit je drei Blumen. Passt fünf mal drei?"
+            answer: true

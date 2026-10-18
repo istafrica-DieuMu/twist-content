@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten]
   facets: []
+  parts:
+    - { id: add, what: { de: Einer ohne Zehnerübergang addieren, en: adding ones without crossing a ten } }
+    - { id: sub, what: { de: Einer ohne Zehnerübergang subtrahieren, en: subtracting ones without crossing a ten } }
+    - { id: ones-change, what: { de: "wissen, dass sich nur die Einer ändern", en: knowing that only the ones change } }
+    - { id: analog, what: { de: die kleine Aufgabe nutzen, en: using the small related fact } }
   misconceptions:
     - id: add-to-tens
       what: Adds the ones to the tens digit (34 + 5 = 84)
@@ -227,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -241,11 +247,27 @@ lessons:
             answer: "48"
           - id: l1-c3
             type: fill_in_blank
-            text: "Die kleine Aufgabe hilft."
-            say: "Erst die kleine Aufgabe, dann die große."
+            text: "Rechne beide Aufgaben."
+            say: "Fünf plus zwei, dann fünfundachtzig plus zwei."
             frame: "5 + 2 = _ | 85 + 2 = _"
             options: ["7", "87", "105", "77"]
             answer: ["7", "87"]
+          - id: l1-c4
+            type: text_input
+            text: "11 + 7 = _"
+            say: "Elf plus sieben."
+            answer: "18"
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? 51 + 4 = 91"
+            say: "Einundfünfzig plus vier gleich einundneunzig. Stimmt das?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "73 + 4: Was ändert sich?"
+            say: "Dreiundsiebzig plus vier. Was ändert sich?"
+            options: ["die Einer", "die Zehner", "beide"]
+            answer: "die Einer"
 
   - n: 2
     title: { de: "Einer weg, Einer dazu", en: "Taking away and adding ones" }
@@ -427,32 +449,141 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "54 + 4 = _"
             say: "Vierundfünfzig plus vier."
             answer: "58"
           - id: l2-c2
+            part: sub
             type: text_input
             text: "68 − 3 = _"
             say: "Achtundsechzig minus drei."
             answer: "65"
           - id: l2-c3
+            part: ones-change
             type: multiple_choice
             text: "93 + 5: Was ändert sich?"
             say: "Dreiundneunzig plus fünf. Was ändert sich?"
             options: ["die Einer", "die Zehner", "beide"]
             answer: "die Einer"
           - id: l2-c4
+            part: analog
             type: fill_in_blank
-            text: "Die kleine Aufgabe hilft."
-            say: "Erst die kleine Aufgabe, dann die große."
+            text: "Rechne beide Aufgaben."
+            say: "Sieben minus fünf, dann siebenundvierzig minus fünf."
             frame: "7 − 5 = _ | 47 − 5 = _"
             options: ["2", "42", "12", "52"]
             answer: ["2", "42"]
           - id: l2-c5
+            part: add
             type: true_false
             text: "Stimmt das? 23 + 6 = 83"
             say: "Dreiundzwanzig plus sechs gleich dreiundachtzig. Stimmt das?"
             answer: false
+          - id: l2-c6
+            part: add
+            type: text_input
+            text: "32 + 7 = _"
+            say: "Zweiunddreißig plus sieben."
+            answer: "39"
+          - id: l2-c7
+            part: add
+            type: multiple_choice
+            text: "61 + 8 = ?"
+            say: "Einundsechzig plus acht."
+            options: ["69", "141", "9"]
+            answer: "69"
+          - id: l2-c8
+            part: add
+            type: true_false
+            text: "Stimmt das? 15 + 4 = 19"
+            say: "Fünfzehn plus vier gleich neunzehn. Stimmt das?"
+            answer: true
+          - id: l2-c9
+            part: sub
+            type: text_input
+            text: "89 − 6 = _"
+            say: "Neunundachtzig minus sechs."
+            answer: "83"
+          - id: l2-c10
+            part: sub
+            type: multiple_choice
+            text: "27 − 4 = ?"
+            say: "Siebenundzwanzig minus vier."
+            options: ["23", "3", "24"]
+            answer: "23"
+          - id: l2-c11
+            part: sub
+            type: true_false
+            text: "Stimmt das? 78 − 2 = 58"
+            say: "Achtundsiebzig minus zwei gleich achtundfünfzig. Stimmt das?"
+            answer: false
+          - id: l2-c12
+            part: sub
+            type: text_input
+            text: "Auf dem Teller liegen 46 Kekse. Ben isst 3. Wie viele Kekse liegen noch auf dem Teller?"
+            say: "Auf dem Teller liegen sechsundvierzig Kekse. Ben isst drei. Wie viele Kekse liegen noch auf dem Teller?"
+            answer: "43"
+          - id: l2-c13
+            part: ones-change
+            type: multiple_choice
+            text: "58 − 4: Was ändert sich?"
+            say: "Achtundfünfzig minus vier. Was ändert sich?"
+            options: ["die Einer", "die Zehner", "beide"]
+            answer: "die Einer"
+          - id: l2-c14
+            part: ones-change
+            type: true_false
+            text: "Stimmt das? Bei 71 + 6 ändern sich die Zehner."
+            say: "Bei einundsiebzig plus sechs ändern sich die Zehner. Stimmt das?"
+            answer: false
+          - id: l2-c15
+            part: ones-change
+            type: multiple_choice
+            text: "36 − 4: Was bleibt gleich?"
+            say: "Sechsunddreißig minus vier. Was bleibt gleich?"
+            show: { drawn: base-ten, tens: 3, ones: 6 }
+            options: ["die Zehner", "die Einer", "nichts"]
+            answer: "die Zehner"
+          - id: l2-c16
+            part: ones-change
+            type: fill_in_blank
+            text: "42 + 5: Wie viele Zehner und Einer hat das Ergebnis?"
+            say: "Zweiundvierzig plus fünf. Wie viele Zehner und wie viele Einer hat das Ergebnis?"
+            frame: "_ Zehner und _ Einer"
+            options: ["4", "7", "5", "9"]
+            answer: ["4", "7"]
+          - id: l2-c17
+            part: analog
+            type: fill_in_blank
+            text: "Rechne beide Aufgaben."
+            say: "Drei plus fünf, dann dreiundsiebzig plus fünf."
+            frame: "3 + 5 = _ | 73 + 5 = _"
+            options: ["8", "78", "123", "58"]
+            answer: ["8", "78"]
+          - id: l2-c18
+            part: analog
+            type: fill_in_blank
+            text: "Rechne beide Aufgaben."
+            say: "Neun minus sechs, dann neununddreißig minus sechs."
+            frame: "9 − 6 = _ | 39 − 6 = _"
+            options: ["3", "33", "9", "36"]
+            answer: ["3", "33"]
+          - id: l2-c19
+            part: analog
+            type: multiple_choice
+            text: "Welche kleine Aufgabe hilft bei 84 + 3?"
+            say: "Welche kleine Aufgabe hilft bei vierundachtzig plus drei?"
+            options: ["4 + 3", "8 + 3", "84 + 30"]
+            answer: "4 + 3"
+          - id: l2-c20
+            part: analog
+            type: multiple_choice
+            text: "Welche kleine Aufgabe hilft bei 67 − 5?"
+            say: "Welche kleine Aufgabe hilft bei siebenundsechzig minus fünf?"
+            options: ["7 − 5", "6 − 5", "67 − 50"]
+            answer: "7 − 5"

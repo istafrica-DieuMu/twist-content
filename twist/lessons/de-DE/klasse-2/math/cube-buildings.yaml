@@ -25,6 +25,10 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: count, what: { de: die Würfel eines Gebäudes zählen, en: counting the cubes of a building } }
+    - { id: read, what: { de: einen Bauplan lesen, en: reading a plan } }
+    - { id: write, what: { de: zu einem Gebäude den Bauplan schreiben, en: writing the plan for a building } }
   misconceptions:
     - id: counts-fields
       what: Counts the fields of the Bauplan instead of adding the numbers in them
@@ -221,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -244,6 +249,25 @@ lessons:
               - { drawn: shape, column: [cube, cube, cube, cube], colours: purple, key: "4" }
               - { drawn: shape, column: [cube, cube], colours: purple, key: "2" }
             answer: "4"
+          - id: l1-c4
+            type: true_false
+            text: "Bauplan: 3 3 1\nDu brauchst 7 Würfel."
+            say: "Stimmt das? Für diesen Bauplan brauchst du sieben Würfel."
+            answer: true
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Links: 1 Würfel. Mitte: 4 Würfel. Rechts: 2 Würfel.\nSchreib den Bauplan."
+            say: "Links steht ein Würfel, in der Mitte stehen vier, rechts zwei. Schreib den Bauplan."
+            frame: "Bauplan: _ _ _"
+            options: ["1", "2", "3", "4"]
+            answer: ["1", "4", "2"]
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Bauplan: 2 1 4\nWie viele Würfel stehen links?"
+            say: "Wie viele Würfel stehen links?"
+            options: ["2", "1", "4"]
+            answer: "2"
 
   - n: 2
     title: { de: "Baupläne mit zwei Reihen", en: "Plans with two rows" }
@@ -415,26 +439,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: multiple_choice
             text: "Bauplan: 3 2 4\nWie viele Würfel brauchst du?"
             say: "Wie viele Würfel brauchst du für das ganze Gebäude?"
             options: ["9", "3", "8"]
             answer: "9"
           - id: l2-c2
+            part: count
             type: multiple_choice
             text: "hinten: 2 4\nvorne: 3 1\nWie viele Würfel brauchst du?"
             say: "Wie viele Würfel brauchst du für das ganze Gebäude?"
             options: ["10", "4", "9"]
             answer: "10"
           - id: l2-c3
+            part: read
             type: multiple_choice
             text: "hinten: 2 4\nvorne: 3 1\nWo steht der höchste Turm?"
             say: "Wo steht der höchste Turm?"
             options: ["hinten rechts", "vorne links", "hinten links"]
             answer: "hinten rechts"
           - id: l2-c4
+            part: write
             type: multiple_choice
             text: "Links: 2 Würfel. Mitte: 4 Würfel. Rechts: 1 Würfel.\nWelcher Bauplan passt?"
             say: "Links stehen zwei Würfel, in der Mitte vier, rechts einer. Welcher Bauplan passt?"
@@ -442,10 +471,121 @@ lessons:
             answer: "2 4 1"
             option_audio: false
           - id: l2-c5
+            part: write
             type: fill_in_blank
             text: "Lars baut: hinten links 2, hinten rechts 2, vorne links 4, vorne rechts 3.\nSchreib den Bauplan."
             say: "Lars baut hinten links zwei Würfel, hinten rechts zwei, vorne links vier und vorne rechts drei. Schreib den Bauplan."
             frame: "hinten: _ _ | vorne: _ _"
             options: ["1", "2", "3", "4"]
             answer: ["2", "2", "4", "3"]
+            option_audio: false
+          - id: l2-c6
+            part: count
+            type: multiple_choice
+            text: "Bauplan: 1 3 4\nWie viele Würfel brauchst du?"
+            say: "Wie viele Würfel brauchst du für das ganze Gebäude?"
+            options: ["8", "3", "7"]
+            answer: "8"
+          - id: l2-c7
+            part: count
+            type: true_false
+            text: "Bauplan: 2 1 2\nDu brauchst 3 Würfel."
+            say: "Stimmt das? Für diesen Bauplan brauchst du drei Würfel."
+            answer: false
+          - id: l2-c8
+            part: count
+            type: multiple_choice
+            text: "hinten: 3 3\nvorne: 1 2\nWie viele Würfel brauchst du?"
+            say: "Wie viele Würfel brauchst du für das ganze Gebäude?"
+            options: ["9", "4", "8"]
+            answer: "9"
+          - id: l2-c9
+            part: count
+            type: true_false
+            text: "hinten: 1 2\nvorne: 2 1\nDu brauchst 6 Würfel."
+            say: "Stimmt das? Für diesen Bauplan brauchst du sechs Würfel."
+            answer: true
+          - id: l2-c10
+            part: count
+            type: multiple_choice
+            text: "Wie viele Würfel hat der Turm?"
+            say: "Wie viele Würfel hat dieser Turm?"
+            show: { drawn: shape, column: [cube, cube, cube, cube, cube, cube], colours: red }
+            options: ["6", "5", "7"]
+            answer: "6"
+          - id: l2-c11
+            part: read
+            type: multiple_choice
+            text: "Bauplan: 4 1 3\nWo steht der höchste Turm?"
+            say: "Wo steht der höchste Turm?"
+            options: ["links", "in der Mitte", "rechts"]
+            answer: "links"
+            keep_order: true
+          - id: l2-c12
+            part: read
+            type: multiple_choice
+            text: "Bauplan: 3 1 4\nWie viele Würfel stehen in der Mitte?"
+            say: "Wie viele Würfel stehen in der Mitte?"
+            options: ["1", "3", "4"]
+            answer: "1"
+          - id: l2-c13
+            part: read
+            type: multiple_choice
+            text: "hinten: 1 4\nvorne: 2 3\nWie viele Würfel stehen hinten rechts?"
+            say: "Wie viele Würfel stehen hinten rechts?"
+            options: ["4", "3", "1"]
+            answer: "4"
+          - id: l2-c14
+            part: read
+            type: multiple_choice
+            text: "hinten: 2 1\nvorne: 4 2\nWo steht der höchste Turm?"
+            say: "Wo steht der höchste Turm?"
+            options: ["vorne links", "hinten links", "vorne rechts"]
+            answer: "vorne links"
+          - id: l2-c15
+            part: read
+            type: true_false
+            text: "hinten: 3 1\nvorne: 1 2\nDer höchste Turm steht vorne rechts."
+            say: "Stimmt das? Der höchste Turm steht vorne rechts."
+            answer: false
+          - id: l2-c16
+            part: read
+            type: multiple_choice
+            text: "hinten: 3 2\nvorne: 1 3\nWelcher Turm ist höher: hinten rechts oder vorne links?"
+            say: "Welcher Turm ist höher: hinten rechts oder vorne links?"
+            options: ["hinten rechts", "vorne links", "beide gleich hoch"]
+            answer: "hinten rechts"
+          - id: l2-c17
+            part: write
+            type: fill_in_blank
+            text: "Links: 4 Würfel. Mitte: 2 Würfel. Rechts: 3 Würfel.\nSchreib den Bauplan."
+            say: "Links stehen vier Würfel, in der Mitte zwei, rechts drei. Schreib den Bauplan."
+            frame: "Bauplan: _ _ _"
+            options: ["1", "2", "3", "4"]
+            answer: ["4", "2", "3"]
+            option_audio: false
+          - id: l2-c18
+            part: write
+            type: multiple_choice
+            text: "Links: 3 Würfel. Mitte: 1 Würfel. Rechts: 2 Würfel.\nWelcher Bauplan passt?"
+            say: "Links stehen drei Würfel, in der Mitte einer, rechts zwei. Welcher Bauplan passt?"
+            options: ["3 1 2", "2 1 3", "6"]
+            answer: "3 1 2"
+            option_audio: false
+          - id: l2-c19
+            part: write
+            type: fill_in_blank
+            text: "Nora baut: hinten links 4, hinten rechts 1, vorne links 1, vorne rechts 2.\nSchreib den Bauplan."
+            say: "Nora baut hinten links vier Würfel, hinten rechts einen, vorne links einen und vorne rechts zwei. Schreib den Bauplan."
+            frame: "hinten: _ _ | vorne: _ _"
+            options: ["1", "2", "3", "4"]
+            answer: ["4", "1", "1", "2"]
+            option_audio: false
+          - id: l2-c20
+            part: write
+            type: multiple_choice
+            text: "Emil baut: hinten links 1, hinten rechts 2, vorne links 3, vorne rechts 1.\nWelcher Bauplan passt?"
+            say: "Emil baut hinten links einen Würfel, hinten rechts zwei, vorne links drei und vorne rechts einen. Welcher Bauplan passt?"
+            options: ["hinten: 1 2 | vorne: 3 1", "hinten: 3 1 | vorne: 1 2", "hinten: 2 1 | vorne: 1 3"]
+            answer: "hinten: 1 2 | vorne: 3 1"
             option_audio: false

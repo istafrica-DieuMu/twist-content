@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [hundred-square]
   facets: []
+  parts:
+    - { id: neighbours, what: { de: "die Nachbarn links, rechts, oben und unten finden", en: "finding the numbers left, right, above and below" } }
+    - { id: moves, what: { de: Wegen auf der Hundertertafel folgen, en: following moves on the hundred square } }
+    - { id: patterns, what: { de: Muster in Zeilen und Spalten erkennen, en: spotting patterns in rows and columns } }
   misconceptions:
     - id: down-is-one
       what: Thinks the number under 34 is 35
@@ -236,6 +240,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -258,6 +263,27 @@ lessons:
             show: { drawn: hundred-square, hide: [49] }
             options: ["49", "94", "59"]
             answer: "49"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welche Zahl ist versteckt?"
+            say: "Die versteckte Zahl ist über dreiundneunzig. Welche ist es?"
+            show: { drawn: hundred-square, highlight: [93], hide: [83] }
+            options: ["83", "92", "73"]
+            answer: "83"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Welche Zahlen stehen oben und unten?"
+            say: "Welche Zahlen stehen über und unter vierundvierzig?"
+            show: { drawn: hundred-square, highlight: [44], hide: [34, 54] }
+            frame: "oben _ , unten _"
+            options: ["34", "43", "45", "54"]
+            answer: ["34", "54"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? Unter 27 steht 37."
+            say: "Unter siebenundzwanzig steht siebenunddreißig. Stimmt das?"
+            show: { drawn: hundred-square, highlight: [27] }
+            answer: true
 
   - n: 2
     title: { de: Wege und Muster, en: Moves and patterns }
@@ -455,8 +481,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: neighbours
             type: multiple_choice
             text: "Welche Zahl ist versteckt?"
             say: "Die versteckte Zahl ist über sechsundfünfzig. Welche ist es?"
@@ -464,6 +492,7 @@ lessons:
             options: ["46", "55", "66"]
             answer: "46"
           - id: l2-c2
+            part: neighbours
             type: fill_in_blank
             text: "Welche Zahlen stehen oben und unten?"
             say: "Welche Zahlen stehen über und unter zweiundachtzig?"
@@ -472,6 +501,7 @@ lessons:
             options: ["72", "81", "83", "92"]
             answer: ["72", "92"]
           - id: l2-c3
+            part: moves
             type: multiple_choice
             text: "Start 37, 2 Zeilen nach unten. Wo bist du?"
             say: "Fang bei siebenunddreißig an. Geh zwei Zeilen nach unten. Wo bist du?"
@@ -479,6 +509,7 @@ lessons:
             options: ["39", "57", "47"]
             answer: "57"
           - id: l2-c4
+            part: patterns
             type: multiple_choice
             text: "Welche Zahl gehört in diese Spalte?"
             say: "Die gelben Zahlen sind eine Spalte. Welche Zahl gehört auch dazu?"
@@ -486,8 +517,123 @@ lessons:
             options: ["35", "44", "40"]
             answer: "44"
           - id: l2-c5
+            part: moves
             type: text_input
             text: "Start 23, 1 Zeile nach unten, dann 4 Schritte nach rechts. Wo bist du?"
             say: "Fang bei dreiundzwanzig an. Eine Zeile nach unten, dann vier Schritte nach rechts. Wo bist du?"
             show: { drawn: hundred-square, highlight: [23] }
             answer: "37"
+          - id: l2-c6
+            part: neighbours
+            type: multiple_choice
+            text: "Welche Zahl ist versteckt?"
+            show: { drawn: hundred-square, hide: [32] }
+            options: ["32", "23", "42"]
+            answer: "32"
+          - id: l2-c7
+            part: neighbours
+            type: multiple_choice
+            text: "Welche Zahl ist versteckt?"
+            say: "Die versteckte Zahl ist unter siebenundfünfzig. Welche ist es?"
+            show: { drawn: hundred-square, highlight: [57], hide: [67] }
+            options: ["58", "67", "47"]
+            answer: "67"
+          - id: l2-c8
+            part: neighbours
+            type: true_false
+            text: "Stimmt das? Über 64 steht 54."
+            say: "Über vierundsechzig steht vierundfünfzig. Stimmt das?"
+            show: { drawn: hundred-square, highlight: [64] }
+            answer: true
+          - id: l2-c9
+            part: neighbours
+            type: fill_in_blank
+            text: "Welche Zahlen stehen links und rechts?"
+            say: "Welche Zahlen stehen links und rechts neben sechsundzwanzig?"
+            show: { drawn: hundred-square, highlight: [26], hide: [25, 27] }
+            frame: "_ , 26, _"
+            options: ["16", "25", "27", "36"]
+            answer: ["25", "27"]
+          - id: l2-c10
+            part: neighbours
+            type: multiple_choice
+            text: "Welche Zahl kommt nach 70?"
+            say: "Welche Zahl kommt nach siebzig?"
+            show: { drawn: hundred-square, highlight: [70], hide: [71] }
+            options: ["71", "80", "61"]
+            answer: "71"
+          - id: l2-c11
+            part: moves
+            type: multiple_choice
+            text: "Start 61, 3 Zeilen nach unten. Wo bist du?"
+            say: "Fang bei einundsechzig an. Geh drei Zeilen nach unten. Wo bist du?"
+            show: { drawn: hundred-square, highlight: [61] }
+            options: ["64", "91", "81"]
+            answer: "91"
+          - id: l2-c12
+            part: moves
+            type: multiple_choice
+            text: "Start 76, 3 Schritte nach links. Wo bist du?"
+            say: "Fang bei sechsundsiebzig an. Geh drei Schritte nach links. Wo bist du?"
+            show: { drawn: hundred-square, highlight: [76] }
+            options: ["73", "79", "46"]
+            answer: "73"
+          - id: l2-c13
+            part: moves
+            type: text_input
+            text: "Start 15, 2 Zeilen nach unten, dann 3 Schritte nach rechts. Wo bist du?"
+            say: "Fang bei fünfzehn an. Zwei Zeilen nach unten, dann drei Schritte nach rechts. Wo bist du?"
+            show: { drawn: hundred-square, highlight: [15] }
+            answer: "38"
+          - id: l2-c14
+            part: moves
+            type: true_false
+            text: "Start 48, 2 Zeilen nach oben. Stimmt das? Du bist bei 28."
+            say: "Fang bei achtundvierzig an und geh zwei Zeilen nach oben. Stimmt das: Du bist bei achtundzwanzig?"
+            show: { drawn: hundred-square, highlight: [48] }
+            answer: true
+          - id: l2-c15
+            part: moves
+            type: text_input
+            text: "Start 92, 4 Zeilen nach oben, dann 5 Schritte nach rechts. Wo bist du?"
+            say: "Fang bei zweiundneunzig an. Vier Zeilen nach oben, dann fünf Schritte nach rechts. Wo bist du?"
+            show: { drawn: hundred-square, highlight: [92] }
+            answer: "57"
+          - id: l2-c16
+            part: patterns
+            type: multiple_choice
+            text: "Welche Zahl gehört in diese Spalte?"
+            say: "Die gelben Zahlen sind eine Spalte. Welche Zahl gehört auch dazu?"
+            show: { drawn: hundred-square, highlight: [8, 18, 28, 38] }
+            options: ["48", "39", "80"]
+            answer: "48"
+          - id: l2-c17
+            part: patterns
+            type: true_false
+            text: "Stimmt das? 21, 32, 43 stehen in einer Spalte."
+            say: "Einundzwanzig, zweiunddreißig, dreiundvierzig. Stehen die in einer Spalte untereinander?"
+            show: { drawn: hundred-square, highlight: [21, 32, 43] }
+            answer: false
+          - id: l2-c18
+            part: patterns
+            type: multiple_choice
+            text: "Welche Zahl steht nicht in derselben Spalte wie 6?"
+            say: "Welche Zahl steht nicht in derselben Spalte wie sechs?"
+            show: { drawn: hundred-square, highlight: [6] }
+            options: ["46", "66", "65"]
+            answer: "65"
+          - id: l2-c19
+            part: patterns
+            type: multiple_choice
+            text: "Mit welcher Zahl fängt die Zeile von 57 an?"
+            say: "Mit welcher Zahl fängt die Zeile an, in der siebenundfünfzig steht?"
+            show: { drawn: hundred-square, highlight: [57] }
+            options: ["51", "50", "41"]
+            answer: "51"
+          - id: l2-c20
+            part: patterns
+            type: true_false
+            text: "Stimmt das? In einer Spalte ist jede Zahl 10 mehr als die Zahl darüber."
+            say: "Stimmt das? In einer Spalte ist jede Zahl zehn mehr als die Zahl darüber."
+            show: { drawn: hundred-square }
+            answer: true

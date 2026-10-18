@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [coins]
   facets: [currency]
+  parts:
+    - { id: one-euro, what: { de: "wissen, dass 1 € 100 ct sind, und bis zum vollen Euro ergänzen", en: knowing that 1 euro is 100 cents and making up to a whole euro } }
+    - { id: read-amount, what: { de: Beträge in Euro und Cent ablesen und schreiben, en: reading and writing amounts in euros and cents } }
+    - { id: compare, what: { de: Beträge in Euro und Cent vergleichen, en: comparing amounts in euros and cents } }
   misconceptions:
     - id: ten-cent-euro
       what: Thinks 1 Euro is 10 Cent
@@ -202,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -219,6 +224,23 @@ lessons:
             say: "Was ist mehr: ein Euro oder neunundneunzig Cent?"
             options: ["1 €", "99 ct"]
             answer: "1 €"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie viel Geld ist das?"
+            say: "Wie viel Geld ist das?"
+            show: { drawn: coins, values: [20, 20, 20, 20, 10, 10] }
+            options: ["1 €", "6 ct", "90 ct"]
+            answer: "1 €"
+          - id: l1-c5
+            type: text_input
+            text: "85 ct + _ ct = 1 €"
+            say: "Fünfundachtzig Cent. Wie viele Cent fehlen bis zu einem Euro?"
+            answer: "15"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 1 € ist weniger als 75 ct."
+            say: "Ein Euro ist weniger als fünfundsiebzig Cent. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Euro und Cent zusammen", en: "Euros and cents together" }
@@ -394,13 +416,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: one-euro
             type: text_input
             text: "70 ct + _ ct = 1 €"
             say: "Siebzig Cent. Wie viele Cent fehlen bis zu einem Euro?"
             answer: "30"
           - id: l2-c2
+            part: read-amount
             type: multiple_choice
             text: "Wie viel Geld ist das?"
             say: "Wie viel Geld ist das?"
@@ -408,6 +433,7 @@ lessons:
             options: ["2 € 62 ct", "2 € 26 ct", "2 € 6 ct"]
             answer: "2 € 62 ct"
           - id: l2-c3
+            part: compare
             type: multiple_choice
             text: "Was ist mehr: 4 € 5 ct oder 4 € 50 ct?"
             say: "Was ist mehr: vier Euro fünf Cent oder vier Euro fünfzig Cent?"
@@ -415,12 +441,131 @@ lessons:
             answer: "4 € 50 ct"
             option_audio: false
           - id: l2-c4
+            part: one-euro
             type: true_false
             text: "Stimmt das? 100 ct = 1 €"
             say: "Hundert Cent sind ein Euro. Stimmt das?"
             answer: true
           - id: l2-c5
+            part: one-euro
             type: text_input
             text: "Mia hat 3 € 40 ct. Wie viele Cent fehlen ihr bis 4 €?"
             say: "Mia hat drei Euro und vierzig Cent. Wie viele Cent fehlen ihr bis vier Euro?"
             answer: "60"
+          - id: l2-c6
+            part: one-euro
+            type: true_false
+            text: "Stimmt das? Vier 20-ct-Münzen sind 1 €."
+            say: "Vier Zwanzigcentmünzen sind ein Euro. Stimmt das?"
+            answer: false
+          - id: l2-c7
+            part: one-euro
+            type: text_input
+            text: "15 ct + _ ct = 1 €"
+            say: "Fünfzehn Cent. Wie viele Cent fehlen bis zu einem Euro?"
+            answer: "85"
+          - id: l2-c8
+            part: one-euro
+            type: image_multiple_choice
+            text: "Welche Münzen sind zusammen 1 €?"
+            say: "Welche Münzen sind zusammen genau ein Euro?"
+            options:
+              - { drawn: coins, values: [50, 20, 20, 5, 5] }
+              - { drawn: coins, values: [50, 20, 10, 10] }
+              - { drawn: coins, values: [20, 20, 20, 20, 10, 5] }
+            answer: "100"
+          - id: l2-c9
+            part: read-amount
+            type: multiple_choice
+            text: "Wie viel Geld ist das?"
+            say: "Wie viel Geld ist das?"
+            show: { drawn: coins, values: [200, 200, 200, 50, 5] }
+            options: ["6 € 55 ct", "3 € 55 ct", "6 € 5 ct"]
+            answer: "6 € 55 ct"
+          - id: l2-c10
+            part: read-amount
+            type: fill_in_blank
+            text: "Wie viel Geld ist das?"
+            say: "Wie viel Geld ist das? Schreib die Euro und die Cent."
+            show: { drawn: coins, values: [500, 200, 20, 10, 5] }
+            frame: "_ € _ ct"
+            options: ["7", "35", "5", "53"]
+            answer: ["7", "35"]
+          - id: l2-c11
+            part: read-amount
+            type: true_false
+            text: "Stimmt das? Das sind 2 € 52 ct."
+            say: "Zwei Euromünzen, eine Fünfzigcentmünze und eine Zweicentmünze. Sind das zwei Euro und zweiundfünfzig Cent?"
+            show: { drawn: coins, values: [100, 100, 50, 2] }
+            answer: true
+          - id: l2-c12
+            part: read-amount
+            type: multiple_choice
+            text: "Wie viel Geld ist das?"
+            say: "Wie viel Geld ist das?"
+            show: { drawn: coins, values: [1000, 1000, 500, 20, 1] }
+            options: ["25 € 21 ct", "25 € 12 ct", "20 € 21 ct"]
+            answer: "25 € 21 ct"
+          - id: l2-c13
+            part: read-amount
+            type: fill_in_blank
+            text: "Wie viel Geld ist das?"
+            say: "Wie viel Geld ist das? Schreib die Euro und die Cent."
+            show: { drawn: coins, values: [500, 100, 5, 1] }
+            frame: "_ € _ ct"
+            options: ["6", "60", "5", "1"]
+            answer: ["6", "6"]
+          - id: l2-c14
+            part: read-amount
+            type: multiple_choice
+            text: "Zwei Euro und acht Cent. Wie schreibt man das?"
+            say: "Zwei Euro und acht Cent. Wie schreibt man das?"
+            options: ["2 € 8 ct", "2 € 80 ct", "8 € 2 ct"]
+            answer: "2 € 8 ct"
+            option_audio: false
+          - id: l2-c15
+            part: compare
+            type: multiple_choice
+            text: "Was ist weniger: 8 € 70 ct oder 7 € 80 ct?"
+            say: "Was ist weniger: acht Euro siebzig Cent oder sieben Euro achtzig Cent?"
+            options: ["8 € 70 ct", "7 € 80 ct"]
+            answer: "7 € 80 ct"
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Stimmt das? 9 € 10 ct ist mehr als 10 €."
+            say: "Neun Euro zehn Cent ist mehr als zehn Euro. Stimmt das?"
+            answer: false
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Was ist mehr: 99 ct oder 1 € 1 ct?"
+            say: "Was ist mehr: neunundneunzig Cent oder ein Euro und ein Cent?"
+            options: ["99 ct", "1 € 1 ct"]
+            answer: "1 € 1 ct"
+          - id: l2-c18
+            part: compare
+            type: image_multiple_choice
+            text: "Wo ist am meisten Geld?"
+            say: "Wo ist am meisten Geld?"
+            options:
+              - { drawn: coins, values: [200, 50] }
+              - { drawn: coins, values: [100, 50, 20, 20, 20, 10] }
+              - { drawn: coins, values: [50, 50, 50, 50] }
+            answer: "250"
+          - id: l2-c19
+            part: compare
+            type: fill_in_blank
+            text: "Setze ein: <, > oder ="
+            say: "Setze ein: kleiner, größer oder gleich. Drei Euro fünfundsiebzig Cent und drei Euro siebenundfünfzig Cent."
+            frame: "3 € 75 ct _ 3 € 57 ct"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l2-c20
+            part: compare
+            type: multiple_choice
+            text: "Welcher Betrag ist am größten?"
+            say: "Welcher Betrag ist am größten?"
+            options: ["7 € 45 ct", "4 € 75 ct", "7 € 54 ct"]
+            answer: "7 € 54 ct"

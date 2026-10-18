@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: facts, what: { de: die Aufgaben des Einmaleins gemischt, en: mixed times-table facts } }
+    - { id: missing, what: { de: fehlende Zahlen und Malaufgaben zu einem Ergebnis finden, en: missing factors and facts for a product } }
+    - { id: ways, what: { de: mit Hilfsaufgaben und Tauschaufgaben rechnen, en: working out facts from helper facts and swaps } }
+    - { id: in-context, what: { de: Sachaufgaben mit dem Einmaleins, en: word problems with the times tables } }
   misconceptions:
     - id: add-one-not-factor
       what: Going on from a known fact, adds 1 instead of the other factor (8 · 6 = 8 · 5 + 1)
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -223,6 +229,22 @@ lessons:
             text: "Stimmt das? 4 · 6 = 26"
             say: "Vier mal sechs ist sechsundzwanzig. Stimmt das?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "9 · 9: Welcher Weg hilft?"
+            say: "Neun mal neun. Welcher Weg hilft dir?"
+            options: ["10 · 9 − 9", "10 · 9 − 1", "9 + 9"]
+            answer: "10 · 9 − 9"
+          - id: l1-c5
+            type: text_input
+            text: "8 · 5 = _"
+            say: "Acht mal fünf."
+            answer: "40"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 9 · 8 = 72"
+            say: "Neun mal acht ist zweiundsiebzig. Stimmt das?"
+            answer: true
 
   - n: 2
     title: { de: "Schnell und sicher", en: "Quick and sure" }
@@ -396,8 +418,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ways
             type: fill_in_blank
             text: "Rechne beide Aufgaben."
             say: "Rechne acht mal sechs und sechs mal acht."
@@ -405,17 +429,20 @@ lessons:
             options: ["48", "46", "54"]
             answer: ["48", "48"]
           - id: l2-c2
+            part: facts
             type: text_input
             text: "8 · 9 = _"
             say: "Acht mal neun."
             answer: "72"
           - id: l2-c3
+            part: missing
             type: multiple_choice
             text: "Welche Malaufgabe hat das Ergebnis 56?"
             say: "Welche Malaufgabe hat das Ergebnis sechsundfünfzig?"
             options: ["7 · 8", "6 · 9", "8 · 6"]
             answer: "7 · 8"
           - id: l2-c4
+            part: missing
             type: fill_in_blank
             text: "Welche Zahl fehlt?"
             say: "Welche Zahl fehlt in der Malaufgabe?"
@@ -423,7 +450,113 @@ lessons:
             options: ["8", "9", "7"]
             answer: ["9"]
           - id: l2-c5
+            part: facts
             type: true_false
             text: "Stimmt das? 4 · 9 = 32"
             say: "Vier mal neun ist zweiunddreißig. Stimmt das?"
             answer: false
+          - id: l2-c6
+            part: facts
+            type: text_input
+            text: "6 · 7 = _"
+            say: "Sechs mal sieben."
+            answer: "42"
+          - id: l2-c7
+            part: facts
+            type: text_input
+            text: "3 · 8 = _"
+            say: "Drei mal acht."
+            answer: "24"
+          - id: l2-c8
+            part: facts
+            type: matching
+            text: "Welches Ergebnis gehört zu welcher Aufgabe?"
+            say: "Welches Ergebnis gehört zu welcher Malaufgabe? Verbinde sie."
+            pairs:
+              - { left: { text: "4 · 7" }, right: { text: "28" } }
+              - { left: { text: "9 · 8" }, right: { text: "72" } }
+              - { left: { text: "5 · 6" }, right: { text: "30" } }
+              - { left: { text: "2 · 9" }, right: { text: "18" } }
+          - id: l2-c9
+            part: missing
+            type: fill_in_blank
+            text: "Welche Zahl fehlt?"
+            say: "Welche Zahl fehlt in der Malaufgabe?"
+            frame: "_ · 8 = 64"
+            options: ["7", "8", "9"]
+            answer: ["8"]
+          - id: l2-c10
+            part: missing
+            type: fill_in_blank
+            text: "Welche Zahl fehlt?"
+            say: "Welche Zahl fehlt in der Malaufgabe?"
+            frame: "7 · _ = 49"
+            options: ["6", "7", "8"]
+            answer: ["7"]
+          - id: l2-c11
+            part: missing
+            type: multiple_choice
+            text: "Welche Malaufgabe hat das Ergebnis 48?"
+            say: "Welche Malaufgabe hat das Ergebnis achtundvierzig?"
+            options: ["6 · 8", "7 · 7", "5 · 9"]
+            answer: "6 · 8"
+          - id: l2-c12
+            part: ways
+            type: multiple_choice
+            text: "8 · 7: Welcher Weg hilft?"
+            say: "Acht mal sieben. Welcher Weg hilft dir?"
+            options: ["5 · 7 + 3 · 7", "5 · 7 + 3", "8 + 7"]
+            answer: "5 · 7 + 3 · 7"
+          - id: l2-c13
+            part: ways
+            type: fill_in_blank
+            text: "Zehn mal vier hilft."
+            say: "Neun mal vier. Zehn mal vier ist vierzig. Wie viel nimmst du weg?"
+            frame: "9 · 4 = 40 − _ = _"
+            options: ["4", "1", "36", "39"]
+            answer: ["4", "36"]
+          - id: l2-c14
+            part: ways
+            type: true_false
+            text: "Stimmt das? 6 · 8 = 5 · 8 + 1"
+            say: "Sechs mal acht ist fünf mal acht plus eins. Stimmt das?"
+            answer: false
+          - id: l2-c15
+            part: ways
+            type: fill_in_blank
+            text: "Rechne beide Aufgaben."
+            say: "Rechne fünf mal neun und neun mal fünf."
+            frame: "5 · 9 = _ | 9 · 5 = _"
+            options: ["45", "40", "54"]
+            answer: ["45", "45"]
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "In einer Packung sind 8 Stifte. Wie viele Stifte sind in 6 Packungen?"
+            say: "In einer Packung sind acht Stifte. Wie viele Stifte sind in sechs Packungen?"
+            answer: "48"
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "Ein Tisch hat 4 Beine. Wie viele Beine haben 7 Tische?"
+            say: "Ein Tisch hat vier Beine. Wie viele Beine haben sieben Tische?"
+            answer: "28"
+          - id: l2-c18
+            part: in-context
+            type: multiple_choice
+            text: "In einer Reihe stehen 9 Stühle. Es gibt 6 Reihen. Wie viele Stühle sind es?"
+            say: "In einer Reihe stehen neun Stühle. Es gibt sechs Reihen. Wie viele Stühle sind es?"
+            options: ["54", "56", "15"]
+            answer: "54"
+          - id: l2-c19
+            part: in-context
+            type: text_input
+            text: "Eine Woche hat 7 Tage. Wie viele Tage haben 8 Wochen?"
+            say: "Eine Woche hat sieben Tage. Wie viele Tage haben acht Wochen?"
+            answer: "56"
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "In jeder Kiste sind 9 Äpfel. Tim sagt: In 3 Kisten sind 27 Äpfel. Stimmt das?"
+            say: "In jeder Kiste sind neun Äpfel. Tim sagt: In drei Kisten sind siebenundzwanzig Äpfel. Stimmt das?"
+            answer: true

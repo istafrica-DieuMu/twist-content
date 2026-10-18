@@ -27,6 +27,11 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [shape, grid]
   facets: []
+  parts:
+    - { id: tool, what: { de: das passende Werkzeug wählen und richtig halten, en: choosing the right tool and holding it properly } }
+    - { id: length, what: { de: auf Karopapier Kästchen abzählen, en: counting squares on squared paper } }
+    - { id: figure, what: { de: Quadrate und Rechtecke richtig zeichnen, en: drawing squares and rectangles correctly } }
+    - { id: pattern, what: { de: Muster fortsetzen, en: continuing patterns } }
   misconceptions:
     - id: counts-points
       what: Counts the grid lines or points along a line instead of the Kästchen between its ends, so a line 3 Kästchen long is called 4
@@ -233,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -252,6 +258,26 @@ lessons:
             text: "Beim Zeichnen hältst du das Lineal gut fest."
             say: "Stimmt das? Beim Zeichnen hältst du das Lineal gut fest."
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Welche Linie ist 5 Kästchen lang?"
+            say: "Welche Linie ist fünf Kästchen lang?"
+            options:
+              - { drawn: grid, cols: 3, rows: 6, lines: [[1, 0, 1, 6]], key: "6" }
+              - { drawn: grid, cols: 3, rows: 6, lines: [[1, 1, 1, 5]], key: "4" }
+              - { drawn: grid, cols: 3, rows: 6, lines: [[1, 0, 1, 5]], key: "5" }
+            answer: "5"
+          - id: l1-c5
+            type: true_false
+            text: "Einen Baum zeichnest du mit dem Lineal."
+            say: "Stimmt das? Einen Baum zeichnest du mit dem Lineal."
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Was zeichnest du mit der Schablone?"
+            say: "Was zeichnest du mit der Schablone?"
+            options: ["einen Kreis", "eine Wellenlinie", "einen Baum"]
+            answer: "einen Kreis"
 
   - n: 2
     title: { de: "Figuren und Muster auf Karopapier", en: "Shapes and patterns on squared paper" }
@@ -447,8 +473,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: length
             type: multiple_choice
             text: "Wie viele Kästchen lang ist die Linie?"
             say: "Wie viele Kästchen lang ist die Linie?"
@@ -456,12 +484,14 @@ lessons:
             options: ["4", "5", "3"]
             answer: "4"
           - id: l2-c2
+            part: tool
             type: multiple_choice
             text: "Was zeichnest du besser frei Hand?"
             say: "Was zeichnest du besser frei Hand?"
             options: ["einen Baum", "die Seiten von einem Quadrat", "eine gerade Linie, 8 Kästchen lang"]
             answer: "einen Baum"
           - id: l2-c3
+            part: figure
             type: image_multiple_choice
             text: "Bei welchem Quadrat ist jede Seite 3 Kästchen lang?"
             say: "Bei welchem Quadrat ist jede Seite drei Kästchen lang?"
@@ -471,6 +501,7 @@ lessons:
               - { drawn: grid, cols: 6, rows: 5, lines: [[1, 1, 4, 1], [4, 1, 4, 4], [4, 4, 1, 4], [1, 4, 1, 1]], key: "3x3" }
             answer: "3x3"
           - id: l2-c4
+            part: figure
             type: multiple_choice
             text: "Emma wollte ein Rechteck zeichnen. Was ist falsch?"
             say: "Emma wollte ein Rechteck zeichnen. Was ist an ihrer Zeichnung falsch?"
@@ -478,6 +509,7 @@ lessons:
             options: ["Eine Ecke ist offen.", "Eine Linie ist schief.", "Es ist alles richtig."]
             answer: "Eine Ecke ist offen."
           - id: l2-c5
+            part: pattern
             type: image_multiple_choice
             text: "Welche Zeichnung setzt die Treppe richtig fort?"
             say: "So fängt die Treppe an: hoch, rechts, hoch, rechts. Welche Zeichnung setzt sie richtig fort?"
@@ -487,3 +519,124 @@ lessons:
               - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 0, 2], [0, 2, 1, 2], [1, 2, 1, 1], [1, 1, 2, 1], [2, 1, 2, 0], [2, 0, 3, 0]], key: richtig }
               - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 0, 2], [0, 2, 1, 2], [1, 2, 1, 1], [1, 1, 2, 1], [2, 1, 2, 2], [2, 2, 3, 2]], key: runter }
             answer: richtig
+          - id: l2-c6
+            part: tool
+            type: multiple_choice
+            text: "Mia will einen schön runden Kreis zeichnen. Was nimmt sie?"
+            say: "Mia will einen schön runden Kreis zeichnen. Was nimmt sie?"
+            options: ["die Schablone", "das Lineal", "die Schere"]
+            answer: "die Schablone"
+          - id: l2-c7
+            part: tool
+            type: true_false
+            text: "Eine Wellenlinie zeichnest du mit dem Lineal."
+            say: "Stimmt das? Eine Wellenlinie zeichnest du mit dem Lineal."
+            answer: false
+          - id: l2-c8
+            part: tool
+            type: sorting
+            text: "Sortiere: frei Hand oder mit dem Lineal?"
+            say: "Was zeichnest du frei Hand, was mit dem Lineal? Sortiere."
+            bins:
+              - { id: ruler, show: { text: "mit dem Lineal" }, say: "mit dem Lineal" }
+              - { id: free, show: { text: "frei Hand" }, say: "frei Hand" }
+            options:
+              - { text: "eine Blume", bin: free }
+              - { text: "die Seiten von einem Rechteck", bin: ruler }
+              - { text: "eine Schlange", bin: free }
+              - { text: "eine gerade Linie, 3 Kästchen lang", bin: ruler }
+          - id: l2-c9
+            part: tool
+            type: multiple_choice
+            text: "Wo liegen deine Finger, wenn du das Lineal festhältst?"
+            say: "Wo liegen deine Finger, wenn du das Lineal festhältst?"
+            options: ["in der Mitte vom Lineal", "an der Kante, wo der Stift fährt", "gar nicht auf dem Lineal"]
+            answer: "in der Mitte vom Lineal"
+          - id: l2-c10
+            part: length
+            type: multiple_choice
+            text: "Wie viele Kästchen lang ist die Linie?"
+            say: "Wie viele Kästchen lang ist die Linie?"
+            show: { drawn: grid, cols: 7, rows: 2, lines: [[1, 1, 6, 1]] }
+            options: ["5", "6", "4"]
+            answer: "5"
+          - id: l2-c11
+            part: length
+            type: image_multiple_choice
+            text: "Welche Linie ist 2 Kästchen lang?"
+            say: "Welche Linie ist zwei Kästchen lang?"
+            options:
+              - { drawn: grid, cols: 5, rows: 2, lines: [[1, 1, 4, 1]], key: "3" }
+              - { drawn: grid, cols: 5, rows: 2, lines: [[1, 1, 3, 1]], key: "2" }
+              - { drawn: grid, cols: 5, rows: 2, lines: [[0, 1, 4, 1]], key: "4" }
+            answer: "2"
+          - id: l2-c12
+            part: length
+            type: true_false
+            text: "Die Linie ist 6 Kästchen lang."
+            say: "Stimmt das? Die Linie ist sechs Kästchen lang."
+            show: { drawn: grid, cols: 3, rows: 6, lines: [[1, 0, 1, 5]] }
+            answer: false
+          - id: l2-c13
+            part: length
+            type: multiple_choice
+            text: "Wie viele Kästchen ist die obere Linie länger als die untere?"
+            say: "Wie viele Kästchen ist die obere Linie länger als die untere?"
+            show: { drawn: grid, cols: 6, rows: 4, lines: [[1, 1, 5, 1], [1, 3, 4, 3]] }
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l2-c14
+            part: figure
+            type: image_multiple_choice
+            text: "Welches Rechteck ist 4 Kästchen lang und 3 Kästchen hoch?"
+            say: "Welches Rechteck ist vier Kästchen lang und drei Kästchen hoch?"
+            options:
+              - { drawn: grid, cols: 6, rows: 4, lines: [[1, 0, 4, 0], [4, 0, 4, 4], [4, 4, 1, 4], [1, 4, 1, 0]], key: "3x4" }
+              - { drawn: grid, cols: 6, rows: 4, lines: [[1, 0, 5, 0], [5, 0, 5, 3], [5, 3, 1, 3], [1, 3, 1, 0]], key: "4x3" }
+              - { drawn: grid, cols: 6, rows: 4, lines: [[1, 1, 5, 1], [5, 1, 5, 3], [5, 3, 1, 3], [1, 3, 1, 1]], key: "4x2" }
+            answer: "4x3"
+          - id: l2-c15
+            part: figure
+            type: true_false
+            text: "Das ist ein Quadrat."
+            say: "Stimmt das? Das ist ein Quadrat."
+            show: { drawn: grid, cols: 5, rows: 4, lines: [[1, 1, 3, 1], [3, 1, 3, 3], [3, 3, 1, 3], [1, 3, 1, 1]] }
+            answer: true
+          - id: l2-c16
+            part: figure
+            type: multiple_choice
+            text: "Lars wollte ein Quadrat zeichnen. Was ist falsch?"
+            say: "Lars wollte ein Quadrat zeichnen. Was ist an seiner Zeichnung falsch?"
+            show: { drawn: grid, cols: 5, rows: 4, lines: [[1, 0, 3, 0], [3, 0, 3, 3], [3, 3, 1, 3], [1, 3, 1, 0]] }
+            options: ["Die Seiten sind nicht gleich lang.", "Eine Ecke ist offen.", "Es ist alles richtig."]
+            answer: "Die Seiten sind nicht gleich lang."
+          - id: l2-c17
+            part: figure
+            type: multiple_choice
+            text: "Nele wollte ein Rechteck zeichnen. Was ist falsch?"
+            say: "Nele wollte ein Rechteck zeichnen. Was ist an ihrer Zeichnung falsch?"
+            show: { drawn: grid, cols: 6, rows: 3, lines: [[1, 0, 5, 0], [5, 0, 5, 2], [5, 2, 2, 2], [2, 2, 1, 0]] }
+            options: ["Eine Linie ist schief.", "Eine Ecke ist offen.", "Es ist alles richtig."]
+            answer: "Eine Linie ist schief."
+          - id: l2-c18
+            part: pattern
+            type: multiple_choice
+            text: "Welches Kästchen malst du als Nächstes aus?"
+            say: "Die blauen Kästchen sind ein Muster. Welches Kästchen malst du als Nächstes aus?"
+            show: { drawn: grid, cols: 8, rows: 1, cells: [[0, 0, blue], [2, 0, blue], [4, 0, blue]] }
+            options: ["zwei Kästchen weiter rechts", "das Kästchen direkt rechts daneben", "das Kästchen darunter"]
+            answer: "zwei Kästchen weiter rechts"
+          - id: l2-c19
+            part: pattern
+            type: true_false
+            text: "Die Linie im Muster geht als Nächstes schräg nach oben."
+            say: "Stimmt das? Die Linie im Muster geht als Nächstes schräg nach oben."
+            show: { drawn: grid, cols: 6, rows: 1, lines: [[0, 1, 1, 0], [1, 0, 2, 1], [2, 1, 3, 0], [3, 0, 4, 1]] }
+            answer: true
+          - id: l2-c20
+            part: pattern
+            type: true_false
+            text: "Das nächste Kästchen im Muster ist blau."
+            say: "Stimmt das? Das nächste Kästchen im Muster ist blau."
+            show: { drawn: grid, cols: 7, rows: 1, cells: [[0, 0, red], [1, 0, blue], [2, 0, red], [3, 0, blue], [4, 0, red]] }
+            answer: true

@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: []
+  parts:
+    - { id: read, what: { de: die Uhrzeit auf fünf Minuten genau ablesen, en: reading the time to five minutes } }
+    - { id: halb, what: { de: "Zeiten um halb ablesen: fünf vor halb, fünf nach halb", en: "reading times around half past: 25 past and 25 to" } }
+    - { id: set, what: { de: die Zeiger auf fünf Minuten genau stellen, en: setting the hands to five minutes } }
+    - { id: units, what: { de: "wissen, dass eine Stunde 60 Minuten und ein Tag 24 Stunden hat", en: knowing that an hour has 60 minutes and a day 24 hours } }
   misconceptions:
     - id: number-is-minutes
       what: Reads the number the long hand points to as the minutes (on the 4 it is 4 minutes)
@@ -228,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -253,6 +259,29 @@ lessons:
             show: { drawn: clock, hour: 5, minute: 55 }
             options: ["55", "11", "50"]
             answer: "55"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 12, minute: 40 }
+            options: ["20 vor 1", "20 nach 12", "20 vor 12"]
+            answer: "20 vor 1"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie viele Minuten nach der vollen Stunde?"
+            say: "Wie viele Minuten sind es nach der vollen Stunde?"
+            show: { drawn: clock, hour: 6, minute: 45 }
+            options: ["45", "9", "40"]
+            answer: "45"
+          - id: l1-c6
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 20 nach 5."
+            say: "Stell die Uhr auf zwanzig nach fünf. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 5
+            answer: "5:20"
+            feedback:
+              "4:40": "Das ist zwanzig vor fünf. Nach heißt: nach der vollen Stunde. Der große Zeiger zeigt auf die Vier."
 
   - n: 2
     title: { de: "Um halb herum", en: "Around half past" }
@@ -437,8 +466,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Wie spät ist es?"
             say: "Wie spät ist es?"
@@ -446,6 +477,7 @@ lessons:
             options: ["20 nach 1", "20 vor 1", "4 nach 1"]
             answer: "20 nach 1"
           - id: l2-c2
+            part: halb
             type: multiple_choice
             text: "Wie spät ist es?"
             say: "Wie spät ist es?"
@@ -453,12 +485,14 @@ lessons:
             options: ["5 vor halb 8", "5 vor halb 7", "5 nach halb 8"]
             answer: "5 vor halb 8"
           - id: l2-c3
+            part: read
             type: multiple_choice
             text: "10 vor 12. Was zeigt die Digitaluhr?"
             say: "Zehn vor zwölf. Welche Zeit zeigt die Digitaluhr?"
             options: ["11:50", "12:10", "12:50"]
             answer: "11:50"
           - id: l2-c4
+            part: set
             type: clock_hands_drag
             text: "Stell die Uhr auf 5 nach halb 7."
             say: "Stell die Uhr auf fünf nach halb sieben. Zieh die Zeiger."
@@ -469,7 +503,126 @@ lessons:
               "7:35": "Das ist fünf nach halb acht. Halb sieben ist sechs Uhr dreißig: Zieh den kleinen Zeiger auf die Sechs."
               "6:25": "Das ist fünf vor halb sieben. Fünf nach halb: Der große Zeiger zeigt auf die Sieben."
           - id: l2-c5
+            part: units
             type: text_input
             text: "Wie viele Stunden hat ein Tag?"
             say: "Wie viele Stunden hat ein ganzer Tag?"
             answer: "24"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 10, minute: 5 }
+            options: ["5 nach 10", "5 vor 10", "1 nach 10"]
+            answer: "5 nach 10"
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 2, minute: 40 }
+            options: ["20 vor 3", "20 nach 2", "20 vor 2"]
+            answer: "20 vor 3"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Ist es 10 vor 7?"
+            say: "Ist es zehn vor sieben?"
+            show: { drawn: clock, hour: 6, minute: 50 }
+            answer: true
+          - id: l2-c9
+            part: halb
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 5, minute: 25 }
+            options: ["5 vor halb 6", "5 vor halb 5", "5 nach halb 6"]
+            answer: "5 vor halb 6"
+          - id: l2-c10
+            part: halb
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 8, minute: 35 }
+            options: ["5 nach halb 9", "5 nach halb 8", "5 vor halb 9"]
+            answer: "5 nach halb 9"
+          - id: l2-c11
+            part: halb
+            type: multiple_choice
+            text: "5 nach halb 11. Was zeigt die Digitaluhr?"
+            say: "Fünf nach halb elf. Welche Zeit zeigt die Digitaluhr?"
+            options: ["10:35", "11:35", "10:25"]
+            answer: "10:35"
+          - id: l2-c12
+            part: halb
+            type: true_false
+            text: "Ist es 5 vor halb 2?"
+            say: "Ist es fünf vor halb zwei?"
+            show: { drawn: clock, hour: 2, minute: 25 }
+            answer: false
+          - id: l2-c13
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 20 nach 11."
+            say: "Stell die Uhr auf zwanzig nach elf. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 5
+            answer: "11:20"
+            feedback:
+              "11:40": "Das ist zwanzig vor zwölf. Nach heißt: nach der vollen Stunde. Der große Zeiger zeigt auf die Vier."
+          - id: l2-c14
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 5 vor halb 3."
+            say: "Stell die Uhr auf fünf vor halb drei. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 5
+            answer: "2:25"
+            feedback:
+              "3:25": "Das ist fünf vor halb vier. Halb drei ist zwei Uhr dreißig: Zieh den kleinen Zeiger auf die Zwei."
+          - id: l2-c15
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 10 vor 10."
+            say: "Stell die Uhr auf zehn vor zehn. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 5
+            answer: "9:50"
+            feedback:
+              "10:10": "Das ist zehn nach zehn. Zehn vor zehn ist noch vor zehn Uhr: Der große Zeiger zeigt auf die Zehn."
+          - id: l2-c16
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 5 nach 1."
+            say: "Stell die Uhr auf fünf nach eins. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 5
+            answer: "1:05"
+            feedback:
+              "12:55": "Das ist fünf vor eins. Nach heißt: nach der vollen Stunde. Der große Zeiger zeigt auf die Eins."
+          - id: l2-c17
+            part: units
+            type: true_false
+            text: "Hat eine Stunde 50 Minuten?"
+            say: "Hat eine Stunde fünfzig Minuten?"
+            answer: false
+          - id: l2-c18
+            part: units
+            type: multiple_choice
+            text: "Der große Zeiger läuft einmal ganz herum. Wie viel Zeit ist vergangen?"
+            say: "Der große Zeiger läuft einmal ganz herum. Wie viel Zeit ist vergangen?"
+            options: ["1 Stunde", "1 Minute", "1 Tag"]
+            answer: "1 Stunde"
+          - id: l2-c19
+            part: units
+            type: text_input
+            text: "Von 3 Uhr bis 4 Uhr. Wie viele Minuten sind das?"
+            say: "Von drei Uhr bis vier Uhr. Wie viele Minuten sind das?"
+            answer: "60"
+          - id: l2-c20
+            part: units
+            type: true_false
+            text: "Von halb 3 bis halb 4 vergeht eine Stunde."
+            say: "Stimmt das? Von halb drei bis halb vier vergeht eine Stunde."
+            answer: true

@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: name-swap, what: { de: die Tauschaufgabe nennen, en: naming the turnaround fact } }
+    - { id: array, what: { de: die Tauschaufgabe am Punktefeld zeigen, en: showing the turnaround fact with an array } }
+    - { id: same-result, what: { de: "wissen, dass Tauschaufgaben dasselbe Ergebnis haben", en: knowing that turnaround facts have the same answer } }
+    - { id: use-swap, what: { de: mit der Tauschaufgabe leichter rechnen, en: using the turnaround fact to make a fact easier } }
   misconceptions:
     - id: turned-field-is-new
       what: Works out 7 · 3 from scratch after 3 · 7, not seeing they are the same
@@ -207,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -225,6 +231,26 @@ lessons:
             text: "Stimmt das? 3 · 4 = 4 · 3"
             say: "Drei mal vier ist gleich vier mal drei. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Welches Feld zeigt die Tauschaufgabe von 2 · 3?"
+            say: "Hier ist zwei mal drei. Welches Feld zeigt die Tauschaufgabe?"
+            show: { drawn: dots, array: [2, 3] }
+            options: [{ drawn: dots, array: [3, 2] }, { drawn: dots, array: [2, 3] }, { drawn: dots, array: [3, 3] }]
+            answer: "3x2"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Lies das Feld auf beide Arten."
+            say: "Lies das Feld zuerst nach Reihen, dann gedreht."
+            show: { drawn: dots, array: [5, 2] }
+            frame: "5 · 2 = _ · 5"
+            options: ["2", "5", "10"]
+            answer: ["2"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 5 · 6 = 6 · 4"
+            say: "Fünf mal sechs ist gleich sechs mal vier. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: Tauschen macht es leichter, en: Turning it round makes it easier }
@@ -382,14 +408,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: name-swap
             type: multiple_choice
             text: "Wie heißt die Tauschaufgabe zu 6 · 3?"
             say: "Wie heißt die Tauschaufgabe zu sechs mal drei?"
             options: ["3 · 6", "6 + 3", "6 · 6"]
             answer: "3 · 6"
           - id: l2-c2
+            part: array
             type: fill_in_blank
             text: "Lies das Feld auf beide Arten."
             say: "Lies das Feld zuerst nach Reihen, dann gedreht."
@@ -398,18 +427,126 @@ lessons:
             options: ["4", "5", "20"]
             answer: ["4"]
           - id: l2-c3
+            part: use-swap
             type: text_input
             text: "10 · 9 = _"
             say: "Zehn mal neun."
             answer: "90"
           - id: l2-c4
+            part: name-swap
             type: true_false
             text: "Stimmt das? 7 · 4 = 4 · 6"
             say: "Sieben mal vier ist gleich vier mal sechs. Stimmt das?"
             answer: false
           - id: l2-c5
+            part: same-result
             type: multiple_choice
             text: "3 · 9 = 27. Was ist 9 · 3?"
             say: "Drei mal neun ist siebenundzwanzig. Was ist neun mal drei?"
             options: ["27", "12", "39"]
             answer: "27"
+          - id: l2-c6
+            part: name-swap
+            type: multiple_choice
+            text: "Wie heißt die Tauschaufgabe zu 7 · 9?"
+            say: "Wie heißt die Tauschaufgabe zu sieben mal neun?"
+            options: ["9 · 7", "7 + 9", "9 · 9"]
+            answer: "9 · 7"
+          - id: l2-c7
+            part: name-swap
+            type: true_false
+            text: "Stimmt das? 5 · 8 = 8 · 5"
+            say: "Fünf mal acht ist gleich acht mal fünf. Stimmt das?"
+            answer: true
+          - id: l2-c8
+            part: name-swap
+            type: fill_in_blank
+            text: "Schreib die Tauschaufgabe."
+            say: "Wie heißt die Tauschaufgabe von sechs mal neun? Schreib sie auf."
+            frame: "Die Tauschaufgabe von 6 · 9 ist _ · _."
+            options: ["9", "6", "3", "15"]
+            answer: ["9", "6"]
+          - id: l2-c9
+            part: array
+            type: image_multiple_choice
+            text: "Welches Feld zeigt die Tauschaufgabe von 4 · 6?"
+            say: "Hier ist vier mal sechs. Welches Feld zeigt die Tauschaufgabe?"
+            show: { drawn: dots, array: [4, 6] }
+            options: [{ drawn: dots, array: [6, 4] }, { drawn: dots, array: [4, 6] }, { drawn: dots, array: [6, 5] }]
+            answer: "6x4"
+          - id: l2-c10
+            part: array
+            type: fill_in_blank
+            text: "Lies das Feld auf beide Arten."
+            say: "Lies das Feld zuerst nach Reihen, dann gedreht."
+            show: { drawn: dots, array: [2, 9] }
+            frame: "2 · 9 = _ · 2"
+            options: ["9", "2", "18"]
+            answer: ["9"]
+          - id: l2-c11
+            part: array
+            type: multiple_choice
+            text: "Welche zwei Malaufgaben zeigt das Feld?"
+            say: "Welche zwei Malaufgaben zeigt das Feld?"
+            show: { drawn: dots, array: [4, 7] }
+            options: ["4 · 7 und 7 · 4", "4 · 7 und 4 + 7", "4 · 4 und 7 · 7"]
+            answer: "4 · 7 und 7 · 4"
+          - id: l2-c12
+            part: array
+            type: true_false
+            text: "Stimmt das? Das Feld zeigt 4 · 5 und auch 5 · 4."
+            say: "Zeigt das Feld vier mal fünf und auch fünf mal vier?"
+            show: { drawn: dots, array: [4, 5] }
+            answer: true
+          - id: l2-c13
+            part: same-result
+            type: multiple_choice
+            text: "8 · 4 = 32. Was ist 4 · 8?"
+            say: "Acht mal vier ist zweiunddreißig. Was ist vier mal acht?"
+            options: ["32", "12", "48"]
+            answer: "32"
+          - id: l2-c14
+            part: same-result
+            type: true_false
+            text: "Stimmt das? 4 · 7 = 28, also ist 7 · 4 = 24."
+            say: "Vier mal sieben ist achtundzwanzig, also ist sieben mal vier vierundzwanzig. Stimmt das?"
+            answer: false
+          - id: l2-c15
+            part: same-result
+            type: text_input
+            text: "6 · 8 = 48. Was ist 8 · 6?"
+            say: "Sechs mal acht ist achtundvierzig. Was ist acht mal sechs?"
+            answer: "48"
+          - id: l2-c16
+            part: same-result
+            type: true_false
+            text: "Stimmt das? 3 · 7 und 7 · 3 haben dasselbe Ergebnis."
+            say: "Drei mal sieben und sieben mal drei haben dasselbe Ergebnis. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: use-swap
+            type: multiple_choice
+            text: "Welche Aufgabe ist leichter?"
+            say: "Zehn mal vier oder vier mal zehn: Welche kannst du leichter rechnen?"
+            options: ["10 · 4", "4 · 10"]
+            answer: "4 · 10"
+            option_audio: false
+          - id: l2-c18
+            part: use-swap
+            type: text_input
+            text: "10 · 7 = _"
+            say: "Zehn mal sieben."
+            answer: "70"
+          - id: l2-c19
+            part: use-swap
+            type: text_input
+            text: "9 · 2 = _"
+            say: "Neun mal zwei."
+            answer: "18"
+          - id: l2-c20
+            part: use-swap
+            type: multiple_choice
+            text: "Ben soll 10 · 5 rechnen. Welche Tauschaufgabe ist leichter?"
+            say: "Ben soll zehn mal fünf rechnen. Welche Tauschaufgabe ist leichter?"
+            options: ["5 · 10", "10 + 5", "5 · 5"]
+            answer: "5 · 10"

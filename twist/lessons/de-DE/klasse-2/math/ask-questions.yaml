@@ -22,6 +22,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: fit, what: { de: eine passende Frage zu einer Sachsituation finden, en: finding a question that fits a situation } }
+    - { id: calc, what: { de: eine Frage mit einer Rechnung beantworten, en: answering a question with a calculation } }
+    - { id: answerable, what: { de: "erkennen, ob sich eine Frage beantworten lässt", en: telling whether a question can be answered } }
+    - { id: missing, what: { de: die fehlende Angabe finden, en: finding the missing fact } }
   misconceptions:
     - id: any-question-works
       what: Thinks every question about the story can be answered, also when a fact is missing (Wie alt ist der Busfahrer?)
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -219,6 +225,25 @@ lessons:
             text: "Mila hat 13 Perlen. Sie kauft 10 dazu. Passt die Frage: Wie viele Perlen hat Mila jetzt?"
             say: "Mila hat dreizehn Perlen. Sie kauft zehn dazu. Passt die Frage: Wie viele Perlen hat Mila jetzt?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Im Korb sind 15 Eier. 6 Eier gehen kaputt. Welche Frage passt?"
+            say: "Im Korb sind fünfzehn Eier. Sechs Eier gehen kaputt. Welche Frage passt?"
+            options: ["Wie viele Eier sind noch heil?", "Wie groß ist der Korb?", "Wer hat die Eier gekauft?"]
+            answer: "Wie viele Eier sind noch heil?"
+          - id: l1-c5
+            type: matching
+            text: "Finn hat 26 Murmeln, Ida hat 13. Welche Rechnung passt zu welcher Frage?"
+            say: "Finn hat sechsundzwanzig Murmeln, Ida hat dreizehn. Verbinde jede Frage mit ihrer Rechnung."
+            pairs:
+              - { left: { text: "Wie viele Murmeln zusammen?" }, right: { text: "26 + 13" } }
+              - { left: { text: "Wie viele hat Finn mehr?" }, right: { text: "26 − 13" } }
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Am Baum hängen 20 Birnen. 8 fallen herunter. Passt die Frage: Wie viele Äpfel hängen am Baum?"
+            say: "Am Baum hängen zwanzig Birnen. Acht fallen herunter. Passt die Frage: Wie viele Äpfel hängen am Baum?"
+            answer: false
 
   - n: 2
     title: { de: "Kann ich das beantworten?", en: "Can I answer it?" }
@@ -397,20 +422,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: fit
             type: multiple_choice
             text: "Im Regal stehen 36 Gläser. 14 sind leer. Welche Frage kannst du mit einer Rechnung beantworten?"
             say: "Im Regal stehen sechsunddreißig Gläser. Vierzehn sind leer. Welche Frage kannst du mit einer Rechnung beantworten?"
             options: ["Wie viele Gläser sind voll?", "Wie viele Gläser stehen im Regal?", "Wie hoch ist das Regal?"]
             answer: "Wie viele Gläser sind voll?"
           - id: l2-c2
+            part: calc
             type: multiple_choice
             text: "Frage: Wie viele Gläser sind voll? Welche Rechnung passt?"
             say: "Im Regal stehen sechsunddreißig Gläser. Vierzehn sind leer. Wie viele Gläser sind voll? Welche Rechnung passt?"
             options: ["36 − 14", "36 + 14", "14 − 36"]
             answer: "36 − 14"
           - id: l2-c3
+            part: answerable
             type: sorting
             text: "In der Kiste sind 27 Bälle. 9 sind kaputt. Welche Fragen kannst du beantworten?"
             say: "In der Kiste sind siebenundzwanzig Bälle. Neun sind kaputt. Sortiere die Fragen: Kannst du sie beantworten oder nicht?"
@@ -423,13 +452,124 @@ lessons:
               - { text: "Wie viele Bälle sind kaputt?", bin: yes }
               - { text: "Wer hat die Bälle gekauft?", bin: no }
           - id: l2-c4
+            part: missing
             type: multiple_choice
             text: "Ein Buch kostet 8 Euro. Wie viele Bücher kann Ben kaufen? Welche Angabe fehlt?"
             say: "Ein Buch kostet acht Euro. Wie viele Bücher kann Ben kaufen? Welche Angabe fehlt?"
             options: ["wie viel Geld Ben hat", "was ein Buch kostet", "wie dick die Bücher sind"]
             answer: "wie viel Geld Ben hat"
           - id: l2-c5
+            part: answerable
             type: true_false
             text: "Im Teich schwimmen 17 Enten. 5 fliegen weg. Kannst du beantworten: Wie viele Fische sind im Teich?"
             say: "Im Teich schwimmen siebzehn Enten. Fünf fliegen weg. Kannst du die Frage beantworten: Wie viele Fische sind im Teich?"
             answer: false
+          - id: l2-c6
+            part: fit
+            type: multiple_choice
+            text: "Im Hof stehen 14 Fahrräder und 9 Roller. Welche Frage passt?"
+            say: "Im Hof stehen vierzehn Fahrräder und neun Roller. Welche Frage passt?"
+            options: ["Wie viele Fahrräder und Roller sind es zusammen?", "Wie schnell fährt ein Roller?", "Wem gehören die Fahrräder?"]
+            answer: "Wie viele Fahrräder und Roller sind es zusammen?"
+          - id: l2-c7
+            part: fit
+            type: multiple_choice
+            text: "Paula hat 40 Cent. Sie kauft ein Brötchen für 25 Cent. Welche Frage fragt nach etwas Neuem?"
+            say: "Paula hat vierzig Cent. Sie kauft ein Brötchen für fünfundzwanzig Cent. Welche Frage fragt nach etwas Neuem?"
+            options: ["Wie viel Geld hat Paula noch?", "Wie viel kostet das Brötchen?", "Was kauft Paula?"]
+            answer: "Wie viel Geld hat Paula noch?"
+          - id: l2-c8
+            part: fit
+            type: true_false
+            text: "In der Turnhalle sind 26 Kinder. 10 gehen nach draußen. Passt die Frage: Welche Farbe hat die Turnhalle?"
+            say: "In der Turnhalle sind sechsundzwanzig Kinder. Zehn gehen nach draußen. Passt die Frage: Welche Farbe hat die Turnhalle?"
+            answer: false
+          - id: l2-c9
+            part: fit
+            type: multiple_choice
+            text: "Lukas hat 18 Autos. Sein Bruder hat 7 Autos. Welche Frage fragt nach etwas Neuem?"
+            say: "Lukas hat achtzehn Autos. Sein Bruder hat sieben Autos. Welche Frage fragt nach etwas Neuem?"
+            options: ["Wie viele Autos hat Lukas mehr?", "Wie viele Autos hat Lukas?", "Wie viele Autos hat der Bruder?"]
+            answer: "Wie viele Autos hat Lukas mehr?"
+          - id: l2-c10
+            part: calc
+            type: multiple_choice
+            text: "Auf dem Spielplatz sind 16 Mädchen und 8 Jungen. Frage: Wie viele Kinder sind es zusammen? Welche Rechnung passt?"
+            say: "Auf dem Spielplatz sind sechzehn Mädchen und acht Jungen. Wie viele Kinder sind es zusammen? Welche Rechnung passt?"
+            options: ["16 + 8", "16 − 8", "8 − 16"]
+            answer: "16 + 8"
+          - id: l2-c11
+            part: calc
+            type: matching
+            text: "Nora hat 45 Perlen, Emma hat 30. Welche Rechnung passt zu welcher Frage?"
+            say: "Nora hat fünfundvierzig Perlen, Emma hat dreißig. Verbinde jede Frage mit ihrer Rechnung."
+            pairs:
+              - { left: { text: "Wie viele Perlen zusammen?" }, right: { text: "45 + 30" } }
+              - { left: { text: "Wie viele hat Nora mehr?" }, right: { text: "45 − 30" } }
+            option_audio: false
+          - id: l2-c12
+            part: calc
+            type: text_input
+            text: "Jonas hat 60 Cent. Er kauft eine Brezel für 35 Cent. Wie viele Cent hat er noch?"
+            say: "Jonas hat sechzig Cent. Er kauft eine Brezel für fünfunddreißig Cent. Wie viele Cent hat er noch?"
+            answer: "25"
+          - id: l2-c13
+            part: calc
+            type: multiple_choice
+            text: "Elif hat 23 Sticker, ihre Freundin hat 11. Frage: Wie viele Sticker hat Elif mehr? Welche Rechnung passt?"
+            say: "Elif hat dreiundzwanzig Sticker, ihre Freundin hat elf. Wie viele Sticker hat Elif mehr? Welche Rechnung passt?"
+            options: ["23 − 11", "23 + 11", "11 − 23"]
+            answer: "23 − 11"
+          - id: l2-c14
+            part: answerable
+            type: sorting
+            text: "Auf dem Markt liegen 48 Äpfel. Frau Kurz verkauft 20. Welche Fragen kannst du beantworten?"
+            say: "Auf dem Markt liegen achtundvierzig Äpfel. Frau Kurz verkauft zwanzig. Sortiere die Fragen: Kannst du sie beantworten oder nicht?"
+            bins:
+              - { id: yes, show: { text: "kann ich beantworten" }, say: "kann ich beantworten" }
+              - { id: no, show: { text: "kann ich nicht beantworten" }, say: "kann ich nicht beantworten" }
+            options:
+              - { text: "Wie viele Äpfel sind noch da?", bin: yes }
+              - { text: "Wie schwer ist ein Apfel?", bin: no }
+              - { text: "Wie viele Äpfel verkauft sie?", bin: yes }
+              - { text: "Was kostet ein Apfel?", bin: no }
+          - id: l2-c15
+            part: answerable
+            type: true_false
+            text: "In der Dose sind 30 Kekse. Max isst 4. Kannst du beantworten: Wie viele Kekse sind noch in der Dose?"
+            say: "In der Dose sind dreißig Kekse. Max isst vier. Kannst du die Frage beantworten: Wie viele Kekse sind noch in der Dose?"
+            answer: true
+          - id: l2-c16
+            part: answerable
+            type: multiple_choice
+            text: "Im Zoo leben 6 Löwen und 9 Tiger. Welche Frage kannst du nicht beantworten?"
+            say: "Im Zoo leben sechs Löwen und neun Tiger. Welche Frage kannst du nicht beantworten?"
+            options: ["Wie alt ist der älteste Löwe?", "Wie viele Tiere sind es zusammen?", "Wie viele Tiger sind es mehr als Löwen?"]
+            answer: "Wie alt ist der älteste Löwe?"
+          - id: l2-c17
+            part: missing
+            type: multiple_choice
+            text: "Ein Ticket kostet 5 Euro. Wie viel kosten die Tickets für die ganze Familie? Welche Angabe fehlt?"
+            say: "Ein Ticket kostet fünf Euro. Wie viel kosten die Tickets für die ganze Familie? Welche Angabe fehlt?"
+            options: ["wie viele Tickets die Familie kauft", "was ein Ticket kostet", "wohin die Familie fährt"]
+            answer: "wie viele Tickets die Familie kauft"
+          - id: l2-c18
+            part: missing
+            type: multiple_choice
+            text: "Im Bus sitzen Kinder. An der Schule steigen 7 aus. Wie viele Kinder sitzen jetzt im Bus? Welche Angabe fehlt?"
+            say: "Im Bus sitzen Kinder. An der Schule steigen sieben aus. Wie viele Kinder sitzen jetzt im Bus? Welche Angabe fehlt?"
+            options: ["wie viele Kinder vorher im Bus sitzen", "wie viele Kinder aussteigen", "wohin der Bus fährt"]
+            answer: "wie viele Kinder vorher im Bus sitzen"
+          - id: l2-c19
+            part: missing
+            type: true_false
+            text: "Lisa hat Murmeln. Sie bekommt 12 dazu. Wie viele Murmeln hat sie jetzt? Fehlt hier eine Angabe?"
+            say: "Lisa hat Murmeln. Sie bekommt zwölf dazu. Wie viele Murmeln hat sie jetzt? Fehlt hier eine Angabe?"
+            answer: true
+          - id: l2-c20
+            part: missing
+            type: multiple_choice
+            text: "In einem Kasten sind 12 Flaschen. Wie viele Flaschen sind in allen Kästen? Welche Angabe fehlt?"
+            say: "In einem Kasten sind zwölf Flaschen. Wie viele Flaschen sind in allen Kästen? Welche Angabe fehlt?"
+            options: ["wie viele Kästen es sind", "wie viele Flaschen in einem Kasten sind", "was in den Flaschen ist"]
+            answer: "wie viele Kästen es sind"

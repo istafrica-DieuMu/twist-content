@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: equal-groups, what: { de: gleich große Gruppen erkennen, en: spotting equal groups } }
+    - { id: plus-mal, what: { de: Plusaufgaben mit gleichen Zahlen und Malaufgaben einander zuordnen, en: matching repeated additions and multiplications } }
+    - { id: groups-to-mal, what: { de: zu Punktefeldern und Gruppen die Malaufgabe schreiben, en: writing the multiplication for an array or for groups } }
+    - { id: result, what: { de: Malaufgaben als Plusaufgaben ausrechnen, en: working out a multiplication as repeated addition } }
   misconceptions:
     - id: unequal-groups
       what: Writes a Malaufgabe for groups that are not equal (3 + 4 + 4 as 3 · 4)
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -228,6 +234,26 @@ lessons:
             text: "3 + 3 + 3 + 3 = _"
             say: "Drei plus drei plus drei plus drei."
             answer: "12"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welche Plusaufgabe passt?"
+            say: "Schau dir die Punkte an. Welche Plusaufgabe passt?"
+            show: { drawn: dots, array: [3, 5] }
+            options: ["5 + 5 + 5", "3 + 3 + 3", "3 + 5"]
+            answer: "5 + 5 + 5"
+          - id: l1-c5
+            type: true_false
+            text: "Beutel mit 3, 3, 4 und 3 Murmeln. Sind die Gruppen gleich groß?"
+            say: "In vier Beuteln sind drei, drei, vier und drei Murmeln. Sind die Gruppen gleich groß?"
+            answer: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Wie viele Reihen, wie viele in jeder?"
+            say: "Wie viele Reihen sind es, und wie viele Punkte sind in jeder Reihe?"
+            show: { drawn: dots, array: [2, 4] }
+            frame: "_ Reihen mit je _ Punkten"
+            options: ["2", "4", "8", "6"]
+            answer: ["2", "4"]
 
   - n: 2
     title: { de: Die Malaufgabe, en: The times sum }
@@ -398,8 +424,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: groups-to-mal
             type: fill_in_blank
             text: "Schreib die Malaufgabe."
             say: "Schau dir die Punkte an. Schreib die Malaufgabe."
@@ -408,25 +436,133 @@ lessons:
             options: ["3", "6", "18", "9"]
             answer: ["3", "6", "18"]
           - id: l2-c2
+            part: plus-mal
             type: multiple_choice
             text: "4 + 4 + 4 + 4 + 4: Welche Malaufgabe passt?"
             say: "Vier plus vier plus vier plus vier plus vier. Welche Malaufgabe passt?"
             options: ["5 · 4", "4 · 4", "5 + 4"]
             answer: "5 · 4"
           - id: l2-c3
+            part: result
             type: multiple_choice
             text: "2 · 10 = ?"
             say: "Zwei mal zehn."
             options: ["20", "12", "210"]
             answer: "20"
           - id: l2-c4
+            part: equal-groups
             type: true_false
             text: "Körbe mit 5, 5, 5 und 6 Eiern. Sind die Gruppen gleich groß?"
             say: "In vier Körben liegen fünf, fünf, fünf und sechs Eier. Sind die Gruppen gleich groß?"
             answer: false
           - id: l2-c5
+            part: plus-mal
             type: multiple_choice
             text: "Welche Plusaufgabe gehört zu 4 · 6?"
             say: "Welche Plusaufgabe gehört zu vier mal sechs?"
             options: ["6 + 6 + 6 + 6", "4 + 6", "6 + 6 + 6"]
             answer: "6 + 6 + 6 + 6"
+          - id: l2-c6
+            part: equal-groups
+            type: true_false
+            text: "4 Tüten mit je 3 Bonbons. Sind die Gruppen gleich groß?"
+            say: "In vier Tüten sind je drei Bonbons. Sind die Gruppen gleich groß?"
+            answer: true
+          - id: l2-c7
+            part: equal-groups
+            type: multiple_choice
+            text: "Wo sind alle Gruppen gleich groß?"
+            say: "Wo sind alle Gruppen gleich groß?"
+            options: ["5, 5, 5", "5, 4, 5", "4, 5, 6"]
+            answer: "5, 5, 5"
+          - id: l2-c8
+            part: equal-groups
+            type: true_false
+            text: "3 Reihen mit 4, 4 und 5 Stühlen. Sind die Gruppen gleich groß?"
+            say: "In drei Reihen stehen vier, vier und fünf Stühle. Sind die Gruppen gleich groß?"
+            answer: false
+          - id: l2-c9
+            part: equal-groups
+            type: multiple_choice
+            text: "Zu welchen Gruppen passt eine Malaufgabe?"
+            say: "Zu welchen Gruppen passt eine Malaufgabe?"
+            options: ["3 Kinder mit je 2 Ballons", "3 Kinder mit 1, 2 und 3 Ballons", "2 Kinder mit 2 und 4 Ballons"]
+            answer: "3 Kinder mit je 2 Ballons"
+          - id: l2-c10
+            part: plus-mal
+            type: multiple_choice
+            text: "6 + 6 + 6: Welche Malaufgabe passt?"
+            say: "Sechs plus sechs plus sechs. Welche Malaufgabe passt?"
+            options: ["3 · 6", "6 · 6", "3 + 6"]
+            answer: "3 · 6"
+          - id: l2-c11
+            part: plus-mal
+            type: true_false
+            text: "Stimmt das? 7 + 7 = 2 · 7"
+            say: "Sieben plus sieben ist zwei mal sieben. Stimmt das?"
+            answer: true
+          - id: l2-c12
+            part: plus-mal
+            type: multiple_choice
+            text: "Welche Plusaufgabe gehört zu 3 · 9?"
+            say: "Welche Plusaufgabe gehört zu drei mal neun?"
+            options: ["9 + 9 + 9", "3 + 9", "3 + 3 + 3"]
+            answer: "9 + 9 + 9"
+          - id: l2-c13
+            part: groups-to-mal
+            type: fill_in_blank
+            text: "Schreib die Malaufgabe."
+            say: "Schau dir die Punkte an. Schreib die Malaufgabe."
+            show: { drawn: dots, array: [4, 5] }
+            frame: "_ · _ = _"
+            options: ["4", "5", "20", "9"]
+            answer: ["4", "5", "20"]
+          - id: l2-c14
+            part: groups-to-mal
+            type: multiple_choice
+            text: "Welche Malaufgabe zeigt das Feld?"
+            say: "Schau dir die Punkte an. Welche Malaufgabe zeigt das Feld?"
+            show: { drawn: dots, array: [2, 7] }
+            options: ["2 · 7", "2 + 7", "7 · 7"]
+            answer: "2 · 7"
+          - id: l2-c15
+            part: groups-to-mal
+            type: fill_in_blank
+            text: "Wie viele Reihen, wie viele in jeder?"
+            say: "Wie viele Reihen sind es, und wie viele Punkte sind in jeder Reihe?"
+            show: { drawn: dots, array: [3, 8] }
+            frame: "_ Reihen mit je _ Punkten"
+            options: ["3", "8", "24", "11"]
+            answer: ["3", "8"]
+          - id: l2-c16
+            part: groups-to-mal
+            type: multiple_choice
+            text: "In 4 Kartons sind je 6 Eier. Welche Malaufgabe passt?"
+            say: "In vier Kartons sind je sechs Eier. Welche Malaufgabe passt?"
+            options: ["4 · 6", "4 + 6", "6 · 6"]
+            answer: "4 · 6"
+          - id: l2-c17
+            part: result
+            type: text_input
+            text: "6 · 2 = _"
+            say: "Sechs mal zwei."
+            answer: "12"
+          - id: l2-c18
+            part: result
+            type: multiple_choice
+            text: "5 · 5 = ?"
+            say: "Fünf mal fünf."
+            options: ["25", "10", "55"]
+            answer: "25"
+          - id: l2-c19
+            part: result
+            type: true_false
+            text: "Stimmt das? 2 · 4 = 6"
+            say: "Zwei mal vier ist sechs. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: result
+            type: text_input
+            text: "Lisa hat 3 Beutel mit je 5 Murmeln. Wie viele Murmeln hat sie?"
+            say: "Lisa hat drei Beutel mit je fünf Murmeln. Wie viele Murmeln hat sie?"
+            answer: "15"

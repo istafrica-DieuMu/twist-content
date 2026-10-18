@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots, hundred-field]
   facets: []
+  parts:
+    - { id: facts, what: { de: die Quadratzahlen bis 10 · 10 ausrechnen, en: working out the square numbers to 10 × 10 } }
+    - { id: spot, what: { de: Quadratzahlen erkennen, en: spotting square numbers } }
+    - { id: array, what: { de: Quadrate im Punktefeld erkennen, en: seeing squares in an array } }
+    - { id: derive, what: { de: eine Quadratzahl mit einer Nachbaraufgabe ausrechnen, en: working out a square from the fact next to it } }
   misconceptions:
     - id: square-as-double
       what: Adds the number to itself instead of multiplying (6 · 6 = 12, 9 · 9 = 18)
@@ -214,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -235,6 +241,25 @@ lessons:
               - { drawn: dots, array: [2, 3] }
               - { drawn: dots, array: [1, 3] }
             answer: "2x2"
+          - id: l1-c4
+            type: true_false
+            text: "Ist dieses Punktefeld ein Quadrat?"
+            say: "Ist dieses Punktefeld ein Quadrat?"
+            show: { drawn: dots, array: [2, 4] }
+            answer: false
+          - id: l1-c5
+            type: text_input
+            text: "Wie viele Punkte sind es?"
+            say: "Wie viele Punkte hat dieses Quadrat?"
+            show: { drawn: dots, array: [4, 4] }
+            answer: "16"
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Welche Quadratzahl fehlt?"
+            say: "Welche Quadratzahl fehlt?"
+            frame: "1, _, 9, 16"
+            options: ["4", "2", "6"]
+            answer: ["4"]
 
   - n: 2
     title: { de: "Alle Quadratzahlen bis 100", en: "All square numbers to 100" }
@@ -412,8 +437,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: facts
             type: fill_in_blank
             text: "36 ist eine Quadratzahl. Welche Aufgabe gehört dazu?"
             say: "Sechsunddreißig ist eine Quadratzahl. Welche Zahl mal die gleiche Zahl ergibt sechsunddreißig?"
@@ -421,6 +448,7 @@ lessons:
             options: ["6", "5", "7"]
             answer: ["6", "6"]
           - id: l2-c2
+            part: facts
             type: fill_in_blank
             text: "Rechne beide Aufgaben."
             say: "Rechne sieben mal sieben und neun mal neun."
@@ -428,12 +456,14 @@ lessons:
             options: ["49", "81", "14", "18"]
             answer: ["49", "81"]
           - id: l2-c3
+            part: spot
             type: multiple_choice
             text: "Welche Zahl ist eine Quadratzahl?"
             say: "Welche Zahl ist eine Quadratzahl?"
             options: ["32", "48", "64"]
             answer: "64"
           - id: l2-c4
+            part: array
             type: image_multiple_choice
             text: "Welches Punktefeld ist ein Quadrat?"
             say: "Welches Punktefeld ist ein Quadrat?"
@@ -443,7 +473,116 @@ lessons:
               - { drawn: dots, array: [5, 6] }
             answer: "6x6"
           - id: l2-c5
+            part: spot
             type: true_false
             text: "Ist 30 eine Quadratzahl?"
             say: "Ist dreißig eine Quadratzahl?"
             answer: false
+          - id: l2-c6
+            part: facts
+            type: text_input
+            text: "5 · 5 = _"
+            say: "Fünf mal fünf."
+            answer: "25"
+          - id: l2-c7
+            part: facts
+            type: true_false
+            text: "Stimmt das? 10 · 10 = 100"
+            say: "Zehn mal zehn ist hundert. Stimmt das?"
+            answer: true
+          - id: l2-c8
+            part: facts
+            type: multiple_choice
+            text: "Welche Aufgabe ergibt 49?"
+            say: "Welche Aufgabe ergibt neunundvierzig?"
+            options: ["7 · 7", "4 · 9", "6 · 8"]
+            answer: "7 · 7"
+          - id: l2-c9
+            part: spot
+            type: true_false
+            text: "Ist 16 eine Quadratzahl?"
+            say: "Ist sechzehn eine Quadratzahl?"
+            answer: true
+          - id: l2-c10
+            part: spot
+            type: multiple_choice
+            text: "Welche Zahl ist keine Quadratzahl?"
+            say: "Welche Zahl ist keine Quadratzahl?"
+            options: ["81", "25", "40"]
+            answer: "40"
+          - id: l2-c11
+            part: spot
+            type: fill_in_blank
+            text: "Welche Quadratzahl fehlt?"
+            say: "Welche Quadratzahl fehlt?"
+            frame: "4, 9, _, 25, 36"
+            options: ["16", "12", "20"]
+            answer: ["16"]
+          - id: l2-c12
+            part: array
+            type: text_input
+            text: "Wie viele Punkte sind es?"
+            say: "Wie viele Punkte hat dieses Quadrat?"
+            show: { drawn: dots, array: [9, 9] }
+            answer: "81"
+          - id: l2-c13
+            part: array
+            type: image_multiple_choice
+            text: "Welches Punktefeld ist ein Quadrat?"
+            say: "Welches Punktefeld ist ein Quadrat?"
+            options:
+              - { drawn: dots, array: [6, 7] }
+              - { drawn: dots, array: [7, 8] }
+              - { drawn: dots, array: [7, 7] }
+            answer: "7x7"
+          - id: l2-c14
+            part: array
+            type: true_false
+            text: "Ist dieses Punktefeld ein Quadrat?"
+            say: "Ist dieses Punktefeld ein Quadrat?"
+            show: { drawn: dots, array: [4, 5] }
+            answer: false
+          - id: l2-c15
+            part: array
+            type: multiple_choice
+            text: "Ein Punktefeld ist ein Quadrat. In jeder Reihe sind 9 Punkte. Wie viele Reihen hat es?"
+            say: "Ein Punktefeld ist ein Quadrat. In jeder Reihe sind neun Punkte. Wie viele Reihen hat es?"
+            options: ["9", "3", "18"]
+            answer: "9"
+          - id: l2-c16
+            part: derive
+            type: fill_in_blank
+            text: "Vier mal fünf hilft."
+            say: "Fünf mal fünf. Rechne mit vier mal fünf und noch einer Reihe."
+            frame: "5 · 5 = 4 · 5 + _ = _"
+            options: ["5", "4", "25", "24"]
+            answer: ["5", "25"]
+          - id: l2-c17
+            part: derive
+            type: fill_in_blank
+            text: "Sieben mal acht hilft."
+            say: "Acht mal acht. Rechne mit sieben mal acht und noch einer Reihe."
+            frame: "8 · 8 = 7 · 8 + _ = _"
+            options: ["8", "7", "64", "63"]
+            answer: ["8", "64"]
+          - id: l2-c18
+            part: derive
+            type: true_false
+            text: "Stimmt das? 6 · 6 = 5 · 6 + 5"
+            say: "Sechs mal sechs ist fünf mal sechs plus fünf. Stimmt das?"
+            answer: false
+          - id: l2-c19
+            part: derive
+            type: fill_in_blank
+            text: "Verdopple."
+            say: "Rechne zuerst fünf mal zehn, dann zehn mal zehn."
+            frame: "5 · 10 = _ | 10 · 10 = _"
+            options: ["50", "100", "20", "60"]
+            answer: ["50", "100"]
+          - id: l2-c20
+            part: derive
+            type: multiple_choice
+            text: "9 · 9: Welche Aufgabe hilft?"
+            say: "Neun mal neun. Welche Aufgabe hilft dir?"
+            options: ["10 · 9 − 9", "9 + 9", "10 · 9 − 1"]
+            answer: "10 · 9 − 9"

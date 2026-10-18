@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [equation, rechenstrich]
   facets: []
+  parts:
+    - { id: add, what: { de: Einer mit Zehnerübergang addieren, en: adding ones across a ten } }
+    - { id: sub, what: { de: Einer mit Zehnerübergang subtrahieren, en: subtracting ones across a ten } }
+    - { id: steps, what: { de: in Schritten über den vollen Zehner rechnen, en: working in steps via the full ten } }
   misconceptions:
     - id: tens-stay
       what: Keeps the tens the same after crossing (38 + 5 = 33)
@@ -224,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -233,7 +238,7 @@ lessons:
           - id: l1-c2
             type: fill_in_blank
             text: "Rechne in Schritten."
-            say: "Sechsundfünfzig plus sechs. Erst bis zum vollen Zehner, dann weiter."
+            say: "Sechsundfünfzig plus sechs. Rechne in Schritten."
             frame: "56 + 6 = 56 + 4 + _ = _"
             options: ["2", "62", "6", "52"]
             answer: ["2", "62"]
@@ -243,6 +248,23 @@ lessons:
             say: "Neununddreißig plus drei."
             options: ["42", "32", "312"]
             answer: "42"
+          - id: l1-c4
+            type: text_input
+            text: "17 + 5 = _"
+            say: "Siebzehn plus fünf."
+            answer: "22"
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? 76 + 7 = 73"
+            say: "Sechsundsiebzig plus sieben gleich dreiundsiebzig. Stimmt das?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "48 + 3: Welcher Sprung bringt dich zuerst zur 50?"
+            say: "Achtundvierzig plus drei. Welcher Sprung bringt dich zuerst zur Fünfzig?"
+            show: { drawn: rechenstrich, start: 48, jumps: [] }
+            options: ["2", "3", "8"]
+            answer: "2"
 
   - n: 2
     title: { de: Über den Zehner zurück, en: Taking away across a ten }
@@ -424,33 +446,142 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "49 + 6 = _"
             say: "Neunundvierzig plus sechs."
             answer: "55"
           - id: l2-c2
+            part: sub
             type: text_input
             text: "62 − 5 = _"
             say: "Zweiundsechzig minus fünf."
             answer: "57"
           - id: l2-c3
+            part: steps
             type: fill_in_blank
             text: "Rechne in Schritten."
-            say: "Fünfundachtzig minus sieben. Erst zurück zum vollen Zehner, dann weiter."
+            say: "Fünfundachtzig minus sieben. Rechne in Schritten."
             frame: "85 − 7 = 85 − 5 − _ = _"
             options: ["2", "78", "7", "82"]
             answer: ["2", "78"]
           - id: l2-c4
+            part: steps
             type: multiple_choice
             text: "74 + 8: Welcher Sprung bringt dich zuerst zur 80?"
             say: "Vierundsiebzig plus acht. Welcher Sprung bringt dich zuerst zur Achtzig?"
             options: ["6", "8", "4"]
             answer: "6"
           - id: l2-c5
+            part: sub
             type: multiple_choice
             text: "33 − 6 = ?"
             say: "Dreiunddreißig minus sechs."
             options: ["27", "37", "17"]
             answer: "27"
+          - id: l2-c6
+            part: add
+            type: text_input
+            text: "57 + 8 = _"
+            say: "Siebenundfünfzig plus acht."
+            answer: "65"
+          - id: l2-c7
+            part: add
+            type: multiple_choice
+            text: "29 + 7 = ?"
+            say: "Neunundzwanzig plus sieben."
+            options: ["36", "26", "37"]
+            answer: "36"
+          - id: l2-c8
+            part: add
+            type: true_false
+            text: "Stimmt das? 68 + 5 = 63"
+            say: "Achtundsechzig plus fünf gleich dreiundsechzig. Stimmt das?"
+            answer: false
+          - id: l2-c9
+            part: add
+            type: fill_in_blank
+            text: "Rechne beide Aufgaben."
+            say: "Sieben plus sechs, dann siebenundvierzig plus sechs."
+            frame: "7 + 6 = _ | 47 + 6 = _"
+            options: ["13", "53", "43", "413"]
+            answer: ["13", "53"]
+          - id: l2-c10
+            part: add
+            type: text_input
+            text: "86 + 7 = _"
+            say: "Sechsundachtzig plus sieben."
+            answer: "93"
+          - id: l2-c11
+            part: add
+            type: multiple_choice
+            text: "Lena hat 45 Murmeln. Sie bekommt 8 dazu. Wie viele Murmeln hat sie jetzt?"
+            say: "Lena hat fünfundvierzig Murmeln. Sie bekommt acht dazu. Wie viele Murmeln hat sie jetzt?"
+            options: ["53", "43", "52"]
+            answer: "53"
+          - id: l2-c12
+            part: sub
+            type: text_input
+            text: "53 − 6 = _"
+            say: "Dreiundfünfzig minus sechs."
+            answer: "47"
+          - id: l2-c13
+            part: sub
+            type: multiple_choice
+            text: "91 − 4 = ?"
+            say: "Einundneunzig minus vier."
+            options: ["87", "93", "97"]
+            answer: "87"
+          - id: l2-c14
+            part: sub
+            type: true_false
+            text: "Stimmt das? 46 − 9 = 37"
+            say: "Sechsundvierzig minus neun gleich siebenunddreißig. Stimmt das?"
+            answer: true
+          - id: l2-c15
+            part: sub
+            type: fill_in_blank
+            text: "Rechne beide Aufgaben."
+            say: "Zwölf minus fünf, dann zweiundsiebzig minus fünf."
+            frame: "12 − 5 = _ | 72 − 5 = _"
+            options: ["7", "67", "77", "63"]
+            answer: ["7", "67"]
+          - id: l2-c16
+            part: sub
+            type: text_input
+            text: "Im Bus sitzen 34 Kinder. 7 steigen aus. Wie viele Kinder sitzen noch im Bus?"
+            say: "Im Bus sitzen vierunddreißig Kinder. Sieben steigen aus. Wie viele Kinder sitzen noch im Bus?"
+            answer: "27"
+          - id: l2-c17
+            part: steps
+            type: fill_in_blank
+            text: "Rechne in Schritten."
+            say: "Siebenundzwanzig plus fünf. Rechne in Schritten."
+            frame: "27 + 5 = 27 + 3 + _ = _"
+            options: ["2", "32", "5", "22"]
+            answer: ["2", "32"]
+          - id: l2-c18
+            part: steps
+            type: multiple_choice
+            text: "52 − 8: Welcher Sprung zurück bringt dich zuerst zur 50?"
+            say: "Zweiundfünfzig minus acht. Welcher Sprung zurück bringt dich zuerst zur Fünfzig?"
+            show: { drawn: rechenstrich, start: 52, jumps: [] }
+            options: ["2", "8", "6"]
+            answer: "2"
+          - id: l2-c19
+            part: steps
+            type: true_false
+            text: "38 + 6: Der erste Sprung ist + 2. Kommst du so genau zur 40?"
+            say: "Achtunddreißig plus sechs. Der erste Sprung ist plus zwei. Kommst du so genau zur Vierzig?"
+            answer: true
+          - id: l2-c20
+            part: steps
+            type: fill_in_blank
+            text: "Rechne in Schritten."
+            say: "Vierundsechzig minus sieben. Rechne in Schritten."
+            frame: "64 − 7 = 64 − 4 − _ = _"
+            options: ["3", "57", "7", "61"]
+            answer: ["3", "57"]

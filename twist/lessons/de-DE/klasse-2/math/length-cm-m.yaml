@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [ruler]
   facets: [units]
+  parts:
+    - { id: measure, what: { de: Längen am Lineal in cm ablesen, en: reading lengths in cm on a ruler } }
+    - { id: off-zero, what: { de: "messen, wenn der Streifen nicht bei 0 anfängt", en: measuring a strip that does not start at 0 } }
+    - { id: convert, what: { de: Meter und Zentimeter umrechnen, en: changing between metres and centimetres } }
+    - { id: unit, what: { de: cm oder m passend wählen, en: choosing cm or m } }
   misconceptions:
     - id: reads-end-not-length
       what: Reads the number at the end of the strip when it does not start at 0 (strip from 2 to 9 read as 9 cm)
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +237,26 @@ lessons:
             text: "Beim Messen legst du die 0 vom Lineal an den Anfang."
             say: "Stimmt das? Beim Messen legst du die Null vom Lineal genau an den Anfang."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie lang ist der Streifen?"
+            say: "Der Streifen fängt bei null an. Wie lang ist er?"
+            show: { drawn: ruler, to: 15, length: 4, colour: green }
+            options: ["4 cm", "5 cm", "3 cm"]
+            answer: "4 cm"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie lang ist der Streifen?"
+            say: "Dieser Streifen fängt nicht bei null an. Wie lang ist er?"
+            show: { drawn: ruler, to: 15, start: 7, length: 6 }
+            options: ["6 cm", "13 cm", "7 cm"]
+            answer: "6 cm"
+          - id: l1-c6
+            type: true_false
+            text: "Der Streifen ist 9 cm lang."
+            say: "Der Streifen fängt bei eins an. Stimmt das: Er ist neun Zentimeter lang?"
+            show: { drawn: ruler, to: 10, start: 1, length: 8, colour: blue }
+            answer: false
 
   - n: 2
     title: { de: "1 Meter hat 100 Zentimeter", en: "A metre is 100 centimetres" }
@@ -391,8 +417,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: off-zero
             type: multiple_choice
             text: "Wie lang ist der Streifen?"
             say: "Dieser Streifen fängt nicht bei null an. Wie lang ist er?"
@@ -400,24 +428,135 @@ lessons:
             options: ["7 cm", "13 cm", "6 cm"]
             answer: "7 cm"
           - id: l2-c2
+            part: convert
             type: text_input
             text: "2 m = _ cm"
             say: "Zwei Meter sind wie viele Zentimeter?"
             answer: "200"
           - id: l2-c3
+            part: convert
             type: multiple_choice
             text: "1 m 50 cm = _ cm"
             say: "Ein Meter und fünfzig Zentimeter sind wie viele Zentimeter?"
             options: ["150 cm", "15 cm", "1050 cm"]
             answer: "150 cm"
           - id: l2-c4
+            part: unit
             type: multiple_choice
             text: "Was misst du in Zentimetern?"
             say: "Was misst du besser in Zentimetern als in Metern?"
             options: ["wie lang ein Daumen ist", "wie lang ein Fußballfeld ist", "wie hoch ein Baum ist"]
             answer: "wie lang ein Daumen ist"
           - id: l2-c5
+            part: off-zero
             type: true_false
             text: "Ein Streifen von 4 cm bis 10 cm ist 10 cm lang."
             say: "Stimmt das? Ein Streifen, der am Lineal bei vier anfängt und bei zehn aufhört, ist zehn Zentimeter lang."
             answer: false
+          - id: l2-c6
+            part: measure
+            type: multiple_choice
+            text: "Wie lang ist der Streifen?"
+            say: "Der Streifen fängt bei null an. Wie lang ist er?"
+            show: { drawn: ruler, to: 10, length: 7, colour: green }
+            options: ["7 cm", "8 cm", "6 cm"]
+            answer: "7 cm"
+          - id: l2-c7
+            part: measure
+            type: multiple_choice
+            text: "Wie lang ist der Streifen?"
+            say: "Der Streifen fängt bei null an. Wie lang ist er?"
+            show: { drawn: ruler, to: 15, length: 13 }
+            options: ["13 cm", "14 cm", "15 cm"]
+            answer: "13 cm"
+          - id: l2-c8
+            part: measure
+            type: true_false
+            text: "Der Streifen ist 2 cm lang."
+            say: "Der Streifen fängt bei null an. Stimmt das: Er ist zwei Zentimeter lang?"
+            show: { drawn: ruler, to: 10, length: 2, colour: blue }
+            answer: true
+          - id: l2-c9
+            part: measure
+            type: text_input
+            text: "Wie viele cm ist der Streifen lang?"
+            say: "Der Streifen fängt bei null an. Wie viele Zentimeter ist er lang?"
+            show: { drawn: ruler, to: 15, length: 9, colour: blue }
+            answer: "9"
+          - id: l2-c10
+            part: measure
+            type: true_false
+            text: "Der Streifen ist 12 cm lang."
+            say: "Der Streifen fängt bei null an. Stimmt das: Er ist zwölf Zentimeter lang?"
+            show: { drawn: ruler, to: 15, length: 11 }
+            answer: false
+          - id: l2-c11
+            part: off-zero
+            type: multiple_choice
+            text: "Wie lang ist der Streifen?"
+            say: "Dieser Streifen fängt nicht bei null an. Wie lang ist er?"
+            show: { drawn: ruler, to: 10, start: 2, length: 6 }
+            options: ["6 cm", "8 cm", "2 cm"]
+            answer: "6 cm"
+          - id: l2-c12
+            part: off-zero
+            type: true_false
+            text: "Der Streifen ist 5 cm lang."
+            say: "Der Streifen fängt bei vier an. Stimmt das: Er ist fünf Zentimeter lang?"
+            show: { drawn: ruler, to: 15, start: 4, length: 5, colour: green }
+            answer: true
+          - id: l2-c13
+            part: off-zero
+            type: text_input
+            text: "Ein Streifen fängt bei 3 cm an und hört bei 12 cm auf. Wie viele cm ist er lang?"
+            say: "Ein Streifen fängt am Lineal bei drei an und hört bei zwölf auf. Wie viele Zentimeter ist er lang?"
+            answer: "9"
+          - id: l2-c14
+            part: convert
+            type: text_input
+            text: "6 m = _ cm"
+            say: "Sechs Meter sind wie viele Zentimeter?"
+            answer: "600"
+          - id: l2-c15
+            part: convert
+            type: multiple_choice
+            text: "1 m 5 cm = _ cm"
+            say: "Ein Meter und fünf Zentimeter sind wie viele Zentimeter?"
+            options: ["105 cm", "15 cm", "150 cm"]
+            answer: "105 cm"
+          - id: l2-c16
+            part: convert
+            type: multiple_choice
+            text: "400 cm = _"
+            say: "Vierhundert Zentimeter sind wie viele Meter?"
+            options: ["4 m", "40 m", "400 m"]
+            answer: "4 m"
+          - id: l2-c17
+            part: convert
+            type: true_false
+            text: "1 m 30 cm = 130 cm"
+            say: "Stimmt das? Ein Meter und dreißig Zentimeter sind hundertdreißig Zentimeter."
+            answer: true
+          - id: l2-c18
+            part: unit
+            type: multiple_choice
+            text: "Was misst du in Metern?"
+            say: "Was misst du besser in Metern als in Zentimetern?"
+            options: ["wie lang ein Bus ist", "wie lang eine Gabel ist", "wie lang ein Schuh ist"]
+            answer: "wie lang ein Bus ist"
+          - id: l2-c19
+            part: unit
+            type: fill_in_blank
+            text: "cm oder m?"
+            say: "Zentimeter oder Meter? Was passt in die Lücke?"
+            frame: "Ein Bleistift ist 15 _ lang."
+            options: ["cm", "m"]
+            answer: ["cm"]
+          - id: l2-c20
+            part: unit
+            type: fill_in_blank
+            text: "cm oder m?"
+            say: "Zentimeter oder Meter? Was passt in die Lücke?"
+            frame: "Das Klassenzimmer ist 8 _ lang."
+            options: ["cm", "m"]
+            answer: ["m"]

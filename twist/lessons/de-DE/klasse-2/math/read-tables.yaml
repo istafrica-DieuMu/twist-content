@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, table]
   facets: []
+  parts:
+    - { id: read, what: { de: eine Zahl in der richtigen Zeile ablesen, en: reading a number in the right row } }
+    - { id: compare, what: { de: "am meisten und am wenigsten finden", en: finding the most and the fewest } }
+    - { id: calculate, what: { de: "mit den Zahlen rechnen: wie viele mehr, wie viele zusammen", en: "working with the numbers: how many more, how many altogether" } }
+    - { id: grid, what: { de: "ablesen, wo sich Zeile und Spalte treffen, auch im Stundenplan", en: "reading where a row and a column meet, also in a timetable" } }
   misconceptions:
     - id: neighbour-row
       what: Reads the number from the row above or below the one asked for
@@ -221,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -243,6 +249,26 @@ lessons:
             show: { drawn: table, rows: [[Klasse, Kinder], [2a, "24"], [2b, "22"], [2c, "25"]] }
             say: "Stimmt das? In der zwei a sind zwei Kinder mehr als in der zwei b."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Spiele in der Pause\nWie viele Kinder springen Seil?"
+            show: { drawn: table, rows: [[Spiel, Kinder], [Fangen, "9"], [Seilspringen, "6"], [Verstecken, "12"]] }
+            say: "Die Tabelle zeigt, was die Kinder in der Pause spielen. Wie viele Kinder springen Seil?"
+            options: ["6", "9", "12"]
+            answer: "6"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Spiele in der Pause\nWelches Spiel spielen die meisten Kinder?"
+            show: { drawn: table, rows: [[Spiel, Kinder], [Fangen, "9"], [Seilspringen, "6"], [Verstecken, "12"]] }
+            say: "Welches Spiel spielen die meisten Kinder?"
+            options: ["Verstecken", "Fangen", "Seilspringen"]
+            answer: "Verstecken"
+          - id: l1-c6
+            type: true_false
+            text: "Spiele in der Pause\nFangen und Verstecken spielen zusammen 20 Kinder."
+            show: { drawn: table, rows: [[Spiel, Kinder], [Fangen, "9"], [Seilspringen, "6"], [Verstecken, "12"]] }
+            say: "Stimmt das? Fangen und Verstecken spielen zusammen zwanzig Kinder."
+            answer: false
 
   - n: 2
     title: { de: "Zeilen und Spalten", en: "Rows and columns" }
@@ -427,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: grid
             type: multiple_choice
             text: "Gelesene Seiten\nWie viele Seiten hat Lea am Mittwoch gelesen?"
             show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Lea, "3", "5", "2"], [Tim, "4", "1", "6"]] }
@@ -436,6 +464,7 @@ lessons:
             options: ["2", "6", "5"]
             answer: "2"
           - id: l2-c2
+            part: compare
             type: multiple_choice
             text: "Gelesene Seiten\nAn welchem Tag hat Tim die meisten Seiten gelesen?"
             show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Lea, "3", "5", "2"], [Tim, "4", "1", "6"]] }
@@ -444,6 +473,7 @@ lessons:
             answer: "Mittwoch"
             keep_order: true
           - id: l2-c3
+            part: calculate
             type: multiple_choice
             text: "Gelesene Seiten\nWie viele Seiten hat Tim insgesamt gelesen?"
             show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Lea, "3", "5", "2"], [Tim, "4", "1", "6"]] }
@@ -451,6 +481,7 @@ lessons:
             options: ["11", "6", "10"]
             answer: "11"
           - id: l2-c4
+            part: calculate
             type: multiple_choice
             text: "Lieblingsobst\nWie viele Kinder mehr mögen Trauben als Bananen?"
             show: { drawn: table, rows: [[Obst, Kinder], [Apfel, "9"], [Banane, "7"], [Trauben, "12"]] }
@@ -458,9 +489,127 @@ lessons:
             options: ["5", "19", "3"]
             answer: "5"
           - id: l2-c5
+            part: grid
             type: multiple_choice
             text: "Stundenplan\nWas hat die Klasse am Freitag in der 2. Stunde?"
             show: { drawn: table, rows: [[Tag, "1. Stunde", "2. Stunde"], [Donnerstag, Musik, Mathe], [Freitag, Deutsch, Sport]] }
             say: "Was hat die Klasse am Freitag in der zweiten Stunde?"
             options: ["Sport", "Deutsch", "Mathe"]
             answer: "Sport"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Gefundene Muscheln\nWie viele Muscheln hat Zoe gefunden?"
+            show: { drawn: table, rows: [[Kind, Muscheln], [Anna, "13"], [Paul, "8"], [Zoe, "17"], [Max, "11"]] }
+            say: "Die Tabelle zeigt, wie viele Muscheln die Kinder am Strand gefunden haben. Wie viele Muscheln hat Zoe gefunden?"
+            options: ["17", "8", "11"]
+            answer: "17"
+          - id: l2-c7
+            part: read
+            type: true_false
+            text: "Im Schulgarten\nEs gibt 9 Kürbisse."
+            show: { drawn: table, rows: [[Pflanze, Anzahl], [Tomaten, "16"], [Bohnen, "20"], [Kürbisse, "4"], [Sonnenblumen, "9"]] }
+            say: "Die Tabelle zeigt, was im Schulgarten wächst. Stimmt das? Es gibt neun Kürbisse."
+            answer: false
+          - id: l2-c8
+            part: read
+            type: multiple_choice
+            text: "Jans Woche\nWann geht Jan zur Musikschule?"
+            show: { drawn: table, rows: [[Tag, Termin], [Dienstag, Turnen], [Donnerstag, Musikschule], [Samstag, Oma besuchen]] }
+            say: "Das ist Jans Wochenkalender. Wann geht Jan zur Musikschule?"
+            options: ["am Donnerstag", "am Dienstag", "am Samstag"]
+            answer: "am Donnerstag"
+          - id: l2-c9
+            part: read
+            type: multiple_choice
+            text: "Im Schulgarten\nWie viele Bohnen gibt es?"
+            show: { drawn: table, rows: [[Pflanze, Anzahl], [Tomaten, "16"], [Bohnen, "20"], [Kürbisse, "4"], [Sonnenblumen, "9"]] }
+            say: "Die Tabelle zeigt, was im Schulgarten wächst. Wie viele Bohnen gibt es?"
+            options: ["20", "16", "4"]
+            answer: "20"
+          - id: l2-c10
+            part: read
+            type: true_false
+            text: "Gefundene Muscheln\nMax hat 11 Muscheln gefunden."
+            show: { drawn: table, rows: [[Kind, Muscheln], [Anna, "13"], [Paul, "8"], [Zoe, "17"], [Max, "11"]] }
+            say: "Stimmt das? Max hat elf Muscheln gefunden."
+            answer: true
+          - id: l2-c11
+            part: compare
+            type: multiple_choice
+            text: "Gefundene Muscheln\nWer hat die wenigsten Muscheln gefunden?"
+            show: { drawn: table, rows: [[Kind, Muscheln], [Anna, "13"], [Paul, "8"], [Zoe, "17"], [Max, "11"]] }
+            say: "Wer hat die wenigsten Muscheln gefunden?"
+            options: ["Paul", "Anna", "Max"]
+            answer: "Paul"
+          - id: l2-c12
+            part: compare
+            type: multiple_choice
+            text: "Im Schulgarten\nWovon gibt es am meisten?"
+            show: { drawn: table, rows: [[Pflanze, Anzahl], [Tomaten, "16"], [Bohnen, "20"], [Kürbisse, "4"], [Sonnenblumen, "9"]] }
+            say: "Die Tabelle zeigt, was im Schulgarten wächst. Wovon gibt es am meisten?"
+            options: ["Bohnen", "Tomaten", "Sonnenblumen"]
+            answer: "Bohnen"
+          - id: l2-c13
+            part: compare
+            type: true_false
+            text: "Punkte beim Spiel\nAm Dienstag hat Lina weniger Punkte als Finn."
+            show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Finn, "6", "9", "4"], [Lina, "8", "2", "7"]] }
+            say: "Die Tabelle zeigt, wie viele Punkte Finn und Lina beim Spiel bekommen haben. Stimmt das? Am Dienstag hat Lina weniger Punkte als Finn."
+            answer: true
+          - id: l2-c14
+            part: compare
+            type: multiple_choice
+            text: "Punkte beim Spiel\nAn welchem Tag hat Lina die wenigsten Punkte?"
+            show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Finn, "6", "9", "4"], [Lina, "8", "2", "7"]] }
+            say: "An welchem Tag hat Lina die wenigsten Punkte bekommen?"
+            options: ["Montag", "Dienstag", "Mittwoch"]
+            answer: "Dienstag"
+            keep_order: true
+          - id: l2-c15
+            part: calculate
+            type: multiple_choice
+            text: "Gefundene Muscheln\nWie viele Muscheln hat Zoe mehr gefunden als Anna?"
+            show: { drawn: table, rows: [[Kind, Muscheln], [Anna, "13"], [Paul, "8"], [Zoe, "17"], [Max, "11"]] }
+            say: "Wie viele Muscheln hat Zoe mehr gefunden als Anna?"
+            options: ["4", "30", "5"]
+            answer: "4"
+          - id: l2-c16
+            part: calculate
+            type: multiple_choice
+            text: "Im Schulgarten\nWie viele Tomaten und Kürbisse sind es zusammen?"
+            show: { drawn: table, rows: [[Pflanze, Anzahl], [Tomaten, "16"], [Bohnen, "20"], [Kürbisse, "4"], [Sonnenblumen, "9"]] }
+            say: "Wie viele Tomaten und Kürbisse sind es zusammen?"
+            options: ["20", "12", "16"]
+            answer: "20"
+          - id: l2-c17
+            part: calculate
+            type: multiple_choice
+            text: "Punkte beim Spiel\nWie viele Punkte hat Finn insgesamt?"
+            show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Finn, "6", "9", "4"], [Lina, "8", "2", "7"]] }
+            say: "Wie viele Punkte hat Finn an allen drei Tagen zusammen bekommen?"
+            options: ["19", "9", "18"]
+            answer: "19"
+          - id: l2-c18
+            part: grid
+            type: multiple_choice
+            text: "Punkte beim Spiel\nWie viele Punkte hat Lina am Mittwoch bekommen?"
+            show: { drawn: table, rows: [[Kind, Mo, Di, Mi], [Finn, "6", "9", "4"], [Lina, "8", "2", "7"]] }
+            say: "Wie viele Punkte hat Lina am Mittwoch bekommen?"
+            options: ["7", "4", "8"]
+            answer: "7"
+          - id: l2-c19
+            part: grid
+            type: multiple_choice
+            text: "Stundenplan\nWas hat die Klasse am Donnerstag in der 1. Stunde?"
+            show: { drawn: table, rows: [[Tag, "1. Stunde", "2. Stunde"], [Montag, Deutsch, Musik], [Dienstag, Kunst, Mathe], [Donnerstag, Sport, Deutsch]] }
+            say: "Das ist der Stundenplan der Klasse. Was hat die Klasse am Donnerstag in der ersten Stunde?"
+            options: ["Sport", "Deutsch", "Kunst"]
+            answer: "Sport"
+          - id: l2-c20
+            part: grid
+            type: true_false
+            text: "Stundenplan\nAm Dienstag hat die Klasse in der 2. Stunde Kunst."
+            show: { drawn: table, rows: [[Tag, "1. Stunde", "2. Stunde"], [Montag, Deutsch, Musik], [Dienstag, Kunst, Mathe], [Donnerstag, Sport, Deutsch]] }
+            say: "Das ist der Stundenplan der Klasse. Stimmt das? Am Dienstag hat die Klasse in der zweiten Stunde Kunst."
+            answer: false

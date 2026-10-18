@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [rechenstrich, base-ten]
   facets: []
+  parts:
+    - { id: steps, what: { de: schrittweise rechnen, en: adding in steps } }
+    - { id: places, what: { de: stellenweise rechnen, en: adding tens and ones separately } }
+    - { id: helper, what: { de: mit einer Hilfsaufgabe rechnen, en: adding via an easier sum } }
+    - { id: sums, what: { de: zwei zweistellige Zahlen addieren, en: adding two two-digit numbers } }
   misconceptions:
     - id: forget-carried-ten
       what: Adds the ones to more than nine and drops the extra ten (47 + 36 = 73)
@@ -212,22 +217,43 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
             text: "37 + 41 = _"
+            say: "Siebenunddreißig plus einundvierzig."
             answer: "78"
           - id: l1-c2
             type: multiple_choice
             text: "48 + 35 = ?"
+            say: "Achtundvierzig plus fünfunddreißig."
             options: ["83", "73", "713"]
             answer: "83"
           - id: l1-c3
             type: fill_in_blank
             text: "Rechne schrittweise."
+            say: "Rechne schrittweise. Sechsundzwanzig plus fünfundvierzig."
             frame: "26 + 45 = 26 + 40 + _ = _"
             options: ["5", "4", "71", "66", "61"]
             answer: ["5", "71"]
+          - id: l1-c4
+            type: text_input
+            text: "42 + 35 = _"
+            say: "Zweiundvierzig plus fünfunddreißig."
+            answer: "77"
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? 38 + 44 = 72"
+            say: "Achtunddreißig plus vierundvierzig gleich zweiundsiebzig. Stimmt das?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "57 + 26 schrittweise: Welcher Sprung kommt zuerst?"
+            say: "Du rechnest siebenundfünfzig plus sechsundzwanzig schrittweise. Welcher Sprung kommt zuerst?"
+            show: { drawn: rechenstrich, start: 57, jumps: [] }
+            options: ["+20", "+6", "+2"]
+            answer: "+20"
 
   - n: 2
     title: { de: Stellenweise rechnen, en: Adding tens and ones apart }
@@ -400,22 +426,44 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: text_input
             text: "34 + 57 = _"
+            say: "Vierunddreißig plus siebenundfünfzig."
             answer: "91"
           - id: l2-c2
             type: multiple_choice
             text: "68 + 24 = ?"
+            say: "Achtundsechzig plus vierundzwanzig."
             options: ["92", "82", "812"]
             answer: "92"
           - id: l2-c3
             type: fill_in_blank
             text: "Rechne stellenweise."
+            say: "Rechne stellenweise. Fünfundvierzig plus siebenundzwanzig."
             frame: "45 + 27: 40 + 20 = _ | 5 + 7 = _ | _ + _ = _"
             options: ["60", "12", "72", "62", "11"]
             answer: ["60", "12", "60", "12", "72"]
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Rechne stellenweise."
+            say: "Rechne stellenweise. Sechsundzwanzig plus neunundfünfzig."
+            frame: "26 + 59: 20 + 50 = _ | 6 + 9 = _ | _ + _ = _"
+            options: ["70", "15", "85", "75", "14"]
+            answer: ["70", "15", "70", "15", "85"]
+          - id: l2-c5
+            type: true_false
+            text: "Stimmt das? 47 + 45 = 92"
+            say: "Siebenundvierzig plus fünfundvierzig gleich zweiundneunzig. Stimmt das?"
+            answer: true
+          - id: l2-c6
+            type: multiple_choice
+            text: "35 + 47 = ?"
+            say: "Fünfunddreißig plus siebenundvierzig."
+            options: ["82", "72", "712"]
+            answer: "82"
 
   - n: 3
     title: { de: Mit Hilfsaufgabe, en: Using an easier sum }
@@ -575,29 +623,145 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: sums
             type: text_input
             text: "52 + 46 = _"
+            say: "Zweiundfünfzig plus sechsundvierzig."
             answer: "98"
           - id: l3-c2
+            part: sums
             type: multiple_choice
             text: "37 + 48 = ?"
+            say: "Siebenunddreißig plus achtundvierzig."
             options: ["85", "75", "715"]
             answer: "85"
           - id: l3-c3
+            part: helper
             type: fill_in_blank
             text: "Rechne mit der Hilfsaufgabe."
+            say: "Rechne mit der Hilfsaufgabe. Dreiunddreißig plus neunundvierzig."
             frame: "33 + 49 = 33 + 50 − _ = _"
             options: ["1", "9", "82", "83", "81"]
             answer: ["1", "82"]
           - id: l3-c4
+            part: places
             type: fill_in_blank
             text: "Rechne stellenweise."
+            say: "Rechne stellenweise. Vierundsechzig plus achtundzwanzig."
             frame: "64 + 28: 60 + 20 = _ | 4 + 8 = _ | _ + _ = _"
             options: ["80", "12", "92", "82", "13"]
             answer: ["80", "12", "80", "12", "92"]
           - id: l3-c5
+            part: sums
             type: text_input
             text: "26 + 66 = _"
+            say: "Sechsundzwanzig plus sechsundsechzig."
             answer: "92"
+          - id: l3-c6
+            part: steps
+            type: fill_in_blank
+            text: "Rechne schrittweise."
+            say: "Rechne schrittweise. Sechsunddreißig plus siebenundvierzig."
+            frame: "36 + 47 = 36 + 40 + _ = _"
+            options: ["7", "4", "83", "76", "73"]
+            answer: ["7", "83"]
+          - id: l3-c7
+            part: steps
+            type: multiple_choice
+            text: "28 + 54 schrittweise: Welcher Sprung kommt zuerst?"
+            say: "Du rechnest achtundzwanzig plus vierundfünfzig schrittweise. Welcher Sprung kommt zuerst?"
+            show: { drawn: rechenstrich, start: 28, jumps: [] }
+            options: ["+50", "+4", "+5"]
+            answer: "+50"
+          - id: l3-c8
+            part: steps
+            type: true_false
+            text: "Stimmt das? 57 + 25 = 57 + 20 + 5"
+            say: "Siebenundfünfzig plus fünfundzwanzig ist das Gleiche wie siebenundfünfzig plus zwanzig plus fünf. Stimmt das?"
+            answer: true
+          - id: l3-c9
+            part: steps
+            type: fill_in_blank
+            text: "Rechne schrittweise."
+            say: "Rechne schrittweise. Dreiundsechzig plus neunundzwanzig."
+            frame: "63 + 29 = 63 + 20 + _ = _"
+            options: ["9", "2", "92", "83", "82"]
+            answer: ["9", "92"]
+          - id: l3-c10
+            part: steps
+            type: multiple_choice
+            text: "Lena rechnet 54 + 37 schrittweise, erst die Zehner. Welcher Schritt kommt zuerst?"
+            say: "Lena rechnet vierundfünfzig plus siebenunddreißig schrittweise, erst die Zehner. Welcher Schritt kommt zuerst?"
+            options: ["54 + 30 = 84", "50 + 30 = 80", "54 + 3 = 57"]
+            answer: "54 + 30 = 84"
+          - id: l3-c11
+            part: places
+            type: fill_in_blank
+            text: "Rechne stellenweise."
+            say: "Rechne stellenweise. Siebenunddreißig plus sechsundfünfzig."
+            frame: "37 + 56: 30 + 50 = _ | 7 + 6 = _ | _ + _ = _"
+            options: ["80", "13", "93", "83", "12"]
+            answer: ["80", "13", "80", "13", "93"]
+          - id: l3-c12
+            part: places
+            type: multiple_choice
+            text: "46 + 38: Wie viel sind die Einer zusammen?"
+            say: "Bei sechsundvierzig plus achtunddreißig: Wie viel sind die Einer zusammen?"
+            options: ["14", "13", "4"]
+            answer: "14"
+          - id: l3-c13
+            part: places
+            type: true_false
+            text: "Stimmt das? 49 + 25 = 64"
+            say: "Neunundvierzig plus fünfundzwanzig gleich vierundsechzig. Stimmt das?"
+            answer: false
+          - id: l3-c14
+            part: places
+            type: multiple_choice
+            text: "28 + 67 = ?"
+            say: "Achtundzwanzig plus siebenundsechzig."
+            options: ["95", "85", "815"]
+            answer: "95"
+          - id: l3-c15
+            part: helper
+            type: fill_in_blank
+            text: "Rechne mit der Hilfsaufgabe."
+            say: "Rechne mit der Hilfsaufgabe. Fünfundvierzig plus neunundzwanzig."
+            frame: "45 + 29 = 45 + 30 − _ = _"
+            options: ["1", "9", "74", "75", "76"]
+            answer: ["1", "74"]
+          - id: l3-c16
+            part: helper
+            type: multiple_choice
+            text: "38 + 19 = ?"
+            say: "Achtunddreißig plus neunzehn."
+            options: ["57", "59", "58"]
+            answer: "57"
+          - id: l3-c17
+            part: helper
+            type: multiple_choice
+            text: "Mia rechnet 26 + 39 mit der Hilfsaufgabe: 26 + 40 = 66. Wie geht es weiter?"
+            say: "Mia rechnet sechsundzwanzig plus neununddreißig mit der Hilfsaufgabe. Sechsundzwanzig plus vierzig ist sechsundsechzig. Wie geht es weiter?"
+            options: ["66 − 1 = 65", "66 + 1 = 67", "66 − 9 = 57"]
+            answer: "66 − 1 = 65"
+          - id: l3-c18
+            part: helper
+            type: true_false
+            text: "Stimmt das? 54 + 39 = 54 + 40 + 1"
+            say: "Vierundfünfzig plus neununddreißig ist das Gleiche wie vierundfünfzig plus vierzig plus eins. Stimmt das?"
+            answer: false
+          - id: l3-c19
+            part: sums
+            type: text_input
+            text: "Ben hat 38 Murmeln. Er bekommt 25 dazu. Wie viele Murmeln hat er jetzt?"
+            say: "Ben hat achtunddreißig Murmeln. Er bekommt fünfundzwanzig dazu. Wie viele Murmeln hat er jetzt?"
+            answer: "63"
+          - id: l3-c20
+            part: sums
+            type: text_input
+            text: "53 + 38 = _"
+            say: "Dreiundfünfzig plus achtunddreißig."
+            answer: "91"

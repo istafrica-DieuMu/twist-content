@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten, place-value-chart]
   facets: []
+  parts:
+    - { id: read-chart, what: { de: Zahlen in der Stellentafel lesen und eintragen, en: reading and writing numbers in a place-value chart } }
+    - { id: blocks, what: { de: Zahlen mit Zehnerstangen und Einerwürfeln darstellen, en: showing numbers with tens rods and ones cubes } }
+    - { id: zero, what: { de: die Null in der Stellentafel richtig schreiben, en: writing zero in the right column } }
+    - { id: bundle, what: { de: mehr als neun Einer zu Zehnern bündeln, en: bundling more than nine ones into tens } }
   misconceptions:
     - id: digit-swap
       what: Writes the ones in the Z column (34 as 4 | 3), because German says the ones first
@@ -234,6 +239,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -257,6 +263,26 @@ lessons:
               - { drawn: place-value-chart, columns: [tens, ones], values: [1, 3] }
               - { drawn: place-value-chart, columns: [tens, ones], values: [3, 1] }
             answer: "31"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie viele Einer hat 58?"
+            options: ["8", "5", "58"]
+            answer: "8"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Welches Bild zeigt 43?"
+            say: "Dreiundvierzig. Welches Bild zeigt diese Zahl?"
+            options:
+              - { drawn: base-ten, tens: 3, ones: 4 }
+              - { drawn: base-ten, tens: 4, ones: 3 }
+              - { drawn: base-ten, tens: 4, ones: 4 }
+            answer: "43"
+          - id: l1-c6
+            type: true_false
+            text: "5 Zehner und 1 Einer. Stimmt die Stellentafel?"
+            say: "Fünf Zehner und ein Einer. In der Stellentafel steht: Z fünf, E eins. Stimmt das?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [5, 1] }
+            answer: true
 
   - n: 2
     title: { de: Null und zu viele Einer, en: Zero and too many ones }
@@ -461,14 +487,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read-chart
             type: multiple_choice
             text: "Welche Zahl steht in der Stellentafel?"
             show: { drawn: place-value-chart, columns: [tens, ones], values: [9, 3] }
             options: ["39", "93", "12"]
             answer: "93"
           - id: l2-c2
+            part: blocks
             type: fill_in_blank
             text: "Trag die Zahl ein."
             say: "Schau dir die Stangen und Würfel an. Wie viele Zehner, wie viele Einer kommen in die Stellentafel?"
@@ -477,12 +506,14 @@ lessons:
             options: ["5", "7", "12", "75"]
             answer: ["7", "5"]
           - id: l2-c3
+            part: zero
             type: multiple_choice
             text: "Welche Zahl steht in der Stellentafel?"
             show: { drawn: place-value-chart, columns: [tens, ones], values: [6, 0] }
             options: ["6", "60", "16"]
             answer: "60"
           - id: l2-c4
+            part: bundle
             type: multiple_choice
             text: "Wie viele sind es?"
             say: "Drei Zehnerstangen und zwölf Einerwürfel. Wie viele sind es zusammen?"
@@ -490,6 +521,7 @@ lessons:
             options: ["42", "312", "15"]
             answer: "42"
           - id: l2-c5
+            part: read-chart
             type: image_multiple_choice
             text: "Welche Stellentafel zeigt 47?"
             say: "Siebenundvierzig. Welche Stellentafel zeigt diese Zahl?"
@@ -498,3 +530,122 @@ lessons:
               - { drawn: place-value-chart, columns: [tens, ones], values: [4, 7] }
               - { drawn: place-value-chart, columns: [tens, ones], values: [4, 0] }
             answer: "47"
+          - id: l2-c6
+            part: read-chart
+            type: multiple_choice
+            text: "Welche Zahl steht in der Stellentafel?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [2, 9] }
+            options: ["29", "92", "11"]
+            answer: "29"
+          - id: l2-c7
+            part: read-chart
+            type: image_multiple_choice
+            text: "Welche Stellentafel zeigt 86?"
+            say: "Sechsundachtzig. Welche Stellentafel zeigt diese Zahl?"
+            options:
+              - { drawn: place-value-chart, columns: [tens, ones], values: [6, 8] }
+              - { drawn: place-value-chart, columns: [tens, ones], values: [8, 6] }
+              - { drawn: place-value-chart, columns: [tens, ones], values: [8, 0] }
+            answer: "86"
+          - id: l2-c8
+            part: read-chart
+            type: true_false
+            text: "7 Zehner und 4 Einer. Stimmt die Stellentafel?"
+            say: "Sieben Zehner und vier Einer. In der Stellentafel steht: Z vier, E sieben. Stimmt das?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [4, 7] }
+            answer: false
+          - id: l2-c9
+            part: blocks
+            type: fill_in_blank
+            text: "Trag die Zahl ein."
+            say: "Schau dir die Stangen und Würfel an. Wie viele Zehner, wie viele Einer kommen in die Stellentafel?"
+            show: { drawn: base-ten, tens: 3, ones: 6 }
+            frame: "Z: _  E: _"
+            options: ["3", "6", "9", "36"]
+            answer: ["3", "6"]
+          - id: l2-c10
+            part: blocks
+            type: image_multiple_choice
+            text: "Welches Bild zeigt 52?"
+            say: "Zweiundfünfzig. Welches Bild zeigt diese Zahl?"
+            options:
+              - { drawn: base-ten, tens: 2, ones: 5 }
+              - { drawn: base-ten, tens: 5, ones: 2 }
+              - { drawn: base-ten, tens: 5, ones: 5 }
+            answer: "52"
+          - id: l2-c11
+            part: blocks
+            type: multiple_choice
+            text: "Wie viele sind es?"
+            show: { drawn: base-ten, tens: 6, ones: 1 }
+            options: ["61", "16", "7"]
+            answer: "61"
+          - id: l2-c12
+            part: blocks
+            type: multiple_choice
+            text: "Wie viele Zehnerstangen brauchst du für 74?"
+            say: "Wie viele Zehnerstangen brauchst du für vierundsiebzig?"
+            options: ["7", "4", "74"]
+            answer: "7"
+          - id: l2-c13
+            part: zero
+            type: multiple_choice
+            text: "Welche Zahl steht in der Stellentafel?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [3, 0] }
+            options: ["3", "30", "13"]
+            answer: "30"
+          - id: l2-c14
+            part: zero
+            type: fill_in_blank
+            text: "Trag die Zahl ein."
+            say: "Neun Zehnerstangen und kein Einer. Was kommt in die Stellentafel?"
+            show: { drawn: base-ten, tens: 9, ones: 0 }
+            frame: "Z: _  E: _"
+            options: ["0", "9", "90"]
+            answer: ["9", "0"]
+          - id: l2-c15
+            part: zero
+            type: multiple_choice
+            text: "Welche Zahl steht in der Stellentafel?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [0, 8] }
+            options: ["8", "80", "18"]
+            answer: "8"
+          - id: l2-c16
+            part: zero
+            type: true_false
+            text: "Das ist 50. Stimmt das?"
+            say: "Fünfzig. In der Stellentafel steht: Z null, E fünf. Stimmt das?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [0, 5] }
+            answer: false
+          - id: l2-c17
+            part: bundle
+            type: fill_in_blank
+            text: "14 Einer: Wie viele Zehner, wie viele Einer?"
+            say: "Vierzehn Einerwürfel. Wie viele Zehner, wie viele Einer sind es?"
+            show: { drawn: base-ten, tens: 0, ones: 14 }
+            frame: "Z: _  E: _"
+            options: ["0", "1", "4", "14"]
+            answer: ["1", "4"]
+          - id: l2-c18
+            part: bundle
+            type: multiple_choice
+            text: "Wie viele sind es?"
+            say: "Eine Zehnerstange und fünfzehn Einerwürfel. Wie viele sind es zusammen?"
+            show: { drawn: base-ten, tens: 1, ones: 15 }
+            options: ["25", "115", "16"]
+            answer: "25"
+          - id: l2-c19
+            part: bundle
+            type: true_false
+            text: "2 Zehner und 11 Einer sind 31. Stimmt das?"
+            say: "Zwei Zehner und elf Einer sind einunddreißig. Stimmt das?"
+            show: { drawn: base-ten, tens: 2, ones: 11 }
+            answer: true
+          - id: l2-c20
+            part: bundle
+            type: multiple_choice
+            text: "Wie viele sind es?"
+            say: "Sechs Zehnerstangen und zehn Einerwürfel. Wie viele sind es zusammen?"
+            show: { drawn: base-ten, tens: 6, ones: 10 }
+            options: ["70", "610", "16"]
+            answer: "70"

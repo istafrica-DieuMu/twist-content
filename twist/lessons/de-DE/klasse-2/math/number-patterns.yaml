@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: continue, what: { de: Zahlenfolgen und schöne Päckchen fortsetzen, en: continuing number sequences and calculation patterns } }
+    - { id: rule, what: { de: die Regel eines Musters finden und prüfen, en: finding and checking the rule of a pattern } }
+    - { id: explain, what: { de: "erklären, warum sich das Ergebnis im Päckchen so ändert", en: explaining why the results in a calculation pattern change as they do } }
+    - { id: mistake, what: { de: Fehler im Muster finden, en: finding the mistake in a pattern } }
   misconceptions:
     - id: rule-from-two
       what: Guesses the rule from the first two numbers only and misses that the step changes (2, 4, 8, 16 read as immer 2 mehr)
@@ -200,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -220,6 +226,25 @@ lessons:
             say: "Zwanzig, dreißig, vierzig, fünfundfünfzig, sechzig. Welche Zahl passt nicht ins Muster?"
             options: ["55", "40", "60"]
             answer: "55"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Setze das Muster fort."
+            say: "Fünf, neun, dreizehn, siebzehn. Setze das Muster fort."
+            frame: "5, 9, 13, 17, _, _"
+            options: ["21", "25", "20", "22"]
+            answer: ["21", "25"]
+          - id: l1-c5
+            type: true_false
+            text: "Die Regel ist: immer 6 weniger. 48, 42, 36, 30"
+            say: "Achtundvierzig, zweiundvierzig, sechsunddreißig, dreißig. Stimmt die Regel: immer sechs weniger?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "99, 89, 79, 69, _"
+            say: "Neunundneunzig, neunundachtzig, neunundsiebzig, neunundsechzig. Welche Zahl kommt als Nächstes?"
+            options: ["59", "68", "60"]
+            answer: "59"
+            option_audio: false
 
   - n: 2
     title: { de: "Schöne Päckchen", en: "Calculation patterns" }
@@ -386,8 +411,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: continue
             type: fill_in_blank
             text: "Setze das Muster fort."
             say: "Achtundachtzig, achtundsiebzig, achtundsechzig, achtundfünfzig. Setze das Muster fort."
@@ -395,25 +422,133 @@ lessons:
             options: ["48", "38", "57", "47"]
             answer: ["48", "38"]
           - id: l2-c2
+            part: rule
             type: true_false
             text: "Die Regel ist: immer 5 mehr. 10, 15, 20, 30"
             say: "Zehn, fünfzehn, zwanzig, dreißig. Stimmt die Regel: immer fünf mehr?"
             answer: false
           - id: l2-c3
+            part: continue
             type: multiple_choice
             text: "Wie geht das Päckchen weiter?\n16 + 3 = 19\n26 + 3 = 29\n36 + 3 = 39\n46 + 3 = _"
             say: "Wie geht das Päckchen weiter? Wie viel ist sechsundvierzig plus drei?"
             options: ["49", "40", "59"]
             answer: "49"
           - id: l2-c4
+            part: mistake
             type: multiple_choice
             text: "Welches Ergebnis ist falsch?\n25 + 5 = 30\n25 + 10 = 35\n25 + 15 = 45\n25 + 20 = 45"
             say: "In diesem Päckchen ist ein Ergebnis falsch. Welches?"
             options: ["25 + 15 = 45", "25 + 10 = 35", "25 + 20 = 45"]
             answer: "25 + 15 = 45"
           - id: l2-c5
+            part: explain
             type: multiple_choice
             text: "Warum wird das Ergebnis immer 2 größer?\n20 + 1 = 21\n20 + 3 = 23\n20 + 5 = 25"
             say: "Warum wird das Ergebnis immer um zwei größer?"
             options: ["Die zweite Zahl wird immer 2 größer.", "Die erste Zahl wird immer 2 größer.", "Beide Zahlen werden 1 größer."]
             answer: "Die zweite Zahl wird immer 2 größer."
+          - id: l2-c6
+            part: continue
+            type: multiple_choice
+            text: "27, 32, 37, 42, _"
+            say: "Siebenundzwanzig, zweiunddreißig, siebenunddreißig, zweiundvierzig. Welche Zahl kommt als Nächstes?"
+            options: ["47", "43", "52"]
+            answer: "47"
+            option_audio: false
+          - id: l2-c7
+            part: continue
+            type: fill_in_blank
+            text: "Setze das Muster fort."
+            say: "Zweiundsiebzig, neunundsechzig, sechsundsechzig, dreiundsechzig. Setze das Muster fort."
+            frame: "72, 69, 66, 63, _, _"
+            options: ["60", "57", "61", "59"]
+            answer: ["60", "57"]
+          - id: l2-c8
+            part: continue
+            type: fill_in_blank
+            text: "Setze das Päckchen fort."
+            say: "Vierzig plus sieben ist siebenundvierzig. Einundvierzig plus sieben ist achtundvierzig. Zweiundvierzig plus sieben ist neunundvierzig. Setze das Päckchen fort."
+            frame: "40 + 7 = 47 | 41 + 7 = 48 | 42 + 7 = 49 | _ + 7 = _"
+            options: ["43", "50", "51", "44"]
+            answer: ["43", "50"]
+          - id: l2-c9
+            part: rule
+            type: multiple_choice
+            text: "Welche Regel hat das Muster? 18, 26, 34, 42"
+            say: "Achtzehn, sechsundzwanzig, vierunddreißig, zweiundvierzig. Welche Regel hat das Muster?"
+            options: ["immer 8 mehr", "immer 6 mehr", "immer 8 weniger"]
+            answer: "immer 8 mehr"
+          - id: l2-c10
+            part: rule
+            type: true_false
+            text: "Die Regel ist: immer 4 weniger. 40, 36, 32, 28"
+            say: "Vierzig, sechsunddreißig, zweiunddreißig, achtundzwanzig. Stimmt die Regel: immer vier weniger?"
+            answer: true
+          - id: l2-c11
+            part: rule
+            type: multiple_choice
+            text: "Welche Regel hat das Muster? 3, 6, 12, 24"
+            say: "Drei, sechs, zwölf, vierundzwanzig. Welche Regel hat das Muster?"
+            options: ["Jede Zahl wird verdoppelt.", "immer 3 mehr", "immer 6 mehr"]
+            answer: "Jede Zahl wird verdoppelt."
+          - id: l2-c12
+            part: rule
+            type: true_false
+            text: "Die Regel ist: immer 10 mehr. 23, 33, 43, 54"
+            say: "Dreiundzwanzig, dreiunddreißig, dreiundvierzig, vierundfünfzig. Stimmt die Regel: immer zehn mehr?"
+            answer: false
+          - id: l2-c13
+            part: explain
+            type: multiple_choice
+            text: "Warum wird das Ergebnis immer 1 kleiner?\n50 − 21 = 29\n50 − 22 = 28\n50 − 23 = 27"
+            say: "Warum wird das Ergebnis immer um eins kleiner?"
+            options: ["Die zweite Zahl wird immer 1 größer.", "Die erste Zahl wird immer 1 größer.", "Beide Zahlen bleiben gleich."]
+            answer: "Die zweite Zahl wird immer 1 größer."
+          - id: l2-c14
+            part: explain
+            type: multiple_choice
+            text: "Warum wird das Ergebnis immer 10 größer?\n14 + 5 = 19\n24 + 5 = 29\n34 + 5 = 39"
+            say: "Warum wird das Ergebnis immer um zehn größer?"
+            options: ["Die erste Zahl wird immer 10 größer.", "Die zweite Zahl wird immer 10 größer.", "Beide Zahlen werden 5 größer."]
+            answer: "Die erste Zahl wird immer 10 größer."
+          - id: l2-c15
+            part: explain
+            type: true_false
+            text: "Das Ergebnis bleibt gleich, weil eine Zahl immer 1 kleiner und die andere immer 1 größer wird.\n40 + 10 = 50\n39 + 11 = 50\n38 + 12 = 50"
+            say: "Das Ergebnis bleibt gleich, weil eine Zahl immer eins kleiner und die andere immer eins größer wird. Stimmt das?"
+            answer: true
+          - id: l2-c16
+            part: explain
+            type: multiple_choice
+            text: "Was passiert mit dem Ergebnis?\n60 − 10 = 50\n60 − 20 = 40\n60 − 30 = 30"
+            say: "Was passiert mit dem Ergebnis in diesem Päckchen?"
+            options: ["Es wird immer 10 kleiner.", "Es wird immer 10 größer.", "Es bleibt gleich."]
+            answer: "Es wird immer 10 kleiner."
+          - id: l2-c17
+            part: mistake
+            type: multiple_choice
+            text: "Welche Zahl passt nicht ins Muster? 9, 18, 27, 35, 45"
+            say: "Neun, achtzehn, siebenundzwanzig, fünfunddreißig, fünfundvierzig. Welche Zahl passt nicht ins Muster?"
+            options: ["35", "27", "45"]
+            answer: "35"
+          - id: l2-c18
+            part: mistake
+            type: multiple_choice
+            text: "Welches Ergebnis ist falsch?\n18 + 2 = 20\n18 + 4 = 22\n18 + 6 = 25\n18 + 8 = 26"
+            say: "In diesem Päckchen ist ein Ergebnis falsch. Welches?"
+            options: ["25", "22", "26"]
+            answer: "25"
+          - id: l2-c19
+            part: mistake
+            type: true_false
+            text: "Gibt es in diesem Päckchen einen Fehler?\n80 − 5 = 75\n80 − 10 = 70\n80 − 15 = 65"
+            say: "Gibt es in diesem Päckchen einen Fehler?"
+            answer: false
+          - id: l2-c20
+            part: mistake
+            type: multiple_choice
+            text: "Welche Zahl passt nicht ins Muster? 95, 85, 75, 66, 55"
+            say: "Fünfundneunzig, fünfundachtzig, fünfundsiebzig, sechsundsechzig, fünfundfünfzig. Welche Zahl passt nicht ins Muster?"
+            options: ["66", "75", "55"]
+            answer: "66"

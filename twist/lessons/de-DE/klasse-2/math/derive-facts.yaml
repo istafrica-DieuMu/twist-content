@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: results, what: { de: schwierige Einmaleinsaufgaben ausrechnen, en: working out harder facts } }
+    - { id: neighbour, what: { de: mit der Nachbaraufgabe rechnen, en: using a neighbour fact } }
+    - { id: double, what: { de: durch Verdoppeln rechnen, en: working out a fact by doubling } }
+    - { id: split, what: { de: in zwei Kernaufgaben zerlegen, en: splitting a fact into two core facts } }
   misconceptions:
     - id: neighbour-minus-one
       what: Takes away 1 instead of one whole row (9 · 6 = 60 − 1)
@@ -205,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -221,6 +227,25 @@ lessons:
             text: "4 · 3 = _"
             say: "Vier mal drei."
             answer: "12"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Nutze die Kernaufgabe daneben."
+            say: "Rechne zuerst zehn mal sieben, dann neun mal sieben."
+            frame: "10 · 7 = _ | 9 · 7 = 10 · 7 − 7 = _"
+            options: ["70", "63", "69", "77"]
+            answer: ["70", "63"]
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Verdopple."
+            say: "Rechne zuerst zwei mal vier, dann vier mal vier."
+            frame: "2 · 4 = _ | 4 · 4 = _"
+            options: ["8", "16", "12", "6"]
+            answer: ["8", "16"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 6 · 6 = 30 + 1"
+            say: "Sechs mal sechs ist dreißig plus eins. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: Zerlegen in Kernaufgaben, en: Splitting into core facts }
@@ -384,30 +409,141 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: results
             type: text_input
             text: "6 · 6 = _"
             say: "Sechs mal sechs."
             answer: "36"
           - id: l2-c2
+            part: results
             type: text_input
             text: "4 · 4 = _"
             say: "Vier mal vier."
             answer: "16"
           - id: l2-c3
+            part: results
             type: text_input
             text: "8 · 8 = _"
             say: "Acht mal acht."
             answer: "64"
           - id: l2-c4
+            part: neighbour
             type: multiple_choice
             text: "Welche Kernaufgabe hilft bei 9 · 3?"
             say: "Welche Kernaufgabe hilft dir bei neun mal drei?"
             options: ["2 · 3", "10 · 3", "9 · 1"]
             answer: "10 · 3"
           - id: l2-c5
+            part: neighbour
             type: true_false
             text: "Stimmt das? 6 · 7 = 5 · 7 + 1"
             say: "Sechs mal sieben ist fünf mal sieben plus eins. Stimmt das?"
             answer: false
+          - id: l2-c6
+            part: results
+            type: text_input
+            text: "3 · 8 = _"
+            say: "Drei mal acht."
+            answer: "24"
+          - id: l2-c7
+            part: results
+            type: multiple_choice
+            text: "9 · 7 = _"
+            say: "Neun mal sieben. Wie viel ist das?"
+            options: ["63", "56", "72"]
+            answer: "63"
+          - id: l2-c8
+            part: neighbour
+            type: fill_in_blank
+            text: "Nutze die Kernaufgabe daneben."
+            say: "Rechne zuerst zehn mal sechs, dann neun mal sechs."
+            frame: "10 · 6 = _ | 9 · 6 = 10 · 6 − 6 = _"
+            options: ["60", "54", "59", "66"]
+            answer: ["60", "54"]
+          - id: l2-c9
+            part: neighbour
+            type: fill_in_blank
+            text: "Nutze die Kernaufgabe daneben."
+            say: "Rechne zuerst fünf mal acht, dann sechs mal acht."
+            frame: "5 · 8 = _ | 6 · 8 = 5 · 8 + 8 = _"
+            options: ["40", "48", "41", "56"]
+            answer: ["40", "48"]
+          - id: l2-c10
+            part: neighbour
+            type: true_false
+            text: "Stimmt das? 9 · 8 = 80 − 8"
+            say: "Neun mal acht ist achtzig minus acht. Stimmt das?"
+            answer: true
+          - id: l2-c11
+            part: double
+            type: fill_in_blank
+            text: "Verdopple."
+            say: "Rechne zuerst zwei mal sieben, dann vier mal sieben."
+            frame: "2 · 7 = _ | 4 · 7 = _"
+            options: ["14", "28", "21", "24"]
+            answer: ["14", "28"]
+          - id: l2-c12
+            part: double
+            type: multiple_choice
+            text: "Bei 4 · 8 verdoppelst du eine Kernaufgabe. Welche?"
+            say: "Bei vier mal acht verdoppelst du eine Kernaufgabe. Welche?"
+            options: ["2 · 8", "5 · 8", "10 · 8"]
+            answer: "2 · 8"
+          - id: l2-c13
+            part: double
+            type: true_false
+            text: "Stimmt das? 4 · 9 = 18 + 18"
+            say: "Vier mal neun ist achtzehn plus achtzehn. Stimmt das?"
+            answer: true
+          - id: l2-c14
+            part: double
+            type: text_input
+            text: "2 · 6 = 12 | 4 · 6 = _"
+            say: "Zwei mal sechs ist zwölf. Wie viel ist vier mal sechs?"
+            answer: "24"
+          - id: l2-c15
+            part: double
+            type: true_false
+            text: "Stimmt das? 4 · 3 = 6 + 3"
+            say: "Vier mal drei ist sechs plus drei. Stimmt das?"
+            answer: false
+          - id: l2-c16
+            part: split
+            type: fill_in_blank
+            text: "Zerlege: 7 · 3"
+            say: "Zerlege sieben mal drei in fünf mal drei und zwei mal drei."
+            show: { drawn: dots, array: [7, 3], split_rows: 5 }
+            frame: "5 · 3 = _ | 2 · 3 = _ | 7 · 3 = _"
+            options: ["15", "6", "21", "18"]
+            answer: ["15", "6", "21"]
+          - id: l2-c17
+            part: split
+            type: fill_in_blank
+            text: "Zerlege: 8 · 4"
+            say: "Rechne acht mal vier als zehn mal vier minus zwei mal vier."
+            frame: "10 · 4 = _ | 2 · 4 = _ | 8 · 4 = _"
+            options: ["40", "8", "32", "36"]
+            answer: ["40", "8", "32"]
+          - id: l2-c18
+            part: split
+            type: multiple_choice
+            text: "Welche Zerlegung passt zu 7 · 6?"
+            say: "Welche Zerlegung passt zu sieben mal sechs?"
+            options: ["5 · 6 + 2 · 6", "5 · 6 + 2", "7 · 5 + 6"]
+            answer: "5 · 6 + 2 · 6"
+          - id: l2-c19
+            part: split
+            type: true_false
+            text: "Stimmt das? 8 · 7 = 10 · 7 − 2"
+            say: "Acht mal sieben ist zehn mal sieben minus zwei. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: split
+            type: text_input
+            text: "Zerlege und rechne: 7 · 8 = _"
+            say: "Zerlege sieben mal acht in zwei Kernaufgaben und rechne."
+            show: { drawn: dots, array: [7, 8], split_rows: 5 }
+            answer: "56"

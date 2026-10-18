@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: []
+  parts:
+    - { id: nach, what: { de: Viertel nach ablesen, en: reading quarter past } }
+    - { id: vor, what: { de: Viertel vor und Dreiviertel ablesen, en: reading quarter to } }
+    - { id: digital, what: { de: Viertelstunden der Digitalzeit zuordnen, en: matching quarter hours to digital times } }
+    - { id: set, what: { de: die Zeiger auf eine Viertelstunde stellen, en: setting the hands to a quarter hour } }
   misconceptions:
     - id: viertel-vor-past-hour
       what: Names the hour that has passed for Viertel vor (3:45 as Viertel vor drei)
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -246,6 +252,27 @@ lessons:
             answer: "9:45"
             feedback:
               "10:45": "Das ist Viertel vor elf. Viertel vor zehn ist noch vor zehn Uhr: Der kleine Zeiger steht kurz vor der Zehn."
+          - id: l1-c4
+            type: true_false
+            text: "Ist es Viertel vor 4?"
+            say: "Ist es Viertel vor vier?"
+            show: { drawn: clock, hour: 3, minute: 45 }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Viertel vor 9. Welche Digitalzeit passt?"
+            say: "Viertel vor neun. Welche Zeit zeigt die Digitaluhr?"
+            options: ["8:45", "9:45", "9:09"]
+            answer: "8:45"
+          - id: l1-c6
+            type: clock_hands_drag
+            text: "Stell die Uhr auf Viertel nach 6."
+            say: "Stell die Uhr auf Viertel nach sechs. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "6:15"
+            feedback:
+              "6:45": "Das ist Viertel vor sieben. Bei Viertel nach zeigt der große Zeiger auf die Drei."
 
   - n: 2
     title: { de: "Alle Viertel", en: "All the quarters" }
@@ -436,8 +463,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: nach
             type: multiple_choice
             text: "Wie spät ist es?"
             say: "Wie spät ist es?"
@@ -445,6 +474,7 @@ lessons:
             options: ["Viertel nach 7", "Viertel vor 7", "halb 8"]
             answer: "Viertel nach 7"
           - id: l2-c2
+            part: vor
             type: multiple_choice
             text: "Wie spät ist es?"
             say: "Wie spät ist es?"
@@ -452,12 +482,14 @@ lessons:
             options: ["Viertel vor 3", "Viertel vor 2", "Viertel nach 3"]
             answer: "Viertel vor 3"
           - id: l2-c3
+            part: digital
             type: multiple_choice
             text: "Viertel vor 11. Welche Digitalzeit passt?"
             say: "Viertel vor elf. Welche Zeit zeigt die Digitaluhr?"
             options: ["10:45", "11:45", "11:15"]
             answer: "10:45"
           - id: l2-c4
+            part: set
             type: clock_hands_drag
             text: "Stell die Uhr auf Viertel nach 4."
             say: "Stell die Uhr auf Viertel nach vier. Zieh die Zeiger."
@@ -468,8 +500,132 @@ lessons:
               "4:45": "Das ist Viertel vor fünf. Bei Viertel nach zeigt der große Zeiger auf die Drei."
               "3:45": "Das ist Viertel vor vier. Viertel nach vier ist nach vier Uhr."
           - id: l2-c5
+            part: vor
             type: true_false
             text: "Ist es Viertel vor 6?"
             say: "Ist es Viertel vor sechs?"
             show: { drawn: clock, hour: 6, minute: 15 }
             answer: false
+          - id: l2-c6
+            part: nach
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 3, minute: 15 }
+            options: ["Viertel nach 3", "Viertel vor 3", "halb 4"]
+            answer: "Viertel nach 3"
+          - id: l2-c7
+            part: nach
+            type: true_false
+            text: "Ist es Viertel nach 10?"
+            say: "Ist es Viertel nach zehn?"
+            show: { drawn: clock, hour: 10, minute: 15 }
+            answer: true
+          - id: l2-c8
+            part: nach
+            type: true_false
+            text: "Ist es Viertel nach 12?"
+            say: "Ist es Viertel nach zwölf?"
+            show: { drawn: clock, hour: 12, minute: 45 }
+            answer: false
+          - id: l2-c9
+            part: nach
+            type: multiple_choice
+            text: "Der große Zeiger zeigt auf die 3. Der kleine Zeiger steht kurz nach der 5. Wie spät ist es?"
+            say: "Der große Zeiger zeigt auf die Drei. Der kleine Zeiger steht kurz nach der Fünf. Wie spät ist es?"
+            options: ["Viertel nach 5", "Viertel nach 3", "Viertel vor 5"]
+            answer: "Viertel nach 5"
+          - id: l2-c10
+            part: vor
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 6, minute: 45 }
+            options: ["Viertel vor 7", "Viertel vor 6", "Viertel nach 7"]
+            answer: "Viertel vor 7"
+          - id: l2-c11
+            part: vor
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es?"
+            show: { drawn: clock, hour: 3, minute: 45 }
+            options: ["Dreiviertel 4", "Dreiviertel 3", "Viertel nach 4"]
+            answer: "Dreiviertel 4"
+          - id: l2-c12
+            part: vor
+            type: true_false
+            text: "Ist es Viertel vor 9?"
+            say: "Ist es Viertel vor neun?"
+            show: { drawn: clock, hour: 9, minute: 45 }
+            answer: false
+          - id: l2-c13
+            part: digital
+            type: multiple_choice
+            text: "Viertel nach 8. Welche Digitalzeit passt?"
+            say: "Viertel nach acht. Welche Zeit zeigt die Digitaluhr?"
+            options: ["8:15", "8:03", "7:45"]
+            answer: "8:15"
+          - id: l2-c14
+            part: digital
+            type: multiple_choice
+            text: "Was zeigt die Digitaluhr?"
+            say: "Die Digitaluhr zeigt vier Uhr fünfundvierzig. Wie sagst du dazu?"
+            show: { drawn: clock, hour: 4, minute: 45, digital: true }
+            options: ["Viertel vor 5", "Viertel vor 4", "Viertel nach 4"]
+            answer: "Viertel vor 5"
+          - id: l2-c15
+            part: digital
+            type: matching
+            text: "Welche Digitalzeit gehört dazu?"
+            say: "Welche Digitalzeit gehört zu welcher Uhrzeit? Verbinde."
+            pairs:
+              - { left: { text: "Viertel nach 9" }, right: { text: "9:15" } }
+              - { left: { text: "halb 10" }, right: { text: "9:30" } }
+              - { left: { text: "Viertel vor 10" }, right: { text: "9:45" } }
+              - { left: { text: "10 Uhr" }, right: { text: "10:00" } }
+          - id: l2-c16
+            part: digital
+            type: true_false
+            text: "Viertel vor 1 ist 12:45."
+            say: "Stimmt das? Viertel vor eins ist zwölf Uhr fünfundvierzig."
+            answer: true
+          - id: l2-c17
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf Viertel vor 8."
+            say: "Stell die Uhr auf Viertel vor acht. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "7:45"
+            feedback:
+              "8:45": "Das ist Viertel vor neun. Viertel vor acht ist noch vor acht Uhr: Der kleine Zeiger steht kurz vor der Acht."
+          - id: l2-c18
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf Viertel nach 1."
+            say: "Stell die Uhr auf Viertel nach eins. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "1:15"
+            feedback:
+              "1:45": "Das ist Viertel vor zwei. Bei Viertel nach zeigt der große Zeiger auf die Drei."
+          - id: l2-c19
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 11:45."
+            say: "Stell die Uhr auf elf Uhr fünfundvierzig. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "11:45"
+            feedback:
+              "11:15": "Das ist 11:15. Fünfundvierzig Minuten: Der große Zeiger zeigt auf die Neun."
+          - id: l2-c20
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf Dreiviertel 6."
+            say: "Stell die Uhr auf Dreiviertel sechs. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "5:45"
+            feedback:
+              "6:45": "Dreiviertel sechs ist dasselbe wie Viertel vor sechs, also noch vor sechs Uhr. Der kleine Zeiger steht kurz vor der Sechs."

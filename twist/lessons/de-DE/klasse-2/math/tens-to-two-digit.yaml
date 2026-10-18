@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten, hundred-square]
   facets: []
+  parts:
+    - { id: add, what: { de: ganze Zehner zu einer zweistelligen Zahl addieren, en: adding whole tens to a two-digit number } }
+    - { id: sub, what: { de: ganze Zehner von einer zweistelligen Zahl subtrahieren, en: taking whole tens away from a two-digit number } }
+    - { id: model, what: { de: mit Zehnerstangen und auf der Hundertertafel rechnen, en: working with tens rods and on the hundred square } }
+    - { id: why, what: { de: "sehen, dass sich nur die Zehner ändern, und die kleine Aufgabe nutzen", en: "seeing that only the tens change, and using the small sum" } }
   misconceptions:
     - id: tens-as-ones
       what: Adds the tens digit to the ones (34 + 20 = 36)
@@ -228,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -246,6 +252,25 @@ lessons:
             say: "Dreiundsechzig plus zehn. Was ändert sich?"
             options: ["die Zehner", "die Einer", "beide"]
             answer: "die Zehner"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Die kleine Aufgabe hilft."
+            say: "Erst die Zehner, dann die große Aufgabe."
+            frame: "30 + 50 = _ | 32 + 50 = _"
+            options: ["80", "82", "37", "87"]
+            answer: ["80", "82"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wo landest du? 14 + 60"
+            say: "Auf der Hundertertafel: vierzehn plus sechzig. Wo landest du?"
+            show: { drawn: hundred-square, highlight: [14] }
+            options: ["74", "20", "64"]
+            answer: "74"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 51 + 40 = 55"
+            say: "Einundfünfzig plus vierzig gleich fünfundfünfzig. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Zehner weg, Zehner dazu", en: "Taking away and adding tens" }
@@ -428,34 +453,143 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "29 + 60 = _"
             say: "Neunundzwanzig plus sechzig."
             answer: "89"
           - id: l2-c2
+            part: sub
             type: text_input
             text: "78 − 40 = _"
             say: "Achtundsiebzig minus vierzig."
             answer: "38"
           - id: l2-c3
+            part: model
             type: multiple_choice
             text: "Wo landest du? 36 + 40"
-            say: "Auf der Hundertertafel: Fang bei sechsunddreißig an. Vier Zeilen nach unten. Wo landest du?"
+            say: "Auf der Hundertertafel: sechsunddreißig plus vierzig. Wo landest du?"
             show: { drawn: hundred-square, highlight: [36] }
             options: ["76", "40", "66"]
             answer: "76"
           - id: l2-c4
+            part: sub
             type: multiple_choice
             text: "91 − 20 = ?"
             say: "Einundneunzig minus zwanzig."
             options: ["71", "89", "11"]
             answer: "71"
           - id: l2-c5
+            part: why
             type: fill_in_blank
             text: "Die kleine Aufgabe hilft."
             say: "Erst die Zehner, dann die große Aufgabe."
             frame: "40 + 50 = _ | 43 + 50 = _"
             options: ["90", "93", "48", "98"]
             answer: ["90", "93"]
+          - id: l2-c6
+            part: add
+            type: text_input
+            text: "53 + 40 = _"
+            say: "Dreiundfünfzig plus vierzig."
+            answer: "93"
+          - id: l2-c7
+            part: add
+            type: multiple_choice
+            text: "16 + 70 = ?"
+            say: "Sechzehn plus siebzig."
+            options: ["86", "23", "87"]
+            answer: "86"
+          - id: l2-c8
+            part: add
+            type: true_false
+            text: "Stimmt das? 38 + 20 = 40"
+            say: "Achtunddreißig plus zwanzig gleich vierzig. Stimmt das?"
+            answer: false
+          - id: l2-c9
+            part: add
+            type: text_input
+            text: "65 + 30 = _"
+            say: "Fünfundsechzig plus dreißig."
+            answer: "95"
+          - id: l2-c10
+            part: sub
+            type: text_input
+            text: "94 − 60 = _"
+            say: "Vierundneunzig minus sechzig."
+            answer: "34"
+          - id: l2-c11
+            part: sub
+            type: multiple_choice
+            text: "56 − 30 = ?"
+            say: "Sechsundfünfzig minus dreißig."
+            options: ["26", "53", "23"]
+            answer: "26"
+          - id: l2-c12
+            part: sub
+            type: true_false
+            text: "Stimmt das? 89 − 40 = 49"
+            say: "Neunundachtzig minus vierzig gleich neunundvierzig. Stimmt das?"
+            answer: true
+          - id: l2-c13
+            part: model
+            type: multiple_choice
+            text: "Wo landest du? 57 − 30"
+            say: "Auf der Hundertertafel: siebenundfünfzig minus dreißig. Wo landest du?"
+            show: { drawn: hundred-square, highlight: [57] }
+            options: ["27", "54", "37"]
+            answer: "27"
+          - id: l2-c14
+            part: model
+            type: text_input
+            text: "21 + 50 = _"
+            say: "Einundzwanzig plus fünfzig."
+            show: { drawn: base-ten, tens: 2, ones: 1 }
+            answer: "71"
+          - id: l2-c15
+            part: model
+            type: image_multiple_choice
+            text: "Welches Bild zeigt das Ergebnis von 45 + 20?"
+            say: "Fünfundvierzig plus zwanzig. Welches Bild zeigt das Ergebnis?"
+            options:
+              - { drawn: base-ten, tens: 6, ones: 5 }
+              - { drawn: base-ten, tens: 4, ones: 7 }
+              - { drawn: base-ten, tens: 6, ones: 7 }
+            answer: "65"
+          - id: l2-c16
+            part: model
+            type: true_false
+            text: "Stimmt das? Auf der Hundertertafel steht 72 direkt unter 62."
+            say: "Stimmt das? Auf der Hundertertafel steht zweiundsiebzig direkt unter zweiundsechzig."
+            answer: true
+          - id: l2-c17
+            part: why
+            type: multiple_choice
+            text: "86 − 50: Was ändert sich?"
+            say: "Sechsundachtzig minus fünfzig. Was ändert sich?"
+            options: ["die Zehner", "die Einer", "beide"]
+            answer: "die Zehner"
+          - id: l2-c18
+            part: why
+            type: fill_in_blank
+            text: "Die kleine Aufgabe hilft."
+            say: "Erst die Zehner, dann die große Aufgabe."
+            frame: "70 − 20 = _ | 74 − 20 = _"
+            options: ["50", "54", "72", "52"]
+            answer: ["50", "54"]
+          - id: l2-c19
+            part: why
+            type: multiple_choice
+            text: "Welche kleine Aufgabe hilft bei 35 + 40?"
+            say: "Fünfunddreißig plus vierzig. Welche kleine Aufgabe hilft?"
+            options: ["3 + 4", "5 + 4", "35 + 4"]
+            answer: "3 + 4"
+          - id: l2-c20
+            part: why
+            type: true_false
+            text: "Stimmt das? Bei 47 + 30 ändern sich die Einer."
+            say: "Stimmt das? Bei siebenundvierzig plus dreißig ändern sich die Einer."
+            answer: false

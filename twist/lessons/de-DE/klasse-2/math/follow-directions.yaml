@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: follow, what: { de: einem Weg mit Pfeilen oder Worten folgen, en: following a route given in arrows or words } }
+    - { id: describe, what: { de: einen Weg mit Pfeilen oder Worten beschreiben, en: describing a route in arrows or words } }
+    - { id: back, what: { de: denselben Weg zurückgehen, en: going the same route back } }
+    - { id: shortest, what: { de: den kürzesten Weg finden, en: finding the shortest route } }
   misconceptions:
     - id: left-right-swap
       what: Goes right for a Pfeil nach links, or the other way round
@@ -203,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,6 +228,24 @@ lessons:
             say: "Welcher Weg führt von C nach G?"
             options: ["← ← ↓ ↓", "→ → ↓ ↓", "↓ ↓"]
             answer: "← ← ↓ ↓"
+            option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wo kommst du an?\nA B C\nD E F\nG H I\nStart: I · Weg: ← ← ↑"
+            say: "Du stehst auf I. Zwei Felder nach links, dann ein Feld nach oben. Wo kommst du an?"
+            options: ["D", "F", "A"]
+            answer: "D"
+          - id: l1-c5
+            type: true_false
+            text: "A B C\nD E F\nG H I\nStart: C · Weg: ← ↓\nDu kommst bei E an."
+            say: "Du stehst auf C. Ein Feld nach links, dann ein Feld nach unten. Stimmt das: Du kommst bei E an?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welcher Weg führt von H nach B?\nA B C\nD E F\nG H I"
+            say: "Welcher Weg führt von H nach B?"
+            options: ["↑ ↑", "↓ ↓", "↑ →"]
+            answer: "↑ ↑"
             option_audio: false
 
   - n: 2
@@ -393,26 +417,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: follow
             type: multiple_choice
             text: "Wo kommst du an?\nA B C D\nE F G H\nI J K L\nM N O P\nStart: E · 2 nach rechts, 2 nach unten"
             say: "Du stehst auf E. Geh zwei Felder nach rechts und dann zwei Felder nach unten. Wo kommst du an?"
             options: ["O", "K", "N"]
             answer: "O"
           - id: l2-c2
+            part: follow
             type: multiple_choice
             text: "Wo kommst du an?\nA B C D\nE F G H\nI J K L\nM N O P\nStart: C · Weg: ↓ ← ↓"
             say: "Du stehst auf C. Nach unten, nach links, nach unten. Wo kommst du an?"
             options: ["J", "K", "B"]
             answer: "J"
           - id: l2-c3
+            part: describe
             type: multiple_choice
             text: "Welche Beschreibung passt zum Weg von I nach C?\nA B C D\nE F G H\nI J K L\nM N O P"
             say: "Welche Beschreibung passt zum Weg von I nach C?"
             options: ["2 nach oben, 2 nach rechts", "2 nach unten, 2 nach rechts", "2 nach oben, 2 nach links"]
             answer: "2 nach oben, 2 nach rechts"
           - id: l2-c4
+            part: back
             type: multiple_choice
             text: "Der Weg hin ist: ↓ →\nWie gehst du denselben Weg zurück?"
             say: "Der Weg hin ist: nach unten, dann nach rechts. Wie gehst du denselben Weg zurück?"
@@ -420,7 +449,115 @@ lessons:
             answer: "← ↑"
             option_audio: false
           - id: l2-c5
+            part: follow
             type: true_false
             text: "A B C D\nE F G H\nI J K L\nM N O P\nStart: J · Weg: ↑ ↑ →\nDu kommst bei G an."
             say: "Du stehst auf J. Zweimal nach oben, dann einmal nach rechts. Stimmt das: Du kommst bei G an?"
             answer: false
+          - id: l2-c6
+            part: follow
+            type: multiple_choice
+            text: "Wo kommst du an?\nA B C D\nE F G H\nI J K L\nM N O P\nStart: H · 3 nach links"
+            say: "Du stehst auf H. Geh drei Felder nach links. Wo kommst du an?"
+            options: ["E", "F", "D"]
+            answer: "E"
+          - id: l2-c7
+            part: follow
+            type: true_false
+            text: "A B C\nD E F\nG H I\nStart: D · Weg: → → ↑\nDu kommst bei C an."
+            say: "Du stehst auf D. Zweimal nach rechts, dann einmal nach oben. Stimmt das: Du kommst bei C an?"
+            answer: true
+          - id: l2-c8
+            part: describe
+            type: multiple_choice
+            text: "Welcher Weg führt von B nach I?\nA B C\nD E F\nG H I"
+            say: "Welcher Weg führt von B nach I?"
+            options: ["↓ ↓ →", "↓ ↓ ←", "→ → ↓"]
+            answer: "↓ ↓ →"
+            option_audio: false
+          - id: l2-c9
+            part: describe
+            type: multiple_choice
+            text: "Welche Beschreibung passt zum Weg von D nach J?\nA B C D\nE F G H\nI J K L\nM N O P"
+            say: "Welche Beschreibung passt zum Weg von D nach J?"
+            options: ["2 nach links, 2 nach unten", "2 nach rechts, 2 nach unten", "2 nach links, 2 nach oben"]
+            answer: "2 nach links, 2 nach unten"
+          - id: l2-c10
+            part: describe
+            type: multiple_choice
+            text: "Welcher Weg führt von O nach E?\nA B C D\nE F G H\nI J K L\nM N O P"
+            say: "Welcher Weg führt von O nach E?"
+            options: ["↑ ↑ ← ←", "↑ ↑ → →", "← ← ↓ ↓"]
+            answer: "↑ ↑ ← ←"
+            option_audio: false
+          - id: l2-c11
+            part: describe
+            type: true_false
+            text: "A B C D\nE F G H\nI J K L\nM N O P\nDer Weg von F nach P: 2 nach rechts, 2 nach unten."
+            say: "Stimmt das? Der Weg von F nach P ist: zwei Felder nach rechts, dann zwei Felder nach unten."
+            answer: true
+          - id: l2-c12
+            part: back
+            type: multiple_choice
+            text: "Der Weg hin ist: ← ↓ ↓\nWie gehst du denselben Weg zurück?"
+            say: "Der Weg hin ist: nach links, dann zweimal nach unten. Wie gehst du denselben Weg zurück?"
+            options: ["↑ ↑ →", "← ↓ ↓", "↑ ↑ ←"]
+            answer: "↑ ↑ →"
+            option_audio: false
+          - id: l2-c13
+            part: back
+            type: multiple_choice
+            text: "Der Weg hin ist: ↑ → →\nWie gehst du denselben Weg zurück?"
+            say: "Der Weg hin ist: nach oben, dann zweimal nach rechts. Wie gehst du denselben Weg zurück?"
+            options: ["← ← ↓", "↑ → →", "→ → ↓"]
+            answer: "← ← ↓"
+            option_audio: false
+          - id: l2-c14
+            part: back
+            type: true_false
+            text: "A B C D\nE F G H\nI J K L\nM N O P\nHin von N nach G: ↑ ↑ →\nZurück von G nach N: → ↓ ↓\nStimmt das?"
+            say: "Von N nach G gehst du zweimal nach oben und dann nach rechts. Stimmt das: Zurück gehst du nach rechts und dann zweimal nach unten?"
+            answer: false
+          - id: l2-c15
+            part: back
+            type: multiple_choice
+            text: "Lea geht von K nach H: → ↑\nWie kommt sie auf demselben Weg zurück?\nA B C D\nE F G H\nI J K L\nM N O P"
+            say: "Lea geht von K nach H: nach rechts, dann nach oben. Wie kommt sie auf demselben Weg zurück?"
+            options: ["↓ ←", "→ ↑", "↓ →"]
+            answer: "↓ ←"
+            option_audio: false
+          - id: l2-c16
+            part: shortest
+            type: multiple_choice
+            text: "Welcher Weg von I nach D ist am kürzesten?\nA B C\nD E F\nG H I"
+            say: "Alle drei Wege führen von I nach D. Welcher ist am kürzesten?"
+            options: ["← ↑ ↑ ← ↓", "← ← ↑", "↑ ↑ ← ← ↓"]
+            answer: "← ← ↑"
+            option_audio: false
+          - id: l2-c17
+            part: shortest
+            type: multiple_choice
+            text: "Wie viele Schritte hat der kürzeste Weg von A nach P?\nA B C D\nE F G H\nI J K L\nM N O P"
+            say: "Wie viele Schritte hat der kürzeste Weg von A nach P?"
+            options: ["6", "3", "8"]
+            answer: "6"
+          - id: l2-c18
+            part: shortest
+            type: true_false
+            text: "A B C D\nE F G H\nI J K L\nM N O P\nTim geht von M nach G: ↑ ↑ ↑ → → ↓\nIst das der kürzeste Weg?"
+            say: "Tim geht von M nach G: dreimal nach oben, zweimal nach rechts, einmal nach unten. Ist das der kürzeste Weg?"
+            answer: false
+          - id: l2-c19
+            part: shortest
+            type: multiple_choice
+            text: "Welcher Weg von D nach N ist am kürzesten?\nA B C D\nE F G H\nI J K L\nM N O P"
+            say: "Alle drei Wege führen von D nach N. Welcher ist am kürzesten?"
+            options: ["← ← ← ↓ ↓ ↓ →", "↓ ↓ ↓ ← ←", "↓ ← ↓ ← ↓ ← →"]
+            answer: "↓ ↓ ↓ ← ←"
+            option_audio: false
+          - id: l2-c20
+            part: shortest
+            type: true_false
+            text: "A B C\nD E F\nG H I\nVon H nach C brauchst du auf dem kürzesten Weg 3 Schritte."
+            say: "Stimmt das? Von H nach C brauchst du auf dem kürzesten Weg drei Schritte."
+            answer: true

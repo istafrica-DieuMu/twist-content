@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: count, what: { de: Ecken und Seiten einer Figur zählen, en: counting the corners and sides of a shape } }
+    - { id: sort, what: { de: "Figuren nach ihren Ecken finden und sortieren, egal welche Farbe und Größe", en: "finding and sorting shapes by their corners, whatever their colour and size" } }
+    - { id: square-rect, what: { de: Quadrat und Rechteck unterscheiden, en: telling a square from a rectangle } }
+    - { id: square-is-rect, what: { de: "erklären, warum jedes Quadrat auch ein Rechteck ist", en: explaining why every square is also a rectangle } }
   misconceptions:
     - id: square-not-rectangle
       what: Thinks a Quadrat cannot be a Rechteck because it looks different
@@ -239,6 +244,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -262,6 +268,28 @@ lessons:
             text: "Ein Quadrat hat 3 Seiten."
             say: "Stimmt das? Ein Quadrat hat drei Seiten."
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie viele Ecken hat diese Figur?"
+            say: "Wie viele Ecken hat diese Figur?"
+            show: { drawn: shape, kind: rectangle, colour: purple }
+            options: ["4", "2", "6"]
+            answer: "4"
+          - id: l1-c5
+            type: true_false
+            text: "Ein Dreieck hat 3 Ecken und 3 Seiten."
+            say: "Stimmt das? Ein Dreieck hat drei Ecken und drei Seiten."
+            answer: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Welche Figur hat 4 Seiten?"
+            say: "Welche Figur hat vier Seiten?"
+            options:
+              - { drawn: shape, kind: hexagon, colour: green, size: 120 }
+              - { drawn: shape, kind: rectangle, colour: yellow, size: 70 }
+              - { drawn: shape, kind: triangle, colour: green, size: 120 }
+            answer: rectangle
+            option_audio: false
 
   - n: 2
     title: { de: "Quadrat und Rechteck", en: "Square and rectangle" }
@@ -452,8 +480,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: fill_in_blank
             text: "Zähl die Ecken und die Seiten."
             say: "Wie viele Ecken und wie viele Seiten hat diese Figur?"
@@ -462,11 +492,13 @@ lessons:
             options: ["4", "5", "6"]
             answer: ["6", "6"]
           - id: l2-c2
+            part: square-is-rect
             type: true_false
             text: "Jedes Quadrat ist ein Rechteck."
             say: "Stimmt das? Jedes Quadrat ist ein Rechteck."
             answer: true
           - id: l2-c3
+            part: square-rect
             type: image_multiple_choice
             text: "Welche Figur hat 4 rechte Ecken, aber nicht 4 gleich lange Seiten?"
             say: "Welche Figur hat vier rechte Ecken, aber nicht vier gleich lange Seiten?"
@@ -477,6 +509,7 @@ lessons:
             answer: rectangle
             option_audio: false
           - id: l2-c4
+            part: square-is-rect
             type: multiple_choice
             text: "Welcher Satz stimmt?"
             say: "Schau dir die Figur an. Welcher Satz stimmt?"
@@ -484,6 +517,7 @@ lessons:
             options: ["Das ist ein Quadrat und auch ein Rechteck.", "Das ist ein Quadrat, aber kein Rechteck.", "Das ist ein Rechteck, aber kein Quadrat."]
             answer: "Das ist ein Quadrat und auch ein Rechteck."
           - id: l2-c5
+            part: sort
             type: sorting
             text: "Wie viele Ecken hat die Figur?"
             say: "Sortiere die Figuren nach der Zahl ihrer Ecken."
@@ -496,3 +530,129 @@ lessons:
               - { text: "Sechseck", bin: six }
               - { text: "Dreieck", bin: three }
               - { text: "Quadrat", bin: four }
+          - id: l2-c6
+            part: count
+            type: multiple_choice
+            text: "Wie viele Ecken hat diese Figur?"
+            say: "Zähl genau. Wie viele Ecken hat diese Figur?"
+            show: { drawn: shape, kind: pentagon, colour: green }
+            options: ["5", "4", "6"]
+            answer: "5"
+          - id: l2-c7
+            part: count
+            type: true_false
+            text: "Ein Dreieck hat 4 Seiten."
+            say: "Stimmt das? Ein Dreieck hat vier Seiten."
+            answer: false
+          - id: l2-c8
+            part: count
+            type: multiple_choice
+            text: "Eine Figur hat 6 Seiten. Wie viele Ecken hat sie?"
+            say: "Eine Figur hat sechs Seiten. Wie viele Ecken hat sie?"
+            options: ["6", "3", "12"]
+            answer: "6"
+          - id: l2-c9
+            part: count
+            type: matching
+            text: "Was gehört zusammen?"
+            say: "Verbinde jede Figur mit der Zahl ihrer Seiten."
+            pairs:
+              - { left: { drawn: shape, kind: triangle, colour: blue }, right: { text: "3 Seiten" } }
+              - { left: { drawn: shape, kind: rectangle, colour: blue }, right: { text: "4 Seiten" } }
+              - { left: { drawn: shape, kind: hexagon, colour: blue }, right: { text: "6 Seiten" } }
+            option_audio: false
+          - id: l2-c10
+            part: sort
+            type: image_multiple_choice
+            text: "Welche Figur hat 6 Seiten?"
+            say: "Welche Figur hat sechs Seiten?"
+            options:
+              - { drawn: shape, kind: triangle, colour: red, size: 120 }
+              - { drawn: shape, kind: hexagon, colour: yellow, size: 70 }
+              - { drawn: shape, kind: rectangle, colour: red, size: 120 }
+            answer: hexagon
+            option_audio: false
+          - id: l2-c11
+            part: sort
+            type: image_multiple_choice
+            text: "Welche Figur hat 3 Seiten?"
+            say: "Welche Figur hat drei Seiten?"
+            options:
+              - { drawn: shape, kind: square, colour: pink, size: 70 }
+              - { drawn: shape, kind: triangle, colour: green, size: 120 }
+              - { drawn: shape, kind: hexagon, colour: pink, size: 70 }
+            answer: triangle
+            option_audio: false
+          - id: l2-c12
+            part: sort
+            type: sorting
+            text: "Sortiere nach den Ecken."
+            say: "Sortiere die Figuren: vier Ecken, sechs Ecken oder keine Ecke?"
+            bins:
+              - { id: four, show: { text: "4 Ecken" }, say: "vier Ecken" }
+              - { id: six, show: { text: "6 Ecken" }, say: "sechs Ecken" }
+              - { id: none, show: { text: "keine Ecke" }, say: "keine Ecke" }
+            options:
+              - { text: "Quadrat", bin: four }
+              - { text: "Kreis", bin: none }
+              - { text: "Sechseck", bin: six }
+              - { text: "Rechteck", bin: four }
+          - id: l2-c13
+            part: sort
+            type: true_false
+            text: "Ein kleines Dreieck hat weniger Ecken als ein großes Dreieck."
+            say: "Stimmt das? Ein kleines Dreieck hat weniger Ecken als ein großes Dreieck."
+            answer: false
+          - id: l2-c14
+            part: square-rect
+            type: multiple_choice
+            text: "Ist diese Figur ein Quadrat?"
+            say: "Schau dir die Figur an. Ist sie ein Quadrat?"
+            show: { drawn: shape, kind: square, colour: orange }
+            options: ["Ja, sie hat 4 rechte Ecken und 4 gleich lange Seiten.", "Nein, nicht alle Seiten sind gleich lang.", "Nein, sie hat keine rechten Ecken."]
+            answer: "Ja, sie hat 4 rechte Ecken und 4 gleich lange Seiten."
+          - id: l2-c15
+            part: square-rect
+            type: image_multiple_choice
+            text: "Welche Figur hat 4 rechte Ecken und 4 gleich lange Seiten?"
+            say: "Welche Figur hat vier rechte Ecken und vier gleich lange Seiten?"
+            options:
+              - { drawn: shape, kind: rectangle, colour: orange }
+              - { drawn: shape, kind: square, colour: orange }
+              - { drawn: shape, kind: hexagon, colour: orange }
+            answer: square
+            option_audio: false
+          - id: l2-c16
+            part: square-rect
+            type: true_false
+            text: "Bei einem Rechteck sind immer alle 4 Seiten gleich lang."
+            say: "Stimmt das? Bei einem Rechteck sind immer alle vier Seiten gleich lang."
+            answer: false
+          - id: l2-c17
+            part: square-rect
+            type: multiple_choice
+            text: "Ein Viereck hat 4 rechte Ecken. 2 Seiten sind lang, 2 Seiten sind kurz. Was ist es?"
+            say: "Ein Viereck hat vier rechte Ecken. Zwei Seiten sind lang, zwei Seiten sind kurz. Was ist es?"
+            options: ["ein Rechteck", "ein Quadrat", "ein Sechseck"]
+            answer: "ein Rechteck"
+          - id: l2-c18
+            part: square-is-rect
+            type: multiple_choice
+            text: "Anna sagt: Das ist ein Quadrat.\nPaul sagt: Das ist ein Rechteck.\nWer hat recht?"
+            say: "Anna sagt: Das ist ein Quadrat. Paul sagt: Das ist ein Rechteck. Wer hat recht?"
+            show: { drawn: shape, kind: rectangle, colour: yellow }
+            options: ["nur Paul", "nur Anna", "beide"]
+            answer: "nur Paul"
+          - id: l2-c19
+            part: square-is-rect
+            type: multiple_choice
+            text: "Warum ist ein Quadrat auch ein Rechteck?"
+            say: "Warum ist ein Quadrat auch ein Rechteck?"
+            options: ["Es hat 4 Seiten und 4 rechte Ecken.", "Es sieht aus wie ein Rechteck.", "Es ist so groß wie ein Rechteck."]
+            answer: "Es hat 4 Seiten und 4 rechte Ecken."
+          - id: l2-c20
+            part: square-is-rect
+            type: true_false
+            text: "Ein Quadrat hat alles, was ein Rechteck braucht."
+            say: "Stimmt das? Ein Quadrat hat alles, was ein Rechteck braucht."
+            answer: true

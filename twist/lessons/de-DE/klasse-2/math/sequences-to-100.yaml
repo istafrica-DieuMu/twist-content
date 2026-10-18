@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line, hundred-square]
   facets: []
+  parts:
+    - { id: forward, what: { de: "in Schritten vorwärts zählen, von jeder Zahl aus", en: "counting on in steps from any number" } }
+    - { id: backward, what: { de: in Schritten rückwärts zählen, en: counting back in steps } }
+    - { id: rule, what: { de: die Regel einer Zahlenfolge finden, en: finding the rule of a sequence } }
+    - { id: missing, what: { de: eine fehlende Zahl in einer Folge finden, en: finding a missing number in a sequence } }
   misconceptions:
     - id: only-from-zero
       what: Can count in tens from 0 but not from 7 (7, 17, 27)
@@ -227,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -246,6 +252,25 @@ lessons:
             say: "Zähl rückwärts in Zweierschritten: vierundsiebzig, zweiundsiebzig, siebzig. Was kommt dann?"
             options: ["69", "68", "60"]
             answer: "68"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "32, 34, 36, _ , _"
+            say: "Zähl in Zweierschritten weiter: zweiunddreißig, vierunddreißig, sechsunddreißig. Welche zwei Zahlen kommen dann?"
+            frame: "32, 34, 36, _ , _"
+            options: ["37", "38", "40", "42"]
+            answer: ["38", "40"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "99, 89, 79, _"
+            say: "Zähl rückwärts in Zehnerschritten: neunundneunzig, neunundachtzig, neunundsiebzig. Was kommt dann?"
+            options: ["78", "69", "59"]
+            answer: "69"
+          - id: l1-c6
+            type: ordering
+            text: "Zähl in Zehnerschritten. Die kleinste zuerst."
+            options: ["45", "25", "15", "35"]
+            slot_count: 4
+            answer: ["15", "25", "35", "45"]
 
   - n: 2
     title: { de: Die Regel finden, en: Finding the rule }
@@ -434,14 +459,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: forward
             type: multiple_choice
             text: "8, 18, 28, _"
             say: "Zähl in Zehnerschritten weiter: acht, achtzehn, achtundzwanzig. Was kommt dann?"
             options: ["29", "38", "48"]
             answer: "38"
           - id: l2-c2
+            part: forward
             type: fill_in_blank
             text: "50, 55, 60, _ , _"
             say: "Zähl in Fünferschritten weiter: fünfzig, fünfundfünfzig, sechzig. Welche zwei Zahlen kommen dann?"
@@ -449,6 +477,7 @@ lessons:
             options: ["61", "65", "70", "75"]
             answer: ["65", "70"]
           - id: l2-c3
+            part: rule
             type: multiple_choice
             text: "Wie heißt die Regel? 48, 46, 44, 42"
             say: "Achtundvierzig, sechsundvierzig, vierundvierzig, zweiundvierzig. Wie heißt die Regel?"
@@ -456,6 +485,7 @@ lessons:
             answer: "−2"
             option_audio: false
           - id: l2-c4
+            part: missing
             type: fill_in_blank
             text: "37, 47, _ , 67"
             say: "Welche Zahl fehlt? Siebenunddreißig, siebenundvierzig, dann eine Lücke, dann siebenundsechzig."
@@ -463,8 +493,118 @@ lessons:
             options: ["48", "57", "77"]
             answer: ["57"]
           - id: l2-c5
+            part: rule
             type: multiple_choice
             text: "Welche Zahl passt nicht? 90, 85, 80, 76, 70"
             say: "Neunzig, fünfundachtzig, achtzig, sechsundsiebzig, siebzig. Welche Zahl passt nicht zur Regel?"
             options: ["85", "76", "70"]
             answer: "76"
+          - id: l2-c6
+            part: forward
+            type: multiple_choice
+            text: "13, 15, 17, _"
+            say: "Zähl in Zweierschritten weiter: dreizehn, fünfzehn, siebzehn. Was kommt dann?"
+            options: ["18", "19", "27"]
+            answer: "19"
+          - id: l2-c7
+            part: forward
+            type: ordering
+            text: "Zähl in Fünferschritten. Die kleinste zuerst."
+            options: ["55", "45", "60", "50"]
+            slot_count: 4
+            answer: ["45", "50", "55", "60"]
+          - id: l2-c8
+            part: forward
+            type: multiple_choice
+            text: "65, 75, 85, _"
+            say: "Zähl in Zehnerschritten weiter: fünfundsechzig, fünfundsiebzig, fünfundachtzig. Was kommt dann?"
+            options: ["86", "95", "90"]
+            answer: "95"
+          - id: l2-c9
+            part: backward
+            type: multiple_choice
+            text: "47, 37, 27, _"
+            say: "Zähl rückwärts in Zehnerschritten: siebenundvierzig, siebenunddreißig, siebenundzwanzig. Was kommt dann?"
+            options: ["26", "17", "7"]
+            answer: "17"
+          - id: l2-c10
+            part: backward
+            type: multiple_choice
+            text: "35, 30, 25, _"
+            say: "Zähl rückwärts in Fünferschritten: fünfunddreißig, dreißig, fünfundzwanzig. Was kommt dann?"
+            options: ["24", "20", "15"]
+            answer: "20"
+          - id: l2-c11
+            part: backward
+            type: fill_in_blank
+            text: "91, 89, 87, _ , _"
+            say: "Zähl rückwärts in Zweierschritten: einundneunzig, neunundachtzig, siebenundachtzig. Welche zwei Zahlen kommen dann?"
+            frame: "91, 89, 87, _ , _"
+            options: ["86", "85", "83", "81"]
+            answer: ["85", "83"]
+          - id: l2-c12
+            part: backward
+            type: ordering
+            text: "Zähl rückwärts in Fünferschritten. Die größte zuerst."
+            options: ["70", "85", "75", "80"]
+            slot_count: 4
+            answer: ["85", "80", "75", "70"]
+          - id: l2-c13
+            part: backward
+            type: true_false
+            text: "Stimmt das? Bei 52, 42, 32, 22 zählt man rückwärts in Zehnerschritten."
+            say: "Zweiundfünfzig, zweiundvierzig, zweiunddreißig, zweiundzwanzig. Hier zählt man rückwärts in Zehnerschritten. Stimmt das?"
+            answer: true
+          - id: l2-c14
+            part: rule
+            type: multiple_choice
+            text: "Wie heißt die Regel? 14, 19, 24, 29"
+            say: "Vierzehn, neunzehn, vierundzwanzig, neunundzwanzig. Wie heißt die Regel?"
+            options: ["+5", "+10", "−5"]
+            answer: "+5"
+            option_audio: false
+          - id: l2-c15
+            part: rule
+            type: true_false
+            text: "Stimmt das? Die Regel ist +10. 33, 43, 53, 64"
+            say: "Dreiunddreißig, dreiundvierzig, dreiundfünfzig, vierundsechzig. Die Regel ist plus zehn. Stimmt das?"
+            answer: false
+          - id: l2-c16
+            part: rule
+            type: multiple_choice
+            text: "Welche Zahl passt nicht? 12, 14, 16, 17, 20"
+            say: "Zwölf, vierzehn, sechzehn, siebzehn, zwanzig. Welche Zahl passt nicht zur Regel?"
+            options: ["14", "17", "20"]
+            answer: "17"
+          - id: l2-c17
+            part: missing
+            type: fill_in_blank
+            text: "62, _ , 72, 77"
+            say: "Welche Zahl fehlt? Zweiundsechzig, dann eine Lücke, dann zweiundsiebzig und siebenundsiebzig."
+            frame: "62, _ , 72, 77"
+            options: ["63", "67", "70"]
+            answer: ["67"]
+          - id: l2-c18
+            part: missing
+            type: fill_in_blank
+            text: "76, 74, _ , 70"
+            say: "Welche Zahl fehlt? Sechsundsiebzig, vierundsiebzig, dann eine Lücke, dann siebzig."
+            frame: "76, 74, _ , 70"
+            options: ["73", "72", "68"]
+            answer: ["72"]
+          - id: l2-c19
+            part: missing
+            type: fill_in_blank
+            text: "19, 29, 39, _ , 59"
+            say: "Welche Zahl fehlt? Neunzehn, neunundzwanzig, neununddreißig, dann eine Lücke, dann neunundfünfzig."
+            frame: "19, 29, 39, _ , 59"
+            options: ["40", "49", "69"]
+            answer: ["49"]
+          - id: l2-c20
+            part: missing
+            type: fill_in_blank
+            text: "100, 95, _ , 85"
+            say: "Welche Zahl fehlt? Hundert, fünfundneunzig, dann eine Lücke, dann fünfundachtzig."
+            frame: "100, 95, _ , 85"
+            options: ["94", "90", "80"]
+            answer: ["90"]
