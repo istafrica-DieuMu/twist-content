@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [equation, rechenstrich]
   facets: []
+  parts:
+    - { id: split, what: { de: "die Zahl so zerlegen, dass du zuerst bis zur 10 zurückgehst", en: "splitting the number so the first step goes back to 10" } }
+    - { id: steps, what: { de: "in zwei Schritten rechnen", en: "working in two steps" } }
+    - { id: solve, what: { de: "Minusaufgaben mit Zehnerübergang lösen", en: "answering subtractions across ten" } }
+    - { id: check, what: { de: "ein Ergebnis prüfen", en: "checking an answer" } }
   misconceptions:
     - id: wrong-split
       what: Splits the number to take away the wrong way (13 − 5 as 13 − 2 − 3, missing ten)
@@ -219,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -236,6 +242,27 @@ lessons:
             text: "Stimmt das? 11 − 2 = 9"
             say: "Elf minus zwei ist neun. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Zerlege die 4 so, dass du zuerst bei 10 ankommst."
+            say: "Zwölf minus vier. Zerlege die Vier so, dass du zuerst genau bei zehn ankommst."
+            frame: "12 − 4 = 12 − _ − _"
+            options: ["2", "1", "3"]
+            answer: ["2", "2"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "17 − 8 = ?"
+            say: "Siebzehn minus acht."
+            show: { drawn: rechenstrich, start: 17, jumps: [-7, -1] }
+            options: ["9", "11", "10"]
+            answer: "9"
+          - id: l1-c6
+            type: fill_in_blank
+            text: "13 − 4: Rechne in zwei Schritten."
+            say: "Dreizehn minus vier. Erst bis zur Zehn, dann den Rest."
+            frame: "13 − 3 = _ | 10 − 1 = _"
+            options: ["10", "9", "8", "1"]
+            answer: ["10", "9"]
 
   - n: 2
     title: { de: Minus bis 20, en: Subtracting to 20 }
@@ -400,13 +427,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: solve
             type: text_input
             text: "12 − 9 = _"
             say: "Zwölf minus neun."
             answer: "3"
           - id: l2-c2
+            part: steps
             type: fill_in_blank
             text: "17 − 8: Rechne in zwei Schritten."
             say: "Siebzehn minus acht. Rechne in zwei Schritten."
@@ -414,20 +444,130 @@ lessons:
             options: ["10", "9", "1", "7"]
             answer: ["10", "9"]
           - id: l2-c3
+            part: solve
             type: multiple_choice
             text: "11 − 9 = ?"
             say: "Elf minus neun."
             options: ["2", "18", "3"]
             answer: "2"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Stimmt das? 11 − 7 = 5"
             say: "Elf minus sieben ist fünf. Stimmt das?"
             answer: false
           - id: l2-c5
+            part: split
             type: fill_in_blank
             text: "Zerlege die 8 so, dass du zuerst bei 10 ankommst."
             say: "Zwölf minus acht. Zerlege die Acht so, dass du zuerst genau bei zehn ankommst."
             frame: "12 − 8 = 12 − _ − _"
             options: ["2", "6", "4", "5"]
             answer: ["2", "6"]
+          - id: l2-c6
+            part: split
+            type: multiple_choice
+            text: "13 − 5: Wie viele nimmst du zuerst weg, bis du bei 10 bist?"
+            say: "Dreizehn minus fünf. Wie viele nimmst du zuerst weg, damit du genau bei zehn bist?"
+            show: { drawn: rechenstrich, start: 13, jumps: [], back: true }
+            options: ["3", "5", "2"]
+            answer: "3"
+          - id: l2-c7
+            part: steps
+            type: fill_in_blank
+            text: "18 − 9: Rechne in zwei Schritten."
+            say: "Achtzehn minus neun. Rechne in zwei Schritten."
+            frame: "18 − 8 = _ | 10 − 1 = _"
+            options: ["10", "9", "8", "1"]
+            answer: ["10", "9"]
+          - id: l2-c8
+            part: solve
+            type: text_input
+            text: "14 − 8 = _"
+            say: "Vierzehn minus acht."
+            answer: "6"
+          - id: l2-c9
+            part: check
+            type: true_false
+            text: "Stimmt das? 14 − 6 = 8, denn 8 + 6 = 14."
+            say: "Vierzehn minus sechs ist acht, denn acht plus sechs ist vierzehn. Stimmt das?"
+            answer: true
+          - id: l2-c10
+            part: split
+            type: fill_in_blank
+            text: "Zerlege die 7 so, dass du zuerst bei 10 ankommst."
+            say: "Sechzehn minus sieben. Zerlege die Sieben so, dass du zuerst genau bei zehn ankommst."
+            frame: "16 − 7 = 16 − _ − _"
+            options: ["6", "1", "7", "3"]
+            answer: ["6", "1"]
+          - id: l2-c11
+            part: steps
+            type: fill_in_blank
+            text: "14 − 7: Rechne in zwei Schritten."
+            say: "Vierzehn minus sieben. Rechne in zwei Schritten."
+            frame: "14 − 4 = _ | 10 − 3 = _"
+            options: ["10", "7", "6", "3"]
+            answer: ["10", "7"]
+          - id: l2-c12
+            part: solve
+            type: multiple_choice
+            text: "16 − 9 = ?"
+            say: "Sechzehn minus neun."
+            options: ["7", "13", "8"]
+            answer: "7"
+          - id: l2-c13
+            part: check
+            type: true_false
+            text: "Stimmt das? 13 − 5 = 7"
+            say: "Dreizehn minus fünf ist sieben. Stimmt das?"
+            answer: false
+          - id: l2-c14
+            part: split
+            type: multiple_choice
+            text: "14 − 6: Wie viele nimmst du zuerst weg, bis du bei 10 bist?"
+            say: "Vierzehn minus sechs. Wie viele nimmst du zuerst weg, damit du genau bei zehn bist?"
+            options: ["4", "6", "2"]
+            answer: "4"
+          - id: l2-c15
+            part: steps
+            type: fill_in_blank
+            text: "15 − 6: Rechne in zwei Schritten."
+            say: "Fünfzehn minus sechs. Rechne in zwei Schritten."
+            frame: "15 − 5 = _ | 10 − 1 = _"
+            options: ["10", "9", "11", "1"]
+            answer: ["10", "9"]
+          - id: l2-c16
+            part: solve
+            type: text_input
+            text: "15 − 7 = _"
+            say: "Fünfzehn minus sieben."
+            answer: "8"
+          - id: l2-c17
+            part: check
+            type: true_false
+            text: "Stimmt das? 17 − 9 = 8"
+            say: "Siebzehn minus neun ist acht. Stimmt das?"
+            answer: true
+          - id: l2-c18
+            part: split
+            type: fill_in_blank
+            text: "Zerlege die 5 so, dass du zuerst bei 10 ankommst."
+            say: "Elf minus fünf. Zerlege die Fünf so, dass du zuerst genau bei zehn ankommst."
+            frame: "11 − 5 = 11 − _ − _"
+            options: ["1", "4", "2", "3"]
+            answer: ["1", "4"]
+          - id: l2-c19
+            part: steps
+            type: fill_in_blank
+            text: "13 − 6: Rechne in zwei Schritten."
+            say: "Dreizehn minus sechs. Rechne in zwei Schritten."
+            frame: "13 − 3 = _ | 10 − 3 = _"
+            options: ["10", "7", "6", "3"]
+            answer: ["10", "7"]
+          - id: l2-c20
+            part: check
+            type: multiple_choice
+            text: "Mit welcher Plusaufgabe prüfst du 12 − 5 = 7?"
+            say: "Zwölf minus fünf ist sieben. Mit welcher Plusaufgabe prüfst du das?"
+            options: ["7 + 5 = 12", "7 + 2 = 9", "12 + 5 = 17"]
+            answer: "7 + 5 = 12"

@@ -8,10 +8,10 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (23471 / 23471) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21532 / 21532) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (24367 / 24367) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21533 / 21533) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6295 / 6295) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51297 / 51297)** |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (52194 / 52194)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30082 / 30082) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17301 / 17301) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6521 / 6521) |
@@ -22,9 +22,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 105239 clips, 144.2 h | about $177 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 105239 clips | about $84 | estimated the same way |
-| **Total** | | | **about $270** | |
+| Narration | google/gemini-3.8-flash-tts | 106136 clips, 145.3 h | about $178 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 106136 clips | about $85 | estimated the same way |
+| **Total** | | | **about $272** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -32,14 +32,14 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 6510 | 6411 (98%) | 0 | 382 min | $13 |
+| gemini-puck | 7407 | 7306 (99%) | 0 | 448 min | $15 |
 | gemini-puck-en | 6549 | 6368 (97%) | 0 | 433 min | $14 |
 | gemini-sulafat | 44814 | 43968 (98%) | 0 | 3410 min | $105 |
 | gemini-sulafat-en | 47366 | 46234 (98%) | 0 | 4426 min | $128 |
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 19557 tasks. Narration so far about $118; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 20310 tasks. Narration so far about $120; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -55,14 +55,14 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
-| klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $1.71 |
-| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.03 |
-| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $0.89 |
-| klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.00 |
-| klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.37 |
-| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $0.98 |
-| klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $1.09 |
-| klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.37 |
+| klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $1.95 |
+| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.55 |
+| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.07 |
+| klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.46 |
+| klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.45 |
+| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.19 |
+| klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $1.34 |
+| klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.45 |
 | klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $0.90 |
 | klasse-1 | Deutsch | Buchstaben | 12 / 12 done | 50 | $4.53 |
 | klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 | $0.20 |
@@ -86,7 +86,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.21 |
 | klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.34 |
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.00 |
-| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.41 |
+| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.40 |
 | klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $1.77 |
 | klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $3.52 |
 | klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.58 |
@@ -120,7 +120,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.27 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.16 |
 | klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $4.10 |
-| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $3.79 |
+| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $3.80 |
 | klasse-3 | Mathe | Geometrie | 7 / 7 done | 14 | $1.83 |
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.16 |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.38 |
@@ -483,7 +483,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 6 of 918 skill checks and 6 of 974 quick checks done; 6 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 47 of 918 skill checks and 52 of 974 quick checks done; 6 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
@@ -494,7 +494,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 | de-DE lit-de klasse-2 | 46 | 0 | 0 of 47 |
 | de-DE lit-de klasse-3 | 42 | 0 | 0 of 42 |
 | de-DE lit-de klasse-4 | 35 | 0 | 0 of 36 |
-| de-DE math klasse-1 | 41 | 0 | 0 of 46 |
+| de-DE math klasse-1 | 41 | 41 | 46 of 46 |
 | de-DE math klasse-2 | 63 | 3 | 3 of 64 |
 | de-DE math klasse-3 | 51 | 0 | 0 of 51 |
 | de-DE math klasse-4 | 48 | 0 | 0 of 53 |
@@ -521,7 +521,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 0 | $0.27 | $0.00 |
+| de-DE | 0 | $0.28 | $0.00 |
 | en-GB | 0 | $0.30 | $0.00 |
 
 Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.23 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
@@ -539,8 +539,9 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-14 | Native German pass | 433 | every screen of all 433 de-DE lesson sets read as a German Grundschule teacher would (what the child sees and hears), about 21 000 screens, then a consistency sweep | about 2 500 small fixes in about 330 sets; house choices for the carry ("Schreib 3, übertrag 1"), "Es ist alles richtig.", "|" for separators; joined-capitals names no join that differs by script | f20878ae |
 | 2026-10-14 | en-GB review, year by year | 483 | all 483 en-GB lesson sets (Reception to Year 6 Maths and English, French learning years 1 to 4), each batch read by a review agent after it was written | fixes in most sets; table-2-4-8 and derive-facts moved to Year 3; semicolons in lists added to Year 6; bus stop, long multiplication, protractor, coordinates, line graph, pie chart and thermometer components; digit, decimal, fraction and letter keyboards for typed answers | 5215cf76 |
 | 2026-10-14 | Native English and French pass | 541 | every screen of the en-GB lessons (Reception to Year 6, French years 1 to 4) and the English in the de-DE Englisch sets, read as a native British teacher or a French professeur des écoles would, by model agents | about 220 sets changed, about 240 speaker tags, seven dialogues as turns; year-fit fixes (tonnes, km, compasses, capitals) and the enrichment map | 2e4fa07c |
+| 2026-10-18 | Check pools, batch 1 (de-DE Mathe Klasse 1) | 41 | the new check-pool tasks of all 41 de-DE Mathe Klasse 1 sets (docs/plans/2026-10-18-practice-content.md), written by three agents and read by two | about 50 tasks fixed in 26 sets (data or story on screen, near repeats, a hint in say, a negative distractor, stiff phrasing); the build now rejects an unquoted comma in a part and compares pictures and options when it looks for repeats in a pool | see git log, "Check pools batch 1" |
 
-Open points (8):
+Open points (10):
 
 - A native German speaker reads the screens (a teacher, not a model)
 - Regional words for a teacher to weigh: Mäppchen or Federtasche (an ä task relies on Mäppchen), Möhre or Karotte (picture-name tasks rely on Möhre), Fasching, Geldbeutel, Brötchen, Pulli
@@ -550,6 +551,8 @@ Open points (8):
 - Points from the native passes for a teacher: "I have got" against "I've got" across the Englisch sets; "a dice"; "Fill the gap" against "Fill in the gap"; single quotes for speech in stories while inverted-commas teaches double; Je suis fatigué with a picture of a girl in fr-sentences; first-person lines inside Learn say cannot carry a speaker
 - Phonics hints in Years 1 and 2 segment words for the voice ("l ... ee ... f", "c ... ay ... k"); listen once narrated whether the voice says sounds, not letter names. Task audio already plays bank sounds in order (audio sounds)
 - Points from the Reception and Year 1 read for a teacher: the coined sound descriptions (hiss, hush, pop of your lips) against the school's phonics scheme; small letter or lower-case letter; magic e; take away or subtract; × and clockwise in Year 1 (NC Year 2); a pencil said to be shorter than a hand span; Year 1 sets carry ages 6-7
+- Check pools, batch 1: write-numerals-to-10 has no tracing in any check, so writing the numerals is never marked (tracing accepts any ink). Some older check tasks keep the story, the numbers or a strategy only in say (add-meaning l2-c2, l2-c4; compare-to-20 l2-c4; commutative l2-c4, whose say is a hint); a lessons-check rule could flag a check task whose say carries numbers its text lacks
+- Narration: the de-DE check voice spells "ct" as the letters C T ("eins C T", clip a0a37d5def) where the lesson voice says Cent; the listening check passes it. A rule in narration.py spoken() for a number before ct and € (Cent, Euro, ein for one) would change about 62 ct lines and the € lines, which then need new clips in both German voices
 
 Closed:
 

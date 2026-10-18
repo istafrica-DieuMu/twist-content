@@ -134,7 +134,12 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     // (docs/lesson-anatomy.md, "Check pools"). A drawn skill check names
     // the skill's part on every task and covers every part in one draw.
     const parts = new Map((md.parts ?? []).map((p) => [p.id, p]));
-    for (const [id, p] of parts) if (!p.what?.de || !p.what?.en) err(`${file}: metadata.parts ${id} needs what in de and en`);
+    for (const [id, p] of parts) {
+      if (!p.what?.de || !p.what?.en) err(`${file}: metadata.parts ${id} needs what in de and en`);
+      // An unquoted comma in a flow map cuts the text and leaves empty keys.
+      const extra = Object.keys(p.what ?? {}).filter((k) => !["de", "en"].includes(k));
+      if (extra.length || Object.keys(p).some((k) => !["id", "what"].includes(k))) err(`${file}: metadata.parts ${id}: unexpected keys; quote a what that contains a comma`);
+    }
     const checkPool = (a, aw) => {
       const tasks = a.tasks ?? [], skill = ["skill", "timed"].includes(a.size);
       if (a.draw !== undefined) {
@@ -142,7 +147,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
         if (a.draw !== want) err(`${file}: ${aw}: draw is ${want} for a ${a.size} check at ages ${(md.ages ?? [])[0]}`);
         if (tasks.length < 2 * a.draw) err(`${file}: ${aw}: a pool of ${tasks.length} for a draw of ${a.draw}; it needs at least ${2 * a.draw} so a second attempt differs`);
         const sigs = new Map();
-        for (const t of tasks) { const k = JSON.stringify([t.type, t.text, t.say ?? null, t.frame ?? null, t.answer]); if (sigs.has(k)) err(`${file}: ${aw}: task ${t.id} repeats ${sigs.get(k)} in the pool`); sigs.set(k, t.id); }
+        for (const t of tasks) { const k = JSON.stringify([t.type, t.text, t.say ?? null, t.frame ?? null, t.answer, t.show ?? null, t.options ?? null, t.pairs ?? null, t.bins ?? null, t.audio ?? null]); if (sigs.has(k)) err(`${file}: ${aw}: task ${t.id} repeats ${sigs.get(k)} in the pool`); sigs.set(k, t.id); }
       }
       for (const t of tasks) if (t.part !== undefined && !(skill && a.draw)) err(`${file}: ${aw} task ${t.id}: part belongs on the tasks of a drawn skill check`);
       if (!skill || !a.draw) return;

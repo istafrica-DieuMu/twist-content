@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: pairs, what: { de: "Paare bilden und sehen, ob eins übrig bleibt", en: "making pairs and seeing whether one is left over" } }
+    - { id: to-10, what: { de: gerade und ungerade Zahlen bis 10, en: even and odd numbers to 10 } }
+    - { id: to-20, what: { de: gerade und ungerade Zahlen bis 20 an den Einern erkennen, en: telling even and odd numbers to 20 by the ones } }
+    - { id: steps, what: { de: gerade und ungerade Zahlen in Zweierschritten weiterzählen, en: counting on in steps of two through even or odd numbers } }
   misconceptions:
     - id: whole-number-look
       what: Calls 12 or 14 odd because the 1 in front is odd
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -250,6 +256,32 @@ lessons:
             say: "Welche Zahl ist ungerade?"
             options: ["10", "1", "6"]
             answer: "1"
+            option_audio: false
+          - id: l1-c4
+            type: sorting
+            text: "Gerade oder ungerade?"
+            say: "Sind diese Zahlen gerade oder ungerade? Sortiere sie."
+            option_audio: false
+            bins:
+              - { id: even, show: { text: "gerade" }, say: "gerade" }
+              - { id: odd, show: { text: "ungerade" }, say: "ungerade" }
+            options:
+              - { text: "6", bin: even }
+              - { text: "9", bin: odd }
+              - { text: "10", bin: even }
+              - { text: "1", bin: odd }
+          - id: l1-c5
+            type: true_false
+            text: "Bleibt ein Kind übrig?"
+            say: "Drei Kinder bilden Paare. Bleibt ein Kind übrig?"
+            show: { drawn: dots, count: 3, layout: dice }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welche Zahl ist gerade?"
+            say: "Welche Zahl ist gerade?"
+            options: ["3", "5", "4"]
+            answer: "4"
             option_audio: false
 
   - n: 2
@@ -442,14 +474,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: to-20
             type: multiple_choice
             text: "Ist 18 gerade oder ungerade?"
             say: "Ist achtzehn gerade oder ungerade?"
             options: ["gerade", "ungerade"]
             answer: "gerade"
           - id: l2-c2
+            part: to-20
             type: sorting
             text: "Gerade oder ungerade?"
             say: "Sortiere: gerade oder ungerade?"
@@ -463,11 +498,13 @@ lessons:
               - { text: "6", bin: even }
               - { text: "11", bin: odd }
           - id: l2-c3
+            part: to-20
             type: true_false
             text: "Stimmt das? 19 ist gerade."
             say: "Neunzehn ist gerade. Stimmt das?"
             answer: false
           - id: l2-c4
+            part: pairs
             type: multiple_choice
             text: "11 Kinder bilden Paare. Bleibt ein Kind übrig?"
             say: "Elf Kinder bilden Paare. Bleibt ein Kind übrig?"
@@ -475,9 +512,124 @@ lessons:
             answer: "Ja, eins bleibt übrig."
             option_audio: false
           - id: l2-c5
+            part: steps
             type: fill_in_blank
             text: "Die nächste ungerade Zahl"
             say: "Zähl die ungeraden Zahlen weiter."
             frame: "13, 15, 17, _"
             options: ["18", "19", "20"]
             answer: ["19"]
+          - id: l2-c6
+            part: pairs
+            type: true_false
+            text: "Bleibt ein Kind übrig?"
+            say: "Zwölf Kinder bilden Paare. Bleibt ein Kind übrig?"
+            show: { drawn: dots, count: 12, layout: row }
+            answer: false
+          - id: l2-c7
+            part: pairs
+            type: multiple_choice
+            text: "Gerade oder ungerade?"
+            say: "Hier sind dreizehn Punkte. Bilde Paare. Ist dreizehn gerade oder ungerade?"
+            show: { drawn: dots, count: 13, layout: row }
+            options: ["gerade", "ungerade"]
+            answer: "ungerade"
+          - id: l2-c8
+            part: pairs
+            type: multiple_choice
+            text: "9 Kinder bilden Paare. Was stimmt?"
+            say: "Neun Kinder bilden Paare. Was stimmt?"
+            show: { drawn: dots, count: 9, layout: dice }
+            options: ["4 Paare und 1 übrig", "4 Paare, keins übrig", "5 Paare, keins übrig"]
+            answer: "4 Paare und 1 übrig"
+          - id: l2-c9
+            part: pairs
+            type: true_false
+            text: "15 Kinder bilden Paare. Bleibt ein Kind übrig?"
+            say: "Fünfzehn Kinder bilden Paare. Bleibt ein Kind übrig?"
+            answer: true
+          - id: l2-c10
+            part: to-10
+            type: multiple_choice
+            text: "Ist 6 gerade oder ungerade?"
+            say: "Ist sechs gerade oder ungerade?"
+            options: ["gerade", "ungerade"]
+            answer: "gerade"
+          - id: l2-c11
+            part: to-10
+            type: multiple_choice
+            text: "Welche Zahl ist ungerade?"
+            say: "Welche Zahl ist ungerade?"
+            options: ["4", "10", "3"]
+            answer: "3"
+            option_audio: false
+          - id: l2-c12
+            part: to-10
+            type: true_false
+            text: "Stimmt das? 7 ist gerade."
+            say: "Sieben ist gerade. Stimmt das?"
+            answer: false
+          - id: l2-c13
+            part: to-10
+            type: sorting
+            text: "Gerade oder ungerade?"
+            say: "Sortiere die Zahlen bis zehn: gerade oder ungerade?"
+            option_audio: false
+            bins:
+              - { id: even, show: { text: "gerade" }, say: "gerade" }
+              - { id: odd, show: { text: "ungerade" }, say: "ungerade" }
+            options:
+              - { text: "7", bin: odd }
+              - { text: "2", bin: even }
+              - { text: "5", bin: odd }
+              - { text: "8", bin: even }
+          - id: l2-c14
+            part: to-10
+            type: true_false
+            text: "Stimmt das? 9 ist ungerade."
+            say: "Neun ist ungerade. Stimmt das?"
+            answer: true
+          - id: l2-c15
+            part: to-20
+            type: multiple_choice
+            text: "Ist 14 gerade oder ungerade?"
+            say: "Ist vierzehn gerade oder ungerade?"
+            options: ["gerade", "ungerade"]
+            answer: "gerade"
+          - id: l2-c16
+            part: to-20
+            type: multiple_choice
+            text: "Welche Zahl ist ungerade?"
+            say: "Welche dieser Zahlen ist ungerade?"
+            options: ["14", "20", "17"]
+            answer: "17"
+            option_audio: false
+          - id: l2-c17
+            part: to-20
+            type: true_false
+            text: "Stimmt das? 12 ist ungerade."
+            say: "Zwölf ist ungerade. Stimmt das?"
+            answer: false
+          - id: l2-c18
+            part: steps
+            type: fill_in_blank
+            text: "Wie geht es weiter?"
+            say: "Zähl die geraden Zahlen weiter."
+            frame: "4, 6, 8, _ , _"
+            options: ["9", "10", "12", "11"]
+            answer: ["10", "12"]
+          - id: l2-c19
+            part: steps
+            type: fill_in_blank
+            text: "Wie geht es weiter?"
+            say: "Zähl die ungeraden Zahlen weiter."
+            frame: "5, 7, 9, _ , _"
+            options: ["10", "11", "13", "12"]
+            answer: ["11", "13"]
+          - id: l2-c20
+            part: steps
+            type: multiple_choice
+            text: "Welche Zahl fehlt? 14, 16, _ , 20"
+            say: "Vierzehn, sechzehn, eine Lücke, zwanzig. Welche Zahl fehlt?"
+            options: ["17", "18", "19"]
+            answer: "18"

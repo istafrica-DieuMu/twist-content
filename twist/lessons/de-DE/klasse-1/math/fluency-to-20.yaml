@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: plus-easy, what: { de: Plusaufgaben ohne Zehnerübergang, en: addition facts that do not cross ten } }
+    - { id: plus-bridge, what: { de: Plusaufgaben mit Zehnerübergang, en: addition facts that cross ten } }
+    - { id: minus, what: { de: Minusaufgaben bis 20, en: subtraction facts to 20 } }
+    - { id: inverse, what: { de: Minusaufgaben aus der Plusaufgabe ableiten, en: working out a subtraction from its addition fact } }
   misconceptions:
     - id: count-in-ones
       what: Counts on in ones for every sum instead of using a known fact
@@ -200,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -215,6 +221,22 @@ lessons:
             type: text_input
             text: "15 + 4 = _"
             say: "Fünfzehn plus vier."
+            answer: "19"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welcher Trick hilft bei 7 + 7?"
+            say: "Sieben plus sieben. Welcher Trick hilft am schnellsten?"
+            options: ["verdoppeln", "Zehnerfreunde", "kleine Aufgabe"]
+            answer: "verdoppeln"
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? 6 + 4 = 11"
+            say: "Sechs plus vier ist elf. Stimmt das?"
+            answer: false
+          - id: l1-c6
+            type: text_input
+            text: "13 + 6 = _"
+            say: "Dreizehn plus sechs."
             answer: "19"
 
   - n: 2
@@ -372,29 +394,131 @@ lessons:
 
       - activity: check
         size: timed
+        draw: 5
         tasks:
           - id: l2-c1
+            part: plus-bridge
             type: text_input
             text: "6 + 5 = _"
             say: "Sechs plus fünf."
             answer: "11"
           - id: l2-c2
+            part: minus
             type: text_input
             text: "14 − 5 = _"
             say: "Vierzehn minus fünf."
             answer: "9"
           - id: l2-c3
+            part: plus-bridge
             type: text_input
             text: "9 + 7 = _"
             say: "Neun plus sieben."
             answer: "16"
           - id: l2-c4
+            part: minus
             type: text_input
             text: "16 − 9 = _"
             say: "Sechzehn minus neun."
             answer: "7"
           - id: l2-c5
+            part: minus
             type: text_input
             text: "11 − 8 = _"
             say: "Elf minus acht."
             answer: "3"
+          - id: l2-c6
+            part: plus-bridge
+            type: text_input
+            text: "6 + 6 = _"
+            say: "Sechs plus sechs."
+            answer: "12"
+          - id: l2-c7
+            part: plus-easy
+            type: text_input
+            text: "13 + 5 = _"
+            say: "Dreizehn plus fünf."
+            answer: "18"
+          - id: l2-c8
+            part: plus-easy
+            type: text_input
+            text: "1 + 9 = _"
+            say: "Eins plus neun."
+            answer: "10"
+          - id: l2-c9
+            part: plus-easy
+            type: true_false
+            text: "Stimmt das? 12 + 4 = 15"
+            say: "Zwölf plus vier ist fünfzehn. Stimmt das?"
+            answer: false
+          - id: l2-c10
+            part: plus-easy
+            type: text_input
+            text: "16 + 3 = _"
+            say: "Sechzehn plus drei."
+            answer: "19"
+          - id: l2-c11
+            part: plus-bridge
+            type: text_input
+            text: "8 + 7 = _"
+            say: "Acht plus sieben."
+            answer: "15"
+          - id: l2-c12
+            part: plus-bridge
+            type: true_false
+            text: "Stimmt das? 8 + 4 = 12"
+            say: "Acht plus vier ist zwölf. Stimmt das?"
+            answer: true
+          - id: l2-c13
+            part: plus-bridge
+            type: text_input
+            text: "4 + 7 = _"
+            say: "Vier plus sieben."
+            answer: "11"
+          - id: l2-c14
+            part: minus
+            type: text_input
+            text: "13 − 7 = _"
+            say: "Dreizehn minus sieben."
+            answer: "6"
+          - id: l2-c15
+            part: minus
+            type: true_false
+            text: "Stimmt das? 15 − 9 = 7"
+            say: "Fünfzehn minus neun ist sieben. Stimmt das?"
+            answer: false
+          - id: l2-c16
+            part: inverse
+            type: fill_in_blank
+            text: "Die Plusaufgabe hilft."
+            say: "Acht plus fünf ist dreizehn. Was ist dann dreizehn minus fünf?"
+            frame: "8 + 5 = 13 | 13 − 5 = _"
+            options: ["8", "5", "18"]
+            answer: ["8"]
+          - id: l2-c17
+            part: inverse
+            type: fill_in_blank
+            text: "Die Plusaufgabe hilft."
+            say: "Sieben plus neun ist sechzehn. Was ist dann sechzehn minus sieben?"
+            frame: "7 + 9 = 16 | 16 − 7 = _"
+            options: ["9", "7", "16"]
+            answer: ["9"]
+          - id: l2-c18
+            part: inverse
+            type: multiple_choice
+            text: "Welche Plusaufgabe hilft bei 14 − 6?"
+            say: "Vierzehn minus sechs. Welche Plusaufgabe hilft dir?"
+            options: ["8 + 6", "14 + 6", "7 + 7"]
+            answer: "8 + 6"
+          - id: l2-c19
+            part: inverse
+            type: true_false
+            text: "Stimmt das? 12 − 3 = 9, denn 9 + 3 = 12."
+            say: "Zwölf minus drei ist neun, denn neun plus drei ist zwölf. Stimmt das?"
+            answer: true
+          - id: l2-c20
+            part: inverse
+            type: multiple_choice
+            text: "Welche Plusaufgabe hilft bei 15 − 7?"
+            say: "Fünfzehn minus sieben. Welche Plusaufgabe hilft dir?"
+            options: ["8 + 7", "7 + 7", "5 + 10"]
+            answer: "8 + 7"

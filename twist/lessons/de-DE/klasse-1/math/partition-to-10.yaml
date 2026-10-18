@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots, ten-frame, number-house]
   facets: [operation-signs]
+  parts:
+    - { id: counters, what: { de: Plättchen in zwei Teile zerlegen, en: splitting counters into two parts } }
+    - { id: house, what: { de: das Zahlenhaus ergänzen, en: completing a number house } }
+    - { id: all-splits, what: { de: alle Zerlegungen einer Zahl der Reihe nach finden, en: finding every split of a number in order } }
+    - { id: is-split, what: { de: "erkennen, ob eine Zerlegung zur Zahl passt", en: "telling whether a split belongs to a number" } }
   misconceptions:
     - id: parts-not-whole
       what: Thinks the parts make a new number instead of the same amount, split
@@ -251,6 +256,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -273,6 +279,27 @@ lessons:
             say: "Hier sind vier rote und vier blaue. Sind das zusammen acht?"
             show: { drawn: dots, count: 8, layout: row, colour_split: [4, 4] }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie viele sind rot?"
+            say: "Hier sind vier Plättchen. Eins ist blau. Wie viele sind rot?"
+            show: { drawn: dots, count: 4, layout: row, colour_split: [3, 1] }
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Welche Zahl fehlt?"
+            say: "Neun ist sechs und wie viel?"
+            show: { drawn: ten-frame, filled: 9, colour_split: [6, 3] }
+            frame: "9 = 6 + _"
+            options: ["2", "3", "4"]
+            answer: ["3"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 10 = 6 + 3"
+            say: "Hier sind sechs rote und vier blaue. Stimmt das: Zehn ist sechs und drei?"
+            show: { drawn: ten-frame, filled: 10, colour_split: [6, 4] }
+            answer: false
 
   - n: 2
     title: { de: Das Zahlenhaus, en: The number house }
@@ -483,6 +510,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: fill_in_blank
@@ -505,6 +533,27 @@ lessons:
             say: "Das Dach ist fünf. Im Stockwerk wohnen eins und vier. Stimmt das?"
             show: { drawn: number-house, roof: 5, rows: [[1, 4]] }
             answer: true
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Welche Zahl fehlt im Zahlenhaus?"
+            say: "Das Dach ist neun. Im Stockwerk wohnt rechts die Zwei. Welche Zahl fehlt?"
+            show: { drawn: number-house, roof: 9, rows: [[null, 2]] }
+            frame: "_ + 2 = 9"
+            options: ["6", "7", "8"]
+            answer: ["7"]
+          - id: l2-c5
+            type: multiple_choice
+            text: "Welche Zahl fehlt im Zahlenhaus?"
+            say: "Das Dach ist vier. Im Stockwerk wohnt die Drei. Welche Zahl fehlt?"
+            show: { drawn: number-house, roof: 4, rows: [[3, null]] }
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l2-c6
+            type: true_false
+            text: "Stimmt das Stockwerk?"
+            say: "Das Dach ist acht. Im Stockwerk wohnen fünf und zwei. Stimmt das?"
+            show: { drawn: number-house, roof: 8, rows: [[5, 2]] }
+            answer: false
 
   - n: 3
     title: { de: Alle Zerlegungen finden, en: Finding every split }
@@ -711,8 +760,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: counters
             type: fill_in_blank
             text: "Wie wird die 8 zerlegt?"
             say: "Acht ist ... und ... Wie viele rote, wie viele blaue?"
@@ -721,6 +772,7 @@ lessons:
             options: ["3", "5", "4", "2"]
             answer: ["5", "3"]
           - id: l3-c2
+            part: house
             type: multiple_choice
             text: "Welche Zahl fehlt im Zahlenhaus?"
             say: "Das Dach ist neun. Im Stockwerk wohnt die Fünf. Welche Zahl fehlt?"
@@ -728,11 +780,13 @@ lessons:
             options: ["3", "4", "5"]
             answer: "4"
           - id: l3-c3
+            part: is-split
             type: true_false
             text: "Ist 3 + 1 eine Zerlegung der 5?"
             say: "Ist drei und eins eine Zerlegung der Fünf?"
             answer: false
           - id: l3-c4
+            part: all-splits
             type: ordering
             text: "Bring die Zerlegungen der 3 in die richtige Reihenfolge."
             say: "Bring die Zerlegungen der Drei in die richtige Reihenfolge. Links fängst du mit null an."
@@ -740,6 +794,7 @@ lessons:
             slot_count: 4
             answer: ["0 + 3", "1 + 2", "2 + 1", "3 + 0"]
           - id: l3-c5
+            part: house
             type: fill_in_blank
             text: "Welche Zahl fehlt im Zahlenhaus?"
             say: "Das Dach ist zehn. Im Stockwerk wohnt die Sechs. Welche Zahl fehlt?"
@@ -747,3 +802,128 @@ lessons:
             frame: "6 + _ = 10"
             options: ["3", "4", "5"]
             answer: ["4"]
+          - id: l3-c6
+            part: counters
+            type: fill_in_blank
+            text: "Wie wird die 9 zerlegt?"
+            say: "Neun ist ... und ... Wie viele rote, wie viele blaue?"
+            show: { drawn: dots, count: 9, layout: row, colour_split: [2, 7] }
+            frame: "9 = _ + _"
+            options: ["2", "7", "6", "3"]
+            answer: ["2", "7"]
+          - id: l3-c7
+            part: counters
+            type: multiple_choice
+            text: "Wie viele sind blau?"
+            say: "Hier sind sieben Plättchen. Drei sind rot. Wie viele sind blau?"
+            show: { drawn: dots, count: 7, layout: row, colour_split: [3, 4] }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l3-c8
+            part: counters
+            type: multiple_choice
+            text: "Wie viele sind rot?"
+            say: "Hier sind neun Plättchen. Zwei sind blau. Wie viele sind rot?"
+            show: { drawn: ten-frame, filled: 9, colour_split: [7, 2] }
+            options: ["6", "7", "8"]
+            answer: "7"
+          - id: l3-c9
+            part: counters
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Welches Bild passt zu welcher Zerlegung? Verbinde sie."
+            pairs:
+              - left: { text: "6 + 2" }
+                right: { drawn: dots, count: 8, layout: row, colour_split: [6, 2] }
+              - left: { text: "3 + 5" }
+                right: { drawn: dots, count: 8, layout: row, colour_split: [3, 5] }
+              - left: { text: "4 + 4" }
+                right: { drawn: dots, count: 8, layout: row, colour_split: [4, 4] }
+          - id: l3-c10
+            part: house
+            type: fill_in_blank
+            text: "Welche Zahl fehlt im Zahlenhaus?"
+            say: "Das Dach ist acht. Im Stockwerk wohnt die Zwei. Welche Zahl fehlt?"
+            show: { drawn: number-house, roof: 8, rows: [[2, null]] }
+            frame: "2 + _ = 8"
+            options: ["5", "6", "7"]
+            answer: ["6"]
+          - id: l3-c11
+            part: house
+            type: multiple_choice
+            text: "Welche Zahl fehlt im Zahlenhaus?"
+            say: "Das Dach ist sechs. Im Stockwerk wohnt rechts die Drei. Welche Zahl fehlt?"
+            show: { drawn: number-house, roof: 6, rows: [[null, 3]] }
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l3-c12
+            part: house
+            type: true_false
+            text: "Stimmt das Stockwerk?"
+            say: "Das Dach ist zehn. Im Stockwerk wohnen fünf und vier. Stimmt das?"
+            show: { drawn: number-house, roof: 10, rows: [[5, 4]] }
+            answer: false
+          - id: l3-c13
+            part: all-splits
+            type: ordering
+            text: "Bring die Zerlegungen der 7 in die richtige Reihenfolge."
+            say: "Bring die Zerlegungen der Sieben in die richtige Reihenfolge. Links fängst du mit null an."
+            options: ["2 + 5", "0 + 7", "3 + 4", "1 + 6"]
+            slot_count: 4
+            answer: ["0 + 7", "1 + 6", "2 + 5", "3 + 4"]
+          - id: l3-c14
+            part: all-splits
+            type: multiple_choice
+            text: "Welche Zerlegung fehlt?"
+            say: "Das Dach ist fünf. Null und fünf, eins und vier, drei und zwei, vier und eins, fünf und null. Welche fehlt?"
+            show: { drawn: number-house, roof: 5, rows: [[0, 5], [1, 4], [null, null], [3, 2], [4, 1], [5, 0]] }
+            options: ["2 + 3", "2 + 2", "3 + 3"]
+            answer: "2 + 3"
+          - id: l3-c15
+            part: all-splits
+            type: fill_in_blank
+            text: "Welche Zahlen fehlen?"
+            say: "Das Dach ist acht. Geh der Reihe nach. Welche Zahlen fehlen?"
+            show: { drawn: number-house, roof: 8, rows: [[0, 8], [1, 7], [2, null], [3, null]] }
+            frame: "2 + _ = 8 und 3 + _ = 8"
+            options: ["4", "5", "6", "7"]
+            answer: ["6", "5"]
+          - id: l3-c16
+            part: all-splits
+            type: multiple_choice
+            text: "Welche Zerlegung fehlt?"
+            say: "Das Dach ist sechs. Geh der Reihe nach. Welche Zerlegung fehlt?"
+            show: { drawn: number-house, roof: 6, rows: [[0, 6], [1, 5], [2, 4], [3, 3], [null, null], [5, 1], [6, 0]] }
+            options: ["4 + 2", "4 + 1", "5 + 2"]
+            answer: "4 + 2"
+          - id: l3-c17
+            part: is-split
+            type: true_false
+            text: "Ist 4 + 5 eine Zerlegung der 9?"
+            say: "Ist vier und fünf eine Zerlegung der Neun?"
+            answer: true
+          - id: l3-c18
+            part: is-split
+            type: multiple_choice
+            text: "Welche ist keine Zerlegung der 7?"
+            say: "Drei Zerlegungen. Welche ist keine Zerlegung der Sieben?"
+            options: ["4 + 3", "5 + 2", "5 + 3"]
+            answer: "5 + 3"
+          - id: l3-c19
+            part: is-split
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Verbinde jede Zahl mit einer Zerlegung, die zu ihr passt."
+            pairs:
+              - left: { text: "4" }
+                right: { text: "3 + 1" }
+              - left: { text: "9" }
+                right: { text: "6 + 3" }
+              - left: { text: "6" }
+                right: { text: "6 + 0" }
+          - id: l3-c20
+            part: is-split
+            type: true_false
+            text: "Ist 2 + 6 eine Zerlegung der 10?"
+            say: "Ist zwei und sechs eine Zerlegung der Zehn?"
+            answer: false

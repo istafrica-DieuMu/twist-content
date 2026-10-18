@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [coins]
   facets: [currency]
+  parts:
+    - { id: count, what: { de: Geld bis 20 € zählen, en: counting money to 20 } }
+    - { id: make, what: { de: einen Betrag bis 20 € legen, en: making an amount to 20 } }
+    - { id: ways, what: { de: einen Betrag auf verschiedene Arten legen, en: making one amount in different ways } }
+    - { id: compare, what: { de: "vergleichen, wer mehr Geld hat", en: "comparing who has more money" } }
   misconceptions:
     - id: counts-pieces
       what: Counts the coins and notes instead of their value (four 2-Euro-Münzen are 4 €)
@@ -209,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -229,6 +235,25 @@ lessons:
             say: "Zähl das Geld. Wie viel Euro sind das?"
             show: { drawn: coins, values: [500, 200, 100, 100] }
             answer: "9"
+          - id: l1-c4
+            type: true_false
+            text: "Das sind 16 €."
+            say: "Stimmt das? Das sind sechzehn Euro."
+            show: { drawn: coins, values: [1000, 500, 100] }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie viel Geld ist das?"
+            say: "Zähl das Geld. Wie viel ist das?"
+            show: { drawn: coins, values: [200, 200, 200, 200, 200, 200] }
+            options: ["12 €", "6 €", "10 €"]
+            answer: "12 €"
+          - id: l1-c6
+            type: text_input
+            text: "Wie viel Euro sind das?"
+            say: "Zähl das Geld. Wie viel Euro sind das?"
+            show: { drawn: coins, values: [1000, 500, 200, 200, 100] }
+            answer: "20"
 
   - n: 2
     title: { de: "Geld legen", en: "Making amounts" }
@@ -407,14 +432,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: text_input
             text: "Wie viel Euro sind das?"
             say: "Zähl das Geld. Wie viel Euro sind das?"
             show: { drawn: coins, values: [1000, 500, 200] }
             answer: "17"
           - id: l2-c2
+            part: make
             type: image_multiple_choice
             text: "Wo sind 14 €?"
             say: "Tipp auf das Bild mit vierzehn Euro."
@@ -424,6 +452,7 @@ lessons:
               - { drawn: coins, values: [1000, 500] }
             answer: "1400"
           - id: l2-c3
+            part: make
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Sechzehn Euro sind zehn Euro und fünf Euro und wie viel noch?"
@@ -431,14 +460,133 @@ lessons:
             options: ["1 €", "2 €", "5 €"]
             answer: ["1 €"]
           - id: l2-c4
+            part: compare
             type: multiple_choice
             text: "Jan hat 10 € + 10 €.\nElla hat 5 € + 5 € + 5 € + 2 €.\nWer hat mehr Geld?"
             say: "Jan hat zwei Zehn-Euro-Scheine. Ella hat drei Fünf-Euro-Scheine und eine Zwei-Euro-Münze. Wer hat mehr Geld?"
             options: ["Jan", "Ella"]
             answer: "Jan"
           - id: l2-c5
+            part: count
             type: true_false
             text: "Das sind 5 €."
             say: "Stimmt das? Das sind fünf Euro."
             show: { drawn: coins, values: [200, 200, 200, 200, 200] }
             answer: false
+          - id: l2-c6
+            part: count
+            type: text_input
+            text: "Wie viel Euro sind das?"
+            say: "Zähl das Geld. Wie viel Euro sind das?"
+            show: { drawn: coins, values: [1000, 200, 200, 200] }
+            answer: "16"
+          - id: l2-c7
+            part: count
+            type: multiple_choice
+            text: "Wie viel Geld ist das?"
+            say: "Zähl das Geld. Wie viel ist das?"
+            show: { drawn: coins, values: [500, 500, 500, 200] }
+            options: ["17 €", "4 €", "15 €"]
+            answer: "17 €"
+          - id: l2-c8
+            part: count
+            type: true_false
+            text: "Das sind 14 €."
+            say: "Stimmt das? Das sind vierzehn Euro."
+            show: { drawn: coins, values: [1000, 200, 100, 100] }
+            answer: true
+          - id: l2-c9
+            part: make
+            type: image_multiple_choice
+            text: "Wo sind 18 €?"
+            say: "Tipp auf das Bild mit achtzehn Euro."
+            options:
+              - { drawn: coins, values: [1000, 500, 200] }
+              - { drawn: coins, values: [1000, 500, 200, 100] }
+              - { drawn: coins, values: [1000, 200, 200, 200] }
+            answer: "1800"
+          - id: l2-c10
+            part: make
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Dreizehn Euro sind zehn Euro und zwei Euro und wie viel noch?"
+            frame: "13 € = 10 € + 2 € + _"
+            options: ["1 €", "2 €", "5 €"]
+            answer: ["1 €"]
+          - id: l2-c11
+            part: make
+            type: multiple_choice
+            text: "Wie legst du 12 €?"
+            say: "Finn will zwölf Euro legen. Wie geht das?"
+            options: ["10 € + 2 €", "10 € + 1 €", "5 € + 5 € + 1 €"]
+            answer: "10 € + 2 €"
+          - id: l2-c12
+            part: ways
+            type: true_false
+            text: "Jana legt 20 € nur mit 5-Euro-Scheinen. Sind das 20 €?"
+            say: "Jana legt zwanzig Euro nur mit Fünf-Euro-Scheinen. Sind das zwanzig Euro?"
+            show: { drawn: coins, values: [500, 500, 500, 500] }
+            answer: true
+          - id: l2-c13
+            part: ways
+            type: multiple_choice
+            text: "Du hast keinen 10-Euro-Schein. Womit kannst du trotzdem 10 € legen?"
+            say: "Du hast keinen Zehn-Euro-Schein. Womit kannst du trotzdem zehn Euro legen?"
+            options: ["5 € + 2 € + 2 € + 1 €", "5 € + 2 € + 2 €", "2 € + 2 € + 2 €"]
+            answer: "5 € + 2 € + 2 € + 1 €"
+          - id: l2-c14
+            part: ways
+            type: true_false
+            text: "Max will 6 € nur mit 2-Euro-Münzen legen. Sind das 6 €?"
+            say: "Max will sechs Euro nur mit Zwei-Euro-Münzen legen. Sind das sechs Euro?"
+            show: { drawn: coins, values: [200, 200] }
+            answer: false
+          - id: l2-c15
+            part: ways
+            type: image_multiple_choice
+            text: "Wo sind 15 €?"
+            say: "Tipp auf das Bild mit fünfzehn Euro."
+            options:
+              - { drawn: coins, values: [500, 500, 500] }
+              - { drawn: coins, values: [500, 500, 200] }
+              - { drawn: coins, values: [1000, 200, 200] }
+            answer: "1500"
+          - id: l2-c16
+            part: ways
+            type: multiple_choice
+            text: "Ali legt 10 € + 2 €.\nEva legt 5 € + 5 € + 2 €.\nBeide wollen 12 € legen. Wer hat 12 € gelegt?"
+            say: "Ali und Eva wollen zwölf Euro legen. Ali legt zehn Euro und zwei Euro. Eva legt fünf Euro, fünf Euro und zwei Euro. Wer hat zwölf Euro gelegt?"
+            options: ["beide", "nur Ali", "nur Eva"]
+            answer: "beide"
+            keep_order: true
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Ben hat 10 € + 5 €.\nAnna hat 5 € + 2 € + 2 € + 2 € + 2 €.\nWer hat mehr Geld?"
+            say: "Ben hat einen Zehn-Euro-Schein und einen Fünf-Euro-Schein. Anna hat einen Fünf-Euro-Schein und vier Zwei-Euro-Münzen. Wer hat mehr Geld?"
+            options: ["Ben", "Anna"]
+            answer: "Ben"
+          - id: l2-c18
+            part: compare
+            type: multiple_choice
+            text: "Leo hat 10 €.\nMaja hat 5 € + 5 € + 2 €.\nWer hat mehr Geld?"
+            say: "Leo hat einen Zehn-Euro-Schein. Maja hat zwei Fünf-Euro-Scheine und eine Zwei-Euro-Münze. Wer hat mehr Geld?"
+            options: ["Leo", "Maja"]
+            answer: "Maja"
+          - id: l2-c19
+            part: compare
+            type: multiple_choice
+            text: "Tim hat 10 € + 1 € + 1 €.\nLina hat 5 € + 5 € + 5 €.\nWer hat mehr Geld?"
+            say: "Tim hat einen Zehn-Euro-Schein und zwei Ein-Euro-Münzen. Lina hat drei Fünf-Euro-Scheine. Wer hat mehr Geld?"
+            options: ["Tim", "Lina"]
+            answer: "Lina"
+          - id: l2-c20
+            part: compare
+            type: image_multiple_choice
+            text: "Wo ist am meisten Geld?"
+            say: "Wo ist am meisten Geld? Tipp darauf."
+            options:
+              - { drawn: coins, values: [200, 200, 200, 200, 200] }
+              - { drawn: coins, values: [1000, 500] }
+              - { drawn: coins, values: [500, 200, 200, 100, 100] }
+            answer: "1500"

@@ -22,6 +22,11 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [colour-swatch]
   facets: []
+  parts:
+    - { id: sort, what: { de: "nach einem Merkmal sortieren", en: "sorting by one feature" } }
+    - { id: odd-one-out, what: { de: "erkennen, was dazugehört und was nicht passt", en: "spotting what belongs and what does not" } }
+    - { id: count, what: { de: "zählen, wie viele in einer Gruppe sind", en: "counting how many are in a group" } }
+    - { id: compare, what: { de: "Gruppen vergleichen", en: "comparing groups" } }
   misconceptions:
     - id: sorts-by-two-features
       what: Switches the feature halfway through sorting (sorts some by colour and some by kind)
@@ -237,6 +242,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: sorting
@@ -262,6 +268,30 @@ lessons:
             say: "Brot, Käse, Apfel. Gehört die Möhre auch zum Essen?"
             show: { object: carrot }
             answer: true
+          - id: l1-c4
+            type: sorting
+            text: "Rot oder gelb?"
+            say: "Sortiere nach der Farbe: rot oder gelb?"
+            bins:
+              - { id: red, show: { drawn: colour-swatch, colour: red }, say: "rot" }
+              - { id: yellow, show: { drawn: colour-swatch, colour: yellow }, say: "gelb" }
+            options:
+              - { object: ball, colour: red, bin: red }
+              - { object: car, colour: yellow, bin: yellow }
+              - { object: dress, colour: red, bin: red }
+              - { object: leaf, colour: yellow, bin: yellow }
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Was passt nicht dazu?"
+            say: "Drei gehören zusammen. Was passt nicht dazu?"
+            options: [{ object: frog }, { object: snail }, { object: fish }, { object: bread }]
+            answer: bread
+          - id: l1-c6
+            type: true_false
+            text: "Gehört der Ball zur Kleidung?"
+            say: "Hose, Rock, Jacke. Gehört der Ball auch zur Kleidung?"
+            show: { object: ball }
+            answer: false
 
   - n: 2
     title: { de: "Wie viele in jeder Gruppe?", en: "How many in each group?" }
@@ -448,8 +478,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sort
             type: sorting
             text: "Schule oder Spielzeug?"
             say: "Sortiere: Brauchst du es in der Schule, oder ist es ein Spielzeug?"
@@ -462,12 +494,14 @@ lessons:
               - { object: scissors, bin: school }
               - { object: yo-yo, bin: toy }
           - id: l2-c2
+            part: odd-one-out
             type: image_multiple_choice
             text: "Was passt nicht dazu?"
             say: "Drei gehören zusammen. Welches Bild passt nicht?"
             options: [{ object: sun }, { object: moon }, { object: star }, { object: shoe }]
             answer: shoe
           - id: l2-c3
+            part: count
             type: multiple_choice
             text: "Wie viele Enten sind es?"
             say: "Wie viele Enten sind in dieser Gruppe?"
@@ -476,13 +510,154 @@ lessons:
             answer: "5"
             option_audio: false
           - id: l2-c4
+            part: compare
             type: multiple_choice
             text: "Es sind 7 rote und 9 gelbe Blumen. Wovon gibt es mehr?"
             say: "Im Beet sind sieben rote und neun gelbe Blumen. Wovon gibt es mehr?"
             options: ["gelbe Blumen", "rote Blumen", "gleich viele"]
             answer: "gelbe Blumen"
           - id: l2-c5
+            part: compare
             type: true_false
             text: "Es sind 3 Kinder mit Brille und 3 ohne. Es sind gleich viele."
             say: "In der Gruppe sind drei Kinder mit Brille und drei ohne Brille. Stimmt das: Es sind gleich viele?"
             answer: true
+          - id: l2-c6
+            part: sort
+            type: sorting
+            text: "Essen oder Kleidung?"
+            say: "Sortiere: Kann man es essen, oder kann man es anziehen?"
+            bins:
+              - { id: food, show: { text: "Essen" }, say: "Essen" }
+              - { id: clothes, show: { text: "Kleidung" }, say: "Kleidung" }
+            options:
+              - { object: cheese, bin: food }
+              - { object: sock, bin: clothes }
+              - { object: strawberry, bin: food }
+              - { object: skirt, bin: clothes }
+          - id: l2-c7
+            part: odd-one-out
+            type: image_multiple_choice
+            text: "Was passt nicht dazu?"
+            say: "Drei gehören zusammen. Welches Bild passt nicht?"
+            options: [{ object: bus }, { object: bike }, { object: cat }, { object: boat }]
+            answer: cat
+          - id: l2-c8
+            part: count
+            type: multiple_choice
+            text: "Wie viele Murmeln sind es?"
+            say: "Mia hat ihre Murmeln in eine Gruppe sortiert. Wie viele sind es?"
+            show: { object: marble, count: 7 }
+            options: ["7", "6", "8"]
+            answer: "7"
+            option_audio: false
+          - id: l2-c9
+            part: compare
+            type: image_multiple_choice
+            text: "Wo sind weniger Bälle?"
+            say: "Ben hat die Bälle in zwei Gruppen gelegt. Wo sind weniger?"
+            options:
+              - { object: ball, count: 5, layout: row }
+              - { object: ball, count: 2, layout: scattered }
+            answer: "2"
+          - id: l2-c10
+            part: sort
+            type: sorting
+            text: "Rot oder grün?"
+            say: "Sortiere nach der Farbe: rot oder grün?"
+            bins:
+              - { id: red, show: { drawn: colour-swatch, colour: red }, say: "rot" }
+              - { id: green, show: { drawn: colour-swatch, colour: green }, say: "grün" }
+            options:
+              - { object: leaf, colour: green, bin: green }
+              - { object: balloon, colour: red, bin: red }
+              - { object: jacket, colour: green, bin: green }
+              - { object: car, colour: red, bin: red }
+          - id: l2-c11
+            part: odd-one-out
+            type: true_false
+            text: "Gehört die Kuh zu den Fahrzeugen?"
+            say: "Bus, Zug, Fahrrad. Gehört die Kuh auch zu den Fahrzeugen?"
+            show: { object: cow }
+            answer: false
+          - id: l2-c12
+            part: count
+            type: multiple_choice
+            text: "Wie viele Bananen sind es?"
+            say: "Wie viele Bananen sind in dieser Gruppe?"
+            show: { object: banana, count: 6 }
+            options: ["6", "5", "7"]
+            answer: "6"
+            option_audio: false
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Es sind 4 Hunde und 7 Katzen. Wovon gibt es mehr?"
+            say: "Im Tierheim sind vier Hunde und sieben Katzen. Wovon gibt es mehr?"
+            options: ["Katzen", "Hunde", "gleich viele"]
+            answer: "Katzen"
+          - id: l2-c14
+            part: sort
+            type: sorting
+            text: "Tier oder Spielzeug?"
+            say: "Sortiere: Ist es ein Tier oder ein Spielzeug?"
+            bins:
+              - { id: animal, show: { text: "Tier" }, say: "Tier" }
+              - { id: toy, show: { text: "Spielzeug" }, say: "Spielzeug" }
+            options:
+              - { object: rabbit, bin: animal }
+              - { object: ball, bin: toy }
+              - { object: frog, bin: animal }
+              - { object: marble, bin: toy }
+          - id: l2-c15
+            part: odd-one-out
+            type: image_multiple_choice
+            text: "Was gehört zum Obst?"
+            say: "Apfel, Banane, Birne. Was gehört auch zum Obst?"
+            options: [{ object: cheese }, { object: strawberry }, { object: sock }]
+            answer: strawberry
+          - id: l2-c16
+            part: count
+            type: multiple_choice
+            text: "Wie viele Vögel sind es?"
+            say: "Wie viele Vögel sind in dieser Gruppe?"
+            show: { object: bird, count: 9 }
+            options: ["9", "8", "10"]
+            answer: "9"
+            option_audio: false
+          - id: l2-c17
+            part: count
+            type: true_false
+            text: "In der Gruppe sind 6 Äpfel."
+            say: "Zähl genau. Stimmt das? In der Gruppe sind sechs Äpfel."
+            show: { object: apple, count: 5 }
+            answer: false
+          - id: l2-c18
+            part: sort
+            type: sorting
+            text: "Blau oder gelb?"
+            say: "Sortiere nach der Farbe: blau oder gelb?"
+            bins:
+              - { id: blue, show: { drawn: colour-swatch, colour: blue }, say: "blau" }
+              - { id: yellow, show: { drawn: colour-swatch, colour: yellow }, say: "gelb" }
+            options:
+              - { object: car, colour: blue, bin: blue }
+              - { object: ball, colour: yellow, bin: yellow }
+              - { object: dress, colour: yellow, bin: yellow }
+              - { object: jacket, colour: blue, bin: blue }
+              - { object: leaf, colour: yellow, bin: yellow }
+          - id: l2-c19
+            part: odd-one-out
+            type: image_multiple_choice
+            text: "Was passt nicht dazu?"
+            say: "Drei gehören zusammen. Welches Bild passt nicht?"
+            options: [{ object: book }, { object: cow }, { object: crayon }, { object: scissors }]
+            answer: cow
+          - id: l2-c20
+            part: compare
+            type: multiple_choice
+            text: "9 Kinder spielen Fangen, 4 spielen Verstecken. Wie viele Kinder mehr spielen Fangen?"
+            say: "In der Pause spielen neun Kinder Fangen und vier Kinder Verstecken. Wie viele Kinder mehr spielen Fangen?"
+            options: ["5", "13", "4"]
+            answer: "5"
+            option_audio: false

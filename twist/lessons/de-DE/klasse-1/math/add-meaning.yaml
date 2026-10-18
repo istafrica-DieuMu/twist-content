@@ -22,6 +22,10 @@ metadata:
   forms: [picture, drawn, text, audio]
   drawn: [ten-frame, dots]
   facets: []
+  parts:
+    - { id: picture, what: { de: die Plusaufgabe zu einem Bild finden, en: finding the addition for a picture } }
+    - { id: story, what: { de: die Plusaufgabe zu einer Geschichte finden und lösen, en: finding and solving the addition for a story } }
+    - { id: tell, what: { de: die Geschichte zu einer Plusaufgabe finden, en: finding the story for an addition } }
   misconceptions:
     - id: count-all-only
       what: Counts the total but cannot say which sum goes with it
@@ -225,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -247,6 +252,24 @@ lessons:
             frame: "_ + _ = _"
             options: ["2", "4", "3"]
             answer: ["2", "2", "4"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welche Aufgabe passt?"
+            say: "Ein roter Punkt und noch fünf blaue dazu. Welche Plusaufgabe passt?"
+            show: { drawn: ten-frame, filled: 6, colour_split: [1, 5] }
+            options: ["1 + 5", "1 + 1", "5 + 5"]
+            answer: "1 + 5"
+          - id: l1-c5
+            type: true_false
+            text: "4 Kinder malen. 4 kommen dazu. Passt 4 + 2?"
+            say: "Vier Kinder malen. Vier Kinder kommen dazu. Passt vier plus zwei?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wie viele sind es zusammen?"
+            show: { drawn: ten-frame, filled: 10, colour_split: [6, 4] }
+            options: ["9", "10", "11"]
+            answer: "10"
 
   - n: 2
     title: { de: Rechengeschichten, en: Number stories }
@@ -426,8 +449,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: picture
             type: multiple_choice
             text: "Welche Aufgabe passt?"
             say: "Fünf rote Punkte und noch zwei blaue dazu. Welche Plusaufgabe passt?"
@@ -435,6 +460,7 @@ lessons:
             options: ["5 + 2", "5 + 5", "7 + 2"]
             answer: "5 + 2"
           - id: l2-c2
+            part: story
             type: fill_in_blank
             text: "Schreib die Aufgabe."
             say: "Im Teich schwimmen vier Enten. Zwei Enten kommen dazu. Schreib die Plusaufgabe."
@@ -442,18 +468,126 @@ lessons:
             options: ["2", "4", "6"]
             answer: ["4", "2", "6"]
           - id: l2-c3
+            part: tell
             type: multiple_choice
             text: "Welche Geschichte passt zu 2 + 6?"
             options: ["2 Kinder lesen, 6 kommen dazu.", "6 Kinder lesen, 2 gehen weg.", "2 Kinder lesen, 2 kommen dazu."]
             answer: "2 Kinder lesen, 6 kommen dazu."
           - id: l2-c4
+            part: story
             type: multiple_choice
             text: "Wie viele sind es jetzt?"
             say: "Drei Kinder sitzen auf der Bank. Vier setzen sich dazu. Wie viele sitzen jetzt auf der Bank?"
             options: ["6", "7", "8"]
             answer: "7"
           - id: l2-c5
+            part: story
             type: true_false
             text: "Ein Junge hat 6 Murmeln und bekommt 2 dazu. Passt 6 + 2?"
             say: "Ein Junge hat sechs Murmeln und bekommt zwei dazu. Die Aufgabe ist sechs plus zwei. Stimmt das?"
+            answer: true
+          - id: l2-c6
+            part: picture
+            type: multiple_choice
+            text: "Welche Aufgabe passt?"
+            say: "Vier rote Punkte und noch drei blaue dazu. Welche Plusaufgabe passt?"
+            show: { drawn: ten-frame, filled: 7, colour_split: [4, 3] }
+            options: ["4 + 3", "4 + 4", "3 + 3"]
+            answer: "4 + 3"
+          - id: l2-c7
+            part: picture
+            type: fill_in_blank
+            text: "Schreib die Aufgabe."
+            say: "Sechs rote Punkte und drei blaue Punkte. Schreib die Plusaufgabe: erst die roten, dann die blauen."
+            show: { drawn: ten-frame, filled: 9, colour_split: [6, 3] }
+            frame: "_ + _ = _"
+            options: ["3", "6", "9"]
+            answer: ["6", "3", "9"]
+          - id: l2-c8
+            part: picture
+            type: multiple_choice
+            text: "Wie viele sind es zusammen?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [5, 3] }
+            options: ["7", "8", "9"]
+            answer: "8"
+          - id: l2-c9
+            part: picture
+            type: true_false
+            text: "2 rote und 4 blaue Punkte. Passt 2 + 4?"
+            say: "Zwei rote Punkte und vier blaue Punkte. Passt zwei plus vier?"
+            show: { drawn: ten-frame, filled: 6, colour_split: [2, 4] }
+            answer: true
+          - id: l2-c10
+            part: picture
+            type: true_false
+            text: "3 rote und 5 blaue Punkte. Passt 3 + 3?"
+            say: "Drei rote Punkte und fünf blaue Punkte. Passt drei plus drei?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [3, 5] }
+            answer: false
+          - id: l2-c11
+            part: picture
+            type: fill_in_blank
+            text: "Schreib die Aufgabe."
+            say: "Ein roter Punkt und vier blaue Punkte. Schreib die Plusaufgabe: erst den roten, dann die blauen."
+            show: { drawn: dots, count: 5, layout: five-structure, colour_split: [1, 4] }
+            frame: "_ + _ = _"
+            options: ["1", "4", "5"]
+            answer: ["1", "4", "5"]
+          - id: l2-c12
+            part: story
+            type: multiple_choice
+            text: "4 Hunde spielen im Park. 5 Hunde kommen dazu. Welche Aufgabe passt?"
+            say: "Vier Hunde spielen im Park. Fünf Hunde kommen dazu. Welche Plusaufgabe passt?"
+            options: ["4 + 5", "5 − 4", "4 + 4"]
+            answer: "4 + 5"
+          - id: l2-c13
+            part: story
+            type: fill_in_blank
+            text: "7 Kinder sitzen im Bus. 2 steigen ein. Schreib die Aufgabe."
+            say: "Sieben Kinder sitzen im Bus. Zwei steigen ein. Schreib die Plusaufgabe."
+            frame: "_ + _ = _"
+            options: ["2", "7", "9"]
+            answer: ["7", "2", "9"]
+          - id: l2-c14
+            part: story
+            type: multiple_choice
+            text: "Lisa hat 3 rote und 3 grüne Äpfel. Wie viele Äpfel sind es zusammen?"
+            say: "Lisa hat drei rote und drei grüne Äpfel. Wie viele Äpfel sind es zusammen?"
+            options: ["5", "6", "7"]
+            answer: "6"
+          - id: l2-c15
+            part: story
+            type: true_false
+            text: "Im Glas sind 8 Bonbons. Mama legt 1 dazu. Passt 8 − 1?"
+            say: "Im Glas sind acht Bonbons. Mama legt einen dazu. Passt acht minus eins?"
+            answer: false
+          - id: l2-c16
+            part: tell
+            type: multiple_choice
+            text: "Welche Geschichte passt zu 4 + 2?"
+            options: ["4 Katzen schlafen, 2 kommen dazu.", "4 Katzen schlafen, 2 laufen weg.", "2 Katzen schlafen, 2 kommen dazu."]
+            answer: "4 Katzen schlafen, 2 kommen dazu."
+          - id: l2-c17
+            part: tell
+            type: multiple_choice
+            text: "Welche Geschichte passt zu 1 + 7?"
+            options: ["1 Kind spielt, 7 kommen dazu.", "7 Kinder spielen, 1 geht weg.", "1 Kind spielt, 1 kommt dazu."]
+            answer: "1 Kind spielt, 7 kommen dazu."
+          - id: l2-c18
+            part: tell
+            type: multiple_choice
+            text: "Welche Geschichte passt zu 5 + 5?"
+            options: ["5 Enten schwimmen, 5 kommen dazu.", "5 Enten schwimmen, 5 schwimmen weg.", "10 Enten schwimmen, 5 kommen dazu."]
+            answer: "5 Enten schwimmen, 5 kommen dazu."
+          - id: l2-c19
+            part: tell
+            type: true_false
+            text: "6 Vögel sitzen im Baum. 3 fliegen weg. Passt das zu 6 + 3?"
+            say: "Sechs Vögel sitzen im Baum. Drei fliegen weg. Passt das zu sechs plus drei?"
+            answer: false
+          - id: l2-c20
+            part: tell
+            type: true_false
+            text: "2 Kinder malen. 7 kommen dazu. Passt das zu 2 + 7?"
+            say: "Zwei Kinder malen. Sieben kommen dazu. Passt das zu zwei plus sieben?"
             answer: true

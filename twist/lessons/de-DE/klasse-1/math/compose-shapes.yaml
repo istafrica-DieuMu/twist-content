@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, grid]
   facets: []
+  parts:
+    - { id: compose, what: { de: aus Teilen eine neue Form legen, en: putting pieces together into a new shape } }
+    - { id: count-pieces, what: { de: die Teile einer gelegten Figur zählen, en: counting the pieces of a laid figure } }
+    - { id: split, what: { de: Formen zerlegen, en: splitting shapes } }
+    - { id: copy, what: { de: eine Figur genau nach Vorlage nachlegen, en: copying a figure exactly from a model } }
   misconceptions:
     - id: two-squares-make-square
       what: Thinks two squares laid side by side make a bigger square
@@ -249,6 +254,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -268,6 +274,26 @@ lessons:
             say: "Wie viele Dreiecke hat das Haus?"
             show: { drawn: grid, cols: 4, rows: 2, halves: [[1, 0, br, red], [2, 0, bl, blue]], cells: [[1, 1, yellow], [2, 1, green]] }
             options: ["2", "1", "4"]
+            answer: "2"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Aus welchen Teilen ist das Rechteck gelegt?"
+            say: "Aus welchen Teilen ist dieses Rechteck gelegt?"
+            show: { drawn: grid, cols: 4, rows: 1, cells: [[1, 0, green], [2, 0, orange]] }
+            options: ["aus 2 Quadraten", "aus 2 Dreiecken", "aus 2 Kreisen"]
+            answer: "aus 2 Quadraten"
+          - id: l1-c5
+            type: true_false
+            text: "Drei Quadrate in einer Reihe ergeben ein Quadrat."
+            say: "Stimmt das? Drei Quadrate in einer Reihe ergeben zusammen ein Quadrat."
+            show: { drawn: shape, row: [square, square, square], colours: red }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wie viele Quadrate hat das Haus?"
+            say: "Wie viele Quadrate hat das Haus?"
+            show: { drawn: grid, cols: 4, rows: 2, halves: [[1, 0, br, red], [2, 0, bl, blue]], cells: [[1, 1, yellow], [2, 1, green]] }
+            options: ["2", "3", "4"]
             answer: "2"
 
   - n: 2
@@ -471,8 +497,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compose
             type: multiple_choice
             text: "Mia hat ein Quadrat gelegt. Aus welchen Teilen ist es gelegt?"
             say: "Mia hat ein Quadrat gelegt. Aus welchen Teilen ist es gelegt?"
@@ -480,6 +508,7 @@ lessons:
             options: ["aus 2 Dreiecken", "aus 2 Rechtecken", "aus 4 Dreiecken"]
             answer: "aus 2 Dreiecken"
           - id: l2-c2
+            part: compose
             type: image_multiple_choice
             text: "Vier Quadrate liegen in einer Reihe. Welche Form entsteht?"
             say: "Du legst vier Quadrate in einer Reihe dicht nebeneinander. Welche Form entsteht?"
@@ -491,6 +520,7 @@ lessons:
             answer: rectangle
             option_audio: false
           - id: l2-c3
+            part: split
             type: multiple_choice
             text: "Lea schneidet ein Quadrat einmal gerade durch die Mitte. Welche Teile bekommt sie?"
             say: "Lea schneidet ein Quadrat einmal gerade durch die Mitte. Welche Teile bekommt sie?"
@@ -498,6 +528,7 @@ lessons:
             options: ["2 Rechtecke", "2 Dreiecke", "2 Kreise"]
             answer: "2 Rechtecke"
           - id: l2-c4
+            part: copy
             type: image_multiple_choice
             text: "Welche Figur ist genau wie die Vorlage gelegt?"
             say: "Hier ist die Vorlage. Welche Figur ist genau so gelegt?"
@@ -508,6 +539,7 @@ lessons:
               - { drawn: grid, cols: 3, rows: 2, cells: [[0, 0, red], [1, 0, blue], [2, 0, red], [1, 1, yellow]], key: gleich }
             answer: gleich
           - id: l2-c5
+            part: count-pieces
             type: fill_in_blank
             text: "Wie viele Dreiecke und wie viele Quadrate hat der Turm?"
             say: "Zähl die Teile im Turm. Wie viele Dreiecke und wie viele Quadrate sind es?"
@@ -516,3 +548,132 @@ lessons:
             options: ["1", "2", "3", "4"]
             answer: ["2", "4"]
             option_audio: false
+          - id: l2-c6
+            part: compose
+            type: image_multiple_choice
+            text: "Zwei Dreiecke liegen zusammen. Welche Form ist das?"
+            say: "Zwei Dreiecke liegen dicht zusammen. Welche Form ist entstanden?"
+            show: { drawn: grid, cols: 3, rows: 1, halves: [[1, 0, tr, blue], [1, 0, bl, red]] }
+            options:
+              - { drawn: shape, kind: triangle, colour: purple }
+              - { drawn: shape, kind: circle, colour: purple }
+              - { drawn: shape, kind: square, colour: purple }
+            answer: square
+            option_audio: false
+          - id: l2-c7
+            part: compose
+            type: true_false
+            text: "Aus zwei Quadraten kannst du ein großes Quadrat legen."
+            say: "Stimmt das? Aus zwei Quadraten kannst du ein großes Quadrat legen."
+            show: { drawn: shape, row: [square, square], colours: yellow }
+            answer: false
+          - id: l2-c8
+            part: compose
+            type: multiple_choice
+            text: "Zwei Dreiecke bilden das Dach. Welche Form hat das ganze Dach?"
+            say: "Zwei Dreiecke bilden das Dach. Welche Form hat das ganze Dach?"
+            show: { drawn: grid, cols: 4, rows: 1, halves: [[1, 0, br, blue], [2, 0, bl, yellow]] }
+            options: ["ein Dreieck", "ein Quadrat", "ein Kreis"]
+            answer: "ein Dreieck"
+          - id: l2-c9
+            part: count-pieces
+            type: multiple_choice
+            text: "Wie viele Plättchen brauchst du für dieses Rechteck?"
+            say: "Wie viele kleine Quadrat-Plättchen brauchst du für dieses lange Rechteck?"
+            show: { drawn: grid, cols: 5, rows: 2, lines: [[0, 0, 4, 0], [4, 0, 4, 2], [4, 2, 0, 2], [0, 2, 0, 0]] }
+            options: ["8", "6", "4"]
+            answer: "8"
+          - id: l2-c10
+            part: count-pieces
+            type: fill_in_blank
+            text: "Wie viele Dreiecke und wie viele Quadrate hat diese Figur?"
+            say: "Zähl die Teile der Figur. Wie viele Dreiecke und wie viele Quadrate sind es?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 0, blue], [1, 1, blue], [1, 2, blue]], halves: [[0, 2, br, red], [2, 2, bl, red]] }
+            frame: "_ Dreiecke und _ Quadrate"
+            options: ["1", "2", "3", "4"]
+            answer: ["2", "3"]
+            option_audio: false
+          - id: l2-c11
+            part: count-pieces
+            type: true_false
+            text: "Das Rechteck ist aus 3 Quadraten gelegt."
+            say: "Stimmt das? Das Rechteck ist aus drei Quadraten gelegt."
+            show: { drawn: grid, cols: 6, rows: 1, cells: [[1, 0, red], [2, 0, blue], [3, 0, yellow], [4, 0, green]] }
+            answer: false
+          - id: l2-c12
+            part: count-pieces
+            type: multiple_choice
+            text: "Aus wie vielen Plättchen ist diese Figur gelegt?"
+            say: "Aus wie vielen Plättchen ist diese Figur gelegt?"
+            show: { drawn: grid, cols: 4, rows: 2, cells: [[1, 0, red], [2, 0, red], [1, 1, yellow], [2, 1, yellow]], halves: [[0, 1, tr, blue], [3, 1, tl, blue]] }
+            options: ["6", "4", "8"]
+            answer: "6"
+          - id: l2-c13
+            part: split
+            type: multiple_choice
+            text: "Du schneidest das Quadrat an den Linien durch. Wie viele kleine Quadrate bekommst du?"
+            say: "Du schneidest das Quadrat an den dicken Linien durch. Wie viele kleine Quadrate bekommst du?"
+            show: { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [1, 0, 1, 2], [0, 1, 2, 1]] }
+            options: ["4", "2", "8"]
+            answer: "4"
+          - id: l2-c14
+            part: split
+            type: multiple_choice
+            text: "Tim schneidet das Quadrat schräg von Ecke zu Ecke. Welche Teile bekommt er?"
+            say: "Tim schneidet das Quadrat schräg von einer Ecke zur anderen. Welche Teile bekommt er?"
+            show: { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [0, 0, 2, 2]] }
+            options: ["2 Dreiecke", "2 Rechtecke", "2 Quadrate"]
+            answer: "2 Dreiecke"
+          - id: l2-c15
+            part: split
+            type: true_false
+            text: "Du schneidest das Rechteck an der Linie durch. Du bekommst 2 Dreiecke."
+            say: "Du schneidest das Rechteck an der dicken Linie durch. Stimmt das? Du bekommst zwei Dreiecke."
+            show: { drawn: grid, cols: 2, rows: 1, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 1], [2, 1, 0, 1], [0, 1, 0, 0], [1, 0, 1, 1]] }
+            answer: false
+          - id: l2-c16
+            part: split
+            type: image_multiple_choice
+            text: "Nele schneidet das Quadrat an beiden Linien durch. Welche Teile bekommt sie?"
+            say: "Nele schneidet das Quadrat an beiden dicken Linien durch. Welche Teile bekommt sie?"
+            show: { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [0, 0, 2, 2], [2, 0, 0, 2]] }
+            options:
+              - { drawn: shape, row: [triangle, triangle], colours: blue, key: zwei-dreiecke }
+              - { drawn: shape, row: [square, square, square, square], colours: blue, key: vier-quadrate }
+              - { drawn: shape, row: [triangle, triangle, triangle, triangle], colours: blue, key: vier-dreiecke }
+            answer: vier-dreiecke
+            option_audio: false
+          - id: l2-c17
+            part: copy
+            type: image_multiple_choice
+            text: "Welche Figur ist genau so gelegt wie die Vorlage?"
+            say: "Schau dir die Vorlage an. Welche Figur ist genau so gelegt?"
+            show: { drawn: grid, cols: 3, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, blue]] }
+            options:
+              - { drawn: grid, cols: 3, rows: 1, cells: [[0, 0, blue], [1, 0, red], [2, 0, red]], key: andersrum }
+              - { drawn: grid, cols: 3, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, blue]], key: gleich }
+              - { drawn: grid, cols: 3, rows: 1, cells: [[0, 0, red], [1, 0, blue], [2, 0, blue]], key: farben }
+            answer: gleich
+          - id: l2-c18
+            part: copy
+            type: true_false
+            text: "Links die Vorlage, rechts Bens Figur. Hat Ben alles richtig nachgelegt?"
+            say: "Links ist die Vorlage, rechts hat Ben nachgelegt. Hat Ben alles richtig nachgelegt?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, blue], [1, 0, yellow], [0, 1, red], [3, 0, blue], [4, 0, yellow], [3, 1, red]] }
+            answer: true
+          - id: l2-c19
+            part: copy
+            type: multiple_choice
+            text: "Links die Vorlage, rechts Saras Figur. Was ist anders?"
+            say: "Links ist die Vorlage, rechts hat Sara nachgelegt. Was ist bei Sara anders?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, green], [1, 0, green], [1, 1, red], [3, 0, green], [4, 0, green], [3, 1, red]] }
+            options: ["Ein Plättchen liegt an einer anderen Stelle.", "Ein Plättchen hat eine andere Farbe.", "Nichts, alles ist gleich."]
+            answer: "Ein Plättchen liegt an einer anderen Stelle."
+          - id: l2-c20
+            part: copy
+            type: multiple_choice
+            text: "Links die Vorlage, rechts legt Lukas nach. Welches Teil fehlt noch?"
+            say: "Links ist die Vorlage. Rechts legt Lukas die Figur nach. Welches Teil fehlt noch?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, red], [0, 1, red], [1, 1, blue], [3, 0, red], [3, 1, red]] }
+            options: ["ein blaues Quadrat", "ein rotes Quadrat", "ein blaues Dreieck"]
+            answer: "ein blaues Quadrat"

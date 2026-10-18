@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [ten-frame]
   facets: []
+  parts:
+    - { id: picture, what: { de: "die Minusaufgabe zu einem Bild finden", en: "finding the subtraction for a picture" } }
+    - { id: story, what: { de: "die Minusaufgabe zu einer Geschichte finden und lösen", en: "finding and solving the subtraction for a story" } }
+    - { id: plus-or-minus, what: { de: "entscheiden, ob eine Geschichte plus oder minus ist", en: "deciding whether a story is plus or minus" } }
+    - { id: story-for-sum, what: { de: "die passende Geschichte zu einer Minusaufgabe finden", en: "finding a story that fits a subtraction" } }
   misconceptions:
     - id: plus-for-everything
       what: Uses plus for every story, also when something goes away
@@ -224,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -244,6 +250,26 @@ lessons:
             say: "Im Bus sitzen vier Kinder. Ein Kind steigt aus. Welche Minusaufgabe passt?"
             options: ["4 − 1", "4 + 1", "1 − 4"]
             answer: "4 − 1"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Schreib die Aufgabe."
+            say: "Zehn Punkte, zwei sind durchgestrichen. Schreib die Minusaufgabe."
+            show: { drawn: ten-frame, filled: 10, cross: 2 }
+            frame: "_ − _ = _"
+            options: ["2", "8", "10"]
+            answer: ["10", "2", "8"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie viele bleiben übrig?"
+            say: "Sieben Punkte, fünf sind durchgestrichen. Wie viele bleiben übrig?"
+            show: { drawn: ten-frame, filled: 7, cross: 5 }
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l1-c6
+            type: true_false
+            text: "Auf dem Ast sitzen 6 Vögel. 4 fliegen weg. Passt 4 − 6?"
+            say: "Auf dem Ast sitzen sechs Vögel. Vier fliegen weg. Passt vier minus sechs?"
+            answer: false
 
   - n: 2
     title: { de: "Plus oder minus?", en: "Plus or minus?" }
@@ -426,8 +452,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: picture
             type: multiple_choice
             text: "Welche Aufgabe passt?"
             say: "Zehn Punkte, drei sind durchgestrichen. Welche Minusaufgabe passt?"
@@ -435,12 +463,14 @@ lessons:
             options: ["10 − 3", "10 + 3", "3 − 10"]
             answer: "10 − 3"
           - id: l2-c2
+            part: plus-or-minus
             type: multiple_choice
             text: "6 Kinder schwimmen. 2 gehen aus dem Wasser.\nPlus oder minus?"
             say: "Sechs Kinder schwimmen. Zwei gehen aus dem Wasser. Plus oder minus?"
             options: ["plus", "minus"]
             answer: "minus"
           - id: l2-c3
+            part: story
             type: fill_in_blank
             text: "Auf dem Teller liegen 5 Erdbeeren. Tim isst 2.\nSchreib die Aufgabe."
             say: "Auf dem Teller liegen fünf Erdbeeren. Tim isst zwei. Schreib die Minusaufgabe."
@@ -448,13 +478,122 @@ lessons:
             options: ["2", "3", "5"]
             answer: ["5", "2", "3"]
           - id: l2-c4
+            part: story-for-sum
             type: multiple_choice
             text: "Welche Geschichte passt zu 6 − 3?"
             options: ["6 Enten schwimmen, 3 fliegen weg.", "6 Enten schwimmen, 3 kommen dazu.", "3 Enten schwimmen, 6 fliegen weg."]
             answer: "6 Enten schwimmen, 3 fliegen weg."
           - id: l2-c5
+            part: picture
             type: multiple_choice
             text: "Wie viele bleiben übrig?"
             show: { drawn: ten-frame, filled: 8, cross: 5 }
             options: ["2", "3", "4"]
             answer: "3"
+          - id: l2-c6
+            part: picture
+            type: fill_in_blank
+            text: "Schreib die Aufgabe."
+            say: "Acht Punkte, vier sind durchgestrichen. Schreib die Minusaufgabe."
+            show: { drawn: ten-frame, filled: 8, cross: 4 }
+            frame: "_ − _ = _"
+            options: ["4", "8", "12"]
+            answer: ["8", "4", "4"]
+          - id: l2-c7
+            part: story
+            type: multiple_choice
+            text: "Im Stall stehen 6 Pferde. 2 laufen auf die Weide.\nWelche Aufgabe passt?"
+            say: "Im Stall stehen sechs Pferde. Zwei laufen auf die Weide. Welche Aufgabe passt?"
+            options: ["6 − 2", "6 + 2", "2 − 6"]
+            answer: "6 − 2"
+          - id: l2-c8
+            part: plus-or-minus
+            type: multiple_choice
+            text: "4 Äpfel liegen im Korb. Opa legt 3 dazu.\nPlus oder minus?"
+            say: "Vier Äpfel liegen im Korb. Opa legt drei dazu. Plus oder minus?"
+            options: ["plus", "minus"]
+            answer: "plus"
+          - id: l2-c9
+            part: story-for-sum
+            type: multiple_choice
+            text: "Welche Geschichte passt zu 8 − 2?"
+            say: "Welche Geschichte passt zu acht minus zwei?"
+            options: ["8 Kinder spielen, 2 gehen nach Hause.", "8 Kinder spielen, 2 kommen dazu.", "2 Kinder spielen, 8 gehen nach Hause."]
+            answer: "8 Kinder spielen, 2 gehen nach Hause."
+          - id: l2-c10
+            part: picture
+            type: multiple_choice
+            text: "Wie viele bleiben übrig?"
+            say: "Zehn Punkte, sechs sind durchgestrichen. Wie viele bleiben übrig?"
+            show: { drawn: ten-frame, filled: 10, cross: 6 }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l2-c11
+            part: story
+            type: fill_in_blank
+            text: "In der Schale liegen 9 Bananen. Oma nimmt 4 heraus.\nSchreib die Aufgabe."
+            say: "In der Schale liegen neun Bananen. Oma nimmt vier heraus. Schreib die Minusaufgabe."
+            frame: "_ − _ = _"
+            options: ["4", "5", "9"]
+            answer: ["9", "4", "5"]
+          - id: l2-c12
+            part: plus-or-minus
+            type: multiple_choice
+            text: "Im Zug sitzen 9 Leute. 4 steigen aus.\nPlus oder minus?"
+            say: "Im Zug sitzen neun Leute. Vier steigen aus. Plus oder minus?"
+            options: ["plus", "minus"]
+            answer: "minus"
+          - id: l2-c13
+            part: story-for-sum
+            type: multiple_choice
+            text: "Welche Geschichte passt zu 10 − 4?"
+            say: "Welche Geschichte passt zu zehn minus vier?"
+            options: ["In der Tüte sind 10 Bonbons, Lea isst 4.", "In der Tüte sind 10 Bonbons, Lea legt 4 dazu.", "In der Tüte sind 4 Bonbons, Lea isst 10."]
+            answer: "In der Tüte sind 10 Bonbons, Lea isst 4."
+          - id: l2-c14
+            part: picture
+            type: multiple_choice
+            text: "Welche Aufgabe passt?"
+            say: "Fünf Punkte, drei sind durchgestrichen. Welche Minusaufgabe passt?"
+            show: { drawn: ten-frame, filled: 5, cross: 3 }
+            options: ["5 − 3", "5 + 3", "3 − 5"]
+            answer: "5 − 3"
+          - id: l2-c15
+            part: story
+            type: multiple_choice
+            text: "Lena hat 7 Luftballons. 3 fliegen davon.\nWie viele hat sie noch?"
+            say: "Lena hat sieben Luftballons. Drei fliegen davon. Wie viele hat sie noch?"
+            options: ["4", "3", "10"]
+            answer: "4"
+          - id: l2-c16
+            part: plus-or-minus
+            type: true_false
+            text: "8 Kinder sind auf dem Spielplatz. 2 kommen dazu. Passt 8 − 2?"
+            say: "Acht Kinder sind auf dem Spielplatz. Zwei kommen dazu. Passt acht minus zwei?"
+            answer: false
+          - id: l2-c17
+            part: story-for-sum
+            type: multiple_choice
+            text: "Welche Geschichte passt zu 4 − 1?"
+            say: "Welche Geschichte passt zu vier minus eins?"
+            options: ["4 Hasen sitzen auf der Wiese, 1 hoppelt weg.", "4 Hasen sitzen auf der Wiese, 1 hoppelt dazu.", "1 Hase sitzt auf der Wiese, 4 hoppeln weg."]
+            answer: "4 Hasen sitzen auf der Wiese, 1 hoppelt weg."
+          - id: l2-c18
+            part: story-for-sum
+            type: true_false
+            text: "7 Schiffe sind im Hafen, 5 fahren hinaus. Passt die Geschichte zu 7 − 5?"
+            say: "Sieben Schiffe sind im Hafen. Fünf fahren hinaus. Passt die Geschichte zu sieben minus fünf?"
+            answer: true
+          - id: l2-c19
+            part: story
+            type: true_false
+            text: "6 Kinder sitzen auf der Bank. 4 stehen auf und gehen. Es sitzen noch 3. Stimmt das?"
+            say: "Sechs Kinder sitzen auf der Bank. Vier stehen auf und gehen. Es sitzen noch drei. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: plus-or-minus
+            type: multiple_choice
+            text: "Paul hat 3 Autos. Er bekommt 2 geschenkt.\nPlus oder minus?"
+            say: "Paul hat drei Autos. Er bekommt zwei geschenkt. Plus oder minus?"
+            options: ["plus", "minus"]
+            answer: "plus"

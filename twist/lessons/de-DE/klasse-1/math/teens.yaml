@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [ten-frame, zwanzigerfeld, place-value-chart]
   facets: []
+  parts:
+    - { id: see, what: { de: Anzahlen von 11 bis 20 im Zwanzigerfeld erkennen, en: reading amounts from 11 to 20 in the twenty-frame } }
+    - { id: tens-ones, what: { de: eine Zahl als Zehner und Einer verstehen, en: seeing a number as one ten and some ones } }
+    - { id: write, what: { de: gehörte Zahlen richtig schreiben, en: writing numbers you hear in the right order } }
   misconceptions:
     - id: count-all-again
       what: Counts every counter from one instead of seeing the full ten
@@ -232,6 +236,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -254,6 +259,25 @@ lessons:
             frame: "_ Zehner und _ Einer"
             options: ["1", "2", "10", "12"]
             answer: ["1", "2"]
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Welches Bild zeigt 15 Punkte?"
+            say: "Welches Bild zeigt fünfzehn Punkte?"
+            options: [{ drawn: zwanzigerfeld, filled: [10, 4] }, { drawn: zwanzigerfeld, filled: [5, 0] }, { drawn: zwanzigerfeld, filled: [10, 5] }]
+            answer: "15"
+          - id: l1-c5
+            type: true_false
+            text: "Sind das 16 Punkte?"
+            say: "Sind das sechzehn Punkte?"
+            show: { drawn: zwanzigerfeld, filled: [10, 7] }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Woraus besteht 13?"
+            say: "Woraus besteht dreizehn?"
+            option_audio: false
+            options: ["10 und 2", "10 und 3", "3 und 3"]
+            answer: "10 und 3"
 
   - n: 2
     title: { de: Zahlen bis 20 lesen und schreiben, en: Reading and writing numbers to 20 }
@@ -432,8 +456,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: see
             type: multiple_choice
             text: "Wie viele Punkte?"
             say: "Wie viele Punkte sind es zusammen?"
@@ -441,11 +467,13 @@ lessons:
             options: ["20", "10", "11"]
             answer: "20"
           - id: l2-c2
+            part: write
             type: text_input
             text: "Schreib die Zahl."
             say: "Schreib die Zahl sechzehn."
             answer: "16"
           - id: l2-c3
+            part: write
             type: multiple_choice
             text: "Welche Zahl hörst du?"
             say: "Siebzehn. Welche Zahl hörst du?"
@@ -453,15 +481,127 @@ lessons:
             options: ["71", "7", "17"]
             answer: "17"
           - id: l2-c4
+            part: tens-ones
             type: fill_in_blank
-            text: "Zehner und Einer"
+            text: "Wie viele Zehner und Einer hat die 14?"
             say: "Wie viele Zehner und wie viele Einer hat die Zahl vierzehn?"
             frame: "_ Zehner und _ Einer"
             options: ["1", "4", "10", "14"]
             answer: ["1", "4"]
           - id: l2-c5
+            part: tens-ones
             type: true_false
             text: "Ist das elf?"
             say: "Lies die Zahl. Ist das elf?"
             show: { drawn: place-value-chart, columns: [tens, ones], values: [1, 1] }
             answer: true
+          - id: l2-c6
+            part: see
+            type: true_false
+            text: "Sind das 13 Punkte?"
+            say: "Sind das dreizehn Punkte?"
+            show: { drawn: zwanzigerfeld, filled: [10, 3] }
+            answer: true
+          - id: l2-c7
+            part: tens-ones
+            type: fill_in_blank
+            text: "Wie viele Zehner und Einer hat die 11?"
+            say: "Wie viele Zehner und wie viele Einer hat die Zahl elf?"
+            frame: "_ Zehner und _ Einer"
+            options: ["1", "11", "10"]
+            answer: ["1", "1"]
+          - id: l2-c8
+            part: write
+            type: text_input
+            text: "Schreib die Zahl."
+            say: "Schreib die Zahl dreizehn."
+            answer: "13"
+          - id: l2-c9
+            part: see
+            type: true_false
+            text: "Sind das 17 Punkte?"
+            say: "Sind das siebzehn Punkte?"
+            show: { drawn: zwanzigerfeld, filled: [10, 6] }
+            answer: false
+          - id: l2-c10
+            part: tens-ones
+            type: multiple_choice
+            text: "Welche Zahl steht in der Stellentafel?"
+            say: "Lies die Zahl in der Stellentafel."
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [1, 9] }
+            options: ["19", "91", "10"]
+            answer: "19"
+          - id: l2-c11
+            part: write
+            type: multiple_choice
+            text: "Welche Zahl hörst du?"
+            say: "Vierzehn. Welche Zahl hörst du?"
+            option_audio: false
+            options: ["41", "14", "4"]
+            answer: "14"
+          - id: l2-c12
+            part: see
+            type: image_multiple_choice
+            text: "Welches Bild zeigt 14 Punkte?"
+            say: "Welches Bild zeigt vierzehn Punkte?"
+            options: [{ drawn: zwanzigerfeld, filled: [10, 3] }, { drawn: zwanzigerfeld, filled: [10, 4] }, { drawn: zwanzigerfeld, filled: [10, 6] }]
+            answer: "14"
+          - id: l2-c13
+            part: tens-ones
+            type: fill_in_blank
+            text: "Schreib die Zahl."
+            say: "Ein Zehner und sechs Einer. Schreib die Zahl in die Stellentafel."
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [null, null] }
+            frame: "Z: _  E: _"
+            options: ["1", "6", "10"]
+            answer: ["1", "6"]
+          - id: l2-c14
+            part: write
+            type: text_input
+            text: "Schreib die Zahl."
+            say: "Schreib die Zahl zwanzig."
+            answer: "20"
+          - id: l2-c15
+            part: see
+            type: multiple_choice
+            text: "Wie viele Punkte sind im Zwanzigerfeld?"
+            say: "Wie viele Punkte sind im Zwanzigerfeld?"
+            show: { drawn: zwanzigerfeld, filled: [10, 6] }
+            options: ["6", "16", "61"]
+            answer: "16"
+          - id: l2-c16
+            part: tens-ones
+            type: multiple_choice
+            text: "Welche Zahl hat 1 Zehner und 5 Einer?"
+            say: "Welche Zahl hat einen Zehner und fünf Einer?"
+            options: ["51", "6", "15"]
+            answer: "15"
+          - id: l2-c17
+            part: write
+            type: multiple_choice
+            text: "Welche Zahl hörst du?"
+            say: "Zwölf. Welche Zahl hörst du?"
+            option_audio: false
+            options: ["12", "21", "2"]
+            answer: "12"
+          - id: l2-c18
+            part: see
+            type: image_multiple_choice
+            text: "Welches Bild zeigt 12 Punkte?"
+            say: "Welches Bild zeigt zwölf Punkte?"
+            options: [{ drawn: zwanzigerfeld, filled: [10, 1] }, { drawn: zwanzigerfeld, filled: [10, 2] }, { drawn: zwanzigerfeld, filled: [10, 10] }]
+            answer: "12"
+          - id: l2-c19
+            part: tens-ones
+            type: true_false
+            text: "Ist das siebzehn?"
+            say: "Lies die Zahl. Ist das siebzehn?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [1, 4] }
+            answer: false
+          - id: l2-c20
+            part: see
+            type: true_false
+            text: "Sind das 19 Punkte?"
+            say: "Sind das neunzehn Punkte?"
+            show: { drawn: zwanzigerfeld, filled: [10, 8] }
+            answer: false

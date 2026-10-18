@@ -23,6 +23,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots, ten-frame]
   facets: []
+  parts:
+    - { id: to-6, what: { de: Anzahlen bis 6 auf einen Blick erkennen, en: seeing amounts to 6 at a glance } }
+    - { id: power-of-5, what: { de: Anzahlen bis 10 mit der Kraft der 5 erkennen, en: seeing amounts to 10 with the power of five } }
+    - { id: ten-frame, what: { de: Anzahlen im Zehnerfeld erkennen, en: reading amounts in the ten-frame } }
   misconceptions:
     - id: count-each
       what: Counts every dot one by one instead of seeing the pattern, and runs out of time
@@ -245,6 +249,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -266,6 +271,29 @@ lessons:
             show: { drawn: dots, count: 2, layout: scattered, flash: 2 }
             options: ["1", "2", "3"]
             answer: "2"
+          - id: l1-c4
+            type: true_false
+            text: "Sind das 5 Punkte?"
+            say: "Schau genau. Sind das fünf Punkte?"
+            show: { drawn: dots, count: 6, layout: dice, flash: 2 }
+            answer: false
+          - id: l1-c5
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Tippe auf eine Zahl und dann auf das passende Würfelbild."
+            pairs:
+              - left: { text: "1" }
+                right: { drawn: dots, count: 1, layout: dice }
+              - left: { text: "4" }
+                right: { drawn: dots, count: 4, layout: dice }
+              - left: { text: "5" }
+                right: { drawn: dots, count: 5, layout: dice }
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wie viele Punkte? Schau genau!"
+            show: { drawn: dots, count: 4, layout: dice, flash: 1 }
+            options: ["5", "4", "3"]
+            answer: "4"
 
   - n: 2
     title: { de: Die Kraft der 5, en: The power of five }
@@ -473,20 +501,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ten-frame
             type: multiple_choice
             text: "Wie viele Punkte? Schau genau!"
             show: { drawn: ten-frame, filled: 8, colour_split: [5, 3], flash: 2 }
             options: ["8", "7", "9"]
             answer: "8"
           - id: l2-c2
+            part: to-6
             type: multiple_choice
             text: "Wie viele Punkte? Schau genau!"
             show: { drawn: dots, count: 4, layout: dice, flash: 1.5 }
             options: ["3", "5", "4"]
             answer: "4"
           - id: l2-c3
+            part: ten-frame
             type: image_multiple_choice
             text: "Wo sind 10 Punkte?"
             options:
@@ -495,14 +527,137 @@ lessons:
               - { drawn: ten-frame, filled: 10 }
             answer: "10"
           - id: l2-c4
+            part: power-of-5
             type: multiple_choice
             text: "Wie viele Punkte? Schau genau!"
             show: { drawn: dots, count: 7, layout: five-structure, colour_split: [5, 2], flash: 2 }
             options: ["6", "8", "7"]
             answer: "7"
           - id: l2-c5
+            part: to-6
             type: multiple_choice
             text: "Wie viele Punkte hast du gesehen?"
             show: { drawn: dots, count: 5, layout: dice, flash: 1.5 }
             options: ["6", "5", "4"]
             answer: "5"
+          - id: l2-c6
+            part: to-6
+            type: multiple_choice
+            text: "Wie viele Punkte? Schau genau!"
+            show: { drawn: dots, count: 5, layout: scattered, flash: 2 }
+            options: ["4", "5", "6"]
+            answer: "5"
+          - id: l2-c7
+            part: power-of-5
+            type: multiple_choice
+            text: "Wie viele Punkte? Schau genau!"
+            show: { drawn: dots, count: 6, layout: five-structure, colour_split: [5, 1], flash: 2 }
+            options: ["5", "6", "7"]
+            answer: "6"
+          - id: l2-c8
+            part: ten-frame
+            type: multiple_choice
+            text: "Wie viele Punkte sind im Zehnerfeld? Schau genau!"
+            show: { drawn: ten-frame, filled: 4, flash: 1.5 }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l2-c9
+            part: to-6
+            type: true_false
+            text: "Sind das 3 Punkte?"
+            say: "Schau genau. Sind das drei Punkte?"
+            show: { drawn: dots, count: 3, layout: scattered, flash: 2 }
+            answer: true
+          - id: l2-c10
+            part: power-of-5
+            type: multiple_choice
+            text: "Wie viele Punkte? Schau genau!"
+            show: { drawn: dots, count: 9, layout: dice, flash: 2 }
+            options: ["8", "9", "10"]
+            answer: "9"
+          - id: l2-c11
+            part: ten-frame
+            type: true_false
+            text: "Sind das 7 Punkte?"
+            say: "Schau genau. Sind das sieben Punkte?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [5, 3], flash: 2 }
+            answer: false
+          - id: l2-c12
+            part: to-6
+            type: image_multiple_choice
+            text: "Welches Würfelbild zeigt 3?"
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            answer: "3"
+          - id: l2-c13
+            part: power-of-5
+            type: image_multiple_choice
+            text: "Wo sind 8 Punkte?"
+            options:
+              - { drawn: dots, count: 9, layout: five-structure, colour_split: [5, 4] }
+              - { drawn: dots, count: 8, layout: five-structure, colour_split: [5, 3] }
+              - { drawn: dots, count: 7, layout: five-structure, colour_split: [5, 2] }
+            answer: "8"
+          - id: l2-c14
+            part: ten-frame
+            type: image_multiple_choice
+            text: "In welchem Zehnerfeld sind 6 Punkte?"
+            options:
+              - { drawn: ten-frame, filled: 5 }
+              - { drawn: ten-frame, filled: 7, colour_split: [5, 2] }
+              - { drawn: ten-frame, filled: 6, colour_split: [5, 1] }
+            answer: "6"
+          - id: l2-c15
+            part: to-6
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Tippe auf eine Zahl und dann auf das Würfelbild, das dazu passt."
+            pairs:
+              - left: { text: "3" }
+                right: { drawn: dots, count: 3, layout: dice }
+              - left: { text: "6" }
+                right: { drawn: dots, count: 6, layout: dice }
+              - left: { text: "4" }
+                right: { drawn: dots, count: 4, layout: dice }
+          - id: l2-c16
+            part: power-of-5
+            type: true_false
+            text: "Sind das 10 Punkte?"
+            say: "Schau genau. Sind das zehn Punkte?"
+            show: { drawn: dots, count: 10, layout: five-structure, flash: 2 }
+            answer: true
+          - id: l2-c17
+            part: ten-frame
+            type: true_false
+            text: "Sind das 5 Punkte?"
+            say: "Schau genau. Sind das fünf Punkte?"
+            show: { drawn: ten-frame, filled: 6, colour_split: [5, 1], flash: 2 }
+            answer: false
+          - id: l2-c18
+            part: to-6
+            type: multiple_choice
+            text: "Wie viele Punkte? Schau genau!"
+            show: { drawn: dots, count: 2, layout: dice, flash: 1 }
+            options: ["2", "3", "4"]
+            answer: "2"
+          - id: l2-c19
+            part: power-of-5
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Tippe auf eine Zahl und dann auf die Punkte, die dazu passen."
+            pairs:
+              - left: { text: "6" }
+                right: { drawn: dots, count: 6, layout: five-structure, colour_split: [5, 1] }
+              - left: { text: "8" }
+                right: { drawn: dots, count: 8, layout: five-structure, colour_split: [5, 3] }
+              - left: { text: "10" }
+                right: { drawn: dots, count: 10, layout: five-structure }
+          - id: l2-c20
+            part: power-of-5
+            type: multiple_choice
+            text: "Wie viele Punkte siehst du? Schau genau!"
+            show: { drawn: dots, count: 8, layout: five-structure, flash: 1.5 }
+            options: ["9", "8", "7"]
+            answer: "8"

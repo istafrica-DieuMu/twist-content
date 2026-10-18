@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [ten-frame]
   facets: []
+  parts:
+    - { id: find, what: { de: die Tauschaufgabe finden, en: finding the turnaround sum } }
+    - { id: same-result, what: { de: "wissen, dass Tauschaufgaben dasselbe Ergebnis haben", en: knowing that turnaround sums have the same result } }
+    - { id: easier, what: { de: "mit der größeren Zahl anfangen, damit es leichter geht", en: starting with the bigger number to make adding easier } }
+    - { id: not-minus, what: { de: "wissen, dass man Minusaufgaben nicht tauschen kann", en: knowing that subtractions cannot be swapped } }
   misconceptions:
     - id: swap-changes-result
       what: Works out both sums from scratch, not seeing they are equal
@@ -209,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -224,6 +230,25 @@ lessons:
             text: "4 + 6 = 10. Wie viel ist 6 + 4?"
             options: ["9", "10", "11"]
             answer: "10"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Schreib die Tauschaufgabe."
+            say: "Eins plus drei. Schreib die Tauschaufgabe."
+            frame: "1 + 3 = _ + _"
+            options: ["1", "3", "4"]
+            answer: ["3", "1"]
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? 2 + 6 = 6 + 3"
+            answer: false
+          - id: l1-c6
+            type: matching
+            text: "Finde die Tauschaufgaben."
+            say: "Welche Aufgaben sind Tauschaufgaben? Verbinde sie."
+            pairs:
+              - { left: { text: "5 + 4" }, right: { text: "4 + 5" } }
+              - { left: { text: "1 + 2" }, right: { text: "2 + 1" } }
+              - { left: { text: "6 + 4" }, right: { text: "4 + 6" } }
 
   - n: 2
     title: { de: Tauschen macht es leichter, en: Swapping makes it easier }
@@ -387,8 +412,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: find
             type: fill_in_blank
             text: "Schreib die Tauschaufgabe."
             say: "Vier plus fünf. Schreib die Tauschaufgabe."
@@ -396,23 +423,127 @@ lessons:
             options: ["4", "5", "9"]
             answer: ["5", "4"]
           - id: l2-c2
+            part: same-result
             type: multiple_choice
             text: "2 + 4 = 6. Wie viel ist 4 + 2?"
             options: ["5", "6", "8"]
             answer: "6"
           - id: l2-c3
+            part: not-minus
             type: true_false
             text: "Stimmt das? 7 − 1 = 1 − 7"
             answer: false
           - id: l2-c4
+            part: easier
             type: text_input
             text: "3 + 7 = _"
             say: "Drei plus sieben. Tausch die Zahlen, wenn es hilft."
             answer: "10"
           - id: l2-c5
+            part: easier
             type: multiple_choice
             text: "Mit welcher Zahl fängst du an? 1 + 5"
             say: "Eins plus fünf. Mit welcher Zahl fängst du am besten an?"
             options: ["5", "1"]
             answer: "5"
             option_audio: false
+          - id: l2-c6
+            part: find
+            type: multiple_choice
+            text: "Wie heißt die Tauschaufgabe von 8 + 1?"
+            options: ["1 + 8", "8 + 8", "8 − 1"]
+            answer: "1 + 8"
+          - id: l2-c7
+            part: find
+            type: fill_in_blank
+            text: "Schreib die Tauschaufgabe."
+            say: "Sechs plus zwei. Schreib die Tauschaufgabe."
+            frame: "6 + 2 = _ + _"
+            options: ["2", "6", "8"]
+            answer: ["2", "6"]
+          - id: l2-c8
+            part: find
+            type: matching
+            text: "Finde die Tauschaufgaben."
+            say: "Welche Aufgaben sind Tauschaufgaben? Verbinde sie."
+            pairs:
+              - { left: { text: "7 + 3" }, right: { text: "3 + 7" } }
+              - { left: { text: "4 + 2" }, right: { text: "2 + 4" } }
+              - { left: { text: "1 + 5" }, right: { text: "5 + 1" } }
+          - id: l2-c9
+            part: find
+            type: fill_in_blank
+            text: "Schreib die Tauschaufgabe."
+            say: "Rote und blaue Punkte: fünf plus eins. Schreib die Tauschaufgabe."
+            show: { drawn: ten-frame, filled: 6, colour_split: [5, 1] }
+            frame: "5 + 1 = _ + _"
+            options: ["1", "5", "6"]
+            answer: ["1", "5"]
+          - id: l2-c10
+            part: same-result
+            type: multiple_choice
+            text: "5 + 4 = 9. Wie viel ist 4 + 5?"
+            options: ["8", "9", "10"]
+            answer: "9"
+          - id: l2-c11
+            part: same-result
+            type: true_false
+            text: "Stimmt das? 2 + 8 = 8 + 2"
+            answer: true
+          - id: l2-c12
+            part: same-result
+            type: true_false
+            text: "Stimmt das? 1 + 4 = 4 + 2"
+            answer: false
+          - id: l2-c13
+            part: same-result
+            type: multiple_choice
+            text: "6 + 1 = 7. Wie viel ist 1 + 6?"
+            options: ["6", "7", "8"]
+            answer: "7"
+          - id: l2-c14
+            part: easier
+            type: multiple_choice
+            text: "Mit welcher Zahl fängst du an? 4 + 6"
+            say: "Vier plus sechs. Mit welcher Zahl fängst du am besten an?"
+            options: ["4", "6"]
+            answer: "6"
+            option_audio: false
+          - id: l2-c15
+            part: easier
+            type: multiple_choice
+            text: "Welche Aufgabe ist leichter zu rechnen?"
+            options: ["1 + 9", "9 + 1"]
+            answer: "9 + 1"
+            option_audio: false
+          - id: l2-c16
+            part: easier
+            type: multiple_choice
+            text: "2 + 6: Wie zählst du am schnellsten?"
+            say: "Zwei plus sechs. Wie zählst du am schnellsten?"
+            options: ["6 … 7, 8", "2 … 3, 4, 5, 6, 7, 8", "6 … 7"]
+            answer: "6 … 7, 8"
+            option_audio: false
+          - id: l2-c17
+            part: not-minus
+            type: true_false
+            text: "Stimmt das? Bei 8 − 6 darfst du die Zahlen tauschen."
+            say: "Stimmt das? Bei acht minus sechs darfst du die Zahlen tauschen."
+            answer: false
+          - id: l2-c18
+            part: not-minus
+            type: multiple_choice
+            text: "Bei welcher Aufgabe kannst du die Zahlen tauschen?"
+            options: ["4 + 2", "4 − 2"]
+            answer: "4 + 2"
+          - id: l2-c19
+            part: not-minus
+            type: multiple_choice
+            text: "Bei welcher Aufgabe darfst du die Zahlen nicht tauschen?"
+            options: ["6 + 1", "6 − 1"]
+            answer: "6 − 1"
+          - id: l2-c20
+            part: not-minus
+            type: true_false
+            text: "Stimmt das? Bei 3 + 5 darfst du die Zahlen tauschen."
+            answer: true

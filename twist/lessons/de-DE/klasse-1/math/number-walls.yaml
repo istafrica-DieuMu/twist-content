@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-wall]
   facets: []
+  parts:
+    - { id: wall-up, what: { de: eine Zahlenmauer nach oben ausfüllen und prüfen, en: filling a number wall upwards and checking it } }
+    - { id: wall-bottom, what: { de: einen fehlenden Stein unten finden, en: finding a missing bottom stone } }
+    - { id: chain, what: { de: Rechenketten mit plus und minus rechnen, en: working through number chains with plus and minus } }
+    - { id: pattern, what: { de: "sehen, was oben passiert, wenn sich unten ein Stein ändert", en: "seeing what happens at the top when a bottom stone changes" } }
   misconceptions:
     - id: add-for-bottom-gap
       what: Adds the two stones it can see when the gap is at the bottom (oben 12, unten 5, writes 17)
@@ -227,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -250,6 +256,30 @@ lessons:
             say: "Schau dir die Mauer an. Stimmt sie?"
             show: { drawn: number-wall, rows: [[2, 6], [8]] }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Füll die Mitte, dann oben."
+            say: "Füll die zwei Steine in der Mitte, dann den oberen Stein."
+            show: { drawn: number-wall, rows: [[5, 3, 2], [null, null], [null]] }
+            frame: "_ | _ | _"
+            options: ["5", "8", "12", "13"]
+            answer: ["8", "5", "13"]
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Finde den Stein unten."
+            say: "Oben steht elf, unten sechs. Welcher Stein fehlt?"
+            show: { drawn: number-wall, rows: [[null, 6], [11]] }
+            frame: "_"
+            options: ["5", "11", "17"]
+            answer: ["5"]
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Füll den oberen Stein."
+            say: "Welche Zahl gehört in den oberen Stein?"
+            show: { drawn: number-wall, rows: [[9, 9], [null]] }
+            frame: "_"
+            options: ["0", "18", "19"]
+            answer: ["18"]
 
   - n: 2
     title: { de: Rechenketten, en: Number chains }
@@ -432,8 +462,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: wall-up
             type: fill_in_blank
             text: "Füll die Mitte, dann oben."
             say: "Füll die zwei Steine in der Mitte, dann den oberen Stein."
@@ -442,6 +474,7 @@ lessons:
             options: ["9", "10", "19", "20"]
             answer: ["9", "10", "19"]
           - id: l2-c2
+            part: wall-bottom
             type: fill_in_blank
             text: "Finde den Stein unten."
             say: "Oben steht neunzehn, unten elf. Welcher Stein fehlt?"
@@ -450,6 +483,7 @@ lessons:
             options: ["8", "19", "30"]
             answer: ["8"]
           - id: l2-c3
+            part: chain
             type: fill_in_blank
             text: "6 → +7 → _ → −8 → _"
             say: "Fang bei sechs an. Rechne plus sieben, dann minus acht."
@@ -457,14 +491,137 @@ lessons:
             options: ["5", "13", "2", "14"]
             answer: ["13", "5"]
           - id: l2-c4
+            part: wall-up
             type: true_false
             text: "Stimmt die Mauer?"
             say: "Schau dir die Mauer an. Stimmt sie?"
             show: { drawn: number-wall, rows: [[6, 9], [16]] }
             answer: false
           - id: l2-c5
+            part: pattern
             type: multiple_choice
             text: "Unten stehen 5 und 7. Die 5 wird zur 4. Was passiert oben?"
             say: "In einer Mauer stehen unten fünf und sieben. Die Fünf wird zur Vier. Was passiert oben?"
             options: ["Es wird 1 weniger.", "Es wird 1 mehr.", "Es bleibt gleich."]
             answer: "Es wird 1 weniger."
+          - id: l2-c6
+            part: wall-up
+            type: fill_in_blank
+            text: "Füll den oberen Stein."
+            say: "Welche Zahl gehört in den oberen Stein?"
+            show: { drawn: number-wall, rows: [[8, 9], [null]] }
+            frame: "_"
+            options: ["1", "17", "18"]
+            answer: ["17"]
+          - id: l2-c7
+            part: wall-up
+            type: fill_in_blank
+            text: "Füll die Mitte, dann oben."
+            say: "Füll die zwei Steine in der Mitte, dann den oberen Stein."
+            show: { drawn: number-wall, rows: [[4, 1, 6], [null, null], [null]] }
+            frame: "_ | _ | _"
+            options: ["5", "7", "11", "12"]
+            answer: ["5", "7", "12"]
+          - id: l2-c8
+            part: wall-up
+            type: true_false
+            text: "Stimmt die Mauer?"
+            say: "Schau dir die Mauer an. Stimmt sie?"
+            show: { drawn: number-wall, rows: [[2, 5, 4], [7, 9], [16]] }
+            answer: true
+          - id: l2-c9
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Finde den Stein unten."
+            say: "Oben steht zwölf, unten sieben. Welcher Stein fehlt?"
+            show: { drawn: number-wall, rows: [[7, null], [12]] }
+            frame: "_"
+            options: ["5", "12", "19"]
+            answer: ["5"]
+          - id: l2-c10
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Finde den Stein unten."
+            say: "Oben steht fünfzehn, unten acht. Welcher Stein fehlt?"
+            show: { drawn: number-wall, rows: [[null, 8], [15]] }
+            frame: "_"
+            options: ["7", "15", "23"]
+            answer: ["7"]
+          - id: l2-c11
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Finde den Stein unten."
+            say: "Oben steht zwanzig, unten neun. Welcher Stein fehlt?"
+            show: { drawn: number-wall, rows: [[9, null], [20]] }
+            frame: "_"
+            options: ["11", "20", "29"]
+            answer: ["11"]
+          - id: l2-c12
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Finde den Stein unten."
+            say: "Oben steht zehn, unten drei. Welcher Stein fehlt?"
+            show: { drawn: number-wall, rows: [[null, 3], [10]] }
+            frame: "_"
+            options: ["7", "10", "13"]
+            answer: ["7"]
+          - id: l2-c13
+            part: chain
+            type: fill_in_blank
+            text: "8 → +5 → _ → −7 → _"
+            say: "Fang bei acht an. Rechne plus fünf, dann minus sieben."
+            frame: "8 → +5 → _ → −7 → _"
+            options: ["13", "6", "1", "12"]
+            answer: ["13", "6"]
+          - id: l2-c14
+            part: chain
+            type: fill_in_blank
+            text: "16 → −9 → _ → +6 → _"
+            say: "Fang bei sechzehn an. Rechne minus neun, dann plus sechs."
+            frame: "16 → −9 → _ → +6 → _"
+            options: ["7", "13", "22", "10"]
+            answer: ["7", "13"]
+          - id: l2-c15
+            part: chain
+            type: true_false
+            text: "Stimmt das? 9 → +4 → 13 → −5 → 9"
+            say: "Neun plus vier ist dreizehn, dreizehn minus fünf ist neun. Stimmt die Kette?"
+            answer: false
+          - id: l2-c16
+            part: chain
+            type: fill_in_blank
+            text: "3 → +8 → _ → +7 → _"
+            say: "Fang bei drei an. Rechne plus acht, dann plus sieben."
+            frame: "3 → +8 → _ → +7 → _"
+            options: ["11", "18", "10", "17"]
+            answer: ["11", "18"]
+          - id: l2-c17
+            part: pattern
+            type: multiple_choice
+            text: "Die 8 wird zur 9. Was steht jetzt oben?"
+            say: "In der Mauer stehen unten acht und vier, oben zwölf. Die Acht wird zur Neun. Was steht jetzt oben?"
+            show: { drawn: number-wall, rows: [[8, 4], [12]] }
+            options: ["13", "12", "14"]
+            answer: "13"
+          - id: l2-c18
+            part: pattern
+            type: multiple_choice
+            text: "Unten stehen 2 und 9. Die 2 wird zur 4. Was passiert oben?"
+            say: "In einer Mauer stehen unten zwei und neun. Die Zwei wird zur Vier. Was passiert oben?"
+            options: ["Es wird 2 mehr.", "Es wird 1 mehr.", "Es bleibt gleich."]
+            answer: "Es wird 2 mehr."
+          - id: l2-c19
+            part: pattern
+            type: multiple_choice
+            text: "Die 6 wird zur 4. Was steht jetzt oben?"
+            say: "In der Mauer stehen unten sechs und fünf, oben elf. Die Sechs wird zur Vier. Was steht jetzt oben?"
+            show: { drawn: number-wall, rows: [[6, 5], [11]] }
+            options: ["9", "10", "13"]
+            answer: "9"
+          - id: l2-c20
+            part: pattern
+            type: true_false
+            text: "Wird die 3 zur 4, steht oben 9. Stimmt das?"
+            say: "In der Mauer stehen unten drei und fünf, oben acht. Wird die Drei zur Vier, steht oben neun. Stimmt das?"
+            show: { drawn: number-wall, rows: [[3, 5], [8]] }
+            answer: true

@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [coins]
   facets: [currency]
+  parts:
+    - { id: coins, what: { de: Münzen erkennen und ihren Wert lesen, en: recognising coins and reading their value } }
+    - { id: notes, what: { de: Scheine erkennen und ihren Wert lesen, en: recognising notes and reading their value } }
+    - { id: compare, what: { de: "sagen, was mehr oder weniger wert ist", en: "saying which is worth more or less" } }
+    - { id: order, what: { de: Münzen und Scheine nach dem Wert ordnen, en: putting coins and notes in order of value } }
   misconceptions:
     - id: big-coin-worth-more
       what: Thinks a bigger coin is worth more (the 50-Cent-Münze is bigger than the 1-Euro-Münze, the 5-Cent-Münze bigger than the 10-Cent-Münze)
@@ -235,6 +240,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -260,6 +266,30 @@ lessons:
             show: { drawn: coins, values: [20] }
             options: ["20 ct", "20 €", "2 ct"]
             answer: "20 ct"
+          - id: l1-c4
+            type: true_false
+            text: "Das ist eine 10-Cent-Münze."
+            say: "Stimmt das? Das ist eine Zehn-Cent-Münze."
+            show: { drawn: coins, values: [10] }
+            answer: true
+          - id: l1-c5
+            type: matching
+            text: "Was gehört zusammen?"
+            say: "Verbinde jede Münze mit dem, was sie wert ist."
+            pairs:
+              - { left: { drawn: coins, values: [20] }, right: { text: "20 ct" } }
+              - { left: { drawn: coins, values: [5] }, right: { text: "5 ct" } }
+              - { left: { drawn: coins, values: [200] }, right: { text: "2 €" } }
+            option_audio: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Welche Münze ist am meisten wert?"
+            say: "Welche Münze ist am meisten wert? Tipp darauf."
+            options:
+              - { drawn: coins, values: [50] }
+              - { drawn: coins, values: [200] }
+              - { drawn: coins, values: [10] }
+            answer: "200"
 
   - n: 2
     title: { de: "Scheine und was sie wert sind", en: "Notes and what they are worth" }
@@ -468,8 +498,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: coins
             type: image_multiple_choice
             text: "Wo ist die 5-Cent-Münze?"
             say: "Tipp auf die Fünf-Cent-Münze."
@@ -479,6 +511,7 @@ lessons:
               - { drawn: coins, values: [500] }
             answer: "5"
           - id: l2-c2
+            part: coins
             type: multiple_choice
             text: "Wie viel ist das wert?"
             say: "Wie viel ist diese Münze wert?"
@@ -486,6 +519,7 @@ lessons:
             options: ["2 €", "2 ct", "20 €"]
             answer: "2 €"
           - id: l2-c3
+            part: compare
             type: image_multiple_choice
             text: "Was ist mehr wert?"
             say: "Was ist mehr wert? Tipp darauf."
@@ -494,12 +528,14 @@ lessons:
               - { drawn: coins, values: [1000] }
             answer: "1000"
           - id: l2-c4
+            part: notes
             type: true_false
             text: "Das ist ein 10-Euro-Schein."
             say: "Stimmt das? Das ist ein Zehn-Euro-Schein."
             show: { drawn: coins, values: [1000] }
             answer: true
           - id: l2-c5
+            part: order
             type: ordering
             text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
             say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
@@ -510,3 +546,141 @@ lessons:
               - { drawn: coins, values: [100] }
             slot_count: 4
             answer: ["50", "100", "500", "2000"]
+          - id: l2-c6
+            part: coins
+            type: multiple_choice
+            text: "Wie viel ist diese Münze wert?"
+            say: "Wie viel ist diese Münze wert?"
+            show: { drawn: coins, values: [10] }
+            options: ["10 ct", "10 €", "1 ct"]
+            answer: "10 ct"
+          - id: l2-c7
+            part: coins
+            type: true_false
+            text: "Das ist eine 50-Cent-Münze."
+            say: "Stimmt das? Das ist eine Fünfzig-Cent-Münze."
+            show: { drawn: coins, values: [5] }
+            answer: false
+          - id: l2-c8
+            part: coins
+            type: image_multiple_choice
+            text: "Wo ist die 2-Cent-Münze?"
+            say: "Tipp auf die Zwei-Cent-Münze."
+            options:
+              - { drawn: coins, values: [2] }
+              - { drawn: coins, values: [200] }
+              - { drawn: coins, values: [20] }
+            answer: "2"
+          - id: l2-c9
+            part: notes
+            type: image_multiple_choice
+            text: "Wo ist der 50-Euro-Schein?"
+            say: "Tipp auf den Fünfzig-Euro-Schein."
+            options:
+              - { drawn: coins, values: [5000] }
+              - { drawn: coins, values: [500] }
+              - { drawn: coins, values: [50] }
+            answer: "5000"
+          - id: l2-c10
+            part: notes
+            type: multiple_choice
+            text: "Wie viel ist dieser Schein wert?"
+            say: "Wie viel ist dieser Schein wert?"
+            show: { drawn: coins, values: [2000] }
+            options: ["20 €", "2 €", "20 ct"]
+            answer: "20 €"
+          - id: l2-c11
+            part: notes
+            type: true_false
+            text: "Das ist ein 50-Euro-Schein."
+            say: "Stimmt das? Das ist ein Fünfzig-Euro-Schein."
+            show: { drawn: coins, values: [500] }
+            answer: false
+          - id: l2-c12
+            part: notes
+            type: image_multiple_choice
+            text: "Wo ist der 100-Euro-Schein?"
+            say: "Tipp auf den Hundert-Euro-Schein."
+            options:
+              - { drawn: coins, values: [10000] }
+              - { drawn: coins, values: [1000] }
+              - { drawn: coins, values: [100] }
+            answer: "10000"
+          - id: l2-c13
+            part: compare
+            type: image_multiple_choice
+            text: "Welche Münze ist mehr wert?"
+            say: "Welche Münze ist mehr wert? Tipp darauf."
+            options:
+              - { drawn: coins, values: [20] }
+              - { drawn: coins, values: [100] }
+            answer: "100"
+          - id: l2-c14
+            part: compare
+            type: multiple_choice
+            text: "Was ist mehr wert: 2 € oder 20 ct?"
+            say: "Was ist mehr wert: zwei Euro oder zwanzig Cent?"
+            options: ["2 €", "20 ct"]
+            answer: "2 €"
+          - id: l2-c15
+            part: compare
+            type: image_multiple_choice
+            text: "Was ist am wenigsten wert?"
+            say: "Was ist am wenigsten wert? Tipp darauf."
+            options:
+              - { drawn: coins, values: [1000] }
+              - { drawn: coins, values: [200] }
+              - { drawn: coins, values: [2] }
+            answer: "2"
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Die 50-Cent-Münze ist mehr wert als die 1-Euro-Münze."
+            say: "Stimmt das? Die Fünfzig-Cent-Münze ist mehr wert als die Ein-Euro-Münze."
+            show: { drawn: coins, values: [50, 100] }
+            answer: false
+          - id: l2-c17
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [200] }
+              - { drawn: coins, values: [1000] }
+              - { drawn: coins, values: [5] }
+            slot_count: 3
+            answer: ["5", "200", "1000"]
+          - id: l2-c18
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [10] }
+              - { drawn: coins, values: [2000] }
+              - { drawn: coins, values: [1] }
+            slot_count: 3
+            answer: ["1", "10", "2000"]
+          - id: l2-c19
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne alle vier nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [100] }
+              - { drawn: coins, values: [5000] }
+              - { drawn: coins, values: [2] }
+              - { drawn: coins, values: [500] }
+            slot_count: 4
+            answer: ["2", "100", "500", "5000"]
+          - id: l2-c20
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [10000] }
+              - { drawn: coins, values: [20] }
+              - { drawn: coins, values: [100] }
+            slot_count: 3
+            answer: ["20", "100", "10000"]

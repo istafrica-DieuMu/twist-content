@@ -24,6 +24,10 @@ metadata:
   forms: [picture, drawn, text, audio]
   drawn: [dots, letter-card]
   facets: []
+  parts:
+    - { id: amounts, what: { de: "Anzahlen vergleichen (mehr, weniger, gleich viele)", en: "comparing amounts (more, fewer, the same)" } }
+    - { id: signs, what: { de: "die Zeichen <, > und = zwischen zwei Zahlen setzen", en: "putting <, > or = between two numbers" } }
+    - { id: statements, what: { de: "Aussagen mit <, > und = prüfen und passende Zahlen finden", en: "checking statements with <, > and = and finding numbers that fit" } }
   misconceptions:
     - id: bigger-picture
       what: Thinks the group that takes up more space has more, even when it has fewer things
@@ -246,6 +250,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -267,6 +272,28 @@ lessons:
             say: "Sind es gleich viele rote und blaue?"
             show: { drawn: dots, groups: [5, 3], layout: row }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Wo sind mehr?"
+            options:
+              - { object: ant, count: 5, layout: row }
+              - { object: ant, count: 7, layout: scattered }
+            answer: "7"
+          - id: l1-c5
+            type: true_false
+            text: "Sind es gleich viele?"
+            say: "Sind es gleich viele rote und blaue?"
+            show: { drawn: dots, groups: [4, 4], layout: row }
+            answer: true
+          - id: l1-c6
+            type: ordering
+            text: "Ordne die Bilder. Die wenigsten Punkte kommen zuerst."
+            options:
+              - { drawn: dots, count: 8, layout: five-structure, colour_split: [5, 3] }
+              - { drawn: dots, count: 10, layout: five-structure, colour_split: [5, 5] }
+              - { drawn: dots, count: 6, layout: five-structure, colour_split: [5, 1] }
+            slot_count: 3
+            answer: ["6", "8", "10"]
 
   - n: 2
     title: { de: "Die Zeichen <, > und =", en: "The signs <, > and =" }
@@ -469,6 +496,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: fill_in_blank
@@ -491,6 +519,27 @@ lessons:
             text: "Stimmt das? 6 = 6"
             say: "Stimmt das? Sechs ist gleich sechs."
             answer: true
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen eins und drei?"
+            frame: "1 _ 3"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l2-c5
+            type: true_false
+            text: "Stimmt das? 3 = 4"
+            say: "Stimmt das? Drei ist gleich vier."
+            answer: false
+          - id: l2-c6
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen acht und sechs?"
+            frame: "8 _ 6"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
 
   - n: 3
     title: { de: Vergleichen mit Zeichen, en: Comparing with the signs }
@@ -669,8 +718,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: amounts
             type: image_multiple_choice
             text: "Wo sind mehr?"
             options:
@@ -678,6 +729,7 @@ lessons:
               - { object: fish, count: 9, layout: row }
             answer: "9"
           - id: l3-c2
+            part: signs
             type: fill_in_blank
             text: "Welches Zeichen passt?"
             say: "Welches Zeichen passt zwischen sechs und neun?"
@@ -686,6 +738,7 @@ lessons:
             answer: ["<"]
             option_audio: false
           - id: l3-c3
+            part: signs
             type: fill_in_blank
             text: "Welches Zeichen passt?"
             say: "Welches Zeichen passt zwischen vier und null?"
@@ -694,14 +747,136 @@ lessons:
             answer: [">"]
             option_audio: false
           - id: l3-c4
+            part: statements
             type: multiple_choice
             text: "Was stimmt?"
             options: ["5 = 5", "5 < 5", "5 > 5"]
             answer: "5 = 5"
           - id: l3-c5
+            part: statements
             type: fill_in_blank
             text: "Welche Zahl passt?"
             say: "Welche Zahl ist größer als vier?"
             frame: "_ > 4"
             options: ["2", "4", "7"]
             answer: ["7"]
+          - id: l3-c6
+            part: amounts
+            type: image_multiple_choice
+            text: "Wo sind weniger?"
+            options:
+              - { object: carrot, count: 7, layout: scattered }
+              - { object: carrot, count: 9, layout: row }
+            answer: "7"
+          - id: l3-c7
+            part: amounts
+            type: true_false
+            text: "Sind es gleich viele?"
+            say: "Sind es gleich viele rote und blaue?"
+            show: { drawn: dots, groups: [6, 6], layout: row }
+            answer: true
+          - id: l3-c8
+            part: amounts
+            type: ordering
+            text: "Ordne die Bilder. Die wenigsten Punkte kommen zuerst."
+            options:
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 1, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            slot_count: 3
+            answer: ["1", "3", "4"]
+          - id: l3-c9
+            part: amounts
+            type: image_multiple_choice
+            text: "Wo sind mehr?"
+            options:
+              - { object: balloon, count: 7, layout: scattered }
+              - { object: balloon, count: 10, layout: row }
+            answer: "10"
+          - id: l3-c10
+            part: amounts
+            type: true_false
+            text: "Sind es gleich viele?"
+            say: "Sind es gleich viele rote und blaue?"
+            show: { drawn: dots, groups: [7, 6], layout: row }
+            answer: false
+          - id: l3-c11
+            part: amounts
+            type: image_multiple_choice
+            text: "Wo sind weniger?"
+            options:
+              - { object: strawberry, count: 9, layout: row }
+              - { object: strawberry, count: 6, layout: scattered }
+            answer: "6"
+          - id: l3-c12
+            part: signs
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen drei und eins?"
+            frame: "3 _ 1"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l3-c13
+            part: signs
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen null und fünf?"
+            frame: "0 _ 5"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l3-c14
+            part: signs
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen neun und neun?"
+            frame: "9 _ 9"
+            options: ["<", ">", "="]
+            answer: ["="]
+            option_audio: false
+          - id: l3-c15
+            part: signs
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen fünf und sechs?"
+            show: { drawn: dots, groups: [5, 6], layout: dice }
+            frame: "5 _ 6"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l3-c16
+            part: signs
+            type: fill_in_blank
+            text: "Welches Zeichen passt?"
+            say: "Welches Zeichen passt zwischen zehn und sieben?"
+            frame: "10 _ 7"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l3-c17
+            part: statements
+            type: multiple_choice
+            text: "Was stimmt?"
+            options: ["8 > 10", "10 > 8", "8 = 10"]
+            answer: "10 > 8"
+          - id: l3-c18
+            part: statements
+            type: true_false
+            text: "Stimmt das? 9 > 5"
+            say: "Stimmt das? Neun ist größer als fünf."
+            answer: true
+          - id: l3-c19
+            part: statements
+            type: fill_in_blank
+            text: "Welche Zahl passt?"
+            say: "Welche Zahl ist kleiner als fünf?"
+            frame: "_ < 5"
+            options: ["2", "5", "8"]
+            answer: ["2"]
+          - id: l3-c20
+            part: statements
+            type: true_false
+            text: "Stimmt das? 6 < 2"
+            say: "Stimmt das? Sechs ist kleiner als zwei."
+            answer: false

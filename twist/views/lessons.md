@@ -753,11 +753,11 @@ Children add a one-digit number that crosses ten by filling up to ten first and 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Erst bis zur 10 | yes | 23 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Zerlegen und weiterrechnen | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick) |
-| 3. Rechengeschichten | no | 22 | warm-up, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Erst bis zur 10 | yes | 23 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Zerlegen und weiterrechnen | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
+| 3. Rechengeschichten | no | 22 | warm-up, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 43, drag_and_drop_count 2, fill_in_blank 9, point_on_line 3, true_false 1, text_input 10. Builds on: `math.add-sub-to-20.missing-addend`, `math.numbers-to-20.partition-to-10`, `math.add-sub-to-20.analog-to-20`. Misconceptions addressed: 5.
+Task types: multiple_choice 51, drag_and_drop_count 4, fill_in_blank 12, point_on_line 5, true_false 3, text_input 14. Builds on: `math.add-sub-to-20.missing-addend`, `math.numbers-to-20.partition-to-10`, `math.add-sub-to-20.analog-to-20`. Misconceptions addressed: 5.
 
 ## Was bedeutet plus? (What does plus mean?)
 
@@ -768,10 +768,10 @@ The first Rechnen lesson: plus is something coming along (Dazukommen) or two gro
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Dazu und zusammen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Rechengeschichten | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Dazu und zusammen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Rechengeschichten | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 27, fill_in_blank 12, true_false 7. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, fill_in_blank 15, true_false 13. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Mit Zehnerzahlen rechnen (Adding and subtracting tens)
 
@@ -782,10 +782,10 @@ Lesson 1 adds Zehnerzahlen with the small sum (3 + 4 = 7, also 30 + 40 = 70) usi
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zehner plus Zehner | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Zehner minus Zehner | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Zehner plus Zehner | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zehner minus Zehner | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 13, multiple_choice 22, true_false 7. Builds on: `math.numbers-to-100.tens`, `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 2.
+Task types: text_input 18, multiple_choice 29, true_false 13. Builds on: `math.numbers-to-100.tens`, `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 2.
 
 ## Plusaufgaben bis 10 (Adding to 10)
 
@@ -796,10 +796,10 @@ Solving plus sums to 10, first to 5 and then to 10, by counting on from the bigg
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Plus bis 5 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Plus bis 10 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Plus bis 5 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Plus bis 10 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, point_on_line 8, text_input 15, true_false 6. Builds on: `math.add-sub-to-20.add-meaning`. Misconceptions addressed: 2.
+Task types: multiple_choice 23, point_on_line 10, text_input 21, true_false 10. Builds on: `math.add-sub-to-20.add-meaning`. Misconceptions addressed: 2.
 
 ## Analogieaufgaben im zweiten Zehner (Related sums in the second ten)
 
@@ -810,10 +810,10 @@ A sum in the second ten is the matching small sum plus a ten: 3 + 4 = 7 helps wi
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die kleine Aufgabe hilft | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Auch bei Minus | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Die kleine Aufgabe hilft | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Auch bei Minus | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 13, multiple_choice 15, fill_in_blank 8, true_false 8. Builds on: `math.add-sub-to-20.sub-to-10`, `math.numbers-to-20.teens`. Misconceptions addressed: 2.
+Task types: text_input 16, multiple_choice 21, fill_in_blank 11, true_false 14. Builds on: `math.add-sub-to-20.sub-to-10`, `math.numbers-to-20.teens`. Misconceptions addressed: 2.
 
 ## Kreis, Dreieck, Rechteck, Quadrat (Circles, triangles, rectangles and squares)
 
@@ -824,10 +824,10 @@ Lesson 1 names the four flat shapes by their corners and sides (Ein Dreieck hat 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ecken und Seiten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Quadrat oder Rechteck? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Ecken und Seiten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Quadrat oder Rechteck? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, image_multiple_choice 9, true_false 8, matching 2. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 2.
+Task types: multiple_choice 30, image_multiple_choice 13, true_false 14, matching 3. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 2.
 
 ## Tauschaufgaben (Turnaround sums)
 
@@ -838,10 +838,10 @@ Swapping the two numbers of a plus sum gives the same result: 2 + 6 and 6 + 2 ar
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Gleich viel | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Tauschen macht es leichter | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Gleich viel | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Tauschen macht es leichter | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 9, multiple_choice 17, fill_in_blank 5, true_false 12, matching 3. Builds on: `math.add-sub-to-20.add-to-10`. Misconceptions addressed: 2.
+Task types: text_input 9, multiple_choice 25, fill_in_blank 8, true_false 17, matching 5. Builds on: `math.add-sub-to-20.add-to-10`. Misconceptions addressed: 2.
 
 ## Vergleichen bis 10 (Comparing to 10)
 
@@ -852,11 +852,11 @@ Children compare amounts and numbers to 10. Lesson 1 compares groups: more, fewe
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mehr, weniger, gleich viele | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Die Zeichen <, > und = | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 3. Vergleichen mit Zeichen | no | 24 | warm-up, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Mehr, weniger, gleich viele | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Zeichen <, > und = | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 3. Vergleichen mit Zeichen | no | 24 | warm-up, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 7, tap_to_count 1, image_multiple_choice 13, true_false 18, ordering 3, fill_in_blank 26. Builds on: `math.numbers-to-20.count-to-10`, `math.numbers-to-20.write-numerals-to-10`. Misconceptions addressed: 3.
+Task types: multiple_choice 8, tap_to_count 1, image_multiple_choice 17, true_false 24, ordering 5, fill_in_blank 34. Builds on: `math.numbers-to-20.count-to-10`, `math.numbers-to-20.write-numerals-to-10`. Misconceptions addressed: 3.
 
 ## Zahlen bis 20 vergleichen (Comparing numbers to 20)
 
@@ -867,10 +867,10 @@ Comparing numbers to 20 and saying how much bigger or smaller one is. Lesson 1 c
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Größer oder kleiner | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Um wie viel mehr? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Größer oder kleiner | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Um wie viel mehr? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 14, multiple_choice 20, true_false 8. Builds on: `math.numbers-to-20.teens`, `math.numbers-to-20.compare-to-10`. Misconceptions addressed: 2.
+Task types: fill_in_blank 19, multiple_choice 29, true_false 12. Builds on: `math.numbers-to-20.teens`, `math.numbers-to-20.compare-to-10`. Misconceptions addressed: 2.
 
 ## Formen legen und zerlegen (Laying and splitting shapes)
 
@@ -881,10 +881,10 @@ Lesson 1 lays shapes from Plättchen on Karopapier: two Dreiecke make a Quadrat,
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Formen zusammenlegen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Zerlegen und nachlegen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
+| 1. Formen zusammenlegen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zerlegen und nachlegen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 10, multiple_choice 22, true_false 7, matching 1, fill_in_blank 2. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 13, multiple_choice 31, true_false 12, matching 1, fill_in_blank 3. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 3.
 
 ## Zählen bis 10 (Counting to 10)
 
@@ -895,10 +895,10 @@ Children count up to 10 things. Lesson 1 counts things in a row, where it is eas
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zählen bis 10 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Durcheinander zählen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Zählen bis 10 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Durcheinander zählen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: tap_to_count 15, multiple_choice 15, image_multiple_choice 9, true_false 7. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 3.
+Task types: tap_to_count 18, multiple_choice 20, image_multiple_choice 16, true_false 10. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 3.
 
 ## Zählen bis 5 (Counting to 5)
 
@@ -909,10 +909,10 @@ The first maths lessons of Klasse 1. Children count up to 5 things by pointing a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zählen bis 3 | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Zählen bis 5 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Zählen bis 3 | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Zählen bis 5 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: tap_to_count 12, multiple_choice 15, image_multiple_choice 10, true_false 7. Builds on: . Misconceptions addressed: 3.
+Task types: tap_to_count 16, multiple_choice 19, image_multiple_choice 16, true_false 11. Builds on: . Misconceptions addressed: 3.
 
 ## Verdoppeln und Halbieren bis 20 (Doubling and halving to 20)
 
@@ -923,10 +923,10 @@ Doubling numbers to 10 and halving even numbers to 20. Lesson 1 doubles with the
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Verdoppeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Halbieren | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Verdoppeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Halbieren | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 13, multiple_choice 15, true_false 8, matching 6. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: text_input 18, multiple_choice 20, true_false 13, matching 9. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Gleich, größer, kleiner (Equal, greater, smaller)
 
@@ -937,10 +937,10 @@ Comparing sums and numbers with <, > and =, and seeing that different sums can h
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Aufgabe und Zahl vergleichen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Zwei Aufgaben vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Aufgabe und Zahl vergleichen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zwei Aufgaben vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 25, text_input 2, true_false 8, multiple_choice 7. Builds on: `math.add-sub-to-20.add-bridge-10`, `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
+Task types: fill_in_blank 35, text_input 2, true_false 14, multiple_choice 9. Builds on: `math.add-sub-to-20.add-bridge-10`, `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
 
 ## Gerade und ungerade Zahlen (Even and odd numbers)
 
@@ -951,10 +951,10 @@ Even numbers can be shared into pairs with none left over; odd numbers always le
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Paare bilden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Gerade und ungerade bis 20 | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Paare bilden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Gerade und ungerade bis 20 | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, text_input 1, true_false 8, sorting 7, fill_in_blank 4. Builds on: `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
+Task types: multiple_choice 30, text_input 1, true_false 14, sorting 9, fill_in_blank 6. Builds on: `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
 
 ## Das kleine Einspluseins (Addition and subtraction facts to 20)
 
@@ -965,10 +965,10 @@ All the sums of the kleines Einspluseins quickly and surely, using the tricks th
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Schnell plus rechnen | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Minus aus Plus ableiten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (timed) |
+| 1. Schnell plus rechnen | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Minus aus Plus ableiten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (timed, 5 of 20) |
 
-Task types: text_input 28, multiple_choice 5, true_false 6, fill_in_blank 4. Builds on: `math.add-sub-to-20.sub-bridge-10`. Misconceptions addressed: 2.
+Task types: text_input 36, multiple_choice 8, true_false 11, fill_in_blank 6. Builds on: `math.add-sub-to-20.sub-bridge-10`. Misconceptions addressed: 2.
 
 ## Umkehraufgaben und Aufgabenfamilien (Inverse sums and fact families)
 
@@ -979,10 +979,10 @@ Plus and minus undo each other: 3 + 5 = 8, so 8 − 5 = 3. Lesson 1 finds the Um
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Plus und minus gehören zusammen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Aufgabenfamilien | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Plus und minus gehören zusammen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Aufgabenfamilien | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, text_input 1, fill_in_blank 16, true_false 10. Builds on: `math.add-sub-to-20.commutative`, `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 26, text_input 1, fill_in_blank 21, true_false 16. Builds on: `math.add-sub-to-20.commutative`, `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 2.
 
 ## Ergänzen bis 10 (Missing numbers to 10)
 
@@ -993,10 +993,10 @@ Ergänzungsaufgaben (3 + _ = 8): how many more are needed? Lesson 1 fills up the
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wie viele fehlen? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Die Zehnerfreunde | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Wie viele fehlen? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Zehnerfreunde | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 13, fill_in_blank 10, multiple_choice 13, true_false 7, matching 3. Builds on: `math.add-sub-to-20.add-to-10`. Misconceptions addressed: 2.
+Task types: text_input 16, fill_in_blank 15, multiple_choice 19, true_false 10, matching 4. Builds on: `math.add-sub-to-20.add-to-10`. Misconceptions addressed: 2.
 
 ## Münzen und Scheine (Coins and notes)
 
@@ -1007,10 +1007,10 @@ Lesson 1 tells the coins apart: the Cent-Münzen (1, 2, 5, 10, 20 and 50 Cent) a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Münzen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Scheine und was sie wert sind | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die Münzen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Scheine und was sie wert sind | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 10, image_multiple_choice 17, true_false 7, matching 3, ordering 5. Builds on: `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
+Task types: multiple_choice 13, image_multiple_choice 23, true_false 11, matching 4, ordering 9. Builds on: `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
 
 ## Geld zählen bis 20 € (Counting money to 20)
 
@@ -1021,10 +1021,10 @@ Lesson 1 counts amounts up to 20 € laid out in notes and coins, starting with 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wie viel Geld ist das? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Geld legen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Wie viel Geld ist das? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Geld legen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 15, image_multiple_choice 5, multiple_choice 11, true_false 7, fill_in_blank 4. Builds on: `math.money.coins-notes`, `math.add-sub-to-20.add-bridge-10`. Misconceptions addressed: 2.
+Task types: text_input 17, image_multiple_choice 8, multiple_choice 19, true_false 11, fill_in_blank 5. Builds on: `math.money.coins-notes`, `math.add-sub-to-20.add-bridge-10`. Misconceptions addressed: 2.
 
 ## Verdopplungs- und Nachbaraufgaben (Doubles and near doubles)
 
@@ -1035,10 +1035,10 @@ Working out a harder sum from an easy one you know. Lesson 1 uses the Verdopplun
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Fast verdoppeln | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Eins mehr oder eins weniger | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Fast verdoppeln | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Eins mehr oder eins weniger | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 18, multiple_choice 12, fill_in_blank 7, true_false 8. Builds on: `math.add-sub-to-20.add-to-10`, `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
+Task types: text_input 21, multiple_choice 21, fill_in_blank 10, true_false 11. Builds on: `math.add-sub-to-20.add-to-10`, `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
 
 ## Zahlenmauern und Rechenketten (Number walls and number chains)
 
@@ -1049,10 +1049,10 @@ Zahlenmauern (each stone is the two stones under it added together) and Rechenke
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zahlenmauern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Rechenketten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Zahlenmauern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Rechenketten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 2, fill_in_blank 28, true_false 8, multiple_choice 4. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
+Task types: text_input 2, fill_in_blank 40, true_false 11, multiple_choice 7. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
 
 ## Zahlen ordnen bis 10 (Ordering numbers to 10)
 
@@ -1063,10 +1063,10 @@ Children put the numbers to 10 in order, forwards and backwards, find them on th
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Reihe nach | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Vorgänger und Nachfolger | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Der Reihe nach | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Vorgänger und Nachfolger | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 1, multiple_choice 10, ordering 9, fill_in_blank 11, point_on_line 9, true_false 6. Builds on: `math.numbers-to-20.write-numerals-to-10`. Misconceptions addressed: 3.
+Task types: audio_choice 1, multiple_choice 12, ordering 12, fill_in_blank 15, point_on_line 13, true_false 11. Builds on: `math.numbers-to-20.write-numerals-to-10`. Misconceptions addressed: 3.
 
 ## Zahlen bis 20 ordnen (Ordering numbers to 20)
 
@@ -1077,10 +1077,10 @@ The numbers to 20 in order. Lesson 1 finds numbers on the Zahlenstrahl to 20, wi
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Zahlenstrahl bis 20 | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Vorwärts und rückwärts | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Der Zahlenstrahl bis 20 | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Vorwärts und rückwärts | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 12, text_input 1, point_on_line 6, fill_in_blank 12, true_false 5, ordering 6. Builds on: `math.numbers-to-20.teens`, `math.numbers-to-20.order-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 17, text_input 1, point_on_line 7, fill_in_blank 17, true_false 9, ordering 9. Builds on: `math.numbers-to-20.teens`, `math.numbers-to-20.order-to-10`. Misconceptions addressed: 2.
 
 ## Zahlen zerlegen bis 10 (Splitting numbers to 10)
 
@@ -1091,11 +1091,11 @@ Children split every number to 10 into two parts in different ways. Lesson 1 spl
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zerlegen mit Plättchen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Das Zahlenhaus | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 3. Alle Zerlegungen finden | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Zerlegen mit Plättchen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Zahlenhaus | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 3. Alle Zerlegungen finden | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, fill_in_blank 22, true_false 14, matching 5, ordering 4. Builds on: `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 3.
+Task types: multiple_choice 31, fill_in_blank 27, true_false 19, matching 7, ordering 5. Builds on: `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 3.
 
 ## Rechengeschichten (Number stories)
 
@@ -1106,10 +1106,10 @@ A picture or a short story asks a question, and the child finds the sum, works i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was will die Geschichte wissen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Frage, Rechnung, Antwort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Was will die Geschichte wissen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Frage, Rechnung, Antwort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 13, multiple_choice 23, true_false 3, fill_in_blank 3. Builds on: `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 3.
+Task types: text_input 18, multiple_choice 34, true_false 4, fill_in_blank 4. Builds on: `math.add-sub-to-20.sub-to-10`. Misconceptions addressed: 3.
 
 ## Links, rechts, oben, unten (Left, right, above, below)
 
@@ -1120,10 +1120,10 @@ Lesson 1 finds things in a row by links, rechts, neben and zwischen; lesson 2 us
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Links, rechts, zwischen | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Oben, unten, vor, hinter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Links, rechts, zwischen | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Oben, unten, vor, hinter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 32, true_false 8. Builds on: . Misconceptions addressed: 2.
+Task types: multiple_choice 42, true_false 16. Builds on: . Misconceptions addressed: 2.
 
 ## Sachaufgaben: Frage, Rechnung, Antwort (Word problems: question, calculation, answer)
 
@@ -1134,10 +1134,10 @@ Word problems to 20 in three steps: the question, the calculation and the answer
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Frage und Rechnung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Wichtig oder unwichtig? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Frage und Rechnung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Wichtig oder unwichtig? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, text_input 13, fill_in_blank 7. Builds on: `math.word-problems.picture-stories`, `math.add-sub-to-20.fluency-to-20`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, text_input 16, fill_in_blank 10. Builds on: `math.word-problems.picture-stories`, `math.add-sub-to-20.fluency-to-20`. Misconceptions addressed: 2.
 
 ## Muster fortsetzen (Continuing patterns)
 
@@ -1148,10 +1148,10 @@ Lesson 1 finds the part of a shape or colour pattern that repeats (Kreis, Dreiec
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was kommt als Nächstes? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Lücken und Fehler im Muster | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Was kommt als Nächstes? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Lücken und Fehler im Muster | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, image_multiple_choice 12, true_false 7. Builds on: `math.shapes.basic-shapes`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 31, image_multiple_choice 17, true_false 12. Builds on: `math.shapes.basic-shapes`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
 
 ## Tagesablauf, Wochentage und Monate (The day, the days of the week and the months)
 
@@ -1162,11 +1162,11 @@ Lesson 1 puts the events of a day in order (morgens, mittags, abends, nachts) an
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mein Tag | yes | 18 | learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Die Wochentage | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 3. Die Monate | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Mein Tag | yes | 18 | learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Die Wochentage | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 3. Die Monate | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 15, multiple_choice 35, true_false 10. Builds on: . Misconceptions addressed: 2.
+Task types: ordering 19, multiple_choice 45, true_false 17. Builds on: . Misconceptions addressed: 2.
 
 ## Sortieren und zählen (Sorting and counting)
 
@@ -1177,10 +1177,10 @@ Lesson 1 sorts pictures by one feature (Tier oder Essen, rot oder blau) and find
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was gehört zusammen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Wie viele in jeder Gruppe? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was gehört zusammen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Wie viele in jeder Gruppe? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 13, image_multiple_choice 13, sorting 8, true_false 8. Builds on: `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 18, image_multiple_choice 18, sorting 13, true_false 11. Builds on: `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
 
 ## Minus mit Zehnerübergang (Subtracting across ten)
 
@@ -1191,10 +1191,10 @@ Subtracting across ten in two steps: first back to 10, then the rest (13 − 5 =
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Erst bis zur 10 | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Minus bis 20 | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Erst bis zur 10 | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Minus bis 20 | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 11, fill_in_blank 13, multiple_choice 11, true_false 8. Builds on: `math.add-sub-to-20.add-bridge-10`. Misconceptions addressed: 2.
+Task types: text_input 13, fill_in_blank 21, multiple_choice 16, true_false 11. Builds on: `math.add-sub-to-20.add-bridge-10`. Misconceptions addressed: 2.
 
 ## Was bedeutet minus? (What does minus mean?)
 
@@ -1205,10 +1205,10 @@ Minus is taking away: some go away, are eaten, fly off. Lesson 1 finds the minus
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Weg ist weg | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Plus oder minus? | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Weg ist weg | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Plus oder minus? | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 32, text_input 1, fill_in_blank 7, true_false 6. Builds on: `math.add-sub-to-20.add-meaning`. Misconceptions addressed: 2.
+Task types: multiple_choice 43, text_input 1, fill_in_blank 10, true_false 10. Builds on: `math.add-sub-to-20.add-meaning`. Misconceptions addressed: 2.
 
 ## Minusaufgaben bis 10 (Subtracting to 10)
 
@@ -1219,10 +1219,10 @@ Solving minus sums to 10 by taking away in the ten-frame and by counting back on
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wegnehmen und rückwärts zählen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Minus bis 10 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Wegnehmen und rückwärts zählen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Minus bis 10 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 16, point_on_line 8, text_input 16, true_false 6. Builds on: `math.add-sub-to-20.sub-meaning`. Misconceptions addressed: 2.
+Task types: multiple_choice 22, point_on_line 14, text_input 18, true_false 10. Builds on: `math.add-sub-to-20.sub-meaning`. Misconceptions addressed: 2.
 
 ## Anzahlen auf einen Blick (Seeing amounts at a glance)
 
@@ -1233,10 +1233,10 @@ Children learn to see how many without counting one by one. Lesson 1 uses dice p
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Würfelbilder | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Die Kraft der 5 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Würfelbilder | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Kraft der 5 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: tap_to_count 1, multiple_choice 26, image_multiple_choice 9, true_false 6, matching 4. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 3.
+Task types: tap_to_count 1, multiple_choice 33, image_multiple_choice 12, true_false 11, matching 7. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 3.
 
 ## Symmetrie erkennen (Spotting symmetry)
 
@@ -1247,10 +1247,10 @@ Lesson 1 folds in the mind: a figure is symmetrisch when both halves fit exactly
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Passt es beim Falten? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Symmetrieachse | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Passt es beim Falten? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Symmetrieachse | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, true_false 17. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, true_false 25. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
 
 ## Strichlisten (Tally charts)
 
@@ -1261,10 +1261,10 @@ Lesson 1 reads a Strichliste: four strokes and the fifth across make a bundle of
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Striche zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Eine Umfrage in der Klasse | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Striche zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Eine Umfrage in der Klasse | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, text_input 1, true_false 7, image_multiple_choice 5. Builds on: `math.data.sort-classify`, `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 37, text_input 1, true_false 12, image_multiple_choice 10. Builds on: `math.data.sort-classify`, `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 2.
 
 ## Die Zahlen von 11 bis 20 (The numbers 11 to 20)
 
@@ -1275,10 +1275,10 @@ A number from 11 to 20 is one full ten and some ones. Lesson 1 sees the full ten
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ein Zehner und Einer | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Zahlen bis 20 lesen und schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Ein Zehner und Einer | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zahlen bis 20 lesen und schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, text_input 5, true_false 8, fill_in_blank 9, image_multiple_choice 1. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 26, text_input 7, true_false 13, fill_in_blank 11, image_multiple_choice 4. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Zehnerzahlen bis 100 (Multiples of ten to 100)
 
@@ -1289,10 +1289,10 @@ Lesson 1 builds the Zehnerzahlen from tens rods (3 Zehner sind 30) and reads the
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zehner bündeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. In Zehnerschritten zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Zehner bündeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. In Zehnerschritten zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, matching 4, true_false 7, text_input 5, fill_in_blank 3, ordering 4. Builds on: `math.numbers-to-20.teens`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, matching 6, true_false 11, text_input 6, fill_in_blank 5, ordering 5. Builds on: `math.numbers-to-20.teens`. Misconceptions addressed: 2.
 
 ## Volle und halbe Stunden (O'clock and half past)
 
@@ -1303,10 +1303,10 @@ Reading the clock to the hour and the half hour. Lesson 1 reads full hours from 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Volle Stunden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Halbe Stunden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Volle Stunden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Halbe Stunden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 21, clock_hands_drag 8, image_multiple_choice 4, true_false 9. Builds on: `math.numbers-to-20.order-to-20`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, clock_hands_drag 13, image_multiple_choice 7, true_false 13. Builds on: `math.numbers-to-20.order-to-20`. Misconceptions addressed: 2.
 
 ## Die Ziffern 0 bis 10 (The numerals 0 to 10)
 
@@ -1317,11 +1317,11 @@ Children read and write the numerals and match each to its amount. Lesson 1 take
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Ziffern 1 bis 5 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Die Ziffern 6 bis 10 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 3. Null, Zahl und Menge | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Die Ziffern 1 bis 5 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Ziffern 6 bis 10 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 3. Null, Zahl und Menge | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: tap_to_count 1, multiple_choice 21, tracing 12, audio_choice 14, matching 9, true_false 8, image_multiple_choice 3. Builds on: `math.numbers-to-20.count-to-10`. Misconceptions addressed: 4.
+Task types: tap_to_count 1, multiple_choice 27, tracing 12, audio_choice 20, matching 11, true_false 13, image_multiple_choice 5. Builds on: `math.numbers-to-20.count-to-10`. Misconceptions addressed: 4.
 
 ## Adjektive vor dem Nomen (Adjectives before the noun)
 

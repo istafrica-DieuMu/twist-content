@@ -23,6 +23,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: day, what: { de: "den Tagesablauf ordnen", en: "putting the events of a day in order" } }
+    - { id: week, what: { de: "die Wochentage in der richtigen Reihenfolge", en: "the days of the week in order" } }
+    - { id: yesterday-tomorrow, what: { de: "gestern, heute und morgen", en: "yesterday, today and tomorrow" } }
+    - { id: months, what: { de: "die Monate in der richtigen Reihenfolge", en: "the months in order" } }
+    - { id: seasons, what: { de: "die Jahreszeiten der Monate", en: "the seasons the months belong to" } }
   misconceptions:
     - id: week-starts-sunday
       what: Starts the week on Sonntag or thinks Sonntag comes before Montag in the same week, as on some calendars
@@ -183,6 +189,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: ordering
@@ -202,6 +209,24 @@ lessons:
             text: "Am selben Tag kommt das Abendessen vor dem Frühstück."
             say: "Stimmt das? Am selben Tag kommt das Abendessen vor dem Frühstück."
             answer: false
+          - id: l1-c4
+            type: ordering
+            text: "Was kommt zuerst? Ordne."
+            say: "Bring es in die richtige Reihenfolge: Hausaufgaben machen, frühstücken, zur Schule gehen."
+            options: ["Hausaufgaben machen", "frühstücken", "zur Schule gehen"]
+            slot_count: 3
+            answer: ["frühstücken", "zur Schule gehen", "Hausaufgaben machen"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wann isst du zu Abend?"
+            say: "Wann isst du zu Abend?"
+            options: ["abends", "morgens", "mittags"]
+            answer: "abends"
+          - id: l1-c6
+            type: true_false
+            text: "Du frühstückst, bevor du zur Schule gehst."
+            say: "Stimmt das? Du frühstückst, bevor du zur Schule gehst."
+            answer: true
 
   - n: 2
     title: { de: "Die Wochentage", en: "The days of the week" }
@@ -369,6 +394,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: multiple_choice
@@ -387,6 +413,24 @@ lessons:
             text: "Samstag und Sonntag sind das Wochenende."
             say: "Stimmt das? Samstag und Sonntag sind das Wochenende."
             answer: true
+          - id: l2-c4
+            type: ordering
+            text: "Ordne die Tage."
+            say: "Ordne die Tage: Samstag, Donnerstag, Freitag."
+            options: ["Samstag", "Donnerstag", "Freitag"]
+            slot_count: 3
+            answer: ["Donnerstag", "Freitag", "Samstag"]
+          - id: l2-c5
+            type: multiple_choice
+            text: "Heute ist Freitag. Welcher Tag war gestern?"
+            say: "Heute ist Freitag. Welcher Tag war gestern?"
+            options: ["Donnerstag", "Samstag", "Mittwoch"]
+            answer: "Donnerstag"
+          - id: l2-c6
+            type: true_false
+            text: "Nach Montag kommt Mittwoch."
+            say: "Stimmt das? Nach Montag kommt Mittwoch."
+            answer: false
 
   - n: 3
     title: { de: "Die Monate", en: "The months" }
@@ -550,8 +594,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: day
             type: ordering
             text: "Ordne die Mahlzeiten."
             say: "Ordne die Mahlzeiten am Tag: zu Abend essen, frühstücken, zu Mittag essen."
@@ -559,18 +605,21 @@ lessons:
             slot_count: 3
             answer: ["frühstücken", "zu Mittag essen", "zu Abend essen"]
           - id: l3-c2
+            part: week
             type: multiple_choice
             text: "Welcher Tag kommt nach Samstag?"
             say: "Welcher Tag kommt nach Samstag?"
             options: ["Sonntag", "Freitag", "Montag"]
             answer: "Sonntag"
           - id: l3-c3
+            part: yesterday-tomorrow
             type: multiple_choice
             text: "Heute ist Sonntag. Welcher Tag ist morgen?"
             say: "Heute ist Sonntag. Welcher Tag ist morgen?"
             options: ["Montag", "Samstag", "Dienstag"]
             answer: "Montag"
           - id: l3-c4
+            part: months
             type: ordering
             text: "Ordne die Monate."
             say: "Ordne die Monate: August, Juli, September."
@@ -578,8 +627,111 @@ lessons:
             slot_count: 3
             answer: ["Juli", "August", "September"]
           - id: l3-c5
+            part: months
             type: multiple_choice
             text: "Welcher Monat kommt vor Juni?"
             say: "Welcher Monat kommt vor Juni?"
             options: ["Mai", "Juli", "April"]
             answer: "Mai"
+          - id: l3-c6
+            part: day
+            type: multiple_choice
+            text: "Wann gehst du ins Bett?"
+            say: "Wann gehst du ins Bett?"
+            options: ["abends", "morgens", "mittags"]
+            answer: "abends"
+          - id: l3-c7
+            part: week
+            type: ordering
+            text: "Ordne die Tage."
+            say: "Ordne die Tage: Mittwoch, Montag, Dienstag."
+            options: ["Mittwoch", "Montag", "Dienstag"]
+            slot_count: 3
+            answer: ["Montag", "Dienstag", "Mittwoch"]
+          - id: l3-c8
+            part: yesterday-tomorrow
+            type: multiple_choice
+            text: "Heute ist Donnerstag. Welcher Tag war gestern?"
+            say: "Heute ist Donnerstag. Welcher Tag war gestern?"
+            options: ["Mittwoch", "Freitag", "Dienstag"]
+            answer: "Mittwoch"
+          - id: l3-c9
+            part: months
+            type: multiple_choice
+            text: "Welcher Monat kommt nach Oktober?"
+            say: "Welcher Monat kommt nach Oktober?"
+            options: ["November", "September", "Dezember"]
+            answer: "November"
+          - id: l3-c10
+            part: seasons
+            type: multiple_choice
+            text: "In welcher Jahreszeit ist der August?"
+            say: "In welcher Jahreszeit ist der August?"
+            options: ["im Sommer", "im Winter", "im Frühling"]
+            answer: "im Sommer"
+          - id: l3-c11
+            part: day
+            type: true_false
+            text: "Das Abendessen kommt nach dem Mittagessen."
+            say: "Stimmt das? Das Abendessen kommt nach dem Mittagessen."
+            answer: true
+          - id: l3-c12
+            part: week
+            type: multiple_choice
+            text: "Welcher Tag kommt vor Mittwoch?"
+            say: "Welcher Tag kommt vor Mittwoch?"
+            options: ["Dienstag", "Donnerstag", "Montag"]
+            answer: "Dienstag"
+          - id: l3-c13
+            part: yesterday-tomorrow
+            type: multiple_choice
+            text: "Heute ist Mittwoch. Welcher Tag ist morgen?"
+            say: "Heute ist Mittwoch. Welcher Tag ist morgen?"
+            options: ["Donnerstag", "Dienstag", "Freitag"]
+            answer: "Donnerstag"
+          - id: l3-c14
+            part: seasons
+            type: true_false
+            text: "Im August ist Winter."
+            say: "Stimmt das? Im August ist Winter."
+            answer: false
+          - id: l3-c15
+            part: months
+            type: true_false
+            text: "Der Februar kommt nach dem Januar."
+            say: "Stimmt das? Der Februar kommt nach dem Januar."
+            answer: true
+          - id: l3-c16
+            part: day
+            type: ordering
+            text: "Ordne den Tag."
+            say: "Ordne die Tageszeiten: abends, nachts, mittags."
+            options: ["abends", "nachts", "mittags"]
+            slot_count: 3
+            answer: ["mittags", "abends", "nachts"]
+          - id: l3-c17
+            part: week
+            type: true_false
+            text: "Der Freitag kommt vor dem Donnerstag."
+            say: "Stimmt das? Der Freitag kommt vor dem Donnerstag."
+            answer: false
+          - id: l3-c18
+            part: yesterday-tomorrow
+            type: true_false
+            text: "Heute ist Dienstag. Gestern war Montag."
+            say: "Heute ist Dienstag. Gestern war Montag. Stimmt das?"
+            answer: true
+          - id: l3-c19
+            part: seasons
+            type: multiple_choice
+            text: "In welcher Jahreszeit ist der Mai?"
+            say: "In welcher Jahreszeit ist der Mai?"
+            options: ["im Frühling", "im Herbst", "im Winter"]
+            answer: "im Frühling"
+          - id: l3-c20
+            part: seasons
+            type: multiple_choice
+            text: "In welcher Jahreszeit ist der November?"
+            say: "In welcher Jahreszeit ist der November?"
+            options: ["im Herbst", "im Sommer", "im Frühling"]
+            answer: "im Herbst"
