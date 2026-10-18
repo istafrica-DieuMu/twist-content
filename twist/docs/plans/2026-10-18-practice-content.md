@@ -49,9 +49,29 @@ lesson-anatomy.md and one pilot set of the same subject as the model
    strategy ("Tausch die Zahlen, wenn es hilft"); that is a hint. Fix an
    existing check task of the set that breaks this.
 9. **Quote a part's `what`** when it holds a comma, `<` or `>`.
-10. **Write every task with Edit**, one at a time; mechanical edits (the
+10. **Every task stands alone.** Practice sessions draw Practise and
+    Warm-up tasks one at a time, so point 8 holds for them too: fix any
+    task of the set whose story, numbers or question is only in `say`. A
+    picture shows the story's amount or nothing; never one picture for a
+    count.
+11. **Options stay in the year's range.** No subtraction option below
+    zero and no number above the year's range in Reception to Year 2 and
+    Klasse 1 and 2, unless `metadata.misconceptions` names that mistake
+    (the build warns).
+12. **Tables, plans, pictograms and grids are drawn**: the table, grid,
+    bar-chart (with `pictogram_object` for a pictogram) or cubes
+    component, never lines of text or ■□ rows in `text` (the build warns
+    in maths).
+13. **A method in a check** (in `text` or `say`) only when the part's
+    `what` names that method; otherwise the check asks the question alone.
+14. **Every verb of the "I can" line** has a part, or the set's summary
+    says that Practise covers it (drawing, writing).
+15. **Near repeats**: a pool task that only swaps a noun or the numbers of
+    a Practise, Warm-up or other pool task, with the same options and
+    answer, is a repeat.
+16. **Write every task with Edit**, one at a time; mechanical edits (the
     `draw:` lines, the parts block) may use a one-line replace.
-11. **Done** when `node twist/build.mjs` shows no warnings for the set.
+17. **Done** when `node twist/build.mjs` shows no warnings for the set.
 
 ## Reviewer checklist
 

@@ -243,6 +243,13 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           const speakable = t.option_audio !== false && !NO_OPTION_AUDIO.has(t.type) && (t.options ?? []).every((o) => typeof o === "string" && !/^[A-Za-zÄÖÜäöüß]{1,3}$/.test(o));
           if (d.metadata?.no_reading && typeof (t.options ?? [])[0] === "string" && !["audio_choice"].includes(t.type) && !speakable) err(`${file}: ${tw}: no_reading lesson, but options are text the child cannot hear`);
           if (d.metadata?.no_reading && t.type === "audio_choice" && typeof (t.options ?? [])[0] === "string") err(`${file}: ${tw}: no_reading lesson, but the child must read the options`);
+          // Early years: a subtraction option below zero is a weak distractor,
+          // unless the set lists that mistake as a misconception.
+          const earlyYear = ["reception", "year-1", "year-2", "klasse-1", "klasse-2"].includes(md.year);
+          const swapMisconception = (md.misconceptions ?? []).some((m) => /kleiner\w* minus|minus.*tausch|tausch.*minus|smaller.*bigger|bigger.*smaller|swap|start.*part|Teil an|wrong-start|taken away|weggenommen/i.test(`${m.id} ${m.what}`));
+          if (earlyYear && !swapMisconception) for (const o of t.options ?? []) { const m = typeof o === "string" && /^(\d+) − (\d+)$/.exec(o); if (m && +m[1] < +m[2]) warn(`${file}: ${tw}: option "${o}" goes below zero; use a distractor in the year's range, or list the mistake in metadata.misconceptions`); }
+          // Tables, plans and grids belong in a drawn component, not in text lines.
+          if (d.id?.split(".")[1] === "math" && typeof t.text === "string" && (/(\n[^\n]{1,30}: [^\n]+){3}/.test("\n" + t.text) || /[■□]{3}/.test(t.text) || /\|.*\|.*\n.*\|/.test(t.text))) warn(`${file}: ${tw}: a table or grid written as text; use the table, grid, bar-chart or cubes component (assets/drawn.yaml)`);
           if (a.activity === "check" && ["skill", "timed"].includes(a.size) && t.type === "speak") warn(`${file}: ${tw}: speaking in a skill check; speech recognition for young children is not reliable enough to decide mastery`);
           refs(t, tw, file);
           const sig = JSON.stringify([t.type, t.text ?? t.say, t.answer, t.show ?? null, t.audio ?? null, t.options ?? null, t.pairs ?? null, t.bins ?? null, t.frame ?? null, t.say ?? null]);

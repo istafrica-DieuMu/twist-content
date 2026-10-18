@@ -827,7 +827,7 @@ Lesson 1 names the four flat shapes by their corners and sides (Ein Dreieck hat 
 | 1. Ecken und Seiten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Quadrat oder Rechteck? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, image_multiple_choice 13, true_false 14, matching 3. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 2.
+Task types: multiple_choice 31, image_multiple_choice 12, true_false 14, matching 3. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 2.
 
 ## Tauschaufgaben (Turnaround sums)
 
@@ -926,7 +926,7 @@ Doubling numbers to 10 and halving even numbers to 20. Lesson 1 doubles with the
 | 1. Verdoppeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Halbieren | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 18, multiple_choice 20, true_false 13, matching 9. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: text_input 19, multiple_choice 19, true_false 13, matching 9. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Gleich, größer, kleiner (Equal, greater, smaller)
 
@@ -968,7 +968,7 @@ All the sums of the kleines Einspluseins quickly and surely, using the tricks th
 | 1. Schnell plus rechnen | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Minus aus Plus ableiten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (timed, 5 of 20) |
 
-Task types: text_input 36, multiple_choice 8, true_false 11, fill_in_blank 6. Builds on: `math.add-sub-to-20.sub-bridge-10`. Misconceptions addressed: 2.
+Task types: text_input 36, multiple_choice 9, true_false 11, fill_in_blank 5. Builds on: `math.add-sub-to-20.sub-bridge-10`. Misconceptions addressed: 2.
 
 ## Umkehraufgaben und Aufgabenfamilien (Inverse sums and fact families)
 
@@ -1052,7 +1052,7 @@ Zahlenmauern (each stone is the two stones under it added together) and Rechenke
 | 1. Zahlenmauern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Rechenketten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 2, fill_in_blank 40, true_false 11, multiple_choice 7. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
+Task types: text_input 2, fill_in_blank 39, true_false 12, multiple_choice 7. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
 
 ## Zahlen ordnen bis 10 (Ordering numbers to 10)
 
@@ -1101,7 +1101,7 @@ Task types: multiple_choice 31, fill_in_blank 27, true_false 19, matching 7, ord
 
 `de-DE.math.picture-stories` teaches `math.word-problems.picture-stories` in de-DE, klasse-1. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-A picture or a short story asks a question, and the child finds the sum, works it out and says the answer. Lesson 1 finds what the story asks and the sum for it; lesson 2 adds the answer sentence and mixes plus and minus stories, and ends with the skill check. Stories are spoken; sums and short questions are on screen.
+A picture or a short story asks a question, and the child finds the sum, works it out and says the answer. Lesson 1 finds what the story asks and the sum for it; lesson 2 adds the answer sentence and mixes plus and minus stories, and ends with the skill check. Stories are spoken and stand on screen with their numbers.
 
 
 | Lesson | New | Tasks | Activities |
@@ -1236,7 +1236,7 @@ Children learn to see how many without counting one by one. Lesson 1 uses dice p
 | 1. Würfelbilder | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Die Kraft der 5 | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: tap_to_count 1, multiple_choice 33, image_multiple_choice 12, true_false 11, matching 7. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 3.
+Task types: tap_to_count 1, multiple_choice 32, image_multiple_choice 12, true_false 12, matching 7. Builds on: `math.numbers-to-20.count-to-5`. Misconceptions addressed: 3.
 
 ## Symmetrie erkennen (Spotting symmetry)
 
@@ -2149,7 +2149,7 @@ Finding what to add to reach the next ten and to reach 100 (37 + _ = 40, 64 + _ 
 | 1. Bis zum nächsten Zehner | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Bis 100 | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, text_input 21, fill_in_blank 12, true_false 10. Builds on: `math.add-sub-to-100.ones-bridge`. Misconceptions addressed: 3.
+Task types: multiple_choice 19, text_input 22, fill_in_blank 11, true_false 10. Builds on: `math.add-sub-to-100.ones-bridge`. Misconceptions addressed: 3.
 
 ## Die Kernaufgaben (The core facts)
 
@@ -2177,7 +2177,7 @@ Lesson 1 reads a Bauplan in one row: each field says how many Würfel stand on t
 | 1. Türme und Baupläne | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Baupläne mit zwei Reihen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 3, multiple_choice 38, true_false 10, fill_in_blank 9. Builds on: `math.solids.cube-cuboid-sphere`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 4, multiple_choice 36, true_false 11, fill_in_blank 9. Builds on: `math.solids.cube-cuboid-sphere`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
 
 ## Schwierige Aufgaben ableiten (Working out hard facts from easy ones)
 
@@ -2219,7 +2219,7 @@ Every division fact of the kleines Einmaleins. Lesson 1 takes two divisions from
 | 1. Zwei Geteiltaufgaben aus einer Malaufgabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Geteiltaufgaben mit Probe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 12, text_input 22, multiple_choice 14, true_false 12. Builds on: `math.mult-div.div-inverse`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
+Task types: fill_in_blank 12, text_input 22, multiple_choice 13, true_false 13. Builds on: `math.mult-div.div-inverse`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
 
 ## Geteilt mit der Malaufgabe (Dividing with multiplication)
 
@@ -2575,7 +2575,7 @@ Task types: fill_in_blank 33, multiple_choice 14, ordering 8, true_false 9. Buil
 
 `de-DE.math.pictograms-bar-charts` teaches `math.data.pictograms-bar-charts` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 reads Bilddiagramme where a dot stands for one child or for two (● = 2 Kinder: count in twos), and turns a Strichliste into a row of the Bilddiagramm; lesson 2 reads Säulendiagramme on a scale in ones and in twos (read the number on the scale, do not count the lines), finds the chart that fits a Strichliste, and ends with the skill check. Drawing the bars or placing the pictures yourself waits for a drawing or drag task.
+Lesson 1 reads Bilddiagramme where a picture stands for one child or for two (a picture = 2 Kinder: count in twos), and turns a Strichliste into a row of the Bilddiagramm; lesson 2 reads Säulendiagramme on a scale in ones and in twos (read the number on the scale, do not count the lines), finds the chart that fits a Strichliste, and ends with the skill check. Drawing the bars or placing the pictures yourself waits for a drawing or drag task.
 
 
 | Lesson | New | Tasks | Activities |
@@ -2667,7 +2667,7 @@ Lesson 1 describes flat shapes by their Ecken and Seiten (Dreieck 3, Viereck 4, 
 | 1. Ecken und Seiten zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Quadrat und Rechteck | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, image_multiple_choice 13, true_false 14, matching 3, sorting 4, fill_in_blank 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 24, image_multiple_choice 13, true_false 15, matching 3, sorting 4, fill_in_blank 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
 
 ## Sachaufgaben mit Rechenstrich und Tabelle (Word problems with number lines and tables)
 
@@ -2695,7 +2695,7 @@ Lesson 1 tells the three Körper apart and names them, in drawings and in things
 | 1. Körper erkennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Flächen, Ecken und Kanten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 27, image_multiple_choice 14, true_false 13, matching 3, sorting 2, fill_in_blank 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 28, image_multiple_choice 13, true_false 13, matching 3, sorting 2, fill_in_blank 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
 
 ## Quadratzahlen (Square numbers)
 
@@ -2709,7 +2709,7 @@ Square numbers to 10 · 10. Lesson 1 sees them as square Punktefelder (as many r
 | 1. Quadrate im Punktefeld | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Alle Quadratzahlen bis 100 | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 11, text_input 8, image_multiple_choice 6, true_false 14, fill_in_blank 18, matching 3. Builds on: `math.mult-div.arrays`. Misconceptions addressed: 2.
+Task types: multiple_choice 11, text_input 9, image_multiple_choice 6, true_false 14, fill_in_blank 17, matching 3. Builds on: `math.mult-div.arrays`. Misconceptions addressed: 2.
 
 ## Zweistellige Zahlen subtrahieren (Subtracting two-digit numbers)
 
@@ -3647,7 +3647,7 @@ Lesson 1 tells a Linie (gerade oder krumm), a Strecke (gerade, mit zwei Endpunkt
 | 1. Linien, Strecken und Geraden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Strecken genau messen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, true_false 14, sorting 2, text_input 8, ordering 1. Builds on: `math.shapes.draw-freehand-ruler`, `math.length.cm-m`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, true_false 12, sorting 2, text_input 9, ordering 1. Builds on: `math.shapes.draw-freehand-ruler`, `math.length.cm-m`. Misconceptions addressed: 2.
 
 ## Gewichte vergleichen (Comparing mass)
 
@@ -3689,7 +3689,7 @@ Lesson 1 learns 1 kg = 1000 g, reads a kitchen scale from 0 to 1000 g in steps o
 | 1. 1 Kilogramm hat 1000 Gramm | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Waagen ablesen und rechnen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 31, text_input 19, true_false 9, ordering 1. Builds on: `math.mass-capacity.compare-mass`, `math.numbers-to-100.number-line`. Misconceptions addressed: 2.
+Task types: multiple_choice 31, text_input 18, true_false 10, ordering 1. Builds on: `math.mass-capacity.compare-mass`, `math.numbers-to-100.number-line`. Misconceptions addressed: 2.
 
 ## Mit Geldbeträgen rechnen (Calculating with money)
 
@@ -3919,7 +3919,7 @@ Task types: multiple_choice 40, ordering 3, true_false 13, fill_in_blank 5, imag
 
 `de-DE.math.plans-maps` teaches `math.space.plans-maps` in de-DE, klasse-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Lesson 1 finds squares on a grid plan with the letter of the column and the number of the row (B2 ist der Brunnen) and names the square of a place; lesson 2 follows and describes routes on the plan (2 Felder nach rechts, 1 Feld nach unten) and ends with the skill check. The plans are tables in text for now; a drawn map with pictures, and drawing a route into it, wait for a map component and a drawing task.
+Lesson 1 finds squares on a grid plan with the letter of the column and the number of the row (B2 ist der Brunnen) and names the square of a place; lesson 2 follows and describes routes on the plan (2 Felder nach rechts, 1 Feld nach unten) and ends with the skill check. The plans are drawn tables for now; a drawn map with pictures, and drawing a route into it, wait for a map component and a drawing task.
 
 
 | Lesson | New | Tasks | Activities |
@@ -4838,7 +4838,7 @@ Lesson 1 decides from the situation whether an Überschlag is enough (Reicht das
 | 1. Reicht ein Überschlag? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Sicher und knapp | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, sorting 6, true_false 14. Builds on: `math.word-problems.multi-step`, `math.add-sub-to-1000.estimate`. Misconceptions addressed: 2.
+Task types: multiple_choice 38, sorting 6, true_false 15, text_input 1. Builds on: `math.word-problems.multi-step`, `math.add-sub-to-1000.estimate`. Misconceptions addressed: 2.
 
 ## Ist das Spiel fair? (Is the game fair?)
 
@@ -5108,7 +5108,7 @@ Lesson 1 learns that a figure is punktsymmetrisch when it looks the same after a
 | 1. Gleich nach einer halben Drehung | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Punktsymmetrische Figuren | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, true_false 29, image_multiple_choice 4, sorting 4. Builds on: `math.symmetry.several-axes`, `math.space.mental-moves`. Misconceptions addressed: 2.
+Task types: multiple_choice 22, true_false 30, image_multiple_choice 4, sorting 4. Builds on: `math.symmetry.several-axes`, `math.space.mental-moves`. Misconceptions addressed: 2.
 
 ## Über eins rechnen (Working through one)
 
@@ -7533,7 +7533,7 @@ Double facts to 10 (the Early Learning Goal) and sharing fairly into two equal g
 | 1. Verdoppeln | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Gerecht teilen | yes | 19 | learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 4 of 20) |
 
-Task types: multiple_choice 25, true_false 23, image_multiple_choice 8. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 24, true_false 24, image_multiple_choice 8. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Gerade und ungerade Zahlen (Odd and even)
 
@@ -7631,7 +7631,7 @@ Counting beyond ten: a full ten frame is ten, and the numbers to 20 are ten and 
 | 1. Weiter als zehn | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zehn und noch ein paar | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: multiple_choice 26, true_false 16, image_multiple_choice 14. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 24, true_false 18, image_multiple_choice 14. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Das Alphabet und die Buchstabennamen (The alphabet and letter names)
 

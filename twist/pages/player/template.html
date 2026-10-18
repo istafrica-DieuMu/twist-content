@@ -428,6 +428,7 @@ svg text{font-family:Andika,sans-serif}
 @keyframes spark{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1.2) rotate(45deg)}100%{opacity:0;transform:scale(.6) rotate(90deg)}}
 @media (prefers-reduced-motion: reduce){.actin *,.actin{animation:none!important}.spark{display:none}}
 @media (max-height:760px){.stagebox{width:180px;height:180px}.stagebox img.mascot-pose{width:160px;height:160px}}
+.frame .fbr{flex-basis:100%;height:0;margin:0}
 /*__PRACTICE_CSS__*/
 </style>
 </head>
@@ -492,13 +493,13 @@ const TXT = {
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
     speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
-    introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:" },
+    introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:", fillGap: "Was fehlt?", planBack: "hinten", planFront: "vorne" },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
     speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
-    introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:" },
+    introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:", fillGap: "What is missing?", planBack: "back", planFront: "front" },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
@@ -662,7 +663,8 @@ function barChart(o) {
   const rows = o.rows ?? [];
   // Pictogram: each row repeats a picture value / key times; a remainder of half a key shows half a picture.
   if (o.pictogram_object) {
-    const key = o.key ?? 1, src = `${A}objects/${o.pictogram_object}.png`;
+    // per: what one picture stands for (key is the older name; as an option, key is its id).
+    const key = o.per ?? o.key ?? 1, src = `${A}objects/${o.pictogram_object}.png`;
     const row = (v) => { const full = Math.floor(v / key), half = v % key ? 1 : 0; return `${'<img src="' + src + '" style="width:30px;height:30px">'.repeat(full)}${half ? `<span style="display:inline-block;width:15px;overflow:hidden;vertical-align:top"><img src="${src}" style="width:30px;height:30px;max-width:none"></span>` : ""}`; };
     return `<table class="tally">${rows.map(([l, v]) => `<tr><td>${esc(l)}</td><td style="text-align:left">${row(v)}</td></tr>`).join("")}</table>${key > 1 ? `<div style="font:600 14px Andika,sans-serif;margin-top:6px"><img src="${src}" style="width:22px;height:22px;vertical-align:middle"> = ${key}</div>` : ""}`;
   }
@@ -806,7 +808,8 @@ function rechenstrich(start, jumps, back = false) {
   jumps.forEach((j) => { hops.push([at, j]); at += j; });
   const marks = [start, ...hops.map(([f, n]) => f + n)];
   s += arcs(hops, sc, y);
-  marks.forEach((v) => { s += `<line x1="${sc(v)}" y1="${y - 10}" x2="${sc(v)}" y2="${y + 10}" stroke="#2b0f45" stroke-width="4"/><text x="${sc(v)}" y="${y + 36}" text-anchor="middle" font-size="22" font-weight="700" fill="#2b0f45">${v}</text>`; });
+  const hideEnd = jumps.length && SHOWN_ANSWER.includes(String(marks.at(-1)));
+  marks.forEach((v, i) => { const q = hideEnd && i === marks.length - 1; s += `<line x1="${sc(v)}" y1="${y - 10}" x2="${sc(v)}" y2="${y + 10}" stroke="#2b0f45" stroke-width="4"/><text x="${sc(v)}" y="${y + 36}" text-anchor="middle" font-size="22" font-weight="700" fill="${q ? "#8e3bd1" : "#2b0f45"}">${q ? "?" : v}</text>`; });
   const d = back ? -1 : 1;
   if (!jumps.length) s += `<path d="M${sc(start)} ${y} Q ${sc(start + 1.5 * d)} ${y - 70} ${sc(start + 3 * d)} ${y}" fill="none" stroke="#8e3bd1" stroke-width="3.5" stroke-dasharray="7 7"/><text x="${sc(start + 1.5 * d)}" y="${y - 44}" text-anchor="middle" font-size="22" font-weight="700" fill="#8e3bd1">?</text>`;
   return `<svg viewBox="0 0 330 160" width="100%" style="max-width:330px">${s}</svg>`;
@@ -1027,7 +1030,11 @@ function cubes(o) {
   if (mode === "side") return squares([...Array(rows)].map((_, i) => Math.max(...[...Array(cols)].map((_, c) => h(rows - 1 - i, c)))));
   if (mode === "plan" || mode === "top") {
     const filled = plan.flatMap((r, i) => r.map((n, c) => [c, i, n])).filter(([, , n]) => n);
-    return grid({ cols, rows, cells: filled.map(([c, i]) => [c, i, o.colour]), labels: mode === "plan" ? filled.map(([c, i, n]) => [c, i, String(n)]) : [] });
+    const g = grid({ cols, rows, cells: filled.map(([c, i]) => [c, i, o.colour]), labels: mode === "plan" ? filled.map(([c, i, n]) => [c, i, String(n)]) : [] });
+    // A Bauplan names its rows: the top row is at the back (hinten), the bottom one at the front.
+    if (mode !== "plan" || o.sides === false) return g;
+    const side = (k) => `<div style="font:700 13px 'Red Hat Text',sans-serif;color:#7a6a9e;text-align:center">${esc(UI[k])}</div>`;
+    return `<div style="display:inline-flex;flex-direction:column;gap:4px">${side("planBack")}${g}${side("planFront")}</div>`;
   }
   const s0 = 30, d = s0 * 0.5, top = Math.max(...plan.flat(), 1), W = cols * s0 + rows * d + 12, H = top * s0 + rows * d + 12;
   let s = "";
@@ -1273,6 +1280,7 @@ function learnText(text) {
   return card;
 }
 function renderLearn(step) {
+  SHOWN_ANSWER = [];
   const { body, foot } = frameUI(step), s = step.s;
   const vis = document.createElement("div"); vis.className = "visual"; vis.innerHTML = show(s.show); body.appendChild(vis);
   const cardShown = ["letter-card", "word-card", "syllable-arcs"].includes(s.show?.drawn);
@@ -1316,7 +1324,11 @@ function renderEnd() {
 }
 
 /* ---------- tasks ---------- */
+// The answer of the task on screen, so a drawing never shows it (a number
+// line's last landing point becomes "?"). Learn screens clear it.
+let SHOWN_ANSWER = [];
 function renderTask(step) {
+  SHOWN_ANSWER = [].concat(step.t.answer ?? []).map(String);
   const { body, foot } = frameUI(step), t = step.t;
   const st = { misses: 0, hintShown: 0, over: false };
   const mode = step.stage; // full, some, none, check
@@ -1329,7 +1341,9 @@ function renderTask(step) {
     body.appendChild(pr);
     const big = spk([t._target].flat().filter(Boolean), "big"); body.appendChild(big);
   } else {
-    const txt = document.createElement("div"); txt.className = (t.text ?? "").includes("\n") || (t.text ?? "").length > 90 ? "t passage" : "t"; txt.innerHTML = set.no_reading ? "" : withGaps(t.text); pr.appendChild(txt);
+    // A text that only repeats the frame below gives way to a plain instruction.
+    const shown = t.frame && String(t.text ?? "").trim() === String(t.frame).trim() ? UI.fillGap : t.text;
+    const txt = document.createElement("div"); txt.className = (shown ?? "").includes("\n") || (shown ?? "").length > 90 ? "t passage" : "t"; txt.innerHTML = set.no_reading ? "" : withGaps(shown); pr.appendChild(txt);
     pr.appendChild(spk(promptAudio)); body.appendChild(pr);
   }
   // The app's prompt: the mascot with a speech bubble that holds the question and its speaker.
@@ -1456,7 +1470,14 @@ function fitScreen(body, vis) {
       const h = el.getBoundingClientRect().height; el.style.zoom = Math.max(1, z * (h - over) / h).toFixed(3);
     }
   };
-  requestAnimationFrame(() => { run(); fitTileText(body); shrinkToFit(body, vis); });
+  requestAnimationFrame(() => { run(); fitTables(body); fitTileText(body); shrinkToFit(body, vis); });
+}
+// A table wider than the screen takes a smaller font, down to 11px.
+function fitTables(body) {
+  for (const tb of body.querySelectorAll("table")) {
+    let fs = parseFloat(getComputedStyle(tb).fontSize);
+    while (tb.getBoundingClientRect().width > body.clientWidth - 4 && fs > 11) { fs -= 1; tb.style.fontSize = `${fs}px`; }
+  }
 }
 // When a screen still does not fit the phone, things give way in turn so
 // the answer controls stay whole: the picture (down to 64px), then the
@@ -1565,7 +1586,9 @@ const TYPES = {
     // Long frames (a Rechenweg in steps, a fact family) get a smaller font so they stay on one or two lines.
     if (t.frame.length > 28) fr.style.fontSize = "22px"; else if (t.frame.length > 16) fr.style.fontSize = "28px";
     const chips = document.createElement("div"); chips.className = "chips"; body.appendChild(chips);
-    const draw = () => { fr.innerHTML = ""; parts.forEach((p, i) => { if (p) { const s = document.createElement("span"); s.textContent = p.trim() ? p : " "; fr.appendChild(s); } if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; fr.appendChild(g); } }); btn.disabled = fill.includes(null); };
+    // " | " between two sums or steps starts a new line, never a bar on screen.
+    const piece = (p) => p.split(" | ").forEach((x, k) => { if (k) { const br = document.createElement("i"); br.className = "fbr"; fr.appendChild(br); } if (x) { const s = document.createElement("span"); s.textContent = x.trim() ? x : " "; fr.appendChild(s); } });
+    const draw = () => { fr.innerHTML = ""; parts.forEach((p, i) => { if (p) piece(p); if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; fr.appendChild(g); } }); btn.disabled = fill.includes(null); };
     t.options.forEach((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over) return; const k = fill.indexOf(null); if (k >= 0) { fill[k] = o; draw(); } }; chips.appendChild(b); });
     const btn = nextBtn(foot, UI.check, () => { const ok = fill.every((v, i) => String(v) === String(t.answer[i])); if (!ok) { fr.querySelectorAll(".gap").forEach((g, i) => g.style.background = String(fill[i]) === String(t.answer[i]) ? "var(--good-soft)" : "var(--bad-soft)"); } answer(ok, fill.join(","), () => { t.answer.forEach((v, i) => fill[i] = v); draw(); fr.querySelectorAll(".gap").forEach((g) => g.style.background = "var(--good-soft)"); }); if (!ok && !st.over) setTimeout(() => { fill.fill(null); draw(); }, 900); });
     draw();
