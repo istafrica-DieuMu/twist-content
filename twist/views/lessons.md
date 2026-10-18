@@ -2762,10 +2762,10 @@ The Einmaleinsreihen of 3, 6 and 9. Lesson 1 takes the Dreierreihe and the Sechs
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Dreier und Sechser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Neunerreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Dreier und Sechser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Neunerreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 13, fill_in_blank 14, true_false 8, multiple_choice 7. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 2.
+Task types: text_input 19, fill_in_blank 19, true_false 12, multiple_choice 10. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 2.
 
 ## Die Fünfer- und die Zehnerreihe (The 5 and 10 times tables)
 
@@ -2776,10 +2776,10 @@ The Einmaleinsreihen of 10 and 5 and how they belong together. Lesson 1 takes th
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Zehnerreihe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Fünferreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die Zehnerreihe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Fünferreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 12, fill_in_blank 12, multiple_choice 12, true_false 6. Builds on: `math.mult-div.core-facts`. Misconceptions addressed: 2.
+Task types: text_input 17, fill_in_blank 15, multiple_choice 17, true_false 11. Builds on: `math.mult-div.core-facts`. Misconceptions addressed: 2.
 
 ## Die Siebenerreihe (The 7 times table)
 
@@ -2790,10 +2790,10 @@ The Einmaleinsreihe of 7, the one with the fewest helpers. Lesson 1 builds it fr
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mit fünf mal sieben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Tauschen und merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Mit fünf mal sieben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Tauschen und merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 10, fill_in_blank 17, true_false 9, multiple_choice 6. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 3.
+Task types: text_input 16, fill_in_blank 22, true_false 12, multiple_choice 10. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 3.
 
 ## Zehner dazu und weg (Adding and taking away tens)
 
@@ -9513,10 +9513,10 @@ The 10 and 5 times tables and how they belong together. Lesson 1 takes the 10 ti
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Zehnerreihe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Fünferreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
+| 1. Die Zehnerreihe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Fünferreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 13, multiple_choice 15, point_on_line 3, fill_in_blank 5, true_false 6. Builds on: `math.mult-div.core-facts`. Misconceptions addressed: 3.
+Task types: text_input 17, multiple_choice 20, point_on_line 3, fill_in_blank 8, true_false 12. Builds on: `math.mult-div.core-facts`. Misconceptions addressed: 3.
 
 ## Strichlisten (Tally charts)
 
@@ -10550,10 +10550,10 @@ The 3, 6 and 9 times tables. Lesson 1 counts in threes and gets each 6 times tab
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Dreier und Sechser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Neunerreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Dreier und Sechser | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Neunerreihe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 15, fill_in_blank 14, true_false 8, multiple_choice 5. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 3.
+Task types: text_input 21, fill_in_blank 18, true_false 12, multiple_choice 9. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 3.
 
 ## Zehntel (Tenths)
 
@@ -11323,10 +11323,10 @@ The 7 times table, the one with the fewest shortcuts. Lesson 1 builds it from fi
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mit fünf mal sieben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Tauschen und merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
+| 1. Mit fünf mal sieben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Tauschen und merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 13, fill_in_blank 16, true_false 8, multiple_choice 5. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 3.
+Task types: text_input 19, fill_in_blank 21, true_false 11, multiple_choice 9. Builds on: `math.mult-div.derive-facts`. Misconceptions addressed: 3.
 
 ## Verschiebungen im Koordinatensystem (Translations on a grid)
 

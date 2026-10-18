@@ -130,6 +130,28 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     };
     const sayNum = (v, where) => { if (typeof v === "string" && /\d{1,3}( \d{3})+|\d{5,}/.test(v)) warn(`${file}: ${where}: say has a number of 10 000 or more in digits; write it in words so the voice reads it right`); };
     const tf = [];
+    // A check with `draw` is a pool: each attempt shows `draw` of its tasks
+    // (docs/lesson-anatomy.md, "Check pools"). A drawn skill check names
+    // the skill's part on every task and covers every part in one draw.
+    const parts = new Map((md.parts ?? []).map((p) => [p.id, p]));
+    for (const [id, p] of parts) if (!p.what?.de || !p.what?.en) err(`${file}: metadata.parts ${id} needs what in de and en`);
+    const checkPool = (a, aw) => {
+      const tasks = a.tasks ?? [], skill = ["skill", "timed"].includes(a.size);
+      if (a.draw !== undefined) {
+        const want = skill ? ((md.ages ?? [])[0] === "4-5" ? 4 : 5) : 3;
+        if (a.draw !== want) err(`${file}: ${aw}: draw is ${want} for a ${a.size} check at ages ${(md.ages ?? [])[0]}`);
+        if (tasks.length < 2 * a.draw) err(`${file}: ${aw}: a pool of ${tasks.length} for a draw of ${a.draw}; it needs at least ${2 * a.draw} so a second attempt differs`);
+        const sigs = new Map();
+        for (const t of tasks) { const k = JSON.stringify([t.type, t.text, t.say ?? null, t.frame ?? null, t.answer]); if (sigs.has(k)) err(`${file}: ${aw}: task ${t.id} repeats ${sigs.get(k)} in the pool`); sigs.set(k, t.id); }
+      }
+      for (const t of tasks) if (t.part !== undefined && !(skill && a.draw)) err(`${file}: ${aw} task ${t.id}: part belongs on the tasks of a drawn skill check`);
+      if (!skill || !a.draw) return;
+      if (!parts.size) { err(`${file}: ${aw}: a drawn skill check needs metadata.parts`); return; }
+      if (parts.size > a.draw) err(`${file}: ${aw}: ${parts.size} parts cannot all fit in a draw of ${a.draw}`);
+      const per = new Map([...parts.keys()].map((k) => [k, 0]));
+      for (const t of tasks) { if (!parts.has(t.part)) err(`${file}: ${aw} task ${t.id}: part ${t.part ?? "(none)"} is not in metadata.parts`); else per.set(t.part, per.get(t.part) + 1); }
+      for (const [k, n] of per) if (n < 3) err(`${file}: ${aw}: part ${k} has ${n} tasks; it needs at least 3 so attempts differ`);
+    };
     lessons.forEach((l, i) => {
       const lw = `lesson ${l.n}`;
       if (l.n !== i + 1) err(`${file}: lessons must be numbered 1, 2, 3 ...; found ${l.n} at position ${i + 1}`);
@@ -175,9 +197,10 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           });
           seq.push(`practise (${st.map((s) => `${s.tasks?.length ?? 0} ${s.support}${(s.setting ?? a.setting) === "in-context" ? " in context" : ""}`).join(", ")})`);
         } else {
-          seq.push(a.activity === "check" ? `check (${a.size})` : a.activity);
+          seq.push(a.activity === "check" ? `check (${a.size}${a.draw ? `, ${a.draw} of ${a.tasks?.length ?? 0}` : ""})` : a.activity);
           if (!a.tasks?.length) err(`${file}: ${aw}: no tasks`);
           groups = [{ support: null, tasks: a.tasks ?? [] }];
+          if (a.activity === "check") checkPool(a, aw);
         }
         for (const { support, tasks } of groups) for (const t of tasks) {
           count++;
@@ -238,6 +261,8 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (t.keep_order !== undefined && (typeof t.keep_order !== "boolean" || !CHOICE_TYPES.has(t.type))) err(`${file}: ${tw}: keep_order is true or false, on a choice task only`);
         }
       });
+      // A drawn check counts as the tasks one attempt shows.
+      for (const a of acts) if (a.activity === "check" && a.draw) count -= (a.tasks?.length ?? 0) - a.draw;
       const age = (md.ages ?? [])[0];
       const [lo, hi] = TASKS_PER_LESSON[age] ?? [0, 99];
       if (count < lo || count > hi) warn(`${file}: ${lw} has ${count} tasks; ages ${age} usually ${lo} to ${hi}`);

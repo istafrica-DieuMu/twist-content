@@ -1080,6 +1080,7 @@ const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?<
 
 /* ---------- lesson as a list of steps ---------- */
 let set, lesson, steps = [], at = 0, results = [];
+const lastDraw = {};
 function buildSteps() {
   steps = [{ kind: "start" }];
   for (const a of lesson.activities) {
@@ -1092,7 +1093,10 @@ function buildSteps() {
     else {
       if (a.activity === "check") steps.push({ kind: "checkIntro", a });
       else steps.push({ kind: "intro", a });
-      a.tasks.forEach((t) => steps.push({ kind: "task", a, t, stage: a.activity === "check" ? "check" : "none" }));
+      // A check pool shows a fresh draw on every attempt, avoiding the last one.
+      const shown = a.activity === "check" && a.draw ? drawCheck(a, { last: lastDraw[`${set.id}#${lesson.n}`] ?? [] }) : a.tasks;
+      if (a.draw) lastDraw[`${set.id}#${lesson.n}`] = shown.map((t) => t.id);
+      shown.forEach((t) => steps.push({ kind: "task", a, t, stage: a.activity === "check" ? "check" : "none" }));
     }
   }
   steps.push({ kind: "end" });
@@ -1223,7 +1227,7 @@ function renderStage(step) {
 }
 function renderCheckIntro(step) {
   const { body, foot } = frameUI(step), p = phrase("check_start");
-  body.innerHTML = `<div class="center">${mascotPose("check")}<h2 class="a-phrase">${esc(p?.text ?? UI.checkTitle)}</h2><p class="a-info">${UI.checkInfo(step.a.tasks.length)}</p></div>`;
+  body.innerHTML = `<div class="center">${mascotPose("check")}<h2 class="a-phrase">${esc(p?.text ?? UI.checkTitle)}</h2><p class="a-info">${UI.checkInfo(step.a.draw ?? step.a.tasks.length)}</p></div>`;
   if (p) play(p.src);
   nextBtn(foot);
 }

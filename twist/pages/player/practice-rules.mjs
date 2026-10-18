@@ -198,6 +198,27 @@ export function buildSession({ kind, child, index, skills = [], minutes = null, 
   return { kind, skills: known, mode, items: items.slice(0, length), seconds: null, minutes };
 }
 
+// ---------- check pools ----------
+
+// One attempt at a check with `draw` (lesson-anatomy.md, "Check pools"):
+// leave out the tasks of the child's last attempt while enough remain, take
+// one task of every part first, fill up with the least recently seen, then
+// shuffle. `seen` maps task id to the day it was last shown.
+export function drawCheck(check, { last = [], seen = {}, rng = Math.random } = {}) {
+  const tasks = check.tasks ?? [], n = check.draw ?? tasks.length;
+  if (n >= tasks.length) return [...tasks];
+  const prev = new Set(last), fresh = tasks.filter((t) => !prev.has(t.id));
+  const from = fresh.length >= n ? fresh : tasks;
+  const order = shuffle(from, rng).sort((a, b) => (seen[a.id] ?? -Infinity) - (seen[b.id] ?? -Infinity));
+  const out = [];
+  for (const part of shuffle([...new Set(order.map((t) => t.part).filter(Boolean))], rng)) {
+    const t = order.find((x) => x.part === part && !out.includes(x));
+    if (t && out.length < n) out.push(t);
+  }
+  for (const t of order) { if (out.length >= n) break; if (!out.includes(t)) out.push(t); }
+  return shuffle(out, rng);
+}
+
 // ---------- drill tasks ----------
 
 const SIGNS = { "de-DE": [["×", "·"], ["÷", ":"]] };

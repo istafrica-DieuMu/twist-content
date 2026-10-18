@@ -438,8 +438,44 @@ had.
   offers one short extra lesson (Learn again in a different way, then
   Practise with full support) and a new skill check with different tasks.
   Each skill has one written skill check, so the new one is drawn from the
-  skill's no-help Practise tasks. A child is never asked to repeat all the
+  skill's no-help Practise tasks; a skill with a check pool draws it from
+  the pool instead (Check pools). A child is never asked to repeat all the
   lessons.
+
+### Check pools
+
+A check can hold more tasks than one attempt shows. Its `draw` says how
+many an attempt shows; the rest wait for the next attempt and feed recaps
+and practice sessions (practice.md). Pilot 2026-10-18: the times tables
+5 and 10, 3, 6 and 9, and 7, in both curricula.
+
+```yaml
+metadata:
+  parts:   # what the skill check covers; every skill-check task names one
+    - { id: row-5, what: { de: die Fünferreihe, en: the 5 times table } }
+    - { id: row-10, what: { de: die Zehnerreihe, en: the 10 times table } }
+lessons:
+  - n: 2
+    activities:
+      - activity: check
+        size: skill
+        draw: 5
+        tasks:
+          - { id: l2-c1, part: row-10, type: text_input, text: "2 · 10 = _", answer: "20" }
+```
+
+- **Skill check:** a pool of 20, `draw: 5` (4 for ages 4 to 5). Every
+  task names its `part`; a set has 2 to 5 parts, each with at least 3
+  tasks. A draw takes one task of every part, then fills up.
+- **Quick check:** a pool of 6, `draw: 3`, no parts.
+- **Each attempt** leaves out the tasks of the child's last attempt and
+  takes the tasks the child has seen least recently (`drawCheck` in
+  pages/player/practice-rules.mjs).
+- **The build checks** the draw size, a pool of at least twice the draw,
+  no task twice in a pool, a known part on every skill-check task, at least
+  3 tasks a part and no more parts than the draw. A lesson's task count
+  counts a pool as its draw.
+- A check without `draw` shows every task, as before.
 
 ### Recaps: from Can do it to Remembers it
 

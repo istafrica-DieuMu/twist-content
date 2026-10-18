@@ -1,17 +1,24 @@
 # Practice
 
-How practice outside lessons works: the kinds of session, where their tasks
-come from, how a session is scored, the Practice tab, typed requests and
-drill banks. The lesson player's Practice tab is where these rules are
-tried and tuned before the app builds them. Mastery, recaps and the states
-are in lesson-anatomy.md; stars and badges in rewards.md.
+Practice outside lessons, for the teams that build it: the backend
+(IST-B2C/backend), the mobile app (ist-schoolido) and the parent dashboard
+(IST-B2C/Parent-dashboard). Mastery, recaps and the states are in
+lesson-anatomy.md; stars and badges in rewards.md.
 
-Decided 2026-10-17. Built in the lesson player's Practice tab, with four starter drill banks in twist/drills/ (G11 in PLAN.md).
+Decided 2026-10-17.
+
+**Reference implementation.** Every rule below is a plain function in
+`twist/pages/player/practice-rules.mjs`, with tests in
+`twist/test/practice-*.test.mjs` (`cd twist && npm test`). Port those
+functions; this page says what they do and why. To see them working, open
+the lesson player (`twist/pages/player/index.html`) and choose Practice. Its
+side panel sets a pretend child's skill states and date, and explains why
+each task was picked.
 
 ## What practice is for
 
 - Bring back skills before they are forgotten (recaps).
-- Close gaps: skills at `Practised` or `Needs a refresh` (catch-up).
+- Close gaps: skills at `practised` or `needs_refresh` (catch-up).
 - Let a child practise what they choose: a topic, a skill, a drill.
 - Build speed on facts to know by heart: times tables, facts to 20,
   tricky and exception words (drills).
@@ -21,21 +28,25 @@ under the recap rules; everything else is practice only.
 
 ## Sessions
 
-| Session | For | Tasks from | Help |
+| Kind (`kind`) | For | Tasks from | Help |
 |---|---|---|---|
-| Recaps due | Skills with a recap due and not taken by a warm-up | No-help Practise tasks and check tasks of each skill | None |
-| Catch-up | One skill at `Practised` or `Needs a refresh` | Full-help stage first, then some-help, then no-help | The first hint once, after a wrong answer |
-| Topic review | A topic the child picks | No-help Practise tasks and check tasks of the topic's skills | None |
-| Skill practice | One skill the child picks | All three Practise stages, getting harder | None |
-| Drill | A skill with a drill bank | The drill bank | None; an optional timer |
+| Recaps due (`recaps`) | Skills with a recap due and not taken by a warm-up | No-help Practise tasks and check tasks of each skill | None |
+| Catch-up (`catch-up`) | One skill at `practised` or `needs_refresh` | Full-help stage first, then some-help, then no-help | The first hint once, after a wrong answer |
+| Topic review (`review`) | A topic the child picks | No-help Practise tasks and check tasks of the topic's skills | None |
+| Skill practice (`skill`) | One skill the child picks | All three Practise stages, getting harder | None |
+| Mixed (`mixed`) | Skills the child picks in Make my own | All stages and checks | None |
+| Drill (`drill`) | A skill with a drill bank | The drill bank | None; an optional timer |
 
 - **Length.** 10 tasks for ages 4 to 5, 14 for 6 to 7, 16 for 8 to 10. A
-  drill runs by time instead: 2, 3 or 5 minutes.
-- **Mixing.** Recaps due and topic review interleave skills: never two tasks
-  of the same skill in a row when another skill is left.
+  session asked for in minutes takes 1.5 tasks a minute. A drill runs by
+  time instead: 2, 3 or 5 minutes.
+- **Recaps due** takes 2 tasks a skill (ages 4 to 5) or 3, and at most as
+  many skills as fit the length; the rest stay due for the next session.
+- **Mixing.** Recaps due, topic review and mixed interleave skills: never
+  two tasks of the same skill in a row when another skill is left.
 - **Which task.** Inside its pool, a session takes the task the child has
-  seen least recently, never one of the child's last skill-check tasks,
-  with choice options shuffled each time.
+  seen least recently (never seen counts as oldest), never one of the
+  child's last skill-check tasks, with choice options shuffled each time.
 - **Recaps first.** When a recap is due, its tasks take the no-help and
   check tasks first; other sessions use the rest.
 - **Missed tasks.** A task missed on the first try comes back once at the
@@ -45,62 +56,29 @@ under the recap rules; everything else is practice only.
   stage a task comes from works as its difficulty: full-help tasks are the
   easiest way in, no-help and check tasks the hardest.
 
-## Scoring
+## Content
 
-| Who | Sees |
+### Where the tasks come from
+
+Practice reuses the lesson tasks. Its only content of its own is the drill
+banks. For each skill, the backend needs its lesson tasks grouped by pool
+(`pools`):
+
+| Pool | Tasks |
 |---|---|
-| Child, 4 to 7 | The mascot, the number right ("12 richtig!" / "12 right!"), and "You got better at ..." / "Besser geworden: ..." per skill |
-| Child, 8 to 10 | The same, plus "12 of 14 right first time" |
-| Child, drill | Items per minute, and a personal best per drill bank ("New record: 18 a minute!") |
-| Parent | Sessions, minutes, first-try share, the skills practised, drill records; no grades |
+| `full`, `some`, `none` | The tasks of the Practise stage with that `support` |
+| `check` | The tasks of every Check activity |
+| `skillCheck` | The tasks of Checks of size `skill` or `timed`, so a session can leave out the ones the child last saw in a skill check |
 
-- Every task records its first try, the time taken and whether the answer
-  was shown.
-- A session is finished when every task in it is answered; finished
-  sessions count for Busy Bee (rewards.md).
-- In a drill, an item answered wrong or slower than the time target comes
-  back sooner (in the same drill after 3 to 5 other items, and first in the
-  next drill of that bank).
+A check with `draw` holds a pool: a skill check of 20 tasks, each tagged
+with the `part` of the skill it covers, and a quick check of 6. One attempt
+shows 5 (or 3) of them (`drawCheck`); every task of the pool is in the
+`check` pool for practice.
 
-## The Practice tab
+A task keeps one key across sessions: `<set id>#<lesson n>#<task id>`
+(`taskKey`), for example `de-DE.math.table-3-6-9#1#l1-n1`.
 
-From the top:
-
-1. **Suggested for you.** Up to 3 cards, each with its reason in plain
-   words, in this order:
-   - Recaps due: "4 skills to remember" / "4 Sachen zum Wiederholen".
-   - Catch-up: the skill's "I can" line and why ("you missed it last week").
-   - Drill: "Beat your record: 3, 6 and 9 times tables".
-   With nothing due, the cards suggest the topic of the child's latest
-   lesson and a drill they have started.
-2. **Search.** Over the skills' "I can" lines, topic names and drill banks,
-   in the child's language.
-3. **Browse.** Subject, then topic, then skill. Each skill shows its stars;
-   a skill with a drill bank shows a drill button.
-4. **Floating button: Make my own.** A sheet with subject and topic chips,
-   time (5, 10 or 15 minutes), kind (mixed, drill, review), and a text box:
-   "What do you want to practise?" / "Was möchtest du üben?"
-
-## Typed requests
-
-A request is turned into filters, shown as chips the child can change
-before starting:
-
-```json
-{ "subject": "math", "skills": ["math.mult-div.table-7"], "kind": "drill", "minutes": 10 }
-```
-
-- Fields: `subject`, `topics`, `skills`, `kind` (`mixed`, `drill`,
-  `review`, `catch-up`), `minutes`, `tasks`. Every field is optional.
-- The player reads requests with a keyword list in English and German:
-  subject names, topic names, skill words ("Einmaleins", "times tables",
-  "Plus", "spelling"), numbers with "Minuten" or "minutes", and table
-  numbers ("mit 7", "the 7s").
-- What it does not understand it says, and opens the filters.
-- The contract is request in, these filters out. The app may later read
-  requests with a language model on the backend; nothing else changes.
-
-## Drill banks
+### Drill banks
 
 A drill bank is a hand-written list of the items of one skill: the facts or
 the words. The app forms the question from an item when it plays it. Drills
@@ -128,49 +106,258 @@ items:
 ```
 
 - **Formats.** `type`: the child types the answer. `choose`: three options,
-  the answer and two near misses the app picks from other items of the
-  bank. `flash`: a word shows for a moment and the child picks it
-  (reading). `say`: the word is spoken and the child types it (spelling).
-  `timed`: any of these against the time target.
-- **Signs.** Items are written with `×` and `÷`; the app shows them in the
+  the answer and two near misses picked from other items of the bank.
+  `flash`: a word shows for a moment and the child picks it (reading).
+  `say`: the word is spoken and the child types it (spelling). `timed`:
+  any of these against the time target.
+- **Signs.** Items are written with `×` and `÷`; show them in the
   curriculum's `operation-signs` facet (`·` and `:` in de-DE).
 - **Words** are spoken by the narration voice like lesson lines.
-- **The build checks** that the skill exists, that every maths answer is
-  right, that no item appears twice, that each format is known, and that a
-  word bank's words appear in their sentences.
+- **Item to task** (`drillTask`). A fact becomes `text_input` with the
+  digit keyboard, or `multiple_choice`. A word becomes `text_input` with
+  its sentence and the word blanked, or `multiple_choice` with two other
+  words of the bank.
+- **The content build checks** that the skill exists, that every maths
+  answer is right, that no item appears twice, that each format is known,
+  and that a word bank's words appear in their sentences.
 
-Starter banks, written by hand:
+| Bank | Skill | Items |
+|---|---|---|
+| Times tables 3, 6, 9 | `math.mult-div.table-3-6-9` | 60 |
+| Facts to 20 | `math.add-sub-to-20.fluency-to-20` | 72 |
+| Year 1 exception words | `lit-en.spelling.exception-words-y1` | 52 |
+| Sight words (Blitzlesen) | `lit-de.fluency.sight-words-easy` | 30 |
+| Times tables 5 and 10 | `math.mult-div.table-5-10` | 40 |
+| Times table 7 | `math.mult-div.table-7` | 29 |
 
-| Bank | Skill |
+### How the app gets content
+
+Nothing reaches the backend yet. The importer reads JSON, and who builds
+the converter from the Twist YAML to that JSON is an open decision on the
+handoff page (R&D cannot write into schoolido-learning). The proposal:
+
+1. The converter turns lessons, skills and drill banks into the importer's
+   JSON. Drill banks are a new record: one per skill, with its formats,
+   time targets and items.
+2. The backend builds sessions and sends them to the app.
+3. The app plays the tasks with the lesson screens and posts each answer.
+4. The backend scores the session, updates the states and recap dates,
+   and serves the suggestions and the parent's practice view.
+
+## Backend
+
+### What to store per child
+
+| Field | What it holds |
 |---|---|
-| Times tables 3, 6, 9 | `math.mult-div.table-3-6-9` |
-| Facts to 20 | `math.add-sub-to-20.fluency-to-20` |
-| Year 1 exception words | `lit-en.spelling.exception-words-y1` |
-| Sight words (Blitzlesen) | `lit-de.fluency.sight-words-easy` |
+| Per skill | The state; the day it reached `can_do`; the position in the recap schedule; each recap (day, passed, position); the state before `needs_refresh`; the day it reached `remembered`; whether the 60-day upkeep recap is done |
+| `seen` | Per task key, the day the child last saw it |
+| `lastCheck` | Per skill, the task keys of the child's last skill check |
+| `drills` | Per drill bank, the best rate (items a minute) and, per item, a weakness count |
+| `sessions` | Finished sessions, for Busy Bee |
+| `lastSkill` | The last skill practised, for the fallback suggestion |
 
-## The player's Practice tab
+The curriculum, year and age band come from the child profile.
 
-The player gets a second tab, Practice, next to the lessons.
+### Building a session
 
-- **Phone:** the Practice tab as the child sees it (above), playing
-  sessions with the lesson task screens, with hints switched off.
-- **Side panel, the pretend child:** curriculum, year, age band; each
-  skill's state, with a bulk setter ("every skill before this one at I can
-  do it"); a pretend today with "+1 day" and "+1 week", so recaps fall due.
-  Saved in the browser.
-- **Side panel, why this task:** for each task, the session kind, the pool
-  (stage, check or drill bank), the skill, and the rule that picked it.
-- The rules (session building, the recap schedule, the request reader) are
-  plain functions in their own file, with tests, so the app team can read
-  and port them.
+Request: `{ kind, skills, topics, minutes }`; only `kind` is required.
+Response (`buildSession`):
 
-## Later
+```json
+{
+  "kind": "recaps",
+  "skills": ["math.mult-div.table-3-6-9"],
+  "mode": "none",
+  "minutes": null,
+  "seconds": null,
+  "items": [
+    { "key": "de-DE.math.table-3-6-9#1#l1-n1", "skill": "math.mult-div.table-3-6-9",
+      "set": "de-DE.math.table-3-6-9", "lesson": 1, "stage": "none", "recap": true, "task": {} }
+  ]
+}
+```
+
+- `mode` is `catch` for catch-up (one hint after a wrong answer) and
+  `none` for every other kind (no hints).
+- `seconds` is the drill's time target per item for the child's age band.
+- A drill item has `lesson: null`, `stage: "drill"` and a `drill` field
+  with the item and its format.
+- `recap: true` marks a task whose answer counts for the skill's recap.
+
+### Recording answers
+
+The app posts one result per item, in order: `{ outcome, ms }`.
+`outcome` is `first`, `second`, `helped` (right after the catch-up hint)
+or `shown` (answer shown after two misses; counts as wrong). `ms` is the
+time from showing the task to the answer.
+
+### Applying a session
+
+`applySession` does all of this:
+
+- **Seen.** Every answered lesson task gets today's day in `seen`.
+- **Recaps.** For each skill in a recaps session, the recap passes with 2
+  of its 2 or 3 tasks right on the first try, and the result goes to the
+  recap schedule (`recordRecap`). A recap counts only when all its tasks
+  were answered, and only once 80% of its gap has passed; a session left
+  early leaves it due.
+- **Drills.** An item missed or slower than the time target this session
+  gets one weaker; an item right and fast every time gets one stronger.
+  Weaker items come first in the next drill of that bank. The rate is
+  first-try right answers a minute; above the best it is a new record.
+- **Sessions.** A session counts as finished when every task in it is
+  answered, and a drill when its time runs out.
+
+### Suggestions
+
+Up to 3 cards (`suggestions`), each with a kind, its skills and a reason
+in both languages, in this order:
+
+1. Recaps due, if any: "4 skills to remember" / "4 Sachen zum Wiederholen".
+2. Catch-up: a skill at `needs_refresh` first, else one at `practised`.
+3. Drill: a bank the child has started, else one whose skill is under way,
+   with the record if there is one ("Beat your record: 18 a minute").
+4. With fewer than 3 cards: a review of the topic of the last skill
+   practised.
+
+The backend's practice recommendations already carry type, reason,
+priority and expiry; each card maps onto one.
+
+### Typed requests
+
+A request is turned into filters, shown as chips the child can change
+before starting:
+
+```json
+{ "subject": "math", "skills": ["math.mult-div.table-3-6-9"], "kind": "drill", "minutes": 10 }
+```
+
+- Fields: `subject`, `topics`, `skills`, `kind` (`mixed`, `drill`,
+  `review`, `catch-up`), `minutes`. Every field is optional.
+- `parseRequest` reads requests with a keyword list in English and German:
+  subject names, topic names, skill words ("Einmaleins", "times tables",
+  "Blitzlesen"), numbers with "Minuten" or "minutes", and table numbers
+  ("mit 7", "the 7s", "7er"). It also returns the words it understood and
+  whether it understood nothing.
+- The contract is request in, these filters out. The backend may later
+  read requests with a language model; nothing else changes.
+
+## Mobile app
+
+### The Practice tab
+
+From the top:
+
+1. **Greeting.** The mascot, "Hallo! Was üben wir heute?" / "Hi! What
+   shall we practise today?", and the number of finished sessions with the
+   bee.
+2. **Suggested for you.** The first suggestion as a large card in the
+   subject's colour, with the topic's mascot, the kind ("Weißt du es
+   noch?" / "Do you remember?"), the reason, the skill's "I can" line, the
+   size ("12 Aufgaben, etwa 5 Minuten" / "12 tasks, about 5 minutes") and
+   a start button. The other suggestions as two smaller cards below it.
+3. **Search.** Over the skills' "I can" lines, topic names and drill banks,
+   in the child's language; the child's year first.
+4. **Your subjects.** Each with its mascot and a bar of stars earned ("30
+   von 138 Sternen" / "30 of 138 stars"). A subject opens a page in its
+   colour with the topics of the child's year, each with a ring for its
+   stars; "Alle Klassen" / "All years" shows every year. A topic lists its
+   skills, each with stars, "Üben" / "Practise" (skill practice) and, with
+   a drill bank, "Drill". "Ganzes Thema wiederholen" / "Review the whole
+   topic" starts a topic review.
+5. **Floating button: Make my own.** A sheet with the text box at the top,
+   "Was möchtest du üben?" / "What do you want to practise?", then chips in
+   groups: subject, topic, time (5, 10 or 15 minutes; a drill at most 5)
+   and kind (mixed, drill, review, catch-up). The start button stays at the
+   bottom. A typed request sets the chips and keeps the text. One it cannot
+   read says "Das habe ich nicht verstanden. Wähle unten aus." / "I didn't
+   understand that. Pick below."
+
+The kinds as the child sees them:
+
+| `kind` | de | en |
+|---|---|---|
+| `recaps` | Weißt du es noch? | Do you remember? |
+| `catch-up` | Nachholen | Catch up |
+| `review` | Wiederholen | Review |
+| `skill` | Gezielt üben | Skill practice |
+| `mixed` | Gemischt | Mixed |
+| `drill` | Drill | Drill |
+
+### Playing a session
+
+- Tasks play on the lesson task screens, with the kind's name in the
+  header and a progress bar (by tasks; by time in a drill).
+- No hints, except in `catch` mode: the first hint once, after a wrong
+  answer.
+- A task missed on the first try is added once at the end.
+- After two misses the answer is shown.
+- A drill ends when its time runs out. A missed drill item comes back
+  after 3 to 5 other items. `flash` shows the word for a moment; `say`
+  speaks it.
+- Leaving early posts the answers given so far; recaps with unanswered
+  tasks stay due.
+
+### End screen
+
+| Who | Sees |
+|---|---|
+| Child, 4 to 7 | The mascot with a burst of stars (none with reduced motion), the number right ("12 richtig!" / "12 right!"), and "Besser geworden:" / "You got better at:" with the skills |
+| Child, 8 to 10 | The same, plus "12 von 14 beim ersten Versuch richtig" / "12 of 14 right first time" |
+| Child, drill | Items a minute, and the record ("Neuer Rekord: 18 pro Minute!" / "New record: 18 a minute!") |
+
+Buttons: "Nochmal" / "Again" repeats the session; "Zurück zum Üben" /
+"Back to practice" goes home.
+
+### The app today
+
+Practice sessions award nothing and post nothing. Answer checking depends
+on the server sending the correct answer separately
+(`services/quiz/practiceAdapter.ts` strips it from the options).
+
+## Parent dashboard
+
+Practice has no grades. Per child, for a week or a chosen range:
+
+- Sessions finished and minutes practised.
+- First-try share across those sessions.
+- The skills practised, each with its state in the parent's words
+  (lesson-anatomy.md), so a recap that moved a skill to "Remembers it" or
+  "Needs a refresh" shows there.
+- Drill records per bank, and how they changed.
+- The Busy Bee badge level from finished sessions (rewards.md).
+
+## Open decisions
+
+- Who builds the converter and where it lives (handoff page).
+- Whether the backend builds sessions (proposed) or the app does.
+- Whether typed requests keep the keyword list or move to a language model.
+
+## Not yet in the reference
+
+The player leaves these out; the app should build them:
+
+- `lastCheck` is never written, so nothing leaves out the last skill-check
+  tasks yet.
+- Recaps first: other sessions do not yet hold back the no-help and check
+  tasks for a due recap.
+- Drill `choose` options are random items of the bank, not near misses.
+- A slow word item comes first in the next drill but not again within the
+  same one.
+- `flash` shows the options with the word instead of after it goes.
+- The catch-up card's reason is generic ("Let's practise this again"),
+  not the specific "you missed it last week".
+
+## Coming content
+
+The pilot (2026-10-18) has the format for all three on the times tables
+5 and 10 (Year 2, Klasse 2), 3, 6 and 9 (Year 3, Klasse 2) and 7 (Year 4,
+Klasse 2): skill checks of 20 tagged by part, quick checks of 6, and drill
+banks. The format is in lesson-anatomy.md, "Check pools".
 
 - Skill checks to 20 tasks a skill, each task tagged with the part of the
   skill it covers, so each attempt draws a different 5 that still covers
   every part; the rest feed recaps and practice. About 13,800 tasks.
 - Short checks doubled, about 2,900 tasks.
 - Drill banks for the other skills to know by heart, about 30 in all.
-- The app: the Practice tab, scoring and recommendations. Its practice
-  recommendations already carry type, reason, priority and expiry, which
-  the tab does not show yet.

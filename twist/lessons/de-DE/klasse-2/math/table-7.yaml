@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: facts, what: { de: die Aufgaben der Siebenerreihe, en: the 7 times table facts } }
+    - { id: count, what: { de: in Siebenerschritten zählen und die Zahlen der Reihe erkennen, en: counting in sevens and spotting multiples of 7 } }
+    - { id: helpers, what: { de: mit Hilfsaufgaben rechnen, en: working out a fact from a helper fact } }
+    - { id: in-context, what: { de: Sachaufgaben mit der Siebenerreihe, en: word problems with the 7 times table } }
   misconceptions:
     - id: add-the-factor
       what: Adds the first factor instead of one more 7 when going on from 5 · 7 (6 · 7 = 35 + 6 = 41)
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -220,6 +226,23 @@ lessons:
             text: "Gehört 45 zur Siebenerreihe?"
             say: "Gehört fünfundvierzig zur Siebenerreihe?"
             answer: false
+          - id: l1-c4
+            type: text_input
+            text: "2 · 7 = _"
+            say: "Zwei mal sieben."
+            answer: "14"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Welche Zahl fehlt?"
+            say: "Zähle in der Siebenerreihe. Welche Zahl fehlt?"
+            frame: "28, 35, _, 49"
+            options: ["42", "41", "43"]
+            answer: ["42"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? 6 · 7 = 42"
+            say: "Sechs mal sieben ist zweiundvierzig. Stimmt das?"
+            answer: true
 
   - n: 2
     title: { de: "Tauschen und merken", en: "Swap and remember" }
@@ -391,18 +414,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: facts
             type: text_input
             text: "3 · 7 = _"
             say: "Drei mal sieben."
             answer: "21"
           - id: l2-c2
+            part: in-context
             type: text_input
             text: "Eine Woche hat 7 Tage. Wie viele Tage haben 6 Wochen?"
             say: "Eine Woche hat sieben Tage. Wie viele Tage haben sechs Wochen?"
             answer: "42"
           - id: l2-c3
+            part: count
             type: fill_in_blank
             text: "Welche Zahl fehlt?"
             say: "Zähle in der Siebenerreihe. Welche Zahl fehlt?"
@@ -410,12 +437,116 @@ lessons:
             options: ["35", "34", "36"]
             answer: ["35"]
           - id: l2-c4
+            part: facts
             type: true_false
             text: "Stimmt das? 7 · 8 = 54"
             say: "Sieben mal acht ist vierundfünfzig. Stimmt das?"
             answer: false
           - id: l2-c5
+            part: count
             type: true_false
             text: "Gehört 48 zur Siebenerreihe?"
             say: "Gehört achtundvierzig zur Siebenerreihe?"
             answer: false
+          - id: l2-c6
+            part: facts
+            type: text_input
+            text: "5 · 7 = _"
+            say: "Fünf mal sieben."
+            answer: "35"
+          - id: l2-c7
+            part: facts
+            type: text_input
+            text: "7 · 9 = _"
+            say: "Sieben mal neun."
+            answer: "63"
+          - id: l2-c8
+            part: facts
+            type: multiple_choice
+            text: "_ · 7 = 56"
+            say: "Wie viel mal sieben ist sechsundfünfzig?"
+            options: ["8", "7", "9"]
+            answer: "8"
+          - id: l2-c9
+            part: count
+            type: multiple_choice
+            text: "Welche Zahl gehört zur Siebenerreihe?"
+            say: "Welche Zahl gehört zur Siebenerreihe?"
+            options: ["27", "42", "48"]
+            answer: "42"
+          - id: l2-c10
+            part: count
+            type: fill_in_blank
+            text: "Welche Zahl fehlt?"
+            say: "Zähle rückwärts in der Siebenerreihe. Welche Zahl fehlt?"
+            frame: "49, 42, _, 28"
+            options: ["35", "36", "34"]
+            answer: ["35"]
+          - id: l2-c11
+            part: count
+            type: true_false
+            text: "Gehört 63 zur Siebenerreihe?"
+            say: "Gehört dreiundsechzig zur Siebenerreihe?"
+            answer: true
+          - id: l2-c12
+            part: helpers
+            type: fill_in_blank
+            text: "Fünf mal sieben hilft."
+            say: "Neun mal sieben. Fünf mal sieben ist fünfunddreißig. Wie viel kommt dazu?"
+            frame: "9 · 7 = 35 + _ = _"
+            options: ["28", "35", "63", "56"]
+            answer: ["28", "63"]
+          - id: l2-c13
+            part: helpers
+            type: fill_in_blank
+            text: "Die Zehnerreihe hilft."
+            say: "Rechne zuerst zehn mal sieben, dann neun mal sieben."
+            frame: "10 · 7 = _ | 9 · 7 = _"
+            options: ["70", "63", "69", "77"]
+            answer: ["70", "63"]
+          - id: l2-c14
+            part: helpers
+            type: fill_in_blank
+            text: "Die Tauschaufgabe hilft."
+            say: "Sieben mal fünf. Tausche die Zahlen."
+            frame: "7 · 5 = _ · 7 = _"
+            options: ["5", "35", "12", "57"]
+            answer: ["5", "35"]
+          - id: l2-c15
+            part: helpers
+            type: multiple_choice
+            text: "7 · 3: Welche Tauschaufgabe hilft?"
+            say: "Sieben mal drei. Welche Tauschaufgabe hilft dir?"
+            options: ["3 · 7", "7 · 4", "3 + 7"]
+            answer: "3 · 7"
+          - id: l2-c16
+            part: helpers
+            type: true_false
+            text: "Stimmt das? 6 · 7 = 5 · 7 + 7"
+            say: "Sechs mal sieben ist fünf mal sieben und noch eine Sieben. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "In einer Packung sind 7 Kekse. Wie viele Kekse sind in 4 Packungen?"
+            say: "In einer Packung sind sieben Kekse. Wie viele Kekse sind in vier Packungen?"
+            answer: "28"
+          - id: l2-c18
+            part: in-context
+            type: text_input
+            text: "Lea übt jeden Tag 7 Minuten. Wie viele Minuten übt sie in 5 Tagen?"
+            say: "Lea übt jeden Tag sieben Minuten. Wie viele Minuten übt sie in fünf Tagen?"
+            answer: "35"
+          - id: l2-c19
+            part: in-context
+            type: multiple_choice
+            text: "Ein Zug hat 8 Wagen. In jedem Wagen sitzen 7 Kinder. Wie viele Kinder sind es?"
+            say: "Ein Zug hat acht Wagen. In jedem Wagen sitzen sieben Kinder. Wie viele Kinder sind es?"
+            options: ["56", "54", "15"]
+            answer: "56"
+          - id: l2-c20
+            part: in-context
+            type: text_input
+            text: "Tom hat 2 Wochen Ferien. Wie viele Tage sind das?"
+            say: "Tom hat zwei Wochen Ferien. Wie viele Tage sind das?"
+            answer: "14"

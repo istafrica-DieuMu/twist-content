@@ -677,6 +677,6 @@ rnd/gap-status.md; stars and badges are in docs/rewards.md.
 | G9 | Rewards in the library | The strand-to-area mapping from docs/rewards.md as data the backend can import |
 | G10 | Foreign languages | Compare Englisch (de-DE) and French (en-GB) with a foreign-language course; nothing has been compared yet |
 | G11 | Practice | Built 2026-10-17 in the player: docs/practice.md: practice sessions, scoring, the Practice tab in the player, typed requests, drill banks (four starter banks) |
-| G12 | Skill-check pools | Skill checks to 20 tasks a skill, each tagged with the part it covers, so every attempt draws a different 5; the rest feed recaps and practice. About 13,800 hand-written tasks. Replaces the recap-only task pool |
-| G13 | Short checks | Double the short checks, about 2,900 tasks |
-| G14 | Drill banks | Banks for the other skills to know by heart, about 30 in all |
+| G12 | Skill-check pools | Pilot 2026-10-18: tables 5 and 10, 3 6 9, 7 in both curricula (lesson-anatomy.md, Check pools). Skill checks to 20 tasks a skill, each tagged with the part it covers, so every attempt draws a different 5; the rest feed recaps and practice. About 13,800 hand-written tasks. Replaces the recap-only task pool |
+| G13 | Short checks | Pilot 2026-10-18 on the same sets. Double the short checks, about 2,900 tasks |
+| G14 | Drill banks | Six banks after the pilot. Banks for the other skills to know by heart, about 30 in all |

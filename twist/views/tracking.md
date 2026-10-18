@@ -8,23 +8,23 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (23419 / 23419) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (23471 / 23471) |
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21532 / 21532) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6295 / 6295) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51245 / 51245)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30029 / 30029) |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (51297 / 51297)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30029 / 30082) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17301 / 17301) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6521 / 6521) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53850 / 53850)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53850 / 53903)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 105134 clips, 144.1 h | about $177 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 105134 clips | about $84 | estimated the same way |
-| **Total** | | | **about $269** | |
+| Narration | google/gemini-3.8-flash-tts | 105186 clips, 144.1 h | about $177 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 105186 clips | about $84 | estimated the same way |
+| **Total** | | | **about $270** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -32,14 +32,14 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 6458 | 6359 (98%) | 0 | 378 min | $13 |
-| gemini-puck-en | 6496 | 6315 (97%) | 0 | 429 min | $14 |
+| gemini-puck | 6510 | 6411 (98%) | 0 | 382 min | $13 |
+| gemini-puck-en | 6496 | 6315 (97%) | 53 | 429 min | $14 |
 | gemini-sulafat | 44814 | 43968 (98%) | 0 | 3410 min | $105 |
 | gemini-sulafat-en | 47366 | 46234 (98%) | 0 | 4426 min | $128 |
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 19503 tasks. Narration so far about $118; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 19557 tasks. Narration so far about $118; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -86,7 +86,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.21 |
 | klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.34 |
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.00 |
-| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.30 |
+| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.41 |
 | klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $1.77 |
 | klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $3.52 |
 | klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.58 |
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20677 tasks. Narration so far about $143; 0 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20731 tasks. Narration so far about $143; 53 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -297,7 +297,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Multiplication | 2 / 2 done | 4 | $0.51 |
 | year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.40 |
 | year-2 | Maths | Division | 1 / 1 done | 2 | $0.31 |
-| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.72 |
+| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.71 |
 | year-2 | Maths | Length | 1 / 1 done | 2 | $0.28 |
 | year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.46 |
 | year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.35 |
@@ -317,7 +317,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.25 |
 | year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $2.60 |
 | year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.47 |
-| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.87 |
+| year-3 | Maths | Times tables | 4 / 4 done | 8 | $0.88 |
 | year-3 | Maths | Word problems | 3 / 3 done | 6 | $1.36 |
 | year-3 | Maths | Patterns | 1 / 1 done | 2 | $0.39 |
 | year-3 | Maths | Length | 2 / 2 done | 4 | $0.73 |
