@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: fill, what: { de: fehlende Werte in einer Tabelle ergänzen, en: filling in missing values in a table } }
+    - { id: one, what: { de: den Wert für eins finden, en: finding the value for one } }
+    - { id: check, what: { de: "prüfen, ob eine Tabelle stimmt", en: checking whether a table is right } }
+    - { id: combine, what: { de: Spalten zusammennehmen oder verdoppeln, en: joining or doubling columns } }
   misconceptions:
     - id: adds-not-multiplies
       what: Goes on by adding 1 or a fixed amount from column to column instead of the price of one (3 Hefte 9 €, so 4 Hefte 10 €), or adds when the amount doubles
@@ -196,6 +201,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -213,6 +219,24 @@ lessons:
             text: "4 Brötchen kosten 2 €. Dann kosten 8 Brötchen 3 €."
             say: "Vier Brötchen kosten zwei Euro. Dann kosten acht Brötchen drei Euro. Stimmt das?"
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Ergänze die Tabelle.\nHefte | 1 | 2 | 3 | 5\nPreis | 4 € | _ | 12 € | _"
+            say: "Ein Heft kostet vier Euro. Ergänze die Preise für zwei und für fünf Hefte."
+            frame: "2 Hefte: _ € | 5 Hefte: _ €"
+            options: ["8", "20", "16", "9"]
+            answer: ["8", "20"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Was kostet 1 Saft?\nSäfte | 1 | 3 | 4\nPreis in ct | _ | 150 | 200"
+            say: "Drei Säfte kosten hundertfünfzig Cent. Was kostet ein Saft?"
+            options: ["50 ct", "150 ct", "30 ct"]
+            answer: "50 ct"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt die Tabelle?\nBälle | 2 | 4 | 8\nPreis | 7 € | 14 € | 28 €"
+            say: "Stimmt die Tabelle? Zwei Bälle kosten sieben Euro, vier Bälle vierzehn Euro und acht Bälle achtundzwanzig Euro."
+            answer: true
 
   - n: 2
     title: { de: "Tabellen ergänzen", en: "Completing tables" }
@@ -376,19 +400,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: fill
             type: text_input
             text: "Was kosten 4 Bälle?\nBälle | 1 | 2 | 4\nPreis | 6 € | 12 € | _"
             say: "Ein Ball kostet sechs Euro. Was kosten vier Bälle? Gib den Preis in Euro ein."
             answer: "24"
           - id: l2-c2
+            part: one
             type: multiple_choice
             text: "Wie viele Eier sind in 1 Packung?\nPackungen | 1 | 2 | 5\nEier | _ | 12 | 30"
             say: "In zwei Packungen sind zwölf Eier. Wie viele Eier sind in einer Packung?"
             options: ["6", "12", "5"]
             answer: "6"
           - id: l2-c3
+            part: fill
             type: fill_in_blank
             text: "Ergänze die Tabelle.\nKisten | 1 | 2 | 3 | 6\nFlaschen | 4 | 8 | _ | _"
             say: "In einer Kiste sind vier Flaschen. Ergänze die Flaschen für drei und für sechs Kisten."
@@ -396,13 +424,115 @@ lessons:
             options: ["12", "24", "10", "16"]
             answer: ["12", "24"]
           - id: l2-c4
+            part: check
             type: true_false
             text: "Stimmt die Tabelle?\nHefte | 1 | 2 | 4\nPreis | 3 € | 6 € | 9 €"
             say: "Stimmt die Tabelle? Ein Heft kostet drei Euro, zwei Hefte sechs Euro und vier Hefte neun Euro."
             answer: false
           - id: l2-c5
+            part: combine
             type: multiple_choice
             text: "Was kosten 5 Brezeln?\nBrezeln | 2 | 3 | 5\nPreis in ct | 120 | 180 | _"
             say: "Zwei Brezeln kosten hundertzwanzig Cent, drei Brezeln hundertachtzig Cent. Was kosten fünf Brezeln?"
             options: ["300 ct", "240 ct", "200 ct"]
             answer: "300 ct"
+          - id: l2-c6
+            part: fill
+            type: text_input
+            text: "Was kosten 8 Hefte?\nHefte | 1 | 2 | 8\nPreis | 2 € | 4 € | _"
+            say: "Ein Heft kostet zwei Euro. Was kosten acht Hefte? Gib den Preis in Euro ein."
+            answer: "16"
+          - id: l2-c7
+            part: fill
+            type: fill_in_blank
+            text: "Ergänze die Tabelle.\nTische | 1 | 2 | 3 | 5\nBeine | 4 | _ | 12 | _"
+            say: "Ein Tisch hat vier Beine. Ergänze die Beine für zwei und für fünf Tische."
+            frame: "2 Tische: _ Beine | 5 Tische: _ Beine"
+            options: ["8", "20", "16", "6"]
+            answer: ["8", "20"]
+          - id: l2-c8
+            part: fill
+            type: multiple_choice
+            text: "Wie viele Liter sind es in 6 Minuten?\nMinuten | 1 | 2 | 6\nLiter | 9 | 18 | _"
+            say: "In einer Minute laufen neun Liter. Wie viele Liter sind es in sechs Minuten?"
+            options: ["54", "27", "45"]
+            answer: "54"
+          - id: l2-c9
+            part: one
+            type: multiple_choice
+            text: "Was kostet 1 Kugel Eis?\nKugeln | 1 | 3 | 4\nPreis in ct | _ | 240 | 320"
+            say: "Drei Kugeln Eis kosten zweihundertvierzig Cent. Was kostet eine Kugel?"
+            options: ["80 ct", "240 ct", "60 ct"]
+            answer: "80 ct"
+          - id: l2-c10
+            part: one
+            type: text_input
+            text: "Wie viele Kinder sitzen an 1 Tisch?\nTische | 1 | 4 | 5\nKinder | _ | 24 | 30"
+            say: "An jedem Tisch sitzen gleich viele Kinder. An vier Tischen sitzen vierundzwanzig Kinder. Wie viele Kinder sitzen an einem Tisch?"
+            answer: "6"
+          - id: l2-c11
+            part: one
+            type: multiple_choice
+            text: "Was kostet 1 Buch?\nBücher | 1 | 2 | 5\nPreis | _ | 18 € | 45 €"
+            say: "Zwei Bücher kosten achtzehn Euro. Was kostet ein Buch?"
+            options: ["9 €", "18 €", "8 €"]
+            answer: "9 €"
+          - id: l2-c12
+            part: one
+            type: true_false
+            text: "5 Hefte kosten 15 €. Dann kostet 1 Heft 5 €."
+            say: "Fünf Hefte kosten fünfzehn Euro. Dann kostet ein Heft fünf Euro. Stimmt das?"
+            answer: false
+          - id: l2-c13
+            part: check
+            type: true_false
+            text: "Stimmt die Tabelle?\nPackungen | 1 | 2 | 4\nStifte | 5 | 10 | 20"
+            say: "Stimmt die Tabelle? In einer Packung sind fünf Stifte, in zwei Packungen zehn und in vier Packungen zwanzig."
+            answer: true
+          - id: l2-c14
+            part: check
+            type: true_false
+            text: "Stimmt die Tabelle?\nTage | 1 | 2 | 3 | 4\nSeiten | 6 | 12 | 18 | 22"
+            say: "Stimmt die Tabelle? An einem Tag sechs Seiten, in zwei Tagen zwölf, in drei Tagen achtzehn und in vier Tagen zweiundzwanzig."
+            answer: false
+          - id: l2-c15
+            part: check
+            type: multiple_choice
+            text: "Eine Zahl in der Tabelle ist falsch. Welche?\nKörbe | 1 | 2 | 3 | 4\nÄpfel | 7 | 14 | 20 | 28"
+            say: "In jedem Korb sind gleich viele Äpfel. Eine Zahl in der Tabelle ist falsch. Welche?"
+            options: ["20", "14", "28"]
+            answer: "20"
+          - id: l2-c16
+            part: check
+            type: true_false
+            text: "Stimmt die Tabelle?\nBrötchen | 1 | 2 | 5\nPreis in ct | 30 | 60 | 150"
+            say: "Stimmt die Tabelle? Ein Brötchen kostet dreißig Cent, zwei Brötchen sechzig Cent und fünf Brötchen hundertfünfzig Cent."
+            answer: true
+          - id: l2-c17
+            part: combine
+            type: multiple_choice
+            text: "Was kosten 5 Stifte?\nStifte | 2 | 3 | 5\nPreis | 6 € | 9 € | _"
+            say: "Zwei Stifte kosten sechs Euro, drei Stifte neun Euro. Was kosten fünf Stifte?"
+            options: ["15 €", "12 €", "10 €"]
+            answer: "15 €"
+          - id: l2-c18
+            part: combine
+            type: text_input
+            text: "Wie viele Eier sind in 7 Packungen?\nPackungen | 3 | 4 | 7\nEier | 18 | 24 | _"
+            say: "In drei Packungen sind achtzehn Eier, in vier Packungen vierundzwanzig. Wie viele Eier sind in sieben Packungen?"
+            answer: "42"
+          - id: l2-c19
+            part: combine
+            type: multiple_choice
+            text: "3 Bälle kosten 12 €. Was kosten 6 Bälle?"
+            say: "Drei Bälle kosten zwölf Euro. Was kosten sechs Bälle?"
+            options: ["24 €", "15 €", "18 €"]
+            answer: "24 €"
+          - id: l2-c20
+            part: combine
+            type: fill_in_blank
+            text: "Ergänze die Tabelle.\nKerzen | 3 | 6 | 12\nPreis | 5 € | _ | _"
+            say: "Drei Kerzen kosten fünf Euro. Ergänze die Preise für sechs und für zwölf Kerzen."
+            frame: "6 Kerzen: _ € | 12 Kerzen: _ €"
+            options: ["10", "20", "8", "15"]
+            answer: ["10", "20"]

@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: one-carry, what: { de: mit einem Übertrag schriftlich addieren, en: column addition with one carry } }
+    - { id: two-carries, what: { de: mit zwei Überträgen schriftlich addieren, en: column addition with two carries } }
+    - { id: meaning, what: { de: "sagen, was man hinschreibt und was der Übertrag bedeutet", en: saying what to write down and what the carried digit means } }
+    - { id: check, what: { de: Rechnungen prüfen und Fehler finden, en: checking calculations and finding mistakes } }
   misconceptions:
     - id: write-both-digits
       what: Writes 15 under the Einer instead of 5 and carrying 1
@@ -209,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -228,6 +234,26 @@ lessons:
             say: "Bei den Einern rechnest du neun plus neun. Was schreibst du unter die Einer, und was überträgst du?"
             options: ["8, Übertrag 1", "18", "9, Übertrag 1"]
             answer: "8, Übertrag 1"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: dreihundertachtundzwanzig plus vierhundertsechsundfünfzig. Schreib die Ziffern für die Einer, die Zehner und die Hunderter."
+            show: { drawn: written-calc, rows: ["328", "456"], op: "+", result: "___" }
+            frame: "E: _  Z: _  H: _"
+            options: ["4", "8", "7", "1"]
+            answer: ["4", "8", "7"]
+          - id: l1-c5
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: sechshundertfünfzehn plus zweihundertsechsundsiebzig."
+            show: { drawn: written-calc, rows: ["615", "276"], op: "+" }
+            answer: "891"
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt die Rechnung?"
+            say: "Prüf die Rechnung. Stimmt sie?"
+            show: { drawn: written-calc, rows: ["239", "524"], op: "+", carry: " 1 ", result: "763" }
+            answer: true
 
   - n: 2
     title: { de: Zwei Überträge, en: Carrying twice }
@@ -406,14 +432,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: two-carries
             type: text_input
             text: "Rechne schriftlich."
             say: "Rechne schriftlich: dreihundertsechsundvierzig plus zweihundertneunundsiebzig."
             show: { drawn: written-calc, rows: ["346", "279"], op: "+" }
             answer: "625"
           - id: l2-c2
+            part: check
             type: multiple_choice
             text: "Wo ist der Fehler?"
             say: "Ein Kind hat zweihundertsiebenunddreißig plus fünfhundertvierundfünfzig gleich siebenhunderteinundachtzig gerechnet. Was ist falsch?"
@@ -421,20 +450,135 @@ lessons:
             options: ["Der Übertrag bei den Zehnern fehlt.", "Die Einer sind falsch.", "Die Hunderter sind falsch."]
             answer: "Der Übertrag bei den Zehnern fehlt."
           - id: l2-c3
+            part: two-carries
             type: text_input
             text: "Rechne schriftlich."
             say: "Rechne schriftlich: hundertachtundfünfzig plus sechshundertdreiundsiebzig."
             show: { drawn: written-calc, rows: ["158", "673"], op: "+" }
             answer: "831"
           - id: l2-c4
+            part: meaning
             type: multiple_choice
             text: "Einer: 6 + 9. Was schreibst du?"
             say: "Bei den Einern rechnest du sechs plus neun. Was schreibst du unter die Einer, und was überträgst du?"
             options: ["5, Übertrag 1", "15", "6, Übertrag 1"]
             answer: "5, Übertrag 1"
           - id: l2-c5
+            part: check
             type: true_false
             text: "Stimmt die Rechnung?"
             say: "Prüf die Rechnung. Stimmt sie?"
             show: { drawn: written-calc, rows: ["493", "248"], op: "+", result: "731" }
             answer: false
+          - id: l2-c6
+            part: one-carry
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: zweihundertvierundsechzig plus fünfhundertneunzehn."
+            show: { drawn: written-calc, rows: ["264", "519"], op: "+" }
+            answer: "783"
+          - id: l2-c7
+            part: one-carry
+            type: fill_in_blank
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: vierhundertsiebenunddreißig plus zweihundertfünfundvierzig. Schreib die Ziffern für die Einer, die Zehner und die Hunderter."
+            show: { drawn: written-calc, rows: ["437", "245"], op: "+", result: "___" }
+            frame: "E: _  Z: _  H: _"
+            options: ["2", "8", "6", "7"]
+            answer: ["2", "8", "6"]
+          - id: l2-c8
+            part: one-carry
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: fünfhundertzweiundsiebzig plus hundertachtzehn."
+            show: { drawn: written-calc, rows: ["572", "118"], op: "+" }
+            answer: "690"
+          - id: l2-c9
+            part: one-carry
+            type: multiple_choice
+            text: "Welches Ergebnis stimmt?"
+            say: "Sechshundertfünfundvierzig plus zweihundertsiebenundzwanzig. Welches Ergebnis stimmt?"
+            show: { drawn: written-calc, rows: ["645", "227"], op: "+" }
+            options: ["872", "862", "8612"]
+            answer: "872"
+          - id: l2-c10
+            part: one-carry
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: hundertzweiundachtzig plus vierhundertdreiundsechzig."
+            show: { drawn: written-calc, rows: ["182", "463"], op: "+" }
+            answer: "645"
+          - id: l2-c11
+            part: two-carries
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: vierhundertsiebenundachtzig plus dreihundertfünfundsechzig."
+            show: { drawn: written-calc, rows: ["487", "365"], op: "+" }
+            answer: "852"
+          - id: l2-c12
+            part: two-carries
+            type: fill_in_blank
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: hundertsechsundneunzig plus fünfhundertachtunddreißig. Schreib die Ziffern für die Einer, die Zehner und die Hunderter."
+            show: { drawn: written-calc, rows: ["196", "538"], op: "+", result: "___" }
+            frame: "E: _  Z: _  H: _"
+            options: ["4", "3", "7", "6"]
+            answer: ["4", "3", "7"]
+          - id: l2-c13
+            part: two-carries
+            type: multiple_choice
+            text: "Welches Ergebnis stimmt?"
+            say: "Zweihundertachtundsiebzig plus hundertvierundsechzig. Welches Ergebnis stimmt?"
+            show: { drawn: written-calc, rows: ["278", "164"], op: "+" }
+            options: ["442", "432", "332"]
+            answer: "442"
+          - id: l2-c14
+            part: meaning
+            type: multiple_choice
+            text: "Zehner: 7 + 5 + 1. Was schreibst du?"
+            say: "Bei den Zehnern rechnest du sieben plus fünf plus eins. Was schreibst du unter die Zehner, und was überträgst du?"
+            options: ["3, Übertrag 1", "13", "2, Übertrag 1"]
+            answer: "3, Übertrag 1"
+          - id: l2-c15
+            part: meaning
+            type: multiple_choice
+            text: "Bei den Hundertern steht ein Übertrag 1. Was bedeutet er?"
+            say: "Bei den Hundertern steht ein kleiner Übertrag, eine Eins. Was bedeutet diese Eins?"
+            show: { drawn: written-calc, rows: ["352", "471"], op: "+", carry: "1  ", result: "823" }
+            options: ["ein Hunderter, also 10 Zehner", "ein Zehner", "ein Einer"]
+            answer: "ein Hunderter, also 10 Zehner"
+          - id: l2-c16
+            part: meaning
+            type: true_false
+            text: "Stimmt das? Der Übertrag 1 bei den Zehnern steht für 10 Einer."
+            say: "Der kleine Übertrag eins bei den Zehnern steht für zehn Einer. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: meaning
+            type: true_false
+            text: "Einer: 8 + 7 = 15. Du schreibst 15 unter die Einer. Stimmt das?"
+            say: "Bei den Einern ist acht plus sieben fünfzehn. Du schreibst fünfzehn unter die Einer. Stimmt das?"
+            answer: false
+          - id: l2-c18
+            part: check
+            type: multiple_choice
+            text: "Wo ist der Fehler?"
+            say: "Ein Kind hat dreihundertfünfundsechzig plus zweihundertsiebenundvierzig gleich fünfhundertzwölf gerechnet. Was ist falsch?"
+            show: { drawn: written-calc, rows: ["365", "247"], op: "+", result: "512" }
+            options: ["Der Übertrag bei den Hundertern fehlt.", "Die Einer sind falsch.", "Die Zehner sind falsch."]
+            answer: "Der Übertrag bei den Hundertern fehlt."
+          - id: l2-c19
+            part: check
+            type: true_false
+            text: "Stimmt die Rechnung?"
+            say: "Prüf die Rechnung. Stimmt sie?"
+            show: { drawn: written-calc, rows: ["384", "457"], op: "+", carry: "11 ", result: "841" }
+            answer: true
+          - id: l2-c20
+            part: check
+            type: multiple_choice
+            text: "Wo ist der Fehler?"
+            say: "Ein Kind hat zweihundertfünfundvierzig plus hundertsechsunddreißig gleich dreihundertzweiundachtzig gerechnet. Was ist falsch?"
+            show: { drawn: written-calc, rows: ["245", "136"], op: "+", carry: " 1 ", result: "382" }
+            options: ["Die Einer sind falsch.", "Der Übertrag bei den Zehnern fehlt.", "Die Hunderter sind falsch."]
+            answer: "Die Einer sind falsch."

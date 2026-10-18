@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid, dots]
   facets: []
+  parts:
+    - { id: count, what: { de: "Kästchen zählen, auch halbe", en: "counting squares, also halves" } }
+    - { id: split, what: { de: Figuren zerlegen und die Teile zusammenzählen, en: splitting shapes and adding the parts } }
+    - { id: multiply, what: { de: den Flächeninhalt von Rechtecken mit einer Malaufgabe finden, en: finding the area of rectangles by multiplying } }
+    - { id: compare, what: { de: Flächeninhalte vergleichen, en: comparing areas } }
   misconceptions:
     - id: counts-border
       what: Counts the Kästchen around the edge, or the edge itself, instead of the Kästchen inside
@@ -306,6 +311,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -340,6 +346,39 @@ lessons:
               halves: [[3, 1, bl, red], [3, 2, tl, red]]
             options: ["5 Kästchen", "6 Kästchen", "4 Kästchen"]
             answer: "5 Kästchen"
+          - id: l1-c4
+            type: text_input
+            text: "Flächeninhalt = _ Kästchen"
+            say: "Wie groß ist der Flächeninhalt in Kästchen?"
+            show:
+              drawn: grid
+              cols: 7
+              rows: 5
+              cells: [[1, 1, orange], [2, 1, orange], [3, 1, orange], [3, 2, orange], [3, 3, orange], [4, 3, orange], [5, 3, orange]]
+            answer: "7"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie groß ist der Flächeninhalt?"
+            say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
+            show:
+              drawn: grid
+              cols: 6
+              rows: 4
+              cells: [[1, 1, blue], [2, 1, blue], [1, 2, blue], [2, 2, blue], [1, 3, blue], [2, 3, blue]]
+              halves: [[1, 0, br, blue], [2, 0, bl, blue]]
+            options: ["7 Kästchen", "8 Kästchen", "6 Kästchen"]
+            answer: "7 Kästchen"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Zerlege die Figur in zwei Rechtecke. Welche Rechnung passt?"
+            say: "Zerlege die Figur in zwei Rechtecke. Welche Rechnung passt?"
+            show:
+              drawn: grid
+              cols: 6
+              rows: 6
+              cells: [[1, 1, green], [2, 1, green], [3, 1, green], [1, 2, green], [2, 2, green], [3, 2, green], [3, 3, green], [3, 4, green]]
+            options: ["6 + 2 = 8", "6 + 3 = 9", "4 + 2 = 6"]
+            answer: "6 + 2 = 8"
 
   - n: 2
     title: { de: "Rechtecke mit Malaufgaben", en: "Rectangles by multiplying" }
@@ -561,8 +600,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: multiple_choice
             text: "Wie groß ist der Flächeninhalt?"
             say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
@@ -574,6 +615,7 @@ lessons:
             options: ["6 Kästchen", "7 Kästchen", "5 Kästchen"]
             answer: "6 Kästchen"
           - id: l2-c2
+            part: count
             type: multiple_choice
             text: "Wie groß ist der Flächeninhalt?"
             say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
@@ -586,11 +628,13 @@ lessons:
             options: ["5 Kästchen", "6 Kästchen", "4 Kästchen"]
             answer: "5 Kästchen"
           - id: l2-c3
+            part: multiply
             type: text_input
             text: "Ein Rechteck ist 9 Kästchen lang und 3 Kästchen breit. Wie groß ist sein Flächeninhalt?"
             say: "Ein Rechteck ist neun Kästchen lang und drei Kästchen breit. Wie groß ist sein Flächeninhalt in Kästchen?"
             answer: "27"
           - id: l2-c4
+            part: multiply
             type: multiple_choice
             text: "Welche Malaufgabe passt zum Rechteck?"
             say: "Welche Malaufgabe passt zum Rechteck?"
@@ -602,12 +646,167 @@ lessons:
             options: ["2 · 7", "2 + 7", "7 · 7"]
             answer: "2 · 7"
           - id: l2-c5
+            part: split
             type: text_input
             text: "Flächeninhalt = _ Kästchen"
-            say: "Zerlege die Figur. Wie groß ist ihr Flächeninhalt in Kästchen?"
+            say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
             show:
               drawn: grid
               cols: 8
               rows: 6
               cells: [[1, 1, red], [2, 1, red], [1, 2, red], [2, 2, red], [1, 3, red], [2, 3, red], [1, 4, red], [2, 4, red], [3, 3, red], [4, 3, red], [5, 3, red], [6, 3, red], [3, 4, red], [4, 4, red], [5, 4, red], [6, 4, red]]
             answer: "16"
+          - id: l2-c6
+            part: count
+            type: text_input
+            text: "Flächeninhalt = _ Kästchen"
+            say: "Wie groß ist der Flächeninhalt in Kästchen?"
+            show:
+              drawn: grid
+              cols: 6
+              rows: 6
+              cells: [[1, 1, blue], [1, 2, blue], [2, 2, blue], [1, 3, blue], [2, 3, blue], [3, 3, blue], [1, 4, blue], [2, 4, blue], [3, 4, blue], [4, 4, blue]]
+            answer: "10"
+          - id: l2-c7
+            part: count
+            type: multiple_choice
+            text: "Wie groß ist der Flächeninhalt?"
+            say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
+            show:
+              drawn: grid
+              cols: 6
+              rows: 4
+              cells: [[2, 1, orange], [3, 1, orange], [2, 2, orange], [3, 2, orange]]
+              halves: [[1, 1, br, orange], [1, 2, tr, orange], [4, 1, bl, orange], [4, 2, tl, orange]]
+            options: ["6 Kästchen", "8 Kästchen", "4 Kästchen"]
+            answer: "6 Kästchen"
+          - id: l2-c8
+            part: count
+            type: true_false
+            text: "Die Figur hat einen Flächeninhalt von 9 Kästchen."
+            say: "Stimmt das? Die Figur hat einen Flächeninhalt von neun Kästchen."
+            show:
+              drawn: grid
+              cols: 6
+              rows: 4
+              cells: [[1, 1, green], [2, 1, green], [3, 1, green], [4, 1, green], [1, 2, green], [2, 2, green], [3, 2, green], [4, 2, green]]
+              halves: [[0, 1, br, green], [0, 2, tr, green]]
+            answer: true
+          - id: l2-c9
+            part: split
+            type: multiple_choice
+            text: "Zerlege die Figur in zwei Rechtecke. Welche Rechnung passt?"
+            say: "Zerlege die Figur in zwei Rechtecke. Welche Rechnung passt?"
+            show:
+              drawn: grid
+              cols: 6
+              rows: 6
+              cells: [[1, 1, purple], [2, 1, purple], [3, 1, purple], [4, 1, purple], [1, 2, purple], [2, 2, purple], [3, 2, purple], [4, 2, purple], [1, 3, purple], [2, 3, purple], [1, 4, purple], [2, 4, purple]]
+            options: ["8 + 4 = 12", "8 + 2 = 10", "6 + 4 = 10"]
+            answer: "8 + 4 = 12"
+          - id: l2-c10
+            part: split
+            type: text_input
+            text: "Flächeninhalt = _ Kästchen"
+            say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
+            show:
+              drawn: grid
+              cols: 7
+              rows: 7
+              cells: [[1, 1, blue], [2, 1, blue], [3, 1, blue], [4, 1, blue], [5, 1, blue], [1, 2, blue], [2, 2, blue], [3, 2, blue], [4, 2, blue], [5, 2, blue], [3, 3, blue], [3, 4, blue], [3, 5, blue]]
+            answer: "13"
+          - id: l2-c11
+            part: split
+            type: multiple_choice
+            text: "Wie groß ist der Flächeninhalt?"
+            say: "Wie groß ist der Flächeninhalt der Figur in Kästchen?"
+            show:
+              drawn: grid
+              cols: 8
+              rows: 5
+              cells: [[1, 1, red], [2, 1, red], [1, 2, red], [2, 2, red], [1, 3, red], [2, 3, red], [5, 1, red], [6, 1, red], [5, 2, red], [6, 2, red], [5, 3, red], [6, 3, red], [3, 3, red], [4, 3, red]]
+            options: ["14 Kästchen", "12 Kästchen", "18 Kästchen"]
+            answer: "14 Kästchen"
+          - id: l2-c12
+            part: split
+            type: text_input
+            text: "Wie viele Kästchen groß ist das Kreuz?"
+            say: "Wie viele Kästchen groß ist das Kreuz?"
+            show:
+              drawn: grid
+              cols: 7
+              rows: 7
+              cells: [[3, 1, green], [3, 2, green], [3, 3, green], [3, 4, green], [3, 5, green], [1, 3, green], [2, 3, green], [4, 3, green], [5, 3, green]]
+            answer: "9"
+          - id: l2-c13
+            part: multiply
+            type: text_input
+            text: "Flächeninhalt = _ Kästchen"
+            say: "Wie groß ist der Flächeninhalt des Rechtecks in Kästchen?"
+            show:
+              drawn: grid
+              cols: 9
+              rows: 7
+              lines: [[1, 1, 7, 1], [7, 1, 7, 6], [7, 6, 1, 6], [1, 6, 1, 1]]
+            answer: "30"
+          - id: l2-c14
+            part: multiply
+            type: multiple_choice
+            text: "Ein Rechteck hat 5 Reihen mit je 7 Kästchen. Wie groß ist sein Flächeninhalt?"
+            say: "Ein Rechteck hat fünf Reihen mit je sieben Kästchen. Wie groß ist sein Flächeninhalt?"
+            options: ["35 Kästchen", "12 Kästchen", "24 Kästchen"]
+            answer: "35 Kästchen"
+          - id: l2-c15
+            part: multiply
+            type: multiple_choice
+            text: "Welche Malaufgabe passt zum Rechteck?"
+            say: "Welche Malaufgabe passt zum Rechteck?"
+            show:
+              drawn: grid
+              cols: 7
+              rows: 6
+              cells: [[1, 1, orange], [2, 1, orange], [3, 1, orange], [4, 1, orange], [5, 1, orange], [1, 2, orange], [2, 2, orange], [3, 2, orange], [4, 2, orange], [5, 2, orange], [1, 3, orange], [2, 3, orange], [3, 3, orange], [4, 3, orange], [5, 3, orange], [1, 4, orange], [2, 4, orange], [3, 4, orange], [4, 4, orange], [5, 4, orange]]
+            options: ["4 · 5", "4 + 5", "5 · 5"]
+            answer: "4 · 5"
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Das blaue und das rote Rechteck haben den gleichen Flächeninhalt."
+            say: "Stimmt das? Das blaue und das rote Rechteck haben den gleichen Flächeninhalt."
+            show:
+              drawn: grid
+              cols: 10
+              rows: 4
+              cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [0, 2, blue], [1, 2, blue], [2, 2, blue], [5, 0, red], [6, 0, red], [7, 0, red], [8, 0, red], [9, 0, red], [5, 1, red], [6, 1, red], [7, 1, red], [8, 1, red], [9, 1, red]]
+            answer: false
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Welches Rechteck hat einen Flächeninhalt von 24 Kästchen?"
+            say: "Welches Rechteck hat einen Flächeninhalt von vierundzwanzig Kästchen?"
+            options: ["6 Kästchen lang, 4 Kästchen breit", "10 Kästchen lang, 2 Kästchen breit", "5 Kästchen lang, 5 Kästchen breit"]
+            answer: "6 Kästchen lang, 4 Kästchen breit"
+          - id: l2-c18
+            part: compare
+            type: multiple_choice
+            text: "Garten A ist 8 Kästchen lang und 3 Kästchen breit. Garten B ist 5 Kästchen lang und 5 Kästchen breit. Welcher Garten ist größer?"
+            say: "Garten A ist acht Kästchen lang und drei Kästchen breit. Garten B ist fünf Kästchen lang und fünf Kästchen breit. Welcher Garten hat den größeren Flächeninhalt?"
+            options: ["A", "B", "beide gleich groß"]
+            answer: "B"
+            keep_order: true
+          - id: l2-c19
+            part: compare
+            type: image_multiple_choice
+            text: "Welche Figur hat den größten Flächeninhalt?"
+            say: "Welche Figur hat den größten Flächeninhalt?"
+            options:
+              - { drawn: grid, cols: 6, rows: 3, cells: [[0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [4, 1, blue], [5, 1, blue]], key: "6" }
+              - { drawn: grid, cols: 6, rows: 3, cells: [[1, 0, blue], [2, 0, blue], [3, 0, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [1, 2, blue], [2, 2, blue], [3, 2, blue]], key: "9" }
+              - { drawn: grid, cols: 6, rows: 3, cells: [[0, 0, blue], [0, 1, blue], [1, 1, blue], [0, 2, blue], [1, 2, blue], [2, 2, blue], [3, 2, blue], [4, 2, blue]], key: "8" }
+            answer: "9"
+          - id: l2-c20
+            part: compare
+            type: true_false
+            text: "Lea sagt: „2 Reihen mit je 9 Kästchen sind genauso groß wie 3 Reihen mit je 6 Kästchen.“ Hat Lea recht?"
+            say: "Lea sagt: Zwei Reihen mit je neun Kästchen sind genauso groß wie drei Reihen mit je sechs Kästchen. Hat Lea recht?"
+            answer: true

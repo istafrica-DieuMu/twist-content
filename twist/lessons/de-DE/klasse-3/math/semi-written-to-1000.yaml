@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [rechenstrich]
   facets: []
+  parts:
+    - { id: add, what: { de: schrittweise und stellenweise addieren, en: adding in steps and place by place } }
+    - { id: sub, what: { de: schrittweise subtrahieren, en: subtracting in steps } }
+    - { id: ergaenzen, what: { de: "ergänzen, wenn die Zahlen nah beieinander liegen", en: counting on when the numbers are close together } }
+    - { id: steps, what: { de: Zwischenschritte prüfen und Fehler finden, en: checking the steps and finding mistakes } }
   misconceptions:
     - id: lost-step
       what: Starts the next step from the first number instead of the last result (528 + 200 = 728, then 528 + 40)
@@ -224,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -242,6 +248,24 @@ lessons:
             text: "Stimmt das? 539 + 246 = 785"
             say: "Fünfhundertneununddreißig plus zweihundertsechsundvierzig ist siebenhundertfünfundachtzig. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "362 + 427\nRechne schrittweise."
+            say: "Dreihundertzweiundsechzig plus vierhundertsiebenundzwanzig. Rechne schrittweise."
+            frame: "362 + 400 = _ | _ + 20 = _ | _ + 7 = _"
+            options: ["762", "782", "789", "769"]
+            answer: ["762", "762", "782", "782", "789"]
+          - id: l1-c5
+            type: text_input
+            text: "248 + 536 = _"
+            say: "Zweihundertachtundvierzig plus fünfhundertsechsunddreißig."
+            answer: "784"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Max rechnet 425 + 316. Wo ist der Fehler?\n425 + 300 = 725\n725 + 10 = 745\n745 + 6 = 751"
+            say: "Max hat vierhundertfünfundzwanzig plus dreihundertsechzehn schrittweise gerechnet. In welchem Schritt ist der Fehler?"
+            options: ["425 + 300 = 725", "725 + 10 = 745", "745 + 6 = 751"]
+            answer: "725 + 10 = 745"
 
   - n: 2
     title: { de: Halbschriftlich subtrahieren, en: Subtracting with written steps }
@@ -423,13 +447,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sub
             type: text_input
             text: "674 − 238 = _"
             say: "Sechshundertvierundsiebzig minus zweihundertachtunddreißig."
             answer: "436"
           - id: l2-c2
+            part: ergaenzen
             type: fill_in_blank
             text: "903 − 876\nErgänze."
             say: "Neunhundertdrei minus achthundertsechsundsiebzig. Ergänze."
@@ -437,6 +464,7 @@ lessons:
             options: ["24", "3", "27", "34"]
             answer: ["24", "3", "27"]
           - id: l2-c3
+            part: add
             type: fill_in_blank
             text: "428 + 357\nRechne stellenweise."
             say: "Vierhundertachtundzwanzig plus dreihundertsiebenundfünfzig. Rechne stellenweise."
@@ -444,13 +472,117 @@ lessons:
             options: ["700", "70", "15", "785", "775"]
             answer: ["700", "70", "15", "785"]
           - id: l2-c4
+            part: sub
             type: true_false
             text: "Stimmt das? 815 − 579 = 236"
             say: "Achthundertfünfzehn minus fünfhundertneunundsiebzig ist zweihundertsechsunddreißig. Stimmt das?"
             answer: true
           - id: l2-c5
+            part: steps
             type: multiple_choice
             text: "Lea rechnet 834 − 562. Wo ist der Fehler?\n834 − 500 = 334\n334 − 60 = 274\n274 − 2 = 271"
             say: "Lea hat achthundertvierunddreißig minus fünfhundertzweiundsechzig schrittweise gerechnet. In welchem Schritt ist der Fehler?"
             options: ["834 − 500 = 334", "334 − 60 = 274", "274 − 2 = 271"]
             answer: "274 − 2 = 271"
+          - id: l2-c6
+            part: add
+            type: text_input
+            text: "372 + 415 = _"
+            say: "Dreihundertzweiundsiebzig plus vierhundertfünfzehn."
+            answer: "787"
+          - id: l2-c7
+            part: add
+            type: fill_in_blank
+            text: "246 + 531\nRechne schrittweise."
+            say: "Zweihundertsechsundvierzig plus fünfhunderteinunddreißig. Rechne schrittweise."
+            frame: "246 + 500 = _ | _ + 30 = _ | _ + 1 = _"
+            options: ["746", "776", "777", "747"]
+            answer: ["746", "746", "776", "776", "777"]
+          - id: l2-c8
+            part: add
+            type: true_false
+            text: "Stimmt das? 584 + 237 = 811"
+            say: "Fünfhundertvierundachtzig plus zweihundertsiebenunddreißig ist achthundertelf. Stimmt das?"
+            answer: false
+          - id: l2-c9
+            part: add
+            type: multiple_choice
+            text: "658 + 129 = _"
+            say: "Sechshundertachtundfünfzig plus hundertneunundzwanzig."
+            options: ["787", "777", "797"]
+            answer: "787"
+          - id: l2-c10
+            part: sub
+            type: text_input
+            text: "952 − 317 = _"
+            say: "Neunhundertzweiundfünfzig minus dreihundertsiebzehn."
+            answer: "635"
+          - id: l2-c11
+            part: sub
+            type: fill_in_blank
+            text: "746 − 283\nZieh schrittweise ab."
+            say: "Siebenhundertsechsundvierzig minus zweihundertdreiundachtzig. Zieh schrittweise ab."
+            frame: "746 − 200 = _ | _ − 80 = _ | _ − 3 = _"
+            options: ["546", "466", "463", "476"]
+            answer: ["546", "546", "466", "466", "463"]
+          - id: l2-c12
+            part: sub
+            type: true_false
+            text: "Stimmt das? 681 − 254 = 437"
+            say: "Sechshunderteinundachtzig minus zweihundertvierundfünfzig ist vierhundertsiebenunddreißig. Stimmt das?"
+            answer: false
+          - id: l2-c13
+            part: ergaenzen
+            type: fill_in_blank
+            text: "804 − 791\nErgänze."
+            say: "Achthundertvier minus siebenhunderteinundneunzig. Ergänze."
+            frame: "791 + _ = 800 | 800 + _ = 804 | zusammen _"
+            options: ["9", "4", "13", "14"]
+            answer: ["9", "4", "13"]
+          - id: l2-c14
+            part: ergaenzen
+            type: text_input
+            text: "502 − 478 = _"
+            say: "Fünfhundertzwei minus vierhundertachtundsiebzig."
+            answer: "24"
+          - id: l2-c15
+            part: ergaenzen
+            type: true_false
+            text: "Stimmt das? 700 − 684 = 16"
+            say: "Siebenhundert minus sechshundertvierundachtzig ist sechzehn. Stimmt das?"
+            answer: true
+          - id: l2-c16
+            part: ergaenzen
+            type: multiple_choice
+            text: "Welcher Rechenweg passt besser zu 611 − 596?"
+            say: "Sechshundertelf minus fünfhundertsechsundneunzig. Welcher Rechenweg passt besser?"
+            options: ["ergänzen", "schrittweise abziehen"]
+            answer: "ergänzen"
+          - id: l2-c17
+            part: steps
+            type: multiple_choice
+            text: "Jan rechnet 467 + 328. Wo ist der Fehler?\n467 + 300 = 667\n667 + 20 = 687\n687 + 8 = 695"
+            say: "Jan hat vierhundertsiebenundsechzig plus dreihundertachtundzwanzig schrittweise gerechnet. In welchem Schritt ist der Fehler?"
+            options: ["467 + 300 = 667", "667 + 20 = 687", "687 + 8 = 695"]
+            answer: "467 + 300 = 667"
+          - id: l2-c18
+            part: steps
+            type: multiple_choice
+            text: "Sara rechnet 952 − 436. Wo ist der Fehler?\n952 − 400 = 552\n952 − 30 = 922\n922 − 6 = 916"
+            say: "Sara hat neunhundertzweiundfünfzig minus vierhundertsechsunddreißig schrittweise gerechnet. In welchem Schritt ist der Fehler?"
+            options: ["952 − 400 = 552", "952 − 30 = 922", "922 − 6 = 916"]
+            answer: "952 − 30 = 922"
+          - id: l2-c19
+            part: steps
+            type: true_false
+            text: "Paul rechnet 286 + 453 stellenweise. Stimmt das?\n200 + 400 = 600\n80 + 50 = 130\n6 + 3 = 9\n286 + 453 = 639"
+            say: "Paul rechnet zweihundertsechsundachtzig plus vierhundertdreiundfünfzig stellenweise und bekommt sechshundertneununddreißig. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: steps
+            type: fill_in_blank
+            text: "534 + 263\nSchreib die nächsten Schritte."
+            say: "Fünfhundertvierunddreißig plus zweihundertdreiundsechzig. Der erste Schritt steht schon da. Schreib die nächsten Schritte."
+            frame: "534 + 200 = 734 | 734 + 60 = _ | _ + 3 = _"
+            options: ["794", "797", "594", "597"]
+            answer: ["794", "794", "797"]

@@ -28,6 +28,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [spinner, dots, bar-chart]
   facets: []
+  parts:
+    - { id: wheel, what: { de: Chancen am Glücksrad vergleichen, en: comparing chances on a spinner } }
+    - { id: dice-coin, what: { de: Chancen beim Würfel und bei der Münze vergleichen, en: comparing chances with a dice and a coin } }
+    - { id: guess, what: { de: eine Vermutung und ein Ergebnis zusammenbringen, en: matching a prediction and a result } }
+    - { id: trials, what: { de: "wissen, dass Versuche verschieden ausgehen und viele Versuche mehr sagen", en: knowing that trials come out differently and that many trials tell more } }
   misconceptions:
     - id: counts-only-winning
       what: Compares only the winning fields and forgets the whole (2 rote Felder von 6 seem better than 1 rotes von 2)
@@ -269,6 +274,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -289,6 +295,28 @@ lessons:
             text: "Kopf und Zahl sind gleich wahrscheinlich."
             say: "Du wirfst eine Münze. Stimmt das? Kopf und Zahl sind gleich wahrscheinlich."
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Du gewinnst bei Blau. Welches Rad nimmst du?"
+            say: "Du gewinnst bei Blau. Mit welchem Glücksrad ist deine Chance am größten?"
+            options:
+              - { drawn: spinner, sectors: [blue, red, red, red], key: "1-von-4" }
+              - { drawn: spinner, sectors: [blue, red], key: "1-von-2" }
+              - { drawn: spinner, sectors: [blue, red, red], key: "1-von-3" }
+            answer: "1-von-2"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Ist Rot oder Grün wahrscheinlicher?"
+            say: "Ist bei diesem Glücksrad Rot oder Grün wahrscheinlicher?"
+            show: { drawn: spinner, sectors: [red, green, red, green, red, red] }
+            options: ["Rot", "Grün", "gleich wahrscheinlich"]
+            answer: "Rot"
+            keep_order: true
+          - id: l1-c6
+            type: true_false
+            text: "Du würfelst einmal. Eine gerade Zahl ist wahrscheinlicher als eine ungerade Zahl."
+            say: "Du würfelst einmal. Stimmt das? Eine gerade Zahl ist wahrscheinlicher als eine ungerade Zahl."
+            answer: false
 
   - n: 2
     title: { de: "Vermuten und ausprobieren", en: "Predict and test" }
@@ -501,8 +529,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: wheel
             type: multiple_choice
             text: "Welche Farbe ist am wahrscheinlichsten?"
             say: "Welche Farbe ist bei diesem Glücksrad am wahrscheinlichsten?"
@@ -510,6 +540,7 @@ lessons:
             options: ["Rot", "Grün", "Gelb"]
             answer: "Grün"
           - id: l2-c2
+            part: guess
             type: image_multiple_choice
             text: "Rot 14, Gelb 6. Mit welchem Glücksrad wurde gedreht?"
             say: "Mats hat zwanzigmal gedreht. Rot kam vierzehnmal, Gelb sechsmal. Mit welchem Glücksrad hat er wahrscheinlich gedreht?"
@@ -519,6 +550,7 @@ lessons:
               - { drawn: spinner, sectors: [red, red, red, red], key: "nur-rot" }
             answer: "viel-rot"
           - id: l2-c3
+            part: wheel
             type: image_multiple_choice
             text: "Du gewinnst bei Rot. Welches Rad nimmst du?"
             say: "Du gewinnst bei Rot. Mit welchem Glücksrad ist deine Chance am größten?"
@@ -528,6 +560,7 @@ lessons:
               - { drawn: spinner, sectors: [red, red, blue], key: "2-von-3" }
             answer: "2-von-3"
           - id: l2-c4
+            part: dice-coin
             type: multiple_choice
             text: "Du würfelst einmal. Was ist wahrscheinlicher?"
             say: "Du würfelst einmal. Was ist wahrscheinlicher?"
@@ -535,7 +568,126 @@ lessons:
             answer: "beides gleich"
             keep_order: true
           - id: l2-c5
+            part: trials
             type: true_false
-            text: "Ein zweiter Versuch geht meistens ein bisschen anders aus."
+            text: "Du drehst ein Glücksrad 20-mal und dann noch einmal 20-mal. Der zweite Versuch geht meistens ein bisschen anders aus als der erste."
             say: "Du drehst ein Glücksrad zwanzigmal und dann noch einmal zwanzigmal. Stimmt das? Der zweite Versuch geht meistens ein bisschen anders aus als der erste."
             answer: true
+          - id: l2-c6
+            part: wheel
+            type: multiple_choice
+            text: "Ist Blau oder Gelb wahrscheinlicher?"
+            say: "Ist bei diesem Glücksrad Blau oder Gelb wahrscheinlicher?"
+            show: { drawn: spinner, sectors: [blue, yellow, yellow, blue, yellow, red] }
+            options: ["Blau", "Gelb", "gleich wahrscheinlich"]
+            answer: "Gelb"
+            keep_order: true
+          - id: l2-c7
+            part: wheel
+            type: image_multiple_choice
+            text: "Du gewinnst bei Gelb. Welches Rad nimmst du?"
+            say: "Du gewinnst bei Gelb. Mit welchem Glücksrad ist deine Chance am größten?"
+            options:
+              - { drawn: spinner, sectors: [yellow, yellow, yellow, blue, blue, blue], key: "3-von-6" }
+              - { drawn: spinner, sectors: [yellow, blue, blue], key: "1-von-3" }
+              - { drawn: spinner, sectors: [yellow, yellow, yellow, blue], key: "3-von-4" }
+            answer: "3-von-4"
+          - id: l2-c8
+            part: wheel
+            type: true_false
+            text: "Bei diesem Glücksrad ist Rot wahrscheinlicher als Grün."
+            say: "Stimmt das? Bei diesem Glücksrad ist Rot wahrscheinlicher als Grün."
+            show: { drawn: spinner, sectors: [red, green, green, red, green, green] }
+            answer: false
+          - id: l2-c9
+            part: dice-coin
+            type: multiple_choice
+            text: "Du würfelst einmal. Was ist wahrscheinlicher?"
+            say: "Du würfelst einmal. Was ist wahrscheinlicher?"
+            options: ["eine 3", "eine Zahl größer als 3", "beides gleich"]
+            answer: "eine Zahl größer als 3"
+            keep_order: true
+          - id: l2-c10
+            part: dice-coin
+            type: multiple_choice
+            text: "Mona gewinnt bei einer geraden Zahl. Kai gewinnt bei 1, 2 oder 3. Wer hat die größere Chance?"
+            say: "Mona und Kai würfeln. Mona gewinnt bei einer geraden Zahl. Kai gewinnt bei einer Eins, Zwei oder Drei. Wer hat die größere Chance?"
+            options: ["Mona", "Kai", "beide gleich"]
+            answer: "beide gleich"
+            keep_order: true
+          - id: l2-c11
+            part: dice-coin
+            type: true_false
+            text: "Lukas sagt: „Bei einer Münze kommt Kopf öfter als Zahl.“ Stimmt das?"
+            say: "Lukas sagt: Bei einer Münze kommt Kopf öfter als Zahl. Stimmt das?"
+            answer: false
+          - id: l2-c12
+            part: dice-coin
+            type: multiple_choice
+            text: "Du gewinnst bei einer Zahl kleiner als 5. Wie viele Seiten des Würfels passen?"
+            say: "Du gewinnst, wenn du eine Zahl kleiner als fünf würfelst. Wie viele Seiten des Würfels passen?"
+            options: ["4", "5", "3"]
+            answer: "4"
+          - id: l2-c13
+            part: guess
+            type: multiple_choice
+            text: "Welche Vermutung passt zum Glücksrad?"
+            say: "Ida will dieses Glücksrad zwanzigmal drehen. Welche Vermutung passt?"
+            show: { drawn: spinner, sectors: [red, blue, blue, blue] }
+            options: ["Blau kommt öfter als Rot.", "Rot kommt öfter als Blau.", "Rot und Blau kommen etwa gleich oft."]
+            answer: "Blau kommt öfter als Rot."
+          - id: l2-c14
+            part: guess
+            type: true_false
+            text: "Vermutung: Grün kommt öfter als Gelb. Passt das Ergebnis zur Vermutung?"
+            say: "Emma vermutet: Grün kommt öfter als Gelb. Sie dreht zwanzigmal. Passt das Ergebnis zu ihrer Vermutung?"
+            show: { drawn: bar-chart, tally: true, rows: [["Grün", 14], ["Gelb", 6]] }
+            answer: true
+          - id: l2-c15
+            part: guess
+            type: image_multiple_choice
+            text: "Rot 10, Gelb 5, Blau 5. Mit welchem Glücksrad wurde gedreht?"
+            say: "Nele hat zwanzigmal gedreht. Rot kam zehnmal, Gelb fünfmal und Blau fünfmal. Mit welchem Glücksrad hat sie wahrscheinlich gedreht?"
+            options:
+              - { drawn: spinner, sectors: [red, yellow, blue], key: "je-eins" }
+              - { drawn: spinner, sectors: [red, yellow, red, blue], key: "halb-rot" }
+              - { drawn: spinner, sectors: [red, red, red, yellow], key: "viel-rot" }
+            answer: "halb-rot"
+          - id: l2-c16
+            part: guess
+            type: true_false
+            text: "Vermutung: Kopf und Zahl kommen etwa gleich oft. Passt das Ergebnis nach 40 Würfen zur Vermutung?"
+            say: "Can vermutet: Bei einer Münze kommen Kopf und Zahl etwa gleich oft. Er wirft vierzigmal. Passt das Ergebnis zu seiner Vermutung?"
+            show: { drawn: bar-chart, tally: true, rows: [["Kopf", 21], ["Zahl", 19]] }
+            answer: true
+          - id: l2-c17
+            part: trials
+            type: multiple_choice
+            text: "2 rote und 2 gelbe Felder. Fünfmal hintereinander kam Gelb. Was stimmt für die nächste Drehung?"
+            say: "Das Glücksrad hat zwei rote und zwei gelbe Felder. Fünfmal hintereinander kam Gelb. Was stimmt für die nächste Drehung?"
+            show: { drawn: spinner, sectors: [red, yellow, red, yellow] }
+            options: ["Jetzt kommt sicher Rot.", "Rot und Gelb sind gleich wahrscheinlich.", "Jetzt kommt sicher wieder Gelb."]
+            answer: "Rot und Gelb sind gleich wahrscheinlich."
+          - id: l2-c18
+            part: trials
+            type: multiple_choice
+            text: "Tom würfelt 6-mal, Sina würfelt 60-mal. Wer kann besser sagen, ob der Würfel in Ordnung ist?"
+            say: "Tom und Sina testen denselben Würfel. Tom würfelt sechsmal, Sina würfelt sechzigmal. Wer kann besser sagen, ob der Würfel in Ordnung ist?"
+            options: ["Tom mit 6 Würfen", "Sina mit 60 Würfen", "beide gleich gut"]
+            answer: "Sina mit 60 Würfen"
+            keep_order: true
+          - id: l2-c19
+            part: trials
+            type: true_false
+            text: "2 rote und 2 blaue Felder. Lea dreht 4-mal: Rot 3, Blau 1. Lea sagt: „Das Rad ist kaputt.“ Stimmt das?"
+            say: "Das Glücksrad hat zwei rote und zwei blaue Felder. Lea dreht viermal. Rot kam dreimal, Blau einmal. Lea sagt: Das Rad ist kaputt. Stimmt das?"
+            show: { drawn: spinner, sectors: [red, blue, red, blue] }
+            answer: false
+          - id: l2-c20
+            part: trials
+            type: multiple_choice
+            text: "Ben dreht 20-mal: Rot 14, Blau 6. Er dreht noch einmal 20-mal. Was kommt wahrscheinlich heraus?"
+            say: "Ben dreht dieses Glücksrad zwanzigmal. Rot kam vierzehnmal, Blau sechsmal. Er dreht noch einmal zwanzigmal. Was kommt wahrscheinlich heraus?"
+            show: { drawn: spinner, sectors: [red, red, blue, red] }
+            options: ["wieder genau Rot 14, Blau 6", "etwas Ähnliches, Rot wieder öfter", "Blau öfter als Rot"]
+            answer: "etwas Ähnliches, Rot wieder öfter"

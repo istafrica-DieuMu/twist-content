@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: split, what: { de: "eine Malaufgabe passend zerlegen und erklären, warum das geht", en: splitting a multiplication and explaining why it works } }
+    - { id: tens-ones, what: { de: mit Zehnern und Einern zerlegen und rechnen, en: splitting into tens and ones and working it out } }
+    - { id: round, what: { de: mit einer runden Zahl rechnen und den Rest wegnehmen, en: multiplying a round number and taking the extra away } }
+    - { id: in-context, what: { de: Sachaufgaben mit Zerlegen lösen, en: solving word problems by splitting } }
   misconceptions:
     - id: multiply-one-part
       what: Multiplies only the Zehner or only the Einer (6 · 14 = 60 + 4)
@@ -192,6 +197,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -208,6 +214,24 @@ lessons:
             text: "Stimmt das? 3 · 14 = 30 + 12"
             say: "Drei mal vierzehn ist dreißig plus zwölf. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Zerlege in Zehner und Einer."
+            say: "Rechne fünf mal zehn, fünf mal sieben und fünf mal siebzehn."
+            frame: "5 · 10 = _ | 5 · 7 = _ | 5 · 17 = _"
+            options: ["50", "35", "85", "57"]
+            answer: ["50", "35", "85"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie zerlegst du 4 · 28?"
+            say: "Vier mal achtundzwanzig. Wie zerlegst du die Aufgabe?"
+            options: ["4 · 20 + 4 · 8", "4 · 20 + 8", "4 + 20 + 8"]
+            answer: "4 · 20 + 4 · 8"
+          - id: l1-c6
+            type: text_input
+            text: "In einer Kiste sind 16 Äpfel. Wie viele Äpfel sind in 3 Kisten?"
+            say: "In einer Kiste sind sechzehn Äpfel. Wie viele Äpfel sind in drei Kisten?"
+            answer: "48"
 
   - n: 2
     title: { de: "Geschickt zerlegen", en: "Splitting cleverly" }
@@ -363,30 +387,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tens-ones
             type: text_input
             text: "8 · 13 = _"
             say: "Acht mal dreizehn."
             answer: "104"
           - id: l2-c2
+            part: round
             type: text_input
             text: "3 · 29 = _"
             say: "Drei mal neunundzwanzig."
             answer: "87"
           - id: l2-c3
+            part: split
             type: multiple_choice
             text: "Wie zerlegst du 6 · 15?"
             say: "Sechs mal fünfzehn. Wie zerlegst du die Aufgabe?"
             options: ["6 · 10 + 6 · 5", "6 · 10 + 5", "6 + 15"]
             answer: "6 · 10 + 6 · 5"
           - id: l2-c4
+            part: round
             type: true_false
             text: "Stimmt das? 4 · 19 = 80 − 1"
             say: "Vier mal neunzehn ist achtzig minus eins. Stimmt das?"
             answer: false
           - id: l2-c5
+            part: tens-ones
             type: text_input
             text: "5 · 26 = _"
             say: "Fünf mal sechsundzwanzig."
             answer: "130"
+          - id: l2-c6
+            part: split
+            type: multiple_choice
+            text: "Wie zerlegst du 7 · 18?"
+            say: "Sieben mal achtzehn. Wie zerlegst du die Aufgabe?"
+            options: ["7 · 10 + 7 · 8", "7 · 10 + 8", "7 + 10 + 8"]
+            answer: "7 · 10 + 7 · 8"
+          - id: l2-c7
+            part: split
+            type: true_false
+            text: "Stimmt das? 4 · 13 = 4 · 10 + 4 · 3"
+            say: "Das Punktefeld hat vier Reihen mit je dreizehn Punkten. Vier mal dreizehn ist vier mal zehn plus vier mal drei. Stimmt das?"
+            show: { drawn: dots, array: [4, 13] }
+            answer: true
+          - id: l2-c8
+            part: split
+            type: fill_in_blank
+            text: "Zerlege in Zehner und Einer."
+            say: "Zerlege sechs mal vierundzwanzig in Zehner und Einer."
+            frame: "6 · 24 = 6 · _ + 6 · _"
+            options: ["20", "4", "2", "40"]
+            answer: ["20", "4"]
+          - id: l2-c9
+            part: split
+            type: multiple_choice
+            text: "Lina rechnet: 5 · 17 = 50 + 7. Was ist falsch?"
+            say: "Lina rechnet fünf mal siebzehn gleich fünfzig plus sieben. Was ist falsch?"
+            options: ["Sie muss auch 5 · 7 rechnen.", "Sie muss 5 · 50 rechnen.", "Sie muss 5 + 17 rechnen."]
+            answer: "Sie muss auch 5 · 7 rechnen."
+          - id: l2-c10
+            part: tens-ones
+            type: text_input
+            text: "4 · 27 = _"
+            say: "Vier mal siebenundzwanzig."
+            answer: "108"
+          - id: l2-c11
+            part: tens-ones
+            type: fill_in_blank
+            text: "Zerlege in Zehner und Einer."
+            say: "Rechne neun mal zehn, neun mal vier und neun mal vierzehn."
+            frame: "9 · 10 = _ | 9 · 4 = _ | 9 · 14 = _"
+            options: ["90", "36", "126", "94"]
+            answer: ["90", "36", "126"]
+          - id: l2-c12
+            part: tens-ones
+            type: multiple_choice
+            text: "3 · 32 = ?"
+            say: "Drei mal zweiunddreißig. Wie viel ist das?"
+            options: ["96", "92", "35"]
+            answer: "96"
+          - id: l2-c13
+            part: round
+            type: fill_in_blank
+            text: "Rechne mit der runden Zahl."
+            say: "Rechne vier mal dreißig, dann vier mal neunundzwanzig."
+            frame: "4 · 30 = _ | 4 · 29 = _"
+            options: ["120", "116", "119", "124"]
+            answer: ["120", "116"]
+          - id: l2-c14
+            part: round
+            type: text_input
+            text: "6 · 39 = _"
+            say: "Sechs mal neununddreißig."
+            answer: "234"
+          - id: l2-c15
+            part: round
+            type: multiple_choice
+            text: "Welcher Weg ist bei 8 · 49 geschickt?"
+            say: "Acht mal neunundvierzig. Welcher Weg ist geschickt?"
+            options: ["8 · 50 − 8", "8 · 50 − 1", "8 · 40 + 9"]
+            answer: "8 · 50 − 8"
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "Ein Bus hat 45 Sitzplätze. Wie viele Sitzplätze haben 3 Busse?"
+            say: "Ein Bus hat fünfundvierzig Sitzplätze. Wie viele Sitzplätze haben drei Busse zusammen?"
+            answer: "135"
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "Eine Kinokarte kostet 9 €. Wie viel Euro kosten 12 Karten?"
+            say: "Eine Kinokarte kostet neun Euro. Wie viel Euro kosten zwölf Karten?"
+            answer: "108"
+          - id: l2-c18
+            part: in-context
+            type: multiple_choice
+            text: "Ein Regal hat 7 Bretter. Auf jedem Brett stehen 16 Bücher. Wie viele Bücher sind es?"
+            say: "Ein Regal hat sieben Bretter. Auf jedem Brett stehen sechzehn Bücher. Wie viele Bücher sind es zusammen?"
+            options: ["112", "76", "23"]
+            answer: "112"
+          - id: l2-c19
+            part: in-context
+            type: text_input
+            text: "Ella übt jeden Tag 19 Minuten Flöte. Wie viele Minuten sind das in 9 Tagen?"
+            say: "Ella übt jeden Tag neunzehn Minuten Flöte. Wie viele Minuten sind das in neun Tagen?"
+            answer: "171"
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "Tim kauft 3 Packungen mit je 24 Keksen. Er sagt: „Das sind 64 Kekse.“ Hat Tim recht?"
+            say: "Tim kauft drei Packungen mit je vierundzwanzig Keksen. Er sagt: Das sind vierundsechzig Kekse. Hat Tim recht?"
+            answer: false

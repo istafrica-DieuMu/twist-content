@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, grid]
   facets: []
+  parts:
+    - { id: recognise, what: { de: "erkennen, ob sich eine Figur zu einem Würfel falten lässt", en: telling whether a shape folds into a cube } }
+    - { id: opposite, what: { de: gegenüberliegende Flächen im Würfelnetz finden, en: finding the opposite faces in a net } }
+    - { id: dice, what: { de: gegenüberliegende Augenzahlen beim Spielwürfel und in seinem Netz, en: opposite numbers on a dice and in its net } }
   misconceptions:
     - id: any-six-squares
       what: Thinks any six Quadrate that touch make a Würfelnetz (a Rechteck of 2 mal 3, five in a row, a block of four)
@@ -229,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -251,6 +256,27 @@ lessons:
             say: "Wie viele Quadrate hat ein Würfelnetz?"
             options: ["6", "5", "8"]
             answer: "6"
+          - id: l1-c4
+            type: true_false
+            text: "Lässt sich dieses Netz zu einem Würfel falten?"
+            say: "Lässt sich dieses Netz zu einem Würfel falten?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[1, 0, orange], [2, 0, orange], [0, 1, orange], [1, 1, orange], [1, 2, orange], [1, 3, orange]] }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Warum ist das kein Würfelnetz?"
+            say: "Warum lässt sich das nicht zu einem Würfel falten?"
+            show: { drawn: grid, cols: 4, rows: 2, cells: [[1, 0, blue], [3, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue]] }
+            options: ["Zwei Quadrate werden beide zum Deckel.", "Vier Quadrate liegen als Block zusammen.", "Es hat 5 Quadrate in einer Reihe."]
+            answer: "Zwei Quadrate werden beide zum Deckel."
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wo muss das sechste Quadrat hin, damit ein Würfelnetz entsteht?"
+            say: "Hier fehlt ein Quadrat. Wo muss das sechste Quadrat hin, damit ein Würfelnetz entsteht: bei A, B oder C?"
+            show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 0, yellow], [0, 1, yellow], [1, 1, yellow], [2, 1, yellow], [3, 1, yellow]], labels: [[2, 2, A], [1, 0, B], [4, 1, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+            option_audio: false
 
   - n: 2
     title: { de: "Was liegt gegenüber?", en: "Which faces are opposite?" }
@@ -440,8 +466,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: recognise
             type: image_multiple_choice
             text: "Aus welcher Figur kannst du einen Würfel falten?"
             say: "Aus welcher Figur kannst du einen Würfel falten?"
@@ -451,12 +479,14 @@ lessons:
               - { drawn: grid, cols: 5, rows: 2, cells: [[4, 0, purple], [0, 1, purple], [1, 1, purple], [2, 1, purple], [3, 1, purple], [4, 1, purple]], key: reihe }
             answer: netz
           - id: l2-c2
+            part: recognise
             type: true_false
             text: "Lässt sich dieses Netz zu einem Würfel falten?"
             say: "Lässt sich dieses Netz zu einem Würfel falten?"
             show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, red], [0, 1, red], [3, 1, red]] }
             answer: false
           - id: l2-c3
+            part: opposite
             type: multiple_choice
             text: "Welche Fläche liegt B gegenüber?"
             say: "Du faltest das Netz zu einem Würfel. Welche Fläche liegt B gegenüber?"
@@ -465,15 +495,137 @@ lessons:
             answer: "D"
             option_audio: false
           - id: l2-c4
+            part: dice
             type: multiple_choice
             text: "Beim Spielwürfel: Welche Zahl liegt der 5 gegenüber?"
             say: "Beim Spielwürfel: Welche Augenzahl liegt der Fünf gegenüber?"
             options: ["2", "1", "4"]
             answer: "2"
           - id: l2-c5
+            part: dice
             type: multiple_choice
             text: "Welche Zahl gehört auf das Fragezeichen?"
             say: "Das Netz soll ein Spielwürfel werden. Welche Zahl gehört auf das Fragezeichen?"
             show: { drawn: grid, cols: 3, rows: 4, cells: [[1, 0, white], [0, 1, white], [1, 1, white], [2, 1, white], [1, 2, white], [1, 3, white]], labels: [[1, 0, "?"], [0, 1, "1"], [1, 1, "4"], [2, 1, "6"], [1, 2, "5"], [1, 3, "3"]] }
             options: ["2", "3", "6"]
             answer: "2"
+          - id: l2-c6
+            part: recognise
+            type: true_false
+            text: "Lässt sich dieses Netz zu einem Würfel falten?"
+            say: "Lässt sich dieses Netz zu einem Würfel falten?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, green], [1, 0, green], [2, 0, green], [1, 1, green], [2, 1, green], [2, 2, green]] }
+            answer: false
+          - id: l2-c7
+            part: recognise
+            type: image_multiple_choice
+            text: "Welche Figur lässt sich zu einem Würfel falten?"
+            say: "Welche Figur lässt sich zu einem Würfel falten?"
+            options:
+              - { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [0, 1, blue]], key: reihe }
+              - { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, blue], [1, 0, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [2, 2, blue]], key: netz }
+              - { drawn: grid, cols: 4, rows: 2, cells: [[1, 0, blue], [2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue]], key: block }
+            answer: netz
+          - id: l2-c8
+            part: recognise
+            type: multiple_choice
+            text: "Warum ist das kein Würfelnetz?"
+            say: "Warum lässt sich das nicht zu einem Würfel falten?"
+            show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, orange], [1, 0, orange], [2, 0, orange], [3, 0, orange], [0, 1, orange], [2, 1, orange]] }
+            options: ["Zwei Quadrate werden beide zum Boden.", "Vier Quadrate liegen als Block zusammen.", "Es hat zu wenige Quadrate."]
+            answer: "Zwei Quadrate werden beide zum Boden."
+          - id: l2-c9
+            part: recognise
+            type: multiple_choice
+            text: "Wo muss das sechste Quadrat hin, damit ein Würfelnetz entsteht?"
+            say: "Hier fehlt ein Quadrat. Wo muss das sechste Quadrat hin, damit ein Würfelnetz entsteht: bei A, B oder C?"
+            show: { drawn: grid, cols: 3, rows: 5, cells: [[1, 0, red], [0, 1, red], [1, 1, red], [1, 2, red], [1, 3, red]], labels: [[2, 0, A], [0, 2, B], [1, 4, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+            option_audio: false
+          - id: l2-c10
+            part: recognise
+            type: true_false
+            text: "Lässt sich dieses Netz zu einem Würfel falten?"
+            say: "Lässt sich dieses Netz zu einem Würfel falten?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, purple], [1, 0, purple], [2, 0, purple], [1, 1, purple], [1, 2, purple], [1, 3, purple]] }
+            answer: true
+          - id: l2-c11
+            part: opposite
+            type: multiple_choice
+            text: "Welche Fläche liegt C gegenüber?"
+            say: "Du faltest das Netz zu einem Würfel. Welche Fläche liegt C gegenüber?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, green], [1, 0, green], [1, 1, green], [2, 1, green], [3, 1, green], [2, 2, green]], labels: [[0, 0, A], [1, 0, B], [1, 1, C], [2, 1, D], [3, 1, E], [2, 2, F]] }
+            options: ["E", "D", "B"]
+            answer: "E"
+            option_audio: false
+          - id: l2-c12
+            part: opposite
+            type: multiple_choice
+            text: "Welche Fläche liegt A gegenüber?"
+            say: "Du faltest das Netz zu einem Würfel. Welche Fläche liegt A gegenüber?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, orange], [1, 0, orange], [2, 0, orange], [1, 1, orange], [1, 2, orange], [1, 3, orange]], labels: [[0, 0, A], [1, 0, B], [2, 0, C], [1, 1, D], [1, 2, E], [1, 3, F]] }
+            options: ["C", "B", "D"]
+            answer: "C"
+            option_audio: false
+          - id: l2-c13
+            part: opposite
+            type: true_false
+            text: "Liegen D und F beim Würfel gegenüber?"
+            say: "Du faltest das Netz zu einem Würfel. Liegen D und F gegenüber?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [2, 1, blue], [3, 1, blue], [4, 1, blue]], labels: [[0, 0, A], [1, 0, B], [2, 0, C], [2, 1, D], [3, 1, E], [4, 1, F]] }
+            answer: true
+          - id: l2-c14
+            part: opposite
+            type: multiple_choice
+            text: "Ida klebt aus dem Netz einen Würfel. F wird der Boden. Welche Fläche wird der Deckel?"
+            say: "Ida klebt aus dem Netz einen Würfel. F wird der Boden. Welche Fläche wird der Deckel?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[3, 0, yellow], [0, 1, yellow], [1, 1, yellow], [2, 1, yellow], [3, 1, yellow], [1, 2, yellow]], labels: [[3, 0, A], [0, 1, B], [1, 1, C], [2, 1, D], [3, 1, E], [1, 2, F]] }
+            options: ["A", "B", "E"]
+            answer: "A"
+            option_audio: false
+          - id: l2-c15
+            part: opposite
+            type: multiple_choice
+            text: "Welche Fläche liegt B gegenüber?"
+            say: "Du faltest das Netz zu einem Würfel. Welche Fläche liegt B gegenüber?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[1, 0, red], [0, 1, red], [1, 1, red], [2, 1, red], [3, 1, red], [3, 2, red]], labels: [[1, 0, A], [0, 1, B], [1, 1, C], [2, 1, D], [3, 1, E], [3, 2, F]] }
+            options: ["D", "C", "E"]
+            answer: "D"
+            option_audio: false
+          - id: l2-c16
+            part: opposite
+            type: true_false
+            text: "Liegen B und C beim Würfel gegenüber?"
+            say: "Du faltest das Netz zu einem Würfel. Liegen B und C gegenüber?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, purple], [0, 1, purple], [1, 1, purple], [1, 2, purple], [2, 2, purple], [2, 3, purple]], labels: [[0, 0, A], [0, 1, B], [1, 1, C], [1, 2, D], [2, 2, E], [2, 3, F]] }
+            answer: false
+          - id: l2-c17
+            part: dice
+            type: multiple_choice
+            text: "Beim Spielwürfel: Welche Zahl liegt der 1 gegenüber?"
+            say: "Beim Spielwürfel: Welche Augenzahl liegt der Eins gegenüber?"
+            options: ["6", "2", "5"]
+            answer: "6"
+          - id: l2-c18
+            part: dice
+            type: multiple_choice
+            text: "Emil würfelt eine 4. Welche Zahl liegt unten auf dem Tisch?"
+            say: "Emil würfelt eine Vier. Welche Augenzahl liegt unten auf dem Tisch?"
+            options: ["3", "2", "5"]
+            answer: "3"
+          - id: l2-c19
+            part: dice
+            type: true_false
+            text: "Wird das ein richtiger Spielwürfel?"
+            say: "Stimmt das? Aus diesem Netz wird ein richtiger Spielwürfel."
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, white], [1, 0, white], [2, 0, white], [1, 1, white], [1, 2, white], [1, 3, white]], labels: [[0, 0, "1"], [1, 0, "2"], [2, 0, "6"], [1, 1, "3"], [1, 2, "4"], [1, 3, "5"]] }
+            answer: false
+          - id: l2-c20
+            part: dice
+            type: multiple_choice
+            text: "Welche Zahl gehört auf das Fragezeichen?"
+            say: "Das Netz soll ein Spielwürfel werden. Welche Zahl gehört auf das Fragezeichen?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, white], [1, 0, white], [2, 0, white], [2, 1, white], [3, 1, white], [4, 1, white]], labels: [[0, 0, "2"], [1, 0, "4"], [2, 0, "5"], [2, 1, "1"], [3, 1, "3"], [4, 1, "?"]] }
+            options: ["6", "4", "1"]
+            answer: "6"

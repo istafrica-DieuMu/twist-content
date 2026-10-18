@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: read, what: { de: Zeiten in Fahrplänen und Zeitplänen ablesen, en: reading times from timetables and schedules } }
+    - { id: ride-time, what: { de: die Fahrzeit zwischen zwei Haltestellen ausrechnen, en: working out the journey time between two stops } }
+    - { id: in-time, what: { de: "die Fahrt wählen, die rechtzeitig ankommt", en: choosing the journey that arrives in time } }
+    - { id: schedule, what: { de: "im Zeitplan ausrechnen, wie lange etwas dauert", en: working out from a schedule how long something lasts } }
   misconceptions:
     - id: wrong-row-or-column
       what: Reads the time from the wrong row or column of the timetable (the departure at the first stop instead of the stop asked for)
@@ -197,6 +202,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -215,6 +221,22 @@ lessons:
             say: "Ole muss um vierzehn Uhr fünfundvierzig am Rathaus sein. Welche Fahrt kommt gerade noch rechtzeitig?"
             options: ["Fahrt 2", "Fahrt 3", "Fahrt 1"]
             answer: "Fahrt 2"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wann fährt Fahrt 3 am Park ab?\nBus 3 | Fahrt 1 | Fahrt 2 | Fahrt 3\nSchwimmbad | 13:30 | 14:00 | 14:30\nPark | 13:42 | 14:12 | 14:42\nRathaus | 13:50 | 14:20 | 14:50"
+            say: "Wann fährt Fahrt drei am Park ab?"
+            options: ["14:42", "14:30", "14:12"]
+            answer: "14:42"
+          - id: l1-c5
+            type: text_input
+            text: "Wie viele Minuten fährt der Bus vom Bahnhof bis zum Marktplatz?\nBus 7 | Fahrt 1 | Fahrt 2 | Fahrt 3\nBahnhof | 7:10 | 7:40 | 8:10\nMarktplatz | 7:18 | 7:48 | 8:18\nSchule | 7:25 | 7:55 | 8:25"
+            say: "Wie viele Minuten fährt der Bus vom Bahnhof bis zum Marktplatz?"
+            answer: "8"
+          - id: l1-c6
+            type: true_false
+            text: "Fahrt 2 kommt um 10:45 Uhr in der Stadt an.\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nDorf | 9:05 | 10:05 | 11:05\nSee | 9:20 | 10:20 | 11:20\nStadt | 9:45 | 10:45 | 11:45"
+            say: "Stimmt das? Fahrt zwei kommt um zehn Uhr fünfundvierzig in der Stadt an."
+            answer: true
 
   - n: 2
     title: { de: "Zeitpläne", en: "Schedules" }
@@ -371,32 +393,135 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Wann ist Fahrt 2 am Bad?\nBus 5 | Fahrt 1 | Fahrt 2\nKirche | 16:05 | 16:35\nBad | 16:17 | 16:47\nWald | 16:29 | 16:59"
             say: "Wann ist Fahrt zwei am Bad?"
             options: ["16:47", "16:17", "16:35"]
             answer: "16:47"
           - id: l2-c2
+            part: ride-time
             type: text_input
             text: "Wie viele Minuten fährt der Bus von der Kirche bis zum Wald?\nBus 5 | Fahrt 1 | Fahrt 2\nKirche | 16:05 | 16:35\nBad | 16:17 | 16:47\nWald | 16:29 | 16:59"
             say: "Wie viele Minuten fährt der Bus von der Kirche bis zum Wald?"
             answer: "24"
           - id: l2-c3
+            part: in-time
             type: multiple_choice
             text: "Emil muss um 16:50 Uhr am Wald sein. Welche Fahrt kommt gerade noch rechtzeitig?\nBus 5 | Fahrt 1 | Fahrt 2\nKirche | 16:05 | 16:35\nBad | 16:17 | 16:47\nWald | 16:29 | 16:59"
             say: "Emil muss um sechzehn Uhr fünfzig am Wald sein. Welche Fahrt kommt gerade noch rechtzeitig?"
             options: ["Fahrt 1", "Fahrt 2"]
             answer: "Fahrt 1"
           - id: l2-c4
+            part: schedule
             type: multiple_choice
             text: "Wie lange dauert das Vorlesen?\nLesenacht\n18:00 Abendessen\n18:40 Vorlesen\n19:25 Lesen mit der Taschenlampe\n20:30 Schlafen"
             say: "Das ist der Plan für die Lesenacht. Wie lange dauert das Vorlesen?"
             options: ["45 Minuten", "85 Minuten", "1 Stunde 45 Minuten"]
             answer: "45 Minuten"
           - id: l2-c5
+            part: schedule
             type: true_false
             text: "Das Lesen mit der Taschenlampe dauert 1 Stunde 5 Minuten.\nLesenacht\n18:00 Abendessen\n18:40 Vorlesen\n19:25 Lesen mit der Taschenlampe\n20:30 Schlafen"
             say: "Stimmt das? Das Lesen mit der Taschenlampe dauert eine Stunde und fünf Minuten."
             answer: true
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Wann fährt Fahrt 1 in Talheim ab?\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Schau in den Fahrplan. Wann fährt Fahrt eins in Talheim ab?"
+            options: ["7:04", "6:50", "8:04"]
+            answer: "7:04"
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Wann beginnt die Theaterprobe?\nProjekttag\n8:00 Treffen in der Aula\n8:20 Basteln\n9:40 Frühstück\n10:05 Theaterprobe\n11:30 Aufführung\n12:15 Ende"
+            say: "Das ist der Plan für den Projekttag. Wann beginnt die Theaterprobe?"
+            options: ["10:05", "9:40", "11:30"]
+            answer: "10:05"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Fahrt 3 kommt um 9:22 Uhr in Neustadt an.\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Stimmt das? Fahrt drei kommt um neun Uhr zweiundzwanzig in Neustadt an."
+            answer: true
+          - id: l2-c9
+            part: read
+            type: multiple_choice
+            text: "Was beginnt um 9:40 Uhr?\nProjekttag\n8:00 Treffen in der Aula\n8:20 Basteln\n9:40 Frühstück\n10:05 Theaterprobe\n11:30 Aufführung\n12:15 Ende"
+            say: "Was beginnt am Projekttag um neun Uhr vierzig?"
+            options: ["Frühstück", "Basteln", "Theaterprobe"]
+            answer: "Frühstück"
+          - id: l2-c10
+            part: ride-time
+            type: text_input
+            text: "Wie viele Minuten fährt der Zug von Berghausen bis Neustadt?\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Wie viele Minuten fährt der Zug von Berghausen bis Neustadt?"
+            answer: "32"
+          - id: l2-c11
+            part: ride-time
+            type: text_input
+            text: "Wie viele Minuten fährt der Bus vom Bad bis zum Wald?\nBus 5 | Fahrt 1 | Fahrt 2\nKirche | 16:05 | 16:35\nBad | 16:17 | 16:47\nWald | 16:29 | 16:59"
+            say: "Wie viele Minuten fährt der Bus vom Bad bis zum Wald?"
+            answer: "12"
+          - id: l2-c12
+            part: ride-time
+            type: true_false
+            text: "Von Talheim bis Neustadt fährt der Zug 22 Minuten.\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Stimmt das? Von Talheim bis Neustadt fährt der Zug zweiundzwanzig Minuten."
+            answer: false
+          - id: l2-c13
+            part: ride-time
+            type: multiple_choice
+            text: "Wie lange fährt der Zug von Berghausen bis Talheim?\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Wie lange fährt der Zug von Berghausen bis Talheim?"
+            options: ["14 Minuten", "54 Minuten", "18 Minuten"]
+            answer: "14 Minuten"
+          - id: l2-c14
+            part: in-time
+            type: multiple_choice
+            text: "Jonas muss um 8:15 Uhr in Talheim sein. Welche Fahrt kommt gerade noch rechtzeitig?\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Jonas muss um acht Uhr fünfzehn in Talheim sein. Welche Fahrt kommt gerade noch rechtzeitig?"
+            options: ["Fahrt 2", "Fahrt 1", "Fahrt 3"]
+            answer: "Fahrt 2"
+          - id: l2-c15
+            part: in-time
+            type: multiple_choice
+            text: "Ida ist um 7:55 Uhr in Berghausen. Wann fährt der nächste Zug?\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Ida ist um sieben Uhr fünfundfünfzig in Berghausen. Wann fährt der nächste Zug?"
+            options: ["8:50", "7:50", "8:04"]
+            answer: "8:50"
+          - id: l2-c16
+            part: in-time
+            type: true_false
+            text: "Nele muss um 9:00 Uhr in Neustadt sein. Mit Fahrt 2 kommt sie rechtzeitig an.\nZug | Fahrt 1 | Fahrt 2 | Fahrt 3\nBerghausen | 6:50 | 7:50 | 8:50\nTalheim | 7:04 | 8:04 | 9:04\nNeustadt | 7:22 | 8:22 | 9:22"
+            say: "Nele muss um neun Uhr in Neustadt sein. Mit Fahrt zwei kommt sie rechtzeitig an. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: in-time
+            type: text_input
+            text: "Finn ist um 16:20 Uhr an der Kirche. Wie viele Minuten wartet er auf den nächsten Bus?\nBus 5 | Fahrt 1 | Fahrt 2\nKirche | 16:05 | 16:35\nBad | 16:17 | 16:47\nWald | 16:29 | 16:59"
+            say: "Finn ist um sechzehn Uhr zwanzig an der Kirche. Wie viele Minuten wartet er auf den nächsten Bus?"
+            answer: "15"
+          - id: l2-c18
+            part: schedule
+            type: multiple_choice
+            text: "Wie lange dauert das Basteln?\nProjekttag\n8:00 Treffen in der Aula\n8:20 Basteln\n9:40 Frühstück\n10:05 Theaterprobe\n11:30 Aufführung\n12:15 Ende"
+            say: "Wie lange dauert das Basteln am Projekttag?"
+            options: ["1 Stunde 20 Minuten", "1 Stunde 40 Minuten", "2 Stunden 20 Minuten"]
+            answer: "1 Stunde 20 Minuten"
+          - id: l2-c19
+            part: schedule
+            type: text_input
+            text: "Wie viele Minuten dauert die Aufführung?\nProjekttag\n8:00 Treffen in der Aula\n8:20 Basteln\n9:40 Frühstück\n10:05 Theaterprobe\n11:30 Aufführung\n12:15 Ende"
+            say: "Wie viele Minuten dauert die Aufführung am Projekttag?"
+            answer: "45"
+          - id: l2-c20
+            part: schedule
+            type: true_false
+            text: "Das Frühstück dauert 35 Minuten.\nProjekttag\n8:00 Treffen in der Aula\n8:20 Basteln\n9:40 Frühstück\n10:05 Theaterprobe\n11:30 Aufführung\n12:15 Ende"
+            say: "Stimmt das? Das Frühstück am Projekttag dauert fünfunddreißig Minuten."
+            answer: false

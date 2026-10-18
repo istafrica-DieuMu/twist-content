@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [ruler]
   facets: []
+  parts:
+    - { id: kinds, what: { de: "Linie, Strecke und Gerade unterscheiden", en: "telling lines, line segments and straight lines apart" } }
+    - { id: measure, what: { de: Strecken genau in cm und mm messen, en: measuring line segments exactly in cm and mm } }
+    - { id: compare, what: { de: Strecken in cm und mm vergleichen, en: comparing line segments in cm and mm } }
   misconceptions:
     - id: gerade-strecke-mixed
       what: Thinks a Gerade has two ends and can be measured, or that a Strecke can be curved
@@ -206,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -224,6 +229,23 @@ lessons:
             say: "Was ist keine Strecke?"
             options: ["ein Kreis", "die Kante eines Buches", "ein gerader Strich von A nach B"]
             answer: "ein Kreis"
+          - id: l1-c4
+            type: true_false
+            text: "Jede Linie ist gerade."
+            say: "Stimmt das? Jede Linie ist gerade."
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Was sieht aus wie eine krumme Linie?"
+            say: "Was sieht aus wie eine krumme Linie?"
+            options: ["ein Regenbogen", "die Kante einer Tafel", "ein Strich mit dem Lineal"]
+            answer: "ein Regenbogen"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Die Strecke CD hat zwei Endpunkte. Wie heißen sie?"
+            say: "Die Strecke CD hat zwei Endpunkte. Wie heißen sie?"
+            options: ["C und D", "A und B", "nur D"]
+            answer: "C und D"
 
   - n: 2
     title: { de: "Strecken genau messen", en: "Measuring segments exactly" }
@@ -398,14 +420,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: kinds
             type: multiple_choice
             text: "Ole verbindet die Punkte P und Q mit dem Lineal. Was ist entstanden?"
             say: "Ole verbindet die Punkte P und Q mit dem Lineal. Was ist entstanden?"
             options: ["eine Strecke", "eine Gerade", "eine krumme Linie"]
             answer: "eine Strecke"
           - id: l2-c2
+            part: measure
             type: multiple_choice
             text: "Wie lang ist die Strecke?"
             say: "Die Strecke fängt bei null an. Wie lang ist sie?"
@@ -413,6 +438,7 @@ lessons:
             options: ["7 cm 6 mm", "6 cm 7 mm", "8 cm 6 mm"]
             answer: "7 cm 6 mm"
           - id: l2-c3
+            part: measure
             type: multiple_choice
             text: "Wie lang ist die Strecke?"
             say: "Diese Strecke fängt nicht bei null an. Wie lang ist sie?"
@@ -420,13 +446,125 @@ lessons:
             options: ["6 cm 5 mm", "9 cm 5 mm", "3 cm"]
             answer: "6 cm 5 mm"
           - id: l2-c4
+            part: kinds
             type: true_false
             text: "Eine Gerade hat keinen Anfang und kein Ende."
             say: "Stimmt das? Eine Gerade hat keinen Anfang und kein Ende."
             answer: true
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Die Strecke AB ist 5 cm 2 mm lang, die Strecke CD 48 mm. Welche ist länger?"
             say: "Die Strecke AB ist fünf Zentimeter und zwei Millimeter lang, die Strecke CD achtundvierzig Millimeter. Welche ist länger?"
             options: ["AB", "CD", "beide gleich lang"]
             answer: "AB"
+          - id: l2-c6
+            part: kinds
+            type: true_false
+            text: "Eine Strecke kannst du messen, eine Gerade nicht."
+            say: "Stimmt das? Eine Strecke kannst du messen, eine Gerade nicht."
+            answer: true
+          - id: l2-c7
+            part: kinds
+            type: multiple_choice
+            text: "Eine Linie ist gerade und geht nach beiden Seiten immer weiter. Wie heißt sie?"
+            say: "Eine Linie ist gerade und geht nach beiden Seiten immer weiter. Wie heißt sie?"
+            options: ["eine Gerade", "eine Strecke", "eine krumme Linie"]
+            answer: "eine Gerade"
+          - id: l2-c8
+            part: kinds
+            type: true_false
+            text: "Ein Kreis ist eine Strecke."
+            say: "Stimmt das? Ein Kreis ist eine Strecke."
+            answer: false
+          - id: l2-c9
+            part: kinds
+            type: multiple_choice
+            text: "Was sieht aus wie eine Strecke?"
+            say: "Was sieht aus wie eine Strecke?"
+            options: ["ein gespannter Faden zwischen zwei Nägeln", "ein Wollknäuel", "der Rand von einer Münze"]
+            answer: "ein gespannter Faden zwischen zwei Nägeln"
+          - id: l2-c10
+            part: kinds
+            type: sorting
+            text: "Gerade oder krumm? Sortiere die Linien."
+            say: "Ist die Linie gerade oder krumm? Sortiere die Karten."
+            bins:
+              - { id: gerade, show: { text: "gerade" }, say: "gerade" }
+              - { id: krumm, show: { text: "krumm" }, say: "krumm" }
+            options:
+              - { text: "Strecke", bin: gerade }
+              - { text: "Schlangenlinie", bin: krumm }
+              - { text: "Kante eines Lineals", bin: gerade }
+              - { text: "Kreis", bin: krumm }
+          - id: l2-c11
+            part: measure
+            type: text_input
+            text: "Wie viele mm ist die Strecke lang?"
+            say: "Die Strecke fängt bei null an. Wie viele Millimeter ist sie lang?"
+            show: { drawn: ruler, to: 10, length: 5.4, colour: green }
+            answer: "54"
+          - id: l2-c12
+            part: measure
+            type: multiple_choice
+            text: "Wie lang ist die Strecke?"
+            say: "Diese Strecke fängt nicht bei null an. Wie lang ist sie?"
+            show: { drawn: ruler, to: 10, start: 2, length: 3.7 }
+            options: ["3 cm 7 mm", "5 cm 7 mm", "2 cm 7 mm"]
+            answer: "3 cm 7 mm"
+          - id: l2-c13
+            part: measure
+            type: true_false
+            text: "Die Strecke ist 9 cm 3 mm lang."
+            say: "Die Strecke fängt bei null an. Stimmt das: Sie ist neun Zentimeter und drei Millimeter lang?"
+            show: { drawn: ruler, to: 10, length: 9.3, colour: blue }
+            answer: true
+          - id: l2-c14
+            part: measure
+            type: text_input
+            text: "Wie viele cm ist die Strecke lang?"
+            say: "Diese Strecke fängt bei eins an. Wie viele Zentimeter ist sie lang?"
+            show: { drawn: ruler, to: 10, start: 1, length: 4, colour: green }
+            answer: "4"
+          - id: l2-c15
+            part: measure
+            type: multiple_choice
+            text: "Wie lang ist die Strecke?"
+            say: "Die Strecke fängt bei null an. Wie lang ist sie?"
+            show: { drawn: ruler, to: 15, length: 13.8 }
+            options: ["13 cm 8 mm", "14 cm 8 mm", "12 cm 8 mm"]
+            answer: "13 cm 8 mm"
+          - id: l2-c16
+            part: compare
+            type: multiple_choice
+            text: "Die Strecke AB ist 4 cm lang, die Strecke CD 41 mm. Welche ist länger?"
+            say: "Die Strecke AB ist vier Zentimeter lang, die Strecke CD einundvierzig Millimeter. Welche ist länger?"
+            options: ["CD", "AB", "beide gleich lang"]
+            answer: "CD"
+          - id: l2-c17
+            part: compare
+            type: true_false
+            text: "Die Strecke EF ist 8 cm lang, die Strecke GH 80 mm. GH ist länger."
+            say: "Die Strecke EF ist acht Zentimeter lang, die Strecke GH achtzig Millimeter. Stimmt das: GH ist länger?"
+            answer: false
+          - id: l2-c18
+            part: compare
+            type: multiple_choice
+            text: "Welche Strecke ist am kürzesten?"
+            say: "Welche Strecke ist am kürzesten?"
+            options: ["3 cm 5 mm", "34 mm", "4 cm"]
+            answer: "34 mm"
+          - id: l2-c19
+            part: compare
+            type: ordering
+            text: "Ordne die Strecken. Die kürzeste kommt zuerst."
+            say: "Ordne die Strecken. Die kürzeste kommt zuerst."
+            options: ["6 cm", "57 mm", "6 cm 3 mm", "5 cm"]
+            slot_count: 4
+            answer: ["5 cm", "57 mm", "6 cm", "6 cm 3 mm"]
+          - id: l2-c20
+            part: compare
+            type: text_input
+            text: "Die Strecke AB ist 7 cm lang, die Strecke CD 75 mm. Um wie viele mm ist CD länger?"
+            say: "Die Strecke AB ist sieben Zentimeter lang, die Strecke CD fünfundsiebzig Millimeter. Um wie viele Millimeter ist CD länger?"
+            answer: "5"

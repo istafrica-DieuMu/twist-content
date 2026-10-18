@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: []
+  parts:
+    - { id: point-span, what: { de: Zeitpunkt und Zeitspanne unterscheiden, en: telling a point in time from a duration } }
+    - { id: how-long, what: { de: "ausrechnen, wie lange etwas dauert", en: working out how long something lasts } }
+    - { id: end, what: { de: "ausrechnen, wann etwas endet", en: working out when something ends } }
+    - { id: start, what: { de: "ausrechnen, wann etwas begonnen hat", en: working out when something started } }
   misconceptions:
     - id: hundred-minute-hour
       what: Subtracts times like numbers (9:10 − 8:50 = 60 Minuten, as if 910 − 850)
@@ -193,6 +198,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -211,6 +217,23 @@ lessons:
             options: ["Zeitpunkt", "Zeitspanne"]
             keep_order: true
             answer: "Zeitspanne"
+          - id: l1-c4
+            type: text_input
+            text: "Von 15:10 Uhr bis 16:00 Uhr. Wie viele Minuten sind das?"
+            say: "Von fünfzehn Uhr zehn bis sechzehn Uhr. Wie viele Minuten sind das?"
+            answer: "50"
+          - id: l1-c5
+            type: true_false
+            text: "Von 11:50 Uhr bis 12:15 Uhr sind es 25 Minuten. Stimmt das?"
+            say: "Von elf Uhr fünfzig bis zwölf Uhr fünfzehn sind es fünfundzwanzig Minuten. Stimmt das?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Der Zug fährt um 16:45 Uhr ab. Zeitpunkt oder Zeitspanne?"
+            say: "Der Zug fährt um sechzehn Uhr fünfundvierzig ab. Ist das ein Zeitpunkt oder eine Zeitspanne?"
+            options: ["Zeitpunkt", "Zeitspanne"]
+            keep_order: true
+            answer: "Zeitpunkt"
 
   - n: 2
     title: { de: "Wann endet es?", en: "When does it end?" }
@@ -369,32 +392,140 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: how-long
             type: text_input
             text: "Von 12:35 Uhr bis 13:00 Uhr. Wie viele Minuten sind das?"
             say: "Von zwölf Uhr fünfunddreißig bis dreizehn Uhr. Wie viele Minuten sind das?"
             answer: "25"
           - id: l2-c2
+            part: end
             type: multiple_choice
             text: "Der Film beginnt um 17:40 Uhr und dauert 45 Minuten. Wann endet er?"
             say: "Der Film beginnt um siebzehn Uhr vierzig und dauert fünfundvierzig Minuten. Wann endet er?"
             options: ["18:25", "17:85", "18:35"]
             answer: "18:25"
           - id: l2-c3
+            part: start
             type: multiple_choice
             text: "Das Turnier endet um 16:00 Uhr und hat 3 Stunden 15 Minuten gedauert. Wann hat es begonnen?"
             say: "Das Turnier endet um sechzehn Uhr und hat drei Stunden und fünfzehn Minuten gedauert. Wann hat es begonnen?"
             options: ["12:45", "13:15", "12:15"]
             answer: "12:45"
           - id: l2-c4
+            part: how-long
             type: true_false
             text: "Von 6:50 Uhr bis 7:20 Uhr sind es 70 Minuten. Stimmt das?"
             say: "Von sechs Uhr fünfzig bis sieben Uhr zwanzig sind es siebzig Minuten. Stimmt das?"
             answer: false
           - id: l2-c5
+            part: how-long
             type: multiple_choice
             text: "Der Ausflug geht um 8:30 Uhr los und endet um 12:00 Uhr. Wie lange dauert er?"
             say: "Der Ausflug geht um acht Uhr dreißig los und endet um zwölf Uhr. Wie lange dauert er?"
             options: ["3 Stunden 30 Minuten", "4 Stunden 30 Minuten", "3 Stunden 70 Minuten"]
             answer: "3 Stunden 30 Minuten"
+          - id: l2-c6
+            part: point-span
+            type: multiple_choice
+            text: "Das Hörspiel dauert 35 Minuten. Zeitpunkt oder Zeitspanne?"
+            say: "Das Hörspiel dauert fünfunddreißig Minuten. Ist das ein Zeitpunkt oder eine Zeitspanne?"
+            options: ["Zeitpunkt", "Zeitspanne"]
+            keep_order: true
+            answer: "Zeitspanne"
+          - id: l2-c7
+            part: point-span
+            type: multiple_choice
+            text: "Um 13:15 Uhr gibt es Mittagessen. Zeitpunkt oder Zeitspanne?"
+            say: "Um dreizehn Uhr fünfzehn gibt es Mittagessen. Ist das ein Zeitpunkt oder eine Zeitspanne?"
+            options: ["Zeitpunkt", "Zeitspanne"]
+            keep_order: true
+            answer: "Zeitpunkt"
+          - id: l2-c8
+            part: point-span
+            type: true_false
+            text: "„Die Sommerferien dauern 6 Wochen.“ Ist das eine Zeitspanne?"
+            say: "Die Sommerferien dauern sechs Wochen. Ist das eine Zeitspanne?"
+            answer: true
+          - id: l2-c9
+            part: point-span
+            type: multiple_choice
+            text: "Welcher Satz nennt einen Zeitpunkt?"
+            say: "Welcher Satz nennt einen Zeitpunkt?"
+            options: ["Der Laden öffnet um 9 Uhr.", "Die Fahrt dauert 2 Stunden.", "Wir spielen 90 Minuten lang."]
+            answer: "Der Laden öffnet um 9 Uhr."
+          - id: l2-c10
+            part: point-span
+            type: true_false
+            text: "„Wir warten 10 Minuten auf den Bus.“ Ist das ein Zeitpunkt?"
+            say: "Wir warten zehn Minuten auf den Bus. Ist das ein Zeitpunkt?"
+            answer: false
+          - id: l2-c11
+            part: how-long
+            type: text_input
+            text: "Von 9:35 Uhr bis 10:10 Uhr. Wie viele Minuten sind das?"
+            say: "Von neun Uhr fünfunddreißig bis zehn Uhr zehn. Wie viele Minuten sind das?"
+            answer: "35"
+          - id: l2-c12
+            part: how-long
+            type: multiple_choice
+            text: "Das Schwimmen dauert von 15:45 Uhr bis 17:00 Uhr. Wie lange ist das?"
+            say: "Das Schwimmen dauert von fünfzehn Uhr fünfundvierzig bis siebzehn Uhr. Wie lange ist das?"
+            options: ["1 Stunde 15 Minuten", "1 Stunde 55 Minuten", "45 Minuten"]
+            answer: "1 Stunde 15 Minuten"
+          - id: l2-c13
+            part: end
+            type: multiple_choice
+            text: "Die Probe beginnt um 14:25 Uhr und dauert 30 Minuten. Wann endet sie?"
+            say: "Die Probe beginnt um vierzehn Uhr fünfundzwanzig und dauert dreißig Minuten. Wann endet sie?"
+            options: ["14:55", "15:05", "15:25"]
+            answer: "14:55"
+          - id: l2-c14
+            part: end
+            type: multiple_choice
+            text: "Die Sendung beginnt um 19:35 Uhr und dauert 40 Minuten. Wann endet sie?"
+            say: "Die Sendung beginnt um neunzehn Uhr fünfunddreißig und dauert vierzig Minuten. Wann endet sie?"
+            options: ["20:15", "19:75", "20:25"]
+            answer: "20:15"
+          - id: l2-c15
+            part: end
+            type: true_false
+            text: "Der Bus fährt um 7:50 Uhr ab und braucht 25 Minuten. Er kommt um 8:25 Uhr an. Stimmt das?"
+            say: "Der Bus fährt um sieben Uhr fünfzig ab und braucht fünfundzwanzig Minuten. Er kommt um acht Uhr fünfundzwanzig an. Stimmt das?"
+            answer: false
+          - id: l2-c16
+            part: end
+            type: multiple_choice
+            text: "Die Radtour beginnt um 9:40 Uhr und dauert 1 Stunde 30 Minuten. Wann ist sie zu Ende?"
+            say: "Die Radtour beginnt um neun Uhr vierzig und dauert eine Stunde und dreißig Minuten. Wann ist sie zu Ende?"
+            options: ["11:10", "10:70", "11:30"]
+            answer: "11:10"
+          - id: l2-c17
+            part: start
+            type: multiple_choice
+            text: "Die Pause endet um 10:00 Uhr und hat 15 Minuten gedauert. Wann hat sie begonnen?"
+            say: "Die Pause endet um zehn Uhr und hat fünfzehn Minuten gedauert. Wann hat sie begonnen?"
+            options: ["9:45", "10:15", "9:15"]
+            answer: "9:45"
+          - id: l2-c18
+            part: start
+            type: multiple_choice
+            text: "Das Spiel endet um 17:10 Uhr und hat 30 Minuten gedauert. Wann hat es begonnen?"
+            say: "Das Spiel endet um siebzehn Uhr zehn und hat dreißig Minuten gedauert. Wann hat es begonnen?"
+            options: ["16:40", "16:50", "17:40"]
+            answer: "16:40"
+          - id: l2-c19
+            part: start
+            type: true_false
+            text: "Die Feier endet um 20:00 Uhr und hat 3 Stunden gedauert. Sie hat um 17:00 Uhr begonnen. Stimmt das?"
+            say: "Die Feier endet um zwanzig Uhr und hat drei Stunden gedauert. Sie hat um siebzehn Uhr begonnen. Stimmt das?"
+            answer: true
+          - id: l2-c20
+            part: start
+            type: multiple_choice
+            text: "Der Zug kommt um 12:20 Uhr an. Die Fahrt hat 50 Minuten gedauert. Wann ist er abgefahren?"
+            say: "Der Zug kommt um zwölf Uhr zwanzig an. Die Fahrt hat fünfzig Minuten gedauert. Wann ist er abgefahren?"
+            options: ["11:30", "11:50", "13:10"]
+            answer: "11:30"

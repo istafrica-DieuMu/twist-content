@@ -23,6 +23,10 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: split, what: { de: die Zahl geschickt zerlegen und in Teilaufgaben teilen, en: splitting the number well and dividing in steps } }
+    - { id: divide, what: { de: zwei- und dreistellige Zahlen durch eine einstellige Zahl teilen, en: dividing two- and three-digit numbers by a one-digit number } }
+    - { id: rest, what: { de: mit Rest teilen und die Probe machen, en: dividing with a remainder and checking } }
   misconceptions:
     - id: split-by-place
       what: "Splits into Zehner and Einer even when the parts do not divide (78 : 6 as 70 : 6 + 8 : 6)"
@@ -192,6 +196,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -208,6 +213,24 @@ lessons:
             text: "Stimmt das? 81 : 3 = 37"
             say: "Einundachtzig geteilt durch drei ist siebenunddreißig. Stimmt das?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie zerlegst du 96 für 96 : 8?"
+            say: "Sechsundneunzig geteilt durch acht. Wie zerlegst du sechsundneunzig?"
+            options: ["80 + 16", "90 + 6", "70 + 26"]
+            answer: "80 + 16"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Rechne Schritt für Schritt."
+            say: "Fünfundneunzig geteilt durch fünf. Rechne Schritt für Schritt."
+            frame: "80 : 5 = _ | 15 : 5 = _ | 95 : 5 = _"
+            options: ["16", "3", "19", "13"]
+            answer: ["16", "3", "19"]
+          - id: l1-c6
+            type: text_input
+            text: "Lukas verteilt 72 Murmeln gerecht auf 3 Säckchen. Wie viele Murmeln kommen in jedes Säckchen?"
+            say: "Lukas verteilt zweiundsiebzig Murmeln gerecht auf drei Säckchen. Wie viele Murmeln kommen in jedes Säckchen?"
+            answer: "24"
 
   - n: 2
     title: { de: "Dreistellig und mit Rest", en: "Three digits and remainders" }
@@ -366,18 +389,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: divide
             type: text_input
             text: "92 : 4 = _"
             say: "Zweiundneunzig geteilt durch vier."
             answer: "23"
           - id: l2-c2
+            part: divide
             type: text_input
             text: "185 : 5 = _"
             say: "Hundertfünfundachtzig geteilt durch fünf."
             answer: "37"
           - id: l2-c3
+            part: rest
             type: fill_in_blank
             text: "Rechne mit Rest."
             say: "Siebenundsechzig geteilt durch drei, mit Rest."
@@ -385,12 +412,116 @@ lessons:
             options: ["22", "1", "21", "4"]
             answer: ["22", "1"]
           - id: l2-c4
+            part: divide
             type: true_false
             text: "Stimmt das? 144 : 6 = 24"
             say: "Hundertvierundvierzig geteilt durch sechs ist vierundzwanzig. Stimmt das?"
             answer: true
           - id: l2-c5
+            part: divide
             type: text_input
             text: "Ein Bauer packt 168 Eier in Kartons mit je 6 Eiern. Wie viele Kartons braucht er?"
             say: "Ein Bauer packt hundertachtundsechzig Eier in Kartons. In jeden Karton passen sechs Eier. Wie viele Kartons braucht er?"
             answer: "28"
+          - id: l2-c6
+            part: split
+            type: multiple_choice
+            text: "Wie zerlegst du 84 für 84 : 7?"
+            say: "Vierundachtzig geteilt durch sieben. Wie zerlegst du vierundachtzig?"
+            options: ["70 + 14", "80 + 4", "60 + 24"]
+            answer: "70 + 14"
+          - id: l2-c7
+            part: split
+            type: multiple_choice
+            text: "Wie zerlegst du 112 für 112 : 8?"
+            say: "Hundertzwölf geteilt durch acht. Wie zerlegst du hundertzwölf?"
+            options: ["80 + 32", "100 + 12", "110 + 2"]
+            answer: "80 + 32"
+          - id: l2-c8
+            part: split
+            type: fill_in_blank
+            text: "Rechne Schritt für Schritt."
+            say: "Hundertneunzehn geteilt durch sieben. Rechne Schritt für Schritt."
+            frame: "70 : 7 = _ | 49 : 7 = _ | 119 : 7 = _"
+            options: ["10", "7", "17", "71"]
+            answer: ["10", "7", "17"]
+          - id: l2-c9
+            part: split
+            type: fill_in_blank
+            text: "Rechne Schritt für Schritt."
+            say: "Zweihundertsiebenunddreißig geteilt durch drei. Rechne Schritt für Schritt."
+            frame: "210 : 3 = _ | 27 : 3 = _ | 237 : 3 = _"
+            options: ["70", "9", "79", "97"]
+            answer: ["70", "9", "79"]
+          - id: l2-c10
+            part: split
+            type: fill_in_blank
+            text: "Welche Zahl fehlt in der Zerlegung?"
+            say: "Sechsundneunzig geteilt durch sechs. Welche Zahl fehlt in der Zerlegung?"
+            frame: "96 : 6 = 60 : 6 + _ : 6"
+            options: ["36", "30", "6"]
+            answer: ["36"]
+          - id: l2-c11
+            part: split
+            type: true_false
+            text: "Stimmt das? 72 : 3 = 60 : 3 + 12 : 3"
+            say: "Zweiundsiebzig geteilt durch drei ist sechzig geteilt durch drei plus zwölf geteilt durch drei. Stimmt das?"
+            answer: true
+          - id: l2-c12
+            part: split
+            type: multiple_choice
+            text: "Welche Zerlegung hilft bei 135 : 9?"
+            say: "Hundertfünfunddreißig geteilt durch neun. Welche Zerlegung hilft?"
+            options: ["90 : 9 + 45 : 9", "100 : 9 + 35 : 9", "130 : 9 + 5 : 9"]
+            answer: "90 : 9 + 45 : 9"
+          - id: l2-c13
+            part: divide
+            type: text_input
+            text: "128 : 4 = _"
+            say: "Hundertachtundzwanzig geteilt durch vier."
+            answer: "32"
+          - id: l2-c14
+            part: divide
+            type: text_input
+            text: "Beim Sportfest werden 108 Kinder auf 9 gleich große Teams verteilt. Wie viele Kinder sind in jedem Team?"
+            say: "Beim Sportfest werden hundertacht Kinder auf neun gleich große Teams verteilt. Wie viele Kinder sind in jedem Team?"
+            answer: "12"
+          - id: l2-c15
+            part: divide
+            type: true_false
+            text: "Stimmt das? 252 : 6 = 43"
+            say: "Zweihundertzweiundfünfzig geteilt durch sechs ist dreiundvierzig. Stimmt das?"
+            answer: false
+          - id: l2-c16
+            part: rest
+            type: fill_in_blank
+            text: "Rechne mit Rest."
+            say: "Neunundachtzig geteilt durch sieben, mit Rest."
+            frame: "89 : 7 = _ Rest _"
+            options: ["12", "5", "13", "2"]
+            answer: ["12", "5"]
+          - id: l2-c17
+            part: rest
+            type: true_false
+            text: "Stimmt das? 58 : 4 = 14 Rest 2"
+            say: "Achtundfünfzig geteilt durch vier ist vierzehn Rest zwei. Stimmt das?"
+            answer: true
+          - id: l2-c18
+            part: rest
+            type: true_false
+            text: "Stimmt das? 76 : 5 = 14 Rest 6"
+            say: "Sechsundsiebzig geteilt durch fünf ist vierzehn Rest sechs. Stimmt das?"
+            answer: false
+          - id: l2-c19
+            part: rest
+            type: multiple_choice
+            text: "Welche Probe passt zu 65 : 4 = 16 Rest 1?"
+            say: "Fünfundsechzig geteilt durch vier ist sechzehn Rest eins. Welche Probe passt?"
+            options: ["4 · 16 + 1 = 65", "4 · 16 = 65", "16 + 4 + 1 = 65"]
+            answer: "4 · 16 + 1 = 65"
+          - id: l2-c20
+            part: rest
+            type: text_input
+            text: "Lena verteilt 50 Sticker gerecht an 6 Kinder. Wie viele Sticker bleiben übrig?"
+            say: "Lena verteilt fünfzig Sticker gerecht an sechs Kinder. Jedes Kind bekommt gleich viele. Wie viele Sticker bleiben übrig?"
+            answer: "2"

@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: place, what: { de: Zahlen stellengerecht untereinander schreiben, en: lining numbers up by place value } }
+    - { id: add, what: { de: dreistellige Zahlen ohne Übertrag schriftlich addieren, en: adding three-digit numbers in columns without carrying } }
+    - { id: lengths, what: { de: Zahlen mit verschieden vielen Stellen schriftlich addieren, en: adding numbers with different numbers of digits in columns } }
+    - { id: check, what: { de: mit dem Überschlag und durch Nachrechnen prüfen, en: checking with an estimate and by working it again } }
   misconceptions:
     - id: left-aligned
       what: Writes a shorter number under the left digits (352 + 24 with the 2 under the 3)
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -230,6 +236,27 @@ lessons:
             show: { drawn: written-calc, rows: ["462", "315"], op: "+" }
             options: ["2 + 5", "4 + 3", "6 + 1"]
             answer: "2 + 5"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: vierhundertsiebzehn plus dreihundertzweiundfünfzig. Schreib die Ziffern für die Einer, die Zehner und die Hunderter."
+            show: { drawn: written-calc, rows: ["417", "352"], op: "+", result: "___" }
+            frame: "E: _  Z: _  H: _"
+            options: ["9", "6", "7", "8"]
+            answer: ["9", "6", "7"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Was rechnest du bei den Hundertern?"
+            say: "Zweihundertdreiundsechzig plus sechshundertvierzehn. Was rechnest du bei den Hundertern?"
+            show: { drawn: written-calc, rows: ["263", "614"], op: "+" }
+            options: ["2 + 6", "3 + 4", "6 + 1"]
+            answer: "2 + 6"
+          - id: l1-c6
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: fünfhundertdreißig plus zweihundertachtundvierzig."
+            show: { drawn: written-calc, rows: ["530", "248"], op: "+" }
+            answer: "778"
 
   - n: 2
     title: { de: Verschieden lange Zahlen, en: Numbers of different lengths }
@@ -400,34 +427,148 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "Rechne schriftlich."
             say: "Rechne schriftlich: dreihundertsiebenundzwanzig plus vierhunderteinundsechzig."
             show: { drawn: written-calc, rows: ["327", "461"], op: "+" }
             answer: "788"
           - id: l2-c2
+            part: place
             type: image_multiple_choice
-            text: "Welche Rechnung steht richtig untereinander?"
+            text: "712 + 84: Welche Rechnung steht richtig untereinander?"
             say: "Hier soll siebenhundertzwölf plus vierundachtzig stehen. Welche Rechnung ist richtig untereinander geschrieben?"
             options: [{ drawn: written-calc, rows: ["712", "84 "], op: "+" }, { drawn: written-calc, rows: ["712", "84"], op: "+" }]
             answer: "712|84"
           - id: l2-c3
+            part: lengths
             type: text_input
             text: "Rechne schriftlich."
             say: "Rechne schriftlich: siebenhundertzwölf plus vierundachtzig."
             show: { drawn: written-calc, rows: ["712", "84"], op: "+" }
             answer: "796"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Stimmt die Rechnung?"
             say: "Prüf die Rechnung. Stimmt sie?"
             show: { drawn: written-calc, rows: ["603", "295"], op: "+", result: "898" }
             answer: true
           - id: l2-c5
+            part: check
             type: multiple_choice
-            text: "Ungefähr wie viel?"
+            text: "Überschlag: 580 + 110. Ungefähr wie viel?"
             say: "Mach einen Überschlag: fünfhundertachtzig plus hundertzehn. Ungefähr wie viel?"
             options: ["700", "600", "800"]
             answer: "700"
+          - id: l2-c6
+            part: place
+            type: image_multiple_choice
+            text: "450 + 36: Welche Rechnung steht richtig untereinander?"
+            say: "Hier soll vierhundertfünfzig plus sechsunddreißig stehen. Welche Rechnung ist richtig untereinander geschrieben?"
+            options: [{ drawn: written-calc, rows: ["450", "36 "], op: "+" }, { drawn: written-calc, rows: ["450", "36"], op: "+" }]
+            answer: "450|36"
+          - id: l2-c7
+            part: place
+            type: multiple_choice
+            text: "Was rechnest du bei den Zehnern?"
+            say: "Fünfhundertsiebenundzwanzig plus einundsechzig. Was rechnest du bei den Zehnern?"
+            show: { drawn: written-calc, rows: ["527", "61"], op: "+" }
+            options: ["2 + 6", "5 + 6", "7 + 1"]
+            answer: "2 + 6"
+          - id: l2-c8
+            part: place
+            type: true_false
+            text: "634 + 5: Die 5 steht unter der 4. Stimmt das?"
+            say: "Bei sechshundertvierunddreißig plus fünf steht die Fünf unter der Vier. Stimmt das?"
+            answer: true
+          - id: l2-c9
+            part: place
+            type: true_false
+            text: "208 + 71: Steht die Rechnung richtig untereinander?"
+            say: "Hier soll zweihundertacht plus einundsiebzig stehen. Steht die Rechnung richtig untereinander?"
+            show: { drawn: written-calc, rows: ["208", "71 "], op: "+" }
+            answer: false
+          - id: l2-c10
+            part: add
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: fünfhundertvierunddreißig plus zweihunderteinundfünfzig."
+            show: { drawn: written-calc, rows: ["534", "251"], op: "+" }
+            answer: "785"
+          - id: l2-c11
+            part: add
+            type: fill_in_blank
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: hundertzweiundsechzig plus siebenhundertfünfundzwanzig. Schreib die Ziffern für die Einer, die Zehner und die Hunderter."
+            show: { drawn: written-calc, rows: ["162", "725"], op: "+", result: "___" }
+            frame: "E: _  Z: _  H: _"
+            options: ["7", "8", "9", "6"]
+            answer: ["7", "8", "8"]
+          - id: l2-c12
+            part: add
+            type: text_input
+            text: "Im Kino sitzen 214 Erwachsene und 352 Kinder. Wie viele Menschen sind es zusammen?"
+            say: "Im Kino sitzen zweihundertvierzehn Erwachsene und dreihundertzweiundfünfzig Kinder. Wie viele Menschen sind es zusammen?"
+            answer: "566"
+          - id: l2-c13
+            part: add
+            type: multiple_choice
+            text: "Welches Ergebnis stimmt?"
+            say: "Vierhundertdrei plus fünfhundertsechzehn. Welches Ergebnis stimmt?"
+            show: { drawn: written-calc, rows: ["403", "516"], op: "+" }
+            options: ["919", "819", "909"]
+            answer: "919"
+          - id: l2-c14
+            part: lengths
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: sechshundertfünfundzwanzig plus dreiundvierzig."
+            show: { drawn: written-calc, rows: ["625", "43"], op: "+" }
+            answer: "668"
+          - id: l2-c15
+            part: lengths
+            type: text_input
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: neunhundertzwei plus siebenundachtzig."
+            show: { drawn: written-calc, rows: ["902", "87"], op: "+" }
+            answer: "989"
+          - id: l2-c16
+            part: lengths
+            type: fill_in_blank
+            text: "Rechne schriftlich."
+            say: "Rechne schriftlich: dreihundertvierzig plus sechsundfünfzig. Schreib die Ziffern für die Einer, die Zehner und die Hunderter."
+            show: { drawn: written-calc, rows: ["340", "56"], op: "+", result: "___" }
+            frame: "E: _  Z: _  H: _"
+            options: ["6", "9", "3", "8"]
+            answer: ["6", "9", "3"]
+          - id: l2-c17
+            part: lengths
+            type: multiple_choice
+            text: "413 + 52 = _"
+            say: "Vierhundertdreizehn plus zweiundfünfzig. Welches Ergebnis stimmt?"
+            options: ["465", "933", "475"]
+            answer: "465"
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "236 + 52 = 756 | Überschlag: 240 + 50 = 290. Passt das?"
+            say: "Ein Kind hat zweihundertsechsunddreißig plus zweiundfünfzig gleich siebenhundertsechsundfünfzig gerechnet. Der Überschlag ist zweihundertvierzig plus fünfzig, ungefähr zweihundertneunzig. Passt das?"
+            answer: false
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "Überschlag: 310 + 487. Ungefähr wie viel?"
+            say: "Mach einen Überschlag: dreihundertzehn plus vierhundertsiebenundachtzig. Ungefähr wie viel?"
+            options: ["800", "700", "900"]
+            answer: "800"
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Stimmt die Rechnung?"
+            say: "Prüf die Rechnung. Stimmt sie?"
+            show: { drawn: written-calc, rows: ["725", "164"], op: "+", result: "879" }
+            answer: false

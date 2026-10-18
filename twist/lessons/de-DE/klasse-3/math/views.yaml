@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, cubes]
   facets: []
+  parts:
+    - { id: objects, what: { de: Ansichten von Gegenständen und Körpern zuordnen, en: matching views to everyday objects and solids } }
+    - { id: front, what: { de: Würfelgebäude und ihre Ansicht von vorne zuordnen, en: matching cube buildings to their front view } }
+    - { id: side, what: { de: die Ansicht eines Würfelgebäudes von rechts finden, en: finding the view of a cube building from the right } }
+    - { id: top, what: { de: Würfelgebäude und ihre Ansicht von oben zuordnen, en: matching cube buildings to their view from above } }
   misconceptions:
     - id: front-view-front-row
       what: Thinks the view from the front shows only the front row, so a higher tower behind is left out
@@ -273,6 +278,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -301,6 +307,33 @@ lessons:
             show: { drawn: cubes, plan: [[3, 2]], mode: building, colour: red }
             options: ["2", "5", "3"]
             answer: "2"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Welche Ansicht von oben passt?"
+            say: "Wie sieht das Gebäude von oben aus? Welches Bild passt?"
+            show: { drawn: cubes, plan: [[3, 0, 2]], mode: building, colour: blue }
+            options:
+              - { drawn: cubes, plan: [[3, 0, 2]], mode: top, colour: blue, key: oben }
+              - { drawn: cubes, plan: [[1, 1, 1]], mode: top, colour: blue, key: voll }
+              - { drawn: cubes, plan: [[3, 0, 2]], mode: front, colour: blue, key: vorne }
+            answer: oben
+          - id: l1-c5
+            type: true_false
+            text: "Von rechts siehst du nur einen Turm mit 2 Würfeln."
+            say: "Stimmt das? Wenn du von rechts auf das Gebäude schaust, siehst du nur einen Turm mit zwei Würfeln."
+            show: { drawn: cubes, plan: [[1, 2, 1]], mode: building, colour: orange }
+            answer: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Wie sieht ein Würfel von oben aus?"
+            say: "Du schaust von oben auf einen Würfel. Was siehst du?"
+            show: { drawn: shape, kind: cube, colour: red }
+            options:
+              - { drawn: shape, kind: circle, colour: red }
+              - { drawn: shape, kind: square, colour: red }
+              - { drawn: shape, kind: triangle, colour: red }
+            answer: square
+            option_audio: false
 
   - n: 2
     title: { de: "Gebäude mit zwei Reihen", en: "Buildings with two rows" }
@@ -536,8 +569,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: front
             type: image_multiple_choice
             text: "Welche Ansicht von vorne passt?"
             say: "Wie sieht das Gebäude von vorne aus? Welches Bild passt?"
@@ -548,6 +583,7 @@ lessons:
               - { drawn: cubes, plan: [[3, 1], [1, 2]], mode: front, colour: red, key: vorne }
             answer: vorne
           - id: l2-c2
+            part: top
             type: image_multiple_choice
             text: "Welche Ansicht von oben passt?"
             say: "Wie sieht das Gebäude von oben aus? Welches Bild passt?"
@@ -558,6 +594,7 @@ lessons:
               - { drawn: cubes, plan: [[1, 1, 1], [1, 1, 1]], mode: top, colour: yellow, key: voll }
             answer: oben
           - id: l2-c3
+            part: side
             type: image_multiple_choice
             text: "Welche Ansicht von rechts passt?"
             say: "Du gehst um das Gebäude herum und schaust von rechts. Welches Bild passt?"
@@ -568,6 +605,7 @@ lessons:
               - { drawn: cubes, plan: [[1, 1], [2, 1]], mode: side, colour: green, key: gedreht }
             answer: seite
           - id: l2-c4
+            part: objects
             type: image_multiple_choice
             text: "Wie sieht ein Kegel von oben aus?"
             say: "Du schaust von oben auf einen Kegel. Welche Form hat sein Rand?"
@@ -578,9 +616,156 @@ lessons:
             answer: circle
             option_audio: false
           - id: l2-c5
+            part: front
             type: multiple_choice
             text: "Du schaust von vorne. Wie viele Quadrate siehst du rechts übereinander?"
             say: "Hier ist der Bauplan. Du schaust von vorne auf das Gebäude. Wie viele Quadrate siehst du rechts übereinander?"
             show: { drawn: cubes, plan: [[2, 1], [1, 3]], mode: plan, colour: orange }
             options: ["3", "1", "4"]
             answer: "3"
+          - id: l2-c6
+            part: objects
+            type: image_multiple_choice
+            text: "Wie sieht ein Ball von der Seite aus?"
+            say: "Du schaust von der Seite auf einen Ball. Was siehst du?"
+            show: { drawn: shape, kind: sphere, colour: green }
+            options:
+              - { drawn: shape, kind: rectangle, colour: green }
+              - { drawn: shape, kind: circle, colour: green }
+              - { drawn: shape, kind: triangle, colour: green }
+            answer: circle
+            option_audio: false
+          - id: l2-c7
+            part: objects
+            type: image_multiple_choice
+            text: "Welcher Körper sieht von oben aus wie ein Kreis?"
+            say: "Welcher Körper sieht von oben aus wie ein Kreis?"
+            options:
+              - { drawn: shape, kind: cube, colour: orange }
+              - { drawn: shape, kind: cylinder, colour: orange }
+              - { drawn: shape, kind: pyramid, colour: orange }
+            answer: cylinder
+            option_audio: false
+          - id: l2-c8
+            part: objects
+            type: image_multiple_choice
+            text: "Wie sieht eine Pyramide von vorne aus?"
+            say: "Du schaust von vorne auf eine Pyramide. Was siehst du?"
+            show: { drawn: shape, kind: pyramid, colour: purple }
+            options:
+              - { drawn: shape, kind: square, colour: purple }
+              - { drawn: shape, kind: circle, colour: purple }
+              - { drawn: shape, kind: triangle, colour: purple }
+            answer: triangle
+            option_audio: false
+          - id: l2-c9
+            part: objects
+            type: true_false
+            text: "Ein Würfel sieht von oben aus wie ein Kreis."
+            say: "Stimmt das? Ein Würfel sieht von oben aus wie ein Kreis."
+            show: { drawn: shape, kind: cube, colour: yellow }
+            answer: false
+          - id: l2-c10
+            part: front
+            type: image_multiple_choice
+            text: "Welche Ansicht von vorne passt?"
+            say: "Wie sieht das Gebäude von vorne aus? Welches Bild passt?"
+            show: { drawn: cubes, plan: [[1, 2], [3, 1]], mode: building, colour: blue }
+            options:
+              - { drawn: cubes, plan: [[3, 1]], mode: front, colour: blue, key: vorderreihe }
+              - { drawn: cubes, plan: [[1, 2], [3, 1]], mode: front, colour: blue, key: vorne }
+              - { drawn: cubes, plan: [[1, 2]], mode: front, colour: blue, key: hinterreihe }
+            answer: vorne
+          - id: l2-c11
+            part: front
+            type: multiple_choice
+            text: "Du schaust von vorne. Wie viele Quadrate siehst du links übereinander?"
+            say: "Hier ist der Bauplan. Du schaust von vorne auf das Gebäude. Wie viele Quadrate siehst du links übereinander?"
+            show: { drawn: cubes, plan: [[1, 2], [3, 2]], mode: plan, colour: green }
+            options: ["3", "1", "4"]
+            answer: "3"
+          - id: l2-c12
+            part: front
+            type: image_multiple_choice
+            text: "So sieht ein Gebäude von vorne aus. Welches Gebäude ist es?"
+            say: "So sieht ein Gebäude von vorne aus. Welches Gebäude ist es?"
+            show: { drawn: cubes, plan: [[3, 1]], mode: front, colour: red }
+            options:
+              - { drawn: cubes, plan: [[1, 1], [1, 3]], mode: building, colour: red, key: b }
+              - { drawn: cubes, plan: [[3, 1], [1, 1]], mode: building, colour: red, key: a }
+              - { drawn: cubes, plan: [[1, 1], [2, 1]], mode: building, colour: red, key: c }
+            answer: a
+          - id: l2-c13
+            part: side
+            type: image_multiple_choice
+            text: "Welche Ansicht von rechts passt?"
+            say: "Du gehst um das Gebäude herum und schaust von rechts. Welches Bild passt?"
+            show: { drawn: cubes, plan: [[1, 3], [1, 1]], mode: building, colour: purple }
+            options:
+              - { drawn: cubes, plan: [[1, 1], [1, 3]], mode: side, colour: purple, key: gedreht }
+              - { drawn: cubes, plan: [[2, 2], [1, 1]], mode: side, colour: purple, key: niedrig }
+              - { drawn: cubes, plan: [[1, 3], [1, 1]], mode: side, colour: purple, key: seite }
+            answer: seite
+          - id: l2-c14
+            part: side
+            type: true_false
+            text: "Von rechts siehst du links 2 Quadrate und rechts 1 Quadrat."
+            say: "Stimmt das? Wenn du von rechts schaust, siehst du links zwei Quadrate übereinander und rechts eins."
+            show: { drawn: cubes, plan: [[1, 1], [2, 1]], mode: building, colour: yellow }
+            answer: true
+          - id: l2-c15
+            part: side
+            type: multiple_choice
+            text: "Du schaust von rechts. Wie viele Quadrate siehst du links übereinander?"
+            say: "Hier ist der Bauplan. Du gehst nach rechts um das Gebäude herum. Wie viele Quadrate siehst du links übereinander?"
+            show: { drawn: cubes, plan: [[3, 1], [1, 2]], mode: plan, colour: blue }
+            options: ["2", "3", "1"]
+            answer: "2"
+          - id: l2-c16
+            part: side
+            type: image_multiple_choice
+            text: "Welche Ansicht von rechts passt?"
+            say: "Du schaust von rechts auf das Gebäude. Welches Bild passt?"
+            show: { drawn: cubes, plan: [[2, 3, 1]], mode: building, colour: red }
+            options:
+              - { drawn: cubes, plan: [[2, 3, 1]], mode: front, colour: red, key: vorne }
+              - { drawn: cubes, plan: [[1]], mode: side, colour: red, key: niedrig }
+              - { drawn: cubes, plan: [[2, 3, 1]], mode: side, colour: red, key: seite }
+            answer: seite
+          - id: l2-c17
+            part: top
+            type: image_multiple_choice
+            text: "Welche Ansicht von oben passt?"
+            say: "Wie sieht das Gebäude von oben aus? Welches Bild passt?"
+            show: { drawn: cubes, plan: [[2, 1], [0, 3]], mode: building, colour: green }
+            options:
+              - { drawn: cubes, plan: [[1, 1], [1, 1]], mode: top, colour: green, key: voll }
+              - { drawn: cubes, plan: [[1, 2], [3, 0]], mode: top, colour: green, key: gespiegelt }
+              - { drawn: cubes, plan: [[2, 1], [0, 3]], mode: top, colour: green, key: oben }
+            answer: oben
+          - id: l2-c18
+            part: top
+            type: multiple_choice
+            text: "Wie viele Quadrate siehst du von oben?"
+            say: "Du schaust von oben auf dieses Gebäude. Wie viele Quadrate siehst du?"
+            show: { drawn: cubes, plan: [[1, 3], [2, 0]], mode: building, colour: orange }
+            options: ["3", "6", "2"]
+            answer: "3"
+          - id: l2-c19
+            part: top
+            type: true_false
+            text: "Von oben siehst du 4 Quadrate."
+            say: "Hier ist der Bauplan. Stimmt das? Von oben siehst du vier Quadrate."
+            show: { drawn: cubes, plan: [[2, 0], [1, 3]], mode: plan, colour: purple }
+            answer: false
+          - id: l2-c20
+            part: top
+            type: image_multiple_choice
+            text: "So sieht ein Gebäude von oben aus. Welcher Bauplan passt?"
+            say: "So sieht ein Gebäude von oben aus. Welcher Bauplan passt dazu?"
+            show: { drawn: cubes, plan: [[1, 0], [1, 1]], mode: top, colour: blue }
+            options:
+              - { drawn: cubes, plan: [[0, 2], [1, 3]], mode: plan, colour: blue, key: b }
+              - { drawn: cubes, plan: [[2, 1], [1, 3]], mode: plan, colour: blue, key: c }
+              - { drawn: cubes, plan: [[2, 0], [1, 3]], mode: plan, colour: blue, key: a }
+            answer: a

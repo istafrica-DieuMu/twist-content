@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: estimate, what: { de: "mit einem Überschlag prüfen, ob ein Ergebnis passt", en: checking with an estimate whether a result fits } }
+    - { id: inverse, what: { de: mit der Umkehraufgabe die Probe machen, en: checking with the inverse calculation } }
+    - { id: mistakes, what: { de: typische Fehler in schriftlichen Rechnungen finden, en: finding typical mistakes in column calculations } }
   misconceptions:
     - id: estimate-is-exact
       what: Thinks a result is wrong because it is not exactly the Überschlag
@@ -198,6 +202,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -216,6 +221,23 @@ lessons:
             text: "Mach einen Überschlag: 612 + 189 ≈ _"
             say: "Mach einen Überschlag: sechshundertzwölf plus hundertneunundachtzig. Ungefähr wie viel?"
             answer: "800"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welches Ergebnis kann zu 685 − 213 stimmen?"
+            say: "Sechshundertfünfundachtzig minus zweihundertdreizehn. Welches Ergebnis kann stimmen?"
+            options: ["472", "272", "672"]
+            answer: "472"
+          - id: l1-c5
+            type: true_false
+            text: "Passt das Ergebnis zum Überschlag?"
+            say: "Dreihundertachtundzwanzig plus vierhunderteinundneunzig ist sechshundertneunzehn. Passt das zum Überschlag?"
+            show: { drawn: written-calc, rows: ["328", "491"], op: "+", result: "619" }
+            answer: false
+          - id: l1-c6
+            type: text_input
+            text: "Mach einen Überschlag: 896 − 504 ≈ _"
+            say: "Mach einen Überschlag: achthundertsechsundneunzig minus fünfhundertvier. Ungefähr wie viel?"
+            answer: "400"
 
   - n: 2
     title: { de: "Probe und typische Fehler", en: "Checking and common mistakes" }
@@ -379,34 +401,144 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: estimate
             type: multiple_choice
             text: "Welcher Überschlag passt zu 391 + 518?"
             say: "Dreihunderteinundneunzig plus fünfhundertachtzehn. Welcher Überschlag passt?"
             options: ["400 + 500", "300 + 500", "400 + 600"]
             answer: "400 + 500"
           - id: l2-c2
+            part: inverse
             type: multiple_choice
             text: "Mit welcher Umkehraufgabe prüfst du 763 − 285 = 478?"
             say: "Siebenhundertdreiundsechzig minus zweihundertfünfundachtzig ist vierhundertachtundsiebzig. Mit welcher Umkehraufgabe prüfst du das?"
             options: ["478 + 285", "763 + 285", "478 − 285"]
             answer: "478 + 285"
           - id: l2-c3
+            part: inverse
             type: text_input
             text: "Probe für 625 − 348 = 277: 277 + 348 = _"
             say: "Rechne die Probe für sechshundertfünfundzwanzig minus dreihundertachtundvierzig gleich zweihundertsiebenundsiebzig. Zweihundertsiebenundsiebzig plus dreihundertachtundvierzig ist …"
             answer: "625"
           - id: l2-c4
+            part: mistakes
             type: true_false
             text: "Ist das richtig gerechnet?"
             say: "Dreihundertsechsundfünfzig plus zweihundertachtundsiebzig ist fünfhundertvierunddreißig. Ist das richtig gerechnet?"
             show: { drawn: written-calc, rows: ["356", "278"], op: "+", result: "534" }
             answer: false
           - id: l2-c5
+            part: mistakes
             type: multiple_choice
             text: "Welcher Fehler ist passiert?"
             say: "Dreihundertvierundachtzig plus zweihundertneunundfünfzig ist fünfhundertdreiunddreißig. Welcher Fehler ist passiert?"
             show: { drawn: written-calc, rows: ["384", "259"], op: "+", result: "533" }
             options: ["Der Übertrag wurde vergessen.", "Die Stellen sind verrutscht.", "Es wurde minus gerechnet."]
             answer: "Der Übertrag wurde vergessen."
+          - id: l2-c6
+            part: estimate
+            type: multiple_choice
+            text: "Welcher Überschlag passt zu 847 − 362?"
+            say: "Achthundertsiebenundvierzig minus dreihundertzweiundsechzig. Welcher Überschlag passt?"
+            options: ["800 − 400", "900 − 400", "800 − 300"]
+            answer: "800 − 400"
+          - id: l2-c7
+            part: estimate
+            type: text_input
+            text: "Mach einen Überschlag: 563 + 318 ≈ _"
+            say: "Mach einen Überschlag: fünfhundertdreiundsechzig plus dreihundertachtzehn. Ungefähr wie viel?"
+            answer: "900"
+          - id: l2-c8
+            part: estimate
+            type: true_false
+            text: "Passt das Ergebnis zum Überschlag?"
+            say: "Sechshundertvierundsiebzig minus dreihundertneunzehn ist dreihundertfünfundfünfzig. Passt das zum Überschlag?"
+            show: { drawn: written-calc, rows: ["674", "319"], op: "-", result: "355" }
+            answer: true
+          - id: l2-c9
+            part: estimate
+            type: multiple_choice
+            text: "Welches Ergebnis kann zu 429 + 386 stimmen?"
+            say: "Vierhundertneunundzwanzig plus dreihundertsechsundachtzig. Welches Ergebnis kann stimmen?"
+            options: ["815", "615", "1015"]
+            answer: "815"
+          - id: l2-c10
+            part: estimate
+            type: true_false
+            text: "Passt das Ergebnis zum Überschlag?"
+            say: "Fünfhundertdreiundsechzig minus hundertachtundvierzig ist siebenhundertelf. Passt das zum Überschlag?"
+            show: { drawn: written-calc, rows: ["563", "148"], op: "-", result: "711" }
+            answer: false
+          - id: l2-c11
+            part: estimate
+            type: multiple_choice
+            text: "Ungefähr wie viel ist 702 − 395?"
+            say: "Siebenhundertzwei minus dreihundertfünfundneunzig. Ungefähr wie viel ist das?"
+            options: ["300", "400", "500"]
+            answer: "300"
+          - id: l2-c12
+            part: inverse
+            type: multiple_choice
+            text: "Mit welcher Umkehraufgabe prüfst du 356 + 418 = 774?"
+            say: "Dreihundertsechsundfünfzig plus vierhundertachtzehn ist siebenhundertvierundsiebzig. Mit welcher Umkehraufgabe prüfst du das?"
+            options: ["774 − 418", "356 − 418", "774 + 418"]
+            answer: "774 − 418"
+          - id: l2-c13
+            part: inverse
+            type: text_input
+            text: "Probe für 913 − 527 = 386: 386 + 527 = _"
+            say: "Rechne die Probe für neunhundertdreizehn minus fünfhundertsiebenundzwanzig gleich dreihundertsechsundachtzig. Dreihundertsechsundachtzig plus fünfhundertsiebenundzwanzig ist …"
+            answer: "913"
+          - id: l2-c14
+            part: inverse
+            type: true_false
+            text: "Die Probe ergibt 732. Stimmt 742 − 268 = 464?"
+            say: "Die Probe vierhundertvierundsechzig plus zweihundertachtundsechzig ergibt siebenhundertzweiunddreißig. Stimmt die Minusaufgabe siebenhundertzweiundvierzig minus zweihundertachtundsechzig gleich vierhundertvierundsechzig?"
+            show: { drawn: written-calc, rows: ["464", "268"], op: "+", carry: "11 ", result: "732" }
+            answer: false
+          - id: l2-c15
+            part: inverse
+            type: multiple_choice
+            text: "Was muss bei der Probe für 805 − 437 = 368 herauskommen?"
+            say: "Achthundertfünf minus vierhundertsiebenunddreißig ist dreihundertachtundsechzig. Welche Zahl muss bei der Probe herauskommen?"
+            options: ["805", "437", "368"]
+            answer: "805"
+          - id: l2-c16
+            part: inverse
+            type: true_false
+            text: "Ist 519 + 284 die richtige Probe für 803 − 284 = 519?"
+            say: "Achthundertdrei minus zweihundertvierundachtzig ist fünfhundertneunzehn. Ist fünfhundertneunzehn plus zweihundertvierundachtzig die richtige Probe?"
+            answer: true
+          - id: l2-c17
+            part: mistakes
+            type: multiple_choice
+            text: "Welcher Fehler ist passiert?"
+            say: "Fünfhundertsiebenundsechzig plus zweihundertfünfundachtzig ist siebenhundertzweiundvierzig. Welcher Fehler ist passiert?"
+            show: { drawn: written-calc, rows: ["567", "285"], op: "+", result: "742" }
+            options: ["Der Übertrag wurde vergessen.", "Die Stellen sind verrutscht.", "Es wurde minus gerechnet."]
+            answer: "Der Übertrag wurde vergessen."
+          - id: l2-c18
+            part: mistakes
+            type: multiple_choice
+            text: "643 + 52 = 1163. Welcher Fehler ist passiert?"
+            say: "Sechshundertdreiundvierzig plus zweiundfünfzig ist tausendeinhundertdreiundsechzig. Welcher Fehler ist passiert?"
+            options: ["Die Stellen sind verrutscht.", "Der Übertrag wurde vergessen.", "Es wurde minus gerechnet."]
+            answer: "Die Stellen sind verrutscht."
+          - id: l2-c19
+            part: mistakes
+            type: true_false
+            text: "Ist das richtig gerechnet?"
+            say: "Vierhundertfünfundsiebzig plus dreihundertachtundsechzig ist achthundertdreiundvierzig. Ist das richtig gerechnet?"
+            show: { drawn: written-calc, rows: ["475", "368"], op: "+", carry: "11 ", result: "843" }
+            answer: true
+          - id: l2-c20
+            part: mistakes
+            type: multiple_choice
+            text: "Welcher Fehler ist passiert?"
+            say: "Sechshundertdreizehn minus zweihundertfünfundvierzig ist achthundertachtundfünfzig. Welcher Fehler ist passiert?"
+            show: { drawn: written-calc, rows: ["613", "245"], op: "-", result: "858" }
+            options: ["Es wurde plus gerechnet.", "Die Stellen sind verrutscht.", "Der Übertrag wurde vergessen."]
+            answer: "Es wurde plus gerechnet."

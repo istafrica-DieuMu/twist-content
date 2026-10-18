@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: []
+  parts:
+    - { id: read, what: { de: die Uhrzeit auf die Minute genau ablesen, en: reading the time to the minute } }
+    - { id: set, what: { de: die Uhrzeit auf die Minute genau einstellen, en: setting the time to the minute } }
+    - { id: to-24, what: { de: Zeiten am Nachmittag und Abend mit 13 bis 24 Uhr angeben, en: giving afternoon and evening times on the 24-hour clock } }
+    - { id: from-24, what: { de: 13 bis 24 Uhr als Zeit am Nachmittag oder Abend lesen, en: reading 24-hour times as afternoon or evening times } }
   misconceptions:
     - id: skip-small-marks
       what: Reads only to the last Fünferschritt (6:23 as 6:20)
@@ -219,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: clock_hands_drag
@@ -241,6 +247,26 @@ lessons:
             say: "Ist es vier Uhr einunddreißig?"
             show: { drawn: clock, hour: 4, minute: 34 }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es genau?"
+            show: { drawn: clock, hour: 5, minute: 38 }
+            options: ["5:38", "5:35", "6:38"]
+            answer: "5:38"
+          - id: l1-c5
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 7:09 Uhr."
+            say: "Stell die Uhr auf sieben Uhr neun. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "7:09"
+          - id: l1-c6
+            type: text_input
+            text: "Wie viele Minuten nach 11 Uhr?"
+            say: "Wie viele Minuten nach elf Uhr ist es?"
+            show: { drawn: clock, hour: 11, minute: 26 }
+            answer: "26"
 
   - n: 2
     title: { de: "13 bis 24 Uhr", en: "The 24-hour clock" }
@@ -412,8 +438,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Wie spät ist es?"
             say: "Wie spät ist es genau?"
@@ -421,6 +449,7 @@ lessons:
             options: ["8:22", "8:20", "8:02"]
             answer: "8:22"
           - id: l2-c2
+            part: set
             type: clock_hands_drag
             text: "Stell die Uhr auf 11:39 Uhr."
             say: "Stell die Uhr auf elf Uhr neununddreißig. Zieh die Zeiger."
@@ -431,19 +460,130 @@ lessons:
               "11:35": "Das ist 11:35 Uhr. Zieh den großen Zeiger noch vier Striche weiter."
               "8:55": "Du hast die Zeiger vertauscht. Der große Zeiger zeigt die Minuten, der kleine die Stunde."
           - id: l2-c3
+            part: to-24
             type: multiple_choice
             text: "5 Uhr nachmittags. Wie viel Uhr ist das?"
             say: "Es ist fünf Uhr nachmittags. Wie viel Uhr ist das?"
             options: ["17 Uhr", "15 Uhr", "5 Uhr"]
             answer: "17 Uhr"
           - id: l2-c4
+            part: from-24
             type: multiple_choice
             text: "Das Konzert beginnt um 20 Uhr. Wann ist das?"
             say: "Das Konzert beginnt um zwanzig Uhr. Wann ist das?"
             options: ["8 Uhr abends", "10 Uhr abends", "8 Uhr morgens"]
             answer: "8 Uhr abends"
           - id: l2-c5
+            part: from-24
             type: true_false
             text: "Ist 14 Uhr dasselbe wie 2 Uhr nachmittags?"
             say: "Ist vierzehn Uhr dasselbe wie zwei Uhr nachmittags?"
+            answer: true
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es genau?"
+            show: { drawn: clock, hour: 3, minute: 46 }
+            options: ["3:46", "3:45", "4:46"]
+            answer: "3:46"
+          - id: l2-c7
+            part: read
+            type: text_input
+            text: "Wie viele Minuten nach 7 Uhr?"
+            say: "Wie viele Minuten nach sieben Uhr ist es?"
+            show: { drawn: clock, hour: 7, minute: 18 }
+            answer: "18"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Ist es 1:52 Uhr?"
+            say: "Ist es ein Uhr zweiundfünfzig?"
+            show: { drawn: clock, hour: 1, minute: 57 }
+            answer: false
+          - id: l2-c9
+            part: read
+            type: multiple_choice
+            text: "Wie spät ist es?"
+            say: "Wie spät ist es genau?"
+            show: { drawn: clock, hour: 9, minute: 3 }
+            options: ["9:03", "9:15", "9:05"]
+            answer: "9:03"
+          - id: l2-c10
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 6:14 Uhr."
+            say: "Stell die Uhr auf sechs Uhr vierzehn. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "6:14"
+          - id: l2-c11
+            part: set
+            type: clock_hands_drag
+            text: "Stell die Uhr auf 10:51 Uhr."
+            say: "Stell die Uhr auf zehn Uhr einundfünfzig. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "10:51"
+          - id: l2-c12
+            part: set
+            type: clock_hands_drag
+            text: "Die Schule ist um 13:26 Uhr aus. Stell die Uhr auf diese Zeit."
+            say: "Die Schule ist um dreizehn Uhr sechsundzwanzig aus. Stell die Uhr auf diese Zeit. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "1:26"
+          - id: l2-c13
+            part: set
+            type: clock_hands_drag
+            text: "Das Spiel beginnt um 16:43 Uhr. Stell die Uhr auf diese Zeit."
+            say: "Das Spiel beginnt um sechzehn Uhr dreiundvierzig. Stell die Uhr auf diese Zeit. Zieh die Zeiger."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "4:43"
+          - id: l2-c14
+            part: to-24
+            type: multiple_choice
+            text: "8 Uhr abends. Wie viel Uhr ist das?"
+            say: "Es ist acht Uhr abends. Wie viel Uhr ist das?"
+            options: ["20 Uhr", "18 Uhr", "8 Uhr"]
+            answer: "20 Uhr"
+          - id: l2-c15
+            part: to-24
+            type: text_input
+            text: "Halb 4 nachmittags = _:30 Uhr"
+            say: "Halb vier am Nachmittag ist wie viel Uhr dreißig? Tippe die Stunde ein."
+            answer: "15"
+          - id: l2-c16
+            part: to-24
+            type: multiple_choice
+            text: "Mia hat um 10 nach 5 am Nachmittag Training. Welche Zeit passt?"
+            say: "Mia hat um zehn nach fünf am Nachmittag Training. Welche Zeit passt?"
+            options: ["17:10", "15:10", "17:50"]
+            answer: "17:10"
+          - id: l2-c17
+            part: to-24
+            type: true_false
+            text: "Ist 11 Uhr abends dasselbe wie 21 Uhr?"
+            say: "Ist elf Uhr abends dasselbe wie einundzwanzig Uhr?"
+            answer: false
+          - id: l2-c18
+            part: from-24
+            type: multiple_choice
+            text: "Der Laden schließt um 18 Uhr. Wann ist das?"
+            say: "Der Laden schließt um achtzehn Uhr. Wann ist das?"
+            options: ["6 Uhr abends", "8 Uhr abends", "6 Uhr morgens"]
+            answer: "6 Uhr abends"
+          - id: l2-c19
+            part: from-24
+            type: multiple_choice
+            text: "Es ist 15:45 Uhr. Wie sagst du das noch?"
+            say: "Es ist fünfzehn Uhr fünfundvierzig. Wie sagst du das noch?"
+            options: ["Viertel vor 4 nachmittags", "Viertel vor 6 nachmittags", "Viertel nach 3 nachmittags"]
+            answer: "Viertel vor 4 nachmittags"
+          - id: l2-c20
+            part: from-24
+            type: true_false
+            text: "Ist 19:30 Uhr dasselbe wie halb 8 abends?"
+            say: "Ist neunzehn Uhr dreißig dasselbe wie halb acht abends?"
             answer: true

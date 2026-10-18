@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [number-line]
   facets: [units]
+  parts:
+    - { id: read, what: { de: Gewichte an der Waage ablesen, en: reading a mass on a scale } }
+    - { id: convert, what: { de: zwischen kg und g umrechnen, en: converting between kg and g } }
+    - { id: calc, what: { de: mit Gewichten rechnen und bis 1 kg ergänzen, en: calculating with masses and making up to 1 kg } }
+    - { id: compare, what: { de: Gewichte in g und kg vergleichen, en: comparing masses in g and kg } }
   misconceptions:
     - id: kg-as-hundred
       what: Thinks 1 kg = 100 g, or writes 2 kg 300 g as 230 g or 2030 g
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,23 @@ lessons:
             say: "Die Wassermelone wiegt ein Kilogramm und sechshundert Gramm. Wie viel Gramm sind das?"
             options: ["1600 g", "1060 g", "160 g"]
             answer: "1600 g"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie viel zeigt die Waage?"
+            say: "Die Küchenwaage geht von null bis tausend Gramm. Wie viel zeigt sie?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 500 }
+            options: ["500 g", "5 g", "400 g"]
+            answer: "500 g"
+          - id: l1-c5
+            type: true_false
+            text: "3 kg 400 g = 3400 g"
+            say: "Stimmt das? Drei Kilogramm und vierhundert Gramm sind dreitausendvierhundert Gramm."
+            answer: true
+          - id: l1-c6
+            type: text_input
+            text: "8000 g = _ kg"
+            say: "Wie viele Kilogramm sind achttausend Gramm?"
+            answer: "8"
 
   - n: 2
     title: { de: "Waagen ablesen und rechnen", en: "Reading scales and calculating" }
@@ -384,8 +407,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Wie viel zeigt die Waage?"
             say: "Die Küchenwaage geht von null bis tausend Gramm. Wie viel zeigt sie?"
@@ -393,6 +418,7 @@ lessons:
             options: ["800 g", "8 g", "700 g"]
             answer: "800 g"
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "Wie viel zeigt die Waage?"
             say: "Die Waage geht von null bis fünfhundert Gramm. Wie viel zeigt sie?"
@@ -400,18 +426,122 @@ lessons:
             options: ["250 g", "500 g", "25 g"]
             answer: "250 g"
           - id: l2-c3
+            part: convert
             type: text_input
             text: "3 kg 200 g = _ g"
             say: "Wie viele Gramm sind drei Kilogramm und zweihundert Gramm?"
             answer: "3200"
           - id: l2-c4
+            part: calc
             type: text_input
             text: "600 g + _ g = 1 kg"
             say: "Sechshundert Gramm und wie viel Gramm sind ein Kilogramm?"
             answer: "400"
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Was ist schwerer: 1 kg 100 g oder 1010 g?"
             say: "Was ist schwerer: ein Kilogramm und hundert Gramm oder tausendzehn Gramm?"
             options: ["1 kg 100 g", "1010 g", "beide gleich schwer"]
             answer: "1 kg 100 g"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Wie viel zeigt die Waage?"
+            say: "Die Küchenwaage geht von null bis tausend Gramm. Wie viel zeigt sie?"
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 100 }
+            options: ["100 g", "10 g", "200 g"]
+            answer: "100 g"
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Wie viel zeigt die Waage?"
+            say: "Die Waage geht von null bis fünfhundert Gramm. Wie viel zeigt sie?"
+            show: { drawn: number-line, from: 0, to: 500, step: 10, labels: ends, mark: 50 }
+            options: ["50 g", "100 g", "5 g"]
+            answer: "50 g"
+          - id: l2-c8
+            part: read
+            type: text_input
+            text: "Wie viel Gramm zeigt die Waage?"
+            say: "Die Waage geht von null bis fünfhundert Gramm. Wie viel Gramm zeigt sie?"
+            show: { drawn: number-line, from: 0, to: 500, step: 10, labels: ends, mark: 400 }
+            answer: "400"
+          - id: l2-c9
+            part: convert
+            type: text_input
+            text: "7 kg = _ g"
+            say: "Wie viele Gramm sind sieben Kilogramm?"
+            answer: "7000"
+          - id: l2-c10
+            part: convert
+            type: multiple_choice
+            text: "4300 g = _"
+            say: "Viertausenddreihundert Gramm: Wie schreibst du das mit Kilogramm und Gramm?"
+            options: ["4 kg 300 g", "43 kg", "4 kg 30 g"]
+            answer: "4 kg 300 g"
+          - id: l2-c11
+            part: convert
+            type: true_false
+            text: "1 kg = 100 g"
+            say: "Stimmt das? Ein Kilogramm hat hundert Gramm."
+            answer: false
+          - id: l2-c12
+            part: convert
+            type: text_input
+            text: "Der Hund wiegt 8 kg 500 g. Wie viel Gramm sind das?"
+            say: "Der Hund wiegt acht Kilogramm und fünfhundert Gramm. Wie viel Gramm sind das?"
+            answer: "8500"
+          - id: l2-c13
+            part: calc
+            type: text_input
+            text: "900 g + _ g = 1 kg"
+            say: "Neunhundert Gramm und wie viel Gramm sind ein Kilogramm?"
+            answer: "100"
+          - id: l2-c14
+            part: calc
+            type: multiple_choice
+            text: "Im Glas sind 150 g Nüsse. Wie viel Gramm fehlen bis 1 kg?"
+            say: "Im Glas sind hundertfünfzig Gramm Nüsse. Wie viel Gramm fehlen bis zu einem Kilogramm?"
+            options: ["850 g", "950 g", "150 g"]
+            answer: "850 g"
+          - id: l2-c15
+            part: calc
+            type: text_input
+            text: "Ein Käse wiegt 300 g, eine Wurst 450 g. Wie viel Gramm wiegen beide zusammen?"
+            say: "Ein Käse wiegt dreihundert Gramm, eine Wurst vierhundertfünfzig Gramm. Wie viel Gramm wiegen beide zusammen?"
+            answer: "750"
+          - id: l2-c16
+            part: calc
+            type: multiple_choice
+            text: "1 kg 300 g + 600 g = _"
+            say: "Ein Kilogramm und dreihundert Gramm plus sechshundert Gramm. Wie viel Gramm sind das?"
+            options: ["1900 g", "1360 g", "960 g"]
+            answer: "1900 g"
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Was ist leichter: 1 kg oder 1200 g?"
+            say: "Was ist leichter: ein Kilogramm oder tausendzweihundert Gramm?"
+            options: ["1 kg", "1200 g", "beide gleich schwer"]
+            answer: "1 kg"
+          - id: l2-c18
+            part: compare
+            type: true_false
+            text: "2000 g und 2 kg sind gleich schwer."
+            say: "Stimmt das? Zweitausend Gramm und zwei Kilogramm sind gleich schwer."
+            answer: true
+          - id: l2-c19
+            part: compare
+            type: true_false
+            text: "950 g sind schwerer als 1 kg."
+            say: "Stimmt das? Neunhundertfünfzig Gramm sind schwerer als ein Kilogramm."
+            answer: false
+          - id: l2-c20
+            part: compare
+            type: ordering
+            text: "Ordne von leicht nach schwer."
+            say: "Ordne die Gewichte von leicht nach schwer."
+            options: ["1 kg 50 g", "900 g", "1500 g", "1 kg"]
+            slot_count: 4
+            answer: ["900 g", "1 kg", "1 kg 50 g", "1500 g"]

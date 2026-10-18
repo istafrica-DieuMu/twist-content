@@ -23,6 +23,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: name, what: { de: "Pyramide, Zylinder und Kegel erkennen", en: "recognising pyramids, cylinders and cones" } }
+    - { id: count, what: { de: "Ecken, Kanten und Flächen zählen", en: "counting vertices, edges and faces" } }
+    - { id: sort, what: { de: Körper nach ihren Eigenschaften sortieren, en: sorting 3D shapes by their properties } }
   misconceptions:
     - id: cone-pyramid-mixed
       what: Mixes up the Kegel and the Pyramide because both have a Spitze, or the Kegel and the Zylinder because both are round
@@ -222,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -245,6 +250,27 @@ lessons:
             text: "Ein Kegel hat oben eine Spitze."
             say: "Stimmt das? Ein Kegel hat oben eine Spitze."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welche Form hat ein Partyhut?"
+            say: "Welche Form hat ein Partyhut?"
+            options: ["Kegel", "Zylinder", "Pyramide"]
+            answer: "Kegel"
+          - id: l1-c5
+            type: true_false
+            text: "Eine Pyramide hat unten einen Kreis."
+            say: "Stimmt das? Eine Pyramide hat unten einen Kreis."
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Wo ist die Pyramide?"
+            say: "Wo ist die Pyramide?"
+            options:
+              - { drawn: shape, kind: pyramid, colour: purple }
+              - { drawn: shape, kind: cone, colour: purple }
+              - { drawn: shape, kind: cylinder, colour: purple }
+            answer: pyramid
+            option_audio: false
 
   - n: 2
     title: { de: "Ecken, Kanten, Flächen", en: "Vertices, edges and faces" }
@@ -424,8 +450,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: name
             type: multiple_choice
             text: "Welcher Körper ist das?"
             say: "Welcher Körper ist das?"
@@ -433,17 +461,20 @@ lessons:
             options: ["Pyramide", "Kegel", "Quader"]
             answer: "Pyramide"
           - id: l2-c2
+            part: count
             type: multiple_choice
             text: "Wie viele Ecken hat eine Pyramide?"
             say: "Wie viele Ecken hat eine Pyramide?"
             options: ["5", "4", "8"]
             answer: "5"
           - id: l2-c3
+            part: count
             type: true_false
             text: "Ein Kegel hat 2 Kanten."
             say: "Stimmt das? Ein Kegel hat zwei Kanten."
             answer: false
           - id: l2-c4
+            part: name
             type: image_multiple_choice
             text: "Welcher Körper hat zwei Kreisflächen?"
             say: "Welcher Körper hat zwei Kreisflächen?"
@@ -454,8 +485,134 @@ lessons:
             answer: cylinder
             option_audio: false
           - id: l2-c5
+            part: sort
             type: multiple_choice
             text: "Welcher Körper hat 6 Flächen, aber nicht alle sind Quadrate?"
             say: "Welcher Körper hat sechs Flächen, aber nicht alle sind Quadrate?"
             options: ["Quader", "Würfel", "Pyramide"]
             answer: "Quader"
+          - id: l2-c6
+            part: name
+            type: multiple_choice
+            text: "Welche Form hat eine Trommel?"
+            say: "Eine Trommel ist überall gleich dick und oben und unten rund und flach. Welche Form hat sie?"
+            options: ["Zylinder", "Kegel", "Pyramide"]
+            answer: "Zylinder"
+          - id: l2-c7
+            part: name
+            type: true_false
+            text: "Das ist eine Pyramide."
+            say: "Stimmt das? Das ist eine Pyramide."
+            show: { drawn: shape, kind: cone, colour: blue }
+            answer: false
+          - id: l2-c8
+            part: name
+            type: multiple_choice
+            text: "Welcher Körper hat unten ein Quadrat und oben eine Spitze?"
+            say: "Welcher Körper hat unten ein Quadrat und oben eine Spitze?"
+            options: ["Pyramide", "Kegel", "Würfel"]
+            answer: "Pyramide"
+          - id: l2-c9
+            part: name
+            type: image_multiple_choice
+            text: "Welcher Körper hat die Form einer Schultüte?"
+            say: "Welcher Körper hat die Form einer Schultüte?"
+            options:
+              - { drawn: shape, kind: cylinder, colour: orange }
+              - { drawn: shape, kind: cone, colour: orange }
+              - { drawn: shape, kind: pyramid, colour: orange }
+            answer: cone
+            option_audio: false
+          - id: l2-c10
+            part: name
+            type: matching
+            text: "Wie heißen die Körper?"
+            say: "Wie heißen die Körper? Verbinde jedes Bild mit seinem Namen."
+            pairs:
+              - { left: { drawn: shape, kind: pyramid, colour: red }, right: { text: "Pyramide" } }
+              - { left: { drawn: shape, kind: cylinder, colour: red }, right: { text: "Zylinder" } }
+              - { left: { drawn: shape, kind: cone, colour: red }, right: { text: "Kegel" } }
+              - { left: { drawn: shape, kind: cube, colour: red }, right: { text: "Würfel" } }
+          - id: l2-c11
+            part: count
+            type: multiple_choice
+            text: "Wie viele Flächen hat ein Würfel?"
+            say: "Wie viele Flächen hat ein Würfel?"
+            show: { drawn: shape, kind: cube, colour: yellow }
+            options: ["6", "8", "12"]
+            answer: "6"
+          - id: l2-c12
+            part: count
+            type: multiple_choice
+            text: "Wie viele Kanten hat ein Quader?"
+            say: "Wie viele Kanten hat ein Quader?"
+            show: { drawn: shape, kind: cuboid, colour: green }
+            options: ["12", "8", "6"]
+            answer: "12"
+          - id: l2-c13
+            part: count
+            type: true_false
+            text: "Ein Zylinder hat 3 Flächen."
+            say: "Stimmt das? Ein Zylinder hat drei Flächen."
+            answer: true
+          - id: l2-c14
+            part: count
+            type: multiple_choice
+            text: "Welcher Körper hat 8 Kanten?"
+            say: "Welcher Körper hat acht Kanten?"
+            options: ["Pyramide", "Würfel", "Zylinder"]
+            answer: "Pyramide"
+          - id: l2-c15
+            part: count
+            type: text_input
+            text: "Wie viele Flächen haben ein Würfel und ein Zylinder zusammen?"
+            say: "Wie viele Flächen haben ein Würfel und ein Zylinder zusammen?"
+            answer: "9"
+          - id: l2-c16
+            part: sort
+            type: sorting
+            text: "Hat der Körper Ecken?"
+            say: "Sortiere die Körper: Hat er Ecken oder keine Ecken?"
+            bins:
+              - { id: ecken, show: { text: "hat Ecken" }, say: "hat Ecken" }
+              - { id: keine, show: { text: "hat keine Ecken" }, say: "hat keine Ecken" }
+            options:
+              - { text: "Würfel", bin: ecken }
+              - { text: "Pyramide", bin: ecken }
+              - { text: "Quader", bin: ecken }
+              - { text: "Kugel", bin: keine }
+              - { text: "Zylinder", bin: keine }
+          - id: l2-c17
+            part: sort
+            type: true_false
+            text: "Ein Kegel kann rollen."
+            say: "Stimmt das? Ein Kegel kann rollen."
+            answer: true
+          - id: l2-c18
+            part: sort
+            type: multiple_choice
+            text: "Welcher Körper kann nicht rollen?"
+            say: "Welcher Körper kann nicht rollen?"
+            options: ["Quader", "Zylinder", "Kugel"]
+            answer: "Quader"
+          - id: l2-c19
+            part: sort
+            type: multiple_choice
+            text: "Welcher Körper hat keine Ecke und keine Kante?"
+            say: "Welcher Körper hat keine Ecke und keine Kante?"
+            options: ["Kugel", "Zylinder", "Kegel"]
+            answer: "Kugel"
+          - id: l2-c20
+            part: sort
+            type: sorting
+            text: "Wie viele Flächen hat der Körper?"
+            say: "Sortiere die Körper: Haben sie sechs Flächen oder weniger als sechs?"
+            bins:
+              - { id: sechs, show: { text: "6 Flächen" }, say: "sechs Flächen" }
+              - { id: weniger, show: { text: "weniger als 6 Flächen" }, say: "weniger als sechs Flächen" }
+            options:
+              - { text: "Würfel", bin: sechs }
+              - { text: "Quader", bin: sechs }
+              - { text: "Pyramide", bin: weniger }
+              - { text: "Zylinder", bin: weniger }
+              - { text: "Kegel", bin: weniger }

@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [ruler]
   facets: [units]
+  parts:
+    - { id: cm-mm, what: { de: Längen in cm und mm ablesen und umrechnen, en: reading and converting lengths in cm and mm } }
+    - { id: km-m, what: { de: zwischen km und m umrechnen, en: converting between km and m } }
+    - { id: units, what: { de: die passende Einheit wählen und Längen schätzen, en: choosing the right unit and estimating lengths } }
   misconceptions:
     - id: cm-mm-joined
       what: Adds or swaps the cm and mm digits (5 cm 2 mm read as 7 mm or 25 mm), or thinks 1 cm = 100 mm
@@ -204,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,6 +227,24 @@ lessons:
             text: "50 mm = 5 cm"
             say: "Stimmt das? Fünfzig Millimeter sind fünf Zentimeter."
             answer: true
+          - id: l1-c4
+            type: text_input
+            text: "7 cm 3 mm = _ mm"
+            say: "Wie viele Millimeter sind sieben Zentimeter und drei Millimeter?"
+            answer: "73"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie viele mm ist der Streifen lang?"
+            say: "Der Streifen fängt bei null an. Wie viele Millimeter ist er lang?"
+            show: { drawn: ruler, to: 10, length: 6.1, colour: blue }
+            options: ["61 mm", "16 mm", "7 mm"]
+            answer: "61 mm"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Was misst du am besten in Millimetern?"
+            say: "Was misst du am besten in Millimetern?"
+            options: ["wie lang ein Reiskorn ist", "wie lang ein Bett ist", "wie breit ein Fenster ist"]
+            answer: "wie lang ein Reiskorn ist"
 
   - n: 2
     title: { de: "Kilometer", en: "Kilometres" }
@@ -382,8 +405,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cm-mm
             type: multiple_choice
             text: "Wie lang ist der Streifen?"
             say: "Der Streifen fängt bei null an. Wie lang ist er?"
@@ -391,24 +416,128 @@ lessons:
             options: ["5 cm 7 mm", "7 cm 5 mm", "6 cm 7 mm"]
             answer: "5 cm 7 mm"
           - id: l2-c2
+            part: cm-mm
             type: text_input
             text: "3 cm 4 mm = _ mm"
             say: "Wie viele Millimeter sind drei Zentimeter und vier Millimeter?"
             answer: "34"
           - id: l2-c3
+            part: km-m
             type: text_input
             text: "5 km = _ m"
             say: "Wie viele Meter sind fünf Kilometer?"
             answer: "5000"
           - id: l2-c4
+            part: km-m
             type: multiple_choice
             text: "Der Wanderweg ist 3 km 400 m lang. Wie viele Meter sind das?"
             say: "Der Wanderweg ist drei Kilometer und vierhundert Meter lang. Wie viele Meter sind das?"
             options: ["3400 m", "3040 m", "340 m"]
             answer: "3400 m"
           - id: l2-c5
+            part: units
             type: multiple_choice
             text: "Eine Stecknadel ist etwa 25 _ lang."
             say: "Welche Einheit passt? Eine Stecknadel ist etwa fünfundzwanzig ... lang."
             options: ["mm", "cm", "m"]
             answer: "mm"
+          - id: l2-c6
+            part: cm-mm
+            type: text_input
+            text: "60 mm = _ cm"
+            say: "Wie viele Zentimeter sind sechzig Millimeter?"
+            answer: "6"
+          - id: l2-c7
+            part: cm-mm
+            type: true_false
+            text: "Der Streifen ist 93 mm lang."
+            say: "Der Streifen fängt bei null an. Stimmt das: Er ist dreiundneunzig Millimeter lang?"
+            show: { drawn: ruler, to: 10, length: 3.9, colour: green }
+            answer: false
+          - id: l2-c8
+            part: cm-mm
+            type: multiple_choice
+            text: "56 mm = _"
+            say: "Sechsundfünfzig Millimeter: Wie schreibst du das mit Zentimetern und Millimetern?"
+            options: ["5 cm 6 mm", "6 cm 5 mm", "56 cm"]
+            answer: "5 cm 6 mm"
+          - id: l2-c9
+            part: cm-mm
+            type: text_input
+            text: "8 cm 1 mm = _ mm"
+            say: "Wie viele Millimeter sind acht Zentimeter und ein Millimeter?"
+            answer: "81"
+          - id: l2-c10
+            part: cm-mm
+            type: multiple_choice
+            text: "Wie lang ist der Streifen?"
+            say: "Der Streifen fängt bei drei an. Wie lang ist er?"
+            show: { drawn: ruler, to: 10, start: 3, length: 2.4, colour: blue }
+            options: ["2 cm 4 mm", "5 cm 4 mm", "4 cm 2 mm"]
+            answer: "2 cm 4 mm"
+          - id: l2-c11
+            part: km-m
+            type: text_input
+            text: "8000 m = _ km"
+            say: "Wie viele Kilometer sind achttausend Meter?"
+            answer: "8"
+          - id: l2-c12
+            part: km-m
+            type: multiple_choice
+            text: "4600 m = _"
+            say: "Viertausendsechshundert Meter: Wie schreibst du das mit Kilometern und Metern?"
+            options: ["4 km 600 m", "46 km", "4 km 60 m"]
+            answer: "4 km 600 m"
+          - id: l2-c13
+            part: km-m
+            type: true_false
+            text: "1 km 80 m = 1800 m"
+            say: "Stimmt das? Ein Kilometer und achtzig Meter sind tausendachthundert Meter."
+            answer: false
+          - id: l2-c14
+            part: km-m
+            type: text_input
+            text: "Papa joggt 5 km 250 m. Wie viele Meter sind das?"
+            say: "Papa joggt fünf Kilometer und zweihundertfünfzig Meter. Wie viele Meter sind das?"
+            answer: "5250"
+          - id: l2-c15
+            part: km-m
+            type: multiple_choice
+            text: "Welcher Weg ist am längsten?"
+            say: "Welcher Weg ist am längsten?"
+            options: ["1 km 50 m", "1100 m", "990 m"]
+            answer: "1100 m"
+          - id: l2-c16
+            part: units
+            type: multiple_choice
+            text: "Ein Auto fährt auf der Autobahn in einer Stunde etwa 120 _."
+            say: "Welche Einheit passt? Ein Auto fährt auf der Autobahn in einer Stunde etwa hundertzwanzig ..."
+            options: ["km", "m", "cm"]
+            answer: "km"
+          - id: l2-c17
+            part: units
+            type: multiple_choice
+            text: "Wie breit ist ein Daumen ungefähr?"
+            say: "Wie breit ist ein Daumen ungefähr?"
+            options: ["etwa 2 cm", "etwa 2 mm", "etwa 2 m"]
+            answer: "etwa 2 cm"
+          - id: l2-c18
+            part: units
+            type: multiple_choice
+            text: "Jonas geht 2 km zu Fuß. Wie lange braucht er ungefähr?"
+            say: "Jonas geht zwei Kilometer zu Fuß. Wie lange braucht er ungefähr?"
+            options: ["etwa eine halbe Stunde", "etwa 2 Minuten", "etwa 2 Stunden"]
+            answer: "etwa eine halbe Stunde"
+          - id: l2-c19
+            part: units
+            type: true_false
+            text: "Lisa geht 4 km zu Fuß. Sie braucht etwa eine Stunde."
+            say: "Lisa geht vier Kilometer zu Fuß. Stimmt das: Sie braucht etwa eine Stunde?"
+            answer: true
+          - id: l2-c20
+            part: units
+            type: multiple_choice
+            text: "Was misst du am besten in Kilometern?"
+            say: "Was misst du am besten in Kilometern?"
+            options: ["wie weit es bis zur nächsten Stadt ist", "wie lang ein Klassenzimmer ist", "wie hoch ein Baum ist"]
+            answer: "wie weit es bis zur nächsten Stadt ist"

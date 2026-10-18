@@ -27,6 +27,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, number-line]
   facets: []
+  parts:
+    - { id: read, what: { de: Werte an der Skala eines Diagramms ablesen, en: reading values off a chart's scale } }
+    - { id: compare, what: { de: Werte vergleichen und zusammenrechnen, en: comparing and adding values } }
+    - { id: conclude, what: { de: "sagen, was ein Diagramm zeigt und was nicht", en: saying what a chart shows and what it does not } }
   misconceptions:
     - id: counts-lines
       what: Counts the lines up to the end of the bar instead of reading the scale, so a scale in tens or hundreds gives 5 for 50 or 7 for 700
@@ -256,6 +260,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -278,6 +283,26 @@ lessons:
             show: { drawn: bar-chart, step: 20, rows: [["3a", 100], ["3b", 140], ["3c", 60]] }
             options: ["100", "5", "120"]
             answer: "100"
+          - id: l1-c4
+            type: multiple_choice
+            text: "In welchen Schritten geht die Skala?"
+            say: "Das Diagramm zeigt die Besucher im Zoo. In welchen Schritten geht die Skala?"
+            show: { drawn: bar-chart, step: 100, rows: [["Mo", 600], ["Di", 300], ["Mi", 900]] }
+            options: ["in Hunderterschritten", "in Zehnerschritten", "in Einerschritten"]
+            answer: "in Hunderterschritten"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Wie viele Punkte hat Team Rot?"
+            say: "Beim Sportfest haben drei Teams Punkte gesammelt. Wie viele Punkte hat Team Rot?"
+            show: { drawn: bar-chart, step: 5, rows: [["Rot", 45], ["Blau", 20], ["Gelb", 30]] }
+            options: ["45", "9", "40"]
+            answer: "45"
+          - id: l1-c6
+            type: true_false
+            text: "Ida hat 70 Kastanien gesammelt."
+            say: "Stimmt das? Ida hat siebzig Kastanien gesammelt."
+            show: { drawn: bar-chart, step: 20, rows: [["Ole", 40], ["Ida", 70], ["Tom", 100]] }
+            answer: true
 
   - n: 2
     title: { de: "Vergleichen und Schlüsse ziehen", en: "Comparing and drawing conclusions" }
@@ -490,8 +515,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Wie viele Bücher wurden am Mittwoch ausgeliehen?"
             say: "Wie viele Bücher wurden am Mittwoch in der Bücherei ausgeliehen?"
@@ -499,6 +526,7 @@ lessons:
             options: ["90", "9", "80"]
             answer: "90"
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "Wie viele Besucher kamen am Sonntag?"
             say: "Wie viele Besucher kamen am Sonntag ins Freibad?"
@@ -506,6 +534,7 @@ lessons:
             options: ["650", "600", "700"]
             answer: "650"
           - id: l2-c3
+            part: compare
             type: multiple_choice
             text: "Wie viele Lose hat Stand 1 mehr verkauft als Stand 2?"
             say: "Wie viele Lose hat Stand eins mehr verkauft als Stand zwei?"
@@ -513,15 +542,133 @@ lessons:
             options: ["200", "500", "150"]
             answer: "200"
           - id: l2-c4
+            part: compare
             type: text_input
             text: "Wie viele Flaschen haben die drei Klassen zusammen gesammelt?"
             say: "Wie viele Pfandflaschen haben die drei Klassen zusammen gesammelt? Tippe die Zahl ein."
             show: { drawn: bar-chart, step: 20, rows: [["3a", 60], ["3b", 140], ["3c", 100]] }
             answer: "300"
           - id: l2-c5
+            part: conclude
             type: multiple_choice
             text: "Was zeigt das Diagramm?"
             say: "Das Diagramm zeigt die Kastanien, die drei Kinder gesammelt haben. Welchen Satz kannst du aus dem Diagramm ablesen?"
             show: { drawn: bar-chart, step: 20, rows: [["Ole", 60], ["Ida", 120], ["Tom", 80]] }
             options: ["Ida hat doppelt so viele Kastanien wie Ole.", "Ida mag Kastanien am liebsten.", "Ole hat keine Lust zu sammeln."]
             answer: "Ida hat doppelt so viele Kastanien wie Ole."
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "In welchen Schritten geht die Skala?"
+            say: "Das Diagramm zeigt, wie viele Becher Saft beim Schulfest verkauft wurden. In welchen Schritten geht die Skala?"
+            show: { drawn: bar-chart, step: 5, rows: [["Apfel", 45], ["Orange", 30], ["Kirsche", 20]] }
+            options: ["in Fünferschritten", "in Zehnerschritten", "in Einerschritten"]
+            answer: "in Fünferschritten"
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Wie viele Becher Apfelsaft wurden verkauft?"
+            say: "Wie viele Becher Apfelsaft wurden beim Schulfest verkauft?"
+            show: { drawn: bar-chart, step: 5, rows: [["Apfel", 45], ["Orange", 30], ["Kirsche", 20]] }
+            options: ["45", "9", "40"]
+            answer: "45"
+          - id: l2-c8
+            part: read
+            type: text_input
+            text: "Wie viele Besucher kamen am Donnerstag in den Zoo?"
+            say: "Das Diagramm zeigt die Besucher im Zoo. Wie viele Besucher kamen am Donnerstag? Tippe die Zahl ein."
+            show: { drawn: bar-chart, step: 100, rows: [["Mi", 500], ["Do", 850], ["Fr", 600]] }
+            answer: "850"
+          - id: l2-c9
+            part: read
+            type: true_false
+            text: "Die 3b hat 180 Flaschen gesammelt."
+            say: "Stimmt das? Die drei b hat hundertachtzig Pfandflaschen gesammelt."
+            show: { drawn: bar-chart, step: 20, rows: [["3a", 140], ["3b", 200], ["3c", 100]] }
+            answer: false
+          - id: l2-c10
+            part: read
+            type: multiple_choice
+            text: "Wie viele Lose hat Stand 3 verkauft?"
+            say: "Beim Schulfest haben drei Stände Lose verkauft. Wie viele Lose hat Stand drei verkauft?"
+            show: { drawn: bar-chart, step: 50, rows: [["Stand 1", 100], ["Stand 2", 200], ["Stand 3", 350]] }
+            options: ["350", "7", "300"]
+            answer: "350"
+          - id: l2-c11
+            part: compare
+            type: multiple_choice
+            text: "Wie viele Besucher kamen am Dienstag mehr als am Montag?"
+            say: "Das Diagramm zeigt die Besucher im Museum. Wie viele Besucher kamen am Dienstag mehr als am Montag?"
+            show: { drawn: bar-chart, step: 100, rows: [["Mo", 200], ["Di", 700], ["Mi", 450]] }
+            options: ["500", "900", "5"]
+            answer: "500"
+          - id: l2-c12
+            part: compare
+            type: text_input
+            text: "Wie viele Punkte haben Team Rot und Team Grün zusammen?"
+            say: "Wie viele Punkte haben Team Rot und Team Grün zusammen? Tippe die Zahl ein."
+            show: { drawn: bar-chart, step: 5, rows: [["Rot", 30], ["Blau", 15], ["Grün", 25]] }
+            answer: "55"
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Welches Kind hat doppelt so viele Kastanien gesammelt wie Lea?"
+            say: "Welches Kind hat doppelt so viele Kastanien gesammelt wie Lea?"
+            show: { drawn: bar-chart, step: 20, rows: [["Lea", 40], ["Max", 60], ["Ben", 80]] }
+            options: ["Max", "Ben", "kein Kind"]
+            answer: "Ben"
+            keep_order: true
+          - id: l2-c14
+            part: compare
+            type: ordering
+            text: "Ordne die Klassen. Fang mit den wenigsten Runden an."
+            say: "Ordne die Klassen. Fang mit der Klasse an, die die wenigsten Runden gelaufen ist."
+            show: { drawn: bar-chart, step: 10, rows: [["3a", 60], ["3b", 35], ["3c", 80], ["3d", 50]] }
+            options: ["3a", "3b", "3c", "3d"]
+            slot_count: 4
+            answer: ["3b", "3d", "3a", "3c"]
+          - id: l2-c15
+            part: compare
+            type: true_false
+            text: "Am Samstag kamen 200 Besucher weniger als am Sonntag."
+            say: "Stimmt das? Am Samstag kamen zweihundert Besucher weniger ins Freibad als am Sonntag."
+            show: { drawn: bar-chart, step: 100, rows: [["Fr", 300], ["Sa", 400], ["So", 700]] }
+            answer: false
+          - id: l2-c16
+            part: conclude
+            type: multiple_choice
+            text: "Was zeigt das Diagramm?"
+            say: "Das Diagramm zeigt die ausgeliehenen Bücher. Welchen Satz kannst du aus dem Diagramm ablesen?"
+            show: { drawn: bar-chart, step: 10, rows: [["Mo", 40], ["Di", 70], ["Mi", 30]] }
+            options: ["Am Dienstag wurden die meisten Bücher ausgeliehen.", "Am Dienstag lesen die Kinder am liebsten.", "Am Mittwoch ist die Bücherei immer leer."]
+            answer: "Am Dienstag wurden die meisten Bücher ausgeliehen."
+          - id: l2-c17
+            part: conclude
+            type: true_false
+            text: "Das Diagramm zeigt, warum am Samstag so viele Besucher kamen."
+            say: "Das Diagramm zeigt die Besucher im Freibad. Stimmt das? Das Diagramm zeigt, warum am Samstag so viele Besucher kamen."
+            show: { drawn: bar-chart, step: 100, rows: [["Fr", 300], ["Sa", 900], ["So", 500]] }
+            answer: false
+          - id: l2-c18
+            part: conclude
+            type: true_false
+            text: "Team Gelb hat weniger Punkte als Team Rot und als Team Blau."
+            say: "Stimmt das? Team Gelb hat weniger Punkte als Team Rot und als Team Blau."
+            show: { drawn: bar-chart, step: 5, rows: [["Rot", 35], ["Blau", 30], ["Gelb", 20]] }
+            answer: true
+          - id: l2-c19
+            part: conclude
+            type: multiple_choice
+            text: "Was zeigt das Diagramm?"
+            say: "Das Diagramm zeigt die Pfandflaschen der drei Klassen. Welchen Satz kannst du aus dem Diagramm ablesen?"
+            show: { drawn: bar-chart, step: 20, rows: [["3a", 80], ["3b", 160], ["3c", 120]] }
+            options: ["Die 3b hat doppelt so viele Flaschen gesammelt wie die 3a.", "In der 3b sind die meisten Kinder.", "Die 3a sammelt nächstes Jahr mehr."]
+            answer: "Die 3b hat doppelt so viele Flaschen gesammelt wie die 3a."
+          - id: l2-c20
+            part: conclude
+            type: multiple_choice
+            text: "Was kannst du aus dem Diagramm nicht ablesen?"
+            say: "Das Diagramm zeigt die Besucher im Freibad. Was kannst du aus dem Diagramm nicht ablesen?"
+            show: { drawn: bar-chart, step: 100, rows: [["Mo", 400], ["Di", 250], ["Mi", 600]] }
+            options: ["warum am Dienstag so wenige kamen", "an welchem Tag die meisten kamen", "wie viele am Montag kamen"]
+            answer: "warum am Dienstag so wenige kamen"
