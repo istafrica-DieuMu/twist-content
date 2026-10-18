@@ -25,6 +25,10 @@ metadata:
   forms: [drawn, audio]
   drawn: [dots, ten-frame, part-whole]
   facets: []
+  parts:
+    - { id: colours, what: { de: "die zwei Teile in einer Gruppe sehen (wie viele rot, wie viele blau)", en: "seeing the two parts in a group of counters (how many red, how many blue)" } }
+    - { id: part-whole, what: { de: im Teile-Ganzes-Modell einen fehlenden Teil oder das Ganze finden, en: finding a missing part or the whole in the part-whole model } }
+    - { id: bonds-10, what: { de: die Zerlegungen der 10 am Zehnerfeld finden, en: finding the number bonds to 10 on a ten frame } }
   misconceptions:
     - id: parts-new-number
       what: Thinks the two parts are a new amount, not the same amount split
@@ -198,17 +202,18 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "What is the missing part?"
+            text: "The whole is 5. One part is 1. What is the other part?"
             say: "The whole is five. One part is one. What is the other part?"
             show: { drawn: part-whole, whole: 5, parts: [1, null] }
             options: ["3", "4", "5"]
             answer: "4"
           - id: l1-c2
             type: multiple_choice
-            text: "How many are red?"
+            text: "5 counters. 3 are blue. How many are red?"
             say: "There are five counters. Three are blue. How many are red?"
             show: { drawn: dots, count: 5, layout: row, colour_split: [2, 3] }
             options: ["1", "2", "3"]
@@ -218,6 +223,26 @@ lessons:
             text: "Do 4 and 1 make 5?"
             say: "Do four and one make five?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "5 counters. 4 are red. How many are blue?"
+            say: "There are five counters. Four are red. How many are blue?"
+            show: { drawn: dots, count: 5, layout: row, colour_split: [4, 1] }
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l1-c5
+            type: multiple_choice
+            text: "The parts are 2 and 2. What is the whole?"
+            say: "The parts are two and two. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [2, 2] }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l1-c6
+            type: true_false
+            text: "Do 2 and 2 make 5?"
+            say: "Here are two red counters and two blue counters. Do two and two make five?"
+            show: { drawn: dots, count: 4, layout: row, colour_split: [2, 2] }
+            answer: false
 
   - n: 2
     title: { de: Die Teile der 10, en: Parts of 10 }
@@ -375,30 +400,161 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: part-whole
             type: multiple_choice
-            text: "What is the missing part?"
+            text: "The whole is 5. One part is 2. What is the other part?"
             say: "The whole is five. One part is two. What is the other part?"
             show: { drawn: part-whole, whole: 5, parts: [null, 2] }
             options: ["2", "3", "4"]
             answer: "3"
           - id: l2-c2
+            part: bonds-10
             type: multiple_choice
-            text: "How many more to make 10?"
+            text: "6 counters. How many more to make 10?"
             say: "There are six counters. How many more do you need to make ten?"
             show: { drawn: ten-frame, filled: 6, colour_split: [5, 1] }
             options: ["3", "4", "5"]
             answer: "4"
           - id: l2-c3
+            part: bonds-10
             type: true_false
             text: "Do 7 and 3 make 10?"
             say: "Do seven and three make ten?"
             answer: true
           - id: l2-c4
+            part: part-whole
             type: multiple_choice
-            text: "What is the whole?"
+            text: "The parts are 4 and 1. What is the whole?"
             say: "The parts are four and one. What is the whole?"
             show: { drawn: part-whole, whole: null, parts: [4, 1] }
             options: ["4", "5", "6"]
             answer: "5"
+          - id: l2-c5
+            part: colours
+            type: multiple_choice
+            text: "5 counters. 2 are red. How many are blue?"
+            say: "There are five counters. Two are red. How many are blue?"
+            show: { drawn: dots, count: 5, layout: row, colour_split: [2, 3] }
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l2-c6
+            part: part-whole
+            type: multiple_choice
+            text: "The whole is 4. One part is 1. What is the other part?"
+            say: "The whole is four. One part is one. What is the other part?"
+            show: { drawn: part-whole, whole: 4, parts: [1, null] }
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l2-c7
+            part: bonds-10
+            type: multiple_choice
+            text: "4 counters. How many more to make 10?"
+            say: "There are four counters. How many more do you need to make ten?"
+            show: { drawn: ten-frame, filled: 4 }
+            options: ["5", "6", "7"]
+            answer: "6"
+          - id: l2-c8
+            part: bonds-10
+            type: true_false
+            text: "Do 6 and 4 make 10?"
+            say: "Six red counters and four blue counters. Do six and four make ten?"
+            show: { drawn: ten-frame, filled: 10, colour_split: [6, 4] }
+            answer: true
+          - id: l2-c9
+            part: colours
+            type: multiple_choice
+            text: "4 counters. 3 are blue. How many are red?"
+            say: "There are four counters. Three are blue. How many are red?"
+            show: { drawn: dots, count: 4, layout: row, colour_split: [1, 3] }
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l2-c10
+            part: part-whole
+            type: multiple_choice
+            text: "The whole is 10. One part is 4. What is the other part?"
+            say: "The whole is ten. One part is four. What is the other part?"
+            show: { drawn: part-whole, whole: 10, parts: [4, null] }
+            options: ["5", "6", "7"]
+            answer: "6"
+          - id: l2-c11
+            part: colours
+            type: image_multiple_choice
+            text: "Which one shows 4?"
+            say: "Which picture has four counters altogether?"
+            options:
+              - { drawn: dots, count: 5, layout: row, colour_split: [3, 2] }
+              - { drawn: dots, count: 3, layout: row, colour_split: [2, 1] }
+              - { drawn: dots, count: 4, layout: row, colour_split: [3, 1] }
+            answer: "4"
+          - id: l2-c12
+            part: bonds-10
+            type: multiple_choice
+            text: "9 counters. How many more to make 10?"
+            say: "There are nine counters. How many more do you need to make ten?"
+            show: { drawn: ten-frame, filled: 9, colour_split: [5, 4] }
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l2-c13
+            part: colours
+            type: multiple_choice
+            text: "The ten frame is full. 7 are red. How many are blue?"
+            say: "The ten frame is full. Seven are red. How many are blue?"
+            show: { drawn: ten-frame, filled: 10, colour_split: [7, 3] }
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l2-c14
+            part: part-whole
+            type: multiple_choice
+            text: "The parts are 6 and 2. What is the whole?"
+            say: "The parts are six and two. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [6, 2] }
+            options: ["7", "8", "9"]
+            answer: "8"
+          - id: l2-c15
+            part: bonds-10
+            type: true_false
+            text: "Do 5 and 4 make 10?"
+            say: "Five red counters and four blue counters. Do five and four make ten?"
+            show: { drawn: ten-frame, filled: 9, colour_split: [5, 4] }
+            answer: false
+          - id: l2-c16
+            part: bonds-10
+            type: multiple_choice
+            text: "The ten frame is full. 3 are red. How many are blue?"
+            say: "The ten frame is full. Three are red. How many are blue?"
+            show: { drawn: ten-frame, filled: 10, colour_split: [3, 7] }
+            options: ["6", "7", "8"]
+            answer: "7"
+          - id: l2-c17
+            part: colours
+            type: multiple_choice
+            text: "The ten frame is full. 5 are blue. How many are red?"
+            say: "The ten frame is full. Five are blue. How many are red?"
+            show: { drawn: ten-frame, filled: 10, colour_split: [5, 5] }
+            options: ["4", "5", "6"]
+            answer: "5"
+          - id: l2-c18
+            part: part-whole
+            type: multiple_choice
+            text: "The whole is 8. One part is 3. What is the other part?"
+            say: "The whole is eight. One part is three. What is the other part?"
+            show: { drawn: part-whole, whole: 8, parts: [3, null] }
+            options: ["4", "5", "6"]
+            answer: "5"
+          - id: l2-c19
+            part: part-whole
+            type: true_false
+            text: "The whole is 6. The parts are 4 and 2. Is that right?"
+            say: "The whole is six. The parts are four and two. Is that right?"
+            show: { drawn: part-whole, whole: 6, parts: [4, 2] }
+            answer: true
+          - id: l2-c20
+            part: colours
+            type: true_false
+            text: "Do 1 and 4 make 6?"
+            say: "One red counter and four blue counters. Do one and four make six?"
+            show: { drawn: dots, count: 5, layout: row, colour_split: [1, 4] }
+            answer: false

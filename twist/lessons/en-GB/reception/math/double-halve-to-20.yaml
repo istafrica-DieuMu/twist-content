@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: double, what: { de: das Doppelte einer Zahl bis 5 nennen, en: saying the double of a number to 5 } }
+    - { id: spot-double, what: { de: "eine Verdopplung erkennen (zweimal die gleiche Zahl)", en: "spotting a double (the same number twice)" } }
+    - { id: share, what: { de: "fair zwischen zwei teilen und sagen, wie viele jeder bekommt", en: sharing fairly between two and saying how many each gets } }
+    - { id: fair, what: { de: "erkennen, ob zwischen zwei fair geteilt ist", en: telling whether a share between two is fair } }
   misconceptions:
     - id: double-as-one-more
       what: Thinks double three is four
@@ -182,6 +187,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -192,7 +198,7 @@ lessons:
             answer: "8"
           - id: l1-c2
             type: true_false
-            text: "Is this a double?"
+            text: "3 spots and 2 spots. Is this a double?"
             say: "Three spots and two spots. Is this a double?"
             show: { drawn: dots, groups: [3, 2], layout: dice }
             answer: false
@@ -202,6 +208,24 @@ lessons:
             say: "What is double two?"
             options: ["4", "3", "2"]
             answer: "4"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Double 3"
+            say: "What is double three?"
+            show: { drawn: dots, groups: [3, 3], layout: dice }
+            options: ["6", "4", "3"]
+            answer: "6"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which is a double?"
+            say: "Which one is a double?"
+            options: [{ drawn: dots, groups: [2, 4], layout: dice }, { drawn: dots, groups: [3, 3], layout: dice }, { drawn: dots, groups: [5, 1], layout: dice }]
+            answer: "3+3"
+          - id: l1-c6
+            type: true_false
+            text: "Does double 5 make 10?"
+            say: "Does double five make ten?"
+            answer: true
 
   - n: 2
     title: { de: Gerecht teilen, en: Sharing fairly }
@@ -349,29 +373,149 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: double
             type: multiple_choice
             text: "Double 1"
             say: "What is double one?"
             options: ["2", "1", "3"]
             answer: "2"
           - id: l2-c2
+            part: share
             type: multiple_choice
-            text: "How many each?"
+            text: "2 friends share 6 cherries fairly. How many each?"
             say: "Two friends share six cherries fairly. How many does each friend get?"
             show: { drawn: dots, count: 6, layout: row }
             options: ["3", "6", "4"]
             answer: "3"
           - id: l2-c3
+            part: fair
             type: true_false
-            text: "Is it fair?"
+            text: "2 friends share 8 pencils. One gets 6, one gets 2. Is it fair?"
             say: "Two friends share eight pencils. One gets six, one gets two. Is it fair?"
             show: { drawn: dots, groups: [6, 2], layout: row }
             answer: false
           - id: l2-c4
+            part: spot-double
             type: image_multiple_choice
             text: "Which is a double?"
             say: "Which one is a double?"
             options: [{ drawn: dots, groups: [3, 3], layout: dice }, { drawn: dots, groups: [3, 4], layout: dice }, { drawn: dots, groups: [2, 5], layout: dice }]
             answer: "3+3"
+          - id: l2-c5
+            part: double
+            type: multiple_choice
+            text: "Double 4"
+            say: "What is double four?"
+            show: { drawn: dots, groups: [4, 4], layout: dice }
+            options: ["7", "8", "9"]
+            answer: "8"
+          - id: l2-c6
+            part: spot-double
+            type: true_false
+            text: "3 spots and 3 spots. Is this a double?"
+            say: "Three spots and three spots. Is this a double?"
+            show: { drawn: dots, groups: [3, 3], layout: dice }
+            answer: true
+          - id: l2-c7
+            part: share
+            type: multiple_choice
+            text: "2 friends share 8 apples fairly. How many each?"
+            say: "Two friends share eight apples fairly. How many apples does each friend get?"
+            show: { drawn: dots, count: 8, layout: row }
+            options: ["2", "4", "8"]
+            answer: "4"
+          - id: l2-c8
+            part: fair
+            type: true_false
+            text: "2 friends share 6 books. Each gets 3. Is it fair?"
+            say: "Two friends share six books. Each gets three. Is it fair?"
+            show: { drawn: dots, groups: [3, 3], layout: row }
+            answer: true
+          - id: l2-c9
+            part: double
+            type: multiple_choice
+            text: "Double 5"
+            say: "What is double five?"
+            show: { drawn: dots, groups: [5, 5], layout: row }
+            options: ["9", "10", "11"]
+            answer: "10"
+          - id: l2-c10
+            part: spot-double
+            type: image_multiple_choice
+            text: "Which is a double?"
+            say: "Which one is a double?"
+            options: [{ drawn: dots, groups: [5, 3], layout: dice }, { drawn: dots, groups: [6, 2], layout: dice }, { drawn: dots, groups: [4, 4], layout: dice }]
+            answer: "4+4"
+          - id: l2-c11
+            part: share
+            type: multiple_choice
+            text: "2 friends share 4 balloons fairly. How many each?"
+            say: "Two friends share four balloons fairly. How many balloons does each friend get?"
+            show: { drawn: dots, count: 4, layout: row }
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l2-c12
+            part: fair
+            type: true_false
+            text: "2 friends share 10 shells. One gets 6, one gets 4. Is it fair?"
+            say: "Two friends share ten shells. One gets six, one gets four. Is it fair?"
+            show: { drawn: dots, groups: [6, 4], layout: row }
+            answer: false
+          - id: l2-c13
+            part: double
+            type: true_false
+            text: "Does double 3 make 7?"
+            say: "Does double three make seven?"
+            answer: false
+          - id: l2-c14
+            part: spot-double
+            type: true_false
+            text: "5 spots and 4 spots. Is this a double?"
+            say: "Five spots and four spots. Is this a double?"
+            show: { drawn: dots, groups: [5, 4], layout: dice }
+            answer: false
+          - id: l2-c15
+            part: share
+            type: multiple_choice
+            text: "2 friends share 10 cakes fairly. How many each?"
+            say: "Two friends share ten cakes fairly. How many cakes does each friend get?"
+            show: { drawn: dots, count: 10, layout: row }
+            options: ["4", "5", "6"]
+            answer: "5"
+          - id: l2-c16
+            part: fair
+            type: true_false
+            text: "2 friends share 4 cups. Each gets 2. Is it fair?"
+            say: "Two friends share four cups. Each gets two. Is it fair?"
+            show: { drawn: dots, groups: [2, 2], layout: row }
+            answer: true
+          - id: l2-c17
+            part: double
+            type: true_false
+            text: "Does double 4 make 8?"
+            say: "Does double four make eight?"
+            answer: true
+          - id: l2-c18
+            part: spot-double
+            type: image_multiple_choice
+            text: "Which is a double?"
+            say: "Which one is a double?"
+            options: [{ drawn: dots, groups: [2, 1], layout: dice }, { drawn: dots, groups: [1, 1], layout: dice }, { drawn: dots, groups: [1, 3], layout: dice }]
+            answer: "1+1"
+          - id: l2-c19
+            part: share
+            type: true_false
+            text: "2 friends share 6 stickers fairly. Does each get 3?"
+            say: "Two friends share six stickers fairly. Does each friend get three?"
+            show: { drawn: dots, count: 6, layout: row }
+            answer: true
+          - id: l2-c20
+            part: fair
+            type: image_multiple_choice
+            text: "2 friends share 8 sweets. Which is fair?"
+            say: "Two friends share eight sweets. Which picture shows a fair share?"
+            options: [{ drawn: dots, groups: [5, 3], layout: row }, { drawn: dots, groups: [4, 4], layout: row }, { drawn: dots, groups: [6, 2], layout: row }]
+            answer: "4+4"

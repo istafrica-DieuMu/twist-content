@@ -8,23 +8,23 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (24364 / 24364) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21585 / 21585) |
-| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6317 / 6317) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (52266 / 52266)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30081 / 30081) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (28968 / 28968) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21584 / 21584) |
+| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6316 / 6316) |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (56868 / 56868)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30304 / 30304) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17323 / 17323) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6521 / 6521) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (53925 / 53925)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (54148 / 54148)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 106229 clips, 145.4 h | about $178 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 106229 clips | about $85 | estimated the same way |
-| **Total** | | | **about $272** | |
+| Narration | google/gemini-3.8-flash-tts | 111054 clips, 152.2 h | about $187 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 111054 clips | about $89 | estimated the same way |
+| **Total** | | | **about $284** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -32,14 +32,14 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 7478 | 7379 (99%) | 0 | 452 min | $15 |
-| gemini-puck-en | 6571 | 6390 (97%) | 0 | 434 min | $14 |
+| gemini-puck | 12080 | 11884 (98%) | 0 | 844 min | $27 |
+| gemini-puck-en | 6794 | 6613 (97%) | 0 | 454 min | $15 |
 | gemini-sulafat | 44814 | 43982 (98%) | 0 | 3411 min | $105 |
 | gemini-sulafat-en | 47366 | 46234 (98%) | 0 | 4426 min | $128 |
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 20364 tasks. Narration so far about $120; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 23244 tasks. Narration so far about $132; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -56,8 +56,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
 | klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $1.95 |
-| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.55 |
-| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.07 |
+| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.54 |
+| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.06 |
 | klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.46 |
 | klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.45 |
 | klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.17 |
@@ -84,13 +84,13 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Deutsch | Sprache untersuchen | 1 / 1 done | 2 | $0.31 |
 | klasse-1 | Deutsch | Texte schreiben | 1 / 1 done | 2 | $0.18 |
 | klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.21 |
-| klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.34 |
-| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.00 |
-| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $3.40 |
-| klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $1.77 |
-| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $3.51 |
-| klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.58 |
-| klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 4 / 4 done | 8 | $1.17 |
+| klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $2.75 |
+| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.62 |
+| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $4.05 |
+| klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.32 |
+| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $4.43 |
+| klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.88 |
+| klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 4 / 4 done | 8 | $1.43 |
 | klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.35 |
 | klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.29 |
 | klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $0.83 |
@@ -117,12 +117,12 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Texte überarbeiten | 1 / 1 done | 2 | $0.31 |
 | klasse-2 | Deutsch | Sprechen und Zuhören | 2 / 2 done | 4 | $0.84 |
 | klasse-2 | Deutsch | Schreibschrift | 3 / 3 done | 6 | $0.74 |
-| klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.27 |
-| klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.16 |
-| klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $4.10 |
-| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $3.81 |
-| klasse-3 | Mathe | Geometrie | 7 / 7 done | 14 | $1.83 |
-| klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.16 |
+| klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.74 |
+| klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.74 |
+| klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $5.29 |
+| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $4.88 |
+| klasse-3 | Mathe | Geometrie | 7 / 7 done | 14 | $2.20 |
+| klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.43 |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.38 |
 | klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.62 |
 | klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $1.12 |
@@ -151,14 +151,14 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Sprechen und Zuhören | 1 / 1 done | 2 | $0.26 |
 | klasse-3 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.27 |
 | klasse-3 | Deutsch | Texte gestalten | 2 / 2 done | 4 | $0.75 |
-| klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.32 |
-| klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $1.75 |
-| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $1.89 |
-| klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.03 |
-| klasse-4 | Mathe | Größen | 8 / 8 done | 16 | $3.11 |
-| klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $3.30 |
-| klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.32 |
-| klasse-4 | Mathe | Erweiterung | 4 / 4 done | 8 | $1.08 |
+| klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.68 |
+| klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $2.17 |
+| klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $2.44 |
+| klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.57 |
+| klasse-4 | Mathe | Größen | 8 / 8 done | 16 | $3.85 |
+| klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $4.08 |
+| klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.62 |
+| klasse-4 | Mathe | Erweiterung | 4 / 4 done | 8 | $1.32 |
 | klasse-4 | Deutsch | Die vier Fälle | 1 / 1 done | 3 | $0.35 |
 | klasse-4 | Deutsch | Zeitformen | 3 / 3 done | 6 | $0.82 |
 | klasse-4 | Deutsch | Verben | 2 / 2 done | 4 | $0.65 |
@@ -219,7 +219,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 20768 tasks. Narration so far about $143; 0 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 21033 tasks. Narration so far about $143; 0 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -239,10 +239,10 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
-| reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.07 |
-| reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.57 |
-| reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.62 |
-| reception | Maths | Division | 1 / 1 done | 2 | $0.25 |
+| reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.28 |
+| reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.73 |
+| reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.74 |
+| reception | Maths | Division | 1 / 1 done | 2 | $0.31 |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $0.75 |
 | reception | English | Phonics | 12 / 12 done | 24 | $2.32 |
 | reception | English | Reading words | 3 / 3 done | 6 | $0.48 |
@@ -253,7 +253,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | reception | English | Grammar and punctuation | 1 / 1 done | 2 | $0.17 |
 | reception | English | Writing | 1 / 1 done | 2 | $0.18 |
 | reception | English | Speaking and listening | 4 / 4 done | 8 | $1.22 |
-| year-1 | Maths | Numbers to 10 | 1 / 1 done | 3 | $0.28 |
+| year-1 | Maths | Numbers to 10 | 1 / 1 done | 3 | $0.27 |
 | year-1 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.52 |
 | year-1 | Maths | Word problems | 1 / 1 done | 2 | $0.35 |
 | year-1 | Maths | Numbers to 20 | 1 / 1 done | 2 | $0.22 |
@@ -483,7 +483,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 52 of 918 skill checks and 57 of 974 quick checks done; 6 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 225 of 918 skill checks and 236 of 974 quick checks done; 6 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
@@ -495,9 +495,9 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 | de-DE lit-de klasse-3 | 42 | 0 | 0 of 42 |
 | de-DE lit-de klasse-4 | 35 | 0 | 0 of 36 |
 | de-DE math klasse-1 | 41 | 41 | 46 of 46 |
-| de-DE math klasse-2 | 63 | 3 | 3 of 64 |
-| de-DE math klasse-3 | 51 | 0 | 0 of 51 |
-| de-DE math klasse-4 | 48 | 0 | 0 of 53 |
+| de-DE math klasse-2 | 63 | 63 | 64 of 64 |
+| de-DE math klasse-3 | 51 | 51 | 51 of 51 |
+| de-DE math klasse-4 | 48 | 48 | 53 of 53 |
 | en-GB fl ly-1 | 14 | 0 | 0 of 14 |
 | en-GB fl ly-2 | 28 | 0 | 0 of 28 |
 | en-GB fl ly-3 | 11 | 0 | 0 of 12 |
@@ -509,7 +509,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 | en-GB lit-en year-4 | 16 | 0 | 0 of 16 |
 | en-GB lit-en year-5 | 17 | 0 | 0 of 18 |
 | en-GB lit-en year-6 | 17 | 0 | 0 of 17 |
-| en-GB math reception | 14 | 0 | 0 of 14 |
+| en-GB math reception | 14 | 14 | 14 of 14 |
 | en-GB math year-1 | 29 | 0 | 0 of 31 |
 | en-GB math year-2 | 51 | 1 | 1 of 54 |
 | en-GB math year-3 | 52 | 1 | 1 of 52 |
@@ -521,7 +521,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 0 | $0.28 | $0.00 |
+| de-DE | 0 | $0.30 | $0.00 |
 | en-GB | 0 | $0.30 | $0.00 |
 
 Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.23 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.
@@ -541,8 +541,9 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-14 | Native English and French pass | 541 | every screen of the en-GB lessons (Reception to Year 6, French years 1 to 4) and the English in the de-DE Englisch sets, read as a native British teacher or a French professeur des écoles would, by model agents | about 220 sets changed, about 240 speaker tags, seven dialogues as turns; year-fit fixes (tonnes, km, compasses, capitals) and the enrichment map | 2e4fa07c |
 | 2026-10-18 | Check pools, batch 1 (de-DE Mathe Klasse 1) | 41 | the new check-pool tasks of all 41 de-DE Mathe Klasse 1 sets (docs/plans/2026-10-18-practice-content.md), written by three agents and read by two | about 50 tasks fixed in 26 sets (data or story on screen, near repeats, a hint in say, a negative distractor, stiff phrasing); the build now rejects an unquoted comma in a part and compares pictures and options when it looks for repeats in a pool | see git log, "Check pools batch 1" |
 | 2026-10-18 | Check pools, phase 1 pilots | 5 | one pilot set per format not yet tried, each written by one agent and read by a second; Deutsch spelling (lengthen-dt), Deutsch reading a text (find-information), English phonics Year 1 (split-digraphs), Reception (blend-cvc, draw 4), Englisch Lernjahr 1 (en-food) | five pools of 20 and their quick pools; format questions per subject for the user before the subjects are authored | 2827d5bf9 |
+| 2026-10-18 | Check pools, batches 2 to 5 (de-DE Mathe Klasse 2 to 4, en-GB maths Reception) | 173 | the new check-pool tasks of 173 sets, written by 13 agents of about 14 sets each and read by 13 more, as a workflow | about 150 fixes (say lines added where existing check tasks had none, stories and questions on screen, near repeats, copies of Practise, wording); 67 questions for a human in docs/plans/2026-10-18-practice-questions.md | see git log, "Check pools batch 2" to "batch 5" |
 
-Open points (9):
+Open points (11):
 
 - A native German speaker reads the screens (a teacher, not a model)
 - Regional words for a teacher to weigh: Mäppchen or Federtasche (an ä task relies on Mäppchen), Möhre or Karotte (picture-name tasks rely on Möhre), Fasching, Geldbeutel, Brötchen, Pulli
@@ -553,6 +554,8 @@ Open points (9):
 - Phonics hints in Years 1 and 2 segment words for the voice ("l ... ee ... f", "c ... ay ... k"); listen once narrated whether the voice says sounds, not letter names. Task audio already plays bank sounds in order (audio sounds)
 - Points from the Reception and Year 1 read for a teacher: the coined sound descriptions (hiss, hush, pop of your lips) against the school's phonics scheme; small letter or lower-case letter; magic e; take away or subtract; × and clockwise in Year 1 (NC Year 2); a pencil said to be shorter than a hand span; Year 1 sets carry ages 6-7
 - Check pools, batch 1: write-numerals-to-10 has no tracing in any check, so writing the numerals is never marked (tracing accepts any ink). Some older check tasks keep the story, the numbers or a strategy only in say (add-meaning l2-c2, l2-c4; compare-to-20 l2-c4; commutative l2-c4, whose say is a hint); a lessons-check rule could flag a check task whose say carries numbers its text lacks
+- Phase 1 pilots, lesson fixes outside the check pools: split-digraphs Practise true/false tasks say the target word aloud ("Hop with an e on the end says hope"); en-food lesson 2 Learn speaks "Here you are. Thank you!" but never shows it; blend-cvc Practise l2-s3 uses fizz and fuss (ss, zz) while Learn teaches only ck and ll; en-food checks l1-c2, l1-c3 and l2-c5 use food words from earlier sets
+- Phase 1 pilots, format questions for the user before Phases 4 to 6 (practice-content plan): reading checks by passage (2 passages, 2 or 3 questions each) and new texts per pool; phonics parts by sound family, no encoding tasks in reading checks, silent picture options; Reception pools on the set's own letters and about 10 new CVC pictures; Deutsch spelling answer form and dictation with a picture or gap; foreign-language checks on the set's own words with Ja/Nein buttons
 
 Closed:
 

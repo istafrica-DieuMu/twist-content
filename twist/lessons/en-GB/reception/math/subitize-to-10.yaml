@@ -23,6 +23,10 @@ metadata:
   forms: [drawn, audio]
   drawn: [dots, ten-frame]
   facets: []
+  parts:
+    - { id: small, what: { de: "bis zu 5 Punkte auf einen Blick erkennen, als Würfelbild oder verstreut", en: "seeing up to 5 dots at a glance, as a dice pattern or spread out" } }
+    - { id: five-and-bit, what: { de: "6 bis 10 im Zehnerfeld als fünf und noch ein paar sehen", en: seeing 6 to 10 on a ten frame as five and a bit } }
+    - { id: find, what: { de: das Würfelbild oder Zehnerfeld mit einer genannten Anzahl finden, en: finding the dice or ten frame that shows a given number } }
   misconceptions:
     - id: count-each
       what: Counts every dot instead of seeing the pattern, and runs out of time
@@ -203,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -226,6 +231,28 @@ lessons:
             say: "Look carefully. How many dots?"
             show: { drawn: dots, count: 1, layout: scattered, flash: 2 }
             options: ["1", "2", "3"]
+            answer: "1"
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: dots, count: 5, layout: scattered, flash: 2 }
+            options: ["4", "5", "6"]
+            answer: "5"
+          - id: l1-c5
+            type: true_false
+            text: "Are there 2 dots?"
+            say: "Look carefully. Are there two dots?"
+            show: { drawn: dots, count: 3, layout: dice, flash: 2 }
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which dice has 1 dot?"
+            say: "Which dice has one dot? Tap it."
+            options:
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+              - { drawn: dots, count: 1, layout: dice }
             answer: "1"
 
   - n: 2
@@ -392,8 +419,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: small
             type: multiple_choice
             text: "How many dots?"
             say: "Look carefully. How many dots?"
@@ -401,6 +430,7 @@ lessons:
             options: ["5", "4", "6"]
             answer: "5"
           - id: l2-c2
+            part: five-and-bit
             type: multiple_choice
             text: "How many dots?"
             say: "Look carefully. How many dots?"
@@ -408,6 +438,7 @@ lessons:
             options: ["8", "10", "9"]
             answer: "9"
           - id: l2-c3
+            part: find
             type: image_multiple_choice
             text: "Which ten frame has 8 dots?"
             say: "Which ten frame has eight dots? Tap it."
@@ -417,9 +448,144 @@ lessons:
               - { drawn: ten-frame, filled: 6, colour_split: [5, 1] }
             answer: "8"
           - id: l2-c4
+            part: small
             type: multiple_choice
             text: "How many dots?"
             say: "Look carefully. How many dots?"
             show: { drawn: dots, count: 3, layout: scattered, flash: 1.5 }
             options: ["3", "4", "2"]
             answer: "3"
+          - id: l2-c5
+            part: small
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: dots, count: 3, layout: dice, flash: 1 }
+            options: ["3", "2", "4"]
+            answer: "3"
+          - id: l2-c6
+            part: five-and-bit
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: ten-frame, filled: 7, colour_split: [5, 2], flash: 1.5 }
+            options: ["6", "7", "8"]
+            answer: "7"
+          - id: l2-c7
+            part: find
+            type: image_multiple_choice
+            text: "Tap the dice with 4 dots."
+            say: "Find the dice with four dots and tap it."
+            options:
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+            answer: "4"
+          - id: l2-c8
+            part: find
+            type: image_multiple_choice
+            text: "Which ten frame has 6 dots?"
+            say: "Which ten frame has six dots? Tap it."
+            options:
+              - { drawn: ten-frame, filled: 7, colour_split: [5, 2] }
+              - { drawn: ten-frame, filled: 5 }
+              - { drawn: ten-frame, filled: 6, colour_split: [5, 1] }
+            answer: "6"
+          - id: l2-c9
+            part: small
+            type: true_false
+            text: "Are there 4 dots?"
+            say: "Look carefully. Are there four dots?"
+            show: { drawn: dots, count: 4, layout: dice, flash: 1.5 }
+            answer: true
+          - id: l2-c10
+            part: five-and-bit
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: ten-frame, filled: 10, flash: 1.5 }
+            options: ["8", "9", "10"]
+            answer: "10"
+          - id: l2-c11
+            part: five-and-bit
+            type: true_false
+            text: "Are there 6 dots?"
+            say: "Look carefully. Are there six dots?"
+            show: { drawn: ten-frame, filled: 6, colour_split: [5, 1], flash: 1.5 }
+            answer: true
+          - id: l2-c12
+            part: find
+            type: image_multiple_choice
+            text: "Tap the dice with 5 dots."
+            say: "Find the dice with five dots and tap it."
+            options:
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 4, layout: dice }
+            answer: "5"
+          - id: l2-c13
+            part: small
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: dots, count: 5, layout: scattered, flash: 1.5 }
+            options: ["6", "4", "5"]
+            answer: "5"
+          - id: l2-c14
+            part: five-and-bit
+            type: true_false
+            text: "Are there 8 dots?"
+            say: "Look carefully. Are there eight dots?"
+            show: { drawn: ten-frame, filled: 9, colour_split: [5, 4], flash: 1.5 }
+            answer: false
+          - id: l2-c15
+            part: five-and-bit
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [5, 3], flash: 1 }
+            options: ["7", "8", "9"]
+            answer: "8"
+          - id: l2-c16
+            part: find
+            type: image_multiple_choice
+            text: "Tap the ten frame with 9 dots."
+            say: "Find the ten frame with nine dots and tap it."
+            options:
+              - { drawn: ten-frame, filled: 9, colour_split: [5, 4] }
+              - { drawn: ten-frame, filled: 7, colour_split: [5, 2] }
+              - { drawn: ten-frame, filled: 8, colour_split: [5, 3] }
+            answer: "9"
+          - id: l2-c17
+            part: small
+            type: true_false
+            text: "Are there 5 dots?"
+            say: "Look carefully. Are there five dots?"
+            show: { drawn: dots, count: 4, layout: scattered, flash: 1.5 }
+            answer: false
+          - id: l2-c18
+            part: five-and-bit
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: ten-frame, filled: 6, colour_split: [5, 1], flash: 1 }
+            options: ["5", "6", "7"]
+            answer: "6"
+          - id: l2-c19
+            part: find
+            type: image_multiple_choice
+            text: "Tap the dice with 2 dots."
+            say: "Find the dice with two dots and tap it."
+            options:
+              - { drawn: dots, count: 3, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 4, layout: dice }
+            answer: "2"
+          - id: l2-c20
+            part: small
+            type: multiple_choice
+            text: "How many dots?"
+            say: "Look carefully. How many dots?"
+            show: { drawn: dots, count: 2, layout: scattered, flash: 1.5 }
+            options: ["1", "2", "3"]
+            answer: "2"

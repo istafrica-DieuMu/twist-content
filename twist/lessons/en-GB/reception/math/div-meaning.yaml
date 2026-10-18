@@ -25,6 +25,10 @@ metadata:
   forms: [drawn, picture, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: fair, what: { de: "erkennen, ob fair geteilt ist (jeder bekommt gleich viele)", en: "telling whether a share is fair (each gets the same)" } }
+    - { id: share, what: { de: "fair teilen und sagen, wie viele jeder bekommt", en: sharing fairly and saying how many each gets } }
+    - { id: group, what: { de: "gleich große Gruppen bilden und sagen, wie viele Gruppen es sind", en: making equal groups and saying how many groups there are } }
   misconceptions:
     - id: unequal-share
       what: Accepts any split as sharing, even when one child gets more (four and two)
@@ -229,10 +233,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
-            text: "Which is fair?"
+            text: "2 children share 6 grapes. Which is fair?"
             say: "Two children share six grapes. Which picture shows a fair share?"
             options:
               - { drawn: dots, groups: [2, 4], layout: dice }
@@ -241,17 +246,39 @@ lessons:
             answer: "3+3"
           - id: l1-c2
             type: multiple_choice
-            text: "How many each?"
+            text: "4 eggs shared fairly between 2 children. How many each?"
             say: "Four eggs are shared fairly between two children. How many eggs does each child get?"
             show: { object: egg, count: 4, layout: row }
             options: ["2", "3", "4"]
             answer: "2"
           - id: l1-c3
             type: true_false
-            text: "Is it fair?"
+            text: "5 on one plate, 5 on the other. Is it fair?"
             say: "Five on one plate and five on the other. Is that a fair share?"
             show: { drawn: dots, groups: [5, 5], layout: dice }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "10 pencils shared fairly between 2 children. How many each?"
+            say: "Ten pencils are shared fairly between two children. How many pencils does each child get?"
+            show: { object: pencil, count: 10, layout: row }
+            options: ["2", "5", "10"]
+            answer: "5"
+          - id: l1-c5
+            type: true_false
+            text: "4 on one plate, 3 on the other. Is it fair?"
+            say: "Four on one plate and three on the other. Is that a fair share?"
+            show: { drawn: dots, groups: [4, 3], layout: dice }
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "2 children share 10 shells. Which is fair?"
+            say: "Two children share ten shells. Which picture shows a fair share?"
+            options:
+              - { drawn: dots, groups: [4, 6], layout: dice }
+              - { drawn: dots, groups: [5, 5], layout: dice }
+              - { drawn: dots, groups: [8, 2], layout: dice }
+            answer: "5+5"
 
   - n: 2
     title: { de: Gleich große Gruppen, en: Equal groups }
@@ -431,10 +458,12 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: fair
             type: image_multiple_choice
-            text: "Which is fair?"
+            text: "2 children share 8 biscuits. Which is fair?"
             say: "Two children share eight biscuits. Which picture shows a fair share?"
             options:
               - { drawn: dots, groups: [6, 2], layout: dice }
@@ -442,29 +471,150 @@ lessons:
               - { drawn: dots, groups: [4, 4], layout: dice }
             answer: "4+4"
           - id: l2-c2
+            part: share
             type: multiple_choice
-            text: "How many each?"
+            text: "6 apples shared fairly between 2 children. How many each?"
             say: "Six apples are shared fairly between two children. How many apples does each child get?"
             show: { object: apple, count: 6, layout: row }
             options: ["2", "3", "6"]
             answer: "3"
           - id: l2-c3
+            part: group
             type: multiple_choice
-            text: "How many plates?"
+            text: "8 cakes, 4 on each plate. How many plates?"
             say: "Eight cakes, four on each plate. Each row is one plate. How many plates?"
             show: { drawn: dots, array: [2, 4] }
             options: ["2", "4", "8"]
             answer: "2"
           - id: l2-c4
+            part: fair
             type: true_false
-            text: "Is it fair?"
+            text: "Mia gets 2 sweets and Leo gets 3. Is it fair?"
             say: "Mia gets two sweets and Leo gets three. Is that a fair share?"
             show: { drawn: dots, groups: [2, 3], layout: dice }
             answer: false
           - id: l2-c5
+            part: group
             type: multiple_choice
-            text: "How many pots?"
+            text: "10 pencils, 5 in each pot. How many pots?"
             say: "Ten pencils, five in each pot. How many pots?"
             show: { object: pencil, count: 10, layout: row }
             options: ["2", "5", "10"]
             answer: "2"
+          - id: l2-c6
+            part: fair
+            type: true_false
+            text: "Ben gets 2 grapes and Sam gets 2. Is it fair?"
+            say: "Ben gets two grapes and Sam gets two grapes. Is that a fair share?"
+            show: { drawn: dots, groups: [2, 2], layout: dice }
+            answer: true
+          - id: l2-c7
+            part: share
+            type: multiple_choice
+            text: "8 strawberries shared fairly between 2 children. How many each?"
+            say: "Eight strawberries are shared fairly between two children. How many strawberries does each child get?"
+            show: { object: strawberry, count: 8, layout: row }
+            options: ["2", "4", "8"]
+            answer: "4"
+          - id: l2-c8
+            part: group
+            type: multiple_choice
+            text: "8 shoes. 2 shoes make a pair. How many pairs?"
+            say: "Eight shoes. Two shoes make a pair. Each row is one pair. How many pairs?"
+            show: { drawn: dots, array: [4, 2] }
+            options: ["2", "4", "8"]
+            answer: "4"
+          - id: l2-c9
+            part: fair
+            type: image_multiple_choice
+            text: "2 children share 10 cakes. Which is fair?"
+            say: "Two children share ten cakes. Which picture shows a fair share?"
+            options:
+              - { drawn: dots, groups: [4, 6], layout: dice }
+              - { drawn: dots, groups: [8, 2], layout: dice }
+              - { drawn: dots, groups: [5, 5], layout: dice }
+            answer: "5+5"
+          - id: l2-c10
+            part: share
+            type: true_false
+            text: "6 cakes shared fairly between 3 children. Does each child get 3?"
+            say: "Six cakes are shared fairly between three children. Each row is one child. Does each child get three cakes?"
+            show: { drawn: dots, array: [3, 2] }
+            answer: false
+          - id: l2-c11
+            part: group
+            type: multiple_choice
+            text: "9 eggs, 3 in each box. How many boxes?"
+            say: "Nine eggs, three in each box. Each row is one box. How many boxes?"
+            show: { drawn: dots, array: [3, 3] }
+            options: ["2", "3", "9"]
+            answer: "3"
+          - id: l2-c12
+            part: fair
+            type: true_false
+            text: "6 on one plate, 4 on the other. Is it fair?"
+            say: "Six on one plate and four on the other. Is that a fair share?"
+            show: { drawn: dots, groups: [6, 4], layout: dice }
+            answer: false
+          - id: l2-c13
+            part: share
+            type: multiple_choice
+            text: "10 shells shared fairly between 2 children. How many each?"
+            say: "Ten shells are shared fairly between two children. How many shells does each child get?"
+            show: { object: shell, count: 10, layout: row }
+            options: ["2", "5", "10"]
+            answer: "5"
+          - id: l2-c14
+            part: group
+            type: true_false
+            text: "6 children, 2 on each seesaw. Do they need 3 seesaws?"
+            say: "Six children go on the seesaws, two children on each seesaw. Each row is one seesaw. Do they need three seesaws?"
+            show: { drawn: dots, array: [3, 2] }
+            answer: true
+          - id: l2-c15
+            part: fair
+            type: image_multiple_choice
+            text: "2 children share 6 cars. Which is fair?"
+            say: "Two children share six cars. Which picture shows a fair share?"
+            options:
+              - { drawn: dots, groups: [2, 4], layout: dice }
+              - { drawn: dots, groups: [5, 1], layout: dice }
+              - { drawn: dots, groups: [3, 3], layout: dice }
+            answer: "3+3"
+          - id: l2-c16
+            part: share
+            type: true_false
+            text: "4 apples shared fairly between 2 children. Does each child get 2?"
+            say: "Four apples are shared fairly between two children. Does each child get two apples?"
+            show: { object: apple, count: 4, layout: row }
+            answer: true
+          - id: l2-c17
+            part: group
+            type: multiple_choice
+            text: "10 apples, 2 in each bag. How many bags?"
+            say: "Ten apples, two in each bag. Each row is one bag. How many bags?"
+            show: { drawn: dots, array: [5, 2] }
+            options: ["2", "5", "10"]
+            answer: "5"
+          - id: l2-c18
+            part: fair
+            type: true_false
+            text: "Mia has 5 stickers and Leo has 4. Is it fair?"
+            say: "Mia has five stickers and Leo has four stickers. Is that a fair share?"
+            show: { drawn: dots, groups: [5, 4], layout: dice }
+            answer: false
+          - id: l2-c19
+            part: share
+            type: multiple_choice
+            text: "9 sweets shared fairly between 3 children. How many each?"
+            say: "Nine sweets are shared fairly between three children. Each row is one child. How many sweets does each child get?"
+            show: { drawn: dots, array: [3, 3] }
+            options: ["3", "6", "9"]
+            answer: "3"
+          - id: l2-c20
+            part: group
+            type: true_false
+            text: "4 cakes, 2 on each plate. Are there 4 plates?"
+            say: "Four cakes, two on each plate. Each row is one plate. Are there four plates?"
+            show: { drawn: dots, array: [2, 2] }
+            answer: false

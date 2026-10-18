@@ -25,6 +25,10 @@ metadata:
   forms: [drawn, picture, audio]
   drawn: [ten-frame, part-whole]
   facets: []
+  parts:
+    - { id: more, what: { de: "sagen, wie viele es sind, wenn noch mehr dazukommen", en: "saying how many there are now when more come along" } }
+    - { id: together, what: { de: "zwei Gruppen zusammenlegen und sagen, wie viele es zusammen sind", en: putting two groups together and saying how many altogether } }
+    - { id: whole, what: { de: im Teile-Ganzes-Modell das Ganze aus zwei Teilen finden, en: finding the whole from two parts in a part-whole model } }
   misconceptions:
     - id: count-all-from-one
       what: Counts everything from one after more arrive
@@ -195,25 +199,47 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "How many now?"
+            text: "First 3 red counters. Then 2 blue. How many now?"
             say: "First, there were three red counters. Then, we added two blue counters. How many are there now?"
             show: { drawn: ten-frame, filled: 5, colour_split: [3, 2] }
             options: ["2", "4", "5"]
             answer: "5"
           - id: l1-c2
             type: multiple_choice
-            text: "How many now?"
+            text: "First 2 shells. Then 1 more. How many now?"
             say: "First, there were two shells. Then, one more shell came. How many shells are there now?"
             options: ["2", "3", "4"]
             answer: "3"
           - id: l1-c3
             type: true_false
-            text: "Is it six now?"
+            text: "First 5 stars. Then 1 more. Is it 6 now?"
             say: "First, there were five stars. Then, one more star came. Are there six stars now?"
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "First 1 car. Then 2 more. Which picture shows how many now?"
+            say: "First, there was one car. Then, two more cars came. Which picture shows how many there are now?"
+            options:
+              - { object: car, count: 2, layout: row }
+              - { object: car, count: 1, layout: row }
+              - { object: car, count: 3, layout: row }
+            answer: "3"
+          - id: l1-c5
+            type: multiple_choice
+            text: "First 6 red counters. Then 1 blue. How many now?"
+            say: "First, there were six red counters. Then, we added one blue counter. How many are there now?"
+            show: { drawn: ten-frame, filled: 7, colour_split: [6, 1] }
+            options: ["1", "6", "7"]
+            answer: "7"
+          - id: l1-c6
+            type: true_false
+            text: "First 4 bees. Then 2 more. Is it 5 now?"
+            say: "First, there were four bees. Then, two more bees came. Are there five bees now?"
+            answer: false
 
   - n: 2
     title: { de: Zusammen, en: Altogether }
@@ -370,29 +396,157 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: more
             type: multiple_choice
-            text: "How many now?"
+            text: "First 4 ducks. Then 2 more. How many now?"
             say: "First, there were four ducks. Then, two more ducks came. How many ducks are there now?"
             options: ["2", "5", "6"]
             answer: "6"
           - id: l2-c2
+            part: together
             type: multiple_choice
-            text: "How many altogether?"
+            text: "3 red and 4 blue. How many altogether?"
             say: "Three red counters and four blue counters. How many altogether?"
             show: { drawn: ten-frame, filled: 7, colour_split: [3, 4] }
             options: ["4", "6", "7"]
             answer: "7"
           - id: l2-c3
+            part: whole
             type: multiple_choice
-            text: "What is the whole?"
+            text: "The parts are 2 and 3. What is the whole?"
             say: "The parts are two and three. What is the whole?"
             show: { drawn: part-whole, whole: null, parts: [2, 3] }
             options: ["4", "5", "6"]
             answer: "5"
           - id: l2-c4
+            part: more
             type: true_false
-            text: "Is it four now?"
+            text: "First 3 bees. Then 1 more. Is it 4 now?"
             say: "First, there were three bees. Then, one more bee came. Are there four bees now?"
             answer: true
+          - id: l2-c5
+            part: more
+            type: image_multiple_choice
+            text: "First 3 fish. Then 3 more. Which picture shows how many now?"
+            say: "First, there were three fish. Then, three more fish came. Which picture shows how many there are now?"
+            options:
+              - { object: fish, count: 3, layout: row }
+              - { object: fish, count: 6, layout: row }
+              - { object: fish, count: 5, layout: row }
+            answer: "6"
+          - id: l2-c6
+            part: together
+            type: multiple_choice
+            text: "2 red and 6 blue. How many altogether?"
+            say: "Two red counters and six blue counters. How many altogether?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [2, 6] }
+            options: ["6", "8", "9"]
+            answer: "8"
+          - id: l2-c7
+            part: whole
+            type: multiple_choice
+            text: "The parts are 3 and 3. What is the whole?"
+            say: "The parts are three and three. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [3, 3] }
+            options: ["3", "5", "6"]
+            answer: "6"
+          - id: l2-c8
+            part: whole
+            type: multiple_choice
+            text: "The parts are 5 and 4. What is the whole?"
+            say: "The parts are five and four. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [5, 4] }
+            options: ["4", "8", "9"]
+            answer: "9"
+          - id: l2-c9
+            part: more
+            type: multiple_choice
+            text: "First 5 children on the bus. Then 3 more get on. How many now?"
+            say: "First, there were five children on the bus. Then, three more got on. How many are on the bus now?"
+            options: ["3", "7", "8"]
+            answer: "8"
+          - id: l2-c10
+            part: together
+            type: multiple_choice
+            text: "4 apples and 4 bananas. How many altogether?"
+            say: "There are four apples and four bananas. How many pieces of fruit altogether?"
+            options: ["4", "7", "8"]
+            answer: "8"
+          - id: l2-c11
+            part: whole
+            type: multiple_choice
+            text: "The parts are 6 and 1. What is the whole?"
+            say: "The parts are six and one. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [6, 1] }
+            options: ["6", "7", "8"]
+            answer: "7"
+          - id: l2-c12
+            part: whole
+            type: true_false
+            text: "The parts are 2 and 2. The whole is 5. Is that right?"
+            say: "The parts are two and two. The whole is five. Is that right?"
+            show: { drawn: part-whole, whole: 5, parts: [2, 2] }
+            answer: false
+          - id: l2-c13
+            part: more
+            type: true_false
+            text: "First 2 frogs. Then 2 more. Is it 5 now?"
+            say: "First, there were two frogs. Then, two more frogs came. Are there five frogs now?"
+            answer: false
+          - id: l2-c14
+            part: together
+            type: true_false
+            text: "5 red and 3 blue. Is it 8 altogether?"
+            say: "Five red counters and three blue counters. Are there eight altogether?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [5, 3] }
+            answer: true
+          - id: l2-c15
+            part: together
+            type: true_false
+            text: "1 red and 5 blue. Is it 7 altogether?"
+            say: "One red counter and five blue counters. Are there seven altogether?"
+            show: { drawn: ten-frame, filled: 6, colour_split: [1, 5] }
+            answer: false
+          - id: l2-c16
+            part: whole
+            type: multiple_choice
+            text: "The parts are 7 and 3. What is the whole?"
+            say: "The parts are seven and three. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [7, 3] }
+            options: ["4", "9", "10"]
+            answer: "10"
+          - id: l2-c17
+            part: more
+            type: multiple_choice
+            text: "First 6 red counters. Then 2 blue. How many now?"
+            say: "First, there were six red counters. Then, we added two blue counters. How many are there now?"
+            show: { drawn: ten-frame, filled: 8, colour_split: [6, 2] }
+            options: ["2", "7", "8"]
+            answer: "8"
+          - id: l2-c18
+            part: together
+            type: image_multiple_choice
+            text: "3 red balloons and 2 blue balloons. Which picture shows them all?"
+            say: "There are three red balloons and two blue balloons. Which picture shows all the balloons together?"
+            options:
+              - { object: balloon, count: 5, layout: row }
+              - { object: balloon, count: 3, layout: row }
+              - { object: balloon, count: 6, layout: row }
+            answer: "5"
+          - id: l2-c19
+            part: whole
+            type: true_false
+            text: "The parts are 4 and 3. The whole is 7. Is that right?"
+            say: "The parts are four and three. The whole is seven. Is that right?"
+            show: { drawn: part-whole, whole: 7, parts: [4, 3] }
+            answer: true
+          - id: l2-c20
+            part: more
+            type: multiple_choice
+            text: "First 1 bird. Then 4 more. How many now?"
+            say: "First, there was one bird. Then, four more birds came. How many birds are there now?"
+            options: ["4", "5", "6"]
+            answer: "5"

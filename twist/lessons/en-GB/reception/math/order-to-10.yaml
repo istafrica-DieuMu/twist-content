@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, picture, audio]
   drawn: [dots, ten-frame]
   facets: []
+  parts:
+    - { id: before-after, what: { de: die Zahl vor und nach einer Zahl bis 10 nennen, en: naming the number before and after a number to 10 } }
+    - { id: count-back, what: { de: von 10 rückwärts zählen, en: counting back from 10 } }
+    - { id: amounts, what: { de: "Anzahlen ordnen, von wenig nach viel", en: putting amounts in order from fewest to most } }
+    - { id: more-less, what: { de: eins mehr und eins weniger finden, en: finding one more and one less } }
   misconceptions:
     - id: backwards-hard
       what: Can count forwards but loses the order counting back
@@ -195,6 +200,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -218,6 +224,27 @@ lessons:
             say: "What comes before five?"
             options: ["4", "6", "3"]
             answer: "4"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Count back: 7, 6, 5. What comes next?"
+            say: "Count back: seven, six, five. What comes next?"
+            options: ["4", "6", "3"]
+            answer: "4"
+          - id: l1-c5
+            type: true_false
+            text: "Does 2 come after 3?"
+            say: "Does two come after three?"
+            answer: false
+          - id: l1-c6
+            type: ordering
+            text: "Put them in order, fewest first."
+            say: "Put the ten frames in order. Start with the fewest counters."
+            options:
+              - { drawn: ten-frame, filled: 4 }
+              - { drawn: ten-frame, filled: 9, colour_split: [5, 4] }
+              - { drawn: ten-frame, filled: 2 }
+            slot_count: 3
+            answer: ["2", "4", "9"]
 
   - n: 2
     title: { de: "Eins mehr, eins weniger", en: "One more, one less" }
@@ -384,22 +411,26 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: more-less
             type: multiple_choice
-            text: "One more. How many now?"
+            text: "4 bananas. 1 more comes. How many now?"
             say: "Here are four bananas. One more banana comes along. How many bananas are there now?"
             show: { object: banana, count: 4, layout: row }
             options: ["3", "5", "6"]
             answer: "5"
           - id: l2-c2
+            part: more-less
             type: multiple_choice
-            text: "One less. How many now?"
+            text: "7 leaves. 1 blows away. How many now?"
             say: "Here are seven leaves. One leaf blows away. How many leaves are there now?"
             show: { object: leaf, count: 7, layout: row }
             options: ["6", "7", "8"]
             answer: "6"
           - id: l2-c3
+            part: amounts
             type: ordering
             text: "Put them in order, fewest first."
             say: "Put the ten frames in order. Start with the fewest counters."
@@ -410,8 +441,141 @@ lessons:
             slot_count: 3
             answer: ["6", "7", "9"]
           - id: l2-c4
+            part: before-after
             type: multiple_choice
             text: "What comes after 9?"
             say: "What comes after nine?"
             options: ["8", "10", "7"]
             answer: "10"
+          - id: l2-c5
+            part: before-after
+            type: multiple_choice
+            text: "What comes before 4?"
+            say: "What comes before four?"
+            options: ["3", "5", "2"]
+            answer: "3"
+          - id: l2-c6
+            part: count-back
+            type: multiple_choice
+            text: "Count back: 9, 8, 7. What comes next?"
+            say: "Count back: nine, eight, seven. What comes next?"
+            options: ["6", "8", "5"]
+            answer: "6"
+          - id: l2-c7
+            part: amounts
+            type: ordering
+            text: "Put them in order, fewest first."
+            say: "Put the dice in order. Start with the one with the fewest dots."
+            options:
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 1, layout: dice }
+            slot_count: 3
+            answer: ["1", "4", "6"]
+          - id: l2-c8
+            part: more-less
+            type: image_multiple_choice
+            text: "6 dots. Which one has one more?"
+            say: "Here are six dots. Which dice has one more?"
+            show: { drawn: dots, count: 6, layout: dice }
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 8, layout: dice }
+              - { drawn: dots, count: 7, layout: dice }
+            answer: "7"
+          - id: l2-c9
+            part: before-after
+            type: multiple_choice
+            text: "What comes after 1?"
+            say: "What comes after one?"
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l2-c10
+            part: count-back
+            type: multiple_choice
+            text: "Count back: 5, 4, 3. What comes next?"
+            say: "Count back: five, four, three. What comes next?"
+            options: ["2", "4", "1"]
+            answer: "2"
+          - id: l2-c11
+            part: amounts
+            type: ordering
+            text: "Put them in order, most first."
+            say: "Put the dice in order. Start with the one with the most dots."
+            options:
+              - { drawn: dots, count: 3, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+            slot_count: 3
+            answer: ["6", "5", "3"]
+          - id: l2-c12
+            part: more-less
+            type: multiple_choice
+            text: "8 cups. 1 more comes. How many now?"
+            say: "Here are eight cups. One more cup comes along. How many cups are there now?"
+            show: { object: cup, count: 8, layout: row }
+            options: ["7", "9", "10"]
+            answer: "9"
+          - id: l2-c13
+            part: before-after
+            type: true_false
+            text: "Does 9 come before 8?"
+            say: "Does nine come before eight?"
+            answer: false
+          - id: l2-c14
+            part: count-back
+            type: true_false
+            text: "Count back: 8, 7, 6. Is 7 next?"
+            say: "Count back: eight, seven, six. Is seven next?"
+            answer: false
+          - id: l2-c15
+            part: amounts
+            type: ordering
+            text: "Put them in order, fewest first."
+            say: "Put the ten frames in order. Start with the fewest counters."
+            options:
+              - { drawn: ten-frame, filled: 10, colour_split: [5, 5] }
+              - { drawn: ten-frame, filled: 3 }
+              - { drawn: ten-frame, filled: 8, colour_split: [5, 3] }
+            slot_count: 3
+            answer: ["3", "8", "10"]
+          - id: l2-c16
+            part: more-less
+            type: true_false
+            text: "Is 3 one less than 4?"
+            say: "Is three one less than four?"
+            answer: true
+          - id: l2-c17
+            part: before-after
+            type: multiple_choice
+            text: "What comes before 8?"
+            say: "What comes before eight?"
+            options: ["7", "9", "6"]
+            answer: "7"
+          - id: l2-c18
+            part: count-back
+            type: ordering
+            text: "Count back. Put the numbers in order, biggest first."
+            say: "Count back. Put the numbers in order. Start with the biggest."
+            options: ["7", "9", "6", "8"]
+            slot_count: 4
+            answer: ["9", "8", "7", "6"]
+          - id: l2-c19
+            part: amounts
+            type: ordering
+            text: "Put them in order, fewest first."
+            say: "Put the dice in order. Start with the one with the fewest dots."
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            slot_count: 4
+            answer: ["2", "3", "5", "6"]
+          - id: l2-c20
+            part: count-back
+            type: multiple_choice
+            text: "Count back: 10, 9. What comes next?"
+            say: "Count back: ten, nine. What comes next?"
+            options: ["7", "8", "10"]
+            answer: "8"

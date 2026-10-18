@@ -23,6 +23,11 @@ metadata:
   forms: [picture, drawn, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: more-fewer, what: { de: "die Gruppe mit mehr oder weniger finden, auch wenn sie anders aussieht", en: "finding the group with more or fewer, even when it looks bigger or smaller" } }
+    - { id: same, what: { de: "erkennen, ob zwei Gruppen gleich viele sind", en: telling whether two groups are the same } }
+    - { id: numbers, what: { de: "sagen, welche von zwei Zahlen größer oder kleiner ist", en: saying which of two numbers is bigger or smaller } }
+    - { id: order, what: { de: "drei Anzahlen oder Zahlen ordnen, die größte oder kleinste finden", en: "putting three amounts or numbers in order, or finding the biggest or smallest" } }
   misconceptions:
     - id: bigger-picture
       what: Thinks the group that takes up more space has more
@@ -208,10 +213,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
-            text: "Which has more?"
+            text: "Which has more frogs?"
             say: "Which picture has more frogs?"
             options:
               - { object: frog, count: 4, layout: row }
@@ -219,7 +225,7 @@ lessons:
             answer: "6"
           - id: l1-c2
             type: image_multiple_choice
-            text: "Which has fewer?"
+            text: "Which has fewer bananas?"
             say: "Which picture has fewer bananas?"
             options:
               - { object: banana, count: 2, layout: row }
@@ -227,10 +233,34 @@ lessons:
             answer: "2"
           - id: l1-c3
             type: true_false
-            text: "Are they the same?"
+            text: "Are there the same number of red and blue dots?"
             say: "Are there the same number of red and blue dots?"
             show: { drawn: dots, groups: [5, 3], layout: row }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which has fewer cars?"
+            say: "Which picture has fewer cars?"
+            options:
+              - { object: car, count: 9, layout: scattered }
+              - { object: car, count: 7, layout: row }
+            answer: "7"
+          - id: l1-c5
+            type: true_false
+            text: "Are there the same number of red and blue dots?"
+            say: "Are there the same number of red and blue dots?"
+            show: { drawn: dots, groups: [6, 6], layout: row }
+            answer: true
+          - id: l1-c6
+            type: ordering
+            text: "Put them in order, fewest first."
+            say: "Put the dice in order. Start with the fewest dots."
+            options:
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            slot_count: 3
+            answer: ["3", "4", "6"]
 
   - n: 2
     title: { de: Zahlen vergleichen, en: Comparing numbers }
@@ -369,30 +399,161 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: more-fewer
             type: image_multiple_choice
-            text: "Which has more?"
+            text: "Which has more balls?"
             say: "Which picture has more balls?"
             options:
               - { object: ball, count: 5, layout: scattered }
               - { object: ball, count: 8, layout: row }
             answer: "8"
           - id: l2-c2
+            part: numbers
             type: multiple_choice
-            text: "Which number is smaller?"
+            text: "Which number is smaller, 7 or 4?"
             say: "Which number is smaller, seven or four?"
             options: ["7", "4"]
             answer: "4"
           - id: l2-c3
+            part: same
             type: true_false
-            text: "Are they the same?"
+            text: "Are there the same number of red and blue dots?"
             say: "Are there the same number of red and blue dots?"
             show: { drawn: dots, groups: [4, 4], layout: row }
             answer: true
           - id: l2-c4
+            part: numbers
             type: multiple_choice
-            text: "Which number is bigger?"
+            text: "Which number is bigger, 10 or 6?"
             say: "Which number is bigger, ten or six?"
             options: ["6", "10"]
             answer: "10"
+          - id: l2-c5
+            part: more-fewer
+            type: image_multiple_choice
+            text: "Which has fewer pencils?"
+            say: "Which picture has fewer pencils?"
+            options:
+              - { object: pencil, count: 4, layout: scattered }
+              - { object: pencil, count: 6, layout: row }
+            answer: "4"
+          - id: l2-c6
+            part: same
+            type: true_false
+            text: "Are there the same number of red and blue dots?"
+            say: "Are there the same number of red and blue dots?"
+            show: { drawn: dots, groups: [6, 5], layout: row }
+            answer: false
+          - id: l2-c7
+            part: numbers
+            type: multiple_choice
+            text: "Which number is bigger, 5 or 8?"
+            say: "Which number is bigger, five or eight?"
+            options: ["5", "8"]
+            answer: "8"
+          - id: l2-c8
+            part: order
+            type: ordering
+            text: "Put them in order, fewest first."
+            say: "Put the dice in order. Start with the fewest dots."
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+            slot_count: 3
+            answer: ["2", "5", "6"]
+          - id: l2-c9
+            part: more-fewer
+            type: image_multiple_choice
+            text: "Which has more stars?"
+            say: "Which picture has more stars?"
+            options:
+              - { object: star, count: 7, layout: scattered }
+              - { object: star, count: 9, layout: row }
+            answer: "9"
+          - id: l2-c10
+            part: same
+            type: true_false
+            text: "Are there the same number of red and blue dots?"
+            say: "Are there the same number of red and blue dots?"
+            show: { drawn: dots, groups: [7, 7], layout: row }
+            answer: true
+          - id: l2-c11
+            part: numbers
+            type: true_false
+            text: "Is 3 smaller than 6?"
+            say: "Is three smaller than six?"
+            answer: true
+          - id: l2-c12
+            part: order
+            type: multiple_choice
+            text: "Which number is the biggest: 5, 3 or 8?"
+            say: "Which number is the biggest: five, three or eight?"
+            options: ["5", "3", "8"]
+            answer: "8"
+          - id: l2-c13
+            part: more-fewer
+            type: image_multiple_choice
+            text: "Which has more cups?"
+            say: "Which picture has more cups?"
+            options:
+              - { object: cup, count: 2, layout: row }
+              - { object: cup, count: 3, layout: scattered }
+            answer: "3"
+          - id: l2-c14
+            part: same
+            type: true_false
+            text: "Are there the same number of red and blue dots?"
+            say: "Are there the same number of red and blue dots?"
+            show: { drawn: dots, groups: [3, 4], layout: row }
+            answer: false
+          - id: l2-c15
+            part: numbers
+            type: true_false
+            text: "Is 9 smaller than 4?"
+            say: "Is nine smaller than four?"
+            answer: false
+          - id: l2-c16
+            part: order
+            type: multiple_choice
+            text: "Which number is the smallest: 6, 9 or 4?"
+            say: "Which number is the smallest: six, nine or four?"
+            options: ["6", "9", "4"]
+            answer: "4"
+          - id: l2-c17
+            part: more-fewer
+            type: image_multiple_choice
+            text: "Which has fewer shells?"
+            say: "Which picture has fewer shells?"
+            options:
+              - { object: shell, count: 10, layout: scattered }
+              - { object: shell, count: 8, layout: row }
+            answer: "8"
+          - id: l2-c18
+            part: same
+            type: true_false
+            text: "Are there the same number of red and blue dots?"
+            say: "Are there the same number of red and blue dots?"
+            show: { drawn: dots, groups: [8, 8], layout: row }
+            answer: true
+          - id: l2-c19
+            part: numbers
+            type: multiple_choice
+            text: "Which number is smaller, 3 or 2?"
+            say: "Which number is smaller, three or two?"
+            options: ["3", "2"]
+            answer: "2"
+          - id: l2-c20
+            part: order
+            type: ordering
+            text: "Put them in order, most first."
+            say: "Put the dice in order. Start with the most dots."
+            options:
+              - { drawn: dots, count: 3, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+            slot_count: 3
+            answer: ["5", "3", "2"]

@@ -71,9 +71,12 @@ banks. For each skill, the backend needs its lesson tasks grouped by pool
 | `skillCheck` | The tasks of Checks of size `skill` or `timed`, so a session can leave out the ones the child last saw in a skill check |
 
 A check with `draw` holds a pool: a skill check of 20 tasks, each tagged
-with the `part` of the skill it covers, and a quick check of 6. One attempt
-shows 5 (or 3) of them (`drawCheck`); every task of the pool is in the
-`check` pool for practice.
+with the `part` of the skill it covers (the set lists its parts in
+`metadata.parts`), and a quick check of 6. One attempt shows `draw` of
+them: 5 for a skill check (4 at ages 4 to 5) and 3 for a quick check
+(`drawCheck`). Every task of the pool is in the `check` pool for practice.
+A check without `draw` is a set not yet authored for practice; it shows
+every task, as before, so the app handles both.
 
 A task keeps one key across sessions: `<set id>#<lesson n>#<task id>`
 (`taskKey`), for example `de-DE.math.table-3-6-9#1#l1-n1`.
@@ -137,7 +140,8 @@ the converter from the Twist YAML to that JSON is an open decision on the
 handoff page (R&D cannot write into schoolido-learning). The proposal:
 
 1. The converter turns lessons, skills and drill banks into the importer's
-   JSON. Drill banks are a new record: one per skill, with its formats,
+   JSON. It carries `metadata.parts`, a check's `draw` and each task's
+   `part`. Drill banks are a new record: one per skill, with its formats,
    time targets and items.
 2. The backend builds sessions and sends them to the app.
 3. The app plays the tasks with the lesson screens and posts each answer.
@@ -158,6 +162,16 @@ handoff page (R&D cannot write into schoolido-learning). The proposal:
 | `lastSkill` | The last skill practised, for the fallback suggestion |
 
 The curriculum, year and age band come from the child profile.
+
+### Drawing a check
+
+Lessons draw their checks too, not only practice. When a child reaches a
+check with `draw`, the backend picks the tasks with `drawCheck`: one task
+of every part first, then the least recently seen, never a task from the
+child's last attempt at that check while enough remain. It stores the
+task ids shown as the last attempt (`lastCheck` per skill for the skill
+check), and the seen days as for practice. A child who fails a skill
+check gets a new draw from the same pool.
 
 ### Building a session
 
@@ -349,15 +363,28 @@ The player leaves these out; the app should build them:
 - The catch-up card's reason is generic ("Let's practise this again"),
   not the specific "you missed it last week".
 
-## Coming content
+## Content status
 
-The pilot (2026-10-18) has the format for all three on the times tables
-5 and 10 (Year 2, Klasse 2), 3, 6 and 9 (Year 3, Klasse 2) and 7 (Year 4,
-Klasse 2): skill checks of 20 tagged by part, quick checks of 6, and drill
-banks. The format is in lesson-anatomy.md, "Check pools".
+Authoring of the check pools and drill banks runs as a queue, subject by
+subject (docs/plans/2026-10-18-practice-content.md, with its phases and
+the brief). Live progress, one row per curriculum, subject and year, is in
+views/tracking.md, "Practice content"; questions the reviewers left for a
+decision are in docs/plans/2026-10-18-practice-questions.md.
 
-- Skill checks to 20 tasks a skill, each task tagged with the part of the
-  skill it covers, so each attempt draws a different 5 that still covers
-  every part; the rest feed recaps and practice. About 13,800 tasks.
-- Short checks doubled, about 2,900 tasks.
-- Drill banks for the other skills to know by heart, about 30 in all.
+On 2026-10-18:
+
+| Done | Sets |
+|---|---|
+| de-DE Mathe Klasse 1 to 4, every set | 203 |
+| en-GB maths Reception, every set | 14 |
+| en-GB times tables 5 and 10, 3 6 9, 7 (Years 2 to 4, the first pilot) | 3 |
+| One pilot each: Deutsch spelling, Deutsch reading a text, English phonics, Reception English, Englisch Lernjahr 1 | 5 |
+| In all | 225 of 918 |
+
+Next: en-GB maths Years 1 to 6, the maths drill banks, then the home
+languages, their drill banks and the foreign languages. Reading checks
+may change shape before the home languages (a draw by passage, 2 texts
+with 2 or 3 questions each); that is open in the plan.
+
+About 13,800 skill-check tasks, 2,900 quick-check tasks and 24 more drill
+banks in all; 30 drill banks when done.
