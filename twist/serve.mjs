@@ -3,6 +3,7 @@
 //
 //   TWIST_USER=… TWIST_PASS=… node twist/serve.mjs          # port 8080
 //   PORT=3000 TWIST_USER=… TWIST_PASS=… node twist/serve.mjs
+//   HOST=0.0.0.0 …   listens on every interface (default: 127.0.0.1 only)
 //
 // Only pages/ and assets/ are served; / opens the player. Audio answers
 // Range requests (phones need them to play and seek), and HTML and JS are
@@ -18,6 +19,8 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PORT = +(process.env.PORT ?? 8080);
+// Only the reverse proxy on this machine reaches it, unless HOST says otherwise (HOST=0.0.0.0).
+const HOST = process.env.HOST ?? "127.0.0.1";
 const USER = process.env.TWIST_USER, PASS = process.env.TWIST_PASS;
 if (!USER || !PASS) { console.error("Set TWIST_USER and TWIST_PASS: the player is served behind basic auth."); process.exit(1); }
 const EXPECTED = Buffer.from(`${USER}:${PASS}`);
@@ -87,4 +90,4 @@ const server = createServer((req, res) => {
   if (req.method === "HEAD") return res.end();
   createReadStream(file).pipe(res);
 });
-server.listen(PORT, () => console.log(`Twist player on http://localhost:${PORT}/ (basic auth as ${USER})`));
+server.listen(PORT, HOST, () => console.log(`Twist player on http://${HOST}:${PORT}/ (basic auth as ${USER})`));
