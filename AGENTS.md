@@ -24,13 +24,15 @@ git repo kept separate from schoolido-learning.
       (twist/docs/practice.md): sessions built by player/practice-rules.mjs
       (tests: `cd twist && npm test`) for a pretend child, with drill banks
       from twist/drills/; its screens are player/practice-ui.js and
-      player/practice.css. `node twist/pages/player/build.mjs`; it
+      player/practice.css. Every drawing is in player/drawn.js, which the
+      build inlines and the app can use as it is. `node twist/pages/player/build.mjs`; it
       plays audio from twist/assets/narration/<voice>/, which is in git
       (about 3 GB); after a content change, narrate the new lines with
       twist/assets/tools/narration.py and commit the new clips.
     - drawings/: every drawn component with a real example and its
-      picture, the player's Drawings tab; written with the sources page by
-      `node twist/pages/sources/drawn.cjs`; never edit index.html by hand.
+      picture, the player's Drawings tab; `node twist/pages/drawings/build.cjs`
+      (needs Playwright) writes index.html, standalone.html (drawn.js on its
+      own) and drawn/; never edit them by hand.
     - types/: every task type with a screen; `node twist/pages/types/shots.cjs`
       (needs Playwright) retakes the shots. Keep it in step with
       twist/docs/task-types.md. A copy is published as a claude.ai artifact.
@@ -38,11 +40,9 @@ git repo kept separate from schoolido-learning.
       `node twist/pages/rewards/build.mjs`; never edit index.html by hand.
     - sources/: where every text, picture and sound on a lesson screen comes
       from (the player's label, the v2 field, the record key or asset file,
-      the S3 key), written by hand except its Drawings section, which
-      `node twist/pages/sources/drawn.cjs` (needs Playwright) writes with a
-      picture of every drawn component from the player; a copy is published
-      as a claude.ai artifact. Update it when a screen, a record key or an
-      asset path changes.
+      the S3 key), written by hand; a copy is published as a claude.ai
+      artifact. Update it when a screen, a record key or an asset path
+      changes.
     - handoff/: the handoff to the backend, mobile app and parent dashboard
       teams (IST-B2C/backend, ist-schoolido, IST-B2C/Parent-dashboard),
       written by hand; a copy is published as a claude.ai artifact. Update it

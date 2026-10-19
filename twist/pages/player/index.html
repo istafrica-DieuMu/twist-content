@@ -1365,6 +1365,39 @@ function spk(srcs, cls = "") {
 const lines_sound = (id) => { const x = id.split(".")[1]; return x.endsWith(":") ? x[0].repeat(3) : x.length === 1 && !"aeiou".includes(x) ? x.repeat(3) : x[0].toUpperCase() + x.slice(1); };
 const phrase = (g) => { const list = D.phrases[set?.language ?? "de"]?.[g] ?? []; return list[Math.floor(Math.random() * list.length)]; };
 
+// Twist drawn components: every picture and drawing a lesson screen shows.
+// The lesson player inlines this file (pages/player/build.mjs); the app can
+// use the same code. Each drawing is a function of the record's `show` data
+// (assets/drawn.yaml documents the fields) and returns a string: an <svg>
+// for most components, a small HTML block for a few (cards, tables, the
+// sound chart, writing lines, tallies and pictograms).
+//
+// Entry points:
+//   drawn(o, ctx)   one drawn component: o = { drawn: "<id>", ...data }
+//   show(o, ctx)    a task or Learn screen's whole `show`: a picture, two
+//                   pictures, a text card or a drawn component
+//   pic(o, opts)    an object picture, or a counted group of it
+//   ctx: { small: true } draws at option size; { moved: n } animates a
+//   Zwanzigerfeld.
+//
+// What it reads from the page around it (the player defines these; an app
+// that uses this file defines its own):
+//   A            the assets base URL, e.g. "../../assets/" or the CDN base
+//   D.pics       file names of the colour variants in assets/objects/
+//   D.objects    object id -> { de, en, initial, drawn } (assets/objects.yaml)
+//   D.colours    colour name -> hex (the swatches)
+//   set          the lesson set: set.curriculum and set.language pick
+//                currency, number format, place-value letters and script
+//   UI           the lesson's UI strings (UI.planBack, UI.planFront)
+//   SHOWN_ANSWER the task's answer, so a number line hides it ([] on Learn)
+//   esc(s)       HTML escaping
+// It also keeps the handwriting script setting (SCRIPT, from localStorage)
+// and measures text with a canvas for the writing lines.
+//
+// The HTML-based components use the player's CSS classes (.cards, .card,
+// .word, .syl, .wordcard, .trace, .soundchart, .tally, .pairview); see the
+// styles in pages/player/template.html.
+
 /* ---------- pictures and drawn components ---------- */
 // "Scattered" groups sit on a loose grid: one cell each, some cells empty,
 // a small fixed offset per cell. Nothing overlaps, and a group looks the
@@ -1955,6 +1988,7 @@ function drawn(o, ctx = {}) {
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }
 const show = (o, ctx) => !o ? "" : o.objects ? `<div class="pairview">${o.objects.map((id, i) => `<span class="pv" data-i="${i}">${pic({ object: id })}</span>`).join("")}</div>` : o.drawn ? drawn(o, ctx) : o.text != null ? `<span style="font:700 ${String(o.text).length > 14 ? 17 : String(o.text).length > 5 ? 26 : 40}px Andika,sans-serif">${esc(o.text)}</span>` : pic(o);
+
 // A "_" in screen text is a gap to fill: drawn as a box, never as an underscore.
 const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?</span>');
 
