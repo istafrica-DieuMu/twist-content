@@ -138,7 +138,15 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     // A sum: whole numbers on both sides, not inside a number written with a
     // thousands space (34 500 + 30) and not a scale ratio (1 : 100).
     const SUM = /(?<![\d.,])(?<!\d )(\d+)\s*([+−·×÷]|:(?!\s*10+\b))\s*(\d+)(?![\d.,]| \d{3}\b)/g;
-    const learnSums = new Set(lessons.flatMap((l) => (l.activities ?? []).flatMap((a) => (a.screens ?? []).flatMap((sc) => [...String(sc.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`)))));
+    const learnScreens = lessons.flatMap((l) => (l.activities ?? []).flatMap((a) => a.screens ?? []));
+    const learnSums = new Set(learnScreens.flatMap((sc) => [...String(sc.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`)));
+    // A drawn component exactly as a Learn screen draws it is the worked example
+    // too; object pictures are not, since recognising them is often the skill.
+    // Only components whose drawing IS the worked example count; tools (number
+    // line, hundred square, ruler, grid) and contexts read by many questions
+    // (tables, plans, charts, letter cards, shapes) do not.
+    const EXAMPLE = new Set(["dots", "ten-frame", "zwanzigerfeld", "hundred-field", "base-ten", "part-whole", "number-house", "number-wall", "written-calc", "short-division", "rechenstrich", "equation", "place-value-chart", "fraction", "coins", "clock"]);
+    const learnDrawn = new Set(learnScreens.filter((sc) => EXAMPLE.has(sc.show?.drawn)).map((sc) => JSON.stringify(sc.show)));
     const parts = new Map((md.parts ?? []).map((p) => [p.id, p]));
     for (const [id, p] of parts) {
       if (!p.what?.de || !p.what?.en) err(`${file}: metadata.parts ${id} needs what in de and en`);
@@ -266,7 +274,11 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           }
           // Tables, plans and grids belong in a drawn component, not in text lines.
           if (d.id?.split(".")[1] === "math" && typeof t.text === "string" && (/(\n[^\n]{1,30}: [^\n]+){3}/.test("\n" + t.text) || /[■□]{3}/.test(t.text) || /\|.*\|.*\n.*\|/.test(t.text))) warn(`${file}: ${tw}: a table or grid written as text; use the table, grid, bar-chart or cubes component (assets/drawn.yaml)`);
-          if (a.activity === "check") { const hit = [...String(t.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`).find((x) => learnSums.has(x)); if (hit) warn(`${file}: ${tw}: the check asks ${hit}, a worked example on a Learn screen; use other numbers`); }
+          if (a.activity === "check") {
+            const hit = [...`${t.text ?? ""} ${t.frame ?? ""}`.matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`).find((x) => learnSums.has(x));
+            if (hit) warn(`${file}: ${tw}: the check asks ${hit}, a worked example on a Learn screen; use other numbers`);
+            else if (EXAMPLE.has(t.show?.drawn) && learnDrawn.has(JSON.stringify(t.show))) warn(`${file}: ${tw}: the check shows the same ${t.show.drawn} as a Learn screen; change its data`);
+          }
           if (a.activity === "check" && ["skill", "timed"].includes(a.size) && t.type === "speak") warn(`${file}: ${tw}: speaking in a skill check; speech recognition for young children is not reliable enough to decide mastery`);
           refs(t, tw, file);
           const sig = JSON.stringify([t.type, t.text ?? t.say, t.answer, t.show ?? null, t.audio ?? null, t.options ?? null, t.pairs ?? null, t.bins ?? null, t.frame ?? null, t.say ?? null]);

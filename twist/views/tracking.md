@@ -8,10 +8,10 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (28986 / 28986) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (28988 / 28988) |
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (21584 / 21584) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (6317 / 6317) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (56887 / 56887)** |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (56889 / 56889)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (30305 / 30305) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (17323 / 17323) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (6521 / 6521) |
@@ -22,8 +22,8 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 111074 clips, 152.3 h | about $187 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 111074 clips | about $89 | estimated the same way |
+| Narration | google/gemini-3.8-flash-tts | 111076 clips, 152.3 h | about $187 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 111076 clips | about $89 | estimated the same way |
 | **Total** | | | **about $284** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
@@ -32,7 +32,7 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 12083 | 11887 (98%) | 0 | 845 min | $27 |
+| gemini-puck | 12085 | 11889 (98%) | 0 | 845 min | $27 |
 | gemini-puck-en | 6795 | 6614 (97%) | 0 | 454 min | $15 |
 | gemini-sulafat | 44830 | 43998 (98%) | 0 | 3415 min | $105 |
 | gemini-sulafat-en | 47366 | 46234 (98%) | 0 | 4426 min | $128 |
@@ -544,8 +544,9 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-18 | Check pools, batches 2 to 5 (de-DE Mathe Klasse 2 to 4, en-GB maths Reception) | 173 | the new check-pool tasks of 173 sets, written by 13 agents of about 14 sets each and read by 13 more, as a workflow | about 150 fixes (say lines added where existing check tasks had none, stories and questions on screen, near repeats, copies of Practise, wording); 67 questions for a human in docs/plans/2026-10-18-practice-questions.md | see git log, "Check pools batch 2" to "batch 5" |
 | 2026-10-18 | Review of all practice content so far | 225 | every task (Warm-up, Practise and the whole check pools) of the 225 sets with check pools, and the six drill banks; a screen audit rendered every task in the player first; 27 chunks read in two lenses (correctness and the screen, then the child and the language), then a critic across all reports with 8 spot-checks | about 560 fixes in all 225 sets. Player fixes from the audit and the reviewers (ordering draws its show, scattered layouts above 12, screens shrink to fit, words and sums fit their tiles, tables fit, a number line hides its last label when that is the answer, frames break at " | ", a repeated frame text gives way to "Was fehlt?", drawn plans name hinten and vorne). Build warnings for options below zero in the early years and for tables written as text in maths. Brief points 10 to 15 from the critic's patterns | see git log, "Review of all practice content" |
 | 2026-10-19 | Decisions pass (whole-story pictures, digits, no Learn examples in checks) | 82 | de-DE Mathe Klasse 1 and en-GB maths Reception (55 sets, all three decisions) and 27 more finished sets with a check that reused a Learn example; one agent per chunk, a second checking every change | 337 fixes; groups in 166 tasks, gone in 95; the build validates groups and gone and warns on a check that asks a Learn sum (none left in finished sets); the player's answer area shrinks again until a screen fits | see git log, "Decisions pass" |
+| 2026-10-19 | Integration pass (Learn examples in frames and drawings, screens that fit) | 225 | the 225 sets with check pools; the Learn-example rule now also reads a check's frame and its drawn component (base-ten, ten-frame, dots, clock and the other worked-example drawings), which found 18 checks in 12 finished sets; a screen audit of every pool task in the player | 18 checks changed and narrated in both German voices; no Learn-example warning left in finished sets (38 remain in sets still waiting for pools). In the player, a screen that does not fit scales the picture first (to 40%, at least 64px tall), then the question text, then the answer area (to half); drawn options such as clocks and cube towers scale into their square tiles. The audit shows no flags in the 225 sets (before, 17 screens 7 to 21px too tall) | see git log, "Integration pass" |
 
-Open points (11):
+Open points (12):
 
 - A native German speaker reads the screens (a teacher, not a model)
 - Regional words for a teacher to weigh: Mäppchen or Federtasche (an ä task relies on Mäppchen), Möhre or Karotte (picture-name tasks rely on Möhre), Fasching, Geldbeutel, Brötchen, Pulli
@@ -557,6 +558,7 @@ Open points (11):
 - Points from the Reception and Year 1 read for a teacher: the coined sound descriptions (hiss, hush, pop of your lips) against the school's phonics scheme; small letter or lower-case letter; magic e; take away or subtract; × and clockwise in Year 1 (NC Year 2); a pencil said to be shorter than a hand span; Year 1 sets carry ages 6-7
 - Check pools, batch 1: write-numerals-to-10 has no tracing in any check, so writing the numerals is never marked (tracing accepts any ink). Some older check tasks keep the story, the numbers or a strategy only in say (add-meaning l2-c2, l2-c4; compare-to-20 l2-c4; commutative l2-c4, whose say is a hint); a lessons-check rule could flag a check task whose say carries numbers its text lacks
 - Phase 1 pilots, lesson fixes outside the check pools: split-digraphs Practise true/false tasks say the target word aloud ("Hop with an e on the end says hope"); en-food lesson 2 Learn speaks "Here you are. Thank you!" but never shows it; blend-cvc Practise l2-s3 uses fizz and fuss (ss, zz) while Learn teaches only ck and ll; en-food checks l1-c2, l1-c3 and l2-c5 use food words from earlier sets
+- table-7 checks: every n · 7 from 5 to 10 is a Learn sum, so l2-c13 asks 7 · 10 and 7 · 9 (the Learn sum turned round, and c7 in the same pool asks 7 · 9), and l1-c2 and l2-c12 now both use 4 · 7, which two other pool tasks ask. A times-table check has to ask the table's facts; decide whether the Learn-example rule should treat a turned-round fact as the same sum in table sets
 - Phase 1 pilots, format questions for the user before Phases 4 to 6 (practice-content plan): reading checks by passage (2 passages, 2 or 3 questions each) and new texts per pool; phonics parts by sound family, no encoding tasks in reading checks, silent picture options; Reception pools on the set's own letters and about 10 new CVC pictures; Deutsch spelling answer form and dictation with a picture or gap; foreign-language checks on the set's own words with Ja/Nein buttons
 
 Closed:
