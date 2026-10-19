@@ -55,7 +55,12 @@ const server = createServer((req, res) => {
   if (!file) { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
   let st;
   try { st = statSync(file); } catch { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
-  if (!path.endsWith("/") && file.endsWith(`${sep}index.html`) && !path.endsWith("index.html")) { res.writeHead(301, { Location: path + "/" }); return res.end(); }
+  // The target is built from the file's own path under ROOT, never from the
+  // request, so "//other.site/pages/player" cannot redirect off this server.
+  if (!path.endsWith("/") && file.endsWith(`${sep}index.html`) && !path.endsWith("index.html")) {
+    const rel = file.slice(ROOT.length + 1, -"index.html".length).split(sep).join("/");
+    res.writeHead(301, { Location: "/" + rel }); return res.end();
+  }
   const ext = extname(file).toLowerCase(), type = TYPES[ext] ?? "application/octet-stream";
   const etag = `"${st.size.toString(36)}-${st.mtimeMs.toString(36)}"`;
   const headers = { "Content-Type": type, ETag: etag, "Last-Modified": st.mtime.toUTCString(), "Cache-Control": ext === ".html" ? "no-cache" : "private, max-age=86400", "Accept-Ranges": "bytes", "X-Content-Type-Options": "nosniff" };
