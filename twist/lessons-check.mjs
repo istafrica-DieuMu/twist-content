@@ -135,7 +135,9 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     // the skill's part on every task and covers every part in one draw.
     // A check never reuses a Learn screen's worked example (decided 2026-10-19):
     // the sums written on the set's Learn screens, as "7 · 6".
-    const SUM = /(\d+)\s*([+−·×:÷])\s*(\d+)/g;
+    // A sum: whole numbers on both sides, not inside a number written with a
+    // thousands space (34 500 + 30) and not a scale ratio (1 : 100).
+    const SUM = /(?<![\d.,])(?<!\d )(\d+)\s*([+−·×÷]|:(?!\s*10+\b))\s*(\d+)(?![\d.,]| \d{3}\b)/g;
     const learnSums = new Set(lessons.flatMap((l) => (l.activities ?? []).flatMap((a) => (a.screens ?? []).flatMap((sc) => [...String(sc.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`)))));
     const parts = new Map((md.parts ?? []).map((p) => [p.id, p]));
     for (const [id, p] of parts) {
@@ -252,6 +254,16 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           const earlyYear = ["reception", "year-1", "year-2", "klasse-1", "klasse-2"].includes(md.year);
           const swapMisconception = (md.misconceptions ?? []).some((m) => /kleiner\w* minus|minus.*tausch|tausch.*minus|smaller.*bigger|bigger.*smaller|swap|start.*part|Teil an|wrong-start|taken away|weggenommen/i.test(`${m.id} ${m.what}`));
           if (earlyYear && !swapMisconception) for (const o of t.options ?? []) { const m = typeof o === "string" && /^(\d+) − (\d+)$/.exec(o); if (m && +m[1] < +m[2]) warn(`${file}: ${tw}: option "${o}" goes below zero; use a distractor in the year's range, or list the mistake in metadata.misconceptions`); }
+          // A whole story (decided 2026-10-19): groups side by side, or a count with some gone.
+          for (const sh of [t.show, ...(t.options ?? [])]) {
+            if (!sh || typeof sh !== "object" || !sh.object) continue;
+            if (sh.groups) {
+              if (!Array.isArray(sh.groups) || sh.groups.length < 2 || !sh.groups.every((g) => Number.isInteger(g) && g > 0)) err(`${file}: ${tw}: groups is a list of 2 or more whole numbers`);
+              else if (sh.groups.reduce((a, g) => a + g, 0) > 20) warn(`${file}: ${tw}: groups show more than 20 things; keep a story picture to 20`);
+              if (sh.count != null) err(`${file}: ${tw}: a picture takes groups or count, not both`);
+            }
+            if (sh.gone != null && !(Number.isInteger(sh.gone) && sh.gone > 0 && sh.count != null && sh.gone <= sh.count)) err(`${file}: ${tw}: gone is a whole number from 1 to the count`);
+          }
           // Tables, plans and grids belong in a drawn component, not in text lines.
           if (d.id?.split(".")[1] === "math" && typeof t.text === "string" && (/(\n[^\n]{1,30}: [^\n]+){3}/.test("\n" + t.text) || /[■□]{3}/.test(t.text) || /\|.*\|.*\n.*\|/.test(t.text))) warn(`${file}: ${tw}: a table or grid written as text; use the table, grid, bar-chart or cubes component (assets/drawn.yaml)`);
           if (a.activity === "check") { const hit = [...String(t.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`).find((x) => learnSums.has(x)); if (hit) warn(`${file}: ${tw}: the check asks ${hit}, a worked example on a Learn screen; use other numbers`); }

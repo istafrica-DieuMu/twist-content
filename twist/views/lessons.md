@@ -1292,7 +1292,7 @@ Lesson 1 builds the Zehnerzahlen from tens rods (3 Zehner sind 30) and reads the
 | 1. Zehner bündeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. In Zehnerschritten zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 27, matching 6, true_false 11, text_input 6, fill_in_blank 5, ordering 5. Builds on: `math.numbers-to-20.teens`. Misconceptions addressed: 2.
+Task types: multiple_choice 28, matching 5, true_false 11, text_input 6, fill_in_blank 5, ordering 5. Builds on: `math.numbers-to-20.teens`. Misconceptions addressed: 2.
 
 ## Volle und halbe Stunden (O'clock and half past)
 
@@ -7533,7 +7533,7 @@ Double facts to 10 (the Early Learning Goal) and sharing fairly into two equal g
 | 1. Verdoppeln | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Gerecht teilen | yes | 19 | learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 4 of 20) |
 
-Task types: multiple_choice 24, true_false 24, image_multiple_choice 8. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 23, true_false 25, image_multiple_choice 8. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Gerade und ungerade Zahlen (Odd and even)
 
@@ -7547,7 +7547,7 @@ Odd and even numbers within 10 (the Early Learning Goal): even numbers make pair
 | 1. Paare bilden | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Gerade oder ungerade? | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: true_false 22, image_multiple_choice 20, multiple_choice 14. Builds on: `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
+Task types: true_false 21, image_multiple_choice 21, multiple_choice 14. Builds on: `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
 
 ## Ergänzen bis 10 (How many more?)
 
@@ -7631,7 +7631,7 @@ Counting beyond ten: a full ten frame is ten, and the numbers to 20 are ten and 
 | 1. Weiter als zehn | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zehn und noch ein paar | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: multiple_choice 24, true_false 18, image_multiple_choice 14. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 21, true_false 21, image_multiple_choice 14. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Das Alphabet und die Buchstabennamen (The alphabet and letter names)
 

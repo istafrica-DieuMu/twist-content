@@ -910,8 +910,11 @@ function shrinkToFit(body, vis) {
   const q = body.querySelector(".bubbleq .t");
   for (let fs = q ? parseFloat(getComputedStyle(q).fontSize) : 0; q && over() > 2 && fs > 15; ) { fs -= 1; q.style.fontSize = `${fs}px`; q.style.lineHeight = "1.25"; }
   const area = [...body.children].filter((c) => c.matches(".opts, .cards, .pairs, .bins, .chips, .tf, .pad, .frame")).sort((x, y) => y.getBoundingClientRect().height - x.getBoundingClientRect().height)[0];
-  if (area && over() > 2) {
-    const h = area.getBoundingClientRect().height, z = Math.max(0.55, (h - over() - 2) / h);
+  // Measured again each round: the answer area's own layout changes as it scales.
+  for (let i = 0; area && i < 4 && over() > 2; i++) {
+    const z0 = parseFloat(area.style.zoom || "1"), h = area.getBoundingClientRect().height;
+    const z = Math.max(0.5, z0 * (h - over() - 2) / h);
+    if (z >= z0 - 0.005) break;
     area.style.zoom = z.toFixed(3);
   }
 }
