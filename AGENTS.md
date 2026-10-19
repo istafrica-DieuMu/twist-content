@@ -35,8 +35,11 @@ git repo kept separate from schoolido-learning.
       `node twist/pages/rewards/build.mjs`; never edit index.html by hand.
     - sources/: where every text, picture and sound on a lesson screen comes
       from (the player's label, the v2 field, the record key or asset file,
-      the S3 key), written by hand; a copy is published as a claude.ai
-      artifact. Update it when a screen, a record key or an asset path changes.
+      the S3 key), written by hand except its Drawings section, which
+      `node twist/pages/sources/drawn.cjs` (needs Playwright) writes with a
+      picture of every drawn component from the player; a copy is published
+      as a claude.ai artifact. Update it when a screen, a record key or an
+      asset path changes.
     - handoff/: the handoff to the backend, mobile app and parent dashboard
       teams (IST-B2C/backend, ist-schoolido, IST-B2C/Parent-dashboard),
       written by hand; a copy is published as a claude.ai artifact. Update it
