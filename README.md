@@ -99,6 +99,9 @@ is needed.
 
 ## Serve the player on a server
 
+The full runbook for the host (deploy key, systemd, Caddy or nginx, checks,
+updates, troubleshooting) is `twist/pages/hosting/index.html`. In short:
+
 `twist/serve.mjs` serves the player with its Practice, Drawings and Task
 types tabs from a clone, behind basic auth. It needs only Node 22 or newer;
 no npm install, no build: the built player, the pictures and the narration
@@ -116,6 +119,9 @@ are all in the repo.
    cd twist-content
    TWIST_USER=twist TWIST_PASS='a long password' PORT=8080 node twist/serve.mjs
    ```
+
+   It listens on 127.0.0.1 only; `HOST=0.0.0.0` opens it to the network
+   (only behind a firewall that keeps the port closed to the outside).
 
    `/` opens the player. Only `twist/pages/` and `twist/assets/` are
    served; lesson files and the rest of the repo are not.
