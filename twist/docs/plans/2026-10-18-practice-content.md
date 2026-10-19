@@ -193,3 +193,29 @@ before writing them; drills-check.mjs then checks it.
   the pilot sets show the format.
 - Narration of about 16,600 new lines in the check voices.
 - The foreign-language drill item format.
+
+## Later: more volume
+
+Decided 2026-10-19: the first version keeps skill checks at 20, quick checks
+at 6 and the Practise stages as they are. More volume comes after launch,
+where children's data shows it is needed. The two options weighed, as of
+225 of 918 sets done:
+
+| Option | New tasks | Narration | Notes |
+|---|---|---|---|
+| Skill checks 20 to 30 | about 9,200 (10 x 918 sets) | about 9,000 clips | A draw of 5 already gives 4 fully different attempts at 20; little gain |
+| Quick checks 6 to 9 | about 2,900 (3 x 974) | about 3,000 clips | Seen once per lesson and not counted; little gain |
+| Double all Practise stages | about 29,500 (15.6 per lesson x 1,892 lessons) | about 75,000 clips (hints and feedback) | Practice draws mostly on the no-help stage; full and some help serve lessons |
+| **Preferred: a practice bank** of 10 no-help tasks per skill, for practice and recaps only | about 9,200 | about 9,000 clips | No hints or feedback; raises each skill's no-help and check tasks from about 32 to 42 |
+
+Before adding volume:
+
+- **Measure first.** The backend records `seen` per task; report, by skill,
+  when children start meeting tasks they have already done, and add tasks
+  only there.
+- **Protect check freshness in the rules:** practice takes check tasks only
+  after a skill's no-help tasks run out (a change in practice-rules.mjs with
+  a test), and records `lastCheck`.
+- **Drill banks** (above) are the cheap way to give long repetition for
+  facts and words to know by heart.
+

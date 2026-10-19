@@ -387,4 +387,6 @@ may change shape before the home languages (a draw by passage, 2 texts
 with 2 or 3 questions each); that is open in the plan.
 
 About 13,800 skill-check tasks, 2,900 quick-check tasks and 24 more drill
-banks in all; 30 drill banks when done.
+banks in all; 30 drill banks when done. More volume (bigger pools, a practice bank of no-help tasks) waits until
+after launch, when children's data shows where it is needed: the options and
+their size are in the plan, "Later: more volume".
