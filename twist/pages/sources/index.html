@@ -1,0 +1,262 @@
+<title>Twist Screen Sources</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a reference page beside "Twist Mobile API v2": sticky contents on the left, one section per screen, each row label → v2 field → twist-content source. Same tokens as that page so they read as a pair. */
+:root{--bg:#faf8ff;--surface:#fff;--ink:#24123d;--muted:#64587b;--line:#e3dcf0;--accent:#6849dd;--accent-soft:#efeafd;--code-bg:#f4f1fb;--warn:#a1520b;--warn-soft:#fdf0e2;--ok:#1d7a4c;--ok-soft:#e5f6ec;
+--body:"Source Sans 3","Segoe UI",system-ui,sans-serif;--display:"Andika","Trebuchet MS",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13101b;--surface:#1b1626;--ink:#ece7f7;--muted:#a79dbe;--line:#2f2742;--accent:#a48cff;--accent-soft:#2a2143;--code-bg:#181322;--warn:#f0a35c;--warn-soft:#33220f;--ok:#6fd39c;--ok-soft:#12291c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13101b;--surface:#1b1626;--ink:#ece7f7;--muted:#a79dbe;--line:#2f2742;--accent:#a48cff;--accent-soft:#2a2143;--code-bg:#181322;--warn:#f0a35c;--warn-soft:#33220f;--ok:#6fd39c;--ok-soft:#12291c;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 var(--body)}
+.layout{max-width:1220px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:210px minmax(0,1fr);gap:48px}
+nav{position:sticky;top:20px;align-self:start;display:grid;gap:2px;font-size:.9rem}
+nav .label{font:600 .75rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;border-left:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);background:var(--accent-soft);border-left-color:var(--accent);outline:none}
+nav a.on{color:var(--accent);font-weight:600;background:var(--accent-soft);border-left-color:var(--accent)}
+main{min-width:0}
+h1,h2,h3{font-family:var(--display);line-height:1.2;text-wrap:balance}
+h1{font-size:clamp(1.9rem,5vw,2.7rem);margin:0 0 14px}
+h2{font-size:1.55rem;margin:56px 0 14px;scroll-margin-top:16px;padding-top:24px;border-top:1px solid var(--line)}
+h3{font-size:1.15rem;margin:28px 0 8px}
+.lede{font-size:1.1rem;color:var(--muted);max-width:72ch;margin:0 0 18px}
+p,li{max-width:76ch}
+ul,ol{padding-left:1.3em}
+li{margin:4px 0}
+a{color:var(--accent);text-underline-offset:2px;overflow-wrap:anywhere}
+code{font-family:var(--mono);font-size:.84em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font:400 .82rem/1.6 var(--mono)}
+pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:760px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font:600 .74rem/1.3 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--code-bg)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+.tag{display:inline-block;font:600 .72rem/1.5 var(--body);letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.t-in{background:var(--ok-soft);color:var(--ok)}
+.t-add{background:var(--warn-soft);color:var(--warn)}
+.t-calc{background:var(--accent-soft);color:var(--accent)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 10px 10px 0;max-width:80ch;margin:16px 0}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.note p{margin:0}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:18px 0}
+.flow div{flex:1 1 170px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.9rem}
+.flow b{display:block;font-family:var(--display);font-size:1rem;margin-bottom:2px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:.9rem;color:var(--muted);margin:10px 0}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr);gap:20px;padding-block:24px 60px}nav{position:static;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}nav .label{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<div class="layout">
+<nav aria-label="Contents"><span class="label">Contents</span>
+<a href="#read">How to read this</a><a href="#pipeline">From the repo to the screen</a><a href="#media">Media kinds</a><a href="#audio">Finding a narration clip</a>
+<a href="#start">Lesson start</a><a href="#intro">Activity intro</a><a href="#learn">Learn screen</a><a href="#task">Task screen</a><a href="#stage">Stage change</a><a href="#check">Check intro</a><a href="#end">Lesson end</a>
+<a href="#unused">Keys no screen shows</a><a href="#gaps">Changes for the v2 page</a></nav>
+<main>
+<h1>Twist Screen Sources</h1>
+<p class="lede">Where every text, picture and sound on a Twist lesson screen comes from: the label the lesson player gives it, the field in the v2 lesson payload that carries it, and the key in the twist-content records or the file in <code>twist/assets/</code> behind it. A companion to the <b>Twist Mobile API v2</b> page.</p>
+
+<h2 id="read">How to read this</h2>
+<p>The labels are the R&amp;D lesson player's own names for the parts of each screen. Turn on <b>Settings › Label the parts</b> in <code>twist/pages/player/index.html</code> to see them on the live screen; <b>Screen anatomy</b> lists them too. Each row below adds what that list leaves out: the v2 field and the exact source.</p>
+<div class="legend"><span><span class="tag t-in">in v2</span> the field exists in the v2 types</span><span><span class="tag t-add">add to v2</span> the screen needs it and v2 does not carry it yet</span><span><span class="tag t-calc">app works it out</span> computed on the device from other fields</span></div>
+<p>Paths in the source column are relative to <code>twist/</code> in <code>istafrica-DieuMu/twist-content</code>. A lesson's record is <code>lessons/&lt;curriculum&gt;/&lt;year&gt;/&lt;subject&gt;/&lt;skill-slug&gt;.yaml</code>; "set" means that file, "lesson" one entry of its <code>lessons[]</code>.</p>
+
+<h2 id="pipeline">From the repo to the screen</h2>
+<div class="flow">
+<div><b>1. Records and assets</b>Lessons, skills, phrases, voices and every picture and clip live in twist-content: <code>lessons/</code>, <code>competencies/</code>, <code>assets/</code>.</div>
+<div><b>2. Converter</b>Reads the records, resolves every picture, pose and clip to an asset path, and writes the importer's JSON. Who builds it is the open decision on the handoff page; the v2 mock already does this conversion.</div>
+<div><b>3. Asset upload</b>Each file in <code>twist/assets/</code> is uploaded once per content version, keeping its path.</div>
+<div><b>4. Backend</b>Stores the lesson JSON and returns absolute URLs in <code>GET /v2/lessons/{lessonId}</code>.</div>
+<div><b>5. App</b>Caches the JSON per <code>contentVersion</code> and the media its media cache finds in it; draws the drawn components itself.</div>
+</div>
+<h3 id="s3">Where the files go: S3, as the backend does today</h3>
+<p>The backend already serves lesson media this way (IST-B2C, read on 19 Oct 2026; the content-import CDN runbook is <code>docs/runbooks/content-import-asset-cdn-cutover.md</code>). Twist uses the same bucket and the same path; only the key prefix is new.</p>
+<div class="tw"><table>
+<tr><th>Part</th><th>Today (schoolido-learning content)</th><th>Twist</th></tr>
+<tr><td>Bucket</td><td>The one named in <code>AWS_STORAGE_BUCKET_NAME</code> (<code>aws.s3.bucket-name</code>), region <code>AWS_S3_REGION_NAME</code>, default <code>eu-central-1</code>. No repo holds the dev, stage or prod name; local MinIO uses <code>ist-b2c-local</code></td><td>The same bucket</td></tr>
+<tr><td>Key</td><td><code>content-assets/{loi}/{module folder}/{ref}</code>, e.g. <code>content-assets/en/grade-1/…/visuals/opener.png</code></td><td><code>content-assets/twist/{path under twist/assets}</code>, e.g. <code>content-assets/twist/objects/apple.png</code>, <code>content-assets/twist/mascot/topic-numbers.png</code>, <code>content-assets/twist/narration/gemini-puck/efda3fae8a.mp3</code></td></tr>
+<tr><td>Registry</td><td><code>entity_asset</code>: the key is the id and the S3 object key; <code>status</code> PENDING or UPLOADED; <code>sha256</code></td><td>The same: the converter records every key a lesson uses</td></tr>
+<tr><td>Stored in the lesson</td><td>Keys, never URLs (<code>ServiceContentImport.assetKey()</code>)</td><td>Keys</td></tr>
+<tr><td>URL the app gets</td><td><code>{ASSET_BASE_URL}/{key}?v={sha256[0..8]}</code> for an UPLOADED key, <code>null</code> otherwise (<code>ComponentAssetUrlComposer</code>, applied to every <code>content-assets/</code> string in a response)</td><td>The same; the v2 payload's absolute URLs come from here</td></tr>
+<tr><td>Host</td><td><code>ASSET_BASE_URL</code>: a CloudFront distribution in production (origin access control; cache keyed on <code>v</code> only, so no invalidations), or the proxy <code>/api/v1/storage/files</code> when empty</td><td>The same</td></tr>
+<tr><td>Upload</td><td>Presigned PUT or multipart <code>POST /api/v1/admin/content/assets/publish</code>; objects get <code>public, max-age=31536000, immutable</code></td><td>Upload only the files some lesson references: 3.2 GB of the 3.4 GB of narration (older clips of changed lines are left out); a clip's name is already a hash of its words, so a changed line is a new key</td></tr>
+</table></div>
+<div class="note warn"><p><b>Two things to settle with the backend team:</b> the <code>twist/</code> prefix (or a separate bucket), and whether mascot poses and the task-screen mascot ship in the app, as today's mascots do, or come from S3 as <code>config.mascot</code> URLs, as the v2 types say.</p></div>
+
+<h2 id="media">Media kinds</h2>
+<p>The app never builds a media URL itself; the backend sends absolute URLs. This table is for the converter and the upload: how each kind of file is named and which record key picks it.</p>
+<div class="tw"><table>
+<tr><th>Kind</th><th>File in twist/assets</th><th>Picked by</th><th>v2 field</th><th>How many</th></tr>
+<tr><td>Object pictures</td><td><code>objects/&lt;object&gt;.png</code>, or <code>objects/&lt;object&gt;.&lt;colour&gt;.png</code> for a colour version</td><td>A record's <code>object</code> (in <code>show</code>, an option, a pair side); <code>colour</code> picks the colour file when it exists, else the plain file. Ids and words: <code>assets/objects.yaml</code></td><td><code>show.image</code>, <code>show.images[]</code>, <code>option.image</code>, <code>option.show.image</code>, <code>show.imageUrls</code></td><td>326 files</td></tr>
+<tr><td>Mascot poses</td><td><code>mascot/&lt;screen&gt;-&lt;1..3&gt;.png</code> (start, warmup, learn, practise, stage, check, end)</td><td>The screen kind, then one of three by rotation (see Activity intro)</td><td><code>config.mascot[kind][]</code></td><td>21</td></tr>
+<tr><td>Topic poses</td><td><code>mascot/topic-&lt;id&gt;.png</code></td><td><code>assets/mascot.yaml</code> <code>topics[]</code>: the skill's topic (<code>competencies/</code> <code>topic.en</code>), or for the language lessons the domain and curriculum</td><td><code>lesson.topicImage</code>, <code>pathSkill.topicImage</code></td><td>24</td></tr>
+<tr><td>Task-screen mascot</td><td><code>pages/player/mascot.png</code> (from <code>mascot/refs/standing.png</code>)</td><td>Always the same</td><td>Ship in the app</td><td>1</td></tr>
+<tr><td>Narration</td><td><code>narration/&lt;voice&gt;/&lt;line-id&gt;.mp3</code></td><td>Every spoken text: <code>say</code>, or <code>text</code> when there is no say; see the next section</td><td>Every <code>audio</code> field</td><td>about 111,000 clips, 3.4 GB in 4 voices</td></tr>
+<tr><td>Sounds</td><td><code>narration/&lt;voice&gt;/sounds/&lt;sound-id&gt;.mp3</code> (<code>de.a:</code> becomes <code>de.a-long</code>)</td><td><code>screens[i].sound</code>, a task's <code>audio.sound</code> or <code>audio.sounds[]</code>; ids in <code>assets/sounds.yaml</code></td><td><code>screen.sound</code>, <code>interaction.targetAudio[]</code></td><td>per voice</td></tr>
+<tr><td>Drawn components</td><td>None: the app draws them</td><td><code>show.drawn</code> plus its data, as in <code>assets/drawn.yaml</code> (37 components); the player's <code>template.html</code> is the reference drawing</td><td><code>show.drawn</code> and its data; pictures inside one in <code>show.imageUrls</code> (a pictogram's <code>pictogram_object</code>)</td><td>37 kinds</td></tr>
+<tr><td>Badge art</td><td><code>badges/&lt;id&gt;.svg</code> and <code>&lt;id&gt;.gold.svg</code></td><td>Badge ids in <code>docs/rewards.md</code></td><td>Badge responses (later)</td><td>64</td></tr>
+<tr><td>Fonts</td><td>Not in the repo</td><td>Red Hat Display and Red Hat Text for the app frame, Andika for task text</td><td>Ship in the app</td><td></td></tr>
+</table></div>
+
+<h2 id="audio">Finding a narration clip</h2>
+<p>A clip's file name is a hash of the words it speaks, so the converter finds it from the text alone and identical lines share one clip.</p>
+<pre><code>line-id = sha1( lang + "|" + spoken(text) ).hex[0..10]
+file    = narration/&lt;voice&gt;/&lt;line-id&gt;.mp3</code></pre>
+<ul>
+<li><b>lang</b> is the set's <code>language</code> (<code>de</code> or <code>en</code>); a target-language line (English in an Englisch lesson, French) uses <code>target_language</code>.</li>
+<li><b>spoken()</b> rewrites what is written for the screen into what is said: <code>+</code> plus, <code>−</code> minus, <code>=</code> gleich / equals, <code>_</code> wie viel / what, numbers into words in German, <code>5,70 €</code> into "fünf Euro siebzig", <code>×</code> and fractions into words in English. Two copies must stay identical: <code>assets/tools/narration.py</code> <code>spoken()</code> and <code>pages/player/build.mjs</code> <code>spoken()</code>. The converter must use the same rule, or import one of them.</li>
+<li><b>Which text:</b> a task's <code>say</code> if it has one, else its <code>text</code>. Options, hints, feedback, Learn screens, lesson titles and phrases are each their own line.</li>
+<li><b>Index:</b> <code>assets/narration/lines.yaml</code> lists every line (id, language, text, where it is used, its voices); <code>assets/narration/&lt;voice&gt;.yaml</code> logs each made clip and its listening check.</li>
+</ul>
+<h3>Which voice</h3>
+<div class="tw"><table>
+<tr><th>Line</th><th>de-DE</th><th>en-GB</th><th>Rule</th></tr>
+<tr><td>Teaching, Warm-up, Learn, Practise, lesson titles, most phrases</td><td><code>gemini-sulafat</code></td><td><code>gemini-sulafat-en</code></td><td><code>assets/voices.yaml</code> <code>chosen</code></td></tr>
+<tr><td>Every Check task and the check_start phrase</td><td><code>gemini-puck</code></td><td><code>gemini-puck-en</code></td><td><code>assign.check</code>, <code>assign.phrases.check_start</code></td></tr>
+<tr><td>A character's line (<code>audio.speaker</code>)</td><td>male: puck, female: sulafat</td><td>male: puck-en, female: sulafat-en</td><td><code>speakers</code></td></tr>
+</table></div>
+<div class="note"><p><b>A check pool changes the voice of nothing:</b> all 20 tasks of a pool are Check tasks and spoken by the check voice. The same task text drawn into a practice session still plays the check voice's clip.</p></div>
+
+<h2 id="start">Lesson start</h2>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>Set title (header)</td><td>The name of the skill's lessons</td><td><code>lesson.skillTitle</code></td><td>Set <code>title[lang]</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Topic pose</td><td>The mascot holding the topic (a clock for time, beads for numbers)</td><td><code>lesson.topicImage</code></td><td><code>assets/mascot.yaml</code> <code>topics[]</code> by the skill's topic; file <code>mascot/topic-&lt;id&gt;.png</code>. A set with no matching topic gets a start pose</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Subject</td><td>Mathe, Deutsch, Englisch, Maths, English, French, in the subject's colour</td><td><code>subjectId</code>; name from <code>Subject.name</code>; colour <span class="tag t-add">add</span> to <code>config.colours</code> by subject</td><td>The set id's second part (<code>de-DE.<b>math</b>.table-7</code>). Colours today in the player: maths <code>#0E8654</code>, Deutsch <code>#C44D00</code>, English and Englisch <code>#1971C0</code>, French <code>#6849dd</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Lesson title</td><td>Big, under the subject</td><td><code>lesson.title</code>, spoken <code>lesson.titleAudio</code></td><td>Lesson <code>title[lang]</code>; clip of that title in the lesson voice</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Lesson dots</td><td>One dot per lesson of the set: done, today, to come</td><td><code>lessonNumber</code>, <code>lessonCount</code></td><td>Position in the set's <code>lessons[]</code>; done comes from progress</td><td><span class="tag t-calc">app works it out</span></td></tr>
+<tr><td>Goal (Mein Ziel / My goal)</td><td>The "I can" sentence</td><td><code>lesson.canDo</code></td><td>The skill's <code>can_do[lang]</code> in <code>competencies/&lt;domain&gt;/*.yaml</code>, found by the set's <code>skill</code> id. <b>Not</b> the set's <code>summary</code>, which no screen shows</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Main button</td><td>Los geht's / Start</td><td>App strings</td><td>UI text in the lesson's <code>language</code>, not the device's</td><td><span class="tag t-calc">app</span></td></tr>
+</table></div>
+
+<h2 id="intro">Activity intro</h2>
+<p>Shown before Warm-up, Learn and Practise. The Check has its own intro below.</p>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>Activity badge, title</td><td>The activity's number and name in the header</td><td><code>activityNumber</code>; name from <code>config.activityNames[activityType]</code></td><td>The activity's place in the lesson's <code>activities[]</code> and its <code>activity</code>; Practise adds the stage (mit Hilfe, weniger Hilfe, allein)</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Lesson path</td><td>Every activity of the lesson, done ticked, current named</td><td>The lesson's <code>activities[]</code></td><td>Lesson <code>activities[].activity</code></td><td><span class="tag t-calc">app works it out</span></td></tr>
+<tr><td>Activity pose</td><td>The mascot on a disc in the subject colour</td><td><code>config.mascot.warmup|learn|practise[]</code></td><td>Three per kind; the player picks <code>(sum of the set id's character codes + lesson n) mod 3</code>, so neighbouring lessons differ and a lesson always shows the same pose. The app should use the same rule</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Activity name</td><td>Aufwärmen, Lernen, Üben</td><td><code>config.activityNames</code></td><td>Player names, by language</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Spoken line</td><td>"Auf geht's, wir üben."</td><td><code>config.phrases.warmup_start|learn_start|practise_start[]</code></td><td><code>assets/phrases.yaml</code>; one at random, with its clip</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>What comes next</td><td>"5 short explanations", "15 Aufgaben: erst mit Hilfe, dann allein" and the three help levels</td><td>Count of <code>screens</code> or of the Practise tasks across its stages</td><td>Lengths of the activity's <code>screens</code> and <code>stages[].tasks</code>. v2 splits Practise into three activities, so the app counts all three</td><td><span class="tag t-calc">app works it out</span></td></tr>
+</table></div>
+
+<h2 id="learn">Learn screen</h2>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>Visual</td><td>A picture or a drawn component</td><td><code>screen.show</code></td><td><code>screens[i].show</code>; pictures from <code>objects/</code>, drawn components drawn by the app</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Learn text</td><td>One big line, or a card of lines</td><td><code>screen.text</code></td><td><code>screens[i].text</code>; hidden in a no-reading set (<code>metadata.no_reading</code>)</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Speaker</td><td>Plays the screen</td><td><code>screen.audio[]</code></td><td>Clip of <code>screens[i].say</code>, or of <code>text</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Sound button</td><td>A recorded sound (a letter's sound)</td><td><code>screen.sound</code></td><td><code>screens[i].sound</code>, file under <code>narration/&lt;voice&gt;/sounds/</code></td><td><span class="tag t-in">in v2</span></td></tr>
+</table></div>
+
+<h2 id="task">Task screen</h2>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>Activity title</td><td>"Üben · mit Hilfe", "Zeig, was du kannst"</td><td><code>activityType</code></td><td>The activity, and for Practise the stage's <code>support</code> (full, some, none)</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Progress bar</td><td>Screens and tasks done in the lesson</td><td>Counts</td><td>All Learn screens and tasks of the lesson</td><td><span class="tag t-calc">app works it out</span></td></tr>
+<tr><td>Prompt</td><td>The question in the speech bubble</td><td><code>task.text</code></td><td>Task <code>text</code>. Hidden in a no-reading set. When the text only repeats the gap frame, the player shows "Was fehlt?" / "What is missing?" instead (85 tasks)</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Prompt speaker</td><td>Plays the question, then the target sound or word</td><td><code>task.audio[]</code>, then <code>interaction.targetAudio[]</code></td><td>Clip of <code>say</code> (or <code>text</code>); <code>audio</code> (a word, a dialogue as <code>turns</code> in their speakers' voices, or bank <code>sound</code>/<code>sounds</code>)</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Visual</td><td>Pictures, counted groups, a drawn component</td><td><code>task.show</code></td><td>Task <code>show</code>: <code>object</code> + <code>count</code> + <code>layout</code> (row, scattered), <code>objects[]</code>, <code>colour</code>, <code>crossed</code>, <code>flash</code>, or <code>drawn</code> + data</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Answer area</td><td>Tiles, Yes and No, keypad, gap chips, pairs, bins, slots, the microphone</td><td><code>options[]</code>, <code>interaction</code></td><td>Task <code>options</code>, <code>answer</code>, <code>frame</code>, <code>keyboard</code>, <code>pairs</code>, <code>bins</code>, <code>slot_count</code>, <code>spans</code>, <code>expected_text</code>, <code>keep_order</code>; see <code>docs/task-types.md</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Option speaker</td><td>Says an option aloud</td><td><code>option.audio</code></td><td>Clip of the option's text or its picture's word (<code>objects.yaml</code> label); <code>null</code> when <code>option_audio: false</code> or when hearing it gives the answer away</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Feedback sheet, right</td><td>Green, a praise phrase, moves on by itself</td><td><code>config.phrases.correct[]</code></td><td><code>assets/phrases.yaml</code> <code>correct</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Feedback sheet, not yet</td><td>The chosen option's feedback, then a hint</td><td><code>option.feedback</code>, <code>task.feedback[]</code>, <code>hints[]</code></td><td>Task <code>feedback</code> (keyed by option) and <code>hints[]</code>, each with its clip</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Hint</td><td>One per miss with full help, one with some help</td><td><code>hints[]</code></td><td>Task <code>hints</code>: 3 in a full stage, 1 in a some stage, none after</td><td><span class="tag t-in">in v2</span></td></tr>
+</table></div>
+<h3>Drawing rules the app must copy</h3>
+<ul>
+<li><b>A number line hides its answer.</b> On a Rechenstrich, when the task's answer is the last landing point, that label reads "?" (31 tasks). Learn screens show the whole line.</li>
+<li><b>Frames break at <code>" | "</code>.</b> In a fill-in frame the separator starts a new line; no bar is drawn.</li>
+<li><b>Ordering tasks draw their <code>show</code></b> above the cards (150 tasks have a picture or chart).</li>
+<li><b>Scattered groups of more than 12</b> use a wider grid.</li>
+<li><b>A screen gives way in turn</b> when it does not fit: the picture, then the question text, then the answer area, so controls are never cut off. Tile text shrinks so a sum never breaks over two lines.</li>
+<li><b>A drawn Bauplan</b> names its rows hinten and vorne (back and front).</li>
+<li><b>A pictogram</b> takes <code>per</code> for what one picture stands for; <code>key</code> is an option's id.</li>
+</ul>
+
+<h2 id="stage">Stage change</h2>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>Stage pose</td><td>Thumbs up, clapping, a star</td><td><code>config.mascot.stage[]</code></td><td><code>mascot/stage-&lt;1..3&gt;.png</code>, by stage</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Praise</td><td>"Toll, weiter so!"</td><td><code>config.phrases.stage_done[]</code></td><td><code>assets/phrases.yaml</code> <code>stage_done</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Next stage, help levels</td><td>"Jetzt mit weniger Hilfe" and the levels with the new one lit</td><td>The next <code>activityType</code></td><td>The next stage's <code>support</code></td><td><span class="tag t-calc">app works it out</span></td></tr>
+</table></div>
+
+<h2 id="check">Check intro</h2>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>Check pose</td><td>Clipboard, cape, sleeves rolled up</td><td><code>config.mascot.check[]</code></td><td><code>mascot/check-&lt;1..3&gt;.png</code>, same rotation as the intro</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Check title</td><td>"Jetzt zeigst du, was du kannst."</td><td><code>config.phrases.check_start[]</code></td><td><code>phrases.yaml</code> <code>check_start</code>, in the check voice</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Check rules, dots</td><td>"5 Aufgaben, ohne Tipps. Es zählt der erste Versuch." with one dot per task</td><td>The tasks sent for this attempt</td><td>The check's <code>draw</code> (5, or 4 at ages 4 to 5; 3 for a quick check), or all its tasks when it has no <code>draw</code></td><td><span class="tag t-add">add to v2</span></td></tr>
+</table></div>
+
+<h2 id="end">Lesson end</h2>
+<div class="tw"><table>
+<tr><th>Label</th><th>Shows</th><th>v2 field</th><th>twist-content source</th><th></th></tr>
+<tr><td>End pose</td><td>Trophy, medal, confetti</td><td><code>config.mascot.end[]</code></td><td><code>mascot/end-&lt;1..3&gt;.png</code></td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Lesson finished, spoken line</td><td>"Stunde geschafft!", "Geschafft!"</td><td><code>config.phrases.lesson_done[]</code></td><td><code>phrases.yaml</code> <code>lesson_done</code>, back in the lesson voice</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Score card</td><td>Per cent right first time in the Check, stars</td><td><code>submit.scorePercent</code>, <code>starsEarned</code></td><td>Results of the Check tasks</td><td><span class="tag t-in">in v2</span></td></tr>
+</table></div>
+
+<h2 id="unused">Keys no screen shows</h2>
+<p>These keys are in every lesson file but drive no text on screen. Some steer what the backend picks; the rest are for authors and the build.</p>
+<div class="tw"><table>
+<tr><th>Key</th><th>Used for</th><th>Who needs it</th></tr>
+<tr><td><code>summary</code></td><td>What the set teaches, lesson by lesson, for authors and reviewers. The goal on screen comes from the skill's <code>can_do</code></td><td>Nobody at runtime</td></tr>
+<tr><td><code>metadata.parts</code>, a check's <code>draw</code>, a task's <code>part</code></td><td>Which 5 of a 20-task pool an attempt shows (<code>drawCheck</code>, one task of every part)</td><td>Backend</td></tr>
+<tr><td><code>metadata.builds_on</code>, <code>also_practises</code></td><td>Warm-up recaps and practice sessions pick earlier skills</td><td>Backend</td></tr>
+<tr><td><code>metadata.ages</code></td><td>Age band: recap gaps, skill-check pass mark, draw 4 or 5</td><td>Backend</td></tr>
+<tr><td><code>metadata.lesson_minutes</code></td><td><code>estimatedMinutes</code> on the path</td><td>Backend</td></tr>
+<tr><td><code>metadata.topic</code>, <code>year</code></td><td>Path grouping, <code>topicName</code>, <code>yearId</code></td><td>Backend</td></tr>
+<tr><td><code>metadata.no_reading</code></td><td><code>noReading</code>: hide task and Learn text, rely on audio and pictures</td><td>Backend and app</td></tr>
+<tr><td><code>metadata.dashes</code></td><td>Records write a dash as " - "; the screen shows a real dash. Clips are made from the original text</td><td>Converter</td></tr>
+<tr><td><code>difficulty</code></td><td><code>task.difficulty</code> (easy, core, stretch)</td><td>Backend</td></tr>
+<tr><td><code>metadata.vocabulary</code>, <code>misconceptions</code>, <code>forms</code>, <code>drawn</code>, <code>facets</code>, <code>twist_reuse</code>, <code>status</code>, <code>version</code>, <code>authored</code></td><td>Authoring, review and the build's checks</td><td>Nobody at runtime</td></tr>
+</table></div>
+
+<h2 id="gaps">Changes for the v2 page</h2>
+<p>The v2 page was agreed on 16 Oct 2026 at content version <code>eb9c2e7f</code>. The content has moved since; these are the points where the screens and the contract now differ.</p>
+<ol>
+<li><b>Check pools.</b> A <code>CHECK</code> activity can hold 20 tasks with <code>draw: 5</code> and a <code>part</code> on each (6 with <code>draw: 3</code> for a quick check). The backend draws one attempt with <code>drawCheck</code> (twist/pages/player/practice-rules.mjs) and sends only those tasks; it stores the last attempt so the next one differs. 225 of 918 sets have pools so far.</li>
+<li><b>Skill states.</b> <code>SECURE</code> is now <code>can_do</code>, <code>MASTERED</code> is <code>remembered</code>, <code>NEEDS_RECAP</code> is <code>needs_refresh</code>, and recaps follow the age band (1, 4, 10 days at ages 4 to 5; 2, 7, 14 at 6 to 7; 2, 7, 21 at 8 to 10). See docs/lesson-anatomy.md, Mastery.</li>
+<li><b>Subject colours</b> in <code>config.colours</code>, keyed by subject, for the start screen, the activity screens and the progress bar.</li>
+<li><b>Pose rotation:</b> state the player's rule (above) so the app and the player show the same pose.</li>
+<li><b>Practice:</b> drill banks (twist/drills/) and practice sessions as in docs/practice.md.</li>
+<li><b>The drawing rules</b> listed under Task screen.</li>
+</ol>
+<h3>What today's app does with these fields</h3>
+<p>From ist-schoolido (read on 19 Oct 2026). These are the places where the current app would lose something a Twist screen needs.</p>
+<ul>
+<li><b>The goal is never shown.</b> The module's learning objective is read into <code>module_metadata.description</code> and no screen uses it; Twist shows <code>canDo</code> on every lesson start.</li>
+<li><b>Hint audio never plays</b> and <b>feedback audio is dropped</b> in the adapter; every Twist hint and feedback line has a clip.</li>
+<li><b>UI text is hard-coded English</b> ("ANSWER", "CONTINUE", "TRY AGAIN", "HINT n OF m") with no localisation; Twist lessons run in German or English by the lesson's <code>language</code>.</li>
+<li><b>Mascots are bundled</b> in the app (<code>assets/images/states/</code>); Twist has 21 screen poses and 24 topic poses.</li>
+<li><b>Media URLs</b> already arrive absolute and are cached by a regex over the JSON (<code>services/quiz/mediaCache.ts</code>), which works unchanged for Twist.</li>
+</ul>
+</main>
+</div>
+<script>
+// Highlight the section being read in the contents: the last heading that has
+// passed the top third of the window.
+(() => {
+  const links = [...document.querySelectorAll("nav a[href^='#']")];
+  const heads = links.map((a) => document.getElementById(a.getAttribute("href").slice(1))).filter(Boolean);
+  const mark = () => {
+    const y = window.innerHeight / 3;
+    let cur = heads[0];
+    for (const h of heads) if (h.getBoundingClientRect().top <= y) cur = h;
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) cur = heads[heads.length - 1];
+    links.forEach((a) => { const on = a.getAttribute("href") === "#" + cur.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+  };
+  let t = 0;
+  window.addEventListener("scroll", () => { if (!t) t = requestAnimationFrame(() => { t = 0; mark(); }); }, { passive: true });
+  window.addEventListener("resize", mark);
+  mark();
+})();
+</script>
