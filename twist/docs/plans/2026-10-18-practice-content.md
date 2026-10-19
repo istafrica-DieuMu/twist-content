@@ -52,8 +52,13 @@ lesson-anatomy.md and one pilot set of the same subject as the model
 10. **Every task stands alone.** Practice sessions draw Practise and
     Warm-up tasks one at a time, so point 8 holds for them too: fix any
     task of the set whose story, numbers or question is only in `say`. A
-    picture shows the story's amount or nothing; never one picture for a
-    count.
+    story task's picture shows the whole story: `groups: [8, 5]` for "8, and
+    5 more", `gone: 2` for "2 fly away" (docs/task-types.md); never one
+    picture for a count. Decided 2026-10-19.
+    A check never reuses a worked example from the set's Learn screens: the
+    same sum or the same picture (the build warns). Decided 2026-10-19.
+    In Reception, Year 1 and Klasse 1, numbers on screen are digits, each
+    spoken when tapped, never number words. Decided 2026-10-19.
 11. **Options stay in the year's range.** No subtraction option below
     zero and no number above the year's range in Reception to Year 2 and
     Klasse 1 and 2, unless `metadata.misconceptions` names that mistake

@@ -133,6 +133,10 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     // A check with `draw` is a pool: each attempt shows `draw` of its tasks
     // (docs/lesson-anatomy.md, "Check pools"). A drawn skill check names
     // the skill's part on every task and covers every part in one draw.
+    // A check never reuses a Learn screen's worked example (decided 2026-10-19):
+    // the sums written on the set's Learn screens, as "7 · 6".
+    const SUM = /(\d+)\s*([+−·×:÷])\s*(\d+)/g;
+    const learnSums = new Set(lessons.flatMap((l) => (l.activities ?? []).flatMap((a) => (a.screens ?? []).flatMap((sc) => [...String(sc.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`)))));
     const parts = new Map((md.parts ?? []).map((p) => [p.id, p]));
     for (const [id, p] of parts) {
       if (!p.what?.de || !p.what?.en) err(`${file}: metadata.parts ${id} needs what in de and en`);
@@ -250,6 +254,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
           if (earlyYear && !swapMisconception) for (const o of t.options ?? []) { const m = typeof o === "string" && /^(\d+) − (\d+)$/.exec(o); if (m && +m[1] < +m[2]) warn(`${file}: ${tw}: option "${o}" goes below zero; use a distractor in the year's range, or list the mistake in metadata.misconceptions`); }
           // Tables, plans and grids belong in a drawn component, not in text lines.
           if (d.id?.split(".")[1] === "math" && typeof t.text === "string" && (/(\n[^\n]{1,30}: [^\n]+){3}/.test("\n" + t.text) || /[■□]{3}/.test(t.text) || /\|.*\|.*\n.*\|/.test(t.text))) warn(`${file}: ${tw}: a table or grid written as text; use the table, grid, bar-chart or cubes component (assets/drawn.yaml)`);
+          if (a.activity === "check") { const hit = [...String(t.text ?? "").matchAll(SUM)].map((m) => `${m[1]}${m[2]}${m[3]}`).find((x) => learnSums.has(x)); if (hit) warn(`${file}: ${tw}: the check asks ${hit}, a worked example on a Learn screen; use other numbers`); }
           if (a.activity === "check" && ["skill", "timed"].includes(a.size) && t.type === "speak") warn(`${file}: ${tw}: speaking in a skill check; speech recognition for young children is not reliable enough to decide mastery`);
           refs(t, tw, file);
           const sig = JSON.stringify([t.type, t.text ?? t.say, t.answer, t.show ?? null, t.audio ?? null, t.options ?? null, t.pairs ?? null, t.bins ?? null, t.frame ?? null, t.say ?? null]);

@@ -48,15 +48,21 @@ function group(o, opts = {}) {
     const items = Array.from({ length: n }, (_, i) => {
       const cell = order[i], c = cell % cols, r = Math.floor(cell / cols), [jx, jy] = JITTER[cell % JITTER.length];
       const x = (c + 0.5 + jx) * cw - size / 2, y = (r + 0.5 + jy) * ch - size / 2;
-      return `<span class="it" data-i="${i}" style="left:${(100 * x) / W}%;top:${(100 * y) / H}%;width:${size}px;height:${size}px">${one}</span>`;
+      return `<span class="it${o.gone && i >= n - o.gone ? " gone" : ""}" data-i="${i}" style="left:${(100 * x) / W}%;top:${(100 * y) / H}%;width:${size}px;height:${size}px">${one}</span>`;
     });
     return `<div class="grp scat" style="height:${H}px;max-width:${W}px;margin:0 auto">${items.join("")}</div>`;
   }
-  const size = small ? (n > 6 ? 20 : n > 3 ? 24 : 30) : n > 5 ? 52 : n > 3 ? 62 : 80;
-  return `<div class="grp row">${Array.from({ length: n }, (_, i) => `<span class="it" data-i="${i}" style="width:${size}px;height:${size}px">${one}</span>`).join("")}</div>`;
+  const size = opts.size ?? (small ? (n > 6 ? 20 : n > 3 ? 24 : 30) : n > 5 ? 52 : n > 3 ? 62 : 80);
+  // gone: the last k things are crossed out, taken away.
+  const gone = (i) => o.gone && i >= n - o.gone ? ' gone' : "";
+  return `<div class="grp row">${Array.from({ length: n }, (_, i) => `<span class="it${gone(i)}" data-i="${i}" style="width:${size}px;height:${size}px">${one}</span>`).join("")}</div>`;
 }
 function pic(o, opts) {
   if (!o) return "";
+  // A whole story: groups: [8, 5] draws two groups side by side ("8, and 5 more");
+  // gone: 2 crosses out the last 2 of the group ("6 birds, 2 fly away").
+  if (o.groups && o.object) { opts = opts ?? {}; const big = Math.max(...o.groups), size = opts.small ? (big > 6 ? 18 : 24) : big > 5 ? 40 : big > 3 ? 50 : 60;
+    return `<div class="grps">${o.groups.map((g) => `<div class="tray">${group({ ...o, groups: undefined, count: g }, { ...opts, size })}</div>`).join("")}</div>`; }
   if (o.count != null && o.object) return group(o, opts);
   if (o.drawn === "colour-swatch") return swatch(o.colour);
   const f = o.colour && D.pics.includes(`${o.object}.${o.colour}.png`) ? `${o.object}.${o.colour}.png` : `${o.object}.png`;

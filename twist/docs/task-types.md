@@ -31,6 +31,12 @@ lessons), `show` (a picture or drawn component), `hints`, `feedback`
 `show` can be two pictures side by side: `show: { objects: [house, mouse] }`
 (for "Reimt sich das?"); each picture says its word when tapped.
 
+A story's amounts can be shown whole: `show: { object: marble, groups: [8, 5] }`
+draws 8 and 5 marbles side by side ("8, and 5 more"), and
+`show: { object: bird, count: 6, gone: 2 }` draws 6 birds with the last 2
+crossed out ("2 fly away"). Klasse 1, Reception and Year 1 story tasks show
+the whole story this way (decided 2026-10-19).
+
 A picture can be crossed out, for a "not allowed" sign:
 `show: { object: dog, crossed: true }` draws a red ring with a line across
 it ("Was heißt das Schild?").
