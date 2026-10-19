@@ -39,7 +39,7 @@ html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.4 system-
 .views button[aria-selected="true"]{background:#6849dd;color:#fff}
 .typesview{position:fixed;left:0;right:0;bottom:0;top:var(--tb,64px);width:100%;height:calc(100vh - var(--tb,64px));border:0;z-index:15;background:var(--page)}
 .typesview[hidden]{display:none}
-body.types .drawer,body.types .wrap,body.types .pickbtn,body.types .now{display:none!important}
+body.types .drawer,body.types .wrap,body.types .pickbtn,body.types .now,body.drawn .drawer,body.drawn .wrap,body.drawn .pickbtn,body.drawn .now{display:none!important}
 .tbtn{display:flex;align-items:center;gap:6px;font:600 13px system-ui,sans-serif;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .pop[hidden]{display:none}
 .pop{position:absolute;right:0;top:calc(100% + 8px);width:300px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;z-index:30}
@@ -437,7 +437,7 @@ svg text{font-family:Andika,sans-serif}
   <div class="brand"><span class="logo" aria-hidden="true">T</span><div><b>Twist lesson player</b><small>Built <span id="built"></span> · <code>node twist/pages/player/build.mjs</code></small></div></div>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
-  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vLessons" aria-selected="true">Lessons</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vPractice" aria-selected="false">Practice</button></div>
+  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vLessons" aria-selected="true">Lessons</button><button role="tab" id="vPractice" aria-selected="false">Practice</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button></div>
   <div class="tb-right">
     <button class="tbtn" id="openSet" aria-expanded="false" aria-controls="setPop"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="17" r="2.2" fill="none" stroke="currentColor" stroke-width="2"/></svg>Settings</button>
     <div class="pop" id="setPop" hidden>
@@ -467,6 +467,7 @@ svg text{font-family:Andika,sans-serif}
   <div class="results" id="results"></div>
 </div>
 <iframe class="typesview" id="typesView" hidden title="Task types"></iframe>
+<iframe class="typesview" id="drawnView" hidden title="Drawings"></iframe>
 <div class="anat" id="anat" hidden role="dialog" aria-label="Screen anatomy"><div class="anat-in" id="anatBody"></div></div>
 <div class="wrap">
   <div class="phone"><div class="screen" id="screen"></div></div>
@@ -2080,16 +2081,19 @@ set = D.sets[pos[0]] ?? D.sets[0]; renderPicker(); pickSet(D.sets.indexOf(set), 
 // runs in a frame and asks for a type with postMessage; the lesson panel's
 // type chips open that type's section there.
 function setView(v, anchor) {
-  const types = v === "types", practice = v === "practice", fr = $("#typesView");
-  document.body.classList.toggle("types", types); document.body.classList.toggle("practice", practice); fr.hidden = !types;
-  $("#vLessons").setAttribute("aria-selected", v === "lessons"); $("#vTypes").setAttribute("aria-selected", types); $("#vPractice").setAttribute("aria-selected", practice);
+  const types = v === "types", practice = v === "practice", drawnV = v === "drawn", fr = $("#typesView"), dr = $("#drawnView");
+  document.body.classList.toggle("types", types); document.body.classList.toggle("drawn", drawnV); document.body.classList.toggle("practice", practice); fr.hidden = !types; dr.hidden = !drawnV;
+  $("#vLessons").setAttribute("aria-selected", v === "lessons"); $("#vTypes").setAttribute("aria-selected", types); $("#vPractice").setAttribute("aria-selected", practice); $("#vDrawn").setAttribute("aria-selected", drawnV);
   document.documentElement.style.setProperty("--tb", $(".topbar").offsetHeight + "px");
   if (types) { const url = "../types/index.html" + (anchor ? "#" + anchor : ""); if (!fr.src || anchor) fr.src = url; stopAudio(); }
+  // Drawings: every drawn component with a real example (pages/drawings, written by pages/sources/drawn.cjs).
+  if (drawnV) { const url = "../drawings/index.html" + (anchor ? "#" + anchor : ""); if (!dr.src || anchor) dr.src = url; stopAudio(); }
   if (practice) openPractice(); else if (PR.on || PR.home) closePractice();
 }
 $("#vLessons").onclick = () => setView("lessons");
 $("#vTypes").onclick = () => setView("types");
 $("#vPractice").onclick = () => setView("practice");
+$("#vDrawn").onclick = () => setView("drawn");
 document.addEventListener("click", (e) => { const a = e.target.closest("a[data-type]"); if (a) { e.preventDefault(); setView("types", a.dataset.type); } });
 window.addEventListener("message", (e) => { const m = e.data || {}; if (m.twist === "openType" && m.type) { setView("lessons"); openType(m.type); } if (m.twist === "lessons") setView("lessons"); });
 function openType(want) {

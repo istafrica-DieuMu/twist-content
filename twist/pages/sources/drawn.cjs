@@ -130,6 +130,24 @@ ${GROUPS.map(([g, ids]) => `<h3>${esc(g)}</h3>\n<div class="dcs">${ids.filter((i
   let page = fs.readFileSync(PAGE, "utf8");
   page = page.includes("<!--DRAWN-->") ? page.replace(/<!--DRAWN-->[\s\S]*<!--\/DRAWN-->/, html) : page.replace('<h2 id="unused">', `${html}\n\n<h2 id="unused">`);
   fs.writeFileSync(PAGE, page);
+  // The same section as a page of its own for the player's Drawings tab
+  // (pages/drawings/index.html), with the sources page's styles and pictures.
+  const style = page.match(/<style>[\s\S]*?<\/style>/)[0];
+  const fonts = page.match(/<link rel="stylesheet"[^>]*>/)[0];
+  const own = html.replace(/<!--\/?DRAWN-->/g, "").replace(/src="drawn\//g, 'src="../sources/drawn/').replace('<h2 id="drawings">Drawings</h2>', "<h1>Drawings</h1>");
+  fs.mkdirSync(join(T, "pages/drawings"), { recursive: true });
+  fs.writeFileSync(join(T, "pages/drawings/index.html"), `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twist Drawings</title>
+<!-- Written by pages/sources/drawn.cjs; never edit by hand. -->
+${fonts}
+${style}
+<style>.layout{grid-template-columns:minmax(0,1fr)}</style>
+</head><body><div class="layout"><main>
+${own}
+<p>Where each drawing's data and media come from on every screen: <a href="../sources/index.html">Twist Screen Sources</a>.</p>
+</main></div></body></html>
+`);
   const missing = rows.filter((r) => !r.png).map((r) => r.c.id);
   console.log(`drawings: ${rows.length} components, ${rows.filter((r) => r.png).length} pictures${missing.length ? `, no picture: ${missing.join(", ")}` : ""}; page errors: ${errs.length}`);
 })();

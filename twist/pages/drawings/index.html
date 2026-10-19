@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twist Drawings</title>
+<!-- Written by pages/sources/drawn.cjs; never edit by hand. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a reference page beside "Twist Mobile API v2": sticky contents on the left, one section per screen, each row label → v2 field → twist-content source. Same tokens as that page so they read as a pair. */
+:root{--bg:#faf8ff;--surface:#fff;--ink:#24123d;--muted:#64587b;--line:#e3dcf0;--accent:#6849dd;--accent-soft:#efeafd;--code-bg:#f4f1fb;--warn:#a1520b;--warn-soft:#fdf0e2;--ok:#1d7a4c;--ok-soft:#e5f6ec;
+--body:"Source Sans 3","Segoe UI",system-ui,sans-serif;--display:"Andika","Trebuchet MS",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13101b;--surface:#1b1626;--ink:#ece7f7;--muted:#a79dbe;--line:#2f2742;--accent:#a48cff;--accent-soft:#2a2143;--code-bg:#181322;--warn:#f0a35c;--warn-soft:#33220f;--ok:#6fd39c;--ok-soft:#12291c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13101b;--surface:#1b1626;--ink:#ece7f7;--muted:#a79dbe;--line:#2f2742;--accent:#a48cff;--accent-soft:#2a2143;--code-bg:#181322;--warn:#f0a35c;--warn-soft:#33220f;--ok:#6fd39c;--ok-soft:#12291c;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 var(--body)}
+.layout{max-width:1220px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:210px minmax(0,1fr);gap:48px}
+nav{position:sticky;top:20px;align-self:start;display:grid;gap:2px;font-size:.9rem}
+nav .label{font:600 .75rem/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+nav a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;border-left:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);background:var(--accent-soft);border-left-color:var(--accent);outline:none}
+nav a.on{color:var(--accent);font-weight:600;background:var(--accent-soft);border-left-color:var(--accent)}
+main{min-width:0}
+h1,h2,h3{font-family:var(--display);line-height:1.2;text-wrap:balance}
+h1{font-size:clamp(1.9rem,5vw,2.7rem);margin:0 0 14px}
+h2{font-size:1.55rem;margin:56px 0 14px;scroll-margin-top:16px;padding-top:24px;border-top:1px solid var(--line)}
+h3{font-size:1.15rem;margin:28px 0 8px}
+.lede{font-size:1.1rem;color:var(--muted);max-width:72ch;margin:0 0 18px}
+p,li{max-width:76ch}
+ul,ol{padding-left:1.3em}
+li{margin:4px 0}
+a{color:var(--accent);text-underline-offset:2px;overflow-wrap:anywhere}
+code{font-family:var(--mono);font-size:.84em;background:var(--code-bg);padding:.08em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font:400 .82rem/1.6 var(--mono)}
+pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:760px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font:600 .74rem/1.3 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--code-bg)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+.tag{display:inline-block;font:600 .72rem/1.5 var(--body);letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.t-in{background:var(--ok-soft);color:var(--ok)}
+.t-add{background:var(--warn-soft);color:var(--warn)}
+.t-calc{background:var(--accent-soft);color:var(--accent)}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 10px 10px 0;max-width:80ch;margin:16px 0}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.note p{margin:0}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:18px 0}
+.flow div{flex:1 1 170px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.9rem}
+.flow b{display:block;font-family:var(--display);font-size:1rem;margin-bottom:2px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:.9rem;color:var(--muted);margin:10px 0}
+.dc-jump{font-size:.92rem;line-height:1.9;max-width:none}
+.dcs{display:grid;gap:14px}
+.dc{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;scroll-margin-top:16px}
+.dc-pic{background:#fff;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;min-height:120px;padding:8px}
+.dc-pic img{display:block;max-width:100%;height:auto;max-height:300px}
+.dc-none{color:#64587b;font-size:.85rem;padding:20px;text-align:center}
+.dc-body{min-width:0}
+.dc h4{font-family:var(--display);font-size:1.05rem;margin:0 0 4px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.dc h4 span{font:400 .88rem var(--body);color:var(--muted)}
+.dc p{margin:0 0 8px;font-size:.95rem}
+.dc dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0 0 8px;font-size:.88rem}
+.dc dt{font-weight:600;color:var(--muted)}
+.dc dd{margin:0;min-width:0}
+.dc pre{margin:0;font-size:.76rem;max-height:220px}
+@media (max-width:700px){.dc{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr);gap:20px;padding-block:24px 60px}nav{position:static;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}nav .label{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<style>.layout{grid-template-columns:minmax(0,1fr)}</style>
+</head><body><div class="layout"><main>
+
+<h1>Drawings</h1>
+<p>The 37 drawn components are drawn by the app from a task's <code>show</code> data; no image file stands behind them, except the object pictures some of them hold. Each card shows one real use from the lessons, drawn by the R&amp;D lesson player, with the record that produced it. The data fields are documented in <code>twist/assets/drawn.yaml</code>; the player's drawing code (<code>twist/pages/player/template.html</code>, <code>function drawn</code>) is the reference to copy. The lessons use them 14,894 times.</p>
+<p>In v2 the component travels as <code>show.drawn</code> with the same data fields, and pictures inside it as <code>show.imageUrls</code>. Where a task type makes a drawing touchable (a number line in <code>point_on_line</code>, a clock in <code>clock_hands_drag</code>, a grid in <code>point_on_grid</code>, a ten-frame in <code>drag_and_drop_count</code>), the card says so.</p>
+<p class="dc-jump"><b>Numbers and calculating:</b> <a href="#d-dots">dots</a>, <a href="#d-ten-frame">ten-frame</a>, <a href="#d-zwanzigerfeld">zwanzigerfeld</a>, <a href="#d-number-line">number-line</a>, <a href="#d-rechenstrich">rechenstrich</a>, <a href="#d-equation">equation</a>, <a href="#d-part-whole">part-whole</a>, <a href="#d-number-house">number-house</a>, <a href="#d-written-calc">written-calc</a>, <a href="#d-short-division">short-division</a>, <a href="#d-number-wall">number-wall</a>, <a href="#d-base-ten">base-ten</a>, <a href="#d-hundred-field">hundred-field</a>, <a href="#d-place-value-chart">place-value-chart</a>, <a href="#d-hundred-square">hundred-square</a><br><b>Measures:</b> <a href="#d-ruler">ruler</a>, <a href="#d-clock">clock</a>, <a href="#d-coins">coins</a>, <a href="#d-thermometer">thermometer</a><br><b>Shapes, space and position:</b> <a href="#d-shape">shape</a>, <a href="#d-grid">grid</a>, <a href="#d-cubes">cubes</a>, <a href="#d-angle">angle</a>, <a href="#d-circle">circle</a>, <a href="#d-coordinates">coordinates</a>, <a href="#d-fraction">fraction</a><br><b>Data and chance:</b> <a href="#d-bar-chart">bar-chart</a>, <a href="#d-table">table</a>, <a href="#d-line-graph">line-graph</a>, <a href="#d-pie-chart">pie-chart</a>, <a href="#d-spinner">spinner</a><br><b>Letters, words and colour:</b> <a href="#d-letter-card">letter-card</a>, <a href="#d-word-card">word-card</a>, <a href="#d-syllable-arcs">syllable-arcs</a>, <a href="#d-writing-lines">writing-lines</a>, <a href="#d-sound-chart">sound-chart</a>, <a href="#d-colour-swatch">colour-swatch</a></p>
+<h3>Numbers and calculating</h3>
+<div class="dcs"><article class="dc" id="d-dots">
+<div class="dc-pic"><img src="../sources/drawn/dots.png" alt="A group of dots, loose or in a dice pattern, for counting and seeing amounts at a glance, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>dots</code></h4>
+<p>A group of dots, loose or in a dice pattern, for counting and seeing amounts at a glance.</p>
+<dl><dt>Data</dt><dd>count: 1-20, layout: [scattered, dice, row, five-structure], colour_split: optional, e.g. [3, 2]; or array: [rows, columns] for a Punktefeld, split_rows: n colours the first n rows red and the rest blue; or groups: [a, b] with layout: dice for two dice side by side (the second in blue)</dd>
+<dt>In use</dt><dd>1497 uses in lit-de, math, fl, lit-en; Learn screens; task types <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>multiple_choice</code> <code>true_false</code> <code>ordering</code> <code>text_input</code> <code>audio_choice</code> <code>speak</code>; fields <code>array</code> <code>colour_split</code> <code>count</code> <code>flash</code> <code>groups</code> <code>key</code> <code>layout</code> <code>split_rows</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/add-meaning · l1-w2</dd></dl>
+<pre><code>show:
+  drawn: dots
+  count: 6
+  layout: five-structure
+  colour_split:
+    - 4
+    - 2</code></pre></div></article>
+<article class="dc" id="d-ten-frame">
+<div class="dc-pic"><img src="../sources/drawn/ten-frame.png" alt="A 2 x 5 frame with counters, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>ten-frame</code> <span>Zehnerfeld · ten-frame</span></h4>
+<p>A 2 x 5 frame with counters. Two rows of five. In drag_and_drop_count the child fills the cells; cross marks counters taken away.</p>
+<dl><dt>Data</dt><dd>filled: 0-10, colour_split: optional, e.g. [6, 2], cross: how many of the last counters are crossed out, cross_from: start crosses the first ones instead (the whole top row for minus 5)</dd>
+<dt>In use</dt><dd>385 uses in math; Learn screens; task types <code>multiple_choice</code> <code>fill_in_blank</code> <code>true_false</code> <code>text_input</code> <code>image_multiple_choice</code> <code>ordering</code>; fields <code>colour_split</code> <code>cross</code> <code>cross_from</code> <code>filled</code> <code>flash</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/add-bridge-10 · l1-w1</dd></dl>
+<pre><code>show:
+  drawn: ten-frame
+  filled: 8</code></pre></div></article>
+<article class="dc" id="d-zwanzigerfeld">
+<div class="dc-pic"><img src="../sources/drawn/zwanzigerfeld.png" alt="Two ten-frames, one above the other, for numbers to 20 and adding across ten, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>zwanzigerfeld</code> <span>Zwanzigerfeld · twenty-frame</span></h4>
+<p>Two ten-frames, one above the other, for numbers to 20 and adding across ten. Two ten-frames, top and bottom row. A Learn screen with move animates counters across after a moment.</p>
+<dl><dt>Data</dt><dd>filled: '[first, second] counters, e.g. [8, 5]', move: optional counters moved from the second frame to the first</dd>
+<dt>In use</dt><dd>181 uses in math; Learn screens; task types <code>multiple_choice</code> <code>drag_and_drop_count</code> <code>text_input</code> <code>true_false</code> <code>fill_in_blank</code> <code>image_multiple_choice</code>; fields <code>filled</code> <code>move</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/add-bridge-10 · l1-w3</dd></dl>
+<pre><code>show:
+  drawn: zwanzigerfeld
+  filled:
+    - 10
+    - 3</code></pre></div></article>
+<article class="dc" id="d-number-line">
+<div class="dc-pic"><img src="../sources/drawn/number-line.png" alt="A number line with ticks, labels and jumps, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>number-line</code> <span>Zahlenstrahl · number line</span></h4>
+<p>A number line with ticks, labels and jumps. Ticks every step (1, 5, 10, 0.1); long ticks at tens. In point_on_line the child taps the line and the tapped value is the answer.</p>
+<dl><dt>Data</dt><dd>from: 0, to: 20 (negative numbers allowed), labels: [all, tens, ends, fractions] (fractions names each tick as a fraction, fractions_of: the denominator, e.g. step 0.125 with fractions_of 8), jumps: 'list of [start, size]', step: 1 / 5 / 10, or 0.1 / 0.01 for decimals, mark: a value to point at; decimals print as 0.5 in en-GB and 0,5 in de-DE</dd>
+<dt>In use</dt><dd>690 uses in math; Learn screens; task types <code>point_on_line</code> <code>multiple_choice</code> <code>true_false</code> <code>fill_in_blank</code> <code>text_input</code>; fields <code>fractions_of</code> <code>from</code> <code>jumps</code> <code>labels</code> <code>mark</code> <code>step</code> <code>to</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/add-bridge-10 · l2-f4</dd></dl>
+<pre><code>show:
+  drawn: number-line
+  from: 0
+  to: 20
+  labels: tens
+  jumps:
+    - - 9
+      - 1
+    - - 10
+      - 3</code></pre></div></article>
+<article class="dc" id="d-rechenstrich">
+<div class="dc-pic"><img src="../sources/drawn/rechenstrich.png" alt="An empty number line with jumps and their sizes written above, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>rechenstrich</code> <span>Rechenstrich · empty number line</span></h4>
+<p>An empty number line with jumps and their sizes written above. No scale: the jumps are spaced by size. When the task's answer is the last landing point, that label reads ? (Learn screens show it).</p>
+<dl><dt>Data</dt><dd>start: 8, jumps: [2, 3]; a minus jump goes left (start: 43, jumps: [-3, -3]); no jumps draws a dashed ? hop, to the left with back: true</dd>
+<dt>In use</dt><dd>180 uses in math; Learn screens; task types <code>multiple_choice</code> <code>text_input</code> <code>true_false</code> <code>fill_in_blank</code>; fields <code>back</code> <code>jumps</code> <code>start</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/add-bridge-10 · l2-f3</dd></dl>
+<pre><code>show:
+  drawn: rechenstrich
+  start: 9
+  jumps: []</code></pre></div></article>
+<article class="dc" id="d-equation">
+<div class="dc-pic"><img src="../sources/drawn/equation.png" alt="A calculation with optional gaps and highlighted parts, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>equation</code></h4>
+<p>A calculation with optional gaps and highlighted parts.</p>
+<dl><dt>Data</dt><dd>text: '8 + 5 = _', gaps: positions, split: optional '5 = 2 + 3' under a number</dd>
+<dt>In use</dt><dd>20 uses in math; Learn screens; task types <code>fill_in_blank</code> <code>multiple_choice</code>; fields <code>split</code> <code>text</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/sub-bridge-10 · l1-f2</dd></dl>
+<pre><code>show:
+  drawn: equation
+  text: 14 − 6 = _
+  split: 6 = 4 + 2</code></pre></div></article>
+<article class="dc" id="d-part-whole">
+<div class="dc-pic"><img src="../sources/drawn/part-whole.png" alt="The part-whole model used in England, a whole circle above two part circles joined by lines, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>part-whole</code></h4>
+<p>The part-whole model used in England, a whole circle above two part circles joined by lines.</p>
+<dl><dt>Data</dt><dd>whole: 5, parts: '[2, 3]', null is a gap shown as ?</dd>
+<dt>In use</dt><dd>97 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>fill_in_blank</code>; fields <code>parts</code> <code>whole</code></dd>
+<dt>Example</dt><dd>en-GB/reception/math/add-meaning · l2-f2</dd></dl>
+<pre><code>show:
+  drawn: part-whole
+  whole: null
+  parts:
+    - 3
+    - 1</code></pre></div></article>
+<article class="dc" id="d-number-house">
+<div class="dc-pic"><img src="../sources/drawn/number-house.png" alt="A number house (Zahlenhaus) showing a number and its parts, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>number-house</code> <span>Zahlenhaus · number bonds house</span></h4>
+<p>A number house (Zahlenhaus) showing a number and its parts.</p>
+<dl><dt>Data</dt><dd>roof: 10, rows: '[[8, 2], [7, 3]]'</dd>
+<dt>In use</dt><dd>61 uses in math; Learn screens; task types <code>multiple_choice</code> <code>fill_in_blank</code> <code>true_false</code>; fields <code>roof</code> <code>rows</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/add-bridge-10 · l1-w2</dd></dl>
+<pre><code>show:
+  drawn: number-house
+  roof: 5
+  rows:
+    - - 2
+      - null</code></pre></div></article>
+<article class="dc" id="d-written-calc">
+<div class="dc-pic"><img src="../sources/drawn/written-calc.png" alt="A written column calculation (schriftliches Addieren and Subtrahieren) with the Übertrag, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>written-calc</code> <span>schriftliche Rechnung · column method</span></h4>
+<p>A written column calculation (schriftliches Addieren and Subtrahieren) with the Übertrag. A written calculation in columns with carries; gaps for the child to fill.</p>
+<dl><dt>Data</dt><dd>rows: numbers as strings, op: +, - or × (short multiplication), partials: the partial products of long multiplication (drawn between two lines, the result below), carry: a string of carried digits aligned to the columns (spaces where none), result: string with _ for a gap, above: small digits over the first number (Entbündeln), cross: x under a digit of the first number crosses it out</dd>
+<dt>In use</dt><dd>635 uses in math; Learn screens; task types <code>text_input</code> <code>fill_in_blank</code> <code>multiple_choice</code> <code>true_false</code> <code>image_multiple_choice</code>; fields <code>above</code> <code>carry</code> <code>cross</code> <code>key</code> <code>op</code> <code>partials</code> <code>result</code> <code>rows</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-3/math/add-carry · l1-w1</dd></dl>
+<pre><code>show:
+  drawn: written-calc
+  rows:
+    - "312"
+    - "176"
+  op: +</code></pre></div></article>
+<article class="dc" id="d-short-division">
+<div class="dc-pic"><img src="../sources/drawn/short-division.png" alt="Short division in the bus stop layout, the divisor outside, the quotient on top, carried remainders as small digits, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>short-division</code> <span>schriftliche Division · short division</span></h4>
+<p>Short division in the bus stop layout, the divisor outside, the quotient on top, carried remainders as small digits.</p>
+<dl><dt>Data</dt><dd>divisor: 4, dividend: '824', quotient: '206' (spaces for empty places, _ for a gap), carries: small digits before dividend digits, aligned ('  2' puts a 2 before the third digit), remainder: optional</dd>
+<dt>In use</dt><dd>25 uses in math; Learn screens; task types <code>text_input</code> <code>multiple_choice</code>; fields <code>carries</code> <code>dividend</code> <code>divisor</code> <code>quotient</code> <code>remainder</code></dd>
+<dt>Example</dt><dd>en-GB/year-5/math/written-div-one · l1-f2</dd></dl>
+<pre><code>show:
+  drawn: short-division
+  divisor: 2
+  dividend: "684"
+  quotient: ___</code></pre></div></article>
+<article class="dc" id="d-number-wall">
+<div class="dc-pic"><img src="../sources/drawn/number-wall.png" alt="A number wall (Zahlenmauer); each brick is the sum of the two bricks under it, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>number-wall</code> <span>Zahlenmauer · number wall</span></h4>
+<p>A number wall (Zahlenmauer); each brick is the sum of the two bricks under it.</p>
+<dl><dt>Data</dt><dd>rows: bottom row first, e.g. '[[3, 5, 2], [8, 7], [null]]', null is a gap shown as ?</dd>
+<dt>In use</dt><dd>79 uses in math; Learn screens; task types <code>fill_in_blank</code> <code>true_false</code> <code>multiple_choice</code>; fields <code>rows</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/number-walls · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: number-wall
+  rows:
+    - - 6
+      - 4
+    - - null</code></pre></div></article>
+<article class="dc" id="d-base-ten">
+<div class="dc-pic"><img src="../sources/drawn/base-ten.png" alt="Tens rods and ones cubes, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>base-ten</code></h4>
+<p>Tens rods and ones cubes.</p>
+<dl><dt>Data</dt><dd>hundreds: 0-9 (optional), tens: 0-9, ones: 0-18 (more than 9 ones before bundling)</dd>
+<dt>In use</dt><dd>371 uses in math; Learn screens; task types <code>multiple_choice</code> <code>fill_in_blank</code> <code>image_multiple_choice</code> <code>true_false</code> <code>text_input</code>; fields <code>hundreds</code> <code>ones</code> <code>tens</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/tens-to-100 · l1-w1</dd></dl>
+<pre><code>show:
+  drawn: base-ten
+  tens: 1</code></pre></div></article>
+<article class="dc" id="d-hundred-field">
+<div class="dc-pic"><img src="../sources/drawn/hundred-field.png" alt="The Hunderterfeld, a 10 by 10 field of dots with gaps after five in both directions, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>hundred-field</code></h4>
+<p>The Hunderterfeld, a 10 by 10 field of dots with gaps after five in both directions. Ten rows of ten counters, filled up to a number; colour_split colours the first part.</p>
+<dl><dt>Data</dt><dd>filled: 0-100 (fills row by row), colour_split: optional</dd>
+<dt>In use</dt><dd>232 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>text_input</code> <code>image_multiple_choice</code> <code>fill_in_blank</code>; fields <code>filled</code> <code>flash</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-2/math/bundle-tens · l2-f1</dd></dl>
+<pre><code>show:
+  drawn: hundred-field
+  filled: 30
+  flash: 2</code></pre></div></article>
+<article class="dc" id="d-place-value-chart">
+<div class="dc-pic"><img src="../sources/drawn/place-value-chart.png" alt="A place-value chart (Stellentafel), with columns labelled by language (Z E, T O; H Z E, H T O; T H Z E, Th H T O), drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>place-value-chart</code></h4>
+<p>A place-value chart (Stellentafel), with columns labelled by language (Z E, T O; H Z E, H T O; T H Z E, Th H T O).</p>
+<dl><dt>Data</dt><dd>columns: [tens, ones], [hundreds, tens, ones] up to [millions, hundred-thousands, ten-thousands, thousands, hundreds, tens, ones], and after ones the decimal columns tenths, hundredths, thousandths (a decimal point is drawn), values: list with null for a gap</dd>
+<dt>In use</dt><dd>259 uses in math; Learn screens; task types <code>fill_in_blank</code> <code>true_false</code> <code>multiple_choice</code> <code>image_multiple_choice</code>; fields <code>columns</code> <code>key</code> <code>values</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/teens · l2-f4</dd></dl>
+<pre><code>show:
+  drawn: place-value-chart
+  columns:
+    - tens
+    - ones
+  values:
+    - 1
+    - 2</code></pre></div></article>
+<article class="dc" id="d-hundred-square">
+<div class="dc-pic"><img src="../sources/drawn/hundred-square.png" alt="A 10 x 10 number square with highlights, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>hundred-square</code></h4>
+<p>A 10 x 10 number square with highlights. The 1 to 100 table; cells can be marked or left as gaps.</p>
+<dl><dt>Data</dt><dd>highlight: list, hide: list</dd>
+<dt>In use</dt><dd>145 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>fill_in_blank</code> <code>text_input</code>; fields <code>hide</code> <code>highlight</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-2/math/hundred-square · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: hundred-square
+  hide:
+    - 23</code></pre></div></article></div>
+<h3>Measures</h3>
+<div class="dcs"><article class="dc" id="d-ruler">
+<div class="dc-pic"><img src="../sources/drawn/ruler.png" alt="A ruler in centimetres with a coloured strip above it to measure, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>ruler</code> <span>Lineal · ruler</span></h4>
+<p>A ruler in centimetres with a coloured strip above it to measure. Drawn to scale in cm with mm ticks; the object or segment lies along it from the given start.</p>
+<dl><dt>Data</dt><dd>to: the ruler's last cm (15 if left out), length: the strip in cm, to the millimetre (3.8), start: where the strip begins (0 if left out), colour: [red, blue, green]</dd>
+<dt>In use</dt><dd>176 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>text_input</code>; fields <code>colour</code> <code>length</code> <code>start</code> <code>to</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-2/math/length-cm-m · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: ruler
+  to: 10
+  length: 8</code></pre></div></article>
+<article class="dc" id="d-clock">
+<div class="dc-pic"><img src="../sources/drawn/clock.png" alt="An analogue clock face, with or without a digital display, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>clock</code></h4>
+<p>An analogue clock face, with or without a digital display. An analogue face; in clock_hands_drag the child drags the hands (minute hand in steps of the task's step, from start). A clock as an option is keyed h:mm.</p>
+<dl><dt>Data</dt><dd>hour: 1-12, minute: 0-59, digital: optional, roman: true for a face with I to XII</dd>
+<dt>In use</dt><dd>617 uses in math, fl; Learn screens; task types <code>clock_hands_drag</code> <code>multiple_choice</code> <code>image_multiple_choice</code> <code>true_false</code> <code>text_input</code> <code>audio_choice</code> <code>speak</code> <code>fill_in_blank</code>; fields <code>digital</code> <code>hour</code> <code>minute</code> <code>roman</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/time-full-half · l2-f1</dd></dl>
+<pre><code>show:
+  drawn: clock
+  hour: 1
+  minute: 30</code></pre></div></article>
+<article class="dc" id="d-coins">
+<div class="dc-pic"><img src="../sources/drawn/coins.png" alt="Coins and notes of the curriculum's currency, or of the one named (euro coins in en-GB French lessons), drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>coins</code></h4>
+<p>Coins and notes of the curriculum's currency, or of the one named (euro coins in en-GB French lessons). Euro or pound coins and notes by value in cents; as an option it is keyed by the total.</p>
+<dl><dt>Data</dt><dd>values: list (in cent or pence), currency: optional, eur or gbp</dd>
+<dt>In use</dt><dd>436 uses in math, fl; Learn screens; task types <code>image_multiple_choice</code> <code>multiple_choice</code> <code>true_false</code> <code>ordering</code> <code>text_input</code> <code>fill_in_blank</code>; fields <code>currency</code> <code>values</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/money-coins-notes · l1-f2</dd></dl>
+<pre><code>show:
+  drawn: coins
+  values:
+    - 50</code></pre></div></article>
+<article class="dc" id="d-thermometer">
+<div class="dc-pic"><img src="../sources/drawn/thermometer.png" alt="A thermometer in °C, filled to a temperature, negative temperatures allowed, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>thermometer</code> <span>Thermometer · thermometer</span></h4>
+<p>A thermometer in °C, filled to a temperature, negative temperatures allowed. A scale in degrees with the level drawn to the value.</p>
+<dl><dt>Data</dt><dd>from: -10, to: 30, step: 5, value: -3, mark: a value to point at</dd>
+<dt>In use</dt><dd>60 uses in fl, math; Learn screens; task types <code>multiple_choice</code> <code>speak</code> <code>true_false</code> <code>text_input</code> <code>image_multiple_choice</code>; fields <code>from</code> <code>key</code> <code>mark</code> <code>step</code> <code>to</code> <code>value</code></dd>
+<dt>Example</dt><dd>en-GB/ly-2/fl/fr-weather · l2-f2</dd></dl>
+<pre><code>show:
+  drawn: thermometer
+  from: -10
+  to: 30
+  step: 5
+  value: 30</code></pre></div></article></div>
+<h3>Shapes, space and position</h3>
+<div class="dcs"><article class="dc" id="d-shape">
+<div class="dc-pic"><img src="../sources/drawn/shape.png" alt="A 2D shape or a 3D solid, outline or filled, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>shape</code></h4>
+<p>A 2D shape or a 3D solid, outline or filled. A 2D shape or 3D solid, or a row or column of them as a pattern.</p>
+<dl><dt>Data</dt><dd>kind: [circle, triangle, square, rectangle, pentagon, hexagon, octagon, parallelogram, trapezoid, cube, cuboid, sphere, cylinder, cone, pyramid], colour: optional; or row: [kinds] / column: [kinds] for a line of shapes (a pattern), with colours: [one per shape] or one colour, '?' for a gap, size: optional</dd>
+<dt>In use</dt><dd>1123 uses in lit-de, math; Learn screens; task types <code>true_false</code> <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>multiple_choice</code>; fields <code>colour</code> <code>colours</code> <code>column</code> <code>key</code> <code>kind</code> <code>row</code> <code>size</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/letters-ng-nk-qu-v · l2-f2</dd></dl>
+<pre><code>show:
+  drawn: shape
+  kind: square</code></pre></div></article>
+<article class="dc" id="d-grid">
+<div class="dc-pic"><img src="../sources/drawn/grid.png" alt="Squared paper (Karopapier) or a dot grid with filled squares, half squares, lines, a mirror line and labels, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>grid</code> <span>Karopapier · squared paper</span></h4>
+<p>Squared paper (Karopapier) or a dot grid with filled squares, half squares, lines, a mirror line and labels. Squared paper or a dot grid. In point_on_grid the child taps a crossing.</p>
+<dl><dt>Data</dt><dd>cols, rows, cells: [[c, r, colour]], halves: [[c, r, corner tl/tr/bl/br, colour]], lines: [[c1, r1, c2, r2]], axis: c (vertical mirror line), axis_row: r (horizontal mirror line), diagonal: down or up (a dashed mirror line corner to corner, from the top left or bottom left), labels: [[c, r, text]], dots: true; as an option it needs a key</dd>
+<dt>In use</dt><dd>965 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>text_input</code> <code>ordering</code>; fields <code>axis</code> <code>axis_row</code> <code>cells</code> <code>cols</code> <code>diagonal</code> <code>dots</code> <code>halves</code> <code>key</code> <code>labels</code> <code>lines</code> <code>rows</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/math/compose-shapes · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: grid
+  cols: 3
+  rows: 1
+  halves:
+    - - 1
+      - 0
+      - tr
+      - orange
+    - - 1
+      - 0
+      - bl
+      - purple</code></pre></div></article>
+<article class="dc" id="d-cubes">
+<div class="dc-pic"><img src="../sources/drawn/cubes.png" alt="A building of cubes from its plan, drawn as a building, as its plan with the heights, or as the view from the front, the right side or the top, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>cubes</code> <span>Würfelgebäude · cube building</span></h4>
+<p>A building of cubes from its plan, drawn as a building, as its plan with the heights, or as the view from the front, the right side or the top. A building of cubes from a plan of stack heights, or its plan, front, side or top view. A plan names its rows hinten and vorne.</p>
+<dl><dt>Data</dt><dd>plan: [[2, 1], [1, 0]] (rows back to front, columns left to right, stack heights), mode: [building, plan, front, side, top], colour; a plan names its top row hinten / back and its bottom row vorne / front (sides: false leaves the names out); as an option it needs a key</dd>
+<dt>In use</dt><dd>571 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>image_multiple_choice</code> <code>text_input</code>; fields <code>colour</code> <code>key</code> <code>mode</code> <code>plan</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-2/math/cube-buildings · l2-f1</dd></dl>
+<pre><code>show:
+  drawn: cubes
+  plan:
+    - - 2
+      - 1
+    - - 1
+      - 3
+  mode: plan
+  colour: orange</code></pre></div></article>
+<article class="dc" id="d-angle">
+<div class="dc-pic"><img src="../sources/drawn/angle.png" alt="An angle between two arms, with its arc and size, a right-angle square at 90°, optionally a protractor laid on it, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>angle</code> <span>Winkel · angle</span></h4>
+<p>An angle between two arms, with its arc and size, a right-angle square at 90°, optionally a protractor laid on it.</p>
+<dl><dt>Data</dt><dd>degrees: 0 to 360, rotate: turns the whole angle, label: shown text ('?' to ask, false for none, else the degrees), protractor: true (0 to 180 with inner and outer scales)</dd>
+<dt>In use</dt><dd>146 uses in math; Learn screens; task types <code>image_multiple_choice</code> <code>multiple_choice</code> <code>true_false</code> <code>text_input</code>; fields <code>degrees</code> <code>key</code> <code>label</code> <code>protractor</code> <code>rotate</code></dd>
+<dt>Example</dt><dd>en-GB/year-3/math/right-angles · l1-f3</dd></dl>
+<pre><code>show:
+  drawn: angle
+  degrees: 60
+  label: false</code></pre></div></article>
+<article class="dc" id="d-circle">
+<div class="dc-pic"><img src="../sources/drawn/circle.png" alt="A circle with its parts drawn in (centre, radius, diameter, circumference, chord), named or with one coloured red, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>circle</code> <span>Kreis · circle</span></h4>
+<p>A circle with its parts drawn in (centre, radius, diameter, circumference, chord), named or with one coloured red.</p>
+<dl><dt>Data</dt><dd>parts: list, labels: true, highlight: a part, values: { radius: '4 cm' }</dd>
+<dt>In use</dt><dd>24 uses in math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>text_input</code>; fields <code>highlight</code> <code>labels</code> <code>parts</code> <code>values</code></dd>
+<dt>Example</dt><dd>en-GB/year-6/math/circle-parts · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: circle
+  parts:
+    - centre
+  highlight: centre</code></pre></div></article>
+<article class="dc" id="d-coordinates">
+<div class="dc-pic"><img src="../sources/drawn/coordinates.png" alt="A square grid with numbered x and y axes, in the first quadrant or all four, with points, a shape and a moved copy, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>coordinates</code> <span>Koordinatensystem · coordinate grid</span></h4>
+<p>A square grid with numbered x and y axes, in the first quadrant or all four, with points, a shape and a moved copy. A first-quadrant (or four-quadrant) grid with axes and plotted points; point_on_grid taps a point.</p>
+<dl><dt>Data</dt><dd>quadrants: 1 or 4, max: 10 (1st) or 6 (4 quadrants), points: [[x, y, 'A']], shape: [[x, y], ...], moved: [[x, y], ...] (dashed, green), mirror: { axis: x or y, at: 0 }</dd>
+<dt>In use</dt><dd>170 uses in math; Learn screens; task types <code>multiple_choice</code> <code>point_on_grid</code> <code>true_false</code> <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>text_input</code>; fields <code>key</code> <code>max</code> <code>mirror</code> <code>moved</code> <code>points</code> <code>quadrants</code> <code>shape</code></dd>
+<dt>Example</dt><dd>en-GB/year-4/math/first-quadrant · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: coordinates
+  quadrants: 1
+  max: 6
+  points:
+    - - 4
+      - 1
+      - A</code></pre></div></article>
+<article class="dc" id="d-fraction">
+<div class="dc-pic"><img src="../sources/drawn/fraction.png" alt="A circle, bar or rectangle split into equal parts, some of them coloured, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>fraction</code></h4>
+<p>A circle, bar or rectangle split into equal parts, some of them coloured. A shape cut into equal parts with some shaded.</p>
+<dl><dt>Data</dt><dd>kind: [circle, bar, rect], parts, shaded, rows (rect only), colour; as an option its key is shaded/parts</dd>
+<dt>In use</dt><dd>241 uses in math; Learn screens; task types <code>multiple_choice</code> <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>true_false</code> <code>text_input</code>; fields <code>colour</code> <code>kind</code> <code>parts</code> <code>rows</code> <code>shaded</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-4/math/fractions-measures · l1-f3</dd></dl>
+<pre><code>show:
+  drawn: fraction
+  kind: bar
+  parts: 2
+  shaded: 1</code></pre></div></article></div>
+<h3>Data and chance</h3>
+<div class="dcs"><article class="dc" id="d-bar-chart">
+<div class="dc-pic"><img src="../sources/drawn/bar-chart.png" alt="A bar chart or pictogram from a small table, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>bar-chart</code></h4>
+<p>A bar chart or pictogram from a small table. Bars from rows of [label, value] with a scale in steps; a label naming a colour colours its bar. With pictogram_object it draws a pictogram (per: what one picture stands for).</p>
+<dl><dt>Data</dt><dd>rows: '[[label, value]]', step, from: scale start above 0 (cut-off axis), tally: true, pictogram_object: an object id draws a pictogram instead (each row repeats the picture value / key times, half a picture for a remainder), per: what one picture stands for (1 if left out; key is the older name for it, and as an option key is the option's id, so a pictogram option uses per); a label naming a colour (Gelb, Team Grün) draws its bar in that colour, other bars take the palette in order</dd>
+<dt>In use</dt><dd>645 uses in lit-de, math; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>text_input</code> <code>ordering</code>; fields <code>from</code> <code>key</code> <code>pictogram_object</code> <code>rows</code> <code>step</code> <code>tally</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/simple-tables · l2-f1</dd></dl>
+<pre><code>show:
+  drawn: bar-chart
+  rows:
+    - - Apfel
+      - 5
+    - - Banane
+      - 3
+    - - Erdbeere
+      - 7</code></pre></div></article>
+<article class="dc" id="d-table">
+<div class="dc-pic"><img src="../sources/drawn/table.png" alt="A table of rows and columns, with a header row, or as a spreadsheet with column letters and row numbers, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>table</code> <span>Tabelle · table</span></h4>
+<p>A table of rows and columns, with a header row, or as a spreadsheet with column letters and row numbers. Rows of cells, a header row by default; ? is a gap. Shrinks its font to fit the phone.</p>
+<dl><dt>Data</dt><dd>rows: [[cells]], header: false, sheet: true, mark: [[r, c]]; '?' is a gap; as an option it needs a key</dd>
+<dt>In use</dt><dd>841 uses in lit-de, math, fl, lit-en; Learn screens; task types <code>multiple_choice</code> <code>true_false</code> <code>image_multiple_choice</code> <code>fill_in_blank</code> <code>text_input</code> <code>ordering</code>; fields <code>header</code> <code>mark</code> <code>rows</code> <code>sheet</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/simple-tables · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: table
+  rows:
+    - - Dienst
+      - Kind
+    - - Tafel
+      - Mia
+    - - Blumen
+      - Jonas
+    - - Müll
+      - Ella</code></pre></div></article>
+<article class="dc" id="d-line-graph">
+<div class="dc-pic"><img src="../sources/drawn/line-graph.png" alt="A line graph, points joined over labelled positions, with a scale, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>line-graph</code> <span>Liniendiagramm · line graph</span></h4>
+<p>A line graph, points joined over labelled positions, with a scale.</p>
+<dl><dt>Data</dt><dd>rows: [[label, value]], step, ylabel</dd>
+<dt>In use</dt><dd>56 uses in math; Learn screens; task types <code>multiple_choice</code> <code>text_input</code> <code>true_false</code> <code>image_multiple_choice</code> <code>fill_in_blank</code>; fields <code>key</code> <code>rows</code> <code>step</code> <code>ylabel</code></dd>
+<dt>Example</dt><dd>en-GB/year-4/math/line-graphs · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: line-graph
+  rows:
+    - - 9am
+      - 8
+    - - 10am
+      - 10
+    - - 11am
+      - 13
+    - - 12pm
+      - 15
+    - - 1pm
+      - 16
+    - - 2pm
+      - 14
+    - - 3pm
+      - 12
+  step: 2
+  ylabel: °C</code></pre></div></article>
+<article class="dc" id="d-pie-chart">
+<div class="dc-pic"><img src="../sources/drawn/pie-chart.png" alt="A pie chart with sectors in proportion and a key; colour words in labels pick their colour, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>pie-chart</code> <span>Kreisdiagramm · pie chart</span></h4>
+<p>A pie chart with sectors in proportion and a key; colour words in labels pick their colour.</p>
+<dl><dt>Data</dt><dd>parts: [[label, value]]</dd>
+<dt>In use</dt><dd>28 uses in math; Learn screens; task types <code>multiple_choice</code> <code>text_input</code> <code>image_multiple_choice</code>; fields <code>key</code> <code>parts</code></dd>
+<dt>Example</dt><dd>en-GB/year-6/math/pie-charts · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: pie-chart
+  parts:
+    - - Dogs
+      - 10
+    - - Cats
+      - 5
+    - - Rabbits
+      - 5</code></pre></div></article>
+<article class="dc" id="d-spinner">
+<div class="dc-pic"><img src="../sources/drawn/spinner.png" alt="A spinner (Glücksrad) with equal sectors and a pointer, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>spinner</code> <span>Glücksrad · spinner</span></h4>
+<p>A spinner (Glücksrad) with equal sectors and a pointer. A spinner in coloured sectors, for chance.</p>
+<dl><dt>Data</dt><dd>sectors: [red, red, blue], one colour per sector; as an option it needs a key</dd>
+<dt>In use</dt><dd>227 uses in math; Learn screens; task types <code>multiple_choice</code> <code>image_multiple_choice</code> <code>true_false</code> <code>fill_in_blank</code> <code>text_input</code>; fields <code>key</code> <code>sectors</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-2/math/certain-possible-impossible · l1-f1</dd></dl>
+<pre><code>show:
+  drawn: spinner
+  sectors:
+    - red
+    - red
+    - red
+    - red</code></pre></div></article></div>
+<h3>Letters, words and colour</h3>
+<div class="dcs"><article class="dc" id="d-letter-card">
+<div class="dc-pic"><img src="../sources/drawn/letter-card.png" alt="A letter or a group of letters on a card, upper and lower case, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>letter-card</code></h4>
+<p>A letter or a group of letters on a card, upper and lower case. Each word on its own card; highlight_in_text tasks tap words on the cards.</p>
+<dl><dt>Data</dt><dd>text: 'Mm', style: [print, highlight-first]</dd>
+<dt>In use</dt><dd>2504 uses in lit-de, math, fl, lit-en; Learn screens; task types <code>true_false</code> <code>highlight_in_text</code> <code>multiple_choice</code> <code>image_multiple_choice</code> <code>speak</code>; fields <code>flash</code> <code>key</code> <code>text</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/alphabet · l1-f5</dd></dl>
+<pre><code>show:
+  drawn: letter-card
+  text: R S T U</code></pre></div></article>
+<article class="dc" id="d-word-card">
+<div class="dc-pic"><img src="../sources/drawn/word-card.png" alt="A word or short sentence in large print, for reading tasks, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>word-card</code></h4>
+<p>A word or short sentence in large print, for reading tasks.</p>
+<dl><dt>Data</dt><dd>text: 'Mama', syllable_colours: optional</dd>
+<dt>In use</dt><dd>521 uses in lit-de, fl; Learn screens; task types <code>image_multiple_choice</code> <code>true_false</code> <code>multiple_choice</code> <code>ordering</code> <code>fill_in_blank</code> <code>speak</code> <code>text_input</code>; fields <code>flash</code> <code>text</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/blend-syllables · l2-c3</dd></dl>
+<pre><code>show:
+  drawn: word-card
+  text: Oma</code></pre></div></article>
+<article class="dc" id="d-syllable-arcs">
+<div class="dc-pic"><img src="../sources/drawn/syllable-arcs.png" alt="A word with syllable arcs drawn under it (Silbenbögen), drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>syllable-arcs</code> <span>Silbenbögen · syllable arcs</span></h4>
+<p>A word with syllable arcs drawn under it (Silbenbögen).</p>
+<dl><dt>Data</dt><dd>word: Lama, syllables: [La, ma]</dd>
+<dt>In use</dt><dd>113 uses in lit-de, lit-en; Learn screens; task types <code>true_false</code> <code>image_multiple_choice</code>; fields <code>syllables</code> <code>word</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/blend-syllables · l1-f5</dd></dl>
+<pre><code>show:
+  drawn: syllable-arcs
+  word: Ma
+  syllables:
+    - Ma</code></pre></div></article>
+<article class="dc" id="d-writing-lines">
+<div class="dc-pic"><img src="../sources/drawn/writing-lines.png" alt="School writing lines with a letter or word to trace or copy, in the curriculum's script, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>writing-lines</code></h4>
+<p>School writing lines with a letter or word to trace or copy, in the curriculum's script. Handwriting lines in the child's script; tracing tasks draw over them (trace) or copy beside them (copy).</p>
+<dl><dt>Data</dt><dd>text: 'l', mode: [trace, copy], arrows: true, script: joined (Schreibschrift in the school's Ausgangsschrift: SAS, LA, VA or Grundschrift, a setting by Land; print if left out)</dd>
+<dt>In use</dt><dd>417 uses in lit-de, math, fl, lit-en; Learn screens; task types <code>tracing</code> <code>multiple_choice</code>; fields <code>arrows</code> <code>mode</code> <code>script</code> <code>text</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/copy-sentences · l1-w2</dd></dl>
+<pre><code>show:
+  drawn: writing-lines
+  text: Hose
+  mode: copy
+  arrows: false</code></pre></div></article>
+<article class="dc" id="d-sound-chart">
+<div class="dc-pic"><img src="../sources/drawn/sound-chart.png" alt="An Anlauttabelle, each field a letter with a picture whose word starts with that sound (M wie Maus), drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>sound-chart</code> <span>Anlauttabelle · sound chart</span></h4>
+<p>An Anlauttabelle, each field a letter with a picture whose word starts with that sound (M wie Maus).</p>
+<dl><dt>Data</dt><dd>letters: [m, a, s] (a short chart, or the whole one if left out), pictures: {m: mouse} (else the first drawn picture with that initial), mark: m (highlights a field), gaps: [s] (fields shown as ?), columns: 5</dd>
+<dt>In use</dt><dd>8 uses in lit-de; Learn screens; task types <code>multiple_choice</code>; fields <code>columns</code> <code>gaps</code> <code>letters</code> <code>mark</code> <code>pictures</code></dd>
+<dt>Example</dt><dd>de-DE/klasse-1/lit-de/sound-chart · l1-s1</dd></dl>
+<pre><code>show:
+  drawn: sound-chart
+  letters:
+    - m
+    - s
+    - f
+    - l
+  pictures:
+    m: mouse
+    s: sun
+    f: fish
+    l: lamp
+  gaps:
+    - f
+  columns: 4</code></pre></div></article>
+<article class="dc" id="d-colour-swatch">
+<div class="dc-pic"><img src="../sources/drawn/colour-swatch.png" alt="A plain round patch of one colour, drawn by the lesson player" loading="lazy"></div>
+<div class="dc-body"><h4><code>colour-swatch</code></h4>
+<p>A plain round patch of one colour.</p>
+<dl><dt>Data</dt><dd>colour: [red, blue, yellow, green, orange, purple, pink, brown, black, white]</dd>
+<dt>In use</dt><dd>148 uses in fl, lit-en; task types <code>audio_choice</code> <code>speak</code> <code>true_false</code>; fields <code>colour</code></dd>
+<dt>Example</dt><dd>de-DE/stufe-0/fl/en-imitate · l2-f4</dd></dl>
+<pre><code>show:
+  drawn: colour-swatch
+  colour: red</code></pre></div></article></div>
+
+<p>Where each drawing's data and media come from on every screen: <a href="../sources/index.html">Twist Screen Sources</a>.</p>
+</main></div></body></html>

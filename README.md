@@ -96,3 +96,36 @@ is needed.
    change it records just the new lines. Rebuild the player afterwards
    (step 2). Making every clip from nothing would take several hours and
    about $180 on OpenRouter (see twist/views/tracking.md).
+
+## Serve the player on a server
+
+`twist/serve.mjs` serves the player with its Practice, Drawings and Task
+types tabs from a clone, behind basic auth. It needs only Node 22 or newer;
+no npm install, no build: the built player, the pictures and the narration
+are all in the repo.
+
+1. **Clone** (about 3.4 GB of files; `--depth 1` skips the history):
+
+   ```
+   git clone --depth 1 git@github.com:istafrica-DieuMu/twist-content.git
+   ```
+
+2. **Run** with a user and password of your choice:
+
+   ```
+   cd twist-content
+   TWIST_USER=twist TWIST_PASS='a long password' PORT=8080 node twist/serve.mjs
+   ```
+
+   `/` opens the player. Only `twist/pages/` and `twist/assets/` are
+   served; lesson files and the rest of the repo are not.
+
+3. **Put HTTPS in front.** Basic auth sends the password with every
+   request, so serve it through a reverse proxy with a certificate (Caddy:
+   `twist.example.org { reverse_proxy localhost:8080 }`).
+
+4. **Keep it running** with systemd or a process manager, with the two
+   variables in its environment, not in the repo.
+
+5. **Update:** `git pull` (or a fresh shallow clone) and restart. The built
+   player is committed, so there is nothing to build on the server.

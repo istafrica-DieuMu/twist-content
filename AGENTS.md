@@ -28,6 +28,9 @@ git repo kept separate from schoolido-learning.
       plays audio from twist/assets/narration/<voice>/, which is in git
       (about 3 GB); after a content change, narrate the new lines with
       twist/assets/tools/narration.py and commit the new clips.
+    - drawings/: every drawn component with a real example and its
+      picture, the player's Drawings tab; written with the sources page by
+      `node twist/pages/sources/drawn.cjs`; never edit index.html by hand.
     - types/: every task type with a screen; `node twist/pages/types/shots.cjs`
       (needs Playwright) retakes the shots. Keep it in step with
       twist/docs/task-types.md. A copy is published as a claude.ai artifact.
@@ -47,6 +50,9 @@ git repo kept separate from schoolido-learning.
 - **rnd/**: the research: the captured sources (anton/, official-de/,
   official-gb/), the catalogue, crosswalk, research site, readiness review
   and the research write-ups. rnd/AGENTS.md has its rules.
+- **twist/serve.mjs**: serves pages/ and assets/ (the player with its
+  Practice, Drawings and Task types tabs) behind basic auth from a clone;
+  README.md, "Serve the player on a server".
 - README.md: the quick reference. Keep the root to these, plus config files.
 
 ## Rules for every agent session here
