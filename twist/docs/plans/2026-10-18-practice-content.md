@@ -79,6 +79,79 @@ lesson-anatomy.md and one pilot set of the same subject as the model
     `draw:` lines, the parts block) may use a one-line replace.
 17. **Done** when `node twist/build.mjs` shows no warnings for the set.
 
+## Formats for reading, phonics, spelling and foreign languages
+
+Decided 2026-10-20 from the Phase 1 pilots. The pilots are the models:
+`lessons/de-DE/klasse-2/lit-de/find-information.yaml` (reading a text),
+`lessons/de-DE/klasse-2/lit-de/lengthen-dt.yaml` (spelling),
+`lessons/en-GB/year-1/lit-en/split-digraphs.yaml` (phonics, Years 1 and 2),
+`lessons/en-GB/reception/lit-en/blend-cvc.yaml` (Reception reading) and
+`lessons/de-DE/lernjahr-1/fl/en-food.yaml` (foreign languages).
+
+**Reading a text**
+- Parts follow what the child looks for (who, where, when; how many,
+  what, with what; in the text or not), across the whole reading strand.
+- New short texts written for Twist, in the form and length of the set's
+  own (3 to 6 lines at Klasse 1 and 2, Years 1 and 2). One text serves at
+  most 2 tasks of a pool, and those two never give away each other's
+  answer.
+- Every task shows its text in full in `text`, the same lines every
+  time. A `highlight_in_text` card holds the whole text.
+- In a quick check every task has its own text, so a draw of 3 never
+  brings three questions on one text.
+- A true statement is reworded a little from the text, so the child has
+  to understand it, not match its words.
+- The draw stays 5 (4 at ages 4 to 5); the short texts keep it quick.
+
+**Phonics**
+- Parts by grapheme or sound family, at most 5 (4 at ages 4 to 5); a
+  mixed part for tasks across the graphemes is fine. Sets with more
+  graphemes group them by sound family.
+- Check words use only graphemes taught by that point in the curriculum
+  order, as the set's lessons use them. Longer words only when the set
+  teaches them.
+- A reading check reads; writing a grapheme for a sound (encoding) stays
+  in the spelling skills. Use a choice of written words under a picture
+  instead.
+- Picture options in a reading check set `option_audio: false`, so a
+  child cannot tap round to hear the names.
+- On screen a sound is written as the grapheme the child knows; where a
+  sound is meant on its own, play the bank sound (`audio: { sound: ... }`).
+- Spoken instructions come before the sound ("Listen. Which word is it?").
+- True and false roughly even, at least a third of each.
+- Only pictures in the asset bank; list missing CVC pictures under new
+  objects and they are drawn between batches.
+
+**Spelling (Deutsch)**
+- A dictation task shows a bank picture or the sentence with a gap; no
+  bare "Schreib das Wort." in a check.
+- The answer is the bare word with exact capitals, the article heard but
+  not typed. A noun typed in lower case is wrong.
+- A check names the strategy ("Verlängere") only when the part's `what`
+  names it (point 13); otherwise it asks only "d oder t?".
+- Parts as in lengthen-dt: by word kind, plus choosing the helper word
+  and the word in a sentence.
+- A check does not use the Learn demonstration words; Practise words in a
+  new task are fine. Every word is in a child's active vocabulary for the
+  year, and every helper-word task has a real doubt (Rad, not Licht).
+
+**Foreign languages**
+- Checks use the set's own words; a word from an earlier skill only
+  where the set's lessons use it too.
+- Every first-person line carries `speaker`, Practise and Warm-up too.
+- Any type the subject uses in that year may appear in a check.
+- Reading single words is fine where Practise already shows them in
+  writing; otherwise the task listens.
+- Yes or no about what the child heard is a `true_false` with Ja/Nein
+  (Yes/No) buttons, not German sentences to read.
+- The question ("Wie sagst du auf Englisch?") stands in `text`
+  everywhere (point 10).
+- A task that only swaps one word in a Practise sentence frame is a near
+  repeat (point 15); use another frame or a spare card.
+
+**Reviews.** The reviewer agents read as native teachers; no separate
+human read is planned before launch (decided 2026-10-20).
+
 ## Reviewer checklist
 
 A second agent reads every new task of a batch and fixes it in place:
@@ -98,15 +171,17 @@ A second agent reads every new task of a batch and fixes it in place:
 
 Run as a workflow, one batch at a time: authors in parallel (about 15
 sets each), then reviewers in parallel, then a clean build, narration in
-the check voices and a commit. The run stops after each phase for a read.
+the check voices and a commit. From 2026-10-20 the run goes straight on
+with no stop for a read: de-DE first, then en-GB, and each curriculum's
+narration starts in a background shell as soon as its batches finish.
 
 | Phase | What | Batches |
 |---|---|---|
 | 0 | Before scaling: money read as words in German narration, the brief and reviewer checklist from batch 1 | done 2026-10-18 |
 | 1 | Pilots for the formats not yet tried: a Deutsch spelling set, an English phonics set, a Reception set (ages 4 to 5, draw 4), a foreign-language set | 4 sets |
-| 2 | Maths, with a stop after the first en-GB batch to listen to the English check voice | 2 to 11 |
+| 2 | Maths (the English check voice was heard and approved on 2026-10-20) | 2 to 11 |
 | 3 | Maths drill banks | 10 banks |
-| 4 | Home languages, read in full by native reviewers | 12 to 22 |
+| 4 | Home languages, read in full by the reviewer agents as native teachers | 12 to 22 |
 | 5 | Literacy drill banks, word lists checked against their sources | 10 banks |
 | 6 | Foreign languages: the drill item format first, then the batches and banks | 23 to 29, 4 banks |
 | 7 | Close: 918 of 918 in tracking, a final pass in reviews.yaml, the handoff page | |
