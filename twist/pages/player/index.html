@@ -2517,7 +2517,7 @@ const TYPES = {
     // A sum (a frame with "=" and no words) never breaks inside a chain: each chain is one block, a list of sums
     // breaks only after its "," or ";", and the font shrinks until the widest block fits. Text frames wrap as text.
     const sum = t.frame.includes("=") && !/[A-Za-zÄÖÜäöüß]{3,}/.test(t.frame);
-    const fit = () => { let px = base; fr.style.fontSize = px + "px"; if (sum && fr.clientWidth) while (px > 14 && [...fr.querySelectorAll(".fseg")].some((e) => e.scrollWidth > fr.clientWidth)) fr.style.fontSize = (px -= 1) + "px"; };
+    const fit = () => { let px = base; fr.style.fontSize = px + "px"; if (sum && fr.clientWidth) while (px > 14 && [...fr.querySelectorAll(".fseg")].some((e) => e.scrollWidth > fr.clientWidth - 32)) fr.style.fontSize = (px -= 1) + "px"; };
     let seg;
     const newSeg = () => { if (!sum) { seg = fr; return; } seg = document.createElement("span"); seg.className = "fseg"; fr.appendChild(seg); };
     const text = (x) => { if (x) { const s = document.createElement("span"); s.textContent = x.trim() ? x : "\u00a0"; seg.appendChild(s); } };
@@ -2525,7 +2525,7 @@ const TYPES = {
     const draw = () => { fr.innerHTML = ""; newSeg(); parts.forEach((p, i) => { if (p) piece(p); if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; seg.appendChild(g); } }); fr.querySelectorAll(".fseg:empty").forEach((e) => e.remove()); fit(); btn.disabled = fill.includes(null); };
     t.options.forEach((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over) return; const k = fill.indexOf(null); if (k >= 0) { fill[k] = o; draw(); } }; chips.appendChild(b); });
     const btn = nextBtn(foot, UI.check, () => { const ok = fill.every((v, i) => String(v) === String(t.answer[i])); if (!ok) { fr.querySelectorAll(".gap").forEach((g, i) => g.style.background = String(fill[i]) === String(t.answer[i]) ? "var(--good-soft)" : "var(--bad-soft)"); } answer(ok, fill.join(","), () => { t.answer.forEach((v, i) => fill[i] = v); draw(); fr.querySelectorAll(".gap").forEach((g) => g.style.background = "var(--good-soft)"); }); if (!ok && !st.over) setTimeout(() => { fill.fill(null); draw(); }, 900); });
-    draw();
+    draw(); requestAnimationFrame(fit); document.fonts?.ready.then(fit);
   },
   text_input({ t, body, foot, vis, answer, st }) {
     vis.innerHTML = show(t.show);
