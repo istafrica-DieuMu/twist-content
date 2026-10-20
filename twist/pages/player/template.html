@@ -380,6 +380,7 @@ svg text{font-family:Andika,sans-serif}
 .ltext .al{text-align:right}.ltext .aa{color:var(--subj,#6849dd)}.ltext .ar{text-align:left;color:var(--subj,#6849dd)}
 /* lesson start: subject chip, lesson dots, the goal */
 .center.start{gap:12px}
+.nw{white-space:nowrap}.center h2,.actin .a-act{text-wrap:balance;overflow-wrap:normal}
 .subj-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,var(--subj) 12%,#fff);color:var(--subj);font:700 14px "Red Hat Display",sans-serif}
 .subj-chip b{width:8px;height:8px;border-radius:50%;background:var(--subj)}
 .ldots{display:flex;gap:8px;justify-content:center}
@@ -542,7 +543,16 @@ const phrase = (g) => { const list = D.phrases[set?.language ?? "de"]?.[g] ?? []
 
 /*__DRAWN__*/
 // A "_" in screen text is a gap to fill: drawn as a box, never as an underscore.
-const withGaps = (text) => esc(text ?? "").replace(/_/g, '<span class="blank">?</span>');
+// A number written with thousands spaces (1 000 000) never breaks across lines.
+const keepNums = (html) => html.replace(/\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?!\d)/g, '<span class="nw">$&</span>');
+const escH = (s) => keepNums(esc(s));
+const withGaps = (text) => keepNums(esc(text ?? "")).replace(/_/g, '<span class="blank">?</span>');
+// A headline that is wider than its box (a long number kept on one line)
+// takes a smaller font, down to 18px, rather than breaking the number.
+function fitHead(el) {
+  if (!el) return;
+  for (let fs = parseFloat(getComputedStyle(el).fontSize); el.scrollWidth > el.clientWidth + 1 && fs > 18; ) { fs -= 1; el.style.fontSize = `${fs}px`; }
+}
 
 /* ---------- lesson as a list of steps ---------- */
 let set, lesson, steps = [], at = 0, results = [];
@@ -579,7 +589,7 @@ function frameUI(step) {
   const scr = $("#screen");
   const acts = lesson.activities.map((a) => a.activity), n = step.a ? acts.indexOf(step.a.activity) + 1 : 0;
   const sub = step.a?.activity === "practise" ? ` · ${{ full: UI.stFull, some: UI.stSome, none: UI.stNone }[step.a.stages[step.si ?? 0]?.support] ?? ""}` : "";
-  const title = step.a ? esc(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : step.kind === "start" ? esc(set.title[lang()] ?? set.title.de) : esc(lesson.title[lang()] ?? lesson.title.de);
+  const title = step.a ? escH(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : step.kind === "start" ? escH(set.title[lang()] ?? set.title.de) : escH(lesson.title[lang()] ?? lesson.title.de);
   scr.style.setProperty("--subj", SUBJ_COLOUR[subjOf(set)] ?? "#6849dd");
   scr.innerHTML = `<div class="status"></div><div class="hdr"><button class="ib menu" aria-label="Lesson menu">${ICON.list}</button>
     <div class="stepb">${n ? `<span class="badge-n"><b>${n}</b></span>` : ""}<span class="st">${title}</span></div>
@@ -594,7 +604,7 @@ function frameUI(step) {
 // The lesson menu sheet: every activity of the lesson, tap one to jump there.
 function lessonMenu(scr) {
   const m = document.createElement("div"); m.className = "sheet menu-sheet";
-  m.innerHTML = `<div class="msg">${esc(lesson.title[lang()] ?? lesson.title.de)}</div>`;
+  m.innerHTML = `<div class="msg">${escH(lesson.title[lang()] ?? lesson.title.de)}</div>`;
   lesson.activities.forEach((a, i) => {
     const first = steps.findIndex((s) => s.a === a), b = document.createElement("button"); b.className = "mrow";
     const tasks = steps.filter((s) => s.a === a && (s.kind === "task" || s.kind === "learn")).length;
@@ -657,7 +667,8 @@ function helpLevels(a, now) {
 function actScreen(step, { pose, title, phrase: ph, card }) {
   const { body, foot } = frameUI(step);
   body.innerHTML = `<div class="actin">${actPath(step)}<div class="stagebox"><div class="disc"></div><div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div>${pose}</div>
-    <h2 class="a-act">${esc(title)}</h2>${ph ? `<p class="a-phrase">${esc(ph)}</p>` : ""}${card ? `<div class="nextcard">${card}</div>` : ""}</div>`;
+    <h2 class="a-act">${escH(title)}</h2>${ph ? `<p class="a-phrase">${escH(ph)}</p>` : ""}${card ? `<div class="nextcard">${card}</div>` : ""}</div>`;
+  fitHead(body.querySelector(".a-act"));
   nextBtn(foot);
   return body;
 }
@@ -676,8 +687,9 @@ function renderStart() {
   // not "Lesson 2"), and the goal in the skill's own words ("I can ...").
   const subj = SUBJ[subjOf(set)] ?? "", n = set.lessons.length, k = set.lessons.indexOf(lesson);
   const dots = n > 1 ? `<div class="ldots" aria-label="${esc(UI.lessonOf(k + 1, n))}">${set.lessons.map((_, i) => `<i class="${i < k ? "done" : i === k ? "now" : ""}"></i>`).join("")}</div>` : "";
-  const goal = set.can_do?.[lang()] ? `<div class="goal"><span class="gl">${esc(UI.goal)}</span>${esc(set.can_do[lang()])}</div>` : "";
-  body.innerHTML = `<div class="center start">${pose}<span class="subj-chip"><b></b>${esc(subj)}</span><h2 class="a-lesson">${esc(lesson.title[lang()] ?? lesson.title.de)}</h2>${dots}${goal}</div>`;
+  const goal = set.can_do?.[lang()] ? `<div class="goal"><span class="gl">${esc(UI.goal)}</span>${escH(set.can_do[lang()])}</div>` : "";
+  body.innerHTML = `<div class="center start">${pose}<span class="subj-chip"><b></b>${esc(subj)}</span><h2 class="a-lesson">${escH(lesson.title[lang()] ?? lesson.title.de)}</h2>${dots}${goal}</div>`;
+  fitHead(body.querySelector(".a-lesson"));
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 // Learn text: one short line stays big; several lines sit on a card, sized to
