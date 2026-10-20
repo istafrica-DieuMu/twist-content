@@ -432,6 +432,7 @@ svg text{font-family:Andika,sans-serif}
 @media (max-height:760px){.stagebox{width:180px;height:180px}.stagebox img.mascot-pose{width:160px;height:160px}}
 .frame .fbr{flex-basis:100%;height:0;margin:0}
 .frame .fseg{display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+.frame:not(.slots) .gap{min-width:1.3em;height:1.55em}
 .grps{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:10px}
 .grps .tray{border:2px solid #e3dcf0;border-radius:14px;padding:6px 8px;background:#faf8ff;display:flex;align-items:center}
 .it.gone{position:relative}
@@ -2509,16 +2510,19 @@ const TYPES = {
     vis.innerHTML = show(t.show);
     const parts = t.frame.split("_"), n = parts.length - 1, fill = Array(n).fill(null);
     const fr = document.createElement("div"); fr.className = "frame"; body.appendChild(fr);
-    // Long frames (a Rechenweg in steps, a fact family) get a smaller font so they stay on one or two lines.
-    if (t.frame.length > 28) fr.style.fontSize = "22px"; else if (t.frame.length > 16) fr.style.fontSize = "28px";
+    // Long frames (a Rechenweg in steps, a fact family) start smaller.
+    const base = t.frame.length > 28 ? 22 : t.frame.length > 16 ? 28 : 40;
     const chips = document.createElement("div"); chips.className = "chips"; body.appendChild(chips);
     // " | " between two sums or steps starts a new line, never a bar on screen.
-    // A chain wraps only before an "=": "= 23 + 40 + ?" stays together and a sign never sits alone on a line.
+    // A sum (a frame with "=" and no words) never breaks inside a chain: each chain is one block, a list of sums
+    // breaks only after its "," or ";", and the font shrinks until the widest block fits. Text frames wrap as text.
+    const sum = t.frame.includes("=") && !/[A-Za-zÄÖÜäöüß]{3,}/.test(t.frame);
+    const fit = () => { let px = base; fr.style.fontSize = px + "px"; if (sum && fr.clientWidth) while (px > 14 && [...fr.querySelectorAll(".fseg")].some((e) => e.scrollWidth > fr.clientWidth)) fr.style.fontSize = (px -= 1) + "px"; };
     let seg;
-    const newSeg = () => { seg = document.createElement("span"); seg.className = "fseg"; fr.appendChild(seg); };
-    const text = (x) => { if (x) { const s = document.createElement("span"); s.textContent = x.trim() ? x : " "; seg.appendChild(s); } };
-    const piece = (p) => p.split(" | ").forEach((x, k) => { if (k) { const br = document.createElement("i"); br.className = "fbr"; fr.appendChild(br); newSeg(); } x.split(" = ").forEach((y, j) => { if (j) { newSeg(); text("= "); } text(y); }); });
-    const draw = () => { fr.innerHTML = ""; newSeg(); parts.forEach((p, i) => { if (p) piece(p); if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; seg.appendChild(g); } }); fr.querySelectorAll(".fseg:empty").forEach((e) => e.remove()); btn.disabled = fill.includes(null); };
+    const newSeg = () => { if (!sum) { seg = fr; return; } seg = document.createElement("span"); seg.className = "fseg"; fr.appendChild(seg); };
+    const text = (x) => { if (x) { const s = document.createElement("span"); s.textContent = x.trim() ? x : "\u00a0"; seg.appendChild(s); } };
+    const piece = (p) => p.split(" | ").forEach((x, k) => { if (k) { const br = document.createElement("i"); br.className = "fbr"; fr.appendChild(br); newSeg(); } (sum ? x.split(/(?<=[,;]) /) : [x]).forEach((y, j) => { if (j) newSeg(); text(y); }); });
+    const draw = () => { fr.innerHTML = ""; newSeg(); parts.forEach((p, i) => { if (p) piece(p); if (i < n) { const g = document.createElement("span"); g.className = "gap" + (fill[i] != null ? " filled" : ""); g.textContent = fill[i] ?? "?"; g.onclick = () => { if (!st.over) { fill[i] = null; draw(); } }; seg.appendChild(g); } }); fr.querySelectorAll(".fseg:empty").forEach((e) => e.remove()); fit(); btn.disabled = fill.includes(null); };
     t.options.forEach((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over) return; const k = fill.indexOf(null); if (k >= 0) { fill[k] = o; draw(); } }; chips.appendChild(b); });
     const btn = nextBtn(foot, UI.check, () => { const ok = fill.every((v, i) => String(v) === String(t.answer[i])); if (!ok) { fr.querySelectorAll(".gap").forEach((g, i) => g.style.background = String(fill[i]) === String(t.answer[i]) ? "var(--good-soft)" : "var(--bad-soft)"); } answer(ok, fill.join(","), () => { t.answer.forEach((v, i) => fill[i] = v); draw(); fr.querySelectorAll(".gap").forEach((g) => g.style.background = "var(--good-soft)"); }); if (!ok && !st.over) setTimeout(() => { fill.fill(null); draw(); }, 900); });
     draw();
