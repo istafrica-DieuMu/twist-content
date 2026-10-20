@@ -2764,8 +2764,16 @@ function pickSet(i, n) {
   set = D.sets[i];
   pickLesson(n ?? set.lessons[0].n);
 }
+// The player plays the Warm-up straight after Learn, not before it; a lesson without Learn keeps its order.
+function playOrder(l) {
+  const acts = l.activities, w = acts.findIndex((a) => a.activity === "warm-up"), k = acts.findIndex((a) => a.activity === "learn");
+  if (w < 0 || k < 0 || w > k) return l;
+  const rest = acts.filter((_, i) => i !== w);
+  rest.splice(rest.indexOf(acts[k]) + 1, 0, acts[w]);
+  return { ...l, activities: rest };
+}
 function pickLesson(n, type) {
-  lesson = set.lessons.find((l) => l.n === +n) ?? set.lessons[0]; buildSteps();
+  lesson = playOrder(set.lessons.find((l) => l.n === +n) ?? set.lessons[0]); buildSteps();
   const j = type ? steps.findIndex((s) => s.kind === "task" && s.t.type === type) : -1;
   go(j > 0 ? j : 0); renderNow(); markCurrent();
   try { localStorage.setItem("twist-pos", JSON.stringify([D.sets.indexOf(set), lesson.n])); } catch (e) {}
