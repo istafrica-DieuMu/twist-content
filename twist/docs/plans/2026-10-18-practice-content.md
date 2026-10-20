@@ -55,8 +55,9 @@ lesson-anatomy.md and one pilot set of the same subject as the model
     story task's picture shows the whole story: `groups: [8, 5]` for "8, and
     5 more", `gone: 2` for "2 fly away" (docs/task-types.md); never one
     picture for a count. Decided 2026-10-19.
-    A check never reuses a worked example from the set's Learn screens: the
-    same sum or the same picture (the build warns). Decided 2026-10-19.
+    A check rarely reuses a worked example from the set's Learn screens
+    (the same sum or the same picture). One such task in a check is fine;
+    the build warns from the second. Decided 2026-10-19, eased 2026-10-20.
     In Reception, Year 1 and Klasse 1, numbers on screen are digits, each
     spoken when tapped, never number words. Decided 2026-10-19.
 11. **Options stay in the year's range.** No subtraction option below
