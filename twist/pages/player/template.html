@@ -979,7 +979,12 @@ function flash(vis, ms, again, step) {
   cover.innerHTML = '<div style="font:700 60px Andika,sans-serif;color:#d6c2e8">?</div>';
   vis.appendChild(cover);
   const hide = () => { if (steps[at] === step) cover.style.display = "grid"; };
-  setTimeout(hide, ms);
+  // The look starts once the question has been spoken, so the child is not
+  // listening while the picture is up (at most 10 s of waiting).
+  const quiet = () => (player.paused || player.ended) && !queue.length;
+  let waited = 0;
+  const wait = () => { if (steps[at] !== step) return; if (quiet() || waited >= 10000) setTimeout(hide, ms); else { waited += 150; setTimeout(wait, 150); } };
+  setTimeout(wait, 400);
   if (again) { const b = document.createElement("button"); b.className = "sound"; b.textContent = UI.seeAgain; b.onclick = () => { cover.style.display = "none"; setTimeout(hide, ms); }; vis.after(b); }
 }
 function optEl(o, t, i) {

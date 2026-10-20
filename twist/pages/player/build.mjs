@@ -91,9 +91,14 @@ const LETTERISH = /^[A-Za-zÄÖÜäöüß]{1,3}$/;
 const objectRecs = Object.fromEntries((read("assets/objects.yaml").objects ?? []).map((o) => [o.id, o]));
 function optionText(t, o, lang) {
   if (t.option_audio === false || (t.option_audio === undefined && NO_OPTION_AUDIO.has(t.type))) return null;
-  if (o && typeof o === "object" && o.count != null) return null;
+  // A counted group stays silent ("Wo sind 2 Bananen?"), and then so do the
+  // other options, so a task never speaks some options and not others.
+  if ((t.options ?? []).some((x) => x && typeof x === "object" && x.count != null)) return null;
   if (o && typeof o === "object" && o.object) return word(o.object, lang);
-  if (typeof o === "string" && (t.option_audio || !LETTERISH.test(o))) return o;
+  // Letters and sounds stay silent (hearing them gives the answer), but only
+  // when every option is one: a task's options all speak or none do.
+  const letters = (t.options ?? []).every((x) => typeof x === "string" && LETTERISH.test(x));
+  if (typeof o === "string" && (t.option_audio || !letters)) return o;
   return null;
 }
 
@@ -141,12 +146,15 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
         // `say`, or a picture's word (not in target-language lessons).
         // Must match tappable() in narration.py.
         const target = d.target_language;
+        // Text cards of one to three letters stay silent only when every card is one.
+        const cards = [...(t.pairs ?? []).flatMap((p) => [p.left, p.right]), ...(t.bins ?? []), ...(t.type === "sorting" ? t.options ?? [] : [])].filter((x) => x && typeof x === "object" && typeof x.text === "string");
+        const letterCards = cards.length > 0 && cards.every((x) => LETTERISH.test(x.text));
         const tap = (x) => {
           if (!x || typeof x !== "object") return null;
           if (x.say) return sayClips(x.say, lang, a.activity, w)[0];
           const o = x.show ?? x;
           if (!target && o.object && o.count == null) return clip(lang, word(o.object, lang), a.activity, null, w);
-          if (t.option_audio !== false && typeof x.text === "string" && !LETTERISH.test(x.text)) return clip(lang, x.text, a.activity, null, w); // a number or sum card reads itself
+          if (t.option_audio !== false && typeof x.text === "string" && !letterCards) return clip(lang, x.text, a.activity, null, w); // a number or sum card reads itself
           return null;
         };
         if (t.pairs) t._pairs = t.pairs.map((p) => ({ left: tap(p.left), right: tap(p.right) }));

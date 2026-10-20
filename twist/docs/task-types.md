@@ -669,9 +669,12 @@ An option gets a speaker when hearing it does not give the answer away:
 
 - a picture option says its word ("Lampe"), a number or sum is read
   ("13", "7 plus 6"), and a word option is read;
-- never on audio_choice (the sound is the question), never for a letter
-  or syllable option, never for a group of counted things ("Wo sind 2
+- never on audio_choice (the sound is the question), and no option
+  speaks when one of them is a group of counted things ("Wo sind 2
   Bananen?");
+- letters and sounds (options of one to three letters: "b", "ei", "sch")
+  stay silent, but only when every option of the task is one; a task's
+  options all speak or none do, so "Kuh, Wal, Nase" all speak;
 - matching and sorting: a side, bin or item with its own `say` says that;
   a picture with no `say` says its word, unless the lesson has a target
   language (an Englisch lesson must not say German words); a number or

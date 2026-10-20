@@ -187,6 +187,9 @@ def tappable(t, objects, lang, target):
     if t["type"] == "sorting":
         parts += t.get("options", [])
     out = []
+    # Text cards of one to three letters stay silent only when every card is one.
+    cards = [x for x in parts if isinstance(x, dict) and isinstance(x.get("text"), str)]
+    letter_cards = bool(cards) and all(LETTERISH.fullmatch(x["text"]) for x in cards)
     for x in parts:
         if not isinstance(x, dict):
             continue
@@ -199,7 +202,7 @@ def tappable(t, objects, lang, target):
         o = x.get("show", x)
         if not target and isinstance(o, dict) and o.get("object") and o.get("count") is None:
             out.append((lang, word(objects, o["object"], lang)))
-        elif t.get("option_audio") is not False and isinstance(x.get("text"), str) and not LETTERISH.fullmatch(x["text"]):
+        elif t.get("option_audio") is not False and isinstance(x.get("text"), str) and not letter_cards:
             out.append((lang, x["text"]))  # a number or sum card reads itself ("2 + 2")
     for oid in (t.get("show") or {}).get("objects", []):
         if not target:
@@ -218,12 +221,15 @@ def option_texts(t, objects, lang):
     if t.get("option_audio") is False or (t.get("option_audio") is None and t["type"] in NO_OPTION_AUDIO):
         return []
     out = []
+    # Letters and sounds stay silent, but only when every option is one:
+    # a task's options all speak or none do. Must match optionText() in build.mjs.
+    letters = all(isinstance(x, str) and LETTERISH.fullmatch(x) for x in t.get("options", []))
+    if any(isinstance(o, dict) and "count" in o for o in t.get("options", [])):
+        return []  # "Wo sind 2 Bananen?": hearing a group would give the answer, so no option speaks
     for o in t.get("options", []):
-        if isinstance(o, dict) and "count" in o:
-            continue  # "Wo sind 2 Bananen?": hearing the group would give the answer
         if isinstance(o, dict) and "object" in o:
             out.append(word(objects, o["object"], lang))
-        elif isinstance(o, str) and (t.get("option_audio") or not LETTERISH.fullmatch(o)):
+        elif isinstance(o, str) and (t.get("option_audio") or not letters):
             out.append(o)
     return out
 
