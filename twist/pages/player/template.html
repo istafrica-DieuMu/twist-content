@@ -492,6 +492,8 @@ const D = __DATA__;
 const A = D.assets;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const PAUSE = '<svg viewBox="0 0 24 24" fill="#2b0f45" stroke="#2b0f45" stroke-width="1" stroke-linejoin="round"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>';
+const RESUME = '<svg viewBox="0 0 24 24" fill="#2b0f45" stroke="#2b0f45" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 const SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="#2b0f45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#2b0f45"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
 const NAMES = { de: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Üben", check: "Zeig, was du kannst" }, en: { "warm-up": "Warm up", learn: "Learn", practise: "Practise", check: "Show what you know" } };
 // Interface text in the lesson's language.
@@ -501,13 +503,13 @@ const TXT = {
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
     speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
-    introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:", fillGap: "Was fehlt?", planBack: "hinten", planFront: "vorne" },
+    introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:", fillGap: "Was fehlt?", planBack: "hinten", planFront: "vorne", listen: "Anhören", pause: "Pause", resume: "Weiter hören" },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
     speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
-    introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:", fillGap: "What is missing?", planBack: "back", planFront: "front" },
+    introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:", fillGap: "What is missing?", planBack: "back", planFront: "front", listen: "Listen", pause: "Pause", resume: "Play on" },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
 try { document.getElementById("auto").checked = localStorage.getItem("twist-auto") !== "0"; } catch (e) {}
@@ -515,13 +517,20 @@ try { document.getElementById("auto").checked = localStorage.getItem("twist-auto
 /* ---------- audio: one queue, cancelled on every step change ---------- */
 const player = new Audio();
 let queue = [], qToken = 0, onQueueEnd = null;
-function play(srcs, done) {
+// The button that started the queue (a pausable speaker shows pause, then play).
+let owner = null;
+function setOwner(b) {
+  if (owner && owner !== b) spkState(owner, "idle");
+  owner = b; if (b) spkState(b, "playing");
+}
+function play(srcs, done, btn) {
   qToken++; const tok = qToken;
   queue = (Array.isArray(srcs) ? srcs : [srcs]).filter(Boolean);
   onQueueEnd = done || null;
+  setOwner(btn ?? null);
   const next = () => {
     if (tok !== qToken) return;
-    if (!queue.length) { document.querySelectorAll(".spk.playing").forEach((b) => b.classList.remove("playing")); if (onQueueEnd) onQueueEnd(); return; }
+    if (!queue.length) { document.querySelectorAll(".spk.playing").forEach((b) => b.classList.remove("playing")); setOwner(null); if (onQueueEnd) onQueueEnd(); return; }
     player.src = A + queue.shift();
     player.onended = () => setTimeout(next, 250);
     player.onerror = () => next();
@@ -529,13 +538,29 @@ function play(srcs, done) {
   };
   next();
 }
-function stopAudio() { qToken++; player.pause(); queue = []; }
+function stopAudio() { qToken++; player.pause(); queue = []; setOwner(null); }
 const auto = () => document.getElementById("auto").checked;
 const autoNext = () => document.getElementById("autonext").checked;
-function spk(srcs, cls = "") {
-  const b = document.createElement("button"); b.className = "spk " + cls; b.innerHTML = SPK; b.setAttribute("aria-label", "Anhören");
-  b.onclick = (e) => { e.stopPropagation(); b.classList.add("playing"); play(srcs); };
+// A speaker button. A pausable one (Learn, the question, feedback lines)
+// shows pause while its audio plays, and play while paused, so a child can
+// stop an explanation and go on from the same word. Option speakers are short
+// and keep the plain speaker.
+function spk(srcs, cls = "", pausable = false) {
+  const b = document.createElement("button"); b.className = "spk " + cls; b.innerHTML = SPK; b.setAttribute("aria-label", UI.listen);
+  if (pausable) b.dataset.pausable = "1";
+  b.onclick = (e) => {
+    e.stopPropagation();
+    if (pausable && owner === b && b.dataset.state === "playing") { player.pause(); spkState(b, "paused"); return; }
+    if (pausable && owner === b && b.dataset.state === "paused") { player.play().catch(() => {}); spkState(b, "playing"); return; }
+    b.classList.add("playing"); play(srcs, null, b);
+  };
   return b;
+}
+function spkState(b, st) {
+  b.dataset.state = st; b.classList.toggle("playing", st === "playing"); b.classList.toggle("paused", st === "paused");
+  if (!b.dataset.pausable) return;
+  b.innerHTML = st === "playing" ? PAUSE : st === "paused" ? RESUME : SPK;
+  b.setAttribute("aria-label", st === "playing" ? UI.pause : st === "paused" ? UI.resume : UI.listen);
 }
 // How a sound id reads on its button: de.l -> lll, de.o: -> ooo, de.ma -> Ma.
 const lines_sound = (id) => { const x = id.split(".")[1]; return x.endsWith(":") ? x[0].repeat(3) : x.length === 1 && !"aeiou".includes(x) ? x.repeat(3) : x[0].toUpperCase() + x.slice(1); };
@@ -716,9 +741,9 @@ function renderLearn(step) {
   const cardShown = ["letter-card", "word-card", "syllable-arcs"].includes(s.show?.drawn);
   if (s.text && !set.no_reading && !cardShown) body.appendChild(learnText(s.text));
   const srcs = [...s._audio, s._sound].filter(Boolean);
-  const sp = spk(srcs, "big"); body.appendChild(sp);
+  const sp = spk(srcs, "big", true); body.appendChild(sp);
   if (s._sound) { const b = document.createElement("button"); b.className = "sound"; b.innerHTML = SPK + esc(lines_sound(s.sound)); b.onclick = () => play(s._sound); body.appendChild(b); }
-  if (auto()) play(srcs);
+  if (auto()) play(srcs, null, sp);
   if (s.show?.drawn === "zwanzigerfeld" && s.show.move) setTimeout(() => { if (steps[at] === step) vis.innerHTML = drawn(s.show, { moved: s.show.move }); }, 1600);
   nextBtn(foot);
   // Learn screens sit in the middle and their picture grows into the space, as tasks do.
@@ -767,14 +792,14 @@ function renderTask(step) {
   const promptAudio = [...t._prompt, t._target].flat().filter(Boolean);
   if (t.type === "audio_choice") {
     const txt = document.createElement("div"); txt.className = "t"; txt.textContent = set.no_reading ? "" : (t.text ?? ""); pr.appendChild(txt);
-    pr.appendChild(spk(t._prompt));
+    pr.appendChild(spk(t._prompt, "", true));
     body.appendChild(pr);
     const big = spk([t._target].flat().filter(Boolean), "big"); body.appendChild(big);
   } else {
     // A text that only repeats the frame below gives way to a plain instruction.
     const shown = t.frame && String(t.text ?? "").trim() === String(t.frame).trim() ? UI.fillGap : t.text;
     const txt = document.createElement("div"); txt.className = (shown ?? "").includes("\n") || (shown ?? "").length > 90 ? "t passage" : "t"; txt.innerHTML = set.no_reading ? "" : withGaps(shown); pr.appendChild(txt);
-    pr.appendChild(spk(promptAudio)); body.appendChild(pr);
+    pr.appendChild(spk(promptAudio, "", true)); body.appendChild(pr);
   }
   // The app's prompt: the mascot with a speech bubble that holds the question and its speaker.
   const bq = document.createElement("div"); bq.className = "bubbleq"; while (pr.firstChild) bq.appendChild(pr.firstChild);
@@ -782,7 +807,7 @@ function renderTask(step) {
   pr.innerHTML = `<img class="mascot" src="mascot.png" alt="">`; pr.appendChild(bq);
   const vis = document.createElement("div"); vis.className = "visual"; body.appendChild(vis);
   const msg = document.createElement("div"); msg.className = "msgs"; msg.style.display = "flex"; msg.style.flexDirection = "column"; msg.style.gap = "8px";
-  if (auto()) play(promptAudio);
+  if (auto()) play(promptAudio, null, bq.querySelector(".spk"));
 
   // Feedback slides up from the bottom, as in the app: green when right, lilac when not.
   const scr = $("#screen"); let sheet = null;
@@ -796,7 +821,7 @@ function renderTask(step) {
   const bubble = (cls, text, src) => {
     const s = openSheet(cls === "ok" && !st.revealed ? "ok" : "bad");
     if (cls === "ok" && !st.revealed) { s.querySelector(".msg span").textContent = text; return; }
-    const b = document.createElement("div"); b.className = "line " + cls; if (src) b.appendChild(spk(src));
+    const b = document.createElement("div"); b.className = "line " + cls; if (src) b.appendChild(spk(src, "", true));
     const x = document.createElement("div"); x.textContent = text; b.appendChild(x); s.appendChild(b);
   };
   const finish = (kind) => {
@@ -1411,11 +1436,11 @@ const PARTS = [
   ["intro", ".a-phrase", "Spoken line", "assets/phrases.yaml, read aloud."],
   ["learn", ".visual", "Visual", "screens[i].show: a bank picture or a drawn component."],
   ["learn", ".word", "Learn text", "screens[i].text"],
-  ["learn", ".spk.big", "Speaker", "Plays screens[i].say (or the text)."],
+  ["learn", ".spk.big", "Speaker", "Plays screens[i].say (or the text); shows pause while it plays and play while paused, so the child can stop and go on."],
   ["learn", ".sound", "Sound button", "screens[i].sound: a recorded sound from assets/sounds.yaml."],
   ["task", ".prompt .mascot", "Mascot", "The standing mascot (pages/player/mascot.png)."],
   ["task", ".bubbleq", "Prompt", "The speech bubble: the task's text on screen, its say spoken (text when there is no say)."],
-  ["task", ".bubbleq .spk", "Prompt speaker", "Plays the prompt again, then audio when there is one."],
+  ["task", ".bubbleq .spk", "Prompt speaker", "Plays the prompt again, then audio when there is one; pause and play on like the Learn speaker. Option speakers stay plain."],
   ["task", ".visual", "Visual", "The task's show: a picture, two pictures or a drawn component."],
   ["task", ".opts, .tf, .pad, .chips, .pairs, .bins, .slots, .entry, .speakrow, .mic, .saycard, .cards", "Answer area", "By type: options, Yes and No, the keyboard, gap chips, pairs, bins, slots, the microphone."],
   ["task", ".opt .os", "Option speaker", "Says the option, where hearing it does not give the answer away (option_audio)."],
