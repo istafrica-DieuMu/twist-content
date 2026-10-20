@@ -986,7 +986,9 @@ function optEl(o, t, i) {
   const b = document.createElement("button"); b.className = "opt";
   b.innerHTML = typeof o === "string" ? esc(o) : o.drawn ? drawn(o, { small: true }) : o.count != null ? pic(o, { small: true }) : show(o);
   const src = t._options?.[i];
-  if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s); }
+  if (src) { const s = document.createElement("span"); s.className = "os"; s.innerHTML = SPK; s.setAttribute("aria-label", "Anhören"); s.onclick = (e) => { e.stopPropagation(); play(src); }; b.appendChild(s);
+    // Choosing an option says it too, as its speaker does.
+    b.addEventListener("click", () => { if (!b.disabled) play(src); }); }
   return b;
 }
 const keyOf = (o) => typeof o === "string" ? o : o.key != null ? String(o.key) : o.count != null ? String(o.count) : o.drawn === "clock" ? `${o.hour}:${String(o.minute ?? 0).padStart(2, "0")}` : o.drawn === "written-calc" ? o.rows.join("|") : o.array ? o.array.join("x") : o.groups ? o.groups.join("+") : o.drawn === "zwanzigerfeld" ? String(o.filled[0] + o.filled[1]) : ["ten-frame", "hundred-field"].includes(o.drawn) ? String(o.filled) : o.drawn === "base-ten" ? String(100 * (o.hundreds ?? 0) + 10 * (o.tens ?? 0) + (o.ones ?? 0)) : o.drawn === "place-value-chart" ? String(o.values.reduce((a, v) => a * 10 + (v ?? 0), 0)) : o.drawn === "shape" ? o.kind : o.drawn === "fraction" ? `${o.shaded}/${o.parts}` : o.drawn === "coins" ? String(o.values.reduce((a, v) => a + v, 0)) : (o.text ?? o.colour ?? o.object ?? o.drawn);
@@ -1443,7 +1445,7 @@ const PARTS = [
   ["task", ".bubbleq .spk", "Prompt speaker", "Plays the prompt again, then audio when there is one; pause and play on like the Learn speaker. Option speakers stay plain."],
   ["task", ".visual", "Visual", "The task's show: a picture, two pictures or a drawn component."],
   ["task", ".opts, .tf, .pad, .chips, .pairs, .bins, .slots, .entry, .speakrow, .mic, .saycard, .cards", "Answer area", "By type: options, Yes and No, the keyboard, gap chips, pairs, bins, slots, the microphone."],
-  ["task", ".opt .os", "Option speaker", "Says the option, where hearing it does not give the answer away (option_audio)."],
+  ["task", ".opt .os", "Option speaker", "Says the option, where hearing it does not give the answer away (option_audio); tapping the option itself says it too."],
   ["task", ".sheet.ok", "Feedback sheet, right", "Green: a praise phrase (phrases.yaml correct), then Next, which moves on by itself."],
   ["task", ".sheet.bad", "Feedback sheet, not yet", "Lilac: feedback[chosen option], then hints[n] for the stage, and Try again."],
   ["task", ".sheet .line.hint", "Hint", "hints[n]: one per miss in the full stage, one in the some stage, none after."],
