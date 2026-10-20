@@ -24,6 +24,11 @@ metadata:
   forms: [audio, text, drawn]
   drawn: [colour-swatch, clock]
   facets: []
+  parts:
+    - { id: numbers, what: { de: "Zahlen heraushören (Alter, wie viele, Nummern)", en: "picking out numbers (an age, how many, a number)" } }
+    - { id: colours, what: { de: Farben heraushören, en: picking out colours } }
+    - { id: times, what: { de: volle Uhrzeiten heraushören, en: picking out times on the hour } }
+    - { id: names, what: { de: "Namen heraushören und wissen, wer was hat oder macht", en: picking out names and who has or does what } }
   misconceptions:
     - id: first-detail
       what: Picks the first number, colour or name heard instead of the one the question asks about
@@ -46,6 +51,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
+            text: "Welche Zahl ist das?"
             say: { de: "Hör zu. Welche Zahl ist das?" }
             audio: { en: "Twelve." }
             options: ["12", "20", "2"]
@@ -53,8 +59,9 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Worum geht es?"
             say: { de: "Hör zu. Worum geht es?" }
-            audio: { en: "What's your favourite colour? Blue!" }
+            audio: { turns: [{ en: "What's your favourite colour?", speaker: female }, { en: "Blue!", speaker: male }] }
             options: ["um Farben", "ums Essen", "um Tiere"]
             answer: "um Farben"
             difficulty: easy
@@ -76,6 +83,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: audio_choice
+                text: "Wie alt ist Lily?"
                 say: { de: "Hör zu. Wie alt ist Lily?" }
                 audio: { en: "Hello, I'm Lily. I'm eight years old.", speaker: female }
                 options: ["8", "6", "18"]
@@ -87,6 +95,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "Wie viele Katzen hat Tom?"
                 say: { de: "Hör zu. Wie viele Katzen hat Tom?" }
                 audio: { en: "I'm Tom. I'm ten. I've got three cats and one dog.", speaker: male }
                 options: ["3", "10", "1"]
@@ -99,6 +108,7 @@ lessons:
                   - "„Three“ ist drei."
               - id: l1-f3
                 type: audio_choice
+                text: "Welche Farbe hat Emmas Fahrrad?"
                 say: { de: "Hör zu. Welche Farbe hat Emmas Fahrrad?" }
                 audio: { en: "I'm Emma. This is my bike. It's red. My brother's bike is blue.", speaker: female }
                 options: [{ drawn: colour-swatch, colour: red }, { drawn: colour-swatch, colour: blue }, { drawn: colour-swatch, colour: green }]
@@ -109,6 +119,7 @@ lessons:
                   - "„Red“ ist rot."
               - id: l1-f4
                 type: audio_choice
+                text: "Welche Nummer hat der Bus?"
                 say: { de: "Hör zu. Welche Nummer hat der Bus?" }
                 audio: { en: "Look, here comes the bus. It's number thirteen." }
                 options: ["13", "3", "30"]
@@ -120,7 +131,8 @@ lessons:
               - id: l1-f5
                 type: true_false
                 text: "Hat Ben zwei Brüder?"
-                say: { de: "Hör zu. Hat Ben zwei Brüder?", en: "I'm Ben. I've got two sisters and one brother." }
+                say: { de: "Hör zu. Hat Ben zwei Brüder?" }
+                audio: { en: "I'm Ben. I've got two sisters and one brother.", speaker: male }
                 answer: false
                 hints:
                   - "Hör auf „sisters“ und „brother“."
@@ -131,6 +143,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
+                text: "Wie viele Äpfel möchte Mama?"
                 say: { de: "Hör zu. Wie viele Äpfel möchte Mama?" }
                 audio: { en: "Can I have six apples and two bananas, please?", speaker: female }
                 options: ["6", "2", "8"]
@@ -138,6 +151,7 @@ lessons:
                 hints: ["Hör auf die Zahl vor „apples“."]
               - id: l1-s2
                 type: audio_choice
+                text: "Welche Farbe mag Mia am liebsten?"
                 say: { de: "Hör zu. Welche Farbe mag Mia am liebsten?" }
                 audio: { en: "My name's Mia. I like red and pink, but my favourite colour is purple.", speaker: female }
                 options: [{ drawn: colour-swatch, colour: purple }, { drawn: colour-swatch, colour: red }, { drawn: colour-swatch, colour: pink }]
@@ -145,6 +159,7 @@ lessons:
                 hints: ["Hör auf „favourite colour“."]
               - id: l1-s3
                 type: audio_choice
+                text: "Wie alt ist Leos Schwester?"
                 say: { de: "Hör zu. Wie alt ist Leos Schwester?" }
                 audio: { en: "I'm Leo. I'm eleven. My sister is fifteen.", speaker: male }
                 options: ["15", "11", "50"]
@@ -152,15 +167,17 @@ lessons:
                 hints: ["Hör auf das, was nach „sister“ kommt."]
               - id: l1-s4
                 type: audio_choice
+                text: "Welche Hausnummer hat Anna?"
                 say: { de: "Hör zu. Welche Hausnummer hat Anna?" }
-                audio: { en: "Where do you live, Anna? I live at number seventeen, Park Road." }
+                audio: { turns: [{ en: "Where do you live, Anna?", speaker: male }, { en: "I live at number seventeen, Park Road.", speaker: female }] }
                 options: ["17", "7", "70"]
                 answer: "17"
                 hints: ["„Seventeen“ endet mit „teen“."]
               - id: l1-s5
                 type: true_false
                 text: "Ist Toms Hund braun?"
-                say: { de: "Hör zu. Ist Toms Hund braun?", en: "I'm Tom. This is my dog, Rex. He's black and white." }
+                say: { de: "Hör zu. Ist Toms Hund braun?" }
+                audio: { en: "I'm Tom. This is my dog, Rex. He's black and white.", speaker: male }
                 answer: false
                 hints: ["Hör auf die Farben am Ende."]
 
@@ -168,53 +185,82 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
+                text: "Wie viele Kinder sind in der Mannschaft?"
                 say: { de: "Hör zu. Wie viele Kinder sind in der Mannschaft?" }
-                audio: { en: "Our football team has got eleven children and two teachers." }
+                audio: { en: "Our football team has got eleven children and two teachers.", speaker: male }
                 options: ["11", "2", "12"]
                 answer: "11"
               - id: l1-n2
                 type: audio_choice
+                text: "Welche Farbe hat die Tasche des Kindes?"
                 say: { de: "Hör zu. Welche Farbe hat die Tasche des Kindes?" }
-                audio: { en: "Is this your bag? The green one? No, my bag is yellow." }
+                audio: { turns: [{ en: "Is this your bag? The green one?", speaker: female }, { en: "No, my bag is yellow.", speaker: male }] }
                 options: [{ drawn: colour-swatch, colour: yellow }, { drawn: colour-swatch, colour: green }, { drawn: colour-swatch, colour: blue }]
                 answer: yellow
               - id: l1-n3
                 type: audio_choice
+                text: "Wie alt ist Max?"
                 say: { de: "Hör zu. Wie alt ist Max?" }
-                audio: { en: "Max, how old are you? I'm seven. And my brother is twelve." }
+                audio: { turns: [{ en: "Max, how old are you?", speaker: female }, { en: "I'm seven. And my brother is twelve.", speaker: male }] }
                 options: ["7", "12", "17"]
                 answer: "7"
               - id: l1-n4
                 type: true_false
                 text: "Kauft Sam vier Eier?"
-                say: { de: "Sam ist im Laden. Hör zu. Kauft Sam vier Eier?", en: "Four eggs, please. And some milk." }
+                say: { de: "Sam ist im Laden. Hör zu. Kauft Sam vier Eier?" }
+                audio: { en: "Four eggs, please. And some milk.", speaker: male }
                 answer: true
               - id: l1-n5
                 type: audio_choice
+                text: "Wie viele Bleistifte hat Lea?"
                 say: { de: "Hör zu. Wie viele Bleistifte hat Lea?" }
-                audio: { en: "How many pencils have you got, Lea? I've got fourteen. And five crayons." }
+                audio: { turns: [{ en: "How many pencils have you got, Lea?", speaker: male }, { en: "I've got fourteen. And five crayons.", speaker: female }] }
                 options: ["14", "5", "40"]
                 answer: "14"
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
+            text: "Wie viele Kaninchen hat Ella?"
             say: { de: "Hör zu. Wie viele Kaninchen hat Ella?" }
             audio: { en: "I'm Ella. I'm nine, and I've got two rabbits.", speaker: female }
             options: ["2", "9", "12"]
             answer: "2"
           - id: l1-c2
             type: audio_choice
+            text: "Welche Farbe hat die Jacke?"
             say: { de: "Hör zu. Welche Farbe hat die Jacke?" }
-            audio: { en: "My jacket is blue, and my hat is red." }
+            audio: { en: "My jacket is blue, and my hat is red.", speaker: female }
             options: [{ drawn: colour-swatch, colour: blue }, { drawn: colour-swatch, colour: red }, { drawn: colour-swatch, colour: yellow }]
             answer: blue
           - id: l1-c3
             type: true_false
             text: "Ist Ben zwölf Jahre alt?"
-            say: { de: "Hör zu. Ist Ben zwölf Jahre alt?", en: "Hi, I'm Ben. I'm twelve." }
+            say: { de: "Hör zu. Ist Ben zwölf Jahre alt?" }
+            audio: { en: "Hi, I'm Ben. I'm twelve.", speaker: male }
+            answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Wie viele Brüder hat Paul?"
+            say: { de: "Hör zu. Wie viele Brüder hat Paul?" }
+            audio: { en: "I'm Paul. I've got one sister and two brothers.", speaker: male }
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l1-c5
+            type: audio_choice
+            text: "Welche Farbe hat Lenas Ball?"
+            say: { de: "Hör zu. Welche Farbe hat Lenas Ball?" }
+            audio: { turns: [{ en: "Lena, is this your ball? The red one?", speaker: male }, { en: "No, my ball is orange.", speaker: female }] }
+            options: [{ drawn: colour-swatch, colour: red }, { drawn: colour-swatch, colour: yellow }, { drawn: colour-swatch, colour: orange }]
+            answer: orange
+          - id: l1-c6
+            type: true_false
+            text: "Hat Jonas elf Murmeln?"
+            say: { de: "Hör zu. Hat Jonas elf Murmeln?" }
+            audio: { en: "I'm Jonas. I've got eleven marbles and seven stickers.", speaker: male }
             answer: true
 
   - n: 2
@@ -226,6 +272,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: audio_choice
+            text: "Wie alt ist Kim?"
             say: { de: "Hör zu. Wie alt ist Kim?" }
             audio: { en: "I'm Kim, and I'm ten years old.", speaker: female }
             options: ["10", "2", "12"]
@@ -233,8 +280,9 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: audio_choice
+            text: "Welche Farbe hat die Katze?"
             say: { de: "Hör zu. Welche Farbe hat die Katze?" }
-            audio: { en: "This is my cat. She's black." }
+            audio: { en: "This is my cat. She's black.", speaker: female }
             options: [{ drawn: colour-swatch, colour: black }, { drawn: colour-swatch, colour: white }, { drawn: colour-swatch, colour: brown }]
             answer: black
             difficulty: easy
@@ -258,6 +306,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
+                text: "Wer hat einen Hund?"
                 say: { de: "Hör zu. Wer hat einen Hund?" }
                 audio: { en: "Hi, I'm Jack. This is my friend Ruby. Ruby has got a dog. I've got a cat.", speaker: male }
                 options: ["Jack", "Ruby", "Sam"]
@@ -271,8 +320,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "Um wie viel Uhr ist die Party?"
                 say: { de: "Hör zu. Um wie viel Uhr ist die Party?" }
-                audio: { en: "Come to my party on Saturday! It's at four o'clock." }
+                audio: { en: "Come to my party on Saturday! It's at four o'clock.", speaker: female }
                 options: [{ drawn: clock, hour: 4, minute: 0 }, { drawn: clock, hour: 2, minute: 0 }, { drawn: clock, hour: 5, minute: 0 }]
                 answer: "4:00"
                 hints:
@@ -281,6 +331,7 @@ lessons:
                   - "„Four“ ist vier. Die Party ist um vier Uhr."
               - id: l2-f3
                 type: audio_choice
+                text: "Wie heißt der neue Lehrer?"
                 say: { de: "Hör zu. Wie heißt der neue Lehrer?" }
                 audio: { en: "Good morning, children. My name is Mr Brown. I'm your new teacher.", speaker: male }
                 options: ["Mr Brown", "Mr Green", "Mrs Brown"]
@@ -300,6 +351,7 @@ lessons:
                   - "Ja, „eight“ ist acht."
               - id: l2-f5
                 type: audio_choice
+                text: "Wann geht Tom ins Bett?"
                 say: { de: "Hör zu. Wann geht Tom ins Bett?" }
                 audio: { en: "I'm Tom. I go to bed at eight o'clock. My sister goes to bed at nine o'clock.", speaker: male }
                 options: [{ drawn: clock, hour: 8, minute: 0 }, { drawn: clock, hour: 9, minute: 0 }, { drawn: clock, hour: 7, minute: 0 }]
@@ -313,6 +365,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
+                text: "Wie heißt Olivers Schwester?"
                 say: { de: "Hör zu. Wie heißt Olivers Schwester?" }
                 audio: { en: "Hello, I'm Oliver, and this is my sister Grace. Grace is six.", speaker: male }
                 options: ["Grace", "Oliver", "Rose"]
@@ -320,15 +373,17 @@ lessons:
                 hints: ["Hör auf „my sister …“."]
               - id: l2-s2
                 type: audio_choice
+                text: "Wann fängt der Film an?"
                 say: { de: "Hör zu. Wann fängt der Film an?" }
-                audio: { en: "Hurry up! The film starts at six o'clock." }
+                audio: { en: "Hurry up! The film starts at six o'clock.", speaker: female }
                 options: [{ drawn: clock, hour: 6, minute: 0 }, { drawn: clock, hour: 7, minute: 0 }, { drawn: clock, hour: 10, minute: 0 }]
                 answer: "6:00"
                 hints: ["„Six“ ist sechs."]
               - id: l2-s3
                 type: audio_choice
+                text: "Wer hat den Bleistift?"
                 say: { de: "Hör zu. Wer hat den Bleistift?" }
-                audio: { en: "Who's got my pencil? Is it Amy? No, it's Harry." }
+                audio: { turns: [{ en: "Who's got my pencil? Is it Amy?", speaker: female }, { en: "No, it's Harry.", speaker: male }] }
                 options: ["Harry", "Amy", "Mia"]
                 answer: "Harry"
                 hints: ["Hör bis zum Ende."]
@@ -340,6 +395,7 @@ lessons:
                 hints: ["„Eleven“ ist nicht zehn."]
               - id: l2-s5
                 type: audio_choice
+                text: "Wie heißt der Hund?"
                 say: { de: "Hör zu. Wie heißt der Hund?" }
                 audio: { en: "Hi! My name's Zoe. My dog's name is Biscuit.", speaker: female }
                 options: ["Biscuit", "Zoe", "Max"]
@@ -350,29 +406,34 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
+                text: "Wann gibt es Mittagessen?"
                 say: { de: "Hör zu. Wann gibt es Mittagessen?" }
                 audio: { en: "Lunch is at twelve o'clock." }
                 options: [{ drawn: clock, hour: 12, minute: 0 }, { drawn: clock, hour: 2, minute: 0 }, { drawn: clock, hour: 10, minute: 0 }]
                 answer: "12:00"
               - id: l2-n2
                 type: audio_choice
+                text: "Wie heißt der Papa?"
                 say: { de: "Hör zu. Wie heißt der Papa?" }
-                audio: { en: "This is my family. My mum is Kate, and my dad is Tom." }
+                audio: { en: "This is my family. My mum is Kate, and my dad is Tom.", speaker: female }
                 options: ["Tom", "Kate", "Ben"]
                 answer: "Tom"
               - id: l2-n3
                 type: audio_choice
+                text: "Um wie viel Uhr gehen die Kinder schwimmen?"
                 say: { de: "Hör zu. Um wie viel Uhr gehen die Kinder schwimmen?" }
-                audio: { en: "On Monday we go swimming at two o'clock." }
+                audio: { en: "On Monday we go swimming at two o'clock.", speaker: male }
                 options: [{ drawn: clock, hour: 2, minute: 0 }, { drawn: clock, hour: 3, minute: 0 }, { drawn: clock, hour: 10, minute: 0 }]
                 answer: "2:00"
               - id: l2-n4
                 type: true_false
                 text: "Heißt die Katze Luna?"
-                say: { de: "Hör zu. Heißt die Katze Luna?", en: "Our cat's name is Luna. She's black." }
+                say: { de: "Hör zu. Heißt die Katze Luna?" }
+                audio: { en: "Our cat's name is Luna. She's black.", speaker: female }
                 answer: true
               - id: l2-n5
                 type: audio_choice
+                text: "Wer ist Ellas bester Freund?"
                 say: { de: "Hör zu. Wer ist Ellas bester Freund?" }
                 audio: { en: "I'm Ella. My best friend is Noah. My brother's best friend is Leo.", speaker: female }
                 options: ["Noah", "Leo", "Ella"]
@@ -380,34 +441,161 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: numbers
             type: audio_choice
+            text: "Wie viele Fische hat Chloe?"
             say: { de: "Hör zu. Wie viele Fische hat Chloe?" }
             audio: { en: "I'm Chloe. I'm nine, and I've got four fish.", speaker: female }
             options: ["4", "9", "14"]
             answer: "4"
           - id: l2-c2
+            part: colours
             type: audio_choice
+            text: "Welche Farbe hat Finns Fahrrad?"
             say: { de: "Hör zu. Welche Farbe hat Finns Fahrrad?" }
             audio: { en: "I'm Finn. My bike is green. Dad's bike is black.", speaker: male }
             options: [{ drawn: colour-swatch, colour: green }, { drawn: colour-swatch, colour: black }, { drawn: colour-swatch, colour: blue }]
             answer: green
           - id: l2-c3
+            part: times
             type: audio_choice
+            text: "Um wie viel Uhr ist das Schulfest?"
             say: { de: "Hör zu. Um wie viel Uhr ist das Schulfest?" }
             audio: { en: "The school fair is at three o'clock." }
             options: [{ drawn: clock, hour: 3, minute: 0 }, { drawn: clock, hour: 5, minute: 0 }, { drawn: clock, hour: 1, minute: 0 }]
             answer: "3:00"
           - id: l2-c4
+            part: names
             type: audio_choice
+            text: "Wer hat ein Kaninchen?"
             say: { de: "Hör zu. Wer hat ein Kaninchen?" }
             audio: { en: "Hi, I'm Lucy, and this is Jack. I've got a cat. Jack has got a rabbit.", speaker: female }
             options: ["Jack", "Lucy", "Ruby"]
             answer: "Jack"
           - id: l2-c5
+            part: numbers
             type: audio_choice
+            text: "Wie viele Sticker möchte das Kind?"
             say: { de: "Hör zu. Wie viele Sticker möchte das Kind?" }
-            audio: { en: "Can I have sixteen stickers, please?" }
+            audio: { en: "Can I have sixteen stickers, please?", speaker: male }
             options: ["16", "6", "60"]
             answer: "16"
+          - id: l2-c6
+            part: numbers
+            type: true_false
+            text: "Ist Noahs Bruder vierzehn?"
+            say: { de: "Hör zu. Ist Noahs Bruder vierzehn?" }
+            audio: { en: "I'm Noah. I'm nine. My brother is four.", speaker: male }
+            answer: false
+          - id: l2-c7
+            part: numbers
+            type: audio_choice
+            text: "Wie viele Kinder sind in der Klasse?"
+            say: { de: "Hör zu. Wie viele Kinder sind in der Klasse?" }
+            audio: { en: "There are nineteen children in my class. Nine are girls.", speaker: female }
+            options: ["9", "19", "90"]
+            answer: "19"
+          - id: l2-c8
+            part: numbers
+            type: audio_choice
+            text: "Wie viele Bücher hat Mia?"
+            say: { de: "Hör zu. Wie viele Bücher hat Mia?" }
+            audio: { en: "I'm Mia. I've got twelve books and twenty crayons.", speaker: female }
+            options: ["20", "2", "12"]
+            answer: "12"
+          - id: l2-c9
+            part: colours
+            type: audio_choice
+            text: "Welche Farbe hat Bens Mütze?"
+            say: { de: "Hör zu. Welche Farbe hat Bens Mütze?" }
+            audio: { turns: [{ en: "Ben, is your hat blue?", speaker: female }, { en: "No, it's green.", speaker: male }] }
+            options: [{ drawn: colour-swatch, colour: blue }, { drawn: colour-swatch, colour: red }, { drawn: colour-swatch, colour: green }]
+            answer: green
+          - id: l2-c10
+            part: colours
+            type: true_false
+            text: "Ist Lilys Katze weiß?"
+            say: { de: "Hör zu. Ist Lilys Katze weiß?" }
+            audio: { en: "I'm Lily. My cat is grey. My dog is white.", speaker: female }
+            answer: false
+          - id: l2-c11
+            part: colours
+            type: audio_choice
+            text: "Welche Farbe mag Sam am liebsten?"
+            say: { de: "Hör zu. Welche Farbe mag Sam am liebsten?" }
+            audio: { en: "I'm Sam. My sister likes pink. My favourite colour is orange.", speaker: male }
+            options: [{ drawn: colour-swatch, colour: pink }, { drawn: colour-swatch, colour: yellow }, { drawn: colour-swatch, colour: orange }]
+            answer: orange
+          - id: l2-c12
+            part: colours
+            type: audio_choice
+            text: "Welche Farbe hat Opas Auto?"
+            say: { de: "Hör zu. Welche Farbe hat Opas Auto?" }
+            audio: { en: "Our car is red. Grandpa's car is white.", speaker: female }
+            options: [{ drawn: colour-swatch, colour: red }, { drawn: colour-swatch, colour: white }, { drawn: colour-swatch, colour: black }]
+            answer: white
+          - id: l2-c13
+            part: times
+            type: audio_choice
+            text: "Wann fängt das Fußballspiel an?"
+            say: { de: "Hör zu. Wann fängt das Fußballspiel an?" }
+            audio: { en: "The football match is at five o'clock. We go home at seven.", speaker: male }
+            options: [{ drawn: clock, hour: 7, minute: 0 }, { drawn: clock, hour: 5, minute: 0 }, { drawn: clock, hour: 6, minute: 0 }]
+            answer: "5:00"
+          - id: l2-c14
+            part: times
+            type: true_false
+            text: "Gibt es um sechs Uhr Abendessen?"
+            say: { de: "Hör zu. Gibt es um sechs Uhr Abendessen?" }
+            audio: { en: "We have dinner at six o'clock.", speaker: female }
+            answer: true
+          - id: l2-c15
+            part: times
+            type: audio_choice
+            text: "Um wie viel Uhr steht Ella auf?"
+            say: { de: "Hör zu. Um wie viel Uhr steht Ella auf?" }
+            audio: { en: "I'm Ella. I get up at seven o'clock. My mum gets up at six.", speaker: female }
+            options: [{ drawn: clock, hour: 6, minute: 0 }, { drawn: clock, hour: 7, minute: 0 }, { drawn: clock, hour: 11, minute: 0 }]
+            answer: "7:00"
+          - id: l2-c16
+            part: times
+            type: audio_choice
+            text: "Wann kommt Oma?"
+            say: { de: "Hör zu. Wann kommt Oma?" }
+            audio: { en: "Grandma comes at ten o'clock. Grandpa comes at eleven." }
+            options: [{ drawn: clock, hour: 11, minute: 0 }, { drawn: clock, hour: 12, minute: 0 }, { drawn: clock, hour: 10, minute: 0 }]
+            answer: "10:00"
+          - id: l2-c17
+            part: names
+            type: audio_choice
+            text: "Wie heißt Toms Freund?"
+            say: { de: "Hör zu. Wie heißt Toms Freund?" }
+            audio: { en: "Hi, I'm Tom. My friend's name is Ali. My cat's name is Leo.", speaker: male }
+            options: ["Leo", "Ali", "Tom"]
+            answer: "Ali"
+          - id: l2-c18
+            part: names
+            type: true_false
+            text: "Hat Ben einen Hund?"
+            say: { de: "Hör zu. Hat Ben einen Hund?" }
+            audio: { turns: [{ en: "I'm Maya. I've got a fish.", speaker: female }, { en: "I'm Ben. I've got a dog.", speaker: male }] }
+            answer: true
+          - id: l2-c19
+            part: names
+            type: audio_choice
+            text: "Wer kann schwimmen?"
+            say: { de: "Hör zu. Wer kann schwimmen?" }
+            audio: { turns: [{ en: "Can you swim, Lucas?", speaker: female }, { en: "No, I can't. But Hannah can swim.", speaker: male }] }
+            options: ["Lucas", "Emma", "Hannah"]
+            answer: "Hannah"
+          - id: l2-c20
+            part: names
+            type: audio_choice
+            text: "Wie heißt das Pony des Mädchens?"
+            say: { de: "Hör zu. Wie heißt das Pony des Mädchens?" }
+            audio: { en: "I've got a pony. His name is Star. My sister's pony is Bella.", speaker: female }
+            options: ["Bella", "Star", "Max"]
+            answer: "Star"

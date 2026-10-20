@@ -22,6 +22,11 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: noun, what: { de: "Nomen mit doppeltem Mitlaut am Ende, verlängert mit der Mehrzahl", en: "nouns with a double consonant at the end, lengthened with the plural" } }
+    - { id: adjective, what: { de: "Adjektive, verlängert mit einem Nomen", en: "adjectives, lengthened with a noun" } }
+    - { id: verb, what: { de: "Verben, verlängert mit der Grundform", en: "verbs, lengthened with the base form" } }
+    - { id: helper-word, what: { de: "das längere Wort finden, das beim Schreiben hilft", en: choosing the longer word that shows the double consonant } }
   misconceptions:
     - id: lose-double-at-end
       what: Writes one letter at the end because the double cannot be heard there (Bal, dün, Schif)
@@ -214,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -235,6 +241,25 @@ lessons:
             say: "Satt. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "satt" }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Verlängere: m oder mm?"
+            say: "Der Schwamm. Was fehlt am Ende? Verlängere das Wort."
+            frame: "der Schwa_"
+            options: ["mm", "m"]
+            answer: ["mm"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welches Wort hilft dir bei Kreis?"
+            say: "Welches Wort hilft dir, wenn du Kreis schreiben willst?"
+            options: ["die Kreise", "kreischen", "der Krebs"]
+            answer: "die Kreise"
+          - id: l1-c6
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Der Knall. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Knal" }
+            answer: false
 
   - n: 2
     title: { de: "Er kommt, kommen", en: "Er kommt, kommen" }
@@ -408,8 +433,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: noun
             type: fill_in_blank
             text: "Verlängere: f oder ff?"
             say: "Der Stoff. Was fehlt am Ende? Verlängere das Wort."
@@ -417,6 +444,7 @@ lessons:
             options: ["ff", "f"]
             answer: ["ff"]
           - id: l2-c2
+            part: verb
             type: fill_in_blank
             text: "Verlängere: l oder ll?"
             say: "Er füllt das Glas. Was fehlt? Bilde die Grundform."
@@ -424,6 +452,7 @@ lessons:
             options: ["ll", "l"]
             answer: ["ll"]
           - id: l2-c3
+            part: verb
             type: fill_in_blank
             text: "Verlängere: m oder mm?"
             say: "Sie kämmt ihre Haare. Was fehlt? Bilde die Grundform."
@@ -431,15 +460,128 @@ lessons:
             options: ["mm", "m"]
             answer: ["mm"]
           - id: l2-c4
+            part: adjective
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Glatt. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "glat" }
             answer: false
           - id: l2-c5
+            part: verb
             type: fill_in_blank
             text: "Verlängere: l oder ll?"
             say: "Er holt den Ball. Was fehlt? Bilde die Grundform."
             frame: "Er ho_t den Ball."
             options: ["l", "ll"]
             answer: ["l"]
+          - id: l2-c6
+            part: noun
+            type: fill_in_blank
+            text: "Verlängere: s oder ss?"
+            say: "Der Fluss. Was fehlt am Ende? Verlängere das Wort."
+            frame: "der Flu_"
+            options: ["ss", "s"]
+            answer: ["ss"]
+          - id: l2-c7
+            part: noun
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Nomen.\n\nAuf der Wiese steht ein kleines _."
+            say: "Auf der Wiese steht ein kleines Lamm. Schreib das Nomen Lamm."
+            show: { object: lamb }
+            answer: "Lamm"
+          - id: l2-c8
+            part: noun
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Der Schal. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Schal" }
+            answer: true
+          - id: l2-c9
+            part: noun
+            type: multiple_choice
+            text: "Das _ hat einen hohen Turm. Welches Wort ist richtig geschrieben?"
+            say: "Das Schloss hat einen hohen Turm. Welches Wort ist richtig geschrieben?"
+            options: ["Schloss", "Schlos", "Schlohs"]
+            answer: "Schloss"
+            option_audio: false
+          - id: l2-c10
+            part: adjective
+            type: fill_in_blank
+            text: "Verlängere das Adjektiv: m oder mm?"
+            say: "Der Ast ist krumm. Was fehlt am Ende von krumm? Verlängere das Adjektiv."
+            frame: "Der Ast ist kru_."
+            options: ["mm", "m"]
+            answer: ["mm"]
+          - id: l2-c11
+            part: adjective
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Adjektiv.\n\nIn der Bücherei ist es ganz _."
+            say: "In der Bücherei ist es ganz still. Schreib das Adjektiv still."
+            answer: "still"
+          - id: l2-c12
+            part: adjective
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Schlimm. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "schlim" }
+            answer: false
+          - id: l2-c13
+            part: adjective
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Schmal. Der Weg ist schmal. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "schmal" }
+            answer: true
+          - id: l2-c14
+            part: verb
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Sie ruft. Lies die Wörter. Sind sie richtig geschrieben?"
+            show: { drawn: letter-card, text: "sie rufft" }
+            answer: false
+          - id: l2-c15
+            part: verb
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Verb.\n\nLisa _ bunte Steine."
+            say: "Lisa sammelt bunte Steine. Schreib das Verb sammelt."
+            answer: "sammelt"
+          - id: l2-c16
+            part: helper-word
+            type: multiple_choice
+            text: "Welches Wort hilft dir bei Gras?"
+            say: "Welches Wort hilft dir, wenn du Gras schreiben willst?"
+            options: ["die Gräser", "grau", "das Glas"]
+            answer: "die Gräser"
+          - id: l2-c17
+            part: helper-word
+            type: multiple_choice
+            text: "Welche Grundform hilft dir bei „es passt“?"
+            say: "Es passt. Welche Grundform hilft dir?"
+            options: ["passen", "packen", "past"]
+            answer: "passen"
+            option_audio: false
+          - id: l2-c18
+            part: helper-word
+            type: matching
+            text: "Welches Wort hilft dir? Verbinde."
+            say: "Lies die Wörter. Welches längere Wort hilft dir beim Schreiben? Verbinde."
+            pairs:
+              - { left: { text: "Fass" }, right: { text: "die Fässer" } }
+              - { left: { text: "er fällt" }, right: { text: "fallen" } }
+              - { left: { text: "stumm" }, right: { text: "ein stummer Fisch" } }
+          - id: l2-c19
+            part: helper-word
+            type: true_false
+            text: "Tom will Stamm schreiben. Er verlängert: die Stämme. Hilft ihm das?"
+            say: "Tom will das Wort Stamm schreiben. Er verlängert: die Stämme. Hilft ihm das?"
+            answer: true
+          - id: l2-c20
+            part: helper-word
+            type: multiple_choice
+            text: "Welches Wort hilft dir bei Herr?"
+            say: "Welches Wort hilft dir, wenn du Herr schreiben willst?"
+            options: ["die Herren", "der Herd", "her"]
+            answer: "die Herren"

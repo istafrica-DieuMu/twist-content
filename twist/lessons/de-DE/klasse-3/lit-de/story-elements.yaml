@@ -23,6 +23,10 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: characters, what: { de: Hauptfigur und Nebenfiguren erkennen, en: telling the main character from the other characters } }
+    - { id: place-time, what: { de: "Ort und Zeit einer Geschichte finden (Wo? Wann?)", en: "finding where and when a story takes place" } }
+    - { id: plot, what: { de: "die Handlung beschreiben: Einleitung, Hauptteil mit Höhepunkt, Schluss", en: "describing the plot: opening, middle with its high point, ending" } }
   misconceptions:
     - id: first-named-is-main
       what: Takes the first person named as the Hauptfigur
@@ -154,7 +158,7 @@ lessons:
                 hints: ["Frag: Wann?"]
               - id: l1-s3
                 type: multiple_choice
-                text: "Im Zoo fütterte die Tierpflegerin Frau Kraus die Pinguine. Ein kleiner Pinguin schnappte ihr den Eimer weg.\n\nWelche Figur ist eine Nebenfigur?"
+                text: "Im Zoo fütterte die Tierpflegerin Frau Kraus die Pinguine. Ein kleiner Pinguin schnappte ihr den Eimer weg.\n\nDie Tierpflegerin ist die Hauptfigur. Welche Figur ist eine Nebenfigur?"
                 say: "Lies die Geschichte. Die Tierpflegerin ist die Hauptfigur. Welche Figur ist eine Nebenfigur?"
                 options: ["der kleine Pinguin", "der Zoo", "der Eimer"]
                 answer: "der kleine Pinguin"
@@ -221,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -239,6 +244,31 @@ lessons:
             text: "Im Frühling baute die Amsel ein Nest in der Hecke.\n\nIst „im Frühling“ die Zeit der Geschichte?"
             say: "Lies den Satz. Ist im Frühling die Zeit der Geschichte?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Der Postbote brachte ein großes Paket. Darin war ein kleiner Hund für Clara. Clara nannte ihn Wuschel und spielte den ganzen Tag mit ihm.\n\nWer ist die Hauptfigur?"
+            say: "Lies die Geschichte. Wer ist die Hauptfigur?"
+            options: ["der Postbote", "Clara", "das Paket"]
+            answer: "Clara"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Nach dem Abendessen bauten Nils und Jule im Kinderzimmer eine Höhle aus Decken.\n\nWann spielt die Geschichte?"
+            say: "Lies den Satz. Wann spielt die Geschichte?"
+            options: ["im Kinderzimmer", "Nils und Jule", "nach dem Abendessen"]
+            answer: "nach dem Abendessen"
+          - id: l1-c6
+            type: sorting
+            text: "Figur, Ort oder Zeit?"
+            say: "Sortiere: Ist es eine Figur, ein Ort oder eine Zeit?"
+            bins:
+              - { id: who, show: { text: "Figur (Wer?)" }, say: "Figur" }
+              - { id: where, show: { text: "Ort (Wo?)" }, say: "Ort" }
+              - { id: when, show: { text: "Zeit (Wann?)" }, say: "Zeit" }
+            options:
+              - { text: "auf der Wiese", bin: where }
+              - { text: "ein müder Riese", bin: who }
+              - { text: "am Fluss", bin: where }
+              - { text: "im Sommer", bin: when }
 
   - n: 2
     title: { de: "Die Handlung", en: "The plot" }
@@ -330,8 +360,8 @@ lessons:
                 say: "Im Hauptteil einer Geschichte passiert meistens etwas Besonderes oder Spannendes. Stimmt das?"
                 answer: true
                 hints:
-                  - "Denk an Neles Hund Bello."
-                  - "Im Hauptteil rennt Bello weg."
+                  - "Was steht zwischen Einleitung und Schluss?"
+                  - "Im Hauptteil kommt oft ein Problem, und die Spannung steigt."
                   - "Ja, das stimmt."
 
           - support: some
@@ -411,14 +441,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: characters
             type: multiple_choice
             text: "Herr Meier pflanzte jedes Jahr Tomaten. Sein Nachbar Herr Wu half ihm dabei. Dieses Jahr wurden die Tomaten so groß wie Bälle.\n\nWer ist die Hauptfigur?"
             say: "Lies die Geschichte. Wer ist die Hauptfigur?"
             options: ["Herr Meier", "Herr Wu", "die Tomaten"]
             answer: "Herr Meier"
           - id: l2-c2
+            part: place-time
             type: sorting
             text: "Wer, wo oder wann?"
             say: "Sortiere: Ist es eine Figur, ein Ort oder eine Zeit?"
@@ -432,6 +465,7 @@ lessons:
               - { text: "am Morgen", bin: when }
               - { text: "an der Bushaltestelle", bin: where }
           - id: l2-c3
+            part: plot
             type: ordering
             text: "Leg die Teile in die richtige Reihenfolge."
             say: "Leg die Teile der Geschichte in die richtige Reihenfolge: Einleitung, Hauptteil, Schluss."
@@ -440,6 +474,7 @@ lessons:
             answer: ["Die Kinder spielen im Garten Ball.", "Der Ball fliegt über den Zaun zum Nachbarhund.", "Der Hund bringt den Ball zurück, und alle lachen."]
             option_audio: false
           - id: l2-c4
+            part: plot
             type: multiple_choice
             text: "Die Tür quietschte. Langsam ging sie auf. Ein Schatten stand im Zimmer.\n\nZu welchem Teil der Geschichte gehören diese Sätze?"
             say: "Lies die Sätze. Zu welchem Teil der Geschichte gehören sie?"
@@ -447,8 +482,119 @@ lessons:
             answer: "Hauptteil"
             keep_order: true
           - id: l2-c5
+            part: plot
             type: multiple_choice
             text: "Was ist die Handlung einer Geschichte?"
             say: "Was ist die Handlung einer Geschichte?"
             options: ["das, was passiert", "der Ort, an dem sie spielt", "die Hauptfigur"]
             answer: "das, was passiert"
+          - id: l2-c6
+            part: characters
+            type: multiple_choice
+            text: "Frau Berg aus der Bücherei gab Finn ein Buch über Dinosaurier. Finn las es in einer Nacht durch. Am nächsten Tag wollte er unbedingt ins Museum.\n\nWer ist die Hauptfigur?"
+            say: "Lies die Geschichte. Wer ist die Hauptfigur?"
+            options: ["Frau Berg", "Finn", "die Dinosaurier"]
+            answer: "Finn"
+          - id: l2-c7
+            part: characters
+            type: multiple_choice
+            text: "Ella wollte unbedingt im Schulchor singen. Ihr Bruder Max übte jeden Abend mit ihr. Beim Vorsingen sang Ella so schön, dass alle staunten.\n\nElla ist die Hauptfigur. Welche Figur ist eine Nebenfigur?"
+            say: "Lies die Geschichte. Ella ist die Hauptfigur. Welche Figur ist eine Nebenfigur?"
+            options: ["Max", "der Schulchor", "das Vorsingen"]
+            answer: "Max"
+          - id: l2-c8
+            part: characters
+            type: true_false
+            text: "Ein kleiner Igel suchte im Herbst einen Platz für seinen Winterschlaf. Eine Maus zeigte ihm einen Laubhaufen. Dort schlief der Igel bis zum Frühling.\n\nIst die Maus die Hauptfigur?"
+            say: "Lies die Geschichte. Ist die Maus die Hauptfigur?"
+            answer: false
+          - id: l2-c9
+            part: characters
+            type: multiple_choice
+            text: "Was stimmt über die Hauptfigur einer Geschichte?"
+            say: "Was stimmt über die Hauptfigur einer Geschichte?"
+            options: ["Um sie geht es vor allem.", "Sie wird immer zuerst genannt.", "Sie ist immer ein Mensch."]
+            answer: "Um sie geht es vor allem."
+          - id: l2-c10
+            part: characters
+            type: true_false
+            text: "Kapitän Rot segelte mit seinem Papagei Koko über das Meer. Eines Tages entdeckte er eine Insel mit einer Schatzkiste.\n\nIst Koko eine Nebenfigur?"
+            say: "Lies die Geschichte. Ist Koko eine Nebenfigur?"
+            answer: true
+          - id: l2-c11
+            part: place-time
+            type: multiple_choice
+            text: "Kurz vor Mitternacht schlichen zwei kleine Gespenster in den alten Glockenturm.\n\nWo spielt die Geschichte?"
+            say: "Lies den Satz. Wo spielt die Geschichte?"
+            options: ["kurz vor Mitternacht", "im alten Glockenturm", "zwei kleine Gespenster"]
+            answer: "im alten Glockenturm"
+          - id: l2-c12
+            part: place-time
+            type: multiple_choice
+            text: "Am ersten Schultag nach den Ferien stand plötzlich ein Kamel auf dem Schulhof.\n\nWann spielt die Geschichte?"
+            say: "Lies den Satz. Wann spielt die Geschichte?"
+            options: ["auf dem Schulhof", "ein Kamel", "am ersten Schultag nach den Ferien"]
+            answer: "am ersten Schultag nach den Ferien"
+          - id: l2-c13
+            part: place-time
+            type: sorting
+            text: "Sortiere: Figur, Ort oder Zeit?"
+            say: "Lies die Wörter. Ist es eine Figur, ein Ort oder eine Zeit? Sortiere."
+            bins:
+              - { id: who, show: { text: "Figur (Wer?)" }, say: "Figur" }
+              - { id: where, show: { text: "Ort (Wo?)" }, say: "Ort" }
+              - { id: when, show: { text: "Zeit (Wann?)" }, say: "Zeit" }
+            options:
+              - { text: "am Wochenende", bin: when }
+              - { text: "eine kluge Eule", bin: who }
+              - { text: "am Bahnhof", bin: where }
+              - { text: "in der Nacht", bin: when }
+          - id: l2-c14
+            part: place-time
+            type: true_false
+            text: "Im Schwimmbad verlor Noah seine Taucherbrille.\n\nIst „im Schwimmbad“ die Zeit der Geschichte?"
+            say: "Lies den Satz. Ist im Schwimmbad die Zeit der Geschichte?"
+            answer: false
+          - id: l2-c15
+            part: place-time
+            type: true_false
+            text: "Während des Gewitters saß die ganze Familie bei Kerzenlicht im Wohnzimmer.\n\nIst „im Wohnzimmer“ der Ort der Geschichte?"
+            say: "Lies den Satz. Ist im Wohnzimmer der Ort der Geschichte?"
+            answer: true
+          - id: l2-c16
+            part: place-time
+            type: multiple_choice
+            text: "Im Dschungel lebte ein Affe, der nicht klettern konnte. Jeden Morgen übte er an einer dicken Liane.\n\nWo spielt die Geschichte?"
+            say: "Lies die Geschichte. Wo spielt die Geschichte?"
+            options: ["jeden Morgen", "im Dschungel", "ein Affe"]
+            answer: "im Dschungel"
+          - id: l2-c17
+            part: plot
+            type: multiple_choice
+            text: "Endlich fand Papa den Autoschlüssel im Kühlschrank. Alle lachten, und die Fahrt in den Urlaub konnte beginnen.\n\nZu welchem Teil der Geschichte gehören diese Sätze?"
+            say: "Lies die Sätze. Zu welchem Teil der Geschichte gehören sie?"
+            options: ["Einleitung", "Hauptteil", "Schluss"]
+            answer: "Schluss"
+            keep_order: true
+          - id: l2-c18
+            part: plot
+            type: multiple_choice
+            text: "Henri trägt ein Tablett durch die Küche. Darauf stehen fünf volle Gläser. Da rutscht er auf einer Bananenschale aus.\n\nWelcher Satz ist der Höhepunkt?"
+            say: "Lies die Sätze. Welcher Satz ist der Höhepunkt?"
+            options: ["Darauf stehen fünf volle Gläser.", "Da rutscht er auf einer Bananenschale aus.", "Henri trägt ein Tablett durch die Küche."]
+            answer: "Da rutscht er auf einer Bananenschale aus."
+          - id: l2-c19
+            part: plot
+            type: ordering
+            text: "Leg die Teile in die richtige Reihenfolge."
+            say: "Leg die Teile der Geschichte in die richtige Reihenfolge: Einleitung, Hauptteil, Schluss."
+            options: ["Mit einer Leiter holt die Feuerwehr die Katze vom Dach.", "Eines Morgens sitzt die Katze von Frau Kim auf dem Dach.", "Die Katze traut sich nicht mehr herunter und miaut laut."]
+            slot_count: 3
+            answer: ["Eines Morgens sitzt die Katze von Frau Kim auf dem Dach.", "Die Katze traut sich nicht mehr herunter und miaut laut.", "Mit einer Leiter holt die Feuerwehr die Katze vom Dach."]
+            option_audio: false
+          - id: l2-c20
+            part: plot
+            type: true_false
+            text: "„Lisa und ihr Opa wohnten in einem kleinen Haus am Waldrand.“ Ist das eine Einleitung?"
+            say: "Lies den Satz. Ist das eine Einleitung?"
+            answer: true

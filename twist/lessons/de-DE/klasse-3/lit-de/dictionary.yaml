@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: book-part, what: { de: "den Teil des Wörterbuchs finden (vorne, Mitte, hinten)", en: "finding the part of the dictionary (front, middle, back)" } }
+    - { id: guide-words, what: { de: mit den Leitwörtern die Seite finden, en: finding the page with the guide words } }
+    - { id: noun-singular, what: { de: Nomen in der Einzahl nachschlagen, en: looking up nouns in the singular } }
+    - { id: base-form, what: { de: Verben und Adjektive in der Grundform nachschlagen, en: looking up verbs and adjectives in their base form } }
   misconceptions:
     - id: look-up-as-written
       what: Looks a word up in the form it has in the text (Mäuse, er lief, kälter)
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,6 +228,23 @@ lessons:
             options: ["vorne", "in der Mitte", "hinten"]
             keep_order: true
             answer: "in der Mitte"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welches Wort findest du vorne im Wörterbuch?"
+            say: "Welches Wort findest du vorne im Wörterbuch?"
+            options: ["Delfin", "Rakete", "Nudel"]
+            answer: "Delfin"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Leitwörter: Brief und Brot. Welches Wort steht auf dieser Seite?"
+            say: "Oben stehen die Leitwörter Brief und Brot. Welches Wort steht auf dieser Seite?"
+            options: ["Brille", "Brei", "Brust"]
+            answer: "Brille"
+          - id: l1-c6
+            type: true_false
+            text: "Leitwörter: Ente und Erbse. Steht Esel auf dieser Seite?"
+            say: "Oben stehen die Leitwörter Ente und Erbse. Steht Esel auf dieser Seite?"
+            answer: false
 
   - n: 2
     title: { de: "Die Grundform suchen", en: "Looking up the base form" }
@@ -383,8 +406,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: book-part
             type: multiple_choice
             text: "Wo suchst du Regen im Wörterbuch?"
             say: "Regen. Wo suchst du das Wort im Wörterbuch?"
@@ -392,25 +417,152 @@ lessons:
             keep_order: true
             answer: "hinten"
           - id: l2-c2
+            part: guide-words
             type: true_false
             text: "Leitwörter: Hund und Hut. Steht Huhn auf dieser Seite?"
             say: "Oben stehen die Leitwörter Hund und Hut. Steht Huhn auf dieser Seite?"
             answer: false
           - id: l2-c3
+            part: base-form
             type: multiple_choice
             text: "Unter welchem Wort findest du „er sah“?"
             say: "Er sah. Unter welchem Wort findest du es im Wörterbuch?"
             options: ["sehen", "sahen", "die Sicht"]
             answer: "sehen"
           - id: l2-c4
+            part: noun-singular
             type: multiple_choice
             text: "Unter welchem Wort findest du Nüsse?"
             say: "Nüsse. Unter welchem Wort findest du es im Wörterbuch?"
             options: ["Nuss", "Nüsschen", "Nüsse"]
             answer: "Nuss"
           - id: l2-c5
+            part: base-form
             type: multiple_choice
             text: "Unter welchem Wort findest du „wärmer“?"
             say: "Wärmer. Unter welchem Wort findest du es im Wörterbuch?"
             options: ["warm", "die Wärme", "wärmen"]
             answer: "warm"
+          - id: l2-c6
+            part: book-part
+            type: sorting
+            text: "Wo stehen die Wörter im Wörterbuch? Sortiere."
+            say: "Lies die Wörter. Wo stehen sie im Wörterbuch: vorne, in der Mitte oder hinten? Sortiere."
+            bins:
+              - { id: front, show: { text: "vorne" }, say: "vorne" }
+              - { id: middle, show: { text: "in der Mitte" }, say: "in der Mitte" }
+              - { id: back, show: { text: "hinten" }, say: "hinten" }
+            options:
+              - { text: "Dach", bin: front }
+              - { text: "Lampe", bin: middle }
+              - { text: "Oma", bin: middle }
+              - { text: "Turm", bin: back }
+          - id: l2-c7
+            part: book-part
+            type: multiple_choice
+            text: "Welches Wort findest du ganz hinten im Wörterbuch?"
+            say: "Welches Wort findest du ganz hinten im Wörterbuch?"
+            options: ["Zucker", "Ente", "Kamel"]
+            answer: "Zucker"
+          - id: l2-c8
+            part: book-part
+            type: multiple_choice
+            text: "Welches Wort findest du in der Mitte des Wörterbuchs?"
+            say: "Welches Wort findest du in der Mitte des Wörterbuchs?"
+            options: ["Laterne", "Auto", "Wurst"]
+            answer: "Laterne"
+          - id: l2-c9
+            part: book-part
+            type: true_false
+            text: "Stimmt das? Wörter mit O findest du in der Mitte des Wörterbuchs."
+            say: "Stimmt das? Wörter mit O findest du in der Mitte des Wörterbuchs."
+            answer: true
+          - id: l2-c10
+            part: guide-words
+            type: multiple_choice
+            text: "Leitwörter: Garten und Geist. Welches Wort steht auf dieser Seite?"
+            say: "Oben stehen die Leitwörter Garten und Geist. Welches Wort steht auf dieser Seite?"
+            options: ["Gast", "Gans", "Gold"]
+            answer: "Gast"
+          - id: l2-c11
+            part: guide-words
+            type: multiple_choice
+            text: "Du suchst Pferd. Auf welcher Seite steht es?"
+            say: "Du suchst das Wort Pferd. Auf welcher Seite steht es?"
+            options: ["Leitwörter: Pfanne und Pflaume", "Leitwörter: Papier und Pause", "Leitwörter: Pinsel und Platz"]
+            answer: "Leitwörter: Pfanne und Pflaume"
+          - id: l2-c12
+            part: guide-words
+            type: ordering
+            text: "Ordne die Wörter so, wie sie im Wörterbuch stehen."
+            say: "Ordne die Wörter so, wie sie im Wörterbuch stehen."
+            options: ["Schule", "Schaf", "Schwein", "Schirm"]
+            slot_count: 4
+            answer: ["Schaf", "Schirm", "Schule", "Schwein"]
+          - id: l2-c13
+            part: guide-words
+            type: multiple_choice
+            text: "Leitwörter: Wagen und Wasser. Welches Wort steht nicht auf dieser Seite?"
+            say: "Oben stehen die Leitwörter Wagen und Wasser. Welches Wort steht nicht auf dieser Seite?"
+            options: ["Waage", "Wand", "Wanne"]
+            answer: "Waage"
+          - id: l2-c14
+            part: noun-singular
+            type: multiple_choice
+            text: "Im Text steht: „Auf dem Dach sitzen zwei Störche.“ Welches Wort schlägst du nach?"
+            say: "Auf dem Dach sitzen zwei Störche. Welches Wort schlägst du im Wörterbuch nach, wenn du Störche suchst?"
+            options: ["Storch", "Störche", "Storche"]
+            answer: "Storch"
+            option_audio: false
+          - id: l2-c15
+            part: noun-singular
+            type: text_input
+            keyboard: letters
+            text: "Im Text steht „Blätter“. Welches Wort schlägst du im Wörterbuch nach? Schreib es."
+            say: "Im Text steht Blätter. Welches Wort schlägst du im Wörterbuch nach? Schreib es."
+            answer: "Blatt"
+          - id: l2-c16
+            part: noun-singular
+            type: sorting
+            text: "Steht das Wort so im Wörterbuch? Sortiere."
+            say: "Lies die Nomen. Steht das Wort so im Wörterbuch oder nicht? Sortiere."
+            bins:
+              - { id: listed, show: { text: "steht so im Wörterbuch" }, say: "steht so im Wörterbuch" }
+              - { id: notlisted, show: { text: "steht so nicht im Wörterbuch" }, say: "steht so nicht im Wörterbuch" }
+            options:
+              - { text: "Hut", bin: listed }
+              - { text: "Stuhl", bin: listed }
+              - { text: "Gänse", bin: notlisted }
+              - { text: "Würmer", bin: notlisted }
+          - id: l2-c17
+            part: noun-singular
+            type: matching
+            text: "Unter welchem Wort findest du es? Verbinde."
+            say: "Lies die Nomen in der Mehrzahl. Unter welchem Wort findest du sie im Wörterbuch? Verbinde."
+            pairs:
+              - { left: { text: "Hühner" }, right: { text: "Huhn" } }
+              - { left: { text: "Männer" }, right: { text: "Mann" } }
+              - { left: { text: "Bälle" }, right: { text: "Ball" } }
+          - id: l2-c18
+            part: base-form
+            type: matching
+            text: "Unter welchem Wort findest du es? Verbinde."
+            say: "Lies die Wörter. Unter welcher Grundform findest du sie im Wörterbuch? Verbinde."
+            pairs:
+              - { left: { text: "er schwamm" }, right: { text: "schwimmen" } }
+              - { left: { text: "sie rief" }, right: { text: "rufen" } }
+              - { left: { text: "dicker" }, right: { text: "dick" } }
+          - id: l2-c19
+            part: base-form
+            type: multiple_choice
+            text: "Im Text steht: „Der Hund biss in den Knochen.“ Unter welchem Wort findest du „biss“?"
+            say: "Der Hund biss in den Knochen. Unter welchem Wort findest du biss im Wörterbuch?"
+            options: ["beißen", "bissen", "bisschen"]
+            answer: "beißen"
+          - id: l2-c20
+            part: base-form
+            type: text_input
+            keyboard: letters
+            text: "Im Text steht „am klügsten“. Unter welchem Wort schlägst du nach? Schreib es."
+            say: "Im Text steht am klügsten. Unter welchem Wort schlägst du im Wörterbuch nach? Schreib es."
+            answer: "klug"

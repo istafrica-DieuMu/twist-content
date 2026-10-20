@@ -30,6 +30,10 @@ metadata:
   drawn: [word-card, letter-card]
   sounds: []
   facets: []
+  parts:
+    - { id: one-step, what: { de: eine Aufgabe mit einem Schritt lesen und ausführen, en: reading a one-step instruction and carrying it out } }
+    - { id: task-words, what: { de: Aufgabenwörter wie „kreise ein“ verstehen, en: understanding instruction words such as kreise ein } }
+    - { id: two-steps, what: { de: Aufgaben mit zwei Schritten in der richtigen Reihenfolge ausführen, en: carrying out instructions of two steps in the right order } }
   misconceptions:
     - id: acts-too-early
       what: Starts after the first words and misses the colour, the thing or the letter the instruction names
@@ -235,6 +239,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -255,6 +260,24 @@ lessons:
             say: "Lies die Aufgabe und mach, was dort steht."
             show: { object: egg, count: 3, layout: row }
             answer: "3"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Tippe auf die Gabel."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            options: [{ object: spoon }, { object: knife }, { object: fork }]
+            answer: fork
+            option_audio: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf alle Wörter, die mit R beginnen."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            show: { drawn: letter-card, text: "Rose Hose Rad Dose Ring" }
+            spans: ["Rose", "Rad", "Ring"]
+          - id: l1-c6
+            type: true_false
+            text: "Aufgabe: Tippe auf das Auto.\nEmma tippt auf das Auto.\n\nHat Emma die Aufgabe richtig gemacht?"
+            say: "Lies die Aufgabe und was Emma macht. Hat Emma die Aufgabe richtig gemacht?"
+            answer: true
 
   - n: 2
     title: { de: Aufgabenwörter, en: Instruction words }
@@ -436,27 +459,156 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: one-step
             type: image_multiple_choice
             text: "Tippe auf den grünen Luftballon."
             say: "Lies die Aufgabe und mach, was dort steht."
             options: [{ object: balloon, colour: red }, { object: balloon, colour: green }, { object: balloon, colour: blue }]
             answer: green
+            option_audio: false
+          - id: l2-c6
+            part: one-step
+            type: image_multiple_choice
+            text: "Tippe auf das grüne Auto."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            options: [{ object: car, colour: orange }, { object: car, colour: red }, { object: car, colour: green }]
+            answer: green
+            option_audio: false
+          - id: l2-c7
+            part: one-step
+            type: highlight_in_text
+            text: "Tippe auf alle Wörter, die mit L beginnen."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            show: { drawn: letter-card, text: "Lampe Hose Leiter Mond Löwe" }
+            spans: ["Lampe", "Leiter", "Löwe"]
+          - id: l2-c8
+            part: one-step
+            type: text_input
+            text: "Zähle die Enten. Schreibe die Zahl."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            show: { object: duck, count: 8, layout: scattered }
+            answer: "8"
+          - id: l2-c9
+            part: one-step
+            type: fill_in_blank
+            text: "Setze ein N ein."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            frame: "_ase"
+            options: ["H", "N"]
+            answer: ["N"]
+          - id: l2-c10
+            part: task-words
+            type: multiple_choice
+            text: "Tom macht einen Strich unter das Wort.\n\nWelche Aufgabe hat Tom?"
+            say: "Lies, was Tom macht. Welche Aufgabe hat Tom?"
+            options: ["Streiche das Wort durch.", "Unterstreiche das Wort.", "Kreise das Wort ein."]
+            answer: "Unterstreiche das Wort."
+            option_audio: false
+          - id: l2-c11
+            part: task-words
+            type: multiple_choice
+            text: "Ella macht ein Kreuz in das Kästchen.\n\nWelche Aufgabe hat Ella?"
+            say: "Lies, was Ella macht. Welche Aufgabe hat Ella?"
+            options: ["Kreise das Kästchen ein.", "Male das Kästchen an.", "Kreuze das Kästchen an."]
+            answer: "Kreuze das Kästchen an."
+            option_audio: false
+          - id: l2-c12
+            part: task-words
+            type: matching
+            text: "Was heißt das? Verbinde."
+            say: "Lies die Aufgabenwörter. Verbinde jedes mit dem, was du machst."
+            option_audio: false
+            pairs:
+              - { left: { text: "Streiche durch." }, right: { text: "ein Strich mitten durch" } }
+              - { left: { text: "Unterstreiche." }, right: { text: "ein Strich darunter" } }
+              - { left: { text: "Kreise ein." }, right: { text: "ein Kreis darum" } }
+          - id: l2-c13
+            part: task-words
+            type: true_false
+            text: "Aufgabe: Ordne die Wörter.\nPaul schreibt die Wörter genauso ab.\n\nHat Paul die Aufgabe richtig gemacht?"
+            say: "Lies die Aufgabe und was Paul macht. Hat Paul die Aufgabe richtig gemacht?"
+            answer: false
+          - id: l2-c14
+            part: task-words
+            type: multiple_choice
+            text: "Aufgabe: Ordne die Bilder.\n\nWas sollst du machen?"
+            say: "Lies die Aufgabe. Was sollst du machen?"
+            options: ["die Bilder anmalen", "die Bilder in die richtige Reihenfolge bringen", "die Bilder durchstreichen"]
+            answer: "die Bilder in die richtige Reihenfolge bringen"
+            option_audio: false
+          - id: l2-c15
+            part: two-steps
+            type: ordering
+            text: "Tippe zuerst auf den Stern, dann auf den Mond, dann auf die Sonne."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            options: [{ object: sun }, { object: star }, { object: moon }]
+            slot_count: 3
+            answer: [star, moon, sun]
+            option_audio: false
+          - id: l2-c16
+            part: two-steps
+            type: ordering
+            text: "Tippe zuerst auf den Teddy. Tippe dann auf das Buch."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            options: [{ object: book }, { object: ball }, { object: teddy }]
+            slot_count: 2
+            answer: [teddy, book]
+            option_audio: false
+          - id: l2-c17
+            part: two-steps
+            type: true_false
+            text: "Aufgabe: Tippe zuerst auf den Hund, dann auf die Ente.\nJan tippt zuerst auf den Hund und dann auf die Ente.\n\nHat Jan die Aufgabe richtig gemacht?"
+            say: "Lies die Aufgabe und was Jan macht. Hat Jan die Aufgabe richtig gemacht?"
+            answer: true
+          - id: l2-c18
+            part: two-steps
+            type: sorting
+            text: "Lege alles zum Anziehen in den Schrank und alles zum Essen auf den Tisch."
+            say: "Lies die Aufgabe und mach, was dort steht."
+            option_audio: false
+            bins:
+              - { id: schrank, show: { text: "Schrank" } }
+              - { id: tisch, show: { text: "Tisch" } }
+            options:
+              - { object: cheese, bin: tisch }
+              - { object: sock, bin: schrank }
+              - { object: bread, bin: tisch }
+              - { object: dress, bin: schrank }
+          - id: l2-c19
+            part: two-steps
+            type: multiple_choice
+            text: "Aufgabe: Male zuerst den Hut rot an. Male dann den Schuh blau an.\n\nWas malst du blau an?"
+            say: "Lies die Aufgabe. Was malst du blau an?"
+            options: ["den Hut", "den Schuh", "den Hut und den Schuh"]
+            answer: "den Schuh"
+            option_audio: false
+          - id: l2-c20
+            part: two-steps
+            type: true_false
+            text: "Aufgabe: Lies das Wort. Schreibe es dann ab.\nMia schreibt das Wort ab. Dann liest sie es.\n\nHat Mia die Aufgabe richtig gemacht?"
+            say: "Lies die Aufgabe und was Mia macht. Hat Mia die Aufgabe richtig gemacht?"
+            answer: false
           - id: l2-c2
+            part: task-words
             type: multiple_choice
             text: "Aufgabe: Kreise den Buchstaben ein.\n\nWas sollst du machen?"
             say: "Lies die Aufgabe. Was sollst du machen?"
             options: ["den Buchstaben durchstreichen", "ein Kreuz machen", "einen Kreis um den Buchstaben malen"]
             answer: "einen Kreis um den Buchstaben malen"
           - id: l2-c3
+            part: two-steps
             type: ordering
             text: "Tippe zuerst auf das Auto, dann auf den Bus, dann auf das Boot."
             say: "Lies die Aufgabe und mach, was dort steht."
             options: [{ object: boat }, { object: car }, { object: bus }]
             slot_count: 3
             answer: [car, bus, boat]
+            option_audio: false
           - id: l2-c4
+            part: one-step
             type: fill_in_blank
             text: "Setze ein W ein."
             say: "Lies die Aufgabe und mach, was dort steht."
@@ -464,6 +616,7 @@ lessons:
             options: ["S", "H", "W"]
             answer: ["W"]
           - id: l2-c5
+            part: one-step
             type: text_input
             text: "Zähle die Blätter. Schreibe die Zahl."
             say: "Lies die Aufgabe und mach, was dort steht."

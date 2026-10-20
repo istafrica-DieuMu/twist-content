@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: sense, what: { de: "erkennen, ob ein Satz so sein kann", en: noticing whether a sentence can be true } }
+    - { id: wrong-word, what: { de: "das Wort finden, das nicht passt", en: finding the word that does not fit } }
+    - { id: right-word, what: { de: das passende Wort einsetzen, en: choosing the word that fits instead } }
+    - { id: story, what: { de: "prüfen, ob alles in einer Geschichte zusammenpasst", en: checking that everything in a story fits together } }
   misconceptions:
     - id: words-not-sense
       what: Accepts a sentence because every word can be read, without asking whether it can be true (Mama backt den Kuchen im Kühlschrank)
@@ -193,6 +198,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -211,6 +217,23 @@ lessons:
             say: "Lies den Satz genau. Welches Wort passt statt Kuchen?"
             options: ["Zoo", "Schrank", "Apfel"]
             answer: "Zoo"
+          - id: l1-c4
+            type: true_false
+            text: "Kann das sein? Im Herbst fallen die Blätter von den Bäumen."
+            say: "Lies den Satz genau. Kann das so sein?"
+            answer: true
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf das Wort, das nicht passt."
+            say: "Lies den Satz genau. Ein Wort passt nicht. Tippe darauf."
+            show: { drawn: letter-card, text: "Lukas trinkt seinen Kakao aus der Socke." }
+            spans: ["Socke."]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Am Abend schlafe ich in meinem Backofen. Welches Wort passt statt Backofen?"
+            say: "Lies den Satz genau. Welches Wort passt statt Backofen?"
+            options: ["Bett", "Eimer", "Briefkasten"]
+            answer: "Bett"
 
   - n: 2
     title: { de: "Genau lesen in Geschichten", en: "Reading stories carefully" }
@@ -377,32 +400,142 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sense
             type: true_false
             text: "Kann das sein? Der Bäcker verkauft Brötchen."
             say: "Lies den Satz genau. Kann das so sein?"
             answer: true
           - id: l2-c2
+            part: wrong-word
             type: highlight_in_text
             text: "Tippe auf das Wort, das nicht passt."
             say: "Lies die Geschichte genau. Ein Wort passt nicht. Tippe darauf."
             show: { drawn: letter-card, text: "Jana geht schwimmen. Sie springt ins Wasser. Danach trocknet sie sich mit einem Teller ab." }
             spans: ["Teller"]
           - id: l2-c3
+            part: story
             type: multiple_choice
             text: "Felix hat eine Katze.\nSie heißt Mimi.\nDie Banane ist gelb.\nMimi schläft gern auf dem Sofa.\n\nWelcher Satz passt nicht in die Geschichte?"
             say: "Lies die Geschichte. Welcher Satz passt nicht dazu?"
             options: ["Die Banane ist gelb.", "Sie heißt Mimi.", "Mimi schläft gern auf dem Sofa."]
             answer: "Die Banane ist gelb."
           - id: l2-c4
+            part: right-word
             type: multiple_choice
             text: "Ich schreibe mit dem Kissen in mein Heft. Welches Wort passt statt Kissen?"
             say: "Lies den Satz genau. Welches Wort passt statt Kissen?"
             options: ["Stift", "Teller", "Ball"]
             answer: "Stift"
           - id: l2-c5
+            part: story
             type: true_false
             text: "Es ist Nacht.\nAm Himmel leuchten die Sterne.\nDie Eule ist wach.\n\nPasst alles zusammen?"
+            say: "Lies die Geschichte genau. Passt alles zusammen?"
+            answer: true
+          - id: l2-c6
+            part: sense
+            type: true_false
+            text: "Kann das sein? Die Kuh legt jeden Morgen ein Ei."
+            say: "Lies den Satz genau. Kann das so sein?"
+            answer: false
+          - id: l2-c7
+            part: sense
+            type: true_false
+            text: "Kann das sein? Nach dem Regen sind die Straßen nass."
+            say: "Lies den Satz genau. Kann das so sein?"
+            answer: true
+          - id: l2-c8
+            part: sense
+            type: true_false
+            text: "Kann das sein? Paul schläft tief und fest und liest dabei ein Buch."
+            say: "Lies den Satz genau. Kann das so sein?"
+            answer: false
+            difficulty: stretch
+          - id: l2-c9
+            part: sense
+            type: multiple_choice
+            text: "Welcher Satz kann so sein?"
+            say: "Lies alle drei Sätze genau. Welcher Satz kann so sein?"
+            options: ["Das Baby trinkt Milch aus der Flasche.", "Das Baby fährt mit dem Auto zur Arbeit.", "Das Baby trinkt Milch aus dem Schuh."]
+            answer: "Das Baby trinkt Milch aus der Flasche."
+          - id: l2-c10
+            part: wrong-word
+            type: highlight_in_text
+            text: "Tippe auf das Wort, das nicht passt."
+            say: "Lies den Satz genau. Ein Wort passt nicht. Tippe darauf."
+            show: { drawn: letter-card, text: "Mama schneidet das Brot mit der Zahnbürste." }
+            spans: ["Zahnbürste."]
+          - id: l2-c11
+            part: wrong-word
+            type: highlight_in_text
+            text: "Tippe auf das Wort, das nicht passt."
+            say: "Lies die Geschichte genau. Ein Wort passt nicht. Tippe darauf."
+            show: { drawn: letter-card, text: "Ole hat einen Hamster. Der Hamster wohnt in einem Käfig. Er frisst gern Körner und Schrauben." }
+            spans: ["Schrauben."]
+          - id: l2-c12
+            part: wrong-word
+            type: multiple_choice
+            text: "Die Klasse macht einen Ausflug.\nAlle fahren mit dem Bus zum See.\nDort essen sie ihre Schuhe.\nDann spielen sie am Ufer.\n\nWelches Wort passt nicht?"
+            say: "Lies die Geschichte genau. Welches Wort passt nicht?"
+            options: ["Schuhe", "Bus", "Ufer"]
+            answer: "Schuhe"
+          - id: l2-c13
+            part: wrong-word
+            type: multiple_choice
+            text: "Am Abend ist Nele müde.\nSie zieht ihren Schlafanzug an.\nSie trinkt noch ein Glas Kissen.\nDann geht sie ins Bett.\n\nWelches Wort passt nicht?"
+            say: "Lies die Geschichte genau. Welches Wort passt nicht?"
+            options: ["Kissen", "Schlafanzug", "Bett"]
+            answer: "Kissen"
+          - id: l2-c14
+            part: right-word
+            type: fill_in_blank
+            text: "Der Ball liegt auf dem Dach. Welches Wort passt?"
+            say: "Lies genau. Welches Wort passt in die Lücke?"
+            frame: "Tim holt eine _ und klettert hinauf."
+            options: ["Leiter", "Gabel", "Suppe"]
+            answer: ["Leiter"]
+          - id: l2-c15
+            part: right-word
+            type: multiple_choice
+            text: "Der Koch rührt die Suppe mit einem Radiergummi um. Welches Wort passt statt Radiergummi?"
+            say: "Lies den Satz genau. Welches Wort passt statt Radiergummi?"
+            options: ["Kochlöffel", "Kamm", "Schuh"]
+            answer: "Kochlöffel"
+          - id: l2-c16
+            part: right-word
+            type: fill_in_blank
+            text: "Draußen ist es eiskalt. Welches Wort passt?"
+            say: "Lies genau. Welches Wort passt in die Lücke?"
+            frame: "Ida setzt ihre warme _ auf."
+            options: ["Mütze", "Sonnenbrille", "Badekappe"]
+            answer: ["Mütze"]
+          - id: l2-c17
+            part: right-word
+            type: multiple_choice
+            text: "Wir fahren mit dem Schiff über den Spielplatz. Welches Wort passt statt Spielplatz?"
+            say: "Lies den Satz genau. Welches Wort passt statt Spielplatz?"
+            options: ["See", "Berg", "Teppich"]
+            answer: "See"
+          - id: l2-c18
+            part: story
+            type: multiple_choice
+            text: "Mia hat Halsschmerzen.\nSie geht mit Mama zum Arzt.\nIm Zoo gibt es Pinguine.\nDer Arzt schaut in ihren Hals.\n\nWelcher Satz passt nicht in die Geschichte?"
+            say: "Lies die Geschichte. Welcher Satz passt nicht dazu?"
+            options: ["Im Zoo gibt es Pinguine.", "Sie geht mit Mama zum Arzt.", "Der Arzt schaut in ihren Hals."]
+            answer: "Im Zoo gibt es Pinguine."
+          - id: l2-c19
+            part: story
+            type: true_false
+            text: "Emil schießt den Ball aufs Tor.\nDer Torwart fängt den Ball.\nEmil jubelt über sein Tor.\n\nPasst alles zusammen?"
+            say: "Lies die Geschichte genau. Passt alles zusammen?"
+            answer: false
+            difficulty: stretch
+          - id: l2-c20
+            part: story
+            type: true_false
+            text: "Am Morgen klingelt der Wecker.\nSara steht auf und frühstückt.\nDann geht sie zur Schule.\n\nPasst alles zusammen?"
             say: "Lies die Geschichte genau. Passt alles zusammen?"
             answer: true

@@ -29,6 +29,11 @@ metadata:
   drawn: [letter-card, writing-lines, word-card, syllable-arcs, shape]
   sounds: []
   facets: [script]
+  parts:
+    - { id: ng-nk, what: { de: ng und nk hören und unterscheiden, en: hearing ng and nk and telling them apart } }
+    - { id: qu, what: { de: "Qu: Man hört kw und schreibt Qu", en: "Qu: you hear kw and write Qu" } }
+    - { id: v, what: { de: "V als Merkwort: Es klingt wie f oder w", en: "V as a word to remember: it sounds like f or w" } }
+    - { id: words, what: { de: "Wörter mit ng, nk, Qu und V lesen", en: "reading words with ng, nk, Qu and V" } }
   misconceptions:
     - id: ng-as-n
       what: Hears ng as a plain n or as n and g, and writes Rin or Ringk for Ring
@@ -41,7 +46,7 @@ metadata:
       addressed: lesson 2 Learn says Q never comes alone; l2-f1, l2-f5, l2-s1, l2-n1, l3-f4, l3-s5 and the skill check task l3-c4 offer Kw or Q as a distractor
     - id: v-as-f
       what: Writes F for V in Vogel and Vater, or W for the V in Pullover
-      addressed: lesson 2 Learn names V words as Merkwörter and shows V spoken as w in Pullover and Vase; l2-f4, l2-s4, l2-n2 and l2-c2 offer F, l2-s2 and l3-n3 deal with V spoken as w
+      addressed: lesson 2 Learn names V words as Merkwörter and shows V spoken as w in Pullover and Vase; l2-f4, l2-s4, l2-n2, l2-c6 and l3-c8 offer F, l2-c2 and l3-c8 offer W, l2-s2 and l3-n3 deal with V spoken as w
   twist_reuse: []
   status: draft
   version: 1
@@ -233,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -254,6 +260,24 @@ lessons:
             frame: "Ri_"
             options: ["n", "ng", "nk"]
             answer: ["ng"]
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du ng?"
+            say: "Nase. Hörst du in dem Wort ein ng?"
+            show: { object: nose }
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes ng."
+            say: "Tippe auf jede Karte mit n und g."
+            show: { drawn: letter-card, text: "n ng nk ng" }
+            spans: ["ng", "ng"]
+          - id: l1-c6
+            type: audio_choice
+            text: "ng oder nk?"
+            audio: { de: "Finger." }
+            options: ["nk", "ng"]
+            answer: "ng"
 
   - n: 2
     title: { de: Qu und V, en: Qu and V }
@@ -439,9 +463,9 @@ lessons:
                 difficulty: stretch
               - id: l2-n4
                 type: true_false
-                text: "Steht auf der Karte das Wort, das du hörst?"
-                say: "Lies die Karte. Steht hier Vase?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Vater" }
+                audio: { de: "Vase." }
                 answer: false
               - id: l2-n5
                 type: tracing
@@ -451,6 +475,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: audio_choice
@@ -461,16 +486,35 @@ lessons:
           - id: l2-c2
             type: fill_in_blank
             text: "Was fehlt?"
-            say: "Vier. Was fehlt am Anfang?"
-            frame: "_ier"
-            options: ["f", "v"]
-            answer: ["v"]
+            say: "Vase. Was fehlt am Anfang?"
+            show: { object: vase }
+            frame: "_ase"
+            options: ["W", "V"]
+            answer: ["V"]
           - id: l2-c3
             type: true_false
             text: "Hörst du am Anfang kw?"
             say: "Kuh. Hörst du am Anfang ein kw?"
             show: { object: cow }
             answer: false
+          - id: l2-c4
+            type: image_multiple_choice
+            text: "Was fängt mit Qu an?"
+            options: [{ object: cow }, { object: crown }, { object: jellyfish }]
+            answer: jellyfish
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes Qu."
+            say: "Tippe auf jede Karte mit Q und u."
+            show: { drawn: letter-card, text: "qu Q Qu K qu" }
+            spans: ["qu", "Qu", "qu"]
+          - id: l2-c6
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            show: { object: dad }
+            options: ["Fater", "Vater", "Water"]
+            answer: "Vater"
+            option_audio: false
 
   - n: 3
     title: { de: "Wörter mit ng, nk, Qu und V", en: "Words with ng, nk, Qu and V" }
@@ -588,9 +632,9 @@ lessons:
                 hints: ["Kommt nach dem ng noch ein k?"]
               - id: l3-s3
                 type: true_false
-                text: "Steht auf der Karte das Wort, das du hörst?"
-                say: "Lies die Karte. Steht hier Vogel?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Vogel" }
+                audio: { de: "Vogel." }
                 answer: true
                 hints: ["Das V am Anfang liest du wie f."]
               - id: l3-s4
@@ -637,9 +681,9 @@ lessons:
                 difficulty: stretch
               - id: l3-n4
                 type: true_false
-                text: "Steht auf der Karte das Wort, das du hörst?"
-                say: "Lies die Karte. Steht hier Bank?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Band" }
+                audio: { de: "Bank." }
                 answer: false
               - id: l3-n5
                 type: audio_choice
@@ -651,27 +695,34 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "singen" }
             options: [{ object: swim }, { object: sing }, { object: dance }]
             answer: sing
+            option_audio: false
           - id: l3-c2
+            part: ng-nk
             type: audio_choice
             text: "ng oder nk?"
             audio: { de: "Onkel." }
             options: ["nk", "ng"]
             answer: "nk"
           - id: l3-c3
+            part: ng-nk
             type: fill_in_blank
             text: "Was fehlt?"
-            say: "Zange. Was fehlt in der Mitte?"
-            frame: "Za_e"
+            say: "Junge. Was fehlt in der Mitte?"
+            show: { object: boy }
+            frame: "Ju_e"
             options: ["nk", "ng", "n"]
             answer: ["ng"]
           - id: l3-c4
+            part: qu
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Welches Wort ist richtig geschrieben? Lies genau."
@@ -679,8 +730,119 @@ lessons:
             answer: "Quark"
             option_audio: false
           - id: l3-c5
+            part: v
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Vater" }
             options: [{ object: grandpa }, { object: dad }, { object: mum }]
             answer: dad
+            option_audio: false
+          - id: l3-c6
+            part: ng-nk
+            type: true_false
+            text: "Hörst du nk?"
+            say: "Bank. Hörst du in dem Wort ein nk?"
+            show: { object: bench }
+            answer: true
+          - id: l3-c7
+            part: qu
+            type: true_false
+            text: "Hörst du am Anfang kw?"
+            say: "Qualle. Hörst du am Anfang ein kw?"
+            show: { object: jellyfish }
+            answer: true
+          - id: l3-c8
+            part: v
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            show: { object: vase }
+            options: ["Wase", "Fase", "Vase"]
+            answer: "Vase"
+            option_audio: false
+          - id: l3-c9
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Schmetterling" }
+            options: [{ object: bee }, { object: bird }, { object: butterfly }]
+            answer: butterfly
+            option_audio: false
+          - id: l3-c10
+            part: ng-nk
+            type: image_multiple_choice
+            text: "Wo hörst du ng?"
+            say: "In welchem Wort hörst du ein ng?"
+            options: [{ object: nose }, { object: ring }, { object: bin }]
+            answer: ring
+          - id: l3-c11
+            part: qu
+            type: true_false
+            text: "Hörst du am Anfang kw?"
+            say: "Krone. Hörst du am Anfang ein kw?"
+            show: { object: crown }
+            answer: false
+          - id: l3-c12
+            part: v
+            type: highlight_in_text
+            text: "Tippe auf jedes V."
+            say: "Tippe auf jede Karte mit einem großen oder kleinen V."
+            show: { drawn: letter-card, text: "v W V F v" }
+            spans: ["v", "V", "v"]
+          - id: l3-c13
+            part: words
+            type: audio_choice
+            text: "Welches Wort hörst du?"
+            say: "Hör gut zu. Welches Wort hörst du? Lies die Karten."
+            audio: { de: "Engel." }
+            options: ["Enkel", "Ende", "Engel"]
+            answer: "Engel"
+          - id: l3-c14
+            part: ng-nk
+            type: highlight_in_text
+            text: "Tippe auf jedes nk."
+            say: "Tippe auf jede Karte mit n und k."
+            show: { drawn: letter-card, text: "nk ng n nk k" }
+            spans: ["nk", "nk"]
+          - id: l3-c15
+            part: qu
+            type: highlight_in_text
+            text: "Tippe auf jedes Qu."
+            say: "Tippe auf jede Karte mit Q und u."
+            show: { drawn: letter-card, text: "Qu Kw qu Q Qu" }
+            spans: ["Qu", "qu", "Qu"]
+          - id: l3-c16
+            part: v
+            type: true_false
+            text: "Hör zu. Steht dieses Wort auf der Karte?"
+            show: { drawn: word-card, text: "Pullover" }
+            audio: { de: "Pullover." }
+            answer: true
+          - id: l3-c17
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Geschenk" }
+            options: [{ object: cake }, { object: present }, { object: ball }]
+            answer: present
+            option_audio: false
+          - id: l3-c18
+            part: qu
+            type: audio_choice
+            text: "Wie fängt das Wort an?"
+            audio: { de: "quaken." }
+            options: ["Kw", "Qu", "K"]
+            answer: "Qu"
+          - id: l3-c19
+            part: v
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort mit V."
+            say: "Lies die Wörter. Tippe auf jedes Wort mit einem V."
+            show: { drawn: letter-card, text: "Vogel Fisch Vase Wal" }
+            spans: ["Vogel", "Vase"]
+          - id: l3-c20
+            part: words
+            type: true_false
+            text: "Hör zu. Steht dieses Wort auf der Karte?"
+            show: { drawn: word-card, text: "Rind" }
+            audio: { de: "Ring." }
+            answer: false

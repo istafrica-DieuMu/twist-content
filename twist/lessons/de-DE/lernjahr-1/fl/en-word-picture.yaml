@@ -24,6 +24,10 @@ metadata:
   forms: [picture, text, drawn]
   drawn: [word-card]
   facets: []
+  parts:
+    - { id: short, what: { de: kurze Wörter lesen und dem Bild zuordnen, en: reading short words and matching them to pictures } }
+    - { id: alike, what: { de: ähnliche Wörter bis zum Ende lesen, en: reading words that look alike to the end } }
+    - { id: long, what: { de: lange Wörter und Wörter aus zwei Teilen lesen, en: reading long words and two-word names } }
   misconceptions:
     - id: first-letter
       what: Guesses from the first letter and picks any picture that starts the same (car for cat)
@@ -121,7 +125,7 @@ lessons:
                   - "„Sun“ ist die Sonne, „bus“ der Bus, „pig“ das Schwein."
               - id: l1-f4
                 type: true_false
-                text: "bed"
+                text: "bed\n\nPasst das Wort zum Bild?"
                 say: { de: "Lies das Wort. Passt es zum Bild?" }
                 show: { object: bed }
                 answer: true
@@ -177,7 +181,7 @@ lessons:
                 hints: ["Alle fangen mit b an. Schau auf die Buchstaben danach."]
               - id: l1-s4
                 type: true_false
-                text: "sock"
+                text: "sock\n\nPasst das Wort zum Bild?"
                 say: { de: "Lies das Wort. Passt es zum Bild?" }
                 show: { object: shoe }
                 answer: false
@@ -224,7 +228,7 @@ lessons:
                     right: { object: bread }
               - id: l1-n4
                 type: true_false
-                text: "star"
+                text: "star\n\nPasst das Wort zum Bild?"
                 say: { de: "Lies das Wort. Passt es zum Bild?" }
                 show: { object: star }
                 answer: true
@@ -239,6 +243,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -258,10 +263,32 @@ lessons:
             answer: "sun"
           - id: l1-c3
             type: true_false
-            text: "cup"
+            text: "cup\n\nPasst das Wort zum Bild?"
             say: { de: "Lies das Wort. Passt es zum Bild?" }
             show: { object: cake }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            option_audio: false
+            text: "Lies das Wort. Welches Bild passt?"
+            say: { de: "Lies das Wort. Welches Bild passt?" }
+            show: { drawn: word-card, text: "ball" }
+            options: [{ object: bus }, { object: ball }, { object: bee }]
+            answer: ball
+          - id: l1-c5
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Wort passt zum Bild?"
+            say: { de: "Welches Wort passt zum Bild?" }
+            show: { object: bed }
+            options: ["bee", "bed", "bus"]
+            answer: "bed"
+          - id: l1-c6
+            type: true_false
+            text: "leaf\n\nPasst das Wort zum Bild?"
+            say: { de: "Lies das Wort. Passt es zum Bild?" }
+            show: { object: leaf }
+            answer: true
 
   - n: 2
     title: { de: "Genau bis zum Ende lesen", en: "Reading to the end" }
@@ -281,7 +308,7 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: true_false
-            text: "bus"
+            text: "bus\n\nPasst das Wort zum Bild?"
             say: { de: "Lies das Wort. Passt es zum Bild?" }
             show: { object: bus }
             answer: true
@@ -363,7 +390,7 @@ lessons:
                   - "„Crocodile“ ist das Krokodil."
               - id: l2-f5
                 type: true_false
-                text: "jacket"
+                text: "jacket\n\nPasst das Wort zum Bild?"
                 say: { de: "Lies das Wort. Passt es zum Bild?" }
                 show: { object: jumper }
                 answer: false
@@ -407,7 +434,7 @@ lessons:
                 hints: ["„School bag“ und „ice cream“ sind je zwei Wörter."]
               - id: l2-s4
                 type: true_false
-                text: "rabbit"
+                text: "rabbit\n\nPasst das Wort zum Bild?"
                 say: { de: "Lies das Wort. Passt es zum Bild?" }
                 show: { object: rabbit }
                 answer: true
@@ -454,7 +481,7 @@ lessons:
                 answer: "butterfly"
               - id: l2-n4
                 type: true_false
-                text: "shoe"
+                text: "shoe\n\nPasst das Wort zum Bild?"
                 say: { de: "Lies das Wort. Passt es zum Bild?" }
                 show: { object: sock }
                 answer: false
@@ -469,8 +496,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: alike
             type: image_multiple_choice
             option_audio: false
             text: "Lies das Wort. Welches Bild passt?"
@@ -479,6 +508,7 @@ lessons:
             options: [{ object: cloud }, { object: clown }, { object: clock }]
             answer: cloud
           - id: l2-c2
+            part: long
             type: image_multiple_choice
             option_audio: false
             text: "Lies das Wort. Welches Bild passt?"
@@ -487,6 +517,7 @@ lessons:
             options: [{ object: hedgehog }, { object: hand }, { object: head }]
             answer: hedgehog
           - id: l2-c3
+            part: alike
             type: matching
             option_audio: false
             say: { de: "Lies jedes Wort bis zum Ende. Tippe auf ein Wort und dann auf das passende Bild." }
@@ -499,6 +530,7 @@ lessons:
               - left: { text: "shell" }
                 right: { object: shell }
           - id: l2-c4
+            part: long
             type: multiple_choice
             option_audio: false
             text: "Welches Wort passt zum Bild?"
@@ -507,8 +539,144 @@ lessons:
             options: ["telephone", "teacher", "table"]
             answer: "telephone"
           - id: l2-c5
+            part: short
             type: true_false
-            text: "duck"
+            text: "duck\n\nPasst das Wort zum Bild?"
             say: { de: "Lies das Wort. Passt es zum Bild?" }
             show: { object: dog }
             answer: false
+          - id: l2-c6
+            part: short
+            type: image_multiple_choice
+            option_audio: false
+            text: "Lies das Wort. Welches Bild passt?"
+            say: { de: "Lies das Wort. Welches Bild passt?" }
+            show: { drawn: word-card, text: "bee" }
+            options: [{ object: bed }, { object: ball }, { object: bee }]
+            answer: bee
+          - id: l2-c7
+            part: short
+            type: image_multiple_choice
+            option_audio: false
+            text: "Lies das Wort. Welches Bild passt?"
+            say: { de: "Lies das Wort. Welches Bild passt?" }
+            show: { drawn: word-card, text: "fox" }
+            options: [{ object: frog }, { object: fox }, { object: dog }]
+            answer: fox
+          - id: l2-c8
+            part: short
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Wort passt zum Bild?"
+            say: { de: "Welches Wort passt zum Bild?" }
+            show: { object: cup }
+            options: ["cake", "cup", "cat"]
+            answer: "cup"
+          - id: l2-c9
+            part: short
+            type: true_false
+            text: "sun\n\nPasst das Wort zum Bild?"
+            say: { de: "Lies das Wort. Passt es zum Bild?" }
+            show: { object: moon }
+            answer: false
+          - id: l2-c10
+            part: short
+            type: true_false
+            text: "egg\n\nPasst das Wort zum Bild?"
+            say: { de: "Lies das Wort. Passt es zum Bild?" }
+            show: { object: egg }
+            answer: true
+          - id: l2-c11
+            part: short
+            type: matching
+            option_audio: false
+            text: "Welches Wort passt zu welchem Bild?"
+            say: { de: "Lies die Wörter. Tippe auf ein Wort und dann auf sein Bild." }
+            pairs:
+              - left: { text: "cat" }
+                right: { object: cat }
+              - left: { text: "cake" }
+                right: { object: cake }
+              - left: { text: "car" }
+                right: { object: car }
+          - id: l2-c12
+            part: alike
+            type: image_multiple_choice
+            option_audio: false
+            text: "Lies das Wort. Welches Bild passt?"
+            say: { de: "Lies das Wort. Welches Bild passt?" }
+            show: { drawn: word-card, text: "snake" }
+            options: [{ object: snail }, { object: snowman }, { object: snake }]
+            answer: snake
+          - id: l2-c13
+            part: alike
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Wort passt zum Bild?"
+            say: { de: "Welches Wort passt zum Bild?" }
+            show: { object: clown }
+            options: ["cloud", "clock", "clown"]
+            answer: "clown"
+          - id: l2-c14
+            part: alike
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Wort passt zum Bild?"
+            say: { de: "Welches Wort passt zum Bild?" }
+            show: { object: pencil }
+            options: ["pencil case", "pizza", "pencil"]
+            answer: "pencil"
+          - id: l2-c15
+            part: alike
+            type: true_false
+            text: "snow\n\nPasst das Wort zum Bild?"
+            say: { de: "Lies das Wort. Passt es zum Bild?" }
+            show: { object: snowman }
+            answer: false
+          - id: l2-c16
+            part: long
+            type: image_multiple_choice
+            option_audio: false
+            text: "Lies das Wort. Welches Bild passt?"
+            say: { de: "Lies das Wort. Welches Bild passt?" }
+            show: { drawn: word-card, text: "elephant" }
+            options: [{ object: giraffe }, { object: elephant }, { object: crocodile }]
+            answer: elephant
+          - id: l2-c17
+            part: long
+            type: image_multiple_choice
+            option_audio: false
+            text: "Lies die Wörter. Welches Bild passt?"
+            say: { de: "Lies die Wörter. Welches Bild passt?" }
+            show: { drawn: word-card, text: "school bag" }
+            options: [{ object: pencil-case }, { object: book }, { object: schoolbag }]
+            answer: schoolbag
+          - id: l2-c18
+            part: long
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Wort passt zum Bild?"
+            say: { de: "Welches Wort passt zum Bild?" }
+            show: { object: banana }
+            options: ["balloon", "banana", "butterfly"]
+            answer: "banana"
+          - id: l2-c19
+            part: long
+            type: true_false
+            text: "butterfly\n\nPasst das Wort zum Bild?"
+            say: { de: "Lies das Wort. Passt es zum Bild?" }
+            show: { object: butterfly }
+            answer: true
+          - id: l2-c20
+            part: long
+            type: matching
+            option_audio: false
+            text: "Lies die langen Wörter. Welches Wort passt zu welchem Bild?"
+            say: { de: "Lies die langen Wörter. Tippe auf ein Wort und dann auf sein Bild." }
+            pairs:
+              - left: { text: "crocodile" }
+                right: { object: crocodile }
+              - left: { text: "strawberry" }
+                right: { object: strawberry }
+              - left: { text: "rabbit" }
+                right: { object: rabbit }

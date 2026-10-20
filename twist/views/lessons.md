@@ -13,10 +13,10 @@ The ABC as a fixed order, once all letters are known. Lesson 1: the 26 letters i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Von A bis Z | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Wörter nach dem ABC ordnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Von A bis Z | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wörter nach dem ABC ordnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 1, multiple_choice 13, ordering 13, fill_in_blank 7, speak 3, true_false 6. Builds on: `lit-de.letters.c-y-x-aeu-ck-ss`. Misconceptions addressed: 3.
+Task types: audio_choice 1, multiple_choice 19, ordering 17, fill_in_blank 10, speak 3, true_false 11. Builds on: `lit-de.letters.c-y-x-aeu-ck-ss`. Misconceptions addressed: 3.
 
 ## Silben lesen (Reading syllables)
 
@@ -27,10 +27,10 @@ Children push two sounds together into a syllable (mmm and aaa make Ma) using on
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ma, Mo, La, Lo | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Silben werden Wörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Ma, Mo, La, Lo | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Silben werden Wörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 16, image_multiple_choice 5, fill_in_blank 9, highlight_in_text 4, true_false 5, ordering 3. Builds on: `lit-de.letters.l-o-a-m`, `lit-de.phonological.syllables`. Misconceptions addressed: 2.
+Task types: audio_choice 21, image_multiple_choice 7, fill_in_blank 9, highlight_in_text 8, true_false 11, ordering 3, multiple_choice 1. Builds on: `lit-de.letters.l-o-a-m`, `lit-de.phonological.syllables`. Misconceptions addressed: 2.
 
 ## Groß oder klein? (Capital or small letter?)
 
@@ -41,10 +41,10 @@ Children write Nomen and the first word of a sentence with a capital letter. Les
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Nomen im Satz schreibt man groß | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Der Satzanfang ist groß | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Nomen im Satz schreibt man groß | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Der Satzanfang ist groß | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, multiple_choice 11, highlight_in_text 11, fill_in_blank 12, true_false 7. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 1, multiple_choice 14, highlight_in_text 16, fill_in_blank 17, true_false 12. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 4.
 
 ## Sätze abschreiben (Copying sentences)
 
@@ -55,10 +55,10 @@ Children copy short sentences without mistakes, with the same Abschreiben steps 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wort für Wort abschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Zwei Wörter auf einmal merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wort für Wort abschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zwei Wörter auf einmal merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 8, tracing 8, multiple_choice 25, ordering 1. Builds on: `lit-de.handwriting.copy-words`. Misconceptions addressed: 3.
+Task types: true_false 14, tracing 8, multiple_choice 37, ordering 1. Builds on: `lit-de.handwriting.copy-words`. Misconceptions addressed: 3.
 
 ## Wörter abschreiben (Copying words)
 
@@ -69,10 +69,10 @@ Children copy words without mistakes by the Abschreiben steps a class learns: re
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Silbe für Silbe abschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Ganze Wörter merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Silbe für Silbe abschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Ganze Wörter merken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: tracing 11, image_multiple_choice 1, multiple_choice 18, true_false 12. Builds on: `lit-de.handwriting.print-letters`, `lit-de.decoding.two-syllable-words`. Misconceptions addressed: 2.
+Task types: tracing 11, image_multiple_choice 1, multiple_choice 30, true_false 18. Builds on: `lit-de.handwriting.print-letters`, `lit-de.decoding.two-syllable-words`. Misconceptions addressed: 2.
 
 ## Kurze Sätze nach Diktat (Short sentences from dictation)
 
@@ -83,10 +83,10 @@ Children write short practised sentences they hear, with the steps of a class Di
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hören, sprechen, schreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Längere Sätze nach Diktat | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Hören, sprechen, schreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Längere Sätze nach Diktat | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 7, multiple_choice 1, speak 2, audio_choice 10, ordering 10, true_false 8, highlight_in_text 4. Builds on: `lit-de.spelling.gap-words`, `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
+Task types: fill_in_blank 10, multiple_choice 2, speak 2, audio_choice 13, ordering 14, true_false 13, highlight_in_text 6. Builds on: `lit-de.spelling.gap-words`, `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
 
 ## Gefühle benennen (Naming feelings)
 
@@ -97,10 +97,10 @@ Naming five feelings (fröhlich, traurig, wütend, ängstlich, müde) and saying
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wie fühlt sich das Kind? | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Sag, wie es dir geht | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Wie fühlt sich das Kind? | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Sag, wie es dir geht | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 6, image_multiple_choice 16, matching 3, true_false 1, speak 5, multiple_choice 10, fill_in_blank 3. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 7, image_multiple_choice 23, matching 3, true_false 5, speak 5, multiple_choice 14, fill_in_blank 5. Builds on: . Misconceptions addressed: 3.
 
 ## Erste Sätze lesen (Reading first sentences)
 
@@ -111,10 +111,10 @@ Reading a short sentence to the end and finding the picture that fits. Lesson 1:
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ein Satz und ein Bild | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Genau lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Ein Satz und ein Bild | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 21, audio_choice 1, true_false 9, ordering 6, multiple_choice 6. Builds on: `lit-de.decoding.word-picture`, `lit-de.fluency.sight-words-easy`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 29, audio_choice 1, true_false 14, ordering 7, multiple_choice 10. Builds on: `lit-de.decoding.word-picture`, `lit-de.fluency.sight-words-easy`. Misconceptions addressed: 3.
 
 ## Erste Texte lesen (Reading first texts)
 
@@ -125,10 +125,10 @@ Reading a short text of three to four sentences and answering questions about it
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Antwort steht im Text | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Genau nachlesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die Antwort steht im Text | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau nachlesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 15, true_false 9, multiple_choice 16, text_input 2. Builds on: `lit-de.decoding.read-and-do`, `lit-de.decoding.longer-words`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 18, true_false 16, multiple_choice 24, text_input 2. Builds on: `lit-de.decoding.read-and-do`, `lit-de.decoding.longer-words`. Misconceptions addressed: 3.
 
 ## Kleine Wörter blitzschnell lesen (Reading small words in a flash)
 
@@ -139,10 +139,10 @@ Blitzlesen with the small words that hold a sentence together. Lesson 1 takes th
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. der, die, das, den | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. ein, eine, auf, nicht, sind | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. der, die, das, den | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. ein, eine, auf, nicht, sind | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, audio_choice 8, true_false 8, highlight_in_text 6. Builds on: `lit-de.fluency.sight-words-easy`. Misconceptions addressed: 2.
+Task types: multiple_choice 28, audio_choice 9, true_false 13, highlight_in_text 10. Builds on: `lit-de.fluency.sight-words-easy`. Misconceptions addressed: 2.
 
 ## Lückenwörter (Gap words)
 
@@ -153,10 +153,10 @@ Children fill the gaps in words and build words from syllables and letters. Less
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was fehlt? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wörter bauen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Was fehlt? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wörter bauen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 27, ordering 15. Builds on: `lit-de.spelling.write-by-sound`. Misconceptions addressed: 2.
+Task types: fill_in_blank 39, ordering 21. Builds on: `lit-de.spelling.write-by-sound`. Misconceptions addressed: 2.
 
 ## Die passende Überschrift (The right heading)
 
@@ -167,10 +167,10 @@ Finding the heading that fits a short text. Lesson 1 learns that a Überschrift 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was passt darüber? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Überschrift und Text | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was passt darüber? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Überschrift und Text | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 21, image_multiple_choice 8, true_false 9, matching 4. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: multiple_choice 31, image_multiple_choice 10, true_false 15, matching 4. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Anlaute hören (Hearing first sounds)
 
@@ -181,24 +181,24 @@ Children hear the first sound of a word (Sonne starts with sss) and find words t
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der erste Laut | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Gleicher Anfang | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Der erste Laut | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Gleicher Anfang | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 17, image_multiple_choice 22, matching 4, sorting 3. Builds on: `lit-de.phonological.rhymes`, `lit-de.phonological.syllables`. Misconceptions addressed: 3.
+Task types: true_false 24, image_multiple_choice 31, matching 5, sorting 4. Builds on: `lit-de.phonological.rhymes`, `lit-de.phonological.syllables`. Misconceptions addressed: 3.
 
 ## Mit Sprache spielen (Playing with language)
 
 `de-DE.lit-de.language-play` teaches `lit-de.vocabulary.language-play` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Playing with words and sounds. Lesson 1 tells real words from Quatschwörter, finds the Quatschsatz, swaps the first sound of a word to make a new one (Maus, Haus) and makes up Quatschreime; lesson 2 swaps the syllables of a word (Hase, Seha), turns a Quatschwort back into the real word, swaps the parts of a compound and sees the meaning change (Baumhaus, Hausbaum), and ends with the skill check. Speak tasks let the child say a Quatschsatz or a swapped word aloud; they are practice only. Every Quatschwort and Quatschsatz is made up for Twist.
+Playing with words and sounds. Lesson 1 tells real words from Quatschwörter, finds the Quatschsatz, swaps the first sound of a word to make a new one (Maus, Haus) and makes up Quatschreime; lesson 2 swaps the syllables of a word (Hase, Seha), turns a Quatschwort back into the real word, swaps the parts of a compound and sees the meaning change (Baumhaus, Hausbaum), and ends with the skill check. Speak tasks let the child say a Quatschsatz or a swapped word aloud; they are practice only, so the skill check marks the games a screen can mark (real or Quatsch, swapped sounds, syllables and word parts). Tongue twisters have their own set (tongue-twisters). Every Quatschwort and Quatschsatz is made up for Twist.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Quatschwörter und Quatschsätze | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Silben tauschen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Quatschwörter und Quatschsätze | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Silben tauschen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 8, image_multiple_choice 11, sorting 3, multiple_choice 16, speak 5, ordering 3. Builds on: `lit-de.phonological.rhymes`. Misconceptions addressed: 3.
+Task types: true_false 14, image_multiple_choice 15, sorting 4, multiple_choice 23, speak 5, ordering 3. Builds on: `lit-de.phonological.rhymes`. Misconceptions addressed: 3.
 
 ## C, Y, X, äu, ck und ß (C, Y, X, äu, ck and ß)
 
@@ -209,28 +209,28 @@ The last letter group of Klasse 1: rare letters and spellings the child meets in
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ck und ß | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. äu, C, Y und X | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Wörter mit seltenen Buchstaben | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. ck und ß | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. äu, C, Y und X | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Wörter mit seltenen Buchstaben | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 10, multiple_choice 10, image_multiple_choice 13, fill_in_blank 12, true_false 7, tracing 6, highlight_in_text 2, matching 4. Builds on: `lit-de.letters.ng-nk-qu-v`. Misconceptions addressed: 4.
+Task types: audio_choice 14, multiple_choice 14, image_multiple_choice 16, fill_in_blank 13, true_false 10, tracing 6, highlight_in_text 8, matching 4. Builds on: `lit-de.letters.ng-nk-qu-v`. Misconceptions addressed: 4.
 
 ## Die Buchstaben E, N, D und U (The letters E, N, D and U)
 
 `de-DE.lit-de.letters-e-n-d-u` teaches `lit-de.letters.e-n-d-u` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-The third letter group in Fibel order. One lesson each for E, N, D and U: hear the sound, find it in words, see and trace the letter, practised in three stages. Each lesson sets the new sound against its nearest neighbour: E against I, N against M, D against T, U against O (Mund and Mond). Lesson 5 reads words made only of known letters (Nase, Ente, Sonne, Tanne, Mond, Mund) and ends with the skill check.
+The third letter group in Fibel order. One lesson each for E, N, D and U: hear the sound, find it in words, see and trace the letter, practised in three stages. Each lesson sets the new sound against its nearest neighbour: E against I, N against M, D against T, U against O (Mund and Mond). Lesson 5 reads words made only of known letters (Nase, Ente, Sonne, Tanne, Mond, Mund) and ends with the skill check. Writing the letters is practised in Practise (tracing and copying); the skill check marks hearing the sounds and reading the words.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das E | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das N | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das D | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Das U | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 5. Wörter mit E, N, D und U | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das E | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das N | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das D | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Das U | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 5. Wörter mit E, N, D und U | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 27, image_multiple_choice 24, true_false 19, highlight_in_text 10, fill_in_blank 13, tracing 12, matching 1. Builds on: `lit-de.letters.i-ie-s-t`. Misconceptions addressed: 4.
+Task types: audio_choice 36, image_multiple_choice 25, true_false 27, highlight_in_text 18, fill_in_blank 13, tracing 12, matching 1, multiple_choice 1. Builds on: `lit-de.letters.i-ie-s-t`. Misconceptions addressed: 4.
 
 ## Ei, R, H und W (Ei, R, H and W)
 
@@ -241,13 +241,13 @@ The fifth letter group in Fibel order. Lesson 1 brings ei, two letters for one s
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Ei | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das R | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das H | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Das W | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 5. Wörter mit Ei, R, H und W | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das Ei | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das R | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das H | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Das W | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 5. Wörter mit Ei, R, H und W | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 18, image_multiple_choice 31, true_false 23, highlight_in_text 9, fill_in_blank 11, tracing 12, sorting 1, matching 1. Builds on: `lit-de.letters.p-k-b-f`. Misconceptions addressed: 4.
+Task types: audio_choice 25, image_multiple_choice 35, true_false 33, highlight_in_text 15, fill_in_blank 11, tracing 12, sorting 1, matching 1. Builds on: `lit-de.letters.p-k-b-f`. Misconceptions addressed: 4.
 
 ## Eu, Ch und J (Eu, Ch and J)
 
@@ -258,12 +258,12 @@ The seventh letter group in Fibel order. Lesson 1 brings eu, written e and u but
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Eu | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das Ch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das J | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Wörter mit Eu, Ch und J | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das Eu | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Ch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das J | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Wörter mit Eu, Ch und J | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 23, image_multiple_choice 16, true_false 17, highlight_in_text 8, fill_in_blank 9, tracing 9, sorting 2, matching 1. Builds on: `lit-de.letters.g-au-sch-z`. Misconceptions addressed: 4.
+Task types: audio_choice 30, image_multiple_choice 20, true_false 24, highlight_in_text 12, fill_in_blank 9, tracing 9, sorting 3, matching 1, multiple_choice 1. Builds on: `lit-de.letters.g-au-sch-z`. Misconceptions addressed: 4.
 
 ## G, Au, Sch und Z (G, Au, Sch and Z)
 
@@ -274,13 +274,13 @@ The sixth letter group in Fibel order. One lesson each: G (against K), au (two l
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das G | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das Au | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das Sch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Das Z | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 5. Wörter mit G, Au, Sch und Z | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das G | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Au | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das Sch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Das Z | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 5. Wörter mit G, Au, Sch und Z | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 20, image_multiple_choice 29, true_false 23, highlight_in_text 6, tracing 12, fill_in_blank 14, sorting 1, matching 1. Builds on: `lit-de.letters.ei-r-h-w`. Misconceptions addressed: 4.
+Task types: audio_choice 26, image_multiple_choice 33, true_false 33, highlight_in_text 11, tracing 12, fill_in_blank 14, sorting 1, matching 1, multiple_choice 2. Builds on: `lit-de.letters.ei-r-h-w`. Misconceptions addressed: 4.
 
 ## Die Buchstaben I, S, T und ie (The letters I, S, T and ie)
 
@@ -291,13 +291,13 @@ The second letter group in Fibel order. One lesson each for I, S and T: hear the
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das I | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das S | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das T | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Das ie | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 5. Wörter mit I, S, T und ie | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das I | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das S | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das T | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Das ie | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 5. Wörter mit I, S, T und ie | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 18, image_multiple_choice 22, true_false 28, highlight_in_text 9, fill_in_blank 14, tracing 12, sorting 2, matching 1. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 3.
+Task types: audio_choice 25, image_multiple_choice 26, true_false 38, highlight_in_text 15, fill_in_blank 14, tracing 12, sorting 2, matching 1. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 3.
 
 ## Die Buchstaben L, O, A und M (The letters L, O, A and M)
 
@@ -308,13 +308,13 @@ The first four letters in Fibel order, chosen because their sounds can be held (
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das L | yes | 19 | learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das O | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das A | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Das M | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 5. L, O, A und M zusammen | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das L | yes | 19 | learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das O | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das A | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Das M | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 5. L, O, A und M zusammen | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 31, true_false 18, highlight_in_text 7, audio_choice 30, tracing 12, fill_in_blank 6. Builds on: `lit-de.letters.sound-chart`, `lit-de.phonological.initial-sound`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 37, true_false 28, highlight_in_text 12, audio_choice 32, tracing 12, fill_in_blank 6, multiple_choice 4. Builds on: `lit-de.letters.sound-chart`, `lit-de.phonological.initial-sound`. Misconceptions addressed: 3.
 
 ## ng, nk, Qu und V (ng, nk, Qu and V)
 
@@ -325,11 +325,11 @@ The letter group after St, Sp and Pf. Lesson 1: ng is one sound made at the back
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ng und nk | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Qu und V | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Wörter mit ng, nk, Qu und V | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. ng und nk | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Qu und V | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Wörter mit ng, nk, Qu und V | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 17, image_multiple_choice 14, true_false 8, fill_in_blank 11, tracing 6, highlight_in_text 2, multiple_choice 4, sorting 1, matching 1. Builds on: `lit-de.letters.st-sp-pf`. Misconceptions addressed: 4.
+Task types: audio_choice 20, image_multiple_choice 18, true_false 14, fill_in_blank 11, tracing 6, highlight_in_text 8, multiple_choice 6, sorting 1, matching 1. Builds on: `lit-de.letters.st-sp-pf`. Misconceptions addressed: 4.
 
 ## Die Buchstaben P, K, B und F (The letters P, K, B and F)
 
@@ -340,29 +340,29 @@ The fourth letter group in Fibel order. One lesson each for P, K, B and F: hear 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das P | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das K | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das B | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Das F | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 5. Wörter mit P, K, B und F | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das P | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das K | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das B | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Das F | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 5. Wörter mit P, K, B und F | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 31, audio_choice 23, true_false 21, highlight_in_text 7, tracing 12, fill_in_blank 10, sorting 1, matching 1. Builds on: `lit-de.letters.e-n-d-u`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 35, audio_choice 29, true_false 29, highlight_in_text 15, tracing 12, fill_in_blank 10, sorting 1, matching 1, multiple_choice 1. Builds on: `lit-de.letters.e-n-d-u`. Misconceptions addressed: 4.
 
 ## St, Sp und Pf (St, Sp and Pf)
 
 `de-DE.lit-de.letters-st-sp-pf` teaches `lit-de.letters.st-sp-pf` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Three letter pairs for the start of words. Lessons 1 and 2: St and Sp are spoken scht and schp at the start of a word but written with S only (Stern, Stuhl, Spiegel); the child hears the sound and chooses the spelling, and keeps St and Sp apart from Sch. Lesson 3: Pf is p and f spoken quickly together (Pferd, Apfel, Kopf), set against F. Lesson 4 sorts and reads words with all three and ends with the skill check.
+Three letter pairs for the start of words. Lessons 1 and 2: St and Sp are spoken scht and schp at the start of a word but written with S only (Stern, Stuhl, Spiegel); the child hears the sound and chooses the spelling, and keeps St and Sp apart from Sch. Lesson 3: Pf is p and f spoken quickly together (Pferd, Apfel, Kopf), set against F. Lesson 4 sorts and reads words with all three and ends with the skill check. The check marks the spelling by choice (St, Scht or Sch); writing the letters by hand is practised in Practise (tracing).
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das St | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das Sp | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das Pf | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Wörter mit St, Sp und Pf | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das St | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Sp | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das Pf | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Wörter mit St, Sp und Pf | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 27, image_multiple_choice 18, true_false 15, fill_in_blank 11, tracing 9, highlight_in_text 3, sorting 1, matching 1. Builds on: `lit-de.letters.umlauts`. Misconceptions addressed: 3.
+Task types: audio_choice 33, image_multiple_choice 22, true_false 22, fill_in_blank 11, tracing 9, highlight_in_text 9, sorting 1, matching 1, multiple_choice 1. Builds on: `lit-de.letters.umlauts`. Misconceptions addressed: 3.
 
 ## Die Umlaute Ä, Ö und Ü (The umlauts Ä, Ö and Ü)
 
@@ -373,26 +373,26 @@ One lesson each for Ä, Ö and Ü: hear the sound, set it against the vowel with
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Ä | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Das Ö | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 3. Das Ü | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 4. Wörter mit Ä, Ö und Ü | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das Ä | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Ö | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 3. Das Ü | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 4. Wörter mit Ä, Ö und Ü | no | 22 | warm-up, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 24, image_multiple_choice 18, true_false 15, highlight_in_text 4, fill_in_blank 13, tracing 9, sorting 1, matching 1. Builds on: `lit-de.letters.eu-ch-j`. Misconceptions addressed: 3.
+Task types: audio_choice 26, image_multiple_choice 25, true_false 23, highlight_in_text 10, fill_in_blank 13, tracing 9, sorting 1, matching 1, multiple_choice 1. Builds on: `lit-de.letters.eu-ch-j`. Misconceptions addressed: 3.
 
 ## Zuhören und Anweisungen folgen (Listening and following instructions)
 
 `de-DE.lit-de.listen-follow` teaches `lit-de.speaking.listen-follow` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Listening to a spoken instruction to the end and doing exactly what it says. Lesson 1 listens for the two details that matter (the red ball, not the red crayon) and for two steps in a row; lesson 2 follows three steps with zuerst, dann and zum Schluss, counts the steps, asks again when something was not understood, and ends with the skill check. Every instruction is spoken; the child answers with action pictures, objects or short spoken sentences. Asking again aloud is practised with speak tasks and not marked.
+Listening to a spoken instruction to the end and doing exactly what it says. Lesson 1 listens for the two details that matter (the red ball, not the red crayon) and for two steps in a row; lesson 2 follows three steps with zuerst, dann and zum Schluss, counts the steps, asks again when something was not understood, and ends with the skill check. Every instruction is spoken; the child answers with action pictures, objects or short spoken sentences. Asking again aloud is practised with speak tasks and not marked. The skill check marks what a screen can mark: the right thing, the right order, every step and when to ask again; doing the actions with the body is left to Practise and the classroom.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hör genau hin | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Schritt für Schritt | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Hör genau hin | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Schritt für Schritt | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 17, ordering 8, true_false 7, multiple_choice 10, speak 2. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 24, ordering 11, true_false 11, multiple_choice 14, speak 2. Builds on: . Misconceptions addressed: 3.
 
 ## Geschichten und Gedichte hören (Listening to stories and poems)
 
@@ -403,10 +403,10 @@ Listening to a story or a poem read aloud and saying who is in it and what happe
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wer kommt vor? | yes | 19 | learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Was passiert? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Wer kommt vor? | yes | 19 | learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Was passiert? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 17, image_multiple_choice 7, true_false 4, speak 2, ordering 4, multiple_choice 7. Builds on: . Misconceptions addressed: 2.
+Task types: audio_choice 23, image_multiple_choice 8, true_false 6, speak 2, ordering 7, multiple_choice 13. Builds on: . Misconceptions addressed: 2.
 
 ## Lange Wörter lesen (Reading long words)
 
@@ -417,10 +417,10 @@ Children read long words by splitting them into syllables first: Ba-na-ne, Kro-k
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Drei Bögen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Lange Wörter knacken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Drei Bögen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Lange Wörter knacken | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 16, ordering 9, audio_choice 7, fill_in_blank 5, true_false 5. Builds on: `lit-de.decoding.two-syllable-words`, `lit-de.letters.g-au-sch-z`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 23, ordering 12, audio_choice 12, fill_in_blank 6, true_false 7. Builds on: `lit-de.decoding.two-syllable-words`, `lit-de.letters.g-au-sch-z`. Misconceptions addressed: 2.
 
 ## der, die, das und ein, eine (Articles: der, die, das and ein, eine)
 
@@ -431,10 +431,10 @@ Children find the Begleiter of a Nomen: der, die or das, and then ein or eine. T
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. der, die, das | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. ein und eine | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. der, die, das | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. ein und eine | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 16, true_false 9, fill_in_blank 9, sorting 6, matching 2. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 2.
+Task types: multiple_choice 22, true_false 14, fill_in_blank 12, sorting 10, matching 2. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 2.
 
 ## Einzahl und Mehrzahl (Singular and plural)
 
@@ -445,10 +445,10 @@ Children tell Einzahl from Mehrzahl and form the Mehrzahl of common nouns. Lesso
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Eins oder viele? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Mehrzahl bilden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill) |
+| 1. Eins oder viele? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Mehrzahl bilden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, image_multiple_choice 4, true_false 6, matching 4, sorting 2, fill_in_blank 9. Builds on: `lit-de.nouns.articles`. Misconceptions addressed: 3.
+Task types: multiple_choice 23, image_multiple_choice 6, true_false 8, matching 5, sorting 4, fill_in_blank 13, highlight_in_text 1. Builds on: `lit-de.nouns.articles`. Misconceptions addressed: 3.
 
 ## Nomen erkennen (Recognising nouns)
 
@@ -459,10 +459,10 @@ Children learn that Nomen are the names for people, animals, plants and things, 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Menschen, Tiere, Pflanzen, Dinge | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Nomen schreibt man groß | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Menschen, Tiere, Pflanzen, Dinge | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Nomen schreibt man groß | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 7, sorting 5, true_false 10, multiple_choice 13, highlight_in_text 7. Builds on: `lit-de.decoding.word-picture`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 8, sorting 8, true_false 14, multiple_choice 20, highlight_in_text 10. Builds on: `lit-de.decoding.word-picture`. Misconceptions addressed: 2.
 
 ## Kurze Wörter lesen (Reading one-syllable words)
 
@@ -473,10 +473,10 @@ Children read short words of one syllable, made only from the letters they know 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Laut für Laut | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Bis zum letzten Laut | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Laut für Laut | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Bis zum letzten Laut | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 16, image_multiple_choice 4, true_false 13, highlight_in_text 4, fill_in_blank 3, multiple_choice 2. Builds on: `lit-de.decoding.blend-syllables`, `lit-de.letters.e-n-d-u`. Misconceptions addressed: 2.
+Task types: audio_choice 21, image_multiple_choice 4, true_false 20, highlight_in_text 8, fill_in_blank 3, multiple_choice 3, matching 1. Builds on: `lit-de.decoding.blend-syllables`, `lit-de.letters.e-n-d-u`. Misconceptions addressed: 2.
 
 ## Geschichten ordnen (Putting a story in order)
 
@@ -487,10 +487,10 @@ Putting the parts of a short story in order. Lesson 1 reads a story of three sho
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was passiert zuerst? | yes | 21 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Sätze ordnen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was passiert zuerst? | yes | 21 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Sätze ordnen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, true_false 8, ordering 18. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: multiple_choice 21, true_false 10, ordering 30. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Bildzeichen verstehen (Understanding signs and symbols)
 
@@ -501,24 +501,24 @@ Reading the picture signs of everyday life. Lesson 1 reads the Bildzeichen that 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Bildzeichen im Heft | yes | 19 | learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Bildzeichen draußen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Bildzeichen im Heft | yes | 19 | learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Bildzeichen draußen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, image_multiple_choice 10, matching 4, true_false 7. Builds on: . Misconceptions addressed: 2.
+Task types: multiple_choice 27, image_multiple_choice 13, matching 6, true_false 13. Builds on: . Misconceptions addressed: 2.
 
 ## Buchstaben schreiben (Writing print letters)
 
 `de-DE.lit-de.print-letters` teaches `lit-de.handwriting.print-letters` in de-DE, klasse-1. Ages 6-7, about 10 minutes a lesson. Status: draft, version 1.
 
-Children write print letters in the Häuschen of four lines: small letters like a, o, m live in the Erdgeschoss, tall ones like l and d reach the Dach, and every capital starts at the top line. Each letter starts at the green dot and is written from top to bottom. Lesson 1 sets out the Häuschen with the letters already known (L, O, A, M); lesson 2 adds i, t, e, n, u and d and ends with the skill check. Tracing and copying carry the writing; short choice tasks ask where a letter starts and which floors it uses.
+Children write print letters in the Häuschen of four lines: small letters like a, o, m live in the Erdgeschoss, tall ones like l and d reach the Dach, and every capital starts at the top line. Each letter starts at the green dot and is written from top to bottom. Lesson 1 sets out the Häuschen with the letters already known (L, O, A, M); lesson 2 adds i, t, e, n, u and d and ends with the skill check. Tracing and copying carry the writing; short choice tasks ask where a letter starts and which floors it uses. The skill check marks what a screen can mark: where a letter starts, which floors it uses and the order of its strokes; writing the letters is practised by tracing and copying and is not marked.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Häuschen | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Striche und Bögen | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Das Häuschen | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Striche und Bögen | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 1, highlight_in_text 1, tracing 16, multiple_choice 17, true_false 9. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 2.
+Task types: audio_choice 1, highlight_in_text 1, tracing 16, multiple_choice 28, true_false 15, sorting 1. Builds on: `lit-de.letters.l-o-a-m`. Misconceptions addressed: 2.
 
 ## Lesen und tun (Read and do)
 
@@ -529,10 +529,10 @@ Reading a short Arbeitsanweisung and doing what it says. The instruction is on s
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Lies und tu es | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Aufgabenwörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Lies und tu es | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Aufgabenwörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 11, true_false 5, highlight_in_text 4, text_input 6, fill_in_blank 5, multiple_choice 6, ordering 4, sorting 2. Builds on: `lit-de.decoding.first-sentences`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 13, true_false 9, highlight_in_text 6, text_input 7, fill_in_blank 6, multiple_choice 10, ordering 6, sorting 3, matching 1. Builds on: `lit-de.decoding.first-sentences`. Misconceptions addressed: 4.
 
 ## Reime hören (Hearing rhymes)
 
@@ -543,10 +543,10 @@ The first Deutsch lessons of Klasse 1, before any letters. Children hear whether
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Reimt sich das? | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Reimwörter finden | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Reimt sich das? | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Reimwörter finden | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 17, image_multiple_choice 21, matching 6. Builds on: . Misconceptions addressed: 3.
+Task types: true_false 24, image_multiple_choice 31, matching 7. Builds on: . Misconceptions addressed: 3.
 
 ## Blitzlesen (Flash reading)
 
@@ -557,10 +557,10 @@ Children learn to know short frequent words at a glance, the way a Blitzlesen ca
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. und, ist, im, am | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. mit, da, du, so, es | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. und, ist, im, am | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. mit, da, du, so, es | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 10, multiple_choice 17, true_false 9, highlight_in_text 6. Builds on: `lit-de.decoding.one-syllable-words`. Misconceptions addressed: 2.
+Task types: audio_choice 14, multiple_choice 24, true_false 13, highlight_in_text 9. Builds on: `lit-de.decoding.one-syllable-words`. Misconceptions addressed: 2.
 
 ## Tabellen und Diagramme lesen (Reading tables and charts)
 
@@ -571,10 +571,10 @@ Taking information from simple tables, plans and charts. Lesson 1 reads short ta
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Tabellen und Pläne | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Diagramme lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Tabellen und Pläne | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Diagramme lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, true_false 9, image_multiple_choice 4. Builds on: `lit-de.texts-media.pictograms`, `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: multiple_choice 37, true_false 15, image_multiple_choice 8. Builds on: `lit-de.texts-media.pictograms`, `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Die Anlauttabelle (The sound chart)
 
@@ -585,10 +585,10 @@ Using an Anlauttabelle before the letters are taught one by one. Each field of t
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Bild und Buchstabe | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Laut für Laut | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Bild und Buchstabe | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Laut für Laut | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, true_false 9, audio_choice 12, sorting 4, multiple_choice 10, ordering 7. Builds on: `lit-de.phonological.initial-sound`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 2, true_false 12, audio_choice 20, sorting 5, multiple_choice 13, ordering 9. Builds on: `lit-de.phonological.initial-sound`. Misconceptions addressed: 4.
 
 ## Laute im Wort (Sounds in a word)
 
@@ -599,10 +599,10 @@ Children hear where a sound sits in a word (mmm at the start of Maus, in the mid
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Anfang, Mitte oder Ende? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Laute zählen und zusammenschieben | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Anfang, Mitte oder Ende? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Laute zählen und zusammenschieben | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 12, image_multiple_choice 13, multiple_choice 14, audio_choice 7. Builds on: `lit-de.phonological.initial-sound`. Misconceptions addressed: 3.
+Task types: true_false 16, image_multiple_choice 19, multiple_choice 17, audio_choice 12. Builds on: `lit-de.phonological.initial-sound`. Misconceptions addressed: 3.
 
 ## Silben klatschen (Clapping syllables)
 
@@ -613,38 +613,38 @@ Children clap words into syllables and say how many there are: Ball is one clap,
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wörter klatschen | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Silben sortieren | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Wörter klatschen | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Silben sortieren | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 28, true_false 8, sorting 5, matching 3. Builds on: . Misconceptions addressed: 2.
+Task types: image_multiple_choice 40, true_false 10, sorting 7, matching 5. Builds on: . Misconceptions addressed: 2.
 
 ## Von Erlebnissen erzählen (Telling about something that happened)
 
 `de-DE.lit-de.tell-experiences` teaches `lit-de.speaking.tell` in de-DE, klasse-1. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Telling about something you did so that others can follow. The app cannot mark a child's own telling, so the lessons teach and check what is behind it. Lesson 1 tells in the right order with zuerst, dann, danach and am Ende, puts pictures and sentences of a told experience in order and picks what comes next; lesson 2 starts with who, where and when, finds what a listener still needs, spots the sentence that does not belong, picks a good ending, sorts what helps when telling, and ends with the skill check. Speak tasks let the child tell a sentence aloud and compare it with the model; they are practice only. Every experience told here is written for Twist.
+Telling about something you did so that others can follow. The app cannot mark a child's own telling, so the lessons teach and check what is behind it. Lesson 1 tells in the right order with zuerst, dann, danach and am Ende, puts pictures and sentences of a told experience in order and picks what comes next; lesson 2 starts with who, where and when, finds what a listener still needs, spots the sentence that does not belong, picks a good ending, sorts what helps when telling, and ends with the skill check. Speak tasks let the child tell a sentence aloud and compare it with the model; they are practice only. The skill check marks what a screen can mark (the order, a clear start with who, where and when, staying with the experience and a good ending); telling aloud is covered by the speak tasks in Practise. Every story is on screen as well as spoken. Every experience told here is written for Twist.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Reihe nach | yes | 20 | learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick) |
-| 2. So verstehen dich alle | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Der Reihe nach | yes | 20 | learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. So verstehen dich alle | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 8, fill_in_blank 5, true_false 5, multiple_choice 19, speak 5, sorting 2. Builds on: . Misconceptions addressed: 3.
+Task types: ordering 11, fill_in_blank 6, true_false 10, multiple_choice 28, speak 5, sorting 2. Builds on: . Misconceptions addressed: 3.
 
 ## Reime, Abzählverse und Zungenbrecher (Rhymes, counting-out verses and tongue twisters)
 
 `de-DE.lit-de.tongue-twisters` teaches `lit-de.speaking.rhymes-tongue-twisters` in de-DE, klasse-1. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Saying rhymes, Abzählverse and Zungenbrecher clearly. The app cannot mark how clearly a child speaks, so the lessons teach and check what is behind it. Lesson 1 learns what an Abzählvers is for, uses the rhyme words to remember the next line, puts lines in order and says them in time; lesson 2 hears the sound a Zungenbrecher repeats, finds the word that keeps it going, learns to practise slowly first and clearly before fast, tells Zungenbrecher from Abzählvers, and ends with the skill check. Speak tasks let the child say lines aloud and compare with the model; they are practice only. Every verse and tongue twister is written for Twist.
+Saying rhymes, Abzählverse and Zungenbrecher clearly. The app cannot mark how clearly a child speaks, so the lessons teach and check what is behind it. Lesson 1 learns what an Abzählvers is for, uses the rhyme words to remember the next line, puts lines in order and says them in time; lesson 2 hears the sound a Zungenbrecher repeats, finds the word that keeps it going, learns to practise slowly first and clearly before fast, tells Zungenbrecher from Abzählvers, and ends with the skill check. Speak tasks let the child say lines aloud and compare with the model; they are practice only. The skill check marks what a screen can mark (rhyme words, the repeated sound of a Zungenbrecher, the lines of a verse in order, how to say and practise them clearly); saying them aloud is covered by the speak tasks in Practise. Every verse and tongue twister is written for Twist.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Abzählverse und Reime | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Zungenbrecher | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Abzählverse und Reime | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Zungenbrecher | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 6, image_multiple_choice 4, fill_in_blank 9, multiple_choice 12, ordering 4, speak 6, audio_choice 4, sorting 1. Builds on: `lit-de.phonological.rhymes`. Misconceptions addressed: 2.
+Task types: true_false 10, image_multiple_choice 6, fill_in_blank 12, multiple_choice 18, ordering 5, speak 6, audio_choice 5, sorting 2. Builds on: `lit-de.phonological.rhymes`. Misconceptions addressed: 2.
 
 ## Wörter mit zwei Silben lesen (Reading two-syllable words)
 
@@ -655,10 +655,10 @@ Children read words of two syllables bit by bit: first syllable, second syllable
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Bogen für Bogen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Zwei Buchstaben in der Mitte | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Bogen für Bogen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zwei Buchstaben in der Mitte | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 13, audio_choice 9, ordering 8, true_false 7, fill_in_blank 5. Builds on: `lit-de.decoding.one-syllable-words`, `lit-de.letters.p-k-b-f`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 18, audio_choice 12, ordering 10, true_false 12, fill_in_blank 8. Builds on: `lit-de.decoding.one-syllable-words`, `lit-de.letters.p-k-b-f`. Misconceptions addressed: 2.
 
 ## Oberbegriffe (Umbrella terms)
 
@@ -669,10 +669,10 @@ Children sort words under an Oberbegriff and find words that belong to one. Less
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was gehört zusammen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Oberbegriffe finden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Was gehört zusammen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Oberbegriffe finden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 12, sorting 9, true_false 2, multiple_choice 12, highlight_in_text 4, fill_in_blank 3. Builds on: `lit-de.decoding.word-picture`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 16, sorting 12, true_false 4, multiple_choice 18, highlight_in_text 6, fill_in_blank 4. Builds on: `lit-de.decoding.word-picture`. Misconceptions addressed: 3.
 
 ## Wörter, Lücken und Satzsalat (Word gaps and sentence salad)
 
@@ -683,10 +683,10 @@ Children learn where one word ends and the next begins. Lesson 1 counts the word
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wo hört ein Wort auf? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Satzsalat und Lückensätze | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wo hört ein Wort auf? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Satzsalat und Lückensätze | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, true_false 5, multiple_choice 17, highlight_in_text 5, ordering 7, fill_in_blank 7. Builds on: `lit-de.decoding.first-sentences`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 1, true_false 7, audio_choice 7, multiple_choice 14, highlight_in_text 7, ordering 11, fill_in_blank 13. Builds on: `lit-de.decoding.first-sentences`. Misconceptions addressed: 3.
 
 ## Genau lesen (Reading closely)
 
@@ -697,10 +697,10 @@ Children read words exactly and tell apart words that differ in one letter: Hose
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der erste Buchstabe zählt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Auch die Mitte zählt | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Der erste Buchstabe zählt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Auch die Mitte zählt | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 17, true_false 9, multiple_choice 10, matching 6. Builds on: `lit-de.decoding.two-syllable-words`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 21, true_false 16, multiple_choice 15, matching 8. Builds on: `lit-de.decoding.two-syllable-words`. Misconceptions addressed: 2.
 
 ## Worträtsel und Wortketten (Word riddles and word chains)
 
@@ -711,24 +711,24 @@ Children read and solve short word puzzles. Lesson 1 reads riddles of two short 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Rätsel lesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wortketten und Buchstabensalat | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Rätsel lesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wortketten und Buchstabensalat | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 18, true_false 10, multiple_choice 10, ordering 4. Builds on: `lit-de.decoding.word-picture`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 24, true_false 14, multiple_choice 15, ordering 7. Builds on: `lit-de.decoding.word-picture`. Misconceptions addressed: 2.
 
 ## Zu Bildern schreiben (Writing about pictures)
 
 `de-DE.lit-de.words-to-pictures` teaches `lit-de.writing.words-to-pictures` in de-DE, klasse-1. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Children write words and short sentences about pictures. Lesson 1 names what a picture shows with a word and its Begleiter (die Nase, der Igel): build the word from letter cards, pick its spelling, add the Begleiter. Lesson 2 writes a sentence about a picture with two questions, Wer? and Was tut er?, picks the sentence that fits, builds it from word cards, sees what a half sentence is missing, and ends with the skill check. Free writing is not marked yet, so speak tasks let the child say a sentence of their own as practice.
+Children write words and short sentences about pictures. Lesson 1 names what a picture shows with a word and its Begleiter (die Nase, der Igel): build the word from letter cards, pick its spelling, add the Begleiter. Lesson 2 writes a sentence about a picture with two questions, Wer? and Was tut er?, picks the sentence that fits, builds it from word cards, sees what a half sentence is missing, and ends with the skill check. Free writing is not marked yet, so speak tasks let the child say a sentence of their own as practice. The skill check marks what a screen can mark (typing or building the word for a picture, the Begleiter, and choosing or building a whole sentence); writing a sentence of one's own is covered by Practise.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ein Wort zum Bild | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Ein Satz zum Bild | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Ein Wort zum Bild | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Ein Satz zum Bild | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 10, multiple_choice 15, ordering 9, matching 3, speak 5. Builds on: `lit-de.spelling.write-by-sound`, `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
+Task types: fill_in_blank 12, multiple_choice 22, ordering 12, matching 3, speak 5, text_input 3, sorting 1, true_false 2. Builds on: `lit-de.spelling.write-by-sound`, `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
 
 ## Schreiben, wie man spricht (Writing words by their sounds)
 
@@ -739,10 +739,10 @@ Children write words whose spelling follows their sounds (Oma, Nase, Limo, Tomat
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Langsam mitsprechen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Längere Wörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Langsam mitsprechen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Längere Wörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 4, audio_choice 1, ordering 6, fill_in_blank 14, multiple_choice 9, text_input 8. Builds on: `lit-de.phonological.sounds-in-words`, `lit-de.letters.e-n-d-u`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 4, audio_choice 1, ordering 7, fill_in_blank 18, multiple_choice 15, text_input 12, true_false 3. Builds on: `lit-de.phonological.sounds-in-words`, `lit-de.letters.e-n-d-u`. Misconceptions addressed: 2.
 
 ## Plusaufgaben mit Zehnerübergang (Adding across ten)
 
@@ -1332,10 +1332,10 @@ An adjective before a noun gets an ending that fits the noun: der rote Ball, ein
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. der, die, das: immer -e | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. ein großer Hund, ein großes Haus | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. der, die, das: immer -e | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. ein großer Hund, ein großes Haus | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, highlight_in_text 1, fill_in_blank 16, true_false 8. Builds on: `lit-de.adjectives.describe`, `lit-de.nouns.articles`. Misconceptions addressed: 2.
+Task types: multiple_choice 23, highlight_in_text 1, fill_in_blank 23, true_false 13. Builds on: `lit-de.adjectives.describe`, `lit-de.nouns.articles`. Misconceptions addressed: 2.
 
 ## Genau beschreiben mit Adjektiven (Describing with adjectives)
 
@@ -1346,10 +1346,10 @@ Choosing adjectives that fit and describe precisely. Lesson 1 picks the adjectiv
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was passt? Was ist das Gegenteil? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Genauer beschreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Was passt? Was ist das Gegenteil? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Genauer beschreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 1, true_false 8, multiple_choice 19, matching 3, image_multiple_choice 7, fill_in_blank 4. Builds on: `lit-de.adjectives.recognise`. Misconceptions addressed: 2.
+Task types: highlight_in_text 1, true_false 12, multiple_choice 26, matching 4, image_multiple_choice 10, fill_in_blank 6, sorting 1. Builds on: `lit-de.adjectives.recognise`. Misconceptions addressed: 2.
 
 ## Adjektive erkennen (Recognising adjectives)
 
@@ -1360,10 +1360,10 @@ Adjektive (Wiewörter) say how someone or something is: groß, rot, lustig. Less
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wie ist es? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Nomen, Verb oder Adjektiv? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wie ist es? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Nomen, Verb oder Adjektiv? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 17, multiple_choice 12, true_false 9, sorting 4. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 2.
+Task types: highlight_in_text 25, multiple_choice 17, true_false 13, sorting 5. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 2.
 
 ## Zusammengesetzte Nomen (Compound nouns)
 
@@ -1374,11 +1374,11 @@ Two nouns make a new one: der Baum und das Haus werden das Baumhaus. Lesson 1 bu
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Aus zwei Nomen wird eins | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Zerlegen und verstehen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 3. Das letzte Wort bestimmt den Artikel | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Aus zwei Nomen wird eins | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Zerlegen und verstehen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 3. Das letzte Wort bestimmt den Artikel | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, fill_in_blank 19, true_false 10, matching 6. Builds on: `lit-de.nouns.articles`. Misconceptions addressed: 3.
+Task types: multiple_choice 40, fill_in_blank 25, true_false 15, matching 9. Builds on: `lit-de.nouns.articles`. Misconceptions addressed: 3.
 
 ## Wörter, die oft vorkommen (Common core words)
 
@@ -1389,10 +1389,10 @@ The most common words of the Grundwortschatz. Lesson 1 takes small words that co
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Kleine Wörter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wichtige Wörter im Satz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Kleine Wörter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wichtige Wörter im Satz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 8, multiple_choice 7, text_input 8, highlight_in_text 8, fill_in_blank 11. Builds on: `lit-de.spelling.dictation-short`. Misconceptions addressed: 2.
+Task types: true_false 12, multiple_choice 11, text_input 12, highlight_in_text 12, fill_in_blank 13. Builds on: `lit-de.spelling.dictation-short`. Misconceptions addressed: 2.
 
 ## Ableiten bei ä und äu (Deriving ä and äu)
 
@@ -1403,10 +1403,10 @@ Task types: true_false 8, multiple_choice 7, text_input 8, highlight_in_text 8, 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ä kommt von a | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. äu kommt von au | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. ä kommt von a | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. äu kommt von au | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 9, fill_in_blank 25, true_false 8. Builds on: `lit-de.spelling-strategies.word-stem`. Misconceptions addressed: 3.
+Task types: multiple_choice 16, fill_in_blank 30, true_false 12, text_input 2. Builds on: `lit-de.spelling-strategies.word-stem`. Misconceptions addressed: 3.
 
 ## Beschreiben und erklären (Describing and explaining)
 
@@ -1417,24 +1417,24 @@ Saying something so that a listener who cannot see it understands. Lesson 1 desc
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Genau beschreiben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Schritt für Schritt erklären | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Genau beschreiben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Schritt für Schritt erklären | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 5, multiple_choice 21, image_multiple_choice 6, true_false 6, speak 4, fill_in_blank 3. Builds on: `lit-de.speaking.tell`. Misconceptions addressed: 2.
+Task types: ordering 7, multiple_choice 29, image_multiple_choice 10, true_false 8, speak 4, fill_in_blank 4, sorting 1. Builds on: `lit-de.speaking.tell`. Misconceptions addressed: 2.
 
 ## Genau beschreiben (Describing precisely)
 
 `de-DE.lit-de.describe` teaches `lit-de.writing.describe` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Describing things, animals and people so that someone else can picture or find them, and writing a Steckbrief. Lesson 1 asks Farbe? Form? Größe? Woraus? Was ist besonders?, picks the sentence that helps find a lost thing, guesses a thing or an animal from its description and matches a picture to its description; lesson 2 reads and fills Steckbriefe about animals and children, sorts Stichwörter under their headings, keeps opinions out, and ends with the skill check. Writing the description freely waits for a free text task type.
+Describing things, animals and people so that someone else can picture or find them, and writing a Steckbrief. Lesson 1 asks Farbe? Form? Größe? Woraus? Was ist besonders?, picks the sentence that helps find a lost thing, guesses a thing or an animal from its description and matches a picture to its description; lesson 2 reads and fills Steckbriefe about animals and children, sorts Stichwörter under their headings, keeps opinions out, and ends with the skill check. The skill check marks what a screen can mark: choosing the exact sentence, matching a description to a picture, filling and sorting a Steckbrief. Writing a whole description is left to Practise and waits for a free text task type.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. So sieht es aus | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Der Steckbrief | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. So sieht es aus | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Der Steckbrief | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 15, image_multiple_choice 6, matching 7, true_false 8, fill_in_blank 3, sorting 3. Builds on: `lit-de.adjectives.describe`, `lit-de.writing.words-to-pictures`. Misconceptions addressed: 2.
+Task types: multiple_choice 21, image_multiple_choice 9, matching 9, true_false 11, fill_in_blank 6, sorting 4. Builds on: `lit-de.adjectives.describe`, `lit-de.writing.words-to-pictures`. Misconceptions addressed: 2.
 
 ## Informationen im Text finden (Finding information in a text)
 
@@ -1459,24 +1459,24 @@ Working out what a new word means. Lesson 1 finds the clue in the same sentence 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Satz hilft | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Weiterlesen und nachschlagen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Der Satz hilft | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Weiterlesen und nachschlagen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, true_false 10, highlight_in_text 4, fill_in_blank 3, ordering 2. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
+Task types: multiple_choice 31, true_false 13, highlight_in_text 8, fill_in_blank 5, ordering 3. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
 
 ## Schreibschrift, große Buchstaben (Joined script, capital letters)
 
 `de-DE.lit-de.joined-capitals` teaches `lit-de.handwriting.joined-capitals` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Children write the capital letters in Schreibschrift and go on from them into the small letters of the word. Lesson 1 sets out where the capitals live (from the line up to the Dach) and when a word starts with one (Satzanfang, Nomen, Namen); lesson 2 joins a capital to the rest of the word, and where a capital is not joined, sets the next letter close beside it so the word stays together; it ends with the skill check. Every writing-lines task uses `script: joined`, so the child sees the model in the school's Ausgangsschrift (SAS, LA, VA or Grundschrift, a setting) and can see where a capital joins on. Which capitals join differs between these scripts, so the lesson teaches only what holds in all of them: some capitals join on and some do not, the child follows the model on the lines, and the one capital named as not joining is O, which ends at the top in SAS, LA and VA. Word options for "which word do you write with a capital" are shown in small letters, so the capital does not give the answer away.
+Children write the capital letters in Schreibschrift and go on from them into the small letters of the word. Lesson 1 sets out where the capitals live (from the line up to the Dach) and when a word starts with one (Satzanfang, Nomen, Namen); lesson 2 joins a capital to the rest of the word, and where a capital is not joined, sets the next letter close beside it so the word stays together; it ends with the skill check. Every writing-lines task uses `script: joined`, so the child sees the model in the school's Ausgangsschrift (SAS, LA, VA or Grundschrift, a setting) and can see where a capital joins on. Which capitals join differs between these scripts, so the lesson teaches only what holds in all of them: some capitals join on and some do not, the child follows the model on the lines, and the one capital named as not joining is O, which ends at the top in SAS, LA and VA. Word options for "which word do you write with a capital" are shown in small letters, so the capital does not give the answer away. The skill check marks what a screen can mark: how high a capital goes, which words start with one, small letters after it and the next letter set close beside; writing the letters themselves is practised in Practise with the tracing tasks.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die großen Buchstaben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Groß und klein zusammen | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Die großen Buchstaben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Groß und klein zusammen | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, tracing 17, true_false 7, highlight_in_text 3. Builds on: `lit-de.handwriting.joined-lowercase`. Misconceptions addressed: 3.
+Task types: multiple_choice 26, tracing 17, true_false 12, highlight_in_text 6, fill_in_blank 1. Builds on: `lit-de.handwriting.joined-lowercase`. Misconceptions addressed: 3.
 
 ## Flüssig und leserlich schreiben (Writing fluently and legibly)
 
@@ -1487,24 +1487,24 @@ Children write words and sentences in Schreibschrift so that others can read the
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Leserlich schreiben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Flüssig schreiben | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Leserlich schreiben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Flüssig schreiben | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, tracing 15, true_false 9, sorting 3. Builds on: `lit-de.handwriting.joined-capitals`. Misconceptions addressed: 3.
+Task types: multiple_choice 27, tracing 15, true_false 14, sorting 5, image_multiple_choice 1. Builds on: `lit-de.handwriting.joined-capitals`. Misconceptions addressed: 3.
 
 ## Schreibschrift, kleine Buchstaben (Joined script, lowercase letters)
 
 `de-DE.lit-de.joined-lowercase` teaches `lit-de.handwriting.joined-lowercase` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Children write the small letters in Schreibschrift and join them, so a word is written in one go without lifting the pen. Lesson 1 joins at the bottom: most small letters end low and the joining stroke runs up into the next letter (im, mein, lila); lesson 2 joins at the top after o, w, v and b, sets i-Punkte, Umlaut-Punkte and t-Striche once the word is finished, and ends with the skill check. Tracing and copying on writing lines teach the joins; choice, sorting and true or false tasks check what the child knows about them. No task names one Ausgangsschrift: the joins taught (most letters end low, o, w, v and b end high) hold for the joined scripts German schools use. The player still draws the writing lines in print, so no task says the child can see a join; the spoken text describes the movement instead.
+Children write the small letters in Schreibschrift and join them, so a word is written in one go without lifting the pen. Lesson 1 joins at the bottom: most small letters end low and the joining stroke runs up into the next letter (im, mein, lila); lesson 2 joins at the top after o, w, v and b, sets i-Punkte, Umlaut-Punkte and t-Striche once the word is finished, and ends with the skill check. Tracing and copying on writing lines teach the joins; choice, sorting and true or false tasks check what the child knows about them. No task names one Ausgangsschrift: the joins taught (most letters end low, o, w, v and b end high) hold for the joined scripts German schools use. The player still draws the writing lines in print, so no task says the child can see a join; the spoken text describes the movement instead. Writing the letters and words themselves is practised in the tracing and copying tasks of Practise; the skill check marks what a screen can mark: writing a word in one go, where a join starts, and dots and strokes last.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Unten verbunden | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Oben verbunden | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Unten verbunden | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Oben verbunden | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, tracing 15, true_false 6, sorting 3, highlight_in_text 1. Builds on: `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
+Task types: multiple_choice 26, tracing 15, true_false 11, sorting 6, highlight_in_text 3, ordering 1. Builds on: `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
 
 ## Schlüsselwörter finden (Finding key words)
 
@@ -1515,10 +1515,10 @@ Schlüsselwörter are the few words that carry what matters. Lesson 1 finds them
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die wichtigen Wörter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Schlüsselwörter im Text | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die wichtigen Wörter | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Schlüsselwörter im Text | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 14, true_false 10, highlight_in_text 12, sorting 6. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
+Task types: multiple_choice 20, true_false 15, highlight_in_text 17, sorting 8. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
 
 ## Verlängern bei b und p, g und k (Lengthening for b and p, g and k)
 
@@ -1529,10 +1529,10 @@ Verlängern works for b and p and for g and k too. Lesson 1 takes nouns (Korb, K
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Korb und Berg | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Gelb, klug und stark | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Korb und Berg | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Gelb, klug und stark | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 25, multiple_choice 9, true_false 8. Builds on: `lit-de.spelling-strategies.lengthen-dt`. Misconceptions addressed: 2.
+Task types: fill_in_blank 32, multiple_choice 16, true_false 11, text_input 1. Builds on: `lit-de.spelling-strategies.lengthen-dt`. Misconceptions addressed: 2.
 
 ## Verlängern bei d und t (Lengthening for d and t)
 
@@ -1552,15 +1552,15 @@ Task types: multiple_choice 17, fill_in_blank 26, true_false 11, image_multiple_
 
 `de-DE.lit-de.letters-emails` teaches `lit-de.writing.letters-emails` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-The parts of a letter and an e-mail to someone the child knows. Lesson 1 names Ort und Datum, Anrede, Text, Gruß and Name, chooses Lieber or Liebe with the comma after it, and puts the parts of a letter in order; lesson 2 adds what an e-mail has on top (An, Betreff), picks a Betreff that says what the e-mail is about, sees that the computer sets the date, and ends with the skill check. Writing the letter itself waits for a free text task type; here the child chooses and orders the parts.
+The parts of a letter and an e-mail to someone the child knows. Lesson 1 names Ort und Datum, Anrede, Text, Gruß and Name, chooses Lieber or Liebe with the comma after it, and puts the parts of a letter in order; lesson 2 adds what an e-mail has on top (An, Betreff), picks a Betreff that says what the e-mail is about, sees that the computer sets the date, and ends with the skill check. Writing the letter itself waits for a free text task type; here the child chooses and orders the parts. The skill check marks what a screen can mark: the Anrede, the names and order of the parts and what an e-mail adds; writing a whole letter is left to Practise once free text arrives.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Brief | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die E-Mail | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Der Brief | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die E-Mail | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 9, multiple_choice 14, matching 7, fill_in_blank 6, true_false 6. Builds on: `lit-de.writing.lists-cards`. Misconceptions addressed: 2.
+Task types: ordering 11, multiple_choice 22, matching 9, fill_in_blank 6, true_false 11, sorting 1. Builds on: `lit-de.writing.lists-cards`. Misconceptions addressed: 2.
 
 ## Zuhören und verstehen (Listening and understanding)
 
@@ -1571,52 +1571,52 @@ Listening to a short Hörtext (a message from the teacher, a Durchsage, a child 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was ist wichtig? | yes | 21 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Weitersagen und nachfragen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Was ist wichtig? | yes | 21 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Weitersagen und nachfragen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 22, multiple_choice 12, true_false 7, sorting 2, speak 2. Builds on: `lit-de.speaking.listen-follow`. Misconceptions addressed: 3.
+Task types: audio_choice 33, multiple_choice 13, true_false 13, sorting 2, speak 2. Builds on: `lit-de.speaking.listen-follow`. Misconceptions addressed: 3.
 
 ## Zettel, Einladungen und Karten (Lists, invitations and cards)
 
 `de-DE.lit-de.lists-cards` teaches `lit-de.writing.lists-cards` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Short everyday texts and what goes into them. Lesson 1 writes a Einkaufszettel (one word per line, with the amount, no whole sentences) and a short Nachricht on a Zettel (wo bin ich, wann komme ich zurück, wer schreibt); lesson 2 checks an Einladung with Wer? Was? Wann? Wo?, builds a Glückwunschkarte from Anrede, Glückwunsch and Gruß, picks the wish for the occasion, and ends with the skill check. Writing the text freely waits for a free text task type; here the child chooses, sorts and orders the parts.
+Short everyday texts and what goes into them. Lesson 1 writes a Einkaufszettel (one word per line, with the amount, no whole sentences) and a short Nachricht on a Zettel (wo bin ich, wann komme ich zurück, wer schreibt); lesson 2 checks an Einladung with Wer? Was? Wann? Wo?, builds a Glückwunschkarte from Anrede, Glückwunsch and Gruß, picks the wish for the occasion, and ends with the skill check. Writing the text freely waits for a free text task type; here the child chooses, sorts and orders the parts. The skill check marks what a screen can mark: what goes on each kind of text, what is missing and the order of the parts; writing one is left to Practise once free text arrives.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Einkaufszettel und Nachrichten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Einladungen und Glückwunschkarten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Einkaufszettel und Nachrichten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Einladungen und Glückwunschkarten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, sorting 3, fill_in_blank 5, true_false 8, matching 3, ordering 4. Builds on: `lit-de.writing.words-to-pictures`. Misconceptions addressed: 2.
+Task types: multiple_choice 26, sorting 6, fill_in_blank 5, true_false 13, matching 4, ordering 6. Builds on: `lit-de.writing.words-to-pictures`. Misconceptions addressed: 2.
 
 ## Merkwörter (Words to learn by heart)
 
 `de-DE.lit-de.memory-words` teaches `lit-de.spelling-strategies.memory-words` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Some spellings cannot be heard or worked out and must be learnt. Lesson 1 takes words with the Dehnungs-h (Uhr, Kuh, Stuhl) and with a double Selbstlaut (Boot, Meer, Haar) and how to learn them; lesson 2 takes the Wochentage, the Monate and the Zahlwörter, and ends with the skill check.
+Some spellings cannot be heard or worked out and must be learnt. Lesson 1 takes words with the Dehnungs-h (Uhr, Kuh, Stuhl) and with a double Selbstlaut (Boot, Meer, Haar) and how to learn them; lesson 2 takes the Wochentage, the Monate and the Zahlwörter, and ends with the skill check. The skill check shows that the words are learnt by having the child spell them; the way to learn one (look, say, write, compare) is taught in Learn and used in Practise.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Uhr und Boot | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wochentage, Monate, Zahlwörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Uhr und Boot | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wochentage, Monate, Zahlwörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 1, multiple_choice 17, fill_in_blank 12, true_false 8, ordering 4. Builds on: `lit-de.spelling.short-long-vowels`. Misconceptions addressed: 2.
+Task types: audio_choice 1, multiple_choice 23, fill_in_blank 16, true_false 13, ordering 5, text_input 1, sorting 1. Builds on: `lit-de.spelling.short-long-vowels`. Misconceptions addressed: 2.
 
 ## Ideen sammeln und planen (Collecting ideas and planning)
 
 `de-DE.lit-de.plan-texts` teaches `lit-de.writing.plan` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Planning before writing. Lesson 1 collects ideas in a Cluster: the Thema in the middle, Stichwörter around it, questions that bring ideas (Wer? Wo? Was passiert?), and only ideas that fit the Thema; lesson 2 crosses out ideas that do not fit, turns the rest into a Schreibplan with Anfang, Mitte and Schluss, and ends with the skill check. Drawing a Cluster freely waits for a free text task type; here the child chooses, sorts and orders ideas.
+Planning before writing. Lesson 1 collects ideas in a Cluster: the Thema in the middle, Stichwörter around it, questions that bring ideas (Wer? Wo? Was passiert?), and only ideas that fit the Thema; lesson 2 crosses out ideas that do not fit, turns the rest into a Schreibplan with Anfang, Mitte and Schluss, and ends with the skill check. Drawing a Cluster freely waits for a free text task type; here the child chooses, sorts and orders ideas. The skill check marks what a screen can mark: how a Cluster is built, which ideas fit, and the order and parts of a Schreibplan; writing the text from the plan is left to Practise once free text arrives.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ideen sammeln im Cluster | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Der Schreibplan | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Ideen sammeln im Cluster | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Der Schreibplan | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 21, fill_in_blank 1, sorting 5, true_false 8, ordering 4, matching 3. Builds on: `lit-de.writing.story-pictures`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, fill_in_blank 1, sorting 8, true_false 13, ordering 7, matching 4. Builds on: `lit-de.writing.story-pictures`. Misconceptions addressed: 2.
 
 ## Gedichte untersuchen (Exploring poems)
 
@@ -1627,10 +1627,10 @@ Looking closely at short poems written for Twist. Lesson 1 finds the rhyming wor
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Reime und Verse | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Strophen und wie ein Gedicht klingt | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Reime und Verse | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Strophen und wie ein Gedicht klingt | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, true_false 8, highlight_in_text 9, fill_in_blank 4, matching 3. Builds on: `lit-de.texts-media.text-types`, `lit-de.phonological.rhymes`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, true_false 12, highlight_in_text 11, fill_in_blank 5, matching 5. Builds on: `lit-de.texts-media.text-types`, `lit-de.phonological.rhymes`. Misconceptions addressed: 2.
 
 ## Pronomen (Pronouns)
 
@@ -1641,10 +1641,10 @@ A pronoun stands for a noun, so a text does not repeat itself: der Hund bellt, e
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Er, sie, es | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Wir, ihr, sie | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Er, sie, es | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Wir, ihr, sie | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, fill_in_blank 13, true_false 8, matching 3, sorting 2. Builds on: `lit-de.nouns.plural`. Misconceptions addressed: 3.
+Task types: multiple_choice 26, fill_in_blank 14, true_false 15, matching 5, sorting 4. Builds on: `lit-de.nouns.plural`. Misconceptions addressed: 3.
 
 ## Anleitungen und Rezepte lesen (Reading instructions and recipes)
 
@@ -1655,10 +1655,10 @@ Reading an Anleitung or a Rezept and following the steps in order. Lesson 1 read
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Schritt für Schritt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Rezepte lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Schritt für Schritt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Rezepte lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, true_false 10, ordering 7, fill_in_blank 1, sorting 4. Builds on: `lit-de.texts-media.text-types`. Misconceptions addressed: 2.
+Task types: multiple_choice 28, true_false 14, ordering 11, fill_in_blank 2, sorting 5. Builds on: `lit-de.texts-media.text-types`. Misconceptions addressed: 2.
 
 ## Genau lesen (Reading carefully)
 
@@ -1669,24 +1669,24 @@ Reading word by word and checking that it makes sense. Lesson 1 judges single se
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Kann das sein? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Genau lesen in Geschichten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Kann das sein? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau lesen in Geschichten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, true_false 14, highlight_in_text 12, multiple_choice 12, fill_in_blank 3. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 1, true_false 20, highlight_in_text 15, multiple_choice 19, fill_in_blank 5. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Texte überarbeiten (Revising writing)
 
 `de-DE.lit-de.revise-texts` teaches `lit-de.writing.revise` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Making a text better with others and with a checklist. Lesson 1 runs a Schreibkonferenz: one child reads, the others say what they like and give a friendly, exact tip, the writer decides; it matches problems in a text to the checklist questions (Überschrift, Reihenfolge, Satzanfänge, genaue Wörter, versteht man alles?); lesson 2 changes repeated Satzanfänge, finds more exact words, puts sentences in order, spots an unclear er or sie, and ends with the skill check. Revising a child's own text waits for a free text task type; here the child chooses, orders and matches.
+Making a text better with others and with a checklist. Lesson 1 runs a Schreibkonferenz: one child reads, the others say what they like and give a friendly, exact tip, the writer decides; it matches problems in a text to the checklist questions (Überschrift, Reihenfolge, Satzanfänge, genaue Wörter, versteht man alles?); lesson 2 changes repeated Satzanfänge, finds more exact words, puts sentences in order, spots an unclear er or sie, and ends with the skill check. Revising a child's own text waits for a free text task type; here the child chooses, orders and matches. The skill check marks what a screen can mark (the tip, the checklist question, the Satzanfang, the word, the order, the unclear er or sie); Practise covers revising a whole text of the child's own.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Schreibkonferenz | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Den Text verbessern | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die Schreibkonferenz | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Den Text verbessern | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, ordering 6, matching 4, true_false 8, fill_in_blank 4. Builds on: `lit-de.writing.plan`. Misconceptions addressed: 2.
+Task types: multiple_choice 28, ordering 7, matching 6, true_false 13, fill_in_blank 6. Builds on: `lit-de.writing.plan`. Misconceptions addressed: 2.
 
 ## Punkt, Fragezeichen, Ausrufezeichen (Full stop, question mark, exclamation mark)
 
@@ -1697,10 +1697,10 @@ The three kinds of sentence and the mark at their end. Lesson 1 tells Aussagesat
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Punkt oder Fragezeichen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Das Ausrufezeichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Punkt oder Fragezeichen? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Ausrufezeichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: ordering 1, highlight_in_text 1, fill_in_blank 22, multiple_choice 7, true_false 7, sorting 4. Builds on: `lit-de.sentences.word-gaps`. Misconceptions addressed: 2.
+Task types: ordering 1, highlight_in_text 1, fill_in_blank 28, multiple_choice 13, true_false 12, sorting 5. Builds on: `lit-de.sentences.word-gaps`. Misconceptions addressed: 2.
 
 ## Fragen stellen (Asking questions)
 
@@ -1711,10 +1711,10 @@ Building questions. Lesson 1 asks with a question word (Wer? Was? Wo? Wann? Wie?
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wer? Was? Wo? Wann? Wie? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Fragen ohne Fragewort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wer? Was? Wo? Wann? Wie? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Fragen ohne Fragewort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 1, multiple_choice 23, matching 3, true_false 8, ordering 4, highlight_in_text 3. Builds on: `lit-de.sentences.end-punctuation`, `lit-de.verbs.conjugate`. Misconceptions addressed: 2.
+Task types: fill_in_blank 2, multiple_choice 28, matching 5, true_false 13, ordering 6, highlight_in_text 5, sorting 1. Builds on: `lit-de.sentences.end-punctuation`, `lit-de.verbs.conjugate`. Misconceptions addressed: 2.
 
 ## Kurze und lange Selbstlaute (Short and long vowels)
 
@@ -1725,10 +1725,10 @@ Hearing whether a vowel is short or long. Lesson 1 compares Hase and Ball and so
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hase oder Ball? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Hüte oder Hütte? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Hase oder Ball? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Hüte oder Hütte? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 8, image_multiple_choice 6, audio_choice 17, true_false 8, sorting 3. Builds on: `lit-de.spelling.vowels-consonants`. Misconceptions addressed: 2.
+Task types: multiple_choice 13, image_multiple_choice 11, audio_choice 20, true_false 11, sorting 5. Builds on: `lit-de.spelling.vowels-consonants`. Misconceptions addressed: 2.
 
 ## Lange Wörter blitzlesen (Flash reading longer words)
 
@@ -1739,10 +1739,10 @@ Recognising longer words of the Grundwortschatz at a glance. Lesson 1 flashes a 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Auf einen Blick | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Lange Wörter in Teilen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Auf einen Blick | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Lange Wörter in Teilen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, image_multiple_choice 10, highlight_in_text 5, matching 3, true_false 4. Builds on: `lit-de.fluency.function-words`, `lit-de.decoding.longer-words`. Misconceptions addressed: 2.
+Task types: multiple_choice 25, image_multiple_choice 15, highlight_in_text 9, matching 3, true_false 8. Builds on: `lit-de.fluency.function-words`, `lit-de.decoding.longer-words`. Misconceptions addressed: 2.
 
 ## Texte überfliegen (Skimming texts)
 
@@ -1753,10 +1753,10 @@ Skimming: seeing quickly what a text is about. Lesson 1 looks at the heading and
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Worum geht es? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Absätze und kleine Überschriften | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Worum geht es? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Absätze und kleine Überschriften | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 24, image_multiple_choice 5, true_false 7, sorting 3, matching 3. Builds on: `lit-de.comprehension.headings`, `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
+Task types: multiple_choice 33, image_multiple_choice 7, true_false 12, sorting 4, matching 4. Builds on: `lit-de.comprehension.headings`, `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
 
 ## Sp, St, Qu, V, X und chs (Sp, St, Qu, V, X and chs)
 
@@ -1767,24 +1767,24 @@ Letters that are not written the way they sound. Lesson 1 takes Sp and St (schp 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Sp und St | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Qu, V, X und chs | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Sp und St | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Qu, V, X und chs | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 9, multiple_choice 12, fill_in_blank 18, image_multiple_choice 3. Builds on: `lit-de.letters.c-y-x-aeu-ck-ss`. Misconceptions addressed: 3.
+Task types: true_false 13, multiple_choice 17, fill_in_blank 25, image_multiple_choice 5. Builds on: `lit-de.letters.c-y-x-aeu-ck-ss`. Misconceptions addressed: 3.
 
 ## Zu Bildern erzählen (Writing a story from pictures)
 
 `de-DE.lit-de.story-pictures` teaches `lit-de.writing.story-pictures` in de-DE, klasse-2. Ages 6-7, about 12 minutes a lesson. Status: draft, version 1.
 
-Turning a Bildergeschichte into a connected story. Lesson 1 finds the sentence that tells what happens in a picture (not "Auf Bild 2 ist ..."), puts the sentences in order, and names Anfang, Mitte and Schluss; lesson 2 links the sentences with Eines Tages, Plötzlich, Da, Zum Glück and Am Ende instead of und dann, picks a heading, and ends with the skill check. The four stories are written for Twist; each picture is given as one line of text, with a bank picture beside it where one fits. Writing the story freely waits for a free text task type.
+Turning a Bildergeschichte into a connected story. Lesson 1 finds the sentence that tells what happens in a picture (not "Auf Bild 2 ist ..."), puts the sentences in order, and names Anfang, Mitte and Schluss; lesson 2 links the sentences with Eines Tages, Plötzlich, Da, Zum Glück and Am Ende instead of und dann, picks a heading, and ends with the skill check. The four stories are written for Twist; each picture is given as one line of text, with a bank picture beside it where one fits. Writing the story freely waits for a free text task type. The skill check marks what a screen can mark (the telling sentence, the order, Anfang, Mitte and Schluss, the linking word, the heading); Practise covers writing a whole story of the child's own.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Anfang, Mitte und Schluss | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Sätze verbinden | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Anfang, Mitte und Schluss | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Sätze verbinden | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, ordering 6, matching 4, true_false 8, fill_in_blank 7. Builds on: `lit-de.writing.words-to-pictures`, `lit-de.comprehension.order-story`. Misconceptions addressed: 2.
+Task types: multiple_choice 25, ordering 9, matching 5, true_false 11, fill_in_blank 9, sorting 1. Builds on: `lit-de.writing.words-to-pictures`, `lit-de.comprehension.order-story`. Misconceptions addressed: 2.
 
 ## Silbenkern, offene und geschlossene Silben (Syllable cores, open and closed syllables)
 
@@ -1795,10 +1795,10 @@ Lesson 1 finds the Silbenkern of each syllable, a Selbstlaut or a Zwielaut (o in
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Silbenkern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Offen oder geschlossen? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Der Silbenkern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Offen oder geschlossen? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 10, multiple_choice 18, true_false 8, fill_in_blank 3, sorting 3. Builds on: `lit-de.spelling-strategies.syllable-swinging`, `lit-de.spelling.vowels-consonants`. Misconceptions addressed: 2.
+Task types: highlight_in_text 14, multiple_choice 26, true_false 12, fill_in_blank 4, sorting 4. Builds on: `lit-de.spelling-strategies.syllable-swinging`, `lit-de.spelling.vowels-consonants`. Misconceptions addressed: 2.
 
 ## Silben schwingen (Swinging syllables)
 
@@ -1809,10 +1809,10 @@ Silbenschwingen as a spelling strategy. Lesson 1 swings words into syllables, co
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Silben schwingen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Beim Schreiben mitsprechen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Silben schwingen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Beim Schreiben mitsprechen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 15, ordering 9, true_false 8, fill_in_blank 10. Builds on: `lit-de.phonological.syllables`, `lit-de.spelling.write-by-sound`. Misconceptions addressed: 2.
+Task types: multiple_choice 22, ordering 13, true_false 12, fill_in_blank 12, image_multiple_choice 1. Builds on: `lit-de.phonological.syllables`, `lit-de.spelling.write-by-sound`. Misconceptions addressed: 2.
 
 ## Text und Bild (Text and picture)
 
@@ -1823,10 +1823,10 @@ Relating a text to its picture. Lesson 1 checks whether a picture fits the text 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Passt das Bild zum Text? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Was das Bild dazu erzählt | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Passt das Bild zum Text? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Was das Bild dazu erzählt | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 16, image_multiple_choice 10, true_false 12, matching 4. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: multiple_choice 20, image_multiple_choice 15, true_false 19, matching 5, sorting 1. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Textarten (Kinds of text)
 
@@ -1837,10 +1837,10 @@ Telling Geschichte, Gedicht, Anleitung, Lexikoneintrag, Witz and Brief apart and
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Textarten erkennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wozu ist der Text da? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Textarten erkennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wozu ist der Text da? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 9, multiple_choice 25, matching 5, sorting 3. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: true_false 14, multiple_choice 35, matching 6, sorting 5. Builds on: `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Die Grundform finden (Finding the base form)
 
@@ -1851,10 +1851,10 @@ Zu jeder Verbform gehört eine Grundform, so steht das Verb im Wörterbuch: sie 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die wir-Probe | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Wenn sich der Selbstlaut ändert | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Die wir-Probe | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wenn sich der Selbstlaut ändert | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, true_false 9, fill_in_blank 10, matching 7. Builds on: `lit-de.verbs.conjugate`. Misconceptions addressed: 2.
+Task types: multiple_choice 29, true_false 13, fill_in_blank 11, matching 9. Builds on: `lit-de.verbs.conjugate`. Misconceptions addressed: 2.
 
 ## Verben beugen (Verb forms for each person)
 
@@ -1865,10 +1865,10 @@ Das Verb passt sich an, wer etwas tut: ich spiele, du spielst, er spielt. Lesson
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ich, du, er, sie, es | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. wir, ihr, sie | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. ich, du, er, sie, es | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. wir, ihr, sie | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 1, true_false 9, multiple_choice 16, fill_in_blank 13, matching 5. Builds on: `lit-de.verbs.recognise`, `lit-de.nouns.pronouns`. Misconceptions addressed: 3.
+Task types: highlight_in_text 1, true_false 11, multiple_choice 24, fill_in_blank 20, matching 6. Builds on: `lit-de.verbs.recognise`, `lit-de.nouns.pronouns`. Misconceptions addressed: 3.
 
 ## Verben mit Vorsilben (Verbs with prefixes)
 
@@ -1879,10 +1879,10 @@ Eine Vorsilbe vor dem Verb macht ein neues Verb mit neuer Bedeutung: lesen, vorl
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Eine Vorsilbe davor | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. ver, ent und be | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Eine Vorsilbe davor | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. ver, ent und be | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 15, true_false 7, fill_in_blank 11, matching 3, highlight_in_text 8. Builds on: `lit-de.verbs.base-form`. Misconceptions addressed: 2.
+Task types: multiple_choice 22, true_false 11, fill_in_blank 16, matching 4, highlight_in_text 9. Builds on: `lit-de.verbs.base-form`. Misconceptions addressed: 2.
 
 ## Verben erkennen (Recognising verbs)
 
@@ -1893,10 +1893,10 @@ Verben sagen, was jemand tut oder was geschieht. Lesson 1 finds the verb in shor
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was tut jemand? | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Verb, Nomen oder Adjektiv? | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Was tut jemand? | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Verb, Nomen oder Adjektiv? | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 16, true_false 9, highlight_in_text 12, fill_in_blank 3, sorting 4. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 3.
+Task types: multiple_choice 20, true_false 13, highlight_in_text 18, fill_in_blank 5, sorting 5, matching 1. Builds on: `lit-de.nouns.recognise`. Misconceptions addressed: 3.
 
 ## Selbstlaute, Mitlaute, Umlaute, Zwielaute (Vowels, consonants, umlauts and diphthongs)
 
@@ -1907,10 +1907,10 @@ The kinds of letters and sounds. Lesson 1 tells the Selbstlaute a, e, i, o, u fr
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Selbstlaute und Mitlaute | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Umlaute und Zwielaute | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Selbstlaute und Mitlaute | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Umlaute und Zwielaute | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 11, audio_choice 1, highlight_in_text 12, true_false 7, fill_in_blank 8, sorting 3. Builds on: `lit-de.letters.umlauts`, `lit-de.phonological.syllables`. Misconceptions addressed: 2.
+Task types: multiple_choice 13, audio_choice 1, highlight_in_text 15, true_false 11, fill_in_blank 14, sorting 6. Builds on: `lit-de.letters.umlauts`, `lit-de.phonological.syllables`. Misconceptions addressed: 2.
 
 ## Wortfelder (Word fields)
 
@@ -1921,10 +1921,10 @@ A Wortfeld holds words with a similar meaning. Lesson 1 collects the Wortfeld ge
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Wortfeld gehen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Das treffende Wort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das Wortfeld gehen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das treffende Wort | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, highlight_in_text 7, true_false 7, matching 2, sorting 4. Builds on: `lit-de.vocabulary.categories`, `lit-de.verbs.recognise`. Misconceptions addressed: 2.
+Task types: multiple_choice 32, highlight_in_text 9, true_false 11, matching 3, sorting 5. Builds on: `lit-de.vocabulary.categories`, `lit-de.verbs.recognise`. Misconceptions addressed: 2.
 
 ## Wortstamm und Wortfamilie (Word stems and word families)
 
@@ -1935,10 +1935,10 @@ Words that share a Wortstamm form a Wortfamilie, and the stem is spelt the same 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Wortstamm | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wortfamilien sammeln | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Der Wortstamm | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wortfamilien sammeln | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, highlight_in_text 8, true_false 9, fill_in_blank 3, matching 4. Builds on: `lit-de.spelling-strategies.syllable-cores`. Misconceptions addressed: 2.
+Task types: multiple_choice 24, highlight_in_text 11, true_false 12, fill_in_blank 7, matching 5, sorting 1. Builds on: `lit-de.spelling-strategies.syllable-cores`. Misconceptions addressed: 2.
 
 ## Anleitungen schreiben (Writing instructions)
 
@@ -1949,10 +1949,10 @@ Writing a short Anleitung that someone else can follow. Lesson 1 puts the steps 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Schritt für Schritt aufschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Klar und genau | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Schritt für Schritt aufschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Klar und genau | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, ordering 6, fill_in_blank 5, true_false 6, sorting 3. Builds on: `lit-de.writing.describe`, `lit-de.texts-media.instructions`. Misconceptions addressed: 2.
+Task types: multiple_choice 30, ordering 10, fill_in_blank 6, true_false 10, sorting 4. Builds on: `lit-de.writing.describe`, `lit-de.texts-media.instructions`. Misconceptions addressed: 2.
 
 ## Gedichte schreiben (Writing poems)
 
@@ -1963,10 +1963,10 @@ Writing poems to a pattern. Lesson 1 builds an Elfchen: one, two, three, four an
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Elfchen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Reime schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das Elfchen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Reime schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, ordering 3, true_false 8, fill_in_blank 4, matching 4, highlight_in_text 3. Builds on: `lit-de.texts-media.poems`. Misconceptions addressed: 2.
+Task types: multiple_choice 30, ordering 5, true_false 12, fill_in_blank 5, matching 4, highlight_in_text 4. Builds on: `lit-de.texts-media.poems`. Misconceptions addressed: 2.
 
 ## Zweistellige Zahlen addieren (Adding two-digit numbers)
 
@@ -2860,10 +2860,10 @@ Feelings, ideas and times are nouns too (die Freude, das Glück, der Mut), even 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Artikelprobe | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Nomen im Satz finden | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Die Artikelprobe | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Nomen im Satz finden | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 1, multiple_choice 21, true_false 10, matching 5, highlight_in_text 9. Builds on: `lit-de.nouns.endings`. Misconceptions addressed: 2.
+Task types: fill_in_blank 2, multiple_choice 28, true_false 16, matching 7, highlight_in_text 11. Builds on: `lit-de.nouns.endings`. Misconceptions addressed: 2.
 
 ## Vergleichen mit Adjektiven (Comparing with adjectives)
 
@@ -2874,10 +2874,10 @@ The three steps of comparison (groß, größer, am größten) and when to say "s
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. groß, größer, am größten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. größer als, so groß wie | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. groß, größer, am größten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. größer als, so groß wie | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 1, multiple_choice 18, fill_in_blank 12, true_false 8, matching 3. Builds on: `lit-de.adjectives.agreement`. Misconceptions addressed: 3.
+Task types: highlight_in_text 3, multiple_choice 23, fill_in_blank 18, true_false 12, matching 4. Builds on: `lit-de.adjectives.agreement`. Misconceptions addressed: 3.
 
 ## Zusammengesetzte Adjektive (Compound adjectives)
 
@@ -2888,10 +2888,10 @@ A noun and an adjective make a stronger adjective (eiskalt is kalt wie Eis). Les
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. eiskalt und federleicht | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. hellblau und dunkelrot | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. eiskalt und federleicht | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. hellblau und dunkelrot | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, matching 3, fill_in_blank 8, true_false 9, highlight_in_text 3. Builds on: `lit-de.adjectives.suffixes`, `lit-de.nouns.compounds`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, matching 5, fill_in_blank 10, true_false 14, highlight_in_text 4. Builds on: `lit-de.adjectives.suffixes`, `lit-de.nouns.compounds`. Misconceptions addressed: 2.
 
 ## Gegenteile (Opposites)
 
@@ -2902,10 +2902,10 @@ Adjectives come in pairs of opposites (heiß and kalt). Lesson 1 finds the oppos
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. heiß und kalt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. freundlich und unfreundlich | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. heiß und kalt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. freundlich und unfreundlich | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 2, multiple_choice 15, matching 7, fill_in_blank 8, true_false 10. Builds on: `lit-de.adjectives.recognise`. Misconceptions addressed: 2.
+Task types: highlight_in_text 4, multiple_choice 21, matching 9, fill_in_blank 11, true_false 15. Builds on: `lit-de.adjectives.recognise`. Misconceptions addressed: 2.
 
 ## Adjektive mit -ig, -lich, -isch und -bar (Adjectives with -ig, -lich, -isch and -bar)
 
@@ -2916,10 +2916,10 @@ New adjectives are made from nouns and verbs with an ending (Sonne, sonnig; Freu
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. sonnig und freundlich | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. kindisch und essbar | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. sonnig und freundlich | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. kindisch und essbar | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, highlight_in_text 1, fill_in_blank 11, true_false 7, matching 6. Builds on: `lit-de.adjectives.recognise`, `lit-de.spelling-strategies.word-stem`. Misconceptions addressed: 2.
+Task types: multiple_choice 24, highlight_in_text 1, fill_in_blank 15, true_false 11, matching 9. Builds on: `lit-de.adjectives.recognise`, `lit-de.spelling-strategies.word-stem`. Misconceptions addressed: 2.
 
 ## Nach dem ABC ordnen (Alphabetical order)
 
@@ -2930,38 +2930,38 @@ Ordering words alphabetically, the step before using a Wörterbuch. Lesson 1 ord
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Erster und zweiter Buchstabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Auch der dritte Buchstabe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Erster und zweiter Buchstabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Auch der dritte Buchstabe | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: ordering 17, multiple_choice 17, true_false 8. Builds on: `lit-de.letters.alphabet`. Misconceptions addressed: 2.
+Task types: ordering 23, multiple_choice 25, true_false 12. Builds on: `lit-de.letters.alphabet`. Misconceptions addressed: 2.
 
 ## Meinung sagen und begründen (Giving an opinion with a reason)
 
 `de-DE.lit-de.argue` teaches `lit-de.speaking.argue` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Saying what you think and why, and asking politely. Lesson 1 tells an opinion from its reason, finds the reason that really supports an opinion and builds sentences with Ich finde … , weil …; lesson 2 asks politely (bitte, könntest du, würden Sie), chooses du or Sie, adds a reason to a request, and ends with the skill check. The speak tasks run as the record-and-compare fallback and are never scored.
+Saying what you think and why, and asking politely. Lesson 1 tells an opinion from its reason, finds the reason that really supports an opinion and builds sentences with Ich finde … , weil …; lesson 2 asks politely (bitte, könntest du, würden Sie), chooses du or Sie, adds a reason to a request, and ends with the skill check. The speak tasks run as the record-and-compare fallback and are never scored: saying an opinion and a request aloud is covered by Practise, and the skill check marks what a screen can mark (opinion or reason, the reason that fits, the polite request, du or Sie).
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ich finde …, weil … | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Höflich bitten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Ich finde …, weil … | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Höflich bitten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 14, fill_in_blank 7, sorting 7, ordering 5, true_false 5, speak 4. Builds on: `lit-de.speaking.describe-explain`. Misconceptions addressed: 2.
+Task types: multiple_choice 20, fill_in_blank 10, sorting 10, ordering 6, true_false 10, speak 4. Builds on: `lit-de.speaking.describe-explain`. Misconceptions addressed: 2.
 
 ## Ein Buch auswählen und vorstellen (Choosing and presenting a book)
 
 `de-DE.lit-de.book-choice` teaches `lit-de.texts-media.book-choice` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Choosing a book that suits you and presenting it. Lesson 1 uses the title, the Klappentext and the contents to pick a book for a reader's interests and tells a Sachbuch from a story; lesson 2 builds a short Buchvorstellung in the right order and gives a reason for liking a book, and ends with the skill check. All books are made up for Twist. Presenting a book aloud waits for a spoken, assessed task type.
+Choosing a book that suits you and presenting it. Lesson 1 uses the title, the Klappentext and the contents to pick a book for a reader's interests and tells a Sachbuch from a story; lesson 2 builds a short Buchvorstellung in the right order and gives a reason for liking a book, and ends with the skill check. All books are made up for Twist. Presenting a book aloud waits for a spoken, assessed task type; until then the skill check marks what a screen can mark (the book that fits a reader, the parts of a book, the order of a Buchvorstellung, an opinion with a reason) and Practise covers the rest.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Welches Buch passt zu mir? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Mein Buch vorstellen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Welches Buch passt zu mir? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Mein Buch vorstellen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, true_false 8, ordering 4. Builds on: `lit-de.texts-media.story-elements`. Misconceptions addressed: 2.
+Task types: multiple_choice 42, true_false 13, ordering 5. Builds on: `lit-de.texts-media.story-elements`. Misconceptions addressed: 2.
 
 ## Groß oder klein? (Capital or small letter?)
 
@@ -2972,10 +2972,10 @@ Capital letters beyond the plain Nomen. Lesson 1 takes Verben that become Nomen 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Lachen, beim Spielen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Namen und Zeitangaben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Das Lachen, beim Spielen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Namen und Zeitangaben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 8, highlight_in_text 9, fill_in_blank 16, true_false 9. Builds on: `lit-de.spelling.capital-nouns`, `lit-de.nouns.endings`. Misconceptions addressed: 3.
+Task types: multiple_choice 13, highlight_in_text 12, fill_in_blank 22, true_false 13. Builds on: `lit-de.spelling.capital-nouns`, `lit-de.nouns.endings`. Misconceptions addressed: 3.
 
 ## Welche Strategie hilft? (Which strategy helps?)
 
@@ -2986,10 +2986,10 @@ Choosing the spelling strategy that fits the tricky part of a word. Lesson 1 mat
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Vier Strategien | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Finden, wählen, schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Vier Strategien | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Finden, wählen, schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 17, multiple_choice 22, true_false 3. Builds on: `lit-de.spelling-strategies.lengthen-double`, `lit-de.spelling-strategies.derive-ae-aeu`, `lit-de.spelling-strategies.memory-words`. Misconceptions addressed: 2.
+Task types: fill_in_blank 21, multiple_choice 31, true_false 8. Builds on: `lit-de.spelling-strategies.lengthen-double`, `lit-de.spelling-strategies.derive-ae-aeu`, `lit-de.spelling-strategies.memory-words`. Misconceptions addressed: 2.
 
 ## ck und tz (ck and tz)
 
@@ -3000,10 +3000,10 @@ After a short Selbstlaut, k is written ck and z is written tz. Lesson 1 takes ck
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ck oder k? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. tz oder z? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. ck oder k? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. tz oder z? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 20, audio_choice 7, multiple_choice 7, true_false 8. Builds on: `lit-de.spelling.double-consonants`. Misconceptions addressed: 2.
+Task types: fill_in_blank 28, audio_choice 10, multiple_choice 10, true_false 10, text_input 2. Builds on: `lit-de.spelling.double-consonants`. Misconceptions addressed: 2.
 
 ## Zwei Fassungen vergleichen (Comparing two versions)
 
@@ -3014,10 +3014,10 @@ Comparing two versions of a story. Lesson 1 reads two short versions of the same
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Gleich oder anders? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Buch, Film und Hörspiel | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Gleich oder anders? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Buch, Film und Hörspiel | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 26, true_false 9, sorting 7. Builds on: `lit-de.texts-media.fairy-tales`, `lit-de.texts-media.story-elements`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, true_false 14, sorting 10, fill_in_blank 1. Builds on: `lit-de.texts-media.fairy-tales`, `lit-de.texts-media.story-elements`. Misconceptions addressed: 2.
 
 ## Gesprächsregeln (Rules for talking together)
 
@@ -3028,10 +3028,10 @@ The rules of a good conversation and how to spot them. Lesson 1 learns the rules
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Regeln für gute Gespräche | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Auf andere eingehen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Regeln für gute Gespräche | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Auf andere eingehen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, true_false 8, sorting 3, speak 4, matching 4. Builds on: `lit-de.speaking.listen-understand`. Misconceptions addressed: 2.
+Task types: multiple_choice 30, true_false 14, sorting 7, speak 4, matching 4, fill_in_blank 1. Builds on: `lit-de.speaking.listen-understand`. Misconceptions addressed: 2.
 
 ## Fehler finden und berichtigen (Finding and fixing mistakes)
 
@@ -3042,10 +3042,10 @@ Checking a text for spelling mistakes. Lesson 1 reads word by word, finds one wr
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wort für Wort lesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Zwei Fehler im Text | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wort für Wort lesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zwei Fehler im Text | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, highlight_in_text 16, true_false 8. Builds on: `lit-de.spelling-strategies.choose-strategy`, `lit-de.spelling-strategies.dictionary`. Misconceptions addressed: 2.
+Task types: multiple_choice 26, highlight_in_text 19, true_false 11, matching 1, sorting 1, text_input 2. Builds on: `lit-de.spelling-strategies.choose-strategy`, `lit-de.spelling-strategies.dictionary`. Misconceptions addressed: 2.
 
 ## Im Wörterbuch nachschlagen (Using a dictionary)
 
@@ -3056,10 +3056,10 @@ Finding a word in the Wörterbuch quickly. Lesson 1 finds the part of the book (
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Schnell finden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Grundform suchen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Schnell finden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Grundform suchen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: ordering 1, multiple_choice 30, true_false 11. Builds on: `lit-de.letters.alphabet-order`, `lit-de.verbs.base-form`. Misconceptions addressed: 2.
+Task types: ordering 2, multiple_choice 39, true_false 13, sorting 2, text_input 2, matching 2. Builds on: `lit-de.letters.alphabet-order`, `lit-de.verbs.base-form`. Misconceptions addressed: 2.
 
 ## Digitale Texte lesen (Reading digital texts)
 
@@ -3070,10 +3070,10 @@ Finding your way in a children's website. Lesson 1 reads a page from a made-up a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Links folgen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Text, Bild und Ton | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Links folgen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Text, Bild und Ton | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, true_false 8, sorting 4. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, true_false 12, sorting 6, ordering 1, fill_in_blank 1. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
 
 ## Doppelte Mitlaute (Double consonants)
 
@@ -3084,24 +3084,24 @@ After a short Selbstlaut the one Mitlaut you hear is often written twice. Lesson
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Sonne, Teller, Ball | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wann wird verdoppelt? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Sonne, Teller, Ball | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wann wird verdoppelt? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 1, multiple_choice 11, fill_in_blank 16, true_false 8, sorting 6. Builds on: `lit-de.spelling.short-long-vowels`. Misconceptions addressed: 2.
+Task types: audio_choice 1, multiple_choice 17, fill_in_blank 21, true_false 13, sorting 6, text_input 2. Builds on: `lit-de.spelling.short-long-vowels`. Misconceptions addressed: 2.
 
 ## Märchen erkennen und nacherzählen (Recognising and retelling fairy tales)
 
 `de-DE.lit-de.fairy-tales` teaches `lit-de.texts-media.fairy-tales` in de-DE, klasse-3. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-What makes a Märchen. Lesson 1 finds the typical features (Es war einmal, Zauberei, Gut und Böse, magic numbers, the happy ending) in a short Märchen written for Twist and tells a Märchen from other texts; lesson 2 retells well-known Märchen (Rotkäppchen, Hänsel und Gretel, Der Froschkönig) in the right order, in Twist's own words, and ends with the skill check. Telling a Märchen freely waits for a free text task type.
+What makes a Märchen. Lesson 1 finds the typical features (Es war einmal, Zauberei, Gut und Böse, magic numbers, the happy ending) in a short Märchen written for Twist and tells a Märchen from other texts; lesson 2 retells well-known Märchen (Rotkäppchen, Hänsel und Gretel, Der Froschkönig) in the right order, in Twist's own words, and ends with the skill check. Telling a Märchen freely waits for a free text task type. The skill check marks what a screen can mark (telling a Märchen from other texts, its features, the order of a retelling); retelling aloud or in writing is practised, not marked.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Woran erkenne ich ein Märchen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Märchen nacherzählen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Woran erkenne ich ein Märchen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Märchen nacherzählen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, true_false 8, sorting 4, ordering 5. Builds on: `lit-de.texts-media.text-types`. Misconceptions addressed: 2.
+Task types: multiple_choice 33, true_false 13, sorting 7, ordering 6, fill_in_blank 1. Builds on: `lit-de.texts-media.text-types`. Misconceptions addressed: 2.
 
 ## Zwischen den Zeilen lesen (Reading between the lines)
 
@@ -3112,24 +3112,24 @@ Drawing conclusions that a text does not state. Lesson 1 reads short texts and w
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hinweise sammeln | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Textstellen verbinden | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Hinweise sammeln | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Textstellen verbinden | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, true_false 10, sorting 4. Builds on: `lit-de.comprehension.key-words`. Misconceptions addressed: 2.
+Task types: multiple_choice 39, true_false 15, sorting 6. Builds on: `lit-de.comprehension.key-words`. Misconceptions addressed: 2.
 
 ## Schreiben auf der Tastatur (Typing on a keyboard)
 
 `de-DE.lit-de.keyboard` teaches `lit-de.handwriting.keyboard` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Typing a short text on a German keyboard and putting it right on the screen. Lesson 1 types words and sentences: the Umschalttaste for a capital, one press of the Leertaste between words, and the keys for ä, ö, ü and ß; lesson 2 adds the Satzzeichen (Punkt and Komma on their own keys, Fragezeichen and Ausrufezeichen with the Umschalttaste), corrects with the Rücktaste and the cursor, reads the red wavy line as a hint and not as the last word, and ends with the skill check. The child chooses keys, orders key presses and finds typing mistakes in short texts; a typing field in the app would let the child type for real.
+Typing a short text on a German keyboard and putting it right on the screen. Lesson 1 types words and sentences: the Umschalttaste for a capital, one press of the Leertaste between words, and the keys for ä, ö, ü and ß; lesson 2 adds the Satzzeichen (Punkt and Komma on their own keys, Fragezeichen and Ausrufezeichen with the Umschalttaste), corrects with the Rücktaste and the cursor, reads the red wavy line as a hint and not as the last word, and ends with the skill check. The child chooses keys, orders key presses and finds typing mistakes in short texts; a typing field in the app would let the child type for real. The skill check marks choosing keys, the order of key presses and finding mistakes; typing a whole text is practised, not marked.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Buchstaben und Leertaste | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Satzzeichen und verbessern | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Buchstaben und Leertaste | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Satzzeichen und verbessern | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, ordering 5, true_false 6, highlight_in_text 3. Builds on: `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
+Task types: multiple_choice 39, ordering 7, true_false 12, highlight_in_text 4. Builds on: `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
 
 ## Verlängern bei doppelten Mitlauten (Lengthening for double consonants)
 
@@ -3140,10 +3140,10 @@ At the end of a word or before another letter, a double Mitlaut is hard to hear.
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ball, Bälle | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Er kommt, kommen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Ball, Bälle | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Er kommt, kommen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 27, multiple_choice 7, true_false 8. Builds on: `lit-de.spelling-strategies.lengthen-bp-gk`, `lit-de.spelling.double-consonants`, `lit-de.verbs.conjugate`. Misconceptions addressed: 3.
+Task types: fill_in_blank 30, multiple_choice 12, true_false 14, text_input 3, matching 1. Builds on: `lit-de.spelling-strategies.lengthen-bp-gk`, `lit-de.spelling.double-consonants`, `lit-de.verbs.conjugate`. Misconceptions addressed: 3.
 
 ## Das lange i (The long i)
 
@@ -3154,10 +3154,10 @@ A long i is mostly written ie. Lesson 1 hears long and short i (Biene, Fisch) an
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ie oder i? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Ausnahmen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. ie oder i? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Ausnahmen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 4, fill_in_blank 19, multiple_choice 10, true_false 8, sorting 1. Builds on: `lit-de.spelling.short-long-vowels`. Misconceptions addressed: 3.
+Task types: audio_choice 5, fill_in_blank 24, multiple_choice 14, true_false 12, sorting 3, text_input 1, matching 1. Builds on: `lit-de.spelling.short-long-vowels`. Misconceptions addressed: 3.
 
 ## Stichwörter notieren (Taking notes)
 
@@ -3168,10 +3168,10 @@ Noting key points from an information text and retelling it from the notes. Less
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was schreibe ich auf? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Mit Notizen erzählen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was schreibe ich auf? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Mit Notizen erzählen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, highlight_in_text 5, true_false 8, fill_in_blank 4, ordering 4, sorting 3. Builds on: `lit-de.comprehension.key-words`. Misconceptions addressed: 2.
+Task types: multiple_choice 24, highlight_in_text 8, true_false 10, fill_in_blank 7, ordering 6, sorting 5. Builds on: `lit-de.comprehension.key-words`. Misconceptions addressed: 2.
 
 ## Nomen mit -ung, -heit, -keit und -nis (Nouns ending in -ung, -heit, -keit and -nis)
 
@@ -3182,24 +3182,24 @@ Words ending in -ung, -heit, -keit and -nis are nouns, and so they are written w
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. -ung, -heit und -keit | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick) |
-| 2. -nis und Nomen im Satz | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. -ung, -heit und -keit | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
+| 2. -nis und Nomen im Satz | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, fill_in_blank 13, matching 3, true_false 6, highlight_in_text 6. Builds on: `lit-de.nouns.compounds`, `lit-de.verbs.recognise`, `lit-de.adjectives.recognise`. Misconceptions addressed: 3.
+Task types: multiple_choice 26, fill_in_blank 19, matching 3, true_false 10, highlight_in_text 7. Builds on: `lit-de.nouns.compounds`, `lit-de.verbs.recognise`, `lit-de.adjectives.recognise`. Misconceptions addressed: 3.
 
 ## Reizwörter, weiterschreiben, umschreiben (Prompt words, continuing and rewriting)
 
 `de-DE.lit-de.prompt-stories` teaches `lit-de.writing.prompt-stories` in de-DE, klasse-3. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Writing a story from given words, or continuing and changing one, practised by choosing and ordering. Lesson 1 checks whether a story uses every Reizwort and makes the Reizwörter carry the plot; lesson 2 chooses a continuation that fits the beginning, rewrites an ending or a point of view, and ends with the skill check. Writing the story out freely waits for the write_text task type.
+Writing a story from given words, or continuing and changing one, practised by choosing and ordering. Lesson 1 checks whether a story uses every Reizwort and makes the Reizwörter carry the plot; lesson 2 chooses a continuation that fits the beginning, rewrites an ending or a point of view, and ends with the skill check. Writing the story out freely waits for the write_text task type. The skill check marks what a screen can mark (the Reizwörter in a story, a story against a list of sentences, the order, a fitting continuation, the Präteritum, a new ending or point of view); Practise covers writing a whole story of the child's own.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Geschichten zu Reizwörtern | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Weiterschreiben und umschreiben | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Geschichten zu Reizwörtern | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Weiterschreiben und umschreiben | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 5, multiple_choice 25, highlight_in_text 5, ordering 3, true_false 4. Builds on: `lit-de.writing.stories`. Misconceptions addressed: 2.
+Task types: fill_in_blank 7, multiple_choice 33, highlight_in_text 6, ordering 5, true_false 9. Builds on: `lit-de.writing.stories`. Misconceptions addressed: 2.
 
 ## Satzzeichen beim Lesen beachten (Reading with punctuation)
 
@@ -3210,38 +3210,38 @@ Reading a sentence as a whole. Lesson 1 notices Punkt, Komma, Fragezeichen and A
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was die Zeichen sagen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Über das Zeilenende lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was die Zeichen sagen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Über das Zeilenende lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 1, multiple_choice 25, highlight_in_text 5, true_false 8, speak 3. Builds on: `lit-de.fluency.word-groups`, `lit-de.sentences.end-punctuation`. Misconceptions addressed: 2.
+Task types: fill_in_blank 2, multiple_choice 36, highlight_in_text 7, true_false 12, speak 3. Builds on: `lit-de.fluency.word-groups`, `lit-de.sentences.end-punctuation`. Misconceptions addressed: 2.
 
 ## Gut vorlesen (Reading aloud well)
 
 `de-DE.lit-de.read-aloud` teaches `lit-de.fluency.read-aloud` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Reading a practised text aloud with expression and at a good pace. Lesson 1 chooses the voice that fits a sentence (laut, leise, fröhlich, traurig, ängstlich) and the word to stress; lesson 2 prepares a text for reading aloud step by step, picks a good pace and reads short passages aloud for practice, and ends with the skill check. The speak tasks run as the record-and-compare fallback and are never scored.
+Reading a practised text aloud with expression and at a good pace. Lesson 1 chooses the voice that fits a sentence (laut, leise, fröhlich, traurig, ängstlich) and the word to stress; lesson 2 prepares a text for reading aloud step by step, picks a good pace and reads short passages aloud for practice, and ends with the skill check. The speak tasks run as the record-and-compare fallback and are never scored. The skill check marks what a screen can mark (the voice that fits, the word to stress, the pause, the pace, the steps of preparing); Practise covers reading aloud itself.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mit der Stimme malen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Einen Text vorbereiten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Mit der Stimme malen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Einen Text vorbereiten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, speak 6, true_false 5, ordering 3. Builds on: `lit-de.fluency.punctuation-reading`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, speak 6, true_false 10, ordering 4. Builds on: `lit-de.fluency.punctuation-reading`. Misconceptions addressed: 2.
 
 ## Sich aufnehmen und besser sprechen (Recording yourself and speaking better)
 
 `de-DE.lit-de.record-voice` teaches `lit-de.speaking.record-voice` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Listening to your own voice and making it clearer. Lesson 1 learns three things to listen for (laut genug, deutlich, ein gutes Tempo with pauses at the full stop) and works out what a speaker should practise from what a recording sounds like; lesson 2 follows the steps aufnehmen, anhören, prüfen, verbessern, nochmal aufnehmen, chooses the next thing to work on, and ends with the skill check. Every lesson records the child's voice in speak tasks, which run as the record-and-compare fallback and are never scored; the check asks only what the child knows about it.
+Listening to your own voice and making it clearer. Lesson 1 learns three things to listen for (laut genug, deutlich, ein gutes Tempo with pauses at the full stop) and works out what a speaker should practise from what a recording sounds like; lesson 2 follows the steps aufnehmen, anhören, prüfen, verbessern, nochmal aufnehmen, chooses the next thing to work on, and ends with the skill check. Every lesson records the child's voice in speak tasks, which run as the record-and-compare fallback and are never scored; the check asks only what the child knows about it. The skill check marks what a screen can mark (the problem and its fix, the place for a pause, the steps and what to practise next); Practise covers recording and improving the child's own voice.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Laut, deutlich, nicht zu schnell | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Aufnehmen, anhören, verbessern | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Laut, deutlich, nicht zu schnell | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Aufnehmen, anhören, verbessern | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 4, multiple_choice 15, sorting 3, highlight_in_text 5, speak 6, true_false 6, matching 3. Builds on: `lit-de.speaking.tell`. Misconceptions addressed: 2.
+Task types: ordering 5, multiple_choice 22, sorting 5, highlight_in_text 8, speak 6, true_false 10, matching 4. Builds on: `lit-de.speaking.tell`. Misconceptions addressed: 2.
 
 ## Texte auf Fehler prüfen (Checking a text for mistakes)
 
@@ -3252,10 +3252,10 @@ Checking a finished text for spelling, punctuation and grammar. Lesson 1 works t
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mit der Checkliste prüfen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Am Computer prüfen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Mit der Checkliste prüfen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Am Computer prüfen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 11, multiple_choice 12, fill_in_blank 11, true_false 8. Builds on: `lit-de.spelling-strategies.correct-errors`, `lit-de.writing.revise`. Misconceptions addressed: 2.
+Task types: highlight_in_text 16, multiple_choice 17, fill_in_blank 13, true_false 14. Builds on: `lit-de.spelling-strategies.correct-errors`, `lit-de.writing.revise`. Misconceptions addressed: 2.
 
 ## s, ss oder ß? (s, ss or ß?)
 
@@ -3266,10 +3266,10 @@ Three ways to write an s sound. Lesson 1 tells the summende s (Hose, lesen) from
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hose oder Wasser? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. ss oder ß? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Hose oder Wasser? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. ss oder ß? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 6, fill_in_blank 20, multiple_choice 7, true_false 8, sorting 1. Builds on: `lit-de.spelling.double-consonants`. Misconceptions addressed: 2.
+Task types: audio_choice 9, fill_in_blank 27, multiple_choice 11, true_false 11, sorting 1, text_input 1. Builds on: `lit-de.spelling.double-consonants`. Misconceptions addressed: 2.
 
 ## Der Begleitsatz hinten und in der Mitte (The reporting clause at the end and in the middle)
 
@@ -3280,10 +3280,10 @@ Punctuating direct speech when the Begleitsatz comes after or inside the spoken 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Der Begleitsatz hinten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Der Begleitsatz in der Mitte | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Der Begleitsatz hinten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Der Begleitsatz in der Mitte | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 11, true_false 11, multiple_choice 16, highlight_in_text 4. Builds on: `lit-de.sentences.direct-speech`. Misconceptions addressed: 3.
+Task types: fill_in_blank 14, true_false 16, multiple_choice 22, highlight_in_text 7, ordering 1. Builds on: `lit-de.sentences.direct-speech`. Misconceptions addressed: 3.
 
 ## Wörtliche Rede (Direct speech)
 
@@ -3294,10 +3294,10 @@ Writing what someone says, with the Begleitsatz in front. Lesson 1 finds the wö
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wer sagt was? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Anführungszeichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wer sagt was? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Anführungszeichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 15, highlight_in_text 8, multiple_choice 12, true_false 7. Builds on: `lit-de.sentences.end-punctuation`. Misconceptions addressed: 3.
+Task types: fill_in_blank 18, highlight_in_text 12, multiple_choice 17, true_false 12, sorting 1. Builds on: `lit-de.sentences.end-punctuation`. Misconceptions addressed: 3.
 
 ## Satzglieder umstellen (Moving parts of a sentence)
 
@@ -3308,10 +3308,10 @@ The Umstellprobe: words that move together are one Satzglied, and in a statement
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die Umstellprobe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Satzglieder zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Die Umstellprobe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Satzglieder zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 1, multiple_choice 22, ordering 11, true_false 8. Builds on: `lit-de.sentences.subject-predicate`. Misconceptions addressed: 2.
+Task types: highlight_in_text 3, multiple_choice 28, ordering 15, true_false 13, fill_in_blank 1. Builds on: `lit-de.sentences.subject-predicate`. Misconceptions addressed: 2.
 
 ## Subjekt und Prädikat (Subject and predicate)
 
@@ -3322,10 +3322,10 @@ Every sentence has a Prädikat (what someone does or what happens) and a Subjekt
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wer oder was? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Das Subjekt steht nicht immer vorn | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wer oder was? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Das Subjekt steht nicht immer vorn | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 18, multiple_choice 14, true_false 6, fill_in_blank 4. Builds on: `lit-de.sentences.questions`. Misconceptions addressed: 3.
+Task types: highlight_in_text 24, multiple_choice 19, true_false 10, fill_in_blank 7. Builds on: `lit-de.sentences.questions`. Misconceptions addressed: 3.
 
 ## Figuren, Ort, Zeit und Handlung (Characters, place, time and plot)
 
@@ -3336,10 +3336,10 @@ Naming the parts of a story with the right terms. Lesson 1 finds the Hauptfigur 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wer, wo und wann? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Die Handlung | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Wer, wo und wann? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Die Handlung | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 5, multiple_choice 26, sorting 4, true_false 7. Builds on: `lit-de.comprehension.order-story`. Misconceptions addressed: 2.
+Task types: ordering 6, multiple_choice 36, sorting 6, true_false 12. Builds on: `lit-de.comprehension.order-story`. Misconceptions addressed: 2.
 
 ## Wörter trennen (Hyphenating words)
 
@@ -3350,24 +3350,24 @@ Splitting a word at the end of a line. Lesson 1 splits by syllables, keeps ch an
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Nach Silben trennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Doppelte Mitlaute, ck und tz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Nach Silben trennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Doppelte Mitlaute, ck und tz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, fill_in_blank 1, true_false 8. Builds on: `lit-de.spelling.ck-tz`. Misconceptions addressed: 2.
+Task types: multiple_choice 43, fill_in_blank 1, true_false 16. Builds on: `lit-de.spelling.ck-tz`. Misconceptions addressed: 2.
 
 ## Texte übersichtlich gestalten (Laying out a text clearly)
 
 `de-DE.lit-de.text-layout` teaches `lit-de.handwriting.layout` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Giving a text a clear shape, so a reader finds their way at a glance. Lesson 1 lays out a text by hand: a heading at the top (often in the middle or underlined with a ruler; classes differ, so only "at the top" is marked), a Rand left free on both sides, a new Absatz on a new line whenever something new begins, and a clean line through a mistake instead of scribbling; lesson 2 does the same on the computer: a bigger or bold heading set in the middle with a button, the Eingabetaste for a new Absatz instead of many spaces, one easy-to-read font, and ends with the skill check. The child judges and fixes layouts shown as text and described in words; the app does not draw a page yet.
+Giving a text a clear shape, so a reader finds their way at a glance. Lesson 1 lays out a text by hand: a heading at the top (often in the middle or underlined with a ruler; classes differ, so only "at the top" is marked), a Rand left free on both sides, a new Absatz on a new line whenever something new begins, and a clean line through a mistake instead of scribbling; lesson 2 does the same on the computer: a bigger or bold heading set in the middle with a button, the Eingabetaste for a new Absatz instead of many spaces, one easy-to-read font, and ends with the skill check. The child judges and fixes layouts shown as text and described in words; the app does not draw a page yet. The skill check marks what a screen can mark (the heading, where an Absatz starts, the Rand and clean corrections, the right key or button); laying out a whole page by hand stays with Practise and the exercise book.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ein Text mit der Hand | yes | 21 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Ein Text am Computer | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Ein Text mit der Hand | yes | 21 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Ein Text am Computer | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, true_false 10, ordering 2, sorting 2. Builds on: `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
+Task types: multiple_choice 41, true_false 16, ordering 2, sorting 3. Builds on: `lit-de.handwriting.copy-sentences`. Misconceptions addressed: 3.
 
 ## Die Gegenwart (The present tense)
 
@@ -3378,10 +3378,10 @@ The Präsens says what happens now or always. Lesson 1 recalls the endings (ich 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was jetzt passiert | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Verben, die ihren Selbstlaut ändern | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Was jetzt passiert | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Verben, die ihren Selbstlaut ändern | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, fill_in_blank 12, true_false 9, matching 2, highlight_in_text 3. Builds on: `lit-de.verbs.conjugate`. Misconceptions addressed: 3.
+Task types: multiple_choice 25, fill_in_blank 16, true_false 12, matching 3, highlight_in_text 6. Builds on: `lit-de.verbs.conjugate`. Misconceptions addressed: 3.
 
 ## Die Vergangenheit im Präteritum (The simple past)
 
@@ -3392,10 +3392,10 @@ The Präteritum tells what happened, mostly in written stories. Lesson 1 forms i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Verben mit -te | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Starke Verben | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Verben mit -te | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Starke Verben | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, true_false 8, fill_in_blank 8, matching 3, highlight_in_text 5, sorting 3. Builds on: `lit-de.verbs.present`. Misconceptions addressed: 3.
+Task types: multiple_choice 24, true_false 12, fill_in_blank 11, matching 4, highlight_in_text 7, sorting 4. Builds on: `lit-de.verbs.present`. Misconceptions addressed: 3.
 
 ## Wortgruppen blitzlesen (Flash reading phrases)
 
@@ -3406,38 +3406,38 @@ Taking in short phrases at a glance. Lesson 1 flashes a phrase for two seconds a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Auf einen Blick | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wortgruppen im Satz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Auf einen Blick | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wortgruppen im Satz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, true_false 11, highlight_in_text 5, ordering 4. Builds on: `lit-de.fluency.sight-words-longer`. Misconceptions addressed: 2.
+Task types: multiple_choice 31, true_false 16, highlight_in_text 9, ordering 4. Builds on: `lit-de.fluency.sight-words-longer`. Misconceptions addressed: 2.
 
 ## Spannend erzählen (Telling a story well)
 
 `de-DE.lit-de.write-stories` teaches `lit-de.writing.stories` in de-DE, klasse-3. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-The craft of writing a story, practised by choosing, ordering and filling gaps. Lesson 1 tells Erlebnis from Fantasie, builds a story in Einleitung, Hauptteil and Schluss and makes the Höhepunkt exciting; lesson 2 chooses precise verbs and adjectives, varies sentence beginnings, keeps the Präteritum, and ends with the skill check. Writing a whole story freely waits for the write_text task type.
+The craft of writing a story, practised by choosing, ordering and filling gaps. Lesson 1 tells Erlebnis from Fantasie, builds a story in Einleitung, Hauptteil and Schluss and makes the Höhepunkt exciting; lesson 2 chooses precise verbs and adjectives, varies sentence beginnings, keeps the Präteritum, and ends with the skill check. Writing a whole story freely waits for the write_text task type. The skill check marks what a screen can mark (the kind of story, its order, a gripping Höhepunkt, the right word, beginning and tense); writing a story of one's own stays with Practise.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Aufbau und Spannung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Treffende Wörter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Aufbau und Spannung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Treffende Wörter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 17, sorting 4, ordering 4, multiple_choice 12, true_false 5. Builds on: `lit-de.writing.story-pictures`, `lit-de.verbs.simple-past`. Misconceptions addressed: 2.
+Task types: fill_in_blank 18, sorting 6, ordering 5, multiple_choice 22, true_false 9. Builds on: `lit-de.writing.story-pictures`, `lit-de.verbs.simple-past`. Misconceptions addressed: 2.
 
 ## Für wen und wozu schreibe ich? (Who am I writing for, and why?)
 
 `de-DE.lit-de.writing-purpose` teaches `lit-de.writing.purpose` in de-DE, klasse-3. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Deciding the reader and the purpose before writing, and choosing the kind of text that fits. Lesson 1 names who a text is for and what it should do (einladen, informieren, erklären, unterhalten, sich bedanken); lesson 2 matches a writing task to its Textart and fits the words to the reader (du or Sie, the right greeting), and ends with the skill check. Writing the text itself waits for the write_text task type.
+Deciding the reader and the purpose before writing, and choosing the kind of text that fits. Lesson 1 names who a text is for and what it should do (einladen, informieren, erklären, unterhalten, sich bedanken); lesson 2 matches a writing task to its Textart and fits the words to the reader (du or Sie, the right greeting), and ends with the skill check. Writing the text itself waits for the write_text task type. The skill check marks what a screen can mark (the reader, the purpose, the Textart and the words for the reader); writing the text stays with Practise.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Leser und Zweck | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Die passende Textart | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Leser und Zweck | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Die passende Textart | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, ordering 1, matching 7, true_false 9. Builds on: `lit-de.writing.plan`, `lit-de.texts-media.text-types`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, ordering 1, matching 8, true_false 15. Builds on: `lit-de.writing.plan`, `lit-de.texts-media.text-types`. Misconceptions addressed: 2.
 
 ## Schriftlich addieren mit Übertrag (Column addition with carrying)
 
@@ -4162,10 +4162,10 @@ A Ballade is a poem that tells an exciting story. Lesson 1 reads two short balla
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Gedichte, die Geschichten erzählen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Herr von Ribbeck | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Gedichte, die Geschichten erzählen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Herr von Ribbeck | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, sorting 1, ordering 4, true_false 7, matching 1. Builds on: `lit-de.texts-media.poems`, `lit-de.texts-media.fables-legends`. Misconceptions addressed: 2.
+Task types: multiple_choice 41, sorting 2, ordering 5, true_false 10, matching 1, highlight_in_text 1. Builds on: `lit-de.texts-media.poems`, `lit-de.texts-media.fables-legends`. Misconceptions addressed: 2.
 
 ## Sich in Figuren hineinversetzen (Putting yourself in a character's place)
 
@@ -4176,10 +4176,10 @@ Reading what characters feel and think. Lesson 1 works out a feeling from what a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was fühlt und denkt die Figur? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Aus einer anderen Sicht | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was fühlt und denkt die Figur? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Aus einer anderen Sicht | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 27, true_false 8, matching 3, ordering 4. Builds on: `lit-de.texts-media.story-elements`, `lit-de.comprehension.infer`. Misconceptions addressed: 2.
+Task types: multiple_choice 39, true_false 12, matching 3, ordering 5, sorting 1. Builds on: `lit-de.texts-media.story-elements`, `lit-de.comprehension.infer`. Misconceptions addressed: 2.
 
 ## Schreibungen vergleichen und erklären (Comparing and explaining spellings)
 
@@ -4190,10 +4190,10 @@ Comparing words to see why they are spelt the way they are. Lesson 1 compares a 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Warum schreibt man das so? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wer hat recht? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Warum schreibt man das so? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wer hat recht? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 26, matching 4, true_false 8, sorting 4. Builds on: `lit-de.spelling-strategies.choose-strategy`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, matching 5, true_false 13, sorting 4, fill_in_blank 2. Builds on: `lit-de.spelling-strategies.choose-strategy`. Misconceptions addressed: 2.
 
 ## Chats, Nachrichten und Videoanrufe (Chats, messages and video calls)
 
@@ -4204,10 +4204,10 @@ How people talk in messages, chats and video calls, and the rules that hold ther
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. So schreiben wir im Chat | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Regeln im Netz | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. So schreiben wir im Chat | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Regeln im Netz | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 24, true_false 9, matching 3, sorting 6. Builds on: `lit-de.vocabulary.spoken-written`. Misconceptions addressed: 2.
+Task types: multiple_choice 37, true_false 13, matching 3, sorting 7. Builds on: `lit-de.vocabulary.spoken-written`. Misconceptions addressed: 2.
 
 ## Fabeln und Sagen (Fables and legends)
 
@@ -4218,10 +4218,10 @@ Fables, legends and how they differ from fairy tales. Lesson 1 reads short fable
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Tiere, die wie Menschen handeln | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Sagen und echte Orte | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Tiere, die wie Menschen handeln | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Sagen und echte Orte | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, true_false 8, matching 2, sorting 6, ordering 1. Builds on: `lit-de.texts-media.fairy-tales`, `lit-de.comprehension.infer`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, true_false 13, matching 3, sorting 7, ordering 1. Builds on: `lit-de.texts-media.fairy-tales`, `lit-de.comprehension.infer`. Misconceptions addressed: 2.
 
 ## Fremdwörter (Borrowed words)
 
@@ -4232,10 +4232,10 @@ Words German took from other languages. Lesson 1 spots Fremdwörter in a sentenc
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Woher kommen die Wörter? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Was bedeutet das Fremdwort? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Woher kommen die Wörter? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Was bedeutet das Fremdwort? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 27, fill_in_blank 1, sorting 4, true_false 5, highlight_in_text 2, matching 3. Builds on: `lit-de.spelling.ph-v-foreign`. Misconceptions addressed: 3.
+Task types: multiple_choice 36, fill_in_blank 2, sorting 5, true_false 10, highlight_in_text 3, matching 4. Builds on: `lit-de.spelling.ph-v-foreign`. Misconceptions addressed: 3.
 
 ## Redewendungen und Sprichwörter (Idioms and proverbs)
 
@@ -4246,24 +4246,24 @@ Sayings that mean more than their words. Lesson 1 takes Redewendungen (Tomaten a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was ist gemeint? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Sprichwörter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was ist gemeint? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Sprichwörter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 24, matching 3, true_false 6, sorting 6, fill_in_blank 3. Builds on: `lit-de.comprehension.infer`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, matching 4, true_false 10, sorting 7, fill_in_blank 4. Builds on: `lit-de.comprehension.infer`. Misconceptions addressed: 2.
 
 ## Ein Interview führen (Holding an interview)
 
 `de-DE.lit-de.interview` teaches `lit-de.speaking.interview` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Planning an interview and noting the answers. Lesson 1 prepares questions: open W-Fragen instead of Ja-Nein-Fragen, questions that fit the goal of the interview, and a polite start and end; lesson 2 holds the interview with a baker, follows up with a Nachfrage, notes the answers as Stichwörter, and ends with the skill check. The people and answers are written for Twist. The speak tasks run as the record-and-compare fallback and are never scored.
+Planning an interview and noting the answers. Lesson 1 prepares questions: open W-Fragen instead of Ja-Nein-Fragen, questions that fit the goal of the interview, and a polite start and end; lesson 2 holds the interview with a baker, follows up with a Nachfrage, notes the answers as Stichwörter, and ends with the skill check. The people and answers are written for Twist. The speak tasks run as the record-and-compare fallback and are never scored. The skill check marks what a screen can mark (open questions, questions that fit the goal, the order of an interview, the Nachfrage and the note); asking the questions aloud is practised, not marked.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Gute Fragen vorbereiten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Nachfragen und notieren | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Gute Fragen vorbereiten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Nachfragen und notieren | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 1, multiple_choice 20, sorting 4, ordering 4, speak 6, true_false 5, matching 2. Builds on: `lit-de.speaking.argue`, `lit-de.sentences.questions`. Misconceptions addressed: 2.
+Task types: fill_in_blank 1, multiple_choice 32, sorting 5, ordering 4, speak 6, true_false 10, matching 2. Builds on: `lit-de.speaking.argue`, `lit-de.sentences.questions`. Misconceptions addressed: 2.
 
 ## Wie Sprache wirkt (How language works on people)
 
@@ -4274,10 +4274,10 @@ The same thing can be said in different ways, and each way works differently on 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Freundlich oder verletzend? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Sachlich, werbend, überzeugend | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Freundlich oder verletzend? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Sachlich, werbend, überzeugend | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, sorting 7, true_false 5, highlight_in_text 2. Builds on: `lit-de.comprehension.infer`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, sorting 8, true_false 11, highlight_in_text 3, fill_in_blank 2. Builds on: `lit-de.comprehension.infer`. Misconceptions addressed: 2.
 
 ## Sprachen und Dialekte vergleichen (Comparing languages and dialects)
 
@@ -4288,10 +4288,10 @@ Comparing German with other languages children may speak at home or in class, an
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wörter aus vielen Sprachen | yes | 21 | learn, practise (6 full, 6 some, 6 none), check (quick) |
-| 2. Dialekte in Deutschland | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Wörter aus vielen Sprachen | yes | 21 | learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
+| 2. Dialekte in Deutschland | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 21, matching 7, sorting 6, true_false 9. Builds on: . Misconceptions addressed: 2.
+Task types: multiple_choice 32, matching 8, sorting 7, true_false 14. Builds on: . Misconceptions addressed: 2.
 
 ## Logicals und genaues Lesen (Logic puzzles and close reading)
 
@@ -4302,38 +4302,38 @@ Reading closely where every word counts. Lesson 1 solves Logicals with three peo
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hinweis für Hinweis | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Zahlen und Angaben genau lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Hinweis für Hinweis | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Zahlen und Angaben genau lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, true_false 8, fill_in_blank 8, text_input 4. Builds on: `lit-de.comprehension.infer`. Misconceptions addressed: 2.
+Task types: multiple_choice 33, true_false 12, fill_in_blank 10, text_input 5. Builds on: `lit-de.comprehension.infer`. Misconceptions addressed: 2.
 
 ## Medienbeiträge gestalten (Making media)
 
 `de-DE.lit-de.make-media` teaches `lit-de.texts-media.make-media` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Planning a small media product of your own. The app cannot judge a real slideshow or recording, so the lessons teach and check what goes into a good one. Lesson 1 plans a Präsentation and a Plakat: the steps in order, Stichwörter instead of whole sentences on a Folie, one topic per Folie, large writing and a clear Überschrift, and pictures you may use with their Quelle. Lesson 2 plans a Hörgeschichte: Erzähler, Figuren, Geräusche and Musik, how to make a sound at home, a Drehbuch in order, recording tips and asking before you record or photograph someone; it ends with the skill check. Hearing real sound effects waits for effect sounds in the bank; here they are described in words.
+Planning a small media product of your own. The app cannot judge a real slideshow or recording, so the lessons teach and check what goes into a good one. Lesson 1 plans a Präsentation and a Plakat: the steps in order, Stichwörter instead of whole sentences on a Folie, one topic per Folie, large writing and a clear Überschrift, and pictures you may use with their Quelle. Lesson 2 plans a Hörgeschichte: Erzähler, Figuren, Geräusche and Musik, how to make a sound at home, a Drehbuch in order, recording tips and asking before you record or photograph someone; it ends with the skill check. Hearing real sound effects waits for effect sounds in the bank; here they are described in words. The skill check marks what a screen can mark (a good Folie, the steps in order, the parts of a Hörgeschichte, pictures and recordings used fairly); making the slideshow or the recording itself is practised, not marked.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Präsentation und Plakat | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Eine Hörgeschichte planen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Präsentation und Plakat | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Eine Hörgeschichte planen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 21, true_false 9, ordering 7, sorting 5. Builds on: `lit-de.texts-media.media-use`. Misconceptions addressed: 3.
+Task types: multiple_choice 31, true_false 14, ordering 8, sorting 7. Builds on: `lit-de.texts-media.media-use`. Misconceptions addressed: 3.
 
 ## Medien bewusst nutzen (Using media wisely)
 
 `de-DE.lit-de.media-use` teaches `lit-de.texts-media.media-use` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Thinking about the media children use every day: audio stories, videos, games and apps. Lesson 1 asks what a medium wants (informieren, unterhalten, verkaufen) and finds advertising, also where it hides: an Anzeige at the top of a search, a product praised in a video. Lesson 2 reads the Altersfreigabe, sees that a free game can still cost money, keeps personal data private, checks a chain message before passing it on, and says what helps when a video was frightening or screen time ran long; it ends with the skill check. All pages, videos and messages are described in text and written for Twist.
+Thinking about the media children use every day: audio stories, videos, games and apps. Lesson 1 asks what a medium wants (informieren, unterhalten, verkaufen) and finds advertising, also where it hides: an Anzeige at the top of a search, a product praised in a video. Lesson 2 reads the Altersfreigabe, sees that a free game can still cost money, keeps personal data private, checks a chain message before passing it on, and says what helps when a video was frightening or screen time ran long; it ends with the skill check. All pages, videos and messages are described in text and written for Twist. The skill check marks what a screen can mark: what a medium wants, advertising, age ratings and costs, and what to do with personal data, chain messages and screen time. Talking about one's own media experiences is covered by Practise, not marked.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was wollen Medien von mir? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Klug mit Medien umgehen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was wollen Medien von mir? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Klug mit Medien umgehen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, sorting 7, true_false 10. Builds on: `lit-de.texts-media.digital-texts`. Misconceptions addressed: 3.
+Task types: multiple_choice 37, sorting 8, true_false 15. Builds on: `lit-de.texts-media.digital-texts`. Misconceptions addressed: 3.
 
 ## Die vier Fälle (The four cases)
 
@@ -4344,11 +4344,11 @@ The case questions find the case of a noun: Wer oder was? (Nominativ), Wessen? (
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wer oder was? Wen oder was? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Wem? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 3. Wessen? Und alle vier Fälle | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Wer oder was? Wen oder was? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Wem? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 3. Wessen? Und alle vier Fälle | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, fill_in_blank 20, true_false 9, matching 2. Builds on: `lit-de.nouns.pronouns`, `lit-de.sentences.subject-predicate`. Misconceptions addressed: 3.
+Task types: multiple_choice 46, fill_in_blank 27, true_false 14, matching 2. Builds on: `lit-de.nouns.pronouns`, `lit-de.sentences.subject-predicate`. Misconceptions addressed: 3.
 
 ## Meinung schriftlich begründen (Giving reasons for an opinion in writing)
 
@@ -4359,10 +4359,10 @@ The knowledge behind an opinion text. Lesson 1 builds a Buchtipp and a short Mei
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Meinung und Argumente | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Ein Brief mit einer Bitte | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Meinung und Argumente | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Ein Brief mit einer Bitte | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 9, multiple_choice 16, sorting 4, ordering 7, true_false 6. Builds on: `lit-de.writing.letters-emails`, `lit-de.sentences.conjunctions`. Misconceptions addressed: 2.
+Task types: fill_in_blank 12, multiple_choice 25, sorting 5, ordering 9, true_false 9. Builds on: `lit-de.writing.letters-emails`, `lit-de.sentences.conjunctions`. Misconceptions addressed: 2.
 
 ## Absätze und Teilüberschriften (Paragraphs and sub-headings)
 
@@ -4373,10 +4373,10 @@ Using paragraphs to find one's way in a Sachtext. Lesson 1 counts paragraphs, sa
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Worum geht es in jedem Absatz? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Teilüberschriften finden | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Worum geht es in jedem Absatz? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Teilüberschriften finden | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 24, true_false 8, matching 7, ordering 3. Builds on: `lit-de.comprehension.skim`. Misconceptions addressed: 2.
+Task types: multiple_choice 36, true_false 11, matching 9, ordering 4. Builds on: `lit-de.comprehension.skim`. Misconceptions addressed: 2.
 
 ## Lesestrategien (Reading strategies)
 
@@ -4387,24 +4387,24 @@ A plan for reading a Sachtext: before, during and after. Lesson 1 asks questions
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Vor dem Lesen und beim Lesen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Nach dem Lesen zusammenfassen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Vor dem Lesen und beim Lesen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Nach dem Lesen zusammenfassen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 26, sorting 4, true_false 8, ordering 4. Builds on: `lit-de.comprehension.skim`, `lit-de.comprehension.notes`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, sorting 5, true_false 13, ordering 7. Builds on: `lit-de.comprehension.skim`, `lit-de.comprehension.notes`. Misconceptions addressed: 2.
 
 ## Gedichte auswendig lernen und vortragen (Learning poems by heart and reciting them)
 
 `de-DE.lit-de.recite-poems` teaches `lit-de.texts-media.recite` in de-DE, klasse-4. Ages 8-10, about 13 minutes a lesson. Status: draft, version 1.
 
-Learning a short poem by heart and saying it with expression. Lesson 1 learns a poem stanza by stanza and line by line, uses the rhyme words to recall the next line, fills gaps and puts lines in order; lesson 2 picks the word to stress, matches the voice to the mood (quiet, cheerful, calm), sorts good and poor ways of reciting, and ends with the skill check. Speak tasks let the child say lines aloud and compare with the model; they are practice only. Every poem is written for Twist.
+Learning a short poem by heart and saying it with expression. Lesson 1 learns a poem stanza by stanza and line by line, uses the rhyme words to recall the next line, fills gaps and puts lines in order; lesson 2 picks the word to stress, matches the voice to the mood (quiet, cheerful, calm), sorts good and poor ways of reciting, and ends with the skill check. Speak tasks let the child say lines aloud and compare with the model; they are practice only. The skill check marks what a screen can mark: recalling verses and rhymes, how to learn a poem, which word to stress and which voice fits, and good habits for reciting. Saying the poem aloud by heart is covered by Practise. Every poem is written for Twist.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Strophe für Strophe | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Betont vortragen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Strophe für Strophe | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Betont vortragen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 16, fill_in_blank 7, ordering 4, speak 6, true_false 5, sorting 4. Builds on: `lit-de.texts-media.poems`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, fill_in_blank 9, ordering 5, speak 6, true_false 8, sorting 5. Builds on: `lit-de.texts-media.poems`. Misconceptions addressed: 2.
 
 ## Einen Bericht schreiben (Writing a report)
 
@@ -4415,10 +4415,10 @@ The knowledge behind a factual report. Lesson 1 answers the W-Fragen (Wer? Was? 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Die W-Fragen beantworten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Sachlich im Präteritum | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Die W-Fragen beantworten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Sachlich im Präteritum | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 5, ordering 5, matching 4, multiple_choice 17, true_false 7, sorting 4. Builds on: `lit-de.writing.instructions`, `lit-de.verbs.simple-past`. Misconceptions addressed: 2.
+Task types: fill_in_blank 7, ordering 7, matching 6, multiple_choice 26, true_false 10, sorting 4. Builds on: `lit-de.writing.instructions`, `lit-de.verbs.simple-past`. Misconceptions addressed: 2.
 
 ## Informationen suchen und prüfen (Finding and checking information)
 
@@ -4429,10 +4429,10 @@ Looking up an answer to a question and checking whether it can be trusted. Lesso
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Richtig suchen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Stimmt das wirklich? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Richtig suchen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Stimmt das wirklich? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, ordering 4, true_false 5, sorting 4. Builds on: `lit-de.texts-media.digital-texts`, `lit-de.comprehension.notes`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, ordering 6, true_false 9, sorting 5. Builds on: `lit-de.texts-media.digital-texts`, `lit-de.comprehension.notes`. Misconceptions addressed: 2.
 
 ## Sätze verbinden (Joining sentences)
 
@@ -4443,10 +4443,10 @@ Joining two sentences into one. Lesson 1 joins with und, oder and aber and sets 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. und, oder, aber | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. weil, dass, wenn | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. und, oder, aber | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. weil, dass, wenn | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 24, true_false 8, fill_in_blank 6, ordering 4. Builds on: `lit-de.sentences.move-parts`. Misconceptions addressed: 3.
+Task types: multiple_choice 32, true_false 12, fill_in_blank 9, ordering 6, matching 1. Builds on: `lit-de.sentences.move-parts`. Misconceptions addressed: 3.
 
 ## Kommas bei Aufzählungen (Commas in lists)
 
@@ -4457,10 +4457,10 @@ Commas between the items of a list. Lesson 1 sets commas between words in a list
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Äpfel, Birnen und Bananen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. ein großer, schwerer Koffer | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Äpfel, Birnen und Bananen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. ein großer, schwerer Koffer | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 14, true_false 13, multiple_choice 15. Builds on: `lit-de.sentences.end-punctuation`. Misconceptions addressed: 2.
+Task types: fill_in_blank 18, true_false 19, multiple_choice 23. Builds on: `lit-de.sentences.end-punctuation`. Misconceptions addressed: 2.
 
 ## Akkusativobjekt und Dativobjekt (Accusative and dative objects)
 
@@ -4471,10 +4471,10 @@ Objects are found with a question, like the Subjekt. Lesson 1 finds the Akkusati
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wen oder was? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wem? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wen oder was? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wem? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, highlight_in_text 8, true_false 6. Builds on: `lit-de.sentences.move-parts`, `lit-de.nouns.cases`. Misconceptions addressed: 2.
+Task types: multiple_choice 37, highlight_in_text 13, true_false 10. Builds on: `lit-de.sentences.move-parts`, `lit-de.nouns.cases`. Misconceptions addressed: 2.
 
 ## Orts- und Zeitangaben (Place and time phrases)
 
@@ -4485,24 +4485,24 @@ Satzglieder that say where and when something happens. Lesson 1 finds the Ortsan
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wo? Wohin? Woher? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Wann? Wie lange? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wo? Wohin? Woher? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Wann? Wie lange? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 23, highlight_in_text 8, true_false 7, sorting 4. Builds on: `lit-de.sentences.move-parts`. Misconceptions addressed: 2.
+Task types: multiple_choice 32, highlight_in_text 12, true_false 11, sorting 5. Builds on: `lit-de.sentences.move-parts`. Misconceptions addressed: 2.
 
 ## Einen Kurzvortrag halten (Giving a short talk)
 
 `de-DE.lit-de.short-talk` teaches `lit-de.speaking.short-talk` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Preparing and giving a short talk from a cue card. Lesson 1 plans a talk (Einleitung, Hauptteil, Schluss), writes Stichwörter instead of whole sentences on the Stichwortzettel and leaves out notes that do not fit the topic; lesson 2 gives the talk (Blickkontakt, frei sprechen, ein Bild zeigen, Fragen beantworten), turns a Stichwort back into a spoken sentence, gives fair feedback, and ends with the skill check. The talks about the honeybee and the red fox use well-established facts and are written for Twist. The speak tasks run as the record-and-compare fallback and are never scored.
+Preparing and giving a short talk from a cue card. Lesson 1 plans a talk (Einleitung, Hauptteil, Schluss), writes Stichwörter instead of whole sentences on the Stichwortzettel and leaves out notes that do not fit the topic; lesson 2 gives the talk (Blickkontakt, frei sprechen, ein Bild zeigen, Fragen beantworten), turns a Stichwort back into a spoken sentence, gives fair feedback, and ends with the skill check. The talks about the honeybee and the red fox use well-established facts and are written for Twist. The speak tasks run as the record-and-compare fallback and are never scored. The skill check marks what a screen can mark (the cue card, what fits the topic, the order of the parts, what helps when speaking, fair feedback); giving the talk aloud is covered by the speak tasks in Practise.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Den Vortrag vorbereiten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Den Vortrag halten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Den Vortrag vorbereiten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Den Vortrag halten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, sorting 6, ordering 4, true_false 4, speak 3. Builds on: `lit-de.speaking.describe-explain`, `lit-de.comprehension.notes`. Misconceptions addressed: 2.
+Task types: multiple_choice 33, sorting 9, ordering 6, true_false 9, speak 3. Builds on: `lit-de.speaking.describe-explain`, `lit-de.comprehension.notes`. Misconceptions addressed: 2.
 
 ## das oder dass? (das or dass?)
 
@@ -4513,10 +4513,10 @@ Telling das from dass with the Ersatzprobe. Lesson 1 shows das as a Begleiter (d
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. das mit einem s | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. dass mit zwei s | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. das mit einem s | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. dass mit zwei s | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 8, fill_in_blank 26, true_false 8. Builds on: `lit-de.sentences.conjunctions`. Misconceptions addressed: 4.
+Task types: multiple_choice 15, fill_in_blank 32, true_false 13. Builds on: `lit-de.sentences.conjunctions`. Misconceptions addressed: 4.
 
 ## Wörter mit v und ph (Words with v and ph)
 
@@ -4527,10 +4527,10 @@ Words where you hear f or w but write v, and words with ph. Lesson 1 takes v as 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Vogel und Vase | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Alphabet und Delfin | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Vogel und Vase | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Alphabet und Delfin | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 10, multiple_choice 12, sorting 7, true_false 6, highlight_in_text 7. Builds on: `lit-de.spelling.special-sounds`. Misconceptions addressed: 2.
+Task types: fill_in_blank 14, multiple_choice 17, sorting 8, true_false 12, highlight_in_text 9. Builds on: `lit-de.spelling.special-sounds`. Misconceptions addressed: 2.
 
 ## Gleich klingende Wörter (Words that sound the same)
 
@@ -4541,10 +4541,10 @@ Words that sound the same but are written differently and mean different things.
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wal oder Wahl? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Rad oder Rat? seid oder seit? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Wal oder Wahl? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Rad oder Rat? seid oder seit? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 31, matching 3, true_false 8. Builds on: `lit-de.spelling.long-i`. Misconceptions addressed: 2.
+Task types: fill_in_blank 39, matching 6, true_false 15. Builds on: `lit-de.spelling.long-i`. Misconceptions addressed: 2.
 
 ## Gesprochene und geschriebene Sprache (Spoken and written language)
 
@@ -4555,10 +4555,10 @@ How we speak and how we write. Lesson 1 sets spoken German against written Germa
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Sprechen und Schreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Umgangssprache und Standardsprache | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Sprechen und Schreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Umgangssprache und Standardsprache | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 21, fill_in_blank 2, sorting 6, matching 6, true_false 7. Builds on: `lit-de.verbs.perfect`. Misconceptions addressed: 2.
+Task types: multiple_choice 29, fill_in_blank 4, sorting 8, matching 8, true_false 11. Builds on: `lit-de.verbs.perfect`. Misconceptions addressed: 2.
 
 ## Zusammengesetzte Verben (Compound verbs)
 
@@ -4569,10 +4569,10 @@ Verbs built from a front part and a verb (einkaufen, mitbringen, zurückgehen). 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ich kaufe heute ein. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. eingekauft und verkauft | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Ich kaufe heute ein. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. eingekauft und verkauft | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, highlight_in_text 1, true_false 9, fill_in_blank 8, sorting 4, matching 3. Builds on: `lit-de.verbs.prefixes`. Misconceptions addressed: 3.
+Task types: multiple_choice 24, highlight_in_text 2, true_false 14, fill_in_blank 10, sorting 6, matching 4. Builds on: `lit-de.verbs.prefixes`. Misconceptions addressed: 3.
 
 ## Die Zukunft (The future)
 
@@ -4583,10 +4583,10 @@ The Futur says what will happen: Ich werde spielen. Lesson 1 builds it from a fo
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Futur mit werden | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Zukunft auch im Präsens | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Futur mit werden | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zukunft auch im Präsens | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 15, fill_in_blank 9, matching 2, highlight_in_text 5, true_false 8, sorting 4. Builds on: `lit-de.verbs.perfect`. Misconceptions addressed: 3.
+Task types: multiple_choice 19, fill_in_blank 12, matching 3, highlight_in_text 9, true_false 13, sorting 5. Builds on: `lit-de.verbs.perfect`. Misconceptions addressed: 3.
 
 ## Die Aufforderungsform (The imperative)
 
@@ -4597,10 +4597,10 @@ Verbs in the imperative tell someone what to do (Komm! Kommt!). Lesson 1 forms t
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Komm! Lies! Räum auf! | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Kommt! Kommen Sie! | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Komm! Lies! Räum auf! | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Kommt! Kommen Sie! | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 20, fill_in_blank 11, true_false 8, matching 3. Builds on: `lit-de.verbs.present`. Misconceptions addressed: 3.
+Task types: multiple_choice 27, fill_in_blank 15, true_false 13, matching 5. Builds on: `lit-de.verbs.present`. Misconceptions addressed: 3.
 
 ## Das Perfekt (The present perfect)
 
@@ -4611,10 +4611,10 @@ The Perfekt is the past we use when we speak: Ich habe gespielt. It has two part
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Perfekt mit haben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Perfekt mit sein | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Perfekt mit haben | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Perfekt mit sein | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 17, fill_in_blank 11, matching 2, true_false 7, highlight_in_text 4, sorting 3. Builds on: `lit-de.verbs.simple-past`. Misconceptions addressed: 3.
+Task types: multiple_choice 21, fill_in_blank 15, matching 3, true_false 12, highlight_in_text 6, sorting 5. Builds on: `lit-de.verbs.simple-past`. Misconceptions addressed: 3.
 
 ## Zeitformen bestimmen und durchhalten (Naming tenses and keeping to one)
 
@@ -4625,24 +4625,24 @@ The four Zeitformen side by side: Präsens, Präteritum, Perfekt and Futur. Less
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Welche Zeitform ist das? | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Eine Zeitform durchhalten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Welche Zeitform ist das? | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Eine Zeitform durchhalten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 5, multiple_choice 20, highlight_in_text 9, true_false 8, sorting 1. Builds on: `lit-de.verbs.future`. Misconceptions addressed: 3.
+Task types: fill_in_blank 7, multiple_choice 27, highlight_in_text 14, true_false 11, sorting 2. Builds on: `lit-de.verbs.future`. Misconceptions addressed: 3.
 
 ## Gefühle und Gedanken erzählen (Writing feelings and thoughts)
 
 `de-DE.lit-de.write-feelings` teaches `lit-de.writing.feelings` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Putting a character's feelings and thoughts into a story. Lesson 1 chooses precise feeling words (enttäuscht, erleichtert, stolz) and shows a feeling through the body instead of only naming it; lesson 2 writes what a character thinks (dachte, fragte sich, überlegte), lets a feeling change from the start of a story to its end, and ends with the skill check. Writing a whole story freely waits for a free text task type; here the child chooses, sorts and fills. Every scene is written for Twist.
+Putting a character's feelings and thoughts into a story. Lesson 1 chooses precise feeling words (enttäuscht, erleichtert, stolz) and shows a feeling through the body instead of only naming it; lesson 2 writes what a character thinks (dachte, fragte sich, überlegte), lets a feeling change from the start of a story to its end, and ends with the skill check. Writing a whole story freely waits for a free text task type; here the child chooses, sorts and fills. Every scene is written for Twist. The skill check marks what a screen can mark (the precise word, showing a feeling, a fitting thought, how a feeling changes); putting feelings into a text of one's own is left to Practise and to free writing.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Gefühle zeigen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick) |
-| 2. Was die Figur denkt | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Gefühle zeigen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Was die Figur denkt | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 13, fill_in_blank 12, matching 4, sorting 7, true_false 2, ordering 4. Builds on: `lit-de.writing.stories`. Misconceptions addressed: 2.
+Task types: multiple_choice 18, fill_in_blank 16, matching 5, sorting 9, true_false 6, ordering 6. Builds on: `lit-de.writing.stories`. Misconceptions addressed: 2.
 
 ## Das Zweiersystem (Binary numbers)
 
@@ -5330,10 +5330,10 @@ Fixed sentence patterns for talking about yourself: I am …, I have got …, I 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. I am, I have got, I can | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Ein Satz über mich | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. I am, I have got, I can | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Ein Satz über mich | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 18, multiple_choice 13, matching 1, true_false 2, ordering 4, fill_in_blank 4. Builds on: `fl.themes.numbers-to-10`, `fl.listening.familiar-words`. Misconceptions addressed: 2.
+Task types: audio_choice 22, multiple_choice 19, matching 1, true_false 7, ordering 6, fill_in_blank 5. Builds on: `fl.themes.numbers-to-10`, `fl.listening.familiar-words`. Misconceptions addressed: 2.
 
 ## Fragen stellen und beantworten (Asking and answering)
 
@@ -5344,10 +5344,10 @@ Asking simple questions and giving the answer that fits. Lesson 1 asks Have you 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Have you got ...? What's this? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Where is ...? How many ...? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Have you got ...? What's this? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Where is ...? How many ...? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 16, multiple_choice 12, ordering 6, speak 4, true_false 2, fill_in_blank 2. Builds on: `fl.speaking.likes`, `fl.grammar.questions`. Misconceptions addressed: 2.
+Task types: audio_choice 20, multiple_choice 17, ordering 8, speak 4, true_false 6, fill_in_blank 4, matching 1. Builds on: `fl.speaking.likes`, `fl.grammar.questions`. Misconceptions addressed: 2.
 
 ## Tage, Monate, Geburtstag (Days, months and birthdays)
 
@@ -5358,10 +5358,10 @@ Lesson 1 brings the days of the week, in order, and "What day is it today? It's 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Monday, Tuesday | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. When's your birthday? | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Monday, Tuesday | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. When's your birthday? | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 13, multiple_choice 16, speak 6, true_false 5, ordering 4. Builds on: `fl.themes.numbers-to-20`. Misconceptions addressed: 4.
+Task types: audio_choice 17, multiple_choice 22, speak 6, true_false 8, ordering 5, matching 2, sorting 1, fill_in_blank 1. Builds on: `fl.themes.numbers-to-20`. Misconceptions addressed: 4.
 
 ## Kleidung auf Englisch (Clothes in English)
 
@@ -5372,38 +5372,38 @@ Clothes words, clothes with a colour, and saying what you are wearing. Lesson 1 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. jumper, jacket, dress, skirt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. a red jumper | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. jumper, jacket, dress, skirt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. a red jumper | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 20, speak 6, matching 2, true_false 4, multiple_choice 6, ordering 4. Builds on: `fl.themes.colours`. Misconceptions addressed: 3.
+Task types: audio_choice 25, speak 6, matching 4, true_false 7, multiple_choice 12, ordering 5, fill_in_blank 1. Builds on: `fl.themes.colours`. Misconceptions addressed: 3.
 
 ## Wörter abschreiben (Copying words)
 
 `de-DE.fl.en-copy-words` teaches `fl.writing.copy-words` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Copying familiar English words exactly and labelling pictures. Lesson 1 copies short words on writing lines, lays them with letter cards, fills missing letters from a model and spots copying mistakes; lesson 2 labels pictures for a picture dictionary with longer words and double letters (rabbit, yellow, giraffe) and ends with the skill check. The model word is always on screen. Writing is traced with a finger; the app accepts any ink for now, so the skill check uses the card and choice tasks only.
+Copying familiar English words exactly and labelling pictures. Lesson 1 copies short words on writing lines, lays them with letter cards, fills missing letters from a model and spots copying mistakes; lesson 2 labels pictures for a picture dictionary with longer words and double letters (rabbit, yellow, giraffe) and ends with the skill check. The model word is always on screen. Writing is traced with a finger; the app accepts any ink for now, so writing by hand is practised in Practise, and the skill check marks what a screen can mark: spotting a wrong copy, laying a word with letter cards, filling missing letters and labelling pictures.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Genau abschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Bilder beschriften | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Genau abschreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Bilder beschriften | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, multiple_choice 11, tracing 9, ordering 8, fill_in_blank 7, true_false 6. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 1, multiple_choice 15, tracing 9, ordering 12, fill_in_blank 12, true_false 10, matching 1. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 2.
 
 ## Tiere beschreiben (Describing animals)
 
 `de-DE.fl.en-describe` teaches `fl.speaking.describe` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Describing an animal in a few sentences: It's big and grey. It has got big ears. Lesson 1 understands animal riddles, heard and read, and finds the animal; lesson 2 builds descriptions with It's ... and It has got ..., plural body parts (four legs, two ears) and My cat is ..., and ends with the skill check. Speaking tasks are practice only; the skill check asks for the building blocks of a description.
+Describing an animal in a few sentences: It's big and grey. It has got big ears. Lesson 1 understands animal riddles, heard and read, and finds the animal; lesson 2 builds descriptions with It's ... and It has got ..., plural body parts (four legs, two ears) and My cat is ..., and ends with the skill check. Speaking tasks are practice only, so Practise covers saying a description aloud; the skill check asks for the building blocks of a description and for understanding one.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Tierrätsel | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Selbst beschreiben | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Tierrätsel | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Selbst beschreiben | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 11, image_multiple_choice 8, true_false 4, multiple_choice 4, fill_in_blank 8, ordering 4, speak 3. Builds on: `fl.speaking.ask-answer`. Misconceptions addressed: 2.
+Task types: audio_choice 15, image_multiple_choice 10, true_false 7, multiple_choice 8, fill_in_blank 10, ordering 6, speak 3, matching 1. Builds on: `fl.speaking.ask-answer`. Misconceptions addressed: 2.
 
 ## Genau hinhören (Listening for details)
 
@@ -5414,10 +5414,10 @@ Picking one detail out of a short recording. Lesson 1 listens for numbers (an ag
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zahlen und Farben heraushören | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Namen und Uhrzeiten heraushören | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Zahlen und Farben heraushören | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Namen und Uhrzeiten heraushören | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 35, true_false 7. Builds on: `fl.listening.short-dialogues`, `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
+Task types: audio_choice 48, true_false 12. Builds on: `fl.listening.short-dialogues`, `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
 
 ## Gefühle auf Englisch (Feelings in English)
 
@@ -5428,10 +5428,10 @@ Saying how you feel and asking others. Lesson 1 brings happy, sad, angry, tired 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. I'm happy. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Are you tired? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. I'm happy. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Are you tired? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 15, audio_choice 13, speak 6, true_false 4, ordering 4. Builds on: `fl.grammar.chunks`, `fl.speaking.greet`. Misconceptions addressed: 2.
+Task types: multiple_choice 20, audio_choice 14, speak 6, true_false 9, matching 2, ordering 6, fill_in_blank 3. Builds on: `fl.grammar.chunks`, `fl.speaking.greet`. Misconceptions addressed: 2.
 
 ## Essen und Trinken auf Englisch (Food and drink in English)
 
@@ -5456,10 +5456,10 @@ Working out what an unknown English word means instead of giving up. Lesson 1 br
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Bilder und ähnliche Wörter | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Der Satz und die Hände helfen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Bilder und ähnliche Wörter | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Der Satz und die Hände helfen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 2, multiple_choice 38, matching 3, true_false 3. Builds on: `fl.listening.short-dialogues`. Misconceptions addressed: 3.
+Task types: audio_choice 3, multiple_choice 49, matching 5, true_false 7. Builds on: `fl.listening.short-dialogues`. Misconceptions addressed: 3.
 
 ## Zu Hause (At home)
 
@@ -5470,10 +5470,10 @@ Rooms and furniture. Lesson 1 learns the furniture and things in a house by ear 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Möbel und Sachen im Haus | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Die Zimmer | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Möbel und Sachen im Haus | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Die Zimmer | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 20, true_false 8, speak 4, matching 2, ordering 4, multiple_choice 4. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
+Task types: audio_choice 25, true_false 12, speak 4, matching 4, multiple_choice 10, ordering 4, fill_in_blank 1. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
 
 ## Wörter lernen und behalten (Learning and remembering words)
 
@@ -5484,24 +5484,24 @@ Ways to remember new English words. Lesson 1 brings picture cards (picture on th
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Bildkarten und Bewegungen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Wörterheft und Bildwörterbuch | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Bildkarten und Bewegungen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Wörterheft und Bildwörterbuch | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 7, multiple_choice 17, speak 4, matching 4, true_false 6, sorting 4, ordering 4. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 7, multiple_choice 26, speak 4, matching 5, true_false 11, sorting 5, ordering 6. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 3.
 
 ## Was ich mag und nicht mag (What I like and don't like)
 
 `de-DE.fl.en-likes` teaches `fl.speaking.likes` in de-DE, lernjahr-1. Ages 8-10, about 10 minutes a lesson. Status: draft, version 1.
 
-Saying what you like and do not like, and asking others. Lesson 1 brings I like ... and I don't like ... with food and animals, heard, read and built from word cards; lesson 2 asks Do you like ...?, answers with Yes, I do. and No, I don't., adds My favourite ... is ..., and ends with the skill check. Speaking tasks are practice only.
+Saying what you like and do not like, and asking others. Lesson 1 brings I like ... and I don't like ... with food and animals, heard, read and built from word cards; lesson 2 asks Do you like ...?, answers with Yes, I do. and No, I don't., adds My favourite ... is ..., and ends with the skill check. Speaking tasks are practice only, so Practise covers saying it aloud; the skill check marks understanding, choosing and building the sentences.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. I like ... und I don't like ... | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Do you like ...? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. I like ... und I don't like ... | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Do you like ...? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 17, ordering 8, true_false 4, speak 4, fill_in_blank 3, image_multiple_choice 3, multiple_choice 3. Builds on: `fl.speaking.name-things`, `fl.grammar.chunks`. Misconceptions addressed: 2.
+Task types: audio_choice 22, ordering 9, true_false 8, speak 4, fill_in_blank 6, image_multiple_choice 4, multiple_choice 7. Builds on: `fl.speaking.name-things`, `fl.grammar.chunks`. Misconceptions addressed: 2.
 
 ## Für Oma auf Deutsch sagen (Telling Grandma in German)
 
@@ -5512,10 +5512,10 @@ Sprachmittlung: telling someone in German what a short English sign or sentence 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was steht auf dem Schild? | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick) |
-| 2. Kurze Sätze weitersagen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Was steht auf dem Schild? | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Kurze Sätze weitersagen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 4, multiple_choice 26, matching 2, true_false 6, audio_choice 8. Builds on: `fl.reading.sentences`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 6, multiple_choice 34, matching 2, true_false 11, audio_choice 11. Builds on: `fl.reading.sentences`. Misconceptions addressed: 3.
 
 ## Zahlen bis 20 auf Englisch (Numbers to 20 in English)
 
@@ -5526,10 +5526,10 @@ The numbers eleven to twenty, asking someone's age and saying a phone number. Le
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. eleven to fifteen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. How old are you? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. eleven to fifteen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. How old are you? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 25, speak 6, ordering 4, true_false 4, multiple_choice 3. Builds on: `fl.themes.numbers-to-10`. Misconceptions addressed: 2.
+Task types: audio_choice 28, speak 6, ordering 7, true_false 7, multiple_choice 8, fill_in_blank 3, matching 1. Builds on: `fl.themes.numbers-to-10`. Misconceptions addressed: 2.
 
 ## Einzahl, Mehrzahl und Begleiter (One or more, and the articles)
 
@@ -5540,10 +5540,10 @@ English plurals with -s and the articles a, an and the. Lesson 1 hears and build
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. a cat, two cats | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. a, an, the | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. a cat, two cats | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. a, an, the | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 14, multiple_choice 16, speak 6, true_false 6. Builds on: `fl.grammar.chunks`, `fl.themes.numbers-to-10`. Misconceptions addressed: 3.
+Task types: audio_choice 17, multiple_choice 20, speak 6, true_false 12, fill_in_blank 3, ordering 1, sorting 1. Builds on: `fl.grammar.chunks`, `fl.themes.numbers-to-10`. Misconceptions addressed: 3.
 
 ## Wo ist es? in, on, under, next to, behind (Where is it? in, on, under, next to, behind)
 
@@ -5554,10 +5554,10 @@ Saying where something is. Lesson 1 brings in, on and under (on means auf, not a
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. in, on, under | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. next to und behind | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. in, on, under | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. next to und behind | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 14, matching 2, fill_in_blank 9, speak 3, true_false 5, ordering 5, multiple_choice 4. Builds on: `fl.grammar.questions`, `fl.themes.home`. Misconceptions addressed: 2.
+Task types: audio_choice 19, matching 3, fill_in_blank 11, speak 3, true_false 6, ordering 7, multiple_choice 11. Builds on: `fl.grammar.questions`, `fl.themes.home`. Misconceptions addressed: 2.
 
 ## Fragen auf Englisch (Questions in English)
 
@@ -5568,10 +5568,10 @@ Questions with a question word and yes-no questions. Lesson 1 brings What?, Wher
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. What? Where? Who? How many? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Can you swim? Yes, I can. | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. What? Where? Who? How many? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Can you swim? Yes, I can. | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 10, matching 3, multiple_choice 22, ordering 4, speak 3. Builds on: `fl.grammar.chunks`. Misconceptions addressed: 3.
+Task types: audio_choice 14, matching 5, multiple_choice 26, true_false 6, ordering 6, speak 3. Builds on: `fl.grammar.chunks`. Misconceptions addressed: 3.
 
 ## Kleine Rollenspiele (Little role plays)
 
@@ -5582,10 +5582,10 @@ Two short everyday scenes with fixed phrases. Lesson 1 is in a shop: Finn buys f
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Im Laden | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick) |
-| 2. Auf dem Spielplatz | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Im Laden | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Auf dem Spielplatz | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, audio_choice 11, speak 6, ordering 7, true_false 4. Builds on: `fl.speaking.ask-answer`, `fl.themes.food`. Misconceptions addressed: 4.
+Task types: multiple_choice 25, audio_choice 14, speak 6, ordering 12, true_false 7. Builds on: `fl.speaking.ask-answer`, `fl.themes.food`. Misconceptions addressed: 4.
 
 ## Kurze Sätze lesen (Reading short sentences)
 
@@ -5596,10 +5596,10 @@ Reading short English sentences made of familiar words and matching them to pict
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Satz lesen, Bild finden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Bild ansehen, Satz finden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Satz lesen, Bild finden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Bild ansehen, Satz finden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 21, multiple_choice 8, true_false 9, matching 4. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 28, multiple_choice 14, true_false 13, matching 5. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 2.
 
 ## Kurze Gespräche verstehen (Understanding short conversations)
 
@@ -5610,10 +5610,10 @@ Lernjahr 1 starts by listening to short, slow conversations on familiar topics: 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Worum geht es? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Genau hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Worum geht es? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 40, true_false 6. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
+Task types: audio_choice 53, true_false 11. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
 
 ## So spricht man, so schreibt man (Sounds and spellings)
 
@@ -5624,10 +5624,10 @@ English is not written the way it sounds. Lesson 1 links ee with a long German i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. ee und oo | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. sh, ch und th | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. ee und oo | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. sh, ch und th | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 2, multiple_choice 6, audio_choice 13, sorting 7, fill_in_blank 9, true_false 3, highlight_in_text 2. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 4, multiple_choice 10, audio_choice 16, sorting 8, fill_in_blank 11, true_false 7, highlight_in_text 4. Builds on: `fl.reading.word-picture`. Misconceptions addressed: 2.
 
 ## Geschichten hören (Listening to stories)
 
@@ -5638,10 +5638,10 @@ Short picture stories read aloud in English: a hungry mouse, a snowman, a kite i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Worum geht es in der Geschichte? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. First, then, in the end | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Worum geht es in der Geschichte? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. First, then, in the end | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 26, true_false 4, ordering 12. Builds on: `fl.listening.short-dialogues`. Misconceptions addressed: 2.
+Task types: audio_choice 38, true_false 7, ordering 15. Builds on: `fl.listening.short-dialogues`. Misconceptions addressed: 2.
 
 ## In der Stadt (In town)
 
@@ -5652,10 +5652,10 @@ Places in town and simple directions. Lesson 1 learns the places (school, park, 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Orte in der Stadt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Nach dem Weg fragen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Orte in der Stadt | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Nach dem Weg fragen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 22, multiple_choice 8, speak 3, matching 2, true_false 5, ordering 2. Builds on: `fl.grammar.questions`. Misconceptions addressed: 2.
+Task types: audio_choice 26, multiple_choice 15, speak 3, matching 3, true_false 9, ordering 3, image_multiple_choice 1. Builds on: `fl.grammar.questions`. Misconceptions addressed: 2.
 
 ## Das Wetter auf Englisch (The weather in English)
 
@@ -5666,10 +5666,10 @@ Describing the weather and understanding a short weather report. Lesson 1 brings
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. It's sunny. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. What's the weather like? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. It's sunny. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. What's the weather like? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 19, multiple_choice 10, speak 6, true_false 4, ordering 3. Builds on: `fl.themes.outside-animals`. Misconceptions addressed: 2.
+Task types: audio_choice 25, multiple_choice 14, speak 6, true_false 9, ordering 4, matching 1, fill_in_blank 1. Builds on: `fl.themes.outside-animals`. Misconceptions addressed: 2.
 
 ## Wo man Englisch spricht (Where English is spoken)
 
@@ -5680,10 +5680,10 @@ Where English comes from and where it is spoken today. Lesson 1 names the countr
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Wo spricht man Englisch? | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Zu Besuch in London | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill) |
+| 1. Wo spricht man Englisch? | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Zu Besuch in London | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 15, audio_choice 16, true_false 9, sorting 2, matching 2. Builds on: . Misconceptions addressed: 3.
+Task types: multiple_choice 20, audio_choice 23, true_false 14, sorting 3, matching 2. Builds on: . Misconceptions addressed: 3.
 
 ## Wörter lesen und Bildern zuordnen (Reading words and matching pictures)
 
@@ -5694,10 +5694,10 @@ The first English reading: familiar words on a word card, matched to their pictu
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Kurze Wörter lesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Genau bis zum Ende lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Kurze Wörter lesen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau bis zum Ende lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 2, image_multiple_choice 17, matching 7, true_false 9, multiple_choice 7. Builds on: `fl.speaking.name-things`. Misconceptions addressed: 2.
+Task types: audio_choice 2, image_multiple_choice 23, matching 9, true_false 14, multiple_choice 12. Builds on: `fl.speaking.name-things`. Misconceptions addressed: 2.
 
 ## Wörter aus dem Kopf schreiben (Writing words from memory)
 
@@ -5708,10 +5708,10 @@ Writing practised words without a model and checking them in a word list. Lesson
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ansehen, zudecken, schreiben, prüfen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. In der Wörterliste nachschauen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Ansehen, zudecken, schreiben, prüfen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. In der Wörterliste nachschauen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 16, audio_choice 1, ordering 9, fill_in_blank 5, text_input 8, true_false 3. Builds on: `fl.writing.copy-words`, `fl.reading.sound-spelling`. Misconceptions addressed: 2.
+Task types: multiple_choice 23, audio_choice 1, ordering 13, fill_in_blank 5, text_input 12, true_false 6. Builds on: `fl.writing.copy-words`, `fl.reading.sound-spelling`. Misconceptions addressed: 2.
 
 ## Sätze nach Muster schreiben (Writing sentences from a model)
 
@@ -5722,10 +5722,10 @@ Completing English sentences from a model and building new ones to the same patt
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das Muster ergänzen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Eigene Sätze nach Muster | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Das Muster ergänzen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Eigene Sätze nach Muster | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 25, ordering 8, matching 2, multiple_choice 11. Builds on: `fl.writing.words-from-memory`, `fl.grammar.chunks`. Misconceptions addressed: 3.
+Task types: fill_in_blank 33, ordering 10, matching 3, multiple_choice 18. Builds on: `fl.writing.words-from-memory`, `fl.grammar.chunks`. Misconceptions addressed: 3.
 
 ## Alltag in England und bei uns (Daily life in England and here)
 
@@ -5736,10 +5736,10 @@ Comparing a child's day in England with a day here, through Amy, who is nine and
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ein Schultag in England | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick) |
-| 2. Frühstück und Feste | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill) |
+| 1. Ein Schultag in England | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
+| 2. Frühstück und Feste | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 13, multiple_choice 15, true_false 7, sorting 5, fill_in_blank 4, matching 2. Builds on: `fl.culture-strategies.where-spoken`. Misconceptions addressed: 3.
+Task types: audio_choice 15, multiple_choice 21, true_false 12, sorting 6, fill_in_blank 7, matching 3. Builds on: `fl.culture-strategies.where-spoken`. Misconceptions addressed: 3.
 
 ## Informationen finden (Finding information)
 
@@ -5750,10 +5750,10 @@ Finding one piece of information in an everyday English text without reading eve
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Speisekarten und Stundenpläne | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Einladungen und Plakate | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Speisekarten und Stundenpläne | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Einladungen und Plakate | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 8, image_multiple_choice 2. Builds on: `fl.reading.short-texts`. Misconceptions addressed: 3.
+Task types: multiple_choice 48, true_false 13, image_multiple_choice 3. Builds on: `fl.reading.short-texts`. Misconceptions addressed: 3.
 
 ## Über andere sprechen (Talking about others)
 
@@ -5764,10 +5764,10 @@ Talking about other people with he and she, and the verb changes that go with it
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. She likes, he plays | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. He has got, she is | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. She likes, he plays | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. He has got, she is | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 9, multiple_choice 19, ordering 6, true_false 8. Builds on: `fl.grammar.chunks`, `fl.themes.family`. Misconceptions addressed: 3.
+Task types: audio_choice 12, multiple_choice 21, ordering 8, true_false 12, fill_in_blank 7. Builds on: `fl.grammar.chunks`, `fl.themes.family`. Misconceptions addressed: 3.
 
 ## Hobbys und Sport (Hobbies and sport)
 
@@ -5778,10 +5778,10 @@ Lernjahr 2 opens with hobbies and sports: the words (football, swim, dance, pain
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was machst du gern? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. I can ... und I like ... | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Was machst du gern? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. I can ... und I like ... | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 21, multiple_choice 1, true_false 7, speak 4, sorting 1, image_multiple_choice 4, ordering 4, fill_in_blank 4. Builds on: `fl.grammar.chunks`, `fl.listening.familiar-words`. Misconceptions addressed: 3.
+Task types: audio_choice 25, multiple_choice 8, true_false 10, speak 4, sorting 1, image_multiple_choice 5, ordering 5, fill_in_blank 5, matching 1. Builds on: `fl.grammar.chunks`, `fl.listening.familiar-words`. Misconceptions addressed: 3.
 
 ## Berufe auf Englisch (Jobs in English)
 
@@ -5792,10 +5792,10 @@ Naming jobs and saying what someone does at work. Lesson 1 brings doctor, teache
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. He's a doctor. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. What do you want to be? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. He's a doctor. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. What do you want to be? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 7, audio_choice 18, speak 6, true_false 4, matching 3, ordering 4. Builds on: `fl.grammar.he-she-it`. Misconceptions addressed: 2.
+Task types: multiple_choice 12, audio_choice 22, speak 6, true_false 7, matching 6, ordering 4, fill_in_blank 3. Builds on: `fl.grammar.he-she-it`. Misconceptions addressed: 2.
 
 ## Gerade jetzt und jeden Tag (Right now and every day)
 
@@ -5806,10 +5806,10 @@ English has two forms where German has one: She is reading (gerade jetzt) and Sh
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Was macht sie gerade? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Jetzt oder jeden Tag? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill) |
+| 1. Was macht sie gerade? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Jetzt oder jeden Tag? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 11, multiple_choice 13, fill_in_blank 8, true_false 7, sorting 3. Builds on: `fl.themes.hobbies`. Misconceptions addressed: 3.
+Task types: audio_choice 15, multiple_choice 16, fill_in_blank 10, true_false 11, ordering 3, sorting 4, image_multiple_choice 1. Builds on: `fl.themes.hobbies`. Misconceptions addressed: 3.
 
 ## Zahlen bis 100 und Preise auf Englisch (Numbers to 100 and prices in English)
 
@@ -5820,10 +5820,10 @@ The tens and the two-digit numbers to 100, and prices in pence. Lesson 1 brings 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. twenty-four | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. How much is it? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. twenty-four | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. How much is it? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 21, matching 3, speak 6, true_false 8, multiple_choice 2, ordering 2. Builds on: `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
+Task types: audio_choice 29, matching 4, speak 6, true_false 10, multiple_choice 6, ordering 4, fill_in_blank 1. Builds on: `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
 
 ## Etwas kurz vorstellen (Giving a short presentation)
 
@@ -5834,10 +5834,10 @@ Giving a short prepared talk in English: my pet, my favourite animal, my hobby, 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mein Haustier | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Mein Hobby, mein Lieblingsding | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Mein Haustier | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Mein Hobby, mein Lieblingsding | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 15, multiple_choice 9, ordering 6, fill_in_blank 5, speak 11. Builds on: `fl.speaking.about-me`. Misconceptions addressed: 3.
+Task types: audio_choice 21, multiple_choice 13, ordering 8, fill_in_blank 8, speak 11, true_false 2, sorting 1. Builds on: `fl.speaking.about-me`. Misconceptions addressed: 3.
 
 ## Was kann ich schon? (What can I do already?)
 
@@ -5848,10 +5848,10 @@ Judging honestly what you can already do in English and setting a next goal. Les
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. I can … oder I'm still learning … | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Mein nächstes Ziel | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. I can … oder I'm still learning … | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Mein nächstes Ziel | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 19, ordering 4, matching 3, audio_choice 3, true_false 8, fill_in_blank 6, speak 3. Builds on: `fl.culture-strategies.learn-words`. Misconceptions addressed: 3.
+Task types: multiple_choice 26, ordering 5, matching 4, audio_choice 5, true_false 12, fill_in_blank 7, speak 3, sorting 2. Builds on: `fl.culture-strategies.learn-words`. Misconceptions addressed: 3.
 
 ## Einen kurzen Text schreiben (Writing a short text)
 
@@ -5862,10 +5862,10 @@ Writing a short English text about oneself from a model: an About me profile and
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Ein Text über mich | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick) |
-| 2. Eine Postkarte schreiben | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Ein Text über mich | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Eine Postkarte schreiben | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 21, multiple_choice 17, ordering 8. Builds on: `fl.writing.complete-sentences`, `fl.reading.short-texts`. Misconceptions addressed: 3.
+Task types: fill_in_blank 25, multiple_choice 25, ordering 11, sorting 1, true_false 2. Builds on: `fl.writing.complete-sentences`, `fl.reading.short-texts`. Misconceptions addressed: 3.
 
 ## Kurze Texte lesen (Reading short texts)
 
@@ -5876,10 +5876,10 @@ Reading short English texts with pictures and understanding the main points: a p
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Steckbriefe und Postkarten | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick) |
-| 2. Geschichten und Comics | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Steckbriefe und Postkarten | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick, 3 of 6) |
+| 2. Geschichten und Comics | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 7, true_false 9, multiple_choice 26, ordering 4. Builds on: `fl.reading.sentences`, `fl.reading.sound-spelling`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 7, true_false 13, multiple_choice 37, ordering 7. Builds on: `fl.reading.sentences`, `fl.reading.sound-spelling`. Misconceptions addressed: 3.
 
 ## Über mich erzählen (Talking about myself)
 
@@ -5890,10 +5890,10 @@ Talking about oneself in a few connected sentences: name, age, where you live, f
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das bin ich | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Was ich gern mache | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill) |
+| 1. Das bin ich | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Was ich gern mache | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 19, multiple_choice 9, speak 12, ordering 6. Builds on: `fl.speaking.describe`, `fl.themes.hobbies`. Misconceptions addressed: 3.
+Task types: audio_choice 25, multiple_choice 13, speak 12, ordering 7, true_false 4, fill_in_blank 3. Builds on: `fl.speaking.describe`, `fl.themes.hobbies`. Misconceptions addressed: 3.
 
 ## Feste feiern (Special days)
 
@@ -5904,10 +5904,10 @@ Words, greetings and customs for special days in England. Lesson 1 brings birthd
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Geburtstag und Weihnachten | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick) |
-| 2. Ostern, Halloween und Bonfire Night | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill) |
+| 1. Geburtstag und Weihnachten | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
+| 2. Ostern, Halloween und Bonfire Night | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 14, image_multiple_choice 6, multiple_choice 12, fill_in_blank 5, true_false 3, matching 4, sorting 2. Builds on: `fl.themes.calendar`. Misconceptions addressed: 3.
+Task types: audio_choice 16, image_multiple_choice 9, multiple_choice 16, fill_in_blank 8, true_false 6, matching 6, sorting 3. Builds on: `fl.themes.calendar`. Misconceptions addressed: 3.
 
 ## Die Uhrzeit auf Englisch (Telling the time in English)
 
@@ -5918,10 +5918,10 @@ Asking for the time and saying full and half hours. Lesson 1 brings "What time i
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. It's three o'clock. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Half past four | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. It's three o'clock. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Half past four | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 12, multiple_choice 16, speak 6, true_false 8. Builds on: `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
+Task types: audio_choice 17, multiple_choice 18, speak 6, true_false 9, image_multiple_choice 3, fill_in_blank 4, ordering 2, matching 1. Builds on: `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
 
 ## Kurze Clips verstehen (Understanding short clips)
 
@@ -5932,38 +5932,38 @@ Short clips and cartoons on familiar topics: a dog in the park, baking a cake, t
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Worum geht es im Clip? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Genau hinschauen und hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Worum geht es im Clip? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Genau hinschauen und hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 34, true_false 7, ordering 5. Builds on: `fl.listening.stories`. Misconceptions addressed: 3.
+Task types: audio_choice 45, true_false 11, ordering 8. Builds on: `fl.listening.stories`. Misconceptions addressed: 3.
 
 ## Tiere und Natur auf Englisch (Animals and nature in English)
 
 `de-DE.fl.en-animals` teaches `fl.themes.outside-animals` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-Animals and things outside in English, and what an animal can do (A bird can fly.). Stufe 0 is oral only: instructions are spoken in German, the words in English. Lesson 1 brings bird, fish, frog, snake, mouse and tree, sun, cloud; lesson 2 says what animals can do (fly, swim, jump), with "It can …" riddles and true or false "can" sentences, and ends with the skill check.
+Animals and things outside in English, and what an animal can do (A bird can fly.). Stufe 0 is oral only: instructions are spoken in German, the words in English. Lesson 1 brings bird, fish, frog, snake, mouse and tree, sun, cloud; lesson 2 says what animals can do (fly, swim, jump), with "It can …" riddles and true or false "can" sentences, and ends with the skill check. Naming the animals aloud is covered in Practise and not marked; the checks ask the child to find the picture or say whether a sentence is true.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Bird, fish, frog | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. A bird can fly. | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Bird, fish, frog | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. A bird can fly. | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 19, speak 6, true_false 13. Builds on: . Misconceptions addressed: 2.
+Task types: audio_choice 29, speak 6, true_false 21. Builds on: . Misconceptions addressed: 2.
 
 ## Mein Körper auf Englisch (My body in English)
 
 `de-DE.fl.en-body` teaches `fl.themes.body` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-Body parts in English and simple commands with them (Touch your nose!). Stufe 0 is oral only: instructions are spoken in German, the words and commands in English. Lesson 1 brings head, eye, ear, nose and mouth; lesson 2 adds hand, arm, leg and foot, follows "Touch your …!", and ends with the skill check.
+Body parts in English and simple commands with them (Touch your nose!). Stufe 0 is oral only: instructions are spoken in German, the words and commands in English. Lesson 1 brings head, eye, ear, nose and mouth; lesson 2 adds hand, arm, leg and foot, follows "Touch your …!", and ends with the skill check. Naming the body parts aloud is covered in Practise and not marked; in the checks the child taps the body part that is meant.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Head, eye, ear, nose, mouth | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Touch your nose! | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Head, eye, ear, nose, mouth | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Touch your nose! | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 24, speak 7, true_false 7. Builds on: . Misconceptions addressed: 2.
+Task types: audio_choice 33, speak 7, true_false 16. Builds on: . Misconceptions addressed: 2.
 
 ## Was sollst du tun? (Classroom instructions)
 
@@ -5974,24 +5974,24 @@ The very first English lessons. Children hear short classroom instructions (Stan
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Aufstehen, hinsetzen | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick) |
-| 2. Klatschen, springen, winken | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Aufstehen, hinsetzen | yes | 20 | learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 2. Klatschen, springen, winken | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 26, true_false 15, speak 3. Builds on: . Misconceptions addressed: 3.
+Task types: audio_choice 36, true_false 23, speak 3. Builds on: . Misconceptions addressed: 3.
 
 ## Farben auf Englisch (Colours in English)
 
 `de-DE.fl.en-colours` teaches `fl.themes.colours` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 2.
 
-Eight colours, heard and said before they are ever read. Stufe 0 is oral only: every task can be done without reading. Instructions are spoken in German, the colour words in English. Lesson 1 brings red, blue, yellow and green; lesson 2 adds orange, purple, pink and brown and ends with the skill check. Practice runs in three stages: full hints, one hint, no hints, and the last stage puts the colours on things. Each lesson also pairs colours with things that have them (matching) and sorts pictures by colour (sorting); tapping a colour says its English name.
+Eight colours, heard and said before they are ever read. Stufe 0 is oral only: every task can be done without reading. Instructions are spoken in German, the colour words in English. Lesson 1 brings red, blue, yellow and green; lesson 2 adds orange, purple, pink and brown and ends with the skill check. Practice runs in three stages: full hints, one hint, no hints, and the last stage puts the colours on things. Each lesson also pairs colours with things that have them (matching) and sorts pictures by colour (sorting); tapping a colour says its English name. Saying a colour aloud is covered in Practise and not marked; the checks ask the child to find the colour or the thing that has it, or to say whether a colour word fits a picture.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Red, blue, yellow, green | yes | 20 | learn, practise (5 full, 6 some, 6 none in context), check (quick) |
-| 2. Orange, purple, pink, brown | yes | 24 | warm-up, learn, practise (6 full, 5 some, 6 none in context), check (skill) |
+| 1. Red, blue, yellow, green | yes | 20 | learn, practise (5 full, 6 some, 6 none in context), check (quick, 3 of 6) |
+| 2. Orange, purple, pink, brown | yes | 24 | warm-up, learn, practise (6 full, 5 some, 6 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 29, speak 11, matching 2, sorting 2. Builds on: . Misconceptions addressed: 2.
+Task types: audio_choice 39, speak 11, matching 2, sorting 2, true_false 8. Builds on: . Misconceptions addressed: 2.
 
 ## Englisch und Deutsch vergleichen (Comparing English and German)
 
@@ -6002,10 +6002,10 @@ Children compare English words with German ones. Lesson 1 finds words that sound
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Haus und house | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Falsche Freunde | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Haus und house | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Falsche Freunde | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 21, image_multiple_choice 4, audio_choice 9, speak 6. Builds on: . Misconceptions addressed: 3.
+Task types: true_false 31, image_multiple_choice 8, audio_choice 13, speak 6. Builds on: . Misconceptions addressed: 3.
 
 ## Wörter, die ich kenne (Words I know)
 
@@ -6016,24 +6016,24 @@ Children hear English words and tap the matching picture. The first words sound 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Das klingt wie Deutsch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick) |
-| 2. Zeig auf das Bild | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill) |
+| 1. Das klingt wie Deutsch | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Zeig auf das Bild | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 29, true_false 12, speak 4. Builds on: `fl.listening.classroom-phrases`. Misconceptions addressed: 2.
+Task types: audio_choice 39, true_false 20, speak 4. Builds on: `fl.listening.classroom-phrases`. Misconceptions addressed: 2.
 
 ## Meine Familie auf Englisch (My family in English)
 
 `de-DE.fl.en-family` teaches `fl.themes.family` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-Family words in English and introducing your family with "This is my …". Stufe 0 is oral only: instructions are spoken in German, the words in English. Lesson 1 brings mum, dad, baby, grandma and grandpa; lesson 2 adds brother and sister, "This is my …", and ends with the skill check.
+Family words in English and introducing your family with "This is my …". Stufe 0 is oral only: instructions are spoken in German, the words in English. Lesson 1 brings mum, dad, baby, grandma and grandpa; lesson 2 adds brother and sister, "This is my …", and ends with the skill check. Introducing your own family aloud is covered in Practise and not marked; the checks ask who a child is introducing.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Mum, dad, grandma, grandpa | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. This is my … | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Mum, dad, grandma, grandpa | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. This is my … | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 23, speak 6, true_false 9. Builds on: . Misconceptions addressed: 2.
+Task types: audio_choice 31, speak 6, true_false 19. Builds on: . Misconceptions addressed: 2.
 
 ## Hallo, wie geht's? (Hello, how are you?)
 
@@ -6044,24 +6044,24 @@ Children greet someone and keep the conversation going. Lesson 1 asks How are yo
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. How are you? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. I'm Mia. I'm seven. | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. How are you? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. I'm Mia. I'm seven. | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: speak 13, audio_choice 11, true_false 18. Builds on: `fl.speaking.imitate`. Misconceptions addressed: 4.
+Task types: speak 13, audio_choice 17, true_false 30. Builds on: `fl.speaking.imitate`. Misconceptions addressed: 4.
 
 ## Hallo und Tschüss auf Englisch (Hello and goodbye in English)
 
 `de-DE.fl.en-hello` teaches `fl.themes.hello` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-Greeting, saying your name and saying goodbye, with please and thank you. Stufe 0 is oral only: instructions are spoken in German, the phrases in English. Lesson 1 brings hello, hi, goodbye, bye and good morning; lesson 2 adds My name is … and What's your name?, please and thank you, and ends with the skill check.
+Greeting, saying your name and saying goodbye, with please and thank you. Stufe 0 is oral only: instructions are spoken in German, the phrases in English. Lesson 1 brings hello, hi, goodbye, bye and good morning; lesson 2 adds My name is … and What's your name?, please and thank you, and ends with the skill check. Saying the phrases is covered in Practise and not marked; the checks ask whether a phrase fits the moment.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Hello und goodbye | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. My name is … | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Hello und goodbye | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. My name is … | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 26, speak 12. Builds on: . Misconceptions addressed: 2.
+Task types: true_false 40, speak 12, audio_choice 4. Builds on: . Misconceptions addressed: 2.
 
 ## Gut zuhören, genau nachsprechen (Listen and say it like me)
 
@@ -6072,10 +6072,10 @@ Children hear an English word or a short sentence and say it back, with attentio
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Three, thank you | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Whale, water, red | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Three, thank you | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Whale, water, red | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 21, speak 13, true_false 8. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 4.
+Task types: audio_choice 29, speak 13, true_false 18. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 4.
 
 ## Was ist das? Ich sag es auf Englisch (What's this? I can say it)
 
@@ -6086,52 +6086,52 @@ Children see a picture and say what it is in English. Lesson 1 names animals and
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. It's a dog. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Red, blue, three | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. It's a dog. | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Red, blue, three | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: speak 18, audio_choice 11, true_false 13. Builds on: `fl.speaking.imitate`. Misconceptions addressed: 3.
+Task types: speak 18, audio_choice 18, true_false 24. Builds on: `fl.speaking.imitate`. Misconceptions addressed: 3.
 
 ## Zahlen bis 10 auf Englisch (Numbers to 10 in English)
 
 `de-DE.fl.en-numbers-to-10` teaches `fl.themes.numbers-to-10` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-The numbers one to ten in English, heard and said before they are read. Stufe 0 is oral only: instructions are spoken in German, the numbers in English. Lesson 1 brings one to five with dice dots; lesson 2 adds six to ten, counts things, and ends with the skill check.
+The numbers one to ten in English, heard and said before they are read. Stufe 0 is oral only: instructions are spoken in German, the numbers in English. Lesson 1 brings one to five with dice dots; lesson 2 adds six to ten, counts things, and ends with the skill check. Saying the numbers aloud is covered in Practise and not marked; the checks ask the child to find the amount that is said or to say whether it fits.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. One, two, three, four, five | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Six, seven, eight, nine, ten | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. One, two, three, four, five | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Six, seven, eight, nine, ten | yes | 20 | learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 24, speak 6, true_false 8. Builds on: . Misconceptions addressed: 2.
+Task types: audio_choice 32, speak 6, true_false 18. Builds on: . Misconceptions addressed: 2.
 
 ## Schulsachen auf Englisch (School things in English)
 
 `de-DE.fl.en-school` teaches `fl.themes.school` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-School things in English and asking for one politely. Stufe 0 is oral only: instructions are spoken in German, the words in English. Lesson 1 brings pencil, ruler, rubber, scissors and book; lesson 2 adds school bag, pencil case and chair, "Can I have a …, please?" with "Here you are.", and ends with the skill check.
+School things in English and asking for one politely. Stufe 0 is oral only: instructions are spoken in German, the words in English. Lesson 1 brings pencil, ruler, rubber, scissors and book; lesson 2 adds school bag, pencil case and chair, "Can I have a …, please?" with "Here you are.", and ends with the skill check. Naming the things and asking for one aloud is covered in Practise and not marked; the checks ask what is meant and what a child wants.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Pencil, ruler, rubber | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. Can I have a pencil, please? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill) |
+| 1. Pencil, ruler, rubber | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. Can I have a pencil, please? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 21, speak 12, true_false 9. Builds on: `fl.listening.classroom-phrases`, `fl.themes.colours`. Misconceptions addressed: 2.
+Task types: audio_choice 29, speak 12, true_false 19. Builds on: `fl.listening.classroom-phrases`, `fl.themes.colours`. Misconceptions addressed: 2.
 
 ## Reime und Mitmachverse (Rhymes and chants)
 
 `de-DE.fl.en-songs-rhymes` teaches `fl.listening.songs-rhymes` in de-DE, stufe-0. Ages 6-7, about 9 minutes a lesson. Status: draft, version 1.
 
-Two short chants written for Twist. Lesson 1 is an action chant (Clap, clap, clap your hands, jump, jump, jump up high, stand up, sit down, wave and say goodbye!): children hear a line and tap the movement that goes with it, then say what comes next. Lesson 2 is a rhyme chant (A cat in a hat, a bee in a tree, a mouse in a house, and a goat in a boat!): children find where each animal is, finish a line with the rhyming word and speak along, and it ends with the skill check. Oral only: nothing is read.
+Two short chants written for Twist. Lesson 1 is an action chant (Clap, clap, clap your hands, jump, jump, jump up high, stand up, sit down, wave and say goodbye!): children hear a line and tap the movement that goes with it, then say what comes next. Lesson 2 is a rhyme chant (A cat in a hat, a bee in a tree, a mouse in a house, and a goat in a boat!): children find where each animal is, finish a line with the rhyming word and speak along, and it ends with the skill check. Oral only: nothing is read. Speaking along is covered in Practise and not marked; the checks ask for the movement, the next line, where an animal is and which words rhyme.
 
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Clap your hands | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick) |
-| 2. A cat in a hat | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill) |
+| 1. Clap your hands | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
+| 2. A cat in a hat | yes | 23 | warm-up, learn, practise (6 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 25, speak 6, true_false 8, image_multiple_choice 3, matching 1. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 3.
+Task types: audio_choice 30, speak 6, true_false 18, image_multiple_choice 6, matching 1. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 3.
 
 ## Tiere und Natur (Französisch) (Animals and nature in French)
 

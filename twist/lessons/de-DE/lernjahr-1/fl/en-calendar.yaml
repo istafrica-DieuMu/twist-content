@@ -25,6 +25,11 @@ metadata:
   forms: [audio, text, picture, drawn]
   drawn: [table]
   facets: []
+  parts:
+    - { id: days, what: { de: die Wochentage auf Englisch verstehen und in Reihenfolge kennen, en: understanding the days of the week in English and knowing their order } }
+    - { id: months, what: { de: die Monate auf Englisch verstehen und in Reihenfolge kennen, en: understanding the months in English and knowing their order } }
+    - { id: seasons, what: { de: die Jahreszeiten auf Englisch nennen, en: naming the seasons in English } }
+    - { id: birthday, what: { de: "fragen und sagen, wann jemand Geburtstag hat", en: asking and saying when someone's birthday is } }
   misconceptions:
     - id: tuesday-thursday
       what: Mixes up Tuesday and Thursday, which both start with T
@@ -53,6 +58,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
+            text: "Welche Zahl ist das?"
             say: { de: "Hör zu. Welche Zahl ist das?" }
             audio: { en: "Seventeen." }
             options: ["7", "17", "16"]
@@ -60,6 +66,7 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Welche Zahl ist das?"
             say: { de: "Hör zu. Welche Zahl ist das?" }
             audio: { en: "Twelve." }
             options: ["20", "2", "12"]
@@ -90,6 +97,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: audio_choice
+                text: "Welcher Tag ist das?"
                 say: { de: "Hör zu. Welcher Tag ist das?" }
                 audio: { en: "Monday." }
                 options: ["Montag", "Mittwoch", "Sonntag"]
@@ -101,7 +109,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
-                text: "Monday, Tuesday, _ , Thursday"
+                text: "Welcher Tag fehlt? Monday, Tuesday, _ , Thursday"
                 say: "Welcher Tag fehlt?"
                 show: { drawn: table, rows: [[Monday, Tuesday, "?", Thursday]], header: false }
                 options: ["Wednesday", "Friday", "Sunday"]
@@ -157,6 +165,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
+                text: "Welcher Tag ist das?"
                 say: { de: "Hör zu. Welcher Tag ist das?" }
                 audio: { en: "Thursday." }
                 options: ["Dienstag", "Donnerstag", "Freitag"]
@@ -166,7 +175,7 @@ lessons:
                 hints: ["Hörst du am Anfang ein th wie bei three?"]
               - id: l1-s2
                 type: multiple_choice
-                text: "Friday, _ , Sunday"
+                text: "Welcher Tag fehlt? Friday, _ , Sunday"
                 say: "Welcher Tag fehlt?"
                 show: { drawn: table, rows: [[Friday, "?", Sunday]], header: false }
                 options: ["Monday", "Saturday", "Thursday"]
@@ -197,8 +206,9 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
+                text: "Welcher Tag ist heute?"
                 say: { de: "Hör zu. Welcher Tag ist heute?" }
-                audio: { en: "What day is it today? It's Tuesday." }
+                audio: { turns: [{ en: "What day is it today?", speaker: female }, { en: "It's Tuesday.", speaker: male }] }
                 options: ["Donnerstag", "Dienstag", "Mittwoch"]
                 answer: "Dienstag"
               - id: l1-n2
@@ -227,9 +237,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
+            text: "Welcher Tag ist das?"
             say: { de: "Hör zu. Welcher Tag ist das?" }
             audio: { en: "Friday." }
             options: ["Freitag", "Samstag", "Montag"]
@@ -242,11 +254,31 @@ lessons:
             option_audio: false
           - id: l1-c3
             type: multiple_choice
-            text: "Tuesday, _ , Thursday"
+            text: "Welcher Tag fehlt? Tuesday, _ , Thursday"
             say: "Welcher Tag fehlt?"
             show: { drawn: table, rows: [[Tuesday, "?", Thursday]], header: false }
             options: ["Wednesday", "Monday", "Friday"]
             answer: "Wednesday"
+            option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Ist heute Wochenende?"
+            say: { de: "Hör zu. Ist heute Wochenende?" }
+            audio: { turns: [{ en: "What day is it today?", speaker: male }, { en: "It's Saturday!", speaker: female }] }
+            answer: true
+          - id: l1-c5
+            type: audio_choice
+            text: "Welchen Tag hörst du?"
+            say: { de: "Hör zu. Welchen Tag hörst du?" }
+            audio: { en: "Tuesday." }
+            options: ["Thursday", "Tuesday", "Wednesday"]
+            answer: "Tuesday"
+          - id: l1-c6
+            type: multiple_choice
+            text: "An welchem Tag hast du Schule?"
+            say: "An welchem Tag hast du Schule?"
+            options: ["Sunday", "Saturday", "Monday"]
+            answer: "Monday"
             option_audio: false
 
   - n: 2
@@ -258,6 +290,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: audio_choice
+            text: "Welcher Tag ist das?"
             say: { de: "Weißt du noch? Welcher Tag ist das?" }
             audio: { en: "Wednesday." }
             options: ["Mittwoch", "Montag", "Donnerstag"]
@@ -298,6 +331,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
+                text: "Welcher Monat ist das?"
                 say: { de: "Hör zu. Welcher Monat ist das?" }
                 audio: { en: "July." }
                 options: ["Juni", "Juli", "Januar"]
@@ -311,7 +345,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
-                text: "March, April, _ , June"
+                text: "Welcher Monat fehlt? March, April, _ , June"
                 say: "Welcher Monat fehlt?"
                 show: { drawn: table, rows: [[March, April, "?", June]], header: false }
                 options: ["July", "May", "August"]
@@ -323,8 +357,9 @@ lessons:
                   - "Mai heißt „May“."
               - id: l2-f3
                 type: audio_choice
+                text: "Wann hat das Kind Geburtstag?"
                 say: { de: "Hör zu. Wann hat das Kind Geburtstag?" }
-                audio: { en: "When's your birthday? It's in October." }
+                audio: { turns: [{ en: "When's your birthday?", speaker: female }, { en: "It's in October.", speaker: male }] }
                 options: ["im August", "im Oktober", "im Dezember"]
                 answer: "im Oktober"
                 hints:
@@ -368,6 +403,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
+                text: "Welcher Monat ist das?"
                 say: { de: "Hör zu. Welcher Monat ist das?" }
                 audio: { en: "March." }
                 options: ["Mai", "März", "Montag"]
@@ -409,13 +445,14 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
+                text: "Wann hat das Kind Geburtstag?"
                 say: { de: "Hör zu. Wann hat das Kind Geburtstag?" }
-                audio: { en: "My birthday is in June." }
+                audio: { en: "My birthday is in June.", speaker: female }
                 options: ["im Juli", "im Januar", "im Juni"]
                 answer: "im Juni"
               - id: l2-n2
                 type: multiple_choice
-                text: "_ , February, March"
+                text: "Welcher Monat fehlt? _ , February, March"
                 say: "Welcher Monat fehlt?"
                 show: { drawn: table, rows: [["?", February, March]], header: false }
                 options: ["January", "June", "April"]
@@ -440,37 +477,176 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: days
             type: audio_choice
+            text: "Welcher Tag ist heute?"
             say: { de: "Hör gut zu. Welcher Tag ist heute?" }
             audio: { en: "It's Thursday today." }
             options: ["Dienstag", "Donnerstag", "Freitag"]
             answer: "Donnerstag"
           - id: l2-c2
+            part: days
             type: multiple_choice
-            text: "Saturday, _ , Monday"
+            text: "Welcher Tag fehlt? Saturday, _ , Monday"
             say: "Welcher Tag fehlt?"
             show: { drawn: table, rows: [[Saturday, "?", Monday]], header: false }
             options: ["Friday", "Tuesday", "Sunday"]
             answer: "Sunday"
             option_audio: false
           - id: l2-c3
+            part: birthday
             type: audio_choice
+            text: "Wann hat Tom Geburtstag?"
             say: { de: "Hör gut zu. Wann hat Tom Geburtstag?" }
             audio: { en: "Hi, I'm Tom. I'm nine. My birthday is in August.", speaker: male }
             options: ["im April", "im August", "im Oktober"]
             answer: "im August"
           - id: l2-c4
+            part: seasons
             type: multiple_choice
             text: "June, July, August: Welche Jahreszeit ist das in England?"
             options: ["spring", "winter", "summer"]
             answer: "summer"
             option_audio: false
           - id: l2-c5
+            part: months
             type: ordering
             text: "Bring die Monate in die richtige Reihenfolge."
             options: ["April", "February", "March", "January"]
             slot_count: 4
             answer: ["January", "February", "March", "April"]
             option_audio: false
+          - id: l2-c6
+            part: days
+            type: true_false
+            text: "Ist heute Dienstag?"
+            say: { de: "Hör zu. Ist heute Dienstag?" }
+            audio: { turns: [{ en: "What day is it today?", speaker: female }, { en: "It's Thursday.", speaker: male }] }
+            answer: false
+          - id: l2-c7
+            part: days
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Verbinde jeden englischen Tag mit dem deutschen."
+            pairs:
+              - { left: { text: "Monday" }, right: { text: "Montag" } }
+              - { left: { text: "Wednesday" }, right: { text: "Mittwoch" } }
+              - { left: { text: "Thursday" }, right: { text: "Donnerstag" } }
+              - { left: { text: "Saturday" }, right: { text: "Samstag" } }
+          - id: l2-c8
+            part: days
+            type: multiple_choice
+            text: "Welcher Tag kommt vor Wednesday?"
+            say: { de: "Welcher Tag kommt vor diesem Tag?", en: "Wednesday." }
+            options: ["Thursday", "Monday", "Tuesday"]
+            answer: "Tuesday"
+            option_audio: false
+          - id: l2-c9
+            part: months
+            type: audio_choice
+            text: "Welchen Monat hörst du?"
+            say: { de: "Hör zu. Welchen Monat hörst du?" }
+            audio: { en: "February." }
+            options: ["November", "February", "January"]
+            answer: "February"
+          - id: l2-c10
+            part: months
+            type: multiple_choice
+            text: "Welcher Monat kommt nach June?"
+            say: { de: "Welcher Monat kommt nach diesem Monat?", en: "June." }
+            options: ["May", "January", "July"]
+            answer: "July"
+            option_audio: false
+          - id: l2-c11
+            part: months
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Verbinde jeden englischen Monat mit dem deutschen."
+            option_audio: false
+            pairs:
+              - { left: { text: "March" }, right: { text: "März" } }
+              - { left: { text: "May" }, right: { text: "Mai" } }
+              - { left: { text: "June" }, right: { text: "Juni" } }
+              - { left: { text: "July" }, right: { text: "Juli" } }
+          - id: l2-c12
+            part: months
+            type: multiple_choice
+            text: "Welcher Monat ist der letzte im Jahr?"
+            say: "Welcher Monat ist der letzte im Jahr?"
+            options: ["November", "December", "January"]
+            answer: "December"
+            option_audio: false
+          - id: l2-c13
+            part: seasons
+            type: audio_choice
+            text: "Welche Jahreszeit hörst du? Tippe auf das Bild."
+            say: { de: "Hör zu. Welche Jahreszeit hörst du? Tippe auf das Bild." }
+            audio: { en: "Summer." }
+            options: [{ object: snowman }, { object: leaf, colour: red }, { object: sun }]
+            answer: sun
+          - id: l2-c14
+            part: seasons
+            type: sorting
+            text: "Sommer oder Winter in England? Ordne die Monate."
+            say: { de: "Ordne die Monate: Ist in England dann Sommer oder Winter?" }
+            option_audio: false
+            bins:
+              - { id: summer, show: { text: "summer" } }
+              - { id: winter, show: { text: "winter" } }
+            options:
+              - { text: "July", bin: summer }
+              - { text: "January", bin: winter }
+              - { text: "August", bin: summer }
+              - { text: "December", bin: winter }
+          - id: l2-c15
+            part: seasons
+            type: multiple_choice
+            text: "Welche Jahreszeit kommt nach dem Frühling?"
+            say: "Welche Jahreszeit kommt nach dem Frühling?"
+            options: ["winter", "summer", "autumn"]
+            answer: "summer"
+            option_audio: false
+          - id: l2-c16
+            part: seasons
+            type: multiple_choice
+            text: "In welcher Jahreszeit ist Weihnachten in England?"
+            say: "In welcher Jahreszeit ist Weihnachten in England?"
+            options: ["summer", "spring", "winter"]
+            answer: "winter"
+            option_audio: false
+          - id: l2-c17
+            part: birthday
+            type: audio_choice
+            text: "Wann hat das Mädchen Geburtstag?"
+            say: { de: "Hör gut zu. Wann hat das Mädchen Geburtstag?" }
+            audio: { en: "My birthday is in March. My brother's birthday is in May.", speaker: female }
+            options: ["im Mai", "im März", "im Juni"]
+            answer: "im März"
+          - id: l2-c18
+            part: birthday
+            type: fill_in_blank
+            text: "Ergänze den Satz: Mein Geburtstag ist im April."
+            say: "Ergänze den Satz: Mein Geburtstag ist im April."
+            frame: "My birthday is _ April."
+            options: ["in", "on", "at"]
+            answer: ["in"]
+            option_audio: false
+          - id: l2-c19
+            part: birthday
+            type: ordering
+            text: "Bau die Frage: Wann hast du Geburtstag?"
+            say: "Bau die Frage: Wann hast du Geburtstag?"
+            options: ["birthday?", "When's", "your"]
+            slot_count: 3
+            answer: ["When's", "your", "birthday?"]
+            option_audio: false
+          - id: l2-c20
+            part: birthday
+            type: true_false
+            text: "Hat Ben im Winter Geburtstag?"
+            say: { de: "Hör zu. Hat Ben im Winter Geburtstag?" }
+            audio: { en: "Hi, I'm Ben. My birthday is in January.", speaker: male }
+            answer: true

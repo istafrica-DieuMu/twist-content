@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: topic, what: { de: "erkennen, worum es in einem ganzen Text geht", en: seeing what a whole text is about } }
+    - { id: heading-picture, what: { de: eine passende Überschrift oder ein passendes Bild finden, en: choosing a heading or a picture that fits } }
+    - { id: paragraph, what: { de: mit kleinen Überschriften den passenden Absatz finden, en: finding the right paragraph by its subheading } }
+    - { id: in-paragraph, what: { de: "im passenden Absatz nachlesen, was dort steht", en: reading the right paragraph to see what it says } }
   misconceptions:
     - id: detail-as-topic
       what: Names a detail from one sentence as what the whole text is about (um den Winter for a text about the hedgehog)
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -242,6 +248,30 @@ lessons:
             say: "Überflieg den Text. Welches Bild passt dazu?"
             options: [{ object: bread }, { object: boat }, { object: book }]
             answer: bread
+          - id: l1-c4
+            type: multiple_choice
+            text: "Der Löwe\nDer Löwe hat eine große Mähne.\nEr lebt in Afrika.\nAm Tag liegt er oft im Schatten.\n\nWorum geht es in dem Text?"
+            say: "Überflieg den Text. Schau auf die Überschrift und das Bild. Worum geht es?"
+            show: { object: lion }
+            options: ["um den Löwen", "um Afrika", "um den Schatten"]
+            answer: "um den Löwen"
+          - id: l1-c5
+            type: true_false
+            text: "Mein Zimmer\nIn meinem Zimmer steht ein Bett.\nAm Fenster ist mein Schreibtisch.\nAuf dem Regal sitzt mein Teddy.\n\nErzählt der Text, wie ein Zimmer aussieht?"
+            say: "Überflieg den Text. Erzählt der Text, wie ein Zimmer aussieht?"
+            answer: true
+          - id: l1-c6
+            type: sorting
+            text: "Hier sind Überschriften. Sortiere: Sport oder Essen?"
+            say: "Lies die Überschriften. Geht es um Sport oder um Essen?"
+            bins:
+              - { id: sport, show: { text: "Sport" }, say: "Sport" }
+              - { id: essen, show: { text: "Essen" }, say: "Essen" }
+            options:
+              - { text: "Unser Fußballspiel", bin: sport }
+              - { text: "Pizza backen", bin: essen }
+              - { text: "Ich lerne schwimmen", bin: sport }
+              - { text: "Suppe bei Oma", bin: essen }
 
   - n: 2
     title: { de: "Absätze und kleine Überschriften", en: "Paragraphs and subheadings" }
@@ -410,8 +440,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: topic
             type: multiple_choice
             text: "Der Schmetterling\nZuerst ist er eine Raupe.\nDann wird er eine Puppe.\nAm Ende schlüpft ein bunter Schmetterling.\n\nWorum geht es in dem Text?"
             say: "Überflieg den Text. Schau auf die Überschrift und das Bild. Worum geht es?"
@@ -419,25 +451,133 @@ lessons:
             options: ["um den Schmetterling", "um eine Puppe", "um Farben"]
             answer: "um den Schmetterling"
           - id: l2-c2
+            part: paragraph
             type: multiple_choice
             text: "Der Elefant\n\nAussehen\nElefanten haben große Ohren und einen Rüssel.\n\nFutter\nSie fressen Gras, Blätter und Früchte.\n\nFamilie\nElefanten leben in großen Gruppen.\n\nDu willst wissen, wie Elefanten zusammenleben. Welchen Absatz liest du?"
             say: "Überflieg die kleinen Überschriften. Welchen Absatz liest du?"
             options: ["Familie", "Aussehen", "Futter"]
             answer: "Familie"
           - id: l2-c3
+            part: heading-picture
             type: multiple_choice
             text: "Wir kaufen Brot, Käse und Äpfel.\nAn der Kasse bezahlt Papa.\nDann tragen wir die Taschen nach Hause.\n\nWelche Überschrift passt?"
             say: "Überflieg den Text. Welche Überschrift passt?"
             options: ["Einkaufen", "Im Kino", "Beim Arzt"]
             answer: "Einkaufen"
           - id: l2-c4
+            part: in-paragraph
             type: true_false
-            text: "Der Elefant\n\nAussehen\nElefanten haben große Ohren und einen Rüssel.\n\nFutter\nSie fressen Gras, Blätter und Früchte.\n\nSteht im Absatz „Futter“, was Elefanten fressen?"
+            text: "Der Elefant\n\nAussehen\nElefanten haben große Ohren und einen Rüssel.\n\nFutter\nSie fressen Gras, Blätter und Früchte.\n\nFamilie\nElefanten leben in großen Gruppen.\n\nSteht im Absatz „Futter“, was Elefanten fressen?"
             say: "Lies die Frage unten. Steht das im Absatz Futter?"
             answer: true
           - id: l2-c5
+            part: heading-picture
             type: image_multiple_choice
             text: "Ab ins Wasser!\nIm Sommer gehen wir an den See.\nIch habe ein kleines Boot dabei.\nEs schaukelt auf den Wellen.\n\nWelches Bild passt zum Text?"
             say: "Überflieg den Text. Welches Bild passt dazu?"
             options: [{ object: boat }, { object: bus }, { object: car }]
             answer: boat
+          - id: l2-c6
+            part: topic
+            type: multiple_choice
+            text: "Der Pinguin\nPinguine können nicht fliegen.\nAber sie schwimmen sehr schnell.\nSie leben dort, wo es kalt ist.\n\nWorum geht es in dem Text?"
+            say: "Überflieg den Text. Schau auf die Überschrift. Worum geht es?"
+            options: ["um den Pinguin", "ums Fliegen", "um die Kälte"]
+            answer: "um den Pinguin"
+          - id: l2-c7
+            part: topic
+            type: true_false
+            text: "Die Feuerwehr\nDie Feuerwehr kommt mit Blaulicht.\nSie löscht Brände.\nSie holt auch Katzen vom Baum.\n\nGeht es in dem Text um Katzen?"
+            say: "Überflieg den Text. Schau auf die Überschrift und das Bild. Geht es in dem Text um Katzen?"
+            show: { object: fire-engine }
+            answer: false
+          - id: l2-c8
+            part: topic
+            type: multiple_choice
+            text: "Lina zieht ihren Schlafanzug an.\nSie putzt sich die Zähne.\nPapa liest ihr noch eine Geschichte vor.\nDann macht er das Licht aus.\n\nWorum geht es in dem Text?"
+            say: "Überflieg den Text. Worum geht es?"
+            options: ["Lina geht ins Bett.", "Lina putzt sich die Zähne.", "Papa liest gern."]
+            answer: "Lina geht ins Bett."
+          - id: l2-c9
+            part: topic
+            type: true_false
+            text: "Der Herbst\nDie Blätter werden bunt.\nDer Wind weht sie von den Bäumen.\nWir sammeln Kastanien.\n\nGeht es in dem Text um eine Jahreszeit?"
+            say: "Überflieg den Text. Geht es in dem Text um eine Jahreszeit?"
+            answer: true
+          - id: l2-c10
+            part: heading-picture
+            type: multiple_choice
+            text: "Die Kinder sitzen im Kreis.\nFrau Kaya liest eine Geschichte vor.\nDann rechnen alle in ihrem Heft.\n\nWelche Überschrift passt?"
+            say: "Überflieg den Text. Welche Überschrift passt?"
+            options: ["In der Schule", "Auf dem Spielplatz", "Beim Arzt"]
+            answer: "In der Schule"
+          - id: l2-c11
+            part: heading-picture
+            type: image_multiple_choice
+            text: "Mein Haustier\nEs hat lange Ohren und ein weiches Fell.\nEs hoppelt durch den Garten.\nAm liebsten frisst es Möhren.\n\nWelches Bild passt zum Text?"
+            say: "Überflieg den Text. Welches Bild passt dazu?"
+            options: [{ object: carrot }, { object: rabbit }, { object: garden }]
+            answer: rabbit
+          - id: l2-c12
+            part: heading-picture
+            type: image_multiple_choice
+            text: "Ganz schön nass!\nDraußen regnet es.\nIch ziehe meine Gummistiefel an.\nDann springe ich in jede Pfütze.\n\nWelches Bild passt zum Text?"
+            say: "Überflieg den Text. Welches Bild passt dazu?"
+            options: [{ object: sun }, { object: sandcastle }, { object: puddle }]
+            answer: puddle
+          - id: l2-c13
+            part: paragraph
+            type: multiple_choice
+            text: "Der Hund\n\nAussehen\nHunde gibt es groß und klein, mit kurzem oder langem Fell.\n\nFutter\nHunde fressen Fleisch und Hundefutter.\n\nBewegung\nEin Hund muss jeden Tag nach draußen.\n\nDu willst wissen, wie oft ein Hund nach draußen muss. Welchen Absatz liest du?"
+            say: "Überflieg die kleinen Überschriften. Welchen Absatz liest du?"
+            options: ["Bewegung", "Aussehen", "Futter"]
+            answer: "Bewegung"
+          - id: l2-c14
+            part: paragraph
+            type: matching
+            text: "Der Bauernhof: Welcher Satz gehört zu welcher Überschrift?"
+            say: "Lies die Sätze. Verbinde jede kleine Überschrift mit dem passenden Satz."
+            pairs:
+              - { left: { text: "Tiere" }, right: { text: "Auf dem Hof leben Kühe und Hühner." } }
+              - { left: { text: "Arbeit" }, right: { text: "Der Bauer fährt mit dem Traktor." } }
+              - { left: { text: "Felder" }, right: { text: "Auf dem Feld wächst Weizen." } }
+          - id: l2-c15
+            part: paragraph
+            type: multiple_choice
+            text: "Die Ritterburg\n\nMauern\nDie Burg hat dicke Mauern aus Stein.\n\nBewohner\nIn der Burg wohnen der Ritter und seine Familie.\n\nFeste\nIm großen Saal feiern sie Feste.\n\nDu willst wissen, wer in der Burg wohnt. Welchen Absatz liest du?"
+            say: "Überflieg die kleinen Überschriften. Welchen Absatz liest du?"
+            options: ["Bewohner", "Mauern", "Feste"]
+            answer: "Bewohner"
+          - id: l2-c16
+            part: heading-picture
+            type: multiple_choice
+            text: "Aussehen\nDie Eule hat große, runde Augen.\n\nFutter\nSie frisst Mäuse.\n\nSchlafen\nAm Tag schläft sie in einem hohlen Baum.\n\nWelche Überschrift passt zum ganzen Text?"
+            say: "Überflieg den Text. Welche Überschrift passt zum ganzen Text?"
+            options: ["Die Eule", "Schlafen", "Im Baum"]
+            answer: "Die Eule"
+          - id: l2-c17
+            part: in-paragraph
+            type: multiple_choice
+            text: "Der Hund\n\nAussehen\nHunde gibt es groß und klein, mit kurzem oder langem Fell.\n\nFutter\nHunde fressen Fleisch und Hundefutter.\n\nBewegung\nEin Hund muss jeden Tag nach draußen.\n\nWas fressen Hunde?"
+            say: "Überflieg die kleinen Überschriften. Lies dann den passenden Absatz. Was fressen Hunde?"
+            options: ["Fleisch und Hundefutter", "Gras und Heu", "nur Knochen"]
+            answer: "Fleisch und Hundefutter"
+          - id: l2-c18
+            part: in-paragraph
+            type: true_false
+            text: "Die Ritterburg\n\nMauern\nDie Burg hat dicke Mauern aus Stein.\n\nBewohner\nIn der Burg wohnen der Ritter und seine Familie.\n\nFeste\nIm großen Saal feiern sie Feste.\n\nSteht im Absatz „Feste“, wo gefeiert wird?"
+            say: "Lies die Frage unten. Steht das im Absatz Feste?"
+            answer: true
+          - id: l2-c19
+            part: in-paragraph
+            type: multiple_choice
+            text: "Die Erdbeere\n\nWachsen\nErdbeeren wachsen auf dem Feld, nah am Boden.\n\nErnte\nIm Juni sind die Erdbeeren reif.\n\nEssen\nErdbeeren schmecken mit Sahne oder als Marmelade.\n\nWann sind Erdbeeren reif?"
+            say: "Überflieg die kleinen Überschriften. Lies dann den passenden Absatz. Wann sind Erdbeeren reif?"
+            options: ["im Juni", "im Winter", "mit Sahne"]
+            answer: "im Juni"
+          - id: l2-c20
+            part: in-paragraph
+            type: true_false
+            text: "Die Erdbeere\n\nWachsen\nErdbeeren wachsen auf dem Feld, nah am Boden.\n\nErnte\nIm Juni sind die Erdbeeren reif.\n\nEssen\nErdbeeren schmecken mit Sahne oder als Marmelade.\n\nSteht im Absatz „Wachsen“, wie Erdbeeren schmecken?"
+            say: "Lies die Frage unten. Steht das im Absatz Wachsen?"
+            answer: false

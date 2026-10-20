@@ -24,9 +24,13 @@ metadata:
   also_practises: [lit-de.nouns.articles]
   vocabulary: { de: [Einzahl, Mehrzahl, Nomen, Begleiter, Umlaut] }
   forms: [picture, drawn, audio]
-  drawn: [word-card]
+  drawn: [word-card, letter-card]
   sounds: []
   facets: []
+  parts:
+    - { id: tell, what: { de: Einzahl und Mehrzahl unterscheiden, en: telling singular from plural } }
+    - { id: form, what: { de: die Mehrzahl eines Nomens bilden, en: forming the plural of a noun } }
+    - { id: use, what: { de: die Mehrzahl im Satz und zum Wort finden, en: finding the plural in a sentence and for a word } }
   misconceptions:
     - id: die-means-many
       what: Takes every word with die as a Mehrzahl (die Katze, die Sonne)
@@ -242,6 +246,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -263,6 +268,32 @@ lessons:
             show: { object: star, count: 3, layout: row }
             options: ["die Sterne", "der Sterne", "die Stern"]
             answer: "die Sterne"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "die Schafe"
+            say: "Hör zu: die Schafe. Welches Bild passt?"
+            options: [{ object: sheep }, { object: sheep, count: 3, layout: row }]
+            option_audio: false
+            answer: "3"
+          - id: l1-c5
+            type: sorting
+            text: "Einzahl oder Mehrzahl?"
+            say: "Lies die Wörter. Ist es eins, oder sind es mehrere? Sortiere."
+            bins:
+              - { id: einzahl, show: { text: "Einzahl" }, say: "Einzahl" }
+              - { id: mehrzahl, show: { text: "Mehrzahl" }, say: "Mehrzahl" }
+            options:
+              - { text: "die Mützen", bin: mehrzahl }
+              - { text: "die Hose", bin: einzahl }
+              - { text: "die Beine", bin: mehrzahl }
+              - { text: "der Arm", bin: einzahl }
+          - id: l1-c6
+            type: multiple_choice
+            text: "Was ist die Mehrzahl von „die Wolke“?"
+            say: "Die Wolke. Was ist die Mehrzahl?"
+            show: { object: cloud, count: 3, layout: row }
+            options: ["die Wolke", "die Wolken", "der Wolken"]
+            answer: "die Wolken"
 
   - n: 2
     title: { de: Die Mehrzahl bilden, en: Making the plural }
@@ -464,8 +495,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tell
             type: image_multiple_choice
             text: "die Erdbeeren"
             say: "Hör gut zu: die Erdbeeren. Welches Bild passt?"
@@ -473,12 +506,140 @@ lessons:
             option_audio: false
             answer: "3"
           - id: l2-c2
+            part: tell
             type: true_false
             text: "die Tanne: Ist das die Mehrzahl?"
             say: "Die Tanne. Ist das die Mehrzahl?"
             show: { object: fir-tree }
             answer: false
+          - id: l2-c6
+            part: tell
+            type: highlight_in_text
+            text: "Tippe auf jedes Nomen in der Mehrzahl."
+            say: "Lies die Sätze. Tippe auf jedes Nomen in der Mehrzahl."
+            show: { drawn: letter-card, text: "Lea holt die Gabeln. Die Blumen stehen auf dem Tisch." }
+            spans: ["Blumen", "Gabeln"]
+          - id: l2-c7
+            part: tell
+            type: image_multiple_choice
+            text: "die Krone"
+            say: "Hör gut zu: die Krone. Welches Bild passt?"
+            options: [{ object: crown, count: 3, layout: row }, { object: crown }]
+            option_audio: false
+            answer: crown
+          - id: l2-c8
+            part: tell
+            type: true_false
+            text: "Passt das Wort zum Bild? die Löwen"
+            say: "Schau dir das Bild an. Passt das Wort die Löwen dazu?"
+            show: { object: lion }
+            answer: false
+          - id: l2-c9
+            part: tell
+            type: multiple_choice
+            text: "Welches Wort ist die Mehrzahl?"
+            say: "Lies beide Wörter. Welches Wort ist die Mehrzahl?"
+            options: ["die Feder", "die Federn"]
+            answer: "die Federn"
+          - id: l2-c10
+            part: tell
+            type: sorting
+            text: "Einzahl oder Mehrzahl?"
+            say: "Lies die Wörter. Ist es eins, oder sind es mehrere? Sortiere."
+            bins:
+              - { id: einzahl, show: { text: "Einzahl" }, say: "Einzahl" }
+              - { id: mehrzahl, show: { text: "Mehrzahl" }, say: "Mehrzahl" }
+            options:
+              - { text: "die Schafe", bin: mehrzahl }
+              - { text: "die Eule", bin: einzahl }
+              - { text: "die Ohren", bin: mehrzahl }
+              - { text: "das Pferd", bin: einzahl }
+          - id: l2-c11
+            part: form
+            type: multiple_choice
+            text: "Ein Vogel, zwei ..."
+            say: "Ein Vogel, zwei ... Wie heißt die Mehrzahl?"
+            show: { object: bird, count: 2, layout: row }
+            options: ["Vogels", "Vogel", "Vögel"]
+            answer: "Vögel"
+          - id: l2-c12
+            part: form
+            type: fill_in_blank
+            text: "Was kommt dazu?"
+            say: "Ein Bär, zwei ... Was kommt am Ende dazu?"
+            show: { object: bear, count: 2, layout: row }
+            frame: "die Bär_"
+            options: ["s", "e", "en"]
+            answer: ["en"]
+          - id: l2-c13
+            part: form
+            type: multiple_choice
+            text: "Ein Glas, zwei ..."
+            say: "Ein Glas, zwei ... Wie heißt die Mehrzahl?"
+            show: { object: glass, count: 2, layout: row }
+            options: ["Glase", "Glaser", "Gläser"]
+            answer: "Gläser"
+          - id: l2-c14
+            part: form
+            type: true_false
+            text: "Stimmt das? ein Wurm, zwei Würmer"
+            say: "Hör zu: ein Wurm, zwei Würmer. Stimmt das?"
+            show: { object: worm, count: 2, layout: row }
+            answer: true
+          - id: l2-c15
+            part: form
+            type: multiple_choice
+            text: "Was ist die Mehrzahl von „der Koffer“?"
+            say: "Der Koffer. Was ist die Mehrzahl?"
+            show: { object: suitcase, count: 2, layout: row }
+            options: ["die Koffers", "die Koffer", "die Kofferen"]
+            answer: "die Koffer"
+          - id: l2-c16
+            part: use
+            type: fill_in_blank
+            text: "Welches Wort passt?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: horse, count: 2, layout: row }
+            frame: "Auf der Wiese stehen zwei _."
+            options: ["Pferde", "Pferd", "Pferds"]
+            answer: ["Pferde"]
+          - id: l2-c17
+            part: use
+            type: fill_in_blank
+            text: "Welches Wort passt?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: lamb, count: 3, layout: row }
+            frame: "Im Stall schlafen drei _."
+            options: ["Lamme", "Lämmer", "Lamm"]
+            answer: ["Lämmer"]
+          - id: l2-c18
+            part: use
+            type: matching
+            text: "Einzahl und Mehrzahl: Was gehört zusammen?"
+            say: "Verbinde jedes Wort mit seiner Mehrzahl."
+            pairs:
+              - { left: { text: "der Kopf" }, right: { text: "die Köpfe" } }
+              - { left: { text: "das Schiff" }, right: { text: "die Schiffe" } }
+              - { left: { text: "die Kerze" }, right: { text: "die Kerzen" } }
+          - id: l2-c19
+            part: use
+            type: fill_in_blank
+            text: "Welches Wort passt?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: eye, count: 2, layout: row }
+            frame: "Ich sehe mit beiden _."
+            options: ["Auge", "Auges", "Augen"]
+            answer: ["Augen"]
+          - id: l2-c20
+            part: use
+            type: multiple_choice
+            text: "Welcher Satz ist richtig?"
+            say: "Lies die Sätze. Welcher Satz ist richtig?"
+            show: { object: hen, count: 3, layout: row }
+            options: ["Auf dem Hof laufen viele Huhn.", "Auf dem Hof laufen viele Hühner.", "Auf dem Hof laufen viele Huhne."]
+            answer: "Auf dem Hof laufen viele Hühner."
           - id: l2-c3
+            part: form
             type: fill_in_blank
             text: "Was kommt dazu?"
             say: "Ein Kind, zwei ... Was kommt am Ende dazu?"
@@ -487,6 +648,7 @@ lessons:
             options: ["e", "en", "er"]
             answer: ["er"]
           - id: l2-c4
+            part: form
             type: multiple_choice
             text: "Ein Hut, zwei ..."
             say: "Ein Hut, zwei ... Wie heißt die Mehrzahl?"
@@ -494,6 +656,7 @@ lessons:
             options: ["Hute", "Hüte", "Huts"]
             answer: "Hüte"
           - id: l2-c5
+            part: use
             type: matching
             text: "Einzahl und Mehrzahl: Was gehört zusammen?"
             say: "Welche Mehrzahl gehört zu welchem Wort? Verbinde."

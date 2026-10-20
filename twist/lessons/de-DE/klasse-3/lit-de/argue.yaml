@@ -12,7 +12,10 @@ summary: >
   opinion and builds sentences with Ich finde … , weil …; lesson 2 asks
   politely (bitte, könntest du, würden Sie), chooses du or Sie, adds a
   reason to a request, and ends with the skill check. The speak tasks run
-  as the record-and-compare fallback and are never scored.
+  as the record-and-compare fallback and are never scored: saying an
+  opinion and a request aloud is covered by Practise, and the skill check
+  marks what a screen can mark (opinion or reason, the reason that fits,
+  the polite request, du or Sie).
 metadata:
   year: klasse-3
   topic: { de: Sprechen und Zuhören, en: Speaking and listening }
@@ -24,6 +27,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: opinion-reason, what: { de: Meinung und Grund unterscheiden, en: telling an opinion from its reason } }
+    - { id: good-reason, what: { de: "einen Grund wählen, der die Meinung wirklich stützt, und ihn mit weil anschließen", en: "choosing a reason that really supports the opinion and joining it with weil" } }
+    - { id: polite, what: { de: höflich um etwas bitten, en: asking politely for something } }
+    - { id: du-sie, what: { de: du oder Sie wählen, en: choosing du or Sie } }
   misconceptions:
     - id: reason-repeats-opinion
       what: Gives the opinion again as its reason (Ich mag Pizza, weil ich Pizza mag)
@@ -225,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -235,7 +244,7 @@ lessons:
           - id: l1-c2
             type: ordering
             text: "Bau den Satz."
-            say: "Bau einen Satz mit Meinung und Grund. Denk daran: Nach weil steht das Verb am Ende."
+            say: "Bau einen Satz mit Meinung und Grund."
             options: ["lustig sind.", "weil", "Ich mag Comics,", "die Bilder"]
             slot_count: 4
             answer: ["Ich mag Comics,", "weil", "die Bilder", "lustig sind."]
@@ -245,6 +254,31 @@ lessons:
             text: "„Ich finde Pizza lecker, weil Pizza lecker ist.“ Ist das ein guter Grund?"
             say: "Lies den Satz. Ist das ein guter Grund?"
             answer: false
+          - id: l1-c4
+            type: sorting
+            text: "Sortiere die Sätze: Meinung oder Grund?"
+            say: "Sortiere die Sätze: Meinung oder Grund?"
+            bins:
+              - { id: opinion, show: { text: "Meinung" }, say: "Meinung" }
+              - { id: reason, show: { text: "Grund" }, say: "Grund" }
+            options:
+              - { text: "Ich finde Gewitter spannend.", bin: opinion }
+              - { text: "Die Blitze leuchten hell am Himmel.", bin: reason }
+              - { text: "Der Winter ist die beste Jahreszeit.", bin: opinion }
+              - { text: "Dann kann ich Schneemänner bauen.", bin: reason }
+            option_audio: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Welches Wort verbindet Meinung und Grund?"
+            say: "Welches Wort verbindet die Meinung mit dem Grund?"
+            frame: "Ich spiele gern Gitarre, _ ich Musik liebe."
+            options: ["weil", "aber", "oder"]
+            answer: ["weil"]
+          - id: l1-c6
+            type: true_false
+            text: "„Ich finde Schnecken eklig, weil sie so schleimig sind.“ Ist das eine Meinung mit einem Grund?"
+            say: "Lies den Satz. Ist das eine Meinung mit einem Grund?"
+            answer: true
 
   - n: 2
     title: { de: "Höflich bitten", en: "Asking politely" }
@@ -299,7 +333,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: fill_in_blank
-                text: "du oder Sie?"
+                text: "Du sprichst mit dem Hausmeister. Welches Wort passt?"
                 say: "Du sprichst mit dem Hausmeister. Welches Wort passt?"
                 frame: "Herr Schulz, können _ mir bitte die Tür aufschließen?"
                 options: ["Sie", "du", "ihr"]
@@ -356,7 +390,7 @@ lessons:
                 hints: ["Welcher Satz ist eine freundliche Bitte mit Grund?"]
               - id: l2-s2
                 type: fill_in_blank
-                text: "du oder Sie?"
+                text: "Du sprichst mit deiner Freundin Ida. Welches Wort passt?"
                 say: "Du sprichst mit deiner Freundin Ida. Welches Wort passt?"
                 frame: "Ida, kannst _ mir bitte deinen Stift leihen?"
                 options: ["du", "Sie", "ihr"]
@@ -400,7 +434,7 @@ lessons:
                 answer: "Entschuldigung, ist hier noch frei?"
               - id: l2-n2
                 type: fill_in_blank
-                text: "du oder Sie?"
+                text: "Du sprichst mit der Frau an der Kasse. Welches Wort passt?"
                 say: "Du sprichst mit der Frau an der Kasse. Welches Wort passt?"
                 frame: "Entschuldigung, haben _ auch Äpfel?"
                 options: ["Sie", "du", "ihr"]
@@ -432,8 +466,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: opinion-reason
             type: sorting
             text: "Was ist Meinung, was ist Grund?"
             say: "Lies die Sätze. Sortiere sie: Meinung oder Grund?"
@@ -447,29 +483,150 @@ lessons:
               - { text: "Sie sind süß und knackig.", bin: reason }
             option_audio: false
           - id: l2-c2
+            part: good-reason
             type: multiple_choice
             text: "Ich finde, wir sollten ein Hochbeet im Schulgarten bauen, weil …\n\nWelcher Grund passt am besten?"
             say: "Lies den Satzanfang. Welcher Grund passt am besten?"
             options: ["… wir dann eigenes Gemüse ernten können.", "… ich ein Hochbeet gut finde.", "… der Hausmeister Herr Schulz heißt."]
             answer: "… wir dann eigenes Gemüse ernten können."
           - id: l2-c3
+            part: polite
             type: multiple_choice
             text: "Du hast dein Mäppchen vergessen. Was sagst du zu deinem Sitznachbarn Jonas?"
             say: "Du hast dein Mäppchen vergessen. Was sagst du zu deinem Sitznachbarn Jonas?"
             options: ["Jonas, kannst du mir bitte einen Bleistift leihen? Ich habe mein Mäppchen vergessen.", "Gib mir einen Bleistift!", "Bleistift, schnell!"]
             answer: "Jonas, kannst du mir bitte einen Bleistift leihen? Ich habe mein Mäppchen vergessen."
           - id: l2-c4
+            part: du-sie
             type: fill_in_blank
-            text: "du oder Sie?"
+            text: "Du sprichst mit der Ärztin. Welches Wort passt?"
             say: "Du sprichst mit der Ärztin. Welches Wort passt?"
             frame: "Frau Weber, können _ mir bitte sagen, ob die Spritze wehtut?"
             options: ["Sie", "du", "ihr"]
             answer: ["Sie"]
           - id: l2-c5
+            part: good-reason
             type: ordering
             text: "Bau den Satz."
-            say: "Bau einen Satz mit Meinung und Grund. Nach weil steht das Verb am Ende."
+            say: "Bau einen Satz mit Meinung und Grund."
             options: ["schön ist.", "weil", "Ich wandere gern,", "die Aussicht"]
             slot_count: 4
             answer: ["Ich wandere gern,", "weil", "die Aussicht", "schön ist."]
             option_audio: false
+          - id: l2-c6
+            part: opinion-reason
+            type: sorting
+            text: "Sortiere: Meinung oder Grund?"
+            say: "Lies die Sätze. Ist das eine Meinung oder ein Grund?"
+            bins:
+              - { id: opinion, show: { text: "Meinung" }, say: "Meinung" }
+              - { id: reason, show: { text: "Grund" }, say: "Grund" }
+            options:
+              - { text: "Ich finde Zelten toll.", bin: opinion }
+              - { text: "Nachts hört man draußen die Eulen.", bin: reason }
+              - { text: "Hausaufgaben sollten kürzer sein.", bin: opinion }
+              - { text: "Dann bleibt mehr Zeit zum Spielen.", bin: reason }
+            option_audio: false
+          - id: l2-c7
+            part: opinion-reason
+            type: true_false
+            text: "„Kaninchen sind tolle Haustiere.“ Ist das ein Grund?"
+            say: "Lies den Satz. Ist das ein Grund?"
+            answer: false
+          - id: l2-c8
+            part: opinion-reason
+            type: multiple_choice
+            text: "Welcher Satz ist eine Meinung?"
+            options: ["Ich finde, Sport am Morgen macht wach.", "Der Bus kommt um acht Uhr.", "Heute ist Montag."]
+            answer: "Ich finde, Sport am Morgen macht wach."
+          - id: l2-c9
+            part: opinion-reason
+            type: multiple_choice
+            text: "„Ich finde Schwimmen toll, weil ich mich dabei abkühlen kann.“\n\nWelcher Teil ist der Grund?"
+            say: "Lies den Satz. Welcher Teil ist der Grund?"
+            options: ["weil ich mich dabei abkühlen kann", "Ich finde Schwimmen toll", "Schwimmen"]
+            answer: "weil ich mich dabei abkühlen kann"
+          - id: l2-c10
+            part: good-reason
+            type: true_false
+            text: "„Ich finde den Spielplatz am See am besten, weil es dort eine lange Rutsche gibt.“ Ist das eine Meinung mit einem Grund?"
+            say: "Lies den Satz. Ist das eine Meinung mit einem Grund?"
+            answer: true
+          - id: l2-c11
+            part: good-reason
+            type: ordering
+            text: "Bau den Satz."
+            say: "Bau einen Satz mit Meinung und Grund."
+            options: ["sie", "Ich finde Pinguine lustig,", "watscheln.", "weil"]
+            slot_count: 4
+            answer: ["Ich finde Pinguine lustig,", "weil", "sie", "watscheln."]
+            option_audio: false
+          - id: l2-c12
+            part: good-reason
+            type: multiple_choice
+            text: "Ich finde, wir sollten mehr Ausflüge machen.\n\nWelcher Grund stützt die Meinung nicht?"
+            say: "Lies die Meinung. Welcher Grund stützt die Meinung nicht?"
+            options: ["Wir lernen draußen viel Neues.", "Wir bewegen uns an der frischen Luft.", "Ausflüge finde ich gut."]
+            answer: "Ausflüge finde ich gut."
+          - id: l2-c13
+            part: polite
+            type: multiple_choice
+            text: "Du suchst in der Bücherei ein Buch über Dinosaurier. Was sagst du zu der Frau an der Ausleihe?"
+            say: "Du suchst in der Bücherei ein Buch über Dinosaurier. Was sagst du zu der Frau an der Ausleihe?"
+            options: ["Entschuldigung, könnten Sie mir bitte zeigen, wo die Dinosaurierbücher stehen?", "Ich will die Dinosaurierbücher!", "Zeig mir die Dinosaurierbücher!"]
+            answer: "Entschuldigung, könnten Sie mir bitte zeigen, wo die Dinosaurierbücher stehen?"
+          - id: l2-c14
+            part: polite
+            type: sorting
+            text: "Wie klingt das? Sortiere."
+            say: "Lies die Sätze. Sortiere sie: höflich oder unhöflich?"
+            bins:
+              - { id: polite, show: { text: "höflich" }, say: "höflich" }
+              - { id: rude, show: { text: "unhöflich" }, say: "unhöflich" }
+            options:
+              - { text: "Könntest du mir bitte das Salz geben?", bin: polite }
+              - { text: "Salz!", bin: rude }
+              - { text: "Entschuldigung, darf ich vorbei?", bin: polite }
+              - { text: "Geh weg da!", bin: rude }
+            option_audio: false
+          - id: l2-c15
+            part: polite
+            type: multiple_choice
+            text: "Dein Bruder hört laute Musik. Du machst Hausaufgaben. Welche Bitte passt?"
+            say: "Dein Bruder hört laute Musik. Du machst Hausaufgaben. Welche Bitte passt?"
+            options: ["Könntest du bitte die Musik leiser machen? Ich mache gerade Hausaufgaben.", "Mach sofort die Musik leiser!", "Deine Musik ist doof."]
+            answer: "Könntest du bitte die Musik leiser machen? Ich mache gerade Hausaufgaben."
+          - id: l2-c16
+            part: polite
+            type: true_false
+            text: "Lea sagt zu ihrem Opa: „Lies mir vor!“ Ist das eine höfliche Bitte?"
+            say: "Lies, was Lea zu ihrem Opa sagt. Ist das eine höfliche Bitte?"
+            answer: false
+          - id: l2-c17
+            part: du-sie
+            type: fill_in_blank
+            text: "Du sprichst mit einer Polizistin. Welches Wort passt?"
+            say: "Du sprichst mit einer Polizistin. Welches Wort passt?"
+            frame: "Entschuldigung, können _ mir sagen, wo die Post ist?"
+            options: ["Sie", "du", "ihr"]
+            answer: ["Sie"]
+          - id: l2-c18
+            part: du-sie
+            type: fill_in_blank
+            text: "Du sprichst mit deinem Opa. Welches Wort passt?"
+            say: "Du sprichst mit deinem Opa. Welches Wort passt?"
+            frame: "Opa, kannst _ mir bitte die Schuhe zubinden?"
+            options: ["du", "Sie", "ihr"]
+            answer: ["du"]
+          - id: l2-c19
+            part: du-sie
+            type: true_false
+            text: "Ben fragt den Mann am Fahrkartenschalter: „Können Sie mir bitte sagen, wann der Zug fährt?“ Spricht er ihn richtig an?"
+            say: "Lies, was Ben den Mann am Fahrkartenschalter fragt. Spricht er ihn richtig an?"
+            answer: true
+          - id: l2-c20
+            part: du-sie
+            type: multiple_choice
+            text: "Wen sprichst du mit Sie an?"
+            options: ["die Verkäuferin in der Bäckerei", "deine Schwester", "deinen Freund Tim"]
+            answer: "die Verkäuferin in der Bäckerei"

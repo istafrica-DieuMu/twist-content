@@ -15,7 +15,10 @@ summary: >
   sentence, gives fair feedback, and ends with the skill check. The talks
   about the honeybee and the red fox use well-established facts and are
   written for Twist. The speak tasks run as the record-and-compare
-  fallback and are never scored.
+  fallback and are never scored. The skill check marks what a screen can
+  mark (the cue card, what fits the topic, the order of the parts, what
+  helps when speaking, fair feedback); giving the talk aloud is covered by
+  the speak tasks in Practise.
 metadata:
   year: klasse-4
   topic: { de: Vor anderen sprechen, en: Speaking to an audience }
@@ -27,6 +30,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: cue-card, what: { de: Stichwörter für den Stichwortzettel wählen, en: choosing key words for the cue card } }
+    - { id: fit-topic, what: { de: "Stichwörter weglassen, die nicht zum Thema passen", en: leaving out notes that do not fit the topic } }
+    - { id: structure, what: { de: "Einleitung, Hauptteil und Schluss ordnen", en: "putting introduction, main part and ending in order" } }
+    - { id: delivery, what: { de: "wissen, was beim Vortragen hilft, und frei sprechen", en: knowing what helps when giving a talk and speaking freely } }
+    - { id: feedback, what: { de: eine faire Rückmeldung geben, en: giving fair feedback } }
   misconceptions:
     - id: read-out-sentences
       what: Writes whole sentences on the card and reads them out instead of speaking freely
@@ -232,6 +241,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -251,6 +261,25 @@ lessons:
             say: "Das Thema ist: Wie Bienen Honig machen. Welches Stichwort gehört nicht auf den Zettel?"
             options: ["Wespen auf dem Kuchen", "Nektar aus Blüten", "Honig in den Waben"]
             answer: "Wespen auf dem Kuchen"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Igel sind nachts unterwegs und schlafen am Tag.\n\nWas schreibst du auf den Stichwortzettel?"
+            say: "Lies den Satz. Was schreibst du auf den Stichwortzettel?"
+            options: ["Igel sind nachts unterwegs und schlafen am Tag.", "nachts unterwegs, tagsüber Schlaf", "sind und am"]
+            answer: "nachts unterwegs, tagsüber Schlaf"
+          - id: l1-c5
+            type: ordering
+            text: "Bring die Teile des Vortrags in die richtige Reihenfolge."
+            say: "Bring die Teile des Vortrags in die richtige Reihenfolge."
+            options: ["Schluss: zusammenfassen", "Einleitung: Thema nennen", "Hauptteil: das Wichtigste"]
+            slot_count: 3
+            answer: ["Einleitung: Thema nennen", "Hauptteil: das Wichtigste", "Schluss: zusammenfassen"]
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Thema: Wie Bienen leben. Das Stichwort „Bienen bestäuben Blüten“ passt zum Thema. Stimmt das?"
+            say: "Das Thema ist: Wie Bienen leben. Das Stichwort Bienen bestäuben Blüten passt zum Thema. Stimmt das?"
+            answer: true
 
   - n: 2
     title: { de: "Den Vortrag halten", en: "Giving the talk" }
@@ -426,14 +455,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cue-card
             type: multiple_choice
             text: "Igel rollen sich bei Gefahr zu einer stacheligen Kugel zusammen.\n\nWas schreibst du auf den Stichwortzettel?"
             say: "Lies den Satz. Was schreibst du auf den Stichwortzettel?"
             options: ["Gefahr: zur Kugel rollen", "Igel rollen sich bei Gefahr zu einer stacheligen Kugel zusammen.", "sich bei"]
             answer: "Gefahr: zur Kugel rollen"
           - id: l2-c2
+            part: structure
             type: sorting
             text: "Einleitung, Hauptteil oder Schluss?"
             say: "Lies die Sätze aus einem Vortrag. Wohin gehören sie?"
@@ -447,20 +479,149 @@ lessons:
               - { text: "Das war mein Vortrag. Habt ihr Fragen?", bin: end }
             option_audio: false
           - id: l2-c3
+            part: fit-topic
             type: multiple_choice
             text: "Thema: So lebt der Maulwurf.\n\nWelches Stichwort gehört nicht auf den Zettel?"
             say: "Das Thema ist: So lebt der Maulwurf. Welches Stichwort gehört nicht auf den Zettel?"
             options: ["Opa hat einen Maulwurf im Garten", "Gänge unter der Erde", "Futter: Regenwürmer"]
             answer: "Opa hat einen Maulwurf im Garten"
           - id: l2-c4
+            part: delivery
             type: multiple_choice
             text: "Stichwort: schlechte Augen, gute Nase\n\nWelchen Satz sagst du dazu?"
             say: "Lies das Stichwort. Welchen Satz sagst du dazu im Vortrag?"
             options: ["Der Maulwurf sieht sehr schlecht, aber er kann gut riechen.", "Schlechte Augen, gute Nase.", "Der Maulwurf hat ein schwarzes Fell."]
             answer: "Der Maulwurf sieht sehr schlecht, aber er kann gut riechen."
           - id: l2-c5
+            part: feedback
             type: multiple_choice
             text: "Welche Rückmeldung ist fair und hilfreich?"
             say: "Ida hat ihren Vortrag über den Maulwurf gehalten. Welche Rückmeldung ist fair und hilfreich?"
             options: ["Dein Plakat war sehr schön. Ein Tipp: Lies weniger ab.", "Maulwürfe sind doch langweilig.", "Das war nichts."]
             answer: "Dein Plakat war sehr schön. Ein Tipp: Lies weniger ab."
+          - id: l2-c6
+            part: cue-card
+            type: multiple_choice
+            text: "Eichhörnchen vergraben im Herbst Nüsse als Vorrat für den Winter.\n\nWas schreibst du auf den Stichwortzettel?"
+            say: "Lies den Satz. Was schreibst du auf den Stichwortzettel?"
+            options: ["im Herbst als für", "Herbst: Nüsse vergraben", "Eichhörnchen vergraben im Herbst Nüsse als Vorrat für den Winter."]
+            answer: "Herbst: Nüsse vergraben"
+          - id: l2-c7
+            part: cue-card
+            type: true_false
+            text: "Auf einem guten Stichwortzettel stehen die Stichwörter groß und mit Nummern. Stimmt das?"
+            say: "Auf einem guten Stichwortzettel stehen die Stichwörter groß und mit Nummern. Stimmt das?"
+            answer: true
+          - id: l2-c8
+            part: cue-card
+            type: multiple_choice
+            text: "Welcher Stichwortzettel für einen Vortrag über Pinguine ist gut?"
+            say: "Lies die drei Zettel. Welcher Stichwortzettel für einen Vortrag über Pinguine ist gut?"
+            options: ["Pinguine leben in der Antarktis. Sie können nicht fliegen, aber sehr gut schwimmen.", "1. Antarktis  2. schwimmen statt fliegen  3. Futter: Fisch", "Pinguine, leben, in, der, sie, können"]
+            answer: "1. Antarktis  2. schwimmen statt fliegen  3. Futter: Fisch"
+            option_audio: false
+          - id: l2-c9
+            part: fit-topic
+            type: multiple_choice
+            text: "Thema: So lebt das Eichhörnchen.\n\nWelches Stichwort gehört nicht auf den Zettel?"
+            say: "Das Thema ist: So lebt das Eichhörnchen. Welches Stichwort gehört nicht auf den Zettel?"
+            options: ["Nest im Baum: Kobel", "mein Kuscheltier heißt Hörnchen", "Vorrat: Nüsse, Samen"]
+            answer: "mein Kuscheltier heißt Hörnchen"
+          - id: l2-c10
+            part: fit-topic
+            type: sorting
+            text: "Thema: Der Marienkäfer. Passt das Stichwort zum Thema?"
+            say: "Das Thema ist: Der Marienkäfer. Passt das Stichwort zum Thema oder nicht? Ordne zu."
+            bins:
+              - { id: fits, show: { text: "passt" }, say: "passt" }
+              - { id: off, show: { text: "passt nicht" }, say: "passt nicht" }
+            options:
+              - { text: "frisst Blattläuse", bin: fits }
+              - { text: "rote Flügel mit Punkten", bin: fits }
+              - { text: "mein Armband als Glücksbringer", bin: off }
+              - { text: "Bienen machen Honig", bin: off }
+            option_audio: false
+          - id: l2-c11
+            part: fit-topic
+            type: true_false
+            text: "Thema: Wie Pinguine leben. Das Stichwort „mein Besuch im Zoo mit Oma“ gehört auf den Zettel. Stimmt das?"
+            say: "Das Thema ist: Wie Pinguine leben. Das Stichwort mein Besuch im Zoo mit Oma gehört auf den Zettel. Stimmt das?"
+            answer: false
+          - id: l2-c12
+            part: structure
+            type: ordering
+            text: "Bring die Sätze aus einem Vortrag über den Regenwurm in die richtige Reihenfolge."
+            say: "Bring die Sätze aus einem Vortrag über den Regenwurm in die richtige Reihenfolge: vom Anfang bis zum Schluss."
+            options: ["Danke fürs Zuhören!", "Regenwürmer graben Gänge und lockern so die Erde.", "Jetzt wisst ihr, warum Regenwürmer wichtig sind.", "Wusstet ihr, dass Regenwürmer keine Augen haben?"]
+            slot_count: 4
+            answer: ["Wusstet ihr, dass Regenwürmer keine Augen haben?", "Regenwürmer graben Gänge und lockern so die Erde.", "Jetzt wisst ihr, warum Regenwürmer wichtig sind.", "Danke fürs Zuhören!"]
+            option_audio: false
+          - id: l2-c13
+            part: structure
+            type: multiple_choice
+            text: "In welchen Teil des Vortrags gehört: „Ein Marienkäfer frisst an einem Tag viele Blattläuse.“"
+            say: "In welchen Teil des Vortrags gehört der Satz: Ein Marienkäfer frisst an einem Tag viele Blattläuse?"
+            options: ["Einleitung", "Hauptteil", "Schluss"]
+            answer: "Hauptteil"
+            keep_order: true
+          - id: l2-c14
+            part: structure
+            type: multiple_choice
+            text: "Was machst du in der Einleitung eines Vortrags?"
+            say: "Was machst du in der Einleitung eines Vortrags?"
+            options: ["das Wichtigste zusammenfassen", "das Thema nennen und neugierig machen", "fragen, ob es noch Fragen gibt"]
+            answer: "das Thema nennen und neugierig machen"
+          - id: l2-c15
+            part: delivery
+            type: multiple_choice
+            text: "Stichwort: Löwenzahnsamen fliegen mit dem Wind\n\nWelchen Satz sagst du dazu?"
+            say: "Lies das Stichwort. Welchen Satz sagst du dazu im Vortrag?"
+            options: ["Löwenzahnsamen fliegen mit dem Wind.", "Der Löwenzahn blüht gelb.", "Die Samen des Löwenzahns sehen aus wie kleine Schirme und fliegen mit dem Wind weit weg."]
+            answer: "Die Samen des Löwenzahns sehen aus wie kleine Schirme und fliegen mit dem Wind weit weg."
+          - id: l2-c16
+            part: delivery
+            type: sorting
+            text: "Hilft das deinen Zuhörern oder nicht?"
+            say: "Du hältst einen Vortrag. Hilft das deinen Zuhörern oder nicht? Ordne zu."
+            bins:
+              - { id: helps, show: { text: "hilft" }, say: "hilft" }
+              - { id: hinders, show: { text: "hilft nicht" }, say: "hilft nicht" }
+            options:
+              - { text: "langsam und deutlich sprechen", bin: helps }
+              - { text: "nur ab und zu auf den Zettel schauen", bin: helps }
+              - { text: "dabei Kaugummi kauen", bin: hinders }
+              - { text: "den ganzen Text vom Blatt lesen", bin: hinders }
+            option_audio: false
+          - id: l2-c17
+            part: delivery
+            type: true_false
+            text: "Paul schaut kurz auf seinen Stichwortzettel. Dann schaut er hoch und erzählt in ganzen Sätzen. Spricht er frei?"
+            say: "Paul schaut kurz auf seinen Stichwortzettel. Dann schaut er hoch und erzählt in ganzen Sätzen. Spricht er frei?"
+            answer: true
+          - id: l2-c18
+            part: feedback
+            type: multiple_choice
+            text: "Ben hat seinen Vortrag gehalten. Welche Rückmeldung ist fair und hilfreich?"
+            say: "Ben hat seinen Vortrag gehalten. Welche Rückmeldung ist fair und hilfreich?"
+            options: ["Deine Fotos waren zu klein, und du hast gestottert.", "Super!", "Deine Fotos haben mir gefallen. Ein Tipp: Schau öfter hoch."]
+            answer: "Deine Fotos haben mir gefallen. Ein Tipp: Schau öfter hoch."
+          - id: l2-c19
+            part: feedback
+            type: true_false
+            text: "Bei einer guten Rückmeldung sagst du nur, was schlecht war. Stimmt das?"
+            say: "Bei einer guten Rückmeldung sagst du nur, was schlecht war. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: feedback
+            type: sorting
+            text: "Ist das eine faire Rückmeldung?"
+            say: "Lies die Sätze nach einem Vortrag. Ist das eine faire Rückmeldung oder nicht? Ordne zu."
+            bins:
+              - { id: fair, show: { text: "fair" }, say: "fair" }
+              - { id: unfair, show: { text: "nicht fair" }, say: "nicht fair" }
+            options:
+              - { text: "Dein Anfang war spannend.", bin: fair }
+              - { text: "Ein Tipp: Zeig das Bild etwas länger.", bin: fair }
+              - { text: "Das war voll peinlich.", bin: unfair }
+              - { text: "Du kannst das eben nicht.", bin: unfair }
+            option_audio: false

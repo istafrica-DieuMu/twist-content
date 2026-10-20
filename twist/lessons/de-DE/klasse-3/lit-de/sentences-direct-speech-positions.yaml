@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: end-statement, what: { de: "Begleitsatz hinten: Komma nach der Rede, der Punkt fällt weg", en: "reporting clause at the end: a comma after the speech, the full stop is dropped" } }
+    - { id: end-question, what: { de: "Begleitsatz hinten: Frage- und Ausrufezeichen bleiben stehen", en: "reporting clause at the end: question and exclamation marks stay" } }
+    - { id: middle, what: { de: "Begleitsatz in der Mitte: beide Teile in Anführungszeichen, Kommas davor und danach", en: "reporting clause in the middle: both parts in speech marks, commas before and after" } }
   misconceptions:
     - id: keep-full-stop
       what: Keeps the Punkt of the spoken sentence when the Begleitsatz follows („Ich komme mit.“, sagt Lea.)
@@ -218,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -239,6 +244,24 @@ lessons:
             say: "Lies die Karte. Ist das richtig geschrieben?"
             show: { drawn: letter-card, text: "„Lauf schneller!“, ruft der Trainer." }
             answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "„Ich habe Durst.“, sagt Moritz." }
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf alle Wörter des Begleitsatzes."
+            say: "Lies den Satz. Tippe auf die Wörter, die verraten, wer spricht."
+            show: { drawn: letter-card, text: "„Ich komme gleich“, ruft mein Bruder." }
+            spans: ["ruft", "mein", "Bruder"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Der Begleitsatz steht hinten. Welches Zeichen steht nach den Anführungszeichen?"
+            say: "Der Begleitsatz steht hinten. Welches Zeichen steht nach den Anführungszeichen?"
+            options: ["ein Komma", "ein Doppelpunkt", "ein Punkt"]
+            answer: "ein Komma"
 
   - n: 2
     title: { de: "Der Begleitsatz in der Mitte", en: "The reporting clause in the middle" }
@@ -416,8 +439,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: end-statement
             type: multiple_choice
             text: "Welcher Satz ist richtig?"
             say: "Lies die Sätze. Welcher ist richtig geschrieben?"
@@ -425,13 +450,16 @@ lessons:
             answer: "„Ich lese gern“, sagt Malte."
             option_audio: false
           - id: l2-c2
+            part: end-question
             type: fill_in_blank
-            text: "Setz das Zeichen."
-            say: "Welches Zeichen gehört in die Lücke?"
-            frame: "„Wo wohnst du?“_ fragt Can."
-            options: [",", ".", ":"]
-            answer: [","]
+            text: "Setz die Zeichen in die Lücken."
+            say: "Welche Zeichen gehören in die Lücken?"
+            frame: "„Wo wohnst du_“_ fragt Can."
+            options: ["?", ",", "."]
+            answer: ["?", ","]
+            option_audio: false
           - id: l2-c3
+            part: middle
             type: multiple_choice
             text: "Welcher Satz ist richtig?"
             say: "Lies die Sätze. Welcher ist richtig geschrieben?"
@@ -439,14 +467,132 @@ lessons:
             answer: "„Später“, sagt Mama, „räumst du auf.“"
             option_audio: false
           - id: l2-c4
+            part: middle
             type: highlight_in_text
             text: "Tippe auf alle Wörter des Begleitsatzes."
             say: "Lies den Satz. Tippe auf die Wörter, die verraten, wer spricht."
             show: { drawn: letter-card, text: "„Gleich“, verspricht Opa, „lese ich dir vor.“" }
             spans: ["verspricht", "Opa,"]
           - id: l2-c5
+            part: end-question
             type: true_false
             text: "Ist das richtig geschrieben?"
             say: "Lies die Karte. Ist das richtig geschrieben?"
             show: { drawn: letter-card, text: "„Schau mal!“ ruft Lea." }
             answer: false
+          - id: l2-c6
+            part: end-statement
+            type: fill_in_blank
+            text: "Setz die Zeichen in die Lücken."
+            say: "Welche Zeichen gehören in die Lücken?"
+            frame: "„Der Film war lustig“_ meint Ida_"
+            options: [",", ".", ":"]
+            answer: [",", "."]
+            option_audio: false
+          - id: l2-c7
+            part: end-question
+            type: fill_in_blank
+            text: "Setz die Zeichen in die Lücken."
+            say: "Welche Zeichen gehören in die Lücken?"
+            frame: "„Das ist ja toll_“_ staunt Selin."
+            options: ["!", ",", "."]
+            answer: ["!", ","]
+            option_audio: false
+          - id: l2-c8
+            part: middle
+            type: highlight_in_text
+            text: "Tippe auf alle Wörter des Begleitsatzes."
+            say: "Lies den Satz. Tippe auf die Wörter, die verraten, wer spricht."
+            show: { drawn: letter-card, text: "„Wenn du magst“, sagt Frau Lenz, „kannst du mitsingen.“" }
+            spans: ["sagt", "Frau", "Lenz,"]
+          - id: l2-c9
+            part: end-statement
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "„Ich habe einen Hund.“, sagt Elif." }
+            answer: false
+          - id: l2-c10
+            part: end-question
+            type: multiple_choice
+            text: "„Wie heißt du?“, fragt der Junge.\n\nWelche Zeichen stehen nach dem Wort du?"
+            say: "Lies den Satz. Welche Zeichen stehen nach dem Wort du?"
+            options: ["Fragezeichen, Anführungszeichen, Komma", "Punkt, Anführungszeichen, Komma", "nur ein Komma"]
+            answer: "Fragezeichen, Anführungszeichen, Komma"
+          - id: l2-c11
+            part: middle
+            type: fill_in_blank
+            text: "Setz die Zeichen in die Lücken."
+            say: "Welche Zeichen gehören in die Lücken?"
+            frame: "„Zum Glück“_ sagt Papa_ „haben wir einen Schirm dabei.“"
+            options: [",", ":", "."]
+            answer: [",", ","]
+            option_audio: false
+          - id: l2-c12
+            part: end-statement
+            type: multiple_choice
+            text: "Lea sagt: „Ich bin fertig.“\n\nDer Begleitsatz soll nach hinten. Welcher Satz ist richtig?"
+            say: "Lies den Satz. Der Begleitsatz soll nach hinten. Welcher Satz ist dann richtig?"
+            options: ["„Ich bin fertig“, sagt Lea.", "„Ich bin fertig.“ sagt Lea.", "„Ich bin fertig“ sagt Lea."]
+            answer: "„Ich bin fertig“, sagt Lea."
+            option_audio: false
+          - id: l2-c13
+            part: end-question
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "„Vorsicht, heiß!“, warnt der Koch." }
+            answer: true
+          - id: l2-c14
+            part: middle
+            type: ordering
+            text: "Bau den Satz. Der Begleitsatz steht in der Mitte."
+            say: "Leg die Karten in die richtige Reihenfolge. Der Begleitsatz steht in der Mitte."
+            options: ["sagt Mama,", "„ist Waschtag.“", "„Heute“,"]
+            slot_count: 3
+            answer: ["„Heute“,", "sagt Mama,", "„ist Waschtag.“"]
+            option_audio: false
+          - id: l2-c15
+            part: end-statement
+            type: highlight_in_text
+            text: "Tippe auf alle Wörter des Begleitsatzes."
+            say: "Lies den Satz. Tippe auf die Wörter, die verraten, wer spricht."
+            show: { drawn: letter-card, text: "„Morgen fahren wir nach Berlin“, erzählt Herr Yilmaz." }
+            spans: ["erzählt", "Herr", "Yilmaz"]
+          - id: l2-c16
+            part: end-question
+            type: multiple_choice
+            text: "„Gehen wir in den Park“, fragt Sami.\n\nWelches Zeichen fehlt?"
+            say: "Lies den Satz. Welches Zeichen fehlt?"
+            options: ["das Fragezeichen nach Park", "das Komma nach den Anführungszeichen", "der Punkt nach Sami"]
+            answer: "das Fragezeichen nach Park"
+          - id: l2-c17
+            part: middle
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "„Am Abend“ sagt Opa, „erzähle ich dir eine Geschichte.“" }
+            answer: false
+          - id: l2-c18
+            part: end-statement
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "„Ich helfe dir beim Tragen“, sagt der Nachbar." }
+            answer: true
+          - id: l2-c19
+            part: middle
+            type: multiple_choice
+            text: "Welcher Satz ist richtig?"
+            say: "Lies die Sätze. Welcher ist richtig geschrieben?"
+            options: ["„Möchtest du“, fragt Mama, „noch Suppe?“", "„Möchtest du?“, fragt Mama, „noch Suppe?“", "„Möchtest du“, fragt Mama, „noch Suppe“?"]
+            answer: "„Möchtest du“, fragt Mama, „noch Suppe?“"
+            option_audio: false
+          - id: l2-c20
+            part: middle
+            type: multiple_choice
+            text: "In welchem Satz steht der Begleitsatz in der Mitte?"
+            say: "Lies die Sätze. In welchem Satz steht der Begleitsatz in der Mitte?"
+            options: ["Papa sagt: „Nach dem Essen gehen wir spazieren.“", "„Nach dem Essen“, sagt Papa, „gehen wir spazieren.“", "„Nach dem Essen gehen wir spazieren“, sagt Papa."]
+            answer: "„Nach dem Essen“, sagt Papa, „gehen wir spazieren.“"
+            option_audio: false

@@ -23,6 +23,11 @@ metadata:
   forms: [picture, text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: singular, what: { de: "er, sie oder es, passend zum Artikel", en: "er, sie or es, to match the article" } }
+    - { id: plural-we-you, what: { de: "sie in der Mehrzahl, wir und ihr", en: "sie in the plural, wir and ihr" } }
+    - { id: who-meant, what: { de: "finden, wen ein Pronomen meint", en: finding who a pronoun means } }
+    - { id: no-repeat, what: { de: "Pronomen einsetzen, damit sich ein Text nicht wiederholt", en: using pronouns so a text does not repeat itself } }
   misconceptions:
     - id: pronoun-by-meaning
       what: Picks the pronoun from what the thing is, not from its article (die Sonne, so er)
@@ -257,6 +262,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -279,6 +285,25 @@ lessons:
             say: "Der Clown lacht. Er ist lustig. Passt das Pronomen er?"
             show: { object: clown }
             answer: true
+          - id: l1-c4
+            type: matching
+            text: "Welches Pronomen gehört zu welchem Nomen?"
+            say: "Verbinde jedes Nomen mit dem Pronomen, das dazu passt."
+            pairs:
+              - { left: { text: "der Stuhl" }, right: { text: "er" } }
+              - { left: { text: "die Tür" }, right: { text: "sie" } }
+              - { left: { text: "das Fenster" }, right: { text: "es" } }
+          - id: l1-c5
+            type: multiple_choice
+            text: "Der Vater liest die Zeitung. Er sitzt auf dem Sofa.\n\nWer sitzt auf dem Sofa?"
+            say: "Der Vater liest die Zeitung. Er sitzt auf dem Sofa. Wer sitzt auf dem Sofa?"
+            options: ["der Vater", "die Zeitung", "das Sofa"]
+            answer: "der Vater"
+          - id: l1-c6
+            type: true_false
+            text: "Die Gitarre klingt schön. Er ist braun.\n\nPasst das Pronomen „er“?"
+            say: "Die Gitarre klingt schön. Er ist braun. Passt das Pronomen er?"
+            answer: false
 
   - n: 2
     title: { de: "Wir, ihr, sie", en: "We, you, they" }
@@ -480,8 +505,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: singular
             type: multiple_choice
             text: "Welches Pronomen passt? die Lampe"
             say: "Die Lampe leuchtet. Welches Pronomen nimmst du für die Lampe?"
@@ -489,6 +516,7 @@ lessons:
             options: ["er", "sie", "es"]
             answer: "sie"
           - id: l2-c2
+            part: singular
             type: fill_in_blank
             text: "Ergänze das Pronomen."
             say: "Der Apfel liegt auf dem Tisch. Welches Pronomen passt in die Lücke?"
@@ -497,6 +525,7 @@ lessons:
             options: ["Er", "Sie", "Es"]
             answer: ["Er"]
           - id: l2-c3
+            part: plural-we-you
             type: fill_in_blank
             text: "Ergänze das Pronomen."
             say: "Jonas und ich bauen eine Burg. Welches Pronomen passt in die Lücke?"
@@ -504,14 +533,134 @@ lessons:
             options: ["Wir", "Ihr", "Sie"]
             answer: ["Wir"]
           - id: l2-c4
+            part: who-meant
             type: multiple_choice
             text: "Der Hund und die Katze schlafen. Sie sind müde.\n\nWer ist müde?"
             say: "Der Hund und die Katze schlafen. Sie sind müde. Wer ist müde?"
             options: ["der Hund und die Katze", "nur die Katze", "nur der Hund"]
             answer: "der Hund und die Katze"
           - id: l2-c5
+            part: singular
             type: true_false
             text: "Das Fahrrad ist neu. Es glänzt.\n\nPasst das Pronomen „es“?"
             say: "Das Fahrrad ist neu. Es glänzt. Passt das Pronomen es?"
             show: { object: bike }
             answer: true
+          - id: l2-c6
+            part: singular
+            type: sorting
+            text: "Welches Pronomen passt zu jedem Bild? Sortiere."
+            say: "Welches Pronomen passt zu jedem Bild? Sortiere. Die Bilder sagen ihr Wort mit dem Artikel."
+            bins:
+              - { id: er, show: { text: "er" }, say: "er" }
+              - { id: sie, show: { text: "sie" }, say: "sie" }
+              - { id: es, show: { text: "es" }, say: "es" }
+            options:
+              - { object: fox, bin: er }
+              - { object: bee, bin: sie }
+              - { object: bed, bin: es }
+              - { object: star, bin: er }
+          - id: l2-c7
+            part: singular
+            type: true_false
+            text: "Die Gabel ist spitz. Es piekst.\n\nPasst das Pronomen „es“?"
+            say: "Die Gabel ist spitz. Es piekst. Passt das Pronomen es?"
+            show: { object: fork }
+            answer: false
+          - id: l2-c8
+            part: plural-we-you
+            type: true_false
+            text: "Ich gehe mit Ali zum Sport. Wir kommen spät nach Hause.\n\nPasst das Pronomen „wir“?"
+            say: "Ich gehe mit Ali zum Sport. Wir kommen spät nach Hause. Passt das Pronomen wir?"
+            answer: true
+          - id: l2-c9
+            part: plural-we-you
+            type: sorting
+            text: "Wir, ihr oder sie? Sortiere."
+            say: "Welches Pronomen passt: wir, ihr oder sie? Sortiere."
+            bins:
+              - { id: wir, show: { text: "wir" }, say: "wir" }
+              - { id: ihr, show: { text: "ihr" }, say: "ihr" }
+              - { id: sie, show: { text: "sie" }, say: "sie" }
+            options:
+              - { text: "du und Tim", bin: ihr }
+              - { text: "ich und Mama", bin: wir }
+              - { text: "die Hunde", bin: sie }
+              - { text: "Lena und Tim", bin: sie }
+          - id: l2-c10
+            part: plural-we-you
+            type: multiple_choice
+            text: "Die Häuser sind alt.\n\nWie geht der Text richtig weiter?"
+            say: "Die Häuser sind alt. Wie geht der Text richtig weiter?"
+            options: ["Sie haben rote Dächer.", "Es hat rote Dächer.", "Er hat rote Dächer."]
+            answer: "Sie haben rote Dächer."
+          - id: l2-c11
+            part: plural-we-you
+            type: true_false
+            text: "Mama sagt zu Ida und Paul: „Wir seid ganz nass.“\n\nPasst das Pronomen „wir“?"
+            say: "Mama sagt zu Ida und Paul: Wir seid ganz nass. Passt das Pronomen wir?"
+            answer: false
+          - id: l2-c12
+            part: who-meant
+            type: multiple_choice
+            text: "Der Junge gibt dem Pferd einen Apfel. Es frisst ihn sofort.\n\nWer frisst?"
+            say: "Der Junge gibt dem Pferd einen Apfel. Es frisst ihn sofort. Wer frisst?"
+            options: ["das Pferd", "der Junge", "der Apfel"]
+            answer: "das Pferd"
+          - id: l2-c13
+            part: who-meant
+            type: multiple_choice
+            text: "Die Lehrerin liest den Kindern vor. Sie hören leise zu.\n\nWer hört zu?"
+            say: "Die Lehrerin liest den Kindern vor. Sie hören leise zu. Wer hört zu?"
+            options: ["die Kinder", "die Lehrerin", "das Buch"]
+            answer: "die Kinder"
+          - id: l2-c14
+            part: who-meant
+            type: true_false
+            text: "Der Opa schenkt Mia ein Buch. Er lächelt.\n\nIst mit „er“ der Opa gemeint?"
+            say: "Der Opa schenkt Mia ein Buch. Er lächelt. Ist mit er der Opa gemeint?"
+            answer: true
+          - id: l2-c15
+            part: who-meant
+            type: multiple_choice
+            text: "Lena ruft ihren Hund. Er kommt sofort angerannt.\n\nWer kommt angerannt?"
+            say: "Lena ruft ihren Hund. Er kommt sofort angerannt. Wer kommt angerannt?"
+            options: ["der Hund", "Lena", "die Katze"]
+            answer: "der Hund"
+          - id: l2-c16
+            part: no-repeat
+            type: multiple_choice
+            text: "Welcher Text wiederholt sich nicht und ist richtig?"
+            say: "Welcher Text wiederholt sich nicht und ist richtig? Lies alle drei."
+            options: ["Der Bus kommt. Er ist voll.", "Der Bus kommt. Der Bus ist voll.", "Der Bus kommt. Sie ist voll."]
+            answer: "Der Bus kommt. Er ist voll."
+            option_audio: false
+          - id: l2-c17
+            part: no-repeat
+            type: fill_in_blank
+            text: "Ergänze so, dass sich nichts wiederholt."
+            say: "Paul hat Geburtstag. Was passt in die Lücke, damit sich nichts wiederholt?"
+            frame: "Paul hat Geburtstag. _ wird acht Jahre alt."
+            options: ["Paul", "Er", "Es"]
+            answer: ["Er"]
+          - id: l2-c18
+            part: no-repeat
+            type: true_false
+            text: "Tim isst ein Eis. Tim mag Eis sehr.\n\nWiederholt sich in diesem Text ein Nomen?"
+            say: "Tim isst ein Eis. Tim mag Eis sehr. Wiederholt sich in diesem Text ein Nomen?"
+            answer: true
+          - id: l2-c19
+            part: no-repeat
+            type: matching
+            text: "Welcher Satz sagt dasselbe mit einem Pronomen?"
+            say: "Verbinde jeden Satz mit dem Satz, der dasselbe mit einem Pronomen sagt."
+            pairs:
+              - { left: { text: "Lisa singt." }, right: { text: "Sie singt." } }
+              - { left: { text: "Ben und ich singen." }, right: { text: "Wir singen." } }
+              - { left: { text: "Der Vogel singt." }, right: { text: "Er singt." } }
+          - id: l2-c20
+            part: no-repeat
+            type: true_false
+            text: "Ida hat einen Ball. Er ist rot. Er springt hoch.\n\nWiederholt sich in diesem Text ein Nomen?"
+            say: "Ida hat einen Ball. Er ist rot. Er springt hoch. Wiederholt sich in diesem Text ein Nomen?"
+            answer: false

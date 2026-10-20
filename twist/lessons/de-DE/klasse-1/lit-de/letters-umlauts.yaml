@@ -27,6 +27,11 @@ metadata:
   drawn: [letter-card, writing-lines, syllable-arcs, word-card]
   sounds: []
   facets: [script]
+  parts:
+    - { id: ae, what: { de: Ä und A unterscheiden, en: telling Ä from A } }
+    - { id: oe, what: { de: Ö und O unterscheiden, en: telling Ö from O } }
+    - { id: ue, what: { de: Ü und U unterscheiden, en: telling Ü from U } }
+    - { id: words, what: { de: "Wörter mit Ä, Ö und Ü lesen", en: "reading words with Ä, Ö and Ü" } }
   misconceptions:
     - id: dots-forgotten
       what: Reads or writes a, o, u for ä, ö, ü, leaving the dots off
@@ -223,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -245,6 +251,24 @@ lessons:
             frame: "S_ge"
             options: ["ä", "a"]
             answer: ["ä"]
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du ein ä?"
+            say: "Affe. Hörst du in dem Wort ein ä?"
+            show: { object: monkey }
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes Ä."
+            say: "Tippe auf jedes große und kleine Ä."
+            show: { drawn: letter-card, text: "A ä Ä a Ä" }
+            spans: ["ä", "Ä", "Ä"]
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Wo hörst du ein ä?"
+            say: "In welchem Wort hörst du ein ä?"
+            options: [{ object: cat }, { object: cheese }, { object: cup }]
+            answer: cheese
 
   - n: 2
     title: { de: Das Ö, en: The letter Ö }
@@ -429,6 +453,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: true_false
@@ -451,6 +476,25 @@ lessons:
             frame: "L_we"
             options: ["o", "ö"]
             answer: ["ö"]
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du ein ö?"
+            say: "Ofen. Hörst du in dem Wort ein ö?"
+            show: { object: oven }
+            answer: false
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes Ö."
+            say: "Tippe auf jedes große und kleine Ö."
+            show: { drawn: letter-card, text: "ö O Ö o Ö" }
+            spans: ["ö", "Ö", "Ö"]
+          - id: l2-c6
+            type: audio_choice
+            text: "o oder ö?"
+            say: "Was hörst du: o oder ö?"
+            audio: { de: "Dose." }
+            options: ["ö", "o"]
+            answer: "o"
 
   - n: 3
     title: { de: Das Ü, en: The letter Ü }
@@ -637,6 +681,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: true_false
@@ -659,6 +704,24 @@ lessons:
             frame: "H_te"
             options: ["u", "ü"]
             answer: ["ü"]
+          - id: l3-c4
+            type: true_false
+            text: "Hörst du ein ü?"
+            say: "Bus. Hörst du in dem Wort ein ü?"
+            show: { object: bus }
+            answer: false
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes Ü."
+            say: "Tippe auf jedes große und kleine Ü."
+            show: { drawn: letter-card, text: "U ü Ü u Ü" }
+            spans: ["ü", "Ü", "Ü"]
+          - id: l3-c6
+            type: image_multiple_choice
+            text: "Wo hörst du ein ü?"
+            say: "In welchem Wort hörst du ein ü?"
+            options: [{ object: mouse }, { object: mosquito }, { object: moon }]
+            answer: mosquito
 
   - n: 4
     title: { de: "Wörter mit Ä, Ö und Ü", en: "Words with Ä, Ö and Ü" }
@@ -772,9 +835,9 @@ lessons:
                 hints: ["Möh ... re."]
               - id: l4-s3
                 type: true_false
-                text: "Stimmt das?"
-                say: "Lies die Karte. Steht hier Säge?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Säge" }
+                audio: { de: "Säge." }
                 answer: true
                 hints: ["S ... ä ... ge."]
               - id: l4-s4
@@ -831,21 +894,25 @@ lessons:
                 answer: ["Ö"]
               - id: l4-n5
                 type: true_false
-                text: "Stimmt das?"
-                say: "Lies die Karte. Steht hier Mütze?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Möhre" }
+                audio: { de: "Mütze." }
                 answer: false
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l4-c1
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Löwe" }
             options: [{ object: spoon }, { object: lion }, { object: ladder }]
             answer: lion
+            option_audio: false
           - id: l4-c2
+            part: ae
             type: audio_choice
             text: "a oder ä?"
             say: "Was hörst du: a oder ä?"
@@ -853,6 +920,7 @@ lessons:
             options: ["a", "ä"]
             answer: "ä"
           - id: l4-c3
+            part: oe
             type: audio_choice
             text: "o oder ö?"
             say: "Was hörst du: o oder ö?"
@@ -860,6 +928,7 @@ lessons:
             options: ["ö", "o"]
             answer: "ö"
           - id: l4-c4
+            part: ue
             type: audio_choice
             text: "u oder ü?"
             say: "Was hörst du: u oder ü?"
@@ -867,6 +936,7 @@ lessons:
             options: ["ü", "u"]
             answer: "u"
           - id: l4-c5
+            part: ae
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Mädchen. Welcher Buchstabe fehlt?"
@@ -874,3 +944,112 @@ lessons:
             frame: "M_dchen"
             options: ["a", "ä"]
             answer: ["ä"]
+          - id: l4-c6
+            part: ae
+            type: true_false
+            text: "Hörst du ein ä?"
+            say: "Marienkäfer. Hörst du in dem Wort ein ä?"
+            show: { object: ladybird }
+            answer: true
+          - id: l4-c7
+            part: oe
+            type: true_false
+            text: "Hörst du ein ö?"
+            say: "Rose. Hörst du in dem Wort ein ö?"
+            show: { object: rose }
+            answer: false
+          - id: l4-c8
+            part: ue
+            type: true_false
+            text: "Hörst du ein ü?"
+            say: "Tür. Hörst du in dem Wort ein ü?"
+            show: { object: door }
+            answer: true
+          - id: l4-c9
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Glühbirne" }
+            options: [{ object: candle }, { object: light-bulb }, { object: star }]
+            answer: light-bulb
+            option_audio: false
+          - id: l4-c10
+            part: ae
+            type: image_multiple_choice
+            text: "Wo hörst du ein ä?"
+            say: "In welchem Wort hörst du ein ä?"
+            options: [{ object: banana }, { object: bear }, { object: rabbit }]
+            answer: bear
+          - id: l4-c11
+            part: oe
+            type: image_multiple_choice
+            text: "Wo hörst du ein ö?"
+            say: "In welchem Wort hörst du ein ö?"
+            options: [{ object: sock }, { object: moon }, { object: spoon }]
+            answer: spoon
+          - id: l4-c12
+            part: ue
+            type: true_false
+            text: "Hörst du ein ü?"
+            say: "Uhr. Hörst du in dem Wort ein ü?"
+            show: { object: clock }
+            answer: false
+          - id: l4-c13
+            part: words
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: kitchen }
+            options: ["Kuchen", "Köche", "Küche"]
+            answer: "Küche"
+            option_audio: false
+          - id: l4-c14
+            part: oe
+            type: highlight_in_text
+            text: "Tippe auf jedes Ö."
+            say: "Tippe auf jedes große und kleine Ö."
+            show: { drawn: letter-card, text: "o Ö ö O ö" }
+            spans: ["Ö", "ö", "ö"]
+          - id: l4-c15
+            part: ue
+            type: image_multiple_choice
+            text: "Wo hörst du ein ü?"
+            say: "In welchem Wort hörst du ein ü?"
+            options: [{ object: bus }, { object: bridge }, { object: cup }]
+            answer: bridge
+          - id: l4-c16
+            part: words
+            type: true_false
+            text: "Hör zu. Steht dieses Wort auf der Karte?"
+            show: { drawn: word-card, text: "Öfen" }
+            audio: { de: "Ofen." }
+            answer: false
+          - id: l4-c17
+            part: ae
+            type: highlight_in_text
+            text: "Tippe auf jedes Ä."
+            say: "Tippe auf jedes große und kleine Ä."
+            show: { drawn: letter-card, text: "ä A Ä a ä" }
+            spans: ["ä", "Ä", "ä"]
+          - id: l4-c18
+            part: oe
+            type: audio_choice
+            text: "o oder ö?"
+            say: "Was hörst du: o oder ö?"
+            audio: { de: "Brot." }
+            options: ["o", "ö"]
+            answer: "o"
+          - id: l4-c19
+            part: ue
+            type: highlight_in_text
+            text: "Tippe auf jedes Ü."
+            say: "Tippe auf jedes große und kleine Ü."
+            show: { drawn: letter-card, text: "ü U Ü u ü" }
+            spans: ["ü", "Ü", "ü"]
+          - id: l4-c20
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Schildkröte" }
+            options: [{ object: frog }, { object: tortoise }, { object: snail }]
+            answer: tortoise
+            option_audio: false

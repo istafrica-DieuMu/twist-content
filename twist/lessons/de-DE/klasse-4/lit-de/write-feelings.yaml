@@ -14,7 +14,10 @@ summary: >
   change from the start of a story to its end, and ends with the skill
   check. Writing a whole story freely waits for a free text task type;
   here the child chooses, sorts and fills. Every scene is written for
-  Twist.
+  Twist. The skill check marks what a screen can mark (the precise word,
+  showing a feeling, a fitting thought, how a feeling changes); putting
+  feelings into a text of one's own is left to Practise and to free
+  writing.
 metadata:
   year: klasse-4
   topic: { de: Erzählen, en: Telling stories }
@@ -26,6 +29,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: word, what: { de: das genaue Gefühlswort wählen, en: choosing the precise feeling word } }
+    - { id: show, what: { de: ein Gefühl zeigen statt nur nennen, en: showing a feeling instead of only naming it } }
+    - { id: thought, what: { de: einer Figur einen passenden Gedanken geben, en: giving a character a fitting thought } }
+    - { id: change, what: { de: "erkennen, wie sich ein Gefühl in der Geschichte verändert", en: seeing how a feeling changes through a story } }
   misconceptions:
     - id: only-gut-schlecht
       what: Names every feeling with the same few words (gut, schlecht, traurig, froh)
@@ -240,6 +248,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -263,6 +272,31 @@ lessons:
               - { left: { text: "Er sprang jubelnd in die Luft." }, right: { text: "Freude" } }
               - { left: { text: "Ihre Hände zitterten." }, right: { text: "Angst" } }
             option_audio: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Welches Gefühlswort passt am genauesten?"
+            say: "Lies den Satz. Welches Gefühlswort passt am genauesten?"
+            frame: "Die Lehrerin vertraute mir die Klassenkasse an. Ich war richtig _."
+            options: ["neidisch", "stolz", "enttäuscht"]
+            answer: ["stolz"]
+          - id: l1-c5
+            type: sorting
+            text: "Wird das Gefühl genannt oder gezeigt?"
+            say: "Sortiere die Sätze: Wird das Gefühl genannt oder gezeigt?"
+            bins:
+              - { id: named, show: { text: "genannt" }, say: "genannt" }
+              - { id: shown, show: { text: "gezeigt" }, say: "gezeigt" }
+            options:
+              - { text: "Pia war wütend.", bin: named }
+              - { text: "Pia schmiss ihre Mütze in die Ecke.", bin: shown }
+              - { text: "Max war froh.", bin: named }
+              - { text: "Max pfiff laut vor sich hin.", bin: shown }
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "„Er war traurig.“ Zeigt dieser Satz das Gefühl durch den Körper?"
+            say: "Lies den Satz. Zeigt er das Gefühl durch den Körper?"
+            answer: false
 
   - n: 2
     title: { de: "Was die Figur denkt", en: "What the character thinks" }
@@ -458,8 +492,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: word
             type: fill_in_blank
             text: "Welches Wort beschreibt das Gefühl am genauesten?"
             say: "Lies den Satz. Welches Wort beschreibt Janas Gefühl am genauesten?"
@@ -467,12 +503,14 @@ lessons:
             options: ["nervös", "schlecht", "stolz"]
             answer: ["nervös"]
           - id: l2-c2
+            part: show
             type: multiple_choice
             text: "Welcher Satz zeigt die Angst, ohne sie zu nennen?"
             say: "Lies die Sätze. Welcher zeigt die Angst, ohne sie zu nennen?"
             options: ["Meine Beine fühlten sich an wie Pudding.", "Ich fürchtete mich sehr.", "Ich stand vor dem Haus."]
             answer: "Meine Beine fühlten sich an wie Pudding."
           - id: l2-c3
+            part: show
             type: sorting
             text: "Wie verrät der Satz das Gefühl?"
             say: "Lies die Sätze. Wird das Gefühl genannt, gezeigt oder durch einen Gedanken verraten?"
@@ -486,16 +524,137 @@ lessons:
               - { text: "„Das habe ich ganz allein geschafft“, dachte Ole.", bin: thought }
             option_audio: false
           - id: l2-c4
+            part: thought
             type: multiple_choice
             text: "Lina steht vor der Klasse und soll ihr Gedicht aufsagen. Plötzlich weiß sie kein Wort mehr.\n\nWelcher Gedanke passt zu Lina?"
             say: "Lies, was passiert. Welcher Gedanke passt zu Lina?"
             options: ["Wie ging die erste Zeile noch mal?", "Heute Nachmittag gehe ich schwimmen.", "Das hat super geklappt!"]
             answer: "Wie ging die erste Zeile noch mal?"
           - id: l2-c5
+            part: change
             type: ordering
             text: "Wie verändert sich das Gefühl? Leg die Sätze in die richtige Reihenfolge."
             say: "Lies die Sätze aus einer Geschichte. Wie verändert sich Kims Gefühl? Leg sie in die richtige Reihenfolge."
             options: ["Endlich stand Kim oben am Gipfelkreuz und jubelte.", "Kim sah den steilen Weg und seufzte.", "Auf halber Strecke taten ihr die Füße weh, aber sie lief weiter."]
             slot_count: 3
             answer: ["Kim sah den steilen Weg und seufzte.", "Auf halber Strecke taten ihr die Füße weh, aber sie lief weiter.", "Endlich stand Kim oben am Gipfelkreuz und jubelte."]
+            option_audio: false
+          - id: l2-c6
+            part: word
+            type: fill_in_blank
+            text: "Welches Gefühlswort passt am genauesten?"
+            say: "Lies die Sätze. Welches Gefühlswort passt am genauesten?"
+            frame: "Mein bester Freund zieht in eine andere Stadt. Ich bin sehr _."
+            options: ["erleichtert", "traurig", "stolz"]
+            answer: ["traurig"]
+          - id: l2-c7
+            part: word
+            type: fill_in_blank
+            text: "Welches Gefühlswort passt am genauesten?"
+            say: "Lies die Sätze. Welches Gefühlswort passt am genauesten?"
+            frame: "Tim hatte wochenlang trainiert und wurde trotzdem nur Letzter. Er war _."
+            options: ["stolz", "erleichtert", "enttäuscht"]
+            answer: ["enttäuscht"]
+          - id: l2-c8
+            part: word
+            type: matching
+            text: "Welches Gefühl passt zu welcher Lage?"
+            say: "Lies die Sätze. Welches Gefühl passt dazu? Verbinde."
+            pairs:
+              - { left: { text: "Der Zahnarzt sagt: „Alles in Ordnung.“" }, right: { text: "erleichtert" } }
+              - { left: { text: "Meine Schwester bekommt ein neues Rad, ich nicht." }, right: { text: "neidisch" } }
+              - { left: { text: "Gleich beginnt meine erste Klavierstunde." }, right: { text: "nervös" } }
+            option_audio: false
+          - id: l2-c9
+            part: word
+            type: multiple_choice
+            text: "Lisa bekam endlich den Hund, den sie sich so lange gewünscht hatte.\n\nWelches Wort sagt am genauesten, wie sie sich fühlt?"
+            say: "Lies den Satz. Welches Wort sagt am genauesten, wie Lisa sich fühlt?"
+            options: ["gut", "überglücklich", "okay"]
+            answer: "überglücklich"
+          - id: l2-c10
+            part: show
+            type: multiple_choice
+            text: "Welcher Satz zeigt, dass sich Tim schämt, ohne es zu nennen?"
+            say: "Lies die Sätze. Welcher zeigt, dass sich Tim schämt, ohne es zu nennen?"
+            options: ["Tim schämte sich sehr.", "Tim zog seine Schuhe an.", "Tim wurde rot und starrte auf seine Schuhe."]
+            answer: "Tim wurde rot und starrte auf seine Schuhe."
+          - id: l2-c11
+            part: show
+            type: sorting
+            text: "Nennt der Satz das Gefühl, oder zeigt er es?"
+            say: "Lies die Sätze. Wird das Gefühl genannt oder gezeigt? Ordne zu."
+            bins:
+              - { id: named, show: { text: "genannt" }, say: "genannt" }
+              - { id: shown, show: { text: "gezeigt" }, say: "gezeigt" }
+            options:
+              - { text: "Mara war glücklich.", bin: named }
+              - { text: "Mara tanzte durch die Küche.", bin: shown }
+              - { text: "Jan hatte Angst.", bin: named }
+              - { text: "Jan zog die Decke über den Kopf.", bin: shown }
+            option_audio: false
+          - id: l2-c12
+            part: show
+            type: true_false
+            text: "„Mir wurde ganz flau im Magen.“ Zeigt dieser Satz ein Gefühl, ohne es zu nennen?"
+            say: "Lies den Satz. Zeigt er ein Gefühl, ohne es zu nennen?"
+            answer: true
+          - id: l2-c13
+            part: thought
+            type: multiple_choice
+            text: "Emil hat sein Hausaufgabenheft zu Hause vergessen. Gleich sammelt die Lehrerin die Hefte ein.\n\nWelcher Gedanke passt zu Emil?"
+            say: "Lies, was passiert. Welcher Gedanke passt zu Emil?"
+            options: ["Heute ist so schönes Wetter.", "Oh nein, was sage ich jetzt nur?", "Ich freue mich auf die Ferien."]
+            answer: "Oh nein, was sage ich jetzt nur?"
+          - id: l2-c14
+            part: thought
+            type: fill_in_blank
+            text: "Welches Wort zeigt, dass ein Gedanke kommt?"
+            say: "Welches Wort zeigt, dass ein Gedanke kommt?"
+            frame: "„Ob Oma sich über mein Bild freut?“, _ Malte."
+            options: ["sang", "überlegte", "rannte"]
+            answer: ["überlegte"]
+          - id: l2-c15
+            part: thought
+            type: true_false
+            text: "„Komm sofort her!“, rief Mama. Ist das ein Gedanke?"
+            say: "Lies den Satz. Ist das ein Gedanke?"
+            answer: false
+          - id: l2-c16
+            part: thought
+            type: multiple_choice
+            text: "Welcher Gedanke passt am Ende der Geschichte?\n\nNach dem Streit gaben sich Lea und Nora die Hand und lachten wieder."
+            say: "Lies das Ende der Geschichte. Welcher Gedanke passt?"
+            options: ["„Mit Nora rede ich nie wieder“, dachte Lea.", "„Wie schön, dass wir wieder Freundinnen sind“, dachte Lea.", "„Hoffentlich schneit es morgen“, dachte Lea."]
+            answer: "„Wie schön, dass wir wieder Freundinnen sind“, dachte Lea."
+          - id: l2-c17
+            part: change
+            type: ordering
+            text: "Wie verändert sich das Gefühl? Leg die Sätze in die richtige Reihenfolge."
+            say: "Lies die Sätze aus einer Geschichte. Wie verändert sich Finns Gefühl? Leg sie in die richtige Reihenfolge."
+            options: ["Im Ziel riss Finn jubelnd die Arme hoch.", "Finn stand am Start und hatte weiche Knie.", "In der letzten Kurve überholte er zwei Kinder."]
+            slot_count: 3
+            answer: ["Finn stand am Start und hatte weiche Knie.", "In der letzten Kurve überholte er zwei Kinder.", "Im Ziel riss Finn jubelnd die Arme hoch."]
+            option_audio: false
+          - id: l2-c18
+            part: change
+            type: multiple_choice
+            text: "Jonas suchte den ganzen Tag seine Katze. Am Abend saß sie plötzlich vor der Tür.\n\nWie verändert sich sein Gefühl?"
+            say: "Lies, was passiert. Wie verändert sich das Gefühl von Jonas?"
+            options: ["von besorgt zu erleichtert", "von stolz zu neidisch", "von fröhlich zu wütend"]
+            answer: "von besorgt zu erleichtert"
+          - id: l2-c19
+            part: change
+            type: true_false
+            text: "Anfang: Nele freut sich auf den Ausflug. Schluss: Der Ausflug fällt aus, und Nele ist enttäuscht. Verändert sich Neles Gefühl?"
+            say: "Lies den Anfang und den Schluss. Verändert sich Neles Gefühl?"
+            answer: true
+          - id: l2-c20
+            part: change
+            type: ordering
+            text: "Leg die Sätze so, dass das Gefühl von traurig zu glücklich wechselt."
+            say: "Lies die Sätze aus einer Geschichte. Leg sie so in die richtige Reihenfolge, dass Lottes Gefühl von traurig zu glücklich wechselt."
+            options: ["Zum Schluss lag es unter dem Bett, und Lotte drückte es fest an sich.", "Ihr Bruder half ihr suchen, und sie schöpfte wieder Hoffnung.", "Lotte konnte ihr Kuscheltier nicht finden und weinte."]
+            slot_count: 3
+            answer: ["Lotte konnte ihr Kuscheltier nicht finden und weinte.", "Ihr Bruder half ihr suchen, und sie schöpfte wieder Hoffnung.", "Zum Schluss lag es unter dem Bett, und Lotte drückte es fest an sich."]
             option_audio: false

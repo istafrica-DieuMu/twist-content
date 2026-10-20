@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: same, what: { de: "sagen, was in zwei Fassungen gleich bleibt", en: saying what stays the same in two versions } }
+    - { id: changes, what: { de: "sagen, was sich ändert (Figur, Ort, Zeit, Ende)", en: "saying what changes (character, place, time, ending)" } }
+    - { id: media, what: { de: "Buch, Film und Hörspiel vergleichen", en: "comparing a book, a film and an audio play" } }
   misconceptions:
     - id: all-different
       what: Thinks two versions are different stories as soon as any detail changes
@@ -218,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,6 +241,30 @@ lessons:
             say: "Lies beide Fassungen. Was ist in beiden gleich?"
             options: ["der goldene Fisch", "was der Fischer mit ihm macht", "nichts"]
             answer: "der goldene Fisch"
+          - id: l1-c4
+            type: multiple_choice
+            text: "A: Ein armer Hirte fand im Schnee einen kleinen Vogel. Er nahm ihn mit nach Hause.\nB: Ein armer Hirte fand im Schnee einen kleinen Vogel. Er pflegte ihn, bis er wieder fliegen konnte.\n\nWas ist anders?"
+            say: "Lies beide Fassungen. Was ist anders?"
+            options: ["was der Hirte mit dem Vogel macht", "wo der Hirte den Vogel findet", "wer den Vogel findet"]
+            answer: "was der Hirte mit dem Vogel macht"
+          - id: l1-c5
+            type: true_false
+            text: "A: Der Riese hatte einen großen Garten voller Rosen.\nB: Der Riese hatte einen großen Garten voller Kirschbäume.\n\nIst der Garten in beiden Fassungen gleich?"
+            say: "Lies beide Fassungen. Ist der Garten in beiden gleich?"
+            answer: false
+          - id: l1-c6
+            type: sorting
+            text: "A: Zwei Schwestern gingen zum Brunnen. Die jüngere fand dort einen Frosch.\nB: Zwei Schwestern gingen zum Brunnen. Die jüngere fand dort eine goldene Kugel.\n\nSortiere."
+            say: "Lies beide Fassungen. Sortiere: Kommt es in beiden vor, nur in A oder nur in B?"
+            bins:
+              - { id: both, show: { text: "in beiden" }, say: "in beiden" }
+              - { id: a, show: { text: "nur in A" }, say: "nur in A" }
+              - { id: b, show: { text: "nur in B" }, say: "nur in B" }
+            options:
+              - { text: "die zwei Schwestern", bin: both }
+              - { text: "der Brunnen", bin: both }
+              - { text: "der Frosch", bin: a }
+              - { text: "die goldene Kugel", bin: b }
 
   - n: 2
     title: { de: "Buch, Film und Hörspiel", en: "Book, film and audio play" }
@@ -418,14 +447,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: changes
             type: multiple_choice
             text: "A: Im Schloss lebte ein trauriger König.\nB: Im Schloss lebte eine traurige Königin.\n\nWas ist anders?"
             say: "Lies beide Fassungen. Was ist anders?"
             options: ["die Figur", "der Ort", "nichts"]
             answer: "die Figur"
           - id: l2-c2
+            part: media
             type: sorting
             text: "Buch: Max findet eine Schatzkarte. Er sucht den Schatz allein.\nFilm: Max findet eine Schatzkarte. Er sucht den Schatz mit seinem Hund. Spannende Musik spielt.\n\nSortiere."
             say: "Lies, wie die Geschichte im Buch und im Film erzählt wird. Sortiere: in beiden, nur im Buch, nur im Film?"
@@ -439,19 +471,138 @@ lessons:
               - { text: "der Hund", bin: film }
               - { text: "spannende Musik", bin: film }
           - id: l2-c3
+            part: media
             type: multiple_choice
             text: "Im Buch steht: „Es donnerte laut.“\n\nWie zeigt ein Hörspiel diese Stelle?"
             say: "Lies die Stelle aus dem Buch. Wie zeigt ein Hörspiel diese Stelle?"
             options: ["mit einem Donnergeräusch", "mit einem Bild vom Blitz", "mit einem Ausrufezeichen"]
             answer: "mit einem Donnergeräusch"
           - id: l2-c4
+            part: same
             type: true_false
             text: "A: Der Fuchs war schlau und half dem Jungen.\nB: Der Fuchs war schlau und half dem Jungen.\n\nIst in beiden Fassungen dasselbe gesagt?"
             say: "Lies beide Fassungen genau. Ist in beiden dasselbe gesagt?"
             answer: true
           - id: l2-c5
+            part: media
             type: multiple_choice
             text: "Was ist das Besondere an einem Buch ohne Bilder?"
             say: "Was ist das Besondere an einem Buch ohne Bilder?"
             options: ["Du stellst dir selbst vor, wie alles aussieht.", "Es spielt Musik.", "Es zeigt bewegte Bilder."]
             answer: "Du stellst dir selbst vor, wie alles aussieht."
+          - id: l2-c6
+            part: same
+            type: multiple_choice
+            text: "A: Der Müller hatte drei Söhne. Der jüngste bekam nach seinem Tod nur eine Katze.\nB: Als der Müller starb, erbten die beiden älteren Söhne die Mühle und den Esel. Dem jüngsten blieb nur eine Katze.\n\nWas ist in beiden Fassungen gleich?"
+            say: "Lies beide Fassungen. Was ist in beiden gleich?"
+            options: ["Der jüngste Sohn bekommt nur eine Katze.", "Der älteste Sohn bekommt die Katze.", "Die Söhne bekommen viel Gold."]
+            answer: "Der jüngste Sohn bekommt nur eine Katze."
+          - id: l2-c7
+            part: same
+            type: true_false
+            text: "A: Das Mädchen trug immer eine rote Kappe aus Samt.\nB: Das Mädchen trug immer eine blaue Kappe aus Wolle.\n\nTrägt das Mädchen in beiden Fassungen die gleiche Kappe?"
+            say: "Lies beide Fassungen. Trägt das Mädchen in beiden die gleiche Kappe?"
+            answer: false
+          - id: l2-c8
+            part: same
+            type: fill_in_blank
+            text: "A: Ein Junge fand am Strand eine Flasche. Darin lag eine alte Karte.\nB: Ein Junge fand am Fluss eine Flasche. Darin lag ein Brief.\n\nWas steht in beiden Fassungen? Was steht nur in A? Füll die Lücken."
+            say: "Lies beide Fassungen. Was steht in beiden? Was steht nur in A? Füll die Lücken."
+            frame: "in beiden: _   nur in A: _"
+            options: ["die Flasche", "die Karte", "der Brief"]
+            answer: ["die Flasche", "die Karte"]
+          - id: l2-c9
+            part: same
+            type: multiple_choice
+            text: "Buch: Lotta rettet eine Katze vom Dach.\nFilm: Lotta rettet eine Katze vom Dach. Dabei regnet es in Strömen.\n\nWas ist in Buch und Film gleich?"
+            say: "Lies, wie die Geschichte im Buch und im Film erzählt wird. Was ist in beiden gleich?"
+            options: ["Lotta rettet eine Katze.", "Es regnet in Strömen.", "Nichts ist gleich."]
+            answer: "Lotta rettet eine Katze."
+          - id: l2-c10
+            part: same
+            type: true_false
+            text: "A: Die Königin schenkte jedem Kind im Land einen Apfel.\nB: Jedes Kind im Land bekam von der Königin einen Apfel.\n\nErzählen beide Fassungen dasselbe?"
+            say: "Lies beide Fassungen genau. Erzählen beide dasselbe?"
+            answer: true
+          - id: l2-c11
+            part: changes
+            type: multiple_choice
+            text: "A: Am Ende fand der Prinz das Schloss und blieb für immer dort.\nB: Am Ende fand der Prinz das Schloss, aber er ritt zurück zu seiner Mutter.\n\nWas ist anders?"
+            say: "Lies beide Fassungen. Was ist anders?"
+            options: ["das Ende", "der Prinz", "das Schloss"]
+            answer: "das Ende"
+          - id: l2-c12
+            part: changes
+            type: multiple_choice
+            text: "A: Im Sommer wanderte ein Schuster durch den Wald.\nB: An einem kalten Wintertag wanderte ein Schuster durch den Wald.\n\nWas hat sich in Fassung B verändert?"
+            say: "Lies beide Fassungen. Was hat sich in Fassung B verändert?"
+            options: ["die Jahreszeit", "der Weg", "die Figur"]
+            answer: "die Jahreszeit"
+          - id: l2-c13
+            part: changes
+            type: sorting
+            text: "A: Ein Kater lebte bei einer alten Frau. Er fing jeden Tag Mäuse.\nB: Ein Kater lebte bei einem Fischer. Er fing jeden Tag Fische.\n\nSortiere."
+            say: "Lies beide Fassungen. Sortiere: Kommt es in beiden vor, nur in A oder nur in B?"
+            bins:
+              - { id: both, show: { text: "in beiden" }, say: "in beiden" }
+              - { id: a, show: { text: "nur in A" }, say: "nur in A" }
+              - { id: b, show: { text: "nur in B" }, say: "nur in B" }
+            options:
+              - { text: "der Kater", bin: both }
+              - { text: "die alte Frau", bin: a }
+              - { text: "der Fischer", bin: b }
+              - { text: "die Fische", bin: b }
+          - id: l2-c14
+            part: changes
+            type: multiple_choice
+            text: "A: Ein kluges Mädchen löste die drei Rätsel des Königs.\nB: Ein kluger Junge löste die drei Rätsel des Königs.\n\nWas ist in Fassung B anders?"
+            say: "Lies beide Fassungen. Was ist in Fassung B anders?"
+            options: ["wer die Rätsel löst", "wie viele Rätsel es sind", "wer die Rätsel stellt"]
+            answer: "wer die Rätsel löst"
+          - id: l2-c15
+            part: changes
+            type: multiple_choice
+            text: "A: Hans tauschte seinen Klumpen Gold gegen ein Pferd.\nB: Hans tauschte seinen Klumpen Gold gegen eine Kuh.\n\nWas ist in Fassung B anders?"
+            say: "Lies beide Fassungen. Was ist in Fassung B anders?"
+            options: ["was Hans für sein Gold bekommt", "wer das Gold hat", "nichts"]
+            answer: "was Hans für sein Gold bekommt"
+          - id: l2-c16
+            part: changes
+            type: true_false
+            text: "A: Die Geschichte spielt in einem kleinen Dorf am Meer.\nB: Die Geschichte spielt in einer großen Stadt am Meer.\n\nIst der Ort in Fassung B anders?"
+            say: "Lies beide Fassungen. Ist der Ort in Fassung B anders?"
+            answer: true
+          - id: l2-c17
+            part: media
+            type: multiple_choice
+            text: "Im Buch steht: „Ritter Kunibert war riesig und trug eine rostige Rüstung.“\n\nWoran merkst du im Hörspiel, dass Kunibert riesig ist?"
+            say: "Lies die Stelle aus dem Buch. Woran merkst du im Hörspiel, dass Kunibert riesig ist?"
+            options: ["an seiner tiefen Stimme und den schweren Schritten", "an einem Bild von Kunibert", "an der dicken Schrift"]
+            answer: "an seiner tiefen Stimme und den schweren Schritten"
+          - id: l2-c18
+            part: media
+            type: sorting
+            text: "Buch: Mia verliert im Park ihren Teddy. Ein Bild zeigt den Park.\nHörspiel: Mia verliert im Park ihren Teddy. Man hört Kinder lachen und Mia weinen.\n\nSortiere."
+            say: "Lies, wie die Geschichte im Buch und im Hörspiel erzählt wird. Sortiere: in beiden, nur im Buch, nur im Hörspiel?"
+            bins:
+              - { id: both, show: { text: "in beiden" }, say: "in beiden" }
+              - { id: book, show: { text: "nur im Buch" }, say: "nur im Buch" }
+              - { id: audio, show: { text: "nur im Hörspiel" }, say: "nur im Hörspiel" }
+            options:
+              - { text: "Mias Teddy", bin: both }
+              - { text: "ein Bild vom Park", bin: book }
+              - { text: "lachende Kinder", bin: audio }
+              - { text: "Mias Weinen", bin: audio }
+          - id: l2-c19
+            part: media
+            type: true_false
+            text: "Stimmt das? In einem Hörspiel siehst du, welche Farbe das Kleid der Prinzessin hat."
+            say: "Stimmt das? In einem Hörspiel siehst du, welche Farbe das Kleid der Prinzessin hat."
+            answer: false
+          - id: l2-c20
+            part: media
+            type: multiple_choice
+            text: "Tom hat ein Märchen als Buch gelesen und als Film gesehen. Im Buch geht der Junge zweimal zum Zauberer, im Film nur einmal.\n\nWas sagt Tom beim Vergleichen?"
+            say: "Lies den Text. Was sagt Tom beim Vergleichen?"
+            options: ["Im Film wurde eine Stelle weggelassen.", "Der Film ist ein ganz anderes Märchen.", "Im Buch fehlt eine Stelle."]
+            answer: "Im Film wurde eine Stelle weggelassen."

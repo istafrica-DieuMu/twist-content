@@ -23,6 +23,11 @@ metadata:
   drawn: [letter-card, syllable-arcs]
   sounds: [de.a]
   facets: []
+  parts:
+    - { id: vowel-consonant, what: { de: Selbstlaute und Mitlaute unterscheiden, en: telling vowels and consonants apart } }
+    - { id: umlaut-diphthong, what: { de: "Umlaute (ä, ö, ü) und Zwielaute (au, ei, eu) erkennen", en: "recognising umlauts (ä, ö, ü) and diphthongs (au, ei, eu)" } }
+    - { id: syllable, what: { de: "wissen, dass jede Silbe einen Selbstlaut braucht", en: knowing that every syllable needs a vowel } }
+    - { id: missing, what: { de: "den fehlenden Selbstlaut, Umlaut oder Zwielaut in einem Wort finden", en: "finding the missing vowel, umlaut or diphthong in a word" } }
   misconceptions:
     - id: umlaut-is-diphthong
       what: Calls ä, ö, ü Zwielaute, or au, ei, eu Umlaute
@@ -204,6 +209,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -223,6 +229,26 @@ lessons:
             say: "Rock. Welcher Selbstlaut fehlt?"
             show: { object: skirt }
             frame: "R_ck"
+            options: ["o", "u", "a"]
+            answer: ["o"]
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tippe auf alle Selbstlaute."
+            say: "Igel. Tippe auf alle Selbstlaute."
+            show: { drawn: letter-card, text: "I g e l" }
+            spans: ["I", "e"]
+          - id: l1-c5
+            type: true_false
+            text: "Hat jede Silbe von Kerze einen Selbstlaut?"
+            say: "Ker-ze. Hat jede Silbe einen Selbstlaut?"
+            show: { drawn: syllable-arcs, word: "Kerze", syllables: ["Ker", "ze"] }
+            answer: true
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Welcher Selbstlaut fehlt?"
+            say: "Socke. Welcher Selbstlaut fehlt?"
+            show: { object: sock }
+            frame: "S_cke"
             options: ["o", "u", "a"]
             answer: ["o"]
 
@@ -386,8 +412,9 @@ lessons:
               - id: l2-n3
                 type: fill_in_blank
                 text: "Welcher Laut fehlt?"
-                say: "Feuer. Welcher Laut fehlt?"
-                frame: "F_er"
+                say: "Feuerwehrauto. Welcher Laut fehlt?"
+                show: { object: fire-engine }
+                frame: "F_erwehrauto"
                 options: ["eu", "ei", "au"]
                 answer: ["eu"]
               - id: l2-n4
@@ -410,26 +437,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: vowel-consonant
             type: multiple_choice
             text: "Welcher Buchstabe ist ein Selbstlaut?"
             say: "Welcher Buchstabe ist ein Selbstlaut?"
             options: ["e", "k", "r"]
             answer: "e"
           - id: l2-c2
+            part: vowel-consonant
             type: highlight_in_text
             text: "Tippe auf alle Selbstlaute."
             say: "Glocke. Tippe auf alle Selbstlaute."
             show: { drawn: letter-card, text: "G l o c k e" }
             spans: ["o", "e"]
           - id: l2-c3
+            part: umlaut-diphthong
             type: multiple_choice
             text: "Welcher Laut ist ein Zwielaut?"
             say: "Welcher Laut ist ein Zwielaut?"
             options: ["au", "ä", "s"]
             answer: "au"
           - id: l2-c4
+            part: missing
             type: fill_in_blank
             text: "Welcher Laut fehlt?"
             say: "Schwein. Welcher Laut fehlt?"
@@ -438,7 +470,143 @@ lessons:
             options: ["ei", "ie", "eu"]
             answer: ["ei"]
           - id: l2-c5
+            part: syllable
             type: true_false
             text: "Braucht jede Silbe einen Selbstlaut?"
             say: "Braucht jede Silbe einen Selbstlaut?"
             answer: true
+          - id: l2-c6
+            part: vowel-consonant
+            type: highlight_in_text
+            text: "Tippe auf alle Mitlaute."
+            say: "Gabel. Tippe auf alle Mitlaute."
+            show: { drawn: letter-card, text: "G a b e l" }
+            spans: ["G", "b", "l"]
+          - id: l2-c7
+            part: vowel-consonant
+            type: true_false
+            text: "Im Wort „Brot“ steht nur ein Selbstlaut. Stimmt das?"
+            say: "Lies das Wort Brot. Steht darin nur ein Selbstlaut? Stimmt das?"
+            answer: true
+          - id: l2-c8
+            part: vowel-consonant
+            type: sorting
+            text: "Selbstlaut oder Mitlaut? Sortiere die Buchstaben."
+            say: "Ist der Buchstabe ein Selbstlaut oder ein Mitlaut? Sortiere."
+            option_audio: false
+            bins:
+              - { id: selbst, show: { text: "Selbstlaut" }, say: "Selbstlaut" }
+              - { id: mit, show: { text: "Mitlaut" }, say: "Mitlaut" }
+            options:
+              - { text: "a", bin: selbst }
+              - { text: "s", bin: mit }
+              - { text: "u", bin: selbst }
+              - { text: "w", bin: mit }
+              - { text: "o", bin: selbst }
+              - { text: "d", bin: mit }
+          - id: l2-c9
+            part: umlaut-diphthong
+            type: highlight_in_text
+            text: "Tippe auf das Wort mit einem Umlaut."
+            say: "Lies die drei Wörter. Tippe auf das Wort mit einem Umlaut."
+            show: { drawn: letter-card, text: "Hund Hütte Haus" }
+            spans: ["Hütte"]
+          - id: l2-c10
+            part: umlaut-diphthong
+            type: true_false
+            text: "Im Wort „Schaukel“ steckt ein Umlaut. Stimmt das?"
+            say: "Lies das Wort Schaukel. Steckt darin ein Umlaut? Stimmt das?"
+            answer: false
+          - id: l2-c11
+            part: umlaut-diphthong
+            type: sorting
+            text: "Sortiere die Bilder: Umlaut oder Zwielaut?"
+            say: "Tippe auf jedes Bild und hör das Wort. Hörst du einen Umlaut oder einen Zwielaut? Sortiere."
+            bins:
+              - { id: umlaut, show: { object: lion }, say: "Mit Umlaut, wie Löwe." }
+              - { id: zwielaut, show: { object: car }, say: "Mit Zwielaut, wie Auto." }
+            options:
+              - { object: spoon, bin: umlaut }
+              - { object: chalk, bin: zwielaut }
+              - { object: bridge, bin: umlaut }
+              - { object: eye, bin: zwielaut }
+          - id: l2-c12
+            part: umlaut-diphthong
+            type: multiple_choice
+            text: "Welches Wort hat einen Zwielaut?"
+            say: "Lies die drei Wörter. Welches hat einen Zwielaut?"
+            options: ["Tür", "Seil", "Topf"]
+            answer: "Seil"
+          - id: l2-c13
+            part: syllable
+            type: multiple_choice
+            text: "Welche Silbe kann es nicht geben?"
+            say: "Lies die drei Silben. Welche Silbe kann es nicht geben?"
+            options: ["mo", "brt", "ki"]
+            answer: "brt"
+            option_audio: false
+          - id: l2-c14
+            part: syllable
+            type: fill_in_blank
+            text: "Was fehlt in der zweiten Silbe?"
+            say: "Bril-le. Was fehlt in der zweiten Silbe?"
+            show: { object: glasses }
+            frame: "Bril-l_"
+            options: ["n", "e", "r"]
+            answer: ["e"]
+          - id: l2-c15
+            part: syllable
+            type: true_false
+            text: "Die Silbe „schw“ hat einen Selbstlaut. Stimmt das?"
+            say: "Lies die Silbe. Hat sie einen Selbstlaut? Stimmt das?"
+            answer: false
+          - id: l2-c16
+            part: syllable
+            type: sorting
+            text: "Kann das eine Silbe sein? Sortiere."
+            say: "Lies jede Karte. Kann das eine Silbe sein oder nicht? Sortiere."
+            option_audio: false
+            bins:
+              - { id: ja, show: { text: "kann eine Silbe sein" }, say: "kann eine Silbe sein" }
+              - { id: nein, show: { text: "kann keine Silbe sein" }, say: "kann keine Silbe sein" }
+            options:
+              - { text: "ma", bin: ja }
+              - { text: "tz", bin: nein }
+              - { text: "bei", bin: ja }
+              - { text: "rst", bin: nein }
+          - id: l2-c17
+            part: missing
+            type: fill_in_blank
+            text: "Welcher Laut fehlt?"
+            say: "Eule. Welcher Laut fehlt?"
+            show: { object: owl }
+            frame: "_le"
+            options: ["Eu", "Ei", "Au"]
+            answer: ["Eu"]
+          - id: l2-c18
+            part: missing
+            type: fill_in_blank
+            text: "Welcher Laut fehlt?"
+            say: "Bär. Welcher Laut fehlt?"
+            show: { object: bear }
+            frame: "B_r"
+            options: ["ä", "a", "e"]
+            answer: ["ä"]
+          - id: l2-c19
+            part: missing
+            type: fill_in_blank
+            text: "Welcher Laut fehlt?"
+            say: "Zaun. Welcher Laut fehlt?"
+            show: { object: fence }
+            frame: "Z_n"
+            options: ["au", "eu", "ei"]
+            answer: ["au"]
+          - id: l2-c20
+            part: missing
+            type: fill_in_blank
+            text: "Welcher Selbstlaut fehlt?"
+            say: "Frosch. Welcher Selbstlaut fehlt?"
+            show: { object: frog }
+            frame: "Fr_sch"
+            options: ["o", "u", "ö"]
+            answer: ["o"]

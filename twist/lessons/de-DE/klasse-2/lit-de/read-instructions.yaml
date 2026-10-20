@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: needs, what: { de: "lesen, was man braucht: Zutaten und Mengen", en: "reading what you need: ingredients and amounts" } }
+    - { id: step-detail, what: { de: Einzelheiten in einem Schritt finden, en: finding details in a step } }
+    - { id: order, what: { de: die Schritte in die richtige Reihenfolge bringen, en: putting the steps in order } }
+    - { id: before-after, what: { de: "erkennen, was vorher und was danach kommt", en: telling what comes before and after } }
   misconceptions:
     - id: fun-step-first
       what: Jumps to the step that looks most fun (trinken, essen, bemalen) or does a later step before an earlier one
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: ordering
@@ -211,15 +217,33 @@ lessons:
             answer: ["Zuerst nimmst du eine Scheibe Brot.", "Dann streichst du Butter darauf.", "Zum Schluss legst du Käse darauf."]
           - id: l1-c2
             type: multiple_choice
-            text: "Ein Käsebrot machen\nDu brauchst: eine Scheibe Brot, Butter, Käse, ein Messer\n\nWas brauchst du nicht?"
+            text: "Ein Bild kleben\nDu brauchst: buntes Papier, eine Schere, Kleber, ein weißes Blatt\n\nWas brauchst du nicht?"
             say: "Lies, was du brauchst. Was brauchst du nicht?"
-            options: ["einen Löffel", "ein Messer", "Butter"]
-            answer: "einen Löffel"
+            options: ["einen Pinsel", "eine Schere", "Kleber"]
+            answer: "einen Pinsel"
           - id: l1-c3
             type: true_false
-            text: "Zuerst nimmst du eine Scheibe Brot.\nDann streichst du Butter darauf.\nZum Schluss legst du Käse darauf.\n\nStreichst du die Butter darauf, bevor der Käse kommt?"
-            say: "Lies die Anleitung. Streichst du die Butter darauf, bevor der Käse kommt?"
+            text: "Zuerst füllst du die Gießkanne mit Wasser.\nDann gießt du die Blumen.\nZum Schluss stellst du die Gießkanne zurück.\n\nGießt du die Blumen, bevor du die Gießkanne zurückstellst?"
+            say: "Lies die Anleitung. Gießt du die Blumen, bevor du die Gießkanne zurückstellst?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Ein Lesezeichen basteln\nDu brauchst: einen Streifen Pappe, Buntstifte, ein Band\n1. Mal ein Muster auf die Pappe.\n2. Mach oben ein Loch.\n3. Zieh das Band durch das Loch.\n\nWas machst du, nachdem du das Loch gemacht hast?"
+            say: "Lies die Anleitung. Was machst du, nachdem du das Loch gemacht hast?"
+            options: ["Zieh das Band durch das Loch.", "Mal ein Muster auf die Pappe.", "Hol neue Buntstifte."]
+            answer: "Zieh das Band durch das Loch."
+          - id: l1-c5
+            type: true_false
+            text: "Zuerst wäschst du die Tomate.\nDann schneidest du sie in Stücke.\nZum Schluss legst du sie auf den Teller.\n\nSchneidest du die Tomate, bevor du sie wäschst?"
+            say: "Lies die Anleitung. Schneidest du die Tomate, bevor du sie wäschst?"
+            answer: false
+          - id: l1-c6
+            type: ordering
+            text: "Ein Geschenk einpacken: Bring die Schritte in die richtige Reihenfolge."
+            say: "Bring die Schritte zum Einpacken in die richtige Reihenfolge."
+            options: ["Kleb das Papier mit Klebeband fest.", "Mach eine Schleife darum.", "Leg das Geschenk auf das Papier."]
+            slot_count: 3
+            answer: ["Leg das Geschenk auf das Papier.", "Kleb das Papier mit Klebeband fest.", "Mach eine Schleife darum."]
 
   - n: 2
     title: { de: "Rezepte lesen", en: "Reading recipes" }
@@ -399,8 +423,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: needs
             type: sorting
             text: "Apfelschiffchen\nZutaten: 1 Apfel, 1 Scheibe Käse, Zahnstocher\n1. Wasch den Apfel.\n2. Schneide ihn in vier Stücke.\n3. Schneide den Käse in Dreiecke.\n4. Steck die Käsesegel mit einem Zahnstocher auf die Apfelstücke.\n\nZutat oder Schritt?"
             say: "Lies das Rezept. Sortiere: Ist es eine Zutat oder ein Schritt?"
@@ -413,12 +439,14 @@ lessons:
               - { text: "1 Apfel", bin: zutat }
               - { text: "Schneide den Käse in Dreiecke.", bin: schritt }
           - id: l2-c2
+            part: step-detail
             type: multiple_choice
             text: "Apfelschiffchen\n1. Wasch den Apfel.\n2. Schneide ihn in vier Stücke.\n3. Schneide den Käse in Dreiecke.\n\nIn wie viele Stücke schneidest du den Apfel?"
             say: "Lies die Schritte. In wie viele Stücke schneidest du den Apfel?"
             options: ["vier", "zwei", "acht"]
             answer: "vier"
           - id: l2-c3
+            part: order
             type: ordering
             text: "Apfelschiffchen: Bring die Schritte in die richtige Reihenfolge."
             say: "Bring die Schritte für die Apfelschiffchen in die richtige Reihenfolge."
@@ -426,13 +454,127 @@ lessons:
             slot_count: 3
             answer: ["Wasch den Apfel.", "Schneide den Apfel in vier Stücke.", "Steck die Käsesegel auf die Apfelstücke."]
           - id: l2-c4
+            part: before-after
             type: true_false
             text: "Apfelschiffchen\n1. Wasch den Apfel.\n2. Schneide ihn in vier Stücke.\n3. Schneide den Käse in Dreiecke.\n4. Steck die Käsesegel mit einem Zahnstocher auf die Apfelstücke.\n\nSteckst du die Segel auf, bevor du den Apfel schneidest?"
             say: "Lies die Schritte. Steckst du die Segel auf, bevor du den Apfel schneidest?"
             answer: false
           - id: l2-c5
+            part: before-after
             type: multiple_choice
             text: "Apfelschiffchen\n1. Wasch den Apfel.\n2. Schneide ihn in vier Stücke.\n3. Schneide den Käse in Dreiecke.\n4. Steck die Käsesegel mit einem Zahnstocher auf die Apfelstücke.\n\nWas machst du zuerst?"
             say: "Lies die Schritte. Was machst du zuerst?"
             options: ["Wasch den Apfel.", "Schneide den Käse in Dreiecke.", "Steck die Käsesegel auf."]
             answer: "Wasch den Apfel."
+          - id: l2-c6
+            part: order
+            type: ordering
+            text: "Zähne putzen: Bring die Schritte in die richtige Reihenfolge."
+            say: "Bring die Schritte zum Zähneputzen in die richtige Reihenfolge."
+            options: ["Spül den Mund mit Wasser aus.", "Gib Zahnpasta auf die Bürste.", "Putz deine Zähne."]
+            slot_count: 3
+            answer: ["Gib Zahnpasta auf die Bürste.", "Putz deine Zähne.", "Spül den Mund mit Wasser aus."]
+          - id: l2-c7
+            part: needs
+            type: sorting
+            text: "Gurkenbrot\nZutaten: 1 Scheibe Brot, Frischkäse, 1 Stück Gurke\n1. Streich Frischkäse auf das Brot.\n2. Schneide die Gurke in Scheiben.\n3. Leg die Gurke auf das Brot.\n\nZutat oder Schritt?"
+            say: "Lies das Rezept. Sortiere: Ist es eine Zutat oder ein Schritt?"
+            bins:
+              - { id: zutat, show: { text: "Zutat" }, say: "Zutat" }
+              - { id: schritt, show: { text: "Schritt" }, say: "Schritt" }
+            options:
+              - { text: "Streich Frischkäse auf das Brot.", bin: schritt }
+              - { text: "1 Stück Gurke", bin: zutat }
+              - { text: "Leg die Gurke auf das Brot.", bin: schritt }
+              - { text: "Frischkäse", bin: zutat }
+          - id: l2-c8
+            part: needs
+            type: true_false
+            text: "Eine Laterne basteln\nDu brauchst: einen Pappbecher, Transparentpapier, Kleber, eine Schere, ein Stück Draht\n1. Schneide Fenster in den Becher.\n2. Kleb Transparentpapier hinter die Fenster.\n3. Mach oben einen Henkel aus Draht.\n\nBrauchst du eine Schere?"
+            say: "Lies die Anleitung. Brauchst du eine Schere?"
+            answer: true
+          - id: l2-c9
+            part: needs
+            type: multiple_choice
+            text: "Gurkenbrot\nZutaten: 1 Scheibe Brot, Frischkäse, 1 Stück Gurke\n1. Streich Frischkäse auf das Brot.\n2. Schneide die Gurke in Scheiben.\n3. Leg die Gurke auf das Brot.\n\nWie viele Scheiben Brot brauchst du?"
+            say: "Lies das Rezept. Wie viele Scheiben Brot brauchst du?"
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l2-c10
+            part: step-detail
+            type: multiple_choice
+            text: "Eine Laterne basteln\nDu brauchst: einen Pappbecher, Transparentpapier, Kleber, eine Schere, ein Stück Draht\n1. Schneide Fenster in den Becher.\n2. Kleb Transparentpapier hinter die Fenster.\n3. Mach oben einen Henkel aus Draht.\n\nWohin klebst du das Transparentpapier?"
+            say: "Lies die Anleitung. Wohin klebst du das Transparentpapier?"
+            options: ["hinter die Fenster", "auf den Boden", "an den Henkel"]
+            answer: "hinter die Fenster"
+          - id: l2-c11
+            part: step-detail
+            type: multiple_choice
+            text: "Seifenblasen\nDu brauchst: Wasser, Spülmittel, einen Becher, einen Strohhalm\n1. Füll den Becher halb mit Wasser.\n2. Gib einen Spritzer Spülmittel dazu.\n3. Rühre langsam mit dem Strohhalm um.\n4. Puste vorsichtig in den Strohhalm.\n\nWomit rührst du um?"
+            say: "Lies die Anleitung. Womit rührst du um?"
+            options: ["mit dem Strohhalm", "mit einem Löffel", "mit dem Finger"]
+            answer: "mit dem Strohhalm"
+          - id: l2-c12
+            part: before-after
+            type: true_false
+            text: "Seifenblasen\nDu brauchst: Wasser, Spülmittel, einen Becher, einen Strohhalm\n1. Füll den Becher halb mit Wasser.\n2. Gib einen Spritzer Spülmittel dazu.\n3. Rühre langsam mit dem Strohhalm um.\n4. Puste vorsichtig in den Strohhalm.\n\nPustest du in den Strohhalm, bevor du das Spülmittel dazugibst?"
+            say: "Lies die Anleitung. Pustest du in den Strohhalm, bevor du das Spülmittel dazugibst?"
+            answer: false
+          - id: l2-c13
+            part: step-detail
+            type: multiple_choice
+            text: "Eine Blume pflanzen\n1. Füll Erde in den Topf.\n2. Mach mit dem Finger ein Loch in die Erde.\n3. Setz die Blume in das Loch.\n4. Gieß die Blume mit Wasser.\n\nWomit machst du das Loch?"
+            say: "Lies die Anleitung. Womit machst du das Loch?"
+            options: ["mit dem Finger", "mit einer Schaufel", "mit einem Löffel"]
+            answer: "mit dem Finger"
+          - id: l2-c14
+            part: needs
+            type: fill_in_blank
+            text: "Zitronenwasser\nZutaten: 1 Glas Wasser, 2 Scheiben Zitrone, 3 Eiswürfel\n1. Leg die Zitronenscheiben in das Glas.\n2. Gieß das Wasser dazu.\n3. Gib die Eiswürfel hinein.\n\nWie viele Eiswürfel und wie viele Scheiben Zitrone brauchst du? Füll die Lücken."
+            say: "Lies das Rezept. Wie viele Eiswürfel und wie viele Scheiben Zitrone brauchst du? Füll die Lücken."
+            frame: "Eiswürfel: _   Zitrone: _ Scheiben"
+            options: ["3", "2", "1"]
+            answer: ["3", "2"]
+          - id: l2-c15
+            part: step-detail
+            type: multiple_choice
+            text: "Zitronenwasser\nZutaten: 1 Glas Wasser, 2 Scheiben Zitrone, 3 Eiswürfel\n1. Leg die Zitronenscheiben in das Glas.\n2. Gieß das Wasser dazu.\n3. Gib die Eiswürfel hinein.\n\nWas gibst du in Schritt 3 hinein?"
+            say: "Lies das Rezept. Was gibst du in Schritt 3 hinein?"
+            options: ["die Eiswürfel", "die Zitronenscheiben", "das Wasser"]
+            answer: "die Eiswürfel"
+          - id: l2-c16
+            part: order
+            type: ordering
+            text: "Einen Brief verschicken: Bring die Sätze in die richtige Reihenfolge."
+            say: "Bring die Sätze zum Briefverschicken in die richtige Reihenfolge."
+            options: ["Dann klebst du eine Briefmarke darauf.", "Zum Schluss wirfst du ihn in den Briefkasten.", "Zuerst steckst du den Brief in den Umschlag."]
+            slot_count: 3
+            answer: ["Zuerst steckst du den Brief in den Umschlag.", "Dann klebst du eine Briefmarke darauf.", "Zum Schluss wirfst du ihn in den Briefkasten."]
+          - id: l2-c17
+            part: order
+            type: ordering
+            text: "Hände waschen: Bring die Schritte in die richtige Reihenfolge."
+            say: "Bring die Schritte zum Händewaschen in die richtige Reihenfolge."
+            options: ["Trockne die Hände ab.", "Mach die Hände nass.", "Spül die Seife ab.", "Reib die Hände mit Seife ein."]
+            slot_count: 4
+            answer: ["Mach die Hände nass.", "Reib die Hände mit Seife ein.", "Spül die Seife ab.", "Trockne die Hände ab."]
+          - id: l2-c18
+            part: before-after
+            type: multiple_choice
+            text: "Eine Blume pflanzen\n1. Füll Erde in den Topf.\n2. Mach mit dem Finger ein Loch in die Erde.\n3. Setz die Blume in das Loch.\n4. Gieß die Blume mit Wasser.\n\nWas machst du nach Schritt 3?"
+            say: "Lies die Anleitung. Was machst du nach Schritt 3?"
+            options: ["Gieß die Blume mit Wasser.", "Füll Erde in den Topf.", "Mach ein Loch in die Erde."]
+            answer: "Gieß die Blume mit Wasser."
+          - id: l2-c19
+            part: order
+            type: multiple_choice
+            text: "Einen Kuchen backen\n1. Rühr den Teig.\n2. ...\n3. Back den Kuchen im Ofen.\n4. Lass ihn abkühlen.\n\nEin Schritt fehlt. Welcher?"
+            say: "Lies die Schritte. Ein Schritt fehlt. Welcher?"
+            options: ["Füll den Teig in die Form.", "Iss den Kuchen.", "Kauf Mehl im Laden."]
+            answer: "Füll den Teig in die Form."
+          - id: l2-c20
+            part: before-after
+            type: true_false
+            text: "Joghurt mit Himbeeren\nZutaten: 1 Becher Joghurt, 1 Handvoll Himbeeren, 1 Löffel Honig\n1. Gib den Joghurt in eine Schale.\n2. Leg die Himbeeren darauf.\n3. Gieß den Honig darüber.\n\nKommt der Honig zum Schluss?"
+            say: "Lies das Rezept. Kommt der Honig zum Schluss?"
+            answer: true

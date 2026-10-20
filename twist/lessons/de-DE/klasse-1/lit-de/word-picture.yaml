@@ -24,6 +24,10 @@ metadata:
   forms: [picture, drawn, audio]
   drawn: [word-card, letter-card, syllable-arcs]
   facets: []
+  parts:
+    - { id: first, what: { de: "Wörter unterscheiden, die nur im ersten Buchstaben anders sind (Hose, Rose)", en: "telling apart words that differ only in the first letter (Hose, Rose)" } }
+    - { id: middle, what: { de: "Wörter unterscheiden, die in der Mitte oder am Ende anders sind (Tanne, Tonne)", en: "telling apart words that differ in the middle or at the end (Tanne, Tonne)" } }
+    - { id: meaning, what: { de: "ein Wort genau lesen und sagen, was es ist", en: "reading a word exactly and saying what it is" } }
   misconceptions:
     - id: shape-guess
       what: Guesses from the end or the outline of the word, so Hose and Rose, Fisch and Tisch look the same
@@ -220,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -227,6 +232,7 @@ lessons:
             show: { drawn: word-card, text: "Haus" }
             options: [{ object: mouse }, { object: house }]
             answer: house
+            option_audio: false
           - id: l1-c2
             type: multiple_choice
             text: "Welches Wort passt zum Bild?"
@@ -241,6 +247,27 @@ lessons:
             say: "Lies das Wort. Ist das ein Tier?"
             show: { drawn: word-card, text: "Kuh" }
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Nase" }
+            options: [{ object: rabbit }, { object: trousers }, { object: nose }]
+            answer: nose
+            option_audio: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Welches Wort passt zum Bild? Lies genau."
+            show: { object: dog }
+            options: ["Mund", "Hund", "rund"]
+            option_audio: false
+            answer: "Hund"
+          - id: l1-c6
+            type: true_false
+            text: "Lies das Wort. Kann man das anziehen?"
+            say: "Lies das Wort. Kann man das anziehen?"
+            show: { drawn: word-card, text: "Rose" }
+            answer: false
 
   - n: 2
     title: { de: Auch die Mitte zählt, en: The middle counts too }
@@ -427,14 +454,18 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: first
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Tanne" }
             options: [{ object: jug }, { object: bin }, { object: fir-tree }]
             answer: fir-tree
+            option_audio: false
           - id: l2-c2
+            part: middle
             type: multiple_choice
             text: "Welches Wort passt zum Bild?"
             say: "Welches Wort passt zum Bild? Lies genau."
@@ -443,18 +474,22 @@ lessons:
             option_audio: false
             answer: "Brot"
           - id: l2-c3
+            part: middle
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Bett" }
             options: [{ object: boat }, { object: bed }, { object: bread }]
             answer: bed
+            option_audio: false
           - id: l2-c4
+            part: meaning
             type: true_false
             text: "Lies das Wort. Ist das ein Tier?"
             say: "Lies das Wort. Ist das ein Tier?"
             show: { drawn: word-card, text: "Schwein" }
             answer: true
           - id: l2-c5
+            part: middle
             type: multiple_choice
             text: "Welches Wort passt zum Bild?"
             say: "Welches Wort passt zum Bild? Lies genau."
@@ -462,3 +497,123 @@ lessons:
             options: ["Mond", "Mund", "Hund"]
             option_audio: false
             answer: "Mund"
+          - id: l2-c6
+            part: first
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Sonne" }
+            options: [{ object: bin }, { object: fir-tree }, { object: sun }]
+            answer: sun
+            option_audio: false
+          - id: l2-c7
+            part: first
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Welches Wort passt zum Bild? Lies genau."
+            show: { object: hand }
+            options: ["Sand", "Wand", "Hand"]
+            option_audio: false
+            answer: "Hand"
+          - id: l2-c8
+            part: first
+            type: matching
+            text: "Lies die Wörter. Welches Bild gehört zu welchem Wort?"
+            say: "Lies die Wörter genau. Verbinde jedes Wort mit seinem Bild."
+            option_audio: false
+            pairs:
+              - { left: { text: "Mund" }, right: { object: mouth } }
+              - { left: { text: "Hund" }, right: { object: dog } }
+          - id: l2-c9
+            part: first
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Welches Wort passt zum Bild? Lies genau."
+            show: { object: rope }
+            options: ["Teil", "Seil", "Beil"]
+            option_audio: false
+            answer: "Seil"
+          - id: l2-c10
+            part: first
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Welches Wort passt zum Bild? Lies genau."
+            show: { object: hat }
+            options: ["Mut", "Wut", "Hut"]
+            option_audio: false
+            answer: "Hut"
+          - id: l2-c11
+            part: first
+            type: true_false
+            text: "Lies das Wort. Ist das ein Teil von deinem Körper?"
+            say: "Lies das Wort. Ist das ein Teil von deinem Körper?"
+            show: { drawn: word-card, text: "Wand" }
+            answer: false
+          - id: l2-c12
+            part: middle
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Birne" }
+            options: [{ object: bee }, { object: pear }]
+            answer: pear
+            option_audio: false
+          - id: l2-c13
+            part: middle
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Welches Wort passt zum Bild? Lies genau."
+            show: { object: sheep }
+            options: ["Schiff", "Schal", "Schaf"]
+            option_audio: false
+            answer: "Schaf"
+          - id: l2-c14
+            part: middle
+            type: matching
+            text: "Lies die Wörter. Welches Bild gehört zu welchem Wort?"
+            say: "Lies die Wörter genau. Verbinde jedes Wort mit seinem Bild."
+            option_audio: false
+            pairs:
+              - { left: { text: "Schiff" }, right: { object: ship } }
+              - { left: { text: "Schaf" }, right: { object: sheep } }
+          - id: l2-c15
+            part: middle
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Wolke" }
+            options: [{ object: wolf }, { object: cloud }]
+            answer: cloud
+            option_audio: false
+          - id: l2-c16
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Kann man damit fahren?"
+            say: "Lies das Wort. Kann man damit fahren?"
+            show: { drawn: word-card, text: "Rad" }
+            answer: true
+          - id: l2-c17
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Kann man daraus trinken?"
+            say: "Lies das Wort. Kann man daraus trinken?"
+            show: { drawn: word-card, text: "Kasse" }
+            answer: false
+          - id: l2-c18
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Kann man damit riechen?"
+            say: "Lies das Wort. Kann man damit riechen?"
+            show: { drawn: word-card, text: "Nase" }
+            answer: true
+          - id: l2-c19
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Kann man darin wohnen?"
+            say: "Lies das Wort. Kann man darin wohnen?"
+            show: { drawn: word-card, text: "Laus" }
+            answer: false
+          - id: l2-c20
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Leuchtet das nachts am Himmel?"
+            say: "Lies das Wort. Leuchtet das nachts am Himmel?"
+            show: { drawn: word-card, text: "Mond" }
+            answer: true

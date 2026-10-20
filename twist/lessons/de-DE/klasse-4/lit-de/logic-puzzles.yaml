@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: logical-three, what: { de: ein Logical mit drei Personen lösen, en: solving a logic puzzle with three people } }
+    - { id: logical-four, what: { de: ein Logical mit vier Personen lösen, en: solving a logic puzzle with four people } }
+    - { id: small-words, what: { de: kleine Wörter genau lesen und eine Lösung prüfen, en: reading small words closely and checking a solution } }
+    - { id: find-detail, what: { de: eine Zahl oder Angabe im Text finden, en: finding a number or detail in a text } }
+    - { id: combine, what: { de: zwei Angaben aus dem Text verbinden, en: joining two details from the text } }
   misconceptions:
     - id: skip-small-words
       what: Overlooks nicht, kein or weder noch in a clue and reads it as the opposite
@@ -197,6 +203,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -216,6 +223,22 @@ lessons:
             frame: "Clara: Klasse _   David: Klasse _   Frieda: Klasse _"
             options: ["2", "3", "4"]
             answer: ["2", "4", "3"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Mo, Nia und Otto haben je einen Ball: einen roten, einen blauen und einen gelben.\n1. Nia hat den blauen Ball.\n2. Mo hat keinen gelben Ball.\n\nWer hat den gelben Ball?"
+            say: "Lies die Hinweise. Wer hat den gelben Ball?"
+            options: ["Otto", "Mo", "Nia"]
+            answer: "Otto"
+          - id: l1-c5
+            type: true_false
+            text: "Paul, Rita und Sven stehen in einer Reihe.\n1. Rita steht ganz hinten.\n2. Sven steht nicht ganz vorne.\n\nLösung: Sven steht ganz vorne. Stimmt das?"
+            say: "Lies die Hinweise und die Lösung. Stimmt es, dass Sven ganz vorne steht?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "„Kim hat weder einen Hund noch eine Katze.“ Was weißt du dadurch sicher?"
+            options: ["Kim hat keinen Hund.", "Kim hat eine Katze.", "Kim hat einen Hund."]
+            answer: "Kim hat keinen Hund."
 
   - n: 2
     title: { de: "Zahlen und Angaben genau lesen", en: "Reading numbers and details closely" }
@@ -378,33 +401,142 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: find-detail
             type: multiple_choice
             text: "Der Kinderflohmarkt\n\nDer Kinderflohmarkt ist am Sonntag von 11 bis 15 Uhr auf dem Schulhof.\nEin Verkaufstisch kostet 3 Euro. Wer einen Kuchen für das Café mitbringt, bekommt den Tisch umsonst.\nVerkauft werden dürfen nur Spielsachen, Bücher und Kinderkleidung.\n\nLea bringt einen Kuchen mit. Wie viel zahlt sie für ihren Tisch?"
             say: "Lies den Text. Lea bringt einen Kuchen mit. Wie viel zahlt sie für ihren Tisch?"
             options: ["nichts", "3 Euro", "6 Euro"]
             answer: "nichts"
           - id: l2-c2
+            part: combine
             type: text_input
             text: "Der Kinderflohmarkt\n\nDer Kinderflohmarkt ist am Sonntag von 11 bis 15 Uhr auf dem Schulhof.\nEin Verkaufstisch kostet 3 Euro. Wer einen Kuchen für das Café mitbringt, bekommt den Tisch umsonst.\nVerkauft werden dürfen nur Spielsachen, Bücher und Kinderkleidung.\n\nWie viele Stunden dauert der Flohmarkt?"
             say: "Lies den Text. Wie viele Stunden dauert der Flohmarkt? Tipp die Zahl ein."
             answer: "4"
           - id: l2-c3
+            part: find-detail
             type: true_false
-            text: "Der Kinderflohmarkt\n\nDer Kinderflohmarkt ist am Sonntag von 11 bis 15 Uhr auf dem Schulhof.\nEin Verkaufstisch kostet 3 Euro. Wer einen Kuchen für das Café mitbringt, bekommt den Tisch umsonst.\nVerkauft werden dürfen nur Spielsachen, Bücher und Kinderkleidung.\n\nStimmt das? Auf dem Flohmarkt darf man auch Fahrräder verkaufen."
-            say: "Lies den Text. Stimmt das: Auf dem Flohmarkt darf man auch Fahrräder verkaufen?"
+            text: "Die Kletterhalle\n\nDie Kletterhalle hat mittwochs bis sonntags von 13 bis 20 Uhr geöffnet.\nKinder dürfen ab 8 Jahren klettern, aber nur zusammen mit einem Erwachsenen.\nEine Stunde Klettern kostet für Kinder 6 Euro. Leihschuhe kosten 2 Euro extra.\n\nStimmt das? Ein Kind von 9 Jahren darf allein klettern."
+            say: "Lies den Text. Stimmt das: Ein Kind von neun Jahren darf allein klettern?"
             answer: false
           - id: l2-c4
+            part: logical-four
             type: multiple_choice
             text: "Nina, Ole, Pit und Rieke bekommen je ein Stofftier: einen Bären, einen Hasen, eine Ente und einen Frosch.\n1. Nina bekommt den Hasen.\n2. Ole bekommt kein Tier, das quakt.\n3. Pit bekommt die Ente.\n\nWer bekommt den Frosch?"
             say: "Lies die Hinweise. Wer bekommt den Frosch?"
             options: ["Rieke", "Ole", "Pit"]
             answer: "Rieke"
           - id: l2-c5
+            part: logical-three
             type: fill_in_blank
             text: "Jakob, Kati und Lilli fahren in den Ferien ans Meer, in die Berge und zu Oma.\n1. Kati fährt nicht ans Meer und nicht zu Oma.\n2. Jakob fährt nicht ans Meer.\n\nTrag die Lösung ein."
             say: "Lies die Hinweise. Wer fährt wohin? Trag die Lösung ein."
             frame: "Jakob: _   Kati: _   Lilli: _"
             options: ["ans Meer", "in die Berge", "zu Oma"]
             answer: ["zu Oma", "in die Berge", "ans Meer"]
+          - id: l2-c6
+            part: combine
+            type: text_input
+            text: "Die Kletterhalle\n\nDie Kletterhalle hat mittwochs bis sonntags von 13 bis 20 Uhr geöffnet.\nKinder dürfen ab 8 Jahren klettern, aber nur zusammen mit einem Erwachsenen.\nEine Stunde Klettern kostet für Kinder 6 Euro. Leihschuhe kosten 2 Euro extra.\n\nMia klettert eine Stunde und leiht sich Schuhe. Wie viel Euro zahlt sie?"
+            say: "Lies den Text. Mia klettert eine Stunde und leiht sich Schuhe. Wie viel Euro zahlt sie? Tipp die Zahl ein."
+            answer: "8"
+          - id: l2-c7
+            part: combine
+            type: multiple_choice
+            text: "Der Kinoabend\n\nAm Freitag gibt es im Gemeindehaus einen Kinoabend.\nDer erste Film beginnt um 17 Uhr und dauert 90 Minuten. Danach gibt es eine Pause von 30 Minuten mit Popcorn. Dann läuft der zweite Film.\nDer Eintritt kostet 2 Euro für jeden Film.\n\nUm wie viel Uhr beginnt der zweite Film?"
+            say: "Lies den Text. Um wie viel Uhr beginnt der zweite Film?"
+            options: ["um 19 Uhr", "um 18:30 Uhr", "um 17:30 Uhr"]
+            answer: "um 19 Uhr"
+          - id: l2-c8
+            part: find-detail
+            type: multiple_choice
+            text: "Der Kinoabend\n\nAm Freitag gibt es im Gemeindehaus einen Kinoabend.\nDer erste Film beginnt um 17 Uhr und dauert 90 Minuten. Danach gibt es eine Pause von 30 Minuten mit Popcorn. Dann läuft der zweite Film.\nDer Eintritt kostet 2 Euro für jeden Film.\n\nWie viel kostet der Eintritt für einen Film?"
+            say: "Lies den Text. Wie viel kostet der Eintritt für einen Film?"
+            options: ["2 Euro", "4 Euro", "30 Cent"]
+            answer: "2 Euro"
+          - id: l2-c9
+            part: combine
+            type: multiple_choice
+            text: "Die Klasse 4b fährt mit dem Zug zum Zoo. Der Zug fährt um 8:40 Uhr ab und braucht 35 Minuten. Vom Bahnhof gehen die Kinder noch 10 Minuten zu Fuß.\n\nUm wie viel Uhr kommen sie am Zoo an?"
+            say: "Lies den Text. Um wie viel Uhr kommen die Kinder am Zoo an?"
+            options: ["um 9:25 Uhr", "um 9:15 Uhr", "um 8:50 Uhr"]
+            answer: "um 9:25 Uhr"
+          - id: l2-c10
+            part: find-detail
+            type: multiple_choice
+            text: "Das Schulfest beginnt um 15 Uhr mit der Begrüßung. Um Viertel nach drei spielt die Klasse 2a Theater. Um 16 Uhr tritt der Zauberer Ferdinando auf, und um 17 Uhr tanzt die Klasse 4.\n\nWer tritt um 16 Uhr auf?"
+            say: "Lies den Text. Wer tritt um 16 Uhr auf?"
+            options: ["der Zauberer Ferdinando", "die Klasse 2a", "die Klasse 4"]
+            answer: "der Zauberer Ferdinando"
+          - id: l2-c11
+            part: small-words
+            type: true_false
+            text: "Lea, Tom und Ida haben je ein Fahrrad: ein rotes, ein grünes und ein schwarzes.\n1. Tom hat nicht das rote Fahrrad.\n2. Ida hat das schwarze Fahrrad.\n\nLösung: Lea hat das rote, Tom das grüne, Ida das schwarze Fahrrad. Stimmt die Lösung?"
+            say: "Lies die Hinweise und die Lösung. Stimmt die Lösung?"
+            answer: true
+          - id: l2-c12
+            part: small-words
+            type: true_false
+            text: "Ben, Clara und Dana sind 7, 8 und 9 Jahre alt.\n1. Clara ist jünger als Ben.\n2. Dana ist die Älteste.\n\nLösung: Ben ist 7, Clara ist 8, Dana ist 9. Stimmt die Lösung?"
+            say: "Lies die Hinweise und die Lösung. Stimmt die Lösung?"
+            answer: false
+          - id: l2-c13
+            part: small-words
+            type: multiple_choice
+            text: "Emil, Fiona und Greta sitzen nebeneinander.\nHinweis: Emil sitzt nicht neben Fiona.\n\nWelche Reihenfolge passt zum Hinweis?"
+            say: "Lies den Hinweis. Welche Reihenfolge passt dazu?"
+            options: ["Emil, Greta, Fiona", "Emil, Fiona, Greta", "Fiona, Emil, Greta"]
+            answer: "Emil, Greta, Fiona"
+          - id: l2-c14
+            part: small-words
+            type: multiple_choice
+            text: "In der Klassenbücherei steht: Du darfst höchstens 3 Bücher auf einmal ausleihen.\n\nWelche Anzahl ist erlaubt?"
+            say: "Lies die Regel. Welche Anzahl ist erlaubt?"
+            options: ["2 Bücher", "4 Bücher", "5 Bücher"]
+            answer: "2 Bücher"
+          - id: l2-c15
+            part: logical-three
+            type: multiple_choice
+            text: "Jule, Karl und Liv haben je ein Haustier: einen Wellensittich, einen Hamster und einen Fisch.\n1. Karl hat den Fisch.\n2. Liv hat keinen Vogel.\n\nWer hat den Wellensittich?"
+            say: "Lies die Hinweise. Wer hat den Wellensittich?"
+            options: ["Jule", "Liv", "Karl"]
+            answer: "Jule"
+          - id: l2-c16
+            part: logical-three
+            type: fill_in_blank
+            text: "Anton, Bea und Cem fahren mit dem Zug, dem Auto und dem Bus zu Oma.\n1. Bea fährt nicht mit dem Auto.\n2. Cem fährt mit dem Zug.\n\nTrag die Lösung ein."
+            say: "Lies die Hinweise. Wer fährt womit? Trag die Lösung ein."
+            frame: "Anton: _   Bea: _   Cem: _"
+            options: ["Zug", "Auto", "Bus"]
+            answer: ["Auto", "Bus", "Zug"]
+          - id: l2-c17
+            part: logical-three
+            type: multiple_choice
+            text: "Drei Becher stehen nebeneinander: ein roter, ein gelber und ein grüner.\n1. Der grüne Becher steht nicht am Rand.\n2. Der rote Becher steht rechts neben dem grünen.\n\nWelcher Becher steht ganz links?"
+            say: "Lies die Hinweise. Welcher Becher steht ganz links?"
+            options: ["der gelbe", "der rote", "der grüne"]
+            answer: "der gelbe"
+          - id: l2-c18
+            part: logical-four
+            type: multiple_choice
+            text: "Anna, Bo, Cleo und Dirk stehen in einer Reihe an der Rutsche.\n1. Cleo steht ganz vorne.\n2. Dirk steht direkt hinter Cleo.\n3. Anna steht nicht ganz hinten.\n\nWer steht ganz hinten?"
+            say: "Lies die Hinweise. Wer steht ganz hinten?"
+            options: ["Bo", "Anna", "Dirk"]
+            answer: "Bo"
+          - id: l2-c19
+            part: logical-four
+            type: fill_in_blank
+            text: "Eli, Fritz, Gül und Hans machen Fußball, Tennis, Judo und Schach.\n1. Gül spielt Schach.\n2. Fritz macht keinen Sport mit einem Ball.\n3. Eli spielt nicht Tennis.\n\nTrag die Lösung ein."
+            say: "Lies die Hinweise. Wer macht was? Trag die Lösung ein."
+            frame: "Eli: _   Fritz: _   Gül: _   Hans: _"
+            options: ["Fußball", "Tennis", "Judo", "Schach"]
+            answer: ["Fußball", "Judo", "Schach", "Tennis"]
+          - id: l2-c20
+            part: logical-four
+            type: true_false
+            text: "Ivo, Jana, Kurt und Lena sind 6, 7, 8 und 9 Jahre alt.\n1. Lena ist die Älteste.\n2. Ivo ist jünger als Kurt.\n3. Jana ist 8.\n\nLösung: Ivo ist 6, Kurt ist 7, Jana ist 8, Lena ist 9. Stimmt die Lösung?"
+            say: "Lies die Hinweise und die Lösung. Stimmt die Lösung?"
+            answer: true

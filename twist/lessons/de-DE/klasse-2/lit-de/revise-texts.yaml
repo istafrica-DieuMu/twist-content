@@ -15,7 +15,10 @@ summary: >
   repeated Satzanfänge, finds more exact words, puts sentences in order,
   spots an unclear er or sie, and ends with the skill check. Revising a
   child's own text waits for a free text task type; here the child
-  chooses, orders and matches.
+  chooses, orders and matches. The skill check marks what a screen can
+  mark (the tip, the checklist question, the Satzanfang, the word, the
+  order, the unclear er or sie); Practise covers revising a whole text of
+  the child's own.
 metadata:
   year: klasse-2
   topic: { de: Texte überarbeiten, en: Revising writing }
@@ -27,6 +30,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: conference, what: { de: in der Schreibkonferenz freundlich und genau Tipps geben, en: giving kind and exact tips in a writing conference } }
+    - { id: checklist, what: { de: mit der Checkliste ein Problem im Text erkennen, en: spotting a problem in a text with the checklist } }
+    - { id: starts, what: { de: Satzanfänge verändern, en: changing repeated sentence starts } }
+    - { id: words, what: { de: genauere Wörter wählen, en: choosing more exact words } }
+    - { id: order-clear, what: { de: Reihenfolge und Verständlichkeit prüfen, en: checking the order and that everything is clear } }
   misconceptions:
     - id: unhelpful-feedback
       what: Gives only praise or criticism (Gut., Das ist doof.) without a tip the writer can use
@@ -212,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +241,26 @@ lessons:
             text: "In der Schreibkonferenz sagst du zuerst, was dir gefällt. Stimmt das?"
             say: "In der Schreibkonferenz sagst du zuerst, was dir gefällt. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Lukas liest seinen Text über seinen Hund vor. Kim sagt: „Mir gefällt dein Anfang.“ Was sagt Kim danach?"
+            say: "Lukas liest seinen Text über seinen Hund vor. Kim sagt: Mir gefällt dein Anfang. Was sagt Kim danach?"
+            options: ["Mein Tipp: Schreib noch, wie dein Hund heißt.", "Das war's schon.", "Jetzt lese ich vor, ich kann das besser."]
+            answer: "Mein Tipp: Schreib noch, wie dein Hund heißt."
+          - id: l1-c5
+            type: matching
+            text: "Welche Frage aus der Checkliste passt?"
+            say: "Verbinde jede Stelle mit der Frage aus der Checkliste, die hilft."
+            pairs:
+              - { left: { text: "Die Katze tat etwas." }, right: { text: "Passen die Wörter genau?" } }
+              - { left: { text: "Oben fehlt der Titel." }, right: { text: "Hat der Text eine Überschrift?" } }
+              - { left: { text: "Er nahm es mit." }, right: { text: "Versteht man alles?" } }
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Nach der Schreibkonferenz muss das Kind jeden Tipp nutzen. Stimmt das?"
+            say: "Nach der Schreibkonferenz muss das Kind jeden Tipp nutzen. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Den Text verbessern", en: "Making the text better" }
@@ -398,14 +428,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: conference
             type: multiple_choice
             text: "Paul liest seine Geschichte vor. Welcher Tipp hilft ihm am meisten?"
             say: "Paul liest seine Geschichte vor. Welcher Tipp hilft ihm am meisten?"
             options: ["Mein Tipp: Der Schluss fehlt. Erzähl, wie es ausgeht.", "Ganz okay.", "Langweilig!"]
             answer: "Mein Tipp: Der Schluss fehlt. Erzähl, wie es ausgeht."
           - id: l2-c2
+            part: starts
             type: fill_in_blank
             text: "Verbessere den zweiten Satzanfang."
             say: "Der zweite Satz soll anders anfangen. Welches Wort passt?"
@@ -413,12 +446,14 @@ lessons:
             options: ["Leider", "Dann", "Und dann"]
             answer: ["Leider"]
           - id: l2-c3
+            part: words
             type: multiple_choice
             text: "Der Junge ging ganz schnell zum Tor.\n\nWelches Wort ist genauer als „ging ganz schnell“?"
             say: "Lies den Satz. Welches Wort ist genauer als ging ganz schnell?"
             options: ["rannte", "machte", "sagte"]
             answer: "rannte"
           - id: l2-c4
+            part: checklist
             type: matching
             text: "Was gehört zusammen?"
             say: "Verbinde jede Stelle mit der passenden Frage aus der Checkliste."
@@ -428,8 +463,116 @@ lessons:
               - { left: { text: "Erst fuhren wir heim, dann in den Zoo." }, right: { text: "Stimmt die Reihenfolge?" } }
             option_audio: false
           - id: l2-c5
+            part: conference
             type: multiple_choice
             text: "Was sagst du in der Schreibkonferenz, bevor du einen Tipp gibst?"
             say: "Was sagst du in der Schreibkonferenz, bevor du einen Tipp gibst?"
             options: ["was dir an dem Text gefällt", "was du heute gegessen hast", "dass du es besser kannst"]
             answer: "was dir an dem Text gefällt"
+          - id: l2-c6
+            part: conference
+            type: true_false
+            text: "Ein Satz wie „Das ist schön“ hilft dem Kind, seinen Text zu verbessern. Stimmt das?"
+            say: "Ein Satz wie: Das ist schön, hilft dem Kind, seinen Text zu verbessern. Stimmt das?"
+            answer: false
+          - id: l2-c7
+            part: conference
+            type: multiple_choice
+            text: "Lara sagt zu Ali: „Dein Text ist doof.“ Wie kann sie es besser sagen?"
+            say: "Lara sagt zu Ali: Dein Text ist doof. Wie kann sie es besser sagen?"
+            options: ["Mir gefällt deine Überschrift. Mein Tipp: Schreib, wie dein Hase heißt.", "Dein Text ist sehr doof.", "Ich sage lieber gar nichts."]
+            answer: "Mir gefällt deine Überschrift. Mein Tipp: Schreib, wie dein Hase heißt."
+          - id: l2-c8
+            part: checklist
+            type: matching
+            text: "Welche Frage aus der Checkliste hilft bei jeder Stelle?"
+            say: "Lies die Stellen. Welche Frage aus der Checkliste hilft bei jeder Stelle? Verbinde sie."
+            pairs:
+              - { left: { text: "Ich war froh. Ich ging heim. Ich aß." }, right: { text: "Fangen die Sätze verschieden an?" } }
+              - { left: { text: "Erst schlief ich ein, dann putzte ich mir die Zähne." }, right: { text: "Stimmt die Reihenfolge?" } }
+              - { left: { text: "Sie gab es ihr." }, right: { text: "Versteht man alles?" } }
+            option_audio: false
+          - id: l2-c9
+            part: checklist
+            type: multiple_choice
+            text: "Mein Ausflug\nWir fuhren mit dem Zug. Wir sahen Kühe. Wir aßen Brote.\n\nWelche Frage aus der Checkliste zeigt das Problem?"
+            say: "Lies den Text. Welche Frage aus der Checkliste zeigt das Problem?"
+            options: ["Fangen die Sätze verschieden an?", "Hat der Text eine Überschrift?", "Stimmt die Reihenfolge?"]
+            answer: "Fangen die Sätze verschieden an?"
+          - id: l2-c10
+            part: checklist
+            type: multiple_choice
+            text: "Gestern war ich mit Opa am See. Zuerst angelten wir einen Fisch. Danach grillten wir ihn.\n\nWelche Frage aus der Checkliste zeigt, was dem Text fehlt?"
+            say: "Lies den Text. Welche Frage aus der Checkliste zeigt, was dem Text fehlt?"
+            options: ["Hat der Text eine Überschrift?", "Fangen die Sätze verschieden an?", "Stimmt die Reihenfolge?"]
+            answer: "Hat der Text eine Überschrift?"
+          - id: l2-c11
+            part: starts
+            type: fill_in_blank
+            text: "Verbessere den zweiten Satzanfang."
+            say: "Der zweite Satz soll anders anfangen. Welche Wörter passen?"
+            frame: "Dann bauten wir eine Sandburg. _ kam eine große Welle."
+            options: ["Auf einmal", "Dann", "Und dann"]
+            answer: ["Auf einmal"]
+          - id: l2-c12
+            part: starts
+            type: multiple_choice
+            text: "In welchem Text fangen die Sätze verschieden an?"
+            say: "Lies die drei Texte. In welchem Text fangen die Sätze verschieden an?"
+            options: ["Ich stand auf. Danach frühstückte ich. Später ging ich raus.", "Ich stand auf. Ich frühstückte. Ich ging raus.", "Dann stand ich auf. Dann frühstückte ich. Dann ging ich raus."]
+            answer: "Ich stand auf. Danach frühstückte ich. Später ging ich raus."
+          - id: l2-c13
+            part: starts
+            type: true_false
+            text: "„Dann ging ich ins Haus. Dann zog ich die Schuhe aus. Dann aß ich.“\n\nFangen die Sätze verschieden an?"
+            say: "Lies den Text. Fangen die Sätze verschieden an?"
+            answer: false
+          - id: l2-c14
+            part: words
+            type: multiple_choice
+            text: "Oma sagte laut: „Kommt sofort rein!“\n\nWelches Wort ist genauer als „sagte laut“?"
+            say: "Lies den Satz. Welches Wort ist genauer als sagte laut?"
+            options: ["rief", "flüsterte", "ging"]
+            answer: "rief"
+          - id: l2-c15
+            part: words
+            type: fill_in_blank
+            text: "Die Blume ist schön. Welches Wort sagt genauer, wie die Blume aussieht?"
+            say: "Lies den Satz. Welches Wort sagt genauer, wie die Blume aussieht?"
+            frame: "Die Blume ist _."
+            options: ["knallrot", "schön", "nett"]
+            answer: ["knallrot"]
+          - id: l2-c16
+            part: words
+            type: true_false
+            text: "„Der Hund schnüffelte am Baum“ ist genauer als „Der Hund machte etwas am Baum“. Stimmt das?"
+            say: "Der Hund schnüffelte am Baum, ist genauer als: Der Hund machte etwas am Baum. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: order-clear
+            type: ordering
+            text: "Bring die Sätze in die richtige Reihenfolge."
+            say: "Die Sätze sind durcheinander. Bring sie in die richtige Reihenfolge."
+            options: ["Zum Schluss trocknete ich mich ab.", "Zuerst sprang ich ins Becken.", "Dann schwamm ich eine Bahn."]
+            slot_count: 3
+            answer: ["Zuerst sprang ich ins Becken.", "Dann schwamm ich eine Bahn.", "Zum Schluss trocknete ich mich ab."]
+          - id: l2-c18
+            part: order-clear
+            type: multiple_choice
+            text: "Tom und Ben gingen in den Park. Dort fand er einen Ball.\n\nWie wird der zweite Satz klar?"
+            say: "Lies den Text. Wie wird der zweite Satz klar?"
+            options: ["Dort fand Ben einen Ball.", "Dort fand er einen Ball.", "Dort fand es einen Ball."]
+            answer: "Dort fand Ben einen Ball."
+          - id: l2-c19
+            part: order-clear
+            type: true_false
+            text: "„Zuerst kaufte ich ein Eis. Dann aß ich es auf.“\n\nStimmt die Reihenfolge?"
+            say: "Lies den Text. Stimmt die Reihenfolge?"
+            answer: true
+          - id: l2-c20
+            part: order-clear
+            type: multiple_choice
+            text: "Wir aßen den Kuchen. Wir backten einen Kuchen. Wir räumten die Küche auf.\n\nWelcher Satz muss nach vorn?"
+            say: "Lies den Text. Welcher Satz muss nach vorn?"
+            options: ["Wir backten einen Kuchen.", "Wir aßen den Kuchen.", "Wir räumten die Küche auf."]
+            answer: "Wir backten einen Kuchen."

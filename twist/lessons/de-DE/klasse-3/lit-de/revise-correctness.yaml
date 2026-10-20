@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: spelling, what: { de: Rechtschreibfehler und kleine Nomen finden und berichtigen, en: finding and correcting spelling mistakes and nouns without a capital } }
+    - { id: grammar, what: { de: Verbformen und Satzzeichen prüfen und berichtigen, en: checking and correcting verb forms and punctuation } }
+    - { id: computer, what: { de: "am Computer prüfen: den passenden Vorschlag wählen und Fehler finden, die das Programm nicht sieht", en: "checking on a computer: choosing the right suggestion and finding mistakes the program misses" } }
   misconceptions:
     - id: spelling-only
       what: Checks only the spelling of words and overlooks missing marks, small capitals and verbs that do not fit
@@ -212,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -233,6 +238,25 @@ lessons:
             frame: "Hast du heute Zeit_"
             options: ["?", ".", "!"]
             answer: ["?"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welcher Satz ist ganz richtig geschrieben?"
+            say: "Prüfe jeden Satz mit der Checkliste. Welcher ist ganz richtig?"
+            options: ["Der Bäcker backt frische Brötchen.", "der Bäcker backt frische Brötchen.", "Der Bäcker backt frische brötchen."]
+            answer: "Der Bäcker backt frische Brötchen."
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Ist der Satz richtig?"
+            say: "Prüfe den Satz mit der Checkliste. Ist alles richtig?"
+            show: { drawn: letter-card, text: "Die Kinder lacht über den Witz." }
+            answer: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Ein Nomen ist kleingeschrieben. Tippe es an."
+            say: "Prüfe die Nomen. Ein Nomen ist kleingeschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Unsere Lehrerin liest eine spannende geschichte vor." }
+            spans: ["geschichte"]
 
   - n: 2
     title: { de: "Am Computer prüfen", en: "Checking on the computer" }
@@ -285,7 +309,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: true_false
-                text: "Unser Rat hat einen Platten.\n\nFindet die Rechtschreibprüfung diesen Fehler?"
+                text: "Unser Rat hat einen Platten.\nGemeint ist das Fahrrad.\n\nFindet die Rechtschreibprüfung diesen Fehler?"
                 say: "Lies den Satz. Gemeint ist das Fahrrad. Findet die Rechtschreibprüfung diesen Fehler?"
                 answer: false
                 hints:
@@ -403,21 +427,25 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spelling
             type: highlight_in_text
             text: "Tippe auf das Wort mit dem Fehler."
-            say: "Prüfe die Nomen. Ein Wort ist falsch. Tippe es an."
+            say: "Lies den Satz. Ein Wort ist falsch. Tippe es an."
             show: { drawn: letter-card, text: "Am Wochenende besuchen wir die oma." }
             spans: ["oma"]
           - id: l2-c2
+            part: grammar
             type: fill_in_blank
             text: "Welches Wort fehlt?"
-            say: "Prüfe das Verb. Welche Form passt in die Lücke?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
             frame: "Die Schüler _ ein Lied."
             options: ["singen", "singt", "singst"]
             answer: ["singen"]
           - id: l2-c3
+            part: computer
             type: multiple_choice
             text: "Heute regnet es. Ich nehme meinen Regenschrim mit.\n\nDas Wort Regenschrim hat eine rote Wellenlinie. Welchen Vorschlag wählst du?"
             say: "Das Wort Regenschrim hat eine rote Wellenlinie. Welchen Vorschlag wählst du?"
@@ -425,15 +453,126 @@ lessons:
             answer: "Regenschirm"
             option_audio: false
           - id: l2-c4
+            part: computer
             type: highlight_in_text
             text: "Das Programm hat nichts unterstrichen. Welches Wort ist trotzdem falsch?"
             say: "Lies genau. Welches Wort ist trotzdem falsch? Tippe es an."
             show: { drawn: letter-card, text: "Am Samstag fahren wir in die Statt." }
             spans: ["Statt"]
           - id: l2-c5
+            part: grammar
             type: multiple_choice
             text: "Welcher Satz ist ganz richtig?"
-            say: "Prüfe jeden Satz mit der Checkliste. Welcher ist ganz richtig?"
+            say: "Lies jeden Satz genau. Welcher ist ganz richtig?"
             options: ["Ich mag Äpfel, Birnen und Kirschen.", "Ich mag Äpfel Birnen und Kirschen.", "Ich mag äpfel, Birnen und Kirschen."]
             answer: "Ich mag Äpfel, Birnen und Kirschen."
             option_audio: false
+          - id: l2-c6
+            part: spelling
+            type: highlight_in_text
+            text: "Zwei Wörter sind falsch geschrieben. Tippe sie an."
+            say: "Lies den Satz. Zwei Wörter sind falsch geschrieben. Tippe sie an."
+            show: { drawn: letter-card, text: "Im winter bauen wir einen Schneeman." }
+            spans: ["winter", "Schneeman"]
+          - id: l2-c7
+            part: grammar
+            type: fill_in_blank
+            text: "Welches Verb passt?"
+            say: "Lies den Satz. Welches Verb passt in die Lücke?"
+            frame: "Der Hund und die Katze _ zusammen auf dem Sofa."
+            options: ["schlafen", "schläft", "schlafe"]
+            answer: ["schlafen"]
+          - id: l2-c8
+            part: computer
+            type: multiple_choice
+            text: "Wir backen einen Kuchen mit Schockolade.\n\nDas Wort Schockolade hat eine rote Wellenlinie. Welchen Vorschlag wählst du?"
+            say: "Das Wort Schockolade hat eine rote Wellenlinie. Welchen Vorschlag wählst du?"
+            options: ["Schokolade", "Schokoladen", "Schokoriegel"]
+            answer: "Schokolade"
+            option_audio: false
+          - id: l2-c9
+            part: spelling
+            type: true_false
+            text: "Ist der Satz richtig?"
+            say: "Lies den Satz genau. Ist alles richtig?"
+            show: { drawn: letter-card, text: "Der Fuchs schleicht leise durch den Wald." }
+            answer: true
+          - id: l2-c10
+            part: grammar
+            type: fill_in_blank
+            text: "Welches Satzzeichen fehlt am Ende?"
+            say: "Lies den Satz. Welches Satzzeichen fehlt am Ende?"
+            frame: "Hilfe, ich komme nicht mehr vom Baum runter_"
+            options: ["!", ".", "?"]
+            answer: ["!"]
+          - id: l2-c11
+            part: computer
+            type: true_false
+            text: "Am Himmel leuchten die Steerne.\n\nFindet die Rechtschreibprüfung diesen Fehler?"
+            say: "Lies den Satz. Findet die Rechtschreibprüfung diesen Fehler?"
+            answer: true
+          - id: l2-c12
+            part: spelling
+            type: multiple_choice
+            text: "Welcher Satz ist ganz richtig geschrieben?"
+            say: "Lies jeden Satz genau. Welcher ist ganz richtig geschrieben?"
+            options: ["Nach dem Essen putze ich mir die Zähne.", "Nach dem essen putze ich mir die Zähne.", "Nach dem Essen putze ich mir die Zehne."]
+            answer: "Nach dem Essen putze ich mir die Zähne."
+            option_audio: false
+          - id: l2-c13
+            part: grammar
+            type: highlight_in_text
+            text: "Ein Verb passt nicht. Tippe es an."
+            say: "Lies den Satz. Ein Verb passt nicht. Tippe es an."
+            show: { drawn: letter-card, text: "Meine Schwester und ich geht jeden Tag zu Fuß zur Schule." }
+            spans: ["geht"]
+          - id: l2-c14
+            part: computer
+            type: highlight_in_text
+            text: "Kein Wort hat eine rote Linie. Trotzdem ist eins falsch. Tippe es an."
+            say: "Das Programm hat nichts unterstrichen. Trotzdem ist ein Wort falsch. Tippe es an."
+            show: { drawn: letter-card, text: "Im Ozean schwimmt ein riesiger Wahl." }
+            spans: ["Wahl"]
+          - id: l2-c15
+            part: spelling
+            type: multiple_choice
+            text: "Die Kinder spielen im Sandkassten.\n\nEin Wort ist falsch geschrieben. Wie schreibt man es richtig?"
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Wie schreibt man es richtig?"
+            options: ["Sandkasten", "Santkasten", "Sandkahsten"]
+            answer: "Sandkasten"
+            option_audio: false
+          - id: l2-c16
+            part: grammar
+            type: multiple_choice
+            text: "Wo stehen die Kommas richtig?"
+            say: "Lies jeden Satz genau. Wo stehen die Kommas richtig?"
+            options: ["Lea, Tom und Ali spielen Fangen.", "Lea Tom, und Ali spielen Fangen.", "Lea, Tom, und Ali spielen Fangen."]
+            answer: "Lea, Tom und Ali spielen Fangen."
+            option_audio: false
+          - id: l2-c17
+            part: computer
+            type: true_false
+            text: "Ein Wort hat eine rote Wellenlinie. Ist der erste Vorschlag des Programms immer der richtige?"
+            say: "Ein Wort hat eine rote Wellenlinie. Ist der erste Vorschlag des Programms immer der richtige?"
+            answer: false
+          - id: l2-c18
+            part: spelling
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Lena isst gern Erdbeeren mit Sane." }
+            spans: ["Sane"]
+          - id: l2-c19
+            part: grammar
+            type: true_false
+            text: "Ist der Satz richtig?"
+            say: "Lies den Satz genau. Ist alles richtig?"
+            show: { drawn: letter-card, text: "Oma fragt: „Wer möchte noch Kuchen?“" }
+            answer: true
+          - id: l2-c20
+            part: spelling
+            type: true_false
+            text: "Ist der Satz richtig?"
+            say: "Lies den Satz genau. Ist alles richtig?"
+            show: { drawn: letter-card, text: "Am Abend schauen wir einen film." }
+            answer: false

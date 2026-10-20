@@ -27,6 +27,12 @@ metadata:
   drawn: [letter-card, writing-lines, syllable-arcs, word-card]
   sounds: []
   facets: [script]
+  parts:
+    - { id: g-k, what: { de: G und K unterscheiden, en: telling G from K } }
+    - { id: au, what: { de: das au hören und lesen, en: hearing and reading au } }
+    - { id: sch, what: { de: "sch: drei Buchstaben, ein Laut", en: "sch: three letters, one sound" } }
+    - { id: z-s, what: { de: Z und S unterscheiden, en: telling Z from S } }
+    - { id: words, what: { de: "Wörter mit G, Au, Sch und Z lesen", en: "reading words with G, Au, Sch and Z" } }
   misconceptions:
     - id: sch-one-sound
       what: Writes only s for sch, or thinks the three letters are three sounds
@@ -224,6 +230,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -242,6 +249,24 @@ lessons:
             say: "Kanne. Hörst du am Anfang ein g?"
             show: { object: jug }
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du am Anfang ein G?"
+            say: "Gießkanne. Hörst du am Anfang ein g?"
+            show: { object: watering-can }
+            answer: true
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes G."
+            say: "Tippe auf jedes große und kleine G."
+            show: { drawn: letter-card, text: "g G p g O" }
+            spans: ["g", "G", "g"]
+          - id: l1-c6
+            type: audio_choice
+            text: "G oder K?"
+            audio: { de: "Koch." }
+            options: ["G", "K"]
+            answer: "K"
 
   - n: 2
     title: { de: Das Au, en: The sound au }
@@ -422,6 +447,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: image_multiple_choice
@@ -443,6 +469,24 @@ lessons:
             frame: "_ge"
             options: ["A", "Au", "Ei"]
             answer: ["Au"]
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du ein au?"
+            say: "Hut. Hörst du in dem Wort ein au?"
+            show: { object: hat }
+            answer: false
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes au."
+            say: "Tippe auf jede Karte mit au."
+            show: { drawn: letter-card, text: "au a Au u au" }
+            spans: ["au", "Au", "au"]
+          - id: l2-c6
+            type: audio_choice
+            text: "Wie fängt das Wort an?"
+            audio: { de: "Ameise." }
+            options: ["Au", "A", "U"]
+            answer: "A"
 
   - n: 3
     title: { de: Das Sch, en: The sound sch }
@@ -621,6 +665,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: image_multiple_choice
@@ -639,6 +684,24 @@ lessons:
             say: "Socke. Hörst du am Anfang ein sch?"
             show: { object: sock }
             answer: false
+          - id: l3-c4
+            type: true_false
+            text: "Hörst du ein sch?"
+            say: "Tisch. Hörst du in dem Wort ein sch?"
+            show: { object: table }
+            answer: true
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes sch."
+            say: "Tippe auf jede Karte mit s, c und h."
+            show: { drawn: letter-card, text: "Sch s sch ch" }
+            spans: ["Sch", "sch"]
+          - id: l3-c6
+            type: audio_choice
+            text: "Sch oder S?"
+            audio: { de: "Seife." }
+            options: ["Sch", "S"]
+            answer: "S"
 
   - n: 4
     title: { de: Das Z, en: The letter Z }
@@ -819,6 +882,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l4-c1
             type: image_multiple_choice
@@ -837,6 +901,24 @@ lessons:
             say: "Katze. Hörst du in dem Wort ein z?"
             show: { object: cat }
             answer: true
+          - id: l4-c4
+            type: true_false
+            text: "Hörst du am Anfang ein Z?"
+            say: "Sack. Hörst du am Anfang ein z?"
+            show: { object: sack }
+            answer: false
+          - id: l4-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes Z."
+            say: "Tippe auf jedes große und kleine Z."
+            show: { drawn: letter-card, text: "z S Z s z" }
+            spans: ["z", "Z", "z"]
+          - id: l4-c6
+            type: audio_choice
+            text: "Z oder S?"
+            audio: { de: "Zucker." }
+            options: ["Z", "S"]
+            answer: "Z"
 
   - n: 5
     title: { de: "Wörter mit G, Au, Sch und Z", en: "Words with G, Au, Sch and Z" }
@@ -1013,36 +1095,151 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l5-c1
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Haus" }
             options: [{ object: mouse }, { object: house }, { object: hat }]
             answer: house
+            option_audio: false
           - id: l5-c2
+            part: g-k
             type: audio_choice
             text: "G oder K?"
             audio: { de: "Geld." }
             options: ["G", "K"]
             answer: "G"
           - id: l5-c3
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: syllable-arcs, word: "Muschel", syllables: ["Mu", "schel"] }
             options: [{ object: marble }, { object: shell }, { object: mouse }]
             answer: shell
+            option_audio: false
           - id: l5-c4
+            part: z-s
             type: fill_in_blank
-            text: "Welcher Buchstabe fehlt?"
-            say: "Zahn. Welcher Buchstabe fehlt?"
+            text: "Was fehlt?"
+            say: "Zahn. Was fehlt am Anfang?"
+            show: { object: tooth }
             frame: "_ahn"
             options: ["S", "Z", "Sch"]
             answer: ["Z"]
           - id: l5-c5
+            part: sch
             type: audio_choice
             text: "Sch oder S?"
             audio: { de: "Schrank." }
             show: { object: cupboard }
             options: ["S", "Sch"]
             answer: "Sch"
+          - id: l5-c6
+            part: g-k
+            type: true_false
+            text: "Hörst du am Anfang ein G?"
+            say: "Kerze. Hörst du am Anfang ein g?"
+            show: { object: candle }
+            answer: false
+          - id: l5-c7
+            part: au
+            type: true_false
+            text: "Hörst du ein au?"
+            say: "Bauer. Hörst du in dem Wort ein au?"
+            show: { object: farmer }
+            answer: true
+          - id: l5-c8
+            part: sch
+            type: image_multiple_choice
+            text: "Was fängt mit Sch an?"
+            options: [{ object: sock }, { object: ship }, { object: saw }]
+            answer: ship
+          - id: l5-c9
+            part: z-s
+            type: true_false
+            text: "Hörst du am Anfang ein Z?"
+            say: "Zug. Hörst du am Anfang ein z?"
+            show: { object: train }
+            answer: true
+          - id: l5-c10
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Gabel" }
+            options: [{ object: spoon }, { object: bell }, { object: fork }]
+            answer: fork
+            option_audio: false
+          - id: l5-c11
+            part: g-k
+            type: image_multiple_choice
+            text: "Was fängt mit G an?"
+            options: [{ object: cat }, { object: glass }, { object: cake }]
+            answer: glass
+          - id: l5-c12
+            part: au
+            type: highlight_in_text
+            text: "Tippe auf jedes au."
+            say: "Tippe auf jede Karte mit au."
+            show: { drawn: letter-card, text: "u au Au ei au" }
+            spans: ["au", "Au", "au"]
+          - id: l5-c13
+            part: sch
+            type: true_false
+            text: "Hörst du am Anfang ein sch?"
+            say: "Schaf. Hörst du am Anfang ein sch?"
+            show: { object: sheep }
+            answer: true
+          - id: l5-c14
+            part: z-s
+            type: image_multiple_choice
+            text: "Was fängt mit Z an?"
+            options: [{ object: sun }, { object: toothbrush }, { object: sock }]
+            answer: toothbrush
+          - id: l5-c15
+            part: au
+            type: audio_choice
+            text: "au oder ei?"
+            say: "Hör zu. Hörst du au oder ei?"
+            audio: { de: "Bauch." }
+            options: ["ei", "au"]
+            answer: "au"
+          - id: l5-c16
+            part: words
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: fence }
+            options: ["Zahn", "Zaun", "Raum"]
+            answer: "Zaun"
+            option_audio: false
+          - id: l5-c17
+            part: g-k
+            type: audio_choice
+            text: "G oder K?"
+            audio: { de: "Geige." }
+            options: ["K", "G"]
+            answer: "G"
+          - id: l5-c18
+            part: au
+            type: true_false
+            text: "Hörst du ein au?"
+            say: "Hose. Hörst du in dem Wort ein au?"
+            show: { object: trousers }
+            answer: false
+          - id: l5-c19
+            part: sch
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: pig }
+            options: ["Schaf", "Schirm", "Schwein"]
+            answer: "Schwein"
+            option_audio: false
+          - id: l5-c20
+            part: z-s
+            type: true_false
+            text: "Hörst du ein Z?"
+            say: "Sofa. Hörst du in dem Wort ein z?"
+            show: { object: sofa }
+            answer: false

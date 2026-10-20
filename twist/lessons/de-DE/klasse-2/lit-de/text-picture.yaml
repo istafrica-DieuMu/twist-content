@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: fits, what: { de: "prüfen, ob ein Bild zum Text passt", en: checking whether a picture fits the text } }
+    - { id: find-picture, what: { de: das passende Bild zu einem Satz oder Sachtext finden, en: finding the picture for a sentence or an information text } }
+    - { id: adds, what: { de: "sagen, was das Bild zusätzlich erzählt", en: saying what the picture adds } }
+    - { id: comic, what: { de: "Sprechblase, Denkblase und Erzählkasten im Comic unterscheiden", en: "telling speech bubbles, thought bubbles and caption boxes apart in a comic" } }
   misconceptions:
     - id: picture-repeats-text
       what: Thinks a picture only repeats the text, so for "Was erzählt das Bild zusätzlich?" picks the sentence that is already in the text
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -240,6 +246,25 @@ lessons:
               - { left: { text: "Es ist heiß." }, right: { object: sun } }
               - { left: { text: "Alles ist weiß und kalt." }, right: { object: snow } }
               - { left: { text: "Wir brauchen einen Regenschirm." }, right: { object: rain } }
+          - id: l1-c4
+            type: true_false
+            text: "Die Katze schläft auf dem Sofa.\n\nPasst das Bild zum Text?"
+            say: "Lies den Satz und schau auf das Bild. Passt das Bild zum Text?"
+            show: { object: cat }
+            answer: true
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Dieses Tier hat acht Beine. Es baut ein Netz und fängt darin Fliegen. Welches Bild gehört zu dem Sachtext?"
+            say: "Lies den Sachtext. Welches Bild gehört dazu?"
+            options: [{ object: spider }, { object: ant }, { object: bee }]
+            answer: spider
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Zum Nachtisch gibt es heute ein großes Eis. Welches Bild passt?"
+            say: "Lies den Satz. Welches Bild passt dazu?"
+            options: [{ object: ice-cream }, { object: cake }, { object: apple }]
+            answer: ice-cream
+            option_audio: false
 
   - n: 2
     title: { de: "Was das Bild dazu erzählt", en: "What the picture adds" }
@@ -413,8 +438,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: adds
             type: multiple_choice
             text: "Max bekommt ein Paket.\n\nWas erzählt das Bild dazu?"
             say: "Lies den Satz und schau auf das Bild. Was erzählt das Bild, das nicht im Text steht?"
@@ -422,18 +449,21 @@ lessons:
             options: ["Max freut sich.", "Max bekommt ein Paket.", "Max ist traurig."]
             answer: "Max freut sich."
           - id: l2-c2
+            part: fits
             type: true_false
             text: "Am Abend leuchtet der Mond.\n\nPasst das Bild zum Text?"
             say: "Lies den Satz und schau auf das Bild. Passt das Bild zum Text?"
             show: { object: moon }
             answer: true
           - id: l2-c3
+            part: comic
             type: multiple_choice
             text: "Im Comic denkt die Prinzessin: „Wo ist nur mein Drache?“\n\nWo steht das?"
             say: "Im Comic denkt die Prinzessin etwas. Wo steht das?"
             options: ["in einer Denkblase", "in einer Sprechblase", "im Erzählkasten"]
             answer: "in einer Denkblase"
           - id: l2-c4
+            part: find-picture
             type: image_multiple_choice
             text: "Der Junge ist wütend und stampft mit dem Fuß. Welches Bild passt?"
             say: "Lies den Satz. Welches Bild passt dazu?"
@@ -441,9 +471,125 @@ lessons:
             answer: angry
             option_audio: false
           - id: l2-c5
+            part: adds
             type: multiple_choice
             text: "Wir gehen zum Spielplatz.\n\nWas erzählt das Bild dazu?"
             say: "Lies den Satz und schau auf das Bild. Was erzählt das Bild, das nicht im Text steht?"
             show: { object: rain }
             options: ["Es regnet.", "Wir gehen zum Spielplatz.", "Es ist heiß."]
             answer: "Es regnet."
+          - id: l2-c6
+            part: fits
+            type: true_false
+            text: "Der Fuchs schleicht leise durch den Wald.\n\nPasst das Bild zum Text?"
+            say: "Lies den Satz und schau auf das Bild. Passt das Bild zum Text?"
+            show: { object: fox }
+            answer: true
+          - id: l2-c7
+            part: fits
+            type: true_false
+            text: "Im Winter bauen die Kinder einen Schneemann.\n\nPasst das Bild zum Text?"
+            say: "Lies den Satz und schau auf das Bild. Passt das Bild zum Text?"
+            show: { object: sandcastle }
+            answer: false
+          - id: l2-c8
+            part: fits
+            type: true_false
+            text: "Tim ist sehr müde und will ins Bett.\n\nPasst das Bild zum Text?"
+            say: "Lies den Satz und schau auf das Bild. Passt das Bild zum Text?"
+            show: { object: angry }
+            answer: false
+          - id: l2-c9
+            part: fits
+            type: multiple_choice
+            text: "Schau auf das Bild. Welcher Satz passt dazu?"
+            say: "Schau auf das Bild. Welcher Satz passt dazu?"
+            show: { object: scared }
+            options: ["Das Kind hat Angst.", "Das Kind lacht laut.", "Das Kind schläft tief."]
+            answer: "Das Kind hat Angst."
+          - id: l2-c10
+            part: find-picture
+            type: image_multiple_choice
+            text: "Dieses Tier hat vier kurze Beine und einen harten Panzer. Es läuft sehr langsam. Welches Bild gehört zu dem Sachtext?"
+            say: "Lies den Sachtext. Welches Bild gehört dazu?"
+            options: [{ object: tortoise }, { object: crab }, { object: hedgehog }]
+            answer: tortoise
+          - id: l2-c11
+            part: find-picture
+            type: image_multiple_choice
+            text: "Dieser Vogel schläft am Tag. In der Nacht jagt er Mäuse. Er hat große, runde Augen. Welches Bild gehört zu dem Sachtext?"
+            say: "Lies den Sachtext. Welches Bild gehört dazu?"
+            options: [{ object: owl }, { object: duck }, { object: hen }]
+            answer: owl
+          - id: l2-c12
+            part: find-picture
+            type: matching
+            text: "Was braucht Lea dafür? Verbinde jeden Satz mit seinem Bild."
+            say: "Lies jeden Satz. Was braucht Lea dafür? Verbinde jeden Satz mit seinem Bild."
+            option_audio: false
+            pairs:
+              - { left: { text: "Lea putzt sich die Zähne." }, right: { object: toothbrush } }
+              - { left: { text: "Lea packt ihren Koffer." }, right: { object: suitcase } }
+              - { left: { text: "Lea gießt die Blumen." }, right: { object: watering-can } }
+          - id: l2-c13
+            part: find-picture
+            type: image_multiple_choice
+            text: "Ben hat Geburtstag. Er packt gerade ein Geschenk aus. Welches Bild passt?"
+            say: "Lies den Text. Welches Bild passt dazu?"
+            options: [{ object: present }, { object: cake }, { object: balloon }]
+            answer: present
+            option_audio: false
+          - id: l2-c14
+            part: adds
+            type: true_false
+            text: "Wir machen heute ein Picknick.\n\nErzählt das Bild etwas, das nicht im Text steht?"
+            say: "Lies den Satz und schau auf das Bild. Erzählt das Bild etwas, das nicht im Text steht?"
+            show: { object: sun }
+            answer: true
+          - id: l2-c15
+            part: adds
+            type: true_false
+            text: "Felix ist glücklich und lacht.\n\nErzählt das Bild etwas, das nicht im Text steht?"
+            say: "Lies den Satz und schau auf das Bild. Erzählt das Bild etwas, das nicht im Text steht?"
+            show: { object: happy }
+            answer: false
+          - id: l2-c16
+            part: adds
+            type: multiple_choice
+            text: "Im Sachtext steht: „Das Zebra lebt in Afrika.“ Daneben ist ein Bild vom Zebra.\n\nWas zeigt dir nur das Bild?"
+            say: "Lies den Text. Was zeigt dir nur das Bild?"
+            options: ["dass es schwarze und weiße Streifen hat", "dass es in Afrika lebt", "wie schnell es laufen kann"]
+            answer: "dass es schwarze und weiße Streifen hat"
+          - id: l2-c17
+            part: comic
+            type: multiple_choice
+            text: "Was steht in einer Denkblase?"
+            say: "Was steht in einer Denkblase?"
+            options: ["was eine Figur denkt", "was eine Figur laut sagt", "was der Erzähler erzählt"]
+            answer: "was eine Figur denkt"
+          - id: l2-c18
+            part: comic
+            type: sorting
+            text: "Sprechblase oder Denkblase? Sortiere."
+            say: "Lies die Sätze aus dem Comic. Steht das in einer Sprechblase oder in einer Denkblase?"
+            bins:
+              - { id: sprech, show: { text: "Sprechblase" }, say: "Sprechblase" }
+              - { id: denk, show: { text: "Denkblase" }, say: "Denkblase" }
+            options:
+              - { text: "Ella ruft: „Hallo, Tim!“", bin: sprech }
+              - { text: "Ella denkt: „Ob Tim mich sieht?“", bin: denk }
+              - { text: "Tim sagt: „Komm mit!“", bin: sprech }
+              - { text: "Tim denkt: „Hoffentlich regnet es nicht.“", bin: denk }
+          - id: l2-c19
+            part: comic
+            type: true_false
+            text: "Oben im Comic steht in einem Kasten: „Drei Tage später.“\n\nDiesen Satz sagt eine Figur. Stimmt das?"
+            say: "Lies den Text. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: comic
+            type: multiple_choice
+            text: "Im Comic steht über Toms Kopf eine kleine Wolke. Darin steht: „Ich habe Hunger.“\n\nWas bedeutet das?"
+            say: "Lies den Text. Was bedeutet das?"
+            options: ["Tom denkt das nur.", "Tom ruft das laut.", "Der Erzähler sagt das."]
+            answer: "Tom denkt das nur."

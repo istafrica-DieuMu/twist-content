@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: statement, what: { de: Aussagesätze erkennen und mit einem Punkt schließen, en: recognising statements and ending them with a full stop } }
+    - { id: question, what: { de: Fragesätze mit und ohne Fragewort erkennen und mit einem Fragezeichen schließen, en: recognising questions with and without a question word and ending them with a question mark } }
+    - { id: exclamation, what: { de: Ausrufesätze erkennen und mit einem Ausrufezeichen schließen, en: recognising exclamations and ending them with an exclamation mark } }
+    - { id: mixed, what: { de: alle drei Satzarten unterscheiden, en: telling all three kinds of sentence apart } }
   misconceptions:
     - id: question-without-word
       what: Sets a Punkt after a question without a question word (Kommst du mit.)
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -232,6 +238,26 @@ lessons:
             say: "Die Ente schwimmt auf dem Teich. Welche Satzart ist das?"
             options: ["Aussagesatz", "Fragesatz"]
             answer: "Aussagesatz"
+          - id: l1-c4
+            type: true_false
+            text: "Ist das Zeichen richtig?"
+            say: "Lies die Karte. Ist das Zeichen am Ende richtig?"
+            show: { drawn: letter-card, text: "Spielst du mit mir." }
+            answer: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Setz das Zeichen."
+            say: "Lies den Satz. Erzählt er etwas oder fragt er? Welches Zeichen gehört ans Ende?"
+            frame: "Heute ist Montag_"
+            options: ["?", "."]
+            answer: ["."]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welcher Satz ist eine Frage?"
+            say: "Lies die drei Sätze. Welcher Satz ist eine Frage?"
+            options: ["Isst du gern Nudeln", "Ich esse gern Nudeln", "Nudeln esse ich gern"]
+            answer: "Isst du gern Nudeln"
+            option_audio: false
 
   - n: 2
     title: { de: "Das Ausrufezeichen", en: "The exclamation mark" }
@@ -424,8 +450,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: question
             type: fill_in_blank
             text: "Setz das Zeichen."
             say: "Lies den Satz. Erzählt er etwas, fragt er oder ruft er? Welches Zeichen gehört ans Ende?"
@@ -433,6 +461,7 @@ lessons:
             options: ["!", "?", "."]
             answer: ["?"]
           - id: l2-c2
+            part: exclamation
             type: fill_in_blank
             text: "Setz das Zeichen."
             say: "Lies den Satz. Erzählt er etwas, fragt er oder ruft er? Welches Zeichen gehört ans Ende?"
@@ -440,6 +469,7 @@ lessons:
             options: [".", "!", "?"]
             answer: ["!"]
           - id: l2-c3
+            part: mixed
             type: sorting
             text: "Welche Satzart?"
             say: "Sortiere die Sätze nach ihrer Satzart."
@@ -453,15 +483,139 @@ lessons:
               - { text: "Toll, der Vogel ist wieder da", bin: excl }
             option_audio: false
           - id: l2-c4
+            part: question
             type: true_false
             text: "Ist das Zeichen richtig?"
             say: "Lies die Karte. Ist das Zeichen am Ende richtig?"
             show: { drawn: letter-card, text: "Darf ich ein Eis haben." }
             answer: false
           - id: l2-c5
+            part: statement
             type: fill_in_blank
             text: "Setz das Zeichen."
             say: "Lies den Satz. Erzählt er etwas, fragt er oder ruft er? Welches Zeichen gehört ans Ende?"
             frame: "Mein Bruder ist sieben Jahre alt_"
             options: ["?", ".", "!"]
             answer: ["."]
+          - id: l2-c6
+            part: statement
+            type: fill_in_blank
+            text: "Setz das Zeichen."
+            say: "Lies den Satz. Erzählt er etwas, fragt er oder ruft er? Welches Zeichen gehört ans Ende?"
+            frame: "Im Winter schneit es oft_"
+            options: ["!", "?", "."]
+            answer: ["."]
+          - id: l2-c7
+            part: statement
+            type: multiple_choice
+            text: "Welche Satzart ist das? „Unser Hund schläft im Körbchen.“"
+            say: "Lies den Satz. Welche Satzart ist das?"
+            options: ["Aussagesatz", "Fragesatz", "Ausrufesatz"]
+            answer: "Aussagesatz"
+          - id: l2-c8
+            part: statement
+            type: true_false
+            text: "Ist das Zeichen richtig?"
+            say: "Lies die Karte. Ist das Zeichen am Ende richtig?"
+            show: { drawn: letter-card, text: "Lisa malt ein Bild für Oma?" }
+            answer: false
+          - id: l2-c9
+            part: statement
+            type: multiple_choice
+            text: "Welcher Satz braucht einen Punkt?"
+            say: "Lies die drei Sätze. Welcher Satz braucht einen Punkt?"
+            options: ["Der Apfel liegt im Korb", "Liegt der Apfel im Korb", "Wo liegt der Apfel"]
+            answer: "Der Apfel liegt im Korb"
+            option_audio: false
+          - id: l2-c10
+            part: question
+            type: fill_in_blank
+            text: "Setz das Zeichen."
+            say: "Lies den Satz. Erzählt er etwas, fragt er oder ruft er? Welches Zeichen gehört ans Ende?"
+            frame: "Fährst du morgen mit dem Rad_"
+            options: [".", "!", "?"]
+            answer: ["?"]
+          - id: l2-c11
+            part: question
+            type: multiple_choice
+            text: "Welcher Satz braucht ein Fragezeichen?"
+            say: "Lies die drei Sätze. Welcher Satz braucht ein Fragezeichen?"
+            options: ["Kann Tom schon schwimmen", "Tom kann schon schwimmen", "Tom schwimmt im See"]
+            answer: "Kann Tom schon schwimmen"
+            option_audio: false
+          - id: l2-c12
+            part: question
+            type: true_false
+            text: "Ist das Zeichen richtig?"
+            say: "Lies die Karte. Ist das Zeichen am Ende richtig?"
+            show: { drawn: letter-card, text: "Wie heißt deine Lehrerin?" }
+            answer: true
+          - id: l2-c13
+            part: exclamation
+            type: fill_in_blank
+            text: "Setz das Zeichen."
+            say: "Lies den Satz. Erzählt er etwas, fragt er oder ruft er? Welches Zeichen gehört ans Ende?"
+            frame: "Vorsicht, der Herd ist heiß_"
+            options: [".", "?", "!"]
+            answer: ["!"]
+          - id: l2-c14
+            part: exclamation
+            type: multiple_choice
+            text: "Welche Satzart ist das? „Juhu, morgen sind Ferien!“"
+            say: "Lies den Satz. Welche Satzart ist das?"
+            options: ["Ausrufesatz", "Aussagesatz", "Fragesatz"]
+            answer: "Ausrufesatz"
+          - id: l2-c15
+            part: exclamation
+            type: true_false
+            text: "Ist das Zeichen richtig?"
+            say: "Lies die Karte. Ist das Zeichen am Ende richtig?"
+            show: { drawn: letter-card, text: "Hilfe, ich stecke fest." }
+            answer: false
+          - id: l2-c16
+            part: exclamation
+            type: multiple_choice
+            text: "Welcher Satz braucht ein Ausrufezeichen?"
+            say: "Lies die drei Sätze. Welcher Satz braucht ein Ausrufezeichen?"
+            options: ["Achtung, der Zug kommt", "Der Zug kommt um zehn Uhr", "Wann kommt der Zug"]
+            answer: "Achtung, der Zug kommt"
+            option_audio: false
+          - id: l2-c17
+            part: mixed
+            type: sorting
+            text: "Welche Satzart?"
+            say: "Sortiere die Sätze nach ihrer Satzart."
+            bins:
+              - { id: stmt, show: { text: "Aussagesatz ." }, say: "Aussagesatz" }
+              - { id: quest, show: { text: "Fragesatz ?" }, say: "Fragesatz" }
+              - { id: excl, show: { text: "Ausrufesatz !" }, say: "Ausrufesatz" }
+            options:
+              - { text: "Scheint heute die Sonne", bin: quest }
+              - { text: "Super, die Sonne scheint", bin: excl }
+              - { text: "Die Sonne scheint heute", bin: stmt }
+              - { text: "Wann scheint die Sonne", bin: quest }
+            option_audio: false
+          - id: l2-c18
+            part: mixed
+            type: fill_in_blank
+            text: "Setz die Zeichen."
+            say: "Lies die zwei Sätze. Welches Zeichen gehört an das Ende von jedem Satz?"
+            frame: "Wann kommt der Bus_ Er kommt um acht Uhr_"
+            options: [".", "?", "!"]
+            answer: ["?", "."]
+          - id: l2-c19
+            part: mixed
+            type: true_false
+            text: "Ist das Zeichen richtig?"
+            say: "Lies die Karte. Ist das Zeichen am Ende richtig?"
+            show: { drawn: letter-card, text: "Morgen fahren wir ans Meer." }
+            answer: true
+          - id: l2-c20
+            part: mixed
+            type: fill_in_blank
+            text: "Setz die Zeichen."
+            say: "Lies die drei Sätze. Welches Zeichen gehört an das Ende von jedem Satz?"
+            frame: "Ich heiße Ida_ Wie heißt du_ Hurra, jetzt sind wir Freunde_"
+            options: [".", "?", "!"]
+            answer: [".", "?", "!"]
+            difficulty: stretch

@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: elfchen-form, what: { de: "die Form eines Elfchens kennen (ein, zwei, drei, vier und ein Wort)", en: "knowing the form of an Elfchen (one, two, three, four and one word)" } }
+    - { id: elfchen-build, what: { de: "ein Elfchen bauen: Zeilen ergänzen und ordnen", en: "building an Elfchen: completing and ordering its lines" } }
+    - { id: rhyme-word, what: { de: "ein Reimwort finden, das sich reimt und zum Sinn passt", en: "finding a rhyme word that rhymes and makes sense" } }
+    - { id: rhyme-verse, what: { de: "einen zweiten Vers wählen, der sich auf den ersten reimt", en: "choosing a second line that rhymes with the first" } }
   misconceptions:
     - id: count-letters
       what: Counts letters or syllables instead of words, or puts too many words into a line of an Elfchen
@@ -203,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,24 @@ lessons:
             text: "Ein Elfchen hat fünf Zeilen. Stimmt das?"
             say: "Ein Elfchen hat fünf Zeilen. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Schwarz\ndie Nacht\n...\nich kann nicht schlafen\nStill\n\nWelche Zeile fehlt?"
+            say: "Lies das Elfchen. Welche Zeile fehlt?"
+            options: ["sie ist so dunkel und still", "sie ist dunkel", "dunkel"]
+            answer: "sie ist dunkel"
+          - id: l1-c5
+            type: ordering
+            text: "Bring die Zeilen des Elfchens in die richtige Reihenfolge."
+            say: "Lies die Karten. Bring die Zeilen des Elfchens in die richtige Reihenfolge."
+            options: ["es wälzt sich", "Matsch", "ich lache laut los", "Rosa", "das Schwein"]
+            slot_count: 5
+            answer: ["Rosa", "das Schwein", "es wälzt sich", "ich lache laut los", "Matsch"]
+          - id: l1-c6
+            type: true_false
+            text: "In der vierten Zeile eines Elfchens steht nur ein Wort. Stimmt das?"
+            say: "In der vierten Zeile eines Elfchens steht nur ein Wort. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Reime schreiben", en: "Writing rhymes" }
@@ -392,8 +416,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: rhyme-word
             type: fill_in_blank
             text: "Welches Reimwort passt?"
             say: "Lies die Verse. Welches Wort reimt sich und passt in die Lücke?"
@@ -401,18 +427,21 @@ lessons:
             options: ["Schatz", "Ring", "Spatz"]
             answer: ["Schatz"]
           - id: l2-c2
+            part: elfchen-form
             type: multiple_choice
             text: "Wie viele Wörter stehen in der ersten Zeile eines Elfchens?"
             say: "Wie viele Wörter stehen in der ersten Zeile eines Elfchens?"
             options: ["eins", "zwei", "vier"]
             answer: "eins"
           - id: l2-c3
+            part: elfchen-build
             type: multiple_choice
             text: "Bunt\nder Regenbogen\n...\nich staune über dich\nWunderschön\n\nWelche Zeile fehlt?"
             say: "Lies das Elfchen. Welche Zeile fehlt?"
             options: ["er leuchtet hell", "er leuchtet so hell am Himmel", "hell"]
             answer: "er leuchtet hell"
           - id: l2-c4
+            part: rhyme-word
             type: matching
             text: "Was reimt sich?"
             say: "Verbinde jedes Wort mit seinem Reimwort."
@@ -421,8 +450,113 @@ lessons:
               - { left: { text: "Nase" }, right: { text: "Hase" } }
               - { left: { text: "Licht" }, right: { text: "Gedicht" } }
           - id: l2-c5
+            part: rhyme-verse
             type: multiple_choice
             text: "Im Herbst, da tanzt das bunte Laub,\n...\n\nWelcher Vers passt als Reim?"
             say: "Lies den ersten Vers. Welcher Vers passt als Reim dazu?"
             options: ["der Wind, der wirbelt es wie Staub.", "die Blätter fallen nach unten.", "ich trinke heißen Tee."]
             answer: "der Wind, der wirbelt es wie Staub."
+          - id: l2-c6
+            part: elfchen-form
+            type: multiple_choice
+            text: "Was steht in der letzten Zeile eines Elfchens?"
+            say: "Was steht in der letzten Zeile eines Elfchens?"
+            options: ["vier Wörter über dich", "ein Schlusswort", "ein Ding mit zwei Wörtern"]
+            answer: "ein Schlusswort"
+          - id: l2-c7
+            part: elfchen-form
+            type: true_false
+            text: "Grün\ndas weiche Gras\nes wächst schnell\nich liege darin\nSommer\n\nIst das ein richtiges Elfchen?"
+            say: "Lies das Gedicht. Ist das ein richtiges Elfchen?"
+            answer: false
+          - id: l2-c8
+            part: elfchen-form
+            type: multiple_choice
+            text: "„sie schläft tief“\n\nIn welche Zeile eines Elfchens passt diese Zeile?"
+            say: "Lies die Zeile. In welche Zeile eines Elfchens passt sie?"
+            options: ["in die erste Zeile", "in die dritte Zeile", "in die fünfte Zeile"]
+            answer: "in die dritte Zeile"
+          - id: l2-c9
+            part: elfchen-form
+            type: multiple_choice
+            text: "„wir bauen Burgen“\n\nWie viele Wörter sind das?"
+            say: "Lies die Zeile. Wie viele Wörter sind das?"
+            options: ["drei", "vierzehn", "zwei"]
+            answer: "drei"
+          - id: l2-c10
+            part: elfchen-build
+            type: multiple_choice
+            text: "Gelb\nder Löwe\ner brüllt laut\nich habe keine Angst\n...\n\nWelche Zeile fehlt?"
+            say: "Lies das Elfchen. Welche Zeile fehlt?"
+            options: ["ich bin mutig", "Mutig", "Der Löwe ist stark."]
+            answer: "Mutig"
+          - id: l2-c11
+            part: elfchen-build
+            type: ordering
+            text: "Bring die Zeilen des Elfchens in die richtige Reihenfolge."
+            say: "Lies die Karten. Bring die Zeilen des Elfchens in die richtige Reihenfolge."
+            options: ["sie ist reif", "Herbst", "ich esse sie auf", "Lila", "die Pflaume"]
+            slot_count: 5
+            answer: ["Lila", "die Pflaume", "sie ist reif", "ich esse sie auf", "Herbst"]
+          - id: l2-c12
+            part: elfchen-build
+            type: multiple_choice
+            text: "Lisa schreibt ein Elfchen über den Mond. Welche Zeile passt als vierte Zeile?"
+            say: "Lisa schreibt ein Elfchen über den Mond. Welche Zeile passt als vierte Zeile?"
+            options: ["der Mond", "ich sehe ihn nachts", "Nacht"]
+            answer: "ich sehe ihn nachts"
+          - id: l2-c13
+            part: elfchen-build
+            type: true_false
+            text: "Gelb\n...\nsie summt laut\nich schaue ihr zu\nFrühling\n\nPasst „die Biene“ als zweite Zeile?"
+            say: "Lies das Elfchen. Es fehlt die zweite Zeile. Passt die Biene hinein?"
+            answer: true
+          - id: l2-c14
+            part: rhyme-word
+            type: fill_in_blank
+            text: "Welches Reimwort passt?"
+            say: "Lies die Verse. Welches Wort reimt sich und passt in die Lücke?"
+            frame: "Am Morgen kräht der laute Hahn, dann fährt Papa mit der _."
+            options: ["Zahn", "Bahn", "Zug"]
+            answer: ["Bahn"]
+          - id: l2-c15
+            part: rhyme-word
+            type: multiple_choice
+            text: "Welches Wort reimt sich auf „Fisch“?"
+            say: "Welches Wort reimt sich auf Fisch?"
+            options: ["Fluss", "Wasser", "Tisch"]
+            answer: "Tisch"
+          - id: l2-c16
+            part: rhyme-word
+            type: highlight_in_text
+            text: "Tippe auf die zwei Wörter, die sich reimen."
+            say: "Lies die zwei Verse. Tippe auf die zwei Wörter, die sich reimen."
+            show: { drawn: letter-card, text: "Die Katze liegt im warmen Haus, sie träumt von einer dicken Maus." }
+            spans: ["Haus,", "Maus."]
+          - id: l2-c17
+            part: rhyme-verse
+            type: multiple_choice
+            text: "Ich habe einen roten Ball,\n...\n\nWelcher Vers passt als Reim?"
+            say: "Lies den ersten Vers. Welcher Vers passt als Reim dazu?"
+            options: ["ich spiele mit ihm jeden Tag.", "er springt und hüpft mit lautem Knall.", "er ist rund und rot."]
+            answer: "er springt und hüpft mit lautem Knall."
+          - id: l2-c18
+            part: rhyme-verse
+            type: true_false
+            text: "Die Sonne steht am Himmel hoch,\nich spiele mit dem Ball im Hof.\n\nReimen sich die zwei Verse?"
+            say: "Lies die zwei Verse. Reimen sie sich?"
+            answer: false
+          - id: l2-c19
+            part: rhyme-verse
+            type: multiple_choice
+            text: "Der Hund läuft schnell in den Garten,\n...\n\nWelcher Vers reimt sich und erzählt weiter?"
+            say: "Lies den ersten Vers. Welcher Vers reimt sich und erzählt weiter?"
+            options: ["dort sind die Karten.", "dort spielt er mit dem Ball.", "dort will er auf den Postboten warten."]
+            answer: "dort will er auf den Postboten warten."
+          - id: l2-c20
+            part: rhyme-verse
+            type: multiple_choice
+            text: "Im Sommer ist es schön und heiß,\n...\n\nWelcher Vers reimt sich und passt zum Sinn?"
+            say: "Lies den ersten Vers. Welcher Vers reimt sich und passt zum Sinn?"
+            options: ["dann gehe ich ins Schwimmbad.", "dann kaufe ich mir gern ein Eis.", "dann ist der Reis so weiß."]
+            answer: "dann kaufe ich mir gern ein Eis."

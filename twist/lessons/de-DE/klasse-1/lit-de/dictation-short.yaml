@@ -27,6 +27,10 @@ metadata:
   drawn: [letter-card, word-card]
   sounds: []
   facets: []
+  parts:
+    - { id: whole-sentence, what: { de: einen gehörten Satz Wort für Wort und vollständig legen, en: building a heard sentence word by word with no word missing } }
+    - { id: practised-words, what: { de: geübte Wörter richtig schreiben, en: spelling practised words correctly } }
+    - { id: check, what: { de: "den Satz prüfen: Anfang groß, Nomen groß, Lücken und Punkt", en: "checking the sentence: capitals, gaps and full stop" } }
   misconceptions:
     - id: writes-what-remembered
       what: Hears the sentence once, then writes what it should say, leaving out or changing small words (Oma da. for Oma ist da.)
@@ -228,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -249,6 +254,26 @@ lessons:
             say: "Hör zu: Oma ist da. Emma hat den Satz so geschrieben. Stimmt das?"
             show: { drawn: word-card, text: "Oma ist da." }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Hör zu. Welches Wort fehlt?"
+            say: "Hör zu: Tim hat ein Auto. Welches Wort fehlt?"
+            frame: "Tim _ ein Auto."
+            options: ["hatt", "hat", "had"]
+            option_audio: false
+            answer: ["hat"]
+          - id: l1-c5
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Hör zu: Ich bin Lina. Ali hat den Satz so geschrieben. Stimmt das?"
+            show: { drawn: word-card, text: "Ich bin Lina" }
+            answer: false
+          - id: l1-c6
+            type: audio_choice
+            text: "Hör zu. Welcher Satz ist richtig geschrieben?"
+            audio: { de: "Mama malt." }
+            options: ["mama malt.", "Mama malt", "Mama malt."]
+            answer: "Mama malt."
 
   - n: 2
     title: { de: Längere Sätze nach Diktat, en: Longer sentences from dictation }
@@ -429,14 +454,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: practised-words
             type: audio_choice
             text: "Hör zu. Welcher Satz ist richtig geschrieben?"
             audio: { de: "Ein Esel trinkt Wasser." }
             options: ["Ein Esel trinkt Wasser.", "Ein esel trinkt Wasser.", "Ein Esel trinkt Waser."]
             answer: "Ein Esel trinkt Wasser."
           - id: l2-c2
+            part: whole-sentence
             type: ordering
             text: "Hör zu und leg den Satz."
             say: "Hör gut zu: Der Hund trinkt Wasser. Leg den Satz. Eine Karte ist zu viel."
@@ -445,18 +473,21 @@ lessons:
             slot_count: 4
             answer: ["Der", "Hund", "trinkt", "Wasser."]
           - id: l2-c3
+            part: practised-words
             type: highlight_in_text
             text: "Ein Wort ist falsch geschrieben. Tippe darauf."
             say: "Hör zu: Wir rufen Opa. So hat Nina geschrieben. Ein Wort ist falsch. Tippe darauf."
             show: { drawn: letter-card, text: "Wir ruffen Opa." }
             spans: ["ruffen"]
           - id: l2-c4
+            part: check
             type: true_false
             text: "Ist das richtig geschrieben?"
             say: "Hör zu: Tim hat ein Auto. Jan hat den Satz so geschrieben. Stimmt das?"
             show: { drawn: word-card, text: "Tim hat ein Auto" }
             answer: false
           - id: l2-c5
+            part: practised-words
             type: fill_in_blank
             text: "Hör zu. Welches Wort fehlt?"
             say: "Hör gut zu: Lisa malt eine Rose. Welches Wort fehlt?"
@@ -464,3 +495,120 @@ lessons:
             options: ["rose", "Rose", "Rohse"]
             option_audio: false
             answer: ["Rose"]
+          - id: l2-c6
+            part: whole-sentence
+            type: ordering
+            text: "Hör zu und leg den Satz."
+            say: "Hör zu: Oma trinkt Wasser. Leg den Satz. Eine Karte ist zu viel."
+            options: ["Wasser.", "Oma", "Waser.", "trinkt"]
+            option_audio: false
+            slot_count: 3
+            answer: ["Oma", "trinkt", "Wasser."]
+          - id: l2-c7
+            part: whole-sentence
+            type: ordering
+            text: "Hör zu und leg den Satz."
+            say: "Hör zu: Opa ist im Haus. Leg den Satz. Eine Karte ist zu viel."
+            options: ["im", "Haus.", "Opa", "isst", "ist"]
+            option_audio: false
+            slot_count: 4
+            answer: ["Opa", "ist", "im", "Haus."]
+          - id: l2-c8
+            part: whole-sentence
+            type: ordering
+            text: "Hör zu und leg den Satz."
+            say: "Hör zu: Lina malt ein Auto. Leg den Satz."
+            options: ["ein", "Auto.", "Lina", "malt"]
+            option_audio: false
+            slot_count: 4
+            answer: ["Lina", "malt", "ein", "Auto."]
+          - id: l2-c9
+            part: whole-sentence
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Hör zu: Mama ruft Tim. Ole hat den Satz so geschrieben. Stimmt das?"
+            show: { drawn: word-card, text: "Mama Tim." }
+            answer: false
+          - id: l2-c10
+            part: practised-words
+            type: fill_in_blank
+            text: "Hör zu. Welches Wort fehlt?"
+            say: "Hör zu: Der Esel ist im Haus. Welches Wort fehlt?"
+            frame: "Der Esel _ im Haus."
+            options: ["isst", "ist", "is"]
+            option_audio: false
+            answer: ["ist"]
+          - id: l2-c11
+            part: whole-sentence
+            type: ordering
+            text: "Hör zu und leg den Satz."
+            say: "Hör zu: Die Sonne ist da. Leg den Satz."
+            options: ["da.", "Sonne", "ist", "Die"]
+            option_audio: false
+            slot_count: 4
+            answer: ["Die", "Sonne", "ist", "da."]
+          - id: l2-c12
+            part: practised-words
+            type: audio_choice
+            text: "Hör zu. Welcher Satz ist richtig geschrieben?"
+            audio: { de: "Opa hat einen Hund." }
+            options: ["Opa hat einen Hunt.", "Opa hat einen Hund.", "Opa hat einen hund."]
+            answer: "Opa hat einen Hund."
+          - id: l2-c13
+            part: practised-words
+            type: highlight_in_text
+            text: "Ein Wort ist falsch geschrieben. Tippe darauf."
+            say: "Hör zu: Mama trinkt Wasser. So hat Lea geschrieben. Ein Wort ist falsch. Tippe darauf."
+            show: { drawn: letter-card, text: "Mama trinkd Wasser." }
+            spans: ["trinkd"]
+          - id: l2-c14
+            part: practised-words
+            type: fill_in_blank
+            text: "Hör zu. Welches Wort fehlt?"
+            say: "Hör zu: Tim malt einen Esel. Welches Wort fehlt?"
+            frame: "Tim malt einen _."
+            options: ["Esl", "esel", "Esel"]
+            option_audio: false
+            answer: ["Esel"]
+          - id: l2-c15
+            part: check
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Hör zu: Die Sonne lacht. Ida hat den Satz so geschrieben. Stimmt das?"
+            show: { drawn: word-card, text: "die Sonne lacht." }
+            answer: false
+          - id: l2-c16
+            part: check
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Hör zu: Ein Esel trinkt Wasser. Max hat den Satz so geschrieben. Stimmt das?"
+            show: { drawn: word-card, text: "Ein Esel trinkt Wasser." }
+            answer: true
+          - id: l2-c17
+            part: check
+            type: audio_choice
+            text: "Hör zu. Welcher Satz ist richtig geschrieben?"
+            audio: { de: "Wir rufen Lina." }
+            options: ["Wir rufen Lina", "wir rufen Lina.", "Wir rufen Lina."]
+            answer: "Wir rufen Lina."
+          - id: l2-c18
+            part: check
+            type: highlight_in_text
+            text: "Ein Wort ist falsch geschrieben. Tippe darauf."
+            say: "Hör zu: Opa malt ein Haus. So hat Paul geschrieben. Ein Wort ist falsch. Tippe darauf."
+            show: { drawn: letter-card, text: "Opa malt ein haus." }
+            spans: ["haus."]
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "Du hast den Satz fertig geschrieben. Was machst du jetzt?"
+            say: "Du hast den Satz fertig geschrieben. Was machst du jetzt?"
+            options: ["Ich prüfe den Satz.", "Ich höre den Satz zum ersten Mal.", "Ich spreche den Satz nach."]
+            answer: "Ich prüfe den Satz."
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Hör zu: Mama malt eine Rose. Elif hat den Satz so geschrieben. Stimmt das?"
+            show: { drawn: word-card, text: "Mama malt eine Rose." }
+            answer: true

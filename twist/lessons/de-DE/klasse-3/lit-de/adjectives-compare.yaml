@@ -22,6 +22,10 @@ metadata:
   forms: [text, audio, picture]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: steps, what: { de: "die drei Vergleichsstufen bilden (Grundstufe, Vergleichsstufe, Höchststufe)", en: "forming the three steps of comparison (base, comparative, superlative)" } }
+    - { id: special, what: { de: "Vergleichsstufen mit Umlaut und besondere Formen (alt, älter; gut, besser)", en: "steps with an umlaut and irregular forms (alt, älter; gut, besser)" } }
+    - { id: als-wie, what: { de: "„als“ oder „so … wie“ im Vergleich wählen", en: "choosing als or so … wie in a comparison" } }
   misconceptions:
     - id: wie-for-als
       what: Says "größer wie" instead of "größer als"
@@ -125,7 +129,7 @@ lessons:
                   - "Nein, richtig ist: gut, besser, am besten."
               - id: l1-f5
                 type: matching
-                text: "Was passt zusammen?"
+                text: "Verbinde jede Grundstufe mit ihrer Vergleichsstufe."
                 say: "Verbinde jede Grundstufe mit ihrer Vergleichsstufe."
                 pairs:
                   - { left: { text: "warm" }, right: { text: "wärmer" } }
@@ -169,7 +173,7 @@ lessons:
                 hints: ["Denk an die Adjektive, die sich ganz verändern."]
               - id: l1-s5
                 type: matching
-                text: "Was passt zusammen?"
+                text: "Verbinde jede Grundstufe mit ihrer Höchststufe."
                 say: "Verbinde jede Grundstufe mit ihrer Höchststufe."
                 pairs:
                   - { left: { text: "kalt" }, right: { text: "am kältesten" } }
@@ -206,7 +210,7 @@ lessons:
                 answer: false
               - id: l1-n5
                 type: matching
-                text: "Was passt zusammen?"
+                text: "Verbinde jede Grundstufe mit ihrer Vergleichsstufe."
                 say: "Verbinde jede Grundstufe mit ihrer Vergleichsstufe."
                 pairs:
                   - { left: { text: "nett" }, right: { text: "netter" } }
@@ -215,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -235,6 +240,25 @@ lessons:
             say: "Lies die Karte. Stimmt das?"
             show: { drawn: letter-card, text: "gut · besser · am besten" }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "eng · _ · am engsten"
+            say: "Welche Vergleichsstufe fehlt? Eng, …, am engsten."
+            options: ["enger", "engster", "mehr eng"]
+            answer: "enger"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Ergänze die Höchststufe."
+            say: "Ergänze die Höchststufe: glücklich, glücklicher, am …"
+            frame: "glücklich · glücklicher · am _"
+            options: ["glücklichsten", "glücklichesten", "glücklicher"]
+            answer: ["glücklichsten"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? jung · jünger · am jungsten"
+            say: "Lies die Karte. Stimmt das?"
+            show: { drawn: letter-card, text: "jung · jünger · am jungsten" }
+            answer: false
 
   - n: 2
     title: { de: "größer als, so groß wie", en: "bigger than, as big as" }
@@ -320,7 +344,7 @@ lessons:
                   - "so warm wie."
               - id: l2-f5
                 type: fill_in_blank
-                text: "Ergänze die Vergleichsstufe."
+                text: "Ergänze die Vergleichsstufe von langsam."
                 say: "Ergänze: Das Fahrrad ist … als das Auto. Das Adjektiv heißt langsam."
                 frame: "Das Fahrrad ist _ als das Auto."
                 options: ["langsamer", "langsam", "am langsamsten"]
@@ -364,7 +388,7 @@ lessons:
                 difficulty: stretch
               - id: l2-s5
                 type: fill_in_blank
-                text: "Ergänze die Vergleichsstufe."
+                text: "Ergänze die Vergleichsstufe von breit."
                 say: "Ergänze: Ein Fluss ist … als ein Bach. Das Adjektiv heißt breit."
                 frame: "Ein Fluss ist _ als ein Bach."
                 options: ["breiter", "breit", "am breitesten"]
@@ -400,7 +424,7 @@ lessons:
                 answer: "Lena ist so stark wie Tom."
               - id: l2-n5
                 type: fill_in_blank
-                text: "Ergänze die Vergleichsstufe."
+                text: "Ergänze die Vergleichsstufe von kalt."
                 say: "Ergänze: Im Winter ist es … als im Sommer. Das Adjektiv heißt kalt."
                 frame: "Im Winter ist es _ als im Sommer."
                 options: ["kälter", "kalter", "am kältesten"]
@@ -408,20 +432,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: special
             type: multiple_choice
             text: "nah · _ · am nächsten"
             say: "Welche Vergleichsstufe fehlt? Nah, …, am nächsten."
             options: ["näher", "naher", "nächster"]
             answer: "näher"
           - id: l2-c2
+            part: als-wie
             type: multiple_choice
             text: "Ein Auto ist teurer _ ein Fahrrad."
             say: "Welches Wort passt? Ein Auto ist teurer … ein Fahrrad."
             options: ["als", "wie", "so"]
             answer: "als"
           - id: l2-c3
+            part: als-wie
             type: fill_in_blank
             text: "Ali und Sara springen gleich weit. Ergänze den Satz."
             say: "Beide Kinder springen gleich weit. Ergänze: Ali springt so weit … Sara."
@@ -429,15 +457,127 @@ lessons:
             options: ["wie", "als", "am"]
             answer: ["wie"]
           - id: l2-c4
+            part: special
             type: true_false
             text: "Stimmt das? schwach · schwächer · am schwächsten"
             say: "Lies die Karte. Stimmt das?"
             show: { drawn: letter-card, text: "schwach · schwächer · am schwächsten" }
             answer: true
           - id: l2-c5
+            part: special
             type: fill_in_blank
-            text: "Ergänze die Vergleichsstufe."
+            text: "Ergänze die Vergleichsstufe von hoch."
             say: "Ergänze: Ein Berg ist … als ein Hügel. Das Adjektiv heißt hoch."
             frame: "Ein Berg ist _ als ein Hügel."
             options: ["höher", "hocher", "am höchsten"]
             answer: ["höher"]
+          - id: l2-c6
+            part: steps
+            type: fill_in_blank
+            text: "Ergänze die Höchststufe."
+            say: "Ergänze die Höchststufe: leicht, leichter, am …"
+            frame: "leicht · leichter · am _"
+            options: ["leichtesten", "leichtsten", "leichter"]
+            answer: ["leichtesten"]
+          - id: l2-c7
+            part: steps
+            type: multiple_choice
+            text: "fröhlich · _ · am fröhlichsten"
+            say: "Welche Vergleichsstufe fehlt? Fröhlich, …, am fröhlichsten."
+            options: ["fröhlicher", "fröhlichster", "mehr fröhlich"]
+            answer: "fröhlicher"
+          - id: l2-c8
+            part: steps
+            type: highlight_in_text
+            text: "Tippe auf die Höchststufe."
+            say: "Lies den Satz. Tippe auf die Höchststufe."
+            show: { drawn: letter-card, text: "Von allen Kindern ist Mia am mutigsten." }
+            spans: ["am", "mutigsten"]
+          - id: l2-c9
+            part: steps
+            type: matching
+            text: "Verbinde jede Vergleichsstufe mit ihrer Höchststufe."
+            say: "Verbinde jede Vergleichsstufe mit ihrer Höchststufe."
+            pairs:
+              - { left: { text: "sauberer" }, right: { text: "am saubersten" } }
+              - { left: { text: "ruhiger" }, right: { text: "am ruhigsten" } }
+              - { left: { text: "tiefer" }, right: { text: "am tiefsten" } }
+          - id: l2-c10
+            part: steps
+            type: true_false
+            text: "Stimmt das? süß · süßer · am süßesten"
+            say: "Lies die Karte. Stimmt das?"
+            show: { drawn: letter-card, text: "süß · süßer · am süßesten" }
+            answer: true
+          - id: l2-c11
+            part: steps
+            type: multiple_choice
+            text: "Welches Wort ist die Vergleichsstufe?"
+            options: ["fleißig", "fleißiger", "am fleißigsten"]
+            answer: "fleißiger"
+          - id: l2-c12
+            part: steps
+            type: fill_in_blank
+            text: "Ergänze die Höchststufe von steil."
+            say: "Ergänze die Höchststufe von steil: Dieser Weg ist am …"
+            frame: "Dieser Weg ist am _."
+            options: ["steilsten", "steilesten", "steiler"]
+            answer: ["steilsten"]
+          - id: l2-c13
+            part: special
+            type: multiple_choice
+            text: "krank · _ · am kränksten"
+            say: "Welche Vergleichsstufe fehlt? Krank, …, am kränksten."
+            options: ["kränker", "kranker", "kränkster"]
+            answer: "kränker"
+          - id: l2-c14
+            part: special
+            type: true_false
+            text: "Stimmt das? warm · warmer · am warmsten"
+            say: "Lies die Karte. Stimmt das?"
+            show: { drawn: letter-card, text: "warm · warmer · am warmsten" }
+            answer: false
+          - id: l2-c15
+            part: special
+            type: fill_in_blank
+            text: "Ergänze die Höchststufe von hoch."
+            say: "Ergänze die Höchststufe von hoch: Von allen Bäumen im Park ist die Eiche am …"
+            frame: "Von allen Bäumen im Park ist die Eiche am _."
+            options: ["höchsten", "hochsten", "höhesten"]
+            answer: ["höchsten"]
+          - id: l2-c16
+            part: special
+            type: fill_in_blank
+            text: "Ergänze die Höchststufe von viel."
+            say: "Ergänze: Mia hat am … gelesen. Das Adjektiv heißt viel."
+            frame: "Mia hat am _ gelesen."
+            options: ["meisten", "mehrsten", "vielsten"]
+            answer: ["meisten"]
+          - id: l2-c17
+            part: als-wie
+            type: true_false
+            text: "Stimmt das? Der Kuchen ist so süß als die Torte."
+            say: "Ist der Satz richtig?"
+            show: { drawn: letter-card, text: "Der Kuchen ist so süß als die Torte." }
+            answer: false
+          - id: l2-c18
+            part: als-wie
+            type: highlight_in_text
+            text: "Ein Wort im Satz ist falsch. Tippe darauf."
+            say: "Lies den Satz. Ein Wort ist falsch. Tippe darauf."
+            show: { drawn: letter-card, text: "Meine Schwester ist größer wie ich." }
+            spans: ["wie"]
+          - id: l2-c19
+            part: als-wie
+            type: fill_in_blank
+            text: "Lisa und Ben sind gleich alt. Lisa ist kleiner. Ergänze."
+            say: "Lisa und Ben sind gleich alt. Lisa ist kleiner. Ergänze: Lisa ist so alt … Ben, aber kleiner … Ben."
+            frame: "Lisa ist so alt _ Ben, aber kleiner _ Ben."
+            options: ["als", "wie"]
+            answer: ["wie", "als"]
+          - id: l2-c20
+            part: als-wie
+            type: multiple_choice
+            text: "Was bedeutet der Satz? „Die Katze ist so schwer wie der Hase.“"
+            options: ["Beide sind gleich schwer.", "Die Katze ist schwerer.", "Der Hase ist schwerer."]
+            answer: "Beide sind gleich schwer."

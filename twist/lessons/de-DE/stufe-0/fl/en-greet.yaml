@@ -28,6 +28,11 @@ metadata:
   forms: [audio, picture, drawn]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: how, what: { de: "fragen, wie es jemandem geht, und darauf antworten", en: asking how someone is and answering } }
+    - { id: age, what: { de: "nach dem Alter fragen und sagen, wie alt man ist", en: asking someone's age and saying your own } }
+    - { id: name, what: { de: den eigenen Namen sagen und verstehen, en: saying and understanding a name } }
+    - { id: hello-bye, what: { de: im Gespräch begrüßen und verabschieden, en: saying hello and goodbye in a conversation } }
   misconceptions:
     - id: wrong-question
       what: Mixes up How are you? and How old are you?, and answers one with the reply to the other (How are you? I'm seven.)
@@ -56,11 +61,13 @@ lessons:
         tasks:
           - id: l1-w1
             type: speak
+            text: "Hör zu und sprich genau nach. Denk an die Zunge bei th."
             say: { de: "Hör zu und sprich genau nach. Denk an die Zunge bei th.", en: "Thank you." }
             expected_text: thank you
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Hör genau hin. Welches Wort hörst du?"
             say: { de: "Hör genau hin. Welches Wort hörst du?" }
             audio: { en: "Mouth." }
             options: [{ object: mouse }, { object: mouth }]
@@ -87,6 +94,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: true_false
+                text: "Fragt hier jemand, wie es dir geht?"
                 say: { de: "Hör zu. Fragt hier jemand, wie es dir geht?", en: "How are you?" }
                 answer: true
                 hints:
@@ -96,8 +104,9 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "Wie geht es dem Kind? Tippe auf das Bild."
                 say: { de: "Hör zu. Wie geht es dem Kind? Tippe auf das Bild." }
-                audio: { en: "How are you? I'm fine, thank you." }
+                audio: { turns: [{ en: "How are you?", speaker: female }, { en: "I'm fine, thank you.", speaker: male }] }
                 options: [{ object: happy }, { object: sad }, { object: tired }]
                 answer: happy
                 feedback:
@@ -108,6 +117,7 @@ lessons:
                   - "Tippe auf das fröhliche Kind."
               - id: l1-f3
                 type: speak
+                text: "Frag deinen Freund auf Englisch, wie es ihm geht."
                 say: { de: "Frag deinen Freund auf Englisch, wie es ihm geht.", en: "How are you?" }
                 expected_text: how are you
                 hints:
@@ -116,7 +126,9 @@ lessons:
                   - "Sag mit mir: How are you?"
               - id: l1-f4
                 type: true_false
-                say: { de: "Hör zu. Passt die Antwort?", en: "How are you? My name is Tom." }
+                text: "Passt die Antwort?"
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How are you?", speaker: female }, { en: "My name is Tom.", speaker: male }] }
                 answer: false
                 feedback:
                   "true": "Tom sagt seinen Namen. Auf „How are you?“ sagst du, wie es dir geht, zum Beispiel „I'm fine“."
@@ -126,6 +138,7 @@ lessons:
                   - "Nein. Tom sagt nur seinen Namen."
               - id: l1-f5
                 type: speak
+                text: "Dir geht es gut. Antworte auf Englisch."
                 say: { de: "Dir geht es gut. Antworte auf Englisch.", en: "I'm fine, thank you." }
                 show: { object: happy }
                 expected_text: "I'm fine, thank you"
@@ -138,28 +151,34 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
+                text: "Wie geht es dem Kind? Tippe auf das Bild."
                 say: { de: "Hör zu. Wie geht es dem Kind? Tippe auf das Bild." }
-                audio: { en: "Hi, Ben! How are you? I'm tired." }
+                audio: { turns: [{ en: "Hi, Ben! How are you?", speaker: female }, { en: "I'm tired.", speaker: male }] }
                 options: [{ object: happy }, { object: tired }, { object: angry }]
                 answer: tired
                 hints: ["Hör auf die Antwort am Ende: I'm tired. Das Kind ist müde."]
               - id: l1-s2
                 type: true_false
-                say: { de: "Hör zu. Passt die Antwort?", en: "How are you? I'm fine, thank you. And you?" }
+                text: "Passt die Antwort?"
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How are you?", speaker: male }, { en: "I'm fine, thank you. And you?", speaker: female }] }
                 answer: true
                 hints: ["Sagt das Kind, wie es ihm geht?"]
               - id: l1-s3
                 type: speak
+                text: "Frag zurück, wie es deiner Freundin geht."
                 say: { de: "Frag zurück, wie es deiner Freundin geht.", en: "And you?" }
                 expected_text: and you
                 hints: ["Zwei kurze Wörter: and … you."]
               - id: l1-s4
                 type: true_false
+                text: "Fragt hier jemand, wie es dir geht?"
                 say: { de: "Hör zu. Fragt hier jemand, wie es dir geht?", en: "What's your name?" }
                 answer: false
                 hints: ["Hörst du „How are you?“ oder „What's your name?“"]
               - id: l1-s5
                 type: speak
+                text: "Begrüß Oma und frag, wie es ihr geht."
                 say: { de: "Begrüß Oma und frag, wie es ihr geht.", en: "Hello, Grandma! How are you?" }
                 show: { object: grandma }
                 expected_text: "hello, grandma, how are you"
@@ -169,45 +188,76 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
+                text: "Wie geht es dem Kind? Tippe auf das Bild."
                 say: { de: "Hör zu. Wie geht es dem Kind? Tippe auf das Bild." }
-                audio: { en: "How are you, Mia? I'm sad." }
+                audio: { turns: [{ en: "How are you, Mia?", speaker: male }, { en: "I'm sad.", speaker: female }] }
                 options: [{ object: happy }, { object: scared }, { object: sad }]
                 answer: sad
               - id: l1-n2
                 type: true_false
-                say: { de: "Hör zu. Passt die Antwort?", en: "How are you? Goodbye!" }
+                text: "Passt die Antwort?"
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How are you?", speaker: female }, { en: "Goodbye!", speaker: male }] }
                 answer: false
               - id: l1-n3
                 type: speak
+                text: "Dir geht es gut. Antworte und frag zurück."
                 say: { de: "Dir geht es gut. Antworte und frag zurück.", en: "I'm fine, thank you. And you?" }
                 show: { object: happy }
                 expected_text: "I'm fine, thank you. And you?"
               - id: l1-n4
                 type: true_false
+                text: "Fragt hier jemand, wie es dir geht?"
                 say: { de: "Hör zu. Fragt hier jemand, wie es dir geht?", en: "Hi, Lena! How are you today?" }
                 answer: true
               - id: l1-n5
                 type: speak
+                text: "Frag auf Englisch, wie es jemandem geht."
                 say: { de: "Frag auf Englisch, wie es jemandem geht." }
                 show: { object: child }
                 expected_text: "How are you?"
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
-            say: { de: "Hör zu. Passt die Antwort?", en: "How are you? I'm OK." }
+            text: "Passt die Antwort?"
+            say: { de: "Hör zu. Passt die Antwort?" }
+            audio: { turns: [{ en: "How are you?", speaker: male }, { en: "I'm OK.", speaker: female }] }
             answer: true
           - id: l1-c2
             type: audio_choice
+            text: "Wie geht es dem Kind? Tippe auf das Bild."
             say: { de: "Hör zu. Wie geht es dem Kind? Tippe auf das Bild." }
-            audio: { en: "How are you? I'm fine, thank you." }
+            audio: { turns: [{ en: "How are you?", speaker: male }, { en: "I'm fine, thank you.", speaker: female }] }
             options: [{ object: sad }, { object: happy }, { object: tired }]
             answer: happy
           - id: l1-c3
             type: true_false
+            text: "Fragt hier jemand, wie es dir geht?"
             say: { de: "Hör zu. Fragt hier jemand, wie es dir geht?", en: "Goodbye!" }
+            answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "Wie geht es dem Mädchen? Tippe auf das Bild."
+            say: { de: "Hör zu. Wie geht es dem Mädchen? Tippe auf das Bild." }
+            audio: { turns: [{ en: "Good morning, Lisa! How are you?", speaker: male }, { en: "I'm OK. And you?", speaker: female }] }
+            options: [{ object: sad }, { object: tired }, { object: happy }]
+            answer: happy
+          - id: l1-c5
+            type: true_false
+            text: "Fragt Tom zurück, wie es ihr geht?"
+            say: { de: "Hör zu. Fragt Tom zurück, wie es ihr geht?" }
+            audio: { turns: [{ en: "How are you, Tom?", speaker: female }, { en: "I'm fine, thank you. And you?", speaker: male }] }
+            answer: true
+          - id: l1-c6
+            type: true_false
+            text: "Ben ist müde. Passt seine Antwort?"
+            say: { de: "Ben ist müde. Hör zu. Passt seine Antwort?" }
+            audio: { turns: [{ en: "How are you, Ben?", speaker: female }, { en: "I'm fine, thank you.", speaker: male }] }
+            show: { object: tired }
             answer: false
 
   - n: 2
@@ -219,13 +269,15 @@ lessons:
         tasks:
           - id: l2-w1
             type: audio_choice
+            text: "Weißt du noch? Wie geht es dem Kind?"
             say: { de: "Weißt du noch? Wie geht es dem Kind?" }
-            audio: { en: "How are you? I'm sad." }
+            audio: { turns: [{ en: "How are you?", speaker: female }, { en: "I'm sad.", speaker: male }] }
             options: [{ object: happy }, { object: sad }]
             answer: sad
             difficulty: easy
           - id: l2-w2
             type: speak
+            text: "Weißt du noch? Frag, wie es jemandem geht."
             say: { de: "Weißt du noch? Frag, wie es jemandem geht.", en: "How are you?" }
             expected_text: how are you
             difficulty: easy
@@ -250,6 +302,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: true_false
+                text: "Fragt hier jemand, wie alt du bist?"
                 say: { de: "Hör zu. Fragt hier jemand, wie alt du bist?", en: "How old are you?" }
                 answer: true
                 hints:
@@ -259,8 +312,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "Wie alt ist das Kind? Tippe auf die Punkte."
                 say: { de: "Hör zu. Wie alt ist das Kind? Tippe auf die Punkte." }
-                audio: { en: "How old are you? I'm six." }
+                audio: { turns: [{ en: "How old are you?", speaker: female }, { en: "I'm six.", speaker: male }] }
                 options:
                   - { drawn: dots, count: 8, layout: dice }
                   - { drawn: dots, count: 6, layout: dice }
@@ -274,6 +328,7 @@ lessons:
                   - "Tippe auf die sechs Punkte."
               - id: l2-f3
                 type: speak
+                text: "Sag auf Englisch, wie alt du bist."
                 say: { de: "Sag, wie alt du bist. Zum Beispiel so:", en: "I'm seven." }
                 expected_text: "I'm seven"
                 hints:
@@ -282,7 +337,9 @@ lessons:
                   - "Sag mit mir: I'm seven. Oder sag dein eigenes Alter."
               - id: l2-f4
                 type: true_false
-                say: { de: "Hör zu. Passt die Antwort?", en: "How old are you? I'm fine, thank you." }
+                text: "Passt die Antwort?"
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How old are you?", speaker: male }, { en: "I'm fine, thank you.", speaker: female }] }
                 answer: false
                 feedback:
                   "true": "Die Frage war „How old are you?“, also: Wie alt bist du? Darauf sagst du eine Zahl, zum Beispiel „I'm seven“."
@@ -292,7 +349,9 @@ lessons:
                   - "Nein. „I'm fine“ ist die Antwort auf „How are you?“"
               - id: l2-f5
                 type: true_false
-                say: { de: "Hör zu. Sagt hier ein Kind seinen Namen?", en: "Hi! I'm Leo." }
+                text: "Sagt hier ein Kind seinen Namen?"
+                say: { de: "Hör zu. Sagt hier ein Kind seinen Namen?" }
+                audio: { en: "Hi! I'm Leo.", speaker: male }
                 answer: true
                 hints:
                   - "Hör auf das Ende: I'm Leo."
@@ -303,8 +362,9 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
+                text: "Wie alt ist das Kind? Tippe auf die Punkte."
                 say: { de: "Hör zu. Wie alt ist das Kind? Tippe auf die Punkte." }
-                audio: { en: "How old are you? I'm eight." }
+                audio: { turns: [{ en: "How old are you?", speaker: male }, { en: "I'm eight.", speaker: female }] }
                 options:
                   - { drawn: dots, count: 3, layout: dice }
                   - { drawn: dots, count: 6, layout: dice }
@@ -313,21 +373,27 @@ lessons:
                 hints: ["„Eight“ klingt fast wie acht."]
               - id: l2-s2
                 type: speak
+                text: "Frag ein Kind auf Englisch, wie alt es ist."
                 say: { de: "Frag ein Kind auf Englisch, wie alt es ist.", en: "How old are you?" }
                 expected_text: how old are you
                 hints: ["Vergiss das „old“ nicht: How old are you?"]
               - id: l2-s3
                 type: true_false
-                say: { de: "Hör zu. Passt die Antwort?", en: "How old are you? I'm seven." }
+                text: "Passt die Antwort?"
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How old are you?", speaker: female }, { en: "I'm seven.", speaker: male }] }
                 answer: true
                 hints: ["Die Frage heißt: Wie alt bist du? Sagt das Kind eine Zahl?"]
               - id: l2-s4
                 type: true_false
-                say: { de: "Hör zu. Sagt hier jemand, wie alt er ist?", en: "Hello! I'm Sam." }
+                text: "Sagt hier jemand, wie alt er ist?"
+                say: { de: "Hör zu. Sagt hier jemand, wie alt er ist?" }
+                audio: { en: "Hello! I'm Sam.", speaker: male }
                 answer: false
                 hints: ["Hörst du eine Zahl oder einen Namen?"]
               - id: l2-s5
                 type: speak
+                text: "Stell dich vor. Sag Hallo und deinen Namen."
                 say: { de: "Stell dich vor. Sag Hallo und deinen Namen. Zum Beispiel so:", en: "Hello! I'm Mia." }
                 show: { object: girl }
                 expected_text: "Hello! I'm Mia."
@@ -337,6 +403,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
+                text: "Wie alt ist das Kind? Tippe auf die Punkte."
                 say: { de: "Hör zu. Wie alt ist das Kind? Tippe auf die Punkte." }
                 audio: { en: "I'm Ella. I'm seven.", speaker: female }
                 options:
@@ -346,38 +413,51 @@ lessons:
                 answer: "7"
               - id: l2-n2
                 type: true_false
+                text: "Fragt hier jemand, wie alt du bist?"
                 say: { de: "Hör zu. Fragt hier jemand, wie alt du bist?", en: "How are you?" }
                 answer: false
               - id: l2-n3
                 type: speak
+                text: "Stell dir vor, du bist sechs. Sag es auf Englisch."
                 say: { de: "Stell dir vor, du bist sechs. Sag es auf Englisch." }
                 show: { drawn: dots, count: 6, layout: dice }
                 expected_text: "I'm six."
               - id: l2-n4
                 type: true_false
-                say: { de: "Hör zu. Passt die Antwort?", en: "How old are you? I'm OK." }
+                text: "Passt die Antwort?"
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How old are you?", speaker: female }, { en: "I'm OK.", speaker: male }] }
                 answer: false
               - id: l2-n5
                 type: speak
+                text: "Ein neues Kind kommt in deine Klasse. Begrüß es, sag deinen Namen und frag nach seinem Namen."
                 say: { de: "Ein neues Kind kommt in deine Klasse. Begrüß es, sag deinen Namen und frag nach seinem Namen.", en: "Hello! I'm Mia. What's your name?" }
                 show: { object: child }
                 expected_text: "Hello! I'm Mia. What's your name?"
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: how
             type: audio_choice
+            text: "Wie geht es dem Jungen? Tippe auf das Bild."
             say: { de: "Hör zu. Wie geht es dem Jungen? Tippe auf das Bild." }
-            audio: { en: "Hello, Max! How are you? I'm tired today." }
+            audio: { turns: [{ en: "Hello, Max! How are you?", speaker: female }, { en: "I'm tired today.", speaker: male }] }
             options: [{ object: tired }, { object: happy }, { object: sad }]
             answer: tired
           - id: l2-c2
+            part: age
             type: true_false
-            say: { de: "Hör zu. Passt die Antwort?", en: "How old are you? I'm eight." }
+            text: "Ben sagt, wie alt er ist. Ist er 8?"
+            say: { de: "Ben sagt, wie alt er ist. Hör zu. Ist er acht?" }
+            audio: { turns: [{ en: "How old are you, Ben?", speaker: female }, { en: "I'm eight.", speaker: male }] }
             answer: true
           - id: l2-c3
+            part: age
             type: audio_choice
+            text: "Wie alt ist das Mädchen? Tippe auf die Punkte."
             say: { de: "Hör zu. Wie alt ist das Mädchen? Tippe auf die Punkte." }
             audio: { en: "Hi! I'm Nora. I'm six.", speaker: female }
             options:
@@ -386,10 +466,135 @@ lessons:
               - { drawn: dots, count: 2, layout: dice }
             answer: "6"
           - id: l2-c4
-            type: true_false
-            say: { de: "Hör zu. Fragt hier jemand, wie es dir geht?", en: "Good morning, Leo! How are you?" }
-            answer: true
+            part: how
+            type: audio_choice
+            text: "Wie geht es dem Jungen? Tippe auf das Bild."
+            say: { de: "Hör zu. Wie geht es dem Jungen? Tippe auf das Bild." }
+            audio: { turns: [{ en: "Good morning, Leo! How are you?", speaker: female }, { en: "I'm fine, thank you. And you?", speaker: male }] }
+            options: [{ object: angry }, { object: happy }, { object: sad }]
+            answer: happy
           - id: l2-c5
+            part: how
             type: true_false
-            say: { de: "Hör zu. Passt die Antwort?", en: "How are you? I'm seven." }
+            text: "Passt die Antwort?"
+            say: { de: "Hör zu. Passt die Antwort?" }
+            audio: { turns: [{ en: "How are you?", speaker: female }, { en: "I'm seven.", speaker: male }] }
+            answer: false
+          - id: l2-c6
+            part: how
+            type: audio_choice
+            text: "Wie geht es dem Mädchen? Tippe auf das Bild."
+            say: { de: "Hör zu. Wie geht es dem Mädchen? Tippe auf das Bild." }
+            audio: { turns: [{ en: "Hello, Emma! How are you?", speaker: male }, { en: "I'm sad.", speaker: female }] }
+            options: [{ object: happy }, { object: tired }, { object: sad }]
+            answer: sad
+          - id: l2-c7
+            part: how
+            type: true_false
+            text: "Leo ist fröhlich. Passt seine Antwort?"
+            say: { de: "Leo ist fröhlich. Hör zu. Passt seine Antwort?" }
+            audio: { turns: [{ en: "How are you, Leo?", speaker: female }, { en: "I'm tired.", speaker: male }] }
+            show: { object: happy }
+            answer: false
+          - id: l2-c8
+            part: how
+            type: true_false
+            text: "Fragt das Mädchen zurück, wie es ihm geht?"
+            say: { de: "Hör zu. Fragt das Mädchen zurück, wie es ihm geht?" }
+            audio: { turns: [{ en: "How are you?", speaker: male }, { en: "I'm OK, thank you.", speaker: female }] }
+            answer: false
+          - id: l2-c9
+            part: age
+            type: audio_choice
+            text: "Wie alt ist der Junge? Tippe auf die Punkte."
+            say: { de: "Hör zu. Wie alt ist der Junge? Tippe auf die Punkte." }
+            audio: { turns: [{ en: "How old are you, Paul?", speaker: female }, { en: "I'm nine.", speaker: male }] }
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 9, layout: dice }
+              - { drawn: dots, count: 4, layout: dice }
+            answer: "9"
+          - id: l2-c10
+            part: age
+            type: true_false
+            text: "Lina sagt, wie alt sie ist. Ist sie 7?"
+            say: { de: "Lina sagt, wie alt sie ist. Hör zu. Ist sie sieben?" }
+            audio: { en: "I'm Lina. I'm eight.", speaker: female }
+            answer: false
+          - id: l2-c11
+            part: age
+            type: true_false
+            text: "Passt die Antwort?"
+            say: { de: "Hör zu. Passt die Antwort?" }
+            audio: { turns: [{ en: "How old are you?", speaker: female }, { en: "I'm Tom.", speaker: male }] }
+            answer: false
+          - id: l2-c12
+            part: age
+            type: audio_choice
+            text: "Wie alt ist das Kind? Tippe auf die Punkte."
+            say: { de: "Hör zu. Wie alt ist das Kind? Tippe auf die Punkte." }
+            audio: { turns: [{ en: "How old are you?", speaker: male }, { en: "I'm ten.", speaker: female }] }
+            options:
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 7, layout: dice }
+              - { drawn: dots, count: 10, layout: dice }
+            answer: "10"
+          - id: l2-c13
+            part: name
+            type: true_false
+            text: "Heißt das Mädchen Emma?"
+            say: { de: "Hör zu. Heißt das Mädchen Emma?" }
+            audio: { en: "Hi! I'm Emma.", speaker: female }
+            show: { object: girl }
+            answer: true
+          - id: l2-c14
+            part: name
+            type: audio_choice
+            text: "Wer ist Tom? Tippe auf das Bild."
+            say: { de: "Hör zu. Wer ist Tom? Tippe auf das Bild." }
+            audio: { turns: [{ en: "Hello! I'm Lisa.", speaker: female }, { en: "Hi! I'm Tom.", speaker: male }] }
+            options: [{ object: girl }, { object: boy }]
+            answer: boy
+          - id: l2-c15
+            part: name
+            type: true_false
+            text: "Passt die Antwort?"
+            say: { de: "Hör zu. Passt die Antwort?" }
+            audio: { turns: [{ en: "What's your name?", speaker: female }, { en: "I'm Ben.", speaker: male }] }
+            answer: true
+          - id: l2-c16
+            part: name
+            type: true_false
+            text: "Sagt der Junge seinen Namen?"
+            say: { de: "Hör zu. Sagt der Junge seinen Namen?" }
+            audio: { en: "Hello! How are you?", speaker: male }
+            answer: false
+          - id: l2-c17
+            part: hello-bye
+            type: true_false
+            text: "Ist das Gespräch zu Ende?"
+            say: { de: "Hör zu. Ist das Gespräch zu Ende?" }
+            audio: { turns: [{ en: "Goodbye, Tom!", speaker: female }, { en: "Bye, Mia!", speaker: male }] }
+            answer: true
+          - id: l2-c18
+            part: hello-bye
+            type: true_false
+            text: "Passt die Antwort?"
+            say: { de: "Hör zu. Passt die Antwort?" }
+            audio: { turns: [{ en: "Hello, Leo!", speaker: female }, { en: "Goodbye!", speaker: male }] }
+            answer: false
+          - id: l2-c19
+            part: hello-bye
+            type: true_false
+            text: "Lina trifft Ben am Morgen. Passt das?"
+            say: { de: "Lina trifft Ben am Morgen. Hör zu. Passt das?" }
+            audio: { en: "Good morning, Ben! How are you?", speaker: female }
+            answer: true
+          - id: l2-c20
+            part: hello-bye
+            type: true_false
+            text: "Kommt das Mädchen gerade bei Oma an?"
+            say: { de: "Hör zu. Kommt das Mädchen gerade bei Oma an?" }
+            audio: { en: "Goodbye, Grandma!", speaker: female }
+            show: { object: grandma }
             answer: false

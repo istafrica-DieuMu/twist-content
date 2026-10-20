@@ -21,7 +21,11 @@ summary: >
   not, the child follows the model on the lines, and the one capital
   named as not joining is O, which ends at the top in SAS, LA and VA. Word
   options for "which word do you write with a capital" are shown in
-  small letters, so the capital does not give the answer away.
+  small letters, so the capital does not give the answer away. The skill
+  check marks what a screen can mark: how high a capital goes, which words
+  start with one, small letters after it and the next letter set close
+  beside; writing the letters themselves is practised in Practise with
+  the tracing tasks.
 metadata:
   year: klasse-2
   topic: { de: Schreibschrift, en: Joined handwriting }
@@ -33,6 +37,11 @@ metadata:
   forms: [drawn, audio]
   drawn: [writing-lines, letter-card, word-card]
   facets: [script]
+  parts:
+    - { id: height, what: { de: "wie hoch ein großer Buchstabe reicht (bis unters Dach)", en: "how high a capital letter goes" } }
+    - { id: when-capital, what: { de: "wissen, wann ein Wort groß anfängt (Satzanfang, Nomen, Namen)", en: "knowing when a word starts with a capital" } }
+    - { id: one-capital, what: { de: nach dem großen Buchstaben klein weiterschreiben, en: going on in small letters after the capital } }
+    - { id: join-close, what: { de: den nächsten Buchstaben anschließen oder dicht daneben ansetzen, en: joining the next letter or setting it close beside } }
   misconceptions:
     - id: capital-too-small
       what: Writes a capital only as high as the small letters, so it cannot be told apart from them
@@ -58,7 +67,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: multiple_choice
-            text: "Wo geht die Verbindung nach dem o los?"
+            text: "Du schreibst „von“. Wo geht die Verbindung nach dem o los?"
             say: "Du schreibst das Wort von. Wo geht die Verbindung nach dem o los: oben oder unten?"
             options: ["oben", "unten"]
             keep_order: true
@@ -217,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -238,6 +248,24 @@ lessons:
             say: "Schreib das große E ab."
             show: { drawn: writing-lines, text: "E", mode: copy, arrows: false, script: joined }
             char: "E"
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort, das du groß schreibst."
+            say: "Hier sind alle Wörter klein geschrieben. Tippe auf jedes Wort, das du groß schreibst."
+            show: { drawn: letter-card, text: "papa kocht eine suppe." }
+            spans: ["papa", "suppe"]
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? Das kleine m reicht bis unters Dach."
+            say: "Das kleine m reicht bis unters Dach. Stimmt das?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welches Wort schreibst du groß?"
+            say: "Welches Wort schreibst du mit einem großen Anfangsbuchstaben?"
+            options: ["tasche", "tanzen", "toll"]
+            answer: "tasche"
+            option_audio: false
 
   - n: 2
     title: { de: "Groß und klein zusammen", en: "Capital and small together" }
@@ -406,13 +434,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: height
             type: true_false
             text: "Stimmt das? Das große E ist genauso hoch wie das kleine e."
             say: "Das große E ist genauso hoch wie das kleine e. Stimmt das?"
             answer: false
           - id: l2-c2
+            part: one-capital
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Welches Wort ist richtig geschrieben?"
@@ -420,19 +451,130 @@ lessons:
             answer: "Nudel"
             option_audio: false
           - id: l2-c3
+            part: when-capital
             type: highlight_in_text
             text: "Tippe auf jedes Wort, das du groß schreibst."
             say: "Hier sind alle Wörter klein geschrieben. Tippe auf jedes Wort, das du groß schreibst."
             show: { drawn: letter-card, text: "ute isst eine banane." }
             spans: ["ute", "banane"]
           - id: l2-c4
+            part: join-close
             type: multiple_choice
-            text: "Wo setzt du den kleinen Buchstaben an?"
+            text: "Du schreibst „Ole“. Nach dem O hebst du kurz ab. Wo setzt du das l an?"
             say: "Du schreibst Ole. Nach dem O hebst du kurz ab. Wo setzt du das l an?"
             options: ["dicht neben dem O", "weit weg vom O", "unter dem O"]
             answer: "dicht neben dem O"
           - id: l2-c5
+            part: when-capital
             type: multiple_choice
             text: "Wann schreibst du einen großen Buchstaben?"
             options: ["am Satzanfang, bei Nomen und bei Namen", "bei jedem Wort", "nur am Ende eines Satzes"]
             answer: "am Satzanfang, bei Nomen und bei Namen"
+          - id: l2-c6
+            part: height
+            type: multiple_choice
+            text: "Welcher Buchstabe bleibt im Erdgeschoss?"
+            say: "Welcher Buchstabe bleibt im Erdgeschoss und reicht nicht bis unters Dach?"
+            options: ["m", "M", "L"]
+            answer: "m"
+            option_audio: false
+          - id: l2-c7
+            part: height
+            type: true_false
+            text: "Stimmt das? Das große A reicht bis unters Dach."
+            say: "Das große A reicht bis unters Dach. Stimmt das?"
+            answer: true
+          - id: l2-c8
+            part: height
+            type: multiple_choice
+            text: "Mia schreibt das große N nur so hoch wie ein kleines n. Was stimmt?"
+            say: "Mia schreibt das große N nur so hoch wie ein kleines n. Was stimmt?"
+            options: ["Das N ist zu klein.", "Das N ist zu groß.", "Es ist alles richtig."]
+            answer: "Das N ist zu klein."
+          - id: l2-c9
+            part: height
+            type: multiple_choice
+            text: "Welche zwei Buchstaben sind gleich hoch?"
+            say: "Welche zwei Buchstaben sind gleich hoch?"
+            options: ["M und L", "m und L", "a und E"]
+            answer: "M und L"
+            option_audio: false
+          - id: l2-c10
+            part: when-capital
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort, das du groß schreibst."
+            say: "Hier sind alle Wörter klein geschrieben. Tippe auf jedes Wort, das du groß schreibst."
+            show: { drawn: letter-card, text: "am morgen trinkt opa tee." }
+            spans: ["am", "morgen", "opa", "tee"]
+          - id: l2-c11
+            part: when-capital
+            type: multiple_choice
+            text: "Welches Wort schreibst du groß?"
+            say: "Welches Wort schreibst du mit einem großen Anfangsbuchstaben?"
+            options: ["leiter", "leise", "lesen"]
+            answer: "leiter"
+            option_audio: false
+          - id: l2-c12
+            part: when-capital
+            type: true_false
+            text: "Stimmt das? Verben wie „rennen“ schreibst du groß."
+            say: "Verben wie rennen schreibst du mit einem großen Anfangsbuchstaben. Stimmt das?"
+            answer: false
+          - id: l2-c13
+            part: one-capital
+            type: multiple_choice
+            text: "Welcher Satz ist richtig geschrieben?"
+            say: "Lies die Sätze. Welcher Satz ist richtig geschrieben?"
+            options: ["Emil isst ein Eis.", "EMil isst ein Eis.", "emil isst ein eis."]
+            answer: "Emil isst ein Eis."
+            option_audio: false
+          - id: l2-c14
+            part: one-capital
+            type: highlight_in_text
+            text: "In einem Wort sind zu viele Buchstaben groß. Tippe darauf."
+            say: "Lies den Satz. In einem Wort sind zu viele Buchstaben groß. Tippe darauf."
+            show: { drawn: letter-card, text: "Lisa und TIm spielen Ball." }
+            spans: ["TIm"]
+          - id: l2-c15
+            part: one-capital
+            type: true_false
+            text: "Ben schreibt dieses Wort. Ist es richtig geschrieben?"
+            say: "Ben schreibt dieses Wort. Lies es. Ist es richtig geschrieben?"
+            show: { drawn: word-card, text: "MAus" }
+            answer: false
+          - id: l2-c16
+            part: one-capital
+            type: fill_in_blank
+            text: "Welcher Buchstabe kommt nach dem großen E?"
+            say: "Esel. Welcher Buchstabe kommt nach dem großen E?"
+            frame: "E_el"
+            options: ["s", "S"]
+            answer: ["s"]
+            option_audio: false
+          - id: l2-c17
+            part: join-close
+            type: multiple_choice
+            text: "Du schreibst „Ole“ mit einer großen Lücke nach dem O. Wie sieht das Wort dann aus?"
+            say: "Du schreibst Ole mit einer großen Lücke nach dem O. Wie sieht das Wort dann aus?"
+            options: ["wie zwei Wörter", "wie ein Wort", "wie ein großer Buchstabe"]
+            answer: "wie zwei Wörter"
+          - id: l2-c18
+            part: join-close
+            type: true_false
+            text: "Stimmt das? Wird ein großer Buchstabe nicht verbunden, setzt du den nächsten Buchstaben dicht daneben an."
+            say: "Wird ein großer Buchstabe nicht verbunden, setzt du den nächsten Buchstaben dicht daneben an. Stimmt das?"
+            answer: true
+          - id: l2-c19
+            part: join-close
+            type: multiple_choice
+            text: "Woher weißt du, ob ein großer Buchstabe verbunden wird?"
+            say: "Woher weißt du, ob ein großer Buchstabe mit dem nächsten Buchstaben verbunden wird?"
+            options: ["Ich schaue, wie es auf den Linien vorgeschrieben ist.", "Ich rate einfach.", "Große Buchstaben werden nie verbunden."]
+            answer: "Ich schaue, wie es auf den Linien vorgeschrieben ist."
+          - id: l2-c20
+            part: join-close
+            type: multiple_choice
+            text: "Der große Buchstabe ist mit dem nächsten verbunden. Wie schreibst du weiter?"
+            say: "Der große Buchstabe ist mit dem nächsten Buchstaben verbunden. Wie schreibst du weiter?"
+            options: ["ohne abzusetzen", "mit einer Lücke", "in einer neuen Zeile"]
+            answer: "ohne abzusetzen"

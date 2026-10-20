@@ -39,7 +39,7 @@ Per voice:
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 23244 tasks. Narration so far about $132; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $132; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -483,17 +483,17 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 225 of 918 skill checks and 236 of 974 quick checks done; 6 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 454 of 918 skill checks and 493 of 974 quick checks done; 20 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
-| de-DE fl lernjahr-1 | 28 | 1 | 1 of 28 |
-| de-DE fl lernjahr-2 | 16 | 0 | 0 of 16 |
-| de-DE fl stufe-0 | 14 | 0 | 0 of 14 |
-| de-DE lit-de klasse-1 | 51 | 0 | 0 of 77 |
-| de-DE lit-de klasse-2 | 46 | 2 | 2 of 47 |
-| de-DE lit-de klasse-3 | 42 | 0 | 0 of 42 |
-| de-DE lit-de klasse-4 | 35 | 0 | 0 of 36 |
+| de-DE fl lernjahr-1 | 28 | 28 | 28 of 28 |
+| de-DE fl lernjahr-2 | 16 | 16 | 16 of 16 |
+| de-DE fl stufe-0 | 14 | 14 | 14 of 14 |
+| de-DE lit-de klasse-1 | 51 | 51 | 77 of 77 |
+| de-DE lit-de klasse-2 | 46 | 46 | 47 of 47 |
+| de-DE lit-de klasse-3 | 42 | 42 | 42 of 42 |
+| de-DE lit-de klasse-4 | 35 | 35 | 36 of 36 |
 | de-DE math klasse-1 | 41 | 41 | 46 of 46 |
 | de-DE math klasse-2 | 63 | 63 | 64 of 64 |
 | de-DE math klasse-3 | 51 | 51 | 51 of 51 |
@@ -545,6 +545,7 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-18 | Review of all practice content so far | 225 | every task (Warm-up, Practise and the whole check pools) of the 225 sets with check pools, and the six drill banks; a screen audit rendered every task in the player first; 27 chunks read in two lenses (correctness and the screen, then the child and the language), then a critic across all reports with 8 spot-checks | about 560 fixes in all 225 sets. Player fixes from the audit and the reviewers (ordering draws its show, scattered layouts above 12, screens shrink to fit, words and sums fit their tiles, tables fit, a number line hides its last label when that is the answer, frames break at " | ", a repeated frame text gives way to "Was fehlt?", drawn plans name hinten and vorne). Build warnings for options below zero in the early years and for tables written as text in maths. Brief points 10 to 15 from the critic's patterns | see git log, "Review of all practice content" |
 | 2026-10-19 | Decisions pass (whole-story pictures, digits, no Learn examples in checks) | 82 | de-DE Mathe Klasse 1 and en-GB maths Reception (55 sets, all three decisions) and 27 more finished sets with a check that reused a Learn example; one agent per chunk, a second checking every change | 337 fixes; groups in 166 tasks, gone in 95; the build validates groups and gone and warns on a check that asks a Learn sum (none left in finished sets); the player's answer area shrinks again until a screen fits | see git log, "Decisions pass" |
 | 2026-10-19 | Integration pass (Learn examples in frames and drawings, screens that fit) | 225 | the 225 sets with check pools; the Learn-example rule now also reads a check's frame and its drawn component (base-ten, ten-frame, dots, clock and the other worked-example drawings), which found 18 checks in 12 finished sets; a screen audit of every pool task in the player | 18 checks changed and narrated in both German voices; no Learn-example warning left in finished sets (38 remain in sets still waiting for pools). In the player, a screen that does not fit scales the picture first (to 40%, at least 64px tall), then the question text, then the answer area (to half); drawn options such as clocks and cube towers scale into their square tiles. The audit shows no flags in the 225 sets (before, 17 screens 7 to 21px too tall) | see git log, "Integration pass" |
+| 2026-10-20 | de-DE Deutsch and Englisch check pools, drill banks | 229 | every remaining de-DE set (Deutsch Klasse 1 to 4, 172 sets; Englisch Stufe 0, Lernjahr 1 and 2, 57 sets) and 14 drill banks (4 Deutsch, 10 maths); 19 chunks and 3 bank chunks, one author and one reviewer reading as a native teacher each | every de-DE set has check pools (232 of 232 with the pilots); 20 drill banks with 1103 items in all; about 270 reviewer fixes; 101 questions for a decision in docs/plans/2026-10-18-practice-questions.md; build clean for every de-DE file and bank | see git log, "de-DE Deutsch and Englisch check pools" |
 
 Open points (11):
 

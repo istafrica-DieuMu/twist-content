@@ -22,6 +22,10 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: line-end, what: { de: über das Zeilenende hinweg lesen, en: reading on past the end of a line } }
+    - { id: marks, what: { de: "Punkt, Komma, Frage- und Ausrufezeichen beim Lesen beachten", en: "noticing full stops, commas, question and exclamation marks when reading" } }
+    - { id: whole-sentence, what: { de: "einen Satz als Ganzes lesen und erkennen, wo er endet", en: "reading a sentence as a whole and seeing where it ends" } }
   misconceptions:
     - id: line-end-stop
       what: Stops at the end of every line as if the sentence ended there
@@ -202,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +226,23 @@ lessons:
             say: "Welches Zeichen sagt dir: Der Satz ist zu Ende, und die Stimme geht nach unten?"
             options: ["der Punkt", "das Komma", "das Fragezeichen"]
             answer: "der Punkt"
+          - id: l1-c4
+            type: true_false
+            text: "„Heute ist Montag.“ Geht deine Stimme am Ende nach unten?"
+            say: "Lies den Satz leise. Geht deine Stimme am Ende nach unten?"
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "„Lisa, kommst du mit?“ Wo machst du eine kurze Pause?"
+            say: "Lies den Satz leise. Wo machst du eine kurze Pause?"
+            options: ["nach Lisa", "nach kommst", "nach du"]
+            answer: "nach Lisa"
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Nach welchen Wörtern machst du eine kleine Pause? Tippe sie an."
+            say: "Lies den Satz. Nach welchen Wörtern machst du eine kleine Pause, weil dort ein Komma steht?"
+            show: { drawn: letter-card, text: "Mein Bruder mag Hunde, Katzen, Pferde und Hasen." }
+            spans: ["Hunde,", "Katzen,"]
 
   - n: 2
     title: { de: "Über das Zeilenende lesen", en: "Reading past the line end" }
@@ -379,33 +401,145 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: line-end
             type: multiple_choice
             text: "Am Nachmittag spielen die Kinder\nim Garten Verstecken. Anna zählt\nbis zwanzig.\n\nMit welchem Wort endet der erste Satz?"
             say: "Lies den Text. Mit welchem Wort endet der erste Satz?"
             options: ["Verstecken", "Kinder", "zwanzig"]
             answer: "Verstecken"
           - id: l2-c2
+            part: whole-sentence
             type: multiple_choice
             text: "Der Zug hält. Viele Leute steigen\naus. Ist Oma auch dabei? Ja, da\nwinkt sie!\n\nWie viele Sätze hat der Text?"
             say: "Lies den Text. Wie viele Sätze hat er?"
             options: ["4", "3", "5"]
             answer: "4"
           - id: l2-c3
+            part: marks
             type: multiple_choice
-            text: "„Bist du schon fertig?“ Was macht deine Stimme am Ende?"
-            say: "Lies den Satz leise. Was macht deine Stimme am Ende?"
-            options: ["Sie geht nach oben.", "Sie geht nach unten.", "Sie bleibt gleich."]
-            answer: "Sie geht nach oben."
+            text: "„Bist du schon fertig?“ Wie liest du den Satz?"
+            say: "Lies den Satz leise. Wie liest du ihn?"
+            options: ["fragend, die Stimme geht am Ende nach oben", "erzählend, die Stimme geht am Ende nach unten", "laut und schnell, wie ein Warnruf"]
+            answer: "fragend, die Stimme geht am Ende nach oben"
           - id: l2-c4
+            part: marks
             type: highlight_in_text
             text: "Nach welchen Wörtern machst du eine kleine Pause? Tippe sie an."
             say: "Lies den Satz. Nach welchen Wörtern machst du eine kleine Pause, weil dort ein Komma steht?"
             show: { drawn: letter-card, text: "Am Montag, Dienstag und Mittwoch haben wir Sport, Musik oder Kunst." }
             spans: ["Montag,", "Sport,"]
           - id: l2-c5
+            part: line-end
             type: true_false
             text: "Mein Onkel wohnt in einem\nalten Haus am Waldrand.\n\nEndet der Satz nach einem?"
             say: "Lies den Text. Endet der Satz nach dem Wort einem?"
             answer: false
+          - id: l2-c6
+            part: line-end
+            type: multiple_choice
+            text: "Heute Abend kommt meine Tante\naus Berlin zu Besuch. Wir holen\nsie vom Bahnhof ab.\n\nMit welchem Wort endet der erste Satz?"
+            say: "Lies den Text. Mit welchem Wort endet der erste Satz?"
+            options: ["Besuch", "Tante", "ab"]
+            answer: "Besuch"
+          - id: l2-c7
+            part: marks
+            type: highlight_in_text
+            text: "Nach welchen Wörtern machst du eine kleine Pause? Tippe sie an."
+            say: "Lies den Satz. Nach welchen Wörtern machst du eine kleine Pause, weil dort ein Komma steht?"
+            show: { drawn: letter-card, text: "Als der Wecker klingelte, sprang Jan aus dem Bett, zog sich an und lief los." }
+            spans: ["klingelte,", "Bett,"]
+          - id: l2-c8
+            part: whole-sentence
+            type: multiple_choice
+            text: "Unser Hund Bruno schläft am\nliebsten auf dem Sofa, aber\nMama mag das gar nicht.\n\nWie viele Sätze hat der Text?"
+            say: "Lies den Text. Wie viele Sätze hat er?"
+            options: ["1", "3", "2"]
+            answer: "1"
+          - id: l2-c9
+            part: line-end
+            type: multiple_choice
+            text: "Welche Zeile liest du ohne Pause am Ende weiter?\n\n1: Am Teich wohnt eine Ente.\n2: Sie hat fünf Küken.\n3: Jeden Morgen schwimmen sie\n4: hinter ihr her."
+            say: "Lies den Text. Am Ende welcher Zeile liest du ohne Pause weiter?"
+            options: ["Zeile 1", "Zeile 2", "Zeile 3", "Zeile 4"]
+            answer: "Zeile 3"
+          - id: l2-c10
+            part: marks
+            type: true_false
+            text: "„Wie spät ist es?“ Geht die Stimme am Ende nach unten?"
+            say: "Lies den Satz leise. Geht deine Stimme am Ende nach unten?"
+            answer: false
+          - id: l2-c11
+            part: whole-sentence
+            type: true_false
+            text: "„Nach der Schule gehen wir, wenn es nicht regnet, auf den Spielplatz.“ Ist das ein einziger Satz?"
+            say: "Lies den Text. Ist das ein einziger Satz?"
+            answer: true
+          - id: l2-c12
+            part: line-end
+            type: true_false
+            text: "Lina wartet an der Haltestelle.\nDer Bus kommt gleich.\n\nEndet der erste Satz am Ende der ersten Zeile?"
+            say: "Lies den Text. Endet der erste Satz am Ende der ersten Zeile?"
+            answer: true
+          - id: l2-c13
+            part: marks
+            type: multiple_choice
+            text: "Bei welchem Satz geht die Stimme am Ende nach oben?"
+            say: "Lies die Sätze leise. Bei welchem Satz geht deine Stimme am Ende nach oben?"
+            options: ["Wann kommt Papa nach Hause?", "Papa kommt um sechs nach Hause.", "Komm schnell nach Hause!"]
+            answer: "Wann kommt Papa nach Hause?"
+            option_audio: false
+          - id: l2-c14
+            part: whole-sentence
+            type: multiple_choice
+            text: "Am Wochenende fahren wir zu\nOma aufs Land. Dort gibt es\nKühe und Schafe.\n\nMit welchem Wort beginnt der zweite Satz?"
+            say: "Lies den Text. Mit welchem Wort beginnt der zweite Satz?"
+            options: ["Dort", "Oma", "Kühe"]
+            answer: "Dort"
+          - id: l2-c15
+            part: line-end
+            type: multiple_choice
+            text: "Ich esse am liebsten\nNudeln mit Tomatensoße.\n\nWie liest du die zwei Zeilen?"
+            say: "Lies den Text. Wie liest du die zwei Zeilen?"
+            options: ["in einem Zug, ohne Pause nach liebsten", "mit einer langen Pause nach liebsten", "als zwei Sätze"]
+            answer: "in einem Zug, ohne Pause nach liebsten"
+          - id: l2-c16
+            part: marks
+            type: multiple_choice
+            text: "„Wo ist der Ball, Felix?“ Wie liest du den Satz?"
+            say: "Lies den Satz leise. Wie liest du ihn?"
+            options: ["mit einer kurzen Pause vor Felix und der Stimme am Ende nach oben", "ohne Pause und mit der Stimme am Ende nach unten", "laut und schnell, wie ein Warnruf"]
+            answer: "mit einer kurzen Pause vor Felix und der Stimme am Ende nach oben"
+          - id: l2-c17
+            part: whole-sentence
+            type: multiple_choice
+            text: "Ist das dein Rad? Es ist ja\nganz neu! Darf ich mal\nfahren?\n\nWie viele Sätze hat der Text?"
+            say: "Lies den Text. Wie viele Sätze hat er?"
+            options: ["2", "3", "5"]
+            answer: "3"
+          - id: l2-c18
+            part: line-end
+            type: multiple_choice
+            text: "Der kleine Igel sucht im\nLaub nach Käfern und\nWürmern. Bald wird es dunkel.\n\nMit welchem Wort endet der erste Satz?"
+            say: "Lies den Text. Mit welchem Wort endet der erste Satz?"
+            options: ["Würmern", "im", "und"]
+            answer: "Würmern"
+          - id: l2-c19
+            part: marks
+            type: fill_in_blank
+            text: "Du liest den Satz kräftig und aufgeregt. Welches Zeichen steht am Ende?"
+            say: "Du liest den Satz kräftig und aufgeregt. Welches Zeichen steht am Ende?"
+            frame: "Das Haus brennt_"
+            options: [".", "?", "!"]
+            answer: ["!"]
+            option_audio: false
+          - id: l2-c20
+            part: whole-sentence
+            type: multiple_choice
+            text: "Welcher Text hat zwei Sätze?"
+            say: "Lies die Texte leise. Welcher Text hat zwei Sätze?"
+            options: ["Der Hund bellt laut, und die Katze rennt weg.", "Der Hund bellt laut. Die Katze rennt weg.", "Der Hund bellt laut und rennt weg."]
+            answer: "Der Hund bellt laut. Die Katze rennt weg."
+            option_audio: false

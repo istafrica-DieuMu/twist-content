@@ -14,7 +14,9 @@ summary: >
   builds a Glückwunschkarte from Anrede, Glückwunsch and Gruß, picks the
   wish for the occasion, and ends with the skill check. Writing the text
   freely waits for a free text task type; here the child chooses, sorts
-  and orders the parts.
+  and orders the parts. The skill check marks what a screen can mark:
+  what goes on each kind of text, what is missing and the order of the
+  parts; writing one is left to Practise once free text arrives.
 metadata:
   year: klasse-2
   topic: { de: Texte schreiben, en: Writing texts }
@@ -26,6 +28,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: list, what: { de: "der Einkaufszettel: nur Wörter, jedes mit der Menge", en: "a shopping list: words only, each with its amount" } }
+    - { id: message, what: { de: "die kurze Nachricht: wo, wann und wer", en: "a short note: where, when and who" } }
+    - { id: invitation, what: { de: "die Einladung mit Wer? Was? Wann? Wo?", en: "an invitation that answers who, what, when and where" } }
+    - { id: card, what: { de: "die Glückwunschkarte mit Anrede, Glückwunsch und Gruß", en: "a greeting card with greeting, wish and sign-off" } }
   misconceptions:
     - id: sentence-on-list
       what: Writes whole sentences on a shopping list, or leaves out how many of a thing
@@ -233,6 +240,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -252,6 +260,30 @@ lessons:
             text: "Liebe Mama,\nich bin bei Lukas.\nUm 7 Uhr bin ich zurück.\nDein Jan\n\nSteht alles Wichtige in der Nachricht?"
             say: "Lies den Zettel. Steht alles Wichtige in der Nachricht?"
             answer: true
+          - id: l1-c4
+            type: sorting
+            text: "Kim kauft für das Frühstück ein. Was gehört auf ihren Zettel?"
+            say: "Kim kauft für das Frühstück ein. Was gehört auf ihren Zettel? Sortiere die Karten."
+            bins:
+              - { id: list, show: { text: "auf den Zettel" }, say: "auf den Zettel" }
+              - { id: not, show: { text: "nicht auf den Zettel" }, say: "nicht auf den Zettel" }
+            options:
+              - { text: "Müsli", bin: list }
+              - { text: "Kim frühstückt um 7 Uhr.", bin: not }
+              - { text: "Bananen", bin: list }
+              - { text: "Joghurt", bin: list }
+            option_audio: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "An der Tür hängt ein Zettel:\nLiebe Mama,\num 5 Uhr bin ich zurück.\nDein Emil\n\nWas fehlt in der Nachricht?"
+            say: "Lies den Zettel. Was fehlt in der Nachricht?"
+            options: ["wo Emil ist", "wann Emil zurückkommt", "wer den Zettel geschrieben hat"]
+            answer: "wo Emil ist"
+          - id: l1-c6
+            type: true_false
+            text: "Auf einen Einkaufszettel schreibst du ganze Sätze. Stimmt das?"
+            say: "Auf einen Einkaufszettel schreibst du ganze Sätze. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Einladungen und Glückwunschkarten", en: "Invitations and greeting cards" }
@@ -262,7 +294,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Was schreibst du auf den Einkaufszettel?"
+            text: "Du brauchst zwei Brote. Was schreibst du auf den Einkaufszettel?"
             say: "Du brauchst zwei Brote. Was schreibst du auf den Einkaufszettel?"
             options: ["2 Brote", "Brot ist lecker.", "Ich kaufe Brot, weil ich Hunger habe."]
             answer: "2 Brote"
@@ -422,26 +454,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: list
             type: multiple_choice
             text: "Welches Wort gehört auf einen Einkaufszettel?"
             say: "Welches Wort gehört auf einen Einkaufszettel?"
             options: ["Karotten", "Karotten sind orange.", "Ich will Karotten kaufen gehen."]
             answer: "Karotten"
           - id: l2-c2
+            part: invitation
             type: multiple_choice
             text: "Liebe Nele,\nich lade dich zu meinem Geburtstag ein.\nWann? Am Sonntag um 14 Uhr.\nDein Jakob\n\nWas fehlt in der Einladung?"
             say: "Lies die Einladung. Was fehlt darin?"
             options: ["wo das Fest ist", "wann das Fest ist", "wer einlädt"]
             answer: "wo das Fest ist"
           - id: l2-c3
+            part: card
             type: multiple_choice
             text: "Deine Schwester hat Geburtstag. Welcher Satz passt auf die Karte?"
             say: "Deine Schwester hat Geburtstag. Welcher Satz passt auf die Karte?"
             options: ["Alles Gute zum Geburtstag!", "Gute Besserung!", "Um 6 Uhr bin ich zurück."]
             answer: "Alles Gute zum Geburtstag!"
           - id: l2-c4
+            part: card
             type: ordering
             text: "Leg die Osterkarte in die richtige Reihenfolge."
             say: "Leg die Teile der Osterkarte in die richtige Reihenfolge."
@@ -449,9 +486,129 @@ lessons:
             slot_count: 3
             answer: ["Liebe Oma,", "frohe Ostern!", "Dein Moritz"]
           - id: l2-c5
+            part: list
             type: fill_in_blank
             text: "Du brauchst vier Bananen. Was schreibst du?"
             say: "Du brauchst vier Bananen. Was schreibst du auf den Zettel?"
             frame: "_ Bananen"
             options: ["4", "viele", "ein paar"]
             answer: ["4"]
+          - id: l2-c6
+            part: list
+            type: sorting
+            text: "Ben schreibt einen Einkaufszettel für das Picknick. Was gehört darauf?"
+            say: "Ben schreibt einen Einkaufszettel für das Picknick. Was gehört darauf? Sortiere die Karten."
+            bins:
+              - { id: list, show: { text: "auf den Zettel" }, say: "auf den Zettel" }
+              - { id: not, show: { text: "nicht auf den Zettel" }, say: "nicht auf den Zettel" }
+            options:
+              - { text: "Saft", bin: list }
+              - { text: "Das Wetter ist schön.", bin: not }
+              - { text: "Würstchen", bin: list }
+              - { text: "Wir fahren an den See.", bin: not }
+              - { text: "Servietten", bin: list }
+            option_audio: false
+          - id: l2-c7
+            part: list
+            type: true_false
+            text: "Einkaufszettel\nMilch\nIch brauche auch noch Brot.\nKäse\n\nIst dieser Einkaufszettel gut geschrieben?"
+            say: "Lies den Einkaufszettel. Ist er gut geschrieben?"
+            answer: false
+          - id: l2-c8
+            part: list
+            type: multiple_choice
+            text: "Lea braucht für ihr Fest 10 Becher. Was schreibt sie auf den Zettel?"
+            say: "Lea braucht für ihr Fest zehn Becher. Was schreibt sie auf den Zettel?"
+            options: ["10 Becher", "Becher", "viele Becher"]
+            answer: "10 Becher"
+          - id: l2-c9
+            part: message
+            type: multiple_choice
+            text: "Ella geht zu Tim. Welche Nachricht schreibt sie am besten für Mama?"
+            say: "Ella geht zu Tim. Welche Nachricht schreibt sie am besten für Mama?"
+            options: ["Bin bei Tim. Um 6 Uhr bin ich zurück. Deine Ella", "Bin weg. Deine Ella", "Bin bei Tim."]
+            answer: "Bin bei Tim. Um 6 Uhr bin ich zurück. Deine Ella"
+          - id: l2-c10
+            part: message
+            type: sorting
+            text: "Was gehört in eine kurze Nachricht auf einem Zettel?"
+            say: "Was gehört in eine kurze Nachricht auf einem Zettel? Sortiere die Karten."
+            bins:
+              - { id: in, show: { text: "gehört hinein" }, say: "gehört hinein" }
+              - { id: out, show: { text: "gehört nicht hinein" }, say: "gehört nicht hinein" }
+            options:
+              - { text: "wo du bist", bin: in }
+              - { text: "was du gestern gegessen hast", bin: out }
+              - { text: "wann du zurückkommst", bin: in }
+              - { text: "dein Name", bin: in }
+          - id: l2-c11
+            part: message
+            type: true_false
+            text: "Lieber Papa,\nich bin mit Jonas im Schwimmbad.\nDeine Lara\n\nWeiß Papa jetzt, wann Lara zurückkommt?"
+            say: "Lies den Zettel. Weiß Papa jetzt, wann Lara zurückkommt?"
+            answer: false
+          - id: l2-c12
+            part: message
+            type: ordering
+            text: "Leg die Nachricht in die richtige Reihenfolge."
+            say: "Leg die Teile der Nachricht in die richtige Reihenfolge."
+            options: ["Um 5 Uhr bin ich zurück.", "Dein Jonas", "Liebe Oma,", "ich bin auf dem Spielplatz."]
+            slot_count: 4
+            answer: ["Liebe Oma,", "ich bin auf dem Spielplatz.", "Um 5 Uhr bin ich zurück.", "Dein Jonas"]
+          - id: l2-c13
+            part: message
+            type: multiple_choice
+            text: "Ben ist bei Ayla. Um 6 Uhr kommt er zurück. Sein Zettel:\nLiebe Mama,\nich bin bei Ayla.\nDein Ben\n\nWelcher Satz fehlt noch?"
+            say: "Lies den Zettel. Welcher Satz fehlt noch?"
+            options: ["Um 6 Uhr bin ich zurück.", "Ayla hat einen Hund.", "Heute ist es warm."]
+            answer: "Um 6 Uhr bin ich zurück."
+          - id: l2-c14
+            part: invitation
+            type: matching
+            text: "Mila schreibt eine Einladung. Welche Angabe beantwortet welche Frage?"
+            say: "Mila schreibt eine Einladung. Verbinde jede Frage mit der passenden Angabe."
+            pairs:
+              - { left: { text: "Was?" }, right: { text: "ein Picknick" } }
+              - { left: { text: "Wann?" }, right: { text: "am Samstag um 10 Uhr" } }
+              - { left: { text: "Wo?" }, right: { text: "im Garten" } }
+          - id: l2-c15
+            part: invitation
+            type: multiple_choice
+            text: "Liebe Frieda,\nich lade dich zum Basteln ein.\nWann? Am Mittwoch um 15 Uhr.\nWo? Bei mir, Lindenstraße 8.\n\nWas fehlt in der Einladung?"
+            say: "Lies die Einladung. Was fehlt darin?"
+            options: ["wer einlädt", "wann das Basteln ist", "wo das Basteln ist"]
+            answer: "wer einlädt"
+          - id: l2-c16
+            part: invitation
+            type: true_false
+            text: "Lieber Tom,\nich lade dich zu meinem Geburtstag ein.\nWann? Am Freitag um 15 Uhr.\nWo? Im Kletterpark.\nDeine Anna\n\nSteht in der Einladung alles Wichtige?"
+            say: "Lies die Einladung. Steht alles Wichtige darin?"
+            answer: true
+          - id: l2-c17
+            part: invitation
+            type: multiple_choice
+            text: "In einer Einladung steht: „am Samstag um 11 Uhr“. Welche Frage beantwortet das?"
+            say: "In einer Einladung steht: am Samstag um elf Uhr. Welche Frage beantwortet das?"
+            options: ["Wann?", "Wo?", "Wer?"]
+            answer: "Wann?"
+          - id: l2-c18
+            part: card
+            type: multiple_choice
+            text: "Bald ist Weihnachten. Was schreibst du auf die Karte an Tante Rosa?"
+            say: "Bald ist Weihnachten. Was schreibst du auf die Karte an Tante Rosa?"
+            options: ["Frohe Weihnachten!", "Frohe Ostern!", "Gute Besserung!"]
+            answer: "Frohe Weihnachten!"
+          - id: l2-c19
+            part: card
+            type: ordering
+            text: "Leg die Glückwunschkarte in die richtige Reihenfolge."
+            say: "Familie Hoffmann hat ein Baby bekommen. Leg die Teile der Glückwunschkarte in die richtige Reihenfolge."
+            options: ["Deine Selin", "herzlichen Glückwunsch zum Baby!", "Liebe Familie Hoffmann,"]
+            slot_count: 3
+            answer: ["Liebe Familie Hoffmann,", "herzlichen Glückwunsch zum Baby!", "Deine Selin"]
+          - id: l2-c20
+            part: card
+            type: true_false
+            text: "Liebe Ida,\nalles Gute zum Geburtstag!\n\nFehlt auf der Karte etwas?"
+            say: "Lies die Karte. Fehlt darauf etwas?"
+            answer: true

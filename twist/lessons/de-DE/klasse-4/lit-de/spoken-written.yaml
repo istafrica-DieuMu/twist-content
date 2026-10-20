@@ -26,6 +26,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: spoken-written, what: { de: gesprochene und geschriebene Sprache unterscheiden, en: telling spoken from written language } }
+    - { id: short-forms, what: { de: Kurzformen vollständig schreiben, en: writing short forms out in full } }
+    - { id: tense, what: { de: "Perfekt beim Erzählen, Präteritum in der geschriebenen Geschichte", en: "the perfect when telling, the simple past in a written story" } }
+    - { id: rephrase, what: { de: Umgangssprache in Standardsprache umformulieren, en: rephrasing everyday speech in standard German } }
+    - { id: situation, what: { de: "wählen, wo Umgangssprache oder Standardsprache passt", en: choosing where everyday or standard German fits } }
   misconceptions:
     - id: write-as-speak
       what: Writes the way they talk, with short forms, filler words and half sentences
@@ -229,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -248,6 +255,25 @@ lessons:
             text: "Ist „äh“ ein Wort, das man vor allem beim Sprechen benutzt?"
             say: "Ist äh ein Wort, das man vor allem beim Sprechen benutzt?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie schreibt man „hab's“ vollständig?"
+            say: "Wie schreibt man die Kurzform hab's vollständig?"
+            options: ["habe es", "habes", "hab es"]
+            answer: "habe es"
+            option_audio: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Tom erzählt: „Ich habe ein Bild gemalt.“ Wie steht der Satz oft in einer geschriebenen Geschichte?"
+            say: "Tom erzählt: Ich habe ein Bild gemalt. Wie steht der Satz oft in einer geschriebenen Geschichte?"
+            options: ["Ich male ein Bild.", "Ich malte ein Bild.", "Ich hatte malen ein Bild."]
+            answer: "Ich malte ein Bild."
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? In einem Aufsatz schreibst du „hab“ statt „habe“."
+            say: "In einem Aufsatz schreibst du hab statt habe. Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Umgangssprache und Standardsprache", en: "Everyday speech and standard German" }
@@ -434,14 +460,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spoken-written
             type: multiple_choice
             text: "Welcher Satz passt in einen Bericht über den Wandertag?"
             options: ["Nach zwei Stunden erreichten wir die Burg.", "Nach, äh, zwei Stunden waren wir dann halt an der Burg.", "Zwei Stunden, Burg, voll weit."]
             answer: "Nach zwei Stunden erreichten wir die Burg."
             option_audio: false
           - id: l2-c2
+            part: short-forms
             type: fill_in_blank
             text: "Gesprochen: „Ich hab 'ne Idee.“ Schreib den Satz vollständig."
             say: "Gesprochen heißt es: Ich hab 'ne Idee. Schreib den Satz vollständig."
@@ -450,20 +479,153 @@ lessons:
             answer: ["habe", "eine"]
             option_audio: false
           - id: l2-c3
+            part: rephrase
             type: multiple_choice
             text: "„Mein Kumpel hat keine Kohle mehr.“ Wie sagst du das in der Standardsprache?"
             say: "Mein Kumpel hat keine Kohle mehr. Wie sagst du das in der Standardsprache?"
             options: ["Mein Freund hat kein Geld mehr.", "Mein Freund hat keine Kohle mehr.", "Mein Kumpel hat kein Holz mehr."]
             answer: "Mein Freund hat kein Geld mehr."
           - id: l2-c4
+            part: situation
             type: multiple_choice
             text: "Wo passt der Satz „Hey, was geht?“ gut?"
             say: "Lies den Satz: Hey, was geht? Wo passt dieser Satz gut?"
             options: ["wenn du deinen Freund triffst", "in einem Brief an die Schulleiterin", "in einem Vortrag über Vulkane"]
             answer: "wenn du deinen Freund triffst"
           - id: l2-c5
+            part: tense
             type: multiple_choice
             text: "Lena erzählt: „Wir sind mit dem Boot gefahren.“ Wie steht der Satz oft in einer geschriebenen Geschichte?"
             say: "Lena erzählt: Wir sind mit dem Boot gefahren. Wie steht der Satz oft in einer geschriebenen Geschichte?"
             options: ["Wir fuhren mit dem Boot.", "Wir fahren mit dem Boot.", "Wir sind mit dem Boot fahren."]
             answer: "Wir fuhren mit dem Boot."
+          - id: l2-c6
+            part: spoken-written
+            type: sorting
+            text: "Klingt das nach Sprechen oder nach Schreiben?"
+            say: "Lies die Sätze. Klingt das nach gesprochener oder nach geschriebener Sprache? Ordne zu."
+            bins:
+              - { id: spoken, show: { text: "gesprochen" }, say: "gesprochen" }
+              - { id: written, show: { text: "geschrieben" }, say: "geschrieben" }
+            options:
+              - { text: "Boah, das war knapp!", bin: spoken }
+              - { text: "Ähm, weiß nich so genau.", bin: spoken }
+              - { text: "Ich bin mir nicht sicher.", bin: written }
+              - { text: "Das war sehr knapp.", bin: written }
+            option_audio: false
+          - id: l2-c7
+            part: spoken-written
+            type: true_false
+            text: "Stimmt das? Beim Schreiben fängt man Sätze oft neu an und lässt Wörter weg."
+            say: "Beim Schreiben fängt man Sätze oft neu an und lässt Wörter weg. Stimmt das?"
+            answer: false
+          - id: l2-c8
+            part: spoken-written
+            type: multiple_choice
+            text: "Welchen Satz würdest du so in eine Geschichte schreiben?"
+            options: ["Und dann, äh, hörten wir so'n Knacken.", "Plötzlich hörten wir ein lautes Knacken im Wald.", "Wald, Knacken, voll laut."]
+            answer: "Plötzlich hörten wir ein lautes Knacken im Wald."
+            option_audio: false
+          - id: l2-c9
+            part: short-forms
+            type: matching
+            text: "Welche vollständigen Wörter gehören zur Kurzform?"
+            say: "Verbinde jede Kurzform mit den vollständigen Wörtern."
+            pairs:
+              - { left: { text: "hab's" }, right: { text: "habe es" } }
+              - { left: { text: "kommste" }, right: { text: "kommst du" } }
+              - { left: { text: "wär" }, right: { text: "wäre" } }
+              - { left: { text: "nix" }, right: { text: "nichts" } }
+            option_audio: false
+          - id: l2-c10
+            part: short-forms
+            type: fill_in_blank
+            text: "Gesprochen: „Is grad keiner da.“ Schreib den Satz vollständig."
+            say: "Gesprochen heißt es: Is grad keiner da. Schreib den Satz vollständig."
+            frame: "_ _ _ keiner da."
+            options: ["Es", "ist", "is", "gerade", "grad"]
+            answer: ["Es", "ist", "gerade"]
+            option_audio: false
+          - id: l2-c11
+            part: short-forms
+            type: multiple_choice
+            text: "Wie schreibt man „runter“ vollständig?"
+            say: "Wie schreibt man die Kurzform runter vollständig?"
+            options: ["unter", "herunter", "darunter"]
+            answer: "herunter"
+            option_audio: false
+          - id: l2-c12
+            part: tense
+            type: multiple_choice
+            text: "Paul erzählt: „Wir haben im See gebadet.“ Wie steht der Satz oft in einer geschriebenen Geschichte?"
+            say: "Paul erzählt: Wir haben im See gebadet. Wie steht der Satz oft in einer geschriebenen Geschichte?"
+            options: ["Wir baden im See.", "Wir haben im See baden.", "Wir badeten im See."]
+            answer: "Wir badeten im See."
+            option_audio: false
+          - id: l2-c13
+            part: tense
+            type: true_false
+            text: "Stimmt das? In einer geschriebenen Geschichte steht meistens das Perfekt."
+            say: "In einer geschriebenen Geschichte steht meistens das Perfekt. Stimmt das?"
+            answer: false
+          - id: l2-c14
+            part: tense
+            type: multiple_choice
+            text: "Im Buch steht: „Der Hund rannte über die Wiese.“ Wie erzählst du das deiner Freundin meistens?"
+            say: "Im Buch steht: Der Hund rannte über die Wiese. Wie erzählst du das deiner Freundin meistens?"
+            options: ["Der Hund wird über die Wiese rennen.", "Der Hund ist über die Wiese gerannt.", "Der Hund rennt über die Wiese."]
+            answer: "Der Hund ist über die Wiese gerannt."
+            option_audio: false
+          - id: l2-c15
+            part: rephrase
+            type: multiple_choice
+            text: "„Wir ham uns voll beeilt.“ Wie sagst du das in der Standardsprache?"
+            say: "Wir ham uns voll beeilt. Wie sagst du das in der Standardsprache?"
+            options: ["Voll beeilt.", "Wir haben uns sehr beeilt.", "Wir ham uns sehr beeilt."]
+            answer: "Wir haben uns sehr beeilt."
+            option_audio: false
+          - id: l2-c16
+            part: rephrase
+            type: matching
+            text: "Welches Wort aus der Standardsprache passt?"
+            say: "Verbinde jedes Wort aus der Umgangssprache mit dem Wort aus der Standardsprache, das dasselbe bedeutet."
+            pairs:
+              - { left: { text: "Kids" }, right: { text: "Kinder" } }
+              - { left: { text: "Bammel" }, right: { text: "Angst" } }
+              - { left: { text: "pleite" }, right: { text: "ohne Geld" } }
+              - { left: { text: "meckern" }, right: { text: "sich beschweren" } }
+          - id: l2-c17
+            part: rephrase
+            type: fill_in_blank
+            text: "„Der Film war voll gut.“ Wie heißt der Satz in der Standardsprache?"
+            say: "Der Film war voll gut. Wie heißt der Satz in der Standardsprache?"
+            frame: "Der Film war _ gut."
+            options: ["voll", "sehr", "mega"]
+            answer: ["sehr"]
+          - id: l2-c18
+            part: situation
+            type: multiple_choice
+            text: "Wo passt der Satz „Liebe Frau Schneider, vielen Dank für die schöne Klassenfahrt.“ gut?"
+            say: "Lies den Satz: Liebe Frau Schneider, vielen Dank für die schöne Klassenfahrt. Wo passt dieser Satz gut?"
+            options: ["beim Fußballspielen mit Freunden", "in einer Karte an deine Lehrerin", "in einer Sprachnachricht an deinen Bruder"]
+            answer: "in einer Karte an deine Lehrerin"
+          - id: l2-c19
+            part: situation
+            type: sorting
+            text: "Wo passt welcher Satz?"
+            say: "Passt der Satz eher zu Freunden oder in einen Brief an Fremde? Ordne zu."
+            bins:
+              - { id: friends, show: { text: "mit Freunden" }, say: "mit Freunden" }
+              - { id: letter, show: { text: "im Brief an Fremde" }, say: "im Brief an Fremde" }
+            options:
+              - { text: "Kommst du nachher mit raus?", bin: friends }
+              - { text: "Na, alles fit?", bin: friends }
+              - { text: "Bitte schicken Sie uns einen Prospekt.", bin: letter }
+              - { text: "Mit freundlichen Grüßen", bin: letter }
+            option_audio: false
+          - id: l2-c20
+            part: situation
+            type: true_false
+            text: "Stimmt das? Mit guten Freunden darfst du locker in Umgangssprache reden."
+            say: "Mit guten Freunden darfst du locker in Umgangssprache reden. Stimmt das?"
+            answer: true

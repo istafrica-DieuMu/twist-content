@@ -28,6 +28,11 @@ metadata:
   forms: [audio, text, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: reply, what: { de: im Gespräch die passende Antwort wählen, en: choosing the reply that fits in a conversation } }
+    - { id: phrase, what: { de: "wissen, was man in einer Lage sagt", en: knowing what to say in a situation } }
+    - { id: order, what: { de: ein Gespräch in die richtige Reihenfolge bringen, en: putting a conversation in order } }
+    - { id: listen, what: { de: ein kurzes Alltagsgespräch verstehen, en: understanding a short everyday conversation } }
   misconceptions:
     - id: please-thank-you
       what: Says thank you when asking and please when receiving, as with bitte and danke in German
@@ -64,8 +69,9 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Mag das Kind Käse?"
             say: { de: "Hör zu. Mag das Kind Käse?" }
-            audio: { en: "Do you like cheese? No, I don't." }
+            audio: { turns: [{ en: "Do you like cheese?", speaker: female }, { en: "No, I don't.", speaker: male }] }
             options: ["Ja, es mag Käse.", "Nein, es mag keinen Käse."]
             answer: "Nein, es mag keinen Käse."
             keep_order: true
@@ -91,8 +97,9 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "Mrs Hill: Hello! Can I help you?"
-                say: { de: "Mrs Hill fragt dich etwas. Was antwortest du?", en: "Hello! Can I help you?" }
+                text: "Mrs Hill: Hello! Can I help you?\nWas antwortest du?"
+                say: { de: "Mrs Hill fragt dich etwas. Was antwortest du?" }
+                audio: { en: "Hello! Can I help you?", speaker: female }
                 options: ["Yes, please. Can I have an apple, please?", "I'm fine, thank you.", "Goodbye!"]
                 answer: "Yes, please. Can I have an apple, please?"
                 option_audio: false
@@ -105,8 +112,9 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "Was kauft das Kind?"
                 say: { de: "Hör zu. Was kauft das Kind?" }
-                audio: { en: "Can I have three oranges, please? Here you are." }
+                audio: { turns: [{ en: "Can I have three oranges, please?", speaker: male }, { en: "Here you are.", speaker: female }] }
                 options: [{ object: apple }, { object: orange }, { object: banana }]
                 answer: orange
                 hints:
@@ -127,6 +135,7 @@ lessons:
                   - "Tippe auf „Here you are.“"
               - id: l1-f4
                 type: speak
+                text: "Jetzt bist du dran. Frag Mrs Hill nach einer Pizza."
                 say: { de: "Jetzt bist du dran. Frag Mrs Hill nach einer Pizza.", en: "Can I have a pizza, please?" }
                 show: { object: pizza }
                 expected_text: "Can I have a pizza, please?"
@@ -148,7 +157,8 @@ lessons:
               - id: l1-f6
                 type: true_false
                 text: "Fragt das Kind, was es kostet?"
-                say: { de: "Hör zu. Fragt das Kind, was es kostet?", en: "How much is it?" }
+                say: { de: "Hör zu. Fragt das Kind, was es kostet?" }
+                audio: { en: "How much is it?", speaker: male }
                 answer: true
                 hints:
                   - "Hör noch einmal: How much is it?"
@@ -159,7 +169,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "Mrs Hill: Here you are."
+                text: "Mrs Hill gibt dir die Äpfel: „Here you are.“\nWas antwortest du?"
                 say: { de: "Mrs Hill gibt dir die Äpfel. Was antwortest du?", en: "Here you are." }
                 options: ["Thank you.", "Hello!", "Yes, I do."]
                 answer: "Thank you."
@@ -167,13 +177,15 @@ lessons:
                 hints: ["Du bekommst etwas. Was sagst du dann?"]
               - id: l1-s2
                 type: audio_choice
+                text: "Was kostet die Milch?"
                 say: { de: "Hör zu. Was kostet die Milch?" }
-                audio: { en: "Can I have some milk, please? Here you are. How much is it? Two pounds, please." }
+                audio: { turns: [{ en: "Can I have some milk, please?", speaker: female }, { en: "Here you are.", speaker: male }, { en: "How much is it?", speaker: female }, { en: "Two pounds, please.", speaker: male }] }
                 options: ["1 Pfund", "2 Pfund", "3 Pfund"]
                 answer: "2 Pfund"
                 hints: ["Hör auf das Ende: … pounds, please."]
               - id: l1-s3
                 type: speak
+                text: "Frag Mrs Hill, was es kostet."
                 say: { de: "Frag Mrs Hill, was es kostet.", en: "How much is it?" }
                 expected_text: "How much is it?"
                 hints: ["Vier kurze Wörter: How … much … is … it?"]
@@ -197,7 +209,8 @@ lessons:
               - id: l1-s6
                 type: true_false
                 text: "Passt die Antwort?"
-                say: { de: "Hör zu. Passt die Antwort?", en: "How much is it? Yes, please." }
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "How much is it?", speaker: female }, { en: "Yes, please.", speaker: male }] }
                 answer: false
                 hints: ["Auf „How much is it?“ hörst du einen Preis."]
 
@@ -205,19 +218,22 @@ lessons:
             tasks:
               - id: l1-n1
                 type: multiple_choice
-                text: "Im Eiscafé fragt die Bedienung: Can I help you?"
-                say: { de: "Im Eiscafé fragt dich die Bedienung etwas. Was antwortest du?", en: "Can I help you?" }
+                text: "Im Eiscafé fragt die Bedienung: „Can I help you?“\nWas antwortest du?"
+                say: { de: "Im Eiscafé fragt dich die Bedienung etwas. Was antwortest du?" }
+                audio: { en: "Can I help you?", speaker: female }
                 options: ["Can I have an ice cream, please?", "How old are you?", "Here you are."]
                 answer: "Can I have an ice cream, please?"
                 option_audio: false
               - id: l1-n2
                 type: audio_choice
+                text: "Was kauft das Kind?"
                 say: { de: "Hör zu. Was kauft das Kind?" }
-                audio: { en: "Hello! Can I have some cheese, please? Of course. Here you are." }
+                audio: { turns: [{ en: "Hello! Can I have some cheese, please?", speaker: male }, { en: "Of course. Here you are.", speaker: female }] }
                 options: [{ object: bread }, { object: milk }, { object: cheese }]
                 answer: cheese
               - id: l1-n3
                 type: speak
+                text: "Mrs Hill gibt dir das Brot. Bedank dich und verabschiede dich."
                 say: { de: "Mrs Hill gibt dir das Brot. Bedank dich und verabschiede dich." }
                 expected_text: "Thank you. Goodbye!"
               - id: l1-n4
@@ -236,6 +252,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -245,8 +262,9 @@ lessons:
             option_audio: false
           - id: l1-c2
             type: audio_choice
+            text: "Was kauft das Kind?"
             say: { de: "Hör zu. Was kauft das Kind?" }
-            audio: { en: "Can I have two apples, please? Here you are." }
+            audio: { turns: [{ en: "Can I have two apples, please?", speaker: female }, { en: "Here you are.", speaker: male }] }
             options: [{ object: apple }, { object: pineapple }, { object: strawberry }]
             answer: apple
           - id: l1-c3
@@ -255,6 +273,25 @@ lessons:
             options: ["How much is it?", "How old are you?", "Can I help you?"]
             answer: "How much is it?"
             option_audio: false
+          - id: l1-c4
+            type: audio_choice
+            text: "Was kostet das Brot?"
+            say: { de: "Hör zu. Was kostet das Brot?" }
+            audio: { turns: [{ en: "How much is the bread?", speaker: male }, { en: "One pound, please.", speaker: female }] }
+            options: ["2 Pfund", "1 Pfund", "10 Pfund"]
+            answer: "1 Pfund"
+          - id: l1-c5
+            type: ordering
+            text: "Bring das Gespräch in die richtige Reihenfolge."
+            options: ["Here you are.", "Yes, please. Can I have a pizza, please?", "Can I help you?"]
+            slot_count: 3
+            answer: ["Can I help you?", "Yes, please. Can I have a pizza, please?", "Here you are."]
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Mrs Hill gibt dir die Milch. Du sagst: „Please.“ Passt das?"
+            say: { de: "Mrs Hill gibt dir die Milch. Du sagst: Please. Passt das?" }
+            answer: false
 
   - n: 2
     title: { de: "Auf dem Spielplatz", en: "In the playground" }
@@ -265,7 +302,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Mrs Hill: Here you are."
+            text: "Mrs Hill gibt dir dein Brot: „Here you are.“\nWas sagst du?"
             say: { de: "Weißt du noch? Mrs Hill gibt dir dein Brot. Was sagst du?", en: "Here you are." }
             options: ["Thank you.", "Please.", "Can I help you?"]
             answer: "Thank you."
@@ -273,8 +310,9 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: audio_choice
+            text: "Was kostet der Kuchen?"
             say: { de: "Weißt du noch? Hör zu. Was kostet der Kuchen?" }
-            audio: { en: "How much is the cake? Four pounds, please." }
+            audio: { turns: [{ en: "How much is the cake?", speaker: female }, { en: "Four pounds, please.", speaker: male }] }
             options: ["4 Pfund", "14 Pfund", "2 Pfund"]
             answer: "4 Pfund"
             difficulty: easy
@@ -301,8 +339,9 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "Jack: Hi! I'm Jack. What's your name?"
-                say: { de: "Was antwortest du Jack?", en: "Hi! I'm Jack. What's your name?" }
+                text: "Jack: Hi! I'm Jack. What's your name?\nWas antwortest du Jack?"
+                say: { de: "Was antwortest du Jack?" }
+                audio: { en: "Hi! I'm Jack. What's your name?", speaker: male }
                 options: ["Hello, Jack. I'm Paula.", "I'm nine.", "Yes, I have."]
                 answer: "Hello, Jack. I'm Paula."
                 option_audio: false
@@ -315,8 +354,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "Wie alt ist das Kind?"
                 say: { de: "Hör zu. Wie alt ist das Kind?" }
-                audio: { en: "How old are you? I'm ten." }
+                audio: { turns: [{ en: "How old are you?", speaker: female }, { en: "I'm ten.", speaker: male }] }
                 options: ["12", "10", "2"]
                 answer: "10"
                 feedback:
@@ -327,6 +367,7 @@ lessons:
                   - "„Ten“ heißt zehn."
               - id: l2-f3
                 type: speak
+                text: "Jack hat dir seinen Namen gesagt. Sag ihm: Schön, dich kennenzulernen."
                 say: { de: "Jack hat dir seinen Namen gesagt. Sag ihm: Schön, dich kennenzulernen.", en: "Nice to meet you." }
                 expected_text: "Nice to meet you."
                 hints:
@@ -359,7 +400,8 @@ lessons:
               - id: l2-f6
                 type: true_false
                 text: "Passt die Antwort?"
-                say: { de: "Hör zu. Passt die Antwort?", en: "Do you want to play? Yes, please!" }
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "Do you want to play?", speaker: male }, { en: "Yes, please!", speaker: female }] }
                 answer: true
                 hints:
                   - "„Play“ heißt spielen."
@@ -370,7 +412,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: multiple_choice
-                text: "Jack: How old are you?"
+                text: "Jack: How old are you?\nWas antwortest du Jack?"
                 say: { de: "Was antwortest du Jack?", en: "How old are you?" }
                 options: ["I'm fine, thank you.", "I'm nine.", "I'm Paula."]
                 answer: "I'm nine."
@@ -380,13 +422,15 @@ lessons:
                 hints: ["„Old“ heißt alt."]
               - id: l2-s2
                 type: audio_choice
+                text: "Welches Haustier hat das Kind?"
                 say: { de: "Hör zu. Welches Haustier hat das Kind?" }
-                audio: { en: "Have you got a pet? Yes, I've got a rabbit." }
+                audio: { turns: [{ en: "Have you got a pet?", speaker: male }, { en: "Yes, I've got a rabbit.", speaker: female }] }
                 options: [{ object: cat }, { object: dog }, { object: rabbit }]
                 answer: rabbit
                 hints: ["Hör auf das Tier am Ende."]
               - id: l2-s3
                 type: speak
+                text: "Frag Jack, ob er mitspielen will."
                 say: { de: "Frag Jack, ob er mitspielen will.", en: "Do you want to play?" }
                 show: { object: ball }
                 expected_text: "Do you want to play?"
@@ -411,7 +455,8 @@ lessons:
               - id: l2-s6
                 type: true_false
                 text: "Passt die Antwort?"
-                say: { de: "Hör zu. Passt die Antwort?", en: "What's your name? I'm nine." }
+                say: { de: "Hör zu. Passt die Antwort?" }
+                audio: { turns: [{ en: "What's your name?", speaker: male }, { en: "I'm nine.", speaker: female }] }
                 answer: false
                 hints: ["Hörst du nach der Frage einen Namen?"]
 
@@ -419,19 +464,21 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "Jack: Nice to meet you!"
+                text: "Jack: Nice to meet you!\nWas antwortest du Jack?"
                 say: { de: "Was antwortest du Jack?", en: "Nice to meet you!" }
                 options: ["Nice to meet you, too!", "Here you are.", "How much is it?"]
                 answer: "Nice to meet you, too!"
                 option_audio: false
               - id: l2-n2
                 type: audio_choice
+                text: "Worum geht es?"
                 say: { de: "Hör zu. Worum geht es?" }
                 audio: { turns: [{ en: "Hi! I'm Emma. What's your name?", speaker: female }, { en: "I'm Lukas. Nice to meet you.", speaker: male }] }
                 options: ["Zwei Kinder lernen sich kennen.", "Ein Kind kauft ein.", "Zwei Kinder sagen Tschüss."]
                 answer: "Zwei Kinder lernen sich kennen."
               - id: l2-n3
                 type: speak
+                text: "Stell dich Jack vor. Sag Hallo und deinen Namen, und frag ihn, wie alt er ist."
                 say: { de: "Stell dich Jack vor. Sag Hallo und deinen Namen, und frag ihn, wie alt er ist." }
                 expected_text: "Hello! I'm Paula. How old are you?"
               - id: l2-n4
@@ -443,7 +490,7 @@ lessons:
                 option_audio: false
               - id: l2-n5
                 type: multiple_choice
-                text: "Jack: Do you want to play?"
+                text: "Jack: Do you want to play?\nDu willst gern mitspielen. Was sagst du?"
                 say: { de: "Du willst gern mitspielen. Was sagst du?", en: "Do you want to play?" }
                 options: ["Yes, I've got a cat.", "Yes, please!", "Here you are."]
                 answer: "Yes, please!"
@@ -451,21 +498,27 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: reply
             type: multiple_choice
-            text: "Verkäufer: Hello! Can I help you?"
-            say: { de: "Du bist im Laden. Was antwortest du?", en: "Hello! Can I help you?" }
+            text: "Du bist im Laden. Der Verkäufer sagt: „Hello! Can I help you?“\nWas antwortest du?"
+            say: { de: "Du bist im Laden. Was antwortest du?" }
+            audio: { en: "Hello! Can I help you?", speaker: male }
             options: ["Nice to meet you.", "Yes, please. Can I have some apples, please?", "No, I haven't."]
             answer: "Yes, please. Can I have some apples, please?"
             option_audio: false
           - id: l2-c2
+            part: listen
             type: audio_choice
+            text: "Was kostet das Eis?"
             say: { de: "Hör zu. Was kostet das Eis?" }
-            audio: { en: "Can I have an ice cream, please? Here you are. How much is it? Three pounds, please." }
+            audio: { turns: [{ en: "Can I have an ice cream, please?", speaker: male }, { en: "Here you are.", speaker: female }, { en: "How much is it?", speaker: male }, { en: "Three pounds, please.", speaker: female }] }
             options: ["1 Pfund", "3 Pfund", "13 Pfund"]
             answer: "3 Pfund"
           - id: l2-c3
+            part: order
             type: ordering
             text: "Bring das Gespräch in die richtige Reihenfolge."
             options: ["Here you are.", "Two pounds, please.", "How much is it?"]
@@ -473,15 +526,139 @@ lessons:
             answer: ["How much is it?", "Two pounds, please.", "Here you are."]
             option_audio: false
           - id: l2-c4
+            part: reply
             type: multiple_choice
-            text: "Ben: Hi! I'm Ben. What's your name?"
-            say: { de: "Ein Junge spricht dich an. Was antwortest du?", en: "Hi! I'm Ben. What's your name?" }
+            text: "Ein Junge spricht dich an: „Hi! I'm Ben. What's your name?“\nWas antwortest du?"
+            say: { de: "Ein Junge spricht dich an. Was antwortest du?" }
+            audio: { en: "Hi! I'm Ben. What's your name?", speaker: male }
             options: ["Here you are, Ben.", "Hi, Ben. I'm Lena. Nice to meet you.", "Yes, please, Ben."]
             answer: "Hi, Ben. I'm Lena. Nice to meet you."
             option_audio: false
           - id: l2-c5
+            part: listen
             type: audio_choice
+            text: "Wie alt ist Mia?"
             say: { de: "Hör zu. Wie alt ist Mia?" }
             audio: { turns: [{ en: "Hello! I'm Mia. I'm eight. How old are you?", speaker: female }, { en: "I'm nine.", speaker: male }] }
             options: ["9", "8", "18"]
             answer: "8"
+          - id: l2-c6
+            part: reply
+            type: multiple_choice
+            text: "Jack: Have you got a pet?\nDu hast einen Hund. Was sagst du?"
+            say: { de: "Jack fragt dich etwas. Du hast einen Hund. Was sagst du?" }
+            audio: { en: "Have you got a pet?", speaker: male }
+            options: ["Yes, I do.", "Yes, I've got a dog.", "Yes, please!"]
+            answer: "Yes, I've got a dog."
+            option_audio: false
+          - id: l2-c7
+            part: reply
+            type: multiple_choice
+            text: "Du hast bezahlt. Mrs Hill sagt: „Thank you. Goodbye!“\nWas antwortest du?"
+            say: { de: "Du hast bezahlt. Was antwortest du Mrs Hill?" }
+            audio: { en: "Thank you. Goodbye!", speaker: female }
+            options: ["Hello!", "Can I help you?", "Goodbye!"]
+            answer: "Goodbye!"
+            option_audio: false
+          - id: l2-c8
+            part: reply
+            type: multiple_choice
+            text: "Ein Mädchen sagt: „I'm nine. And you?“\nDu bist acht. Was antwortest du?"
+            say: { de: "Ein Mädchen sagt dir, wie alt sie ist. Du bist acht. Was antwortest du?" }
+            audio: { en: "I'm nine. And you?", speaker: female }
+            options: ["I'm nine, too!", "I'm fine, thank you.", "I'm eight."]
+            answer: "I'm eight."
+            option_audio: false
+          - id: l2-c9
+            part: phrase
+            type: multiple_choice
+            text: "Im Café möchtest du Kuchen. Was sagst du?"
+            say: "Im Café möchtest du Kuchen. Was sagst du auf Englisch?"
+            options: ["Here you are.", "Can I have some cake, please?", "Do you want to play?"]
+            answer: "Can I have some cake, please?"
+            option_audio: false
+          - id: l2-c10
+            part: phrase
+            type: multiple_choice
+            text: "Du willst wissen, wie alt Jack ist. Was fragst du?"
+            say: "Du willst wissen, wie alt Jack ist. Was fragst du auf Englisch?"
+            options: ["How much is it?", "What's your name?", "How old are you?"]
+            answer: "How old are you?"
+            option_audio: false
+          - id: l2-c11
+            part: phrase
+            type: multiple_choice
+            text: "Du möchtest, dass ein Kind mit dir spielt. Was fragst du?"
+            say: "Du möchtest, dass ein Kind mit dir spielt. Was fragst du auf Englisch?"
+            options: ["Do you want to play?", "Can I help you?", "Have you got a pet?"]
+            answer: "Do you want to play?"
+            option_audio: false
+          - id: l2-c12
+            part: phrase
+            type: multiple_choice
+            text: "Ein Kind hat dir gerade seinen Namen gesagt. Was sagst du dann?"
+            say: "Ein Kind hat dir gerade seinen Namen gesagt. Was sagst du dann auf Englisch?"
+            options: ["How much is it?", "Here you are.", "Nice to meet you."]
+            answer: "Nice to meet you."
+            option_audio: false
+          - id: l2-c13
+            part: phrase
+            type: true_false
+            text: "Du bittest um ein Eis und sagst: „Can I have an ice cream, thank you?“ Passt das?"
+            say: { de: "Du bittest um ein Eis. Lies den Satz. Passt das?" }
+            answer: false
+          - id: l2-c14
+            part: order
+            type: ordering
+            text: "Bring das Gespräch auf dem Spielplatz in die richtige Reihenfolge."
+            options: ["Have you got a pet?", "Hi! I'm Tom.", "No, I haven't.", "Hello, Tom. I'm Mia."]
+            slot_count: 4
+            answer: ["Hi! I'm Tom.", "Hello, Tom. I'm Mia.", "Have you got a pet?", "No, I haven't."]
+            option_audio: false
+          - id: l2-c15
+            part: order
+            type: ordering
+            text: "Bring das Gespräch im Laden in die richtige Reihenfolge."
+            options: ["Two pounds, please.", "Can I have some cheese, please?", "How much is it?", "Here you are."]
+            slot_count: 4
+            answer: ["Can I have some cheese, please?", "Here you are.", "How much is it?", "Two pounds, please."]
+            option_audio: false
+          - id: l2-c16
+            part: order
+            type: ordering
+            text: "Die Verkäuferin gibt dir dein Eis. Bring das Ende des Gesprächs in die richtige Reihenfolge."
+            options: ["Goodbye!", "Thank you. Goodbye!", "Here you are."]
+            slot_count: 3
+            answer: ["Here you are.", "Thank you. Goodbye!", "Goodbye!"]
+            option_audio: false
+          - id: l2-c17
+            part: order
+            type: ordering
+            text: "Zwei Kinder treffen sich. Bring das Gespräch in die richtige Reihenfolge."
+            options: ["I'm Leo. Do you want to play?", "Yes, please!", "Hi! What's your name?"]
+            slot_count: 3
+            answer: ["Hi! What's your name?", "I'm Leo. Do you want to play?", "Yes, please!"]
+            option_audio: false
+          - id: l2-c18
+            part: listen
+            type: audio_choice
+            text: "Was kauft der Junge?"
+            say: { de: "Hör zu. Was kauft der Junge?" }
+            audio: { turns: [{ en: "Hello! Can I help you?", speaker: female }, { en: "Yes, please. Can I have some bread, please?", speaker: male }] }
+            options: [{ object: cake }, { object: bread }, { object: pizza }]
+            answer: bread
+          - id: l2-c19
+            part: listen
+            type: true_false
+            text: "Hat Leo einen Hund?"
+            say: { de: "Hör zu. Hat Leo einen Hund?" }
+            audio: { turns: [{ en: "Leo, have you got a pet?", speaker: female }, { en: "Yes, I've got a dog.", speaker: male }] }
+            answer: true
+          - id: l2-c20
+            part: listen
+            type: audio_choice
+            text: "Worum geht es in dem Gespräch?"
+            say: { de: "Hör zu. Worum geht es in dem Gespräch?" }
+            audio: { turns: [{ en: "Can I have a juice, please?", speaker: female }, { en: "Here you are.", speaker: male }, { en: "Thank you!", speaker: female }] }
+            options: ["Zwei Kinder lernen sich kennen.", "Ein Kind kauft etwas zu trinken.", "Ein Kind fragt nach dem Preis."]
+            answer: "Ein Kind kauft etwas zu trinken."

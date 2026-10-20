@@ -28,6 +28,11 @@ metadata:
   drawn: [word-card]
   sounds: []
   facets: []
+  parts:
+    - { id: whole-sentence, what: { de: einen Satz bis zum Punkt lesen und das passende Bild finden, en: reading a sentence to the full stop and finding the picture that matches } }
+    - { id: check-picture, what: { de: "prüfen, ob ein Satz zum Bild passt", en: checking whether a sentence matches a picture } }
+    - { id: one-word, what: { de: "Sätze unterscheiden, die nur in einem Wort verschieden sind", en: telling apart sentences that differ in one word } }
+    - { id: two-sentences, what: { de: zwei Sätze zusammen lesen und verstehen, en: reading two sentences together and understanding them } }
   misconceptions:
     - id: stops-early
       what: Reads the first words and guesses the rest, so picks the right thing in the wrong colour or number
@@ -237,6 +242,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -244,18 +250,43 @@ lessons:
             show: { drawn: word-card, text: "Das ist eine Maus." }
             options: [{ object: house }, { object: mouse }, { object: nose }]
             answer: mouse
+            option_audio: false
           - id: l1-c2
             type: image_multiple_choice
             text: "Lies den Satz. Welches Bild passt?"
             show: { drawn: word-card, text: "Das Auto ist braun." }
             options: [{ object: car, colour: blue }, { object: car, colour: red }, { object: car, colour: brown }]
             answer: brown
+            option_audio: false
           - id: l1-c3
             type: true_false
             text: "Der Hund bellt.\n\nPasst der Satz zum Bild?"
             say: "Lies den Satz. Passt er zum Bild?"
             show: { object: dog }
             answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Das Kind schwimmt.\n\nPasst der Satz zum Bild?"
+            say: "Lies den Satz. Passt er zum Bild?"
+            show: { object: swim }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welcher Satz passt zum Bild?"
+            say: "Lies die Sätze. Welcher Satz passt zum Bild?"
+            show: { object: ball, colour: yellow }
+            options: ["Der Ball ist rot.", "Die Banane ist gelb.", "Der Ball ist gelb."]
+            answer: "Der Ball ist gelb."
+            option_audio: false
+          - id: l1-c6
+            type: ordering
+            text: "Bau den Satz zum Bild."
+            say: "Bau den Satz zum Bild. Tippe die Wörter der Reihe nach an."
+            show: { object: bee }
+            options: ["summt.", "Biene", "Die"]
+            slot_count: 3
+            answer: ["Die", "Biene", "summt."]
+            option_audio: false
 
   - n: 2
     title: { de: Genau lesen, en: Reading carefully }
@@ -443,14 +474,18 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: whole-sentence
             type: image_multiple_choice
             text: "Lies den Satz. Welches Bild passt?"
             show: { drawn: word-card, text: "Die Katze miaut." }
             options: [{ object: dog }, { object: mouse }, { object: cat }]
             answer: cat
+            option_audio: false
           - id: l2-c2
+            part: whole-sentence
             type: image_multiple_choice
             text: "Lies den Satz. Welches Bild passt?"
             show: { drawn: word-card, text: "Der Ball ist grün." }
@@ -459,13 +494,16 @@ lessons:
               - { object: car, colour: green, key: car-green }
               - { object: ball, colour: green, key: ball-green }
             answer: ball-green
+            option_audio: false
           - id: l2-c3
+            part: check-picture
             type: true_false
             text: "Hier sind zwei Eier.\n\nPasst der Satz zum Bild?"
             say: "Lies den Satz genau. Passt er zum Bild?"
             show: { object: egg, count: 3, layout: row }
             answer: false
           - id: l2-c4
+            part: one-word
             type: multiple_choice
             text: "Welcher Satz passt zum Bild?"
             say: "Lies die Sätze genau. Welcher Satz passt zum Bild?"
@@ -474,8 +512,138 @@ lessons:
             answer: "Das ist der Mond."
             option_audio: false
           - id: l2-c5
+            part: two-sentences
             type: image_multiple_choice
             text: "Lies die Sätze. Welches Bild passt?"
             show: { drawn: word-card, text: "Es ist ein Tier. Es macht Muh." }
             options: [{ object: pig }, { object: cow }, { object: dog }]
             answer: cow
+            option_audio: false
+          - id: l2-c6
+            part: whole-sentence
+            type: image_multiple_choice
+            text: "Lies den Satz. Welches Bild passt?"
+            show: { drawn: word-card, text: "Der Luftballon ist lila." }
+            options:
+              - { object: ball, colour: purple, key: ball-purple }
+              - { object: balloon, colour: red, key: balloon-red }
+              - { object: balloon, colour: purple, key: balloon-purple }
+            answer: balloon-purple
+            option_audio: false
+          - id: l2-c7
+            part: whole-sentence
+            type: image_multiple_choice
+            text: "Lies den Satz. Welches Bild passt?"
+            show: { drawn: word-card, text: "Das Kind liest." }
+            options: [{ object: sing }, { object: read }, { object: swim }]
+            answer: read
+            option_audio: false
+          - id: l2-c8
+            part: whole-sentence
+            type: image_multiple_choice
+            text: "Lies den Satz. Welches Bild passt?"
+            show: { drawn: word-card, text: "Hier sind zwei Ziegen." }
+            options:
+              - { object: goat, count: 3, layout: row, key: goats-3 }
+              - { object: sheep, count: 2, layout: row, key: sheep-2 }
+              - { object: goat, count: 2, layout: row, key: goats-2 }
+            answer: goats-2
+            option_audio: false
+          - id: l2-c9
+            part: check-picture
+            type: true_false
+            text: "Die Ente schwimmt.\n\nPasst der Satz zum Bild?"
+            say: "Lies den Satz genau. Passt er zum Bild?"
+            show: { object: duck }
+            answer: true
+          - id: l2-c10
+            part: check-picture
+            type: true_false
+            text: "Hier sind drei Birnen.\n\nPasst der Satz zum Bild?"
+            say: "Lies den Satz genau. Passt er zum Bild?"
+            show: { object: pear, count: 2, layout: row }
+            answer: false
+          - id: l2-c11
+            part: check-picture
+            type: true_false
+            text: "Das Kind tanzt.\n\nPasst der Satz zum Bild?"
+            say: "Lies den Satz genau. Passt er zum Bild?"
+            show: { object: sing }
+            answer: false
+          - id: l2-c12
+            part: check-picture
+            type: true_false
+            text: "Das ist ein Zebra.\n\nPasst der Satz zum Bild?"
+            say: "Lies den Satz genau. Passt er zum Bild?"
+            show: { object: zebra }
+            answer: true
+          - id: l2-c13
+            part: one-word
+            type: multiple_choice
+            text: "Welcher Satz passt zum Bild?"
+            say: "Lies die Sätze genau. Welcher Satz passt zum Bild?"
+            show: { object: house }
+            options: ["Das ist eine Maus.", "Das ist ein Hase.", "Das ist ein Haus."]
+            answer: "Das ist ein Haus."
+            option_audio: false
+          - id: l2-c14
+            part: one-word
+            type: multiple_choice
+            text: "Welcher Satz passt zum Bild?"
+            say: "Lies die Sätze genau. Welcher Satz passt zum Bild?"
+            show: { object: tree }
+            options: ["Das ist ein Baum.", "Das ist ein Bauch.", "Das ist ein Zaun."]
+            answer: "Das ist ein Baum."
+            option_audio: false
+          - id: l2-c15
+            part: one-word
+            type: multiple_choice
+            text: "Welcher Satz passt zum Bild?"
+            say: "Lies die Sätze genau. Welcher Satz passt zum Bild?"
+            show: { object: fish }
+            options: ["Das ist ein Tisch.", "Das ist ein Fuchs.", "Das ist ein Fisch."]
+            answer: "Das ist ein Fisch."
+            option_audio: false
+          - id: l2-c16
+            part: one-word
+            type: image_multiple_choice
+            text: "Lies den Satz. Welches Bild passt?"
+            show: { drawn: word-card, text: "Das ist eine Tanne." }
+            options: [{ object: jug }, { object: bin }, { object: fir-tree }]
+            answer: fir-tree
+            option_audio: false
+          - id: l2-c17
+            part: two-sentences
+            type: image_multiple_choice
+            text: "Lies die Sätze. Welches Bild passt?"
+            show: { drawn: word-card, text: "Es ist ein Tier. Es hat lange Ohren." }
+            options: [{ object: ear }, { object: rabbit }, { object: fish }]
+            answer: rabbit
+            option_audio: false
+          - id: l2-c18
+            part: two-sentences
+            type: image_multiple_choice
+            text: "Lies die Sätze. Welches Bild passt?"
+            show: { drawn: word-card, text: "Es ist rot. Man kann es essen." }
+            options:
+              - { object: ball, colour: red, key: ball-red }
+              - { object: strawberry }
+              - { object: banana }
+            answer: strawberry
+            option_audio: false
+          - id: l2-c19
+            part: two-sentences
+            type: image_multiple_choice
+            text: "Lies die Sätze. Welches Bild passt?"
+            show: { drawn: word-card, text: "Es ist ein Tier. Es kann fliegen." }
+            options: [{ object: kite }, { object: cat }, { object: bird }]
+            answer: bird
+            option_audio: false
+          - id: l2-c20
+            part: two-sentences
+            type: image_multiple_choice
+            text: "Lies die Sätze. Welches Bild passt?"
+            show: { drawn: word-card, text: "Man kann es essen. Es ist kalt." }
+            options: [{ object: cake }, { object: snowman }, { object: ice-cream }]
+            answer: ice-cream
+            option_audio: false

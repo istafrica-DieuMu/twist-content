@@ -13,7 +13,10 @@ summary: >
   crosses out ideas that do not fit, turns the rest into a Schreibplan
   with Anfang, Mitte and Schluss, and ends with the skill check. Drawing
   a Cluster freely waits for a free text task type; here the child
-  chooses, sorts and orders ideas.
+  chooses, sorts and orders ideas. The skill check marks what a screen
+  can mark: how a Cluster is built, which ideas fit, and the order and
+  parts of a Schreibplan; writing the text from the plan is left to
+  Practise once free text arrives.
 metadata:
   year: klasse-2
   topic: { de: Texte planen, en: Planning writing }
@@ -25,6 +28,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: cluster, what: { de: "Ideen im Cluster sammeln: das Thema in der Mitte, Stichwörter drum herum", en: "collecting ideas in a cluster: the topic in the middle, key words around it" } }
+    - { id: fit-topic, what: { de: "Ideen wählen, die zum Thema passen, und die anderen streichen", en: "choosing ideas that fit the topic and crossing out the others" } }
+    - { id: order-plan, what: { de: "einen Schreibplan in die richtige Reihenfolge bringen", en: "putting a writing plan in order" } }
+    - { id: plan-parts, what: { de: "was an den Anfang, in die Mitte und an den Schluss kommt", en: "what goes at the beginning, in the middle and at the end" } }
   misconceptions:
     - id: off-topic-ideas
       what: Collects ideas that do not fit the Thema and keeps them in the text
@@ -218,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -242,6 +251,29 @@ lessons:
             text: "Im Cluster stehen Stichwörter rund um das Thema. Stimmt das?"
             say: "Im Cluster stehen Stichwörter rund um das Thema. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Thema: Beim Bäcker\n\nWelche Idee passt in den Cluster?"
+            say: "Das Thema ist: Beim Bäcker. Welche Idee passt in den Cluster?"
+            options: ["Brötchen", "Rutsche", "Zahnbürste"]
+            answer: "Brötchen"
+          - id: l1-c5
+            type: sorting
+            text: "Zirkus oder Schule? Sortiere die Ideen."
+            say: "Sortiere die Ideen: Zirkus oder Schule?"
+            bins:
+              - { id: circus, show: { text: "Zirkus" }, say: "Zirkus" }
+              - { id: school, show: { text: "Schule" }, say: "Schule" }
+            options:
+              - { text: "Clown", bin: circus }
+              - { text: "Tafel", bin: school }
+              - { text: "Zirkuszelt", bin: circus }
+              - { text: "Pause", bin: school }
+          - id: l1-c6
+            type: true_false
+            text: "Thema: Ferien am Meer\nIdeen: Muscheln suchen, schwimmen, Schlitten fahren\n\nPassen alle Ideen zum Thema?"
+            say: "Lies das Thema und die Ideen. Passen alle Ideen zum Thema?"
+            answer: false
 
   - n: 2
     title: { de: "Der Schreibplan", en: "The writing plan" }
@@ -305,7 +337,7 @@ lessons:
                   - "Schlüssel weg, suchen, Mama findet ihn."
               - id: l2-f3
                 type: matching
-                text: "Anfang, Mitte oder Schluss?"
+                text: "Thema: Picknick am See. Anfang, Mitte oder Schluss?"
                 say: "Thema: Picknick am See. Verbinde jeden Teil des Schreibplans mit der passenden Idee."
                 pairs:
                   - { left: { text: "Anfang" }, right: { text: "Wir packen den Picknickkorb." } }
@@ -354,7 +386,7 @@ lessons:
                 hints: ["Was musst du machen, bevor du nach draußen gehst?"]
               - id: l2-s3
                 type: matching
-                text: "Anfang, Mitte oder Schluss?"
+                text: "Thema: Angeln mit Opa. Anfang, Mitte oder Schluss?"
                 say: "Thema: Angeln mit Opa. Verbinde jeden Teil des Schreibplans mit der passenden Idee."
                 pairs:
                   - { left: { text: "Anfang" }, right: { text: "Opa holt mich ab." } }
@@ -392,7 +424,7 @@ lessons:
                 answer: ["Wir basteln Laternen.", "Wir laufen mit den Laternen durch die Straßen.", "Am Ende singen alle und gehen nach Hause."]
               - id: l2-n3
                 type: matching
-                text: "Anfang, Mitte oder Schluss?"
+                text: "Thema: Der Ball im Nachbargarten. Anfang, Mitte oder Schluss?"
                 say: "Thema: Der Ball im Nachbargarten. Verbinde jeden Teil des Schreibplans mit der passenden Idee."
                 pairs:
                   - { left: { text: "Anfang" }, right: { text: "Mein Bruder und ich spielen Fußball." } }
@@ -412,20 +444,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: fit-topic
             type: multiple_choice
             text: "Thema: Ein Tag auf dem Bauernhof\n\nWelche Idee passt in den Cluster?"
             say: "Das Thema ist: Ein Tag auf dem Bauernhof. Welche Idee passt in den Cluster?"
             options: ["Kühe melken", "Achterbahn fahren", "Fernsehen"]
             answer: "Kühe melken"
           - id: l2-c2
+            part: fit-topic
             type: multiple_choice
             text: "Thema: Unser Klassenausflug\nIdeen: Bus fahren, Museum, Zahnarzt, Picknick\n\nWelche Idee streichst du?"
             say: "Lies das Thema und die Ideen. Welche Idee streichst du?"
             options: ["Zahnarzt", "Museum", "Picknick"]
             answer: "Zahnarzt"
           - id: l2-c3
+            part: order-plan
             type: ordering
             text: "Schreibplan: Ein Kuchen für Oma. Bring die Teile in die richtige Reihenfolge."
             say: "Bring den Schreibplan für Ein Kuchen für Oma in die richtige Reihenfolge."
@@ -433,6 +469,7 @@ lessons:
             slot_count: 3
             answer: ["Ich backe mit Papa einen Kuchen.", "Der Kuchen wird fast schwarz, aber wir retten ihn.", "Oma freut sich und isst ein großes Stück."]
           - id: l2-c4
+            part: fit-topic
             type: sorting
             text: "Was passt zu welchem Thema?"
             say: "Sortiere die Ideen: Strand oder Wald?"
@@ -445,8 +482,127 @@ lessons:
               - { text: "Wellen", bin: beach }
               - { text: "Eichhörnchen", bin: wood }
           - id: l2-c5
+            part: plan-parts
             type: multiple_choice
             text: "Was kommt im Schreibplan in die Mitte?"
             say: "Was kommt im Schreibplan in die Mitte?"
             options: ["was Spannendes passiert", "wie alles ausgeht", "wer mitspielt und wo"]
             answer: "was Spannendes passiert"
+          - id: l2-c6
+            part: cluster
+            type: multiple_choice
+            text: "Lea will über ihren Opa schreiben. Was schreibt sie in die Mitte des Clusters?"
+            say: "Lea will über ihren Opa schreiben. Was schreibt sie in die Mitte des Clusters?"
+            options: ["Mein Opa", "Brille", "Garten"]
+            answer: "Mein Opa"
+          - id: l2-c7
+            part: cluster
+            type: multiple_choice
+            text: "Thema: Mein Hund\n\nWas schreibst du in den Cluster?"
+            say: "Das Thema ist: Mein Hund. Was schreibst du in den Cluster?"
+            options: ["Ball, Park, bellen", "Mit meinem Hund gehe ich jeden Tag in den Park und wir spielen Ball."]
+            answer: "Ball, Park, bellen"
+          - id: l2-c8
+            part: cluster
+            type: multiple_choice
+            text: "Dir fällt zum Thema „Ferien bei Oma“ nichts ein. Welche Frage hilft dir?"
+            say: "Dir fällt zum Thema Ferien bei Oma nichts ein. Welche Frage hilft dir?"
+            options: ["Was haben wir bei Oma gemacht?", "Wie spät ist es jetzt?", "Was gibt es morgen in der Schule?"]
+            answer: "Was haben wir bei Oma gemacht?"
+          - id: l2-c9
+            part: cluster
+            type: true_false
+            text: "Tim macht einen Cluster zum Thema „Mein Fahrrad“. In die Mitte schreibt er: Klingel. Ist das richtig?"
+            say: "Tim macht einen Cluster zum Thema Mein Fahrrad. In die Mitte schreibt er: Klingel. Ist das richtig?"
+            answer: false
+          - id: l2-c10
+            part: cluster
+            type: sorting
+            text: "Ida macht einen Cluster zum Thema „Mein Garten“. Wohin kommt jedes Wort?"
+            say: "Ida macht einen Cluster zum Thema Mein Garten. Wohin kommt jedes Wort? Sortiere."
+            bins:
+              - { id: middle, show: { text: "in die Mitte" }, say: "in die Mitte" }
+              - { id: around, show: { text: "drum herum" }, say: "drum herum" }
+            options:
+              - { text: "Blumen", bin: around }
+              - { text: "Mein Garten", bin: middle }
+              - { text: "Schaukel", bin: around }
+              - { text: "Gemüse", bin: around }
+          - id: l2-c11
+            part: fit-topic
+            type: true_false
+            text: "Thema: Beim Arzt\nIdeen: Wartezimmer, Pflaster, Fieber messen\n\nPassen alle Ideen zum Thema?"
+            say: "Lies das Thema und die Ideen. Passen alle Ideen zum Thema?"
+            answer: true
+          - id: l2-c12
+            part: fit-topic
+            type: sorting
+            text: "Thema: Im Kino. Passt die Idee zum Thema?"
+            say: "Das Thema ist: Im Kino. Passt die Idee zum Thema? Sortiere."
+            bins:
+              - { id: fits, show: { text: "passt" }, say: "passt" }
+              - { id: cross, show: { text: "streichen" }, say: "streichen" }
+            options:
+              - { text: "Popcorn", bin: fits }
+              - { text: "Schneeschaufel", bin: cross }
+              - { text: "Eintrittskarte", bin: fits }
+              - { text: "Hausschuhe", bin: cross }
+          - id: l2-c13
+            part: order-plan
+            type: ordering
+            text: "Schreibplan: Mein Wackelzahn. Bring die Teile in die richtige Reihenfolge."
+            say: "Bring den Schreibplan für Mein Wackelzahn in die richtige Reihenfolge."
+            options: ["Am Abend lege ich den Zahn unter mein Kissen.", "Beim Frühstück wackelt mein Zahn.", "In der Pause beiße ich in einen Apfel, und der Zahn ist draußen."]
+            slot_count: 3
+            answer: ["Beim Frühstück wackelt mein Zahn.", "In der Pause beiße ich in einen Apfel, und der Zahn ist draußen.", "Am Abend lege ich den Zahn unter mein Kissen."]
+          - id: l2-c14
+            part: order-plan
+            type: ordering
+            text: "Schreibplan: Die Katze im Baum. Bring die Teile in die richtige Reihenfolge."
+            say: "Bring den Schreibplan für Die Katze im Baum in die richtige Reihenfolge."
+            options: ["Die Feuerwehr holt sie herunter.", "Unsere Katze Mia klettert auf einen hohen Baum.", "Sie traut sich nicht mehr herunter und miaut."]
+            slot_count: 3
+            answer: ["Unsere Katze Mia klettert auf einen hohen Baum.", "Sie traut sich nicht mehr herunter und miaut.", "Die Feuerwehr holt sie herunter."]
+          - id: l2-c15
+            part: order-plan
+            type: ordering
+            text: "Was machst du zuerst, was danach? Bring die Schritte in die richtige Reihenfolge."
+            say: "Was machst du zuerst, was danach? Bring die Schritte in die richtige Reihenfolge."
+            options: ["den Text schreiben", "Ideen im Cluster sammeln", "einen Schreibplan machen"]
+            slot_count: 3
+            answer: ["Ideen im Cluster sammeln", "einen Schreibplan machen", "den Text schreiben"]
+          - id: l2-c16
+            part: order-plan
+            type: true_false
+            text: "Schreibplan: Der Drachen\nAnfang: Der Drachen fliegt weg.\nMitte: Wir gehen mit dem Drachen auf die Wiese.\nSchluss: Wir finden ihn in einem Baum.\n\nIst die Reihenfolge richtig?"
+            say: "Lies den Schreibplan. Ist die Reihenfolge richtig?"
+            answer: false
+          - id: l2-c17
+            part: plan-parts
+            type: matching
+            text: "Thema: Bello ist weg. Anfang, Mitte oder Schluss?"
+            say: "Thema: Bello ist weg. Verbinde jeden Teil des Schreibplans mit der passenden Idee."
+            pairs:
+              - { left: { text: "Anfang" }, right: { text: "Bello und ich gehen in den Park." } }
+              - { left: { text: "Mitte" }, right: { text: "Bello rennt einem Hasen hinterher und ist weg." } }
+              - { left: { text: "Schluss" }, right: { text: "Bello wartet zu Hause vor der Tür." } }
+          - id: l2-c18
+            part: plan-parts
+            type: multiple_choice
+            text: "Thema: Der Sturm\n\nWelcher Satz passt in die Mitte des Schreibplans?"
+            say: "Das Thema ist: Der Sturm. Welcher Satz passt in die Mitte des Schreibplans?"
+            options: ["Plötzlich bricht ein großer Ast ab.", "Am Morgen scheint noch die Sonne.", "Am Abend ist alles wieder ruhig."]
+            answer: "Plötzlich bricht ein großer Ast ab."
+          - id: l2-c19
+            part: plan-parts
+            type: multiple_choice
+            text: "Wohin kommt im Schreibplan der Satz „Alle sind froh, und wir gehen schlafen.“?"
+            say: "Wohin kommt im Schreibplan der Satz: Alle sind froh, und wir gehen schlafen?"
+            options: ["an den Schluss", "an den Anfang", "in die Mitte"]
+            answer: "an den Schluss"
+          - id: l2-c20
+            part: plan-parts
+            type: true_false
+            text: "Schreibplan: Im Zoo\nAnfang: Wir kommen mit Papa im Zoo an.\nMitte: Ein Affe schnappt sich Papas Mütze.\nSchluss: Der Tierpfleger bringt die Mütze zurück.\n\nSteht das Spannende in der Mitte?"
+            say: "Lies den Schreibplan. Steht das Spannende in der Mitte?"
+            answer: true

@@ -14,6 +14,9 @@ summary: >
   that says what the e-mail is about, sees that the computer sets the
   date, and ends with the skill check. Writing the letter itself waits
   for a free text task type; here the child chooses and orders the parts.
+  The skill check marks what a screen can mark: the Anrede, the names and
+  order of the parts and what an e-mail adds; writing a whole letter is
+  left to Practise once free text arrives.
 metadata:
   year: klasse-2
   topic: { de: Texte schreiben, en: Writing texts }
@@ -25,6 +28,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: anrede, what: { de: die Anrede mit Lieber oder Liebe und dem Komma, en: the greeting with Lieber or Liebe and the comma } }
+    - { id: part-names, what: { de: "die Teile eines Briefs kennen (Ort und Datum, Anrede, Text, Gruß, Name)", en: "knowing the parts of a letter (place and date, greeting, text, sign-off, name)" } }
+    - { id: order, what: { de: die Teile eines Briefs und einer E-Mail in die richtige Reihenfolge bringen, en: putting the parts of a letter and an email in order } }
+    - { id: email, what: { de: "was eine E-Mail dazu hat (An, Betreff)", en: "what an email adds (To, Subject)" } }
   misconceptions:
     - id: lieber-liebe
       what: Writes Liebe to a boy or Lieber to a girl, or leaves out the comma after the Anrede
@@ -91,7 +99,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: fill_in_blank
-                text: "Welche Anrede passt?"
+                text: "Du schreibst deinem Freund Paul. Welche Anrede passt?"
                 say: "Du schreibst deinem Freund Paul. Welches Wort passt?"
                 frame: "_ Paul,"
                 options: ["Lieber", "Liebe"]
@@ -148,7 +156,7 @@ lessons:
                 hints: ["Mit der Anrede sprichst du jemanden an. Der Name steht ganz unten."]
               - id: l1-s2
                 type: fill_in_blank
-                text: "Welche Anrede passt?"
+                text: "Du schreibst deiner Freundin Emma. Welche Anrede passt?"
                 say: "Du schreibst deiner Freundin Emma. Welches Wort passt?"
                 frame: "_ Emma,"
                 options: ["Lieber", "Liebe"]
@@ -188,7 +196,7 @@ lessons:
                   - { left: { text: "Lieber Herr Brandt," }, right: { text: "Anrede" } }
               - id: l1-n2
                 type: fill_in_blank
-                text: "Welche Anrede passt?"
+                text: "Du schreibst deiner Lehrerin Frau Weber. Welche Anrede passt?"
                 say: "Du schreibst deiner Lehrerin Frau Weber. Welches Wort passt?"
                 frame: "_ Frau Weber,"
                 options: ["Lieber", "Liebe"]
@@ -214,10 +222,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
-            text: "Welche Anrede passt?"
+            text: "Du schreibst deinem Bruder Ben. Welche Anrede passt?"
             say: "Du schreibst deinem Bruder Ben. Welches Wort passt?"
             frame: "_ Ben,"
             options: ["Lieber", "Liebe"]
@@ -235,6 +244,24 @@ lessons:
             options: ["Dein Erik", "Lieber Malte,", "Viele Grüße", "kommst du morgen mit zum Fußball?"]
             slot_count: 4
             answer: ["Lieber Malte,", "kommst du morgen mit zum Fußball?", "Viele Grüße", "Dein Erik"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Was steht im Brief ganz unten?"
+            options: ["der Name", "die Anrede", "Ort und Datum"]
+            answer: "der Name"
+          - id: l1-c5
+            type: true_false
+            text: "Ein Brief an Frau Klein beginnt so: „Liebe Frau Klein,“. Ist das richtig?"
+            say: "Ein Brief an Frau Klein beginnt so: Liebe Frau Klein. Ist das richtig?"
+            answer: true
+          - id: l1-c6
+            type: matching
+            text: "Wie heißen die Teile des Briefs?"
+            say: "Verbinde jeden Teil des Briefs mit seinem Namen."
+            pairs:
+              - { left: { text: "Hannover, 1. Juni" }, right: { text: "Ort und Datum" } }
+              - { left: { text: "Dein Kai" }, right: { text: "Name" } }
+              - { left: { text: "Lieber Herr Ott," }, right: { text: "Anrede" } }
 
   - n: 2
     title: { de: "Die E-Mail", en: "The email" }
@@ -245,7 +272,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: fill_in_blank
-            text: "Welche Anrede passt?"
+            text: "Du schreibst deiner Cousine Leonie. Welche Anrede passt?"
             say: "Du schreibst deiner Cousine Leonie. Welches Wort passt?"
             frame: "_ Leonie,"
             options: ["Lieber", "Liebe"]
@@ -410,15 +437,18 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: anrede
             type: fill_in_blank
-            text: "Welche Anrede passt?"
+            text: "Du schreibst deinem Nachbarn Herrn Kurz. Welche Anrede passt?"
             say: "Du schreibst deinem Nachbarn Herrn Kurz. Welches Wort passt?"
             frame: "_ Herr Kurz,"
             options: ["Lieber", "Liebe"]
             answer: ["Lieber"]
           - id: l2-c2
+            part: part-names
             type: matching
             text: "Was gehört zusammen?"
             say: "Verbinde jeden Teil des Briefs mit seinem Namen."
@@ -427,12 +457,14 @@ lessons:
               - { left: { text: "Liebe Ronja," }, right: { text: "Anrede" } }
               - { left: { text: "Viele Grüße" }, right: { text: "Gruß" } }
           - id: l2-c3
+            part: email
             type: multiple_choice
             text: "Luis schreibt Oma eine E-Mail über sein Zeugnis. Welcher Betreff passt?"
             say: "Luis schreibt Oma eine E-Mail über sein Zeugnis. Welcher Betreff passt?"
             options: ["Mein Zeugnis", "Liebe Oma,", "Dein Luis"]
             answer: "Mein Zeugnis"
           - id: l2-c4
+            part: order
             type: ordering
             text: "Leg den Brief in die richtige Reihenfolge."
             say: "Leg die Teile des Briefs in die richtige Reihenfolge."
@@ -440,8 +472,116 @@ lessons:
             slot_count: 4
             answer: ["Liebe Paula,", "wir ziehen bald um.", "Viele Grüße", "Deine Sophie"]
           - id: l2-c5
+            part: email
             type: multiple_choice
             text: "Was hat eine E-Mail, ein Brief aber nicht?"
             say: "Was hat eine E-Mail, ein Brief aber nicht?"
             options: ["einen Betreff", "eine Anrede", "einen Gruß"]
             answer: "einen Betreff"
+          - id: l2-c6
+            part: anrede
+            type: true_false
+            text: "Mia schreibt ihrem Onkel Tim. Ihr Brief beginnt so: „Lieber Onkel Tim,“. Ist die Anrede richtig?"
+            say: "Mia schreibt ihrem Onkel Tim. Ihr Brief beginnt so: Lieber Onkel Tim. Ist die Anrede richtig?"
+            answer: true
+          - id: l2-c7
+            part: anrede
+            type: sorting
+            text: "Lieber oder Liebe?"
+            say: "Schreibst du Lieber oder Liebe? Sortiere."
+            bins:
+              - { id: lieber, show: { text: "Lieber" }, say: "Lieber" }
+              - { id: liebe, show: { text: "Liebe" }, say: "Liebe" }
+            options:
+              - { text: "Tante Eva", bin: liebe }
+              - { text: "Papa", bin: lieber }
+              - { text: "Lena", bin: liebe }
+              - { text: "Herr Schulz", bin: lieber }
+          - id: l2-c8
+            part: anrede
+            type: multiple_choice
+            text: "Welches Zeichen steht nach der Anrede?"
+            options: ["ein Komma", "ein Punkt", "ein Fragezeichen"]
+            answer: "ein Komma"
+          - id: l2-c9
+            part: anrede
+            type: true_false
+            text: "Ein Brief beginnt so: „Lieber Finn.“ Ist die Anrede richtig geschrieben?"
+            say: "Lies den Anfang des Briefs. Ist die Anrede richtig geschrieben?"
+            answer: false
+          - id: l2-c10
+            part: part-names
+            type: matching
+            text: "Moritz schreibt Lea einen Brief. Welcher Teil ist das?"
+            say: "Moritz schreibt Lea einen Brief. Verbinde jede Zeile mit dem Namen des Briefteils."
+            pairs:
+              - { left: { text: "Dein Moritz" }, right: { text: "Name" } }
+              - { left: { text: "ich war heute im Schwimmbad." }, right: { text: "Text" } }
+              - { left: { text: "Liebe Grüße" }, right: { text: "Gruß" } }
+          - id: l2-c11
+            part: part-names
+            type: multiple_choice
+            text: "In einem Brief steht: „Hamburg, 5. Juni“. Welcher Teil des Briefs ist das?"
+            say: "In einem Brief steht: Hamburg, fünfter Juni. Welcher Teil des Briefs ist das?"
+            options: ["Ort und Datum", "die Anrede", "der Gruß"]
+            answer: "Ort und Datum"
+          - id: l2-c12
+            part: part-names
+            type: multiple_choice
+            text: "Liebe Clara,\nich habe jetzt einen Hund. Er heißt Bello.\nDeine Hanna\n\nWas fehlt in diesem Brief?"
+            say: "Lies den Brief. Was fehlt darin?"
+            options: ["der Gruß", "die Anrede", "der Name"]
+            answer: "der Gruß"
+          - id: l2-c13
+            part: part-names
+            type: multiple_choice
+            text: "Mit welchem Teil verabschiedest du dich im Brief?"
+            options: ["mit dem Gruß", "mit der Anrede", "mit dem Datum"]
+            answer: "mit dem Gruß"
+          - id: l2-c14
+            part: order
+            type: ordering
+            text: "Leg den Brief in die richtige Reihenfolge."
+            say: "Leg die Teile des Briefs in die richtige Reihenfolge."
+            options: ["Viele Grüße", "Leipzig, 9. Juli", "Dein Samir", "Lieber Ole,", "ich bin jetzt mit Mama am Meer."]
+            slot_count: 5
+            answer: ["Leipzig, 9. Juli", "Lieber Ole,", "ich bin jetzt mit Mama am Meer.", "Viele Grüße", "Dein Samir"]
+          - id: l2-c15
+            part: order
+            type: ordering
+            text: "Leg die E-Mail in die richtige Reihenfolge."
+            say: "Leg die Teile der E-Mail in die richtige Reihenfolge."
+            options: ["Liebe Frau Roth,", "Viele Grüße von Jana", "Betreff: Unser Klassenfest", "kommen Sie zu unserem Klassenfest?"]
+            slot_count: 4
+            answer: ["Betreff: Unser Klassenfest", "Liebe Frau Roth,", "kommen Sie zu unserem Klassenfest?", "Viele Grüße von Jana"]
+          - id: l2-c16
+            part: order
+            type: multiple_choice
+            text: "Was kommt im Brief gleich nach der Anrede?"
+            options: ["der Text", "der Gruß", "Ort und Datum"]
+            answer: "der Text"
+          - id: l2-c17
+            part: order
+            type: true_false
+            text: "Tim schreibt einen Brief. Ganz oben steht „Viele Grüße“, darunter „Lieber Ben,“. Ist das die richtige Reihenfolge?"
+            say: "Tim schreibt einen Brief. Ganz oben steht Viele Grüße, darunter Lieber Ben. Ist das die richtige Reihenfolge?"
+            answer: false
+          - id: l2-c18
+            part: email
+            type: multiple_choice
+            text: "Nele schreibt ihrem Onkel eine E-Mail. Sie hat schwimmen gelernt. Welcher Betreff passt?"
+            say: "Nele schreibt ihrem Onkel eine E-Mail. Sie hat schwimmen gelernt. Welcher Betreff passt?"
+            options: ["Ich kann schwimmen!", "Lieber Onkel Jan,", "Mein neuer Ranzen"]
+            answer: "Ich kann schwimmen!"
+          - id: l2-c19
+            part: email
+            type: true_false
+            text: "In einer E-Mail steht bei „An:“ die E-Mail-Adresse. Stimmt das?"
+            say: "In einer E-Mail steht bei An die E-Mail-Adresse. Stimmt das?"
+            answer: true
+          - id: l2-c20
+            part: email
+            type: multiple_choice
+            text: "Wer setzt bei einer E-Mail das Datum ein?"
+            options: ["der Computer", "du selbst, oben rechts", "der Briefträger"]
+            answer: "der Computer"

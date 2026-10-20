@@ -22,6 +22,11 @@ metadata:
   forms: [picture, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: voiced-s, what: { de: "summendes s, geschrieben mit s", en: "a voiced s, written s" } }
+    - { id: short-ss, what: { de: "scharfes s nach kurzem Selbstlaut, geschrieben mit ss", en: "a sharp s after a short vowel, written ss" } }
+    - { id: long-sz, what: { de: "scharfes s nach langem Selbstlaut oder Zwielaut, geschrieben mit ß", en: "a sharp s after a long vowel or a diphthong, written ß" } }
+    - { id: mixed, what: { de: "s, ss und ß im selben Wort oder Satz", en: "s, ss and ß in one word or sentence" } }
   misconceptions:
     - id: ss-for-voiced
       what: Writes ss for a summendes s (Blusse, Vasse)
@@ -223,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -244,6 +250,28 @@ lessons:
             say: "Der Rüssel. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Rüsel" }
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "s oder ss?"
+            say: "Lies den Satz. Was fehlt?"
+            frame: "Das Gemü_e schmeckt heute besonders gut."
+            options: ["s", "ss"]
+            answer: ["s"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Heute geht es mir schon _.\n\nWelches Wort ist richtig geschrieben?"
+            say: "Besser. Heute geht es mir schon besser. Welches Wort ist richtig geschrieben?"
+            options: ["besser", "beser", "bässer"]
+            answer: "besser"
+            option_audio: false
+          - id: l1-c6
+            type: audio_choice
+            text: "s oder ss?"
+            say: "Hör zu. Schreibt man das Wort mit s oder mit ss?"
+            audio: { de: "Der Esel." }
+            options: ["s", "ss"]
+            keep_order: true
+            answer: "s"
 
   - n: 2
     title: { de: "ss oder ß?", en: "ss or ß?" }
@@ -425,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: long-sz
             type: fill_in_blank
             text: "s, ss oder ß?"
             say: "Die Soße. Was fehlt?"
@@ -434,6 +464,7 @@ lessons:
             options: ["ß", "ss", "s"]
             answer: ["ß"]
           - id: l2-c2
+            part: short-ss
             type: fill_in_blank
             text: "s, ss oder ß?"
             say: "Das Fass. Was fehlt?"
@@ -441,6 +472,7 @@ lessons:
             options: ["ss", "ß", "s"]
             answer: ["ss"]
           - id: l2-c3
+            part: voiced-s
             type: fill_in_blank
             text: "s, ss oder ß?"
             say: "Der Besen. Was fehlt?"
@@ -448,6 +480,7 @@ lessons:
             options: ["s", "ss", "ß"]
             answer: ["s"]
           - id: l2-c4
+            part: long-sz
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Fleißig. Welches Wort ist richtig geschrieben?"
@@ -455,8 +488,129 @@ lessons:
             answer: "fleißig"
             option_audio: false
           - id: l2-c5
+            part: long-sz
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Der Kloß. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Kloß" }
             answer: true
+          - id: l2-c6
+            part: voiced-s
+            type: fill_in_blank
+            text: "s, ss oder ß?"
+            say: "Die Maus. Was fehlt?"
+            show: { object: mouse }
+            frame: "die Mau_"
+            options: ["s", "ss", "ß"]
+            answer: ["s"]
+          - id: l2-c7
+            part: short-ss
+            type: fill_in_blank
+            text: "s, ss oder ß?"
+            say: "Lies den Satz. Was fehlt?"
+            frame: "Im Herbst sammeln wir im Wald Nü_e."
+            options: ["ss", "ß", "s"]
+            answer: ["ss"]
+          - id: l2-c8
+            part: long-sz
+            type: fill_in_blank
+            text: "s, ss oder ß?"
+            say: "Lies den Satz. Was fehlt?"
+            frame: "Wir grü_en die neue Nachbarin."
+            options: ["ß", "ss", "s"]
+            answer: ["ß"]
+          - id: l2-c9
+            part: mixed
+            type: fill_in_blank
+            text: "s, ss oder ß? Ergänze beide Lücken."
+            say: "Der Reißverschluss. Was fehlt?"
+            show: { object: zip }
+            frame: "der Rei_verschlu_"
+            options: ["ß", "ss", "s"]
+            answer: ["ß", "ss"]
+          - id: l2-c10
+            part: voiced-s
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Der Riese. Welches Wort ist richtig geschrieben?"
+            options: ["Riese", "Riesse", "Rieße"]
+            answer: "Riese"
+            option_audio: false
+          - id: l2-c11
+            part: short-ss
+            type: fill_in_blank
+            text: "s, ss oder ß?"
+            say: "Lies den Satz. Was fehlt?"
+            frame: "Auf dem Sofa liegen drei bunte Ki_en."
+            options: ["ss", "ß", "s"]
+            answer: ["ss"]
+          - id: l2-c12
+            part: long-sz
+            type: audio_choice
+            text: "s, ss oder ß?"
+            say: "Hör zu. Schreibt man das Wort mit s, mit ss oder mit ß?"
+            audio: { de: "Schließen." }
+            options: ["s", "ss", "ß"]
+            keep_order: true
+            answer: "ß"
+          - id: l2-c13
+            part: mixed
+            type: fill_in_blank
+            text: "s, ss oder ß? Ergänze beide Lücken."
+            say: "Lies den Satz. Was fehlt?"
+            frame: "Der Ha_e sitzt drau_en im Gras."
+            options: ["s", "ss", "ß"]
+            answer: ["s", "ß"]
+          - id: l2-c14
+            part: voiced-s
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Im Sommer blühen die Rossen." }
+            answer: false
+          - id: l2-c15
+            part: short-ss
+            type: multiple_choice
+            text: "Ich darf mein Heft nicht _.\n\nWelches Wort ist richtig geschrieben?"
+            say: "Vergessen. Ich darf mein Heft nicht vergessen. Welches Wort ist richtig geschrieben?"
+            options: ["vergessen", "vergeßen", "vergesen"]
+            answer: "vergessen"
+            option_audio: false
+          - id: l2-c16
+            part: mixed
+            type: multiple_choice
+            text: "Welcher Satz ist richtig geschrieben?"
+            say: "Pass auf, die Suppe ist heiß! Welcher Satz ist richtig geschrieben?"
+            options: ["Pass auf, die Suppe ist heiß!", "Pass auf, die Suppe ist heiss!", "Paß auf, die Suppe ist heiß!"]
+            answer: "Pass auf, die Suppe ist heiß!"
+            option_audio: false
+          - id: l2-c17
+            part: mixed
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Lisa weiß, wo ihr Schlüssel ist." }
+            answer: true
+          - id: l2-c18
+            part: voiced-s
+            type: audio_choice
+            text: "s, ss oder ß?"
+            say: "Hör zu. Schreibt man das Wort mit s, mit ss oder mit ß?"
+            audio: { de: "Die Pause." }
+            options: ["s", "ss", "ß"]
+            keep_order: true
+            answer: "s"
+          - id: l2-c19
+            part: short-ss
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Ich habe den Bus verpaßt." }
+            answer: false
+          - id: l2-c20
+            part: long-sz
+            type: text_input
+            keyboard: letters
+            text: "Liebe _ von Oma!\n\nSchreib das fehlende Wort."
+            say: "Liebe Grüße von Oma. Schreib das fehlende Wort."
+            answer: "Grüße"

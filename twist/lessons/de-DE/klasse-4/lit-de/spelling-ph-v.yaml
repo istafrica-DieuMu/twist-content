@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: v-as-f, what: { de: "v, das wie f klingt: Merkwörter und die Vorsilben ver- und vor-", en: "v that sounds like f: memory words and the prefixes ver- and vor-" } }
+    - { id: v-as-w, what: { de: "v, das in Fremdwörtern wie w klingt", en: "v that sounds like w in borrowed words" } }
+    - { id: ph-or-f, what: { de: "ph oder f, wenn man f hört", en: "ph or f where you hear f" } }
+    - { id: borrowed, what: { de: häufige Fremdwörter richtig schreiben, en: spelling common borrowed words } }
   misconceptions:
     - id: write-what-you-hear
       what: Writes f or w for every f or w sound (Fogel, ferlieren, Wase)
@@ -228,27 +233,48 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
-            say: "Vier Kinder spielen Fußball. Welcher Buchstabe fehlt?"
-            frame: "_ier Kinder spielen Fußball."
+            say: "Im Garten blühen lila Veilchen. Welcher Buchstabe fehlt?"
+            frame: "Im Garten blühen lila _eilchen."
             options: ["V", "F", "W"]
             answer: ["V"]
           - id: l1-c2
             type: multiple_choice
-            text: "Wir schauen ein _ über Wale. Welches Wort ist richtig geschrieben?"
-            say: "Wir schauen ein Video über Wale. Welches Wort ist richtig geschrieben?"
-            options: ["Video", "Wideo", "Fideo"]
-            answer: "Video"
+            text: "Ich esse am liebsten Eis mit _. Welches Wort ist richtig geschrieben?"
+            say: "Ich esse am liebsten Eis mit Vanille. Welches Wort ist richtig geschrieben?"
+            options: ["Vanille", "Wanille", "Fanille"]
+            answer: "Vanille"
             option_audio: false
           - id: l1-c3
             type: highlight_in_text
             text: "Tippe auf das falsch geschriebene Wort."
             say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
-            show: { drawn: letter-card, text: "Papa ferliert beim Spielen nie." }
-            spans: ["ferliert"]
+            show: { drawn: letter-card, text: "In den Ferien ferreisen wir ans Meer." }
+            spans: ["ferreisen"]
+          - id: l1-c4
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Meine Schwester spielt Violine im Orchester." }
+            answer: true
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Wir verabreden uns für morgen. Welcher Buchstabe fehlt?"
+            frame: "Wir _erabreden uns für morgen."
+            options: ["v", "f", "w"]
+            answer: ["v"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Das Auto fährt langsam um die _. Welches Wort ist richtig geschrieben?"
+            say: "Das Auto fährt langsam um die Kurve. Welches Wort ist richtig geschrieben?"
+            options: ["Kurve", "Kurwe", "Kurfe"]
+            answer: "Kurve"
+            option_audio: false
 
   - n: 2
     title: { de: "Alphabet und Delfin", en: "Alphabet and Delfin" }
@@ -444,28 +470,33 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ph-or-f
             type: multiple_choice
             text: "Im Zoo füttert der Pfleger die _. Welches Wort ist richtig geschrieben?"
-            say: "Im Zoo füttert der Pfleger die Elefanten. Welches Wort ist richtig geschrieben?"
-            options: ["Elefanten", "Elephanten", "Elevanten"]
-            answer: "Elefanten"
+            say: "Im Zoo füttert der Pfleger die Giraffen. Welches Wort ist richtig geschrieben?"
+            options: ["Giraffen", "Giraphen", "Girafen"]
+            answer: "Giraffen"
             option_audio: false
           - id: l2-c2
+            part: v-as-f
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
-            say: "Mein Vater kocht heute. Welcher Buchstabe fehlt?"
-            frame: "Mein _ater kocht heute."
+            say: "Vielleicht regnet es morgen. Welcher Buchstabe fehlt?"
+            frame: "_ielleicht regnet es morgen."
             options: ["V", "F", "W"]
             answer: ["V"]
           - id: l2-c3
+            part: v-as-w
             type: highlight_in_text
             text: "Tippe auf das falsch geschriebene Wort."
             say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
-            show: { drawn: letter-card, text: "Auf der Insel gibt es einen hohen Wulkan." }
-            spans: ["Wulkan"]
+            show: { drawn: letter-card, text: "In der Pause spielen wir Wolleyball auf dem Schulhof." }
+            spans: ["Wolleyball"]
           - id: l2-c4
+            part: ph-or-f
             type: sorting
             text: "Welche Wörter schreibt man mit ph?"
             say: "Welche Wörter schreibt man mit ph, welche mit f? Ordne sie zu."
@@ -473,15 +504,134 @@ lessons:
               - { id: ph, show: { text: "mit ph" }, say: "mit ph" }
               - { id: f, show: { text: "mit f" }, say: "mit f" }
             options:
-              - { text: "Al_abet", bin: ph }
-              - { text: "Ele_ant", bin: f }
-              - { text: "Katastro_e", bin: ph }
-              - { text: "Tele_on", bin: f }
+              - { text: "As_alt", bin: ph }
+              - { text: "Ta_el", bin: f }
+              - { text: "_arao", bin: ph }
+              - { text: "O_en", bin: f }
             option_audio: false
           - id: l2-c5
+            part: v-as-f
             type: multiple_choice
             text: "Ich _ dir ein Geheimnis. Welches Wort ist richtig geschrieben?"
             say: "Ich verrate dir ein Geheimnis. Welches Wort ist richtig geschrieben?"
             options: ["verrate", "ferrate", "werrate"]
             answer: "verrate"
             option_audio: false
+          - id: l2-c6
+            part: v-as-f
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Der Bäcker verkauft frisches Brot. Welcher Buchstabe fehlt?"
+            frame: "Der Bäcker _erkauft frisches Brot."
+            options: ["f", "v", "w"]
+            answer: ["v"]
+          - id: l2-c7
+            part: v-as-f
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Sei bitte forsichtig mit dem Glas." }
+            answer: false
+          - id: l2-c8
+            part: v-as-f
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Wir treffen uns um Fiertel nach drei." }
+            spans: ["Fiertel"]
+          - id: l2-c9
+            part: v-as-w
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Der Vampir hat spitze Zähne. Welcher Buchstabe fehlt?"
+            frame: "Der _ampir hat spitze Zähne."
+            options: ["W", "V", "F"]
+            answer: ["V"]
+          - id: l2-c10
+            part: v-as-w
+            type: multiple_choice
+            text: "Obst und Gemüse haben viele _. Welches Wort ist richtig geschrieben?"
+            say: "Obst und Gemüse haben viele Vitamine. Welches Wort ist richtig geschrieben?"
+            options: ["Witamine", "Vitamine", "Fitamine"]
+            answer: "Vitamine"
+            option_audio: false
+          - id: l2-c11
+            part: v-as-w
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Am letzten Tag im Jahr feiern wir Silvester." }
+            answer: true
+          - id: l2-c12
+            part: v-as-w
+            type: sorting
+            text: "Klingt das v wie f oder wie w? Ordne die Wörter zu."
+            say: "Lies die Wörter leise. Klingt das v wie ein f oder wie ein w? Ordne sie zu."
+            bins:
+              - { id: f, show: { text: "v klingt wie f" }, say: "v klingt wie f" }
+              - { id: w, show: { text: "v klingt wie w" }, say: "v klingt wie w" }
+            options:
+              - { text: "Olive", bin: w }
+              - { text: "vorne", bin: f }
+              - { text: "Lava", bin: w }
+              - { text: "Verkehr", bin: f }
+          - id: l2-c13
+            part: ph-or-f
+            type: fill_in_blank
+            text: "Welche Buchstaben fehlen?"
+            say: "Oma trinkt am Nachmittag eine Tasse Kaffee. Welche Buchstaben fehlen?"
+            frame: "Oma trinkt am Nachmittag eine Tasse Ka_ee."
+            options: ["f", "ph", "ff"]
+            answer: ["ff"]
+          - id: l2-c14
+            part: ph-or-f
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Mein Bruder telefoniert jeden Abend mit Opa." }
+            answer: true
+          - id: l2-c15
+            part: ph-or-f
+            type: multiple_choice
+            text: "Auf dem _ liegen viele Kissen. Welches Wort ist richtig geschrieben?"
+            say: "Auf dem Sofa liegen viele Kissen. Welches Wort ist richtig geschrieben?"
+            options: ["Sopha", "Sova", "Sofa"]
+            answer: "Sofa"
+            option_audio: false
+          - id: l2-c16
+            part: borrowed
+            type: multiple_choice
+            text: "Heute Abend essen wir in einem _. Welches Wort ist richtig geschrieben?"
+            say: "Heute Abend essen wir in einem Restaurant. Welches Wort ist richtig geschrieben?"
+            options: ["Restorant", "Restaurant", "Restaurang"]
+            answer: "Restaurant"
+            option_audio: false
+          - id: l2-c17
+            part: borrowed
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Im Zirkus erzählt der Klaun lustige Witze." }
+            spans: ["Klaun"]
+          - id: l2-c18
+            part: borrowed
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Papa parkt das Auto in der Garasche." }
+            answer: false
+          - id: l2-c19
+            part: borrowed
+            type: multiple_choice
+            text: "Das _ zeigt heute zwanzig Grad. Welches Wort ist richtig geschrieben?"
+            say: "Das Thermometer zeigt heute zwanzig Grad. Welches Wort ist richtig geschrieben?"
+            options: ["Termometer", "Thermomether", "Thermometer"]
+            answer: "Thermometer"
+            option_audio: false
+          - id: l2-c20
+            part: borrowed
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Ich leihe mir ein Buch in der Bibliothek aus." }
+            answer: true

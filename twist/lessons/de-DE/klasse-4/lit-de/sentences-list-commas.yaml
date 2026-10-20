@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: words, what: { de: Kommas zwischen aufgezählten Wörtern setzen, en: setting commas between the words of a list } }
+    - { id: before-und, what: { de: kein Komma vor dem letzten und oder oder, en: no comma before the last und or oder } }
+    - { id: groups, what: { de: Kommas zwischen aufgezählten Wortgruppen und Tätigkeiten setzen, en: setting commas between listed word groups and actions } }
+    - { id: adjectives, what: { de: Kommas zwischen aufgezählten Adjektiven setzen, en: setting commas between listed adjectives } }
   misconceptions:
     - id: comma-before-und
       what: Sets a comma before the und that closes a list (Äpfel, Birnen, und Bananen)
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -231,6 +237,26 @@ lessons:
             say: "Lies den Satz. Wie viele Kommas fehlen?"
             options: ["1", "2", "3"]
             answer: "2"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Setz die Zeichen."
+            say: "Welche Zeichen gehören in die Lücken?"
+            frame: "Im Schrank stehen Teller_ Tassen_ Gläser und Schüsseln."
+            options: [",", ".", "?"]
+            answer: [",", ","]
+          - id: l1-c5
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "Kommst du mit Ella, Finn oder Noah?" }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welcher Satz ist richtig?"
+            say: "Welcher Satz ist richtig geschrieben?"
+            options: ["Im Teich schwimmen Enten, Fische und Frösche.", "Im Teich schwimmen Enten, Fische, und Frösche.", "Im Teich schwimmen Enten Fische und Frösche."]
+            answer: "Im Teich schwimmen Enten, Fische und Frösche."
+            option_audio: false
 
   - n: 2
     title: { de: "ein großer, schwerer Koffer", en: "a big, heavy suitcase" }
@@ -355,7 +381,7 @@ lessons:
                 text: "Wie viele Kommas fehlen? „Im Wald gibt es hohe Bäume grüne Farne bunte Pilze und viele Tiere.“"
                 say: "Lies den Satz. Wie viele Kommas fehlen?"
                 options: ["3", "4", "2"]
-                answer: "3"
+                answer: "2"
                 hints: ["Zähl die Wortgruppen."]
               - id: l2-s5
                 type: fill_in_blank
@@ -393,7 +419,7 @@ lessons:
                 text: "Wie viele Kommas fehlen? „Lisa malt einen Baum ein Haus eine Sonne einen Hund und eine Katze.“"
                 say: "Lies den Satz. Wie viele Kommas fehlen?"
                 options: ["4", "3", "5"]
-                answer: "4"
+                answer: "3"
               - id: l2-n5
                 type: true_false
                 text: "Ist das richtig geschrieben?"
@@ -403,8 +429,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: words
             type: fill_in_blank
             text: "Setz das Zeichen."
             say: "Welches Zeichen gehört in die Lücke?"
@@ -412,12 +440,14 @@ lessons:
             options: [",", ".", "?"]
             answer: [","]
           - id: l2-c2
+            part: before-und
             type: true_false
             text: "Ist das richtig geschrieben?"
             say: "Lies die Karte. Ist das richtig geschrieben?"
             show: { drawn: letter-card, text: "Ich mag Erdbeeren, Kirschen, und Pflaumen." }
             answer: false
           - id: l2-c3
+            part: adjectives
             type: multiple_choice
             text: "Welcher Satz ist richtig?"
             say: "Welcher Satz ist richtig geschrieben?"
@@ -425,15 +455,128 @@ lessons:
             answer: "Wir hatten einen tollen, lustigen Tag."
             option_audio: false
           - id: l2-c4
+            part: groups
             type: multiple_choice
             text: "Wie viele Kommas fehlen? „Paul isst eine Banane einen Apfel zwei Kekse und ein Brot.“"
             say: "Lies den Satz. Wie viele Kommas fehlen?"
             options: ["2", "3", "4"]
-            answer: "3"
+            answer: "2"
           - id: l2-c5
+            part: groups
             type: fill_in_blank
             text: "Setz das Zeichen."
             say: "Welches Zeichen gehört in die Lücke?"
             frame: "Der Clown lacht_ winkt und macht einen Purzelbaum."
             options: [".", ",", "!"]
             answer: [","]
+          - id: l2-c6
+            part: words
+            type: fill_in_blank
+            text: "Setz die Zeichen."
+            say: "Welche Zeichen gehören in die Lücken?"
+            frame: "In der Kiste liegen Bälle_ Seile_ Reifen und Kegel."
+            options: [",", ".", "!"]
+            answer: [",", ","]
+          - id: l2-c7
+            part: words
+            type: multiple_choice
+            text: "Wie viele Kommas fehlen? „Anna Jonas Leo Paula und Emil fahren mit.“"
+            say: "Lies den Satz. Wie viele Kommas fehlen?"
+            options: ["3", "4", "5"]
+            answer: "3"
+          - id: l2-c8
+            part: words
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "Auf dem Markt kaufen wir Zwiebeln, Möhren, Kartoffeln und Lauch." }
+            answer: true
+          - id: l2-c9
+            part: words
+            type: multiple_choice
+            text: "„Ich spiele Flöte Klavier und Gitarre.“ Wo fehlt ein Komma?"
+            say: "Lies den Satz. Wo fehlt ein Komma?"
+            options: ["nach Flöte", "nach Klavier", "nach und"]
+            answer: "nach Flöte"
+          - id: l2-c10
+            part: before-und
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "Gehen wir ins Kino, ins Schwimmbad, oder in den Zoo?" }
+            answer: false
+          - id: l2-c11
+            part: before-und
+            type: multiple_choice
+            text: "Welcher Satz ist richtig?"
+            say: "Welcher Satz ist richtig geschrieben?"
+            options: ["In den Ferien waren wir in Spanien, Italien und Frankreich.", "In den Ferien waren wir in Spanien, Italien, und Frankreich.", "In den Ferien waren wir in Spanien Italien und Frankreich."]
+            answer: "In den Ferien waren wir in Spanien, Italien und Frankreich."
+            option_audio: false
+          - id: l2-c12
+            part: before-und
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "Zum Mittagessen gibt es Suppe, Brot und Obst." }
+            answer: true
+          - id: l2-c13
+            part: before-und
+            type: multiple_choice
+            text: "Wie viele Kommas fehlen? „Möchtest du Äpfel Trauben Kirschen oder Pflaumen?“"
+            say: "Lies den Satz. Wie viele Kommas fehlen?"
+            options: ["2", "3", "4"]
+            answer: "2"
+          - id: l2-c14
+            part: groups
+            type: fill_in_blank
+            text: "Setz das Zeichen."
+            say: "Welches Zeichen gehört in die Lücke?"
+            frame: "Am Wochenende schwimmen wir im See_ grillen im Garten und schlafen im Zelt."
+            options: [",", ".", "?"]
+            answer: [","]
+          - id: l2-c15
+            part: groups
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "Wir laufen durch den Park über die Brücke und am Fluss entlang." }
+            answer: false
+          - id: l2-c16
+            part: groups
+            type: multiple_choice
+            text: "Welcher Satz ist richtig?"
+            say: "Welcher Satz ist richtig geschrieben?"
+            options: ["Lena räumt ihr Zimmer auf, macht Hausaufgaben und füttert die Katze.", "Lena räumt ihr Zimmer auf macht Hausaufgaben, und füttert die Katze.", "Lena räumt, ihr Zimmer auf macht Hausaufgaben und füttert die Katze."]
+            answer: "Lena räumt ihr Zimmer auf, macht Hausaufgaben und füttert die Katze."
+            option_audio: false
+          - id: l2-c17
+            part: adjectives
+            type: fill_in_blank
+            text: "Setz das Zeichen."
+            say: "Welches Zeichen gehört in die Lücke?"
+            frame: "Der Elefant hat große_ graue Ohren."
+            options: [",", ".", "!"]
+            answer: [","]
+          - id: l2-c18
+            part: adjectives
+            type: true_false
+            text: "Ist das richtig geschrieben?"
+            say: "Lies die Karte. Ist das richtig geschrieben?"
+            show: { drawn: letter-card, text: "Wir sahen einen hellen, bunten Regenbogen." }
+            answer: true
+          - id: l2-c19
+            part: adjectives
+            type: multiple_choice
+            text: "„Das ist ein kleiner frecher Hund.“ Wo fehlt ein Komma?"
+            say: "Lies den Satz. Wo fehlt ein Komma?"
+            options: ["nach kleiner", "nach frecher", "nach ein"]
+            answer: "nach kleiner"
+          - id: l2-c20
+            part: adjectives
+            type: multiple_choice
+            text: "Welcher Satz ist richtig?"
+            say: "Welcher Satz ist richtig geschrieben?"
+            options: ["Der Tee ist heiß, süß und lecker.", "Der Tee ist heiß süß, und lecker.", "Der Tee ist, heiß süß und lecker."]
+            answer: "Der Tee ist heiß, süß und lecker."
+            option_audio: false

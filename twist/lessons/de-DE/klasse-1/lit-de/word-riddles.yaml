@@ -25,6 +25,10 @@ metadata:
   forms: [picture, drawn, audio]
   drawn: [word-card, letter-card]
   facets: []
+  parts:
+    - { id: riddle, what: { de: ein Worträtsel lesen und das Bild finden, en: reading a word riddle and finding the picture } }
+    - { id: chain, what: { de: eine Wortkette lesen und weiterführen, en: reading and continuing a word chain } }
+    - { id: salad, what: { de: aus Buchstabensalat ein Wort machen, en: making a word from jumbled letters } }
   misconceptions:
     - id: one-clue
       what: "Reads only the first clue of a riddle and picks the first picture that fits it (rund: Ball or Sonne or Apfel)"
@@ -207,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -214,18 +219,40 @@ lessons:
             say: "Lies das Rätsel. Welches Bild passt?"
             options: [{ object: orange }, { object: carrot }, { object: apple }]
             answer: carrot
+            option_audio: false
           - id: l1-c2
             type: image_multiple_choice
             text: "Ich schwimme. Ich sage quak."
             say: "Lies das Rätsel. Welches Bild passt?"
             options: [{ object: fish }, { object: duck }, { object: whale }]
             answer: duck
+            option_audio: false
           - id: l1-c3
             type: true_false
             text: "Ich bin ein Tier. Ich habe einen langen Hals."
             say: "Lies das Rätsel. Passt das Bild dazu?"
             show: { object: giraffe }
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Ich bin ein Tier. Ich mache wau."
+            say: "Lies das Rätsel. Welches Bild passt?"
+            options: [{ object: cat }, { object: dog }, { object: cow }]
+            answer: dog
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Ich wachse am Baum. Ich bin rot."
+            say: "Lies das Rätsel. Passt das Bild dazu?"
+            show: { object: apple }
+            answer: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Ich habe ein Dach. Man wohnt in mir."
+            say: "Lies das Rätsel. Welches Bild passt?"
+            options: [{ object: car }, { object: tree }, { object: house }]
+            answer: house
+            option_audio: false
 
   - n: 2
     title: { de: Wortketten und Buchstabensalat, en: Word chains and jumbled letters }
@@ -422,20 +449,26 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: riddle
             type: image_multiple_choice
             text: "Ich bin süß. Ich bin eine Frucht und rot."
             say: "Lies das Rätsel. Welches Bild passt?"
             options: [{ object: strawberry }, { object: banana }, { object: rose }]
             answer: strawberry
+            option_audio: false
           - id: l2-c2
+            part: riddle
             type: image_multiple_choice
             text: "Ich bin ein Tier. Ich trage mein Haus."
             say: "Lies das Rätsel. Welches Bild passt?"
             options: [{ object: hedgehog }, { object: snail }, { object: house }]
             answer: snail
+            option_audio: false
           - id: l2-c3
+            part: chain
             type: multiple_choice
             text: "Welches Wort kommt als Nächstes?"
             say: "Lies die Wortkette. Welches Wort kommt als Nächstes?"
@@ -444,6 +477,7 @@ lessons:
             option_audio: false
             answer: "Sofa"
           - id: l2-c4
+            part: salad
             type: ordering
             text: "Buchstabensalat: Welches Wort ist es?"
             say: "Buchstabensalat. Leg die Buchstaben zu einem Wort."
@@ -453,8 +487,137 @@ lessons:
             answer: ["H", "a", "u", "s"]
             option_audio: false
           - id: l2-c5
+            part: chain
             type: true_false
             text: "Ist das eine richtige Wortkette?"
             say: "Lies die Wortkette. Fängt jedes Wort mit dem letzten Buchstaben des Wortes davor an?"
             show: { drawn: letter-card, text: "Hut Tasse Nest" }
             answer: false
+          - id: l2-c6
+            part: riddle
+            type: image_multiple_choice
+            text: "Ich komme von der Kuh. Man kann mich trinken."
+            say: "Lies das Rätsel. Welches Bild passt?"
+            options: [{ object: juice }, { object: cheese }, { object: milk }]
+            answer: milk
+            option_audio: false
+          - id: l2-c7
+            part: riddle
+            type: image_multiple_choice
+            text: "Ich habe acht Beine. Ich mache ein Netz."
+            say: "Lies das Rätsel. Welches Bild passt?"
+            options: [{ object: octopus }, { object: spider }, { object: ant }]
+            answer: spider
+            option_audio: false
+          - id: l2-c8
+            part: riddle
+            type: true_false
+            text: "Ich bin gelb. Ich habe Federn."
+            say: "Lies das Rätsel. Passt das Bild dazu?"
+            show: { object: banana }
+            answer: false
+          - id: l2-c9
+            part: riddle
+            type: image_multiple_choice
+            text: "Man schreibt mit mir. Ich bin aus Holz."
+            say: "Lies das Rätsel. Welches Bild passt?"
+            options: [{ object: ruler }, { object: pen }, { object: pencil }]
+            answer: pencil
+            option_audio: false
+          - id: l2-c10
+            part: riddle
+            type: image_multiple_choice
+            text: "Ich bin ein Tier. Ich lebe im Meer und bin riesig."
+            say: "Lies das Rätsel. Welches Bild passt?"
+            options: [{ object: fish }, { object: elephant }, { object: whale }]
+            answer: whale
+            option_audio: false
+          - id: l2-c11
+            part: chain
+            type: multiple_choice
+            text: "Welches Wort kommt als Nächstes?"
+            say: "Lies die Wortkette. Welches Wort kommt als Nächstes?"
+            show: { drawn: letter-card, text: "Sofa Affe ?" }
+            options: ["Sonne", "Eimer", "Auto"]
+            option_audio: false
+            answer: "Eimer"
+          - id: l2-c12
+            part: chain
+            type: multiple_choice
+            text: "Welches Wort kommt als Nächstes?"
+            say: "Lies die Wortkette. Welches Wort kommt als Nächstes?"
+            show: { drawn: letter-card, text: "Hand Dose ?" }
+            options: ["Dach", "Eule", "Hund"]
+            option_audio: false
+            answer: "Eule"
+          - id: l2-c13
+            part: chain
+            type: true_false
+            text: "Ist das eine richtige Wortkette?"
+            say: "Lies die Wortkette. Fängt jedes Wort mit dem letzten Buchstaben des Wortes davor an?"
+            show: { drawn: letter-card, text: "Mund Dino Oma" }
+            answer: true
+          - id: l2-c14
+            part: chain
+            type: true_false
+            text: "Ist das eine richtige Wortkette?"
+            say: "Lies die Wortkette. Fängt jedes Wort mit dem letzten Buchstaben des Wortes davor an?"
+            show: { drawn: letter-card, text: "Rabe Esel Lama" }
+            answer: true
+          - id: l2-c15
+            part: chain
+            type: multiple_choice
+            text: "Welches Wort passt in die Mitte der Wortkette?"
+            say: "Lies die Wortkette. Welches Wort passt in die Mitte?"
+            show: { drawn: letter-card, text: "Nase ? Lupe" }
+            options: ["Ente", "Esel", "Ball"]
+            option_audio: false
+            answer: "Esel"
+          - id: l2-c16
+            part: salad
+            type: ordering
+            text: "Buchstabensalat: Welches Wort ist es?"
+            say: "Buchstabensalat. Leg die Buchstaben zu einem Wort."
+            show: { object: bus }
+            options: ["s", "B", "u"]
+            slot_count: 3
+            answer: ["B", "u", "s"]
+            option_audio: false
+          - id: l2-c17
+            part: salad
+            type: multiple_choice
+            text: "Buchstabensalat: Welches Wort ist es?"
+            say: "Buchstabensalat. Welches Wort steckt darin?"
+            show: { drawn: letter-card, text: "e s R o" }
+            options: ["Hose", "Rose", "Rosa"]
+            option_audio: false
+            answer: "Rose"
+          - id: l2-c18
+            part: salad
+            type: ordering
+            text: "Buchstabensalat: Welches Wort ist es?"
+            say: "Buchstabensalat. Leg die Buchstaben zu einem Wort."
+            show: { object: sheep }
+            options: ["a", "h", "S", "f", "c"]
+            slot_count: 5
+            answer: ["S", "c", "h", "a", "f"]
+            option_audio: false
+          - id: l2-c19
+            part: salad
+            type: multiple_choice
+            text: "Buchstabensalat: Welches Wort ist es?"
+            say: "Buchstabensalat. Welches Wort steckt darin?"
+            show: { drawn: letter-card, text: "l e g I" }
+            options: ["Esel", "Igel", "Iglu"]
+            option_audio: false
+            answer: "Igel"
+          - id: l2-c20
+            part: salad
+            type: ordering
+            text: "Buchstabensalat: Welches Wort ist es?"
+            say: "Buchstabensalat. Leg die Buchstaben zu einem Wort."
+            show: { object: wolf }
+            options: ["l", "f", "W", "o"]
+            slot_count: 4
+            answer: ["W", "o", "l", "f"]
+            option_audio: false

@@ -26,6 +26,10 @@ metadata:
   drawn: [word-card, letter-card, syllable-arcs]
   sounds: [de.mo]
   facets: []
+  parts:
+    - { id: heard-word, what: { de: ein gehörtes Wort geschrieben finden, en: finding a heard word in writing } }
+    - { id: meaning, what: { de: ein Wort lesen und sein Bild oder seine Bedeutung finden, en: reading a word and finding its picture or meaning } }
+    - { id: one-letter, what: { de: "Wörter auseinanderhalten, die sich in einem Buchstaben unterscheiden", en: telling apart words that differ in one letter } }
   misconceptions:
     - id: first-letter-guess
       what: Reads the first letter and guesses the word, so Mond and Mund, Tal and Tee are the same word
@@ -207,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -226,6 +231,24 @@ lessons:
             audio: { de: "Mut." }
             options: ["Mut", "Mus"]
             answer: "Mut"
+          - id: l1-c4
+            type: audio_choice
+            text: "Welches Wort hörst du?"
+            audio: { de: "Mal." }
+            options: ["Tal", "Mal", "Mus"]
+            answer: "Mal"
+          - id: l1-c5
+            type: true_false
+            text: "Lies das Wort. Ist das ein Tier?"
+            say: "Lies das Wort. Ist das ein Tier?"
+            show: { drawn: word-card, text: "Tee" }
+            answer: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort „Tim“."
+            say: "Tippe auf jedes Wort Tim."
+            show: { drawn: letter-card, text: "Tim Tom Tim Tee" }
+            spans: ["Tim", "Tim"]
 
   - n: 2
     title: { de: Bis zum letzten Laut, en: To the last sound }
@@ -403,34 +426,150 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: heard-word
             type: audio_choice
             text: "Hör zu. Welches Wort ist das?"
             audio: { de: "Mond." }
             options: ["Mund", "Mond", "Mus"]
             answer: "Mond"
           - id: l2-c2
+            part: meaning
             type: true_false
             text: "Lies das Wort. Ist das ein Teil von deinem Körper?"
             say: "Lies das Wort. Ist das ein Teil von deinem Körper?"
             show: { drawn: word-card, text: "Mund" }
             answer: true
           - id: l2-c3
+            part: heard-word
             type: audio_choice
             text: "Hör zu. Welches Wort ist das?"
             audio: { de: "Lied." }
             options: ["Lid", "Lied", "See"]
             answer: "Lied"
           - id: l2-c4
+            part: meaning
             type: true_false
             text: "Lies das Wort. Wohnt darin ein Vogel?"
             say: "Lies das Wort. Wohnt darin ein Vogel?"
             show: { drawn: word-card, text: "Nest" }
             answer: true
           - id: l2-c5
+            part: meaning
             type: true_false
             text: "Lies das Wort. Kann man das hören?"
             say: "Lies das Wort. Kann man das hören?"
             show: { drawn: word-card, text: "Lied" }
             answer: true
+          - id: l2-c6
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Land." }
+            options: ["Sand", "Lamm", "Land"]
+            answer: "Land"
+          - id: l2-c7
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Mann." }
+            options: ["Mann", "Mond", "Mal"]
+            answer: "Mann"
+          - id: l2-c8
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Moos." }
+            options: ["Mus", "Mut", "Moos"]
+            answer: "Moos"
+          - id: l2-c9
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Ton." }
+            options: ["Tal", "Ton", "Tee"]
+            answer: "Ton"
+          - id: l2-c10
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Ist das ein Tier?"
+            say: "Lies das Wort. Ist das ein Tier?"
+            show: { drawn: word-card, text: "Lamm" }
+            answer: true
+          - id: l2-c11
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Kann man darauf sitzen?"
+            say: "Lies das Wort. Kann man darauf sitzen?"
+            show: { drawn: word-card, text: "Tee" }
+            answer: false
+          - id: l2-c12
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Wächst das an einem Baum?"
+            say: "Lies das Wort. Wächst das an einem Baum?"
+            show: { drawn: word-card, text: "Tal" }
+            answer: false
+          - id: l2-c13
+            part: meaning
+            type: true_false
+            text: "Lies das Wort. Ist das ein Name?"
+            say: "Lies das Wort. Ist das ein Name?"
+            show: { drawn: word-card, text: "Sand" }
+            answer: false
+          - id: l2-c14
+            part: meaning
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Schau dir das Bild an. Welches Wort passt? Lies die Wörter."
+            show: { object: lamb }
+            options: ["Damm", "Lamm", "Mann"]
+            option_audio: false
+            answer: "Lamm"
+          - id: l2-c15
+            part: one-letter
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort „Mund“."
+            say: "Tippe auf jedes Wort Mund."
+            show: { drawn: letter-card, text: "Mund Mond Mund Mus" }
+            spans: ["Mund", "Mund"]
+          - id: l2-c16
+            part: one-letter
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort „Sand“."
+            say: "Tippe auf jedes Wort Sand."
+            show: { drawn: letter-card, text: "Saal Sand Land Sand" }
+            spans: ["Sand", "Sand"]
+          - id: l2-c17
+            part: one-letter
+            type: true_false
+            text: "Lies das Wort. Ist das ein Teil von deinem Gesicht?"
+            say: "Lies das Wort. Ist das ein Teil von deinem Gesicht?"
+            show: { drawn: word-card, text: "Mond" }
+            answer: false
+          - id: l2-c18
+            part: one-letter
+            type: matching
+            text: "Was gehört zusammen?"
+            say: "Lies die Wörter. Verbinde jedes Wort mit seinem Bild."
+            option_audio: false
+            pairs:
+              - { left: { text: "Mond" }, right: { object: moon } }
+              - { left: { text: "Mund" }, right: { object: mouth } }
+              - { left: { text: "Lamm" }, right: { object: lamb } }
+          - id: l2-c19
+            part: one-letter
+            type: true_false
+            text: "Lies das Wort. Kann man das essen?"
+            say: "Lies das Wort. Kann man das essen?"
+            show: { drawn: word-card, text: "Mut" }
+            answer: false
+          - id: l2-c20
+            part: one-letter
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort „Tal“."
+            say: "Tippe auf jedes Wort Tal."
+            show: { drawn: letter-card, text: "Tal Mal Tee Tal" }
+            spans: ["Tal", "Tal"]

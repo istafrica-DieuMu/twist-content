@@ -22,6 +22,10 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: find, what: { de: Fehler im Text finden, en: finding the mistakes in a text } }
+    - { id: strategy, what: { de: "die Strategie oder das Wörterbuch wählen, das hilft", en: choosing the strategy or the dictionary that helps } }
+    - { id: fix, what: { de: das Fehlerwort richtig schreiben, en: writing the wrong word correctly } }
   misconceptions:
     - id: read-for-meaning
       what: Reads a text for its meaning and skims over the wrong word
@@ -200,6 +204,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -220,6 +225,24 @@ lessons:
             say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
             show: { drawn: letter-card, text: "Sie trägt eine rote Mütze." }
             answer: true
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Morgen gehen wir alle zusammen ins Schwimbad." }
+            spans: ["Schwimbad."]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Ben schreibt „Berk“ und ist unsicher. Was hilft ihm?"
+            say: "Ben schreibt Berg mit k am Ende und ist unsicher. Was hilft ihm?"
+            options: ["Er verlängert: die Berge.", "Er schwingt: Berk.", "Er merkt sich: Berk mit k."]
+            answer: "Er verlängert: die Berge."
+          - id: l1-c6
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Die Sonne scheint hell am Himel." }
+            answer: false
 
   - n: 2
     title: { de: "Zwei Fehler im Text", en: "Two mistakes in a text" }
@@ -386,14 +409,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: find
             type: highlight_in_text
             text: "Tippe auf die zwei falsch geschriebenen Wörter."
             say: "Lies den Text Wort für Wort. Zwei Wörter sind falsch geschrieben. Tippe beide an."
             show: { drawn: letter-card, text: "Der Hase hüpft über die Wise und frisst eine Möre." }
             spans: ["Wise", "Möre"]
           - id: l2-c2
+            part: fix
             type: multiple_choice
             text: "Wie schreibt man Wise richtig?"
             say: "Wiese. Wie schreibt man das Wort richtig?"
@@ -401,20 +427,139 @@ lessons:
             answer: "Wiese"
             option_audio: false
           - id: l2-c3
+            part: strategy
             type: multiple_choice
             text: "Welche Strategie hilft bei Möhre?"
             say: "Möhre. Welche Strategie hilft dir, das Wort richtig zu schreiben?"
             options: ["Merken", "Verlängern", "Ableiten"]
             answer: "Merken"
           - id: l2-c4
+            part: find
             type: highlight_in_text
             text: "Tippe auf das falsch geschriebene Wort."
             say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
             show: { drawn: letter-card, text: "Wir trinken Tee aus großen Taßen." }
             spans: ["Taßen"]
           - id: l2-c5
+            part: find
             type: true_false
             text: "Ist der Satz richtig geschrieben?"
             say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
             show: { drawn: letter-card, text: "Nachts leuchten die Sterne." }
             answer: true
+          - id: l2-c6
+            part: find
+            type: highlight_in_text
+            text: "Tippe auf die zwei falsch geschriebenen Wörter."
+            say: "Lies den Text Wort für Wort. Zwei Wörter sind falsch geschrieben. Tippe beide an."
+            show: { drawn: letter-card, text: "Im Juli essen wir Eis und Erdberen am Strant." }
+            spans: ["Erdberen", "Strant."]
+          - id: l2-c7
+            part: find
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "In der Pause rennen alle über den Schulhoff." }
+            answer: false
+          - id: l2-c8
+            part: find
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz Wort für Wort. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Am Abend liest Papa mir eine Geschichte vor." }
+            answer: true
+          - id: l2-c9
+            part: find
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz Wort für Wort. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Der Bauer füttert die Kühe im Stal." }
+            spans: ["Stal."]
+          - id: l2-c10
+            part: strategy
+            type: multiple_choice
+            text: "Mila hat „Zelt“ geschrieben. Sie ist unsicher: d oder t am Ende? Was hilft ihr?"
+            say: "Mila hat Zelt geschrieben. Sie ist unsicher: d oder t am Ende? Was hilft ihr?"
+            options: ["Sie verlängert: die Zelte.", "Sie leitet ab: zählen.", "Sie schwingt: Zelt."]
+            answer: "Sie verlängert: die Zelte."
+          - id: l2-c11
+            part: strategy
+            type: matching
+            text: "Welche Strategie hilft bei diesem Wort? Verbinde."
+            say: "Lies die Wörter. Welche Strategie hilft dir bei jedem Wort? Verbinde."
+            pairs:
+              - { left: { text: "Bäume" }, right: { text: "Ableiten" } }
+              - { left: { text: "Zwerg" }, right: { text: "Verlängern" } }
+              - { left: { text: "Vogel" }, right: { text: "Merken" } }
+              - { left: { text: "Tomate" }, right: { text: "Schwingen" } }
+          - id: l2-c12
+            part: strategy
+            type: multiple_choice
+            text: "Lukas weiß nicht, wie man Computer schreibt. Keine Strategie hilft ihm. Was macht er?"
+            say: "Lukas weiß nicht, wie man Computer schreibt. Keine Strategie hilft ihm. Was macht er?"
+            options: ["Er schlägt das Wort im Wörterbuch nach.", "Er schreibt es so, wie er es hört.", "Er lässt das Wort einfach weg."]
+            answer: "Er schlägt das Wort im Wörterbuch nach."
+          - id: l2-c13
+            part: strategy
+            type: sorting
+            text: "Welche Strategie hilft? Sortiere die Wörter."
+            say: "Lies die Wörter. Welche Strategie hilft dir? Sortiere."
+            bins:
+              - { id: long, show: { text: "Verlängern" }, say: "Verlängern" }
+              - { id: derive, show: { text: "Ableiten" }, say: "Ableiten" }
+            options:
+              - { text: "Korb", bin: long }
+              - { text: "Zug", bin: long }
+              - { text: "Häuser", bin: derive }
+              - { text: "Gläser", bin: derive }
+          - id: l2-c14
+            part: strategy
+            type: multiple_choice
+            text: "Schreibt man Bäcker mit ä oder mit e? Wie findest du es heraus?"
+            say: "Schreibt man Bäcker mit ä oder mit e? Wie findest du es heraus?"
+            options: ["Ich suche ein verwandtes Wort: backen.", "Ich verlängere: die Bäckers.", "Ich schwinge: Bä, cker."]
+            answer: "Ich suche ein verwandtes Wort: backen."
+          - id: l2-c15
+            part: strategy
+            type: multiple_choice
+            text: "Tim schreibt „Wint“. Welches Wort hilft ihm, den Fehler zu finden?"
+            say: "Tim schreibt Wind mit t am Ende. Welches Wort hilft ihm, den Fehler zu finden?"
+            options: ["windig", "Winter", "winken"]
+            answer: "windig"
+          - id: l2-c16
+            part: fix
+            type: multiple_choice
+            text: "Die Kinder baden im See und schwimen weit hinaus. Wie schreibt man schwimen richtig?"
+            say: "Die Kinder baden im See und schwimmen weit hinaus. Wie schreibt man das Wort schwimmen richtig?"
+            options: ["schwimmen", "schwiemen", "schwimen"]
+            answer: "schwimmen"
+            option_audio: false
+          - id: l2-c17
+            part: fix
+            type: text_input
+            keyboard: letters
+            text: "Der Fuks läuft in den Wald.\n\nEin Wort ist falsch. Schreib es richtig."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Schreib es richtig."
+            answer: "Fuchs"
+          - id: l2-c18
+            part: fix
+            type: text_input
+            keyboard: letters
+            text: "Mein Koffer war nach dem Urlaub ganz schwär.\n\nEin Wort ist falsch. Schreib es richtig."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Schreib es richtig."
+            answer: "schwer"
+          - id: l2-c19
+            part: fix
+            type: multiple_choice
+            text: "Paula hat in ihrem Text drei Fehlerwörter gefunden. Was macht sie danach mit ihnen?"
+            say: "Paula hat in ihrem Text drei Fehlerwörter gefunden. Was macht sie danach mit ihnen?"
+            options: ["Sie schreibt sie richtig auf und übt sie.", "Sie radiert sie aus und vergisst sie.", "Sie schreibt sie noch einmal falsch ab."]
+            answer: "Sie schreibt sie richtig auf und übt sie."
+          - id: l2-c20
+            part: fix
+            type: multiple_choice
+            text: "Unsere Katze heist Minka. Wie schreibt man heist richtig?"
+            say: "Unsere Katze heißt Minka. Wie schreibt man das Wort heißt richtig?"
+            options: ["heißt", "heizt", "heist"]
+            answer: "heißt"
+            option_audio: false

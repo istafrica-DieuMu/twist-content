@@ -22,6 +22,11 @@ metadata:
   forms: [picture, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: ck, what: { de: "ck nach kurzem Selbstlaut statt kk (Decke, Rock)", en: "ck after a short vowel instead of kk (Decke, Rock)" } }
+    - { id: tz, what: { de: "tz nach kurzem Selbstlaut statt zz (Katze, Platz)", en: "tz after a short vowel instead of zz (Katze, Platz)" } }
+    - { id: k-z, what: { de: "nur k oder z nach einem Mitlaut oder einem langen Selbstlaut (Wolke, Kerze, Brezel)", en: "only k or z after a consonant or a long vowel (Wolke, Kerze, Brezel)" } }
+    - { id: in-sentence, what: { de: Wörter mit ck und tz im Satz richtig schreiben, en: spelling words with ck and tz in a sentence } }
   misconceptions:
     - id: kk-zz
       what: Doubles k or z like other Mitlaute (Glokke, Kazze, Schnekke)
@@ -220,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -241,6 +247,29 @@ lessons:
             say: "Der Dackel. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Dakkel" }
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "ck oder k?"
+            say: "Der Deckel. Was fehlt?"
+            frame: "De_el"
+            options: ["ck", "k", "kk"]
+            answer: ["ck"]
+          - id: l1-c5
+            type: audio_choice
+            text: "ck oder k?"
+            say: "Hör zu. Schreibt man das Wort mit ck oder mit k?"
+            audio: { de: "Der Balken." }
+            options: ["ck", "k"]
+            keep_order: true
+            answer: "k"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Die Schneeflocke. Welches Wort ist richtig geschrieben?"
+            show: { object: snowflake }
+            options: ["Schneefloke", "Schneeflocke", "Schneeflokke"]
+            answer: "Schneeflocke"
+            option_audio: false
 
   - n: 2
     title: { de: "tz oder z?", en: "tz or z?" }
@@ -423,8 +452,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ck
             type: fill_in_blank
             text: "ck oder k?"
             say: "Die Lücke. Was fehlt?"
@@ -432,6 +463,7 @@ lessons:
             options: ["ck", "k", "kk"]
             answer: ["ck"]
           - id: l2-c2
+            part: tz
             type: fill_in_blank
             text: "tz oder z?"
             say: "Der Schatz. Was fehlt?"
@@ -439,6 +471,7 @@ lessons:
             options: ["tz", "z"]
             answer: ["tz"]
           - id: l2-c3
+            part: k-z
             type: fill_in_blank
             text: "tz oder z?"
             say: "Das Salz. Was fehlt?"
@@ -446,6 +479,7 @@ lessons:
             options: ["z", "tz"]
             answer: ["z"]
           - id: l2-c4
+            part: ck
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Backen. Welches Wort ist richtig geschrieben?"
@@ -453,8 +487,130 @@ lessons:
             answer: "backen"
             option_audio: false
           - id: l2-c5
+            part: tz
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Schmutzig. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "schmuzig" }
             answer: false
+          - id: l2-c6
+            part: ck
+            type: fill_in_blank
+            text: "ck oder k?"
+            say: "Der Nacken. Was fehlt?"
+            frame: "Na_en"
+            options: ["ck", "k", "kk"]
+            answer: ["ck"]
+          - id: l2-c7
+            part: ck
+            type: text_input
+            keyboard: letters
+            text: "Der Bauer trägt einen schweren _. Schreib das fehlende Wort."
+            say: "Der Bauer trägt einen schweren Sack. Schreib das Wort Sack."
+            show: { object: sack }
+            answer: "Sack"
+          - id: l2-c8
+            part: ck
+            type: audio_choice
+            text: "ck oder k?"
+            say: "Hör zu. Schreibt man das Wort mit ck oder mit k?"
+            audio: { de: "Der Schreck." }
+            options: ["ck", "k"]
+            keep_order: true
+            answer: "ck"
+          - id: l2-c9
+            part: tz
+            type: fill_in_blank
+            text: "tz oder z?"
+            say: "Der Klotz. Was fehlt?"
+            frame: "Klo_"
+            options: ["tz", "z", "zz"]
+            answer: ["tz"]
+          - id: l2-c10
+            part: tz
+            type: text_input
+            keyboard: letters
+            text: "Der Fußball fliegt ins _. Schreib das fehlende Wort."
+            say: "Der Fußball fliegt ins Netz. Schreib das Wort Netz."
+            answer: "Netz"
+          - id: l2-c11
+            part: tz
+            type: audio_choice
+            text: "tz oder z?"
+            say: "Hör zu. Schreibt man das Wort mit tz oder mit z?"
+            audio: { de: "Kratzen." }
+            options: ["tz", "z"]
+            keep_order: true
+            answer: "tz"
+          - id: l2-c12
+            part: k-z
+            type: fill_in_blank
+            text: "ck oder k?"
+            say: "Der Schrank. Was fehlt?"
+            show: { object: cupboard }
+            frame: "Schran_"
+            options: ["k", "ck"]
+            answer: ["k"]
+          - id: l2-c13
+            part: k-z
+            type: fill_in_blank
+            text: "tz oder z?"
+            say: "Tanzen. Was fehlt?"
+            show: { object: dance }
+            frame: "tan_en"
+            options: ["tz", "z"]
+            answer: ["z"]
+          - id: l2-c14
+            part: k-z
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Die Musik. Welches Wort ist richtig geschrieben?"
+            options: ["Musick", "Musikk", "Musik"]
+            answer: "Musik"
+            option_audio: false
+          - id: l2-c15
+            part: k-z
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Der Pelz. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Peltz" }
+            answer: false
+          - id: l2-c16
+            part: in-sentence
+            type: fill_in_blank
+            text: "Setz die Buchstaben ein."
+            say: "Opa setzt sich zu den Enkeln. Welche Buchstaben fehlen?"
+            frame: "Opa se_t sich zu den En_eln."
+            options: ["tz", "z", "ck", "k"]
+            answer: ["tz", "k"]
+          - id: l2-c17
+            part: in-sentence
+            type: fill_in_blank
+            text: "Setz die Buchstaben ein."
+            say: "Lisa packt ihren Ranzen. Welche Buchstaben fehlen?"
+            frame: "Lisa pa_t ihren Ran_en."
+            options: ["ck", "k", "tz", "z"]
+            answer: ["ck", "z"]
+          - id: l2-c18
+            part: in-sentence
+            type: multiple_choice
+            text: "Welcher Satz ist richtig geschrieben?"
+            say: "Die Ziege meckert laut. Welcher Satz ist richtig geschrieben?"
+            options: ["Die Ziege mekert laut.", "Die Ziege meckert laut.", "Die Ziege mekkert laut."]
+            answer: "Die Ziege meckert laut."
+            option_audio: false
+          - id: l2-c19
+            part: in-sentence
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Die Kinder spritzen sich mit Wasser nass." }
+            answer: true
+          - id: l2-c20
+            part: in-sentence
+            type: fill_in_blank
+            text: "Setz die Buchstaben ein."
+            say: "Der Tiger leckt sich die Tatze. Welche Buchstaben fehlen?"
+            frame: "Der Tiger le_t sich die Ta_e."
+            options: ["ck", "k", "tz", "z"]
+            answer: ["ck", "tz"]

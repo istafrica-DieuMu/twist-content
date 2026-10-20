@@ -412,3 +412,174 @@ The language reviewer of each chunk merged the correctness reviewer's questions 
 - de-DE/klasse-4/math/scale: '1 : 100' set off the warning only because the build's sum pattern reads it as a division. The four old checks (6 cm, 2 cm table, 5 by 4 cm room, 30 m hall) did not repeat the Learn example (4 cm is 4 m). The four checks now use 1 : 200 (l2-c3, l2-c15) or 1 : 1000 (l2-c14, l2-c16). 1 : 200 appears on no Learn or Practise screen, so those two checks test a scale the set never teaches. 1 : 1000 comes up once in Practise (l2-n5). Decide whether the build should skip scale ratios so 1 : 100 can come back, or whether this outcome is intended.
 - de-DE/klasse-4/math (choose-method, large-mental, large-mult-mental, numbers-to-million): numbers written with a thousands space make the build match fragments such as '000+30'. Those warnings came from overlapping digits and did not mean a worked example was reused. The numbers were changed as instructed anyway. Fixing the pattern in lessons-check.mjs would stop these false hits. That file is outside this task.
 - lessons-check.mjs does not compare a check's frame, story text or picture with the Learn screens. Three frames in table-5-10 and table-3-6-9 repeated a Learn example word for word, one story repeated a Learn sum, and one scale ruler repeated the Learn picture. The build raised no warning for any of them; all five are fixed now. Decide whether the build should also compare frames and show pictures.
+
+## de-DE Deutsch and Englisch, drill banks (2026-10-20)
+
+Questions the authors and reviewers left, by chunk. The tasks follow the brief as written until one is decided.
+
+### klasse-1-lit-de-1
+
+- first-texts and first-sentences (Klasse 1): reading texts and sentences write numbers as words ('zwei Ziegen', 'drei Birnen', 'vier Schweine'), as the existing lessons do. The 2026-10-19 rule says numbers on screen in Klasse 1 are digits. Does that rule cover reading texts, where reading the number word is the skill, or only maths?
+- blend-syllables true/false tasks (l1-f5, l1-c3, l2-c4, l2-c7, l2-c11, l2-c13): 'Stimmt das?' on screen, the syllable asked in say ('Steht da Mo?'). Writing the syllable on screen would let the child match letter shapes instead of reading. I think this is the same accepted exception as the 'Is this the numeral?' pattern in task-types.md. Confirm it, and add a line to the authoring checks if so.
+- Existing check tasks that break the new formats: I left them alone to keep the tasks. first-sentences l2-c2 'Der Ball ist grün.' uses ü before the umlauts are taught. copy-sentences Practise l1-s5 'Ali isst Brot.' uses ss before ss is taught. blend-syllables l2-c2 ('Lo. Welcher Buchstabe fehlt?', L_) is encoding in a reading check. Should a later pass rewrite them?
+
+### klasse-1-lit-de-2
+
+- listen-follow: the spoken instruction or story stays in say or audio and is not shown on screen, because showing it would turn a listening check into a reading check. The question always stands in text. This is an exception to brief points 8 and 10 for a listening skill. Is that right?
+- Letter sets: the skill checks keep their original 'Welcher Buchstabe fehlt?' and 'Was fehlt?' fill-in tasks, which is encoding (the phonics rule puts encoding in the spelling skills). Several of their frames also show letters not yet taught: l-o-a-m l5-c2 '_ampe' (p, e), i-ie-s-t l1-c2 'K_nd' and l5-c3 'L_ferwagen' (f, r, w, g), e-n-d-u l5-c4 'H_t' (H), ei-r-h-w quick l1-c3 'Schw_n' (sch). The can_do lines of e-n-d-u and st-sp-pf say 'lese und schreibe'. Keep these tasks, or replace them with written-word choices under a picture using only taught graphemes?
+- Untaught graphemes as distractors only: i-ie-s-t shows 'ei' cards next to 'ie' (existing l4-c3, new l4-c6 and l5-c20), and p-k-b-f l5-c16 offers Apfel (pf, read as p plus f) before pf is taught. Is that fine for a reversal distractor, or should those cards go?
+- Practise tasks that dictate a word only in say, with no picture, were left as they are (Salat, Lisa, Feuer, Leute, Stiefel, Topf, Zopf, süß, Spaß, Zucker, Straße, Decke). There is no bank picture for most of these words. Accept them, or draw the pictures?
+- language-play: the can_do line names Zungenbrecher, and this set has no tongue-twister tasks. The summary points to the separate tongue-twisters set. Is that enough for point 14?
+- eu-ch-j l4-c14 sorts the happy picture (fröhlich) into the ich bin. A child who calls the picture 'froh' hears no ch. Keep it, or use another picture? Milch and Küche are taken by Learn and by l4-c2.
+
+### klasse-1-lit-de-3
+
+- listen-stories: brief point 8 asks for the story to be on screen, but the skill is listening, so every story is in replayable audio and not in text. Should listening sets also show the story text?
+- Grammar and word sets (nouns-articles, nouns-plural, rhymes, sight-words-easy, one-syllable-words): many tasks share a frame and swap only the tested word, for example 'ein oder eine? _ Kuh' (check) against 'ein oder eine? _ Schere' (Practise), both with the answer eine. The lengthen-dt pilot does the same. Confirm that, in these subjects, swapping the word under test does not count as a near repeat under point 15.
+- nouns-plural keeps number words inside German sentences and the counting frame ('Ein Vogel, zwei ...', 'Im Stall schlafen drei _.'), as its Learn screens do. Confirm that the Klasse 1 digits-only rule is for maths and number data, not for Deutsch sentences.
+- print-letters: the stroke-order answers follow the set's own screens (d: the belly first; e: start in the middle; o: the curve goes left; t: the crossbar last; A: the middle bar last). If a Land's Ausgangsschrift or Grundschrift teaches another order, these tasks need a note that it depends on the school's script.
+- nouns-recognise: older tasks use ä, ö, ü and ß (Käse, Löffel, süß, müde) before the curriculum teaches those letters. The new tasks avoid them. Should the older tasks be changed?
+- one-syllable-words: 9 of the 20 skill-check tasks are true_false. They are within the rules (5 types, with true and false balanced), but you could swap one for a picture choice if the bank gets more pictures whose names use only taught letters.
+
+### klasse-1-lit-de-4
+
+- word-gaps: counting the words of a heard sentence is now an audio_choice task with number options. docs/task-types.md does not list this interaction under audio_choice (the closest is 'Number word to numeral'). Should a row 'Count the words of a heard sentence' be added there?
+- two-syllable-words and word-picture: Practise reading tasks with picture options still say the picture names when tapped. Only the check tasks set option_audio: false, as the brief asks. Should Practise match?
+- word-riddles and two-syllable-words: some existing Practise words use letters the child has not been taught yet (in word-riddles Löwe, Löffel, Räder, Klingel and Rüssel). Only check words were changed. Swap the Practise words too?
+- sounds-in-words: sounds on screen stay written as sss, mmm and lll, as in the rest of the set, instead of graphemes or bank sounds, because the set teaches no letters yet. Keep it that way?
+- word-gaps (whole set, Practise too): gap-sentence tasks show a picture of the answer word (bed, moon, sun, book) and the word chips are read aloud. I set option_audio: false only on the check tasks where the picture is the answer. Should every such task in Practise do the same, or should those tasks lose the picture?
+- write-by-sound: the gap sentences on screen (for example 'Oma näht mit einer _.') use letters not yet taught at this point (ä, h, r, ü). This is fine for dictation, since the voice reads the sentence, but a child cannot read it alone. Accept this for the dictation format?
+- two-syllable-words and word-picture: Kasse, Tasse and Mappe use a double ss or pp before the ss grapheme is taught (letters-c-y-x-aeu-ck-ss). The existing set already does this (Tasse). Accept double consonants as two known letters?
+
+### klasse-2-lit-de-1
+
+- describe (lit-de.writing.describe): the can_do line says "einen Steckbrief schreiben", but no task has the child write freely, and Practise has no free text task either. The summary says writing a whole description is left to Practise and waits for a free text task type. Is that wording acceptable until the type exists? (author's question)
+- core-vocabulary: four existing skill-check tasks use Learn demonstration words: l2-c1 auch, l2-c3 gehen, l2-c4 wieder, l2-c5 Freund. The spelling format rules these out for checks, but in a core-word set the Learn words are the content itself. Should they be replaced? I left them. (author's question)
+- core-vocabulary Practise dictations (l1-f2, l1-s1, l1-n1, l2-f5, l2-s5, l2-n5) still show a bare "Schreib das Wort." with the sentence only in say. The spelling format rule against that is written for checks. Should Practise get gap sentences too?
+- compound-nouns and adjectives article/ending tasks ("der, die oder das? Haustier", "Welche Form passt? ein _ Lied") all use one frame with the same options, so a new pool task always looks like a Practise task with the noun swapped. I counted them as fine because the noun is what is tested. Should point 15 read that way for article and ending tasks?
+
+### klasse-2-lit-de-2
+
+- listen-understand (author): each Hörtext now plays from a replayable audio field and is not written on screen, so the set still tests listening. The situation and the question stand in text. I think this is the right reading of points 8 and 10 for a listening skill. Please confirm, and add it to the brief if it should become the rule.
+- read-instructions and the find-information pilot (author): existing skill-pool tasks share one text 4 to 5 times (Apfelschiffchen l2-c1 to c5; Frosch and Jonas in the pilot). The pilot has the same pattern, so I left them. Should the at-most-2-tasks-per-text rule be applied to existing pool tasks too? I did apply the own-text rule to the read-instructions quick check.
+- joined-lowercase (author): the skill check has no tracing, because tracing accepts any ink and cannot be marked. Writing the letters is left to Practise and the summary says so. I agree; please confirm this for handwriting skills in general.
+- lengthen-bp-gk: many g/k tasks end in -ig (lustig, riesig, traurig, mutig, ruhig, witzig, durstig, König, Käfig). In standard German -ig is said [ɪç], so the real doubt for most children is ig or ich, not g or k (it is k in southern speech). German worksheets often treat -ig with Verlängern, so I kept most of them and swapped one. Should -ig words count as g/k lengthening items, or move to an -ig/-lich skill?
+- lengthen-bp-gk l2-c4 (existing): the card Schrang uses the Learn demonstration word Schrank. The spelling format says a check does not use Learn words, while point 10 allows one per check. I kept it as the one allowed Learn word. Is that acceptable?
+- poems: the set is lit-de.texts-media.poems (find rhymes, lines and verses, how a poem sounds), and its parts match that line. Writing poems to a pattern belongs to the separate skill lit-de.writing.poems, so nothing is missing here.
+
+### klasse-2-lit-de-3
+
+- special-sounds: the 'Ich kann' line also names äu (Häuser), but the set's Learn screens never teach äu, so the check has no äu part. Should an äu part and lessons be added here, or should the can_do line drop äu (it is taught in lit-de.letters.c-y-x-aeu-ck-ss)?
+- sight-words-longer is a Blitzlesen skill but its check is still size: skill, not timed. Should its skill check become timed?
+- short-long-vowels and syllable-cores: the screen writes the word (Tonne, Kis-te, Kof-fer), and a double consonant is the spelling cue lesson 2 teaches ("zwei Mitlaute nach kurzem Selbstlaut"). That fits a spelling skill. Should by-ear tasks hide the written word, so the child has to listen?
+- sentences-end-punctuation l2-c8 ("Lisa malt ein Bild für Oma?" marked wrong) follows the Klasse 2 rule that a sentence with the verb second ends in a Punkt. Spoken German allows it as a question asked by voice, which the sentences-questions set says outright. Keep it as a wrong answer?
+
+### klasse-2-lit-de-4
+
+- write-instructions and write-poems: the skill checks mark only what a screen can mark (ordering, choosing and completing steps, lines and rhymes). Both summaries say free writing waits for a free-text task type. That is accurate, but it is not brief point 14's wording that Practise covers the rest, and Practise does not cover free writing either. Keep the honest wording, or reword it to match the brief?
+- write-poems: the can_do line in competencies/lit-de/writing.yaml says 'zum Beispiel ein Elfchen, ein Haiku oder ein Reimgedicht', but the lessons teach only Elfchen and Reimgedicht. I left this as is because the line says 'zum Beispiel'. Drop Haiku from the line, or add it to the lessons?
+- word-fields: the pool brings in Wortfeld words that Learn never shows (humpeln, trippeln, murmeln, brüllen, krabbeln, jubeln, wandern, reden, erklären). I accept jubeln as a speech verb in the Wortfeld sagen (with direct speech) and krabbeln in the Wortfeld gehen, as they appear in usual Grundschule Wortfeld lists. Confirm this is fine for Klasse 2.
+- verbs-prefixes: the author asked about verraten, verschenken and verlaufen. All three have a plain verb (raten, schenken, laufen), so they are fine. Only verlieren (existing l2-c1) has no plain verb, and I replaced vergessen for that reason. Should l2-c1 keep verlieren?
+- verbs-conjugate and verbs-base-form: many check fill_in_blank tasks share the ending chips (en, t, st or e, st, t) with Practise and change only the verb and sentence. I kept these because the verb is the content of a conjugation task. If brief point 15 is read strictly for chip tasks, about 8 more tasks in verbs-conjugate would need a new format.
+
+### klasse-3-lit-de-1
+
+- choose-strategy (author): the what of the parts verlaengern and ableiten uses Learn words as examples (Hund, Berg; Bäume, Zähne). No check task uses them. My view: keep them, because the what is metadata and is never shown as a task. Confirm, or replace them with other words.
+- adjectives-compare (author): l2-c16 (viel, am meisten) is now the only check task built on a Learn form, which the rule allows once per check. Keep it?
+- ck-tz (author): Balken and Musik rely on the k-after-a-consonant and k-after-a-long-vowel rules, and Learn teaches both (Wolke, Haken). The set never teaches k or z after a diphthong (Pauke, Kauz), so no task uses that case. Should the set teach it?
+- adjectives-suffixes: in the 'Ergänze die Endung.' tasks the say speaks the whole word ("Der Junge ist höflich."), so the child hears -lich against -ig and the real doubt is only lig or ich. This is how the existing tasks work too. Keep it as dictation, or stop saying the target word?
+- choose-strategy: the 'Welche Strategie hilft bei ...?' format has only four strategies to choose from, so more check tasks repeat Practise options even after this fix. One existing task (l2-c5 Fäden) and the Warm-ups still share an option set with a Practise task. Is that acceptable for this set?
+
+### klasse-3-lit-de-2
+
+- dictionary: the original skill-check tasks are near repeats of Practise by point 15. For example, l2-c1 'Regen' has the same three options and the same answer (hinten) as l1-f1 'Zebra'. Their ids are kept under brief point 2. Replace them, or keep them because a book-part question can only have vorne/Mitte/hinten as options?
+- digital-texts: l2-c1 (Schmetterlinge, Insekten) and l2-c3 (Schwan, Startseite) swap only the animal of l1-f1 and l1-n2. Keep them as existing tasks, or rewrite them under the same ids?
+- long-i: the exception tasks cannot avoid the Learn list. l2-c3 (Apfelsine), l2-c5 (Tiger), l2-c16 (crocodile and hedgehog pictures) and l2-c20 (T_ger) all use Learn words, which Practise also uses. The build gives no warning. Accept this, given that a memory-word part can only test the memory words taught?
+- conversation-rules l2-c12 (two children explaining at the same time, so nacheinander sprechen) is close to Practise l1-s1 (everyone talking at once). The options and question differ, so it was kept. A reviewer may want a different scene.
+- fairy-tales, infer and conversation-rules: the older tasks use bare `id: yes`/`no` bin ids, which PyYAML reads as booleans. Check that narration.py handles them before narrating this batch. PyYAML is not installed in the system python, so this was not tested here.
+
+### klasse-3-lit-de-3
+
+- s-sounds (author's question): the existing Practise and check gap tasks show a bare word frame ('So_e', 'Fa_', 'Be_en') with the word only in say. This follows the lengthen-dt pilot, so I kept it. Should every bare-word gap get a picture or a sentence frame, as the spelling rule for dictation suggests?
+- s-sounds l2-c20 is a text_input dictation ('Liebe _ von Oma!', answer Grüße), and no lesson of the set uses text_input. I kept it because the spelling brief allows a dictation task with a sentence gap. Keep it, or turn it into a choice to match the lessons?
+- sentences-direct-speech l2-c20 is a sorting task (Begleitsatz or wörtliche Rede), and the set's lessons do not use sorting. It is simple and fits the part, so I kept it. Keep it, or swap it for a type the lessons use?
+
+### klasse-3-lit-de-4
+
+- word-groups: the 'Hör zu' ordering tasks (l2-f4, l2-s3, l2-n3 and check task l2-c4) give the sentence only in say. German word order allows other arrangements ('Jonas baut im Winter einen Schneemann'), so on screen alone the answer is not unique. A flashed letter-card with the sentence would fit the skill (reading phrases at a glance). However, task-types.md documents flash only on show pictures and cards, not on ordering. Should flash ordering be documented and these tasks changed, or should they stay listening tasks?
+- text-layout, write-stories, writing-purpose: the skill check marks only on-screen choices, and each summary now says that laying out a page by hand, or writing a story or text freely, stays with Practise (point 14). Is that enough for these writing skills until write_text exists?
+- syllable-division: the pool uses only multiple_choice and true_false, the two types the lessons use. A sorting interaction ('richtig getrennt / falsch getrennt') would add variety, but task-types.md does not document it yet. Should it be added?
+- verbs-present: of the 4 true/false tasks in the skill-check pool, only 1 is true (l2-c14). The mix holds, but it leans false. Should one be flipped?
+- verbs-present Practise (l2-f1 to l2-n3): the multiple-choice tasks name the verb only in say ('Du _ mir den Stift.'). The options make the verb clear, so I left them. Should they get the 'geben: ...' prefix like the check tasks?
+
+### klasse-4-lit-de-1
+
+- languages: lesson 1 has no warm-up, and metadata.builds_on is empty (the author's point, left as it was because it is outside the check pools). Decide whether the set needs a prerequisite and a warm-up.
+- fables-legends: l2-c16 and l2-c17 retell the Drachenfels legend (Siegfried and the dragon, Königswinter), and l2-c15 the Teufelsmauer in the Harz, in Twist's own words. Confirm they suit Klasse 4 (the author's point; I found nothing wrong).
+- foreign-words: the origins in l2-c11 (Ballett from Italian, as the on-screen dictionary entry says) and in the l2-c12 sort (Popcorn and Puzzle English, Toilette and Mayonnaise French, Espresso and Risotto Italian) follow the Duden. Many adults think Ballett is French, so check it against the Wörterbuch the lessons use (the author's point).
+- character-perspective l1-c1 and l1-c2, fables-legends l1-c1 and l1-c3: these existing quick-check pairs share one text, which the reading-text format rules out for quick checks. Neither pair gives away the other's answer, so I left them. Decide whether to give each its own text.
+- make-media lesson 1 quick check: both true/false tasks (l1-c3, l1-c5) are true. The set as a whole is mixed, so the build accepts it; decide whether to flip one.
+
+### klasse-4-lit-de-2
+
+- sentences-list-commas l2-c8 and l2-c12 are both cards with a correctly written list (answer true) in different parts. They are kept as they are. Please confirm that two true cards of the same kind in one pool of 20 are acceptable.
+- sentences-place-time l2-c4 (an existing check task) sorts im/am phrases into Wo/Wann, much as the Practise sorting tasks l2-f4, l2-s4 and l2-n4 do, though with different bin labels and words. Please confirm this is not a near repeat under point 15.
+
+### klasse-4-lit-de-3
+
+- spelling-ph-v (author's question): should check tasks avoid the Learn demonstration words? I applied the spelling rule and replaced all six (vier, Video, verliert, Elefanten, Vater, Vulkan), keeping the task ids. The can_do line still names Vulkan, which Learn and Practise teach. Confirm this reading of the rule.
+- spelling-ph-v l2-c15 (author's question): Sopha is the old spelling and the current Duden no longer accepts it, so Sofa is the only right option. I kept it. l2-c14 uses 'telefoniert', a word from the family of the Learn word Telefon; it is not the demonstration word itself. Is that acceptable?
+- write-feelings (author's question): the summary says the skill check marks choosing, sorting, ordering and filling, and that writing feelings into a text of one's own is left to Practise and free writing. Practise has no free writing task either, because no free text task type exists yet. Is that summary enough for brief point 14, or should the skill be flagged until a free writing type exists?
+- short-talk: no speak task is in any check, and the summary says giving the talk aloud is covered by the speak tasks in Practise (record-and-compare, not scored). Confirm this meets point 14 for a speaking skill.
+
+### stufe-0-fl-1
+
+- en-colours: the can-do line includes 'which colour I like', but no lesson in the set teaches 'I like …'. Should a later set cover it, or should the line be narrowed?
+- en-compare-languages: the alike and find tasks use everyday cognates and non-cognates the Learn screens do not teach (fish/Fisch, ball, apple, lamp, banana, taxi, pizza; tree/Baum, spoon/Löffel, rabbit/Kaninchen). Spotting similar words in new pairs is the skill itself, but the FL brief says checks use the set's own words. Keep them and add them to metadata.vocabulary, or limit the checks to the set's words?
+- en-hello: the skill pool is 17 true_false and 3 audio_choice, because the lessons use only true_false and speak. Accept it, or allow more audio_choice with situation pictures?
+- Stufe 0 picture-word frame: with 5 to 14 words, 'Passt das Wort zum Bild?' and 'Tippe auf das Bild.' check tasks reuse the Practise frame with another word or picture. I counted it a repeat only when the word, the picture and the answer all matched a Practise or other pool task, and fixed those. Should the FL near-repeat rule ('only swaps one word in a Practise sentence frame') also cover these one-word frames? If yes, most Stufe 0 pools need a different task kind.
+- en-numbers-to-10 l2-c18 ('How many cats? Eight cats.') uses the frame and number of Practise l2-f2 ('How many balls? Eight balls.') with a different noun and two of three options different. Point 15 does not call it a repeat, but the FL frame rule might. I left it.
+- en-hello l1-c2 (quick check) is the same as Practise l1-s4 (Hi! as a greeting). Quick checks may repeat, so it was left as it is.
+- en-familiar-words lesson 2 Learn plays giraffe, crocodile and telephone but shows only the elephant picture, so those three pictures are first seen in Practise. This Learn screen is outside this pass and was not changed.
+
+### lernjahr-1-fl-1
+
+- en-guess-meaning: the existing skill check tasks l2-c3 ('tasty', answer lecker) and l2-c4 ('See you soon!' over a wave) are close to Practise l2-f4 ('delicious', answer lecker) and l2-f3 ('See you tomorrow!' over a wave). They are existing tasks and were kept. Should they be rewritten as well? The same applies to en-guess-meaning l2-c2 ('hot'), where a child guessing by sound would pick the distractor 'der Hut'.
+- en-home l2-c3 and l2-c4, en-learn-words l2-c4, and en-describe l2-c5 are existing check tasks that swap one noun of a Practise frame. Examples: en-home l2-c3 'The mirror is in the bathroom' next to l2-f3, l2-s5 and l2-n4; en-home l2-c4 'Wo badest du?' has almost the same options as l2-n3. They were kept as existing tasks. Should existing tasks also follow point 15?
+- en-numbers-to-20 l2-c18 and l2-c20 (from the author): l2-c18 has one right option, because none of the distractors is a valid pair reading. In l2-c20, 'oh, sixty, fourteen' for 0614 is marked wrong, which is right, but a British speaker might say 'oh six, fourteen'. A native speaker could confirm that the task does not suggest pair readings are wrong.
+
+### lernjahr-1-fl-2
+
+- en-word-picture l2-c3 (an existing task) tells the child 'Lies bis zum Ende' in text. That is a strategy in a check, allowed under point 13 only because the part 'alike' names reading to the end. Keep it, or take the instruction out of the task?
+- en-where-spoken l2-c3 (an existing skill-check task) keeps a feedback line on 'Neuseeländisch', and the misconception note counts on it. Should skill checks carry feedback at all, given the no-hints rule?
+- First-person English in Learn screens and speak models still sits in say.en with no speaker, because say cannot carry one. Examples: en-short-dialogues Learn 'Hello! I'm Sam…', en-where-spoken Learn 'Hello! I'm Jack.', en-role-play l1-f4 'Can I have a pizza, please?', en-prepositions l2-c19 'Where's my cup?'. Should these move to audio turns, or should say get a speaker field?
+- Some existing check tasks repeat a Practise story or frame and were left as they are: en-stories l2-c1 and l2-c2 use the l2-n3 and l2-n5 Practise stories, and en-role-play l2-c3 is close to l1-n4. Should existing check tasks also get new stories and frames?
+- Sets with a fixed handful of phrases (en-role-play, en-weather, en-prepositions) can only recombine the same lines, so many quick-check tasks are close to Practise tasks. Are near repeats in quick checks acceptable (lesson-anatomy says quick checks may repeat), or should brief point 15 apply to them too?
+
+### lernjahr-2-fl-1
+
+- Author's question: en-present, en-speak-about-me, en-short-text and en-complete-sentences mark only what a screen can mark. Their summaries say that speaking and free writing are practised and not marked (brief point 14). Is that enough cover for the verbs present, talk and write in the can_do lines? My view: yes, under point 14 as written.
+- Author's question: keep en-daily-life l2-c7 (Year 4, so 'acht oder neun', marked stretch)? It has to be worked out from 'school starts at 4 or 5' and 'Amy is 9 in Year 5'. The answer is right; I kept it.
+- Author's question on new phrases: I removed 'the thirty-first of October' from en-special-days l2-c19. I kept 'Excuse me' in en-time l2-c8 as an everyday classroom phrase in Lernjahr 2. Drop it if a plainer line is wanted.
+- Strictness of the FL near-repeat rule: listening tasks that hear one sentence and tap a picture or clock share a frame with Practise even when the words and options differ, for example en-time l2-c2 and l2-c14, en-numbers-to-100 l2-c1, en-special-days l2-c1 and en-video l2-c5. I kept those because their options differ (point 15 needs the same options and answer). Should the FL rule ('only swaps one word in a Practise sentence frame') also cover listening tasks whose options differ?
+- en-video: in a listening skill the clip's words stay in audio only, and only the question is on screen. I read point 8 as not asking for the English text on screen here, because showing it would turn the task into reading. Please confirm.
+
+### drills-lit-de
+
+- sound-chart under the current drill format (author's question): drillTask's flash shows the letter and the child picks it from two other letters. That tests letter recognition, not using the chart. Adding `type` or `say` does not fix it. In drillTask both set _sayWord, so the app would speak "M" and give away the answer on a "___ wie Maus." gap. Options: (a) keep flash only for now; (b) a new item format with a picture or bank sound (the same decision as the foreign-language item format) that shows the field picture and asks for the letter; (c) give `type` a mode that does not speak the word. Which one?
+- Should function-words leave out the 17 words it shares with sight-words-easy (der, die, das, ein, eine, auf, an, im, in, mit, zu, und, nicht, ist, sind, hat, sie)? The author kept them because the skill's can-do line and parts name them. As reviewer I agree with keeping them unless the backend treats a word shared by two banks as one item.
+- core-vocabulary uses `Hause` as an item (from the lesson's "nach Hause"). In the say format the voice speaks "Hause" on its own, which sounds odd. Should the item stay as it is, or should drills allow a short phrase as the word?
+- sight-words-longer sentences are not shown in the flash or choose formats. Are they still worth narrating, or only once a later format uses them?
+
+### drills-math-1
+
+- double-halve (de-DE): the halves are written 'n ÷ 2', which the app shows as 'n : 2'. In de-DE, double-halve (curricula/de-DE.yaml line 167) comes before mult-div.div-meaning (line 191), so a Klasse 2 child sees a sign that has not been taught. The lessons always write 'Die Hälfte von 46'. In en-GB, div-meaning comes in Year 1, so the sign is known there. Options: keep the halves; drop them until an item format can phrase the question ('Die Hälfte von 46' / 'Half of 46'); or add a text field to drill items in drillTask and drills-check.mjs. I left the halves in because removing them would leave half of the 'I can' line uncovered.
+- complement: the lessons only ever ask for the missing number in an addition ('64 + _ = 100', '37 + _ = 40') and show no subtraction. The bank asks '100 − 35' instead. In de-DE, subtracting across a ten (sub-two-digit) comes after this skill, so the fives items rely on the child using the inverse. The current format cannot hold a gap: factValue reads '35 + _ = 100' as 135, and drillTask always adds ' = _'. A gap item format, which needs changes to drillTask and factValue, would match the lessons and also allow the next-ten pairs (37 + _ = 40), which the bank leaves out now.
+- complement has only 19 items (pairs to 100 in tens and fives, as the plan's table says). Should it grow to every pair to 100, or take the next-ten pairs once a gap format exists?
+- add-to-10 in Reception (ages 4 to 5, no reading): is the type format right for children of that age, or should that band get choose and timed only? A related detail in drillTask: in choose, the near miss answer + 1 can offer 11 for '9 + 1', which is above Reception's range of 10.
+
+### drills-math-2
+
+- table-11-12 is placed only in en-GB Year 4, so its 6-7 target is never used. Should its 8-10 target be 6 seconds instead of 5? The Year 4 Multiplication Tables Check allows 6 seconds per question, and 12 × 7 and 12 × 9 are harder than the facts to 10 × 10.
+- all-tables and div-facts include the ×1 and ÷1 facts. Keep them for completeness, or drop them so a session gets more of the harder facts?
+- squares includes the inverse divisions (49 ÷ 7 and so on). In de-DE, squares comes before div-meaning, and neither squares lesson set uses division. This follows the table-3-6-9 and table-7 banks, which also include division before div-meaning, so I kept it. Should a squares bank keep the divisions, or hold only the 10 squares?

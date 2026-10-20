@@ -22,6 +22,11 @@ metadata:
   forms: [picture, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: long-ie, what: { de: "das lange i als ie schreiben (Biene, Spiel)", en: "writing the long i as ie (Biene, Spiel)" } }
+    - { id: short-i, what: { de: "das kurze i als i schreiben (Fisch, Kind)", en: "writing the short i as i (Fisch, Kind)" } }
+    - { id: exceptions, what: { de: "Merkwörter mit langem i ohne e (Igel, Tiger, Kino)", en: "memory words with a long i and no e (Igel, Tiger, Kino)" } }
+    - { id: ih, what: { de: "Merkwörter mit ih (ihr, ihm, ihn)", en: "memory words with ih (ihr, ihm, ihn)" } }
   misconceptions:
     - id: i-for-ie
       what: Writes a plain i for a long i (Brif, Bine)
@@ -226,6 +231,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -247,6 +253,29 @@ lessons:
             say: "Das Spiel. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Spiel" }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "ie oder i?"
+            say: "Das Kissen. Was fehlt?"
+            frame: "K_ssen"
+            options: ["i", "ie"]
+            answer: ["i"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Der Lieferwagen. Welches Wort ist richtig geschrieben?"
+            show: { object: van }
+            options: ["Lieferwagen", "Liferwagen", "Liehferwagen"]
+            answer: "Lieferwagen"
+            option_audio: false
+          - id: l1-c6
+            type: audio_choice
+            text: "Ist das i kurz oder lang?"
+            say: "Hör zu. Ist das i kurz oder lang?"
+            audio: { de: "Schief." }
+            options: ["kurz", "lang"]
+            keep_order: true
+            answer: "lang"
 
   - n: 2
     title: { de: "Ausnahmen", en: "Exceptions" }
@@ -424,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: long-ie
             type: fill_in_blank
             text: "i, ie oder ih?"
             say: "Das Ziel. Was fehlt?"
@@ -433,6 +464,7 @@ lessons:
             options: ["ie", "i", "ih"]
             answer: ["ie"]
           - id: l2-c2
+            part: short-i
             type: fill_in_blank
             text: "i oder ie?"
             say: "Der Wind. Was fehlt?"
@@ -440,12 +472,14 @@ lessons:
             options: ["i", "ie"]
             answer: ["i"]
           - id: l2-c3
+            part: exceptions
             type: multiple_choice
             text: "Welches Wort hat ein langes i ohne ie?"
             say: "Welches Wort hat ein langes i ohne ie?"
             options: ["die Apfelsine", "die Kirsche", "der Spiegel"]
             answer: "die Apfelsine"
           - id: l2-c4
+            part: ih
             type: fill_in_blank
             text: "i, ie oder ih?"
             say: "Ihnen. Was fehlt?"
@@ -453,8 +487,137 @@ lessons:
             options: ["Ih", "Ie", "I"]
             answer: ["Ih"]
           - id: l2-c5
+            part: exceptions
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Der Tiger. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Tiger" }
             answer: true
+          - id: l2-c6
+            part: long-ie
+            type: fill_in_blank
+            text: "ie oder i?"
+            say: "Das Wasser ist tief. Was fehlt?"
+            frame: "t_f"
+            options: ["ie", "i"]
+            answer: ["ie"]
+          - id: l2-c7
+            part: long-ie
+            type: text_input
+            keyboard: letters
+            text: "Schreib das fehlende Wort.\n\nIm Winter _ ich an den Händen."
+            say: "Im Winter friere ich an den Händen. Schreib das Wort friere."
+            answer: "friere"
+          - id: l2-c8
+            part: long-ie
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Riechen. Die Blumen riechen gut. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "richen" }
+            answer: false
+          - id: l2-c9
+            part: long-ie
+            type: multiple_choice
+            text: "Papa _ den Kinderwagen. Welches Wort ist richtig geschrieben?"
+            say: "Papa schiebt den Kinderwagen. Welches Wort ist richtig geschrieben?"
+            options: ["schiebt", "schibt", "schihbt"]
+            answer: "schiebt"
+            option_audio: false
+          - id: l2-c10
+            part: short-i
+            type: fill_in_blank
+            text: "ie oder i?"
+            say: "Der Finger. Was fehlt?"
+            frame: "F_nger"
+            options: ["i", "ie"]
+            answer: ["i"]
+          - id: l2-c11
+            part: short-i
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Das Licht. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Liecht" }
+            answer: false
+          - id: l2-c12
+            part: short-i
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Das Schiff. Welches Wort ist richtig geschrieben?"
+            show: { object: ship }
+            options: ["Schiff", "Schieff", "Schihff"]
+            answer: "Schiff"
+            option_audio: false
+          - id: l2-c13
+            part: short-i
+            type: sorting
+            text: "ie oder i? Sortiere die Bilder."
+            say: "Tippe auf die Bilder und hör die Wörter. Schreibt man sie mit ie oder mit i? Sortiere."
+            bins:
+              - { id: ie, show: { text: "ie" }, say: "ie" }
+              - { id: i, show: { text: "i" }, say: "i" }
+            options:
+              - { object: church, bin: i }
+              - { object: ring, bin: i }
+              - { object: mirror, bin: ie }
+              - { object: fly, bin: ie }
+          - id: l2-c14
+            part: exceptions
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Die Kinokarte. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Kienokarte" }
+            answer: false
+          - id: l2-c15
+            part: exceptions
+            type: fill_in_blank
+            text: "i, ie oder ih?"
+            say: "Die Igelfamilie wohnt unter dem Laub. Was fehlt?"
+            frame: "die _gelfamilie"
+            options: ["I", "Ie", "Ih"]
+            answer: ["I"]
+          - id: l2-c16
+            part: exceptions
+            type: sorting
+            text: "Mit ie oder ohne e? Sortiere die Bilder."
+            say: "Tippe auf die Bilder und hör die Wörter. Alle haben ein langes i. Schreibt man es mit ie oder ohne e? Sortiere."
+            bins:
+              - { id: ie, show: { text: "mit ie" }, say: "mit ie" }
+              - { id: plain, show: { text: "ohne e" }, say: "ohne e" }
+            options:
+              - { object: crocodile, bin: plain }
+              - { object: hedgehog, bin: plain }
+              - { object: goat, bin: ie }
+              - { object: van, bin: ie }
+          - id: l2-c17
+            part: ih
+            type: fill_in_blank
+            text: "i, ie oder ih?"
+            say: "Lea spielt mit ihrem Bruder. Was fehlt?"
+            frame: "Lea spielt mit _rem Bruder."
+            options: ["ih", "ie", "i"]
+            answer: ["ih"]
+          - id: l2-c18
+            part: ih
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Ihre. Das ist ihre Tasche. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "ihre" }
+            answer: true
+          - id: l2-c19
+            part: ih
+            type: multiple_choice
+            text: "Welcher Satz ist richtig geschrieben?"
+            say: "Ich gebe ihm den Ball. Welcher Satz ist richtig geschrieben?"
+            options: ["Ich gebe ihm den Ball.", "Ich gebe iem den Ball.", "Ich gebe iehm den Ball."]
+            answer: "Ich gebe ihm den Ball."
+            option_audio: false
+          - id: l2-c20
+            part: ih
+            type: matching
+            text: "Was fehlt? Verbinde."
+            say: "Lies die Wörter mit Lücke. Was fehlt: ie, i oder ih? Verbinde."
+            pairs:
+              - { left: { text: "R_se" }, right: { text: "ie" } }
+              - { left: { text: "T_ger" }, right: { text: "i" } }
+              - { left: { text: "Ist das _r Hund?" }, right: { text: "ih" } }
+            option_audio: false

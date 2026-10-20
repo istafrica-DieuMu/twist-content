@@ -22,6 +22,11 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: question-word, what: { de: "das Fragewort wählen, das zur Antwort passt", en: choosing the question word that fits the answer } }
+    - { id: verb-first, what: { de: Ja-Nein-Fragen mit dem Verb vorn bilden, en: building yes-no questions with the verb first } }
+    - { id: verb-place, what: { de: "sehen, wo in einer Frage das Verb steht", en: seeing where the verb stands in a question } }
+    - { id: kinds, what: { de: Fragen mit und ohne Fragewort unterscheiden, en: telling questions with and without a question word apart } }
   misconceptions:
     - id: wrong-question-word
       what: Picks a question word that does not fit the answer (Wo? for a time)
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -225,6 +231,26 @@ lessons:
             say: "Lies die Karte. Passt die Frage zur Antwort?"
             show: { drawn: letter-card, text: "Wer singt so schön? Lea." }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "_ liegt im Korb? Ein Apfel."
+            say: "Welches Fragewort passt? … liegt im Korb? Die Antwort ist: Ein Apfel."
+            options: ["Was", "Wer", "Wann"]
+            answer: "Was"
+          - id: l1-c5
+            type: matching
+            text: "Was passt zusammen?"
+            say: "Verbinde jede Frage mit ihrer Antwort."
+            pairs:
+              - { left: { text: "Wer backt das Brot?" }, right: { text: "Der Bäcker." } }
+              - { left: { text: "Wann ist Pause?" }, right: { text: "Um zehn Uhr." } }
+              - { left: { text: "Wo schläft der Bär?" }, right: { text: "In der Höhle." } }
+          - id: l1-c6
+            type: true_false
+            text: "Passt die Frage zur Antwort?"
+            say: "Lies die Karte. Passt die Frage zur Antwort?"
+            show: { drawn: letter-card, text: "Wie heißt deine Schwester? Im Garten." }
+            answer: false
 
   - n: 2
     title: { de: "Fragen ohne Fragewort", en: "Questions without a question word" }
@@ -399,14 +425,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: question-word
             type: multiple_choice
             text: "_ ist meine Brille? Auf dem Tisch."
             say: "Welches Fragewort passt? … ist meine Brille? Die Antwort ist: Auf dem Tisch."
             options: ["Wo", "Wann", "Wer"]
             answer: "Wo"
           - id: l2-c2
+            part: verb-first
             type: ordering
             text: "Bau die Frage: „Paul hat einen Roller.“"
             say: "Mach aus dem Satz eine Frage: Paul hat einen Roller."
@@ -415,6 +444,7 @@ lessons:
             answer: ["Hat", "Paul", "einen Roller?"]
             option_audio: false
           - id: l2-c3
+            part: verb-first
             type: multiple_choice
             text: "„Das Baby lacht.“ Bei welcher Frage steht das Verb vorn?"
             say: "Der Satz heißt: Das Baby lacht. Bei welcher Frage steht das Verb vorn?"
@@ -422,14 +452,136 @@ lessons:
             answer: "Lacht das Baby?"
             option_audio: false
           - id: l2-c4
+            part: question-word
             type: true_false
             text: "Passt die Frage zur Antwort?"
             say: "Lies die Karte. Passt die Frage zur Antwort?"
             show: { drawn: letter-card, text: "Wo bist du geboren? Im Winter." }
             answer: false
           - id: l2-c5
+            part: kinds
             type: multiple_choice
             text: "Welche Antwort passt? „Fährst du mit dem Rad?“"
             say: "Fährst du mit dem Rad? Welche Antwort passt?"
             options: ["Ja, heute schon.", "Mein Bruder.", "Um acht Uhr."]
             answer: "Ja, heute schon."
+          - id: l2-c6
+            part: question-word
+            type: multiple_choice
+            text: "_ macht ihr in den Ferien? Wir zelten am See."
+            say: "Welches Fragewort passt? … macht ihr in den Ferien? Die Antwort ist: Wir zelten am See."
+            options: ["Was", "Wo", "Wer"]
+            answer: "Was"
+          - id: l2-c7
+            part: question-word
+            type: matching
+            text: "Welche Antwort gehört zu welcher Frage?"
+            say: "Lies die Fragen und die Antworten. Welche Antwort gehört zu welcher Frage? Verbinde sie."
+            pairs:
+              - { left: { text: "Wann beginnt der Film?" }, right: { text: "Um vier Uhr." } }
+              - { left: { text: "Wer hat das Tor geschossen?" }, right: { text: "Jonas." } }
+              - { left: { text: "Wie heißt deine Katze?" }, right: { text: "Minka." } }
+              - { left: { text: "Wo ist der Schlüssel?" }, right: { text: "In der Tasche." } }
+          - id: l2-c8
+            part: question-word
+            type: true_false
+            text: "Passt die Frage zur Antwort?"
+            say: "Lies die Karte. Passt die Frage zur Antwort?"
+            show: { drawn: letter-card, text: "Wann fahrt ihr nach Italien? Mit dem Auto." }
+            answer: false
+          - id: l2-c9
+            part: verb-first
+            type: ordering
+            text: "Bau die Frage: „Die Kinder spielen im Garten.“"
+            say: "Mach aus dem Satz eine Frage: Die Kinder spielen im Garten."
+            options: ["im Garten?", "die Kinder", "Spielen"]
+            slot_count: 3
+            answer: ["Spielen", "die Kinder", "im Garten?"]
+            option_audio: false
+          - id: l2-c10
+            part: verb-first
+            type: fill_in_blank
+            text: "Aus „Du kannst pfeifen“ wird eine Frage. Welches Wort steht vorn?"
+            say: "Aus dem Satz: Du kannst pfeifen, wird eine Frage. Welches Wort steht vorn?"
+            frame: "_ du pfeifen?"
+            options: ["Kannst", "Du", "Pfeifen"]
+            answer: ["Kannst"]
+            option_audio: false
+          - id: l2-c11
+            part: verb-first
+            type: ordering
+            text: "Bau die Frage: „Mama trinkt am Morgen Kaffee.“"
+            say: "Mach aus dem Satz eine Frage: Mama trinkt am Morgen Kaffee."
+            options: ["am Morgen", "Kaffee?", "Trinkt", "Mama"]
+            slot_count: 4
+            answer: ["Trinkt", "Mama", "am Morgen", "Kaffee?"]
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c12
+            part: verb-place
+            type: highlight_in_text
+            text: "Tippe auf das Verb."
+            say: "Lies die Frage. Tippe auf das Verb."
+            show: { drawn: letter-card, text: "Wo wohnt deine Freundin?" }
+            spans: ["wohnt"]
+          - id: l2-c13
+            part: verb-place
+            type: highlight_in_text
+            text: "Tippe auf das Verb."
+            say: "Lies die Frage. Tippe auf das Verb."
+            show: { drawn: letter-card, text: "Isst du gern Spinat?" }
+            spans: ["Isst"]
+          - id: l2-c14
+            part: verb-place
+            type: true_false
+            text: "Steht das Verb vorn?"
+            say: "Lies die Frage auf der Karte. Steht das Verb ganz vorn?"
+            show: { drawn: letter-card, text: "Bist du schon müde?" }
+            answer: true
+          - id: l2-c15
+            part: verb-place
+            type: true_false
+            text: "Steht das Verb vorn?"
+            say: "Lies die Frage auf der Karte. Steht das Verb ganz vorn?"
+            show: { drawn: letter-card, text: "Dein Bruder spielt Gitarre?" }
+            answer: false
+          - id: l2-c16
+            part: verb-place
+            type: multiple_choice
+            text: "„Wann kommt der Zug?“ Wo steht das Verb?"
+            say: "Lies die Frage: Wann kommt der Zug? Wo steht das Verb?"
+            options: ["gleich nach dem Fragewort", "ganz am Ende", "vor dem Fragewort"]
+            answer: "gleich nach dem Fragewort"
+          - id: l2-c17
+            part: kinds
+            type: sorting
+            text: "Mit oder ohne Fragewort?"
+            say: "Sortiere die Fragen: mit Fragewort oder ohne Fragewort?"
+            bins:
+              - { id: with, show: { text: "mit Fragewort" }, say: "mit Fragewort" }
+              - { id: without, show: { text: "ohne Fragewort" }, say: "ohne Fragewort" }
+            options:
+              - { text: "Wer kocht heute?", bin: with }
+              - { text: "Kochst du heute?", bin: without }
+              - { text: "Wie spät ist es?", bin: with }
+              - { text: "Ist es schon spät?", bin: without }
+          - id: l2-c18
+            part: kinds
+            type: multiple_choice
+            text: "Welche Antwort passt? „Wo ist dein Ranzen?“"
+            say: "Wo ist dein Ranzen? Welche Antwort passt?"
+            options: ["Im Flur.", "Ja.", "Nein, danke."]
+            answer: "Im Flur."
+          - id: l2-c19
+            part: kinds
+            type: multiple_choice
+            text: "Auf welche Frage antwortest du mit Ja oder Nein?"
+            say: "Lies die drei Fragen. Auf welche Frage antwortest du mit Ja oder Nein?"
+            options: ["Spielst du gern Fußball?", "Wer spielt Fußball?", "Wo spielt ihr Fußball?"]
+            answer: "Spielst du gern Fußball?"
+          - id: l2-c20
+            part: kinds
+            type: true_false
+            text: "Auf die Frage „Hast du Hunger?“ kann man mit „Ja“ antworten. Stimmt das?"
+            say: "Auf die Frage: Hast du Hunger?, kann man mit Ja antworten. Stimmt das?"
+            answer: true

@@ -25,6 +25,10 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: things, what: { de: Möbel und Dinge im Haus verstehen und benennen, en: understanding and naming furniture and things at home } }
+    - { id: rooms, what: { de: die Zimmer verstehen und benennen, en: understanding and naming the rooms } }
+    - { id: where, what: { de: "sagen und verstehen, in welchem Zimmer etwas ist", en: saying and understanding which room something is in } }
   misconceptions:
     - id: bedroom-bathroom
       what: Mixes up bedroom and bathroom because they sound alike
@@ -100,6 +104,7 @@ lessons:
                   - "„Chair“ ist der Stuhl."
               - id: l1-f3
                 type: true_false
+                text: "Passt das Bild zum Wort?"
                 say: { de: "Hör zu. Passt das Bild?", en: "Mirror." }
                 show: { object: mirror }
                 answer: true
@@ -138,6 +143,7 @@ lessons:
                 hints: ["„Oven“ ist der Ofen in der Küche."]
               - id: l1-s2
                 type: true_false
+                text: "Passt das Bild zum Wort?"
                 say: { de: "Hör zu. Passt das Bild?", en: "Clock." }
                 show: { object: telephone }
                 answer: false
@@ -185,6 +191,7 @@ lessons:
                 answer: bed
               - id: l1-n3
                 type: true_false
+                text: "Passt das Bild zum Wort?"
                 say: { de: "Hör zu. Passt das Bild?", en: "Table." }
                 show: { object: table }
                 answer: true
@@ -208,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -217,6 +225,7 @@ lessons:
             answer: clock
           - id: l1-c2
             type: true_false
+            text: "Passt das Bild zum Wort?"
             say: { de: "Hör zu. Passt das Bild?", en: "Oven." }
             show: { object: bed }
             answer: false
@@ -226,6 +235,27 @@ lessons:
             audio: { en: "Chair." }
             options: [{ object: chair }, { object: bed }, { object: oven }]
             answer: chair
+          - id: l1-c4
+            type: multiple_choice
+            option_audio: false
+            text: "Wie heißt das auf Englisch?"
+            say: { de: "Wie heißt das auf Englisch?" }
+            show: { object: mirror }
+            options: ["lamp", "mirror", "clock"]
+            answer: "mirror"
+          - id: l1-c5
+            type: true_false
+            text: "Schläfst du darin?"
+            say: { de: "Hör zu. Schläfst du darin?" }
+            audio: { en: "Table." }
+            answer: false
+          - id: l1-c6
+            type: audio_choice
+            text: "Was heißt das auf Deutsch?"
+            say: { de: "Hör zu. Was heißt das auf Deutsch?" }
+            audio: { en: "Mirror." }
+            options: ["die Uhr", "das Bett", "der Spiegel"]
+            answer: "der Spiegel"
 
   - n: 2
     title: { de: "Die Zimmer", en: "The rooms" }
@@ -243,6 +273,7 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: true_false
+            text: "Passt das Bild zum Wort?"
             say: { de: "Hör zu. Passt das Bild?", en: "Bed." }
             show: { object: bed }
             answer: true
@@ -282,8 +313,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "Wo ist das Bett?"
                 say: { de: "Hör zu. Wo ist das Bett?" }
-                audio: { en: "Where's the bed? It's in the bedroom." }
+                audio: { turns: [{ en: "Where's the bed?", speaker: female }, { en: "It's in the bedroom.", speaker: male }] }
                 options: [{ object: bedroom }, { object: bathroom }, { object: kitchen }]
                 answer: bedroom
                 feedback:
@@ -295,7 +327,7 @@ lessons:
               - id: l2-f3
                 type: ordering
                 option_audio: false
-                text: "Bring die Wörter in die richtige Reihenfolge."
+                text: "Bau den Satz: Der Tisch ist in der Küche."
                 say: { de: "Bau den Satz: Der Tisch ist in der Küche." }
                 options: ["is", "The table", "the kitchen.", "in"]
                 slot_count: 4
@@ -336,14 +368,15 @@ lessons:
                 hints: ["„Living“ kommt von „live“, wohnen."]
               - id: l2-s2
                 type: true_false
-                text: "The oven is in the bathroom."
+                text: "„The oven is in the bathroom.“ Stimmt das?"
                 say: { de: "Lies den Satz. Stimmt das?" }
                 answer: false
                 hints: ["Wo steht ein Ofen zum Kochen?"]
               - id: l2-s3
                 type: audio_choice
+                text: "Wo ist das Telefon?"
                 say: { de: "Hör zu. Wo ist das Telefon?" }
-                audio: { en: "Mum, where's the telephone? It's in the living room." }
+                audio: { turns: [{ en: "Mum, where's the telephone?", speaker: male }, { en: "It's in the living room.", speaker: female }] }
                 options: [{ object: living-room }, { object: kitchen }, { object: garden }]
                 answer: living-room
                 hints: ["Hör auf Mamas Antwort."]
@@ -358,7 +391,7 @@ lessons:
               - id: l2-s5
                 type: ordering
                 option_audio: false
-                text: "Bring die Wörter in die richtige Reihenfolge."
+                text: "Bau den Satz: Das Bett ist im Schlafzimmer."
                 say: { de: "Bau den Satz: Das Bett ist im Schlafzimmer." }
                 options: ["in", "the bedroom.", "The bed", "is"]
                 slot_count: 4
@@ -375,8 +408,9 @@ lessons:
                 answer: bathroom
               - id: l2-n2
                 type: audio_choice
+                text: "Wo ist der Ball?"
                 say: { de: "Hör zu. Wo ist der Ball?" }
-                audio: { en: "Where's my ball? It's in the garden." }
+                audio: { turns: [{ en: "Where's my ball?", speaker: male }, { en: "It's in the garden.", speaker: female }] }
                 options: [{ object: garden }, { object: living-room }, { object: kitchen }]
                 answer: garden
               - id: l2-n3
@@ -389,41 +423,47 @@ lessons:
               - id: l2-n4
                 type: ordering
                 option_audio: false
-                text: "Bring die Wörter in die richtige Reihenfolge."
+                text: "Bau den Satz: Die Lampe ist im Wohnzimmer."
                 say: { de: "Bau den Satz: Die Lampe ist im Wohnzimmer." }
                 options: ["the living room.", "is", "The lamp", "in"]
                 slot_count: 4
                 answer: ["The lamp", "is", "in", "the living room."]
               - id: l2-n5
                 type: true_false
-                text: "The bed is in the bedroom."
+                text: "„The bed is in the bedroom.“ Stimmt das?"
                 say: { de: "Lies den Satz. Stimmt das?" }
                 answer: true
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: rooms
             type: audio_choice
             say: { de: "Hör zu. Tippe auf das Zimmer." }
             audio: { en: "Bedroom." }
             options: [{ object: bedroom }, { object: bathroom }, { object: kitchen }]
             answer: bedroom
           - id: l2-c2
+            part: where
             type: audio_choice
+            text: "Wo ist die Katze?"
             say: { de: "Hör zu. Wo ist die Katze?" }
-            audio: { en: "Where's the cat? She's in the kitchen." }
+            audio: { turns: [{ en: "Where's the cat?", speaker: male }, { en: "She's in the kitchen.", speaker: female }] }
             options: [{ object: kitchen }, { object: bathroom }, { object: garden }]
             answer: kitchen
           - id: l2-c3
+            part: where
             type: ordering
             option_audio: false
-            text: "Bring die Wörter in die richtige Reihenfolge."
+            text: "Bau den Satz: Der Spiegel ist im Badezimmer."
             say: { de: "Bau den Satz: Der Spiegel ist im Badezimmer." }
             options: ["The mirror", "in", "the bathroom.", "is"]
             slot_count: 4
             answer: ["The mirror", "is", "in", "the bathroom."]
           - id: l2-c4
+            part: rooms
             type: multiple_choice
             option_audio: false
             text: "Wo badest du?"
@@ -431,7 +471,140 @@ lessons:
             options: ["in the bathroom", "in the bedroom", "in the kitchen"]
             answer: "in the bathroom"
           - id: l2-c5
+            part: things
             type: true_false
+            text: "Passt das Bild zum Wort?"
             say: { de: "Hör zu. Passt das Bild?", en: "Lamp." }
             show: { object: lamp }
             answer: true
+          - id: l2-c6
+            part: things
+            type: matching
+            text: "Welches deutsche Wort gehört zu welchem englischen?"
+            say: { de: "Verbinde jedes englische Wort mit dem deutschen." }
+            option_audio: false
+            pairs:
+              - { left: { text: "mirror" }, right: { text: "der Spiegel" } }
+              - { left: { text: "clock" }, right: { text: "die Uhr" } }
+              - { left: { text: "oven" }, right: { text: "der Ofen" } }
+              - { left: { text: "chair" }, right: { text: "der Stuhl" } }
+          - id: l2-c7
+            part: things
+            type: audio_choice
+            text: "Was heißt das auf Deutsch?"
+            say: { de: "Hör zu. Was heißt das auf Deutsch?" }
+            audio: { en: "Clock." }
+            options: ["die Lampe", "die Uhr", "der Spiegel"]
+            answer: "die Uhr"
+          - id: l2-c8
+            part: things
+            type: multiple_choice
+            option_audio: false
+            text: "Wie heißt das auf Englisch?"
+            say: { de: "Wie heißt das auf Englisch?" }
+            show: { object: telephone }
+            options: ["clock", "table", "telephone"]
+            answer: "telephone"
+          - id: l2-c9
+            part: things
+            type: true_false
+            text: "Sitzt du darauf?"
+            say: { de: "Hör zu. Sitzt du darauf?" }
+            audio: { en: "Chair." }
+            answer: true
+          - id: l2-c10
+            part: things
+            type: audio_choice
+            text: "Welches Bild passt?"
+            say: { de: "Hör zu. Welches Bild passt?" }
+            audio: { en: "Oven." }
+            options: [{ object: cupboard }, { object: table }, { object: oven }]
+            answer: oven
+          - id: l2-c11
+            part: things
+            type: multiple_choice
+            option_audio: false
+            text: "Woran siehst du, wie spät es ist?"
+            say: { de: "Woran siehst du, wie spät es ist?" }
+            options: ["mirror", "clock", "bed"]
+            answer: "clock"
+          - id: l2-c12
+            part: rooms
+            type: matching
+            text: "Welches Wort passt zu welchem Zimmer?"
+            say: { de: "Lies die Wörter. Verbinde jedes Wort mit seinem Zimmer." }
+            option_audio: false
+            pairs:
+              - left: { text: "kitchen" }
+                right: { object: kitchen }
+              - left: { text: "bathroom" }
+                right: { object: bathroom }
+              - left: { text: "bedroom" }
+                right: { object: bedroom }
+              - left: { text: "living room" }
+                right: { object: living-room }
+          - id: l2-c13
+            part: rooms
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Zimmer ist das?"
+            say: { de: "Welches Zimmer ist das?" }
+            show: { object: bathroom }
+            options: ["bedroom", "bathroom", "kitchen"]
+            answer: "bathroom"
+          - id: l2-c14
+            part: rooms
+            type: true_false
+            text: "Passt das Wort zum Zimmer?"
+            say: { de: "Hör zu. Passt das Wort zum Zimmer?" }
+            audio: { en: "Kitchen." }
+            show: { object: living-room }
+            answer: false
+          - id: l2-c15
+            part: rooms
+            type: multiple_choice
+            option_audio: false
+            text: "Wo spielst du draußen Fußball?"
+            say: { de: "Wo spielst du draußen Fußball? Lies die Antworten." }
+            options: ["in the kitchen", "in the garden", "in the bathroom"]
+            answer: "in the garden"
+          - id: l2-c16
+            part: where
+            type: audio_choice
+            text: "Wo ist die Lampe?"
+            say: { de: "Hör zu. Wo ist die Lampe?" }
+            audio: { turns: [{ en: "Is the lamp in the kitchen?", speaker: male }, { en: "No, it's in the bedroom.", speaker: female }] }
+            options: [{ object: kitchen }, { object: bedroom }, { object: garden }]
+            answer: bedroom
+          - id: l2-c17
+            part: where
+            type: audio_choice
+            text: "Wo ist die Uhr?"
+            say: { de: "Hör zu. Wo ist die Uhr?" }
+            audio: { en: "The bed is in the bedroom. The clock is in the kitchen." }
+            options: [{ object: bedroom }, { object: kitchen }, { object: bathroom }]
+            answer: kitchen
+          - id: l2-c18
+            part: where
+            type: true_false
+            text: "Ist der Spiegel im Wohnzimmer?"
+            say: { de: "Hör zu. Ist der Spiegel im Wohnzimmer?" }
+            audio: { turns: [{ en: "Where's the mirror?", speaker: female }, { en: "It's in the bathroom.", speaker: male }] }
+            answer: false
+          - id: l2-c19
+            part: where
+            type: multiple_choice
+            option_audio: false
+            text: "Der Tisch steht im Wohnzimmer. Welcher Satz passt?"
+            say: { de: "Der Tisch steht im Wohnzimmer. Welcher Satz passt?" }
+            options: ["The living room is in the table.", "The table is in the living room.", "The table in the living room."]
+            answer: "The table is in the living room."
+          - id: l2-c20
+            part: where
+            type: fill_in_blank
+            option_audio: false
+            text: "Ergänze den Satz: Das Telefon ist im Wohnzimmer."
+            say: { de: "Ergänze den Satz: Das Telefon ist im Wohnzimmer." }
+            frame: "The telephone _ in the _ room."
+            options: ["is", "living", "are", "bath"]
+            answer: ["is", "living"]

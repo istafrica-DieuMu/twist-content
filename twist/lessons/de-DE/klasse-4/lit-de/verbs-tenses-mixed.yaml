@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: name, what: { de: die Zeitform eines Satzes bestimmen, en: naming the tense of a sentence } }
+    - { id: verb-parts, what: { de: die Teile des Verbs im Satz finden, en: finding the parts of the verb in a sentence } }
+    - { id: odd-verb, what: { de: "das Verb finden, das aus der Zeitform des Textes fällt", en: "finding the verb that slips out of the text's tense" } }
+    - { id: fitting-form, what: { de: "die Form einsetzen, die zur Zeitform des Textes passt", en: "putting in the form that fits the text's tense" } }
   misconceptions:
     - id: time-word-decides
       what: Names the Zeitform from a time word instead of the verb (Morgen fahre ich weg. called Futur)
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -240,6 +246,23 @@ lessons:
             say: "Lies den Satz. Welche Zeitform ist das?"
             options: ["Präsens", "Präteritum", "Perfekt", "Futur"]
             answer: "Präteritum"
+          - id: l1-c4
+            type: multiple_choice
+            text: "„Lea spielt mit ihrem Hund.“ Welche Zeitform ist das?"
+            say: "Lies den Satz. Welche Zeitform ist das?"
+            options: ["Präsens", "Präteritum", "Perfekt", "Futur"]
+            answer: "Präsens"
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf beide Teile des Verbs."
+            say: "Der Satz steht im Futur. Tippe auf die zwei Teile des Verbs."
+            show: { drawn: letter-card, text: "Im Winter wird der See zufrieren." }
+            spans: ["wird", "zufrieren"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? Der Satz „Gestern sind wir Schlitten gefahren.“ steht im Präteritum."
+            say: "Gestern sind wir Schlitten gefahren. Steht dieser Satz im Präteritum?"
+            answer: false
 
   - n: 2
     title: { de: Eine Zeitform durchhalten, en: Keeping to one tense }
@@ -408,25 +431,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: name
             type: multiple_choice
             text: "„Der Zug ist pünktlich angekommen.“ Welche Zeitform ist das?"
             say: "Lies den Satz. Welche Zeitform ist das?"
             options: ["Präsens", "Präteritum", "Perfekt", "Futur"]
             answer: "Perfekt"
           - id: l2-c2
+            part: name
             type: true_false
             text: "Stimmt das? Der Satz „Übermorgen fahren wir ans Meer.“ steht im Futur."
             say: "Übermorgen fahren wir ans Meer. Steht dieser Satz im Futur?"
             answer: false
           - id: l2-c3
+            part: odd-verb
             type: highlight_in_text
             text: "Tippe auf das Verb, das nicht passt."
             say: "Die Geschichte steht im Präteritum. Tippe auf das Verb, das nicht passt."
             show: { drawn: letter-card, text: "Der Fuchs schlich zum Hühnerstall. Die Hühner gackern laut. Der Fuchs lief davon." }
             spans: ["gackern"]
           - id: l2-c4
+            part: fitting-form
             type: fill_in_blank
             text: "Ergänze das Verb im Präteritum."
             say: "Setz das Verb im Präteritum ein. Der Junge nahm den Ball und ... ihn weit."
@@ -434,8 +462,124 @@ lessons:
             options: ["warf", "wirft", "werfte"]
             answer: ["warf"]
           - id: l2-c5
+            part: name
             type: multiple_choice
             text: "„Am Abend sang die Amsel im Garten.“ Welche Zeitform ist das?"
             say: "Lies den Satz. Welche Zeitform ist das?"
             options: ["Präsens", "Präteritum", "Perfekt", "Futur"]
             answer: "Präteritum"
+          - id: l2-c6
+            part: name
+            type: multiple_choice
+            text: "„Mama wird uns nach dem Training abholen.“ Welche Zeitform ist das?"
+            say: "Lies den Satz. Welche Zeitform ist das?"
+            options: ["Präsens", "Präteritum", "Perfekt", "Futur"]
+            answer: "Futur"
+          - id: l2-c7
+            part: name
+            type: multiple_choice
+            text: "Welcher Satz steht im Futur?"
+            say: "Lies die Sätze. Welcher Satz steht im Futur?"
+            options: ["Im Herbst sammeln wir Kastanien.", "Im Herbst werden wir Kastanien sammeln.", "Im Herbst haben wir Kastanien gesammelt."]
+            answer: "Im Herbst werden wir Kastanien sammeln."
+            option_audio: false
+          - id: l2-c8
+            part: verb-parts
+            type: highlight_in_text
+            text: "Tippe auf beide Teile des Verbs."
+            say: "Der Satz steht im Perfekt. Tippe auf die zwei Teile des Verbs."
+            show: { drawn: letter-card, text: "Gestern hat Emma ihr Zimmer gestrichen." }
+            spans: ["hat", "gestrichen"]
+          - id: l2-c9
+            part: verb-parts
+            type: highlight_in_text
+            text: "Tippe auf beide Teile des Verbs."
+            say: "Der Satz steht im Futur. Tippe auf die zwei Teile des Verbs."
+            show: { drawn: letter-card, text: "Gleich werden wir den Kuchen anschneiden." }
+            spans: ["werden", "anschneiden"]
+          - id: l2-c10
+            part: verb-parts
+            type: sorting
+            text: "Hat das Verb einen Teil oder zwei Teile?"
+            say: "Lies die Sätze. Hat das Verb einen Teil oder zwei Teile? Ordne sie zu."
+            option_audio: false
+            bins:
+              - { id: one, show: { text: "ein Teil" }, say: "ein Teil" }
+              - { id: two, show: { text: "zwei Teile" }, say: "zwei Teile" }
+            options:
+              - { text: "Der Hund bellte.", bin: one }
+              - { text: "Wir sind gerannt.", bin: two }
+              - { text: "Ich werde fragen.", bin: two }
+              - { text: "Opa schläft.", bin: one }
+          - id: l2-c11
+            part: verb-parts
+            type: true_false
+            text: "Stimmt das? Im Satz „Wir haben im Garten gezeltet.“ hat das Verb zwei Teile."
+            say: "Wir haben im Garten gezeltet. Hat das Verb in diesem Satz zwei Teile?"
+            answer: true
+          - id: l2-c12
+            part: verb-parts
+            type: multiple_choice
+            text: "„Wir werden im Sommer ein Floß bauen.“ Welche Wörter gehören zum Verb?"
+            say: "Lies den Satz. Welche Wörter gehören zum Verb?"
+            options: ["wir und bauen", "werden und bauen", "werden und Sommer"]
+            answer: "werden und bauen"
+          - id: l2-c13
+            part: odd-verb
+            type: highlight_in_text
+            text: "Tippe auf das Verb, das nicht passt."
+            say: "Die Geschichte steht im Präteritum. Tippe auf das Verb, das nicht passt."
+            show: { drawn: letter-card, text: "Opa erzählte von früher. Damals gab es kein Handy. Die Kinder spielen den ganzen Tag draußen." }
+            spans: ["spielen"]
+          - id: l2-c14
+            part: odd-verb
+            type: highlight_in_text
+            text: "Der Text steht im Präsens. Ein Verb passt nicht. Tippe auf seine zwei Teile."
+            say: "Der Text steht im Präsens. Ein Verb passt nicht. Tippe auf seine zwei Teile."
+            show: { drawn: letter-card, text: "Lukas wacht auf. Er hat sich gestreckt. Dann steht er auf." }
+            spans: ["hat", "gestreckt"]
+          - id: l2-c15
+            part: odd-verb
+            type: true_false
+            text: "Stimmt das? Der Text „Der Wind heulte. Die Fenster klapperten. Wir hatten Angst.“ bleibt in einer Zeitform."
+            say: "Der Wind heulte. Die Fenster klapperten. Wir hatten Angst. Bleibt der Text in einer Zeitform?"
+            answer: true
+          - id: l2-c16
+            part: odd-verb
+            type: multiple_choice
+            text: "Welcher Text bleibt im Präsens?"
+            say: "Welcher Text bleibt in einer Zeitform, dem Präsens?"
+            option_audio: false
+            options: ["Ich wasche mich. Dann putzte ich die Zähne.", "Ich wasche mich. Dann putze ich die Zähne.", "Ich wusch mich. Dann putze ich die Zähne."]
+            answer: "Ich wasche mich. Dann putze ich die Zähne."
+          - id: l2-c17
+            part: fitting-form
+            type: multiple_choice
+            text: "Der Ritter zog sein Schwert. Dann _ er gegen den Drachen."
+            say: "Welche Form von kämpfen passt in die Geschichte im Präteritum?"
+            options: ["kämpft", "kämpfte", "hat gekämpft"]
+            answer: "kämpfte"
+          - id: l2-c18
+            part: fitting-form
+            type: fill_in_blank
+            text: "Ergänze das Verb im Präteritum."
+            say: "Setz das Verb im Präteritum ein. Die Maus sah die Katze und ... schnell weg."
+            frame: "Die Maus sah die Katze und _ schnell weg."
+            options: ["läuft", "laufte", "lief"]
+            answer: ["lief"]
+          - id: l2-c19
+            part: fitting-form
+            type: fill_in_blank
+            text: "Ergänze das Verb im Präsens."
+            say: "Setz das Verb im Präsens ein. Jeden Abend kocht Papa, und wir ... den Tisch."
+            frame: "Jeden Abend kocht Papa, und wir _ den Tisch."
+            options: ["deckten", "decken", "deckt"]
+            answer: ["decken"]
+          - id: l2-c20
+            part: fitting-form
+            type: multiple_choice
+            text: "„Die Sonne schien. Die Vögel singen.“ Ein Verb passt nicht. Wie heißt der zweite Satz richtig?"
+            say: "Die Sonne schien. Die Vögel singen. Ein Verb passt nicht zur Zeitform. Wie heißt der zweite Satz richtig?"
+            options: ["Die Vögel singten.", "Die Vögel sangen.", "Die Vögel haben singen."]
+            answer: "Die Vögel sangen."
+            option_audio: false

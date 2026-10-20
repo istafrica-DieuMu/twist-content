@@ -14,7 +14,9 @@ summary: >
   pictures for a picture dictionary with longer words and double letters
   (rabbit, yellow, giraffe) and ends with the skill check. The model word is
   always on screen. Writing is traced with a finger; the app accepts any
-  ink for now, so the skill check uses the card and choice tasks only.
+  ink for now, so writing by hand is practised in Practise, and the skill
+  check marks what a screen can mark: spotting a wrong copy, laying a word
+  with letter cards, filling missing letters and labelling pictures.
 metadata:
   year: lernjahr-1
   topic: { de: Schreiben, en: Writing }
@@ -26,6 +28,11 @@ metadata:
   forms: [picture, text, drawn]
   drawn: [writing-lines, word-card]
   facets: []
+  parts:
+    - { id: spot, what: { de: eine richtige Abschrift erkennen und Fehler finden, en: recognising a correct copy and finding mistakes } }
+    - { id: build, what: { de: ein Wort Buchstabe für Buchstabe nachlegen, en: laying a word letter by letter } }
+    - { id: gaps, what: { de: fehlende Buchstaben nach der Vorlage ergänzen, en: filling in missing letters from the model } }
+    - { id: label, what: { de: Bilder mit dem richtigen Wort beschriften, en: labelling pictures with the right word } }
   misconceptions:
     - id: writes-as-heard
       what: Writes the word the way it sounds in German (schu for shoe, scool for school) instead of copying it
@@ -176,7 +183,7 @@ lessons:
                 hints: ["Ball endet mit zwei gleichen Buchstaben."]
               - id: l1-s5
                 type: true_false
-                text: "bed  →  bet"
+                text: "Tom schreibt ab: bed  →  bet. Hat er richtig abgeschrieben?"
                 say: { de: "Tom hat das Wort links abgeschrieben. Rechts steht seine Abschrift. Hat er richtig abgeschrieben?" }
                 answer: false
                 hints: ["Vergleiche den letzten Buchstaben."]
@@ -217,12 +224,13 @@ lessons:
                 answer: ["g", "g"]
               - id: l1-n5
                 type: true_false
-                text: "cup  →  cup"
+                text: "Tom schreibt ab: cup  →  cup. Hat er richtig abgeschrieben?"
                 say: { de: "Tom hat das Wort links abgeschrieben. Rechts steht seine Abschrift. Hat er richtig abgeschrieben?" }
                 answer: true
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -243,9 +251,31 @@ lessons:
             answer: ["p", "i", "g"]
           - id: l1-c3
             type: true_false
-            text: "sock  →  sok"
+            text: "Tom schreibt ab: sock  →  sok. Hat er richtig abgeschrieben?"
             say: { de: "Tom hat das Wort links abgeschrieben. Rechts steht seine Abschrift. Hat er richtig abgeschrieben?" }
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            option_audio: false
+            text: "Welcher Buchstabe fehlt?"
+            say: { de: "Oben steht das Wort. Welcher Buchstabe fehlt?" }
+            show: { drawn: word-card, text: "milk" }
+            frame: "mi_k"
+            options: ["l", "i", "c"]
+            answer: ["l"]
+          - id: l1-c5
+            type: multiple_choice
+            option_audio: false
+            text: "Welches Wort ist richtig abgeschrieben?"
+            say: { de: "Oben steht das Wort. Welches Wort ist richtig abgeschrieben?" }
+            show: { drawn: word-card, text: "fish" }
+            options: ["fisch", "fsh", "fish"]
+            answer: "fish"
+          - id: l1-c6
+            type: true_false
+            text: "Tom schreibt ab: sun  →  sun. Hat er richtig abgeschrieben?"
+            say: { de: "Tom hat das Wort links abgeschrieben. Rechts steht seine Abschrift. Hat er richtig abgeschrieben?" }
+            answer: true
 
   - n: 2
     title: { de: "Bilder beschriften", en: "Labelling pictures" }
@@ -380,7 +410,7 @@ lessons:
                 hints: ["Nach tea kommen c und h."]
               - id: l2-s5
                 type: true_false
-                text: "pencil  →  pensil"
+                text: "Lina schreibt ab: pencil  →  pensil. Hat sie richtig abgeschrieben?"
                 say: { de: "Lina hat das Wort links abgeschrieben. Rechts steht ihre Abschrift. Hat sie richtig abgeschrieben?" }
                 answer: false
                 hints: ["Vergleiche die Mitte: c oder s?"]
@@ -421,14 +451,16 @@ lessons:
                 answer: ["f", "f"]
               - id: l2-n5
                 type: true_false
-                text: "banana  →  banana"
+                text: "Lina schreibt ab: banana  →  banana. Hat sie richtig abgeschrieben?"
                 say: { de: "Lina hat das Wort links abgeschrieben. Rechts steht ihre Abschrift. Hat sie richtig abgeschrieben?" }
                 answer: true
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spot
             type: multiple_choice
             option_audio: false
             text: "Welches Wort ist richtig abgeschrieben?"
@@ -437,6 +469,7 @@ lessons:
             options: ["elephant", "elefant", "elephent"]
             answer: "elephant"
           - id: l2-c2
+            part: build
             type: ordering
             option_audio: false
             text: "Leg das Wort mit den Buchstaben nach."
@@ -446,6 +479,7 @@ lessons:
             slot_count: 5
             answer: ["z", "e", "b", "r", "a"]
           - id: l2-c3
+            part: gaps
             type: fill_in_blank
             option_audio: false
             text: "Welcher Buchstabe fehlt?"
@@ -455,11 +489,13 @@ lessons:
             options: ["d", "t", "g"]
             answer: ["d"]
           - id: l2-c4
+            part: spot
             type: true_false
-            text: "butterfly  →  buterfly"
+            text: "Ben schreibt ab: butterfly  →  buterfly. Hat er richtig abgeschrieben?"
             say: { de: "Ben hat das Wort links abgeschrieben. Rechts steht seine Abschrift. Hat er richtig abgeschrieben?" }
             answer: false
           - id: l2-c5
+            part: spot
             type: multiple_choice
             option_audio: false
             text: "Welches Wort ist richtig abgeschrieben?"
@@ -467,3 +503,140 @@ lessons:
             show: { drawn: word-card, text: "strawberry" }
             options: ["strawberry", "strawbery", "strowberry"]
             answer: "strawberry"
+          - id: l2-c6
+            part: spot
+            type: true_false
+            text: "Ben schreibt ab: orange  →  orange. Hat er richtig abgeschrieben?"
+            say: { de: "Ben hat das Wort links abgeschrieben. Rechts steht seine Abschrift. Hat er richtig abgeschrieben?" }
+            answer: true
+          - id: l2-c7
+            part: spot
+            type: multiple_choice
+            option_audio: false
+            text: "Vorlage: school. Mias Abschrift: schol. Wo ist der Fehler?"
+            say: { de: "Links steht die Vorlage, rechts Mias Abschrift. Wo ist der Fehler?" }
+            options: ["Ein h fehlt.", "Ein o fehlt.", "Ein c fehlt."]
+            answer: "Ein o fehlt."
+          - id: l2-c8
+            part: build
+            type: ordering
+            option_audio: false
+            text: "Leg das Wort mit den Buchstaben nach."
+            say: { de: "Beschrifte den Baum. Leg das Wort mit den Buchstaben nach." }
+            show: { drawn: word-card, text: "tree" }
+            options: ["e", "r", "t", "e"]
+            slot_count: 4
+            answer: ["t", "r", "e", "e"]
+          - id: l2-c9
+            part: build
+            type: ordering
+            option_audio: false
+            text: "Leg das Wort mit den Buchstaben nach."
+            say: { de: "Beschrifte den Schuh. Leg das Wort mit den Buchstaben nach." }
+            show: { drawn: word-card, text: "shoe" }
+            options: ["o", "e", "s", "h"]
+            slot_count: 4
+            answer: ["s", "h", "o", "e"]
+          - id: l2-c10
+            part: build
+            type: ordering
+            option_audio: false
+            text: "Leg das Wort mit den Buchstaben nach."
+            say: { de: "Leg das Farbwort mit den Buchstaben nach." }
+            show: { drawn: word-card, text: "yellow" }
+            options: ["l", "w", "y", "o", "e", "l"]
+            slot_count: 6
+            answer: ["y", "e", "l", "l", "o", "w"]
+          - id: l2-c11
+            part: build
+            type: ordering
+            option_audio: false
+            text: "Leg das Wort mit den Buchstaben nach."
+            say: { de: "Beschrifte den Bleistift. Leg das Wort mit den Buchstaben nach." }
+            show: { drawn: word-card, text: "pencil" }
+            options: ["c", "l", "p", "i", "n", "e"]
+            slot_count: 6
+            answer: ["p", "e", "n", "c", "i", "l"]
+          - id: l2-c12
+            part: gaps
+            type: fill_in_blank
+            option_audio: false
+            text: "Welche Buchstaben fehlen?"
+            say: { de: "Oben steht das Wort. Welche Buchstaben fehlen?" }
+            show: { drawn: word-card, text: "rabbit" }
+            frame: "ra__it"
+            options: ["b", "p", "d"]
+            answer: ["b", "b"]
+          - id: l2-c13
+            part: gaps
+            type: fill_in_blank
+            option_audio: false
+            text: "Welche Buchstaben fehlen?"
+            say: { de: "Oben steht das Wort. Welche Buchstaben fehlen?" }
+            show: { drawn: word-card, text: "school" }
+            frame: "sc_oo_"
+            options: ["h", "l", "k"]
+            answer: ["h", "l"]
+          - id: l2-c14
+            part: gaps
+            type: fill_in_blank
+            option_audio: false
+            text: "Welcher Buchstabe fehlt?"
+            say: { de: "Oben steht das Wort. Welcher Buchstabe fehlt?" }
+            show: { drawn: word-card, text: "monkey" }
+            frame: "mon_ey"
+            options: ["c", "k", "g"]
+            answer: ["k"]
+          - id: l2-c15
+            part: gaps
+            type: fill_in_blank
+            option_audio: false
+            text: "Welche Buchstaben fehlen?"
+            say: { de: "Oben steht das Wort. Welche Buchstaben fehlen?" }
+            show: { drawn: word-card, text: "book" }
+            frame: "b__k"
+            options: ["u", "o", "a"]
+            answer: ["o", "o"]
+          - id: l2-c16
+            part: label
+            type: matching
+            text: "Beschrifte die Bilder: Welches Wort gehört zu welchem Bild?"
+            say: { de: "Beschrifte die Bilder. Verbinde jedes Bild mit seinem Wort." }
+            option_audio: false
+            pairs:
+              - { left: { object: cat }, right: { text: "cat" } }
+              - { left: { object: frog }, right: { text: "frog" } }
+              - { left: { object: tree }, right: { text: "tree" } }
+              - { left: { object: fish }, right: { text: "fish" } }
+          - id: l2-c17
+            part: label
+            type: multiple_choice
+            option_audio: false
+            text: "Lina beschriftet das Bild. Die Vorlage ist „monkey“. Welche Beschriftung ist richtig?"
+            say: { de: "Lina beschriftet das Bild mit der Vorlage. Welche Beschriftung ist richtig?" }
+            show: { object: monkey }
+            options: ["monky", "monkey", "monkee"]
+            answer: "monkey"
+          - id: l2-c18
+            part: label
+            type: multiple_choice
+            option_audio: false
+            text: "Ben beschriftet die Jacke. Die Vorlage ist „jacket“. Welche Beschriftung ist richtig?"
+            say: { de: "Ben beschriftet die Jacke mit der Vorlage. Welche Beschriftung ist richtig?" }
+            show: { object: jacket }
+            options: ["jaket", "jackit", "jacket"]
+            answer: "jacket"
+          - id: l2-c19
+            part: label
+            type: true_false
+            text: "Die Vorlage ist „duck“. Lina schreibt „dukc“ unter das Bild. Ist die Beschriftung richtig?"
+            say: { de: "Lina hat das Bild beschriftet. Ist die Beschriftung richtig?" }
+            show: { object: duck }
+            answer: false
+          - id: l2-c20
+            part: label
+            type: true_false
+            text: "Die Vorlage ist „sun“. Ben schreibt „sun“ unter das Bild. Ist die Beschriftung richtig?"
+            say: { de: "Ben hat das Bild beschriftet. Ist die Beschriftung richtig?" }
+            show: { object: sun }
+            answer: true

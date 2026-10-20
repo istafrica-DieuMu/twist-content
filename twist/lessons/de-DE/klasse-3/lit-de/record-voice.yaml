@@ -15,6 +15,9 @@ summary: >
   on, and ends with the skill check. Every lesson records the child's
   voice in speak tasks, which run as the record-and-compare fallback and
   are never scored; the check asks only what the child knows about it.
+  The skill check marks what a screen can mark (the problem and its fix,
+  the place for a pause, the steps and what to practise next); Practise
+  covers recording and improving the child's own voice.
 metadata:
   year: klasse-3
   topic: { de: Vor anderen sprechen, en: Speaking to an audience }
@@ -26,6 +29,10 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: diagnose, what: { de: "hören, was an einer Aufnahme nicht gut ist, und wissen, was hilft (Lautstärke, Aussprache, Tempo)", en: "hearing what is wrong with a recording and knowing what helps (volume, pronunciation, pace)" } }
+    - { id: pauses, what: { de: am Satzende eine Pause machen, en: pausing at the end of a sentence } }
+    - { id: steps, what: { de: "in Schritten aufnehmen, anhören, verbessern und vergleichen", en: "recording, listening, improving and comparing in steps" } }
   misconceptions:
     - id: fast-sounds-good
       what: Thinks fast speaking sounds clever, so leaves out pauses and runs words together
@@ -225,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -243,6 +251,31 @@ lessons:
             text: "Wer deutlich spricht, öffnet beim Sprechen den Mund gut. Stimmt das?"
             say: "Wer deutlich spricht, öffnet beim Sprechen den Mund gut. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Pia hört ihre Aufnahme. Sie spricht laut und deutlich, aber sie macht keine einzige Pause.\n\nWas soll Pia üben?"
+            say: "Lies, was Pia hört. Was soll sie üben?"
+            options: ["am Punkt eine Pause machen", "lauter sprechen", "deutlicher sprechen"]
+            answer: "am Punkt eine Pause machen"
+          - id: l1-c5
+            type: sorting
+            text: "Hilft das beim Sprechen?"
+            say: "Sortiere: Hilft das, damit dich alle verstehen, oder nicht?"
+            bins:
+              - { id: helps, show: { text: "hilft" }, say: "hilft" }
+              - { id: hinders, show: { text: "hilft nicht" }, say: "hilft nicht" }
+            options:
+              - { text: "mit vollem Mund sprechen", bin: hinders }
+              - { text: "jedes Wort zu Ende sprechen", bin: helps }
+              - { text: "die Hand vor den Mund halten", bin: hinders }
+              - { text: "den Text vorher leise lesen", bin: helps }
+            option_audio: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tippe auf das Wort, nach dem du eine Pause machst."
+            say: "Lies die Sätze. Nach welchem Wort machst du eine Pause? Tippe es an."
+            show: { drawn: letter-card, text: "Im Garten blüht der Flieder. Bienen summen um ihn herum." }
+            spans: ["Flieder."]
 
   - n: 2
     title: { de: "Aufnehmen, anhören, verbessern", en: "Record, listen, improve" }
@@ -415,33 +448,153 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: steps
             type: multiple_choice
             text: "Du hast dich aufgenommen, angehört und eine Sache verbessert. Was machst du jetzt?"
             say: "Du hast dich aufgenommen, angehört und eine Sache verbessert. Was machst du jetzt?"
             options: ["noch einmal aufnehmen und vergleichen", "gleich alles andere auch ändern", "die Aufnahme löschen, fertig"]
             answer: "noch einmal aufnehmen und vergleichen"
           - id: l2-c2
+            part: diagnose
             type: multiple_choice
             text: "Sofia hört ihre Aufnahme. Sie ist laut genug und spricht ruhig. Aber statt „haben“ sagt sie „ham“ und statt „gehen“ sagt sie „gehn“.\n\nWas soll Sofia üben?"
             say: "Lies, was Sofia hört. Was soll sie üben?"
             options: ["deutlicher sprechen", "langsamer sprechen", "lauter sprechen"]
             answer: "deutlicher sprechen"
           - id: l2-c3
+            part: pauses
             type: highlight_in_text
             text: "Tippe auf das Wort, nach dem du eine Pause machst."
             say: "Lies die Sätze. Nach welchem Wort machst du eine Pause? Tippe es an."
             show: { drawn: letter-card, text: "Der Bus kommt zu spät. Wir warten im Regen." }
             spans: ["spät."]
           - id: l2-c4
+            part: steps
             type: multiple_choice
             text: "Nach der zweiten Aufnahme sagt Leni: „Ich mache jetzt Pausen. Aber hinten hört man mich nicht.“\n\nWas übt sie als Nächstes?"
             say: "Lies, was Leni sagt. Was übt sie als Nächstes?"
             options: ["lauter sprechen", "mehr Pausen machen", "schneller sprechen"]
             answer: "lauter sprechen"
           - id: l2-c5
+            part: steps
             type: true_false
             text: "Du nimmst dir nach der Aufnahme alles auf einmal vor. Ist das der beste Weg?"
             say: "Du nimmst dir nach der Aufnahme alles auf einmal vor. Ist das der beste Weg?"
             answer: false
+          - id: l2-c6
+            part: diagnose
+            type: multiple_choice
+            text: "Lukas hört seine Aufnahme. Er spricht laut und deutlich, aber so schnell, dass man kaum mitkommt.\n\nWas soll Lukas üben?"
+            say: "Lies, was Lukas hört. Was soll er üben?"
+            options: ["langsamer sprechen", "lauter sprechen", "deutlicher sprechen"]
+            answer: "langsamer sprechen"
+          - id: l2-c7
+            part: pauses
+            type: highlight_in_text
+            text: "Tippe auf das Wort, nach dem du eine Pause machst."
+            say: "Lies die Sätze. Nach welchem Wort machst du eine Pause? Tippe es an."
+            show: { drawn: letter-card, text: "Heute ist Lesetag. Jeder bringt ein Buch mit." }
+            spans: ["Lesetag."]
+          - id: l2-c8
+            part: steps
+            type: ordering
+            text: "Leg alle Schritte in die richtige Reihenfolge."
+            say: "Leg alle Schritte in die richtige Reihenfolge."
+            options: ["anhören", "noch einmal aufnehmen", "prüfen: laut, deutlich, Tempo", "aufnehmen", "eine Sache verbessern"]
+            slot_count: 5
+            answer: ["aufnehmen", "anhören", "prüfen: laut, deutlich, Tempo", "eine Sache verbessern", "noch einmal aufnehmen"]
+            option_audio: false
+          - id: l2-c9
+            part: diagnose
+            type: matching
+            text: "Was hilft? Verbinde."
+            say: "Lies, was bei der Aufnahme nicht gut ist. Was hilft dagegen? Verbinde."
+            pairs:
+              - { left: { text: "Man hört deine Stimme fast nicht." }, right: { text: "näher ans Mikrofon gehen" } }
+              - { left: { text: "Im Hintergrund klappert und rauscht es." }, right: { text: "einen ruhigen Ort suchen" } }
+              - { left: { text: "Du stolperst über ein langes Wort." }, right: { text: "das Wort vorher Silbe für Silbe üben" } }
+            option_audio: false
+          - id: l2-c10
+            part: pauses
+            type: multiple_choice
+            text: "Lara liest vor: „Wir waren im Zoo dort haben wir Affen gesehen.“ Sie macht keine Pause.\n\nWo gehört die Pause hin?"
+            say: "Lies, was Lara vorliest. Wo gehört die Pause hin?"
+            options: ["nach „Zoo“", "nach „dort“", "nach „Affen“"]
+            answer: "nach „Zoo“"
+          - id: l2-c11
+            part: steps
+            type: multiple_choice
+            text: "Was machst du direkt nach dem Aufnehmen?"
+            say: "Was machst du direkt nach dem Aufnehmen?"
+            options: ["die Aufnahme anhören", "noch einmal aufnehmen", "den Vortrag vor der Klasse halten"]
+            answer: "die Aufnahme anhören"
+          - id: l2-c12
+            part: diagnose
+            type: true_false
+            text: "Ida hört ihre Aufnahme: „Wir gehen heute in den Park.“ Jedes Wort ist ganz zu hören, auch die Endungen. Hat sie deutlich gesprochen?"
+            say: "Lies, was Ida in ihrer Aufnahme hört. Hat sie deutlich gesprochen?"
+            answer: true
+          - id: l2-c13
+            part: pauses
+            type: true_false
+            text: "Am Ende jeder Zeile machst du eine Pause, auch mitten im Satz. Stimmt das?"
+            say: "Am Ende jeder Zeile machst du eine Pause, auch mitten im Satz. Stimmt das?"
+            answer: false
+          - id: l2-c14
+            part: steps
+            type: true_false
+            text: "Nach dem Anhören weißt du, was du verbessern willst. Du nimmst dich sofort noch einmal auf, ohne vorher zu üben. Ist das gut?"
+            say: "Nach dem Anhören weißt du, was du verbessern willst. Du nimmst dich sofort noch einmal auf, ohne vorher zu üben. Ist das gut?"
+            answer: false
+          - id: l2-c15
+            part: diagnose
+            type: sorting
+            text: "Was ist das Problem? Sortiere."
+            say: "Lies, was in den Aufnahmen nicht gut ist. Geht es um die Lautstärke, die Aussprache oder das Tempo?"
+            bins:
+              - { id: volume, show: { text: "Lautstärke" }, say: "Lautstärke" }
+              - { id: clear, show: { text: "Aussprache" }, say: "Aussprache" }
+              - { id: pace, show: { text: "Tempo" }, say: "Tempo" }
+            options:
+              - { text: "Statt „nicht“ hört man „nich“.", bin: clear }
+              - { text: "In der letzten Reihe hört dich niemand.", bin: volume }
+              - { text: "Du machst am Punkt keine Pause.", bin: pace }
+              - { text: "Du flüsterst fast.", bin: volume }
+            option_audio: false
+          - id: l2-c16
+            part: pauses
+            type: highlight_in_text
+            text: "Tippe auf das Wort, nach dem du eine Pause machst."
+            say: "Lies die Sätze. Nach welchem Wort machst du eine Pause? Tippe es an."
+            show: { drawn: letter-card, text: "Der Wind ist heute stark. Die Bäume wackeln hin und her." }
+            spans: ["stark."]
+          - id: l2-c17
+            part: steps
+            type: multiple_choice
+            text: "Nach der zweiten Aufnahme sagt Can: „Jetzt bin ich laut und deutlich. Aber ich bin noch zu schnell.“\n\nWas übt er als Nächstes?"
+            say: "Lies, was Can sagt. Was übt er als Nächstes?"
+            options: ["langsamer sprechen", "noch lauter sprechen", "deutlicher sprechen"]
+            answer: "langsamer sprechen"
+          - id: l2-c18
+            part: diagnose
+            type: multiple_choice
+            text: "Welche Aufnahme ist am besten zu verstehen?"
+            say: "Lies, wie die Kinder sprechen. Welche Aufnahme ist am besten zu verstehen?"
+            options: ["Ben spricht laut und deutlich und macht am Punkt eine Pause.", "Mara spricht laut, aber so schnell, dass die Sätze ineinanderlaufen.", "Tim spricht ruhig, aber man hört ihn kaum."]
+            answer: "Ben spricht laut und deutlich und macht am Punkt eine Pause."
+          - id: l2-c19
+            part: pauses
+            type: multiple_choice
+            text: "Warum machst du am Punkt eine kleine Pause?"
+            say: "Warum machst du am Punkt eine kleine Pause?"
+            options: ["damit du Luft holst und die Zuhörer mitdenken können", "damit der Vortrag länger dauert", "weil du das nächste Wort vergessen hast"]
+            answer: "damit du Luft holst und die Zuhörer mitdenken können"
+          - id: l2-c20
+            part: diagnose
+            type: true_false
+            text: "Kai spricht in seiner Aufnahme laut und ruhig, aber er verschluckt die Endungen. Soll er jetzt vor allem deutlicher sprechen?"
+            say: "Lies, wie Kai spricht. Soll er jetzt vor allem deutlicher sprechen?"
+            answer: true

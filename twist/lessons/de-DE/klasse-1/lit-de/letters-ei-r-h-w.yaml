@@ -27,6 +27,12 @@ metadata:
   drawn: [letter-card, writing-lines, syllable-arcs, word-card]
   sounds: []
   facets: [script]
+  parts:
+    - { id: ei, what: { de: "ei: zwei Buchstaben, ein Laut", en: "ei: two letters, one sound" } }
+    - { id: r-l, what: { de: R und L unterscheiden, en: telling R from L } }
+    - { id: h, what: { de: das H am Wortanfang hören, en: hearing the h at the start of a word } }
+    - { id: w-f, what: { de: W und F unterscheiden, en: telling W from F } }
+    - { id: words, what: { de: "Wörter mit Ei, R, H und W lesen", en: "reading words with Ei, R, H and W" } }
   misconceptions:
     - id: ei-ie
       what: Mixes up ei and ie, the same two letters in a different order (Bein, Biene)
@@ -227,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -248,6 +255,25 @@ lessons:
             frame: "Schw_n"
             options: ["ie", "ei"]
             answer: ["ei"]
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du am Anfang ein ei?"
+            say: "Eimer. Hörst du am Anfang ein ei?"
+            show: { object: bucket }
+            answer: true
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes ei."
+            say: "Tippe auf jede Karte mit ei."
+            show: { drawn: letter-card, text: "ei is Ei ie" }
+            spans: ["ei", "Ei"]
+          - id: l1-c6
+            type: audio_choice
+            text: "ei oder ie?"
+            say: "Hör zu. Hörst du ei oder ie?"
+            audio: { de: "Stein." }
+            options: ["ie", "ei"]
+            answer: "ei"
 
   - n: 2
     title: { de: Das R, en: The letter R }
@@ -425,6 +451,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: image_multiple_choice
@@ -443,6 +470,24 @@ lessons:
             say: "Rose. Hörst du am Anfang ein rrr?"
             show: { object: rose }
             answer: true
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du am Anfang ein R?"
+            say: "Lineal. Hörst du am Anfang ein rrr?"
+            show: { object: ruler }
+            answer: false
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes R."
+            say: "Tippe auf jedes große und kleine R."
+            show: { drawn: letter-card, text: "R r P n r" }
+            spans: ["R", "r", "r"]
+          - id: l2-c6
+            type: audio_choice
+            text: "R oder L?"
+            audio: { de: "Rakete." }
+            options: ["L", "R"]
+            answer: "R"
 
   - n: 3
     title: { de: Das H, en: The letter H }
@@ -618,6 +663,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: image_multiple_choice
@@ -636,6 +682,24 @@ lessons:
             say: "Affe. Hörst du am Anfang ein h?"
             show: { object: monkey }
             answer: false
+          - id: l3-c4
+            type: true_false
+            text: "Hörst du am Anfang ein H?"
+            say: "Hut. Hörst du am Anfang ein h?"
+            show: { object: hat }
+            answer: true
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes H."
+            say: "Tippe auf jedes große und kleine H."
+            show: { drawn: letter-card, text: "H h n H N" }
+            spans: ["H", "h", "H"]
+          - id: l3-c6
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Ente." }
+            options: ["H", "E", "N"]
+            answer: "E"
 
   - n: 4
     title: { de: Das W, en: The letter W }
@@ -811,6 +875,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l4-c1
             type: image_multiple_choice
@@ -829,6 +894,24 @@ lessons:
             say: "Wind. Hörst du am Anfang ein www?"
             show: { object: wind }
             answer: true
+          - id: l4-c4
+            type: true_false
+            text: "Hörst du am Anfang ein W?"
+            say: "Fisch. Hörst du am Anfang ein www?"
+            show: { object: fish }
+            answer: false
+          - id: l4-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes W."
+            say: "Tippe auf jedes große und kleine W."
+            show: { drawn: letter-card, text: "W m w M w" }
+            spans: ["W", "w", "w"]
+          - id: l4-c6
+            type: audio_choice
+            text: "W oder F?"
+            audio: { de: "Wurst." }
+            options: ["F", "W"]
+            answer: "W"
 
   - n: 5
     title: { de: "Wörter mit Ei, R, H und W", en: "Words with Ei, R, H and W" }
@@ -941,9 +1024,9 @@ lessons:
                 hints: ["Lei ... ter."]
               - id: l5-s3
                 type: true_false
-                text: "Stimmt das?"
-                say: "Lies die Karte. Steht hier Bein?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Bein" }
+                audio: { de: "Bein." }
                 answer: true
                 hints: ["Lies Laut für Laut: B ... ei ... n."]
               - id: l5-s4
@@ -1000,33 +1083,40 @@ lessons:
                 answer: ["s"]
               - id: l5-n5
                 type: true_false
-                text: "Stimmt das?"
-                say: "Lies die Karte. Steht hier Hand?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Hund" }
+                audio: { de: "Hand." }
                 answer: false
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l5-c1
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Kleid" }
             options: [{ object: skirt }, { object: dress }, { object: trousers }]
             answer: dress
+            option_audio: false
           - id: l5-c2
+            part: r-l
             type: audio_choice
             text: "R oder L?"
             audio: { de: "Riese." }
             options: ["L", "R"]
             answer: "R"
           - id: l5-c3
+            part: ei
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: syllable-arcs, word: "Biene", syllables: ["Bie", "ne"] }
             options: [{ object: leg }, { object: bee }, { object: rabbit }]
             answer: bee
+            option_audio: false
           - id: l5-c4
+            part: w-f
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
             say: "Wolke. Welcher Buchstabe fehlt?"
@@ -1035,9 +1125,114 @@ lessons:
             options: ["F", "H", "W"]
             answer: ["W"]
           - id: l5-c5
+            part: words
             type: audio_choice
             text: "Welches Wort hörst du?"
             say: "Hör gut zu. Welches Wort hörst du? Lies die Karten."
-            audio: { de: "Haus." }
-            options: ["Maus", "Hose", "Haus"]
-            answer: "Haus"
+            audio: { de: "Rasen." }
+            options: ["Hasen", "Rosen", "Rasen"]
+            answer: "Rasen"
+          - id: l5-c6
+            part: ei
+            type: true_false
+            text: "Hörst du ein ei?"
+            say: "Kreide. Hörst du in dem Wort ein ei?"
+            show: { object: chalk }
+            answer: true
+          - id: l5-c7
+            part: r-l
+            type: true_false
+            text: "Hörst du am Anfang ein R?"
+            say: "Löwe. Hörst du am Anfang ein rrr?"
+            show: { object: lion }
+            answer: false
+          - id: l5-c8
+            part: h
+            type: true_false
+            text: "Hörst du am Anfang ein H?"
+            say: "Herz. Hörst du am Anfang ein h?"
+            show: { object: heart }
+            answer: true
+          - id: l5-c9
+            part: w-f
+            type: image_multiple_choice
+            text: "Was fängt mit W an?"
+            options: [{ object: fox }, { object: wolf }, { object: frog }]
+            answer: wolf
+          - id: l5-c10
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Seil" }
+            options: [{ object: ice-cream }, { object: rope }, { object: leg }]
+            answer: rope
+            option_audio: false
+          - id: l5-c11
+            part: ei
+            type: audio_choice
+            text: "ei oder ie?"
+            say: "Hör zu. Hörst du ei oder ie?"
+            audio: { de: "Wiese." }
+            options: ["ei", "ie"]
+            answer: "ie"
+          - id: l5-c12
+            part: h
+            type: true_false
+            text: "Hörst du am Anfang ein H?"
+            say: "Ofen. Hörst du am Anfang ein h?"
+            show: { object: oven }
+            answer: false
+          - id: l5-c13
+            part: r-l
+            type: image_multiple_choice
+            text: "Was fängt mit R an?"
+            options: [{ object: lamp }, { object: rubber }, { object: ladder }]
+            answer: rubber
+          - id: l5-c14
+            part: w-f
+            type: true_false
+            text: "Hörst du am Anfang ein W?"
+            say: "Feder. Hörst du am Anfang ein www?"
+            show: { object: feather }
+            answer: false
+          - id: l5-c15
+            part: h
+            type: image_multiple_choice
+            text: "Was fängt mit H an?"
+            options: [{ object: egg }, { object: hen }, { object: ant }]
+            answer: hen
+          - id: l5-c16
+            part: words
+            type: true_false
+            text: "Hör zu. Steht dieses Wort auf der Karte?"
+            show: { drawn: word-card, text: "Reifen" }
+            audio: { de: "Reifen." }
+            answer: true
+          - id: l5-c17
+            part: ei
+            type: highlight_in_text
+            text: "Tippe auf jedes ei."
+            say: "Tippe auf jede Karte mit ei."
+            show: { drawn: letter-card, text: "Ei ie ei is ei" }
+            spans: ["Ei", "ei", "ei"]
+          - id: l5-c18
+            part: r-l
+            type: audio_choice
+            text: "R oder L?"
+            audio: { de: "Leiter." }
+            options: ["R", "L"]
+            answer: "L"
+          - id: l5-c19
+            part: h
+            type: highlight_in_text
+            text: "Tippe auf jedes H."
+            say: "Tippe auf jedes große und kleine H."
+            show: { drawn: letter-card, text: "h N H n h" }
+            spans: ["h", "H", "h"]
+          - id: l5-c20
+            part: w-f
+            type: audio_choice
+            text: "W oder F?"
+            audio: { de: "Wald." }
+            options: ["W", "F"]
+            answer: "W"

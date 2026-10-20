@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [letter-card, syllable-arcs]
   facets: []
+  parts:
+    - { id: flash-word, what: { de: ein geblitztes Wort unter Wörtern mit dem gleichen Anfang erkennen, en: recognising a flashed word among words that start the same } }
+    - { id: flash-picture, what: { de: ein geblitztes Wort lesen und sein Bild finden, en: reading a flashed word and finding its picture } }
+    - { id: flash-meaning, what: { de: "ein geblitztes Wort lesen und sagen, was es ist", en: reading a flashed word and saying what it is } }
+    - { id: look-alikes, what: { de: lange Wörter zwischen ähnlichen Wörtern finden, en: finding long words among look-alikes } }
   misconceptions:
     - id: start-and-guess
       what: Reads the first letters and guesses the rest, so words with the same beginning get mixed up (Mittwoch and Mittag, Frühstück and Frühling)
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -253,6 +259,29 @@ lessons:
             show: { drawn: letter-card, text: "vielleicht", flash: 2 }
             options: ["vielleicht", "vielmals", "leicht"]
             answer: "vielleicht"
+            option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Lies schnell. Welches Wort war es?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
+            show: { drawn: letter-card, text: "Fußball", flash: 2 }
+            options: ["Fußball", "Fußboden", "Fußweg"]
+            answer: "Fußball"
+            option_audio: false
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Lies schnell. Tippe auf das Bild."
+            say: "Das Wort ist gleich wieder weg. Lies es schnell und tippe auf das passende Bild."
+            show: { drawn: letter-card, text: "Sandburg", flash: 2 }
+            options: [{ object: sandcastle }, { object: sock }, { object: bucket }]
+            answer: sandcastle
+          - id: l1-c6
+            type: multiple_choice
+            text: "Lies schnell. Welches Wort war es?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
+            show: { drawn: letter-card, text: "Nachmittag", flash: 2 }
+            options: ["Nachmittag", "Nachbar", "Nachtisch"]
+            answer: "Nachmittag"
             option_audio: false
 
   - n: 2
@@ -441,8 +470,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: flash-word
             type: multiple_choice
             text: "Lies schnell. Welches Wort war es?"
             say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
@@ -451,6 +482,7 @@ lessons:
             answer: "Schultasche"
             option_audio: false
           - id: l2-c2
+            part: flash-picture
             type: image_multiple_choice
             text: "Lies schnell. Tippe auf das Bild."
             say: "Das Wort ist gleich wieder weg. Lies es schnell und tippe auf das passende Bild."
@@ -458,18 +490,21 @@ lessons:
             options: [{ object: elephant }, { object: telephone }, { object: egg }]
             answer: elephant
           - id: l2-c3
+            part: look-alikes
             type: highlight_in_text
             text: "Wer gehört zur Familie?"
             say: "Lies die Wörter genau. Tippe auf alle, die zur Familie gehören."
             show: { drawn: letter-card, text: "Großvater Großstadt Schwester Fenster Mutter" }
             spans: ["Großvater", "Schwester", "Mutter"]
           - id: l2-c4
+            part: flash-meaning
             type: true_false
             text: "Lies schnell. Ist es ein Tier?"
             say: "Das Wort ist gleich wieder weg. Lies es schnell. Ist es ein Tier?"
             show: { drawn: letter-card, text: "Giraffe", flash: 2 }
             answer: true
           - id: l2-c5
+            part: flash-word
             type: multiple_choice
             text: "Lies schnell. Welches Wort war es?"
             say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
@@ -477,3 +512,119 @@ lessons:
             options: ["manchmal", "manche", "Mantel"]
             answer: "manchmal"
             option_audio: false
+          - id: l2-c6
+            part: flash-word
+            type: multiple_choice
+            text: "Lies schnell. Welches Wort war es?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
+            show: { drawn: letter-card, text: "Sonnenblume", flash: 2 }
+            options: ["Sonnenschein", "Sonnenblume", "Sonntag"]
+            answer: "Sonnenblume"
+            option_audio: false
+          - id: l2-c7
+            part: flash-word
+            type: multiple_choice
+            text: "Lies schnell. Welches Wort war es?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
+            show: { drawn: letter-card, text: "Wohnzimmer", flash: 2 }
+            options: ["Wohnung", "Wohnwagen", "Wohnzimmer"]
+            answer: "Wohnzimmer"
+            option_audio: false
+          - id: l2-c8
+            part: flash-word
+            type: multiple_choice
+            text: "Lies schnell. Welches Wort war es?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Welches Wort war es?"
+            show: { drawn: letter-card, text: "zusammen", flash: 2 }
+            options: ["zuerst", "zusammen", "zuletzt"]
+            answer: "zusammen"
+            option_audio: false
+          - id: l2-c9
+            part: flash-picture
+            type: image_multiple_choice
+            text: "Lies schnell. Tippe auf das Bild."
+            say: "Das Wort ist gleich wieder weg. Lies es schnell und tippe auf das passende Bild."
+            show: { drawn: letter-card, text: "Zahnbürste", flash: 2 }
+            options: [{ object: tooth }, { object: toothbrush }, { object: bucket }]
+            answer: toothbrush
+          - id: l2-c10
+            part: flash-picture
+            type: image_multiple_choice
+            text: "Lies schnell. Tippe auf das Bild."
+            say: "Das Wort ist gleich wieder weg. Lies es schnell und tippe auf das passende Bild."
+            show: { drawn: letter-card, text: "Regenschirm", flash: 2 }
+            options: [{ object: rain }, { object: wellies }, { object: umbrella }]
+            answer: umbrella
+          - id: l2-c11
+            part: flash-picture
+            type: image_multiple_choice
+            text: "Lies schnell. Tippe auf das Bild."
+            say: "Das Wort ist gleich wieder weg. Lies es schnell und tippe auf das passende Bild."
+            show: { drawn: letter-card, text: "Kühlschrank", flash: 2 }
+            options: [{ object: fridge }, { object: cupboard }, { object: cow }]
+            answer: fridge
+          - id: l2-c12
+            part: flash-picture
+            type: image_multiple_choice
+            text: "Lies schnell. Tippe auf das Bild."
+            say: "Das Wort ist gleich wieder weg. Lies es schnell und tippe auf das passende Bild."
+            show: { drawn: letter-card, text: "Schildkröte", flash: 2 }
+            options: [{ object: frog }, { object: tortoise }, { object: snail }]
+            answer: tortoise
+          - id: l2-c13
+            part: flash-meaning
+            type: true_false
+            text: "Lies schnell. Ist es ein Tier?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Ist es ein Tier?"
+            show: { drawn: letter-card, text: "Eichhörnchen", flash: 2 }
+            answer: true
+          - id: l2-c14
+            part: flash-meaning
+            type: true_false
+            text: "Lies schnell. Kann man es anziehen?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Kann man es anziehen?"
+            show: { drawn: letter-card, text: "Handschuhe", flash: 2 }
+            answer: true
+          - id: l2-c15
+            part: flash-meaning
+            type: true_false
+            text: "Lies schnell. Ist es ein Wochentag?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Ist es ein Wochentag?"
+            show: { drawn: letter-card, text: "Feiertag", flash: 2 }
+            answer: false
+          - id: l2-c16
+            part: flash-meaning
+            type: true_false
+            text: "Lies schnell. Ist es ein Tier?"
+            say: "Das Wort ist gleich wieder weg. Lies es schnell. Ist es ein Tier?"
+            show: { drawn: letter-card, text: "Löwenzahn", flash: 2 }
+            answer: false
+            difficulty: stretch
+          - id: l2-c17
+            part: look-alikes
+            type: highlight_in_text
+            text: "Tippe auf die Fahrzeuge."
+            say: "Lies die Wörter genau. Tippe auf alle Fahrzeuge."
+            show: { drawn: letter-card, text: "Flugzeug Flughafen Feuerwehrauto Feuerwerk Krankenwagen" }
+            spans: ["Flugzeug", "Feuerwehrauto", "Krankenwagen"]
+          - id: l2-c18
+            part: look-alikes
+            type: highlight_in_text
+            text: "Tippe auf die Berufe."
+            say: "Lies die Wörter genau. Tippe auf alle Berufe."
+            show: { drawn: letter-card, text: "Lehrerin Lehrbuch Bäckerin Bäckerei Polizist" }
+            spans: ["Lehrerin", "Bäckerin", "Polizist"]
+          - id: l2-c19
+            part: look-alikes
+            type: highlight_in_text
+            text: "Tippe auf die Zimmer."
+            say: "Lies die Wörter genau. Tippe auf alle Zimmer in einer Wohnung."
+            show: { drawn: letter-card, text: "Badezimmer Badehose Küche Kuchen Schlafzimmer" }
+            spans: ["Badezimmer", "Küche", "Schlafzimmer"]
+          - id: l2-c20
+            part: look-alikes
+            type: highlight_in_text
+            text: "Tippe auf das Gemüse."
+            say: "Lies die Wörter genau. Tippe auf alle Gemüsesorten."
+            show: { drawn: letter-card, text: "Kartoffel Karton Tomate Gurke Gurt" }
+            spans: ["Kartoffel", "Tomate", "Gurke"]

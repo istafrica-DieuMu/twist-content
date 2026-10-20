@@ -26,6 +26,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table]
   facets: []
+  parts:
+    - { id: price, what: { de: einen Preis auf einer Speisekarte finden, en: finding a price on a menu } }
+    - { id: timetable, what: { de: Tag und Uhrzeit in einem Stundenplan oder Fahrplan finden, en: finding a day and time in a timetable } }
+    - { id: when, what: { de: Tag und Uhrzeit in einer Einladung oder auf einem Plakat finden, en: finding the day and time on an invitation or poster } }
+    - { id: where-what, what: { de: "in einer Einladung oder auf einem Plakat finden, wo etwas ist, wer einlädt und was es gibt", en: "finding where, who and what on an invitation or poster" } }
   misconceptions:
     - id: read-everything
       what: Reads the whole text from the top instead of looking for the one thing the question asks for
@@ -260,6 +265,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -283,6 +289,28 @@ lessons:
             show: { drawn: table, rows: [["Bus to", "Time"], ["York", "9:00"], ["Leeds", "10:30"]] }
             say: { de: "Lies den Busfahrplan. Fährt der Bus nach York um neun Uhr?" }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            option_audio: false
+            text: "Was kostet die Milch?"
+            show: { drawn: table, rows: [["Café Menu", "Price"], ["pizza", "£4"], ["milk", "£1"], ["pancakes", "£3"]] }
+            say: { de: "Lies die Speisekarte. Was kostet die Milch?" }
+            options: ["£1", "£4", "£3"]
+            answer: "£1"
+          - id: l1-c5
+            type: multiple_choice
+            option_audio: false
+            text: "Wann hat die Klasse Kunst?"
+            show: { drawn: table, rows: [["", "Monday", "Tuesday"], ["9:00", "PE", "Music"], ["10:00", "English", "Art"]] }
+            say: { de: "Lies den Stundenplan. Wann hat die Klasse Kunst?" }
+            options: ["Tuesday, 10:00", "Monday, 10:00", "Tuesday, 9:00"]
+            answer: "Tuesday, 10:00"
+          - id: l1-c6
+            type: true_false
+            text: "Fährt der Bus nach Bath um 12:30?"
+            show: { drawn: table, rows: [["Bus to", "Time"], ["Oxford", "12:30"], ["Bath", "13:15"]] }
+            say: { de: "Lies den Busfahrplan. Fährt der Bus nach Bath um zwölf Uhr dreißig?" }
+            answer: false
 
   - n: 2
     title: { de: Einladungen und Plakate, en: Invitations and posters }
@@ -354,7 +382,7 @@ lessons:
               - id: l2-f3
                 type: image_multiple_choice
                 option_audio: false
-                text: "Come to my party!\nWhen: Sunday, 2 o'clock\nWhere: 5 Mill Lane\nBring: a ball\nFrom: Jake"
+                text: "Come to my party!\nWhen: Sunday, 2 o'clock\nWhere: 5 Mill Lane\nBring: a ball\nFrom: Jake\n\nWas sollst du mitbringen?"
                 say: { de: "Lies die Einladung noch einmal. Was sollst du mitbringen?" }
                 options: [{ object: ball }, { object: cake }, { object: book }]
                 answer: ball
@@ -433,7 +461,7 @@ lessons:
               - id: l2-s5
                 type: image_multiple_choice
                 option_audio: false
-                text: "Come to my birthday!\nWhen: Saturday, 4 o'clock\nWhere: the park\nBring: your bike\nFrom: Omar"
+                text: "Come to my birthday!\nWhen: Saturday, 4 o'clock\nWhere: the park\nBring: your bike\nFrom: Omar\n\nWas sollst du mitbringen?"
                 say: { de: "Lies die Einladung. Was sollst du mitbringen?" }
                 options: [{ object: bike }, { object: ball }, { object: kite }]
                 answer: bike
@@ -486,8 +514,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: price
             type: multiple_choice
             option_audio: false
             text: "Was kostet der Kuchen?"
@@ -496,6 +526,7 @@ lessons:
             options: ["£2", "£3", "£1"]
             answer: "£2"
           - id: l2-c2
+            part: timetable
             type: multiple_choice
             option_audio: false
             text: "Was hat die Klasse am Mittwoch um 10 Uhr?"
@@ -504,6 +535,7 @@ lessons:
             options: ["Music", "Art", "Maths"]
             answer: "Music"
           - id: l2-c3
+            part: when
             type: multiple_choice
             option_audio: false
             text: "Come to my party!\nWhen: Saturday, 3 o'clock\nWhere: 8 River Street\nBring: a hat\nFrom: Zara\n\nUm wie viel Uhr ist die Party?"
@@ -511,6 +543,7 @@ lessons:
             options: ["um 3 Uhr", "um 8 Uhr", "am Samstag"]
             answer: "um 3 Uhr"
           - id: l2-c4
+            part: where-what
             type: multiple_choice
             option_audio: false
             text: "Come to my party!\nWhen: Saturday, 3 o'clock\nWhere: 8 River Street\nBring: a hat\nFrom: Zara\n\nWo ist die Party?"
@@ -518,7 +551,128 @@ lessons:
             options: ["8 River Street", "Saturday", "a hat"]
             answer: "8 River Street"
           - id: l2-c5
+            part: when
             type: true_false
             text: "SPORTS DAY\nTuesday 10th June\n9 o'clock\non the school field\n\nIst das Sportfest am Dienstag?"
             say: { de: "Lies das Plakat. Ist das Sportfest am Dienstag?" }
             answer: true
+          - id: l2-c6
+            part: price
+            type: multiple_choice
+            option_audio: false
+            text: "Was kostet der Apfel?"
+            show: { drawn: table, rows: [["Snack Bar", "Price"], ["pizza", "£3"], ["apple", "50p"], ["juice", "£1"]] }
+            say: { de: "Lies die Speisekarte. Was kostet der Apfel?" }
+            options: ["50p", "£1", "£3"]
+            answer: "50p"
+          - id: l2-c7
+            part: price
+            type: true_false
+            text: "Kostet das Sandwich mehr als die Pfannkuchen?"
+            show: { drawn: table, rows: [["Café Menu", "Price"], ["pancakes", "£4"], ["sandwich", "£2"], ["water", "£1"]] }
+            say: { de: "Lies die Speisekarte. Kostet das Sandwich mehr als die Pfannkuchen?" }
+            answer: false
+          - id: l2-c8
+            part: price
+            type: multiple_choice
+            option_audio: false
+            text: "Was ist am teuersten?"
+            show: { drawn: table, rows: [["Café Menu", "Price"], ["ice cream", "£2"], ["pizza", "£5"], ["cake", "£3"]] }
+            say: { de: "Lies die Speisekarte. Was ist am teuersten?" }
+            options: ["pizza", "cake", "ice cream"]
+            answer: "pizza"
+          - id: l2-c9
+            part: price
+            type: multiple_choice
+            option_audio: false
+            text: "Was bekommst du für £1?"
+            show: { drawn: table, rows: [["Snack Bar", "Price"], ["pancakes", "£3"], ["orange juice", "£1"], ["ice cream", "£2"]] }
+            say: { de: "Lies die Speisekarte. Was bekommst du für ein Pfund?" }
+            options: ["orange juice", "pancakes", "ice cream"]
+            answer: "orange juice"
+          - id: l2-c10
+            part: timetable
+            type: multiple_choice
+            option_audio: false
+            text: "Was hat die Klasse am Freitag um 11 Uhr?"
+            show: { drawn: table, rows: [["", "Thursday", "Friday"], ["9:00", "Art", "English"], ["10:00", "PE", "Maths"], ["11:00", "Music", "Art"]] }
+            say: { de: "Lies den Stundenplan. Was hat die Klasse am Freitag um elf Uhr?" }
+            options: ["Art", "Maths", "Music"]
+            answer: "Art"
+          - id: l2-c11
+            part: timetable
+            type: true_false
+            text: "Fährt der Bus nach Bristol um 7:30?"
+            show: { drawn: table, rows: [["Bus to", "Time"], ["Bath", "7:30"], ["Bristol", "8:45"], ["York", "11:15"]] }
+            say: { de: "Lies den Busfahrplan. Fährt der Bus nach Bristol um sieben Uhr dreißig?" }
+            answer: false
+          - id: l2-c12
+            part: timetable
+            type: multiple_choice
+            option_audio: false
+            text: "An welchem Tag hat die Klasse Sport?"
+            show: { drawn: table, rows: [["", "Monday", "Thursday", "Friday"], ["9:00", "English", "Maths", "PE"], ["10:00", "Music", "Art", "Maths"]] }
+            say: { de: "Lies den Stundenplan. An welchem Tag hat die Klasse Sport?" }
+            options: ["Friday", "Monday", "Thursday"]
+            answer: "Friday"
+          - id: l2-c13
+            part: timetable
+            type: multiple_choice
+            option_audio: false
+            text: "Wohin fährt der erste Bus am Morgen?"
+            show: { drawn: table, rows: [["Bus to", "Time"], ["Leeds", "10:30"], ["Hull", "8:00"], ["York", "9:45"]] }
+            say: { de: "Lies den Busfahrplan. Wohin fährt der erste Bus am Morgen?" }
+            options: ["Hull", "Leeds", "York"]
+            answer: "Hull"
+          - id: l2-c14
+            part: when
+            type: multiple_choice
+            option_audio: false
+            text: "Come to my party!\nWhen: Friday, 5 o'clock\nWhere: 3 Oak Road\nBring: a cake\nFrom: Ben\n\nAn welchem Tag ist die Party?"
+            say: { de: "Lies die Einladung. An welchem Tag ist die Party?" }
+            options: ["am Freitag", "um 5 Uhr", "am Montag"]
+            answer: "am Freitag"
+          - id: l2-c15
+            part: when
+            type: true_false
+            text: "SUMMER FAIR\nSaturday 5th July\n11 o'clock to 4 o'clock\nGames and ice cream!\nTickets: 50p\n\nFängt das Sommerfest um 4 Uhr an?"
+            say: { de: "Lies das Plakat. Fängt das Sommerfest um vier Uhr an?" }
+            answer: false
+          - id: l2-c16
+            part: when
+            type: multiple_choice
+            option_audio: false
+            text: "Pizza Party!\nWhen: Sunday, 1 o'clock\nWhere: Tom's house\nBring: a drink\nFrom: Tom\n\nWann ist die Party?"
+            say: { de: "Lies die Einladung. Wann ist die Party?" }
+            options: ["am Sonntag um 1 Uhr", "am Samstag um 1 Uhr", "am Sonntag um 11 Uhr"]
+            answer: "am Sonntag um 1 Uhr"
+          - id: l2-c17
+            part: where-what
+            type: image_multiple_choice
+            option_audio: false
+            text: "Come to my party!\nWhen: Friday, 5 o'clock\nWhere: 3 Oak Road\nBring: a cake\nFrom: Ben\n\nWas sollst du mitbringen?"
+            say: { de: "Lies die Einladung. Was sollst du mitbringen?" }
+            options: [{ object: cake }, { object: ball }, { object: book }]
+            answer: cake
+          - id: l2-c18
+            part: where-what
+            type: multiple_choice
+            option_audio: false
+            text: "SUMMER FAIR\nSaturday 5th July\n11 o'clock to 4 o'clock\nGames and ice cream!\nTickets: 50p\n\nWas gibt es auf dem Sommerfest?"
+            say: { de: "Lies das Plakat. Was gibt es auf dem Sommerfest?" }
+            options: ["Spiele und Eis", "Musik und Kuchen", "Bücher und Spiele"]
+            answer: "Spiele und Eis"
+          - id: l2-c19
+            part: where-what
+            type: true_false
+            text: "Come to my party!\nWhen: Saturday, 7 o'clock\nWhere: Mia's house\nBring: a teddy\nFrom: Mia\n\nIst die Party bei Mia zu Hause?"
+            say: { de: "Lies die Einladung. Ist die Party bei Mia zu Hause?" }
+            answer: true
+          - id: l2-c20
+            part: where-what
+            type: multiple_choice
+            option_audio: false
+            text: "SCHOOL DISCO\nFriday 20th June\n6 o'clock\nin the school hall\nTickets: £2\n\nWo ist die Disco?"
+            say: { de: "Lies das Plakat. Wo ist die Disco?" }
+            options: ["in der Aula", "im Klassenzimmer", "auf dem Schulhof"]
+            answer: "in der Aula"

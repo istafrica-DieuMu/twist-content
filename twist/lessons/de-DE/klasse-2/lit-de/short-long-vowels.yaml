@@ -22,6 +22,10 @@ metadata:
   forms: [picture, audio, text]
   drawn: []
   facets: []
+  parts:
+    - { id: by-ear, what: { de: "hören, ob ein Selbstlaut kurz oder lang ist", en: hearing whether a vowel is short or long } }
+    - { id: pictures, what: { de: Bilder mit kurzem oder langem Selbstlaut finden und sortieren, en: finding and sorting pictures by a short or long vowel } }
+    - { id: pairs, what: { de: "Wortpaare unterscheiden, die sich nur in der Länge des Selbstlauts unterscheiden", en: telling apart word pairs that differ only in the length of the vowel } }
   misconceptions:
     - id: length-by-word
       what: Judges the vowel by the length of the word, not the vowel (Kuchen is long, so Schnecke must be long too)
@@ -242,6 +246,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -261,9 +266,32 @@ lessons:
             answer: "kurz"
           - id: l1-c3
             type: true_false
-            text: "Ist das ie in Biene lang?"
+            text: "Ist das i in Biene lang?"
             say: "Biene. Ist das i lang?"
             show: { object: bee }
+            answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Ist das e kurz oder lang?"
+            say: "Hör zu. Ist das e kurz oder lang?"
+            audio: { de: "Esel." }
+            options: ["kurz", "lang"]
+            keep_order: true
+            answer: "lang"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Wo hörst du ein langes a?"
+            say: "Tippe auf die Bilder und hör die Wörter. Wo hörst du ein langes a?"
+            options:
+              - { object: anchor }
+              - { object: sheep }
+              - { object: crab }
+            answer: sheep
+          - id: l1-c6
+            type: true_false
+            text: "Ist das o in Tonne kurz?"
+            say: "Tonne. Ist das o kurz?"
+            show: { object: bin }
             answer: true
 
   - n: 2
@@ -449,8 +477,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: by-ear
             type: audio_choice
             text: "Ist das o kurz oder lang?"
             say: "Hör zu. Ist das o kurz oder lang?"
@@ -459,6 +489,7 @@ lessons:
             keep_order: true
             answer: "lang"
           - id: l2-c2
+            part: by-ear
             type: audio_choice
             text: "Ist das i kurz oder lang?"
             say: "Hör zu. Ist das i kurz oder lang?"
@@ -467,6 +498,7 @@ lessons:
             keep_order: true
             answer: "kurz"
           - id: l2-c3
+            part: pairs
             type: multiple_choice
             text: "Mama bezahlt die … für die Wohnung."
             say: "Mama bezahlt die … für die Wohnung. Welches Wort passt? Hör dir beide an."
@@ -474,12 +506,14 @@ lessons:
             answer: "Miete"
             option_audio: true
           - id: l2-c4
+            part: by-ear
             type: true_false
             text: "Ist das u in Mund kurz?"
             say: "Mund. Ist das u kurz?"
             show: { object: mouth }
             answer: true
           - id: l2-c5
+            part: pictures
             type: image_multiple_choice
             text: "Wo hörst du ein langes e?"
             say: "Tippe auf die Bilder und hör die Wörter. Wo hörst du ein langes e?"
@@ -488,3 +522,141 @@ lessons:
               - { object: snow }
               - { object: bed }
             answer: snow
+          - id: l2-c6
+            part: by-ear
+            type: audio_choice
+            text: "Ist das o kurz oder lang?"
+            say: "Hör zu. Ist das o kurz oder lang?"
+            audio: { de: "Dose." }
+            options: ["kurz", "lang"]
+            keep_order: true
+            answer: "lang"
+          - id: l2-c7
+            part: by-ear
+            type: audio_choice
+            text: "Ist das u kurz oder lang?"
+            say: "Hör zu. Ist das u kurz oder lang?"
+            audio: { de: "Bus." }
+            options: ["kurz", "lang"]
+            keep_order: true
+            answer: "kurz"
+          - id: l2-c8
+            part: by-ear
+            type: true_false
+            text: "Ist das ö in Löwe lang?"
+            say: "Löwe. Ist das ö lang?"
+            show: { object: lion }
+            answer: true
+          - id: l2-c9
+            part: by-ear
+            type: true_false
+            text: "Ist das o in Wolke lang?"
+            say: "Wolke. Ist das o lang?"
+            show: { object: cloud }
+            answer: false
+          - id: l2-c10
+            part: pictures
+            type: image_multiple_choice
+            text: "Wo hörst du ein kurzes i?"
+            say: "Tippe auf die Bilder und hör die Wörter. Wo hörst du ein kurzes i?"
+            options:
+              - { object: mirror }
+              - { object: ring }
+              - { object: crocodile }
+            answer: ring
+          - id: l2-c11
+            part: pictures
+            type: image_multiple_choice
+            text: "Wo hörst du ein langes o?"
+            say: "Tippe auf die Bilder und hör die Wörter. Wo hörst du ein langes o?"
+            options:
+              - { object: bell }
+              - { object: sock }
+              - { object: moon }
+            answer: moon
+          - id: l2-c12
+            part: pictures
+            type: sorting
+            text: "Sortiere die Bilder: kurz oder lang?"
+            say: "Tippe auf jedes Bild und hör auf den Selbstlaut. Ist er kurz wie in Ball oder lang wie in Hase? Sortiere die Bilder."
+            bins:
+              - { id: kurz, show: { object: ball }, say: "Kurz wie in Ball." }
+              - { id: lang, show: { object: rabbit }, say: "Lang wie in Hase." }
+            options:
+              - { object: tooth, bin: lang }
+              - { object: witch, bin: kurz }
+              - { object: bear, bin: lang }
+              - { object: fox, bin: kurz }
+          - id: l2-c13
+            part: pictures
+            type: image_multiple_choice
+            text: "Wo hörst du ein kurzes u?"
+            say: "Tippe auf die Bilder und hör die Wörter. Wo hörst du ein kurzes u?"
+            options:
+              - { object: clock }
+              - { object: foot }
+              - { object: worm }
+            answer: worm
+          - id: l2-c14
+            part: pictures
+            type: sorting
+            text: "Kurz oder lang?"
+            say: "Hör auf den ersten Selbstlaut. Ist er kurz wie in Ball oder lang wie in Hase? Sortiere die Bilder."
+            bins:
+              - { id: kurz, show: { object: ball }, say: "Kurz wie in Ball." }
+              - { id: lang, show: { object: rabbit }, say: "Lang wie in Hase." }
+            options:
+              - { object: lamb, bin: kurz }
+              - { object: zebra, bin: lang }
+              - { object: star, bin: kurz }
+              - { object: feather, bin: lang }
+          - id: l2-c15
+            part: pictures
+            type: image_multiple_choice
+            text: "Wo hörst du ein langes ü?"
+            say: "Tippe auf die Bilder und hör die Wörter. Wo hörst du ein langes ü?"
+            options:
+              - { object: mosquito }
+              - { object: door }
+              - { object: bridge }
+            answer: door
+          - id: l2-c16
+            part: pairs
+            type: multiple_choice
+            text: "Im Märchen wohnt ein großer … im Wald."
+            say: "Im Märchen wohnt ein großer … im Wald. Welches Wort passt? Hör dir beide an."
+            options: ["Riese", "Risse"]
+            answer: "Riese"
+            option_audio: true
+          - id: l2-c17
+            part: pairs
+            type: multiple_choice
+            text: "Ich möchte dich um Hilfe …"
+            say: "Ich möchte dich um Hilfe … Welches Wort passt? Hör dir beide an."
+            options: ["bitten", "bieten"]
+            answer: "bitten"
+            option_audio: true
+          - id: l2-c18
+            part: pairs
+            type: multiple_choice
+            text: "Im Meer schwimmt ein großer …"
+            say: "Im Meer schwimmt ein großer … Welches Wort passt? Hör dir beide an."
+            options: ["Wall", "Wal"]
+            answer: "Wal"
+            option_audio: true
+          - id: l2-c19
+            part: pairs
+            type: multiple_choice
+            text: "Unser Hund ist weg. Wir suchen … überall."
+            say: "Unser Hund ist weg. Wir suchen … überall. Welches Wort passt? Hör dir beide an."
+            options: ["in", "ihn"]
+            answer: "ihn"
+            option_audio: true
+          - id: l2-c20
+            part: pairs
+            type: multiple_choice
+            text: "Ich bleibe heute im Bett, … ich bin krank."
+            say: "Ich bleibe heute im Bett, … ich bin krank. Welches Wort passt? Hör dir beide an."
+            options: ["denn", "den"]
+            answer: "denn"
+            option_audio: true

@@ -27,6 +27,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: picture, what: { de: ein unbekanntes Wort mit Hilfe eines Bildes erraten, en: guessing an unknown word from a picture } }
+    - { id: sound-alike, what: { de: "ein Wort erraten, das wie ein deutsches klingt, und auf falsche Freunde achten", en: guessing a word that sounds like a German one and watching for false friends } }
+    - { id: context, what: { de: ein Wort aus den bekannten Wörtern im Satz erraten, en: guessing a word from the known words in the sentence } }
+    - { id: gesture, what: { de: "ein Wort aus dem erraten, was jemand tut", en: guessing a word from what someone does } }
   misconceptions:
     - id: gives-up
       what: Stops listening or answering as soon as one word is unknown
@@ -52,15 +57,17 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
+            text: "Worum geht es?"
             say: { de: "Hör zu. Worum geht es?" }
-            audio: { en: "I'm hungry. Can I have an apple, please?" }
+            audio: { en: "I'm hungry. Can I have an apple, please?", speaker: male }
             options: ["ums Essen", "um Tiere", "um Farben"]
             answer: "ums Essen"
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Welches Tier hat das Kind?"
             say: { de: "Hör zu. Welches Tier hat das Kind?" }
-            audio: { en: "Have you got a pet? Yes, I've got a dog." }
+            audio: { turns: [{ en: "Have you got a pet?", speaker: male }, { en: "Yes, I've got a dog.", speaker: female }] }
             options: [{ object: dog }, { object: cat }, { object: rabbit }]
             answer: dog
             difficulty: easy
@@ -253,6 +260,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -273,6 +281,28 @@ lessons:
             say: { de: "Hör zu und schau auf das Bild. Heißt „ladder“ Lampe?", en: "A ladder." }
             show: { object: ladder }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Was heißt „bucket“?"
+            say: { de: "Hör zu und schau auf das Bild. Was heißt „bucket“?", en: "A bucket." }
+            show: { object: bucket }
+            options: ["ein Buch", "ein Eimer", "ein Bus"]
+            answer: "ein Eimer"
+          - id: l1-c5
+            type: matching
+            text: "Welches deutsche Wort klingt fast gleich?"
+            say: { de: "Tippe auf ein englisches Wort, hör zu und such das deutsche Wort, das fast gleich klingt." }
+            pairs:
+              - { left: { text: "mouse", say: { en: "Mouse." } }, right: { text: "die Maus" } }
+              - { left: { text: "nest", say: { en: "Nest." } }, right: { text: "das Nest" } }
+              - { left: { text: "arm", say: { en: "Arm." } }, right: { text: "der Arm" } }
+              - { left: { text: "father", say: { en: "Father." } }, right: { text: "der Vater" } }
+          - id: l1-c6
+            type: true_false
+            text: "Heißt „owl“ Eule?"
+            say: { de: "Hör zu und schau auf das Bild. Heißt „owl“ Eule?", en: "Look! An owl!" }
+            show: { object: owl }
+            answer: true
 
   - n: 2
     title: { de: Der Satz und die Hände helfen, en: The sentence and gestures help }
@@ -318,7 +348,8 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "Was heißt „sleepy“?"
-                say: { de: "Hör zu. Was heißt „sleepy“?", en: "I'm sleepy. I want to go to bed." }
+                say: { de: "Hör zu. Was heißt „sleepy“?" }
+                audio: { en: "I'm sleepy. I want to go to bed.", speaker: female }
                 options: ["müde", "hungrig", "lustig"]
                 answer: "müde"
                 hints:
@@ -341,7 +372,8 @@ lessons:
               - id: l2-f3
                 type: multiple_choice
                 text: "Das Kind winkt. Was heißt „See you tomorrow!“?"
-                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?", en: "Bye! See you tomorrow!" }
+                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?" }
+                audio: { en: "Bye! See you tomorrow!", speaker: male }
                 show: { object: wave }
                 options: ["Bis morgen!", "Guten Morgen!", "Komm her!"]
                 answer: "Bis morgen!"
@@ -354,7 +386,8 @@ lessons:
               - id: l2-f4
                 type: multiple_choice
                 text: "Was heißt „delicious“?"
-                say: { de: "Hör zu. Was heißt „delicious“?", en: "Mmm! This cake is delicious!" }
+                say: { de: "Hör zu. Was heißt „delicious“?" }
+                audio: { en: "Mmm! This cake is delicious!", speaker: female }
                 options: ["lecker", "eklig", "kalt"]
                 answer: "lecker"
                 feedback:
@@ -366,7 +399,8 @@ lessons:
               - id: l2-f5
                 type: multiple_choice
                 text: "Das Kind zeigt mit dem Finger. Was heißt „Over there!“?"
-                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?", en: "Look! Over there!" }
+                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?" }
+                audio: { en: "Look! Over there!", speaker: male }
                 show: { object: point }
                 options: ["Da drüben!", "Komm mit!", "Setz dich!"]
                 answer: "Da drüben!"
@@ -376,7 +410,7 @@ lessons:
                   - "„Over there“ heißt: Da drüben!"
               - id: l2-f6
                 type: multiple_choice
-                text: "Wie findest du heraus, was „thirsty“ heißt?"
+                text: "Du hörst: „I'm thirsty. Can I have some water?“ Wie findest du heraus, was „thirsty“ heißt?"
                 say: { de: "Du hörst: „I'm thirsty. Can I have some water?“ Wie findest du heraus, was „thirsty“ heißt?" }
                 options: ["Ich höre auf das Wort, das ich kenne: water.", "Ich höre nur auf das erste Wort.", "Das geht nicht. Ich kenne das Wort ja nicht."]
                 answer: "Ich höre auf das Wort, das ich kenne: water."
@@ -392,14 +426,16 @@ lessons:
               - id: l2-s1
                 type: multiple_choice
                 text: "Was heißt „I'm freezing“?"
-                say: { de: "Hör zu. Was heißt „I'm freezing“?", en: "Brrr! It's snowing. I'm freezing!" }
+                say: { de: "Hör zu. Was heißt „I'm freezing“?" }
+                audio: { en: "Brrr! It's snowing. I'm freezing!", speaker: male }
                 options: ["Mir ist eiskalt.", "Mir ist heiß.", "Ich bin froh."]
                 answer: "Mir ist eiskalt."
                 hints: ["Hör auf „brrr“ und „snowing“."]
               - id: l2-s2
                 type: multiple_choice
                 text: "Das Kind klatscht. Was heißt „Well done!“?"
-                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?", en: "Well done! Brilliant!" }
+                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?" }
+                audio: { en: "Well done! Brilliant!", speaker: female }
                 show: { object: clap }
                 options: ["Gut gemacht!", "Pass auf!", "Leider falsch."]
                 answer: "Gut gemacht!"
@@ -421,14 +457,16 @@ lessons:
               - id: l2-s5
                 type: multiple_choice
                 text: "Was heißt „sandcastle“?"
-                say: { de: "Hör zu. Was heißt „sandcastle“?", en: "We're at the beach. Let's make a sandcastle!" }
+                say: { de: "Hör zu. Was heißt „sandcastle“?" }
+                audio: { en: "We're at the beach. Let's make a sandcastle!", speaker: female }
                 options: ["die Sandburg", "der Sandkasten", "die Sandale"]
                 answer: "die Sandburg"
                 hints: ["„Sand“ ist Sand. Was baut man am Strand aus Sand?"]
               - id: l2-s6
                 type: multiple_choice
                 text: "Das Kind hält die Hand ans Ohr. Was heißt „Listen carefully!“?"
-                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?", en: "Listen carefully!" }
+                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?" }
+                audio: { en: "Listen carefully!", speaker: male }
                 show: { object: listen }
                 options: ["Hört gut zu!", "Schaut her!", "Steht auf!"]
                 answer: "Hört gut zu!"
@@ -451,7 +489,8 @@ lessons:
               - id: l2-n3
                 type: multiple_choice
                 text: "Das Kind springt. Was heißt „high“?"
-                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt „high“?", en: "Jump! Jump as high as you can!" }
+                say: { de: "Schau, was das Kind macht, und hör zu. Was heißt „high“?" }
+                audio: { en: "Jump! Jump as high as you can!", speaker: female }
                 show: { object: jump }
                 options: ["hoch", "weit", "leise"]
                 answer: "hoch"
@@ -463,15 +502,17 @@ lessons:
                 answer: "Es schläft."
               - id: l2-n5
                 type: multiple_choice
-                text: "Mia kennt „neck“ nicht. Was hilft ihr am besten?"
+                text: "Mia hört: „The giraffe has got a very long neck.“ Sie kennt „neck“ nicht. Was hilft ihr am besten?"
                 say: { de: "Mia hört: „The giraffe has got a very long neck.“ Sie kennt „neck“ nicht. Was hilft ihr am besten?" }
                 options: ["Sie denkt an die Giraffe: Was ist bei ihr so lang?", "Sie hört auf, weil sie ein Wort nicht kennt.", "Sie rät irgendein Wort."]
                 answer: "Sie denkt an die Giraffe: Was ist bei ihr so lang?"
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: picture
             type: multiple_choice
             text: "Was heißt „zip“?"
             say: { de: "Hör zu und schau auf das Bild. Was heißt „zip“?", en: "A zip." }
@@ -479,27 +520,155 @@ lessons:
             options: ["ein Reißverschluss", "ein Zipfel", "ein Zettel"]
             answer: "ein Reißverschluss"
           - id: l2-c2
+            part: sound-alike
             type: multiple_choice
             text: "Was heißt „hot“?"
             say: { de: "Hör genau hin. Was heißt „hot“?", en: "Hot." }
             options: ["heiß", "der Hut", "hoch"]
             answer: "heiß"
           - id: l2-c3
+            part: context
             type: multiple_choice
             text: "Was heißt „tasty“?"
-            say: { de: "Hör zu. Was heißt „tasty“?", en: "Mmm, pizza! It's very tasty." }
+            say: { de: "Hör zu. Was heißt „tasty“?" }
+            audio: { en: "Mmm, pizza! It's very tasty.", speaker: male }
             options: ["lecker", "teuer", "kalt"]
             answer: "lecker"
           - id: l2-c4
+            part: gesture
             type: multiple_choice
             text: "Das Kind winkt. Was heißt „See you soon!“?"
-            say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?", en: "Goodbye! See you soon!" }
+            say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?" }
+            audio: { en: "Goodbye! See you soon!", speaker: female }
             show: { object: wave }
             options: ["Bis bald!", "Schau mal!", "Komm schnell!"]
             answer: "Bis bald!"
           - id: l2-c5
+            part: sound-alike
             type: multiple_choice
-            text: "Welcher Trick hilft dir bei „garden“?"
+            text: "Du hörst „garden“ und siehst kein Bild. Welcher Trick hilft dir?"
             say: { de: "Du hörst „garden“ und siehst kein Bild. Welcher Trick hilft dir?" }
             options: ["Es klingt wie ein deutsches Wort.", "Ich schaue, was jemand mit den Händen macht.", "Keiner. Ich höre auf."]
             answer: "Es klingt wie ein deutsches Wort."
+          - id: l2-c6
+            part: picture
+            type: multiple_choice
+            text: "Lea hört „jellyfish“ und sieht dieses Bild. Was heißt „jellyfish“?"
+            say: { de: "Lea hört dieses Wort und sieht das Bild. Was heißt es?", en: "Look! A jellyfish!" }
+            show: { object: jellyfish }
+            options: ["ein Fisch aus Gelee", "eine Qualle", "eine Muschel"]
+            answer: "eine Qualle"
+          - id: l2-c7
+            part: picture
+            type: multiple_choice
+            text: "Du hörst „Can you fill the kettle, please?“ und siehst das Bild. Was hilft dir, „kettle“ zu verstehen?"
+            say: { de: "Hör zu und schau auf das Bild. Was hilft dir, „kettle“ zu verstehen?" }
+            audio: { en: "Can you fill the kettle, please?", speaker: female }
+            show: { object: kettle }
+            options: ["Es klingt wie Kette.", "das Bild", "Nichts. Ich höre auf."]
+            answer: "das Bild"
+          - id: l2-c8
+            part: picture
+            type: true_false
+            text: "Tom hört „candle“ und sieht das Bild. Er denkt: Das ist eine Kerze. Hat er recht?"
+            say: { de: "Tom hört dieses Wort und sieht das Bild. Er denkt: Das ist eine Kerze. Hat er recht?", en: "A candle." }
+            show: { object: candle }
+            answer: true
+          - id: l2-c9
+            part: picture
+            type: multiple_choice
+            text: "Mia kennt „crown“ nicht, aber sie sieht das Bild. Was heißt „crown“?"
+            say: { de: "Mia kennt das Wort nicht, aber sie sieht das Bild. Was heißt es?", en: "A crown." }
+            show: { object: crown }
+            options: ["der Clown", "die Kröte", "die Krone"]
+            answer: "die Krone"
+          - id: l2-c10
+            part: sound-alike
+            type: matching
+            text: "Diese Wörter klingen fast wie deutsche Wörter. Welche gehören zusammen?"
+            say: { de: "Tippe auf ein englisches Wort, hör zu und such das deutsche Wort, das fast gleich klingt." }
+            pairs:
+              - { left: { text: "apple", say: { en: "Apple." } }, right: { text: "der Apfel" } }
+              - { left: { text: "salt", say: { en: "Salt." } }, right: { text: "das Salz" } }
+              - { left: { text: "warm", say: { en: "Warm." } }, right: { text: "warm" } }
+              - { left: { text: "hammer", say: { en: "Hammer." } }, right: { text: "der Hammer" } }
+          - id: l2-c11
+            part: sound-alike
+            type: true_false
+            text: "Tim sagt: „‚Butterfly‘ klingt wie Butter. Also ist es etwas zum Essen.“ Hat Tim recht?"
+            say: { de: "Tim sagt: Butterfly klingt wie Butter. Also ist es etwas zum Essen. Hat Tim recht?" }
+            answer: false
+          - id: l2-c12
+            part: sound-alike
+            type: audio_choice
+            text: "Welches deutsche Wort klingt fast gleich?"
+            say: { de: "Hör zu. Welches deutsche Wort klingt fast gleich?" }
+            audio: { en: "Ship." }
+            options: ["das Schaf", "der Schuh", "das Schiff"]
+            answer: "das Schiff"
+          - id: l2-c13
+            part: context
+            type: multiple_choice
+            text: "Du hörst: „It's cold. Put on your scarf!“ Du kennst „scarf“ nicht. Welches Wort im Satz hilft dir?"
+            say: { de: "Du hörst diesen Satz. Du kennst „scarf“ nicht. Welches Wort im Satz hilft dir?" }
+            audio: { en: "It's cold. Put on your scarf!", speaker: female }
+            options: ["your", "cold", "on"]
+            answer: "cold"
+          - id: l2-c14
+            part: context
+            type: multiple_choice
+            text: "Was heißt „hungry“?"
+            say: { de: "Hör zu. Was heißt „hungry“?" }
+            audio: { en: "I'm hungry. Can I have a sandwich, please?", speaker: male }
+            options: ["müde", "hungrig", "nass"]
+            answer: "hungrig"
+          - id: l2-c15
+            part: context
+            type: multiple_choice
+            text: "Was heißt „wet“?"
+            say: { de: "Hör zu. Was heißt „wet“?" }
+            audio: { en: "Oh no! It's raining. My shoes are wet.", speaker: female }
+            options: ["neu", "warm", "nass"]
+            answer: "nass"
+          - id: l2-c16
+            part: context
+            type: multiple_choice
+            text: "Ben hört: „The cat is in the tree. It can't get down!“ Was heißt „get down“?"
+            say: { de: "Ben hört diesen Satz. Was heißt „get down“?" }
+            audio: { en: "The cat is in the tree. It can't get down!", speaker: male }
+            options: ["schlafen", "herunterkommen", "fressen"]
+            answer: "herunterkommen"
+          - id: l2-c17
+            part: gesture
+            type: true_false
+            text: "Der Lehrer sagt: „Stand up, please!“ Das Bild zeigt, was das Kind dann tut. Heißt das: Setz dich?"
+            say: { de: "Schau, was das Kind auf dem Bild tut, und hör zu. Heißt das: Setz dich?" }
+            audio: { en: "Stand up, please!", speaker: male }
+            show: { object: stand-up }
+            answer: false
+          - id: l2-c18
+            part: gesture
+            type: multiple_choice
+            text: "Das Kind hält die Hand über die Augen und sagt „Look!“. Was heißt das?"
+            say: { de: "Schau, was das Kind macht, und hör zu. Was heißt das?" }
+            audio: { en: "Look!", speaker: female }
+            show: { object: look }
+            options: ["Hör zu!", "Schau!", "Lies!"]
+            answer: "Schau!"
+          - id: l2-c19
+            part: gesture
+            type: multiple_choice
+            text: "Die Lehrerin legt den Finger auf den Mund und sagt: „Quiet, please!“ Was hilft dir, das zu verstehen?"
+            say: { de: "Die Lehrerin legt den Finger auf den Mund. Was hilft dir, das zu verstehen?" }
+            audio: { en: "Quiet, please!", speaker: female }
+            options: ["ein deutsches Wort, das gleich klingt", "was sie mit der Hand macht", "Nichts. Ich höre auf."]
+            answer: "was sie mit der Hand macht"
+          - id: l2-c20
+            part: gesture
+            type: multiple_choice
+            text: "Die Lehrerin sagt: „Sit down, please!“ Das Bild zeigt, was das Kind dann tut. Was heißt das?"
+            say: { de: "Schau, was das Kind auf dem Bild tut, und hör zu. Was heißt das?" }
+            audio: { en: "Sit down, please!", speaker: female }
+            show: { object: sit-down }
+            options: ["Steh auf, bitte!", "Setz dich, bitte!", "Komm her, bitte!"]
+            answer: "Setz dich, bitte!"

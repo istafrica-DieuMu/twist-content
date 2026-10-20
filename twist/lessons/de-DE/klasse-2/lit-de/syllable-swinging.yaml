@@ -23,6 +23,11 @@ metadata:
   forms: [picture, drawn, text, audio]
   drawn: [syllable-arcs, letter-card]
   facets: []
+  parts:
+    - { id: count, what: { de: die Silben eines Wortes zählen, en: counting the syllables of a word } }
+    - { id: split, what: { de: ein Wort richtig in Silben teilen, en: splitting a word into syllables correctly } }
+    - { id: build, what: { de: ein Wort aus Silben bauen, en: building a word from syllables } }
+    - { id: every-sound, what: { de: "jeden Laut mitsprechen, damit kein Buchstabe fehlt", en: speaking every sound so that no letter is missing } }
   misconceptions:
     - id: split-after-vowel
       what: Splits a word in the wrong place (Ig-el, Of-en, Tom-at-e)
@@ -223,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -246,6 +252,28 @@ lessons:
             say: "Rose. Sind die Silbenbögen richtig?"
             show: { drawn: syllable-arcs, word: "Rose", syllables: ["Ro", "se"] }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wie schwingst du Kamel?"
+            say: "Wie schwingst du das Wort Kamel?"
+            options: ["Ka-mel", "Kam-el", "K-amel"]
+            option_audio: false
+            answer: "Ka-mel"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Welche Silbe fehlt?"
+            say: "Kerze. Welche Silbe fehlt?"
+            show: { object: candle }
+            frame: "Ker_"
+            options: ["ze", "ne", "te"]
+            answer: ["ze"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Wie viele Silben hat Teddy?"
+            say: "Teddy. Schwinge das Wort. Wie viele Silben hat es?"
+            show: { object: teddy }
+            options: ["1", "2", "3"]
+            answer: "2"
 
   - n: 2
     title: { de: "Beim Schreiben mitsprechen", en: "Speaking while writing" }
@@ -381,6 +409,7 @@ lessons:
                 type: ordering
                 text: "Bau das Wort aus den Silben."
                 say: "Schulranzen. Leg die Silben in die richtige Reihenfolge."
+                show: { object: schoolbag }
                 options: ["ran", "Schul", "zen"]
                 slot_count: 3
                 answer: ["Schul", "ran", "zen"]
@@ -423,6 +452,7 @@ lessons:
                 type: ordering
                 text: "Bau das Wort aus den Silben."
                 say: "Radiergummi. Leg die Silben in die richtige Reihenfolge."
+                show: { object: rubber }
                 options: ["dier", "gum", "Ra", "mi"]
                 slot_count: 4
                 answer: ["Ra", "dier", "gum", "mi"]
@@ -438,14 +468,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: multiple_choice
             text: "Wie viele Silben hat Regenschirm?"
             say: "Regenschirm. Schwinge das Wort. Wie viele Silben hat es?"
             options: ["2", "3", "4"]
             answer: "3"
           - id: l2-c2
+            part: split
             type: multiple_choice
             text: "Wie schwingst du Kartoffel?"
             say: "Wie schwingst du das Wort Kartoffel?"
@@ -453,6 +486,7 @@ lessons:
             option_audio: false
             answer: "Kar-tof-fel"
           - id: l2-c3
+            part: every-sound
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
             say: "Brille. Welcher Buchstabe fehlt? Sprich das Wort langsam."
@@ -461,12 +495,14 @@ lessons:
             options: ["r", "l", "n"]
             answer: ["r"]
           - id: l2-c4
+            part: every-sound
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Krokodil. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Krokdil" }
             answer: false
           - id: l2-c5
+            part: build
             type: ordering
             text: "Bau das Wort aus den Silben."
             say: "Erdbeere. Leg die Silben in die richtige Reihenfolge."
@@ -474,4 +510,131 @@ lessons:
             options: ["bee", "Erd", "re"]
             slot_count: 3
             answer: ["Erd", "bee", "re"]
+            option_audio: false
+          - id: l2-c6
+            part: count
+            type: multiple_choice
+            text: "Wie viele Silben hat Fahrrad?"
+            say: "Fahrrad. Schwinge das Wort. Wie viele Silben hat es?"
+            show: { object: bike }
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l2-c7
+            part: count
+            type: multiple_choice
+            text: "Wie viele Silben hat Marmelade?"
+            say: "Marmelade. Schwinge das Wort. Wie viele Silben hat es?"
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l2-c8
+            part: count
+            type: image_multiple_choice
+            text: "Welches Wort hat vier Silben?"
+            say: "Tippe auf die Bilder und hör die Wörter. Schwinge jedes Wort. Welches Wort hat vier Silben?"
+            options:
+              - { object: bike }
+              - { object: ambulance }
+              - { object: sun }
+            answer: ambulance
+          - id: l2-c9
+            part: count
+            type: true_false
+            text: "Hat Kuchen zwei Silben?"
+            say: "Kuchen. Schwinge das Wort. Hat es zwei Silben?"
+            show: { object: cake }
+            answer: true
+          - id: l2-c10
+            part: split
+            type: multiple_choice
+            text: "Wie schwingst du Gurke?"
+            say: "Wie schwingst du das Wort Gurke?"
+            options: ["Gur-ke", "Gu-rke", "Gurk-e"]
+            option_audio: false
+            answer: "Gur-ke"
+          - id: l2-c11
+            part: split
+            type: true_false
+            text: "Ist das richtig geschwungen?"
+            say: "Zitrone. Sind die Silbenbögen richtig?"
+            show: { drawn: syllable-arcs, word: "Zitrone", syllables: ["Zi", "tro", "ne"] }
+            answer: true
+          - id: l2-c12
+            part: split
+            type: true_false
+            text: "Ist das richtig geschwungen?"
+            say: "Esel. Sind die Silbenbögen richtig?"
+            show: { drawn: syllable-arcs, word: "Esel", syllables: ["Es", "el"] }
+            answer: false
+          - id: l2-c13
+            part: split
+            type: multiple_choice
+            text: "Wie schwingst du Melone?"
+            say: "Wie schwingst du das Wort Melone?"
+            options: ["Me-lo-ne", "Mel-on-e", "Mel-o-ne"]
+            option_audio: false
+            answer: "Me-lo-ne"
+          - id: l2-c14
+            part: build
+            type: ordering
+            text: "Bau das Wort aus den Silben."
+            say: "Schildkröte. Leg die Silben in die richtige Reihenfolge."
+            show: { object: tortoise }
+            options: ["krö", "Schild", "te"]
+            slot_count: 3
+            answer: ["Schild", "krö", "te"]
+            option_audio: false
+          - id: l2-c15
+            part: build
+            type: ordering
+            text: "Bau das Wort aus den Silben."
+            say: "Gießkanne. Leg die Silben in die richtige Reihenfolge."
+            show: { object: watering-can }
+            options: ["kan", "ne", "Gieß"]
+            slot_count: 3
+            answer: ["Gieß", "kan", "ne"]
+            option_audio: false
+          - id: l2-c16
+            part: build
+            type: ordering
+            text: "Bau das Wort aus den Silben."
+            say: "Krankenhaus. Leg die Silben in die richtige Reihenfolge."
+            show: { object: hospital }
+            options: ["ken", "haus", "Kran"]
+            slot_count: 3
+            answer: ["Kran", "ken", "haus"]
+            option_audio: false
+          - id: l2-c17
+            part: build
+            type: ordering
+            text: "Bau das Wort aus den Silben."
+            say: "Marienkäfer. Leg die Silben in die richtige Reihenfolge."
+            show: { object: ladybird }
+            options: ["ri", "Ma", "kä", "fer", "en"]
+            slot_count: 5
+            answer: ["Ma", "ri", "en", "kä", "fer"]
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c18
+            part: every-sound
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Spinne. Welcher Buchstabe fehlt? Sprich das Wort langsam."
+            show: { object: spider }
+            frame: "S_inne"
+            options: ["p", "t", "b"]
+            answer: ["p"]
+          - id: l2-c19
+            part: every-sound
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Schokolade. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Schokolde" }
+            answer: false
+          - id: l2-c20
+            part: every-sound
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Schwinge das Wort Rakete. Welches Wort ist richtig geschrieben?"
+            options: ["Rakete", "Rakte", "Rkete"]
+            answer: "Rakete"
             option_audio: false

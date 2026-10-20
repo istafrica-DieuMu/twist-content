@@ -13,7 +13,10 @@ summary: >
   the interview with a baker, follows up with a Nachfrage, notes the
   answers as Stichwörter, and ends with the skill check. The people and
   answers are written for Twist. The speak tasks run as the
-  record-and-compare fallback and are never scored.
+  record-and-compare fallback and are never scored. The skill check marks
+  what a screen can mark (open questions, questions that fit the goal, the
+  order of an interview, the Nachfrage and the note); asking the questions
+  aloud is practised, not marked.
 metadata:
   year: klasse-4
   topic: { de: Gespräche führen, en: Having conversations }
@@ -25,6 +28,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: open-questions, what: { de: offene Fragen statt Ja-Nein-Fragen stellen, en: asking open questions instead of yes/no questions } }
+    - { id: goal, what: { de: Fragen passend zum Ziel vorbereiten, en: preparing questions that fit the goal } }
+    - { id: structure, what: { de: den Ablauf eines Interviews kennen, en: knowing the order of an interview } }
+    - { id: follow-up, what: { de: zur Antwort passend nachfragen, en: asking a follow-up question about the answer } }
+    - { id: notes, what: { de: Antworten in Stichwörtern notieren, en: noting answers as key words } }
   misconceptions:
     - id: yes-no-questions
       what: Asks Ja-Nein-Fragen and gets one-word answers
@@ -224,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -242,6 +252,24 @@ lessons:
             say: "Womit fängt ein Interview an?"
             options: ["Ich begrüße die Person und stelle mich vor.", "Ich stelle sofort meine erste Frage.", "Ich bedanke mich."]
             answer: "Ich begrüße die Person und stelle mich vor."
+          - id: l1-c4
+            type: multiple_choice
+            text: "Ziel: Wie arbeitet ein Zahnarzt?\n\nWelche Frage passt nicht zum Ziel?"
+            say: "Du willst wissen, wie ein Zahnarzt arbeitet. Welche Frage passt nicht zum Ziel?"
+            options: ["Welchen Film haben Sie zuletzt gesehen?", "Wie lange dauert es, ein Loch im Zahn zu füllen?", "Welche Werkzeuge brauchen Sie?"]
+            answer: "Welchen Film haben Sie zuletzt gesehen?"
+          - id: l1-c5
+            type: multiple_choice
+            text: "„Spielen Sie ein Instrument?“ Wie wird daraus eine offene Frage?"
+            say: "Spielen Sie ein Instrument? Wie wird daraus eine offene Frage?"
+            options: ["Welches Instrument spielen Sie?", "Spielen Sie gern ein Instrument?", "Spielen Sie kein Instrument?"]
+            answer: "Welches Instrument spielen Sie?"
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Warum fragst du am Anfang, ob du Fragen stellen darfst?"
+            options: ["Weil es höflich ist und die Person zustimmen soll.", "Weil du sonst keine Fragen hast.", "Weil das Interview dann kürzer wird."]
+            answer: "Weil es höflich ist und die Person zustimmen soll."
 
   - n: 2
     title: { de: "Nachfragen und notieren", en: "Following up and taking notes" }
@@ -409,8 +437,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: open-questions
             type: sorting
             text: "Welche Fragen sind offen?"
             say: "Lies die Fragen an einen Tierpfleger. Sortiere: offene Frage oder Ja-Nein-Frage?"
@@ -424,24 +454,28 @@ lessons:
               - { text: "Ist der Zoo groß?", bin: closed }
             option_audio: false
           - id: l2-c2
+            part: goal
             type: multiple_choice
             text: "Ziel: Wie wird eine Zeitung gemacht?\n\nDu interviewst eine Reporterin. Welche Frage passt zum Ziel?"
             say: "Du willst wissen, wie eine Zeitung gemacht wird. Du interviewst eine Reporterin. Welche Frage passt zum Ziel?"
             options: ["Wie finden Sie die Themen für Ihre Artikel?", "Was ist Ihr Lieblingstier?", "Wo wohnen Sie?"]
             answer: "Wie finden Sie die Themen für Ihre Artikel?"
           - id: l2-c3
+            part: notes
             type: multiple_choice
             text: "Herr Brandt, Tierpfleger: Unser ältester Elefant ist schon fünfundvierzig Jahre alt.\n\nWelche Notiz ist am besten?"
             say: "Lies die Antwort. Welche Notiz ist am besten?"
             options: ["ältester Elefant: 45 Jahre", "Elefant", "Unser ältester Elefant ist schon fünfundvierzig Jahre alt."]
             answer: "ältester Elefant: 45 Jahre"
           - id: l2-c4
+            part: follow-up
             type: multiple_choice
             text: "Herr Brandt: Gestern ist bei uns ein Giraffenbaby zur Welt gekommen.\n\nWelche Nachfrage passt?"
             say: "Lies die Antwort. Welche Nachfrage passt dazu?"
             options: ["Wie groß ist das Giraffenbaby?", "Seit wann arbeiten Sie im Zoo?", "Mögen Sie Ihren Beruf?"]
             answer: "Wie groß ist das Giraffenbaby?"
           - id: l2-c5
+            part: structure
             type: ordering
             text: "Wie läuft ein Interview ab? Bring die Teile in die richtige Reihenfolge."
             say: "Wie läuft ein Interview ab? Bring die Teile in die richtige Reihenfolge."
@@ -449,3 +483,108 @@ lessons:
             slot_count: 4
             answer: ["begrüßen und vorstellen", "um Erlaubnis fragen", "Fragen stellen und notieren", "bedanken"]
             option_audio: false
+          - id: l2-c6
+            part: open-questions
+            type: multiple_choice
+            text: "Du interviewst eine Musikerin. Welche Frage ist eine offene Frage?"
+            options: ["Wie lange üben Sie jeden Tag?", "Spielen Sie Geige?", "Sind Sie oft auf Reisen?"]
+            answer: "Wie lange üben Sie jeden Tag?"
+            option_audio: false
+          - id: l2-c7
+            part: open-questions
+            type: true_false
+            text: "„Wo haben Sie das Tauchen gelernt?“ Ist das eine Ja-Nein-Frage?"
+            say: "Lies die Frage: Wo haben Sie das Tauchen gelernt? Ist das eine Ja-Nein-Frage?"
+            answer: false
+          - id: l2-c8
+            part: open-questions
+            type: multiple_choice
+            text: "Mia hat aufgeschrieben: „Haben Sie ein Haustier?“ Sie möchte lieber eine offene Frage stellen. Welche passt?"
+            say: "Mia hat aufgeschrieben: Haben Sie ein Haustier? Sie möchte lieber eine offene Frage stellen. Welche passt?"
+            options: ["Welche Tiere leben bei Ihnen zu Hause?", "Haben Sie vielleicht ein Haustier?", "Ist Ihr Haustier ein Hund?"]
+            answer: "Welche Tiere leben bei Ihnen zu Hause?"
+            option_audio: false
+          - id: l2-c9
+            part: goal
+            type: sorting
+            text: "Ziel: Wie arbeitet ein Imker mit seinen Bienen?\n\nPasst die Frage zum Ziel?"
+            say: "Du willst wissen, wie ein Imker mit seinen Bienen arbeitet. Sortiere: Passt die Frage zum Ziel oder nicht?"
+            bins:
+              - { id: fits, show: { text: "passt zum Ziel" }, say: "passt zum Ziel" }
+              - { id: other, show: { text: "passt nicht" }, say: "passt nicht" }
+            options:
+              - { text: "Wie viele Bienen leben in einem Bienenstock?", bin: fits }
+              - { text: "Wann ernten Sie den Honig?", bin: fits }
+              - { text: "Welche Fußballmannschaft mögen Sie?", bin: other }
+              - { text: "Wie alt ist Ihr Auto?", bin: other }
+            option_audio: false
+          - id: l2-c10
+            part: goal
+            type: true_false
+            text: "Ziel: Wie wird Schokolade hergestellt?\n\nPasst die Frage „Wo machen Sie gern Urlaub?“ zu diesem Ziel?"
+            say: "Du willst wissen, wie Schokolade hergestellt wird. Passt die Frage: Wo machen Sie gern Urlaub? zu diesem Ziel?"
+            answer: false
+          - id: l2-c11
+            part: goal
+            type: multiple_choice
+            text: "Lena will ihre Oma für ein Schulprojekt interviewen. Was macht sie zuerst?"
+            options: ["Sie überlegt, was sie herausfinden will.", "Sie stellt sofort die erste Frage.", "Sie schreibt schon den Artikel."]
+            answer: "Sie überlegt, was sie herausfinden will."
+          - id: l2-c12
+            part: structure
+            type: multiple_choice
+            text: "Du hast dich vorgestellt. Was sagst du als Nächstes?"
+            options: ["Darf ich Ihnen ein paar Fragen stellen?", "Tschüss, bis bald!", "Das war's schon."]
+            answer: "Darf ich Ihnen ein paar Fragen stellen?"
+            option_audio: false
+          - id: l2-c13
+            part: structure
+            type: true_false
+            text: "Tom sagt: „Hallo, ich bin Tom aus der 4a. Wie alt sind Sie?“\n\nHat Tom etwas vergessen?"
+            say: "Tom sagt: Hallo, ich bin Tom aus der 4a. Wie alt sind Sie? Hat Tom etwas vergessen?"
+            answer: true
+          - id: l2-c14
+            part: structure
+            type: multiple_choice
+            text: "Du interviewst die Schulleiterin. Welcher Satz passt an den Anfang?"
+            options: ["Guten Tag, Frau Wolf, ich bin Ella aus der 4b.", "Hey, erzähl mal was!", "Vielen Dank für das Interview!"]
+            answer: "Guten Tag, Frau Wolf, ich bin Ella aus der 4b."
+            option_audio: false
+          - id: l2-c15
+            part: follow-up
+            type: multiple_choice
+            text: "Frau Kraus, Imkerin: Im Sommer werde ich fast jeden Tag gestochen.\n\nWelche Nachfrage passt?"
+            say: "Lies die Antwort. Welche Nachfrage passt dazu?"
+            options: ["Was machen Sie, wenn eine Biene Sie sticht?", "Wie viel kostet Ihr Honig?", "Wo sind Sie geboren?"]
+            answer: "Was machen Sie, wenn eine Biene Sie sticht?"
+          - id: l2-c16
+            part: follow-up
+            type: true_false
+            text: "Ella: Wie lange fliegen Sie schon?\nPilot: Seit zwanzig Jahren. Am liebsten fliege ich nach Island.\nElla: Was ist Ihre Lieblingsfarbe?\n\nIst Ellas letzte Frage eine Nachfrage?"
+            say: "Lies das Gespräch. Ist Ellas letzte Frage eine Nachfrage?"
+            answer: false
+          - id: l2-c17
+            part: follow-up
+            type: multiple_choice
+            text: "Warum stellst du im Interview Nachfragen?"
+            options: ["um mehr über eine Antwort zu erfahren", "damit das Interview schneller vorbei ist", "weil du die nächste Frage vergessen hast"]
+            answer: "um mehr über eine Antwort zu erfahren"
+          - id: l2-c18
+            part: notes
+            type: true_false
+            text: "Frau Kraus: Mein Honig schmeckt im Frühling ganz anders als im Herbst.\n\nPaul notiert: „Honig: Frühling und Herbst verschieden“\n\nIst das eine gute Notiz?"
+            say: "Lies die Antwort und Pauls Notiz. Ist das eine gute Notiz?"
+            answer: true
+          - id: l2-c19
+            part: notes
+            type: multiple_choice
+            text: "Was schreibst du in deine Notizen ganz genau auf?"
+            options: ["Zahlen und Namen", "jedes kleine Wort", "nur deine eigene Meinung"]
+            answer: "Zahlen und Namen"
+          - id: l2-c20
+            part: notes
+            type: multiple_choice
+            text: "Frau Kraus: Aus einem Bienenstock ernte ich im Jahr ungefähr zwanzig Kilo Honig.\n\nWelche Notiz stimmt?"
+            say: "Lies die Antwort. Welche Notiz stimmt?"
+            options: ["ca. 20 kg Honig pro Bienenstock im Jahr", "ca. 20 kg Honig pro Tag", "ca. 2 kg Honig pro Bienenstock im Jahr"]
+            answer: "ca. 20 kg Honig pro Bienenstock im Jahr"

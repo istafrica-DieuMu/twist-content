@@ -11,6 +11,9 @@ summary: >
   1 takes words with the Dehnungs-h (Uhr, Kuh, Stuhl) and with a double
   Selbstlaut (Boot, Meer, Haar) and how to learn them; lesson 2 takes the
   Wochentage, the Monate and the Zahlwörter, and ends with the skill check.
+  The skill check shows that the words are learnt by having the child
+  spell them; the way to learn one (look, say, write, compare) is taught
+  in Learn and used in Practise.
 metadata:
   year: klasse-2
   topic: { de: Merkwörter, en: Words to learn by heart }
@@ -22,6 +25,11 @@ metadata:
   forms: [picture, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: dehnungs-h, what: { de: Merkwörter mit Dehnungs-h, en: words with a silent lengthening h } }
+    - { id: double-vowel, what: { de: Merkwörter mit doppeltem Selbstlaut, en: words with a double vowel } }
+    - { id: days-months, what: { de: Wochentage und Monate, en: days of the week and months } }
+    - { id: number-words, what: { de: Zahlwörter, en: number words } }
   misconceptions:
     - id: write-as-heard
       what: Leaves out the silent h or the double vowel because it cannot be heard (Ur, Bot, Har)
@@ -150,7 +158,7 @@ lessons:
                 type: fill_in_blank
                 text: "Was fehlt?"
                 say: "Das Meer. Im Sommer baden wir im Meer. Was fehlt?"
-                frame: "M_r"
+                frame: "Im Sommer baden wir im M_r."
                 options: ["ee", "e", "eh"]
                 answer: ["ee"]
                 hints: ["Mit h wäre es das Wort mehr. Das Meer, in dem du badest, hat einen doppelten Selbstlaut."]
@@ -218,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -241,6 +250,26 @@ lessons:
             say: "Die Sahne. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Sahne" }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Die Bahn. Wir fahren mit der Bahn. Was fehlt?"
+            frame: "Wir fahren mit der Ba_n."
+            options: ["h", "a", "e"]
+            answer: ["h"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Ich ziehe ein … Socken an. Welches Wort ist richtig geschrieben?"
+            say: "Das Paar. Ich ziehe ein Paar Socken an. Welches Wort ist richtig geschrieben?"
+            options: ["Paar", "Par", "Pahr"]
+            answer: "Paar"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Der Lehrer. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Lerer" }
+            answer: false
 
   - n: 2
     title: { de: "Wochentage, Monate, Zahlwörter", en: "Days, months and number words" }
@@ -418,8 +447,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: dehnungs-h
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Der Zahn. Welches Wort ist richtig geschrieben?"
@@ -427,6 +458,7 @@ lessons:
             answer: "Zahn"
             option_audio: false
           - id: l2-c2
+            part: double-vowel
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Das Haar. Was fehlt?"
@@ -434,6 +466,7 @@ lessons:
             options: ["aa", "a", "ah"]
             answer: ["aa"]
           - id: l2-c3
+            part: days-months
             type: multiple_choice
             text: "Welcher Wochentag ist richtig geschrieben?"
             say: "Freitag. Welcher Wochentag ist richtig geschrieben?"
@@ -441,6 +474,7 @@ lessons:
             answer: "Freitag"
             option_audio: false
           - id: l2-c4
+            part: days-months
             type: ordering
             text: "Bring die Monate in die richtige Reihenfolge."
             say: "Bring die Monate in die richtige Reihenfolge."
@@ -448,8 +482,133 @@ lessons:
             slot_count: 3
             answer: ["März", "April", "Mai"]
           - id: l2-c5
+            part: number-words
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
-            say: "Vier. Lies das Wort. Ist es richtig geschrieben?"
-            show: { drawn: letter-card, text: "fier" }
+            say: "Vierzig. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "fierzig" }
             answer: false
+          - id: l2-c6
+            part: dehnungs-h
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Die Möhre. Was fehlt?"
+            show: { object: carrot }
+            frame: "Mö_re"
+            options: ["h", "r", "e"]
+            answer: ["h"]
+          - id: l2-c7
+            part: dehnungs-h
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Das Fahrrad. Welches Wort ist richtig geschrieben?"
+            show: { object: bike }
+            options: ["Fahrrad", "Farrad", "Faarrad"]
+            answer: "Fahrrad"
+            option_audio: false
+          - id: l2-c8
+            part: dehnungs-h
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Die Ruhe. Im Klassenzimmer ist Ruhe. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Ruhe" }
+            answer: true
+          - id: l2-c9
+            part: dehnungs-h
+            type: text_input
+            keyboard: letters
+            text: "Schreib das Nomen."
+            say: "Der Bahnhof. Der Zug hält am Bahnhof. Schreib das Nomen Bahnhof."
+            show: { object: station }
+            answer: "Bahnhof"
+          - id: l2-c10
+            part: double-vowel
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Die Waage. Mit der Waage wiegst du das Mehl. Was fehlt?"
+            show: { object: kitchen-scale }
+            frame: "die W_ge"
+            options: ["aa", "a", "ah"]
+            answer: ["aa"]
+          - id: l2-c11
+            part: double-vowel
+            type: multiple_choice
+            text: "Die Flasche ist … Welches Wort ist richtig geschrieben?"
+            say: "Leer. Die Flasche ist leer. Welches Wort ist richtig geschrieben?"
+            options: ["leer", "ler", "lehr"]
+            answer: "leer"
+            option_audio: false
+          - id: l2-c12
+            part: double-vowel
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Der Kaffee. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Kaffe" }
+            answer: false
+          - id: l2-c13
+            part: double-vowel
+            type: sorting
+            text: "Mit h oder mit doppeltem Selbstlaut?"
+            say: "Wie zeigt das Wort den langen Selbstlaut: mit h oder mit doppeltem Selbstlaut? Sortiere."
+            bins:
+              - { id: h, show: { text: "mit h" }, say: "mit h" }
+              - { id: double, show: { text: "doppelter Selbstlaut" }, say: "doppelter Selbstlaut" }
+            options:
+              - { text: "Paar", bin: double }
+              - { text: "Sohn", bin: h }
+              - { text: "Beet", bin: double }
+              - { text: "Zahl", bin: h }
+          - id: l2-c14
+            part: days-months
+            type: multiple_choice
+            text: "Welcher Wochentag ist richtig geschrieben?"
+            say: "Samstag. Welcher Wochentag ist richtig geschrieben?"
+            options: ["Samstag", "Samsdag", "samstag"]
+            answer: "Samstag"
+            option_audio: false
+          - id: l2-c15
+            part: days-months
+            type: ordering
+            text: "Bring die Monate in die richtige Reihenfolge."
+            say: "Das sind die letzten Monate im Jahr. Bring sie in die richtige Reihenfolge."
+            options: ["Dezember", "Oktober", "November"]
+            slot_count: 3
+            answer: ["Oktober", "November", "Dezember"]
+          - id: l2-c16
+            part: days-months
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Montag. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "montag" }
+            answer: false
+          - id: l2-c17
+            part: number-words
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Zehn. Was fehlt?"
+            frame: "ze_n"
+            options: ["h", "e", "r"]
+            answer: ["h"]
+          - id: l2-c18
+            part: number-words
+            type: multiple_choice
+            text: "Welches Zahlwort ist richtig geschrieben?"
+            say: "Siebzehn. Welches Zahlwort ist richtig geschrieben?"
+            options: ["siebzehn", "siebenzehn", "sibzehn"]
+            answer: "siebzehn"
+            option_audio: false
+          - id: l2-c19
+            part: number-words
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Zwölf. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "zwölf" }
+            answer: true
+          - id: l2-c20
+            part: number-words
+            type: multiple_choice
+            text: "Welches Zahlwort ist richtig geschrieben?"
+            say: "Dreizehn. Welches Zahlwort ist richtig geschrieben?"
+            options: ["dreizehn", "dreizen", "dreitzehn"]
+            answer: "dreizehn"
+            option_audio: false

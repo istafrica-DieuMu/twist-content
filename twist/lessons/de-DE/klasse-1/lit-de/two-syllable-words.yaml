@@ -24,6 +24,10 @@ metadata:
   forms: [audio, drawn, picture]
   drawn: [syllable-arcs, word-card]
   facets: []
+  parts:
+    - { id: open, what: { de: "Wörter lesen, deren erste Silbe mit einem Selbstlaut endet (Na-se, Pu-del)", en: "reading words whose first syllable ends in a vowel (Na-se, Pu-del)" } }
+    - { id: closed, what: { de: "Wörter lesen, bei denen zwei Mitlaute in der Mitte stehen (Tas-se, Lam-pe)", en: "reading words with two consonants in the middle (Tas-se, Lam-pe)" } }
+    - { id: build, what: { de: aus Silben ein Wort bauen und eine fehlende Silbe ergänzen, en: building a word from syllables and adding a missing syllable } }
   misconceptions:
     - id: first-syllable-guess
       what: Reads the first syllable and guesses the rest, so Sofa becomes Sonne and Tonne becomes Tanne
@@ -126,14 +130,15 @@ lessons:
               - id: l1-f5
                 type: fill_in_blank
                 text: "Welche Silbe fehlt?"
-                say: "Dose. Welche Silbe fehlt?"
-                frame: "Do_"
-                options: ["se", "fe", "me"]
-                answer: ["se"]
+                say: "Biene. Welche Silbe fehlt?"
+                show: { object: bee }
+                frame: "Bie_"
+                options: ["ne", "se", "me"]
+                answer: ["ne"]
                 hints:
-                  - "Sprich das Wort langsam: Do ... se."
-                  - "Die zweite Silbe fängt mit einem s an."
-                  - "Es fehlt se."
+                  - "Sprich das Wort langsam: Bie ... ne."
+                  - "Die zweite Silbe fängt mit einem n an."
+                  - "Es fehlt ne."
 
           - support: some
             tasks:
@@ -170,11 +175,12 @@ lessons:
               - id: l1-s5
                 type: fill_in_blank
                 text: "Welche Silbe fehlt?"
-                say: "Limo. Welche Silbe fehlt?"
-                frame: "_mo"
-                options: ["Li", "La", "Lo"]
-                answer: ["Li"]
-                hints: ["Li ... mo. Hör auf den Selbstlaut."]
+                say: "Kuli. Welche Silbe fehlt?"
+                show: { object: pen }
+                frame: "_li"
+                options: ["Ku", "Ka", "Ko"]
+                answer: ["Ku"]
+                hints: ["Ku ... li. Hör auf den Selbstlaut."]
 
           - support: none
             tasks:
@@ -199,20 +205,23 @@ lessons:
               - id: l1-n4
                 type: ordering
                 text: "Bau das Wort."
-                say: "Pudel. Leg die Silben."
-                options: ["del", "Pu"]
+                say: "Lama. Leg die Silben."
+                show: { object: llama }
+                options: ["ma", "La"]
                 slot_count: 2
-                answer: ["Pu", "del"]
+                answer: ["La", "ma"]
               - id: l1-n5
                 type: fill_in_blank
                 text: "Welche Silbe fehlt?"
-                say: "Esel. Welche Silbe fehlt?"
-                frame: "E_"
-                options: ["sel", "fen", "se"]
-                answer: ["sel"]
+                say: "Sofa. Welche Silbe fehlt?"
+                show: { object: sofa }
+                frame: "So_"
+                options: ["fa", "fen", "se"]
+                answer: ["fa"]
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -220,6 +229,7 @@ lessons:
             show: { drawn: word-card, text: "Ofen" }
             options: [{ object: oven }, { object: ear }, { object: grandma }]
             answer: oven
+            option_audio: false
           - id: l1-c2
             type: audio_choice
             text: "Welches Wort hörst du?"
@@ -232,6 +242,25 @@ lessons:
             say: "Lies das Wort. Ist das ein Tier?"
             show: { drawn: syllable-arcs, word: "Nudel", syllables: ["Nu", "del"] }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: syllable-arcs, word: "Sofa", syllables: ["So", "fa"] }
+            options: [{ object: sock }, { object: sun }, { object: sofa }]
+            answer: sofa
+            option_audio: false
+          - id: l1-c5
+            type: audio_choice
+            text: "Welches Wort hörst du?"
+            audio: { de: "Limo." }
+            options: ["Lama", "Limo", "Lupe"]
+            answer: "Limo"
+          - id: l1-c6
+            type: true_false
+            text: "Lies das Wort. Hat das Tier lange Ohren?"
+            say: "Lies das Wort. Hat das Tier lange Ohren?"
+            show: { drawn: word-card, text: "Esel" }
+            answer: true
 
   - n: 2
     title: { de: Zwei Buchstaben in der Mitte, en: Two letters in the middle }
@@ -361,6 +390,7 @@ lessons:
                 type: ordering
                 text: "Bau das Wort."
                 say: "Tasse. Leg die Silben."
+                show: { object: cup }
                 options: ["se", "Tas"]
                 slot_count: 2
                 answer: ["Tas", "se"]
@@ -399,6 +429,7 @@ lessons:
                 type: ordering
                 text: "Bau das Wort."
                 say: "Ente. Leg die Silben."
+                show: { object: duck }
                 options: ["te", "En"]
                 slot_count: 2
                 answer: ["En", "te"]
@@ -411,32 +442,40 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: closed
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Kanne" }
             options: [{ object: jug }, { object: fir-tree }, { object: bin }]
             answer: jug
+            option_audio: false
           - id: l2-c2
+            part: open
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Nase" }
             options: [{ object: oven }, { object: nose }, { object: ear }]
             answer: nose
+            option_audio: false
           - id: l2-c3
+            part: closed
             type: audio_choice
             text: "Hör zu. Welches Wort ist das?"
             audio: { de: "Tonne." }
             options: ["Tanne", "Sonne", "Tonne"]
             answer: "Tonne"
           - id: l2-c4
+            part: open
             type: true_false
             text: "Lies das Wort. Ist das ein Tier?"
             say: "Lies das Wort. Ist das ein Tier?"
             show: { drawn: word-card, text: "Pudel" }
             answer: true
           - id: l2-c5
+            part: build
             type: ordering
             text: "Bau das Wort."
             say: "Kanne. Leg die Silben."
@@ -444,3 +483,122 @@ lessons:
             options: ["ne", "Kan", "Ka"]
             slot_count: 2
             answer: ["Kan", "ne"]
+          - id: l2-c6
+            part: open
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Biene" }
+            options: [{ object: ant }, { object: bee }, { object: butterfly }]
+            answer: bee
+            option_audio: false
+          - id: l2-c7
+            part: open
+            type: true_false
+            text: "Lies das Wort. Kann man das essen?"
+            say: "Lies das Wort. Kann man das essen?"
+            show: { drawn: syllable-arcs, word: "Kuli", syllables: ["Ku", "li"] }
+            answer: false
+          - id: l2-c8
+            part: open
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Dame." }
+            options: ["Dose", "Dame", "Name"]
+            answer: "Dame"
+          - id: l2-c9
+            part: open
+            type: true_false
+            text: "Lies das Wort. Kann man das trinken?"
+            say: "Lies das Wort. Kann man das trinken?"
+            show: { drawn: word-card, text: "Limo" }
+            answer: true
+          - id: l2-c10
+            part: open
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: syllable-arcs, word: "Mama", syllables: ["Ma", "ma"] }
+            options: [{ object: grandma }, { object: dad }, { object: mum }]
+            answer: mum
+            option_audio: false
+          - id: l2-c11
+            part: closed
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Lampe" }
+            options: [{ object: llama }, { object: lamp }, { object: ladder }]
+            answer: lamp
+            option_audio: false
+          - id: l2-c12
+            part: closed
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Kasse." }
+            options: ["Kiste", "Tasse", "Kasse"]
+            answer: "Kasse"
+          - id: l2-c13
+            part: closed
+            type: true_false
+            text: "Lies das Wort. Steht das an der Straße?"
+            say: "Lies das Wort. Steht das an der Straße?"
+            show: { drawn: word-card, text: "Ampel" }
+            answer: true
+          - id: l2-c14
+            part: closed
+            type: true_false
+            text: "Lies das Wort. Kann man das essen?"
+            say: "Lies das Wort. Kann man das essen?"
+            show: { drawn: syllable-arcs, word: "Mappe", syllables: ["Map", "pe"] }
+            answer: false
+          - id: l2-c15
+            part: closed
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Affe" }
+            options: [{ object: apple }, { object: duck }, { object: monkey }]
+            answer: monkey
+            option_audio: false
+          - id: l2-c16
+            part: build
+            type: ordering
+            text: "Bau das Wort."
+            say: "Tonne. Leg die Silben."
+            show: { object: bin }
+            options: ["Tan", "ne", "Ton"]
+            slot_count: 2
+            answer: ["Ton", "ne"]
+          - id: l2-c17
+            part: build
+            type: ordering
+            text: "Bau das Wort."
+            say: "Oma. Leg die Silben."
+            show: { object: grandma }
+            options: ["Mo", "ma", "O"]
+            slot_count: 2
+            answer: ["O", "ma"]
+          - id: l2-c18
+            part: build
+            type: fill_in_blank
+            text: "Welche Silbe fehlt?"
+            say: "Tanne. Welche Silbe fehlt?"
+            show: { object: fir-tree }
+            frame: "Tan_"
+            options: ["te", "ne", "se"]
+            answer: ["ne"]
+          - id: l2-c19
+            part: build
+            type: fill_in_blank
+            text: "Welche Silbe fehlt?"
+            say: "Nudeln. Welche Silbe fehlt?"
+            show: { object: pasta }
+            frame: "_deln"
+            options: ["Na", "Nu", "No"]
+            answer: ["Nu"]
+          - id: l2-c20
+            part: build
+            type: fill_in_blank
+            text: "Welche Silbe fehlt?"
+            say: "Papa. Welche Silbe fehlt?"
+            show: { object: dad }
+            frame: "Pa_"
+            options: ["ma", "pa", "la"]
+            answer: ["pa"]

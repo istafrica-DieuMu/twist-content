@@ -25,6 +25,10 @@ metadata:
   drawn: [letter-card, syllable-arcs, word-card, dots]
   sounds: [de.l, de.ma, de.mo, de.la, de.lo, de.al, de.om]
   facets: []
+  parts:
+    - { id: open-syllables, what: { de: "Silben lesen, die mit M oder L anfangen (Ma, Mo, La, Lo)", en: "reading syllables that start with M or L (Ma, Mo, La, Lo)" } }
+    - { id: vowel-first, what: { de: "Silben lesen, die mit A oder O anfangen (Al, Am, Om)", en: "reading syllables that start with A or O (Al, Am, Om)" } }
+    - { id: words, what: { de: "zwei Silben zu einem Wort zusammenziehen (Mama, Oma, Lama)", en: "blending two syllables into a word (Mama, Oma, Lama)" } }
   misconceptions:
     - id: sounds-apart
       what: Says the sounds one after the other with a gap (m ... a) and does not hear the syllable, so Ma stays two sounds
@@ -216,6 +220,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -236,6 +241,24 @@ lessons:
             say: "Lies die Silbe. Steht da Lo?"
             show: { drawn: syllable-arcs, word: "La", syllables: ["La"] }
             answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "Hör zu. Welche Silbe ist das?"
+            audio: { sound: de.mo }
+            options: ["Ma", "Mo"]
+            answer: "Mo"
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes Lo."
+            say: "Tippe auf jede Silbe Lo."
+            show: { drawn: letter-card, text: "Lo Ma Lo La" }
+            spans: ["Lo", "Lo"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das?"
+            say: "Lies die Silbe. Steht da Ma?"
+            show: { drawn: syllable-arcs, word: "Ma", syllables: ["Ma"] }
+            answer: true
 
   - n: 2
     title: { de: Silben werden Wörter, en: Syllables become words }
@@ -419,14 +442,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: open-syllables
             type: audio_choice
             text: "Hör zu. Welche Silbe ist das?"
             audio: { sound: de.mo }
             options: ["Ma", "Mo", "Om"]
             answer: "Mo"
           - id: l2-c2
+            part: open-syllables
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
             say: "Lo. Welcher Buchstabe fehlt?"
@@ -434,20 +460,133 @@ lessons:
             options: ["a", "o", "m"]
             answer: ["o"]
           - id: l2-c3
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Oma" }
             options: [{ object: mum }, { object: grandma }, { object: llama }]
             answer: grandma
+            option_audio: false
           - id: l2-c4
+            part: vowel-first
             type: true_false
             text: "Stimmt das?"
             say: "Lies die Silbe. Steht da Al?"
             show: { drawn: syllable-arcs, word: "Al", syllables: ["Al"] }
             answer: true
           - id: l2-c5
+            part: open-syllables
             type: highlight_in_text
             text: "Tippe auf jedes Lo."
             say: "Tippe auf jede Silbe Lo."
             show: { drawn: letter-card, text: "Lo La Ol Lo" }
             spans: ["Lo", "Lo"]
+          - id: l2-c6
+            part: open-syllables
+            type: audio_choice
+            text: "Hör zu. Welche Silbe ist das?"
+            audio: { sound: de.la }
+            options: ["Lo", "La", "Al"]
+            answer: "La"
+          - id: l2-c7
+            part: open-syllables
+            type: true_false
+            text: "Stimmt das?"
+            say: "Lies die Silbe. Steht da Mo?"
+            show: { drawn: syllable-arcs, word: "Lo", syllables: ["Lo"] }
+            answer: false
+          - id: l2-c8
+            part: open-syllables
+            type: highlight_in_text
+            text: "Tippe auf jedes Ma."
+            say: "Tippe auf jede Silbe Ma."
+            show: { drawn: letter-card, text: "Am Mo Ma Om Ma" }
+            spans: ["Ma", "Ma"]
+          - id: l2-c9
+            part: vowel-first
+            type: audio_choice
+            text: "Hör zu. Welche Silbe ist das?"
+            audio: { sound: de.om }
+            options: ["Om", "Mo", "Ol"]
+            answer: "Om"
+          - id: l2-c10
+            part: vowel-first
+            type: audio_choice
+            text: "Hör zu. Welche Silbe ist das?"
+            audio: { sound: de.al }
+            options: ["Am", "Al", "La"]
+            answer: "Al"
+          - id: l2-c11
+            part: vowel-first
+            type: true_false
+            text: "Stimmt das?"
+            say: "Lies die Silbe. Steht da Mo?"
+            show: { drawn: syllable-arcs, word: "Om", syllables: ["Om"] }
+            answer: false
+          - id: l2-c12
+            part: vowel-first
+            type: highlight_in_text
+            text: "Tippe auf jedes Al."
+            say: "Tippe auf jede Silbe Al."
+            show: { drawn: letter-card, text: "Al La Al Am" }
+            spans: ["Al", "Al"]
+          - id: l2-c13
+            part: vowel-first
+            type: true_false
+            text: "Stimmt das?"
+            say: "Lies die Silbe. Steht da Am?"
+            show: { drawn: syllable-arcs, word: "Am", syllables: ["Am"] }
+            answer: true
+          - id: l2-c14
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Lama" }
+            options: [{ object: lamp }, { object: llama }, { object: ladder }]
+            answer: llama
+            option_audio: false
+          - id: l2-c15
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Mama" }
+            options: [{ object: mouse }, { object: moon }, { object: mum }]
+            answer: mum
+            option_audio: false
+          - id: l2-c16
+            part: words
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Mama." }
+            options: ["Lama", "Mal", "Mama"]
+            answer: "Mama"
+          - id: l2-c17
+            part: words
+            type: true_false
+            text: "Oma"
+            say: "Lies das Wort oben. Passt es zum Bild?"
+            show: { object: mum }
+            answer: false
+          - id: l2-c18
+            part: words
+            type: true_false
+            text: "Lama"
+            say: "Lies das Wort oben. Passt es zum Bild?"
+            show: { object: llama }
+            answer: true
+          - id: l2-c19
+            part: words
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            say: "Schau dir das Bild an. Lies die Wörter. Welches Wort passt?"
+            show: { object: grandma }
+            options: ["Mama", "Lama", "Oma"]
+            answer: "Oma"
+            option_audio: false
+          - id: l2-c20
+            part: words
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort Oma."
+            say: "Tippe auf jedes Wort Oma."
+            show: { drawn: letter-card, text: "Oma Mama Oma Lama" }
+            spans: ["Oma", "Oma"]

@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: search, what: { de: Suchbegriffe wählen und im Kinderlexikon suchen, en: choosing search words and looking up an entry } }
+    - { id: results, what: { de: "den Treffer finden, der zur Frage passt", en: finding the search result that fits the question } }
+    - { id: reliable, what: { de: "prüfen, ob eine Quelle verlässlich ist", en: checking whether a source can be trusted } }
+    - { id: steps, what: { de: Schritt für Schritt nachforschen und die Antwort mit Quelle notieren, en: researching step by step and noting the answer with its source } }
   misconceptions:
     - id: vague-search-words
       what: Searches with words that are too general (Tiere, Afrika) or with the whole chatty question
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -220,6 +226,23 @@ lessons:
             options: ["Treffer 1", "Treffer 2", "Treffer 3"]
             answer: "Treffer 2"
             keep_order: true
+          - id: l1-c4
+            type: ordering
+            text: "So stehen die Stichwörter im Lexikon. Bring sie in die richtige Reihenfolge."
+            say: "Im Lexikon stehen die Stichwörter nach dem Alphabet. Bring sie in die richtige Reihenfolge."
+            options: ["Wal", "Uhu", "Vulkan", "Tiger"]
+            slot_count: 4
+            answer: ["Tiger", "Uhu", "Vulkan", "Wal"]
+          - id: l1-c5
+            type: true_false
+            text: "Deine Frage: Wie lange brütet ein Huhn?\nTreffer: „Hühnerstall aus Holz, jetzt im Sonderangebot!“\n\nHilft dir dieser Treffer bei deiner Frage?"
+            say: "Deine Frage ist: Wie lange brütet ein Huhn? Lies den Treffer. Hilft er dir bei deiner Frage?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Du willst etwas über Delfine herausfinden. Was machst du, bevor du Suchbegriffe eingibst?"
+            options: ["meine Frage genau aufschreiben", "die Antwort notieren", "das erste Bild anklicken"]
+            answer: "meine Frage genau aufschreiben"
 
   - n: 2
     title: { de: "Stimmt das wirklich?", en: "Is that really true?" }
@@ -393,13 +416,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: search
             type: multiple_choice
             text: "Du willst wissen, wie schnell ein Delfin schwimmt. Welche Suchbegriffe passen am besten?"
             options: ["Delfin Geschwindigkeit", "Meer Urlaub", "Fische"]
             answer: "Delfin Geschwindigkeit"
           - id: l2-c2
+            part: results
             type: multiple_choice
             text: "Deine Frage: Wie bauen Vögel ihre Nester?\n\n1. Vogelhäuschen aus Holz: jetzt bestellen\n2. Lustige Vogelstimmen zum Anhören\n3. Nestbau: So bauen Vögel ihr Nest\n\nWelcher Treffer hilft dir?"
             say: "Deine Frage ist: Wie bauen Vögel ihre Nester? Lies die Treffer. Welcher hilft dir?"
@@ -407,6 +433,7 @@ lessons:
             answer: "Treffer 3"
             keep_order: true
           - id: l2-c3
+            part: reliable
             type: sorting
             text: "Kannst du der Seite trauen?"
             say: "Ordne zu: Spricht das für die Seite, oder ist es ein Warnzeichen?"
@@ -419,15 +446,120 @@ lessons:
               - { text: "Neben dem Text blinkt ein Kaufknopf.", bin: warn }
               - { text: "Die Seite verrät nicht, wer sie gemacht hat.", bin: warn }
           - id: l2-c4
+            part: reliable
             type: multiple_choice
-            text: "Seite A: Der Mount Everest ist etwa 8800 Meter hoch.\nSeite B: Der Mount Everest ist etwa 880 Meter hoch.\nAtlas: Der Mount Everest ist rund 8850 Meter hoch.\n\nWelche Quelle irrt sich wohl?"
-            say: "Lies die drei Angaben. Welche Quelle irrt sich wohl?"
-            options: ["Seite B", "Seite A", "der Atlas"]
-            answer: "Seite B"
+            text: "Seite A: Der Mount Everest ist etwa 8800 Meter hoch.\nSeite B: Der Mount Everest ist etwa 880 Meter hoch.\nAtlas: Der Mount Everest ist rund 8850 Meter hoch.\n\nWelche zwei Quellen sagen ungefähr dasselbe?"
+            say: "Lies die drei Angaben. Welche zwei Quellen sagen ungefähr dasselbe?"
+            options: ["Seite A und der Atlas", "Seite B und der Atlas", "Seite A und Seite B"]
+            answer: "Seite A und der Atlas"
           - id: l2-c5
+            part: steps
             type: ordering
             text: "Bring die Schritte beim Nachforschen in die richtige Reihenfolge."
             say: "Bring die Schritte beim Nachforschen in die richtige Reihenfolge."
             options: ["mit einer zweiten Quelle vergleichen", "eine passende Seite lesen", "die Antwort mit Quelle notieren", "Suchbegriffe eingeben"]
             slot_count: 4
             answer: ["Suchbegriffe eingeben", "eine passende Seite lesen", "mit einer zweiten Quelle vergleichen", "die Antwort mit Quelle notieren"]
+          - id: l2-c6
+            part: search
+            type: multiple_choice
+            text: "Deine Frage: Warum haben Zebras Streifen? Welcher Suchbegriff ist zu allgemein?"
+            options: ["Tiere", "Zebra Streifen", "Streifen Zebra Grund"]
+            answer: "Tiere"
+          - id: l2-c7
+            part: search
+            type: ordering
+            text: "Alle Stichwörter beginnen mit B. Bring sie in die Reihenfolge, in der sie im Lexikon stehen."
+            say: "Alle Stichwörter beginnen mit B. Bring sie in die Reihenfolge, in der sie im Lexikon stehen."
+            options: ["Birke", "Buch", "Bach", "Biber"]
+            slot_count: 4
+            answer: ["Bach", "Biber", "Birke", "Buch"]
+          - id: l2-c8
+            part: search
+            type: multiple_choice
+            text: "Du willst im Kinderlexikon nachlesen, was Quallen fressen. Unter welchem Buchstaben suchst du?"
+            options: ["Q", "K", "F"]
+            answer: "Q"
+            option_audio: false
+          - id: l2-c9
+            part: search
+            type: multiple_choice
+            text: "Du willst wissen, wo Eisbären leben. Welche Suchbegriffe passen am besten?"
+            options: ["Eisbär Lebensraum", "Bären", "Eis essen Sommer"]
+            answer: "Eisbär Lebensraum"
+          - id: l2-c10
+            part: results
+            type: multiple_choice
+            text: "Deine Frage: Wie viele Zähne hat ein Hai?\n\n1. Haie: Zähne, die immer wieder nachwachsen\n2. Hai-Zahnbürste für Kinder kaufen\n3. Der Hai im Freibad: ein lustiges Bilderbuch\n\nWelcher Treffer hilft dir?"
+            say: "Deine Frage ist: Wie viele Zähne hat ein Hai? Lies die Treffer. Welcher hilft dir?"
+            options: ["Treffer 1", "Treffer 2", "Treffer 3"]
+            answer: "Treffer 1"
+            keep_order: true
+          - id: l2-c11
+            part: results
+            type: multiple_choice
+            text: "Deine Frage: Was fressen Igel?\nEin Treffer heißt: „Igel-Kuscheltier, jetzt 20 Prozent billiger!“\n\nWarum hilft dir dieser Treffer nicht?"
+            say: "Deine Frage ist: Was fressen Igel? Ein Treffer heißt: Igel-Kuscheltier, jetzt zwanzig Prozent billiger! Warum hilft dir dieser Treffer nicht?"
+            options: ["Er ist Werbung und beantwortet deine Frage nicht.", "Er ist zu kurz.", "Er hat keine Bilder."]
+            answer: "Er ist Werbung und beantwortet deine Frage nicht."
+          - id: l2-c12
+            part: results
+            type: true_false
+            text: "Deine Frage: Wie entsteht ein Gewitter?\nTreffer: „Gewitter: So entstehen Blitz und Donner. Erklärt für Kinder“\n\nPasst dieser Treffer zu deiner Frage?"
+            say: "Deine Frage ist: Wie entsteht ein Gewitter? Lies den Treffer. Passt er zu deiner Frage?"
+            answer: true
+          - id: l2-c13
+            part: results
+            type: sorting
+            text: "Deine Frage: Wie lange schlafen Fledermäuse im Winter? Passt der Treffer?"
+            say: "Deine Frage ist: Wie lange schlafen Fledermäuse im Winter? Sortiere die Treffer: Passen sie zu deiner Frage oder nicht?"
+            bins:
+              - { id: fits, show: { text: "passt" }, say: "passt" }
+              - { id: misses, show: { text: "passt nicht" }, say: "passt nicht" }
+            options:
+              - { text: "Fledermäuse im Winterschlaf: Wie lange dauert er?", bin: fits }
+              - { text: "Kinderlexikon: Die Fledermaus", bin: fits }
+              - { text: "Fledermaus-Kostüm für Fasching bestellen", bin: misses }
+              - { text: "Die Fledermaus: eine Operette im Stadttheater", bin: misses }
+          - id: l2-c14
+            part: reliable
+            type: multiple_choice
+            text: "Du willst wissen, wie das Wetter morgen wird. Welche Quelle ist am verlässlichsten?"
+            options: ["der Wetterbericht im Radio oder im Internet", "ein Kommentar in einem Spiele-Chat", "ein Werbeplakat für Sonnencreme"]
+            answer: "der Wetterbericht im Radio oder im Internet"
+          - id: l2-c15
+            part: reliable
+            type: true_false
+            text: "Eine Seite sagt: „Nur wir kennen die Wahrheit über Dinosaurier! Alle anderen lügen!“\n\nKannst du dieser Seite gut trauen?"
+            say: "Eine Seite sagt: Nur wir kennen die Wahrheit über Dinosaurier! Alle anderen lügen! Kannst du dieser Seite gut trauen?"
+            answer: false
+          - id: l2-c16
+            part: reliable
+            type: multiple_choice
+            text: "Eine Seite sagt: Ein Strauß kann fliegen. Was machst du, bevor du das in dein Heft schreibst?"
+            options: ["in einer zweiten Quelle nachsehen, zum Beispiel im Kinderlexikon", "es sofort aufschreiben", "die Seite an alle Freunde schicken"]
+            answer: "in einer zweiten Quelle nachsehen, zum Beispiel im Kinderlexikon"
+          - id: l2-c17
+            part: steps
+            type: multiple_choice
+            text: "Welche Notiz ist am besten?"
+            options: ["Strauß: kann nicht fliegen, läuft bis 70 km/h (Tierlexikon, S. 88)", "Strauß großer Vogel", "Das war spannend."]
+            answer: "Strauß: kann nicht fliegen, läuft bis 70 km/h (Tierlexikon, S. 88)"
+          - id: l2-c18
+            part: steps
+            type: multiple_choice
+            text: "Mia hat ihre Frage aufgeschrieben, Suchbegriffe eingegeben und eine passende Seite gelesen. Was macht sie als Nächstes?"
+            options: ["Sie vergleicht mit einer zweiten Quelle.", "Sie überlegt sich eine Frage.", "Sie schaltet sofort das Tablet aus."]
+            answer: "Sie vergleicht mit einer zweiten Quelle."
+          - id: l2-c19
+            part: steps
+            type: multiple_choice
+            text: "Warum schreibst du zu deiner Notiz die Quelle auf?"
+            options: ["Damit du und andere die Angabe später nachprüfen können.", "Damit die Notiz länger wird.", "Weil man jede Notiz mit einem Buch beginnt."]
+            answer: "Damit du und andere die Angabe später nachprüfen können."
+          - id: l2-c20
+            part: steps
+            type: true_false
+            text: "Ben schreibt in sein Heft: „Koalas schlafen bis zu 20 Stunden am Tag.“ Er schreibt nicht dazu, woher er das weiß.\n\nIst Bens Notiz vollständig?"
+            say: "Ben schreibt in sein Heft: Koalas schlafen bis zu zwanzig Stunden am Tag. Er schreibt nicht dazu, woher er das weiß. Ist Bens Notiz vollständig?"
+            answer: false

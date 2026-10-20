@@ -12,7 +12,10 @@ summary: >
   every Reizwort and makes the Reizwörter carry the plot; lesson 2 chooses
   a continuation that fits the beginning, rewrites an ending or a point of
   view, and ends with the skill check. Writing the story out freely waits
-  for the write_text task type.
+  for the write_text task type. The skill check marks what a screen can
+  mark (the Reizwörter in a story, a story against a list of sentences,
+  the order, a fitting continuation, the Präteritum, a new ending or point
+  of view); Practise covers writing a whole story of the child's own.
 metadata:
   year: klasse-3
   topic: { de: Erzählen, en: Telling stories }
@@ -24,6 +27,10 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: prompt-words, what: { de: "zu Reizwörtern eine Geschichte planen, prüfen und ordnen", en: "planning, checking and ordering a story from prompt words" } }
+    - { id: continue, what: { de: eine Geschichte passend weiterschreiben, en: continuing a story so that it fits } }
+    - { id: rewrite, what: { de: "eine Geschichte umschreiben: ein neues Ende oder eine andere Sicht", en: "rewriting a story: a new ending or another point of view" } }
   misconceptions:
     - id: list-the-words
       what: Puts the Reizwörter into a list of sentences with no story connecting them
@@ -211,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -230,6 +238,26 @@ lessons:
             say: "Lies die Reizwörter. Was könnte in der Geschichte das Problem sein?"
             options: ["Die Fahrkarte ist weg, und die Schaffnerin kommt.", "Der Zug hat viele Wagen.", "Die Schaffnerin hat eine Mütze."]
             answer: "Die Fahrkarte ist weg, und die Schaffnerin kommt."
+          - id: l1-c4
+            type: multiple_choice
+            text: "Reizwörter: Fußball, Pfütze, Trikot\n\nWelcher Text ist eine Geschichte?"
+            say: "Lies die Reizwörter. Welcher Text ist eine echte Geschichte?"
+            options: ["Beim Fußball rutschte Leon in eine große Pfütze. Sein weißes Trikot war auf einmal braun! Alle lachten, sogar Leon.", "Ich spiele gern Fußball. Die Pfütze ist nass. Mein Trikot ist weiß."]
+            answer: "Beim Fußball rutschte Leon in eine große Pfütze. Sein weißes Trikot war auf einmal braun! Alle lachten, sogar Leon."
+            option_audio: false
+          - id: l1-c5
+            type: ordering
+            text: "Reizwörter: Markt, Luftballon, Oma. Leg die Sätze in die richtige Reihenfolge."
+            say: "Lies die Reizwörter. Leg die Sätze der Geschichte in die richtige Reihenfolge."
+            options: ["Zum Glück blieb er an einem Marktstand hängen, und Oma holte ihn herunter.", "Am Samstag ging ich mit Oma auf den Markt.", "Dort ließ ich aus Versehen meinen Luftballon los."]
+            slot_count: 3
+            answer: ["Am Samstag ging ich mit Oma auf den Markt.", "Dort ließ ich aus Versehen meinen Luftballon los.", "Zum Glück blieb er an einem Marktstand hängen, und Oma holte ihn herunter."]
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Reizwörter: Schere, Papier, Wind\n\nText: Lotta schnitt mit der Schere einen Vogel aus Papier. Da wehte ein Wind durchs Fenster, und der Vogel flog davon.\n\nIst dieser Text eine Geschichte?"
+            say: "Lies die Reizwörter und den Text. Ist dieser Text eine Geschichte?"
+            answer: true
 
   - n: 2
     title: { de: "Weiterschreiben und umschreiben", en: "Continuing and rewriting" }
@@ -403,14 +431,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: prompt-words
             type: highlight_in_text
             text: "Reizwörter: Rakete, Stern, Mond. Tippe auf die drei Reizwörter im Text."
             say: "Lies die Geschichte. Tippe auf die drei Reizwörter."
             show: { drawn: letter-card, text: "Die Rakete flog an einem hellen Stern vorbei. Bald landete sie sanft auf dem Mond." }
             spans: ["Rakete", "Stern", "Mond."]
           - id: l2-c2
+            part: prompt-words
             type: multiple_choice
             text: "Reizwörter: Kiosk, Geld, Freund\n\nWelcher Text ist eine Geschichte?"
             say: "Lies die Reizwörter. Welcher Text ist eine echte Geschichte?"
@@ -418,6 +449,7 @@ lessons:
             answer: "Am Kiosk merkte ich, dass mein Geld weg war. Da kam mein Freund Noah und lieh mir zwei Euro."
             option_audio: false
           - id: l2-c3
+            part: continue
             type: multiple_choice
             text: "Anfang: Beim Spazierengehen fand Mila einen kleinen Vogel. Er konnte nicht fliegen.\n\nWelche Fortsetzung passt?"
             say: "Lies den Anfang. Welche Fortsetzung passt?"
@@ -425,6 +457,7 @@ lessons:
             answer: "Vorsichtig trug Mila ihn nach Hause und brachte ihn mit Mama zur Tierärztin."
             option_audio: false
           - id: l2-c4
+            part: rewrite
             type: multiple_choice
             text: "„Der Hase sah den Fuchs und rannte davon.“\n\nWie heißt es, wenn der Hase selbst erzählt?"
             say: "Lies den Satz. Der Hase soll selbst erzählen. Wie heißt es dann?"
@@ -432,9 +465,119 @@ lessons:
             answer: "Ich sah den Fuchs und rannte davon."
             option_audio: false
           - id: l2-c5
+            part: continue
             type: fill_in_blank
             text: "Die Geschichte steht in der Vergangenheit. Welches Verb passt?"
             say: "Schreib die Geschichte weiter. Welches Verb passt?"
             frame: "Die Tür quietschte. Langsam _ Jan ins dunkle Zimmer."
             options: ["trat", "tritt", "treten"]
             answer: ["trat"]
+          - id: l2-c6
+            part: prompt-words
+            type: multiple_choice
+            text: "Reizwörter: Laterne, Nebel, Eule\n\nIm dichten Nebel sah Tom kaum etwas. Nur seine Laterne leuchtete. Plötzlich flatterte etwas über seinen Kopf.\n\nKommen alle Reizwörter vor?"
+            say: "Lies die Reizwörter und die Geschichte. Kommen alle Reizwörter vor?"
+            options: ["Nein, Eule fehlt.", "Ja, alle drei.", "Nein, Nebel fehlt."]
+            answer: "Nein, Eule fehlt."
+          - id: l2-c7
+            part: continue
+            type: true_false
+            text: "Anfang: Nele übte im Hof Seilspringen. Auf einmal riss das Seil.\nFortsetzung: Traurig hob Nele die beiden Stücke auf. Dann hatte sie eine Idee und knotete sie wieder zusammen.\n\nPasst die Fortsetzung zum Anfang?"
+            say: "Lies den Anfang und die Fortsetzung. Passt die Fortsetzung zum Anfang?"
+            answer: true
+          - id: l2-c8
+            part: rewrite
+            type: multiple_choice
+            text: "„Die Maus sah die Katze und versteckte sich im Loch.“\n\nWie heißt es, wenn die Katze selbst erzählt?"
+            say: "Lies den Satz. Die Katze soll selbst erzählen. Wie heißt es dann?"
+            options: ["Die Maus sah mich und versteckte sich im Loch.", "Ich sah die Katze und versteckte mich im Loch.", "Die Maus sah sie und versteckte sich im Loch."]
+            answer: "Die Maus sah mich und versteckte sich im Loch."
+            option_audio: false
+          - id: l2-c9
+            part: prompt-words
+            type: ordering
+            text: "Reizwörter: Kürbis, Messer, Gesicht. Leg die Sätze in die richtige Reihenfolge."
+            say: "Lies die Reizwörter. Leg die Sätze der Geschichte in die richtige Reihenfolge."
+            options: ["Am Abend leuchtete das Kürbisgesicht vor der Haustür.", "Im Oktober kaufte Papa einen dicken Kürbis.", "Mit einem scharfen Messer schnitzte er ein lustiges Gesicht hinein."]
+            slot_count: 3
+            answer: ["Im Oktober kaufte Papa einen dicken Kürbis.", "Mit einem scharfen Messer schnitzte er ein lustiges Gesicht hinein.", "Am Abend leuchtete das Kürbisgesicht vor der Haustür."]
+            option_audio: false
+          - id: l2-c10
+            part: continue
+            type: multiple_choice
+            text: "Anfang: Im Schullandheim konnte Finn nicht einschlafen. Draußen auf dem Flur hörte er leise Schritte.\n\nWelche Fortsetzung passt?"
+            say: "Lies den Anfang. Welche Fortsetzung passt?"
+            options: ["Finn schlich zur Tür und spähte hinaus. Es war nur Herr Kaya, der Lehrer, mit einer Taschenlampe.", "Finn öffnet die Tür und sieht einen Dinosaurier.", "Im Winter baute Mia einen Schneemann."]
+            answer: "Finn schlich zur Tür und spähte hinaus. Es war nur Herr Kaya, der Lehrer, mit einer Taschenlampe."
+            option_audio: false
+          - id: l2-c11
+            part: rewrite
+            type: multiple_choice
+            text: "Ende: Der Kuchen verbrannte im Ofen, und das Fest fiel aus.\n\nWelches neue Ende geht gut aus?"
+            say: "Lies das Ende. Du schreibst es um. Welches neue Ende geht gut aus?"
+            options: ["Zum Glück roch Opa den Rauch rechtzeitig. Der Kuchen war nur ein bisschen dunkel, und das Fest wurde lustig.", "Der Kuchen verbrannte im Ofen, und das Fest fiel aus.", "Der Kuchen verbrannte, und alle gingen enttäuscht nach Hause."]
+            answer: "Zum Glück roch Opa den Rauch rechtzeitig. Der Kuchen war nur ein bisschen dunkel, und das Fest wurde lustig."
+            option_audio: false
+          - id: l2-c12
+            part: prompt-words
+            type: multiple_choice
+            text: "Reizwörter: Zirkus, Löwe, Käfig\n\nWas könnte in dieser Geschichte das Problem sein?"
+            say: "Lies die Reizwörter. Was könnte in der Geschichte das Problem sein?"
+            options: ["Der Käfig steht offen, und der Löwe ist weg.", "Der Zirkus hat ein rotes Zelt.", "Der Löwe hat eine große Mähne."]
+            answer: "Der Käfig steht offen, und der Löwe ist weg."
+          - id: l2-c13
+            part: continue
+            type: fill_in_blank
+            text: "Die Geschichte steht in der Vergangenheit. Welche Verben passen?"
+            say: "Schreib die Geschichte weiter. Welche Verben passen?"
+            frame: "Der Wind heulte ums Haus. Mira _ unter ihre Decke und _ die Augen zu."
+            options: ["kroch", "kriecht", "machte", "macht"]
+            answer: ["kroch", "machte"]
+          - id: l2-c14
+            part: rewrite
+            type: true_false
+            text: "„Lina fand im Wald einen Igel.“\nAus Linas Sicht: „Ich fand im Wald einen Igel.“\n\nIst der Satz richtig umgeschrieben?"
+            say: "Lies den Satz und wie er umgeschrieben ist. Ist er richtig umgeschrieben?"
+            answer: true
+          - id: l2-c15
+            part: prompt-words
+            type: true_false
+            text: "Reizwörter: Kamera, Fuchs, Morgen\n\nText: Ich habe eine Kamera. Ein Fuchs ist rot. Der Morgen ist kalt.\n\nIst dieser Text eine Geschichte?"
+            say: "Lies die Reizwörter und den Text. Ist dieser Text eine Geschichte?"
+            answer: false
+          - id: l2-c16
+            part: continue
+            type: multiple_choice
+            text: "Anfang: Am Badesee wollte Ole vom Steg springen. Doch das Wasser sah sehr kalt aus.\n\nWelche Fortsetzung passt nicht?"
+            say: "Lies den Anfang. Welche Fortsetzung passt nicht?"
+            options: ["Morgen fährt Ole mit dem Zug nach Paris.", "Ole zählte bis drei und sprang. Brr, war das kalt!", "Ole steckte erst einen Zeh ins Wasser und zögerte."]
+            answer: "Morgen fährt Ole mit dem Zug nach Paris."
+            option_audio: false
+          - id: l2-c17
+            part: rewrite
+            type: fill_in_blank
+            text: "„Tom rief nach dem Kater. Doch der Kater blieb auf dem Dach sitzen.“\n\nDer Kater erzählt selbst. Welche Wörter passen?"
+            say: "Lies die Sätze. Der Kater soll selbst erzählen. Welche Wörter passen?"
+            frame: "Tom rief nach _. Doch _ blieb auf dem Dach sitzen."
+            options: ["mir", "mich", "ich", "er"]
+            answer: ["mir", "ich"]
+          - id: l2-c18
+            part: prompt-words
+            type: highlight_in_text
+            text: "Reizwörter: Wecker, Bus, Turnbeutel. Tippe auf die drei Reizwörter im Text."
+            say: "Lies die Geschichte. Tippe auf die drei Reizwörter."
+            show: { drawn: letter-card, text: "Der Wecker klingelte nicht. Jakob rannte los und erwischte gerade noch den Bus. Doch sein Turnbeutel lag noch zu Hause." }
+            spans: ["Wecker", "Bus", "Turnbeutel"]
+          - id: l2-c19
+            part: rewrite
+            type: true_false
+            text: "„Der Sturm riss das Dach vom Stall. Die Kühe muhten ängstlich.“\nAus der Sicht einer Kuh: „Der Sturm riss das Dach vom Stall. Die Kühe muhten ängstlich.“\n\nIst der Text aus der Sicht einer Kuh umgeschrieben?"
+            say: "Lies den Text und wie er umgeschrieben ist. Ist er aus der Sicht einer Kuh umgeschrieben?"
+            answer: false
+          - id: l2-c20
+            part: rewrite
+            type: multiple_choice
+            text: "Vorher: Am Ende schlief der Riese ein, und die Kinder liefen davon.\nUmgeschrieben: Am Ende wachte der Riese auf und lud die Kinder zum Essen ein.\n\nWas wurde umgeschrieben?"
+            say: "Lies beide Texte. Was wurde umgeschrieben?"
+            options: ["das Ende", "wer erzählt", "die Zeitform"]
+            answer: "das Ende"

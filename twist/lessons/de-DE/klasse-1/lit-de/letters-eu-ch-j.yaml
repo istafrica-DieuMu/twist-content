@@ -27,6 +27,11 @@ metadata:
   drawn: [letter-card, writing-lines, syllable-arcs, word-card]
   sounds: []
   facets: [script]
+  parts:
+    - { id: eu, what: { de: "eu hören und lesen, auch gegen ei und au", en: "hearing and reading eu, set against ei and au" } }
+    - { id: ch, what: { de: "ch hören und lesen, auch gegen sch", en: "hearing and reading ch, set against sch" } }
+    - { id: ch-sounds, what: { de: "die zwei Laute von ch (ich, Dach)", en: "the two sounds of ch (ich, Dach)" } }
+    - { id: j, what: { de: das J und sein Laut, en: the letter J and its sound } }
   misconceptions:
     - id: eu-spelling
       what: Writes oi or ei for the sound in Eule, or mixes eu up with ei and au
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -241,6 +247,24 @@ lessons:
             say: "Tippe auf jede Karte mit eu."
             show: { drawn: letter-card, text: "ei eu au" }
             spans: ["eu"]
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du ein eu?"
+            say: "Feuerwerk. Hörst du in dem Wort ein eu?"
+            show: { object: fireworks }
+            answer: true
+          - id: l1-c5
+            type: audio_choice
+            text: "Eu, Ei oder Au?"
+            audio: { de: "Seife." }
+            options: ["Au", "Eu", "Ei"]
+            answer: "Ei"
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Wo hörst du ein eu?"
+            say: "In welchem Wort hörst du ein eu?"
+            options: [{ object: egg }, { object: owl }, { object: eye }]
+            answer: owl
 
   - n: 2
     title: { de: Das Ch, en: The sound ch }
@@ -434,6 +458,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: image_multiple_choice
@@ -454,6 +479,25 @@ lessons:
             say: "Fisch. Hörst du in dem Wort ein ch?"
             show: { object: fish }
             answer: false
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du ein ch?"
+            say: "Koch. Hörst du in dem Wort ein ch?"
+            show: { object: cook }
+            answer: true
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes ch."
+            say: "Tippe auf jede Karte mit c und h."
+            show: { drawn: letter-card, text: "c ch h ch sch ch" }
+            spans: ["ch", "ch", "ch"]
+          - id: l2-c6
+            type: audio_choice
+            text: "Wie klingt das ch?"
+            audio: { de: "Teich." }
+            options: ["wie bei ich", "wie bei Dach"]
+            answer: "wie bei ich"
+            keep_order: true
 
   - n: 3
     title: { de: Das J, en: The letter J }
@@ -630,6 +674,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: image_multiple_choice
@@ -648,6 +693,24 @@ lessons:
             say: "Glocke. Hörst du am Anfang ein j?"
             show: { object: bell }
             answer: false
+          - id: l3-c4
+            type: true_false
+            text: "Hörst du am Anfang ein J?"
+            say: "Jo-Jo. Hörst du am Anfang ein j?"
+            show: { object: yo-yo }
+            answer: true
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes J."
+            say: "Tippe auf jedes große und kleine J."
+            show: { drawn: letter-card, text: "j J g i j" }
+            spans: ["j", "J", "j"]
+          - id: l3-c6
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Gans." }
+            options: ["J", "G"]
+            answer: "G"
 
   - n: 4
     title: { de: "Wörter mit Eu, Ch und J", en: "Words with Eu, Ch and J" }
@@ -815,14 +878,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l4-c1
+            part: eu
             type: audio_choice
             text: "Eu, Ei oder Au?"
             audio: { de: "Freund." }
             options: ["Au", "Ei", "Eu"]
             answer: "Eu"
           - id: l4-c2
+            part: ch-sounds
             type: audio_choice
             text: "Wie klingt das ch?"
             audio: { de: "Küche." }
@@ -831,12 +897,14 @@ lessons:
             answer: "wie bei ich"
             keep_order: true
           - id: l4-c3
+            part: j
             type: true_false
-            text: "Steht hier „Jahr“?"
-            say: "Lies die Karte. Steht hier Jahr?"
+            text: "Hör zu. Steht dieses Wort auf der Karte?"
             show: { drawn: word-card, text: "Jahr" }
+            audio: { de: "Jahr." }
             answer: true
           - id: l4-c4
+            part: ch
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Kuchen. Was fehlt in dem Wort?"
@@ -845,8 +913,124 @@ lessons:
             options: ["k", "sch", "ch"]
             answer: ["ch"]
           - id: l4-c5
+            part: ch
             type: highlight_in_text
             text: "Tippe auf jedes ch."
-            say: "Tippe auf jede Karte mit ch. Pass auf: sch zählt nicht."
+            say: "Tippe auf jede Karte mit c und h."
             show: { drawn: letter-card, text: "sch ch c ch" }
             spans: ["ch", "ch"]
+          - id: l4-c6
+            part: eu
+            type: true_false
+            text: "Hörst du ein eu?"
+            say: "Eule. Hörst du in dem Wort ein eu?"
+            show: { object: owl }
+            answer: true
+          - id: l4-c7
+            part: ch-sounds
+            type: audio_choice
+            text: "Wie klingt das ch?"
+            audio: { de: "Tuch." }
+            options: ["wie bei ich", "wie bei Dach"]
+            answer: "wie bei Dach"
+            keep_order: true
+          - id: l4-c8
+            part: j
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Jaguar." }
+            options: ["G", "I", "J"]
+            answer: "J"
+          - id: l4-c9
+            part: ch
+            type: true_false
+            text: "Hörst du ein ch?"
+            say: "Schiff. Hörst du in dem Wort ein ch?"
+            show: { object: ship }
+            answer: false
+          - id: l4-c10
+            part: eu
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Feuerwerk" }
+            options: [{ object: star }, { object: fireworks }, { object: candle }]
+            answer: fireworks
+            option_audio: false
+          - id: l4-c11
+            part: ch-sounds
+            type: image_multiple_choice
+            text: "Wo klingt das ch wie bei ich?"
+            say: "In welchem Wort klingt das ch wie bei ich?"
+            options: [{ object: cook }, { object: cake }, { object: girl }]
+            answer: girl
+          - id: l4-c12
+            part: j
+            type: true_false
+            text: "Hörst du am Anfang ein J?"
+            say: "Eis. Hörst du am Anfang ein j?"
+            show: { object: ice-cream }
+            answer: false
+          - id: l4-c13
+            part: eu
+            type: audio_choice
+            text: "Eu, Ei oder Au?"
+            audio: { de: "Raupe." }
+            options: ["Ei", "Eu", "Au"]
+            answer: "Au"
+          - id: l4-c14
+            part: ch-sounds
+            type: sorting
+            text: "Sortiere: ch wie bei ich oder wie bei Dach?"
+            say: "Hör auf das ch in jedem Wort. Klingt es wie bei ich oder wie bei Dach? Tippe auf ein Bild und dann auf ich oder Dach."
+            bins:
+              - { id: ich, show: { text: "ich" }, say: "ich" }
+              - { id: dach, show: { text: "Dach" }, say: "Dach" }
+            options:
+              - { object: church, bin: ich }
+              - { object: cook, bin: dach }
+              - { object: happy, bin: ich }
+              - { object: cake, bin: dach }
+          - id: l4-c15
+            part: j
+            type: highlight_in_text
+            text: "Tippe auf jedes J."
+            say: "Tippe auf jedes große und kleine J."
+            show: { drawn: letter-card, text: "l j J g J" }
+            spans: ["J", "j", "J"]
+          - id: l4-c16
+            part: eu
+            type: true_false
+            text: "Hörst du ein eu?"
+            say: "Auge. Hörst du in dem Wort ein eu?"
+            show: { object: eye }
+            answer: false
+          - id: l4-c17
+            part: ch
+            type: image_multiple_choice
+            text: "Wo hörst du ein ch?"
+            say: "In welchem Wort hörst du ein ch?"
+            options: [{ object: shoe }, { object: church }, { object: sock }]
+            answer: church
+          - id: l4-c18
+            part: ch-sounds
+            type: audio_choice
+            text: "Wie klingt das ch?"
+            audio: { de: "Becher." }
+            options: ["wie bei ich", "wie bei Dach"]
+            answer: "wie bei ich"
+            keep_order: true
+          - id: l4-c19
+            part: j
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: yo-yo }
+            options: ["Juli", "Jo-Jo", "Jahr"]
+            answer: "Jo-Jo"
+            option_audio: false
+          - id: l4-c20
+            part: eu
+            type: highlight_in_text
+            text: "Tippe auf jedes eu."
+            say: "Tippe auf jede Karte mit eu."
+            show: { drawn: letter-card, text: "Eu au eu ei" }
+            spans: ["Eu", "eu"]

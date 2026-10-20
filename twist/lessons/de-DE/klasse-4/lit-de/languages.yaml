@@ -28,6 +28,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: alike, what: { de: ähnliche Wörter in verwandten Sprachen finden, en: finding similar words in related languages } }
+    - { id: different, what: { de: "Unterschiede zwischen Sprachen entdecken (Wörter, Artikel, Schrift)", en: "spotting how languages differ (words, articles, writing)" } }
+    - { id: dialect-words, what: { de: Wörter aus Dialekten verstehen, en: understanding dialect words } }
+    - { id: dialect-region, what: { de: Dialekte einer Gegend zuordnen und von der Standardsprache unterscheiden, en: placing dialects in a region and telling them from standard German } }
   misconceptions:
     - id: german-is-the-pattern
       what: Expects other languages to work like German, word for word, with der, die, das and capital nouns
@@ -226,6 +231,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -242,6 +248,21 @@ lessons:
             type: true_false
             text: "Gibt es im Englischen die Artikel der, die und das?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welches englische Wort ist dem deutschen Wort Bruder ähnlich?"
+            options: ["brother", "sister", "baby"]
+            answer: "brother"
+          - id: l1-c5
+            type: true_false
+            text: "Stimmt das? Im Polnischen grüßt man mit „Cześć!“."
+            say: "Stimmt das? Im Polnischen grüßt man mit dem Wort, das hier steht."
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Was ist im Türkischen anders als im Deutschen?"
+            options: ["Es gibt keinen Artikel wie der, die oder das.", "Man schreibt von rechts nach links.", "Es gibt keine Wörter für Tiere."]
+            answer: "Es gibt keinen Artikel wie der, die oder das."
 
   - n: 2
     title: { de: "Dialekte in Deutschland", en: "Dialects in Germany" }
@@ -422,13 +443,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: alike
             type: multiple_choice
             text: "Welches englische Wort ist dem deutschen Wort Hand ähnlich?"
             options: ["hand", "head", "leg"]
             answer: "hand"
           - id: l2-c2
+            part: alike
             type: matching
             text: "Deutsch und Englisch: Was gehört zusammen?"
             say: "Welche deutschen und englischen Wörter klingen ähnlich? Verbinde sie."
@@ -438,16 +462,124 @@ lessons:
               - { left: { text: "Gras" }, right: { text: "grass" } }
               - { left: { text: "Bett" }, right: { text: "bed" } }
           - id: l2-c3
+            part: different
             type: multiple_choice
             text: "Im Englischen heißt es: the dog, the cat, the house. Was fällt dir auf?"
             options: ["Für der, die und das steht immer the.", "Alle Wörter sind weiblich.", "Nomen schreibt man groß."]
             answer: "Für der, die und das steht immer the."
           - id: l2-c4
+            part: dialect-words
             type: multiple_choice
             text: "Ali kauft in Berlin zwei Schrippen. Was kauft er?"
             options: ["zwei Brötchen", "zwei Würstchen", "zwei Brezeln"]
             answer: "zwei Brötchen"
           - id: l2-c5
+            part: dialect-region
             type: true_false
             text: "Ist Moin ein Gruß aus dem Norden von Deutschland?"
             answer: true
+          - id: l2-c6
+            part: alike
+            type: multiple_choice
+            text: "Welches Wort ist dem deutschen Wort Winter ähnlich?"
+            options: ["winter (Englisch)", "kış (Türkisch)", "zima (Polnisch)"]
+            answer: "winter (Englisch)"
+            option_audio: false
+          - id: l2-c7
+            part: alike
+            type: true_false
+            text: "Deutsch: Baum. Türkisch: ağaç.\n\nKlingen die beiden Wörter ähnlich?"
+            say: "Lies das deutsche und das türkische Wort. Klingen die beiden Wörter ähnlich?"
+            answer: false
+          - id: l2-c8
+            part: alike
+            type: matching
+            text: "Welches englische Wort ist verwandt? Verbinde."
+            say: "Verbinde jedes deutsche Wort mit dem englischen Wort, das ähnlich klingt."
+            pairs:
+              - { left: { text: "Schiff" }, right: { text: "ship" } }
+              - { left: { text: "Brot" }, right: { text: "bread" } }
+              - { left: { text: "Freund" }, right: { text: "friend" } }
+            option_audio: false
+          - id: l2-c9
+            part: different
+            type: multiple_choice
+            text: "Wie grüßt man auf Türkisch?"
+            options: ["Merhaba!", "Ciao!", "Hello!"]
+            answer: "Merhaba!"
+            option_audio: false
+          - id: l2-c10
+            part: different
+            type: true_false
+            text: "Deutsch: die Sonne. Englisch: the sun.\n\nStimmt das? Im Englischen schreibt man sun klein."
+            say: "Auf Deutsch heißt es die Sonne, auf Englisch the sun. Stimmt das? Im Englischen schreibt man sun klein."
+            answer: true
+          - id: l2-c11
+            part: different
+            type: multiple_choice
+            text: "Welche Sprache schreibt man von rechts nach links?"
+            options: ["Arabisch", "Englisch", "Italienisch"]
+            answer: "Arabisch"
+          - id: l2-c12
+            part: different
+            type: sorting
+            text: "Englisch: Was ist wie im Deutschen, was ist anders?"
+            say: "Sortiere: Ist das im Englischen genauso wie im Deutschen, oder ist es anders?"
+            bins:
+              - { id: same, show: { text: "wie im Deutschen" }, say: "wie im Deutschen" }
+              - { id: other, show: { text: "anders als im Deutschen" }, say: "anders als im Deutschen" }
+            options:
+              - { text: "Man schreibt von links nach rechts.", bin: same }
+              - { text: "Ein Satz endet mit einem Punkt.", bin: same }
+              - { text: "Für der, die und das gibt es nur the.", bin: other }
+              - { text: "Nomen schreibt man klein.", bin: other }
+          - id: l2-c13
+            part: dialect-words
+            type: multiple_choice
+            text: "Oma aus dem Süden sagt: „Der Bub spielt im Garten.“ Wer spielt im Garten?"
+            say: "Oma aus dem Süden sagt: Der Bub spielt im Garten. Wer spielt im Garten?"
+            options: ["ein Junge", "ein Hund", "ein Mädchen"]
+            answer: "ein Junge"
+          - id: l2-c14
+            part: dialect-words
+            type: multiple_choice
+            text: "Opa aus Bayern sagt: „Heut regnet's net.“ Wie heißt das in der Standardsprache?"
+            say: "Opa aus Bayern sagt: Heut regnet's net. Wie heißt das in der Standardsprache?"
+            options: ["Heute regnet es nicht.", "Heute regnet es nett.", "Heute regnet es sehr."]
+            answer: "Heute regnet es nicht."
+            option_audio: false
+          - id: l2-c15
+            part: dialect-words
+            type: true_false
+            text: "Im Süden sagen viele Erdapfel. Stimmt das? Erdapfel ist ein anderes Wort für Apfel."
+            answer: false
+          - id: l2-c16
+            part: dialect-words
+            type: multiple_choice
+            text: "Welches Wort sagt man in Hamburg für Brötchen?"
+            options: ["Rundstück", "Brezel", "Kuchen"]
+            answer: "Rundstück"
+          - id: l2-c17
+            part: dialect-region
+            type: multiple_choice
+            text: "Wo grüßt man oft mit „Grüß Gott!“?"
+            say: "Wo grüßt man oft mit: Grüß Gott?"
+            options: ["in Bayern", "in Hamburg", "in Berlin"]
+            answer: "in Bayern"
+          - id: l2-c18
+            part: dialect-region
+            type: true_false
+            text: "Wer Dialekt spricht, macht dabei Fehler. Stimmt das?"
+            answer: false
+          - id: l2-c19
+            part: dialect-region
+            type: multiple_choice
+            text: "Lena wohnt in Bayern und schreibt einen Brief an ihre Brieffreundin in Hamburg. Wie schreibt sie am besten?"
+            options: ["in der Standardsprache", "in ihrem bayerischen Dialekt", "auf Englisch"]
+            answer: "in der Standardsprache"
+          - id: l2-c20
+            part: dialect-region
+            type: multiple_choice
+            text: "Was ist die Standardsprache?"
+            options: ["das Deutsch, das alle in Deutschland verstehen", "das Deutsch einer einzigen Stadt", "eine Sprache aus einem anderen Land"]
+            answer: "das Deutsch, das alle in Deutschland verstehen"

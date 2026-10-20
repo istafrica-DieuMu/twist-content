@@ -12,7 +12,9 @@ summary: >
   do (einladen, informieren, erklären, unterhalten, sich bedanken); lesson
   2 matches a writing task to its Textart and fits the words to the reader
   (du or Sie, the right greeting), and ends with the skill check. Writing
-  the text itself waits for the write_text task type.
+  the text itself waits for the write_text task type. The skill check
+  marks what a screen can mark (the reader, the purpose, the Textart and
+  the words for the reader); writing the text stays with Practise.
 metadata:
   year: klasse-3
   topic: { de: Texte planen, en: Planning writing }
@@ -24,6 +26,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: reader, what: { de: "klären, für wen ein Text ist", en: "working out who a text is for" } }
+    - { id: purpose, what: { de: "klären, wozu ein Text ist", en: "working out what a text is for" } }
+    - { id: text-type, what: { de: "die passende Textart wählen und wissen, was hineingehört", en: choosing the kind of text and what goes in it } }
+    - { id: register, what: { de: "Anrede und Wörter passend zum Leser wählen (du oder Sie)", en: "choosing the greeting and words for the reader (du or Sie)" } }
   misconceptions:
     - id: one-style-for-all
       what: Writes to the head teacher in the same way as to a friend
@@ -205,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -223,6 +231,23 @@ lessons:
             text: "Ein Text über das Leben der Bienen soll informieren. Stimmt das?"
             say: "Ein Text über das Leben der Bienen soll informieren. Stimmt das?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Leo hängt einen Zettel an die Klassentür: „Wir sind heute in der Turnhalle!“ Für wen ist der Zettel?"
+            say: "Leo hängt einen Zettel an die Klassentür: Wir sind heute in der Turnhalle. Für wen ist der Zettel?"
+            options: ["für die Turnhalle", "für alle, die die Klasse suchen", "für Leo selbst"]
+            answer: "für alle, die die Klasse suchen"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Die Klasse 3b schreibt den Eltern: „Kommt zu unserem Theaterstück am Donnerstag!“ Wozu schreibt die Klasse?"
+            say: "Die Klasse drei b schreibt den Eltern: Kommt zu unserem Theaterstück am Donnerstag! Wozu schreibt die Klasse?"
+            options: ["um sich zu entschuldigen", "um etwas zu erklären", "um die Eltern einzuladen"]
+            answer: "um die Eltern einzuladen"
+          - id: l1-c6
+            type: true_false
+            text: "Finn schreibt seinem Freund auf, wie man das neue Brettspiel spielt. Will er sich bedanken?"
+            say: "Finn schreibt seinem Freund auf, wie man das neue Brettspiel spielt. Will er sich bedanken?"
+            answer: false
 
   - n: 2
     title: { de: "Die passende Textart", en: "The right kind of text" }
@@ -393,14 +418,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: text-type
             type: multiple_choice
             text: "Lukas will der Klasse erklären, wie man ein Vogelhaus baut. Welche Textart passt?"
             say: "Lukas will der Klasse erklären, wie man ein Vogelhaus baut. Welche Textart passt?"
             options: ["eine Bauanleitung", "eine Einladung", "ein Gedicht"]
             answer: "eine Bauanleitung"
           - id: l2-c2
+            part: purpose
             type: matching
             text: "Was gehört zusammen?"
             say: "Verbinde jeden Text mit seinem Zweck."
@@ -409,6 +437,7 @@ lessons:
               - { left: { text: "Wir laden euch zum Schulkonzert ein." }, right: { text: "einladen" } }
               - { left: { text: "Füchse leben im Wald und jagen Mäuse." }, right: { text: "informieren" } }
           - id: l2-c3
+            part: register
             type: multiple_choice
             text: "Du schreibst deiner Lehrerin Frau Kühn, dass du krank bist. Welche Anrede passt?"
             say: "Du schreibst deiner Lehrerin Frau Kühn, dass du krank bist. Welche Anrede passt?"
@@ -416,13 +445,119 @@ lessons:
             answer: "Liebe Frau Kühn,"
             option_audio: false
           - id: l2-c4
+            part: purpose
             type: multiple_choice
             text: "Tara will, dass Herr Wolf ihr seinen Rasenmäher leiht. Wozu schreibt sie?"
             say: "Tara möchte, dass Herr Wolf ihr seinen Rasenmäher leiht. Wozu schreibt sie ihm?"
             options: ["um ihn um etwas zu bitten", "um ihn zu unterhalten", "um sich zu bedanken"]
             answer: "um ihn um etwas zu bitten"
           - id: l2-c5
+            part: text-type
             type: true_false
             text: "Für ein Plakat zum Flohmarkt brauchst du: was, wann und wo. Stimmt das?"
             say: "Für ein Plakat zum Flohmarkt brauchst du: was, wann und wo. Stimmt das?"
             answer: true
+          - id: l2-c6
+            part: reader
+            type: multiple_choice
+            text: "Frau Nowak hängt einen Zettel an den Kopierer im Lehrerzimmer: „Kopierer kaputt!“ Für wen ist der Zettel?"
+            say: "Frau Nowak hängt einen Zettel an den Kopierer im Lehrerzimmer: Kopierer kaputt! Für wen ist der Zettel?"
+            options: ["für die Kinder der ersten Klasse", "für die Lehrerinnen und Lehrer", "für den Hausmeister im Urlaub"]
+            answer: "für die Lehrerinnen und Lehrer"
+          - id: l2-c7
+            part: reader
+            type: multiple_choice
+            text: "Die Feuerwehr schreibt einen Brief an alle Familien im Dorf: Am Samstag ist Tag der offenen Tür. Für wen ist der Brief?"
+            say: "Die Feuerwehr schreibt einen Brief an alle Familien im Dorf. Am Samstag ist Tag der offenen Tür. Für wen ist der Brief?"
+            options: ["nur für die Feuerwehrleute", "für alle Familien im Dorf", "für die Feuerwehrautos"]
+            answer: "für alle Familien im Dorf"
+          - id: l2-c8
+            part: reader
+            type: true_false
+            text: "Noah schreibt in sein geheimes Tagebuch. Ist der Text für die ganze Klasse?"
+            say: "Noah schreibt in sein geheimes Tagebuch. Ist der Text für die ganze Klasse?"
+            answer: false
+          - id: l2-c9
+            part: reader
+            type: multiple_choice
+            text: "Am Kühlschrank hängt ein Zettel: „Bin beim Bäcker, komme gleich! Mama“. Für wen ist der Zettel?"
+            say: "Am Kühlschrank hängt ein Zettel: Bin beim Bäcker, komme gleich! Mama. Für wen ist der Zettel?"
+            options: ["für den Bäcker", "für die Nachbarn", "für die Familie zu Hause"]
+            answer: "für die Familie zu Hause"
+          - id: l2-c10
+            part: reader
+            type: true_false
+            text: "Ein Plakat im Schulflur lesen viele verschiedene Leute. Stimmt das?"
+            say: "Ein Plakat im Schulflur lesen viele verschiedene Leute. Stimmt das?"
+            answer: true
+          - id: l2-c11
+            part: purpose
+            type: multiple_choice
+            text: "Opa schreibt auf, wie man den neuen Fernseher einschaltet. Wozu schreibt er?"
+            say: "Opa schreibt auf, wie man den neuen Fernseher einschaltet. Wozu schreibt er?"
+            options: ["um sich zu entschuldigen", "um etwas zu erklären", "um einzuladen"]
+            answer: "um etwas zu erklären"
+          - id: l2-c12
+            part: purpose
+            type: matching
+            text: "Verbinde jeden Text mit seinem Zweck."
+            say: "Verbinde jeden Text mit seinem Zweck."
+            pairs:
+              - { left: { text: "Bitte bring morgen deine Turnschuhe mit." }, right: { text: "um etwas bitten" } }
+              - { left: { text: "Entschuldige, ich habe deine Vase umgestoßen." }, right: { text: "sich entschuldigen" } }
+              - { left: { text: "Schmetterlinge schmecken mit den Füßen." }, right: { text: "informieren" } }
+          - id: l2-c13
+            part: purpose
+            type: true_false
+            text: "Lena schreibt Oma eine Karte, weil Oma ihr beim Umzug geholfen hat. Will Lena sich entschuldigen?"
+            say: "Lena schreibt Oma eine Karte, weil Oma ihr beim Umzug geholfen hat. Will Lena sich entschuldigen?"
+            answer: false
+          - id: l2-c14
+            part: text-type
+            type: multiple_choice
+            text: "Die Klasse 3a hat ihren Stoffbären verloren und sucht ihn. Welche Textart passt?"
+            say: "Die Klasse drei a hat ihren Stoffbären verloren und sucht ihn. Welche Textart passt?"
+            options: ["ein Rezept", "eine Suchanzeige", "ein Gedicht"]
+            answer: "eine Suchanzeige"
+          - id: l2-c15
+            part: text-type
+            type: multiple_choice
+            text: "Was gehört in ein Rezept?"
+            say: "Was gehört in ein Rezept?"
+            options: ["die Hobbys des Kochs", "die Zutaten und die Schritte", "die Anrede „Lieber Opa“"]
+            answer: "die Zutaten und die Schritte"
+          - id: l2-c16
+            part: text-type
+            type: true_false
+            text: "Du willst deiner neuen Klasse zeigen, wer du bist. Passt ein Steckbrief?"
+            say: "Du willst deiner neuen Klasse zeigen, wer du bist. Passt ein Steckbrief?"
+            answer: true
+          - id: l2-c17
+            part: register
+            type: multiple_choice
+            text: "Du schreibst Frau Kramer von der Stadtbücherei. Du kennst sie nicht. Welche Anrede passt?"
+            say: "Du schreibst Frau Kramer von der Stadtbücherei. Du kennst sie nicht. Welche Anrede passt?"
+            options: ["Liebe Kramer,", "Sehr geehrte Frau Kramer,", "Hallo du,"]
+            answer: "Sehr geehrte Frau Kramer,"
+            option_audio: false
+          - id: l2-c18
+            part: register
+            type: multiple_choice
+            text: "Du schreibst deiner Freundin Ida eine Nachricht. Welcher Satz passt?"
+            say: "Du schreibst deiner Freundin Ida eine Nachricht. Welcher Satz passt?"
+            options: ["Haben Sie morgen Zeit zum Spielen?", "Hast du morgen Zeit zum Spielen?", "Sehr geehrte Ida, haben Sie Zeit?"]
+            answer: "Hast du morgen Zeit zum Spielen?"
+            option_audio: false
+          - id: l2-c19
+            part: register
+            type: true_false
+            text: "Du schreibst deiner Lehrerin: „Können Sie mir das Buch bitte noch einmal leihen?“ Passt das?"
+            say: "Du schreibst deiner Lehrerin: Können Sie mir das Buch bitte noch einmal leihen? Passt das?"
+            answer: true
+          - id: l2-c20
+            part: register
+            type: multiple_choice
+            text: "Wem schreibst du mit „du“?"
+            say: "Wem schreibst du mit du?"
+            options: ["dem Schulleiter Herrn Berger", "deinem Cousin Leo", "einer fremden Ärztin"]
+            answer: "deinem Cousin Leo"

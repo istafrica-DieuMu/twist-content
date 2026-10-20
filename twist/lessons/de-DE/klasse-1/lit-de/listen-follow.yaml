@@ -14,7 +14,9 @@ summary: >
   when something was not understood, and ends with the skill check. Every
   instruction is spoken; the child answers with action pictures, objects
   or short spoken sentences. Asking again aloud is practised with speak
-  tasks and not marked.
+  tasks and not marked. The skill check marks what a screen can mark:
+  the right thing, the right order, every step and when to ask again;
+  doing the actions with the body is left to Practise and the classroom.
 metadata:
   year: klasse-1
   topic: { de: Sprechen und Zuhören, en: Speaking and listening }
@@ -26,6 +28,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: details, what: { de: auf die wichtigen Wörter einer Anweisung hören, en: listening for the key words of an instruction } }
+    - { id: order, what: { de: "Schritte in der richtigen Reihenfolge (zuerst, dann, zum Schluss)", en: "steps in the right order (first, then, finally)" } }
+    - { id: all-steps, what: { de: alle Schritte einer Anweisung behalten, en: keeping every step of an instruction } }
+    - { id: ask-again, what: { de: nachfragen statt raten, en: asking again instead of guessing } }
   misconceptions:
     - id: one-detail
       what: Acts on the first word that sounds familiar (rot, Stift) and misses the second detail of the instruction
@@ -237,6 +244,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -262,6 +270,25 @@ lessons:
             audio: { de: "Hol dir einen Apfel aus der Küche." }
             options: [{ object: apple }, { object: banana }, { object: orange }]
             answer: apple
+          - id: l1-c4
+            type: audio_choice
+            text: "Worauf sollst du zeigen?"
+            say: "Hör gut zu. Worauf sollst du zeigen?"
+            audio: { de: "Zeig auf deine Nase." }
+            options: [{ object: ear }, { object: nose }, { object: mouth }]
+            answer: nose
+          - id: l1-c5
+            type: ordering
+            text: "Was machst du zuerst, was danach?"
+            say: "Hör gut zu. Winke. Dann spring hoch. Leg die Bilder in die richtige Reihenfolge."
+            options: [{ object: jump }, { object: wave }]
+            slot_count: 2
+            answer: [wave, jump]
+          - id: l1-c6
+            type: true_false
+            text: "Hat Lukas gut zugehört?"
+            say: "Hör gut zu. Oma sagt: Bring mir bitte die blaue Tasse. Lukas bringt ihr die blaue Tasse. Hat Lukas gut zugehört?"
+            answer: true
 
   - n: 2
     title: { de: "Schritt für Schritt", en: "Step by step" }
@@ -451,8 +478,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: details
             type: audio_choice
             text: "Was sollst du nehmen?"
             say: "Hör gut zu. Was sollst du nehmen?"
@@ -463,6 +492,7 @@ lessons:
               - { object: ball, colour: red, key: ball-red }
             answer: car-red
           - id: l2-c2
+            part: order
             type: ordering
             text: "Leg die Bilder in die richtige Reihenfolge."
             say: "Hör gut zu. Zuerst winke. Dann spring hoch. Zum Schluss setz dich hin. Leg die Bilder in die richtige Reihenfolge."
@@ -470,18 +500,136 @@ lessons:
             slot_count: 3
             answer: [wave, jump, sit-down]
           - id: l2-c3
+            part: order
             type: multiple_choice
             text: "Was machst du als Zweites?"
             say: "Hör gut zu. Zuerst nimm dein Heft. Dann schlag Seite fünf auf. Zum Schluss lies die erste Zeile. Was machst du als Zweites?"
-            options: ["Ich schlage Seite fünf auf.", "Ich nehme mein Heft.", "Ich lese die erste Zeile."]
-            answer: "Ich schlage Seite fünf auf."
+            options: ["Ich schlage Seite 5 auf.", "Ich nehme mein Heft.", "Ich lese die erste Zeile."]
+            answer: "Ich schlage Seite 5 auf."
           - id: l2-c4
+            part: ask-again
             type: multiple_choice
             text: "Du hast nicht verstanden, was du machen sollst. Was ist richtig?"
             options: ["nachfragen", "raten", "warten, bis alle fertig sind"]
             answer: "nachfragen"
           - id: l2-c5
+            part: all-steps
             type: true_false
             text: "Hat Paul alles gemacht?"
             say: "Hör gut zu. Die Lehrerin sagt: Holt eure Malsachen und setzt euch an den Gruppentisch. Paul holt seine Malsachen und bleibt an seinem Platz sitzen. Hat Paul alles gemacht?"
             answer: false
+          - id: l2-c6
+            part: details
+            type: audio_choice
+            text: "Was sollst du nehmen?"
+            say: "Hör gut zu. Was sollst du nehmen?"
+            audio: { de: "Nimm den blauen Buntstift." }
+            options:
+              - { object: ball, colour: blue, key: ball-blue }
+              - { object: crayon, colour: red, key: crayon-red }
+              - { object: crayon, colour: blue, key: crayon-blue }
+            answer: crayon-blue
+          - id: l2-c7
+            part: order
+            type: ordering
+            text: "Leg die Bilder in die richtige Reihenfolge."
+            say: "Hör gut zu. Zuerst sei ganz leise. Dann steh auf. Zum Schluss winke. Leg die Bilder in die richtige Reihenfolge."
+            options: [{ object: wave }, { object: quiet }, { object: stand-up }]
+            slot_count: 3
+            answer: [quiet, stand-up, wave]
+          - id: l2-c8
+            part: all-steps
+            type: multiple_choice
+            text: "Wie viele Schritte sind das?"
+            say: "Hör gut zu. Steh auf, geh zum Fenster, mach es auf und setz dich wieder hin. Wie viele Schritte sind das?"
+            options: ["2", "3", "4"]
+            answer: "4"
+          - id: l2-c9
+            part: details
+            type: audio_choice
+            text: "Was sollst du anziehen?"
+            say: "Hör gut zu. Was sollst du anziehen?"
+            audio: { de: "Zieh die gelbe Jacke an." }
+            options:
+              - { object: jumper, colour: yellow, key: jumper-yellow }
+              - { object: jacket, colour: red, key: jacket-red }
+              - { object: jacket, colour: yellow, key: jacket-yellow }
+            answer: jacket-yellow
+          - id: l2-c10
+            part: ask-again
+            type: multiple_choice
+            text: "Es ist laut, und du hörst die Anweisung nicht. Was machst du?"
+            options: ["Ich rate, was ich machen soll.", "Ich frage: Kannst du das bitte noch einmal sagen?", "Ich gehe einfach weg."]
+            answer: "Ich frage: Kannst du das bitte noch einmal sagen?"
+          - id: l2-c11
+            part: order
+            type: multiple_choice
+            text: "Was machst du zuerst?"
+            say: "Hör gut zu. Zuerst hol deinen Malkasten. Dann füll Wasser in den Becher. Zum Schluss mal ein Bild. Was machst du zuerst?"
+            options: ["Ich male ein Bild.", "Ich hole meinen Malkasten.", "Ich fülle Wasser in den Becher."]
+            answer: "Ich hole meinen Malkasten."
+          - id: l2-c12
+            part: all-steps
+            type: true_false
+            text: "Hat Emil alles gemacht?"
+            say: "Hör gut zu. Die Lehrerin sagt: Legt eure Stifte hin und schaut nach vorne. Emil legt seinen Stift hin und malt weiter. Hat Emil alles gemacht?"
+            answer: false
+          - id: l2-c13
+            part: details
+            type: audio_choice
+            text: "Wohin sollst du die Schere legen?"
+            say: "Hör gut zu. Wohin sollst du die Schere legen?"
+            audio: { de: "Leg die Schere in das Mäppchen." }
+            options: [{ object: schoolbag }, { object: pencil-case }, { object: table }]
+            answer: pencil-case
+          - id: l2-c14
+            part: order
+            type: true_false
+            text: "Macht Nora es in der richtigen Reihenfolge?"
+            say: "Hör gut zu. Papa sagt: Zuerst räum dein Zimmer auf. Dann darfst du spielen. Nora räumt zuerst ihr Zimmer auf und spielt danach. Macht Nora es in der richtigen Reihenfolge?"
+            answer: true
+          - id: l2-c15
+            part: all-steps
+            type: multiple_choice
+            text: "Was hat Jonas vergessen?"
+            say: "Hör gut zu. Mama sagt: Bring deinen Teller in die Küche und hol dir ein Glas Wasser. Jonas bringt seinen Teller in die Küche. Dann setzt er sich wieder hin. Was hat Jonas vergessen?"
+            options: ["den Teller in die Küche bringen", "ein Glas Wasser holen", "sich wieder hinsetzen"]
+            answer: "ein Glas Wasser holen"
+          - id: l2-c16
+            part: details
+            type: audio_choice
+            text: "Was sollst du holen?"
+            say: "Hör gut zu. Was sollst du holen?"
+            audio: { de: "Hol bitte die Milch aus dem Kühlschrank." }
+            options: [{ object: cheese }, { object: milk }, { object: egg }]
+            answer: milk
+          - id: l2-c17
+            part: ask-again
+            type: true_false
+            text: "Hat Finn das Richtige gemacht?"
+            say: "Hör gut zu. Finn hat die Anweisung nicht verstanden. Er fragt: Kannst du das bitte noch einmal sagen? Hat Finn das Richtige gemacht?"
+            answer: true
+          - id: l2-c18
+            part: all-steps
+            type: ordering
+            text: "Leg die drei Bilder in die richtige Reihenfolge. Ein Bild bleibt übrig."
+            say: "Hör gut zu. Zuerst klatsch in die Hände. Dann steh auf. Zum Schluss spring hoch. Leg die drei Bilder in die richtige Reihenfolge. Ein Bild bleibt übrig."
+            options: [{ object: jump }, { object: wave }, { object: clap }, { object: stand-up }]
+            slot_count: 3
+            answer: [clap, stand-up, jump]
+          - id: l2-c19
+            part: details
+            type: audio_choice
+            text: "Worauf sollst du zeigen?"
+            say: "Hör gut zu. Worauf sollst du zeigen?"
+            audio: { de: "Zeig auf das Fenster." }
+            options: [{ object: door }, { object: clock }, { object: window }]
+            answer: window
+          - id: l2-c20
+            part: order
+            type: audio_choice
+            text: "Was machst du zum Schluss?"
+            say: "Hör gut zu. Was machst du zum Schluss?"
+            audio: { de: "Zuerst wasch dir die Hände. Dann trockne sie ab. Zum Schluss iss einen Apfel." }
+            options: [{ object: hand }, { object: apple }, { object: water }]
+            answer: apple

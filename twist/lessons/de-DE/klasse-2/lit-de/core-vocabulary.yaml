@@ -22,9 +22,14 @@ metadata:
   builds_on: [lit-de.spelling.dictation-short]
   also_practises: [lit-de.spelling-strategies.memory-words, lit-de.spelling-strategies.lengthen-dt]
   vocabulary: { de: [Wort, Grundwortschatz, Fehler, einprägen] }
-  forms: [text, audio]
+  forms: [text, audio, picture]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: small-words, what: { de: "kleine Wörter, die oft vorkommen (und, ist, nicht, sehr)", en: "small words that come up all the time" } }
+    - { id: verbs-nouns, what: { de: "häufige Verben und Nomen (gehen, Freund, Schule)", en: "common verbs and nouns" } }
+    - { id: in-sentence, what: { de: ein falsch geschriebenes Wort im Satz finden, en: finding a misspelt word in a sentence } }
+    - { id: dictation, what: { de: ein Wort nach Diktat schreiben, en: writing a word from dictation } }
   misconceptions:
     - id: write-as-heard
       what: Writes the small words as they sound (unt, nich, ser, gehn)
@@ -214,12 +219,13 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
             keyboard: letters
-            text: "Schreib das Wort."
-            say: "Immer. Ich lache immer. Schreib das Wort immer."
+            text: "Oma ist _ fröhlich. Schreib das fehlende Wort."
+            say: "Immer. Oma ist immer fröhlich. Schreib das Wort immer."
             answer: "immer"
             feedback:
               imer: "Immer schreibst du mit zwei m: im, mer."
@@ -236,6 +242,25 @@ lessons:
             frame: "se_r"
             options: ["h", "e", "r"]
             answer: ["h"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Mit. Komm mit! Welches Wort ist richtig geschrieben?"
+            options: ["mit", "mitt", "mid"]
+            answer: "mit"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Schon. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "schon" }
+            answer: true
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Wir sint im Zoo." }
+            spans: ["sint"]
 
   - n: 2
     title: { de: "Wichtige Wörter im Satz", en: "Important words in sentences" }
@@ -416,8 +441,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: small-words
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Auch. Welches Wort ist richtig geschrieben?"
@@ -425,12 +452,14 @@ lessons:
             answer: "auch"
             option_audio: false
           - id: l2-c2
+            part: in-sentence
             type: highlight_in_text
             text: "Tippe auf das falsch geschriebene Wort."
             say: "Lies den Satz. Ein Wort ist falsch geschrieben. Tippe es an."
             show: { drawn: letter-card, text: "Morgen komt Oma zu uns." }
             spans: ["komt"]
           - id: l2-c3
+            part: verbs-nouns
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Gehen. Was fehlt?"
@@ -438,17 +467,131 @@ lessons:
             options: ["h", "e", "n"]
             answer: ["h"]
           - id: l2-c4
+            part: dictation
             type: text_input
             keyboard: letters
-            text: "Schreib das Wort."
+            text: "Morgen regnet es _. Schreib das fehlende Wort."
             say: "Wieder. Morgen regnet es wieder. Schreib das Wort wieder."
             answer: "wieder"
             feedback:
               wieda: "Am Ende hörst du a, aber du schreibst er: wie, der."
               wider: "Wieder schreibst du mit ie."
           - id: l2-c5
+            part: verbs-nouns
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Der Freund. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Freund" }
             answer: true
+          - id: l2-c6
+            part: small-words
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Wir spielen, wenn es nicht regnet. Was fehlt in wenn?"
+            frame: "Wir spielen, we_ es nicht regnet."
+            options: ["nn", "n", "hn"]
+            answer: ["nn"]
+          - id: l2-c7
+            part: small-words
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Sind. Wir sind müde. Welches Wort ist richtig geschrieben?"
+            options: ["sind", "sint", "sindt"]
+            answer: "sind"
+            option_audio: false
+          - id: l2-c8
+            part: in-sentence
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Im Sommer essen wir fiel Eis." }
+            spans: ["fiel"]
+          - id: l2-c9
+            part: small-words
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Dann. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "dan" }
+            answer: false
+          - id: l2-c10
+            part: small-words
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Wir. Wir lachen. Welches Wort ist richtig geschrieben?"
+            options: ["wir", "wier", "wihr"]
+            answer: "wir"
+            option_audio: false
+          - id: l2-c11
+            part: verbs-nouns
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Spielen. Was fehlt?"
+            frame: "sp_len"
+            options: ["ie", "i", "ih"]
+            answer: ["ie"]
+          - id: l2-c12
+            part: verbs-nouns
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Das Kind. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Kint" }
+            answer: false
+          - id: l2-c13
+            part: verbs-nouns
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Die Leute. Welches Wort ist richtig geschrieben?"
+            options: ["Leute", "Leude", "Loite"]
+            answer: "Leute"
+            option_audio: false
+          - id: l2-c14
+            part: in-sentence
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Lena kan schon schwimmen." }
+            spans: ["kan"]
+          - id: l2-c15
+            part: in-sentence
+            type: highlight_in_text
+            text: "Tippe auf das falsch geschriebene Wort."
+            say: "Lies den Satz. Ein Wort ist falsch geschrieben. Tippe es an."
+            show: { drawn: letter-card, text: "Das Tihr ist sehr klein." }
+            spans: ["Tihr"]
+          - id: l2-c16
+            part: in-sentence
+            type: true_false
+            text: "Ist der Satz richtig geschrieben?"
+            say: "Lies den Satz. Ist er richtig geschrieben?"
+            show: { drawn: letter-card, text: "Ich bin heute sehr müde." }
+            answer: true
+          - id: l2-c17
+            part: dictation
+            type: text_input
+            keyboard: letters
+            text: "Ich _ schon lesen. Schreib das fehlende Wort."
+            say: "Kann. Ich kann schon lesen. Schreib das Wort kann."
+            answer: "kann"
+          - id: l2-c18
+            part: dictation
+            type: text_input
+            keyboard: letters
+            text: "Die _ scheint. Schreib das Nomen."
+            say: "Die Sonne. Die Sonne scheint. Schreib das Nomen Sonne."
+            show: { object: sun }
+            answer: "Sonne"
+          - id: l2-c19
+            part: dictation
+            type: text_input
+            keyboard: letters
+            text: "Der _ bellt. Schreib das Nomen."
+            say: "Der Hund. Der Hund bellt. Schreib das Nomen Hund."
+            show: { object: dog }
+            answer: "Hund"
+          - id: l2-c20
+            part: dictation
+            type: text_input
+            keyboard: letters
+            text: "Ich spiele _ meinem Bruder. Schreib das fehlende Wort."
+            say: "Mit. Ich spiele mit meinem Bruder. Schreib das Wort mit."
+            answer: "mit"

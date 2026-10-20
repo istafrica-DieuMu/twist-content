@@ -18,7 +18,10 @@ summary: >
   Ausgangsschrift: the joins taught (most letters end low, o, w, v and b
   end high) hold for the joined scripts German schools use. The player
   still draws the writing lines in print, so no task says the child can
-  see a join; the spoken text describes the movement instead.
+  see a join; the spoken text describes the movement instead. Writing the
+  letters and words themselves is practised in the tracing and copying
+  tasks of Practise; the skill check marks what a screen can mark: writing
+  a word in one go, where a join starts, and dots and strokes last.
 metadata:
   year: klasse-2
   topic: { de: Schreibschrift, en: Joined handwriting }
@@ -30,6 +33,11 @@ metadata:
   forms: [drawn, audio]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: one-go, what: { de: ein Wort in einem Zug schreiben, en: writing a word in one go } }
+    - { id: join-low, what: { de: die Verbindung unten nach den meisten Buchstaben, en: the join from the bottom after most letters } }
+    - { id: join-high, what: { de: "die Verbindung oben nach o, w, v und b", en: "the join from the top after o, w, v and b" } }
+    - { id: dots-last, what: { de: "i-Punkte, Umlaut-Punkte und t-Striche zum Schluss", en: "i dots, umlaut dots and t crossbars at the end" } }
   misconceptions:
     - id: lift-after-each-letter
       what: Writes each small letter on its own and lifts the pen after it, as in Druckschrift, so the word falls apart
@@ -173,7 +181,7 @@ lessons:
                 char: "am"
               - id: l1-s5
                 type: multiple_choice
-                text: "Wann setzt du den i-Punkt?"
+                text: "Du schreibst „mein“. Wann setzt du den i-Punkt?"
                 say: "Du schreibst das Wort mein. Wann setzt du den i-Punkt?"
                 options: ["wenn das Wort fertig ist", "gleich nach dem i"]
                 keep_order: true
@@ -216,10 +224,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "Wann hebst du den Stift ab?"
+            text: "Du schreibst „lila“ in Schreibschrift. Wann hebst du den Stift ab?"
             say: "Du schreibst das Wort lila in Schreibschrift. Wann hebst du den Stift ab?"
             options: ["wenn das Wort fertig ist", "nach jedem Buchstaben"]
             keep_order: true
@@ -237,6 +246,30 @@ lessons:
             say: "Schreib das Wort im ab, in einem Zug."
             show: { drawn: writing-lines, script: joined, text: "im", mode: copy, arrows: false }
             char: "im"
+          - id: l1-c4
+            type: multiple_choice
+            text: "In welchem Wort steht ein Buchstabe mit Unterlänge? Er reicht in den Keller."
+            say: "In welchem Wort steht ein Buchstabe, der in den Keller reicht?"
+            options: ["gut", "neu", "mal"]
+            answer: "gut"
+          - id: l1-c5
+            type: true_false
+            text: "Paul schreibt „nun“ in Schreibschrift. Nach dem n und nach dem u führt er die Verbindung unten los in den nächsten Buchstaben. Macht Paul das richtig?"
+            say: "Paul schreibt nun in Schreibschrift. Nach dem n und nach dem u führt er die Verbindung unten los in den nächsten Buchstaben. Macht Paul das richtig?"
+            answer: true
+          - id: l1-c6
+            type: sorting
+            text: "Reicht der Buchstabe bis unters Dach oder in den Keller?"
+            say: "Reicht der kleine Buchstabe bis unters Dach oder in den Keller? Sortiere."
+            bins:
+              - { id: dach, show: { text: "bis unters Dach" }, say: "bis unters Dach" }
+              - { id: keller, show: { text: "in den Keller" }, say: "in den Keller" }
+            options:
+              - { text: "d", bin: dach }
+              - { text: "p", bin: keller }
+              - { text: "l", bin: dach }
+              - { text: "g", bin: keller }
+            option_audio: false
 
   - n: 2
     title: { de: "Oben verbunden", en: "Joined at the top" }
@@ -325,7 +358,7 @@ lessons:
                   - "o und w kommen zu oben, m und a zu unten."
               - id: l2-f5
                 type: multiple_choice
-                text: "Wann setzt du den t-Strich?"
+                text: "Du schreibst „mit“. Wann setzt du den t-Strich?"
                 say: "Du schreibst das Wort mit. Wann machst du den Strich beim t?"
                 options: ["wenn das Wort fertig ist", "mitten im Wort, gleich nach dem t"]
                 keep_order: true
@@ -353,7 +386,7 @@ lessons:
                 char: "oben"
               - id: l2-s2
                 type: multiple_choice
-                text: "Wo geht die Verbindung nach dem w los?"
+                text: "Du schreibst „wie“. Wo geht die Verbindung nach dem w los?"
                 say: "Du schreibst das Wort wie. Wo geht die Verbindung nach dem w los: oben oder unten?"
                 options: ["oben", "unten"]
                 keep_order: true
@@ -381,7 +414,7 @@ lessons:
                 hints: ["o, w, v und b hören oben auf."]
               - id: l2-s5
                 type: multiple_choice
-                text: "Was machst du zum Schluss?"
+                text: "Du schreibst „müde“. Was machst du zum Schluss?"
                 say: "Du schreibst das Wort müde. Was machst du zum Schluss?"
                 options: ["die zwei Punkte auf das ü setzen", "das m schreiben", "das d schreiben"]
                 answer: "die zwei Punkte auf das ü setzen"
@@ -397,7 +430,7 @@ lessons:
                 char: "vom"
               - id: l2-n2
                 type: multiple_choice
-                text: "Wo geht die Verbindung nach dem b los?"
+                text: "Du schreibst „aber“. Wo geht die Verbindung nach dem b los?"
                 say: "Du schreibst das Wort aber. Wo geht die Verbindung nach dem b los: oben oder unten?"
                 options: ["oben", "unten"]
                 keep_order: true
@@ -422,20 +455,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: one-go
             type: true_false
             text: "Can schreibt „eine“ in Schreibschrift. Nach jedem Buchstaben hebt er den Stift ab. Macht Can das richtig?"
             say: "Can schreibt eine in Schreibschrift. Nach jedem Buchstaben hebt er den Stift ab. Macht Can das richtig?"
             answer: false
           - id: l2-c2
+            part: join-high
             type: multiple_choice
-            text: "Wo geht die Verbindung nach dem v los?"
+            text: "Du schreibst „vier“. Wo geht die Verbindung nach dem v los?"
             say: "Du schreibst das Wort vier. Wo geht die Verbindung nach dem v los: oben oder unten?"
             options: ["oben", "unten"]
             keep_order: true
             answer: "oben"
           - id: l2-c3
+            part: join-high
             type: sorting
             text: "Nach welchen Buchstaben bleibst du oben?"
             say: "Nach welchen Buchstaben bleibst du oben, nach welchen geht es unten weiter? Sortiere."
@@ -449,15 +486,129 @@ lessons:
               - { text: "u", bin: unten }
             option_audio: false
           - id: l2-c4
+            part: dots-last
             type: multiple_choice
-            text: "Was machst du zum Schluss?"
+            text: "Du schreibst „schön“. Das ganze Wort ist fertig. Was machst du jetzt?"
             say: "Du schreibst das Wort schön in Schreibschrift. Das ganze Wort ist fertig. Was machst du jetzt?"
             options: ["die zwei Punkte auf das ö setzen", "das s noch einmal schreiben", "nichts, das Wort ist fertig"]
             answer: "die zwei Punkte auf das ö setzen"
           - id: l2-c5
+            part: join-low
             type: multiple_choice
             text: "Wo geht die Verbindung vom i zum m los?"
             say: "Du schreibst das Wort im. Wo geht die Verbindung vom i zum m los: unten oder oben?"
             options: ["unten", "oben"]
             keep_order: true
             answer: "unten"
+          - id: l2-c6
+            part: one-go
+            type: multiple_choice
+            text: "Du schreibst „laut“ in Schreibschrift. Wie oft hebst du mitten im Wort den Stift ab?"
+            say: "Du schreibst das Wort laut in Schreibschrift. Wie oft hebst du mitten im Wort den Stift ab?"
+            options: ["gar nicht", "nach jedem Buchstaben", "einmal nach dem a"]
+            answer: "gar nicht"
+          - id: l2-c7
+            part: one-go
+            type: true_false
+            text: "Emil schreibt „malen“. Nach dem a hebt er den Stift ab und setzt neu an. Hängt das Wort so in einem Zug zusammen?"
+            say: "Emil schreibt malen. Nach dem a hebt er den Stift ab und setzt neu an. Hängt das Wort so in einem Zug zusammen?"
+            answer: false
+          - id: l2-c8
+            part: one-go
+            type: multiple_choice
+            text: "Was ist in der Schreibschrift anders als in der Druckschrift?"
+            options: ["Die Buchstaben eines Wortes hängen zusammen.", "Die Buchstaben sind größer.", "Zwischen den Wörtern ist keine Lücke."]
+            answer: "Die Buchstaben eines Wortes hängen zusammen."
+          - id: l2-c9
+            part: one-go
+            type: sorting
+            text: "Schreibschrift oder Druckschrift?"
+            say: "Passt das zur Schreibschrift oder zur Druckschrift? Sortiere."
+            bins:
+              - { id: schreib, show: { text: "Schreibschrift" }, say: "Schreibschrift" }
+              - { id: druck, show: { text: "Druckschrift" }, say: "Druckschrift" }
+            options:
+              - { text: "Jeder Buchstabe steht für sich.", bin: druck }
+              - { text: "Das Wort entsteht in einem Zug.", bin: schreib }
+              - { text: "Nach jedem Buchstaben hebst du den Stift ab.", bin: druck }
+              - { text: "Der Stift bleibt bis zum Wortende auf dem Papier.", bin: schreib }
+          - id: l2-c10
+            part: join-low
+            type: highlight_in_text
+            text: "Tippe auf jeden Buchstaben, nach dem die Verbindung unten weitergeht."
+            say: "Tippe auf jeden Buchstaben, nach dem die Verbindung unten weitergeht."
+            show: { drawn: letter-card, text: "a o e w u b" }
+            spans: ["a", "e", "u"]
+          - id: l2-c11
+            part: join-low
+            type: true_false
+            text: "Im Wort „lila“ geht die Verbindung nach dem l unten los. Stimmt das?"
+            say: "Im Wort lila geht die Verbindung nach dem l unten los. Stimmt das?"
+            answer: true
+          - id: l2-c12
+            part: join-low
+            type: multiple_choice
+            text: "Welcher kleine Buchstabe hört unten auf?"
+            say: "Welcher kleine Buchstabe hört in der Schreibschrift unten auf?"
+            options: ["a", "o", "w"]
+            answer: "a"
+            option_audio: false
+          - id: l2-c13
+            part: join-low
+            type: multiple_choice
+            text: "In welchem Wort geht jede Verbindung unten los?"
+            options: ["neu", "von", "wo"]
+            answer: "neu"
+          - id: l2-c14
+            part: join-high
+            type: true_false
+            text: "Mia schreibt „voll“. Nach dem v und nach dem o bleibt sie oben und führt die Verbindung wie eine Brücke weiter. Ist das richtig verbunden?"
+            say: "Mia schreibt voll. Nach dem v und nach dem o bleibt sie oben und führt die Verbindung wie eine Brücke weiter. Ist das richtig verbunden?"
+            answer: true
+          - id: l2-c15
+            part: join-high
+            type: highlight_in_text
+            text: "Tippe auf jedes Wort, in dem die Verbindung nach dem ersten Buchstaben oben weitergeht."
+            say: "Tippe auf jedes Wort, in dem die Verbindung nach dem ersten Buchstaben oben weitergeht."
+            show: { drawn: letter-card, text: "oft mal wir neu bald" }
+            spans: ["oft", "wir", "bald"]
+          - id: l2-c16
+            part: join-high
+            type: multiple_choice
+            text: "Warum bleibst du nach dem o oben?"
+            options: ["Sonst sieht das o aus wie ein a.", "Sonst wird das Wort zu lang.", "Sonst fehlt der i-Punkt."]
+            answer: "Sonst sieht das o aus wie ein a."
+          - id: l2-c17
+            part: dots-last
+            type: true_false
+            text: "Tom schreibt „hinten“. Nach dem i hebt er den Stift ab, setzt den i-Punkt und schreibt dann weiter. Macht Tom das richtig?"
+            say: "Tom schreibt hinten. Nach dem i hebt er den Stift ab, setzt den i-Punkt und schreibt dann weiter. Macht Tom das richtig?"
+            answer: false
+          - id: l2-c18
+            part: dots-last
+            type: ordering
+            text: "Du schreibst „über“. Was machst du zuerst, was danach? Bring die Schritte in die richtige Reihenfolge."
+            say: "Du schreibst das Wort über. Was machst du zuerst, was danach? Bring die Schritte in die richtige Reihenfolge."
+            options: ["die Punkte auf das ü setzen", "das ganze Wort in einem Zug schreiben", "den Stift abheben"]
+            slot_count: 3
+            answer: ["das ganze Wort in einem Zug schreiben", "den Stift abheben", "die Punkte auf das ü setzen"]
+          - id: l2-c19
+            part: dots-last
+            type: multiple_choice
+            text: "Du hast „lustig“ in einem Zug geschrieben. Was fehlt noch?"
+            say: "Du hast das Wort lustig in einem Zug geschrieben. Was fehlt noch?"
+            options: ["der i-Punkt und der t-Strich", "nur der i-Punkt", "nichts"]
+            answer: "der i-Punkt und der t-Strich"
+          - id: l2-c20
+            part: dots-last
+            type: sorting
+            text: "Kommt das beim Schreiben im Zug oder zum Schluss?"
+            say: "Machst du das beim Schreiben im Zug oder zum Schluss? Sortiere."
+            bins:
+              - { id: zug, show: { text: "im Zug" }, say: "im Zug" }
+              - { id: schluss, show: { text: "zum Schluss" }, say: "zum Schluss" }
+            options:
+              - { text: "der i-Punkt", bin: schluss }
+              - { text: "die Verbindung vom n zum e", bin: zug }
+              - { text: "der t-Strich", bin: schluss }
+              - { text: "die Brücke nach dem w", bin: zug }

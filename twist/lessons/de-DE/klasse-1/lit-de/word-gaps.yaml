@@ -25,6 +25,10 @@ metadata:
   drawn: [letter-card, word-card]
   sounds: []
   facets: []
+  parts:
+    - { id: boundaries, what: { de: "Wortgrenzen erkennen: Wörter zählen, Lücken richtig setzen", en: "seeing where words begin and end: counting words, placing the gaps" } }
+    - { id: salad, what: { de: aus einem Satzsalat einen Satz bilden, en: unscrambling words into a sentence } }
+    - { id: gaps, what: { de: Lückensätze mit dem passenden Wort ergänzen, en: completing gap sentences with the word that makes sense } }
   misconceptions:
     - id: syllable-as-word
       what: Takes a syllable for a word, so splits Mama into Ma ma or counts claps instead of words
@@ -57,7 +61,7 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: true_false
-            text: "Das ist ein Hund."
+            text: "Das ist ein Hund.\n\nPasst der Satz zum Bild?"
             say: "Lies den Satz. Passt er zum Bild?"
             show: { object: dog }
             answer: true
@@ -85,9 +89,10 @@ lessons:
           - support: full
             tasks:
               - id: l1-f1
-                type: multiple_choice
-                text: "Wie viele Wörter hörst du?"
-                say: "Hör zu: Oma backt Kuchen. Wie viele Wörter hörst du?"
+                type: audio_choice
+                text: "Hör den Satz. Wie viele Wörter sind es?"
+                say: "Hör gut zu. Wie viele Wörter hörst du?"
+                audio: { de: "Oma backt Kuchen." }
                 options: ["2", "3", "4"]
                 answer: "3"
                 feedback:
@@ -146,9 +151,10 @@ lessons:
           - support: some
             tasks:
               - id: l1-s1
-                type: multiple_choice
-                text: "Wie viele Wörter hörst du?"
-                say: "Hör zu: Die Katze trinkt Milch. Wie viele Wörter hörst du?"
+                type: audio_choice
+                text: "Hör den Satz. Wie viele Wörter sind es?"
+                say: "Hör gut zu. Wie viele Wörter hörst du?"
+                audio: { de: "Die Katze trinkt Milch." }
                 options: ["3", "4", "5"]
                 answer: "4"
                 hints: ["Klatsch für jedes Wort einmal: Die, Katze, trinkt, Milch."]
@@ -186,9 +192,10 @@ lessons:
           - support: none
             tasks:
               - id: l1-n1
-                type: multiple_choice
-                text: "Wie viele Wörter hörst du?"
-                say: "Hör zu: Ben hat einen Hund. Wie viele Wörter hörst du?"
+                type: audio_choice
+                text: "Hör den Satz. Wie viele Wörter sind es?"
+                say: "Hör gut zu. Wie viele Wörter hörst du?"
+                audio: { de: "Ben hat einen Hund." }
                 options: ["3", "4", "5"]
                 answer: "4"
               - id: l1-n2
@@ -220,11 +227,13 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
-            type: multiple_choice
-            text: "Wie viele Wörter hörst du?"
-            say: "Hör zu: Lea malt eine Blume. Wie viele Wörter hörst du?"
+            type: audio_choice
+            text: "Hör den Satz. Wie viele Wörter sind es?"
+            say: "Hör gut zu. Wie viele Wörter hörst du?"
+            audio: { de: "Lea malt eine Blume." }
             options: ["4", "5", "6"]
             answer: "4"
           - id: l1-c2
@@ -240,6 +249,25 @@ lessons:
             say: "Lies den Satz. Sind die Lücken richtig?"
             show: { drawn: letter-card, text: "Der Bus ist rot." }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Hör den Satz. Wie viele Wörter sind es?"
+            say: "Hör gut zu. Wie viele Wörter hörst du?"
+            audio: { de: "Mein Bruder heißt Jan." }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l1-c5
+            type: true_false
+            text: "Sind die Lücken richtig?"
+            say: "Lies den Satz. Sind die Lücken richtig?"
+            show: { drawn: letter-card, text: "Lu kas holt Brot." }
+            answer: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tippe auf die Karte, in der zwei Wörter zusammenkleben."
+            say: "In einer Karte kleben zwei Wörter zusammen. Tippe darauf."
+            show: { drawn: letter-card, text: "Mama trinktden Tee." }
+            spans: ["trinktden"]
 
   - n: 2
     title: { de: Satzsalat und Lückensätze, en: Sentence salad and gap sentences }
@@ -443,14 +471,18 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
-            type: multiple_choice
-            text: "Wie viele Wörter hörst du?"
-            say: "Hör gut zu: Der Hase frisst eine Möhre. Wie viele Wörter hörst du?"
+            part: boundaries
+            type: audio_choice
+            text: "Hör den Satz. Wie viele Wörter sind es?"
+            say: "Hör gut zu. Wie viele Wörter hörst du?"
+            audio: { de: "Der Hase frisst eine Möhre." }
             options: ["4", "5", "6"]
             answer: "5"
           - id: l2-c2
+            part: salad
             type: ordering
             text: "Satzsalat: Leg den Satz."
             say: "Leg die Wörter in die richtige Reihenfolge."
@@ -459,12 +491,14 @@ lessons:
             slot_count: 3
             answer: ["Die", "Ente", "schwimmt."]
           - id: l2-c3
+            part: boundaries
             type: highlight_in_text
             text: "Tippe auf die Karte, in der zwei Wörter zusammenkleben."
             say: "In einer Karte kleben zwei Wörter zusammen. Tippe darauf."
             show: { drawn: letter-card, text: "Ole rennt mitdem Hund." }
             spans: ["mitdem"]
           - id: l2-c4
+            part: gaps
             type: fill_in_blank
             text: "Welches Wort passt in die Lücke?"
             say: "Lies den Satz. Welches Wort passt in die Lücke?"
@@ -472,10 +506,141 @@ lessons:
             frame: "Am Abend gehe ich ins _."
             options: ["Bett", "Brot", "Boot"]
             answer: ["Bett"]
+            option_audio: false
           - id: l2-c5
+            part: boundaries
             type: multiple_choice
             text: "Wo sind die Lücken richtig?"
             say: "Welcher Satz hat die Lücken an der richtigen Stelle?"
             options: ["I da malt ein Haus.", "Ida malt ein Haus.", "Ida malt einHaus."]
             option_audio: false
             answer: "Ida malt ein Haus."
+          - id: l2-c6
+            part: boundaries
+            type: audio_choice
+            text: "Hör den Satz. Wie viele Wörter sind es?"
+            say: "Hör gut zu. Wie viele Wörter hörst du?"
+            audio: { de: "Wir spielen im Garten." }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l2-c7
+            part: boundaries
+            type: multiple_choice
+            text: "Lies die Wortschlange. Wie viele Wörter sind es?"
+            say: "Lies die Wortschlange. Wie viele Wörter stecken darin?"
+            show: { drawn: word-card, text: "DieEulefliegtweit." }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l2-c8
+            part: boundaries
+            type: highlight_in_text
+            text: "Tippe auf die Karte, in der zwei Wörter zusammenkleben."
+            say: "In einer Karte kleben zwei Wörter zusammen. Tippe darauf."
+            show: { drawn: letter-card, text: "Nina sitztauf dem Sofa." }
+            spans: ["sitztauf"]
+          - id: l2-c9
+            part: salad
+            type: ordering
+            text: "Satzsalat: Leg den Satz."
+            say: "Leg die Wörter in die richtige Reihenfolge."
+            show: { object: owl }
+            options: ["nachts.", "Die", "fliegt", "Eule"]
+            slot_count: 4
+            answer: ["Die", "Eule", "fliegt", "nachts."]
+          - id: l2-c10
+            part: salad
+            type: ordering
+            text: "Satzsalat: Leg den Satz."
+            say: "Leg die Wörter in die richtige Reihenfolge."
+            show: { object: bee }
+            options: ["Blumen.", "mag", "Die", "Biene"]
+            slot_count: 4
+            answer: ["Die", "Biene", "mag", "Blumen."]
+          - id: l2-c11
+            part: salad
+            type: ordering
+            text: "Satzsalat: Leg den Satz."
+            say: "Leg die Wörter in die richtige Reihenfolge."
+            show: { object: car }
+            options: ["rot.", "Auto", "ist", "Das"]
+            slot_count: 4
+            answer: ["Das", "Auto", "ist", "rot."]
+          - id: l2-c12
+            part: salad
+            type: multiple_choice
+            text: "Welcher Satz stimmt?"
+            say: "Welcher Satz ist richtig gelegt?"
+            options: ["Einen Baum Lina malt.", "Lina malt einen Baum.", "Lina einen Baum malt."]
+            option_audio: false
+            answer: "Lina malt einen Baum."
+          - id: l2-c13
+            part: salad
+            type: ordering
+            text: "Satzsalat: Leg den Satz."
+            say: "Leg die Wörter in die richtige Reihenfolge."
+            show: { object: ice-cream }
+            options: ["Eis.", "isst", "Ben", "ein"]
+            slot_count: 4
+            answer: ["Ben", "isst", "ein", "Eis."]
+          - id: l2-c14
+            part: salad
+            type: true_false
+            text: "Ist der Satz richtig gelegt?"
+            say: "Lies den Satz. Ist er richtig gelegt?"
+            show: { drawn: letter-card, text: "Kuh Die frisst Heu." }
+            answer: false
+          - id: l2-c15
+            part: gaps
+            type: fill_in_blank
+            text: "Welches Wort passt in die Lücke?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: rabbit }
+            frame: "Der Hase hat lange _."
+            options: ["Ohren", "Autos", "Ofen"]
+            answer: ["Ohren"]
+          - id: l2-c16
+            part: gaps
+            type: fill_in_blank
+            text: "Welches Wort passt in die Lücke?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: moon }
+            frame: "In der Nacht scheint der _."
+            options: ["Mund", "Mond", "Hund"]
+            answer: ["Mond"]
+            option_audio: false
+          - id: l2-c17
+            part: gaps
+            type: fill_in_blank
+            text: "Welches Wort passt in die Lücke?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: owl }
+            frame: "Die Eule sitzt auf dem _."
+            options: ["Bauch", "Tee", "Baum"]
+            answer: ["Baum"]
+          - id: l2-c18
+            part: gaps
+            type: fill_in_blank
+            text: "Welches Wort passt in die Lücke?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: snow }
+            frame: "Im Winter fällt _."
+            options: ["Schnee", "Saft", "Sand"]
+            answer: ["Schnee"]
+            option_audio: false
+          - id: l2-c19
+            part: gaps
+            type: fill_in_blank
+            text: "Welche Wörter passen in die Lücken?"
+            say: "Lies den Satz. Welche Wörter passen in die Lücken?"
+            frame: "Tim _ ein Buch, und Lea _ ein Bild."
+            options: ["liest", "malt", "isst"]
+            answer: ["liest", "malt"]
+          - id: l2-c20
+            part: gaps
+            type: fill_in_blank
+            text: "Welches Wort passt in die Lücke?"
+            say: "Lies den Satz. Welches Wort passt in die Lücke?"
+            show: { object: dog }
+            frame: "Der Hund _ laut."
+            options: ["miaut", "bellt", "Ball"]
+            answer: ["bellt"]

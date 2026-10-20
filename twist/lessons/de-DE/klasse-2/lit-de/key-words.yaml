@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: small-words, what: { de: Schlüsselwörter von kleinen Wörtern unterscheiden, en: telling key words from small words } }
+    - { id: for-question, what: { de: "die Schlüsselwörter markieren, die eine Frage beantworten", en: marking the key words that answer a question } }
+    - { id: question-word, what: { de: das Schlüsselwort einer Frage im Text suchen, en: taking the key word of a question into the text } }
+    - { id: topic, what: { de: "die Schlüsselwörter finden, die zeigen, worum es im Text geht", en: finding the key words that show what a text is about } }
   misconceptions:
     - id: mark-everything
       what: Marks too many words, small words included (der, und, im), so the marking no longer helps
@@ -218,6 +223,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,6 +242,31 @@ lessons:
             text: "Wir fahren morgen mit dem Zug ans Meer.\n\nIst „Meer“ ein Schlüsselwort?"
             say: "Lies den Satz. Ist das Wort Meer ein Schlüsselwort?"
             answer: true
+          - id: l1-c4
+            type: sorting
+            text: "Paul trinkt am Morgen einen Kakao.\n\nSchlüsselwort oder nicht?"
+            say: "Lies den Satz. Sortiere die Wörter: Ist es ein Schlüsselwort oder nicht?"
+            bins:
+              - { id: ja, show: { text: "Schlüsselwort" }, say: "Schlüsselwort" }
+              - { id: nein, show: { text: "kein Schlüsselwort" }, say: "kein Schlüsselwort" }
+            options:
+              - { text: "Paul", bin: ja }
+              - { text: "am", bin: nein }
+              - { text: "Morgen", bin: ja }
+              - { text: "einen", bin: nein }
+              - { text: "Kakao", bin: ja }
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Wo schläft der Fuchs? Tippe auf das Schlüsselwort."
+            say: "Lies den Satz. Wo schläft der Fuchs? Tippe auf das Schlüsselwort."
+            show: { drawn: letter-card, text: "Der rote Fuchs schläft am Tag in seinem Bau." }
+            spans: ["Bau."]
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Wer spielt im Garten? Tippe auf die Schlüsselwörter."
+            say: "Lies den Satz. Welche Wörter sagen, wer im Garten spielt? Tippe auf sie."
+            show: { drawn: letter-card, text: "Lina und Jan spielen nach der Schule im Garten." }
+            spans: ["Lina", "Jan"]
 
   - n: 2
     title: { de: "Schlüsselwörter im Text", en: "Key words in a text" }
@@ -411,31 +442,37 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: topic
             type: multiple_choice
             text: "Der Regenbogen\nNach dem Regen scheint oft die Sonne.\nDann siehst du manchmal einen Regenbogen.\nEr hat viele Farben.\n\nWelche Schlüsselwörter zeigen, worum es geht?"
             say: "Lies den Text. Welche Schlüsselwörter zeigen, worum es geht?"
             options: ["Regen, Sonne, Regenbogen, Farben", "nach, dem, oft, dann", "siehst, manchmal, viele"]
             answer: "Regen, Sonne, Regenbogen, Farben"
           - id: l2-c2
+            part: for-question
             type: highlight_in_text
             text: "Was frisst der Affe? Tippe auf die Schlüsselwörter."
             say: "Lies den Text. Welche Wörter sagen, was der Affe frisst? Tippe auf sie."
             show: { drawn: letter-card, text: "Der Affe klettert auf einen hohen Baum. Dort frisst er Bananen und Blätter." }
             spans: ["Bananen", "Blätter."]
           - id: l2-c3
+            part: question-word
             type: multiple_choice
             text: "Die Schnecke\nDie Schnecke trägt ihr Haus auf dem Rücken.\nSie kriecht sehr langsam.\n\nDu willst wissen: Wie schnell kriecht die Schnecke? Nach welchem Wort suchst du im Text?"
             say: "Lies den Text und die Frage. Nach welchem Wort suchst du im Text?"
             options: ["kriecht", "Haus", "Rücken"]
             answer: "kriecht"
           - id: l2-c4
+            part: small-words
             type: true_false
             text: "Der Bus hält vor der Schule.\n\nIst „der“ ein Schlüsselwort?"
             say: "Lies den Satz. Ist das Wort der ein Schlüsselwort?"
             answer: false
           - id: l2-c5
+            part: small-words
             type: sorting
             text: "Lea füttert die Pferde mit Heu.\n\nSchlüsselwort oder nicht?"
             say: "Lies den Satz. Sortiere die Wörter: Ist es ein Schlüsselwort oder nicht?"
@@ -448,3 +485,110 @@ lessons:
               - { text: "Heu", bin: ja }
               - { text: "die", bin: nein }
               - { text: "mit", bin: nein }
+          - id: l2-c6
+            part: topic
+            type: multiple_choice
+            text: "Das Eichhörnchen\nDas Eichhörnchen klettert gern auf Bäume.\nIm Herbst sammelt es Nüsse.\nEs versteckt sie in der Erde.\n\nWelche Schlüsselwörter zeigen, worum es geht?"
+            say: "Lies den Text. Welche Schlüsselwörter zeigen, worum es geht?"
+            options: ["Eichhörnchen, Bäume, Nüsse, Erde", "das, gern, auf, im", "Eichhörnchen, Winter, Schnee"]
+            answer: "Eichhörnchen, Bäume, Nüsse, Erde"
+          - id: l2-c7
+            part: topic
+            type: true_false
+            text: "Der Löwe lebt in Afrika.\nEr jagt Zebras und Antilopen.\nAm Tag liegt er oft im Schatten.\n\nPassen diese Schlüsselwörter zum Text? Löwe, Afrika, jagt"
+            say: "Lies den Text. Passen die Schlüsselwörter unten zum Text?"
+            answer: true
+          - id: l2-c8
+            part: topic
+            type: true_false
+            text: "Die Ente\nDie Ente schwimmt auf dem Teich.\nIhre Federn werden nicht nass.\nSie frisst Pflanzen und kleine Schnecken.\n\nPassen diese Schlüsselwörter zum Text? Ente, Wiese, Eier"
+            say: "Lies den Text. Passen die Schlüsselwörter unten zum Text?"
+            answer: false
+          - id: l2-c9
+            part: topic
+            type: multiple_choice
+            text: "Der Kürbis\nIm Herbst ernten wir Kürbisse.\nSie sind groß und orange.\nAus Kürbissen kann man Suppe kochen.\n\nMit welchen Wörtern kannst du einem Freund sagen, worum es geht?"
+            say: "Lies den Text. Mit welchen Schlüsselwörtern kannst du einem Freund sagen, worum es geht?"
+            options: ["Herbst, Kürbisse, orange, Suppe", "wir, sie, und, aus", "Herbst, Schnee, Schlitten"]
+            answer: "Herbst, Kürbisse, orange, Suppe"
+          - id: l2-c10
+            part: for-question
+            type: highlight_in_text
+            text: "Was trinkt Oma am Morgen? Tippe auf das Schlüsselwort."
+            say: "Lies den Satz. Was trinkt Oma am Morgen? Tippe auf das Schlüsselwort."
+            show: { drawn: letter-card, text: "Am Morgen trinkt Oma in der Küche einen Tee." }
+            spans: ["Tee."]
+          - id: l2-c11
+            part: for-question
+            type: highlight_in_text
+            text: "Wann geht Max zum Fußball? Tippe auf das Schlüsselwort."
+            say: "Lies den Satz. Wann geht Max zum Fußball? Tippe auf das Schlüsselwort."
+            show: { drawn: letter-card, text: "Max geht jeden Dienstag mit seinem Bruder zum Fußball." }
+            spans: ["Dienstag"]
+          - id: l2-c12
+            part: for-question
+            type: highlight_in_text
+            text: "Welche Tiere jagt der Löwe? Tippe auf die Schlüsselwörter."
+            say: "Lies den Text. Welche Wörter sagen, welche Tiere der Löwe jagt? Tippe auf sie."
+            show: { drawn: letter-card, text: "Der Löwe lebt in Afrika. Er jagt Zebras und Antilopen. Am Tag liegt er oft im Schatten." }
+            spans: ["Zebras", "Antilopen."]
+          - id: l2-c13
+            part: for-question
+            type: multiple_choice
+            text: "Papa kauft auf dem Markt Tomaten und Gurken.\n\nWas kauft Papa? Welche Wörter beantworten die Frage?"
+            say: "Lies den Satz und die Frage. Was kauft Papa? Welche Wörter beantworten die Frage?"
+            options: ["Tomaten, Gurken", "Papa, Markt", "auf, dem"]
+            answer: "Tomaten, Gurken"
+          - id: l2-c14
+            part: question-word
+            type: multiple_choice
+            text: "Die Fledermaus\nDie Fledermaus fliegt in der Nacht.\nSie fängt Insekten.\nAm Tag hängt sie kopfüber in einer Höhle.\n\nDu willst wissen: Wo hängt die Fledermaus? Nach welchem Wort suchst du im Text?"
+            say: "Lies den Text und die Frage. Nach welchem Wort suchst du im Text?"
+            options: ["hängt", "fliegt", "Insekten"]
+            answer: "hängt"
+          - id: l2-c15
+            part: question-word
+            type: true_false
+            text: "Die Ziege\nDie Ziege klettert gern auf Felsen.\nSie frisst Gras und Blätter.\nIhre Milch schmeckt gut.\n\nDu willst wissen: Was frisst die Ziege? Du suchst im Text das Wort „frisst“. Ist das ein gutes Wort zum Suchen?"
+            say: "Lies den Text. Du willst wissen: Was frisst die Ziege? Du suchst im Text das Wort frisst. Ist das ein gutes Wort zum Suchen?"
+            answer: true
+          - id: l2-c16
+            part: question-word
+            type: true_false
+            text: "Der Pinguin\nDer Pinguin ist ein Vogel, aber er kann nicht fliegen.\nEr schwimmt sehr schnell.\nEr frisst Fische.\n\nDu willst wissen: Was frisst der Pinguin? Du suchst im Text das Wort „schwimmt“. Ist das ein gutes Wort zum Suchen?"
+            say: "Lies den Text. Du willst wissen: Was frisst der Pinguin? Du suchst im Text das Wort schwimmt. Ist das ein gutes Wort zum Suchen?"
+            answer: false
+          - id: l2-c17
+            part: question-word
+            type: multiple_choice
+            text: "Am Samstag macht die Klasse 2b einen Ausflug.\nDie Kinder fahren mit dem Bus in den Zoo.\nDort sehen sie Giraffen.\n\nDu willst wissen: Womit fahren die Kinder? Nach welchem Wort suchst du im Text?"
+            say: "Lies den Text und die Frage. Nach welchem Wort suchst du im Text?"
+            options: ["fahren", "Samstag", "Giraffen"]
+            answer: "fahren"
+          - id: l2-c18
+            part: small-words
+            type: sorting
+            text: "Die Eule jagt in der Nacht. Sie fängt Mäuse.\n\nSchlüsselwort oder nicht?"
+            say: "Lies den Text. Sortiere die Wörter: Ist es ein Schlüsselwort oder nicht?"
+            bins:
+              - { id: ja, show: { text: "Schlüsselwort" }, say: "Schlüsselwort" }
+              - { id: nein, show: { text: "kein Schlüsselwort" }, say: "kein Schlüsselwort" }
+            options:
+              - { text: "in", bin: nein }
+              - { text: "Eule", bin: ja }
+              - { text: "Mäuse", bin: ja }
+              - { text: "sie", bin: nein }
+              - { text: "Nacht", bin: ja }
+          - id: l2-c19
+            part: small-words
+            type: multiple_choice
+            text: "Der Bäcker backt am Morgen frische Brötchen.\n\nWelches Wort ist kein Schlüsselwort?"
+            say: "Lies den Satz. Welches Wort ist kein Schlüsselwort?"
+            options: ["am", "Bäcker", "Brötchen"]
+            answer: "am"
+          - id: l2-c20
+            part: small-words
+            type: true_false
+            text: "Die Kinder rennen über den Schulhof.\n\nIst „Schulhof“ ein Schlüsselwort?"
+            say: "Lies den Satz. Ist das Wort Schulhof ein Schlüsselwort?"
+            answer: true

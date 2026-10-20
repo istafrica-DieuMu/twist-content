@@ -25,6 +25,10 @@ metadata:
   forms: [audio, drawn, picture]
   drawn: [syllable-arcs, word-card, dots]
   facets: []
+  parts:
+    - { id: read-word, what: { de: ein langes Wort lesen und verstehen, en: reading a long word and understanding it } }
+    - { id: syllables, what: { de: ein langes Wort in Silben gliedern, en: splitting a long word into syllables } }
+    - { id: heard-word, what: { de: ein gehörtes Wort unter ähnlichen Wörtern finden, en: finding a heard word among similar words } }
   misconceptions:
     - id: stops-after-two
       what: Reads two syllables and guesses the end of the word (Tele... becomes Telefant)
@@ -56,6 +60,7 @@ lessons:
             type: ordering
             text: "Bau das Wort."
             say: "Tasse. Leg die Silben der Reihe nach."
+            show: { object: cup }
             options: ["se", "Tas"]
             slot_count: 2
             answer: ["Tas", "se"]
@@ -177,6 +182,7 @@ lessons:
                 type: fill_in_blank
                 text: "Welche Silbe fehlt?"
                 say: "Ananas. Welche Silbe fehlt?"
+                show: { object: pineapple }
                 frame: "A_nas"
                 options: ["na", "ma", "no"]
                 answer: ["na"]
@@ -223,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -230,10 +237,12 @@ lessons:
             show: { drawn: word-card, text: "Banane" }
             options: [{ object: pineapple }, { object: banana }, { object: apple }]
             answer: banana
+            option_audio: false
           - id: l1-c2
             type: fill_in_blank
             text: "Welche Silbe fehlt?"
             say: "Lineal. Welche Silbe fehlt?"
+            show: { object: ruler }
             frame: "Li_al"
             options: ["ne", "na", "le"]
             answer: ["ne"]
@@ -243,6 +252,31 @@ lessons:
             audio: { de: "Ananas." }
             options: ["Banane", "Ananas", "Ameise"]
             answer: "Ananas"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Tomate" }
+            options: [{ object: strawberry }, { object: apple }, { object: tomato }]
+            answer: tomato
+            option_audio: false
+          - id: l1-c5
+            type: ordering
+            text: "Bau das Wort."
+            say: "Oktopus. Leg die Silben der Reihe nach."
+            show: { object: octopus }
+            options: ["pus", "Ok", "to"]
+            slot_count: 3
+            answer: ["Ok", "to", "pus"]
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Wie viele Silben hat das Wort?"
+            say: "Lies das Wort. Wie viele Silben hat es?"
+            show: { drawn: word-card, text: "Domino" }
+            options:
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "3"
 
   - n: 2
     title: { de: Lange Wörter knacken, en: Cracking long words }
@@ -255,6 +289,7 @@ lessons:
             type: ordering
             text: "Bau das Wort."
             say: "Telefon. Leg die Silben der Reihe nach."
+            show: { object: telephone }
             options: ["fon", "Te", "le"]
             slot_count: 3
             answer: ["Te", "le", "fon"]
@@ -356,6 +391,7 @@ lessons:
                 type: ordering
                 text: "Bau das Wort."
                 say: "Krokodil. Leg die Silben der Reihe nach."
+                show: { object: crocodile }
                 options: ["dil", "ko", "Kro"]
                 slot_count: 3
                 answer: ["Kro", "ko", "dil"]
@@ -406,6 +442,7 @@ lessons:
                 type: fill_in_blank
                 text: "Welche Silbe fehlt?"
                 say: "Elefant. Welche Silbe fehlt?"
+                show: { object: elephant }
                 frame: "E_fant"
                 options: ["la", "le", "li"]
                 answer: ["le"]
@@ -428,35 +465,166 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read-word
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Elefant" }
             options: [{ object: giraffe }, { object: elephant }, { object: crocodile }]
             answer: elephant
+            option_audio: false
           - id: l2-c2
+            part: read-word
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Krokodil" }
             options: [{ object: frog }, { object: snake }, { object: crocodile }]
             answer: crocodile
+            option_audio: false
           - id: l2-c3
+            part: heard-word
             type: audio_choice
             text: "Hör zu. Welches Wort ist das?"
             audio: { de: "Giraffe." }
             options: ["Gitarre", "Giraffe", "Gardine"]
             answer: "Giraffe"
           - id: l2-c4
+            part: syllables
             type: ordering
             text: "Bau das Wort."
             say: "Ameise. Leg die Silben der Reihe nach."
+            show: { object: ant }
             options: ["se", "mei", "A"]
             slot_count: 3
             answer: ["A", "mei", "se"]
           - id: l2-c5
+            part: read-word
             type: true_false
             text: "Lies das Wort. Kann man damit messen?"
             say: "Lies das Wort. Kann man damit messen?"
             show: { drawn: word-card, text: "Lineal" }
             answer: true
+          - id: l2-c6
+            part: read-word
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Erdbeere" }
+            options: [{ object: tomato }, { object: strawberry }, { object: apple }]
+            answer: strawberry
+            option_audio: false
+          - id: l2-c7
+            part: read-word
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Regenschirm" }
+            options: [{ object: rain }, { object: kite }, { object: umbrella }]
+            answer: umbrella
+            option_audio: false
+          - id: l2-c8
+            part: read-word
+            type: true_false
+            text: "Lies das Wort. Kann man das essen?"
+            say: "Lies das Wort. Kann man das essen?"
+            show: { drawn: word-card, text: "Radiergummi" }
+            answer: false
+          - id: l2-c9
+            part: read-word
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Lehrerin" }
+            options: [{ object: doctor }, { object: teacher }, { object: cook }]
+            answer: teacher
+            option_audio: false
+          - id: l2-c10
+            part: syllables
+            type: ordering
+            text: "Bau das Wort."
+            say: "Gitarre. Leg die Silben der Reihe nach."
+            show: { object: play-guitar }
+            options: ["tar", "re", "Gi"]
+            slot_count: 3
+            answer: ["Gi", "tar", "re"]
+          - id: l2-c11
+            part: syllables
+            type: ordering
+            text: "Bau das Wort."
+            say: "Badewanne. Leg die Silben der Reihe nach."
+            show: { object: bath }
+            options: ["wan", "Ba", "ne", "de"]
+            slot_count: 4
+            answer: ["Ba", "de", "wan", "ne"]
+          - id: l2-c12
+            part: syllables
+            type: image_multiple_choice
+            text: "Wie viele Silben hat das Wort?"
+            say: "Lies das Wort. Wie viele Silben hat es?"
+            show: { drawn: word-card, text: "Supermarkt" }
+            options:
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "3"
+          - id: l2-c13
+            part: syllables
+            type: fill_in_blank
+            text: "Welche Silbe fehlt?"
+            say: "Polizist. Welche Silbe fehlt?"
+            show: { object: police-officer }
+            frame: "Po_zist"
+            options: ["la", "li", "le"]
+            answer: ["li"]
+          - id: l2-c14
+            part: syllables
+            type: image_multiple_choice
+            text: "Wie viele Silben hat das Wort?"
+            say: "Lies das Wort. Wie viele Silben hat es?"
+            show: { drawn: word-card, text: "Marmelade" }
+            options:
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "4"
+          - id: l2-c15
+            part: syllables
+            type: true_false
+            text: "Sind die Silbenbögen richtig?"
+            say: "Lies das Wort. Sind die Silbenbögen richtig?"
+            show: { drawn: syllable-arcs, word: "Kakao", syllables: ["Kak", "a", "o"] }
+            answer: false
+          - id: l2-c16
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Paprika." }
+            options: ["Papagei", "Papier", "Paprika"]
+            answer: "Paprika"
+          - id: l2-c17
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Schulranzen." }
+            options: ["Schulranzen", "Schulanfang", "Schuhkarton"]
+            answer: "Schulranzen"
+          - id: l2-c18
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Salami." }
+            options: ["Salat", "Sandale", "Salami"]
+            answer: "Salami"
+          - id: l2-c19
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Hubschrauber." }
+            options: ["Hufeisen", "Hubschrauber", "Hummel"]
+            answer: "Hubschrauber"
+          - id: l2-c20
+            part: heard-word
+            type: audio_choice
+            text: "Hör zu. Welches Wort ist das?"
+            audio: { de: "Melone." }
+            options: ["Melodie", "Medizin", "Melone"]
+            answer: "Melone"

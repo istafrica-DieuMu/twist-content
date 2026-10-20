@@ -34,18 +34,22 @@ metadata:
   vocabulary: { de: [Anlauttabelle, Anlaut, Laut, Buchstabe, Bild] }
   forms: [audio, picture, drawn]
   drawn: [sound-chart]
-  sounds: ["de.m", "de.l", "de.f", "de.n", "de.a:"]
+  sounds: ["de.m", "de.l", "de.f", "de.n", "de.a:", "de.s", "de.o:"]
   facets: []
+  parts:
+    - { id: sound, what: { de: zu einem Laut das Bild und den Buchstaben in der Anlauttabelle finden, en: finding the picture and the letter for a sound on the sound chart } }
+    - { id: word-start, what: { de: "den ersten Laut eines Wortes in der Tabelle finden, nicht den Buchstabennamen", en: "finding the first sound of a word on the chart, not the letter name" } }
+    - { id: whole-word, what: { de: ein kurzes Wort Laut für Laut mit der Tabelle aufschreiben, en: going through a short word sound by sound with the chart } }
   misconceptions:
     - id: letter-name
       what: Goes by the letter name instead of the sound, so Elefant seems to start with L (El) and Esel with S
-      addressed: lesson 1 Learn says the chart gives the sound, not the name; l1-s3 asks whether Elefant starts with L, with hint; l1-n3 offers L wie Lampe for Elefant, and the skill check task l2-c3 offers S and L for Esel
+      addressed: lesson 1 Learn says the chart gives the sound, not the name; l1-s3 asks whether Elefant starts with L, with hint; l1-n3 offers L wie Lampe for Elefant, and the skill check tasks l2-c3 (S and L for Esel) and l2-c13 (E wie Ente for Löwe)
     - id: sound-elsewhere
       what: Picks a picture that has the sound later in the word or rhymes with it (Affe for fff, Haus for Maus)
-      addressed: l1-f1 offers a rhyme with feedback, l1-n1 offers Affe for fff; l1-f5 and l1-s4 offer fields for sounds in the middle or at the end, with feedback
+      addressed: l1-f1 offers a rhyme with feedback, l1-n1 offers Affe for fff; l1-f5 and l1-s4 offer fields for sounds in the middle or at the end, with feedback; l2-c8 offers Affe for fff
     - id: sch-as-s
       what: Takes S wie Sonne for words that start with sch (Schuh, Schere)
-      addressed: l1-n5 and l1-c2 set Sonne against Schuh; the Learn of lesson 1 says to listen to the whole first sound
+      addressed: l1-n5, l1-c2 and l2-c6 set Sonne against Schuh, l1-c4 Säge against Schere; the Learn of lesson 1 says to listen to the whole first sound
     - id: first-sound-only
       what: Looks up the first sound only and leaves out the sounds after it
       addressed: lesson 2 Learn goes through Oma sound by sound; every stage of lesson 2 orders the chart pictures for a whole word (l2-f1, l2-f4, l2-s1, l2-s5, l2-n1, l2-n5, l2-c4) and asks for the missing last field (l2-f3, l2-s3, l2-s4)
@@ -271,6 +275,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -292,6 +297,26 @@ lessons:
             show: { object: hat }
             options: ["U wie Uhr", "T wie Tisch", "H wie Hund"]
             answer: "H wie Hund"
+          - id: l1-c4
+            type: audio_choice
+            text: "Welches Bild fängt mit diesem Laut an?"
+            say: "Hör gut zu. Welches Bild fängt mit diesem Laut an?"
+            audio: { sound: de.s }
+            options: [{ object: scissors }, { object: saw }, { object: fish }]
+            answer: saw
+          - id: l1-c5
+            type: multiple_choice
+            text: "Du willst Tomate schreiben. Welches Feld hilft dir beim ersten Laut?"
+            say: "Du willst Tomate schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
+            show: { object: tomato }
+            options: ["O wie Ofen", "T wie Tisch", "M wie Maus"]
+            answer: "T wie Tisch"
+          - id: l1-c6
+            type: true_false
+            text: "F wie Fisch. Fängt Fuchs mit F an?"
+            say: "In der Anlauttabelle steht F wie Fisch. Fängt Fuchs auch mit F an?"
+            show: { object: fox }
+            answer: true
 
   - n: 2
     title: { de: Laut für Laut, en: Sound by sound }
@@ -470,8 +495,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sound
             type: audio_choice
             text: "Welches Bild fängt mit diesem Laut an?"
             say: "Hör gut zu. Welches Bild aus der Anlauttabelle fängt mit diesem Laut an?"
@@ -479,6 +506,7 @@ lessons:
             options: [{ object: mouse }, { object: lamp }, { object: nose }]
             answer: nose
           - id: l2-c2
+            part: word-start
             type: sorting
             text: "Zu welchem Feld gehört das Bild?"
             say: "Zu welchem Feld aus der Anlauttabelle gehört jedes Bild? Tippe auf ein Bild und dann auf sein Feld."
@@ -491,6 +519,7 @@ lessons:
               - { object: wind, bin: w }
               - { object: cake, bin: k }
           - id: l2-c3
+            part: word-start
             type: multiple_choice
             text: "Du willst Esel schreiben. Welches Feld hilft dir beim ersten Laut?"
             say: "Du willst Esel schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
@@ -498,6 +527,7 @@ lessons:
             options: ["S wie Sonne", "L wie Lampe", "E wie Ente"]
             answer: "E wie Ente"
           - id: l2-c4
+            part: whole-word
             type: ordering
             text: "Tal: Bring die Bilder in die richtige Reihenfolge."
             say: "Sprich langsam: Tal. Such für jeden Laut das Bild aus der Anlauttabelle. Bring die Bilder in die richtige Reihenfolge."
@@ -505,8 +535,133 @@ lessons:
             slot_count: 3
             answer: [table, ant, lamp]
           - id: l2-c5
+            part: word-start
             type: true_false
             text: "Z wie Zebra. Fängt Ziege mit Z an?"
             say: "In der Anlauttabelle steht Z wie Zebra. Fängt Ziege auch mit Z an?"
             show: { object: goat }
             answer: true
+          - id: l2-c6
+            part: sound
+            type: audio_choice
+            text: "Welches Bild fängt mit diesem Laut an?"
+            say: "Hör gut zu. Welches Bild aus der Anlauttabelle fängt mit diesem Laut an?"
+            audio: { sound: de.s }
+            options: [{ object: shoe }, { object: mouse }, { object: sun }]
+            answer: sun
+          - id: l2-c7
+            part: sound
+            type: audio_choice
+            text: "Welcher Buchstabe gehört zu diesem Laut? Such das Bild in der Anlauttabelle."
+            say: "Hör gut zu. Welcher Buchstabe gehört zu diesem Laut? Such in der Anlauttabelle das Bild, das so anfängt."
+            audio: { sound: "de.o:" }
+            show: { drawn: sound-chart, letters: [m, o, f, n], pictures: { m: mouse, o: oven, f: fish, n: nose }, columns: 4 }
+            options: ["M", "O", "F"]
+            answer: "O"
+          - id: l2-c8
+            part: sound
+            type: audio_choice
+            text: "Welches Bild fängt mit diesem Laut an?"
+            say: "Hör gut zu. Welches Bild fängt mit diesem Laut an?"
+            audio: { sound: de.f }
+            options: [{ object: monkey }, { object: foot }, { object: nose }]
+            answer: foot
+          - id: l2-c9
+            part: sound
+            type: audio_choice
+            text: "Welches Bild fängt mit diesem Laut an?"
+            say: "Hör gut zu. Welches Bild fängt mit diesem Laut an?"
+            audio: { sound: de.m }
+            options: [{ object: lion }, { object: oven }, { object: mum }]
+            answer: mum
+          - id: l2-c10
+            part: sound
+            type: audio_choice
+            text: "Welcher Buchstabe gehört zu diesem Laut? Such das Bild in der Anlauttabelle."
+            say: "Hör gut zu. Welcher Buchstabe gehört zu diesem Laut? Such in der Anlauttabelle das Bild, das so anfängt."
+            audio: { sound: "de.a:" }
+            show: { drawn: sound-chart, letters: [o, e, a, u], pictures: { o: oven, e: duck, a: ant, u: clock }, columns: 4 }
+            options: ["O", "E", "A"]
+            answer: "A"
+          - id: l2-c11
+            part: word-start
+            type: multiple_choice
+            text: "Du willst Apfel schreiben. Welches Feld hilft dir beim ersten Laut?"
+            say: "Du willst Apfel schreiben. Welches Feld aus der Anlauttabelle hilft dir beim ersten Laut?"
+            show: { object: apple }
+            options: ["A wie Ameise", "E wie Ente", "F wie Fisch"]
+            answer: "A wie Ameise"
+          - id: l2-c12
+            part: whole-word
+            type: ordering
+            text: "Kuli: Bring die Bilder in die richtige Reihenfolge."
+            say: "Sprich langsam: Kuli. Such für jeden Laut das Bild aus der Anlauttabelle. Bring die Bilder in die richtige Reihenfolge."
+            show: { object: pen }
+            options: [{ object: lamp }, { object: hedgehog }, { object: cat }, { object: clock }]
+            slot_count: 4
+            answer: [cat, clock, lamp, hedgehog]
+          - id: l2-c13
+            part: word-start
+            type: true_false
+            text: "Mia will Löwe schreiben. Für den ersten Laut nimmt sie E wie Ente. Stimmt das?"
+            say: "Mia will Löwe schreiben. Für den ersten Laut nimmt sie E wie Ente. Stimmt das?"
+            show: { object: lion }
+            answer: false
+          - id: l2-c14
+            part: word-start
+            type: image_multiple_choice
+            text: "W wie Wal. Welches Bild gehört auch zum W?"
+            say: "In der Anlauttabelle steht W wie Wal. Welches Bild gehört auch zum W? Tippe auf die Bilder und hör die Wörter."
+            options: [{ object: sheep }, { object: worm }, { object: fox }]
+            answer: worm
+          - id: l2-c15
+            part: word-start
+            type: sorting
+            text: "Zu welchem Feld gehört das Bild?"
+            say: "Zu welchem Feld aus der Anlauttabelle gehört jedes Bild? Tippe auf ein Bild und dann auf sein Feld."
+            bins:
+              - { id: b, show: { text: "B" }, say: "B wie Ball" }
+              - { id: t, show: { text: "T" }, say: "T wie Tisch" }
+            options:
+              - { object: tomato, bin: t }
+              - { object: boat, bin: b }
+              - { object: teddy, bin: t }
+              - { object: bus, bin: b }
+          - id: l2-c16
+            part: whole-word
+            type: ordering
+            text: "Hose: Bring die Bilder in die richtige Reihenfolge."
+            say: "Sprich langsam: Hose. Such für jeden Laut das Bild aus der Anlauttabelle. Bring die Bilder in die richtige Reihenfolge."
+            show: { object: trousers }
+            options: [{ object: sun }, { object: duck }, { object: dog }, { object: oven }]
+            slot_count: 4
+            answer: [dog, oven, sun, duck]
+          - id: l2-c17
+            part: whole-word
+            type: audio_choice
+            text: "Welches Bild brauchst du für den letzten Laut?"
+            say: "Hör das Wort. Welches Bild aus der Anlauttabelle brauchst du für den letzten Laut?"
+            audio: { de: "Kamel." }
+            options: [{ object: cat }, { object: mouse }, { object: lamp }]
+            answer: lamp
+          - id: l2-c18
+            part: whole-word
+            type: audio_choice
+            text: "Welches Bild brauchst du für den Laut in der Mitte?"
+            say: "Hör das Wort. Welches Bild aus der Anlauttabelle brauchst du für den Laut in der Mitte?"
+            audio: { de: "Hof." }
+            options: [{ object: dog }, { object: oven }, { object: fish }]
+            answer: oven
+          - id: l2-c19
+            part: whole-word
+            type: multiple_choice
+            text: "Kino: K wie Katze, I wie Igel, N wie Nase ... Welches Feld fehlt noch?"
+            say: "Du schreibst Kino. K wie Katze, I wie Igel, N wie Nase. Sprich das Wort bis zum Ende. Welches Feld fehlt noch?"
+            options: ["U wie Uhr", "O wie Ofen", "E wie Ente"]
+            answer: "O wie Ofen"
+          - id: l2-c20
+            part: whole-word
+            type: true_false
+            text: "Ben will Salat schreiben. Er nimmt: S wie Sonne, A wie Ameise, L wie Lampe, T wie Tisch. Stimmt das?"
+            say: "Ben will Salat schreiben. Er nimmt: S wie Sonne, A wie Ameise, L wie Lampe, T wie Tisch. Stimmt das?"
+            answer: false

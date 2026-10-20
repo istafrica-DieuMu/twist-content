@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: w-questions, what: { de: die W-Fragen beantworten und eine fehlende finden, en: answering the W-questions and finding one left open } }
+    - { id: order, what: { de: in der Reihenfolge berichten, en: reporting in the order things happened } }
+    - { id: factual, what: { de: "sachlich berichten (ohne Gefühle, Spannung und Meinung)", en: "reporting factually (no feelings, suspense or opinion)" } }
+    - { id: past, what: { de: im Präteritum berichten, en: reporting in the simple past } }
   misconceptions:
     - id: report-as-story
       what: Writes a report like a story, with feelings, suspense words (plötzlich, auf einmal) and direct speech
@@ -220,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -241,6 +247,27 @@ lessons:
             slot_count: 3
             answer: ["Der Bus hatte einen platten Reifen.", "Der Fahrer stieg aus und sah nach.", "Ein Ersatzbus holte die Kinder ab."]
             option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "„Um 7 Uhr fuhr der Schulbus am Rathaus los.“ Beantwortet der Satz die W-Frage „Wo“?"
+            say: "Lies den Satz. Beantwortet er die Frage Wo?"
+            answer: true
+          - id: l1-c5
+            type: matching
+            text: "Welche W-Frage beantwortet die Angabe? Verbinde."
+            say: "Lies die Angaben aus einem Bericht. Welche W-Frage beantworten sie? Verbinde."
+            pairs:
+              - { left: { text: "mit dem Zug" }, right: { text: "Wie?" } }
+              - { left: { text: "in den Sommerferien" }, right: { text: "Wann?" } }
+              - { left: { text: "am Hafen" }, right: { text: "Wo?" } }
+              - { left: { text: "Familie Yilmaz" }, right: { text: "Wer?" } }
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Diese Sätze aus einem Bericht sind durcheinander:\nDie Kinder liehen sich Bücher aus.\nDie Bibliothekarin las ein Märchen vor.\nDie Klasse ging zu Fuß zur Bücherei.\n\nWas geschah zuerst?"
+            say: "Lies die Sätze aus einem Bericht. Was geschah zuerst?"
+            options: ["Die Klasse ging zu Fuß zur Bücherei.", "Die Bibliothekarin las ein Märchen vor.", "Die Kinder liehen sich Bücher aus."]
+            answer: "Die Klasse ging zu Fuß zur Bücherei."
 
   - n: 2
     title: { de: "Sachlich im Präteritum", en: "Factual and in the past" }
@@ -426,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: w-questions
             type: matching
             text: "W-Fragen: Verbinde die Angabe mit ihrer Frage."
             say: "Lies die Angaben aus einem Zeitungsbericht. Welche W-Frage beantworten sie? Verbinde."
@@ -438,18 +467,21 @@ lessons:
               - { left: { text: "der Bademeister" }, right: { text: "Wer?" } }
             option_audio: false
           - id: l2-c2
+            part: w-questions
             type: multiple_choice
             text: "Am Sonntag um 15 Uhr landete ein Heißluftballon auf einem Maisfeld.\n\nWelche W-Frage beantwortet der Bericht nicht?"
             say: "Lies den Bericht. Welche W-Frage beantwortet er nicht?"
             options: ["Warum?", "Wo?", "Wann?"]
             answer: "Warum?"
           - id: l2-c3
+            part: factual
             type: multiple_choice
             text: "Welcher Satz passt in einen Bericht?"
             say: "Lies die Sätze genau. Welcher davon passt in einen Bericht?"
             options: ["Am Donnerstag pflanzte die 4c zwanzig Sonnenblumen.", "Voller Freude buddelten wir in der warmen Erde.", "Sonnenblumen sind die schönsten Blumen."]
             answer: "Am Donnerstag pflanzte die 4c zwanzig Sonnenblumen."
           - id: l2-c4
+            part: factual
             type: sorting
             text: "Was gehört in einen Bericht?"
             say: "Lies die Sätze. Gehören sie in einen Bericht oder nicht?"
@@ -463,9 +495,118 @@ lessons:
               - { text: "„Bravo!“, rief Oma.", bin: out }
             option_audio: false
           - id: l2-c5
+            part: past
             type: fill_in_blank
             text: "Welche Form gehört in den Bericht?"
             say: "Der Bericht steht im Präteritum. Welche Form passt in die Lücke?"
             frame: "Nach dem Unfall _ die Polizei die Straße."
             options: ["sperrte", "sperrt", "sperren"]
             answer: ["sperrte"]
+          - id: l2-c6
+            part: order
+            type: ordering
+            text: "Leg die Sätze in die Reihenfolge, in der es passiert ist."
+            say: "Lies die Sätze aus einem Bericht. Leg sie in die Reihenfolge, in der es passiert ist."
+            options: ["Am Nachmittag fuhren die Kinder mit dem Bus zurück zur Schule.", "Um 9 Uhr kam die Klasse 4a im Zoo an.", "Ein Tierpfleger zeigte ihnen das Elefantenhaus."]
+            slot_count: 3
+            answer: ["Um 9 Uhr kam die Klasse 4a im Zoo an.", "Ein Tierpfleger zeigte ihnen das Elefantenhaus.", "Am Nachmittag fuhren die Kinder mit dem Bus zurück zur Schule."]
+            option_audio: false
+          - id: l2-c7
+            part: order
+            type: ordering
+            text: "Leg die Sätze in die Reihenfolge, in der es passiert ist."
+            say: "Lies die Sätze aus einem Bericht. Leg sie in die Reihenfolge, in der es passiert ist."
+            options: ["Die Feuerwehr pumpte das Wasser ab.", "In der Nacht regnete es sehr stark.", "Der Hausmeister rief die Feuerwehr.", "Am Morgen stand der Keller der Schule unter Wasser."]
+            slot_count: 4
+            answer: ["In der Nacht regnete es sehr stark.", "Am Morgen stand der Keller der Schule unter Wasser.", "Der Hausmeister rief die Feuerwehr.", "Die Feuerwehr pumpte das Wasser ab."]
+            option_audio: false
+          - id: l2-c8
+            part: order
+            type: multiple_choice
+            text: "Du schreibst einen Bericht über einen Fahrradunfall. Mit welchem Satz beginnst du?"
+            options: ["Auf dem Radweg rutschte Lisa auf nassem Laub aus.", "Ein Mann half ihr wieder auf.", "Ihre Mutter holte sie mit dem Auto ab."]
+            answer: "Auf dem Radweg rutschte Lisa auf nassem Laub aus."
+          - id: l2-c9
+            part: order
+            type: true_false
+            text: "„Der Schiedsrichter pfiff das Spiel ab. Danach begann die zweite Halbzeit. In der ersten Halbzeit fiel kein Tor.“\n\nStimmt die Reihenfolge in diesem Bericht?"
+            say: "Lies den Bericht. Stimmt die Reihenfolge?"
+            answer: false
+          - id: l2-c10
+            part: order
+            type: multiple_choice
+            text: "Diese Sätze aus einem Bericht sind durcheinander:\nDie Kinder fanden die Katze im Gartenhaus.\nAm Montag lief die Katze von Familie Kraus weg.\nDie Nachbarskinder hängten Zettel auf.\n\nWas geschah zuletzt?"
+            say: "Lies die Sätze aus einem Bericht. Was geschah zuletzt?"
+            options: ["Die Kinder fanden die Katze im Gartenhaus.", "Am Montag lief die Katze von Familie Kraus weg.", "Die Nachbarskinder hängten Zettel auf."]
+            answer: "Die Kinder fanden die Katze im Gartenhaus."
+          - id: l2-c11
+            part: w-questions
+            type: multiple_choice
+            text: "Beim Schulfest am Samstag verkaufte die Klasse 4c selbst gebackenen Kuchen.\n\nWas geschah?"
+            say: "Lies den Satz aus einem Bericht. Was geschah?"
+            options: ["Die Klasse 4c verkaufte Kuchen.", "am Samstag", "beim Schulfest"]
+            answer: "Die Klasse 4c verkaufte Kuchen."
+          - id: l2-c12
+            part: w-questions
+            type: multiple_choice
+            text: "Am Morgen fuhr der Bürgermeister mit dem Fahrrad zum Rathaus, weil sein Auto kaputt war.\n\nWelche Angabe beantwortet die Frage „Wie“?"
+            say: "Lies den Satz aus einem Bericht. Welche Angabe beantwortet die Frage Wie?"
+            options: ["mit dem Fahrrad", "am Morgen", "weil sein Auto kaputt war"]
+            answer: "mit dem Fahrrad"
+          - id: l2-c13
+            part: w-questions
+            type: multiple_choice
+            text: "Am Freitagmorgen fing ein Feuerwehrmann eine Schlange, die ihrem Besitzer entwischt war.\n\nWelche W-Frage beantwortet der Bericht nicht?"
+            say: "Lies den Bericht. Welche W-Frage beantwortet er nicht?"
+            options: ["Wo?", "Wann?", "Warum?"]
+            answer: "Wo?"
+          - id: l2-c14
+            part: factual
+            type: true_false
+            text: "„Am Montag schneite es so stark, dass der Unterricht ausfiel.“ Passt der Satz in einen Bericht?"
+            say: "Lies den Satz. Passt er in einen Bericht?"
+            answer: true
+          - id: l2-c15
+            part: factual
+            type: multiple_choice
+            text: "Welche Angabe gehört nicht in einen Bericht?"
+            options: ["plötzlich", "um 10 Uhr", "am Bahnhof"]
+            answer: "plötzlich"
+          - id: l2-c16
+            part: factual
+            type: multiple_choice
+            text: "Welcher Text ist ein Bericht?"
+            options: ["Am Freitag stürzte ein Baum auf die Gartenstraße. Niemand wurde verletzt.", "Es war eine finstere Nacht. Auf einmal hörte ich ein schreckliches Krachen!", "Ich mag Bäume, aber dieser Baum war richtig gemein."]
+            answer: "Am Freitag stürzte ein Baum auf die Gartenstraße. Niemand wurde verletzt."
+          - id: l2-c17
+            part: past
+            type: fill_in_blank
+            text: "Setze das Verb ins Präteritum."
+            say: "Ein Bericht steht im Präteritum. Welche Form passt?"
+            frame: "Am Abend _ der Zirkus in unserer Stadt an."
+            options: ["kam", "kommt", "kommen"]
+            answer: ["kam"]
+          - id: l2-c18
+            part: past
+            type: multiple_choice
+            text: "Welcher Satz steht im Präteritum?"
+            options: ["Die Kinder gewannen den Wettbewerb.", "Die Kinder gewinnen den Wettbewerb.", "Die Kinder werden den Wettbewerb gewinnen."]
+            answer: "Die Kinder gewannen den Wettbewerb."
+          - id: l2-c19
+            part: past
+            type: fill_in_blank
+            text: "Setze die Verben ins Präteritum."
+            say: "Ein Bericht steht im Präteritum. Welche Formen passen?"
+            frame: "Der Wind _ stark, und viele Äste _ auf die Straße."
+            options: ["wehte", "weht", "fielen", "fallen"]
+            answer: ["wehte", "fielen"]
+          - id: l2-c20
+            part: past
+            type: matching
+            text: "Verbinde das Präsens mit dem Präteritum."
+            say: "Verbinde jede Form im Präsens mit ihrer Form im Präteritum."
+            pairs:
+              - { left: { text: "er rennt" }, right: { text: "er rannte" } }
+              - { left: { text: "er hilft" }, right: { text: "er half" } }
+              - { left: { text: "er ruft" }, right: { text: "er rief" } }
+              - { left: { text: "er findet" }, right: { text: "er fand" } }

@@ -26,6 +26,11 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [word-card, table]
   facets: []
+  parts:
+    - { id: cards, what: { de: mit Bildkarten lernen, en: learning with picture cards } }
+    - { id: tips, what: { de: "Wege zum Merken kennen (laut sagen, bewegen, wiederholen)", en: "knowing ways to remember words (saying them aloud, moving, repeating)" } }
+    - { id: notebook, what: { de: ein Wörterheft führen und Wörter nach Themen ordnen, en: keeping a word notebook and sorting words by topic } }
+    - { id: dictionary, what: { de: im Bildwörterbuch nach Thema und ABC suchen, en: looking up words in a picture dictionary by topic and by ABC } }
   misconceptions:
     - id: look-once
       what: Thinks looking at a word once is enough to keep it
@@ -247,6 +252,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -267,6 +273,25 @@ lessons:
             text: "Hilft dir eine Bewegung beim Merken?"
             say: { de: "Hilft dir eine Bewegung beim Merken?" }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Was malst du vorne auf eine Bildkarte?"
+            say: { de: "Was malst du vorne auf eine Bildkarte?" }
+            options: ["das englische Wort", "ein Bild zum Wort", "eine Zahl"]
+            answer: "ein Bild zum Wort"
+          - id: l1-c5
+            type: true_false
+            text: "Paul lernt alle Wörter für das ganze Schuljahr an einem einzigen Tag. Ist das ein guter Weg?"
+            say: { de: "Paul lernt alle Wörter für das ganze Schuljahr an einem einzigen Tag. Ist das ein guter Weg?" }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            option_audio: false
+            text: "Vorne auf der Bildkarte ist dieses Bild. Welches Wort steht hinten?"
+            say: { de: "Vorne auf der Bildkarte ist dieses Bild. Welches Wort steht hinten?" }
+            show: { object: sun }
+            options: ["star", "sun", "moon"]
+            answer: "sun"
 
   - n: 2
     title: { de: Wörterheft und Bildwörterbuch, en: Word notebook and picture dictionary }
@@ -331,7 +356,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
-                text: "Was schreibst du in die Lücke?"
+                text: "In deinem Wörterheft fehlt ein deutsches Wort. Was schreibst du in die Lücke?"
                 say: { de: "In deinem Wörterheft fehlt ein deutsches Wort. Was schreibst du in die Lücke?" }
                 show: { drawn: table, rows: [[English, Deutsch], [dog, "?"]] }
                 options: ["der Hund", "die Katze", "der Hut"]
@@ -484,14 +509,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tips
             type: multiple_choice
             text: "Wie merkst du dir das Wort „jump“ am besten?"
             say: { de: "Wie merkst du dir das Wort „jump“ am besten?" }
             options: ["Ich sage „jump“ und springe dabei.", "Ich schaue es einmal an.", "Ich schreibe es ganz klein in eine Ecke."]
             answer: "Ich sage „jump“ und springe dabei."
           - id: l2-c2
+            part: notebook
             type: sorting
             text: "Ordne die Wörter nach Themen."
             say: { de: "Ordne die Wörter nach Themen: Tiere oder Schule." }
@@ -504,6 +532,7 @@ lessons:
               - { text: "scissors", bin: school }
               - { text: "ruler", bin: school }
           - id: l2-c3
+            part: dictionary
             type: ordering
             text: "Ordne die Wörter nach dem ABC."
             say: { de: "Ordne die Wörter nach dem ABC." }
@@ -511,15 +540,139 @@ lessons:
             slot_count: 3
             answer: ["egg", "hat", "kite"]
           - id: l2-c4
+            part: dictionary
             type: multiple_choice
             text: "Bei welchem Thema findest du „jacket“?"
             say: { de: "Bei welchem Thema findest du „jacket“ im Bildwörterbuch?" }
             options: ["Kleidung", "Tiere", "Essen"]
             answer: "Kleidung"
           - id: l2-c5
+            part: notebook
             type: multiple_choice
             text: "In Toms Wörterheft ist ein Fehler. Wo?"
             say: { de: "In Toms Wörterheft ist ein Fehler. Wo ist er?" }
             show: { drawn: table, rows: [[English, Deutsch], [milk, die Milch], [bread, die Butter], [egg, das Ei]] }
             options: ["bread, die Butter", "milk, die Milch", "egg, das Ei"]
             answer: "bread, die Butter"
+          - id: l2-c6
+            part: cards
+            type: multiple_choice
+            option_audio: false
+            text: "Vorne auf Lenas Bildkarte ist dieses Bild. Welches Wort schreibt sie hinten hin?"
+            say: { de: "Vorne auf Lenas Bildkarte ist dieses Bild. Welches Wort schreibt sie hinten hin?" }
+            show: { object: cloud }
+            options: ["clock", "cloud", "cow"]
+            answer: "cloud"
+          - id: l2-c7
+            part: cards
+            type: true_false
+            text: "Tom malt vorne auf seine Bildkarte einen Stern. Hinten schreibt er „sun“. Ist die Karte richtig?"
+            say: { de: "Tom malt vorne auf seine Bildkarte einen Stern. Hinten schreibt er sun. Ist die Karte richtig?" }
+            answer: false
+          - id: l2-c8
+            part: cards
+            type: ordering
+            text: "So lernst du mit einer Bildkarte. Bring die Schritte in die richtige Reihenfolge."
+            say: { de: "So lernst du mit einer Bildkarte. Bring die Schritte in die richtige Reihenfolge." }
+            options: ["Ich drehe die Karte um und prüfe.", "Ich schaue das Bild an.", "Ich sage das Wort laut."]
+            slot_count: 3
+            answer: ["Ich schaue das Bild an.", "Ich sage das Wort laut.", "Ich drehe die Karte um und prüfe."]
+            option_audio: false
+          - id: l2-c9
+            part: cards
+            type: multiple_choice
+            text: "Was steht hinten auf einer Bildkarte?"
+            say: { de: "Was steht hinten auf einer Bildkarte?" }
+            options: ["ein zweites Bild", "das englische Wort", "gar nichts"]
+            answer: "das englische Wort"
+          - id: l2-c10
+            part: cards
+            type: matching
+            text: "Du machst Bildkarten. Welches Wort gehört hinten auf welches Bild?"
+            say: { de: "Du machst Bildkarten. Lies die Wörter und verbinde jedes mit seinem Bild." }
+            option_audio: false
+            pairs:
+              - { left: { text: "jumper" }, right: { object: jumper } }
+              - { left: { text: "skirt" }, right: { object: skirt } }
+              - { left: { text: "pencil" }, right: { object: pencil } }
+              - { left: { text: "ruler" }, right: { object: ruler } }
+          - id: l2-c11
+            part: tips
+            type: multiple_choice
+            option_audio: false
+            text: "Lukas macht diese Bewegung, während er ein Wort sagt. Welches Wort lernt er?"
+            say: { de: "Lukas macht diese Bewegung, während er ein Wort sagt. Welches Wort lernt er?" }
+            show: { object: wave }
+            options: ["jump", "wave", "swim"]
+            answer: "wave"
+          - id: l2-c12
+            part: tips
+            type: true_false
+            text: "Emma lernt jeden Tag fünf neue Wörter und schaut sie sich am nächsten Tag noch einmal an. Ist das ein guter Weg?"
+            say: { de: "Emma lernt jeden Tag fünf neue Wörter und schaut sie sich am nächsten Tag noch einmal an. Ist das ein guter Weg?" }
+            answer: true
+          - id: l2-c13
+            part: tips
+            type: multiple_choice
+            text: "Jonas hat heute „moon“ gelernt. Wann schaut er sich das Wort am besten wieder an?"
+            say: { de: "Jonas hat heute das Wort moon gelernt. Wann schaut er sich das Wort am besten wieder an?" }
+            options: ["in einem Jahr", "morgen", "nie mehr"]
+            answer: "morgen"
+          - id: l2-c14
+            part: tips
+            type: multiple_choice
+            text: "Was hilft dir beim Merken nicht?"
+            say: { de: "Was hilft dir beim Merken nicht?" }
+            options: ["Ich sage das Wort laut.", "Ich wiederhole das Wort am nächsten Tag.", "Ich lese das Wort einmal und denke nie mehr daran."]
+            answer: "Ich lese das Wort einmal und denke nie mehr daran."
+          - id: l2-c15
+            part: notebook
+            type: multiple_choice
+            option_audio: false
+            text: "In deinem Wörterheft fehlt links das englische Wort. Was schreibst du hin?"
+            say: { de: "In deinem Wörterheft fehlt links das englische Wort. Was schreibst du hin?" }
+            show: { drawn: table, rows: [[English, Deutsch], ["?", die Katze]] }
+            options: ["cow", "cat", "cup"]
+            answer: "cat"
+          - id: l2-c16
+            part: notebook
+            type: true_false
+            text: "Ist in Lenas Wörterheft alles richtig?"
+            say: { de: "Schau dir Lenas Wörterheft an. Ist alles richtig?" }
+            show: { drawn: table, rows: [[English, Deutsch], [sun, die Sonne], [star, der Stern], [moon, die Wolke]] }
+            answer: false
+          - id: l2-c17
+            part: notebook
+            type: sorting
+            text: "Ordne die Wörter für dein Wörterheft: Wetter oder Essen?"
+            say: { de: "Ordne die Wörter für dein Wörterheft. Gehören sie zum Wetter oder zum Essen?" }
+            bins:
+              - { id: weather, show: { text: "Wetter" } }
+              - { id: food, show: { text: "Essen" } }
+            options:
+              - { text: "cloud", bin: weather }
+              - { text: "snow", bin: weather }
+              - { text: "cake", bin: food }
+              - { text: "cheese", bin: food }
+          - id: l2-c18
+            part: dictionary
+            type: ordering
+            text: "Ordne die Wörter so wie im Wörterbuch."
+            say: { de: "Ordne die Wörter so, wie sie im Wörterbuch stehen." }
+            options: ["moon", "duck", "rabbit", "bee"]
+            slot_count: 4
+            answer: ["bee", "duck", "moon", "rabbit"]
+            option_audio: false
+          - id: l2-c19
+            part: dictionary
+            type: multiple_choice
+            text: "Du suchst „star“ in einem Wörterbuch, das nach dem ABC geordnet ist. Bei welchem Buchstaben schaust du nach?"
+            say: { de: "Du suchst star in einem Wörterbuch, das nach dem ABC geordnet ist. Bei welchem Buchstaben schaust du nach?" }
+            options: ["t", "a", "s"]
+            answer: "s"
+          - id: l2-c20
+            part: dictionary
+            type: true_false
+            text: "Mia sucht „frog“ im Bildwörterbuch beim Thema Tiere. Schaut sie an der richtigen Stelle?"
+            say: { de: "Mia sucht frog im Bildwörterbuch beim Thema Tiere. Schaut sie an der richtigen Stelle?" }
+            answer: true

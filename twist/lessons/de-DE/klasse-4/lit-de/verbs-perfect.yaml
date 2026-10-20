@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: partizip, what: { de: das Partizip schwacher und starker Verben bilden, en: forming the participle of weak and strong verbs } }
+    - { id: haben-sein, what: { de: das Perfekt mit haben oder sein bilden, en: forming the perfect with haben or sein } }
+    - { id: two-parts, what: { de: beide Teile des Perfekts finden und einsetzen, en: finding and filling in both parts of the perfect } }
+    - { id: speaking, what: { de: "wissen, dass man beim Erzählen meist das Perfekt sagt", en: knowing that the perfect is mostly used when speaking } }
   misconceptions:
     - id: missing-helper
       what: Writes only the Partizip (Ich gespielt.)
@@ -228,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -247,6 +253,24 @@ lessons:
             text: "Stimmt das? „Wir haben Pizza gegessen.“"
             say: "Wir haben Pizza gegessen. Ist der Satz richtig?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Ergänze das Hilfsverb."
+            say: "Setz die passende Form von haben ein: Wir ... im Sandkasten gegraben."
+            frame: "Wir _ im Sandkasten gegraben."
+            options: ["habe", "hast", "hat", "haben"]
+            answer: ["haben"]
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf beide Teile des Perfekts."
+            say: "Tippe auf die zwei Wörter, die zusammen das Perfekt bilden."
+            show: { drawn: letter-card, text: "Mama hat heute Nudeln gekocht." }
+            spans: ["hat", "gekocht"]
+          - id: l1-c6
+            type: true_false
+            text: "Stimmt das? „Du hast ein Bild gemalen.“"
+            say: "Du hast ein Bild gemalen. Ist der Satz richtig?"
+            answer: false
 
   - n: 2
     title: { de: Perfekt mit sein, en: The perfect with sein }
@@ -451,20 +475,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: haben-sein
             type: multiple_choice
             text: "Die Kinder _ in den Park gegangen."
             say: "Welches Wort passt? Die Kinder ... in den Park gegangen."
             options: ["haben", "sind", "hat"]
             answer: "sind"
           - id: l2-c2
+            part: partizip
             type: multiple_choice
             text: "Paul hat ein Haus aus Holz _."
             say: "Welches Wort passt? Paul hat ein Haus aus Holz ..."
             options: ["gebaut", "gebauen", "baute"]
             answer: "gebaut"
           - id: l2-c3
+            part: two-parts
             type: fill_in_blank
             text: "Ergänze das Perfekt."
             say: "Setz beide Teile des Perfekts von kaufen ein: Ich ... ein Buch ..."
@@ -472,13 +500,139 @@ lessons:
             options: ["habe", "bin", "gekauft", "gekaufen"]
             answer: ["habe", "gekauft"]
           - id: l2-c4
+            part: haben-sein
             type: true_false
             text: "Stimmt das? „Wir haben nach Italien geflogen.“"
             say: "Wir haben nach Italien geflogen. Ist der Satz richtig?"
             answer: false
           - id: l2-c5
+            part: two-parts
             type: highlight_in_text
             text: "Tippe auf beide Teile des Perfekts."
             say: "Tippe auf die zwei Wörter, die zusammen das Perfekt bilden."
             show: { drawn: letter-card, text: "Am Abend ist die Sonne hinter dem Berg untergegangen." }
             spans: ["ist", "untergegangen"]
+          - id: l2-c6
+            part: partizip
+            type: multiple_choice
+            text: "schlafen: Das Baby hat lange _."
+            say: "Welches Partizip von schlafen passt? Das Baby hat lange ..."
+            options: ["geschlaft", "geschlafen", "geschliefen"]
+            answer: "geschlafen"
+          - id: l2-c7
+            part: partizip
+            type: matching
+            text: "Welches Partizip gehört zu welchem Verb?"
+            say: "Verbinde jedes Verb mit seinem Partizip."
+            option_audio: false
+            pairs:
+              - { left: { text: "fragen" }, right: { text: "gefragt" } }
+              - { left: { text: "helfen" }, right: { text: "geholfen" } }
+              - { left: { text: "werfen" }, right: { text: "geworfen" } }
+              - { left: { text: "tanzen" }, right: { text: "getanzt" } }
+          - id: l2-c8
+            part: partizip
+            type: fill_in_blank
+            text: "Ergänze das Partizip von sprechen."
+            say: "Setz das Partizip von sprechen ein: Wir haben lange miteinander ..."
+            frame: "Wir haben lange miteinander _."
+            options: ["gesprecht", "gesprochen", "gesprachen"]
+            answer: ["gesprochen"]
+          - id: l2-c9
+            part: partizip
+            type: true_false
+            text: "Stimmt das? „Ich habe einen Apfel genehmt.“"
+            say: "Ich habe einen Apfel genehmt. Ist der Satz richtig?"
+            answer: false
+          - id: l2-c10
+            part: haben-sein
+            type: sorting
+            text: "Mit haben oder mit sein? Ordne die Verben zu."
+            say: "Bilden die Verben das Perfekt mit haben oder mit sein? Ordne sie zu."
+            option_audio: false
+            bins:
+              - { id: haben, show: { text: "haben" }, say: "haben" }
+              - { id: sein, show: { text: "sein" }, say: "sein" }
+            options:
+              - { text: "rennen", bin: sein }
+              - { text: "backen", bin: haben }
+              - { text: "reisen", bin: sein }
+              - { text: "schenken", bin: haben }
+          - id: l2-c11
+            part: haben-sein
+            type: fill_in_blank
+            text: "Ergänze das Hilfsverb."
+            say: "Setz das passende Hilfsverb ein: Mein Bruder ... vom Fahrrad gefallen."
+            frame: "Mein Bruder _ vom Fahrrad gefallen."
+            options: ["hat", "ist", "sind", "haben"]
+            answer: ["ist"]
+          - id: l2-c12
+            part: haben-sein
+            type: multiple_choice
+            text: "Opa _ den ganzen Tag im Garten gearbeitet."
+            say: "Welches Hilfsverb passt? Opa ... den ganzen Tag im Garten gearbeitet."
+            options: ["ist", "hat", "haben"]
+            answer: "hat"
+          - id: l2-c13
+            part: two-parts
+            type: highlight_in_text
+            text: "Tippe auf beide Teile des Perfekts."
+            say: "Tippe auf die zwei Wörter, die zusammen das Perfekt bilden."
+            show: { drawn: letter-card, text: "Lisa hat ihrer Freundin ein Geschenk gegeben." }
+            spans: ["hat", "gegeben"]
+          - id: l2-c14
+            part: two-parts
+            type: fill_in_blank
+            text: "Ergänze beide Teile des Perfekts von kommen."
+            say: "Setz beide Teile des Perfekts von kommen ein: Tom ... heute zu spät ..."
+            frame: "Tom _ heute zu spät _."
+            options: ["ist", "hat", "gekommen", "gekommt"]
+            answer: ["ist", "gekommen"]
+          - id: l2-c15
+            part: two-parts
+            type: true_false
+            text: "Stimmt das? „Die Katze hat die ganze Milch getrunken.“"
+            say: "Die Katze hat die ganze Milch getrunken. Ist der Satz richtig?"
+            answer: true
+          - id: l2-c16
+            part: speaking
+            type: multiple_choice
+            text: "Du erzählst Oma von deinem Ausflug. Was sagst du meistens?"
+            say: "Du erzählst Oma von deinem Ausflug. Was sagst du meistens?"
+            options: ["Wir sind auf einen Berg gestiegen.", "Wir stiegen auf einen Berg."]
+            answer: "Wir sind auf einen Berg gestiegen."
+            option_audio: false
+          - id: l2-c17
+            part: speaking
+            type: multiple_choice
+            text: "Welcher Satz steht eher in einer geschriebenen Geschichte?"
+            say: "Welcher Satz steht eher in einer geschriebenen Geschichte?"
+            options: ["Die Hexe ist über das Dorf geflogen.", "Die Hexe flog über das Dorf."]
+            answer: "Die Hexe flog über das Dorf."
+            option_audio: false
+          - id: l2-c18
+            part: speaking
+            type: true_false
+            text: "Stimmt das? Wenn wir jemandem etwas erzählen, sagen wir meist das Perfekt."
+            say: "Wenn wir jemandem etwas erzählen, sagen wir meist das Perfekt. Stimmt das?"
+            answer: true
+          - id: l2-c19
+            part: speaking
+            type: sorting
+            text: "Wo hörst oder liest du den Satz eher?"
+            say: "Hörst du den Satz eher, wenn jemand erzählt, oder liest du ihn eher in einem Buch? Ordne die Sätze zu."
+            option_audio: false
+            bins:
+              - { id: talk, show: { text: "beim Erzählen" }, say: "beim Erzählen" }
+              - { id: book, show: { text: "im Buch" }, say: "im Buch" }
+            options:
+              - { text: "Ich habe heute Pommes gegessen.", bin: talk }
+              - { text: "Der Ritter zog sein Schwert.", bin: book }
+              - { text: "Wir sind ins Schwimmbad gegangen.", bin: talk }
+              - { text: "Die Königin lachte laut.", bin: book }
+          - id: l2-c20
+            part: speaking
+            type: true_false
+            text: "Stimmt das? In Märchenbüchern steht meistens das Perfekt."
+            say: "In Märchenbüchern steht meistens das Perfekt. Stimmt das?"
+            answer: false

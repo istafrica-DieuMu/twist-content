@@ -12,7 +12,9 @@ summary: >
   three stages. Each lesson sets the new sound against its nearest
   neighbour: E against I, N against M, D against T, U against O (Mund and
   Mond). Lesson 5 reads words made only of known letters (Nase, Ente,
-  Sonne, Tanne, Mond, Mund) and ends with the skill check.
+  Sonne, Tanne, Mond, Mund) and ends with the skill check. Writing the
+  letters is practised in Practise (tracing and copying); the skill check
+  marks hearing the sounds and reading the words.
 metadata:
   year: klasse-1
   topic: { de: Buchstaben, en: Letters }
@@ -27,6 +29,12 @@ metadata:
   drawn: [letter-card, writing-lines, syllable-arcs, word-card]
   sounds: []
   facets: [script]
+  parts:
+    - { id: e, what: { de: das E und sein Laut, en: the letter E and its sound } }
+    - { id: n-m, what: { de: N und M unterscheiden, en: telling N from M } }
+    - { id: d-t, what: { de: D und T unterscheiden, en: telling D from T } }
+    - { id: u-o, what: { de: U und O unterscheiden, en: telling U from O } }
+    - { id: words, what: { de: "Wörter mit E, N, D und U lesen", en: "reading words with E, N, D and U" } }
   misconceptions:
     - id: m-n
       what: Confuses N with M, by shape (one hump or two) and by sound (open or closed lips)
@@ -221,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -241,6 +250,24 @@ lessons:
             frame: "Tann_"
             options: ["i", "e"]
             answer: ["e"]
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du am Anfang ein E?"
+            say: "Ameise. Hörst du am Anfang ein e?"
+            show: { object: ant }
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes E."
+            say: "Tippe auf jedes große und kleine E."
+            show: { drawn: letter-card, text: "E a e I e" }
+            spans: ["E", "e", "e"]
+          - id: l1-c6
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Elefant." }
+            options: ["A", "E", "O"]
+            answer: "E"
 
   - n: 2
     title: { de: Das N, en: The letter N }
@@ -420,6 +447,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: image_multiple_choice
@@ -438,6 +466,24 @@ lessons:
             say: "Mund. Hörst du am Anfang ein nnn?"
             show: { object: mouth }
             answer: false
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du ein N?"
+            say: "Kanne. Hörst du in dem Wort ein nnn?"
+            show: { object: jug }
+            answer: true
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes N."
+            say: "Tippe auf jedes große und kleine N."
+            show: { drawn: letter-card, text: "n M N m N" }
+            spans: ["n", "N", "N"]
+          - id: l2-c6
+            type: audio_choice
+            text: "N oder M?"
+            audio: { de: "Mütze." }
+            options: ["N", "M"]
+            answer: "M"
 
   - n: 3
     title: { de: Das D, en: The letter D }
@@ -616,6 +662,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: audio_choice
@@ -634,6 +681,24 @@ lessons:
             text: "Was fängt mit D an?"
             options: [{ object: sun }, { object: table }, { object: kite }]
             answer: kite
+          - id: l3-c4
+            type: audio_choice
+            text: "D oder T?"
+            audio: { de: "Tomate." }
+            options: ["D", "T"]
+            answer: "T"
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes D."
+            say: "Tippe auf jedes große und kleine D."
+            show: { drawn: letter-card, text: "d T D l d" }
+            spans: ["d", "D", "d"]
+          - id: l3-c6
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Daumen." }
+            options: ["T", "D", "N"]
+            answer: "D"
 
   - n: 4
     title: { de: Das U, en: The letter U }
@@ -813,6 +878,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l4-c1
             type: audio_choice
@@ -832,6 +898,25 @@ lessons:
             say: "Sonne. Hörst du in dem Wort ein u?"
             show: { object: sun }
             answer: false
+          - id: l4-c4
+            type: true_false
+            text: "Hörst du ein U?"
+            say: "Fuß. Hörst du in dem Wort ein u?"
+            show: { object: foot }
+            answer: true
+          - id: l4-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes U."
+            say: "Tippe auf jedes große und kleine U."
+            show: { drawn: letter-card, text: "u n U o U" }
+            spans: ["u", "U", "U"]
+          - id: l4-c6
+            type: audio_choice
+            text: "o oder u?"
+            say: "Was hörst du in der Mitte: o oder u?"
+            audio: { de: "Boot." }
+            options: ["u", "o"]
+            answer: "o"
 
   - n: 5
     title: { de: "Wörter mit E, N, D und U", en: "Words with E, N, D and U" }
@@ -1005,26 +1090,32 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l5-c1
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Tonne" }
             options: [{ object: fir-tree }, { object: bin }, { object: sun }]
             answer: bin
+            option_audio: false
           - id: l5-c2
+            part: d-t
             type: audio_choice
             text: "D oder T?"
             audio: { de: "Dame." }
             options: ["T", "D"]
             answer: "D"
           - id: l5-c3
+            part: n-m
             type: audio_choice
             text: "Mit welchem Buchstaben fängt das Wort an?"
             audio: { de: "Nebel." }
             options: ["M", "N", "E"]
             answer: "N"
           - id: l5-c4
+            part: u-o
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
             say: "Hut. Welcher Buchstabe fehlt?"
@@ -1033,9 +1124,118 @@ lessons:
             options: ["o", "a", "u"]
             answer: ["u"]
           - id: l5-c5
+            part: words
             type: audio_choice
             text: "Welches Wort hörst du?"
             say: "Hör gut zu. Welches Wort hörst du? Lies die Karten."
             audio: { de: "Esel." }
             options: ["Insel", "Esel", "Nase"]
             answer: "Esel"
+          - id: l5-c6
+            part: e
+            type: true_false
+            text: "Hörst du am Anfang ein E?"
+            say: "Anker. Hörst du am Anfang ein e?"
+            show: { object: anchor }
+            answer: false
+          - id: l5-c7
+            part: n-m
+            type: true_false
+            text: "Hörst du am Anfang ein N?"
+            say: "Nudeln. Hörst du am Anfang ein nnn?"
+            show: { object: pasta }
+            answer: true
+          - id: l5-c8
+            part: d-t
+            type: true_false
+            text: "Hörst du am Anfang ein D?"
+            say: "Tomate. Hörst du am Anfang ein d?"
+            show: { object: tomato }
+            answer: false
+          - id: l5-c9
+            part: u-o
+            type: true_false
+            text: "Hörst du ein U?"
+            say: "Kuh. Hörst du in dem Wort ein u?"
+            show: { object: cow }
+            answer: true
+          - id: l5-c10
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Nudeln" }
+            options: [{ object: nose }, { object: duck }, { object: pasta }]
+            answer: pasta
+            option_audio: false
+          - id: l5-c11
+            part: e
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Erde." }
+            options: ["I", "E", "A"]
+            answer: "E"
+          - id: l5-c12
+            part: n-m
+            type: highlight_in_text
+            text: "Tippe auf jedes N."
+            say: "Tippe auf jedes große und kleine N."
+            show: { drawn: letter-card, text: "M n N m n" }
+            spans: ["n", "N", "n"]
+          - id: l5-c13
+            part: d-t
+            type: audio_choice
+            text: "D oder T?"
+            audio: { de: "Teller." }
+            options: ["D", "T"]
+            answer: "T"
+          - id: l5-c14
+            part: u-o
+            type: audio_choice
+            text: "o oder u?"
+            say: "Was hörst du in der Mitte: o oder u?"
+            audio: { de: "Hose." }
+            options: ["u", "o"]
+            answer: "o"
+          - id: l5-c15
+            part: e
+            type: true_false
+            text: "Hörst du am Ende ein e?"
+            say: "Nase. Hörst du am Ende ein e?"
+            show: { object: nose }
+            answer: true
+          - id: l5-c16
+            part: words
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: duck }
+            options: ["Ende", "Tante", "Ente"]
+            answer: "Ente"
+            option_audio: false
+          - id: l5-c17
+            part: n-m
+            type: audio_choice
+            text: "N oder M?"
+            audio: { de: "Messer." }
+            options: ["M", "N"]
+            answer: "M"
+          - id: l5-c18
+            part: d-t
+            type: highlight_in_text
+            text: "Tippe auf jedes D."
+            say: "Tippe auf jedes große und kleine D."
+            show: { drawn: letter-card, text: "a D d t d" }
+            spans: ["D", "d", "d"]
+          - id: l5-c19
+            part: u-o
+            type: highlight_in_text
+            text: "Tippe auf jedes U."
+            say: "Tippe auf jedes große und kleine U."
+            show: { drawn: letter-card, text: "n U u o u" }
+            spans: ["U", "u", "u"]
+          - id: l5-c20
+            part: e
+            type: highlight_in_text
+            text: "Tippe auf jedes E."
+            say: "Tippe auf jedes große und kleine E."
+            show: { drawn: letter-card, text: "e E i e T" }
+            spans: ["e", "E", "e"]

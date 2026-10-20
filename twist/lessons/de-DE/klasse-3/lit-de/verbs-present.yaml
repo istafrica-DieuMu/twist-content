@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: endings, what: { de: "die Endung passend zur Person setzen (ich spiele, du spielst)", en: "adding the ending that fits the person" } }
+    - { id: vowel-change, what: { de: "starke Verben bei du und er, sie, es bilden (du gibst, er fährt)", en: "forming strong verbs with du and er, sie, es" } }
+    - { id: vowel-stays, what: { de: "bei ich, wir und ihr bleibt der Selbstlaut", en: "keeping the vowel with ich, wir and ihr" } }
+    - { id: present, what: { de: das Präsens erkennen, en: recognising the present tense } }
   misconceptions:
     - id: change-for-every-person
       what: Changes the vowel for every person (ich gib, wir fähren)
@@ -223,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -243,6 +249,25 @@ lessons:
             text: "Stimmt das? Der Satz „Ich wohne in Köln.“ steht im Präsens."
             say: "Ich wohne in Köln. Steht dieser Satz im Präsens?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Ergänze die Endung."
+            say: "Setz die passende Endung von zählen ein: Wir zähl... bis hundert."
+            frame: "Wir zähl_ bis hundert."
+            options: ["e", "st", "t", "en"]
+            answer: ["en"]
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf das Verb im Präsens."
+            say: "Tippe auf das Verb, das im Präsens steht."
+            show: { drawn: letter-card, text: "Am Morgen klingelt mein Wecker." }
+            spans: ["klingelt"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "kaufen: Du _ ein Eis."
+            say: "Welche Form von kaufen passt? Du ... ein Eis."
+            options: ["kauft", "kaufe", "kaufst"]
+            answer: "kaufst"
 
   - n: 2
     title: { de: "Verben, die ihren Selbstlaut ändern", en: Verbs that change their vowel }
@@ -335,7 +360,7 @@ lessons:
                   - "ich laufe, du läufst, er läuft, wir laufen."
               - id: l2-f5
                 type: fill_in_blank
-                text: "Ergänze den Selbstlaut."
+                text: "Ergänze den Selbstlaut von sehen."
                 say: "Setz den passenden Selbstlaut von sehen ein: Er s...ht einen Vogel."
                 frame: "Er s_ht einen Vogel."
                 options: ["e", "ie", "i"]
@@ -381,7 +406,7 @@ lessons:
                 hints: ["Was passiert bei wir mit dem Selbstlaut?"]
               - id: l2-s4
                 type: fill_in_blank
-                text: "Ergänze den Selbstlaut."
+                text: "Ergänze den Selbstlaut von helfen."
                 say: "Setz den passenden Selbstlaut von helfen ein: Du h...lfst mir."
                 frame: "Du h_lfst mir."
                 options: ["e", "i", "ie"]
@@ -416,7 +441,7 @@ lessons:
                 answer: "werfe"
               - id: l2-n4
                 type: fill_in_blank
-                text: "Ergänze den Selbstlaut."
+                text: "Ergänze den Selbstlaut von tragen."
                 say: "Setz den passenden Selbstlaut von tragen ein: Er tr...gt die Tasche."
                 frame: "Er tr_gt die Tasche."
                 options: ["a", "ä", "e"]
@@ -429,35 +454,151 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: vowel-change
             type: multiple_choice
-            text: "Paul _ sich einen Keks."
+            text: "nehmen: Paul _ sich einen Keks."
             say: "Welche Form von nehmen passt? Paul ... sich einen Keks."
             options: ["nimmt", "nehmt", "nimmst"]
             answer: "nimmt"
           - id: l2-c2
+            part: endings
             type: multiple_choice
-            text: "Ihr _ ein Lied."
-            say: "Welche Form passt in den Satz? Ihr ... ein Lied."
+            text: "singen: Ihr _ ein Lied."
+            say: "Welche Form von singen passt? Ihr ... ein Lied."
             options: ["singt", "singst", "singen"]
             answer: "singt"
           - id: l2-c3
+            part: vowel-change
             type: fill_in_blank
-            text: "Ergänze den Selbstlaut."
-            say: "Setz den passenden Selbstlaut ein: Du f...ngst den Ball."
+            text: "Ergänze den Selbstlaut von fangen."
+            say: "Setz den passenden Selbstlaut von fangen ein: Du f...ngst den Ball."
             frame: "Du f_ngst den Ball."
             options: ["a", "ä", "e"]
             answer: ["ä"]
           - id: l2-c4
+            part: vowel-stays
             type: true_false
             text: "„Ich gib dir die Hand.“ Ist das Verb richtig?"
             say: "Ich gib dir die Hand. Ist das Verb richtig?"
             answer: false
           - id: l2-c5
+            part: present
             type: multiple_choice
             text: "Welcher Satz steht im Präsens?"
             say: "In welchem Satz steht das Verb im Präsens?"
             options: ["Die Katze frisst ihr Futter.", "Die Katze fraß ihr Futter.", "Die Katze hat ihr Futter gefressen."]
             answer: "Die Katze frisst ihr Futter."
             option_audio: false
+          - id: l2-c6
+            part: endings
+            type: fill_in_blank
+            text: "Ergänze die Endung."
+            say: "Setz die passende Endung von springen ein: Du spring... sehr hoch."
+            frame: "Du spring_ sehr hoch."
+            options: ["e", "st", "t", "en"]
+            answer: ["st"]
+          - id: l2-c7
+            part: endings
+            type: matching
+            text: "Verbinde jede Person mit der passenden Form von suchen."
+            say: "Verbinde jede Person mit der passenden Form von suchen."
+            option_audio: false
+            pairs:
+              - { left: { text: "du" }, right: { text: "suchst" } }
+              - { left: { text: "ihr" }, right: { text: "sucht" } }
+              - { left: { text: "ich" }, right: { text: "suche" } }
+              - { left: { text: "wir" }, right: { text: "suchen" } }
+          - id: l2-c8
+            part: endings
+            type: multiple_choice
+            text: "arbeiten: Meine Eltern _ heute lange."
+            say: "Welche Form von arbeiten passt? Meine Eltern ... heute lange."
+            options: ["arbeitet", "arbeitest", "arbeiten"]
+            answer: "arbeiten"
+          - id: l2-c9
+            part: endings
+            type: true_false
+            text: "„Er rennst zum Bus.“ Ist das Verb richtig?"
+            say: "Er rennst zum Bus. Ist das Verb richtig?"
+            answer: false
+          - id: l2-c10
+            part: vowel-change
+            type: multiple_choice
+            text: "vergessen: Tim _ oft seine Mütze."
+            say: "Welche Form von vergessen passt? Tim ... oft seine Mütze."
+            options: ["vergesst", "vergisst", "vergessen"]
+            answer: "vergisst"
+          - id: l2-c11
+            part: vowel-change
+            type: fill_in_blank
+            text: "Ergänze den Selbstlaut von waschen."
+            say: "Setz den passenden Selbstlaut von waschen ein: Du w...schst dir die Hände."
+            frame: "Du w_schst dir die Hände."
+            options: ["a", "ä", "e"]
+            answer: ["ä"]
+          - id: l2-c12
+            part: vowel-change
+            type: multiple_choice
+            text: "treffen: Lea _ ihre Freundin im Park."
+            say: "Welche Form von treffen passt? Lea ... ihre Freundin im Park."
+            options: ["trefft", "triffst", "trifft"]
+            answer: "trifft"
+          - id: l2-c13
+            part: vowel-stays
+            type: multiple_choice
+            text: "schlafen: Wir _ heute im Zelt."
+            say: "Welche Form von schlafen passt? Wir ... heute im Zelt."
+            options: ["schläfen", "schlafen", "schläft"]
+            answer: "schlafen"
+          - id: l2-c14
+            part: vowel-stays
+            type: true_false
+            text: "„Ich lese gern Comics.“ Ist das Verb richtig?"
+            say: "Ich lese gern Comics. Ist das Verb richtig?"
+            answer: true
+          - id: l2-c15
+            part: vowel-stays
+            type: multiple_choice
+            text: "helfen: Ihr _ beim Aufräumen."
+            say: "Welche Form von helfen passt? Ihr ... beim Aufräumen."
+            options: ["hilft", "helft", "hilfst"]
+            answer: "helft"
+          - id: l2-c16
+            part: vowel-stays
+            type: fill_in_blank
+            text: "Ergänze den Selbstlaut von graben."
+            say: "Setz den passenden Selbstlaut von graben ein: Wir gr...ben ein Loch."
+            frame: "Wir gr_ben ein Loch."
+            options: ["a", "ä", "e"]
+            answer: ["a"]
+          - id: l2-c17
+            part: present
+            type: highlight_in_text
+            text: "Tippe auf das Verb im Präsens."
+            say: "Lies den Satz. Tippe auf das Verb, das im Präsens steht."
+            show: { drawn: letter-card, text: "Gestern regnete es, aber heute scheint die Sonne." }
+            spans: ["scheint"]
+          - id: l2-c18
+            part: present
+            type: true_false
+            text: "Stimmt das? Der Satz „Am Wochenende besuchten wir Oma.“ steht im Präsens."
+            say: "Am Wochenende besuchten wir Oma. Steht dieser Satz im Präsens?"
+            answer: false
+          - id: l2-c19
+            part: present
+            type: multiple_choice
+            text: "Welcher Satz steht im Präsens und sagt, was immer so ist?"
+            say: "Welcher Satz steht im Präsens und sagt, was immer so ist?"
+            options: ["Der Mond leuchtete gestern hell.", "Der Mond hat lange geleuchtet.", "Der Mond leuchtet in der Nacht."]
+            answer: "Der Mond leuchtet in der Nacht."
+            option_audio: false
+          - id: l2-c20
+            part: present
+            type: highlight_in_text
+            text: "Ein Verb steht nicht im Präsens. Tippe darauf."
+            say: "Lies den Text. Ein Verb steht nicht im Präsens. Tippe darauf."
+            show: { drawn: letter-card, text: "Lena steht früh auf. Sie frühstückte schnell. Dann geht sie zur Schule." }
+            spans: ["frühstückte"]

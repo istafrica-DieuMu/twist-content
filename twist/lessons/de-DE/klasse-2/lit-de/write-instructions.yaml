@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: order, what: { de: die Schritte in die richtige Reihenfolge bringen, en: putting the steps in the right order } }
+    - { id: sequence-words, what: { de: "Wörter für die Reihenfolge benutzen (zuerst, dann, zum Schluss)", en: "using order words (first, then, finally)" } }
+    - { id: complete, what: { de: "eine vollständige Anleitung: Überschrift, was man braucht, kein Schritt fehlt", en: "a complete set of instructions: a heading, what you need, no missing step" } }
+    - { id: clear-step, what: { de: "jeden Schritt klar und genau schreiben, ohne Erzähl- und Meinungssätze", en: "writing each step clearly and exactly, without story or opinion sentences" } }
   misconceptions:
     - id: skipped-step
       what: Leaves out a step that seems obvious, or writes the steps out of order, so the reader cannot follow
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: ordering
@@ -227,6 +233,24 @@ lessons:
             say: "Lies die Anleitung. Welcher Schritt fehlt?"
             options: ["Mal ein Bild mit deinen Stiften.", "Wirf das Blatt weg.", "Räum dein Zimmer auf."]
             answer: "Mal ein Bild mit deinen Stiften."
+          - id: l1-c4
+            type: ordering
+            text: "Schuhe anziehen: Bring die Schritte in die richtige Reihenfolge."
+            say: "Bring die Schritte zum Schuhe anziehen in die richtige Reihenfolge."
+            options: ["Mach die Klettverschlüsse zu.", "Setz dich auf die Bank.", "Schlüpf in die Schuhe."]
+            slot_count: 3
+            answer: ["Setz dich auf die Bank.", "Schlüpf in die Schuhe.", "Mach die Klettverschlüsse zu."]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Deine Anleitung hat drei Schritte. Welches Wort passt an den Anfang des zweiten Schritts?"
+            say: "Deine Anleitung hat drei Schritte. Welches Wort passt an den Anfang des zweiten Schritts?"
+            options: ["Zuerst", "Dann", "Zum Schluss"]
+            answer: "Dann"
+          - id: l1-c6
+            type: true_false
+            text: "Wenn in einer Anleitung ein Schritt fehlt, klappt sie vielleicht nicht. Stimmt das?"
+            say: "Wenn in einer Anleitung ein Schritt fehlt, klappt sie vielleicht nicht. Stimmt das?"
+            answer: true
 
   - n: 2
     title: { de: "Klar und genau", en: "Clear and exact" }
@@ -411,8 +435,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: order
             type: ordering
             text: "Seifenblasen machen: Bring die Schritte in die richtige Reihenfolge."
             say: "Bring die Schritte für die Seifenblasen in die richtige Reihenfolge."
@@ -420,18 +446,21 @@ lessons:
             slot_count: 3
             answer: ["Nimm den Ring aus der Flasche.", "Tauch den Ring in die Seifenlauge.", "Puste langsam durch den Ring."]
           - id: l2-c2
+            part: clear-step
             type: multiple_choice
             text: "Welchen Satz kannst du in eine Anleitung schreiben?"
             say: "Welchen Satz kannst du in eine Anleitung schreiben?"
             options: ["Schneide das Papier in der Mitte durch.", "Ich habe das Papier zerschnitten.", "Papier ist dünn."]
             answer: "Schneide das Papier in der Mitte durch."
           - id: l2-c3
+            part: complete
             type: multiple_choice
             text: "Einen Brief abschicken\n1. Steck den Brief in den Umschlag.\n2. ...\n3. Wirf den Brief in den Briefkasten.\n\nWelcher Schritt fehlt?"
             say: "Lies die Anleitung. Welcher Schritt fehlt?"
             options: ["Klebe eine Briefmarke auf.", "Lies ein Buch.", "Mal ein Bild."]
             answer: "Klebe eine Briefmarke auf."
           - id: l2-c4
+            part: sequence-words
             type: fill_in_blank
             text: "Setz die Wörter für die Reihenfolge ein."
             say: "Welche Wörter passen in die Lücken?"
@@ -439,8 +468,122 @@ lessons:
             options: ["Zuerst", "Dann", "Zum Schluss"]
             answer: ["Zuerst", "Dann", "Zum Schluss"]
           - id: l2-c5
+            part: clear-step
             type: multiple_choice
             text: "Welcher Schritt sagt genau, wie viel?"
             say: "Welcher Schritt sagt genau, wie viel?"
             options: ["Gib drei Eier in die Schüssel.", "Gib Eier in die Schüssel.", "Gib ein paar Eier dazu."]
             answer: "Gib drei Eier in die Schüssel."
+          - id: l2-c6
+            part: order
+            type: ordering
+            text: "Kakao machen: Bring die Schritte in die richtige Reihenfolge."
+            say: "Bring die Schritte zum Kakao machen in die richtige Reihenfolge."
+            options: ["Rühr mit dem Löffel um.", "Trink den Kakao.", "Gieß Milch in einen Becher.", "Gib zwei Löffel Kakaopulver in die Milch."]
+            slot_count: 4
+            answer: ["Gieß Milch in einen Becher.", "Gib zwei Löffel Kakaopulver in die Milch.", "Rühr mit dem Löffel um.", "Trink den Kakao."]
+          - id: l2-c7
+            part: order
+            type: ordering
+            text: "Den Tisch decken: Bring die Schritte in die richtige Reihenfolge."
+            say: "Bring die Schritte zum Tischdecken in die richtige Reihenfolge."
+            options: ["Leg Messer und Gabel neben jeden Teller.", "Ruf alle zum Essen.", "Leg eine Tischdecke auf den Tisch.", "Stell die Teller auf die Decke."]
+            slot_count: 4
+            answer: ["Leg eine Tischdecke auf den Tisch.", "Stell die Teller auf die Decke.", "Leg Messer und Gabel neben jeden Teller.", "Ruf alle zum Essen."]
+          - id: l2-c8
+            part: order
+            type: multiple_choice
+            text: "Ein Puzzle legen. Welcher Schritt kommt zuerst?"
+            say: "Ein Puzzle legen. Welcher Schritt kommt zuerst?"
+            options: ["Leg das letzte Teil ein.", "Schütte alle Teile auf den Tisch.", "Räum das fertige Puzzle weg."]
+            answer: "Schütte alle Teile auf den Tisch."
+          - id: l2-c9
+            part: order
+            type: true_false
+            text: "Kresse säen\n1. Streu die Samen auf die Watte.\n2. Leg Watte auf einen Teller.\n3. Mach die Watte nass.\n\nStehen die Schritte in der richtigen Reihenfolge?"
+            say: "Lies die Anleitung. Stehen die Schritte in der richtigen Reihenfolge?"
+            answer: false
+          - id: l2-c10
+            part: sequence-words
+            type: fill_in_blank
+            text: "Welche Wörter fehlen? Setz sie ein."
+            say: "Lies die Sätze. Welche Wörter fehlen?"
+            frame: "Zuerst wäschst du die Erdbeeren. _ schneidest du sie klein. _ gibst du Zucker darüber."
+            options: ["Zuerst", "Dann", "Zum Schluss"]
+            answer: ["Dann", "Zum Schluss"]
+          - id: l2-c11
+            part: sequence-words
+            type: multiple_choice
+            text: "Welcher Satz ist der erste Schritt?"
+            say: "Lies die drei Sätze. Welcher ist der erste Schritt?"
+            options: ["Zum Schluss klebst du die Briefmarke auf.", "Dann steckst du den Brief in den Umschlag.", "Zuerst schreibst du den Brief."]
+            answer: "Zuerst schreibst du den Brief."
+          - id: l2-c12
+            part: sequence-words
+            type: ordering
+            text: "Fahrrad fahren: Bring die Sätze in die richtige Reihenfolge."
+            say: "Lies die Sätze. Bring sie in die richtige Reihenfolge."
+            options: ["Dann steigst du auf das Rad.", "Zum Schluss fährst du los.", "Zuerst setzt du den Helm auf."]
+            slot_count: 3
+            answer: ["Zuerst setzt du den Helm auf.", "Dann steigst du auf das Rad.", "Zum Schluss fährst du los."]
+          - id: l2-c13
+            part: sequence-words
+            type: true_false
+            text: "„Zum Schluss“ zeigt dem Leser: Jetzt kommt der letzte Schritt. Stimmt das?"
+            say: "Lies den Satz. Stimmt das?"
+            answer: true
+          - id: l2-c14
+            part: complete
+            type: multiple_choice
+            text: "Eine Sonnenblume säen\n1. Füll einen Topf mit Erde.\n2. ...\n3. Gieß die Erde.\n4. Stell den Topf in die Sonne.\n\nWelcher Schritt fehlt?"
+            say: "Lies die Anleitung. Welcher Schritt fehlt?"
+            options: ["Pflück die Sonnenblume.", "Leg einen Samen in die Erde.", "Kauf einen neuen Topf."]
+            answer: "Leg einen Samen in die Erde."
+          - id: l2-c15
+            part: complete
+            type: multiple_choice
+            text: "Einen Obstspieß machen\nDu brauchst: ...\n1. Schneide die Banane in Stücke.\n2. Steck Banane und Trauben auf einen Spieß.\n\nWas gehört unter „Du brauchst“?"
+            say: "Lies die Anleitung. Was gehört unter Du brauchst?"
+            options: ["eine Banane, Trauben, ein Messer und einen Spieß", "einen Ball und ein Tor", "Papier und eine Schere"]
+            answer: "eine Banane, Trauben, ein Messer und einen Spieß"
+          - id: l2-c16
+            part: complete
+            type: multiple_choice
+            text: "Du brauchst: eine alte Socke, zwei Knöpfe, Kleber\n1. Klebe die Knöpfe als Augen auf die Socke.\n2. Steck deine Hand in die Socke.\n\nWelche Überschrift passt?"
+            say: "Lies die Anleitung. Welche Überschrift passt?"
+            options: ["Meine Lieblingssocken", "Eine Sockenpuppe basteln", "Socken waschen"]
+            answer: "Eine Sockenpuppe basteln"
+          - id: l2-c17
+            part: complete
+            type: true_false
+            text: "Ein Papierboot schwimmen lassen\n1. Falte ein Boot aus Papier.\n2. Hol das Boot wieder aus dem Wasser.\n\nKann man diese Anleitung genau so nachmachen?"
+            say: "Lies die Anleitung. Kann man sie genau so nachmachen?"
+            answer: false
+          - id: l2-c18
+            part: clear-step
+            type: sorting
+            text: "Schritt oder kein Schritt? Sortiere die Sätze."
+            say: "Lies die Sätze. Ist der Satz ein Schritt für eine Anleitung oder nicht? Sortiere."
+            bins:
+              - { id: step, show: { text: "Schritt" }, say: "Schritt" }
+              - { id: not, show: { text: "kein Schritt" }, say: "kein Schritt" }
+            options:
+              - { text: "Füll den Eimer mit Sand.", bin: step }
+              - { text: "Am Strand war es heiß.", bin: not }
+              - { text: "Drück den Sand fest.", bin: step }
+              - { text: "Sandburgen finde ich toll.", bin: not }
+            option_audio: false
+          - id: l2-c19
+            part: clear-step
+            type: multiple_choice
+            text: "Welcher Schritt sagt genau, wie lange?"
+            say: "Lies die drei Schritte. Welcher sagt genau, wie lange?"
+            options: ["Lass die Farbe ein bisschen trocknen.", "Lass die Farbe zehn Minuten trocknen.", "Lass die Farbe trocknen."]
+            answer: "Lass die Farbe zehn Minuten trocknen."
+          - id: l2-c20
+            part: clear-step
+            type: multiple_choice
+            text: "„Ich habe die Knete weich geknetet.“\n\nWie schreibst du das als Schritt in einer Anleitung?"
+            say: "Lies den Satz. Wie schreibst du das als Schritt in einer Anleitung?"
+            options: ["Ich knete die Knete.", "Knete die Knete weich.", "Die Knete war hart."]
+            answer: "Knete die Knete weich."

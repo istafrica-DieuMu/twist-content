@@ -15,8 +15,11 @@ summary: >
   that keeps it going, learns to practise slowly first and clearly
   before fast, tells Zungenbrecher from Abzählvers, and ends with the
   skill check. Speak tasks let the child say lines aloud and compare
-  with the model; they are practice only. Every verse and tongue twister
-  is written for Twist.
+  with the model; they are practice only. The skill check marks what a
+  screen can mark (rhyme words, the repeated sound of a Zungenbrecher,
+  the lines of a verse in order, how to say and practise them clearly);
+  saying them aloud is covered by the speak tasks in Practise. Every
+  verse and tongue twister is written for Twist.
 metadata:
   year: klasse-1
   topic: { de: Sprechen und Zuhören, en: Speaking and listening }
@@ -28,6 +31,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: rhyme, what: { de: Reimwörter in einem Vers hören und ergänzen, en: hearing and completing the rhyme words of a verse } }
+    - { id: twister, what: { de: einen Zungenbrecher und seinen wiederholten Laut erkennen, en: recognising a tongue twister and the sound it repeats } }
+    - { id: verse, what: { de: Abzählverse kennen und ihre Zeilen in die richtige Reihenfolge bringen, en: knowing counting-out verses and putting their lines in order } }
+    - { id: clear, what: { de: "wissen, wie man deutlich und im Takt aufsagt und übt", en: "knowing how to say and practise clearly and in time" } }
   misconceptions:
     - id: meaning-not-rhyme
       what: Fills a gap in a verse with a word that makes sense but does not rhyme (ein Käppchen blau instead of rot)
@@ -226,6 +234,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -244,6 +253,24 @@ lessons:
             type: true_false
             text: "drei, dabei\n\nReimt sich das?"
             say: "Hör gut zu. Drei, dabei. Reimt sich das?"
+            answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Welches Reimwort fehlt?"
+            say: "Welches Wort fehlt am Ende? Sprich leise mit: Der Vogel singt im Baum, ich höre ihn im ..."
+            frame: "Der Vogel singt im Baum,\nich höre ihn im _ ."
+            options: ["Garten", "Traum", "Bett"]
+            answer: ["Traum"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Der Fuchs läuft durch den Wald,\ndort ist es nass und kalt.\n\nWelche Wörter reimen sich?"
+            say: "Hör zu. Der Fuchs läuft durch den Wald, dort ist es nass und kalt. Welche Wörter reimen sich?"
+            options: ["Wald und kalt", "Fuchs und läuft", "nass und Wald"]
+            answer: "Wald und kalt"
+          - id: l1-c6
+            type: true_false
+            text: "Tim sagt einen Abzählvers auf. Bei jeder Silbe zeigt er auf ein anderes Kind.\n\nMacht Tim das richtig?"
+            say: "Tim sagt einen Abzählvers auf. Bei jeder Silbe zeigt er auf ein anderes Kind. Macht Tim das richtig?"
             answer: true
 
   - n: 2
@@ -440,8 +467,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: rhyme
             type: fill_in_blank
             text: "Welches Reimwort fehlt?"
             say: "Welches Wort fehlt am Ende? Sprich leise mit: Der Hase hüpft ins Gras, das macht ihm großen ..."
@@ -449,6 +478,7 @@ lessons:
             options: ["Spaß", "Hunger", "Mut"]
             answer: ["Spaß"]
           - id: l2-c2
+            part: twister
             type: audio_choice
             text: "Welchen Laut hörst du immer wieder am Anfang?"
             say: "Hör gut zu. Welchen Laut hörst du immer wieder am Anfang?"
@@ -456,21 +486,136 @@ lessons:
             options: ["D", "B", "P"]
             answer: "B"
           - id: l2-c3
+            part: twister
             type: multiple_choice
             text: "Welcher Satz ist ein Zungenbrecher?"
             say: "Welcher Satz ist ein Zungenbrecher?"
             options: ["Hundert Hasen hüpfen hinterm Haus.", "Der Hase wohnt im Wald.", "Wir spielen im Garten."]
             answer: "Hundert Hasen hüpfen hinterm Haus."
           - id: l2-c4
+            part: clear
             type: multiple_choice
             text: "Was ist beim Aufsagen am wichtigsten?"
             say: "Du sagst einen Vers oder einen Zungenbrecher auf. Was ist am wichtigsten?"
             options: ["dass jedes Wort deutlich ist", "dass du der Schnellste bist", "dass du ganz leise bist"]
             answer: "dass jedes Wort deutlich ist"
           - id: l2-c5
+            part: verse
             type: ordering
             text: "Bring den Vers in die richtige Reihenfolge."
             say: "Bring die Zeilen in die richtige Reihenfolge."
             options: ["jetzt wird gelacht.", "Sieben, acht,", "du musst gehn!", "Neun, zehn,"]
             slot_count: 4
             answer: ["Sieben, acht,", "jetzt wird gelacht.", "Neun, zehn,", "du musst gehn!"]
+          - id: l2-c6
+            part: rhyme
+            type: fill_in_blank
+            text: "Welches Reimwort fehlt?"
+            say: "Welches Wort fehlt am Ende? Sprich leise mit: Die Maus sitzt auf dem Stein, sie ist so schrecklich ..."
+            frame: "Die Maus sitzt auf dem Stein,\nsie ist so schrecklich _ ."
+            options: ["klein", "grau", "müde"]
+            answer: ["klein"]
+          - id: l2-c7
+            part: rhyme
+            type: multiple_choice
+            text: "Der Igel geht spazieren,\ner will sich nicht verlieren.\n\nWelche Wörter reimen sich?"
+            say: "Hör zu. Der Igel geht spazieren, er will sich nicht verlieren. Welche Wörter reimen sich?"
+            options: ["spazieren und verlieren", "Igel und geht", "er und sich"]
+            answer: "spazieren und verlieren"
+          - id: l2-c8
+            part: rhyme
+            type: image_multiple_choice
+            text: "Der Bär hat einen _ ,\nder steht ihm wirklich gut.\n\nWelches Bild passt in den Reim?"
+            say: "Der Bär hat einen ... der steht ihm wirklich gut. Welches Bild passt in den Reim? Tippe auf die Bilder und hör die Wörter."
+            options: [{ object: crown }, { object: hat }, { object: woolly-hat }]
+            answer: hat
+          - id: l2-c9
+            part: rhyme
+            type: fill_in_blank
+            text: "Welches Reimwort fehlt?"
+            say: "Welches Wort fehlt am Ende? Sprich leise mit: Die Kuh steht auf der Wiese, ihr Name ist ..."
+            frame: "Die Kuh steht auf der Wiese,\nihr Name ist _ ."
+            options: ["Anna", "Liese", "Bella"]
+            answer: ["Liese"]
+          - id: l2-c10
+            part: twister
+            type: audio_choice
+            text: "Welchen Laut hörst du immer wieder am Anfang?"
+            say: "Hör gut zu. Welchen Laut hörst du immer wieder am Anfang?"
+            audio: { de: "Tausend Tiger tanzen Tango." }
+            options: ["K", "D", "T"]
+            answer: "T"
+          - id: l2-c11
+            part: twister
+            type: multiple_choice
+            text: "Welcher Satz ist ein Zungenbrecher?"
+            say: "Welcher Satz ist ein Zungenbrecher? Hör genau hin."
+            options: ["Ronja isst gern Rübensuppe.", "Ronja rollt rote Rüben.", "Die Rübe ist rot."]
+            answer: "Ronja rollt rote Rüben."
+          - id: l2-c12
+            part: twister
+            type: image_multiple_choice
+            text: "Kluge _ kauen knackige Kekse.\n\nWelches Tier passt in den Zungenbrecher?"
+            say: "Kluge Tiere kauen knackige Kekse. Welches Tier passt, damit ein Zungenbrecher daraus wird?"
+            options: [{ object: pig }, { object: horse }, { object: cow }]
+            answer: cow
+          - id: l2-c13
+            part: verse
+            type: ordering
+            text: "Bring den Abzählvers in die richtige Reihenfolge."
+            say: "Bring die Zeilen des Abzählverses in die richtige Reihenfolge."
+            options: ["eine Birne, eine Nuss,", "und mit dir ist Schluss!", "Ein Apfel und ein Ei,", "eins, zwei, drei,"]
+            slot_count: 4
+            answer: ["Ein Apfel und ein Ei,", "eins, zwei, drei,", "eine Birne, eine Nuss,", "und mit dir ist Schluss!"]
+          - id: l2-c14
+            part: verse
+            type: multiple_choice
+            text: "Wie endet ein Abzählvers oft?"
+            say: "Wie endet ein Abzählvers oft?"
+            options: ["mit „und du bist raus!“", "mit einer Frage", "mit „Guten Appetit!“"]
+            answer: "mit „und du bist raus!“"
+          - id: l2-c15
+            part: verse
+            type: true_false
+            text: "„Fünf flinke Frösche fangen frische Fliegen.“\n\nIst das ein Abzählvers?"
+            say: "Fünf flinke Frösche fangen frische Fliegen. Ist das ein Abzählvers?"
+            answer: false
+          - id: l2-c16
+            part: verse
+            type: sorting
+            text: "Abzählvers oder Zungenbrecher?"
+            say: "Ist das ein Abzählvers oder ein Zungenbrecher? Sortiere."
+            bins:
+              - { id: counting, show: { text: "Abzählvers" }, say: "Abzählvers" }
+              - { id: twister, show: { text: "Zungenbrecher" }, say: "Zungenbrecher" }
+            options:
+              - { text: "Dicke Dachse decken Dächer.", say: "Dicke Dachse decken Dächer.", bin: twister }
+              - { text: "Kirsche, Pflaume, Birne, Kern, du bist raus, ich hab dich gern!", say: "Kirsche, Pflaume, Birne, Kern, du bist raus, ich hab dich gern!", bin: counting }
+              - { text: "Pünktlich packt Paul Pakete.", say: "Pünktlich packt Paul Pakete.", bin: twister }
+              - { text: "Ix, ax, ux, raus ist der Fuchs!", say: "Ix, ax, ux, raus ist der Fuchs!", bin: counting }
+          - id: l2-c17
+            part: clear
+            type: multiple_choice
+            text: "Jonas sagt einen Zungenbrecher ganz schnell auf. Keiner versteht ihn.\n\nWas soll Jonas anders machen?"
+            say: "Jonas sagt einen Zungenbrecher ganz schnell auf. Keiner versteht ihn. Was soll Jonas anders machen?"
+            options: ["langsamer und deutlicher sprechen", "noch schneller sprechen", "leiser sprechen"]
+            answer: "langsamer und deutlicher sprechen"
+          - id: l2-c18
+            part: clear
+            type: true_false
+            text: "Lena sagt den Abzählvers ganz leise und schnell.\n\nKönnen die anderen Kinder gut mitzählen?"
+            say: "Lena sagt den Abzählvers ganz leise und schnell. Können die anderen Kinder gut mitzählen?"
+            answer: false
+          - id: l2-c19
+            part: clear
+            type: true_false
+            text: "Paula sagt den Abzählvers laut und deutlich auf. Alle Kinder verstehen jedes Wort.\n\nMacht Paula das gut?"
+            say: "Paula sagt den Abzählvers laut und deutlich auf. Alle Kinder verstehen jedes Wort. Macht Paula das gut?"
+            answer: true
+          - id: l2-c20
+            part: clear
+            type: multiple_choice
+            text: "Warum sprichst du einen Abzählvers im Takt?"
+            say: "Warum sprichst du einen Abzählvers im Takt?"
+            options: ["Damit bei jeder Silbe ein anderes Kind dran ist.", "Damit der Vers länger dauert.", "Damit niemand zuhört."]
+            answer: "Damit bei jeder Silbe ein anderes Kind dran ist."

@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: collect, what: { de: "Wörter eines Wortfelds erkennen und sammeln (gehen, sagen)", en: "recognising and collecting the words of a word field (walk, say)" } }
+    - { id: not-in-field, what: { de: "Wörter zum gleichen Thema vom Wortfeld trennen (Schuh, Weg)", en: "keeping words that are only about the same topic out of the word field (shoe, path)" } }
+    - { id: meaning, what: { de: "sagen, was ein Wort genau bedeutet (rennen: ganz schnell)", en: "saying exactly what a word means (rennen: very fast)" } }
+    - { id: precise, what: { de: das treffende Wort für einen Satz wählen, en: choosing the most precise word for a sentence } }
   misconceptions:
     - id: topic-not-meaning
       what: Puts words that only belong to the same topic into the Wortfeld (Schuh or Weg for gehen, Mund for sagen)
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -220,6 +226,23 @@ lessons:
             text: "Gehört flitzen zum Wortfeld gehen?"
             say: "Gehört das Wort flitzen zum Wortfeld gehen?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Wer langsam und ohne Eile durch die Stadt geht, der ..."
+            say: "Wer langsam und ohne Eile durch die Stadt geht, der ... Welches Wort passt?"
+            options: ["schlendert", "rennt", "stapft"]
+            answer: "schlendert"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Die Kinder spielen Känguru. Sie _ über die Wiese."
+            say: "Die Kinder spielen Känguru. Wie bewegen sie sich über die Wiese?"
+            options: ["schleichen", "hüpfen", "stapfen"]
+            answer: "hüpfen"
+          - id: l1-c6
+            type: true_false
+            text: "Rennen, flitzen und Schuh gehören alle zum Wortfeld gehen. Stimmt das?"
+            say: "Lies die drei Wörter. Gehören sie alle zum Wortfeld gehen? Stimmt das?"
+            answer: false
 
   - n: 2
     title: { de: "Das treffende Wort", en: "The precise word" }
@@ -402,8 +425,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: collect
             type: sorting
             text: "Gehen oder sagen? Ordne jedes Wort seinem Wortfeld zu."
             say: "Zu welchem Wortfeld gehört jedes Wort? Zu gehen oder zu sagen?"
@@ -416,25 +441,139 @@ lessons:
               - { text: "marschieren", bin: gehen }
               - { text: "fragen", bin: sagen }
           - id: l2-c2
+            part: collect
             type: highlight_in_text
             text: "Tippe auf die Wörter aus dem Wortfeld gehen."
             say: "Tippe auf alle Wörter, die zum Wortfeld gehen gehören."
             show: { drawn: letter-card, text: "Schritt flitzen schleichen Schuh kriechen" }
             spans: ["flitzen", "schleichen", "kriechen"]
           - id: l2-c3
+            part: precise
             type: multiple_choice
             text: "Lena will Papa etwas Geheimes sagen. Sie _ ihm ins Ohr."
-            say: "Lena will Papa etwas Geheimes sagen. Niemand soll es hören. Welches Wort passt am besten?"
+            say: "Lena will Papa etwas Geheimes sagen. Sie ... ihm ins Ohr. Welches Wort passt am besten?"
             options: ["flüstert", "sagt", "schreit"]
             answer: "flüstert"
           - id: l2-c4
+            part: not-in-field
             type: true_false
-            text: "Gehört Zunge zum Wortfeld sagen?"
-            say: "Gehört das Wort Zunge zum Wortfeld sagen?"
+            text: "Ohne Zunge kannst du nicht gut sprechen. Gehört Zunge deshalb ins Wortfeld sagen?"
+            say: "Lies die Sätze. Gehört Zunge deshalb ins Wortfeld sagen?"
             answer: false
           - id: l2-c5
+            part: precise
             type: multiple_choice
             text: "Der Hase hat Angst vor dem Fuchs. Er _ ganz schnell in seinen Bau."
             say: "Der Hase hat Angst vor dem Fuchs. Wie kommt er in seinen Bau?"
             options: ["flitzt", "schlendert", "spaziert"]
             answer: "flitzt"
+          - id: l2-c6
+            part: collect
+            type: highlight_in_text
+            text: "Tippe auf die Wörter aus dem Wortfeld sagen."
+            say: "Lies die Wörter. Tippe auf alle, die zum Wortfeld sagen gehören."
+            show: { drawn: letter-card, text: "brüllen Nase murmeln Stimme reden" }
+            spans: ["brüllen", "murmeln", "reden"]
+          - id: l2-c7
+            part: collect
+            type: multiple_choice
+            text: "Welches Wort gehört auch ins Wortfeld gehen?"
+            say: "Lies die drei Wörter. Welches gehört auch ins Wortfeld gehen?"
+            options: ["der Rucksack", "wandern", "schlafen"]
+            answer: "wandern"
+          - id: l2-c8
+            part: collect
+            type: true_false
+            text: "Gehören alle drei Wörter zum Wortfeld sagen? rufen, erklären, schreien"
+            say: "Lies die drei Wörter. Gehören sie alle zum Wortfeld sagen?"
+            answer: true
+          - id: l2-c9
+            part: not-in-field
+            type: multiple_choice
+            text: "Ein Wort passt nicht ins Wortfeld sagen. Welches?"
+            say: "Lies die drei Wörter. Welches passt nicht ins Wortfeld sagen?"
+            options: ["sprechen", "die Stimme", "rufen"]
+            answer: "die Stimme"
+          - id: l2-c10
+            part: not-in-field
+            type: sorting
+            text: "Gehört das Wort ins Wortfeld gehen? Sortiere."
+            say: "Lies jedes Wort. Gehört es ins Wortfeld gehen oder nicht? Sortiere."
+            bins:
+              - { id: ja, show: { text: "gehört zum Wortfeld gehen" }, say: "gehört zum Wortfeld gehen" }
+              - { id: nein, show: { text: "gehört nicht dazu" }, say: "gehört nicht dazu" }
+            options:
+              - { text: "trippeln", bin: ja }
+              - { text: "Treppe", bin: nein }
+              - { text: "humpeln", bin: ja }
+              - { text: "Turnschuh", bin: nein }
+          - id: l2-c11
+            part: not-in-field
+            type: multiple_choice
+            text: "Alle Wörter haben mit gehen zu tun. Welches gehört trotzdem nicht ins Wortfeld gehen?"
+            say: "Lies die drei Wörter. Welches gehört nicht ins Wortfeld gehen?"
+            options: ["marschieren", "der Wanderweg", "trippeln"]
+            answer: "der Wanderweg"
+          - id: l2-c12
+            part: not-in-field
+            type: highlight_in_text
+            text: "Tippe auf die Wörter, die nicht ins Wortfeld gehen gehören."
+            say: "Lies die Wörter. Tippe auf alle, die nicht ins Wortfeld gehen gehören."
+            show: { drawn: letter-card, text: "rennen Knie stapfen Gehweg hüpfen" }
+            spans: ["Knie", "Gehweg"]
+          - id: l2-c13
+            part: meaning
+            type: matching
+            text: "Was bedeutet das Wort? Verbinde."
+            say: "Lies jedes Wort und jede Bedeutung. Was gehört zusammen?"
+            pairs:
+              - { left: { text: "flüstern" }, right: { text: "ganz leise sprechen" } }
+              - { left: { text: "brüllen" }, right: { text: "ganz laut rufen" } }
+              - { left: { text: "antworten" }, right: { text: "etwas auf eine Frage sagen" } }
+          - id: l2-c14
+            part: meaning
+            type: multiple_choice
+            text: "Was macht jemand, der humpelt?"
+            say: "Lies die Antworten. Was macht jemand, der humpelt?"
+            options: ["Er geht ganz leise.", "Er geht ganz schnell.", "Er geht so, weil ihm ein Bein wehtut."]
+            answer: "Er geht so, weil ihm ein Bein wehtut."
+          - id: l2-c15
+            part: meaning
+            type: multiple_choice
+            text: "Wer leise und undeutlich vor sich hin spricht, der ..."
+            say: "Wer leise und undeutlich vor sich hin spricht, der ... Welches Wort passt?"
+            options: ["ruft", "murmelt", "antwortet"]
+            answer: "murmelt"
+          - id: l2-c16
+            part: meaning
+            type: true_false
+            text: "Wer schlendert, geht langsam und gemütlich. Stimmt das?"
+            say: "Lies den Satz. Stimmt das?"
+            answer: true
+          - id: l2-c17
+            part: meaning
+            type: true_false
+            text: "Wer stapft, macht leichte, kleine Sprünge. Stimmt das?"
+            say: "Lies den Satz. Stimmt das?"
+            answer: false
+          - id: l2-c18
+            part: precise
+            type: multiple_choice
+            text: "„Hurra, wir haben gewonnen!“, _ die Kinder.\n\nWelches Wort passt am besten?"
+            say: "Lies den Satz. Welches Wort passt am besten?"
+            options: ["flüstern", "jubeln", "fragen"]
+            answer: "jubeln"
+          - id: l2-c19
+            part: precise
+            type: multiple_choice
+            text: "Das Baby kann noch nicht laufen. Es _ auf allen vieren über den Teppich.\n\nWelches Wort passt am besten?"
+            say: "Lies den Text. Welches Wort passt am besten?"
+            options: ["marschiert", "stapft", "krabbelt"]
+            answer: "krabbelt"
+          - id: l2-c20
+            part: precise
+            type: multiple_choice
+            text: "Vor dem Kino warten viele Leute. „Nur noch zwei Karten!“, _ der Mann ganz laut.\n\nWelches Wort passt am besten?"
+            say: "Lies den Text. Welches Wort passt am besten?"
+            options: ["murmelt", "sagt", "ruft"]
+            answer: "ruft"

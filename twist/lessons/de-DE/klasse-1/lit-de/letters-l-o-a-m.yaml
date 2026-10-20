@@ -31,6 +31,7 @@ metadata:
       "de.o:",
       "de.a:",
       "de.a",
+      "de.o",
       "de.m",
       "de.ma",
       "de.mo",
@@ -40,6 +41,11 @@ metadata:
       "de.om",
     ]
   facets: [script]
+  parts:
+    - { id: l-m, what: { de: die Laute von L und M, en: the sounds of L and M } }
+    - { id: o-a, what: { de: die Laute von O und A, en: the sounds of O and A } }
+    - { id: syllables, what: { de: "erste Silben hören und lesen: Ma, Mo, La, Lo", en: "hearing and reading first syllables: Ma, Mo, La, Lo" } }
+    - { id: words, what: { de: "erste Wörter lesen: Oma, Mama, Lama", en: "reading first words: Oma, Mama, Lama" } }
   misconceptions:
     - id: letter-name
       what: Says the letter name (El, Em) instead of the sound (lll, mmm), which blocks blending
@@ -209,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -227,6 +234,23 @@ lessons:
             say: "Löwe. Hörst du am Anfang ein lll?"
             show: { object: lion }
             answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du am Anfang ein L?"
+            say: "Ei. Hörst du am Anfang ein lll?"
+            show: { object: egg }
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes L."
+            say: "Tippe auf jeden Buchstaben für lll, groß und klein."
+            show: { drawn: letter-card, text: "l M L o l" }
+            spans: ["l", "L", "l"]
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Was fängt mit L an?"
+            options: [{ object: sun }, { object: spoon }, { object: mouse }]
+            answer: spoon
 
   - n: 2
     title: { de: Das O, en: The letter O }
@@ -398,6 +422,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: image_multiple_choice
@@ -416,6 +441,23 @@ lessons:
             audio: { sound: de.l }
             options: ["O", "L"]
             answer: "L"
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du am Anfang ein O?"
+            say: "Ofen. Hörst du am Anfang ein ooo?"
+            show: { object: oven }
+            answer: true
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes O."
+            say: "Tippe auf jedes große und kleine O."
+            show: { drawn: letter-card, text: "L o O l o" }
+            spans: ["o", "O", "o"]
+          - id: l2-c6
+            type: image_multiple_choice
+            text: "Was fängt mit O an?"
+            options: [{ object: fish }, { object: lamp }, { object: ear }]
+            answer: ear
 
   - n: 3
     title: { de: Das A, en: The letter A }
@@ -590,6 +632,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: audio_choice
@@ -608,6 +651,23 @@ lessons:
             text: "Was fängt mit A an?"
             options: [{ object: ant }, { object: grandma }, { object: lamp }]
             answer: ant
+          - id: l3-c4
+            type: true_false
+            text: "Hörst du am Anfang ein A?"
+            say: "Affe. Hörst du am Anfang ein a?"
+            show: { object: monkey }
+            answer: true
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes A."
+            say: "Tippe auf jedes große und kleine A."
+            show: { drawn: letter-card, text: "o A a O a" }
+            spans: ["A", "a", "a"]
+          - id: l3-c6
+            type: image_multiple_choice
+            text: "Was fängt mit A an?"
+            options: [{ object: oven }, { object: anchor }, { object: lion }]
+            answer: anchor
 
   - n: 4
     title: { de: Das M, en: The letter M }
@@ -783,6 +843,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l4-c1
             type: image_multiple_choice
@@ -801,6 +862,24 @@ lessons:
             audio: { sound: de.ma }
             options: ["Mo", "Ma", "La"]
             answer: "Ma"
+          - id: l4-c4
+            type: true_false
+            text: "Hörst du am Anfang ein M?"
+            say: "Löwe. Hörst du am Anfang ein mmm?"
+            show: { object: lion }
+            answer: false
+          - id: l4-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes M."
+            say: "Tippe auf jeden Buchstaben für mmm, groß und klein."
+            show: { drawn: letter-card, text: "m L M a m" }
+            spans: ["m", "M", "m"]
+          - id: l4-c6
+            type: audio_choice
+            text: "Welche Silbe hörst du?"
+            audio: { sound: de.mo }
+            options: ["Ma", "Om", "Mo"]
+            answer: "Mo"
 
   - n: 5
     title: { de: "L, O, A und M zusammen", en: "L, O, A and M together" }
@@ -966,14 +1045,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l5-c1
+            part: o-a
             type: true_false
             text: "Hörst du am Anfang ein O?"
             say: "Orange. Hörst du am Anfang ein ooo?"
             show: { object: orange }
             answer: true
           - id: l5-c2
+            part: l-m
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
             say: "Lampe. Welcher Buchstabe fehlt?"
@@ -982,19 +1064,130 @@ lessons:
             options: ["M", "A", "L"]
             answer: ["L"]
           - id: l5-c3
+            part: o-a
             type: image_multiple_choice
             text: "Was fängt mit A an?"
             options: [{ object: moon }, { object: oven }, { object: ant }]
             answer: ant
           - id: l5-c4
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Oma" }
             options: [{ object: mum }, { object: grandma }, { object: llama }]
             answer: grandma
+            option_audio: false
           - id: l5-c5
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Mama" }
             options: [{ object: grandma }, { object: llama }, { object: mum }]
             answer: mum
+            option_audio: false
+          - id: l5-c6
+            part: l-m
+            type: image_multiple_choice
+            text: "Was fängt mit M an?"
+            options: [{ object: ladder }, { object: mouth }, { object: egg }]
+            answer: mouth
+          - id: l5-c7
+            part: syllables
+            type: multiple_choice
+            text: "Lies die Silben. Wie fängt das Wort an?"
+            say: "Lampe. Lies die Silben. Wie fängt das Wort an?"
+            show: { object: lamp }
+            options: ["Lo", "La", "Ma"]
+            answer: "La"
+          - id: l5-c8
+            part: l-m
+            type: true_false
+            text: "Hörst du am Anfang ein M?"
+            say: "Messer. Hörst du am Anfang ein mmm?"
+            show: { object: knife }
+            answer: true
+          - id: l5-c9
+            part: words
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: llama }
+            options: ["Lama", "Mama", "Oma"]
+            answer: "Lama"
+            option_audio: false
+          - id: l5-c10
+            part: o-a
+            type: audio_choice
+            text: "Welcher Buchstabe klingt so?"
+            audio: { sound: de.o }
+            options: ["A", "M", "O"]
+            answer: "O"
+          - id: l5-c11
+            part: syllables
+            type: true_false
+            text: "Hör zu. Ist das die Silbe auf der Karte?"
+            show: { drawn: letter-card, text: "Mo" }
+            audio: { sound: de.ma }
+            answer: false
+          - id: l5-c12
+            part: l-m
+            type: true_false
+            text: "Hörst du am Anfang ein L?"
+            say: "Mond. Hörst du am Anfang ein lll?"
+            show: { object: moon }
+            answer: false
+          - id: l5-c13
+            part: syllables
+            type: multiple_choice
+            text: "Lies die Silben. Wie fängt das Wort an?"
+            say: "Mond. Lies die Silben. Wie fängt das Wort an?"
+            show: { object: moon }
+            options: ["Ma", "Om", "Mo"]
+            answer: "Mo"
+          - id: l5-c14
+            part: o-a
+            type: true_false
+            text: "Hörst du am Anfang ein A?"
+            say: "Oktopus. Hörst du am Anfang ein a?"
+            show: { object: octopus }
+            answer: false
+          - id: l5-c15
+            part: words
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: grandma }
+            options: ["Mama", "Oma", "Lama"]
+            answer: "Oma"
+            option_audio: false
+          - id: l5-c16
+            part: syllables
+            type: true_false
+            text: "Hör zu. Ist das die Silbe auf der Karte?"
+            show: { drawn: letter-card, text: "La" }
+            audio: { sound: de.la }
+            answer: true
+          - id: l5-c17
+            part: l-m
+            type: image_multiple_choice
+            text: "Was fängt mit L an?"
+            options: [{ object: moon }, { object: lorry }, { object: apple }]
+            answer: lorry
+          - id: l5-c18
+            part: o-a
+            type: image_multiple_choice
+            text: "Was fängt mit O an?"
+            options: [{ object: ant }, { object: grandpa }, { object: mouse }]
+            answer: grandpa
+          - id: l5-c19
+            part: syllables
+            type: true_false
+            text: "Hör zu. Ist das die Silbe auf der Karte?"
+            show: { drawn: letter-card, text: "Al" }
+            audio: { sound: de.la }
+            answer: false
+          - id: l5-c20
+            part: words
+            type: highlight_in_text
+            text: "Hör zu. Tippe auf jedes Wort, das du hörst."
+            show: { drawn: letter-card, text: "Mama Lama Oma Lama" }
+            audio: { de: "Lama." }
+            spans: ["Lama", "Lama"]

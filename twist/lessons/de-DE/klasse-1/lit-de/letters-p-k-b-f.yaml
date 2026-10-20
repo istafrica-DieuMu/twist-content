@@ -27,6 +27,12 @@ metadata:
   drawn: [letter-card, writing-lines, syllable-arcs, word-card]
   sounds: []
   facets: [script]
+  parts:
+    - { id: p-b, what: { de: P und B unterscheiden, en: telling P from B } }
+    - { id: k-t, what: { de: K und T unterscheiden, en: telling K from T } }
+    - { id: f-s, what: { de: F und S unterscheiden, en: telling F from S } }
+    - { id: shapes, what: { de: "b, d und p an der Form erkennen", en: "telling b, d and p apart by their shape" } }
+    - { id: words, what: { de: "Wörter mit P, K, B und F lesen", en: "reading words with P, K, B and F" } }
   misconceptions:
     - id: p-b
       what: Does not hear P (with a puff of air) from B (soft, almost no puff)
@@ -220,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -238,6 +245,24 @@ lessons:
             say: "Pizza. Hörst du am Anfang ein p?"
             show: { object: pizza }
             answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Hörst du am Anfang ein P?"
+            say: "Kuchen. Hörst du am Anfang ein p?"
+            show: { object: cake }
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes P."
+            say: "Tippe auf jedes große und kleine P."
+            show: { drawn: letter-card, text: "p b P d p" }
+            spans: ["p", "P", "p"]
+          - id: l1-c6
+            type: audio_choice
+            text: "Mit welchem Buchstaben fängt das Wort an?"
+            audio: { de: "Paprika." }
+            options: ["B", "T", "P"]
+            answer: "P"
 
   - n: 2
     title: { de: Das K, en: The letter K }
@@ -412,6 +437,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: image_multiple_choice
@@ -430,6 +456,23 @@ lessons:
             say: "Kleid. Hörst du am Anfang ein k?"
             show: { object: dress }
             answer: true
+          - id: l2-c4
+            type: true_false
+            text: "Hörst du am Anfang ein K?"
+            say: "Tisch. Hörst du am Anfang ein k?"
+            show: { object: table }
+            answer: false
+          - id: l2-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes K."
+            say: "Tippe auf jedes große und kleine K."
+            show: { drawn: letter-card, text: "K k t K l" }
+            spans: ["K", "k", "K"]
+          - id: l2-c6
+            type: image_multiple_choice
+            text: "Was fängt mit K an?"
+            options: [{ object: sun }, { object: cook }, { object: egg }]
+            answer: cook
 
   - n: 3
     title: { de: Das B, en: The letter B }
@@ -604,6 +647,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l3-c1
             type: audio_choice
@@ -623,6 +667,24 @@ lessons:
             text: "Was fängt mit B an?"
             options: [{ object: dad }, { object: tree }, { object: cat }]
             answer: tree
+          - id: l3-c4
+            type: true_false
+            text: "Hörst du am Anfang ein B?"
+            say: "Bus. Hörst du am Anfang ein b?"
+            show: { object: bus }
+            answer: true
+          - id: l3-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes B."
+            say: "Tippe auf jedes große und kleine B."
+            show: { drawn: letter-card, text: "B p b d B" }
+            spans: ["B", "b", "B"]
+          - id: l3-c6
+            type: audio_choice
+            text: "B oder P?"
+            audio: { de: "Pause." }
+            options: ["P", "B"]
+            answer: "P"
 
   - n: 4
     title: { de: Das F, en: The letter F }
@@ -798,6 +860,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l4-c1
             type: image_multiple_choice
@@ -817,6 +880,24 @@ lessons:
             say: "Kuh. Hörst du am Anfang ein fff?"
             show: { object: cow }
             answer: false
+          - id: l4-c4
+            type: true_false
+            text: "Hörst du am Anfang ein F?"
+            say: "Feder. Hörst du am Anfang ein fff?"
+            show: { object: feather }
+            answer: true
+          - id: l4-c5
+            type: highlight_in_text
+            text: "Tippe auf jedes F."
+            say: "Tippe auf jedes große und kleine F."
+            show: { drawn: letter-card, text: "f E F t f" }
+            spans: ["f", "F", "f"]
+          - id: l4-c6
+            type: audio_choice
+            text: "F oder S?"
+            audio: { de: "Sand." }
+            options: ["S", "F"]
+            answer: "S"
 
   - n: 5
     title: { de: "Wörter mit P, K, B und F", en: "Words with P, K, B and F" }
@@ -926,9 +1007,9 @@ lessons:
                 hints: ["Nach dem B stehen zwei o."]
               - id: l5-s3
                 type: true_false
-                text: "Stimmt das?"
-                say: "Lies die Karte. Steht hier Kopf?"
+                text: "Hör zu. Steht dieses Wort auf der Karte?"
                 show: { drawn: word-card, text: "Kopf" }
+                audio: { de: "Kopf." }
                 answer: true
                 hints: ["Lies Laut für Laut: K ... o ... pf."]
               - id: l5-s4
@@ -994,26 +1075,33 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l5-c1
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: word-card, text: "Banane" }
             options: [{ object: ball }, { object: banana }, { object: bee }]
             answer: banana
+            option_audio: false
           - id: l5-c2
+            part: p-b
             type: audio_choice
             text: "B oder P?"
             audio: { de: "Besen." }
             options: ["P", "B"]
             answer: "B"
           - id: l5-c3
+            part: words
             type: image_multiple_choice
             text: "Lies das Wort. Welches Bild passt?"
             show: { drawn: syllable-arcs, word: "Elefant", syllables: ["E", "le", "fant"] }
             options: [{ object: duck }, { object: ant }, { object: elephant }]
             answer: elephant
+            option_audio: false
           - id: l5-c4
+            part: f-s
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
             say: "Affe. Welcher Buchstabe fehlt?"
@@ -1022,8 +1110,114 @@ lessons:
             options: ["p", "f", "b"]
             answer: ["f"]
           - id: l5-c5
+            part: words
             type: true_false
-            text: "Stimmt das?"
-            say: "Lies die Karte. Steht hier Pumpe?"
+            text: "Hör zu. Steht dieses Wort auf der Karte?"
             show: { drawn: word-card, text: "Puppe" }
+            audio: { de: "Pumpe." }
             answer: false
+          - id: l5-c6
+            part: p-b
+            type: true_false
+            text: "Hörst du am Anfang ein B?"
+            say: "Pony. Hörst du am Anfang ein b?"
+            show: { object: pony }
+            answer: false
+          - id: l5-c7
+            part: k-t
+            type: image_multiple_choice
+            text: "Was fängt mit K an?"
+            options: [{ object: tree }, { object: telephone }, { object: candle }]
+            answer: candle
+          - id: l5-c8
+            part: shapes
+            type: highlight_in_text
+            text: "Tippe auf jedes b."
+            say: "Tippe auf jedes kleine b."
+            show: { drawn: letter-card, text: "d b p b d" }
+            spans: ["b", "b"]
+          - id: l5-c9
+            part: f-s
+            type: true_false
+            text: "Hörst du am Anfang ein F?"
+            say: "Fenster. Hörst du am Anfang ein fff?"
+            show: { object: window }
+            answer: true
+          - id: l5-c10
+            part: k-t
+            type: true_false
+            text: "Hörst du am Anfang ein K?"
+            say: "Krone. Hörst du am Anfang ein k?"
+            show: { object: crown }
+            answer: true
+          - id: l5-c11
+            part: p-b
+            type: audio_choice
+            text: "B oder P?"
+            audio: { de: "Pilz." }
+            options: ["B", "P"]
+            answer: "P"
+          - id: l5-c12
+            part: shapes
+            type: highlight_in_text
+            text: "Tippe auf jedes p."
+            say: "Tippe auf jedes kleine p."
+            show: { drawn: letter-card, text: "b p d p b p" }
+            spans: ["p", "p", "p"]
+          - id: l5-c13
+            part: f-s
+            type: image_multiple_choice
+            text: "Was fängt mit F an?"
+            options: [{ object: saw }, { object: feather }, { object: sock }]
+            answer: feather
+          - id: l5-c14
+            part: k-t
+            type: audio_choice
+            text: "K oder T?"
+            audio: { de: "Tiger." }
+            options: ["K", "T"]
+            answer: "T"
+          - id: l5-c15
+            part: words
+            type: image_multiple_choice
+            text: "Lies das Wort. Welches Bild passt?"
+            show: { drawn: word-card, text: "Biene" }
+            options: [{ object: banana }, { object: bed }, { object: bee }]
+            answer: bee
+            option_audio: false
+          - id: l5-c16
+            part: shapes
+            type: multiple_choice
+            text: "Welches Wort passt zum Bild?"
+            show: { object: apple }
+            options: ["Abfel", "Apfel", "Adfel"]
+            answer: "Apfel"
+            option_audio: false
+          - id: l5-c17
+            part: p-b
+            type: true_false
+            text: "Hörst du am Anfang ein B?"
+            say: "Biene. Hörst du am Anfang ein b?"
+            show: { object: bee }
+            answer: true
+          - id: l5-c18
+            part: f-s
+            type: audio_choice
+            text: "F oder S?"
+            audio: { de: "Seife." }
+            options: ["F", "S"]
+            answer: "S"
+          - id: l5-c19
+            part: k-t
+            type: highlight_in_text
+            text: "Tippe auf jedes K."
+            say: "Tippe auf jedes große und kleine K."
+            show: { drawn: letter-card, text: "k K t k T" }
+            spans: ["k", "K", "k"]
+          - id: l5-c20
+            part: shapes
+            type: highlight_in_text
+            text: "Tippe auf jedes d."
+            say: "Tippe auf jedes kleine d."
+            show: { drawn: letter-card, text: "p d b d" }
+            spans: ["d", "d"]

@@ -13,8 +13,11 @@ summary: >
   lost thing, guesses a thing or an animal from its description and
   matches a picture to its description; lesson 2 reads and fills
   Steckbriefe about animals and children, sorts Stichwörter under their
-  headings, keeps opinions out, and ends with the skill check. Writing
-  the description freely waits for a free text task type.
+  headings, keeps opinions out, and ends with the skill check. The skill check
+  marks what a screen can mark: choosing the exact sentence, matching a
+  description to a picture, filling and sorting a Steckbrief. Writing a
+  whole description is left to Practise and waits for a free text task
+  type.
 metadata:
   year: klasse-2
   topic: { de: Beschreiben, en: Describing }
@@ -26,6 +29,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: exact, what: { de: "die genaue Beschreibung wählen, mit der man etwas findet", en: "choosing the exact description that helps find something" } }
+    - { id: picture, what: { de: Beschreibung und Bild zusammenbringen, en: matching a description and a picture } }
+    - { id: questions, what: { de: "beim Beschreiben auf die Fragen antworten (Farbe? Form? Größe? Woraus?)", en: "answering the describing questions (colour, shape, size, material)" } }
+    - { id: profile, what: { de: einen Steckbrief mit Stichwörtern füllen und Meinungen weglassen, en: filling a profile with key words and leaving out opinions } }
   misconceptions:
     - id: vague-words
       what: Describes with words like schön, toll or super that fit anything, so no one can picture or find the thing
@@ -211,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -229,6 +238,26 @@ lessons:
             text: "„Die Maus ist klein und grau und hat einen langen, dünnen Schwanz.“ Ist das eine genaue Beschreibung?"
             say: "Die Maus ist klein und grau und hat einen langen, dünnen Schwanz. Ist das eine genaue Beschreibung?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Welche Beschreibung passt zum Bild?"
+            say: "Schau dir das Tier an. Welche Beschreibung passt?"
+            show: { object: crocodile }
+            options: ["Es ist grün und hat einen langen Schwanz und ein langes Maul.", "Es ist rosa und hat einen Ringelschwanz.", "Es hat lange Ohren und hoppelt."]
+            answer: "Es ist grün und hat einen langen Schwanz und ein langes Maul."
+          - id: l1-c5
+            type: matching
+            text: "Verbinde Frage und Antwort."
+            say: "Lies die Fragen und die Antworten. Verbinde sie."
+            pairs:
+              - { left: { text: "Farbe?" }, right: { text: "hellgrün" } }
+              - { left: { text: "Woraus?" }, right: { text: "aus Stoff" } }
+              - { left: { text: "Größe?" }, right: { text: "so lang wie ein Arm" } }
+          - id: l1-c6
+            type: true_false
+            text: "Nils schreibt: „Mein Teddy ist der beste.“ Weiß jetzt jeder, wie sein Teddy aussieht?"
+            say: "Nils schreibt: Mein Teddy ist der beste. Weiß jetzt jeder, wie sein Teddy aussieht?"
+            answer: false
 
   - n: 2
     title: { de: "Der Steckbrief", en: "The profile" }
@@ -421,20 +450,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: exact
             type: multiple_choice
             text: "Jan sucht seinen Turnbeutel. Welcher Satz hilft beim Suchen am meisten?"
             say: "Jan sucht seinen Turnbeutel. Welcher Satz hilft beim Suchen am meisten?"
             options: ["Er ist schwarz und hat einen roten Blitz.", "Er ist echt gut.", "Er gehört Jan."]
             answer: "Er ist schwarz und hat einen roten Blitz."
           - id: l2-c2
+            part: picture
             type: image_multiple_choice
             text: "Es kriecht ganz langsam und trägt sein Haus auf dem Rücken. Was ist es?"
             say: "Hör zu und rate: Es kriecht ganz langsam und trägt sein Haus auf dem Rücken. Was ist es?"
             options: [{ object: snail }, { object: ant }, { object: frog }]
             answer: snail
           - id: l2-c3
+            part: profile
             type: matching
             text: "Steckbrief: Kuh. Was gehört zusammen?"
             say: "Verbinde jede Zeile des Steckbriefs mit den passenden Stichwörtern."
@@ -443,13 +476,131 @@ lessons:
               - { left: { text: "Aussehen" }, right: { text: "schwarz-weiße Flecken" } }
               - { left: { text: "Lebensraum" }, right: { text: "Weide, Stall" } }
           - id: l2-c4
+            part: profile
             type: multiple_choice
             text: "Was gehört in den Steckbrief über den Hasen?"
             say: "Was gehört in den Steckbrief über den Hasen?"
             options: ["lange Ohren, weiches Fell", "Hasen sind süß.", "Ich will auch einen Hasen."]
             answer: "lange Ohren, weiches Fell"
           - id: l2-c5
+            part: exact
             type: true_false
             text: "„Die Tasse ist weiß und hat einen blauen Henkel.“ Ist das eine genaue Beschreibung?"
             say: "Die Tasse ist weiß und hat einen blauen Henkel. Ist das eine genaue Beschreibung?"
             answer: true
+          - id: l2-c6
+            part: exact
+            type: multiple_choice
+            text: "Oma sucht ihre Brille. Welcher Satz hilft beim Suchen am meisten?"
+            say: "Oma sucht ihre Brille. Welcher Satz hilft beim Suchen am meisten?"
+            options: ["Sie ist rund, hat einen roten Rahmen und liegt in einem grünen Etui.", "Sie war sehr teuer.", "Ich brauche sie jeden Tag."]
+            answer: "Sie ist rund, hat einen roten Rahmen und liegt in einem grünen Etui."
+          - id: l2-c7
+            part: exact
+            type: multiple_choice
+            text: "Welcher Satz beschreibt die Krone genau?"
+            say: "Schau dir das Bild an. Welcher Satz beschreibt die Krone genau?"
+            show: { object: crown }
+            options: ["Sie ist golden und hat rote und blaue Steine.", "Sie ist wunderschön.", "Sie gehört einer Königin."]
+            answer: "Sie ist golden und hat rote und blaue Steine."
+          - id: l2-c8
+            part: exact
+            type: fill_in_blank
+            text: "Welches Wort macht den Satz genauer?"
+            say: "Welches Wort macht den Satz genauer?"
+            frame: "Mein Kuscheltier ist ein _ Bär mit einer roten Schleife."
+            options: ["brauner", "toller", "lieber"]
+            answer: ["brauner"]
+          - id: l2-c9
+            part: picture
+            type: multiple_choice
+            text: "Welche Beschreibung passt zum Bild?"
+            say: "Schau dir das Tier an. Welche Beschreibung passt?"
+            show: { object: owl }
+            options: ["Sie hat große, runde Augen und braune Federn.", "Sie hat einen langen Rüssel.", "Sie hat acht Beine."]
+            answer: "Sie hat große, runde Augen und braune Federn."
+          - id: l2-c10
+            part: picture
+            type: image_multiple_choice
+            text: "Es ist lang und gelb und schmeckt süß. Man muss es schälen. Was ist es?"
+            say: "Hör zu und rate: Es ist lang und gelb und schmeckt süß. Man muss es schälen. Was ist es?"
+            options: [{ object: banana }, { object: carrot }, { object: pineapple }]
+            answer: banana
+          - id: l2-c11
+            part: picture
+            type: image_multiple_choice
+            text: "Es hat eine Sitzfläche und eine Lehne. Man sitzt darauf. Was ist es?"
+            say: "Hör zu und rate: Es hat eine Sitzfläche und eine Lehne. Man sitzt darauf. Was ist es?"
+            options: [{ object: chair }, { object: table }, { object: bed }]
+            answer: chair
+          - id: l2-c12
+            part: picture
+            type: image_multiple_choice
+            text: "Es hat einen Panzer und läuft ganz langsam. Es kann seinen Kopf einziehen. Was ist es?"
+            say: "Hör zu und rate: Es hat einen Panzer und läuft ganz langsam. Es kann seinen Kopf einziehen. Was ist es?"
+            options: [{ object: tortoise }, { object: snail }, { object: crab }]
+            answer: tortoise
+          - id: l2-c13
+            part: questions
+            type: matching
+            text: "Welche Antwort passt zu welcher Frage?"
+            say: "Lies die Fragen und die Antworten. Welche Antwort passt zu welcher Frage?"
+            pairs:
+              - { left: { text: "Woraus?" }, right: { text: "aus Papier" } }
+              - { left: { text: "Größe?" }, right: { text: "so klein wie eine Erbse" } }
+              - { left: { text: "Form?" }, right: { text: "dreieckig" } }
+          - id: l2-c14
+            part: questions
+            type: multiple_choice
+            text: "„Mein Schal ist aus Wolle.“\n\nAuf welche Frage antwortet der Satz?"
+            say: "Mein Schal ist aus Wolle. Auf welche Frage antwortet der Satz?"
+            options: ["Woraus?", "Farbe?", "Größe?"]
+            answer: "Woraus?"
+          - id: l2-c15
+            part: questions
+            type: multiple_choice
+            text: "Nina beschreibt ihren Ball: „Er ist rot und so groß wie ein Apfel.“\n\nWelche Frage hat Nina noch nicht beantwortet?"
+            say: "Nina beschreibt ihren Ball: Er ist rot und so groß wie ein Apfel. Welche Frage hat Nina noch nicht beantwortet?"
+            options: ["Woraus ist er?", "Welche Farbe hat er?", "Wie groß ist er?"]
+            answer: "Woraus ist er?"
+          - id: l2-c16
+            part: questions
+            type: fill_in_blank
+            text: "Welches Wort sagt die Form?"
+            say: "Welches Wort sagt die Form der Kiste? Setz es in die Lücke ein."
+            frame: "Die Kiste ist _ und aus Holz."
+            options: ["eckig", "toll", "meine"]
+            answer: ["eckig"]
+          - id: l2-c17
+            part: questions
+            type: true_false
+            text: "„Der Stein ist so groß wie eine Faust.“\n\nSagt der Satz die Größe?"
+            say: "Der Stein ist so groß wie eine Faust. Sagt der Satz die Größe?"
+            answer: true
+          - id: l2-c18
+            part: profile
+            type: sorting
+            text: "Steckbrief: Biene. Wohin gehört jedes Stichwort?"
+            say: "Sortiere die Stichwörter: Aussehen oder Nahrung?"
+            bins:
+              - { id: look, show: { text: "Aussehen" }, say: "Aussehen" }
+              - { id: food, show: { text: "Nahrung" }, say: "Nahrung" }
+            options:
+              - { text: "gelb und schwarz gestreift", bin: look }
+              - { text: "Nektar", bin: food }
+              - { text: "durchsichtige Flügel", bin: look }
+              - { text: "Blütenstaub", bin: food }
+          - id: l2-c19
+            part: profile
+            type: fill_in_blank
+            text: "Steckbrief: Ole\nAlter: 8 Jahre\nAugen: blau\n\nWas passt in die Lücke?"
+            say: "Lies den Steckbrief. Was passt in die Lücke?"
+            frame: "Haare: _"
+            options: ["rot, lockig", "sehr lustig", "Fußball"]
+            answer: ["rot, lockig"]
+          - id: l2-c20
+            part: profile
+            type: true_false
+            text: "Steckbrief: Hund\nNahrung: Ich gebe ihm oft Wurst, weil er so lieb guckt.\n\nPasst das in den Steckbrief?"
+            say: "Lies den Steckbrief. Passt das hinein?"
+            answer: false

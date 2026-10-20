@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [table, bar-chart]
   facets: []
+  parts:
+    - { id: table, what: { de: einer Tabelle oder einem Plan eine Angabe entnehmen, en: taking a fact from a table or a plan } }
+    - { id: chart-value, what: { de: in einem Säulendiagramm eine Zahl ablesen, en: reading a number from a bar chart } }
+    - { id: most-fewest, what: { de: im Diagramm am meisten und am wenigsten finden, en: finding the most and the fewest in a chart } }
   misconceptions:
     - id: wrong-line
       what: Reads the answer from the row or column next to the right one, or from the first one, instead of finding the row or column the question names
@@ -220,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -241,6 +246,26 @@ lessons:
             say: "Lies den Plan. Stimmt das? Am Dienstag gibt es Suppe."
             show: { drawn: table, rows: [[Tag, Essen], [Montag, Nudeln], [Dienstag, Suppe], [Mittwoch, Pizza]] }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Sitzplan\n\nWer sitzt mit Mira an einem Tisch?"
+            say: "Lies den Sitzplan. Jede Spalte ist ein Tisch. Wer sitzt mit Mira an einem Tisch?"
+            show: { drawn: table, rows: [[Tisch 1, Tisch 2], [Jona, Mira], [Ella, Kai]] }
+            options: ["Jona", "Kai", "Ella"]
+            answer: "Kai"
+          - id: l1-c5
+            type: true_false
+            text: "Geburtstage\n\nLeni hat im April Geburtstag."
+            say: "Lies die Tabelle. Stimmt das? Leni hat im April Geburtstag."
+            show: { drawn: table, rows: [[Monat, Kind], [Januar, Leni], [April, Omar], [Juni, Tess]] }
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Obst in der Pause\n\nWelches Obst gibt es am Mittwoch?"
+            say: "Lies den Plan. Welches Obst gibt es am Mittwoch? Tippe auf das Bild."
+            show: { drawn: table, rows: [[Tag, Obst], [Montag, Apfel], [Dienstag, Banane], [Mittwoch, Birne]] }
+            options: [{ object: apple }, { object: pear }, { object: banana }]
+            answer: pear
 
   - n: 2
     title: { de: "Diagramme lesen", en: "Reading charts" }
@@ -422,8 +447,125 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
+          - id: l2-c6
+            part: table
+            type: multiple_choice
+            text: "Ausflüge\n\nWohin geht die Klasse am Freitag?"
+            say: "Lies den Plan. Wohin geht die Klasse am Freitag?"
+            show: { drawn: table, rows: [[Tag, Ausflug], [Mittwoch, Zoo], [Donnerstag, Wald], [Freitag, Museum]] }
+            options: ["in den Wald", "ins Museum", "in den Zoo"]
+            answer: "ins Museum"
+          - id: l2-c7
+            part: table
+            type: true_false
+            text: "Sitzplan\n\nEmil sitzt an Tisch 3."
+            say: "Lies den Sitzplan. Stimmt das? Emil sitzt an Tisch drei."
+            show: { drawn: table, rows: [[Tisch 1, Tisch 2, Tisch 3], [Ronja, Emil, Kai], [Ben, Mira, Lou]] }
+            answer: false
+          - id: l2-c8
+            part: table
+            type: multiple_choice
+            text: "Stundenplan\n\nWelches Fach hast du am Mittwoch in der 1. Stunde?"
+            say: "Lies den Stundenplan. Welches Fach hast du am Mittwoch in der ersten Stunde?"
+            show: { drawn: table, rows: [[Stunde, Montag, Dienstag, Mittwoch], ["1.", Sport, Deutsch, Mathe], ["2.", Deutsch, Mathe, Musik]] }
+            options: ["Deutsch", "Musik", "Mathe"]
+            answer: "Mathe"
+          - id: l2-c9
+            part: table
+            type: image_multiple_choice
+            text: "Lieblingsessen\n\nWas isst Jonas am liebsten?"
+            say: "Lies die Tabelle. Was isst Jonas am liebsten? Tippe auf das Bild."
+            show: { drawn: table, rows: [[Kind, Essen], [Pia, Pizza], [Jonas, Nudeln], [Elif, Käse]] }
+            options: [{ object: pizza }, { object: cheese }, { object: pasta }]
+            answer: pasta
+          - id: l2-c10
+            part: table
+            type: true_false
+            text: "Klassendienste\n\nLotta bringt den Müll weg."
+            say: "Lies die Tabelle. Stimmt das? Lotta bringt den Müll weg."
+            show: { drawn: table, rows: [[Dienst, Kind], [Tafel, Kemal], [Müll, Lotta], [Blumen, Jan]] }
+            answer: true
+          - id: l2-c11
+            part: chart-value
+            type: multiple_choice
+            text: "Unser Frühstück\nWie viele Kinder essen Müsli?"
+            say: "Lies das Diagramm. Wie viele Kinder essen zum Frühstück Müsli?"
+            show: { drawn: bar-chart, rows: [["Brot", 5], ["Müsli", 3], ["Ei", 2]] }
+            options: ["5", "2", "3"]
+            answer: "3"
+          - id: l2-c12
+            part: chart-value
+            type: true_false
+            text: "Unser Frühstück\n2 Kinder essen ein Ei."
+            say: "Lies das Diagramm. Stimmt das? Zwei Kinder essen zum Frühstück ein Ei."
+            show: { drawn: bar-chart, rows: [["Brot", 5], ["Müsli", 3], ["Ei", 2]] }
+            answer: true
+          - id: l2-c13
+            part: chart-value
+            type: multiple_choice
+            text: "Tiere im Garten\nWie viele Vögel hat Paul gesehen?"
+            say: "Paul hat im Garten Tiere gezählt. Lies das Diagramm. Wie viele Vögel hat Paul gesehen?"
+            show: { drawn: bar-chart, rows: [["Vögel", 6], ["Schnecken", 9], ["Katzen", 1]] }
+            options: ["9", "6", "1"]
+            answer: "6"
+          - id: l2-c14
+            part: chart-value
+            type: image_multiple_choice
+            text: "Tiere im Garten\nWelches Tier hat Paul 9-mal gesehen?"
+            say: "Paul hat im Garten Tiere gezählt. Lies das Diagramm. Welches Tier hat Paul neunmal gesehen? Tippe auf das Bild."
+            show: { drawn: bar-chart, rows: [["Vögel", 6], ["Schnecken", 9], ["Katzen", 1]] }
+            options: [{ object: bird }, { object: cat }, { object: snail }]
+            answer: snail
+          - id: l2-c15
+            part: chart-value
+            type: true_false
+            text: "Unser Lieblingssport\n5 Kinder schwimmen am liebsten."
+            say: "Lies das Diagramm. Stimmt das? Fünf Kinder schwimmen am liebsten."
+            show: { drawn: bar-chart, rows: [["Fußball", 6], ["Schwimmen", 4], ["Turnen", 5]] }
+            answer: false
+          - id: l2-c16
+            part: chart-value
+            type: multiple_choice
+            text: "Bücher in der Leseecke\nWie viele Bücher gibt es über Tiere?"
+            say: "Lies das Diagramm. Wie viele Bücher über Tiere stehen in der Leseecke?"
+            show: { drawn: bar-chart, rows: [["Tiere", 7], ["Märchen", 4], ["Autos", 2]] }
+            options: ["4", "7", "2"]
+            answer: "7"
+          - id: l2-c17
+            part: most-fewest
+            type: multiple_choice
+            text: "Kastanien\nWer hat am meisten Kastanien gesammelt?"
+            say: "Lies das Diagramm. Wer hat am meisten Kastanien gesammelt?"
+            show: { drawn: bar-chart, rows: [["Ida", 5], ["Tom", 8], ["Can", 6]] }
+            options: ["Can", "Ida", "Tom"]
+            answer: "Tom"
+          - id: l2-c18
+            part: most-fewest
+            type: multiple_choice
+            text: "Kastanien\nWer hat am wenigsten Kastanien gesammelt?"
+            say: "Lies das Diagramm. Wer hat am wenigsten Kastanien gesammelt?"
+            show: { drawn: bar-chart, rows: [["Ida", 5], ["Tom", 8], ["Can", 6]] }
+            options: ["Tom", "Ida", "Can"]
+            answer: "Ida"
+          - id: l2-c19
+            part: most-fewest
+            type: true_false
+            text: "Bücher in der Leseecke\nÜber Autos gibt es die meisten Bücher."
+            say: "Lies das Diagramm. Stimmt das? Über Autos gibt es die meisten Bücher."
+            show: { drawn: bar-chart, rows: [["Tiere", 7], ["Märchen", 4], ["Autos", 2]] }
+            answer: false
+          - id: l2-c20
+            part: most-fewest
+            type: image_multiple_choice
+            text: "Tiere auf dem Bauernhof\nVon welchem Tier gibt es am wenigsten?"
+            say: "Lies das Diagramm. Von welchem Tier gibt es auf dem Bauernhof am wenigsten? Tippe auf das Bild."
+            show: { drawn: bar-chart, rows: [["Kühe", 5], ["Schweine", 3], ["Hühner", 9]] }
+            options: [{ object: hen }, { object: cow }, { object: pig }]
+            answer: pig
           - id: l2-c1
+            part: table
             type: multiple_choice
             text: "Pausenbrot\n\nWer hat Obst dabei?"
             say: "Lies die Tabelle. Wer hat Obst dabei?"
@@ -431,6 +573,7 @@ lessons:
             options: ["Max", "Lina", "Defne"]
             answer: "Max"
           - id: l2-c2
+            part: chart-value
             type: multiple_choice
             text: "Unser Lieblingseis\nWie viele Kinder mögen Schokolade?"
             say: "Lies das Diagramm. Wie viele Kinder mögen Schokoladeneis am liebsten?"
@@ -438,6 +581,7 @@ lessons:
             options: ["6", "4", "5"]
             answer: "6"
           - id: l2-c3
+            part: most-fewest
             type: multiple_choice
             text: "Unser Lieblingseis\nWelches Eis mögen am wenigsten Kinder?"
             say: "Lies das Diagramm. Welches Eis mögen am wenigsten Kinder?"
@@ -445,12 +589,14 @@ lessons:
             options: ["Vanille", "Schokolade", "Erdbeere"]
             answer: "Vanille"
           - id: l2-c4
+            part: table
             type: true_false
             text: "Stundenplan\n\nAm Donnerstag hast du Musik."
             say: "Lies den Stundenplan. Stimmt das? Am Donnerstag hast du Musik."
             show: { drawn: table, rows: [[Stunde, Montag, Dienstag, Mittwoch, Donnerstag], ["1.", Mathe, Deutsch, Sport, Deutsch], ["2.", Deutsch, Kunst, Musik, Mathe]] }
             answer: false
           - id: l2-c5
+            part: most-fewest
             type: image_multiple_choice
             text: "Unsere Lieblingstiere im Zoo\nWelches Tier mögen die meisten Kinder?"
             say: "Lies das Diagramm. Welches Tier im Zoo mögen die meisten Kinder? Tippe auf das Bild."

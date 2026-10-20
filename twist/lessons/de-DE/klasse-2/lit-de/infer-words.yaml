@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: clue, what: { de: die Bedeutung aus dem Satz und den Sätzen danach erschließen, en: working out a meaning from the sentence and the ones after it } }
+    - { id: same-meaning, what: { de: "das Wort im Text finden, das fast das Gleiche bedeutet", en: "finding the word in the text that means nearly the same" } }
+    - { id: word-inside, what: { de: ein bekanntes Wort in einem langen Wort nutzen, en: using a known word inside a long one } }
+    - { id: look-up, what: { de: "wissen, wann und unter welchem Buchstaben man nachschlägt", en: knowing when to look a word up and under which letter } }
   misconceptions:
     - id: look-alike-word
       what: Guesses from a word that looks or sounds alike instead of reading the text (Knirps is a Knopf, a Wellensittich is a wave, a Federtasche holds feathers)
@@ -200,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -218,6 +224,25 @@ lessons:
             text: "Auf dem Tisch liegt ein Stapel Bücher.\nEin Buch liegt auf dem anderen.\n\nLiegen bei einem Stapel viele Dinge übereinander?"
             say: "Lies den Text. Liegen bei einem Stapel viele Dinge übereinander?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Der Hase hoppelt über die Wiese.\nEr macht viele kleine Sprünge.\n\nWas bedeutet hoppeln?"
+            say: "Lies den Text. Was bedeutet hoppeln?"
+            options: ["in kleinen Sprüngen laufen", "laut rufen", "tief graben"]
+            answer: "in kleinen Sprüngen laufen"
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Welches Wort bedeutet fast das Gleiche wie „prima“? Tippe darauf."
+            say: "Lies den Text. Welches Wort bedeutet fast das Gleiche wie prima? Tippe darauf."
+            show: { drawn: letter-card, text: "Das Fest war prima. Alle Kinder fanden es toll." }
+            spans: ["toll"]
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Nach dem Regen ist der Weg matschig.\nUnsere Schuhe sind voller Schlamm.\n\nFüll die Lücke."
+            say: "Lies den Text. Was heißt matschig? Füll die Lücke."
+            frame: "Matschig heißt: voller _."
+            options: ["Schlamm", "Sand", "Blätter"]
+            answer: ["Schlamm"]
 
   - n: 2
     title: { de: "Weiterlesen und nachschlagen", en: "Reading on and looking up" }
@@ -381,33 +406,143 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: clue
             type: multiple_choice
             text: "Der Igel sucht sich ein Quartier für den Winter.\nUnter einem Laubhaufen schläft er bis zum Frühling.\n\nWas ist hier ein Quartier?"
             say: "Lies den Text. Was ist hier ein Quartier?"
             options: ["ein Platz zum Wohnen und Schlafen", "ein Stück Futter", "ein Freund"]
             answer: "ein Platz zum Wohnen und Schlafen"
           - id: l2-c2
+            part: clue
             type: multiple_choice
             text: "Die Kinder stehen am Ufer.\nVor ihnen liegt der See.\nSie werfen Steine ins Wasser.\n\nWas ist ein Ufer?"
             say: "Lies den Text. Was ist ein Ufer?"
             options: ["der Rand am Wasser", "ein Boot", "ein Berg"]
             answer: "der Rand am Wasser"
           - id: l2-c3
+            part: word-inside
             type: multiple_choice
             text: "Ella packt ihre Federtasche.\nSie legt Stifte und einen Radiergummi hinein.\n\nWas ist eine Federtasche?"
             say: "Lies den Text. Was ist eine Federtasche?"
             options: ["eine Tasche für Stifte", "eine Tasche voller Federn", "ein Kissen"]
             answer: "eine Tasche für Stifte"
           - id: l2-c4
+            part: look-up
             type: multiple_choice
             text: "Unter welchem Buchstaben suchst du Pinguin im Lexikon?"
             say: "Unter welchem Buchstaben suchst du Pinguin im Lexikon?"
             options: ["P", "B", "G"]
             answer: "P"
           - id: l2-c5
+            part: clue
             type: true_false
             text: "Lukas ist heute sehr vergnügt.\nEr lacht, singt und hüpft durch die Küche.\n\nHeißt „vergnügt“: traurig?"
             say: "Lies den Text. Heißt vergnügt: traurig?"
             answer: false
+          - id: l2-c6
+            part: clue
+            type: multiple_choice
+            text: "Der Junge ist ganz verdutzt.\nEr reißt die Augen auf und weiß nicht, was er sagen soll.\n\nWas bedeutet verdutzt?"
+            say: "Lies den Text. Was bedeutet verdutzt?"
+            options: ["sehr überrascht", "sehr müde", "sehr wütend"]
+            answer: "sehr überrascht"
+          - id: l2-c7
+            part: clue
+            type: fill_in_blank
+            text: "In der Höhle ist es finster.\nMan kann nicht einmal die eigene Hand sehen.\n\nFüll die Lücke."
+            say: "Lies den Text. Was heißt finster? Füll die Lücke."
+            frame: "Finster heißt: ganz _."
+            options: ["dunkel", "laut", "warm"]
+            answer: ["dunkel"]
+          - id: l2-c8
+            part: same-meaning
+            type: highlight_in_text
+            text: "Welches Wort bedeutet fast das Gleiche wie „emsig“? Tippe darauf."
+            say: "Lies den Text. Welches Wort bedeutet fast das Gleiche wie emsig? Tippe darauf."
+            show: { drawn: letter-card, text: "Die Ameisen sind emsig. Sie sind den ganzen Tag fleißig bei der Arbeit." }
+            spans: ["fleißig"]
+          - id: l2-c9
+            part: same-meaning
+            type: highlight_in_text
+            text: "Welches Wort bedeutet fast das Gleiche wie „kauert“? Tippe darauf."
+            say: "Lies den Text. Welches Wort bedeutet fast das Gleiche wie kauert? Tippe darauf."
+            show: { drawn: letter-card, text: "Die Katze kauert hinter dem Busch. Sie hockt ganz still und wartet." }
+            spans: ["hockt"]
+          - id: l2-c10
+            part: same-meaning
+            type: highlight_in_text
+            text: "Welches Wort bedeutet fast das Gleiche wie „gigantisch“? Tippe darauf."
+            say: "Lies den Text. Welches Wort bedeutet fast das Gleiche wie gigantisch? Tippe darauf."
+            show: { drawn: letter-card, text: "Der Dinosaurier war gigantisch. Er war riesig, so hoch wie ein Haus." }
+            spans: ["riesig"]
+          - id: l2-c11
+            part: same-meaning
+            type: multiple_choice
+            text: "Mia ist betrübt.\nIhr Ballon ist weggeflogen, und jetzt ist sie traurig.\n\nWelches Wort im Text bedeutet fast das Gleiche wie „betrübt“?"
+            say: "Lies den Text. Welches Wort im Text bedeutet fast das Gleiche wie betrübt?"
+            options: ["traurig", "weggeflogen", "Ballon"]
+            answer: "traurig"
+          - id: l2-c12
+            part: same-meaning
+            type: true_false
+            text: "Der Bus ist proppenvoll.\nKein einziger Platz ist mehr frei.\n\nBedeutet „proppenvoll“ fast das Gleiche wie „fast leer“?"
+            say: "Lies den Text. Bedeutet proppenvoll fast das Gleiche wie fast leer?"
+            answer: false
+          - id: l2-c13
+            part: word-inside
+            type: multiple_choice
+            text: "Am Abend holt Papa die Taschenlampe.\nIm Dunkeln leuchtet er damit den Weg.\n\nWas ist eine Taschenlampe?"
+            say: "Lies den Text. Was ist eine Taschenlampe?"
+            options: ["eine kleine Lampe zum Tragen", "eine Tasche mit Licht darin", "eine Lampe an der Decke"]
+            answer: "eine kleine Lampe zum Tragen"
+          - id: l2-c14
+            part: word-inside
+            type: multiple_choice
+            text: "Im Zoo sehen wir einen Ameisenbären.\nMit seiner langen Zunge frisst er Ameisen.\n\nWas ist ein Ameisenbär?"
+            say: "Lies den Text. Was ist ein Ameisenbär?"
+            options: ["ein Tier, das Ameisen frisst", "ein Bär aus Ameisen", "eine sehr große Ameise"]
+            answer: "ein Tier, das Ameisen frisst"
+          - id: l2-c15
+            part: word-inside
+            type: true_false
+            text: "Tom zieht seine Gummistiefel an.\nDann springt er in jede Pfütze.\n\nSind Gummistiefel Stiefel aus Gummi?"
+            say: "Lies den Text. Sind Gummistiefel Stiefel aus Gummi?"
+            answer: true
+          - id: l2-c16
+            part: word-inside
+            type: multiple_choice
+            text: "Im Garten steht eine Vogeltränke.\nDie Spatzen trinken daraus und baden darin.\n\nWas ist eine Vogeltränke?"
+            say: "Lies den Text. Was ist eine Vogeltränke?"
+            options: ["eine Schale mit Wasser für Vögel", "ein Nest", "ein Vogel, der trinkt"]
+            answer: "eine Schale mit Wasser für Vögel"
+          - id: l2-c17
+            part: look-up
+            type: multiple_choice
+            text: "Unter welchem Buchstaben suchst du Chamäleon im Lexikon?"
+            say: "Unter welchem Buchstaben suchst du Chamäleon im Lexikon?"
+            options: ["C", "K", "S"]
+            answer: "C"
+          - id: l2-c18
+            part: look-up
+            type: ordering
+            text: "Im Lexikon stehen die Wörter nach dem ABC. Bring sie in die richtige Reihenfolge."
+            say: "Im Lexikon stehen die Wörter nach dem ABC. Bring sie in die richtige Reihenfolge."
+            options: ["Maus", "Ente", "Igel"]
+            slot_count: 3
+            answer: ["Ente", "Igel", "Maus"]
+          - id: l2-c19
+            part: look-up
+            type: multiple_choice
+            text: "Du verstehst ein Wort im Text nicht. Was machst du zuerst?"
+            say: "Du verstehst ein Wort im Text nicht. Was machst du zuerst?"
+            options: ["Ich lese den Satz und den Satz danach.", "Ich höre auf zu lesen.", "Ich lasse das Wort weg und rate."]
+            answer: "Ich lese den Satz und den Satz danach."
+          - id: l2-c20
+            part: look-up
+            type: true_false
+            text: "Lisa liest: „Der Gecko klettert an der Wand.“\nMehr steht im Text nicht über den Gecko.\n\nIst es gut, das Wort jetzt nachzuschlagen?"
+            say: "Lies den Text. Ist es gut, das Wort Gecko jetzt nachzuschlagen?"
+            answer: true

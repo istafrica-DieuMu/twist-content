@@ -23,6 +23,11 @@ metadata:
   forms: [picture, text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: middle, what: { de: "doppelte Mitlaute in der Wortmitte schreiben (Sonne, Mutter)", en: "writing double consonants in the middle of a word (Sonne, Mutter)" } }
+    - { id: end, what: { de: "doppelte Mitlaute am Wortende schreiben (Ball, Bett)", en: "writing double consonants at the end of a word (Ball, Bett)" } }
+    - { id: no-double, what: { de: "erkennen, wann nicht verdoppelt wird (Kante, Hose)", en: "knowing when not to double (Kante, Hose)" } }
+    - { id: rule, what: { de: "die Regel kennen: kurzer Selbstlaut und nur ein Mitlaut", en: "knowing the rule: a short vowel and only one consonant" } }
   misconceptions:
     - id: forget-double
       what: Writes one letter after a short vowel (Muter, Bet, Schif)
@@ -232,6 +237,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -253,6 +259,28 @@ lessons:
             say: "Der Affe. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Affe" }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "n oder nn?"
+            say: "Die Tonne. Was fehlt?"
+            show: { object: bin }
+            frame: "To_e"
+            options: ["nn", "n"]
+            answer: ["nn"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Das Wasser. Welches Wort ist richtig geschrieben?"
+            show: { object: water }
+            options: ["Wasser", "Waser", "Wahser"]
+            answer: "Wasser"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Der Hammer. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Hamer" }
+            answer: false
 
   - n: 2
     title: { de: "Wann wird verdoppelt?", en: "When to double" }
@@ -450,8 +478,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: middle
             type: fill_in_blank
             text: "m oder mm?"
             say: "Der Sommer. Was fehlt?"
@@ -459,6 +489,7 @@ lessons:
             options: ["mm", "m"]
             answer: ["mm"]
           - id: l2-c2
+            part: no-double
             type: fill_in_blank
             text: "n oder nn?"
             say: "Die Gans. Was fehlt?"
@@ -466,6 +497,7 @@ lessons:
             options: ["n", "nn"]
             answer: ["n"]
           - id: l2-c3
+            part: middle
             type: multiple_choice
             text: "Welches Wort ist richtig geschrieben?"
             say: "Das Wetter. Welches Wort ist richtig geschrieben?"
@@ -473,15 +505,132 @@ lessons:
             answer: "Wetter"
             option_audio: false
           - id: l2-c4
+            part: no-double
             type: true_false
             text: "Ist das Wort richtig geschrieben?"
             say: "Der Ofen. Lies das Wort. Ist es richtig geschrieben?"
             show: { drawn: letter-card, text: "Ofen" }
             answer: true
           - id: l2-c5
+            part: rule
             type: multiple_choice
             text: "Mantel: Wird der Mitlaut verdoppelt?"
             say: "Mantel. Wird hier ein Mitlaut verdoppelt?"
             options: ["Nein, man hört n und t.", "Ja, das a ist kurz."]
             keep_order: true
             answer: "Nein, man hört n und t."
+          - id: l2-c6
+            part: middle
+            type: fill_in_blank
+            text: "s oder ss?"
+            say: "Das Messer. Was fehlt?"
+            show: { object: knife }
+            frame: "Me_er"
+            options: ["ss", "s"]
+            answer: ["ss"]
+          - id: l2-c7
+            part: middle
+            type: text_input
+            keyboard: letters
+            text: "Schreib das fehlende Wort.\n\nDie _ webt ein Netz."
+            say: "Die Spinne webt ein Netz. Schreib das Wort Spinne."
+            show: { object: spider }
+            answer: "Spinne"
+          - id: l2-c8
+            part: middle
+            type: multiple_choice
+            text: "Welches Wort ist richtig geschrieben?"
+            say: "Die Qualle. Welches Wort ist richtig geschrieben?"
+            show: { object: jellyfish }
+            options: ["Qualle", "Quale", "Quahle"]
+            answer: "Qualle"
+            option_audio: false
+          - id: l2-c9
+            part: end
+            type: fill_in_blank
+            text: "f oder ff?"
+            say: "Das Schiff fährt über das Meer. Was fehlt?"
+            show: { object: ship }
+            frame: "das Schi_"
+            options: ["ff", "f"]
+            answer: ["ff"]
+          - id: l2-c10
+            part: end
+            type: text_input
+            keyboard: letters
+            text: "Schreib das fehlende Wort.\n\nDas _ ist weiß und hat weiche Wolle."
+            say: "Das Lamm ist weiß und hat weiche Wolle. Schreib das Wort Lamm."
+            show: { object: lamb }
+            answer: "Lamm"
+          - id: l2-c11
+            part: end
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Das Blatt. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Blat" }
+            answer: false
+          - id: l2-c12
+            part: end
+            type: multiple_choice
+            text: "Die Kühe stehen im _. Welches Wort ist richtig geschrieben?"
+            say: "Die Kühe stehen im Stall. Welches Wort ist richtig geschrieben?"
+            options: ["Stall", "Stal", "Staal"]
+            answer: "Stall"
+            option_audio: false
+          - id: l2-c13
+            part: end
+            type: fill_in_blank
+            text: "s oder ss? Setz die Buchstaben ein."
+            say: "Das Schloss steht am Fluss. Welche Buchstaben fehlen?"
+            frame: "Das Schlo_ steht am Flu_."
+            options: ["ss", "s"]
+            answer: ["ss", "ss"]
+          - id: l2-c14
+            part: no-double
+            type: fill_in_blank
+            text: "l oder ll?"
+            say: "Der Wald. Was fehlt?"
+            frame: "der Wa_d"
+            options: ["l", "ll"]
+            answer: ["l"]
+          - id: l2-c15
+            part: no-double
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Die Tomate. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Tomate" }
+            answer: true
+          - id: l2-c16
+            part: no-double
+            type: true_false
+            text: "Ist das Wort richtig geschrieben?"
+            say: "Das Fenster. Lies das Wort. Ist es richtig geschrieben?"
+            show: { drawn: letter-card, text: "Fennster" }
+            answer: false
+          - id: l2-c17
+            part: rule
+            type: multiple_choice
+            text: "Warum schreibt man Kissen mit ss?"
+            say: "Warum schreibt man Kissen mit ss?"
+            options: ["Das i ist kurz, und danach hört man nur ein s.", "Das i ist lang.", "Man hört zwei verschiedene Mitlaute."]
+            answer: "Das i ist kurz, und danach hört man nur ein s."
+          - id: l2-c18
+            part: rule
+            type: multiple_choice
+            text: "Warum schreibt man Kugel mit nur einem g?"
+            say: "Warum schreibt man Kugel mit nur einem g?"
+            options: ["Das u ist lang.", "Das u ist kurz.", "Nach einem u wird nie verdoppelt."]
+            answer: "Das u ist lang."
+          - id: l2-c19
+            part: rule
+            type: true_false
+            text: "Stimmt das? Nach einem kurzen Selbstlaut verdoppelt man auch das k: kk."
+            say: "Stimmt das? Nach einem kurzen Selbstlaut verdoppelt man auch das k, also zwei k."
+            answer: false
+          - id: l2-c20
+            part: rule
+            type: multiple_choice
+            text: "Lea hört in einem Wort einen kurzen Selbstlaut. Danach hört sie nur einen Mitlaut. Was macht sie?"
+            say: "Lea hört in einem Wort einen kurzen Selbstlaut. Danach hört sie nur einen Mitlaut. Was macht sie?"
+            options: ["Sie schreibt den Mitlaut doppelt.", "Sie schreibt den Mitlaut einfach.", "Sie schreibt ein h dazu."]
+            answer: "Sie schreibt den Mitlaut doppelt."

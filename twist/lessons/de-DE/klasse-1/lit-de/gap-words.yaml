@@ -25,6 +25,11 @@ metadata:
   forms: [picture, drawn, audio]
   drawn: [word-card]
   facets: []
+  parts:
+    - { id: letter, what: { de: einen fehlenden Buchstaben ergänzen, en: filling in a missing letter } }
+    - { id: letter-group, what: { de: "einen Laut mit mehreren Buchstaben ergänzen (sch, ch, ei, au, eu)", en: "filling in a sound written with more than one letter (sch, ch, ei, au, eu)" } }
+    - { id: syllables, what: { de: Wörter aus Silben bauen und fehlende Silben ergänzen, en: building words from syllables and filling in missing syllables } }
+    - { id: letters, what: { de: Wörter aus Buchstaben legen, en: building words from letters } }
   misconceptions:
     - id: one-letter-per-sound
       what: Thinks every sound is one letter, so writes s for sch or a for au (Fis, Hs)
@@ -188,6 +193,7 @@ lessons:
                 type: fill_in_blank
                 text: "Was fehlt?"
                 say: "Eule. Was fehlt?"
+                show: { object: owl }
                 frame: "_le"
                 options: ["Eu", "Ei", "E"]
                 answer: ["Eu"]
@@ -238,6 +244,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -250,17 +257,43 @@ lessons:
           - id: l1-c2
             type: fill_in_blank
             text: "Was fehlt?"
-            say: "Tasche. Was fehlt?"
-            frame: "Ta_e"
+            say: "Flasche. Was fehlt?"
+            show: { object: bottle }
+            frame: "Fla_e"
             options: ["s", "sch", "ch"]
             answer: ["sch"]
           - id: l1-c3
             type: fill_in_blank
             text: "Welcher Buchstabe fehlt?"
-            say: "Nudel. Welcher Buchstabe fehlt?"
-            frame: "Nu_el"
+            say: "Ente. Welcher Buchstabe fehlt?"
+            show: { object: duck }
+            frame: "En_e"
             options: ["d", "t", "b"]
-            answer: ["d"]
+            answer: ["t"]
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Muschel. Was fehlt?"
+            show: { object: shell }
+            frame: "Mu_el"
+            options: ["s", "ch", "sch"]
+            answer: ["sch"]
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Auge. Was fehlt?"
+            show: { object: eye }
+            frame: "_ge"
+            options: ["Au", "A", "Ei"]
+            answer: ["Au"]
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Arm. Welcher Buchstabe fehlt?"
+            show: { object: arm }
+            frame: "A_m"
+            options: ["l", "r", "n"]
+            answer: ["r"]
 
   - n: 2
     title: { de: Wörter bauen, en: Building words }
@@ -334,14 +367,15 @@ lessons:
               - id: l2-f3
                 type: ordering
                 text: "Bau das Wort."
-                say: "Rakete. Bau das Wort aus den Silben. Eine Silbe passt nicht."
-                options: ["te", "Ra", "ke", "ka"]
+                say: "Lineal. Bau das Wort aus den Silben. Eine Silbe passt nicht."
+                show: { object: ruler }
+                options: ["al", "Li", "ne", "na"]
                 slot_count: 3
-                answer: ["Ra", "ke", "te"]
+                answer: ["Li", "ne", "al"]
                 hints:
-                  - "Sprich langsam: Ra ... ke ... te."
-                  - "Ke oder ka? Hör auf die Mitte."
-                  - "Ra, ke, te."
+                  - "Sprich langsam: Li ... ne ... al."
+                  - "Ne oder na? Hör auf die Mitte."
+                  - "Li, ne, al."
               - id: l2-f4
                 type: fill_in_blank
                 text: "Welche Silben fehlen?"
@@ -399,11 +433,12 @@ lessons:
               - id: l2-s4
                 type: ordering
                 text: "Bau das Wort."
-                say: "Melone. Bau das Wort aus den Silben. Eine Silbe passt nicht."
-                options: ["lo", "ne", "Me", "Ma"]
+                say: "Ananas. Bau das Wort aus den Silben. Eine Silbe passt nicht."
+                show: { object: pineapple }
+                options: ["nas", "na", "A", "ne"]
                 slot_count: 3
-                answer: ["Me", "lo", "ne"]
-                hints: ["Me ... lo ... ne."]
+                answer: ["A", "na", "nas"]
+                hints: ["A ... na ... nas."]
               - id: l2-s5
                 type: ordering
                 text: "Leg das Wort."
@@ -459,8 +494,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: letter-group
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Schnee. Was fehlt?"
@@ -469,6 +506,7 @@ lessons:
             options: ["S", "Sch", "Ch"]
             answer: ["Sch"]
           - id: l2-c2
+            part: letter-group
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Auto. Was fehlt?"
@@ -477,6 +515,7 @@ lessons:
             options: ["A", "Au", "Ei"]
             answer: ["Au"]
           - id: l2-c3
+            part: syllables
             type: ordering
             text: "Bau das Wort."
             say: "Krokodil. Bau das Wort aus den Silben. Eine Silbe passt nicht."
@@ -485,6 +524,7 @@ lessons:
             slot_count: 3
             answer: ["Kro", "ko", "dil"]
           - id: l2-c4
+            part: letters
             type: ordering
             text: "Leg das Wort."
             say: "Igel. Leg die Buchstaben."
@@ -493,6 +533,7 @@ lessons:
             slot_count: 4
             answer: ["I", "g", "e", "l"]
           - id: l2-c5
+            part: letter-group
             type: fill_in_blank
             text: "Was fehlt?"
             say: "Kuchen. Was fehlt?"
@@ -500,3 +541,138 @@ lessons:
             frame: "Ku_en"
             options: ["sch", "ch", "k"]
             answer: ["ch"]
+          - id: l2-c6
+            part: letter
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Ziege. Welcher Buchstabe fehlt?"
+            show: { object: goat }
+            frame: "Zie_e"
+            options: ["k", "g", "d"]
+            answer: ["g"]
+          - id: l2-c7
+            part: letter
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Lampe. Welcher Buchstabe fehlt?"
+            show: { object: lamp }
+            frame: "Lam_e"
+            options: ["p", "b", "t"]
+            answer: ["p"]
+          - id: l2-c8
+            part: letter
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Kerze. Welcher Buchstabe fehlt?"
+            show: { object: candle }
+            frame: "Ker_e"
+            options: ["s", "t", "z"]
+            answer: ["z"]
+          - id: l2-c9
+            part: letter
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Gabel. Welcher Buchstabe fehlt?"
+            show: { object: fork }
+            frame: "Ga_el"
+            options: ["b", "p", "d"]
+            answer: ["b"]
+          - id: l2-c10
+            part: letter
+            type: fill_in_blank
+            text: "Welcher Buchstabe fehlt?"
+            say: "Tanne. Welcher Buchstabe fehlt?"
+            show: { object: fir-tree }
+            frame: "_anne"
+            options: ["D", "K", "T"]
+            answer: ["T"]
+          - id: l2-c11
+            part: letter-group
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Eimer. Was fehlt?"
+            show: { object: bucket }
+            frame: "_mer"
+            options: ["E", "Ei", "Au"]
+            answer: ["Ei"]
+          - id: l2-c12
+            part: letter-group
+            type: fill_in_blank
+            text: "Was fehlt?"
+            say: "Kirche. Was fehlt?"
+            show: { object: church }
+            frame: "Kir_e"
+            options: ["sch", "k", "ch"]
+            answer: ["ch"]
+          - id: l2-c13
+            part: syllables
+            type: ordering
+            text: "Bau das Wort."
+            say: "Zebra. Bau das Wort aus den Silben. Eine Silbe passt nicht."
+            show: { object: zebra }
+            options: ["bra", "Ze", "bro"]
+            slot_count: 2
+            answer: ["Ze", "bra"]
+          - id: l2-c14
+            part: syllables
+            type: ordering
+            text: "Bau das Wort."
+            say: "Pizza. Bau das Wort aus den Silben. Eine Silbe passt nicht."
+            show: { object: pizza }
+            options: ["zu", "za", "Piz"]
+            slot_count: 2
+            answer: ["Piz", "za"]
+          - id: l2-c15
+            part: syllables
+            type: fill_in_blank
+            text: "Welche Silbe fehlt?"
+            say: "Sonne. Welche Silbe fehlt?"
+            show: { object: sun }
+            frame: "Son_"
+            options: ["na", "ne", "no"]
+            answer: ["ne"]
+          - id: l2-c16
+            part: syllables
+            type: fill_in_blank
+            text: "Welche Silben fehlen?"
+            say: "Badewanne. Welche Silben fehlen?"
+            show: { object: bath }
+            frame: "Ba_ _ne"
+            options: ["wan", "da", "de"]
+            answer: ["de", "wan"]
+          - id: l2-c17
+            part: letters
+            type: ordering
+            text: "Leg das Wort."
+            say: "Hund. Leg die Buchstaben."
+            show: { object: dog }
+            options: ["n", "d", "H", "u"]
+            slot_count: 4
+            answer: ["H", "u", "n", "d"]
+          - id: l2-c18
+            part: letters
+            type: ordering
+            text: "Leg das Wort."
+            say: "Brot. Leg die Buchstaben."
+            show: { object: bread }
+            options: ["o", "t", "B", "r"]
+            slot_count: 4
+            answer: ["B", "r", "o", "t"]
+          - id: l2-c19
+            part: letters
+            type: ordering
+            text: "Leg das Wort."
+            say: "Ofen. Leg die Buchstaben."
+            show: { object: oven }
+            options: ["e", "n", "O", "f"]
+            slot_count: 4
+            answer: ["O", "f", "e", "n"]
+          - id: l2-c20
+            part: letters
+            type: ordering
+            text: "Leg das Wort."
+            say: "Mond. Leg die Buchstaben."
+            show: { object: moon }
+            options: ["d", "o", "M", "n"]
+            slot_count: 4
+            answer: ["M", "o", "n", "d"]

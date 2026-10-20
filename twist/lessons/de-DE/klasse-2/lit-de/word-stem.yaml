@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: find-stem, what: { de: "den Wortstamm eines Wortes finden (spiel in spielen)", en: "finding the stem of a word (spiel in spielen)" } }
+    - { id: family, what: { de: "Wörter einer Wortfamilie sammeln, auch mit Teilen davor und dahinter (abfahren, Fahrer)", en: "collecting the words of a family, also with parts in front and behind (abfahren, Fahrer)" } }
+    - { id: look-alike, what: { de: "Wörter aussortieren, die nur ähnlich aussehen (Fahne, Farbe)", en: "sorting out words that only look similar (Fahne, Farbe)" } }
+    - { id: same-spelling, what: { de: den Wortstamm in allen Wörtern der Familie gleich schreiben, en: spelling the stem the same in every word of the family } }
   misconceptions:
     - id: look-alike
       what: Takes a word that only looks similar as part of the family (Fahne for fahren, Hund for Hand, Spiegel for spielen)
@@ -119,7 +124,7 @@ lessons:
                   - "Nein, die Fahne gehört nicht dazu."
               - id: l1-f5
                 type: fill_in_blank
-                text: "Setz den Wortstamm ein."
+                text: "Wortfamilie lesen. Setz den Wortstamm ein."
                 say: "Lesen, der Leser, das Lesebuch. Welcher Wortstamm fehlt?"
                 frame: "der _er"
                 options: ["Les", "Läs", "Lees"]
@@ -160,7 +165,7 @@ lessons:
                 hints: ["Steckt in Leser der Teil les?"]
               - id: l1-s5
                 type: fill_in_blank
-                text: "Setz den Wortstamm ein."
+                text: "Wortfamilie malen. Setz den Wortstamm ein."
                 say: "Malen, der Maler, der Malkasten. Welcher Wortstamm fehlt?"
                 frame: "der _kasten"
                 options: ["Mal", "Mahl", "Maal"]
@@ -194,7 +199,7 @@ lessons:
                 answer: false
               - id: l1-n5
                 type: fill_in_blank
-                text: "Setz den Wortstamm ein."
+                text: "Wortfamilie turnen. Setz den Wortstamm ein."
                 say: "Turnen, der Turner, die Turnhalle. Welcher Wortstamm fehlt?"
                 frame: "die _halle"
                 options: ["Turn", "Tur", "Durn"]
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -220,6 +226,25 @@ lessons:
             text: "Gehört das Brettspiel zur Wortfamilie spielen?"
             say: "Gehört das Brettspiel zur Wortfamilie spielen?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Wortfamilie backen. Setz den Wortstamm ein."
+            say: "Backen, der Backofen, die Backform. Welcher Wortstamm fehlt?"
+            frame: "die _form"
+            options: ["Back", "Bak", "Bagg"]
+            answer: ["Back"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Was ist der Wortstamm von suchen?"
+            say: "Was ist der Wortstamm von suchen?"
+            options: ["su", "such", "chen"]
+            answer: "such"
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tippe auf die Wörter mit dem Wortstamm spring."
+            say: "Tippe auf alle Wörter mit dem Wortstamm spring."
+            show: { drawn: letter-card, text: "springen Spinne Springseil Ring Springbrunnen" }
+            spans: ["springen", "Springseil", "Springbrunnen"]
 
   - n: 2
     title: { de: "Wortfamilien sammeln", en: "Collecting word families" }
@@ -388,8 +413,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: family
             type: matching
             text: "Welche Wörter sind verwandt?"
             say: "Welche Wörter sind verwandt? Verbinde sie."
@@ -399,25 +426,147 @@ lessons:
               - { left: { text: "die Leseecke" }, right: { text: "lesen" } }
               - { left: { text: "das Spielzeug" }, right: { text: "spielen" } }
           - id: l2-c2
+            part: find-stem
             type: multiple_choice
             text: "Was ist der Wortstamm von tanzen?"
             say: "Was ist der Wortstamm von tanzen?"
             options: ["tanz", "tan", "zen"]
             answer: "tanz"
           - id: l2-c3
+            part: family
             type: highlight_in_text
             text: "Tippe auf alle Wörter der Wortfamilie Schule."
             say: "Tippe auf alle Wörter, die zur Wortfamilie Schule gehören."
             show: { drawn: letter-card, text: "Schulweg Schuh Schulhof Schaufel Schultasche" }
             spans: ["Schulweg", "Schulhof", "Schultasche"]
           - id: l2-c4
+            part: look-alike
             type: true_false
             text: "Gehört der Turm zur Wortfamilie turnen?"
             say: "Gehört der Turm zur Wortfamilie turnen?"
             answer: false
           - id: l2-c5
+            part: look-alike
             type: multiple_choice
             text: "Spiel, Spieler, Spiegel, spielen: Welches Wort gehört nicht dazu?"
             say: "Spiel, Spieler, Spiegel, spielen. Welches Wort gehört nicht zur Wortfamilie?"
             options: ["Spiegel", "Spieler", "spielen"]
             answer: "Spiegel"
+          - id: l2-c6
+            part: find-stem
+            type: multiple_choice
+            text: "kochen, der Koch, der Kochtopf: Welcher Wortstamm steckt in allen drei Wörtern?"
+            say: "Lies die drei Wörter. Welcher Wortstamm steckt in allen?"
+            options: ["ko", "topf", "koch"]
+            answer: "koch"
+          - id: l2-c7
+            part: find-stem
+            type: highlight_in_text
+            text: "Tippe auf den Wortstamm von trinken."
+            say: "Das Wort trinken ist in zwei Teile getrennt. Tippe auf den Wortstamm."
+            show: { drawn: letter-card, text: "trink en" }
+            spans: ["trink"]
+          - id: l2-c8
+            part: find-stem
+            type: multiple_choice
+            text: "die Wanderung: Was ist der Wortstamm?"
+            say: "Die Wanderung. Was ist der Wortstamm?"
+            options: ["wand", "wander", "ung"]
+            answer: "wander"
+          - id: l2-c9
+            part: find-stem
+            type: true_false
+            text: "Der Wortstamm von fliegen ist flieg. Stimmt das?"
+            say: "Lies den Satz. Stimmt das?"
+            answer: true
+          - id: l2-c10
+            part: family
+            type: matching
+            text: "Verbinde jedes Wort mit einem Wort aus seiner Familie."
+            say: "Lies die Wörter. Welche sind verwandt? Verbinde sie."
+            pairs:
+              - { left: { text: "das Schwimmbad" }, right: { text: "schwimmen" } }
+              - { left: { text: "die Zahnbürste" }, right: { text: "der Zahn" } }
+              - { left: { text: "die Trinkflasche" }, right: { text: "trinken" } }
+          - id: l2-c11
+            part: family
+            type: multiple_choice
+            text: "Sonne, sonnig, Sonnenbrille: Welches Wort gehört auch zu dieser Wortfamilie?"
+            say: "Sonne, sonnig, Sonnenbrille. Welches Wort gehört auch zu dieser Wortfamilie?"
+            options: ["der Sohn", "der Sonnenschirm", "sonst"]
+            answer: "der Sonnenschirm"
+          - id: l2-c12
+            part: family
+            type: sorting
+            text: "Wortfamilie schlafen oder Wortfamilie lesen? Sortiere."
+            say: "Lies jedes Wort. Gehört es zur Wortfamilie schlafen oder zur Wortfamilie lesen? Sortiere."
+            bins:
+              - { id: schlafen, show: { text: "schlafen" }, say: "schlafen" }
+              - { id: lesen, show: { text: "lesen" }, say: "lesen" }
+            options:
+              - { text: "das Schlafzimmer", bin: schlafen }
+              - { text: "die Leseratte", bin: lesen }
+              - { text: "verschlafen", bin: schlafen }
+              - { text: "vorlesen", bin: lesen }
+          - id: l2-c13
+            part: look-alike
+            type: highlight_in_text
+            text: "Tippe auf alle Wörter der Wortfamilie Wasser."
+            say: "Tippe auf alle Wörter, die zur Wortfamilie Wasser gehören."
+            show: { drawn: letter-card, text: "Wasserball Wagen Wasserflasche Waffel Regenwasser" }
+            spans: ["Wasserball", "Wasserflasche", "Regenwasser"]
+          - id: l2-c14
+            part: look-alike
+            type: true_false
+            text: "Wald und Walnuss gehören zur gleichen Wortfamilie. Stimmt das?"
+            say: "Lies die beiden Wörter. Gehören sie zur gleichen Wortfamilie? Stimmt das?"
+            answer: false
+          - id: l2-c15
+            part: look-alike
+            type: multiple_choice
+            text: "Tier, Tierarzt, Tiger, Haustier: Welches Wort gehört nicht dazu?"
+            say: "Tier, Tierarzt, Tiger, Haustier. Welches Wort gehört nicht zur Wortfamilie?"
+            options: ["Tierarzt", "Tiger", "Haustier"]
+            answer: "Tiger"
+          - id: l2-c16
+            part: same-spelling
+            type: fill_in_blank
+            text: "Wortfamilie wohnen. Setz den Wortstamm ein."
+            say: "Wohnen, die Wohnung, das Wohnzimmer. Welcher Wortstamm fehlt?"
+            frame: "die _ung"
+            options: ["Won", "Wohn", "Woon"]
+            answer: ["Wohn"]
+            option_audio: false
+          - id: l2-c17
+            part: same-spelling
+            type: fill_in_blank
+            text: "Wortfamilie fühlen. Setz den Wortstamm ein."
+            say: "Fühlen, das Gefühl. Welcher Wortstamm fehlt?"
+            frame: "das Ge_"
+            options: ["fül", "füll", "fühl"]
+            answer: ["fühl"]
+            option_audio: false
+          - id: l2-c18
+            part: same-spelling
+            type: multiple_choice
+            text: "Das Wort gehört zur Wortfamilie Hand. Welches ist richtig geschrieben?"
+            say: "Handtuch. Das Wort gehört zur Wortfamilie Hand. Welches ist richtig geschrieben?"
+            options: ["Hanttuch", "Handtuch", "Hantuch"]
+            answer: "Handtuch"
+            option_audio: false
+          - id: l2-c19
+            part: same-spelling
+            type: true_false
+            text: "Im Wort „Malerin“ schreibt man den Wortstamm genauso wie in „malen“. Stimmt das?"
+            say: "Lies den Satz. Stimmt das?"
+            answer: true
+          - id: l2-c20
+            part: same-spelling
+            type: fill_in_blank
+            text: "Wortfamilie Schnee. Setz den Wortstamm ein."
+            say: "Schnee, der Schneemann. Welcher Wortstamm fehlt?"
+            show: { object: snowman }
+            frame: "der _mann"
+            options: ["Schne", "Schneh", "Schnee"]
+            answer: ["Schnee"]
+            option_audio: false
