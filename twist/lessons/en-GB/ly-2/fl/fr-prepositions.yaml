@@ -27,6 +27,10 @@ metadata:
   forms: [audio, text, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: dans-sur-sous, what: { de: "dans, sur und sous verstehen", en: "understanding dans, sur and sous" } }
+    - { id: cote-derriere, what: { de: à côté de und derrière verstehen, en: understanding à côté de and derrière } }
+    - { id: say-where, what: { de: "auf Französisch sagen, wo etwas ist", en: saying in French where something is } }
   misconceptions:
     - id: sur-sous
       what: Mixes up sur (on) and sous (under) because they sound alike
@@ -137,6 +141,7 @@ lessons:
                   - "Le ballon est sous la chaise."
               - id: l1-f5
                 type: speak
+                text: "Say in French: The cat is on the bed."
                 say: { en: "Say in French: The cat is on the bed.", fr: "Le chat est sur le lit." }
                 show: { objects: [cat, bed] }
                 expected_text: "Le chat est sur le lit."
@@ -151,7 +156,7 @@ lessons:
                 type: audio_choice
                 text: "Where is the pencil?"
                 say: { en: "Listen. Where is the pencil?" }
-                audio: { fr: "Où est mon crayon ? Il est sous le livre." }
+                audio: { turns: [{ fr: "Où est mon crayon ?", speaker: male }, { fr: "Il est sous le livre.", speaker: female }] }
                 options: ["under the book", "in the book", "on the book"]
                 answer: "under the book"
                 hints: ["Listen for the word before le livre."]
@@ -172,7 +177,7 @@ lessons:
               - id: l1-s4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: The mouse is under the table."
                 say: { en: "Build the sentence: The mouse is under the table." }
                 options: ["sous", "La souris", "la table.", "est"]
                 slot_count: 4
@@ -180,6 +185,7 @@ lessons:
                 hints: ["The sentence starts with la souris est."]
               - id: l1-s5
                 type: speak
+                text: "Say in French: The ball is in the box."
                 say: { en: "Say in French: The ball is in the box.", fr: "Le ballon est dans la boîte." }
                 show: { objects: [ball, box] }
                 expected_text: "Le ballon est dans la boîte."
@@ -209,7 +215,7 @@ lessons:
               - id: l1-n4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: The book is in the schoolbag."
                 say: { en: "Build the sentence: The book is in the schoolbag." }
                 options: ["dans", "Le livre", "le cartable.", "est"]
                 slot_count: 4
@@ -224,6 +230,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -233,17 +240,38 @@ lessons:
             options: ["under the table", "on the table", "in the table"]
             answer: "under the table"
           - id: l1-c2
-            type: fill_in_blank
+            type: multiple_choice
             option_audio: false
-            text: "Finish the sentence.\nThe cat is in the box."
-            show: { objects: [cat, box] }
-            frame: "Le chat est _ la boîte."
-            options: ["dans", "sur", "sous"]
-            answer: ["dans"]
+            text: "How do you say “under” in French?"
+            say: { en: "How do you say under in French?" }
+            options: ["sur", "dans", "sous"]
+            answer: "sous"
           - id: l1-c3
             type: true_false
-            text: "Le livre est sur le lit.\nDoes that mean the book is on the bed?"
-            answer: true
+            text: "Listen. Is the cat in the box?"
+            say: { en: "Listen. Is the cat in the box?", fr: "Le chat est sur la boîte." }
+            answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "Where is the book?"
+            say: { en: "Listen. Where is the book?" }
+            audio: { fr: "Le livre est sous la chaise." }
+            options: ["on the chair", "under the chair", "in the chair"]
+            answer: "under the chair"
+          - id: l1-c5
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: The ball is on the bed."
+            say: { en: "Build the sentence: The ball is on the bed." }
+            options: ["sur", "le lit.", "Le ballon", "est"]
+            slot_count: 4
+            answer: ["Le ballon", "est", "sur", "le lit."]
+          - id: l1-c6
+            type: multiple_choice
+            text: "What does “dans” mean?"
+            say: { en: "What does dans mean?" }
+            options: ["on", "in", "under"]
+            answer: "in"
 
   - n: 2
     title: { de: "à côté de, derrière", en: "à côté de, derrière" }
@@ -362,7 +390,7 @@ lessons:
                 type: audio_choice
                 text: "Where is Dad?"
                 say: { en: "Listen. Where is Dad?" }
-                audio: { fr: "Où est Papa ? Il est derrière la maison." }
+                audio: { turns: [{ fr: "Où est Papa ?", speaker: female }, { fr: "Il est derrière la maison.", speaker: male }] }
                 options: ["behind the house", "in the house", "next to the house"]
                 answer: "behind the house"
                 hints: ["Listen for the word before la maison."]
@@ -383,7 +411,7 @@ lessons:
               - id: l2-s4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the answer: It's next to the door."
                 say: { en: "Build the answer: It's next to the door." }
                 options: ["à côté de", "Il est", "la porte."]
                 slot_count: 3
@@ -391,6 +419,7 @@ lessons:
                 hints: ["Start with il est."]
               - id: l2-s5
                 type: speak
+                text: "Answer in French: It's behind the door."
                 say: { en: "Answer in French: It's behind the door.", fr: "Il est derrière la porte." }
                 show: { objects: [dog, door] }
                 expected_text: "Il est derrière la porte."
@@ -435,8 +464,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: dans-sur-sous
             type: audio_choice
             text: "Where is the teddy?"
             say: { en: "Listen. Where is the teddy?" }
@@ -444,6 +475,7 @@ lessons:
             options: ["under the bed", "on the bed", "next to the bed"]
             answer: "under the bed"
           - id: l2-c2
+            part: cote-derriere
             type: audio_choice
             text: "Where is the cat?"
             say: { en: "Listen. Where is the cat?" }
@@ -451,6 +483,7 @@ lessons:
             options: ["behind the sofa", "next to the sofa", "on the sofa"]
             answer: "behind the sofa"
           - id: l2-c3
+            part: say-where
             type: fill_in_blank
             option_audio: false
             text: "Finish the sentence.\nThe pencil is on the book."
@@ -459,6 +492,7 @@ lessons:
             options: ["sur", "sous", "dans"]
             answer: ["sur"]
           - id: l2-c4
+            part: say-where
             type: fill_in_blank
             option_audio: false
             text: "Finish the sentence.\nThe chair is next to the table."
@@ -467,10 +501,127 @@ lessons:
             options: ["à côté de", "à côté", "derrière"]
             answer: ["à côté de"]
           - id: l2-c5
+            part: say-where
             type: ordering
             option_audio: false
-            text: "Put the words in order."
+            text: "Build the sentence: The rabbit is in the garden."
             say: { en: "Build the sentence: The rabbit is in the garden." }
             options: ["dans", "Le lapin", "le jardin.", "est"]
             slot_count: 4
             answer: ["Le lapin", "est", "dans", "le jardin."]
+          - id: l2-c6
+            part: dans-sur-sous
+            type: audio_choice
+            text: "Where is the ball?"
+            say: { en: "Listen. Where is the ball?" }
+            audio: { fr: "Le ballon est sous le canapé." }
+            options: ["on the sofa", "under the sofa", "behind the sofa"]
+            answer: "under the sofa"
+          - id: l2-c7
+            part: dans-sur-sous
+            type: audio_choice
+            text: "Where are the shoes?"
+            say: { en: "Listen. Where are the shoes?" }
+            audio: { fr: "Les chaussures sont sur la table." }
+            options: ["under the table", "behind the table", "on the table"]
+            answer: "on the table"
+          - id: l2-c8
+            part: dans-sur-sous
+            type: true_false
+            text: "Listen. Is the ball under the bed?"
+            say: { en: "Listen. Is the ball under the bed?", fr: "Le ballon est sur le lit." }
+            answer: false
+          - id: l2-c9
+            part: dans-sur-sous
+            type: multiple_choice
+            text: "What does “sous” mean?"
+            say: { en: "What does sous mean?" }
+            options: ["under", "on", "in"]
+            answer: "under"
+          - id: l2-c10
+            part: dans-sur-sous
+            type: audio_choice
+            text: "Where is the mouse?"
+            say: { en: "Listen. Where is the mouse?" }
+            audio: { fr: "La souris est dans le cartable." }
+            options: ["under the schoolbag", "on the schoolbag", "in the schoolbag"]
+            answer: "in the schoolbag"
+          - id: l2-c11
+            part: dans-sur-sous
+            type: multiple_choice
+            option_audio: false
+            text: "How do you say “on” in French?"
+            say: { en: "How do you say on in French?" }
+            options: ["sous", "sur", "dans"]
+            answer: "sur"
+          - id: l2-c12
+            part: cote-derriere
+            type: audio_choice
+            text: "Where is the cat?"
+            say: { en: "Listen. Where is the cat?" }
+            audio: { fr: "Le chat est à côté de la porte." }
+            options: ["behind the door", "next to the door", "in the door"]
+            answer: "next to the door"
+          - id: l2-c13
+            part: cote-derriere
+            type: audio_choice
+            text: "Where is the bike?"
+            say: { en: "Listen. Where is the bike?" }
+            audio: { fr: "Le vélo est derrière l'arbre." }
+            options: ["next to the tree", "on the tree", "behind the tree"]
+            answer: "behind the tree"
+          - id: l2-c14
+            part: cote-derriere
+            type: true_false
+            text: "Listen. Is the dog next to the house?"
+            say: { en: "Listen. Is the dog next to the house?", fr: "Le chien est à côté de la maison." }
+            answer: true
+          - id: l2-c15
+            part: cote-derriere
+            type: multiple_choice
+            text: "What does “derrière” mean?"
+            say: { en: "What does derrière mean?" }
+            options: ["next to", "behind", "under"]
+            answer: "behind"
+          - id: l2-c16
+            part: cote-derriere
+            type: audio_choice
+            text: "Where is the teddy?"
+            say: { en: "Listen. Where is the teddy?" }
+            audio: { turns: [{ fr: "Où est le nounours ?", speaker: female }, { fr: "Il est à côté de la fenêtre.", speaker: male }] }
+            options: ["behind the window", "next to the window", "on the window"]
+            answer: "next to the window"
+          - id: l2-c17
+            part: say-where
+            type: fill_in_blank
+            option_audio: false
+            text: "Finish the sentence.\nThe books are under the bed."
+            show: { objects: [book, bed] }
+            frame: "Les livres sont _ le lit."
+            options: ["sur", "derrière", "sous"]
+            answer: ["sous"]
+          - id: l2-c18
+            part: say-where
+            type: multiple_choice
+            option_audio: false
+            text: "“Où est le chien ?” The dog is in the garden. What do you answer?"
+            say: { en: "The dog is in the garden. What do you answer?", fr: "Où est le chien ?" }
+            options: ["Elle est dans le jardin.", "Il est dans le jardin.", "Il est derrière le jardin."]
+            answer: "Il est dans le jardin."
+          - id: l2-c19
+            part: say-where
+            type: ordering
+            option_audio: false
+            text: "“Où est la souris ?” Build the answer: It's under the bed."
+            say: { en: "Where is the mouse? Build the answer: It's under the bed." }
+            options: ["le lit.", "Il est", "sous", "Elle est"]
+            slot_count: 3
+            answer: ["Elle est", "sous", "le lit."]
+          - id: l2-c20
+            part: say-where
+            type: multiple_choice
+            option_audio: false
+            text: "How do you say in French: The bike is behind the house?"
+            say: { en: "How do you say in French: The bike is behind the house?" }
+            options: ["Le vélo est à côté de la maison.", "Le vélo est derrière la maison.", "Le vélo est dans la maison."]
+            answer: "Le vélo est derrière la maison."

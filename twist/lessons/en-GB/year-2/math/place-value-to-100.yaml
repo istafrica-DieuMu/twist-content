@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten, place-value-chart, part-whole]
   facets: []
+  parts:
+    - { id: chart-blocks, what: { de: Zahlen in der Stellentafel und mit Zehnerstangen und Einerwürfeln zeigen, en: showing numbers in a tens and ones chart and with blocks } }
+    - { id: digit-value, what: { de: "sagen, wie viel eine Ziffer wert ist", en: saying what a digit is worth } }
+    - { id: partition, what: { de: in Zehner und Einer zerlegen, en: partitioning into tens and ones } }
+    - { id: other-ways, what: { de: auf andere Arten zerlegen, en: partitioning in more than one way } }
   misconceptions:
     - id: digit-value
       what: Says the 3 in 34 is worth 3
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -248,6 +254,27 @@ lessons:
             text: "What is the 2 in 25 worth?"
             options: ["2", "20", "5"]
             answer: "20"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which chart shows 61?"
+            options:
+              - { drawn: place-value-chart, columns: [tens, ones], values: [1, 6] }
+              - { drawn: place-value-chart, columns: [tens, ones], values: [6, 1] }
+              - { drawn: place-value-chart, columns: [tens, ones], values: [6, 0] }
+            answer: "61"
+          - id: l1-c5
+            type: multiple_choice
+            text: "What is the missing part?"
+            say: "The whole is eighty-two. One part is eighty. What is the other part?"
+            show: { drawn: part-whole, whole: 82, parts: [80, null] }
+            options: ["2", "8", "20"]
+            answer: "2"
+          - id: l1-c6
+            type: multiple_choice
+            text: "How many?"
+            show: { drawn: base-ten, tens: 5, ones: 6 }
+            options: ["56", "65", "11"]
+            answer: "56"
 
   - n: 2
     title: { de: Auf verschiedene Arten zerlegen, en: Partitioning in different ways }
@@ -424,20 +451,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: chart-blocks
             type: multiple_choice
             text: "What number is in the chart?"
             show: { drawn: place-value-chart, columns: [tens, ones], values: [9, 3] }
             options: ["39", "93", "12"]
             answer: "93"
           - id: l2-c2
+            part: partition
             type: fill_in_blank
             text: "Partition 76."
             frame: "76 = _ + 6"
             options: ["6", "7", "60", "70"]
             answer: ["70"]
           - id: l2-c3
+            part: other-ways
             type: multiple_choice
             text: "What is the missing part?"
             say: "The whole is sixty-four. One part is fifty. What is the other part?"
@@ -445,11 +476,119 @@ lessons:
             options: ["4", "14", "24"]
             answer: "14"
           - id: l2-c4
+            part: digit-value
             type: multiple_choice
             text: "What is the 7 in 72 worth?"
             options: ["7", "70", "2"]
             answer: "70"
           - id: l2-c5
+            part: other-ways
             type: true_false
             text: "Is it true? 83 = 70 + 13"
+            answer: true
+          - id: l2-c6
+            part: chart-blocks
+            type: image_multiple_choice
+            text: "Which blocks show 47?"
+            options:
+              - { drawn: base-ten, tens: 7, ones: 4 }
+              - { drawn: base-ten, tens: 4, ones: 4 }
+              - { drawn: base-ten, tens: 4, ones: 7 }
+            answer: "47"
+          - id: l2-c7
+            part: chart-blocks
+            type: multiple_choice
+            text: "How many?"
+            show: { drawn: base-ten, tens: 6, ones: 0 }
+            options: ["60", "6", "16"]
+            answer: "60"
+          - id: l2-c8
+            part: chart-blocks
+            type: fill_in_blank
+            text: "Write 39 in the chart."
+            say: "Write thirty-nine in the place value chart."
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [null, null] }
+            frame: "T: _  O: _"
+            options: ["3", "9", "30"]
+            answer: ["3", "9"]
+          - id: l2-c9
+            part: chart-blocks
+            type: image_multiple_choice
+            text: "Which chart shows 15?"
+            options:
+              - { drawn: place-value-chart, columns: [tens, ones], values: [5, 1] }
+              - { drawn: place-value-chart, columns: [tens, ones], values: [1, 5] }
+              - { drawn: place-value-chart, columns: [tens, ones], values: [1, 0] }
+            answer: "15"
+          - id: l2-c10
+            part: digit-value
+            type: multiple_choice
+            text: "In which number is the 6 worth 60?"
+            options: ["16", "63", "96"]
+            answer: "63"
+          - id: l2-c11
+            part: digit-value
+            type: true_false
+            text: "Is it true? In 91, the 9 is worth 9."
+            say: "In ninety-one, the nine is worth nine. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: digit-value
+            type: multiple_choice
+            text: "Which digit is in the tens place in 52?"
+            options: ["5", "2", "50"]
+            answer: "5"
+          - id: l2-c13
+            part: digit-value
+            type: fill_in_blank
+            text: "How many tens and ones are in 84?"
+            frame: "84 = _ tens and _ ones"
+            options: ["8", "4", "80", "40"]
+            answer: ["8", "4"]
+          - id: l2-c14
+            part: partition
+            type: fill_in_blank
+            text: "Partition 29."
+            frame: "29 = 20 + _"
+            options: ["2", "9", "90"]
+            answer: ["9"]
+          - id: l2-c15
+            part: partition
+            type: multiple_choice
+            text: "What is the whole?"
+            say: "The parts are forty and six. What is the whole?"
+            show: { drawn: part-whole, whole: null, parts: [40, 6] }
+            options: ["46", "64", "10"]
+            answer: "46"
+          - id: l2-c16
+            part: partition
+            type: true_false
+            text: "Is it true? 60 + 7 = 76"
+            say: "Sixty add seven is seventy-six. Is that true?"
+            answer: false
+          - id: l2-c17
+            part: partition
+            type: multiple_choice
+            text: "Which number is 30 + 8?"
+            options: ["38", "83", "11"]
+            answer: "38"
+          - id: l2-c18
+            part: other-ways
+            type: fill_in_blank
+            text: "Partition 56 another way."
+            frame: "56 = 40 + _"
+            options: ["6", "16", "26"]
+            answer: ["16"]
+          - id: l2-c19
+            part: other-ways
+            type: multiple_choice
+            text: "Which is another way to make 72?"
+            options: ["60 + 12", "60 + 2", "70 + 12"]
+            answer: "60 + 12"
+          - id: l2-c20
+            part: other-ways
+            type: true_false
+            text: "Is it true? These blocks show 52."
+            say: "Here are four tens and twelve ones. Do these blocks show fifty-two?"
+            show: { drawn: base-ten, tens: 4, ones: 12 }
             answer: true

@@ -24,6 +24,11 @@ metadata:
   forms: [text, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: missing-word, what: { de: ein fehlendes Wort finden, en: finding a missing word } }
+    - { id: extra-word, what: { de: ein doppelt geschriebenes Wort finden, en: finding a word written twice } }
+    - { id: wrong-word, what: { de: "ein Wort finden, das keinen Sinn ergibt", en: finding a word that does not make sense } }
+    - { id: order, what: { de: "prüfen, ob die Sätze in einer sinnvollen Reihenfolge stehen", en: checking that the sentences come in an order that makes sense } }
   misconceptions:
     - id: reads-what-meant
       what: Reads what they meant to write, not what is on the page, so does not see a missing word
@@ -49,7 +54,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: ordering
-            text: "Say it, then build it."
+            text: "Mia wants to write a sentence about her cat. Put the words in order."
             say: "Mia wants to write: I like my cat. Say it out loud. Then put the words in order."
             options: ["cat.", "like", "I", "my"]
             slot_count: 4
@@ -194,6 +199,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -211,6 +217,22 @@ lessons:
             text: "Find the word written twice. Tap it both times."
             show: { drawn: letter-card, text: "She has a big big bag." }
             spans: ["big"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Ollie wrote:\n\nI like to my bike.\n\nWhich word is missing?"
+            say: "Read what Ollie wrote. Which word is missing?"
+            options: ["ride", "like", "bike"]
+            answer: "ride"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Mo wrote:\n\nI sleep in my bath every night.\n\nWhich word should he change?"
+            say: "Read what Mo wrote. Which word should he change so it makes sense?"
+            options: ["bath", "sleep", "night"]
+            answer: "bath"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? This has a word written twice: \"I like like dogs.\""
+            answer: true
 
   - n: 2
     title: { de: "Einen kurzen Text prüfen", en: "Check a short piece" }
@@ -374,23 +396,28 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: missing-word
             type: multiple_choice
             text: "Finn wrote:\n\nI my teeth every night.\n\nWhich word is missing?"
             say: "Read what Finn wrote. Which word is missing?"
             options: ["brush", "night", "my"]
             answer: "brush"
           - id: l2-c2
+            part: wrong-word
             type: highlight_in_text
             text: "Tap the word that does not make sense."
             show: { drawn: letter-card, text: "We went to the park. We played on the swings. Then we went home on a cloud." }
             spans: ["cloud"]
           - id: l2-c3
+            part: order
             type: true_false
             text: "Is it true? This makes sense: \"I washed my hands. Then I had my lunch.\""
             answer: true
           - id: l2-c4
+            part: order
             type: ordering
             text: "Put the sentences in an order that makes sense."
             say: "Put Eva's sentences about a wobbly tooth in the right order."
@@ -399,8 +426,110 @@ lessons:
             answer: ["My tooth was wobbly.", "It fell out.", "Now I have a gap."]
             option_audio: false
           - id: l2-c5
+            part: wrong-word
             type: multiple_choice
             text: "Leo wrote:\n\nThe baby was hungry. She drank her shoe.\n\nWhich word should he change?"
             say: "Read what Leo wrote. Which word should he change so it makes sense?"
             options: ["shoe", "baby", "hungry"]
             answer: "shoe"
+          - id: l2-c6
+            part: missing-word
+            type: multiple_choice
+            text: "Ruby wrote:\n\nWe went the farm.\n\nWhich word is missing?"
+            say: "Read what Ruby wrote. Which word is missing?"
+            options: ["to", "farm", "went"]
+            answer: "to"
+          - id: l2-c7
+            part: missing-word
+            type: multiple_choice
+            text: "Ned wrote:\n\nI saw a big in the sky. It had two wings and a long tail.\n\nWhich word is missing?"
+            say: "Read what Ned wrote. Which word is missing?"
+            options: ["plane", "sky", "the"]
+            answer: "plane"
+          - id: l2-c8
+            part: missing-word
+            type: true_false
+            text: "Is it true? A word is missing here: \"My sister is six.\""
+            answer: false
+          - id: l2-c9
+            part: missing-word
+            type: fill_in_blank
+            text: "Hana left out a word. Put it back."
+            say: "Hana wrote: The cat on my bed. She left out a word. Put it back."
+            frame: "The cat _ on my bed."
+            options: ["sleeps", "bed", "the"]
+            answer: ["sleeps"]
+            option_audio: false
+          - id: l2-c10
+            part: extra-word
+            type: highlight_in_text
+            text: "Find the word written twice. Tap it both times."
+            show: { drawn: letter-card, text: "I like to to swim in the sea." }
+            spans: ["to"]
+          - id: l2-c11
+            part: extra-word
+            type: multiple_choice
+            text: "Pat wrote:\n\nMy dad is is tall.\n\nWhich word is there twice?"
+            say: "Read what Pat wrote. Which word is there twice?"
+            options: ["is", "dad", "tall"]
+            answer: "is"
+          - id: l2-c12
+            part: extra-word
+            type: true_false
+            text: "Is it true? This has a word written twice: \"The bus bus was late.\""
+            answer: true
+          - id: l2-c13
+            part: extra-word
+            type: highlight_in_text
+            text: "Find the word written twice. Tap it both times."
+            show: { drawn: letter-card, text: "Gran came to tea. She brought a cake cake." }
+            spans: ["cake"]
+          - id: l2-c14
+            part: extra-word
+            type: multiple_choice
+            text: "Which sentence has a word written twice?"
+            options: ["I sat on on the step.", "I sat on the step.", "I sat on the big step."]
+            answer: "I sat on on the step."
+            option_audio: false
+          - id: l2-c15
+            part: wrong-word
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            show: { drawn: letter-card, text: "I wash my face with soap and jam." }
+            spans: ["jam."]
+          - id: l2-c16
+            part: wrong-word
+            type: multiple_choice
+            text: "Ivy wrote:\n\nThe snow was warm and wet.\n\nWhich word should she change?"
+            say: "Read what Ivy wrote. Which word should she change so it makes sense?"
+            options: ["warm", "snow", "wet"]
+            answer: "warm"
+          - id: l2-c17
+            part: wrong-word
+            type: multiple_choice
+            text: "Which sentence does not make sense?"
+            options: ["I eat my dinner with a fork.", "I eat my dinner with a pillow.", "I eat my dinner at the table."]
+            answer: "I eat my dinner with a pillow."
+            option_audio: false
+          - id: l2-c18
+            part: order
+            type: ordering
+            text: "Put the sentences in an order that makes sense."
+            say: "Put Ben's sentences about making a snowman in the right order."
+            options: ["I put on a carrot nose.", "It snowed in the night.", "I rolled a big ball of snow."]
+            slot_count: 3
+            answer: ["It snowed in the night.", "I rolled a big ball of snow.", "I put on a carrot nose."]
+            option_audio: false
+          - id: l2-c19
+            part: order
+            type: true_false
+            text: "Is it true? This comes in an order that makes sense: \"I got into bed. I put on my pyjamas.\""
+            answer: false
+          - id: l2-c20
+            part: order
+            type: multiple_choice
+            text: "Sid wrote:\n\nI ate my ice cream. I bought an ice cream. It was yummy.\n\nWhich sentence should come first?"
+            say: "Read what Sid wrote. Which sentence should come first?"
+            options: ["I bought an ice cream.", "I ate my ice cream.", "It was yummy."]
+            answer: "I bought an ice cream."
+            option_audio: false

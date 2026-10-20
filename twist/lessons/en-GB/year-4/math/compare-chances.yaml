@@ -28,6 +28,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [spinner, dots, bar-chart]
   facets: []
+  parts:
+    - { id: spinner, what: { de: Chancen am Glücksrad vergleichen, en: comparing chances on a spinner } }
+    - { id: dice-coin, what: { de: Chancen beim Würfel und bei der Münze vergleichen, en: comparing chances with a dice and a coin } }
+    - { id: predict, what: { de: eine Vermutung und ein Ergebnis zusammenbringen, en: matching a prediction and a result } }
+    - { id: trials, what: { de: "wissen, dass Versuche verschieden ausgehen und viele Versuche mehr sagen", en: knowing that tests come out differently and that many tests tell more } }
   misconceptions:
     - id: six-is-hard
       what: Thinks some dice numbers (6) are harder to roll than others
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,6 +242,26 @@ lessons:
               - { drawn: spinner, sectors: [yellow, blue, blue], key: a }
               - { drawn: spinner, sectors: [yellow, yellow, blue], key: b }
               - { drawn: spinner, sectors: [yellow, blue, blue, blue, blue], key: c }
+            answer: b
+          - id: l1-c4
+            type: true_false
+            text: "On this spinner, green is more likely than yellow."
+            say: "Is it true? On this spinner, green is more likely than yellow."
+            show: { drawn: spinner, sectors: [green, yellow, yellow, green, green] }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "You roll a dice. Which is more likely: a number less than 3 or a number bigger than 3?"
+            options: ["a number less than 3", "a number bigger than 3", "Both are equally likely."]
+            answer: "a number bigger than 3"
+            keep_order: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which spinner gives blue a better chance than red?"
+            options:
+              - { drawn: spinner, sectors: [red, red, blue], key: a }
+              - { drawn: spinner, sectors: [red, blue, blue], key: b }
+              - { drawn: spinner, sectors: [red, blue], key: c }
             answer: b
 
   - n: 2
@@ -412,20 +438,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spinner
             type: multiple_choice
             text: "Which colour is the pointer most likely to land on?"
             show: { drawn: spinner, sectors: [blue, blue, blue, red, red, green] }
             options: ["blue", "red", "green"]
             answer: "blue"
           - id: l2-c2
+            part: dice-coin
             type: multiple_choice
             text: "You roll a dice. Which is more likely?"
             options: ["a 1, 2, 3 or 4", "a 5 or a 6", "Both are equally likely."]
             answer: "a 1, 2, 3 or 4"
             keep_order: true
           - id: l2-c3
+            part: spinner
             type: image_multiple_choice
             text: "Which spinner gives green the best chance?"
             options:
@@ -434,6 +464,7 @@ lessons:
               - { drawn: spinner, sectors: [green, red, red], key: c }
             answer: a
           - id: l2-c4
+            part: predict
             type: image_multiple_choice
             text: "After 20 spins: red 16, yellow 4. Which spinner most likely gave this result?"
             show: { drawn: bar-chart, tally: true, rows: [[red, 16], [yellow, 4]] }
@@ -443,7 +474,108 @@ lessons:
               - { drawn: spinner, sectors: [red, yellow, yellow, yellow, yellow], key: c }
             answer: a
           - id: l2-c5
+            part: trials
             type: multiple_choice
             text: "Which test tells you most about whether a dice is fair?"
             options: ["600 rolls", "6 rolls", "1 roll"]
             answer: "600 rolls"
+          - id: l2-c6
+            part: spinner
+            type: multiple_choice
+            text: "Is the pointer likely or unlikely to land on red?"
+            show: { drawn: spinner, sectors: [red, red, red, red, blue] }
+            options: ["likely", "unlikely", "impossible"]
+            answer: "likely"
+            keep_order: true
+          - id: l2-c7
+            part: spinner
+            type: true_false
+            text: "On this spinner, red is more likely than blue."
+            say: "Is it true? On this spinner, red is more likely than blue."
+            show: { drawn: spinner, sectors: [red, red, blue, blue, blue, green] }
+            answer: false
+          - id: l2-c8
+            part: spinner
+            type: multiple_choice
+            text: "Spinner A has 1 blue part of 4. Spinner B has 2 blue parts of 8. Which spinner gives blue the better chance?"
+            options: ["A", "B", "Both are the same."]
+            answer: "Both are the same."
+          - id: l2-c9
+            part: dice-coin
+            type: multiple_choice
+            text: "You roll a dice. Which is least likely?"
+            options: ["a 6", "an even number", "a number less than 6"]
+            answer: "a 6"
+          - id: l2-c10
+            part: dice-coin
+            type: true_false
+            text: "When you roll a dice, a 5 and a 2 are equally likely."
+            say: "Is it true? When you roll a dice, a five and a two are equally likely."
+            answer: true
+          - id: l2-c11
+            part: dice-coin
+            type: multiple_choice
+            text: "A dice game: Ella wins on a 1, 2 or 3. Jack wins on a 4, 5 or 6. Who has the better chance?"
+            options: ["Ella", "Jack", "Both are the same."]
+            answer: "Both are the same."
+          - id: l2-c12
+            part: dice-coin
+            type: multiple_choice
+            text: "You toss a coin and roll a dice. Which is more likely: heads on the coin or a 6 on the dice?"
+            options: ["heads on the coin", "a 6 on the dice", "Both are equally likely."]
+            answer: "heads on the coin"
+            keep_order: true
+          - id: l2-c13
+            part: predict
+            type: multiple_choice
+            text: "You will spin this spinner 40 times. What is the best prediction?"
+            show: { drawn: spinner, sectors: [yellow, blue, blue, blue] }
+            options: ["Blue will come up more often than yellow.", "Yellow and blue will come up equally often.", "Yellow will come up most often."]
+            answer: "Blue will come up more often than yellow."
+          - id: l2-c14
+            part: predict
+            type: image_multiple_choice
+            text: "After 20 spins: red 11, blue 7, green 2. Which spinner most likely gave this result?"
+            show: { drawn: bar-chart, tally: true, rows: [[red, 11], [blue, 7], [green, 2]] }
+            options:
+              - { drawn: spinner, sectors: [red, red, red, blue, blue, green], key: a }
+              - { drawn: spinner, sectors: [red, blue, green], key: b }
+              - { drawn: spinner, sectors: [green, green, green, blue, blue, red], key: c }
+            answer: a
+          - id: l2-c15
+            part: predict
+            type: true_false
+            text: "Zoe predicts that heads and tails will come up about equally often. She tosses a coin 40 times: heads 22, tails 18. The result fits her prediction."
+            say: "Is it true? Zoe predicts that heads and tails will come up about equally often. She tosses a coin forty times and gets twenty-two heads and eighteen tails. The result fits her prediction."
+            show: { drawn: bar-chart, tally: true, rows: [[heads, 22], [tails, 18]] }
+            answer: true
+          - id: l2-c16
+            part: predict
+            type: multiple_choice
+            text: "A spinner has 1 red part and 5 green parts. Kai predicts red will come up more often. After 30 spins: red 4, green 26. What does the result show?"
+            options: ["The prediction was wrong: green came up far more often.", "The prediction was right.", "Red and green came up equally often."]
+            answer: "The prediction was wrong: green came up far more often."
+          - id: l2-c17
+            part: trials
+            type: true_false
+            text: "Two children spin the same spinner 20 times each. Their tallies will always be exactly the same."
+            say: "Is it true? Two children spin the same spinner twenty times each. Their tallies will always be exactly the same."
+            answer: false
+          - id: l2-c18
+            part: trials
+            type: multiple_choice
+            text: "Lily rolled a dice 6 times and never got a 4. What can she say?"
+            options: ["A 4 can still come up. 6 rolls are very few.", "Her dice has no 4.", "Rolling a 4 is impossible."]
+            answer: "A 4 can still come up. 6 rolls are very few."
+          - id: l2-c19
+            part: trials
+            type: multiple_choice
+            text: "Two tests with the same spinner. Test 1: red 15, blue 5. Test 2: red 13, blue 7. Why are the results different?"
+            options: ["Chance does not come out the same every time.", "Someone changed the spinner.", "One of the tests must be wrong."]
+            answer: "Chance does not come out the same every time."
+          - id: l2-c20
+            part: trials
+            type: true_false
+            text: "Ravi spun a spinner 3 times and got blue every time. This proves that blue is the most likely colour."
+            say: "Is it true? Ravi spun a spinner three times and got blue every time. This proves that blue is the most likely colour."
+            answer: false

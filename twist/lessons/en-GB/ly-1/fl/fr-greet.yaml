@@ -26,6 +26,11 @@ metadata:
   forms: [audio, picture, drawn, text]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: how, what: { de: "fragen und verstehen, wie es jemandem geht", en: asking how someone is and understanding the answer } }
+    - { id: name, what: { de: nach dem Namen fragen und den Namen verstehen, en: asking someone's name and understanding it } }
+    - { id: age, what: { de: nach dem Alter fragen und das Alter verstehen, en: asking someone's age and understanding it } }
+    - { id: talk, what: { de: "einem kurzen Gespräch von Hallo bis Tschüss folgen", en: following a short talk from hello to goodbye } }
   misconceptions:
     - id: ne-pas
       what: Hears ça va inside ça ne va pas and takes it for I'm fine
@@ -95,7 +100,7 @@ lessons:
                 type: audio_choice
                 text: "How is the child?"
                 say: { en: "Listen. How is the child? Tap the picture." }
-                audio: { fr: "Ça va bien, merci !" }
+                audio: { fr: "Ça va bien, merci !", speaker: female }
                 options: [{ object: sad }, { object: happy }, { object: tired }]
                 answer: happy
                 hints:
@@ -105,7 +110,8 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Ça va ? Je m'appelle Hugo." }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Ça va ?", speaker: female }, { fr: "Je m'appelle Hugo.", speaker: male }] }
                 answer: false
                 feedback:
                   "true": "Ça va ? asks how you are. Answer with ça va bien, or comme ci, comme ça."
@@ -126,7 +132,7 @@ lessons:
                 type: audio_choice
                 text: "How is the child?"
                 say: { en: "Listen. How is the child? Tap the picture." }
-                audio: { fr: "Ça ne va pas." }
+                audio: { fr: "Ça ne va pas.", speaker: male }
                 options: [{ object: happy }, { object: sad }, { object: angry }]
                 answer: sad
                 feedback:
@@ -142,7 +148,7 @@ lessons:
                 type: audio_choice
                 text: "How is the child?"
                 say: { en: "Listen. How is the child?" }
-                audio: { fr: "Comme ci, comme ça." }
+                audio: { fr: "Comme ci, comme ça.", speaker: female }
                 options: ["well", "so-so", "not well"]
                 answer: "so-so"
                 keep_order: true
@@ -150,7 +156,8 @@ lessons:
               - id: l1-s2
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Ça va ? Ça va bien, merci. Et toi ?" }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Ça va ?", speaker: male }, { fr: "Ça va bien, merci. Et toi ?", speaker: female }] }
                 answer: true
                 hints: ["Ça va ? asks how you are. Does the answer say how?"]
               - id: l1-s3
@@ -169,7 +176,7 @@ lessons:
                 type: audio_choice
                 text: "How is the child?"
                 say: { en: "Listen. How is the child?" }
-                audio: { fr: "Ça ne va pas." }
+                audio: { fr: "Ça ne va pas.", speaker: female }
                 options: ["well", "so-so", "not well"]
                 answer: "not well"
                 keep_order: true
@@ -181,13 +188,14 @@ lessons:
                 type: audio_choice
                 text: "How is the child?"
                 say: { en: "Listen. How is the child? Tap the picture." }
-                audio: { fr: "Ça va bien !" }
+                audio: { fr: "Ça va bien !", speaker: male }
                 options: [{ object: tired }, { object: sad }, { object: happy }]
                 answer: happy
               - id: l1-n2
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Ça va ? Au revoir !" }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Ça va ?", speaker: female }, { fr: "Au revoir !", speaker: male }] }
                 answer: false
               - id: l1-n3
                 type: speak
@@ -197,7 +205,7 @@ lessons:
                 type: audio_choice
                 text: "How is the child?"
                 say: { en: "Listen. How is the child?" }
-                audio: { fr: "Oh, comme ci, comme ça." }
+                audio: { fr: "Oh, comme ci, comme ça.", speaker: male }
                 options: ["well", "so-so", "not well"]
                 answer: "so-so"
                 keep_order: true
@@ -209,25 +217,49 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
             text: "Does the answer fit the question?"
-            say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Ça va ? Comme ci, comme ça." }
+            say: { en: "Listen to the question and the answer. Does the answer fit?" }
+            audio: { turns: [{ fr: "Ça va ?", speaker: male }, { fr: "Comme ci, comme ça.", speaker: female }] }
             answer: true
           - id: l1-c2
             type: audio_choice
             text: "How is the child?"
             say: { en: "Listen. How is the child?" }
-            audio: { fr: "Ça va bien, merci." }
+            audio: { fr: "Ça va bien, merci.", speaker: male }
             options: ["well", "so-so", "not well"]
             answer: "well"
             keep_order: true
           - id: l1-c3
             type: true_false
             text: "Is someone asking how you are?"
-            say: { en: "Listen. Is someone asking how you are?", fr: "Je m'appelle Théo." }
+            say: { en: "Listen. Is someone asking how you are?" }
+            audio: { fr: "Je m'appelle Théo.", speaker: male }
             answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "How is Hugo? Tap the picture."
+            say: { en: "Listen. How is Hugo? Tap the picture." }
+            audio: { turns: [{ fr: "Ça va, Hugo ?", speaker: female }, { fr: "Ça ne va pas.", speaker: male }] }
+            options: [{ object: happy }, { object: sad }]
+            answer: sad
+          - id: l1-c5
+            type: true_false
+            text: "Léa answers. Does she ask back: and you?"
+            say: { en: "Listen. Léa answers. Does she ask back: and you?" }
+            audio: { fr: "Ça va bien, merci. Et toi ?", speaker: female }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "How is Manon?"
+            say: { en: "Listen. How is Manon?" }
+            audio: { turns: [{ fr: "Salut, Manon ! Ça va ?", speaker: male }, { fr: "Comme ci, comme ça. Et toi ?", speaker: female }] }
+            options: ["well", "so-so", "not well"]
+            answer: "so-so"
+            keep_order: true
 
   - n: 2
     title: { de: "Tu as quel âge ?", en: "Tu as quel âge ?" }
@@ -240,7 +272,7 @@ lessons:
             type: audio_choice
             text: "How is the child?"
             say: { en: "Do you remember? How is the child?" }
-            audio: { fr: "Ça ne va pas." }
+            audio: { fr: "Ça ne va pas.", speaker: male }
             options: ["well", "not well"]
             answer: "not well"
             keep_order: true
@@ -282,7 +314,7 @@ lessons:
                 type: audio_choice
                 text: "How old is the child?"
                 say: { en: "Listen. How old is the child? Tap the dots." }
-                audio: { fr: "J'ai huit ans." }
+                audio: { fr: "J'ai huit ans.", speaker: female }
                 options:
                   - { drawn: dots, count: 7, layout: dice }
                   - { drawn: dots, count: 8, layout: dice }
@@ -295,7 +327,8 @@ lessons:
               - id: l2-f3
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu as quel âge ? Ça va bien, merci." }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Tu as quel âge ?", speaker: female }, { fr: "Ça va bien, merci.", speaker: male }] }
                 answer: false
                 feedback:
                   "true": "Tu as quel âge ? asks your age. The answer is j'ai ... ans."
@@ -329,7 +362,7 @@ lessons:
                 type: audio_choice
                 text: "How old is the child?"
                 say: { en: "Listen. How old is the child? Tap the dots." }
-                audio: { fr: "J'ai neuf ans." }
+                audio: { fr: "J'ai neuf ans.", speaker: male }
                 options:
                   - { drawn: dots, count: 6, layout: dice }
                   - { drawn: dots, count: 10, layout: dice }
@@ -345,7 +378,8 @@ lessons:
               - id: l2-s3
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Ça va ? J'ai huit ans." }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Ça va ?", speaker: male }, { fr: "J'ai huit ans.", speaker: female }] }
                 answer: false
                 hints: ["Ça va ? asks how you are, not how old you are."]
               - id: l2-s4
@@ -368,7 +402,7 @@ lessons:
                 type: audio_choice
                 text: "How old is the child?"
                 say: { en: "Listen. How old is the child? Tap the dots." }
-                audio: { fr: "J'ai sept ans." }
+                audio: { fr: "J'ai sept ans.", speaker: female }
                 options:
                   - { drawn: dots, count: 8, layout: dice }
                   - { drawn: dots, count: 7, layout: dice }
@@ -377,7 +411,8 @@ lessons:
               - id: l2-n2
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu t'appelles comment ? Je m'appelle Camille." }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Tu t'appelles comment ?", speaker: male }, { fr: "Je m'appelle Camille.", speaker: female }] }
                 answer: true
               - id: l2-n3
                 type: speak
@@ -398,8 +433,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: talk
             type: audio_choice
             text: "What does Hugo tell you?"
             say: { en: "Listen. What does Hugo tell you?" }
@@ -407,19 +444,23 @@ lessons:
             options: ["his name and his age", "his name and how he is", "how he is and his age"]
             answer: "his name and his age"
           - id: l2-c2
+            part: age
             type: true_false
             text: "Does the answer fit the question?"
-            say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu as quel âge ? J'ai neuf ans." }
+            say: { en: "Listen to the question and the answer. Does the answer fit?" }
+            audio: { turns: [{ fr: "Tu as quel âge ?", speaker: male }, { fr: "J'ai neuf ans.", speaker: female }] }
             answer: true
           - id: l2-c3
+            part: how
             type: audio_choice
             text: "How is the child?"
             say: { en: "Listen. How is the child?" }
-            audio: { fr: "Ça va ? Non, ça ne va pas." }
+            audio: { turns: [{ fr: "Ça va ?", speaker: female }, { fr: "Non, ça ne va pas.", speaker: male }] }
             options: ["well", "so-so", "not well"]
             answer: "not well"
             keep_order: true
           - id: l2-c4
+            part: how
             type: audio_choice
             text: "What is the question?"
             say: { en: "Listen. What does the question mean?" }
@@ -427,7 +468,123 @@ lessons:
             options: ["How old are you?", "What's your name?", "How are you?"]
             answer: "How are you?"
           - id: l2-c5
+            part: name
             type: true_false
             text: "Does the answer fit the question?"
-            say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu t'appelles comment ? Ça va bien, merci." }
+            say: { en: "Listen to the question and the answer. Does the answer fit?" }
+            audio: { turns: [{ fr: "Tu t'appelles comment ?", speaker: female }, { fr: "Ça va bien, merci.", speaker: male }] }
             answer: false
+          - id: l2-c6
+            part: how
+            type: audio_choice
+            text: "Léa asks Hugo how he is. How is Hugo? Tap the picture."
+            say: { en: "Listen. Léa asks Hugo how he is. How is Hugo? Tap the picture." }
+            audio: { turns: [{ fr: "Salut, Hugo ! Ça va ?", speaker: female }, { fr: "Oui, ça va bien, merci !", speaker: male }] }
+            options: [{ object: happy }, { object: sad }, { object: tired }]
+            answer: happy
+          - id: l2-c7
+            part: how
+            type: true_false
+            text: "Is Théo well?"
+            say: { en: "Listen. Is Théo well?" }
+            audio: { turns: [{ fr: "Ça va, Théo ?", speaker: female }, { fr: "Ça ne va pas.", speaker: male }] }
+            answer: false
+          - id: l2-c8
+            part: how
+            type: audio_choice
+            text: "Léa answers Hugo, then asks him something. What does she want to know?"
+            say: { en: "Listen. Léa answers Hugo, then asks him something. What does she want to know?" }
+            audio: { turns: [{ fr: "Salut, Léa ! Ça va ?", speaker: male }, { fr: "Ça va bien, merci. Et toi ?", speaker: female }] }
+            options: ["how he is", "his name", "his age"]
+            answer: "how he is"
+          - id: l2-c9
+            part: age
+            type: audio_choice
+            text: "How old is Inès?"
+            say: { en: "Listen. How old is Inès?" }
+            audio: { turns: [{ fr: "Inès, tu as quel âge ?", speaker: male }, { fr: "J'ai dix ans.", speaker: female }] }
+            options: ["8", "9", "10"]
+            answer: "10"
+          - id: l2-c10
+            part: age
+            type: true_false
+            text: "Is Jules eight?"
+            say: { en: "Listen. Is Jules eight?" }
+            audio: { fr: "Salut ! Je m'appelle Jules. J'ai neuf ans.", speaker: male }
+            answer: false
+          - id: l2-c11
+            part: age
+            type: audio_choice
+            text: "Hugo answers a question. What did someone ask him?"
+            say: { en: "Listen. Hugo answers a question. What did someone ask him?" }
+            audio: { fr: "J'ai sept ans.", speaker: male }
+            options: ["how old he is", "what his name is", "how he is"]
+            answer: "how old he is"
+          - id: l2-c12
+            part: age
+            type: audio_choice
+            text: "Who is older? Tap the picture."
+            say: { en: "Listen. Who is older? Tap the picture." }
+            audio: { turns: [{ fr: "Je m'appelle Hugo. J'ai sept ans.", speaker: male }, { fr: "Je m'appelle Léa. J'ai neuf ans.", speaker: female }] }
+            options: [{ object: boy }, { object: girl }]
+            answer: girl
+          - id: l2-c13
+            part: name
+            type: true_false
+            text: "Is the girl called Camille?"
+            say: { en: "Listen. Is the girl called Camille?" }
+            audio: { turns: [{ fr: "Tu t'appelles comment ?", speaker: male }, { fr: "Je m'appelle Chloé.", speaker: female }] }
+            answer: false
+          - id: l2-c14
+            part: name
+            type: audio_choice
+            text: "What does Inès want to know?"
+            say: { en: "Listen. What does Inès want to know?" }
+            audio: { fr: "Salut ! Je m'appelle Inès. Et toi, tu t'appelles comment ?", speaker: female }
+            options: ["your name", "your age", "how you are"]
+            answer: "your name"
+          - id: l2-c15
+            part: name
+            type: true_false
+            text: "Does the answer fit the question?"
+            say: { en: "Listen to the question and the answer. Does the answer fit?" }
+            audio: { turns: [{ fr: "Tu t'appelles comment ?", speaker: female }, { fr: "J'ai huit ans.", speaker: male }] }
+            answer: false
+          - id: l2-c16
+            part: name
+            type: audio_choice
+            text: "What does the boy tell you?"
+            say: { en: "Listen. What does the boy tell you?" }
+            audio: { fr: "Bonjour ! Je m'appelle Théo.", speaker: male }
+            options: ["his name", "his age", "how he is"]
+            answer: "his name"
+          - id: l2-c17
+            part: talk
+            type: audio_choice
+            text: "Listen to the talk. What does Léa want to know?"
+            say: { en: "Listen to the talk. What does Léa want to know?" }
+            audio: { turns: [{ fr: "Salut, Hugo ! Ça va ?", speaker: female }, { fr: "Ça va bien, merci. Et toi ?", speaker: male }, { fr: "Ça va bien ! Tu as quel âge ?", speaker: female }, { fr: "J'ai neuf ans.", speaker: male }] }
+            options: ["how Hugo is and his age", "his name and his age", "how Hugo is and his name"]
+            answer: "how Hugo is and his age"
+          - id: l2-c18
+            part: talk
+            type: true_false
+            text: "Listen to the talk. Does Hugo say goodbye at the end?"
+            say: { en: "Listen to the talk. Does Hugo say goodbye at the end?" }
+            audio: { turns: [{ fr: "Salut, Manon !", speaker: male }, { fr: "Salut, Hugo ! Ça va ?", speaker: female }, { fr: "Comme ci, comme ça. Au revoir, Manon !", speaker: male }] }
+            answer: true
+          - id: l2-c19
+            part: talk
+            type: audio_choice
+            text: "Listen to the talk. How old is Jules?"
+            say: { en: "Listen to the talk. How old is Jules?" }
+            audio: { turns: [{ fr: "Bonjour ! Je m'appelle Jules. Et toi ?", speaker: male }, { fr: "Je m'appelle Camille. Tu as quel âge ?", speaker: female }, { fr: "J'ai huit ans.", speaker: male }] }
+            options: ["7", "8", "10"]
+            answer: "8"
+          - id: l2-c20
+            part: talk
+            type: true_false
+            text: "Listen to the talk. Is Inès well?"
+            say: { en: "Listen to the talk. Is Inès well?" }
+            audio: { turns: [{ fr: "Bonjour, Inès ! Ça va ?", speaker: male }, { fr: "Ça va bien, merci. Et toi ?", speaker: female }, { fr: "Ça ne va pas.", speaker: male }] }
+            answer: true

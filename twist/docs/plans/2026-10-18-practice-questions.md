@@ -583,3 +583,320 @@ Questions the authors and reviewers left, by chunk. The tasks follow the brief a
 - table-11-12 is placed only in en-GB Year 4, so its 6-7 target is never used. Should its 8-10 target be 6 seconds instead of 5? The Year 4 Multiplication Tables Check allows 6 seconds per question, and 12 × 7 and 12 × 9 are harder than the facts to 10 × 10.
 - all-tables and div-facts include the ×1 and ÷1 facts. Keep them for completeness, or drop them so a session gets more of the harder facts?
 - squares includes the inverse divisions (49 ÷ 7 and so on). In de-DE, squares comes before div-meaning, and neither squares lesson set uses division. This follows the table-3-6-9 and table-7 banks, which also include division before div-meaning, so I kept it. Should a squares bank keep the divisions, or hold only the 10 squares?
+
+## en-GB maths, English and French, drill banks (2026-10-20)
+
+Questions the authors and reviewers left, by chunk. The tasks follow the brief as written until one is decided.
+
+### year-1-math-1
+
+- fluency-to-20 (en-GB): the de-DE set for the same skill uses `size: timed` for its skill check. lesson-anatomy.md says facts to know by heart get a timed check, and it names Klasse 1 fluency-to-20 as the only timed check so far. The en-GB set still has `size: skill`. Should it become timed? Its inverse part has multiple-choice tasks ("Which addition helps with 11 − 8?") that may not fit a time per task.
+- length-cm-m sits in Year 1, but the National Curriculum names m and cm in Year 2, and lesson-anatomy.md says "mm, cm and m in Year 3". The set also teaches 2 m = 200 cm in Learn and Practise (l2-f5), above the Year 1 range of 100. Please check where this skill sits in the en-GB curriculum.
+- calendar: the set teaches writing dates in numbers (14/10/2026). The Year 1 programme names the language of dates (days of the week, weeks, months, years) and does not name numeric dates. Keep the read part as it is, or move it to a later year?
+- counting-in-tens: the matching tasks (l1-f2, l1-s2, l1-n2, l2-c12) show number words above twenty on screen (sixty, ninety, one hundred). Brief point 10 says Year 1 screens show digits only, and the Year 1 programme has number words only to 20. Reading the multiples of ten as words is part of this skill's "I can" line. Is this exception acceptable?
+- compare-capacity and mass-compare still describe containers and balances only in words. Both summaries say a drawn container with a water level, and a drawn balance, wait for a component. Should that component be built before launch?
+- Point 15 near repeats: in compare-to-20, equations, counting-in-tens and the capacity and mass sets, many sign, sequence and "which holds more" tasks share the same option set and answer as Practise and change only the numbers. I treated that as normal for maths drills and changed only exact-pattern copies. Please confirm that reading of point 15 for maths.
+
+### year-1-math-2
+
+- time-full-half: the pool keeps a 'digital' part (5 tasks) because the set's Learn teaches 3:00 and 3:30. The Year 1 programme of study asks only for o'clock and half past, and it reads as analogue (digital clocks come in Year 3). Keep the digital part for Year 1, or fold those tasks into oclock and half-past?
+- turns: the room tasks now put the whole classroom layout on screen, about 25 words, which is long for Year 1 readers. Should a drawn room component replace the text later?
+- solids l2-c9 (author's question): this is settled. The Year 1 statutory statement names '3-D shapes [for example, cuboids (including cubes) ...]', so the idea fits the year. The task is now a new multiple choice and no longer copies l1-f4.
+- write-numerals-to-10: 'Is it 3?' over a card showing 3 (and l1-n5, l3-c12) only asks the child to match the same symbol, as in the de-DE set. Should the true answers use 6/9-style look-alikes, or stay as they are?
+
+### year-2-math-1
+
+- capacity-l-ml uses 1000 ml throughout (as its lessons already did), which is above the Year 2 number range of 100. The build does not flag it; confirm the units facet covers it.
+- core-facts is a facts-to-know-by-heart skill, but its check stays size: skill and is not timed. Should it become timed?
+- arrays: the pool reads 'a × b' as a rows of b, as the lessons do, and leaves out commuted distractors (3 × 5 vs 5 × 3) so that only one option is right. Is that convention fine for Year 2?
+- capacity-l-ml l2-c19 is a sorting task (bank pictures into litres and millilitres bins). Sorting is not used anywhere in the set's lessons; keep it, or replace it with a type the lessons use (brief point 5)?
+- core-facts: with only the ×1, ×2, ×5 and ×10 facts to 10, many pool tasks are commuted forms of Practise facts (10 × 2 vs 2 × 10, 4 × 5 vs 5 × 4, 7 × 2 vs Learn 2 × 7). Is a turnaround of a Practise fact acceptable in this check, or should the pool use stories and other formats more?
+- compose-shapes l2-c20 ('What is different?') uses the same three options as Practise l2-n3 in a different order, with a different answer. The build does not flag it; it is acceptable unless a stricter near-repeat rule is wanted.
+
+### year-2-math-2
+
+- mass-g-kg (from the author): the can_do line and the kg-g part ask for 1 kg = 1000 g, and the set reads gram scales up to 1000 g. The National Curriculum leaves gram and kilogram conversion to Year 3, and these numbers go past the Year 2 range of 100. Keep the part as the lessons teach it, or narrow it to choosing g or kg?
+- inverse (from the author, resolved for the check): l1-c2 now gives the number to take away in the frame. Practise and Warm-up tasks still say 'Take the 6 away again and write the inverse.' Is that instruction acceptable as Practise support, or should those frames also show the subtracted number?
+- follow-directions (from the author, resolved): the l3-c3 distractor that also led back to the start was replaced. Other way-back tasks were checked and none has a second route back.
+- double-halve-to-100: some Practise options still go above 100 (160, 120 and 180 for halves of 80, 60 and 90, which are the doubles). Point 11 was applied to the check tasks only. Should Practise options stay within 100 too, or should a 'doubles instead of halving' misconception be added to cover them?
+- fractions-of-quantities: the checks take thirds of 18, 21 and 24 and two thirds of 18 and 21 without pictures. Year 2 counts in threes but does not learn the 3 times table, and NC Year 2 does not list 2/3. Keep the numbers, or lower them to the no-help range (up to 15)?
+
+### year-2-math-3
+
+- pictograms-bar-charts (author's question): lesson 1 was reworked from text pictograms to the drawn pictogram component, Learn included, and Learn now has 5 screens. Someone should look at it in the player to check that the pictures and the key (picture = 2) read well.
+- pounds-pence (author's question): l2-c20 now uses '£1 and 9p' in place of 150p. Should Year 2 checks keep to whole pounds in pence (300p) and mixed amounts under 100p, as the set's summary says?
+- ones-no-bridge l2-c15 (author's question): drawn.js draws base-ten with tens: 0 as ones cubes only. Someone should still check in the player that it reads clearly as an option.
+- repeating-patterns l2-c12 (author's question): its options are rows of shapes with a key (a, b, c). This is the first time a set uses whole shape rows as options. Check that the player shows them at a readable size.
+- neighbour-facts: most near doubles and nines up to 20 are already used somewhere in this set, so l2-c19 (7 + 9 as a pages story) and l2-c15 (10 + 9 as a marbles story) use the same sums as Practise tasks (l2-f6, l1-f6) but as word problems. I did not count that as a repeat. Is that acceptable?
+- neighbour-facts l1-c4 and ones-bridge l1-c2 (quick checks): the say names the method ('Use double nine', 'Hop to sixty first'), which the frame also shows. Point 13 ties a method in a check to a part's what, but quick checks have no parts. I left them as they are; please confirm.
+
+### year-2-math-4
+
+- temperature l2-c17 counts the kettle picture (drawn with steam) as about 100 °C, from Learn's 'boiling water 100 °C'. Strictly, it is the water inside that is at 100 °C. Is that acceptable for Year 2? (author's question; I left the task as written)
+- symmetry-identify l2-c14 asks which way the line goes on a grid pattern that is symmetrical top to bottom, with no mirror line drawn. Learn shows a horizontal line only on the letter B. Is that close enough to Learn? (author's question; the answer 'horizontal' is correct)
+- symmetry-identify: Z, kettle and horse are used as having no line of symmetry, and heart, ladybird (top view) and the letter I as having one. I checked the pictures and they match. I replaced the umbrella, which is ambiguous. Confirm this is fine.
+- word-problems-y2: is listing the swapped subtraction (12 − 35) as a misconception the right fix, rather than replacing those below-zero distractors across the set? (author's question)
+- symmetry-identify summary says 'the grid can only draw a vertical mirror line', but drawn.yaml now offers axis_row (horizontal) and diagonal. Should the set's summary, and later its lessons, use them?
+- word-problems-y2 l2-c1 and l2-c2 (existing) share one story (64 ducks, 30 fly away). A draw takes one task per part, so both can appear in the same attempt, and c1's options show the calculation for c2. Keep as paired, or change one story?
+- word-problems-y2 l2-c4 (existing) uses metres (Freya runs 35 metres). The Year 2 programme of study names m and cm, but lesson-anatomy.md's Authoring checks say 'mm, cm and m in Year 3'. One of the two should be corrected.
+
+### year-3-math-1
+
+- cube-buildings: in Practise, the Learn screen ([[2,1],[3,1]]), l2-n3 and others put a lower back tower behind a taller front one. drawn.js draws the back row half a cube up and to the right, and later towers paint over it, so a back tower lower than the one in front of it is mostly or fully hidden. Should those Practise and Learn buildings be changed so every back tower is at least as tall as the one in front? I fixed only the check task l2-c4. The distractor in l2-c13 ([[1,1],[3,2]]) still hides its back row, but it cannot be mistaken for the answer.
+- ask-questions and combinations: Practise uses only a few task forms ('Which question fits?', 'Cards: X, Y. Which numbers can you make?'), so some check tasks (combinations l2-c2 and l2-c3) follow Practise closely. They have different numbers and options, so rule 15 does not count them as repeats, but a reviewer may want to vary them further.
+- clever-to-1000 l2-c4 ('Which way suits 401 − 394 best?', options count on / round and adjust / jump back) uses the same frame and option pattern as Practise 503 − 497 and 802 − 795, with the same kind of answer. Should it get a different frame?
+- certain-possible-impossible: several Practise and check tasks show only a statement ('The spinner lands on yellow.') with certain/possible/impossible options and no question on screen. This is the documented interaction in task-types.md and I left it. Should a question be added to these?
+- Practise tasks in other year-3 sets may still use km. I checked only my 13 files: add-several and ask-questions had it, plus add-carry, where I had already fixed it. km is introduced only once in length-mm-km.
+
+### year-3-math-2
+
+- (Author) money-decimal and money-calculate write money with a decimal point (£3.50) in Year 3. The National Curriculum brings in decimal money notation in Year 4; Year 3 asks for £ and p. Should these sets stay in Year 3 as they are? money-calculate also multiplies prices (3 × £1.20, 2 × £2.45), which the Year 3 programme does not name.
+- (Author) mult-div-tens and derive-facts use facts from the 6, 7 and 9 times tables (8 × 60, 6 × 6, 7 × 9, 9 × 9, 6 eggs × 9 boxes). The Year 3 programme covers the 3, 4 and 8 tables; the 6, 7 and 9 tables are Year 4. Is that acceptable at Year 3?
+- fractions-number-line l2-c20 (sorting) and the ordering tasks in hundreds l2-c14 and length-mm-km l2-c14 use task types that the lessons of those sets never use. Brief point 5 says to mix the types the lessons use. I left them because the types are documented and Year 3 lessons use them elsewhere. Should a check stay within the types its own set uses?
+- estimate-to-1000 l2-c2 and mult-div-tens l2-c13 are fill_in_blank tasks whose answer uses the same option chip twice (400, 400 and 50, 50). Confirm the app lets one chip fill two gaps.
+
+### year-3-math-3
+
+- parallel-perpendicular l2-c19 (author): asks whether the drawn parallelogram has 2 pairs of parallel sides. The text never names the shape, the child can judge from the picture, and Practise l2-s2 shows the same shape. Reviewer view: keep it. Swap in a rectangle only if a parallelogram feels too new for Year 3.
+- right-angles compare tasks (author): l2-c14 is now a clock task, so it no longer repeats Practise. The pool keeps c1, c15 and c16, which ask about one drawn angle each in different formats (picture choice, true/false, picture choice). Is that enough variety?
+- perimeter and parallel-perpendicular, point 14 (author): the 'I can' verbs 'measure' (perimeter) and 'draw ... with a set square' (parallel-perpendicular) are covered only by the summaries' note that ruler and set-square work waits for a measuring or drawing task. Is that note enough, or should those sets get such a task once one exists?
+- read-write-to-1000 l2-c5 ('ninety' spelling) and l2-c20 (the word 'one thousand') (author): Learn shows only the forty spelling. Practise l2-s1 shows 'ninety' in writing, and 'one thousand' is heard in l1-s6 and is in the set's vocabulary. Reviewer view: keep both. Adding one Learn line on ninety and thousand would close the gap.
+- number-line-to-1000: the 'I can' line also names 'a thousand chart', but no part or task covers one, and the summary does not mention it. Add a thousand-chart task, or note in the summary that it waits for a component?
+
+### year-3-math-4
+
+- write-stories (author's question): the set has a fifth part, 'picture' (finding the story that fits a picture), 4 tasks in each of 5 parts. It matches the summary and lesson 2 Learn, and the build accepts 5 parts for a draw of 5. I recommend keeping it.
+- squares (author's question): the Learn screens list all ten squares, so the check avoids 'n × n = _' and asks '9 lots of 9' or 'n sevens'. Should the Learn fact list be trimmed so the check can ask 7 × 7 = _ directly? The current wording is fine for Year 3, so I left it.
+- time-minutes l2-c15 (author's question about 12:30 pm): resolved by replacing the task, see changed. If 12 pm times should be tested, Learn first needs a screen showing a time just after midday (12:30 pm = 12:30).
+- time-units l2-c18 (author's question): 'the half-term holiday' lasts about a week. This is true for schools in England and is a familiar anchor for en-GB children, so I kept it. Change it only if the content should avoid school-calendar facts.
+- semi-written-mult: the National Curriculum puts three-digit × one-digit multiplication in Year 4, but this Year 3 set teaches it in lesson 2 and the check has a 'three-digit' part. This was already in the lessons; is the Year 3 placement intended?
+
+### year-4-math-1
+
+- compare-round-decimals: should rounding to the nearest tenth (Year 5 in the National Curriculum, marked stretch) stay in the Year 4 skill check? The skill's 'I can' line names it. If not, l2-c5 and l2-c16 should become whole-number rounding.
+- fraction-decimals and equivalent-families use twentieths and fifteenths in the checks (4/5 = 16/20, 2/5 = 6/15). The lessons already use them, but a reviewer may want Year 4 kept to the common families only.
+- acute-obtuse l2-c13 uses clock drawings as picture options, keyed by their times ('2:00', '3:00', '4:00'). No other lesson does this yet. It builds, but check it in the player, or decide to make the task text-only.
+- classify-polygons l3-c9 is now a triangle that is both right-angled and isosceles (answer: true). The Learn screens never say a triangle can be both, though the definitions cover it. Keep it, or go back to a plain false example?
+- first-quadrant: the plot part holds 5 point_on_grid tasks (l2-c3, c9, c10, c11, c12), and four of them only change the point. They are not near repeats under point 15 because the answers differ, but the part could use more kinds of task.
+
+### year-4-math-2
+
+- numbers-to-10000: the dictation tasks ('Listen and write the number.', 'Listen. Which number is it?', including the new l3-c14) give the number only in say, because showing it would give the answer away. Do we accept this exception to brief points 8 and 10 for dictation?
+- mass-estimate: the shared can_do line says '1 tonne = 1000 kg', but en-GB leaves tonnes out in key stage 2, so no part covers tonnes. Should the en-GB can_do wording change, or do we accept the gap?
+- multiply-divide-10-100: the title and the can_do line name dividing by 1000, but no Learn screen teaches it and no task asks it. Should we add a Learn screen and tasks for ÷1000, or narrow the wording?
+- plans-maps l2-c12 marks '4E' as a wrong grid reference because the number comes first. Is a strict letter-first rule what Year 4 schools expect?
+- plan-survey: Noah's data (l2-c14 to l2-c20) adds up to 31 when he asked 30, and l2-c15 marks that. The later tasks still chart and describe the same data. Is it acceptable that one pool task flags data as wrong while the others treat it as sound?
+- Near repeats with numbers swapped: several pool tasks (for example negative-numbers l2-c7 '6 less than 2', mult-div-estimate l2-c4, number dictations in numbers-to-10000) keep a Practise frame and change only the numbers, with matching kinds of distractors. I read point 15 as allowing this when the answer and options change. Should a stricter reading apply to maths?
+
+### year-4-math-3
+
+- several-axes and symmetry-complete: the 'I can' lines say 'draw reflections in diagonal lines' and 'reflect a shape in a line on squared paper'. In both checks the child chooses or judges a reflection and never draws one. Both summaries say drawing waits for a grid drawing task, but neither says Practise covers it, and brief point 14 asks for that. Is the summary note enough until a grid drawing task exists?
+- several-axes letter tasks (U has 1 line, I has 2, D and C have a horizontal line, Z, F and N have none, M has 1) assume a plain sans-serif letter-card font. Please check that the drawn letter cards, I in particular, really are symmetrical.
+- Some pool tasks reuse a Practise frame with new numbers and a new answer: 'Which split helps with 112 ÷ 8?', 'What is the rule? ...', 'Which picture completes the symmetrical shape?', 'Where does the reflection go?', the 'Start at ... Tap where you land' number line, and the 70-is-one-part frame in semi-written-div l2-c8. I read brief point 15 as allowing this because the options and answer change. Please confirm that reading.
+- Several existing check tasks carry feedback (translate l1-c2 and l2-c5). The checks show no hints, but feedback on a wrong first try is still shown. Should check tasks drop feedback?
+
+### year-5-math-1
+
+- complex-buildings, digital-tools and choose-method have 3 parts each, as in their de-DE sets (author's question). Is that fine, or should each get a fourth part?
+- Several check tasks reuse a Practise question frame with new numbers and a different answer, for example 'Which cell has a typing mistake?' (digital-tools l2-c16), 'Which building matches the plan?' (complex-buildings l2-c12), the paint-tin task (area-rectangles l2-c16 against l2-f5), the ramp task (angle-facts l2-c17 against the ladder in l2-n3) and the flour task (estimate-or-exact l2-c18 against l2-n4). Point 15 allows these. Should reviewers ask for more variety?
+- lessons-check.mjs reads fraction sums such as 1/4 + 1/8 as the whole-number sum 4 + 1 when it looks for reused Learn examples (author's question). Should the SUM regex skip numbers next to a slash?
+- choose-method: whether a sum like 3600 + 5200, 8120 + 1700 or 6300 + 2400 is 'mental' or 'informal steps' is a matter of judgement. The set follows its Learn screens (no exchanges means informal steps), but a strong child may say mentally. Should these tasks accept both, or be reworded?
+- decimals-calculate multiplies and divides decimals by a one-digit number (answers to two decimal places). The National Curriculum puts both in Year 6. The set is placed in Year 5 by the curriculum file, so check that the placement is intended.
+
+### year-5-math-2
+
+- grid-drawing: the 'I can' line says 'copy and draw shapes and buildings on square and dot grids'. The check tests copying, counting, doubling and halving through choices. The summary says drawing and isometric buildings wait for a drawing task, but it does not say that Practise covers them, which is what point 14 asks for. Is a deferral in the summary enough?
+- measure-angles: the 'draw' part is tested through choices about the drawing steps and by judging a drawn angle on a protractor (l2-c16 to l2-c20), because there is no drawing task type. Is that acceptable until one exists? (I think it is.)
+- imperial-units l2-c10 ('About how many pounds is 5 kg?') accepts only the typed 11 (5 × 2.2). I kept it as text_input: a multiple-choice version would nearly repeat l2-c2 (10 kg to 22 pounds). A human should confirm that marking a rough estimate such as 10 wrong is acceptable here.
+- fractions-times-whole: some answers are left unsimplified (8 4/6 in l2-c13, 1 2/6 in l1-c6, 3 2/6 in l2-c3), in line with the set's existing tasks. Year 5 does not ask for simplest form here. Keep them, or say in Learn that 1 2/6 = 1 1/3 is also right? A typed answer, as in the l2-c20 fraction keyboard, would mark an equal simplified answer wrong.
+- Several pools reuse a Practise frame with new numbers (for example 'Use the table to fill in the gaps' in imperial-units l2-c14, 'Add ... in steps' in large-semi-written l2-c10, 'Which length makes sense?' in length-word-problems l2-c4 and l2-c18). The options and answers differ, so I left them under point 15 as written. Should a reused frame with new numbers count as a near repeat?
+
+### year-5-math-3
+
+- Brief point 15 reads 'swaps a noun or the numbers ... with the same options and answer'. Should a pool task that keeps a Practise frame but changes the numbers, and so the answer, count as a near repeat? I treated it as new unless the option wording was also copied. Examples kept: money-word-problems l2-c12 (the l2-f4 'which is cheaper' frame), negative-in-context l2-c17 (the l1-f5 lift frame), percent-equivalences l2-c16 (the l2-n1 'scored X out of 25' frame).
+- order-to-million l2-c16 asks for rounding to the nearest 100, which the set's Learn screens never show. I recommend keeping it because the National Curriculum names it for Year 5. Confirm, or switch it to the nearest 1000.
+
+### year-5-math-4
+
+- tessellations l2-c8: should a capital L frieze stay in a check when the lessons only show b, d, p and q? The reviewer kept it because the answer is unambiguous.
+- volume-cubes l2-c2 is the Learn example (2 layers of 3 by 2, 12 cubes). It is the one reuse a check may have, and the reviewer kept it. Should it be swapped anyway?
+- Several check tasks in these sets keep a Practise frame and change only the numbers (for example 'Check with the inverse. Is a ÷ b = c?' and 'A rectangle is a by b. Enlarge it...'). The reviewer treats a new calculation with new options as a new task, not a point 15 near repeat. Should arithmetic tasks follow a stricter reading?
+
+### year-6-math-1
+
+- Author's question: lessons-check.mjs reads fraction sums as whole-number sums ('2/3 + 1/5' matches a Learn sum '3 + 1'), so it reports Learn reuse in fraction sets where there is none. Should the SUM regex skip numbers next to '/'? (The author swapped add-sub-fractions-different l1-c3 to '1/6 + 1/3 = 1/2' to clear it.)
+- Author's question: construct-shapes part 'angles' has the German 'Winkel mit dem Geodreieck messen und zeichnen'. Reviewer view: Geodreieck is the tool German primary teachers name for measuring and drawing angles, so keep it. Winkelmesser is correct but less usual in Grundschule. A human may confirm.
+- fraction-as-division l2-c2 (1/5 as a decimal) is the Learn screen's worked example (1/5 = 2/10 = 0.2). One per check is allowed and the build does not warn, so it stays. Replace it if Learn reuse should be zero.
+
+### year-6-math-2
+
+- pie-charts: the 'angles' part now names drawing, and the summary says protractor work waits for a drawing task. Does that cover the 'draw simple ones' verb for point 14, or should a drawing task type be added later?
+- volume-formula l2-c8: a lorry trailer at 'about 90 m³' is close to the real size (13.6 m × 2.5 m × 2.7 m is about 92 m³), and the wrong options are off by a unit or by a factor of 100. I left it. Is a lorry trailer familiar enough for Year 6, or should it be a garage or a classroom?
+- percent-of-amount and other sets give no say to tasks whose text uses %, fractions or £, so the voice reads the text as it stands (lesson-anatomy says the voice reads symbols as words). New tasks with a '_' gap or long numbers got a say. Should say lines be added more widely?
+
+### reception-lit-en-1
+
+- Listening sets (anticipate, follow-instructions, full-sentences, listen-range, listen-respond): a story sits in `audio` (it can be replayed) and the question sits in `text`, as in the de-DE listen-stories model. Is that enough for brief point 10 in a no_reading Reception set? The player does not show `text` in no_reading sets.
+- first-sentences and first-tricky-words follow the curriculum order of graphemes, but they use 'has', 'and' and 'egg(s)'. 'has' is not on the set's tricky-word list. Should a phonics lead check these against the school's own scheme?
+- explain-why l2-c11: is 'puddle' clearly the cause of wet, muddy wellies? The other options are star and sun, so it is the only reasonable answer, but a reviewer may want a clearer cause.
+- explain-why l2-c3 (Gran's butter melted, 'because it got warm') and Warm-up l2-w1 (Ella's chocolate melted, same answer) were both there before this batch. They are near repeats by point 15. I left them alone because only point 8 applies to existing check tasks. Should one of them be rewritten?
+- anticipate l2-c2 (frogs jump into the pond, answer jump) was there before this batch and is close to Practise l2-f2 (goat and pig jump over the log, answer jump). I left it. Should it be rewritten?
+- adjacent-consonants keeps a part for writing the missing consonant. That is encoding, which the phonics format says stays in spelling skills, but this skill's I-can line is 'read and spell', so I kept it. Is that right?
+
+### reception-lit-en-2
+
+- From the author: Practise tasks that had their word only in say now play it as `audio: { en: ... }`, which the player plays on the prompt speaker right after the instruction. Is that enough for point 10, or should these words get bank pictures (pin, tin, pan, mop, rug, nut, peg, hill, doll) so the tasks can show one?
+- From the author: some existing Practise tasks use words with adjacent consonants (tree, snail, train, spoon, clown) before the adjacent-consonants set, and a few check tasks in the later digraph sets do too (stair, clear, point, crab; I added crown in ar-or-ur-ow l2-c13). Is that acceptable at this point in Reception?
+- From the author: Reception phonics leans on a few frames (true/false, 'which letter makes this sound'), so some check tasks share a frame with a Practise task and change only the word or letter. Examples: oral-blending's sound-count tasks, lowercase-letters l2-c1 'Where does m start?' (an existing task with the same options and answer as Practise l2-s2 for r), pencil-grip l2-c20 (chalk again, as in Practise l2-s5, with other distractors) and phonics-i-n-m-d l2-c17 (card nap over the map picture, the same nap/map pair as Practise l2-s3). Are these acceptable as checks of the same skill, or should they be rewritten?
+- Six Practise tasks in the some stage still use 'Does the card say X?' with X written in the text and a card that differs in visible letters, so a child can answer by comparing letters (ai-ee-igh-oa l1-s4 and l2-s4, ar-or-ur-ow l1-s4 and l2-s4, ch-sh-th-ng l1-s4, ear-air-ure-er l1-s4). I fixed this only in check tasks. Should the Practise ones also switch to a heard word ('Does the card say the word you hear?')?
+- phonics-ear-air-ure-er l2-c12 now asks whether pure rhymes with sure. Many Southern British speakers say sure as 'shaw', though phonics schemes teach ure as one sound in both words. Is the rhyme safe, or should the task use another ure word?
+
+### reception-lit-en-3
+
+- Phonics sets s-a-t-p, j-v-w-x and y-z-qu (author's question): the brief says encoding stays in the spelling skills, but the can_do of these skills says 'read and write simple words'. The author kept a 'letter-in-word' part (a missing letter in a heard word) to cover 'write', and I kept it (point 14). Should these parts stay, or move out of the phonics checks?
+- Heard words that have no bank picture (pat, sap, ten, yet, quiz, fuzz) are given as audio, not on screen, because text would let the child copy the missing letter (author's question). Is audio an acceptable reading of point 10 for these tasks?
+- retell and predictable-phrases (author's question): several Practise tasks and lesson-1 quick-check tasks still depend on the Learn story and do not tell it (for example retell l1-c2, l1-c3, l2-n2 and predictable-phrases l1-c2, l1-c4, l1-n3). Drawn alone in a practice session, they do not stand on their own. I fixed only the skill-check tasks, which feed recaps. Should these be rewritten too?
+- predictable-phrases l2-c9 uses the traditional 'Little pig, little pig, let me come in!' (public domain), as the author asked. Is a traditional tale fine in a check, or should every check story be written for Twist?
+- Count-type tasks ('How many claps?', 'How many sounds?', 'Do they rhyme?') always have the same option set (1, 2 and 3 dots) and differ only in the picture. Read literally, point 15 makes most of them near repeats of Practise. I fixed only exact pairs and copied option sets in segment-spell, rhymes and the phonics gaps. Should point 15 exempt these formats, where the word itself is the content?
+- rhymes and syllables: some pool tasks reuse the same pair across parts (fish and dish in l2-c5 and l2-c13; train and rain in l2-c10 and l2-c11; fox and box in l2-c17 and l2-c19; tomato in syllables l2-c6 and l2-c19), so a draw can show one pair twice. The asset bank has few more rhyming pairs. Should new rhyme pictures be drawn?
+
+### year-1-lit-en-1
+
+- dictation-simple (author's question): in every dictation task the heard sentence is only in say, because showing it would give the answer away. The screen shows the sentence with a gap, or the word cards. Accept this as an exception to point 10 for dictation?
+- ask-questions (author's question): the listening tasks now show the speaker's line in text as well as audio (point 10). The child can read it instead of listening, which weakens the listening side of a speaking and listening skill. Keep it, or allow audio-only lines in speaking and listening sets?
+- decodable-books (author's question, now changed by the reviewer): I removed flash: 2 from skill check task l2-c8, because a check has no replay button. Confirm that flash tasks stay in Practise only for decoding sets.
+- capitals-digits (author's question): the skill check has no tracing, because tracing accepts any ink and cannot be marked. Forming capitals and digits is covered only in Practise, as the summary now says. Confirm this fits brief point 14 for handwriting.
+- capitals-names and capitals-digits: several pool sorts and pairings use the same bins as a Practise task with new words (capital/small, person/place/day; small letter to capital). I treated a new set of words as a new task, not a point-15 near repeat. Confirm that reading for sorting and matching tasks.
+- check-sense l2-c10 and l2-c11, decodable-books l2-c13: these use words with dge (fridge, bridge, fudge), ck and ch outside Year 1's taught list. They are decodable and in everyday use, so I left them. Flag if the scheme should limit check words more strictly.
+
+### year-1-lit-en-2
+
+- new-graphemes l1-c3 (quick check, fill 'g_l' with ir) asks the child to write the grapheme, but the brief says encoding stays in the spelling skills. The split-digraphs model keeps fill-the-gap tasks in its skill check (l2-c11, l2-c13, l2-c14), so I left l1-c3 as it is. Should phonics checks drop encoding tasks everywhere, the model included, or does the model's practice stand?
+- new-graphemes groups its 5 parts by the lesson that teaches each grapheme (ay/ea/ie, ou/oy/ir, ue/ew/aw, wh/ph/ey, plus a mixed part). The brief prefers sound families for sets with many graphemes. Is this grouping acceptable?
+- plural-s-es l2-c6, l2-c13 and l2-c20 ask a Year 1 child to type a whole word (frogs, churches, digs) on the letter keyboard. Typing also tests the spelling of the root word (church). Keep text_input for Year 1 spelling, or turn these into choice tasks?
+- poems-by-heart l2-c17 and l2-c19 ask how to say new poems (a noisy dragon, a creeping mouse). Learn taught that the voice matches the poem, but only with The Snail and Humpty Dumpty. Is applying it to poems not taught within the Learn screens?
+- new-graphemes l2-c16 ('Phil saw a whale') and the existing practise use whale, which has the a-e split digraph. split-digraphs builds on this set and teaches a-e later. It is in the set's own lessons, so I kept it. Should checks avoid it?
+- Several existing (not new) skill-check tasks are close to Practise frames with only the noun swapped. Examples: endings l2-c1 cups against l1-f1 dogs and l2-w1 socks; plural-s-es l2-c2 pen against l1-s2 sock; longer-words image-choice tasks. The brief keeps existing tasks and their ids, so I left them. Should point 15 apply to existing check tasks too?
+
+### year-1-lit-en-3
+
+- un-ing-ed-er-est (author's question): check task l2-c4 and Practise l2-f3, l2-s3 and l2-n3 speak the whole word in say ('Raj is the oldest'), which gives away the choice between -er and -est. New tasks l2-c7 and l2-c11 do not say the word, but l2-c15 does, in the l2-c4 style. Keep these as dictation (hear the word, spell the ending), or take the spoken answer out of every -er/-est task so the child picks by meaning (two things or all)? I left them unchanged.
+- spell-exception-words (author's question): the Learn screens show the whole Year 1 word list, so check words cannot avoid Learn words the way the Deutsch spelling rule asks. The list is treated as the skill itself. Is that acceptable for statutory word-list sets?
+- simple-inference (author's question): l2-c9 uses 'excited' and Practise l1-s4 uses 'nervous'. Neither is in the set's vocabulary list or Learn, but both are everyday Year 1 words. Acceptable, or add them to Learn or the vocabulary list?
+- lessons-check.mjs (author's question): the near-repeat signature for matching tasks seems to read only the instruction text and ignore the pairs, so matching tasks with the same instruction but different pairs are flagged. Should the check compare pairs? The author reworded the instructions of word-meanings l2-c12 and l2-c13 to get past it.
+- sentences-and: the and-left-hanging misconception ('I like red and.') is now tested only in Practise (l2-s4), because l2-c16 became a true example. Should a check task test it too?
+- simple-inference l2-c19: hands over the ears at fireworks is read as 'scared of the bangs'. A teacher might accept 'does not like the noise'. Keep 'scared', or reword the question to 'does not like the bangs'?
+
+### year-2-lit-en-1
+
+- Spelling dictation without a picture: alternative-spellings and exception-words-spelling put a 'Clue: a dog wags it.' line on screen and the word in say. Is that the right way to keep the task on screen without showing the spelling? (author)
+- exception-words-y2 puts the a-says-ar words (fast, path, father) in the 'odd-ones' part, yet the existing l2-c4 'fast' sits under 'in-sentence'. Is that grouping fine for the parent view? (author)
+- The year-1 phonics model split-digraphs does not set option_audio: false on the picture options in its checks, though the 2026-10-20 format asks for it. Should the model get the same fix? (author)
+- plan-key-words l2-c4 (existing: bats, nocturnal, options nocturnal, hibernate, prey) is close to Practise l2-f2 (owls, nocturnal, options nocturnal, hibernate, burrow). Only the animal and one option differ. I kept it because it predates the pool. Replace it?
+- homophones l2-c2 'Sam is coming _.' (existing, answer too) is close to Practise l2-s2 'Can I come _?' with the same options and answer. I kept it because it predates the pool. Replace it?
+- exception-words-spelling has only three ea-ay words (great, break, steak), so its ea-ay part tests great twice (l2-c16, l2-c17). Is that acceptable, or should the part take one more word?
+
+### year-2-lit-en-2
+
+- start-joining has 3 parts (diagonal 7, horizontal 7, unjoined 6), because the skill is narrow. Is 3 parts acceptable? (The author's question; the reviewer finds it fine. Two to five parts are allowed.)
+- suffixes-y2 l1-n2 (Practise): 'A tree with no leaves.' over leaf_ with the answer less. leafless is correct and easy to work out from its parts, though children rarely say it. The reviewer would keep it. Keep?
+- suffix-spelling l2-c8 (pave + ment = pavement) and l2-c13 (cloudless): the reviewer finds pavement firmly in a Year 2 child's active vocabulary and cloudless fine for reading. l2-c8 is weak, though: the answer 'ment' can be seen inside 'pavement' on the screen. Rewrite it as a spelling choice?
+- write-poems: the picture options in rhyme checks keep their default audio, as the set's Practise does, so the child hears the names. The reviewer kept this, since rhyme is heard and this is not a reading check. Should rhyme checks set option_audio: false the way phonics reading checks do?
+- start-joining l1-c6 (quick check) asks which join goes up higher, i to n or i to l. Practise has the same idea as a true/false statement (a join to a tall letter like l goes up higher). They are different task types, so it was kept. Is that close enough to count as a repeat?
+
+### year-3-lit-en-1
+
+- myths-legends (from the author): Practise tasks l1-f1, l1-f5, l1-s1, l1-n2, l1-n3, l2-f3 and l2-s3 ask about stories that only Learn tells (Persephone, the Great Race, Anansi). Should each one carry the story in text? I fixed l2-s3, because Rama and Sita is on no Learn screen.
+- myths-legends (reviewer): Pandora, King Midas, King Arthur, Icarus and Rama and Sita are told only inside Practise tasks, never on a Learn screen. Check tasks still ask the child to recall them (l1-c5, l1-c6, l2-c3, l2-c4, l2-c14, l2-c16, l2-c19). l2-f2 also names King Arthur before l2-s1 tells his story. Should these stories get Learn screens, or should the checks carry the story in text?
+- joined-legible (from the author): the skill check can only ask about size, slope and spacing in words, because no component draws badly formed handwriting. Is a component that shows a flawed sample to judge wanted?
+- exception-words-ks2 (from the author): the right-spelling part (choosing the spelling of a word you hear) sits in this reading skill, while the phonics brief puts encoding in the spelling skills. Keep it as a part here?
+- Several sets (headings l1-f4/s4/n4/l2-c11, justify-opinions l2-s1/l2-c10, learn-from-models l1-n5/l2-c3, inference-evidence l2-n4/l2-c18) reuse one frame with all-new content and the same option pattern. I read these as new tasks under point 15, since more than a noun changes. Confirm that reading?
+
+### year-3-lit-en-2
+
+- prefixes-suffixes-ks2 l3-c19 (optician), author's question. I would keep it: a child who does not know the root optic can still get the spelling from the Learn rule that -cian words are usually people. Swap it for politician (from the appendix) only if you want a word from the statutory list.
+- prefixes-suffixes-ks2 l3-c2 (misspell, an existing task that uses the Learn demonstration word), author's question. I would keep it: brief point 10 allows one Learn example per check, and it is the only one in this pool. The 'no Learn words' line of the spelling brief is written for Deutsch spelling. The quick checks also reuse Learn words that were already there (l1-c2 disagree, l2-c2 adoration, l2-c3 famous). They are not new, so I left them.
+- Author's question about pool tasks that reuse a Practise question frame with new content and new options, for example 'Which group of words is a clause?' in terms-y3, 'Which sentences build suspense best?' in rehearse-sentences l2-c4 (the same shape as l2-f3) and story-mountain ordering. I left them in under point 15 because the options and answers differ. A human may want fewer of them.
+- time-cause l2-c19 (true/false) and l2-c20 (tap the extra 'of') both test 'because of' used before a clause. They are different types with different sentences, so I kept both. Replace one if you want more variety in the because-of part.
+
+### year-4-lit-en-1
+
+- Near repeats (the author's question). I counted a task as a near repeat when it keeps the same frame and the same fixed options and answer and changes only the noun, and fixed those in plural-possessive. I kept the templated multiple-choice tasks where the whole sentence and every option change with the content. Examples are 'Which is clearest?' in pronoun-cohesion, the two-option 'Which is Standard English?', did/done/doed in standard-verb-forms, children's/childrens' in plural-possessive l2-c2 and 'Which spelling is right?' in pronoun-cohesion l2-c5. Should these strand templates count as near repeats under point 15?
+- word-list-3-4: the misspellings were not checked against a list of common errors. After my changes they are medcine, medisine, peculier, peculer, eigth, cawt, cought, actully, actualy, histry, enuff, thort, herd, calender, breth, grammer, gramar, perhap, prehaps. A teacher should confirm they look like real children's mistakes. The l1-c1 (library) and l1-c2 (piece) quick checks still use Learn words. One Learn word per check is allowed and the build gave no warning.
+- standard-english-speech: Practise l1-n2 still has the double negative 'I ain't never seen snow', which no Learn screen teaches. Keep it, or teach the never/no form on a Learn screen?
+- dictionary-ks2 l2-c19 uses pheasant ('a big bird with a long tail'). Is the word known well enough in Year 4?
+
+### year-5-lit-en-1
+
+- suffixes-ks2-upper (from the author): the new tasks use words the Learn screens do not show but that follow the taught rules (superstitious, crucial, potential, facial, torrential, beneficial, substantial, sequential, dominant, participant, intelligent, adjacent, magnificent, obedience, edible, considerable, visibly, offered, inferred). Are they right for Year 5? Sequential, substantial and adjacent are the hardest. Also, l3-c18 (offer + ed) uses offer, a -fer word stressed on the first syllable. Learn's stress rule covers it, but the National Curriculum list (refer, prefer, transfer) does not. Keep it?
+- silent-letters (from the author): the rarer part uses silent letters beyond the Learn list (honour, thistle, chalk, palm, folk, glisten, rustle, isle, doubtful, should, plumber, tomb). The related-word tasks now use soft/soften, moist/moisten, debt/debit, solemn/solemnity and hymn/hymnal. Is that within reach for Year 5? The existing check tasks l2-c1 to l2-c5 also use Learn words (knight, wrist, fasten, column, and bomb/bombard as a worked example). The build does not warn, but the Deutsch spelling format says checks avoid Learn words. Should en-GB spelling sets follow that?
+- fluent-speed and keyboard (from the author): their checks are choice tasks only. fluent-speed's quick check l1-c3 is still a copy (tracing) task where any ink counts. Is an unmarked copy task acceptable in a quick check?
+- Several check pools reuse a Practise frame with new content: the 'Which source is most reliable for a report on X?' tasks in research-ideas, the 'X says ... What could she add so her class can picture it?' task in engage-listener, and the following/lost and show/tell sorts in engage-listener and characters-atmosphere. I kept them because the options and answers are new. Should point 15 count a repeated frame as a near repeat even when the options change?
+
+### year-6-lit-en-1
+
+- perform-compositions and registers (author's question): the skill check marks only choices about stress, pause, volume, pace, gesture and register, and Practise covers speaking. Is that enough for 'I perform my own writing' and 'I choose a formal or informal way of speaking'?
+- terms-ks2 l2-c14 and the cohesion Learn screen call 'others' (standing for 'other children') ellipsis. Strictly that is substitution by a pronoun, and true ellipsis leaves the words out ('others, bananas'). I left it to match what the set teaches. Should both sets be reworded?
+- bullets-hyphens l2-c18 pairs recount with 'tell what happened' and re-count with 'count again'. Unhyphenated 'recount' also means 'count again' (a vote recount). Only one complete matching works, so I left it. Swap in another re- pair if this is too fine a point.
+- presentational-devices l2-c2 (existing: compare four phones, answer a table) is still close to the holiday-parks task in Practise. I left it. Rewrite it too?
+- word-list-5-6: Learn words still appear in the skill check (rhythm in l2-c3, queue in l2-c17, physical and amateur as options). The build does not warn about these. Is this acceptable for a statutory-list spelling set, where Learn shows many of the list words?
+
+### ly-1-fl-1
+
+- fr-numbers-to-10 l1-c5, l2-c14 and l2-c16 rely on the voice leaving a pause at '...' for the missing number ('Un ... trois, quatre.'). Please listen to these clips after narration.
+- Wrong French is shown on screen on purpose: fr-family l2-c9 shows only 'ma frère' (answer No), and fr-name-things l2-c9, c11 and c12 have 'c'est un pomme' and similar as the wrong option. Keep them, or use only correct forms? My view: the multiple-choice ones are fine. l2-c9 in fr-family is the one that puts a wrong form alone in front of the child.
+- fr-hello l1-c5: Hugo says 'Bonsoir, madame !' to the teacher picture. It is correct French, and the task only asks who he is talking to (madame, so the grown-up). I would keep it.
+- fr-imitate l2-c1 ('Une plume') and l2-c2 ('Le hibou') use words the set never teaches. For a u/ou sound task this is arguably fair, but it breaks 'checks use the set's own words'. Swap them for set words?
+- fr-imitate stress part: 'Where is the strong part of the word?' always has the answer 'at the end' (Practise and l2-c4, l2-c18), so a child can guess it. Should the lessons lean on the 'said two ways' format instead?
+- fr-body l2-c1 ('Les oreilles') and fr-numbers-to-10 l2-c1 ('Quatre points') use forms that Learn never says (the plural, and the word points). Only the known word is needed to answer, so I left them. OK?
+
+### ly-2-fl-1
+
+- fr-about-me l2-c3 (existing) uses 'Je sais jouer au tennis', which the set never teaches. I kept it because tennis is a cognate and the answer is a picture. Should it be swapped for a taught verb?
+- Several English say lines carry French in the middle of an English sentence, for example feelings l2-c3 ('Your friend asks: tu as peur du chien ?'), likes l2-f2, l2-s1 and l2-c2 ('Your friend asks: tu aimes ...'), calendar l2-c8 ('Today is vendredi') and feelings l2-c17 and l2-c20. The English check voice may mispronounce the French. Should the narration rule split these into en and fr parts?
+- fr-details: several listening tasks reuse a Practise frame with a different detail, names and options. l2-c19 'Who has a green jumper?' sits next to Practise l2-n2 'Who has a red bike?', and the existing l2-c3 and the new l2-c14 are both 'party, then cake' like l2-f1. A pure listening skill has few other frames, so I kept them. Do these count as near repeats?
+- Similar frame reuse in fr-clothes l2-c3 (the 'A blue X. Which word fits?' frame of l2-s3), fr-mediate l2-c2 and l2-c4 (the Learn card and l1-f4 TIREZ with one word swapped) and fr-home l2-c5 (sorts the same bath and mirror as l2-s3). All four are existing tasks, so I kept them.
+- fr-guess-meaning uses some unknown words on purpose, because guessing them is the skill: la coccinelle, la tortue, le renard, les ciseaux, la bougie, Regardez, Trop de bruit, la limonade, les vacances. fr-mediate l2-n2 'Je joue samedi' and fr-likes l2-c11 'Beurk !' also bring words the set never teaches. Should a teacher confirm these suit Year 4?
+- fr-guess-meaning: both true/false tasks in the lesson 1 quick check are true (l1-c3, l1-c6). The set as a whole is mixed. Should the quick check be mixed too?
+
+### ly-2-fl-2
+
+- fr-short-dialogues and fr-role-play (author): Learn screens still play whole dialogues in one say.fr string with no speakers. The brief names Practise and Warm-up only, so they were left. Should Learn dialogues get a voice per speaker too?
+- fr-numbers-to-20 (author): should 'Quel est ton numéro de téléphone ?' be taught, so the 'ask about phone numbers' part of the I can line can be checked? At present the phone part covers only understanding numbers said in pairs.
+- fr-short-dialogues l2-c3 (an existing task) asks for an age of 11 (onze), but the set's Learn and Practise use only 7 to 10. Is onze known at this point in ly-2 (fr-numbers-to-20 is placed in the same year), or should l2-c3 use a number to 10?
+- fl sets in general: frames such as 'Un or une? _ X', 'Which picture matches?', 'Is this written correctly?' and fill-in with dans/sur/sous allow few truly new tasks. Existing check tasks that are noun swaps of Practise tasks were kept, per brief point 2: plurals-articles l2-c2, prepositions l2-c3, l2-c4 and l2-c5, town l2-c3 and l2-c5, where-spoken l2-c1, sentences l2-c1. Should a later pass rewrite these as well?
+- fr-stories: Practise and quick-check true/false tasks carry the story in say.fr rather than in audio, so there is no replay button. Should they move to audio, as the short-dialogues tasks did?
+
+### ly-3-fl-1
+
+- The speak tasks fr-hobbies l2-s6 and fr-jobs l2-f5 and l2-s5 have a first-person model line in say.fr with no speaker. The de-DE speak models have none either. Should the rule that every first-person line carries a speaker also cover speak models? (author's question)
+- fr-special-days l2-c20 ('Pâques is in spring', true) relies on everyday knowledge; the Learn screens never date Easter. The checklist allows everyday knowledge, so I kept it. Keep it, or replace it with a fact the lessons teach? (author's question)
+- fr-numbers-to-100 l3-c17 sorts number words into less than 50 and more than 50, and no card is 50. I read it as a valid reading task and kept it. Is it all right for the read-words part? (author's question)
+- fr-jobs l2-c12 marks 'Ma sœur est une professeure.' as wrong. Without an adjective, that is not standard after a noun subject plus est, so I kept it as a distractor. 'C'est une professeure' would be correct, and the set never shows it. Confirm? (author's question)
+- fr-hobbies l2-c3 (Je n'aime pas peindre, ordering) and l2-c5 ('_ chanter.' with J'aime, Je sais, Je suis) are existing pool tasks. They are near repeats under point 15 of l2-n2 (Je n'aime pas danser) and l2-f4 ('_ lire.' with the same options). Point 2 says to keep existing tasks, so I left them. Rewrite them?
+- fr-special-days l2-c11 now has a bin ('le 14 juillet') with a single card. Is a one-card bin acceptable in a sorting task, or should the bin go?
+
+### ly-4-fl-1
+
+- fr-read-aloud l2-c17 marks pauses with '/' in the options. I reworded the text to explain the mark. Is this clear enough for Year 6, or should the task use highlight_in_text instead?
+- fr-read-aloud l2-c18 (heard 'Il fait froid.', 'Is it a question?'), l2-c12 (liaison in 'Les avions.') and l2-c19 ('Il est où ?' sorted as rising) depend on the TTS voice getting the intonation and the liaison right. Someone should listen to these clips after narration.
+- fr-self-check l2-c2 is still a number self-test under the part judge, now typed (text_input) so it is no longer a near repeat. Keep it there, or swap it for a judging task?
+- fr-short-text l2-c15 now uses 'Chère tante Julie,' instead of 'Chère tata,'. Confirm this, or go back to tata.
+- Several check tasks keep a Practise sentence frame but change the task type, for example a typed answer in a frame Practise shows with options (fr-short-text l1-c4 and l2-c7, fr-dictionary l2-c19), or a two-gap version of a one-gap frame. I kept them as different tasks, since point 15 asks for the same options and answer. Should the stricter foreign-language rule ('only swaps one word in a Practise sentence frame') also count a change of type as a near repeat?
+- fr-present l2-c4 (existing, 'Mon animal préféré, c'est la tortue. _ est très lente.') is close to l2-f2's girafe frame, but its options and predicate differ, so I left it. Rewrite it too?
+- The text_input tasks with accents (fr-dictionary l2-c19 'vélo', fr-gender-verbs, fr-short-text) rely on the letters keyboard being AZERTY with é and è for a French set whose lesson language is en. Check that the app picks the keyboard from target_language.
+
+### drills-lit-en
+
+- The checker allows one bank file per lit-en slug, but word-reading.exception-words-y1/-y2 and spelling.exception-words-y1/-y2 share slugs. Should drills-check.mjs accept a name like `word-reading.exception-words-y2.yaml`, or a subfolder such as `lit-en/word-reading/`? Either would let the Y1 and Y2 reading banks be added.
+- drillTask blanks the word in the sentence regardless of case (regex flag i), so sentences that start with the word (Mind, Hold, Everybody, Imagine, Although, Prejudice, According) show a gap where the word would have a capital, while the answer is lower case. The Y1 model does the same (Today, Once, Ask). Does the app's text answer check ignore case? If it does not, a child who types a capital at the start of the sentence is marked wrong.
+- Mr and Mrs have no full stop (British style), and the answer is `Mr` with a capital M. Is that the intended answer form, and does the check accept it?
+- In the flash and choose formats the sentence is never shown (practice-rules.mjs drillTask), so the reading banks' sentences are used only by the parent view or later formats. Should the reading banks keep them? The checker requires them now.
+
+### drills-fl
+
+- practice-rules.mjs does not handle the new item format yet (not my file). drillTask needs a listen format and digit, colour-swatch and object options. A session must take only the items whose lang matches the set's target_language. Without that filter the drill id (it.q ?? it.word) collides for six and orange, which are in both languages.
+- Colour items use colour: <name> as a colour-swatch, which goes beyond the decided format. Keep the swatch, or use crayon.<colour> objects? Objects would need crayon.black.png and crayon.white.png drawn for noir and blanc.
+- numbers-to-100 holds a hand-picked set, not all 81 numbers per language. English has 29 items, with swapped pairs 24/42, 27/72, 36/63, 38/83, 49/94, 57/75 and 68/86. French has 34 items, 12 of them from 70 to 99. Is that enough?
+- Should numbers-to-20 also hold the small numbers (deux, trois, quatre, six, sept, huit, neuf) so listen options can set douze against deux and dix-huit against huit, as the lessons do? Should numbers-to-100 hold quatorze, seize and cinq so it can set quarante against quatorze and cent against cinq? Both would duplicate items from the earlier banks.
+- A bank still has one formats list for both curricula. If a later fl bank has one language shown in writing and the other heard only, formats would need to be set per language.

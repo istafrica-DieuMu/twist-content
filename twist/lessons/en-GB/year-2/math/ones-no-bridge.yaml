@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten]
   facets: [currency]
+  parts:
+    - { id: add, what: { de: Einer ohne Zehnerübergang addieren, en: adding ones without crossing a ten } }
+    - { id: sub, what: { de: Einer ohne Zehnerübergang subtrahieren, en: subtracting ones without crossing a ten } }
+    - { id: ones-change, what: { de: "wissen, dass sich nur die Einer ändern", en: knowing that only the ones change } }
+    - { id: related, what: { de: die kleine Aufgabe nutzen, en: using the related fact } }
   misconceptions:
     - id: add-to-tens
       what: Adds the ones to the tens digit (34 + 5 = 84)
@@ -215,6 +220,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -232,6 +238,25 @@ lessons:
             text: "Is it true? 81 + 8 = 89"
             say: "Eighty-one add eight is eighty-nine. Is that true?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Use the related fact."
+            say: "Work out the related fact first, then the bigger sum."
+            frame: "2 + 5 = _ · 72 + 5 = _"
+            options: ["7", "77", "12", "75"]
+            answer: ["7", "77"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "33 + 6 = _"
+            say: "Thirty-three add six."
+            options: ["39", "93", "9"]
+            answer: "39"
+          - id: l1-c6
+            type: text_input
+            text: "42 + 7 = _"
+            say: "Forty-two add seven."
+            show: { drawn: base-ten, tens: 4, ones: 2 }
+            answer: "49"
 
   - n: 2
     title: { de: "Einer weg, Einer dazu", en: "Subtracting and adding ones" }
@@ -399,24 +424,29 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "54 + 4 = _"
             say: "Fifty-four add four."
             answer: "58"
           - id: l2-c2
+            part: sub
             type: text_input
             text: "68 − 3 = _"
             say: "Sixty-eight subtract three."
             answer: "65"
           - id: l2-c3
+            part: ones-change
             type: multiple_choice
             text: "93 + 5: what changes?"
             say: "Ninety-three add five. What changes?"
             options: ["the ones", "the tens", "both"]
             answer: "the ones"
           - id: l2-c4
+            part: related
             type: fill_in_blank
             text: "Use the related fact."
             say: "Work out the related fact first, then the bigger sum."
@@ -424,7 +454,113 @@ lessons:
             options: ["2", "42", "12", "52"]
             answer: ["2", "42"]
           - id: l2-c5
+            part: add
             type: true_false
             text: "Is it true? 23 + 6 = 83"
             say: "Twenty-three add six is eighty-three. Is that true?"
             answer: false
+          - id: l2-c6
+            part: add
+            type: text_input
+            text: "35 + 4 = _"
+            say: "Thirty-five add four."
+            answer: "39"
+          - id: l2-c7
+            part: add
+            type: multiple_choice
+            text: "12 + 7 = _"
+            say: "Twelve add seven."
+            options: ["19", "82", "9"]
+            answer: "19"
+          - id: l2-c8
+            part: add
+            type: multiple_choice
+            text: "Ruby has 43 stickers. She gets 6 more. How many stickers does she have now?"
+            say: "Ruby has forty-three stickers. She gets six more. How many stickers does she have now?"
+            options: ["49", "37", "9"]
+            answer: "49"
+          - id: l2-c9
+            part: sub
+            type: text_input
+            text: "57 − 4 = _"
+            say: "Fifty-seven subtract four."
+            answer: "53"
+          - id: l2-c10
+            part: sub
+            type: multiple_choice
+            text: "89 − 6 = _"
+            say: "Eighty-nine subtract six."
+            options: ["83", "3", "95"]
+            answer: "83"
+          - id: l2-c11
+            part: sub
+            type: true_false
+            text: "Is it true? 76 − 5 = 26"
+            say: "Seventy-six subtract five is twenty-six. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: sub
+            type: text_input
+            text: "A box has 29 crayons. 8 are broken and go in the bin. How many crayons are left in the box?"
+            say: "A box has twenty-nine crayons. Eight are broken and go in the bin. How many crayons are left in the box?"
+            answer: "21"
+          - id: l2-c13
+            part: ones-change
+            type: multiple_choice
+            text: "Which digit changes in 54 + 3?"
+            say: "Fifty-four add three. Which digit changes?"
+            options: ["the 4", "the 5", "both"]
+            answer: "the 4"
+          - id: l2-c14
+            part: ones-change
+            type: true_false
+            text: "Is it true? When you work out 72 + 5, the tens digit stays 7."
+            say: "When you work out seventy-two add five, the tens digit stays seven. Is that true?"
+            answer: true
+          - id: l2-c15
+            part: ones-change
+            type: image_multiple_choice
+            text: "Which blocks show 61 + 7?"
+            say: "Sixty-one add seven. Which blocks show the answer?"
+            options:
+              - { drawn: base-ten, tens: 6, ones: 8 }
+              - { drawn: base-ten, tens: 0, ones: 8 }
+              - { drawn: base-ten, tens: 7, ones: 8 }
+            answer: "68"
+          - id: l2-c16
+            part: ones-change
+            type: fill_in_blank
+            text: "82 + 5: how many tens and ones?"
+            say: "Eighty-two add five. How many tens and how many ones does the answer have?"
+            frame: "82 + 5 = _ tens and _ ones"
+            options: ["8", "7", "13", "5"]
+            answer: ["8", "7"]
+          - id: l2-c17
+            part: related
+            type: fill_in_blank
+            text: "Use the related fact."
+            say: "Work out the related fact first, then the bigger sum."
+            frame: "5 + 3 = _ · 85 + 3 = _"
+            options: ["8", "88", "18", "83"]
+            answer: ["8", "88"]
+          - id: l2-c18
+            part: related
+            type: fill_in_blank
+            text: "Use the related fact."
+            say: "Work out the related fact first, then the bigger sum."
+            frame: "6 − 4 = _ · 36 − 4 = _"
+            options: ["2", "32", "10", "40"]
+            answer: ["2", "32"]
+          - id: l2-c19
+            part: related
+            type: multiple_choice
+            text: "Which fact helps with 73 + 4?"
+            say: "Seventy-three add four. Which fact helps?"
+            options: ["3 + 4 = 7", "7 + 4 = 11", "7 + 3 = 10"]
+            answer: "3 + 4 = 7"
+          - id: l2-c20
+            part: related
+            type: true_false
+            text: "Is it true? 8 − 2 = 6, so 58 − 2 = 56."
+            say: "Eight subtract two is six, so fifty-eight subtract two is fifty-six. Is that true?"
+            answer: true

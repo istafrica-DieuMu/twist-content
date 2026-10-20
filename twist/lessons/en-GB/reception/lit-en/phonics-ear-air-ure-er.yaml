@@ -13,6 +13,9 @@ summary: >
   and ends with the skill check. The voice says every word; the child
   picks the letters for a sound, fills a gap or reads a word and finds its
   picture.
+  Writing the graphemes in words is practised in Practise (the missing
+  letters) and in segment-spell; the skill check marks hearing each sound
+  and reading words with it.
 metadata:
   year: reception
   topic: { de: "Laute und Buchstaben", en: "Phonics" }
@@ -25,6 +28,11 @@ metadata:
   drawn: [letter-card]
   sounds: [en.ear, en.air, en.ure, en.er]
   facets: []
+  parts:
+    - { id: ear, what: { de: "den Laut von ear kennen und Wörter damit lesen", en: "knowing the sound of ear and reading words with it" } }
+    - { id: air, what: { de: "den Laut von air kennen und Wörter damit lesen", en: "knowing the sound of air and reading words with it" } }
+    - { id: ure, what: { de: "den Laut von ure kennen und Wörter damit lesen", en: "knowing the sound of ure and reading words with it" } }
+    - { id: er, what: { de: "den Laut von er am Wortende kennen und Wörter damit lesen", en: "knowing the sound of er at the end of a word and reading words with it" } }
   misconceptions:
     - id: ear-air-mixed
       what: Mixes up ear and air, which share two letters (hair written hear)
@@ -109,7 +117,8 @@ lessons:
               - id: l1-f4
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Hear. I can hear a bird. Which letters are missing at the end of hear?"
+                say: "Which letters are missing at the end of this word? Listen."
+                audio: { en: "Hear. I can hear a bird." }
                 frame: "h_"
                 options: ["air", "e", "ear"]
                 answer: ["ear"]
@@ -142,7 +151,8 @@ lessons:
               - id: l1-s2
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Pair. A pair of socks. Which letters are missing at the end of pair?"
+                say: "Which letters are missing at the end of this word? Listen."
+                audio: { en: "Pair. A pair of socks." }
                 frame: "p_"
                 options: ["ear", "air", "a"]
                 answer: ["air"]
@@ -183,7 +193,8 @@ lessons:
               - id: l1-n2
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Dear. Which letters are missing at the end of dear?"
+                say: "Which letters are missing at the end of this word? Listen."
+                audio: { en: "Dear." }
                 frame: "d_"
                 options: ["ear", "air", "er"]
                 answer: ["ear"]
@@ -210,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -228,10 +240,32 @@ lessons:
           - id: l1-c3
             type: fill_in_blank
             text: "Which letters are missing?"
-            say: "Fair. Which letters are missing at the end of fair?"
+            say: "Which letters are missing at the end of this word? Listen."
+            audio: { en: "Fair." }
             frame: "f_"
             options: ["ear", "ur", "air"]
             answer: ["air"]
+          - id: l1-c4
+            type: true_false
+            text: "Does the card say the word you hear?"
+            say: "Does the card say this word? Listen."
+            audio: { en: "Fair." }
+            show: { drawn: letter-card, text: "fear" }
+            answer: false
+          - id: l1-c5
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Dear." }
+            options: ["den", "dear", "dad"]
+            answer: "dear"
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "ear" }
+            options: [{ object: arm }, { object: eye }, { object: ear }]
+            answer: ear
 
   - n: 2
     title: { de: "ure und er", en: "ure and er" }
@@ -251,7 +285,8 @@ lessons:
           - id: l2-w2
             type: fill_in_blank
             text: "Which letters are missing?"
-            say: "Hair. The hair on your head. Which letters are missing at the end of hair?"
+            say: "Which letters are missing at the end of this word? Listen."
+            audio: { en: "Hair. The hair on your head." }
             frame: "h_"
             options: ["ear", "a", "air"]
             answer: ["air"]
@@ -352,7 +387,8 @@ lessons:
               - id: l2-s2
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Cure. A cure makes you well again. Which letters are missing at the end of cure?"
+                say: "Which letters are missing at the end of this word? Listen."
+                audio: { en: "Cure. A cure makes you well again." }
                 frame: "c_"
                 options: ["ur", "ure", "ear"]
                 answer: ["ure"]
@@ -393,7 +429,8 @@ lessons:
               - id: l2-n2
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Sure. Which letters are missing at the end of sure?"
+                say: "Which letters are missing at the end of this word? Listen."
+                audio: { en: "Sure." }
                 frame: "s_"
                 options: ["er", "ure", "ur"]
                 answer: ["ure"]
@@ -420,8 +457,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: ear
             type: audio_choice
             text: "Which letters make the last sound?"
             say: "Listen. Tap the letters for the last sound."
@@ -429,6 +468,7 @@ lessons:
             options: ["ure", "ear", "er"]
             answer: "ear"
           - id: l2-c2
+            part: er
             type: image_multiple_choice
             text: "Which word ends with this sound?"
             say: "Which picture ends with the sound of these letters?"
@@ -436,23 +476,146 @@ lessons:
             options: [{ object: tree }, { object: teacher }, { object: table }]
             answer: teacher
           - id: l2-c3
-            type: fill_in_blank
-            text: "Which letters are missing?"
-            say: "Pure. Which letters are missing at the end of pure?"
-            frame: "p_"
-            options: ["ur", "er", "ure"]
-            answer: ["ure"]
+            part: ure
+            type: audio_choice
+            text: "Which letters make the last sound?"
+            say: "Listen. Tap the letters for the last sound."
+            audio: { en: "Cure." }
+            options: ["or", "ure", "ear"]
+            answer: "ure"
           - id: l2-c4
+            part: er
             type: image_multiple_choice
             text: "Read the word. Tap its picture."
             say: "Read the word on the card. Then tap its picture."
             show: { drawn: letter-card, text: "sticker" }
             options: [{ object: star }, { object: sticker }, { object: sock }]
             answer: sticker
+            option_audio: false
           - id: l2-c5
+            part: air
             type: audio_choice
             text: "Which word do you hear?"
             say: "Listen. Tap the word you hear."
             audio: { en: "Stair." }
             options: ["steer", "star", "stair"]
             answer: "stair"
+          - id: l2-c6
+            part: ear
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ear }
+            options: ["ear", "er", "air"]
+            answer: "ear"
+          - id: l2-c7
+            part: air
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.air }
+            options: ["ure", "air", "or"]
+            answer: "air"
+          - id: l2-c8
+            part: ure
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ure }
+            options: ["ur", "air", "ure"]
+            answer: "ure"
+          - id: l2-c9
+            part: er
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.er }
+            options: ["er", "ur", "ure"]
+            answer: "er"
+          - id: l2-c10
+            part: ear
+            type: true_false
+            text: "Does the card say the word you hear?"
+            say: "Does the card say this word? Listen."
+            audio: { en: "Year." }
+            show: { drawn: letter-card, text: "year" }
+            answer: true
+          - id: l2-c11
+            part: air
+            type: true_false
+            text: "chair"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: cheese }
+            answer: false
+          - id: l2-c12
+            part: ure
+            type: multiple_choice
+            text: "Which word rhymes with sure?"
+            say: "Read the words. Which one rhymes with sure?"
+            options: ["pair", "pure", "fur"]
+            answer: "pure"
+            option_audio: false
+          - id: l2-c13
+            part: er
+            type: true_false
+            text: "rubber"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: rubber }
+            answer: true
+          - id: l2-c14
+            part: ear
+            type: multiple_choice
+            text: "Which word rhymes with ear?"
+            say: "Read the words. Which one rhymes with ear?"
+            options: ["hair", "near", "nut"]
+            answer: "near"
+            option_audio: false
+          - id: l2-c15
+            part: air
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "air" }
+            options: [{ object: cheese }, { object: car }, { object: chair }]
+            answer: chair
+          - id: l2-c16
+            part: ure
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Sure." }
+            options: ["sun", "sure", "sit"]
+            answer: "sure"
+          - id: l2-c17
+            part: er
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "jumper" }
+            options: [{ object: jug }, { object: jacket }, { object: jumper }]
+            answer: jumper
+            option_audio: false
+          - id: l2-c18
+            part: ear
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Ear." }
+            options: ["air", "ear", "arm"]
+            answer: "ear"
+          - id: l2-c19
+            part: air
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Hair." }
+            options: ["hear", "her", "hair"]
+            answer: "hair"
+          - id: l2-c20
+            part: ure
+            type: true_false
+            text: "Does the card say the word you hear?"
+            say: "Does the card say this word? Listen."
+            audio: { en: "Pure." }
+            show: { drawn: letter-card, text: "pair" }
+            answer: false

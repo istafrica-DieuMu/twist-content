@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table]
   facets: [operation-signs, currency]
+  parts:
+    - { id: two-digit, what: { de: zweistellige Zahlen mit einer einstelligen Zahl malnehmen, en: multiplying a two-digit number by a one-digit number } }
+    - { id: three-digit, what: { de: dreistellige Zahlen mit einer einstelligen Zahl malnehmen, en: multiplying a three-digit number by a one-digit number } }
+    - { id: steps, what: { de: "Teilergebnisse aufschreiben, auch im Malkreuz", en: "writing the parts down, also in the grid method" } }
+    - { id: in-context, what: { de: Sachaufgaben zum Malnehmen, en: word problems with multiplication } }
   misconceptions:
     - id: lose-a-part
       what: Adds a part of the number without multiplying it (3 × 47 = 120 + 7 = 127)
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -221,6 +227,23 @@ lessons:
             say: "Which shows four times sixty-three?"
             options: ["4 × 60 + 4 × 3", "4 × 60 + 3", "4 × 6 + 4 × 3"]
             answer: "4 × 60 + 4 × 3"
+          - id: l1-c4
+            type: text_input
+            text: "5 × 38 = _"
+            say: "Five times thirty-eight."
+            answer: "190"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 4 × 47 = 168"
+            say: "Four times forty-seven equals one hundred and sixty-eight. Is it true?"
+            answer: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Work out 8 × 32 in steps."
+            say: "Eight times thirty-two. Multiply the tens, then the ones, then add."
+            frame: "8 × 30 = _ → 8 × 2 = _ → 8 × 32 = _"
+            options: ["240", "16", "256", "242"]
+            answer: ["240", "16", "256"]
 
   - n: 2
     title: { de: "Dreistellig mal einstellig", en: "Three digits times one digit" }
@@ -385,23 +408,28 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: two-digit
             type: text_input
             text: "6 × 42 = _"
             say: "Six times forty-two."
             answer: "252"
           - id: l2-c2
+            part: two-digit
             type: text_input
             text: "8 × 37 = _"
             say: "Eight times thirty-seven."
             answer: "296"
           - id: l2-c3
+            part: three-digit
             type: text_input
             text: "3 × 216 = _"
             say: "Three times two hundred and sixteen."
             answer: "648"
           - id: l2-c4
+            part: steps
             type: fill_in_blank
             text: "Fill in the grid for 4 × 147."
             say: "Four times one hundred and forty-seven. Fill in each box of the grid, then add."
@@ -410,8 +438,105 @@ lessons:
             options: ["400", "160", "28", "588", "547"]
             answer: ["400", "160", "28", "588"]
           - id: l2-c5
+            part: steps
             type: multiple_choice
             text: "Which shows 3 × 54?"
             say: "Which shows three times fifty-four?"
             options: ["3 × 50 + 3 × 4", "3 × 50 + 4", "3 × 5 + 3 × 4"]
             answer: "3 × 50 + 3 × 4"
+          - id: l2-c6
+            part: two-digit
+            type: true_false
+            text: "Is it true? 6 × 28 = 158"
+            say: "Six times twenty-eight equals one hundred and fifty-eight. Is it true?"
+            answer: false
+          - id: l2-c7
+            part: two-digit
+            type: multiple_choice
+            text: "8 × 26 = _"
+            say: "Eight times twenty-six."
+            options: ["208", "166", "1648"]
+            answer: "208"
+          - id: l2-c8
+            part: two-digit
+            type: text_input
+            text: "5 × 68 = _"
+            say: "Five times sixty-eight."
+            answer: "340"
+          - id: l2-c9
+            part: three-digit
+            type: text_input
+            text: "4 × 213 = _"
+            say: "Four times two hundred and thirteen."
+            answer: "852"
+          - id: l2-c10
+            part: three-digit
+            type: multiple_choice
+            text: "3 × 241 = _"
+            say: "Three times two hundred and forty-one."
+            options: ["723", "721", "623"]
+            answer: "723"
+          - id: l2-c11
+            part: three-digit
+            type: true_false
+            text: "Is it true? 2 × 384 = 768"
+            say: "Two times three hundred and eighty-four equals seven hundred and sixty-eight. Is it true?"
+            answer: true
+          - id: l2-c12
+            part: three-digit
+            type: text_input
+            text: "5 × 114 = _"
+            say: "Five times one hundred and fourteen."
+            answer: "570"
+          - id: l2-c13
+            part: steps
+            type: fill_in_blank
+            text: "Fill in the grid for 3 × 58."
+            say: "Three times fifty-eight. Fill in each box of the grid, then add."
+            show: { drawn: table, rows: [["×", "50", "8"], ["3", "?", "?"]] }
+            frame: "3 × 50 = _ → 3 × 8 = _ → 3 × 58 = _"
+            options: ["150", "24", "174", "158"]
+            answer: ["150", "24", "174"]
+          - id: l2-c14
+            part: steps
+            type: multiple_choice
+            text: "Which multiplication does this grid show?"
+            show: { drawn: table, rows: [["×", "200", "40", "3"], ["2", "400", "80", "6"]] }
+            options: ["2 × 243", "2 × 486", "6 × 243"]
+            answer: "2 × 243"
+          - id: l2-c15
+            part: steps
+            type: fill_in_blank
+            text: "Work out 3 × 162 in steps."
+            say: "Three times one hundred and sixty-two. Multiply the hundreds, the tens and the ones, then add."
+            frame: "3 × 100 = _ → 3 × 60 = _ → 3 × 2 = _ → 3 × 162 = _"
+            options: ["300", "180", "6", "486", "482"]
+            answer: ["300", "180", "6", "486"]
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "A box holds 24 pencils. How many pencils are in 6 boxes?"
+            answer: "144"
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "A ticket for the zoo costs £18. How much do 4 tickets cost? Type the pounds."
+            say: "A ticket for the zoo costs eighteen pounds. How much do four tickets cost? Type the pounds."
+            answer: "72"
+          - id: l2-c18
+            part: in-context
+            type: multiple_choice
+            text: "A coach has 52 seats. How many seats are there on 3 coaches?"
+            options: ["156", "152", "55"]
+            answer: "156"
+          - id: l2-c19
+            part: in-context
+            type: text_input
+            text: "A farmer packs 112 apples into each crate. How many apples are in 4 crates?"
+            answer: "448"
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "A book has 108 pages. Ben reads it 3 times. He says he has read 324 pages. Is he right?"
+            say: "A book has one hundred and eight pages. Ben reads it three times. He says he has read three hundred and twenty-four pages. Is he right?"
+            answer: true

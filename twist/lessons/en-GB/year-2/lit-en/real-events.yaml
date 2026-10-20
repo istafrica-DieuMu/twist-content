@@ -23,9 +23,15 @@ metadata:
   builds_on: [lit-en.composition.short-narrative]
   also_practises: [lit-en.grammar.tense-progressive, lit-en.comprehension.sequence]
   vocabulary: { en: [recount, trip, opening, ending, time order, first, next, then, after that, finally, past tense, fact] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [letter-card]
   facets: []
+  parts:
+    - { id: opening, what: { de: "eine Einleitung wählen, die sagt, wer, wo und wann", en: "choosing an opening that says who, where and when" } }
+    - { id: time-order, what: { de: Ereignisse mit Zeitwörtern in die richtige Reihenfolge bringen, en: putting events in time order with time words } }
+    - { id: past-tense, what: { de: Verben in der Vergangenheit verwenden, en: keeping the verbs in the past tense } }
+    - { id: true-events, what: { de: "nur wahre Ereignisse aufnehmen, nichts Erfundenes", en: "keeping to what really happened, with nothing made up" } }
+    - { id: ending, what: { de: "einen Schluss wählen, der sagt, wie es war", en: choosing an ending that says how it felt } }
   misconceptions:
     - id: made-up-detail
       what: Adds made-up events to a recount (a dragon at the farm), so it turns into a story
@@ -223,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -241,6 +248,24 @@ lessons:
             text: "A recount is about something that really happened."
             say: "Read it. Is it true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Why does a recount use time words like first and next?"
+            options: ["to make it rhyme", "to show the order things happened", "to say who went"]
+            answer: "to show the order things happened"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? A recount of a class trip is about a made-up child, so it uses he or she."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Our visit to the library\n\nOn Thursday, our class walked to the library. First, the librarian read us a story. Next, we chose a book each. Finally, we walked back to school. It was so much fun!\n\nWhat did the class do after the story?"
+            say: "Read the recount and the question. What did the class do after the story?"
+            options: ["walked back to school", "chose a book each", "had lunch"]
+            answer: "chose a book each"
+            option_audio: false
 
   - n: 2
     title: { de: Einen Bericht aufbauen, en: Building a recount }
@@ -419,14 +444,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: opening
             type: multiple_choice
             text: "Which is the best opening for a recount?"
             options: ["On Monday, our class visited the aquarium in the city.", "Fish can swim.", "The aquarium."]
             answer: "On Monday, our class visited the aquarium in the city."
             option_audio: false
           - id: l2-c2
+            part: time-order
             type: ordering
             text: "Put the aquarium trip in order."
             options: ["Next, we saw a shark.", "Finally, we bought a pencil in the shop.", "First, we looked at tiny fish."]
@@ -434,6 +462,7 @@ lessons:
             answer: ["First, we looked at tiny fish.", "Next, we saw a shark.", "Finally, we bought a pencil in the shop."]
             option_audio: false
           - id: l2-c3
+            part: past-tense
             type: fill_in_blank
             text: "Put the verb in the past tense."
             say: "Choose the verb that keeps the recount in the past."
@@ -442,14 +471,127 @@ lessons:
             answer: ["watched"]
             option_audio: false
           - id: l2-c4
+            part: true-events
             type: multiple_choice
             text: "Which sentence does not belong in the aquarium recount?"
             options: ["A shark swam past the glass.", "The shark asked me my name.", "We saw jellyfish."]
             answer: "The shark asked me my name."
             option_audio: false
           - id: l2-c5
+            part: ending
             type: multiple_choice
             text: "Which is the best ending for the aquarium recount?"
             options: ["The shark was my favourite, and I drew it when I got home.", "Next, we saw the crabs.", "Sharks have teeth."]
             answer: "The shark was my favourite, and I drew it when I got home."
+            option_audio: false
+          - id: l2-c6
+            part: opening
+            type: true_false
+            text: "Is this a good opening for a recount? \"Last Wednesday, Year 2 went to the castle on a train.\""
+            say: "Read it yourself. Is this a good opening for a recount?"
+            answer: true
+          - id: l2-c7
+            part: opening
+            type: highlight_in_text
+            text: "Tap the words in the opening that tell you when."
+            say: "Read the opening yourself. Tap the words that tell you when it happened."
+            show: { drawn: letter-card, text: "Last Friday, my class went to the zoo." }
+            spans: ["Last", "Friday"]
+          - id: l2-c8
+            part: opening
+            type: multiple_choice
+            text: "Which opening tells you who, where and when?"
+            options: ["Grandpa and I went fishing.", "In the summer, Grandpa and I went fishing at the lake.", "Fishing at the lake is fun."]
+            answer: "In the summer, Grandpa and I went fishing at the lake."
+            option_audio: false
+          - id: l2-c9
+            part: time-order
+            type: ordering
+            text: "Put the trip to the bakery in order."
+            options: ["After that, we tasted warm bread.", "Finally, we said thank you and went home.", "First, we put on aprons.", "Next, the baker showed us the big oven."]
+            slot_count: 4
+            answer: ["First, we put on aprons.", "Next, the baker showed us the big oven.", "After that, we tasted warm bread.", "Finally, we said thank you and went home."]
+            option_audio: false
+          - id: l2-c10
+            part: time-order
+            type: fill_in_blank
+            text: "Add the time words."
+            say: "Fill in the time words so the events are in order."
+            frame: "We packed our bags. _, we walked to the bus stop. _, we got on the bus."
+            options: ["Finally", "Next", "Once upon a time"]
+            answer: ["Next", "Finally"]
+          - id: l2-c11
+            part: time-order
+            type: true_false
+            text: "Is this recount in time order?\n\"Finally, we went home. First, we had a picnic. Next, we played games.\""
+            say: "Read it yourself. Is this recount in time order?"
+            answer: false
+          - id: l2-c12
+            part: past-tense
+            type: highlight_in_text
+            text: "Tap the verb that is not in the past tense."
+            say: "Read the recount sentence yourself. One verb is not in the past tense. Tap it."
+            show: { drawn: letter-card, text: "We went to the pool and we swim for an hour." }
+            spans: ["swim"]
+          - id: l2-c13
+            part: past-tense
+            type: fill_in_blank
+            text: "Put the verb in the past tense."
+            say: "Choose the verb that keeps the recount in the past."
+            frame: "After that, we _ our lunch on the grass."
+            options: ["eat", "eated", "ate"]
+            answer: ["ate"]
+            option_audio: false
+          - id: l2-c14
+            part: past-tense
+            type: true_false
+            text: "Is this sentence right for a recount of a trip? \"Next, we see the lions.\""
+            say: "Read it yourself. Is this sentence right for a recount?"
+            answer: false
+          - id: l2-c15
+            part: true-events
+            type: sorting
+            text: "Does it belong in the recount of the trip to the woods? Sort them."
+            say: "Read each sentence about a trip to the woods. Could it really have happened, or is it made up? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: yes, show: { text: "belongs in the recount" }, say: "Belongs in the recount." }
+              - { id: no, show: { text: "made up" }, say: "Made up." }
+            options:
+              - { text: "We found a pine cone.", bin: yes }
+              - { text: "A tree told us a joke.", bin: no }
+              - { text: "We heard a woodpecker.", bin: yes }
+              - { text: "A fox drove us home.", bin: no }
+          - id: l2-c16
+            part: true-events
+            type: multiple_choice
+            text: "Which sentence belongs in a recount of a trip to the woods?"
+            options: ["An owl gave us a magic key.", "The trees danced for us.", "We jumped in a muddy puddle."]
+            answer: "We jumped in a muddy puddle."
+            option_audio: false
+          - id: l2-c17
+            part: true-events
+            type: true_false
+            text: "Tom writes about his trip to the zoo: \"A lion opened the gate and let me in.\"\nCan this go in his recount?"
+            say: "Read Tom's sentence yourself. Can this go in his recount?"
+            answer: false
+          - id: l2-c18
+            part: ending
+            type: multiple_choice
+            text: "Which is the best ending for a recount of a trip to the woods?"
+            options: ["First, we walked to the woods.", "We were tired and muddy, but it was a great day.", "Woods have lots of trees."]
+            answer: "We were tired and muddy, but it was a great day."
+            option_audio: false
+          - id: l2-c19
+            part: ending
+            type: true_false
+            text: "Is this a good ending for a recount? \"It was the funniest day ever, and I can't wait to go again!\""
+            say: "Read it yourself. Is this a good ending for a recount?"
+            answer: true
+          - id: l2-c20
+            part: ending
+            type: multiple_choice
+            text: "What does the ending of a recount tell you?"
+            options: ["when it happened", "what happened first", "how the writer felt"]
+            answer: "how the writer felt"
             option_audio: false

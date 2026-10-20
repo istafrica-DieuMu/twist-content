@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [ruler, number-line]
   facets: [units]
+  parts:
+    - { id: measure, what: { de: Längen am Lineal ab 0 in cm ablesen, en: measuring in cm with a ruler from 0 } }
+    - { id: off-zero, what: { de: "messen, wenn der Streifen nicht bei 0 anfängt", en: measuring a strip that does not start at 0 } }
+    - { id: metres, what: { de: Meter und Zentimeter vergleichen und umrechnen, en: comparing and changing metres and centimetres } }
+    - { id: unit, what: { de: cm oder m passend wählen, en: choosing cm or m for a length } }
   misconceptions:
     - id: reads-end-not-length
       what: Reads the number at the end of the strip when it does not start at 0 (a strip from 2 to 9 read as 9 cm)
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -235,6 +241,25 @@ lessons:
             type: true_false
             text: "Is it true? To measure, start at 0 on the ruler."
             say: "To measure, you start at zero on the ruler. Is that true?"
+            answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "How long is the strip?"
+            say: "How long is the strip?"
+            show: { drawn: ruler, to: 15, length: 10, colour: green }
+            options: ["10 cm", "11 cm", "9 cm"]
+            answer: "10 cm"
+          - id: l1-c5
+            type: multiple_choice
+            text: "How long is the strip?"
+            say: "This strip does not start at zero. How long is it?"
+            show: { drawn: ruler, to: 10, length: 2, start: 7, colour: blue }
+            options: ["2 cm", "9 cm", "7 cm"]
+            answer: "2 cm"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? On a ruler, each space from one number to the next is 1 cm."
+            say: "On a ruler, each space from one number to the next is one centimetre. Is that true?"
             answer: true
 
   - n: 2
@@ -402,14 +427,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: measure
             type: text_input
             text: "How long is the strip in cm?"
             say: "How many centimetres long is the strip?"
             show: { drawn: ruler, to: 15, length: 12, colour: green }
             answer: "12"
           - id: l2-c2
+            part: off-zero
             type: multiple_choice
             text: "How long is the strip?"
             say: "This strip does not start at zero. How long is it?"
@@ -417,20 +445,130 @@ lessons:
             options: ["6 cm", "8 cm", "2 cm"]
             answer: "6 cm"
           - id: l2-c3
+            part: unit
             type: multiple_choice
             text: "Which do we measure in centimetres?"
             say: "Which of these do we measure in centimetres?"
             options: ["a shoe", "a swimming pool", "a train"]
             answer: "a shoe"
           - id: l2-c4
+            part: metres
             type: multiple_choice
             text: "How many cm are in 1 m?"
             say: "How many centimetres are there in one metre?"
             options: ["100", "10", "50"]
             answer: "100"
           - id: l2-c5
+            part: metres
             type: multiple_choice
             text: "Which is shorter: 1 m or 50 cm?"
             say: "Which is shorter, one metre or fifty centimetres?"
             options: ["50 cm", "1 m", "the same"]
             answer: "50 cm"
+          - id: l2-c6
+            part: measure
+            type: multiple_choice
+            text: "How long is the strip?"
+            say: "The strip starts at zero. How long is it?"
+            show: { drawn: ruler, to: 10, length: 5, colour: red }
+            options: ["5 cm", "6 cm", "4 cm"]
+            answer: "5 cm"
+          - id: l2-c7
+            part: measure
+            type: text_input
+            text: "How long is the strip in cm?"
+            say: "How many centimetres long is the strip?"
+            show: { drawn: ruler, to: 15, length: 15, colour: blue }
+            answer: "15"
+          - id: l2-c8
+            part: measure
+            type: true_false
+            text: "Is it true? This strip is 2 cm long."
+            say: "The strip starts at zero. Is it two centimetres long?"
+            show: { drawn: ruler, to: 10, length: 2, colour: green }
+            answer: true
+          - id: l2-c9
+            part: measure
+            type: multiple_choice
+            text: "A line starts at 0 and should be 8 cm long. Where should it end?"
+            say: "Omar draws a line. It starts at zero on the ruler and should be eight centimetres long. Which number should it end on?"
+            options: ["8", "9", "7"]
+            answer: "8"
+          - id: l2-c10
+            part: off-zero
+            type: multiple_choice
+            text: "How long is the strip?"
+            say: "This strip does not start at zero. How long is it?"
+            show: { drawn: ruler, to: 10, length: 4, start: 1, colour: red }
+            options: ["4 cm", "5 cm", "1 cm"]
+            answer: "4 cm"
+          - id: l2-c11
+            part: off-zero
+            type: text_input
+            text: "How long is the strip in cm?"
+            say: "This strip does not start at zero. How many centimetres long is it?"
+            show: { drawn: ruler, to: 15, length: 8, start: 3, colour: blue }
+            answer: "8"
+          - id: l2-c12
+            part: off-zero
+            type: true_false
+            text: "Is it true? This strip is 9 cm long."
+            say: "This strip does not start at zero. Is it nine centimetres long?"
+            show: { drawn: ruler, to: 10, length: 5, start: 4, colour: green }
+            answer: false
+          - id: l2-c13
+            part: off-zero
+            type: multiple_choice
+            text: "How long is the strip?"
+            say: "This strip does not start at zero. How long is it?"
+            show: { drawn: ruler, to: 15, length: 7, start: 5, colour: red }
+            options: ["7 cm", "12 cm", "5 cm"]
+            answer: "7 cm"
+          - id: l2-c14
+            part: metres
+            type: true_false
+            text: "Is it true? 1 m is longer than 80 cm."
+            say: "One metre is longer than eighty centimetres. Is that true?"
+            answer: true
+          - id: l2-c15
+            part: metres
+            type: multiple_choice
+            text: "Ali's rope is 1 m long. Ben's rope is 100 cm long. Whose rope is longer?"
+            say: "Ali's rope is one metre long. Ben's rope is one hundred centimetres long. Whose rope is longer?"
+            options: ["Ali's rope", "Ben's rope", "They are the same."]
+            answer: "They are the same."
+          - id: l2-c16
+            part: unit
+            type: multiple_choice
+            text: "Which do we measure in metres?"
+            say: "Which of these do we measure in metres?"
+            options: ["the park", "a leaf", "a toothbrush"]
+            answer: "the park"
+          - id: l2-c17
+            part: unit
+            type: multiple_choice
+            text: "Is a spoon about 15 cm or about 15 m long?"
+            say: "Is a spoon about fifteen centimetres long or about fifteen metres long?"
+            options: ["about 15 cm", "about 15 m"]
+            answer: "about 15 cm"
+          - id: l2-c18
+            part: unit
+            type: multiple_choice
+            text: "Is a swimming pool about 25 cm or about 25 m long?"
+            say: "Is a swimming pool about twenty-five centimetres long or about twenty-five metres long?"
+            options: ["about 25 m", "about 25 cm"]
+            answer: "about 25 m"
+          - id: l2-c19
+            part: unit
+            type: true_false
+            text: "Is it true? A pencil is about 15 m long."
+            say: "A pencil is about fifteen metres long. Is that true?"
+            answer: false
+          - id: l2-c20
+            part: metres
+            type: ordering
+            text: "Put the lengths in order. Start with the longest."
+            say: "Put the lengths in order. Start with the longest."
+            options: ["70 cm", "1 m", "20 cm"]
+            slot_count: 3
+            answer: ["1 m", "70 cm", "20 cm"]

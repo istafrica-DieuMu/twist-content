@@ -11,8 +11,8 @@ summary: >
   number sentence, works it out and says the answer. Lesson 1 finds what
   the story asks and the number sentence for it; lesson 2 adds the answer
   sentence and mixes adding and taking-away stories, and ends with the
-  skill check. Stories are spoken; number sentences and short questions
-  are on screen.
+  skill check. Stories are spoken and stand on screen with their numbers,
+  and each picture shows the whole story.
 metadata:
   year: year-1
   topic: { de: Rechnen bis 10, en: Adding and subtracting to 10 }
@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, picture, text, audio]
   drawn: [ten-frame]
   facets: []
+  parts:
+    - { id: question, what: { de: "sagen, was die Geschichte wissen will", en: saying what the story asks } }
+    - { id: sum, what: { de: die passende Aufgabe finden, en: finding the number sentence that fits } }
+    - { id: solve, what: { de: die Rechengeschichte ausrechnen, en: working out the story } }
+    - { id: answer, what: { de: den passenden Antwortsatz finden, en: choosing the answer sentence } }
   misconceptions:
     - id: wrong-start
       what: Starts the subtraction with the number taken away (2 − 6 for "6 birds, 2 fly away")
@@ -78,9 +83,9 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "Which one fits the story?"
+                text: "4 apples are in the basket. Mum puts in 2 more. How many apples are in the basket now?\nWhich one fits the story?"
                 say: "Four apples are in the basket. Mum puts in two more. How many apples are in the basket now? Which one fits the story?"
-                show: { object: apple, count: 4 }
+                show: { object: apple, groups: [4, 2] }
                 options: ["4 + 2", "4 − 2", "2 − 4"]
                 answer: "4 + 2"
                 hints:
@@ -90,9 +95,9 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
-                text: "What do you need to find out?"
+                text: "6 children are playing football. 2 go home.\nWhat do you need to find out?"
                 say: "Six children are playing football. Two go home. What do you need to find out?"
-                show: { object: child, count: 6 }
+                show: { object: child, count: 6, gone: 2 }
                 options: ["How many are still playing?", "What is the game called?", "Where is the ball?"]
                 answer: "How many are still playing?"
                 hints:
@@ -102,9 +107,9 @@ lessons:
                 difficulty: easy
               - id: l1-f3
                 type: multiple_choice
-                text: "Which one fits the story?"
+                text: "7 balloons are at the stall. 3 float away. How many balloons are left?\nWhich one fits the story?"
                 say: "Seven balloons are at the stall. Three float away. How many balloons are left? Which one fits the story?"
-                show: { drawn: ten-frame, filled: 7, cross: 3 }
+                show: { object: balloon, count: 7, gone: 3 }
                 options: ["3 − 7", "7 + 3", "7 − 3"]
                 answer: "7 − 3"
                 feedback:
@@ -115,8 +120,9 @@ lessons:
                   - "7 − 3."
               - id: l1-f4
                 type: text_input
-                text: "7 − 3 = _"
-                say: "So how many balloons are left? Work out seven subtract three."
+                text: "7 balloons are at the stall. 3 float away. How many balloons are left?\n7 − 3 = _"
+                say: "Seven balloons are at the stall. Three float away. How many balloons are left? Work out seven subtract three."
+                show: { object: balloon, count: 7, gone: 3 }
                 answer: "4"
                 hints:
                   - "Take three away from seven."
@@ -124,9 +130,9 @@ lessons:
                   - "4 balloons."
               - id: l1-f5
                 type: multiple_choice
-                text: "3 strawberries are on the plate. Ben puts 5 more on. Which one fits the story?"
-                say: "Three strawberries are on the plate. Ben puts five more on. Which one fits the story?"
-                show: { object: strawberry, count: 3 }
+                text: "3 strawberries are on the plate. Ben puts 5 more on. How many strawberries are there now?\nWhich one fits the story?"
+                say: "Three strawberries are on the plate. Ben puts five more on. How many strawberries are there now? Which one fits the story?"
+                show: { object: strawberry, groups: [3, 5] }
                 options: ["5 − 3", "3 + 5", "3 + 3"]
                 answer: "3 + 5"
                 hints:
@@ -138,38 +144,39 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "Nine ants are walking along the path. Four crawl under a stone. How many are still on the path?"
-                show: { object: ant, count: 9 }
+                text: "9 ants are walking along the path. 4 crawl under a stone. How many are still on the path?\nWhich one fits the story?"
+                say: "Nine ants are walking along the path. Four crawl under a stone. How many are still on the path? Which one fits the story?"
+                show: { object: ant, count: 9, gone: 4 }
                 options: ["9 − 4", "9 + 4", "4 − 9"]
                 answer: "9 − 4"
                 hints: ["Are there more ants on the path at the end, or fewer?"]
               - id: l1-s2
                 type: text_input
-                text: "9 − 4 = _"
-                say: "How many ants are still on the path?"
+                text: "9 ants are walking along the path. 4 crawl under a stone. How many are still on the path?\n9 − 4 = _"
+                say: "Nine ants are walking along the path. Four crawl under a stone. How many ants are still on the path?"
+                show: { object: ant, count: 9, gone: 4 }
                 answer: "5"
                 hints: ["Count back four from nine."]
               - id: l1-s3
                 type: multiple_choice
-                text: "What do you need to find out?"
+                text: "Zara has 2 stickers. She gets 3 more.\nWhat do you need to find out?"
                 say: "Zara has two stickers. She gets three more. What do you need to find out?"
-                show: { object: sticker, count: 2 }
+                show: { object: sticker, groups: [2, 3] }
                 options: ["How many stickers does she have now?", "Who gave her the stickers?", "What colour are they?"]
                 answer: "How many stickers does she have now?"
                 hints: ["The answer is a number."]
               - id: l1-s4
                 type: true_false
-                text: "Does 6 + 2 fit?"
+                text: "6 frogs are sitting by the pond. 2 jump into the water. How many are still by the pond?\nDoes 6 + 2 fit?"
                 say: "Six frogs are sitting by the pond. Two jump into the water. How many are still by the pond? Does six add two fit?"
-                show: { object: frog, count: 6 }
+                show: { object: frog, count: 6, gone: 2 }
                 answer: false
                 hints: ["Are there more frogs by the pond, or fewer?"]
               - id: l1-s5
                 type: text_input
-                text: "1 + 4 = _"
+                text: "1 llama is in the barn. 4 more come in from the field. How many llamas are in the barn now?\n1 + 4 = _"
                 say: "One llama is in the barn. Four more come in from the field. How many llamas are in the barn now?"
-                show: { object: llama, count: 1 }
+                show: { object: llama, groups: [1, 4] }
                 answer: "5"
                 hints: ["Start at one and count on four."]
 
@@ -177,59 +184,83 @@ lessons:
             tasks:
               - id: l1-n1
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "Eight fish are in the tank. Mia moves two into another tank. How many are still in the first tank?"
-                show: { object: fish, count: 8 }
+                text: "8 fish are in the tank. Mia moves 2 into another tank. How many are still in the first tank?\nWhich one fits the story?"
+                say: "Eight fish are in the tank. Mia moves two into another tank. How many are still in the first tank? Which one fits the story?"
+                show: { object: fish, count: 8, gone: 2 }
                 options: ["2 − 8", "8 − 2", "8 + 2"]
                 answer: "8 − 2"
               - id: l1-n2
                 type: text_input
-                text: "8 − 2 = _"
-                say: "How many fish are still in the first tank?"
+                text: "8 fish are in the tank. Mia moves 2 into another tank. How many are still in the first tank?\n8 − 2 = _"
+                say: "Eight fish are in the tank. Mia moves two into another tank. How many fish are still in the first tank?"
+                show: { object: fish, count: 8, gone: 2 }
                 answer: "6"
               - id: l1-n3
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "Four cars are in the car park. Three more drive in. How many cars are there now?"
-                show: { object: car, count: 4 }
+                text: "4 cars are in the car park. 3 more drive in. How many cars are there now?\nWhich one fits the story?"
+                say: "Four cars are in the car park. Three more drive in. How many cars are there now? Which one fits the story?"
+                show: { object: car, groups: [4, 3] }
                 options: ["4 + 3", "4 − 3", "3 − 4"]
                 answer: "4 + 3"
               - id: l1-n4
                 type: text_input
-                text: "4 + 3 = _"
-                say: "How many cars are in the car park now?"
+                text: "4 cars are in the car park. 3 more drive in. How many cars are there now?\n4 + 3 = _"
+                say: "Four cars are in the car park. Three more drive in. How many cars are in the car park now?"
+                show: { object: car, groups: [4, 3] }
                 answer: "7"
               - id: l1-n5
                 type: multiple_choice
-                text: "What do you need to find out?"
+                text: "10 leaves are on the tree. The wind blows 3 away.\nWhat do you need to find out?"
                 say: "Ten leaves are on the tree. The wind blows three away. What do you need to find out?"
-                show: { object: leaf, count: 10 }
+                show: { object: leaf, count: 10, gone: 3 }
                 options: ["Where does the wind come from?", "How many are still on the tree?", "What kind of tree is it?"]
                 answer: "How many are still on the tree?"
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "Which one fits the story?"
-            say: "Five mice are in the hole. Two more come in. How many mice are in the hole now?"
-            show: { object: mouse, count: 5 }
+            text: "5 mice are in the hole. 2 more come in. How many mice are in the hole now?\nWhich one fits the story?"
+            say: "Five mice are in the hole. Two more come in. How many mice are in the hole now? Which one fits the story?"
+            show: { object: mouse, groups: [5, 2] }
             options: ["5 − 2", "2 − 5", "5 + 2"]
             answer: "5 + 2"
           - id: l1-c2
             type: fill_in_blank
-            text: "Write the number sentence."
-            say: "Six bananas are on the table. The children eat four. How many bananas are left?"
-            show: { object: banana, count: 6 }
+            text: "6 bananas are on the table. The children eat 4. How many bananas are left?\nWrite the number sentence."
+            say: "Six bananas are on the table. The children eat four. How many bananas are left? Write the number sentence."
+            show: { object: banana, count: 6, gone: 4 }
             frame: "_ _ _ = _"
             options: ["2", "4", "6", "10", "+", "−"]
             answer: ["6", "−", "4", "2"]
           - id: l1-c3
             type: true_false
-            text: "Does 3 − 9 fit?"
-            say: "Nine children are on the bus. Three get off. Does three subtract nine fit?"
+            text: "9 children are on the bus. 3 get off. How many children are still on the bus?\nDoes 3 − 9 fit?"
+            say: "Nine children are on the bus. Three get off. How many children are still on the bus? Does three subtract nine fit?"
+            show: { object: child, count: 9, gone: 3 }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "8 pears are in the bowl. Sam takes 3 out.\nWhat do you need to find out?"
+            say: "Eight pears are in the bowl. Sam takes three out. What do you need to find out?"
+            show: { object: pear, count: 8, gone: 3 }
+            options: ["How many pears are still in the bowl?", "Who bought the pears?", "What do the pears taste like?"]
+            answer: "How many pears are still in the bowl?"
+          - id: l1-c5
+            type: text_input
+            text: "2 children are riding bikes. 6 more join them. How many children are riding bikes now?\n2 + 6 = _"
+            say: "Two children are riding bikes. Six more join them. How many children are riding bikes now?"
+            show: { object: child, groups: [2, 6] }
+            answer: "8"
+          - id: l1-c6
+            type: multiple_choice
+            text: "10 marbles are on the floor. Tom picks up 6. How many marbles are still on the floor?\nWhich one fits the story?"
+            say: "Ten marbles are on the floor. Tom picks up six. How many marbles are still on the floor? Which one fits the story?"
+            show: { object: marble, count: 10, gone: 6 }
+            options: ["10 − 6", "6 − 10", "10 + 6"]
+            answer: "10 − 6"
 
   - n: 2
     title: { de: "Frage, Rechnung, Antwort", en: "Question, number sentence, answer" }
@@ -240,8 +271,9 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Which one fits the story?"
-            say: "Two dogs are playing in the garden. Three more come. Which one fits the story?"
+            text: "2 dogs are playing in the garden. 3 more come. How many dogs are in the garden now?\nWhich one fits the story?"
+            say: "Two dogs are playing in the garden. Three more come. How many dogs are in the garden now? Which one fits the story?"
+            show: { object: dog, groups: [2, 3] }
             options: ["2 + 3", "3 − 2", "2 − 3"]
             answer: "2 + 3"
             difficulty: easy
@@ -270,8 +302,9 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "Which answer sentence?"
+                text: "3 children are on the bench. 2 more sit down. 3 + 2 = 5\nWhich answer sentence fits?"
                 say: "Three children are on the bench. Two more sit down. Three add two is five. Which answer sentence fits?"
+                show: { object: child, groups: [3, 2] }
                 options: ["There are 5 children on the bench.", "There are 2 children on the bench.", "There are 5 benches."]
                 answer: "There are 5 children on the bench."
                 hints:
@@ -281,8 +314,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "Eight birds are on the roof. Five fly off to the tree. How many birds are on the roof now?"
+                text: "8 birds are on the roof. 5 fly off to the tree. How many birds are on the roof now?\nWhich one fits the story?"
+                say: "Eight birds are on the roof. Five fly off to the tree. How many birds are on the roof now? Which one fits the story?"
+                show: { object: bird, count: 8, gone: 5 }
                 options: ["8 + 5", "8 − 5", "5 − 8"]
                 answer: "8 − 5"
                 feedback:
@@ -293,8 +327,9 @@ lessons:
                   - "8 − 5."
               - id: l2-f3
                 type: text_input
-                text: "8 − 5 = _"
-                say: "How many birds are on the roof now?"
+                text: "8 birds are on the roof. 5 fly off to the tree. How many birds are on the roof now?\n8 − 5 = _"
+                say: "Eight birds are on the roof. Five fly off to the tree. How many birds are on the roof now?"
+                show: { object: bird, count: 8, gone: 5 }
                 answer: "3"
                 hints:
                   - "Take five away from eight."
@@ -302,8 +337,9 @@ lessons:
                   - "3 birds."
               - id: l2-f4
                 type: multiple_choice
-                text: "Which answer sentence?"
-                say: "How many birds are on the roof now? Which answer sentence fits?"
+                text: "8 birds are on the roof. 5 fly off to the tree. 8 − 5 = 3\nWhich answer sentence fits?"
+                say: "Eight birds are on the roof. Five fly off to the tree. Eight subtract five is three. Which answer sentence fits?"
+                show: { object: bird, count: 8, gone: 5 }
                 options: ["There are 3 roofs.", "There are 3 birds on the roof.", "There are 5 birds on the roof."]
                 answer: "There are 3 birds on the roof."
                 hints:
@@ -312,9 +348,9 @@ lessons:
                   - "There are 3 birds on the roof."
               - id: l2-f5
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "There are two marbles in the box. Gran puts four in. How many marbles are in the box now?"
-                show: { object: marble, count: 2 }
+                text: "There are 2 marbles in the box. Gran puts 4 in. How many marbles are in the box now?\nWhich one fits the story?"
+                say: "There are two marbles in the box. Gran puts four in. How many marbles are in the box now? Which one fits the story?"
+                show: { object: marble, groups: [2, 4] }
                 options: ["4 − 2", "2 − 4", "2 + 4"]
                 answer: "2 + 4"
                 hints:
@@ -326,36 +362,39 @@ lessons:
             tasks:
               - id: l2-s1
                 type: text_input
-                text: "10 − 4 = _"
+                text: "10 crayons are in the pot. Ali lends 4 to a friend. How many crayons are still in the pot?\n10 − 4 = _"
                 say: "Ten crayons are in the pot. Ali lends four to a friend. How many crayons are still in the pot?"
-                show: { object: crayon, count: 10 }
+                show: { object: crayon, count: 10, gone: 4 }
                 answer: "6"
                 hints: ["Count back four from ten."]
               - id: l2-s2
                 type: multiple_choice
-                text: "Which answer sentence?"
-                say: "How many crayons are still in the pot?"
+                text: "10 crayons are in the pot. Ali lends 4 to a friend. How many crayons are still in the pot?\nWhich answer sentence fits?"
+                say: "Ten crayons are in the pot. Ali lends four to a friend. How many crayons are still in the pot? Which answer sentence fits?"
+                show: { object: crayon, count: 10, gone: 4 }
                 options: ["There are 4 crayons in the pot.", "There are 6 crayons in the pot.", "Ali has 6 pots."]
                 answer: "There are 6 crayons in the pot."
                 hints: ["What is ten subtract four?"]
               - id: l2-s3
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "In the morning there are five eggs in the nest. By lunchtime there are two more. How many eggs are in the nest now?"
-                show: { object: egg, count: 5 }
+                text: "In the morning there are 5 eggs in the nest. By lunchtime there are 2 more. How many eggs are in the nest now?\nWhich one fits the story?"
+                say: "In the morning there are five eggs in the nest. By lunchtime there are two more. How many eggs are in the nest now? Which one fits the story?"
+                show: { object: egg, groups: [5, 2] }
                 options: ["5 + 2", "5 − 2", "2 − 5"]
                 answer: "5 + 2"
                 hints: ["More eggs at lunchtime, or fewer?"]
               - id: l2-s4
                 type: true_false
-                text: "Does 4 + 5 fit?"
+                text: "4 children are at the playground. 5 more come. How many children are there now?\nDoes 4 + 5 fit?"
                 say: "Four children are at the playground. Five more come. How many children are there now? Does four add five fit?"
+                show: { object: child, groups: [4, 5] }
                 answer: true
                 hints: ["Are there more children at the end, or fewer?"]
               - id: l2-s5
                 type: text_input
-                text: "4 + 5 = _"
-                say: "How many children are at the playground now?"
+                text: "4 children are at the playground. 5 more come. How many children are there now?\n4 + 5 = _"
+                say: "Four children are at the playground. Five more come. How many children are at the playground now?"
+                show: { object: child, groups: [4, 5] }
                 answer: "9"
                 hints: ["Start at five and count on four."]
 
@@ -363,69 +402,197 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "Which one fits the story?"
-                say: "Nine T-shirts are on the washing line. Dad takes six down. How many are still on the line?"
-                show: { object: t-shirt, count: 9 }
+                text: "9 T-shirts are on the washing line. Dad takes 6 down. How many are still on the line?\nWhich one fits the story?"
+                say: "Nine T-shirts are on the washing line. Dad takes six down. How many are still on the line? Which one fits the story?"
+                show: { object: t-shirt, count: 9, gone: 6 }
                 options: ["6 − 9", "9 + 6", "9 − 6"]
                 answer: "9 − 6"
               - id: l2-n2
                 type: text_input
-                text: "9 − 6 = _"
-                say: "How many T-shirts are still on the line?"
+                text: "9 T-shirts are on the washing line. Dad takes 6 down. How many are still on the line?\n9 − 6 = _"
+                say: "Nine T-shirts are on the washing line. Dad takes six down. How many T-shirts are still on the line?"
+                show: { object: t-shirt, count: 9, gone: 6 }
                 answer: "3"
               - id: l2-n3
                 type: multiple_choice
-                text: "Which answer sentence?"
-                say: "How many T-shirts are still on the line?"
+                text: "9 T-shirts are on the washing line. Dad takes 6 down. How many T-shirts are still on the line?\nWhich answer sentence fits?"
+                say: "Nine T-shirts are on the washing line. Dad takes six down. How many T-shirts are still on the line? Which answer sentence fits?"
+                show: { object: t-shirt, count: 9, gone: 6 }
                 options: ["There are 3 T-shirts on the line.", "Dad has 3 lines.", "There are 6 T-shirts on the line."]
                 answer: "There are 3 T-shirts on the line."
               - id: l2-n4
                 type: text_input
-                text: "3 + 3 = _"
+                text: "3 children are painting a picture. 3 more join in. How many children are painting now?\n3 + 3 = _"
                 say: "Three children are painting a picture. Three more join in. How many children are painting now?"
+                show: { object: child, groups: [3, 3] }
                 answer: "6"
               - id: l2-n5
                 type: multiple_choice
-                text: "What do you need to find out?"
+                text: "7 people are on the bus. 2 get off at the stop.\nWhat do you need to find out?"
                 say: "Seven people are on the bus. Two get off at the stop. What do you need to find out?"
+                show: { object: child, count: 7, gone: 2 }
                 options: ["How many are still on the bus?", "What is the stop called?", "Where is the bus going?"]
                 answer: "How many are still on the bus?"
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sum
             type: multiple_choice
-            text: "Which one fits the story?"
-            say: "Six monkeys are in the tree. One climbs down. How many monkeys are still in the tree?"
-            show: { object: monkey, count: 6 }
+            text: "6 monkeys are in the tree. 1 climbs down. How many monkeys are still in the tree?\nWhich one fits the story?"
+            say: "Six monkeys are in the tree. One climbs down. How many monkeys are still in the tree? Which one fits the story?"
+            show: { object: monkey, count: 6, gone: 1 }
             options: ["6 + 1", "6 − 1", "1 − 6"]
             answer: "6 − 1"
           - id: l2-c2
+            part: sum
             type: fill_in_blank
-            text: "Write the number sentence."
-            say: "There are two trees in the garden. Grandad plants six. How many trees are in the garden now?"
-            show: { object: tree, count: 2 }
+            text: "There are 2 trees in the garden. Grandad plants 6. How many trees are in the garden now?\nWrite the number sentence."
+            say: "There are two trees in the garden. Grandad plants six. How many trees are in the garden now? Write the number sentence."
+            show: { object: tree, groups: [2, 6] }
             frame: "2 _ _ = _"
             options: ["2", "6", "8", "4", "+", "−"]
             answer: ["+", "6", "8"]
           - id: l2-c3
+            part: answer
             type: multiple_choice
-            text: "Which answer sentence?"
+            text: "8 children are waiting for the bus. 4 get on the first bus. 8 − 4 = 4\nWhich answer sentence fits?"
             say: "Eight children are waiting for the bus. Four get on the first bus. Eight subtract four is four. Which answer sentence fits?"
+            show: { object: child, count: 8, gone: 4 }
             options: ["There are 4 buses waiting.", "There are 4 children still waiting.", "There are 8 children still waiting."]
             answer: "There are 4 children still waiting."
           - id: l2-c4
+            part: sum
             type: fill_in_blank
-            text: "Write the number sentence."
-            say: "Ten candles are on the cake. Leah blows out seven. How many are still lit?"
+            text: "10 candles are on the cake. Leah blows out 7. How many are still lit?\nWrite the number sentence."
+            say: "Ten candles are on the cake. Leah blows out seven. How many are still lit? Write the number sentence."
+            show: { object: candle, count: 10, gone: 7 }
             frame: "_ _ _ = _"
             options: ["3", "7", "10", "5", "+", "−"]
             answer: ["10", "−", "7", "3"]
           - id: l2-c5
+            part: question
             type: multiple_choice
-            text: "What do you need to find out?"
+            text: "Ella has 5 books. She borrows 3 more from the library.\nWhat do you need to find out?"
             say: "Ella has five books. She borrows three more from the library. What do you need to find out?"
-            show: { object: book, count: 5 }
+            show: { object: book, groups: [5, 3] }
             options: ["How many books does she have now?", "What is the library called?", "Which book is the best?"]
             answer: "How many books does she have now?"
+          - id: l2-c6
+            part: question
+            type: multiple_choice
+            text: "4 ducks are on the pond. 3 more swim over.\nWhat do you need to find out?"
+            say: "Four ducks are on the pond. Three more swim over. What do you need to find out?"
+            show: { object: duck, groups: [4, 3] }
+            options: ["How many ducks are on the pond now?", "What colour are the ducks?", "Where is the pond?"]
+            answer: "How many ducks are on the pond now?"
+          - id: l2-c7
+            part: question
+            type: multiple_choice
+            text: "9 apples are on the tree. Tom picks 5.\nWhat do you need to find out?"
+            say: "Nine apples are on the tree. Tom picks five. What do you need to find out?"
+            show: { object: apple, count: 9, gone: 5 }
+            options: ["What is the tree called?", "How many apples are still on the tree?", "Who eats the apples?"]
+            answer: "How many apples are still on the tree?"
+          - id: l2-c8
+            part: question
+            type: multiple_choice
+            text: "3 boats are in the harbour. 4 more sail in.\nWhat do you need to find out?"
+            say: "Three boats are in the harbour. Four more sail in. What do you need to find out?"
+            show: { object: boat, groups: [3, 4] }
+            options: ["How big are the boats?", "Where do the boats go next?", "How many boats are in the harbour now?"]
+            answer: "How many boats are in the harbour now?"
+          - id: l2-c9
+            part: question
+            type: multiple_choice
+            text: "10 bees are on the flowers. 6 fly back to the hive.\nWhat do you need to find out?"
+            say: "Ten bees are on the flowers. Six fly back to the hive. What do you need to find out?"
+            show: { object: bee, count: 10, gone: 6 }
+            options: ["How many bees are still on the flowers?", "How big is the hive?", "What colour are the flowers?"]
+            answer: "How many bees are still on the flowers?"
+          - id: l2-c10
+            part: sum
+            type: multiple_choice
+            text: "7 ladybirds are on a leaf. 4 crawl away. How many ladybirds are still on the leaf?\nWhich one fits the story?"
+            say: "Seven ladybirds are on a leaf. Four crawl away. How many ladybirds are still on the leaf? Which one fits the story?"
+            show: { object: ladybird, count: 7, gone: 4 }
+            options: ["4 − 7", "7 + 4", "7 − 4"]
+            answer: "7 − 4"
+          - id: l2-c11
+            part: sum
+            type: fill_in_blank
+            text: "Ava has 3 shells. She finds 5 on the beach. How many shells does she have now?\nWrite the number sentence."
+            say: "Ava has three shells. She finds five on the beach. How many shells does she have now? Write the number sentence."
+            show: { object: shell, groups: [3, 5] }
+            frame: "3 _ _ = _"
+            options: ["3", "5", "8", "2", "+", "−"]
+            answer: ["+", "5", "8"]
+          - id: l2-c12
+            part: solve
+            type: text_input
+            text: "6 cakes are on the plate. The children eat 2. How many cakes are left?"
+            say: "Six cakes are on the plate. The children eat two. How many cakes are left?"
+            show: { object: cake, count: 6, gone: 2 }
+            answer: "4"
+          - id: l2-c13
+            part: solve
+            type: text_input
+            text: "5 hens are in the yard. 3 more come out of the hen house. How many hens are in the yard now?"
+            say: "Five hens are in the yard. Three more come out of the hen house. How many hens are in the yard now?"
+            show: { object: hen, groups: [5, 3] }
+            answer: "8"
+          - id: l2-c14
+            part: solve
+            type: multiple_choice
+            text: "10 cups are on the table. Dad puts 7 in the cupboard. How many cups are still on the table?"
+            say: "Ten cups are on the table. Dad puts seven in the cupboard. How many cups are still on the table?"
+            show: { object: cup, count: 10, gone: 7 }
+            options: ["3", "7", "17"]
+            answer: "3"
+          - id: l2-c15
+            part: solve
+            type: text_input
+            text: "2 cats are asleep on the sofa. 2 more jump up. How many cats are on the sofa now?\n2 + 2 = _"
+            say: "Two cats are asleep on the sofa. Two more jump up. How many cats are on the sofa now?"
+            show: { object: cat, groups: [2, 2] }
+            answer: "4"
+          - id: l2-c16
+            part: solve
+            type: true_false
+            text: "8 sheep are in the field. 1 goes into the barn.\nIs it true? 7 sheep are still in the field."
+            say: "Eight sheep are in the field. One goes into the barn. Is it true? Seven sheep are still in the field."
+            show: { object: sheep, count: 8, gone: 1 }
+            answer: true
+          - id: l2-c17
+            part: answer
+            type: multiple_choice
+            text: "4 snails are on the wall. 5 more crawl up. 4 + 5 = 9\nWhich answer sentence fits?"
+            say: "Four snails are on the wall. Five more crawl up. Four add five is nine. Which answer sentence fits?"
+            show: { object: snail, groups: [4, 5] }
+            options: ["There are 9 walls.", "There are 9 snails on the wall.", "There are 5 snails on the wall."]
+            answer: "There are 9 snails on the wall."
+          - id: l2-c18
+            part: answer
+            type: multiple_choice
+            text: "7 teddies are on the shelf. Lily takes 2 to bed. 7 − 2 = 5\nWhich answer sentence fits?"
+            say: "Seven teddies are on the shelf. Lily takes two to bed. Seven subtract two is five. Which answer sentence fits?"
+            show: { object: teddy, count: 7, gone: 2 }
+            options: ["There are 5 teddies on the shelf.", "There are 2 teddies on the shelf.", "There are 5 shelves."]
+            answer: "There are 5 teddies on the shelf."
+          - id: l2-c19
+            part: answer
+            type: true_false
+            text: "6 children are at the table. 3 go out to play. 6 − 3 = 3\nDoes this answer sentence fit? There are 3 tables."
+            say: "Six children are at the table. Three go out to play. Six subtract three is three. Does this answer sentence fit? There are three tables."
+            show: { object: child, count: 6, gone: 3 }
+            answer: false
+          - id: l2-c20
+            part: answer
+            type: multiple_choice
+            text: "There are 5 socks in the drawer. Mum puts in 4 more. 5 + 4 = 9\nWhich answer sentence fits?"
+            say: "There are five socks in the drawer. Mum puts in four more. Five add four is nine. Which answer sentence fits?"
+            show: { object: sock, groups: [5, 4] }
+            options: ["There are 4 socks in the drawer.", "Mum has 9 drawers.", "There are 9 socks in the drawer."]
+            answer: "There are 9 socks in the drawer."

@@ -23,13 +23,17 @@ metadata:
   forms: [picture, drawn, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: count-claps, what: { de: die Silben eines Wortes klatschen und zählen, en: clapping and counting the syllables in a word } }
+    - { id: n-claps, what: { de: "ein Wort mit 1, 2 oder 3 Silben finden", en: "finding a word with 1, 2 or 3 claps" } }
+    - { id: sort-claps, what: { de: Wörter nach ihren Silben ordnen, en: sorting words by their claps } }
   misconceptions:
     - id: sounds-not-syllables
       what: Claps every sound (c-a-t) instead of every syllable
       addressed: Learn claps whole word parts; hints say each part as it is clapped ("ba ... na ... na")
     - id: word-length
       what: Thinks a big animal has a long word (cow is big, so lots of claps)
-      addressed: tasks set a big animal with a short word (cow) against a small one with a long word (butterfly)
+      addressed: tasks set a big animal with a short word (cow) against a small one with a long word (butterfly); the skill check counts horse (l2-c11) and puts a whale beside teddy and octopus (l2-c9)
   twist_reuse: []
   status: draft
   version: 1
@@ -225,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -256,6 +261,28 @@ lessons:
               - { drawn: dots, count: 2, layout: row }
               - { drawn: dots, count: 3, layout: row }
             answer: "2"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "How many claps?"
+            say: "Candle. Clap the word. How many claps?"
+            show: { object: candle }
+            options:
+              - { drawn: dots, count: 1, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "2"
+          - id: l1-c5
+            type: true_false
+            text: "Three claps?"
+            say: "Lorry. Do you clap three times for lorry?"
+            show: { object: lorry }
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which word has 1 clap?"
+            say: "Which word do you clap only once?"
+            options: [{ object: bucket }, { object: hen }, { object: umbrella }]
+            answer: hen
 
   - n: 2
     title: { de: Silben sortieren, en: Sorting by claps }
@@ -450,8 +477,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: count-claps
             type: image_multiple_choice
             text: "How many claps?"
             say: "Mirror. Clap the word. How many claps?"
@@ -462,6 +491,7 @@ lessons:
               - { drawn: dots, count: 3, layout: row }
             answer: "2"
           - id: l2-c2
+            part: count-claps
             type: image_multiple_choice
             text: "How many claps?"
             say: "Strawberry. Clap the word. How many claps?"
@@ -472,12 +502,14 @@ lessons:
               - { drawn: dots, count: 3, layout: row }
             answer: "3"
           - id: l2-c3
+            part: n-claps
             type: image_multiple_choice
             text: "Which word has 1 clap?"
             say: "Which word do you clap only once?"
             options: [{ object: snail }, { object: hedgehog }, { object: elephant }]
             answer: snail
           - id: l2-c4
+            part: sort-claps
             type: sorting
             text: "Sort by claps."
             say: "Leg, monkey, mouse, llama. Clap each word. One clap or two? Sort the pictures."
@@ -489,3 +521,161 @@ lessons:
               - { object: monkey, bin: "2" }
               - { object: mouse, bin: "1" }
               - { object: llama, bin: "2" }
+          - id: l2-c5
+            part: count-claps
+            type: image_multiple_choice
+            text: "How many claps?"
+            say: "Umbrella. Clap the word. How many claps?"
+            show: { object: umbrella }
+            options:
+              - { drawn: dots, count: 1, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "3"
+          - id: l2-c6
+            part: n-claps
+            type: image_multiple_choice
+            text: "Which word has 3 claps?"
+            say: "Which word do you clap three times?"
+            options: [{ object: ladder }, { object: sheep }, { object: tomato }]
+            answer: tomato
+          - id: l2-c7
+            part: sort-claps
+            type: matching
+            text: "Bed, jacket, honeycomb: how many claps?"
+            say: "Bed, jacket, honeycomb. Clap each word, then match it to its claps."
+            pairs:
+              - left: { object: bed }
+                right: { drawn: dots, count: 1, layout: row }
+              - left: { object: jacket }
+                right: { drawn: dots, count: 2, layout: row }
+              - left: { object: honeycomb }
+                right: { drawn: dots, count: 3, layout: row }
+          - id: l2-c8
+            part: count-claps
+            type: image_multiple_choice
+            text: "How many claps?"
+            say: "Zebra. Clap the word. How many claps?"
+            show: { object: zebra }
+            options:
+              - { drawn: dots, count: 1, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "2"
+          - id: l2-c9
+            part: n-claps
+            type: image_multiple_choice
+            text: "Which word has 2 claps?"
+            say: "Which word do you clap twice?"
+            options: [{ object: whale }, { object: teddy }, { object: octopus }]
+            answer: teddy
+          - id: l2-c10
+            part: sort-claps
+            type: sorting
+            text: "Sort by claps: queen, pony, chair, sofa."
+            say: "Queen, pony, chair, sofa. Clap each word. One clap or two? Sort the pictures."
+            bins:
+              - { id: "1", show: { drawn: dots, count: 1, layout: row }, say: { en: "One clap." } }
+              - { id: "2", show: { drawn: dots, count: 2, layout: row }, say: { en: "Two claps." } }
+            options:
+              - { object: queen, bin: "1" }
+              - { object: pony, bin: "2" }
+              - { object: chair, bin: "1" }
+              - { object: sofa, bin: "2" }
+          - id: l2-c11
+            part: count-claps
+            type: image_multiple_choice
+            text: "How many claps?"
+            say: "Horse. Clap the word. How many claps?"
+            show: { object: horse }
+            options:
+              - { drawn: dots, count: 1, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "1"
+          - id: l2-c12
+            part: n-claps
+            type: image_multiple_choice
+            text: "Which word has 1 clap?"
+            say: "Which word do you clap only once?"
+            options: [{ object: pineapple }, { object: train }, { object: spider }]
+            answer: train
+          - id: l2-c13
+            part: sort-claps
+            type: sorting
+            text: "Sort by claps: rubber, ambulance, kitchen, sandcastle."
+            say: "Rubber, ambulance, kitchen, sandcastle. Clap each word. Two claps or three? Sort the pictures."
+            bins:
+              - { id: "2", show: { drawn: dots, count: 2, layout: row }, say: { en: "Two claps." } }
+              - { id: "3", show: { drawn: dots, count: 3, layout: row }, say: { en: "Three claps." } }
+            options:
+              - { object: rubber, bin: "2" }
+              - { object: ambulance, bin: "3" }
+              - { object: kitchen, bin: "2" }
+              - { object: sandcastle, bin: "3" }
+          - id: l2-c14
+            part: count-claps
+            type: true_false
+            text: "Three claps?"
+            say: "Ladybird. Do you clap three times for ladybird?"
+            show: { object: ladybird }
+            answer: true
+          - id: l2-c15
+            part: n-claps
+            type: image_multiple_choice
+            text: "Which word has 3 claps?"
+            say: "Which word do you clap three times?"
+            options: [{ object: van }, { object: rabbit }, { object: jellyfish }]
+            answer: jellyfish
+          - id: l2-c16
+            part: sort-claps
+            type: matching
+            text: "Cheese, puppy, hospital: how many claps?"
+            say: "Cheese, puppy, hospital. Clap each word, then match it to its claps."
+            pairs:
+              - left: { object: cheese }
+                right: { drawn: dots, count: 1, layout: row }
+              - left: { object: puppy }
+                right: { drawn: dots, count: 2, layout: row }
+              - left: { object: hospital }
+                right: { drawn: dots, count: 3, layout: row }
+          - id: l2-c17
+            part: count-claps
+            type: true_false
+            text: "One clap?"
+            say: "Spider. Do you clap once for spider?"
+            show: { object: spider }
+            answer: false
+          - id: l2-c18
+            part: n-claps
+            type: image_multiple_choice
+            text: "Which word has 2 claps?"
+            say: "Which word do you clap twice?"
+            options: [{ object: butterfly }, { object: bear }, { object: baby }]
+            answer: baby
+          - id: l2-c19
+            part: sort-claps
+            type: sorting
+            text: "Sort by claps: ship, kettle, tomato, fork, lorry."
+            say: "Ship, kettle, tomato, fork, lorry. Clap each word. One, two or three claps? Sort the pictures."
+            bins:
+              - { id: "1", show: { drawn: dots, count: 1, layout: row }, say: { en: "One clap." } }
+              - { id: "2", show: { drawn: dots, count: 2, layout: row }, say: { en: "Two claps." } }
+              - { id: "3", show: { drawn: dots, count: 3, layout: row }, say: { en: "Three claps." } }
+            options:
+              - { object: ship, bin: "1" }
+              - { object: kettle, bin: "2" }
+              - { object: tomato, bin: "3" }
+              - { object: fork, bin: "1" }
+              - { object: lorry, bin: "2" }
+          - id: l2-c20
+            part: count-claps
+            type: image_multiple_choice
+            text: "How many claps?"
+            say: "Pizza. Clap the word. How many claps?"
+            show: { object: pizza }
+            options:
+              - { drawn: dots, count: 1, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "2"

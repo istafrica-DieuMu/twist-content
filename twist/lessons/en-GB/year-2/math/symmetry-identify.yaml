@@ -27,6 +27,11 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [letter-card, shape, grid]
   facets: []
+  parts:
+    - { id: is-symmetric, what: { de: "prüfen, ob eine Figur eine Symmetrieachse hat", en: telling whether a shape has a line of symmetry } }
+    - { id: find, what: { de: "unter mehreren Figuren die symmetrische oder die nicht symmetrische finden", en: picking out the shape with or without a line of symmetry } }
+    - { id: axis, what: { de: "sagen, wie die Symmetrieachse verläuft", en: saying which way the line of symmetry goes } }
+    - { id: mirror-line, what: { de: "prüfen, ob eine gestrichelte Linie eine Symmetrieachse ist", en: checking whether a dashed line is a mirror line } }
   misconceptions:
     - id: looks-alike-is-symmetric
       what: Calls a shape symmetrical because both sides look alike, without checking that the halves match exactly when folded
@@ -226,6 +231,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -245,6 +251,27 @@ lessons:
             text: "Is it true? The dashed line is a line of symmetry."
             say: "Look at the red dashed line. Is it true? It is a line of symmetry for this pattern."
             show: { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, blue], [5, 0, blue], [1, 1, blue], [3, 1, blue]] }
+            answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? This square has a line of symmetry."
+            say: "Is it true? This square has a line of symmetry."
+            show: { drawn: shape, kind: square, colour: green }
+            answer: true
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which picture has a line of symmetry?"
+            say: "Which picture has a line of symmetry?"
+            options:
+              - { object: heart }
+              - { object: horse }
+              - { object: kettle }
+            answer: heart
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? The dashed line is a line of symmetry."
+            say: "Look at the red dashed line. Is it true? It is a line of symmetry for this pattern."
+            show: { drawn: grid, cols: 4, rows: 3, axis: 2, cells: [[0, 0, red], [3, 0, red], [1, 1, blue], [2, 1, blue], [0, 2, yellow], [2, 2, yellow]] }
             answer: false
 
   - n: 2
@@ -443,14 +470,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: is-symmetric
             type: true_false
             text: "Is it true? X has a line of symmetry."
             say: "Is it true? X has a line of symmetry."
             show: { drawn: letter-card, text: "X" }
             answer: true
           - id: l2-c2
+            part: find
             type: multiple_choice
             text: "Which letter has a line of symmetry?"
             say: "Which letter has a line of symmetry?"
@@ -458,6 +488,7 @@ lessons:
             answer: "Y"
             option_audio: false
           - id: l2-c3
+            part: axis
             type: multiple_choice
             text: "Which way does the line of symmetry go on T?"
             say: "Which way does the line of symmetry go on the T?"
@@ -466,6 +497,7 @@ lessons:
             answer: "vertical, straight up and down"
             keep_order: true
           - id: l2-c4
+            part: axis
             type: multiple_choice
             text: "Which way does the line of symmetry go on C?"
             say: "Which way does the line of symmetry go on the C?"
@@ -474,8 +506,132 @@ lessons:
             answer: "horizontal, straight across"
             keep_order: true
           - id: l2-c5
+            part: mirror-line
             type: true_false
             text: "Is it true? The dashed line is a line of symmetry."
             say: "Look at the red dashed line. Is it true? It is a line of symmetry for this pattern."
             show: { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[2, 0, red], [3, 0, red], [1, 1, red], [2, 1, red]] }
             answer: false
+          - id: l2-c6
+            part: is-symmetric
+            type: true_false
+            text: "Is it true? Z has a line of symmetry."
+            say: "Is it true? Z has a line of symmetry."
+            show: { drawn: letter-card, text: "Z" }
+            answer: false
+          - id: l2-c7
+            part: is-symmetric
+            type: true_false
+            text: "Is it true? This heart has a line of symmetry."
+            say: "Is it true? This heart has a line of symmetry."
+            show: { object: heart }
+            answer: true
+          - id: l2-c8
+            part: is-symmetric
+            type: true_false
+            text: "Is it true? This rectangle has a line of symmetry."
+            say: "Is it true? This rectangle has a line of symmetry."
+            show: { drawn: shape, kind: rectangle, colour: blue }
+            answer: true
+          - id: l2-c9
+            part: is-symmetric
+            type: true_false
+            text: "Is it true? This kettle has a line of symmetry."
+            say: "Is it true? This kettle has a line of symmetry."
+            show: { object: kettle }
+            answer: false
+          - id: l2-c10
+            part: find
+            type: multiple_choice
+            text: "Which letter has no line of symmetry?"
+            say: "Which letter has no line of symmetry?"
+            options: ["J", "I", "X"]
+            answer: "J"
+            option_audio: false
+          - id: l2-c11
+            part: find
+            type: image_multiple_choice
+            text: "Which picture has a line of symmetry?"
+            say: "Which picture has a line of symmetry?"
+            options:
+              - { object: ladybird }
+              - { object: horse }
+              - { object: giraffe }
+            answer: ladybird
+          - id: l2-c12
+            part: find
+            type: multiple_choice
+            text: "Which letter has a line of symmetry?"
+            say: "Which letter has a line of symmetry?"
+            options: ["I", "F", "G"]
+            answer: "I"
+            option_audio: false
+          - id: l2-c13
+            part: find
+            type: image_multiple_choice
+            text: "Which picture has no line of symmetry?"
+            say: "Which picture has no line of symmetry?"
+            options:
+              - { object: heart }
+              - { object: star }
+              - { object: horse }
+            answer: horse
+          - id: l2-c14
+            part: axis
+            type: multiple_choice
+            text: "Which way does the line of symmetry go on this pattern?"
+            say: "Which way does the line of symmetry go on this pattern?"
+            show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, red], [0, 1, red], [2, 0, blue], [2, 1, blue], [3, 0, green], [3, 1, green]] }
+            options: ["vertical, straight up and down", "horizontal, straight across", "there is none"]
+            answer: "horizontal, straight across"
+            keep_order: true
+          - id: l2-c15
+            part: axis
+            type: multiple_choice
+            text: "Which way does the line of symmetry go on this ladybird?"
+            say: "Which way does the line of symmetry go on this ladybird?"
+            show: { object: ladybird }
+            options: ["vertical, straight up and down", "horizontal, straight across", "there is none"]
+            answer: "vertical, straight up and down"
+            keep_order: true
+          - id: l2-c16
+            part: axis
+            type: true_false
+            text: "Is it true? The line of symmetry of E goes straight up and down."
+            say: "Is it true? The line of symmetry of the E goes straight up and down."
+            show: { drawn: letter-card, text: "E" }
+            answer: false
+          - id: l2-c17
+            part: mirror-line
+            type: true_false
+            text: "Is it true? The dashed line is a line of symmetry."
+            say: "Look at the red dashed line. Is it true? It is a line of symmetry for this pattern."
+            show: { drawn: grid, cols: 8, rows: 2, axis: 4, cells: [[2, 0, blue], [5, 0, blue], [3, 1, red], [4, 1, red], [0, 1, green], [7, 1, green]] }
+            answer: true
+          - id: l2-c18
+            part: mirror-line
+            type: true_false
+            text: "Is it true? The dashed line is a line of symmetry."
+            say: "Look at the red dashed line. Is it true? It is a line of symmetry for this pattern."
+            show: { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[0, 0, yellow], [5, 0, yellow], [1, 1, blue], [4, 1, red], [2, 2, green], [3, 2, green]] }
+            answer: false
+          - id: l2-c19
+            part: mirror-line
+            type: image_multiple_choice
+            text: "In which picture is the dashed line a mirror line?"
+            say: "Look at the red dashed line in each picture. In which picture is it a mirror line?"
+            options:
+              - { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, purple], [3, 0, purple], [1, 1, orange], [2, 1, orange]], key: line-3 }
+              - { drawn: grid, cols: 6, rows: 2, axis: 2, cells: [[0, 0, purple], [3, 0, purple], [1, 1, orange], [2, 1, orange]], key: line-2 }
+              - { drawn: grid, cols: 6, rows: 2, axis: 4, cells: [[0, 0, purple], [3, 0, purple], [1, 1, orange], [2, 1, orange]], key: line-4 }
+            answer: line-2
+          - id: l2-c20
+            part: mirror-line
+            type: image_multiple_choice
+            text: "Which pattern is symmetrical about the dashed line?"
+            say: "Look at the red dashed line in each picture. Which pattern is symmetrical?"
+            options:
+              - { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, green], [4, 0, green], [2, 0, red], [3, 0, red], [1, 1, blue], [4, 1, blue]], key: pattern-b }
+              - { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, green], [5, 0, green], [2, 0, red], [3, 0, red], [1, 1, blue], [4, 1, blue]], key: pattern-a }
+              - { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, green], [5, 0, green], [2, 0, red], [3, 0, red], [1, 1, blue], [3, 1, blue]], key: pattern-c }
+            answer: pattern-a

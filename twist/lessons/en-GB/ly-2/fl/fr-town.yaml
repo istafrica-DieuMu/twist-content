@@ -26,6 +26,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: places, what: { de: Orte in der Stadt verstehen und benennen, en: understanding and naming places in town } }
+    - { id: what-there, what: { de: "wissen, was man an einem Ort macht", en: knowing what you do at a place } }
+    - { id: directions, what: { de: "tourne à gauche, tourne à droite und va tout droit verstehen", en: "understanding tourne à gauche, tourne à droite and va tout droit" } }
+    - { id: way, what: { de: einen kurzen Weg mit zwei Schritten verstehen, en: understanding a short way in two steps } }
   misconceptions:
     - id: droit-droite
       what: Hears tout droit (straight on) as à droite (right), because the two words sound almost the same
@@ -51,6 +56,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
+            text: "What is the question?"
             say: { en: "Listen. What is the question?" }
             audio: { fr: "Où est le bus ?" }
             options: ["Where is the bus?", "What is it?", "How old are you?"]
@@ -58,8 +64,9 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Where is the dog?"
             say: { en: "Listen. Where is the dog?" }
-            audio: { fr: "Où est le chien ? Il est dans le jardin." }
+            audio: { turns: [{ fr: "Où est le chien ?", speaker: female }, { fr: "Il est dans le jardin.", speaker: male }] }
             options: [{ object: garden }, { object: kitchen }, { object: bedroom }]
             answer: garden
             difficulty: easy
@@ -87,6 +94,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: audio_choice
+                text: "Which place is it?"
                 say: { en: "Listen. Which place is it?" }
                 audio: { fr: "Le parc." }
                 options: [{ object: park }, { object: school }, { object: shop }]
@@ -98,6 +106,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "Which place is it?"
                 say: { en: "Listen. Which place is it?" }
                 audio: { fr: "La bibliothèque." }
                 options: [{ object: library }, { object: shop }, { object: station }]
@@ -110,6 +119,7 @@ lessons:
                   - "La bibliothèque is the library."
               - id: l1-f3
                 type: audio_choice
+                text: "Which place is it?"
                 say: { en: "Listen. Which place is it?" }
                 audio: { fr: "La gare." }
                 options: [{ object: station }, { object: swimming-pool }, { object: park }]
@@ -131,6 +141,7 @@ lessons:
                   - "À la piscine."
               - id: l1-f5
                 type: speak
+                text: "Say it in French: the school."
                 say: { en: "Say it in French: the school.", fr: "L'école." }
                 show: { object: school }
                 expected_text: "l'école"
@@ -143,6 +154,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
+                text: "Which place is it?"
                 say: { en: "Listen. Which place is it?" }
                 audio: { fr: "Le magasin." }
                 options: [{ object: shop }, { object: library }, { object: school }]
@@ -171,13 +183,15 @@ lessons:
                 hints: ["La gare has trains; la piscine has water."]
               - id: l1-s4
                 type: audio_choice
+                text: "Where is Tom?"
                 say: { en: "Listen. Where is Tom?" }
-                audio: { fr: "Où est Tom ? Il est au parc." }
+                audio: { turns: [{ fr: "Où est Tom ?", speaker: female }, { fr: "Il est au parc.", speaker: male }] }
                 options: [{ object: park }, { object: school }, { object: station }]
                 answer: park
                 hints: ["Listen to the last word."]
               - id: l1-s5
                 type: speak
+                text: "Say it in French: the station."
                 say: { en: "Say it in French: the station.", fr: "La gare." }
                 show: { object: station }
                 expected_text: "la gare"
@@ -187,6 +201,7 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
+                text: "Which place is it?"
                 say: { en: "Listen. Which place is it?" }
                 audio: { fr: "La piscine." }
                 options: [{ object: swimming-pool }, { object: park }, { object: station }]
@@ -212,36 +227,60 @@ lessons:
                     right: { object: sign-bus-stop }
               - id: l1-n4
                 type: audio_choice
+                text: "Where is Mum?"
                 say: { en: "Listen. Where is Mum?" }
-                audio: { fr: "Où est Maman ? Elle est à la gare." }
+                audio: { turns: [{ fr: "Où est Maman ?", speaker: male }, { fr: "Elle est à la gare.", speaker: female }] }
                 options: [{ object: station }, { object: shop }, { object: library }]
                 answer: station
               - id: l1-n5
                 type: true_false
-                text: "On lit des livres à la bibliothèque."
+                text: "On lit des livres à la bibliothèque.\nOn lit des livres means you read books. Is it true?"
                 say: { en: "Read the sentence. On lit des livres means you read books. Is it true?" }
                 answer: true
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
+            text: "Which place is it?"
             say: { en: "Listen. Which place is it?" }
             audio: { fr: "L'arrêt de bus." }
             options: [{ object: sign-bus-stop }, { object: shop }, { object: station }]
             answer: sign-bus-stop
           - id: l1-c2
             type: audio_choice
+            text: "Which place is it?"
             say: { en: "Listen. Which place is it?" }
             audio: { fr: "La bibliothèque." }
             options: [{ object: school }, { object: library }, { object: swimming-pool }]
             answer: library
           - id: l1-c3
             type: true_false
-            text: "On nage à la gare."
+            text: "On nage à la gare.\nOn nage means you swim. Is it true?"
             say: { en: "Read the sentence. On nage means you swim. Is it true?" }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            option_audio: false
+            text: "What is this place in French?"
+            say: { en: "What is this place in French? Read the answers." }
+            show: { object: park }
+            options: ["la gare", "le parc", "le magasin"]
+            answer: "le parc"
+          - id: l1-c5
+            type: audio_choice
+            text: "Where is Léo?"
+            say: { en: "Listen. Where is Léo?" }
+            audio: { turns: [{ fr: "Où est Léo ?", speaker: female }, { fr: "Il est au magasin.", speaker: male }] }
+            options: [{ object: park }, { object: shop }, { object: school }]
+            answer: shop
+          - id: l1-c6
+            type: true_false
+            text: "On attend le bus à l'arrêt de bus.\nOn attend le bus means you wait for the bus. Is it true?"
+            say: { en: "Read the sentence. On attend le bus means you wait for the bus. Is it true?" }
+            answer: true
 
   - n: 2
     title: { de: "Nach dem Weg fragen", en: "Asking the way" }
@@ -252,6 +291,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: audio_choice
+            text: "Which place is it?"
             say: { en: "Listen. Which place is it?" }
             audio: { fr: "L'école." }
             options: [{ object: school }, { object: shop }, { object: park }]
@@ -285,6 +325,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
+                text: "Emma asks the way. Which arrow fits?"
                 say: { en: "Emma asks the way. Listen. Which arrow fits?" }
                 audio: { fr: "Tourne à gauche." }
                 options: ["←", "→", "↑"]
@@ -296,6 +337,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "Which arrow fits?"
                 say: { en: "Listen. Which arrow fits?" }
                 audio: { fr: "Tourne à droite." }
                 options: ["→", "←", "↑"]
@@ -308,6 +350,7 @@ lessons:
                   - "Droite is right. Tap the right arrow."
               - id: l2-f3
                 type: audio_choice
+                text: "Which arrow fits?"
                 say: { en: "Listen. Which arrow fits?" }
                 audio: { fr: "Va tout droit." }
                 options: ["↑", "→", "←"]
@@ -320,8 +363,9 @@ lessons:
                   - "Tout droit is straight on. Tap the arrow pointing up."
               - id: l2-f4
                 type: audio_choice
+                text: "How does Emma get to the library?"
                 say: { en: "Listen. How does Emma get to the library?" }
-                audio: { fr: "Pardon, où est la bibliothèque ? Va tout droit, puis tourne à gauche." }
+                audio: { turns: [{ fr: "Pardon, où est la bibliothèque ?", speaker: female }, { fr: "Va tout droit, puis tourne à gauche.", speaker: male }] }
                 options: ["straight on, then left", "straight on, then right", "left, then straight on"]
                 answer: "straight on, then left"
                 hints:
@@ -330,6 +374,7 @@ lessons:
                   - "Straight on, then left."
               - id: l2-f5
                 type: speak
+                text: "Say it in French: turn right."
                 say: { en: "Say it in French: turn right.", fr: "Tourne à droite." }
                 expected_text: "Tourne à droite."
                 hints:
@@ -341,6 +386,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
+                text: "Where does Emma turn left?"
                 say: { en: "Listen. Where does Emma turn left?" }
                 audio: { fr: "Va tout droit et tourne à gauche au parc." }
                 options: [{ object: park }, { object: school }, { object: station }]
@@ -349,13 +395,14 @@ lessons:
               - id: l2-s2
                 type: multiple_choice
                 option_audio: false
-                text: "→"
+                text: "→\nWhat do you say for this arrow?"
                 say: { en: "What do you say for this arrow?" }
                 options: ["Tourne à droite.", "Tourne à gauche.", "Va tout droit."]
                 answer: "Tourne à droite."
                 hints: ["The arrow points right."]
               - id: l2-s3
                 type: audio_choice
+                text: "How does Emma get to the station?"
                 say: { en: "Listen. How does Emma get to the station?" }
                 audio: { fr: "La gare ? Tourne à droite, puis va tout droit." }
                 options: ["right, then straight on", "left, then straight on", "straight on, then right"]
@@ -364,7 +411,7 @@ lessons:
               - id: l2-s4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the way: go straight on, then turn left."
                 say: { en: "Build the way: go straight on, then turn left." }
                 options: ["puis", "tourne à gauche.", "Va tout droit,"]
                 slot_count: 3
@@ -381,6 +428,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
+                text: "Which arrow fits?"
                 say: { en: "Listen. Which arrow fits?" }
                 audio: { fr: "Tourne à droite à l'arrêt de bus." }
                 options: ["↑", "→", "←"]
@@ -388,20 +436,21 @@ lessons:
               - id: l2-n2
                 type: multiple_choice
                 option_audio: false
-                text: "←"
+                text: "←\nWhat do you say for this arrow?"
                 say: { en: "What do you say for this arrow?" }
                 options: ["Tourne à gauche.", "Tourne à droite.", "Va tout droit."]
                 answer: "Tourne à gauche."
               - id: l2-n3
                 type: audio_choice
+                text: "How does Ben get to the swimming pool?"
                 say: { en: "Listen. How does Ben get to the swimming pool?" }
-                audio: { fr: "Où est la piscine ? Tourne à gauche, puis tourne à droite." }
+                audio: { turns: [{ fr: "Où est la piscine ?", speaker: male }, { fr: "Tourne à gauche, puis tourne à droite.", speaker: female }] }
                 options: ["left, then right", "right, then left", "straight on, then right"]
                 answer: "left, then right"
               - id: l2-n4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the way: turn right, then go straight on."
                 say: { en: "Build the way: turn right, then go straight on." }
                 options: ["va tout droit.", "puis", "Tourne à droite,"]
                 slot_count: 3
@@ -414,34 +463,168 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: directions
             type: audio_choice
+            text: "How does Mia get to the shop?"
             say: { en: "Listen. How does Mia get to the shop?" }
-            audio: { fr: "Pardon, où est le magasin ? Tourne à gauche." }
+            audio: { turns: [{ fr: "Pardon, où est le magasin ?", speaker: female }, { fr: "Tourne à gauche.", speaker: male }] }
             options: ["left", "right", "straight on"]
             answer: "left"
           - id: l2-c2
+            part: directions
             type: multiple_choice
             option_audio: false
-            text: "↑"
+            text: "↑\nWhat do you say for this arrow?"
             say: { en: "What do you say for this arrow?" }
             options: ["Va tout droit.", "Tourne à droite.", "Tourne à gauche."]
             answer: "Va tout droit."
           - id: l2-c3
+            part: way
             type: audio_choice
+            text: "How does Tom get to the school?"
             say: { en: "Listen. How does Tom get to the school?" }
-            audio: { fr: "Pardon, où est l'école ? Va tout droit, puis tourne à droite." }
+            audio: { turns: [{ fr: "Pardon, où est l'école ?", speaker: male }, { fr: "Va tout droit, puis tourne à droite.", speaker: female }] }
             options: ["straight on, then right", "straight on, then left", "right, then straight on"]
             answer: "straight on, then right"
           - id: l2-c4
+            part: places
             type: audio_choice
+            text: "Where is Mia?"
             say: { en: "Listen. Where is Mia?" }
-            audio: { fr: "Où est Mia ? Elle est à la piscine." }
+            audio: { turns: [{ fr: "Où est Mia ?", speaker: male }, { fr: "Elle est à la piscine.", speaker: female }] }
             options: [{ object: swimming-pool }, { object: library }, { object: station }]
             answer: swimming-pool
           - id: l2-c5
+            part: directions
             type: true_false
             text: "↑\nDoes the arrow match what you hear?"
             say: { en: "Listen. Does the arrow match?", fr: "Tourne à droite." }
+            answer: false
+          - id: l2-c6
+            part: places
+            type: multiple_choice
+            option_audio: false
+            text: "What is this place in French?"
+            say: { en: "What is this place in French? Read the answers." }
+            show: { object: station }
+            options: ["la piscine", "le magasin", "la gare"]
+            answer: "la gare"
+          - id: l2-c7
+            part: places
+            type: multiple_choice
+            option_audio: false
+            text: "What is this place in French?"
+            say: { en: "What is this place in French? Read the answers." }
+            show: { object: library }
+            options: ["la librairie", "la bibliothèque", "l'école"]
+            answer: "la bibliothèque"
+          - id: l2-c8
+            part: places
+            type: audio_choice
+            text: "Where does Hugo want to go?"
+            say: { en: "Listen. Where does Hugo want to go?" }
+            audio: { turns: [{ fr: "Pardon, où est la bibliothèque ?", speaker: male }, { fr: "Va tout droit.", speaker: female }] }
+            options: [{ object: school }, { object: shop }, { object: library }]
+            answer: library
+          - id: l2-c9
+            part: places
+            type: matching
+            option_audio: false
+            text: "Which picture goes with each place?"
+            say: { en: "Read each place. Tap it, then its picture." }
+            pairs:
+              - left: { text: "le parc" }
+                right: { object: park }
+              - left: { text: "l'arrêt de bus" }
+                right: { object: sign-bus-stop }
+              - left: { text: "l'école" }
+                right: { object: school }
+              - left: { text: "la piscine" }
+                right: { object: swimming-pool }
+          - id: l2-c10
+            part: what-there
+            type: multiple_choice
+            option_audio: false
+            text: "Where do you get on a train?"
+            say: { en: "Where do you get on a train? Read the answers." }
+            options: ["à la piscine", "à la gare", "au parc"]
+            answer: "à la gare"
+          - id: l2-c11
+            part: what-there
+            type: multiple_choice
+            option_audio: false
+            text: "Where do children have lessons?"
+            say: { en: "Where do children have lessons? Read the answers." }
+            options: ["au magasin", "à la gare", "à l'école"]
+            answer: "à l'école"
+          - id: l2-c12
+            part: what-there
+            type: true_false
+            text: "On achète du pain au magasin.\nOn achète du pain means you buy bread. Is it true?"
+            say: { en: "Read the sentence. On achète du pain means you buy bread. Is it true?" }
+            answer: true
+          - id: l2-c13
+            part: what-there
+            type: true_false
+            text: "On prend le train à la bibliothèque.\nOn prend le train means you take the train. Is it true?"
+            say: { en: "Read the sentence. On prend le train means you take the train. Is it true?" }
+            answer: false
+          - id: l2-c14
+            part: what-there
+            type: multiple_choice
+            option_audio: false
+            text: "Where can you play and walk the dog?"
+            say: { en: "Where can you play and walk the dog? Read the answers." }
+            options: ["au parc", "à la bibliothèque", "à l'arrêt de bus"]
+            answer: "au parc"
+          - id: l2-c15
+            part: directions
+            type: ordering
+            option_audio: false
+            text: "Listen. Put the arrows in order."
+            say: { en: "Listen. Put the arrows in order.", fr: "Tourne à gauche, puis va tout droit, puis tourne à droite." }
+            options: ["→", "↑", "←"]
+            slot_count: 3
+            answer: ["←", "↑", "→"]
+          - id: l2-c16
+            part: directions
+            type: audio_choice
+            text: "Which way does Léa turn?"
+            say: { en: "Listen. Which way does Léa turn?" }
+            audio: { fr: "Léa tourne à gauche au magasin." }
+            options: ["right", "straight on", "left"]
+            answer: "left"
+          - id: l2-c17
+            part: way
+            type: audio_choice
+            text: "How does Hugo get to the park?"
+            say: { en: "Listen. How does Hugo get to the park?" }
+            audio: { turns: [{ fr: "Pardon, où est le parc ?", speaker: male }, { fr: "Tourne à gauche, puis va tout droit.", speaker: female }] }
+            options: ["straight on, then left", "left, then right", "left, then straight on"]
+            answer: "left, then straight on"
+          - id: l2-c18
+            part: way
+            type: multiple_choice
+            option_audio: false
+            text: "Turn left, then turn right. What do you say?"
+            say: { en: "Turn left, then turn right. What do you say?" }
+            options: ["Tourne à droite, puis tourne à gauche.", "Tourne à gauche, puis tourne à droite.", "Tourne à gauche, puis va tout droit."]
+            answer: "Tourne à gauche, puis tourne à droite."
+          - id: l2-c19
+            part: way
+            type: audio_choice
+            text: "Where does the way go?"
+            say: { en: "Listen. Where does the way go?" }
+            audio: { fr: "Va tout droit, puis tourne à gauche. Voilà la gare !" }
+            options: [{ object: school }, { object: station }, { object: library }]
+            answer: station
+          - id: l2-c20
+            part: way
+            type: true_false
+            text: "left, then right\nIs this the way you hear?"
+            say: { en: "Listen. Is this the way you hear?" }
+            audio: { turns: [{ fr: "Pardon, où est l'école ?", speaker: female }, { fr: "Tourne à droite, puis tourne à gauche.", speaker: male }] }
             answer: false

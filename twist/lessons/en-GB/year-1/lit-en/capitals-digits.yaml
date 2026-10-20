@@ -15,7 +15,10 @@ summary: >
   the skill check. Tracing carries its own support; the choice tasks pair
   each small letter with its capital and name the shapes a letter is made
   from. Letter and digit options have no speaker, because hearing them
-  would give the answer away.
+  would give the answer away. The skill check marks what a screen can
+  mark: pairing small letters with capitals, spotting capitals, the
+  lines a capital is made from and telling the digits apart; forming
+  them is practised with tracing and is not marked.
 metadata:
   year: year-1
   topic: { de: Handschrift, en: Handwriting }
@@ -27,6 +30,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: pairs, what: { de: zu jedem kleinen Buchstaben den Großbuchstaben finden, en: finding the capital for each small letter } }
+    - { id: spot, what: { de: Großbuchstaben unter kleinen erkennen, en: spotting capitals among small letters } }
+    - { id: shapes, what: { de: "sagen, aus welchen Linien ein Großbuchstabe besteht", en: "saying which lines a capital is made from (straight, slanting, curved)" } }
+    - { id: digits, what: { de: "die Ziffern 0 bis 9 auseinanderhalten (6 und 9, 2 und 5)", en: "telling the digits 0 to 9 apart (6 and 9, 2 and 5)" } }
   misconceptions:
     - id: capital-small-mixed
       what: Mixes capitals and small letters, or takes a tall small letter (k, f) for a capital
@@ -231,6 +239,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -254,6 +263,32 @@ lessons:
             options: ["F", "E", "T"]
             answer: ["F"]
             option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which is the capital of w?"
+            say: "Here is a small w. Which is its capital letter?"
+            show: { drawn: letter-card, text: "w" }
+            options: ["V", "W", "M"]
+            answer: "W"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? Capital A has a line across the middle."
+            answer: true
+          - id: l1-c6
+            type: matching
+            text: "Match each small letter to its capital."
+            say: "Tap a small letter, then tap its capital letter."
+            option_audio: false
+            pairs:
+              - left: { text: "v" }
+                right: { text: "V" }
+              - left: { text: "z" }
+                right: { text: "Z" }
+              - left: { text: "i" }
+                right: { text: "I" }
+              - left: { text: "x" }
+                right: { text: "X" }
 
   - n: 2
     title: { de: "Großbuchstaben mit Bögen", en: "Capitals with curves" }
@@ -445,6 +480,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: multiple_choice
@@ -468,6 +504,31 @@ lessons:
             options: ["R", "P", "K"]
             answer: ["R"]
             option_audio: false
+          - id: l2-c4
+            type: multiple_choice
+            text: "Which capital has one big curve?"
+            say: "Which capital has a line down and one big curve?"
+            options: ["B", "D", "R"]
+            answer: "D"
+            option_audio: false
+          - id: l2-c5
+            type: true_false
+            text: "Is it true? Capital G has a curve."
+            answer: true
+          - id: l2-c6
+            type: matching
+            text: "Match each small letter to its capital."
+            say: "Tap a small letter, then tap its capital letter."
+            option_audio: false
+            pairs:
+              - left: { text: "c" }
+                right: { text: "C" }
+              - left: { text: "p" }
+                right: { text: "P" }
+              - left: { text: "u" }
+                right: { text: "U" }
+              - left: { text: "g" }
+                right: { text: "G" }
 
   - n: 3
     title: { de: "Die Ziffern 0 bis 9", en: "The digits 0 to 9" }
@@ -634,8 +695,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: pairs
             type: multiple_choice
             text: "Which is the capital of n?"
             say: "Here is a small n. Which is its capital letter?"
@@ -644,6 +707,7 @@ lessons:
             answer: "N"
             option_audio: false
           - id: l3-c2
+            part: pairs
             type: multiple_choice
             text: "Which is the capital of j?"
             say: "Here is a small j. Which is its capital letter?"
@@ -652,20 +716,138 @@ lessons:
             answer: "J"
             option_audio: false
           - id: l3-c3
+            part: spot
             type: highlight_in_text
             text: "Tap every capital letter."
             say: "Some are small letters and some are capitals. Tap every capital letter."
             show: { drawn: letter-card, text: "b K r Q m Y" }
             spans: ["K", "Q", "Y"]
           - id: l3-c4
+            part: digits
             type: audio_choice
             text: "Which digit do you hear?"
             audio: { en: "Nine." }
             options: ["9", "6", "0"]
             answer: "9"
           - id: l3-c5
+            part: digits
             type: true_false
             text: "Is this a 3?"
             say: "Look at the digit. Is it a three?"
             show: { drawn: letter-card, text: "8" }
             answer: false
+          - id: l3-c6
+            part: pairs
+            type: fill_in_blank
+            text: "Small a. Which is its capital?"
+            say: "Here is a small a. Tap its capital letter."
+            frame: "a → _"
+            options: ["H", "A", "V"]
+            answer: ["A"]
+            option_audio: false
+          - id: l3-c7
+            part: pairs
+            type: matching
+            text: "Find the capital for each small letter."
+            say: "Tap a small letter, then tap the capital that goes with it."
+            option_audio: false
+            pairs:
+              - left: { text: "f" }
+                right: { text: "F" }
+              - left: { text: "y" }
+                right: { text: "Y" }
+              - left: { text: "m" }
+                right: { text: "M" }
+              - left: { text: "p" }
+                right: { text: "P" }
+          - id: l3-c8
+            part: pairs
+            type: multiple_choice
+            text: "Which is the small letter of G?"
+            say: "Here is a capital G. Which is its small letter?"
+            show: { drawn: letter-card, text: "G" }
+            options: ["q", "c", "g"]
+            answer: "g"
+            option_audio: false
+          - id: l3-c9
+            part: spot
+            type: highlight_in_text
+            text: "Tap every capital letter."
+            say: "Some are small letters and some are capitals. Tap every capital letter."
+            show: { drawn: letter-card, text: "d R g A e B" }
+            spans: ["R", "A", "B"]
+          - id: l3-c10
+            part: spot
+            type: multiple_choice
+            text: "Which one is a capital letter?"
+            options: ["h", "N", "f"]
+            answer: "N"
+            option_audio: false
+          - id: l3-c11
+            part: spot
+            type: true_false
+            text: "Is it true? This is a capital letter."
+            say: "Look at the letter. Is it true? This is a capital letter."
+            show: { drawn: letter-card, text: "k" }
+            answer: false
+          - id: l3-c12
+            part: spot
+            type: true_false
+            text: "Is it true? This is a capital letter."
+            say: "Look at the letter. Is it true? This is a capital letter."
+            show: { drawn: letter-card, text: "G" }
+            answer: true
+          - id: l3-c13
+            part: shapes
+            type: multiple_choice
+            text: "Which capital has no curves?"
+            say: "Which capital letter has no curves at all?"
+            options: ["B", "K", "U"]
+            answer: "K"
+            option_audio: false
+          - id: l3-c14
+            part: shapes
+            type: highlight_in_text
+            text: "Tap every capital that has a slanting line."
+            say: "Tap every capital letter that has a line that leans, like a slide."
+            show: { drawn: letter-card, text: "V H X L W" }
+            spans: ["V", "X", "W"]
+          - id: l3-c15
+            part: shapes
+            type: true_false
+            text: "Is it true? Capital O is made from straight lines."
+            answer: false
+          - id: l3-c16
+            part: shapes
+            type: multiple_choice
+            text: "Which capital has two bumps?"
+            say: "Which capital has a line down and two bumps?"
+            options: ["D", "P", "B"]
+            answer: "B"
+            option_audio: false
+          - id: l3-c17
+            part: shapes
+            type: true_false
+            text: "Is it true? Capital T has a line across the top."
+            answer: true
+          - id: l3-c18
+            part: digits
+            type: audio_choice
+            text: "Which digit do you hear?"
+            audio: { en: "Five." }
+            options: ["2", "3", "5"]
+            answer: "5"
+          - id: l3-c19
+            part: digits
+            type: multiple_choice
+            text: "Which digit has its circle at the top?"
+            options: ["6", "9", "3"]
+            answer: "9"
+            option_audio: false
+          - id: l3-c20
+            part: digits
+            type: true_false
+            text: "Is this a 5?"
+            say: "Look at the digit. Is it a five?"
+            show: { drawn: letter-card, text: "5" }
+            answer: true

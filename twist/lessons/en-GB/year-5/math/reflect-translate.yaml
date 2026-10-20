@@ -26,6 +26,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [coordinates]
   facets: []
+  parts:
+    - { id: reflect, what: { de: "sagen, wo ein Punkt oder eine Form nach einer Spiegelung liegt", en: saying where a point or shape is after a reflection } }
+    - { id: translate, what: { de: "sagen, wo ein Punkt nach einer Verschiebung liegt", en: saying where a point is after a translation } }
+    - { id: describe, what: { de: eine Verschiebung beschreiben und von einer Spiegelung unterscheiden, en: describing a translation and telling it from a reflection } }
+    - { id: same-shape, what: { de: "wissen, dass die Form gleich bleibt", en: knowing that the shape itself does not change } }
   misconceptions:
     - id: wrong-coordinate
       what: Changes the y-coordinate when reflecting in a mirror line that goes up and down (or x for one that goes across)
@@ -215,6 +220,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: point_on_grid
@@ -234,6 +240,23 @@ lessons:
             type: true_false
             text: "Is it true? A point reflected in a mirror line that goes across keeps its x-coordinate."
             answer: true
+          - id: l1-c4
+            type: point_on_grid
+            text: "L at (8, 2) is reflected in the red mirror line. Tap where its image goes."
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[8, 2, L]], mirror: { axis: y, at: 7 } }
+            answer: [6, 2]
+            feedback:
+              "5,2": "That is 2 squares from the line. L is only 1 square from it, so its image is 1 square away on the other side."
+          - id: l1-c5
+            type: multiple_choice
+            text: "M at (3, 1) is reflected in the red mirror line. Where is its image?"
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[3, 1, M]], mirror: { axis: x, at: 4 } }
+            options: ["(3, 7)", "(5, 1)", "(3, 8)"]
+            answer: "(3, 7)"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? After a reflection, the image faces the same way as the shape."
+            answer: false
 
   - n: 2
     title: { de: Verschieben und vergleichen, en: Translating and comparing }
@@ -403,14 +426,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: reflect
             type: multiple_choice
             text: "R at (4, 2) is reflected in the red mirror line. Where is its image?"
             show: { drawn: coordinates, quadrants: 1, max: 10, points: [[4, 2, R]], mirror: { axis: y, at: 6 } }
             options: ["(8, 2)", "(4, 10)", "(9, 2)"]
             answer: "(8, 2)"
           - id: l2-c2
+            part: translate
             type: point_on_grid
             text: "Point B at (3, 8) is translated 4 right and 5 down. Tap where it lands."
             show: { drawn: coordinates, quadrants: 1, max: 10, points: [[3, 8, B]] }
@@ -418,12 +444,14 @@ lessons:
             feedback:
               "8,4": "That is 5 right and 4 down. Right changes x: 3 + 4 = 7. Down changes y: 8 − 5 = 3."
           - id: l2-c3
+            part: describe
             type: multiple_choice
             text: "The purple triangle is translated to the green one. Describe the translation."
             show: { drawn: coordinates, quadrants: 1, max: 10, shape: [[6, 1], [8, 1], [6, 4]], moved: [[3, 5], [5, 5], [3, 8]] }
             options: ["3 left, 4 up", "4 left, 3 up", "3 right, 4 up"]
             answer: "3 left, 4 up"
           - id: l2-c4
+            part: reflect
             type: image_multiple_choice
             text: "The red mirror line goes across. Which grid shows the purple triangle reflected in it?"
             options:
@@ -432,6 +460,113 @@ lessons:
               - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 5], [4, 5], [1, 7]], moved: [[7, 5], [4, 5], [7, 7]], mirror: { axis: x, at: 4 }, key: other-line }
             answer: reflected
           - id: l2-c5
+            part: same-shape
             type: true_false
             text: "Is it true? After a reflection or a translation, the sides of a shape keep the same lengths."
             answer: true
+          - id: l2-c6
+            part: reflect
+            type: point_on_grid
+            text: "S at (7, 9) is reflected in the red mirror line. Tap where its image goes."
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[7, 9, S]], mirror: { axis: x, at: 6 } }
+            answer: [7, 3]
+            feedback:
+              "7,2": "That is 4 squares below the line. S is 3 squares above it, so its image is 3 squares below."
+              "5,9": "This mirror line goes across, so the point moves up or down. The x-coordinate stays 7."
+          - id: l2-c7
+            part: reflect
+            type: multiple_choice
+            text: "T at (8, 4) is reflected in the red mirror line. Where is its image?"
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[8, 4, T]], mirror: { axis: y, at: 5 } }
+            options: ["(2, 4)", "(8, 6)", "(3, 4)"]
+            answer: "(2, 4)"
+          - id: l2-c8
+            part: reflect
+            type: image_multiple_choice
+            text: "The red mirror line goes up and down. Which grid shows the purple triangle reflected in it?"
+            options:
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[6, 2], [9, 2], [6, 4]], moved: [[1, 2], [4, 2], [1, 4]], mirror: { axis: y, at: 5 }, key: not-flipped }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[6, 2], [9, 2], [6, 4]], moved: [[4, 2], [1, 2], [4, 4]], mirror: { axis: y, at: 5 }, key: reflected }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[6, 2], [9, 2], [6, 4]], moved: [[5, 2], [2, 2], [5, 4]], mirror: { axis: y, at: 5 }, key: too-near }
+            answer: reflected
+          - id: l2-c9
+            part: translate
+            type: point_on_grid
+            text: "Point C at (6, 2) is translated 3 left and 6 up. Tap where it lands."
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[6, 2, C]] }
+            answer: [3, 8]
+            feedback:
+              "0,5": "That is 6 left and 3 up. Left changes x: 6 − 3 = 3. Up changes y: 2 + 6 = 8."
+          - id: l2-c10
+            part: translate
+            type: multiple_choice
+            text: "Point D at (5, 5) is translated 2 right and 4 down. Where does it land?"
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[5, 5, D]] }
+            options: ["(7, 1)", "(9, 3)", "(3, 1)"]
+            answer: "(7, 1)"
+          - id: l2-c11
+            part: translate
+            type: multiple_choice
+            text: "The triangle is translated 4 left and 1 up. Where does the corner at (6, 3) move to?"
+            show: { drawn: coordinates, quadrants: 1, max: 10, shape: [[6, 3], [8, 3], [6, 6]] }
+            options: ["(2, 4)", "(5, 7)", "(10, 4)"]
+            answer: "(2, 4)"
+          - id: l2-c12
+            part: translate
+            type: point_on_grid
+            text: "On a treasure map, a pirate at (1, 9) walks 7 right and 6 down. Tap where she stops."
+            show: { drawn: coordinates, quadrants: 1, max: 10, points: [[1, 9, P]] }
+            answer: [8, 3]
+            feedback:
+              "7,2": "That is 6 right and 7 down. Right changes x: 1 + 7 = 8. Down changes y: 9 − 6 = 3."
+          - id: l2-c13
+            part: describe
+            type: multiple_choice
+            text: "The purple triangle is translated to the green one. Describe the translation."
+            show: { drawn: coordinates, quadrants: 1, max: 10, shape: [[2, 1], [4, 1], [2, 3]], moved: [[4, 7], [6, 7], [4, 9]] }
+            options: ["2 right, 6 up", "6 right, 2 up", "2 left, 6 up"]
+            answer: "2 right, 6 up"
+          - id: l2-c14
+            part: describe
+            type: true_false
+            text: "Is it true? The green triangle is a translation of the purple one."
+            show: { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 6], [4, 6], [1, 8]], moved: [[9, 6], [6, 6], [9, 8]] }
+            answer: false
+          - id: l2-c15
+            part: describe
+            type: multiple_choice
+            text: "Point E moves from (2, 7) to (7, 4). Describe the translation."
+            options: ["5 right, 3 down", "3 right, 5 down", "5 right, 3 up"]
+            answer: "5 right, 3 down"
+          - id: l2-c16
+            part: describe
+            type: image_multiple_choice
+            text: "Which grid shows a translation of the purple triangle?"
+            options:
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [3, 1], [1, 4]], moved: [[9, 1], [7, 1], [9, 4]], mirror: { axis: y, at: 5 }, key: reflected }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [3, 1], [1, 4]], moved: [[6, 5], [10, 5], [6, 10]], key: bigger }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [3, 1], [1, 4]], moved: [[6, 5], [8, 5], [6, 8]], key: translated }
+            answer: translated
+          - id: l2-c17
+            part: same-shape
+            type: multiple_choice
+            text: "A square with sides of 3 cm is translated 5 squares to the right. How long are its sides now?"
+            options: ["3 cm", "8 cm", "15 cm"]
+            answer: "3 cm"
+          - id: l2-c18
+            part: same-shape
+            type: true_false
+            text: "Is it true? When a triangle is translated, its angles get bigger."
+            answer: false
+          - id: l2-c19
+            part: same-shape
+            type: multiple_choice
+            text: "A shape is reflected in a mirror line. Which two things stay the same?"
+            options: ["its size and its angles", "its position and its size", "its position and its angles"]
+            answer: "its size and its angles"
+          - id: l2-c20
+            part: same-shape
+            type: text_input
+            text: "The purple rectangle is translated to the green one. The purple rectangle is 3 squares wide. How many squares wide is the green rectangle?"
+            show: { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [4, 1], [4, 3], [1, 3]], moved: [[5, 6], [8, 6], [8, 8], [5, 8]] }
+            answer: "3"

@@ -24,6 +24,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [part-whole]
   facets: [operation-signs]
+  parts:
+    - { id: split, what: { de: die Zahl geschickt zerlegen und in Teilaufgaben teilen, en: partitioning the number well and dividing in steps } }
+    - { id: divide, what: { de: zwei- und dreistellige Zahlen durch eine einstellige Zahl teilen, en: dividing two- and three-digit numbers by a one-digit number } }
+    - { id: remainder, what: { de: mit Rest teilen und die Probe machen, en: dividing with a remainder and checking } }
   misconceptions:
     - id: split-by-place
       what: Partitions into tens and ones even when the parts do not divide (78 ÷ 6 as 70 ÷ 6 + 8 ÷ 6)
@@ -126,7 +130,7 @@ lessons:
                   - "Yes. 13 × 5 = 65."
               - id: l1-f5
                 type: fill_in_blank
-                text: "Fill in the missing part."
+                text: "Work out 91 ÷ 7. 70 is one part. What is the other part?"
                 say: "Ninety-one divided by seven. Seventy is one part. What is the other part?"
                 show: { drawn: part-whole, whole: 91, parts: [70, null] }
                 frame: "91 = 70 + _, 91 ÷ 7 = 10 + _ = _"
@@ -204,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -221,6 +226,22 @@ lessons:
             text: "95 ÷ 5 = _"
             say: "Ninety-five divided by five."
             answer: "19"
+          - id: l1-c4
+            type: text_input
+            text: "52 ÷ 4 = _"
+            say: "Fifty-two divided by four."
+            answer: "13"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which split helps with 75 ÷ 3?"
+            say: "Seventy-five divided by three. Which split helps?"
+            options: ["70 + 5", "60 + 15", "50 + 25"]
+            answer: "60 + 15"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 88 ÷ 4 = 22, because 22 × 4 = 88."
+            say: "Is it true? Eighty-eight divided by four is twenty-two, because twenty-two times four is eighty-eight."
+            answer: true
 
   - n: 2
     title: { de: "Dreistellig und mit Rest", en: "Three digits and remainders" }
@@ -376,31 +397,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: divide
             type: text_input
             text: "84 ÷ 7 = _"
             say: "Eighty-four divided by seven."
             answer: "12"
           - id: l2-c2
+            part: split
             type: multiple_choice
             text: "Which split helps with 92 ÷ 4?"
             say: "Ninety-two divided by four. Which split helps?"
             options: ["90 + 2", "80 + 12", "50 + 42"]
             answer: "80 + 12"
           - id: l2-c3
+            part: divide
             type: text_input
             text: "264 ÷ 2 = _"
             say: "Two hundred and sixty-four divided by two."
             answer: "132"
           - id: l2-c4
+            part: remainder
             type: true_false
             text: "Is it true? 59 ÷ 4 = 13 r 7"
             say: "Is it true? Fifty-nine divided by four is thirteen remainder seven."
             answer: false
           - id: l2-c5
+            part: remainder
             type: multiple_choice
             text: "93 ÷ 6 = _"
             say: "Ninety-three divided by six."
             options: ["15 r 3", "14 r 9", "16 r 1"]
             answer: "15 r 3"
+          - id: l2-c6
+            part: split
+            type: multiple_choice
+            text: "Which split helps with 112 ÷ 8?"
+            say: "One hundred and twelve divided by eight. Which split helps?"
+            options: ["80 + 32", "100 + 12", "110 + 2"]
+            answer: "80 + 32"
+          - id: l2-c7
+            part: split
+            type: fill_in_blank
+            text: "Work out 135 ÷ 5."
+            say: "One hundred and thirty-five divided by five, in two steps."
+            show: { drawn: part-whole, whole: 135, parts: [100, 35] }
+            frame: "100 ÷ 5 = _, 35 ÷ 5 = _, 135 ÷ 5 = _"
+            options: ["7", "20", "27", "35"]
+            answer: ["20", "7", "27"]
+          - id: l2-c8
+            part: split
+            type: fill_in_blank
+            text: "Work out 78 ÷ 3. 60 is one part. What is the other part?"
+            say: "Seventy-eight divided by three. Sixty is one part. What is the other part?"
+            show: { drawn: part-whole, whole: 78, parts: [60, null] }
+            frame: "78 = 60 + _, 78 ÷ 3 = 20 + _ = _"
+            options: ["6", "8", "18", "26"]
+            answer: ["18", "6", "26"]
+          - id: l2-c9
+            part: split
+            type: true_false
+            text: "Is it true? 90 + 6 is a good split for 96 ÷ 8."
+            say: "Is it true? Ninety and six is a good split for ninety-six divided by eight."
+            answer: false
+          - id: l2-c10
+            part: split
+            type: multiple_choice
+            text: "Which split helps with 144 ÷ 6?"
+            say: "One hundred and forty-four divided by six. Which split helps?"
+            options: ["120 + 24", "140 + 4", "100 + 44"]
+            answer: "120 + 24"
+          - id: l2-c11
+            part: divide
+            type: text_input
+            text: "81 ÷ 3 = _"
+            say: "Eighty-one divided by three."
+            answer: "27"
+          - id: l2-c12
+            part: divide
+            type: text_input
+            text: "336 ÷ 3 = _"
+            say: "Three hundred and thirty-six divided by three."
+            answer: "112"
+          - id: l2-c13
+            part: divide
+            type: multiple_choice
+            text: "252 ÷ 4 = _"
+            say: "Two hundred and fifty-two divided by four."
+            options: ["63", "62", "68"]
+            answer: "63"
+          - id: l2-c14
+            part: divide
+            type: text_input
+            text: "A baker shares 105 buns equally between 5 trays. How many buns go on each tray?"
+            answer: "21"
+          - id: l2-c15
+            part: divide
+            type: true_false
+            text: "Is it true? 168 ÷ 8 = 21"
+            say: "Is it true? One hundred and sixty-eight divided by eight is twenty-one."
+            answer: true
+          - id: l2-c16
+            part: remainder
+            type: multiple_choice
+            text: "86 ÷ 3 = _"
+            say: "Eighty-six divided by three."
+            options: ["28 r 2", "27 r 5", "29 r 1"]
+            answer: "28 r 2"
+          - id: l2-c17
+            part: split
+            type: fill_in_blank
+            text: "Work out 67 ÷ 4."
+            say: "Sixty-seven divided by four. Partition it into forty and twenty-seven."
+            frame: "40 ÷ 4 = _, 27 ÷ 4 = 6 r _, 67 ÷ 4 = _ r 3"
+            options: ["3", "10", "16", "17"]
+            answer: ["10", "3", "16"]
+          - id: l2-c18
+            part: remainder
+            type: multiple_choice
+            text: "Which calculation checks 79 ÷ 6 = 13 r 1?"
+            say: "Seventy-nine divided by six is thirteen remainder one. Which calculation checks it?"
+            options: ["13 × 6 + 1", "13 × 1 + 6", "6 × 1 + 13"]
+            answer: "13 × 6 + 1"
+          - id: l2-c19
+            part: remainder
+            type: text_input
+            text: "Zoe has 74 stickers. She puts 5 on each page of her book. How many pages can she fill?"
+            answer: "14"
+          - id: l2-c20
+            part: remainder
+            type: true_false
+            text: "Is it true? 115 ÷ 9 = 12 r 7"
+            say: "Is it true? One hundred and fifteen divided by nine is twelve remainder seven."
+            answer: true

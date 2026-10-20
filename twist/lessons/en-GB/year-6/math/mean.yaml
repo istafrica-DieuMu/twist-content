@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [bar-chart, table]
   facets: [number-format]
+  parts:
+    - { id: calculate, what: { de: den Mittelwert als Summe geteilt durch die Anzahl berechnen, en: working out the mean as the total divided by the number of values } }
+    - { id: from-data, what: { de: den Mittelwert aus einem Diagramm oder einer Tabelle berechnen, en: finding the mean from a chart or a table } }
+    - { id: total-missing, what: { de: aus dem Mittelwert die Summe oder einen fehlenden Wert finden, en: finding the total or a missing value from the mean } }
+    - { id: interpret, what: { de: den Mittelwert deuten und Gruppen vergleichen, en: interpreting the mean and comparing groups } }
   misconceptions:
     - id: total-not-divided
       what: Gives the total as the mean, or divides by the wrong number of values
@@ -191,6 +196,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -206,6 +212,20 @@ lessons:
             text: "What is the mean of 9, 11, 13 and 7?"
             options: ["10", "40", "11"]
             answer: "10"
+          - id: l1-c4
+            type: text_input
+            text: "What is the mean of 11, 13, 17 and 19?"
+            answer: "15"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? The mean of 5, 6 and 10 is 7."
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Apples picked by three children. What is the mean number of apples?"
+            show: { drawn: bar-chart, rows: [[Lily, 9], [Omar, 7], [Ruby, 2]], step: 1 }
+            options: ["6", "18", "7"]
+            answer: "6"
 
   - n: 2
     title: { de: Mit dem Mittelwert arbeiten, en: Using the mean }
@@ -354,22 +374,27 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: calculate
             type: text_input
             text: "What is the mean of 14, 16, 18 and 12?"
             answer: "15"
           - id: l2-c2
+            part: from-data
             type: multiple_choice
             text: "Cakes sold each day. What is the mean number of cakes?"
             show: { drawn: bar-chart, rows: [[Mon, 6], [Tue, 2], [Wed, 4], [Thu, 8]], step: 1 }
             options: ["5", "20", "4"]
             answer: "5"
           - id: l2-c3
+            part: total-missing
             type: text_input
             text: "The mean of 5 numbers is 8. Four of them are 5, 7, 9 and 10. What is the fifth number?"
             answer: "9"
           - id: l2-c4
+            part: interpret
             type: multiple_choice
             text: "Race times: 30 s, 32 s, 31 s, 29 s and 78 s. Which is true?"
             say: "Race times: thirty seconds, thirty-two seconds, thirty-one seconds, twenty-nine seconds and seventy-eight seconds. Which is true?"
@@ -377,7 +402,96 @@ lessons:
             options: ["The mean is 40 s, but most times are about 30 s.", "The mean is 30 s.", "Most times are about 40 s."]
             answer: "The mean is 40 s, but most times are about 30 s."
           - id: l2-c5
+            part: calculate
             type: text_input
             text: "What is the mean of 3, 4, 6 and 8?"
             keyboard: decimal
             answer: "5.25"
+          - id: l2-c6
+            part: calculate
+            type: multiple_choice
+            text: "What is the mean of 21, 25, 17 and 29?"
+            options: ["23", "92", "21"]
+            answer: "23"
+          - id: l2-c7
+            part: calculate
+            type: true_false
+            text: "Is it true? The mean of 6, 9 and 12 is 9."
+            answer: true
+          - id: l2-c8
+            part: calculate
+            type: text_input
+            text: "What is the mean of 9, 4, 6, 7 and 9?"
+            answer: "7"
+          - id: l2-c9
+            part: from-data
+            type: text_input
+            text: "Points scored in four games. What is the mean number of points?"
+            show: { drawn: table, rows: [[Game, Points], ["1", "12"], ["2", "8"], ["3", "15"], ["4", "9"]] }
+            answer: "11"
+          - id: l2-c10
+            part: from-data
+            type: multiple_choice
+            text: "Rainfall in three months, in mm. What is the mean rainfall?"
+            show: { drawn: bar-chart, rows: [[Jan, 50], [Feb, 40], [Mar, 75]], step: 5 }
+            options: ["55 mm", "165 mm", "50 mm"]
+            answer: "55 mm"
+          - id: l2-c11
+            part: from-data
+            type: true_false
+            text: "Pets owned by four children. Is it true that the mean number of pets is 3?"
+            show: { drawn: bar-chart, rows: [[Amy, 1], [Leo, 4], [Zara, 2], [Tom, 5]], step: 1 }
+            answer: true
+          - id: l2-c12
+            part: from-data
+            type: text_input
+            text: "Hours of sleep on four nights. What is the mean, in hours?"
+            show: { drawn: table, rows: [[Night, Hours], [Fri, "9"], [Sat, "10"], [Sun, "8"], [Mon, "8"]] }
+            keyboard: decimal
+            answer: "8.75"
+          - id: l2-c13
+            part: total-missing
+            type: text_input
+            text: "The mean of 6 numbers is 9. What is their total?"
+            answer: "54"
+          - id: l2-c14
+            part: total-missing
+            type: multiple_choice
+            text: "The mean of 3 numbers is 12. Two of them are 10 and 15. What is the third number?"
+            options: ["11", "12", "25"]
+            answer: "11"
+          - id: l2-c15
+            part: total-missing
+            type: text_input
+            text: "Zac's mean score in 5 spelling tests is 8. In four of the tests he scored 7, 9, 6 and 8. What did he score in the fifth test?"
+            answer: "10"
+          - id: l2-c16
+            part: total-missing
+            type: true_false
+            text: "Is it true? 4 bags have a mean mass of 3 kg, so together they weigh 7 kg."
+            answer: false
+          - id: l2-c17
+            part: interpret
+            type: multiple_choice
+            text: "Class A's mean spelling score is 7. Class B's mean score is 9. Which is true?"
+            options: ["On average, class B did better.", "Every child in class B did better.", "Class B has more children."]
+            answer: "On average, class B did better."
+          - id: l2-c18
+            part: interpret
+            type: true_false
+            text: "Five friends have 1, 2, 2, 3 and 42 marbles. The mean is 10. Is it true that most of them have about 10 marbles?"
+            answer: false
+          - id: l2-c19
+            part: interpret
+            type: multiple_choice
+            text: "Four children have a mean of 6 stickers. A fifth child with 6 stickers joins them. What happens to the mean?"
+            options: ["it goes up", "it goes down", "it stays the same"]
+            keep_order: true
+            answer: "it stays the same"
+          - id: l2-c20
+            part: interpret
+            type: multiple_choice
+            text: "Jo scored 18 points in 3 games. Kit scored 35 points in 5 games. Who has the higher mean?"
+            options: ["Jo", "Kit", "they are the same"]
+            keep_order: true
+            answer: "Kit"

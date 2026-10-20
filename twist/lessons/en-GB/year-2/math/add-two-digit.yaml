@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [rechenstrich, base-ten]
   facets: []
+  parts:
+    - { id: steps, what: { de: schrittweise rechnen, en: adding in steps } }
+    - { id: partition, what: { de: stellenweise rechnen, en: partitioning into tens and ones } }
+    - { id: adjust, what: { de: mit einer Hilfsaufgabe rechnen, en: rounding and adjusting } }
+    - { id: choose, what: { de: zwei zweistellige Zahlen mit einem passenden Rechenweg addieren, en: choosing a method and adding two two-digit numbers } }
   misconceptions:
     - id: forget-exchanged-ten
       what: Adds the ones to more than nine and loses the extra ten (48 + 36 = 74)
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -229,6 +235,24 @@ lessons:
             frame: "37 + 46 = 37 + 40 + _ = _"
             options: ["6", "4", "83", "77", "73"]
             answer: ["6", "83"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "62 + 25 = _"
+            say: "Sixty-two add twenty-five."
+            options: ["87", "85", "77"]
+            answer: "87"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 46 + 36 = 72"
+            say: "Forty-six add thirty-six is seventy-two. Is that true?"
+            answer: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Add in steps."
+            say: "Twenty-eight add fifty-four. First add the tens, then the ones."
+            frame: "28 + 54 = 28 + 50 + _ = _"
+            options: ["4", "8", "82", "78", "72"]
+            answer: ["4", "82"]
 
   - n: 2
     title: { de: Stellenweise rechnen, en: Partitioning into tens and ones }
@@ -400,6 +424,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: text_input
@@ -419,6 +444,25 @@ lessons:
             frame: "40 + 20 = _ · 5 + 7 = _ · 45 + 27 = _"
             options: ["60", "12", "72", "62", "11"]
             answer: ["60", "12", "72"]
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Partition: 36 + 25"
+            say: "Thirty-six add twenty-five. Add the tens, add the ones, then put them together."
+            frame: "30 + 20 = _ · 6 + 5 = _ · 36 + 25 = _"
+            options: ["50", "11", "61", "51", "12"]
+            answer: ["50", "11", "61"]
+          - id: l2-c5
+            type: multiple_choice
+            text: "47 + 44 = _"
+            say: "Forty-seven add forty-four."
+            show: { drawn: base-ten, tens: 8, ones: 11 }
+            options: ["91", "81", "811"]
+            answer: "91"
+          - id: l2-c6
+            type: true_false
+            text: "Is it true? 58 + 34 = 92"
+            say: "Fifty-eight add thirty-four is ninety-two. Is that true?"
+            answer: true
 
   - n: 3
     title: { de: Mit Hilfsaufgabe, en: Round and adjust }
@@ -588,19 +632,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: choose
             type: text_input
             text: "52 + 46 = _"
             say: "Fifty-two add forty-six."
             answer: "98"
           - id: l3-c2
+            part: choose
             type: multiple_choice
             text: "37 + 48 = _"
             say: "Thirty-seven add forty-eight."
             options: ["85", "75", "715"]
             answer: "85"
           - id: l3-c3
+            part: adjust
             type: fill_in_blank
             text: "Round and adjust."
             say: "Thirty-three add forty-nine. Add fifty first, then adjust."
@@ -608,6 +656,7 @@ lessons:
             options: ["1", "9", "82", "83", "81"]
             answer: ["1", "82"]
           - id: l3-c4
+            part: partition
             type: fill_in_blank
             text: "Partition: 64 + 28"
             say: "Sixty-four add twenty-eight. Add the tens, add the ones, then put them together."
@@ -615,9 +664,114 @@ lessons:
             options: ["80", "12", "92", "82", "13"]
             answer: ["80", "12", "92"]
           - id: l3-c5
+            part: steps
             type: fill_in_blank
             text: "Add in steps."
             say: "Twenty-six add fifty-seven. First add the tens, then the ones."
             frame: "26 + 57 = 26 + 50 + _ = _"
             options: ["7", "6", "83", "76", "73"]
             answer: ["7", "83"]
+          - id: l3-c6
+            part: steps
+            type: fill_in_blank
+            text: "Add in steps."
+            say: "Forty-four add thirty-eight. First add the tens, then the ones."
+            frame: "44 + 38 = 44 + 30 + _ = _"
+            options: ["8", "3", "82", "74", "72"]
+            answer: ["8", "82"]
+          - id: l3-c7
+            part: steps
+            type: multiple_choice
+            text: "Leo adds 54 + 37 in steps, tens first. Which step comes first?"
+            say: "Leo adds fifty-four and thirty-seven in steps, tens first. Which step comes first?"
+            options: ["54 + 30 = 84", "50 + 30 = 80", "54 + 7 = 61"]
+            answer: "54 + 30 = 84"
+          - id: l3-c8
+            part: steps
+            type: true_false
+            text: "Is it true? 65 + 28 = 65 + 20 + 8"
+            say: "Sixty-five add twenty-eight is the same as sixty-five add twenty, add eight. Is that true?"
+            answer: true
+          - id: l3-c9
+            part: steps
+            type: text_input
+            text: "Add in steps. 39 + 45 = _"
+            say: "Thirty-nine add forty-five. Add in steps."
+            show: { drawn: rechenstrich, start: 39, jumps: [40, 5] }
+            answer: "84"
+          - id: l3-c10
+            part: partition
+            type: fill_in_blank
+            text: "Partition: 35 + 56"
+            say: "Thirty-five add fifty-six. Add the tens, add the ones, then put them together."
+            frame: "30 + 50 = _ · 5 + 6 = _ · 35 + 56 = _"
+            options: ["80", "11", "91", "81", "12"]
+            answer: ["80", "11", "91"]
+          - id: l3-c11
+            part: partition
+            type: multiple_choice
+            text: "46 + 38. What do the ones make?"
+            say: "Forty-six add thirty-eight. What do the ones make together?"
+            options: ["14", "13", "4"]
+            answer: "14"
+          - id: l3-c12
+            part: partition
+            type: true_false
+            text: "Is it true? 49 + 26 = 65"
+            say: "Forty-nine add twenty-six is sixty-five. Is that true?"
+            answer: false
+          - id: l3-c13
+            part: partition
+            type: multiple_choice
+            text: "27 + 54 = _"
+            say: "Twenty-seven add fifty-four."
+            show: { drawn: base-ten, tens: 7, ones: 11 }
+            options: ["81", "71", "711"]
+            answer: "81"
+          - id: l3-c14
+            part: adjust
+            type: fill_in_blank
+            text: "Round and adjust."
+            say: "Forty-two add twenty-nine. Add thirty first, then adjust."
+            frame: "42 + 29 = 42 + 30 − _ = _"
+            options: ["1", "9", "71", "72", "73"]
+            answer: ["1", "71"]
+          - id: l3-c15
+            part: adjust
+            type: multiple_choice
+            text: "Which easier sum helps with 37 + 59?"
+            say: "Which easier sum helps with thirty-seven add fifty-nine?"
+            options: ["37 + 60 − 1", "37 + 60 + 1", "37 + 50 − 1"]
+            answer: "37 + 60 − 1"
+          - id: l3-c16
+            part: adjust
+            type: multiple_choice
+            text: "Ruby works out 25 + 49. First she does 25 + 50 = 75. What comes next?"
+            say: "Ruby works out twenty-five add forty-nine. First she does twenty-five add fifty, which is seventy-five. What comes next?"
+            options: ["75 − 1 = 74", "75 + 1 = 76", "75 − 9 = 66"]
+            answer: "75 − 1 = 74"
+          - id: l3-c17
+            part: adjust
+            type: true_false
+            text: "Is it true? 63 + 19 = 63 + 20 + 1"
+            say: "Sixty-three add nineteen is the same as sixty-three add twenty, add one. Is that true?"
+            answer: false
+          - id: l3-c18
+            part: choose
+            type: multiple_choice
+            text: "Which sum is quickest to round and adjust?"
+            say: "Which sum is quickest to work out by rounding and adjusting?"
+            options: ["43 + 29", "43 + 25", "43 + 22"]
+            answer: "43 + 29"
+          - id: l3-c19
+            part: choose
+            type: text_input
+            text: "A class has 46 red pencils and 37 blue pencils. How many pencils is that altogether?"
+            say: "A class has forty-six red pencils and thirty-seven blue pencils. How many pencils is that altogether?"
+            answer: "83"
+          - id: l3-c20
+            part: choose
+            type: text_input
+            text: "53 + 38 = _"
+            say: "Fifty-three add thirty-eight."
+            answer: "91"

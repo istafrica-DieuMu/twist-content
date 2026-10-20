@@ -27,6 +27,11 @@ metadata:
   forms: [audio, picture, text, drawn]
   drawn: [letter-card, word-card]
   facets: []
+  parts:
+    - { id: silent, what: { de: stumme Buchstaben am Wortende erkennen, en: recognising silent letters at the end of a word } }
+    - { id: ou-oi, what: { de: ou und oi lesen und schreiben, en: reading and spelling ou and oi } }
+    - { id: eau, what: { de: eau und au für den Laut o erkennen, en: recognising eau and au for the sound oh } }
+    - { id: ch-e, what: { de: ch und é erkennen, en: recognising ch and é } }
   misconceptions:
     - id: english-spelling
       what: Writes a French sound the English way (la pool for la poule, trwa for trois, le bato for le bateau, le shien for le chien)
@@ -233,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -251,10 +257,31 @@ lessons:
             options: ["le poisson", "le pwasson", "le poison"]
             answer: "le poisson"
           - id: l1-c3
+            type: multiple_choice
+            option_audio: false
+            text: "Which word has the sound oo?"
+            say: { en: "Read the words. Which word has the sound oo?" }
+            options: ["la poire", "le loup", "trois"]
+            answer: "le loup"
+          - id: l1-c4
+            type: fill_in_blank
+            option_audio: false
+            text: "Fill in the missing letters."
+            say: { en: "Listen. Fill in the missing letters.", fr: "rouge" }
+            frame: "r_ge"
+            options: ["oo", "ou", "u"]
+            answer: ["ou"]
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap the letter you do not hear."
+            say: { en: "Listen. Tap the letter you do not hear.", fr: "le loup" }
+            show: { drawn: letter-card, text: "l o u p" }
+            spans: ["p"]
+          - id: l1-c6
             type: true_false
-            text: "“la poule” has the sound oo."
-            say: { en: "Listen. Is that right?", fr: "la poule" }
-            answer: true
+            text: "“l'étoile” has the sound oo."
+            say: { en: "Listen. Is that right?", fr: "l'étoile" }
+            answer: false
 
   - n: 2
     title: { de: "eau, ch und é", en: "eau, ch and é" }
@@ -463,8 +490,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ou-oi
             type: audio_choice
             text: "Which spelling is right?"
             say: { en: "Listen. Which spelling is right?" }
@@ -473,6 +502,7 @@ lessons:
             options: ["l'oiseau", "l'wazo", "l'oisau"]
             answer: "l'oiseau"
           - id: l2-c2
+            part: eau
             type: audio_choice
             text: "Which spelling is right?"
             say: { en: "Listen. Which spelling is right?" }
@@ -481,11 +511,13 @@ lessons:
             options: ["le chapeau", "le shapo", "le chapo"]
             answer: "le chapeau"
           - id: l2-c3
+            part: silent
             type: true_false
             text: "Do you hear the p at the end of “le loup”?"
             say: { en: "Listen. Do you hear the p at the end?", fr: "le loup" }
             answer: false
           - id: l2-c4
+            part: ou-oi
             type: sorting
             text: "Sort the pictures: ou or oi?"
             say: { en: "Tap each picture to hear its word. Then put it under ou or oi." }
@@ -498,6 +530,7 @@ lessons:
               - { object: mouth, say: { fr: "la bouche" }, bin: ou }
               - { object: fish, say: { fr: "le poisson" }, bin: oi }
           - id: l2-c5
+            part: ch-e
             type: audio_choice
             text: "Which spelling is right?"
             say: { en: "Listen. Which spelling is right?" }
@@ -505,3 +538,129 @@ lessons:
             audio: { fr: "l'éléphant" }
             options: ["l'éléphant", "l'aylayfan", "l'elephant"]
             answer: "l'éléphant"
+          - id: l2-c6
+            part: silent
+            type: highlight_in_text
+            text: "Tap every word that ends with a letter you do not hear."
+            say: { en: "Listen. Tap every word that ends with a letter you do not hear.", fr: "trois, vélo, souris, bébé" }
+            show: { drawn: letter-card, text: "trois vélo souris bébé" }
+            spans: ["trois", "souris"]
+          - id: l2-c7
+            part: silent
+            type: multiple_choice
+            option_audio: false
+            text: "Which word ends with a letter you do not say?"
+            say: { en: "Read the words. Which word ends with a letter you do not say?" }
+            options: ["le vélo", "le lit", "le bébé"]
+            answer: "le lit"
+          - id: l2-c8
+            part: silent
+            type: audio_choice
+            text: "Which spelling is right?"
+            say: { en: "Listen. Which spelling is right?" }
+            show: { object: cat }
+            audio: { fr: "le chat" }
+            options: ["le cha", "le shat", "le chat"]
+            answer: "le chat"
+          - id: l2-c9
+            part: silent
+            type: true_false
+            text: "Do you hear the t in “le bateau”?"
+            say: { en: "Listen. Do you hear the t?", fr: "le bateau" }
+            answer: true
+          - id: l2-c10
+            part: ou-oi
+            type: audio_choice
+            text: "Which spelling is right?"
+            say: { en: "Listen. Which spelling is right?" }
+            show: { object: owl }
+            audio: { fr: "le hibou" }
+            options: ["le hiboo", "le hibou", "le hibu"]
+            answer: "le hibou"
+          - id: l2-c11
+            part: ou-oi
+            type: fill_in_blank
+            option_audio: false
+            text: "Fill in the missing letters."
+            say: { en: "Listen. Fill in the missing letters.", fr: "trois" }
+            frame: "tr_s"
+            options: ["wa", "ou", "oi"]
+            answer: ["oi"]
+          - id: l2-c12
+            part: ou-oi
+            type: true_false
+            text: "“rouge” has the sound wa."
+            say: { en: "Listen. Is that right?", fr: "rouge" }
+            answer: false
+          - id: l2-c13
+            part: eau
+            type: sorting
+            text: "eau or ou?"
+            say: { en: "Tap each picture to hear its word. Does the word have the sound oh, written eau, or the sound oo, written ou? Sort the pictures." }
+            bins:
+              - { id: eau, show: { text: "eau" } }
+              - { id: ou, show: { text: "ou" } }
+            options:
+              - { object: hen, say: { fr: "la poule" }, bin: ou }
+              - { object: cake, say: { fr: "le gâteau" }, bin: eau }
+              - { object: wolf, say: { fr: "le loup" }, bin: ou }
+              - { object: bucket, say: { fr: "le seau" }, bin: eau }
+          - id: l2-c14
+            part: eau
+            type: true_false
+            text: "le cado\nIs this the right spelling?"
+            say: { en: "Listen. Is this the right spelling?", fr: "le cadeau" }
+            show: { object: present }
+            answer: false
+          - id: l2-c15
+            part: eau
+            type: true_false
+            text: "“le gâteau” and “le seau” end with the same sound."
+            say: { en: "Listen. Is that right?", fr: "le gâteau, le seau" }
+            answer: true
+          - id: l2-c16
+            part: eau
+            type: multiple_choice
+            option_audio: false
+            text: "Which word has the sound oh?"
+            say: { en: "Read the words. Which word has the sound oh?" }
+            options: ["le chien", "le gâteau", "la poule"]
+            answer: "le gâteau"
+          - id: l2-c17
+            part: ch-e
+            type: multiple_choice
+            option_audio: false
+            text: "Which word has the sound ay?"
+            say: { en: "Read the words. Which word has the sound ay?" }
+            options: ["le cochon", "le vélo", "la poule"]
+            answer: "le vélo"
+          - id: l2-c18
+            part: ch-e
+            type: sorting
+            text: "Sort the pictures: é, ch or eau?"
+            say: { en: "Tap each picture to hear its word. Then put it under é, ch or eau." }
+            bins:
+              - { id: e-acute, show: { text: "é" } }
+              - { id: ch, show: { text: "ch" } }
+              - { id: eau, show: { text: "eau" } }
+            options:
+              - { object: chair, say: { fr: "la chaise" }, bin: ch }
+              - { object: elephant, say: { fr: "l'éléphant" }, bin: e-acute }
+              - { object: cake, say: { fr: "le gâteau" }, bin: eau }
+              - { object: pig, say: { fr: "le cochon" }, bin: ch }
+              - { object: bike, say: { fr: "le vélo" }, bin: e-acute }
+              - { object: present, say: { fr: "le cadeau" }, bin: eau }
+          - id: l2-c19
+            part: ch-e
+            type: true_false
+            text: "“la chaise” and “le chien” start with the same sound."
+            say: { en: "Listen. Is that right?", fr: "la chaise, le chien" }
+            answer: true
+          - id: l2-c20
+            part: ch-e
+            type: multiple_choice
+            option_audio: false
+            text: "Which word has the sound sh?"
+            say: { en: "Read the words. Which word has the sound sh?" }
+            options: ["le gâteau", "la poire", "le cochon"]
+            answer: "le cochon"

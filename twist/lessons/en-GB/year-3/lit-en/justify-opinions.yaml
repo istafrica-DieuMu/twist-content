@@ -13,8 +13,8 @@ summary: >
   example, I know this because ...), explains how they got an answer,
   and agrees or disagrees politely with a reason; it ends with the skill
   check. Speaking tasks are practised and checked by the child against a
-  model; the skill check uses choice and order tasks, since speech is
-  not marked.
+  model; the skill check uses choice, sorting and order tasks, since
+  speech is not marked, and Practise covers saying the reasons aloud.
 metadata:
   year: year-3
   topic: { de: Sprechen und Zuhören, en: Speaking and listening }
@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: reason, what: { de: "eine Meinung mit einem echten Grund begründen", en: backing up an opinion with a real reason } }
+    - { id: example-evidence, what: { de: einen Grund mit einem Beispiel oder Beleg stützen, en: making a reason stronger with an example or evidence } }
+    - { id: justify-answer, what: { de: "erklären, wie man auf eine Antwort gekommen ist", en: explaining how you got an answer } }
+    - { id: agree-disagree, what: { de: höflich und mit Grund zustimmen oder widersprechen, en: agreeing or disagreeing politely with a reason } }
   misconceptions:
     - id: repeat-not-reason
       what: Gives the opinion again as its reason (I like it because I like it; it is good because it is great)
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -226,6 +232,23 @@ lessons:
             text: "A reason tells the listener why you think something."
             say: "Read it. Is it true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which sentence gives an opinion?"
+            options: ["In my opinion, chess is a great game.", "Chess has thirty-two pieces.", "We played chess on Tuesday."]
+            answer: "In my opinion, chess is a great game."
+            option_audio: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Tom says, \"I think the new slide is the best thing in the park because it is the best.\"\n\nWhat is wrong with Tom's reason?"
+            say: "Read what Tom says. What is wrong with his reason?"
+            options: ["It just says his opinion again.", "He has not given an opinion.", "He should not use because."]
+            answer: "It just says his opinion again."
+          - id: l1-c6
+            type: true_false
+            text: "Saying your opinion again and again makes people agree with you."
+            say: "Read it. Is it true?"
+            answer: false
 
   - n: 2
     title: { de: "Beispiele, Belege und Widerspruch", en: "Examples, evidence and disagreeing" }
@@ -386,31 +409,37 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: reason
             type: multiple_choice
             text: "\"I think we should walk to school...\" Which ending gives a real reason?"
             options: ["because it keeps us healthy.", "because we should walk.", "because walk."]
             answer: "because it keeps us healthy."
           - id: l2-c2
+            part: reason
             type: multiple_choice
             text: "Which sentence gives a reason that says something new?"
             options: ["I like spring because the days get longer.", "I like spring because I like spring.", "I like spring because it is my favourite."]
             answer: "I like spring because the days get longer."
             option_audio: false
           - id: l2-c3
+            part: justify-answer
             type: multiple_choice
             text: "Is 7 an odd number? Which answer is justified?"
             options: ["Yes. I know this because 7 cannot be split into two equal groups.", "Yes.", "Yes, because it looks odd."]
             answer: "Yes. I know this because 7 cannot be split into two equal groups."
             option_audio: false
           - id: l2-c4
+            part: agree-disagree
             type: multiple_choice
             text: "Ben says, \"Winter is the worst season.\" Which reply disagrees politely?"
             options: ["I see what you mean, but I disagree because snow is fun.", "You're wrong, Ben.", "Winter is the best. End of story."]
             answer: "I see what you mean, but I disagree because snow is fun."
             option_audio: false
           - id: l2-c5
+            part: example-evidence
             type: ordering
             text: "Put the answer in order: opinion, reason, example."
             say: "Put the three sentences in order: the opinion, the reason, then the example."
@@ -418,3 +447,119 @@ lessons:
             slot_count: 3
             answer: ["I think we should build a bird table.", "Birds find it hard to find food in winter.", "For example, when the ground is frozen, they cannot dig for worms."]
             option_audio: false
+          - id: l2-c6
+            part: reason
+            type: sorting
+            text: "A real reason, or the opinion again?"
+            say: "Read each sentence. Does it give a real reason, or does it just say the opinion again?"
+            option_audio: false
+            bins:
+              - { id: real, show: { text: "a real reason" }, say: "A real reason." }
+              - { id: again, show: { text: "the opinion again" }, say: "The opinion again." }
+            options:
+              - { text: "I like the beach because I can build sandcastles.", bin: real }
+              - { text: "I like the beach because the beach is great.", bin: again }
+              - { text: "Maths is fun because I like solving puzzles.", bin: real }
+              - { text: "Maths is fun because it is fun.", bin: again }
+          - id: l2-c7
+            part: reason
+            type: true_false
+            text: "\"I think we need a bigger classroom because there is no room for a reading corner\" gives a real reason."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c8
+            part: reason
+            type: multiple_choice
+            text: "Which sentence gives an opinion and a reason?"
+            options: ["In my opinion, the film was funny because the jokes were clever.", "The film started at six o'clock.", "In my opinion, the film was funny."]
+            answer: "In my opinion, the film was funny because the jokes were clever."
+            option_audio: false
+          - id: l2-c9
+            part: example-evidence
+            type: multiple_choice
+            text: "\"I think the giant in Jack and the Beanstalk is scary.\" Which is evidence from the story?"
+            options: ["He roars and stamps and wants to catch Jack.", "Giants are very tall.", "Beans grow in gardens."]
+            answer: "He roars and stamps and wants to catch Jack."
+          - id: l2-c10
+            part: example-evidence
+            type: multiple_choice
+            text: "\"I think bikes are better than cars for short trips because they do not pollute the air.\" Which example makes it stronger?"
+            options: ["For example, cycling to the shop makes no fumes at all.", "For example, my bike is blue.", "For example, cars."]
+            answer: "For example, cycling to the shop makes no fumes at all."
+          - id: l2-c11
+            part: example-evidence
+            type: true_false
+            text: "An example should be about something different from your reason."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c12
+            part: example-evidence
+            type: multiple_choice
+            text: "\"I think we should have a school garden because it would help nature. For example, bees could visit the flowers.\"\n\nWhich part is the example?"
+            say: "Read the answer. Which part is the example?"
+            options: ["For example, bees could visit the flowers.", "I think we should have a school garden", "because it would help nature."]
+            answer: "For example, bees could visit the flowers."
+            option_audio: false
+          - id: l2-c13
+            part: justify-answer
+            type: multiple_choice
+            text: "Is 30 more than 13? Which answer explains how you know?"
+            options: ["Yes. I know this because 30 has 3 tens and 13 has only 1 ten.", "Yes.", "Yes, because I just know."]
+            answer: "Yes. I know this because 30 has 3 tens and 13 has only 1 ten."
+            option_audio: false
+          - id: l2-c14
+            part: justify-answer
+            type: true_false
+            text: "\"Yes, because I am clever\" explains how you got your answer."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c15
+            part: justify-answer
+            type: multiple_choice
+            text: "Is a spider an insect? Which answer is justified?"
+            options: ["No. I know this because a spider has eight legs and insects have six.", "No.", "No, because spiders are scary."]
+            answer: "No. I know this because a spider has eight legs and insects have six."
+            option_audio: false
+          - id: l2-c16
+            part: justify-answer
+            type: ordering
+            text: "Is 40 in the 10 times table? Put the answer in order."
+            say: "Is forty in the ten times table? Put the cards in order to give the answer and explain how you know."
+            options: ["and every number that ends in 0 is in the 10 times table.", "Yes.", "I know this because it ends in 0,"]
+            slot_count: 3
+            answer: ["Yes.", "I know this because it ends in 0,", "and every number that ends in 0 is in the 10 times table."]
+            option_audio: false
+          - id: l2-c17
+            part: agree-disagree
+            type: multiple_choice
+            text: "Sara says, \"Playtime should be longer.\" Which reply agrees and gives a reason?"
+            options: ["I agree with Sara because we would come back to class ready to learn.", "I agree.", "Sara is always right."]
+            answer: "I agree with Sara because we would come back to class ready to learn."
+            option_audio: false
+          - id: l2-c18
+            part: agree-disagree
+            type: true_false
+            text: "\"I see what you mean, but I disagree because ...\" is a polite way to disagree."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c19
+            part: agree-disagree
+            type: multiple_choice
+            text: "Kai says, \"Cats are better than dogs.\" Which reply disagrees politely?"
+            options: ["I see why you think that, but I prefer dogs because they love to play games.", "Cats are rubbish.", "Stop talking, Kai."]
+            answer: "I see why you think that, but I prefer dogs because they love to play games."
+            option_audio: false
+          - id: l2-c20
+            part: agree-disagree
+            type: sorting
+            text: "Polite or not polite?"
+            say: "Read each reply. Is it a polite way to disagree, or not?"
+            option_audio: false
+            bins:
+              - { id: polite, show: { text: "polite" }, say: "Polite." }
+              - { id: rude, show: { text: "not polite" }, say: "Not polite." }
+            options:
+              - { text: "I disagree, because the bus is quicker.", bin: polite }
+              - { text: "That's a stupid idea.", bin: rude }
+              - { text: "That's a good point, but I think the park is closer.", bin: polite }
+              - { text: "You don't know anything.", bin: rude }

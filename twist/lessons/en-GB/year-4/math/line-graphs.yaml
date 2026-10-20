@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [line-graph, bar-chart, table]
   facets: []
+  parts:
+    - { id: read, what: { de: einen Wert aus einem Liniendiagramm ablesen, en: reading a value from a line graph } }
+    - { id: change, what: { de: Zunahme und Abnahme ablesen und berechnen, en: finding how much a value rose or fell } }
+    - { id: table-graph, what: { de: Tabelle und Liniendiagramm zuordnen und prüfen, en: matching a table with its line graph and checking the points } }
+    - { id: between, what: { de: Werte zwischen zwei Messungen schätzen, en: reading between two readings } }
   misconceptions:
     - id: misreads-scale
       what: Reads a point between two marks as the mark below or above (13 as 12 or 14 on a scale in twos)
@@ -198,6 +203,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -216,6 +222,22 @@ lessons:
             show: { drawn: line-graph, rows: [[Jan, 2], [Feb, 4], [Mar, 5], [Apr, 7], [May, 8]], step: 2, ylabel: "kg" }
             options: ["April", "March", "May"]
             answer: "April"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Children at the park. When were there the most children?"
+            show: { drawn: line-graph, rows: [[10am, 6], [11am, 15], [12pm, 20], [1pm, 12], [2pm, 18]], step: 5, ylabel: "children" }
+            options: ["12pm", "2pm", "11am"]
+            answer: "12pm"
+          - id: l1-c5
+            type: text_input
+            text: "Children at the park. How many children were there at 11am?"
+            show: { drawn: line-graph, rows: [[10am, 6], [11am, 15], [12pm, 20], [1pm, 12], [2pm, 18]], step: 5, ylabel: "children" }
+            answer: "15"
+          - id: l1-c6
+            type: true_false
+            text: "Children at the park. Is it true? The number of children fell between 12pm and 1pm."
+            show: { drawn: line-graph, rows: [[10am, 6], [11am, 15], [12pm, 20], [1pm, 12], [2pm, 18]], step: 5, ylabel: "children" }
+            answer: true
 
   - n: 2
     title: { de: Vom Diagramm zur Tabelle und zurück, en: Tables and line graphs }
@@ -388,19 +410,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "A cup of tea cools down. What was its temperature after 10 minutes?"
             show: { drawn: line-graph, rows: [[0 min, 80], [5 min, 60], [10 min, 50], [15 min, 40], [20 min, 35]], step: 10, ylabel: "°C" }
             options: ["50 °C", "60 °C", "45 °C"]
             answer: "50 °C"
           - id: l2-c2
+            part: change
             type: text_input
             text: "A cup of tea cools down. How many degrees did it cool in the first 5 minutes?"
             show: { drawn: line-graph, rows: [[0 min, 80], [5 min, 60], [10 min, 50], [15 min, 40], [20 min, 35]], step: 10, ylabel: "°C" }
             answer: "20"
           - id: l2-c3
+            part: table-graph
             type: image_multiple_choice
             text: "A kitten's mass. Which line graph shows the table?"
             show: { drawn: table, rows: [[Month, "kg"], [Jan, "1"], [Feb, "3"], [Mar, "2"], [Apr, "4"]] }
@@ -410,13 +436,116 @@ lessons:
               - { drawn: line-graph, rows: [[Jan, 1], [Feb, 3], [Mar, 2], [Apr, 2]], step: 1, key: wrong-apr }
             answer: right
           - id: l2-c4
+            part: change
             type: multiple_choice
             text: "A cup of tea cools down. When did it cool the fastest?"
             show: { drawn: line-graph, rows: [[0 min, 80], [5 min, 60], [10 min, 50], [15 min, 40], [20 min, 35]], step: 10, ylabel: "°C" }
             options: ["0 to 5 minutes", "10 to 15 minutes", "15 to 20 minutes"]
             answer: "0 to 5 minutes"
           - id: l2-c5
+            part: read
             type: true_false
-            text: "A cup of tea cools down. Is it true? After 15 minutes it was 40 °C."
+            text: "A cup of tea cools down. Is it true? After 15 minutes it was 35 °C."
             show: { drawn: line-graph, rows: [[0 min, 80], [5 min, 60], [10 min, 50], [15 min, 40], [20 min, 35]], step: 10, ylabel: "°C" }
+            answer: false
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Temperature in a greenhouse. What was the temperature at 2pm?"
+            show: { drawn: line-graph, rows: [[8am, 12], [10am, 16], [12pm, 22], [2pm, 26], [4pm, 20]], step: 2, ylabel: "°C" }
+            options: ["26 °C", "25 °C", "24 °C"]
+            answer: "26 °C"
+          - id: l2-c7
+            part: read
+            type: text_input
+            text: "Visitors at the swimming pool. How many visitors were there at 10am?"
+            show: { drawn: line-graph, rows: [[9am, 20], [10am, 45], [11am, 60], [12pm, 70], [1pm, 50]], step: 10, ylabel: "visitors" }
+            answer: "45"
+          - id: l2-c8
+            part: read
+            type: multiple_choice
+            text: "Height of a tomato plant. In which week was the plant 7 cm tall?"
+            show: { drawn: line-graph, rows: [[Week 1, 4], [Week 2, 7], [Week 3, 12], [Week 4, 16], [Week 5, 18]], step: 2, ylabel: "cm" }
+            options: ["Week 2", "Week 1", "Week 3"]
+            answer: "Week 2"
+          - id: l2-c9
+            part: change
+            type: text_input
+            text: "Visitors at the swimming pool. How many more visitors were there at 12pm than at 9am?"
+            show: { drawn: line-graph, rows: [[9am, 20], [10am, 45], [11am, 60], [12pm, 70], [1pm, 50]], step: 10, ylabel: "visitors" }
+            answer: "50"
+          - id: l2-c10
+            part: change
+            type: true_false
+            text: "Temperature in a greenhouse. Is it true? From 8am to 2pm the temperature rose by 14 degrees."
+            show: { drawn: line-graph, rows: [[8am, 12], [10am, 16], [12pm, 22], [2pm, 26], [4pm, 20]], step: 2, ylabel: "°C" }
             answer: true
+          - id: l2-c11
+            part: change
+            type: text_input
+            text: "Height of a tomato plant. How many centimetres did the plant grow from week 2 to week 4?"
+            show: { drawn: line-graph, rows: [[Week 1, 4], [Week 2, 7], [Week 3, 12], [Week 4, 16], [Week 5, 18]], step: 2, ylabel: "cm" }
+            answer: "9"
+          - id: l2-c12
+            part: table-graph
+            type: image_multiple_choice
+            text: "Hot chocolates sold at the café. Which line graph shows the table?"
+            show: { drawn: table, rows: [[Day, "cups"], [Mon, "8"], [Tue, "12"], [Wed, "10"], [Thu, "14"]] }
+            options:
+              - { drawn: line-graph, rows: [[Mon, 8], [Tue, 12], [Wed, 10], [Thu, 14]], step: 2, key: right }
+              - { drawn: line-graph, rows: [[Mon, 8], [Tue, 10], [Wed, 12], [Thu, 14]], step: 2, key: sorted }
+              - { drawn: line-graph, rows: [[Mon, 8], [Tue, 12], [Wed, 10], [Thu, 10]], step: 2, key: wrong-thu }
+            answer: right
+          - id: l2-c13
+            part: table-graph
+            type: multiple_choice
+            text: "Mia's table: 9am 3 °C, 10am 5 °C, 11am 8 °C, 12pm 7 °C. She drew this graph. Which point is wrong?"
+            show: { drawn: line-graph, rows: [[9am, 3], [10am, 5], [11am, 6], [12pm, 7]], step: 1, ylabel: "°C" }
+            options: ["9am", "10am", "11am", "12pm"]
+            answer: "11am"
+          - id: l2-c14
+            part: table-graph
+            type: true_false
+            text: "Ben's table: week 1, 2 cm; week 2, 4 cm; week 3, 7 cm. Is it true? His graph shows the table."
+            show: { drawn: line-graph, rows: [[Week 1, 2], [Week 2, 4], [Week 3, 6]], step: 1, ylabel: "cm" }
+            answer: false
+          - id: l2-c15
+            part: table-graph
+            type: fill_in_blank
+            text: "Filling a paddling pool. Fill in the table from the graph."
+            show: { drawn: line-graph, rows: [[0 min, 0], [5 min, 15], [10 min, 30], [15 min, 40]], step: 5, ylabel: "cm" }
+            frame: "After 5 min: _ cm   After 15 min: _ cm"
+            options: ["15", "20", "35", "40"]
+            answer: ["15", "40"]
+          - id: l2-c16
+            part: between
+            type: multiple_choice
+            text: "Temperature in the evening. About what was the temperature at 7pm?"
+            show: { drawn: line-graph, rows: [[6pm, 14], [8pm, 10], [10pm, 8], [12am, 6]], step: 2, ylabel: "°C" }
+            options: ["12 °C", "10 °C", "14 °C"]
+            answer: "12 °C"
+          - id: l2-c17
+            part: between
+            type: true_false
+            text: "Temperature in the evening. Is it true? At 9pm it was about 9 °C."
+            show: { drawn: line-graph, rows: [[6pm, 14], [8pm, 10], [10pm, 8], [12am, 6]], step: 2, ylabel: "°C" }
+            answer: true
+          - id: l2-c18
+            part: between
+            type: text_input
+            text: "A candle burns down. About how tall was the candle after 1 hour?"
+            show: { drawn: line-graph, rows: [[0 hours, 20], [2 hours, 16], [4 hours, 12], [6 hours, 8]], step: 2, ylabel: "cm" }
+            answer: "18"
+          - id: l2-c19
+            part: between
+            type: multiple_choice
+            text: "Visitors at the swimming pool. About how many visitors were there at half past 11?"
+            show: { drawn: line-graph, rows: [[9am, 20], [10am, 45], [11am, 60], [12pm, 70], [1pm, 50]], step: 10, ylabel: "visitors" }
+            options: ["65", "60", "70"]
+            answer: "65"
+          - id: l2-c20
+            part: between
+            type: text_input
+            text: "Lily's bike ride. About how many kilometres had she ridden after 15 minutes?"
+            show: { drawn: line-graph, rows: [[0 min, 0], [10 min, 2], [20 min, 4], [30 min, 6]], step: 1, ylabel: "km" }
+            answer: "3"

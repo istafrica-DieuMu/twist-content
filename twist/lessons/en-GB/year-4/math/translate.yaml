@@ -25,6 +25,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [coordinates]
   facets: []
+  parts:
+    - { id: describe, what: { de: eine Verschiebung beschreiben, en: "describing a translation (3 right, 2 up)" } }
+    - { id: carry-out, what: { de: einen Punkt oder eine Figur verschieben, en: translating a point or a shape } }
+    - { id: back-or-flip, what: { de: zurückschieben und eine Verschiebung von einer Spiegelung unterscheiden, en: sliding back and telling a translation from a flip } }
   misconceptions:
     - id: counts-the-gap
       what: Counts the empty squares between the two shapes instead of how far one corner moves
@@ -215,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -235,6 +240,21 @@ lessons:
             text: "E (5, 3) moves to F (5, 8). Describe the translation."
             options: ["5 up", "5 right", "8 up"]
             answer: "5 up"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Translate (1, 7) 6 right and 3 down."
+            frame: "( _ , _ )"
+            options: ["4", "7", "10"]
+            answer: ["7", "4"]
+          - id: l1-c5
+            type: point_on_grid
+            text: "Point B (7, 2) moves 4 left and 5 up. Tap where it lands."
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[7, 2, B]] }
+            answer: [3, 7]
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? (8, 6) translated 3 left and 2 down lands on (5, 8)."
+            answer: false
 
   - n: 2
     title: { de: Eine Figur verschieben, en: Translate a shape }
@@ -405,20 +425,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: describe
             type: multiple_choice
             text: "The purple triangle slides to the green triangle. Describe the translation."
             show: { drawn: coordinates, quadrants: 1, max: 8, shape: [[1, 3], [3, 3], [2, 6]], moved: [[6, 1], [8, 1], [7, 4]] }
             options: ["5 right, 2 down", "5 right, 2 up", "2 right, 5 down"]
             answer: "5 right, 2 down"
           - id: l2-c2
+            part: carry-out
             type: fill_in_blank
             text: "Translate (5, 4) 3 left and 4 up."
             frame: "( _ , _ )"
             options: ["1", "2", "8", "9"]
             answer: ["2", "8"]
           - id: l2-c3
+            part: carry-out
             type: image_multiple_choice
             text: "Translate the purple square 2 right and 5 up. Which picture is right?"
             options:
@@ -427,14 +451,114 @@ lessons:
               - { drawn: coordinates, quadrants: 1, max: 10, shape: [[2, 2], [4, 2], [4, 4], [2, 4]], moved: [[4, 5], [6, 5], [6, 7], [4, 7]], key: r2u3 }
             answer: r2u5
           - id: l2-c4
+            part: describe
             type: multiple_choice
             text: "Point G (8, 8) moves to point H (3, 6). Describe the translation."
             options: ["5 left, 2 down", "5 right, 2 up", "3 left, 6 down"]
             answer: "5 left, 2 down"
           - id: l2-c5
+            part: carry-out
             type: point_on_grid
             text: "In a translation, corner A (2, 1) moves to B (6, 4). Tap where corner C (2, 5) goes."
             show: { drawn: coordinates, quadrants: 1, max: 8, points: [[2, 1, A], [6, 4, B], [2, 5, C]] }
             answer: [6, 8]
             feedback:
               "6,4": "That is where A goes. C moves the same way: 4 right and 3 up from (2, 5)."
+          - id: l2-c6
+            part: describe
+            type: multiple_choice
+            text: "Point A moves to point B. Describe the translation."
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[7, 1, A], [1, 1, B]] }
+            options: ["6 left", "6 right", "7 left"]
+            answer: "6 left"
+          - id: l2-c7
+            part: describe
+            type: multiple_choice
+            text: "The purple square slides to the green square. Describe the translation."
+            show: { drawn: coordinates, quadrants: 1, max: 8, shape: [[5, 5], [7, 5], [7, 7], [5, 7]], moved: [[2, 1], [4, 1], [4, 3], [2, 3]] }
+            options: ["3 left, 4 down", "4 left, 3 down", "3 right, 4 up"]
+            answer: "3 left, 4 down"
+          - id: l2-c8
+            part: describe
+            type: text_input
+            text: "Point A moves to point B. How many squares up does it move?"
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[3, 1, A], [3, 7, B]] }
+            answer: "6"
+          - id: l2-c9
+            part: describe
+            type: multiple_choice
+            text: "Which translation moves (2, 5) to (8, 1)?"
+            options: ["6 right, 4 down", "4 right, 6 down", "6 right, 4 up"]
+            answer: "6 right, 4 down"
+          - id: l2-c10
+            part: describe
+            type: true_false
+            text: "Is it true? The purple square was translated 2 right and 4 up."
+            show: { drawn: coordinates, quadrants: 1, max: 8, shape: [[1, 1], [3, 1], [3, 3], [1, 3]], moved: [[5, 3], [7, 3], [7, 5], [5, 5]] }
+            answer: false
+          - id: l2-c11
+            part: carry-out
+            type: point_on_grid
+            text: "Point K (1, 6) is translated 5 right and 2 down. Tap where it lands."
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[1, 6, K]] }
+            answer: [6, 4]
+          - id: l2-c12
+            part: carry-out
+            type: fill_in_blank
+            text: "Translate (8, 2) 6 left and 5 up."
+            frame: "( _ , _ )"
+            options: ["2", "7", "14"]
+            answer: ["2", "7"]
+          - id: l2-c13
+            part: carry-out
+            type: image_multiple_choice
+            text: "Translate the purple triangle 3 left and 2 down. Which picture is right?"
+            options:
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[5, 4], [8, 4], [5, 7]], moved: [[3, 1], [6, 1], [3, 4]], key: l2d3 }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[5, 4], [8, 4], [5, 7]], moved: [[5, 2], [2, 2], [5, 5]], key: flipped }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[5, 4], [8, 4], [5, 7]], moved: [[2, 2], [5, 2], [2, 5]], key: l3d2 }
+            answer: l3d2
+          - id: l2-c14
+            part: carry-out
+            type: point_on_grid
+            text: "Translate the rectangle 3 right and 2 down. Tap where the corner (2, 5) goes."
+            show: { drawn: coordinates, quadrants: 1, max: 8, shape: [[1, 3], [2, 3], [2, 5], [1, 5]] }
+            answer: [5, 3]
+          - id: l2-c15
+            part: back-or-flip
+            type: multiple_choice
+            text: "A shape was translated 2 left and 6 up. Which translation slides it back?"
+            options: ["2 right, 6 down", "2 left, 6 down", "6 right, 2 down"]
+            answer: "2 right, 6 down"
+          - id: l2-c16
+            part: back-or-flip
+            type: true_false
+            text: "Is it true? The green triangle is a translation of the purple triangle."
+            show: { drawn: coordinates, quadrants: 1, max: 8, shape: [[1, 1], [4, 1], [1, 3]], moved: [[5, 4], [8, 4], [5, 6]] }
+            answer: true
+          - id: l2-c17
+            part: back-or-flip
+            type: image_multiple_choice
+            text: "In which picture is the green triangle a translation of the purple one?"
+            options:
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [3, 1], [1, 4]], moved: [[7, 2], [5, 2], [7, 5]], key: flipped }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [3, 1], [1, 4]], moved: [[5, 2], [7, 2], [5, 5]], key: slide }
+              - { drawn: coordinates, quadrants: 1, max: 10, shape: [[1, 1], [3, 1], [1, 4]], moved: [[5, 2], [9, 2], [5, 8]], key: bigger }
+            answer: slide
+          - id: l2-c18
+            part: back-or-flip
+            type: true_false
+            text: "Is it true? After a translation the shape is the same size and the same way round."
+            answer: true
+          - id: l2-c19
+            part: back-or-flip
+            type: multiple_choice
+            text: "Ben translates a point 3 right and 4 up. Then he translates it 3 left and 4 down. Where is the point now?"
+            options: ["where it started", "6 squares right of where it started", "8 squares above where it started"]
+            answer: "where it started"
+          - id: l2-c20
+            part: back-or-flip
+            type: point_on_grid
+            text: "Point F was translated 4 right and 3 up. It landed on G (6, 5). Tap where F was."
+            show: { drawn: coordinates, quadrants: 1, max: 8, points: [[6, 5, G]] }
+            answer: [2, 2]

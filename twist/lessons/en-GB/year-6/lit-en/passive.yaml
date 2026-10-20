@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: recognise, what: { de: Aktiv und Passiv unterscheiden, en: telling active from passive } }
+    - { id: form, what: { de: "das Passiv bilden (be und Partizip Perfekt)", en: "forming the passive (be and a past participle)" } }
+    - { id: effect, what: { de: das Passiv für eine Wirkung wählen, en: choosing the passive for its effect } }
   misconceptions:
     - id: past-is-passive
       what: Thinks any sentence in the past tense is passive (The dog chased the cat)
@@ -206,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,6 +227,28 @@ lessons:
             text: "Tap the passive verb."
             show: { drawn: letter-card, text: "The song is sung every morning." }
             spans: ["is", "sung"]
+          - id: l1-c4
+            type: sorting
+            text: "Sort the sentences about the school trip."
+            say: "Sort the sentences about the school trip. Is each one active or passive?"
+            option_audio: false
+            bins:
+              - { id: active, show: { text: "active" }, say: "Active." }
+              - { id: passive, show: { text: "passive" }, say: "Passive." }
+            options:
+              - { text: "The coach was booked by Mr Lee.", bin: passive }
+              - { text: "We visited a castle.", bin: active }
+              - { text: "Lunch was eaten on the grass.", bin: passive }
+              - { text: "Ali lost his hat.", bin: active }
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? \"The baby cried all night.\" is passive, because it is in the past tense."
+            answer: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tap the words that tell you who did the action."
+            show: { drawn: letter-card, text: "The trophy was presented by Mrs Okafor." }
+            spans: ["Mrs", "Okafor"]
 
   - n: 2
     title: { de: Ins Passiv setzen, en: Changing to the passive }
@@ -387,8 +414,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: recognise
             type: sorting
             text: "Sort these sentences into active and passive."
             say: "Put each sentence in the right group."
@@ -402,22 +431,122 @@ lessons:
               - { text: "The match was cancelled.", bin: passive }
               - { text: "The rain stopped the match.", bin: active }
           - id: l2-c2
+            part: form
             type: multiple_choice
             text: "Change into the passive.\n\n\"A wasp stung the farmer.\""
             options: ["The farmer was stung by a wasp.", "A wasp was stung by the farmer.", "The farmer stung a wasp."]
             answer: "The farmer was stung by a wasp."
             option_audio: false
           - id: l2-c3
+            part: form
             type: text_input
             text: "Write the past participle to finish the passive.\n\nThe poem was (write) by our class."
             keyboard: letters
             answer: "written"
           - id: l2-c4
+            part: effect
             type: multiple_choice
             text: "Why might a news report say \"A painting was stolen from the museum last night\"?"
             options: ["Nobody knows yet who stole it.", "The painting stole itself.", "It is an informal chat."]
             answer: "Nobody knows yet who stole it."
           - id: l2-c5
+            part: recognise
             type: true_false
             text: "Is it true? \"The gate was locked.\" is passive even without a \"by\" phrase."
             answer: true
+          - id: l2-c6
+            part: recognise
+            type: highlight_in_text
+            text: "Tap every word of the passive verb."
+            show: { drawn: letter-card, text: "Last night, three cars were damaged outside the school." }
+            spans: ["were", "damaged"]
+          - id: l2-c7
+            part: recognise
+            type: multiple_choice
+            text: "Which sentence is passive?"
+            options: ["The flowers were picked this morning.", "We picked the flowers this morning.", "The flowers grew this morning."]
+            answer: "The flowers were picked this morning."
+            option_audio: false
+          - id: l2-c8
+            part: recognise
+            type: true_false
+            text: "Is it true? \"The children were laughing.\" is a passive sentence."
+            answer: false
+          - id: l2-c9
+            part: recognise
+            type: multiple_choice
+            text: "\"The puppy was found by a postman.\"\n\nWhat is the subject of this sentence?"
+            options: ["the puppy", "a postman"]
+            answer: "the puppy"
+          - id: l2-c10
+            part: recognise
+            type: true_false
+            text: "Is it true? \"The clock was fixed.\" is active, because it does not say who fixed it."
+            answer: false
+          - id: l2-c11
+            part: form
+            type: multiple_choice
+            text: "Change into the passive.\n\n\"The teacher marked the books.\""
+            options: ["The books were marked by the teacher.", "The books was marked by the teacher.", "The teacher was marked by the books."]
+            answer: "The books were marked by the teacher."
+            option_audio: false
+          - id: l2-c12
+            part: form
+            type: multiple_choice
+            text: "Choose the correct passive verb.\n\nThe song was _ by the whole school."
+            say: "Choose the correct passive verb. The song was ... by the whole school."
+            options: ["sung", "sang", "singed"]
+            answer: "sung"
+          - id: l2-c13
+            part: form
+            type: text_input
+            text: "Write the past participle to finish the passive.\n\nThe ice lollies were (freeze) overnight."
+            keyboard: letters
+            answer: "frozen"
+          - id: l2-c14
+            part: form
+            type: ordering
+            text: "Build the passive sentence."
+            say: "Put the parts in order to make a passive sentence."
+            option_audio: false
+            options: ["by the lifeguard.", "The swimmer", "was rescued"]
+            slot_count: 3
+            answer: ["The swimmer", "was rescued", "by the lifeguard."]
+          - id: l2-c15
+            part: form
+            type: fill_in_blank
+            text: "Active: Lightning hit the old oak tree.\n\nFinish the passive sentence."
+            say: "Active: Lightning hit the old oak tree. Finish the passive sentence."
+            frame: "The old oak tree _ _ by lightning."
+            options: ["was", "were", "hit", "hitted"]
+            answer: ["was", "hit"]
+          - id: l2-c16
+            part: effect
+            type: multiple_choice
+            text: "A museum guide wants the focus on the painting, not on the painter.\n\nWhich sentence fits?"
+            options: ["The painting was finished in 1889.", "The painter finished the painting in 1889."]
+            answer: "The painting was finished in 1889."
+            option_audio: false
+          - id: l2-c17
+            part: effect
+            type: multiple_choice
+            text: "Rewrite for a science report.\n\n\"I poured the water into the beaker.\""
+            options: ["The water was poured into the beaker.", "The beaker poured the water.", "I was poured into the beaker."]
+            answer: "The water was poured into the beaker."
+            option_audio: false
+          - id: l2-c18
+            part: effect
+            type: true_false
+            text: "Is it true? In \"The new library will be opened by the mayor\", the passive puts the focus on the new library."
+            answer: true
+          - id: l2-c19
+            part: effect
+            type: multiple_choice
+            text: "A notice says: \"Mobile phones must be switched off.\"\n\nWhy does it use the passive?"
+            options: ["What must happen matters, not who does it.", "The phones switch themselves off.", "It is a chatty message to a friend."]
+            answer: "What must happen matters, not who does it."
+          - id: l2-c20
+            part: effect
+            type: true_false
+            text: "Is it true? Reports use the passive to make the writing sound chatty."
+            answer: false

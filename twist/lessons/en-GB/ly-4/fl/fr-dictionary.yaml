@@ -28,6 +28,12 @@ metadata:
   forms: [text]
   drawn: []
   facets: []
+  parts:
+    - { id: half, what: { de: die richtige Hälfte des Wörterbuchs wählen, en: choosing the right half of the dictionary } }
+    - { id: find, what: { de: "ein Wort finden: Alphabet und Leitwörter", en: "finding a word: alphabetical order and guide words" } }
+    - { id: entry, what: { de: "einen Eintrag lesen: Wortart und Genus", en: "reading an entry: word class and gender" } }
+    - { id: meaning, what: { de: "die Bedeutung wählen, die zum Satz passt", en: choosing the meaning that fits the sentence } }
+    - { id: base-form, what: { de: "die Grundform nachschlagen: Infinitiv und Singular", en: "looking up the base form: infinitive and singular" } }
   misconceptions:
     - id: wrong-half
       what: Looks up a French word in the English to French half
@@ -232,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -256,6 +263,25 @@ lessons:
             say: { en: "The guide words are rat and robe. Which word is on this page?" }
             options: ["rideau", "rose", "radio"]
             answer: "rideau"
+          - id: l1-c4
+            type: true_false
+            text: "In a dictionary, lapin comes before lait."
+            say: { en: "In a dictionary, lapin comes before lait. Is this true?" }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            option_audio: false
+            text: "Which word comes first in the dictionary?"
+            say: { en: "Which word comes first in the dictionary?" }
+            options: ["souris", "soleil", "sac"]
+            answer: "sac"
+          - id: l1-c6
+            type: multiple_choice
+            option_audio: false
+            text: "Le hérisson dort.\n\nYou want to know what hérisson means. Where do you look?"
+            say: { en: "You read le hérisson dort and want to know what hérisson means. Where do you look?" }
+            options: ["French to English, under h", "English to French, under h", "French to English, under l"]
+            answer: "French to English, under h"
 
   - n: 2
     title: { de: Einen Eintrag lesen, en: Reading an entry }
@@ -439,8 +465,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: half
             type: multiple_choice
             option_audio: false
             text: "You want to know the French for apple. Which half do you use?"
@@ -449,6 +477,7 @@ lessons:
             answer: "English to French"
             keep_order: true
           - id: l2-c2
+            part: find
             type: multiple_choice
             option_audio: false
             text: "Guide words: bain ... bleu\n\nWhich word is on this page?"
@@ -456,6 +485,7 @@ lessons:
             options: ["bébé", "bus", "arbre"]
             answer: "bébé"
           - id: l2-c3
+            part: entry
             type: multiple_choice
             option_audio: false
             text: "fenêtre  nf  window\n\nHow do you say a window?"
@@ -464,6 +494,7 @@ lessons:
             answer: "une fenêtre"
             keep_order: true
           - id: l2-c4
+            part: meaning
             type: multiple_choice
             option_audio: false
             text: "pièce  nf  1. room  2. coin  3. play (at the theatre)\n\nJ'ai une pièce de deux euros.\n\nWhat does pièce mean here?"
@@ -471,9 +502,141 @@ lessons:
             options: ["coin", "room", "play"]
             answer: "coin"
           - id: l2-c5
+            part: base-form
             type: multiple_choice
             option_audio: false
             text: "Nous regardons la télé.\n\nWhich word do you look up for regardons?"
             say: { en: "You do not know regardons. Which word do you look up?" }
             options: ["regarder", "regardons", "nous"]
             answer: "regarder"
+          - id: l2-c6
+            part: half
+            type: sorting
+            text: "Which half of the dictionary do you use? Sort the cards."
+            say: { en: "Which half of the dictionary do you use? Sort the cards." }
+            option_audio: false
+            bins:
+              - { id: fe, show: { text: "French to English" } }
+              - { id: ef, show: { text: "English to French" } }
+            options:
+              - { text: "You want to know what fromage means.", bin: fe }
+              - { text: "You want to write horse in French.", bin: ef }
+              - { text: "Your penfriend writes the word plage.", bin: fe }
+              - { text: "You need the French word for spoon.", bin: ef }
+          - id: l2-c7
+            part: half
+            type: true_false
+            text: "To find the French word for kitchen, you look in the French to English half."
+            say: { en: "To find the French word for kitchen, you look in the French to English half. Is this true?" }
+            answer: false
+          - id: l2-c8
+            part: half
+            type: multiple_choice
+            option_audio: false
+            text: "Ali looks up the word window in the French to English half. He cannot find it. Why not?"
+            say: { en: "Ali looks up the word window in the French to English half. He cannot find it. Why not?" }
+            options: ["Window is English, so it is in the English to French half.", "His dictionary is too small.", "Window has no word in French."]
+            answer: "Window is English, so it is in the English to French half."
+          - id: l2-c9
+            part: find
+            type: ordering
+            option_audio: false
+            text: "Put the words in dictionary order."
+            say: { en: "Put the words in the order you find them in the dictionary." }
+            options: ["cheval", "citron", "chat", "cerise"]
+            slot_count: 4
+            answer: ["cerise", "chat", "cheval", "citron"]
+          - id: l2-c10
+            part: find
+            type: multiple_choice
+            option_audio: false
+            text: "Guide words: mardi ... merci\n\nWhich word is not on this page?"
+            say: { en: "The guide words are mardi and merci. Which word is not on this page?" }
+            options: ["midi", "matin", "mer"]
+            answer: "midi"
+          - id: l2-c11
+            part: find
+            type: true_false
+            text: "Guide words: pain ... papier\n\nThe word panda is on this page."
+            say: { en: "The guide words are pain and papier. The word panda is on this page. Is this true?" }
+            answer: true
+          - id: l2-c12
+            part: entry
+            type: matching
+            option_audio: false
+            text: "Match each label in an entry to what it means."
+            say: { en: "Tap a label from a dictionary entry, then what it means." }
+            pairs:
+              - { left: { text: "nm" }, right: { text: "masculine noun" } }
+              - { left: { text: "nf" }, right: { text: "feminine noun" } }
+              - { left: { text: "v" }, right: { text: "verb" } }
+              - { left: { text: "adj" }, right: { text: "adjective" } }
+          - id: l2-c13
+            part: entry
+            type: multiple_choice
+            option_audio: false
+            text: "Which entry is for a feminine noun?"
+            say: { en: "Read the three entries. Which one is for a feminine noun?" }
+            options: ["plage  nf  beach", "sable  nm  sand", "chaud  adj  hot"]
+            answer: "plage  nf  beach"
+          - id: l2-c14
+            part: entry
+            type: sorting
+            text: "Noun, verb or adjective? Read the entries and sort them."
+            say: { en: "Is it a noun, a verb or an adjective? Read the entries and sort them." }
+            option_audio: false
+            bins:
+              - { id: n, show: { text: "noun" } }
+              - { id: v, show: { text: "verb" } }
+              - { id: adj, show: { text: "adjective" } }
+            options:
+              - { text: "porte  nf  door", bin: n }
+              - { text: "dormir  v  to sleep", bin: v }
+              - { text: "rouge  adj  red", bin: adj }
+              - { text: "lapin  nm  rabbit", bin: n }
+          - id: l2-c15
+            part: meaning
+            type: multiple_choice
+            option_audio: false
+            text: "temps  nm  1. time  2. weather\n\nQuel temps fait-il ? Il fait beau.\n\nWhat does temps mean here?"
+            say: { en: "Read the entry and the sentences. What does temps mean here?" }
+            options: ["weather", "time"]
+            answer: "weather"
+          - id: l2-c16
+            part: meaning
+            type: multiple_choice
+            option_audio: false
+            text: "bureau  nm  1. desk  2. office\n\nMon cahier est sur mon bureau, dans ma chambre.\n\nWhat does bureau mean here?"
+            say: { en: "Read the entry and the sentence. What does bureau mean here?" }
+            options: ["desk", "office"]
+            answer: "desk"
+          - id: l2-c17
+            part: meaning
+            type: true_false
+            text: "pêche  nf  1. peach  2. fishing\n\nLe dimanche, papi va à la pêche au lac.\n\nHere pêche means peach."
+            say: { en: "Read the entry and the sentence. Here pêche means peach. Is this true?" }
+            answer: false
+          - id: l2-c18
+            part: base-form
+            type: matching
+            option_audio: false
+            text: "Match each word to the form you look up."
+            say: { en: "Tap a word from a sentence, then the form you look up in the dictionary." }
+            pairs:
+              - { left: { text: "tu parles" }, right: { text: "parler" } }
+              - { left: { text: "les chiens" }, right: { text: "chien" } }
+              - { left: { text: "elles écoutent" }, right: { text: "écouter" } }
+              - { left: { text: "les maisons" }, right: { text: "maison" } }
+          - id: l2-c19
+            part: base-form
+            type: text_input
+            keyboard: letters
+            text: "Il a trois vélos.\n\nWhich word do you look up for vélos? Type it."
+            say: { en: "Il a trois vélos. Which word do you look up for vélos? Type it." }
+            answer: "vélo"
+          - id: l2-c20
+            part: base-form
+            type: true_false
+            text: "Tu aimes les pommes ?\n\nTo find aimes, you look up aimer."
+            say: { en: "Read the question. To find aimes, you look up aimer. Is this true?" }
+            answer: true

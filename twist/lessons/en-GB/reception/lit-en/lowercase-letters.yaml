@@ -15,7 +15,9 @@ summary: >
   with the skill check. Tracing and copying carry the writing; short
   choice tasks ask where a letter starts and which way it goes. The
   tracing accepts any ink for now, so stroke order is taught but not yet
-  marked.
+  marked. The skill check marks what a screen can mark: where a letter
+  starts, which way it goes, its family and telling b from d; forming the
+  letters is practised in Practise (tracing and copying).
 metadata:
   year: reception
   topic: { de: "Handschrift", en: "Handwriting" }
@@ -28,6 +30,11 @@ metadata:
   drawn: [writing-lines, letter-card]
   sounds: [en.a, en.d, en.k, en.o, en.b, en.p]
   facets: [script]
+  parts:
+    - { id: start, what: { de: "wissen, wo ein Buchstabe beginnt", en: knowing where a letter starts } }
+    - { id: direction, what: { de: "wissen, in welche Richtung ein Buchstabe geht", en: knowing which way a letter goes } }
+    - { id: families, what: { de: die Buchstabenfamilien kennen, en: knowing the letter families } }
+    - { id: b-d, what: { de: b und d unterscheiden, en: telling b from d } }
   misconceptions:
     - id: start-at-bottom
       what: Starts letters at the bottom line and pushes the pencil upwards
@@ -208,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -230,6 +238,26 @@ lessons:
             say: "Write this letter on your own. Round first, then the tall line."
             show: { drawn: writing-lines, text: "d", mode: copy, arrows: false }
             char: "d"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which family is t in?"
+            say: "Look at this letter. Which family is it in?"
+            show: { drawn: letter-card, text: "t" }
+            options: ["the long ladders", "the curly caterpillars"]
+            answer: "the long ladders"
+          - id: l1-c5
+            type: true_false
+            text: "You start l at the top."
+            say: "Look at this letter. Do you start it at the top?"
+            show: { drawn: letter-card, text: "l" }
+            answer: true
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tap every a."
+            say: "Listen to the sound, then tap every letter that makes it."
+            audio: { sound: en.a }
+            show: { drawn: letter-card, text: "o a c a d" }
+            spans: ["a"]
 
   - n: 2
     title: { de: "Roboter und Zickzack", en: "One-armed robots and zigzags" }
@@ -394,8 +422,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: start
             type: multiple_choice
             text: "Where does m start?"
             say: "Look at this letter. Where do you start it?"
@@ -404,6 +434,7 @@ lessons:
             answer: "at the top"
             keep_order: true
           - id: l2-c2
+            part: b-d
             type: highlight_in_text
             text: "Tap every d."
             say: "Listen to the sound, then tap every letter that makes it."
@@ -411,6 +442,7 @@ lessons:
             show: { drawn: letter-card, text: "b d b d p" }
             spans: ["d"]
           - id: l2-c3
+            part: b-d
             type: multiple_choice
             text: "What comes first in d?"
             say: "Look at this letter. What do you write first?"
@@ -419,15 +451,132 @@ lessons:
             answer: "the round part"
             keep_order: true
           - id: l2-c4
+            part: direction
             type: true_false
             text: "c goes round to the right."
             say: "You start this letter at the top. Does it go round to the right?"
             show: { drawn: letter-card, text: "c" }
             answer: false
           - id: l2-c5
+            part: families
             type: multiple_choice
             text: "Which family is a in?"
             say: "Look at this letter. Which family is it in?"
             show: { drawn: letter-card, text: "a" }
             options: ["the one-armed robots", "the curly caterpillars", "the long ladders"]
             answer: "the curly caterpillars"
+          - id: l2-c6
+            part: start
+            type: multiple_choice
+            text: "Where do you start h?"
+            say: "Look at this letter. Where do you start it?"
+            show: { drawn: letter-card, text: "h" }
+            options: ["at the top of the tall line", "at the bottom of the tall line", "in the middle"]
+            answer: "at the top of the tall line"
+          - id: l2-c7
+            part: direction
+            type: true_false
+            text: "o goes back and round, like c."
+            say: "Look at this letter. Does it go back and round, like c?"
+            show: { drawn: letter-card, text: "o" }
+            answer: true
+          - id: l2-c8
+            part: families
+            type: multiple_choice
+            text: "Which family is v in?"
+            say: "Look at this letter. Which family is it in?"
+            show: { drawn: letter-card, text: "v" }
+            options: ["the long ladders", "the zigzags", "the one-armed robots"]
+            answer: "the zigzags"
+          - id: l2-c9
+            part: b-d
+            type: highlight_in_text
+            text: "Tap every b."
+            say: "Listen to the sound, then tap every letter that makes it."
+            audio: { sound: en.b }
+            show: { drawn: letter-card, text: "p b d b q" }
+            spans: ["b"]
+          - id: l2-c10
+            part: start
+            type: true_false
+            text: "You start v at the top."
+            say: "Look at this letter. Do you start it at the top?"
+            show: { drawn: letter-card, text: "v" }
+            answer: true
+          - id: l2-c11
+            part: direction
+            type: multiple_choice
+            text: "How does n go?"
+            say: "Look at this letter. How does your pencil go?"
+            show: { drawn: letter-card, text: "n" }
+            options: ["down, back up and over", "over, then down", "up, then down"]
+            answer: "down, back up and over"
+          - id: l2-c12
+            part: families
+            type: highlight_in_text
+            text: "Tap every curly caterpillar letter."
+            say: "Tap every curly caterpillar letter."
+            show: { drawn: letter-card, text: "c l o t a" }
+            spans: ["c", "o", "a"]
+          - id: l2-c13
+            part: b-d
+            type: multiple_choice
+            text: "Which letter starts with the tall line down?"
+            say: "Look at the two letters. Which one starts with the tall line down?"
+            options: ["d", "b"]
+            answer: "b"
+            option_audio: false
+          - id: l2-c14
+            part: start
+            type: multiple_choice
+            text: "Where does p start?"
+            say: "Look at this letter. Where do you start it?"
+            show: { drawn: letter-card, text: "p" }
+            options: ["at the top, then down below the line", "at the bottom, then up"]
+            answer: "at the top, then down below the line"
+            keep_order: true
+          - id: l2-c15
+            part: direction
+            type: multiple_choice
+            text: "How does v go?"
+            say: "Look at this letter. How does your pencil go?"
+            show: { drawn: letter-card, text: "v" }
+            options: ["round and round", "zig down, then zag up", "down, then across"]
+            answer: "zig down, then zag up"
+          - id: l2-c16
+            part: families
+            type: true_false
+            text: "r is a one-armed robot letter."
+            say: "Look at this letter. Is it a one-armed robot letter?"
+            show: { drawn: letter-card, text: "r" }
+            answer: true
+          - id: l2-c17
+            part: b-d
+            type: true_false
+            text: "Does this letter make this sound?"
+            say: "Look at this letter. Does it make this sound? Listen."
+            audio: { sound: en.b }
+            show: { drawn: letter-card, text: "d" }
+            answer: false
+          - id: l2-c18
+            part: start
+            type: true_false
+            text: "You start a at the bottom and go up."
+            say: "Look at this letter. Do you start it at the bottom and go up?"
+            show: { drawn: letter-card, text: "a" }
+            answer: false
+          - id: l2-c19
+            part: direction
+            type: true_false
+            text: "For u, you go down, round at the bottom, up, then down again."
+            say: "Look at this letter. Do you go down, round at the bottom, up, then down again?"
+            show: { drawn: letter-card, text: "u" }
+            answer: true
+          - id: l2-c20
+            part: families
+            type: multiple_choice
+            text: "Which family is l in?"
+            say: "Look at this letter. Which family is it in?"
+            show: { drawn: letter-card, text: "l" }
+            options: ["the curly caterpillars", "the long ladders", "the zigzags"]
+            answer: "the long ladders"

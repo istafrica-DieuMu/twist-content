@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: continue, what: { de: ein Muster aus Formen oder Farben fortsetzen, en: continuing a shape or colour pattern } }
+    - { id: describe, what: { de: "den Teil finden, der sich wiederholt", en: finding the part that repeats } }
+    - { id: gap-mistake, what: { de: eine Lücke oder einen Fehler im Muster finden, en: finding a gap or a mistake in a pattern } }
+    - { id: numbers, what: { de: Zahlenmuster fortsetzen, en: continuing a number pattern } }
   misconceptions:
     - id: repeats-last
       what: Repeats the last item instead of starting the repeating part again (circle, triangle, circle, triangle, then triangle again)
@@ -255,6 +260,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -280,6 +286,35 @@ lessons:
             say: "Square, triangle, square, triangle. Is it true that a triangle comes next?"
             show: { drawn: shape, row: [square, triangle, square, triangle, "?"], colours: [blue, red, blue, red] }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "What comes next?"
+            say: "Square, square, triangle, square, square. What comes next?"
+            show: { drawn: shape, row: [square, square, triangle, square, square, "?"], colours: [blue, blue, yellow, blue, blue] }
+            options:
+              - { drawn: shape, kind: triangle, colour: yellow }
+              - { drawn: shape, kind: square, colour: blue }
+              - { drawn: shape, kind: circle, colour: red }
+            answer: triangle
+            option_audio: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which part repeats?"
+            say: "Which part repeats in this pattern?"
+            show: { drawn: shape, row: [triangle, pentagon, pentagon, triangle, pentagon, pentagon], colours: [red, blue, blue, red, blue, blue] }
+            options: ["triangle, pentagon, pentagon", "triangle, pentagon", "pentagon, pentagon"]
+            answer: "triangle, pentagon, pentagon"
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "What comes next?"
+            say: "Purple pentagon, yellow triangle, purple pentagon, yellow triangle. What comes next?"
+            show: { drawn: shape, row: [pentagon, triangle, pentagon, triangle, "?"], colours: [purple, yellow, purple, yellow] }
+            options:
+              - { drawn: shape, kind: pentagon, colour: purple, key: pentagon-purple }
+              - { drawn: shape, kind: pentagon, colour: yellow, key: pentagon-yellow }
+              - { drawn: shape, kind: triangle, colour: yellow, key: triangle-yellow }
+            answer: pentagon-purple
+            option_audio: false
 
   - n: 2
     title: { de: "Lücken, Fehler und Zahlenmuster", en: "Gaps, mistakes and number patterns" }
@@ -299,6 +334,7 @@ lessons:
             type: multiple_choice
             text: "Which part repeats?"
             say: "Circle, triangle, circle, triangle. Which part repeats?"
+            show: { drawn: shape, row: [circle, triangle, circle, triangle], colours: [green, red, green, red] }
             options: ["circle, triangle", "circle, circle"]
             answer: "circle, triangle"
             difficulty: easy
@@ -478,8 +514,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: continue
             type: image_multiple_choice
             text: "What comes next?"
             say: "Triangle, square, circle, triangle, square. What comes next?"
@@ -491,6 +529,7 @@ lessons:
             answer: circle
             option_audio: false
           - id: l2-c2
+            part: gap-mistake
             type: image_multiple_choice
             text: "Which shape is missing?"
             say: "Square, circle, square, gap, square. Which shape is missing?"
@@ -502,6 +541,7 @@ lessons:
             answer: circle
             option_audio: false
           - id: l2-c3
+            part: gap-mistake
             type: multiple_choice
             text: "One shape breaks the pattern. Which one is it?"
             say: "One shape breaks the pattern. Which one is it?"
@@ -509,6 +549,7 @@ lessons:
             options: ["the 4th", "the 3rd", "the 6th"]
             answer: "the 4th"
           - id: l2-c4
+            part: numbers
             type: multiple_choice
             text: "6, 2, 6, 2, 6, _"
             say: "Six, two, six, two, six. Which number comes next?"
@@ -516,9 +557,10 @@ lessons:
             answer: "2"
             option_audio: false
           - id: l2-c5
+            part: continue
             type: image_multiple_choice
             text: "What comes next?"
-            say: "Look at the shape and the colour. What comes next?"
+            say: "Blue hexagon, orange triangle, orange triangle, blue hexagon, orange triangle. What comes next?"
             show: { drawn: shape, row: [hexagon, triangle, triangle, hexagon, triangle, "?"], colours: [blue, orange, orange, blue, orange] }
             options:
               - { drawn: shape, kind: triangle, colour: orange, key: triangle-orange }
@@ -526,3 +568,126 @@ lessons:
               - { drawn: shape, kind: triangle, colour: blue, key: triangle-blue }
             answer: triangle-orange
             option_audio: false
+          - id: l2-c6
+            part: continue
+            type: multiple_choice
+            text: "orange, purple, purple, orange, purple, purple, _"
+            say: "Orange, purple, purple, orange, purple, purple. Which colour comes next?"
+            show: { drawn: shape, row: [square, square, square, square, square, square, "?"], colours: [orange, purple, purple, orange, purple, purple] }
+            options: ["orange", "purple", "green"]
+            answer: "orange"
+          - id: l2-c7
+            part: continue
+            type: image_multiple_choice
+            text: "What comes next?"
+            say: "Pentagon, circle, circle, pentagon, circle, circle. What comes next?"
+            show: { drawn: shape, row: [pentagon, circle, circle, pentagon, circle, circle, "?"], colours: [red, yellow, yellow, red, yellow, yellow] }
+            options:
+              - { drawn: shape, kind: pentagon, colour: red }
+              - { drawn: shape, kind: circle, colour: yellow }
+              - { drawn: shape, kind: square, colour: blue }
+            answer: pentagon
+            option_audio: false
+          - id: l2-c8
+            part: continue
+            type: multiple_choice
+            text: "triangle, circle, triangle, circle ... What is the 8th shape?"
+            say: "Triangle, circle, triangle, circle, and it goes on. What is the eighth shape?"
+            show: { drawn: shape, row: [triangle, circle, triangle, circle, triangle, circle], colours: [green, orange, green, orange, green, orange] }
+            options: ["circle", "triangle"]
+            answer: "circle"
+          - id: l2-c9
+            part: describe
+            type: multiple_choice
+            text: "How many shapes are in the repeating part?"
+            say: "How many shapes are in the part that repeats?"
+            show: { drawn: shape, row: [circle, circle, square, circle, circle, square], colours: [blue, blue, red, blue, blue, red] }
+            options: ["3", "2", "6"]
+            answer: "3"
+          - id: l2-c10
+            part: describe
+            type: multiple_choice
+            text: "Which part repeats?"
+            say: "Which part repeats in this pattern?"
+            show: { drawn: shape, row: [circle, circle, circle, circle, circle, circle], colours: [red, green, blue, red, green, blue] }
+            options: ["red, green, blue", "red, green", "green, blue"]
+            answer: "red, green, blue"
+          - id: l2-c11
+            part: describe
+            type: true_false
+            text: "Is it true? In this pattern, the part that repeats is square, circle."
+            say: "In this pattern, the part that repeats is square, circle. Is that true?"
+            show: { drawn: shape, row: [square, circle, circle, square, circle, circle], colours: [yellow, purple, purple, yellow, purple, purple] }
+            answer: false
+          - id: l2-c12
+            part: describe
+            type: image_multiple_choice
+            text: "In which pattern does circle, square, square repeat?"
+            say: "In which pattern does circle, square, square repeat?"
+            options:
+              - { drawn: shape, row: [circle, square, circle, square, circle, square], colours: [green, red, green, red, green, red], key: a }
+              - { drawn: shape, row: [circle, circle, square, circle, circle, square], colours: [green, green, red, green, green, red], key: b }
+              - { drawn: shape, row: [circle, square, square, circle, square, square], colours: [green, red, red, green, red, red], key: c }
+            answer: c
+            option_audio: false
+          - id: l2-c13
+            part: describe
+            type: multiple_choice
+            text: "9, 9, 4, 9, 9, 4\nWhich part repeats?"
+            say: "Nine, nine, four, nine, nine, four. Which part repeats?"
+            options: ["9, 9, 4", "9, 4", "9, 9"]
+            answer: "9, 9, 4"
+          - id: l2-c14
+            part: gap-mistake
+            type: image_multiple_choice
+            text: "Which shape is missing?"
+            say: "Hexagon, square, square, hexagon, gap, square. Which shape is missing?"
+            show: { drawn: shape, row: [hexagon, square, square, hexagon, "?", square], colours: [green, purple, purple, green, null, purple] }
+            options:
+              - { drawn: shape, kind: square, colour: purple }
+              - { drawn: shape, kind: hexagon, colour: green }
+              - { drawn: shape, kind: circle, colour: red }
+            answer: square
+            option_audio: false
+          - id: l2-c15
+            part: gap-mistake
+            type: multiple_choice
+            text: "One shape breaks the pattern. Which one is it?"
+            say: "One shape breaks the pattern. Which one is it?"
+            show: { drawn: shape, row: [circle, circle, triangle, circle, triangle, triangle], colours: [red, red, blue, red, blue, blue] }
+            options: ["the 5th", "the 3rd", "the 4th"]
+            answer: "the 5th"
+          - id: l2-c16
+            part: gap-mistake
+            type: true_false
+            text: "red, yellow, red, yellow, yellow. The pattern is right."
+            say: "Red, yellow, red, yellow, yellow. Is the pattern right?"
+            show: { drawn: shape, row: [circle, circle, circle, circle, circle], colours: [red, yellow, red, yellow, yellow] }
+            answer: false
+          - id: l2-c17
+            part: numbers
+            type: multiple_choice
+            text: "1, 2, 3, 1, 2, _"
+            say: "One, two, three, one, two. Which number comes next?"
+            options: ["3", "1", "4"]
+            answer: "3"
+            option_audio: false
+          - id: l2-c18
+            part: numbers
+            type: text_input
+            text: "7, 7, 3, 7, 7, 3, 7, _"
+            say: "Seven, seven, three, seven, seven, three, seven. Which number comes next?"
+            answer: "7"
+          - id: l2-c19
+            part: numbers
+            type: true_false
+            text: "4, 9, 4, 9, 4, 9. The next number is 4."
+            say: "Four, nine, four, nine, four, nine. Is the next number four?"
+            answer: true
+          - id: l2-c20
+            part: numbers
+            type: multiple_choice
+            text: "3, 8, 3, 8 ... What is the 7th number?"
+            say: "Three, eight, three, eight, and it goes on. What is the seventh number?"
+            options: ["3", "8"]
+            answer: "3"

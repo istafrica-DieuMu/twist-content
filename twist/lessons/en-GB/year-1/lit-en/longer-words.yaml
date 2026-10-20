@@ -26,6 +26,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card, syllable-arcs, dots]
   facets: []
+  parts:
+    - { id: two-chunks, what: { de: "Wörter aus zwei Silben mit kurzen Vokalen lesen (rabbit, picnic)", en: "reading two-chunk words with short vowels (rabbit, picnic)" } }
+    - { id: compound, what: { de: "zwei zusammengesetzte kleine Wörter lesen (snowman, bedroom)", en: "reading two small words joined (snowman, bedroom)" } }
+    - { id: digraph-chunks, what: { de: "Silben mit Buchstabengruppen und er lesen (sticker, garden)", en: "reading chunks with digraphs and er (sticker, garden)" } }
+    - { id: three-chunks, what: { de: "Wörter aus drei Silben lesen (jellyfish, elephant)", en: "reading three-chunk words (jellyfish, elephant)" } }
   misconceptions:
     - id: first-chunk-guess
       what: Reads the first chunk and guesses the rest (rab... rabbit or ribbon; rub... rabbit)
@@ -247,11 +252,12 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
-            say: "Read the word on the card, chunk by chunk. Tap its picture."
+            say: "Read the word on the card. Tap its picture."
             show: { drawn: letter-card, text: "rubber" }
             options: [{ object: rubber }, { object: ruler }, { object: rabbit }]
             answer: rubber
@@ -269,6 +275,26 @@ lessons:
             frame: "kit + ten = _"
             options: ["kitten", "tenkit", "kitton"]
             answer: ["kitten"]
+            option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? Desktop is made of two small words: desk and top."
+            answer: true
+          - id: l1-c5
+            type: ordering
+            text: "Build the word for the picture."
+            say: "Put the chunks in order to make the word for the picture."
+            show: { object: jacket }
+            options: ["et", "jack"]
+            slot_count: 2
+            answer: ["jack", "et"]
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Kit put the napkin in the basket.\nWhere did Kit put the napkin?"
+            say: "Read the sentence. Where did Kit put the napkin?"
+            options: ["in the basket", "in the bucket", "in the bath"]
+            answer: "in the basket"
             option_audio: false
 
   - n: 2
@@ -459,30 +485,35 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: digraph-chunks
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
-            say: "Read the word on the card, chunk by chunk. Tap its picture."
+            say: "Read the word on the card. Tap its picture."
             show: { drawn: letter-card, text: "crayon" }
             options: [{ object: crocodile }, { object: crayon }, { object: cake }]
             answer: crayon
             option_audio: false
           - id: l2-c2
+            part: digraph-chunks
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
-            say: "Read the word on the card, chunk by chunk. Tap its picture."
+            say: "Read the word on the card. Tap its picture."
             show: { drawn: letter-card, text: "jumper" }
             options: [{ object: jacket }, { object: jug }, { object: jumper }]
             answer: jumper
             option_audio: false
           - id: l2-c3
+            part: three-chunks
             type: multiple_choice
             text: "hospital\nHow many chunks?"
             say: "Read the word on the screen. How many chunks does it have?"
             options: ["1", "2", "3"]
             answer: "3"
           - id: l2-c4
+            part: two-chunks
             type: fill_in_blank
             text: "Put the chunks together."
             say: "Here are two chunks. Which word do they make?"
@@ -491,10 +522,132 @@ lessons:
             answer: ["picnic"]
             option_audio: false
           - id: l2-c5
+            part: two-chunks
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
-            say: "Read the word on the card, chunk by chunk. Tap its picture."
+            say: "Read the word on the card. Tap its picture."
             show: { drawn: letter-card, text: "teddy" }
             options: [{ object: telephone }, { object: pony }, { object: teddy }]
             answer: teddy
+            option_audio: false
+          - id: l2-c6
+            part: two-chunks
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap its picture."
+            show: { drawn: letter-card, text: "puppy" }
+            options: [{ object: pony }, { object: puppy }, { object: pencil }]
+            answer: puppy
+            option_audio: false
+          - id: l2-c7
+            part: two-chunks
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap its picture."
+            show: { drawn: letter-card, text: "bucket" }
+            options: [{ object: bus }, { object: book }, { object: bucket }]
+            answer: bucket
+            option_audio: false
+          - id: l2-c8
+            part: two-chunks
+            type: multiple_choice
+            text: "Max had a muffin and a cup of milk.\nWhat did Max have with his milk?"
+            say: "Read the sentence. What did Max have with his milk?"
+            options: ["a muffin", "a mitten", "a puffin"]
+            answer: "a muffin"
+            option_audio: false
+          - id: l2-c9
+            part: compound
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap its picture."
+            show: { drawn: letter-card, text: "toothbrush" }
+            options: [{ object: tooth }, { object: toothbrush }, { object: spoon }]
+            answer: toothbrush
+            option_audio: false
+          - id: l2-c10
+            part: compound
+            type: fill_in_blank
+            text: "Put the chunks together."
+            say: "Here are two small words. Which word do they make?"
+            frame: "hand + bag = _"
+            options: ["handbag", "baghand", "handbig"]
+            answer: ["handbag"]
+            option_audio: false
+          - id: l2-c11
+            part: compound
+            type: multiple_choice
+            text: "sandpit\nWhich two small words make it?"
+            say: "Read the word on the screen. Which two small words make it?"
+            options: ["sand and pit", "san and dpit", "sad and pit"]
+            answer: "sand and pit"
+            option_audio: false
+          - id: l2-c12
+            part: compound
+            type: true_false
+            text: "Is it true? Eggcup is made of the words egg and cup."
+            answer: true
+          - id: l2-c13
+            part: compound
+            type: multiple_choice
+            text: "Sam put on his sunhat and went up to the hilltop.\nWhere did Sam go?"
+            say: "Read the sentence. Where did Sam go?"
+            options: ["up to the hilltop", "up to the hen hut", "up to the hot tub"]
+            answer: "up to the hilltop"
+            option_audio: false
+          - id: l2-c14
+            part: digraph-chunks
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap its picture."
+            show: { drawn: letter-card, text: "sister" }
+            options: [{ object: baby }, { object: sister }, { object: brother }]
+            answer: sister
+            option_audio: false
+          - id: l2-c15
+            part: digraph-chunks
+            type: highlight_in_text
+            text: "Tap every word with two chunks."
+            say: "Read the words. Tap every word that has two chunks."
+            show: { drawn: letter-card, text: "farmer hat garden sock sister" }
+            spans: ["farmer", "garden", "sister"]
+          - id: l2-c16
+            part: digraph-chunks
+            type: true_false
+            text: "Is it true? Thunder has three chunks."
+            answer: false
+          - id: l2-c17
+            part: three-chunks
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap its picture."
+            show: { drawn: letter-card, text: "octopus" }
+            options: [{ object: crab }, { object: octopus }, { object: owl }]
+            answer: octopus
+            option_audio: false
+          - id: l2-c18
+            part: three-chunks
+            type: ordering
+            text: "Build the word for the picture."
+            say: "Put the chunks in order to make the word for the picture."
+            show: { object: umbrella }
+            options: ["la", "um", "brel"]
+            slot_count: 3
+            answer: ["um", "brel", "la"]
+            option_audio: false
+          - id: l2-c19
+            part: three-chunks
+            type: multiple_choice
+            text: "Which word has three chunks?"
+            say: "Read the words yourself. Which word has three chunks?"
+            options: ["hamster", "fantastic", "magnet"]
+            answer: "fantastic"
+            option_audio: false
+          - id: l2-c20
+            part: three-chunks
+            type: multiple_choice
+            text: "Gran has a pet hamster. It sleeps in the afternoon.\nWhen does the hamster sleep?"
+            say: "Read the sentences. When does the hamster sleep?"
+            options: ["in the afternoon", "in the morning", "at teatime"]
+            answer: "in the afternoon"
             option_audio: false

@@ -23,8 +23,12 @@ metadata:
   no_reading: true
   forms: [picture, drawn, audio]
   drawn: [dots]
-  sounds: [en.k, en.a, en.t, en.sh, en.b, en.d, en.e, en.f, en.g, en.h, en.i, en.j, en.l, en.m, en.n, en.o, en.p, en.s, en.u, en.z]
+  sounds: [en.k, en.a, en.t, en.sh, en.b, en.d, en.e, en.f, en.g, en.h, en.i, en.j, en.l, en.m, en.n, en.o, en.p, en.s, en.u, en.z, en.ks, en.oa, en.v]
   facets: []
+  parts:
+    - { id: blend, what: { de: "gesprochene Laute zu einem Wort verbinden (c-a-t, cat)", en: "blending spoken sounds into a word (c-a-t, cat)" } }
+    - { id: count, what: { de: die Laute in einem kurzen Wort zählen, en: counting the sounds in a short word } }
+    - { id: first-last, what: { de: den ersten oder letzten Laut eines Wortes hören, en: hearing the first or last sound of a word } }
   misconceptions:
     - id: first-sound-guess
       what: Hears only the first sound and guesses a word that starts with it (c ... a ... t, car)
@@ -206,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -228,6 +233,27 @@ lessons:
             audio: { sounds: [en.p, en.i, en.g] }
             show: { object: pig }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "What word is it?"
+            say: "Listen to the sounds. What word is it?"
+            audio: { sounds: [en.g, en.oa, en.t] }
+            options: [{ object: girl }, { object: goat }, { object: ghost }]
+            answer: goat
+          - id: l1-c5
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen to the sounds. Do they make sock?"
+            audio: { sounds: [en.s, en.u, en.n] }
+            show: { object: sock }
+            answer: false
+          - id: l1-c6
+            type: audio_choice
+            text: "What word is it?"
+            say: "Listen to the sounds. What word is it?"
+            audio: { sounds: [en.v, en.a, en.n] }
+            options: [{ object: bus }, { object: car }, { object: van }]
+            answer: van
 
   - n: 2
     title: { de: Wörter in Laute zerlegen, en: Splitting words into sounds }
@@ -408,8 +434,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: blend
             type: audio_choice
             text: "What word is it?"
             say: "Listen to the sounds. What word is it?"
@@ -417,6 +445,7 @@ lessons:
             options: [{ object: bell }, { object: bed }, { object: bus }]
             answer: bed
           - id: l2-c2
+            part: blend
             type: audio_choice
             text: "What word is it?"
             say: "Listen to the sounds. What word is it?"
@@ -424,6 +453,7 @@ lessons:
             options: [{ object: zebra }, { object: zip }, { object: pig }]
             answer: zip
           - id: l2-c3
+            part: count
             type: image_multiple_choice
             text: "How many sounds?"
             say: "Bus. Stretch the word out. How many sounds can you hear?"
@@ -434,9 +464,140 @@ lessons:
               - { drawn: dots, count: 4, layout: row }
             answer: "3"
           - id: l2-c4
+            part: first-last
             type: audio_choice
-            text: "What is the first sound?"
-            say: "Sun. What is the first sound in sun?"
+            text: "Which one starts like sun?"
+            say: "Sun. Which picture starts with the same sound as sun?"
             audio: { en: "Sun." }
             options: [{ object: sock }, { object: shoe }, { object: moon }]
             answer: sock
+          - id: l2-c5
+            part: blend
+            type: audio_choice
+            text: "What word is it?"
+            say: "Listen to the sounds. What word is it?"
+            audio: { sounds: [en.m, en.a, en.p] }
+            options: [{ object: mouse }, { object: map }, { object: moon }]
+            answer: map
+          - id: l2-c6
+            part: count
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Bee. Stretch the word out. How many sounds can you hear?"
+            show: { object: bee }
+            options:
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "2"
+          - id: l2-c7
+            part: first-last
+            type: audio_choice
+            text: "Which one starts like dog?"
+            say: "Dog. Which picture starts with the same sound as dog?"
+            audio: { en: "Dog." }
+            options: [{ object: cat }, { object: duck }, { object: bus }]
+            answer: duck
+          - id: l2-c8
+            part: blend
+            type: audio_choice
+            text: "What word is it?"
+            say: "Listen to the sounds. What word is it?"
+            audio: { sounds: [en.h, en.e, en.n] }
+            options: [{ object: hat }, { object: egg }, { object: hen }]
+            answer: hen
+          - id: l2-c9
+            part: count
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Hand. Stretch the word out. How many sounds can you hear?"
+            show: { object: hand }
+            options:
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+              - { drawn: dots, count: 5, layout: row }
+            answer: "4"
+          - id: l2-c10
+            part: first-last
+            type: true_false
+            text: "Do they start the same?"
+            say: "Bed, ball. Do they start with the same sound?"
+            show: { objects: [bed, ball] }
+            answer: true
+          - id: l2-c11
+            part: blend
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen to the sounds. Do they make fox?"
+            audio: { sounds: [en.f, en.o, en.ks] }
+            show: { object: fox }
+            answer: true
+          - id: l2-c12
+            part: count
+            type: true_false
+            text: "Two sounds?"
+            say: "Shoe. Does shoe have two sounds?"
+            show: { object: shoe }
+            answer: true
+          - id: l2-c13
+            part: first-last
+            type: audio_choice
+            text: "Which one starts with the last sound of pen?"
+            say: "Pen. Listen to the last sound in pen. Which picture starts with that sound?"
+            audio: { en: "Pen." }
+            options: [{ object: pig }, { object: nose }, { object: egg }]
+            answer: nose
+          - id: l2-c14
+            part: blend
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen to the sounds. Do they make pig?"
+            audio: { sounds: [en.p, en.e, en.n] }
+            show: { object: pig }
+            answer: false
+          - id: l2-c15
+            part: count
+            type: true_false
+            text: "Three sounds?"
+            say: "Milk. Does milk have three sounds?"
+            show: { object: milk }
+            answer: false
+          - id: l2-c16
+            part: first-last
+            type: true_false
+            text: "Does it end with this sound?"
+            say: "Bus. Does bus end with this sound? Listen."
+            audio: { sound: en.s }
+            show: { object: bus }
+            answer: true
+          - id: l2-c17
+            part: blend
+            type: audio_choice
+            text: "What word is it?"
+            say: "Listen to the sounds. What word is it?"
+            audio: { sounds: [en.sh, en.i, en.p] }
+            options: [{ object: shell }, { object: sheep }, { object: ship }]
+            answer: ship
+          - id: l2-c18
+            part: count
+            type: true_false
+            text: "Four sounds?"
+            say: "Crab. Does crab have four sounds?"
+            show: { object: crab }
+            answer: true
+          - id: l2-c19
+            part: first-last
+            type: audio_choice
+            text: "Which one starts like lamp?"
+            say: "Lamp. Which picture starts with the same sound as lamp?"
+            audio: { en: "Lamp." }
+            options: [{ object: rabbit }, { object: lion }, { object: nose }]
+            answer: lion
+          - id: l2-c20
+            part: first-last
+            type: true_false
+            text: "Does it start with this sound?"
+            say: "Fish. Does fish start with this sound? Listen."
+            audio: { sound: en.sh }
+            show: { object: fish }
+            answer: false

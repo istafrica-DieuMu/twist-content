@@ -25,6 +25,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid, ruler]
   facets: [units]
+  parts:
+    - { id: enlarge, what: { de: Figuren auf Kästchenpapier vergrößern und verkleinern, en: enlarging and reducing shapes on squared paper } }
+    - { id: plan-to-real, what: { de: mit dem Maßstab vom Plan auf die Wirklichkeit schließen, en: using a scale to go from a plan to real lengths } }
+    - { id: real-to-plan, what: { de: mit dem Maßstab von der Wirklichkeit auf den Plan schließen, en: using a scale to go from real lengths to a plan } }
   misconceptions:
     - id: adds-instead-of-multiplies
       what: Enlarges by adding the same number of squares to every side (2 by 3 at scale factor 2 becomes 4 by 5) instead of multiplying every side
@@ -193,6 +197,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -208,6 +213,25 @@ lessons:
             type: true_false
             text: "Jas enlarges a 1 by 3 rectangle by scale factor 2. She draws it 2 by 6. Is that right?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "A rectangle is 4 by 3. Enlarge it by scale factor 5. How big is it now?"
+            options: ["20 by 15", "9 by 8", "20 by 3"]
+            answer: "20 by 15"
+          - id: l1-c5
+            type: multiple_choice
+            text: "A 6 by 2 rectangle is enlarged to 18 by 6. What is the scale factor?"
+            options: ["3", "12", "4"]
+            answer: "3"
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which rectangle is this one drawn half the size?"
+            show: { drawn: grid, cols: 4, rows: 2, lines: [[0, 0, 4, 0], [4, 0, 4, 2], [4, 2, 0, 2], [0, 2, 0, 0]] }
+            options:
+              - { drawn: grid, cols: 4, rows: 2, lines: [[0, 0, 2, 0], [2, 0, 2, 1], [2, 1, 0, 1], [0, 1, 0, 0]], key: correct }
+              - { drawn: grid, cols: 4, rows: 2, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0]], key: width-only }
+              - { drawn: grid, cols: 4, rows: 2, lines: [[0, 0, 3, 0], [3, 0, 3, 1], [3, 1, 0, 1], [0, 1, 0, 0]], key: take-away-one }
+            answer: correct
 
   - n: 2
     title: { de: "Maßstab auf Plänen", en: "Scales on plans" }
@@ -360,27 +384,121 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: enlarge
             type: multiple_choice
             text: "A rectangle is 5 by 3. Enlarge it by scale factor 2. How big is it now?"
             options: ["10 by 6", "7 by 5", "10 by 3"]
             answer: "10 by 6"
           - id: l2-c2
+            part: plan-to-real
             type: multiple_choice
             text: "On a plan, 1 cm stands for 1 m. The library is 8 cm long on the plan. How long is it in real life?"
             options: ["8 m", "8 cm", "80 m"]
             answer: "8 m"
           - id: l2-c3
+            part: plan-to-real
             type: multiple_choice
             text: "On a plan, 1 cm stands for 3 m. A path is 6 cm long on the plan. How long is it in real life?"
             options: ["18 m", "9 m", "6 m"]
             answer: "18 m"
           - id: l2-c4
+            part: enlarge
             type: true_false
             text: "Mo draws a 6 by 4 rectangle half the size. He draws it 4 by 2. Is that right?"
             answer: false
           - id: l2-c5
+            part: plan-to-real
             type: text_input
             text: "On a map, 1 cm stands for 500 m. A river is 6 cm long on the map. How many metres long is it in real life?"
             answer: "3000"
+          - id: l2-c6
+            part: enlarge
+            type: image_multiple_choice
+            text: "Which rectangle is this one enlarged by scale factor 2?"
+            show: { drawn: grid, cols: 3, rows: 2, lines: [[0, 0, 3, 0], [3, 0, 3, 2], [3, 2, 0, 2], [0, 2, 0, 0]] }
+            options:
+              - { drawn: grid, cols: 6, rows: 4, lines: [[0, 0, 6, 0], [6, 0, 6, 4], [6, 4, 0, 4], [0, 4, 0, 0]], key: correct }
+              - { drawn: grid, cols: 6, rows: 4, lines: [[0, 0, 5, 0], [5, 0, 5, 4], [5, 4, 0, 4], [0, 4, 0, 0]], key: added }
+              - { drawn: grid, cols: 6, rows: 4, lines: [[0, 0, 6, 0], [6, 0, 6, 2], [6, 2, 0, 2], [0, 2, 0, 0]], key: width-only }
+            answer: correct
+          - id: l2-c7
+            part: enlarge
+            type: multiple_choice
+            text: "A rectangle is 6 by 9. Draw it a third of the size. How big is it?"
+            options: ["2 by 3", "3 by 6", "2 by 9"]
+            answer: "2 by 3"
+          - id: l2-c8
+            part: enlarge
+            type: text_input
+            text: "A 4 by 2 rectangle is enlarged to 28 by 14. What is the scale factor?"
+            answer: "7"
+          - id: l2-c9
+            part: enlarge
+            type: true_false
+            text: "Ali enlarges a 3 by 5 rectangle by scale factor 3. He draws it 9 by 15. Is that right?"
+            answer: true
+          - id: l2-c10
+            part: enlarge
+            type: multiple_choice
+            text: "A square has sides 3 squares long. Enlarge it by scale factor 5. How long is each side now?"
+            options: ["15 squares", "8 squares", "25 squares"]
+            answer: "15 squares"
+          - id: l2-c11
+            part: plan-to-real
+            type: multiple_choice
+            text: "The strip is a hedge on a plan where 1 cm stands for 2 m. How long is the real hedge?"
+            show: { drawn: ruler, to: 10, length: 9, colour: green }
+            options: ["18 m", "11 m", "9 m"]
+            answer: "18 m"
+          - id: l2-c12
+            part: plan-to-real
+            type: text_input
+            text: "On a plan, 1 cm stands for 10 m. A car park is 4 cm long on the plan. How many metres long is it in real life?"
+            answer: "40"
+          - id: l2-c13
+            part: plan-to-real
+            type: true_false
+            text: "On a map, 1 cm stands for 1 km. Two towns are 9 cm apart on the map, so they are 9 km apart in real life. Is that true?"
+            answer: true
+          - id: l2-c14
+            part: plan-to-real
+            type: multiple_choice
+            text: "On a map, 1 cm stands for 500 m. A lake is 2 cm long on the map. How long is it in real life?"
+            options: ["1 km", "502 m", "100 m"]
+            answer: "1 km"
+          - id: l2-c15
+            part: real-to-plan
+            type: multiple_choice
+            text: "On a plan, 1 cm stands for 2 m. A kitchen is 8 m long. How long is it on the plan?"
+            options: ["4 cm", "16 cm", "8 cm"]
+            answer: "4 cm"
+          - id: l2-c16
+            part: real-to-plan
+            type: text_input
+            text: "On a plan, 1 cm stands for 5 m. A football pitch is 100 m long. How many centimetres long is it on the plan?"
+            answer: "20"
+          - id: l2-c17
+            part: real-to-plan
+            type: true_false
+            text: "On a plan, 1 cm stands for 3 m. Leo draws a 12 m wall 36 cm long. Is that right?"
+            answer: false
+          - id: l2-c18
+            part: real-to-plan
+            type: multiple_choice
+            text: "On a map, 1 cm stands for 1 km. Two villages are 6 km apart. How far apart are they on the map?"
+            options: ["6 cm", "6 km", "60 cm"]
+            answer: "6 cm"
+          - id: l2-c19
+            part: real-to-plan
+            type: multiple_choice
+            text: "On a map, 1 cm stands for 500 m. The station is 2 km from the school. How far apart are they on the map?"
+            options: ["4 cm", "2 cm", "40 cm"]
+            answer: "4 cm"
+          - id: l2-c20
+            part: real-to-plan
+            type: text_input
+            text: "On a plan, 1 cm stands for 4 m. A bus is 12 m long. How many centimetres long is it on the plan?"
+            answer: "3"

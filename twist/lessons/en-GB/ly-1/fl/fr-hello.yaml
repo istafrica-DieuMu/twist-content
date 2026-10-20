@@ -25,6 +25,12 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: greet, what: { de: jemanden auf Französisch begrüßen, en: greeting someone in French } }
+    - { id: goodbye, what: { de: sich auf Französisch verabschieden, en: saying goodbye in French } }
+    - { id: name, what: { de: den Namen mit je m'appelle verstehen, en: understanding a name said with je m'appelle } }
+    - { id: polite, what: { de: "bitte, danke und Entschuldigung verstehen", en: "understanding please, thank you and sorry" } }
+    - { id: friend-grown-up, what: { de: Wörter für Freunde und für Erwachsene unterscheiden, en: telling the words for friends from the words for grown-ups } }
   misconceptions:
     - id: salut-to-teacher
       what: Says salut or s'il te plaît to a teacher or another grown-up, because English hi and please work for everyone
@@ -212,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -230,6 +237,27 @@ lessons:
             text: "Do you say this when you meet someone?"
             say: { en: "Listen. Do you say this when you meet someone?", fr: "Au revoir, Hugo !" }
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Léa meets her teacher in the morning. Is this right?"
+            say: { en: "Léa meets her teacher in the morning. Listen. Is this right?" }
+            audio: { fr: "Salut, madame !", speaker: female }
+            show: { object: teacher }
+            answer: false
+          - id: l1-c5
+            type: audio_choice
+            text: "Who is Hugo talking to? Tap the picture."
+            say: { en: "Listen. Who is Hugo talking to? Tap the picture." }
+            audio: { fr: "Bonsoir, madame !", speaker: male }
+            options: [{ object: teacher }, { object: boy }]
+            answer: teacher
+          - id: l1-c6
+            type: audio_choice
+            text: "When does it happen? Tap the picture."
+            say: { en: "Listen. When does it happen? Tap the picture." }
+            audio: { turns: [{ fr: "Bonjour, Léa !", speaker: male }, { fr: "Bonjour, Hugo !", speaker: female }] }
+            options: [{ object: sun }, { object: moon }]
+            answer: sun
 
   - n: 2
     title: { de: "Je m'appelle ...", en: "Je m'appelle ..." }
@@ -397,13 +425,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: goodbye
             type: true_false
             text: "Do you say this when you leave?"
             say: { en: "Listen. Do you say this when you leave?", fr: "Au revoir, Manon !" }
             answer: true
           - id: l2-c2
+            part: polite
             type: audio_choice
             text: "What does it mean?"
             say: { en: "Listen. What does it mean?" }
@@ -411,6 +442,7 @@ lessons:
             options: ["sorry", "please", "thank you"]
             answer: "sorry"
           - id: l2-c3
+            part: name
             type: audio_choice
             text: "What is the boy's name?"
             say: { en: "Listen. What is the boy's name?" }
@@ -418,11 +450,13 @@ lessons:
             options: ["Lucas", "Louis", "Luc"]
             answer: "Lucas"
           - id: l2-c4
+            part: polite
             type: true_false
             text: "Is someone saying please?"
             say: { en: "Listen. Is someone saying please?", fr: "Un livre, s'il vous plaît." }
             answer: true
           - id: l2-c5
+            part: friend-grown-up
             type: audio_choice
             text: "Is the child talking to a friend or to a grown-up?"
             say: { en: "Listen. Is the child talking to a friend or to a grown-up?" }
@@ -430,3 +464,123 @@ lessons:
             options: ["a friend", "a grown-up"]
             answer: "a grown-up"
             keep_order: true
+          - id: l2-c6
+            part: greet
+            type: audio_choice
+            text: "When does it happen? Tap the picture."
+            say: { en: "Listen. When does it happen? Tap the picture." }
+            audio: { turns: [{ fr: "Bonsoir, Manon !", speaker: male }, { fr: "Bonsoir, Lucas !", speaker: female }] }
+            options: [{ object: sun }, { object: moon }]
+            answer: moon
+          - id: l2-c7
+            part: greet
+            type: true_false
+            text: "Hugo gets to school and sees his friend Manon. Is this right?"
+            say: { en: "Hugo gets to school and sees his friend Manon. Listen. Is this right?" }
+            audio: { fr: "Salut, Manon !", speaker: male }
+            show: { object: school }
+            answer: true
+          - id: l2-c8
+            part: greet
+            type: audio_choice
+            text: "Who is arriving? Tap the picture."
+            say: { en: "Listen. Who is arriving? Tap the picture." }
+            audio: { turns: [{ fr: "Au revoir !", speaker: female }, { fr: "Bonjour !", speaker: male }] }
+            options: [{ object: girl }, { object: boy }]
+            answer: boy
+          - id: l2-c9
+            part: greet
+            type: audio_choice
+            text: "What does the girl say? Tap what it means."
+            say: { en: "Listen. What does the girl say? Tap what it means." }
+            audio: { fr: "Bonjour, madame !", speaker: female }
+            options: ["hello", "goodbye", "thank you"]
+            answer: "hello"
+          - id: l2-c10
+            part: goodbye
+            type: true_false
+            text: "School is over and Léa is going home. Is this right?"
+            say: { en: "School is over and Léa is going home. Listen. Is this right?" }
+            audio: { fr: "Bonjour, monsieur !", speaker: female }
+            show: { object: house }
+            answer: false
+          - id: l2-c11
+            part: goodbye
+            type: audio_choice
+            text: "Théo says this. What is he doing?"
+            say: { en: "Listen. Théo says this. What is he doing?" }
+            audio: { fr: "Au revoir, madame ! Au revoir, Manon !", speaker: male }
+            options: ["arriving at school", "going home", "saying thank you"]
+            answer: "going home"
+          - id: l2-c12
+            part: goodbye
+            type: true_false
+            text: "Hugo is leaving his friend's house. Is he saying goodbye?"
+            say: { en: "Hugo is leaving his friend's house. Listen. Is he saying goodbye?" }
+            audio: { fr: "Merci beaucoup, Jules !", speaker: male }
+            show: { object: house }
+            answer: false
+          - id: l2-c13
+            part: name
+            type: true_false
+            text: "Is the boy called Hugo?"
+            say: { en: "Listen. Is the boy called Hugo?" }
+            audio: { fr: "Bonjour ! Je m'appelle Théo.", speaker: male }
+            show: { object: boy }
+            answer: false
+          - id: l2-c14
+            part: name
+            type: audio_choice
+            text: "Two children say their names. What is the second child called?"
+            say: { en: "Listen. Two children say their names. What is the second child called?" }
+            audio: { turns: [{ fr: "Salut ! Je m'appelle Hugo.", speaker: male }, { fr: "Salut, Hugo ! Je m'appelle Manon.", speaker: female }] }
+            options: ["Hugo", "Manon", "Marie"]
+            answer: "Manon"
+          - id: l2-c15
+            part: name
+            type: audio_choice
+            text: "What does the girl tell you?"
+            say: { en: "Listen. What does the girl tell you?" }
+            audio: { fr: "Bonjour ! Je m'appelle Julie.", speaker: female }
+            options: ["her name", "goodbye", "sorry"]
+            answer: "her name"
+          - id: l2-c16
+            part: polite
+            type: audio_choice
+            text: "Léa gets a book. What does she say? Tap what it means."
+            say: { en: "Léa gets a book. Listen. What does she say? Tap what it means." }
+            audio: { fr: "Merci, monsieur !", speaker: female }
+            show: { object: book }
+            options: ["thank you", "please", "hello"]
+            answer: "thank you"
+          - id: l2-c17
+            part: polite
+            type: true_false
+            text: "Hugo bumps into Léa. Is this right?"
+            say: { en: "Hugo bumps into Léa. Listen. Is this right?" }
+            audio: { fr: "Pardon, Léa !", speaker: male }
+            answer: true
+          - id: l2-c18
+            part: polite
+            type: true_false
+            text: "Léa asks for a pencil. Does she say please?"
+            say: { en: "Léa asks for a pencil. Listen. Does she say please?" }
+            audio: { fr: "Merci, Hugo !", speaker: female }
+            show: { object: pencil }
+            answer: false
+          - id: l2-c19
+            part: friend-grown-up
+            type: true_false
+            text: "Hugo asks his teacher for a pencil. Is this right?"
+            say: { en: "Hugo asks his teacher for a pencil. Listen. Is this right?" }
+            audio: { fr: "Un crayon, s'il te plaît, madame.", speaker: male }
+            show: { object: teacher }
+            answer: false
+          - id: l2-c20
+            part: friend-grown-up
+            type: audio_choice
+            text: "Who is Léa talking to? Tap the picture."
+            say: { en: "Listen. Who is Léa talking to? Tap the picture." }
+            audio: { fr: "Salut ! Une gomme, s'il te plaît.", speaker: female }
+            options: [{ object: teacher }, { object: boy }]
+            answer: boy

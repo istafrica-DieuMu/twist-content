@@ -27,6 +27,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: picture, what: { de: ein neues Wort mit Hilfe eines Bildes erraten, en: guessing a new word from a picture } }
+    - { id: alike, what: { de: "Wörter nutzen, die wie Englisch aussehen, und falsche Freunde erkennen", en: "using words that look like English, and spotting false friends" } }
+    - { id: context, what: { de: ein neues Wort aus den bekannten Wörtern im Satz erraten, en: guessing a new word from the words around it } }
+    - { id: gesture, what: { de: "aus dem, was jemand tut, erraten, was er sagt", en: guessing from what the speaker does } }
   misconceptions:
     - id: gives-up
       what: Stops listening or answering as soon as one word is unknown
@@ -55,15 +60,17 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
+            text: "What is it about?"
             say: { en: "Listen. What is it about?" }
-            audio: { fr: "J'ai faim. Je voudrais une pomme, s'il te plaît." }
+            audio: { fr: "J'ai faim. Je voudrais une pomme, s'il te plaît.", speaker: female }
             options: ["food", "the weather", "a pet"]
             answer: "food"
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Which pet has the child got?"
             say: { en: "Listen. Which pet has the child got?" }
-            audio: { fr: "Tu as un animal ? Oui, j'ai un chien." }
+            audio: { turns: [{ fr: "Tu as un animal ?", speaker: female }, { fr: "Oui, j'ai un chien.", speaker: male }] }
             options: [{ object: dog }, { object: cat }, { object: rabbit }]
             answer: dog
             difficulty: easy
@@ -222,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -238,6 +246,23 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Le pain is something to eat."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "What does “la grenouille” mean?"
+            say: { en: "Look at the picture. What does la grenouille mean?" }
+            show: { object: frog }
+            options: ["a frog", "a granny", "a green bean"]
+            answer: "a frog"
+          - id: l1-c5
+            type: multiple_choice
+            text: "What does “la limonade” mean?"
+            options: ["a lime tree", "lemonade", "a lemon"]
+            answer: "lemonade"
+          - id: l1-c6
+            type: true_false
+            text: "Les vacances means the holidays."
             say: { en: "Read the sentence. Is it true?" }
             answer: true
 
@@ -286,8 +311,9 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
+                text: "What does j'ai soif mean?"
                 say: { en: "Listen. What does j'ai soif mean?" }
-                audio: { fr: "J'ai soif. Je voudrais de l'eau, s'il te plaît." }
+                audio: { fr: "J'ai soif. Je voudrais de l'eau, s'il te plaît.", speaker: male }
                 options: ["I'm thirsty.", "I'm hungry.", "I'm tired."]
                 answer: "I'm thirsty."
                 feedback:
@@ -299,6 +325,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "What is le parapluie?"
                 say: { en: "Listen. What is le parapluie?" }
                 audio: { fr: "Il pleut ! Prends ton parapluie !" }
                 options: [{ object: umbrella }, { object: sun }, { object: ball }]
@@ -342,6 +369,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
+                text: "What are des gants?"
                 say: { en: "Listen. What are des gants?" }
                 audio: { fr: "Il neige ! Mets tes gants !" }
                 options: ["gloves", "giants", "sandals"]
@@ -356,6 +384,7 @@ lessons:
                 hints: ["Léa is waving goodbye."]
               - id: l2-s3
                 type: audio_choice
+                text: "What does délicieux mean?"
                 say: { en: "Listen. What does délicieux mean?" }
                 audio: { fr: "Mmm ! Ce gâteau est délicieux !" }
                 options: ["delicious", "horrible", "dirty"]
@@ -378,6 +407,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
+                text: "What is le lit?"
                 say: { en: "Listen. What is le lit?" }
                 audio: { fr: "Le bébé est fatigué. Il va au lit." }
                 options: [{ object: bed }, { object: bath }, { object: table }]
@@ -394,6 +424,7 @@ lessons:
                 answer: "a cap"
               - id: l2-n4
                 type: audio_choice
+                text: "What does énorme mean?"
                 say: { en: "Listen. What does énorme mean?" }
                 audio: { fr: "Regarde ! Un éléphant énorme ! Il est très, très grand !" }
                 options: ["huge", "tiny", "noisy"]
@@ -407,8 +438,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: picture
             type: multiple_choice
             text: "What does “le requin” mean?"
             say: { en: "Look at the picture. What does le requin mean?" }
@@ -416,24 +449,138 @@ lessons:
             options: ["a shark", "a ring", "a raincoat"]
             answer: "a shark"
           - id: l2-c2
+            part: context
             type: audio_choice
+            text: "What is un pull?"
             say: { en: "Listen. What is un pull?" }
-            audio: { fr: "Brr, il fait froid ! Où est mon pull ?" }
+            audio: { fr: "Brr, il fait froid ! Où est mon pull ?", speaker: female }
             options: ["a jumper", "a swimming pool", "a pillow"]
             answer: "a jumper"
           - id: l2-c3
+            part: alike
             type: true_false
             text: "Le car means a coach."
             say: { en: "Read the sentence. Is it true?" }
             answer: true
           - id: l2-c4
+            part: gesture
             type: multiple_choice
             text: "The teacher puts her finger on her lips. What does she say?"
             options: ["Chut !", "Bravo !", "À demain !"]
             answer: "Chut !"
             option_audio: false
           - id: l2-c5
+            part: context
             type: multiple_choice
             text: "You hear a French word you don't know. What helps you?"
             options: ["the picture and the words around it", "giving up", "a word that sounds alike, even when the picture shows something else"]
             answer: "the picture and the words around it"
+          - id: l2-c6
+            part: picture
+            type: multiple_choice
+            text: "What does “la coccinelle” mean?"
+            say: { en: "Look at the picture. What does la coccinelle mean?" }
+            show: { object: ladybird }
+            options: ["a coconut", "a ladybird", "a cinema"]
+            answer: "a ladybird"
+          - id: l2-c7
+            part: picture
+            type: multiple_choice
+            text: "What does “la tortue” mean?"
+            say: { en: "Look at the picture. What does la tortue mean?" }
+            show: { object: tortoise }
+            options: ["a tart", "a torch", "a tortoise"]
+            answer: "a tortoise"
+          - id: l2-c8
+            part: picture
+            type: true_false
+            text: "Le renard means a reindeer."
+            say: { en: "Look at the picture. Read the sentence. Is it true?" }
+            show: { object: fox }
+            answer: false
+          - id: l2-c9
+            part: picture
+            type: multiple_choice
+            text: "What does “les ciseaux” mean?"
+            say: { en: "Look at the picture. What does les ciseaux mean?" }
+            show: { object: scissors }
+            options: ["scissors", "a seesaw", "the sea"]
+            answer: "scissors"
+          - id: l2-c10
+            part: alike
+            type: matching
+            option_audio: false
+            text: "Which English word goes with each French word?"
+            say: { en: "Tap a French word, then the English word it looks like." }
+            pairs:
+              - { left: { text: "le tigre", say: { fr: "Le tigre." } }, right: { text: "tiger" } }
+              - { left: { text: "la tomate", say: { fr: "La tomate." } }, right: { text: "tomato" } }
+              - { left: { text: "le docteur", say: { fr: "Le docteur." } }, right: { text: "doctor" } }
+          - id: l2-c11
+            part: alike
+            type: multiple_choice
+            text: "What does “le dragon” mean?"
+            options: ["a drawing", "a dragon", "a dress"]
+            answer: "a dragon"
+          - id: l2-c12
+            part: alike
+            type: true_false
+            text: "You can buy books in a librairie."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: true
+          - id: l2-c13
+            part: alike
+            type: multiple_choice
+            text: "Which one is a false friend? It looks like English but means something else."
+            options: ["la girafe", "la librairie", "la banane"]
+            answer: "la librairie"
+            option_audio: false
+          - id: l2-c14
+            part: context
+            type: audio_choice
+            text: "What is une bougie?"
+            say: { en: "Listen. What is une bougie?" }
+            audio: { fr: "Joyeux anniversaire ! Souffle la bougie !" }
+            options: [{ object: cake }, { object: candle }, { object: present }]
+            answer: candle
+          - id: l2-c15
+            part: context
+            type: multiple_choice
+            text: "Grandma says: “Il fait chaud ! Je voudrais une glace.” What does chaud mean?"
+            options: ["cold", "hot", "a shoe"]
+            answer: "hot"
+          - id: l2-c16
+            part: context
+            type: audio_choice
+            text: "What is la piscine?"
+            say: { en: "Listen. What is la piscine?" }
+            audio: { fr: "Il fait chaud. On va nager à la piscine !" }
+            options: [{ object: school }, { object: swimming-pool }, { object: park }]
+            answer: swimming-pool
+          - id: l2-c17
+            part: gesture
+            type: multiple_choice
+            text: "The teacher points at the board and says: “Regardez !” What does it mean?"
+            show: { object: point }
+            options: ["Listen!", "Sit down!", "Look!"]
+            answer: "Look!"
+          - id: l2-c18
+            part: gesture
+            type: multiple_choice
+            text: "The teacher claps and smiles. What does she say?"
+            options: ["Au revoir !", "Bravo !", "Asseyez-vous !"]
+            answer: "Bravo !"
+            option_audio: false
+          - id: l2-c19
+            part: gesture
+            type: multiple_choice
+            text: "The PE teacher puts his hands over his ears and says: “Trop de bruit !” What does he mean?"
+            options: ["It's too noisy!", "It's too cold!", "It's too late!"]
+            answer: "It's too noisy!"
+          - id: l2-c20
+            part: gesture
+            type: true_false
+            text: "The teacher lifts both hands and says: “Levez-vous !”\nDoes it mean “Sit down!”?"
+            say: { en: "The teacher lifts both hands and says: Levez-vous! Does it mean sit down?" }
+            show: { object: stand-up }
+            answer: false

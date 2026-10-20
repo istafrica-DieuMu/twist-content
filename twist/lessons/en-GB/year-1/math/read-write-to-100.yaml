@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten, place-value-chart]
   facets: []
+  parts:
+    - { id: tens-ones, what: { de: eine Zahl aus Zehnern und Einern ablesen, en: reading a number from its tens and ones } }
+    - { id: hear, what: { de: eine gehörte Zahl mit Ziffern schreiben oder finden, en: writing or finding a number you hear } }
+    - { id: read-word, what: { de: ein Zahlwort lesen, en: reading a number word } }
+    - { id: write-word, what: { de: zu einer Zahl das Zahlwort finden, en: finding the number word for a number } }
   misconceptions:
     - id: teen-ty
       what: Hears or reads thirteen as thirty, fourteen as forty (and the other way round)
@@ -226,6 +231,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -246,6 +252,26 @@ lessons:
             say: "Fifty. Tap the number."
             options: ["50", "15", "5"]
             answer: "50"
+            option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "What number does the chart show?"
+            say: "What number does the chart show?"
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [2, 8] }
+            options: ["28", "82", "10"]
+            answer: "28"
+            option_audio: false
+          - id: l1-c5
+            type: text_input
+            text: "Write the number you hear."
+            say: "Ninety-three. Write the number."
+            answer: "93"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Tap the number you hear."
+            say: "Eighteen. Tap the number."
+            options: ["18", "80", "81"]
+            answer: "18"
             option_audio: false
 
   - n: 2
@@ -432,8 +458,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tens-ones
             type: multiple_choice
             text: "What number does the chart show?"
             say: "What number does the chart show?"
@@ -442,6 +470,7 @@ lessons:
             answer: "52"
             option_audio: false
           - id: l2-c2
+            part: hear
             type: multiple_choice
             text: "Tap the number you hear."
             say: "Nineteen. Tap the number."
@@ -449,19 +478,138 @@ lessons:
             answer: "19"
             option_audio: false
           - id: l2-c3
+            part: hear
             type: text_input
             text: "Write the number you hear."
             say: "Sixty-eight. Write the number."
             answer: "68"
           - id: l2-c4
+            part: read-word
             type: text_input
             text: "seventy-three"
             say: "Read the number word and write the number."
             answer: "73"
           - id: l2-c5
+            part: write-word
             type: multiple_choice
             text: "Which word matches 81?"
             say: "Which word matches the number on the screen?"
             options: ["eighty-one", "eighteen", "eleven"]
             answer: "eighty-one"
             option_audio: false
+          - id: l2-c6
+            part: tens-ones
+            type: multiple_choice
+            text: "What number is this?"
+            say: "What number is this?"
+            show: { drawn: base-ten, tens: 8, ones: 3 }
+            options: ["83", "38", "11"]
+            answer: "83"
+            option_audio: false
+          - id: l2-c7
+            part: tens-ones
+            type: fill_in_blank
+            text: "How many tens and ones?"
+            say: "Count the tens rods and the ones cubes. How many tens and how many ones?"
+            show: { drawn: base-ten, tens: 4, ones: 7 }
+            frame: "_ tens and _ ones"
+            options: ["4", "7", "40", "70"]
+            answer: ["4", "7"]
+          - id: l2-c8
+            part: tens-ones
+            type: image_multiple_choice
+            text: "Which picture shows 29?"
+            say: "Which picture shows twenty-nine?"
+            options:
+              - { drawn: base-ten, tens: 2, ones: 9 }
+              - { drawn: base-ten, tens: 9, ones: 2 }
+              - { drawn: base-ten, tens: 2, ones: 0 }
+            answer: "29"
+          - id: l2-c9
+            part: tens-ones
+            type: text_input
+            text: "What number does the chart show? Write it."
+            say: "What number does the chart show? Write it."
+            show: { drawn: place-value-chart, columns: [tens, ones], values: [1, 6] }
+            answer: "16"
+          - id: l2-c10
+            part: hear
+            type: multiple_choice
+            text: "Tap the number you hear."
+            say: "Twenty-seven. Tap the number."
+            options: ["27", "72", "207"]
+            answer: "27"
+            option_audio: false
+          - id: l2-c11
+            part: hear
+            type: true_false
+            text: "30\nIs this the number you hear?"
+            say: "Thirteen. Is this the number you hear?"
+            answer: false
+          - id: l2-c12
+            part: hear
+            type: text_input
+            text: "Write the number you hear."
+            say: "One hundred. Write the number."
+            answer: "100"
+          - id: l2-c13
+            part: read-word
+            type: multiple_choice
+            text: "fifty-nine"
+            say: "Read the number word. Which number is it?"
+            options: ["59", "95", "509"]
+            answer: "59"
+            option_audio: false
+          - id: l2-c14
+            part: read-word
+            type: text_input
+            text: "twelve"
+            say: "Read the number word and write the number."
+            answer: "12"
+          - id: l2-c15
+            part: read-word
+            type: true_false
+            text: "sixty-four\n46\nIs it the same number?"
+            say: "Read the number word and the number. Is it the same number?"
+            answer: false
+          - id: l2-c16
+            part: read-word
+            type: matching
+            text: "Match each word to its number."
+            say: "Match each word to its number."
+            pairs:
+              - { left: { text: "seventeen" }, right: { text: "17" } }
+              - { left: { text: "seventy" }, right: { text: "70" } }
+              - { left: { text: "seventy-one" }, right: { text: "71" } }
+            option_audio: false
+          - id: l2-c17
+            part: write-word
+            type: multiple_choice
+            text: "Which word matches 30?"
+            say: "Which word matches the number on the screen?"
+            options: ["thirty", "thirteen", "three"]
+            answer: "thirty"
+            option_audio: false
+          - id: l2-c18
+            part: write-word
+            type: fill_in_blank
+            text: "Write 92 in words."
+            say: "Write the number on the screen in words."
+            frame: "92 = _-_"
+            options: ["ninety", "nine", "two", "twenty"]
+            answer: ["ninety", "two"]
+            option_audio: false
+          - id: l2-c19
+            part: write-word
+            type: multiple_choice
+            text: "Which word matches 14?"
+            say: "Which word matches the number on the screen?"
+            options: ["fourteen", "forteen", "forty"]
+            answer: "fourteen"
+            option_audio: false
+          - id: l2-c20
+            part: write-word
+            type: true_false
+            text: "Is it true? 58 is fifty-eight."
+            say: "Read the number and the word. Do they match?"
+            answer: true

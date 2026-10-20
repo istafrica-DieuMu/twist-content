@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [thermometer, number-line]
   facets: [number-format]
+  parts:
+    - { id: compare, what: { de: negative Temperaturen ablesen und vergleichen, en: reading and comparing temperatures below zero } }
+    - { id: rise-fall, what: { de: die neue Temperatur nach einem Anstieg oder Fall, en: the new temperature after a rise or fall } }
+    - { id: difference, what: { de: Unterschiede über die Null hinweg, en: differences across zero } }
+    - { id: contexts, what: { de: negative Zahlen bei Stockwerken und unter dem Meeresspiegel, en: negative numbers for floors and depths below sea level } }
   misconceptions:
     - id: bigger-digit-warmer
       what: Thinks −6 °C is warmer than −2 °C because 6 is bigger than 2
@@ -196,6 +201,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -212,6 +218,22 @@ lessons:
             keyboard: decimal
             text: "It is 2 °C. The temperature falls by 5 degrees. What is it now, in °C?"
             answer: "−3"
+          - id: l1-c4
+            type: ordering
+            text: "Put the temperatures in order, from warmest to coldest."
+            options: ["−6 °C", "1 °C", "−10 °C", "−2 °C"]
+            slot_count: 4
+            answer: ["1 °C", "−2 °C", "−6 °C", "−10 °C"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "A lift is at floor −3. It goes up 5 floors. Which floor is it at now?"
+            options: ["2", "−8", "8"]
+            answer: "2"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? The thermometer shows 2 °C."
+            show: { drawn: thermometer, from: -10, to: 10, step: 2, value: -2 }
+            answer: false
 
   - n: 2
     title: { de: Unterschiede über die Null, en: Differences across zero }
@@ -359,29 +381,122 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compare
             type: multiple_choice
             text: "What temperature does the thermometer show?"
             show: { drawn: thermometer, from: -10, to: 10, step: 2, value: -6 }
             options: ["−6 °C", "6 °C", "−4 °C"]
             answer: "−6 °C"
           - id: l2-c2
+            part: rise-fall
             type: text_input
             keyboard: decimal
             text: "It is −2 °C. The temperature falls by 5 degrees. What is it now, in °C?"
             answer: "−7"
           - id: l2-c3
+            part: compare
             type: multiple_choice
             text: "Which temperature is the coldest?"
             options: ["−2 °C", "−11 °C", "0 °C", "−5 °C"]
             answer: "−11 °C"
           - id: l2-c4
+            part: difference
             type: text_input
             text: "What is the difference between −5 °C and 8 °C, in degrees?"
             answer: "13"
           - id: l2-c5
+            part: contexts
             type: multiple_choice
             text: "A bird is 6 m above sea level. A fish is 9 m below sea level. How far apart are they?"
             options: ["15 m", "3 m", "9 m"]
             answer: "15 m"
+          - id: l2-c6
+            part: compare
+            type: ordering
+            text: "Put the temperatures in order, from coldest to warmest."
+            options: ["0 °C", "−3 °C", "5 °C", "−12 °C"]
+            slot_count: 4
+            answer: ["−12 °C", "−3 °C", "0 °C", "5 °C"]
+          - id: l2-c7
+            part: compare
+            type: true_false
+            text: "Is it true? −7 °C is colder than −9 °C."
+            answer: false
+          - id: l2-c8
+            part: compare
+            type: multiple_choice
+            text: "Edinburgh −4 °C, Cardiff 1 °C, Belfast −2 °C, York −6 °C. Which city is colder than Belfast but warmer than York?"
+            options: ["Edinburgh", "Cardiff", "Belfast", "York"]
+            answer: "Edinburgh"
+          - id: l2-c9
+            part: rise-fall
+            type: multiple_choice
+            text: "It is −7 °C. The temperature rises by 10 degrees. What is it now?"
+            options: ["3 °C", "−17 °C", "−3 °C"]
+            answer: "3 °C"
+          - id: l2-c10
+            part: rise-fall
+            type: text_input
+            keyboard: decimal
+            text: "It is −8 °C. The temperature rises by 3 degrees. What is it now, in °C?"
+            answer: "−5"
+          - id: l2-c11
+            part: rise-fall
+            type: multiple_choice
+            text: "The thermometer shows the temperature at 6 pm. By midnight it falls by 10 degrees. What is the temperature at midnight?"
+            show: { drawn: thermometer, from: -10, to: 10, step: 2, value: 4 }
+            options: ["−6 °C", "6 °C", "−14 °C"]
+            answer: "−6 °C"
+          - id: l2-c12
+            part: rise-fall
+            type: true_false
+            text: "It is 5 °C. The temperature falls by 8 degrees. Is it true that it is now −3 °C?"
+            answer: true
+          - id: l2-c13
+            part: difference
+            type: multiple_choice
+            text: "What is the difference between −7 °C and 2 °C?"
+            options: ["9 degrees", "5 degrees", "2 degrees"]
+            answer: "9 degrees"
+          - id: l2-c14
+            part: difference
+            type: text_input
+            text: "What is the difference between −12 °C and −5 °C, in degrees?"
+            answer: "7"
+          - id: l2-c15
+            part: difference
+            type: text_input
+            text: "At night it was −9 °C. In the afternoon it was 3 °C. How many degrees did the temperature rise?"
+            answer: "12"
+          - id: l2-c16
+            part: difference
+            type: multiple_choice
+            text: "This morning it was 2 °C. The thermometer shows the temperature now. How much colder is it now?"
+            show: { drawn: thermometer, from: -10, to: 10, step: 2, value: -6, mark: 2 }
+            options: ["8 degrees", "4 degrees", "6 degrees"]
+            answer: "8 degrees"
+          - id: l2-c17
+            part: contexts
+            type: multiple_choice
+            text: "A lift is at floor 4. It goes down 7 floors. Which floor is it at now?"
+            options: ["−3", "3", "−11"]
+            answer: "−3"
+          - id: l2-c18
+            part: contexts
+            type: text_input
+            text: "Mia takes the lift from floor −3 to floor 6. How many floors does she go up?"
+            answer: "9"
+          - id: l2-c19
+            part: contexts
+            type: text_input
+            keyboard: decimal
+            text: "A diver is at −8 m. She dives down another 7 m. Where is she now, in metres?"
+            answer: "−15"
+          - id: l2-c20
+            part: contexts
+            type: true_false
+            text: "A kite flies 30 m above sea level. A diver is 14 m below sea level. Is it true that they are 16 m apart?"
+            answer: false

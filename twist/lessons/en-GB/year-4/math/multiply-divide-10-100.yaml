@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [place-value-chart]
   facets: [number-format, operation-signs, currency]
+  parts:
+    - { id: mult-whole, what: { de: "ganze Zahlen mit 10, 100 und 1000 multiplizieren", en: "multiplying whole numbers by 10, 100 and 1000" } }
+    - { id: divide, what: { de: Vielfache von 10 und 100 durch 10 und 100 teilen, en: dividing multiples of 10 and 100 by 10 and 100 } }
+    - { id: decimals, what: { de: Zehntel und Hundertstel durch Teilen und Malnehmen, en: dividing into tenths and hundredths and multiplying them back } }
+    - { id: digits-move, what: { de: "sagen, wie sich die Ziffern verschieben", en: saying how the digits move } }
   misconceptions:
     - id: add-a-zero
       what: Multiplies by 10 by writing a zero on the end, also for decimals (0.6 × 10 = 0.60)
@@ -204,6 +209,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -223,6 +229,22 @@ lessons:
             frame: "_ × 1000 = 3000"
             options: ["3", "30", "300"]
             answer: ["3"]
+          - id: l1-c4
+            type: text_input
+            text: "9 × 100 = _"
+            say: "Nine times one hundred."
+            answer: "900"
+          - id: l1-c5
+            type: multiple_choice
+            text: "4500 ÷ 10 = _"
+            say: "Four thousand five hundred divided by ten."
+            options: ["450", "45", "45,000"]
+            answer: "450"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 320 ÷ 10 = 3200"
+            say: "Is it true? Three hundred and twenty divided by ten is three thousand two hundred."
+            answer: false
 
   - n: 2
     title: { de: Zehntel und Hundertstel entstehen, en: Into tenths and hundredths }
@@ -394,25 +416,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: mult-whole
             type: text_input
             text: "52 × 100 = _"
             say: "Fifty-two times one hundred."
             answer: "5200"
           - id: l2-c2
+            part: divide
             type: multiple_choice
             text: "6700 ÷ 10 = _"
             say: "Six thousand seven hundred divided by ten."
             options: ["670", "67", "6.7"]
             answer: "670"
           - id: l2-c3
+            part: decimals
             type: multiple_choice
             text: "62 ÷ 10 = _"
             say: "Sixty-two divided by ten."
             options: ["6.2", "0.62", "620"]
             answer: "6.2"
           - id: l2-c4
+            part: decimals
             type: fill_in_blank
             text: "Divide 3 by 100."
             say: "Three divided by one hundred."
@@ -420,8 +447,107 @@ lessons:
             options: ["0", "3", "30"]
             answer: ["0", "0", "3"]
           - id: l2-c5
+            part: decimals
             type: multiple_choice
             text: "0.7 × 10 = _"
             say: "Zero point seven times ten."
             options: ["7", "0.70", "70"]
             answer: "7"
+          - id: l2-c6
+            part: mult-whole
+            type: text_input
+            text: "309 × 10 = _"
+            say: "Three hundred and nine times ten."
+            answer: "3090"
+          - id: l2-c7
+            part: mult-whole
+            type: multiple_choice
+            text: "15 × 1000 = _"
+            say: "Fifteen times one thousand."
+            options: ["15,000", "1500", "150,000"]
+            answer: "15,000"
+          - id: l2-c8
+            part: mult-whole
+            type: fill_in_blank
+            text: "Find the missing number."
+            say: "What times ten is nine hundred and thirty?"
+            frame: "_ × 10 = 930"
+            options: ["9.3", "93", "9300"]
+            answer: ["93"]
+          - id: l2-c9
+            part: mult-whole
+            type: text_input
+            text: "A pack has 10 crayons. How many crayons are in 85 packs?"
+            answer: "850"
+          - id: l2-c10
+            part: divide
+            type: text_input
+            text: "4300 ÷ 100 = _"
+            say: "Four thousand three hundred divided by one hundred."
+            answer: "43"
+          - id: l2-c11
+            part: divide
+            type: multiple_choice
+            text: "750 ÷ 10 = _"
+            say: "Seven hundred and fifty divided by ten."
+            options: ["75", "7.5", "7500"]
+            answer: "75"
+          - id: l2-c12
+            part: divide
+            type: fill_in_blank
+            text: "Find the missing number."
+            say: "What divided by ten is fifty-two?"
+            frame: "_ ÷ 10 = 52"
+            options: ["5.2", "520", "5200"]
+            answer: ["520"]
+          - id: l2-c13
+            part: divide
+            type: multiple_choice
+            text: "A baker puts 1200 rolls into 100 bags, the same number in each. How many rolls go in each bag?"
+            options: ["12", "120", "1.2"]
+            answer: "12"
+          - id: l2-c14
+            part: decimals
+            type: text_input
+            text: "8 ÷ 10 = _"
+            say: "Eight divided by ten."
+            keyboard: decimal
+            answer: "0.8"
+          - id: l2-c15
+            part: decimals
+            type: multiple_choice
+            text: "Which calculation makes 14?"
+            options: ["0.14 × 100", "0.14 × 10", "1.4 × 100"]
+            answer: "0.14 × 100"
+          - id: l2-c16
+            part: digits-move
+            type: multiple_choice
+            text: "When you multiply by 100, how do the digits move?"
+            options: ["two places to the left", "two places to the right", "one place to the left"]
+            answer: "two places to the left"
+          - id: l2-c17
+            part: digits-move
+            type: multiple_choice
+            text: "When you divide by 10, how do the digits move?"
+            options: ["one place to the right", "one place to the left", "two places to the right"]
+            answer: "one place to the right"
+          - id: l2-c18
+            part: digits-move
+            type: true_false
+            text: "Is it true? 27 × 10 = 270, because the digits move one place to the left."
+            say: "Is it true? Twenty-seven times ten is two hundred and seventy, because the digits move one place to the left."
+            answer: true
+          - id: l2-c19
+            part: digits-move
+            type: multiple_choice
+            text: "Which calculation turns 54 into the number in the chart?"
+            show: { drawn: place-value-chart, columns: [thousands, hundreds, tens, ones], values: [5, 4, 0, 0] }
+            options: ["54 × 100", "54 × 10", "54 ÷ 100"]
+            answer: "54 × 100"
+          - id: l2-c20
+            part: digits-move
+            type: multiple_choice
+            text: "Ella says 0.3 × 10 = 0.30, because you add a zero. Which is right?"
+            say: "Ella says zero point three times ten is zero point three zero, because you add a zero. Which is right?"
+            options: ["0.3 × 10 = 3. The digit moves one place left.", "0.3 × 10 = 0.30. You add a zero.", "0.3 × 10 = 30. The digit moves two places left."]
+            answer: "0.3 × 10 = 3. The digit moves one place left."

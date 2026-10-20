@@ -28,6 +28,11 @@ metadata:
   forms: [audio, text, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: reply, what: { de: im Gespräch die passende Antwort wählen, en: choosing the reply that fits in a conversation } }
+    - { id: phrase, what: { de: "wissen, was man in einer Lage sagt", en: knowing what to say in a situation } }
+    - { id: order, what: { de: ein Gespräch in die richtige Reihenfolge bringen, en: putting a conversation in order } }
+    - { id: listen, what: { de: ein kurzes Alltagsgespräch verstehen, en: understanding a short everyday conversation } }
   misconceptions:
     - id: tu-vous
       what: Says s'il te plaît to a shopkeeper, the form for friends, instead of s'il vous plaît
@@ -64,8 +69,9 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Does the child like cheese?"
             say: { en: "Listen. Does the child like cheese?" }
-            audio: { fr: "Tu aimes le fromage ? Non, je n'aime pas ça." }
+            audio: { turns: [{ fr: "Tu aimes le fromage ?", speaker: female }, { fr: "Non, je n'aime pas ça.", speaker: male }] }
             options: ["yes", "no"]
             keep_order: true
             answer: "no"
@@ -91,7 +97,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "Madame Roux : Bonjour ! Vous désirez ?"
+                text: "Madame Roux : Bonjour ! Vous désirez ?\nWhat do you answer?"
                 say: { en: "Madame Roux asks you a question. What do you answer?" }
                 options: ["Bonjour, Madame. Je voudrais une pomme, s'il vous plaît.", "Ça va bien, merci.", "Je m'appelle Sam."]
                 answer: "Bonjour, Madame. Je voudrais une pomme, s'il vous plaît."
@@ -105,8 +111,9 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "What does the child buy?"
                 say: { en: "Listen. What does the child buy?" }
-                audio: { fr: "Je voudrais trois oranges, s'il vous plaît. Voilà." }
+                audio: { turns: [{ fr: "Je voudrais trois oranges, s'il vous plaît.", speaker: male }, { fr: "Voilà.", speaker: female }] }
                 options: [{ object: orange }, { object: apple }, { object: banana }]
                 answer: orange
                 hints:
@@ -153,7 +160,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "Madame Roux : Voilà."
+                text: "Madame Roux : Voilà.\nShe hands you the bananas. What do you say?"
                 say: { en: "Madame Roux hands you the bananas. What do you say?" }
                 options: ["Merci, Madame.", "Vous désirez ?", "S'il te plaît."]
                 answer: "Merci, Madame."
@@ -161,13 +168,15 @@ lessons:
                 hints: ["You get something, so you say thank you."]
               - id: l1-s2
                 type: audio_choice
+                text: "How much is the milk?"
                 say: { en: "Listen. How much is the milk?" }
-                audio: { fr: "Je voudrais du lait, s'il vous plaît. Voilà. C'est combien ? Deux euros, s'il vous plaît." }
+                audio: { turns: [{ fr: "Je voudrais du lait, s'il vous plaît.", speaker: male }, { fr: "Voilà.", speaker: female }, { fr: "C'est combien ?", speaker: male }, { fr: "Deux euros, s'il vous plaît.", speaker: female }] }
                 options: ["2 €", "12 €", "3 €"]
                 answer: "2 €"
                 hints: ["Listen after C'est combien ?"]
               - id: l1-s3
                 type: speak
+                text: "Ask Madame Roux how much it is."
                 say: { en: "Ask Madame Roux how much it is.", fr: "C'est combien ?" }
                 expected_text: "C'est combien ?"
                 hints: ["Say it with me: c'est combien ?"]
@@ -191,19 +200,21 @@ lessons:
             tasks:
               - id: l1-n1
                 type: multiple_choice
-                text: "At the ice cream stall the man asks: “Vous désirez ?”"
+                text: "At the ice cream stall the man asks: “Vous désirez ?” What do you say?"
                 say: { en: "At the ice cream stall the man asks you: Vous désirez ? What do you say?" }
                 options: ["Je voudrais une glace, s'il vous plaît.", "Je voudrais une glace, s'il te plaît.", "Voilà."]
                 answer: "Je voudrais une glace, s'il vous plaît."
                 option_audio: false
               - id: l1-n2
                 type: audio_choice
+                text: "What does the child buy?"
                 say: { en: "Listen. What does the child buy?" }
-                audio: { fr: "Bonjour ! Je voudrais des fraises, s'il vous plaît. Voilà." }
+                audio: { turns: [{ fr: "Bonjour ! Je voudrais des fraises, s'il vous plaît.", speaker: female }, { fr: "Voilà.", speaker: male }] }
                 options: [{ object: strawberry }, { object: apple }, { object: pear }]
                 answer: strawberry
               - id: l1-n3
                 type: speak
+                text: "Say thank you and goodbye to Madame Roux."
                 say: { en: "Say thank you and goodbye to Madame Roux.", fr: "Merci, au revoir !" }
                 expected_text: "Merci, au revoir !"
               - id: l1-n4
@@ -224,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -233,8 +245,9 @@ lessons:
             option_audio: false
           - id: l1-c2
             type: audio_choice
+            text: "What does the child buy?"
             say: { en: "Listen. What does the child buy?" }
-            audio: { fr: "Je voudrais deux pommes, s'il vous plaît. Voilà." }
+            audio: { turns: [{ fr: "Je voudrais deux pommes, s'il vous plaît.", speaker: female }, { fr: "Voilà.", speaker: male }] }
             options: [{ object: apple }, { object: pear }, { object: banana }]
             answer: apple
           - id: l1-c3
@@ -243,6 +256,25 @@ lessons:
             options: ["C'est combien ?", "Vous désirez ?", "Tu as quel âge ?"]
             answer: "C'est combien ?"
             option_audio: false
+          - id: l1-c4
+            type: audio_choice
+            text: "How much are the bananas?"
+            say: { en: "Listen. How much are the bananas?" }
+            audio: { turns: [{ fr: "Les bananes, c'est combien ?", speaker: male }, { fr: "Trois euros, s'il vous plaît.", speaker: female }] }
+            options: ["13 €", "3 €", "2 €"]
+            answer: "3 €"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Madame Roux : Vous désirez ?\nYou would like four apples. What do you say?"
+            say: { en: "Madame Roux asks what you would like. You would like four apples. What do you say?" }
+            options: ["Quatre euros, s'il vous plaît.", "Je voudrais quatre pommes, s'il vous plaît.", "C'est combien, les pommes ?"]
+            answer: "Je voudrais quatre pommes, s'il vous plaît."
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Madame Roux : Vous désirez ?\nSam : Je voudrais une orange, s'il vous plaît."
+            say: { en: "Read the scene. Does Sam's reply fit?" }
+            answer: true
 
   - n: 2
     title: { de: "Im Park", en: "In the park" }
@@ -253,7 +285,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Madame Roux : Voilà."
+            text: "Madame Roux : Voilà.\nShe hands you the apples. What do you say?"
             say: { en: "Madame Roux hands you the apples. What do you say?" }
             options: ["Merci.", "C'est combien ?", "Vous désirez ?"]
             answer: "Merci."
@@ -261,8 +293,9 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: audio_choice
+            text: "How much is the cake?"
             say: { en: "Listen. How much is the cake?" }
-            audio: { fr: "C'est combien, le gâteau ? Cinq euros, s'il vous plaît." }
+            audio: { turns: [{ fr: "C'est combien, le gâteau ?", speaker: male }, { fr: "Cinq euros, s'il vous plaît.", speaker: female }] }
             options: ["5 €", "15 €", "4 €"]
             answer: "5 €"
             difficulty: easy
@@ -287,7 +320,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "Léo : Salut ! Comment tu t'appelles ?"
+                text: "Léo : Salut ! Comment tu t'appelles ?\nWhat do you answer?"
                 say: { en: "Léo asks you a question. What do you answer?" }
                 options: ["Je m'appelle Sam.", "J'ai neuf ans.", "Ça va bien."]
                 answer: "Je m'appelle Sam."
@@ -301,8 +334,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "How old is the child?"
                 say: { en: "Listen. How old is the child?" }
-                audio: { fr: "Tu as quel âge ? J'ai dix ans." }
+                audio: { turns: [{ fr: "Tu as quel âge ?", speaker: male }, { fr: "J'ai dix ans.", speaker: female }] }
                 options: ["10", "2", "12"]
                 answer: "10"
                 hints:
@@ -311,6 +345,7 @@ lessons:
                   - "Dix is ten."
               - id: l2-f3
                 type: speak
+                text: "Ask Léo if he wants to play."
                 say: { en: "Ask Léo if he wants to play.", fr: "Tu veux jouer ?" }
                 expected_text: "Tu veux jouer ?"
                 hints:
@@ -344,7 +379,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: multiple_choice
-                text: "Léo : Tu as quel âge ?"
+                text: "Léo : Tu as quel âge ?\nWhat do you answer?"
                 say: { en: "Léo asks you a question. What do you answer?" }
                 options: ["J'ai neuf ans.", "Je m'appelle Sam.", "Oui, je veux bien !"]
                 answer: "J'ai neuf ans."
@@ -352,14 +387,15 @@ lessons:
                 hints: ["Quel âge asks how old you are."]
               - id: l2-s2
                 type: audio_choice
+                text: "Which pet has the child got?"
                 say: { en: "Listen. Which pet has the child got?" }
-                audio: { fr: "Tu as un animal ? Oui, j'ai un lapin." }
+                audio: { turns: [{ fr: "Tu as un animal ?", speaker: male }, { fr: "Oui, j'ai un lapin.", speaker: female }] }
                 options: [{ object: rabbit }, { object: dog }, { object: cat }]
                 answer: rabbit
                 hints: ["Listen after j'ai."]
               - id: l2-s3
                 type: multiple_choice
-                text: "Léo : Tu as un animal ?"
+                text: "Léo : Tu as un animal ?\nYou haven't got a pet. What do you say?"
                 say: { en: "You haven't got a pet. What do you say?" }
                 options: ["Non, je n'ai pas d'animal.", "Non, je n'aime pas.", "Oui, j'ai un chat."]
                 answer: "Non, je n'ai pas d'animal."
@@ -385,19 +421,21 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "Léo : Tu veux jouer ?"
+                text: "Léo : Tu veux jouer ?\nWhat do you answer?"
                 say: { en: "Léo asks you a question. What do you answer?" }
                 options: ["Oui, je veux bien !", "Oui, j'ai un chien.", "J'ai neuf ans."]
                 answer: "Oui, je veux bien !"
                 option_audio: false
               - id: l2-n2
                 type: audio_choice
+                text: "How old is Inès?"
                 say: { en: "Listen. How old is Inès?" }
                 audio: { fr: "Salut ! Je m'appelle Inès. J'ai huit ans. J'ai un chat.", speaker: female }
                 options: ["8", "18", "9"]
                 answer: "8"
               - id: l2-n3
                 type: speak
+                text: "Ask Léo his name."
                 say: { en: "Ask Léo his name.", fr: "Comment tu t'appelles ?" }
                 expected_text: "Comment tu t'appelles ?"
               - id: l2-n4
@@ -416,21 +454,26 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: reply
             type: multiple_choice
-            text: "Madame Roux : Bonjour ! Vous désirez ?"
+            text: "Madame Roux : Bonjour ! Vous désirez ?\nWhat do you answer?"
             say: { en: "You are at the market again. What do you answer?" }
             options: ["Je voudrais des fraises, s'il vous plaît.", "Je m'appelle Sam.", "Merci, au revoir !"]
             answer: "Je voudrais des fraises, s'il vous plaît."
             option_audio: false
           - id: l2-c2
+            part: listen
             type: audio_choice
+            text: "Has Hugo got a pet?"
             say: { en: "Listen. Has Hugo got a pet?" }
             audio: { fr: "Salut ! Je m'appelle Hugo. J'ai dix ans. Je n'ai pas d'animal.", speaker: male }
             options: ["no", "yes, a dog", "yes, a cat"]
             answer: "no"
           - id: l2-c3
+            part: order
             type: ordering
             option_audio: false
             text: "Put the scene at the ice cream stall in order."
@@ -439,14 +482,138 @@ lessons:
             slot_count: 3
             answer: ["Je voudrais une glace, s'il vous plaît.", "Voilà. C'est trois euros.", "Voilà. Merci, au revoir !"]
           - id: l2-c4
+            part: phrase
             type: multiple_choice
             text: "You want to play with a friend. What do you ask?"
             options: ["Tu veux jouer ?", "Vous désirez ?", "C'est combien ?"]
             answer: "Tu veux jouer ?"
             option_audio: false
           - id: l2-c5
+            part: listen
             type: audio_choice
+            text: "How much are the strawberries?"
             say: { en: "Listen. How much are the strawberries?" }
-            audio: { fr: "Les fraises, c'est combien ? Quatre euros, s'il vous plaît." }
+            audio: { turns: [{ fr: "Les fraises, c'est combien ?", speaker: female }, { fr: "Quatre euros, s'il vous plaît.", speaker: male }] }
             options: ["4 €", "14 €", "2 €"]
             answer: "4 €"
+          - id: l2-c6
+            part: reply
+            type: multiple_choice
+            text: "Léo : Tu as un animal ?\nYou have got a cat. What do you answer?"
+            say: { en: "You have got a cat. What do you answer?" }
+            options: ["Oui, j'aime les chats.", "Oui, j'ai un chat.", "Je m'appelle Sam."]
+            answer: "Oui, j'ai un chat."
+            option_audio: false
+          - id: l2-c7
+            part: reply
+            type: multiple_choice
+            text: "Léo : J'ai neuf ans. Et toi ?\nYou are nine too. What do you answer?"
+            say: { en: "You are nine too. What do you answer?" }
+            options: ["Je m'appelle Léo.", "Non, je n'ai pas d'animal.", "Moi aussi, j'ai neuf ans !"]
+            answer: "Moi aussi, j'ai neuf ans !"
+            option_audio: false
+          - id: l2-c8
+            part: reply
+            type: true_false
+            text: "Sam : C'est combien ?\nMadame Roux : Trois euros, s'il vous plaît."
+            say: { en: "Read the scene. Does Madame Roux's reply fit?" }
+            answer: true
+          - id: l2-c9
+            part: reply
+            type: multiple_choice
+            text: "Léo : Salut ! Je m'appelle Léo.\nWhat do you answer?"
+            say: { en: "Léo says hello. What do you answer?" }
+            options: ["J'ai neuf ans. Et toi ?", "Salut, Léo. Je m'appelle Sam.", "Oui, je veux bien !"]
+            answer: "Salut, Léo. Je m'appelle Sam."
+            option_audio: false
+          - id: l2-c10
+            part: phrase
+            type: multiple_choice
+            text: "You want to know how old Léo is. What do you ask?"
+            say: { en: "You want to know how old Léo is. What do you ask?" }
+            options: ["Comment tu t'appelles ?", "Tu as quel âge ?", "C'est combien ?"]
+            answer: "Tu as quel âge ?"
+            option_audio: false
+          - id: l2-c11
+            part: phrase
+            type: multiple_choice
+            text: "You have paid and you leave the stall. What do you say?"
+            say: { en: "You have paid and you leave the stall. What do you say?" }
+            options: ["Bonjour, Madame.", "Merci, au revoir !", "Vous désirez ?"]
+            answer: "Merci, au revoir !"
+            option_audio: false
+          - id: l2-c12
+            part: phrase
+            type: multiple_choice
+            text: "You ask your friend Léo for the ball. Which one fits?"
+            say: { en: "You ask your friend Léo for the ball. Which one fits?" }
+            options: ["Je voudrais le ballon, s'il te plaît.", "Je voudrais le ballon, s'il vous plaît, Madame.", "Voilà le ballon, Madame."]
+            answer: "Je voudrais le ballon, s'il te plaît."
+            option_audio: false
+          - id: l2-c13
+            part: phrase
+            type: multiple_choice
+            text: "You come to a market stall. What does the shopkeeper ask you?"
+            say: { en: "You come to a market stall. What does the shopkeeper ask you?" }
+            options: ["Tu veux jouer ?", "Tu as un animal ?", "Vous désirez ?"]
+            answer: "Vous désirez ?"
+            option_audio: false
+          - id: l2-c14
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the scene at the market in order."
+            say: { en: "Put the lines of the scene in order." }
+            options: ["C'est combien ?", "Un euro, s'il vous plaît.", "Bonjour ! Vous désirez ?", "Je voudrais une orange, s'il vous plaît."]
+            slot_count: 4
+            answer: ["Bonjour ! Vous désirez ?", "Je voudrais une orange, s'il vous plaît.", "C'est combien ?", "Un euro, s'il vous plaît."]
+          - id: l2-c15
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the scene in the park in order."
+            say: { en: "Put the lines of the scene in order." }
+            options: ["Oui, je veux bien !", "Salut, Sam !", "Salut, Léo ! Tu veux jouer ?"]
+            slot_count: 3
+            answer: ["Salut, Sam !", "Salut, Léo ! Tu veux jouer ?", "Oui, je veux bien !"]
+          - id: l2-c16
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the end of the scene at the market in order."
+            say: { en: "Put the lines of the scene in order." }
+            options: ["Voilà. Merci, au revoir !", "Au revoir !", "Cinq euros, s'il vous plaît.", "C'est combien, les pommes ?"]
+            slot_count: 4
+            answer: ["C'est combien, les pommes ?", "Cinq euros, s'il vous plaît.", "Voilà. Merci, au revoir !", "Au revoir !"]
+          - id: l2-c17
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the scene in the park in order."
+            say: { en: "Put the lines of the scene in order." }
+            options: ["Oui, je veux bien !", "Je m'appelle Sam. Et toi ?", "Comment tu t'appelles ?", "Je m'appelle Léo. Tu veux jouer ?"]
+            slot_count: 4
+            answer: ["Comment tu t'appelles ?", "Je m'appelle Sam. Et toi ?", "Je m'appelle Léo. Tu veux jouer ?", "Oui, je veux bien !"]
+          - id: l2-c18
+            part: listen
+            type: audio_choice
+            text: "What does the child buy?"
+            say: { en: "Listen. What does the child buy?" }
+            audio: { turns: [{ fr: "Bonjour ! Vous désirez ?", speaker: female }, { fr: "Une pizza, s'il vous plaît.", speaker: male }, { fr: "Et un gâteau ?", speaker: female }, { fr: "Non, merci.", speaker: male }] }
+            options: [{ object: cake }, { object: pizza }, { object: bread }]
+            answer: pizza
+          - id: l2-c19
+            part: listen
+            type: audio_choice
+            text: "How much is the bread?"
+            say: { en: "Listen. How much is the bread?" }
+            audio: { turns: [{ fr: "Le pain, c'est combien ?", speaker: female }, { fr: "Un euro, s'il vous plaît.", speaker: male }] }
+            options: ["2 €", "11 €", "1 €"]
+            answer: "1 €"
+          - id: l2-c20
+            part: listen
+            type: true_false
+            text: "Is Léo ten?"
+            say: { en: "Listen. Is Léo ten?" }
+            audio: { turns: [{ fr: "Léo, tu as quel âge ?", speaker: female }, { fr: "J'ai neuf ans.", speaker: male }] }
+            answer: false

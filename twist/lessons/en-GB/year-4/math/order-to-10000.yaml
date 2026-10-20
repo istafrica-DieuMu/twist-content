@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line, place-value-chart]
   facets: [operation-signs]
+  parts:
+    - { id: number-line, what: { de: Zahlen bis 10 000 am Zahlenstrahl, en: "numbers to 10,000 on a number line" } }
+    - { id: compare, what: { de: Zahlen bis 10 000 vergleichen, en: "comparing numbers to 10,000" } }
+    - { id: order, what: { de: Zahlen bis 10 000 ordnen, en: "ordering numbers to 10,000" } }
+    - { id: round, what: { de: "auf Zehner, Hunderter und Tausender runden", en: "rounding to the nearest 10, 100 and 1000" } }
   misconceptions:
     - id: interval
       what: Reads each interval as one hundred on a line in thousands
@@ -221,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: point_on_line
@@ -238,6 +244,23 @@ lessons:
             text: "Where is 1800?"
             show: { drawn: number-line, from: 1000, to: 2000, step: 100, labels: ends }
             answer: 1800
+          - id: l1-c4
+            type: point_on_line
+            text: "Where is 3000?"
+            show: { drawn: number-line, from: 0, to: 10000, step: 1000, labels: ends }
+            answer: 3000
+          - id: l1-c5
+            type: multiple_choice
+            text: "Where is the arrow pointing?"
+            show: { drawn: number-line, from: 9000, to: 10000, step: 100, labels: ends, mark: 9200 }
+            options: ["9002", "9020", "9200"]
+            answer: "9200"
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Which multiples of 1000 is 1450 between?"
+            frame: "1450 is between _ and _"
+            options: ["0", "1000", "1500", "2000"]
+            answer: ["1000", "2000"]
 
   - n: 2
     title: { de: Vergleichen und ordnen, en: Comparing and ordering }
@@ -426,6 +449,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: fill_in_blank
@@ -445,6 +469,24 @@ lessons:
             text: "Which is the smallest?"
             options: ["5150", "5105", "5510"]
             answer: "5105"
+          - id: l2-c4
+            type: fill_in_blank
+            text: "Which sign goes in the gap?"
+            frame: "6100 _ 6010"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l2-c5
+            type: ordering
+            text: "Put the numbers in descending order, greatest first."
+            options: ["3033", "3330", "3003", "3303"]
+            slot_count: 4
+            answer: ["3330", "3303", "3033", "3003"]
+          - id: l2-c6
+            type: true_false
+            text: "Is it true? 2999 < 3000"
+            say: "Is it true? Two thousand, nine hundred and ninety-nine is less than three thousand."
+            answer: true
 
   - n: 3
     title: { de: Runden bis 10 000, en: "Rounding to the nearest 10, 100 and 1000" }
@@ -611,13 +653,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: number-line
             type: point_on_line
             text: "Where is 3600?"
             show: { drawn: number-line, from: 3000, to: 4000, step: 100, labels: ends }
             answer: 3600
           - id: l3-c2
+            part: compare
             type: fill_in_blank
             text: "Which sign goes in the gap?"
             frame: "5809 _ 5890"
@@ -625,17 +670,121 @@ lessons:
             answer: ["<"]
             option_audio: false
           - id: l3-c3
+            part: order
             type: ordering
             text: "Put the numbers in ascending order, smallest first."
             options: ["1110", "1011", "1101", "111"]
             slot_count: 4
             answer: ["111", "1011", "1101", "1110"]
           - id: l3-c4
+            part: round
             type: multiple_choice
             text: "Round 4386 to the nearest 1000."
             options: ["4000", "4400", "5000"]
             answer: "4000"
           - id: l3-c5
+            part: round
             type: text_input
             text: "Round 7250 to the nearest 100."
             answer: "7300"
+          - id: l3-c6
+            part: number-line
+            type: true_false
+            text: "Is it true? The arrow points to 4300."
+            say: "Is it true? The arrow points to four thousand, three hundred."
+            show: { drawn: number-line, from: 4000, to: 5000, step: 100, labels: ends, mark: 4300 }
+            answer: true
+          - id: l3-c7
+            part: number-line
+            type: point_on_line
+            text: "Where is 9600?"
+            show: { drawn: number-line, from: 9000, to: 10000, step: 100, labels: ends }
+            answer: 9600
+          - id: l3-c8
+            part: number-line
+            type: fill_in_blank
+            text: "Which multiples of 100 is 5640 between?"
+            frame: "5640 is between _ and _"
+            options: ["5500", "5600", "5700", "6000"]
+            answer: ["5600", "5700"]
+          - id: l3-c9
+            part: number-line
+            type: multiple_choice
+            text: "What is each interval worth on this number line?"
+            show: { drawn: number-line, from: 6000, to: 7000, step: 100, labels: ends }
+            options: ["100", "10", "1000"]
+            answer: "100"
+          - id: l3-c10
+            part: compare
+            type: fill_in_blank
+            text: "Which sign goes in the gap?"
+            frame: "7065 _ 7056"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l3-c11
+            part: compare
+            type: true_false
+            text: "Is it true? 4999 > 5001"
+            say: "Is it true? Four thousand, nine hundred and ninety-nine is greater than five thousand and one."
+            answer: false
+          - id: l3-c12
+            part: compare
+            type: multiple_choice
+            text: "Mia's school has 1208 pupils. Leo's school has 1280 pupils. Which school has more pupils?"
+            options: ["Leo's school", "Mia's school"]
+            answer: "Leo's school"
+          - id: l3-c13
+            part: compare
+            type: fill_in_blank
+            text: "Which sign goes in the gap?"
+            frame: "3000 + 40 _ 3400"
+            options: ["<", ">", "="]
+            answer: ["<"]
+            option_audio: false
+          - id: l3-c14
+            part: order
+            type: ordering
+            text: "Put the numbers in descending order, greatest first."
+            options: ["4404", "4044", "4440", "4004"]
+            slot_count: 4
+            answer: ["4440", "4404", "4044", "4004"]
+          - id: l3-c15
+            part: order
+            type: ordering
+            text: "Put the numbers in ascending order, smallest first."
+            options: ["9010", "999", "9100", "9001"]
+            slot_count: 4
+            answer: ["999", "9001", "9010", "9100"]
+          - id: l3-c16
+            part: order
+            type: ordering
+            text: "Four mountains in the UK are 978 m, 1345 m, 850 m and 1085 m high. Put the heights in order, highest first."
+            options: ["978 m", "1345 m", "850 m", "1085 m"]
+            slot_count: 4
+            answer: ["1345 m", "1085 m", "978 m", "850 m"]
+          - id: l3-c17
+            part: order
+            type: multiple_choice
+            text: "Which list is in ascending order?"
+            options: ["2059, 2509, 2950", "2509, 2059, 2950", "2950, 2509, 2059"]
+            answer: "2059, 2509, 2950"
+          - id: l3-c18
+            part: round
+            type: fill_in_blank
+            text: "Round 5172."
+            frame: "nearest 10: _  nearest 100: _  nearest 1000: _"
+            options: ["5000", "5170", "5180", "5200"]
+            answer: ["5170", "5200", "5000"]
+          - id: l3-c19
+            part: round
+            type: true_false
+            text: "Is it true? 3960 rounded to the nearest 100 is 4000."
+            say: "Is it true? Three thousand, nine hundred and sixty rounded to the nearest hundred is four thousand."
+            answer: true
+          - id: l3-c20
+            part: round
+            type: multiple_choice
+            text: "About 7000 people came to a festival, to the nearest 1000. Which could be the real number?"
+            options: ["6620", "7620", "6420"]
+            answer: "6620"

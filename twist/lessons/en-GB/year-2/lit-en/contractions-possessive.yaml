@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: contraction-spell, what: { de: "Kurzformen schreiben, mit dem Apostroph an der Stelle der fehlenden Buchstaben", en: "spelling contractions with the apostrophe where letters are missing" } }
+    - { id: contraction-meaning, what: { de: "wissen, für welche zwei Wörter eine Kurzform steht", en: "knowing which two words a contraction stands for" } }
+    - { id: possession, what: { de: "mit 's zeigen, dass etwas einer Person oder einem Tier gehört", en: "using 's to show that something belongs to one person or animal" } }
+    - { id: plural-or-possessive, what: { de: "'s für Besitz von einer einfachen Mehrzahl mit s unterscheiden", en: "telling 's for belonging from a plain plural s" } }
   misconceptions:
     - id: apostrophe-in-gap
       what: Puts the apostrophe between the two words instead of where the letters are missing (did'nt, do'nt)
@@ -220,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -242,6 +248,24 @@ lessons:
             say: "One word in this sentence is missing its apostrophe. Tap it."
             show: { drawn: letter-card, text: "Tom didnt eat his peas." }
             spans: ["didnt"]
+          - id: l1-c4
+            type: text_input
+            keyboard: letters
+            text: "Write the short form of \"cannot\"."
+            say: "Write the short form of cannot."
+            answer: "can't"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? \"didn't\" is short for \"do not\"."
+            answer: false
+          - id: l1-c6
+            type: matching
+            text: "Match each short form with its two words."
+            say: "Read each short form. Match it with the two words it comes from."
+            pairs:
+              - { left: { text: "didn't" }, right: { text: "did not" } }
+              - { left: { text: "it's" }, right: { text: "it is" } }
+              - { left: { text: "I'll" }, right: { text: "I will" } }
 
   - n: 2
     title: { de: "Apostroph für Besitz", en: "The apostrophe for belonging" }
@@ -428,8 +452,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: contraction-spell
             type: multiple_choice
             text: "Which is the short form of \"was not\"?"
             say: "Read the words yourself. Which is the short form of was not?"
@@ -437,12 +463,14 @@ lessons:
             answer: "wasn't"
             option_audio: false
           - id: l2-c2
+            part: contraction-spell
             type: highlight_in_text
             text: "Tap the word that needs an apostrophe."
             say: "One word in this sentence is missing its apostrophe. Tap it."
             show: { drawn: letter-card, text: "I havent got a pencil." }
             spans: ["havent"]
           - id: l2-c3
+            part: possession
             type: fill_in_blank
             text: "Fill the gap: The bag belongs to Leo. It is _ bag."
             say: "The bag belongs to Leo. Which spelling fits the gap?"
@@ -451,6 +479,7 @@ lessons:
             answer: ["Leo's"]
             option_audio: false
           - id: l2-c4
+            part: plural-or-possessive
             type: fill_in_blank
             text: "Fill the gap: There are two _ in the pond."
             say: "Read the sentence. Which spelling fits the gap?"
@@ -459,9 +488,130 @@ lessons:
             answer: ["ducks"]
             option_audio: false
           - id: l2-c5
+            part: possession
             type: multiple_choice
             text: "Which is right for \"the web that belongs to the spider\"?"
             say: "Read them yourself. Which one is right?"
             options: ["the spider's web", "the spiders web", "the spider web's"]
             answer: "the spider's web"
+            option_audio: false
+          - id: l2-c6
+            part: contraction-spell
+            type: text_input
+            keyboard: letters
+            text: "Write the short form of \"should not\"."
+            say: "Write the short form of should not."
+            answer: "shouldn't"
+          - id: l2-c7
+            part: contraction-spell
+            type: highlight_in_text
+            text: "Tap the word that is spelt wrong."
+            say: "One short form in this sentence is spelt wrong. Tap it."
+            show: { drawn: letter-card, text: "We did'nt go out because it was raining." }
+            spans: ["did'nt"]
+          - id: l2-c8
+            part: contraction-spell
+            type: multiple_choice
+            text: "Which sentence is spelt correctly?"
+            say: "Read the sentences yourself. Which one is spelt correctly?"
+            options: ["It is'nt cold today.", "It isnt cold today.", "It isn't cold today."]
+            answer: "It isn't cold today."
+            option_audio: false
+          - id: l2-c9
+            part: contraction-meaning
+            type: matching
+            text: "Which two words does each short form stand for? Match them."
+            say: "Read each short form yourself. Which two words does it stand for? Match them."
+            pairs:
+              - { left: { text: "wasn't" }, right: { text: "was not" } }
+              - { left: { text: "haven't" }, right: { text: "have not" } }
+              - { left: { text: "didn't" }, right: { text: "did not" } }
+          - id: l2-c10
+            part: contraction-meaning
+            type: true_false
+            text: "Is it true? In \"couldn't\", the apostrophe shows where the o of not was."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c11
+            part: contraction-meaning
+            type: multiple_choice
+            text: "We'll be late if we don't hurry.\n\nWhat does \"we'll\" mean?"
+            say: "Read the sentence. What does we'll mean?"
+            options: ["we will", "we are", "well"]
+            answer: "we will"
+            option_audio: false
+          - id: l2-c12
+            part: contraction-meaning
+            type: fill_in_blank
+            text: "Fill the gap: hasn't → _ not"
+            say: "Hasn't is short for which two words? Fill the gap."
+            frame: "hasn't → _ not"
+            options: ["has", "have", "his"]
+            answer: ["has"]
+          - id: l2-c13
+            part: contraction-meaning
+            type: multiple_choice
+            text: "Which letter is missing in \"don't\"?"
+            say: "Read the short form yourself. Which letter is missing?"
+            options: ["o", "n", "t"]
+            answer: "o"
+            option_audio: false
+          - id: l2-c14
+            part: possession
+            type: image_multiple_choice
+            text: "Read: Grandma's glasses are on the table. Whose glasses are they?"
+            say: "Read the sentence on the screen. Tap the one who owns the glasses."
+            options: [{ object: grandpa }, { object: baby }, { object: grandma }]
+            answer: grandma
+          - id: l2-c15
+            part: possession
+            type: multiple_choice
+            text: "Which sentence is right?"
+            say: "Read the sentences yourself. Which one is right?"
+            options: ["The horses mane is long.", "The horse's mane is long.", "The horse mane's is long."]
+            answer: "The horse's mane is long."
+            option_audio: false
+          - id: l2-c16
+            part: possession
+            type: text_input
+            keyboard: letters
+            text: "The ball belongs to the puppy.\nWrite the missing word: the _ ball"
+            say: "The ball belongs to the puppy. Write the missing word."
+            answer: "puppy's"
+          - id: l2-c17
+            part: plural-or-possessive
+            type: sorting
+            text: "Does something belong, or is there just more than one? Sort them."
+            say: "Read each one yourself. Does something belong, or is there just more than one? Sort them."
+            option_audio: false
+            bins:
+              - { id: belongs, show: { text: "belongs to" }, say: "Belongs to." }
+              - { id: more, show: { text: "more than one" }, say: "More than one." }
+            options:
+              - { text: "three drums", bin: more }
+              - { text: "the hen's eggs", bin: belongs }
+              - { text: "five hens", bin: more }
+              - { text: "Sam's drum", bin: belongs }
+          - id: l2-c18
+            part: plural-or-possessive
+            type: true_false
+            text: "Is it true? This sentence needs an apostrophe.\nThe frogs are jumping in the pond."
+            say: "Read the sentence. Is it true? It needs an apostrophe."
+            answer: false
+          - id: l2-c19
+            part: plural-or-possessive
+            type: multiple_choice
+            text: "Which sentence is right?"
+            say: "Read the sentences yourself. Which one is right?"
+            options: ["I have two sister's.", "I have two sisters.", "I have two sisters'."]
+            answer: "I have two sisters."
+            option_audio: false
+          - id: l2-c20
+            part: plural-or-possessive
+            type: fill_in_blank
+            text: "Fill the gaps: _ dog has three _."
+            say: "Read the sentence. Which spellings fit the gaps?"
+            frame: "_ dog has three _."
+            options: ["Kim's", "Kims", "puppies", "puppy's"]
+            answer: ["Kim's", "puppies"]
             option_audio: false

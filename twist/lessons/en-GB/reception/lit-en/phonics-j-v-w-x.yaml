@@ -21,12 +21,17 @@ metadata:
   vocabulary: { en: [sound, letter, blend, word] }
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
-  sounds: [en.j, en.v, en.w, en.ks]
+  sounds: [en.j, en.v, en.w, en.ks, en.f]
   facets: []
+  parts:
+    - { id: sound-letter, what: { de: einen Laut hören und seinen Buchstaben finden, en: hearing a sound and finding its letter } }
+    - { id: sound-in-word, what: { de: "den Laut eines Buchstabens in einem Wort hören (j, v, w am Anfang, x am Ende)", en: "hearing a letter's sound in a word (j, v and w at the start, x at the end)" } }
+    - { id: read-words, what: { de: "Wörter mit j, v, w und x lesen (jam, van, six)", en: "reading words with j, v, w and x (jam, van, six)" } }
+    - { id: letter-in-word, what: { de: den fehlenden Buchstaben in einem gehörten Wort finden, en: finding the missing letter in a word you hear } }
   misconceptions:
     - id: v-f-mixup
       what: Mixes up v and f, made with the same lips and teeth (van as fan)
-      addressed: v and f share an option set in every stage of lesson 1 (l1-f1 and l1-f5 with feedback, l1-s1, l1-n5); lesson 2 sets van against fan (l2-f1, with feedback) and asks for v or f at the start of van (l2-c4)
+      addressed: v and f share an option set in every stage of lesson 1 (l1-f1 and l1-f5 with feedback, l1-s1, l1-n5); lesson 2 sets van against fan (l2-f1, with feedback) and asks for v or f at the start of van (l2-c4); the skill check plays the f sound under a v (l2-c9) and offers f beside v in l2-c8
     - id: x-at-start
       what: Listens for x at the start of words, where it hardly ever comes
       addressed: lesson 1 Learn says x usually comes at the end; the x word tasks in every stage of lesson 1 ask about the end of the word (l1-f4, l1-s4, l1-n4, l1-c3), and every x word in lesson 2 has x at the end (l2-f2, l2-f5, l2-s2, l2-n2, l2-n5)
@@ -104,8 +109,9 @@ lessons:
                   - "It is the letter that looks like two pointy cups."
               - id: l1-f4
                 type: true_false
-                text: "Does it end with this letter?"
-                say: "Fox. Does fox end with this letter?"
+                text: "Does the word end with this letter?"
+                say: "Listen. Does the word end with this letter?"
+                audio: { en: "Fox." }
                 show: { drawn: letter-card, text: "x" }
                 answer: true
                 hints:
@@ -154,8 +160,9 @@ lessons:
                 hints: ["Listen again. Is it one sound or two together?"]
               - id: l1-s4
                 type: true_false
-                text: "Does it end with this letter?"
-                say: "Bus. Does bus end with this letter?"
+                text: "Does the word end with this letter?"
+                say: "Listen. Does the word end with this letter?"
+                audio: { en: "Bus." }
                 show: { drawn: letter-card, text: "x" }
                 answer: false
                 hints: ["Say bus slowly. Is there a click before the hiss?"]
@@ -193,8 +200,9 @@ lessons:
                 answer: "j"
               - id: l1-n4
                 type: true_false
-                text: "Does it end with this letter?"
-                say: "Box. Does box end with this letter?"
+                text: "Does the word end with this letter?"
+                say: "Listen. Does the word end with this letter?"
+                audio: { en: "Box." }
                 show: { drawn: letter-card, text: "x" }
                 answer: true
               - id: l1-n5
@@ -207,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -224,10 +233,32 @@ lessons:
             answer: jumper
           - id: l1-c3
             type: true_false
-            text: "Does it end with this letter?"
-            say: "Fix. Does fix end with this letter?"
+            text: "Does the word end with this letter?"
+            say: "Listen. Does the word end with this letter?"
+            audio: { en: "Fix." }
             show: { drawn: letter-card, text: "x" }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Which letter is it? Listen."
+            audio: { sound: en.j }
+            options: ["v", "w", "j"]
+            answer: "j"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "What starts with the sound of this letter? Tap the picture."
+            show: { drawn: letter-card, text: "w" }
+            options: [{ object: van }, { object: witch }, { object: jug }]
+            answer: witch
+          - id: l1-c6
+            type: true_false
+            text: "Does the word start with this letter?"
+            say: "Listen. Does the word start with this letter?"
+            audio: { en: "Fish." }
+            show: { drawn: letter-card, text: "v" }
+            answer: false
 
   - n: 2
     title: { de: "jam, van, web, six", en: "jam, van, web, six" }
@@ -268,7 +299,8 @@ lessons:
               - id: l2-f2
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Box. Which letter is missing at the end of box?"
+                say: "Listen. Which letter is missing at the end?"
+                audio: { en: "Box." }
                 frame: "bo_"
                 options: ["x", "s", "k"]
                 answer: ["x"]
@@ -278,8 +310,9 @@ lessons:
                   - "It is the letter that looks like a cross."
               - id: l2-f3
                 type: true_false
-                text: "Is this the word?"
-                say: "Jet. Does the card say jet?"
+                text: "Does the card say this word?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "Jet." }
                 show: { drawn: letter-card, text: "jet" }
                 answer: true
                 hints:
@@ -289,7 +322,8 @@ lessons:
               - id: l2-f4
                 type: fill_in_blank
                 text: "Which letter starts the word?"
-                say: "Web. Which letter is missing at the start of web?"
+                say: "Listen. Which letter is missing at the start?"
+                audio: { en: "Web." }
                 frame: "_eb"
                 options: ["w", "v", "u"]
                 answer: ["w"]
@@ -322,22 +356,25 @@ lessons:
               - id: l2-s2
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Mix. Which letter is missing at the end of mix?"
+                say: "Listen. Which letter is missing at the end?"
+                audio: { en: "Mix." }
                 frame: "mi_"
                 options: ["s", "x", "ck"]
                 answer: ["x"]
                 hints: ["Do you hear one sound or two at the end?"]
               - id: l2-s3
                 type: true_false
-                text: "Is this the word?"
-                say: "Vet. Does the card say vet?"
+                text: "Does the card say this word?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "Vet." }
                 show: { drawn: letter-card, text: "net" }
                 answer: false
                 hints: ["Look at the first letter. Does it buzz?"]
               - id: l2-s4
                 type: fill_in_blank
                 text: "Which letter starts the word?"
-                say: "Win. Which letter is missing at the start of win?"
+                say: "Listen. Which letter is missing at the start?"
+                audio: { en: "Win." }
                 frame: "_in"
                 options: ["v", "w", "f"]
                 answer: ["w"]
@@ -363,20 +400,23 @@ lessons:
               - id: l2-n2
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Fix. Which letter is missing at the end of fix?"
+                say: "Listen. Which letter is missing at the end?"
+                audio: { en: "Fix." }
                 frame: "fi_"
                 options: ["x", "ck", "s"]
                 answer: ["x"]
               - id: l2-n3
                 type: true_false
-                text: "Is this the word?"
-                say: "Jog. Does the card say jog?"
+                text: "Does the card say this word?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "Jog." }
                 show: { drawn: letter-card, text: "jog" }
                 answer: true
               - id: l2-n4
                 type: fill_in_blank
                 text: "Which letter starts the word?"
-                say: "Jug. Which letter is missing at the start of jug?"
+                say: "Listen. Which letter is missing at the start?"
+                audio: { en: "Jug." }
                 frame: "_ug"
                 options: ["d", "j", "h"]
                 answer: ["j"]
@@ -390,8 +430,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: sound-letter
             type: audio_choice
             text: "Which letter makes this sound?"
             say: "Listen to the sound. Tap its letter."
@@ -399,6 +441,7 @@ lessons:
             options: ["s", "ck", "x"]
             answer: "x"
           - id: l2-c2
+            part: sound-in-word
             type: image_multiple_choice
             text: "What starts with this letter?"
             say: "Which picture starts with the sound of this letter?"
@@ -406,6 +449,7 @@ lessons:
             options: [{ object: jumper }, { object: web }, { object: fox }]
             answer: web
           - id: l2-c3
+            part: read-words
             type: audio_choice
             text: "Which word do you hear?"
             say: "Which word is it? Listen."
@@ -413,9 +457,144 @@ lessons:
             options: ["get", "jet", "net"]
             answer: "jet"
           - id: l2-c4
+            part: letter-in-word
             type: fill_in_blank
             text: "Which letter starts the word?"
-            say: "Van. Which letter is missing at the start of van?"
+            say: "Listen. Which letter is missing at the start?"
+            audio: { en: "Van." }
             frame: "_an"
             options: ["f", "v", "w"]
             answer: ["v"]
+          - id: l2-c5
+            part: sound-letter
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Listen to the sound. Tap its letter."
+            audio: { sound: en.j }
+            options: ["g", "j", "w"]
+            answer: "j"
+          - id: l2-c6
+            part: sound-in-word
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "Which picture starts with the sound of this letter?"
+            show: { drawn: letter-card, text: "v" }
+            options: [{ object: fox }, { object: web }, { object: vase }]
+            answer: vase
+          - id: l2-c7
+            part: read-words
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "wax" }
+            options: ["wag", "wax", "wig"]
+            answer: "wax"
+          - id: l2-c8
+            part: letter-in-word
+            type: fill_in_blank
+            text: "Which letter starts the word?"
+            say: "Listen. Which letter is missing at the start?"
+            audio: { en: "Vet." }
+            frame: "_et"
+            options: ["w", "f", "v"]
+            answer: ["v"]
+          - id: l2-c9
+            part: sound-letter
+            type: true_false
+            text: "Does this letter make this sound?"
+            say: "Listen. Does this letter make this sound?"
+            audio: { sound: en.f }
+            show: { drawn: letter-card, text: "v" }
+            answer: false
+          - id: l2-c10
+            part: sound-in-word
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "Which picture starts with the sound of this letter?"
+            show: { drawn: letter-card, text: "w" }
+            options: [{ object: van }, { object: worm }, { object: fish }]
+            answer: worm
+          - id: l2-c11
+            part: read-words
+            type: true_false
+            text: "Does the card say this word?"
+            say: "Listen. Does the card say this word?"
+            audio: { en: "Jam." }
+            show: { drawn: letter-card, text: "jam" }
+            answer: true
+          - id: l2-c12
+            part: letter-in-word
+            type: fill_in_blank
+            text: "What is missing?"
+            say: "Listen. What is missing at the start and at the end?"
+            audio: { en: "Six." }
+            frame: "_i_"
+            options: ["x", "f", "ck", "s"]
+            answer: ["s", "x"]
+          - id: l2-c13
+            part: sound-letter
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Listen to the sound. Tap its letter."
+            audio: { sound: en.w }
+            options: ["v", "x", "j", "w"]
+            answer: "w"
+          - id: l2-c14
+            part: sound-in-word
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "Which picture starts with the sound of this letter?"
+            show: { drawn: letter-card, text: "j" }
+            options: [{ object: goat }, { object: jacket }, { object: duck }]
+            answer: jacket
+          - id: l2-c15
+            part: read-words
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "jug" }
+            options: [{ object: juice }, { object: jumper }, { object: jug }]
+            answer: jug
+            option_audio: false
+          - id: l2-c16
+            part: letter-in-word
+            type: fill_in_blank
+            text: "Which letter starts the word?"
+            say: "Listen. Which letter is missing at the start?"
+            audio: { en: "Jam." }
+            frame: "_am"
+            options: ["g", "j", "d"]
+            answer: ["j"]
+          - id: l2-c17
+            part: sound-letter
+            type: true_false
+            text: "Does this letter make this sound?"
+            say: "Listen. Does this letter make this sound?"
+            audio: { sound: en.ks }
+            show: { drawn: letter-card, text: "x" }
+            answer: true
+          - id: l2-c18
+            part: sound-in-word
+            type: true_false
+            text: "Does the word end with this letter?"
+            say: "Listen. Does the word end with this letter?"
+            audio: { en: "Sock." }
+            show: { drawn: letter-card, text: "x" }
+            answer: false
+          - id: l2-c19
+            part: read-words
+            type: highlight_in_text
+            text: "Tap every card that says the word you hear."
+            say: "Listen. Read the cards and tap every card that says this word."
+            audio: { en: "Fix." }
+            show: { drawn: letter-card, text: "fix fox six fix mix" }
+            spans: ["fix"]
+          - id: l2-c20
+            part: letter-in-word
+            type: fill_in_blank
+            text: "Which letter starts the word?"
+            say: "Listen. Which letter is missing at the start?"
+            audio: { en: "Wig." }
+            frame: "_ig"
+            options: ["v", "w", "b"]
+            answer: ["w"]

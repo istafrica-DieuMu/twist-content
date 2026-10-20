@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [cubes, dots]
   facets: []
+  parts:
+    - { id: cuboids, what: { de: den Rauminhalt eines Quaders in Einheitswürfeln bestimmen, en: finding the volume of a cuboid in unit cubes } }
+    - { id: buildings, what: { de: den Rauminhalt eines Würfelgebäudes bestimmen, en: finding the volume of a cube building } }
+    - { id: compare, what: { de: Rauminhalte vergleichen, en: comparing volumes } }
   misconceptions:
     - id: counts-one-layer
       what: Counts only one layer or only the cubes that can be seen, and forgets the other layers and the hidden cubes
@@ -203,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -220,6 +225,20 @@ lessons:
             type: text_input
             text: "A cuboid is 3 cubes long, 2 wide and 5 tall. What is its volume in cubes?"
             answer: "30"
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many cubes are in this cuboid?"
+            show: { drawn: cubes, plan: [[3, 3, 3]], mode: building, colour: red }
+            options: ["9", "3", "6"]
+            answer: "9"
+          - id: l1-c5
+            type: true_false
+            text: "A cuboid 3 cubes long, 3 wide and 2 tall has a volume of 8 cubes. Is that true?"
+            answer: false
+          - id: l1-c6
+            type: text_input
+            text: "One layer of a cuboid has 4 rows of 6 cubes. There are 3 layers. What is its volume in cubes?"
+            answer: "72"
 
   - n: 2
     title: { de: "Würfelgebäude vergleichen", en: "Comparing cube buildings" }
@@ -382,31 +401,133 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cuboids
             type: multiple_choice
             text: "This is one layer of a cuboid, seen from above. The cuboid has 2 layers. What is its volume?"
             show: { drawn: dots, array: [3, 5] }
             options: ["30 cubes", "15 cubes", "10 cubes"]
             answer: "30 cubes"
           - id: l2-c2
+            part: cuboids
             type: multiple_choice
             text: "How many cubes are in this cuboid?"
             show: { drawn: cubes, plan: [[2, 2, 2], [2, 2, 2]], mode: building, colour: orange }
             options: ["12", "6", "8"]
             answer: "12"
           - id: l2-c3
+            part: cuboids
             type: text_input
             text: "A cuboid is 6 cubes long, 2 wide and 2 tall. What is its volume in cubes?"
             answer: "24"
           - id: l2-c4
+            part: buildings
             type: multiple_choice
             text: "What is the volume of this building in cubes?"
             show: { drawn: cubes, plan: [[2, 3], [1, 3]], mode: plan, colour: purple }
             options: ["9", "4", "3"]
             answer: "9"
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Amy's cuboid is 4 by 3 by 1 cubes. Ben's cuboid is 2 by 2 by 2 cubes. How many more cubes does Amy's cuboid have?"
             options: ["4", "12", "2"]
             answer: "4"
+          - id: l2-c6
+            part: cuboids
+            type: multiple_choice
+            text: "How many cubes are in this cuboid?"
+            show: { drawn: cubes, plan: [[4, 4], [4, 4]], mode: building, colour: yellow }
+            options: ["16", "4", "8"]
+            answer: "16"
+          - id: l2-c7
+            part: cuboids
+            type: text_input
+            text: "A cuboid is 5 cubes long, 4 wide and 3 tall. What is its volume in cubes?"
+            answer: "60"
+          - id: l2-c8
+            part: cuboids
+            type: true_false
+            text: "A cuboid 6 cubes long, 2 wide and 1 tall has a volume of 12 cubes. Is that true?"
+            answer: true
+          - id: l2-c9
+            part: cuboids
+            type: multiple_choice
+            text: "One layer of a cuboid has 3 rows of 3 cubes. The cuboid has 4 layers. What is its volume?"
+            options: ["36 cubes", "10 cubes", "9 cubes"]
+            answer: "36 cubes"
+          - id: l2-c10
+            part: buildings
+            type: multiple_choice
+            text: "What is the volume of this building in cubes?"
+            show: { drawn: cubes, plan: [[4, 1], [2, 3]], mode: plan, colour: blue }
+            options: ["10", "4", "6"]
+            answer: "10"
+          - id: l2-c11
+            part: buildings
+            type: image_multiple_choice
+            text: "Which building has a volume of 6 cubes?"
+            options:
+              - { drawn: cubes, plan: [[3, 1], [1, 1]], mode: building, colour: green, key: six }
+              - { drawn: cubes, plan: [[3, 1], [1, 2]], mode: building, colour: green, key: seven }
+              - { drawn: cubes, plan: [[2, 1], [1, 1]], mode: building, colour: green, key: five }
+            answer: six
+          - id: l2-c12
+            part: buildings
+            type: text_input
+            text: "How many more cubes make this building into a cuboid 2 cubes tall?"
+            show: { drawn: cubes, plan: [[2, 1, 2], [1, 1, 2]], mode: plan, colour: orange }
+            answer: "3"
+          - id: l2-c13
+            part: buildings
+            type: multiple_choice
+            text: "What is the volume of this building?"
+            show: { drawn: cubes, plan: [[3, 1], [2, 1]], mode: building, colour: red }
+            options: ["7 cubes", "4 cubes", "5 cubes"]
+            answer: "7 cubes"
+          - id: l2-c14
+            part: buildings
+            type: true_false
+            text: "Is it true? This building has a volume of 10 cubes."
+            show: { drawn: cubes, plan: [[2, 2], [3, 2]], mode: plan, colour: purple }
+            answer: false
+          - id: l2-c15
+            part: buildings
+            type: text_input
+            text: "What is the volume of this building in cubes?"
+            show: { drawn: cubes, plan: [[2, 0, 3], [1, 4, 1]], mode: plan, colour: yellow }
+            answer: "11"
+          - id: l2-c16
+            part: compare
+            type: multiple_choice
+            text: "Compare the volumes. Which is larger?"
+            options: ["a cuboid 4 by 2 by 1 cubes", "a cube 2 by 2 by 2 cubes", "They are the same."]
+            answer: "They are the same."
+            keep_order: true
+          - id: l2-c17
+            part: compare
+            type: true_false
+            text: "A tower of 8 cubes and a cube 2 by 2 by 2 have the same volume. Is that true?"
+            answer: true
+          - id: l2-c18
+            part: compare
+            type: multiple_choice
+            text: "Which has the largest volume?"
+            options: ["5 by 3 by 1 cubes", "2 by 2 by 4 cubes", "3 by 3 by 2 cubes"]
+            answer: "3 by 3 by 2 cubes"
+          - id: l2-c19
+            part: compare
+            type: image_multiple_choice
+            text: "Which building has the largest volume?"
+            options:
+              - { drawn: cubes, plan: [[3, 2]], mode: building, colour: blue, key: five }
+              - { drawn: cubes, plan: [[1, 1], [1, 1]], mode: building, colour: blue, key: four }
+              - { drawn: cubes, plan: [[2, 2], [1, 2]], mode: building, colour: blue, key: seven }
+            answer: seven
+          - id: l2-c20
+            part: compare
+            type: text_input
+            text: "Mia's building has 14 cubes. Leo's cuboid is 3 by 2 by 2 cubes. How many more cubes does Mia's building have?"
+            answer: "2"

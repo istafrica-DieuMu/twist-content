@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [ruler, table]
   facets: [number-format]
+  parts:
+    - { id: m-cm, what: { de: Meter und Zentimeter mit Komma schreiben und umwandeln, en: writing and converting metres and centimetres as decimals } }
+    - { id: cm-mm, what: { de: Zentimeter und Millimeter mit Komma schreiben und ablesen, en: writing and reading centimetres and millimetres as decimals } }
+    - { id: km-m, what: { de: Kilometer und Meter mit Komma schreiben und umwandeln, en: writing and converting kilometres and metres as decimals } }
+    - { id: compare, what: { de: Längen in verschiedenen Schreibweisen vergleichen, en: comparing lengths written in different ways } }
   misconceptions:
     - id: point-five-is-five
       what: Reads 1.5 m as 1 m 5 cm (or 2.5 km as 2 km 5 m) instead of one and a half
@@ -192,6 +197,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -209,6 +215,22 @@ lessons:
             text: "3.5 m = 350 cm"
             say: "Is it true? Three point five metres is three hundred and fifty centimetres."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which is the same as 3.4 m?"
+            options: ["340 cm", "34 cm", "304 cm"]
+            answer: "340 cm"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Write 58 mm in centimetres."
+            frame: "58 mm = _ cm"
+            options: ["5.8", "58", "0.58"]
+            answer: ["5.8"]
+          - id: l1-c6
+            type: true_false
+            text: "2.6 m = 2 m 6 cm"
+            say: "Is it true? Two point six metres is two metres and six centimetres."
+            answer: false
 
   - n: 2
     title: { de: Kilometer und Meter, en: Kilometres and metres }
@@ -362,28 +384,130 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: m-cm
             type: multiple_choice
             text: "1.2 m = _"
             options: ["120 cm", "12 cm", "102 cm"]
             answer: "120 cm"
           - id: l2-c2
+            part: cm-mm
             type: text_input
             text: "6.4 cm = _ mm"
             answer: "64"
           - id: l2-c3
+            part: km-m
             type: multiple_choice
             text: "3.5 km = _"
             options: ["3 km 500 m", "3 km 5 m", "35 km"]
             answer: "3 km 500 m"
           - id: l2-c4
+            part: km-m
             type: text_input
             text: "Write 1 km 250 m in kilometres."
             keyboard: decimal
             answer: "1.25"
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Which is the longest?"
             options: ["2.1 km", "2 km 90 m", "2009 m"]
             answer: "2.1 km"
+          - id: l2-c6
+            part: m-cm
+            type: multiple_choice
+            text: "2.08 m = _"
+            options: ["208 cm", "280 cm", "20.8 cm"]
+            answer: "208 cm"
+          - id: l2-c7
+            part: m-cm
+            type: fill_in_blank
+            text: "Write 360 cm in metres."
+            frame: "360 cm = _ m"
+            options: ["3.6", "36", "3.06"]
+            answer: ["3.6"]
+          - id: l2-c8
+            part: m-cm
+            type: true_false
+            text: "4 m 7 cm = 4.7 m"
+            say: "Is it true? Four metres and seven centimetres is four point seven metres."
+            answer: false
+          - id: l2-c9
+            part: m-cm
+            type: matching
+            text: "Match each length in metres with the same length in centimetres."
+            pairs:
+              - { left: { text: "2.7 m" }, right: { text: "270 cm" } }
+              - { left: { text: "2.07 m" }, right: { text: "207 cm" } }
+              - { left: { text: "0.27 m" }, right: { text: "27 cm" } }
+          - id: l2-c10
+            part: cm-mm
+            type: text_input
+            text: "How long is the strip in centimetres?"
+            show: { drawn: ruler, length: 9.1, colour: orange }
+            keyboard: decimal
+            answer: "9.1"
+          - id: l2-c11
+            part: cm-mm
+            type: fill_in_blank
+            text: "Write 7 cm 3 mm in two other ways."
+            frame: "_ cm = _ mm"
+            options: ["7.3", "7.03", "73", "703"]
+            answer: ["7.3", "73"]
+          - id: l2-c12
+            part: cm-mm
+            type: true_false
+            text: "6 cm 4 mm = 6.04 cm"
+            say: "Is it true? Six centimetres and four millimetres is six point zero four centimetres."
+            answer: false
+          - id: l2-c13
+            part: cm-mm
+            type: multiple_choice
+            text: "A beetle is 23 mm long. How long is that in centimetres?"
+            options: ["2.3 cm", "23 cm", "2.03 cm"]
+            answer: "2.3 cm"
+          - id: l2-c14
+            part: km-m
+            type: fill_in_blank
+            text: "Write 6 km 40 m in kilometres."
+            frame: "6 km 40 m = _ km"
+            options: ["6.04", "6.4", "64"]
+            answer: ["6.04"]
+          - id: l2-c15
+            part: km-m
+            type: true_false
+            text: "4.3 km = 4300 m"
+            say: "Is it true? Four point three kilometres is four thousand three hundred metres."
+            answer: true
+          - id: l2-c16
+            part: km-m
+            type: multiple_choice
+            text: "The walk to the park is 750 m. How many kilometres is that?"
+            options: ["0.75 km", "7.5 km", "75 km"]
+            answer: "0.75 km"
+          - id: l2-c17
+            part: km-m
+            type: text_input
+            text: "A bike ride is 8 km 600 m long. How many metres is that?"
+            answer: "8600"
+          - id: l2-c18
+            part: compare
+            type: multiple_choice
+            text: "Which is the shortest?"
+            options: ["1.09 m", "1 m 10 cm", "1.9 m"]
+            answer: "1.09 m"
+          - id: l2-c19
+            part: compare
+            type: ordering
+            text: "Put the lengths in order, shortest first."
+            options: ["3.2 m", "302 cm", "3 m 25 cm"]
+            slot_count: 3
+            answer: ["302 cm", "3.2 m", "3 m 25 cm"]
+          - id: l2-c20
+            part: compare
+            type: true_false
+            text: "2.4 km is longer than 2 km 90 m."
+            say: "Is it true? Two point four kilometres is longer than two kilometres and ninety metres."
+            answer: true

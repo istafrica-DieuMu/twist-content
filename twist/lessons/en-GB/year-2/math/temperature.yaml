@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, picture, text, audio]
   drawn: [number-line, thermometer, table]
   facets: []
+  parts:
+    - { id: read, what: { de: die Temperatur am Thermometer ablesen, en: reading the temperature on a thermometer } }
+    - { id: compare, what: { de: "Temperaturen vergleichen und ordnen: wärmer, kälter", en: "comparing and ordering temperatures: warmer, colder" } }
+    - { id: difference, what: { de: "ausrechnen, wie viel Grad wärmer oder kälter es ist", en: working out how many degrees warmer or colder } }
+    - { id: everyday, what: { de: Temperaturen aus dem Alltag kennen, en: knowing everyday temperatures } }
   misconceptions:
     - id: step-is-one
       what: Counts each mark as 1 degree on a thermometer marked in fives (reads 25 as 21)
@@ -215,6 +220,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -233,6 +239,26 @@ lessons:
             say: "The thermometer shows ten degrees Celsius. Is that true?"
             show: { drawn: thermometer, from: 0, to: 30, step: 5, value: 10 }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "What temperature does the thermometer show?"
+            show: { drawn: thermometer, from: 0, to: 30, step: 5, value: 25 }
+            options: ["25 °C", "22 °C", "30 °C"]
+            answer: "25 °C"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which thermometer shows 40 °C?"
+            say: "Which thermometer shows forty degrees Celsius?"
+            options:
+              - { drawn: thermometer, from: 0, to: 50, step: 5, value: 45, key: "45" }
+              - { drawn: thermometer, from: 0, to: 50, step: 5, value: 40, key: "40" }
+              - { drawn: thermometer, from: 0, to: 50, step: 5, value: 35, key: "35" }
+            answer: "40"
+          - id: l1-c6
+            type: text_input
+            text: "What temperature does the thermometer show? Write the number of degrees."
+            show: { drawn: thermometer, from: 0, to: 100, step: 10, value: 80 }
+            answer: "80"
 
   - n: 2
     title: { de: "Wärmer oder kälter?", en: "Warmer or colder?" }
@@ -401,19 +427,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "What temperature does the thermometer show?"
             show: { drawn: thermometer, from: 0, to: 50, step: 5, value: 40 }
             options: ["40 °C", "45 °C", "35 °C"]
             answer: "40 °C"
           - id: l2-c2
+            part: read
             type: text_input
             text: "What temperature does the thermometer show? Write the number of degrees."
             show: { drawn: thermometer, from: 0, to: 40, step: 5, value: 30 }
             answer: "30"
           - id: l2-c3
+            part: compare
             type: multiple_choice
             text: "Which day was the warmest?"
             show: { drawn: table, rows: [[Day, Temperature], [Thursday, "16 °C"], [Friday, "11 °C"], [Saturday, "19 °C"]] }
@@ -421,12 +451,125 @@ lessons:
             keep_order: true
             answer: "Saturday"
           - id: l2-c4
+            part: difference
             type: text_input
             text: "Monday was 8 °C. Tuesday was 17 °C. How many degrees warmer was Tuesday?"
             say: "Monday was eight degrees. Tuesday was seventeen degrees. How many degrees warmer was Tuesday?"
             answer: "9"
           - id: l2-c5
+            part: everyday
             type: true_false
             text: "A cold drink from the fridge is about 5 °C."
             say: "A cold drink from the fridge is about five degrees Celsius. Is that true?"
             answer: true
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "What temperature does the thermometer show?"
+            show: { drawn: thermometer, from: 0, to: 100, step: 10, value: 70 }
+            options: ["70 °C", "7 °C", "80 °C"]
+            answer: "70 °C"
+          - id: l2-c7
+            part: read
+            type: text_input
+            text: "What temperature does the thermometer show? Write the number of degrees."
+            show: { drawn: thermometer, from: 0, to: 100, step: 10, value: 60 }
+            answer: "60"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "The thermometer shows 35 °C."
+            say: "The thermometer shows thirty-five degrees Celsius. Is that true?"
+            show: { drawn: thermometer, from: 0, to: 50, step: 5, value: 35 }
+            answer: true
+          - id: l2-c9
+            part: compare
+            type: image_multiple_choice
+            text: "Which thermometer shows the coldest temperature?"
+            say: "Which thermometer shows the coldest temperature?"
+            options:
+              - { drawn: thermometer, from: 0, to: 40, step: 5, value: 25, key: "25" }
+              - { drawn: thermometer, from: 0, to: 40, step: 5, value: 15, key: "15" }
+              - { drawn: thermometer, from: 0, to: 40, step: 5, value: 30, key: "30" }
+            answer: "15"
+          - id: l2-c10
+            part: compare
+            type: ordering
+            text: "Put the temperatures in order, warmest first."
+            say: "Put the temperatures in order, from the warmest to the coldest."
+            options: ["14 °C", "32 °C", "7 °C", "21 °C"]
+            slot_count: 4
+            answer: ["32 °C", "21 °C", "14 °C", "7 °C"]
+          - id: l2-c11
+            part: compare
+            type: true_false
+            text: "17 °C is warmer than 23 °C."
+            say: "Seventeen degrees Celsius is warmer than twenty-three degrees Celsius. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: compare
+            type: multiple_choice
+            text: "On Monday, which town was warmer than Leeds?"
+            say: "Look at the table. On Monday, which town was warmer than Leeds?"
+            show: { drawn: table, rows: [[Town, Temperature], [Leeds, "9 °C"], [Bristol, "13 °C"], [York, "6 °C"]] }
+            options: ["Bristol", "York"]
+            keep_order: true
+            answer: "Bristol"
+          - id: l2-c13
+            part: difference
+            type: text_input
+            text: "At 8 am it was 6 °C. At noon it was 18 °C. How many degrees warmer was it at noon?"
+            say: "At eight in the morning it was six degrees. At noon it was eighteen degrees. How many degrees warmer was it at noon?"
+            answer: "12"
+          - id: l2-c14
+            part: difference
+            type: multiple_choice
+            text: "How much colder was Saturday than Friday?"
+            say: "Look at the table. How much colder was Saturday than Friday?"
+            show: { drawn: table, rows: [[Day, Temperature], [Friday, "24 °C"], [Saturday, "15 °C"]] }
+            options: ["9 degrees", "39 degrees", "11 degrees"]
+            answer: "9 degrees"
+          - id: l2-c15
+            part: difference
+            type: text_input
+            text: "A cup of tea was 70 °C. It cooled down by 20 degrees. What is its temperature now? Write the number of degrees."
+            say: "A cup of tea was seventy degrees. It cooled down by twenty degrees. What is its temperature now?"
+            answer: "50"
+          - id: l2-c16
+            part: difference
+            type: true_false
+            text: "In the morning it was 12 °C. In the afternoon it was 20 °C. It was 8 degrees warmer in the afternoon."
+            say: "In the morning it was twelve degrees. In the afternoon it was twenty degrees. It was eight degrees warmer in the afternoon. Is that true?"
+            answer: true
+          - id: l2-c17
+            part: everyday
+            type: image_multiple_choice
+            text: "Which of these is about 100 °C?"
+            say: "Which of these is about one hundred degrees Celsius?"
+            options:
+              - { object: kettle }
+              - { object: snowman }
+              - { object: ice-cream }
+            answer: "kettle"
+          - id: l2-c18
+            part: everyday
+            type: multiple_choice
+            text: "Which is the best temperature for a cold winter day?"
+            say: "Which is the best temperature for a cold winter day?"
+            options: ["2 °C", "25 °C", "60 °C"]
+            keep_order: true
+            answer: "2 °C"
+          - id: l2-c19
+            part: everyday
+            type: true_false
+            text: "A classroom is about 50 °C."
+            say: "A classroom is about fifty degrees Celsius. Is that true?"
+            answer: false
+          - id: l2-c20
+            part: everyday
+            type: multiple_choice
+            text: "About how warm is your body?"
+            say: "About how warm is your body?"
+            options: ["10 °C", "37 °C", "100 °C"]
+            keep_order: true
+            answer: "37 °C"

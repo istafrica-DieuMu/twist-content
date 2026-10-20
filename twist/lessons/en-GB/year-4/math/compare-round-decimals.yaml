@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [place-value-chart, number-line]
   facets: [number-format, currency]
+  parts:
+    - { id: compare, what: { de: Dezimalzahlen vergleichen, en: comparing decimals } }
+    - { id: order, what: { de: Dezimalzahlen ordnen, en: ordering decimals } }
+    - { id: round, what: { de: auf Ganze oder Zehntel runden, en: rounding to the nearest whole number or tenth } }
+    - { id: in-context, what: { de: "Längen, Gewichte und Preise vergleichen und runden", en: "comparing and rounding lengths, masses and prices" } }
   misconceptions:
     - id: longer-is-bigger
       what: Thinks a decimal with more digits is bigger (0.45 > 0.5, 1.09 > 1.1)
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -218,6 +224,25 @@ lessons:
             type: true_false
             text: "Is it true? 0.3 is greater than 0.25."
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Write <, > or =."
+            frame: "7.2 _ 7.19"
+            options: ["<", ">", "="]
+            option_audio: false
+            answer: [">"]
+          - id: l1-c5
+            type: ordering
+            text: "Put the numbers in order, smallest first."
+            options: ["3.3", "3.03", "0.33", "3.13"]
+            slot_count: 4
+            answer: ["0.33", "3.03", "3.13", "3.3"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Sara's ribbon is 0.6 m long. Jo's ribbon is 0.55 m long. Whose ribbon is longer?"
+            options: ["Sara's", "Jo's", "They are the same."]
+            keep_order: true
+            answer: "Sara's"
 
   - n: 2
     title: { de: Dezimalzahlen runden, en: Round decimals }
@@ -374,8 +399,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compare
             type: fill_in_blank
             text: "Write <, > or =."
             frame: "4.08 _ 4.8"
@@ -383,23 +410,122 @@ lessons:
             option_audio: false
             answer: ["<"]
           - id: l2-c2
+            part: order
             type: ordering
             text: "Put the numbers in order, smallest first."
             options: ["0.6", "0.06", "0.66", "0.16"]
             slot_count: 4
             answer: ["0.06", "0.16", "0.6", "0.66"]
           - id: l2-c3
+            part: round
             type: text_input
             text: "Round 8.6 to the nearest whole number."
             answer: "9"
           - id: l2-c4
+            part: round
             type: multiple_choice
             text: "Round 7.5 to the nearest whole number."
             options: ["7", "8", "7.5"]
             answer: "8"
           - id: l2-c5
+            part: round
             type: multiple_choice
             text: "Round 5.23 to the nearest tenth."
             options: ["5.2", "5.3", "5"]
             answer: "5.2"
             difficulty: stretch
+          - id: l2-c6
+            part: compare
+            type: fill_in_blank
+            text: "Write <, > or =."
+            frame: "0.7 _ 0.70"
+            options: ["<", ">", "="]
+            option_audio: false
+            answer: ["="]
+          - id: l2-c7
+            part: compare
+            type: multiple_choice
+            text: "Which is the smallest?"
+            options: ["0.5", "0.35", "0.53"]
+            answer: "0.35"
+          - id: l2-c8
+            part: compare
+            type: true_false
+            text: "Is it true? 6.4 is greater than 6.38."
+            answer: true
+          - id: l2-c9
+            part: compare
+            type: fill_in_blank
+            text: "Which digit makes it true?"
+            frame: "0.4_ > 0.48"
+            options: ["2", "7", "9"]
+            answer: ["9"]
+          - id: l2-c10
+            part: order
+            type: ordering
+            text: "Put the numbers in order, greatest first."
+            options: ["2.5", "2.05", "5.2", "2.55"]
+            slot_count: 4
+            answer: ["5.2", "2.55", "2.5", "2.05"]
+          - id: l2-c11
+            part: order
+            type: ordering
+            text: "Put the numbers in order, smallest first."
+            options: ["1.4", "1.04", "0.41", "1.44"]
+            slot_count: 4
+            answer: ["0.41", "1.04", "1.4", "1.44"]
+          - id: l2-c12
+            part: order
+            type: multiple_choice
+            text: "Which list is in order, smallest first?"
+            options: ["0.2, 0.25, 0.3", "0.25, 0.2, 0.3", "0.3, 0.25, 0.2"]
+            answer: "0.2, 0.25, 0.3"
+          - id: l2-c13
+            part: order
+            type: multiple_choice
+            text: "Put 3.7, 3.07 and 3.17 in order. Which number comes in the middle?"
+            options: ["3.7", "3.07", "3.17"]
+            answer: "3.17"
+          - id: l2-c14
+            part: round
+            type: text_input
+            text: "Round 4.4 to the nearest whole number."
+            answer: "4"
+          - id: l2-c15
+            part: round
+            type: true_false
+            text: "Is it true? 6.5 rounds to 6 to the nearest whole number."
+            answer: false
+          - id: l2-c16
+            part: round
+            type: multiple_choice
+            text: "Round 6.75 to the nearest tenth."
+            options: ["6.7", "6.8", "7"]
+            answer: "6.8"
+            difficulty: stretch
+          - id: l2-c17
+            part: in-context
+            type: multiple_choice
+            text: "A sunflower is 1.8 m tall. How tall is it to the nearest metre?"
+            options: ["1 m", "2 m", "8 m"]
+            answer: "2 m"
+          - id: l2-c18
+            part: in-context
+            type: multiple_choice
+            text: "Ali runs 100 m in 15.4 seconds. Ben runs 100 m in 15.38 seconds. Who is faster?"
+            options: ["Ali", "Ben", "They are just as fast."]
+            keep_order: true
+            answer: "Ben"
+          - id: l2-c19
+            part: in-context
+            type: ordering
+            text: "Put the parcels in order, lightest first."
+            options: ["1.5 kg", "1.25 kg", "0.9 kg", "1.52 kg"]
+            slot_count: 4
+            answer: ["0.9 kg", "1.25 kg", "1.5 kg", "1.52 kg"]
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "Is it true? A book costs £4.50 and a game costs £4.05. The book costs more."
+            say: "Is it true? A book costs four pounds fifty, and a game costs four pounds five. The book costs more."
+            answer: true

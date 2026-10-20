@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: question-words, what: { de: "das Fragewort für das wählen, was man wissen will", en: choosing the question word for what you want to find out } }
+    - { id: on-topic, what: { de: "eine Frage zu dem wählen, was gerade gesagt wurde", en: choosing a question about what was just said } }
+    - { id: something-new, what: { de: "eine Frage wählen, die etwas Neues herausfindet", en: choosing a question that finds out something new } }
+    - { id: story, what: { de: "eine Frage wählen, die hilft, eine Geschichte besser zu verstehen", en: choosing a question that helps you understand a story } }
   misconceptions:
     - id: off-topic
       what: Asks about something else that is on their mind, not about what was just said
@@ -50,7 +55,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
-            text: "Listen. What does Miss Shah want you to do?"
+            text: "Miss Shah says: \"Please put your book in your bag.\"\n\nWhat does Miss Shah want you to do?"
             audio: { en: "Please put your book in your bag.", speaker: female }
             options: ["put the book in the bag", "read the book", "take the bag home"]
             answer: "put the book in the bag"
@@ -197,6 +202,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -214,6 +220,22 @@ lessons:
             type: true_false
             text: "Is it true? \"Why are you laughing?\" asks for a reason."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "You want to know the person who drew this picture. Which question do you ask?"
+            options: ["Who drew this picture?", "When did you draw it?", "Where is the picture?"]
+            answer: "Who drew this picture?"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "You want to know which toy your friend likes best. Which word fits?"
+            say: "You want to know which toy your friend likes best. Which question word fits?"
+            frame: "_ is your best toy?"
+            options: ["When", "What", "Who"]
+            answer: ["What"]
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? \"Who is your teacher?\" asks about a place."
+            answer: false
 
   - n: 2
     title: { de: "Fragen, die passen", en: "Questions that fit" }
@@ -255,7 +277,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
-                text: "Listen to Tom. Which question fits?"
+                text: "Tom says: \"I went to the zoo on Saturday.\"\n\nWhich question fits?"
                 audio: { en: "I went to the zoo on Saturday.", speaker: male }
                 options: ["Which animals did you see?", "Do you like my shoes?", "What is for lunch?"]
                 answer: "Which animals did you see?"
@@ -268,7 +290,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
-                text: "Listen to Amara. Which question finds out something new?"
+                text: "Amara says: \"I have a new puppy. She is brown.\"\n\nWhich question finds out something new?"
                 audio: { en: "I have a new puppy. She is brown.", speaker: female }
                 options: ["What is her name?", "What colour is she?", "Do you have a puppy?"]
                 answer: "What is her name?"
@@ -317,14 +339,14 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
-                text: "Listen to Leo. Which question fits?"
+                text: "Leo says: \"I was in a football match yesterday.\"\n\nWhich question fits?"
                 audio: { en: "I was in a football match yesterday.", speaker: male }
                 options: ["Did your team win?", "Is it raining?", "Can I have your pencil?"]
                 answer: "Did your team win?"
                 hints: ["Leo told you about football."]
               - id: l2-s2
                 type: audio_choice
-                text: "Listen to Grace. Which question finds out something new?"
+                text: "Grace says: \"I went to see my gran. She lives by the sea.\"\n\nWhich question finds out something new?"
                 audio: { en: "I went to see my gran. She lives by the sea.", speaker: female }
                 options: ["What did you do there?", "Where does your gran live?", "Did you see your gran?"]
                 answer: "What did you do there?"
@@ -361,13 +383,13 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
-                text: "Listen to Kemi. Which question fits?"
+                text: "Kemi says: \"I am learning to swim.\"\n\nWhich question fits?"
                 audio: { en: "I am learning to swim.", speaker: female }
                 options: ["Where do you go swimming?", "What is your cat called?", "Is it lunchtime?"]
                 answer: "Where do you go swimming?"
               - id: l2-n2
                 type: audio_choice
-                text: "Listen to Jack. Which question finds out something new?"
+                text: "Jack says: \"I made a cake with my dad. It was chocolate.\"\n\nWhich question finds out something new?"
                 audio: { en: "I made a cake with my dad. It was chocolate.", speaker: male }
                 options: ["Did you eat it all?", "What kind of cake was it?", "Who made the cake?"]
                 answer: "Did you eat it all?"
@@ -398,19 +420,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: question-words
             type: multiple_choice
             text: "You want to know the time the film starts. Which question do you ask?"
             options: ["When does the film start?", "Where is the film?", "Who is in the film?"]
             answer: "When does the film start?"
           - id: l2-c2
+            part: on-topic
             type: audio_choice
-            text: "Listen to Ruby. Which question fits?"
+            text: "Ruby says: \"I am going to a birthday party today.\"\n\nWhich question fits?"
             audio: { en: "I am going to a birthday party today.", speaker: female }
             options: ["Whose party is it?", "Can I borrow a pencil?", "Do you like rain?"]
             answer: "Whose party is it?"
           - id: l2-c3
+            part: on-topic
             type: sorting
             text: "Dev says: \"I went fishing with my uncle.\"\n\nOn the topic or not?"
             say: "Dev says: I went fishing with my uncle. Sort the questions. Are they about fishing, or not?"
@@ -424,14 +450,123 @@ lessons:
               - { text: "Is it PE today?", bin: no }
               - { text: "Do you like my hat?", bin: no }
           - id: l2-c4
+            part: something-new
             type: audio_choice
-            text: "Listen to Sam. Which question finds out something new?"
+            text: "Sam says: \"I have a pet snake. He is green.\"\n\nWhich question finds out something new?"
             audio: { en: "I have a pet snake. He is green.", speaker: male }
             options: ["What does he eat?", "What colour is he?", "Do you have a snake?"]
             answer: "What does he eat?"
           - id: l2-c5
+            part: story
             type: multiple_choice
             text: "Story: Rosie found a key in the sand.\n\nWhich question helps you understand more?"
             say: "Listen. Rosie found a key in the sand. Which question helps you understand more?"
             options: ["What does the key open?", "What is your name?", "Is it lunchtime?"]
             answer: "What does the key open?"
+          - id: l2-c6
+            part: question-words
+            type: fill_in_blank
+            text: "You want to know the reason your friend is late. Which word fits?"
+            say: "You want to know the reason your friend is late. Which question word fits?"
+            frame: "_ are you late?"
+            options: ["Who", "Why", "Where"]
+            answer: ["Why"]
+          - id: l2-c7
+            part: question-words
+            type: matching
+            text: "Match each question to what it finds out."
+            pairs:
+              - { left: { text: "Where is my hat?" }, right: { text: "a place" } }
+              - { left: { text: "Who is at the door?" }, right: { text: "a person" } }
+              - { left: { text: "When is lunch?" }, right: { text: "a time" } }
+          - id: l2-c8
+            part: question-words
+            type: true_false
+            text: "Is it true? \"When is your swimming lesson?\" asks about a place."
+            answer: false
+          - id: l2-c9
+            part: question-words
+            type: multiple_choice
+            text: "You want to know the thing that is in the box. Which question do you ask?"
+            options: ["Who is in the box?", "What is in the box?", "When is the box?"]
+            answer: "What is in the box?"
+          - id: l2-c10
+            part: on-topic
+            type: audio_choice
+            text: "Ella says: \"We had a picnic in the park.\"\n\nWhich question fits?"
+            audio: { en: "We had a picnic in the park.", speaker: female }
+            options: ["Is it my turn?", "What did you eat?", "Where is my bag?"]
+            answer: "What did you eat?"
+          - id: l2-c11
+            part: on-topic
+            type: true_false
+            text: "Finn says: \"I built a sandcastle at the beach.\"\n\nIs it true? \"Do you like carrots?\" is a good question to ask Finn."
+            say: "Finn says: I built a sandcastle at the beach. Is it true? Do you like carrots? is a good question to ask Finn."
+            answer: false
+          - id: l2-c12
+            part: on-topic
+            type: multiple_choice
+            text: "Mrs Khan says: \"After lunch we will paint pictures.\"\n\nWhich question is on the topic?"
+            say: "Mrs Khan says: After lunch we will paint pictures. Which question is on the topic?"
+            options: ["Can I sit by the window?", "Is it raining?", "What will we paint?"]
+            answer: "What will we paint?"
+          - id: l2-c13
+            part: something-new
+            type: audio_choice
+            text: "Noah says: \"I went to the farm. I fed the lambs.\"\n\nWhich question finds out something new?"
+            audio: { en: "I went to the farm. I fed the lambs.", speaker: male }
+            options: ["Did you go to the farm?", "Did you see any pigs?", "What did you feed?"]
+            answer: "Did you see any pigs?"
+          - id: l2-c14
+            part: something-new
+            type: true_false
+            text: "Lily says: \"My cat is called Pip. She is black.\"\n\nIs it true? \"What is your cat called?\" finds out something new."
+            say: "Lily says: My cat is called Pip. She is black. Is it true? What is your cat called? finds out something new."
+            answer: false
+          - id: l2-c15
+            part: something-new
+            type: multiple_choice
+            text: "Omar says: \"I went to the cinema with my mum.\"\n\nWhich question finds out something new?"
+            say: "Omar says: I went to the cinema with my mum. Which question finds out something new?"
+            options: ["Who did you go with?", "Which film did you see?", "Did you go to the cinema?"]
+            answer: "Which film did you see?"
+          - id: l2-c16
+            part: something-new
+            type: true_false
+            text: "Zara says: \"I have a new coat. It is red.\"\n\nIs it true? \"Where did you get it?\" finds out something new."
+            say: "Zara says: I have a new coat. It is red. Is it true? Where did you get it? finds out something new."
+            answer: true
+          - id: l2-c17
+            part: story
+            type: multiple_choice
+            text: "Story: A cat climbed up a tall tree. Then it began to cry.\n\nWhich question helps you understand more?"
+            say: "Listen. A cat climbed up a tall tree. Then it began to cry. Which question helps you understand more?"
+            options: ["Do you have a dog?", "How will the cat get down?", "What is for tea?"]
+            answer: "How will the cat get down?"
+          - id: l2-c18
+            part: story
+            type: sorting
+            text: "Story: Sam's kite flew away in the wind.\n\nDoes the question help you understand the story?"
+            say: "Listen. Sam's kite flew away in the wind. Sort the questions. Do they help you understand the story, or not?"
+            option_audio: false
+            bins:
+              - { id: yes, show: { text: "helps" }, say: "Helps." }
+              - { id: no, show: { text: "does not help" }, say: "Does not help." }
+            options:
+              - { text: "What is your name?", bin: no }
+              - { text: "Where did the kite go?", bin: yes }
+              - { text: "Is it home time?", bin: no }
+              - { text: "Did Sam get it back?", bin: yes }
+          - id: l2-c19
+            part: story
+            type: true_false
+            text: "Story: Dan found a tiny bird on the path. It could not fly.\n\nIs it true? \"Why could the bird not fly?\" helps you understand the story."
+            say: "Listen. Dan found a tiny bird on the path. It could not fly. Is it true? Why could the bird not fly? helps you understand the story."
+            answer: true
+          - id: l2-c20
+            part: story
+            type: multiple_choice
+            text: "Story: The children went to the beach. They forgot their picnic.\n\nWhich question helps you understand more?"
+            say: "Listen. The children went to the beach. They forgot their picnic. Which question helps you understand more?"
+            options: ["What did they eat?", "Do you like my shoes?", "What day is it today?"]
+            answer: "What did they eat?"

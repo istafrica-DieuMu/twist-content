@@ -11,6 +11,9 @@ summary: >
   sounds and to words that start with them; lesson 2 blends them with s,
   a, t and p into words (in, man, dip, pin) and ends with the skill check.
   The sounds are played from the sound bank, never as letter names.
+  Writing the letters in words is practised in Practise (the missing
+  letter) and in segment-spell; the skill check marks the sounds and
+  reading the words.
 metadata:
   year: reception
   topic: { de: "Laute und Buchstaben", en: "Phonics" }
@@ -21,8 +24,13 @@ metadata:
   vocabulary: { en: [sound, letter, blend, word] }
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
-  sounds: [en.i, en.n, en.m, en.d]
+  sounds: [en.i, en.n, en.m, en.d, en.a]
   facets: []
+  parts:
+    - { id: i-d, what: { de: die Laute von i und d kennen, en: knowing the sounds of i and d } }
+    - { id: m-n, what: { de: m und n unterscheiden, en: telling m from n } }
+    - { id: vowel, what: { de: "i und a in der Mitte eines Wortes unterscheiden (pin, pan)", en: "telling i from a in the middle of a word (pin, pan)" } }
+    - { id: words, what: { de: "Wörter mit i, n, m und d lesen (tin, mad, sip)", en: "reading words with i, n, m and d (tin, mad, sip)" } }
   misconceptions:
     - id: m-n-mixup
       what: Mixes up m and n, two humming sounds
@@ -104,9 +112,10 @@ lessons:
                   - "It is the letter with a dot on top."
               - id: l1-f4
                 type: true_false
-                text: "Does it start with this letter?"
-                say: "Nose. Does nose start with this letter?"
-                show: { drawn: letter-card, text: "n" }
+                text: "Does it start with n?"
+                say: "Nose. Does nose start with this sound? Listen."
+                audio: { sound: en.n }
+                show: { object: nose }
                 answer: true
                 hints:
                   - "Say nose slowly. Listen to the start."
@@ -154,9 +163,10 @@ lessons:
                 hints: ["Dog starts with this sound."]
               - id: l1-s4
                 type: true_false
-                text: "Does it start with this letter?"
-                say: "Monkey. Does monkey start with this letter?"
-                show: { drawn: letter-card, text: "n" }
+                text: "Does it start with n?"
+                say: "Monkey. Does monkey start with this sound? Listen."
+                audio: { sound: en.n }
+                show: { object: monkey }
                 answer: false
                 hints: ["Say monkey slowly. Listen to the very first sound."]
               - id: l1-s5
@@ -193,9 +203,10 @@ lessons:
                 answer: "n"
               - id: l1-n4
                 type: true_false
-                text: "Does it start with this letter?"
-                say: "Dad. Does dad start with this letter?"
-                show: { drawn: letter-card, text: "d" }
+                text: "Does it start with d?"
+                say: "Dad. Does dad start with this sound? Listen."
+                audio: { sound: en.d }
+                show: { object: dad }
                 answer: true
               - id: l1-n5
                 type: image_multiple_choice
@@ -207,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -224,10 +236,32 @@ lessons:
             answer: nose
           - id: l1-c3
             type: true_false
-            text: "Does it start with this letter?"
-            say: "Mum. Does mum start with this letter?"
-            show: { drawn: letter-card, text: "m" }
+            text: "Does it start with m?"
+            say: "Mum. Does mum start with this sound? Listen."
+            audio: { sound: en.m }
+            show: { object: mum }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Which letter is it? Listen."
+            audio: { sound: en.i }
+            options: ["d", "m", "i"]
+            answer: "i"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "What starts with the sound of this letter? Tap the picture."
+            show: { drawn: letter-card, text: "d" }
+            options: [{ object: nose }, { object: ant }, { object: duck }]
+            answer: duck
+          - id: l1-c6
+            type: true_false
+            text: "Does it start with d?"
+            say: "Sun. Does sun start with this sound? Listen."
+            audio: { sound: en.d }
+            show: { object: sun }
+            answer: false
 
   - n: 2
     title: { de: "in, man, dip", en: "in, man, dip" }
@@ -268,18 +302,20 @@ lessons:
               - id: l2-f2
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Mad. Which letter is missing at the start of mad?"
-                frame: "_ad"
+                say: "Map. Which letter is missing at the start of map?"
+                show: { object: map }
+                frame: "_ap"
                 options: ["m", "n", "d"]
                 answer: ["m"]
                 hints:
-                  - "Say mad slowly. What is the first sound?"
+                  - "Say map slowly. What is the first sound?"
                   - "Your lips are closed at the start, like milk."
-                  - "Mad starts like milk. Tap the letter milk starts with."
+                  - "Map starts like milk. Tap the letter milk starts with."
               - id: l2-f3
                 type: true_false
-                text: "Is this the word?"
-                say: "It. Does the card say it?"
+                text: "Does the card say the word you hear?"
+                say: "Does the card say this word? Listen."
+                audio: { en: "It." }
                 show: { drawn: letter-card, text: "it" }
                 answer: true
                 hints:
@@ -289,7 +325,8 @@ lessons:
               - id: l2-f4
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Sit. Which letter is missing in the middle of sit?"
+                say: "Which letter is missing in the middle of this word? Listen."
+                audio: { en: "Sit." }
                 frame: "s_t"
                 options: ["i", "a", "n"]
                 answer: ["i"]
@@ -324,22 +361,25 @@ lessons:
               - id: l2-s2
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Tin. Which letter is missing at the end of tin?"
+                say: "Which letter is missing at the end of this word? Listen."
+                audio: { en: "Tin." }
                 frame: "ti_"
                 options: ["m", "d", "n"]
                 answer: ["n"]
                 hints: ["Say tin slowly. Listen to the last sound. Are your lips open or closed?"]
               - id: l2-s3
                 type: true_false
-                text: "Is this the word?"
-                say: "Nap. Does the card say nap?"
+                text: "Does the card say the word you hear?"
+                say: "Does the card say this word? Listen."
+                audio: { en: "Nap." }
                 show: { drawn: letter-card, text: "map" }
                 answer: false
                 hints: ["Point to each letter and say its sound. Listen to the first one."]
               - id: l2-s4
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Pan. Which letter is missing in the middle of pan?"
+                say: "Which letter is missing in the middle of this word? Listen."
+                audio: { en: "Pan." }
                 frame: "p_n"
                 options: ["a", "i", "m"]
                 answer: ["a"]
@@ -365,20 +405,23 @@ lessons:
               - id: l2-n2
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Did. Which letter is missing at the end of did?"
+                say: "Which letter is missing at the end of this word? Listen."
+                audio: { en: "Did." }
                 frame: "di_"
                 options: ["d", "t", "n"]
                 answer: ["d"]
               - id: l2-n3
                 type: true_false
-                text: "Is this the word?"
-                say: "Sad. Does the card say sad?"
+                text: "Does the card say the word you hear?"
+                say: "Does the card say this word? Listen."
+                audio: { en: "Sad." }
                 show: { drawn: letter-card, text: "sad" }
                 answer: true
               - id: l2-n4
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Mat. Which letter is missing at the start of mat?"
+                say: "Which letter is missing at the start of this word? Listen."
+                audio: { en: "Mat." }
                 frame: "_at"
                 options: ["n", "m", "d"]
                 answer: ["m"]
@@ -392,8 +435,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: i-d
             type: audio_choice
             text: "Which letter makes this sound?"
             say: "Listen to the sound. Tap its letter."
@@ -401,6 +446,7 @@ lessons:
             options: ["a", "i", "n"]
             answer: "i"
           - id: l2-c2
+            part: i-d
             type: image_multiple_choice
             text: "What starts with this letter?"
             say: "Which picture starts with the sound of this letter?"
@@ -408,6 +454,7 @@ lessons:
             options: [{ object: mouse }, { object: nose }, { object: dog }]
             answer: dog
           - id: l2-c3
+            part: vowel
             type: audio_choice
             text: "Which word do you hear?"
             say: "Which word is it? Listen."
@@ -415,9 +462,138 @@ lessons:
             options: ["pin", "pan", "nap"]
             answer: "pan"
           - id: l2-c4
-            type: fill_in_blank
-            text: "Which letter is missing?"
-            say: "Pit. Which letter is missing in the middle of pit?"
-            frame: "p_t"
-            options: ["i", "a", "d"]
-            answer: ["i"]
+            part: words
+            type: multiple_choice
+            text: "Which word goes with the picture?"
+            say: "Look at the picture. Which word goes with it? Read the words."
+            show: { object: sad }
+            options: ["sat", "sad", "mad"]
+            answer: "sad"
+            option_audio: false
+          - id: l2-c5
+            part: i-d
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Listen to the sound. Tap its letter."
+            audio: { sound: en.d }
+            options: ["a", "t", "d"]
+            answer: "d"
+          - id: l2-c6
+            part: m-n
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Listen to the sound. Tap its letter."
+            audio: { sound: en.n }
+            options: ["n", "m", "t"]
+            answer: "n"
+          - id: l2-c7
+            part: vowel
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "sit" }
+            options: ["sat", "sit", "sip"]
+            answer: "sit"
+          - id: l2-c8
+            part: words
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "map" }
+            options: [{ object: mouse }, { object: milk }, { object: map }]
+            answer: map
+            option_audio: false
+          - id: l2-c9
+            part: i-d
+            type: true_false
+            text: "Does it end with d?"
+            say: "Bed. Does bed end with this sound? Listen."
+            audio: { sound: en.d }
+            show: { object: bed }
+            answer: true
+          - id: l2-c10
+            part: m-n
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "Which picture starts with the sound of this letter?"
+            show: { drawn: letter-card, text: "m" }
+            options: [{ object: nose }, { object: milk }, { object: bed }]
+            answer: milk
+          - id: l2-c11
+            part: vowel
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "pat" }
+            options: ["pit", "tap", "pat"]
+            answer: "pat"
+          - id: l2-c12
+            part: words
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "ant" }
+            options: [{ object: apple }, { object: ant }, { object: anchor }]
+            answer: ant
+            option_audio: false
+          - id: l2-c13
+            part: vowel
+            type: true_false
+            text: "Do you hear a in the middle?"
+            say: "Cat. Do you hear this sound in the middle of cat? Listen."
+            audio: { sound: en.a }
+            show: { object: cat }
+            answer: true
+          - id: l2-c14
+            part: m-n
+            type: true_false
+            text: "Does it start with m?"
+            say: "Nose. Does nose start with this sound? Listen."
+            audio: { sound: en.m }
+            show: { object: nose }
+            answer: false
+          - id: l2-c15
+            part: words
+            type: true_false
+            text: "dad"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: dad }
+            answer: true
+          - id: l2-c16
+            part: i-d
+            type: image_multiple_choice
+            text: "Which has this sound in the middle?"
+            say: "Look at the letter. Which word has its sound in the middle? Tap the picture."
+            show: { drawn: letter-card, text: "i" }
+            options: [{ object: sock }, { object: cup }, { object: pig }]
+            answer: pig
+          - id: l2-c17
+            part: m-n
+            type: true_false
+            text: "nap"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: map }
+            answer: false
+          - id: l2-c18
+            part: m-n
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "map" }
+            options: ["nap", "map", "mat"]
+            answer: "map"
+          - id: l2-c19
+            part: vowel
+            type: true_false
+            text: "Do you hear i in the middle?"
+            say: "Hat. Do you hear this sound in the middle of hat? Listen."
+            audio: { sound: en.i }
+            show: { object: hat }
+            answer: false
+          - id: l2-c20
+            part: words
+            type: true_false
+            text: "tin"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: bin }
+            answer: false

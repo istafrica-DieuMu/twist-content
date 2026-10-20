@@ -25,6 +25,11 @@ metadata:
   forms: [audio, picture, drawn]
   drawn: [colour-swatch]
   facets: []
+  parts:
+    - { id: first-colours, what: { de: "rouge, bleu, jaune, vert und orange verstehen", en: "understanding rouge, bleu, jaune, vert and orange" } }
+    - { id: more-colours, what: { de: "violet, rose, marron, noir und blanc verstehen", en: "understanding violet, rose, marron, noir and blanc" } }
+    - { id: thing-colour, what: { de: "verstehen, welche Farbe etwas hat (c'est ...)", en: "understanding what colour something is (c'est ...)" } }
+    - { id: favourite, what: { de: "verstehen, welche Farbe jemand mag", en: understanding which colour someone likes } }
   misconceptions:
     - id: rose-is-red
       what: Hears rose and thinks of red, because an English rose is often a red flower
@@ -257,6 +262,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -284,6 +290,32 @@ lessons:
               - { object: ball, colour: red }
               - { object: ball, colour: blue }
             answer: blue
+          - id: l1-c4
+            type: audio_choice
+            text: "Tap the crayon."
+            say: { en: "Listen. Which crayon is it? Tap it." }
+            audio: { fr: "C'est orange." }
+            options:
+              - { object: crayon, colour: red }
+              - { object: crayon, colour: orange }
+              - { object: crayon, colour: yellow }
+            answer: orange
+          - id: l1-c5
+            type: true_false
+            text: "Does the colour match?"
+            say: { en: "Listen. Does the colour match?", fr: "Vert." }
+            show: { object: frog }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "You hear two colours. Tap the one you hear second."
+            say: { en: "Listen. You hear two colours. Tap the one you hear second." }
+            audio: { turns: [{ fr: "Jaune." }, { fr: "Rouge." }] }
+            options:
+              - { drawn: colour-swatch, colour: yellow }
+              - { drawn: colour-swatch, colour: blue }
+              - { drawn: colour-swatch, colour: red }
+            answer: red
 
   - n: 2
     title: { de: "Rose, violet, noir", en: "Rose, violet, noir" }
@@ -374,7 +406,7 @@ lessons:
                 type: audio_choice
                 text: "Which colour is the favourite?"
                 say: { en: "Listen. Which colour is the favourite?" }
-                audio: { fr: "Ma couleur préférée, c'est le noir." }
+                audio: { fr: "Ma couleur préférée, c'est le noir.", speaker: female }
                 options:
                   - { drawn: colour-swatch, colour: white }
                   - { drawn: colour-swatch, colour: black }
@@ -417,7 +449,7 @@ lessons:
                 type: audio_choice
                 text: "Which colour is the favourite?"
                 say: { en: "Listen. Which colour is the favourite?" }
-                audio: { fr: "Ma couleur préférée, c'est le blanc." }
+                audio: { fr: "Ma couleur préférée, c'est le blanc.", speaker: male }
                 options:
                   - { drawn: colour-swatch, colour: white }
                   - { drawn: colour-swatch, colour: black }
@@ -484,8 +516,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: thing-colour
             type: audio_choice
             text: "Tap the jumper."
             say: { en: "Listen. Which jumper is it? Tap it." }
@@ -496,6 +530,7 @@ lessons:
               - { object: jumper, colour: yellow }
             answer: red
           - id: l2-c2
+            part: more-colours
             type: audio_choice
             text: "Which colour do you hear?"
             say: { en: "Listen. Which colour do you hear?" }
@@ -506,24 +541,166 @@ lessons:
               - { drawn: colour-swatch, colour: black }
             answer: black
           - id: l2-c3
+            part: first-colours
             type: true_false
             text: "Does the colour match?"
             say: { en: "Listen. Does the colour match?", fr: "Vert." }
             show: { object: leaf, colour: green }
             answer: true
           - id: l2-c4
+            part: favourite
             type: audio_choice
             text: "Which colour is the favourite?"
             say: { en: "Listen. Which colour is the favourite?" }
-            audio: { fr: "Ma couleur préférée, c'est le jaune." }
+            audio: { fr: "Ma couleur préférée, c'est le jaune.", speaker: male }
             options:
               - { drawn: colour-swatch, colour: orange }
               - { drawn: colour-swatch, colour: white }
               - { drawn: colour-swatch, colour: yellow }
             answer: yellow
           - id: l2-c5
+            part: more-colours
             type: true_false
             text: "Does the colour match?"
             say: { en: "Listen. Does the colour match?", fr: "Rose." }
             show: { object: balloon, colour: purple }
             answer: false
+          - id: l2-c6
+            part: first-colours
+            type: audio_choice
+            text: "Which colour do you hear?"
+            say: { en: "Listen. Which colour do you hear?" }
+            audio: { fr: "Orange." }
+            options:
+              - { drawn: colour-swatch, colour: red }
+              - { drawn: colour-swatch, colour: yellow }
+              - { drawn: colour-swatch, colour: orange }
+            answer: orange
+          - id: l2-c7
+            part: first-colours
+            type: true_false
+            text: "Does the colour match?"
+            say: { en: "Listen. Does the colour match?", fr: "Jaune." }
+            show: { object: sun }
+            answer: true
+          - id: l2-c8
+            part: first-colours
+            type: audio_choice
+            text: "You hear two colours. Tap the one you hear second."
+            say: { en: "Listen. You hear two colours. Tap the one you hear second." }
+            audio: { turns: [{ fr: "Rouge." }, { fr: "Bleu." }] }
+            options:
+              - { drawn: colour-swatch, colour: red }
+              - { drawn: colour-swatch, colour: green }
+              - { drawn: colour-swatch, colour: blue }
+            answer: blue
+          - id: l2-c9
+            part: first-colours
+            type: true_false
+            text: "Does the colour match?"
+            say: { en: "Listen. Does the colour match?", fr: "Vert." }
+            show: { object: tomato }
+            answer: false
+          - id: l2-c10
+            part: more-colours
+            type: audio_choice
+            text: "Which colour do you hear?"
+            say: { en: "Listen. Which colour do you hear?" }
+            audio: { fr: "Marron." }
+            options:
+              - { drawn: colour-swatch, colour: orange }
+              - { drawn: colour-swatch, colour: brown }
+              - { drawn: colour-swatch, colour: black }
+            answer: brown
+          - id: l2-c11
+            part: more-colours
+            type: true_false
+            text: "Does the colour match?"
+            say: { en: "Listen. Does the colour match?", fr: "Blanc." }
+            show: { object: snowman }
+            answer: true
+          - id: l2-c12
+            part: more-colours
+            type: audio_choice
+            text: "You hear two colours. Tap the one you hear first."
+            say: { en: "Listen. You hear two colours. Tap the one you hear first." }
+            audio: { turns: [{ fr: "Violet." }, { fr: "Noir." }] }
+            options:
+              - { drawn: colour-swatch, colour: pink }
+              - { drawn: colour-swatch, colour: black }
+              - { drawn: colour-swatch, colour: purple }
+            answer: purple
+          - id: l2-c13
+            part: thing-colour
+            type: audio_choice
+            text: "Tap the car."
+            say: { en: "Listen. Which car is it? Tap it." }
+            audio: { fr: "C'est marron." }
+            options:
+              - { object: car, colour: orange }
+              - { object: car, colour: brown }
+              - { object: car, colour: red }
+            answer: brown
+          - id: l2-c14
+            part: thing-colour
+            type: audio_choice
+            text: "Tap the dress."
+            say: { en: "Listen. Which dress is it? Tap it." }
+            audio: { fr: "C'est vert." }
+            options:
+              - { object: dress, colour: blue }
+              - { object: dress, colour: yellow }
+              - { object: dress, colour: green }
+            answer: green
+          - id: l2-c15
+            part: thing-colour
+            type: true_false
+            text: "Hugo asks what colour the T-shirt is. Is Léa's answer right?"
+            say: { en: "Hugo asks what colour the T-shirt is. Listen. Is Léa's answer right?" }
+            audio: { turns: [{ fr: "C'est de quelle couleur ?", speaker: male }, { fr: "C'est rose.", speaker: female }] }
+            show: { object: t-shirt, colour: pink }
+            answer: true
+          - id: l2-c16
+            part: thing-colour
+            type: true_false
+            text: "Léa asks what colour the jacket is. Is Hugo's answer right?"
+            say: { en: "Léa asks what colour the jacket is. Listen. Is Hugo's answer right?" }
+            audio: { turns: [{ fr: "C'est de quelle couleur ?", speaker: female }, { fr: "C'est bleu.", speaker: male }] }
+            show: { object: jacket, colour: red }
+            answer: false
+          - id: l2-c17
+            part: favourite
+            type: audio_choice
+            text: "Hugo and Léa say what colour they like. Which colour does Léa like?"
+            say: { en: "Listen. Hugo and Léa say what colour they like. Which colour does Léa like?" }
+            audio: { turns: [{ fr: "Je m'appelle Hugo. J'aime le bleu.", speaker: male }, { fr: "Je m'appelle Léa. J'aime le violet.", speaker: female }] }
+            options:
+              - { drawn: colour-swatch, colour: blue }
+              - { drawn: colour-swatch, colour: pink }
+              - { drawn: colour-swatch, colour: purple }
+            answer: purple
+          - id: l2-c18
+            part: favourite
+            type: true_false
+            text: "Manon says her favourite colour. Is it red?"
+            say: { en: "Listen. Manon says her favourite colour. Is it red?" }
+            audio: { fr: "Ma couleur préférée, c'est le rose.", speaker: female }
+            answer: false
+          - id: l2-c19
+            part: favourite
+            type: audio_choice
+            text: "Théo says which colour he likes. Tap the ball in that colour."
+            say: { en: "Listen. Théo says which colour he likes. Tap the ball in that colour." }
+            audio: { fr: "J'aime le vert.", speaker: male }
+            options:
+              - { object: ball, colour: blue }
+              - { object: ball, colour: yellow }
+              - { object: ball, colour: green }
+            answer: green
+          - id: l2-c20
+            part: favourite
+            type: true_false
+            text: "Does Jules like orange best?"
+            say: { en: "Listen. Does Jules like orange best?" }
+            audio: { fr: "Ma couleur préférée, c'est l'orange.", speaker: male }
+            answer: true

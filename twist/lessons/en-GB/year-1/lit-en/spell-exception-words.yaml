@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: first-words, what: { de: "said, was, are, you, they, come, some, one, my, friend, house und school schreiben", en: "spelling said, was, are, you, they, come, some, one, my, friend, house and school" } }
+    - { id: days, what: { de: die Wochentage mit Großbuchstaben schreiben, en: spelling the days of the week with a capital letter } }
+    - { id: more-words, what: { de: "push, pull, full, put, there, where und here schreiben", en: "spelling push, pull, full, put, there, where and here" } }
+    - { id: from-memory, what: { de: ein Ausnahmewort ganz aus dem Gedächtnis in einen Satz schreiben, en: writing a whole tricky word from memory in a sentence } }
   misconceptions:
     - id: spell-as-heard
       what: Spells an exception word the way it sounds (sed, woz, wun, frend)
@@ -228,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -247,6 +253,28 @@ lessons:
             type: true_false
             text: "Is it true? Said is spelt s, e, d."
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Spell come."
+            say: "Listen: come. Which letters go in the gaps?"
+            frame: "c_m_"
+            options: ["o", "u", "e"]
+            answer: ["o", "e"]
+            option_audio: false
+          - id: l1-c5
+            type: text_input
+            keyboard: letters
+            text: "Write the word.\nI have ___ dog."
+            say: "Write the word one. I have one dog."
+            show: { object: dog }
+            answer: "one"
+          - id: l1-c6
+            type: audio_choice
+            text: "Tap the right spelling."
+            say: "Listen. Tap the right spelling."
+            audio: { en: "house" }
+            options: ["hows", "house", "hous"]
+            answer: "house"
 
   - n: 2
     title: { de: "Die Wochentage", en: "The days of the week" }
@@ -431,8 +459,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: first-words
             type: fill_in_blank
             text: "Spell said."
             say: "Listen: said. Which letter goes in the gap?"
@@ -440,6 +470,7 @@ lessons:
             options: ["i", "e", "y"]
             answer: ["i"]
           - id: l2-c2
+            part: days
             type: audio_choice
             text: "Tap the right spelling."
             say: "Listen. Tap the right spelling."
@@ -447,6 +478,7 @@ lessons:
             options: ["Sonday", "Sundai", "Sunday"]
             answer: "Sunday"
           - id: l2-c3
+            part: first-words
             type: ordering
             text: "Spell they."
             say: "Listen: they. Put the cards in order. One card does not belong."
@@ -455,6 +487,7 @@ lessons:
             answer: ["th", "ey"]
             option_audio: false
           - id: l2-c4
+            part: days
             type: multiple_choice
             text: "Which spelling is right?"
             say: "Listen: Thursday. Tap the right spelling."
@@ -462,8 +495,123 @@ lessons:
             answer: "Thursday"
             option_audio: false
           - id: l2-c5
+            part: from-memory
             type: text_input
             keyboard: letters
             text: "Write the word.\nWe walk to ______."
             say: "Write the word school. We walk to school."
             answer: "school"
+          - id: l2-c6
+            part: first-words
+            type: audio_choice
+            text: "Tap the right spelling."
+            say: "Listen. Tap the right spelling."
+            audio: { en: "are" }
+            options: ["ar", "are", "aer"]
+            answer: "are"
+          - id: l2-c7
+            part: days
+            type: fill_in_blank
+            text: "Spell Wednesday."
+            say: "Listen: Wednesday. Which letter goes in the gap?"
+            frame: "Wedn_sday"
+            options: ["e", "i", "a"]
+            answer: ["e"]
+            option_audio: false
+          - id: l2-c8
+            part: more-words
+            type: fill_in_blank
+            text: "Spell pull."
+            say: "Listen: pull. Which letters go in the gap?"
+            frame: "pu_"
+            options: ["ll", "l", "le"]
+            answer: ["ll"]
+            option_audio: false
+          - id: l2-c9
+            part: from-memory
+            type: text_input
+            keyboard: letters
+            text: "Write the word.\nMy ______ is called Ali."
+            say: "Write the word friend. My friend is called Ali."
+            answer: "friend"
+          - id: l2-c10
+            part: first-words
+            type: fill_in_blank
+            text: "Spell school."
+            say: "Listen: school. Which letters go in the gap?"
+            frame: "s_ool"
+            options: ["ch", "k", "c"]
+            answer: ["ch"]
+            option_audio: false
+          - id: l2-c11
+            part: days
+            type: highlight_in_text
+            text: "Tap every day that is written correctly."
+            say: "Read the days yourself. Tap every day that is written correctly."
+            show: { drawn: letter-card, text: "Monday friday Tuesday sunday Saturday" }
+            spans: ["Monday", "Tuesday", "Saturday"]
+          - id: l2-c12
+            part: more-words
+            type: multiple_choice
+            text: "Which spelling is right?"
+            say: "Listen: here. Come over here. Tap the right spelling."
+            options: ["heer", "here", "hir"]
+            answer: "here"
+            option_audio: false
+          - id: l2-c13
+            part: days
+            type: text_input
+            keyboard: letters
+            text: "Write the day.\nThe day after Monday is ________."
+            say: "Write the day that comes after Monday."
+            answer: "Tuesday"
+          - id: l2-c14
+            part: first-words
+            type: true_false
+            text: "Is it true? Come is spelt c, u, m."
+            answer: false
+          - id: l2-c15
+            part: days
+            type: audio_choice
+            text: "Tap the right spelling."
+            say: "Listen. Tap the right spelling."
+            audio: { en: "Saturday" }
+            options: ["Saterday", "Saturday", "Satterday"]
+            answer: "Saturday"
+          - id: l2-c16
+            part: more-words
+            type: audio_choice
+            text: "Tap the right spelling."
+            say: "Listen. Tap the right spelling."
+            audio: { en: "put" }
+            options: ["poot", "put", "pute"]
+            answer: "put"
+          - id: l2-c17
+            part: from-memory
+            type: text_input
+            keyboard: letters
+            text: "Write the word.\nThey ___ my friends."
+            say: "Write the word are. They are my friends."
+            answer: "are"
+          - id: l2-c18
+            part: first-words
+            type: ordering
+            text: "Spell was."
+            say: "Listen: was. Put the letters in order. One card does not belong."
+            options: ["s", "a", "w", "o"]
+            slot_count: 3
+            answer: ["w", "a", "s"]
+            option_audio: false
+          - id: l2-c19
+            part: more-words
+            type: true_false
+            text: "Is it true? Where starts with w, h."
+            answer: true
+          - id: l2-c20
+            part: from-memory
+            type: text_input
+            keyboard: letters
+            text: "Write the word.\nI live in a red _____."
+            say: "Write the word house. I live in a red house."
+            show: { object: house }
+            answer: "house"

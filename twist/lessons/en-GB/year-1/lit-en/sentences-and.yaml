@@ -22,6 +22,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: build, what: { de: Wörter zu einem Satz ordnen und ergänzen, en: putting words together in an order that makes sense } }
+    - { id: whole, what: { de: einen ganzen Satz von durcheinandergewürfelten Wörtern und kurzen Wortgruppen unterscheiden, en: telling a whole sentence from jumbled words and short phrases } }
+    - { id: join-words, what: { de: zwei Wörter mit and verbinden, en: joining two words with and } }
+    - { id: join-sentences, what: { de: zwei Sätze mit and zu einem verbinden, en: joining two sentences into one with and } }
   misconceptions:
     - id: any-order-is-sentence
       what: Thinks any words in any order make a sentence (dog the runs)
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: ordering
@@ -235,6 +241,31 @@ lessons:
             text: "Is it a sentence? \"The pig is pink.\""
             say: "Read it: The pig is pink. Is it a sentence?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Which word fits the gap?"
+            say: "The horse ... over the fence. Which word fits the gap?"
+            show: { object: horse }
+            frame: "The horse _ over the fence."
+            options: ["jumps", "green", "under"]
+            answer: ["jumps"]
+          - id: l1-c5
+            type: true_false
+            text: "Is it a sentence? \"A tall tree.\""
+            say: "Read the words: A tall tree. Is it a sentence?"
+            answer: false
+          - id: l1-c6
+            type: sorting
+            text: "Sentence or not? Put each one in its box."
+            say: "Read each one. Is it a sentence, or not a sentence? Put it in the right box."
+            bins:
+              - { id: sentence, show: { text: "a sentence" }, say: "A sentence." }
+              - { id: not-sentence, show: { text: "not a sentence" }, say: "Not a sentence." }
+            options:
+              - { text: "The owl hoots.", bin: sentence }
+              - { text: "owl the hoots", bin: not-sentence }
+              - { text: "Sam can sing.", bin: sentence }
+              - { text: "A happy boy.", bin: not-sentence }
 
   - n: 2
     title: { de: "Mit and verbinden", en: "Joining with and" }
@@ -410,8 +441,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: build
             type: ordering
             text: "Put the words in order to make a sentence."
             show: { object: pig }
@@ -419,12 +452,14 @@ lessons:
             slot_count: 4
             answer: ["The", "pig", "rolls in", "mud."]
           - id: l2-c2
+            part: whole
             type: multiple_choice
             text: "Which one is a sentence?"
             say: "Which one is a whole sentence?"
             options: ["The baby is asleep.", "asleep the baby is is", "The sleepy baby."]
             answer: "The baby is asleep."
           - id: l2-c3
+            part: join-words
             type: fill_in_blank
             text: "Fill the gap with the joining word."
             say: "I like milk ... juice. Which word joins them?"
@@ -433,6 +468,7 @@ lessons:
             options: ["and", "is", "the"]
             answer: ["and"]
           - id: l2-c4
+            part: join-sentences
             type: multiple_choice
             text: "It rained. We got wet.\n\nWhich one joins them with and?"
             say: "Join the two sentences with and. Which one is right?"
@@ -440,8 +476,130 @@ lessons:
             answer: "It rained and we got wet."
             option_audio: false
           - id: l2-c5
+            part: join-words
             type: highlight_in_text
             text: "Tap the joining word."
             say: "Tap the word that joins two things."
             show: { drawn: letter-card, text: "I can hop and skip." }
             spans: ["and"]
+          - id: l2-c6
+            part: build
+            type: ordering
+            text: "Put the words in order to make a sentence."
+            show: { object: sheep }
+            options: ["says", "baa.", "sheep", "The"]
+            slot_count: 4
+            answer: ["The", "sheep", "says", "baa."]
+          - id: l2-c7
+            part: whole
+            type: true_false
+            text: "Is it a sentence? \"The big blue boat.\""
+            say: "Read the words: The big blue boat. Is it a sentence?"
+            answer: false
+          - id: l2-c8
+            part: join-words
+            type: ordering
+            text: "Put the words in order to make a sentence."
+            options: ["jump.", "The dog", "and", "can", "run"]
+            slot_count: 5
+            answer: ["The dog", "can", "run", "and", "jump."]
+          - id: l2-c9
+            part: join-sentences
+            type: multiple_choice
+            text: "The bell rang. We went in.\n\nWhich one joins them with and?"
+            say: "The bell rang. We went in. Join the two sentences with and. Which one is right? Read them yourself."
+            options: ["The bell rang and we went in.", "The bell rang and We went in.", "The bell rang we went in and."]
+            answer: "The bell rang and we went in."
+            option_audio: false
+          - id: l2-c10
+            part: build
+            type: ordering
+            text: "Put the words in order to make a sentence."
+            options: ["park.", "We", "to the", "went"]
+            slot_count: 4
+            answer: ["We", "went", "to the", "park."]
+          - id: l2-c11
+            part: whole
+            type: true_false
+            text: "Is it a sentence? \"My kite is in the tree.\""
+            say: "Read it: My kite is in the tree. Is it a sentence?"
+            answer: true
+          - id: l2-c12
+            part: join-words
+            type: multiple_choice
+            text: "Which one uses and to join two things?"
+            say: "Which one uses and to join two things? Read them yourself."
+            options: ["I can see a bird and a bee.", "I can see a bird and.", "I can see a bird a bee."]
+            answer: "I can see a bird and a bee."
+            option_audio: false
+          - id: l2-c13
+            part: join-sentences
+            type: ordering
+            text: "Dad cooked tea. We ate it all up.\n\nJoin them with and. Put the parts in order to make one sentence."
+            say: "Dad cooked tea. We ate it all up. Join them with and. Put the parts in order to make one sentence."
+            options: ["we ate it all up.", "and", "Dad cooked tea"]
+            slot_count: 3
+            answer: ["Dad cooked tea", "and", "we ate it all up."]
+          - id: l2-c14
+            part: build
+            type: fill_in_blank
+            text: "Which word fits the gap?"
+            say: "The snail ... very slowly. Which word fits the gap?"
+            show: { object: snail }
+            frame: "The snail _ very slowly."
+            options: ["moves", "shell", "slow"]
+            answer: ["moves"]
+          - id: l2-c15
+            part: whole
+            type: sorting
+            text: "Sentence or not? Put each one in its box."
+            say: "Read each one. Is it a sentence, or not a sentence? Put it in the right box."
+            bins:
+              - { id: sentence, show: { text: "a sentence" }, say: "A sentence." }
+              - { id: not-sentence, show: { text: "not a sentence" }, say: "Not a sentence." }
+            options:
+              - { text: "The crab is red.", bin: sentence }
+              - { text: "red crab The is", bin: not-sentence }
+              - { text: "Under the bed.", bin: not-sentence }
+              - { text: "My teddy is soft.", bin: sentence }
+          - id: l2-c16
+            part: join-words
+            type: true_false
+            text: "Is it right? \"Mum and Dad are at home.\""
+            say: "Read it: Mum and Dad are at home. Is it right?"
+            answer: true
+          - id: l2-c17
+            part: join-sentences
+            type: true_false
+            text: "Is it written correctly? \"I swam. and I had fun.\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: false
+          - id: l2-c18
+            part: build
+            type: ordering
+            text: "Put the words in order to make a sentence."
+            options: ["a cup", "drinks", "of tea.", "Gran"]
+            slot_count: 4
+            answer: ["Gran", "drinks", "a cup", "of tea."]
+          - id: l2-c19
+            part: whole
+            type: multiple_choice
+            text: "Which one is not a sentence?"
+            say: "Which one is not a sentence?"
+            options: ["The cow eats.", "We ran home.", "A green hat."]
+            answer: "A green hat."
+          - id: l2-c20
+            part: join-sentences
+            type: sorting
+            text: "Joined well or not? Put each one in its box."
+            say: "Read each one yourself. Is it joined well with and, or does it need fixing? Put it in the right box."
+            bins:
+              - { id: right, show: { text: "joined well" }, say: "Joined well." }
+              - { id: fix, show: { text: "needs fixing" }, say: "Needs fixing." }
+            options:
+              - { text: "Ann sang and Raj danced.", bin: right }
+              - { text: "Ann sang and. Raj danced.", bin: fix }
+              - { text: "We ran and We hid.", bin: fix }
+              - { text: "We ran and we hid.", bin: right }
+            option_audio: false
+            difficulty: stretch

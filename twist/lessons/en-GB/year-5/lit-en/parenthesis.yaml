@@ -28,6 +28,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: mark-pair, what: { de: "Einschübe mit einem Paar Klammern, Striche oder Kommas markieren", en: "marking parenthesis with a pair of brackets, dashes or commas" } }
+    - { id: find-extra, what: { de: "den Einschub finden, ohne den der Satz noch Sinn ergibt", en: the extra information the sentence still makes sense without } }
+    - { id: comma-name, what: { de: ein Komma vor oder um den Namen der angesprochenen Person, en: a comma before or round the name of the person spoken to } }
+    - { id: comma-adverbial, what: { de: "ein Komma nach einer vorangestellten Angabe, damit der Satz klar ist", en: a comma after a fronted adverbial so the sentence is clear } }
   misconceptions:
     - id: one-bracket-only
       what: Uses only one bracket, dash or comma, so the reader cannot tell where the extra information ends
@@ -212,6 +217,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -229,6 +235,25 @@ lessons:
             type: true_false
             text: "\"Sam (my brother) is tall.\"\n\nIs it true? \"my brother\" is the extra information."
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Add the missing punctuation."
+            say: "Read the sentence. Add the missing punctuation."
+            frame: "The parrot_ bright green and noisy_ sat on my shoulder."
+            options: [",", "(", "."]
+            answer: [",", ","]
+            option_audio: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap every word of the extra information."
+            say: "Tap every word of the parenthesis, the extra information between the dashes."
+            show: { drawn: letter-card, text: "The puppy - only ten weeks old - chewed my shoe." }
+            spans: ["only", "ten", "weeks", "old"]
+          - id: l1-c6
+            type: true_false
+            text: "\"My uncle - a pilot flies to Spain every week.\"\n\nIs it true? The dashes are used correctly."
+            say: "Read the sentence. Is it true? The dashes are used correctly."
+            answer: false
 
   - n: 2
     title: { de: Kommas für Klarheit, en: Commas that change meaning }
@@ -394,34 +419,145 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: mark-pair
             type: multiple_choice
             text: "Which sentence uses brackets correctly?"
             options: ["The owl (a barn owl) hooted all night.", "The owl (a barn owl hooted all night.", "The owl a barn (owl hooted) all night."]
             answer: "The owl (a barn owl) hooted all night."
             option_audio: false
           - id: l2-c2
+            part: find-extra
             type: multiple_choice
             text: "Which words are extra information?\n\"Cardiff, the capital of Wales, has a castle.\""
             options: ["the capital of Wales", "Cardiff has", "a castle"]
             answer: "the capital of Wales"
             option_audio: false
           - id: l2-c3
+            part: mark-pair
             type: fill_in_blank
             text: "Add the missing punctuation."
-            say: "The parenthesis starts with a dash. What goes at the end of it?"
+            say: "Read the sentence. Add the missing punctuation."
             frame: "The cake - still warm from the oven _ smelt delicious."
             options: ["-", ")", "?"]
             answer: ["-"]
             option_audio: false
           - id: l2-c4
+            part: comma-name
             type: multiple_choice
             text: "Which sentence means you are telling Sam it is time to eat?"
             options: ["Time to eat, Sam!", "Time to eat Sam!", "Time, to eat Sam!"]
             answer: "Time to eat, Sam!"
             option_audio: false
           - id: l2-c5
+            part: comma-adverbial
             type: true_false
             text: "Is it true? \"While Mum cooked the dog barked\" needs a comma after cooked to be clear."
             answer: true
+          - id: l2-c6
+            part: mark-pair
+            type: fill_in_blank
+            text: "Add the missing punctuation."
+            say: "Read the sentence. Add the missing punctuation."
+            frame: "The fox _ hungry after the long winter _ crept closer."
+            options: ["-", "(", "."]
+            answer: ["-", "-"]
+            option_audio: false
+          - id: l2-c7
+            part: mark-pair
+            type: multiple_choice
+            text: "Which sentence uses commas for parenthesis correctly?"
+            options: ["The hedgehog, tired and hungry, crept into the garden.", "The hedgehog tired, and hungry crept into the garden.", "The hedgehog, tired and hungry crept into the garden."]
+            answer: "The hedgehog, tired and hungry, crept into the garden."
+            option_audio: false
+          - id: l2-c8
+            part: mark-pair
+            type: true_false
+            text: "\"The film (it lasted three hours was boring.\"\n\nIs it true? The brackets are used correctly."
+            say: "Read the sentence. Is it true? The brackets are used correctly."
+            answer: false
+          - id: l2-c9
+            part: find-extra
+            type: highlight_in_text
+            text: "Tap every word of the extra information."
+            say: "Tap every word of the parenthesis, the extra information between the dashes."
+            show: { drawn: letter-card, text: "My bedroom - the smallest room upstairs - is painted blue." }
+            spans: ["the", "smallest", "room", "upstairs"]
+          - id: l2-c10
+            part: find-extra
+            type: multiple_choice
+            text: "Which words could go in brackets?\n\"Our town which has a market every Friday is near the sea.\""
+            options: ["which has a market every Friday", "Our town is near the sea", "is near the sea"]
+            answer: "which has a market every Friday"
+            option_audio: false
+          - id: l2-c11
+            part: find-extra
+            type: true_false
+            text: "\"Elena, my neighbour, grows tomatoes.\"\n\nIs it true? You can take out \"my neighbour\" and the sentence still makes sense."
+            say: "Read the sentence. Is it true? You can take out my neighbour, and the sentence still makes sense."
+            answer: true
+          - id: l2-c12
+            part: find-extra
+            type: multiple_choice
+            text: "\"The tiger - a big cat from Asia - has striped fur.\"\n\nWhat is left when you take out the parenthesis?"
+            options: ["The tiger has striped fur.", "The tiger a big cat from Asia.", "A big cat from Asia has striped fur."]
+            answer: "The tiger has striped fur."
+            option_audio: false
+          - id: l2-c13
+            part: comma-name
+            type: true_false
+            text: "\"Dinner is ready Mia.\"\n\nIs it true? You are speaking to Mia, so this sentence needs a comma before Mia."
+            say: "Read the sentence. Is it true? You are speaking to Mia, so this sentence needs a comma before Mia."
+            answer: true
+          - id: l2-c14
+            part: comma-name
+            type: highlight_in_text
+            text: "You are speaking to Dr Jones. Tap the two words that need a comma after them."
+            say: "You are speaking to Doctor Jones. Tap the two words that need a comma after them."
+            show: { drawn: letter-card, text: "Yes Dr Jones I have taken my medicine." }
+            spans: ["Yes", "Jones"]
+          - id: l2-c15
+            part: comma-name
+            type: multiple_choice
+            text: "Which sentence is punctuated correctly?"
+            options: ["Please, Mr Lee, can we go outside?", "Please Mr Lee can, we go outside?", "Please, Mr Lee can we go outside?"]
+            answer: "Please, Mr Lee, can we go outside?"
+            option_audio: false
+          - id: l2-c16
+            part: comma-name
+            type: multiple_choice
+            text: "Which sentence asks Jack whether the dog is his?"
+            options: ["Is that your dog, Jack?", "Is that your dog Jack?", "Is that, your dog Jack?"]
+            answer: "Is that your dog, Jack?"
+            option_audio: false
+          - id: l2-c17
+            part: comma-adverbial
+            type: multiple_choice
+            text: "\"As soon as we had finished painting the door opened.\"\n\nWhere should the comma go?"
+            options: ["after painting", "after door", "after finished"]
+            answer: "after painting"
+            option_audio: false
+          - id: l2-c18
+            part: comma-adverbial
+            type: fill_in_blank
+            text: "Add the comma that makes the meaning clear."
+            say: "Read the sentence. Add the comma that makes the meaning clear."
+            frame: "Before eating_ Sam washed his hands."
+            options: [",", ".", "?"]
+            answer: [","]
+            option_audio: false
+          - id: l2-c19
+            part: comma-adverbial
+            type: true_false
+            text: "\"After the match, we went for pizza.\"\n\nIs it true? The comma is in the wrong place."
+            say: "Read the sentence. Is it true? The comma is in the wrong place."
+            answer: false
+          - id: l2-c20
+            part: comma-adverbial
+            type: highlight_in_text
+            text: "Tap the word that needs a comma after it."
+            say: "Tap the word that needs a comma after it."
+            show: { drawn: letter-card, text: "Once the rain stopped the children ran outside." }
+            spans: ["stopped"]

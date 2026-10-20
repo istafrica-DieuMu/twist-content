@@ -26,6 +26,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: multiply, what: { de: schriftlich mit einer einstelligen Zahl malnehmen, en: multiplying by a one-digit number in columns } }
+    - { id: explain, what: { de: den Übertrag erklären und Fehler finden, en: explaining the carrying and finding mistakes } }
+    - { id: estimate, what: { de: mit einem Überschlag prüfen, en: checking with an estimate } }
   misconceptions:
     - id: forget-carry
       what: Writes the carried digit but does not add it in the next column, or writes both digits of a product in one column
@@ -187,6 +191,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -201,6 +206,19 @@ lessons:
             text: "68 × 2. Ones: 8 × 2 = 16. How many tens do you carry?"
             options: ["1", "6", "16"]
             answer: "1"
+          - id: l1-c4
+            type: text_input
+            text: "241 × 2 = _"
+            answer: "482"
+          - id: l1-c5
+            type: text_input
+            text: "27 × 4 = _"
+            answer: "108"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which answer fits the estimate? 198 × 3"
+            options: ["594", "394", "5940"]
+            answer: "594"
 
   - n: 2
     title: { de: Mehrere Überträge, en: Carrying more than once }
@@ -346,26 +364,121 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: multiply
             type: text_input
             text: "432 × 3 = _"
             answer: "1296"
           - id: l2-c2
+            part: multiply
             type: text_input
             text: "86 × 7 = _"
             answer: "602"
           - id: l2-c3
+            part: explain
             type: multiple_choice
             text: "Ali works out 156 × 4 and gets 424. What went wrong?"
             options: ["He forgot to add a carried digit.", "He added instead of multiplying.", "He started with the hundreds."]
             answer: "He forgot to add a carried digit."
           - id: l2-c4
+            part: estimate
             type: multiple_choice
             text: "Which answer fits the estimate? 693 × 4"
             options: ["2772", "1772", "3772"]
             answer: "2772"
           - id: l2-c5
+            part: multiply
             type: text_input
             text: "Tickets cost £8 each. 245 tickets are sold. How much money is that? Type the pounds."
             answer: "1960"
+          - id: l2-c6
+            part: multiply
+            type: text_input
+            text: "243 × 2 = _"
+            show: { drawn: written-calc, rows: ["243", "2"], op: "×", result: "___" }
+            answer: "486"
+          - id: l2-c7
+            part: multiply
+            type: text_input
+            text: "75 × 6 = _"
+            answer: "450"
+          - id: l2-c8
+            part: multiply
+            type: true_false
+            text: "158 × 3 = 474"
+            say: "Is it true? One hundred and fifty-eight times three is four hundred and seventy-four."
+            answer: true
+          - id: l2-c9
+            part: multiply
+            type: text_input
+            text: "A tray holds 48 eggs. How many eggs are on 9 trays?"
+            answer: "432"
+          - id: l2-c10
+            part: explain
+            type: fill_in_blank
+            text: "Work out 152 × 6 in steps."
+            frame: "ones: 2 × 6 = 12, write _ and carry 1   tens: 5 × 6 + 1 = 31, write _ and carry 3   hundreds: 1 × 6 + 3 = _"
+            options: ["1", "2", "3", "9"]
+            answer: ["2", "1", "9"]
+          - id: l2-c11
+            part: explain
+            type: multiple_choice
+            text: "In 239 × 4, you carry 3 from the ones. What do you do with it?"
+            options: ["Add it after you multiply the tens.", "Multiply it by 4.", "Write it in the ones."]
+            answer: "Add it after you multiply the tens."
+          - id: l2-c12
+            part: explain
+            type: true_false
+            text: "In 85 × 3, you write 5 in the ones and carry 1 ten."
+            say: "Is it true? In eighty-five times three, you write five in the ones and carry one ten."
+            answer: true
+          - id: l2-c13
+            part: explain
+            type: multiple_choice
+            text: "Zac works out 47 × 6 and gets 2442. What went wrong?"
+            options: ["He wrote both digits of each product instead of carrying.", "He forgot to multiply the tens.", "He started with the tens."]
+            answer: "He wrote both digits of each product instead of carrying."
+          - id: l2-c14
+            part: explain
+            type: multiple_choice
+            text: "253 × 4: which step is wrong?"
+            options: ["ones: 3 × 4 = 12, write 2, carry 1", "tens: 5 × 4 + 1 = 21, write 1, carry 2", "hundreds: 2 × 4 = 8, so the answer is 812"]
+            answer: "hundreds: 2 × 4 = 8, so the answer is 812"
+          - id: l2-c15
+            part: explain
+            type: true_false
+            text: "Mia works out 138 × 5 and gets 590. Is it true that she forgot to add a carried digit?"
+            say: "Mia works out one hundred and thirty-eight times five and gets five hundred and ninety. Is it true that she forgot to add a carried digit?"
+            answer: true
+          - id: l2-c16
+            part: estimate
+            type: multiple_choice
+            text: "Which answer fits the estimate? 398 × 5"
+            options: ["1990", "990", "2990"]
+            answer: "1990"
+          - id: l2-c17
+            part: estimate
+            type: multiple_choice
+            text: "Estimate: about how much is 612 × 4?"
+            options: ["about 2400", "about 240", "about 24,000"]
+            answer: "about 2400"
+          - id: l2-c18
+            part: estimate
+            type: true_false
+            text: "Tom works out 289 × 3 and gets 567. Is it true that his answer fits an estimate?"
+            say: "Tom works out two hundred and eighty-nine times three and gets five hundred and sixty-seven. Is it true that his answer fits an estimate?"
+            answer: false
+          - id: l2-c19
+            part: estimate
+            type: multiple_choice
+            text: "Which is the best estimate for 47 × 8?"
+            options: ["50 × 8 = 400", "40 × 8 = 320", "47 + 8 = 55"]
+            answer: "50 × 8 = 400"
+          - id: l2-c20
+            part: estimate
+            type: multiple_choice
+            text: "Ben says 506 × 7 = 3542. Use an estimate. Is the size right?"
+            options: ["Yes, it is about 3500.", "No, it should be about 350.", "No, it should be about 35,000."]
+            answer: "Yes, it is about 3500."

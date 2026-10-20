@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [angle, shape, clock]
   facets: []
+  parts:
+    - { id: identify, what: { de: "rechte Winkel erkennen, auch gedrehte, in der Umwelt und an der Uhr", en: "spotting right angles, also tilted ones, around us and on a clock" } }
+    - { id: shapes, what: { de: rechte Winkel in Figuren zählen, en: counting the right angles in shapes } }
+    - { id: compare, what: { de: "sagen, ob ein Winkel kleiner oder größer als ein rechter Winkel ist", en: saying whether an angle is less than or greater than a right angle } }
+    - { id: turns, what: { de: rechte Winkel und Drehungen verbinden, en: linking right angles and turns } }
   misconceptions:
     - id: tilted-not-right
       what: Thinks a right angle must have one arm flat along the bottom, so a tilted square corner does not count
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -242,6 +248,22 @@ lessons:
               - { drawn: shape, kind: trapezoid }
             answer: square
             option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? This angle is greater than a right angle."
+            show: { drawn: angle, degrees: 70, label: false }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which of these has a right angle?"
+            options: ["a wheel", "the corner of a sheet of paper", "the tip of a star"]
+            answer: "the corner of a sheet of paper"
+          - id: l1-c6
+            type: multiple_choice
+            text: "How many right angles does this shape have?"
+            show: { drawn: shape, kind: octagon }
+            options: ["0", "4", "8"]
+            answer: "0"
 
   - n: 2
     title: { de: Rechte Winkel und Drehungen, en: Right angles and turns }
@@ -402,8 +424,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compare
             type: image_multiple_choice
             text: "Which angle is greater than a right angle?"
             options:
@@ -412,17 +436,20 @@ lessons:
               - { drawn: angle, degrees: 50, label: false, key: less }
             answer: greater
           - id: l2-c2
+            part: shapes
             type: multiple_choice
             text: "How many right angles does this shape have?"
             show: { drawn: shape, kind: trapezoid }
             options: ["0", "2", "4"]
             answer: "0"
           - id: l2-c3
+            part: turns
             type: multiple_choice
             text: "Sam turns through 2 right angles. What turn is that?"
             options: ["a half turn", "a quarter turn", "a whole turn"]
             answer: "a half turn"
           - id: l2-c4
+            part: identify
             type: image_multiple_choice
             text: "Which clock shows a right angle between its hands?"
             options:
@@ -431,7 +458,111 @@ lessons:
               - { drawn: clock, hour: 6, minute: 0 }
             answer: "9:00"
           - id: l2-c5
+            part: identify
             type: multiple_choice
             text: "Where can you find a right angle?"
             options: ["the corner of a door", "the tip of a pencil", "a ball"]
             answer: "the corner of a door"
+          - id: l2-c6
+            part: identify
+            type: true_false
+            text: "Is it true? This is a right angle."
+            show: { drawn: angle, degrees: 90, rotate: 50, label: false }
+            answer: true
+          - id: l2-c7
+            part: identify
+            type: multiple_choice
+            text: "Which of these has a right angle?"
+            options: ["the tip of a party hat", "a coin", "the corner of a window"]
+            answer: "the corner of a window"
+          - id: l2-c8
+            part: identify
+            type: image_multiple_choice
+            text: "Which of these angles is a right angle?"
+            options:
+              - { drawn: angle, degrees: 120, label: false, key: greater }
+              - { drawn: angle, degrees: 90, rotate: 70, label: false, key: right }
+              - { drawn: angle, degrees: 50, rotate: 30, label: false, key: less }
+            answer: right
+          - id: l2-c9
+            part: shapes
+            type: multiple_choice
+            text: "How many right angles does this shape have?"
+            show: { drawn: shape, kind: square }
+            options: ["1", "2", "4"]
+            answer: "4"
+          - id: l2-c10
+            part: shapes
+            type: image_multiple_choice
+            text: "Which shape has no right angles?"
+            options:
+              - { drawn: shape, kind: rectangle }
+              - { drawn: shape, kind: hexagon }
+              - { drawn: shape, kind: square }
+            answer: hexagon
+            option_audio: false
+          - id: l2-c11
+            part: shapes
+            type: true_false
+            text: "Is it true? A rectangle has 2 right angles."
+            show: { drawn: shape, kind: rectangle }
+            answer: false
+          - id: l2-c12
+            part: shapes
+            type: multiple_choice
+            text: "Jo draws 2 squares. How many right angles are there altogether?"
+            options: ["2", "4", "8"]
+            answer: "8"
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Which of these makes an angle less than a right angle?"
+            options: ["the corner of a book", "the tip of a party hat", "a door opened wide"]
+            answer: "the tip of a party hat"
+          - id: l2-c14
+            part: compare
+            type: image_multiple_choice
+            text: "On which clock do the hands make an angle greater than a right angle?"
+            options:
+              - { drawn: clock, hour: 2, minute: 0 }
+              - { drawn: clock, hour: 3, minute: 0 }
+              - { drawn: clock, hour: 4, minute: 0 }
+            answer: "4:00"
+          - id: l2-c15
+            part: compare
+            type: true_false
+            text: "Is it true? This angle is less than a right angle."
+            show: { drawn: angle, degrees: 120, label: false }
+            answer: false
+          - id: l2-c16
+            part: compare
+            type: image_multiple_choice
+            text: "Which of these angles is less than a right angle?"
+            options:
+              - { drawn: angle, degrees: 90, rotate: 20, label: false, key: right }
+              - { drawn: angle, degrees: 150, label: false, key: greater }
+              - { drawn: angle, degrees: 60, rotate: 40, label: false, key: less }
+            answer: less
+          - id: l2-c17
+            part: turns
+            type: multiple_choice
+            text: "Zoe faces the window. She turns through 2 right angles. Where does she face now?"
+            options: ["the window", "away from the window", "the wall on her left"]
+            answer: "away from the window"
+          - id: l2-c18
+            part: turns
+            type: multiple_choice
+            text: "The minute hand turns clockwise from 6 to 9. How many right angles is that?"
+            options: ["1", "2", "3"]
+            answer: "1"
+          - id: l2-c19
+            part: turns
+            type: true_false
+            text: "Is it true? Three quarters of a turn is 3 right angles."
+            answer: true
+          - id: l2-c20
+            part: turns
+            type: multiple_choice
+            text: "The minute hand turns all the way round, from 12 back to 12. How many right angles is that?"
+            options: ["2", "4", "12"]
+            answer: "4"

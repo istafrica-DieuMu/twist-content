@@ -26,6 +26,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [ruler, angle, grid]
   facets: []
+  parts:
+    - { id: lengths, what: { de: Strecken auf den Millimeter genau messen und zeichnen, en: measuring and drawing lines to the nearest millimetre } }
+    - { id: angles, what: { de: Winkel mit dem Geodreieck messen und zeichnen, en: measuring and drawing angles with a protractor } }
+    - { id: steps, what: { de: die Schritte beim Messen und Konstruieren ordnen, en: the steps for measuring and constructing } }
+    - { id: check, what: { de: eine Figur mit ihren Maßen vergleichen, en: checking a shape against its measurements } }
   misconceptions:
     - id: wrong-scale
       what: Reads the protractor's other scale (140° for 40°)
@@ -212,6 +217,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -230,6 +236,22 @@ lessons:
             text: "Is it true? This angle is a right angle."
             show: { drawn: angle, degrees: 90, label: false }
             answer: true
+          - id: l1-c4
+            type: text_input
+            text: "How long is the strip, in cm?"
+            show: { drawn: ruler, length: 10.4, colour: green }
+            keyboard: decimal
+            answer: "10.4"
+          - id: l1-c5
+            type: multiple_choice
+            text: "What size is the angle?"
+            show: { drawn: angle, degrees: 150, label: false, protractor: true }
+            options: ["150°", "30°", "140°"]
+            answer: "150°"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 7 cm and 6 mm is written 7.06 cm."
+            answer: false
 
   - n: 2
     title: { de: Dreiecke und Vierecke konstruieren, en: Constructing triangles and rectangles }
@@ -391,25 +413,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: angles
             type: multiple_choice
             text: "What size is the angle?"
             show: { drawn: angle, degrees: 65, label: false, protractor: true }
             options: ["65°", "115°", "75°"]
             answer: "65°"
           - id: l2-c2
+            part: lengths
             type: text_input
             text: "How long is the strip, in cm?"
             show: { drawn: ruler, length: 7.8, colour: green }
             keyboard: decimal
             answer: "7.8"
           - id: l2-c3
+            part: check
             type: multiple_choice
             text: "A triangle has angles of 55° and 75°. What is the third angle?"
             options: ["50°", "130°", "60°"]
             answer: "50°"
           - id: l2-c4
+            part: check
             type: image_multiple_choice
             text: "Each square is 1 cm. Which rectangle is 5 cm by 3 cm?"
             options:
@@ -418,8 +445,106 @@ lessons:
               - { drawn: grid, cols: 8, rows: 5, lines: [[1, 1, 5, 1], [5, 1, 5, 4], [5, 4, 1, 4], [1, 4, 1, 1]], key: "4x3" }
             answer: "5x3"
           - id: l2-c5
+            part: steps
             type: ordering
             text: "Put the steps in order to construct a triangle with sides of 8 cm and 5 cm and an angle of 30° between them."
             options: ["Measure 5 cm along the new arm and mark it.", "Draw a line 8 cm long.", "Join the mark to the other end of the line.", "Draw an angle of 30° at one end."]
             slot_count: 4
             answer: ["Draw a line 8 cm long.", "Draw an angle of 30° at one end.", "Measure 5 cm along the new arm and mark it.", "Join the mark to the other end of the line."]
+          - id: l2-c6
+            part: lengths
+            type: multiple_choice
+            text: "How long is the strip?"
+            show: { drawn: ruler, length: 3.6, colour: red }
+            options: ["3.6 cm", "3.4 cm", "36 cm"]
+            answer: "3.6 cm"
+          - id: l2-c7
+            part: lengths
+            type: true_false
+            text: "Is it true? 9.1 cm is the same as 91 mm."
+            answer: true
+          - id: l2-c8
+            part: lengths
+            type: text_input
+            text: "The strip starts at 1 cm. How long is it, in cm?"
+            show: { drawn: ruler, length: 5.4, start: 1, colour: blue }
+            keyboard: decimal
+            answer: "5.4"
+          - id: l2-c9
+            part: lengths
+            type: multiple_choice
+            text: "A line must be 4.7 cm long. Where do you make the mark on the ruler?"
+            options: ["at 4 cm and 7 mm", "at 4 cm and 0.7 mm", "at 7 cm and 4 mm"]
+            answer: "at 4 cm and 7 mm"
+          - id: l2-c10
+            part: angles
+            type: multiple_choice
+            text: "What size is the angle?"
+            show: { drawn: angle, degrees: 145, label: false, protractor: true }
+            options: ["145°", "35°", "155°"]
+            answer: "145°"
+          - id: l2-c11
+            part: angles
+            type: multiple_choice
+            text: "What size is the angle?"
+            show: { drawn: angle, degrees: 25, label: false, protractor: true }
+            options: ["25°", "155°", "35°"]
+            answer: "25°"
+          - id: l2-c12
+            part: angles
+            type: image_multiple_choice
+            text: "Which angle is 80°?"
+            options:
+              - { drawn: angle, degrees: 80, label: false, key: "80" }
+              - { drawn: angle, degrees: 100, label: false, key: "100" }
+              - { drawn: angle, degrees: 50, label: false, key: "50" }
+            answer: "80"
+          - id: l2-c13
+            part: angles
+            type: true_false
+            text: "Is it true? This angle is 120°."
+            show: { drawn: angle, degrees: 60, label: false, protractor: true }
+            answer: false
+          - id: l2-c14
+            part: steps
+            type: multiple_choice
+            text: "Zoe constructs a triangle with a 9 cm side and angles of 40° and 70° at its ends. What does she draw first?"
+            options: ["the 9 cm side", "the angle of 40°", "the third corner"]
+            answer: "the 9 cm side"
+          - id: l2-c15
+            part: steps
+            type: multiple_choice
+            text: "Kit constructs a triangle with sides of 6 cm and 4 cm and an angle of 55° between them. He has drawn the 6 cm line and the 55° angle at one end. What comes next?"
+            options: ["Measure 4 cm along the new arm and mark it.", "Draw an angle of 55° at the other end.", "Measure the third angle."]
+            answer: "Measure 4 cm along the new arm and mark it."
+          - id: l2-c16
+            part: steps
+            type: true_false
+            text: "Is it true? To draw a rectangle 8 cm by 3 cm, you draw a right angle at each end of the 8 cm line."
+            answer: true
+          - id: l2-c17
+            part: steps
+            type: ordering
+            text: "Put the steps in order to measure an angle with a protractor."
+            options: ["Read the scale that starts at 0 on that arm.", "Put the centre of the protractor on the vertex.", "Line up the zero line with one arm."]
+            slot_count: 3
+            answer: ["Put the centre of the protractor on the vertex.", "Line up the zero line with one arm.", "Read the scale that starts at 0 on that arm."]
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Is it true? A triangle can have angles of 70°, 50° and 70°."
+            answer: false
+          - id: l2-c19
+            part: check
+            type: text_input
+            text: "Nell plans a triangle with angles of 95° and 40° at the ends of its base. What should the third angle measure, in degrees?"
+            answer: "45"
+          - id: l2-c20
+            part: check
+            type: image_multiple_choice
+            text: "Each square is 1 cm. Which parallelogram has a base of 4 cm and a perpendicular height of 3 cm?"
+            options:
+              - { drawn: grid, cols: 8, rows: 5, lines: [[0, 4, 4, 4], [4, 4, 5, 1], [5, 1, 1, 1], [1, 1, 0, 4]], key: "4x3" }
+              - { drawn: grid, cols: 8, rows: 5, lines: [[0, 3, 4, 3], [4, 3, 5, 1], [5, 1, 1, 1], [1, 1, 0, 3]], key: "4x2" }
+              - { drawn: grid, cols: 8, rows: 5, lines: [[0, 4, 3, 4], [3, 4, 4, 1], [4, 1, 1, 1], [1, 1, 0, 4]], key: "3x3" }
+            answer: "4x3"

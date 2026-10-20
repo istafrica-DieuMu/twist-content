@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [hundred-field]
   facets: [number-format]
+  parts:
+    - { id: known, what: { de: "Halbe, Viertel und Fünftel als Prozent und Dezimalzahl", en: "halves, quarters and fifths as percentages and decimals" } }
+    - { id: tenths-25ths, what: { de: Brüche mit dem Nenner 10 oder 25 als Prozent und Dezimalzahl, en: fractions over 10 or 25 as percentages and decimals } }
+    - { id: compare, what: { de: verschieden geschriebene Anteile vergleichen, en: comparing amounts written in different ways } }
+    - { id: in-context, what: { de: Prozent und Brüche in Sachaufgaben, en: using them in scores and everyday amounts } }
   misconceptions:
     - id: digits-joined
       what: Writes the digits of the fraction side by side (1/2 as 12%, 4/5 as 0.45)
@@ -208,6 +213,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -226,6 +232,25 @@ lessons:
             text: "Which is the same as 75%?"
             options: ["3/4", "7/5", "1/4"]
             answer: "3/4"
+          - id: l1-c4
+            type: multiple_choice
+            text: "The whole field is 100%. Which fraction of the field is filled?"
+            show: { drawn: hundred-field, filled: 40 }
+            options: ["2/5", "1/4", "4/5"]
+            answer: "2/5"
+          - id: l1-c5
+            type: matching
+            text: "Match each fraction with its decimal."
+            pairs:
+              - { left: { text: "1/2" }, right: { text: "0.5" } }
+              - { left: { text: "1/5" }, right: { text: "0.2" } }
+              - { left: { text: "3/4" }, right: { text: "0.75" } }
+              - { left: { text: "4/5" }, right: { text: "0.8" } }
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 3/4 = 0.34"
+            say: "Is it true? Three quarters is zero point three four."
+            answer: false
 
   - n: 2
     title: { de: Zehntel und Fünfundzwanzigstel, en: Tenths and twenty-fifths }
@@ -389,31 +414,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: known
             type: multiple_choice
             text: "Write 0.4 as a fraction in fifths."
             options: ["2/5", "4/5", "1/4"]
             answer: "2/5"
           - id: l2-c2
+            part: known
             type: text_input
             text: "3/5 = _%"
             say: "Three fifths is how many per cent?"
             answer: "60"
           - id: l2-c3
+            part: tenths-25ths
             type: multiple_choice
             text: "What is 17/25 as a percentage?"
             say: "What is seventeen twenty-fifths as a percentage?"
             options: ["68%", "17%", "42%"]
             answer: "68%"
           - id: l2-c4
+            part: tenths-25ths
             type: multiple_choice
             text: "Write 8/10 as a decimal."
             say: "Write eight tenths as a decimal."
             options: ["0.8", "0.08", "8.1"]
             answer: "0.8"
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Which is the biggest?"
             options: ["2/5", "0.45", "42%"]
             answer: "0.45"
+          - id: l2-c6
+            part: known
+            type: multiple_choice
+            text: "Which fraction is the same as 80%?"
+            say: "Which fraction is the same as eighty per cent?"
+            options: ["4/5", "1/8", "3/4"]
+            answer: "4/5"
+          - id: l2-c7
+            part: known
+            type: multiple_choice
+            text: "The whole field is 100%. Which fraction of the field is filled?"
+            show: { drawn: hundred-field, filled: 75 }
+            options: ["3/4", "1/4", "7/5"]
+            answer: "3/4"
+          - id: l2-c8
+            part: known
+            type: true_false
+            text: "Is it true? 0.2 = 1/2"
+            say: "Is it true? Zero point two is one half."
+            answer: false
+          - id: l2-c9
+            part: tenths-25ths
+            type: text_input
+            text: "4/25 = _%"
+            say: "Four twenty-fifths is how many per cent?"
+            answer: "16"
+          - id: l2-c10
+            part: tenths-25ths
+            type: multiple_choice
+            text: "Write 0.6 as a fraction in tenths."
+            say: "Write zero point six as a fraction in tenths."
+            options: ["6/10", "6/100", "1/6"]
+            answer: "6/10"
+          - id: l2-c11
+            part: tenths-25ths
+            type: fill_in_blank
+            text: "Write 23/25 as hundredths and as a decimal."
+            say: "Write twenty-three twenty-fifths as hundredths and as a decimal."
+            frame: "23/25 = _/100 = _"
+            options: ["23", "92", "0.92", "0.23"]
+            answer: ["92", "0.92"]
+          - id: l2-c12
+            part: compare
+            type: multiple_choice
+            text: "Which is bigger, 7/10 or 65%?"
+            say: "Which is bigger, seven tenths or sixty-five per cent?"
+            options: ["7/10", "65%", "They are equal."]
+            answer: "7/10"
+            keep_order: true
+          - id: l2-c13
+            part: compare
+            type: ordering
+            text: "Put them in order, smallest first."
+            options: ["0.5", "3/10", "45%", "1/4"]
+            slot_count: 4
+            answer: ["1/4", "3/10", "45%", "0.5"]
+          - id: l2-c14
+            part: compare
+            type: true_false
+            text: "Is it true? 3/5 > 0.65"
+            say: "Is it true? Three fifths is greater than zero point six five."
+            answer: false
+          - id: l2-c15
+            part: compare
+            type: multiple_choice
+            text: "Which two are equal?"
+            options: ["2/5 and 40%", "1/4 and 0.4", "1/5 and 0.5"]
+            answer: "2/5 and 40%"
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "Ben scored 19 out of 25 in a maths quiz. What percentage is that?"
+            answer: "76"
+          - id: l2-c17
+            part: in-context
+            type: multiple_choice
+            text: "A tank is 4/5 full. What percentage of the tank is empty?"
+            say: "A tank is four fifths full. What percentage of the tank is empty?"
+            options: ["20%", "80%", "45%"]
+            answer: "20%"
+          - id: l2-c18
+            part: in-context
+            type: multiple_choice
+            text: "Ava has read 3/4 of a book. Sam has read 70% of the same book. Who has read more?"
+            say: "Ava has read three quarters of a book. Sam has read seventy per cent of the same book. Who has read more?"
+            options: ["Ava", "Sam", "They have read the same."]
+            answer: "Ava"
+            keep_order: true
+          - id: l2-c19
+            part: in-context
+            type: true_false
+            text: "In a class, 7/10 of the children have a pet. Is it true that 70% of the children have a pet?"
+            say: "In a class, seven tenths of the children have a pet. Is it true that seventy per cent of the children have a pet?"
+            answer: true
+          - id: l2-c20
+            part: in-context
+            type: text_input
+            keyboard: decimal
+            text: "A bakery sells 12/25 of its cakes by lunchtime. Write 12/25 as a decimal."
+            say: "A bakery sells twelve twenty-fifths of its cakes by lunchtime. Write twelve twenty-fifths as a decimal."
+            answer: "0.48"

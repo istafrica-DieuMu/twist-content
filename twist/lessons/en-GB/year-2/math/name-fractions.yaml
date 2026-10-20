@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [fraction, dots]
   facets: []
+  parts:
+    - { id: whole, what: { de: den Bruchteil eines Ganzen benennen, en: naming a fraction of a whole shape } }
+    - { id: set, what: { de: den Bruchteil einer Menge benennen, en: naming a fraction of a set of things } }
+    - { id: represent, what: { de: "Bild, Wort und Bruch zuordnen", en: "matching picture, words and fraction" } }
+    - { id: equal, what: { de: "wissen, dass ein Bruch gleich große Teile braucht", en: knowing that a fraction needs equal parts } }
   misconceptions:
     - id: shaded-over-unshaded
       what: Writes the red parts over the white parts (3/1 for three of four parts red) instead of over all the parts
@@ -244,6 +249,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -270,6 +276,25 @@ lessons:
             options: ["2/3", "2/1", "1/3"]
             answer: "2/3"
             option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? 1/3 of the circle is red."
+            say: "One third of the circle is red. Is that true?"
+            show: { drawn: fraction, kind: circle, parts: 3, shaded: 2 }
+            answer: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Write the fraction that is red."
+            say: "Write the fraction that is red."
+            show: { drawn: fraction, kind: rect, parts: 4, rows: 2, shaded: 2 }
+            frame: "_/_"
+            options: ["2", "4", "6"]
+            answer: ["2", "4"]
+          - id: l1-c6
+            type: true_false
+            text: "A sandwich is cut into 2 equal pieces. Is each piece 1/2 of the sandwich?"
+            say: "A sandwich is cut into two equal pieces. Is each piece one half of the sandwich?"
+            answer: true
 
   - n: 2
     title: { de: "Teile einer Menge", en: "Parts of a set" }
@@ -466,8 +491,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: whole
             type: multiple_choice
             text: "What fraction is red?"
             say: "What fraction of the rectangle is red?"
@@ -476,6 +503,7 @@ lessons:
             answer: "1/4"
             option_audio: false
           - id: l2-c2
+            part: represent
             type: image_multiple_choice
             text: "Where is 2/3 red?"
             say: "Which bar has two thirds red?"
@@ -485,6 +513,7 @@ lessons:
               - { drawn: fraction, kind: bar, parts: 4, shaded: 2 }
             answer: "2/3"
           - id: l2-c3
+            part: set
             type: multiple_choice
             text: "What fraction of the dots is red?"
             say: "What fraction of the dots is red?"
@@ -493,6 +522,7 @@ lessons:
             answer: "1/2"
             option_audio: false
           - id: l2-c4
+            part: set
             type: multiple_choice
             text: "There are 4 ducks. 1 is brown. What fraction of the ducks is brown?"
             say: "There are four ducks. One is brown. What fraction of the ducks is brown?"
@@ -500,7 +530,127 @@ lessons:
             answer: "1/4"
             option_audio: false
           - id: l2-c5
+            part: equal
             type: true_false
             text: "A pie is cut into 3 equal pieces. Is each piece 1/3 of the pie?"
             say: "A pie is cut into three equal pieces. Is each piece one third of the pie?"
             answer: true
+          - id: l2-c6
+            part: whole
+            type: multiple_choice
+            text: "What fraction is white?"
+            say: "What fraction of the bar is white?"
+            show: { drawn: fraction, kind: bar, parts: 4, shaded: 1 }
+            options: ["3/4", "1/4", "4/3"]
+            answer: "3/4"
+            option_audio: false
+          - id: l2-c7
+            part: whole
+            type: fill_in_blank
+            text: "Write the fraction that is red."
+            say: "Write the fraction of the circle that is red."
+            show: { drawn: fraction, kind: circle, parts: 2, shaded: 1 }
+            frame: "_/_"
+            options: ["1", "2", "3"]
+            answer: ["1", "2"]
+          - id: l2-c8
+            part: whole
+            type: true_false
+            text: "Is it true? 3/4 of the circle is red."
+            say: "Three quarters of the circle is red. Is that true?"
+            show: { drawn: fraction, kind: circle, parts: 4, shaded: 1 }
+            answer: false
+          - id: l2-c9
+            part: whole
+            type: true_false
+            text: "Is it true? 2/3 of the bar is red."
+            say: "Two thirds of the bar is red. Is that true?"
+            show: { drawn: fraction, kind: bar, parts: 3, shaded: 2 }
+            answer: true
+          - id: l2-c10
+            part: set
+            type: multiple_choice
+            text: "What fraction of the dots is red?"
+            say: "What fraction of the dots is red?"
+            show: { drawn: dots, array: [4, 3], split_rows: 3 }
+            options: ["3/4", "3/1", "1/4"]
+            answer: "3/4"
+            option_audio: false
+          - id: l2-c11
+            part: set
+            type: true_false
+            text: "There are 3 cakes. 2 have a cherry on top. Is it true? 2/3 of the cakes have a cherry."
+            say: "There are three cakes. Two have a cherry on top. Is it true that two thirds of the cakes have a cherry?"
+            answer: true
+          - id: l2-c12
+            part: set
+            type: fill_in_blank
+            text: "There are 4 pencils. 2 are broken. Write the fraction of the pencils that is broken."
+            say: "There are four pencils. Two are broken. Write the fraction of the pencils that is broken."
+            frame: "_/_"
+            options: ["2", "3", "4"]
+            answer: ["2", "4"]
+          - id: l2-c13
+            part: represent
+            type: matching
+            text: "Which fraction is red? Match each picture to its fraction."
+            say: "Which fraction is red? Match each picture to its fraction."
+            option_audio: false
+            pairs:
+              - { left: { drawn: fraction, kind: bar, parts: 4, shaded: 1 }, right: { text: "1/4" } }
+              - { left: { drawn: fraction, kind: circle, parts: 3, shaded: 2 }, right: { text: "2/3" } }
+              - { left: { drawn: fraction, kind: rect, parts: 4, rows: 2, shaded: 2 }, right: { text: "2/4" } }
+              - { left: { drawn: fraction, kind: bar, parts: 2, shaded: 1 }, right: { text: "1/2" } }
+          - id: l2-c14
+            part: represent
+            type: multiple_choice
+            text: "What do we call this fraction?\n2/3"
+            say: "What do we call this fraction?"
+            options: ["two thirds", "two quarters", "three halves"]
+            answer: "two thirds"
+          - id: l2-c15
+            part: represent
+            type: multiple_choice
+            text: "Which fraction is two quarters?"
+            say: "Which fraction is two quarters?"
+            options: ["2/4", "4/2", "2/3"]
+            answer: "2/4"
+            option_audio: false
+          - id: l2-c16
+            part: represent
+            type: image_multiple_choice
+            text: "Where is 1/2 red?"
+            say: "Which circle has one half red?"
+            options:
+              - { drawn: fraction, kind: circle, parts: 2, shaded: 1 }
+              - { drawn: fraction, kind: circle, parts: 4, shaded: 1 }
+              - { drawn: fraction, kind: circle, parts: 3, shaded: 1 }
+            answer: "1/2"
+          - id: l2-c17
+            part: equal
+            type: multiple_choice
+            text: "Ella cuts a cake into 4 pieces. When is each piece 1/4 of the cake?"
+            say: "Ella cuts a cake into four pieces. When is each piece one quarter of the cake?"
+            options: ["when all 4 pieces are the same size", "when the pieces are any size", "when 1 piece is bigger than the others"]
+            answer: "when all 4 pieces are the same size"
+          - id: l2-c18
+            part: equal
+            type: true_false
+            text: "Jack snaps a chocolate bar into a big piece and a small piece. Is the big piece 1/2 of the bar?"
+            say: "Jack snaps a chocolate bar into a big piece and a small piece. Is the big piece one half of the bar?"
+            answer: false
+          - id: l2-c19
+            part: equal
+            type: multiple_choice
+            text: "Sam and Lily share a pizza. Each of them gets 1/2 of it. Who gets more pizza?"
+            say: "Sam and Lily share a pizza. Each of them gets one half of it. Who gets more pizza?"
+            options: ["Sam", "Lily", "They get the same."]
+            answer: "They get the same."
+          - id: l2-c20
+            part: equal
+            type: multiple_choice
+            text: "3 friends share a pizza equally. What fraction of the pizza does each friend get?"
+            say: "Three friends share a pizza equally. What fraction of the pizza does each friend get?"
+            options: ["1/3", "1/2", "3/1"]
+            answer: "1/3"
+            option_audio: false

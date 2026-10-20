@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [equation, rechenstrich]
   facets: [operation-signs]
+  parts:
+    - { id: tens, what: { de: Zehner über den Hunderter addieren und subtrahieren, en: adding and subtracting tens across a hundred } }
+    - { id: ones-add, what: { de: Einer über den Zehner oder Hunderter addieren, en: adding ones across a ten or a hundred } }
+    - { id: ones-sub, what: { de: Einer über den Zehner oder Hunderter subtrahieren, en: subtracting ones across a ten or a hundred } }
+    - { id: steps, what: { de: in Schritten über den vollen Zehner oder Hunderter rechnen, en: jumping to the next ten or hundred first } }
   misconceptions:
     - id: carry-dropped
       what: Loses the new hundred when the tens add up to more than ten (290 + 40 = 230)
@@ -186,6 +191,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -201,6 +207,19 @@ lessons:
             show: { drawn: rechenstrich, start: 390, jumps: [] }
             options: ["10", "40", "30"]
             answer: "10"
+          - id: l1-c4
+            type: text_input
+            text: "180 + 40 = _"
+            answer: "220"
+          - id: l1-c5
+            type: multiple_choice
+            text: "640 − 70 = _"
+            options: ["570", "670", "530"]
+            answer: "570"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 350 + 90 = 440"
+            answer: true
 
   - n: 2
     title: { de: "Einer über den Zehner und Hunderter", en: "Ones across a ten or a hundred" }
@@ -346,26 +365,118 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ones-add
             type: text_input
             text: "468 + 5 = _"
             answer: "473"
           - id: l2-c2
+            part: tens
             type: multiple_choice
             text: "370 + 80 = _"
             options: ["450", "350", "3150"]
             answer: "450"
           - id: l2-c3
+            part: tens
             type: text_input
             text: "710 − 30 = _"
             answer: "680"
           - id: l2-c4
+            part: ones-sub
             type: multiple_choice
             text: "402 − 7 = _"
             options: ["395", "405", "409"]
             answer: "395"
           - id: l2-c5
+            part: ones-add
             type: text_input
             text: "296 + 9 = _"
             answer: "305"
+          - id: l2-c6
+            part: tens
+            type: text_input
+            text: "260 + 70 = _"
+            answer: "330"
+          - id: l2-c7
+            part: tens
+            type: true_false
+            text: "Is it true? 540 − 60 = 480"
+            answer: true
+          - id: l2-c8
+            part: tens
+            type: text_input
+            text: "A bakery has 830 bread rolls. It sells 50 in the morning. How many rolls are left?"
+            answer: "780"
+          - id: l2-c9
+            part: ones-add
+            type: text_input
+            text: "735 + 8 = _"
+            answer: "743"
+          - id: l2-c10
+            part: ones-add
+            type: multiple_choice
+            text: "597 + 6 = _"
+            options: ["603", "593", "613"]
+            answer: "603"
+          - id: l2-c11
+            part: ones-add
+            type: true_false
+            text: "Is it true? 386 + 9 = 394"
+            answer: false
+          - id: l2-c12
+            part: ones-sub
+            type: text_input
+            text: "324 − 6 = _"
+            answer: "318"
+          - id: l2-c13
+            part: ones-sub
+            type: multiple_choice
+            text: "800 − 7 = _"
+            options: ["793", "807", "703"]
+            answer: "793"
+          - id: l2-c14
+            part: ones-sub
+            type: true_false
+            text: "Is it true? 561 − 4 = 557"
+            answer: true
+          - id: l2-c15
+            part: ones-sub
+            type: text_input
+            text: "A school has 503 children. 6 are off sick today. How many children are at school?"
+            answer: "497"
+          - id: l2-c16
+            part: steps
+            type: fill_in_blank
+            text: "Jump to the next hundred first."
+            frame: "460 + 70 = 460 + 40 + _ = _"
+            options: ["30", "40", "530", "570"]
+            answer: ["30", "530"]
+          - id: l2-c17
+            part: steps
+            type: fill_in_blank
+            text: "Jump back to the hundred first."
+            frame: "820 − 60 = 820 − 20 − _ = _"
+            options: ["40", "20", "760", "780"]
+            answer: ["40", "760"]
+          - id: l2-c18
+            part: steps
+            type: fill_in_blank
+            text: "Jump to the next ten first."
+            frame: "376 + 8 = 376 + 4 + _ = _"
+            options: ["4", "5", "384", "386"]
+            answer: ["4", "384"]
+          - id: l2-c19
+            part: steps
+            type: multiple_choice
+            text: "506 − 9: which jump comes first?"
+            show: { drawn: rechenstrich, start: 506, jumps: [], back: true }
+            options: ["6", "9", "3"]
+            answer: "6"
+          - id: l2-c20
+            part: steps
+            type: multiple_choice
+            text: "280 + 50. Which steps jump to the next hundred first?"
+            options: ["280 + 20 + 30", "280 + 30 + 20", "280 + 25 + 25"]
+            answer: "280 + 20 + 30"

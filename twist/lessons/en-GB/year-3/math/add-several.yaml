@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: [currency]
+  parts:
+    - { id: three, what: { de: drei dreistellige Zahlen schriftlich addieren, en: adding three three-digit numbers in columns } }
+    - { id: lengths, what: { de: Zahlen mit verschieden vielen Stellen stellengerecht addieren, en: "adding numbers with different numbers of digits, lined up by place value" } }
+    - { id: carry-2, what: { de: mit einem Übertrag von 2 rechnen, en: carrying a 2 } }
+    - { id: check, what: { de: Rechnungen prüfen und Fehler finden, en: checking calculations and finding mistakes } }
   misconceptions:
     - id: writes-column-total
       what: Writes the whole column total in the answer (16 in the ones column)
@@ -199,6 +204,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -217,6 +223,24 @@ lessons:
             say: "Add two hundred and eleven, three hundred and forty-three and one hundred and twenty-five in columns."
             show: { drawn: written-calc, rows: ["211", "343", "125"], op: "+" }
             answer: "679"
+          - id: l1-c4
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["152", "213", "324"], op: "+", result: "689" }
+            answer: true
+          - id: l1-c5
+            type: text_input
+            text: "Ana has 124 stamps, Ben has 213 and Cara has 145. How many stamps do they have altogether?"
+            say: "Ana has one hundred and twenty-four stamps, Ben has two hundred and thirteen and Cara has one hundred and forty-five. How many stamps do they have altogether?"
+            answer: "482"
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add two hundred and thirty-five, one hundred and forty-seven and two hundred and six in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["235", "147", "206"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["8", "5", "18", "7"]
+            answer: ["8", "8", "5"]
 
   - n: 2
     title: { de: Kürzere Zahlen und Übertrag 2, en: Different lengths and carrying 2 }
@@ -373,38 +397,151 @@ lessons:
                 answer: "338"
               - id: l2-n5
                 type: text_input
-                text: "A coach travels 186 km, then 57 km, then 129 km. How far does it travel altogether?"
+                text: "A ferry carries 186 people, then 57 people, then 129 people. How many people is that altogether?"
                 answer: "372"
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: three
             type: text_input
             text: "Add in columns."
             say: "Add one hundred and forty-two, three hundred and twenty-five and two hundred and thirty-one in columns."
             show: { drawn: written-calc, rows: ["142", "325", "231"], op: "+" }
             answer: "698"
           - id: l2-c2
+            part: carry-2
             type: text_input
             text: "Add in columns."
             say: "Add three hundred and fifty-six, two hundred and eighteen and one hundred and forty-seven in columns."
             show: { drawn: written-calc, rows: ["356", "218", "147"], op: "+" }
             answer: "721"
           - id: l2-c3
+            part: lengths
             type: text_input
             text: "Add in columns."
             say: "Add six hundred and fifteen, seventy-three and nine in columns."
             show: { drawn: written-calc, rows: ["615", "73", "9"], op: "+" }
             answer: "697"
           - id: l2-c4
+            part: carry-2
             type: multiple_choice
             text: "Ones: 7 + 9 + 8 = 24. What do you write, and what do you carry?"
             options: ["write 4, carry 2", "write 4, carry 1", "write 24"]
             answer: "write 4, carry 2"
           - id: l2-c5
+            part: check
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
             show: { drawn: written-calc, rows: ["529", "46", "138"], op: "+", result: "713" }
             answer: true
+          - id: l2-c6
+            part: three
+            type: text_input
+            text: "Add in columns."
+            say: "Add two hundred and fourteen, three hundred and thirty-one and one hundred and forty-five in columns."
+            show: { drawn: written-calc, rows: ["214", "331", "145"], op: "+" }
+            answer: "690"
+          - id: l2-c7
+            part: three
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add one hundred and twenty-six, two hundred and forty-three and three hundred and eighteen in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["126", "243", "318"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["7", "8", "6", "17"]
+            answer: ["7", "8", "6"]
+          - id: l2-c8
+            part: three
+            type: text_input
+            text: "A bakery sells 164 rolls on Monday, 208 on Tuesday and 115 on Wednesday. How many rolls is that altogether?"
+            say: "A bakery sells one hundred and sixty-four rolls on Monday, two hundred and eight on Tuesday and one hundred and fifteen on Wednesday. How many rolls is that altogether?"
+            answer: "487"
+          - id: l2-c9
+            part: three
+            type: multiple_choice
+            text: "Which total is right?"
+            say: "Two hundred and fifty-three add one hundred and fourteen add four hundred and twenty-one. Which total is right?"
+            show: { drawn: written-calc, rows: ["253", "114", "421"], op: "+" }
+            options: ["788", "778", "688"]
+            answer: "788"
+          - id: l2-c10
+            part: carry-2
+            type: text_input
+            text: "Add in columns."
+            say: "Add two hundred and seventy-eight, one hundred and thirty-six and four hundred and fifty-nine in columns."
+            show: { drawn: written-calc, rows: ["278", "136", "459"], op: "+" }
+            answer: "873"
+          - id: l2-c11
+            part: carry-2
+            type: true_false
+            text: "Ones: 9 + 8 + 5 = 22. Is it true? You write 2 and carry 2."
+            say: "Ones: nine add eight add five is twenty-two. You write two and carry two. Is it true?"
+            answer: true
+          - id: l2-c12
+            part: carry-2
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add three hundred and sixty-nine, one hundred and forty-seven and two hundred and fifty-eight in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["369", "147", "258"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["4", "7", "24", "8"]
+            answer: ["4", "7", "7"]
+          - id: l2-c13
+            part: lengths
+            type: text_input
+            text: "Add in columns."
+            say: "Add four hundred and thirty-two, fifty-seven and eight in columns."
+            show: { drawn: written-calc, rows: ["432", "57", "8"], op: "+" }
+            answer: "497"
+          - id: l2-c14
+            part: lengths
+            type: multiple_choice
+            text: "You add 506 + 82 + 4 in columns. Which digits are in the tens column?"
+            say: "You add five hundred and six, eighty-two and four in columns. Which digits are in the tens column?"
+            options: ["0 and 8", "0, 8 and 4", "5 and 8"]
+            answer: "0 and 8"
+          - id: l2-c15
+            part: lengths
+            type: text_input
+            text: "Leo buys a bike for £245, a helmet for £36 and a bell for £7. How many pounds does he spend?"
+            say: "Leo buys a bike for two hundred and forty-five pounds, a helmet for thirty-six pounds and a bell for seven pounds. How many pounds does he spend?"
+            answer: "288"
+          - id: l2-c16
+            part: lengths
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add sixty-eight, seven hundred and fifteen and nine in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["68", "715", "9"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["2", "9", "7", "22"]
+            answer: ["2", "9", "7"]
+          - id: l2-c17
+            part: check
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["237", "148", "325"], op: "+", result: "700" }
+            answer: false
+          - id: l2-c18
+            part: check
+            type: multiple_choice
+            text: "Where is the mistake?"
+            say: "One hundred and sixty-four add fifty-two add two hundred and seventy-one is three hundred and eighty-seven. Where is the mistake?"
+            show: { drawn: written-calc, rows: ["164", "52", "271"], op: "+", result: "387" }
+            options: ["The carried 1 is missing in the hundreds.", "The ones are wrong.", "The tens are wrong."]
+            answer: "The carried 1 is missing in the hundreds."
+          - id: l2-c19
+            part: check
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["315", "209", "176"], op: "+", result: "700" }
+            answer: true
+          - id: l2-c20
+            part: check
+            type: text_input
+            text: "Amir adds 146 + 38 + 225 and gets 399. What is the right total?"
+            say: "Amir adds one hundred and forty-six, thirty-eight and two hundred and twenty-five and gets three hundred and ninety-nine. What is the right total?"
+            show: { drawn: written-calc, rows: ["146", "38", "225"], op: "+", result: "399" }
+            answer: "409"

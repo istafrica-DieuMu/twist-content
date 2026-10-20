@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [hundred-square]
   facets: []
+  parts:
+    - { id: neighbours, what: { de: Nachbarzahlen auf der Hundertertafel finden, en: finding the numbers next to and above and below a number } }
+    - { id: moves, what: { de: Wege auf der Hundertertafel gehen und beschreiben, en: following and describing moves on the hundred square } }
+    - { id: patterns, what: { de: Muster in Zeilen und Spalten erkennen, en: spotting patterns in rows and columns } }
+    - { id: add-9-11, what: { de: mit der Hundertertafel 9 und 11 addieren, en: adding 9 and 11 on the hundred square } }
   misconceptions:
     - id: down-is-one
       what: Thinks the number below 34 is 35
@@ -243,6 +248,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -266,6 +272,26 @@ lessons:
             show: { drawn: hundred-square, hide: [49] }
             options: ["49", "94", "59"]
             answer: "49"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which number is above 27?"
+            say: "Which number is above twenty-seven?"
+            show: { drawn: hundred-square, highlight: [27], hide: [17] }
+            options: ["17", "26", "37"]
+            answer: "17"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which number comes just before 71?"
+            say: "Which number comes just before seventy-one?"
+            show: { drawn: hundred-square, highlight: [71], hide: [70] }
+            options: ["70", "61", "72"]
+            answer: "70"
+          - id: l1-c6
+            type: text_input
+            text: "Which number is below 9?"
+            say: "Which number is below nine?"
+            show: { drawn: hundred-square, highlight: [9], hide: [19] }
+            answer: "19"
 
   - n: 2
     title: { de: Wege und Muster, en: Moves and patterns }
@@ -464,8 +490,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: neighbours
             type: multiple_choice
             text: "Which number is hidden?"
             say: "The hidden number is above fifty-six. Which is it?"
@@ -473,6 +501,7 @@ lessons:
             options: ["46", "55", "66"]
             answer: "46"
           - id: l2-c2
+            part: neighbours
             type: fill_in_blank
             text: "What is above and below?"
             say: "Which numbers are above and below eighty-two?"
@@ -481,6 +510,7 @@ lessons:
             options: ["72", "81", "83", "92"]
             answer: ["72", "92"]
           - id: l2-c3
+            part: moves
             type: multiple_choice
             text: "Start at 37, go 2 rows down. Where are you?"
             say: "Start at thirty-seven. Go two rows down. Where are you?"
@@ -488,6 +518,7 @@ lessons:
             options: ["39", "57", "47"]
             answer: "57"
           - id: l2-c4
+            part: add-9-11
             type: multiple_choice
             text: "52 + 11 = ?"
             say: "Fifty-two add eleven."
@@ -495,8 +526,122 @@ lessons:
             options: ["63", "61", "53"]
             answer: "63"
           - id: l2-c5
+            part: add-9-11
             type: text_input
             text: "47 + 9 = _"
             say: "Forty-seven add nine."
             show: { drawn: hundred-square, highlight: [47] }
             answer: "56"
+          - id: l2-c6
+            part: neighbours
+            type: multiple_choice
+            text: "Which number is below 81?"
+            say: "Which number is below eighty-one?"
+            show: { drawn: hundred-square, highlight: [81], hide: [91] }
+            options: ["82", "91", "71"]
+            answer: "91"
+          - id: l2-c7
+            part: neighbours
+            type: true_false
+            text: "Is it true? 71 comes after 70 and starts the next row."
+            say: "Seventy-one comes after seventy and starts the next row. Is that true?"
+            show: { drawn: hundred-square, highlight: [70] }
+            answer: true
+          - id: l2-c8
+            part: neighbours
+            type: fill_in_blank
+            text: "What is to the left and right of 39?"
+            say: "Which numbers are to the left and right of thirty-nine?"
+            show: { drawn: hundred-square, highlight: [39], hide: [38, 40] }
+            frame: "_ , 39, _"
+            options: ["29", "38", "40", "49"]
+            answer: ["38", "40"]
+          - id: l2-c9
+            part: moves
+            type: text_input
+            text: "Start at 85. Go 3 rows up. Where are you?"
+            say: "Start at eighty-five. Go three rows up. Where are you?"
+            show: { drawn: hundred-square, highlight: [85] }
+            answer: "55"
+          - id: l2-c10
+            part: moves
+            type: multiple_choice
+            text: "Start at 61. Go 1 row down and 4 steps right. Where are you?"
+            say: "Start at sixty-one. Go one row down, then four steps right. Where are you?"
+            show: { drawn: hundred-square, highlight: [61] }
+            options: ["75", "65", "85"]
+            answer: "75"
+          - id: l2-c11
+            part: moves
+            type: multiple_choice
+            text: "Which move takes you from 23 to 43?"
+            say: "Which move takes you from twenty-three to forty-three?"
+            show: { drawn: hundred-square, highlight: [23, 43] }
+            options: ["2 rows down", "2 steps right", "2 rows up"]
+            answer: "2 rows down"
+          - id: l2-c12
+            part: moves
+            type: multiple_choice
+            text: "Which move takes you from 58 to 47?"
+            say: "Which move takes you from fifty-eight to forty-seven?"
+            show: { drawn: hundred-square, highlight: [58, 47] }
+            options: ["1 row up and 1 step left", "1 row down and 1 step left", "1 row up and 1 step right"]
+            answer: "1 row up and 1 step left"
+          - id: l2-c13
+            part: patterns
+            type: fill_in_blank
+            text: "These numbers are in one column. Fill the gap."
+            say: "These numbers are in one column. Which number fills the gap?"
+            frame: "4, 14, _, 34, 44"
+            options: ["24", "15", "25"]
+            answer: ["24"]
+          - id: l2-c14
+            part: patterns
+            type: true_false
+            text: "Is it true? 6, 16, 26 and 36 are all in one column."
+            say: "Six, sixteen, twenty-six and thirty-six are all in one column. Is that true?"
+            show: { drawn: hundred-square, highlight: [6, 16, 26, 36] }
+            answer: true
+          - id: l2-c15
+            part: patterns
+            type: multiple_choice
+            text: "What do all the numbers in the last column have in common?"
+            show: { drawn: hundred-square, highlight: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] }
+            options: ["They end in 0.", "They end in 1.", "They start with 1."]
+            answer: "They end in 0."
+          - id: l2-c16
+            part: patterns
+            type: multiple_choice
+            text: "Which number is not in the same column as 13?"
+            say: "Which number is not in the same column as thirteen?"
+            options: ["43", "83", "31"]
+            answer: "31"
+          - id: l2-c17
+            part: patterns
+            type: multiple_choice
+            text: "Along a row, how do the numbers change?"
+            show: { drawn: hundred-square, highlight: [61, 62, 63, 64, 65] }
+            options: ["one more each step", "ten more each step", "they stay the same"]
+            answer: "one more each step"
+          - id: l2-c18
+            part: add-9-11
+            type: multiple_choice
+            text: "64 + 9 = ?"
+            say: "Sixty-four add nine."
+            show: { drawn: hundred-square, highlight: [64] }
+            options: ["73", "75", "63"]
+            answer: "73"
+          - id: l2-c19
+            part: add-9-11
+            type: text_input
+            text: "39 + 11 = _"
+            say: "Thirty-nine add eleven."
+            show: { drawn: hundred-square, highlight: [39] }
+            answer: "50"
+          - id: l2-c20
+            part: add-9-11
+            type: true_false
+            text: "Is it true? 82 + 9 = 93"
+            say: "Eighty-two add nine is ninety-three. Is that true?"
+            show: { drawn: hundred-square, highlight: [82] }
+            answer: false

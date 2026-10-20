@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: mult-first, what: { de: Punkt vor Strich rechnen, en: working out × and ÷ before + and − } }
+    - { id: brackets, what: { de: die Klammer zuerst rechnen, en: working out the brackets first } }
+    - { id: what-first, what: { de: "erkennen, was du zuerst rechnest und welche Aufgabe passt", en: spotting which step comes first and which calculation fits } }
+    - { id: left-right, what: { de: gleiche Rechenarten von links nach rechts rechnen, en: working from left to right when the operations are of the same kind } }
   misconceptions:
     - id: left-to-right
       what: Works from left to right whatever the operations (5 + 4 × 3 = 27)
@@ -199,6 +204,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -215,6 +221,22 @@ lessons:
             text: "Is it true? 3 + 5 × 5 = 40"
             say: "Three add five times five equals forty. Is it true?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "36 + 24 ÷ 4. What do you work out first?"
+            say: "Thirty-six add twenty-four divided by four. What do you work out first?"
+            options: ["24 ÷ 4", "36 + 24"]
+            answer: "24 ÷ 4"
+          - id: l1-c5
+            type: text_input
+            text: "8 × 9 − 30 = _"
+            say: "Eight times nine subtract thirty."
+            answer: "42"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 50 − 4 × 6 = 26"
+            say: "Fifty subtract four times six equals twenty-six. Is it true?"
+            answer: true
 
   - n: 2
     title: { de: "Klammern zuerst", en: "Brackets first" }
@@ -384,31 +406,134 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: mult-first
             type: text_input
             text: "14 + 6 × 8 = _"
             say: "Fourteen add six times eight."
             answer: "62"
           - id: l2-c2
+            part: brackets
             type: text_input
             text: "(14 + 6) × 8 = _"
             say: "Open bracket, fourteen add six, close bracket, times eight."
             answer: "160"
           - id: l2-c3
+            part: what-first
             type: multiple_choice
             text: "75 − 42 ÷ 7. What do you work out first?"
             say: "Seventy-five subtract forty-two divided by seven. What do you work out first?"
             options: ["42 ÷ 7", "75 − 42"]
             answer: "42 ÷ 7"
           - id: l2-c4
+            part: brackets
             type: text_input
             text: "(63 − 27) ÷ 9 = _"
             say: "Open bracket, sixty-three subtract twenty-seven, close bracket, divided by nine."
             answer: "4"
           - id: l2-c5
+            part: left-right
             type: multiple_choice
             text: "50 − 20 + 10 = _"
             say: "Fifty subtract twenty add ten."
             options: ["40", "20", "80"]
             answer: "40"
+          - id: l2-c6
+            part: mult-first
+            type: text_input
+            text: "48 − 5 × 7 = _"
+            say: "Forty-eight subtract five times seven."
+            answer: "13"
+          - id: l2-c7
+            part: mult-first
+            type: true_false
+            text: "Is it true? 6 + 30 ÷ 5 = 12"
+            say: "Six add thirty divided by five equals twelve. Is it true?"
+            answer: true
+          - id: l2-c8
+            part: mult-first
+            type: text_input
+            text: "8 × 4 + 6 × 3 = _"
+            say: "Eight times four add six times three."
+            answer: "50"
+          - id: l2-c9
+            part: mult-first
+            type: multiple_choice
+            text: "100 − 9 × 8 = _"
+            say: "One hundred subtract nine times eight."
+            options: ["28", "728", "92"]
+            answer: "28"
+          - id: l2-c10
+            part: brackets
+            type: text_input
+            text: "7 × (13 − 6) = _"
+            say: "Seven times, open bracket, thirteen subtract six, close bracket."
+            answer: "49"
+          - id: l2-c11
+            part: brackets
+            type: fill_in_blank
+            text: "With and without brackets\n24 − 6 ÷ 2 = _\n(24 − 6) ÷ 2 = _"
+            say: "Twenty-four subtract six divided by two. Then, open bracket, twenty-four subtract six, close bracket, divided by two. Work out both."
+            frame: "_ and _"
+            options: ["21", "9", "3"]
+            answer: ["21", "9"]
+          - id: l2-c12
+            part: brackets
+            type: true_false
+            text: "Is it true? (9 + 6) × 4 = 33"
+            say: "Open bracket, nine add six, close bracket, times four, equals thirty-three. Is it true?"
+            answer: false
+          - id: l2-c13
+            part: what-first
+            type: multiple_choice
+            text: "(48 − 12) ÷ 6 + 3. What do you work out first?"
+            say: "Open bracket, forty-eight subtract twelve, close bracket, divided by six, add three. What do you work out first?"
+            options: ["48 − 12", "12 ÷ 6", "6 + 3"]
+            answer: "48 − 12"
+          - id: l2-c14
+            part: what-first
+            type: multiple_choice
+            text: "4 + 7 × (10 − 2). What do you work out first?"
+            say: "Four add seven times, open bracket, ten subtract two, close bracket. What do you work out first?"
+            options: ["10 − 2", "7 × 10", "4 + 7"]
+            answer: "10 − 2"
+          - id: l2-c15
+            part: what-first
+            type: multiple_choice
+            text: "A ticket costs £9. Ella buys 4 tickets and a programme for £6. Which calculation gives the total?"
+            options: ["4 × 9 + 6", "4 × (9 + 6)", "(4 + 6) × 9"]
+            answer: "4 × 9 + 6"
+          - id: l2-c16
+            part: what-first
+            type: multiple_choice
+            text: "Which calculation equals 26?"
+            say: "Which calculation equals twenty-six?"
+            options: ["(3 + 2) × 4", "2 + 3 × 8", "(2 + 3) × 8"]
+            answer: "2 + 3 × 8"
+          - id: l2-c17
+            part: left-right
+            type: text_input
+            text: "45 − 15 + 5 = _"
+            say: "Forty-five subtract fifteen add five."
+            answer: "35"
+          - id: l2-c18
+            part: left-right
+            type: multiple_choice
+            text: "48 ÷ 6 × 2 = _"
+            say: "Forty-eight divided by six times two."
+            options: ["16", "4", "96"]
+            answer: "16"
+          - id: l2-c19
+            part: left-right
+            type: true_false
+            text: "Is it true? 60 − 20 − 10 = 50"
+            say: "Sixty subtract twenty subtract ten equals fifty. Is it true?"
+            answer: false
+          - id: l2-c20
+            part: left-right
+            type: text_input
+            text: "Sam has 40 marbles. He gives away 15 and then wins 8. 40 − 15 + 8 = _"
+            say: "Sam has forty marbles. He gives away fifteen and then wins eight. Forty subtract fifteen add eight."
+            answer: "33"

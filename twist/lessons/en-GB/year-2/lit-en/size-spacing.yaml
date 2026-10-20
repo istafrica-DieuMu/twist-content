@@ -14,7 +14,8 @@ summary: >
   2 leaves a finger space between words and copies short sentences, and
   ends with the skill check. Tracing carries its own support. The app
   cannot yet judge the size and spacing in the child's own copied
-  writing: any ink counts.
+  writing: any ink counts. The skill check marks knowing the sizes and
+  the spaces; Practise covers writing them.
 metadata:
   year: year-2
   topic: { de: Handschrift, en: Handwriting }
@@ -26,6 +27,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: small-tall, what: { de: kleine und große Buchstaben unterscheiden, en: telling small letters from tall letters } }
+    - { id: tails, what: { de: Buchstaben mit Unterlänge erkennen, en: knowing the letters whose tails drop below the line } }
+    - { id: capitals-digits, what: { de: "Großbuchstaben und Ziffern sind groß und haben keine Unterlänge", en: capitals and digits are tall and never drop below the line } }
+    - { id: spacing, what: { de: "Wortabstände zwischen Wörtern, nicht in Wörtern", en: "finger spaces between words, not inside them" } }
   misconceptions:
     - id: all-same-size
       what: Writes every letter the same height, so tall letters and small letters look alike (h like n, l like i)
@@ -230,6 +236,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -249,6 +256,30 @@ lessons:
             say: "Copy the word pig. Let the tails of p and g drop below the line."
             show: { drawn: writing-lines, text: "pig", mode: copy, arrows: false }
             char: "pig"
+          - id: l1-c4
+            type: sorting
+            text: "Small letter or tall letter? Sort them."
+            say: "Look at each letter. Does it stay low, or does it reach up high? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: small, show: { text: "small" }, say: "Small." }
+              - { id: tall, show: { text: "tall" }, say: "Tall." }
+            options:
+              - { text: "b", bin: tall }
+              - { text: "c", bin: small }
+              - { text: "k", bin: tall }
+              - { text: "r", bin: small }
+          - id: l1-c5
+            type: true_false
+            text: "The letter q sits on the line, and its tail goes below the line."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which one reaches up high?"
+            options: ["s", "w", "D"]
+            answer: "D"
+            option_audio: false
 
   - n: 2
     title: { de: Abstände zwischen Wörtern, en: Spaces between words }
@@ -408,8 +439,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: small-tall
             type: sorting
             text: "Sort the letters by their size on the line."
             say: "Put each letter with the letters of the same size: small, tall, or with a tail."
@@ -426,25 +459,139 @@ lessons:
               - { text: "t", bin: tall }
               - { text: "p", bin: tail }
           - id: l2-c2
+            part: small-tall
             type: multiple_choice
             text: "Which letter is small?"
             options: ["d", "x", "y"]
             answer: "x"
             option_audio: false
           - id: l2-c3
+            part: spacing
             type: multiple_choice
             text: "Which sentence has finger spaces?"
             options: ["Thecakeisbig.", "The cakeis big.", "The cake is big."]
             answer: "The cake is big."
             option_audio: false
           - id: l2-c4
+            part: capitals-digits
             type: true_false
             text: "Digits such as 4 and 9 are tall, like capital letters."
             say: "Read it. Is it true?"
             answer: true
           - id: l2-c5
+            part: spacing
             type: multiple_choice
             text: "How many finger spaces do you need?\nMy cat likes milk."
             say: "How many finger spaces do you need in the sentence: My cat likes milk?"
             options: ["3", "4", "2"]
             answer: "3"
+          - id: l2-c6
+            part: tails
+            type: highlight_in_text
+            text: "Tap every letter with a tail."
+            say: "Tap every letter whose tail goes below the line."
+            show: { drawn: letter-card, text: "g o j b y" }
+            spans: ["g", "j", "y"]
+          - id: l2-c7
+            part: tails
+            type: true_false
+            text: "The letter y has a tail that drops below the line."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c8
+            part: tails
+            type: multiple_choice
+            text: "Which word has a letter with a tail?"
+            options: ["cat", "pen", "bed"]
+            answer: "pen"
+            option_audio: false
+          - id: l2-c9
+            part: tails
+            type: multiple_choice
+            text: "Which word has two letters with tails?"
+            options: ["gum", "hat", "gap"]
+            answer: "gap"
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c10
+            part: tails
+            type: multiple_choice
+            text: "Which letter does not have a tail?"
+            options: ["p", "d", "q"]
+            answer: "d"
+            option_audio: false
+          - id: l2-c11
+            part: small-tall
+            type: multiple_choice
+            text: "Which word has only small letters?"
+            options: ["ball", "kite", "moon"]
+            answer: "moon"
+            option_audio: false
+          - id: l2-c12
+            part: small-tall
+            type: highlight_in_text
+            text: "Tap every tall letter."
+            say: "Tap every letter that reaches up high."
+            show: { drawn: letter-card, text: "h a l e b" }
+            spans: ["h", "l", "b"]
+          - id: l2-c13
+            part: small-tall
+            type: true_false
+            text: "In the word hen, all three letters are the same size."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c14
+            part: capitals-digits
+            type: multiple_choice
+            text: "Which one reaches up high?"
+            options: ["e", "n", "8"]
+            answer: "8"
+            option_audio: false
+          - id: l2-c15
+            part: capitals-digits
+            type: true_false
+            text: "A capital P drops below the line, like a small p."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c16
+            part: capitals-digits
+            type: highlight_in_text
+            text: "Tap every letter or digit that reaches up high."
+            say: "Tap every letter or digit that reaches up high."
+            show: { drawn: letter-card, text: "S a 3 m T" }
+            spans: ["S", "3", "T"]
+          - id: l2-c17
+            part: capitals-digits
+            type: sorting
+            text: "Tall, or with a tail? Sort them."
+            say: "Look at each letter. Does it reach up high, or does its tail drop below the line? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: tall, show: { text: "tall" }, say: "Tall." }
+              - { id: tail, show: { text: "tail" }, say: "Tail." }
+            options:
+              - { text: "Y", bin: tall }
+              - { text: "y", bin: tail }
+              - { text: "j", bin: tail }
+              - { text: "J", bin: tall }
+            difficulty: stretch
+          - id: l2-c18
+            part: spacing
+            type: true_false
+            text: "Are the spaces in the right places?\nDa d is ho me."
+            say: "Look at the sentence. Are the spaces in the right places?"
+            answer: false
+          - id: l2-c19
+            part: spacing
+            type: multiple_choice
+            text: "How many finger spaces do you need?\nMum and I went to town."
+            say: "How many finger spaces do you need in the sentence: Mum and I went to town?"
+            options: ["6", "4", "5"]
+            answer: "5"
+          - id: l2-c20
+            part: spacing
+            type: multiple_choice
+            text: "Which sentence has a space missing?"
+            options: ["I like my bike.", "Ilike my bike.", "I like my red bike."]
+            answer: "Ilike my bike."
+            option_audio: false

@@ -23,6 +23,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: capital, what: { de: einen Satz mit einem Großbuchstaben beginnen, en: starting a sentence with a capital letter } }
+    - { id: full-stop, what: { de: einen Erzählsatz mit einem Punkt beenden, en: ending a telling sentence with a full stop } }
+    - { id: question-mark, what: { de: einen Fragesatz mit einem Fragezeichen beenden, en: ending an asking sentence with a question mark } }
+    - { id: exclamation-mark, what: { de: einen Satz mit starkem Gefühl mit einem Ausrufezeichen beenden, en: ending a sentence that shows a strong feeling with an exclamation mark } }
   misconceptions:
     - id: no-capital-start
       what: Starts a sentence with a small letter (the cat is black.)
@@ -218,6 +223,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -239,6 +245,31 @@ lessons:
             text: "Is it written correctly? \"Dad has a van.\""
             say: "Look at the start and the end. Is it written correctly?"
             answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Is it written correctly? \"My bike. is new\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: false
+          - id: l1-c5
+            type: sorting
+            text: "Written correctly or not? Put each sentence in its box."
+            say: "Read each sentence yourself. Is it written correctly, or does it need fixing? Put it in the right box."
+            bins:
+              - { id: right, show: { text: "written correctly" }, say: "Written correctly." }
+              - { id: fix, show: { text: "needs fixing" }, say: "Needs fixing." }
+            options:
+              - { text: "The hen is brown.", bin: right }
+              - { text: "the hen is brown.", bin: fix }
+              - { text: "We can run fast.", bin: right }
+              - { text: "We can run fast", bin: fix }
+            option_audio: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Here are two sentences. Tap the words that need a capital letter."
+            say: "Here are two sentences. Tap every word that needs a capital letter."
+            show: { drawn: letter-card, text: "the sun is out. we can play." }
+            spans: ["the", "we"]
+            difficulty: stretch
 
   - n: 2
     title: { de: "Fragezeichen und Ausrufezeichen", en: "Question marks and exclamation marks" }
@@ -441,8 +472,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: full-stop
             type: multiple_choice
             text: "Which one is written correctly?"
             say: "Which sentence has a capital letter and a full stop? Read them yourself."
@@ -450,6 +483,7 @@ lessons:
             answer: "The tree is tall."
             option_audio: false
           - id: l2-c2
+            part: capital
             type: fill_in_blank
             text: "Which letter starts the sentence?"
             say: "Our car is red. Which letter starts the sentence?"
@@ -458,6 +492,7 @@ lessons:
             answer: ["O"]
             option_audio: false
           - id: l2-c3
+            part: question-mark
             type: fill_in_blank
             text: "Which mark ends the sentence?"
             say: "Can you see the moon. Which mark goes at the end?"
@@ -467,6 +502,7 @@ lessons:
             answer: ["?"]
             option_audio: false
           - id: l2-c4
+            part: exclamation-mark
             type: fill_in_blank
             text: "Which mark ends the sentence?"
             say: "What a funny clown. Which mark goes at the end?"
@@ -476,8 +512,138 @@ lessons:
             answer: ["!"]
             option_audio: false
           - id: l2-c5
+            part: capital
             type: highlight_in_text
             text: "Tap the word that needs a capital letter."
             say: "The shop is shut. Tap the word that needs a capital letter."
             show: { drawn: letter-card, text: "the shop is shut." }
             spans: ["the"]
+          - id: l2-c6
+            part: capital
+            type: true_false
+            text: "Is it written correctly? \"Look at the big ship.\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: true
+          - id: l2-c7
+            part: full-stop
+            type: true_false
+            text: "Is it written correctly? \"The fish swims fast\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: false
+          - id: l2-c8
+            part: question-mark
+            type: true_false
+            text: "Is it written correctly? \"Where are my shoes?\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: true
+          - id: l2-c9
+            part: exclamation-mark
+            type: true_false
+            text: "Is it written correctly? \"What a big dog?\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: false
+          - id: l2-c10
+            part: capital
+            type: true_false
+            text: "Is it written correctly? \"The frog jumped. it went splash.\""
+            say: "Read the two sentences yourself. Are they written correctly?"
+            answer: false
+            difficulty: stretch
+          - id: l2-c11
+            part: full-stop
+            type: highlight_in_text
+            text: "Here are two sentences with no full stops. Tap the last word of the first sentence."
+            say: "Here are two sentences, but the full stops are missing. Tap the last word of the first sentence."
+            show: { drawn: letter-card, text: "I fed the cat It was hungry" }
+            spans: ["cat"]
+            difficulty: stretch
+          - id: l2-c12
+            part: question-mark
+            type: sorting
+            text: "Asking or telling? Put each sentence in its box."
+            say: "Read each sentence yourself. Is it asking something, or telling something? Put it in the right box."
+            bins:
+              - { id: asking, show: { text: "asking ?" }, say: "Asking." }
+              - { id: telling, show: { text: "telling ." }, say: "Telling." }
+            options:
+              - { text: "Who made this mess", bin: asking }
+              - { text: "Tom made this mess", bin: telling }
+              - { text: "Do you want to play", bin: asking }
+              - { text: "I want to play with you", bin: telling }
+            option_audio: false
+          - id: l2-c13
+            part: exclamation-mark
+            type: fill_in_blank
+            text: "Which mark ends the sentence?"
+            say: "How cold the sea is. Which mark goes at the end?"
+            frame: "How cold the sea is_"
+            options: [".", "?", "!"]
+            answer: ["!"]
+            option_audio: false
+          - id: l2-c14
+            part: capital
+            type: multiple_choice
+            text: "The rain stopped. we went out.\n\nWhich word needs a capital letter?"
+            say: "The rain stopped. We went out. Which word needs a capital letter? Read them yourself."
+            options: ["we", "rain", "out"]
+            answer: "we"
+            option_audio: false
+          - id: l2-c15
+            part: full-stop
+            type: true_false
+            text: "Is it written correctly? \"We went to the shop.\""
+            say: "Read it yourself. Is it written correctly?"
+            answer: true
+          - id: l2-c16
+            part: question-mark
+            type: multiple_choice
+            text: "Which one needs a question mark at the end?"
+            say: "Which sentence needs a question mark at the end? Read them yourself."
+            options: ["What is your name", "My name is Sam", "What a lovely name"]
+            answer: "What is your name"
+            option_audio: false
+          - id: l2-c17
+            part: exclamation-mark
+            type: matching
+            text: "Match each sentence to the mark that ends it."
+            say: "Read each sentence yourself. Tap a sentence, then tap the mark that ends it."
+            option_audio: false
+            pairs:
+              - left: { text: "I can see a rainbow" }
+                right: { text: "." }
+              - left: { text: "Can you see the rainbow" }
+                right: { text: "?" }
+              - left: { text: "What a bright rainbow" }
+                right: { text: "!" }
+          - id: l2-c18
+            part: exclamation-mark
+            type: multiple_choice
+            text: "Which one is written correctly?"
+            say: "Which sentence is written correctly? Read them yourself."
+            options: ["What a loud noise!", "what a loud noise!", "What a loud noise?"]
+            answer: "What a loud noise!"
+            option_audio: false
+          - id: l2-c19
+            part: full-stop
+            type: sorting
+            text: "Is the full stop in the right place? Put each sentence in its box."
+            say: "Read each sentence yourself. Is the full stop in the right place, or does it need fixing? Put it in the right box."
+            bins:
+              - { id: right, show: { text: "written correctly" }, say: "Written correctly." }
+              - { id: fix, show: { text: "needs fixing" }, say: "Needs fixing." }
+            options:
+              - { text: "The lamb is small.", bin: right }
+              - { text: "The lamb. is small", bin: fix }
+              - { text: "I ate my lunch.", bin: right }
+              - { text: "I ate. my lunch", bin: fix }
+            option_audio: false
+          - id: l2-c20
+            part: question-mark
+            type: fill_in_blank
+            text: "Which marks end the two sentences?"
+            say: "Is the shop open. It shuts at six. Which mark ends each sentence?"
+            frame: "Is the shop open_ It shuts at 6_"
+            options: [".", "?", "!"]
+            answer: ["?", "."]
+            option_audio: false
+            difficulty: stretch

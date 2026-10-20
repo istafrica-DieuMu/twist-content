@@ -26,6 +26,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [shape, grid]
   facets: []
+  parts:
+    - { id: recognise, what: { de: "erkennen, ob sich eine Figur zu einem Würfel falten lässt", en: telling whether a shape folds into a cube } }
+    - { id: complete, what: { de: das fehlende Quadrat eines Würfelnetzes finden, en: finding where the missing square of a net goes } }
+    - { id: opposite, what: { de: gegenüberliegende Flächen im Würfelnetz finden, en: finding the opposite faces in a net } }
+    - { id: dice, what: { de: gegenüberliegende Augenzahlen beim Spielwürfel und in seinem Netz, en: opposite numbers on a dice and in its net } }
   misconceptions:
     - id: any-six-squares
       what: Thinks any six squares that touch make a net of a cube (a 2 by 3 rectangle, six in a line, a block of four)
@@ -208,6 +213,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -224,6 +230,26 @@ lessons:
             text: "How many squares does a net of a cube have?"
             options: ["6", "5", "8"]
             answer: "6"
+          - id: l1-c4
+            type: true_false
+            text: "Does this net fold into a cube?"
+            show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, purple], [1, 0, purple], [2, 0, purple], [3, 0, purple], [2, 1, purple], [3, 1, purple]] }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "The sixth square is missing. Where must it go to make a net of a cube?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, green], [1, 0, green], [1, 1, green], [2, 1, green], [3, 1, green]], labels: [[3, 2, A], [2, 0, B], [0, 1, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+            option_audio: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which is a net of a cube?"
+            options:
+              - { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, blue], [1, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [2, 2, blue]], key: block }
+              - { drawn: grid, cols: 4, rows: 3, cells: [[3, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [0, 2, blue]], key: net }
+              - { drawn: grid, cols: 2, rows: 5, cells: [[0, 0, blue], [0, 1, blue], [0, 2, blue], [0, 3, blue], [0, 4, blue], [1, 2, blue]], key: line }
+            answer: net
 
   - n: 2
     title: { de: "Was liegt gegenüber?", en: "Which faces are opposite?" }
@@ -397,18 +423,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: recognise
             type: true_false
             text: "Does this net fold into a cube?"
             show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 1, green], [1, 1, green], [2, 1, green], [2, 0, green], [3, 0, green], [4, 0, green]] }
             answer: true
           - id: l2-c2
+            part: recognise
             type: true_false
             text: "Does this net fold into a cube?"
             show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [2, 1, blue]] }
             answer: false
           - id: l2-c3
+            part: opposite
             type: multiple_choice
             text: "The net is folded into a cube. Which face is opposite B?"
             show: { drawn: grid, cols: 4, rows: 3, cells: [[1, 0, orange], [0, 1, orange], [1, 1, orange], [2, 1, orange], [3, 1, orange], [1, 2, orange]], labels: [[1, 0, A], [0, 1, B], [1, 1, C], [2, 1, D], [3, 1, E], [1, 2, F]] }
@@ -416,14 +446,124 @@ lessons:
             answer: "D"
             option_audio: false
           - id: l2-c4
+            part: dice
             type: multiple_choice
             text: "On a dice, which number is opposite 4?"
             options: ["3", "2", "5"]
             answer: "3"
           - id: l2-c5
+            part: complete
             type: multiple_choice
             text: "The sixth square is missing. Where must it go to make a net of a cube?"
             show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 1, purple], [1, 1, purple], [2, 1, purple], [3, 1, purple], [1, 2, purple]], labels: [[0, 2, A], [2, 0, B], [2, 2, C]] }
             options: ["B", "A", "C"]
             answer: "B"
+            option_audio: false
+          - id: l2-c6
+            part: recognise
+            type: true_false
+            text: "Does this net fold into a cube?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, red], [0, 1, red], [1, 1, red], [1, 2, red], [2, 2, red], [2, 3, red]] }
+            answer: true
+          - id: l2-c7
+            part: recognise
+            type: image_multiple_choice
+            text: "Which is not a net of a cube?"
+            options:
+              - { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, yellow], [0, 1, yellow], [1, 1, yellow], [2, 1, yellow], [3, 1, yellow], [2, 2, yellow]], key: cross }
+              - { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, yellow], [1, 0, yellow], [1, 1, yellow], [2, 1, yellow], [3, 1, yellow], [3, 2, yellow]], key: steps }
+              - { drawn: grid, cols: 4, rows: 3, cells: [[0, 1, yellow], [1, 1, yellow], [2, 1, yellow], [3, 1, yellow], [1, 2, yellow], [3, 2, yellow]], key: same-side }
+            answer: same-side
+          - id: l2-c8
+            part: recognise
+            type: multiple_choice
+            text: "Why does this not fold into a cube?"
+            show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, green], [2, 0, green], [0, 1, green], [1, 1, green], [2, 1, green], [3, 1, green]] }
+            options: ["Both flaps fold onto the same face.", "Four squares are in a block.", "It has too few squares."]
+            answer: "Both flaps fold onto the same face."
+          - id: l2-c9
+            part: complete
+            type: multiple_choice
+            text: "The sixth square is missing. Where must it go to make a net of a cube?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[1, 0, blue], [1, 1, blue], [1, 2, blue], [1, 3, blue], [0, 0, blue]], labels: [[2, 0, A], [0, 1, B], [0, 3, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+            option_audio: false
+          - id: l2-c10
+            part: complete
+            type: multiple_choice
+            text: "The sixth square is missing. Where must it go to make a net of a cube?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, orange], [1, 0, orange], [2, 0, orange], [2, 1, orange], [3, 1, orange]], labels: [[3, 0, A], [1, 1, B], [4, 1, C]] }
+            options: ["A", "B", "C"]
+            answer: "C"
+            option_audio: false
+          - id: l2-c11
+            part: complete
+            type: true_false
+            text: "A square is added at A. Does the shape fold into a cube then?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 1, red], [1, 1, red], [2, 1, red], [3, 1, red], [2, 0, red]], labels: [[2, 2, A]] }
+            answer: true
+          - id: l2-c12
+            part: complete
+            type: true_false
+            text: "A square is added at A. Does the shape fold into a cube then?"
+            show: { drawn: grid, cols: 2, rows: 4, cells: [[1, 0, yellow], [1, 1, yellow], [1, 2, yellow], [1, 3, yellow], [0, 1, yellow]], labels: [[0, 2, A]] }
+            answer: false
+          - id: l2-c13
+            part: opposite
+            type: multiple_choice
+            text: "The net is folded into a cube. Which face is opposite C?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, green], [1, 0, green], [1, 1, green], [2, 1, green], [3, 1, green], [3, 2, green]], labels: [[0, 0, A], [1, 0, B], [1, 1, C], [2, 1, D], [3, 1, E], [3, 2, F]] }
+            options: ["E", "D", "B"]
+            answer: "E"
+            option_audio: false
+          - id: l2-c14
+            part: opposite
+            type: multiple_choice
+            text: "The net is folded into a cube. Which face is opposite E?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, purple], [0, 1, purple], [1, 1, purple], [2, 1, purple], [3, 1, purple], [2, 2, purple]], labels: [[0, 0, A], [0, 1, B], [1, 1, C], [2, 1, D], [3, 1, E], [2, 2, F]] }
+            options: ["C", "D", "A"]
+            answer: "C"
+            option_audio: false
+          - id: l2-c15
+            part: opposite
+            type: true_false
+            text: "The net is folded into a cube. Are B and E opposite?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [1, 2, blue]], labels: [[0, 0, A], [0, 1, B], [1, 1, C], [2, 1, D], [3, 1, E], [1, 2, F]] }
+            answer: false
+          - id: l2-c16
+            part: opposite
+            type: multiple_choice
+            text: "The net is folded into a cube. Which two faces are opposite?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, orange], [1, 0, orange], [2, 0, orange], [1, 1, orange], [1, 2, orange], [1, 3, orange]], labels: [[0, 0, A], [1, 0, B], [2, 0, C], [1, 1, D], [1, 2, E], [1, 3, F]] }
+            options: ["B and E", "B and D", "A and D"]
+            answer: "B and E"
+            option_audio: false
+          - id: l2-c17
+            part: dice
+            type: multiple_choice
+            text: "On a dice, which number is opposite 5?"
+            options: ["2", "3", "6"]
+            answer: "2"
+          - id: l2-c18
+            part: dice
+            type: multiple_choice
+            text: "On a dice, opposite faces add up to 7. Which number goes on the ? face?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, white], [1, 0, white], [1, 1, white], [2, 1, white], [3, 1, white], [3, 2, white]], labels: [[0, 0, "1"], [1, 0, "2"], [1, 1, "3"], [2, 1, "6"], [3, 1, "?"], [3, 2, "5"]] }
+            options: ["4", "1", "6"]
+            answer: "4"
+            option_audio: false
+          - id: l2-c19
+            part: dice
+            type: true_false
+            text: "This is a dice net. When it is folded, do all opposite faces add up to 7?"
+            show: { drawn: grid, cols: 3, rows: 4, cells: [[0, 0, white], [1, 0, white], [2, 0, white], [1, 1, white], [1, 2, white], [1, 3, white]], labels: [[0, 0, "2"], [1, 0, "1"], [2, 0, "5"], [1, 1, "3"], [1, 2, "6"], [1, 3, "4"]] }
+            answer: true
+          - id: l2-c20
+            part: dice
+            type: multiple_choice
+            text: "On a dice, opposite faces add up to 7. Which number goes on the ? face?"
+            show: { drawn: grid, cols: 2, rows: 5, cells: [[0, 0, white], [0, 1, white], [0, 2, white], [1, 2, white], [1, 3, white], [1, 4, white]], labels: [[0, 0, "1"], [0, 1, "2"], [0, 2, "6"], [1, 2, "4"], [1, 3, "5"], [1, 4, "?"]] }
+            options: ["3", "5", "6"]
+            answer: "3"
             option_audio: false

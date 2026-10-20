@@ -26,6 +26,11 @@ metadata:
   forms: [audio, text]
   drawn: []
   facets: []
+  parts:
+    - { id: numbers, what: { de: die Zahlen von 11 bis 20 auf Französisch verstehen, en: understanding the numbers from 11 to 20 in French } }
+    - { id: count, what: { de: auf Französisch bis 20 zählen, en: counting to 20 in French } }
+    - { id: age, what: { de: "nach dem Alter fragen und es sagen (Tu as quel âge ? J'ai ... ans.)", en: "asking and saying someone's age (Tu as quel âge ? J'ai ... ans.)" } }
+    - { id: phone, what: { de: französische Telefonnummern in Paaren verstehen, en: understanding French phone numbers said in pairs } }
   misconceptions:
     - id: small-number
       what: Hears douze as deux, treize as trois, seize as six, quatorze as quatre
@@ -137,6 +142,7 @@ lessons:
                   - "11 onze, 13 treize, 14 quatorze, 16 seize."
               - id: l1-f5
                 type: speak
+                text: "Count in French from 10 to 16."
                 say: { en: "Count in French from ten to sixteen.", fr: "dix, onze, douze, treize, quatorze, quinze, seize" }
                 expected_text: "dix, onze, douze, treize, quatorze, quinze, seize"
                 hints:
@@ -226,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -246,6 +253,32 @@ lessons:
             audio: { fr: "treize" }
             options: ["13", "3", "12"]
             answer: "13"
+          - id: l1-c4
+            type: true_false
+            text: "Listen. Tom hears this number and writes 4. Is he right?"
+            say: { en: "Listen. Tom hears this number and writes four. Is he right?", fr: "quatorze" }
+            answer: false
+          - id: l1-c5
+            type: audio_choice
+            text: "Which number comes next?"
+            say: { en: "Listen and count on. Which number comes next?" }
+            audio: { fr: "douze, treize, quatorze ..." }
+            options: ["15", "5", "16"]
+            answer: "15"
+          - id: l1-c6
+            type: matching
+            option_audio: false
+            text: "Match each number with its word."
+            say: { en: "Tap a number, then its French word." }
+            pairs:
+              - left: { text: "15" }
+                right: { text: "quinze" }
+              - left: { text: "5" }
+                right: { text: "cinq" }
+              - left: { text: "13" }
+                right: { text: "treize" }
+              - left: { text: "3" }
+                right: { text: "trois" }
 
   - n: 2
     title: { de: "dix-sept bis vingt, Alter und Telefon", en: "dix-sept to vingt, ages and phone numbers" }
@@ -315,7 +348,7 @@ lessons:
                 type: audio_choice
                 text: "How old is Chloé?"
                 say: { en: "Listen. How old is Chloé?" }
-                audio: { fr: "Chloé, tu as quel âge ? J'ai onze ans." }
+                audio: { turns: [{ fr: "Chloé, tu as quel âge ?", speaker: male }, { fr: "J'ai onze ans.", speaker: female }] }
                 options: ["11", "12", "1"]
                 answer: "11"
                 hints:
@@ -357,7 +390,7 @@ lessons:
                 type: audio_choice
                 text: "How old is Hugo?"
                 say: { en: "Listen. How old is Hugo?" }
-                audio: { fr: "Hugo, tu as quel âge ? J'ai treize ans." }
+                audio: { turns: [{ fr: "Hugo, tu as quel âge ?", speaker: female }, { fr: "J'ai treize ans.", speaker: male }] }
                 options: ["13", "3", "30"]
                 answer: "13"
                 hints: ["Treize ends in ze."]
@@ -379,6 +412,7 @@ lessons:
                 hints: ["Each pair is one number: onze, seize, dix-sept, quatorze."]
               - id: l2-s5
                 type: speak
+                text: "Say in French: I am nine."
                 say: { en: "Say in French: I am nine.", fr: "J'ai neuf ans." }
                 expected_text: "J'ai neuf ans."
                 hints: ["You have your years: j'ai neuf ans."]
@@ -401,7 +435,7 @@ lessons:
                 type: audio_choice
                 text: "How old is Inès?"
                 say: { en: "Listen. How old is Inès?" }
-                audio: { fr: "Inès, tu as quel âge ? J'ai douze ans." }
+                audio: { turns: [{ fr: "Inès, tu as quel âge ?", speaker: male }, { fr: "J'ai douze ans.", speaker: female }] }
                 options: ["12", "2", "20"]
                 answer: "12"
               - id: l2-n4
@@ -421,25 +455,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: numbers
             type: text_input
             text: "Listen. Write the number."
             say: { en: "Listen. Write the number.", fr: "quatorze" }
             answer: "14"
           - id: l2-c2
+            part: numbers
             type: text_input
             text: "Listen. Write the number."
             say: { en: "Listen. Write the number.", fr: "dix-sept" }
             answer: "17"
           - id: l2-c3
+            part: age
             type: audio_choice
             text: "How old is Lucas?"
             say: { en: "Listen. How old is Lucas?" }
-            audio: { fr: "Lucas, tu as quel âge ? J'ai seize ans." }
+            audio: { turns: [{ fr: "Lucas, tu as quel âge ?", speaker: female }, { fr: "J'ai seize ans.", speaker: male }] }
             options: ["16", "6", "60"]
             answer: "16"
           - id: l2-c4
+            part: phone
             type: audio_choice
             text: "Which phone number do you hear?"
             say: { en: "Listen to the phone number. Which one is it?" }
@@ -447,6 +486,7 @@ lessons:
             options: ["06 13 19 15 11", "06 03 09 05 11", "06 13 09 15 01"]
             answer: "06 13 19 15 11"
           - id: l2-c5
+            part: numbers
             type: matching
             option_audio: false
             text: "Match the numbers to the words."
@@ -460,3 +500,116 @@ lessons:
                 right: { text: "dix-neuf" }
               - left: { text: "20" }
                 right: { text: "vingt" }
+          - id: l2-c6
+            part: numbers
+            type: text_input
+            text: "Listen. Write the number."
+            say: { en: "Listen. Write the number.", fr: "dix-huit" }
+            answer: "18"
+          - id: l2-c7
+            part: numbers
+            type: true_false
+            text: "Listen. Mia hears this number and writes 9. Is she right?"
+            say: { en: "Listen. Mia hears this number and writes nine. Is she right?", fr: "dix-neuf" }
+            answer: false
+          - id: l2-c8
+            part: count
+            type: audio_choice
+            text: "Which number comes next?"
+            say: { en: "Listen and count on. Which number comes next?" }
+            audio: { fr: "dix-sept, dix-huit ..." }
+            options: ["19", "9", "20"]
+            answer: "19"
+          - id: l2-c9
+            part: count
+            type: audio_choice
+            text: "Which number comes next?"
+            say: { en: "Listen and count on. Which number comes next?" }
+            audio: { fr: "quinze, seize ..." }
+            options: ["17", "7", "18"]
+            answer: "17"
+          - id: l2-c10
+            part: count
+            type: ordering
+            option_audio: false
+            text: "Put the numbers in order, smallest first."
+            options: ["vingt", "treize", "dix-sept", "onze"]
+            slot_count: 4
+            answer: ["onze", "treize", "dix-sept", "vingt"]
+          - id: l2-c11
+            part: count
+            type: fill_in_blank
+            option_audio: false
+            text: "Which number is missing?"
+            say: { en: "Which number is missing? Fill the gap." }
+            frame: "dix-sept, _, dix-neuf, vingt"
+            options: ["huit", "dix-huit", "seize"]
+            answer: ["dix-huit"]
+          - id: l2-c12
+            part: count
+            type: audio_choice
+            text: "Which number comes next?"
+            say: { en: "Listen and count on. Which number comes next?" }
+            audio: { fr: "dix-sept, dix-huit, dix-neuf ..." }
+            options: ["20", "10", "12"]
+            answer: "20"
+          - id: l2-c13
+            part: age
+            type: audio_choice
+            text: "How old is Manon?"
+            say: { en: "Listen. How old is Manon?" }
+            audio: { turns: [{ fr: "Manon, tu as quel âge ?", speaker: male }, { fr: "J'ai quatorze ans.", speaker: female }] }
+            options: ["14", "4", "40"]
+            answer: "14"
+          - id: l2-c14
+            part: age
+            type: audio_choice
+            text: "How old is Jules?"
+            say: { en: "Listen. How old is Jules?" }
+            audio: { turns: [{ fr: "Jules, tu as quel âge ?", speaker: female }, { fr: "J'ai dix-sept ans.", speaker: male }] }
+            options: ["17", "7", "10"]
+            answer: "17"
+          - id: l2-c15
+            part: age
+            type: multiple_choice
+            text: "You want to know how old your friend is. What do you ask?"
+            say: "You want to know how old your friend is. What do you ask?"
+            options: ["Tu as quel âge ?", "J'ai quel âge ?", "Tu as dix ans."]
+            answer: "Tu as quel âge ?"
+            option_audio: false
+          - id: l2-c16
+            part: age
+            type: multiple_choice
+            text: "How do you say in French: I am twelve?"
+            say: "How do you say in French: I am twelve?"
+            options: ["J'ai deux ans.", "Je suis douze.", "J'ai douze ans."]
+            answer: "J'ai douze ans."
+            option_audio: false
+          - id: l2-c17
+            part: phone
+            type: audio_choice
+            text: "Which phone number do you hear?"
+            say: { en: "Listen to the phone number. Which one is it?" }
+            audio: { fr: "zéro six, quatorze, vingt, seize, dix-neuf" }
+            options: ["06 14 20 16 19", "06 04 02 06 09", "06 14 02 16 09"]
+            answer: "06 14 20 16 19"
+          - id: l2-c18
+            part: phone
+            type: audio_choice
+            text: "What is Zoé's phone number?"
+            say: { en: "Listen. What is Zoé's phone number?" }
+            audio: { fr: "Mon numéro de téléphone, c'est le zéro sept, onze, dix-sept, treize, quinze.", speaker: female }
+            options: ["07 11 17 13 15", "07 01 07 03 05", "07 11 07 13 05"]
+            answer: "07 11 17 13 15"
+          - id: l2-c19
+            part: phone
+            type: true_false
+            text: "06 18 13 20 15\nIs this the phone number you hear?"
+            say: { en: "Listen. Is this the phone number you hear?", fr: "zéro six, dix-huit, treize, vingt, quinze" }
+            answer: true
+          - id: l2-c20
+            part: phone
+            type: text_input
+            text: "06 11 _ 14 20\nListen. Write the missing pair."
+            say: { en: "Listen to the phone number. Write the missing pair.", fr: "zéro six, onze, seize, quatorze, vingt" }
+            answer: "16"

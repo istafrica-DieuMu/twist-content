@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: order, what: { de: Wörter nach den ersten zwei oder drei Buchstaben ordnen, en: putting words in order by their first two or three letters } }
+    - { id: guide-words, what: { de: mit den Leitwörtern die richtige Seite finden, en: using the guide words to find the right page } }
+    - { id: open-place, what: { de: das Wörterbuch ungefähr an der richtigen Stelle aufschlagen, en: opening the dictionary in about the right place } }
+    - { id: other-spelling, what: { de: eine andere Schreibung für den ersten Laut versuchen, en: trying another spelling of the first sound } }
   misconceptions:
     - id: first-letter-only
       what: Stops at the first letter, so words that share it seem to be in any order (sheep before shark)
@@ -203,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,22 @@ lessons:
             text: "Which word comes first in a dictionary?\nblue   black   blink"
             options: ["black", "blue", "blink"]
             answer: "black"
+          - id: l1-c4
+            type: ordering
+            text: "Put the words in dictionary order."
+            say: "Put the words in the order you would find them in a dictionary."
+            options: ["drum", "dress", "dragon", "drink"]
+            slot_count: 4
+            answer: ["dragon", "dress", "drink", "drum"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which word comes last in a dictionary?\npig   pen   pot"
+            options: ["pen", "pig", "pot"]
+            answer: "pot"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? In a dictionary, sleep comes before slide."
+            answer: true
 
   - n: 2
     title: { de: Leitwörter und andere Schreibungen, en: Guide words and other spellings }
@@ -373,8 +395,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: order
             type: ordering
             text: "Put the words in dictionary order."
             say: "Put the words in the order you would find them in a dictionary."
@@ -382,23 +406,118 @@ lessons:
             slot_count: 4
             answer: ["crab", "cream", "crisp", "crown"]
           - id: l2-c2
+            part: guide-words
             type: true_false
             text: "The guide words on a page are: rabbit ... river\nIs the word rocket on this page?"
             answer: false
           - id: l2-c3
+            part: order
             type: multiple_choice
             text: "Which word comes first in a dictionary?\nwheel   whale   whisper"
             options: ["whale", "wheel", "whisper"]
             answer: "whale"
           - id: l2-c4
+            part: other-spelling
             type: multiple_choice
             text: "Sam wants to spell the word for a round, flat shape. He looks for sircle and cannot find it. Which letter should he try at the start?"
             options: ["c", "z", "x"]
             answer: "c"
             option_audio: false
           - id: l2-c5
+            part: open-place
             type: multiple_choice
-            text: "Where would you open the dictionary to find yoghurt?"
-            options: ["near the front", "in the middle", "near the back"]
-            answer: "near the back"
+            text: "Which word would you find near the front of the dictionary?"
+            options: ["carrot", "rocket", "tiger"]
+            answer: "carrot"
+          - id: l2-c6
+            part: order
+            type: ordering
+            text: "Put the words in dictionary order."
+            say: "Put the words in the order you would find them in a dictionary."
+            options: ["glue", "glitter", "glass", "glove"]
+            slot_count: 4
+            answer: ["glass", "glitter", "glove", "glue"]
+          - id: l2-c7
+            part: order
+            type: multiple_choice
+            text: "Which letter decides the order of trumpet and tractor?"
+            options: ["the third letter", "the second letter", "the first letter"]
+            answer: "the third letter"
+          - id: l2-c8
+            part: order
+            type: true_false
+            text: "Is it true? In a dictionary, shell comes before shadow."
+            answer: false
+          - id: l2-c9
+            part: guide-words
+            type: multiple_choice
+            text: "The guide words on a page are: frog ... fudge\nWhich word is on this page?"
+            options: ["fruit", "flame", "fairy"]
+            answer: "fruit"
+          - id: l2-c10
+            part: guide-words
+            type: multiple_choice
+            text: "The guide words on a page are: night ... nurse\nOn which page is nest?"
+            options: ["an earlier page", "this page", "a later page"]
+            answer: "an earlier page"
             keep_order: true
+          - id: l2-c11
+            part: guide-words
+            type: true_false
+            text: "The guide words on a page are: bake ... bell\nIs the word beach on this page?"
+            answer: true
+          - id: l2-c12
+            part: guide-words
+            type: multiple_choice
+            text: "The guide words on a page are: pencil ... pirate\nWhich word is not on this page?"
+            options: ["parrot", "piano", "pepper"]
+            answer: "parrot"
+          - id: l2-c13
+            part: open-place
+            type: true_false
+            text: "Is it true? To find kangaroo, open the dictionary near the back."
+            answer: false
+          - id: l2-c14
+            part: open-place
+            type: multiple_choice
+            text: "You open the dictionary in the middle and land on words that start with m. You want to find tortoise. Which way do you turn the pages?"
+            options: ["towards the back", "towards the front"]
+            answer: "towards the back"
+            keep_order: true
+          - id: l2-c15
+            part: open-place
+            type: multiple_choice
+            text: "Which word would you find in the middle of the dictionary?"
+            options: ["lemon", "apple", "zebra"]
+            answer: "lemon"
+          - id: l2-c16
+            part: open-place
+            type: true_false
+            text: "Is it true? Juice and lemon are both in the middle part of the dictionary."
+            answer: true
+          - id: l2-c17
+            part: other-spelling
+            type: multiple_choice
+            text: "Ella wants to spell the word for the part of your arm where you wear a watch. She cannot find rist in the dictionary. Which spelling should she look up next?"
+            options: ["wrist", "rrist", "ryst"]
+            answer: "wrist"
+            option_audio: false
+          - id: l2-c18
+            part: other-spelling
+            type: multiple_choice
+            text: "Ben wants to spell the word for what you tie in a piece of string. Under not he finds a different word. Which spelling should he look up next?"
+            options: ["knot", "nott", "nnot"]
+            answer: "knot"
+            option_audio: false
+          - id: l2-c19
+            part: other-spelling
+            type: true_false
+            text: "Priya wants to spell the name of a big bird with a long tail. She looks for fesant and cannot find it. Is it a good idea to look under ph next?"
+            answer: true
+          - id: l2-c20
+            part: other-spelling
+            type: multiple_choice
+            text: "Max wants to spell the word for the middle of something. He looks under se and cannot find it. Where should he look next?"
+            options: ["under ce", "under ze", "under sse"]
+            answer: "under ce"
+            option_audio: false

@@ -23,6 +23,12 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots, coins]
   facets: [currency]
+  parts:
+    - { id: plus-minus, what: { de: zu einer Plus- oder Minusaufgabe die passende Geschichte finden, en: finding the story that fits an addition or a subtraction } }
+    - { id: times-divide, what: { de: zu einer Mal- oder Geteiltaufgabe die passende Geschichte finden, en: finding the story that fits a multiplication or a division } }
+    - { id: picture, what: { de: zu einem Bild die passende Geschichte finden, en: finding the story that fits a picture } }
+    - { id: build, what: { de: "eine Rechengeschichte aus Anfang, Handlung und Frage bauen", en: "building a number story from a start, what happens and a question" } }
+    - { id: check, what: { de: "prüfen, ob eine Geschichte zu einer Rechnung passt", en: checking whether a story fits a calculation } }
   misconceptions:
     - id: numbers-fit-action-not
       what: Accepts a story with the right numbers but the wrong action (for 140 − 35, a story where 35 more arrive)
@@ -188,6 +194,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -203,6 +210,22 @@ lessons:
             text: "Which calculation fits this story? There are 95 plums in the bowl. The family eats 22."
             options: ["95 − 22", "95 + 22", "22 − 95"]
             answer: "95 − 22"
+          - id: l1-c4
+            type: ordering
+            text: "Build a story for 85 − 30. Put the sentences in order."
+            options: ["30 of them fly away.", "How many birds are still in the field?", "There are 85 birds in a field."]
+            slot_count: 3
+            answer: ["There are 85 birds in a field.", "30 of them fly away.", "How many birds are still in the field?"]
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Does this story fit 110 − 40? A bakery has 110 buns. It bakes 40 more."
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which story fits 46 + 38?"
+            options: ["Ravi has 46 marbles. He wins 38 more.", "Ravi has 46 marbles. He loses 38.", "Ravi has 38 marbles and 4 dice."]
+            answer: "Ravi has 46 marbles. He wins 38 more."
 
   - n: 2
     title: { de: "Geschichten zu Mal, Geteilt und Bildern", en: "Stories for times, divide and pictures" }
@@ -363,23 +386,28 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: plus-minus
             type: multiple_choice
             text: "Which story fits 180 − 60?"
             options: ["A baker makes 180 rolls. He sells 60.", "A baker makes 180 rolls. He makes 60 more.", "A baker makes 60 rolls and 18 cakes."]
             answer: "A baker makes 180 rolls. He sells 60."
           - id: l2-c2
+            part: times-divide
             type: multiple_choice
             text: "Which story fits 7 × 4?"
             options: ["There are 7 cars with 4 wheels each.", "There are 7 cars and 4 vans.", "There are 7 cars. 4 drive away."]
             answer: "There are 7 cars with 4 wheels each."
           - id: l2-c3
+            part: times-divide
             type: multiple_choice
             text: "Which story fits 20 ÷ 5?"
             options: ["20 sweets are shared equally between 5 children.", "There are 5 bags with 20 sweets each.", "There are 20 sweets. 5 are eaten."]
             answer: "20 sweets are shared equally between 5 children."
           - id: l2-c4
+            part: build
             type: ordering
             text: "Build a story for 64 + 20. Put the sentences in order."
             options: ["How many people are on the bus now?", "A bus has 64 people on board.", "At the next stop 20 people get on."]
@@ -387,6 +415,99 @@ lessons:
             answer: ["A bus has 64 people on board.", "At the next stop 20 people get on.", "How many people are on the bus now?"]
             option_audio: false
           - id: l2-c5
+            part: check
             type: true_false
             text: "Does this story fit 3 × 6? There are 3 plates with 6 cakes on each. How many cakes are there?"
             answer: true
+          - id: l2-c6
+            part: plus-minus
+            type: multiple_choice
+            text: "Which story fits 230 + 45?"
+            options: ["A library has 230 books. It gets 45 new ones.", "A library has 230 books. 45 are borrowed.", "A library has 45 books and 23 comics."]
+            answer: "A library has 230 books. It gets 45 new ones."
+          - id: l2-c7
+            part: plus-minus
+            type: multiple_choice
+            text: "Which calculation fits this story? A café has 120 cups. 35 get broken."
+            options: ["120 − 35", "120 + 35", "35 − 120"]
+            answer: "120 − 35"
+          - id: l2-c8
+            part: plus-minus
+            type: multiple_choice
+            text: "Which story fits 95 − 40?"
+            options: ["There are 95 sheep in a field. 40 go into the barn.", "There are 95 sheep in a field. 40 more join them.", "There are 40 sheep and 9 cows."]
+            answer: "There are 95 sheep in a field. 40 go into the barn."
+          - id: l2-c9
+            part: times-divide
+            type: multiple_choice
+            text: "Which story fits 6 × 5?"
+            options: ["There are 6 vases with 5 flowers in each.", "There are 6 red flowers and 5 yellow ones.", "There are 6 flowers. 5 are picked."]
+            answer: "There are 6 vases with 5 flowers in each."
+          - id: l2-c10
+            part: times-divide
+            type: multiple_choice
+            text: "Which story fits 16 ÷ 2?"
+            options: ["16 socks are put into pairs.", "There are 2 drawers with 16 socks in each.", "There are 16 socks and 2 shoes."]
+            answer: "16 socks are put into pairs."
+          - id: l2-c11
+            part: picture
+            type: multiple_choice
+            text: "Which story fits the picture?"
+            show: { drawn: dots, array: [3, 4] }
+            options: ["A car park has 3 rows with 4 cars in each row. How many cars?", "A car park has 3 cars and 4 more drive in. How many cars?", "A car park has 4 cars and 3 drive away. How many are left?"]
+            answer: "A car park has 3 rows with 4 cars in each row. How many cars?"
+          - id: l2-c12
+            part: picture
+            type: multiple_choice
+            text: "Which story fits the picture?"
+            show: { drawn: coins, values: [20, 20, 20] }
+            options: ["Jo has these coins. How much money does she have?", "Jo has 3 coins of 50p. How much is that?", "Jo has 2 coins of 20p. How much is that?"]
+            answer: "Jo has these coins. How much money does she have?"
+          - id: l2-c13
+            part: picture
+            type: true_false
+            text: "Does this story fit the picture? There are 2 boxes with 5 pens in each. How many pens are there?"
+            show: { drawn: dots, array: [2, 5] }
+            answer: true
+          - id: l2-c14
+            part: picture
+            type: true_false
+            text: "Does this story fit the picture? Kim has 6 grapes and eats 3. How many are left?"
+            show: { drawn: dots, array: [3, 6] }
+            answer: false
+          - id: l2-c15
+            part: build
+            type: ordering
+            text: "Build a story for 7 × 3. Put the sentences in order."
+            options: ["How many wheels are there altogether?", "Each one has 3 wheels.", "7 tricycles are in the playground."]
+            slot_count: 3
+            answer: ["7 tricycles are in the playground.", "Each one has 3 wheels.", "How many wheels are there altogether?"]
+            option_audio: false
+          - id: l2-c16
+            part: build
+            type: multiple_choice
+            text: "Mrs Khan sells 12 cakes. How many cakes has she got left? What does the story still need?"
+            options: ["how many cakes she had at the start", "a question", "how many cakes she sold"]
+            answer: "how many cakes she had at the start"
+          - id: l2-c17
+            part: build
+            type: multiple_choice
+            text: "There are 28 children in a class. 4 children sit at each table. Which question fits the story?"
+            options: ["How many tables are there?", "How many children are there?", "How old are the children?"]
+            answer: "How many tables are there?"
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Does this story fit 45 − 20? A bag has 45 sweets. Dan eats 20. How many are left?"
+            answer: true
+          - id: l2-c19
+            part: check
+            type: true_false
+            text: "Does this story fit 4 × 6? There are 4 boys and 6 girls. How many children are there?"
+            answer: false
+          - id: l2-c20
+            part: check
+            type: multiple_choice
+            text: "Which calculation fits this story? 36 pupils are split into 4 equal teams. How many pupils are in each team?"
+            options: ["36 ÷ 4", "36 × 4", "36 − 4"]
+            answer: "36 ÷ 4"

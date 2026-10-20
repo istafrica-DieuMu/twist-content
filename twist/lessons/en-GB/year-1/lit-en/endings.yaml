@@ -26,6 +26,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: s-es, what: { de: "Wörter mit -s und -es lesen (cats, foxes)", en: "reading words with -s and -es (cats, foxes)" } }
+    - { id: ing, what: { de: "Wörter mit -ing lesen (jumping)", en: "reading words with -ing (jumping)" } }
+    - { id: ed, what: { de: "Wörter mit -ed lesen (jumped, wanted)", en: "reading words with -ed (jumped, wanted)" } }
+    - { id: er-est, what: { de: "Wörter mit -er und -est lesen (taller, tallest, farmer)", en: "reading words with -er and -est (taller, tallest, farmer)" } }
   misconceptions:
     - id: whole-word-guess
       what: Guesses a long word from its first letters instead of finding the root word and the ending
@@ -250,6 +255,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -264,7 +270,7 @@ lessons:
           - id: l1-c2
             type: multiple_choice
             text: "melting\nWhich root word is in it?"
-            say: "Read the word. Cover the ending. Which root word is left?"
+            say: "Read the word. Which root word is in it?"
             options: ["melt", "mel", "melti"]
             answer: "melt"
             option_audio: false
@@ -274,6 +280,26 @@ lessons:
             say: "Read the words. Tap every word that ends with i n g."
             show: { drawn: letter-card, text: "resting bus singing lamp" }
             spans: ["resting", "singing"]
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? The word boxes means more than one box."
+            say: "Read it yourself. Is it true?"
+            answer: true
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap the picture that matches."
+            show: { drawn: letter-card, text: "painting" }
+            options: [{ object: paint }, { object: sing }, { object: dance }]
+            answer: paint
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "kisses\nWhich ending does it have?"
+            say: "Read the word. Which ending does it have?"
+            options: ["-s", "-es", "-ing"]
+            answer: "-es"
+            option_audio: false
 
   - n: 2
     title: { de: "-ed, -er und -est", en: "-ed, -er and -est" }
@@ -458,8 +484,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: s-es
             type: image_multiple_choice
             text: "Read the word. Tap the picture."
             say: "Read the word on the card. Tap the picture that matches."
@@ -470,27 +498,149 @@ lessons:
             answer: cups
             option_audio: false
           - id: l2-c2
+            part: s-es
             type: multiple_choice
             text: "wishes\nWhich root word is in it?"
-            say: "Read the word. Cover the ending. Which root word is left?"
+            say: "Read the word. Which root word is in it?"
             options: ["wish", "wis", "wishe"]
             answer: "wish"
             option_audio: false
           - id: l2-c3
+            part: ing
             type: multiple_choice
             text: "pulling\nWhich root word is in it?"
-            say: "Read the word. Cover the ending. Which root word is left?"
+            say: "Read the word. Which root word is in it?"
             options: ["pull", "pul", "pulli"]
             answer: "pull"
             option_audio: false
           - id: l2-c4
+            part: ed
             type: true_false
             text: "\"The dog barked.\" Is it true? This has already happened."
             say: "Read the sentence. Is it true that this has already happened?"
             answer: true
           - id: l2-c5
+            part: er-est
             type: multiple_choice
             text: "Pip is small. Tess is smaller. Zak is the smallest.\nWho is the smallest?"
             say: "Read the sentences. Who is the smallest?"
             options: ["Zak", "Tess", "Pip"]
             answer: "Zak"
+          - id: l2-c6
+            part: s-es
+            type: multiple_choice
+            text: "Which word means more than one?"
+            say: "Read the words yourself. Which word means more than one?"
+            options: ["box", "boxes", "boxing"]
+            answer: "boxes"
+            option_audio: false
+          - id: l2-c7
+            part: s-es
+            type: highlight_in_text
+            text: "Tap every word with the ending -s."
+            say: "Read the sentence. Tap every word that has the ending s."
+            show: { drawn: letter-card, text: "Ben got two hats and six eggs." }
+            spans: ["hats", "eggs"]
+          - id: l2-c8
+            part: s-es
+            type: multiple_choice
+            text: "buzzes\nWhich root word is in it?"
+            say: "Read the word. Which root word is in it?"
+            options: ["buzz", "buz", "buzze"]
+            answer: "buzz"
+            option_audio: false
+          - id: l2-c9
+            part: ing
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word on the card. Tap the picture that matches."
+            show: { drawn: letter-card, text: "looking" }
+            options: [{ object: look }, { object: listen }, { object: clap }]
+            answer: look
+            option_audio: false
+          - id: l2-c10
+            part: ing
+            type: highlight_in_text
+            text: "Tap every word with the ending -ing."
+            say: "Read the sentence. Tap every word that has the ending i n g."
+            show: { drawn: letter-card, text: "Mum is cooking and Pip is drinking milk." }
+            spans: ["cooking", "drinking"]
+          - id: l2-c11
+            part: ing
+            type: true_false
+            text: "\"Ali is lifting the box.\" Is it true? Ali is doing it now."
+            say: "Read the sentence. Is it true that Ali is doing it now?"
+            answer: true
+          - id: l2-c12
+            part: ed
+            type: sorting
+            text: "Sort the words by their ending."
+            say: "Read each word. Does it end with ing, or with ed? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: ing, show: { text: "-ing" }, say: "ing" }
+              - { id: ed, show: { text: "-ed" }, say: "e d" }
+            options:
+              - { text: "packed", bin: ed }
+              - { text: "yelling", bin: ing }
+              - { text: "rushed", bin: ed }
+              - { text: "landing", bin: ing }
+          - id: l2-c13
+            part: ing
+            type: multiple_choice
+            text: "The bird is _ in the tree.\nWhich word fits?"
+            say: "Read the sentence. Which word fits in the gap?"
+            options: ["singing", "sings", "sang"]
+            answer: "singing"
+            option_audio: false
+          - id: l2-c14
+            part: ed
+            type: multiple_choice
+            text: "Last week I _ my bike.\nWhich word fits?"
+            say: "Read the sentence. Which word fits in the gap?"
+            options: ["fixed", "fixing", "fixes"]
+            answer: "fixed"
+            option_audio: false
+          - id: l2-c15
+            part: ed
+            type: true_false
+            text: "Is it true? In the word red, the letters ed are an ending."
+            say: "Read it yourself. Is it true?"
+            answer: false
+          - id: l2-c16
+            part: ed
+            type: multiple_choice
+            text: "melted\nHow many beats does it have?"
+            say: "Read the word. How many beats does it have?"
+            options: ["1", "2", "3"]
+            answer: "2"
+            keep_order: true
+          - id: l2-c17
+            part: er-est
+            type: multiple_choice
+            text: "Which word means the most of all?"
+            say: "Read the words yourself. Which word means the most of all?"
+            options: ["dark", "darker", "darkest"]
+            answer: "darkest"
+            option_audio: false
+          - id: l2-c18
+            part: er-est
+            type: multiple_choice
+            text: "A _ sings songs.\nWhich word fits?"
+            say: "Read the sentence. Which word fits in the gap?"
+            options: ["singer", "singing", "sings"]
+            answer: "singer"
+            option_audio: false
+          - id: l2-c19
+            part: er-est
+            type: true_false
+            text: "Kim's bag is lighter than Bob's bag.\nIs it true? Bob's bag is lighter."
+            say: "Read the sentence. Is it true that Bob's bag is lighter?"
+            answer: false
+          - id: l2-c20
+            part: er-est
+            type: highlight_in_text
+            text: "Tap every word with the ending -est."
+            say: "Read the words. Tap every word that has the ending e s t added to a root word."
+            show: { drawn: letter-card, text: "coldest nest longest chest sharpest" }
+            spans: ["coldest", "longest", "sharpest"]

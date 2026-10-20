@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: two-digit, what: { de: zweistellige Zahlen schriftlich malnehmen, en: long multiplication of two two-digit numbers } }
+    - { id: bigger, what: { de: drei- und vierstellige Zahlen mit zweistelligen malnehmen, en: long multiplication of three- and four-digit numbers by a two-digit number } }
+    - { id: partials, what: { de: die Teilprodukte mit der Platzhalter-Null bilden und stellengerecht addieren, en: finding the partial products with the placeholder zero and adding them in the right columns } }
+    - { id: estimate, what: { de: das Ergebnis mit einem Überschlag prüfen, en: checking the answer with an estimate } }
   misconceptions:
     - id: no-placeholder
       what: Leaves out the placeholder zero, so the tens row is added as ones (24 × 12 = 48 + 24 = 72)
@@ -199,6 +204,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -214,6 +220,24 @@ lessons:
             type: true_false
             text: "Is there a mistake? 31 × 22 = 62 + 62 = 124"
             answer: true
+          - id: l1-c4
+            type: text_input
+            text: "53 × 16 = _"
+            say: "Fifty-three times sixteen."
+            answer: "848"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Work out 41 × 26 in rows."
+            say: "Forty-one times twenty-six. Fill in the two rows and the total."
+            frame: "41 × 6 = _; 41 × 20 = _; total _"
+            options: ["246", "820", "1066", "82", "328"]
+            answer: ["246", "820", "1066"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which partial products do you need for 63 × 18?"
+            say: "Sixty-three times eighteen. Which partial products do you need?"
+            options: ["63 × 8 and 63 × 10", "63 × 1 and 63 × 8", "60 × 10 and 3 × 8"]
+            answer: "63 × 8 and 63 × 10"
 
   - n: 2
     title: { de: "Drei- und vierstellig mal zweistellig", en: "Bigger numbers times two digits" }
@@ -369,13 +393,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: two-digit
             type: text_input
             text: "27 × 13 = _"
             say: "Twenty-seven times thirteen."
             answer: "351"
           - id: l2-c2
+            part: partials
             type: fill_in_blank
             text: "Work out 132 × 24 in rows."
             say: "One hundred and thirty-two times twenty-four. Fill in the two rows and the total."
@@ -383,17 +410,112 @@ lessons:
             options: ["528", "2640", "3168", "264", "792"]
             answer: ["528", "2640", "3168"]
           - id: l2-c3
+            part: partials
             type: multiple_choice
             text: "Which partial products do you need for 415 × 36?"
             say: "Four hundred and fifteen times thirty-six. Which partial products do you need?"
             options: ["415 × 6 and 415 × 30", "415 × 3 and 415 × 6", "400 × 30 and 15 × 6"]
             answer: "415 × 6 and 415 × 30"
           - id: l2-c4
+            part: estimate
             type: true_false
             text: "Does the answer fit the estimate? 497 × 22 = 10,934"
             say: "Does the answer fit the estimate? Four hundred and ninety-seven times twenty-two equals ten thousand, nine hundred and thirty-four."
             answer: true
           - id: l2-c5
+            part: bigger
             type: text_input
             text: "A school buys 1250 pencils for each of 12 classes. How many pencils is that?"
             answer: "15000"
+          - id: l2-c6
+            part: two-digit
+            type: text_input
+            text: "46 × 23 = _"
+            say: "Forty-six times twenty-three."
+            answer: "1058"
+          - id: l2-c7
+            part: two-digit
+            type: multiple_choice
+            text: "38 × 27 = _"
+            say: "Thirty-eight times twenty-seven."
+            options: ["1026", "342", "1062"]
+            answer: "1026"
+          - id: l2-c8
+            part: two-digit
+            type: text_input
+            text: "A trip costs £14 for each child. 28 children go. How much does the trip cost in all? Type the pounds."
+            answer: "392"
+          - id: l2-c9
+            part: two-digit
+            type: true_false
+            text: "Is there a mistake? 52 × 14 = 208 + 520 = 728"
+            say: "Is there a mistake? Fifty-two times fourteen equals two hundred and eight add five hundred and twenty, which is seven hundred and twenty-eight."
+            answer: false
+          - id: l2-c10
+            part: bigger
+            type: text_input
+            text: "317 × 24 = _"
+            say: "Three hundred and seventeen times twenty-four."
+            answer: "7608"
+          - id: l2-c11
+            part: partials
+            type: fill_in_blank
+            text: "Work out 1032 × 13 in rows."
+            say: "One thousand and thirty-two times thirteen. Fill in the two rows and the total."
+            frame: "1032 × 3 = _; 1032 × 10 = _; total _"
+            options: ["3096", "10,320", "13,416", "1032", "4128"]
+            answer: ["3096", "10,320", "13,416"]
+          - id: l2-c12
+            part: bigger
+            type: text_input
+            text: "A farm sells 245 eggs a day. How many eggs does it sell in 31 days?"
+            answer: "7595"
+          - id: l2-c13
+            part: bigger
+            type: multiple_choice
+            text: "2015 × 21 = _"
+            say: "Two thousand and fifteen times twenty-one."
+            options: ["42,315", "6045", "40,315"]
+            answer: "42,315"
+          - id: l2-c14
+            part: bigger
+            type: text_input
+            text: "406 × 35 = _"
+            say: "Four hundred and six times thirty-five."
+            answer: "14210"
+          - id: l2-c15
+            part: partials
+            type: text_input
+            text: "Add the partial products for 64 × 37."
+            show: { drawn: written-calc, rows: ["64", "37"], op: "×", partials: ["448", "1920"], result: "____" }
+            answer: "2368"
+          - id: l2-c16
+            part: partials
+            type: true_false
+            text: "Is there a mistake? 135 × 22 = 270 + 270 = 540"
+            say: "Is there a mistake? One hundred and thirty-five times twenty-two equals two hundred and seventy add two hundred and seventy, which is five hundred and forty."
+            answer: true
+          - id: l2-c17
+            part: estimate
+            type: multiple_choice
+            text: "Which estimate fits 296 × 52?"
+            options: ["300 × 50 = 15,000", "300 × 5 = 1500", "200 × 50 = 10,000"]
+            answer: "300 × 50 = 15,000"
+          - id: l2-c18
+            part: estimate
+            type: true_false
+            text: "Does the answer fit the estimate? 403 × 18 = 72,540"
+            say: "Does the answer fit the estimate? Four hundred and three times eighteen equals seventy-two thousand, five hundred and forty."
+            answer: false
+          - id: l2-c19
+            part: estimate
+            type: multiple_choice
+            text: "Which answer fits the estimate? 612 × 19"
+            options: ["11,628", "1163", "116,280"]
+            answer: "11,628"
+          - id: l2-c20
+            part: estimate
+            type: true_false
+            text: "Does the answer fit the estimate? 1987 × 11 = 21,857"
+            say: "Does the answer fit the estimate? One thousand nine hundred and eighty-seven times eleven equals twenty-one thousand, eight hundred and fifty-seven."
+            answer: true

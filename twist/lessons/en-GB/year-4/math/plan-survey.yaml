@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, table]
   facets: []
+  parts:
+    - { id: question, what: { de: eine klare Frage mit Antworten wählen, en: choosing a clear question and answer choices } }
+    - { id: plan, what: { de: wen man fragt und die Schritte einer Umfrage, en: who to ask and the steps of a survey } }
+    - { id: organise, what: { de: Strichliste in eine Tabelle übertragen und die Summe prüfen, en: counting tally marks into a table and checking the total } }
+    - { id: present, what: { de: das Ergebnis im Diagramm und in einem Satz vorstellen, en: presenting the result in a chart and a sentence } }
   misconceptions:
     - id: vague-question
       what: Asks a yes or no question that cannot show a favourite, or leaves out "something else" so some children cannot answer
@@ -200,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -217,6 +223,20 @@ lessons:
             show: { drawn: bar-chart, tally: true, rows: [[football, 12], [swimming, 8], [netball, 5], [another sport, 3]] }
             options: ["8", "7", "12"]
             answer: "8"
+          - id: l1-c4
+            type: true_false
+            text: "Ben wants to know which instrument his class likes best. He asks: \"Do you like music?\" Is it true? This question tells him the favourite instrument."
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "How do you show 5 with tally marks?"
+            options: ["four strokes with one stroke across them", "five strokes with a gap between each", "one long stroke"]
+            answer: "four strokes with one stroke across them"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Ben wants to know what his whole class thinks, but he asks only the 8 children in his music club. What is wrong?"
+            options: ["He has not asked the whole class.", "He asked too many children.", "Nothing is wrong."]
+            answer: "He has not asked the whole class."
 
   - n: 2
     title: { de: Daten ordnen und vorstellen, en: Organising and presenting data }
@@ -387,18 +407,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: question
             type: multiple_choice
             text: "Zara wants to know which school lunch her class likes best. Which question is best?"
             options: ["Which lunch do you like best: pasta, pizza, curry or something else?", "Do you have school lunch?", "Is pizza nice?"]
             answer: "Which lunch do you like best: pasta, pizza, curry or something else?"
           - id: l2-c2
+            part: plan
             type: multiple_choice
             text: "Who should Zara ask to find out what her whole class thinks?"
             options: ["every child in her class, once each", "only the children who like pizza", "her family at home"]
             answer: "every child in her class, once each"
           - id: l2-c3
+            part: organise
             type: fill_in_blank
             text: "Zara's tally marks. Write the numbers for her table."
             show: { drawn: bar-chart, tally: true, rows: [[pasta, 6], [pizza, 12], [curry, 5], [something else, 4]] }
@@ -406,13 +430,109 @@ lessons:
             options: ["4", "5", "6", "12", "13"]
             answer: ["6", "12", "5", "4"]
           - id: l2-c4
+            part: organise
             type: text_input
             text: "Zara asked every child in her class once. How many children are in her class?"
             show: { drawn: table, rows: [["Lunch", "Children"], ["pasta", 6], ["pizza", 12], ["curry", 5], ["something else", 4]] }
             answer: "27"
           - id: l2-c5
+            part: present
             type: multiple_choice
             text: "Which sentence does Zara's data show?"
             show: { drawn: bar-chart, rows: [[pasta, 6], [pizza, 12], [curry, 5], [something else, 4]] }
-            options: ["12 of the 27 children like pizza best.", "Everyone likes pizza best.", "Curry got the fewest votes."]
+            options: ["12 of the 27 children like pizza best.", "Everyone likes pizza best.", "Pasta got the most votes."]
             answer: "12 of the 27 children like pizza best."
+          - id: l2-c6
+            part: question
+            type: true_false
+            text: "Mo wants to know which book his class likes best. He asks: \"Do you like reading?\" Is it true? This is a good question for his survey."
+            answer: false
+          - id: l2-c7
+            part: question
+            type: multiple_choice
+            text: "Priya asks: \"Which colour do you like best: red, blue or green?\" One child likes purple best. What should Priya add to her answer choices?"
+            options: ["another colour", "yes or no", "red again"]
+            answer: "another colour"
+          - id: l2-c8
+            part: question
+            type: multiple_choice
+            text: "Which question finds the favourite season of a class?"
+            options: ["Which season do you like best: spring, summer, autumn or winter?", "Is it sunny today?", "Do you like summer?"]
+            answer: "Which season do you like best: spring, summer, autumn or winter?"
+          - id: l2-c9
+            part: question
+            type: multiple_choice
+            text: "Jack asks: \"How many pets do you have?\" Which answer choices fit his question?"
+            options: ["0, 1, 2, 3 or more", "dog, cat or fish", "yes or no"]
+            answer: "0, 1, 2, 3 or more"
+          - id: l2-c10
+            part: plan
+            type: true_false
+            text: "Zoe wants to know the favourite game of her Year 4 class. She asks her class and the children in Year 6 too. Is it true? This is a good plan."
+            answer: false
+          - id: l2-c11
+            part: plan
+            type: ordering
+            text: "Put the steps of a survey in order."
+            options: ["Draw a bar chart.", "Say what the result shows.", "Ask each child once.", "Count the tally marks into a table."]
+            slot_count: 4
+            answer: ["Ask each child once.", "Count the tally marks into a table.", "Draw a bar chart.", "Say what the result shows."]
+          - id: l2-c12
+            part: plan
+            type: multiple_choice
+            text: "Why should each child answer only once?"
+            options: ["So no child is counted twice.", "So the survey is quicker for friends.", "So more children choose football."]
+            answer: "So no child is counted twice."
+          - id: l2-c13
+            part: plan
+            type: multiple_choice
+            text: "There are 30 children in Kim's class. She has asked 25 of them. What should she do next?"
+            options: ["Ask the 5 children she missed.", "Stop and draw the chart.", "Ask her friends again."]
+            answer: "Ask the 5 children she missed."
+          - id: l2-c14
+            part: organise
+            type: text_input
+            text: "Noah's tally marks. How many children chose tag?"
+            show: { drawn: bar-chart, tally: true, rows: [[tag, 14], [football, 9], [skipping, 6], [another game, 2]] }
+            answer: "14"
+          - id: l2-c15
+            part: organise
+            type: multiple_choice
+            text: "Noah asked 30 children. Does his table add up?"
+            show: { drawn: table, rows: [["Game", "Children"], ["tag", 14], ["football", 9], ["skipping", 6], ["another game", 2]] }
+            options: ["No, 31 altogether.", "Yes, 30 altogether.", "No, 29 altogether."]
+            answer: "No, 31 altogether."
+          - id: l2-c16
+            part: present
+            type: image_multiple_choice
+            text: "Which bar chart shows Noah's table? tag 14, football 9, skipping 6, another game 2"
+            options:
+              - { drawn: bar-chart, rows: [[tag, 9], [football, 14], [skipping, 6], [another game, 2]], key: "9-14-6-2" }
+              - { drawn: bar-chart, rows: [[tag, 14], [football, 6], [skipping, 9], [another game, 2]], key: "14-6-9-2" }
+              - { drawn: bar-chart, rows: [[tag, 14], [football, 9], [skipping, 6], [another game, 2]], key: "14-9-6-2" }
+            answer: "14-9-6-2"
+          - id: l2-c17
+            part: present
+            type: true_false
+            text: "Noah's survey. Is it true? Tag is the favourite game of 14 children."
+            show: { drawn: bar-chart, rows: [[tag, 14], [football, 9], [skipping, 6], [another game, 2]] }
+            answer: true
+          - id: l2-c18
+            part: present
+            type: multiple_choice
+            text: "Noah's survey. Which sentence goes further than the data shows?"
+            show: { drawn: bar-chart, rows: [[tag, 14], [football, 9], [skipping, 6], [another game, 2]] }
+            options: ["All the children like tag best.", "Tag got the most votes.", "6 children chose skipping."]
+            answer: "All the children like tag best."
+          - id: l2-c19
+            part: present
+            type: multiple_choice
+            text: "Which shows a survey result at a glance?"
+            options: ["a bar chart", "a list of the children's names", "one long sentence for each child"]
+            answer: "a bar chart"
+          - id: l2-c20
+            part: present
+            type: text_input
+            text: "Noah's survey. How many more children chose tag than football?"
+            show: { drawn: bar-chart, rows: [[tag, 14], [football, 9], [skipping, 6], [another game, 2]] }
+            answer: "5"

@@ -12,6 +12,9 @@ summary: >
   (ring, long), mixes all four and ends with the skill check. Every word
   is spoken by the voice; the child picks the digraph that makes a sound,
   finishes a word with it, or reads a word and finds its picture.
+  Writing the digraphs in words is practised in Practise (what is
+  missing) and in segment-spell; the skill check marks hearing each
+  digraph's sound and reading words with it.
 metadata:
   year: reception
   topic: { de: "Laute und Buchstaben", en: "Phonics" }
@@ -24,6 +27,11 @@ metadata:
   drawn: [letter-card]
   sounds: [en.ch, en.sh, en.th, en.ng]
   facets: []
+  parts:
+    - { id: ch, what: { de: "den Laut von ch kennen und Wörter damit lesen", en: "knowing the sound of ch and reading words with it" } }
+    - { id: sh, what: { de: "den Laut von sh kennen und Wörter damit lesen", en: "knowing the sound of sh and reading words with it" } }
+    - { id: th, what: { de: "den Laut von th kennen und Wörter damit lesen", en: "knowing the sound of th and reading words with it" } }
+    - { id: ng, what: { de: "den Laut von ng kennen und Wörter damit lesen", en: "knowing the sound of ng and reading words with it" } }
   misconceptions:
     - id: digraph-two-sounds
       what: Says one sound for each letter of a digraph (s ... h for sh, n ... g for ng)
@@ -150,6 +158,7 @@ lessons:
                 type: fill_in_blank
                 text: "What is missing?"
                 say: "Shop. What is missing at the start of shop?"
+                show: { object: shop }
                 frame: "_op"
                 options: ["s", "sh", "ch"]
                 answer: ["sh"]
@@ -183,6 +192,7 @@ lessons:
                 type: fill_in_blank
                 text: "What is missing?"
                 say: "Dish. What is missing at the end of dish?"
+                show: { object: dish }
                 frame: "di_"
                 options: ["ch", "s", "sh"]
                 answer: ["sh"]
@@ -209,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -232,6 +243,27 @@ lessons:
             frame: "_ip"
             options: ["sh", "ch", "s"]
             answer: ["sh"]
+          - id: l1-c4
+            type: true_false
+            text: "Does chair start with sh?"
+            say: "Chair. Does chair start with the quiet sound?"
+            show: { object: chair }
+            answer: false
+          - id: l1-c5
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "Shop." }
+            options: ["chop", "sock", "shop"]
+            answer: "shop"
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "dish" }
+            options: [{ object: duck }, { object: dish }, { object: fish }]
+            answer: dish
+            option_audio: false
 
   - n: 2
     title: { de: "th und ng", en: "th and ng" }
@@ -421,15 +453,18 @@ lessons:
               - id: l2-n5
                 type: fill_in_blank
                 text: "What is missing?"
-                say: "Chin. What is missing at the start of chin?"
+                say: "What is missing at the start of this word? Listen."
+                audio: { en: "Chin." }
                 frame: "_in"
                 options: ["sh", "ch", "th"]
                 answer: ["ch"]
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: sh
             type: audio_choice
             text: "Which letters make the first sound?"
             say: "Listen. Tap the letters for the first sound."
@@ -437,6 +472,7 @@ lessons:
             options: ["ch", "sh", "th"]
             answer: "sh"
           - id: l2-c2
+            part: ch
             type: image_multiple_choice
             text: "What starts with this sound?"
             say: "Which picture starts with the sound of these letters?"
@@ -444,13 +480,16 @@ lessons:
             options: [{ object: sheep }, { object: sun }, { object: church }]
             answer: church
           - id: l2-c3
-            type: fill_in_blank
-            text: "What is missing?"
-            say: "With. What is missing at the end of with?"
-            frame: "wi_"
-            options: ["f", "th", "sh"]
-            answer: ["th"]
+            part: th
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "bath" }
+            options: [{ object: bed }, { object: bath }, { object: ball }]
+            answer: bath
+            option_audio: false
           - id: l2-c4
+            part: ng
             type: audio_choice
             text: "Which letters make the last sound?"
             say: "Listen. Tap the letters for the last sound."
@@ -458,9 +497,128 @@ lessons:
             options: ["ng", "n", "g"]
             answer: "ng"
           - id: l2-c5
+            part: ng
             type: image_multiple_choice
             text: "Read the word. Tap its picture."
             say: "Read the word on the card. Then tap its picture."
             show: { drawn: letter-card, text: "sing" }
             options: [{ object: swim }, { object: sing }, { object: sit-down }]
             answer: sing
+            option_audio: false
+          - id: l2-c6
+            part: ch
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ch }
+            options: ["sh", "th", "ch"]
+            answer: "ch"
+          - id: l2-c7
+            part: sh
+            type: image_multiple_choice
+            text: "What starts with this sound?"
+            say: "Which picture starts with the sound of these letters?"
+            show: { drawn: letter-card, text: "sh" }
+            options: [{ object: chair }, { object: sheep }, { object: sock }]
+            answer: sheep
+          - id: l2-c8
+            part: th
+            type: image_multiple_choice
+            text: "Which ends with this sound?"
+            say: "Which word ends with the sound of these letters? Tap the picture."
+            show: { drawn: letter-card, text: "th" }
+            options: [{ object: tooth }, { object: moon }, { object: tree }]
+            answer: tooth
+          - id: l2-c9
+            part: ng
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ng }
+            options: ["ng", "th", "n"]
+            answer: "ng"
+          - id: l2-c10
+            part: ch
+            type: true_false
+            text: "Does cheese start with sh?"
+            say: "Cheese. Does cheese start with the quiet sound?"
+            show: { object: cheese }
+            answer: false
+          - id: l2-c11
+            part: sh
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "ship" }
+            options: [{ object: shell }, { object: sheep }, { object: ship }]
+            answer: ship
+            option_audio: false
+          - id: l2-c12
+            part: th
+            type: true_false
+            text: "Does mouth end with th?"
+            say: "Mouth. Does mouth end with the sound of these letters?"
+            show: { object: mouth }
+            answer: true
+          - id: l2-c13
+            part: ng
+            type: true_false
+            text: "Does swim end with ng?"
+            say: "Swim. Does swim end with the sound of these letters?"
+            show: { object: swim }
+            answer: false
+          - id: l2-c14
+            part: ch
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "Chat." }
+            options: ["that", "chat", "cat"]
+            answer: "chat"
+          - id: l2-c15
+            part: sh
+            type: true_false
+            text: "shop"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: shop }
+            answer: true
+          - id: l2-c16
+            part: th
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "Then." }
+            options: ["ten", "hen", "then"]
+            answer: "then"
+          - id: l2-c17
+            part: ng
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "Long." }
+            options: ["log", "long", "lot"]
+            answer: "long"
+          - id: l2-c18
+            part: ch
+            type: image_multiple_choice
+            text: "Which ends with this sound?"
+            say: "Which word ends with the sound of these letters? Tap the picture."
+            show: { drawn: letter-card, text: "ch" }
+            options: [{ object: fish }, { object: witch }, { object: sun }]
+            answer: witch
+          - id: l2-c19
+            part: sh
+            type: audio_choice
+            text: "Which letters make the last sound?"
+            say: "Listen. Tap the letters for the last sound."
+            audio: { en: "Wish." }
+            options: ["s", "ch", "sh"]
+            answer: "sh"
+          - id: l2-c20
+            part: th
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.th }
+            options: ["th", "sh", "f"]
+            answer: "th"

@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: place, what: { de: Zahlen stellengerecht untereinander schreiben, en: lining numbers up by place value } }
+    - { id: add, what: { de: dreistellige Zahlen ohne Übertrag schriftlich addieren, en: adding three-digit numbers in columns without exchanging } }
+    - { id: lengths, what: { de: Zahlen mit verschieden vielen Stellen schriftlich addieren, en: adding numbers with different numbers of digits in columns } }
+    - { id: check, what: { de: mit dem Überschlag und durch Nachrechnen prüfen, en: checking with an estimate and by working it again } }
   misconceptions:
     - id: start-left
       what: Starts adding from the hundreds instead of the ones
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -216,9 +222,27 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
             show: { drawn: written-calc, rows: ["316", "572"], op: "+", result: "888" }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add one hundred and thirty-four and five hundred and twenty-two in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["134", "522"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["6", "5", "4", "7"]
+            answer: ["6", "5", "6"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "You add 263 + 514 in columns. Which digits do you add in the ones column?"
+            say: "You add two hundred and sixty-three and five hundred and fourteen in columns. Which digits do you add in the ones column?"
+            options: ["3 and 4", "2 and 5", "6 and 1"]
+            answer: "3 and 4"
+          - id: l1-c6
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["342", "425"], op: "+", result: "777" }
+            answer: false
 
   - n: 2
     title: { de: Verschieden lange Zahlen, en: Numbers of different lengths }
@@ -380,32 +404,144 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "Add in columns."
             say: "Add five hundred and fourteen and two hundred and sixty-five in columns."
             show: { drawn: written-calc, rows: ["514", "265"], op: "+" }
             answer: "779"
           - id: l2-c2
+            part: lengths
             type: fill_in_blank
-            text: "Add in columns. Start with the ones."
+            text: "Add in columns. Write the digit for each column."
+            say: "Add three hundred and forty-seven and fifty-two in columns. Write the digit for the ones, the tens and the hundreds."
             show: { drawn: written-calc, rows: ["347", "52"], op: "+", result: "___" }
             frame: "O: _  T: _  H: _"
             options: ["9", "3", "8", "7"]
             answer: ["9", "9", "3"]
           - id: l2-c3
+            part: place
             type: multiple_choice
             text: "You add 618 + 71 in columns. Which digit of 618 is above the 7?"
             options: ["1", "6", "8"]
             answer: "1"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
             show: { drawn: written-calc, rows: ["430", "26"], op: "+", result: "690" }
             answer: false
           - id: l2-c5
+            part: lengths
             type: text_input
             text: "Ollie has 126 football cards. He gets a pack with 42 more. How many cards does he have now?"
             answer: "168"
+          - id: l2-c6
+            part: place
+            type: multiple_choice
+            text: "You add 803 + 64 in columns. Which digit of 803 is above the 6?"
+            say: "You add eight hundred and three and sixty-four in columns. Which digit of eight hundred and three is above the six?"
+            options: ["0", "8", "3"]
+            answer: "0"
+          - id: l2-c7
+            part: place
+            type: true_false
+            text: "Mo adds 135 + 42 in columns. He writes the 2 under the 5 and the 4 under the 3. Is that lined up the right way?"
+            say: "Mo adds one hundred and thirty-five and forty-two in columns. He writes the two under the five and the four under the three. Is that lined up the right way?"
+            answer: true
+          - id: l2-c8
+            part: place
+            type: multiple_choice
+            text: "You add 572 + 6 in columns. Which column does the 6 go in?"
+            say: "You add five hundred and seventy-two and six in columns. Which column does the six go in?"
+            options: ["the ones", "the tens", "the hundreds"]
+            answer: "the ones"
+          - id: l2-c9
+            part: place
+            type: true_false
+            text: "Priya adds 461 + 27 in columns. She writes the 2 under the 4 and the 7 under the 6. Is that lined up the right way?"
+            say: "Priya adds four hundred and sixty-one and twenty-seven in columns. She writes the two under the four and the seven under the six. Is that lined up the right way?"
+            answer: false
+          - id: l2-c10
+            part: add
+            type: text_input
+            text: "Add in columns."
+            say: "Add three hundred and sixty-two and four hundred and twenty-five in columns."
+            show: { drawn: written-calc, rows: ["362", "425"], op: "+" }
+            answer: "787"
+          - id: l2-c11
+            part: add
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add five hundred and thirty-one and two hundred and sixty-four in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["531", "264"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["5", "9", "7", "8"]
+            answer: ["5", "9", "7"]
+          - id: l2-c12
+            part: add
+            type: text_input
+            text: "A cinema sells 213 tickets on Friday and 461 tickets on Saturday. How many tickets is that altogether?"
+            say: "A cinema sells two hundred and thirteen tickets on Friday and four hundred and sixty-one tickets on Saturday. How many tickets is that altogether?"
+            answer: "674"
+          - id: l2-c13
+            part: add
+            type: multiple_choice
+            text: "Which answer is right?"
+            say: "Seven hundred and four add one hundred and fifty-two. Which answer is right?"
+            show: { drawn: written-calc, rows: ["704", "152"], op: "+" }
+            options: ["856", "756", "866"]
+            answer: "856"
+          - id: l2-c14
+            part: lengths
+            type: text_input
+            text: "Add in columns."
+            say: "Add six hundred and fifty-three and thirty-four in columns."
+            show: { drawn: written-calc, rows: ["653", "34"], op: "+" }
+            answer: "687"
+          - id: l2-c15
+            part: lengths
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add two hundred and eight and seventy-one in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["208", "71"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["9", "7", "2", "8"]
+            answer: ["9", "7", "2"]
+          - id: l2-c16
+            part: lengths
+            type: text_input
+            text: "Grandad has 140 tulips in his garden. He plants 35 more. How many tulips are there now?"
+            say: "Grandad has one hundred and forty tulips in his garden. He plants thirty-five more. How many tulips are there now?"
+            answer: "175"
+          - id: l2-c17
+            part: check
+            type: multiple_choice
+            text: "About how much is 532 + 46?"
+            say: "About how much is five hundred and thirty-two add forty-six?"
+            options: ["about 580", "about 990", "about 500"]
+            answer: "about 580"
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["314", "252"], op: "+", result: "566" }
+            answer: true
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "Ben works out 426 + 31 in columns and gets 736. What did he do wrong?"
+            say: "Ben works out four hundred and twenty-six add thirty-one in columns and gets seven hundred and thirty-six. What did he do wrong?"
+            options: ["He lined up 31 on the left.", "He added the ones wrong.", "He started with the hundreds."]
+            answer: "He lined up 31 on the left."
+          - id: l2-c20
+            part: check
+            type: multiple_choice
+            text: "Where is the mistake?"
+            say: "Two hundred and forty-one add three hundred and fifteen is five hundred and forty-six. Where is the mistake?"
+            show: { drawn: written-calc, rows: ["241", "315"], op: "+", result: "546" }
+            options: ["The tens are wrong.", "The ones are wrong.", "The hundreds are wrong."]
+            answer: "The tens are wrong."

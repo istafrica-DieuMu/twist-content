@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: ay-sound, what: { de: "den ay-Laut schreiben (ai, ay, a-e)", en: "spelling the ay sound (ai, ay, a-e)" } }
+    - { id: ee-sound, what: { de: "den ee-Laut schreiben (ee, ea, y)", en: "spelling the ee sound (ee, ea, y)" } }
+    - { id: igh-sound, what: { de: "den igh-Laut schreiben (igh, ie, i-e, y)", en: "spelling the igh sound (igh, ie, i-e, y)" } }
+    - { id: oh-sound, what: { de: "den oh-Laut schreiben (oa, ow, o-e)", en: "spelling the oh sound (oa, ow, o-e)" } }
+    - { id: homophones, what: { de: "gleich klingende Wörter nach der Bedeutung wählen (see, sea; be, bee)", en: "choosing between words that sound the same by their meaning (see, sea; be, bee)" } }
   misconceptions:
     - id: one-spelling-only
       what: Uses the first spelling learnt for every word (rane, snaik, tre)
@@ -103,8 +109,8 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: fill_in_blank
-                text: "Fill in the ay sound."
-                say: "Listen: tail. Fill in the ay sound."
+                text: "Fill in the ay sound.\nClue: a dog wags it."
+                say: "Listen: tail. A dog wags its tail. Fill in the ay sound."
                 frame: "t_l"
                 options: ["ai", "ay", "a"]
                 answer: ["ai"]
@@ -167,8 +173,8 @@ lessons:
                 hints: ["This word uses e e."]
               - id: l1-s2
                 type: fill_in_blank
-                text: "Fill in the ay sound."
-                say: "Listen: play. Fill in the ay sound."
+                text: "Fill in the ay sound.\nClue: you do it with your toys."
+                say: "Listen: play. You play with your toys. Fill in the ay sound."
                 frame: "pl_"
                 options: ["ai", "ay", "a-e"]
                 answer: ["ay"]
@@ -202,6 +208,7 @@ lessons:
                 type: fill_in_blank
                 text: "Fill in the ay sound."
                 say: "Listen: train. Fill in the ay sound."
+                show: { object: train }
                 frame: "tr_n"
                 options: ["ai", "ay", "a"]
                 answer: ["ai"]
@@ -243,11 +250,13 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
             text: "Fill in the ay sound."
             say: "Listen: paint. Fill in the ay sound."
+            show: { object: paint }
             frame: "p_nt"
             options: ["ai", "ay", "a"]
             answer: ["ai"]
@@ -264,6 +273,34 @@ lessons:
             audio: { en: "Sleep." }
             options: ["sleap", "sleep", "slepe"]
             answer: "sleep"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which spelling is right?"
+            say: "Look at the picture. Wheat. Which spelling is right? Read them yourself."
+            show: { object: wheat }
+            options: [{ drawn: letter-card, text: "wheet", key: wheet }, { drawn: letter-card, text: "whete", key: whete }, { drawn: letter-card, text: "wheat", key: wheat }]
+            answer: wheat
+          - id: l1-c5
+            type: sorting
+            text: "Sort the words by how the ay sound is spelt."
+            say: "Read each word. How is the ay sound spelt? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: ai, show: { text: "ai" }, say: "a i." }
+              - { id: ay, show: { text: "ay" }, say: "a y." }
+              - { id: a-e, show: { text: "a-e" }, say: "a, then a letter, then e." }
+            options:
+              - { text: "tray", bin: ay }
+              - { text: "plane", bin: a-e }
+              - { text: "nail", bin: ai }
+              - { text: "spray", bin: ay }
+              - { text: "brain", bin: ai }
+              - { text: "gate", bin: a-e }
+          - id: l1-c6
+            type: true_false
+            text: "The word sunny has the ee sound spelt y."
+            say: "Read it. Is it true?"
+            answer: true
 
   - n: 2
     title: { de: "Der igh-Laut, der oh-Laut und gleich klingende Wörter", en: "The igh sound, the oh sound and homophones" }
@@ -274,8 +311,8 @@ lessons:
         tasks:
           - id: l2-w1
             type: fill_in_blank
-            text: "Fill in the ay sound."
-            say: "Listen: day. Fill in the ay sound."
+            text: "Fill in the ay sound.\nClue: Monday is one."
+            say: "Listen: day. Monday is a day. Fill in the ay sound."
             frame: "d_"
             options: ["ai", "ay", "a"]
             answer: ["ay"]
@@ -324,6 +361,7 @@ lessons:
                 type: fill_in_blank
                 text: "Fill in the igh sound."
                 say: "Listen: fly. Fill in the igh sound."
+                show: { object: fly }
                 frame: "fl_"
                 options: ["y", "igh", "ie"]
                 answer: ["y"]
@@ -401,8 +439,8 @@ lessons:
                 hints: ["The oh sound is in the middle."]
               - id: l2-s4
                 type: fill_in_blank
-                text: "Fill in the igh sound."
-                say: "Listen: light. Fill in the igh sound."
+                text: "Fill in the igh sound.\nClue: switch it on when it is dark."
+                say: "Listen: light. Switch on the light when it is dark. Fill in the igh sound."
                 frame: "l_t"
                 options: ["igh", "y", "ie"]
                 answer: ["igh"]
@@ -428,8 +466,8 @@ lessons:
                 answer: nose
               - id: l2-n2
                 type: fill_in_blank
-                text: "Fill in the oh sound."
-                say: "Listen: coat. Fill in the oh sound."
+                text: "Fill in the oh sound.\nClue: you wear it over your clothes when it is cold."
+                say: "Listen: coat. You wear a coat when it is cold. Fill in the oh sound."
                 frame: "c_t"
                 options: ["oa", "ow", "o"]
                 answer: ["oa"]
@@ -466,39 +504,169 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ay-sound
             type: audio_choice
             text: "Listen. Tap the right spelling."
             audio: { en: "Rain." }
             options: ["rayn", "rain", "rane"]
             answer: "rain"
           - id: l2-c2
+            part: ee-sound
             type: fill_in_blank
-            text: "Fill in the ee sound."
-            say: "Listen: dream. Fill in the ee sound."
+            text: "Fill in the ee sound.\nClue: you can have one while you sleep."
+            say: "Listen: dream. You can have a dream while you sleep. Fill in the ee sound."
             frame: "dr_m"
             options: ["ea", "ee", "y"]
             answer: ["ea"]
             option_audio: false
           - id: l2-c3
+            part: oh-sound
             type: audio_choice
             text: "Listen. Tap the right spelling."
             audio: { en: "Slow." }
             options: ["sloa", "slow", "slo"]
             answer: "slow"
           - id: l2-c4
+            part: igh-sound
             type: fill_in_blank
-            text: "Fill in the igh sound."
-            say: "Listen: sky. Fill in the igh sound."
+            text: "Fill in the igh sound.\nClue: the clouds and the sun are up in it."
+            say: "Listen: sky. The clouds are up in the sky. Fill in the igh sound."
             frame: "sk_"
             options: ["igh", "y", "ie"]
             answer: ["y"]
             option_audio: false
           - id: l2-c5
+            part: homophones
             type: multiple_choice
             text: "Please _ quiet in the library."
             say: "Which word fits the sentence? Read them yourself."
             options: ["be", "bee"]
+            answer: "be"
+            option_audio: false
+          - id: l2-c6
+            part: ay-sound
+            type: image_multiple_choice
+            text: "Which spelling is right?"
+            say: "Look at the picture. Wave. Which spelling is right? Read them yourself."
+            show: { object: wave }
+            options: [{ drawn: letter-card, text: "waiv", key: waiv }, { drawn: letter-card, text: "wave", key: wave }, { drawn: letter-card, text: "wayv", key: wayv }]
+            answer: wave
+          - id: l2-c7
+            part: ay-sound
+            type: fill_in_blank
+            text: "Fill in the ay sound.\nClue: not yesterday and not tomorrow."
+            say: "Listen: today. Not yesterday and not tomorrow, but today. Fill in the ay sound."
+            frame: "tod_"
+            options: ["ai", "ay", "a-e"]
+            answer: ["ay"]
+            option_audio: false
+          - id: l2-c8
+            part: ay-sound
+            type: true_false
+            text: "The word chain is spelt chayn."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c9
+            part: ee-sound
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Teeth." }
+            options: ["teath", "teeth", "teth"]
+            answer: "teeth"
+          - id: l2-c10
+            part: ee-sound
+            type: image_multiple_choice
+            text: "Which spelling is right?"
+            say: "Look at the picture. Queen. Which spelling is right? Read them yourself."
+            show: { object: queen }
+            options: [{ drawn: letter-card, text: "queen", key: queen }, { drawn: letter-card, text: "quean", key: quean }, { drawn: letter-card, text: "quene", key: quene }]
+            answer: queen
+          - id: l2-c11
+            part: ee-sound
+            type: sorting
+            text: "Which spelling of the ee sound does each word use? Sort them."
+            say: "Read each word yourself. Which spelling of the ee sound does it use? Sort them."
+            option_audio: false
+            bins:
+              - { id: ee, show: { text: "ee" }, say: "e e." }
+              - { id: ea, show: { text: "ea" }, say: "e a." }
+              - { id: y, show: { text: "y" }, say: "y." }
+            options:
+              - { text: "beach", bin: ea }
+              - { text: "puppy", bin: y }
+              - { text: "feet", bin: ee }
+              - { text: "sunny", bin: y }
+              - { text: "week", bin: ee }
+              - { text: "meat", bin: ea }
+          - id: l2-c12
+            part: igh-sound
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Bright." }
+            options: ["brite", "bryte", "bright"]
+            answer: "bright"
+          - id: l2-c13
+            part: igh-sound
+            type: fill_in_blank
+            text: "Fill in the igh sound.\nClue: Dad wears it round his neck with a shirt."
+            say: "Listen: tie. Dad wears a tie with his shirt. Fill in the igh sound."
+            frame: "t_"
+            options: ["igh", "ie", "y"]
+            answer: ["ie"]
+            option_audio: false
+          - id: l2-c14
+            part: igh-sound
+            type: true_false
+            text: "The word smile has the igh sound spelt i-e."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c15
+            part: oh-sound
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Toast." }
+            options: ["towst", "toast", "toste"]
+            answer: "toast"
+          - id: l2-c16
+            part: oh-sound
+            type: image_multiple_choice
+            text: "Which spelling is right?"
+            say: "Look at the picture. Rope. Which spelling is right? Read them yourself."
+            show: { object: rope }
+            options: [{ drawn: letter-card, text: "roap", key: roap }, { drawn: letter-card, text: "rowp", key: rowp }, { drawn: letter-card, text: "rope", key: rope }]
+            answer: rope
+          - id: l2-c17
+            part: oh-sound
+            type: fill_in_blank
+            text: "Fill in the oh sound.\nClue: you do it with a ball."
+            say: "Listen: throw. Throw the ball to me. Fill in the oh sound."
+            frame: "thr_"
+            options: ["oa", "ow", "o-e"]
+            answer: ["ow"]
+            option_audio: false
+          - id: l2-c18
+            part: homophones
+            type: fill_in_blank
+            text: "Fill the gaps with the right words."
+            say: "I see a bee on the flower. Fill the gaps with the right words. Read them yourself."
+            frame: "I _ a _ on the flower."
+            options: ["see", "sea", "be", "bee"]
+            answer: ["see", "bee"]
+            option_audio: false
+          - id: l2-c19
+            part: homophones
+            type: true_false
+            text: "Is this sentence spelt right?\nWe had a picnic by the see."
+            say: "Read the sentence. Is it spelt right?"
+            answer: false
+          - id: l2-c20
+            part: homophones
+            type: multiple_choice
+            text: "Will you _ my friend?"
+            say: "Which word fits the sentence? Read them yourself."
+            options: ["bee", "be"]
             answer: "be"
             option_audio: false

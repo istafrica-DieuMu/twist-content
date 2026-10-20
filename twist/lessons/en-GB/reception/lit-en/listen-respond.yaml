@@ -27,6 +27,11 @@ metadata:
   forms: [audio, picture, drawn]
   drawn: [colour-swatch]
   facets: []
+  parts:
+    - { id: action, what: { de: "tun oder beantworten, worum jemand bittet", en: doing or answering what someone asks } }
+    - { id: comment, what: { de: "einen freundlichen Kommentar wählen, der passt", en: choosing a kind comment that follows on } }
+    - { id: question, what: { de: "eine Frage wählen, die mehr herausfindet", en: choosing a question that finds out more } }
+    - { id: listening-well, what: { de: "wissen, wie gutes Zuhören aussieht, und nachfragen", en: "knowing what good listening looks like, and asking again" } }
   misconceptions:
     - id: looks-away
       what: Thinks listening only means being quiet, and looks away or fidgets while someone talks
@@ -93,7 +98,7 @@ lessons:
                   - "Your book."
               - id: l1-f3
                 type: image_multiple_choice
-                text: "Who is listening well?"
+                text: "Mrs Patel is reading a story. Which child is listening well?"
                 say: "Mrs Patel is reading a story. Which child is listening well? Tap the picture."
                 options: [{ object: jump }, { object: sing }, { object: listen }]
                 answer: listen
@@ -117,7 +122,7 @@ lessons:
                   - "Blue."
               - id: l1-f5
                 type: speak
-                text: "Answer in a sentence."
+                text: "What is your favourite fruit? Answer in a sentence."
                 say: "Listen and answer in a sentence. What is your favourite fruit? For example: My favourite fruit is apples."
                 show: { object: apple }
                 expected_text: "My favourite fruit is apples."
@@ -161,7 +166,7 @@ lessons:
                 hints: ["Listen for the word after get your."]
               - id: l1-s5
                 type: speak
-                text: "Answer in a sentence."
+                text: "What do you like to play? Answer in a sentence."
                 say: "Listen and answer in a sentence. What do you like to play? For example: I like to play football."
                 show: { object: play-football }
                 expected_text: "I like to play football."
@@ -185,7 +190,7 @@ lessons:
                 answer: door
               - id: l1-n3
                 type: image_multiple_choice
-                text: "Who is ready to listen?"
+                text: "Mr Okafor wants to tell the class something. Which child is ready to listen?"
                 say: "Mr Okafor wants to tell the class something. Which child is ready to listen? Tap the picture."
                 options: [{ object: dance }, { object: play-football }, { object: quiet }]
                 answer: quiet
@@ -198,13 +203,14 @@ lessons:
                 answer: woolly-hat
               - id: l1-n5
                 type: speak
-                text: "Answer in a sentence."
+                text: "How are you today? Answer in a sentence."
                 say: "Listen and answer in a sentence. How are you today? For example: I am happy today."
                 show: { object: happy }
                 expected_text: "I am happy today."
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -226,6 +232,29 @@ lessons:
             say: "Sam keeps still and looks at the person who is talking. Is Sam listening well?"
             show: { object: listen }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Answer the question."
+            say: "Listen to the question. Tap the answer."
+            audio: { en: "What colour is the grass?" }
+            options:
+              - { drawn: colour-swatch, colour: yellow }
+              - { drawn: colour-swatch, colour: red }
+              - { drawn: colour-swatch, colour: green }
+            answer: green
+          - id: l1-c5
+            type: audio_choice
+            text: "What should you get?"
+            say: "Listen. What should you get?"
+            audio: { en: "We're going outside. Please get your water bottle." }
+            options: [{ object: cup }, { object: bottle }, { object: spoon }]
+            answer: bottle
+          - id: l1-c6
+            type: true_false
+            text: "Leo talks to his friend while the teacher is reading a story. Is Leo listening well?"
+            say: "Leo talks to his friend while the teacher is reading a story. Is Leo listening well?"
+            show: { object: teacher }
+            answer: false
 
   - n: 2
     title: { de: "Kommentieren und fragen", en: "Comments and questions" }
@@ -270,8 +299,9 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "What could you say?"
-                say: "Mia says: I got a new puppy! What could you say?"
+                text: "Mia says: I got a new puppy! What could you say?"
+                say: "Listen to Mia. What could you say?"
+                audio: { en: "I got a new puppy!", speaker: female }
                 options: ["I like pizza.", "Wow, that's exciting!", "Go away."]
                 answer: "Wow, that's exciting!"
                 hints:
@@ -281,8 +311,9 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
-                text: "Which question finds out more?"
-                say: "Leo says: I went to the seaside. Which question could you ask to find out more?"
+                text: "Leo says: I went to the seaside. Which question finds out more?"
+                say: "Listen to Leo. Which question could you ask to find out more?"
+                audio: { en: "I went to the seaside.", speaker: male }
                 options: ["I went to school.", "My shoes are red.", "What did you do there?"]
                 answer: "What did you do there?"
                 feedback:
@@ -304,7 +335,7 @@ lessons:
                   - "Paint."
               - id: l2-f4
                 type: speak
-                text: "Ask a question."
+                text: "Your friend says: I made a cake. Ask a question to find out more."
                 say: "Your friend says: I made a cake. Ask a question to find out more. For example: What kind of cake did you make?"
                 show: { object: cake }
                 expected_text: "What kind of cake did you make?"
@@ -327,15 +358,17 @@ lessons:
             tasks:
               - id: l2-s1
                 type: multiple_choice
-                text: "What could you say?"
-                say: "Zara says: I fell over and hurt my knee. What could you say?"
+                text: "Zara says: I fell over and hurt my knee. What could you say?"
+                say: "Listen to Zara. What could you say?"
+                audio: { en: "I fell over and hurt my knee.", speaker: female }
                 options: ["Oh no! Are you all right?", "Ha ha!", "I have a cat."]
                 answer: "Oh no! Are you all right?"
                 hints: ["How does Zara feel? Say something kind."]
               - id: l2-s2
                 type: multiple_choice
-                text: "Which question?"
-                say: "Dad says: I've got a surprise for you. Which question could you ask?"
+                text: "Dad says: I've got a surprise for you. Which question could you ask?"
+                say: "Listen to Dad. Which question could you ask?"
+                audio: { en: "I've got a surprise for you.", speaker: male }
                 options: ["I am four.", "What is it?", "Bye!"]
                 answer: "What is it?"
                 hints: ["You want to find out what the surprise is."]
@@ -348,7 +381,7 @@ lessons:
                 hints: ["Who should you be thinking about while she talks?"]
               - id: l2-s4
                 type: speak
-                text: "Make a comment."
+                text: "Your friend says: I can ride a bike now! Make a comment."
                 say: "Your friend says: I can ride a bike now! Make a comment. For example: Well done! That's brilliant!"
                 show: { object: ride-bike }
                 expected_text: "Well done! That's brilliant!"
@@ -366,13 +399,14 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "What could you say?"
-                say: "Grandma says: I baked some biscuits. What could you say?"
+                text: "Grandma says: I baked some biscuits. What could you say?"
+                say: "Listen to Grandma. What could you say?"
+                audio: { en: "I baked some biscuits.", speaker: female }
                 options: ["My bike is blue.", "Yum! They smell lovely!", "No."]
                 answer: "Yum! They smell lovely!"
               - id: l2-n2
                 type: multiple_choice
-                text: "Which question?"
+                text: "You want to know where your friend went at the weekend. Which question do you ask?"
                 say: "You want to know where your friend went at the weekend. Which question do you ask?"
                 options: ["Who are you?", "What is that?", "Where did you go?"]
                 answer: "Where did you go?"
@@ -385,7 +419,7 @@ lessons:
                 answer: jacket
               - id: l2-n4
                 type: speak
-                text: "Ask a question."
+                text: "Your teacher says: We are going on a trip tomorrow! Ask a question."
                 say: "Your teacher says: We are going on a trip tomorrow! Ask a question. For example: Where are we going?"
                 show: { object: bus }
                 expected_text: "Where are we going?"
@@ -398,8 +432,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: action
             type: audio_choice
             text: "What should you do?"
             say: "Listen. What should you do?"
@@ -407,27 +443,145 @@ lessons:
             options: [{ object: swim }, { object: read }, { object: sing }]
             answer: sing
           - id: l2-c2
+            part: comment
             type: multiple_choice
-            text: "What could you say?"
-            say: "Ben says: It's my birthday today! What could you say?"
+            text: "Ben says: It's my birthday today! What could you say?"
+            say: "Listen to Ben. What could you say?"
+            audio: { en: "It's my birthday today!", speaker: male }
             options: ["I don't like cake.", "Where is the bus?", "Happy birthday, Ben!"]
             answer: "Happy birthday, Ben!"
           - id: l2-c3
+            part: question
             type: multiple_choice
-            text: "Which question?"
-            say: "Your friend says: I saw something amazing in the garden! Which question could you ask?"
+            text: "Your friend says: I saw something amazing in the garden! Which question could you ask?"
+            say: "Listen to your friend. Which question could you ask?"
+            audio: { en: "I saw something amazing in the garden!", speaker: female }
             options: ["What did you see?", "I am hungry.", "My dog is big."]
             answer: "What did you see?"
           - id: l2-c4
+            part: listening-well
             type: true_false
             text: "While Mum is talking, Kai jumps up and down and sings. Is Kai listening well?"
             say: "While Mum is talking, Kai jumps up and down and sings. Is Kai listening well?"
             show: { object: mum }
             answer: false
           - id: l2-c5
+            part: action
             type: audio_choice
             text: "What should you bring?"
             say: "Listen. What should you bring?"
             audio: { en: "Can you bring me the ball, please?" }
             options: [{ object: balloon }, { object: ball }, { object: book-open }]
             answer: ball
+          - id: l2-c6
+            part: action
+            type: audio_choice
+            text: "What should you do?"
+            say: "Listen. What should you do?"
+            audio: { en: "Everyone, please be quiet now." }
+            options: [{ object: sing }, { object: quiet }, { object: dance }]
+            answer: quiet
+          - id: l2-c7
+            part: comment
+            type: multiple_choice
+            text: "Omar says: My tooth fell out! What could you say?"
+            say: "Listen to Omar. What could you say?"
+            audio: { en: "My tooth fell out!", speaker: male }
+            options: ["My coat is green.", "Wow! Let me see the gap!", "Go away."]
+            answer: "Wow! Let me see the gap!"
+          - id: l2-c8
+            part: question
+            type: multiple_choice
+            text: "Isla says: I've got a new pet! Which question could you ask?"
+            say: "Listen to Isla. Which question could you ask?"
+            audio: { en: "I've got a new pet!", speaker: female }
+            options: ["I am five.", "My hat is red.", "What kind of pet is it?"]
+            answer: "What kind of pet is it?"
+          - id: l2-c9
+            part: listening-well
+            type: true_false
+            text: "Grandad is telling a story. Priya looks at him and keeps still. Is Priya listening well?"
+            say: "Grandad is telling a story. Priya looks at him and keeps still. Is Priya listening well?"
+            show: { object: grandpa }
+            answer: true
+          - id: l2-c10
+            part: action
+            type: audio_choice
+            text: "What does Mum want?"
+            say: "Listen to Mum. What does she want?"
+            audio: { en: "It's bedtime. Can you pass me your toothbrush, please?", speaker: female }
+            options: [{ object: spoon }, { object: pencil }, { object: toothbrush }]
+            answer: toothbrush
+          - id: l2-c11
+            part: comment
+            type: multiple_choice
+            text: "Ruby says: I lost my favourite teddy. What could you say?"
+            say: "Listen to Ruby. What could you say?"
+            audio: { en: "I lost my favourite teddy.", speaker: female }
+            options: ["Yay!", "Oh no! I'll help you look.", "I had chips for tea."]
+            answer: "Oh no! I'll help you look."
+          - id: l2-c12
+            part: question
+            type: multiple_choice
+            text: "You want to know who is coming to the party. Which question do you ask?"
+            say: "You want to know who is coming to the party. Which question do you ask?"
+            options: ["Where is it?", "Who is coming?", "What is that?"]
+            answer: "Who is coming?"
+          - id: l2-c13
+            part: listening-well
+            type: multiple_choice
+            text: "You did not hear what the teacher said. What should you do?"
+            say: "You did not hear what the teacher said. What should you do?"
+            options: ["Guess.", "Do nothing.", "Ask: Can you say that again, please?"]
+            answer: "Ask: Can you say that again, please?"
+          - id: l2-c14
+            part: listening-well
+            type: multiple_choice
+            text: "Mrs Patel is reading a story. What does good listening look like?"
+            say: "Mrs Patel is reading a story. What does good listening look like?"
+            options: ["talking to a friend", "looking at her and keeping still", "playing with a toy"]
+            answer: "looking at her and keeping still"
+          - id: l2-c15
+            part: comment
+            type: true_false
+            text: "Your friend says: I drew a rainbow! You say: That's lovely, I like the colours. Is that a good comment?"
+            say: "Your friend says: I drew a rainbow! You say: That's lovely, I like the colours. Is that a good comment?"
+            show: { object: crayon }
+            answer: true
+          - id: l2-c16
+            part: question
+            type: true_false
+            text: "Your teacher says: We have a new class pet. You ask: What is its name? Is that a good question?"
+            say: "Your teacher says: We have a new class pet. You ask: What is its name? Is that a good question?"
+            show: { object: teacher }
+            answer: true
+          - id: l2-c17
+            part: listening-well
+            type: image_multiple_choice
+            text: "Dad is talking to you. Where should you look?"
+            say: "Dad is talking to you. Where should you look? Tap the picture."
+            options: [{ object: window }, { object: dad }, { object: mobile-phone }]
+            answer: dad
+          - id: l2-c18
+            part: action
+            type: audio_choice
+            text: "Who should you feed?"
+            say: "Listen. Who should you feed?"
+            audio: { en: "Can you give the dog his dinner, please?" }
+            options: [{ object: cat }, { object: fish }, { object: dog }]
+            answer: dog
+          - id: l2-c19
+            part: comment
+            type: true_false
+            text: "Your friend says: I'm going to see my nan. You say: I like ice cream. Is that about what your friend said?"
+            say: "Your friend says: I'm going to see my nan. You say: I like ice cream. Is that about what your friend said?"
+            show: { object: grandma }
+            answer: false
+          - id: l2-c20
+            part: question
+            type: multiple_choice
+            text: "Jack says: I went to the zoo yesterday. Which question finds out more?"
+            say: "Listen to Jack. Which question finds out more?"
+            audio: { en: "I went to the zoo yesterday.", speaker: male }
+            options: ["I went to the shop.", "Which animals did you see?", "Bye, Jack!"]
+            answer: "Which animals did you see?"

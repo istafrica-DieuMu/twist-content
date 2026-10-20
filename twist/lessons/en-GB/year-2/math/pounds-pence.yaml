@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [coins]
   facets: [currency]
+  parts:
+    - { id: one-pound, what: { de: "wissen, dass 1 Pfund 100 Pence sind, und bis 1 Pfund ergänzen", en: knowing that £1 is 100p and making up to £1 } }
+    - { id: convert, what: { de: ganze Pfund in Pence umrechnen und umgekehrt, en: changing whole pounds into pence and back } }
+    - { id: read-amount, what: { de: Beträge in Pfund und Pence ablesen und schreiben, en: reading and writing amounts in pounds and pence } }
+    - { id: compare, what: { de: Beträge in Pfund und Pence vergleichen, en: comparing amounts in pounds and pence } }
   misconceptions:
     - id: pound-is-ten-pence
       what: Thinks £1 is 10p, so £1 is less than 50p
@@ -218,6 +223,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -237,6 +243,24 @@ lessons:
             text: "£6 = _p"
             say: "How many pence make six pounds?"
             answer: "600"
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many 20p coins make £1?"
+            say: "How many twenty pence coins make one pound?"
+            options: ["5", "20", "2"]
+            answer: "5"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 100p is less than £1."
+            say: "One hundred pence is less than one pound. Is that true?"
+            answer: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Make £1."
+            say: "Ninety pence and how many pence make one pound?"
+            frame: "90p + _p = £1"
+            options: ["10", "20", "1"]
+            answer: ["10"]
 
   - n: 2
     title: { de: Pfund und Pence zusammen, en: Pounds and pence together }
@@ -419,8 +443,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read-amount
             type: fill_in_blank
             text: "Write the amount."
             say: "How many pounds and how many pence? Fill the gaps."
@@ -429,6 +455,7 @@ lessons:
             options: ["2", "55", "3", "50"]
             answer: ["2", "55"]
           - id: l2-c2
+            part: one-pound
             type: image_multiple_choice
             text: "Which coins make 100p?"
             say: "Which coins make exactly one hundred pence?"
@@ -438,6 +465,7 @@ lessons:
               - { drawn: coins, values: [50, 50, 10] }
             answer: "100"
           - id: l2-c3
+            part: one-pound
             type: fill_in_blank
             text: "Make £1."
             say: "Fifteen pence and how many pence make one pound?"
@@ -445,6 +473,7 @@ lessons:
             options: ["85", "95", "15", "75"]
             answer: ["85"]
           - id: l2-c4
+            part: compare
             type: multiple_choice
             text: "Which is more: 99p or £1?"
             say: "Which is more: ninety-nine pence or one pound?"
@@ -452,7 +481,117 @@ lessons:
             answer: "£1"
             keep_order: true
           - id: l2-c5
+            part: convert
             type: text_input
             text: "700p = £_"
             say: "Seven hundred pence is how many pounds?"
             answer: "7"
+          - id: l2-c6
+            part: one-pound
+            type: multiple_choice
+            text: "How many 50p coins make £1?"
+            say: "How many fifty pence coins make one pound?"
+            options: ["2", "5", "50"]
+            answer: "2"
+          - id: l2-c7
+            part: one-pound
+            type: fill_in_blank
+            text: "Make £1."
+            say: "Forty-five pence and how many pence make one pound?"
+            frame: "45p + _p = £1"
+            options: ["55", "65", "45"]
+            answer: ["55"]
+          - id: l2-c8
+            part: one-pound
+            type: true_false
+            text: "Is it true? 60p + 30p = £1"
+            say: "Sixty pence and thirty pence make one pound. Is that true?"
+            answer: false
+          - id: l2-c9
+            part: convert
+            type: text_input
+            text: "£5 = _p"
+            say: "How many pence make five pounds?"
+            answer: "500"
+          - id: l2-c10
+            part: convert
+            type: multiple_choice
+            text: "Which is the same as 800p?"
+            say: "Which is the same as eight hundred pence?"
+            options: ["£8", "£80", "8p"]
+            answer: "£8"
+          - id: l2-c11
+            part: convert
+            type: true_false
+            text: "Is it true? 200p is more than £2."
+            say: "Two hundred pence is more than two pounds. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: convert
+            type: text_input
+            text: "Zoe has six £1 coins. How many pence does she have?"
+            say: "Zoe has six one pound coins. How many pence does she have?"
+            answer: "600"
+          - id: l2-c13
+            part: read-amount
+            type: multiple_choice
+            text: "How much money?"
+            say: "How much money is this?"
+            show: { drawn: coins, values: [200, 200, 100, 20, 1] }
+            options: ["£5 and 21p", "£3 and 21p", "£5 and 12p"]
+            answer: "£5 and 21p"
+          - id: l2-c14
+            part: read-amount
+            type: fill_in_blank
+            text: "Write the amount."
+            say: "How many pounds and how many pence? Fill the gaps."
+            show: { drawn: coins, values: [100, 50, 20, 2] }
+            frame: "£_ and _p"
+            options: ["1", "72", "2", "27"]
+            answer: ["1", "72"]
+          - id: l2-c15
+            part: read-amount
+            type: image_multiple_choice
+            text: "Which shows £3 and 50p?"
+            say: "Which coins show three pounds and fifty pence?"
+            options:
+              - { drawn: coins, values: [200, 50] }
+              - { drawn: coins, values: [200, 100, 5] }
+              - { drawn: coins, values: [200, 100, 50] }
+            answer: "350"
+          - id: l2-c16
+            part: read-amount
+            type: multiple_choice
+            text: "How do you write two pounds and seventy pence?"
+            say: "How do you write two pounds and seventy pence?"
+            options: ["£2 and 70p", "£70 and 2p", "£2 and 7p"]
+            answer: "£2 and 70p"
+            option_audio: false
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Which is more: £1 and 20p or 90p?"
+            say: "Which is more: one pound and twenty pence, or ninety pence?"
+            options: ["£1 and 20p", "90p"]
+            answer: "£1 and 20p"
+            keep_order: true
+          - id: l2-c18
+            part: compare
+            type: true_false
+            text: "Is it true? £2 and 5p is less than £2 and 50p."
+            say: "Two pounds and five pence is less than two pounds and fifty pence. Is that true?"
+            answer: true
+          - id: l2-c19
+            part: compare
+            type: multiple_choice
+            text: "Tom has £3. Amy has 300p. Who has more money?"
+            say: "Tom has three pounds. Amy has three hundred pence. Who has more money?"
+            options: ["Tom", "Amy", "They have the same"]
+            answer: "They have the same"
+          - id: l2-c20
+            part: compare
+            type: multiple_choice
+            text: "Which is the most money?"
+            say: "Which is the most money?"
+            options: ["£1 and 99p", "£2", "£1 and 9p"]
+            answer: "£2"

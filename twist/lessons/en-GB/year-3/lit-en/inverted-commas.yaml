@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: spoken-words, what: { de: die gesprochenen Wörter finden und die Anführungszeichen darum setzen, en: finding the spoken words and putting the inverted commas round them } }
+    - { id: direct-or-reported, what: { de: wörtliche Rede von berichteter Rede unterscheiden, en: telling direct speech from reported speech } }
+    - { id: punctuation-inside, what: { de: "Großbuchstabe und Satzzeichen in der wörtlichen Rede", en: "the capital letter and the punctuation inside the inverted commas" } }
   misconceptions:
     - id: marks-round-said
       what: Puts the inverted commas round the whole sentence, including said Tom
@@ -207,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -225,6 +230,23 @@ lessons:
             text: "This sentence needs inverted commas: Ben said that he was cold."
             say: "Read it. Is it true?"
             answer: false
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the words the nurse says."
+            say: "Tap only the words that the nurse says out loud."
+            show: { drawn: letter-card, text: "The nurse said this will not hurt" }
+            spans: ["this", "will", "not", "hurt"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Where do the inverted commas go?"
+            options: ["Aunt Jess said, “Come in out of the rain.”", "“Aunt Jess said, Come in out of the rain.”", "Aunt Jess said, Come in “out of the rain.”"]
+            answer: "Aunt Jess said, “Come in out of the rain.”"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "This is reported speech: Mo said that the film was scary."
+            say: "Read it. Is it true?"
+            answer: true
 
   - n: 2
     title: { de: Satzzeichen in der wörtlichen Rede, en: Punctuation inside the inverted commas }
@@ -402,26 +424,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spoken-words
             type: multiple_choice
             text: "Where do the inverted commas go?"
             options: ["“The bus is coming,” said Mum.", "“The bus is coming, said Mum.”", "The bus “is coming,” said Mum."]
             answer: "“The bus is coming,” said Mum."
             option_audio: false
           - id: l2-c2
+            part: spoken-words
             type: highlight_in_text
             text: "Tap the words Grandad says."
             say: "Tap only the words that Grandad says out loud."
             show: { drawn: letter-card, text: "Grandad laughed what a silly dog" }
             spans: ["what", "a", "silly", "dog"]
           - id: l2-c3
+            part: punctuation-inside
             type: multiple_choice
             text: "Which is punctuated correctly?"
             options: ["“Can I help?” asked Isla.", "“Can I help”? asked Isla.", "“Can I help” asked Isla?"]
             answer: "“Can I help?” asked Isla."
             option_audio: false
           - id: l2-c4
+            part: punctuation-inside
             type: fill_in_blank
             text: "Which mark fits? \"“My kite is stuck_” said Omar.\""
             say: "Which punctuation mark fits inside the inverted commas, before said Omar?"
@@ -430,8 +457,124 @@ lessons:
             answer: [","]
             option_audio: false
           - id: l2-c5
+            part: direct-or-reported
             type: multiple_choice
             text: "Which sentence needs inverted commas?"
             options: ["I can whistle said Rosie.", "Rosie said that she could whistle.", "Rosie told us she could whistle."]
             answer: "I can whistle said Rosie."
             option_audio: false
+          - id: l2-c6
+            part: spoken-words
+            type: highlight_in_text
+            text: "Tap the words the bus driver says."
+            say: "Tap only the words that the bus driver says out loud."
+            show: { drawn: letter-card, text: "Hold on tight said the bus driver" }
+            spans: ["Hold", "on", "tight"]
+          - id: l2-c7
+            part: spoken-words
+            type: multiple_choice
+            text: "Where do the inverted commas go?"
+            options: ["Nadia asked, “Is this seat free?”", "“Nadia asked, Is this seat free?”", "Nadia asked, Is this “seat free?”"]
+            answer: "Nadia asked, “Is this seat free?”"
+            option_audio: false
+          - id: l2-c8
+            part: spoken-words
+            type: true_false
+            text: "Are the inverted commas in the right place? “The cake is ready, said Dad.”"
+            say: "Read the sentence. Are the inverted commas in the right place?"
+            answer: false
+          - id: l2-c9
+            part: spoken-words
+            type: ordering
+            text: "Build the sentence."
+            say: "Put the cards in order to make the sentence with direct speech."
+            options: ["“Well done, everyone.”", "Our teacher said,"]
+            slot_count: 2
+            answer: ["Our teacher said,", "“Well done, everyone.”"]
+            option_audio: false
+          - id: l2-c10
+            part: spoken-words
+            type: multiple_choice
+            text: "The twins shouted we want ice cream\n\nWhich words go inside the inverted commas?"
+            say: "Read the sentence. Which words go inside the inverted commas?"
+            options: ["we want ice cream", "The twins shouted", "The twins shouted we want ice cream"]
+            answer: "we want ice cream"
+            option_audio: false
+          - id: l2-c11
+            part: direct-or-reported
+            type: sorting
+            text: "Direct speech or reported speech?"
+            say: "Sort the sentences: direct speech or reported speech."
+            option_audio: false
+            bins:
+              - { id: direct, show: { text: "direct speech" }, say: "Direct speech." }
+              - { id: reported, show: { text: "reported speech" }, say: "Reported speech." }
+            options:
+              - { text: "“I'm cold,” said Ana.", bin: direct }
+              - { text: "Ana said that she was cold.", bin: reported }
+              - { text: "“Shall we play?” asked Raj.", bin: direct }
+              - { text: "Raj asked if we wanted to play.", bin: reported }
+          - id: l2-c12
+            part: direct-or-reported
+            type: true_false
+            text: "This is direct speech: “I've lost my glove,” said Grace."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c13
+            part: direct-or-reported
+            type: multiple_choice
+            text: "Which sentence is reported speech?"
+            options: ["Dad said that dinner was ready.", "“Dinner is ready,” said Dad.", "Dad said, “Dinner is ready.”"]
+            answer: "Dad said that dinner was ready."
+            option_audio: false
+          - id: l2-c14
+            part: direct-or-reported
+            type: multiple_choice
+            text: "Zara said that she was thirsty.\n\nWhich sentence says the same in direct speech?"
+            say: "Read the reported speech. Which sentence says the same thing in direct speech?"
+            options: ["“I am thirsty,” said Zara.", "“Zara said that she was thirsty.”", "“She was thirsty,” said Zara."]
+            answer: "“I am thirsty,” said Zara."
+            option_audio: false
+          - id: l2-c15
+            part: direct-or-reported
+            type: multiple_choice
+            text: "Owen said that he liked the film.\n\nWhich words show that this is reported speech?"
+            say: "Read the sentence. Which words show that it is reported speech?"
+            options: ["said that", "Owen", "the film"]
+            answer: "said that"
+            option_audio: false
+          - id: l2-c16
+            part: punctuation-inside
+            type: fill_in_blank
+            text: "Fill both gaps. \"Mum said_ “Put your coat on_”\""
+            say: "Which punctuation marks fill the two gaps?"
+            frame: "Mum said_ “Put your coat on_”"
+            options: [",", ".", "?"]
+            answer: [",", "."]
+            option_audio: false
+          - id: l2-c17
+            part: punctuation-inside
+            type: multiple_choice
+            text: "Which is punctuated correctly?"
+            options: ["Sanjay said, “My bike has a flat tyre.”", "Sanjay said, “my bike has a flat tyre.”", "Sanjay said “My bike has a flat tyre”."]
+            answer: "Sanjay said, “My bike has a flat tyre.”"
+            option_audio: false
+          - id: l2-c18
+            part: punctuation-inside
+            type: true_false
+            text: "Is this punctuated correctly? “Help!” shouted the boy."
+            say: "Read the sentence. Is it punctuated correctly?"
+            answer: true
+          - id: l2-c19
+            part: punctuation-inside
+            type: true_false
+            text: "Is this punctuated correctly? “Where is the bus stop”? asked the man."
+            say: "Read the sentence. Is it punctuated correctly?"
+            answer: false
+          - id: l2-c20
+            part: punctuation-inside
+            type: multiple_choice
+            text: "“Is it lunchtime?” asked Jack.\n\nWhy does asked start with a small letter?"
+            say: "Read the sentence. Why does the word asked start with a small letter?"
+            options: ["The sentence is not finished yet.", "Asked is a name.", "Asked is the first word of the sentence."]
+            answer: "The sentence is not finished yet."

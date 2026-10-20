@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [table, letter-card]
   facets: []
+  parts:
+    - { id: story-or-info, what: { de: ein Sachbuch von einer Geschichte unterscheiden, en: telling an information book from a story } }
+    - { id: contents, what: { de: mit dem Inhaltsverzeichnis die richtige Seite finden, en: finding the right page with the contents page } }
+    - { id: headings, what: { de: "Überschriften nutzen und die passende wählen", en: "using headings and choosing the one that fits" } }
+    - { id: glossary, what: { de: "im Glossar nachsehen, was ein Wort bedeutet", en: "looking up what a word means in the glossary" } }
+    - { id: organised, what: { de: "wie ein Sachbuch geordnet ist (nach Thema, nach Zeit, nach dem Alphabet)", en: "how a book is organised (by topic, in time order, in alphabetical order)" } }
   misconceptions:
     - id: read-from-start
       what: Thinks an information book must be read from the first page to find something
@@ -222,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -240,6 +247,23 @@ lessons:
             text: "Bees make honey. Is this from an information book?"
             say: "Read it. Is this from an information book?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Trains. Which page tells you about stations?"
+            show: { drawn: table, rows: [["Contents", "Page"], ["Steam trains", "2"], ["Fast trains", "6"], ["Stations", "10"]] }
+            options: ["6", "10", "2"]
+            answer: "10"
+          - id: l1-c5
+            type: true_false
+            text: "Once upon a time, a little train wanted to fly. Is this from an information book?"
+            say: "Read it. Is this from an information book?"
+            answer: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tap every word of the heading."
+            say: "Read the page. Tap every word of the heading."
+            show: { drawn: letter-card, text: "Ant homes. Ants live in nests under the ground." }
+            spans: ["Ant", "homes"]
 
   - n: 2
     title: { de: Glossar und Ordnung im Buch, en: Glossaries and how books are organised }
@@ -409,20 +433,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: contents
             type: multiple_choice
             text: "Weather. Which page tells you about snow?"
             show: { drawn: table, rows: [["Contents", "Page"], ["Sun", "2"], ["Rain", "6"], ["Wind", "10"], ["Snow", "14"], ["Glossary", "18"]] }
             options: ["14", "10", "18"]
             answer: "14"
           - id: l2-c2
+            part: headings
             type: multiple_choice
-            text: "Which heading fits?\n\n_\nWhen it is very cold, rain can freeze into snow. Snow is soft and white. You can build a snowman with it."
+            text: "Which heading fits?\n\n_\nSnow falls from the clouds when it is very cold. It is soft and white. You can build a snowman with it."
             options: ["What is snow?", "Building", "Hot days"]
             answer: "What is snow?"
             option_audio: false
           - id: l2-c3
+            part: glossary
             type: multiple_choice
             text: "Weather glossary. What does freeze mean?"
             show: { drawn: table, rows: [["Glossary", ""], ["cloud", "lots of tiny drops of water in the sky"], ["freeze", "to turn into ice when it is very cold"], ["puddle", "a small pool of rain on the ground"]] }
@@ -430,14 +458,130 @@ lessons:
             answer: "to turn into ice when it is very cold"
             option_audio: false
           - id: l2-c4
+            part: glossary
             type: multiple_choice
             text: "You want to know what the word puddle means. Where do you look?"
             options: ["in the glossary", "in the contents", "on the cover"]
             answer: "in the glossary"
             option_audio: false
           - id: l2-c5
+            part: organised
             type: ordering
             text: "Put the glossary words in alphabetical order."
             options: ["sun", "rain", "wind", "cloud"]
             slot_count: 4
             answer: ["cloud", "rain", "sun", "wind"]
+          - id: l2-c6
+            part: contents
+            type: multiple_choice
+            text: "Our Bodies. Which page tells you how to keep your teeth clean?"
+            show: { drawn: table, rows: [["Contents", "Page"], ["Eyes", "2"], ["Ears", "5"], ["Teeth", "9"], ["Bones", "12"], ["Glossary", "16"]] }
+            options: ["5", "12", "9"]
+            answer: "9"
+          - id: l2-c7
+            part: contents
+            type: multiple_choice
+            text: "Our Bodies. What is on page 12?"
+            show: { drawn: table, rows: [["Contents", "Page"], ["Eyes", "2"], ["Ears", "5"], ["Teeth", "9"], ["Bones", "12"], ["Glossary", "16"]] }
+            options: ["teeth", "bones", "eyes"]
+            answer: "bones"
+          - id: l2-c8
+            part: contents
+            type: true_false
+            text: "Weather. Is it true? The part about wind starts on page 10."
+            say: "Look at the contents page. Is it true? The part about wind starts on page ten."
+            show: { drawn: table, rows: [["Contents", "Page"], ["Sun", "2"], ["Rain", "6"], ["Wind", "10"], ["Snow", "14"], ["Glossary", "18"]] }
+            answer: true
+          - id: l2-c9
+            part: headings
+            type: multiple_choice
+            text: "Which heading fits?\n\n_\nYour heart pumps blood all round your body. It beats faster when you run."
+            options: ["Running", "Your busy heart", "Blood is red"]
+            answer: "Your busy heart"
+            option_audio: false
+          - id: l2-c10
+            part: headings
+            type: highlight_in_text
+            text: "Tap every word of the heading."
+            say: "Read the page. Tap every word of the heading."
+            show: { drawn: letter-card, text: "Strong bones. Milk and cheese help them grow." }
+            spans: ["Strong", "bones"]
+          - id: l2-c11
+            part: headings
+            type: true_false
+            text: "The heading fits the text.\n\nThe sea\nRabbits live under the ground in burrows."
+            say: "Read the heading and the text. Is it true? The heading fits the text."
+            answer: false
+          - id: l2-c12
+            part: story-or-info
+            type: sorting
+            text: "Is each sentence from a story or an information book? Sort them."
+            say: "Read each sentence yourself. Is it from a story or from an information book? Sort them."
+            option_audio: false
+            bins:
+              - { id: story, show: { text: "story" }, say: "Story." }
+              - { id: info, show: { text: "information book" }, say: "Information book." }
+            options:
+              - { text: "Ollie the owl was afraid of the dark.", bin: story }
+              - { text: "Owls hunt at night.", bin: info }
+              - { text: "One night, the Moon came down to play.", bin: story }
+              - { text: "The Moon goes round the Earth.", bin: info }
+          - id: l2-c13
+            part: story-or-info
+            type: multiple_choice
+            text: "Which book is an information book?"
+            options: ["Ollie and the Magic Hat", "All About Owls", "The Giant Who Sneezed"]
+            answer: "All About Owls"
+            option_audio: false
+          - id: l2-c14
+            part: story-or-info
+            type: true_false
+            text: "An information book tells you true facts."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c15
+            part: story-or-info
+            type: multiple_choice
+            text: "Which sentence would you find in an information book?"
+            options: ["Once upon a time, a spider wanted to fly.", "Sid the spider loved to dance.", "A spider has eight legs."]
+            answer: "A spider has eight legs."
+            option_audio: false
+          - id: l2-c16
+            part: glossary
+            type: multiple_choice
+            text: "Our Bodies glossary. What is a skeleton?"
+            show: { drawn: table, rows: [["Glossary", ""], ["muscle", "a part of your body that helps you move"], ["pulse", "the beat of your heart that you can feel"], ["skeleton", "all the bones in your body"]] }
+            options: ["the beat of your heart that you can feel", "all the bones in your body", "a part of your body that helps you move"]
+            answer: "all the bones in your body"
+            option_audio: false
+          - id: l2-c17
+            part: glossary
+            type: multiple_choice
+            text: "Which part of an information book explains the special words in it?"
+            options: ["the contents", "the cover", "the glossary"]
+            answer: "the glossary"
+            option_audio: false
+          - id: l2-c18
+            part: organised
+            type: multiple_choice
+            text: "A book called Animals A to Z starts with ant, then bear, then cat, and goes all the way to zebra. How is it organised?"
+            options: ["by topic", "in alphabetical order", "in time order"]
+            answer: "in alphabetical order"
+            option_audio: false
+          - id: l2-c19
+            part: organised
+            type: ordering
+            text: "Put the glossary words in alphabetical order."
+            say: "Put the words in alphabetical order, the way a glossary lists them."
+            options: ["tooth", "eye", "bone", "hair"]
+            slot_count: 4
+            answer: ["bone", "eye", "hair", "tooth"]
+          - id: l2-c20
+            part: organised
+            type: matching
+            text: "How is each book organised? Match them."
+            say: "Read each book yourself. How is it organised? Match them."
+            pairs:
+              - { left: { text: "How a Seed Grows: seed, shoot, flower" }, right: { text: "in time order" } }
+              - { left: { text: "My First Dictionary" }, right: { text: "in alphabetical order" } }
+              - { left: { text: "Sea Creatures: whales, crabs, starfish" }, right: { text: "by topic" } }

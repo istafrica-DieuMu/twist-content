@@ -26,6 +26,11 @@ metadata:
   forms: [audio, text, drawn]
   drawn: [clock]
   facets: [time-format]
+  parts:
+    - { id: oclock, what: { de: "volle Stunden mit heures sagen und verstehen", en: saying and understanding o'clock with heures } }
+    - { id: half-past, what: { de: "halbe Stunden mit et demie", en: half past with et demie } }
+    - { id: midi-minuit, what: { de: midi und minuit unterscheiden, en: telling midi from minuit } }
+    - { id: ask-use, what: { de: "nach der Uhrzeit fragen und verstehen, wann etwas ist", en: asking the time and understanding when something happens } }
   misconceptions:
     - id: no-heures
       what: Says only the number (il est trois) or mixes heures up with ans (il est neuf ans)
@@ -51,6 +56,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: audio_choice
+            text: "Which number is it?"
             say: { en: "Listen. Which number is it?" }
             audio: { fr: "Sept." }
             options: ["7", "17", "11"]
@@ -58,6 +64,7 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Which number is it?"
             say: { en: "Listen. Which number is it?" }
             audio: { fr: "Onze." }
             options: ["11", "12", "7"]
@@ -84,6 +91,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est sept heures." }
                 options:
@@ -112,6 +120,7 @@ lessons:
                   - "Il est trois heures."
               - id: l1-f3
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est dix heures." }
                 options:
@@ -150,6 +159,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est une heure." }
                 options:
@@ -169,15 +179,16 @@ lessons:
                 hints: ["Ans is for age. For the time, say heures."]
               - id: l1-s3
                 type: true_false
-                text: "Il est quatre heures."
+                text: "Does the clock match?\nIl est quatre heures."
                 say: { en: "Listen. Does the clock match?", fr: "Il est quatre heures." }
                 show: { drawn: clock, hour: 8, minute: 0 }
                 answer: false
                 hints: ["Quatre is four."]
               - id: l1-s4
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
-                audio: { fr: "Quelle heure est-il ? Il est six heures." }
+                audio: { turns: [{ fr: "Quelle heure est-il ?", speaker: male }, { fr: "Il est six heures.", speaker: female }] }
                 options:
                   - { drawn: clock, hour: 6, minute: 0 }
                   - { drawn: clock, hour: 9, minute: 0 }
@@ -194,6 +205,7 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est quatre heures." }
                 options:
@@ -211,20 +223,21 @@ lessons:
                 option_audio: false
               - id: l1-n3
                 type: audio_choice
+                text: "What time is it?"
                 say: { en: "Listen. What time is it?" }
                 audio: { fr: "Il est minuit." }
                 options: ["midnight", "midday", "one o'clock"]
                 answer: "midnight"
               - id: l1-n4
                 type: true_false
-                text: "Il est deux heures."
+                text: "Does the clock match?\nIl est deux heures."
                 say: { en: "Listen. Does the clock match?", fr: "Il est deux heures." }
                 show: { drawn: clock, hour: 2, minute: 0 }
                 answer: true
               - id: l1-n5
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il est huit heures."
+                text: "Which clock matches?\nIl est huit heures."
                 say: { en: "Read the sentence. Which clock matches?" }
                 options:
                   - { drawn: clock, hour: 8, minute: 0 }
@@ -234,9 +247,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
+            text: "Tap the clock that matches."
             say: { en: "Listen. Tap the clock that matches." }
             audio: { fr: "Il est neuf heures." }
             options:
@@ -253,10 +268,35 @@ lessons:
             option_audio: false
           - id: l1-c3
             type: true_false
-            text: "Il est six heures."
+            text: "Does the clock match?\nIl est six heures."
             say: { en: "Listen. Does the clock match?", fr: "Il est six heures." }
             show: { drawn: clock, hour: 6, minute: 0 }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "What time is it?"
+            say: { en: "Listen. What time is it?" }
+            audio: { fr: "Il est onze heures." }
+            options: ["eleven o'clock", "seven o'clock", "twelve o'clock"]
+            answer: "eleven o'clock"
+          - id: l1-c5
+            type: image_multiple_choice
+            option_audio: false
+            text: "Which clock matches?\nIl est midi."
+            say: { en: "Read the sentence. Which clock matches?" }
+            options:
+              - { drawn: clock, hour: 12, minute: 0 }
+              - { drawn: clock, hour: 6, minute: 0 }
+              - { drawn: clock, hour: 3, minute: 0 }
+            answer: "12:00"
+          - id: l1-c6
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: it's ten o'clock."
+            say: { en: "Build the sentence: it's ten o'clock." }
+            options: ["dix heures.", "Il", "est"]
+            slot_count: 3
+            answer: ["Il", "est", "dix heures."]
 
   - n: 2
     title: { de: "et demie", en: "et demie" }
@@ -267,6 +307,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: audio_choice
+            text: "Tap the clock that matches."
             say: { en: "Listen. Tap the clock that matches." }
             audio: { fr: "Il est trois heures." }
             options:
@@ -305,6 +346,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est quatre heures et demie." }
                 options:
@@ -335,8 +377,9 @@ lessons:
                   - "Il est sept heures et demie."
               - id: l2-f3
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
-                audio: { fr: "Léa, quelle heure est-il ? Il est deux heures et demie." }
+                audio: { turns: [{ fr: "Léa, quelle heure est-il ?", speaker: male }, { fr: "Il est deux heures et demie.", speaker: female }] }
                 options:
                   - { drawn: clock, hour: 2, minute: 30 }
                   - { drawn: clock, hour: 2, minute: 0 }
@@ -348,7 +391,7 @@ lessons:
                   - "Half past two."
               - id: l2-f4
                 type: fill_in_blank
-                text: "Finish the sentence."
+                text: "It is half past nine. Finish the sentence."
                 say: { en: "It is half past nine. Finish the sentence." }
                 show: { drawn: clock, hour: 9, minute: 30 }
                 frame: "Il est neuf heures _."
@@ -373,6 +416,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est dix heures et demie." }
                 options:
@@ -392,6 +436,7 @@ lessons:
                 hints: ["Et demie comes last."]
               - id: l2-s3
                 type: audio_choice
+                text: "When does the film start?"
                 say: { en: "Listen. When does the film start?" }
                 audio: { fr: "Le film commence à huit heures et demie." }
                 options: ["half past eight", "eight o'clock", "half past nine"]
@@ -399,7 +444,7 @@ lessons:
                 hints: ["Listen for the number and for et demie."]
               - id: l2-s4
                 type: true_false
-                text: "Il est cinq heures et demie."
+                text: "Does the clock match?\nIl est cinq heures et demie."
                 say: { en: "Listen. Does the clock match?", fr: "Il est cinq heures et demie." }
                 show: { drawn: clock, hour: 5, minute: 30 }
                 answer: true
@@ -415,6 +460,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: audio_choice
+                text: "Tap the clock that matches."
                 say: { en: "Listen. Tap the clock that matches." }
                 audio: { fr: "Il est une heure et demie." }
                 options:
@@ -432,20 +478,21 @@ lessons:
                 option_audio: false
               - id: l2-n3
                 type: audio_choice
+                text: "When does school start?"
                 say: { en: "Listen. When does school start?" }
                 audio: { fr: "L'école commence à neuf heures." }
                 options: ["nine o'clock", "half past nine", "five o'clock"]
                 answer: "nine o'clock"
               - id: l2-n4
                 type: true_false
-                text: "Il est deux heures et demie."
+                text: "Does the clock match?\nIl est deux heures et demie."
                 say: { en: "Listen. Does the clock match?", fr: "Il est deux heures et demie." }
                 show: { drawn: clock, hour: 2, minute: 0 }
                 answer: false
               - id: l2-n5
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il est onze heures et demie."
+                text: "Which clock matches?\nIl est onze heures et demie."
                 say: { en: "Read the sentence. Which clock matches?" }
                 options:
                   - { drawn: clock, hour: 11, minute: 30 }
@@ -455,9 +502,12 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: oclock
             type: audio_choice
+            text: "Tap the clock that matches."
             say: { en: "Listen. Tap the clock that matches." }
             audio: { fr: "Il est cinq heures." }
             options:
@@ -466,6 +516,7 @@ lessons:
               - { drawn: clock, hour: 9, minute: 0 }
             answer: "5:00"
           - id: l2-c2
+            part: half-past
             type: multiple_choice
             text: "What time is it?"
             say: { en: "What time is it? Tap the sentence that matches." }
@@ -474,15 +525,18 @@ lessons:
             answer: "Il est dix heures et demie."
             option_audio: false
           - id: l2-c3
+            part: midi-minuit
             type: audio_choice
+            text: "What time is it?"
             say: { en: "Listen. What time is it?" }
-            audio: { fr: "Quelle heure est-il ? Il est midi." }
+            audio: { turns: [{ fr: "Quelle heure est-il ?", speaker: female }, { fr: "Il est midi.", speaker: male }] }
             options: ["midday", "midnight", "half past twelve"]
             answer: "midday"
           - id: l2-c4
+            part: half-past
             type: image_multiple_choice
             option_audio: false
-            text: "Il est six heures et demie."
+            text: "Which clock matches?\nIl est six heures et demie."
             say: { en: "Read the sentence. Which clock matches?" }
             options:
               - { drawn: clock, hour: 6, minute: 30 }
@@ -490,8 +544,143 @@ lessons:
               - { drawn: clock, hour: 6, minute: 0 }
             answer: "6:30"
           - id: l2-c5
+            part: ask-use
             type: audio_choice
+            text: "When does the bus leave?"
             say: { en: "Listen. When does the bus leave?" }
             audio: { fr: "Le bus part à trois heures et demie." }
             options: ["half past three", "three o'clock", "half past two"]
             answer: "half past three"
+          - id: l2-c6
+            part: oclock
+            type: fill_in_blank
+            option_audio: false
+            text: "Look at the clock. Finish the sentence."
+            say: { en: "Look at the clock. Finish the sentence." }
+            show: { drawn: clock, hour: 4, minute: 0 }
+            frame: "Il est _ heures."
+            options: ["quatre", "huit", "cinq"]
+            answer: ["quatre"]
+          - id: l2-c7
+            part: oclock
+            type: audio_choice
+            text: "What time is it?"
+            say: { en: "Listen. What time is it?" }
+            audio: { fr: "Il est huit heures." }
+            options: ["eight o'clock", "half past eight", "four o'clock"]
+            answer: "eight o'clock"
+          - id: l2-c8
+            part: oclock
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: it's one o'clock."
+            say: { en: "Build the sentence: it's one o'clock." }
+            options: ["une heure.", "est", "Il", "un"]
+            slot_count: 3
+            answer: ["Il", "est", "une heure."]
+          - id: l2-c9
+            part: oclock
+            type: matching
+            option_audio: false
+            text: "Match each clock to its sentence."
+            say: { en: "Match each clock to its sentence." }
+            pairs:
+              - { left: { drawn: clock, hour: 2, minute: 0 }, right: { text: "Il est deux heures." } }
+              - { left: { drawn: clock, hour: 7, minute: 0 }, right: { text: "Il est sept heures." } }
+              - { left: { drawn: clock, hour: 10, minute: 0 }, right: { text: "Il est dix heures." } }
+          - id: l2-c10
+            part: half-past
+            type: audio_choice
+            text: "When does Léo eat in the morning?"
+            say: { en: "Listen. When does Léo eat in the morning?" }
+            audio: { fr: "Le matin, je mange à sept heures et demie.", speaker: male }
+            options: ["half past seven", "seven o'clock", "half past six"]
+            answer: "half past seven"
+          - id: l2-c11
+            part: half-past
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: it's half past two."
+            say: { en: "Build the sentence: it's half past two." }
+            options: ["et demie.", "Il est", "deux heures"]
+            slot_count: 3
+            answer: ["Il est", "deux heures", "et demie."]
+          - id: l2-c12
+            part: half-past
+            type: true_false
+            text: "Is it written correctly?\nIl est demie cinq."
+            say: { en: "Read the sentence. Is it written correctly?" }
+            answer: false
+          - id: l2-c13
+            part: midi-minuit
+            type: audio_choice
+            text: "When does Tom have lunch?"
+            say: { en: "Listen. When does Tom have lunch?" }
+            audio: { fr: "Je mange à midi.", speaker: male }
+            options: ["at midday", "at midnight", "at one o'clock"]
+            answer: "at midday"
+          - id: l2-c14
+            part: midi-minuit
+            type: true_false
+            text: "Minuit is twelve o'clock at night."
+            say: { en: "Is this true?" }
+            answer: true
+          - id: l2-c15
+            part: midi-minuit
+            type: sorting
+            option_audio: false
+            text: "Midi or minuit? Sort the cards."
+            say: { en: "Midi or minuit? Sort the cards." }
+            bins:
+              - { id: midi, show: { text: "midi" }, say: { fr: "midi" } }
+              - { id: minuit, show: { text: "minuit" }, say: { fr: "minuit" } }
+            options:
+              - { text: "the middle of the day", bin: midi }
+              - { text: "the sun is high in the sky", bin: midi }
+              - { text: "the middle of the night", bin: minuit }
+              - { text: "the stars are out", bin: minuit }
+          - id: l2-c16
+            part: midi-minuit
+            type: fill_in_blank
+            option_audio: false
+            text: "Tom is asleep in bed. The clock shows twelve. Finish the sentence."
+            say: { en: "Tom is asleep in bed. The clock shows twelve. Finish the sentence." }
+            frame: "Il est _."
+            options: ["minuit", "midi", "douze"]
+            answer: ["minuit"]
+          - id: l2-c17
+            part: ask-use
+            type: multiple_choice
+            option_audio: false
+            text: "You want to know the time. What do you ask?"
+            say: { en: "You want to know the time. What do you ask?" }
+            options: ["Quelle heure est-il ?", "Tu as quel âge ?", "Ça coûte combien ?"]
+            answer: "Quelle heure est-il ?"
+          - id: l2-c18
+            part: ask-use
+            type: ordering
+            option_audio: false
+            text: "Build the question: what time is it?"
+            say: { en: "Build the question: what time is it?" }
+            options: ["est-il ?", "Quelle", "heure"]
+            slot_count: 3
+            answer: ["Quelle", "heure", "est-il ?"]
+          - id: l2-c19
+            part: ask-use
+            type: audio_choice
+            text: "What time is it? Tap the clock."
+            say: { en: "Listen. What time is it? Tap the clock." }
+            audio: { turns: [{ fr: "Maman, quelle heure est-il ?", speaker: male }, { fr: "Il est neuf heures et demie.", speaker: female }] }
+            options:
+              - { drawn: clock, hour: 9, minute: 30 }
+              - { drawn: clock, hour: 9, minute: 0 }
+              - { drawn: clock, hour: 10, minute: 30 }
+            answer: "9:30"
+          - id: l2-c20
+            part: ask-use
+            type: audio_choice
+            text: "When does the party start?"
+            say: { en: "Listen. When does the party start?" }
+            audio: { fr: "La fête commence à deux heures." }
+            options: ["two o'clock", "half past two", "twelve o'clock"]
+            answer: "two o'clock"

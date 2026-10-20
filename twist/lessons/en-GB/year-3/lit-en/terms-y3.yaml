@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: letters, what: { de: Konsonanten und Vokale, en: consonants and vowels } }
+    - { id: word-terms, what: { de: Vorsilbe und Wortfamilie, en: prefix and word family } }
+    - { id: prep-conj, what: { de: Präposition oder Konjunktion, en: preposition or conjunction } }
+    - { id: clauses, what: { de: Teilsatz und Nebensatz, en: clause and subordinate clause } }
+    - { id: speech, what: { de: wörtliche Rede und Anführungszeichen, en: direct speech and inverted commas } }
   misconceptions:
     - id: preposition-conjunction-swap
       what: Calls before or after a conjunction when it comes before a noun, or calls any small word a preposition
@@ -199,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -216,6 +223,21 @@ lessons:
             text: "What is a prefix?"
             options: ["letters added to the start of a word", "letters added to the end of a word", "a word that joins clauses"]
             answer: "letters added to the start of a word"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which word is a conjunction?"
+            options: ["because", "under", "behind"]
+            answer: "because"
+          - id: l1-c5
+            type: true_false
+            text: "Teach, teacher and teaching are a word family."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "How many consonants are in the word \"stamp\"?"
+            options: ["4", "1", "5"]
+            answer: "4"
 
   - n: 2
     title: { de: Fachwörter für Sätze, en: Words for sentences }
@@ -378,30 +400,149 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: letters
             type: highlight_in_text
             text: "Tap every consonant."
             say: "The letters are on cards. Tap every consonant."
             show: { drawn: letter-card, text: "e m u f a l" }
             spans: ["m", "f", "l"]
           - id: l2-c2
+            part: prep-conj
             type: multiple_choice
             text: "\"Wash your hands before you eat.\" What is the word before?"
             options: ["a conjunction", "a preposition"]
             answer: "a conjunction"
           - id: l2-c3
+            part: clauses
             type: multiple_choice
             text: "Which group of words is a clause?"
             options: ["the frog jumped", "beside the pond", "a slimy green frog"]
             answer: "the frog jumped"
           - id: l2-c4
+            part: clauses
             type: multiple_choice
             text: "\"I can't play because I've hurt my leg.\" Which part is the subordinate clause?"
             options: ["because I've hurt my leg", "I can't play"]
             answer: "because I've hurt my leg"
           - id: l2-c5
+            part: word-terms
             type: multiple_choice
             text: "What are \"unhappy\", \"happiness\" and \"happily\"?"
             options: ["a word family", "direct speech", "prepositions"]
             answer: "a word family"
+          - id: l2-c6
+            part: letters
+            type: true_false
+            text: "The word \"crisp\" has only one vowel."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c7
+            part: letters
+            type: multiple_choice
+            text: "How many vowels are in the word \"banana\"?"
+            options: ["3", "6", "2"]
+            answer: "3"
+          - id: l2-c8
+            part: letters
+            type: multiple_choice
+            text: "Which word starts with a vowel?"
+            options: ["orange", "banana", "pear"]
+            answer: "orange"
+            option_audio: false
+          - id: l2-c9
+            part: word-terms
+            type: sorting
+            text: "Is the word in the word family of play?"
+            say: "Read each word. Is it in the word family of play, or not?"
+            option_audio: false
+            bins:
+              - { id: family, show: { text: "in the play family" }, say: "In the play family." }
+              - { id: not, show: { text: "not in it" }, say: "Not in it." }
+            options:
+              - { text: "playground", bin: family }
+              - { text: "replay", bin: family }
+              - { text: "plate", bin: not }
+              - { text: "plant", bin: not }
+          - id: l2-c10
+            part: word-terms
+            type: multiple_choice
+            text: "Which word has a prefix?"
+            options: ["unlock", "under", "uncle"]
+            answer: "unlock"
+            option_audio: false
+          - id: l2-c11
+            part: word-terms
+            type: multiple_choice
+            text: "What do the words in a word family share?"
+            options: ["a root word and its meaning", "the same first letter only", "the same number of letters"]
+            answer: "a root word and its meaning"
+          - id: l2-c12
+            part: prep-conj
+            type: highlight_in_text
+            text: "Tap the preposition."
+            say: "Read the sentence. Tap the preposition."
+            show: { drawn: letter-card, text: "The ball rolled under the car" }
+            spans: ["under"]
+          - id: l2-c13
+            part: prep-conj
+            type: multiple_choice
+            text: "\"We played outside until lunch.\" What is the word until?"
+            options: ["a preposition", "a conjunction"]
+            answer: "a preposition"
+          - id: l2-c14
+            part: prep-conj
+            type: sorting
+            text: "Is after or before a preposition or a conjunction here?"
+            say: "Read each part of a sentence. Is after or before a preposition here, or a conjunction?"
+            option_audio: false
+            bins:
+              - { id: prep, show: { text: "preposition" }, say: "Preposition." }
+              - { id: conj, show: { text: "conjunction" }, say: "Conjunction." }
+            options:
+              - { text: "after school", bin: prep }
+              - { text: "before bedtime", bin: prep }
+              - { text: "after we ate our tea", bin: conj }
+              - { text: "before the film started", bin: conj }
+          - id: l2-c15
+            part: clauses
+            type: true_false
+            text: "\"because the shop was closed\" is a subordinate clause."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c16
+            part: clauses
+            type: highlight_in_text
+            text: "Tap the verb that makes this group of words a clause."
+            say: "Read the words. Tap the verb that makes them a clause."
+            show: { drawn: letter-card, text: "the wind howled" }
+            spans: ["howled"]
+          - id: l2-c17
+            part: speech
+            type: multiple_choice
+            text: "Which sentence uses inverted commas correctly?"
+            options: ["“Can I come too?” asked Mia.", "“Can I come too? asked Mia.”", "Can I come “too?” asked Mia."]
+            answer: "“Can I come too?” asked Mia."
+            option_audio: false
+          - id: l2-c18
+            part: speech
+            type: multiple_choice
+            text: "“We're nearly there,” said Dad.\n\nWhat do we call the marks “ and ”?"
+            say: "Read the sentence. What do we call the marks round Dad's words?"
+            options: ["inverted commas", "prefixes", "full stops"]
+            answer: "inverted commas"
+          - id: l2-c19
+            part: speech
+            type: highlight_in_text
+            text: "Tap the words of the direct speech."
+            say: "Read the sentence. Tap every word of the direct speech."
+            show: { drawn: letter-card, text: "“Look at that rainbow!” cried Zoe." }
+            spans: ["“Look", "at", "that", "rainbow!”"]
+          - id: l2-c20
+            part: speech
+            type: true_false
+            text: "“Time for bed,” said Mum.\n\nIs it true? The direct speech is \"said Mum\"."
+            say: "Read the sentence. Is it true? The direct speech is, said Mum."
+            answer: false

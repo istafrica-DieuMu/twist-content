@@ -24,6 +24,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table]
   facets: []
+  parts:
+    - { id: read, what: { de: eine Zeit im Fahrplan ablesen, en: reading a time from a timetable or schedule } }
+    - { id: duration, what: { de: "ausrechnen, wie lange eine Fahrt oder eine Aktivität dauert", en: working out how long a journey or activity takes } }
+    - { id: problems, what: { de: Zeitaufgaben mit Fahrplänen in Schritten lösen, en: solving time problems in steps with a timetable } }
   misconceptions:
     - id: wrong-row-column
       what: Reads the time from the wrong row or column (the first stop instead of the one asked)
@@ -204,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +226,23 @@ lessons:
             text: "Tram 2 reaches the museum before 15:40."
             show: { drawn: table, rows: [["Stop", "Tram 1", "Tram 2", "Tram 3"], ["Zoo", "15:15", "15:35", "15:55"], ["Museum", "15:24", "15:44", "16:04"], ["Harbour", "15:33", "15:53", "16:13"]] }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "When is Train 1 at Bridge Road?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Riverside", "09:40", "10:10", "10:40"], ["Bridge Road", "09:52", "10:22", "10:52"], ["Central", "10:01", "10:31", "11:01"]] }
+            options: ["09:52", "09:40", "10:22"]
+            answer: "09:52"
+          - id: l1-c5
+            type: text_input
+            text: "How many minutes does Train 2 take from Riverside to Central?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Riverside", "09:40", "10:10", "10:40"], ["Bridge Road", "09:52", "10:22", "10:52"], ["Central", "10:01", "10:31", "11:01"]] }
+            answer: "21"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Owen must be at the museum by 15:50. Which is the last tram from the zoo that gets him there in time?"
+            show: { drawn: table, rows: [["Stop", "Tram 1", "Tram 2", "Tram 3"], ["Zoo", "15:15", "15:35", "15:55"], ["Museum", "15:24", "15:44", "16:04"], ["Harbour", "15:33", "15:53", "16:13"]] }
+            options: ["Tram 2", "Tram 1", "Tram 3"]
+            answer: "Tram 2"
 
   - n: 2
     title: { de: "Mit Fahrplänen und Tagesplänen rechnen", en: "Solving problems with timetables" }
@@ -379,31 +401,133 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "When is Bus C at Market Square?"
             show: { drawn: table, rows: [["Stop", "Bus A", "Bus B", "Bus C"], ["Station", "07:10", "07:40", "08:10"], ["Market Square", "07:18", "07:48", "08:18"], ["High Street", "07:25", "07:55", "08:25"], ["School", "07:32", "08:02", "08:32"]] }
             options: ["08:18", "08:10", "07:48"]
             answer: "08:18"
           - id: l2-c2
+            part: duration
             type: text_input
             text: "A ferry leaves at 12:35 and arrives at 13:20. How many minutes is the crossing?"
             say: "A ferry leaves at twelve thirty-five and arrives at thirteen twenty. How many minutes is the crossing?"
             answer: "45"
           - id: l2-c3
+            part: problems
             type: multiple_choice
             text: "Sophie must be at Bridge Road by 10:00. Which is the last train she can take from Riverside?"
             show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Riverside", "09:40", "10:10", "10:40"], ["Bridge Road", "09:52", "10:22", "10:52"], ["Central", "10:01", "10:31", "11:01"]] }
             options: ["Train 1", "Train 2", "Train 3"]
             answer: "Train 1"
           - id: l2-c4
+            part: problems
             type: text_input
             text: "Dan gets to the bus stop at 07:05. Buses leave at 06:45, 07:00, 07:15 and 07:30. How many minutes does he wait?"
             say: "Dan gets to the bus stop at seven oh five. Buses leave at six forty-five, seven o'clock, seven fifteen and seven thirty. How many minutes does he wait?"
             answer: "10"
           - id: l2-c5
+            part: problems
             type: multiple_choice
             text: "The pool opens at 18:15. What is that in the 12-hour clock?"
             options: ["6:15 pm", "8:15 pm", "6:15 am"]
             answer: "6:15 pm"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "When is Train 2 at York?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            options: ["09:42", "09:15", "08:42"]
+            answer: "09:42"
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Which station does Train 3 reach at 11:30?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            options: ["Durham", "York", "Newcastle"]
+            answer: "Durham"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Is it true? Tram 3 leaves the zoo at 15:55."
+            show: { drawn: table, rows: [["Stop", "Tram 1", "Tram 2", "Tram 3"], ["Zoo", "15:15", "15:35", "15:55"], ["Museum", "15:24", "15:44", "16:04"], ["Harbour", "15:33", "15:53", "16:13"]] }
+            answer: true
+          - id: l2-c9
+            part: read
+            type: multiple_choice
+            text: "When does the museum tour start?"
+            show: { drawn: table, rows: [["Activity", "Start", "End"], ["Coach", "08:45", "10:20"], ["Museum tour", "10:30", "11:45"], ["Picnic", "11:45", "12:35"], ["Workshop", "12:35", "14:10"]] }
+            options: ["10:30", "10:20", "11:45"]
+            answer: "10:30"
+          - id: l2-c10
+            part: read
+            type: multiple_choice
+            text: "When does Bus 1 reach the park?"
+            show: { drawn: table, rows: [["Stop", "Bus 1", "Bus 2", "Bus 3"], ["Leisure Centre", "13:30", "14:00", "14:30"], ["Park", "13:42", "14:12", "14:42"], ["Town Hall", "13:50", "14:20", "14:50"]] }
+            options: ["13:42", "13:30", "14:12"]
+            answer: "13:42"
+          - id: l2-c11
+            part: duration
+            type: text_input
+            text: "How many minutes does Train 1 take from Leeds to Newcastle?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            answer: "90"
+          - id: l2-c12
+            part: duration
+            type: multiple_choice
+            text: "How long is the coach journey?"
+            show: { drawn: table, rows: [["Activity", "Start", "End"], ["Coach", "08:45", "10:20"], ["Museum tour", "10:30", "11:45"], ["Picnic", "11:45", "12:35"], ["Workshop", "12:35", "14:10"]] }
+            options: ["1 hour 35 minutes", "1 hour 75 minutes", "2 hours 35 minutes"]
+            answer: "1 hour 35 minutes"
+          - id: l2-c13
+            part: duration
+            type: text_input
+            text: "A train leaves at 14:47 and arrives at 15:13. How many minutes is the journey?"
+            say: "A train leaves at fourteen forty-seven and arrives at fifteen thirteen. How many minutes is the journey?"
+            answer: "26"
+          - id: l2-c14
+            part: duration
+            type: text_input
+            text: "How many minutes is the picnic?"
+            show: { drawn: table, rows: [["Activity", "Start", "End"], ["Coach", "08:45", "10:20"], ["Museum tour", "10:30", "11:45"], ["Picnic", "11:45", "12:35"], ["Workshop", "12:35", "14:10"]] }
+            answer: "50"
+          - id: l2-c15
+            part: duration
+            type: true_false
+            text: "Is it true? Train 2 takes longer from Leeds to York than Train 1."
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            answer: false
+          - id: l2-c16
+            part: duration
+            type: text_input
+            text: "A boat trip starts at 10:25 and ends at 11:05. How many minutes does it last?"
+            say: "A boat trip starts at ten twenty-five and ends at eleven oh five. How many minutes does it last?"
+            answer: "40"
+          - id: l2-c17
+            part: problems
+            type: multiple_choice
+            text: "Amir must be in Durham by 10:45. Which is the last train from Leeds that gets him there in time?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            options: ["Train 2", "Train 1", "Train 3"]
+            answer: "Train 2"
+          - id: l2-c18
+            part: problems
+            type: text_input
+            text: "Zara gets to Leeds station at 09:20. How many minutes does she wait for the next train?"
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            answer: "55"
+          - id: l2-c19
+            part: problems
+            type: multiple_choice
+            text: "A coach from London gets back to Leeds at 8:25 pm. Which 24-hour time is that?"
+            options: ["20:25", "18:25", "08:25"]
+            answer: "20:25"
+          - id: l2-c20
+            part: problems
+            type: true_false
+            text: "Is it true? Trains leave Leeds every 30 minutes."
+            show: { drawn: table, rows: [["Station", "Train 1", "Train 2", "Train 3"], ["Leeds", "08:15", "09:15", "10:15"], ["York", "08:42", "09:42", "10:42"], ["Durham", "09:30", "10:30", "11:30"], ["Newcastle", "09:45", "10:45", "11:45"]] }
+            answer: false

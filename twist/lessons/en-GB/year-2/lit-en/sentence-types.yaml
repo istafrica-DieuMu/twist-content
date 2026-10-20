@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: statement, what: { de: Aussagesätze erkennen und beenden, en: knowing and finishing statements } }
+    - { id: question, what: { de: Fragesätze erkennen und beenden, en: knowing and finishing questions } }
+    - { id: command, what: { de: Aufforderungen erkennen und bilden, en: knowing and building commands } }
+    - { id: exclamation, what: { de: "Ausrufe mit What oder How erkennen und bilden", en: "knowing and building exclamations with What or How" } }
+    - { id: purpose, what: { de: "sagen, wozu jede Satzart dient", en: saying what each kind of sentence is for } }
   misconceptions:
     - id: mark-decides
       what: Thinks any sentence with an exclamation mark is an exclamation (Sit down! as an exclamation)
@@ -236,6 +242,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -258,6 +265,25 @@ lessons:
             frame: "Snow is cold_"
             options: [".", "?"]
             answer: ["."]
+            option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "\"I can see where the ball went.\" This sentence is a question."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l1-c5
+            type: ordering
+            text: "Make a question from the words."
+            say: "Put the words in order to make a question."
+            options: ["go", "Shall", "home?", "we"]
+            slot_count: 4
+            answer: ["Shall", "we", "go", "home?"]
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which sentence is a question?"
+            options: ["It will rain today.", "Will it rain today?", "It rained today."]
+            answer: "Will it rain today?"
             option_audio: false
 
   - n: 2
@@ -450,14 +476,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: question
             type: multiple_choice
             text: "Which sentence is a question?"
             options: ["Is the cake ready?", "The cake is ready.", "Eat the cake."]
             answer: "Is the cake ready?"
             option_audio: false
           - id: l2-c2
+            part: command
             type: multiple_choice
             text: "Take off your shoes.\nWhat kind of sentence is this?"
             say: "Read the sentence: Take off your shoes. What kind of sentence is this?"
@@ -465,6 +494,7 @@ lessons:
             answer: "a command"
             option_audio: false
           - id: l2-c3
+            part: statement
             type: fill_in_blank
             text: "Finish the sentence."
             say: "Which mark goes at the end?"
@@ -473,14 +503,144 @@ lessons:
             answer: ["."]
             option_audio: false
           - id: l2-c4
+            part: exclamation
             type: multiple_choice
             text: "Which sentence is an exclamation?"
             options: ["What a brave girl you are!", "Be brave!", "Are you brave?"]
             answer: "What a brave girl you are!"
             option_audio: false
           - id: l2-c5
+            part: purpose
             type: multiple_choice
             text: "You want to find out what time the film starts. Which sentence do you need?"
             options: ["a question", "a command", "an exclamation"]
             answer: "a question"
+            option_audio: false
+          - id: l2-c6
+            part: statement
+            type: true_false
+            text: "\"I know who ate the cake.\" This sentence is a statement."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c7
+            part: statement
+            type: ordering
+            text: "Make a statement from the words."
+            say: "Put the words in order to make a statement."
+            options: ["park.", "to", "We", "the", "walked"]
+            slot_count: 5
+            answer: ["We", "walked", "to", "the", "park."]
+            option_audio: false
+          - id: l2-c8
+            part: statement
+            type: fill_in_blank
+            text: "Finish the sentence."
+            say: "Which mark goes at the end?"
+            frame: "I wonder what is in the box_"
+            options: [".", "?"]
+            answer: ["."]
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c9
+            part: question
+            type: fill_in_blank
+            text: "Finish the sentence."
+            say: "Which mark goes at the end?"
+            frame: "Has the film started_"
+            options: [".", "?", "!"]
+            answer: ["?"]
+            option_audio: false
+          - id: l2-c10
+            part: question
+            type: ordering
+            text: "Make a question from the words."
+            say: "Put the words in order to make a question."
+            options: ["your", "Where", "school?", "is"]
+            slot_count: 4
+            answer: ["Where", "is", "your", "school?"]
+            option_audio: false
+          - id: l2-c11
+            part: question
+            type: true_false
+            text: "\"Do you want to come to my party?\" This sentence is a statement."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c12
+            part: command
+            type: highlight_in_text
+            text: "Tap the bossy verb."
+            say: "Read the command. Tap the bossy verb."
+            show: { drawn: letter-card, text: "Please pass me the salt." }
+            spans: ["pass"]
+          - id: l2-c13
+            part: command
+            type: sorting
+            text: "Command or statement? Sort them."
+            say: "Read each sentence. Is it a command or a statement? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: command, show: { text: "command" }, say: "Command." }
+              - { id: statement, show: { text: "statement" }, say: "Statement." }
+            options:
+              - { text: "The cat ate its tea.", bin: statement }
+              - { text: "Feed the cat.", bin: command }
+              - { text: "Ben held my hand.", bin: statement }
+              - { text: "Hold my hand.", bin: command }
+          - id: l2-c14
+            part: command
+            type: true_false
+            text: "\"Run!\" This sentence is a command."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c15
+            part: exclamation
+            type: ordering
+            text: "Make an exclamation from the words."
+            say: "Put the words in order to make an exclamation."
+            options: ["kite!", "a", "What", "huge"]
+            slot_count: 4
+            answer: ["What", "a", "huge", "kite!"]
+            option_audio: false
+          - id: l2-c16
+            part: exclamation
+            type: true_false
+            text: "\"How slowly the snail moves!\" This sentence is an exclamation."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c17
+            part: exclamation
+            type: multiple_choice
+            text: "Which sentence is an exclamation?"
+            options: ["How do you make a cake?", "How sweet this cake is!", "Make a cake!"]
+            answer: "How sweet this cake is!"
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c18
+            part: purpose
+            type: multiple_choice
+            text: "You want your friend to pass you a pencil. Which kind of sentence do you need?"
+            options: ["a statement", "an exclamation", "a command"]
+            answer: "a command"
+            option_audio: false
+          - id: l2-c19
+            part: purpose
+            type: matching
+            text: "Match each sentence to its job."
+            say: "Read each sentence. Tap a sentence, then tap its job."
+            option_audio: false
+            pairs:
+              - left: { text: "The bus is red." }
+                right: { text: "tells you something" }
+              - left: { text: "Is the bus here?" }
+                right: { text: "asks something" }
+              - left: { text: "Get on the bus." }
+                right: { text: "tells someone what to do" }
+              - left: { text: "What a long bus!" }
+                right: { text: "shows a strong feeling" }
+          - id: l2-c20
+            part: purpose
+            type: multiple_choice
+            text: "Ava sees a giant pumpkin and is amazed. Which sentence shows how she feels?"
+            options: ["The pumpkin is big.", "What a giant pumpkin!", "Is that a pumpkin?"]
+            answer: "What a giant pumpkin!"
             option_audio: false

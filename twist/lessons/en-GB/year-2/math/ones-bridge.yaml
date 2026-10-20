@@ -23,6 +23,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [equation, rechenstrich]
   facets: [currency]
+  parts:
+    - { id: add, what: { de: Einer mit Zehnerübergang addieren, en: adding ones across a ten } }
+    - { id: sub, what: { de: Einer mit Zehnerübergang subtrahieren, en: subtracting ones across a ten } }
+    - { id: steps, what: { de: in Schritten über den vollen Zehner rechnen, en: working in steps via the next ten } }
   misconceptions:
     - id: tens-stay
       what: Keeps the tens the same after crossing a ten (27 + 6 = 23)
@@ -206,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -225,6 +230,23 @@ lessons:
             say: "Thirty-nine add three."
             options: ["42", "32", "43"]
             answer: "42"
+          - id: l1-c4
+            type: text_input
+            text: "46 + 5 = _"
+            say: "Forty-six add five."
+            answer: "51"
+          - id: l1-c5
+            type: multiple_choice
+            text: "65 + 7: which hop takes you to 70 first?"
+            say: "Sixty-five add seven. Which hop takes you exactly to seventy?"
+            show: { drawn: rechenstrich, start: 65, jumps: [] }
+            options: ["5", "7", "2"]
+            answer: "5"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 77 + 6 = 73"
+            say: "Seventy-seven add six is seventy-three. Is that true?"
+            answer: false
 
   - n: 2
     title: { de: Über den Zehner zurück, en: Subtracting across a ten }
@@ -392,18 +414,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: add
             type: text_input
             text: "49 + 6 = _"
             say: "Forty-nine add six."
             answer: "55"
           - id: l2-c2
+            part: sub
             type: text_input
             text: "62 − 5 = _"
             say: "Sixty-two subtract five."
             answer: "57"
           - id: l2-c3
+            part: steps
             type: fill_in_blank
             text: "Work it out in steps."
             say: "Eighty-five subtract seven. Go back to eighty first, then take away the rest."
@@ -411,6 +437,7 @@ lessons:
             options: ["2", "7", "78", "80"]
             answer: ["2", "78"]
           - id: l2-c4
+            part: steps
             type: multiple_choice
             text: "74 + 8: which hop takes you to 80 first?"
             say: "Seventy-four add eight. Which hop takes you exactly to eighty?"
@@ -418,8 +445,110 @@ lessons:
             options: ["6", "8", "4"]
             answer: "6"
           - id: l2-c5
+            part: sub
             type: multiple_choice
             text: "33 − 6 = _"
             say: "Thirty-three subtract six."
             options: ["27", "37", "23"]
             answer: "27"
+          - id: l2-c6
+            part: add
+            type: text_input
+            text: "57 + 8 = _"
+            say: "Fifty-seven add eight."
+            answer: "65"
+          - id: l2-c7
+            part: add
+            type: multiple_choice
+            text: "29 + 7 = _"
+            say: "Twenty-nine add seven."
+            options: ["36", "26", "37"]
+            answer: "36"
+          - id: l2-c8
+            part: add
+            type: true_false
+            text: "Is it true? 68 + 5 = 63"
+            say: "Sixty-eight add five is sixty-three. Is that true?"
+            answer: false
+          - id: l2-c9
+            part: add
+            type: text_input
+            text: "86 + 7 = _"
+            say: "Eighty-six add seven."
+            answer: "93"
+          - id: l2-c10
+            part: add
+            type: multiple_choice
+            text: "Ella has 45 marbles. She wins 8 more. How many marbles does she have now?"
+            say: "Ella has forty-five marbles. She wins eight more. How many marbles does she have now?"
+            options: ["53", "43", "54"]
+            answer: "53"
+          - id: l2-c11
+            part: add
+            type: multiple_choice
+            text: "A comic costs 76p. A sticker costs 5p. How much do they cost together?"
+            say: "A comic costs seventy-six pence. A sticker costs five pence. How much do they cost together?"
+            options: ["81p", "71p", "82p"]
+            answer: "81p"
+          - id: l2-c12
+            part: sub
+            type: text_input
+            text: "53 − 6 = _"
+            say: "Fifty-three subtract six."
+            answer: "47"
+          - id: l2-c13
+            part: sub
+            type: multiple_choice
+            text: "91 − 4 = _"
+            say: "Ninety-one subtract four."
+            options: ["87", "93", "86"]
+            answer: "87"
+          - id: l2-c14
+            part: sub
+            type: true_false
+            text: "Is it true? 46 − 9 = 37"
+            say: "Forty-six subtract nine is thirty-seven. Is that true?"
+            answer: true
+          - id: l2-c15
+            part: sub
+            type: text_input
+            text: "There are 34 children on the bus. 8 get off. How many children are on the bus now?"
+            say: "There are thirty-four children on the bus. Eight get off. How many children are on the bus now?"
+            answer: "26"
+          - id: l2-c16
+            part: sub
+            type: multiple_choice
+            text: "Mum has 54p. She spends 8p. How much money does she have left?"
+            say: "Mum has fifty-four pence. She spends eight pence. How much money does she have left?"
+            options: ["46p", "54p", "44p"]
+            answer: "46p"
+          - id: l2-c17
+            part: steps
+            type: fill_in_blank
+            text: "Work it out in steps."
+            say: "Seventeen add five. Hop to twenty first, then add the rest."
+            frame: "17 + 5 = 17 + 3 + _ = _"
+            options: ["2", "3", "22", "25"]
+            answer: ["2", "22"]
+          - id: l2-c18
+            part: steps
+            type: multiple_choice
+            text: "52 − 8: which hop back takes you to 50 first?"
+            say: "Fifty-two subtract eight. Which hop back takes you exactly to fifty?"
+            show: { drawn: rechenstrich, start: 52, jumps: [], back: true }
+            options: ["2", "8", "6"]
+            answer: "2"
+          - id: l2-c19
+            part: steps
+            type: true_false
+            text: "38 + 6 = 38 + 2 + 4. Does the first hop reach 40?"
+            say: "Thirty-eight add six, split as thirty-eight add two add four. Does the first hop reach forty?"
+            answer: true
+          - id: l2-c20
+            part: steps
+            type: fill_in_blank
+            text: "Work it out in steps."
+            say: "Sixty-four subtract seven. Go back to sixty first, then take away the rest."
+            frame: "64 − 7 = 64 − 4 − _ = _"
+            options: ["3", "4", "57", "61"]
+            answer: ["3", "57"]

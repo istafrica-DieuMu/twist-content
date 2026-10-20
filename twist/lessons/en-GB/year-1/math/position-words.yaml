@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, picture, text, audio]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: left-right, what: { de: links und rechts in einer Reihe, en: left and right in a row } }
+    - { id: between, what: { de: neben und zwischen, en: next to and between } }
+    - { id: above-below, what: { de: "oben, unten, über und unter", en: "top, bottom, above and below" } }
+    - { id: front-behind, what: { de: vor und hinter in einer Schlange, en: in front of and behind in a queue } }
   misconceptions:
     - id: left-right-swap
       what: Swaps left and right
@@ -208,6 +213,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -229,6 +235,27 @@ lessons:
             say: "The triangle is on the left of the square. Is that true?"
             show: { drawn: shape, row: [square, triangle], colours: [red, green] }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which shape is on the right?"
+            say: "Which shape is on the right?"
+            show: { drawn: shape, row: [square, triangle, circle], colours: [purple, purple, purple] }
+            options: ["circle", "square", "triangle"]
+            answer: "circle"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? The square is next to the circle."
+            say: "The square is next to the circle. Is that true?"
+            show: { drawn: shape, row: [square, circle, triangle], colours: [red, blue, green] }
+            answer: true
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill the gap."
+            say: "Look at the row. Fill the gap with the right words."
+            show: { drawn: shape, row: [circle, triangle, square], colours: [yellow, red, blue] }
+            frame: "The triangle is _ the circle and the square."
+            options: ["between", "on the left of"]
+            answer: ["between"]
 
   - n: 2
     title: { de: "Oben, unten, vor, hinter", en: "Above, below, in front of, behind" }
@@ -412,8 +439,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: left-right
             type: multiple_choice
             text: "Which colour is the shape on the right?"
             say: "Which colour is the shape on the right?"
@@ -421,6 +450,7 @@ lessons:
             options: ["green", "blue", "yellow"]
             answer: "green"
           - id: l2-c2
+            part: between
             type: multiple_choice
             text: "What is between the square and the triangle?"
             say: "What is between the square and the triangle?"
@@ -428,6 +458,7 @@ lessons:
             options: ["circle", "square", "triangle"]
             answer: "circle"
           - id: l2-c3
+            part: above-below
             type: multiple_choice
             text: "Which shape is just above the triangle?"
             say: "Which shape is just above the triangle?"
@@ -435,14 +466,127 @@ lessons:
             options: ["circle", "square", "triangle"]
             answer: "circle"
           - id: l2-c4
+            part: front-behind
             type: multiple_choice
             text: "Zoe, Amir and Nell wait for ice cream. Zoe is first, Amir is next, Nell is last. Who is just in front of Amir?"
             say: "Zoe, Amir and Nell wait in a queue for ice cream. Zoe is first, Amir is next, and Nell is last. Who is just in front of Amir?"
             options: ["Zoe", "Nell", "nobody"]
             answer: "Zoe"
           - id: l2-c5
+            part: left-right
             type: true_false
             text: "Is it true? The square is on the left of the circle."
             say: "The square is on the left of the circle. Is that true?"
             show: { drawn: shape, row: [square, circle], colours: [green, orange] }
+            answer: true
+          - id: l2-c6
+            part: left-right
+            type: multiple_choice
+            text: "Which shape is on the left?"
+            say: "Which shape is on the left?"
+            show: { drawn: shape, row: [triangle, square, circle], colours: [red, red, red] }
+            options: ["circle", "triangle", "square"]
+            answer: "triangle"
+          - id: l2-c7
+            part: left-right
+            type: true_false
+            text: "Is it true? The triangle is on the left of the circle."
+            say: "The triangle is on the left of the circle. Is that true?"
+            show: { drawn: shape, row: [circle, square, triangle], colours: [red, green, blue] }
+            answer: false
+          - id: l2-c8
+            part: left-right
+            type: multiple_choice
+            text: "What is on the right of the square?"
+            say: "What is on the right of the square?"
+            show: { drawn: shape, row: [circle, square, triangle], colours: [red, blue, yellow] }
+            options: ["triangle", "circle", "nothing"]
+            answer: "triangle"
+          - id: l2-c9
+            part: between
+            type: true_false
+            text: "Is it true? The square is next to the triangle."
+            say: "The square is next to the triangle. Is that true?"
+            show: { drawn: shape, row: [square, triangle, circle], colours: [green, blue, red] }
+            answer: true
+          - id: l2-c10
+            part: between
+            type: multiple_choice
+            text: "Which colour is the shape between the two circles?"
+            say: "Which colour is the shape between the two circles?"
+            show: { drawn: shape, row: [circle, triangle, circle], colours: [blue, orange, blue] }
+            options: ["orange", "blue", "red"]
+            answer: "orange"
+          - id: l2-c11
+            part: between
+            type: multiple_choice
+            text: "Which shape is not next to the square?"
+            say: "Which shape is not next to the square?"
+            show: { drawn: shape, row: [triangle, circle, square], colours: [yellow, green, purple] }
+            options: ["triangle", "circle"]
+            answer: "triangle"
+          - id: l2-c12
+            part: between
+            type: true_false
+            text: "Is it true? The circle is between the square and the triangle."
+            say: "The circle is between the square and the triangle. Is that true?"
+            show: { drawn: shape, row: [circle, square, triangle], colours: [red, yellow, blue] }
+            answer: false
+          - id: l2-c13
+            part: above-below
+            type: fill_in_blank
+            text: "Fill the gap."
+            say: "Look at the stack. Fill the gap with the right word."
+            show: { drawn: shape, column: [circle, triangle, square], colours: [green, blue, red] }
+            frame: "The square is at the _."
+            options: ["top", "middle", "bottom"]
+            answer: ["bottom"]
+          - id: l2-c14
+            part: above-below
+            type: multiple_choice
+            text: "Which colour is the shape just above the circle?"
+            say: "Which colour is the shape just above the circle?"
+            show: { drawn: shape, column: [square, triangle, circle], colours: [red, green, blue] }
+            options: ["green", "red", "blue"]
+            answer: "green"
+          - id: l2-c15
+            part: above-below
+            type: true_false
+            text: "Is it true? The triangle is above the circle."
+            say: "The triangle is above the circle. Is that true?"
+            show: { drawn: shape, column: [square, circle, triangle], colours: [yellow, red, blue] }
+            answer: false
+          - id: l2-c16
+            part: above-below
+            type: multiple_choice
+            text: "Which shape is in the middle of the stack?"
+            say: "Which shape is in the middle of the stack?"
+            show: { drawn: shape, column: [triangle, square, circle], colours: [purple, orange, green] }
+            options: ["square", "triangle", "circle"]
+            answer: "square"
+          - id: l2-c17
+            part: front-behind
+            type: multiple_choice
+            text: "Mia, Leo and Ava wait for the swings. Mia is first, Leo is next, Ava is last. Who is behind Mia and in front of Ava?"
+            say: "Mia, Leo and Ava wait in a queue for the swings. Mia is first, Leo is next, and Ava is last. Who is behind Mia and in front of Ava?"
+            options: ["Leo", "Mia", "Ava"]
+            answer: "Leo"
+          - id: l2-c18
+            part: front-behind
+            type: true_false
+            text: "Tom, Raj and Bea wait for the bus. Tom is first, Raj is next, Bea is last.\nIs it true? Bea is in front of Raj."
+            say: "Tom, Raj and Bea wait in a queue for the bus. Tom is first, Raj is next, and Bea is last. Is it true? Bea is in front of Raj."
+            answer: false
+          - id: l2-c19
+            part: front-behind
+            type: multiple_choice
+            text: "Kai, Lucy, Omar and Isla wait for the slide. Kai is first, then Lucy, then Omar. Isla is last. Who is just in front of Isla?"
+            say: "Kai, Lucy, Omar and Isla wait in a queue for the slide. Kai is first, then Lucy, then Omar. Isla is last. Who is just in front of Isla?"
+            options: ["Omar", "Lucy", "Kai"]
+            answer: "Omar"
+          - id: l2-c20
+            part: front-behind
+            type: true_false
+            text: "Sara, Ben and Ruby wait for lunch. Sara is first, Ben is next, Ruby is last.\nIs it true? Sara is in front of Ben."
+            say: "Sara, Ben and Ruby wait in a queue for lunch. Sara is first, Ben is next, and Ruby is last. Is it true? Sara is in front of Ben."
             answer: true

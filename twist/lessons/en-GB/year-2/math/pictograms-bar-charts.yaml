@@ -8,7 +8,7 @@ title:
   en: Pictograms and bar charts
 summary: >
   Lesson 1 reads pictograms where one symbol stands for one child or for
-  two (● = 2 children: count in twos), and turns a tally chart into a row
+  two (a key of 2 children: count in twos), and turns a tally chart into a row
   of a pictogram, choosing how many symbols to draw. Lesson 2 reads bar
   charts on a scale in ones and in twos (read the number on the scale, do
   not count the lines), compares bars, finds the bar chart that fits a
@@ -26,10 +26,15 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart]
   facets: []
+  parts:
+    - { id: read-picto, what: { de: "Bilddiagramme ablesen, auch wenn ein Bild für 2 steht", en: "reading pictograms, also when a picture stands for 2" } }
+    - { id: read-bar, what: { de: Säulendiagramme an der Skala ablesen, en: reading bar charts from the scale } }
+    - { id: compare, what: { de: "Daten vergleichen: am meisten, am wenigsten, wie viele mehr", en: "comparing data: most, fewest and how many more" } }
+    - { id: show, what: { de: das Diagramm zu einer Strichliste finden, en: choosing the pictogram or bar chart that shows a tally chart } }
   misconceptions:
     - id: symbol-is-one
-      what: Counts each symbol as one when the key says ● = 2
-      addressed: lesson 1 Learn counts a ● = 2 children pictogram in twos; l1-f3 (with feedback), l1-s2, l1-s4, l1-n1, l1-n4, l1-c2 and l2-c4 use a key of 2 and offer the number of symbols
+      what: Counts each picture as one when the key says a picture stands for 2
+      addressed: lesson 1 Learn counts a pictogram with a key of 2 children in twos; l1-f3 (with feedback), l1-s2, l1-s4, l1-n1, l1-n4, l1-c2 and l2-c4 use a key of 2 and offer the number of symbols
     - id: counts-lines
       what: Reads a bar chart by counting the lines instead of reading the scale, so a scale in twos gives half the value
       addressed: lesson 2 Learn reads a scale in twos; l2-f3 (with feedback), l2-s3, l2-n1 and l2-c3 use a scale in twos and offer half the value
@@ -71,15 +76,21 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - text: "Favourite animals\nDog: ● ● ● ●\nCat: ● ● ● ● ● ●\nHorse: ● ●\n● = 1 child"
-            say: "This is a pictogram. The key at the bottom says each circle stands for one child. Four children chose dogs, six chose cats and two chose horses."
-          - text: "Favourite animals\nDog: ● ●\nCat: ● ● ●\nHorse: ●\n● = 2 children"
-            say: "Always read the key first. Here one circle stands for two children, so count in twos. Dog: two, four. Four children. Cat: two, four, six. Six children."
-          - text: "Red: ● ● ●\nBlue: ● ● ● ● ●\n● = 1 child"
-            say: "You can make a pictogram from a tally chart. Three children chose red and five chose blue. With one circle for each child, red gets three circles and blue gets five."
+          - text: "Favourite animals\nEach picture stands for 1 child."
+            say: "This is a pictogram. The key says each picture stands for one child. Four children chose dogs, six chose cats and two chose horses."
+            show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Dog", 4], ["Cat", 6], ["Horse", 2]] }
+          - text: "Favourite animals\nEach picture stands for 2 children."
+            say: "Always read the key first. Here one picture stands for two children, so count in twos. Dog: two, four. Four children. Cat: two, four, six. Six children."
+            show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Dog", 4], ["Cat", 6], ["Horse", 2]] }
+          - text: "Tally chart: red 3, blue 5"
+            say: "You can make a pictogram from a tally chart. Three children chose red and five chose blue."
             show: { drawn: bar-chart, tally: true, rows: [["Red", 3], ["Blue", 5]] }
-          - text: "Ben has 6 stickers.\n● = 2 stickers\nBen: ● ● ●"
-            say: "If one circle stands for two, draw one circle for every two. Ben has six stickers: two, four, six. That is three circles."
+          - text: "Pictogram: red 3, blue 5\nEach picture stands for 1 child."
+            say: "With one picture for each child, red gets three pictures and blue gets five."
+            show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Red", 3], ["Blue", 5]] }
+          - text: "Ben has 6 stickers.\nEach picture stands for 2 stickers."
+            say: "If one picture stands for two, draw one picture for every two. Ben has six stickers: two, four, six. That is three pictures."
+            show: { drawn: bar-chart, pictogram_object: sticker, per: 2, rows: [["Ben", 6]] }
 
       - activity: practise
         setting: in-context
@@ -88,151 +99,185 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "How we get to school\nWalk: ● ● ● ● ● ● ●\nBus: ● ● ● ●\nCar: ● ● ●\nBike: ● ● ● ● ●\n● = 1 child\nHow many children come by bus?"
+                text: "How we get to school\nHow many children come by bus?"
                 say: "The class asked: how do you get to school? How many children come by bus?"
+                show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Walk", 7], ["Bus", 4], ["Car", 3], ["Bike", 5]] }
                 options: ["4", "7", "5"]
                 answer: "4"
                 hints:
                   - "Find the row that says bus."
-                  - "Each circle is one child. Count the circles."
+                  - "Each picture is one child. Count the pictures."
                   - "4 children."
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
-                text: "How we get to school\nWalk: ● ● ● ● ● ● ●\nBus: ● ● ● ●\nCar: ● ● ●\nBike: ● ● ● ● ●\n● = 1 child\nHow do the most children get to school?"
+                text: "How we get to school\nHow do the most children get to school?"
                 say: "How do the most children get to school?"
+                show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Walk", 7], ["Bus", 4], ["Car", 3], ["Bike", 5]] }
                 options: ["Walk", "Bike", "Bus"]
                 answer: "Walk"
                 hints:
-                  - "The most means the row with the most circles."
+                  - "The most means the row with the most pictures."
                   - "Walk 7, bike 5, bus 4."
                   - "Walk."
               - id: l1-f3
                 type: multiple_choice
-                text: "Favourite fruit\nApple: ● ● ●\nBanana: ● ●\nKiwi: ●\n● = 2 children\nHow many children chose apple?"
+                text: "Favourite fruit\nEach picture stands for 2 children.\nHow many children chose apple?"
                 say: "Look carefully at the key. How many children chose apple?"
+                show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Apple", 6], ["Banana", 4], ["Kiwi", 2]] }
                 options: ["6", "3", "5"]
                 answer: "6"
                 feedback:
-                  "3": "Here one circle stands for 2 children. Count in twos: 2, 4, 6."
+                  "3": "Here one picture stands for 2 children. Count in twos: 2, 4, 6."
                 hints:
-                  - "The key says one circle stands for 2 children."
+                  - "The key says one picture stands for 2 children."
                   - "Count in twos: 2, 4, ..."
                   - "6 children."
               - id: l1-f4
                 type: true_false
-                text: "How we get to school\nWalk: ● ● ● ● ● ● ●\nBus: ● ● ● ●\nCar: ● ● ●\nBike: ● ● ● ● ●\n● = 1 child\nIs it true? 5 children come by bike."
+                text: "How we get to school\nIs it true? 5 children come by bike."
                 say: "Is it true? Five children come by bike."
+                show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Walk", 7], ["Bus", 4], ["Car", 3], ["Bike", 5]] }
                 answer: true
                 hints:
                   - "Find the row that says bike."
-                  - "Count the circles in that row."
+                  - "Count the pictures in that row."
                   - "Yes, 5 children."
               - id: l1-f5
                 type: multiple_choice
-                text: "Make a pictogram with ● = 1 child.\nWhich row shows cat?"
-                say: "Here is a tally chart. You are making a pictogram where one circle stands for one child. Which row shows cat?"
+                text: "Make a pictogram from the tally chart. Each picture stands for 1 child. How many pictures do you draw for cat?"
+                say: "Here is a tally chart. You are making a pictogram where one picture stands for one child. How many pictures do you draw for cat?"
                 show: { drawn: bar-chart, tally: true, rows: [["Dog", 3], ["Cat", 5]] }
-                options: ["● ● ● ● ●", "● ● ●", "● ● ● ● ● ● ● ●"]
-                answer: "● ● ● ● ●"
-                option_audio: false
+                options: ["5", "3", "8"]
+                answer: "5"
                 hints:
                   - "How many tally marks does cat have?"
                   - "Cat has one bundle of five."
-                  - "5 circles."
+                  - "5 pictures."
 
           - support: some
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "How we get to school\nWalk: ● ● ● ● ● ● ●\nBus: ● ● ● ●\nCar: ● ● ●\nBike: ● ● ● ● ●\n● = 1 child\nHow many children come by car?"
+                text: "How we get to school\nHow many children come by car?"
                 say: "How many children come to school by car?"
+                show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Walk", 7], ["Bus", 4], ["Car", 3], ["Bike", 5]] }
                 options: ["3", "4", "7"]
                 answer: "3"
-                hints: ["Count the circles in the car row."]
+                hints: ["Count the pictures in the car row."]
               - id: l1-s2
                 type: multiple_choice
-                text: "Favourite fruit\nApple: ● ● ●\nBanana: ● ●\nKiwi: ●\n● = 2 children\nHow many children chose banana?"
+                text: "Favourite fruit\nEach picture stands for 2 children.\nHow many children chose banana?"
                 say: "How many children chose banana?"
+                show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Apple", 6], ["Banana", 4], ["Kiwi", 2]] }
                 options: ["4", "2", "3"]
                 answer: "4"
-                hints: ["One circle stands for 2 children. Count in twos."]
+                hints: ["One picture stands for 2 children. Count in twos."]
               - id: l1-s3
                 type: multiple_choice
-                text: "How we get to school\nWalk: ● ● ● ● ● ● ●\nBus: ● ● ● ●\nCar: ● ● ●\nBike: ● ● ● ● ●\n● = 1 child\nHow many more children walk than come by car?"
+                text: "How we get to school\nHow many more children walk than come by car?"
                 say: "How many more children walk than come by car?"
+                show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Walk", 7], ["Bus", 4], ["Car", 3], ["Bike", 5]] }
                 options: ["4", "10", "3"]
                 answer: "4"
                 hints: ["Walk 7, car 3. Find the difference."]
               - id: l1-s4
                 type: true_false
-                text: "Favourite fruit\nApple: ● ● ●\nBanana: ● ●\nKiwi: ●\n● = 2 children\nIs it true? 1 child chose kiwi."
+                text: "Favourite fruit\nEach picture stands for 2 children.\nIs it true? 1 child chose kiwi."
                 say: "Is it true? One child chose kiwi."
+                show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Apple", 6], ["Banana", 4], ["Kiwi", 2]] }
                 answer: false
-                hints: ["Kiwi has one circle. How many children does one circle stand for?"]
+                hints: ["Kiwi has one picture. How many children does one picture stand for?"]
               - id: l1-s5
                 type: multiple_choice
-                text: "Make a pictogram with ● = 1 child.\nWhich row shows red?"
-                say: "Here is a tally chart. You are making a pictogram where one circle stands for one child. Which row shows red?"
+                text: "Make a pictogram from the tally chart. Each picture stands for 1 child. How many pictures do you draw for red?"
+                say: "Here is a tally chart. You are making a pictogram where one picture stands for one child. How many pictures do you draw for red?"
                 show: { drawn: bar-chart, tally: true, rows: [["Red", 4], ["Yellow", 2]] }
-                options: ["● ● ● ●", "● ●", "● ● ● ● ●"]
-                answer: "● ● ● ●"
-                option_audio: false
-                hints: ["Draw one circle for each tally mark."]
+                options: ["4", "2", "6"]
+                answer: "4"
+                hints: ["Draw one picture for each tally mark."]
 
           - support: none
             tasks:
               - id: l1-n1
                 type: multiple_choice
-                text: "Leaves collected\nIsla: ● ● ● ●\nJack: ● ●\nPriya: ● ● ●\n● = 2 leaves\nHow many leaves did Isla collect?"
+                text: "Leaves collected\nEach picture stands for 2 leaves.\nHow many leaves did Isla collect?"
                 say: "The children collected autumn leaves. How many leaves did Isla collect?"
+                show: { drawn: bar-chart, pictogram_object: leaf, per: 2, rows: [["Isla", 8], ["Jack", 4], ["Priya", 6]] }
                 options: ["8", "4", "6"]
                 answer: "8"
               - id: l1-n2
                 type: multiple_choice
-                text: "Leaves collected\nIsla: ● ● ● ●\nJack: ● ●\nPriya: ● ● ●\n● = 2 leaves\nWho collected the fewest leaves?"
+                text: "Leaves collected\nEach picture stands for 2 leaves.\nWho collected the fewest leaves?"
                 say: "Who collected the fewest leaves?"
+                show: { drawn: bar-chart, pictogram_object: leaf, per: 2, rows: [["Isla", 8], ["Jack", 4], ["Priya", 6]] }
                 options: ["Jack", "Priya", "Isla"]
                 answer: "Jack"
               - id: l1-n3
                 type: multiple_choice
-                text: "Leaves collected\nIsla: ● ● ● ●\nJack: ● ●\nPriya: ● ● ●\n● = 2 leaves\nHow many leaves did they collect altogether?"
+                text: "Leaves collected\nEach picture stands for 2 leaves.\nHow many leaves did they collect altogether?"
                 say: "How many leaves did the three children collect altogether?"
+                show: { drawn: bar-chart, pictogram_object: leaf, per: 2, rows: [["Isla", 8], ["Jack", 4], ["Priya", 6]] }
                 options: ["18", "9", "16"]
                 answer: "18"
                 difficulty: stretch
               - id: l1-n4
                 type: true_false
-                text: "Leaves collected\nIsla: ● ● ● ●\nJack: ● ●\nPriya: ● ● ●\n● = 2 leaves\nIs it true? Priya collected 3 leaves."
+                text: "Leaves collected\nEach picture stands for 2 leaves.\nIs it true? Priya collected 3 leaves."
                 say: "Is it true? Priya collected three leaves."
+                show: { drawn: bar-chart, pictogram_object: leaf, per: 2, rows: [["Isla", 8], ["Jack", 4], ["Priya", 6]] }
                 answer: false
               - id: l1-n5
                 type: multiple_choice
-                text: "Noah collected 10 leaves.\n● = 2 leaves\nHow many circles does Noah get?"
-                say: "Noah collected ten leaves. One circle stands for two leaves. How many circles does Noah get in the pictogram?"
+                text: "Noah collected 10 leaves. Each picture stands for 2 leaves. How many pictures does Noah get?"
+                say: "Noah collected ten leaves. One picture stands for two leaves. How many pictures does Noah get in the pictogram?"
                 options: ["5", "10", "2"]
                 answer: "5"
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "Goals scored\nRed team: ● ● ● ● ● ●\nBlue team: ● ● ● ●\n● = 1 goal\nHow many goals did the red team score?"
+            text: "Goals scored\nHow many goals did the red team score?"
             say: "How many goals did the red team score?"
+            show: { drawn: bar-chart, pictogram_object: ball, per: 1, rows: [["Red team", 6], ["Blue team", 4]] }
             options: ["6", "4", "3"]
             answer: "6"
           - id: l1-c2
             type: multiple_choice
-            text: "Favourite juice\nApple: ● ● ● ●\nOrange: ● ●\n● = 2 children\nHow many children chose orange?"
-            say: "Look carefully at the key. How many children chose orange juice?"
+            text: "Favourite juice\nEach picture stands for 2 children.\nHow many children chose orange?"
+            say: "Each picture stands for two children. How many children chose orange juice?"
+            show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Apple", 8], ["Orange", 4]] }
             options: ["4", "2", "8"]
             answer: "4"
           - id: l1-c3
             type: true_false
-            text: "Goals scored\nRed team: ● ● ● ● ● ●\nBlue team: ● ● ● ●\n● = 1 goal\nIs it true? The blue team scored 2 fewer goals than the red team."
+            text: "Goals scored\nIs it true? The blue team scored 2 fewer goals than the red team."
             say: "Is it true? The blue team scored two fewer goals than the red team."
+            show: { drawn: bar-chart, pictogram_object: ball, per: 1, rows: [["Red team", 6], ["Blue team", 4]] }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Fruit at snack time\nHow many children chose a banana?"
+            say: "How many children chose a banana at snack time?"
+            show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Banana", 7], ["Apple", 5]] }
+            options: ["7", "5", "2"]
+            answer: "7"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Cakes sold\nEach picture stands for 2 cakes.\nHow many cakes did Class 2 sell?"
+            say: "Each picture stands for two cakes. How many cakes did Class 2 sell?"
+            show: { drawn: bar-chart, pictogram_object: cake, per: 2, rows: [["Class 1", 10], ["Class 2", 8]] }
+            options: ["8", "4", "10"]
+            answer: "8"
+          - id: l1-c6
+            type: multiple_choice
+            text: "You make a pictogram. Each picture stands for 2 children. 6 children chose red. How many pictures do you draw for red?"
+            say: "You make a pictogram. Each picture stands for two children. Six children chose red. How many pictures do you draw for red?"
+            options: ["3", "6", "12"]
+            answer: "3"
 
   - n: 2
     title: { de: "Säulendiagramme", en: "Bar charts" }
@@ -243,15 +288,17 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Favourite colours\nRed: ● ● ●\nBlue: ● ● ● ● ●\n● = 1 child\nHow many children chose blue?"
+            text: "Favourite colours\nHow many children chose blue?"
             say: "How many children chose blue?"
+            show: { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Red", 3], ["Blue", 5]] }
             options: ["5", "3"]
             answer: "5"
             difficulty: easy
           - id: l2-w2
             type: multiple_choice
-            text: "Favourite colours\nRed: ● ●\nBlue: ● ● ●\n● = 2 children\nHow many children chose red?"
-            say: "One circle stands for two children. How many children chose red?"
+            text: "Favourite colours\nEach picture stands for 2 children.\nHow many children chose red?"
+            say: "One picture stands for two children. How many children chose red?"
+            show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Red", 4], ["Blue", 6]] }
             options: ["4", "2", "6"]
             answer: "4"
             difficulty: easy
@@ -425,8 +472,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read-bar
             type: multiple_choice
             text: "Favourite drinks\nHow many children chose water?"
             say: "The bar chart shows the children's favourite drinks. How many children chose water?"
@@ -434,6 +483,7 @@ lessons:
             options: ["8", "5", "3"]
             answer: "8"
           - id: l2-c2
+            part: compare
             type: multiple_choice
             text: "Favourite drinks\nWhich drink did the fewest children choose?"
             say: "Which drink did the fewest children choose?"
@@ -441,19 +491,23 @@ lessons:
             options: ["Milk", "Juice", "Water"]
             answer: "Milk"
           - id: l2-c3
+            part: read-bar
             type: multiple_choice
             text: "Visits to the swimming pool\nHow many children went on Tuesday?"
-            say: "Look carefully at the scale. How many children went swimming on Tuesday?"
+            say: "How many children went swimming on Tuesday?"
             show: { drawn: bar-chart, rows: [["Mon", 6], ["Tue", 10], ["Wed", 14]] }
             options: ["10", "5", "12"]
             answer: "10"
           - id: l2-c4
+            part: read-picto
             type: multiple_choice
-            text: "Shells collected\nOla: ● ● ● ● ●\nSam: ● ● ●\n● = 2 shells\nHow many shells did Sam collect?"
-            say: "Look carefully at the key. How many shells did Sam collect?"
+            text: "Shells collected\nEach picture stands for 2 shells.\nHow many shells did Sam collect?"
+            say: "Each picture stands for two shells. How many shells did Sam collect?"
+            show: { drawn: bar-chart, pictogram_object: shell, per: 2, rows: [["Ola", 10], ["Sam", 6]] }
             options: ["6", "3", "8"]
             answer: "6"
           - id: l2-c5
+            part: show
             type: image_multiple_choice
             text: "Apple 2, pear 5. Which bar chart fits?"
             say: "In the tally chart, two children chose apples and five chose pears. Which bar chart fits?"
@@ -462,3 +516,121 @@ lessons:
               - { drawn: bar-chart, rows: [["Apple", 2], ["Pear", 5]], key: "2-5" }
               - { drawn: bar-chart, rows: [["Apple", 2], ["Pear", 2]], key: "2-2" }
             answer: "2-5"
+          - id: l2-c6
+            part: read-picto
+            type: multiple_choice
+            text: "Books read this week\nHow many books did Aisha read?"
+            say: "The pictogram shows the books the children read this week. How many books did Aisha read?"
+            show: { drawn: bar-chart, pictogram_object: book, per: 1, rows: [["Aisha", 5], ["Leo", 3], ["Mo", 6]] }
+            options: ["5", "6", "3"]
+            answer: "5"
+          - id: l2-c7
+            part: read-picto
+            type: true_false
+            text: "Stars for good work\nEach picture stands for 2 stars.\nIs it true? Finn has 4 stars."
+            say: "Each picture stands for two stars. Is it true? Finn has four stars."
+            show: { drawn: bar-chart, pictogram_object: star, per: 2, rows: [["Finn", 8], ["Zara", 6]] }
+            answer: false
+          - id: l2-c8
+            part: read-picto
+            type: text_input
+            text: "Apples picked\nEach picture stands for 2 apples.\nHow many apples did Grandpa pick?"
+            say: "Each picture stands for two apples. How many apples did Grandpa pick?"
+            show: { drawn: bar-chart, pictogram_object: apple, per: 2, rows: [["Grandpa", 12], ["Mum", 6]] }
+            answer: "12"
+          - id: l2-c9
+            part: read-picto
+            type: multiple_choice
+            text: "Favourite pets\nEach picture stands for 2 children.\nHow many children chose rabbit?"
+            say: "Each picture stands for two children. How many children chose rabbit?"
+            show: { drawn: bar-chart, pictogram_object: child, per: 2, rows: [["Dog", 6], ["Cat", 8], ["Rabbit", 2]] }
+            options: ["2", "1", "4"]
+            answer: "2"
+          - id: l2-c10
+            part: read-bar
+            type: multiple_choice
+            text: "Ice creams sold\nHow many strawberry ice creams were sold?"
+            say: "The bar chart shows the ice creams sold at the school fair. How many strawberry ice creams were sold?"
+            show: { drawn: bar-chart, rows: [["Vanilla", 9], ["Strawberry", 6], ["Chocolate", 7]] }
+            options: ["6", "7", "9"]
+            answer: "6"
+          - id: l2-c11
+            part: read-bar
+            type: text_input
+            text: "Birds in the garden\nHow many birds came on Saturday?"
+            say: "The bar chart shows the birds in the garden. How many birds came on Saturday?"
+            show: { drawn: bar-chart, rows: [["Fri", 4], ["Sat", 12], ["Sun", 8]] }
+            answer: "12"
+          - id: l2-c12
+            part: read-bar
+            type: true_false
+            text: "Our pets\nIs it true? 9 children have a cat."
+            say: "Is it true? Nine children have a cat."
+            show: { drawn: bar-chart, rows: [["Cat", 7], ["Dog", 9], ["Fish", 3]] }
+            answer: false
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Books in the class library\nHow many more story books than space books are there?"
+            say: "How many more story books than space books are there in the class library?"
+            show: { drawn: bar-chart, rows: [["Stories", 9], ["Animals", 5], ["Space", 7]] }
+            options: ["2", "16", "4"]
+            answer: "2"
+          - id: l2-c14
+            part: compare
+            type: multiple_choice
+            text: "Goals this term\nWho scored the fewest goals?"
+            say: "Who scored the fewest goals this term?"
+            show: { drawn: bar-chart, pictogram_object: ball, per: 1, rows: [["Kai", 4], ["Ruby", 6], ["Tom", 3]] }
+            options: ["Tom", "Kai", "Ruby"]
+            answer: "Tom"
+          - id: l2-c15
+            part: compare
+            type: true_false
+            text: "Rainy days\nIs it true? March had the most rainy days."
+            say: "Is it true? March had the most rainy days."
+            show: { drawn: bar-chart, rows: [["Jan", 8], ["Feb", 6], ["Mar", 10]] }
+            answer: true
+          - id: l2-c16
+            part: compare
+            type: text_input
+            text: "Shells collected\nEach picture stands for 2 shells.\nHow many more shells did Ana collect than Ben?"
+            say: "Each picture stands for two shells. How many more shells did Ana collect than Ben?"
+            show: { drawn: bar-chart, pictogram_object: shell, per: 2, rows: [["Ana", 8], ["Ben", 4]] }
+            answer: "4"
+          - id: l2-c17
+            part: show
+            type: image_multiple_choice
+            text: "Which bar chart shows this tally chart?"
+            say: "Here is a tally chart of drinks. Which bar chart shows it?"
+            show: { drawn: bar-chart, tally: true, rows: [["Tea", 4], ["Milk", 6]] }
+            options:
+              - { drawn: bar-chart, rows: [["Tea", 6], ["Milk", 4]], key: "6-4" }
+              - { drawn: bar-chart, rows: [["Tea", 4], ["Milk", 6]], key: "4-6" }
+              - { drawn: bar-chart, rows: [["Tea", 4], ["Milk", 4]], key: "4-4" }
+            answer: "4-6"
+          - id: l2-c18
+            part: show
+            type: image_multiple_choice
+            text: "Which pictogram shows this tally chart? Each picture stands for 1 child."
+            say: "Here is a tally chart of the weather the children like. Each picture stands for one child. Which pictogram shows the tally chart?"
+            show: { drawn: bar-chart, tally: true, rows: [["Sun", 5], ["Rain", 2]] }
+            options:
+              - { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Sun", 2], ["Rain", 5]], key: "2-5" }
+              - { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Sun", 5], ["Rain", 5]], key: "5-5" }
+              - { drawn: bar-chart, pictogram_object: child, per: 1, rows: [["Sun", 5], ["Rain", 2]], key: "5-2" }
+            answer: "5-2"
+          - id: l2-c19
+            part: show
+            type: multiple_choice
+            text: "You make a pictogram. Each picture stands for 2 children. 8 children chose swimming. How many pictures do you draw for swimming?"
+            say: "You make a pictogram. Each picture stands for two children. Eight children chose swimming. How many pictures do you draw for swimming?"
+            options: ["4", "8", "2"]
+            answer: "4"
+          - id: l2-c20
+            part: show
+            type: true_false
+            text: "Mia makes a bar chart from the tally chart. Is it true? The bar for blue goes up to 3."
+            say: "Mia makes a bar chart from the tally chart. Is it true? The bar for blue goes up to three."
+            show: { drawn: bar-chart, tally: true, rows: [["Red", 7], ["Blue", 3]] }
+            answer: true

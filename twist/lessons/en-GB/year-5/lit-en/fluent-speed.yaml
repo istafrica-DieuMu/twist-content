@@ -16,7 +16,8 @@ summary: >
   ends with the skill check. Writing-lines tasks use `script: joined`,
   so the model follows the school's scheme. The app does not yet time or
   judge the child's own writing (any ink counts), so the skill check uses
-  choice tasks.
+  choice tasks: it marks what a screen can mark, and writing with speed
+  and fluency is left to Practise.
 metadata:
   year: year-5
   topic: { de: Handschrift, en: Handwriting }
@@ -28,6 +29,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: join-capitals, what: { de: "innerhalb eines Wortes verbinden, Großbuchstaben stehen allein", en: "joining inside a word, with capitals standing alone" } }
+    - { id: join-or-print, what: { de: verbundene Schrift oder Druckschrift passend zur Aufgabe wählen, en: choosing joined or printed writing for the job } }
+    - { id: speed, what: { de: "schnell und lesbar schreiben, oder eine saubere Reinschrift", en: "fast but legible writing, or a neat best copy" } }
+    - { id: tool, what: { de: den passenden Stift wählen, en: choosing the right pen or pencil } }
   misconceptions:
     - id: join-everything
       what: Joins capital letters to the next letter and joins letters on forms and labels, where print is clearer
@@ -208,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -224,6 +231,30 @@ lessons:
             say: "Copy best work. Join inside each word."
             show: { drawn: writing-lines, text: "best work", mode: copy, arrows: false, script: joined }
             char: "best work"
+          - id: l1-c4
+            type: sorting
+            text: "Which should be joined and which printed? Sort them."
+            say: "Should you write each one joined or printed? Sort them."
+            option_audio: false
+            bins:
+              - { id: join, show: { text: "joined" }, say: "Joined." }
+              - { id: print, show: { text: "printed" }, say: "Printed." }
+            options:
+              - { text: "a book review", bin: join }
+              - { text: "your address on a form", bin: print }
+              - { text: "a letter to a pen pal", bin: join }
+              - { text: "the names of the planets on a diagram", bin: print }
+          - id: l1-c5
+            type: multiple_choice
+            text: "Kate writes her name in joined writing. Which letters does she join?"
+            options: ["a, t and e", "K and a", "none of them"]
+            answer: "a, t and e"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? Labels on a map should be in joined writing, so that they flow."
+            say: "Is it true? Labels on a map should be in joined writing, so that they flow."
+            answer: false
 
   - n: 2
     title: { de: Tempo und Stift wählen, en: Speed and the right pen }
@@ -392,28 +423,152 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: join-capitals
             type: multiple_choice
             text: "How do you write the word Scotland in joined writing?"
             options: ["capital S on its own, then join c o t l a n d", "join the S to the c", "print every letter"]
             answer: "capital S on its own, then join c o t l a n d"
           - id: l2-c2
+            part: speed
             type: multiple_choice
-            text: "Ella writes notes from a video about volcanoes. How should she write?"
-            options: ["quickly, but clearly enough to read later", "in tiny letters so they fit", "very slowly in her best copy"]
-            answer: "quickly, but clearly enough to read later"
+            text: "Ella makes notes from a video about volcanoes. Which notes will help her most later?"
+            options: ["short notes, written fast but clearly", "every word, in her slowest best copy", "quick scribbles she cannot read back"]
+            answer: "short notes, written fast but clearly"
+            option_audio: false
           - id: l2-c3
+            part: speed
             type: true_false
             text: "Is it true? A quick shopping list needs your neatest best copy."
             answer: false
           - id: l2-c4
+            part: tool
             type: multiple_choice
             text: "Which tool suits writing the labels on a small diagram of a plant?"
             options: ["a fine pen", "a thick felt tip", "a paint roller"]
             answer: "a fine pen"
           - id: l2-c5
+            part: speed
             type: multiple_choice
             text: "Which job needs your neatest best copy?"
             options: ["a poem for the hall display", "notes in a lesson", "a list of ideas"]
             answer: "a poem for the hall display"
+          - id: l2-c6
+            part: join-capitals
+            type: multiple_choice
+            text: "Which letters join when you write the word Bristol?"
+            options: ["r, i, s, t, o and l", "only the B and the r", "all of them, starting with the B"]
+            answer: "r, i, s, t, o and l"
+            option_audio: false
+          - id: l2-c7
+            part: join-capitals
+            type: highlight_in_text
+            text: "Tap every word that begins with a capital letter that stands alone."
+            say: "Tap every word that begins with a capital letter. In these lessons, a capital stands alone."
+            show: { drawn: letter-card, text: "Last June Amir flew to Spain with Mum" }
+            spans: ["Last", "June", "Amir", "Spain", "Mum"]
+          - id: l2-c8
+            part: join-capitals
+            type: true_false
+            text: "Is it true? In joined writing, you lift your pen after every small letter."
+            say: "Is it true? In joined writing, you lift your pen after every small letter."
+            answer: false
+          - id: l2-c9
+            part: join-capitals
+            type: multiple_choice
+            text: "Zoe writes London with the capital L joined to the o. What should she change?"
+            options: ["lift her pen after the L, then join o n d o n", "join the L to the o more neatly", "print every letter apart"]
+            answer: "lift her pen after the L, then join o n d o n"
+            option_audio: false
+          - id: l2-c10
+            part: join-or-print
+            type: sorting
+            text: "Joined or printed? Sort the jobs."
+            say: "Should you write each one joined or printed? Sort them."
+            option_audio: false
+            bins:
+              - { id: join, show: { text: "joined" }, say: "Joined." }
+              - { id: print, show: { text: "printed" }, say: "Printed." }
+            options:
+              - { text: "a book review for your teacher", bin: join }
+              - { text: "a label for a jar of jam", bin: print }
+              - { text: "notes about the Tudors", bin: join }
+              - { text: "your surname in the boxes of an entry form", bin: print }
+          - id: l2-c11
+            part: join-or-print
+            type: multiple_choice
+            text: "Raj fills in a form to join the football club. How should he write his name in the boxes?"
+            options: ["printed, one letter in each box", "joined, as fast as he can", "in tiny joined writing"]
+            answer: "printed, one letter in each box"
+          - id: l2-c12
+            part: join-or-print
+            type: true_false
+            text: "Is it true? A thank-you letter to your aunt is usually written in joined writing."
+            say: "Is it true? A thank-you letter to your aunt is usually written in joined writing."
+            answer: true
+          - id: l2-c13
+            part: join-or-print
+            type: multiple_choice
+            text: "Why do we print the labels on a diagram?"
+            options: ["so each letter can be read clearly on its own", "so the labels look longer", "because diagrams are only for maths"]
+            answer: "so each letter can be read clearly on its own"
+          - id: l2-c14
+            part: join-or-print
+            type: multiple_choice
+            text: "Which job needs joined writing?"
+            options: ["a diary entry", "the labels on a map", "your email address on a form"]
+            answer: "a diary entry"
+          - id: l2-c15
+            part: speed
+            type: multiple_choice
+            text: "Jo's teacher reads a dictation quite quickly. How should Jo write?"
+            options: ["at a steady speed, keeping every word legible", "as slowly as her best copy", "so fast that the words become scribbles"]
+            answer: "at a steady speed, keeping every word legible"
+          - id: l2-c16
+            part: speed
+            type: sorting
+            text: "Which jobs need fast, legible writing, and which need a neat best copy?"
+            say: "Does each job need fast, legible writing or your neatest best copy? Sort them."
+            option_audio: false
+            bins:
+              - { id: fast, show: { text: "fast and legible" }, say: "Fast and legible." }
+              - { id: best, show: { text: "neat best copy" }, say: "Neat best copy." }
+            options:
+              - { text: "notes on a school trip", bin: fast }
+              - { text: "a menu for the class café display", bin: best }
+              - { text: "a phone message for Mum", bin: fast }
+              - { text: "an invitation to the school play", bin: best }
+          - id: l2-c17
+            part: tool
+            type: multiple_choice
+            text: "Kai draws a bar chart in maths. Which tool should he use?"
+            options: ["a sharp pencil", "a thick felt tip", "a highlighter"]
+            answer: "a sharp pencil"
+          - id: l2-c18
+            part: tool
+            type: sorting
+            text: "Pencil or felt tip? Sort the jobs."
+            say: "Which tool suits each job, a pencil or a felt tip? Sort them."
+            option_audio: false
+            bins:
+              - { id: pencil, show: { text: "pencil" }, say: "Pencil." }
+              - { id: felt, show: { text: "felt tip" }, say: "Felt tip." }
+            options:
+              - { text: "a draft of a story you will change", bin: pencil }
+              - { text: "a big title for a poster", bin: felt }
+              - { text: "a sketch for a science diagram", bin: pencil }
+              - { text: "a large sign for the cake sale", bin: felt }
+          - id: l2-c19
+            part: tool
+            type: true_false
+            text: "Is it true? A pencil is useful for a draft, because you can rub out mistakes."
+            say: "Is it true? A pencil is useful for a draft, because you can rub out mistakes."
+            answer: true
+          - id: l2-c20
+            part: tool
+            type: multiple_choice
+            text: "Which tool gives a smooth best copy of a poem?"
+            options: ["a handwriting pen", "a crayon", "a thick marker"]
+            answer: "a handwriting pen"

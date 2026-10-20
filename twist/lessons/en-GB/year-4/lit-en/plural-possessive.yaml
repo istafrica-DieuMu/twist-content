@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: how-many, what: { de: "erkennen, wie viele Besitzer es sind", en: working out how many owners there are } }
+    - { id: regular, what: { de: "Plural auf s: nur ein Apostroph (the girls' coats)", en: "plurals that end in s take just an apostrophe (the girls' coats)" } }
+    - { id: irregular, what: { de: "unregelmäßiger Plural: Apostroph und s (children's, men's)", en: "irregular plurals take apostrophe s (children's, men's)" } }
+    - { id: mixed, what: { de: "für jeden Besitzer zwischen 's und s' wählen", en: "choosing 's or s' for any owner" } }
   misconceptions:
     - id: always-apostrophe-s
       what: Writes 's for every owner, so plural owners lose their meaning (the girl's coats for many girls)
@@ -212,6 +217,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -227,12 +233,28 @@ lessons:
             keep_order: true
           - id: l1-c3
             type: fill_in_blank
-            text: "Many friends share a secret. Fill the gap."
-            say: "Many friends share a secret. Fill the gap."
-            frame: "my friend_ secret"
+            text: "My friends share a den, and one friend has the key. Fill the gaps."
+            say: "My friends share a den, and one friend has the key. Fill the gaps."
+            frame: "my friend_ den and one friend_ key"
             options: ["'s", "s'", "s"]
-            answer: ["s'"]
+            answer: ["s'", "'s"]
             option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "The shells belong to the crabs. Which is right?"
+            options: ["the crabs' shells", "the crab's shells", "the crabs shell's"]
+            answer: "the crabs' shells"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? \"my uncle's car\" belongs to one uncle."
+            answer: true
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tap the word with an apostrophe it should not have."
+            say: "One word has an apostrophe but owns nothing. Tap it."
+            show: { drawn: letter-card, text: "My brothers' friends brought three ball's." }
+            spans: ["ball's"]
 
   - n: 2
     title: { de: Unregelmäßige Pluralformen, en: Irregular plurals }
@@ -416,34 +438,152 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: regular
             type: multiple_choice
-            text: "The pens belong to the pupils. Which is right?"
-            options: ["the pupils' pens", "the pupil's pens", "the pupils pen's"]
-            answer: "the pupils' pens"
+            text: "The pens belong to the twins. Which is right?"
+            options: ["the twins' pens", "the twin's pens", "the twins pen's"]
+            answer: "the twins' pens"
             option_audio: false
           - id: l2-c2
+            part: irregular
             type: multiple_choice
             text: "The library belongs to the children. Which is right?"
             options: ["the children's library", "the childrens' library", "the child's library"]
             answer: "the children's library"
             option_audio: false
           - id: l2-c3
+            part: irregular
             type: fill_in_blank
-            text: "The garden belongs to the people on our street. Fill the gap."
-            say: "The garden belongs to the people on our street. Fill the gap."
-            frame: "the people_ garden"
+            text: "The garden belongs to the people on our street. Fill the gaps."
+            say: "The garden belongs to the people on our street. Fill the gaps."
+            frame: "The people_ garden has two apple tree_."
             options: ["'s", "s'", "s"]
-            answer: ["'s"]
+            answer: ["'s", "s"]
             option_audio: false
           - id: l2-c4
+            part: regular
             type: text_input
             keyboard: letters
             text: "Write the owner word with its apostrophe.\nthe paws of the cats → the ____ paws"
             say: "Write the owner word with its apostrophe. The paws of the cats."
             answer: "cats'"
           - id: l2-c5
+            part: how-many
             type: true_false
             text: "Is it true? \"The ladies' room\" is a room for more than one lady."
             answer: true
+          - id: l2-c6
+            part: how-many
+            type: true_false
+            text: "Is it true? \"the doctor's room\" is the room of one doctor."
+            answer: true
+          - id: l2-c7
+            part: how-many
+            type: multiple_choice
+            text: "Which phrase is about more than one owner?"
+            options: ["the cousins' party", "the cousin's party"]
+            answer: "the cousins' party"
+            option_audio: false
+          - id: l2-c8
+            part: how-many
+            type: multiple_choice
+            text: "\"the monkeys' bananas\"\n\nWho owns the bananas?"
+            options: ["more than one monkey", "one monkey", "nobody"]
+            answer: "more than one monkey"
+          - id: l2-c9
+            part: how-many
+            type: true_false
+            text: "Is it true? \"the men's coats\" are the coats of one man."
+            answer: false
+          - id: l2-c10
+            part: regular
+            type: fill_in_blank
+            text: "Each of the twins has a bike. Fill the gaps."
+            say: "Each of the twins has a bike. Fill the gaps."
+            frame: "Both of the twin_ bike_ are red."
+            options: ["'s", "s'", "s"]
+            answer: ["s'", "s"]
+            option_audio: false
+          - id: l2-c11
+            part: regular
+            type: text_input
+            keyboard: letters
+            text: "Write the owner word with its apostrophe.\nthe nests of the swans → the ______ nests"
+            say: "Write the owner word with its apostrophe. The nests of the swans."
+            answer: "swans'"
+          - id: l2-c12
+            part: regular
+            type: highlight_in_text
+            text: "Tap the word with the apostrophe in the wrong place."
+            say: "One owner word has its apostrophe in the wrong place. Tap it."
+            show: { drawn: letter-card, text: "The two boy's bikes were left outside." }
+            spans: ["boy's"]
+          - id: l2-c13
+            part: irregular
+            type: text_input
+            keyboard: letters
+            text: "Write the owner word with its apostrophe.\nthe tails of the mice → the _____ tails"
+            say: "Write the owner word with its apostrophe. The tails of the mice."
+            answer: "mice's"
+          - id: l2-c14
+            part: irregular
+            type: true_false
+            text: "\"The childrens' coats are on the pegs.\"\n\nIs it written correctly?"
+            answer: false
+          - id: l2-c15
+            part: irregular
+            type: multiple_choice
+            text: "Which plural owner word takes 's, not just an apostrophe?"
+            options: ["people", "teachers", "horses"]
+            answer: "people"
+          - id: l2-c16
+            part: mixed
+            type: matching
+            text: "Match each owner to its possessive."
+            say: "Match each owner to the way you write it with an apostrophe."
+            option_audio: false
+            pairs:
+              - { left: { text: "one horse" }, right: { text: "horse's" } }
+              - { left: { text: "many horses" }, right: { text: "horses'" } }
+              - { left: { text: "many geese" }, right: { text: "geese's" } }
+              - { left: { text: "one child" }, right: { text: "child's" } }
+          - id: l2-c17
+            part: mixed
+            type: sorting
+            text: "Sort the owners: add ' or add 's?"
+            say: "Sort the owner words. Do they take just an apostrophe, or apostrophe s?"
+            option_audio: false
+            bins:
+              - { id: apos, show: { text: "add '" }, say: "Add an apostrophe." }
+              - { id: apos-s, show: { text: "add 's" }, say: "Add apostrophe s." }
+            options:
+              - { text: "many cousins", bin: apos }
+              - { text: "many men", bin: apos-s }
+              - { text: "one bus driver", bin: apos-s }
+              - { text: "many classes", bin: apos }
+          - id: l2-c18
+            part: mixed
+            type: multiple_choice
+            text: "Which sentence is right?"
+            options: ["The children's pegs are next to the teachers' pegs.", "The childrens' pegs are next to the teachers' pegs.", "The children's pegs are next to the teachers pegs'."]
+            answer: "The children's pegs are next to the teachers' pegs."
+            option_audio: false
+          - id: l2-c19
+            part: mixed
+            type: fill_in_blank
+            text: "One farmer has two dogs. The dogs share a kennel. Fill the gaps."
+            say: "One farmer has two dogs. The dogs share a kennel. Fill the gaps."
+            frame: "the farmer_ dogs and the dog_ kennel"
+            options: ["'s", "s'", "s"]
+            answer: ["'s", "s'"]
+            option_audio: false
+          - id: l2-c20
+            part: mixed
+            type: multiple_choice
+            text: "The cots belong to the babies. Which is right?"
+            options: ["the babies' cots", "the babys' cots", "the babies's cots"]
+            answer: "the babies' cots"
+            option_audio: false

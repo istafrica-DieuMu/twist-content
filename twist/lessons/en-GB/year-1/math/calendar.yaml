@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table]
   facets: [date-format]
+  parts:
+    - { id: weekday, what: { de: den Wochentag eines Datums im Kalender finden, en: finding the day of the week for a date on a calendar } }
+    - { id: read, what: { de: ein Datum lesen und in Zahlen schreiben, en: reading a date and writing it in numbers } }
+    - { id: next, what: { de: den Tag davor und danach finden, en: finding the day before and the day after } }
+    - { id: between, what: { de: Tage und Wochen zwischen zwei Daten zählen, en: counting the days and weeks between two dates } }
   misconceptions:
     - id: day-month-swap
       what: Reads 05/03 as 3 May, swapping the day and the month
@@ -219,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -240,6 +246,25 @@ lessons:
             frame: "_ / _ / 2026"
             options: ["30", "10", "3", "13"]
             answer: ["30", "10"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "October 2026. What day is 11 October?"
+            say: "Look at the calendar. What day of the week is the eleventh of October?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            options: ["Sunday", "Saturday", "Monday"]
+            answer: "Sunday"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which date is 1/12/2026?"
+            say: "Read the date in numbers. Which date is it?"
+            options: ["1 December 2026", "12 January 2026", "1 November 2026"]
+            answer: "1 December 2026"
+          - id: l1-c6
+            type: true_false
+            text: "October 2026. Is 6 October a Tuesday?"
+            say: "Look at the calendar. Is the sixth of October a Tuesday?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            answer: true
 
   - n: 2
     title: { de: "Tage und Wochen dazwischen", en: "Days and weeks between" }
@@ -415,8 +440,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: weekday
             type: multiple_choice
             text: "October 2026. What day is 29 October?"
             say: "Look at the calendar. What day of the week is the twenty-ninth of October?"
@@ -424,27 +451,137 @@ lessons:
             options: ["Thursday", "Wednesday", "Friday"]
             answer: "Thursday"
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "Which date is 7/11/2026?"
             say: "Read the date in numbers. Which date is it?"
             options: ["7 November 2026", "11 July 2026", "7 October 2026"]
             answer: "7 November 2026"
           - id: l2-c3
+            part: between
             type: multiple_choice
             text: "How many days is it from 13 October to 18 October?"
             say: "How many days is it from the thirteenth of October to the eighteenth?"
             options: ["5", "6", "18"]
             answer: "5"
           - id: l2-c4
+            part: between
             type: multiple_choice
             text: "The school play is one week after 22 October. What date is it?"
             say: "The school play is one week after the twenty-second of October. What date is it?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
             options: ["29 October", "23 October", "28 October"]
             answer: "29 October"
           - id: l2-c5
+            part: read
             type: fill_in_blank
             text: "Write 3 November 2026 in numbers."
             say: "Write the third of November, twenty twenty-six, in numbers."
             frame: "_ / _ / 2026"
             options: ["3", "11", "10", "1"]
             answer: ["3", "11"]
+          - id: l2-c6
+            part: weekday
+            type: multiple_choice
+            text: "October 2026. What day is 19 October?"
+            say: "Look at the calendar. What day of the week is the nineteenth of October?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            options: ["Monday", "Sunday", "Tuesday"]
+            answer: "Monday"
+          - id: l2-c7
+            part: weekday
+            type: true_false
+            text: "October 2026. Is 31 October a Saturday?"
+            say: "Look at the calendar. Is the thirty-first of October a Saturday?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            answer: true
+          - id: l2-c8
+            part: weekday
+            type: multiple_choice
+            text: "October 2026. Which date is the first Monday?"
+            say: "Look at the calendar. Which date is the first Monday in October?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            options: ["5 October", "1 October", "12 October"]
+            answer: "5 October"
+          - id: l2-c9
+            part: weekday
+            type: text_input
+            text: "October 2026. How many Fridays are there?"
+            say: "Look at the calendar. How many Fridays are there in October?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            answer: "5"
+          - id: l2-c10
+            part: read
+            type: multiple_choice
+            text: "Which date is 12/4/2027?"
+            say: "Read the date in numbers. Which date is it?"
+            options: ["12 April 2027", "4 December 2027", "12 March 2027"]
+            answer: "12 April 2027"
+          - id: l2-c11
+            part: read
+            type: fill_in_blank
+            text: "Write 1 May 2027 in numbers."
+            say: "Write the first of May, twenty twenty-seven, in numbers."
+            frame: "_ / _ / 2027"
+            options: ["1", "5", "4", "15"]
+            answer: ["1", "5"]
+          - id: l2-c12
+            part: read
+            type: true_false
+            text: "Is it true? 10/7/2027 is 7 October 2027."
+            say: "Ten, seven, twenty twenty-seven is the seventh of October, twenty twenty-seven. Is that true?"
+            answer: false
+          - id: l2-c13
+            part: next
+            type: multiple_choice
+            text: "Today is 26 October. What was the date yesterday?"
+            say: "Today is the twenty-sixth of October. What was the date yesterday?"
+            options: ["25 October", "27 October", "19 October"]
+            answer: "25 October"
+          - id: l2-c14
+            part: next
+            type: multiple_choice
+            text: "Today is 1 November. What was the date yesterday?"
+            say: "Today is the first of November. What was the date yesterday?"
+            options: ["31 October", "30 October", "2 November"]
+            answer: "31 October"
+          - id: l2-c15
+            part: next
+            type: true_false
+            text: "Is it true? The day before 20 October is 21 October."
+            say: "The day before the twentieth of October is the twenty-first of October. Is that true?"
+            answer: false
+          - id: l2-c16
+            part: next
+            type: multiple_choice
+            text: "Today is Wednesday 7 October. What is the day and date tomorrow?"
+            say: "Today is Wednesday the seventh of October. What is the day and date tomorrow?"
+            options: ["Thursday 8 October", "Tuesday 6 October", "Thursday 9 October"]
+            answer: "Thursday 8 October"
+          - id: l2-c17
+            part: next
+            type: multiple_choice
+            text: "Ben's birthday is the day before 24 October. What date is Ben's birthday?"
+            say: "Ben's birthday is the day before the twenty-fourth of October. What date is Ben's birthday?"
+            options: ["23 October", "25 October", "17 October"]
+            answer: "23 October"
+          - id: l2-c18
+            part: between
+            type: multiple_choice
+            text: "How many days is it from 2 October to 4 October?"
+            say: "How many days is it from the second of October to the fourth of October?"
+            options: ["2", "3", "4"]
+            answer: "2"
+          - id: l2-c19
+            part: between
+            type: text_input
+            text: "How many weeks is it from 1 October to 29 October?"
+            say: "How many weeks is it from the first of October to the twenty-ninth of October?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]] }
+            answer: "4"
+          - id: l2-c20
+            part: between
+            type: true_false
+            text: "Is it true? From 14 October to 21 October is 8 days."
+            say: "From the fourteenth of October to the twenty-first of October is eight days. Is that true?"
+            answer: false

@@ -23,6 +23,11 @@ metadata:
   forms: [text, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: letter-word-sentence, what: { de: "Buchstabe, Wort und Satz unterscheiden", en: "telling a letter, a word and a sentence apart" } }
+    - { id: capital, what: { de: Großbuchstaben erkennen und benennen, en: knowing and finding capital letters } }
+    - { id: singular-plural, what: { de: Einzahl und Mehrzahl (singular und plural) kennen, en: knowing singular and plural } }
+    - { id: punctuation, what: { de: "Punkt, Fragezeichen und Ausrufezeichen benennen und setzen", en: "naming and using the full stop, question mark and exclamation mark" } }
   misconceptions:
     - id: letter-word-mixed
       what: Mixes up letter and word (counts letters when asked for words)
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -225,6 +231,22 @@ lessons:
             text: "Tap the capital letter."
             show: { drawn: letter-card, text: "p q M n" }
             spans: ["M"]
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? \"I can run.\" is a sentence."
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "How many words?\n\nWe can see the sea."
+            say: "Read the sentence. How many words are there?"
+            options: ["5", "14", "4"]
+            answer: "5"
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tap every small letter."
+            say: "Tap every letter that is not a capital letter."
+            show: { drawn: letter-card, text: "B d F g H" }
+            spans: ["d", "g"]
 
   - n: 2
     title: { de: "Einzahl, Mehrzahl, Satzzeichen", en: "Singular, plural, punctuation" }
@@ -405,33 +427,157 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: letter-word-sentence
             type: multiple_choice
             text: "How many words?\n\nThe frog is green."
             say: "Read the sentence. How many words are there?"
             options: ["4", "14", "3"]
             answer: "4"
           - id: l2-c2
+            part: letter-word-sentence
             type: multiple_choice
             text: "Which one is a sentence?"
             options: ["the tall tree", "I can see a tree.", "tree a see"]
             answer: "I can see a tree."
             option_audio: false
           - id: l2-c3
+            part: singular-plural
             type: multiple_choice
             text: "\"bells\" is ..."
             say: "Is bells singular or plural?"
             options: ["singular", "plural"]
             answer: "plural"
           - id: l2-c4
+            part: punctuation
             type: multiple_choice
             text: "What is the name of this mark?\n\nWhat a big dog!"
             say: "Look at the mark at the end. What is its name?"
             options: ["full stop", "question mark", "exclamation mark"]
             answer: "exclamation mark"
           - id: l2-c5
+            part: capital
             type: highlight_in_text
             text: "Tap every word that starts with a capital letter."
             show: { drawn: letter-card, text: "Sam and Ivy went out." }
             spans: ["Sam", "Ivy"]
+          - id: l2-c6
+            part: letter-word-sentence
+            type: multiple_choice
+            text: "How many letters?\n\nplant"
+            say: "How many letters are in this word?"
+            options: ["5", "1", "4"]
+            answer: "5"
+          - id: l2-c7
+            part: letter-word-sentence
+            type: sorting
+            text: "Letter, word or sentence?"
+            say: "Read each card. Is it a letter, a word or a sentence? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: letter, show: { text: "letter" }, say: "Letter." }
+              - { id: word, show: { text: "word" }, say: "Word." }
+              - { id: sentence, show: { text: "sentence" }, say: "Sentence." }
+            options:
+              - { text: "b", bin: letter }
+              - { text: "hat", bin: word }
+              - { text: "I am six.", bin: sentence }
+              - { text: "t", bin: letter }
+              - { text: "run", bin: word }
+              - { text: "The sun is up.", bin: sentence }
+          - id: l2-c8
+            part: letter-word-sentence
+            type: true_false
+            text: "Is it true? \"dog\" is three words."
+            answer: false
+          - id: l2-c9
+            part: capital
+            type: multiple_choice
+            text: "Which is the capital letter for g?"
+            say: "Which one is the capital letter for g?"
+            options: ["G", "g", "q"]
+            answer: "G"
+            option_audio: false
+          - id: l2-c10
+            part: capital
+            type: true_false
+            text: "Is it true? A sentence starts with a capital letter."
+            answer: true
+          - id: l2-c11
+            part: capital
+            type: matching
+            text: "Match each small letter to its capital letter."
+            option_audio: false
+            pairs:
+              - { left: { text: "a" }, right: { text: "A" } }
+              - { left: { text: "d" }, right: { text: "D" } }
+              - { left: { text: "r" }, right: { text: "R" } }
+          - id: l2-c12
+            part: capital
+            type: highlight_in_text
+            text: "Tap every word that needs a capital letter."
+            show: { drawn: letter-card, text: "my dog is called rex." }
+            spans: ["my", "rex"]
+          - id: l2-c13
+            part: singular-plural
+            type: sorting
+            text: "Put each word in the right group."
+            say: "Read each word. Is it singular or plural? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: one, show: { text: "singular" }, say: "Singular." }
+              - { id: many, show: { text: "plural" }, say: "Plural." }
+            options:
+              - { text: "pens", bin: many }
+              - { text: "fox", bin: one }
+              - { text: "glass", bin: one }
+              - { text: "hats", bin: many }
+          - id: l2-c14
+            part: singular-plural
+            type: multiple_choice
+            text: "Which word is plural?"
+            say: "Read the words yourself. Which word is plural?"
+            options: ["dress", "bus", "pigs"]
+            answer: "pigs"
+            option_audio: false
+          - id: l2-c15
+            part: singular-plural
+            type: true_false
+            text: "Is it true? Plural means more than one."
+            answer: true
+          - id: l2-c16
+            part: singular-plural
+            type: multiple_choice
+            text: "What does singular mean?"
+            options: ["just one", "more than one", "a capital letter"]
+            answer: "just one"
+          - id: l2-c17
+            part: punctuation
+            type: fill_in_blank
+            text: "Which punctuation mark goes at the end?"
+            say: "Read the sentence. Which punctuation mark goes at the end?"
+            frame: "Help, the bath is too full_"
+            options: ["?", ".", "!"]
+            answer: ["!"]
+            option_audio: false
+          - id: l2-c18
+            part: punctuation
+            type: true_false
+            text: "Is it true? \"Where is Mum?\" ends with a full stop."
+            answer: false
+          - id: l2-c19
+            part: punctuation
+            type: multiple_choice
+            text: "Which mark ends a question?"
+            options: ["full stop", "question mark", "exclamation mark"]
+            answer: "question mark"
+            keep_order: true
+          - id: l2-c20
+            part: punctuation
+            type: multiple_choice
+            text: "Which sentence is a question?"
+            options: ["The cat is in the box.", "Is the cat in the box?", "The cat is in the box!"]
+            answer: "Is the cat in the box?"
+            option_audio: false

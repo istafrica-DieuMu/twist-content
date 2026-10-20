@@ -14,7 +14,11 @@ summary: >
   ends with the skill check. The app cannot see how a child sits or
   holds the pencil, so the tasks ask about it in pictures and spoken
   choices, and tracing lets the child try the grip; an adult watching is
-  still the real check.
+  still the real check. The skill check marks what a screen can mark:
+  knowing how to sit, which fingers hold the pencil, holding it gently
+  near the point, and the same grip for other tools and either hand;
+  sitting and holding the pencil themselves are practised in Practise
+  (tracing).
 metadata:
   year: reception
   topic: { de: "Handschrift", en: "Handwriting" }
@@ -27,6 +31,11 @@ metadata:
   forms: [picture, audio, drawn]
   drawn: [writing-lines]
   facets: [script]
+  parts:
+    - { id: sit, what: { de: "wissen, wie man zum Schreiben gut sitzt", en: knowing how to sit well to write } }
+    - { id: grip, what: { de: die drei Finger des Dreipunktgriffs kennen, en: knowing the three fingers of the tripod grip } }
+    - { id: gentle-near, what: { de: den Stift locker und nah an der Spitze halten, en: holding the pencil gently and near the point } }
+    - { id: tools, what: { de: "denselben Griff für Buntstift, Kreide und beide Hände kennen", en: "knowing the same grip for crayons, chalk and either hand" } }
   misconceptions:
     - id: fist-grip
       what: Holds the pencil in a fist or with all the fingers wrapped round it
@@ -80,7 +89,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
-                text: "How many fingers?"
+                text: "How many fingers hold the pencil in a tripod grip?"
                 say: "How many fingers hold the pencil in a tripod grip?"
                 options: ["1", "2", "3"]
                 answer: "3"
@@ -189,6 +198,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -208,6 +218,24 @@ lessons:
             text: "Sit with a tall back to write."
             say: "Listen. You sit with a tall back to write. Is that right?"
             show: { object: sit-down }
+            answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Sit on the edge of your chair and swing your feet."
+            say: "Listen. You sit on the edge of your chair and swing your feet. Is that a good way to sit for writing?"
+            show: { object: chair }
+            answer: false
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Who is ready to write?"
+            say: "Which child is sitting ready to write? Tap the picture."
+            options: [{ object: swim }, { object: sit-down }, { object: play-tennis }]
+            answer: sit-down
+          - id: l1-c6
+            type: true_false
+            text: "The thumb, the pointing finger and the middle finger hold the pencil."
+            say: "Listen. Your thumb, your pointing finger and your middle finger hold the pencil. Is that right?"
+            show: { object: grip-tripod }
             answer: true
 
   - n: 2
@@ -249,7 +277,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: ordering
-                text: "Pinch and flip"
+                text: "Put the steps of pinch and flip in order."
                 say: "Put the steps of pinch and flip in order. Tap each card to hear it."
                 options: ["Flip it onto your middle finger.", "Put the pencil down, point towards you.", "Pinch it near the point."]
                 slot_count: 3
@@ -261,7 +289,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: image_multiple_choice
-                text: "Same grip?"
+                text: "Which one do you hold with a tripod grip too?"
                 say: "Which one do you hold with a tripod grip too? Tap the picture."
                 options: [{ object: ball }, { object: crayon }, { object: cup }]
                 answer: crayon
@@ -322,14 +350,14 @@ lessons:
                 char: "u"
               - id: l2-s4
                 type: multiple_choice
-                text: "Your fingers hurt."
+                text: "Your fingers hurt when you write. What can you do?"
                 say: "When you write, your fingers start to hurt. What can you do?"
                 options: ["press harder", "hold the pencil more gently", "hold it in your fist"]
                 answer: "hold the pencil more gently"
                 hints: ["A tight grip makes your hand tired."]
               - id: l2-s5
                 type: image_multiple_choice
-                text: "Same grip?"
+                text: "Which one also needs a tripod grip?"
                 say: "Which one also needs a tripod grip? Tap the picture."
                 options: [{ object: apple }, { object: ball }, { object: chalk }]
                 answer: chalk
@@ -339,7 +367,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "How many fingers?"
+                text: "How many fingers does a tripod grip use?"
                 say: "A tripod has three legs. How many fingers does a tripod grip use?"
                 options: ["2", "3", "5"]
                 answer: "3"
@@ -370,34 +398,145 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: sit
             type: image_multiple_choice
             text: "Who is ready to write?"
             say: "Which child is ready to write? Tap the picture."
             options: [{ object: wave }, { object: dance }, { object: sit-down }]
             answer: sit-down
           - id: l2-c2
+            part: grip
             type: true_false
             text: "This hand holds the pencil in a tripod grip."
             say: "Look at this hand. Does it hold the pencil in a tripod grip?"
             show: { object: grip-tripod }
             answer: true
           - id: l2-c3
+            part: gentle-near
             type: true_false
             text: "Squeeze the pencil so tight that your fingers go white."
             say: "Listen. You squeeze the pencil so tight that your fingers go white. Is that right?"
             show: { object: pencil }
             answer: false
           - id: l2-c4
+            part: tools
             type: image_multiple_choice
-            text: "Same grip?"
+            text: "Which one do you hold with a tripod grip?"
             say: "Which one do you hold with a tripod grip? Tap the picture."
             options: [{ object: shoe }, { object: pen }, { object: apple }]
             answer: pen
           - id: l2-c5
+            part: gentle-near
             type: multiple_choice
             text: "Your lines are wobbly. Where should your fingers go?"
             say: "Your lines are wobbly. Where should your fingers go on the pencil?"
             options: ["at the top end", "nearer the point", "all round it in a fist"]
             answer: "nearer the point"
+          - id: l2-c6
+            part: sit
+            type: true_false
+            text: "Pull your chair close to the table before you write."
+            say: "Listen. You pull your chair close to the table before you write. Is that right?"
+            show: { object: chair }
+            answer: true
+          - id: l2-c7
+            part: grip
+            type: multiple_choice
+            text: "What is a tripod grip?"
+            say: "What is a tripod grip?"
+            options: ["three fingers hold the pencil", "the whole hand holds the pencil", "two hands hold the pencil"]
+            answer: "three fingers hold the pencil"
+          - id: l2-c8
+            part: gentle-near
+            type: true_false
+            text: "Hold your pencil gently, not too tight."
+            say: "Listen. You hold your pencil gently, not too tight. Is that right?"
+            show: { object: hand }
+            answer: true
+          - id: l2-c9
+            part: tools
+            type: true_false
+            text: "You hold a crayon in your fist."
+            say: "Listen. You hold a crayon in your fist, with your whole hand round it. Is that right?"
+            show: { object: crayon }
+            answer: false
+          - id: l2-c10
+            part: sit
+            type: multiple_choice
+            text: "Where do your feet go when you write?"
+            say: "Where do your feet go when you sit and write?"
+            options: ["up on the chair", "flat on the floor", "swinging in the air"]
+            answer: "flat on the floor"
+          - id: l2-c11
+            part: grip
+            type: true_false
+            text: "In a tripod grip, the pencil rests on your thumb."
+            say: "Listen. In a tripod grip, the pencil rests on your thumb. Is that right?"
+            show: { object: pencil }
+            answer: false
+          - id: l2-c12
+            part: gentle-near
+            type: true_false
+            text: "Pinch the pencil near the point."
+            say: "Listen. You pinch the pencil near the point. Is that right?"
+            show: { object: pencil }
+            answer: true
+          - id: l2-c13
+            part: tools
+            type: true_false
+            text: "Children who write with their left hand hold the pencil with three fingers too."
+            say: "Listen. Children who write with their left hand hold the pencil with three fingers too. Is that right?"
+            show: { object: hand }
+            answer: true
+          - id: l2-c14
+            part: sit
+            type: true_false
+            text: "Stand up when you write at the table."
+            say: "Listen. You stand up when you write at the table. Is that right?"
+            show: { object: stand-up }
+            answer: false
+          - id: l2-c15
+            part: grip
+            type: true_false
+            text: "Your thumb and pointing finger pinch the pencil."
+            say: "Look at this hand. Your thumb and your pointing finger pinch the pencil. Is that right?"
+            show: { object: grip-tripod }
+            answer: true
+          - id: l2-c16
+            part: gentle-near
+            type: multiple_choice
+            text: "You hold the pencil at the very top. What happens?"
+            say: "You hold the pencil right at the very top. What happens to your lines?"
+            options: ["the lines wobble", "the lines are neat"]
+            answer: "the lines wobble"
+          - id: l2-c17
+            part: tools
+            type: multiple_choice
+            text: "You write with your left hand. What helps you see what you write?"
+            say: "You write with your left hand. What helps you see what you write?"
+            options: ["tilt your paper a little", "hold the pencil in your fist", "write with your eyes shut"]
+            answer: "tilt your paper a little"
+          - id: l2-c18
+            part: sit
+            type: multiple_choice
+            text: "How do you sit to write?"
+            say: "How do you sit when you write?"
+            options: ["leaning far back", "with a tall back", "curled up small"]
+            answer: "with a tall back"
+          - id: l2-c19
+            part: grip
+            type: multiple_choice
+            text: "Which finger does not hold the pencil?"
+            say: "In a tripod grip, which finger does not hold the pencil?"
+            options: ["the thumb", "the pointing finger", "the little finger"]
+            answer: "the little finger"
+          - id: l2-c20
+            part: tools
+            type: image_multiple_choice
+            text: "Which one do you hold like a pencil?"
+            say: "Which one do you hold with three fingers, like a pencil? Tap the picture."
+            options: [{ object: teddy }, { object: chalk }, { object: shoe }]
+            answer: chalk

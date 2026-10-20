@@ -29,6 +29,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: silent, what: { de: "stumme Buchstaben am Wortende, auch -ent", en: "silent letters at the end of a word, also -ent" } }
+    - { id: nasal, what: { de: Nasallaute erkennen, en: recognising nasal sounds } }
+    - { id: liaison, what: { de: Wörter in der Liaison verbinden, en: linking words in a liaison } }
+    - { id: pause, what: { de: an Komma und Punkt eine Pause machen, en: pausing at commas and full stops } }
+    - { id: intonation, what: { de: "die Stimme bei der Frage heben, beim Aussagesatz senken", en: "letting the voice rise for a question and fall for a statement" } }
   misconceptions:
     - id: say-every-letter
       what: Says every written letter, as in English (the t of chat, the s of trois)
@@ -152,6 +158,7 @@ lessons:
                 hints: ["Look at the very last letter."]
               - id: l1-s2
                 type: audio_choice
+                text: "Which word do you hear?"
                 say: { en: "Listen. Which word do you hear?" }
                 audio: { fr: "Gros." }
                 options: ["gros", "grand", "gris"]
@@ -188,6 +195,7 @@ lessons:
                 spans: ["d"]
               - id: l1-n2
                 type: audio_choice
+                text: "Which word do you hear?"
                 say: { en: "Listen. Which word do you hear?" }
                 audio: { fr: "Bon." }
                 options: ["bon", "beau", "bain"]
@@ -212,6 +220,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -231,6 +240,24 @@ lessons:
             text: "Ils mangent sounds like il mange."
             say: { en: "Is this true?" }
             answer: true
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the letter you do not say."
+            say: { en: "The word nez is split into letters. Listen, then tap the letter you do not say.", fr: "Le nez." }
+            show: { drawn: letter-card, text: "n e z" }
+            spans: ["z"]
+          - id: l1-c5
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: { en: "Listen. Which word do you hear?" }
+            audio: { fr: "Rond." }
+            options: ["rouge", "rond", "robe"]
+            answer: "rond"
+          - id: l1-c6
+            type: true_false
+            text: "In ils dansent, you say the s of ils."
+            say: { en: "In ils dansent, you say the s of ils. Is this true?" }
+            answer: false
 
   - n: 2
     title: { de: Flüssig und mit Satzmelodie, en: Reading with flow and intonation }
@@ -286,6 +313,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: audio_choice
+                text: "Which words do you hear?"
                 say: { en: "Listen. Which words do you hear?" }
                 audio: { fr: "Les amis." }
                 options: ["les amis", "le ami", "les mis"]
@@ -340,6 +368,7 @@ lessons:
                 hints: ["Which second word starts with a vowel?"]
               - id: l2-s2
                 type: audio_choice
+                text: "Which words do you hear?"
                 say: { en: "Listen. Which words do you hear?" }
                 audio: { fr: "Les enfants." }
                 options: ["les enfants", "le enfant", "les fans"]
@@ -394,6 +423,7 @@ lessons:
                 expected_text: "Voici Pixel. C'est mon chat. Il est noir et blanc. Il aime dormir. Tu as un chat ?"
               - id: l2-n5
                 type: audio_choice
+                text: "Is it a question or a statement?"
                 say: { en: "Listen. Is it a question or a statement?" }
                 audio: { fr: "Tu as faim ?" }
                 options: ["a question", "a statement"]
@@ -401,21 +431,25 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: silent
             type: highlight_in_text
             text: "Tap the letter you do not say."
             say: { en: "The word lait is split into letters. Listen, then tap the letter you do not say.", fr: "Le lait." }
             show: { drawn: letter-card, text: "l a i t" }
             spans: ["t"]
           - id: l2-c2
+            part: silent
             type: multiple_choice
             option_audio: false
-            text: "Elles parlent.\n\nWhich sounds the same?"
-            say: { en: "Which sounds the same as elles parlent?" }
-            options: ["elle parle", "elle parlent", "elles parl-ent"]
-            answer: "elle parle"
+            text: "Elles parlent.\n\nWhich letters at the end of parlent do you not say?"
+            say: { en: "Read the sentence. Which letters at the end of parlent do you not say?" }
+            options: ["the -ent", "only the t", "none, you say them all"]
+            answer: "the -ent"
           - id: l2-c3
+            part: liaison
             type: multiple_choice
             option_audio: false
             text: "In which pair do you link the words with a z sound?"
@@ -423,16 +457,147 @@ lessons:
             options: ["les écoles", "les maisons", "les jardins"]
             answer: "les écoles"
           - id: l2-c4
+            part: pause
             type: highlight_in_text
             text: "Tap the word after which you pause."
             say: { en: "Read the sentence. After which word do you make a short pause? Tap it." }
             show: { drawn: letter-card, text: "Le soir, je lis un livre." }
             spans: ["soir,"]
           - id: l2-c5
+            part: intonation
             type: multiple_choice
             option_audio: false
-            text: "Tu viens au parc ?\n\nHow does your voice go at the end?"
-            say: { en: "You read this question aloud. How does your voice go at the end?" }
+            text: "Tu viens au parc ? Oui, je viens.\n\nIn which sentence does your voice go up at the end?"
+            say: { en: "You read these two sentences aloud. In which one does your voice go up at the end?" }
+            options: ["Tu viens au parc ?", "Oui, je viens."]
+            answer: "Tu viens au parc ?"
+            keep_order: true
+          - id: l2-c6
+            part: silent
+            type: highlight_in_text
+            text: "Tap the letter you do not say."
+            say: { en: "The word chaud is split into letters. Listen, then tap the letter you do not say.", fr: "Chaud." }
+            show: { drawn: letter-card, text: "c h a u d" }
+            spans: ["d"]
+          - id: l2-c7
+            part: silent
+            type: sorting
+            text: "Do you say the last letter? Sort the words."
+            say: { en: "Do you say the last letter, or is it silent? Sort the words." }
+            option_audio: false
+            bins:
+              - { id: say, show: { text: "I say the last letter." } }
+              - { id: silent, show: { text: "The last letter is silent." } }
+            options:
+              - { text: "petit", bin: silent }
+              - { text: "sac", bin: say }
+              - { text: "souris", bin: silent }
+              - { text: "neuf", bin: say }
+          - id: l2-c8
+            part: nasal
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: { en: "Listen. Which word do you hear?" }
+            audio: { fr: "Blanc." }
+            options: ["bleu", "blanc", "balle"]
+            answer: "blanc"
+          - id: l2-c9
+            part: nasal
+            type: multiple_choice
+            option_audio: false
+            text: "In which pair do both words have a nasal sound?"
+            say: { en: "In which pair do both words have a nasal sound, a sound through your nose?" }
+            options: ["maman, jardin", "maman, table", "vélo, jardin"]
+            answer: "maman, jardin"
+          - id: l2-c10
+            part: nasal
+            type: true_false
+            text: "In lion, you say the n clearly, as in English."
+            say: { en: "In lion, you say the n clearly, as in English. Is this true?" }
+            answer: false
+          - id: l2-c11
+            part: nasal
+            type: highlight_in_text
+            text: "Tap every word with a nasal sound."
+            say: { en: "Read the sentence. Tap every word with a nasal sound." }
+            show: { drawn: letter-card, text: "Mon chat est blanc." }
+            spans: ["Mon", "blanc"]
+          - id: l2-c12
+            part: liaison
+            type: true_false
+            text: "Do you hear a z sound between les and avions?"
+            say: { en: "Listen. Do you hear a z sound between les and avions?" }
+            audio: { fr: "Les avions." }
+            answer: true
+          - id: l2-c13
+            part: liaison
+            type: true_false
+            text: "les vélos\n\nYou link les and vélos with a z sound."
+            say: { en: "You link les and vélos with a z sound. Is this true?" }
+            answer: false
+          - id: l2-c14
+            part: liaison
+            type: sorting
+            text: "Liaison or no liaison? Sort the pairs."
+            say: { en: "Do you link the words with a z sound? Sort the pairs." }
+            option_audio: false
+            bins:
+              - { id: link, show: { text: "z sound" } }
+              - { id: none, show: { text: "no link" } }
+            options:
+              - { text: "les ananas", bin: link }
+              - { text: "les bananes", bin: none }
+              - { text: "les étoiles", bin: link }
+              - { text: "les fleurs", bin: none }
+          - id: l2-c15
+            part: pause
+            type: multiple_choice
+            option_audio: false
+            text: "Voici Léo, mon ami. Il a dix ans.\n\nWhere do you make the longer pause?"
+            say: { en: "Read the sentences. Where do you make the longer pause?" }
+            options: ["after ami", "after Léo", "after Il"]
+            answer: "after ami"
+          - id: l2-c16
+            part: pause
+            type: true_false
+            text: "At a full stop, you make a longer pause than at a comma."
+            say: { en: "At a full stop, you make a longer pause than at a comma. Is this true?" }
+            answer: true
+          - id: l2-c17
+            part: pause
+            type: multiple_choice
+            option_audio: false
+            text: "A / marks a pause. Which reading has the pauses in the right places?"
+            say: { en: "A slash marks a pause. Which reading has the pauses in the right places?" }
+            options: ["Le matin, / je mange une pomme. /", "Le / matin, je mange / une pomme.", "Le matin, je / mange une pomme."]
+            answer: "Le matin, / je mange une pomme. /"
+          - id: l2-c18
+            part: intonation
+            type: true_false
+            text: "Is it a question?"
+            say: { en: "Listen. Is it a question?" }
+            audio: { fr: "Il fait froid." }
+            answer: false
+          - id: l2-c19
+            part: intonation
+            type: sorting
+            text: "Does your voice go up or down at the end? Sort the sentences."
+            say: { en: "You read these aloud. Does your voice go up or down at the end? Sort the sentences." }
+            option_audio: false
+            bins:
+              - { id: up, show: { text: "up ↗" } }
+              - { id: down, show: { text: "down ↘" } }
+            options:
+              - { text: "Tu as dix ans ?", bin: up }
+              - { text: "J'ai dix ans.", bin: down }
+              - { text: "Il est où ?", bin: up }
+              - { text: "Il est là.", bin: down }
+          - id: l2-c20
+            part: intonation
+            type: multiple_choice
+            option_audio: false
+            text: "Le chien est grand.\n\nHow does your voice go at the end?"
+            say: { en: "You read this sentence aloud. How does your voice go at the end?" }
             options: ["up", "down", "it stays the same"]
-            answer: "up"
+            answer: "down"
             keep_order: true

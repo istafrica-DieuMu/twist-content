@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: openings-endings, what: { de: "Anfänge und Schlüsse von Geschichten erkennen (once upon a time, happily ever after)", en: "spotting story openings and endings (once upon a time, happily ever after)" } }
+    - { id: refrains, what: { de: "Sätze erkennen, die in Märchen wiederkommen", en: "spotting lines that come back in traditional tales" } }
+    - { id: poem-repeats, what: { de: wiederholte Zeilen und Muster in Gedichten erkennen, en: spotting repeated lines and patterns in poems } }
+    - { id: rhyme, what: { de: Reimwörter am Zeilenende erkennen, en: spotting words that rhyme at the ends of lines } }
   misconceptions:
     - id: opening-ending-swap
       what: Mixes up openings and endings (puts happily ever after at the start)
@@ -111,7 +116,7 @@ lessons:
                   - "Once upon a time."
               - id: l1-f3
                 type: fill_in_blank
-                text: "Finish the refrain."
+                text: "The Gingerbread Man shouts this every time. Finish the refrain."
                 say: "The Gingerbread Man shouts this every time. Finish the line."
                 frame: "Run, run, as _ as you can!"
                 options: ["fast", "slow", "far"]
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,7 +237,7 @@ lessons:
             option_audio: false
           - id: l1-c2
             type: fill_in_blank
-            text: "Finish the refrain."
+            text: "The Gingerbread Man shouts this. Finish the refrain."
             say: "The Gingerbread Man shouts this. Finish the line."
             frame: "You can't _ me, I'm the Gingerbread Man!"
             options: ["catch", "see", "eat"]
@@ -241,6 +247,24 @@ lessons:
             text: "Happily ever after comes at the end of a story."
             say: "Read it. Is it true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which words end a story?"
+            options: ["Once there was a bear", "They were never sad again.", "One cold winter's day"]
+            answer: "They were never sad again."
+            option_audio: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Finish the troll's question."
+            say: "The troll asks each goat this. Finish it."
+            frame: "Who's that _ over my bridge?"
+            options: ["running", "trip-trapping", "jumping"]
+            answer: ["trip-trapping"]
+          - id: l1-c6
+            type: true_false
+            text: "\"One day\" is the way a story ends."
+            say: "Read it. Is it true?"
+            answer: false
 
   - n: 2
     title: { de: Sprache in Gedichten, en: Poem language }
@@ -421,14 +445,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: openings-endings
             type: multiple_choice
             text: "Which words start a story?"
             options: ["In a land far away", "The end.", "and they all went home."]
             answer: "In a land far away"
             option_audio: false
           - id: l2-c2
+            part: refrains
             type: fill_in_blank
             text: "Finish the wolf's words."
             say: "The wolf says this to each little pig. Finish it."
@@ -436,12 +463,14 @@ lessons:
             options: ["in", "out", "home"]
             answer: ["in"]
           - id: l2-c3
+            part: poem-repeats
             type: highlight_in_text
             text: "Tap the words that come back."
             say: "Read the poem. Tap the words that come back."
             show: { drawn: letter-card, text: "Buzz, buzz, busy bee. Buzz, buzz, round the tree." }
             spans: ["Buzz", "buzz"]
           - id: l2-c4
+            part: rhyme
             type: multiple_choice
             text: "Which word rhymes with play?"
             say: "Which word rhymes with play? Read them yourself."
@@ -449,7 +478,129 @@ lessons:
             answer: "day"
             option_audio: false
           - id: l2-c5
+            part: openings-endings
             type: true_false
             text: "\"The end.\" These words tell you a story is over."
             say: "Read it. Is it true?"
             answer: true
+          - id: l2-c6
+            part: openings-endings
+            type: sorting
+            text: "Does each card start or end a story? Sort them."
+            say: "Read each card yourself. Does it start a story or end a story? Sort them."
+            option_audio: false
+            bins:
+              - { id: opening, show: { text: "opening" }, say: "Opening." }
+              - { id: ending, show: { text: "ending" }, say: "Ending." }
+            options:
+              - { text: "And so they all lived together in peace.", bin: ending }
+              - { text: "One sunny morning", bin: opening }
+              - { text: "From then on, the fox was never seen again.", bin: ending }
+              - { text: "Long ago, in a castle by the sea", bin: opening }
+          - id: l2-c7
+            part: openings-endings
+            type: highlight_in_text
+            text: "Tap the words of the story ending."
+            say: "Read the last line of the story. Tap the words of the story ending."
+            show: { drawn: letter-card, text: "The king and queen lived happily ever after." }
+            spans: ["happily", "ever", "after"]
+          - id: l2-c8
+            part: openings-endings
+            type: true_false
+            text: "\"Once upon a time\" tells you that a story is ending."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c9
+            part: refrains
+            type: fill_in_blank
+            text: "Finish the bear's words."
+            say: "Each bear in Goldilocks and the Three Bears says this. Finish it."
+            frame: "Who's been eating my _?"
+            options: ["porridge", "bed", "chair"]
+            answer: ["porridge"]
+          - id: l2-c10
+            part: refrains
+            type: multiple_choice
+            text: "Fee-fi-fo-fum! Which tale is this from?"
+            options: ["The Three Little Pigs", "Jack and the Beanstalk", "Goldilocks and the Three Bears"]
+            answer: "Jack and the Beanstalk"
+            option_audio: false
+          - id: l2-c11
+            part: refrains
+            type: true_false
+            text: "In The Three Billy Goats Gruff, the troll asks his question only once."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c12
+            part: refrains
+            type: multiple_choice
+            text: "\"Who will help me plant this wheat?\" asked the Little Red Hen.\n\"Not I,\" said the cat.\n\"Not I,\" said the dog.\n\nWhich words come back?"
+            say: "Read the bit of the story. Which words come back?"
+            options: ["the Little Red Hen", "Not I", "plant this wheat"]
+            answer: "Not I"
+            option_audio: false
+          - id: l2-c13
+            part: poem-repeats
+            type: highlight_in_text
+            text: "Tap the words that come back."
+            say: "Read the poem. Tap the words that come back, every time."
+            show: { drawn: letter-card, text: "Pitter-patter, falls the rain. Pitter-patter, down the lane." }
+            spans: ["Pitter-patter"]
+          - id: l2-c14
+            part: poem-repeats
+            type: fill_in_blank
+            text: "Keep the pattern going."
+            say: "Read the poem. Each line starts the same way. Fill the gaps to start the next line."
+            frame: "I can see a red bus.\nI can see a blue car.\nI _ _ a green van."
+            options: ["can", "see", "saw", "like"]
+            answer: ["can", "see"]
+          - id: l2-c15
+            part: poem-repeats
+            type: multiple_choice
+            text: "Rain, rain on the roof,\nsoft and slow.\nRain, rain on the roof,\nwhere did the sun go?\n\nWhich line comes back?"
+            say: "Read the poem. Which line comes back?"
+            options: ["soft and slow.", "Rain, rain on the roof,", "where did the sun go?"]
+            answer: "Rain, rain on the roof,"
+            option_audio: false
+          - id: l2-c16
+            part: poem-repeats
+            type: true_false
+            text: "In some poems, every verse starts in the same way."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c17
+            part: rhyme
+            type: multiple_choice
+            text: "Which word rhymes with moon?"
+            say: "Which word rhymes with moon? Read them yourself."
+            options: ["moan", "man", "spoon"]
+            answer: "spoon"
+            option_audio: false
+          - id: l2-c18
+            part: rhyme
+            type: fill_in_blank
+            text: "Finish the poem with a rhyme."
+            say: "Read the poem. Which word rhymes and finishes it?"
+            frame: "The little fish swam in the sea,\nas happy as a fish can _."
+            options: ["swim", "be", "go"]
+            answer: ["be"]
+          - id: l2-c19
+            part: rhyme
+            type: true_false
+            text: "Bear and chair rhyme, even though they are spelt differently."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c20
+            part: rhyme
+            type: sorting
+            text: "Which word does each card rhyme with? Sort them."
+            say: "Read each card yourself. Does it rhyme with hat or with go? Sort them."
+            option_audio: false
+            bins:
+              - { id: hat, show: { text: "hat" }, say: "Hat." }
+              - { id: go, show: { text: "go" }, say: "Go." }
+            options:
+              - { text: "snow", bin: go }
+              - { text: "bat", bin: hat }
+              - { text: "toe", bin: go }
+              - { text: "flat", bin: hat }

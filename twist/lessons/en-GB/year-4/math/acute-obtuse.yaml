@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [angle, clock]
   facets: []
+  parts:
+    - { id: name, what: { de: "spitze, rechte und stumpfe Winkel erkennen", en: "telling acute, right and obtuse angles apart" } }
+    - { id: clocks, what: { de: den Winkel zwischen den Uhrzeigern bestimmen, en: the angle between the hands of a clock } }
+    - { id: compare, what: { de: Winkel der Größe nach vergleichen, en: comparing angles by size } }
+    - { id: order, what: { de: Winkel bis zu zwei rechten Winkeln ordnen, en: ordering angles up to two right angles } }
   misconceptions:
     - id: turned-angle
       what: Thinks an angle changes kind when it is turned (a tilted right angle is not a right angle)
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -241,6 +247,24 @@ lessons:
             type: multiple_choice
             text: "What kind of angle do the clock hands make?"
             show: { drawn: clock, hour: 1, minute: 0 }
+            options: ["acute", "right", "obtuse"]
+            keep_order: true
+            answer: "acute"
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? This angle is obtuse."
+            show: { drawn: angle, degrees: 40, rotate: 250, label: false }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "What kind of angle do the clock hands make?"
+            show: { drawn: clock, hour: 8, minute: 0 }
+            options: ["acute", "right", "obtuse"]
+            keep_order: true
+            answer: "obtuse"
+          - id: l1-c6
+            type: multiple_choice
+            text: "An angle is smaller than a right angle. What is it called?"
             options: ["acute", "right", "obtuse"]
             keep_order: true
             answer: "acute"
@@ -424,8 +448,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: name
             type: multiple_choice
             text: "What kind of angle is this?"
             show: { drawn: angle, degrees: 55, rotate: 120, label: false }
@@ -433,6 +459,7 @@ lessons:
             keep_order: true
             answer: "acute"
           - id: l2-c2
+            part: clocks
             type: multiple_choice
             text: "What kind of angle do the clock hands make?"
             show: { drawn: clock, hour: 5, minute: 0 }
@@ -440,6 +467,7 @@ lessons:
             keep_order: true
             answer: "obtuse"
           - id: l2-c3
+            part: compare
             type: image_multiple_choice
             text: "Which angle is the smallest?"
             options:
@@ -448,12 +476,124 @@ lessons:
               - { drawn: angle, degrees: 170, label: false, key: a170 }
             answer: a65
           - id: l2-c4
+            part: order
             type: ordering
             text: "Put the angles in order, smallest first."
             options: ["an obtuse angle", "a straight line", "an acute angle", "a right angle"]
             slot_count: 4
             answer: ["an acute angle", "a right angle", "an obtuse angle", "a straight line"]
           - id: l2-c5
+            part: order
             type: true_false
             text: "Is it true? An angle of one and a half right angles is acute."
             answer: false
+          - id: l2-c6
+            part: name
+            type: true_false
+            text: "Is it true? This angle is obtuse."
+            show: { drawn: angle, degrees: 125, rotate: 100, label: false }
+            answer: true
+          - id: l2-c7
+            part: name
+            type: multiple_choice
+            text: "What kind of angle is this?"
+            show: { drawn: angle, degrees: 90, rotate: 135, label: false }
+            options: ["acute", "right", "obtuse"]
+            keep_order: true
+            answer: "right"
+          - id: l2-c8
+            part: name
+            type: image_multiple_choice
+            text: "Which angle is a right angle?"
+            options:
+              - { drawn: angle, degrees: 60, label: false, key: a60 }
+              - { drawn: angle, degrees: 90, rotate: 70, label: false, key: a90 }
+              - { drawn: angle, degrees: 120, label: false, key: a120 }
+            answer: a90
+          - id: l2-c9
+            part: name
+            type: true_false
+            text: "Is it true? This angle is smaller than a right angle."
+            show: { drawn: angle, degrees: 80, rotate: 160, label: false }
+            answer: true
+          - id: l2-c10
+            part: clocks
+            type: multiple_choice
+            text: "What kind of angle do the clock hands make?"
+            show: { drawn: clock, hour: 10, minute: 0 }
+            options: ["acute", "right", "obtuse"]
+            keep_order: true
+            answer: "acute"
+          - id: l2-c11
+            part: clocks
+            type: multiple_choice
+            text: "What kind of angle do the clock hands make?"
+            show: { drawn: clock, hour: 7, minute: 0 }
+            options: ["acute", "right", "obtuse"]
+            keep_order: true
+            answer: "obtuse"
+          - id: l2-c12
+            part: clocks
+            type: true_false
+            text: "Is it true? The clock hands make an acute angle."
+            show: { drawn: clock, hour: 6, minute: 0 }
+            answer: false
+          - id: l2-c13
+            part: clocks
+            type: image_multiple_choice
+            text: "Which clock has an obtuse angle between its hands?"
+            options:
+              - { drawn: clock, hour: 2, minute: 0, key: "2:00" }
+              - { drawn: clock, hour: 3, minute: 0, key: "3:00" }
+              - { drawn: clock, hour: 4, minute: 0, key: "4:00" }
+            answer: "4:00"
+          - id: l2-c14
+            part: clocks
+            type: multiple_choice
+            text: "What kind of angle do the hands of a clock make at 11 o'clock?"
+            options: ["acute", "right", "obtuse"]
+            keep_order: true
+            answer: "acute"
+          - id: l2-c15
+            part: compare
+            type: image_multiple_choice
+            text: "Which angle is the biggest?"
+            options:
+              - { drawn: angle, degrees: 35, rotate: 60, label: false, key: a35 }
+              - { drawn: angle, degrees: 80, label: false, key: a80 }
+              - { drawn: angle, degrees: 55, rotate: 200, label: false, key: a55 }
+            answer: a80
+          - id: l2-c16
+            part: compare
+            type: image_multiple_choice
+            text: "Which angle is the smallest?"
+            options:
+              - { drawn: angle, degrees: 140, label: false, key: a140 }
+              - { drawn: angle, degrees: 100, rotate: 300, label: false, key: a100 }
+              - { drawn: angle, degrees: 165, label: false, key: a165 }
+            answer: a100
+          - id: l2-c17
+            part: compare
+            type: true_false
+            text: "Is it true? An acute angle can be bigger than a right angle."
+            answer: false
+          - id: l2-c18
+            part: compare
+            type: multiple_choice
+            text: "Which is bigger: half a right angle or an obtuse angle?"
+            options: ["half a right angle", "an obtuse angle", "They are the same size."]
+            keep_order: true
+            answer: "an obtuse angle"
+          - id: l2-c19
+            part: order
+            type: ordering
+            text: "The hands of a clock make an angle. Put the times in order, biggest angle first."
+            options: ["2 o'clock", "6 o'clock", "1 o'clock", "4 o'clock"]
+            slot_count: 4
+            answer: ["6 o'clock", "4 o'clock", "2 o'clock", "1 o'clock"]
+          - id: l2-c20
+            part: order
+            type: multiple_choice
+            text: "Order the angles by size. Which comes between an acute angle and an obtuse angle?"
+            options: ["a right angle", "a straight line", "half a right angle"]
+            answer: "a right angle"

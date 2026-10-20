@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [ten-frame, number-line]
   facets: []
+  parts:
+    - { id: take-away, what: { de: im Zehnerfeld wegnehmen, en: taking away in the ten frame } }
+    - { id: count-back, what: { de: auf dem Zahlenstrahl rückwärts zählen, en: counting back on the number line } }
+    - { id: solve, what: { de: Minusaufgaben bis 10 rechnen, en: answering subtractions within 10 } }
   misconceptions:
     - id: count-back-includes-start
       what: Counts the start number when counting back (5 − 2 as "five, four", so 4)
@@ -217,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -236,6 +241,23 @@ lessons:
             say: "Start at three. Count back two hops. Where do you land?"
             show: { drawn: number-line, from: 0, to: 10, labels: all }
             answer: 1
+          - id: l1-c4
+            type: multiple_choice
+            text: "5 − 3 = ?"
+            say: "Five subtract three. How many are left?"
+            show: { drawn: ten-frame, filled: 5, cross: 3 }
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l1-c5
+            type: text_input
+            text: "2 − 2 = _"
+            say: "Two subtract two."
+            answer: "0"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 3 − 1 = 1"
+            say: "Three subtract one equals one. Is that true?"
+            answer: false
 
   - n: 2
     title: { de: Minus bis 10, en: Subtracting within 10 }
@@ -413,32 +435,146 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: solve
             type: text_input
             text: "8 − 0 = _"
             say: "Eight subtract zero. Write the answer."
             answer: "8"
           - id: l2-c2
+            part: solve
             type: multiple_choice
             text: "9 − 4 = ?"
             say: "Nine subtract four."
             options: ["6", "4", "5"]
             answer: "5"
           - id: l2-c3
+            part: solve
             type: text_input
             text: "8 − 3 = _"
             say: "Eight subtract three. Write the answer."
             answer: "5"
           - id: l2-c4
+            part: count-back
             type: point_on_line
             text: "Where do you land? 10 − 6"
             say: "Start at ten. Count back six hops. Where do you land?"
             show: { drawn: number-line, from: 0, to: 10, labels: all }
             answer: 4
           - id: l2-c5
+            part: solve
             type: multiple_choice
             text: "7 − 1 = ?"
             say: "Seven subtract one."
             options: ["5", "6", "8"]
             answer: "6"
+          - id: l2-c6
+            part: take-away
+            type: multiple_choice
+            text: "6 − 2 = ?"
+            say: "Six subtract two. How many are left?"
+            show: { drawn: ten-frame, filled: 6, cross: 2 }
+            options: ["3", "4", "5"]
+            answer: "4"
+          - id: l2-c7
+            part: take-away
+            type: multiple_choice
+            text: "9 − 3 = ?"
+            say: "Nine subtract three. How many are left?"
+            show: { drawn: ten-frame, filled: 9, cross: 3 }
+            options: ["5", "6", "7"]
+            answer: "6"
+          - id: l2-c8
+            part: take-away
+            type: fill_in_blank
+            text: "Write the number sentence."
+            say: "Ten counters, and six are crossed out. Write the number sentence."
+            show: { drawn: ten-frame, filled: 10, cross: 6 }
+            frame: "10 − _ = _"
+            options: ["4", "6", "10"]
+            answer: ["6", "4"]
+          - id: l2-c9
+            part: take-away
+            type: text_input
+            text: "How many are left?"
+            say: "How many counters are left?"
+            show: { drawn: ten-frame, filled: 8, cross: 6 }
+            answer: "2"
+          - id: l2-c10
+            part: take-away
+            type: true_false
+            text: "Is it true? 7 − 3 = 4"
+            say: "Seven subtract three equals four. Is that true?"
+            show: { drawn: ten-frame, filled: 7, cross: 3 }
+            answer: true
+          - id: l2-c11
+            part: take-away
+            type: multiple_choice
+            text: "How many are left?"
+            say: "How many counters are left?"
+            show: { drawn: ten-frame, filled: 6, cross: 6 }
+            options: ["0", "1", "6"]
+            answer: "0"
+          - id: l2-c12
+            part: count-back
+            type: point_on_line
+            text: "Where do you land? 10 − 8"
+            say: "Start at ten. Count back eight hops. Where do you land?"
+            show: { drawn: number-line, from: 0, to: 10, labels: all }
+            answer: 2
+          - id: l2-c13
+            part: count-back
+            type: point_on_line
+            text: "Where do you land? 6 − 4"
+            say: "Start at six. Count back four hops. Where do you land?"
+            show: { drawn: number-line, from: 0, to: 10, labels: all }
+            answer: 2
+          - id: l2-c14
+            part: count-back
+            type: multiple_choice
+            text: "Which number sentence do the hops show?"
+            say: "Look at the hops on the number line. Which number sentence do they show?"
+            show: { drawn: number-line, from: 0, to: 10, labels: all, jumps: [[7, -1], [6, -1]] }
+            options: ["7 − 2", "7 + 2", "7 − 1"]
+            answer: "7 − 2"
+          - id: l2-c15
+            part: count-back
+            type: point_on_line
+            text: "Where do you land? 9 − 1"
+            say: "Start at nine. Count back one hop. Where do you land?"
+            show: { drawn: number-line, from: 0, to: 10, labels: all }
+            answer: 8
+          - id: l2-c16
+            part: count-back
+            type: point_on_line
+            text: "Where do you land? 8 − 4"
+            say: "Start at eight. Count back four hops. Where do you land?"
+            show: { drawn: number-line, from: 0, to: 10, labels: all }
+            answer: 4
+          - id: l2-c17
+            part: solve
+            type: text_input
+            text: "10 − 7 = _"
+            say: "Ten subtract seven. Write the answer."
+            answer: "3"
+          - id: l2-c18
+            part: solve
+            type: true_false
+            text: "Is it true? 9 − 5 = 3"
+            say: "Nine subtract five equals three. Is that true?"
+            answer: false
+          - id: l2-c19
+            part: count-back
+            type: point_on_line
+            text: "Where do you land? 4 − 4"
+            say: "Start at four. Count back four hops. Where do you land?"
+            show: { drawn: number-line, from: 0, to: 10, labels: all }
+            answer: 0
+          - id: l2-c20
+            part: solve
+            type: text_input
+            text: "7 − 6 = _"
+            say: "Seven subtract six. Write the answer."
+            answer: "1"

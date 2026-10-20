@@ -26,6 +26,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: things, what: { de: "erkennen, ob ein Name zum Bild passt", en: telling whether a name fits a picture } }
+    - { id: un-une, what: { de: un oder une mit dem Wort wählen, en: choosing un or une with the word } }
+    - { id: colour, what: { de: ein Ding mit seiner Farbe benennen, en: naming a thing with its colour } }
+    - { id: number, what: { de: benennen wie viele Dinge es sind, en: naming how many things there are } }
   misconceptions:
     - id: no-article
       what: Names the thing without un or une (c'est chat), as children often do with single words
@@ -155,7 +160,7 @@ lessons:
                 type: audio_choice
                 text: "Which picture is it?"
                 say: { en: "Listen. Which picture is it? Tap it." }
-                audio: { fr: "Qu'est-ce que c'est ? C'est un crayon." }
+                audio: { turns: [{ fr: "Qu'est-ce que c'est ?", speaker: female }, { fr: "C'est un crayon.", speaker: male }] }
                 options: [{ object: crayon }, { object: pen }, { object: pencil }]
                 answer: pencil
                 hints: ["Careful: in French, un crayon is a pencil."]
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -226,6 +232,26 @@ lessons:
             say: { en: "Listen. Is that the right name for the picture?", fr: "C'est un poisson." }
             show: { object: fish }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Which picture is it?"
+            say: { en: "Listen. Which picture is it? Tap it." }
+            audio: { fr: "C'est une règle." }
+            options: [{ object: book }, { object: ruler }, { object: pencil }]
+            answer: ruler
+          - id: l1-c5
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "C'est un livre." }
+            show: { object: pencil }
+            answer: false
+          - id: l1-c6
+            type: audio_choice
+            text: "Which picture is it?"
+            say: { en: "Listen. Which picture is it? Tap it." }
+            audio: { turns: [{ fr: "Qu'est-ce que c'est ?", speaker: female }, { fr: "C'est une banane.", speaker: male }] }
+            options: [{ object: apple }, { object: ball }, { object: banana }]
+            answer: banana
 
   - n: 2
     title: { de: "Un ballon rouge", en: "Un ballon rouge" }
@@ -406,21 +432,25 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: things
             type: audio_choice
             text: "Which picture is it?"
             say: { en: "Listen. Which picture is it? Tap it." }
-            audio: { fr: "Qu'est-ce que c'est ? C'est une règle." }
+            audio: { turns: [{ fr: "Qu'est-ce que c'est ?", speaker: male }, { fr: "C'est une règle.", speaker: female }] }
             options: [{ object: ruler }, { object: pencil }, { object: book }]
             answer: ruler
           - id: l2-c2
+            part: things
             type: true_false
             text: "Is that the right name for the picture?"
             say: { en: "Listen. Is that the right name for the picture?", fr: "C'est une pomme." }
             show: { object: banana }
             answer: false
           - id: l2-c3
+            part: colour
             type: multiple_choice
             text: "Which one is right in French? A blue pencil."
             say: { en: "Which one is right in French? A blue pencil." }
@@ -428,16 +458,18 @@ lessons:
             answer: "un crayon bleu"
             option_audio: false
           - id: l2-c4
+            part: number
             type: audio_choice
             text: "Tap the right picture."
             say: { en: "Listen. Tap the right picture." }
-            audio: { fr: "Six chats." }
+            audio: { fr: "Trois chiens." }
             options:
-              - { object: cat, count: 5 }
-              - { object: cat, count: 6 }
-              - { object: cat, count: 8 }
-            answer: "6"
+              - { object: dog, count: 2 }
+              - { object: dog, count: 4 }
+              - { object: dog, count: 3 }
+            answer: "3"
           - id: l2-c5
+            part: colour
             type: audio_choice
             text: "Tap the right picture."
             say: { en: "Listen. Tap the right picture." }
@@ -447,3 +479,124 @@ lessons:
               - { object: ball, colour: red }
               - { object: ball, colour: green }
             answer: red
+          - id: l2-c6
+            part: things
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "C'est un poisson." }
+            show: { object: cat }
+            answer: false
+          - id: l2-c7
+            part: things
+            type: audio_choice
+            text: "Which picture is it?"
+            say: { en: "Listen. Which picture is it? Tap it." }
+            audio: { fr: "C'est une banane." }
+            options: [{ object: apple }, { object: pear }, { object: banana }]
+            answer: banana
+          - id: l2-c8
+            part: things
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "C'est un crayon." }
+            show: { object: pencil }
+            answer: true
+          - id: l2-c9
+            part: un-une
+            type: multiple_choice
+            text: "Which one is right in French? It is an apple."
+            say: { en: "Which one is right in French? It is an apple." }
+            options: ["c'est un pomme", "c'est une pomme"]
+            answer: "c'est une pomme"
+            option_audio: false
+          - id: l2-c10
+            part: un-une
+            type: fill_in_blank
+            text: "Un or une? Fill the gap."
+            say: { en: "Un or une? Fill the gap." }
+            show: { object: dog }
+            frame: "C'est _ chien."
+            options: ["un", "une"]
+            answer: ["un"]
+            option_audio: false
+          - id: l2-c11
+            part: un-une
+            type: multiple_choice
+            text: "Which one is right in French? It is a ruler."
+            say: { en: "Which one is right in French? It is a ruler." }
+            options: ["c'est une règle", "c'est un règle"]
+            answer: "c'est une règle"
+            option_audio: false
+          - id: l2-c12
+            part: un-une
+            type: multiple_choice
+            text: "Which one is right in French? It is a fish."
+            say: { en: "Which one is right in French? It is a fish." }
+            options: ["c'est une poisson", "c'est un poisson"]
+            answer: "c'est un poisson"
+            option_audio: false
+          - id: l2-c13
+            part: un-une
+            type: fill_in_blank
+            text: "Un or une? Fill the gap."
+            say: { en: "Un or une? Fill the gap." }
+            show: { object: banana }
+            frame: "C'est _ banane."
+            options: ["un", "une"]
+            answer: ["une"]
+            option_audio: false
+          - id: l2-c14
+            part: colour
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "Un ballon bleu." }
+            show: { object: ball, colour: blue }
+            answer: true
+          - id: l2-c15
+            part: colour
+            type: multiple_choice
+            text: "Which one is right in French? A yellow ball."
+            say: { en: "Which one is right in French? A yellow ball." }
+            options: ["un jaune ballon", "un ballon vert", "un ballon jaune"]
+            answer: "un ballon jaune"
+            option_audio: false
+          - id: l2-c16
+            part: number
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "Quatre livres." }
+            show: { object: book, count: 3 }
+            answer: false
+          - id: l2-c17
+            part: number
+            type: audio_choice
+            text: "Tap the right picture."
+            say: { en: "Listen. Tap the right picture." }
+            audio: { fr: "Deux chiens." }
+            options:
+              - { object: dog, count: 3 }
+              - { object: dog, count: 1 }
+              - { object: dog, count: 2 }
+            answer: "2"
+          - id: l2-c18
+            part: number
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "Cinq chats." }
+            show: { object: cat, count: 5 }
+            answer: true
+          - id: l2-c19
+            part: number
+            type: multiple_choice
+            text: "Which one is right in French? Two books."
+            say: { en: "Which one is right in French? Two books." }
+            options: ["livres deux", "deux livres"]
+            answer: "deux livres"
+            option_audio: false
+          - id: l2-c20
+            part: colour
+            type: true_false
+            text: "Is that the right name for the picture?"
+            say: { en: "Listen. Is that the right name for the picture?", fr: "Un ballon rouge." }
+            show: { object: ball, colour: blue }
+            answer: false

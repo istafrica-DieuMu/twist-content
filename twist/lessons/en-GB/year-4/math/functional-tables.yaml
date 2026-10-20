@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table]
   facets: [currency]
+  parts:
+    - { id: fill, what: { de: fehlende Werte in einer Tabelle ergänzen, en: filling in missing values in a table } }
+    - { id: one, what: { de: den Wert für eins finden, en: finding the value for one } }
+    - { id: check, what: { de: "prüfen, ob eine Tabelle stimmt", en: checking whether a table is right } }
+    - { id: combine, what: { de: Spalten zusammennehmen oder verdoppeln, en: joining or doubling columns } }
   misconceptions:
     - id: adds-not-multiplies
       what: Goes on by adding 1 or a fixed amount from column to column instead of the value of one (3 notebooks £9, so 4 notebooks £10), or adds when the number doubles
@@ -208,6 +213,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -225,6 +231,25 @@ lessons:
             type: text_input
             text: "One book costs £6. How many pounds do 8 books cost?"
             answer: "48"
+          - id: l1-c4
+            type: true_false
+            text: "A scarf costs £6. Is it true? This table is right."
+            say: "A scarf costs six pounds. Look at the table. Is it true? The table is right."
+            show: { drawn: table, rows: [["scarves", "1", "2", "3"], ["price", "£6", "£12", "£18"]] }
+            answer: true
+          - id: l1-c5
+            type: fill_in_blank
+            text: "6 cookies cost £5. Double the number of cookies."
+            show: { drawn: table, rows: [["cookies", "6", "12"], ["price", "£5", "?"]] }
+            frame: "12 cookies: £_"
+            options: ["10", "11", "25"]
+            answer: ["10"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "3 bracelets cost £15. How much does 1 cost?"
+            show: { drawn: table, rows: [["bracelets", "1", "3"], ["price", "?", "£15"]] }
+            options: ["£5", "£3", "£12"]
+            answer: "£5"
 
   - n: 2
     title: { de: "Tabellen ergänzen", en: "Completing tables" }
@@ -393,8 +418,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: fill
             type: fill_in_blank
             text: "A T-shirt costs £7. Fill in the table."
             show: { drawn: table, rows: [["T-shirts", "1", "2", "3", "6"], ["price", "£7", "£14", "?", "?"]] }
@@ -402,10 +429,12 @@ lessons:
             options: ["15", "21", "35", "42"]
             answer: ["21", "42"]
           - id: l2-c2
+            part: one
             type: text_input
             text: "5 notebooks cost £15. How many pounds does 1 notebook cost?"
             answer: "3"
           - id: l2-c3
+            part: combine
             type: fill_in_blank
             text: "Add the two columns."
             say: "Two cartons hold twelve eggs, four cartons hold twenty-four. How many cartons and eggs are there together?"
@@ -414,12 +443,122 @@ lessons:
             options: ["6", "8", "36", "48"]
             answer: ["6", "36"]
           - id: l2-c4
+            part: check
             type: true_false
             text: "A bag of rice costs £3. Is it true? This table is right."
             say: "A bag of rice costs three pounds. Look at the table. Is it true? The table is right."
             show: { drawn: table, rows: [["bags", "1", "2", "3", "4"], ["price", "£3", "£6", "£9", "£10"]] }
             answer: false
           - id: l2-c5
+            part: fill
             type: text_input
             text: "An octopus has 8 arms. How many arms do 9 octopuses have?"
             answer: "72"
+          - id: l2-c6
+            part: fill
+            type: fill_in_blank
+            text: "A bunch has 5 flowers. Fill in the table."
+            show: { drawn: table, rows: [["bunches", "1", "2", "4", "7"], ["flowers", "5", "10", "?", "?"]] }
+            frame: "4 bunches: _ flowers, 7 bunches: _ flowers"
+            options: ["15", "20", "30", "35"]
+            answer: ["20", "35"]
+          - id: l2-c7
+            part: fill
+            type: text_input
+            text: "A fairground ride costs £6. How many pounds do 7 rides cost?"
+            show: { drawn: table, rows: [["rides", "1", "2", "7"], ["price", "£6", "£12", "?"]] }
+            answer: "42"
+          - id: l2-c8
+            part: fill
+            type: fill_in_blank
+            text: "A boat travels 9 km each hour. Fill in the table."
+            show: { drawn: table, rows: [["hours", "1", "2", "3", "4"], ["km", "9", "?", "27", "?"]] }
+            frame: "2 hours: _ km, 4 hours: _ km"
+            options: ["18", "28", "36", "45"]
+            answer: ["18", "36"]
+          - id: l2-c9
+            part: one
+            type: multiple_choice
+            text: "6 tickets cost £24. How much does 1 ticket cost?"
+            show: { drawn: table, rows: [["tickets", "1", "6"], ["price", "?", "£24"]] }
+            options: ["£4", "£6", "£18"]
+            answer: "£4"
+          - id: l2-c10
+            part: one
+            type: text_input
+            text: "5 packs hold 40 stickers. How many stickers are in 1 pack?"
+            show: { drawn: table, rows: [["packs", "1", "5"], ["stickers", "?", "40"]] }
+            answer: "8"
+          - id: l2-c11
+            part: one
+            type: fill_in_blank
+            text: "3 kites cost £12. Find the price of 1 kite, then of 5 kites."
+            show: { drawn: table, rows: [["kites", "1", "3", "5"], ["price", "?", "£12", "?"]] }
+            frame: "1 kite: £_, 5 kites: £_"
+            options: ["3", "4", "15", "20"]
+            answer: ["4", "20"]
+          - id: l2-c12
+            part: one
+            type: true_false
+            text: "4 pizzas cost £20. Is it true? 1 pizza costs £5."
+            say: "Four pizzas cost twenty pounds. Is it true? One pizza costs five pounds."
+            show: { drawn: table, rows: [["pizzas", "1", "4"], ["price", "?", "£20"]] }
+            answer: true
+          - id: l2-c13
+            part: check
+            type: true_false
+            text: "3 pens cost £4. Is it true? This table is right."
+            say: "Three pens cost four pounds. Look at the table. Is it true? The table is right."
+            show: { drawn: table, rows: [["pens", "3", "6", "9"], ["price", "£4", "£8", "£12"]] }
+            answer: true
+          - id: l2-c14
+            part: check
+            type: true_false
+            text: "A pack has 4 batteries. Is it true? This table is right."
+            say: "A pack has four batteries. Look at the table. Is it true? The table is right."
+            show: { drawn: table, rows: [["packs", "1", "2", "4", "8"], ["batteries", "4", "8", "16", "24"]] }
+            answer: false
+          - id: l2-c15
+            part: check
+            type: multiple_choice
+            text: "A melon costs £2. Which column of the table is wrong?"
+            show: { drawn: table, rows: [["melons", "1", "2", "3", "4", "5"], ["price", "£2", "£4", "£6", "£7", "£10"]] }
+            options: ["3 melons", "4 melons", "5 melons"]
+            answer: "4 melons"
+          - id: l2-c16
+            part: check
+            type: image_multiple_choice
+            text: "A cinema ticket costs £8. Which table is right?"
+            options:
+              - { drawn: table, rows: [["tickets", "1", "2", "3"], ["price", "£8", "£16", "£24"]], key: a }
+              - { drawn: table, rows: [["tickets", "1", "2", "3"], ["price", "£8", "£16", "£17"]], key: b }
+              - { drawn: table, rows: [["tickets", "1", "2", "3"], ["price", "£8", "£9", "£10"]], key: c }
+            answer: a
+          - id: l2-c17
+            part: combine
+            type: text_input
+            text: "2 packs hold 16 biscuits and 5 packs hold 40. How many biscuits are in 7 packs?"
+            show: { drawn: table, rows: [["packs", "2", "5", "7"], ["biscuits", "16", "40", "?"]] }
+            answer: "56"
+          - id: l2-c18
+            part: combine
+            type: fill_in_blank
+            text: "2 bottles hold 3 litres. Double each time to fill in the table."
+            show: { drawn: table, rows: [["bottles", "2", "4", "8"], ["litres", "3", "?", "?"]] }
+            frame: "4 bottles: _ litres, 8 bottles: _ litres"
+            options: ["5", "6", "9", "12"]
+            answer: ["6", "12"]
+          - id: l2-c19
+            part: combine
+            type: true_false
+            text: "3 tickets cost £15 and 4 tickets cost £20. Is it true? 7 tickets cost £35."
+            say: "Three tickets cost fifteen pounds and four tickets cost twenty pounds. Is it true? Seven tickets cost thirty-five pounds."
+            show: { drawn: table, rows: [["tickets", "3", "4", "7"], ["price", "£15", "£20", "?"]] }
+            answer: true
+          - id: l2-c20
+            part: combine
+            type: multiple_choice
+            text: "5 boxes hold 30 crayons. How many crayons do 10 boxes hold?"
+            show: { drawn: table, rows: [["boxes", "5", "10"], ["crayons", "30", "?"]] }
+            options: ["60", "35", "300"]
+            answer: "60"

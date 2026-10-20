@@ -25,6 +25,11 @@ metadata:
   forms: [picture, text, drawn]
   drawn: [word-card, letter-card]
   facets: []
+  parts:
+    - { id: spell, what: { de: geübte Wörter aus dem Kopf schreiben, en: writing practised words from memory } }
+    - { id: choose, what: { de: die richtige Schreibung erkennen, en: recognising the right spelling } }
+    - { id: check, what: { de: ein Wort in der Wörterliste prüfen und verbessern, en: checking a word in a word list and correcting it } }
+    - { id: abc, what: { de: Wörter nach dem ABC ordnen und finden, en: putting words in ABC order and finding them } }
   misconceptions:
     - id: english-spelling
       what: Writes from memory with English spellings of French sounds (la pool, le bato, le shien, trwa)
@@ -213,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -230,9 +236,30 @@ lessons:
             type: multiple_choice
             option_audio: false
             text: "Which spelling is right?"
-            show: { object: boat }
-            options: ["le bateau", "le bato", "le batau"]
-            answer: "le bateau"
+            show: { object: present }
+            options: ["le cado", "le cadeau", "le cadau"]
+            answer: "le cadeau"
+          - id: l1-c4
+            type: text_input
+            keyboard: letters
+            text: "Write the word for the picture, with le or la."
+            show: { object: pencil }
+            answer: "le crayon"
+          - id: l1-c5
+            type: multiple_choice
+            option_audio: false
+            text: "Which spelling is right?"
+            show: { object: pear }
+            options: ["la pwar", "la poire", "la poir"]
+            answer: "la poire"
+          - id: l1-c6
+            type: fill_in_blank
+            option_audio: false
+            text: "Fill in the missing letters."
+            show: { object: mouse }
+            frame: "la s_ris"
+            options: ["oo", "u", "ou"]
+            answer: ["ou"]
 
   - n: 2
     title: { de: "In der Wörterliste prüfen", en: "Checking in a word list" }
@@ -390,32 +417,145 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spell
             type: text_input
             keyboard: letters
             text: "Write the word for the picture, with le or la."
             show: { object: present }
             answer: "le cadeau"
           - id: l2-c2
+            part: spell
             type: text_input
             keyboard: letters
             text: "Look at the word. When it is covered, write it."
             show: { drawn: word-card, text: "le poisson", flash: 3 }
             answer: "le poisson"
           - id: l2-c3
+            part: check
             type: multiple_choice
             option_audio: false
             text: "Word list: chaise, chat, chien, crayon\nNoah wrote: la chese\nWhich is the right spelling?"
             options: ["la chaise", "la chese", "la chaize"]
             answer: "la chaise"
           - id: l2-c4
+            part: check
             type: highlight_in_text
             text: "Which word is spelt wrong? Check each one in the word list.\nWord list: cochon, lapin, poule, trousse"
             show: { drawn: letter-card, text: "trousse cochon lapen poule" }
             spans: ["lapen"]
           - id: l2-c5
+            part: check
             type: text_input
             keyboard: letters
             text: "Lily wrote “trwa”. Write it correctly.\nWord list: poire, trois, trousse"
             answer: "trois"
+          - id: l2-c6
+            part: spell
+            type: text_input
+            keyboard: letters
+            text: "Write the word for the picture, with le or la."
+            show: { object: rabbit }
+            answer: "le lapin"
+          - id: l2-c7
+            part: spell
+            type: text_input
+            keyboard: letters
+            text: "Look at the word. When it is covered, write it."
+            show: { drawn: word-card, text: "le gâteau", flash: 3 }
+            answer: "le gâteau"
+          - id: l2-c8
+            part: spell
+            type: text_input
+            keyboard: letters
+            text: "Write the word for the picture, with le or la."
+            show: { object: baby }
+            answer: "le bébé"
+          - id: l2-c9
+            part: choose
+            type: multiple_choice
+            option_audio: false
+            text: "Which spelling is right?"
+            show: { object: pencil-case }
+            options: ["la trouse", "la trousse", "la troosse"]
+            answer: "la trousse"
+          - id: l2-c10
+            part: choose
+            type: multiple_choice
+            option_audio: false
+            text: "Which spelling is right?"
+            show: { object: bike }
+            options: ["le velo", "le vaylo", "le vélo"]
+            answer: "le vélo"
+          - id: l2-c11
+            part: choose
+            type: multiple_choice
+            option_audio: false
+            text: "Which spelling is right?"
+            show: { object: pencil }
+            options: ["le craion", "le crayon", "le creyon"]
+            answer: "le crayon"
+          - id: l2-c12
+            part: choose
+            type: multiple_choice
+            option_audio: false
+            text: "Which spelling is right?"
+            show: { object: fish }
+            options: ["le pwasson", "le poisson", "le poison"]
+            answer: "le poisson"
+          - id: l2-c13
+            part: choose
+            type: multiple_choice
+            option_audio: false
+            text: "Which spelling is right?"
+            show: { object: hat }
+            options: ["le shapeau", "le chapo", "le chapeau"]
+            answer: "le chapeau"
+          - id: l2-c14
+            part: check
+            type: true_false
+            text: "Word list: cadeau, chapeau, poisson, souris\nInès wrote: le chapau\nIs it right?"
+            answer: false
+          - id: l2-c15
+            part: check
+            type: text_input
+            keyboard: letters
+            text: "Emma wrote “la pool”. Write it correctly.\nWord list: poire, poisson, poule"
+            answer: "la poule"
+          - id: l2-c16
+            part: abc
+            type: ordering
+            option_audio: false
+            text: "Put the words in alphabetical order, like a word list."
+            options: ["trousse", "bébé", "lapin", "crayon"]
+            slot_count: 4
+            answer: ["bébé", "crayon", "lapin", "trousse"]
+          - id: l2-c17
+            part: abc
+            type: ordering
+            option_audio: false
+            text: "Put the words in alphabetical order, like a word list."
+            options: ["poule", "poisson", "cochon", "poire"]
+            slot_count: 4
+            answer: ["cochon", "poire", "poisson", "poule"]
+          - id: l2-c18
+            part: abc
+            type: multiple_choice
+            option_audio: false
+            text: "Which word comes first in a word list?"
+            options: ["chien", "chat", "chapeau"]
+            answer: "chapeau"
+          - id: l2-c19
+            part: abc
+            type: multiple_choice
+            option_audio: false
+            text: "Word list: cadeau, _, chien, lapin\nWhich word fits in the gap?"
+            options: ["bateau", "chat", "poule"]
+            answer: "chat"
+          - id: l2-c20
+            part: abc
+            type: true_false
+            text: "bébé, chien, étoile, poule, souris\nIs this list in alphabetical order?"
+            answer: true

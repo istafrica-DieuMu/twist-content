@@ -25,6 +25,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: like, what: { de: "sagen, was ich mag und liebe (j'aime, j'adore)", en: "saying what I like and love (j'aime, j'adore)" } }
+    - { id: dislike, what: { de: "sagen, was ich nicht mag (je n'aime pas, je déteste)", en: "saying what I do not like (je n'aime pas, je déteste)" } }
+    - { id: ask, what: { de: "andere fragen (Tu aimes ... ? Et toi ?)", en: "asking others (Tu aimes ... ? Et toi ?)" } }
+    - { id: answer, what: { de: "auf „Tu aimes ... ?“ mit je antworten", en: "answering Tu aimes ... ? with je" } }
   misconceptions:
     - id: hears-aime
       what: Hears aime in je n'aime pas and takes it for liking
@@ -51,7 +56,8 @@ lessons:
           - id: l1-w1
             type: true_false
             text: "Is that the right name for the picture?"
-            say: { en: "Listen. Is that the right name for the picture?", fr: "C'est une pomme." }
+            say: { en: "Listen. Is that the right name for the picture?" }
+            audio: { fr: "C'est une pomme." }
             show: { object: apple }
             answer: true
             difficulty: easy
@@ -111,7 +117,7 @@ lessons:
                   - "No. Hugo does not like milk."
               - id: l1-f3
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I don't like milk."
                 say: { en: "Build the sentence: I don't like milk." }
                 options: ["pas", "Je", "le lait", "n'aime"]
                 slot_count: 4
@@ -124,7 +130,8 @@ lessons:
               - id: l1-f4
                 type: true_false
                 text: "Does Tom like ice cream?"
-                say: { en: "Listen. Does Tom like ice cream?", fr: "J'adore la glace !" }
+                say: { en: "Listen. Does Tom like ice cream?" }
+                audio: { fr: "J'adore la glace !", speaker: male }
                 show: { object: ice-cream }
                 answer: true
                 hints:
@@ -161,13 +168,14 @@ lessons:
               - id: l1-s3
                 type: true_false
                 text: "Does Jules like carrots?"
-                say: { en: "Listen. Does Jules like carrots?", fr: "Je déteste les carottes." }
+                say: { en: "Listen. Does Jules like carrots?" }
+                audio: { fr: "Je déteste les carottes.", speaker: male }
                 show: { object: carrot }
                 answer: false
                 hints: ["Je déteste means I hate."]
               - id: l1-s4
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I like cake."
                 say: { en: "Build the sentence: I like cake." }
                 options: ["gâteau", "J'aime", "le"]
                 slot_count: 3
@@ -200,7 +208,7 @@ lessons:
                 keep_order: true
               - id: l1-n3
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I don't like cheese."
                 say: { en: "Build the sentence: I don't like cheese." }
                 options: ["n'aime", "le fromage", "Je", "pas"]
                 slot_count: 4
@@ -209,7 +217,8 @@ lessons:
               - id: l1-n4
                 type: true_false
                 text: "Does Inès like apples?"
-                say: { en: "Listen. Does Inès like apples?", fr: "J'aime les pommes." }
+                say: { en: "Listen. Does Inès like apples?" }
+                audio: { fr: "J'aime les pommes.", speaker: female }
                 show: { object: apple }
                 answer: true
               - id: l1-n5
@@ -219,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -241,6 +251,26 @@ lessons:
             options: ["J'aime les bananes.", "J'aime bananes."]
             answer: "J'aime les bananes."
             option_audio: false
+          - id: l1-c4
+            type: audio_choice
+            text: "What does Malik hate?"
+            say: { en: "Listen. What does Malik hate? Tap the picture." }
+            audio: { fr: "Je déteste les tomates.", speaker: male }
+            options: [{ object: carrot }, { object: tomato }, { object: apple }]
+            answer: tomato
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which one means I love?"
+            options: ["je déteste", "je n'aime pas", "j'adore"]
+            answer: "j'adore"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Does Emma like cheese?"
+            say: { en: "Listen. Does Emma like cheese?" }
+            audio: { fr: "J'adore le fromage !", speaker: female }
+            show: { object: cheese }
+            answer: true
 
   - n: 2
     title: { de: "Tu aimes ...?", en: "Tu aimes ...?" }
@@ -261,7 +291,8 @@ lessons:
           - id: l2-w2
             type: true_false
             text: "Does Chloé like cake?"
-            say: { en: "Do you remember? Does Chloé like cake?", fr: "J'adore le gâteau." }
+            say: { en: "Do you remember? Does Chloé like cake?" }
+            audio: { fr: "J'adore le gâteau.", speaker: female }
             show: { object: cake }
             answer: true
             difficulty: easy
@@ -284,7 +315,8 @@ lessons:
               - id: l2-f1
                 type: true_false
                 text: "Is someone asking a question?"
-                say: { en: "Listen. Is someone asking a question?", fr: "Tu aimes les pommes ?" }
+                say: { en: "Listen. Is someone asking a question?" }
+                audio: { fr: "Tu aimes les pommes ?" }
                 answer: true
                 hints:
                   - "Listen to the start: tu aimes."
@@ -308,7 +340,7 @@ lessons:
                 type: audio_choice
                 text: "Does Hugo like pizza?"
                 say: { en: "Listen. Does Hugo like pizza?" }
-                audio: { fr: "Tu aimes la pizza, Hugo ? Non, je n'aime pas ça." }
+                audio: { turns: [{ fr: "Tu aimes la pizza, Hugo ?", speaker: female }, { fr: "Non, je n'aime pas ça.", speaker: male }] }
                 options: ["yes", "no"]
                 answer: "no"
                 keep_order: true
@@ -318,7 +350,7 @@ lessons:
                   - "No. He says non, je n'aime pas ça."
               - id: l2-f4
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the question: Do you like cheese?"
                 say: { en: "Build the question: Do you like cheese?" }
                 options: ["le fromage ?", "aimes", "Tu"]
                 slot_count: 3
@@ -359,16 +391,17 @@ lessons:
               - id: l2-s3
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu aimes le chocolat ? Oui, j'adore !" }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Tu aimes le chocolat ?", speaker: female }, { fr: "Oui, j'adore !", speaker: male }] }
                 answer: true
                 hints: ["Tu aimes asks if you like it. J'adore means I love it."]
               - id: l2-s4
                 type: audio_choice
                 text: "Who likes pizza?"
                 say: { en: "Listen to the two children. Who likes pizza?" }
-                audio: { fr: "Tu aimes la pizza ? Oui, j'aime ça. Et toi ? Non, je n'aime pas ça." }
-                options: ["only the first child", "only the second child", "both children"]
-                answer: "only the first child"
+                audio: { turns: [{ fr: "Tu aimes la pizza ?", speaker: female }, { fr: "Oui, j'aime ça. Et toi ?", speaker: male }, { fr: "Non, je n'aime pas ça.", speaker: female }] }
+                options: ["only the boy", "only the girl", "both children"]
+                answer: "only the boy"
                 hints: ["The first answer is oui. The second is non."]
               - id: l2-s5
                 type: speak
@@ -389,11 +422,12 @@ lessons:
               - id: l2-n2
                 type: true_false
                 text: "Does the answer fit the question?"
-                say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu aimes les bananes ? Je m'appelle Tom." }
+                say: { en: "Listen to the question and the answer. Does the answer fit?" }
+                audio: { turns: [{ fr: "Tu aimes les bananes ?", speaker: female }, { fr: "Je m'appelle Tom.", speaker: male }] }
                 answer: false
               - id: l2-n3
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the question: Do you like milk?"
                 say: { en: "Build the question: Do you like milk?" }
                 options: ["aimes", "le lait ?", "Tu"]
                 slot_count: 3
@@ -403,7 +437,7 @@ lessons:
                 type: audio_choice
                 text: "Does Manon like tomatoes?"
                 say: { en: "Listen. Does Manon like tomatoes?" }
-                audio: { fr: "Tu aimes les tomates, Manon ? Oui, j'aime ça !" }
+                audio: { turns: [{ fr: "Tu aimes les tomates, Manon ?", speaker: male }, { fr: "Oui, j'aime ça !", speaker: female }] }
                 options: ["yes", "no"]
                 answer: "yes"
                 keep_order: true
@@ -414,8 +448,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: dislike
             type: audio_choice
             text: "What does Jules not like?"
             say: { en: "Listen. What does Jules not like? Tap the picture." }
@@ -423,6 +459,7 @@ lessons:
             options: [{ object: cake }, { object: apple }, { object: cheese }]
             answer: cheese
           - id: l2-c2
+            part: answer
             type: multiple_choice
             text: "“Tu aimes la glace ?” You don't like it. What do you answer?"
             say: { en: "Your friend asks: tu aimes la glace ? You don't like it. What do you answer?" }
@@ -430,21 +467,143 @@ lessons:
             answer: "Non, je n'aime pas ça."
             option_audio: false
           - id: l2-c3
+            part: dislike
             type: ordering
-            text: "Put the words in order."
+            text: "Build the sentence: I don't like carrots."
             say: { en: "Build the sentence: I don't like carrots." }
             options: ["les carottes", "pas", "n'aime", "Je"]
             slot_count: 4
             answer: ["Je", "n'aime", "pas", "les carottes"]
             option_audio: false
           - id: l2-c4
+            part: like
             type: multiple_choice
             text: "Which sentence is right?"
             options: ["J'aime lait.", "J'aime le lait."]
             answer: "J'aime le lait."
             option_audio: false
           - id: l2-c5
+            part: answer
             type: true_false
             text: "Does the answer fit the question?"
-            say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu aimes les pommes ? Non, je n'aime pas ça." }
+            say: { en: "Listen to the question and the answer. Does the answer fit?" }
+            audio: { turns: [{ fr: "Tu aimes les pommes ?", speaker: male }, { fr: "Non, je n'aime pas ça.", speaker: female }] }
             answer: true
+          - id: l2-c6
+            part: like
+            type: audio_choice
+            text: "What does Nina love?"
+            say: { en: "Listen. What does Nina love? Tap the picture." }
+            audio: { fr: "J'aime le lait, mais j'adore la glace !", speaker: female }
+            options: [{ object: milk }, { object: cake }, { object: ice-cream }]
+            answer: ice-cream
+          - id: l2-c7
+            part: like
+            type: ordering
+            text: "Build the sentence: I love chocolate."
+            say: { en: "Build the sentence: I love chocolate." }
+            options: ["chocolat", "le chocolat", "J'adore"]
+            slot_count: 2
+            answer: ["J'adore", "le chocolat"]
+            option_audio: false
+          - id: l2-c8
+            part: like
+            type: multiple_choice
+            text: "Which sentence means I love pizza?"
+            options: ["J'aime la pizza.", "Je déteste la pizza.", "J'adore la pizza."]
+            answer: "J'adore la pizza."
+            option_audio: false
+          - id: l2-c9
+            part: like
+            type: fill_in_blank
+            text: "Finish the sentence: I like apples."
+            say: { en: "Finish the sentence: I like apples." }
+            frame: "J'aime _ pommes."
+            options: ["le", "les", "la"]
+            answer: ["les"]
+            option_audio: false
+          - id: l2-c10
+            part: dislike
+            type: audio_choice
+            text: "What does Paul hate?"
+            say: { en: "Listen. What does Paul hate? Tap the picture." }
+            audio: { fr: "Je déteste le lait ! Mais j'aime le fromage.", speaker: male }
+            options: [{ object: cheese }, { object: milk }, { object: cake }]
+            answer: milk
+          - id: l2-c11
+            part: dislike
+            type: true_false
+            text: "Does Zoé hate bananas?"
+            say: { en: "Listen. Does Zoé hate bananas?" }
+            audio: { fr: "Beurk ! Je déteste les bananes.", speaker: female }
+            show: { object: banana }
+            answer: true
+          - id: l2-c12
+            part: dislike
+            type: multiple_choice
+            text: "You hate carrots. What do you say?"
+            options: ["J'adore les carottes.", "Je déteste carottes.", "Je déteste les carottes."]
+            answer: "Je déteste les carottes."
+            option_audio: false
+          - id: l2-c13
+            part: ask
+            type: multiple_choice
+            text: "You want to know if your friend likes milk. What do you ask?"
+            options: ["J'aime le lait.", "Tu aimes le lait ?", "Oui, j'aime ça."]
+            answer: "Tu aimes le lait ?"
+            option_audio: false
+          - id: l2-c14
+            part: ask
+            type: ordering
+            text: "Say that you like apples, then ask your friend back. Build it: I like apples. And you?"
+            say: { en: "Say that you like apples, then ask your friend back. Build it: I like apples. And you?" }
+            options: ["Et toi ?", "les pommes.", "Tu aimes", "J'aime"]
+            slot_count: 3
+            answer: ["J'aime", "les pommes.", "Et toi ?"]
+            option_audio: false
+          - id: l2-c15
+            part: ask
+            type: true_false
+            text: "Is Léa asking a question?"
+            say: { en: "Listen. Is Léa asking a question?" }
+            audio: { fr: "J'aime les bananes.", speaker: female }
+            answer: false
+          - id: l2-c16
+            part: ask
+            type: multiple_choice
+            text: "Hugo says: “J'aime la pizza.” How does he ask you back?"
+            options: ["Merci !", "Et toi ?", "Oui, j'aime ça."]
+            answer: "Et toi ?"
+            option_audio: false
+          - id: l2-c17
+            part: ask
+            type: audio_choice
+            text: "What does Tom ask?"
+            say: { en: "Listen. What does Tom ask?" }
+            audio: { fr: "Tu aimes les tomates ?", speaker: male }
+            options: ["Do you like carrots?", "Do you like tomatoes?", "I like tomatoes."]
+            answer: "Do you like tomatoes?"
+          - id: l2-c18
+            part: answer
+            type: audio_choice
+            text: "You like cheese. Which answer fits the question?"
+            say: { en: "You like cheese. Listen to the question. Which answer fits?" }
+            audio: { fr: "Tu aimes le fromage ?", speaker: female }
+            options: ["Oui, tu aimes ça.", "Oui, j'aime ça.", "C'est un fromage."]
+            answer: "Oui, j'aime ça."
+          - id: l2-c19
+            part: answer
+            type: true_false
+            text: "Max answers the question. Is his answer right?"
+            say: { en: "Listen. Max answers the question. Is his answer right?" }
+            audio: { turns: [{ fr: "Max, tu aimes la glace ?", speaker: female }, { fr: "Oui, tu aimes ça !", speaker: male }] }
+            answer: false
+          - id: l2-c20
+            part: answer
+            type: ordering
+            text: "Build the answer: No, I don't like it."
+            say: { en: "Build the answer: No, I don't like it." }
+            options: ["pas ça.", "je n'aime", "Non,"]
+            slot_count: 3
+            answer: ["Non,", "je n'aime", "pas ça."]
+            option_audio: false

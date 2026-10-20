@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: continue, what: { de: Zahlenfolgen und schöne Päckchen fortsetzen, en: continuing number sequences and calculation patterns } }
+    - { id: rule, what: { de: die Regel eines Musters finden und prüfen, en: finding and checking the rule of a pattern } }
+    - { id: explain, what: { de: "erklären, warum sich das Ergebnis im Päckchen so ändert", en: explaining why the answers in a calculation pattern change as they do } }
+    - { id: mistake, what: { de: Fehler im Muster finden, en: finding the odd one out or the wrong answer in a pattern } }
   misconceptions:
     - id: rule-from-two
       what: Guesses the rule from the first two numbers only and misses that the step changes (2, 4, 8, 16 read as add 2 each time)
@@ -188,6 +193,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -205,6 +211,21 @@ lessons:
             text: "Which number does not fit the pattern? 12, 16, 20, 25, 28"
             options: ["16", "25", "28"]
             answer: "25"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Continue the sequence."
+            frame: "640, 590, 540, 490, _, _"
+            options: ["440", "390", "540", "450"]
+            answer: ["440", "390"]
+          - id: l1-c5
+            type: true_false
+            text: "The rule is add 8 each time. Does it fit? 16, 24, 32, 40"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "What comes next? 300, 400, 500, 600, _"
+            options: ["601", "610", "700"]
+            answer: "700"
 
   - n: 2
     title: { de: "Muster in Rechnungen", en: "Patterns in calculations" }
@@ -354,29 +375,124 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: continue
             type: fill_in_blank
             text: "Continue the sequence."
             frame: "400, 450, 500, 550, _, _"
             options: ["600", "650", "560", "700"]
             answer: ["600", "650"]
           - id: l2-c2
+            part: rule
             type: true_false
             text: "The rule is add 8 each time. Does it fit? 5, 13, 21, 28"
             answer: false
           - id: l2-c3
+            part: continue
             type: multiple_choice
             text: "What comes next in the pattern?\n18 + 4 = 22\n28 + 4 = 32\n38 + 4 = 42\n48 + 4 = _"
             options: ["52", "62", "50"]
             answer: "52"
           - id: l2-c4
+            part: mistake
             type: multiple_choice
             text: "Which answer is wrong?\n35 + 5 = 40\n35 + 10 = 45\n35 + 15 = 50\n35 + 20 = 56"
             options: ["40", "45", "50", "56"]
             answer: "56"
           - id: l2-c5
+            part: explain
             type: multiple_choice
             text: "Why does the answer go up by 2 each time?\n50 + 1 = 51\n50 + 3 = 53\n50 + 5 = 55"
             options: ["The second number goes up by 2.", "The first number goes up by 2.", "Both numbers go up by 1."]
             answer: "The second number goes up by 2."
+          - id: l2-c6
+            part: continue
+            type: multiple_choice
+            text: "What comes next? 1000, 900, 800, 700, _"
+            options: ["600", "690", "800"]
+            answer: "600"
+          - id: l2-c7
+            part: continue
+            type: fill_in_blank
+            text: "Continue the sequence."
+            frame: "56, 64, 72, 80, _, _"
+            options: ["88", "96", "90", "86"]
+            answer: ["88", "96"]
+          - id: l2-c8
+            part: continue
+            type: multiple_choice
+            text: "What comes next in the pattern?\n12 − 2 = 10\n22 − 2 = 20\n32 − 2 = 30\n42 − 2 = _"
+            options: ["40", "32", "50"]
+            answer: "40"
+          - id: l2-c9
+            part: rule
+            type: multiple_choice
+            text: "What is the rule? 48, 44, 40, 36"
+            options: ["−4", "+4", "−6"]
+            answer: "−4"
+            option_audio: false
+          - id: l2-c10
+            part: rule
+            type: true_false
+            text: "The rule is subtract 100 each time. Does it fit? 830, 730, 630, 530"
+            answer: true
+          - id: l2-c11
+            part: rule
+            type: multiple_choice
+            text: "What is the rule? 5, 10, 20, 40"
+            options: ["+5", "double it", "+10"]
+            answer: "double it"
+            option_audio: false
+          - id: l2-c12
+            part: rule
+            type: true_false
+            text: "The rule is add 50 each time. Does it fit? 600, 650, 700, 760"
+            answer: false
+          - id: l2-c13
+            part: explain
+            type: multiple_choice
+            text: "Why does the answer go down by 1 each time?\n40 − 6 = 34\n40 − 7 = 33\n40 − 8 = 32"
+            options: ["The number taken away goes up by 1.", "The first number goes down by 1.", "Both numbers go up by 1."]
+            answer: "The number taken away goes up by 1."
+          - id: l2-c14
+            part: explain
+            type: true_false
+            text: "45 + 15 = 60\n46 + 14 = 60\n47 + 13 = 60\nIs it true? The answer stays the same because both numbers go up by 1."
+            answer: false
+          - id: l2-c15
+            part: explain
+            type: multiple_choice
+            text: "Why does the answer go up by 5 each time?\n2 × 5 = 10\n3 × 5 = 15\n4 × 5 = 20"
+            options: ["There is one more 5 each time.", "The 5 goes up by 1 each time.", "Both numbers go up by 1."]
+            answer: "There is one more 5 each time."
+          - id: l2-c16
+            part: explain
+            type: true_false
+            text: "90 − 10 = 80\n90 − 20 = 70\n90 − 30 = 60\nIs it true? The answer goes down by 10 each time because the number taken away goes up by 10."
+            answer: true
+          - id: l2-c17
+            part: mistake
+            type: multiple_choice
+            text: "Which number does not fit the pattern? 100, 200, 300, 450, 500"
+            options: ["200", "450", "500"]
+            answer: "450"
+          - id: l2-c18
+            part: mistake
+            type: multiple_choice
+            text: "Which answer is wrong?\n52 + 9 = 61\n53 + 9 = 62\n54 + 9 = 63\n55 + 9 = 65"
+            options: ["61", "62", "63", "65"]
+            answer: "65"
+          - id: l2-c19
+            part: mistake
+            type: multiple_choice
+            text: "Which number does not fit the pattern? 64, 56, 48, 42, 32"
+            options: ["56", "42", "32"]
+            answer: "42"
+          - id: l2-c20
+            part: mistake
+            type: multiple_choice
+            text: "Which answer is wrong?\n200 − 10 = 190\n200 − 20 = 180\n200 − 30 = 175\n200 − 40 = 160"
+            options: ["190", "180", "175", "160"]
+            answer: "175"

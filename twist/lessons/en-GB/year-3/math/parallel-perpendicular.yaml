@@ -26,6 +26,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid, shape]
   facets: []
+  parts:
+    - { id: parallel, what: { de: parallele Linien erkennen, en: recognising parallel lines } }
+    - { id: perpendicular, what: { de: "Linien erkennen, die senkrecht zueinander sind, auch schräge", en: "recognising perpendicular lines, also tilted ones" } }
+    - { id: horizontal-vertical, what: { de: waagerechte und senkrechte Linien erkennen, en: recognising horizontal and vertical lines } }
+    - { id: set-square, what: { de: mit dem Geodreieck prüfen, en: checking with a set square } }
+    - { id: shapes, what: { de: parallele Seiten und rechte Winkel in Figuren finden, en: finding parallel sides and right angles in shapes } }
   misconceptions:
     - id: perpendicular-means-upright
       what: Thinks lines are only perpendicular when one stands upright on the page, so a tilted right-angled cross does not count
@@ -221,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -238,6 +245,23 @@ lessons:
             type: true_false
             text: "Is it true? Parallel lines never meet."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Are these lines parallel, perpendicular or neither?"
+            show: { drawn: grid, cols: 6, rows: 5, lines: [[1, 4, 5, 4], [1, 4, 4, 1]] }
+            options: ["parallel", "perpendicular", "neither"]
+            answer: "neither"
+            keep_order: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which letter has a pair of parallel lines?"
+            options: ["Z", "X", "Y"]
+            answer: "Z"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? Two tilted lines can never be perpendicular."
+            answer: false
 
   - n: 2
     title: { de: In Figuren und mit dem Geodreieck, en: In shapes and with a set square }
@@ -405,8 +429,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: parallel
             type: image_multiple_choice
             text: "Which picture shows two lines that will never meet?"
             options:
@@ -415,6 +441,7 @@ lessons:
               - { drawn: grid, cols: 7, rows: 5, lines: [[1, 4, 5, 4], [1, 2, 5, 0]], key: neither }
             answer: parallel
           - id: l2-c2
+            part: perpendicular
             type: multiple_choice
             text: "Are these lines parallel, perpendicular or neither?"
             show: { drawn: grid, cols: 6, rows: 5, lines: [[2, 0, 4, 2], [4, 2, 2, 4]] }
@@ -422,18 +449,123 @@ lessons:
             answer: "perpendicular"
             keep_order: true
           - id: l2-c3
+            part: parallel
             type: multiple_choice
             text: "Which letter has parallel lines but no right angles?"
             options: ["N", "T", "E"]
             answer: "N"
             option_audio: false
           - id: l2-c4
+            part: shapes
             type: multiple_choice
             text: "Which sentence is true for a square?"
             show: { drawn: shape, kind: square }
             options: ["Its opposite sides are parallel and its corners are right angles.", "It has no parallel sides.", "Only one pair of its sides is parallel."]
             answer: "Its opposite sides are parallel and its corners are right angles."
           - id: l2-c5
+            part: perpendicular
             type: true_false
             text: "Is it true? Two lines that meet at a right angle are perpendicular."
             answer: true
+          - id: l2-c6
+            part: parallel
+            type: multiple_choice
+            text: "Are these lines parallel, perpendicular or neither?"
+            show: { drawn: grid, cols: 6, rows: 5, lines: [[1, 0, 1, 4], [3, 1, 3, 3]] }
+            options: ["parallel", "perpendicular", "neither"]
+            answer: "parallel"
+            keep_order: true
+          - id: l2-c7
+            part: parallel
+            type: true_false
+            text: "Is it true? Tilted lines can never be parallel."
+            answer: false
+          - id: l2-c8
+            part: perpendicular
+            type: image_multiple_choice
+            text: "Which picture shows a pair of perpendicular lines?"
+            options:
+              - { drawn: grid, cols: 7, rows: 5, lines: [[1, 4, 6, 4], [2, 4, 5, 1]], key: neither }
+              - { drawn: grid, cols: 7, rows: 5, lines: [[1, 1, 3, 3], [3, 3, 5, 1]], key: perpendicular }
+              - { drawn: grid, cols: 7, rows: 5, lines: [[1, 1, 4, 4], [3, 1, 6, 4]], key: parallel }
+            answer: perpendicular
+          - id: l2-c9
+            part: perpendicular
+            type: multiple_choice
+            text: "Which letter has perpendicular lines?"
+            options: ["A", "E", "V"]
+            answer: "E"
+            option_audio: false
+          - id: l2-c10
+            part: horizontal-vertical
+            type: multiple_choice
+            text: "Which of these is a horizontal line?"
+            options: ["a lamp post", "the top of a shelf", "a slide in the park"]
+            answer: "the top of a shelf"
+          - id: l2-c11
+            part: horizontal-vertical
+            type: multiple_choice
+            text: "Is this line horizontal, vertical or neither?"
+            show: { drawn: grid, cols: 5, rows: 5, lines: [[2, 0, 2, 4]] }
+            options: ["horizontal", "vertical", "neither"]
+            answer: "vertical"
+            keep_order: true
+          - id: l2-c12
+            part: horizontal-vertical
+            type: true_false
+            text: "Is it true? A vertical line goes straight across, like the horizon."
+            answer: false
+          - id: l2-c13
+            part: horizontal-vertical
+            type: image_multiple_choice
+            text: "Which picture shows a horizontal line and a vertical line?"
+            options:
+              - { drawn: grid, cols: 6, rows: 5, lines: [[1, 4, 4, 1], [1, 1, 4, 4]], key: tilted }
+              - { drawn: grid, cols: 6, rows: 5, lines: [[1, 1, 5, 1], [1, 3, 5, 3]], key: both-across }
+              - { drawn: grid, cols: 6, rows: 5, lines: [[1, 4, 5, 4], [3, 1, 3, 4]], key: across-and-up }
+            answer: across-and-up
+          - id: l2-c14
+            part: set-square
+            type: multiple_choice
+            text: "What does a set square have that lets you check for perpendicular lines?"
+            options: ["a right angle", "a round edge", "a hole in the middle"]
+            answer: "a right angle"
+          - id: l2-c15
+            part: set-square
+            type: true_false
+            text: "Ella puts the square corner of a set square where two lines meet. Both lines run along its edges. Is it true that the lines are perpendicular?"
+            answer: true
+          - id: l2-c16
+            part: set-square
+            type: true_false
+            text: "Is it true? You can check that two lines are perpendicular by measuring how long they are."
+            answer: false
+          - id: l2-c17
+            part: set-square
+            type: multiple_choice
+            text: "Where do you put the square corner of a set square to check two lines?"
+            options: ["at the end of one line", "where the two lines meet", "in the gap between the lines"]
+            answer: "where the two lines meet"
+          - id: l2-c18
+            part: shapes
+            type: image_multiple_choice
+            text: "Which shape has exactly 1 pair of parallel sides?"
+            options:
+              - { drawn: shape, kind: rectangle }
+              - { drawn: shape, kind: trapezoid }
+              - { drawn: shape, kind: triangle }
+            answer: trapezoid
+            option_audio: false
+          - id: l2-c19
+            part: shapes
+            type: true_false
+            text: "Is it true? This shape has 2 pairs of parallel sides."
+            show: { drawn: shape, kind: parallelogram }
+            answer: true
+          - id: l2-c20
+            part: shapes
+            type: multiple_choice
+            text: "How many right angles does this triangle have?"
+            show: { drawn: grid, cols: 6, rows: 5, lines: [[5, 1, 5, 4], [1, 4, 5, 4], [1, 4, 5, 1]] }
+            options: ["1", "2", "3"]
+            answer: "1"

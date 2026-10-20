@@ -24,6 +24,10 @@ metadata:
   forms: [picture, text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: compare, what: { de: "sagen, in welches Gefäß mehr oder weniger passt", en: saying which container holds more or less } }
+    - { id: fill, what: { de: "sagen, ob ein Gefäß voll, halb voll oder leer ist", en: "saying whether a container is full, half full or empty" } }
+    - { id: cups, what: { de: mit Bechern vergleichen und ordnen, en: comparing and ordering by counting cups } }
   misconceptions:
     - id: taller-holds-more
       what: Thinks the taller container always holds more
@@ -188,7 +192,7 @@ lessons:
                 answer: "an egg cup"
               - id: l1-n3
                 type: multiple_choice
-                text: "Mia pours away half of her full glass of water. Now the glass is ..."
+                text: "Mia's glass is full. She pours away half of the water. Is the glass full, half full or empty now?"
                 say: "Mia's glass is full. She pours away half of the water. Is the glass full, half full or empty now?"
                 options: ["half full", "full", "empty"]
                 answer: "half full"
@@ -200,7 +204,7 @@ lessons:
                 answer: true
               - id: l1-n5
                 type: multiple_choice
-                text: "The rain fills the bucket right to the top. Now the bucket is ..."
+                text: "The rain fills the bucket right to the top. Is the bucket full, half full or empty now?"
                 say: "The rain fills the bucket right to the top. Is the bucket full, half full or empty now?"
                 options: ["full", "half full", "empty"]
                 answer: "full"
@@ -208,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -226,6 +231,25 @@ lessons:
             text: "Is it true? A spoon holds more than a jug."
             say: "A spoon holds more than a jug. Is that true?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which holds more: the jug or the spoon?"
+            say: "Which holds more water, the jug or the spoon?"
+            show: { objects: [jug, spoon] }
+            options: ["the jug", "the spoon", "the same"]
+            answer: "the jug"
+          - id: l1-c5
+            type: multiple_choice
+            text: "The bath water comes up to the middle. Is the bath full, half full or empty?"
+            say: "The bath water comes up to the middle. Is the bath full, half full or empty?"
+            options: ["full", "half full", "empty"]
+            answer: "half full"
+            keep_order: true
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? A cup holds less than a bucket."
+            say: "A cup holds less than a bucket. Is that true?"
+            answer: true
 
   - n: 2
     title: { de: "Mit Bechern vergleichen", en: "Comparing with cups" }
@@ -243,7 +267,7 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: multiple_choice
-            text: "The water comes up to the middle of the bottle. The bottle is ..."
+            text: "The water comes up to the middle of the bottle. Is the bottle full, half full or empty?"
             say: "The water comes up to the middle of the bottle. Is the bottle full, half full or empty?"
             options: ["half full", "full", "empty"]
             answer: "half full"
@@ -395,27 +419,32 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compare
             type: multiple_choice
             text: "Which holds more: an egg cup or a bucket?"
             say: "Which holds more water, an egg cup or a bucket?"
             options: ["a bucket", "an egg cup", "the same"]
             answer: "a bucket"
           - id: l2-c2
+            part: fill
             type: multiple_choice
-            text: "The squash comes right up to the top of the glass. The glass is ..."
+            text: "The squash comes right up to the top of the glass. Is the glass full, half full or empty?"
             say: "The squash comes right up to the top of the glass. Is the glass full, half full or empty?"
             options: ["full", "half full", "empty"]
             answer: "full"
             keep_order: true
           - id: l2-c3
+            part: cups
             type: multiple_choice
             text: "The flask takes 5 cups. The pot takes 9 cups. Which holds less?"
             say: "The flask takes five cups to fill. The pot takes nine cups. Which holds less?"
             options: ["the flask", "the pot", "the same"]
             answer: "the flask"
           - id: l2-c4
+            part: cups
             type: ordering
             text: "Bath: 30 jugs. Bucket: 4 jugs. Sink: 8 jugs. Put them in order. Start with the one that holds the least."
             say: "The bath takes thirty jugs. The bucket takes four jugs. The sink takes eight jugs. Put them in order, starting with the one that holds the least."
@@ -423,7 +452,115 @@ lessons:
             slot_count: 3
             answer: ["bucket", "sink", "bath"]
           - id: l2-c5
+            part: fill
             type: true_false
             text: "Is it true? Two cups are the same size. One is half full and one is empty. They have the same amount in them."
             say: "Two cups are the same size. One is half full and one is empty. They have the same amount in them. Is that true?"
+            answer: false
+          - id: l2-c6
+            part: compare
+            type: multiple_choice
+            text: "Which holds more: the kettle or the cup?"
+            say: "Which holds more water, the kettle or the cup?"
+            show: { objects: [kettle, cup] }
+            options: ["the kettle", "the cup", "the same"]
+            answer: "the kettle"
+          - id: l2-c7
+            part: compare
+            type: multiple_choice
+            text: "Which holds less: the glass or the bucket?"
+            say: "Which holds less, the glass or the bucket?"
+            show: { objects: [glass, bucket] }
+            options: ["the glass", "the bucket", "the same"]
+            answer: "the glass"
+          - id: l2-c8
+            part: compare
+            type: true_false
+            text: "Is it true? A bath holds less than a cup."
+            say: "A bath holds less than a cup. Is that true?"
+            answer: false
+          - id: l2-c9
+            part: compare
+            type: true_false
+            text: "Is it true? A watering can holds more than a spoon."
+            say: "A watering can holds more than a spoon. Is that true?"
+            show: { objects: [watering-can, spoon] }
+            answer: true
+          - id: l2-c10
+            part: compare
+            type: image_multiple_choice
+            text: "Which holds the most water?"
+            say: "Tap the one that holds the most water."
+            options:
+              - { object: cup }
+              - { object: bucket }
+              - { object: spoon }
+            answer: "bucket"
+          - id: l2-c11
+            part: compare
+            type: multiple_choice
+            text: "Which holds less: a swimming pool or a bucket?"
+            say: "Which holds less water, a swimming pool or a bucket?"
+            options: ["a bucket", "a swimming pool", "the same"]
+            answer: "a bucket"
+          - id: l2-c12
+            part: fill
+            type: true_false
+            text: "Is it true? Sam fills the watering can up to the middle. Now it is full."
+            say: "Sam fills the watering can up to the middle. Now it is full. Is that true?"
+            show: { object: watering-can }
+            answer: false
+          - id: l2-c13
+            part: fill
+            type: true_false
+            text: "Is it true? There is no juice left in Leo's glass. His glass is empty."
+            say: "There is no juice left in Leo's glass. His glass is empty. Is that true?"
+            answer: true
+          - id: l2-c14
+            part: fill
+            type: multiple_choice
+            text: "The cat drinks all the water in its bowl. Is the bowl full, half full or empty now?"
+            say: "The cat drinks all the water in its bowl. Is the bowl full, half full or empty now?"
+            options: ["full", "half full", "empty"]
+            answer: "empty"
+            keep_order: true
+          - id: l2-c15
+            part: fill
+            type: true_false
+            text: "Is it true? Ella's mug is full. She drinks half of it. Now her mug is half full."
+            say: "Ella's mug is full. She drinks half of it. Now her mug is half full. Is that true?"
+            answer: true
+          - id: l2-c16
+            part: cups
+            type: multiple_choice
+            text: "The jug takes 8 cups to fill. The vase takes 3 cups. Which holds more?"
+            say: "The jug takes eight cups of water to fill. The vase takes three cups. Which holds more?"
+            options: ["the jug", "the vase", "the same"]
+            answer: "the jug"
+          - id: l2-c17
+            part: cups
+            type: multiple_choice
+            text: "The tall bottle takes 3 cups. The short pan takes 6 cups. Which holds less?"
+            say: "The tall bottle takes three cups to fill. The short pan takes six cups. Which holds less?"
+            options: ["the tall bottle", "the short pan", "the same"]
+            answer: "the tall bottle"
+          - id: l2-c18
+            part: cups
+            type: true_false
+            text: "Is it true? The bucket takes 10 cups and the bowl takes 7 cups. The bucket holds more."
+            say: "The bucket takes ten cups and the bowl takes seven cups. The bucket holds more. Is that true?"
+            answer: true
+          - id: l2-c19
+            part: cups
+            type: ordering
+            text: "Watering can: 8 cups. Mug: 1 cup. Teapot: 4 cups. Put them in order. Start with the one that holds the most."
+            say: "The watering can takes eight cups. The mug takes one cup. The teapot takes four cups. Put them in order, starting with the one that holds the most."
+            options: ["teapot", "mug", "watering can"]
+            slot_count: 3
+            answer: ["watering can", "teapot", "mug"]
+          - id: l2-c20
+            part: cups
+            type: true_false
+            text: "Is it true? A tall vase always holds more than a short bowl."
+            say: "A tall vase always holds more than a short bowl. Is that true?"
             answer: false

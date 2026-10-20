@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [base-ten, hundred-field]
   facets: []
+  parts:
+    - { id: count, what: { de: Zehner und Einer zählen, en: counting tens and ones } }
+    - { id: group, what: { de: in Zehner und Einer bündeln, en: grouping into tens and ones } }
+    - { id: estimate, what: { de: eine große Anzahl schätzen, en: estimating a large amount } }
+    - { id: check, what: { de: eine Anzahl mit den Zehnern prüfen, en: checking an amount by counting the tens } }
   misconceptions:
     - id: count-in-ones
       what: Counts every single cube instead of counting the tens as tens
@@ -232,6 +237,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -254,6 +260,22 @@ lessons:
             frame: "_ tens and _ ones"
             options: ["0", "3", "30"]
             answer: ["3", "0"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many?"
+            show: { drawn: base-ten, tens: 4, ones: 9 }
+            options: ["49", "94", "13"]
+            answer: "49"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 2 tens and 8 ones make 28."
+            show: { drawn: base-ten, tens: 2, ones: 8 }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "How many ten sticks do you need for 80?"
+            options: ["8", "80", "18"]
+            answer: "8"
 
   - n: 2
     title: { de: Schätzen und prüfen, en: Estimate and check }
@@ -330,7 +352,7 @@ lessons:
                   - "50 and 6 make 56."
               - id: l2-f4
                 type: true_false
-                text: "Is it a good estimate?"
+                text: "Poppy estimates about 70. Is it a good estimate?"
                 say: "Poppy estimates about seventy. Look how many there are. Is that a good estimate?"
                 show: { drawn: hundred-field, filled: 68 }
                 answer: true
@@ -379,7 +401,7 @@ lessons:
                 hints: ["Full rows first, then the dots in the last row."]
               - id: l2-s3
                 type: true_false
-                text: "Is it a good estimate?"
+                text: "Jack estimates about 20. Is it a good estimate?"
                 say: "Jack estimates about twenty. Look how many there are. Is that a good estimate?"
                 show: { drawn: hundred-field, filled: 81 }
                 answer: false
@@ -424,7 +446,7 @@ lessons:
                 answer: "35"
               - id: l2-n3
                 type: true_false
-                text: "Is it a good estimate?"
+                text: "Amir estimates about 60. Is it a good estimate?"
                 say: "Amir estimates about sixty. Look how many there are. Is that a good estimate?"
                 show: { drawn: hundred-field, filled: 58 }
                 answer: true
@@ -443,14 +465,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: multiple_choice
             text: "How many?"
             show: { drawn: base-ten, tens: 3, ones: 7 }
             options: ["37", "73", "10"]
             answer: "37"
           - id: l2-c2
+            part: group
             type: fill_in_blank
             text: "How many tens and how many ones?"
             show: { drawn: base-ten, tens: 8, ones: 1 }
@@ -458,12 +483,14 @@ lessons:
             options: ["1", "8", "9", "81"]
             answer: ["8", "1"]
           - id: l2-c3
+            part: check
             type: multiple_choice
             text: "How many?"
             show: { drawn: hundred-field, filled: 62 }
             options: ["62", "26", "60"]
             answer: "62"
           - id: l2-c4
+            part: group
             type: image_multiple_choice
             text: "Which shows 44?"
             options:
@@ -472,9 +499,118 @@ lessons:
               - { drawn: base-ten, tens: 4, ones: 4 }
             answer: "44"
           - id: l2-c5
+            part: estimate
             type: multiple_choice
             text: "Estimate: about how many?"
             say: "Take a quick look and estimate. About how many dots are there?"
             show: { drawn: hundred-field, filled: 40, flash: 2 }
             options: ["about 10", "about 40", "about 90"]
+            answer: "about 40"
+          - id: l2-c6
+            part: count
+            type: multiple_choice
+            text: "How many?"
+            show: { drawn: base-ten, tens: 6, ones: 8 }
+            options: ["68", "86", "14"]
+            answer: "68"
+          - id: l2-c7
+            part: count
+            type: text_input
+            text: "How many cubes? Type the number."
+            show: { drawn: base-ten, tens: 5, ones: 5 }
+            answer: "55"
+          - id: l2-c8
+            part: count
+            type: true_false
+            text: "Is it true? 7 tens and 2 ones make 27."
+            show: { drawn: base-ten, tens: 7, ones: 2 }
+            answer: false
+          - id: l2-c9
+            part: count
+            type: multiple_choice
+            text: "How many?"
+            show: { drawn: base-ten, tens: 1, ones: 9 }
+            options: ["19", "91", "10"]
+            answer: "19"
+          - id: l2-c10
+            part: group
+            type: multiple_choice
+            text: "Zara has 50 cubes. She joins them into ten sticks. How many sticks does she make?"
+            say: "Zara has fifty cubes. She joins them into ten sticks. How many sticks does she make?"
+            options: ["5", "50", "10"]
+            answer: "5"
+          - id: l2-c11
+            part: group
+            type: fill_in_blank
+            text: "How many tens and how many ones?"
+            show: { drawn: base-ten, tens: 5, ones: 9 }
+            frame: "_ tens and _ ones"
+            options: ["5", "9", "14", "59"]
+            answer: ["5", "9"]
+          - id: l2-c12
+            part: group
+            type: image_multiple_choice
+            text: "Which shows 70?"
+            options:
+              - { drawn: base-ten, tens: 7, ones: 0 }
+              - { drawn: base-ten, tens: 0, ones: 7 }
+              - { drawn: base-ten, tens: 7, ones: 7 }
+            answer: "70"
+          - id: l2-c13
+            part: check
+            type: multiple_choice
+            text: "How many?"
+            show: { drawn: hundred-field, filled: 47 }
+            options: ["47", "74", "40"]
+            answer: "47"
+          - id: l2-c14
+            part: check
+            type: true_false
+            text: "Ella estimates about 30. Is it a good estimate?"
+            say: "Ella estimates about thirty. Look how many there are. Is that a good estimate?"
+            show: { drawn: hundred-field, filled: 33 }
+            answer: true
+          - id: l2-c15
+            part: check
+            type: true_false
+            text: "Max estimates about 90. Is it a good estimate?"
+            say: "Max estimates about ninety. Look how many there are. Is that a good estimate?"
+            show: { drawn: hundred-field, filled: 45 }
+            answer: false
+          - id: l2-c16
+            part: check
+            type: text_input
+            text: "How many dots exactly? Type the number."
+            show: { drawn: hundred-field, filled: 66 }
+            answer: "66"
+          - id: l2-c17
+            part: estimate
+            type: multiple_choice
+            text: "Estimate: about how many?"
+            say: "Take a quick look and estimate. About how many dots are there?"
+            show: { drawn: hundred-field, filled: 20, flash: 2 }
+            options: ["about 20", "about 60", "about 100"]
+            answer: "about 20"
+          - id: l2-c18
+            part: estimate
+            type: multiple_choice
+            text: "Estimate: about how many?"
+            say: "Take a quick look and estimate. About how many dots are there?"
+            show: { drawn: hundred-field, filled: 60, flash: 2 }
+            options: ["about 10", "about 60", "about 90"]
+            answer: "about 60"
+          - id: l2-c19
+            part: estimate
+            type: multiple_choice
+            text: "Which is the best estimate?"
+            say: "Take a quick look. Which is the best estimate?"
+            show: { drawn: hundred-field, filled: 79, flash: 2 }
+            options: ["about 30", "about 50", "about 80"]
+            answer: "about 80"
+          - id: l2-c20
+            part: estimate
+            type: multiple_choice
+            text: "One row on a tray holds 10 cakes. The tray has 4 full rows and a few more cakes. About how many cakes are there?"
+            say: "One row on a tray holds ten cakes. The tray has four full rows and a few more cakes. About how many cakes are there?"
+            options: ["about 4", "about 14", "about 40"]
             answer: "about 40"

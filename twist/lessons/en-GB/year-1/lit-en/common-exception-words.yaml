@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: read-words, what: { de: die Ausnahmewörter lesen und erkennen, en: reading and recognising the exception words } }
+    - { id: tricky-part, what: { de: den kniffligen Teil eines Wortes finden, en: finding the tricky part of a word } }
+    - { id: sounds, what: { de: "wissen, wie der knifflige Teil klingt (Reime)", en: "knowing how the tricky part sounds (rhymes)" } }
+    - { id: in-sentences, what: { de: die Wörter in Sätzen lesen und verstehen, en: reading the words in sentences } }
   misconceptions:
     - id: sound-out-tricky
       what: Sounds out an exception word as if it were regular (said as sad, come to rhyme with home, pull to rhyme with dull)
@@ -51,7 +56,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: image_multiple_choice
-            text: "The dog is in the box."
+            text: "The dog is in the box.\n\nWho is in the box? Tap the picture."
             say: "Read the sentence. Who is in the box? Tap the picture."
             options: [{ object: dog }, { object: cat }, { object: frog }]
             answer: dog
@@ -110,7 +115,7 @@ lessons:
                   - "Tap was."
               - id: l1-f3
                 type: image_multiple_choice
-                text: "Put one apple in the bag."
+                text: "Put one apple in the bag.\n\nTap the picture that matches."
                 say: "Read the sentence. Tap the picture that matches."
                 options:
                   - { object: apple, count: 1, layout: row }
@@ -176,7 +181,7 @@ lessons:
                 hints: ["Love rhymes with glove. The o sounds like the u in cup."]
               - id: l1-s4
                 type: image_multiple_choice
-                text: "The cat was sad."
+                text: "The cat was sad.\n\nTap the face that matches."
                 say: "Read the sentence. Tap the face that matches."
                 options: [{ object: happy }, { object: sad }, { object: angry }]
                 answer: sad
@@ -209,7 +214,7 @@ lessons:
                 spans: ["o"]
               - id: l1-n3
                 type: image_multiple_choice
-                text: "I can see one bird."
+                text: "I can see one bird.\n\nTap the picture that matches."
                 say: "Read the sentence. Tap the picture that matches."
                 options:
                   - { object: bird, count: 3, layout: row }
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -248,6 +254,24 @@ lessons:
             type: true_false
             text: "Is it true? In of, the f sounds like the v in van."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which word rhymes with this one?"
+            say: "Read the word on the card. Which word rhymes with it?"
+            show: { drawn: letter-card, text: "one" }
+            options: ["bone", "fun"]
+            answer: "fun"
+          - id: l1-c5
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "love" }
+            options: ["live", "low", "love"]
+            answer: "love"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? In to, the o sounds like the o in dog."
+            answer: false
 
   - n: 2
     title: { de: "they, were, there, house", en: "they, were, there, house" }
@@ -432,6 +456,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: audio_choice
@@ -450,6 +475,24 @@ lessons:
             say: "This word is are. Tap the silent letter."
             show: { drawn: letter-card, text: "a r e" }
             spans: ["e"]
+          - id: l2-c4
+            type: multiple_choice
+            text: "Which word rhymes with this one?"
+            say: "Read the word on the card. Which word rhymes with it?"
+            show: { drawn: letter-card, text: "here" }
+            options: ["where", "near"]
+            answer: "near"
+          - id: l2-c5
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "are" }
+            options: ["air", "are", "ear"]
+            answer: "are"
+          - id: l2-c6
+            type: true_false
+            text: "Is it true? In school, the c and the h sound like the k in kit."
+            answer: true
 
   - n: 3
     title: { de: "friend, put, pull, his", en: "friend, put, pull, his" }
@@ -632,8 +675,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: read-words
             type: audio_choice
             text: "Tap the word you hear."
             say: "Listen. Tap the word you hear."
@@ -641,27 +686,145 @@ lessons:
             options: ["some", "same", "sock"]
             answer: "some"
           - id: l3-c2
+            part: tricky-part
             type: highlight_in_text
             text: "Tap the tricky letter in pull."
             say: "This word is pull. Tap the letter that makes a surprise sound."
             show: { drawn: letter-card, text: "p u ll" }
             spans: ["u"]
           - id: l3-c3
+            part: in-sentences
             type: multiple_choice
             text: "They said, \"We love the park.\"\n\nWhat do they love?"
             say: "Read the sentence. Then answer the question."
             options: ["the park", "the house", "school"]
             answer: "the park"
           - id: l3-c4
+            part: sounds
             type: true_false
             text: "Is it true? In of, the f sounds like the f in fish."
             answer: false
           - id: l3-c5
+            part: in-sentences
             type: image_multiple_choice
-            text: "I have one sock."
+            text: "I have one sock.\n\nTap the picture that matches."
             say: "Read the sentence. Tap the picture that matches."
             options:
               - { object: sock, count: 2, layout: row }
               - { object: sock, count: 3, layout: row }
               - { object: sock, count: 1, layout: row }
             answer: "1"
+          - id: l3-c6
+            part: read-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "our" }
+            options: ["your", "out", "our"]
+            answer: "our"
+          - id: l3-c7
+            part: read-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "says" }
+            options: ["says", "say", "sags"]
+            answer: "says"
+          - id: l3-c8
+            part: read-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "today" }
+            options: ["toy", "today", "told"]
+            answer: "today"
+          - id: l3-c9
+            part: read-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "full" }
+            options: ["fell", "fill", "full"]
+            answer: "full"
+          - id: l3-c10
+            part: tricky-part
+            type: highlight_in_text
+            text: "Tap the tricky letter in push."
+            say: "This word is push. Tap the letter that makes a surprise sound."
+            show: { drawn: letter-card, text: "p u sh" }
+            spans: ["u"]
+          - id: l3-c11
+            part: tricky-part
+            type: highlight_in_text
+            text: "Tap the tricky part of you."
+            say: "This word is you. Tap the letters that make a surprise sound."
+            show: { drawn: letter-card, text: "y ou" }
+            spans: ["ou"]
+          - id: l3-c12
+            part: tricky-part
+            type: highlight_in_text
+            text: "Tap the tricky letter in his."
+            say: "This word is his. Tap the letter that makes a surprise sound."
+            show: { drawn: letter-card, text: "h i s" }
+            spans: ["s"]
+          - id: l3-c13
+            part: tricky-part
+            type: multiple_choice
+            text: "Which letter is tricky in love?"
+            say: "This word is love. Which letter makes a surprise sound?"
+            show: { drawn: letter-card, text: "love" }
+            options: ["l", "o", "v"]
+            answer: "o"
+          - id: l3-c14
+            part: sounds
+            type: multiple_choice
+            text: "Which word rhymes with this one?"
+            say: "Read the word on the card. Which word rhymes with it?"
+            show: { drawn: letter-card, text: "your" }
+            options: ["out", "door"]
+            answer: "door"
+          - id: l3-c15
+            part: sounds
+            type: true_false
+            text: "Is it true? Here rhymes with ear."
+            answer: true
+          - id: l3-c16
+            part: sounds
+            type: sorting
+            text: "Sort the words by the sound the u makes."
+            say: "Read each word. Does the u sound like the oo in book, or like the u in cup? Put it in the right group."
+            option_audio: false
+            bins:
+              - { id: book, show: { object: book }, say: "Like the oo in book." }
+              - { id: cup, show: { object: cup }, say: "Like the u in cup." }
+            options:
+              - { text: "bun", bin: cup }
+              - { text: "put", bin: book }
+              - { text: "sun", bin: cup }
+              - { text: "full", bin: book }
+          - id: l3-c17
+            part: sounds
+            type: true_false
+            text: "Is it true? Were rhymes with her."
+            answer: true
+          - id: l3-c18
+            part: in-sentences
+            type: multiple_choice
+            text: "The children were at school.\n\nWhere were the children?"
+            say: "Read the sentence. Then answer the question."
+            options: ["at the park", "at school", "at the house"]
+            answer: "at school"
+          - id: l3-c19
+            part: in-sentences
+            type: image_multiple_choice
+            text: "Your hat is on the bed.\n\nWhat is on the bed? Tap the picture."
+            say: "Read the sentence. Then tap the picture."
+            options: [{ object: ball }, { object: hat }, { object: book }]
+            answer: hat
+            option_audio: false
+          - id: l3-c20
+            part: in-sentences
+            type: true_false
+            text: "Once there was a big bear. He was in his house.\n\nIs it true? The bear was at school."
+            say: "Read the sentences. Is it true? The bear was at school."
+            answer: false

@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [spinner, dots]
   facets: []
+  parts:
+    - { id: certain, what: { de: "sagen, ob etwas sicher, möglich oder unmöglich ist", en: "saying whether something is certain, possible or impossible" } }
+    - { id: likely, what: { de: wahrscheinlich und unwahrscheinlich unterscheiden, en: telling likely from unlikely } }
+    - { id: wheel, what: { de: das Glücksrad oder Säckchen zu einer Aussage finden, en: finding the spinner or bag that fits a statement } }
   misconceptions:
     - id: possible-is-certain
       what: Calls an event certain because it can happen (blue is on the spinner, so blue will come)
@@ -62,7 +66,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "The spinner lands on red."
+                text: "The spinner lands on red. Is that certain, possible or impossible?"
                 say: "You spin the spinner. It lands on red. Is that certain, possible or impossible?"
                 show: { drawn: spinner, sectors: [red, red, red, red] }
                 options: ["certain", "possible", "impossible"]
@@ -77,7 +81,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: multiple_choice
-                text: "The spinner lands on yellow."
+                text: "The spinner lands on yellow. Is that certain, possible or impossible?"
                 say: "You spin the spinner. It lands on yellow. Is that certain, possible or impossible?"
                 show: { drawn: spinner, sectors: [red, blue, red, blue] }
                 options: ["certain", "possible", "impossible"]
@@ -89,7 +93,7 @@ lessons:
                   - "Yellow cannot come up. Impossible."
               - id: l1-f3
                 type: multiple_choice
-                text: "The spinner lands on blue."
+                text: "The spinner lands on blue. Is that certain, possible or impossible?"
                 say: "You spin the spinner. It lands on blue. Is that certain, possible or impossible?"
                 show: { drawn: spinner, sectors: [red, blue, yellow, green] }
                 options: ["certain", "possible", "impossible"]
@@ -234,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -253,6 +258,32 @@ lessons:
             text: "Is it true? On this spinner, landing on red is certain."
             show: { drawn: spinner, sectors: [red, yellow, red, yellow] }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "You throw a ball up in the air and it comes down again. Is that certain, possible or impossible?"
+            options: ["certain", "possible", "impossible"]
+            answer: "certain"
+            keep_order: true
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "On which spinner is yellow possible, but not certain?"
+            options:
+              - { drawn: spinner, sectors: [yellow, blue, yellow, blue], key: yellow-blue }
+              - { drawn: spinner, sectors: [yellow, yellow, yellow, yellow], key: yellow }
+              - { drawn: spinner, sectors: [blue, blue, blue, blue], key: blue }
+            answer: yellow-blue
+          - id: l1-c6
+            type: sorting
+            text: "Is each event certain, possible or impossible? Sort them."
+            bins:
+              - { id: certain, show: { text: "certain" }, say: "certain" }
+              - { id: possible, show: { text: "possible" }, say: "possible" }
+              - { id: impossible, show: { text: "impossible" }, say: "impossible" }
+            options:
+              - { text: "Next week has 7 days.", bin: certain }
+              - { text: "You get a letter in the post today.", bin: possible }
+              - { text: "A pig flies over the school.", bin: impossible }
+            option_audio: false
 
   - n: 2
     title: { de: "Wahrscheinlich oder unwahrscheinlich", en: "Likely or unlikely" }
@@ -296,7 +327,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "The spinner lands on blue."
+                text: "The spinner lands on blue. Is that likely, unlikely or impossible?"
                 say: "You spin the spinner. It lands on blue. Is that likely, unlikely or impossible?"
                 show: { drawn: spinner, sectors: [red, red, red, blue, red, red] }
                 options: ["likely", "unlikely", "impossible"]
@@ -436,8 +467,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: certain
             type: multiple_choice
             text: "The spinner lands on red."
             show: { drawn: spinner, sectors: [blue, green, blue, green] }
@@ -445,6 +478,7 @@ lessons:
             answer: "impossible"
             keep_order: true
           - id: l2-c2
+            part: likely
             type: multiple_choice
             text: "The spinner lands on yellow."
             show: { drawn: spinner, sectors: [blue, blue, blue, blue, yellow, blue] }
@@ -452,20 +486,147 @@ lessons:
             answer: "unlikely"
             keep_order: true
           - id: l2-c3
+            part: likely
             type: multiple_choice
-            text: "You pick a red counter without looking."
+            text: "You pick one counter from this bag without looking. How likely is it to be red?"
             show: { drawn: dots, count: 7, layout: row, colour_split: [6, 1] }
             options: ["likely", "unlikely", "impossible"]
             answer: "likely"
             keep_order: true
           - id: l2-c4
+            part: certain
             type: true_false
             text: "Is it true? On this spinner, landing on blue is certain."
             show: { drawn: spinner, sectors: [blue, blue, blue, blue] }
             answer: true
           - id: l2-c5
+            part: certain
             type: multiple_choice
             text: "You roll a normal dice and get a 2."
             options: ["certain", "possible", "impossible"]
             answer: "possible"
             keep_order: true
+          - id: l2-c6
+            part: certain
+            type: multiple_choice
+            text: "You roll a normal dice and get a number bigger than 0. Is that certain, possible or impossible?"
+            options: ["certain", "possible", "impossible"]
+            answer: "certain"
+            keep_order: true
+          - id: l2-c7
+            part: certain
+            type: sorting
+            text: "Sort these events. Is each one certain, possible or impossible?"
+            bins:
+              - { id: certain, show: { text: "certain" }, say: "certain" }
+              - { id: possible, show: { text: "possible" }, say: "possible" }
+              - { id: impossible, show: { text: "impossible" }, say: "impossible" }
+            options:
+              - { text: "Christmas Day is on 25 December.", bin: certain }
+              - { text: "You have pasta for tea.", bin: possible }
+              - { text: "A cow lays an egg.", bin: impossible }
+              - { text: "It snows next week.", bin: possible }
+            option_audio: false
+          - id: l2-c8
+            part: certain
+            type: true_false
+            text: "Is it true? On this spinner, landing on green is certain."
+            show: { drawn: spinner, sectors: [green, red, yellow] }
+            answer: false
+          - id: l2-c9
+            part: certain
+            type: multiple_choice
+            text: "A bag has 5 blue counters and nothing else. You pick one without looking. It is red. Is that certain, possible or impossible?"
+            options: ["certain", "possible", "impossible"]
+            answer: "impossible"
+            keep_order: true
+          - id: l2-c10
+            part: likely
+            type: multiple_choice
+            text: "The spinner lands on red. Is that likely, unlikely or impossible?"
+            show: { drawn: spinner, sectors: [red, red, red, red, green, red] }
+            options: ["likely", "unlikely", "impossible"]
+            answer: "likely"
+            keep_order: true
+          - id: l2-c11
+            part: likely
+            type: multiple_choice
+            text: "You pick one counter from this bag without looking. How likely is it to be blue?"
+            show: { drawn: dots, count: 8, layout: row, colour_split: [7, 1] }
+            options: ["likely", "unlikely", "impossible"]
+            answer: "unlikely"
+            keep_order: true
+          - id: l2-c12
+            part: likely
+            type: true_false
+            text: "Is it true? Picking a red counter from this bag is unlikely."
+            show: { drawn: dots, count: 9, layout: row, colour_split: [2, 7] }
+            answer: true
+          - id: l2-c13
+            part: likely
+            type: sorting
+            text: "Sort these events. Is each one likely or unlikely?"
+            bins:
+              - { id: likely, show: { text: "likely" }, say: "likely" }
+              - { id: unlikely, show: { text: "unlikely" }, say: "unlikely" }
+            options:
+              - { text: "Your teacher comes to school on Monday.", bin: likely }
+              - { text: "A giraffe walks down your street.", bin: unlikely }
+              - { text: "It is warm on a day in July.", bin: likely }
+              - { text: "You find a dinosaur bone in the playground.", bin: unlikely }
+            option_audio: false
+          - id: l2-c14
+            part: likely
+            type: ordering
+            text: "Put the words in order, from always to never."
+            options: ["unlikely", "impossible", "certain", "likely"]
+            slot_count: 4
+            answer: ["certain", "likely", "unlikely", "impossible"]
+          - id: l2-c15
+            part: wheel
+            type: image_multiple_choice
+            text: "On which spinner are red and blue both possible?"
+            options:
+              - { drawn: spinner, sectors: [red, blue, red, blue], key: red-blue }
+              - { drawn: spinner, sectors: [red, red, red, red], key: red }
+              - { drawn: spinner, sectors: [blue, yellow, blue, yellow], key: blue-yellow }
+            answer: red-blue
+          - id: l2-c16
+            part: wheel
+            type: image_multiple_choice
+            text: "On which spinner is yellow likely, but not certain?"
+            options:
+              - { drawn: spinner, sectors: [yellow, yellow, yellow, yellow, yellow, yellow], key: all-yellow }
+              - { drawn: spinner, sectors: [yellow, yellow, red, yellow, yellow, yellow], key: five-yellow }
+              - { drawn: spinner, sectors: [yellow, red, red, red, red, red], key: one-yellow }
+            answer: five-yellow
+          - id: l2-c17
+            part: wheel
+            type: image_multiple_choice
+            text: "From which bag is picking a blue counter impossible?"
+            options:
+              - { drawn: dots, count: 4, layout: row, colour_split: [4, 0], key: no-blue }
+              - { drawn: dots, count: 4, layout: row, colour_split: [1, 3], key: three-blue }
+              - { drawn: dots, count: 4, layout: row, colour_split: [3, 1], key: one-blue }
+            answer: no-blue
+          - id: l2-c18
+            part: wheel
+            type: true_false
+            text: "Is it true? On this spinner, landing on blue is impossible."
+            show: { drawn: spinner, sectors: [blue, red, red, red, red, red] }
+            answer: false
+          - id: l2-c19
+            part: wheel
+            type: multiple_choice
+            text: "Which bag fits? Picking red is likely, but blue is possible too."
+            options: ["5 red counters and 1 blue counter", "1 red counter and 5 blue counters", "6 red counters"]
+            answer: "5 red counters and 1 blue counter"
+          - id: l2-c20
+            part: wheel
+            type: image_multiple_choice
+            text: "On which spinner is red impossible and blue likely?"
+            options:
+              - { drawn: spinner, sectors: [blue, blue, yellow, blue, blue, blue], key: blue-yellow }
+              - { drawn: spinner, sectors: [blue, blue, red, blue, blue, blue], key: blue-red }
+              - { drawn: spinner, sectors: [yellow, yellow, blue, yellow, yellow, yellow], key: yellow-blue }
+            answer: blue-yellow

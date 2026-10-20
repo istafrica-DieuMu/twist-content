@@ -25,6 +25,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: gist, what: { de: "verstehen, wer in der Geschichte vorkommt und worum es geht", en: understanding who is in the story and what it is about } }
+    - { id: detail, what: { de: "heraushören, wer etwas tut und was passiert", en: picking out who does something and what happens } }
+    - { id: end, what: { de: "verstehen, wie die Geschichte endet", en: understanding how the story ends } }
+    - { id: order, what: { de: die Bilder in die richtige Reihenfolge bringen, en: putting the pictures in order } }
   misconceptions:
     - id: every-word
       what: Gives up because not every word of the story is understood
@@ -49,7 +54,7 @@ lessons:
             type: audio_choice
             text: "Which pet does the child have?"
             say: { en: "Listen. Which pet does the child have?" }
-            audio: { fr: "Tu as un animal ? Oui, j'ai un lapin." }
+            audio: { turns: [{ fr: "Tu as un animal ?", speaker: female }, { fr: "Oui, j'ai un lapin.", speaker: male }] }
             options: [{ object: rabbit }, { object: dog }, { object: cat }]
             answer: rabbit
             difficulty: easy
@@ -57,7 +62,7 @@ lessons:
             type: audio_choice
             text: "What is it about?"
             say: { en: "Listen. What is it about?" }
-            audio: { fr: "Je voudrais une banane, s'il te plaît. Voilà ! Merci !" }
+            audio: { turns: [{ fr: "Je voudrais une banane, s'il te plaît.", speaker: male }, { fr: "Voilà !", speaker: female }, { fr: "Merci !", speaker: male }] }
             options: ["food", "colours", "animals"]
             answer: "food"
             difficulty: easy
@@ -213,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -233,6 +239,26 @@ lessons:
             text: "Is the owl in a tree?"
             say: { en: "Listen to the story. Is the owl in a tree?", fr: "C'est la nuit. La lune brille. Un hibou est dans un arbre. Il voit une souris. La souris court vite dans sa maison. Le hibou a encore faim." }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Where is Zoé?"
+            say: { en: "Listen to the story. Where is Zoé?" }
+            audio: { fr: "C'est l'été. Zoé est à la plage avec son papa. Elle fait un château de sable. Puis un crabe arrive ! Zoé a peur. Mais le crabe est petit et gentil. À la fin, Zoé est contente." }
+            options: ["in the park", "at the beach", "at school"]
+            answer: "at the beach"
+          - id: l1-c5
+            type: true_false
+            text: "Is Mamie sad at the end?"
+            say: { en: "Listen to the story. Is Mamie sad at the end?" }
+            audio: { fr: "Il y a du vent. Mamie va au parc avec son parapluie. Oh non ! Le parapluie s'envole. Il vole, il vole, et il tombe dans une flaque. Mamie rit." }
+            answer: false
+          - id: l1-c6
+            type: audio_choice
+            text: "What is the story about?"
+            say: { en: "Listen to the story. What is it about?" }
+            audio: { fr: "Il pleut. Un petit escargot sort dans le jardin. D'abord, il mange une feuille. Puis il mange une fraise. Le soleil arrive, et l'escargot dort sous une fleur." }
+            options: ["A snail at the beach", "A snail in the rain", "A snail at school"]
+            answer: "A snail in the rain"
 
   - n: 2
     title: { de: "D'abord, puis, à la fin", en: "D'abord, puis, à la fin" }
@@ -425,8 +451,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: order
             type: ordering
             option_audio: false
             text: "Put the pictures in order."
@@ -435,6 +463,7 @@ lessons:
             slot_count: 4
             answer: [rain, jacket, sun, ball]
           - id: l2-c2
+            part: order
             type: ordering
             option_audio: false
             text: "Put the pictures in order."
@@ -443,6 +472,7 @@ lessons:
             slot_count: 3
             answer: [cheese, bee, ice-cream]
           - id: l2-c3
+            part: gist
             type: audio_choice
             text: "What is the story about?"
             say: { en: "Listen to the story. What is it about?" }
@@ -450,6 +480,7 @@ lessons:
             options: ["Lisa and her new bike", "Lisa's birthday", "Lisa's dog"]
             answer: "Lisa and her new bike"
           - id: l2-c4
+            part: detail
             type: audio_choice
             text: "Who helps Lisa?"
             say: { en: "Listen to the story. Who helps Lisa?" }
@@ -457,9 +488,131 @@ lessons:
             options: [{ object: dad }, { object: mum }, { object: grandma }]
             answer: dad
           - id: l2-c5
+            part: end
             type: audio_choice
             text: "What does Léo do in the end?"
             say: { en: "Listen to the story. What does Léo do in the end?" }
             audio: { fr: "Il est tard. D'abord, Léo boit son lait. Puis il lit un livre avec Maman. À la fin, il va au lit." }
             options: [{ object: bed }, { object: book }, { object: milk }]
             answer: bed
+          - id: l2-c6
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the pictures in order."
+            say: { en: "Listen to the story. Put the pictures in order.", fr: "Il neige ! D'abord, Hugo met son bonnet. Puis il fait un bonhomme de neige avec sa sœur. À la fin, ils boivent un chocolat chaud." }
+            options: [{ object: hot-chocolate }, { object: woolly-hat }, { object: snowman }]
+            slot_count: 3
+            answer: [woolly-hat, snowman, hot-chocolate]
+          - id: l2-c7
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the pictures in order."
+            say: { en: "Listen to the story. Put the pictures in order.", fr: "C'est l'anniversaire de Chloé. D'abord, elle met sa robe. Puis ses amis arrivent avec des ballons. Ils mangent une glace. À la fin, Chloé est très contente." }
+            options: [{ object: balloon }, { object: ice-cream }, { object: dress }]
+            slot_count: 3
+            answer: [dress, balloon, ice-cream]
+          - id: l2-c8
+            part: order
+            type: ordering
+            option_audio: false
+            text: "Put the pictures in order."
+            say: { en: "Listen to the story. Put the pictures in order.", fr: "Il pleut ce matin. D'abord, Mia met ses bottes. Puis elle prend son parapluie. À la fin, elle saute dans une flaque !" }
+            options: [{ object: puddle }, { object: wellies }, { object: umbrella }]
+            slot_count: 3
+            answer: [wellies, umbrella, puddle]
+          - id: l2-c9
+            part: gist
+            type: audio_choice
+            text: "Who is in the story?"
+            say: { en: "Listen to the story. Who is in the story?" }
+            audio: { fr: "Minou est un chat. Il est dans le jardin. Il voit un oiseau dans l'arbre. Minou veut jouer, mais l'oiseau s'envole. À la fin, Minou dort au soleil." }
+            options: [{ object: dog }, { object: cat }, { object: rabbit }]
+            answer: cat
+          - id: l2-c10
+            part: gist
+            type: audio_choice
+            text: "What is the story about?"
+            say: { en: "Listen to the story. What is it about?" }
+            audio: { fr: "Paul joue au ballon dans le parc. Oh non ! Le ballon tombe dans l'eau. Un canard pousse le ballon vers Paul. Paul est content. Merci, le canard !" }
+            options: ["Paul feeds the ducks.", "A duck helps Paul.", "Paul loses his dog."]
+            answer: "A duck helps Paul."
+          - id: l2-c11
+            part: gist
+            type: true_false
+            text: "Is the story about a trip to the swimming pool?"
+            say: { en: "Listen to the story. Is it about a trip to the swimming pool?" }
+            audio: { fr: "Aujourd'hui, Léna va à la piscine avec sa maman. Elle nage avec ses amis. Après, elle mange une crêpe. À la fin, elle est fatiguée, mais contente." }
+            answer: true
+          - id: l2-c12
+            part: gist
+            type: audio_choice
+            text: "Who is in the story?"
+            say: { en: "Listen to the story. Who is in the story?" }
+            audio: { fr: "Un petit lapin a faim. Il cherche une carotte. Elle n'est pas dans le jardin. Elle n'est pas sous l'arbre. Ah ! La carotte est dans la cuisine de Mamie." }
+            options: [{ object: hedgehog }, { object: mouse }, { object: rabbit }]
+            answer: rabbit
+          - id: l2-c13
+            part: detail
+            type: audio_choice
+            text: "Who makes the snowman with Hugo?"
+            say: { en: "Listen to the story. Who makes the snowman with Hugo?" }
+            audio: { fr: "Il neige ! D'abord, Hugo met son bonnet. Puis il fait un bonhomme de neige avec sa sœur. À la fin, ils boivent un chocolat chaud." }
+            options: [{ object: brother }, { object: sister }, { object: dad }]
+            answer: sister
+          - id: l2-c14
+            part: detail
+            type: audio_choice
+            text: "What does Paul play with?"
+            say: { en: "Listen to the story. What does Paul play with?" }
+            audio: { fr: "Paul joue au ballon dans le parc. Oh non ! Le ballon tombe dans l'eau. Un canard pousse le ballon vers Paul. Paul est content. Merci, le canard !" }
+            options: [{ object: kite }, { object: bike }, { object: ball }]
+            answer: ball
+          - id: l2-c15
+            part: detail
+            type: audio_choice
+            text: "Where does the fish hide?"
+            say: { en: "Listen to the story. Where does the fish hide?" }
+            audio: { fr: "Un petit poisson nage dans la mer. D'abord, il voit un crabe. Puis il voit un requin ! Le poisson a peur. Il se cache derrière une pierre. À la fin, le requin part." }
+            options: [{ object: boat }, { object: stone }, { object: shell }]
+            answer: stone
+          - id: l2-c16
+            part: detail
+            type: audio_choice
+            text: "What is the animal looking for?"
+            say: { en: "Listen to the story. What is the animal looking for?" }
+            audio: { fr: "Un petit lapin a faim. Il cherche une carotte. Elle n'est pas dans le jardin. Elle n'est pas sous l'arbre. Ah ! La carotte est dans la cuisine de Mamie." }
+            options: [{ object: apple }, { object: carrot }, { object: strawberry }]
+            answer: carrot
+          - id: l2-c17
+            part: end
+            type: audio_choice
+            text: "What does Minou do in the end?"
+            say: { en: "Listen to the story. What does Minou do in the end?" }
+            audio: { fr: "Minou est un chat. Il est dans le jardin. Il voit un oiseau dans l'arbre. Minou veut jouer, mais l'oiseau s'envole. À la fin, Minou dort au soleil." }
+            options: ["He sleeps in the sun.", "He plays with the bird.", "He climbs the tree."]
+            answer: "He sleeps in the sun."
+          - id: l2-c18
+            part: end
+            type: true_false
+            text: "Is Chloé sad at the end?"
+            say: { en: "Listen to the story. Is Chloé sad at the end?" }
+            audio: { fr: "C'est l'anniversaire de Chloé. D'abord, elle met sa robe. Puis ses amis arrivent avec des ballons. Ils mangent une glace. À la fin, Chloé est très contente." }
+            answer: false
+          - id: l2-c19
+            part: end
+            type: audio_choice
+            text: "How does the story end?"
+            say: { en: "Listen to the story. How does it end?" }
+            audio: { fr: "Un petit poisson nage dans la mer. D'abord, il voit un crabe. Puis il voit un requin ! Le poisson a peur. Il se cache derrière une pierre. À la fin, le requin part." }
+            options: ["The fish plays with the shark.", "The shark goes away.", "The shark eats the crab."]
+            answer: "The shark goes away."
+          - id: l2-c20
+            part: end
+            type: audio_choice
+            text: "How does the story end?"
+            say: { en: "Listen to the story. How does it end?" }
+            audio: { fr: "Tom a un petit chiot. D'abord, le chiot a peur du chat. Puis le chat joue avec lui. À la fin, le chiot et le chat dorment ensemble." }
+            options: ["The puppy is scared of the cat.", "The cat runs away.", "The puppy and the cat sleep together."]
+            answer: "The puppy and the cat sleep together."

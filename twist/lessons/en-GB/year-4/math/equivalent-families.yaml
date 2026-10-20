@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [fraction]
   facets: []
+  parts:
+    - { id: find, what: { de: einen gleichwertigen Bruch finden, en: finding an equivalent fraction } }
+    - { id: family, what: { de: Bruchfamilien erkennen und fortsetzen, en: recognising and continuing a family of fractions } }
+    - { id: compare, what: { de: zwei Brüche vergleichen, en: comparing two fractions } }
+    - { id: order, what: { de: Brüche ordnen, en: ordering fractions } }
   misconceptions:
     - id: adds-the-same
       what: Adds the same number to the numerator and denominator and thinks the fraction stays equal (1/2 = 2/3)
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -229,6 +235,24 @@ lessons:
             text: "Is it true? 3/4 = 4/5"
             say: "Is it true? Three quarters is equal to four fifths."
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Find the equivalent fraction."
+            say: "Two thirds is how many twelfths?"
+            frame: "2/3 = _/12"
+            options: ["6", "8", "11"]
+            answer: ["8"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which fraction is not in the family of 1/5?"
+            options: ["2/10", "3/15", "2/6"]
+            answer: "2/6"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which fraction is equivalent to the shaded part?"
+            show: { drawn: fraction, kind: bar, parts: 12, shaded: 9 }
+            options: ["3/4", "1/4", "2/3"]
+            answer: "3/4"
 
   - n: 2
     title: { de: Brüche vergleichen, en: Compare fractions }
@@ -399,8 +423,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: find
             type: fill_in_blank
             text: "Find the equivalent fraction."
             say: "Two fifths is how many fifteenths?"
@@ -408,11 +434,13 @@ lessons:
             options: ["5", "6", "7"]
             answer: ["6"]
           - id: l2-c2
+            part: family
             type: multiple_choice
             text: "Which fraction is not equal to 2/3?"
             options: ["4/6", "6/9", "3/4"]
             answer: "3/4"
           - id: l2-c3
+            part: compare
             type: fill_in_blank
             text: "Write <, > or =."
             frame: "5/8 _ 1/2"
@@ -420,13 +448,122 @@ lessons:
             option_audio: false
             answer: [">"]
           - id: l2-c4
+            part: compare
             type: multiple_choice
             text: "Which is greater, 3/4 or 7/12?"
             options: ["3/4", "7/12", "They are equal."]
             answer: "3/4"
           - id: l2-c5
+            part: order
             type: ordering
             text: "Put the fractions in order, smallest first."
             options: ["1/3", "5/12", "1/6", "3/4"]
             slot_count: 4
             answer: ["1/6", "1/3", "5/12", "3/4"]
+          - id: l2-c6
+            part: find
+            type: fill_in_blank
+            text: "Find the equivalent fraction."
+            say: "Ten twelfths is how many sixths?"
+            frame: "10/12 = _/6"
+            options: ["3", "5", "8"]
+            answer: ["5"]
+          - id: l2-c7
+            part: find
+            type: fill_in_blank
+            text: "Find the equivalent fraction."
+            say: "Four fifths is how many twentieths?"
+            frame: "4/5 = _/20"
+            options: ["8", "16", "19"]
+            answer: ["16"]
+          - id: l2-c8
+            part: find
+            type: multiple_choice
+            text: "The bar shows 4/10. Which fraction in fifths is the same?"
+            show: { drawn: fraction, kind: bar, parts: 10, shaded: 4 }
+            options: ["2/5", "4/5", "1/5"]
+            answer: "2/5"
+          - id: l2-c9
+            part: find
+            type: true_false
+            text: "Is it true? 4/12 = 1/3"
+            say: "Is it true? Four twelfths is equal to one third."
+            answer: true
+          - id: l2-c10
+            part: family
+            type: multiple_choice
+            text: "Which fraction comes next in the family?\n1/4, 2/8, 3/12, _"
+            say: "One quarter, two eighths, three twelfths. Which fraction comes next in the family?"
+            options: ["4/16", "4/12", "5/16"]
+            answer: "4/16"
+          - id: l2-c11
+            part: family
+            type: multiple_choice
+            text: "Which fraction is in the family of 1/3?"
+            options: ["5/15", "3/6", "2/4"]
+            answer: "5/15"
+          - id: l2-c12
+            part: family
+            type: sorting
+            text: "Sort the fractions: equal to 1/2 or not?"
+            bins:
+              - { id: half, show: { text: "equal to 1/2" }, say: "Equal to one half." }
+              - { id: other, show: { text: "not equal to 1/2" }, say: "Not equal to one half." }
+            options:
+              - { text: "3/6", bin: half }
+              - { text: "5/10", bin: half }
+              - { text: "2/3", bin: other }
+              - { text: "3/8", bin: other }
+          - id: l2-c13
+            part: family
+            type: true_false
+            text: "Is it true? 5/10 and 4/8 are in the same family."
+            say: "Is it true? Five tenths and four eighths are in the same family."
+            answer: true
+          - id: l2-c14
+            part: compare
+            type: fill_in_blank
+            text: "Write <, > or =."
+            frame: "3/10 _ 1/5"
+            options: ["<", ">", "="]
+            option_audio: false
+            answer: [">"]
+          - id: l2-c15
+            part: compare
+            type: multiple_choice
+            text: "Mia drank 1/2 of a bottle of juice. Joe drank 5/8 of the same size bottle. Who drank more?"
+            options: ["Mia", "Joe", "They drank the same."]
+            keep_order: true
+            answer: "Joe"
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Is it true? 5/12 is greater than 1/2."
+            say: "Is it true? Five twelfths is greater than one half."
+            answer: false
+          - id: l2-c17
+            part: order
+            type: ordering
+            text: "Put the fractions in order, smallest first."
+            options: ["3/4", "5/8", "1/4", "1/2"]
+            slot_count: 4
+            answer: ["1/4", "1/2", "5/8", "3/4"]
+          - id: l2-c18
+            part: order
+            type: ordering
+            text: "Put the fractions in order, greatest first."
+            options: ["3/5", "1/2", "4/5", "3/10"]
+            slot_count: 4
+            answer: ["4/5", "3/5", "1/2", "3/10"]
+          - id: l2-c19
+            part: order
+            type: multiple_choice
+            text: "Which fraction is between 1/4 and 3/4?"
+            options: ["1/2", "1/8", "7/8"]
+            answer: "1/2"
+          - id: l2-c20
+            part: order
+            type: multiple_choice
+            text: "Which list is in order, smallest first?"
+            options: ["1/4, 3/8, 1/2", "3/8, 1/4, 1/2", "1/2, 3/8, 1/4"]
+            answer: "1/4, 3/8, 1/2"

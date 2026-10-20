@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [angle]
   facets: []
+  parts:
+    - { id: estimate-kind, what: { de: Winkel schätzen und ihre Art benennen, en: estimating an angle and naming its kind } }
+    - { id: measure, what: { de: Winkel mit dem Winkelmesser auf der richtigen Skala ablesen, en: reading an angle on the right scale of a protractor } }
+    - { id: reflex, what: { de: überstumpfe Winkel aus dem kleinen Winkel bestimmen, en: finding a reflex angle from the small angle } }
+    - { id: draw, what: { de: einen Winkel mit dem Winkelmesser zeichnen, en: drawing an angle with a protractor } }
   misconceptions:
     - id: wrong-scale
       what: Reads the other scale of the protractor (writes 130° for a 50° angle)
@@ -214,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -233,6 +239,21 @@ lessons:
             show: { drawn: angle, degrees: 140, rotate: 40, protractor: true, label: false }
             options: ["140°", "40°", "130°"]
             answer: "140°"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Read the protractor. How big is the angle?"
+            show: { drawn: angle, degrees: 25, rotate: 155, protractor: true, label: false }
+            options: ["25°", "155°", "35°"]
+            answer: "25°"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? An angle of 175° is acute."
+            answer: false
+          - id: l1-c6
+            type: text_input
+            text: "Read the protractor. How many degrees is the angle?"
+            show: { drawn: angle, degrees: 115, protractor: true, label: false }
+            answer: "115"
 
   - n: 2
     title: { de: Überstumpfe Winkel und Winkel zeichnen, en: Reflex angles and drawing angles }
@@ -410,32 +431,133 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: measure
             type: multiple_choice
             text: "Read the protractor. How big is the angle?"
             show: { drawn: angle, degrees: 150, rotate: 30, protractor: true, label: false }
             options: ["150°", "30°", "140°"]
             answer: "150°"
           - id: l2-c2
+            part: estimate-kind
             type: multiple_choice
             text: "About how big is this angle?"
             show: { drawn: angle, degrees: 80, label: "?" }
             options: ["10°", "80°", "150°"]
             answer: "80°"
           - id: l2-c3
+            part: reflex
             type: text_input
             text: "The small angle is 65°. How big is the reflex angle, in degrees?"
             answer: "295"
           - id: l2-c4
+            part: estimate-kind
             type: multiple_choice
             text: "What kind of angle is 182°?"
             options: ["obtuse", "straight line", "reflex"]
             answer: "reflex"
             keep_order: true
           - id: l2-c5
+            part: measure
             type: multiple_choice
             text: "Read the protractor. How big is the angle?"
             show: { drawn: angle, degrees: 35, protractor: true, label: false }
             options: ["35°", "145°", "45°"]
             answer: "35°"
+          - id: l2-c6
+            part: estimate-kind
+            type: image_multiple_choice
+            text: "Which angle is about 120°?"
+            options:
+              - { drawn: angle, degrees: 60, label: false, key: "60" }
+              - { drawn: angle, degrees: 170, label: false, key: "170" }
+              - { drawn: angle, degrees: 120, label: false, key: "120" }
+            answer: "120"
+          - id: l2-c7
+            part: estimate-kind
+            type: multiple_choice
+            text: "About how big is this angle?"
+            show: { drawn: angle, degrees: 160, label: "?" }
+            options: ["20°", "90°", "160°"]
+            answer: "160°"
+          - id: l2-c8
+            part: estimate-kind
+            type: true_false
+            text: "Is it true? An angle of 270° is obtuse."
+            answer: false
+          - id: l2-c9
+            part: measure
+            type: multiple_choice
+            text: "Read the protractor. How big is the angle?"
+            show: { drawn: angle, degrees: 100, protractor: true, label: false }
+            options: ["100°", "80°", "110°"]
+            answer: "100°"
+          - id: l2-c10
+            part: measure
+            type: text_input
+            text: "Read the protractor. How many degrees is the angle?"
+            show: { drawn: angle, degrees: 55, rotate: 125, protractor: true, label: false }
+            answer: "55"
+          - id: l2-c11
+            part: measure
+            type: true_false
+            text: "Read the protractor. Is the angle 25°?"
+            show: { drawn: angle, degrees: 155, rotate: 25, protractor: true, label: false }
+            answer: false
+          - id: l2-c12
+            part: reflex
+            type: multiple_choice
+            text: "The small angle on the other side is 150°. How big is the reflex angle?"
+            show: { drawn: angle, degrees: 210, label: "?" }
+            options: ["210°", "30°", "150°"]
+            answer: "210°"
+          - id: l2-c13
+            part: reflex
+            type: fill_in_blank
+            text: "The small angle is 48°. Find the reflex angle."
+            frame: "360° − 48° = _°"
+            options: ["132", "312", "322"]
+            answer: ["312"]
+          - id: l2-c14
+            part: reflex
+            type: text_input
+            text: "A reflex angle is 290°. How big is the small angle on the other side, in degrees?"
+            answer: "70"
+          - id: l2-c15
+            part: reflex
+            type: true_false
+            text: "The small angle is 120°. Is the reflex angle 240°?"
+            answer: true
+          - id: l2-c16
+            part: draw
+            type: multiple_choice
+            text: "You are drawing an angle of 75°. You have lined up 0 with the arm. What do you do next?"
+            options: ["Mark 75 on the scale that starts at that 0.", "Join the two ends of the arm.", "Draw a second arm at any angle."]
+            answer: "Mark 75 on the scale that starts at that 0."
+          - id: l2-c17
+            part: draw
+            type: multiple_choice
+            text: "Ravi wants to draw an angle of 50°. Here is his drawing. What is wrong?"
+            show: { drawn: angle, degrees: 130, protractor: true, label: false }
+            options: ["He used the wrong scale: this is 130°.", "Nothing, it is 50°.", "His arms are too short."]
+            answer: "He used the wrong scale: this is 130°."
+          - id: l2-c18
+            part: draw
+            type: multiple_choice
+            text: "A protractor only goes to 180°. How can you draw a reflex angle of 300°?"
+            options: ["Draw 60°: the reflex angle is on the other side.", "Draw 120°: the reflex angle is on the other side.", "Mark 300 on the outer scale."]
+            answer: "Draw 60°: the reflex angle is on the other side."
+          - id: l2-c19
+            part: draw
+            type: true_false
+            text: "Ella wants an angle of 35°. Here is her drawing. Is it right?"
+            show: { drawn: angle, degrees: 35, protractor: true, label: false }
+            answer: true
+          - id: l2-c20
+            part: draw
+            type: multiple_choice
+            text: "Kai wants to draw 140°. His arm lies on the 0 of the inner scale. Where does he make his mark?"
+            options: ["at 140 on the inner scale", "at 140 on the outer scale", "at 40 on the inner scale"]
+            answer: "at 140 on the inner scale"

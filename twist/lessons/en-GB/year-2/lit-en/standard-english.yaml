@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: was-were, what: { de: "was und were richtig verwenden (we were, nicht we was)", en: "using was and were (we were, not we was)" } }
+    - { id: is-are, what: { de: "is für eins, are für mehrere", en: "is for one, are for more than one" } }
+    - { id: did-saw, what: { de: "I did und I saw schreiben, nicht I done oder I seen", en: "writing I did and I saw, not I done or I seen" } }
+    - { id: other-forms, what: { de: "those, doesn't und any schreiben (nicht them, don't, no)", en: "writing those, doesn't and any (not them, don't, no)" } }
   misconceptions:
     - id: we-was
       what: Writes was with we, you and they (we was, they was)
@@ -225,6 +230,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -244,6 +250,26 @@ lessons:
             type: true_false
             text: "Is it true? \"She were reading.\" is Standard English."
             answer: false
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the word that is not Standard English."
+            say: "One word in this sentence is not Standard English. Tap it."
+            show: { drawn: letter-card, text: "The apples is ripe." }
+            spans: ["is"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which sentence is in Standard English?"
+            say: "Read the sentences yourself. Which one is Standard English?"
+            options: ["He were happy.", "He was happy."]
+            answer: "He was happy."
+            option_audio: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill the gap: My book _ on the table."
+            say: "Read the sentence. Which word is Standard English?"
+            frame: "My book _ on the table."
+            options: ["are", "is"]
+            answer: ["is"]
 
   - n: 2
     title: { de: "did, saw, those, doesn't", en: "did, saw, those, doesn't" }
@@ -426,8 +452,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: was-were
             type: fill_in_blank
             text: "Fill the gap: You _ the first to finish."
             say: "Read the sentence. Which word is Standard English?"
@@ -435,6 +463,7 @@ lessons:
             options: ["were", "was"]
             answer: ["were"]
           - id: l2-c2
+            part: is-are
             type: fill_in_blank
             text: "Fill the gap: The children _ in the hall."
             say: "Read the sentence. Which word is Standard English?"
@@ -442,6 +471,7 @@ lessons:
             options: ["are", "is"]
             answer: ["are"]
           - id: l2-c3
+            part: did-saw
             type: multiple_choice
             text: "Which sentence is in Standard English?"
             say: "Read the sentences yourself. Which one is Standard English?"
@@ -449,15 +479,141 @@ lessons:
             answer: "I saw a rainbow."
             option_audio: false
           - id: l2-c4
+            part: other-forms
             type: highlight_in_text
             text: "Tap the word that is not Standard English."
             say: "One word in this sentence is not Standard English. Tap it."
             show: { drawn: letter-card, text: "My cat don't like baths." }
             spans: ["don't"]
           - id: l2-c5
+            part: other-forms
             type: fill_in_blank
             text: "Fill the gap: Did you see _ ducks?"
             say: "Read the sentence. Which word is Standard English?"
             frame: "Did you see _ ducks?"
             options: ["those", "them"]
             answer: ["those"]
+          - id: l2-c6
+            part: was-were
+            type: fill_in_blank
+            text: "Fill the gaps: I _ cold, but my friends _ warm."
+            say: "Read the sentence. Which words are Standard English?"
+            frame: "I _ cold, but my friends _ warm."
+            options: ["was", "were"]
+            answer: ["was", "were"]
+          - id: l2-c7
+            part: was-were
+            type: sorting
+            text: "Was or were: is it Standard English? Sort the sentences."
+            say: "Read each sentence yourself. Look at was or were. Is it Standard English or not?"
+            option_audio: false
+            bins:
+              - { id: standard, show: { text: "Standard English" }, say: "Standard English." }
+              - { id: not, show: { text: "not Standard English" }, say: "Not Standard English." }
+            options:
+              - { text: "The twins was asleep.", bin: not }
+              - { text: "Ella was asleep.", bin: standard }
+              - { text: "I were asleep.", bin: not }
+              - { text: "You were asleep.", bin: standard }
+          - id: l2-c8
+            part: was-were
+            type: highlight_in_text
+            text: "Tap the word that is not Standard English."
+            say: "One word in this sentence is not Standard English. Tap it."
+            show: { drawn: letter-card, text: "My mum and dad was very proud of me." }
+            spans: ["was"]
+            difficulty: stretch
+          - id: l2-c9
+            part: was-were
+            type: true_false
+            text: "Is it true? \"Were you at the party?\" is Standard English."
+            answer: true
+          - id: l2-c10
+            part: is-are
+            type: fill_in_blank
+            text: "Fill the gap: The flowers in the pot _ red."
+            say: "Read the sentence. Which word is Standard English?"
+            frame: "The flowers in the pot _ red."
+            options: ["is", "are"]
+            answer: ["are"]
+            difficulty: stretch
+          - id: l2-c11
+            part: is-are
+            type: highlight_in_text
+            text: "Tap the word that is not Standard English."
+            say: "One word in this sentence is not Standard English. Tap it."
+            show: { drawn: letter-card, text: "Look, the ducks is swimming." }
+            spans: ["is"]
+          - id: l2-c12
+            part: is-are
+            type: true_false
+            text: "Is it true? \"My shoes is muddy.\" is Standard English."
+            answer: false
+          - id: l2-c13
+            part: is-are
+            type: fill_in_blank
+            text: "Fill the gaps: One cat _ black and two cats _ white."
+            say: "Read the sentence. Which words are Standard English?"
+            frame: "One cat _ black and two cats _ white."
+            options: ["are", "is"]
+            answer: ["is", "are"]
+          - id: l2-c14
+            part: did-saw
+            type: fill_in_blank
+            text: "Fill the gaps: I have _ that film. I _ it last week."
+            say: "Read the sentences. Which words are Standard English?"
+            frame: "I have _ that film. I _ it last week."
+            options: ["saw", "seen"]
+            answer: ["seen", "saw"]
+            difficulty: stretch
+          - id: l2-c15
+            part: did-saw
+            type: highlight_in_text
+            text: "Tap the word that is not Standard English."
+            say: "One word in this sentence is not Standard English. Tap it."
+            show: { drawn: letter-card, text: "Gran seen us at the bus stop." }
+            spans: ["seen"]
+          - id: l2-c16
+            part: did-saw
+            type: true_false
+            text: "Is it true? \"Who done this?\" is Standard English."
+            answer: false
+          - id: l2-c17
+            part: did-saw
+            type: multiple_choice
+            text: "Liam said: \"I done a painting of my dog.\"\nHow do we write it in Standard English?"
+            say: "Read what Liam said. How do we write it in Standard English? Read them yourself."
+            options: ["I doed a painting of my dog.", "I did a painting of my dog.", "I done a painting of my dog."]
+            answer: "I did a painting of my dog."
+            option_audio: false
+          - id: l2-c18
+            part: other-forms
+            type: sorting
+            text: "Is it written in Standard English? Sort the sentences."
+            say: "Read each sentence yourself. Is it written in Standard English or not?"
+            option_audio: false
+            bins:
+              - { id: standard, show: { text: "Standard English" }, say: "Standard English." }
+              - { id: not, show: { text: "not Standard English" }, say: "Not Standard English." }
+            options:
+              - { text: "Them socks are mine.", bin: not }
+              - { text: "Sam doesn't eat fish.", bin: standard }
+              - { text: "Those socks are mine.", bin: standard }
+              - { text: "Sam don't eat fish.", bin: not }
+          - id: l2-c19
+            part: other-forms
+            type: fill_in_blank
+            text: "Fill the gap: We haven't got _ bread."
+            say: "Read the sentence. Which word is Standard English?"
+            frame: "We haven't got _ bread."
+            options: ["no", "any"]
+            answer: ["any"]
+          - id: l2-c20
+            part: other-forms
+            type: fill_in_blank
+            text: "Fill the gaps: I _ like spiders, but my sister _ mind them."
+            say: "Read the sentence. Which words are Standard English?"
+            frame: "I _ like spiders, but my sister _ mind them."
+            options: ["doesn't", "don't"]
+            answer: ["don't", "doesn't"]
+            difficulty: stretch

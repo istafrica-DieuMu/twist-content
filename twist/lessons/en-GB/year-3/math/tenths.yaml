@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [fraction, number-line]
   facets: []
+  parts:
+    - { id: name, what: { de: Zehntel an Formen benennen, en: naming tenths of a shape } }
+    - { id: whole, what: { de: "ein Zehntel ist einer von 10 gleichen Teilen, 10 Zehntel sind ein Ganzes", en: "a tenth is one of 10 equal parts, and 10 tenths make one whole" } }
+    - { id: count, what: { de: "in Zehnteln vorwärts und rückwärts zählen, auch am Zahlenstrahl", en: "counting up and down in tenths, also on a number line" } }
+    - { id: amount, what: { de: ein Zehntel einer Menge finden, en: finding a tenth of an amount } }
   misconceptions:
     - id: denominator-counts-red
       what: Writes the number of white parts as the denominator (1/9 for one of ten parts, 4/6 for four of ten)
@@ -221,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -239,6 +245,27 @@ lessons:
             text: "How many tenths are red?"
             show: { drawn: fraction, kind: rect, parts: 10, rows: 2, shaded: 7 }
             answer: "7"
+          - id: l1-c4
+            type: multiple_choice
+            text: "What fraction is red?"
+            show: { drawn: fraction, kind: circle, parts: 10, shaded: 8 }
+            options: ["8/10", "2/10", "8/2"]
+            answer: "8/10"
+            option_audio: false
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which picture shows 1/10?"
+            say: "Which picture shows one tenth?"
+            options:
+              - { drawn: fraction, kind: circle, parts: 5, shaded: 1 }
+              - { drawn: fraction, kind: circle, parts: 10, shaded: 1 }
+              - { drawn: fraction, kind: bar, parts: 10, shaded: 9 }
+            answer: "1/10"
+          - id: l1-c6
+            type: text_input
+            text: "How many tenths are white?"
+            show: { drawn: fraction, kind: bar, parts: 10, shaded: 4 }
+            answer: "6"
 
   - n: 2
     title: { de: In Zehnteln zählen, en: Counting in tenths }
@@ -418,8 +445,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: name
             type: multiple_choice
             text: "What fraction is red?"
             show: { drawn: fraction, kind: rect, parts: 10, rows: 2, shaded: 9 }
@@ -427,6 +456,7 @@ lessons:
             answer: "9/10"
             option_audio: false
           - id: l2-c2
+            part: count
             type: multiple_choice
             text: "Which fraction does the arrow point to?"
             show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends, mark: 0.4 }
@@ -434,6 +464,7 @@ lessons:
             answer: "4/10"
             option_audio: false
           - id: l2-c3
+            part: count
             type: fill_in_blank
             text: "Count on in tenths."
             frame: "5/10, 6/10, _, _"
@@ -441,13 +472,122 @@ lessons:
             answer: ["7/10", "8/10"]
             option_audio: false
           - id: l2-c4
+            part: amount
             type: text_input
             text: "1/10 of 90 = _"
             say: "What is one tenth of ninety?"
             answer: "9"
           - id: l2-c5
+            part: whole
             type: multiple_choice
             text: "Which sentence is true?"
             options: ["10 tenths make one whole.", "A tenth is one of 10 parts of any size.", "1/10 is bigger than 1."]
             answer: "10 tenths make one whole."
             option_audio: false
+          - id: l2-c6
+            part: name
+            type: multiple_choice
+            text: "What fraction is red?"
+            show: { drawn: fraction, kind: circle, parts: 10, shaded: 7 }
+            options: ["7/10", "3/10", "7/3"]
+            answer: "7/10"
+            option_audio: false
+          - id: l2-c7
+            part: name
+            type: image_multiple_choice
+            text: "Which picture shows 4/10?"
+            say: "Which picture shows four tenths?"
+            options:
+              - { drawn: fraction, kind: bar, parts: 10, shaded: 6 }
+              - { drawn: fraction, kind: rect, parts: 8, rows: 2, shaded: 4 }
+              - { drawn: fraction, kind: bar, parts: 10, shaded: 4 }
+            answer: "4/10"
+          - id: l2-c8
+            part: name
+            type: text_input
+            text: "How many tenths are white?"
+            show: { drawn: fraction, kind: bar, parts: 10, shaded: 3 }
+            answer: "7"
+          - id: l2-c9
+            part: name
+            type: true_false
+            text: "Is it true? 5/10 of this circle is red."
+            say: "Is it true? Five tenths of this circle is red."
+            show: { drawn: fraction, kind: circle, parts: 10, shaded: 6 }
+            answer: false
+          - id: l2-c10
+            part: whole
+            type: multiple_choice
+            text: "How many tenths make 2 wholes?"
+            say: "How many tenths make two wholes?"
+            options: ["20", "2", "12"]
+            answer: "20"
+          - id: l2-c11
+            part: whole
+            type: image_multiple_choice
+            text: "Which bar is cut into tenths?"
+            options:
+              - { drawn: fraction, kind: bar, parts: 8, shaded: 1 }
+              - { drawn: fraction, kind: bar, parts: 10, shaded: 1 }
+              - { drawn: fraction, kind: bar, parts: 5, shaded: 1 }
+            answer: "1/10"
+          - id: l2-c12
+            part: whole
+            type: true_false
+            text: "Ella cuts a pizza into 10 equal slices and eats 1 slice. Is it true that she eats 1/10 of the pizza?"
+            say: "Ella cuts a pizza into ten equal slices and eats one slice. Is it true that she eats one tenth of the pizza?"
+            answer: true
+          - id: l2-c13
+            part: whole
+            type: multiple_choice
+            text: "How many more tenths make one whole?"
+            show: { drawn: fraction, kind: bar, parts: 10, shaded: 6 }
+            options: ["4", "6", "10"]
+            answer: "4"
+          - id: l2-c14
+            part: count
+            type: point_on_line
+            text: "Tap 8/10 on the number line."
+            say: "Tap eight tenths on the number line."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends }
+            answer: 0.8
+          - id: l2-c15
+            part: count
+            type: fill_in_blank
+            text: "Count back in tenths."
+            frame: "1 and 2/10, 1 and 1/10, _, _"
+            options: ["1", "9/10", "1/10", "10/11"]
+            answer: ["1", "9/10"]
+            option_audio: false
+          - id: l2-c16
+            part: count
+            type: multiple_choice
+            text: "Which number does the arrow point to?"
+            show: { drawn: number-line, from: 0, to: 2, step: 0.1, labels: ends, mark: 1.5 }
+            options: ["1 and 5/10", "5/10", "1 and 4/10"]
+            answer: "1 and 5/10"
+            option_audio: false
+          - id: l2-c17
+            part: amount
+            type: text_input
+            text: "1/10 of 10 = _"
+            say: "What is one tenth of ten?"
+            answer: "1"
+          - id: l2-c18
+            part: amount
+            type: multiple_choice
+            text: "1/10 of 100 = _"
+            say: "What is one tenth of one hundred?"
+            options: ["10", "1", "1000"]
+            answer: "10"
+          - id: l2-c19
+            part: amount
+            type: text_input
+            text: "A bag has 80 sweets. Mia gets one tenth of them. How many sweets does Mia get?"
+            answer: "8"
+          - id: l2-c20
+            part: amount
+            type: true_false
+            text: "Is it true? 1/10 of 20 is 10."
+            say: "Is it true? One tenth of twenty is ten."
+            answer: false

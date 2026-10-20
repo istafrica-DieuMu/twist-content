@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [coins, rechenstrich]
   facets: [currency]
+  parts:
+    - { id: total, what: { de: Preise zusammenrechnen, en: adding up prices } }
+    - { id: pay, what: { de: passend bezahlen, en: paying the exact amount } }
+    - { id: change-pence, what: { de: Rückgeld in Pence berechnen, en: working out change in pence } }
+    - { id: change-pounds, what: { de: Rückgeld in Pfund berechnen, en: working out change in pounds } }
   misconceptions:
     - id: change-is-price
       what: Gives the price, or the money paid, as the change
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +237,26 @@ lessons:
               - { drawn: coins, values: [50, 10] }
               - { drawn: coins, values: [20, 20, 20, 5] }
             answer: "70"
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? A cup for 50p and a straw for 5p cost 60p."
+            say: "A cup costs fifty pence and a straw costs five pence. Together they cost sixty pence. Is that true?"
+            answer: false
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "A ribbon costs 37p. Which coins pay exactly 37p?"
+            say: "A ribbon costs thirty-seven pence. Which coins pay exactly the right amount?"
+            options:
+              - { drawn: coins, values: [20, 10, 5, 1] }
+              - { drawn: coins, values: [20, 10, 5, 2] }
+              - { drawn: coins, values: [20, 5, 2] }
+            answer: "37"
+          - id: l1-c6
+            type: multiple_choice
+            text: "A bucket costs £11 and a spade costs £6. How much altogether?"
+            say: "A bucket costs eleven pounds and a spade costs six pounds. How much altogether?"
+            options: ["£17", "£5", "£16"]
+            answer: "£17"
 
   - n: 2
     title: { de: Rückgeld, en: Giving change }
@@ -408,19 +434,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: change-pence
             type: multiple_choice
             text: "A yo-yo costs 35p. Pay with £1. How much change?"
             say: "A yo-yo costs thirty-five pence. You pay with one pound. How much change?"
             options: ["65p", "35p", "75p"]
             answer: "65p"
           - id: l2-c2
+            part: total
             type: text_input
             text: "A pencil case costs 45p and a ruler costs 25p. How many pence altogether?"
             say: "A pencil case costs forty-five pence and a ruler costs twenty-five pence. How many pence altogether?"
             answer: "70"
           - id: l2-c3
+            part: pay
             type: image_multiple_choice
             text: "A balloon costs 28p. Which coins pay exactly 28p?"
             say: "A balloon costs twenty-eight pence. Which coins pay exactly the right amount?"
@@ -430,12 +460,125 @@ lessons:
               - { drawn: coins, values: [20, 10] }
             answer: "28"
           - id: l2-c4
+            part: change-pounds
             type: text_input
             text: "A bike helmet costs £16. Pay with a £20 note. How many pounds change?"
             say: "A bike helmet costs sixteen pounds. You pay with a twenty pound note. How many pounds change?"
             answer: "4"
           - id: l2-c5
+            part: change-pence
             type: true_false
             text: "Is it true? Price 25p, paid with 50p, change 25p."
             say: "A lolly costs twenty-five pence. You pay with fifty pence and get twenty-five pence change. Is that true?"
             answer: true
+          - id: l2-c6
+            part: total
+            type: multiple_choice
+            text: "A sandwich costs 45p and a drink costs 35p. How much altogether?"
+            say: "A sandwich costs forty-five pence and a drink costs thirty-five pence. How much altogether?"
+            options: ["80p", "70p", "10p"]
+            answer: "80p"
+          - id: l2-c7
+            part: total
+            type: text_input
+            text: "A torch costs £9 and a battery costs £3. How many pounds altogether?"
+            say: "A torch costs nine pounds and a battery costs three pounds. How many pounds altogether?"
+            answer: "12"
+          - id: l2-c8
+            part: total
+            type: true_false
+            text: "Is it true? A pencil for 18p and a rubber for 20p cost 38p."
+            say: "A pencil costs eighteen pence and a rubber costs twenty pence. Together they cost thirty-eight pence. Is that true?"
+            answer: true
+          - id: l2-c9
+            part: total
+            type: text_input
+            text: "Two lollies cost 30p each. How many pence altogether?"
+            say: "Two lollies cost thirty pence each. How many pence altogether?"
+            answer: "60"
+          - id: l2-c10
+            part: pay
+            type: image_multiple_choice
+            text: "A cookie costs 65p. Which coins pay exactly 65p?"
+            say: "A cookie costs sixty-five pence. Which coins pay exactly the right amount?"
+            options:
+              - { drawn: coins, values: [50, 10, 2] }
+              - { drawn: coins, values: [50, 10, 5] }
+              - { drawn: coins, values: [20, 20, 20] }
+            answer: "65"
+          - id: l2-c11
+            part: pay
+            type: image_multiple_choice
+            text: "A notebook costs 90p. Which coins pay exactly 90p?"
+            say: "A notebook costs ninety pence. Which coins pay exactly the right amount?"
+            options:
+              - { drawn: coins, values: [50, 20, 10, 5] }
+              - { drawn: coins, values: [50, 50] }
+              - { drawn: coins, values: [50, 20, 20] }
+            answer: "90"
+          - id: l2-c12
+            part: pay
+            type: true_false
+            text: "A toy costs 42p. Is it true? These coins pay exactly 42p."
+            say: "A toy costs forty-two pence. Is it true? These coins pay exactly forty-two pence."
+            show: { drawn: coins, values: [20, 20, 1] }
+            answer: false
+          - id: l2-c13
+            part: pay
+            type: image_multiple_choice
+            text: "A book costs £7. Which money pays exactly £7?"
+            say: "A book costs seven pounds. Which money pays exactly the right amount?"
+            options:
+              - { drawn: coins, values: [500, 100] }
+              - { drawn: coins, values: [500, 200] }
+              - { drawn: coins, values: [200, 200, 200] }
+            answer: "700"
+          - id: l2-c14
+            part: change-pence
+            type: text_input
+            text: "A sweet costs 15p. Pay with 50p. How many pence change?"
+            say: "A sweet costs fifteen pence. You pay with fifty pence. How many pence change?"
+            answer: "35"
+          - id: l2-c15
+            part: change-pence
+            type: multiple_choice
+            text: "A drink costs 72p. Pay with £1. How much change?"
+            say: "A drink costs seventy-two pence. You pay with one pound. How much change?"
+            options: ["28p", "38p", "72p"]
+            answer: "28p"
+          - id: l2-c16
+            part: change-pence
+            type: image_multiple_choice
+            text: "Price 40p, paid with £1. Which coins are the change?"
+            say: "A comic costs forty pence. You pay with one pound. Which coins are the right change?"
+            options:
+              - { drawn: coins, values: [50, 5] }
+              - { drawn: coins, values: [50, 10] }
+              - { drawn: coins, values: [20, 20] }
+            answer: "60"
+          - id: l2-c17
+            part: change-pounds
+            type: multiple_choice
+            text: "A football costs £13. Pay with a £20 note. How much change?"
+            say: "A football costs thirteen pounds. You pay with a twenty pound note. How much change?"
+            options: ["£7", "£13", "£3"]
+            answer: "£7"
+          - id: l2-c18
+            part: change-pounds
+            type: true_false
+            text: "Is it true? Price £45, paid with £50, change £15."
+            say: "A scooter costs forty-five pounds. You pay with fifty pounds and get fifteen pounds change. Is that true?"
+            answer: false
+          - id: l2-c19
+            part: change-pounds
+            type: text_input
+            text: "A lunchbox costs £12. Pay with a £20 note. How many pounds change?"
+            say: "A lunchbox costs twelve pounds. You pay with a twenty pound note. How many pounds change?"
+            answer: "8"
+          - id: l2-c20
+            part: change-pounds
+            type: multiple_choice
+            text: "Tom buys a cap for £6 and socks for £3. He pays with a £10 note. How much change?"
+            say: "Tom buys a cap for six pounds and socks for three pounds. He pays with a ten pound note. How much change does he get?"
+            options: ["£1", "£9", "£4"]
+            answer: "£1"

@@ -25,6 +25,12 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: il-elle, what: { de: il für einen Jungen und elle für ein Mädchen wählen, en: choosing il for a boy and elle for a girl } }
+    - { id: aime-joue, what: { de: "das Verb nach il und elle ohne s (il joue, elle aime)", en: "the verb after il and elle with no s (il joue, elle aime)" } }
+    - { id: avoir, what: { de: "j'ai wird il a oder elle a, auch für das Alter", en: "j'ai becomes il a or elle a, also for an age" } }
+    - { id: etre, what: { de: je suis wird il est oder elle est, en: je suis becomes il est or elle est } }
+    - { id: understand, what: { de: "verstehen, was jemand über eine andere Person sagt", en: understanding what someone says about another person } }
   misconceptions:
     - id: keeps-je-form
       what: Keeps the je form of the verb with il or elle (elle ai un chien, il suis grand)
@@ -50,7 +56,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: multiple_choice
-            text: "I like football."
+            text: "How do you say this in French?\nI like football."
             say: { en: "How do you say I like football in French?" }
             options: ["J'aime le foot.", "Je suis le foot.", "J'ai le foot."]
             answer: "J'aime le foot."
@@ -58,8 +64,9 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
+            text: "Who is it?"
             say: { en: "Listen. Who is it?" }
-            audio: { fr: "C'est ma mamie." }
+            audio: { fr: "C'est ma mamie.", speaker: male }
             options: [{ object: grandma }, { object: mum }, { object: girl }]
             answer: grandma
             difficulty: easy
@@ -84,7 +91,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "Léa likes dancing."
+                text: "Léa likes dancing. Which sentence is right?"
                 say: { en: "Léa likes dancing. Which sentence is right?" }
                 show: { object: dance }
                 options: ["Elle aime danser.", "Elle aimes danser.", "J'aime danser."]
@@ -99,6 +106,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "What does he play?"
                 say: { en: "Listen. What does he play?" }
                 audio: { fr: "Il joue au tennis." }
                 options: [{ object: play-tennis }, { object: play-football }, { object: play-guitar }]
@@ -120,7 +128,7 @@ lessons:
                   - "Il aime le foot."
               - id: l1-f4
                 type: multiple_choice
-                text: "Her name is Inès."
+                text: "Her name is Inès. Which sentence is right?"
                 say: { en: "Her name is Inès. Which sentence is right?" }
                 show: { object: girl }
                 options: ["Elle s'appelle Inès.", "Je m'appelle Inès.", "Il s'appelle Inès."]
@@ -146,7 +154,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "Max likes reading."
+                text: "Max likes reading. Which sentence is right?"
                 say: { en: "Max likes reading. Which sentence is right?" }
                 show: { object: read }
                 options: ["Il aime lire.", "Il aimes lire.", "Elle aime lire."]
@@ -155,8 +163,9 @@ lessons:
                 hints: ["Max is a boy, and French adds no s."]
               - id: l1-s2
                 type: audio_choice
+                text: "What does Hugo like?"
                 say: { en: "Listen. What does Hugo like?" }
-                audio: { fr: "Voici mon frère. Il s'appelle Hugo. Il aime chanter." }
+                audio: { fr: "Voici mon frère. Il s'appelle Hugo. Il aime chanter.", speaker: female }
                 options: [{ object: sing }, { object: swim }, { object: read }]
                 answer: sing
                 hints: ["Listen after il aime."]
@@ -170,7 +179,7 @@ lessons:
                 hints: ["No s after a person's name either."]
               - id: l1-s4
                 type: true_false
-                text: "Sam is a boy. Elle joue au foot."
+                text: "Sam is a boy. Is this sentence right for Sam?\nElle joue au foot."
                 say: { en: "Sam is a boy. Is the sentence right for Sam?" }
                 answer: false
                 hints: ["For a boy, say il."]
@@ -185,7 +194,7 @@ lessons:
             tasks:
               - id: l1-n1
                 type: multiple_choice
-                text: "Dad plays the guitar."
+                text: "Dad plays the guitar. Which sentence is right?"
                 say: { en: "Dad plays the guitar. Which sentence is right?" }
                 show: { object: play-guitar }
                 options: ["Il joue de la guitare.", "Il joues de la guitare.", "Je joue de la guitare."]
@@ -193,14 +202,15 @@ lessons:
                 option_audio: false
               - id: l1-n2
                 type: audio_choice
+                text: "What does Chloé like?"
                 say: { en: "Listen. What does Chloé like?" }
-                audio: { fr: "Ma sœur s'appelle Chloé. Elle aime nager." }
+                audio: { fr: "Ma sœur s'appelle Chloé. Elle aime nager.", speaker: male }
                 options: [{ object: swim }, { object: dance }, { object: ride-bike }]
                 answer: swim
               - id: l1-n3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: she likes painting."
                 say: { en: "Build the sentence: she likes painting." }
                 options: ["peindre.", "aime", "Elle"]
                 slot_count: 3
@@ -214,22 +224,24 @@ lessons:
                 option_audio: false
               - id: l1-n5
                 type: true_false
-                text: "Elle aimes le chocolat."
+                text: "Is it written correctly?\nElle aimes le chocolat."
                 say: { en: "Read the sentence. Is it written correctly?" }
                 answer: false
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "Hugo likes swimming."
+            text: "Hugo likes swimming. Which sentence is right?"
             say: { en: "Hugo likes swimming. Which sentence is right?" }
             options: ["Il aime nager.", "Il aimes nager.", "Elle aime nager."]
             answer: "Il aime nager."
             option_audio: false
           - id: l1-c2
             type: audio_choice
+            text: "What does he play?"
             say: { en: "Listen. What does he play?" }
             audio: { fr: "Il joue de la guitare." }
             options: [{ object: play-guitar }, { object: play-tennis }, { object: sing }]
@@ -241,6 +253,26 @@ lessons:
             options: ["Elle", "Il", "J'"]
             answer: ["Elle"]
             option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Her name is Manon. Is this sentence right?\nElle s'appelle Manon."
+            say: { en: "Her name is Manon. Read the sentence. Is it right?" }
+            answer: true
+          - id: l1-c5
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: he likes singing."
+            say: { en: "Build the sentence: he likes singing." }
+            options: ["chanter.", "aime", "Il", "aimes"]
+            slot_count: 3
+            answer: ["Il", "aime", "chanter."]
+          - id: l1-c6
+            type: audio_choice
+            text: "What does she like?"
+            say: { en: "Listen. What does she like?" }
+            audio: { fr: "Elle aime lire." }
+            options: [{ object: read }, { object: sing }, { object: paint }]
+            answer: read
 
   - n: 2
     title: { de: "Il a, elle est", en: "Il a, elle est" }
@@ -251,7 +283,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Léa likes singing."
+            text: "Léa likes singing. Which sentence is right?"
             say: { en: "Léa likes singing. Which sentence is right?" }
             options: ["Elle aime chanter.", "Elle aimes chanter.", "J'aime chanter."]
             answer: "Elle aime chanter."
@@ -259,6 +291,7 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: audio_choice
+            text: "What does she play?"
             say: { en: "Listen. What does she play?" }
             audio: { fr: "Elle joue au foot." }
             options: [{ object: play-football }, { object: play-tennis }, { object: dance }]
@@ -284,7 +317,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "Tom has got a cat."
+                text: "Tom has got a cat. Which sentence is right?"
                 say: { en: "Tom has got a cat. Which sentence is right?" }
                 show: { object: cat }
                 options: ["Il a un chat.", "Il ai un chat.", "Il est un chat."]
@@ -299,7 +332,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
-                text: "Léa is tall."
+                text: "Léa is tall. Which sentence is right?"
                 say: { en: "Léa is tall. Which sentence is right?" }
                 options: ["Elle est grande.", "Elle suis grande.", "Elle a grande."]
                 answer: "Elle est grande."
@@ -312,8 +345,9 @@ lessons:
                   - "Elle est grande."
               - id: l2-f3
                 type: audio_choice
+                text: "How old is Max?"
                 say: { en: "Listen. How old is Max?" }
-                audio: { fr: "Voici mon ami Max. Il a dix ans." }
+                audio: { fr: "Voici mon ami Max. Il a dix ans.", speaker: female }
                 options: ["10", "2", "12"]
                 answer: "10"
                 hints:
@@ -345,7 +379,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: multiple_choice
-                text: "Hugo has got a rabbit."
+                text: "Hugo has got a rabbit. Which sentence is right?"
                 say: { en: "Hugo has got a rabbit. Which sentence is right?" }
                 options: ["Il a un lapin.", "Il ai un lapin.", "J'ai un lapin."]
                 answer: "Il a un lapin."
@@ -361,21 +395,22 @@ lessons:
                 hints: ["Is is est."]
               - id: l2-s3
                 type: audio_choice
+                text: "What has the sister got?"
                 say: { en: "Listen. What has the sister got?" }
-                audio: { fr: "Ma sœur a huit ans. Elle a un chat." }
+                audio: { fr: "Ma sœur a huit ans. Elle a un chat.", speaker: male }
                 options: [{ object: cat }, { object: dog }, { object: rabbit }]
                 answer: cat
                 hints: ["Listen after elle a un."]
               - id: l2-s4
                 type: true_false
-                text: "Il suis petit."
+                text: "Is it written correctly?\nIl suis petit."
                 say: { en: "Read the sentence. Is it written correctly?" }
                 answer: false
                 hints: ["Suis goes with je."]
               - id: l2-s5
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: he is ten."
                 say: { en: "Build the sentence: he is ten." }
                 options: ["dix ans.", "a", "Il"]
                 slot_count: 3
@@ -386,7 +421,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "Grandma has got a dog."
+                text: "Grandma has got a dog. Which sentence is right?"
                 say: { en: "Grandma has got a dog. Which sentence is right?" }
                 options: ["Mamie a un chien.", "Mamie ai un chien.", "Mamie est un chien."]
                 answer: "Mamie a un chien."
@@ -400,6 +435,7 @@ lessons:
                 option_audio: false
               - id: l2-n3
                 type: audio_choice
+                text: "What does Paul like?"
                 say: { en: "Listen. What does Paul like?" }
                 audio: { fr: "Voici Paul. Il a neuf ans. Il est grand. Il aime le foot." }
                 options: [{ object: play-football }, { object: swim }, { object: read }]
@@ -407,41 +443,47 @@ lessons:
               - id: l2-n4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: she has got a bike."
                 say: { en: "Build the sentence: she has got a bike." }
                 options: ["un vélo.", "Elle", "a"]
                 slot_count: 3
                 answer: ["Elle", "a", "un vélo."]
               - id: l2-n5
                 type: true_false
-                text: "Mia is eleven. Elle a onze ans."
+                text: "Your friend Mia is eleven. Is this sentence right for Mia?\nElle a onze ans."
                 say: { en: "Your friend Mia is eleven. Is the sentence right for Mia?" }
                 answer: true
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: aime-joue
             type: multiple_choice
-            text: "Max plays tennis."
+            text: "Max plays tennis. Which sentence is right?"
             say: { en: "Max plays tennis. Which sentence is right?" }
             options: ["Il joue au tennis.", "Il joues au tennis.", "Je joue au tennis."]
             answer: "Il joue au tennis."
             option_audio: false
           - id: l2-c2
+            part: etre
             type: multiple_choice
-            text: "Chloé is happy."
+            text: "Chloé is happy. Which sentence is right?"
             say: { en: "Chloé is happy. Which sentence is right?" }
             options: ["Elle est contente.", "Elle suis contente.", "Elle a contente."]
             answer: "Elle est contente."
             option_audio: false
           - id: l2-c3
+            part: understand
             type: audio_choice
+            text: "How old is Zoé?"
             say: { en: "Listen. How old is Zoé?" }
-            audio: { fr: "Voici ma cousine. Elle s'appelle Zoé. Elle a sept ans." }
+            audio: { fr: "Voici ma cousine. Elle s'appelle Zoé. Elle a sept ans.", speaker: male }
             options: ["7", "17", "11"]
             answer: "7"
           - id: l2-c4
+            part: avoir
             type: fill_in_blank
             text: "Léo has got a fish. Finish the sentence."
             frame: "Léo _ un poisson."
@@ -449,8 +491,138 @@ lessons:
             answer: ["a"]
             option_audio: false
           - id: l2-c5
+            part: understand
             type: audio_choice
+            text: "What does the brother like?"
             say: { en: "Listen. What does the brother like?" }
-            audio: { fr: "Mon frère aime lire, mais il n'aime pas danser." }
+            audio: { fr: "Mon frère aime lire, mais il n'aime pas danser.", speaker: female }
             options: [{ object: read }, { object: dance }, { object: sing }]
             answer: read
+          - id: l2-c6
+            part: il-elle
+            type: audio_choice
+            text: "Who is it about?"
+            say: { en: "Listen. Who is it about?" }
+            audio: { fr: "Elle aime peindre." }
+            options: [{ object: girl }, { object: boy }]
+            answer: girl
+          - id: l2-c7
+            part: il-elle
+            type: sorting
+            option_audio: false
+            text: "Do you say il or elle? Sort the cards."
+            say: { en: "Do you say il or elle for each person? Sort the cards." }
+            bins:
+              - { id: il, show: { text: "il" } }
+              - { id: elle, show: { text: "elle" } }
+            options:
+              - { text: "Papi", bin: il }
+              - { text: "mon frère", bin: il }
+              - { text: "Tom", bin: il }
+              - { text: "Maman", bin: elle }
+              - { text: "ma sœur", bin: elle }
+              - { text: "Inès", bin: elle }
+          - id: l2-c8
+            part: il-elle
+            type: true_false
+            text: "Léa is a girl. Is this sentence right for Léa?\nIl a dix ans."
+            say: { en: "Léa is a girl. Read the sentence. Is it right for Léa?" }
+            answer: false
+          - id: l2-c9
+            part: understand
+            type: true_false
+            text: "Is Emma happy?"
+            say: { en: "Listen. Is Emma happy?" }
+            audio: { fr: "Voici ma cousine Emma. Elle est triste.", speaker: male }
+            answer: false
+          - id: l2-c10
+            part: il-elle
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: she plays tennis."
+            say: { en: "Build the sentence: she plays tennis." }
+            options: ["au tennis.", "joue", "Il", "Elle"]
+            slot_count: 3
+            answer: ["Elle", "joue", "au tennis."]
+          - id: l2-c11
+            part: aime-joue
+            type: fill_in_blank
+            option_audio: false
+            text: "Inès plays the guitar. Finish the sentence."
+            say: { en: "Inès plays the guitar. Finish the sentence." }
+            frame: "Inès _ de la guitare."
+            options: ["joue", "joues", "jouer"]
+            answer: ["joue"]
+          - id: l2-c12
+            part: aime-joue
+            type: true_false
+            text: "Is it written correctly?\nMa sœur aime chanter."
+            say: { en: "Read the sentence. Is it written correctly?" }
+            answer: true
+          - id: l2-c13
+            part: aime-joue
+            type: text_input
+            keyboard: letters
+            text: "Dad likes tennis. Write the missing word.\nPapa ___ le tennis."
+            say: { en: "Dad likes tennis. Write the missing word." }
+            answer: "aime"
+          - id: l2-c14
+            part: avoir
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: Grandma has got a cat."
+            say: { en: "Build the sentence: Grandma has got a cat." }
+            options: ["un chat.", "a", "Mamie", "ai"]
+            slot_count: 3
+            answer: ["Mamie", "a", "un chat."]
+          - id: l2-c15
+            part: avoir
+            type: multiple_choice
+            option_audio: false
+            text: "Your friend Jules is ten. How do you say it in French?"
+            say: { en: "Your friend Jules is ten. How do you say it in French?" }
+            options: ["Il a dix ans.", "Il est dix ans.", "Il ai dix ans."]
+            answer: "Il a dix ans."
+          - id: l2-c16
+            part: avoir
+            type: fill_in_blank
+            option_audio: false
+            text: "Lou is eight and has got a dog. Finish the sentence."
+            say: { en: "Lou is eight and has got a dog. Finish the sentence." }
+            frame: "Lou _ huit ans et elle _ un chien."
+            options: ["a", "ai", "est"]
+            answer: ["a", "a"]
+          - id: l2-c17
+            part: etre
+            type: true_false
+            text: "Is it written correctly?\nMa mamie est contente."
+            say: { en: "Read the sentence. Is it written correctly?" }
+            answer: true
+          - id: l2-c18
+            part: etre
+            type: matching
+            option_audio: false
+            text: "Match the English to the French."
+            say: { en: "Match the English to the French." }
+            pairs:
+              - { left: { text: "I am" }, right: { text: "je suis" } }
+              - { left: { text: "he is" }, right: { text: "il est" } }
+              - { left: { text: "I have" }, right: { text: "j'ai" } }
+              - { left: { text: "she has" }, right: { text: "elle a" } }
+          - id: l2-c19
+            part: etre
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: my brother is tall."
+            say: { en: "Build the sentence: my brother is tall." }
+            options: ["grand.", "est", "Mon frère", "suis"]
+            slot_count: 3
+            answer: ["Mon frère", "est", "grand."]
+          - id: l2-c20
+            part: understand
+            type: audio_choice
+            text: "What does Noah like doing?"
+            say: { en: "Listen. What does Noah like doing?" }
+            audio: { fr: "Voici mon ami Noah. Il a dix ans et il aime faire du vélo.", speaker: female }
+            options: [{ object: ride-bike }, { object: swim }, { object: play-tennis }]
+            answer: ride-bike

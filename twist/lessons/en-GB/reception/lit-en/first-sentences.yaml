@@ -25,6 +25,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: read-find, what: { de: einen Satz lesen und sein Bild finden, en: reading a sentence and finding its picture } }
+    - { id: match, what: { de: "sagen, ob ein Satz zum Bild passt", en: saying whether a sentence matches the picture } }
+    - { id: build, what: { de: einen Satz aus Wortkarten legen, en: building a sentence from word cards } }
+    - { id: sense, what: { de: "das Wort finden, das keinen Sinn ergibt", en: finding the word that does not make sense } }
   misconceptions:
     - id: no-sense-check
       what: Reads word by word without asking whether the sentence makes sense
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -223,6 +229,7 @@ lessons:
             say: "Read the sentence. What has the man got? Tap the picture."
             options: [{ object: bus }, { object: van }, { object: taxi }]
             answer: van
+            option_audio: false
           - id: l1-c2
             type: true_false
             text: "It is a cup."
@@ -237,6 +244,25 @@ lessons:
             options: ["hot.", "It", "is"]
             slot_count: 3
             answer: ["It", "is", "hot."]
+            option_audio: false
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. One word does not make sense. Tap it."
+            show: { drawn: letter-card, text: "I sat on the sun." }
+            spans: ["sun"]
+          - id: l1-c5
+            type: true_false
+            text: "A big hen sat on ten eggs."
+            say: "Read the words. Do they match the picture?"
+            show: { object: pig }
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "The pen is in the bin."
+            say: "Read the sentence. Then tap its picture."
+            options: [{ object: pear }, { object: pencil }, { object: pen }]
+            answer: pen
             option_audio: false
 
   - n: 2
@@ -415,20 +441,25 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: read-find
             type: image_multiple_choice
             text: "The cat had a nap."
             say: "Read the sentence. Who had a nap? Tap the picture."
             options: [{ object: rabbit }, { object: cat }, { object: dog }]
             answer: cat
+            option_audio: false
           - id: l2-c2
+            part: match
             type: true_false
             text: "It is a bed."
             say: "Read the words. Do they match the picture?"
             show: { object: bell }
             answer: false
           - id: l2-c3
+            part: build
             type: ordering
             text: "Put the words in order."
             say: "Put the words in order to make a sentence about the picture."
@@ -438,14 +469,137 @@ lessons:
             answer: ["She", "is", "on", "the", "bus."]
             option_audio: false
           - id: l2-c4
+            part: read-find
             type: image_multiple_choice
             text: "The fish is in the bath."
             say: "Read the sentence. What is in the bath? Tap the picture."
             options: [{ object: dish }, { object: fish }, { object: ship }]
             answer: fish
+            option_audio: false
           - id: l2-c5
+            part: sense
             type: highlight_in_text
             text: "Tap the word that does not make sense."
             say: "Read the sentence. One word does not make sense. Tap it."
             show: { drawn: letter-card, text: "She got in bed with a bus." }
             spans: ["bus"]
+          - id: l2-c6
+            part: read-find
+            type: image_multiple_choice
+            text: "The hen is on the shed."
+            say: "Read the sentence. Who is on the shed? Tap the picture."
+            options: [{ object: horse }, { object: hen }, { object: hedgehog }]
+            answer: hen
+            option_audio: false
+          - id: l2-c7
+            part: match
+            type: true_false
+            text: "I can kick a ball."
+            say: "Read the words. Do they match the picture?"
+            show: { object: play-football }
+            answer: true
+          - id: l2-c8
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the words in order to make a sentence about the picture."
+            show: { object: hen }
+            options: ["hen", "has", "an", "The", "egg."]
+            slot_count: 5
+            answer: ["The", "hen", "has", "an", "egg."]
+            option_audio: false
+          - id: l2-c9
+            part: sense
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. One word does not make sense. Tap it."
+            show: { drawn: letter-card, text: "I can kick the ball with my hat." }
+            spans: ["hat"]
+          - id: l2-c10
+            part: read-find
+            type: image_multiple_choice
+            text: "Mum has a big jug."
+            say: "Read the sentence. What has Mum got? Tap the picture."
+            options: [{ object: juice }, { object: jumper }, { object: jug }]
+            answer: jug
+            option_audio: false
+          - id: l2-c11
+            part: match
+            type: true_false
+            text: "She is in the bath."
+            say: "Read the words. Do they match the picture?"
+            show: { object: bed }
+            answer: false
+          - id: l2-c12
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the words in order to make a sentence about the picture."
+            show: { object: shell }
+            options: ["shell.", "a", "got", "I"]
+            slot_count: 4
+            answer: ["I", "got", "a", "shell."]
+            option_audio: false
+          - id: l2-c13
+            part: sense
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. One word does not make sense. Tap it."
+            show: { drawn: letter-card, text: "Mum cut the bun with a hen." }
+            spans: ["hen"]
+          - id: l2-c14
+            part: read-find
+            type: image_multiple_choice
+            text: "Sam can zip it up."
+            say: "Read the sentence. Then tap its picture."
+            options: [{ object: zebra }, { object: zip }, { object: sock }]
+            answer: zip
+            option_audio: false
+          - id: l2-c15
+            part: match
+            type: true_false
+            text: "That is a big ship."
+            say: "Read the words. Do they match the picture?"
+            show: { object: shell }
+            answer: false
+          - id: l2-c16
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the words in order to make a sentence about the picture."
+            show: { object: fish }
+            options: ["fish.", "the", "can", "We", "get"]
+            slot_count: 5
+            answer: ["We", "can", "get", "the", "fish."]
+            option_audio: false
+          - id: l2-c17
+            part: sense
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. One word does not make sense. Tap it."
+            show: { drawn: letter-card, text: "I zip up my bed." }
+            spans: ["bed"]
+          - id: l2-c18
+            part: match
+            type: true_false
+            text: "I can see a fox."
+            say: "Read the words. Do they match the picture?"
+            show: { object: fox }
+            answer: true
+          - id: l2-c19
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the words in order to make a sentence about the picture."
+            show: { object: bath }
+            options: ["in", "is", "the", "bath.", "He"]
+            slot_count: 5
+            answer: ["He", "is", "in", "the", "bath."]
+            option_audio: false
+          - id: l2-c20
+            part: sense
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. One word does not make sense. Tap it."
+            show: { drawn: letter-card, text: "A dog can sit in a shell." }
+            spans: ["shell"]

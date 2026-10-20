@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [letter-card, dots]
   facets: [operation-signs]
+  parts:
+    - { id: multiples, what: { de: Vielfache einer Zahl finden, en: finding multiples of a number } }
+    - { id: factor-pairs, what: { de: Teilerpaare einer Zahl finden, en: finding factor pairs } }
+    - { id: factors, what: { de: Teiler einer Zahl erkennen, en: recognising the factors of a number } }
+    - { id: tell-apart, what: { de: Teiler und Vielfache unterscheiden, en: telling factors from multiples } }
   misconceptions:
     - id: multiple-factor-mixup
       what: Mixes up multiples and factors (calls 3 a multiple of 12)
@@ -188,6 +193,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -203,6 +209,21 @@ lessons:
             type: true_false
             text: "Is it true? 26 is a multiple of 7."
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Write the next multiples of 4."
+            frame: "28, 32, _, _"
+            options: ["34", "36", "38", "40"]
+            answer: ["36", "40"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which number is not a multiple of 5?"
+            options: ["35", "52", "60"]
+            answer: "52"
+          - id: l1-c6
+            type: text_input
+            text: "What is the 5th multiple of 8?"
+            answer: "40"
 
   - n: 2
     title: { de: "Teiler", en: "Factors" }
@@ -356,13 +377,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: multiples
             type: highlight_in_text
             text: "Tap every multiple of 7."
             show: { drawn: letter-card, text: "14 15 21 29 35 36" }
             spans: ["14", "21", "35"]
           - id: l2-c2
+            part: factor-pairs
             type: fill_in_blank
             text: "Complete the factor pairs of 16."
             say: "Complete the factor pairs of sixteen."
@@ -370,17 +394,123 @@ lessons:
             options: ["4", "6", "8", "16"]
             answer: ["16", "8", "4"]
           - id: l2-c3
+            part: factors
             type: highlight_in_text
             text: "Tap every factor of 8."
             show: { drawn: letter-card, text: "1 2 3 4 6 8 16" }
             spans: ["1", "2", "4", "8"]
           - id: l2-c4
+            part: factors
             type: multiple_choice
             text: "Which number is a factor of 40?"
             options: ["6", "8", "12"]
             answer: "8"
           - id: l2-c5
+            part: tell-apart
             type: multiple_choice
             text: "Which number is a multiple of 12?"
             options: ["4", "6", "36"]
             answer: "36"
+          - id: l2-c6
+            part: multiples
+            type: fill_in_blank
+            text: "Write the next multiples of 9."
+            frame: "45, 54, _, _"
+            options: ["62", "63", "72", "73"]
+            answer: ["63", "72"]
+          - id: l2-c7
+            part: multiples
+            type: true_false
+            text: "Is it true? 56 is a multiple of 8."
+            say: "Is it true? Fifty-six is a multiple of eight."
+            answer: true
+          - id: l2-c8
+            part: multiples
+            type: multiple_choice
+            text: "Which number is a multiple of both 3 and 4?"
+            options: ["16", "18", "24"]
+            answer: "24"
+          - id: l2-c9
+            part: multiples
+            type: text_input
+            text: "What is the 12th multiple of 6?"
+            answer: "72"
+          - id: l2-c10
+            part: factor-pairs
+            type: fill_in_blank
+            text: "Complete the factor pairs of 30."
+            say: "Complete the factor pairs of thirty."
+            frame: "1 × _, 2 × _, 3 × _, 5 × _"
+            options: ["6", "10", "15", "30"]
+            answer: ["30", "15", "10", "6"]
+          - id: l2-c11
+            part: factor-pairs
+            type: multiple_choice
+            text: "Which is a factor pair of 28?"
+            options: ["4 × 7", "3 × 9", "5 × 6"]
+            answer: "4 × 7"
+          - id: l2-c12
+            part: factor-pairs
+            type: image_multiple_choice
+            text: "Which array shows a factor pair of 18?"
+            options:
+              - { drawn: dots, array: [3, 6] }
+              - { drawn: dots, array: [4, 5] }
+              - { drawn: dots, array: [4, 4] }
+            answer: "3x6"
+            option_audio: false
+          - id: l2-c13
+            part: factor-pairs
+            type: text_input
+            text: "Complete the factor pair of 32: 4 × _ = 32"
+            answer: "8"
+          - id: l2-c14
+            part: factors
+            type: highlight_in_text
+            text: "Tap every factor of 20."
+            show: { drawn: letter-card, text: "1 2 3 4 5 6 10 20 40" }
+            spans: ["1", "2", "4", "5", "10", "20"]
+          - id: l2-c15
+            part: factors
+            type: multiple_choice
+            text: "Which number is not a factor of 24?"
+            options: ["6", "9", "12"]
+            answer: "9"
+          - id: l2-c16
+            part: factors
+            type: true_false
+            text: "Is it true? 8 is a factor of 36."
+            say: "Is it true? Eight is a factor of thirty-six."
+            answer: false
+          - id: l2-c17
+            part: tell-apart
+            type: true_false
+            text: "Is it true? 40 is a multiple of 8, and 8 is a factor of 40."
+            say: "Is it true? Forty is a multiple of eight, and eight is a factor of forty."
+            answer: true
+          - id: l2-c18
+            part: tell-apart
+            type: sorting
+            text: "Factor of 12 or multiple of 12? Sort the numbers."
+            bins:
+              - { id: factor, show: { text: "factor of 12" }, say: "Factor of twelve." }
+              - { id: multiple, show: { text: "multiple of 12" }, say: "Multiple of twelve." }
+            options:
+              - { text: "3", bin: factor }
+              - { text: "4", bin: factor }
+              - { text: "6", bin: factor }
+              - { text: "24", bin: multiple }
+              - { text: "36", bin: multiple }
+              - { text: "60", bin: multiple }
+          - id: l2-c19
+            part: tell-apart
+            type: multiple_choice
+            text: "Which sentence is true?"
+            options: ["6 is a factor of 18.", "6 is a multiple of 18.", "18 is a factor of 6."]
+            answer: "6 is a factor of 18."
+          - id: l2-c20
+            part: tell-apart
+            type: multiple_choice
+            text: "Sam says, \"50 is a factor of 10.\" What should he say?"
+            options: ["50 is a multiple of 10.", "50 is a factor of 5.", "10 is a multiple of 50."]
+            answer: "50 is a multiple of 10."

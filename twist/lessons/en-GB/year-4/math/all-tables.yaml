@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: [operation-signs]
+  parts:
+    - { id: facts, what: { de: die Aufgaben des Einmaleins gemischt, en: mixed times-table facts } }
+    - { id: missing, what: { de: fehlende Zahlen und Malaufgaben zu einem Ergebnis finden, en: missing numbers and facts for a product } }
+    - { id: ways, what: { de: mit Hilfsaufgaben und Tauschaufgaben rechnen, en: working out facts from helper facts and swaps } }
+    - { id: in-context, what: { de: Sachaufgaben mit dem Einmaleins, en: word problems with the times tables } }
   misconceptions:
     - id: add-one-not-factor
       what: Going on from a known fact, adds or takes away 1 instead of a whole group (8 × 6 = 8 × 5 + 1)
@@ -207,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -224,6 +230,23 @@ lessons:
             text: "9 × 8 = _"
             say: "Nine times eight."
             answer: "72"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Use 5 × 4 to find 7 × 4."
+            say: "Seven times four. Five times four is twenty. How much do you add?"
+            frame: "7 × 4 = 20 + _ = _"
+            options: ["2", "8", "22", "28"]
+            answer: ["8", "28"]
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 4 × 7 = double 2 × 7"
+            say: "Four times seven is double two times seven. Is it true?"
+            answer: true
+          - id: l1-c6
+            type: text_input
+            text: "3 × 9 = _"
+            say: "Three times nine."
+            answer: "27"
 
   - n: 2
     title: { de: "Schnell und sicher", en: "Quick and sure" }
@@ -382,8 +405,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ways
             type: fill_in_blank
             text: "Swap the numbers. Fill both gaps."
             say: "Six times four and four times six. Fill both gaps."
@@ -391,11 +416,13 @@ lessons:
             options: ["10", "24", "28"]
             answer: ["24", "24"]
           - id: l2-c2
+            part: facts
             type: text_input
             text: "8 × 7 = _"
             say: "Eight times seven."
             answer: "56"
           - id: l2-c3
+            part: missing
             type: fill_in_blank
             text: "Which number is missing?"
             say: "Something times nine is sixty-three. Which number is missing?"
@@ -403,13 +430,112 @@ lessons:
             options: ["6", "7", "8"]
             answer: ["7"]
           - id: l2-c4
+            part: facts
             type: true_false
             text: "Is it true? 9 × 6 = 56"
             say: "Nine times six is fifty-six. Is it true?"
             answer: false
           - id: l2-c5
+            part: missing
             type: multiple_choice
             text: "Which fact makes 32?"
             say: "Which fact makes thirty-two?"
             options: ["4 × 8", "5 × 6", "3 × 9"]
             answer: "4 × 8"
+          - id: l2-c6
+            part: facts
+            type: text_input
+            text: "8 × 8 = _"
+            say: "Eight times eight."
+            answer: "64"
+          - id: l2-c7
+            part: facts
+            type: true_false
+            text: "Is it true? 8 × 9 = 63"
+            say: "Eight times nine is sixty-three. Is it true?"
+            answer: false
+          - id: l2-c8
+            part: facts
+            type: matching
+            text: "Match each fact with its answer."
+            pairs:
+              - { left: { text: "6 × 6" }, right: { text: "36" } }
+              - { left: { text: "7 × 4" }, right: { text: "28" } }
+              - { left: { text: "9 × 5" }, right: { text: "45" } }
+              - { left: { text: "8 × 2" }, right: { text: "16" } }
+          - id: l2-c9
+            part: missing
+            type: fill_in_blank
+            text: "Which number is missing?"
+            say: "Nine times something is fifty-four. Which number is missing?"
+            frame: "9 × _ = 54"
+            options: ["5", "6", "7"]
+            answer: ["6"]
+          - id: l2-c10
+            part: missing
+            type: multiple_choice
+            text: "36 = 4 × 9. Which other fact makes 36?"
+            say: "Thirty-six is four times nine. Which other fact makes thirty-six?"
+            options: ["6 × 6", "5 × 7", "7 × 6"]
+            answer: "6 × 6"
+          - id: l2-c11
+            part: missing
+            type: text_input
+            text: "_ × 7 = 56"
+            say: "Something times seven is fifty-six. Which number is missing?"
+            answer: "8"
+          - id: l2-c12
+            part: ways
+            type: true_false
+            text: "Is it true? 7 × 9 = 5 × 9 + 2 × 9"
+            say: "Seven times nine is five times nine add two times nine. Is it true?"
+            answer: true
+          - id: l2-c13
+            part: ways
+            type: fill_in_blank
+            text: "Use 2 × 8 to find 4 × 8."
+            say: "Four times eight. Use two times eight and double it."
+            frame: "4 × 8 = double _ = _"
+            options: ["8", "16", "24", "32"]
+            answer: ["16", "32"]
+          - id: l2-c14
+            part: ways
+            type: true_false
+            text: "Is it true? 9 × 8 = 10 × 8 − 1"
+            say: "Nine times eight is ten times eight take away one. Is it true?"
+            answer: false
+          - id: l2-c15
+            part: ways
+            type: fill_in_blank
+            text: "Use 10 × 3 to find 9 × 3."
+            say: "Nine times three. Ten times three is thirty. How much do you take away?"
+            frame: "9 × 3 = 30 − _ = _"
+            options: ["1", "3", "27", "29"]
+            answer: ["3", "27"]
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "Cinema tickets cost £8 each. How much do 6 tickets cost? Type the pounds."
+            say: "Cinema tickets cost eight pounds each. How much do six tickets cost? Type the pounds."
+            answer: "48"
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "A spider has 8 legs. How many legs do 9 spiders have?"
+            answer: "72"
+          - id: l2-c18
+            part: in-context
+            type: text_input
+            text: "Each table in the hall seats 6 children. How many children can sit at 7 tables?"
+            answer: "42"
+          - id: l2-c19
+            part: in-context
+            type: multiple_choice
+            text: "Ms Patel puts 63 books into piles of 9. How many piles does she make?"
+            options: ["6", "7", "8"]
+            answer: "7"
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "Is it true? 4 packs of 9 stickers hold 36 stickers."
+            answer: true

@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [fraction, grid, dots]
   facets: []
+  parts:
+    - { id: equal, what: { de: "erkennen, ob Teile gleich groß sind", en: telling whether parts are the same size } }
+    - { id: half, what: { de: eine Hälfte erkennen und finden, en: recognising and finding a half } }
+    - { id: quarter, what: { de: ein Viertel erkennen und finden, en: recognising and finding a quarter } }
+    - { id: compare, what: { de: Hälften und Viertel vergleichen, en: comparing halves and quarters } }
   misconceptions:
     - id: unequal-parts
       what: Calls any two parts halves or any four parts quarters, even when the parts are not the same size
@@ -219,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -237,6 +243,26 @@ lessons:
             text: "Is it true? Two parts that are not the same size are halves."
             say: "Two parts that are not the same size are halves. Is that true?"
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which shape is split into halves?"
+            say: "Which shape is split into halves?"
+            options:
+              - { drawn: fraction, kind: bar, parts: 3, shaded: 1, colour: orange }
+              - { drawn: fraction, kind: circle, parts: 2, shaded: 1, colour: orange }
+              - { drawn: fraction, kind: rect, parts: 4, rows: 2, shaded: 1, colour: orange }
+            answer: "1/2"
+          - id: l1-c5
+            type: text_input
+            text: "Half of 2 = _"
+            say: "What is half of two?"
+            answer: "1"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? This bar is split into halves."
+            say: "The bar is split into two parts. Is it split into halves?"
+            show: { drawn: grid, cols: 6, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, blue], [4, 0, blue], [5, 0, blue]], lines: [[3, 0, 3, 1]] }
+            answer: true
 
   - n: 2
     title: { de: "Viertel", en: "Quarters" }
@@ -414,8 +440,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: quarter
             type: multiple_choice
             text: "How much of the bar is coloured?"
             say: "The bar is split into equal parts. How much of it is coloured?"
@@ -423,11 +451,13 @@ lessons:
             options: ["one quarter", "one half", "the whole bar"]
             answer: "one quarter"
           - id: l2-c2
+            part: half
             type: text_input
             text: "Half of 20 = _"
             say: "What is half of twenty?"
             answer: "10"
           - id: l2-c3
+            part: quarter
             type: multiple_choice
             text: "A quarter of 16 = _"
             say: "What is a quarter of sixteen?"
@@ -435,13 +465,133 @@ lessons:
             options: ["4", "8", "2"]
             answer: "4"
           - id: l2-c4
+            part: compare
             type: true_false
             text: "Is it true? A half is bigger than a quarter of the same shape."
             say: "A half is bigger than a quarter of the same shape. Is that true?"
             answer: true
           - id: l2-c5
+            part: equal
             type: true_false
             text: "Is it true? This rectangle is split into quarters."
             say: "The rectangle is split into four parts. Is it split into quarters?"
             show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, red], [1, 0, red], [0, 1, red], [1, 1, blue], [2, 0, green], [2, 1, green], [3, 0, yellow], [3, 1, yellow]], lines: [[2, 0, 2, 2], [3, 0, 3, 2], [1, 1, 1, 2], [1, 1, 2, 1]] }
             answer: false
+          - id: l2-c6
+            part: equal
+            type: true_false
+            text: "Is it true? This bar is split into halves."
+            say: "The bar is split into two parts. Is it split into halves?"
+            show: { drawn: grid, cols: 8, rows: 1, cells: [[0, 0, green], [1, 0, green], [2, 0, green], [3, 0, green], [4, 0, orange], [5, 0, orange], [6, 0, orange], [7, 0, orange]], lines: [[4, 0, 4, 1]] }
+            answer: true
+          - id: l2-c7
+            part: equal
+            type: true_false
+            text: "Is it true? This square is split into quarters."
+            say: "The square is split into four parts. Is it split into quarters?"
+            show: { drawn: grid, cols: 2, rows: 2, cells: [[0, 0, red], [1, 0, blue], [0, 1, green], [1, 1, yellow]], lines: [[1, 0, 1, 2], [0, 1, 2, 1]] }
+            answer: true
+          - id: l2-c8
+            part: equal
+            type: image_multiple_choice
+            text: "Which bar is split into halves?"
+            say: "Each bar is split into two parts. Tap the bar that is split into halves."
+            options:
+              - { drawn: grid, cols: 6, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, red], [4, 0, blue], [5, 0, blue]], lines: [[4, 0, 4, 1]], key: four-two }
+              - { drawn: grid, cols: 6, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, blue], [4, 0, blue], [5, 0, blue]], lines: [[3, 0, 3, 1]], key: halves }
+              - { drawn: grid, cols: 6, rows: 1, cells: [[0, 0, red], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [5, 0, blue]], lines: [[1, 0, 1, 1]], key: one-five }
+            answer: "halves"
+          - id: l2-c9
+            part: equal
+            type: multiple_choice
+            text: "The bar is split into 2 parts. Why are they not halves?"
+            say: "The bar is split into two parts. Why are they not halves?"
+            show: { drawn: grid, cols: 8, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, red], [4, 0, red], [5, 0, green], [6, 0, green], [7, 0, green]], lines: [[5, 0, 5, 1]] }
+            options: ["The parts are not the same size.", "There are 2 parts.", "One part is green."]
+            answer: "The parts are not the same size."
+          - id: l2-c10
+            part: half
+            type: multiple_choice
+            text: "Two friends share 14 stickers fairly. How many does each friend get?"
+            say: "Two friends share fourteen stickers fairly. How many stickers does each friend get?"
+            show: { object: sticker, count: 14, layout: row }
+            options: ["7", "12", "2"]
+            answer: "7"
+          - id: l2-c11
+            part: half
+            type: image_multiple_choice
+            text: "Which shape has one half coloured?"
+            say: "Which shape has one half coloured?"
+            options:
+              - { drawn: fraction, kind: bar, parts: 4, shaded: 1, colour: yellow }
+              - { drawn: fraction, kind: rect, parts: 2, rows: 1, shaded: 1, colour: yellow }
+              - { drawn: fraction, kind: circle, parts: 2, shaded: 2, colour: yellow }
+            answer: "1/2"
+          - id: l2-c12
+            part: half
+            type: true_false
+            text: "Is it true? Half of 18 is 8."
+            say: "Half of eighteen is eight. Is that true?"
+            answer: false
+          - id: l2-c13
+            part: half
+            type: multiple_choice
+            text: "The bar is split into 2 equal parts. What is each part called?"
+            say: "The bar is split into two equal parts. What is each part called?"
+            show: { drawn: fraction, kind: bar, parts: 2, shaded: 1, colour: purple }
+            options: ["a half", "a quarter", "a whole"]
+            answer: "a half"
+          - id: l2-c14
+            part: quarter
+            type: image_multiple_choice
+            text: "Which shape has one quarter coloured?"
+            say: "Which shape has one quarter coloured?"
+            options:
+              - { drawn: fraction, kind: circle, parts: 2, shaded: 1, colour: green }
+              - { drawn: fraction, kind: bar, parts: 4, shaded: 1, colour: green }
+              - { drawn: fraction, kind: rect, parts: 4, rows: 2, shaded: 2, colour: green }
+            answer: "1/4"
+          - id: l2-c15
+            part: quarter
+            type: text_input
+            text: "A quarter of 20 = _"
+            say: "What is a quarter of twenty?"
+            answer: "5"
+          - id: l2-c16
+            part: quarter
+            type: multiple_choice
+            text: "Four children share 8 biscuits fairly. How many does each child get?"
+            say: "Four children share eight biscuits fairly. How many biscuits does each child get?"
+            options: ["2", "4", "8"]
+            answer: "2"
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "How many halves make a whole?"
+            say: "How many halves make one whole?"
+            show: { drawn: fraction, kind: circle, parts: 2, shaded: 2, colour: orange }
+            options: ["2", "4", "1"]
+            answer: "2"
+          - id: l2-c18
+            part: compare
+            type: true_false
+            text: "Is it true? 2 quarters make 1 whole."
+            say: "Two quarters make one whole. Is that true?"
+            answer: false
+          - id: l2-c19
+            part: compare
+            type: image_multiple_choice
+            text: "Which circle has more coloured?"
+            say: "The two circles are the same size. Which circle has more coloured?"
+            options:
+              - { drawn: fraction, kind: circle, parts: 4, shaded: 1, colour: blue }
+              - { drawn: fraction, kind: circle, parts: 2, shaded: 1, colour: blue }
+            answer: "1/2"
+          - id: l2-c20
+            part: compare
+            type: multiple_choice
+            text: "2 quarters are coloured. How much of the rectangle is that?"
+            say: "Two quarters are coloured. How much of the rectangle is that?"
+            show: { drawn: fraction, kind: rect, parts: 4, rows: 2, shaded: 2, colour: green }
+            options: ["one half", "one quarter", "the whole rectangle"]
+            answer: "one half"

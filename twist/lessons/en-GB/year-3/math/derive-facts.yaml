@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: near-fact, what: { de: mit einer Nachbaraufgabe rechnen, en: using a near fact (one group more or one group fewer) } }
+    - { id: double, what: { de: eine bekannte Aufgabe verdoppeln, en: doubling a fact I know } }
+    - { id: split, what: { de: in zwei Kernaufgaben zerlegen, en: splitting into two facts I know } }
+    - { id: in-context, what: { de: Sachaufgaben mit schwierigen Einmaleinsaufgaben, en: word problems with harder facts } }
   misconceptions:
     - id: near-fact-one
       what: Takes away or adds 1 instead of one more group (9 × 4 = 40 − 1 = 39)
@@ -200,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -217,6 +223,23 @@ lessons:
             text: "4 × 4 = _"
             say: "Four times four."
             answer: "16"
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? 9 × 10 = 10 × 10 − 1"
+            say: "Nine times ten is ten times ten take away one. Is that true?"
+            answer: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Use 5 × 3 to find 4 × 3."
+            say: "Four times three. Five times three is fifteen. How much do you take away?"
+            frame: "4 × 3 = 15 − _ = _"
+            options: ["3", "1", "12", "14"]
+            answer: ["3", "12"]
+          - id: l1-c6
+            type: text_input
+            text: "4 × 5 = 20, so 8 × 5 = _"
+            say: "Four times five is twenty. So what is eight times five?"
+            answer: "40"
 
   - n: 2
     title: { de: In zwei Kernaufgaben zerlegen, en: Split into two facts }
@@ -385,31 +408,137 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: near-fact
             type: multiple_choice
             text: "11 × 4 = _"
             say: "Eleven times four."
             options: ["44", "41", "40"]
             answer: "44"
           - id: l2-c2
+            part: near-fact
             type: text_input
             text: "6 × 4 = _"
             say: "Six times four."
             answer: "24"
           - id: l2-c3
+            part: double
             type: multiple_choice
             text: "Which fact can you double to find 8 × 3?"
             say: "Which fact can you double to find eight times three?"
             options: ["4 × 3", "8 × 2", "2 × 3"]
             answer: "4 × 3"
           - id: l2-c4
+            part: split
             type: text_input
-            text: "8 × 8 = 5 × 8 + 3 × 8 = _"
-            say: "Eight times eight. Five eights and three eights."
-            answer: "64"
+            text: "6 × 7 = 5 × 7 + 1 × 7 = _"
+            say: "Six times seven. Five sevens and one seven."
+            answer: "42"
           - id: l2-c5
+            part: split
             type: true_false
             text: "Is it true? 8 × 7 = 5 × 7 + 3"
             say: "Eight times seven is five times seven add three. Is that true?"
+            answer: false
+          - id: l2-c6
+            part: near-fact
+            type: true_false
+            text: "Is it true? 11 × 2 = 10 × 2 + 2"
+            say: "Eleven times two is ten times two add two. Is that true?"
+            answer: true
+          - id: l2-c7
+            part: near-fact
+            type: fill_in_blank
+            text: "Use 5 × 5 to find 4 × 5."
+            say: "Four times five. Five times five is twenty-five. How much do you take away?"
+            frame: "4 × 5 = 25 − _ = _"
+            options: ["5", "1", "20", "24"]
+            answer: ["5", "20"]
+          - id: l2-c8
+            part: near-fact
+            type: multiple_choice
+            text: "10 × 9 = 90, so 9 × 9 = _"
+            say: "Ten times nine is ninety. So what is nine times nine?"
+            options: ["81", "89", "80"]
+            answer: "81"
+          - id: l2-c9
+            part: double
+            type: fill_in_blank
+            text: "Double 4 × 6 to find 8 × 6."
+            say: "Eight times six. Work out four times six, then double it."
+            frame: "4 × 6 = _, so 8 × 6 = _"
+            options: ["24", "48", "30", "44"]
+            answer: ["24", "48"]
+          - id: l2-c10
+            part: double
+            type: true_false
+            text: "Is it true? 8 × 2 = 4 × 2 + 2"
+            say: "Eight times two is four times two add two. Is that true?"
+            answer: false
+          - id: l2-c11
+            part: double
+            type: text_input
+            text: "3 × 6 = 18, so 6 × 6 = _"
+            say: "Three times six is eighteen. So what is six times six?"
+            answer: "36"
+          - id: l2-c12
+            part: double
+            type: multiple_choice
+            text: "Which fact can you double to find 6 × 5?"
+            say: "Which fact can you double to find six times five?"
+            options: ["3 × 5", "6 × 2", "2 × 5"]
+            answer: "3 × 5"
+          - id: l2-c13
+            part: split
+            type: fill_in_blank
+            text: "Split 9 × 3 into 5 × 3 and 4 × 3."
+            say: "Nine times three. Work out five threes and four threes, then add them."
+            show: { drawn: dots, array: [9, 3], split_rows: 5 }
+            frame: "9 × 3 = _ + _ = _"
+            options: ["15", "12", "27", "19"]
+            answer: ["15", "12", "27"]
+          - id: l2-c14
+            part: split
+            type: true_false
+            text: "Is it true? 7 × 6 = 5 × 6 + 2 × 6"
+            say: "Seven times six is five times six add two times six. Is that true?"
+            answer: true
+          - id: l2-c15
+            part: split
+            type: text_input
+            text: "7 × 9 = 5 × 9 + 2 × 9 = _"
+            say: "Seven times nine. Five nines and two nines."
+            answer: "63"
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "A box holds 6 eggs. How many eggs are in 9 boxes?"
+            say: "A box holds six eggs. How many eggs are in nine boxes?"
+            answer: "54"
+          - id: l2-c17
+            part: in-context
+            type: multiple_choice
+            text: "Ben swims 3 lengths every day. How many lengths does he swim in 11 days?"
+            say: "Ben swims three lengths every day. How many lengths does he swim in eleven days?"
+            options: ["33", "14", "30"]
+            answer: "33"
+          - id: l2-c18
+            part: in-context
+            type: text_input
+            text: "A spider has 8 legs. How many legs do 9 spiders have?"
+            say: "A spider has eight legs. How many legs do nine spiders have?"
+            answer: "72"
+          - id: l2-c19
+            part: in-context
+            type: text_input
+            text: "A cinema ticket costs £5. How much do 9 tickets cost? Type the pounds."
+            say: "A cinema ticket costs five pounds. How much do nine tickets cost? Type the pounds."
+            answer: "45"
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "A box has 3 pencils. Is it true? 6 boxes have 21 pencils."
+            say: "A box has three pencils. Six boxes have twenty-one pencils. Is that true?"
             answer: false

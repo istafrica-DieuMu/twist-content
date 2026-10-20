@@ -25,6 +25,12 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: decode, what: { de: einen Satz aus bekannten Lauten lesen, en: reading a sentence made of sounds I know } }
+    - { id: understand, what: { de: Fragen zu einer Buchseite beantworten, en: answering questions about a page } }
+    - { id: full-stops, what: { de: "erkennen, wo ein Satz endet (Punkt)", en: seeing where a sentence ends (full stop) } }
+    - { id: rereading, what: { de: "wissen, dass wiederholtes Lesen flüssiger macht", en: knowing that re-reading makes reading smoother } }
+    - { id: build, what: { de: Sätze aus dem Buch zusammensetzen, en: building sentences from the book } }
   misconceptions:
     - id: word-by-word
       what: Reads word by word like a robot and runs on past full stops, so the meaning is lost
@@ -203,13 +209,14 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
             text: "The bus is big. It has six wheels.\n\nHow many wheels has the bus got?"
             say: "Read the page yourself. How many wheels has the bus got?"
-            options: ["six", "ten", "two"]
-            answer: "six"
+            options: ["6", "10", "2"]
+            answer: "6"
           - id: l1-c2
             type: image_multiple_choice
             text: "Read the sentence. Tap the picture."
@@ -217,12 +224,33 @@ lessons:
             show: { drawn: letter-card, text: "Sam can see a fox." }
             options: [{ object: fox }, { object: box }, { object: frog }]
             answer: fox
+            option_audio: false
           - id: l1-c3
             type: highlight_in_text
             text: "Tap the word at the end of the first sentence."
             say: "Read the page. Tap the last word of the first sentence."
             show: { drawn: letter-card, text: "The fox ran. Sam got on the bus." }
             spans: ["ran"]
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Read the sentence. Tap the picture."
+            say: "Read the sentence yourself. Then tap the picture."
+            show: { drawn: letter-card, text: "The bus stops at the shop." }
+            options: [{ object: ship }, { object: shop }, { object: sheep }]
+            answer: shop
+            option_audio: false
+          - id: l1-c5
+            type: ordering
+            text: "Build a sentence."
+            say: "Build the sentence. Read the cards yourself."
+            options: ["the shop.", "Sam", "runs to"]
+            slot_count: 3
+            answer: ["Sam", "runs to", "the shop."]
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? Reading a book again can make it sound more like talking."
+            answer: true
 
   - n: 2
     title: { de: "Meg und Kit, die Katze", en: "Meg and Kit the cat" }
@@ -392,35 +420,158 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: understand
             type: multiple_choice
             text: "Meg has a red bag. In the bag is a big book.\n\nWhat is in the bag?"
             say: "Read the page yourself. What is in the bag?"
             options: ["a big book", "a red bag", "a cat"]
             answer: "a big book"
           - id: l2-c2
+            part: decode
             type: image_multiple_choice
             text: "Read the sentence. Tap the picture."
             say: "Read the sentence yourself. Then tap the picture."
             show: { drawn: letter-card, text: "The dog digs in the sand." }
             options: [{ object: dog }, { object: duck }, { object: fox }]
             answer: dog
+            option_audio: false
           - id: l2-c3
+            part: full-stops
             type: highlight_in_text
             text: "Tap the word at the end of the first sentence."
             say: "Read the page. Tap the last word of the first sentence."
             show: { drawn: letter-card, text: "Sam got wet. The rain did not stop." }
             spans: ["wet"]
           - id: l2-c4
+            part: rereading
             type: true_false
             text: "Is it true? A book with sounds you know gets easier each time you read it."
             answer: true
           - id: l2-c5
+            part: build
             type: ordering
             text: "Build a sentence."
             say: "Build the sentence. Read the cards yourself."
             options: ["the bus.", "Meg", "gets off"]
             slot_count: 3
             answer: ["Meg", "gets off", "the bus."]
+            option_audio: false
+          - id: l2-c6
+            part: decode
+            type: image_multiple_choice
+            text: "Read the sentence. Tap the picture."
+            say: "Read the sentence yourself. Then tap the picture."
+            show: { drawn: letter-card, text: "The frog sits on a log." }
+            options: [{ object: fox }, { object: frog }, { object: dog }]
+            answer: frog
+            option_audio: false
+          - id: l2-c7
+            part: decode
+            type: image_multiple_choice
+            text: "Read the sentence. Tap the picture."
+            say: "Read the sentence yourself. Then tap the picture."
+            show: { drawn: letter-card, text: "Meg has a big red sock." }
+            options: [{ object: hat }, { object: shoe }, { object: sock }]
+            answer: sock
+            option_audio: false
+          - id: l2-c8
+            part: decode
+            type: image_multiple_choice
+            text: "Read the sentence. Tap the picture."
+            say: "Read the sentence yourself. Then tap the picture."
+            show: { drawn: letter-card, text: "Kit sleeps in a box." }
+            options: [{ object: bed }, { object: box }, { object: bench }]
+            answer: box
+            option_audio: false
+          - id: l2-c9
+            part: understand
+            type: multiple_choice
+            text: "Dad and Sam go to the shop. They get milk and jam.\n\nWhat do they get?"
+            say: "Read the page yourself. What do they get?"
+            options: ["a hat", "milk and jam", "a bus"]
+            answer: "milk and jam"
+          - id: l2-c10
+            part: understand
+            type: multiple_choice
+            text: "Dad and Sam go to the shop. They get milk and jam.\n\nWho goes to the shop?"
+            say: "Read the page yourself. Who goes to the shop?"
+            options: ["Meg and Kit", "Mum and Sam", "Dad and Sam"]
+            answer: "Dad and Sam"
+          - id: l2-c11
+            part: understand
+            type: true_false
+            text: "Kit the cat had a nap in the sun. Then she ran to Meg.\n\nIs it true? Kit had a nap on the bed."
+            say: "Read the page yourself. Is it true? Kit had a nap on the bed."
+            answer: false
+          - id: l2-c12
+            part: full-stops
+            type: highlight_in_text
+            text: "Tap the word at the end of the first sentence."
+            say: "Read the page. Tap the last word of the first sentence."
+            show: { drawn: letter-card, text: "Meg ran to the bus. It was late." }
+            spans: ["bus"]
+          - id: l2-c13
+            part: full-stops
+            type: multiple_choice
+            text: "The hen sat on an egg. The egg went crack. A chick got out.\n\nHow many sentences are on this page?"
+            say: "Read the page yourself. How many sentences are on this page?"
+            options: ["1", "2", "3"]
+            answer: "3"
+          - id: l2-c14
+            part: full-stops
+            type: multiple_choice
+            text: "Which one has the full stops in the right places?"
+            say: "Which one has the full stops in the right places? Read them yourself."
+            options: ["Sam has. a cat it is black.", "Sam has a cat. It is black.", "Sam has a cat it. is black."]
+            answer: "Sam has a cat. It is black."
+            option_audio: false
+          - id: l2-c15
+            part: rereading
+            type: multiple_choice
+            text: "Why do good readers read a book again?"
+            options: ["because they got it wrong", "to look at the pictures only", "to make it sound like talking"]
+            answer: "to make it sound like talking"
+          - id: l2-c16
+            part: rereading
+            type: true_false
+            text: "Is it true? The first time you read a new book, you may need to sound out some words."
+            answer: true
+          - id: l2-c17
+            part: rereading
+            type: ordering
+            text: "Put the three readings of a book in order."
+            say: "Put the three readings of a book in order: first, second, third. Read the cards yourself."
+            options: ["read it smoother", "read it like talking", "sound out the words"]
+            slot_count: 3
+            answer: ["sound out the words", "read it smoother", "read it like talking"]
+            option_audio: false
+          - id: l2-c18
+            part: build
+            type: ordering
+            text: "Build a sentence."
+            say: "Build the sentence. Read the cards yourself."
+            options: ["on the mat.", "The dog", "naps"]
+            slot_count: 3
+            answer: ["The dog", "naps", "on the mat."]
+            option_audio: false
+          - id: l2-c19
+            part: build
+            type: ordering
+            text: "Build a sentence."
+            say: "Build the sentence. Read the cards yourself."
+            options: ["go to", "the shop.", "Meg", "and Kit"]
+            slot_count: 4
+            answer: ["Meg", "and Kit", "go to", "the shop."]
+            option_audio: false
+          - id: l2-c20
+            part: build
+            type: ordering
+            text: "Put the sentences in the order they happen."
+            say: "Read the sentences yourself. Put them in the order they happen."
+            options: ["Sam gets off the bus.", "Sam gets on the bus.", "The bus stops at the shop."]
+            slot_count: 3
+            answer: ["Sam gets on the bus.", "The bus stops at the shop.", "Sam gets off the bus."]
             option_audio: false

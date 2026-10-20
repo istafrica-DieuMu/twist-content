@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [zwanzigerfeld, part-whole]
   facets: []
+  parts:
+    - { id: inverse, what: { de: zu einer Plusaufgabe die Umkehraufgabe finden, en: writing the inverse of an addition } }
+    - { id: check, what: { de: eine Minusaufgabe mit einer Plusaufgabe prüfen, en: checking a subtraction with an addition } }
+    - { id: family, what: { de: die vier Aufgaben einer Aufgabenfamilie, en: the four facts of a fact family } }
+    - { id: missing, what: { de: fehlende Zahlen mit der Aufgabenfamilie finden, en: finding missing numbers with a fact family } }
   misconceptions:
     - id: inverse-is-swap
       what: Thinks the inverse of 6 + 9 = 15 is 9 + 6 = 15
@@ -90,7 +95,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: fill_in_blank
-                text: "Write the inverse."
+                text: "9 + 5 = 14. Take the 5 away again and write the inverse."
                 say: "Nine add five equals fourteen. Take the five away again and write the inverse."
                 show: { drawn: zwanzigerfeld, filled: [9, 5] }
                 frame: "14 − _ = _"
@@ -120,7 +125,7 @@ lessons:
                   - "7 + 9 = 16."
               - id: l1-f5
                 type: fill_in_blank
-                text: "Write the inverse."
+                text: "6 + 12 = 18. Take the 12 away again and write the inverse."
                 say: "Six add twelve equals eighteen. Take the twelve away again and write the inverse."
                 frame: "18 − _ = _"
                 options: ["6", "12", "18"]
@@ -149,7 +154,7 @@ lessons:
                 hints: ["Is the inverse an addition or a subtraction?"]
               - id: l1-s2
                 type: fill_in_blank
-                text: "Write the inverse."
+                text: "7 + 7 = 14. Take the 7 away again and write the inverse."
                 say: "Seven add seven equals fourteen. Take the seven away again and write the inverse."
                 frame: "14 − _ = _"
                 options: ["7", "14", "21"]
@@ -169,7 +174,7 @@ lessons:
                 hints: ["Add the answer and the number taken away."]
               - id: l1-s5
                 type: fill_in_blank
-                text: "Write the inverse."
+                text: "11 + 8 = 19. Take the 8 away again and write the inverse."
                 say: "Eleven add eight equals nineteen. Take the eight away again and write the inverse."
                 frame: "19 − _ = _"
                 options: ["8", "11", "27"]
@@ -191,7 +196,7 @@ lessons:
                 answer: "15 − 13 = 2"
               - id: l1-n2
                 type: fill_in_blank
-                text: "Write the inverse."
+                text: "8 + 9 = 17. Take the 9 away again and write the inverse."
                 say: "Eight add nine equals seventeen. Take the nine away again and write the inverse."
                 frame: "17 − _ = _"
                 options: ["8", "9", "26"]
@@ -208,7 +213,7 @@ lessons:
                 answer: true
               - id: l1-n5
                 type: fill_in_blank
-                text: "Write the inverse."
+                text: "3 + 15 = 18. Take the 15 away again and write the inverse."
                 say: "Three add fifteen equals eighteen. Take the fifteen away again and write the inverse."
                 frame: "18 − _ = _"
                 options: ["3", "15", "21"]
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -225,15 +231,32 @@ lessons:
             answer: "12 − 5 = 7"
           - id: l1-c2
             type: fill_in_blank
-            text: "Write the inverse."
-            say: "Ten add six equals sixteen. Take the six away again and write the inverse."
-            frame: "16 − _ = _"
+            text: "10 + 6 = 16. Write the inverse."
+            say: "Ten add six equals sixteen. Write the inverse."
+            frame: "16 − 6 = _"
             options: ["6", "10", "22"]
-            answer: ["6", "10"]
+            answer: ["10"]
           - id: l1-c3
             type: true_false
             text: "Is it true? 11 − 2 = 9, because 9 + 2 = 11."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "What is the inverse of 9 + 7 = 16?"
+            say: "Nine add seven equals sixteen. What is the inverse?"
+            options: ["16 − 7 = 9", "7 + 9 = 16", "9 − 7 = 2"]
+            answer: "16 − 7 = 9"
+          - id: l1-c5
+            type: multiple_choice
+            text: "19 − 6 = 13. Check with an addition."
+            say: "Nineteen subtract six equals thirteen. Which addition checks it?"
+            options: ["13 + 6 = 19", "13 − 6 = 7", "6 + 6 = 12"]
+            answer: "13 + 6 = 19"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? The inverse of 2 + 10 = 12 is 12 + 2 = 14."
+            say: "Two add ten equals twelve. Is the inverse twelve add two equals fourteen?"
+            answer: false
 
   - n: 2
     title: { de: Aufgabenfamilien, en: Fact families }
@@ -251,7 +274,7 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: fill_in_blank
-            text: "Write the inverse."
+            text: "5 + 11 = 16. Take the 11 away again and write the inverse."
             say: "Five add eleven equals sixteen. Take the eleven away again and write the inverse."
             frame: "16 − _ = _"
             options: ["5", "11", "21"]
@@ -431,14 +454,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: inverse
             type: multiple_choice
             text: "What is the inverse of 8 + 6 = 14?"
             say: "Eight add six equals fourteen. What is the inverse?"
             options: ["14 − 6 = 8", "6 + 8 = 14", "14 + 6 = 20"]
             answer: "14 − 6 = 8"
           - id: l2-c2
+            part: missing
             type: fill_in_blank
             text: "Find the missing number."
             say: "Nine add what equals twenty?"
@@ -447,6 +473,7 @@ lessons:
             options: ["11", "20", "29"]
             answer: ["11"]
           - id: l2-c3
+            part: family
             type: multiple_choice
             text: "Which fact is in the family 7, 10, 17?"
             say: "Which fact belongs to the family seven, ten, seventeen?"
@@ -454,14 +481,121 @@ lessons:
             options: ["17 − 10 = 7", "10 − 7 = 3", "17 + 7 = 24"]
             answer: "17 − 10 = 7"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Is it true? 19 − 7 = 12, because 12 + 7 = 19."
             answer: true
           - id: l2-c5
+            part: family
             type: fill_in_blank
-            text: "Write the two subtractions."
+            text: "Write the two subtractions for the family 5, 13, 18."
             say: "The fact family for 5, 13 and 18. Write the two subtractions."
             show: { drawn: part-whole, whole: 18, parts: [5, 13] }
             frame: "18 − 5 = _ · 18 − 13 = _"
             options: ["5", "13", "18"]
             answer: ["13", "5"]
+          - id: l2-c6
+            part: inverse
+            type: multiple_choice
+            text: "What is the inverse of 3 + 9 = 12?"
+            say: "Three add nine equals twelve. What is the inverse?"
+            options: ["12 − 9 = 3", "9 + 3 = 12", "9 − 3 = 6"]
+            answer: "12 − 9 = 3"
+          - id: l2-c7
+            part: inverse
+            type: fill_in_blank
+            text: "6 + 7 = 13. Write the inverse."
+            say: "Six add seven equals thirteen. Write the inverse."
+            frame: "13 − 7 = _"
+            options: ["6", "7", "20"]
+            answer: ["6"]
+          - id: l2-c8
+            part: inverse
+            type: true_false
+            text: "Is it true? 15 − 8 = 7 undoes 7 + 8 = 15."
+            say: "Fifteen subtract eight equals seven. Does it undo seven add eight equals fifteen?"
+            answer: true
+          - id: l2-c9
+            part: inverse
+            type: text_input
+            text: "11 + 9 = 20, so 20 − 9 = _"
+            say: "Eleven add nine equals twenty. So twenty subtract nine equals what?"
+            answer: "11"
+          - id: l2-c10
+            part: check
+            type: multiple_choice
+            text: "18 − 11 = 7. Check with an addition."
+            say: "Eighteen subtract eleven equals seven. Which addition checks it?"
+            options: ["7 + 11 = 18", "7 + 7 = 14", "11 − 7 = 4"]
+            answer: "7 + 11 = 18"
+          - id: l2-c11
+            part: check
+            type: true_false
+            text: "Is it true? 14 − 5 = 8, because 8 + 5 = 14."
+            say: "Fourteen subtract five equals eight, because eight add five equals fourteen. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: check
+            type: fill_in_blank
+            text: "Check 16 − 7 = 9 with an addition."
+            say: "Sixteen subtract seven equals nine. Check it with an addition."
+            frame: "9 + _ = _"
+            options: ["7", "9", "16"]
+            answer: ["7", "16"]
+          - id: l2-c13
+            part: check
+            type: true_false
+            text: "Is it true? 12 − 7 = 5, because 5 + 7 = 12."
+            say: "Twelve subtract seven equals five, because five add seven equals twelve. Is that true?"
+            answer: true
+          - id: l2-c14
+            part: family
+            type: fill_in_blank
+            text: "Finish the fact family."
+            say: "The family has the numbers four, twelve and sixteen. Finish the four facts."
+            show: { drawn: part-whole, whole: 16, parts: [4, 12] }
+            frame: "4 + 12 = 16 · 12 + 4 = _ · 16 − 12 = _ · 16 − 4 = _"
+            options: ["4", "12", "16"]
+            answer: ["16", "4", "12"]
+          - id: l2-c15
+            part: family
+            type: multiple_choice
+            text: "Which fact is not in the family 9, 11, 20?"
+            say: "Which fact does not belong to the family nine, eleven, twenty?"
+            options: ["20 − 9 = 11", "11 + 9 = 20", "11 − 9 = 2"]
+            answer: "11 − 9 = 2"
+          - id: l2-c16
+            part: family
+            type: multiple_choice
+            text: "Which three numbers make a fact family?"
+            say: "Which three numbers make a fact family?"
+            options: ["3, 8, 11", "3, 8, 12", "4, 8, 11"]
+            answer: "3, 8, 11"
+          - id: l2-c17
+            part: family
+            type: true_false
+            text: "Is it true? 10 − 4 = 6 is in the family 4, 10, 14."
+            say: "Ten subtract four equals six. Is it in the family four, ten, fourteen?"
+            answer: false
+          - id: l2-c18
+            part: missing
+            type: fill_in_blank
+            text: "Find the missing number."
+            say: "What add eight equals fifteen?"
+            show: { drawn: part-whole, whole: 15, parts: [null, 8] }
+            frame: "_ + 8 = 15"
+            options: ["7", "8", "15"]
+            answer: ["7"]
+          - id: l2-c19
+            part: missing
+            type: text_input
+            text: "14 − _ = 6"
+            say: "Fourteen subtract what equals six?"
+            answer: "8"
+          - id: l2-c20
+            part: missing
+            type: multiple_choice
+            text: "5 + _ = 19"
+            say: "Five add what equals nineteen?"
+            options: ["14", "13", "4"]
+            answer: "14"

@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid, shape, letter-card]
   facets: []
+  parts:
+    - { id: shapes, what: { de: die Symmetrieachsen von Figuren zählen, en: counting the lines of symmetry of 2D shapes } }
+    - { id: letters, what: { de: die Symmetrieachsen von Großbuchstaben finden, en: finding the lines of symmetry of capital letters } }
+    - { id: diagonal, what: { de: an einer schrägen Spiegelachse spiegeln, en: reflecting in a diagonal mirror line } }
   misconceptions:
     - id: rectangle-diagonal
       what: Thinks the line from corner to corner is a line of symmetry of every rectangle, so gives the rectangle four lines
@@ -215,6 +219,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +236,26 @@ lessons:
             text: "A circle has only 2 lines of symmetry."
             say: "Is it true? A circle has only two lines of symmetry."
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which shape has 6 lines of symmetry?"
+            options:
+              - { drawn: shape, kind: hexagon, colour: green }
+              - { drawn: shape, kind: pentagon, colour: green }
+              - { drawn: shape, kind: square, colour: green }
+            answer: hexagon
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "A slanted parallelogram has no line of symmetry."
+            say: "Is it true? A slanted parallelogram has no line of symmetry."
+            show: { drawn: shape, kind: parallelogram, colour: blue }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which shape has the fewest lines of symmetry?"
+            options: ["a rectangle", "a square", "a circle"]
+            answer: "a rectangle"
 
   - n: 2
     title: { de: Buchstaben und schräge Spiegelachsen, en: Letters and diagonal mirror lines }
@@ -420,24 +445,29 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: shapes
             type: multiple_choice
             text: "A regular shape has 10 equal sides. How many lines of symmetry does it have?"
             options: ["10", "5", "2"]
             answer: "10"
           - id: l2-c2
+            part: shapes
             type: true_false
             text: "You can fold a rectangle from corner to corner so that the halves match."
             say: "Is it true? You can fold a rectangle from corner to corner so that the halves match."
             answer: false
           - id: l2-c3
+            part: letters
             type: multiple_choice
             text: "How many lines of symmetry does this letter have?"
             show: { drawn: letter-card, text: "M" }
             options: ["1", "2", "0"]
             answer: "1"
           - id: l2-c4
+            part: diagonal
             type: multiple_choice
             text: "The blue square is reflected in the diagonal line. Where does it land?"
             show: { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[2, 1, blue]], labels: [[1, 2, "A"], [2, 3, "B"], [3, 2, "C"]] }
@@ -445,6 +475,7 @@ lessons:
             answer: "A"
             option_audio: false
           - id: l2-c5
+            part: shapes
             type: image_multiple_choice
             text: "Which shape has exactly 3 lines of symmetry?"
             options:
@@ -452,4 +483,115 @@ lessons:
               - { drawn: shape, kind: square, colour: purple }
               - { drawn: shape, kind: rectangle, colour: purple }
             answer: triangle
+            option_audio: false
+          - id: l2-c6
+            part: shapes
+            type: true_false
+            text: "This regular hexagon has 3 lines of symmetry."
+            say: "Is it true? This regular hexagon has three lines of symmetry."
+            show: { drawn: shape, kind: hexagon, colour: orange }
+            answer: false
+          - id: l2-c7
+            part: shapes
+            type: image_multiple_choice
+            text: "Which shape has no line of symmetry?"
+            options:
+              - { drawn: shape, kind: parallelogram, colour: red }
+              - { drawn: shape, kind: square, colour: red }
+              - { drawn: shape, kind: circle, colour: red }
+            answer: parallelogram
+            option_audio: false
+          - id: l2-c8
+            part: shapes
+            type: multiple_choice
+            text: "Which shape has more lines of symmetry than a square?"
+            options: ["a regular hexagon", "a rectangle", "an equilateral triangle"]
+            answer: "a regular hexagon"
+          - id: l2-c9
+            part: shapes
+            type: true_false
+            text: "Every line through the centre of a circle is a line of symmetry."
+            say: "Is it true? Every line through the centre of a circle is a line of symmetry."
+            answer: true
+          - id: l2-c10
+            part: letters
+            type: multiple_choice
+            text: "How many lines of symmetry does this letter have?"
+            show: { drawn: letter-card, text: "U" }
+            options: ["1", "2", "0"]
+            answer: "1"
+          - id: l2-c11
+            part: letters
+            type: multiple_choice
+            text: "Which letter has 2 lines of symmetry?"
+            options: ["I", "V", "Z"]
+            answer: "I"
+            option_audio: false
+          - id: l2-c12
+            part: letters
+            type: true_false
+            text: "The letter D has a horizontal line of symmetry."
+            say: "Is it true? The letter D has a horizontal line of symmetry."
+            show: { drawn: letter-card, text: "D" }
+            answer: true
+          - id: l2-c13
+            part: letters
+            type: multiple_choice
+            text: "Which letter has a horizontal line of symmetry but no vertical one?"
+            options: ["C", "A", "H"]
+            answer: "C"
+            option_audio: false
+          - id: l2-c14
+            part: letters
+            type: multiple_choice
+            text: "How many lines of symmetry does this letter have?"
+            show: { drawn: letter-card, text: "Z" }
+            options: ["0", "1", "2"]
+            answer: "0"
+          - id: l2-c15
+            part: diagonal
+            type: multiple_choice
+            text: "The blue square is reflected in the diagonal line. Where does it land?"
+            show: { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[4, 0, blue]], labels: [[4, 4, "B"], [0, 4, "A"], [3, 1, "C"]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+            option_audio: false
+          - id: l2-c16
+            part: diagonal
+            type: multiple_choice
+            text: "The blue square is reflected in the diagonal line. Where does it land?"
+            show: { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[1, 3, blue]], labels: [[3, 1, "C"], [3, 3, "A"], [0, 2, "B"]] }
+            options: ["A", "B", "C"]
+            answer: "C"
+            option_audio: false
+          - id: l2-c17
+            part: diagonal
+            type: true_false
+            text: "The red squares are the reflection of the blue squares in the diagonal line."
+            say: "Is it true? The red squares are the reflection of the blue squares in the diagonal line."
+            show: { drawn: grid, cols: 4, rows: 4, diagonal: down, cells: [[2, 0, blue], [2, 1, blue], [0, 2, red], [1, 2, red]] }
+            answer: true
+          - id: l2-c18
+            part: diagonal
+            type: true_false
+            text: "The red squares are the reflection of the blue squares in the diagonal line."
+            say: "Is it true? The red squares are the reflection of the blue squares in the diagonal line."
+            show: { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[3, 0, blue], [4, 0, blue], [4, 1, blue], [0, 3, red], [0, 4, red], [1, 3, red]] }
+            answer: false
+          - id: l2-c19
+            part: diagonal
+            type: image_multiple_choice
+            text: "The blue shape is reflected in the diagonal line. Which picture is right?"
+            options:
+              - { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[2, 0, blue], [3, 0, blue], [3, 1, blue], [4, 1, blue], [2, 4, red], [3, 4, red], [3, 3, red], [4, 3, red]], key: flipped }
+              - { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[2, 0, blue], [3, 0, blue], [3, 1, blue], [4, 1, blue], [1, 2, red], [1, 3, red], [0, 3, red], [0, 4, red]], key: turned }
+              - { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[2, 0, blue], [3, 0, blue], [3, 1, blue], [4, 1, blue], [0, 2, red], [0, 3, red], [1, 3, red], [1, 4, red]], key: reflected }
+            answer: reflected
+          - id: l2-c20
+            part: diagonal
+            type: multiple_choice
+            text: "The blue square is reflected in the diagonal line. Where does it land?"
+            show: { drawn: grid, cols: 5, rows: 5, diagonal: down, cells: [[0, 2, blue]], labels: [[4, 2, "A"], [2, 0, "B"], [2, 4, "C"]] }
+            options: ["A", "B", "C"]
+            answer: "B"
             option_audio: false

@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: modal-meaning, what: { de: "sagen, wie wahrscheinlich ein Modalverb etwas macht (will, should, might, cannot)", en: "saying how likely a modal verb makes something (will, should, might, cannot)" } }
+    - { id: base-form, what: { de: die Grundform des Verbs nach einem Modalverb, en: the base form of the verb after a modal verb } }
+    - { id: adverb-meaning, what: { de: "sagen, wie sicher ein Adverb der Wahrscheinlichkeit den Sprecher zeigt", en: how sure an adverb of possibility shows the speaker is } }
+    - { id: choose-word, what: { de: "ein Modalverb oder Adverb wählen, das zur Wahrscheinlichkeit passt", en: choosing a modal verb or adverb to fit how likely something is } }
   misconceptions:
     - id: might-means-will
       what: Thinks might and will say the same, so a forecast of might rain means it will rain
@@ -204,6 +209,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -223,6 +229,27 @@ lessons:
             options: ["She may come later.", "She may comes later.", "She may came later."]
             answer: "She may come later."
             option_audio: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Choose the modal verb that shows it is impossible."
+            say: "Read the sentence. Choose the modal verb that shows it is impossible."
+            frame: "Fish _ live out of water."
+            options: ["cannot", "might", "should"]
+            answer: ["cannot"]
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap the verb that comes after the modal verb."
+            say: "Tap the main verb that comes after the modal verb."
+            show: { drawn: letter-card, text: "Jamie might bake a cake for the fair" }
+            spans: ["bake"]
+          - id: l1-c6
+            type: ordering
+            text: "Order from least likely to most likely."
+            say: "Put the sentences in order, from the least likely to the most likely."
+            option_audio: false
+            options: ["The lights should work.", "The lights cannot work.", "The lights will work."]
+            slot_count: 3
+            answer: ["The lights cannot work.", "The lights should work.", "The lights will work."]
 
   - n: 2
     title: { de: Adverbien der Wahrscheinlichkeit, en: Adverbs of possibility }
@@ -341,7 +368,7 @@ lessons:
                 hints: ["Look at the start of the sentence."]
               - id: l2-s4
                 type: fill_in_blank
-                text: "Choose the adverb that fits."
+                text: "The museum is always shut on Mondays. Choose the adverb that fits."
                 say: "The museum is always shut on Mondays. Choose the adverb."
                 frame: "The museum will _ be shut on Monday."
                 options: ["definitely", "perhaps", "possibly"]
@@ -378,7 +405,7 @@ lessons:
                 spans: ["probably"]
               - id: l2-n4
                 type: fill_in_blank
-                text: "Choose the adverb that fits."
+                text: "Nobody knows yet if the trip will go ahead. Choose the adverb that fits."
                 say: "Nobody knows yet if the trip will go ahead. Choose the adverb."
                 frame: "_ the trip will go ahead."
                 options: ["Perhaps", "Certainly", "Definitely"]
@@ -393,20 +420,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: modal-meaning
             type: multiple_choice
             text: "\"Grandad might visit at the weekend.\"\n\nHow likely is the visit?"
             options: ["certain", "possible", "impossible"]
             answer: "possible"
             keep_order: true
           - id: l2-c2
+            part: base-form
             type: multiple_choice
             text: "Which sentence is correct?"
             options: ["We should leave now.", "We should leaves now.", "We should left now."]
             answer: "We should leave now."
             option_audio: false
           - id: l2-c3
+            part: modal-meaning
             type: ordering
             text: "Order from least likely to most likely."
             say: "Put the sentences in order, from the least likely to the most likely."
@@ -415,14 +446,127 @@ lessons:
             slot_count: 3
             answer: ["The dog won't eat it.", "The dog might eat it.", "The dog will eat it."]
           - id: l2-c4
+            part: adverb-meaning
             type: multiple_choice
             text: "\"The parcel will probably come today.\"\n\nHow sure is the speaker?"
             options: ["completely sure", "fairly sure", "not sure at all"]
             answer: "fairly sure"
             keep_order: true
           - id: l2-c5
+            part: adverb-meaning
             type: highlight_in_text
             text: "Tap the adverb of possibility."
             say: "Tap the adverb that shows how likely it is."
             show: { drawn: letter-card, text: "Surely the bus has gone by now" }
             spans: ["Surely"]
+          - id: l2-c6
+            part: modal-meaning
+            type: true_false
+            text: "\"The river could flood after the storm.\"\n\nIs it true? The writer says the flood is certain."
+            say: "Read the sentence. Is it true? The writer says the flood is certain."
+            answer: false
+          - id: l2-c7
+            part: modal-meaning
+            type: highlight_in_text
+            text: "Tap the modal verb that shows it is likely."
+            say: "Tap the modal verb that shows something is likely."
+            show: { drawn: letter-card, text: "We might win the quiz and we should get a prize" }
+            spans: ["should"]
+          - id: l2-c8
+            part: modal-meaning
+            type: ordering
+            text: "Order from least likely to most likely."
+            say: "Put the sentences in order, from the least likely to the most likely."
+            option_audio: false
+            options: ["Ravi should pass.", "Ravi cannot pass.", "Ravi will pass.", "Ravi could pass."]
+            slot_count: 4
+            answer: ["Ravi cannot pass.", "Ravi could pass.", "Ravi should pass.", "Ravi will pass."]
+          - id: l2-c9
+            part: base-form
+            type: fill_in_blank
+            text: "Choose the verb that fits after the modal verb."
+            say: "Read the sentence. Choose the verb that fits after the modal verb."
+            frame: "Next year, Leah will _ to secondary school."
+            options: ["go", "goes", "went"]
+            answer: ["go"]
+            option_audio: false
+          - id: l2-c10
+            part: base-form
+            type: true_false
+            text: "\"The plants could grow taller in the sun.\"\n\nIs the verb after the modal verb in the right form?"
+            say: "Read the sentence. Is the verb after the modal verb in the right form?"
+            answer: true
+          - id: l2-c11
+            part: base-form
+            type: highlight_in_text
+            text: "Tap the verb in the wrong form."
+            say: "One verb is in the wrong form. Tap it."
+            show: { drawn: letter-card, text: "My uncle could fixed the roof tomorrow" }
+            spans: ["fixed"]
+          - id: l2-c12
+            part: base-form
+            type: multiple_choice
+            text: "Which word fits? \"Owls can _ in the dark.\""
+            options: ["see", "sees", "saw"]
+            answer: "see"
+            option_audio: false
+          - id: l2-c13
+            part: adverb-meaning
+            type: true_false
+            text: "\"Maybe Gran will bring her dog.\"\n\nIs it true? The speaker is certain that Gran will bring her dog."
+            say: "Read the sentence. Is it true? The speaker is certain that Gran will bring her dog."
+            answer: false
+          - id: l2-c14
+            part: adverb-meaning
+            type: ordering
+            text: "Order from least sure to most sure."
+            say: "Put the sentences in order, from the least sure to the most sure."
+            option_audio: false
+            options: ["The story is certainly true.", "Possibly the story is true.", "The story is probably true."]
+            slot_count: 3
+            answer: ["Possibly the story is true.", "The story is probably true.", "The story is certainly true."]
+          - id: l2-c15
+            part: adverb-meaning
+            type: multiple_choice
+            text: "Which word means the same as definitely?"
+            options: ["certainly", "perhaps", "possibly"]
+            answer: "certainly"
+          - id: l2-c16
+            part: choose-word
+            type: fill_in_blank
+            text: "The forecast says there is a small chance of rain. Choose the modal verb."
+            say: "The forecast says there is a small chance of rain. Choose the modal verb."
+            frame: "It _ rain this afternoon."
+            options: ["might", "will", "cannot"]
+            answer: ["might"]
+            option_audio: false
+          - id: l2-c17
+            part: choose-word
+            type: multiple_choice
+            text: "Mia has bought her ticket and the show is tonight. Which sentence fits?"
+            options: ["Mia will see the show tonight.", "Mia might see the show tonight.", "Mia cannot see the show tonight."]
+            answer: "Mia will see the show tonight."
+            option_audio: false
+          - id: l2-c18
+            part: choose-word
+            type: fill_in_blank
+            text: "The doctor is fairly sure, but not certain, that the arm will heal soon. Choose the adverb."
+            say: "The doctor is fairly sure, but not certain, that the arm will heal soon. Choose the adverb."
+            frame: "Your arm will _ heal in six weeks."
+            options: ["probably", "definitely", "certainly"]
+            answer: ["probably"]
+            option_audio: false
+          - id: l2-c19
+            part: choose-word
+            type: multiple_choice
+            text: "Max has broken his leg. Which sentence fits?"
+            options: ["Max cannot play in the match on Saturday.", "Max should play in the match on Saturday.", "Max will definitely play in the match on Saturday."]
+            answer: "Max cannot play in the match on Saturday."
+            option_audio: false
+          - id: l2-c20
+            part: choose-word
+            type: multiple_choice
+            text: "Liam is very sure that his team will win. Which sentence fits?"
+            options: ["We will definitely win.", "We might win.", "Perhaps we will win."]
+            answer: "We will definitely win."
+            option_audio: false

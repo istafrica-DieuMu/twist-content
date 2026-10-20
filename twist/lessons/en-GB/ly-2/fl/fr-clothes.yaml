@@ -26,6 +26,10 @@ metadata:
   forms: [audio, picture, text, drawn]
   drawn: [colour-swatch]
   facets: []
+  parts:
+    - { id: words, what: { de: Kleidungsstücke benennen, en: naming clothes } }
+    - { id: colour, what: { de: "sagen, welche Farbe ein Kleidungsstück hat (un pull vert, une robe verte)", en: "saying what colour clothes are (un pull vert, une robe verte)" } }
+    - { id: wearing, what: { de: "sagen, was jemand trägt (je porte, il porte, elle porte)", en: "saying what someone is wearing (je porte, il porte, elle porte)" } }
   misconceptions:
     - id: veste-vest
       what: Takes une veste for a vest, and mixes it up with un pull, another top with long sleeves
@@ -118,7 +122,8 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "une jupe" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "une jupe" }
                 show: { object: skirt }
                 answer: true
                 hints:
@@ -172,7 +177,8 @@ lessons:
               - id: l1-s3
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "un tee-shirt" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "un tee-shirt" }
                 show: { object: jumper }
                 answer: false
                 hints: ["Un tee-shirt is a T-shirt, with short sleeves."]
@@ -210,7 +216,8 @@ lessons:
               - id: l1-n3
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "une chaussure" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "une chaussure" }
                 show: { object: shoe }
                 answer: true
               - id: l1-n4
@@ -228,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -246,9 +254,29 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Does the picture match?"
-            say: { en: "Listen. Does the picture match?", fr: "un pantalon" }
+            say: { en: "Listen. Does the picture match?" }
+            audio: { fr: "un pantalon" }
             show: { object: skirt }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            option_audio: false
+            text: "What is this in French?"
+            show: { object: dress }
+            options: ["une jupe", "une robe", "une veste"]
+            answer: "une robe"
+          - id: l1-c5
+            type: true_false
+            text: "“Un pull” is a jumper."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "Which picture is it?"
+            say: { en: "Listen. Which picture is it?" }
+            audio: { fr: "une chaussette" }
+            options: [{ object: trousers }, { object: sock }, { object: jacket }]
+            answer: sock
 
   - n: 2
     title: { de: "Ein grüner Pullover: Farben und Kleidung", en: "Un pull vert: colours and clothes" }
@@ -312,7 +340,7 @@ lessons:
               - id: l2-f2
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build it in French: a red skirt."
                 say: { en: "Build it in French: a red skirt." }
                 options: ["rouge", "une jupe"]
                 slot_count: 2
@@ -324,7 +352,7 @@ lessons:
               - id: l2-f3
                 type: multiple_choice
                 option_audio: false
-                text: "une robe _"
+                text: "A green dress. Which word fits?\nune robe _"
                 say: { en: "A green dress. Which word fits?" }
                 show: { object: dress, colour: green }
                 options: ["verte", "vert", "verts"]
@@ -373,7 +401,7 @@ lessons:
               - id: l2-s2
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build it in French: a green jacket."
                 say: { en: "Build it in French: a green jacket." }
                 options: ["verte", "une veste"]
                 slot_count: 2
@@ -382,7 +410,7 @@ lessons:
               - id: l2-s3
                 type: multiple_choice
                 option_audio: false
-                text: "un pull _"
+                text: "A blue jumper. Which word fits?\nun pull _"
                 say: { en: "A blue jumper. Which word fits?" }
                 show: { object: jumper, colour: blue }
                 options: ["bleu", "bleue", "bleus"]
@@ -421,7 +449,7 @@ lessons:
               - id: l2-n2
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: I'm wearing a yellow T-shirt."
                 say: { en: "Build the sentence: I'm wearing a yellow T-shirt." }
                 options: ["un tee-shirt", "porte", "jaune", "Je"]
                 slot_count: 4
@@ -429,7 +457,7 @@ lessons:
               - id: l2-n3
                 type: multiple_choice
                 option_audio: false
-                text: "une jupe _"
+                text: "A green skirt. Which word fits?\nune jupe _"
                 say: { en: "A green skirt. Which word fits?" }
                 show: { object: skirt, colour: green }
                 options: ["verte", "vert", "vertes"]
@@ -437,7 +465,8 @@ lessons:
               - id: l2-n4
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "un pull rouge" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "un pull rouge" }
                 show: { object: jacket, colour: red }
                 answer: false
               - id: l2-n5
@@ -453,8 +482,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: words
             type: audio_choice
             text: "Tap the picture you hear."
             say: { en: "Listen. Tap the picture." }
@@ -462,6 +493,7 @@ lessons:
             options: [{ object: wellies }, { object: shoe }, { object: sock }]
             answer: wellies
           - id: l2-c2
+            part: colour
             type: audio_choice
             text: "Tap the picture you hear."
             say: { en: "Listen. Tap the picture." }
@@ -472,20 +504,23 @@ lessons:
               - { object: skirt, colour: yellow, key: skirt-yellow }
             answer: skirt-red
           - id: l2-c3
+            part: colour
             type: multiple_choice
             option_audio: false
-            text: "une veste _"
+            text: "A blue jacket. Which word fits?\nune veste _"
             say: { en: "A blue jacket. Which word fits?" }
             show: { object: jacket, colour: blue }
             options: ["bleue", "bleu", "bleus"]
             answer: "bleue"
           - id: l2-c4
+            part: wearing
             type: multiple_choice
             option_audio: false
             text: "You are wearing one pair of trousers. Which sentence is right?"
             options: ["Je porte un pantalon.", "Je porte des pantalons.", "Je porte une pantalon."]
             answer: "Je porte un pantalon."
           - id: l2-c5
+            part: wearing
             type: audio_choice
             text: "What colour is Sam's jumper?"
             say: { en: "Listen. What colour is Sam's jumper?" }
@@ -495,3 +530,134 @@ lessons:
               - { object: jumper, colour: green, key: jumper-green }
               - { object: jumper, colour: red, key: jumper-red }
             answer: jumper-yellow
+          - id: l2-c6
+            part: words
+            type: matching
+            option_audio: false
+            text: "Which word goes with which picture?"
+            say: { en: "Tap each word, then its picture." }
+            pairs:
+              - left: { text: "un pantalon" }
+                right: { object: trousers }
+              - left: { text: "une veste" }
+                right: { object: jacket }
+              - left: { text: "une chaussure" }
+                right: { object: shoe }
+          - id: l2-c7
+            part: words
+            type: multiple_choice
+            option_audio: false
+            text: "What is this in French?"
+            show: { object: sock }
+            options: ["une chaussure", "une chaussette", "un bonnet"]
+            answer: "une chaussette"
+          - id: l2-c8
+            part: words
+            type: true_false
+            text: "“Une veste” is a jacket."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: true
+          - id: l2-c9
+            part: words
+            type: multiple_choice
+            option_audio: false
+            text: "What do you wear on your head?"
+            options: ["une chaussette", "un pantalon", "un bonnet"]
+            answer: "un bonnet"
+          - id: l2-c10
+            part: words
+            type: sorting
+            option_audio: false
+            text: "Un or une? Sort the words."
+            say: { en: "Un or une? Sort the words." }
+            bins:
+              - { id: un, show: { text: "un" }, say: { fr: "un" } }
+              - { id: une, show: { text: "une" }, say: { fr: "une" } }
+            options:
+              - { text: "pull", bin: un }
+              - { text: "jupe", bin: une }
+              - { text: "pantalon", bin: un }
+              - { text: "robe", bin: une }
+          - id: l2-c11
+            part: words
+            type: multiple_choice
+            option_audio: false
+            text: "Which words mean boots?"
+            options: ["des chaussettes", "des bottes", "des chaussures"]
+            answer: "des bottes"
+          - id: l2-c12
+            part: colour
+            type: multiple_choice
+            option_audio: false
+            text: "Which is right for a green skirt?"
+            options: ["une verte jupe", "une jupe vert", "une jupe verte"]
+            answer: "une jupe verte"
+          - id: l2-c13
+            part: colour
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?" }
+            audio: { fr: "une robe verte" }
+            show: { object: dress, colour: blue }
+            answer: false
+          - id: l2-c14
+            part: colour
+            type: ordering
+            option_audio: false
+            text: "Build it in French: a blue dress."
+            say: { en: "Build it in French: a blue dress." }
+            options: ["bleue", "une robe", "bleu"]
+            slot_count: 2
+            answer: ["une robe", "bleue"]
+          - id: l2-c15
+            part: colour
+            type: multiple_choice
+            option_audio: false
+            text: "Which says a red jumper?"
+            options: ["un rouge pull", "un pull rouge", "une pull rouge"]
+            answer: "un pull rouge"
+          - id: l2-c16
+            part: colour
+            type: matching
+            option_audio: false
+            text: "Which words go with which picture?"
+            say: { en: "Read each card. Tap it, then its picture." }
+            pairs:
+              - left: { text: "une jupe verte" }
+                right: { object: skirt, colour: green }
+              - left: { text: "une jupe jaune" }
+                right: { object: skirt, colour: yellow }
+              - left: { text: "un pull vert" }
+                right: { object: jumper, colour: green }
+          - id: l2-c17
+            part: wearing
+            type: audio_choice
+            text: "What is Max wearing?"
+            say: { en: "Listen. What is Max wearing?" }
+            audio: { fr: "Je porte un bonnet et des bottes.", speaker: male }
+            options: ["a woolly hat and boots", "a woolly hat and socks", "a jumper and boots"]
+            answer: "a woolly hat and boots"
+          - id: l2-c18
+            part: wearing
+            type: multiple_choice
+            option_audio: false
+            text: "Léa is wearing a green jacket. Which sentence says that?"
+            show: { object: jacket, colour: green }
+            options: ["Il porte une veste verte.", "Elle porte une veste verte.", "Elle porte un pull vert."]
+            answer: "Elle porte une veste verte."
+          - id: l2-c19
+            part: wearing
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: He is wearing a red jumper."
+            say: { en: "Build the sentence: He is wearing a red jumper." }
+            options: ["rouge", "Il", "Elle", "un pull", "porte"]
+            slot_count: 4
+            answer: ["Il", "porte", "un pull", "rouge"]
+          - id: l2-c20
+            part: wearing
+            type: true_false
+            text: "Is Paul wearing a jumper?"
+            say: { en: "Listen. Is Paul wearing a jumper?" }
+            audio: { fr: "Paul porte un tee-shirt et un pantalon." }
+            answer: false

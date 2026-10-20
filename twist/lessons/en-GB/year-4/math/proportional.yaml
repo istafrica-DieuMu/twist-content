@@ -24,6 +24,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [table]
   facets: []
+  parts:
+    - { id: via-one, what: { de: vom Bekannten auf eins und dann auf die gesuchte Menge schließen, en: working from what is known to one and then to the amount needed } }
+    - { id: scale, what: { de: Rezepte und Wege durch Halbieren und Verdoppeln umrechnen, en: scaling recipes and journeys by halving and doubling } }
+    - { id: not-proportional, what: { de: "erkennen, ob eine Menge wirklich mitwächst", en: spotting whether an amount really grows with the number } }
   misconceptions:
     - id: add-not-multiply
       what: Adds or takes away the difference instead of scaling (5 bags hold 20, so 3 bags hold 18)
@@ -189,6 +193,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -203,6 +208,20 @@ lessons:
             text: "4 boxes hold 32 crayons. Each box holds the same. How many crayons are in 7 boxes?"
             options: ["56", "35", "28"]
             answer: "56"
+          - id: l1-c4
+            type: text_input
+            text: "5 pears cost £2.50. How much does 1 pear cost? Type the pence."
+            answer: "50"
+          - id: l1-c5
+            type: multiple_choice
+            text: "2 boxes hold 18 eggs. Each box holds the same. How many eggs are in 7 boxes?"
+            options: ["63", "23", "54"]
+            answer: "63"
+          - id: l1-c6
+            type: true_false
+            text: "3 comics cost £12. So 4 comics cost £13."
+            say: "Is it true? Three comics cost twelve pounds. So four comics cost thirteen pounds."
+            answer: false
 
   - n: 2
     title: { de: Rezepte und Strecken, en: Recipes and journeys }
@@ -352,28 +371,122 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: via-one
             type: text_input
             text: "6 notebooks cost £18. How much do 4 notebooks cost? Type the pounds."
             answer: "12"
           - id: l2-c2
+            part: via-one
             type: multiple_choice
             text: "5 packs hold 40 stickers. Each pack holds the same. How many stickers are in 2 packs?"
             options: ["16", "37", "20"]
             answer: "16"
           - id: l2-c3
+            part: scale
             type: fill_in_blank
             text: "Pizza dough for 4 people: 400 g of flour and 2 teaspoons of yeast. What do you need for 8 people?"
             frame: "flour: _ g   yeast: _ teaspoons"
             options: ["2", "4", "404", "800"]
             answer: ["800", "4"]
           - id: l2-c4
+            part: not-proportional
             type: multiple_choice
             text: "One tray of biscuits takes 10 minutes to bake. How long do 2 trays take, side by side in the same oven?"
             options: ["10 minutes", "20 minutes", "12 minutes"]
             answer: "10 minutes"
           - id: l2-c5
+            part: scale
             type: text_input
             text: "A bus travels 30 miles in 1 hour. How far does it travel in 3 hours at the same speed? Type the miles."
             answer: "90"
+          - id: l2-c6
+            part: via-one
+            type: text_input
+            text: "7 cinema tickets cost £42. How much do 3 tickets cost? Type the pounds."
+            answer: "18"
+          - id: l2-c7
+            part: via-one
+            type: fill_in_blank
+            text: "Each bag holds the same number of marbles. Fill in the table."
+            show: { drawn: table, rows: [["Bags", "Marbles"], [4, 24], [1, "?"], [6, "?"]] }
+            frame: "1 bag: _ marbles   6 bags: _ marbles"
+            options: ["6", "20", "26", "36"]
+            answer: ["6", "36"]
+          - id: l2-c8
+            part: via-one
+            type: true_false
+            text: "5 lollies cost 60p. So 2 lollies cost 24p."
+            say: "Is it true? Five lollies cost sixty pence. So two lollies cost twenty-four pence."
+            answer: true
+          - id: l2-c9
+            part: via-one
+            type: multiple_choice
+            text: "9 copies of the same book weigh 1800 g together. How much do 4 copies weigh?"
+            options: ["800 g", "900 g", "400 g"]
+            answer: "800 g"
+          - id: l2-c10
+            part: via-one
+            type: text_input
+            text: "4 shelves hold 32 books. Each shelf holds the same. How many books do 9 shelves hold?"
+            answer: "72"
+          - id: l2-c11
+            part: scale
+            type: text_input
+            text: "A recipe for 4 people uses 300 g of pasta. How much pasta do 2 people need? Type the grams."
+            answer: "150"
+          - id: l2-c12
+            part: scale
+            type: multiple_choice
+            text: "Biscuits for 6 people need 120 g of butter. How much butter do you need for 9 people?"
+            options: ["180 g", "123 g", "240 g"]
+            answer: "180 g"
+          - id: l2-c13
+            part: scale
+            type: fill_in_blank
+            text: "Smoothies for 2 people: 4 bananas and 300 ml of milk. What do you need for 6 people?"
+            frame: "bananas: _   milk: _ ml"
+            options: ["8", "12", "600", "900"]
+            answer: ["12", "900"]
+          - id: l2-c14
+            part: scale
+            type: text_input
+            text: "Nina walks 8 km in 2 hours at a steady pace. How far does she walk in 5 hours at the same pace? Type the kilometres."
+            answer: "20"
+          - id: l2-c15
+            part: scale
+            type: true_false
+            text: "Lemonade for 4 people needs 6 lemons. So lemonade for 8 people needs 10 lemons."
+            say: "Is it true? Lemonade for four people needs six lemons. So lemonade for eight people needs ten lemons."
+            answer: false
+          - id: l2-c16
+            part: not-proportional
+            type: true_false
+            text: "A bath takes 10 minutes to fill. Two children share the bath. So it takes 20 minutes to fill."
+            say: "Is it true? A bath takes ten minutes to fill. Two children share the bath. So it takes twenty minutes to fill."
+            answer: false
+          - id: l2-c17
+            part: not-proportional
+            type: multiple_choice
+            text: "Ella is 8 and her brother is 4. When Ella is 16, how old will her brother be?"
+            options: ["12", "8", "16"]
+            answer: "12"
+          - id: l2-c18
+            part: not-proportional
+            type: multiple_choice
+            text: "Which one does not grow in proportion?"
+            options: ["the cost of apples at 20p each", "the number of wheels on bikes, 2 on each", "the time a bus takes to reach town when 20 more people get on"]
+            answer: "the time a bus takes to reach town when 20 more people get on"
+          - id: l2-c19
+            part: not-proportional
+            type: true_false
+            text: "1 ice lolly costs 40p. 3 ice lollies cost three times as much: £1.20."
+            say: "Is it true? One ice lolly costs forty pence. Three ice lollies cost three times as much: one pound twenty."
+            answer: true
+          - id: l2-c20
+            part: not-proportional
+            type: text_input
+            text: "Mo swims one length of the pool in 2 minutes. He swims 6 lengths, one after the other, at the same speed. How many minutes does that take?"
+            answer: "12"

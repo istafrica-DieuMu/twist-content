@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [place-value-chart, base-ten]
   facets: []
+  parts:
+    - { id: thousands, what: { de: Hunderter zu Tausendern bündeln und in Tausendern zählen, en: exchanging hundreds for thousands and counting in thousands } }
+    - { id: place-value, what: { de: Zahlen in der Stellentafel und der Wert jeder Ziffer, en: numbers in a place value chart and what each digit is worth } }
+    - { id: more-less, what: { de: 1000 mehr und 1000 weniger, en: finding 1000 more or less } }
+    - { id: read-write, what: { de: Zahlen bis 10 000 lesen und schreiben, en: "reading and writing numbers to 10,000" } }
   misconceptions:
     - id: new-column
       what: Does not see that ten hundreds need a new column
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,21 @@ lessons:
             type: text_input
             text: "What are 2 thousands worth?"
             answer: "2000"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Count in 1000s."
+            frame: "4000, 5000, _, _"
+            options: ["5001", "5100", "6000", "7000"]
+            answer: ["6000", "7000"]
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 20 hundreds make 2000."
+            say: "Is it true? Twenty hundreds make two thousand."
+            answer: true
+          - id: l1-c6
+            type: text_input
+            text: "1000 + 1000 + 1000 + 1000 + 1000 = _"
+            answer: "5000"
 
   - n: 2
     title: { de: "T, H, Z und E", en: "Th, H, T and O" }
@@ -394,6 +415,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: multiple_choice
@@ -411,6 +433,21 @@ lessons:
             text: "What is 1000 less than 3070?"
             options: ["2070", "3060", "3970"]
             answer: "2070"
+          - id: l2-c4
+            type: multiple_choice
+            text: "What number is in the chart?"
+            show: { drawn: place-value-chart, columns: [thousands, hundreds, tens, ones], values: [2, 0, 9, 1] }
+            options: ["291", "2091", "2901"]
+            answer: "2091"
+          - id: l2-c5
+            type: text_input
+            text: "5000 + 300 + 7 = _"
+            answer: "5307"
+          - id: l2-c6
+            type: true_false
+            text: "Is it true? 1000 more than 8450 is 9450."
+            say: "Is it true? One thousand more than eight thousand, four hundred and fifty is nine thousand, four hundred and fifty."
+            answer: true
 
   - n: 3
     title: { de: Große Zahlen lesen und schreiben, en: Reading and writing four-digit numbers }
@@ -602,24 +639,29 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: place-value
             type: multiple_choice
             text: "What number is in the chart?"
             show: { drawn: place-value-chart, columns: [thousands, hundreds, tens, ones], values: [6, 0, 7, 2] }
             options: ["672", "6072", "6702"]
             answer: "6072"
           - id: l3-c2
+            part: place-value
             type: multiple_choice
             text: "What is the 4 in 2481 worth?"
             options: ["4", "40", "400"]
             answer: "400"
           - id: l3-c3
+            part: read-write
             type: text_input
             text: "Listen and write the number."
             say: "Five thousand, six hundred and forty-three. Write the number."
             answer: "5643"
           - id: l3-c4
+            part: read-write
             type: multiple_choice
             text: "seven thousand and nineteen"
             say: "Read the number word. Which number is it?"
@@ -627,7 +669,108 @@ lessons:
             answer: "7019"
             option_audio: false
           - id: l3-c5
+            part: more-less
             type: multiple_choice
             text: "What is 1000 less than 8205?"
             options: ["7205", "8105", "8195"]
             answer: "7205"
+          - id: l3-c6
+            part: thousands
+            type: fill_in_blank
+            text: "Exchange the hundreds for thousands."
+            frame: "30 hundreds = _ thousands"
+            options: ["3", "30", "300"]
+            answer: ["3"]
+          - id: l3-c7
+            part: thousands
+            type: fill_in_blank
+            text: "Count in 1000s."
+            frame: "1000, 2000, _, _, 5000"
+            options: ["2100", "2200", "3000", "4000"]
+            answer: ["3000", "4000"]
+          - id: l3-c8
+            part: thousands
+            type: true_false
+            text: "Is it true? 6 thousands and 10 hundreds make 7000."
+            say: "Is it true? Six thousands and ten hundreds make seven thousand."
+            answer: true
+          - id: l3-c9
+            part: thousands
+            type: text_input
+            text: "A box holds 1000 sheets of paper. How many sheets are in 4 boxes?"
+            answer: "4000"
+          - id: l3-c10
+            part: thousands
+            type: multiple_choice
+            text: "How many thousands make 10,000?"
+            options: ["10", "100", "1000"]
+            answer: "10"
+          - id: l3-c11
+            part: place-value
+            type: fill_in_blank
+            text: "Partition 6084."
+            frame: "6084 = _ + _ + _"
+            options: ["4", "80", "800", "6000"]
+            answer: ["6000", "80", "4"]
+          - id: l3-c12
+            part: place-value
+            type: image_multiple_choice
+            text: "Which chart shows 3045?"
+            options:
+              - { drawn: place-value-chart, columns: [thousands, hundreds, tens, ones], values: [3, 0, 4, 5], key: "3045" }
+              - { drawn: place-value-chart, columns: [thousands, hundreds, tens, ones], values: [3, 4, 5, 0], key: "3450" }
+              - { drawn: place-value-chart, columns: [thousands, hundreds, tens, ones], values: [3, 4, 0, 5], key: "3405" }
+            answer: "3045"
+            option_audio: false
+          - id: l3-c13
+            part: place-value
+            type: true_false
+            text: "Is it true? In 4790, the 7 is worth 70."
+            say: "Is it true? In four thousand, seven hundred and ninety, the seven is worth seventy."
+            answer: false
+          - id: l3-c14
+            part: read-write
+            type: multiple_choice
+            text: "Listen. Which number is it?"
+            say: "Three thousand and forty. Which number is it?"
+            options: ["340", "3040", "3400"]
+            answer: "3040"
+            option_audio: false
+          - id: l3-c15
+            part: read-write
+            type: multiple_choice
+            text: "Which word matches 6703?"
+            say: "Which number word matches the number? Read the words yourself."
+            options: ["six thousand, seven hundred and three", "six thousand, seven hundred and thirty", "six thousand and seventy-three"]
+            answer: "six thousand, seven hundred and three"
+            option_audio: false
+          - id: l3-c16
+            part: read-write
+            type: text_input
+            text: "two thousand and fifty-six"
+            say: "Read the number word and write the number."
+            answer: "2056"
+          - id: l3-c17
+            part: more-less
+            type: multiple_choice
+            text: "What is 1000 more than 3906?"
+            options: ["4906", "3916", "4006"]
+            answer: "4906"
+          - id: l3-c18
+            part: more-less
+            type: text_input
+            text: "What is 1000 less than 7480?"
+            answer: "6480"
+          - id: l3-c19
+            part: more-less
+            type: true_false
+            text: "Is it true? 1000 less than 5025 is 4025."
+            say: "Is it true? One thousand less than five thousand and twenty-five is four thousand and twenty-five."
+            answer: true
+          - id: l3-c20
+            part: more-less
+            type: fill_in_blank
+            text: "The number is 2640. Find 1000 less and 1000 more."
+            frame: "1000 less: _   1000 more: _"
+            options: ["1640", "2540", "2740", "3640"]
+            answer: ["1640", "3640"]

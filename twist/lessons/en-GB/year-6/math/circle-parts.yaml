@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [circle]
   facets: []
+  parts:
+    - { id: names, what: { de: "Mittelpunkt, Radius, Durchmesser und Kreisumfang benennen", en: "naming the centre, radius, diameter and circumference" } }
+    - { id: diameter, what: { de: den Durchmesser aus dem Radius finden, en: finding the diameter from the radius } }
+    - { id: radius, what: { de: den Radius aus dem Durchmesser finden, en: finding the radius from the diameter } }
+    - { id: in-context, what: { de: Sachaufgaben mit Radius und Durchmesser, en: word problems with the radius and diameter } }
   misconceptions:
     - id: radius-diameter-swapped
       what: Mixes up radius and diameter
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -218,6 +224,20 @@ lessons:
             type: true_false
             text: "Is it true? The radius of a circle is longer than its diameter."
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? The red line is a diameter."
+            show: { drawn: circle, parts: [centre, diameter, circumference], highlight: diameter }
+            answer: true
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? A radius goes from the centre of a circle to its edge."
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "The pointer of a round spinner turns on a pin in the middle. Which part of the circle is the pin at?"
+            options: ["the centre", "the circumference", "the diameter"]
+            answer: "the centre"
 
   - n: 2
     title: { de: Durchmesser und Radius, en: Diameter and radius }
@@ -370,30 +390,127 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: names
             type: multiple_choice
             text: "A pizza is cut once, straight across from edge to edge through the middle. Which part of the circle is the cut?"
             show: { drawn: circle, parts: [centre, diameter], highlight: diameter }
             options: ["a diameter", "a radius", "the circumference"]
             answer: "a diameter"
           - id: l2-c2
+            part: names
             type: multiple_choice
             text: "Ella puts a ribbon all the way round the edge of a round cake. Which part of the circle does the ribbon show?"
             options: ["the circumference", "the diameter", "the centre"]
             answer: "the circumference"
           - id: l2-c3
+            part: diameter
             type: text_input
             text: "A circle has a radius of 9 cm. What is its diameter, in cm?"
             show: { drawn: circle, parts: [centre, radius], values: { radius: "9 cm" } }
             answer: "18"
           - id: l2-c4
+            part: radius
             type: text_input
             text: "A circle has a diameter of 15 cm. What is its radius, in cm?"
             keyboard: decimal
             answer: "7.5"
           - id: l2-c5
+            part: in-context
             type: multiple_choice
             text: "Five plates lie in a row, touching. Each has a radius of 10 cm. How long is the row?"
             options: ["100 cm", "50 cm", "200 cm"]
             answer: "100 cm"
+          - id: l2-c6
+            part: names
+            type: multiple_choice
+            text: "Which part of the circle is red?"
+            show: { drawn: circle, parts: [centre, diameter, circumference], highlight: circumference }
+            options: ["the circumference", "a diameter", "a radius"]
+            answer: "the circumference"
+          - id: l2-c7
+            part: names
+            type: true_false
+            text: "Is it true? The red line is a radius."
+            show: { drawn: circle, parts: [centre, radius, chord], highlight: radius }
+            answer: true
+          - id: l2-c8
+            part: names
+            type: matching
+            text: "Match each part of a circle to what it is."
+            pairs:
+              - { left: { text: "centre" }, right: { text: "where the point of the compasses goes" } }
+              - { left: { text: "radius" }, right: { text: "half of a diameter" } }
+              - { left: { text: "diameter" }, right: { text: "two radii in a straight line" } }
+              - { left: { text: "circumference" }, right: { text: "the perimeter of the circle" } }
+          - id: l2-c9
+            part: diameter
+            type: multiple_choice
+            text: "A circle has a radius of 11 cm. What is its diameter?"
+            show: { drawn: circle, parts: [centre, radius], values: { radius: "11 cm" } }
+            options: ["22 cm", "5.5 cm", "11 cm"]
+            answer: "22 cm"
+          - id: l2-c10
+            part: diameter
+            type: text_input
+            text: "A circle has a radius of 2.5 cm. What is its diameter, in cm?"
+            keyboard: decimal
+            answer: "5"
+          - id: l2-c11
+            part: diameter
+            type: true_false
+            text: "Is it true? A circle with a radius of 8 cm has a diameter of 16 cm."
+            answer: true
+          - id: l2-c12
+            part: diameter
+            type: text_input
+            text: "A circle has a radius of 35 mm. What is its diameter, in mm?"
+            answer: "70"
+          - id: l2-c13
+            part: radius
+            type: multiple_choice
+            text: "A circle has a diameter of 18 cm. What is its radius?"
+            show: { drawn: circle, parts: [centre, diameter], values: { diameter: "18 cm" } }
+            options: ["9 cm", "36 cm", "18 cm"]
+            answer: "9 cm"
+          - id: l2-c14
+            part: radius
+            type: text_input
+            text: "A circle has a diameter of 13 cm. What is its radius, in cm?"
+            keyboard: decimal
+            answer: "6.5"
+          - id: l2-c15
+            part: radius
+            type: true_false
+            text: "Is it true? A circle with a diameter of 40 cm has a radius of 80 cm."
+            answer: false
+          - id: l2-c16
+            part: radius
+            type: multiple_choice
+            text: "Which circle has a radius of 12 cm?"
+            options: ["diameter 24 cm", "diameter 6 cm", "diameter 12 cm"]
+            answer: "diameter 24 cm"
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "Six coins lie in a row, touching. Each coin has a diameter of 3 cm. How long is the row, in cm?"
+            answer: "18"
+          - id: l2-c18
+            part: in-context
+            type: text_input
+            text: "A round rug fits exactly inside a square room. The walls of the room are 4 m long. What is the radius of the rug, in m?"
+            answer: "2"
+          - id: l2-c19
+            part: in-context
+            type: multiple_choice
+            text: "Which is wider: a plate with a radius of 12 cm, or a bowl with a diameter of 20 cm?"
+            options: ["the plate", "the bowl", "they are the same"]
+            keep_order: true
+            answer: "the plate"
+          - id: l2-c20
+            part: in-context
+            type: true_false
+            text: "The spokes of a wheel are 30 cm long, from the centre to the tyre. Is it true that the wheel is 15 cm across?"
+            answer: false

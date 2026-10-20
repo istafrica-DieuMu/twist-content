@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: count, what: { de: Ecken und Seiten einer Figur zählen, en: counting the sides and vertices of a shape } }
+    - { id: sort, what: { de: "Figuren nach Ecken und Seiten finden und sortieren, egal welche Farbe und Größe", en: "finding and sorting shapes by their sides and vertices, whatever their colour and size" } }
+    - { id: square-rect, what: { de: Quadrat und Rechteck unterscheiden, en: telling a square from a rectangle } }
+    - { id: square-is-rect, what: { de: "erklären, warum jedes Quadrat auch ein Rechteck ist", en: explaining why every square is also a rectangle } }
   misconceptions:
     - id: square-not-rectangle
       what: Thinks a square cannot be a rectangle because it looks different
@@ -231,6 +236,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -252,6 +258,26 @@ lessons:
             text: "A square has 3 sides."
             say: "Is it true? A square has three sides."
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many sides does this shape have?"
+            show: { drawn: shape, kind: octagon, colour: green }
+            options: ["8", "6", "10"]
+            answer: "8"
+          - id: l1-c5
+            type: true_false
+            text: "A triangle has 3 vertices."
+            say: "Is it true? A triangle has three vertices."
+            answer: true
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which shape has 5 sides?"
+            options:
+              - { drawn: shape, kind: hexagon, colour: blue, size: 120 }
+              - { drawn: shape, kind: pentagon, colour: green, size: 70 }
+              - { drawn: shape, kind: square, colour: blue, size: 120 }
+            answer: pentagon
+            option_audio: false
 
   - n: 2
     title: { de: "Quadrat und Rechteck", en: "Squares and rectangles" }
@@ -429,8 +455,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count
             type: fill_in_blank
             text: "Count the sides and the vertices."
             show: { drawn: shape, kind: octagon, colour: orange }
@@ -438,10 +466,12 @@ lessons:
             options: ["6", "7", "8"]
             answer: ["8", "8"]
           - id: l2-c2
+            part: square-is-rect
             type: true_false
             text: "Tom says: A square cannot be a rectangle. Is Tom right?"
             answer: false
           - id: l2-c3
+            part: square-rect
             type: image_multiple_choice
             text: "Which shape has 4 square corners, but not 4 sides the same length?"
             options:
@@ -451,12 +481,14 @@ lessons:
             answer: rectangle
             option_audio: false
           - id: l2-c4
+            part: square-is-rect
             type: multiple_choice
             text: "Look at the shape. Which sentence is true?"
             show: { drawn: shape, kind: square, colour: blue }
             options: ["It is a square and also a rectangle.", "It is a square, but not a rectangle.", "It is a rectangle, but not a square."]
             answer: "It is a square and also a rectangle."
           - id: l2-c5
+            part: sort
             type: sorting
             text: "Sort the shapes by their vertices."
             bins:
@@ -468,3 +500,116 @@ lessons:
               - { text: "pentagon", bin: five }
               - { text: "triangle", bin: three }
               - { text: "square", bin: four }
+          - id: l2-c6
+            part: count
+            type: multiple_choice
+            text: "How many vertices does this shape have?"
+            show: { drawn: shape, kind: rectangle, colour: pink }
+            options: ["4", "2", "6"]
+            answer: "4"
+          - id: l2-c7
+            part: count
+            type: text_input
+            text: "Mia draws 2 pentagons. How many sides does she draw altogether?"
+            say: "Mia draws two pentagons. How many sides does she draw altogether?"
+            answer: "10"
+          - id: l2-c8
+            part: count
+            type: true_false
+            text: "An octagon has 8 vertices."
+            say: "Is it true? An octagon has eight vertices."
+            answer: true
+          - id: l2-c9
+            part: count
+            type: multiple_choice
+            text: "A shape has 5 straight sides. What is it called?"
+            options: ["pentagon", "hexagon", "octagon"]
+            answer: "pentagon"
+          - id: l2-c10
+            part: sort
+            type: image_multiple_choice
+            text: "Which shape has 6 vertices?"
+            options:
+              - { drawn: shape, kind: pentagon, colour: green, size: 120 }
+              - { drawn: shape, kind: hexagon, colour: yellow, size: 70 }
+              - { drawn: shape, kind: octagon, colour: green, size: 120 }
+            answer: hexagon
+            option_audio: false
+          - id: l2-c11
+            part: sort
+            type: sorting
+            text: "Sort the shapes: 4 sides or more than 4 sides?"
+            bins:
+              - { id: four, show: { text: "4 sides" }, say: "four sides" }
+              - { id: more, show: { text: "more than 4 sides" }, say: "more than four sides" }
+            options:
+              - { text: "octagon", bin: more }
+              - { text: "rectangle", bin: four }
+              - { text: "hexagon", bin: more }
+              - { text: "square", bin: four }
+              - { text: "pentagon", bin: more }
+          - id: l2-c12
+            part: sort
+            type: matching
+            text: "Match each shape to its vertices."
+            say: "Match each shape to its number of vertices."
+            pairs:
+              - { left: { drawn: shape, kind: pentagon, colour: yellow, size: 70 }, right: { text: "5 vertices" } }
+              - { left: { drawn: shape, kind: square, colour: red, size: 120 }, right: { text: "4 vertices" } }
+              - { left: { drawn: shape, kind: octagon, colour: blue }, right: { text: "8 vertices" } }
+            option_audio: false
+          - id: l2-c13
+            part: sort
+            type: image_multiple_choice
+            text: "Which shape has more than 4 sides?"
+            options:
+              - { drawn: shape, kind: square, colour: red, size: 120 }
+              - { drawn: shape, kind: triangle, colour: red, size: 120 }
+              - { drawn: shape, kind: pentagon, colour: yellow, size: 70 }
+            answer: pentagon
+            option_audio: false
+          - id: l2-c14
+            part: square-rect
+            type: multiple_choice
+            text: "A shape has 4 square corners. 2 of its sides are long and 2 are short. What is it?"
+            options: ["a rectangle", "a square", "a triangle"]
+            answer: "a rectangle"
+          - id: l2-c15
+            part: square-rect
+            type: true_false
+            text: "All four sides of a rectangle are always the same length."
+            say: "Is it true? All four sides of a rectangle are always the same length."
+            answer: false
+          - id: l2-c16
+            part: square-rect
+            type: multiple_choice
+            text: "Is this shape a square?"
+            show: { drawn: shape, kind: square, colour: orange }
+            options: ["Yes, it has 4 square corners and 4 sides the same length.", "No, its sides are not all the same length.", "No, it has no square corners."]
+            answer: "Yes, it has 4 square corners and 4 sides the same length."
+          - id: l2-c17
+            part: square-rect
+            type: multiple_choice
+            text: "How many sides of this rectangle are long?"
+            show: { drawn: shape, kind: rectangle, colour: purple }
+            options: ["2", "4", "none"]
+            answer: "2"
+          - id: l2-c18
+            part: square-is-rect
+            type: multiple_choice
+            text: "Why is every square also a rectangle?"
+            options: ["It has 4 sides and 4 square corners.", "It looks like a rectangle.", "It is smaller than a rectangle."]
+            answer: "It has 4 sides and 4 square corners."
+          - id: l2-c19
+            part: square-is-rect
+            type: true_false
+            text: "Ella says: This shape is a rectangle. Is Ella right?"
+            say: "Ella says this shape is a rectangle. Is Ella right?"
+            show: { drawn: shape, kind: square, colour: green }
+            answer: true
+          - id: l2-c20
+            part: square-is-rect
+            type: multiple_choice
+            text: "Lily says: Every rectangle is a square. Is she right?"
+            options: ["No, a rectangle can have 2 long sides and 2 short sides.", "Yes, they both have 4 sides.", "Yes, they both have square corners."]
+            answer: "No, a rectangle can have 2 long sides and 2 short sides."

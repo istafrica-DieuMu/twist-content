@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn, picture]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: igh, what: { de: "Wörter lesen, in denen i wie igh klingt (find, child, wild)", en: "reading words where i says igh (find, child, wild)" } }
+    - { id: oh-or, what: { de: "Wörter lesen, in denen o wie oh oder oor wie or klingt (old, both, door)", en: "reading words where o says oh or oor says or (old, both, door)" } }
+    - { id: odd-ones, what: { de: "die besonderen Wörter lesen (could, eye, who, water, many, great)", en: "reading the odd ones (could, eye, who, water, many, great)" } }
+    - { id: in-sentence, what: { de: "schwierige Wörter im Satz lesen und verstehen", en: "reading tricky words in a sentence and understanding it" } }
   misconceptions:
     - id: sound-out-tricky
       what: Sounds out a tricky word letter by letter (find as fin-d, both as both with a short o)
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -235,6 +241,24 @@ lessons:
             say: "Which word finishes the sentence? Read them yourself."
             options: ["gold", "good", "goat"]
             answer: "gold"
+            option_audio: false
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap every word where oor says or."
+            say: "Read the words yourself. Tap every word where o o r says or."
+            show: { drawn: letter-card, text: "door book floor cool poor" }
+            spans: ["door", "floor", "poor"]
+          - id: l1-c5
+            type: true_false
+            text: "The child found a gold coin in the sand."
+            say: "Read the sentence. Does it make sense?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which word rhymes with cold?"
+            say: "Read the words yourself. Which one rhymes with cold?"
+            options: ["could", "told", "clod"]
+            answer: "told"
             option_audio: false
 
   - n: 2
@@ -412,26 +436,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: oh-or
             type: audio_choice
             text: "Listen. Tap the word you hear."
             audio: { en: "Both." }
             options: ["both", "bath", "boat"]
             answer: "both"
           - id: l2-c2
+            part: igh
             type: audio_choice
             text: "Listen. Tap the word you hear."
             audio: { en: "Behind." }
             options: ["behind", "begin", "bend"]
             answer: "behind"
           - id: l2-c3
+            part: odd-ones
             type: audio_choice
             text: "Listen. Tap the word you hear."
             audio: { en: "People." }
             options: ["purple", "people", "pebble"]
             answer: "people"
           - id: l2-c4
+            part: in-sentence
             type: multiple_choice
             text: "We run _ in the race."
             say: "Which word finishes the sentence? Read them yourself."
@@ -439,7 +468,114 @@ lessons:
             answer: "fast"
             option_audio: false
           - id: l2-c5
+            part: in-sentence
             type: true_false
             text: "A busy bee could fly over the door."
             say: "Read the sentence. Does it make sense?"
             answer: true
+          - id: l2-c6
+            part: igh
+            type: highlight_in_text
+            text: "Tap every word where the i says igh."
+            say: "Read the words yourself. Tap every word where the i says igh."
+            show: { drawn: letter-card, text: "kind sit climb milk find" }
+            spans: ["kind", "climb", "find"]
+          - id: l2-c7
+            part: igh
+            type: audio_choice
+            text: "Listen. Tap the word you hear."
+            audio: { en: "Mind." }
+            options: ["mend", "mind", "mint"]
+            answer: "mind"
+          - id: l2-c8
+            part: igh
+            type: true_false
+            text: "A child can climb up a cloud."
+            say: "Read the sentence. Does it make sense?"
+            answer: false
+          - id: l2-c9
+            part: igh
+            type: multiple_choice
+            text: "Which word rhymes with find?"
+            say: "Read the words yourself. Which one rhymes with find?"
+            options: ["fin", "kind", "fond"]
+            answer: "kind"
+            option_audio: false
+          - id: l2-c10
+            part: oh-or
+            type: audio_choice
+            text: "Listen. Tap the word you hear."
+            audio: { en: "Only." }
+            options: ["on", "owl", "only"]
+            answer: "only"
+          - id: l2-c11
+            part: oh-or
+            type: multiple_choice
+            text: "The cat is asleep on the _."
+            say: "Which word finishes the sentence? Read them yourself."
+            options: ["for", "floor", "flow"]
+            answer: "floor"
+            option_audio: false
+          - id: l2-c12
+            part: oh-or
+            type: highlight_in_text
+            text: "Tap every word where the o says oh."
+            say: "Read the words yourself. Tap every word where the o says oh."
+            show: { drawn: letter-card, text: "most hot told cold dog" }
+            spans: ["most", "told", "cold"]
+          - id: l2-c13
+            part: oh-or
+            type: true_false
+            text: "My old coat is too small for me now."
+            say: "Read the sentence. Does it make sense?"
+            answer: true
+          - id: l2-c14
+            part: odd-ones
+            type: image_multiple_choice
+            text: "Read the word quickly. Tap the picture."
+            say: "The word is shown for a moment. Read it, then tap its picture."
+            show: { drawn: letter-card, text: "eye", flash: 1.5 }
+            options: [{ object: nose }, { object: eye }, { object: mouth }]
+            answer: eye
+            option_audio: false
+          - id: l2-c15
+            part: odd-ones
+            type: audio_choice
+            text: "Listen. Tap the word you hear."
+            audio: { en: "Many." }
+            options: ["man", "money", "many"]
+            answer: "many"
+          - id: l2-c16
+            part: odd-ones
+            type: audio_choice
+            text: "Listen. Tap the word you hear."
+            audio: { en: "Break." }
+            options: ["break", "brick", "bread"]
+            answer: "break"
+          - id: l2-c17
+            part: odd-ones
+            type: true_false
+            text: "In any, the a says a, as in cat."
+            say: "Read the sentence. Is it true?"
+            answer: false
+          - id: l2-c18
+            part: in-sentence
+            type: multiple_choice
+            text: "_ is at the door?"
+            say: "Which word starts the question? Read them yourself."
+            options: ["How", "Who", "Why"]
+            answer: "Who"
+            option_audio: false
+          - id: l2-c19
+            part: in-sentence
+            type: true_false
+            text: "My eye can hear a great song."
+            say: "Read the sentence. Does it make sense?"
+            answer: false
+          - id: l2-c20
+            part: in-sentence
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the question. Tap the word that does not make sense."
+            show: { drawn: letter-card, text: "Would you like a glass of floor?" }
+            spans: ["floor"]

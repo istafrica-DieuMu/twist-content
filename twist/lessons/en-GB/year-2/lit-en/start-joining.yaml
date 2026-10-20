@@ -16,7 +16,8 @@ summary: >
   check. Every writing-lines task uses `script: joined`, so the model
   follows the school's handwriting scheme, which is a setting; tasks
   teach only what holds in every scheme. The app does not yet check the
-  child's own joins: any ink counts.
+  child's own joins: any ink counts. The skill check marks knowing the
+  joins; Practise covers writing them.
 metadata:
   year: year-2
   topic: { de: Handschrift, en: Handwriting }
@@ -28,6 +29,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: diagonal, what: { de: "die schräge Verbindung: Buchstaben, die auf der Linie enden", en: "the diagonal join: letters that finish on the line" } }
+    - { id: horizontal, what: { de: "die waagrechte Verbindung: o, r, v und w enden oben", en: "the horizontal join: o, r, v and w finish at the top" } }
+    - { id: unjoined, what: { de: "Großbuchstaben bleiben unverbunden", en: capital letters are best left unjoined } }
   misconceptions:
     - id: join-from-top-always
       what: Joins every letter from the top, so a diagonal join from a or i comes out as a loop or a bump
@@ -203,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,23 @@ lessons:
             say: "Copy the word lid, with diagonal joins."
             show: { drawn: writing-lines, text: "lid", mode: copy, arrows: false, script: joined }
             char: "lid"
+          - id: l1-c4
+            type: true_false
+            text: "In the word and, every join is a diagonal join."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap every letter that finishes on the line."
+            say: "Tap every letter that finishes on the line, at the bottom."
+            show: { drawn: letter-card, text: "u o n w l" }
+            spans: ["u", "n", "l"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which join goes up higher?"
+            options: ["the join from i to n", "the join from i to l"]
+            answer: "the join from i to l"
+            option_audio: false
 
   - n: 2
     title: { de: Die waagrechte Verbindung, en: The horizontal join }
@@ -384,26 +407,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: horizontal
             type: multiple_choice
             text: "Where does the letter v finish?"
             options: ["on the line", "at the top"]
             answer: "at the top"
             keep_order: true
           - id: l2-c2
+            part: diagonal
             type: multiple_choice
             text: "Which join takes the a to the n in man?"
             options: ["a diagonal join", "a horizontal join"]
             answer: "a diagonal join"
             keep_order: true
           - id: l2-c3
+            part: horizontal
             type: multiple_choice
             text: "Which join takes the o to the p in top?"
             options: ["a diagonal join", "a horizontal join"]
             answer: "a horizontal join"
             keep_order: true
           - id: l2-c4
+            part: unjoined
             type: multiple_choice
             text: "Kim: which letter is best left unjoined?"
             say: "Look at the name Kim. Which letter is best left unjoined to the next one?"
@@ -411,8 +439,126 @@ lessons:
             answer: "K"
             option_audio: false
           - id: l2-c5
+            part: diagonal
             type: highlight_in_text
             text: "Tap every letter that finishes on the line."
             say: "Tap every letter that finishes on the line. These letters use a diagonal join."
             show: { drawn: letter-card, text: "r e o t w h" }
             spans: ["e", "t", "h"]
+          - id: l2-c6
+            part: diagonal
+            type: sorting
+            text: "Diagonal join or horizontal join? Sort the pairs of letters."
+            say: "Look at the first letter of each pair. Which join takes it to the second letter? Put each pair in the right group."
+            option_audio: false
+            bins:
+              - { id: diagonal, show: { text: "diagonal join" }, say: "Diagonal join." }
+              - { id: horizontal, show: { text: "horizontal join" }, say: "Horizontal join." }
+            options:
+              - { text: "ri", bin: horizontal }
+              - { text: "ut", bin: diagonal }
+              - { text: "vi", bin: horizontal }
+              - { text: "de", bin: diagonal }
+          - id: l2-c7
+            part: diagonal
+            type: multiple_choice
+            text: "How many diagonal joins are there in the word hen?"
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l2-c8
+            part: diagonal
+            type: true_false
+            text: "In the word mud, both joins are diagonal joins."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c9
+            part: diagonal
+            type: multiple_choice
+            text: "Which pair of letters uses a diagonal join?"
+            options: ["oa", "ca", "ra"]
+            answer: "ca"
+            option_audio: false
+          - id: l2-c10
+            part: diagonal
+            type: true_false
+            text: "A diagonal join starts at the top of a letter."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c11
+            part: horizontal
+            type: multiple_choice
+            text: "Which pair of letters uses a horizontal join?"
+            options: ["ia", "ea", "wa"]
+            answer: "wa"
+            option_audio: false
+          - id: l2-c12
+            part: horizontal
+            type: multiple_choice
+            text: "In the word row, which joins are horizontal joins?"
+            options: ["only the first join", "both joins", "neither join"]
+            answer: "both joins"
+            option_audio: false
+            difficulty: stretch
+          - id: l2-c13
+            part: horizontal
+            type: true_false
+            text: "The letter r finishes on the line."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c14
+            part: horizontal
+            type: highlight_in_text
+            text: "Tap every letter that finishes at the top."
+            say: "Tap every letter that finishes at the top. These letters use a horizontal join."
+            show: { drawn: letter-card, text: "w i v n o" }
+            spans: ["w", "v", "o"]
+          - id: l2-c15
+            part: horizontal
+            type: multiple_choice
+            text: "In the word web, which join is the horizontal join?"
+            options: ["from w to e", "from e to b"]
+            answer: "from w to e"
+            keep_order: true
+            option_audio: false
+          - id: l2-c16
+            part: unjoined
+            type: multiple_choice
+            text: "Ali went home.\nWhich word starts with a letter that is best left unjoined?"
+            say: "Read the sentence yourself. Which word starts with a letter that is best left unjoined?"
+            options: ["went", "Ali", "home"]
+            answer: "Ali"
+            option_audio: false
+          - id: l2-c17
+            part: unjoined
+            type: true_false
+            text: "In the name Dan, the a and the n are joined."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c18
+            part: unjoined
+            type: sorting
+            text: "Joined or left unjoined? Sort the pairs of letters."
+            say: "Read each pair of letters. Are they joined, or is the first letter left unjoined? Put each card in the right group."
+            option_audio: false
+            bins:
+              - { id: joined, show: { text: "joined" }, say: "Joined." }
+              - { id: unjoined, show: { text: "left unjoined" }, say: "Left unjoined." }
+            options:
+              - { text: "M to u in Mum", bin: unjoined }
+              - { text: "u to m in Mum", bin: joined }
+              - { text: "n to n in Ann", bin: joined }
+              - { text: "A to n in Ann", bin: unjoined }
+          - id: l2-c19
+            part: unjoined
+            type: multiple_choice
+            text: "Why is the T in Tim left unjoined?"
+            options: ["because it is a tall letter", "because it finishes at the top", "because it is a capital letter"]
+            answer: "because it is a capital letter"
+            option_audio: false
+          - id: l2-c20
+            part: unjoined
+            type: highlight_in_text
+            text: "Tap every word whose first letter is best left unjoined."
+            say: "Read the sentence yourself. Tap every word whose first letter is best left unjoined."
+            show: { drawn: letter-card, text: "On Monday Sam and Mia went out." }
+            spans: ["On", "Monday", "Sam", "Mia"]

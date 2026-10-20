@@ -13,7 +13,10 @@ summary: >
   finger spaces; lesson 2 writes whole sentences with a capital letter
   and a full stop (The dog can run.) and ends with the skill check.
   Copying runs as tracing with any ink; the child's own free writing is
-  not marked yet.
+  not marked yet. The skill check marks what a screen can: the word that
+  fits, the word order, the capital letter and full stop, and a word
+  written by its sounds; writing a whole phrase or sentence by hand is
+  covered by Practise.
 metadata:
   year: reception
   topic: { de: "Texte schreiben", en: "Writing" }
@@ -25,19 +28,24 @@ metadata:
   forms: [text, picture, drawn, audio]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: word-fits, what: { de: "das Wort wählen, das zum Bild passt", en: choosing the word that fits the picture } }
+    - { id: word-order, what: { de: Wörter zu einer Wortgruppe oder einem Satz ordnen, en: putting words in order to make a phrase or sentence } }
+    - { id: capital-full-stop, what: { de: Großbuchstabe am Anfang und Punkt am Ende, en: a capital letter at the start and a full stop at the end } }
+    - { id: sound-out, what: { de: ein Wort nach seinen Lauten schreiben, en: writing a word by its sounds } }
   misconceptions:
     - id: no-capital-or-full-stop
       what: Writes a sentence with no capital letter at the start or no full stop at the end
-      addressed: Learn in lesson 2 shows the same sentence with and without them; l2-f1 (with feedback), l2-f5, l2-s1, l2-s5, l2-n1, l2-n5 and the skill check tasks l2-c1 and l2-c5
+      addressed: Learn in lesson 2 shows the same sentence with and without them; l2-f1 (with feedback), l2-f5, l2-s1, l2-s5, l2-n1, l2-n5 and the skill check tasks l2-c1, l2-c5, l2-c8, l2-c12, l2-c16 and l2-c20
     - id: words-out-of-order
       what: Writes the words in the order they come to mind (big my dog), so the phrase does not read
-      addressed: ordering tasks in every stage (l1-f5, l1-s5, l1-n5, l1-c3, l2-w2, l2-f2, l2-s2, l2-n2, l2-c2)
+      addressed: ordering tasks in every stage (l1-f5, l1-s5, l1-n5, l1-c3, l2-w2, l2-f2, l2-s2, l2-n2, l2-c2, l2-c7, l2-c11, l2-c15, l2-c19)
     - id: missing-sounds
       what: Leaves sounds out of a word while writing (bs for bus), so others cannot read it
-      addressed: Learn in lesson 1 sounds out each word; the vowel is the gap in l1-f2, l1-s2, l1-n2 and l2-s3; the child types a whole word in l2-c4
+      addressed: Learn in lesson 1 sounds out each word; the vowel is the gap in l1-f2, l1-s2, l1-n2, l2-s3 and the checks l2-c9 and l2-c17; the child types a whole word in l2-c4 and l2-c13
     - id: lookalike-word
       what: Picks a word that looks or sounds close but does not match the picture (cap for cat)
-      addressed: lookalike options in l1-f1, l1-f3 (with feedback), l1-s3, l1-n1, l1-n3, l1-c2, l2-f3, l2-n3 and l2-c3
+      addressed: lookalike options in l1-f1, l1-f3 (with feedback), l1-s3, l1-n1, l1-n3, l1-c2, l2-f3, l2-n3 and the checks l2-c3, l2-c6, l2-c10, l2-c14 and l2-c18
   twist_reuse: []
   status: draft
   version: 1
@@ -236,6 +244,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -261,6 +270,31 @@ lessons:
             options: ["cat", "my", "pet"]
             slot_count: 3
             answer: ["my", "pet", "cat"]
+            option_audio: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Which letter is missing in sun?"
+            show: { object: sun }
+            frame: "a hot s_n"
+            options: ["a", "u", "i"]
+            answer: ["u"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which words go with the picture?"
+            say: "Which words go with the picture?"
+            show: { object: fox }
+            options: ["a red box", "a rod fox", "a red fox"]
+            answer: "a red fox"
+            option_audio: false
+          - id: l1-c6
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order."
+            show: { object: duck }
+            options: ["little", "duck", "my"]
+            slot_count: 3
+            answer: ["my", "little", "duck"]
             option_audio: false
 
   - n: 2
@@ -448,8 +482,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: capital-full-stop
             type: multiple_choice
             text: "Which sentence is written correctly?"
             say: "Which sentence has a capital letter and a full stop?"
@@ -457,6 +493,7 @@ lessons:
             answer: "Dad is sad."
             option_audio: false
           - id: l2-c2
+            part: word-order
             type: ordering
             text: "Make the sentence."
             say: "Put the word cards in order to make a sentence about the picture."
@@ -466,6 +503,7 @@ lessons:
             answer: ["The", "cat", "sat", "down."]
             option_audio: false
           - id: l2-c3
+            part: word-fits
             type: fill_in_blank
             text: "Finish the sentence."
             say: "Look at the picture. Choose the word that finishes the sentence."
@@ -474,15 +512,150 @@ lessons:
             options: ["hut", "hat", "hot"]
             answer: ["hat"]
           - id: l2-c4
+            part: sound-out
             type: text_input
             keyboard: letters
             text: "Write the missing word.\nThe dog can ___."
-            say: "Listen: The dog can dig. Say the sounds in dig. Write the missing word."
+            say: "Listen: The dog can dig. Write the missing word."
             show: { object: dog }
             answer: "dig"
           - id: l2-c5
+            part: capital-full-stop
             type: true_false
             text: "Capital letter and full stop?"
             say: "Does this sentence start with a capital letter and end with a full stop?"
             show: { drawn: letter-card, text: "the cup is hot." }
+            answer: false
+          - id: l2-c6
+            part: word-fits
+            type: fill_in_blank
+            text: "Finish the words."
+            say: "Look at the picture. Choose the word that finishes the phrase."
+            show: { object: bus }
+            frame: "a big red _"
+            options: ["bun", "box", "bus"]
+            answer: ["bus"]
+          - id: l2-c7
+            part: word-order
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order to make words about the picture."
+            show: { object: box }
+            options: ["box", "big", "a", "red"]
+            slot_count: 4
+            answer: ["a", "big", "red", "box"]
+            option_audio: false
+          - id: l2-c8
+            part: capital-full-stop
+            type: true_false
+            text: "Capital letter and full stop?"
+            say: "Does this sentence start with a capital letter and end with a full stop?"
+            show: { drawn: letter-card, text: "The van is red." }
+            answer: true
+          - id: l2-c9
+            part: sound-out
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Which letter is missing in sock?"
+            show: { object: sock }
+            frame: "My s_ck is red."
+            options: ["u", "o", "a"]
+            answer: ["o"]
+          - id: l2-c10
+            part: word-fits
+            type: fill_in_blank
+            text: "Finish the sentence."
+            say: "Look at the picture. Choose the word that finishes the sentence."
+            show: { object: van }
+            frame: "I can see a _."
+            options: ["fan", "van", "vet"]
+            answer: ["van"]
+          - id: l2-c11
+            part: word-order
+            type: ordering
+            text: "Make the sentence."
+            say: "Put the word cards in order to make a sentence about the picture."
+            show: { object: hen }
+            options: ["is", "big.", "hen", "The"]
+            slot_count: 4
+            answer: ["The", "hen", "is", "big."]
+            option_audio: false
+          - id: l2-c12
+            part: capital-full-stop
+            type: multiple_choice
+            text: "Which sentence is written correctly?"
+            say: "Which sentence has a capital letter and a full stop?"
+            options: ["we can run", "We can run", "We can run.", "we can run."]
+            answer: "We can run."
+            option_audio: false
+          - id: l2-c13
+            part: sound-out
+            type: text_input
+            keyboard: letters
+            text: "Write the missing word.\nI have a red ___."
+            say: "Listen: I have a red cup. Write the missing word."
+            show: { object: cup }
+            answer: "cup"
+          - id: l2-c14
+            part: word-fits
+            type: multiple_choice
+            text: "Which words go with the picture?"
+            say: "Read the words. Which words go with the picture?"
+            show: { object: pig }
+            options: ["a pink pen", "a big peg", "a pink pig"]
+            answer: "a pink pig"
+            option_audio: false
+          - id: l2-c15
+            part: word-order
+            type: ordering
+            text: "Make the sentence."
+            say: "Put the word cards in order to make a sentence about the picture."
+            show: { object: fox }
+            options: ["see", "fox.", "I", "a", "can"]
+            slot_count: 5
+            answer: ["I", "can", "see", "a", "fox."]
+            option_audio: false
+          - id: l2-c16
+            part: capital-full-stop
+            type: fill_in_blank
+            text: "Fill the gaps to make a sentence."
+            say: "Fill the gaps. Make it a sentence with a capital letter and a full stop."
+            frame: "_he cat is fat_"
+            options: ["T", "t", "."]
+            answer: ["T", "."]
+            option_audio: false
+          - id: l2-c17
+            part: sound-out
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Which letter is missing in pen?"
+            show: { object: pen }
+            frame: "a big p_n"
+            options: ["i", "a", "e"]
+            answer: ["e"]
+          - id: l2-c18
+            part: word-fits
+            type: fill_in_blank
+            text: "Finish the sentence."
+            say: "Look at the picture. Choose the word that finishes the sentence."
+            show: { object: jug }
+            frame: "The _ is big."
+            options: ["jog", "bug", "jug"]
+            answer: ["jug"]
+          - id: l2-c19
+            part: word-order
+            type: ordering
+            text: "Make the sentence."
+            say: "Put the word cards in order to make a sentence about the picture."
+            show: { object: pig }
+            options: ["mud.", "in", "pig", "The", "is", "the"]
+            slot_count: 6
+            answer: ["The", "pig", "is", "in", "the", "mud."]
+            option_audio: false
+          - id: l2-c20
+            part: capital-full-stop
+            type: true_false
+            text: "Capital letter and full stop?"
+            say: "Does this sentence start with a capital letter and end with a full stop?"
+            show: { drawn: letter-card, text: "mum is in bed." }
             answer: false

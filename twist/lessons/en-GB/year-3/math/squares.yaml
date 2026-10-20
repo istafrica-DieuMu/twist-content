@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: facts, what: { de: die Quadratzahlen bis 10 · 10 ausrechnen, en: working out the square numbers to 10 × 10 } }
+    - { id: spot, what: { de: Quadratzahlen erkennen, en: spotting square numbers } }
+    - { id: array, what: { de: Quadrate im Punktefeld erkennen, en: seeing squares in an array } }
+    - { id: derive, what: { de: eine Quadratzahl mit einer Nachbaraufgabe ausrechnen, en: working out a square from the fact next door } }
   misconceptions:
     - id: square-as-double
       what: Adds the number to itself instead of multiplying it by itself (6 × 6 = 12, 9 × 9 = 18)
@@ -202,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -221,6 +227,26 @@ lessons:
             text: "Is 25 a square number?"
             say: "Is twenty-five a square number?"
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which array is not a square?"
+            options:
+              - { drawn: dots, array: [3, 3] }
+              - { drawn: dots, array: [2, 2] }
+              - { drawn: dots, array: [2, 3] }
+            answer: "2x3"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which number times itself makes 9?"
+            say: "Which number times itself makes nine?"
+            options: ["3", "6", "9"]
+            answer: "3"
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Which square numbers are missing?"
+            frame: "1, _, 9, _, 25"
+            options: ["4", "6", "16", "20"]
+            answer: ["4", "16"]
 
   - n: 2
     title: { de: "Alle Quadratzahlen bis 100", en: "All the square numbers to 100" }
@@ -376,8 +402,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: array
             type: image_multiple_choice
             text: "Which array is a square?"
             options:
@@ -386,24 +414,130 @@ lessons:
               - { drawn: dots, array: [6, 7] }
             answer: "6x6"
           - id: l2-c2
+            part: facts
             type: multiple_choice
             text: "8 × 8 = _"
             say: "What is eight times eight?"
             options: ["16", "56", "64"]
             answer: "64"
           - id: l2-c3
+            part: facts
             type: text_input
-            text: "9 × 9 = _"
-            say: "Nine times nine."
+            text: "What is 9 lots of 9?"
+            say: "What is nine lots of nine?"
             answer: "81"
           - id: l2-c4
+            part: spot
             type: true_false
             text: "Is 30 a square number?"
             say: "Is thirty a square number?"
             answer: false
           - id: l2-c5
+            part: spot
             type: fill_in_blank
             text: "Which square number is missing?"
             frame: "16, 25, _, 49"
             options: ["30", "36", "40"]
             answer: ["36"]
+          - id: l2-c6
+            part: facts
+            type: true_false
+            text: "Is it true? 5 lots of 5 make 10."
+            say: "Five lots of five make ten. Is it true?"
+            answer: false
+          - id: l2-c7
+            part: facts
+            type: text_input
+            text: "A hall has 4 rows of chairs with 4 chairs in each row. How many chairs are there?"
+            say: "A hall has four rows of chairs with four chairs in each row. How many chairs are there?"
+            answer: "16"
+          - id: l2-c8
+            part: facts
+            type: multiple_choice
+            text: "Which number times itself makes 100?"
+            say: "Which number times itself makes one hundred?"
+            options: ["10", "50", "20"]
+            answer: "10"
+          - id: l2-c9
+            part: spot
+            type: multiple_choice
+            text: "Which of these is not a square number?"
+            options: ["36", "45", "81"]
+            answer: "45"
+          - id: l2-c10
+            part: spot
+            type: true_false
+            text: "Is 1 a square number?"
+            say: "Is one a square number?"
+            answer: true
+          - id: l2-c11
+            part: spot
+            type: multiple_choice
+            text: "Which list has only square numbers?"
+            options: ["4, 9, 16", "4, 8, 16", "2, 4, 6"]
+            answer: "4, 9, 16"
+          - id: l2-c12
+            part: array
+            type: text_input
+            text: "How many dots are in this square?"
+            show: { drawn: dots, array: [6, 6] }
+            answer: "36"
+          - id: l2-c13
+            part: array
+            type: image_multiple_choice
+            text: "Which array is a square of 9 dots?"
+            say: "Which array is a square of nine dots?"
+            options:
+              - { drawn: dots, array: [1, 9] }
+              - { drawn: dots, array: [3, 3] }
+              - { drawn: dots, array: [2, 5] }
+            answer: "3x3"
+          - id: l2-c14
+            part: array
+            type: multiple_choice
+            text: "Which multiplication fits the array?"
+            show: { drawn: dots, array: [8, 8] }
+            options: ["8 × 8", "8 + 8", "8 × 7"]
+            answer: "8 × 8"
+          - id: l2-c15
+            part: array
+            type: true_false
+            text: "Is this array a square?"
+            show: { drawn: dots, array: [4, 5] }
+            answer: false
+          - id: l2-c16
+            part: derive
+            type: text_input
+            text: "The red rows show 4 × 5 = 20. How many dots are in the whole square?"
+            say: "The red rows show four times five is twenty. How many dots are in the whole square?"
+            show: { drawn: dots, array: [5, 5], split_rows: 4 }
+            answer: "25"
+          - id: l2-c17
+            part: derive
+            type: fill_in_blank
+            text: "10 eights are 80. Use it to find 8 eights."
+            say: "Ten eights are eighty. Use it to find eight eights."
+            frame: "80 − _ = _"
+            options: ["2", "16", "64", "78"]
+            answer: ["16", "64"]
+          - id: l2-c18
+            part: derive
+            type: fill_in_blank
+            text: "2 threes are 6. Use it to find 3 threes."
+            say: "Two threes are six. Use it to find three threes."
+            frame: "6 + _ = _"
+            options: ["2", "3", "8", "9"]
+            answer: ["3", "9"]
+          - id: l2-c19
+            part: derive
+            type: multiple_choice
+            text: "Mo knows 3 × 4 = 12. How can he find 4 fours?"
+            say: "Mo knows three times four is twelve. How can he find four fours?"
+            options: ["12 + 4", "12 + 3", "12 − 4"]
+            answer: "12 + 4"
+          - id: l2-c20
+            part: derive
+            type: text_input
+            text: "8 sevens are 56. How much are 7 sevens?"
+            say: "Eight sevens are fifty-six. How much are seven sevens?"
+            answer: "49"

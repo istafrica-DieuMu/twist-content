@@ -26,6 +26,10 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: things, what: { de: Schulsachen verstehen, en: understanding school things } }
+    - { id: asking, what: { de: "um etwas bitten und die Antwort verstehen (je peux avoir ..., voilà)", en: "asking for something and understanding the reply (je peux avoir ..., voilà)" } }
+    - { id: phrases, what: { de: "je ne comprends pas, répétez und j'ai fini verstehen", en: "understanding je ne comprends pas, répétez and j'ai fini" } }
   misconceptions:
     - id: crayon-false-friend
       what: Takes un crayon for a wax crayon, when it means a pencil
@@ -243,6 +247,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -263,6 +268,26 @@ lessons:
             say: { en: "Listen. Tap the picture." }
             audio: { fr: "Une règle." }
             options: [{ object: ruler }, { object: pen }, { object: schoolbag }]
+            answer: ruler
+          - id: l1-c4
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear first."
+            say: { en: "Listen. You hear two words. Tap the one you hear first." }
+            audio: { turns: [{ fr: "Un crayon." }, { fr: "Une gomme." }] }
+            options: [{ object: rubber }, { object: crayon }, { object: pencil }]
+            answer: pencil
+          - id: l1-c5
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "Un cartable." }
+            show: { object: schoolbag }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "Hugo says what is in his pencil case. What is not in it? Tap the picture."
+            say: { en: "Listen. Hugo says what is in his pencil case. What is not in it? Tap the picture." }
+            audio: { fr: "Dans ma trousse, j'ai des ciseaux et un stylo.", speaker: male }
+            options: [{ object: scissors }, { object: ruler }, { object: pen }]
             answer: ruler
 
   - n: 2
@@ -319,7 +344,7 @@ lessons:
                 type: audio_choice
                 text: "What does it mean?"
                 say: { en: "Listen. What does it mean?" }
-                audio: { fr: "Je ne comprends pas." }
+                audio: { fr: "Je ne comprends pas.", speaker: female }
                 options: ["I don't understand.", "I have finished.", "Can I have a pencil?"]
                 answer: "I don't understand."
                 feedback:
@@ -331,7 +356,8 @@ lessons:
               - id: l2-f3
                 type: true_false
                 text: "Is someone asking for something?"
-                say: { en: "Listen. Is someone asking for something?", fr: "Je peux avoir une règle, s'il vous plaît ?" }
+                say: { en: "Listen. Is someone asking for something?" }
+                audio: { fr: "Je peux avoir une règle, s'il vous plaît ?", speaker: male }
                 answer: true
                 hints:
                   - "Listen to the start: je peux avoir."
@@ -350,7 +376,7 @@ lessons:
                 type: audio_choice
                 text: "When do you say it?"
                 say: { en: "Listen. When do you say it?" }
-                audio: { fr: "J'ai fini !" }
+                audio: { fr: "J'ai fini !", speaker: male }
                 options: ["when your work is done", "when you want something", "when you don't understand"]
                 answer: "when your work is done"
                 hints:
@@ -371,7 +397,8 @@ lessons:
               - id: l2-s2
                 type: true_false
                 text: "Is someone asking for something?"
-                say: { en: "Listen. Is someone asking for something?", fr: "J'ai fini !" }
+                say: { en: "Listen. Is someone asking for something?" }
+                audio: { fr: "J'ai fini !", speaker: female }
                 answer: false
                 hints: ["Do you hear je peux avoir?"]
               - id: l2-s3
@@ -391,7 +418,8 @@ lessons:
               - id: l2-s5
                 type: true_false
                 text: "Does the reply fit?"
-                say: { en: "Listen to the question and the reply. Does the reply fit?", fr: "Je peux avoir un crayon ? Oui, voilà !" }
+                say: { en: "Listen to the question and the reply. Does the reply fit?" }
+                audio: { turns: [{ fr: "Je peux avoir un crayon ?", speaker: male }, { fr: "Oui, voilà !", speaker: female }] }
                 answer: true
                 hints: ["Voilà means here you are."]
 
@@ -401,7 +429,7 @@ lessons:
                 type: audio_choice
                 text: "What does it mean?"
                 say: { en: "Listen. What does it mean?" }
-                audio: { fr: "J'ai fini !" }
+                audio: { fr: "J'ai fini !", speaker: female }
                 options: ["I don't understand.", "I have finished.", "Can I have a pencil?"]
                 answer: "I have finished."
               - id: l2-n2
@@ -414,7 +442,8 @@ lessons:
               - id: l2-n3
                 type: true_false
                 text: "Does the reply fit?"
-                say: { en: "Listen to the question and the reply. Does the reply fit?", fr: "Je peux avoir une règle ? Bonsoir !" }
+                say: { en: "Listen to the question and the reply. Does the reply fit?" }
+                audio: { turns: [{ fr: "Je peux avoir une règle ?", speaker: female }, { fr: "Bonsoir !", speaker: male }] }
                 answer: false
               - id: l2-n4
                 type: speak
@@ -431,8 +460,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: things
             type: audio_choice
             text: "Tap the picture."
             say: { en: "Listen. Tap the picture." }
@@ -440,6 +471,7 @@ lessons:
             options: [{ object: pencil-case }, { object: schoolbag }, { object: book }]
             answer: schoolbag
           - id: l2-c2
+            part: asking
             type: audio_choice
             text: "What does Inès want?"
             say: { en: "Listen. What does Inès want? Tap the picture." }
@@ -447,20 +479,138 @@ lessons:
             options: [{ object: ruler }, { object: pencil-case }, { object: schoolbag }]
             answer: pencil-case
           - id: l2-c3
+            part: things
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Un stylo." }
             show: { object: pencil }
             answer: false
           - id: l2-c4
+            part: phrases
             type: audio_choice
             text: "What does it mean?"
             say: { en: "Listen. What does it mean?" }
-            audio: { fr: "Je ne comprends pas, madame." }
-            options: ["I don't understand.", "I have finished.", "Can I have a pencil?"]
+            audio: { fr: "Je ne comprends pas, madame.", speaker: male }
+            options: ["Say it again, please.", "Here you are.", "I don't understand."]
             answer: "I don't understand."
           - id: l2-c5
+            part: asking
             type: true_false
             text: "Does the reply fit?"
-            say: { en: "Listen to the question and the reply. Does the reply fit?", fr: "Je peux avoir des ciseaux ? Oui, voilà !" }
+            say: { en: "Listen to the question and the reply. Does the reply fit?" }
+            audio: { turns: [{ fr: "Je peux avoir des ciseaux ?", speaker: female }, { fr: "Merci !", speaker: male }] }
+            answer: false
+          - id: l2-c6
+            part: things
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear second."
+            say: { en: "Listen. You hear two words. Tap the one you hear second." }
+            audio: { turns: [{ fr: "Une gomme." }, { fr: "Des ciseaux." }] }
+            options: [{ object: rubber }, { object: ruler }, { object: scissors }]
+            answer: scissors
+          - id: l2-c7
+            part: things
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "Une règle." }
+            show: { object: ruler }
             answer: true
+          - id: l2-c8
+            part: things
+            type: audio_choice
+            text: "Léa says what is in her pencil case. What is not in it? Tap the picture."
+            say: { en: "Listen. Léa says what is in her pencil case. What is not in it? Tap the picture." }
+            audio: { fr: "Dans ma trousse, j'ai un crayon et une règle.", speaker: female }
+            options: [{ object: pencil }, { object: scissors }, { object: ruler }]
+            answer: scissors
+          - id: l2-c9
+            part: things
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "Une trousse." }
+            show: { object: schoolbag }
+            answer: false
+          - id: l2-c10
+            part: things
+            type: audio_choice
+            text: "You hear two words. Which picture is not one of them? Tap it."
+            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
+            audio: { turns: [{ fr: "Un stylo." }, { fr: "Un cartable." }] }
+            options: [{ object: pen }, { object: pencil-case }, { object: schoolbag }]
+            answer: pencil-case
+          - id: l2-c11
+            part: asking
+            type: audio_choice
+            text: "Théo asks his teacher for something. What does she give him? Tap the picture."
+            say: { en: "Listen. Théo asks his teacher for something. What does she give him? Tap the picture." }
+            audio: { turns: [{ fr: "Je peux avoir une gomme, s'il vous plaît ?", speaker: male }, { fr: "Oui, voilà !", speaker: female }] }
+            options: [{ object: ruler }, { object: rubber }, { object: pen }]
+            answer: rubber
+          - id: l2-c12
+            part: asking
+            type: true_false
+            text: "Is Léa asking for a ruler?"
+            say: { en: "Listen. Is Léa asking for a ruler?" }
+            audio: { fr: "Je peux avoir un stylo, s'il vous plaît ?", speaker: female }
+            answer: false
+          - id: l2-c13
+            part: asking
+            type: audio_choice
+            text: "Hugo asks for a pencil. What does the teacher mean?"
+            say: { en: "Listen. Hugo asks for a pencil. What does the teacher mean?" }
+            audio: { turns: [{ fr: "Je peux avoir un crayon, s'il vous plaît ?", speaker: male }, { fr: "Voilà !", speaker: female }] }
+            options: ["Here you are.", "Thank you.", "Say it again."]
+            answer: "Here you are."
+          - id: l2-c14
+            part: asking
+            type: true_false
+            text: "Is Inès asking for a book?"
+            say: { en: "Listen. Is Inès asking for a book?" }
+            audio: { fr: "Je peux avoir un livre, s'il vous plaît ?", speaker: female }
+            answer: true
+          - id: l2-c15
+            part: asking
+            type: audio_choice
+            text: "Who is Jules asking? Tap the picture."
+            say: { en: "Listen. Who is Jules asking? Tap the picture." }
+            audio: { fr: "Je peux avoir des ciseaux, s'il vous plaît, madame ?", speaker: male }
+            options: [{ object: boy }, { object: teacher }]
+            answer: teacher
+          - id: l2-c16
+            part: phrases
+            type: audio_choice
+            text: "When do you say it?"
+            say: { en: "Listen. When do you say it?" }
+            audio: { fr: "Je ne comprends pas.", speaker: female }
+            options: ["when you don't understand", "when your work is done", "when you want something"]
+            answer: "when you don't understand"
+          - id: l2-c17
+            part: phrases
+            type: true_false
+            text: "Has Hugo finished his work?"
+            say: { en: "Listen. Has Hugo finished his work?" }
+            audio: { fr: "Je ne comprends pas.", speaker: male }
+            answer: false
+          - id: l2-c18
+            part: phrases
+            type: true_false
+            text: "Has Léa finished her work?"
+            say: { en: "Listen. Has Léa finished her work?" }
+            audio: { fr: "Voilà, j'ai fini !", speaker: female }
+            answer: true
+          - id: l2-c19
+            part: phrases
+            type: audio_choice
+            text: "What does Manon want the teacher to do?"
+            say: { en: "Listen. What does Manon want the teacher to do?" }
+            audio: { fr: "Répétez, s'il vous plaît, madame.", speaker: female }
+            options: ["say it again", "give her a pen", "open the book"]
+            answer: "say it again"
+          - id: l2-c20
+            part: phrases
+            type: audio_choice
+            text: "Hugo and Inès talk to the teacher. Who has finished? Tap the picture."
+            say: { en: "Listen. Hugo and Inès talk to the teacher. Who has finished? Tap the picture." }
+            audio: { turns: [{ fr: "Répétez, s'il vous plaît, madame.", speaker: male }, { fr: "Madame, j'ai fini !", speaker: female }] }
+            options: [{ object: boy }, { object: girl }]
+            answer: girl

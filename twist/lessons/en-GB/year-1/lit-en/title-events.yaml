@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: title-predict, what: { de: "aus dem Titel sagen, wovon eine Geschichte handelt", en: saying what a story will be about from its title } }
+    - { id: title-fit, what: { de: "den Titel wählen, der am besten zu einer Geschichte passt", en: choosing the title that fits a story best } }
+    - { id: main-events, what: { de: wichtigste Ereignisse von Einzelheiten unterscheiden, en: telling the main events from small details } }
+    - { id: event-order, what: { de: "die wichtigsten Ereignisse ordnen (Anfang, Mitte, Schluss)", en: "putting the main events in order (beginning, middle, end)" } }
   misconceptions:
     - id: title-from-detail
       what: Picks a title from a small detail in the story, not from what it is mostly about
@@ -49,7 +54,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: ordering
-            text: "Retell the story in order."
+            text: "Mo planted a seed. He watered it every day. A tall sunflower grew.\n\nRetell the story in order."
             say: "Listen. Mo planted a seed. He watered it every day. A tall sunflower grew. Put the story in order."
             options: ["A tall sunflower grew.", "Mo planted a seed.", "He watered it every day."]
             slot_count: 3
@@ -203,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -220,6 +226,23 @@ lessons:
             type: true_false
             text: "Is it true? A title is the last word of a story."
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Kemi's tooth was wobbly. She bit into an apple and the tooth came out. She put it in a little box to keep.\n\nWhich title fits best?"
+            say: "Listen. Kemi's tooth was wobbly. She bit into an apple and the tooth came out. She put it in a little box to keep. Which title fits best?"
+            options: ["Kemi's Wobbly Tooth", "The Apple Tree", "The Little Box"]
+            answer: "Kemi's Wobbly Tooth"
+            option_audio: false
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "The title is \"The Shark Who Lost His Teeth\". Which picture might be on the cover?"
+            say: "The title is The Shark Who Lost His Teeth. Which picture might be on the cover?"
+            options: [{ object: shark }, { object: cow }, { object: kite }]
+            answer: shark
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? The title \"Rosie's Rainy Day\" tells you about the weather in the story."
+            answer: true
 
   - n: 2
     title: { de: "Die wichtigsten Ereignisse", en: "The main events" }
@@ -301,7 +324,7 @@ lessons:
                   - "Losing and finding the chick are main events. The brown hen is a detail."
               - id: l2-f4
                 type: ordering
-                text: "Put the main events in order."
+                text: "Ruby lost her tooth. She put it under her pillow. In the morning there was a coin.\n\nPut the main events in order."
                 say: "Listen. Ruby lost her tooth. She put it under her pillow. In the morning there was a coin. Put the main events in order."
                 options: ["She found a coin.", "Ruby lost her tooth.", "She put it under her pillow."]
                 slot_count: 3
@@ -359,7 +382,7 @@ lessons:
                 hints: ["Would the story make sense mixed up?"]
               - id: l2-s5
                 type: ordering
-                text: "Put the main events in order."
+                text: "Kit made a sandcastle. A big wave knocked it down. Kit built a new one further up the beach.\n\nPut the main events in order."
                 say: "Listen. Kit made a sandcastle. A big wave knocked it down. Kit built a new one further up the beach. Put the main events in order."
                 options: ["A wave knocked it down.", "Kit built a new one.", "Kit made a sandcastle."]
                 slot_count: 3
@@ -398,7 +421,7 @@ lessons:
                   - { text: "Pip ate it all up.", bin: main }
               - id: l2-n4
                 type: ordering
-                text: "Put the main events in order."
+                text: "Gran and Lola baked a cake. They left it to cool. The dog ate it! So they baked another.\n\nPut the main events in order."
                 say: "Listen. Gran and Lola baked a cake. They left it to cool. The dog ate it! So they baked another. Put the main events in order."
                 options: ["The dog ate the cake.", "They baked another.", "Gran and Lola baked a cake."]
                 slot_count: 3
@@ -411,8 +434,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: title-fit
             type: multiple_choice
             text: "Leo wanted to ride his bike without help. He fell off lots of times. At last he rode all the way round the park.\n\nWhich title fits best?"
             say: "Listen. Leo wanted to ride his bike without help. He fell off lots of times. At last he rode all the way round the park. Which title fits best?"
@@ -421,12 +446,14 @@ lessons:
             answer: "Leo Learns to Ride"
             option_audio: false
           - id: l2-c2
+            part: title-predict
             type: multiple_choice
             text: "The title is \"The Brave Little Duck\". What will the story be about?"
             say: "The title is The Brave Little Duck. What will the story be about?"
             options: ["a duck who does something brave", "a big scary dog", "a duck who stays in bed"]
             answer: "a duck who does something brave"
           - id: l2-c3
+            part: main-events
             type: sorting
             text: "A bird built a nest. The nest was made of twigs. Three eggs hatched. The chicks learnt to fly.\n\nMain event or detail?"
             say: "Listen. A bird built a nest. The nest was made of twigs. Three eggs hatched. The chicks learnt to fly. Sort the sentences."
@@ -439,17 +466,137 @@ lessons:
               - { text: "The nest was made of twigs.", bin: detail }
               - { text: "The chicks learnt to fly.", bin: main }
           - id: l2-c4
+            part: event-order
             type: ordering
-            text: "Put the main events in order."
+            text: "Sid lost his hat in the wind. It landed in a pond. A duck brought it back to him.\n\nPut the main events in order."
             say: "Listen. Sid lost his hat in the wind. It landed in a pond. A duck brought it back to him. Put the main events in order."
             options: ["A duck brought it back.", "Sid lost his hat in the wind.", "It landed in a pond."]
             slot_count: 3
             answer: ["Sid lost his hat in the wind.", "It landed in a pond.", "A duck brought it back."]
             option_audio: false
           - id: l2-c5
+            part: event-order
             type: multiple_choice
-            text: "Sid lost his hat in the wind. It landed in a pond. A duck brought it back to him.\n\nWhich part is the end?"
-            say: "Think about Sid's story. Which part is the end?"
-            options: ["A duck brought the hat back.", "Sid lost his hat.", "The hat landed in a pond."]
-            answer: "A duck brought the hat back."
+            text: "Nina's cat got stuck on the shed roof. Nina ran to get her dad. Dad climbed a ladder and lifted the cat down.\n\nWhich part is the end?"
+            say: "Listen. Nina's cat got stuck on the shed roof. Nina ran to get her dad. Dad climbed a ladder and lifted the cat down. Which part is the end?"
+            options: ["Dad lifted the cat down.", "The cat got stuck on the roof.", "Nina ran to get her dad."]
+            answer: "Dad lifted the cat down."
+            option_audio: false
+          - id: l2-c6
+            part: title-predict
+            type: multiple_choice
+            text: "The title is \"Ned Can't Sleep\". What will the story be about?"
+            say: "The title is Ned Can't Sleep. What will the story be about?"
+            options: ["a boy who is wide awake at night", "a boy at the seaside", "a race at school"]
+            answer: "a boy who is wide awake at night"
+          - id: l2-c7
+            part: title-fit
+            type: multiple_choice
+            text: "Amir wanted to help at home. He washed the dishes, fed the cat and made his bed. Mum gave him a big hug.\n\nWhich title fits best?"
+            say: "Listen. Amir wanted to help at home. He washed the dishes, fed the cat and made his bed. Mum gave him a big hug. Which title fits best?"
+            options: ["Amir the Helper", "The Cat's Dinner", "Mum's Hug"]
+            answer: "Amir the Helper"
+            option_audio: false
+          - id: l2-c8
+            part: main-events
+            type: multiple_choice
+            text: "Tom's goldfish jumped out of its round bowl! Tom had a green jumper on. He scooped the fish up and put it back in the water.\n\nWhich is a main event?"
+            say: "Listen. Tom's goldfish jumped out of its round bowl! Tom had a green jumper on. He scooped the fish up and put it back in the water. Which is a main event?"
+            show: { object: fish }
+            options: ["The fish jumped out of its bowl.", "Tom had a green jumper on.", "The bowl was round."]
+            answer: "The fish jumped out of its bowl."
+            option_audio: false
+          - id: l2-c9
+            part: event-order
+            type: ordering
+            text: "Ali's bike had a flat tyre. Mum pumped it up. Then Ali rode to school.\n\nPut the main events in order."
+            say: "Listen. Ali's bike had a flat tyre. Mum pumped it up. Then Ali rode to school. Put the main events in order."
+            show: { object: bike }
+            options: ["Ali rode to school.", "The tyre was flat.", "Mum pumped up the tyre."]
+            slot_count: 3
+            answer: ["The tyre was flat.", "Mum pumped up the tyre.", "Ali rode to school."]
+            option_audio: false
+          - id: l2-c10
+            part: title-predict
+            type: image_multiple_choice
+            text: "The title is \"The Snail's Long Trip\". Which picture might be on the cover?"
+            say: "The title is The Snail's Long Trip. Which picture might be on the cover?"
+            options: [{ object: snail }, { object: elephant }, { object: cake }]
+            answer: snail
+          - id: l2-c11
+            part: title-fit
+            type: multiple_choice
+            text: "Which title fits a story about a dragon who is scared of the dark?"
+            options: ["The Dragon Who Was Scared of the Dark", "The Dragon's Dinner", "A Sunny Day at the Beach"]
+            answer: "The Dragon Who Was Scared of the Dark"
+            option_audio: false
+          - id: l2-c12
+            part: main-events
+            type: sorting
+            text: "Mia found a lost kitten in the rain. Mia had a pink umbrella. She took the kitten home and dried it. The kitten was grey.\n\nMain event or detail?"
+            say: "Listen. Mia found a lost kitten in the rain. Mia had a pink umbrella. She took the kitten home and dried it. The kitten was grey. Sort the sentences."
+            option_audio: false
+            bins:
+              - { id: main, show: { text: "main event" }, say: "Main event." }
+              - { id: detail, show: { text: "detail" }, say: "Detail." }
+            options:
+              - { text: "Mia found a lost kitten.", bin: main }
+              - { text: "Mia had a pink umbrella.", bin: detail }
+              - { text: "She took the kitten home.", bin: main }
+              - { text: "The kitten was grey.", bin: detail }
+          - id: l2-c13
+            part: event-order
+            type: multiple_choice
+            text: "A baby bird fell out of its nest. Jen put it back gently. Then the mother bird came back to feed it.\n\nWhat happens in the middle?"
+            say: "Listen. A baby bird fell out of its nest. Jen put it back gently. Then the mother bird came back to feed it. What happens in the middle?"
+            show: { object: bird }
+            options: ["Jen put the bird back.", "The bird fell out of its nest.", "The mother bird came back."]
+            answer: "Jen put the bird back."
+            option_audio: false
+          - id: l2-c14
+            part: title-predict
+            type: true_false
+            text: "Is it true? The title \"Dad's Big Sneeze\" tells you something that happens in the story."
+            answer: true
+          - id: l2-c15
+            part: title-fit
+            type: true_false
+            text: "Lucy made a card for Grandpa. She drew a big sun on it. Grandpa loved it and put it on his wall.\n\nIs it true? \"The Big Sun\" is the best title for this story."
+            say: "Listen. Lucy made a card for Grandpa. She drew a big sun on it. Grandpa loved it and put it on his wall. Is it true? The Big Sun is the best title for this story."
+            answer: false
+          - id: l2-c16
+            part: main-events
+            type: true_false
+            text: "Ravi's balloon floated up to the ceiling. It was a yellow balloon. Dad stood on a chair and got it down.\n\nIs it true? \"Dad got the balloon down\" is a main event."
+            say: "Listen. Ravi's balloon floated up to the ceiling. It was a yellow balloon. Dad stood on a chair and got it down. Is it true? Dad got the balloon down is a main event."
+            answer: true
+          - id: l2-c17
+            part: event-order
+            type: true_false
+            text: "Here are the main events of a story.\n\n1. Jo's ice cream fell on the floor.\n2. Jo bought an ice cream.\n3. Jo got a new one.\n\nIs it true? They are in the right order."
+            say: "Read the main events. Is it true? They are in the right order."
+            answer: false
+          - id: l2-c18
+            part: title-predict
+            type: multiple_choice
+            text: "The title is \"Who Took My Hat?\". What will the story be about?"
+            say: "The title is Who Took My Hat? What will the story be about?"
+            options: ["finding out who has a missing hat", "buying a new coat", "a trip to the zoo"]
+            answer: "finding out who has a missing hat"
+          - id: l2-c19
+            part: title-fit
+            type: multiple_choice
+            text: "Bo the puppy dug a hole in the garden. He found an old bone. He took it to his bed and chewed it all day.\n\nWhich title fits best?"
+            say: "Listen. Bo the puppy dug a hole in the garden. He found an old bone. He took it to his bed and chewed it all day. Which title fits best?"
+            show: { object: puppy }
+            options: ["Bo Finds a Bone", "Bo's Bed", "The Garden Gate"]
+            answer: "Bo Finds a Bone"
+            option_audio: false
+          - id: l2-c20
+            part: main-events
+            type: multiple_choice
+            text: "A giant came to the village. He had big muddy boots. The people were scared. Then the giant said sorry and helped them build a bridge.\n\nWhich is a detail, not a main event?"
+            say: "Listen. A giant came to the village. He had big muddy boots. The people were scared. Then the giant said sorry and helped them build a bridge. Which is a detail, not a main event?"
+            options: ["He had big muddy boots.", "A giant came to the village.", "The giant helped build a bridge."]
+            answer: "He had big muddy boots."
             option_audio: false

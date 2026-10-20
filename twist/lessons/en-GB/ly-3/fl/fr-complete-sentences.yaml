@@ -27,6 +27,11 @@ metadata:
   forms: [text, picture, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: complete, what: { de: einen Mustersatz passend zum Bild ergänzen, en: completing a model sentence to match a picture } }
+    - { id: pattern, what: { de: "das Muster für das Gemeinte wählen: Alter, haben, mögen oder können", en: "choosing the pattern for what you mean: age, have, like or can" } }
+    - { id: own, what: { de: einen Teil des Musters austauschen und so einen eigenen Satz schreiben, en: swapping one part of a model to write a sentence of your own } }
+    - { id: little-words, what: { de: "die kleinen Wörter richtig schreiben: le, la oder les nach j'aime, j' vor einem Vokal, de nach je n'ai pas", en: "writing the small words right: le, la or les after j'aime, j' before a vowel, de after je n'ai pas" } }
   misconceptions:
     - id: suis-for-age
       what: Says an age with je suis, as in English (je suis neuf ans)
@@ -63,7 +68,7 @@ lessons:
           - id: l1-w2
             type: ordering
             option_audio: false
-            text: "Put the words in order."
+            text: "Build the sentence: I like singing."
             say: { en: "Build the sentence: I like singing." }
             options: ["chanter", "J'aime"]
             slot_count: 2
@@ -185,7 +190,7 @@ lessons:
               - id: l1-s4
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: I have got a fish."
                 say: { en: "Build the sentence: I have got a fish." }
                 options: ["poisson.", "J'ai", "un"]
                 slot_count: 3
@@ -221,7 +226,7 @@ lessons:
               - id: l1-n3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: I can sing."
                 say: { en: "Build the sentence: I can sing." }
                 options: ["chanter.", "sais", "Je"]
                 slot_count: 3
@@ -245,6 +250,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -258,7 +264,7 @@ lessons:
           - id: l1-c2
             type: ordering
             option_audio: false
-            text: "Put the words in order."
+            text: "Build the sentence: I like football."
             say: { en: "Build the sentence: I like football." }
             options: ["le foot.", "J'aime"]
             slot_count: 2
@@ -270,6 +276,32 @@ lessons:
             say: { en: "Which pattern says what you can do?" }
             options: ["Je sais ...", "J'ai ...", "J'aime ..."]
             answer: "Je sais ..."
+          - id: l1-c4
+            type: fill_in_blank
+            option_audio: false
+            text: "Max is eleven. Finish his sentence."
+            say: { en: "Max is eleven years old. Finish his sentence." }
+            frame: "_ onze ans."
+            options: ["J'ai", "Je suis", "Je sais"]
+            answer: ["J'ai"]
+          - id: l1-c5
+            type: matching
+            option_audio: false
+            text: "Match each picture to its sentence."
+            say: { en: "Match each picture to its sentence." }
+            pairs:
+              - { left: { object: dog }, right: { text: "J'ai un chien." } }
+              - { left: { object: read }, right: { text: "J'aime lire." } }
+              - { left: { object: ride-bike }, right: { text: "Je sais faire du vélo." } }
+          - id: l1-c6
+            type: fill_in_blank
+            option_audio: false
+            text: "The child can play tennis. Finish the sentence."
+            say: { en: "The child can play tennis. Finish the sentence." }
+            show: { object: play-tennis }
+            frame: "Je sais jouer au _."
+            options: ["tennis", "foot", "vélo"]
+            answer: ["tennis"]
 
   - n: 2
     title: { de: Eigene Sätze nach Muster, en: My own sentences from a model }
@@ -347,7 +379,7 @@ lessons:
               - id: l2-f3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: I like cats and I like dogs."
                 say: { en: "Build the sentence: I like cats and I like dogs." }
                 options: ["les chiens.", "J'aime", "et", "j'aime", "les chats"]
                 slot_count: 5
@@ -407,7 +439,7 @@ lessons:
               - id: l2-s3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: I like football but I don't like tennis."
                 say: { en: "Build the sentence: I like football but I don't like tennis." }
                 options: ["mais", "J'aime le foot,", "le tennis.", "je n'aime pas"]
                 slot_count: 4
@@ -453,7 +485,7 @@ lessons:
               - id: l2-n3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the sentence: I am ten and I can swim."
                 say: { en: "Build the sentence: I am ten and I can swim." }
                 options: ["je sais nager.", "J'ai dix ans", "et"]
                 slot_count: 3
@@ -475,8 +507,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: own
             type: fill_in_blank
             option_audio: false
             text: "Model: J'aime lire.\nWrite the sentence for the picture."
@@ -486,6 +520,7 @@ lessons:
             options: ["tennis", "foot", "piano"]
             answer: ["tennis"]
           - id: l2-c2
+            part: pattern
             type: multiple_choice
             option_audio: false
             text: "Chloé is eleven. Which sentence is right?"
@@ -493,6 +528,7 @@ lessons:
             options: ["J'ai onze ans.", "Je suis onze ans.", "J'aime onze ans."]
             answer: "J'ai onze ans."
           - id: l2-c3
+            part: little-words
             type: multiple_choice
             option_audio: false
             text: "The child likes oranges. Which sentence is right?"
@@ -501,17 +537,148 @@ lessons:
             options: ["J'aime oranges.", "J'aime les oranges.", "Je aime les oranges."]
             answer: "J'aime les oranges."
           - id: l2-c4
+            part: own
             type: ordering
             option_audio: false
-            text: "Put the words in order."
+            text: "Build the sentence: I have got a rabbit but I haven't got a cat."
             say: { en: "Build the sentence: I have got a rabbit but I haven't got a cat." }
             options: ["mais", "je n'ai pas", "J'ai un lapin,", "de chat."]
             slot_count: 4
             answer: ["J'ai un lapin,", "mais", "je n'ai pas", "de chat."]
           - id: l2-c5
+            part: complete
             type: text_input
             keyboard: letters
             text: "Write the missing word.\nJ'ai un ___."
             say: { en: "The child has got a rabbit. Write the French word for rabbit." }
             show: { object: rabbit }
             answer: "lapin"
+          - id: l2-c6
+            part: complete
+            type: fill_in_blank
+            option_audio: false
+            text: "The child has got these two pets. Finish the sentence."
+            say: { en: "The child has got these two pets. Finish the sentence." }
+            show: { objects: [dog, cat] }
+            frame: "J'ai un chien et un _."
+            options: ["chat", "poisson", "lapin"]
+            answer: ["chat"]
+          - id: l2-c7
+            part: complete
+            type: fill_in_blank
+            option_audio: false
+            text: "The child likes reading but not singing. Finish the sentence."
+            say: { en: "The child likes reading but not singing. Finish the sentence." }
+            show: { objects: [read, sing] }
+            frame: "J'aime _, mais je n'aime pas _."
+            options: ["lire", "chanter", "danser"]
+            answer: ["lire", "chanter"]
+          - id: l2-c8
+            part: complete
+            type: text_input
+            keyboard: letters
+            text: "The child does not like dancing. Write the missing word.\nJe n'aime pas ___."
+            say: { en: "The child does not like dancing. Write the missing word." }
+            show: { object: dance }
+            answer: "danser"
+          - id: l2-c9
+            part: complete
+            type: fill_in_blank
+            option_audio: false
+            text: "The child likes painting and playing football. Finish the sentence."
+            say: { en: "The child likes painting and playing football. Finish the sentence." }
+            show: { objects: [paint, play-football] }
+            frame: "J'aime peindre et jouer au _."
+            options: ["foot", "tennis", "vélo"]
+            answer: ["foot"]
+          - id: l2-c10
+            part: pattern
+            type: fill_in_blank
+            option_audio: false
+            text: "You want to say that you can swim. Choose the start."
+            say: { en: "You want to say that you can swim. Choose the start." }
+            frame: "_ nager."
+            options: ["Je sais", "J'ai", "Je suis"]
+            answer: ["Je sais"]
+          - id: l2-c11
+            part: pattern
+            type: matching
+            option_audio: false
+            text: "What does each sentence tell you?"
+            say: { en: "What does each sentence tell you? Match them." }
+            pairs:
+              - { left: { text: "J'ai huit ans." }, right: { text: "how old I am" } }
+              - { left: { text: "J'ai un poisson." }, right: { text: "what I have got" } }
+              - { left: { text: "Je sais danser." }, right: { text: "what I can do" } }
+              - { left: { text: "J'aime la musique." }, right: { text: "what I like" } }
+          - id: l2-c12
+            part: pattern
+            type: multiple_choice
+            option_audio: false
+            text: "Hugo wants to say that he likes tennis. Which sentence does he write?"
+            say: { en: "Hugo wants to say that he likes tennis. Which sentence does he write?" }
+            options: ["J'aime le tennis.", "J'ai le tennis.", "Je suis le tennis."]
+            answer: "J'aime le tennis."
+          - id: l2-c13
+            part: pattern
+            type: true_false
+            text: "Zoé is nine. She writes: \"Je suis neuf ans.\" Is that right?"
+            say: { en: "Zoé is nine. Read what she writes. Is that right?" }
+            answer: false
+          - id: l2-c14
+            part: own
+            type: fill_in_blank
+            option_audio: false
+            text: "Model: J'ai neuf ans.\nYou are ten. Write your own sentence."
+            say: { en: "Here is the model. You are ten. Write your own sentence." }
+            frame: "J'ai _ ans."
+            options: ["dix", "neuf", "onze"]
+            answer: ["dix"]
+          - id: l2-c15
+            part: own
+            type: ordering
+            option_audio: false
+            text: "Model: J'aime les chats, mais je n'aime pas les chiens.\nBuild the sentence: I like dogs but I don't like cats."
+            say: { en: "Here is the model. Build the sentence: I like dogs but I don't like cats." }
+            options: ["les chats.", "mais", "J'aime les chiens,", "je n'aime pas"]
+            slot_count: 4
+            answer: ["J'aime les chiens,", "mais", "je n'aime pas", "les chats."]
+          - id: l2-c16
+            part: own
+            type: multiple_choice
+            option_audio: false
+            text: "Model: Je sais nager.\nYou can paint. Which sentence is yours?"
+            say: { en: "Here is the model. You can paint. Which sentence is yours?" }
+            options: ["Je sais peindre.", "Je sais nager.", "J'aime peindre."]
+            answer: "Je sais peindre."
+          - id: l2-c17
+            part: little-words
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence is written correctly?"
+            say: { en: "Which sentence is written correctly?" }
+            options: ["J'ai un chien et je aime les chats.", "J'ai un chien et j'aime les chats.", "J'ai un chien et j'aime chats."]
+            answer: "J'ai un chien et j'aime les chats."
+          - id: l2-c18
+            part: little-words
+            type: true_false
+            text: "Léo writes: \"J'aime les chiens et les chats.\" Is it written correctly?"
+            say: { en: "Read what Léo writes. Is it written correctly?" }
+            answer: true
+          - id: l2-c19
+            part: little-words
+            type: multiple_choice
+            option_audio: false
+            text: "Ella has got a dog but not a fish. Which sentence is right?"
+            say: { en: "Ella has got a dog but not a fish. Which sentence is right?" }
+            options: ["J'ai un chien, mais je n'ai pas de poisson.", "J'ai un chien, mais je n'ai pas un poisson.", "Je ai un chien, mais je n'ai pas de poisson."]
+            answer: "J'ai un chien, mais je n'ai pas de poisson."
+          - id: l2-c20
+            part: little-words
+            type: fill_in_blank
+            option_audio: false
+            text: "The child likes music and bananas. Finish the sentence."
+            say: { en: "The child likes music and bananas. Finish the sentence." }
+            frame: "J'aime _ musique et _ bananes."
+            options: ["la", "les", "le"]
+            answer: ["la", "les"]

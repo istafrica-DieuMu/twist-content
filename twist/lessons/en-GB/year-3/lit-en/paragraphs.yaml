@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: theme, what: { de: "das Thema und den Themensatz eines Absatzes finden", en: finding the theme and the topic sentence of a paragraph } }
+    - { id: belongs, what: { de: "einen Satz erkennen, der nicht zum Thema passt", en: spotting a sentence that does not fit the theme } }
+    - { id: new-paragraph, what: { de: "wissen, wann ein neuer Absatz beginnt (Zeit, Ort, Thema, Person)", en: "knowing when to start a new paragraph (time, place, topic, person)" } }
+    - { id: order, what: { de: Sätze zu Absätzen ordnen und Absätze in eine Reihenfolge bringen, en: grouping sentences into paragraphs and putting paragraphs in order } }
   misconceptions:
     - id: paragraph-by-length
       what: Starts a new paragraph after a set number of lines, not when the theme changes
@@ -226,6 +231,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -243,6 +249,32 @@ lessons:
             text: "A paragraph can be about lots of different themes at once."
             say: "Read it. Is it true?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Robins are small birds with red chests. They sing all year round. Trains run on tracks. Robins often follow gardeners to look for worms.\n\nWhich sentence does not belong?"
+            say: "Read the paragraph. Which sentence does not belong?"
+            options: ["Trains run on tracks.", "They sing all year round.", "Robins often follow gardeners to look for worms."]
+            answer: "Trains run on tracks."
+            option_audio: false
+          - id: l1-c5
+            type: sorting
+            text: "Sort the sentences into two paragraphs: what tigers look like, and where tigers live."
+            say: "Read each sentence about tigers. Is it about what tigers look like, or where tigers live?"
+            option_audio: false
+            bins:
+              - { id: look, show: { text: "what tigers look like" }, say: "What tigers look like." }
+              - { id: live, show: { text: "where tigers live" }, say: "Where tigers live." }
+            options:
+              - { text: "Tigers have orange fur with black stripes.", bin: look }
+              - { text: "No two tigers have the same stripes.", bin: look }
+              - { text: "Most wild tigers live in the forests of Asia.", bin: live }
+              - { text: "Some tigers live where winters are snowy.", bin: live }
+          - id: l1-c6
+            type: multiple_choice
+            text: "Hamsters make good pets. They are small, cheap to feed and easy to look after.\n\nWhat is the theme of this paragraph?"
+            say: "Read the paragraph. What is its theme?"
+            options: ["why hamsters make good pets", "what hamsters eat", "where wild hamsters live"]
+            answer: "why hamsters make good pets"
 
   - n: 2
     title: { de: Wann ein neuer Absatz beginnt, en: When to start a new paragraph }
@@ -354,7 +386,7 @@ lessons:
                 hints: ["Who is talking now?"]
               - id: l2-s3
                 type: ordering
-                text: "Put the paragraphs of the report in order."
+                text: "Put the topic sentences of the report about cats in order: introduction, looks, food."
                 say: "Put the three topic sentences of the report about cats in order: introduction, looks, food."
                 options: ["Cats eat meat, such as fish and chicken.", "Cats are popular pets in Britain.", "Cats have soft fur and sharp claws."]
                 slot_count: 3
@@ -416,8 +448,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: theme
             type: multiple_choice
             text: "Ducks live on ponds and rivers. They have waterproof feathers and webbed feet.\n\nWhich topic sentence would start the next paragraph, about what ducks eat?"
             say: "Read the paragraph. Which topic sentence would start the next paragraph, about what ducks eat?"
@@ -425,6 +459,7 @@ lessons:
             answer: "Ducks eat weeds, insects and small fish."
             option_audio: false
           - id: l2-c2
+            part: belongs
             type: multiple_choice
             text: "Ladybirds are small beetles. Most are red with black spots. My mum drives a van. Some are yellow or orange.\n\nWhich sentence does not belong?"
             say: "Read the paragraph. Which sentence does not belong?"
@@ -432,20 +467,148 @@ lessons:
             answer: "My mum drives a van."
             option_audio: false
           - id: l2-c3
+            part: new-paragraph
             type: multiple_choice
-            text: "\"The next morning, everything had changed.\" Why does this start a new paragraph?"
+            text: "\"The next morning, everything had changed.\"\n\nWhy does this sentence start a new paragraph?"
+            say: "Read the sentence. Why does it start a new paragraph?"
             options: ["The time changes.", "The place changes.", "A new person speaks."]
             answer: "The time changes."
           - id: l2-c4
+            part: new-paragraph
             type: true_false
             text: "You start a new paragraph when the theme changes."
             say: "Read it. Is it true?"
             answer: true
           - id: l2-c5
+            part: order
             type: ordering
-            text: "Put the paragraphs of the report in order."
+            text: "Put the topic sentences of the report about the Moon in order: introduction, what it is like, visits."
             say: "Put the three topic sentences of the report about the Moon in order: introduction, what it is like, visits."
             options: ["In 1969, astronauts walked on the Moon.", "The Moon travels around the Earth.", "The Moon is covered in dust and craters."]
             slot_count: 3
             answer: ["The Moon travels around the Earth.", "The Moon is covered in dust and craters.", "In 1969, astronauts walked on the Moon."]
+            option_audio: false
+          - id: l2-c6
+            part: theme
+            type: multiple_choice
+            text: "Owls hunt at night. Their soft feathers let them fly without a sound, so mice do not hear them coming.\n\nWhat is the theme of this paragraph?"
+            say: "Read the paragraph. What is its theme?"
+            options: ["how owls hunt", "where owls build nests", "how owls look after their chicks"]
+            answer: "how owls hunt"
+          - id: l2-c7
+            part: theme
+            type: multiple_choice
+            text: "Football is played all over the world. Children play it in parks and streets. Millions of people watch the big matches on TV.\n\nWhich is the topic sentence?"
+            say: "Read the paragraph. Which sentence is the topic sentence?"
+            options: ["Football is played all over the world.", "Children play it in parks and streets.", "Millions of people watch the big matches on TV."]
+            answer: "Football is played all over the world."
+            option_audio: false
+          - id: l2-c8
+            part: theme
+            type: true_false
+            text: "The topic sentence tells the reader what the paragraph is about."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c9
+            part: theme
+            type: multiple_choice
+            text: "Pandas spend most of the day eating. They munch bamboo for up to twelve hours. An adult panda eats a huge pile of it every day.\n\nWhat is the theme of this paragraph?"
+            say: "Read the paragraph. What is its theme?"
+            options: ["what pandas eat", "where pandas sleep", "how pandas climb trees"]
+            answer: "what pandas eat"
+          - id: l2-c10
+            part: belongs
+            type: multiple_choice
+            text: "Sharks eat fish, seals and squid. Some sharks eat tiny sea creatures called plankton. Sharks can live for a very long time. Great white sharks often hunt seals.\n\nThe theme is what sharks eat. Which sentence does not belong?"
+            say: "Read the paragraph. The theme is what sharks eat. Which sentence does not belong?"
+            options: ["Sharks can live for a very long time.", "Some sharks eat tiny sea creatures called plankton.", "Great white sharks often hunt seals."]
+            answer: "Sharks can live for a very long time."
+            option_audio: false
+          - id: l2-c11
+            part: belongs
+            type: true_false
+            text: "Camels live in hot deserts. They can go for days without water. Camels are my favourite animal at the zoo.\n\nIs it true? Every sentence in this paragraph is about how camels live in the desert."
+            say: "Read the paragraph. Is it true? Every sentence is about how camels live in the desert."
+            answer: false
+          - id: l2-c12
+            part: belongs
+            type: multiple_choice
+            text: "Rainforests are hot and wet. It rains there almost every day. Many deserts get hardly any rain at all. The air always feels warm and damp.\n\nWhich sentence does not belong?"
+            say: "Read the paragraph about rainforests. Which sentence does not belong?"
+            options: ["Many deserts get hardly any rain at all.", "It rains there almost every day.", "The air always feels warm and damp."]
+            answer: "Many deserts get hardly any rain at all."
+            option_audio: false
+          - id: l2-c13
+            part: belongs
+            type: multiple_choice
+            text: "To make a sandwich, first take two slices of bread. Spread butter on one side of each slice.\n\nWhich sentence fits next in this paragraph?"
+            say: "Read the paragraph. Which sentence fits next?"
+            options: ["Then put your filling on one slice.", "Bread is made from wheat.", "I had a sandwich for lunch yesterday."]
+            answer: "Then put your filling on one slice."
+            option_audio: false
+          - id: l2-c14
+            part: new-paragraph
+            type: multiple_choice
+            text: "Elephants have long trunks and huge ears. Their grey skin is thick and wrinkly.\n\nElephants live in family groups led by the oldest female.\n\nWhy does the writer start a new paragraph here?"
+            say: "Read the report. Why does the writer start a new paragraph?"
+            options: ["The topic changes.", "The time changes.", "A new person speaks."]
+            answer: "The topic changes."
+          - id: l2-c15
+            part: new-paragraph
+            type: sorting
+            text: "Amy was building a sandcastle on the beach. Sort the next sentences: same paragraph, or new paragraph?"
+            say: "Amy was building a sandcastle on the beach. Read each next sentence. Does it go in the same paragraph, or does it start a new one?"
+            option_audio: false
+            bins:
+              - { id: same, show: { text: "same paragraph" }, say: "Same paragraph." }
+              - { id: new, show: { text: "new paragraph" }, say: "New paragraph." }
+            options:
+              - { text: "She dug a moat around the castle.", bin: same }
+              - { text: "A wave filled the moat with water.", bin: same }
+              - { text: "Three weeks later, Amy was back at school.", bin: new }
+              - { text: "Back at home, Dad was cooking tea.", bin: new }
+          - id: l2-c16
+            part: new-paragraph
+            type: multiple_choice
+            text: "Which paragraph opening tells you that the place has changed?"
+            options: ["Deep in the forest, ...", "Two hours later, ...", "\"Help!\" shouted Raj."]
+            answer: "Deep in the forest, ..."
+            option_audio: false
+          - id: l2-c17
+            part: new-paragraph
+            type: multiple_choice
+            text: "In a story, Zara is talking to her dad. Then her sister starts to speak. What should the writer do?"
+            options: ["start a new paragraph for her sister's words", "put the sister's words in the same paragraph as Dad's", "wait five lines before the sister speaks"]
+            answer: "start a new paragraph for her sister's words"
+          - id: l2-c18
+            part: order
+            type: ordering
+            text: "Put the paragraph openings of the recount in order."
+            say: "Put the three paragraph openings of the recount in order."
+            options: ["By lunchtime, we had reached the beach.", "When the sun went down, we drove home.", "Early in the morning, we packed the car."]
+            slot_count: 3
+            answer: ["Early in the morning, we packed the car.", "By lunchtime, we had reached the beach.", "When the sun went down, we drove home."]
+            option_audio: false
+          - id: l2-c19
+            part: order
+            type: sorting
+            text: "Sort the sentences into two paragraphs: what spiders look like, and how spiders catch food."
+            say: "Read each sentence about spiders. Is it about what spiders look like, or how spiders catch food?"
+            option_audio: false
+            bins:
+              - { id: look, show: { text: "what spiders look like" }, say: "What spiders look like." }
+              - { id: catch, show: { text: "how spiders catch food" }, say: "How spiders catch food." }
+            options:
+              - { text: "Spiders have eight legs.", bin: look }
+              - { text: "Many spiders have eight eyes.", bin: look }
+              - { text: "Some spiders spin sticky webs.", bin: catch }
+              - { text: "Flies get stuck in the web.", bin: catch }
+          - id: l2-c20
+            part: order
+            type: ordering
+            text: "Put the paragraph openings of the story in order."
+            say: "Put the three paragraph openings of the story in order."
+            options: ["When she opened it, a small, wet fox was sitting on the step.", "By morning, the fox was curled up asleep by the fire.", "One stormy night, Kit heard a knock at the door."]
+            slot_count: 3
+            answer: ["One stormy night, Kit heard a knock at the door.", "When she opened it, a small, wet fox was sitting on the step.", "By morning, the fox was curled up asleep by the fire."]
             option_audio: false

@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [fraction, number-line]
   facets: []
+  parts:
+    - { id: read, what: { de: einen Bruch am Zahlenstrahl ablesen, en: reading a fraction on a number line } }
+    - { id: parts, what: { de: die gleichen Teile zwischen 0 und 1 zählen, en: counting the equal parts between 0 and 1 } }
+    - { id: mark, what: { de: einen Bruch am Zahlenstrahl eintragen, en: marking a fraction on a number line } }
+    - { id: place, what: { de: Brüche als Zahlen zwischen 0 und 1 einordnen, en: placing fractions as numbers between 0 and 1 } }
   misconceptions:
     - id: counts-ticks
       what: Counts the ticks between 0 and 1 instead of the equal parts, so a line in quarters gives 1/3
@@ -224,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -244,6 +250,26 @@ lessons:
             text: "A line from 0 to 1 is cut into 3 equal parts. What is each part?"
             options: ["1/3", "3/1", "1/4"]
             answer: "1/3"
+            option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which fraction does the arrow point to?"
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends, mark: 0.2 }
+            options: ["2/10", "2/9", "8/10"]
+            answer: "2/10"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? The arrow points to 1/3."
+            say: "Is it true? The arrow points to one third."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.25, labels: ends, mark: 0.25 }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which fraction does the arrow point to?"
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1666667, labels: ends, mark: 0.333 }
+            options: ["2/6", "2/5", "4/6"]
+            answer: "2/6"
             option_audio: false
 
   - n: 2
@@ -414,8 +440,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Which fraction does the arrow point to?"
             show: { drawn: number-line, from: 0, to: 1, step: 0.1666667, labels: ends, mark: 0.167 }
@@ -423,6 +451,7 @@ lessons:
             answer: "1/6"
             option_audio: false
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "Which fraction does the arrow point to?"
             show: { drawn: number-line, from: 0, to: 1, step: 0.125, labels: ends, mark: 0.875 }
@@ -430,20 +459,137 @@ lessons:
             answer: "7/8"
             option_audio: false
           - id: l2-c3
+            part: mark
             type: point_on_line
             text: "Tap 2/8."
             say: "Tap two eighths."
             show: { drawn: number-line, from: 0, to: 1, step: 0.125, labels: ends }
             answer: 0.25
           - id: l2-c4
+            part: parts
             type: multiple_choice
             text: "A line from 0 to 1 is cut into 5 equal parts. What is each part?"
             options: ["1/5", "5/1", "1/4"]
             answer: "1/5"
             option_audio: false
           - id: l2-c5
+            part: place
             type: multiple_choice
             text: "Which fraction is closer to 1?"
             options: ["5/8", "2/8"]
             answer: "5/8"
             option_audio: false
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Which fraction does the arrow point to?"
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends, mark: 0.3 }
+            options: ["3/10", "3/9", "7/10"]
+            answer: "3/10"
+            option_audio: false
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "Which fraction does the arrow point to?"
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1666667, labels: ends, mark: 0.833 }
+            options: ["5/6", "5/7", "1/6"]
+            answer: "5/6"
+            option_audio: false
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Is it true? The arrow points to 9/10."
+            say: "Is it true? The arrow points to nine tenths."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends, mark: 0.9 }
+            answer: true
+          - id: l2-c9
+            part: parts
+            type: multiple_choice
+            text: "What fraction is each equal part of this line?"
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends }
+            options: ["1/10", "1/9", "1/11"]
+            answer: "1/10"
+            option_audio: false
+          - id: l2-c10
+            part: parts
+            type: true_false
+            text: "Is it true? This line from 0 to 1 is in quarters."
+            say: "Is it true? This line from zero to one is in quarters."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.2, labels: ends }
+            answer: false
+          - id: l2-c11
+            part: parts
+            type: multiple_choice
+            text: "A line from 0 to 1 has 3 ticks inside, evenly spaced. How many equal parts does it have?"
+            say: "A line from zero to one has three ticks inside, evenly spaced. How many equal parts does it have?"
+            options: ["4", "3", "2"]
+            answer: "4"
+          - id: l2-c12
+            part: parts
+            type: multiple_choice
+            text: "What fraction is each equal part of this line?"
+            show: { drawn: number-line, from: 0, to: 1, step: 0.3333333, labels: ends }
+            options: ["1/3", "1/2", "2/3"]
+            answer: "1/3"
+            option_audio: false
+          - id: l2-c13
+            part: mark
+            type: point_on_line
+            text: "Tap 3/5."
+            say: "Tap three fifths."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.2, labels: ends }
+            answer: 0.6
+          - id: l2-c14
+            part: mark
+            type: point_on_line
+            text: "Tap 4/5."
+            say: "Tap four fifths."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.2, labels: ends }
+            answer: 0.8
+          - id: l2-c15
+            part: mark
+            type: point_on_line
+            text: "Tap 7/10."
+            say: "Tap seven tenths."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends }
+            answer: 0.7
+          - id: l2-c16
+            part: mark
+            type: point_on_line
+            text: "Tap 4/4."
+            say: "Tap four quarters."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.25, labels: ends }
+            answer: 1
+          - id: l2-c17
+            part: place
+            type: multiple_choice
+            text: "Which fraction is closest to 1?"
+            options: ["1/5", "3/5", "4/5"]
+            answer: "4/5"
+            option_audio: false
+          - id: l2-c18
+            part: place
+            type: true_false
+            text: "Is it true? 5/10 is in the middle of the line from 0 to 1."
+            say: "Is it true? Five tenths is in the middle of the line from zero to one."
+            show: { drawn: number-line, from: 0, to: 1, step: 0.1, labels: ends }
+            answer: true
+          - id: l2-c19
+            part: place
+            type: multiple_choice
+            text: "Which fraction is more than 1/2?"
+            options: ["6/8", "3/8", "1/8"]
+            answer: "6/8"
+            option_audio: false
+          - id: l2-c20
+            part: place
+            type: sorting
+            text: "Closer to 0 or closer to 1?"
+            bins:
+              - { id: zero, show: { text: "closer to 0" }, say: "closer to zero" }
+              - { id: one, show: { text: "closer to 1" }, say: "closer to one" }
+            options:
+              - { text: "1/5", bin: zero }
+              - { text: "4/5", bin: one }
+              - { text: "2/10", bin: zero }
+              - { text: "7/8", bin: one }

@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots, table]
   facets: [operation-signs]
+  parts:
+    - { id: split, what: { de: "eine Malaufgabe passend zerlegen und erklären, warum das geht", en: splitting a multiplication and explaining why it works } }
+    - { id: tens-ones, what: { de: mit Zehnern und Einern zerlegen und rechnen, en: splitting into tens and ones and working it out } }
+    - { id: near-ten, what: { de: mit einer runden Zahl rechnen und den Rest wegnehmen oder dazutun, en: multiplying by a near multiple of 10 and taking away or adding the extra } }
+    - { id: in-context, what: { de: Sachaufgaben mit Zerlegen lösen, en: solving word problems by splitting } }
   misconceptions:
     - id: multiply-one-part
       what: Multiplies only the tens or only the ones (6 × 14 = 60 + 4)
@@ -201,6 +206,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -219,6 +225,24 @@ lessons:
             text: "Is it true? 8 × 13 = 80 + 3"
             say: "Is it true? Eight times thirteen is eighty add three."
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "6 × 13 = _"
+            say: "Six times thirteen."
+            options: ["78", "63", "69"]
+            answer: "78"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Fill in the grid for 5 × 18."
+            say: "Five times eighteen. Fill in the grid."
+            show: { drawn: table, rows: [["×", "10", "8"], ["5", "?", "?"]] }
+            frame: "5 × 10 = _, 5 × 8 = _, 5 × 18 = _"
+            options: ["40", "50", "58", "90"]
+            answer: ["50", "40", "90"]
+          - id: l1-c6
+            type: text_input
+            text: "A box holds 12 eggs. How many eggs are in 7 boxes?"
+            answer: "84"
 
   - n: 2
     title: { de: "Geschickt zerlegen", en: "Splitting cleverly" }
@@ -376,13 +400,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tens-ones
             type: text_input
             text: "6 × 17 = _"
             say: "Six times seventeen."
             answer: "102"
           - id: l2-c2
+            part: tens-ones
             type: fill_in_blank
             text: "Fill in the grid for 4 × 23."
             say: "Four times twenty-three. Fill in the grid."
@@ -391,17 +418,118 @@ lessons:
             options: ["12", "80", "83", "92"]
             answer: ["80", "12", "92"]
           - id: l2-c3
+            part: near-ten
             type: text_input
             text: "3 × 59 = _"
             say: "Three times fifty-nine."
             answer: "177"
           - id: l2-c4
+            part: near-ten
             type: true_false
             text: "Is it true? 6 × 19 = 120 − 1 = 119"
             say: "Is it true? Six times nineteen is one hundred and twenty take away one, one hundred and nineteen."
             answer: false
           - id: l2-c5
+            part: split
             type: multiple_choice
             text: "Why does 5 × 14 = 5 × 10 + 5 × 4 work?"
             options: ["14 is 10 and 4, and both parts are multiplied by 5", "You can always add 4 at the end", "5 × 14 is the same as 5 + 14"]
             answer: "14 is 10 and 4, and both parts are multiplied by 5"
+          - id: l2-c6
+            part: tens-ones
+            type: fill_in_blank
+            text: "Partition 17 to work out 5 × 17."
+            say: "Five times seventeen. Partition seventeen into ten and seven."
+            frame: "5 × 17 = 5 × 10 + 5 × 7 = _ + _ = _"
+            options: ["35", "50", "57", "85"]
+            answer: ["50", "35", "85"]
+          - id: l2-c7
+            part: tens-ones
+            type: multiple_choice
+            text: "8 × 16 = _"
+            say: "Eight times sixteen."
+            options: ["128", "86", "96"]
+            answer: "128"
+          - id: l2-c8
+            part: tens-ones
+            type: text_input
+            text: "9 × 14 = _"
+            say: "Nine times fourteen."
+            answer: "126"
+          - id: l2-c9
+            part: near-ten
+            type: fill_in_blank
+            text: "Use 40 to work out 6 × 39."
+            say: "Six times thirty-nine. Use six times forty."
+            frame: "6 × 39 = 6 × 40 − 6 = _ − 6 = _"
+            options: ["234", "239", "240", "246"]
+            answer: ["240", "234"]
+          - id: l2-c10
+            part: near-ten
+            type: multiple_choice
+            text: "Which split helps most with 8 × 49?"
+            say: "Eight times forty-nine. Which split helps most?"
+            options: ["8 × 50 − 8", "8 × 50 − 1", "8 + 49"]
+            answer: "8 × 50 − 8"
+          - id: l2-c11
+            part: near-ten
+            type: text_input
+            text: "7 × 29 = _"
+            say: "Seven times twenty-nine."
+            answer: "203"
+          - id: l2-c12
+            part: split
+            type: multiple_choice
+            text: "Which is the same as 7 × 16?"
+            say: "Which is the same as seven times sixteen?"
+            options: ["7 × 10 + 7 × 6", "7 × 10 + 6", "7 + 16"]
+            answer: "7 × 10 + 7 × 6"
+          - id: l2-c13
+            part: split
+            type: true_false
+            text: "Is it true? 9 × 18 = 9 × 20 − 9 × 2"
+            say: "Is it true? Nine times eighteen is nine times twenty take away nine times two."
+            answer: true
+          - id: l2-c14
+            part: split
+            type: multiple_choice
+            text: "Kim works out 3 × 27 as 3 × 20 + 7 = 67. What went wrong?"
+            say: "Kim works out three times twenty-seven as three times twenty add seven, sixty-seven. What went wrong?"
+            options: ["She did not multiply the 7 by 3.", "She should have split 27 into 2 and 7.", "Nothing. 67 is right."]
+            answer: "She did not multiply the 7 by 3."
+          - id: l2-c15
+            part: split
+            type: matching
+            text: "Match each multiplication with a split that works."
+            pairs:
+              - { left: { text: "6 × 13" }, right: { text: "6 × 10 + 6 × 3" } }
+              - { left: { text: "4 × 28" }, right: { text: "4 × 30 − 4 × 2" } }
+              - { left: { text: "5 × 21" }, right: { text: "5 × 20 + 5" } }
+              - { left: { text: "3 × 45" }, right: { text: "3 × 40 + 3 × 5" } }
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "A packet has 18 biscuits. How many biscuits are in 5 packets?"
+            answer: "90"
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "A bag of compost costs £19. How much do 4 bags cost? Type the pounds."
+            say: "A bag of compost costs nineteen pounds. How much do four bags cost? Type the pounds."
+            answer: "76"
+          - id: l2-c18
+            part: in-context
+            type: multiple_choice
+            text: "A school orders 6 boxes of pencils. Each box has 25 pencils. How many pencils is that?"
+            options: ["150", "125", "31"]
+            answer: "150"
+          - id: l2-c19
+            part: in-context
+            type: true_false
+            text: "Is it true? 8 rows of 13 chairs make 104 chairs."
+            answer: true
+          - id: l2-c20
+            part: in-context
+            type: text_input
+            text: "A train has 7 carriages with 49 seats in each. How many seats are there?"
+            answer: "343"

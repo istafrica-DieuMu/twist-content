@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: array, what: { de: die Tauschaufgabe am Punktefeld zeigen, en: showing both orders with an array } }
+    - { id: swap, what: { de: die Tauschaufgabe nennen, en: writing a multiplication the other way round } }
+    - { id: same, what: { de: "wissen, dass Malnehmen, aber nicht Minus oder Geteilt, getauscht werden kann", en: "knowing that multiplying, but not subtracting or dividing, works in either order" } }
+    - { id: use, what: { de: mit der Tauschaufgabe leichter rechnen, en: using the easier order to work out a fact } }
   misconceptions:
     - id: swap-changes-answer
       what: Thinks 3 × 7 and 7 × 3 have different answers because the array looks different
@@ -216,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -233,6 +239,28 @@ lessons:
             text: "Is it true? 4 × 3 = 3 × 4"
             say: "Four times three is the same as three times four. Is that true?"
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Read the array both ways."
+            say: "Read the array both ways. Fill the gaps."
+            show: { drawn: dots, array: [2, 3] }
+            frame: "2 × 3 = _ · 3 × 2 = _"
+            options: ["6", "5", "9"]
+            answer: ["6", "6"]
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which array shows 2 × 6 turned round?"
+            say: "Which array shows two rows of six, turned round?"
+            options:
+              - { drawn: dots, array: [2, 2] }
+              - { drawn: dots, array: [6, 2] }
+              - { drawn: dots, array: [6, 6] }
+            answer: "6x2"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 10 × 3 and 3 × 10 have different answers."
+            say: "Ten times three and three times ten have different answers. Is that true?"
+            answer: false
 
   - n: 2
     title: { de: Die leichtere Aufgabe nehmen, en: Use the easier way round }
@@ -390,8 +418,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: array
             type: fill_in_blank
             text: "Read the array both ways."
             say: "Read the array both ways. Fill the gaps."
@@ -400,17 +430,20 @@ lessons:
             options: ["20", "9", "25"]
             answer: ["20", "20"]
           - id: l2-c2
+            part: swap
             type: multiple_choice
             text: "What is 9 × 4 the other way round?"
             say: "Which multiplication is nine times four the other way round?"
             options: ["4 × 9", "9 + 4", "9 × 9"]
             answer: "4 × 9"
           - id: l2-c3
+            part: use
             type: text_input
             text: "9 × 10 = _"
             say: "Nine times ten."
             answer: "90"
           - id: l2-c4
+            part: array
             type: image_multiple_choice
             text: "Which array shows 2 × 5 turned round?"
             say: "Which array shows two rows of five, turned round?"
@@ -420,7 +453,112 @@ lessons:
               - { drawn: dots, array: [5, 5] }
             answer: "5x2"
           - id: l2-c5
+            part: same
             type: true_false
             text: "Is it true? 12 ÷ 2 = 2 ÷ 12"
             say: "Twelve divided by two is the same as two divided by twelve. Is that true?"
             answer: false
+          - id: l2-c6
+            part: array
+            type: multiple_choice
+            text: "Which two multiplications match the array?"
+            say: "Which two multiplications match the array?"
+            show: { drawn: dots, array: [2, 7] }
+            options: ["2 × 7 and 7 × 2", "2 × 7 and 2 + 7", "7 × 7 and 2 × 2"]
+            answer: "2 × 7 and 7 × 2"
+          - id: l2-c7
+            part: array
+            type: true_false
+            text: "Is it true? This array shows 3 × 6 and 6 × 3."
+            say: "This array shows three times six and six times three. Is that true?"
+            show: { drawn: dots, array: [3, 6] }
+            answer: true
+          - id: l2-c8
+            part: array
+            type: fill_in_blank
+            text: "Read the array both ways."
+            say: "Read the array both ways. Fill the gaps."
+            show: { drawn: dots, array: [5, 2] }
+            frame: "5 × 2 = _ · 2 × 5 = _"
+            options: ["10", "7", "25"]
+            answer: ["10", "10"]
+          - id: l2-c9
+            part: swap
+            type: multiple_choice
+            text: "What is 6 × 3 the other way round?"
+            say: "Which multiplication is six times three the other way round?"
+            options: ["3 × 6", "6 + 3", "6 × 6"]
+            answer: "3 × 6"
+          - id: l2-c10
+            part: swap
+            type: fill_in_blank
+            text: "Fill the gap."
+            say: "What times nine is the same as nine times three?"
+            frame: "_ × 9 = 9 × 3"
+            options: ["3", "9", "27"]
+            answer: ["3"]
+          - id: l2-c11
+            part: swap
+            type: true_false
+            text: "Is it true? 8 × 5 the other way round is 5 + 8."
+            say: "Eight times five the other way round is five add eight. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: swap
+            type: multiple_choice
+            text: "Which pair is one multiplication turned round?"
+            say: "Which pair is one multiplication turned round?"
+            options: ["3 × 9 and 9 × 3", "3 × 9 and 3 × 3", "3 × 9 and 9 + 3"]
+            answer: "3 × 9 and 9 × 3"
+          - id: l2-c13
+            part: same
+            type: text_input
+            text: "7 × 5 = 35, so 5 × 7 = _"
+            say: "Seven times five is thirty-five. So what is five times seven?"
+            answer: "35"
+          - id: l2-c14
+            part: same
+            type: true_false
+            text: "Is it true? In a subtraction you can swap the numbers and get the same answer."
+            say: "In a subtraction you can swap the numbers and get the same answer. Is that true?"
+            answer: false
+          - id: l2-c15
+            part: same
+            type: multiple_choice
+            text: "Which one can you not swap?"
+            say: "In which calculation can you not swap the numbers and keep the same answer?"
+            options: ["10 ÷ 5", "5 × 10", "5 + 10"]
+            answer: "10 ÷ 5"
+          - id: l2-c16
+            part: same
+            type: true_false
+            text: "Is it true? 3 + 4 = 4 + 3"
+            say: "Three add four is the same as four add three. Is that true?"
+            answer: true
+          - id: l2-c17
+            part: use
+            type: text_input
+            text: "8 × 5 = _"
+            say: "Eight times five."
+            answer: "40"
+          - id: l2-c18
+            part: use
+            type: fill_in_blank
+            text: "Swap 6 × 5, then work it out."
+            say: "Six times five. Swap it, then work it out."
+            frame: "6 × 5 = 5 × _ = _"
+            options: ["6", "5", "30", "11"]
+            answer: ["6", "30"]
+          - id: l2-c19
+            part: use
+            type: multiple_choice
+            text: "Which is easier to work out for 4 × 10?"
+            say: "Four times ten. Which way round is easier?"
+            options: ["10 × 4: four tens", "4 + 10", "4 × 4"]
+            answer: "10 × 4: four tens"
+          - id: l2-c20
+            part: use
+            type: text_input
+            text: "There are 5 tables with 10 cups on each. How many cups?"
+            say: "There are five tables with ten cups on each table. How many cups?"
+            answer: "50"

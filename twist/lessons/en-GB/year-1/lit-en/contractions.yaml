@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: read, what: { de: Kurzformen lesen und erkennen, en: reading and recognising contractions } }
+    - { id: meaning, what: { de: "sagen, für welche Wörter eine Kurzform steht", en: saying which words a contraction stands for } }
+    - { id: missing-letters, what: { de: "wissen, welche Buchstaben der Apostroph ersetzt", en: knowing which letters the apostrophe stands for } }
+    - { id: in-sentence, what: { de: "die Kurzform wählen, die in den Satz passt", en: choosing the contraction that fits a sentence } }
   misconceptions:
     - id: apostrophe-meaning
       what: Thinks the apostrophe is just a mark, or that it stands for the letter next to it (the m in I'm)
@@ -205,7 +210,7 @@ lessons:
               - id: l1-n4
                 type: multiple_choice
                 text: "Which letters are missing from I'll?"
-                say: "Think of the two words in full. Which letters are missing from the short word?"
+                say: "Look at the short word on the card. Which letters are missing from it?"
                 show: { drawn: letter-card, text: "I'll" }
                 options: ["w and i", "a", "l and l"]
                 answer: "w and i"
@@ -220,6 +225,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: matching
@@ -241,6 +247,24 @@ lessons:
             type: true_false
             text: "Is it true? I'm is short for I am."
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Which short word fits?"
+            say: "Read the sentence. Which short word fits the gap?"
+            frame: "_ help you tidy up."
+            options: ["I'm", "I'll"]
+            answer: ["I'll"]
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? You'll is short for you are."
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "I am, as one short word. Which one is written correctly?"
+            say: "I am, as one short word. Which one is written correctly? Read them yourself."
+            options: ["Im", "I'm", "Im'"]
+            answer: "I'm"
+            option_audio: false
 
   - n: 2
     title: { de: "it's, he's, can't, don't", en: "it's, he's, can't, don't" }
@@ -434,8 +458,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: meaning
             type: multiple_choice
             text: "What does this short word mean?"
             say: "Read the short word on the card. Which words does it stand for?"
@@ -443,6 +469,7 @@ lessons:
             options: ["we do", "we will", "will we"]
             answer: "we will"
           - id: l2-c2
+            part: in-sentence
             type: fill_in_blank
             text: "Which short word fits?"
             say: "Read the sentence. Which short word fits the gap?"
@@ -450,21 +477,141 @@ lessons:
             options: ["I'll", "He's"]
             answer: ["He's"]
           - id: l2-c3
+            part: missing-letters
             type: multiple_choice
             text: "Which letters are missing from can't?"
-            say: "Think of the word in full, cannot. Which letters are missing from the short word?"
+            say: "Look at the short word on the card. Which letters are missing from it?"
             show: { drawn: letter-card, text: "can't" }
             options: ["n and o", "a", "t"]
             answer: "n and o"
             option_audio: false
           - id: l2-c4
+            part: meaning
             type: true_false
             text: "Is it true? I'll means I am."
             answer: false
           - id: l2-c5
+            part: read
             type: audio_choice
             text: "Tap the word you hear."
             say: "Listen. Tap the word you hear."
             audio: { en: "don't" }
             options: ["done", "dot", "don't"]
             answer: "don't"
+          - id: l2-c6
+            part: read
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "I'm" }
+            options: ["I'll", "in", "I'm"]
+            answer: "I'm"
+          - id: l2-c7
+            part: read
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "it's" }
+            options: ["it's", "is", "sit"]
+            answer: "it's"
+          - id: l2-c8
+            part: read
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "you'll" }
+            options: ["you", "you'll", "yell"]
+            answer: "you'll"
+          - id: l2-c9
+            part: read
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Listen. Tap the word you hear."
+            audio: { en: "he's" }
+            options: ["he'll", "his", "he's"]
+            answer: "he's"
+          - id: l2-c10
+            part: meaning
+            type: multiple_choice
+            text: "What does this short word mean?"
+            say: "Read the short word on the card. Which word does it stand for?"
+            show: { drawn: letter-card, text: "can't" }
+            options: ["can", "cannot", "can it"]
+            answer: "cannot"
+          - id: l2-c11
+            part: meaning
+            type: matching
+            text: "Which words does each short word stand for? Match them."
+            say: "Match each short word to the words it stands for. Read them yourself."
+            option_audio: false
+            pairs:
+              - { left: { text: "I'll" }, right: { text: "I will" } }
+              - { left: { text: "it's" }, right: { text: "it is" } }
+              - { left: { text: "don't" }, right: { text: "do not" } }
+          - id: l2-c12
+            part: meaning
+            type: true_false
+            text: "Is it true? She's means she is."
+            answer: true
+          - id: l2-c13
+            part: missing-letters
+            type: multiple_choice
+            text: "Which letter does the apostrophe stand for?"
+            say: "Look at the short word on the card. Which letter does the apostrophe stand for?"
+            show: { drawn: letter-card, text: "it's" }
+            options: ["s", "i", "t"]
+            answer: "i"
+            option_audio: false
+          - id: l2-c14
+            part: missing-letters
+            type: true_false
+            text: "Is it true? In he's, the apostrophe stands for the letter s."
+            answer: false
+          - id: l2-c15
+            part: missing-letters
+            type: multiple_choice
+            text: "Do not, as one short word. Which one is written correctly?"
+            say: "Do not, as one short word. Which one is written correctly? Read them yourself."
+            options: ["do'nt", "dont'", "don't"]
+            answer: "don't"
+            option_audio: false
+          - id: l2-c16
+            part: missing-letters
+            type: multiple_choice
+            text: "Which letters are missing from you'll?"
+            say: "Look at the short word on the card. Which letters are missing from it?"
+            show: { drawn: letter-card, text: "you'll" }
+            options: ["o", "w and i", "l and l"]
+            answer: "w and i"
+            option_audio: false
+          - id: l2-c17
+            part: in-sentence
+            type: fill_in_blank
+            text: "Which short word fits?"
+            say: "Read the sentence. Which short word fits the gap?"
+            frame: "_ going to the park."
+            options: ["We'll", "I'm"]
+            answer: ["I'm"]
+          - id: l2-c18
+            part: in-sentence
+            type: fill_in_blank
+            text: "Which short word fits?"
+            say: "Read the sentence. Which short word fits the gap?"
+            frame: "Dad _ find his keys."
+            options: ["it's", "can't"]
+            answer: ["can't"]
+          - id: l2-c19
+            part: in-sentence
+            type: fill_in_blank
+            text: "Which short word fits?"
+            say: "Read the sentences. Which short word fits the gap?"
+            frame: "Mum is cross. _ not happy."
+            options: ["She's", "I'll"]
+            answer: ["She's"]
+          - id: l2-c20
+            part: in-sentence
+            type: multiple_choice
+            text: "Which sentence makes sense?"
+            options: ["I'm go to the zoo tomorrow.", "We'll go to the zoo tomorrow.", "It's go to the zoo tomorrow."]
+            answer: "We'll go to the zoo tomorrow."
+            option_audio: false

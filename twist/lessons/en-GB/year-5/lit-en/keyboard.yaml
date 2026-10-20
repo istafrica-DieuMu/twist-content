@@ -15,7 +15,8 @@ summary: >
   starts (a new time, place, topic or speaker); it ends with the skill
   check. Typed answers use `keyboard: letters`, which checks capitals
   exactly. The app has no word processor, so laying out a whole page is
-  taught with choice tasks.
+  taught with choice tasks; the skill check marks what a screen can
+  mark, and typing a whole text is left to Practise.
 metadata:
   year: year-5
   topic: { de: Texte gestalten, en: Presenting writing }
@@ -27,6 +28,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: capitals, what: { de: Großbuchstaben mit Umschalttaste und Feststelltaste tippen, en: typing capital letters with shift and caps lock } }
+    - { id: spacing, what: { de: "Leerzeichen und Satzzeichen: keins davor, eins danach", en: "spaces and punctuation: none before a full stop or comma, one after" } }
+    - { id: paragraphs, what: { de: "mit Enter einen neuen Absatz beginnen, wenn Zeit, Ort, Thema oder Sprecher wechseln", en: "pressing Enter for a new paragraph when the time, place, topic or speaker changes" } }
+    - { id: layout, what: { de: einen Titel und Absätze anordnen, en: laying out a title and paragraphs } }
   misconceptions:
     - id: caps-lock-for-capitals
       what: Turns on caps lock for every capital letter and then types the rest of the word in capitals too
@@ -198,6 +204,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -215,6 +222,24 @@ lessons:
             type: true_false
             text: "Is it true? You hold shift to type one capital letter."
             answer: true
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the words that should start with a capital letter."
+            say: "This was typed with no capital letters. Tap the words that should start with one."
+            show: { drawn: letter-card, text: "last week my gran and i visited edinburgh" }
+            spans: ["last", "i", "edinburgh"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which is typed correctly?"
+            options: ["Look! A rainbow.", "Look ! A rainbow.", "Look !A rainbow."]
+            answer: "Look! A rainbow."
+            option_audio: false
+          - id: l1-c6
+            type: text_input
+            text: "Type it with the right capital letters: i live in leeds"
+            say: "Type, I live in Leeds, with the right capital letters."
+            keyboard: letters
+            answer: "I live in Leeds"
 
   - n: 2
     title: { de: Titel und Absätze, en: Titles and paragraphs }
@@ -276,7 +301,7 @@ lessons:
                   - "Keep typing."
               - id: l2-f3
                 type: sorting
-                text: "New paragraph or same paragraph?"
+                text: "You have just written about the morning of a trip. New paragraph or same paragraph?"
                 say: "You have just written about the morning of a trip. Does each next sentence start a new paragraph, or stay in the same one?"
                 option_audio: false
                 bins:
@@ -325,7 +350,7 @@ lessons:
                 hints: ["The topic has changed."]
               - id: l2-s3
                 type: sorting
-                text: "New paragraph or same paragraph?"
+                text: "You have just written about what hedgehogs eat. New paragraph or same paragraph?"
                 say: "You have just written about what hedgehogs eat. Does each next sentence start a new paragraph, or stay in the same one?"
                 option_audio: false
                 bins:
@@ -381,30 +406,142 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: capitals
             type: multiple_choice
-            text: "You want to type the name Zara. How do you make the capital Z?"
-            options: ["hold shift and press z", "turn on caps lock and type the whole name", "press z twice"]
-            answer: "hold shift and press z"
+            text: "You are typing: \"Zara has a kite.\" Which key do you hold down to make the capital Z?"
+            say: "You are typing, Zara has a kite. Which key do you hold down to make the capital Z?"
+            options: ["shift", "caps lock", "Enter"]
+            answer: "shift"
+            option_audio: false
           - id: l2-c2
+            part: spacing
             type: multiple_choice
             text: "Which is typed correctly?"
             options: ["After tea, we played chess.", "After tea ,we played chess.", "After tea , we played chess ."]
             answer: "After tea, we played chess."
             option_audio: false
           - id: l2-c3
+            part: capitals
             type: text_input
             text: "Type the name of the city: manchester. Give it its capital letter."
             say: "Type the name of the city Manchester, with its capital letter."
             keyboard: letters
             answer: "Manchester"
           - id: l2-c4
+            part: paragraphs
             type: multiple_choice
-            text: "Your report about Romans moves on from their roads to their food. What should you do?"
+            text: "Your report about the Romans moves on from their roads to their food. What should you do?"
             options: ["press Enter and start a new paragraph", "keep typing in the same paragraph", "type the next part in capitals"]
             answer: "press Enter and start a new paragraph"
           - id: l2-c5
+            part: layout
             type: true_false
             text: "Is it true? The title of a report goes at the top, on its own line."
             answer: true
+          - id: l2-c6
+            part: capitals
+            type: multiple_choice
+            text: "You meant to type Hello, but caps lock was on and you typed HELLO. What should you do?"
+            options: ["press caps lock to turn it off, then type it again", "hold shift for every letter", "nothing, because it is correct"]
+            answer: "press caps lock to turn it off, then type it again"
+            option_audio: false
+          - id: l2-c7
+            part: capitals
+            type: true_false
+            text: "Is it true? When you type the word I on its own, it needs a capital letter."
+            say: "Is it true? When you type the word I on its own, it needs a capital letter."
+            answer: true
+          - id: l2-c8
+            part: capitals
+            type: text_input
+            text: "Type the names with their capital letters: amy and tom"
+            say: "Type, Amy and Tom, with their capital letters."
+            keyboard: letters
+            answer: "Amy and Tom"
+          - id: l2-c9
+            part: spacing
+            type: multiple_choice
+            text: "Which is typed correctly?"
+            options: ["We ate pasta, peas and pie.", "We ate pasta ,peas and pie.", "We ate pasta,peas and pie."]
+            answer: "We ate pasta, peas and pie."
+            option_audio: false
+          - id: l2-c10
+            part: spacing
+            type: highlight_in_text
+            text: "Tap the comma that has a space typed before it."
+            say: "One comma has a space before it. Tap it."
+            show: { drawn: letter-card, text: "Mum said we could go , but it rained." }
+            spans: [","]
+          - id: l2-c11
+            part: spacing
+            type: true_false
+            text: "\"We won.The crowd cheered.\"\n\nIs it true? This is typed correctly."
+            say: "Look at the spaces. Is it true? This is typed correctly."
+            answer: false
+          - id: l2-c12
+            part: spacing
+            type: multiple_choice
+            text: "How many times do you press the space bar between two words?"
+            options: ["once", "twice", "three times"]
+            answer: "once"
+          - id: l2-c13
+            part: paragraphs
+            type: sorting
+            text: "You have just written about getting ready for sports day. New paragraph or same paragraph?"
+            say: "You have just written about getting ready for sports day. Does each next sentence start a new paragraph, or stay in the same one?"
+            option_audio: false
+            bins:
+              - { id: new, show: { text: "new paragraph" }, say: "New paragraph." }
+              - { id: same, show: { text: "same paragraph" }, say: "Same paragraph." }
+            options:
+              - { text: "When the whistle blew, the races began.", bin: new }
+              - { text: "I also packed my water bottle.", bin: same }
+              - { text: "At the end of the day, Mr Lee gave out the medals.", bin: new }
+              - { text: "My trainers were by the door, ready.", bin: same }
+          - id: l2-c14
+            part: paragraphs
+            type: multiple_choice
+            text: "Which of these means you should start a new paragraph?"
+            options: ["the story jumps to the next morning", "the next sentence is about the same thing", "the sentence has a comma in it"]
+            answer: "the story jumps to the next morning"
+          - id: l2-c15
+            part: paragraphs
+            type: true_false
+            text: "Is it true? When a new person starts to speak in a story, you start a new paragraph."
+            say: "Is it true? When a new person starts to speak in a story, you start a new paragraph."
+            answer: true
+          - id: l2-c16
+            part: paragraphs
+            type: multiple_choice
+            text: "When you type, when do the words move onto a new line by themselves?"
+            options: ["when the line is full", "after every full stop", "never, you always press Enter"]
+            answer: "when the line is full"
+          - id: l2-c17
+            part: layout
+            type: text_input
+            text: "Type the title: the life of a frog. Start it with a capital letter."
+            say: "Type the title The life of a frog. Start it with a capital letter."
+            keyboard: letters
+            answer: "The life of a frog"
+          - id: l2-c18
+            part: layout
+            type: multiple_choice
+            text: "Which title is typed correctly for the top of a report?"
+            options: ["Volcanoes of the world", "volcanoes of the world", "VOLCANOES of the world"]
+            answer: "Volcanoes of the world"
+            option_audio: false
+          - id: l2-c19
+            part: layout
+            type: true_false
+            text: "Is it true? A typed report needs no title if it has paragraphs."
+            say: "Is it true? A typed report needs no title if it has paragraphs."
+            answer: false
+          - id: l2-c20
+            part: layout
+            type: multiple_choice
+            text: "Which layout is best for a typed fact file about sharks?"
+            options: ["a title, then short paragraphs with gaps", "one long block with no title", "the title at the bottom"]
+            answer: "a title, then short paragraphs with gaps"

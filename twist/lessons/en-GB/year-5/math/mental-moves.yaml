@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, letter-card, dots]
   facets: []
+  parts:
+    - { id: turn, what: { de: Buchstaben und Zahlen im Kopf drehen, en: turning letters and numbers in your head } }
+    - { id: turn-or-reflect, what: { de: eine Drehung von einer Spiegelung unterscheiden, en: telling a turn from a reflection } }
+    - { id: dice-opposite, what: { de: "wissen, dass gegenüberliegende Würfelseiten zusammen 7 ergeben", en: knowing that opposite faces of a dice add up to 7 } }
+    - { id: dice-tip, what: { de: einen Würfel im Kopf kippen, en: tipping a dice in your head } }
   misconceptions:
     - id: turn-is-reflection
       what: Mixes up a half turn with a reflection (turns b and picks d)
@@ -212,6 +217,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +237,22 @@ lessons:
             type: true_false
             text: "After a half turn, 6 looks like 9. Is that true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "You give the card a half turn. What number do you read?"
+            show: { drawn: letter-card, text: "19" }
+            options: ["61", "91", "16"]
+            answer: "61"
+          - id: l1-c5
+            type: true_false
+            text: "After a half turn, d looks like b. Is that true?"
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which word looks exactly the same in a mirror at its side?"
+            options: ["TOT", "TOP", "TAP"]
+            answer: "TOT"
+            option_audio: false
 
   - n: 2
     title: { de: "Den Würfel kippen", en: "Tipping a dice" }
@@ -386,8 +408,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: turn
             type: multiple_choice
             text: "You give the card a half turn. Which letter do you see?"
             show: { drawn: letter-card, text: "u" }
@@ -395,23 +419,116 @@ lessons:
             answer: "n"
             option_audio: false
           - id: l2-c2
+            part: turn-or-reflect
             type: true_false
             text: "In a mirror at its side, the word bid looks exactly the same. Is that true?"
             show: { drawn: letter-card, text: "bid" }
             answer: true
           - id: l2-c3
+            part: dice-opposite
             type: multiple_choice
             text: "The 1 is on top. Which number is underneath?"
             show: { drawn: dots, count: 1, layout: dice }
             options: ["6", "1", "5"]
             answer: "6"
           - id: l2-c4
+            part: dice-tip
             type: multiple_choice
             text: "The 6 is on top and the 2 is at the front. You tip the dice forward, towards you. Which number is on top now?"
             options: ["5", "2", "1"]
             answer: "5"
           - id: l2-c5
+            part: dice-tip
             type: multiple_choice
             text: "The 1 is on top and the 5 is on the right. You tip the dice to the right. Which number is on top now?"
             options: ["2", "5", "6"]
             answer: "2"
+          - id: l2-c6
+            part: turn
+            type: multiple_choice
+            text: "You give the card a half turn. What number do you read?"
+            show: { drawn: letter-card, text: "18" }
+            options: ["81", "18", "88"]
+            answer: "81"
+          - id: l2-c7
+            part: turn
+            type: multiple_choice
+            text: "Which number looks exactly the same after a half turn?"
+            options: ["69", "16", "68"]
+            answer: "69"
+          - id: l2-c8
+            part: turn
+            type: true_false
+            text: "After a half turn, the word NOON still reads NOON. Is that true?"
+            show: { drawn: letter-card, text: "NOON" }
+            answer: true
+          - id: l2-c9
+            part: turn
+            type: multiple_choice
+            text: "You give the card a half turn. What number do you read?"
+            show: { drawn: letter-card, text: "86" }
+            options: ["98", "68", "89"]
+            answer: "98"
+          - id: l2-c10
+            part: turn-or-reflect
+            type: multiple_choice
+            text: "Which move makes b look like d?"
+            options: ["a reflection in a mirror at its side", "a half turn", "a quarter turn"]
+            answer: "a reflection in a mirror at its side"
+          - id: l2-c11
+            part: turn-or-reflect
+            type: true_false
+            text: "However you turn a card with p on it, flat on the table, it never shows q. Is that true?"
+            answer: true
+          - id: l2-c12
+            part: turn-or-reflect
+            type: multiple_choice
+            text: "The card shows b. Ali moves it and now sees q. What did Ali do?"
+            options: ["He gave it a half turn.", "He held it up to a mirror at its side.", "He gave it a quarter turn."]
+            answer: "He gave it a half turn."
+          - id: l2-c13
+            part: turn-or-reflect
+            type: true_false
+            text: "In a mirror at its side, the word DAD looks exactly the same. Is that true?"
+            show: { drawn: letter-card, text: "DAD" }
+            answer: false
+          - id: l2-c14
+            part: dice-opposite
+            type: text_input
+            text: "The 4 is on top. Which number is underneath?"
+            show: { drawn: dots, count: 4, layout: dice }
+            answer: "3"
+          - id: l2-c15
+            part: dice-opposite
+            type: multiple_choice
+            text: "The 6 is at the front of a dice. Which number is at the back?"
+            options: ["1", "6", "5"]
+            answer: "1"
+          - id: l2-c16
+            part: dice-opposite
+            type: true_false
+            text: "On a dice, the 2 and the 4 are on opposite faces. Is that true?"
+            answer: false
+          - id: l2-c17
+            part: dice-opposite
+            type: multiple_choice
+            text: "You can see three faces of a dice: 1 on top, 2 at the front and 3 on the right. What do the three hidden faces add up to?"
+            options: ["15", "6", "21"]
+            answer: "15"
+          - id: l2-c18
+            part: dice-tip
+            type: multiple_choice
+            text: "The 4 is on top and the 6 is at the front. You tip the dice forward, towards you. Which number is on top now?"
+            options: ["1", "6", "3"]
+            answer: "1"
+          - id: l2-c19
+            part: dice-tip
+            type: true_false
+            text: "The 2 is on top and the 1 is on the right. You tip the dice to the right. Is the 6 on top now?"
+            answer: true
+          - id: l2-c20
+            part: dice-tip
+            type: multiple_choice
+            text: "The 3 is on top and the 2 is at the front. You tip the dice forward, towards you, and then turn it flat on the table. Which number is on top now?"
+            options: ["5", "2", "3"]
+            answer: "5"

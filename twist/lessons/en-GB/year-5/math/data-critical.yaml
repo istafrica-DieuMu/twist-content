@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart]
   facets: []
+  parts:
+    - { id: cut, what: { de: "eine Skala erkennen, die nicht bei 0 beginnt", en: spotting a scale that does not start at 0 } }
+    - { id: real, what: { de: die wirklichen Werte und Unterschiede ablesen, en: reading the real values and differences } }
+    - { id: scale, what: { de: ungleiche Schritte und fehlende Zahlen auf einer Skala erkennen, en: spotting unequal steps and missing numbers on a scale } }
+    - { id: survey, what: { de: "prüfen, wer gefragt wurde und ob eine Aussage zu den Daten passt", en: checking who was asked and whether a claim fits the data } }
   misconceptions:
     - id: bar-length-is-value
       what: Compares the length of the bars instead of the numbers when the scale does not start at 0 (a bar twice as long means twice as much)
@@ -205,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -223,6 +229,21 @@ lessons:
             text: "Favourite colour. Twice as many children chose red as blue. Is that true?"
             show: { drawn: bar-chart, step: 5, rows: [["Red", 20], ["Blue", 10]] }
             answer: true
+          - id: l1-c4
+            type: text_input
+            text: "Bikes in the bike shed. How many more bikes were there on Monday than on Tuesday?"
+            show: { drawn: bar-chart, from: 20, step: 1, rows: [["Mon", 28], ["Tue", 24]] }
+            answer: "4"
+          - id: l1-c5
+            type: true_false
+            text: "Spellings correct. This scale starts at 0. Is that true?"
+            show: { drawn: bar-chart, from: 10, step: 1, rows: [["Jo", 16], ["Max", 13]] }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "The scale of a chart starts at 50. Team A's bar ends at 58 and Team B's bar ends at 54. How many more points did Team A get?"
+            options: ["4", "2", "8"]
+            answer: "4"
 
   - n: 2
     title: { de: "Weitere Tricks", en: "More tricks" }
@@ -375,30 +396,130 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: real
             type: multiple_choice
             text: "House points. The Robins' bar looks twice as long. How many more points did Robins really get?"
             show: { drawn: bar-chart, from: 60, step: 1, rows: [["Robins", 68], ["Wrens", 64]] }
             options: ["4", "2", "64"]
             answer: "4"
           - id: l2-c2
+            part: cut
             type: multiple_choice
             text: "Visitors to the museum. What makes this chart misleading?"
             show: { drawn: bar-chart, from: 300, step: 5, rows: [["2025", 330], ["2026", 315]] }
             options: ["Its scale starts at 300, not 0.", "It has only two bars.", "The years are in order."]
             answer: "Its scale starts at 300, not 0."
           - id: l2-c3
+            part: scale
             type: multiple_choice
             text: "A scale goes 0, 1, 2, 5, 10. What is wrong with it?"
             options: ["The gaps between the numbers are not equal.", "It does not start at 1.", "It stops at 10."]
             answer: "The gaps between the numbers are not equal."
           - id: l2-c4
+            part: survey
             type: true_false
             text: "Sam asked 4 people at his football club. 3 said football is the best sport. Sam says: three quarters of all children think football is the best sport. Is that a fair claim?"
             answer: false
           - id: l2-c5
+            part: survey
             type: multiple_choice
             text: "200 children voted for a class trip: 90 for the zoo and 110 for the seaside. Which claim fits the data?"
             options: ["More children voted for the seaside.", "Nobody wanted the zoo.", "Twice as many voted for the seaside."]
             answer: "More children voted for the seaside."
+          - id: l2-c6
+            part: cut
+            type: multiple_choice
+            text: "Bags of litter collected. Where does the scale start?"
+            show: { drawn: bar-chart, from: 50, step: 1, rows: [["Oak", 57], ["Ash", 53]] }
+            options: ["at 50", "at 0", "at 53"]
+            answer: "at 50"
+          - id: l2-c7
+            part: cut
+            type: true_false
+            text: "Laps run. This scale starts at 0, so you can compare the lengths of the bars. Is that true?"
+            show: { drawn: bar-chart, from: 20, step: 1, rows: [["Amy", 27], ["Raj", 23]] }
+            answer: false
+          - id: l2-c8
+            part: cut
+            type: image_multiple_choice
+            text: "Cakes sold: 5A sold 47, 5B sold 42. Which chart is misleading?"
+            options:
+              - { drawn: bar-chart, step: 10, rows: [["5A", 47], ["5B", 42]], key: honest }
+              - { drawn: bar-chart, from: 40, step: 1, rows: [["5A", 47], ["5B", 42]], key: cut }
+            answer: cut
+          - id: l2-c9
+            part: cut
+            type: multiple_choice
+            text: "Minutes of reading. Ali says: the Monday bar is three times as long, so I read three times as much on Monday. Why is he wrong?"
+            show: { drawn: bar-chart, from: 30, step: 1, rows: [["Mon", 36], ["Tue", 32]] }
+            options: ["The scale starts at 30, so the bars leave out the first 30 minutes.", "He read the bars in the wrong order.", "The bars are too thin."]
+            answer: "The scale starts at 30, so the bars leave out the first 30 minutes."
+          - id: l2-c10
+            part: real
+            type: text_input
+            text: "Swimming badges. How many more badges did Year 6 get than Year 5?"
+            show: { drawn: bar-chart, from: 40, step: 2, rows: [["Year 5", 44], ["Year 6", 52]] }
+            answer: "8"
+          - id: l2-c11
+            part: real
+            type: multiple_choice
+            text: "Litres of milk drunk at school. The Tuesday bar looks four times as long as the Monday bar. How much milk was really drunk on Tuesday?"
+            show: { drawn: bar-chart, from: 100, step: 5, rows: [["Mon", 105], ["Tue", 120]] }
+            options: ["120 litres", "20 litres", "4 times as much as on Monday"]
+            answer: "120 litres"
+          - id: l2-c12
+            part: real
+            type: true_false
+            text: "Goals scored this season. Is it true that the Lions scored 3 more goals than the Tigers?"
+            show: { drawn: bar-chart, from: 30, step: 1, rows: [["Lions", 39], ["Tigers", 36]] }
+            answer: true
+          - id: l2-c13
+            part: real
+            type: multiple_choice
+            text: "Cars driving past the school. How many cars drove past on Friday?"
+            show: { drawn: bar-chart, from: 150, step: 5, rows: [["Thu", 165], ["Fri", 180]] }
+            options: ["180", "30", "15"]
+            answer: "180"
+          - id: l2-c14
+            part: scale
+            type: multiple_choice
+            text: "A scale goes 0, 25, 50, 75, 100. Is it a fair scale?"
+            options: ["Yes, every step is 25.", "No, the steps are not equal.", "No, it should start at 25."]
+            answer: "Yes, every step is 25."
+          - id: l2-c15
+            part: scale
+            type: true_false
+            text: "A scale goes 0, 3, 6, 12, 24. Is it true that its steps are equal?"
+            answer: false
+          - id: l2-c16
+            part: scale
+            type: multiple_choice
+            text: "A chart shows how many children chose each fruit, but its scale has no numbers. Which question can you answer?"
+            options: ["Which fruit was chosen most?", "How many children chose apples?", "How many more chose bananas than pears?"]
+            answer: "Which fruit was chosen most?"
+          - id: l2-c17
+            part: scale
+            type: multiple_choice
+            text: "Which scale has equal steps?"
+            options: ["0, 4, 8, 12, 16", "0, 4, 8, 16, 32", "0, 5, 10, 20, 30"]
+            answer: "0, 4, 8, 12, 16"
+          - id: l2-c18
+            part: survey
+            type: true_false
+            text: "Ella asks only the children on her school bus how they get to school. She says: most children in our school come by bus. Is that a fair claim?"
+            answer: false
+          - id: l2-c19
+            part: survey
+            type: multiple_choice
+            text: "Favourite fruit at break. Which claim fits the chart?"
+            show: { drawn: bar-chart, step: 5, rows: [["Apples", 25], ["Bananas", 15], ["Grapes", 10]] }
+            options: ["Apples were chosen most.", "Nobody likes grapes.", "Most children chose bananas."]
+            answer: "Apples were chosen most."
+          - id: l2-c20
+            part: survey
+            type: true_false
+            text: "A survey asked all 90 children in Year 5, and 60 of them have a pet. The newsletter says: 60 out of 90 children in Year 5 have a pet. Is that a fair claim?"
+            answer: true

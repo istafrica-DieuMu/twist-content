@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: [written-subtraction]
+  parts:
+    - { id: tens, what: { de: einen Zehner entbündeln, en: exchanging a ten } }
+    - { id: hundreds, what: { de: einen Hunderter entbündeln, en: exchanging a hundred } }
+    - { id: twice, what: { de: zweimal entbündeln, en: exchanging twice in one calculation } }
+    - { id: explain, what: { de: "erklären, wann und wie du entbündelst, und Fehler finden", en: "explaining when and how to exchange, and finding mistakes" } }
   misconceptions:
     - id: smaller-from-larger
       what: Takes the smaller digit from the larger whatever row it is in (352 − 127 gives 235, from 7 − 2)
@@ -207,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -223,9 +229,26 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
+            say: "Is this calculation right?"
             show: { drawn: written-calc, rows: ["846", "219"], op: "-", result: "633" }
             answer: false
+          - id: l1-c4
+            type: fill_in_blank
+            text: "A ten has been exchanged. Now subtract."
+            show: { drawn: written-calc, rows: ["674", "238"], op: "-", above: " 61", cross: " x ", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["6", "3", "4", "5"]
+            answer: ["6", "3", "4"]
+          - id: l1-c5
+            type: text_input
+            text: "There are 350 people at a concert. 125 of them are children. How many are adults?"
+            answer: "225"
+          - id: l1-c6
+            type: multiple_choice
+            text: "You exchange a ten in 591 − 364. How many tens are left on top?"
+            show: { drawn: written-calc, rows: ["591", "364"], op: "-" }
+            options: ["8", "9", "10"]
+            answer: "8"
 
   - n: 2
     title: { de: Einen Hunderter entbündeln, en: Exchanging a hundred }
@@ -397,26 +420,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tens
             type: text_input
             text: "Subtract in columns."
             say: "Subtract two hundred and thirty-eight from five hundred and seventy-three in columns."
             show: { drawn: written-calc, rows: ["573", "238"], op: "-" }
             answer: "335"
           - id: l2-c2
+            part: hundreds
             type: text_input
             text: "Subtract in columns."
             say: "Subtract two hundred and sixty-three from nine hundred and eighteen in columns."
             show: { drawn: written-calc, rows: ["918", "263"], op: "-" }
             answer: "655"
           - id: l2-c3
+            part: twice
             type: text_input
             text: "Subtract in columns."
             say: "Subtract four hundred and fifty-nine from seven hundred and twenty-four in columns."
             show: { drawn: written-calc, rows: ["724", "459"], op: "-" }
             answer: "265"
           - id: l2-c4
+            part: explain
             type: multiple_choice
             text: "Where is the mistake?"
             say: "Someone worked out six hundred and ninety-four subtract three hundred and fifty-eight and got three hundred and forty-six. What went wrong?"
@@ -424,8 +452,113 @@ lessons:
             options: ["In the tens, 9 was used instead of 8.", "The ones are wrong.", "The hundreds are wrong."]
             answer: "In the tens, 9 was used instead of 8."
           - id: l2-c5
+            part: explain
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
+            say: "Is this calculation right?"
             show: { drawn: written-calc, rows: ["843", "176"], op: "-", result: "667" }
             answer: true
+          - id: l2-c6
+            part: tens
+            type: text_input
+            text: "Subtract in columns."
+            say: "Subtract three hundred and twenty-seven from six hundred and fifty-two in columns."
+            show: { drawn: written-calc, rows: ["652", "327"], op: "-" }
+            answer: "325"
+          - id: l2-c7
+            part: tens
+            type: fill_in_blank
+            text: "A ten has been exchanged. Now subtract."
+            show: { drawn: written-calc, rows: ["583", "146"], op: "-", above: " 71", cross: " x ", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["7", "3", "4", "2"]
+            answer: ["7", "3", "4"]
+          - id: l2-c8
+            part: tens
+            type: multiple_choice
+            text: "You work out 760 − 425. After you exchange a ten, how many ones are on top?"
+            show: { drawn: written-calc, rows: ["760", "425"], op: "-" }
+            options: ["10", "0", "16"]
+            answer: "10"
+          - id: l2-c9
+            part: tens
+            type: text_input
+            text: "A school has 462 pencils. It gives out 237. How many pencils are left?"
+            answer: "225"
+          - id: l2-c10
+            part: hundreds
+            type: text_input
+            text: "Subtract in columns."
+            say: "Subtract two hundred and eighty-one from seven hundred and thirty-five in columns."
+            show: { drawn: written-calc, rows: ["735", "281"], op: "-" }
+            answer: "454"
+          - id: l2-c11
+            part: hundreds
+            type: fill_in_blank
+            text: "A hundred has been exchanged. Now subtract."
+            show: { drawn: written-calc, rows: ["917", "452"], op: "-", above: "81 ", cross: "x  ", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["5", "6", "4", "3"]
+            answer: ["5", "6", "4"]
+          - id: l2-c12
+            part: hundreds
+            type: multiple_choice
+            text: "You work out 648 − 374 in columns. What do you exchange?"
+            show: { drawn: written-calc, rows: ["648", "374"], op: "-" }
+            options: ["a hundred for ten tens", "a ten for ten ones", "nothing"]
+            answer: "a hundred for ten tens"
+          - id: l2-c13
+            part: hundreds
+            type: true_false
+            text: "Is this calculation right?"
+            say: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["608", "253"], op: "-", result: "355" }
+            answer: true
+          - id: l2-c14
+            part: twice
+            type: text_input
+            text: "Subtract in columns."
+            say: "Subtract two hundred and eighty-seven from five hundred and twelve in columns."
+            show: { drawn: written-calc, rows: ["512", "287"], op: "-" }
+            answer: "225"
+          - id: l2-c15
+            part: twice
+            type: text_input
+            text: "A jigsaw has 431 pieces. Jo has put in 165. How many pieces are left?"
+            answer: "266"
+          - id: l2-c16
+            part: twice
+            type: multiple_choice
+            text: "How many times do you exchange in 743 − 568?"
+            show: { drawn: written-calc, rows: ["743", "568"], op: "-" }
+            options: ["never", "once", "twice"]
+            answer: "twice"
+            keep_order: true
+          - id: l2-c17
+            part: twice
+            type: true_false
+            text: "Is this calculation right?"
+            say: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["925", "378"], op: "-", result: "557" }
+            answer: false
+          - id: l2-c18
+            part: explain
+            type: multiple_choice
+            text: "Where is the mistake?"
+            show: { drawn: written-calc, rows: ["641", "317"], op: "-", result: "336" }
+            options: ["In the ones, 7 − 1 was worked out instead of exchanging.", "The hundreds are wrong.", "The numbers were added."]
+            answer: "In the ones, 7 − 1 was worked out instead of exchanging."
+          - id: l2-c19
+            part: explain
+            type: multiple_choice
+            text: "Why do you exchange a ten in 471 − 236?"
+            show: { drawn: written-calc, rows: ["471", "236"], op: "-" }
+            options: ["There are not enough ones on top.", "The tens are the same.", "236 is smaller than 471."]
+            answer: "There are not enough ones on top."
+          - id: l2-c20
+            part: explain
+            type: true_false
+            text: "Tom says you need to exchange a ten to work out 597 − 254. Is Tom right?"
+            say: "Tom says you need to exchange a ten to work out five hundred and ninety-seven subtract two hundred and fifty-four. Is Tom right?"
+            show: { drawn: written-calc, rows: ["597", "254"], op: "-" }
+            answer: false

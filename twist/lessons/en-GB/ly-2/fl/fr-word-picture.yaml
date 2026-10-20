@@ -26,6 +26,10 @@ metadata:
   forms: [picture, text, drawn]
   drawn: [word-card]
   facets: []
+  parts:
+    - { id: start, what: { de: Wörter mit gleichem Anfang bis zum Ende lesen, en: reading words with the same start to the end } }
+    - { id: false-friends, what: { de: "Wörter lesen, die wie englische Wörter aussehen, aber etwas anderes heißen", en: reading words that look like English words but mean something else } }
+    - { id: long, what: { de: längere Wörter lesen, en: reading longer words } }
   misconceptions:
     - id: first-letters
       what: Guesses from the first letters and picks any picture whose word starts the same (le chien for le chat)
@@ -230,26 +234,51 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
-            type: image_multiple_choice
+            type: multiple_choice
             option_audio: false
-            text: "Read the word. Which picture is it?"
-            show: { drawn: word-card, text: "la porte" }
-            options: [{ object: door }, { object: chair }, { object: lamp }]
-            answer: door
+            text: "Which word goes with the picture?"
+            show: { object: door }
+            options: ["la chaise", "la porte", "la lampe"]
+            answer: "la porte"
           - id: l1-c2
-            type: image_multiple_choice
+            type: matching
             option_audio: false
-            text: "Read the word. Which picture is it?"
-            show: { drawn: word-card, text: "le chat" }
-            options: [{ object: chair }, { object: cat }, { object: rabbit }]
-            answer: cat
+            text: "Match each word with its picture."
+            say: { en: "Read each word. Tap it, then its picture." }
+            pairs:
+              - left: { text: "le chat" }
+                right: { object: cat }
+              - left: { text: "la pomme" }
+                right: { object: apple }
+              - left: { text: "la lampe" }
+                right: { object: lamp }
           - id: l1-c3
             type: true_false
             text: "le lait\nDoes the word match the picture?"
             show: { object: milk }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: fish }
+            options: ["la pomme", "le poisson", "la porte"]
+            answer: "le poisson"
+          - id: l1-c5
+            type: true_false
+            text: "le chat\nDoes the word match the picture?"
+            show: { object: chair }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: rabbit }
+            options: ["le lait", "la lampe", "le lapin"]
+            answer: "le lapin"
 
   - n: 2
     title: { de: "Wörter, die täuschen", en: "Words that trick you" }
@@ -446,8 +475,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: long
             type: multiple_choice
             option_audio: false
             text: "Which word goes with the picture?"
@@ -455,11 +486,13 @@ lessons:
             options: ["la baleine", "le ballon", "le bateau"]
             answer: "la baleine"
           - id: l2-c2
+            part: start
             type: true_false
             text: "le lapin\nDoes the word match the picture?"
             show: { object: rabbit }
             answer: true
           - id: l2-c3
+            part: false-friends
             type: matching
             option_audio: false
             text: "Match the words to the pictures."
@@ -472,6 +505,7 @@ lessons:
               - left: { text: "la porte" }
                 right: { object: door }
           - id: l2-c4
+            part: start
             type: multiple_choice
             option_audio: false
             text: "Which word goes with the picture?"
@@ -479,9 +513,127 @@ lessons:
             options: ["la chaise", "le chat", "le chien"]
             answer: "la chaise"
           - id: l2-c5
+            part: false-friends
             type: multiple_choice
             option_audio: false
             text: "Which word goes with the picture?"
             show: { object: bread }
             options: ["le pain", "la main", "le bain"]
             answer: "le pain"
+          - id: l2-c6
+            part: start
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: dog }
+            options: ["le chat", "la chaise", "le chien"]
+            answer: "le chien"
+          - id: l2-c7
+            part: start
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: apple }
+            options: ["la porte", "la pomme", "le poisson"]
+            answer: "la pomme"
+          - id: l2-c8
+            part: start
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: lamp }
+            options: ["le lapin", "le lait", "la lampe"]
+            answer: "la lampe"
+          - id: l2-c9
+            part: start
+            type: true_false
+            text: "la porte\nDoes the word match the picture?"
+            show: { object: apple }
+            answer: false
+          - id: l2-c10
+            part: start
+            type: matching
+            option_audio: false
+            text: "Which picture goes with each word?"
+            say: { en: "Read each word. Then tap its picture." }
+            pairs:
+              - left: { text: "le lait" }
+                right: { object: milk }
+              - left: { text: "la pomme" }
+                right: { object: apple }
+              - left: { text: "le chien" }
+                right: { object: dog }
+              - left: { text: "la lampe" }
+                right: { object: lamp }
+          - id: l2-c11
+            part: false-friends
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: hand }
+            options: ["le four", "la main", "le pain"]
+            answer: "la main"
+          - id: l2-c12
+            part: false-friends
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: oven }
+            options: ["la robe", "le pain", "le four"]
+            answer: "le four"
+          - id: l2-c13
+            part: false-friends
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: dress }
+            options: ["la robe", "la main", "la porte"]
+            answer: "la robe"
+          - id: l2-c14
+            part: false-friends
+            type: true_false
+            text: "le pain\nDoes the word match the picture?"
+            show: { object: sad }
+            answer: false
+          - id: l2-c15
+            part: false-friends
+            type: multiple_choice
+            text: "What does “le four” mean?"
+            options: ["the number four", "an oven", "a door"]
+            answer: "an oven"
+          - id: l2-c16
+            part: long
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: boat }
+            options: ["le ballon", "le bateau", "la baleine"]
+            answer: "le bateau"
+          - id: l2-c17
+            part: long
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: butterfly }
+            options: ["le poisson", "le pain", "le papillon"]
+            answer: "le papillon"
+          - id: l2-c18
+            part: long
+            type: true_false
+            text: "le crocodile\nDoes the word match the picture?"
+            show: { object: crocodile }
+            answer: true
+          - id: l2-c19
+            part: long
+            type: multiple_choice
+            option_audio: false
+            text: "Which word goes with the picture?"
+            show: { object: ball }
+            options: ["le bateau", "le ballon", "le papillon"]
+            answer: "le ballon"
+          - id: l2-c20
+            part: long
+            type: true_false
+            text: "le papillon\nDoes the word match the picture?"
+            show: { object: bird }
+            answer: false

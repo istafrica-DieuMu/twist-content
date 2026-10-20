@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: [currency]
+  parts:
+    - { id: decide, what: { de: "entscheiden, ob ein Überschlag reicht oder ob man genau rechnen muss", en: deciding whether an estimate is enough or an exact answer is needed } }
+    - { id: safe-estimate, what: { de: "mit aufgerundeten Zahlen sicher prüfen, ob etwas reicht", en: rounding up to check safely that something is enough } }
+    - { id: close, what: { de: bei einem knappen Überschlag genau nachrechnen, en: calculating exactly when the estimate is close to the limit } }
+    - { id: exact, what: { de: "das genaue Ergebnis berechnen, wenn es nötig ist", en: working out the exact answer when it is needed } }
   misconceptions:
     - id: always-exact
       what: Thinks every word problem needs an exact answer, even when the question only asks whether something is enough
@@ -207,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -224,6 +230,28 @@ lessons:
             type: true_false
             text: "A minibus has 16 seats. 4 girls and 5 boys are going. An estimate shows everyone fits."
             answer: true
+          - id: l1-c4
+            type: sorting
+            text: "Estimate or exact? Sort the questions."
+            option_audio: false
+            bins:
+              - { id: estimate, show: { text: "an estimate is enough" }, say: "An estimate is enough." }
+              - { id: exact, show: { text: "the exact answer" }, say: "The exact answer." }
+            options:
+              - { text: "What total does the till print on the receipt?", bin: exact }
+              - { text: "About how many children are in the school?", bin: estimate }
+              - { text: "How much do 2 drinks at £1.35 cost at the till?", bin: exact }
+              - { text: "Is a 1 litre jug big enough for 4 cups of 200 ml?", bin: estimate }
+          - id: l1-c5
+            type: true_false
+            text: "Kai has £5. He wants to know how much change he gets after buying a comic for £3.75. An estimate is enough."
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "A theatre has 400 seats. 186 adults and 97 children have tickets. Will everyone have a seat? Estimate or exact?"
+            options: ["an estimate is enough", "the exact answer"]
+            answer: "an estimate is enough"
+            keep_order: true
 
   - n: 2
     title: { de: "Sicher schätzen und genau rechnen", en: "Safe estimates and close calls" }
@@ -366,29 +394,124 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: decide
             type: multiple_choice
             text: "Ivy has £30. She wants a game for £12.99 and a book for £6.49. Is her money enough? Estimate or exact?"
             options: ["an estimate is enough", "the exact answer"]
             answer: "an estimate is enough"
             keep_order: true
           - id: l2-c2
+            part: decide
             type: multiple_choice
             text: "Which question needs the exact answer?"
             options: ["How much should the receipt for the school trip say?", "Is £200 enough for the school trip?", "About how much will the school trip cost?"]
             answer: "How much should the receipt for the school trip say?"
           - id: l2-c3
+            part: close
             type: multiple_choice
             text: "A trailer holds 1500 kg. It carries 870 kg of sand and 640 kg of stones. Is it safe?"
             options: ["No, 1510 kg is too much.", "Yes, it is about 1500 kg.", "Yes, 800 + 600 = 1400."]
             answer: "No, 1510 kg is too much."
           - id: l2-c4
+            part: safe-estimate
             type: multiple_choice
             text: "Ella has £10. She wants paints for £3.70 and a pad for £4.60. How should she estimate to be safe?"
             options: ["round up: £4 + £5", "round down: £3 + £4", "do not estimate at all"]
             answer: "round up: £4 + £5"
           - id: l2-c5
+            part: exact
             type: text_input
             text: "Tom buys 2 comics at £2.75 each and pays with a £10 note. How much change does he get, in pence?"
             answer: "450"
+          - id: l2-c6
+            part: decide
+            type: sorting
+            text: "Which questions can an estimate answer? Sort them."
+            option_audio: false
+            bins:
+              - { id: estimate, show: { text: "an estimate is enough" }, say: "An estimate is enough." }
+              - { id: exact, show: { text: "the exact answer" }, say: "The exact answer." }
+            options:
+              - { text: "How much do I pay for 2 tickets at £8.75?", bin: exact }
+              - { text: "About how long is the walk to school?", bin: estimate }
+              - { text: "How many grams of sugar go into the cake?", bin: exact }
+              - { text: "Will 5 boxes of 12 eggs be enough for 50 eggs?", bin: estimate }
+          - id: l2-c7
+            part: decide
+            type: true_false
+            text: "A newspaper reports how many fans were at the match. An estimate is enough."
+            answer: true
+          - id: l2-c8
+            part: decide
+            type: multiple_choice
+            text: "Which of these needs the exact answer?"
+            options: ["the number of eggs in a cake recipe", "about how many people live in a town", "whether 3 buses are enough for 140 children"]
+            answer: "the number of eggs in a cake recipe"
+          - id: l2-c9
+            part: safe-estimate
+            type: text_input
+            text: "Zac has £20. He wants a torch for £7.60 and batteries for £4.30. He rounds both prices up to check that his money is enough. What is his estimate, in pounds?"
+            answer: "13"
+          - id: l2-c10
+            part: safe-estimate
+            type: true_false
+            text: "Ben has £10. He wants crisps for £1.40, a drink for £1.75 and a sandwich for £3.20. Rounded up, £2 + £2 + £4 = £8, so £10 is enough."
+            answer: true
+          - id: l2-c11
+            part: safe-estimate
+            type: multiple_choice
+            text: "Why do you round the prices up when you check that your money is enough?"
+            options: ["So the real total cannot be more than the estimate.", "So the sum is easier to work out.", "So you get more change."]
+            answer: "So the real total cannot be more than the estimate."
+          - id: l2-c12
+            part: safe-estimate
+            type: multiple_choice
+            text: "Ali has £15. His things cost £3.20, £4.10 and £2.30. Rounded up, £4 + £5 + £3 = £12. Is his money enough?"
+            options: ["Yes, even rounded up it is less than £15.", "No, £12 is too close to £15.", "You cannot tell without working it out exactly."]
+            answer: "Yes, even rounded up it is less than £15."
+          - id: l2-c13
+            part: close
+            type: multiple_choice
+            text: "A lift can carry 400 kg. Three people weigh 128 kg, 135 kg and 142 kg. Is it safe for all three to go in?"
+            options: ["No, 405 kg is too much.", "Yes, it is about 400 kg.", "Yes, 100 + 100 + 100 = 300."]
+            answer: "No, 405 kg is too much."
+          - id: l2-c14
+            part: close
+            type: true_false
+            text: "Rounded up, Jen's shopping costs £51. She has £50. So her money is not enough."
+            answer: false
+          - id: l2-c15
+            part: close
+            type: text_input
+            text: "A van can carry 1200 kg. It has 785 kg on board, and then 390 kg more is loaded. How many kilograms below the limit is it?"
+            answer: "25"
+          - id: l2-c16
+            part: close
+            type: true_false
+            text: "A rope can hold 250 kg. A climber weighs 82 kg and his bag weighs 18 kg. You need to work it out exactly to know the rope is safe."
+            answer: false
+          - id: l2-c17
+            part: exact
+            type: text_input
+            text: "Lily buys a magazine for £3.45 and a pen for £1.30. She pays with a £5 note. How much change does she get, in pence?"
+            answer: "25"
+          - id: l2-c18
+            part: exact
+            type: text_input
+            text: "A baker has 2 kg of flour. She uses 1250 g for bread. How many grams are left?"
+            answer: "750"
+          - id: l2-c19
+            part: exact
+            type: multiple_choice
+            text: "What should the receipt say for 3 tickets at £4.85 each?"
+            options: ["£14.55", "£15", "£12.55"]
+            answer: "£14.55"
+          - id: l2-c20
+            part: exact
+            type: text_input
+            keyboard: decimal
+            text: "A nurse gives a child 2.5 ml of medicine 3 times a day. How many millilitres is that a day?"
+            answer: "7.5"

@@ -21,9 +21,14 @@ metadata:
   builds_on: [lit-en.spelling.exception-words-y2]
   also_practises: []
   vocabulary: { en: [homophone, near-homophone, meaning, sentence, apostrophe, there, their, "they're", to, too, two] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [letter-card]
   facets: []
+  parts:
+    - { id: there-their, what: { de: "there, their und they're unterscheiden", en: "telling there, their and they're apart" } }
+    - { id: here-hear, what: { de: here und hear unterscheiden, en: telling here and hear apart } }
+    - { id: to-too-two, what: { de: "to, too und two unterscheiden", en: "telling to, too and two apart" } }
+    - { id: other-pairs, what: { de: "weitere Paare unterscheiden (see, sea; blue, blew; one, won; quite, quiet)", en: "telling other pairs apart (see, sea; blue, blew; one, won; quite, quiet)" } }
   misconceptions:
     - id: one-there-for-all
       what: Uses there for all three (there coats for their coats)
@@ -56,7 +61,7 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: fill_in_blank
-            text: "Fill the gap: peo_le"
+            text: "Fill the gap: peo_le\nClue: more than one person."
             say: "Spell the word people. Which letter goes in the gap?"
             frame: "peo_le"
             options: ["p", "b", "pp"]
@@ -235,6 +240,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -259,6 +265,26 @@ lessons:
             frame: "The girls ride _ bikes."
             options: ["their", "there", "they're"]
             answer: ["their"]
+            option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Is the right word used? \"Their dog likes to swim.\""
+            say: "Read the sentence. Is the right word used?"
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which word is about a place?"
+            say: "Read the words yourself. Which one is about a place?"
+            options: ["their", "there", "they're"]
+            answer: "there"
+            option_audio: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill the gap: Stop! I can _ a car coming."
+            say: "Read the sentence. Which spelling fits the gap?"
+            frame: "Stop! I can _ a car coming."
+            options: ["here", "hear"]
+            answer: ["hear"]
             option_audio: false
 
   - n: 2
@@ -455,8 +481,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: there-their
             type: fill_in_blank
             text: "Fill the gap: The boys packed _ bags."
             say: "Read the sentence. Which spelling fits the gap?"
@@ -465,6 +493,7 @@ lessons:
             answer: ["their"]
             option_audio: false
           - id: l2-c2
+            part: to-too-two
             type: fill_in_blank
             text: "Fill the gap: Sam is coming _."
             say: "Read the sentence. Which spelling fits the gap?"
@@ -473,6 +502,7 @@ lessons:
             answer: ["too"]
             option_audio: false
           - id: l2-c3
+            part: here-hear
             type: fill_in_blank
             text: "Fill the gap: I can _ a dog barking."
             say: "Read the sentence. Which spelling fits the gap?"
@@ -481,6 +511,7 @@ lessons:
             answer: ["hear"]
             option_audio: false
           - id: l2-c4
+            part: to-too-two
             type: fill_in_blank
             text: "Fill the gap: Let's walk _ the shop."
             say: "Read the sentence. Which spelling fits the gap?"
@@ -489,6 +520,7 @@ lessons:
             answer: ["to"]
             option_audio: false
           - id: l2-c5
+            part: there-their
             type: fill_in_blank
             text: "Fill the gap: Look! _ my friends."
             say: "Read the sentence. Which spelling fits the gap?"
@@ -496,3 +528,128 @@ lessons:
             options: ["They're", "There", "Their"]
             answer: ["They're"]
             option_audio: false
+          - id: l2-c6
+            part: there-their
+            type: multiple_choice
+            text: "Which sentence is spelt correctly?"
+            say: "Read the sentences yourself. Which one is right?"
+            options: ["Their going to the zoo.", "There going to the zoo.", "They're going to the zoo."]
+            answer: "They're going to the zoo."
+            option_audio: false
+          - id: l2-c7
+            part: there-their
+            type: highlight_in_text
+            text: "Tap the word that is wrong."
+            say: "Read the sentence. One word is the wrong homophone. Tap it."
+            show: { drawn: letter-card, text: "The children forgot there lunch boxes." }
+            spans: ["there"]
+          - id: l2-c8
+            part: there-their
+            type: text_input
+            keyboard: letters
+            text: "Write \"they are\" as one short word."
+            say: "Write they are as one short word."
+            answer: "they're"
+          - id: l2-c9
+            part: here-hear
+            type: multiple_choice
+            text: "Which sentence is spelt correctly?"
+            say: "Read the sentences yourself. Which one is right?"
+            options: ["Come over hear, please.", "Come over here, please."]
+            answer: "Come over here, please."
+            option_audio: false
+          - id: l2-c10
+            part: here-hear
+            type: highlight_in_text
+            text: "Tap the word that is wrong."
+            say: "Read the sentence. One word is the wrong homophone. Tap it."
+            show: { drawn: letter-card, text: "I can't here you because it is so noisy." }
+            spans: ["here"]
+          - id: l2-c11
+            part: here-hear
+            type: sorting
+            text: "Which word fits each gap? Sort them."
+            say: "Read each card yourself. Does here or hear fit the gap? Sort them."
+            option_audio: false
+            bins:
+              - { id: here, show: { text: "here" }, say: "h e r e." }
+              - { id: hear, show: { text: "hear" }, say: "h e a r." }
+            options:
+              - { text: "Did you _ that?", bin: hear }
+              - { text: "_ comes the bus.", bin: here }
+              - { text: "I _ music.", bin: hear }
+              - { text: "Sit _ with me.", bin: here }
+          - id: l2-c12
+            part: here-hear
+            type: true_false
+            text: "Is the right word used? \"Hear is my house.\""
+            say: "Read the sentence. Is the right word used?"
+            answer: false
+          - id: l2-c13
+            part: to-too-two
+            type: fill_in_blank
+            text: "Fill the gaps: I ate _ apples and a pear _."
+            say: "Read the sentence. Which spellings fit the gaps?"
+            frame: "I ate _ apples and a pear _."
+            options: ["to", "too", "two"]
+            answer: ["two", "too"]
+            option_audio: false
+          - id: l2-c14
+            part: to-too-two
+            type: multiple_choice
+            text: "Which sentence is spelt correctly?"
+            say: "Read the sentences yourself. Which one is right?"
+            options: ["It is to cold to swim.", "It is two cold to swim.", "It is too cold to swim."]
+            answer: "It is too cold to swim."
+            option_audio: false
+          - id: l2-c15
+            part: to-too-two
+            type: true_false
+            text: "Is the right word used? \"We walked too the park.\""
+            say: "Read the sentence. Is the right word used?"
+            answer: false
+          - id: l2-c16
+            part: other-pairs
+            type: fill_in_blank
+            text: "Fill the gap: The wind _ the leaves off the tree."
+            say: "Read the sentence. Which spelling fits the gap?"
+            frame: "The wind _ the leaves off the tree."
+            options: ["blue", "blew"]
+            answer: ["blew"]
+            option_audio: false
+          - id: l2-c17
+            part: other-pairs
+            type: true_false
+            text: "Is the right word used? \"Ella won the race.\""
+            say: "Read the sentence. Is the right word used?"
+            answer: true
+          - id: l2-c18
+            part: other-pairs
+            type: fill_in_blank
+            text: "Fill the gap: The film was _ long, but I liked it."
+            say: "Read the sentence. Which spelling fits the gap?"
+            frame: "The film was _ long, but I liked it."
+            options: ["quiet", "quite"]
+            answer: ["quite"]
+            option_audio: false
+          - id: l2-c19
+            part: other-pairs
+            type: sorting
+            text: "Which word fits each gap? Sort them."
+            say: "Read each card yourself. Does see or sea fit the gap? Sort them."
+            option_audio: false
+            bins:
+              - { id: see, show: { text: "see" }, say: "s e e." }
+              - { id: sea, show: { text: "sea" }, say: "s e a." }
+            options:
+              - { text: "a boat on the _", bin: sea }
+              - { text: "_ you later!", bin: see }
+              - { text: "waves in the _", bin: sea }
+              - { text: "I can _ you.", bin: see }
+          - id: l2-c20
+            part: other-pairs
+            type: highlight_in_text
+            text: "Tap the word that is wrong."
+            say: "Read the sentence. One word is the wrong homophone. Tap it."
+            show: { drawn: letter-card, text: "A be landed on my arm." }
+            spans: ["be"]

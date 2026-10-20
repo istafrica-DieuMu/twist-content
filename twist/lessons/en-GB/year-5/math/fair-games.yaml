@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [spinner, dots]
   facets: []
+  parts:
+    - { id: one-dice, what: { de: "bei einem Würfel oder Glücksrad die Möglichkeiten zählen und sagen, ob ein Spiel fair ist", en: counting the ways on one dice or spinner to tell whether a game is fair } }
+    - { id: two-coins, what: { de: die Möglichkeiten mit zwei Münzen zählen, en: counting the ways with two coins } }
+    - { id: two-dice, what: { de: die Möglichkeiten für eine Augensumme mit zwei Würfeln zählen, en: counting the ways to make a total with two dice } }
+    - { id: explain-fix, what: { de: begründen und ein Spiel fair machen, en: explaining why a game is fair or not and making it fair } }
   misconceptions:
     - id: one-each-is-fair
       what: Calls a game fair because each player has one colour or one rule, without counting how many ways each has
@@ -198,6 +203,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: true_false
@@ -214,6 +220,20 @@ lessons:
             text: "Ravi wins on a 6. Zoe wins on a 1. Is the game fair?"
             options: ["Yes, 1 way each.", "No, 6 is a bigger number.", "No, Zoe has more ways."]
             answer: "Yes, 1 way each."
+          - id: l1-c4
+            type: true_false
+            text: "Ivy wins on an odd number. Rob wins on a 2 or a 4. On a 6 they roll again. Is the game fair?"
+            answer: false
+          - id: l1-c5
+            type: text_input
+            text: "Blue wins for Leo and green wins for Ada. How many blue sectors must be coloured green to make the game fair?"
+            show: { drawn: spinner, sectors: [blue, green, blue, blue, blue, green] }
+            answer: "1"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Three children roll a dice. Ali wins on 1 or 2, Bo on 3 or 4 and Cara on 5 or 6. Is the game fair?"
+            options: ["Yes, 2 ways each.", "No, Cara has the biggest numbers.", "No, Ali has more ways."]
+            answer: "Yes, 2 ways each."
 
   - n: 2
     title: { de: "Zwei Münzen und zwei Würfel", en: "Two coins and two dice" }
@@ -364,31 +384,126 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: one-dice
             type: true_false
             text: "Red wins for Ella and yellow wins for Tom. Is the game fair?"
             show: { drawn: spinner, sectors: [red, red, red, yellow, yellow] }
             answer: false
           - id: l2-c2
+            part: one-dice
             type: multiple_choice
             text: "Zac wins on 1 or 6. Amy wins on 2, 3, 4 or 5. Who is more likely to win?"
             options: ["Amy", "Zac", "both equally likely"]
             answer: "Amy"
             keep_order: true
           - id: l2-c3
+            part: two-dice
             type: multiple_choice
             text: "You roll two dice and add them. How many ways can you make a total of 8?"
             options: ["5", "3", "6"]
             answer: "5"
           - id: l2-c4
+            part: two-coins
             type: multiple_choice
             text: "Two coins. Mia wins on two heads. Leo wins on one head and one tail. Is the game fair?"
             options: ["No, Leo has 2 ways and Mia 1.", "Yes, one result each.", "No, Mia has more ways."]
             answer: "No, Leo has 2 ways and Mia 1."
           - id: l2-c5
+            part: explain-fix
             type: multiple_choice
             text: "Green wins for Ravi and blue wins for Zoe. Which change makes the game fair?"
             show: { drawn: spinner, sectors: [green, green, green, green, blue, blue] }
             options: ["Colour one green sector blue.", "Colour one blue sector green.", "Add two more green sectors."]
             answer: "Colour one green sector blue."
+          - id: l2-c6
+            part: one-dice
+            type: true_false
+            text: "Ana and Joe roll a dice. Ana wins on a number less than 4. Joe wins on a number greater than 4. On a 4 they roll again. Is the game fair?"
+            answer: false
+          - id: l2-c7
+            part: one-dice
+            type: image_multiple_choice
+            text: "Red wins for Kai and blue wins for Nia. Which spinner makes the game fair?"
+            options:
+              - { drawn: spinner, sectors: [red, blue, red, red], key: "3-to-1" }
+              - { drawn: spinner, sectors: [blue, red, blue, red, blue, red], key: "3-to-3" }
+              - { drawn: spinner, sectors: [red, blue, blue], key: "1-to-2" }
+            answer: "3-to-3"
+          - id: l2-c8
+            part: one-dice
+            type: text_input
+            text: "Pip wins on red and Tess wins on green. How many ways does Pip have to win?"
+            show: { drawn: spinner, sectors: [red, green, red, red, green, red, green, red] }
+            answer: "5"
+          - id: l2-c9
+            part: two-coins
+            type: text_input
+            text: "You toss two coins. In how many of the ways does the first coin land heads?"
+            answer: "2"
+          - id: l2-c10
+            part: two-coins
+            type: true_false
+            text: "Lily tosses two coins. She says they can land only 3 ways: two heads, two tails, or one of each. Is she right?"
+            answer: false
+          - id: l2-c11
+            part: two-coins
+            type: multiple_choice
+            text: "Two coins. Omar wins on HT: the first coin heads and the second tails. Freya wins on TT. If neither happens, they toss again. Is the game fair?"
+            options: ["Yes, 1 way each.", "No, Omar has more ways.", "No, Freya has more ways."]
+            answer: "Yes, 1 way each."
+          - id: l2-c12
+            part: two-coins
+            type: multiple_choice
+            text: "You toss two coins. Which result is most likely?"
+            options: ["one head and one tail", "two heads", "two tails"]
+            answer: "one head and one tail"
+          - id: l2-c13
+            part: two-dice
+            type: text_input
+            text: "You roll two dice and add them. How many ways can you make a total of 10?"
+            answer: "3"
+          - id: l2-c14
+            part: two-dice
+            type: multiple_choice
+            text: "You roll two dice and add them. How many ways can you make a total of 5?"
+            options: ["4", "2", "5"]
+            answer: "4"
+          - id: l2-c15
+            part: two-dice
+            type: true_false
+            text: "With two dice, a total of 9 can be made in as many ways as a total of 5. Is that true?"
+            answer: true
+          - id: l2-c16
+            part: two-dice
+            type: multiple_choice
+            text: "You roll two dice and add them. Which total can be made in the most ways?"
+            options: ["6", "7", "8"]
+            answer: "7"
+            keep_order: true
+          - id: l2-c17
+            part: explain-fix
+            type: multiple_choice
+            text: "Finn wins on 1, 2, 3 or 4. Isla wins on 5 or 6. Which change makes the game fair?"
+            options: ["Isla wins on 4 instead of Finn.", "Finn wins on 5 instead of Isla.", "Nobody wins on 1."]
+            answer: "Isla wins on 4 instead of Finn."
+          - id: l2-c18
+            part: explain-fix
+            type: multiple_choice
+            text: "Noor wins on yellow and Sam wins on purple. Why is the game not fair?"
+            show: { drawn: spinner, sectors: [yellow, purple, yellow, purple, yellow] }
+            options: ["Yellow has 3 sectors and purple only 2.", "Each player has only one colour.", "Purple has 3 sectors and yellow only 2."]
+            answer: "Yellow has 3 sectors and purple only 2."
+          - id: l2-c19
+            part: explain-fix
+            type: true_false
+            text: "Two dice. Jo wins on a total of 6 and Kit on a total of 8. Jo says the game is fair because each total can be made in 5 ways. Is Jo right?"
+            answer: true
+          - id: l2-c20
+            part: explain-fix
+            type: multiple_choice
+            text: "Two dice. Ella wins on a total of 2 or 3. If nobody wins, they roll again. Which rule for Max makes the game fair?"
+            options: ["Max wins on a total of 4.", "Max wins on a total of 12.", "Max wins on a total of 7."]
+            answer: "Max wins on a total of 4."

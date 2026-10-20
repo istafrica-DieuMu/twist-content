@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: [time-format]
+  parts:
+    - { id: oclock, what: { de: volle Stunden ablesen, en: "reading o'clock times" } }
+    - { id: half-past, what: { de: halbe Stunden ablesen, en: reading half past times } }
+    - { id: set, what: { de: die Zeiger auf eine Uhrzeit stellen, en: setting the hands to a time } }
+    - { id: digital, what: { de: die Uhrzeit auf der Digitaluhr lesen, en: reading the time on a digital clock } }
   misconceptions:
     - id: hands-swapped
       what: Reads the long minute hand as the hour (sees 12 o'clock when the minute hand is on 12)
@@ -229,6 +234,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -252,6 +258,26 @@ lessons:
             say: "Look at the clock. Is it three o'clock?"
             show: { drawn: clock, hour: 3, minute: 0 }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "What time is it?"
+            say: "Look at the clock. What time is it?"
+            show: { drawn: clock, hour: 7, minute: 0 }
+            options: ["7 o'clock", "12 o'clock", "8 o'clock"]
+            answer: "7 o'clock"
+          - id: l1-c5
+            type: clock_hands_drag
+            text: "Show 9 o'clock on the clock."
+            say: "Show nine o'clock on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
+            answer: "9:00"
+          - id: l1-c6
+            type: true_false
+            text: "Is it 6 o'clock?"
+            say: "Look at the digital clock. Is it six o'clock?"
+            show: { drawn: clock, hour: 8, minute: 0, digital: true }
+            answer: false
 
   - n: 2
     title: { de: "Halbe Stunden", en: "Half past" }
@@ -443,8 +469,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: oclock
             type: multiple_choice
             text: "What time is it?"
             say: "Look at the clock. What time is it?"
@@ -452,6 +480,7 @@ lessons:
             options: ["11 o'clock", "12 o'clock", "half past 11"]
             answer: "11 o'clock"
           - id: l2-c2
+            part: half-past
             type: multiple_choice
             text: "What time is it?"
             say: "Look at the clock. What time is it?"
@@ -459,6 +488,7 @@ lessons:
             options: ["half past 9", "half past 10", "9 o'clock"]
             answer: "half past 9"
           - id: l2-c3
+            part: set
             type: clock_hands_drag
             text: "Show half past 12 on the clock."
             say: "Show half past twelve on the clock. Drag the hands."
@@ -469,6 +499,7 @@ lessons:
               "6:00": "You swapped the hands. The long minute hand goes on 6 and the short hour hand just past 12."
               "1:30": "That is half past 1. At half past 12 the short hand has just passed 12."
           - id: l2-c4
+            part: digital
             type: multiple_choice
             text: "What time does the digital clock show?"
             say: "The digital clock shows one, thirty. What time is it?"
@@ -476,6 +507,7 @@ lessons:
             options: ["half past 1", "1 o'clock", "half past 2"]
             answer: "half past 1"
           - id: l2-c5
+            part: oclock
             type: image_multiple_choice
             text: "Which clock shows 5 o'clock?"
             say: "Which clock shows five o'clock?"
@@ -484,3 +516,122 @@ lessons:
               - { drawn: clock, hour: 5, minute: 0 }
               - { drawn: clock, hour: 5, minute: 30 }
             answer: "5:00"
+          - id: l2-c6
+            part: oclock
+            type: multiple_choice
+            text: "What time is it?"
+            say: "Look at the clock. What time is it?"
+            show: { drawn: clock, hour: 4, minute: 0 }
+            options: ["4 o'clock", "12 o'clock", "half past 4"]
+            answer: "4 o'clock"
+          - id: l2-c7
+            part: oclock
+            type: true_false
+            text: "Is it 8 o'clock?"
+            say: "Look at the clock. Is it eight o'clock?"
+            show: { drawn: clock, hour: 9, minute: 0 }
+            answer: false
+          - id: l2-c8
+            part: oclock
+            type: image_multiple_choice
+            text: "Which clock shows 10 o'clock?"
+            say: "Which clock shows ten o'clock?"
+            options:
+              - { drawn: clock, hour: 11, minute: 0 }
+              - { drawn: clock, hour: 10, minute: 0 }
+              - { drawn: clock, hour: 12, minute: 50 }
+            answer: "10:00"
+          - id: l2-c9
+            part: half-past
+            type: multiple_choice
+            text: "What time is it?"
+            say: "Look at the clock. What time is it?"
+            show: { drawn: clock, hour: 4, minute: 30 }
+            options: ["half past 4", "half past 5", "4 o'clock"]
+            answer: "half past 4"
+          - id: l2-c10
+            part: half-past
+            type: true_false
+            text: "Is it half past 6?"
+            say: "Look at the clock. Is it half past six?"
+            show: { drawn: clock, hour: 5, minute: 30 }
+            answer: false
+          - id: l2-c11
+            part: half-past
+            type: image_multiple_choice
+            text: "Which clock shows half past 2?"
+            say: "Which clock shows half past two?"
+            options:
+              - { drawn: clock, hour: 3, minute: 30 }
+              - { drawn: clock, hour: 2, minute: 0 }
+              - { drawn: clock, hour: 2, minute: 30 }
+            answer: "2:30"
+          - id: l2-c12
+            part: half-past
+            type: multiple_choice
+            text: "What time is it?"
+            say: "Look at the clock. What time is it?"
+            show: { drawn: clock, hour: 12, minute: 30 }
+            options: ["half past 12", "half past 1", "12 o'clock"]
+            answer: "half past 12"
+          - id: l2-c13
+            part: set
+            type: clock_hands_drag
+            text: "Show 7 o'clock on the clock."
+            say: "Show seven o'clock on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
+            answer: "7:00"
+          - id: l2-c14
+            part: set
+            type: clock_hands_drag
+            text: "Show half past 6 on the clock."
+            say: "Show half past six on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
+            answer: "6:30"
+          - id: l2-c15
+            part: set
+            type: clock_hands_drag
+            text: "Show 10 o'clock on the clock."
+            say: "Show ten o'clock on the clock. Drag the hands."
+            show: { drawn: clock, hour: 2, minute: 0 }
+            step: 30
+            answer: "10:00"
+          - id: l2-c16
+            part: set
+            type: clock_hands_drag
+            text: "Show half past 1 on the clock."
+            say: "Show half past one on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 30
+            answer: "1:30"
+          - id: l2-c17
+            part: digital
+            type: multiple_choice
+            text: "What time does the digital clock show?"
+            say: "Look at the digital clock. What time is it?"
+            show: { drawn: clock, hour: 8, minute: 0, digital: true }
+            options: ["8 o'clock", "half past 8", "12 o'clock"]
+            answer: "8 o'clock"
+          - id: l2-c18
+            part: digital
+            type: true_false
+            text: "Is it half past 9?"
+            say: "Look at the digital clock. Is it half past nine?"
+            show: { drawn: clock, hour: 9, minute: 30, digital: true }
+            answer: true
+          - id: l2-c19
+            part: digital
+            type: multiple_choice
+            text: "Lunch is at half past 12. Which digital time is that?"
+            say: "Lunch is at half past twelve. Which time is that on a digital clock?"
+            options: ["12:30", "12:00", "1:30"]
+            answer: "12:30"
+          - id: l2-c20
+            part: digital
+            type: multiple_choice
+            text: "Bedtime is at 7:30. What time is that?"
+            say: "Bedtime is at seven thirty. What time is that?"
+            options: ["half past 7", "7 o'clock", "half past 8"]
+            answer: "half past 7"

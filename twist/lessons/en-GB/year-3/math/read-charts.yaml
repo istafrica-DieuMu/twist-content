@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, number-line]
   facets: []
+  parts:
+    - { id: read, what: { de: Werte an der Skala eines Säulendiagramms ablesen, en: reading values off the scale of a bar chart } }
+    - { id: pictogram, what: { de: Bilddiagramme mit Legende lesen, en: reading pictograms with a key } }
+    - { id: compare, what: { de: "Werte vergleichen, ordnen und zusammenrechnen", en: "comparing, ordering and adding values" } }
+    - { id: conclude, what: { de: "sagen, was ein Diagramm zeigt und was nicht", en: saying what a chart shows and what it does not } }
   misconceptions:
     - id: counts-lines
       what: Counts the lines up to the end of the bar instead of reading the scale, so a scale in tens or hundreds gives 8 for 80 or 5 for 500
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -235,6 +241,23 @@ lessons:
             text: "Visitors to the park. How many came on Saturday?"
             show: { drawn: bar-chart, step: 100, rows: [["Sat", 400], ["Sun", 700]] }
             answer: "400"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Apples picked at the farm. How many on Tuesday?"
+            show: { drawn: bar-chart, step: 20, rows: [["Mon", 40], ["Tue", 80]] }
+            options: ["80", "4", "60"]
+            answer: "80"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Each star stands for 10 points. How many points has Class 3C?"
+            show: { drawn: bar-chart, pictogram_object: star, key: 10, rows: [["3C", 15], ["3D", 40]] }
+            options: ["15", "2", "10"]
+            answer: "15"
+          - id: l1-c6
+            type: text_input
+            text: "Letters posted at the post office. How many on Thursday?"
+            show: { drawn: bar-chart, step: 50, rows: [["Wed", 100], ["Thu", 150]] }
+            answer: "150"
 
   - n: 2
     title: { de: Vergleichen und Schlüsse ziehen, en: Comparing and drawing conclusions }
@@ -405,34 +428,139 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "Favourite sports in Year 4. How many chose running?"
             show: { drawn: bar-chart, step: 20, rows: [["Swim", 60], ["Run", 100], ["Cycle", 40]] }
             options: ["100", "5", "80"]
             answer: "100"
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "School lunches eaten. How many on Monday?"
             show: { drawn: bar-chart, step: 10, rows: [["Mon", 55], ["Tue", 30]] }
             options: ["55", "50", "60"]
             answer: "55"
           - id: l2-c3
+            part: compare
             type: multiple_choice
             text: "Pages read in a month. How many more pages did Year 4 read than Year 3?"
             show: { drawn: bar-chart, step: 100, rows: [["Year 3", 600], ["Year 4", 800]] }
             options: ["200", "1400", "2"]
             answer: "200"
           - id: l2-c4
+            part: pictogram
             type: multiple_choice
             text: "Each star stands for 10 points. How many points has the red team?"
             show: { drawn: bar-chart, pictogram_object: star, key: 10, rows: [["Red team", 35], ["Blue team", 50]] }
             options: ["35", "4", "30"]
             answer: "35"
           - id: l2-c5
+            part: conclude
             type: multiple_choice
             text: "Children at the park. Which sentence does the chart show?"
             show: { drawn: bar-chart, step: 10, rows: [["Sun", 80], ["Mon", 20], ["Tue", 40]] }
             options: ["Twice as many children came on Tuesday as on Monday.", "It was sunny on Sunday.", "The park is closed on Mondays."]
             answer: "Twice as many children came on Tuesday as on Monday."
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "Bags of litter picked up by each class. How many bags did Class 3C fill?"
+            show: { drawn: bar-chart, step: 5, rows: [["3A", 30], ["3B", 15], ["3C", 40]] }
+            options: ["40", "8", "35"]
+            answer: "40"
+          - id: l2-c7
+            part: read
+            type: text_input
+            text: "Points scored in a quiz. How many points did Ali score?"
+            show: { drawn: bar-chart, step: 50, rows: [["Ali", 350], ["Bea", 200], ["Cal", 400]] }
+            answer: "350"
+          - id: l2-c8
+            part: read
+            type: multiple_choice
+            text: "Tickets sold at the cinema. How many on Friday?"
+            show: { drawn: bar-chart, step: 100, rows: [["Thu", 200], ["Fri", 650]] }
+            options: ["650", "600", "7"]
+            answer: "650"
+          - id: l2-c9
+            part: pictogram
+            type: multiple_choice
+            text: "How children get to school. Each picture stands for 10 children. How many children walk?"
+            show: { drawn: bar-chart, pictogram_object: child, key: 10, rows: [["Walk", 60], ["Car", 25], ["Bus", 30]] }
+            options: ["60", "6", "50"]
+            answer: "60"
+          - id: l2-c10
+            part: pictogram
+            type: text_input
+            text: "Each star stands for 10 points. How many points has Team B?"
+            show: { drawn: bar-chart, pictogram_object: star, key: 10, rows: [["Team A", 20], ["Team B", 15]] }
+            answer: "15"
+          - id: l2-c11
+            part: pictogram
+            type: true_false
+            text: "Each star stands for 10 points. Is it true? The green team has 45 points."
+            show: { drawn: bar-chart, pictogram_object: star, key: 10, rows: [["Green team", 40], ["Yellow team", 25]] }
+            answer: false
+          - id: l2-c12
+            part: pictogram
+            type: multiple_choice
+            text: "Lunch in Year 3. Each picture stands for 10 children. How many more children have a school dinner than a packed lunch?"
+            show: { drawn: bar-chart, pictogram_object: child, key: 10, rows: [["School dinner", 70], ["Packed lunch", 50]] }
+            options: ["20", "2", "120"]
+            answer: "20"
+          - id: l2-c13
+            part: compare
+            type: multiple_choice
+            text: "Books read by each class. Which class read the fewest books?"
+            show: { drawn: bar-chart, step: 20, rows: [["3A", 80], ["3B", 60], ["3C", 100]] }
+            options: ["3A", "3B", "3C"]
+            answer: "3B"
+          - id: l2-c14
+            part: compare
+            type: text_input
+            text: "Visitors to the farm. How many visitors came on Saturday and Sunday together?"
+            show: { drawn: bar-chart, step: 100, rows: [["Fri", 200], ["Sat", 400], ["Sun", 350]] }
+            answer: "750"
+          - id: l2-c15
+            part: compare
+            type: true_false
+            text: "Favourite sports. Is it true? Twice as many children chose football as tennis."
+            show: { drawn: bar-chart, step: 10, rows: [["Football", 60], ["Tennis", 40], ["Netball", 30]] }
+            answer: false
+          - id: l2-c16
+            part: compare
+            type: ordering
+            text: "Plants sold at the garden centre. Put the days in order, fewest plants first."
+            show: { drawn: bar-chart, step: 50, rows: [["Mon", 100], ["Tue", 250], ["Wed", 150], ["Thu", 200]] }
+            options: ["Tue", "Mon", "Thu", "Wed"]
+            slot_count: 4
+            answer: ["Mon", "Wed", "Thu", "Tue"]
+          - id: l2-c17
+            part: conclude
+            type: multiple_choice
+            text: "Drinks sold at the café. Which sentence does the chart show?"
+            show: { drawn: bar-chart, step: 10, rows: [["Tea", 50], ["Juice", 30], ["Milk", 20]] }
+            options: ["Tea is the tastiest drink.", "More tea was sold than juice.", "Milk costs too much."]
+            answer: "More tea was sold than juice."
+          - id: l2-c18
+            part: conclude
+            type: true_false
+            text: "Children at the swimming pool. Is it true? The chart shows why more children came on Saturday."
+            show: { drawn: bar-chart, step: 20, rows: [["Fri", 40], ["Sat", 100]] }
+            answer: false
+          - id: l2-c19
+            part: conclude
+            type: multiple_choice
+            text: "Birds seen in the garden. Which sentence can the chart not tell you?"
+            show: { drawn: bar-chart, step: 5, rows: [["Robins", 15], ["Sparrows", 30], ["Blackbirds", 10]] }
+            options: ["Twice as many sparrows were seen as robins.", "Sparrows like this garden best.", "Fewer blackbirds were seen than robins."]
+            answer: "Sparrows like this garden best."
+          - id: l2-c20
+            part: conclude
+            type: true_false
+            text: "Children who take the bus. Is it true? The chart shows that 30 more children take the bus in Year 4 than in Year 3."
+            show: { drawn: bar-chart, step: 10, rows: [["Year 3", 20], ["Year 4", 50]] }
+            answer: true

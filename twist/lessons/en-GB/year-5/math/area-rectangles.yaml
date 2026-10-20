@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [grid]
   facets: [currency]
+  parts:
+    - { id: calculate, what: { de: den Flächeninhalt eines Rechtecks in cm² und m² berechnen, en: calculating the area of a rectangle in cm² and m² } }
+    - { id: missing-side, what: { de: eine fehlende Seite aus dem Flächeninhalt finden, en: finding a missing side from the area } }
+    - { id: irregular, what: { de: den Flächeninhalt unregelmäßiger Figuren bestimmen und schätzen, en: finding and estimating the area of irregular shapes } }
+    - { id: in-context, what: { de: Sachaufgaben mit Flächen, en: problems with area } }
   misconceptions:
     - id: area-perimeter
       what: Adds the sides (finds the perimeter) instead of multiplying
@@ -193,6 +198,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -208,6 +214,20 @@ lessons:
             text: "Which unit would you use for the area of a postage stamp?"
             options: ["cm²", "m²", "cm"]
             answer: "cm²"
+          - id: l1-c4
+            type: text_input
+            text: "A rectangle has an area of 56 cm². It is 8 cm long. How wide is it, in cm?"
+            answer: "7"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? A rectangle 6 cm by 5 cm has an area of 22 cm²."
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Each square is 1 cm². What is the area of the rectangle?"
+            show: { drawn: grid, cols: 7, rows: 4, cells: [[1, 1, orange], [2, 1, orange], [3, 1, orange], [4, 1, orange], [5, 1, orange], [1, 2, orange], [2, 2, orange], [3, 2, orange], [4, 2, orange], [5, 2, orange]] }
+            options: ["10 cm²", "14 cm²", "7 cm²"]
+            answer: "10 cm²"
 
   - n: 2
     title: { de: Flächen schätzen und vergleichen, en: Estimate and compare areas }
@@ -358,30 +378,121 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: calculate
             type: multiple_choice
             text: "Each square is 1 cm². What is the area of the rectangle?"
             show: { drawn: grid, cols: 9, rows: 4, cells: [[1, 1, purple], [2, 1, purple], [3, 1, purple], [4, 1, purple], [5, 1, purple], [6, 1, purple], [7, 1, purple], [1, 2, purple], [2, 2, purple], [3, 2, purple], [4, 2, purple], [5, 2, purple], [6, 2, purple], [7, 2, purple]] }
             options: ["14 cm²", "18 cm²", "9 cm²"]
             answer: "14 cm²"
           - id: l2-c2
+            part: calculate
             type: text_input
             text: "A rectangle is 11 cm long and 4 cm wide. What is its area in cm²?"
             answer: "44"
           - id: l2-c3
+            part: missing-side
             type: multiple_choice
             text: "A rectangle has an area of 42 m². It is 7 m long. How wide is it?"
             options: ["6 m", "35 m", "49 m"]
             answer: "6 m"
           - id: l2-c4
+            part: irregular
             type: multiple_choice
             text: "Each square is 1 cm². What is the area of the orange shape?"
             show: { drawn: grid, cols: 5, rows: 3, cells: [[1, 1, orange], [2, 1, orange], [3, 1, orange]], halves: [[1, 0, bl, orange], [3, 0, br, orange], [0, 1, tr, orange], [4, 1, tl, orange]] }
             options: ["5 cm²", "7 cm²", "3 cm²"]
             answer: "5 cm²"
           - id: l2-c5
+            part: irregular
             type: multiple_choice
             text: "A pond is drawn on 1 m squares. It covers 12 whole squares and 4 squares that are more than half covered. About what is its area?"
             options: ["about 16 m²", "about 12 m²", "about 4 m²"]
             answer: "about 16 m²"
+          - id: l2-c6
+            part: calculate
+            type: true_false
+            text: "Is it true? A square with sides of 9 cm has an area of 36 cm²."
+            answer: false
+          - id: l2-c7
+            part: calculate
+            type: multiple_choice
+            text: "Which is the most sensible area for a classroom floor?"
+            options: ["about 60 m²", "about 60 cm²", "about 6 m²"]
+            answer: "about 60 m²"
+          - id: l2-c8
+            part: calculate
+            type: text_input
+            text: "A table top is 120 cm long and 50 cm wide. What is its area in cm²?"
+            answer: "6000"
+          - id: l2-c9
+            part: missing-side
+            type: text_input
+            text: "A rectangle has an area of 63 cm². It is 9 cm wide. How long is it, in cm?"
+            answer: "7"
+          - id: l2-c10
+            part: missing-side
+            type: multiple_choice
+            text: "A square has an area of 25 m². How long is each side?"
+            options: ["5 m", "6 m", "25 m"]
+            answer: "5 m"
+          - id: l2-c11
+            part: missing-side
+            type: fill_in_blank
+            text: "A rectangle has an area of 40 m². It is 8 m long. Find its width."
+            frame: "8 m × _ m = 40 m²"
+            options: ["4", "5", "32"]
+            answer: ["5"]
+          - id: l2-c12
+            part: missing-side
+            type: true_false
+            text: "Is it true? A rectangle with an area of 32 cm² and a length of 8 cm is 4 cm wide."
+            answer: true
+          - id: l2-c13
+            part: irregular
+            type: multiple_choice
+            text: "Each square is 1 cm². What is the area of the blue shape?"
+            show: { drawn: grid, cols: 5, rows: 4, cells: [[1, 1, blue], [2, 1, blue], [3, 1, blue], [2, 2, blue]], halves: [[0, 1, br, blue], [4, 1, bl, blue], [1, 2, tr, blue], [3, 2, tl, blue]] }
+            options: ["6 cm²", "8 cm²", "4 cm²"]
+            answer: "6 cm²"
+          - id: l2-c14
+            part: irregular
+            type: text_input
+            text: "A cloud is drawn on 1 cm squares. It covers 14 whole squares and 5 squares that are more than half covered. About how many cm² is its area?"
+            answer: "19"
+          - id: l2-c15
+            part: irregular
+            type: multiple_choice
+            text: "A footprint is drawn on 1 cm squares. It covers 20 whole squares, 6 squares that are more than half covered and 5 squares that are less than half covered. About what is its area?"
+            options: ["about 26 cm²", "about 31 cm²", "about 20 cm²"]
+            answer: "about 26 cm²"
+          - id: l2-c16
+            part: in-context
+            type: text_input
+            text: "A wall is 8 m long and 3 m high. One tin of paint covers 6 m². How many tins are needed?"
+            answer: "4"
+          - id: l2-c17
+            part: in-context
+            type: multiple_choice
+            text: "Mia's garden is 10 m by 4 m. Leo's garden is 6 m by 7 m. Whose garden has the bigger area?"
+            options: ["Mia's", "Leo's", "They are the same."]
+            answer: "Leo's"
+            keep_order: true
+          - id: l2-c18
+            part: in-context
+            type: text_input
+            text: "Turf costs £3 for each m². How much does turf for a lawn 9 m by 4 m cost, in £?"
+            answer: "108"
+          - id: l2-c19
+            part: in-context
+            type: true_false
+            text: "A photo is 15 cm long and 10 cm wide. Is it true that its area is 150 cm²?"
+            answer: true
+          - id: l2-c20
+            part: in-context
+            type: multiple_choice
+            text: "A kitchen floor is 4 m by 3 m. Tiles cost £20 for each m². How much do the tiles for the whole floor cost?"
+            options: ["£240", "£280", "£120"]
+            answer: "£240"

@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, letter-card]
   facets: []
+  parts:
+    - { id: continue, what: { de: Bandornamente fortsetzen, en: continuing frieze patterns } }
+    - { id: slide-reflect, what: { de: "beschreiben, ob das Grundmuster verschoben oder gespiegelt wird", en: saying whether the unit is slid along or reflected } }
+    - { id: tile, what: { de: "Formen finden, die lückenlos aneinanderpassen", en: finding shapes that tessellate } }
+    - { id: describe, what: { de: Parkette und ihre Ecken beschreiben, en: describing tessellations and the corners that meet at a point } }
   misconceptions:
     - id: copies-last-item
       what: Continues a frieze by repeating the last item or by alternating two items, without finding the whole repeating unit
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -224,6 +230,24 @@ lessons:
             text: "What is a frieze pattern?"
             options: ["a strip where one unit repeats again and again", "a single picture on a strip", "a pattern with no rule"]
             answer: "a strip where one unit repeats again and again"
+          - id: l1-c4
+            type: multiple_choice
+            text: "What comes next?"
+            show: { drawn: shape, row: [circle, triangle, square, square, circle, triangle, square, square, "?"], colours: purple }
+            options: ["circle", "square", "triangle"]
+            answer: "circle"
+          - id: l1-c5
+            type: multiple_choice
+            text: "How does the pattern repeat?"
+            show: { drawn: letter-card, text: "q p q p" }
+            options: ["The q is reflected.", "The q is slid along.", "The q is turned."]
+            answer: "The q is reflected."
+          - id: l1-c6
+            type: multiple_choice
+            text: "How many shapes are in the repeating unit?"
+            show: { drawn: shape, row: [square, square, circle, circle, square, square, circle, circle], colours: green }
+            options: ["4", "2", "8"]
+            answer: "4"
 
   - n: 2
     title: { de: "Parkette", en: "Tessellations" }
@@ -390,20 +414,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: continue
             type: multiple_choice
             text: "What comes next?"
             show: { drawn: shape, row: [circle, square, square, square, circle, square, square, square, "?"], colours: blue }
             options: ["circle", "square", "triangle"]
             answer: "circle"
           - id: l2-c2
+            part: continue
             type: multiple_choice
             text: "What comes next? p b p b p b ?"
             show: { drawn: letter-card, text: "p b p b p b ?" }
             options: ["p", "b", "d"]
             answer: "p"
           - id: l2-c3
+            part: tile
             type: image_multiple_choice
             text: "Which shape leaves gaps when you try to tile with it?"
             options:
@@ -413,11 +441,113 @@ lessons:
             answer: circle
             option_audio: false
           - id: l2-c4
+            part: tile
             type: true_false
             text: "Rectangles tessellate. Is that true?"
             answer: true
           - id: l2-c5
+            part: describe
             type: multiple_choice
             text: "Why do squares tessellate?"
             options: ["Four right angles make a whole turn, so they fit round a point.", "They are small.", "They are all the same colour."]
             answer: "Four right angles make a whole turn, so they fit round a point."
+          - id: l2-c6
+            part: slide-reflect
+            type: multiple_choice
+            text: "How does the pattern repeat?"
+            show: { drawn: letter-card, text: "q d q d" }
+            options: ["The q is reflected.", "The q is slid along.", "The q is turned."]
+            answer: "The q is reflected."
+          - id: l2-c7
+            part: slide-reflect
+            type: true_false
+            text: "In the pattern b p b p, every second b is reflected. Is that true?"
+            show: { drawn: letter-card, text: "b p b p" }
+            answer: true
+          - id: l2-c8
+            part: slide-reflect
+            type: multiple_choice
+            text: "How does the pattern repeat?"
+            show: { drawn: letter-card, text: "L L L L" }
+            options: ["The L is slid along.", "The L is reflected.", "The L is turned."]
+            answer: "The L is slid along."
+          - id: l2-c9
+            part: slide-reflect
+            type: multiple_choice
+            text: "Which pattern shows the q slid along?"
+            options: ["q q q q", "q p q p", "q d q d"]
+            answer: "q q q q"
+            option_audio: false
+          - id: l2-c10
+            part: slide-reflect
+            type: multiple_choice
+            text: "A b is reflected top to bottom. Which letter does it become?"
+            options: ["p", "d", "q"]
+            answer: "p"
+            option_audio: false
+          - id: l2-c11
+            part: continue
+            type: multiple_choice
+            text: "What comes next?"
+            show: { drawn: shape, row: [hexagon, triangle, triangle, hexagon, triangle, triangle, hexagon, triangle, "?"], colours: yellow }
+            options: ["triangle", "hexagon", "square"]
+            answer: "triangle"
+          - id: l2-c12
+            part: continue
+            type: multiple_choice
+            text: "What comes next? q d q d q ?"
+            show: { drawn: letter-card, text: "q d q d q ?" }
+            options: ["d", "q", "p"]
+            answer: "d"
+            option_audio: false
+          - id: l2-c13
+            part: continue
+            type: multiple_choice
+            text: "What colour comes next?"
+            show: { drawn: shape, row: [square, square, square, square, square, square, square, square, "?"], colours: [red, green, green, green, red, green, green, green, null] }
+            options: ["red", "green", "blue"]
+            answer: "red"
+          - id: l2-c14
+            part: tile
+            type: true_false
+            text: "Regular octagons tessellate on their own. Is that true?"
+            answer: false
+          - id: l2-c15
+            part: tile
+            type: image_multiple_choice
+            text: "Which shape tessellates on its own?"
+            options:
+              - { drawn: shape, kind: hexagon, colour: green }
+              - { drawn: shape, kind: pentagon, colour: green }
+              - { drawn: shape, kind: circle, colour: green }
+            answer: hexagon
+            option_audio: false
+          - id: l2-c16
+            part: tile
+            type: multiple_choice
+            text: "Which shapes all tessellate on their own?"
+            options: ["squares, triangles and hexagons", "squares, circles and hexagons", "triangles, pentagons and squares"]
+            answer: "squares, triangles and hexagons"
+          - id: l2-c17
+            part: describe
+            type: multiple_choice
+            text: "In a tiling of rectangles, how many rectangles meet at one point?"
+            options: ["4", "2", "6"]
+            answer: "4"
+          - id: l2-c18
+            part: describe
+            type: multiple_choice
+            text: "6 equilateral triangles meet at a point, and their corners make a whole turn. How big is each corner?"
+            options: ["60°", "90°", "30°"]
+            answer: "60°"
+          - id: l2-c19
+            part: describe
+            type: true_false
+            text: "Where tiles meet at a point, their corners make a whole turn. Is that true?"
+            answer: true
+          - id: l2-c20
+            part: describe
+            type: multiple_choice
+            text: "Which of these is a tessellation?"
+            options: ["floor tiles laid edge to edge", "coins scattered on a table", "plates stacked in a pile"]
+            answer: "floor tiles laid edge to edge"

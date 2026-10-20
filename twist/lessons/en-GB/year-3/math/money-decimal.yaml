@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [coins]
   facets: [currency, number-format]
+  parts:
+    - { id: write, what: { de: Pfund und Pence mit Dezimalpunkt schreiben, en: writing pounds and pence with a decimal point } }
+    - { id: pence, what: { de: zwischen Pfund und Pence umrechnen, en: changing between pounds and pence } }
+    - { id: coins, what: { de: den Betrag von Münzen und Scheinen aufschreiben, en: writing the amount that coins and notes make } }
+    - { id: compare, what: { de: Geldbeträge vergleichen und ordnen, en: comparing and ordering amounts of money } }
   misconceptions:
     - id: one-digit-pence
       what: Writes a few pence with one digit after the point (£3 and 8p as £3.8)
@@ -203,6 +208,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -221,6 +227,24 @@ lessons:
             show: { drawn: coins, values: [200, 200, 50, 5] }
             options: ["£4.55", "£4.50", "£45.5"]
             answer: "£4.55"
+            option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which amount is the same as £2 and 90p?"
+            options: ["290p", "209p", "29p"]
+            answer: "290p"
+            option_audio: false
+          - id: l1-c5
+            type: text_input
+            text: "How many pence are in £8.50?"
+            say: "How many pence are in eight pounds fifty?"
+            answer: "850"
+          - id: l1-c6
+            type: multiple_choice
+            text: "How much money is this?"
+            show: { drawn: coins, values: [100, 50, 50, 20] }
+            options: ["£2.20", "£2.02", "£22.0"]
+            answer: "£2.20"
             option_audio: false
 
   - n: 2
@@ -389,25 +413,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: write
             type: multiple_choice
             text: "How do you write £7 and 45p?"
             options: ["£7.45", "£74.5", "£745"]
             answer: "£7.45"
             option_audio: false
           - id: l2-c2
+            part: pence
             type: text_input
             text: "£5.08 = _p"
             say: "Five pounds eight. How many pence is that?"
             answer: "508"
           - id: l2-c3
+            part: pence
             type: multiple_choice
             text: "Which amount is the same as 630p?"
             options: ["£6.30", "£63.00", "£0.63"]
             answer: "£6.30"
             option_audio: false
           - id: l2-c4
+            part: coins
             type: multiple_choice
             text: "How much money is this?"
             show: { drawn: coins, values: [200, 200, 5, 2] }
@@ -415,9 +444,116 @@ lessons:
             answer: "£4.07"
             option_audio: false
           - id: l2-c5
+            part: compare
             type: ordering
             text: "Put the amounts in order, from least to most."
             options: ["£3.60", "£3.06", "£6.30", "£0.36"]
             slot_count: 4
             answer: ["£0.36", "£3.06", "£3.60", "£6.30"]
+            option_audio: false
+          - id: l2-c6
+            part: write
+            type: text_input
+            text: "£1 and 6p = £_"
+            say: "Write one pound and six pence with a decimal point."
+            keyboard: decimal
+            answer: "1.06"
+          - id: l2-c7
+            part: write
+            type: true_false
+            text: "Is it true? 30p can be written as £0.30."
+            say: "Thirty pence can be written with a decimal point, like this. Is that true?"
+            answer: true
+          - id: l2-c8
+            part: write
+            type: fill_in_blank
+            text: "Fill the gaps."
+            frame: "£8.02 = £_ and _p"
+            options: ["8", "2", "20", "82"]
+            answer: ["8", "2"]
+          - id: l2-c9
+            part: write
+            type: multiple_choice
+            text: "Which shows nine pounds fifty?"
+            options: ["£9.50", "£9.05", "£950"]
+            answer: "£9.50"
+            option_audio: false
+          - id: l2-c10
+            part: pence
+            type: multiple_choice
+            text: "Which amount is the same as 905p?"
+            options: ["£9.05", "£90.50", "£9.50"]
+            answer: "£9.05"
+            option_audio: false
+          - id: l2-c11
+            part: pence
+            type: text_input
+            text: "84p = £_"
+            say: "Write eighty-four pence in pounds, with a decimal point."
+            keyboard: decimal
+            answer: "0.84"
+          - id: l2-c12
+            part: pence
+            type: true_false
+            text: "Is it true? £6.03 = 630p"
+            say: "Six pounds three is six hundred and thirty pence. Is that true?"
+            answer: false
+          - id: l2-c13
+            part: coins
+            type: multiple_choice
+            text: "How much money is this?"
+            show: { drawn: coins, values: [500, 200, 20, 10, 5] }
+            options: ["£7.35", "£7.53", "£73.5"]
+            answer: "£7.35"
+            option_audio: false
+          - id: l2-c14
+            part: coins
+            type: multiple_choice
+            text: "How much money is this?"
+            show: { drawn: coins, values: [200, 10, 2] }
+            options: ["£2.12", "£2.21", "£21.20"]
+            answer: "£2.12"
+            option_audio: false
+          - id: l2-c15
+            part: coins
+            type: text_input
+            text: "How many pence is this? Type the pence."
+            show: { drawn: coins, values: [50, 20, 20, 2] }
+            answer: "92"
+          - id: l2-c16
+            part: coins
+            type: image_multiple_choice
+            text: "Which coins make £1.25?"
+            options:
+              - { drawn: coins, values: [100, 5] }
+              - { drawn: coins, values: [100, 20, 5] }
+              - { drawn: coins, values: [20, 5] }
+            answer: "125"
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Which price is the dearest?"
+            options: ["£4.99", "£5.05", "£4.95"]
+            answer: "£5.05"
+            option_audio: false
+          - id: l2-c18
+            part: compare
+            type: true_false
+            text: "Is it true? £0.80 is more than 75p."
+            say: "Eighty pence is more than seventy-five pence. Is that true?"
+            answer: true
+          - id: l2-c19
+            part: compare
+            type: ordering
+            text: "Put the prices in order, from dearest to cheapest."
+            options: ["£1.80", "£8.01", "£1.08", "£8.10"]
+            slot_count: 4
+            answer: ["£8.10", "£8.01", "£1.80", "£1.08"]
+            option_audio: false
+          - id: l2-c20
+            part: compare
+            type: multiple_choice
+            text: "Which two amounts are the same?"
+            options: ["£2.60 and 260p", "£2.06 and 260p", "£2.60 and 26p"]
+            answer: "£2.60 and 260p"
             option_audio: false

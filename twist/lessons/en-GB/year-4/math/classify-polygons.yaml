@@ -26,6 +26,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [grid, shape]
   facets: []
+  parts:
+    - { id: triangles, what: { de: Dreiecke nach Seiten und Winkeln einteilen, en: classifying triangles by their sides and angles } }
+    - { id: quadrilaterals, what: { de: Vierecke nach Seiten und Winkeln benennen, en: naming quadrilaterals by their sides and angles } }
+    - { id: regular, what: { de: regelmäßige und unregelmäßige Vielecke unterscheiden, en: telling regular from irregular polygons } }
+    - { id: properties, what: { de: die Eigenschaften einer Figur aus ihrem Namen kennen, en: knowing the properties that go with a shape's name } }
   misconceptions:
     - id: triangle-names
       what: Mixes up equilateral, isosceles and scalene
@@ -213,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -231,6 +237,23 @@ lessons:
             show: { drawn: grid, cols: 6, rows: 3, lines: [[0, 0, 6, 0], [6, 0, 0, 3], [0, 3, 0, 0]] }
             options: ["right-angled", "equilateral", "isosceles"]
             answer: "right-angled"
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which triangle is isosceles?"
+            options:
+              - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 4, 3], [4, 3, 2, 0], [2, 0, 0, 3]], key: iso }
+              - { drawn: grid, cols: 5, rows: 3, lines: [[0, 3, 5, 3], [5, 3, 2, 0], [2, 0, 0, 3]], key: scalene }
+              - { drawn: grid, cols: 4, rows: 3, lines: [[0, 0, 0, 3], [0, 3, 4, 3], [4, 3, 0, 0]], key: right }
+            answer: iso
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? An isosceles triangle has exactly two equal sides."
+            answer: true
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? This triangle is scalene."
+            show: { drawn: grid, cols: 3, rows: 4, lines: [[0, 4, 3, 4], [3, 4, 3, 0], [3, 0, 0, 4]] }
+            answer: true
 
   - n: 2
     title: { de: Vierecke benennen, en: Name quadrilaterals }
@@ -398,6 +421,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l2-c1
             type: multiple_choice
@@ -415,6 +439,23 @@ lessons:
             type: true_false
             text: "Is it true? A kite has two pairs of parallel sides."
             answer: false
+          - id: l2-c4
+            type: multiple_choice
+            text: "A quadrilateral has four right angles, and its sides are not all equal. What is it?"
+            options: ["rectangle", "kite", "trapezium"]
+            answer: "rectangle"
+          - id: l2-c5
+            type: image_multiple_choice
+            text: "Which shape is a kite?"
+            options:
+              - { drawn: grid, cols: 4, rows: 5, lines: [[2, 0, 4, 2], [4, 2, 2, 5], [2, 5, 0, 2], [0, 2, 2, 0]], key: kite }
+              - { drawn: grid, cols: 6, rows: 3, lines: [[0, 3, 4, 3], [4, 3, 6, 0], [6, 0, 2, 0], [2, 0, 0, 3]], key: parallelogram }
+              - { drawn: grid, cols: 6, rows: 3, lines: [[2, 0, 4, 0], [4, 0, 6, 3], [6, 3, 0, 3], [0, 3, 2, 0]], key: trapezium }
+            answer: kite
+          - id: l2-c6
+            type: true_false
+            text: "Is it true? A parallelogram has two pairs of parallel sides."
+            answer: true
 
   - n: 3
     title: { de: Regelmäßig oder unregelmäßig, en: Regular or irregular }
@@ -584,31 +625,37 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l3-c1
+            part: triangles
             type: multiple_choice
             text: "What kind of triangle is this?"
             show: { drawn: grid, cols: 4, rows: 5, lines: [[0, 5, 4, 5], [4, 5, 2, 0], [2, 0, 0, 5]] }
             options: ["isosceles", "scalene", "equilateral"]
             answer: "isosceles"
           - id: l3-c2
+            part: triangles
             type: multiple_choice
             text: "What kind of triangle is this?"
             show: { drawn: grid, cols: 5, rows: 4, lines: [[0, 4, 0, 0], [0, 0, 5, 4], [5, 4, 0, 4]] }
             options: ["right-angled", "equilateral", "isosceles"]
             answer: "right-angled"
           - id: l3-c3
+            part: quadrilaterals
             type: multiple_choice
             text: "What is this quadrilateral called?"
             show: { drawn: grid, cols: 8, rows: 3, lines: [[0, 3, 6, 3], [6, 3, 8, 0], [8, 0, 2, 0], [2, 0, 0, 3]] }
             options: ["parallelogram", "rhombus", "kite"]
             answer: "parallelogram"
           - id: l3-c4
+            part: properties
             type: multiple_choice
             text: "A quadrilateral has two pairs of equal sides next to each other and no parallel sides. What is it?"
             options: ["kite", "parallelogram", "rectangle"]
             answer: "kite"
           - id: l3-c5
+            part: regular
             type: image_multiple_choice
             text: "Which shape is a regular polygon?"
             options:
@@ -616,3 +663,112 @@ lessons:
               - { drawn: grid, cols: 8, rows: 4, lines: [[0, 4, 5, 4], [5, 4, 8, 0], [8, 0, 3, 0], [3, 0, 0, 4]], key: rhombus }
               - { drawn: grid, cols: 6, rows: 5, lines: [[0, 2, 3, 0], [3, 0, 6, 2], [6, 2, 6, 5], [6, 5, 0, 5], [0, 5, 0, 2]], key: house }
             answer: hexagon
+          - id: l3-c6
+            part: triangles
+            type: multiple_choice
+            text: "What kind of triangle is this?"
+            show: { drawn: grid, cols: 5, rows: 3, lines: [[0, 0, 5, 0], [5, 0, 2, 3], [2, 3, 0, 0]] }
+            options: ["scalene", "isosceles", "equilateral"]
+            answer: "scalene"
+          - id: l3-c7
+            part: properties
+            type: true_false
+            text: "Is it true? A triangle with sides of 6 cm, 7 cm and 6 cm is scalene."
+            answer: false
+          - id: l3-c8
+            part: triangles
+            type: image_multiple_choice
+            text: "Which triangle has a right angle?"
+            options:
+              - { drawn: grid, cols: 4, rows: 3, lines: [[0, 0, 4, 0], [4, 0, 4, 3], [4, 3, 0, 0]], key: right }
+              - { drawn: grid, cols: 4, rows: 4, lines: [[0, 4, 4, 4], [4, 4, 2, 0], [2, 0, 0, 4]], key: iso }
+              - { drawn: grid, cols: 6, rows: 3, lines: [[0, 3, 6, 3], [6, 3, 1, 0], [1, 0, 0, 3]], key: scalene }
+            answer: right
+          - id: l3-c9
+            part: triangles
+            type: true_false
+            text: "Is it true? This triangle is isosceles."
+            show: { drawn: grid, cols: 3, rows: 3, lines: [[0, 0, 0, 3], [0, 3, 3, 3], [3, 3, 0, 0]] }
+            answer: true
+          - id: l3-c10
+            part: quadrilaterals
+            type: multiple_choice
+            text: "What is this quadrilateral called?"
+            show: { drawn: grid, cols: 6, rows: 7, lines: [[3, 7, 5, 5], [5, 5, 3, 0], [3, 0, 1, 5], [1, 5, 3, 7]] }
+            options: ["kite", "rhombus", "trapezium"]
+            answer: "kite"
+          - id: l3-c11
+            part: quadrilaterals
+            type: multiple_choice
+            text: "What is this quadrilateral called?"
+            show: { drawn: grid, cols: 6, rows: 3, lines: [[0, 0, 6, 0], [6, 0, 6, 3], [6, 3, 2, 3], [2, 3, 0, 0]] }
+            options: ["trapezium", "kite", "rhombus"]
+            answer: "trapezium"
+          - id: l3-c12
+            part: quadrilaterals
+            type: image_multiple_choice
+            text: "Which shape is a rhombus?"
+            options:
+              - { drawn: grid, cols: 8, rows: 6, lines: [[0, 3, 4, 0], [4, 0, 8, 3], [8, 3, 4, 6], [4, 6, 0, 3]], key: rhombus }
+              - { drawn: grid, cols: 7, rows: 3, lines: [[0, 3, 5, 3], [5, 3, 7, 0], [7, 0, 2, 0], [2, 0, 0, 3]], key: parallelogram }
+              - { drawn: grid, cols: 4, rows: 5, lines: [[2, 0, 4, 1], [4, 1, 2, 5], [2, 5, 0, 1], [0, 1, 2, 0]], key: kite }
+            answer: rhombus
+          - id: l3-c13
+            part: quadrilaterals
+            type: true_false
+            text: "Is it true? This quadrilateral is a parallelogram."
+            show: { drawn: grid, cols: 7, rows: 3, lines: [[2, 0, 5, 0], [5, 0, 7, 3], [7, 3, 0, 3], [0, 3, 2, 0]] }
+            answer: false
+          - id: l3-c14
+            part: regular
+            type: multiple_choice
+            text: "Is this hexagon regular or irregular?"
+            show: { drawn: grid, cols: 5, rows: 4, lines: [[1, 0, 4, 0], [4, 0, 5, 2], [5, 2, 4, 4], [4, 4, 1, 4], [1, 4, 0, 2], [0, 2, 1, 0]] }
+            options: ["regular", "irregular"]
+            keep_order: true
+            answer: "irregular"
+          - id: l3-c15
+            part: regular
+            type: multiple_choice
+            text: "Is this square regular or irregular?"
+            show: { drawn: grid, cols: 5, rows: 5, lines: [[1, 1, 4, 1], [4, 1, 4, 4], [4, 4, 1, 4], [1, 4, 1, 1]] }
+            options: ["regular", "irregular"]
+            keep_order: true
+            answer: "regular"
+          - id: l3-c16
+            part: regular
+            type: true_false
+            text: "Is it true? A polygon with all its sides equal is always regular."
+            answer: false
+          - id: l3-c17
+            part: regular
+            type: image_multiple_choice
+            text: "Which shape is an irregular polygon?"
+            options:
+              - { drawn: shape, kind: pentagon, colour: green }
+              - { drawn: shape, kind: octagon, colour: green }
+              - { drawn: grid, cols: 5, rows: 2, lines: [[0, 0, 5, 0], [5, 0, 5, 2], [5, 2, 0, 2], [0, 2, 0, 0]], key: rectangle }
+            answer: rectangle
+          - id: l3-c18
+            part: properties
+            type: multiple_choice
+            text: "I have 4 sides. Both pairs of my opposite sides are parallel. My sides are not all equal and I have no right angles. What am I?"
+            options: ["a parallelogram", "a rhombus", "a trapezium"]
+            answer: "a parallelogram"
+          - id: l3-c19
+            part: properties
+            type: sorting
+            text: "Sort the shapes: how many pairs of parallel sides do they have?"
+            bins:
+              - { id: one, show: { text: "only 1 pair" }, say: "Only one pair." }
+              - { id: two, show: { text: "2 pairs" }, say: "Two pairs." }
+            options:
+              - { text: "trapezium", bin: one }
+              - { text: "rectangle", bin: two }
+              - { text: "rhombus", bin: two }
+              - { text: "parallelogram", bin: two }
+          - id: l3-c20
+            part: properties
+            type: true_false
+            text: "Is it true? A rhombus has two pairs of parallel sides."
+            answer: true

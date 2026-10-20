@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: tell-apart, what: { de: Plural-s und besitzanzeigendes s unterscheiden, en: telling a plural s from a possessive s } }
+    - { id: possessive, what: { de: den Besitz mit Apostroph schreiben, en: writing a possessive with an apostrophe } }
+    - { id: plural, what: { de: den Plural ohne Apostroph schreiben, en: writing a plural with no apostrophe } }
+    - { id: both, what: { de: beide Arten in einer Wortgruppe oder einem Satz, en: both kinds in one phrase or sentence } }
   misconceptions:
     - id: apostrophe-before-every-s
       what: Puts an apostrophe before any final s (I like banana's, the dog's are barking)
@@ -224,6 +229,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -243,6 +249,22 @@ lessons:
             say: "One word has an apostrophe it should not have. Tap it."
             show: { drawn: letter-card, text: "I picked some flower's for Nan." }
             spans: ["flower's"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which phrase has a plural s?"
+            options: ["three clocks", "the clock's hands", "Nan's clock"]
+            answer: "three clocks"
+            option_audio: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap the possessive."
+            say: "Tap the word that shows something belongs to someone."
+            show: { drawn: letter-card, text: "The ducks swam up to Lily's boat." }
+            spans: ["Lily's"]
+          - id: l1-c6
+            type: true_false
+            text: "\"The teacher's are in the hall.\"\n\nIs it written correctly?"
+            answer: false
 
   - n: 2
     title: { de: Beides im Satz, en: Both in one sentence }
@@ -413,28 +435,35 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: tell-apart
             type: multiple_choice
             text: "\"Ellie's boots are wet.\"\nWhat does the 's in Ellie's show?"
             options: ["more than one Ellie", "the boots belong to Ellie"]
             answer: "the boots belong to Ellie"
             keep_order: true
           - id: l2-c2
-            type: multiple_choice
-            text: "Which sentence is right?"
-            options: ["The farm sells carrots.", "The farm sells carrot's.", "The farm sells carrots'."]
-            answer: "The farm sells carrots."
+            part: plural
+            type: fill_in_blank
+            text: "Fill the gap."
+            say: "Fill the gap. We saw lots of seals on the rocks."
+            frame: "We saw lots of seal_ on the rocks."
+            options: ["s", "'s", "s'"]
+            answer: ["s"]
             option_audio: false
           - id: l2-c3
+            part: both
             type: fill_in_blank
-            text: "The keys belong to the caretaker. Fill the gaps."
-            say: "Fill the gaps. The keys belong to the caretaker."
-            frame: "the caretaker_ key_"
+            text: "Fill the gaps."
+            say: "Fill the gaps. Both twins played with Ali's kite."
+            frame: "Both twin_ played with Ali_ kite."
             options: ["'s", "s"]
-            answer: ["'s", "s"]
+            answer: ["s", "'s"]
             option_audio: false
           - id: l2-c4
+            part: tell-apart
             type: sorting
             text: "Plural or possessive?"
             say: "Sort the phrases from a bakery. Does the s mean more than one, or that something belongs?"
@@ -448,8 +477,110 @@ lessons:
               - { text: "the shop's oven", bin: possessive }
               - { text: "ten buns", bin: plural }
           - id: l2-c5
+            part: plural
             type: highlight_in_text
             text: "Tap the word with a wrong apostrophe."
             say: "One word has an apostrophe it should not have. Tap it."
             show: { drawn: letter-card, text: "Dad's van has four new tyre's." }
             spans: ["tyre's."]
+          - id: l2-c6
+            part: tell-apart
+            type: multiple_choice
+            text: "Which phrase has an s that shows something belongs?"
+            options: ["the clown's nose", "the clowns laughed", "two clowns"]
+            answer: "the clown's nose"
+            option_audio: false
+          - id: l2-c7
+            part: tell-apart
+            type: true_false
+            text: "\"The bees buzzed round the hive.\"\n\nIs it true? The s in bees shows that something belongs to a bee."
+            answer: false
+          - id: l2-c8
+            part: tell-apart
+            type: multiple_choice
+            text: "\"My friend's parrot can talk.\"\nWhich word shows belonging?"
+            options: ["friend's", "parrot", "talk"]
+            answer: "friend's"
+            option_audio: false
+          - id: l2-c9
+            part: possessive
+            type: text_input
+            keyboard: letters
+            text: "Write the owner word with its apostrophe.\nthe lunchbox of Priya → _____ lunchbox"
+            say: "Write the owner word. The lunchbox belongs to Priya."
+            answer: "Priya's"
+          - id: l2-c10
+            part: possessive
+            type: highlight_in_text
+            text: "Tap the word that needs an apostrophe."
+            say: "One word needs an apostrophe. Tap it."
+            show: { drawn: letter-card, text: "We stayed at my grandads house." }
+            spans: ["grandads"]
+          - id: l2-c11
+            part: possessive
+            type: true_false
+            text: "\"Sophie's coat is on the floor.\"\n\nIs it written correctly?"
+            answer: true
+          - id: l2-c12
+            part: possessive
+            type: multiple_choice
+            text: "Which phrase means that the whistle belongs to the referee?"
+            options: ["the referee's whistle", "the referees whistle", "the referee whistle's"]
+            answer: "the referee's whistle"
+            option_audio: false
+          - id: l2-c13
+            part: possessive
+            type: fill_in_blank
+            text: "Fill the gap."
+            say: "Fill the gap. Have you seen Oliver's new bike?"
+            frame: "Have you seen Oliver_ new bike?"
+            options: ["'s", "s", "s'"]
+            answer: ["'s"]
+            option_audio: false
+          - id: l2-c14
+            part: plural
+            type: highlight_in_text
+            text: "Tap the words with a wrong apostrophe."
+            say: "Two words have an apostrophe they should not have. Tap them."
+            show: { drawn: letter-card, text: "Our class grew bean's and pea's in pots." }
+            spans: ["bean's", "pea's"]
+          - id: l2-c15
+            part: plural
+            type: true_false
+            text: "\"The swings in the park are broken.\"\n\nIs it written correctly?"
+            answer: true
+          - id: l2-c16
+            part: plural
+            type: multiple_choice
+            text: "\"I love grape's.\"\n\nWhat is wrong?"
+            options: ["Grapes means more than one grape, so it needs no apostrophe.", "Grapes needs two apostrophes.", "Nothing is wrong."]
+            answer: "Grapes means more than one grape, so it needs no apostrophe."
+            option_audio: false
+          - id: l2-c17
+            part: both
+            type: highlight_in_text
+            text: "Tap the word that needs an apostrophe."
+            say: "One word needs an apostrophe. Tap it."
+            show: { drawn: letter-card, text: "The boys kicked Dans football over the fence." }
+            spans: ["Dans"]
+          - id: l2-c18
+            part: both
+            type: multiple_choice
+            text: "Which sentence is right?"
+            options: ["The goats ate the farmer's hat.", "The goat's ate the farmers hat.", "The goat's ate the farmer's hat."]
+            answer: "The goats ate the farmer's hat."
+            option_audio: false
+          - id: l2-c19
+            part: both
+            type: fill_in_blank
+            text: "Fill the gaps."
+            say: "Fill the gaps. Mia's two brothers ate all six cakes."
+            frame: "Mia_ two brother_ ate all six cake_."
+            options: ["'s", "s"]
+            answer: ["'s", "s", "s"]
+            option_audio: false
+          - id: l2-c20
+            part: both
+            type: true_false
+            text: "\"Kai's cousin's live in Wales.\"\n\nIs it written correctly?"
+            answer: false

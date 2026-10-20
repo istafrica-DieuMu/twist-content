@@ -20,9 +20,14 @@ metadata:
   builds_on: [math.add-sub-to-20.add-meaning]
   also_practises: [math.add-sub-to-20.add-meaning]
   vocabulary: { en: [take away, subtract, minus, left, equals, number sentence] }
-  forms: [drawn, text, audio]
+  forms: [drawn, picture, text, audio]
   drawn: [ten-frame]
   facets: []
+  parts:
+    - { id: picture, what: { de: die Minusaufgabe zu einem Bild finden, en: finding the subtraction for a picture } }
+    - { id: story, what: { de: die Minusaufgabe zu einer Geschichte finden und lösen, en: finding and solving the subtraction for a story } }
+    - { id: add-or-take, what: { de: "entscheiden, ob eine Geschichte plus oder minus ist", en: deciding whether a story is adding or taking away } }
+    - { id: story-for-sum, what: { de: die passende Geschichte zu einer Minusaufgabe finden, en: finding a story that fits a subtraction } }
   misconceptions:
     - id: plus-for-everything
       what: Uses + for every story, also when some go away
@@ -45,8 +50,9 @@ lessons:
         tasks:
           - id: l1-w1
             type: multiple_choice
-            text: "Which one fits?"
+            text: "3 children are playing. 2 more come.\nWhich one fits?"
             say: "Three children are playing. Two more come. Which one fits?"
+            show: { object: child, groups: [3, 2] }
             options: ["3 + 2", "3 + 3", "2 + 2"]
             answer: "3 + 2"
             difficulty: easy
@@ -103,8 +109,9 @@ lessons:
                   - "Three are left."
               - id: l1-f3
                 type: multiple_choice
-                text: "Which one fits?"
+                text: "5 birds are in the tree. 3 fly away.\nWhich one fits?"
                 say: "Five birds are in the tree. Three fly away. Which one fits?"
+                show: { object: bird, count: 5, gone: 3 }
                 options: ["5 − 3", "5 + 3", "3 − 5"]
                 answer: "5 − 3"
                 feedback:
@@ -127,8 +134,9 @@ lessons:
                   - "7 − 3 = 4."
               - id: l1-f5
                 type: true_false
-                text: "Does 4 − 1 fit?"
+                text: "Sam has 4 balloons. 1 pops.\nDoes 4 − 1 fit?"
                 say: "Sam has four balloons. One pops. Does four take away one fit?"
+                show: { object: balloon, count: 4, gone: 1 }
                 answer: true
                 hints:
                   - "A popped balloon is gone."
@@ -166,8 +174,9 @@ lessons:
                 hints: ["Count the ones with no cross."]
               - id: l1-s3
                 type: multiple_choice
-                text: "Which one fits?"
+                text: "There are 6 apples in the bowl. Dad takes 1 out.\nWhich one fits?"
                 say: "There are six apples in the bowl. Dad takes one out. Which one fits?"
+                show: { object: apple, count: 6, gone: 1 }
                 options: ["6 − 1", "6 + 1", "1 − 6"]
                 answer: "6 − 1"
                 hints: ["Are there more apples in the bowl, or fewer?"]
@@ -182,8 +191,9 @@ lessons:
                 hints: ["Start with how many there were."]
               - id: l1-s5
                 type: true_false
-                text: "Does 3 + 1 fit?"
+                text: "3 children are in the garden. 1 goes home.\nDoes 3 + 1 fit?"
                 say: "Three children are in the garden. One goes home. Does three add one fit?"
+                show: { object: child, count: 3, gone: 1 }
                 answer: false
                 hints: ["Are there more in the garden, or fewer?"]
               - id: l1-s6
@@ -221,18 +231,21 @@ lessons:
                 answer: ["9", "1", "8"]
               - id: l1-n4
                 type: multiple_choice
-                text: "Which one fits?"
+                text: "7 ducks are on the pond. 2 swim away.\nWhich one fits?"
                 say: "Seven ducks are on the pond. Two swim away. Which one fits?"
+                show: { object: duck, count: 7, gone: 2 }
                 options: ["7 − 2", "7 + 2", "2 − 7"]
                 answer: "7 − 2"
               - id: l1-n5
                 type: true_false
-                text: "Does 5 − 2 fit?"
-                say: "Lily has five sweets and eats two. Does five take away two fit?"
+                text: "Lily has 5 strawberries and eats 2.\nDoes 5 − 2 fit?"
+                say: "Lily has five strawberries and eats two. Does five take away two fit?"
+                show: { object: strawberry, count: 5, gone: 2 }
                 answer: true
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -250,10 +263,32 @@ lessons:
             answer: "7"
           - id: l1-c3
             type: multiple_choice
-            text: "Which one fits?"
+            text: "4 children are on the bus. 1 child gets off.\nWhich one fits?"
             say: "Four children are on the bus. One child gets off. Which one fits?"
+            show: { object: child, count: 4, gone: 1 }
             options: ["4 − 1", "4 + 1", "1 − 4"]
             answer: "4 − 1"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Write the number sentence."
+            say: "Eight counters, and four are crossed out. Write the number sentence."
+            show: { drawn: ten-frame, filled: 8, cross: 4 }
+            frame: "_ − _ = _"
+            options: ["4", "6", "8"]
+            answer: ["8", "4", "4"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "How many are left?"
+            say: "How many counters are left?"
+            show: { drawn: ten-frame, filled: 5, cross: 4 }
+            options: ["1", "2", "4"]
+            answer: "1"
+          - id: l1-c6
+            type: true_false
+            text: "Tim has 6 pears. He eats 2.\nDoes 6 − 2 fit?"
+            say: "Tim has six pears. He eats two. Does six take away two fit?"
+            show: { object: pear, count: 6, gone: 2 }
+            answer: true
 
   - n: 2
     title: { de: "Plus oder minus?", en: "Add or take away?" }
@@ -272,8 +307,9 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: multiple_choice
-            text: "Which one fits?"
+            text: "5 children are playing. 2 go home.\nWhich one fits?"
             say: "Five children are playing. Two go home. Which one fits?"
+            show: { object: child, count: 5, gone: 2 }
             options: ["5 − 2", "5 + 2", "2 − 5"]
             answer: "5 − 2"
             difficulty: easy
@@ -296,8 +332,9 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "Add or take away?"
+                text: "3 cats are asleep. 2 cats run off.\nAdd or take away?"
                 say: "Three cats are asleep. Two cats run off. Add or take away?"
+                show: { object: cat, count: 3, gone: 2 }
                 options: ["add", "take away"]
                 answer: "take away"
                 feedback:
@@ -318,8 +355,9 @@ lessons:
                   - "5 birds, and 1 flies away."
               - id: l2-f3
                 type: fill_in_blank
-                text: "Write the number sentence."
+                text: "There are 8 biscuits in the tin. Ben eats 3.\nWrite the number sentence."
                 say: "There are eight biscuits in the tin. Ben eats three. Write the number sentence."
+                show: { drawn: ten-frame, filled: 8, cross: 3 }
                 frame: "_ − _ = _"
                 options: ["3", "5", "8"]
                 answer: ["8", "3", "5"]
@@ -329,8 +367,9 @@ lessons:
                   - "8 − 3 = 5."
               - id: l2-f4
                 type: multiple_choice
-                text: "Add or take away?"
+                text: "4 children are playing tag. 3 more join in.\nAdd or take away?"
                 say: "Four children are playing tag. Three more join in. Add or take away?"
+                show: { object: child, groups: [4, 3] }
                 options: ["add", "take away"]
                 answer: "add"
                 hints:
@@ -339,8 +378,9 @@ lessons:
                   - "Add."
               - id: l2-f5
                 type: true_false
-                text: "Are 5 cups left?"
+                text: "7 cups are on the table. 2 fall off and break.\nAre 5 cups left?"
                 say: "Seven cups are on the table. Two fall off and break. Are five cups left?"
+                show: { object: cup, count: 7, gone: 2 }
                 answer: true
                 hints:
                   - "Seven take away two."
@@ -348,8 +388,9 @@ lessons:
                   - "Yes."
               - id: l2-f6
                 type: multiple_choice
-                text: "How many are left?"
+                text: "Mia has 6 stickers. She gives 2 to her friend. How many stickers does Mia have now?"
                 say: "Mia has six stickers. She gives two to her friend. How many stickers does Mia have now?"
+                show: { object: sticker, count: 6, gone: 2 }
                 options: ["4", "5", "8"]
                 answer: "4"
                 feedback:
@@ -363,8 +404,9 @@ lessons:
             tasks:
               - id: l2-s1
                 type: multiple_choice
-                text: "Add or take away?"
+                text: "5 fish are in the tank. Mum puts in 2 more.\nAdd or take away?"
                 say: "Five fish are in the tank. Mum puts in two more. Add or take away?"
+                show: { object: fish, groups: [5, 2] }
                 options: ["add", "take away"]
                 answer: "add"
                 hints: ["More fish or fewer?"]
@@ -376,29 +418,33 @@ lessons:
                 hints: ["Start with 7. Then some go away."]
               - id: l2-s3
                 type: fill_in_blank
-                text: "Write the number sentence."
+                text: "10 socks are on the washing line. Mum takes 4 down.\nWrite the number sentence."
                 say: "Ten socks are on the washing line. Mum takes four down. Write the number sentence."
+                show: { object: sock, count: 10, gone: 4 }
                 frame: "_ − _ = _"
                 options: ["4", "6", "10"]
                 answer: ["10", "4", "6"]
                 hints: ["Start with how many socks were there."]
               - id: l2-s4
                 type: true_false
-                text: "Does 4 + 2 fit?"
+                text: "4 birds are on the fence. 2 fly away.\nDoes 4 + 2 fit?"
                 say: "Four birds are on the fence. Two fly away. Does four add two fit?"
+                show: { object: bird, count: 4, gone: 2 }
                 answer: false
                 hints: ["Are there more birds on the fence, or fewer?"]
               - id: l2-s5
                 type: multiple_choice
-                text: "How many are left?"
+                text: "Leo has 9 marbles. He loses 3. How many does he have now?"
                 say: "Leo has nine marbles. He loses three. How many does he have now?"
+                show: { object: marble, count: 9, gone: 3 }
                 options: ["5", "6", "12"]
                 answer: "6"
                 hints: ["Count back three from nine."]
               - id: l2-s6
                 type: multiple_choice
-                text: "Add or take away?"
+                text: "8 leaves are on the tree. The wind blows 3 off.\nAdd or take away?"
                 say: "Eight leaves are on the tree. The wind blows three off. Add or take away?"
+                show: { object: leaf, count: 8, gone: 3 }
                 options: ["add", "take away"]
                 answer: "take away"
                 hints: ["Are there more leaves on the tree, or fewer?"]
@@ -407,14 +453,16 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "Add or take away?"
+                text: "2 dogs are playing. 2 more dogs come.\nAdd or take away?"
                 say: "Two dogs are playing. Two more dogs come. Add or take away?"
+                show: { object: dog, groups: [2, 2] }
                 options: ["add", "take away"]
                 answer: "add"
               - id: l2-n2
                 type: fill_in_blank
-                text: "Write the number sentence."
+                text: "There are 7 sweets in the jar. Ella takes 1.\nWrite the number sentence."
                 say: "There are seven sweets in the jar. Ella takes one. Write the number sentence."
+                show: { drawn: ten-frame, filled: 7, cross: 1 }
                 frame: "_ − _ = _"
                 options: ["1", "6", "7"]
                 answer: ["7", "1", "6"]
@@ -425,20 +473,24 @@ lessons:
                 answer: "9 apples are on the tree. 5 fall off."
               - id: l2-n4
                 type: true_false
-                text: "Are 2 still sitting?"
+                text: "5 children are at the table. 3 get up and leave.\nAre 2 children still sitting?"
                 say: "Five children are at the table. Three get up and leave. Are two children still sitting?"
+                show: { object: child, count: 5, gone: 3 }
                 answer: true
               - id: l2-n5
                 type: multiple_choice
-                text: "How many are left?"
+                text: "8 cars are in the car park. 4 drive away. How many are still there?"
                 say: "Eight cars are in the car park. Four drive away. How many are still there?"
+                show: { object: car, count: 8, gone: 4 }
                 options: ["3", "4", "12"]
                 answer: "4"
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: picture
             type: multiple_choice
             text: "Which one fits?"
             say: "Ten counters, and three are crossed out. Which one fits?"
@@ -446,27 +498,145 @@ lessons:
             options: ["10 − 3", "10 + 3", "3 − 10"]
             answer: "10 − 3"
           - id: l2-c2
+            part: add-or-take
             type: multiple_choice
-            text: "Add or take away?"
+            text: "6 children are swimming. 2 get out of the pool.\nAdd or take away?"
             say: "Six children are swimming. Two get out of the pool. Add or take away?"
+            show: { object: child, count: 6, gone: 2 }
             options: ["add", "take away"]
             answer: "take away"
           - id: l2-c3
+            part: story
             type: fill_in_blank
-            text: "Write the number sentence."
+            text: "There are 9 strawberries on the plate. Tom eats 3.\nWrite the number sentence."
             say: "There are nine strawberries on the plate. Tom eats three. Write the number sentence."
+            show: { object: strawberry, count: 9, gone: 3 }
             frame: "_ − _ = _"
             options: ["3", "6", "9"]
             answer: ["9", "3", "6"]
           - id: l2-c4
+            part: story-for-sum
             type: multiple_choice
             text: "Which story fits 6 − 3?"
             options: ["6 ducks are swimming. 3 fly away.", "6 ducks are swimming. 3 more come.", "3 ducks are swimming. 6 fly away."]
             answer: "6 ducks are swimming. 3 fly away."
           - id: l2-c5
+            part: picture
             type: multiple_choice
             text: "How many are left?"
             say: "How many counters are left?"
             show: { drawn: ten-frame, filled: 8, cross: 5 }
             options: ["2", "3", "4"]
             answer: "3"
+          - id: l2-c6
+            part: picture
+            type: fill_in_blank
+            text: "Write the number sentence."
+            say: "Nine counters, and six are crossed out. Write the number sentence."
+            show: { drawn: ten-frame, filled: 9, cross: 6 }
+            frame: "_ − _ = _"
+            options: ["3", "6", "9"]
+            answer: ["9", "6", "3"]
+          - id: l2-c7
+            part: picture
+            type: multiple_choice
+            text: "How many are left?"
+            say: "How many counters are left?"
+            show: { drawn: ten-frame, filled: 10, cross: 7 }
+            options: ["3", "4", "7"]
+            answer: "3"
+          - id: l2-c8
+            part: picture
+            type: true_false
+            text: "Does 7 − 2 fit the picture?"
+            say: "Look at the counters. Does seven take away two fit the picture?"
+            show: { drawn: ten-frame, filled: 7, cross: 5 }
+            answer: false
+          - id: l2-c9
+            part: story
+            type: multiple_choice
+            text: "6 frogs are on a log. 4 jump into the pond.\nWhich one fits?"
+            say: "Six frogs are on a log. Four jump into the pond. Which one fits?"
+            show: { object: frog, count: 6, gone: 4 }
+            options: ["6 − 4", "6 + 4", "4 − 6"]
+            answer: "6 − 4"
+          - id: l2-c10
+            part: story
+            type: fill_in_blank
+            text: "There are 10 pencils in the pot. Sam takes 6.\nWrite the number sentence."
+            say: "There are ten pencils in the pot. Sam takes six. Write the number sentence."
+            show: { object: pencil, count: 10, gone: 6 }
+            frame: "_ − _ = _"
+            options: ["4", "6", "10"]
+            answer: ["10", "6", "4"]
+          - id: l2-c11
+            part: story
+            type: text_input
+            text: "8 balloons are tied to the gate. 5 float away. How many are left?"
+            say: "Eight balloons are tied to the gate. Five float away. How many are left?"
+            show: { object: balloon, count: 8, gone: 5 }
+            answer: "3"
+          - id: l2-c12
+            part: story
+            type: true_false
+            text: "9 children are in the pool. 4 get out.\nAre 5 children still in the pool?"
+            say: "Nine children are in the pool. Four get out. Are five children still in the pool?"
+            show: { object: child, count: 9, gone: 4 }
+            answer: true
+          - id: l2-c13
+            part: add-or-take
+            type: multiple_choice
+            text: "7 bees are on a flower. 3 more come.\nAdd or take away?"
+            say: "Seven bees are on a flower. Three more come. Add or take away?"
+            show: { object: bee, groups: [7, 3] }
+            options: ["add", "take away"]
+            answer: "add"
+          - id: l2-c14
+            part: add-or-take
+            type: multiple_choice
+            text: "10 apples are on the tree. 2 fall off.\nAdd or take away?"
+            say: "Ten apples are on the tree. Two fall off. Add or take away?"
+            show: { object: apple, count: 10, gone: 2 }
+            options: ["add", "take away"]
+            answer: "take away"
+          - id: l2-c15
+            part: add-or-take
+            type: true_false
+            text: "5 ducks are on the pond. 3 swim away.\nDoes 5 + 3 fit?"
+            say: "Five ducks are on the pond. Three swim away. Does five add three fit?"
+            show: { object: duck, count: 5, gone: 3 }
+            answer: false
+          - id: l2-c16
+            part: add-or-take
+            type: multiple_choice
+            text: "Ava has 4 shells. She finds 4 more.\nWhich one fits?"
+            say: "Ava has four shells. She finds four more. Which one fits?"
+            show: { object: shell, groups: [4, 4] }
+            options: ["4 + 4", "4 − 4", "8 − 4"]
+            answer: "4 + 4"
+          - id: l2-c17
+            part: story-for-sum
+            type: multiple_choice
+            text: "Which story fits 8 − 2?"
+            options: ["8 cakes are on the plate. 2 get eaten.", "8 cakes are on the plate. Mum bakes 2 more.", "2 cakes are on the plate. 8 get eaten."]
+            answer: "8 cakes are on the plate. 2 get eaten."
+          - id: l2-c18
+            part: story-for-sum
+            type: multiple_choice
+            text: "Which story fits 10 − 4?"
+            options: ["10 children are on the bus. 4 get on.", "10 children are on the bus. 4 get off.", "4 children are on the bus. 10 get off."]
+            answer: "10 children are on the bus. 4 get off."
+          - id: l2-c19
+            part: story-for-sum
+            type: true_false
+            text: "7 boats are in the harbour. 3 sail away.\nDoes this story fit 7 − 3?"
+            say: "Seven boats are in the harbour. Three sail away. Does this story fit seven take away three?"
+            show: { object: boat, count: 7, gone: 3 }
+            answer: true
+          - id: l2-c20
+            part: story-for-sum
+            type: true_false
+            text: "5 sheep are in the field. 1 more comes.\nDoes this story fit 5 − 1?"
+            say: "Five sheep are in the field. One more comes. Does this story fit five take away one?"
+            show: { object: sheep, groups: [5, 1] }
+            answer: false

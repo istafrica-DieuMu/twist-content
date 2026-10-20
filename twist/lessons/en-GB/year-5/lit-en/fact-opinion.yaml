@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: sentence, what: { de: "bei einem Satz sagen, ob er Tatsache oder Meinung ist", en: telling whether a sentence is a fact or an opinion } }
+    - { id: opinion-words, what: { de: "die Wörter finden, die eine Meinung zeigen", en: spotting the words that show an opinion } }
+    - { id: strong-opinion, what: { de: "eine Meinung bleibt Meinung, auch wenn sie sicher klingt oder viele sie teilen", en: an opinion said strongly or by many people is still an opinion } }
+    - { id: in-a-text, what: { de: Tatsachen und Meinungen in einem Text unterscheiden, en: finding facts and opinions mixed in one text } }
   misconceptions:
     - id: wrong-is-opinion
       what: Calls a false statement an opinion (London is in France)
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -249,6 +255,30 @@ lessons:
             say: "Tap the word that shows this is an opinion."
             show: { drawn: letter-card, text: "The park has a lovely pond" }
             spans: ["lovely"]
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? \"Bananas turn yellow when they are ripe\" is a fact."
+            say: "Is it true? Bananas turn yellow when they are ripe, is a fact."
+            answer: true
+          - id: l1-c5
+            type: sorting
+            text: "Fact or opinion? Sort the sentences."
+            say: "Read each sentence. Is it a fact or an opinion? Sort them."
+            option_audio: false
+            bins:
+              - { id: fact, show: { text: "fact" }, say: "Fact." }
+              - { id: opinion, show: { text: "opinion" }, say: "Opinion." }
+            options:
+              - { text: "The Moon goes round the Earth.", bin: fact }
+              - { text: "Films about space are exciting.", bin: opinion }
+              - { text: "Sharks live in the sea.", bin: fact }
+              - { text: "Sharks are horrible.", bin: opinion }
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which sentence is an opinion?"
+            options: ["Hedgehogs are the sweetest animals.", "Hedgehogs eat beetles.", "Hedgehogs sleep through the winter."]
+            answer: "Hedgehogs are the sweetest animals."
+            option_audio: false
 
   - n: 2
     title: { de: Gemischt in einem Text, en: Mixed in one text }
@@ -451,25 +481,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sentence
             type: multiple_choice
             text: "\"The Earth goes round the Sun.\" Fact or opinion?"
             say: "Read the sentence. Is it a fact or an opinion?"
             options: ["fact", "opinion"]
             answer: "fact"
           - id: l2-c2
+            part: strong-opinion
             type: true_false
             text: "Everyone agrees that chocolate is the best flavour.\n\nIs it a fact?"
             say: "Read the sentence. Is it a fact?"
             answer: false
           - id: l2-c3
+            part: opinion-words
             type: highlight_in_text
             text: "Tap the opinion words."
             say: "Tap every word that shows an opinion."
             show: { drawn: letter-card, text: "It was a wonderful trip to a beautiful beach" }
             spans: ["wonderful", "beautiful"]
           - id: l2-c4
+            part: in-a-text
             type: multiple_choice
             text: "The zoo has 40 kinds of monkey. The monkeys are the cutest in the country. It opens at 10 am.\n\nWhich sentence is an opinion?"
             say: "Read the leaflet. Which sentence is an opinion?"
@@ -477,6 +512,124 @@ lessons:
             answer: "The monkeys are the cutest in the country."
             option_audio: false
           - id: l2-c5
+            part: sentence
             type: true_false
-            text: "Is it true? \"Paris is in Spain\" is an opinion."
+            text: "Is it true? \"Paris is in Spain\" is wrong, but it is not an opinion."
+            answer: true
+          - id: l2-c6
+            part: sentence
+            type: sorting
+            text: "Which are facts and which are opinions? Sort them."
+            say: "Read each sentence. Is it a fact or an opinion? Sort them."
+            option_audio: false
+            bins:
+              - { id: fact, show: { text: "fact" }, say: "Fact." }
+              - { id: opinion, show: { text: "opinion" }, say: "Opinion." }
+            options:
+              - { text: "A spider is not an insect.", bin: fact }
+              - { text: "Homework is a waste of time.", bin: opinion }
+              - { text: "Wales has mountains.", bin: fact }
+              - { text: "Swimming is more fun than running.", bin: opinion }
+          - id: l2-c7
+            part: sentence
+            type: multiple_choice
+            text: "Which sentence is a fact?"
+            options: ["A year has 365 days, or 366 in a leap year.", "A year is too long to wait for a birthday.", "The summer holidays are never long enough."]
+            answer: "A year has 365 days, or 366 in a leap year."
+            option_audio: false
+          - id: l2-c8
+            part: sentence
+            type: true_false
+            text: "Is it true? \"The Titanic sank in 1912\" is a fact, because you can check it."
+            say: "Is it true? The Titanic sank in nineteen twelve, is a fact, because you can check it."
+            answer: true
+          - id: l2-c9
+            part: opinion-words
+            type: highlight_in_text
+            text: "Tap the opinion word."
+            say: "Tap the word that shows an opinion."
+            show: { drawn: letter-card, text: "The new library has a brilliant reading corner" }
+            spans: ["brilliant"]
+          - id: l2-c10
+            part: opinion-words
+            type: highlight_in_text
+            text: "Tap the opinion words."
+            say: "Tap every word that shows an opinion."
+            show: { drawn: letter-card, text: "I believe our team played the best game" }
+            spans: ["believe", "best"]
+          - id: l2-c11
+            part: opinion-words
+            type: multiple_choice
+            text: "\"The castle has a horrible dungeon under the tower.\"\n\nWhich word shows an opinion?"
+            options: ["horrible", "castle", "tower"]
+            answer: "horrible"
+            option_audio: false
+          - id: l2-c12
+            part: opinion-words
+            type: true_false
+            text: "\"The bridge is 50 metres long.\"\n\nIs it true? This sentence has an opinion word in it."
+            say: "Read the sentence. Is it true? This sentence has an opinion word in it."
             answer: false
+          - id: l2-c13
+            part: strong-opinion
+            type: multiple_choice
+            text: "\"All my friends say the new film is the best film ever.\"\n\nWhat is it?"
+            options: ["an opinion, even though many people say it", "a fact, because lots of people say it", "a fact, because it is about a real film"]
+            answer: "an opinion, even though many people say it"
+            option_audio: false
+          - id: l2-c14
+            part: strong-opinion
+            type: multiple_choice
+            text: "Which sentence is a fact?"
+            say: "Read the sentences. Which one is a fact?"
+            options: ["Most children in our class walk to school.", "Everyone knows walking to school is best.", "Walking is the only sensible way to travel."]
+            answer: "Most children in our class walk to school."
+            option_audio: false
+          - id: l2-c15
+            part: strong-opinion
+            type: true_false
+            text: "\"Without doubt, maths is the hardest subject.\"\n\nIs it true? The words \"without doubt\" make this a fact."
+            say: "Read the sentence. Is it true? The words without doubt make this a fact."
+            answer: false
+          - id: l2-c16
+            part: strong-opinion
+            type: true_false
+            text: "\"Experts say this is the best phone you can buy.\"\n\nIs it true? Someone could still disagree, so it is an opinion."
+            say: "Read the sentence. Is it true? Someone could still disagree, so it is an opinion."
+            answer: true
+          - id: l2-c17
+            part: in-a-text
+            type: multiple_choice
+            text: "Puffins live on cliffs by the sea. They catch fish with their beaks. They are the most charming birds you will ever see.\n\nWhich sentence is an opinion?"
+            say: "Read the text. Which sentence is an opinion?"
+            options: ["They are the most charming birds you will ever see.", "Puffins live on cliffs by the sea.", "They catch fish with their beaks."]
+            answer: "They are the most charming birds you will ever see."
+            option_audio: false
+          - id: l2-c18
+            part: in-a-text
+            type: multiple_choice
+            text: "Hilltop Farm Park has goats, pigs and ponies. You can feed the lambs in spring. It is the friendliest farm in the world. The café sells sandwiches.\n\nHow many facts are in the leaflet?"
+            say: "Read the leaflet. How many sentences are facts?"
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l2-c19
+            part: in-a-text
+            type: sorting
+            text: "Sort the sentences from the match report."
+            say: "Read each sentence from the match report. Is it a fact or an opinion?"
+            option_audio: false
+            bins:
+              - { id: fact, show: { text: "fact" }, say: "Fact." }
+              - { id: opinion, show: { text: "opinion" }, say: "Opinion." }
+            options:
+              - { text: "The final score was 2 to 1.", bin: fact }
+              - { text: "Our goalkeeper was amazing.", bin: opinion }
+              - { text: "Ella scored in the last minute.", bin: fact }
+              - { text: "The referee was unfair.", bin: opinion }
+          - id: l2-c20
+            part: in-a-text
+            type: highlight_in_text
+            text: "Tap the opinion words in the review."
+            say: "Tap every word in the review that shows an opinion."
+            show: { drawn: letter-card, text: "The pizza came in ten minutes and tasted fantastic but the box was ugly" }
+            spans: ["fantastic", "ugly"]

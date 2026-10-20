@@ -27,6 +27,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, table]
   facets: []
+  parts:
+    - { id: read-row, what: { de: eine Zahl in der richtigen Zeile ablesen, en: reading a number in the right row } }
+    - { id: compare-calc, what: { de: "am meisten, am wenigsten, wie viele mehr und wie viele zusammen", en: "finding the most, the fewest, how many more and how many altogether" } }
+    - { id: row-column, what: { de: "ablesen, wo sich Zeile und Spalte treffen, auch im Stundenplan", en: "reading where a row and a column meet, also in a timetable" } }
+    - { id: calendar, what: { de: einen Kalender lesen, en: reading a calendar } }
   misconceptions:
     - id: neighbour-row
       what: Reads the number from the row above or below the one asked for
@@ -233,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -254,6 +260,27 @@ lessons:
             show: { drawn: table, rows: [[Class, Children], [Oak, "24"], [Ash, "22"], [Elm, "25"]] }
             say: "Is it true? Oak class has two more children than Ash class."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Rainy days\nHow many rainy days were there in April?"
+            show: { drawn: table, rows: [[Month, Days], [March, "10"], [April, "13"], [May, "7"]] }
+            say: "The table shows how many days it rained each month. How many rainy days were there in April?"
+            options: ["13", "10", "7"]
+            answer: "13"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Rainy days\nWhich month had the fewest rainy days?"
+            show: { drawn: table, rows: [[Month, Days], [March, "10"], [April, "13"], [May, "7"]] }
+            say: "Which month had the fewest rainy days?"
+            options: ["May", "March", "April"]
+            answer: "May"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Rainy days\nHow many rainy days were there in March and May altogether?"
+            show: { drawn: table, rows: [[Month, Days], [March, "10"], [April, "13"], [May, "7"]] }
+            say: "How many rainy days were there in March and May altogether?"
+            options: ["17", "3", "20"]
+            answer: "17"
 
   - n: 2
     title: { de: "Zeilen, Spalten und Kalender", en: "Rows, columns and calendars" }
@@ -445,8 +472,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: row-column
             type: multiple_choice
             text: "Pages read\nHow many pages did Isla read on Wednesday?"
             show: { drawn: table, rows: [[Child, Mon, Tue, Wed], [Isla, "3", "5", "2"], [Amir, "4", "1", "6"]] }
@@ -454,6 +483,7 @@ lessons:
             options: ["2", "6", "5"]
             answer: "2"
           - id: l2-c2
+            part: row-column
             type: multiple_choice
             text: "Pages read\nOn which day did Amir read the most pages?"
             show: { drawn: table, rows: [[Child, Mon, Tue, Wed], [Isla, "3", "5", "2"], [Amir, "4", "1", "6"]] }
@@ -462,6 +492,7 @@ lessons:
             answer: "Wednesday"
             keep_order: true
           - id: l2-c3
+            part: compare-calc
             type: multiple_choice
             text: "Favourite fruit\nHow many more children chose grapes than bananas?"
             show: { drawn: table, rows: [[Fruit, Children], [Apples, "9"], [Bananas, "7"], [Grapes, "12"]] }
@@ -469,6 +500,7 @@ lessons:
             options: ["5", "19", "3"]
             answer: "5"
           - id: l2-c4
+            part: row-column
             type: multiple_choice
             text: "Class timetable\nWhat does the class have on Friday afternoon?"
             show: { drawn: table, rows: [[Day, Morning, Afternoon], [Thursday, Music, Maths], [Friday, English, PE]] }
@@ -476,9 +508,124 @@ lessons:
             options: ["PE", "English", "Maths"]
             answer: "PE"
           - id: l2-c5
+            part: calendar
             type: multiple_choice
             text: "June 2026\nMia's birthday is on 18 June. What day of the week is it?"
             show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["1", "2", "3", "4", "5", "6", "7"], ["8", "9", "10", "11", "12", "13", "14"], ["15", "16", "17", "18", "19", "20", "21"], ["22", "23", "24", "25", "26", "27", "28"], ["29", "30", "", "", "", "", ""]] }
             say: "Here is the calendar for June. Mia's birthday is on the eighteenth of June. What day of the week is it?"
             options: ["Thursday", "Wednesday", "Friday"]
             answer: "Thursday"
+          - id: l2-c6
+            part: read-row
+            type: multiple_choice
+            text: "Stickers collected\nHow many stickers did Maya collect?"
+            show: { drawn: table, rows: [[Child, Stickers], [Ruby, "16"], [Leo, "11"], [Maya, "19"], [Sam, "13"]] }
+            say: "The table shows how many stickers each child collected. How many stickers did Maya collect?"
+            options: ["19", "11", "13"]
+            answer: "19"
+          - id: l2-c7
+            part: read-row
+            type: true_false
+            text: "Stickers collected\nIs it true? Leo collected 16 stickers."
+            show: { drawn: table, rows: [[Child, Stickers], [Ruby, "16"], [Leo, "11"], [Maya, "19"], [Sam, "13"]] }
+            say: "Is it true? Leo collected sixteen stickers."
+            answer: false
+          - id: l2-c8
+            part: read-row
+            type: text_input
+            text: "Plants in the garden\nHow many tulips are in the garden?"
+            show: { drawn: table, rows: [[Plant, Number], [Roses, "6"], [Tulips, "14"], [Daisies, "20"]] }
+            say: "The table shows the plants in the school garden. How many tulips are there?"
+            answer: "14"
+          - id: l2-c9
+            part: read-row
+            type: multiple_choice
+            text: "Plants in the garden\nThere are 6 of one plant. Which plant is it?"
+            show: { drawn: table, rows: [[Plant, Number], [Roses, "6"], [Tulips, "14"], [Daisies, "20"]] }
+            say: "There are six of one plant. Which plant is it?"
+            options: ["Roses", "Tulips", "Daisies"]
+            answer: "Roses"
+          - id: l2-c10
+            part: read-row
+            type: multiple_choice
+            text: "Lunches today\nHow many children had a packed lunch?"
+            show: { drawn: table, rows: [[Lunch, Children], [Hot dinner, "18"], [Packed lunch, "12"]] }
+            say: "The table shows the lunches the class had today. How many children had a packed lunch?"
+            options: ["12", "18", "30"]
+            answer: "12"
+          - id: l2-c11
+            part: compare-calc
+            type: multiple_choice
+            text: "Stickers collected\nWho collected the fewest stickers?"
+            show: { drawn: table, rows: [[Child, Stickers], [Ruby, "16"], [Leo, "11"], [Maya, "19"], [Sam, "13"]] }
+            say: "Who collected the fewest stickers?"
+            options: ["Leo", "Sam", "Ruby"]
+            answer: "Leo"
+          - id: l2-c12
+            part: compare-calc
+            type: multiple_choice
+            text: "Stickers collected\nHow many more stickers did Maya collect than Ruby?"
+            show: { drawn: table, rows: [[Child, Stickers], [Ruby, "16"], [Leo, "11"], [Maya, "19"], [Sam, "13"]] }
+            say: "How many more stickers did Maya collect than Ruby?"
+            options: ["3", "35", "5"]
+            answer: "3"
+          - id: l2-c13
+            part: compare-calc
+            type: text_input
+            text: "Plants in the garden\nHow many roses and tulips are there altogether?"
+            show: { drawn: table, rows: [[Plant, Number], [Roses, "6"], [Tulips, "14"], [Daisies, "20"]] }
+            say: "How many roses and tulips are there altogether?"
+            answer: "20"
+          - id: l2-c14
+            part: compare-calc
+            type: true_false
+            text: "Lunches today\nIs it true? 6 more children had a hot dinner than a packed lunch."
+            show: { drawn: table, rows: [[Lunch, Children], [Hot dinner, "18"], [Packed lunch, "12"]] }
+            say: "Is it true? Six more children had a hot dinner than a packed lunch."
+            answer: true
+          - id: l2-c15
+            part: row-column
+            type: multiple_choice
+            text: "Goals scored\nHow many goals did the Tigers score in Week 2?"
+            show: { drawn: table, rows: [[Team, Week 1, Week 2, Week 3], [Lions, "3", "2", "5"], [Tigers, "1", "4", "2"]] }
+            say: "The table shows the goals two teams scored. How many goals did the Tigers score in Week 2?"
+            options: ["4", "2", "1"]
+            answer: "4"
+          - id: l2-c16
+            part: row-column
+            type: true_false
+            text: "Class timetable\nIs it true? On Thursday morning the class has Science."
+            show: { drawn: table, rows: [[Day, Morning, Afternoon], [Wednesday, Maths, Art], [Thursday, English, Science]] }
+            say: "Is it true? On Thursday morning, the class has Science."
+            answer: false
+          - id: l2-c17
+            part: calendar
+            type: multiple_choice
+            text: "May 2026\nWhat day of the week is 13 May?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "", "1", "2", "3"], ["4", "5", "6", "7", "8", "9", "10"], ["11", "12", "13", "14", "15", "16", "17"], ["18", "19", "20", "21", "22", "23", "24"], ["25", "26", "27", "28", "29", "30", "31"]] }
+            say: "Here is the calendar for May. What day of the week is the thirteenth of May?"
+            options: ["Wednesday", "Tuesday", "Thursday"]
+            answer: "Wednesday"
+          - id: l2-c18
+            part: calendar
+            type: multiple_choice
+            text: "May 2026\nHow many Mondays are there in May?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "", "1", "2", "3"], ["4", "5", "6", "7", "8", "9", "10"], ["11", "12", "13", "14", "15", "16", "17"], ["18", "19", "20", "21", "22", "23", "24"], ["25", "26", "27", "28", "29", "30", "31"]] }
+            say: "How many Mondays are there in May?"
+            options: ["4", "5", "3"]
+            answer: "4"
+          - id: l2-c19
+            part: calendar
+            type: multiple_choice
+            text: "May 2026\nSports day is on Friday 22 May. The class picnic is one week before. What is the date of the picnic?"
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "", "1", "2", "3"], ["4", "5", "6", "7", "8", "9", "10"], ["11", "12", "13", "14", "15", "16", "17"], ["18", "19", "20", "21", "22", "23", "24"], ["25", "26", "27", "28", "29", "30", "31"]] }
+            say: "Sports day is on Friday the twenty-second of May. The class picnic is one week before. What is the date of the picnic?"
+            options: ["15 May", "21 May", "29 May"]
+            answer: "15 May"
+          - id: l2-c20
+            part: calendar
+            type: true_false
+            text: "May 2026\nIs it true? 1 May is a Friday."
+            show: { drawn: table, rows: [[Mon, Tue, Wed, Thu, Fri, Sat, Sun], ["", "", "", "", "1", "2", "3"], ["4", "5", "6", "7", "8", "9", "10"], ["11", "12", "13", "14", "15", "16", "17"], ["18", "19", "20", "21", "22", "23", "24"], ["25", "26", "27", "28", "29", "30", "31"]] }
+            say: "Is it true? The first of May is a Friday."
+            answer: true

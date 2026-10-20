@@ -24,6 +24,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: [written-subtraction]
+  parts:
+    - { id: estimate, what: { de: "mit einem Überschlag prüfen, ob ein Ergebnis passt", en: checking with an estimate whether an answer fits } }
+    - { id: inverse, what: { de: mit der Umkehraufgabe die Probe machen, en: checking with the inverse calculation } }
+    - { id: mistakes, what: { de: typische Fehler in schriftlichen Rechnungen finden, en: finding common mistakes in column calculations } }
   misconceptions:
     - id: trusts-any-answer
       what: Accepts a column answer without asking whether it is the right size
@@ -201,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -218,6 +223,22 @@ lessons:
             text: "Estimate each one. Which calculation is wrong?"
             options: ["835 − 417 = 618", "256 + 381 = 637", "690 − 245 = 445"]
             answer: "835 − 417 = 618"
+          - id: l1-c4
+            type: true_false
+            text: "Does 165 fit the estimate 800 − 400 = 400?"
+            show: { drawn: written-calc, rows: ["812", "447"], op: "-", result: "165" }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Estimate to check. Which answer fits 253 + 419?"
+            show: { drawn: written-calc, rows: ["253", "419"], op: "+" }
+            options: ["672", "472", "872"]
+            answer: "672"
+          - id: l1-c6
+            type: multiple_choice
+            text: "About how big should the answer to 708 − 291 be?"
+            options: ["about 400", "about 1000", "about 200"]
+            answer: "about 400"
 
   - n: 2
     title: { de: "Umkehraufgabe und typische Fehler", en: "The inverse and common mistakes" }
@@ -378,18 +399,22 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: estimate
             type: multiple_choice
             text: "Estimate each one. Which calculation is wrong?"
             options: ["517 + 286 = 603", "904 − 438 = 466", "345 + 229 = 574"]
             answer: "517 + 286 = 603"
           - id: l2-c2
+            part: inverse
             type: multiple_choice
             text: "Which calculation checks 621 − 354 = 267?"
             options: ["267 + 354 = 621", "621 + 354 = 975", "354 − 267 = 87"]
             answer: "267 + 354 = 621"
           - id: l2-c3
+            part: mistakes
             type: multiple_choice
             text: "What went wrong?"
             say: "Someone worked out nine hundred and forty-one subtract five hundred and twenty-six and got four hundred and twenty-five. What went wrong?"
@@ -397,13 +422,110 @@ lessons:
             options: ["In the tens, 4 was used instead of 3.", "The ones are wrong.", "The numbers were added."]
             answer: "In the tens, 4 was used instead of 3."
           - id: l2-c4
+            part: inverse
             type: true_false
             text: "758 − 289 = 469. Check with 469 + 289. Is the answer right?"
             answer: true
           - id: l2-c5
+            part: mistakes
             type: multiple_choice
             text: "What went wrong?"
             say: "Someone worked out five hundred and three subtract one hundred and sixty-seven and got four hundred and sixty-four. What went wrong?"
             show: { drawn: written-calc, rows: ["503", "167"], op: "-", result: "464" }
             options: ["The smaller digit was taken from the bigger one.", "The numbers were added.", "A carried 1 was forgotten."]
             answer: "The smaller digit was taken from the bigger one."
+          - id: l2-c6
+            part: estimate
+            type: multiple_choice
+            text: "Estimate to check. Which answer fits 412 + 395?"
+            show: { drawn: written-calc, rows: ["412", "395"], op: "+" }
+            options: ["807", "607", "1007"]
+            answer: "807"
+          - id: l2-c7
+            part: estimate
+            type: true_false
+            text: "Does 181 fit the estimate 800 − 300 = 500?"
+            show: { drawn: written-calc, rows: ["826", "345"], op: "-", result: "181" }
+            answer: false
+          - id: l2-c8
+            part: estimate
+            type: true_false
+            text: "Does 612 fit the estimate 400 + 200 = 600?"
+            show: { drawn: written-calc, rows: ["387", "225"], op: "+", result: "612" }
+            answer: true
+          - id: l2-c9
+            part: estimate
+            type: multiple_choice
+            text: "Estimate each one. Which calculation is wrong?"
+            options: ["438 + 351 = 789", "862 − 297 = 365", "573 − 148 = 425"]
+            answer: "862 − 297 = 365"
+          - id: l2-c10
+            part: mistakes
+            type: multiple_choice
+            text: "Ali works out 712 − 486 in columns and gets 1198. What has he most likely done?"
+            show: { drawn: written-calc, rows: ["712", "486"], op: "-", result: "1198" }
+            options: ["He added the numbers.", "He forgot to exchange in the ones.", "He lined up 486 on the left."]
+            answer: "He added the numbers."
+          - id: l2-c11
+            part: estimate
+            type: multiple_choice
+            text: "About how big should the answer to 598 + 203 be?"
+            options: ["about 800", "about 400", "about 1000"]
+            answer: "about 800"
+          - id: l2-c12
+            part: estimate
+            type: true_false
+            text: "Does 346 fit the estimate 600 − 300 = 300?"
+            show: { drawn: written-calc, rows: ["614", "268"], op: "-", result: "346" }
+            answer: true
+          - id: l2-c13
+            part: inverse
+            type: multiple_choice
+            text: "Which calculation checks 463 + 278 = 741?"
+            options: ["741 − 278 = 463", "741 + 278 = 1019", "463 − 278 = 185"]
+            answer: "741 − 278 = 463"
+          - id: l2-c14
+            part: inverse
+            type: true_false
+            text: "822 − 357 = 475. Check with 475 + 357. Is the answer right?"
+            answer: false
+          - id: l2-c15
+            part: inverse
+            type: fill_in_blank
+            text: "Sam: 605 − 239 = 366. Check with the inverse."
+            say: "Sam works out six hundred and five subtract two hundred and thirty-nine and gets three hundred and sixty-six. Fill in the check."
+            frame: "_ + 239 = _"
+            options: ["366", "605", "239", "844"]
+            answer: ["366", "605"]
+          - id: l2-c16
+            part: inverse
+            type: text_input
+            text: "Lucy works out 357 + 468 = 825. Check with the inverse: 825 − 468 = _"
+            answer: "357"
+          - id: l2-c17
+            part: inverse
+            type: multiple_choice
+            text: "Ben works out 704 − 315 = 389. His check is 389 + 315 = 704. What does that tell him?"
+            options: ["His answer is right.", "His answer is wrong.", "He must estimate again."]
+            answer: "His answer is right."
+          - id: l2-c18
+            part: mistakes
+            type: multiple_choice
+            text: "What went wrong?"
+            show: { drawn: written-calc, rows: ["356", "278"], op: "+", result: "524" }
+            options: ["The carried digits were not added.", "The tens were subtracted.", "278 was lined up on the left."]
+            answer: "The carried digits were not added."
+          - id: l2-c19
+            part: mistakes
+            type: multiple_choice
+            text: "What went wrong?"
+            show: { drawn: written-calc, rows: ["745", "31"], op: "-", result: "435" }
+            options: ["31 was lined up on the left.", "A carried 1 was forgotten.", "The smaller digit was taken from the bigger one."]
+            answer: "31 was lined up on the left."
+          - id: l2-c20
+            part: mistakes
+            type: multiple_choice
+            text: "What went wrong?"
+            show: { drawn: written-calc, rows: ["863", "427"], op: "-", above: " 51", cross: " x ", result: "446" }
+            options: ["The tens were not made smaller after the exchange.", "The ones are wrong.", "The hundreds are wrong."]
+            answer: "The tens were not made smaller after the exchange."

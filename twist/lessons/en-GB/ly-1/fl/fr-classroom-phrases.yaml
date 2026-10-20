@@ -26,6 +26,10 @@ metadata:
   forms: [audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: move, what: { de: "Aufforderungen zum Bewegen: aufstehen, hinsetzen, springen", en: "instructions to move: stand up, sit down, jump" } }
+    - { id: hands, what: { de: "Aufforderungen für die Hände: klatschen, winken, zeigen, Bücher öffnen", en: "instructions for your hands: clap, wave, point, open your books" } }
+    - { id: attention, what: { de: "Aufforderungen zum Zuhören, Hinschauen und Leisesein", en: "instructions to listen, look and be quiet" } }
   misconceptions:
     - id: stand-sit
       what: Mixes up Levez-vous and Asseyez-vous, which both end in vous
@@ -220,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -241,6 +246,27 @@ lessons:
             say: { en: "Listen. Does the picture match?", fr: "Écoutez !" }
             show: { object: look }
             answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Regardez, les enfants !", speaker: male }
+            options: [{ object: look }, { object: stand-up }, { object: sit-down }]
+            answer: look
+          - id: l1-c5
+            type: true_false
+            text: "The teacher says this. Is the child doing it?"
+            say: { en: "Listen to the teacher. Is the child doing it?" }
+            audio: { fr: "Asseyez-vous, les enfants !", speaker: female }
+            show: { object: sit-down }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "The teacher says two things. What do you do second? Tap the picture."
+            say: { en: "Listen. The teacher says two things. What do you do second? Tap the picture." }
+            audio: { fr: "Levez-vous ! Écoutez !", speaker: male }
+            options: [{ object: stand-up }, { object: listen }, { object: look }]
+            answer: listen
 
   - n: 2
     title: { de: "Klatschen, springen, winken", en: "Clapping, jumping, waving" }
@@ -447,34 +473,160 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: move
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Sautez !" }
             show: { object: clap }
             answer: false
           - id: l2-c2
+            part: move
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Asseyez-vous !" }
             show: { object: stand-up }
             answer: false
           - id: l2-c3
+            part: hands
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Faites coucou !" }
             show: { object: wave }
             answer: true
           - id: l2-c4
+            part: hands
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Montrez du doigt !" }
             show: { object: point }
             answer: true
           - id: l2-c5
+            part: hands
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Ouvrez vos livres !" }
             show: { object: book }
             answer: false
+          - id: l2-c6
+            part: move
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Les enfants, levez-vous !", speaker: female }
+            options: [{ object: sit-down }, { object: stand-up }, { object: jump }]
+            answer: stand-up
+          - id: l2-c7
+            part: move
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Asseyez-vous, s'il vous plaît.", speaker: male }
+            options: [{ object: stand-up }, { object: clap }, { object: sit-down }]
+            answer: sit-down
+          - id: l2-c8
+            part: move
+            type: audio_choice
+            text: "The teacher says two things. What do you do second? Tap the picture."
+            say: { en: "Listen. The teacher says two things. What do you do second? Tap the picture." }
+            audio: { fr: "Levez-vous ! Sautez !", speaker: female }
+            options: [{ object: stand-up }, { object: jump }, { object: sit-down }]
+            answer: jump
+          - id: l2-c9
+            part: move
+            type: true_false
+            text: "The teacher says this. Is the child doing it?"
+            say: { en: "Listen to the teacher. Is the child doing it?" }
+            audio: { fr: "Les enfants, sautez !", speaker: male }
+            show: { object: jump }
+            answer: true
+          - id: l2-c10
+            part: move
+            type: true_false
+            text: "The teacher says this. Is the child doing it?"
+            say: { en: "Listen to the teacher. Is the child doing it?" }
+            audio: { fr: "Les enfants, asseyez-vous !", speaker: female }
+            show: { object: jump }
+            answer: false
+          - id: l2-c11
+            part: hands
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Tapez dans vos mains, les enfants !", speaker: male }
+            options: [{ object: wave }, { object: point }, { object: clap }]
+            answer: clap
+          - id: l2-c12
+            part: hands
+            type: audio_choice
+            text: "The teacher says two things. What do you do second? Tap the picture."
+            say: { en: "Listen. The teacher says two things. What do you do second? Tap the picture." }
+            audio: { fr: "Asseyez-vous ! Ouvrez vos livres !", speaker: female }
+            options: [{ object: sit-down }, { object: book-open }, { object: book }]
+            answer: book-open
+          - id: l2-c13
+            part: hands
+            type: true_false
+            text: "The teacher says this. Is the child doing it?"
+            say: { en: "Listen to the teacher. Is the child doing it?" }
+            audio: { fr: "Montrez du doigt, s'il vous plaît.", speaker: female }
+            show: { object: clap }
+            answer: false
+          - id: l2-c14
+            part: hands
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Faites coucou, les enfants !", speaker: female }
+            options: [{ object: point }, { object: wave }, { object: listen }]
+            answer: wave
+          - id: l2-c15
+            part: attention
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Écoutez, les enfants !", speaker: male }
+            options: [{ object: look }, { object: listen }, { object: quiet }]
+            answer: listen
+          - id: l2-c16
+            part: attention
+            type: audio_choice
+            text: "The teacher says this. Tap the child who does it."
+            say: { en: "Listen to the teacher. Tap the child who does it." }
+            audio: { fr: "Les enfants, regardez !", speaker: female }
+            options: [{ object: listen }, { object: point }, { object: look }]
+            answer: look
+          - id: l2-c17
+            part: attention
+            type: true_false
+            text: "The teacher says this. Is the child doing it?"
+            say: { en: "Listen to the teacher. Is the child doing it?" }
+            audio: { fr: "Silence, s'il vous plaît !", speaker: male }
+            show: { object: quiet }
+            answer: true
+          - id: l2-c18
+            part: attention
+            type: true_false
+            text: "The teacher says this. Is the child doing it?"
+            say: { en: "Listen to the teacher. Is the child doing it?" }
+            audio: { fr: "Écoutez, s'il vous plaît.", speaker: female }
+            show: { object: look }
+            answer: false
+          - id: l2-c19
+            part: attention
+            type: audio_choice
+            text: "The teacher says two things. What do you do first? Tap the picture."
+            say: { en: "Listen. The teacher says two things. What do you do first? Tap the picture." }
+            audio: { fr: "Silence ! Écoutez !", speaker: male }
+            options: [{ object: quiet }, { object: listen }, { object: jump }]
+            answer: quiet
+          - id: l2-c20
+            part: attention
+            type: audio_choice
+            text: "The teacher says two things. What do you do second? Tap the picture."
+            say: { en: "Listen. The teacher says two things. What do you do second? Tap the picture." }
+            audio: { fr: "Levez-vous ! Regardez !", speaker: female }
+            options: [{ object: stand-up }, { object: look }, { object: listen }]
+            answer: look

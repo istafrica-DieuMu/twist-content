@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, picture, text, audio]
   drawn: [dots]
   facets: [operation-signs]
+  parts:
+    - { id: equal-groups, what: { de: gleich große Gruppen erkennen, en: spotting equal groups } }
+    - { id: add-to-times, what: { de: Plusaufgaben mit gleichen Zahlen und Malaufgaben einander zuordnen, en: matching repeated additions and multiplications } }
+    - { id: write-times, what: { de: zu Punktefeldern und Gruppen die Malaufgabe schreiben, en: writing the multiplication for an array or for groups } }
+    - { id: result, what: { de: "ausrechnen, wie viele es zusammen sind", en: working out how many altogether } }
   misconceptions:
     - id: unequal-groups
       what: Calls any set of groups equal, or writes 3 + 4 + 4 as a multiplication
@@ -211,12 +216,13 @@ lessons:
                 type: multiple_choice
                 text: "Socks come in pairs. How many socks are in 3 pairs?"
                 say: "Socks come in pairs, two in each pair. How many socks are in three pairs?"
-                show: { object: sock, count: 6, layout: row }
+                show: { object: sock, groups: [2, 2, 2] }
                 options: ["6", "5", "3"]
                 answer: "6"
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,6 +242,25 @@ lessons:
             text: "Are these groups equal? 10 cubes, 10 cubes"
             say: "Two towers each have ten cubes. Are the groups equal?"
             answer: true
+          - id: l1-c4
+            type: true_false
+            text: "Are these groups equal?"
+            say: "Look at the cars in each group. Are the groups equal?"
+            show: { object: car, groups: [3, 3, 3] }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "How many altogether? Count in tens."
+            say: "Here are five rows of ten. Count in tens. How many counters are there?"
+            show: { drawn: dots, array: [5, 10] }
+            options: ["50", "15", "10"]
+            answer: "50"
+          - id: l1-c6
+            type: true_false
+            text: "4 plates, 2 cakes on each plate. Is it true? There are 6 cakes."
+            say: "There are four plates with two cakes on each plate. Is it true? There are six cakes."
+            show: { object: cake, groups: [2, 2, 2, 2] }
+            answer: false
 
   - n: 2
     title: { de: "Plus wird Mal", en: "Adding becomes multiplying" }
@@ -415,8 +440,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: result
             type: multiple_choice
             text: "How many altogether?"
             say: "Here are five rows of five counters. How many are there altogether?"
@@ -424,6 +451,7 @@ lessons:
             options: ["25", "10", "20"]
             answer: "25"
           - id: l2-c2
+            part: add-to-times
             type: fill_in_blank
             text: "5 + 5 = _ × 5"
             say: "Five add five. How many groups of five are there?"
@@ -431,18 +459,130 @@ lessons:
             options: ["2", "5", "10"]
             answer: ["2"]
           - id: l2-c3
+            part: add-to-times
             type: multiple_choice
             text: "Which multiplication matches 10 + 10?"
             say: "Ten add ten. Which multiplication matches it?"
             options: ["2 × 10", "10 + 2", "10 × 10"]
             answer: "2 × 10"
           - id: l2-c4
+            part: equal-groups
             type: true_false
             text: "Is it true? 3 + 3 + 4 = 3 × 3"
             say: "Three add three add four is the same as three times three. Is that true?"
             answer: false
           - id: l2-c5
+            part: result
             type: text_input
             text: "3 × 2 = _"
             say: "Three times two."
             answer: "6"
+          - id: l2-c6
+            part: equal-groups
+            type: true_false
+            text: "Are these groups equal?"
+            say: "Look at the flowers in each group. Are the groups equal?"
+            show: { object: flower, groups: [5, 5, 4] }
+            answer: false
+          - id: l2-c7
+            part: equal-groups
+            type: multiple_choice
+            text: "Which groups are all equal?"
+            say: "Which groups are all equal?"
+            options: ["2, 2, 2, 2", "2, 2, 3, 2", "1, 2, 3, 4"]
+            answer: "2, 2, 2, 2"
+          - id: l2-c8
+            part: equal-groups
+            type: multiple_choice
+            text: "Which can you write as a multiplication?"
+            say: "Which one can you write as a multiplication?"
+            options: ["3 bags of 5 sweets", "bags of 5, 4 and 3 sweets", "bags of 5 and 2 sweets"]
+            answer: "3 bags of 5 sweets"
+          - id: l2-c9
+            part: equal-groups
+            type: true_false
+            text: "2 hands, 5 fingers on each hand. Are the groups equal?"
+            say: "You have two hands with five fingers on each hand. Are the groups equal?"
+            show: { object: hand, count: 2, layout: row }
+            answer: true
+          - id: l2-c10
+            part: add-to-times
+            type: multiple_choice
+            text: "Which addition matches 3 × 5?"
+            say: "Which addition matches three times five?"
+            options: ["5 + 5 + 5", "3 + 5", "3 + 3 + 3"]
+            answer: "5 + 5 + 5"
+          - id: l2-c11
+            part: add-to-times
+            type: true_false
+            text: "Is it true? 2 + 2 + 2 = 2 × 2"
+            say: "Two add two add two is the same as two times two. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: add-to-times
+            type: fill_in_blank
+            text: "Write the addition as a multiplication."
+            say: "Two add two add two add two add two add two. Write it as a multiplication."
+            frame: "2 + 2 + 2 + 2 + 2 + 2 = _ × _"
+            options: ["6", "2", "12", "8"]
+            answer: ["6", "2"]
+          - id: l2-c13
+            part: write-times
+            type: fill_in_blank
+            text: "Write the multiplication."
+            say: "Look at the counters. Write the multiplication."
+            show: { drawn: dots, array: [4, 3] }
+            frame: "_ × _ = _"
+            options: ["4", "3", "12", "7"]
+            answer: ["4", "3", "12"]
+          - id: l2-c14
+            part: write-times
+            type: multiple_choice
+            text: "Which multiplication matches the counters?"
+            say: "Look at the counters. Which multiplication matches them?"
+            show: { drawn: dots, array: [3, 10] }
+            options: ["3 × 10", "3 + 10", "10 × 10"]
+            answer: "3 × 10"
+          - id: l2-c15
+            part: write-times
+            type: fill_in_blank
+            text: "Ella has 2 bags. There are 5 apples in each bag. Write the multiplication."
+            say: "Ella has two bags. There are five apples in each bag. Write the multiplication."
+            show: { object: apple, groups: [5, 5] }
+            frame: "_ × _ = _"
+            options: ["2", "5", "10", "7"]
+            answer: ["2", "5", "10"]
+          - id: l2-c16
+            part: write-times
+            type: multiple_choice
+            text: "Which multiplication matches the pencils?"
+            say: "Look at the pencils. Which multiplication matches them?"
+            show: { object: pencil, groups: [5, 5, 5] }
+            options: ["3 × 5", "5 × 5", "3 + 5"]
+            answer: "3 × 5"
+          - id: l2-c17
+            part: write-times
+            type: true_false
+            text: "Is it true? The counters show 5 × 2."
+            say: "Look at the counters. Is it true? They show five times two."
+            show: { drawn: dots, array: [5, 2] }
+            answer: true
+          - id: l2-c18
+            part: result
+            type: text_input
+            text: "5 × 10 = _"
+            say: "Five times ten."
+            answer: "50"
+          - id: l2-c19
+            part: result
+            type: text_input
+            text: "There are 4 children. Each child has 2 shoes. How many shoes are there?"
+            say: "There are four children. Each child has two shoes. How many shoes are there altogether?"
+            show: { object: shoe, groups: [2, 2, 2, 2] }
+            answer: "8"
+          - id: l2-c20
+            part: result
+            type: true_false
+            text: "Is it true? 3 × 10 = 13"
+            say: "Three times ten is thirteen. Is that true?"
+            answer: false

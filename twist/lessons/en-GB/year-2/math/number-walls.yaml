@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-wall]
   facets: []
+  parts:
+    - { id: wall-up, what: { de: eine Zahlenmauer nach oben ausfüllen und prüfen, en: filling a number wall upwards and checking it } }
+    - { id: wall-bottom, what: { de: einen fehlenden Stein unten finden, en: finding a missing bottom brick } }
+    - { id: chain, what: { de: Rechenketten mit plus und minus rechnen, en: working through number chains that add and subtract } }
+    - { id: pattern, what: { de: "sehen, was oben passiert, wenn sich unten ein Stein ändert", en: seeing what happens at the top when a bottom brick changes } }
   misconceptions:
     - id: add-for-bottom-gap
       what: Adds the two bricks it can see when the gap is at the bottom (top 12, bottom 5, so writes 17)
@@ -228,6 +233,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -251,6 +257,30 @@ lessons:
             say: "Look at the wall. Is it right?"
             show: { drawn: number-wall, rows: [[2, 6], [8]] }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Fill the top brick."
+            say: "Fill the top brick of the wall."
+            show: { drawn: number-wall, rows: [[9, 8], [null]] }
+            frame: "_"
+            options: ["1", "17", "18"]
+            answer: ["17"]
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Find the missing bottom brick."
+            say: "The top is fourteen and one bottom brick is five. Find the other one."
+            show: { drawn: number-wall, rows: [[null, 5], [14]] }
+            frame: "_"
+            options: ["9", "14", "19"]
+            answer: ["9"]
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill the middle row, then the top."
+            say: "Fill the two middle bricks, then the top brick."
+            show: { drawn: number-wall, rows: [[1, 4, 2], [null, null], [null]] }
+            frame: "_ · _ · _"
+            options: ["5", "6", "11", "12"]
+            answer: ["5", "6", "11"]
 
   - n: 2
     title: { de: Rechenketten, en: Number chains }
@@ -321,8 +351,8 @@ lessons:
                   - "9, then 12."
               - id: l2-f3
                 type: multiple_choice
-                text: "Which number goes on top?"
-                say: "In this wall the bottom bricks are four and nine, and the top is thirteen. The four goes up to five. What is the top now?"
+                text: "The 4 changes to 5. What is the top now?"
+                say: "In this wall the bottom bricks are four and nine, and the top is thirteen. The four changes to five. What is the top now?"
                 show: { drawn: number-wall, rows: [[4, 9], [13]] }
                 options: ["14", "13", "15"]
                 answer: "14"
@@ -371,7 +401,7 @@ lessons:
                 hints: ["One step at a time."]
               - id: l2-s3
                 type: multiple_choice
-                text: "What happens to the top?"
+                text: "The bottom bricks are 3 and 6. The 6 changes to 8. What happens to the top?"
                 say: "In a wall with bottom bricks three and six, the six changes to eight. What happens to the top?"
                 options: ["It goes up by 2.", "It goes up by 1.", "It stays the same."]
                 answer: "It goes up by 2."
@@ -409,8 +439,8 @@ lessons:
                 answer: ["8", "17"]
               - id: l2-n3
                 type: multiple_choice
-                text: "Which number goes on top?"
-                say: "In this wall the bottom bricks are seven and six, and the top is thirteen. The seven goes down to six. What is the top now?"
+                text: "The 7 changes to 6. What is the top now?"
+                say: "In this wall the bottom bricks are seven and six, and the top is thirteen. The seven changes to six. What is the top now?"
                 show: { drawn: number-wall, rows: [[7, 6], [13]] }
                 options: ["12", "13", "11"]
                 answer: "12"
@@ -431,8 +461,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: wall-up
             type: fill_in_blank
             text: "Fill the middle row, then the top."
             say: "Fill the two middle bricks, then the top brick."
@@ -441,6 +473,7 @@ lessons:
             options: ["9", "10", "19", "20"]
             answer: ["9", "10", "19"]
           - id: l2-c2
+            part: wall-bottom
             type: fill_in_blank
             text: "Find the missing bottom brick."
             say: "The top is nineteen and one bottom brick is eleven. Find the other one."
@@ -449,6 +482,7 @@ lessons:
             options: ["8", "19", "30"]
             answer: ["8"]
           - id: l2-c3
+            part: chain
             type: fill_in_blank
             text: "6 → +7 → _ → −8 → _"
             say: "Start at six. Add seven, then subtract eight."
@@ -456,14 +490,135 @@ lessons:
             options: ["5", "13", "2", "14"]
             answer: ["13", "5"]
           - id: l2-c4
+            part: wall-up
             type: true_false
             text: "Is the wall right?"
             say: "Look at the wall. Is it right?"
             show: { drawn: number-wall, rows: [[6, 9], [16]] }
             answer: false
           - id: l2-c5
+            part: pattern
             type: multiple_choice
-            text: "What happens to the top?"
+            text: "The bottom bricks are 5 and 7. The 5 changes to 4. What happens to the top?"
             say: "In a wall with bottom bricks five and seven, the five changes to four. What happens to the top?"
             options: ["It goes down by 1.", "It goes up by 1.", "It stays the same."]
             answer: "It goes down by 1."
+          - id: l2-c6
+            part: wall-up
+            type: fill_in_blank
+            text: "Fill the top brick."
+            say: "Fill the top brick of the wall."
+            show: { drawn: number-wall, rows: [[7, 9], [null]] }
+            frame: "_"
+            options: ["2", "16", "17"]
+            answer: ["16"]
+          - id: l2-c7
+            part: wall-up
+            type: fill_in_blank
+            text: "Fill the middle row, then the top."
+            say: "Fill the two middle bricks, then the top brick."
+            show: { drawn: number-wall, rows: [[5, 2, 6], [null, null], [null]] }
+            frame: "_ · _ · _"
+            options: ["7", "8", "14", "15"]
+            answer: ["7", "8", "15"]
+          - id: l2-c8
+            part: wall-up
+            type: true_false
+            text: "Is the wall right?"
+            say: "Look at the wall. Is it right?"
+            show: { drawn: number-wall, rows: [[3, 5, 6], [8, 11], [19]] }
+            answer: true
+          - id: l2-c9
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Find the missing bottom brick."
+            say: "The top is eleven and one bottom brick is six. Find the other one."
+            show: { drawn: number-wall, rows: [[6, null], [11]] }
+            frame: "_"
+            options: ["5", "11", "17"]
+            answer: ["5"]
+          - id: l2-c10
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Find the missing bottom brick."
+            say: "The top is thirteen and one bottom brick is nine. Find the other one."
+            show: { drawn: number-wall, rows: [[null, 9], [13]] }
+            frame: "_"
+            options: ["4", "13", "22"]
+            answer: ["4"]
+          - id: l2-c11
+            part: wall-bottom
+            type: fill_in_blank
+            text: "Find the missing bottom brick."
+            say: "The top is twenty and one bottom brick is eight. Find the other one."
+            show: { drawn: number-wall, rows: [[8, null], [20]] }
+            frame: "_"
+            options: ["12", "20", "28"]
+            answer: ["12"]
+          - id: l2-c12
+            part: wall-bottom
+            type: true_false
+            text: "The top is 12 and one bottom brick is 4. Does 16 go in the empty brick?"
+            say: "The top is twelve and one bottom brick is four. Does sixteen go in the empty brick?"
+            show: { drawn: number-wall, rows: [[null, 4], [12]] }
+            answer: false
+          - id: l2-c13
+            part: chain
+            type: fill_in_blank
+            text: "8 → +5 → _ → −7 → _"
+            say: "Start at eight. Add five, then subtract seven."
+            frame: "8 → +5 → _ → −7 → _"
+            options: ["13", "6", "1", "20"]
+            answer: ["13", "6"]
+          - id: l2-c14
+            part: chain
+            type: fill_in_blank
+            text: "17 → −8 → _ → +5 → _"
+            say: "Start at seventeen. Subtract eight, then add five."
+            frame: "17 → −8 → _ → +5 → _"
+            options: ["9", "14", "12", "4"]
+            answer: ["9", "14"]
+          - id: l2-c15
+            part: chain
+            type: true_false
+            text: "Is it true? 5 → +8 → 13 → −6 → 8"
+            say: "Five add eight is thirteen. Thirteen subtract six is eight. Is it true?"
+            answer: false
+          - id: l2-c16
+            part: chain
+            type: fill_in_blank
+            text: "4 → +9 → _ → +6 → _"
+            say: "Start at four. Add nine, then add six."
+            frame: "4 → +9 → _ → +6 → _"
+            options: ["13", "19", "10", "18"]
+            answer: ["13", "19"]
+          - id: l2-c17
+            part: pattern
+            type: multiple_choice
+            text: "The 9 changes to 10. What is the top now?"
+            say: "In this wall the bottom bricks are nine and three, and the top is twelve. The nine changes to ten. What is the top now?"
+            show: { drawn: number-wall, rows: [[9, 3], [12]] }
+            options: ["13", "12", "14"]
+            answer: "13"
+          - id: l2-c18
+            part: pattern
+            type: multiple_choice
+            text: "The bottom bricks are 4 and 8. The 8 changes to 6. What happens to the top?"
+            say: "In a wall with bottom bricks four and eight, the eight changes to six. What happens to the top?"
+            options: ["It goes down by 2.", "It goes up by 2.", "It goes down by 1."]
+            answer: "It goes down by 2."
+          - id: l2-c19
+            part: pattern
+            type: multiple_choice
+            text: "The 7 changes to 5. What is the top now?"
+            say: "In this wall the bottom bricks are four and seven, and the top is eleven. The seven changes to five. What is the top now?"
+            show: { drawn: number-wall, rows: [[4, 7], [11]] }
+            options: ["9", "10", "13"]
+            answer: "9"
+          - id: l2-c20
+            part: pattern
+            type: true_false
+            text: "The 2 changes to 3. Is the top now 9?"
+            say: "In this wall the bottom bricks are two and six, and the top is eight. The two changes to three. Is the top now nine?"
+            show: { drawn: number-wall, rows: [[2, 6], [8]] }
+            answer: true

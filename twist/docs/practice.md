@@ -371,15 +371,16 @@ the brief). Live progress, one row per curriculum, subject and year, is in
 views/tracking.md, "Practice content"; questions the reviewers left for a
 decision are in docs/plans/2026-10-18-practice-questions.md.
 
-On 2026-10-18:
+On 2026-10-20 every lesson set has check pools, 918 of 918:
 
-| Done | Sets |
-|---|---|
-| de-DE Mathe Klasse 1 to 4, every set | 203 |
-| en-GB maths Reception, every set | 14 |
-| en-GB times tables 5 and 10, 3 6 9, 7 (Years 2 to 4, the first pilot) | 3 |
-| One pilot each: Deutsch spelling, Deutsch reading a text, English phonics, Reception English, Englisch Lernjahr 1 | 5 |
-| In all | 225 of 918 |
+| Curriculum | Subjects | Sets |
+|---|---|---|
+| de-DE | Mathe, Deutsch, Englisch | 435 |
+| en-GB | maths, English, French | 483 |
+| Drill banks | maths, Deutsch, English, foreign languages | 30 banks, 1630 items |
+
+Narration of the new lines runs after authoring; until it is done, the
+player shows the new tasks without their recorded voice.
 
 Next: en-GB maths Years 1 to 6, the maths drill banks, then the home
 languages, their drill banks and the foreign languages. Reading checks

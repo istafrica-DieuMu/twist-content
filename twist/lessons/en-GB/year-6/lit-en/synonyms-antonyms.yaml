@@ -21,9 +21,13 @@ metadata:
   builds_on: [lit-en.grammar.word-classes]
   also_practises: [lit-en.spelling.dictionary-thesaurus]
   vocabulary: { en: [synonym, antonym, opposite, similar, prefix, word class, adjective, verb] }
-  forms: [text, audio]
-  drawn: []
+  forms: [text, audio, drawn]
+  drawn: [letter-card]
   facets: []
+  parts:
+    - { id: syn-ant, what: { de: Synonyme und Antonyme erkennen und finden, en: telling and finding synonyms and antonyms } }
+    - { id: prefix, what: { de: "Antonyme mit einer Vorsilbe bilden (un, dis, im, in)", en: "making antonyms with a prefix (un, dis, im, in)" } }
+    - { id: class-shade, what: { de: gleiche Wortart und Bedeutungsabstufungen, en: the same word class and shades of meaning } }
   misconceptions:
     - id: mixes-up-terms
       what: Mixes up the terms, calling opposites synonyms
@@ -220,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,6 +241,21 @@ lessons:
             text: "\"Win\" and \"lose\" are ..."
             options: ["antonyms", "synonyms"]
             answer: "antonyms"
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? \"Rude\" and \"polite\" are synonyms."
+            answer: false
+          - id: l1-c5
+            type: matching
+            text: "Match each word to its synonym."
+            pairs:
+              - { left: { text: "difficult" }, right: { text: "hard" } }
+              - { left: { text: "gloomy" }, right: { text: "dark" } }
+              - { left: { text: "chuckle" }, right: { text: "laugh" } }
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? \"Ancient\" and \"old\" are synonyms."
+            answer: true
 
   - n: 2
     title: { de: Vorsilben und Wortarten, en: Prefixes and word classes }
@@ -388,8 +408,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: syn-ant
             type: sorting
             text: "Sort these word pairs into synonyms and antonyms."
             say: "Put each word pair in the right group."
@@ -403,23 +425,131 @@ lessons:
               - { text: "ask, enquire", bin: syn }
               - { text: "ask, answer", bin: ant }
           - id: l2-c2
+            part: syn-ant
             type: multiple_choice
             text: "Which word is an antonym of \"expand\"?"
             options: ["shrink", "balloon", "grow"]
             answer: "shrink"
           - id: l2-c3
+            part: prefix
             type: text_input
             text: "Write the antonym of \"agree\" with a prefix."
             keyboard: letters
             answer: "disagree"
           - id: l2-c4
+            part: class-shade
             type: multiple_choice
             text: "Which word is a synonym of \"swiftly\"?"
             options: ["rapidly", "rapid", "slowly"]
             answer: "rapidly"
           - id: l2-c5
+            part: class-shade
             type: ordering
             text: "Put the synonyms in order, from mild to strong."
             options: ["boiling", "hot", "warm"]
             slot_count: 3
             answer: ["warm", "hot", "boiling"]
+          - id: l2-c6
+            part: syn-ant
+            type: multiple_choice
+            text: "Which word is a synonym of \"fragile\"?"
+            options: ["delicate", "strong", "glass"]
+            answer: "delicate"
+          - id: l2-c7
+            part: syn-ant
+            type: multiple_choice
+            text: "Which word is an antonym of \"shallow\"?"
+            options: ["deep", "puddle", "narrow"]
+            answer: "deep"
+          - id: l2-c8
+            part: syn-ant
+            type: true_false
+            text: "Is it true? \"Vanish\" and \"disappear\" are synonyms."
+            answer: true
+          - id: l2-c9
+            part: syn-ant
+            type: matching
+            text: "Match each word to its opposite."
+            pairs:
+              - { left: { text: "maximum" }, right: { text: "minimum" } }
+              - { left: { text: "temporary" }, right: { text: "permanent" } }
+              - { left: { text: "export" }, right: { text: "import" } }
+          - id: l2-c10
+            part: syn-ant
+            type: highlight_in_text
+            text: "Tap the two words in the sentence that are antonyms."
+            show: { drawn: letter-card, text: "The old dog and the young puppy played together." }
+            spans: ["old", "young"]
+          - id: l2-c11
+            part: prefix
+            type: multiple_choice
+            text: "Which prefix makes the antonym of \"perfect\"?"
+            options: ["im", "un", "dis"]
+            answer: "im"
+          - id: l2-c12
+            part: prefix
+            type: text_input
+            text: "Write the antonym of \"complete\" with a prefix."
+            keyboard: letters
+            answer: "incomplete"
+          - id: l2-c13
+            part: prefix
+            type: text_input
+            text: "Write the antonym of \"tidy\" with a prefix."
+            keyboard: letters
+            answer: "untidy"
+          - id: l2-c14
+            part: prefix
+            type: true_false
+            text: "Is it true? \"Unpatient\" is the antonym of \"patient\"."
+            answer: false
+          - id: l2-c15
+            part: prefix
+            type: sorting
+            text: "Sort the words by the prefix that makes their antonym."
+            say: "Which prefix makes the antonym of each word: un, dis or im?"
+            option_audio: false
+            bins:
+              - { id: un, show: { text: "un" }, say: "un" }
+              - { id: dis, show: { text: "dis" }, say: "dis" }
+              - { id: im, show: { text: "im" }, say: "im" }
+            options:
+              - { text: "lucky", bin: un }
+              - { text: "able", bin: un }
+              - { text: "connect", bin: dis }
+              - { text: "approve", bin: dis }
+              - { text: "mature", bin: im }
+              - { text: "proper", bin: im }
+          - id: l2-c16
+            part: class-shade
+            type: multiple_choice
+            text: "Which word is a synonym of \"happily\"?"
+            options: ["cheerfully", "cheerful", "sadly"]
+            answer: "cheerfully"
+          - id: l2-c17
+            part: class-shade
+            type: multiple_choice
+            text: "Which word means nearly the same as \"brave\" and is the same word class?"
+            options: ["courageous", "courageously", "courage"]
+            answer: "courageous"
+          - id: l2-c18
+            part: class-shade
+            type: ordering
+            text: "Put the synonyms in order, from mild to strong."
+            options: ["adore", "like", "love"]
+            slot_count: 3
+            answer: ["like", "love", "adore"]
+          - id: l2-c19
+            part: class-shade
+            type: multiple_choice
+            text: "Which pair are synonyms of the same word class?"
+            options: ["silent, quiet", "silent, quietly", "silence, quiet"]
+            answer: "silent, quiet"
+            option_audio: false
+          - id: l2-c20
+            part: class-shade
+            type: multiple_choice
+            text: "The desert sand was so hot that it burnt our feet.\n\nWhich synonym of \"hot\" fits best?\n\nThe sand was _."
+            say: "The desert sand was so hot that it burnt our feet. Which synonym of hot fits best? The sand was ..."
+            options: ["scorching", "warm", "cosy"]
+            answer: "scorching"

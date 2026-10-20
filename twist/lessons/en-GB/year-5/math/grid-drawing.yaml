@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid]
   facets: []
+  parts:
+    - { id: slanted, what: { de: schräge Linien in zwei Schritten zählen, en: counting a slanted line in two steps across and up or down } }
+    - { id: copy, what: { de: eine richtige Kopie erkennen und Fehler in einer Kopie finden, en: telling a correct copy and finding what is wrong with a copy } }
+    - { id: dot-grid, what: { de: auf dem Punktraster von Punkt zu Punkt zählen, en: counting from dot to dot on a dot grid } }
+    - { id: double-halve, what: { de: eine Figur doppelt oder halb so groß zeichnen, en: drawing a shape at double or half the size } }
   misconceptions:
     - id: slant-by-eye
       what: Copies a slanted line by eye instead of counting how far it goes across and up, so the copy is steeper or flatter, or swaps the two steps
@@ -218,6 +223,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -238,6 +244,23 @@ lessons:
               - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 3, 2]], key: b }
               - { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 1, 1]], key: c }
             answer: a
+          - id: l1-c4
+            type: multiple_choice
+            text: "The line starts at the bottom left. How does it go?"
+            show: { drawn: grid, cols: 2, rows: 5, lines: [[0, 5, 2, 0]] }
+            options: ["2 right, 5 up", "5 right, 2 up", "2 right, 4 up"]
+            answer: "2 right, 5 up"
+          - id: l1-c5
+            type: multiple_choice
+            text: "The original is on the left. What is wrong with the copy?"
+            show: { drawn: grid, cols: 9, rows: 3, lines: [[0, 3, 2, 3], [2, 3, 0, 0], [0, 0, 0, 3], [5, 3, 8, 3], [8, 3, 5, 0], [5, 0, 5, 3]] }
+            options: ["The bottom side is too long.", "It is too tall.", "Nothing, it is right."]
+            answer: "The bottom side is too long."
+          - id: l1-c6
+            type: true_false
+            text: "The copy on the right is exactly the same as the original on the left. Is that true?"
+            show: { drawn: grid, cols: 7, rows: 3, lines: [[0, 0, 0, 3], [0, 3, 2, 3], [2, 3, 2, 2], [2, 2, 1, 2], [1, 2, 1, 0], [1, 0, 0, 0], [4, 0, 4, 3], [4, 3, 6, 3], [6, 3, 6, 2], [6, 2, 5, 2], [5, 2, 5, 0], [5, 0, 4, 0]] }
+            answer: true
 
   - n: 2
     title: { de: "Punktraster, doppelt und halb so groß", en: "Dot grids, double and half size" }
@@ -410,8 +433,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: copy
             type: image_multiple_choice
             text: "Here is the original. Which copy is correct?"
             show: { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 4, 3], [4, 3, 4, 1], [4, 1, 2, 0], [2, 0, 0, 1], [0, 1, 0, 3]] }
@@ -421,24 +446,130 @@ lessons:
               - { drawn: grid, cols: 5, rows: 3, lines: [[1, 3, 5, 3], [5, 3, 5, 2], [5, 2, 3, 0], [3, 0, 1, 2], [1, 2, 1, 3]], key: short-walls }
             answer: correct
           - id: l2-c2
+            part: slanted
             type: multiple_choice
             text: "The line starts at the top left. How does it go?"
             show: { drawn: grid, cols: 2, rows: 3, lines: [[0, 0, 2, 3]] }
             options: ["2 right, 3 down", "3 right, 2 down", "2 right, 2 down"]
             answer: "2 right, 3 down"
           - id: l2-c3
+            part: double-halve
             type: multiple_choice
             text: "A rectangle is 8 squares wide and 4 squares tall. You halve every side. How big is it now?"
             options: ["4 wide, 2 tall", "6 wide, 2 tall", "4 wide, 4 tall"]
             answer: "4 wide, 2 tall"
           - id: l2-c4
+            part: double-halve
             type: multiple_choice
             text: "A slanted side goes 2 right and 3 up. You double every side. How does it go now?"
             options: ["4 right, 6 up", "4 right, 3 up", "4 right, 5 up"]
             answer: "4 right, 6 up"
           - id: l2-c5
+            part: dot-grid
             type: multiple_choice
             text: "How long is the line on the dot grid?"
             show: { drawn: grid, cols: 7, rows: 1, dots: true, lines: [[1, 1, 6, 1]] }
             options: ["5", "6", "4"]
             answer: "5"
+          - id: l2-c6
+            part: slanted
+            type: multiple_choice
+            text: "The line starts at the bottom left. How does it go?"
+            show: { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 4, 0]] }
+            options: ["4 right, 3 up", "3 right, 4 up", "4 right, 2 up"]
+            answer: "4 right, 3 up"
+          - id: l2-c7
+            part: slanted
+            type: image_multiple_choice
+            text: "Each line starts at the top left. Which line goes 2 right and 4 down?"
+            options:
+              - { drawn: grid, cols: 4, rows: 4, lines: [[0, 0, 4, 2]], key: four-two }
+              - { drawn: grid, cols: 4, rows: 4, lines: [[0, 0, 2, 4]], key: two-four }
+              - { drawn: grid, cols: 4, rows: 4, lines: [[0, 0, 2, 3]], key: two-three }
+            answer: two-four
+          - id: l2-c8
+            part: slanted
+            type: true_false
+            text: "The line starts at the bottom left. It goes 3 right and 1 up. Is that true?"
+            show: { drawn: grid, cols: 4, rows: 3, lines: [[0, 3, 3, 1]] }
+            answer: false
+          - id: l2-c9
+            part: slanted
+            type: text_input
+            text: "The line starts at the top left. How many squares down does it go?"
+            show: { drawn: grid, cols: 5, rows: 4, lines: [[0, 0, 5, 4]] }
+            answer: "4"
+          - id: l2-c10
+            part: copy
+            type: true_false
+            text: "The copy on the right is exactly the same as the original flag on the left. Is that true?"
+            show: { drawn: grid, cols: 9, rows: 3, lines: [[0, 3, 0, 0], [0, 0, 3, 1], [3, 1, 0, 2], [5, 3, 5, 0], [5, 0, 7, 1], [7, 1, 5, 2]] }
+            answer: false
+          - id: l2-c11
+            part: copy
+            type: multiple_choice
+            text: "The original is on the left. What is wrong with the copy?"
+            show: { drawn: grid, cols: 10, rows: 3, lines: [[0, 1, 4, 1], [4, 1, 4, 3], [4, 3, 0, 3], [0, 3, 0, 1], [6, 1, 9, 1], [9, 1, 9, 3], [9, 3, 6, 3], [6, 3, 6, 1]] }
+            options: ["It is not wide enough.", "It is not tall enough.", "Nothing, it is right."]
+            answer: "It is not wide enough."
+          - id: l2-c12
+            part: copy
+            type: image_multiple_choice
+            text: "Here is the original. Which copy is correct?"
+            show: { drawn: grid, cols: 5, rows: 2, lines: [[0, 0, 3, 0], [3, 0, 5, 2], [5, 2, 2, 2], [2, 2, 0, 0]] }
+            options:
+              - { drawn: grid, cols: 6, rows: 2, lines: [[1, 0, 4, 0], [4, 0, 5, 2], [5, 2, 2, 2], [2, 2, 1, 0]], key: steep }
+              - { drawn: grid, cols: 6, rows: 2, lines: [[0, 0, 4, 0], [4, 0, 6, 2], [6, 2, 2, 2], [2, 2, 0, 0]], key: long }
+              - { drawn: grid, cols: 6, rows: 2, lines: [[1, 0, 4, 0], [4, 0, 6, 2], [6, 2, 3, 2], [3, 2, 1, 0]], key: correct }
+            answer: correct
+          - id: l2-c13
+            part: copy
+            type: multiple_choice
+            text: "One slanted side of the original goes 3 right and 1 up. How does that side go in a correct copy?"
+            options: ["3 right, 1 up", "1 right, 3 up", "6 right, 2 up"]
+            answer: "3 right, 1 up"
+          - id: l2-c14
+            part: dot-grid
+            type: text_input
+            text: "A straight line on a dot grid touches 7 dots. How long is it?"
+            answer: "6"
+          - id: l2-c15
+            part: dot-grid
+            type: multiple_choice
+            text: "The line goes from dot to dot. How far right and how far up does it go?"
+            show: { drawn: grid, cols: 5, rows: 2, dots: true, lines: [[0, 2, 5, 0]] }
+            options: ["5 right, 2 up", "6 right, 3 up", "2 right, 5 up"]
+            answer: "5 right, 2 up"
+          - id: l2-c16
+            part: dot-grid
+            type: true_false
+            text: "This line on the dot grid is 4 long. Is that true?"
+            show: { drawn: grid, cols: 6, rows: 2, dots: true, lines: [[0, 1, 5, 1]] }
+            answer: false
+          - id: l2-c17
+            part: dot-grid
+            type: multiple_choice
+            text: "How wide and how tall is the rectangle on the dot grid?"
+            show: { drawn: grid, cols: 5, rows: 2, dots: true, lines: [[1, 0, 4, 0], [4, 0, 4, 2], [4, 2, 1, 2], [1, 2, 1, 0]] }
+            options: ["3 wide, 2 tall", "4 wide, 3 tall", "3 wide, 3 tall"]
+            answer: "3 wide, 2 tall"
+          - id: l2-c18
+            part: double-halve
+            type: image_multiple_choice
+            text: "Every side of this triangle is doubled. Which is the new triangle?"
+            show: { drawn: grid, cols: 3, rows: 1, lines: [[0, 1, 3, 1], [3, 1, 0, 0], [0, 0, 0, 1]] }
+            options:
+              - { drawn: grid, cols: 6, rows: 3, lines: [[0, 3, 5, 3], [5, 3, 0, 0], [0, 0, 0, 3]], key: added }
+              - { drawn: grid, cols: 6, rows: 3, lines: [[0, 3, 6, 3], [6, 3, 0, 1], [0, 1, 0, 3]], key: correct }
+              - { drawn: grid, cols: 6, rows: 3, lines: [[0, 3, 6, 3], [6, 3, 0, 2], [0, 2, 0, 3]], key: base-only }
+            answer: correct
+          - id: l2-c19
+            part: double-halve
+            type: true_false
+            text: "Kai draws a shape at half the size. A slanted side that went 6 right and 2 up now goes 3 right and 1 up. Is that right?"
+            answer: true
+          - id: l2-c20
+            part: double-halve
+            type: text_input
+            text: "Mia draws a shape at half the size. One side of her new shape is 3 squares long. How long was that side in the original?"
+            answer: "6"

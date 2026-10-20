@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: ask, what: { de: "fragen, was ein neues Wort bedeutet", en: asking what a new word means } }
+    - { id: guess, what: { de: die Bedeutung aus Hinweisen im Satz erraten, en: guessing a meaning from clues around the word } }
+    - { id: word-map, what: { de: "eine Wortkarte anlegen (Bedeutung, ähnliches Wort, Bild, Satz)", en: "making a word map (meaning, a word like it, a picture, a sentence)" } }
+    - { id: use, what: { de: ein neues Wort in einem sinnvollen Satz verwenden, en: using a new word in a sentence that makes sense } }
   misconceptions:
     - id: skip-the-word
       what: Skips a word they do not know and carries on, so never learns it
@@ -49,7 +54,7 @@ lessons:
         tasks:
           - id: l1-w1
             type: fill_in_blank
-            text: "Which question word fits?"
+            text: "You want to know a person's name. Which word fits?"
             say: "You want to know a person's name. Which question word fits?"
             frame: "_ is your name?"
             options: ["What", "When", "Where"]
@@ -57,7 +62,7 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: audio_choice
-            text: "Listen to Lucy. Which question fits?"
+            text: "Lucy says: \"I saw a rainbow on the way to school.\"\n\nWhich question fits?"
             audio: { en: "I saw a rainbow on the way to school.", speaker: female }
             options: ["What colours did you see?", "Can I have a sweet?", "Is it PE today?"]
             answer: "What colours did you see?"
@@ -192,6 +197,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -209,6 +215,21 @@ lessons:
             text: "Tap the clue that helps you guess what feast means."
             show: { drawn: letter-card, text: "We had a feast. There was so much food on the table." }
             spans: ["food"]
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the clue that helps you guess what soggy means."
+            show: { drawn: letter-card, text: "My sandwich was soggy. It fell in a puddle." }
+            spans: ["puddle"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "\"The kitten was tiny. It could sit in my hand.\"\n\nWhat does tiny mean?"
+            say: "Listen. The kitten was tiny. It could sit in my hand. What does tiny mean?"
+            options: ["very fast", "very small", "very loud"]
+            answer: "very small"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? Clues in a sentence can help you guess what a new word means."
+            answer: true
 
   - n: 2
     title: { de: "Wortkarte und eigene Sätze", en: "Word maps and using words" }
@@ -374,32 +395,152 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ask
             type: multiple_choice
             text: "In a story you hear the word \"timid\". You do not know it. What is a good thing to do?"
             options: ["ask what it means", "stop listening", "skip it"]
             answer: "ask what it means"
           - id: l2-c2
+            part: guess
             type: multiple_choice
             text: "\"The path was muddy. Our boots were brown and sticky.\"\n\nWhat does muddy mean?"
             say: "Listen. The path was muddy. Our boots were brown and sticky. What does muddy mean?"
-            options: ["covered in wet mud", "very clean", "very steep"]
-            answer: "covered in wet mud"
+            options: ["wet and dirty", "very clean", "very steep"]
+            answer: "wet and dirty"
           - id: l2-c3
+            part: word-map
             type: multiple_choice
             text: "Word map: glad\n\nWhich word goes in \"a word like it\"?"
             say: "You are making a word map for glad. Which word goes in the part called a word like it?"
             options: ["happy", "sad", "glue"]
             answer: "happy"
           - id: l2-c4
+            part: use
             type: multiple_choice
             text: "Which sentence uses \"chilly\" well?"
             options: ["I wore a coat because it was chilly.", "The oven was chilly and hot.", "I chilly to the park."]
             answer: "I wore a coat because it was chilly."
             option_audio: false
           - id: l2-c5
+            part: guess
             type: highlight_in_text
             text: "Tap the clue that helps you guess what exhausted means."
             show: { drawn: letter-card, text: "Dad was exhausted. He fell asleep on the sofa." }
             spans: ["asleep"]
+          - id: l2-c6
+            part: ask
+            type: true_false
+            text: "Is it true? Asking \"What does grumpy mean?\" helps you learn the word grumpy."
+            answer: true
+          - id: l2-c7
+            part: ask
+            type: multiple_choice
+            text: "Which question helps you learn a new word?"
+            options: ["Can I go out to play?", "What does enormous mean?", "Where is my coat?"]
+            answer: "What does enormous mean?"
+          - id: l2-c8
+            part: ask
+            type: sorting
+            text: "Which questions help you learn a new word?"
+            say: "Sort the questions. Do they help you learn a new word, or not?"
+            option_audio: false
+            bins:
+              - { id: yes, show: { text: "helps" }, say: "Helps." }
+              - { id: no, show: { text: "does not help" }, say: "Does not help." }
+            options:
+              - { text: "Is it lunchtime?", bin: no }
+              - { text: "What does swift mean?", bin: yes }
+              - { text: "Can I have a pen?", bin: no }
+              - { text: "What is a meadow?", bin: yes }
+          - id: l2-c9
+            part: ask
+            type: multiple_choice
+            text: "Rosa hears the word \"burrow\". She does not know it. What can she say?"
+            options: ["What does burrow mean?", "I know all the words.", "Is it home time?"]
+            answer: "What does burrow mean?"
+          - id: l2-c10
+            part: guess
+            type: multiple_choice
+            text: "\"The baby was wailing. Big tears ran down her face.\"\n\nWhat does wailing mean?"
+            say: "Listen. The baby was wailing. Big tears ran down her face. What does wailing mean?"
+            options: ["sleeping", "crying loudly", "singing"]
+            answer: "crying loudly"
+          - id: l2-c11
+            part: guess
+            type: highlight_in_text
+            text: "Tap the two clue words that help you guess what silent means."
+            show: { drawn: letter-card, text: "The hall was silent. Nobody made a sound." }
+            spans: ["Nobody", "sound"]
+          - id: l2-c12
+            part: guess
+            type: true_false
+            text: "\"Mia was weary after the long walk. She sat down to rest.\"\n\nIs it true? Weary means tired."
+            say: "Listen. Mia was weary after the long walk. She sat down to rest. Is it true? Weary means tired."
+            answer: true
+          - id: l2-c13
+            part: word-map
+            type: matching
+            text: "Make a word map for \"speedy\". Match each part."
+            pairs:
+              - { left: { text: "Means" }, right: { text: "very fast" } }
+              - { left: { text: "A word like it" }, right: { text: "quick" } }
+              - { left: { text: "Sentence" }, right: { text: "The speedy car won the race." } }
+          - id: l2-c14
+            part: word-map
+            type: image_multiple_choice
+            text: "Word map: prickly\n\nMeans: covered in sharp points\n\nWhich picture fits?"
+            say: "You are making a word map for prickly. It means covered in sharp points. Which picture fits?"
+            options: [{ object: teddy }, { object: hedgehog }, { object: balloon }]
+            answer: hedgehog
+          - id: l2-c15
+            part: word-map
+            type: true_false
+            text: "Word map: tiny\n\nIs it true? \"enormous\" goes in \"a word like it\"."
+            say: "You are making a word map for tiny. Is it true? Enormous goes in the part called a word like it."
+            answer: false
+          - id: l2-c16
+            part: word-map
+            type: multiple_choice
+            text: "Word map: munch\n\nWhich sentence goes in \"Sentence\"?"
+            say: "You are making a word map for munch. Which sentence goes in the part called sentence?"
+            options: ["The apple is munch.", "I munch my apple.", "Munch is red."]
+            answer: "I munch my apple."
+            option_audio: false
+          - id: l2-c17
+            part: use
+            type: multiple_choice
+            text: "Which sentence uses \"gentle\" well?"
+            options: ["I gentle my teeth.", "The drum was gentle loud.", "Be gentle with the kitten."]
+            answer: "Be gentle with the kitten."
+            option_audio: false
+          - id: l2-c18
+            part: use
+            type: true_false
+            text: "Is it true? \"I ate a sleepy for lunch.\" uses the word sleepy well."
+            say: "Is it true? I ate a sleepy for lunch. Does that use the word sleepy well?"
+            answer: false
+          - id: l2-c19
+            part: use
+            type: fill_in_blank
+            text: "Which word fits the sentence?"
+            say: "Which word fits the sentence? Read it yourself."
+            frame: "It was so _ that we wore hats and gloves."
+            options: ["sunny", "freezing", "delicious"]
+            answer: ["freezing"]
+          - id: l2-c20
+            part: use
+            type: sorting
+            text: "Does the sentence use the new word well?"
+            say: "Read each sentence. Does it use the new word well, or not? Sort the sentences."
+            option_audio: false
+            bins:
+              - { id: yes, show: { text: "makes sense" }, say: "Makes sense." }
+              - { id: no, show: { text: "does not make sense" }, say: "Does not make sense." }
+            options:
+              - { text: "The rock was drowsy and ran away.", bin: no }
+              - { text: "Dad was furious when the dog ate his shoe.", bin: yes }
+              - { text: "The flower was furious and smelled nice.", bin: no }
+              - { text: "The puppy was drowsy and fell asleep.", bin: yes }

@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: reasons, what: { de: Gründe mit einem Beispiel aus dem Buch, en: reasons backed by an example from the book } }
+    - { id: no-spoilers, what: { de: "sagen, worum es geht, ohne das Ende zu verraten", en: saying what the book is about without spoilers } }
+    - { id: reader, what: { de: das Buch zum Leser passend wählen, en: matching the book to the reader } }
+    - { id: structure, what: { de: was in eine Empfehlung gehört und in welcher Reihenfolge, en: what goes in a recommendation and in what order } }
   misconceptions:
     - id: reason-without-example
       what: Gives a reason with nothing from the book to back it up ("It is good because it is good")
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -228,6 +234,22 @@ lessons:
             type: true_false
             text: "Is it true? A spoiler is a good way to end a recommendation."
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which reason gives an example from the book?"
+            options: ["The aliens are hilarious, like the one who thinks a hat is a spaceship.", "It is fantastic.", "You should read it."]
+            answer: "The aliens are hilarious, like the one who thinks a hat is a spaceship."
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? \"In the end, the queen was the spy\" is a spoiler."
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which sentence tells you who would enjoy the book?"
+            options: ["Anyone who loves dinosaurs will enjoy it.", "It has twelve chapters.", "It came out last year."]
+            answer: "Anyone who loves dinosaurs will enjoy it."
+            option_audio: false
 
   - n: 2
     title: { de: Das passende Buch für jeden, en: The right book for the reader }
@@ -390,8 +412,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: structure
             type: ordering
             text: "Put the recommendation in order."
             say: "Put the sentences of the recommendation in order."
@@ -400,24 +424,139 @@ lessons:
             slot_count: 4
             answer: ["I recommend \"Island of Bones\" by Max Hill, a mystery.", "Three cousins find an old diary on holiday.", "The clues are clever, like the map hidden in a poem.", "If you like solving puzzles, try it."]
           - id: l2-c2
+            part: reasons
             type: multiple_choice
             text: "Which is the strongest reason to read \"The Wild Year\"?"
             options: ["It shows a year on a farm, from lambs in spring to snow in winter.", "It is a great book.", "Everyone likes it."]
             answer: "It shows a year on a farm, from lambs in spring to snow in winter."
             option_audio: false
           - id: l2-c3
+            part: no-spoilers
             type: multiple_choice
             text: "Which sentence is a spoiler?"
             options: ["The missing dog was hiding in the school all along.", "The story starts on a rainy Monday.", "It is a funny mystery."]
             answer: "The missing dog was hiding in the school all along."
             option_audio: false
           - id: l2-c4
+            part: reader
             type: multiple_choice
             text: "Zara loves poems and nature.\n\nWhich book should you recommend to her?"
             options: ["\"Leaf and Feather\", poems about woods and birds", "\"Speed Kings\", a book about racing cars", "\"Joke Machine\", a joke book"]
             answer: "\"Leaf and Feather\", poems about woods and birds"
             option_audio: false
           - id: l2-c5
+            part: structure
             type: true_false
             text: "Is it true? A recommendation should name the title and the author."
+            answer: true
+          - id: l2-c6
+            part: reasons
+            type: sorting
+            text: "Sort the reasons for reading \"Tiger Trail\"."
+            say: "Read each reason. Does it give an example from the book, or not?"
+            option_audio: false
+            bins:
+              - { id: strong, show: { text: "reason with an example" }, say: "Reason with an example." }
+              - { id: weak, show: { text: "no example" }, say: "No example." }
+            options:
+              - { text: "The tiger cubs are drawn so well you want to stroke them.", bin: strong }
+              - { text: "It's really cool.", bin: weak }
+              - { text: "You learn how rangers track tigers, like reading paw prints in mud.", bin: strong }
+              - { text: "I give it ten out of ten.", bin: weak }
+          - id: l2-c7
+            part: reasons
+            type: multiple_choice
+            text: "Which reason best backs up \"The book is funny\"?"
+            options: ["The parrot keeps repeating the teacher's words at the worst moments.", "It is very, very funny.", "It has a yellow cover."]
+            answer: "The parrot keeps repeating the teacher's words at the worst moments."
+            option_audio: false
+          - id: l2-c8
+            part: reasons
+            type: true_false
+            text: "Is it true? \"The chase through the market is so tense that I read it twice\" gives a reason with an example."
+            answer: true
+          - id: l2-c9
+            part: reasons
+            type: highlight_in_text
+            text: "Tap the example from the book."
+            show: { drawn: letter-card, text: "It is exciting because the train races through a storm." }
+            spans: ["the", "train", "races", "through", "a", "storm"]
+          - id: l2-c10
+            part: no-spoilers
+            type: sorting
+            text: "Sort the sentences about \"Frozen Lake\"."
+            say: "Is each sentence a spoiler, or safe to share?"
+            option_audio: false
+            bins:
+              - { id: spoiler, show: { text: "spoiler" }, say: "Spoiler." }
+              - { id: safe, show: { text: "safe to share" }, say: "Safe to share." }
+            options:
+              - { text: "The ice cracks in the final chapter and Jo falls in.", bin: spoiler }
+              - { text: "Jo and her brother live beside a frozen lake.", bin: safe }
+              - { text: "It turns out the stranger is their long-lost aunt.", bin: spoiler }
+              - { text: "It is an adventure set in the Lake District.", bin: safe }
+          - id: l2-c11
+            part: no-spoilers
+            type: true_false
+            text: "Is it true? \"Who sent the letters? You will have to read it to find out!\" gives away the ending."
+            answer: false
+          - id: l2-c12
+            part: no-spoilers
+            type: multiple_choice
+            text: "Ella's recommendation ends: \"And in the last chapter, Max finally wins the race.\"\n\nWhat should she do?"
+            options: ["cut that sentence, because it is a spoiler", "make that sentence longer", "move it to the start"]
+            answer: "cut that sentence, because it is a spoiler"
+          - id: l2-c13
+            part: no-spoilers
+            type: multiple_choice
+            text: "Which sentence says what the book is about without a spoiler?"
+            options: ["A shy girl joins a circus and must learn the trapeze.", "On the final night, the shy girl becomes the star of the circus.", "It is good."]
+            answer: "A shy girl joins a circus and must learn the trapeze."
+            option_audio: false
+          - id: l2-c14
+            part: reader
+            type: multiple_choice
+            text: "Finn loves football and true stories.\n\nWhich book should you recommend to him?"
+            options: ["\"Boots of Gold\", the true story of a famous footballer", "\"Fairy Ball\", a fairy tale", "\"Ice Planet\", a science fiction story"]
+            answer: "\"Boots of Gold\", the true story of a famous footballer"
+            option_audio: false
+          - id: l2-c15
+            part: reader
+            type: matching
+            text: "Match each reader to the book they would enjoy."
+            pairs:
+              - { left: { text: "Sam loves space." }, right: { text: "\"Rocket Girl\", a story about an astronaut" } }
+              - { left: { text: "Aisha loves cooking." }, right: { text: "\"Kitchen Chaos\", a funny cookbook" } }
+              - { left: { text: "Theo loves ghosts." }, right: { text: "\"The Haunted Pier\", a spooky story" } }
+          - id: l2-c16
+            part: reader
+            type: true_false
+            text: "Is it true? A reader who hates scary stories would enjoy a book recommended \"for fans of horror\"."
+            answer: false
+          - id: l2-c17
+            part: reader
+            type: multiple_choice
+            text: "You are recommending a book of animal facts.\n\nWhich ending suits it?"
+            options: ["If you are curious about how animals live, this book is for you.", "If you like love stories, you will adore it.", "Everyone in the world should read it."]
+            answer: "If you are curious about how animals live, this book is for you."
+            option_audio: false
+          - id: l2-c18
+            part: structure
+            type: multiple_choice
+            text: "\"I recommend 'Sea Glass' by Nia Jones, a mystery. Two friends find a message in a bottle. If you like puzzles, you will love it.\"\n\nWhat is missing from this recommendation?"
+            options: ["a reason with an example", "the title", "who would enjoy it"]
+            answer: "a reason with an example"
+          - id: l2-c19
+            part: structure
+            type: ordering
+            text: "Put the recommendation in order."
+            say: "Put the sentences of the recommendation about Paws and Claws in order."
+            option_audio: false
+            options: ["Animal lovers will enjoy every page.", "I recommend \"Paws and Claws\" by Lily Grant, a book of true pet stories.", "Each story is about a pet that saved its owner.", "The photos are brilliant, like the cat that rang the doorbell."]
+            slot_count: 4
+            answer: ["I recommend \"Paws and Claws\" by Lily Grant, a book of true pet stories.", "Each story is about a pet that saved its owner.", "The photos are brilliant, like the cat that rang the doorbell.", "Animal lovers will enjoy every page."]
+          - id: l2-c20
+            part: structure
+            type: true_false
+            text: "Is it true? A recommendation should say what kind of book it is, such as a mystery or a fact book."
             answer: true

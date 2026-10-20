@@ -24,6 +24,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [dots, letter-card]
   facets: []
+  parts:
+    - { id: count-sounds, what: { de: "jeden Laut hören, auch wenn zwei Konsonanten nebeneinanderstehen (jump hat vier Laute)", en: "hearing every sound when two consonants sit side by side (jump has four sounds)" } }
+    - { id: missing-letter, what: { de: "den Konsonanten schreiben, den man leicht überhört", en: writing the consonant that is easy to miss } }
+    - { id: hear-word, what: { de: "das gehörte Wort unter ähnlichen Wörtern finden (pin, spin, skin)", en: "finding the word you hear among words that look alike (pin, spin, skin)" } }
+    - { id: read-find, what: { de: ein Wort mit zwei Konsonanten nebeneinander lesen und sein Bild finden, en: reading a word with two consonants side by side and finding its picture } }
   misconceptions:
     - id: drops-a-consonant
       what: Leaves out one of the two consonants when reading or spelling (lap for lamp, fog for frog)
@@ -215,6 +220,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -227,6 +233,7 @@ lessons:
             type: fill_in_blank
             text: "Which letter is missing?"
             say: "Hand. Which letter is missing?"
+            show: { object: hand }
             frame: "ha_d"
             options: ["m", "d", "n"]
             answer: ["n"]
@@ -237,6 +244,30 @@ lessons:
             show: { drawn: letter-card, text: "jump" }
             options: [{ object: juice }, { object: jacket }, { object: jump }]
             answer: jump
+            option_audio: false
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Ant. How many sounds can you hear?"
+            show: { object: ant }
+            options:
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "3"
+          - id: l1-c5
+            type: true_false
+            text: "bench"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: bench }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Pink." }
+            options: ["pin", "pink", "pick"]
+            answer: "pink"
 
   - n: 2
     title: { de: "frog, clap, stamp", en: "frog, clap, stamp" }
@@ -432,8 +463,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: count-sounds
             type: image_multiple_choice
             text: "How many sounds?"
             say: "Jump. How many sounds can you hear?"
@@ -444,13 +477,16 @@ lessons:
               - { drawn: dots, count: 3, layout: row }
             answer: "4"
           - id: l2-c2
+            part: missing-letter
             type: fill_in_blank
             text: "Which letter is missing?"
             say: "Clap. Which letter is missing?"
+            show: { object: clap }
             frame: "c_ap"
             options: ["w", "l", "n"]
             answer: ["l"]
           - id: l2-c3
+            part: hear-word
             type: audio_choice
             text: "Which word do you hear?"
             say: "Listen. Tap the word you hear."
@@ -458,13 +494,16 @@ lessons:
             options: ["pin", "spin", "skin"]
             answer: "spin"
           - id: l2-c4
+            part: read-find
             type: image_multiple_choice
             text: "Read the word. Tap its picture."
             say: "Read the word on the card. Then tap its picture."
             show: { drawn: letter-card, text: "dress" }
             options: [{ object: duck }, { object: dog }, { object: dress }]
             answer: dress
+            option_audio: false
           - id: l2-c5
+            part: missing-letter
             type: fill_in_blank
             text: "Which letter is missing?"
             say: "Wind. Which letter is missing?"
@@ -472,3 +511,138 @@ lessons:
             frame: "wi_d"
             options: ["m", "r", "n"]
             answer: ["n"]
+          - id: l2-c6
+            part: count-sounds
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Bricks. How many sounds can you hear?"
+            show: { object: bricks }
+            options:
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+              - { drawn: dots, count: 5, layout: row }
+            answer: "5"
+          - id: l2-c7
+            part: missing-letter
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Snail. Which letter is missing?"
+            show: { object: snail }
+            frame: "s_ail"
+            options: ["m", "t", "n"]
+            answer: ["n"]
+          - id: l2-c8
+            part: hear-word
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Drip." }
+            options: ["dip", "trip", "drip"]
+            answer: "drip"
+          - id: l2-c9
+            part: read-find
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Then tap its picture."
+            show: { drawn: letter-card, text: "crab" }
+            options: [{ object: crown }, { object: crab }, { object: crocodile }]
+            answer: crab
+            option_audio: false
+          - id: l2-c10
+            part: count-sounds
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Star. How many sounds can you hear?"
+            show: { object: star }
+            options:
+              - { drawn: dots, count: 4, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "3"
+          - id: l2-c11
+            part: missing-letter
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Flower. Which letter is missing?"
+            show: { object: flower }
+            frame: "f_ower"
+            options: ["r", "l", "w"]
+            answer: ["l"]
+          - id: l2-c12
+            part: hear-word
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Lost." }
+            options: ["lot", "lots", "lost"]
+            answer: "lost"
+          - id: l2-c13
+            part: read-find
+            type: true_false
+            text: "spot"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: spoon }
+            answer: false
+          - id: l2-c14
+            part: count-sounds
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Train. How many sounds can you hear?"
+            show: { object: train }
+            options:
+              - { drawn: dots, count: 5, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "4"
+          - id: l2-c15
+            part: missing-letter
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Bench. Which letter is missing?"
+            show: { object: bench }
+            frame: "be_ch"
+            options: ["n", "m", "l"]
+            answer: ["n"]
+          - id: l2-c16
+            part: hear-word
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Plan." }
+            options: ["pan", "plan", "plant"]
+            answer: "plan"
+          - id: l2-c17
+            part: read-find
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Then tap its picture."
+            show: { drawn: letter-card, text: "tree" }
+            options: [{ object: train }, { object: trousers }, { object: tree }]
+            answer: tree
+            option_audio: false
+          - id: l2-c18
+            part: count-sounds
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Crown. How many sounds can you hear?"
+            show: { object: crown }
+            options:
+              - { drawn: dots, count: 4, layout: row }
+              - { drawn: dots, count: 5, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+            answer: "4"
+          - id: l2-c19
+            part: read-find
+            type: true_false
+            text: "sticks"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: sticks }
+            answer: true
+          - id: l2-c20
+            part: hear-word
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Melt." }
+            options: ["met", "melt", "mend"]
+            answer: "melt"

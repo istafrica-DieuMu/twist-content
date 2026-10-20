@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [fraction, hundred-field]
   facets: [number-format, currency]
+  parts:
+    - { id: tenths, what: { de: Zehntel als Dezimalzahl schreiben und umgekehrt, en: writing tenths as decimals and back } }
+    - { id: hundredths, what: { de: Hundertstel als Dezimalzahl schreiben und umgekehrt, en: writing hundredths as decimals and back } }
+    - { id: half-quarters, what: { de: "½, ¼ und ¾ als Dezimalzahl", en: "1/2, 1/4 and 3/4 as decimals" } }
+    - { id: in-context, what: { de: Brüche und Dezimalzahlen bei Geld und Maßen, en: fractions and decimals in money and measures } }
   misconceptions:
     - id: digits-make-the-decimal
       what: Writes the digits of the fraction as the decimal (1/4 = 0.14 or 0.4, 1/2 = 0.12, 3/4 = 0.34)
@@ -204,6 +209,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,6 +228,24 @@ lessons:
             frame: "0.07 = _/100"
             options: ["7", "70", "700"]
             answer: ["7"]
+          - id: l1-c4
+            type: text_input
+            text: "Write 29/100 as a decimal."
+            say: "Write twenty-nine hundredths as a decimal."
+            keyboard: decimal
+            answer: "0.29"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 0.8 = 8/100"
+            say: "Is it true? Zero point eight is eight hundredths."
+            answer: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Write 1/2 as tenths and as a decimal."
+            say: "Write one half as tenths and as a decimal."
+            frame: "1/2 = _/10 = 0._"
+            options: ["2", "5", "10"]
+            answer: ["5", "5"]
 
   - n: 2
     title: { de: Viertel und Dreiviertel, en: Quarters and three quarters }
@@ -394,33 +418,143 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: hundredths
             type: multiple_choice
             text: "Write 0.61 as a fraction."
             options: ["61/100", "61/10", "6/100"]
             answer: "61/100"
           - id: l2-c2
+            part: tenths
             type: multiple_choice
             text: "What decimal is shaded?"
             show: { drawn: fraction, kind: bar, parts: 10, shaded: 9 }
             options: ["0.9", "0.09", "0.19"]
             answer: "0.9"
           - id: l2-c3
+            part: half-quarters
             type: multiple_choice
             text: "Which decimal is 1/4?"
             say: "Which decimal is one quarter?"
             options: ["0.25", "0.4", "1.4"]
             answer: "0.25"
           - id: l2-c4
+            part: hundredths
             type: fill_in_blank
             text: "Write 0.04 as a fraction."
             frame: "0.04 = _/100"
             options: ["4", "40", "400"]
             answer: ["4"]
           - id: l2-c5
+            part: half-quarters
             type: text_input
             text: "Write 3/4 as a decimal."
             say: "Write three quarters as a decimal."
             keyboard: decimal
             answer: "0.75"
+          - id: l2-c6
+            part: tenths
+            type: text_input
+            text: "Write 2/10 as a decimal."
+            say: "Write two tenths as a decimal."
+            keyboard: decimal
+            answer: "0.2"
+          - id: l2-c7
+            part: tenths
+            type: true_false
+            text: "Is it true? 0.6 = 6/10"
+            say: "Is it true? Zero point six is six tenths."
+            answer: true
+          - id: l2-c8
+            part: tenths
+            type: image_multiple_choice
+            text: "Which bar shows 0.8?"
+            options:
+              - { drawn: fraction, kind: bar, parts: 10, shaded: 8 }
+              - { drawn: fraction, kind: bar, parts: 8, shaded: 1 }
+              - { drawn: fraction, kind: bar, parts: 10, shaded: 3 }
+            answer: "8/10"
+          - id: l2-c9
+            part: tenths
+            type: matching
+            text: "Match each decimal with its fraction."
+            option_audio: false
+            pairs:
+              - { left: { text: "0.7" }, right: { text: "7/10" } }
+              - { left: { text: "0.4" }, right: { text: "4/10" } }
+              - { left: { text: "0.1" }, right: { text: "1/10" } }
+              - { left: { text: "0.07" }, right: { text: "7/100" } }
+          - id: l2-c10
+            part: hundredths
+            type: text_input
+            text: "Write 0.58 as hundredths.\n0.58 = _/100"
+            say: "Write zero point five eight as hundredths. How many hundredths is it?"
+            answer: "58"
+          - id: l2-c11
+            part: hundredths
+            type: multiple_choice
+            text: "The whole field is 1. What decimal is filled?"
+            show: { drawn: hundred-field, filled: 36 }
+            options: ["0.36", "3.6", "0.63"]
+            answer: "0.36"
+          - id: l2-c12
+            part: hundredths
+            type: true_false
+            text: "Is it true? 0.09 = 9/10"
+            say: "Is it true? Zero point zero nine is nine tenths."
+            answer: false
+          - id: l2-c13
+            part: half-quarters
+            type: fill_in_blank
+            text: "Write 0.5 as tenths and as a fraction."
+            say: "Write zero point five as tenths and as a fraction."
+            frame: "0.5 = _/10 = 1/_"
+            options: ["2", "5", "10"]
+            answer: ["5", "2"]
+          - id: l2-c14
+            part: half-quarters
+            type: true_false
+            text: "Is it true? 3/4 = 0.34"
+            say: "Is it true? Three quarters is zero point three four."
+            answer: false
+          - id: l2-c15
+            part: half-quarters
+            type: multiple_choice
+            text: "What decimal is shaded?"
+            show: { drawn: fraction, kind: bar, parts: 2, shaded: 1 }
+            options: ["0.5", "0.2", "0.12"]
+            answer: "0.5"
+          - id: l2-c16
+            part: in-context
+            type: multiple_choice
+            text: "How much is half of £1?"
+            options: ["£0.50", "£0.12", "£0.20"]
+            answer: "£0.50"
+          - id: l2-c17
+            part: in-context
+            type: multiple_choice
+            text: "Ana walks 3/4 km to school. How far is that as a decimal?"
+            say: "Ana walks three quarters of a kilometre to school. How far is that as a decimal?"
+            options: ["0.75 km", "0.34 km", "3.4 km"]
+            answer: "0.75 km"
+          - id: l2-c18
+            part: in-context
+            type: text_input
+            text: "Tom has run 7/10 of a kilometre. Write that as a decimal. Type the kilometres."
+            say: "Tom has run seven tenths of a kilometre. Write that as a decimal. Type the kilometres."
+            keyboard: decimal
+            answer: "0.7"
+          - id: l2-c19
+            part: in-context
+            type: true_false
+            text: "Is it true? 75p is 3/4 of £1."
+            say: "Is it true? Seventy-five pence is three quarters of a pound."
+            answer: true
+          - id: l2-c20
+            part: in-context
+            type: multiple_choice
+            text: "A metre is 100 cm. A pencil is 0.13 m long. What fraction of a metre is that?"
+            options: ["13/100", "13/10", "1/3"]
+            answer: "13/100"

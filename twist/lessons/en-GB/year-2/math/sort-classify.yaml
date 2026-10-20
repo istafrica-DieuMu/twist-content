@@ -23,6 +23,11 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [colour-swatch, table]
   facets: []
+  parts:
+    - { id: sort, what: { de: nach einem Merkmal sortieren, en: sorting by one property } }
+    - { id: belong, what: { de: "erkennen, was dazugehört und was nicht passt", en: spotting what belongs and the odd one out } }
+    - { id: count, what: { de: "zählen, wie viele in einer Gruppe sind", en: counting how many are in a group } }
+    - { id: compare, what: { de: "Gruppen vergleichen: die meisten, die wenigsten, wie viele mehr", en: "comparing groups: most, fewest, how many more and the total" } }
   misconceptions:
     - id: switches-property
       what: Switches the property halfway through sorting (sorts some by colour and some by kind)
@@ -262,6 +267,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: sorting
@@ -287,6 +293,30 @@ lessons:
             say: "Bread, cheese, apple. Does the carrot belong with the food too?"
             show: { object: carrot }
             answer: true
+          - id: l1-c4
+            type: sorting
+            text: "Lives in water or on land?"
+            say: "Sort the animals. Does it live in water, or on land?"
+            bins:
+              - { id: water, show: { text: "in water" }, say: "in water" }
+              - { id: land, show: { text: "on land" }, say: "on land" }
+            options:
+              - { object: jellyfish, bin: water }
+              - { object: horse, bin: land }
+              - { object: shark, bin: water }
+              - { object: sheep, bin: land }
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which is the odd one out?"
+            say: "Three belong together. Which is the odd one out?"
+            options: [{ object: bus }, { object: train }, { object: lorry }, { object: sofa }]
+            answer: sofa
+          - id: l1-c6
+            type: true_false
+            text: "Bee, butterfly, bird. Does the pig belong with the animals that can fly?"
+            say: "Bee, butterfly, bird. Does the pig belong with the animals that can fly?"
+            show: { object: pig }
+            answer: false
 
   - n: 2
     title: { de: "Wie viele in jeder Gruppe?", en: "How many in each group?" }
@@ -482,8 +512,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sort
             type: sorting
             text: "For school or a toy?"
             say: "Sort them. Do you use it at school, or is it a toy?"
@@ -497,6 +529,7 @@ lessons:
               - { object: yo-yo, bin: toy }
               - { object: teddy, bin: toy }
           - id: l2-c2
+            part: count
             type: multiple_choice
             text: "How many ducks are in the group?"
             say: "How many ducks are in this group?"
@@ -505,6 +538,7 @@ lessons:
             answer: "7"
             option_audio: false
           - id: l2-c3
+            part: compare
             type: ordering
             text: "Put the colours in order, most first."
             say: "Class 2 sorted their crayons by colour. Put the colours in order. The most go first."
@@ -513,6 +547,7 @@ lessons:
             slot_count: 3
             answer: ["blue", "red", "green"]
           - id: l2-c4
+            part: compare
             type: multiple_choice
             text: "Red 10, green 8. How many red and green crayons in total?"
             say: "There are ten red crayons and eight green crayons. How many is that in total?"
@@ -520,7 +555,142 @@ lessons:
             answer: "18"
             option_audio: false
           - id: l2-c5
+            part: compare
             type: true_false
             text: "There are 15 blue crayons and 10 red ones. There are 5 more blue crayons."
             say: "There are fifteen blue crayons and ten red ones. Is it true that there are five more blue crayons?"
             answer: true
+          - id: l2-c6
+            part: sort
+            type: sorting
+            text: "Clothes or food?"
+            say: "Sort them. Is it something to wear, or is it food?"
+            bins:
+              - { id: clothes, show: { text: "clothes" }, say: "clothes" }
+              - { id: food, show: { text: "food" }, say: "food" }
+            options:
+              - { object: jumper, bin: clothes }
+              - { object: pear, bin: food }
+              - { object: hat, bin: clothes }
+              - { object: cake, bin: food }
+              - { object: skirt, bin: clothes }
+          - id: l2-c7
+            part: sort
+            type: sorting
+            text: "Red or green?"
+            say: "Sort them by colour. Red or green?"
+            bins:
+              - { id: red, show: { drawn: colour-swatch, colour: red }, say: "red" }
+              - { id: green, show: { drawn: colour-swatch, colour: green }, say: "green" }
+            options:
+              - { object: crayon, colour: green, bin: green }
+              - { object: jacket, colour: red, bin: red }
+              - { object: dress, colour: green, bin: green }
+              - { object: jumper, colour: red, bin: red }
+              - { object: balloon, colour: green, bin: green }
+          - id: l2-c8
+            part: sort
+            type: sorting
+            text: "Has legs or no legs?"
+            say: "Sort the animals. Does it have legs, or no legs?"
+            bins:
+              - { id: legs, show: { text: "has legs" }, say: "has legs" }
+              - { id: nolegs, show: { text: "no legs" }, say: "no legs" }
+            options:
+              - { object: snake, bin: nolegs }
+              - { object: hen, bin: legs }
+              - { object: whale, bin: nolegs }
+              - { object: dog, bin: legs }
+              - { object: fish, bin: nolegs }
+          - id: l2-c9
+            part: sort
+            type: multiple_choice
+            text: "Sam sorted by one question. In one group: bus, bike, lorry. Which question did he ask?"
+            say: "Sam sorted by one question. In one group he put a bus, a bike and a lorry. Which question did he ask?"
+            options: ["Does it have wheels?", "Can it fly?", "Is it red?"]
+            answer: "Does it have wheels?"
+          - id: l2-c10
+            part: belong
+            type: image_multiple_choice
+            text: "Which is the odd one out?"
+            say: "Three belong together. Which is the odd one out?"
+            options: [{ object: sheep }, { object: horse }, { object: hen }, { object: umbrella }]
+            answer: umbrella
+          - id: l2-c11
+            part: belong
+            type: image_multiple_choice
+            text: "Three can fly. Which is the odd one out?"
+            say: "Three of these animals can fly. Which is the odd one out?"
+            options: [{ object: owl }, { object: fly }, { object: ladybird }, { object: tortoise }]
+            answer: tortoise
+          - id: l2-c12
+            part: belong
+            type: true_false
+            text: "Cup, glass, bottle. You drink from these. Does the shoe belong in this group?"
+            say: "Cup, glass, bottle. You drink from these. Does the shoe belong in this group too?"
+            show: { object: shoe }
+            answer: false
+          - id: l2-c13
+            part: belong
+            type: true_false
+            text: "Lion, zebra, giraffe. Does the elephant belong with the animals?"
+            say: "Lion, zebra, giraffe. Does the elephant belong with the animals too?"
+            show: { object: elephant }
+            answer: true
+          - id: l2-c14
+            part: belong
+            type: image_multiple_choice
+            text: "Dog, cat, rabbit. Which one belongs with them?"
+            say: "Dog, cat, rabbit. Which one belongs with them?"
+            options: [{ object: pony }, { object: pizza }, { object: bike }]
+            answer: pony
+          - id: l2-c15
+            part: count
+            type: multiple_choice
+            text: "How many shells are in the group?"
+            say: "How many shells are in this group?"
+            show: { object: shell, count: 11, layout: scattered }
+            options: ["11", "10", "12"]
+            answer: "11"
+            option_audio: false
+          - id: l2-c16
+            part: count
+            type: multiple_choice
+            text: "How many feathers are in the group?"
+            say: "How many feathers are in this group?"
+            show: { object: feather, count: 12 }
+            options: ["12", "11", "13"]
+            answer: "12"
+            option_audio: false
+          - id: l2-c17
+            part: count
+            type: text_input
+            text: "Count the cups in the group. How many are there?"
+            say: "Count the cups in this group. How many are there?"
+            show: { object: cup, count: 14, layout: scattered }
+            answer: "14"
+          - id: l2-c18
+            part: count
+            type: true_false
+            text: "Count the pencils. Are there 9 pencils in this group?"
+            say: "Count the pencils. Are there nine pencils in this group?"
+            show: { object: pencil, count: 8 }
+            answer: false
+          - id: l2-c19
+            part: compare
+            type: multiple_choice
+            text: "Teddy 6, ball 13. How many more children brought a ball than a teddy?"
+            say: "Class 2 sorted the toys they brought. Six children brought a teddy and thirteen brought a ball. How many more children brought a ball than a teddy?"
+            show: { drawn: table, rows: [["Toy", "Children"], ["teddy", "6"], ["ball", "13"], ["kite", "9"]] }
+            options: ["7", "19", "6"]
+            answer: "7"
+            option_audio: false
+          - id: l2-c20
+            part: compare
+            type: ordering
+            text: "Class 2 counted animals in the park. Put them in order, fewest first."
+            say: "Class 2 counted the animals they saw in the park. Put them in order. The fewest go first."
+            show: { drawn: table, rows: [["Animal", "How many"], ["birds", "16"], ["ducks", "5"], ["rabbits", "11"]] }
+            options: ["birds", "ducks", "rabbits"]
+            slot_count: 3
+            answer: ["ducks", "rabbits", "birds"]

@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: sentence-parts, what: { de: Subjekt und Objekt, en: subject and object } }
+    - { id: word-terms, what: { de: "Modalverb, Relativsatz, Relativpronomen und Begleiter", en: "modal verb, relative clause, relative pronoun and determiner" } }
+    - { id: text-terms, what: { de: "Parenthese, Aktiv und Passiv, Kohäsion und Ellipse", en: "parenthesis, active and passive, cohesion and ellipsis" } }
+    - { id: explain, what: { de: mit den Fachbegriffen eine Wirkung erklären, en: using the terms to explain an effect } }
   misconceptions:
     - id: subject-is-first-word
       what: "Thinks the subject is always the first word of the sentence (In the morning, the dog barked: subject \"In\")"
@@ -189,6 +194,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -205,6 +211,21 @@ lessons:
             text: "\"The cake that Gran made was delicious.\"\n\nWhat is \"that Gran made\"?"
             options: ["a relative clause", "parenthesis in brackets", "an object"]
             answer: "a relative clause"
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the subject of the sentence."
+            show: { drawn: letter-card, text: "Every Friday, the twins play tennis." }
+            spans: ["the", "twins"]
+          - id: l1-c5
+            type: multiple_choice
+            text: "\"Grandma knitted a scarf.\"\n\nWhat is the object?"
+            options: ["a scarf", "Grandma", "knitted"]
+            answer: "a scarf"
+          - id: l1-c6
+            type: multiple_choice
+            text: "\"Each child has a locker.\"\n\nWhat word class is \"each\"?"
+            options: ["determiner", "modal verb", "relative pronoun"]
+            answer: "determiner"
 
   - n: 2
     title: { de: Zeichen und Textmerkmale benennen, en: Naming punctuation and text features }
@@ -365,29 +386,130 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sentence-parts
             type: highlight_in_text
             text: "Tap the subject of the sentence."
             show: { drawn: letter-card, text: "Before the match, Leo warmed up." }
             spans: ["Leo"]
           - id: l2-c2
+            part: sentence-parts
             type: multiple_choice
             text: "\"The chef chopped the onions.\"\n\nWhat is the object?"
             options: ["the onions", "the chef", "chopped"]
             answer: "the onions"
           - id: l2-c3
+            part: word-terms
             type: highlight_in_text
             text: "Tap the modal verb."
             show: { drawn: letter-card, text: "Everyone would enjoy a day off." }
             spans: ["would"]
           - id: l2-c4
+            part: text-terms
             type: multiple_choice
             text: "\"Paris (the capital of France) is busy.\"\n\nWhat do the brackets show?"
             options: ["parenthesis", "a relative clause", "a modal verb"]
             answer: "parenthesis"
           - id: l2-c5
+            part: text-terms
             type: multiple_choice
-            text: "\"The bridge was closed last night.\"\n\nActive or passive?"
-            options: ["passive", "active"]
-            answer: "passive"
+            text: "Which sentence is in the passive?"
+            options: ["The bridge was closed last night.", "The council closed the bridge last night.", "The bridge stood for a hundred years."]
+            answer: "The bridge was closed last night."
+            option_audio: false
+          - id: l2-c6
+            part: sentence-parts
+            type: multiple_choice
+            text: "\"Every morning, my little sister feeds the goldfish.\"\n\nWhat is the subject?"
+            options: ["my little sister", "Every morning", "the goldfish"]
+            answer: "my little sister"
+          - id: l2-c7
+            part: sentence-parts
+            type: highlight_in_text
+            text: "Tap the object of the sentence."
+            show: { drawn: letter-card, text: "Zara painted rainbows." }
+            spans: ["rainbows"]
+          - id: l2-c8
+            part: sentence-parts
+            type: true_false
+            text: "Is it true? In \"Through the window, the cat watched the birds\", the subject is \"the birds\"."
+            answer: false
+          - id: l2-c9
+            part: word-terms
+            type: multiple_choice
+            text: "\"You might see an owl tonight.\"\n\nWhat does the modal verb \"might\" show?"
+            options: ["that it is possible", "that it is certain", "that it happened yesterday"]
+            answer: "that it is possible"
+          - id: l2-c10
+            part: word-terms
+            type: highlight_in_text
+            text: "Tap the relative pronoun."
+            show: { drawn: letter-card, text: "The boy who lives next door has a parrot." }
+            spans: ["who"]
+          - id: l2-c11
+            part: word-terms
+            type: matching
+            text: "Match each word to the right term."
+            pairs:
+              - { left: { text: "shall" }, right: { text: "modal verb" } }
+              - { left: { text: "who" }, right: { text: "relative pronoun" } }
+              - { left: { text: "these" }, right: { text: "determiner" } }
+          - id: l2-c12
+            part: word-terms
+            type: multiple_choice
+            text: "\"An apple a day keeps the doctor away.\"\n\nWhich words are determiners?"
+            options: ["An, a and the", "apple, day and doctor", "keeps and away"]
+            answer: "An, a and the"
+            option_audio: false
+          - id: l2-c13
+            part: text-terms
+            type: multiple_choice
+            text: "Which sentence uses brackets for parenthesis?"
+            options: ["The Thames (a long river) flows through London.", "The Thames flows through London.", "(The Thames flows through London.)"]
+            answer: "The Thames (a long river) flows through London."
+            option_audio: false
+          - id: l2-c14
+            part: text-terms
+            type: multiple_choice
+            text: "\"Some children walked to school; others came by bus.\"\n\nWhich word shows ellipsis, standing for \"other children\"?"
+            options: ["others", "walked", "school"]
+            answer: "others"
+          - id: l2-c15
+            part: text-terms
+            type: true_false
+            text: "Is it true? \"The vase was broken by the cat\" is in the active voice."
+            answer: false
+          - id: l2-c16
+            part: explain
+            type: multiple_choice
+            text: "\"The treasure was hidden long ago.\"\n\nWhich explanation uses the terms well?"
+            options: ["The writer uses the passive, so we do not know who hid the treasure.", "The writer uses a relative clause to describe the treasure.", "The modal verb shows the treasure must be hidden."]
+            answer: "The writer uses the passive, so we do not know who hid the treasure."
+            option_audio: false
+          - id: l2-c17
+            part: explain
+            type: multiple_choice
+            text: "\"You should wear a coat; it might rain.\"\n\nWhich explanation uses the terms well?"
+            options: ["The modal verbs should and might give advice and show that rain is possible.", "The passive shows who wore the coat.", "The relative clause tells us about the rain."]
+            answer: "The modal verbs should and might give advice and show that rain is possible."
+            option_audio: false
+          - id: l2-c18
+            part: explain
+            type: multiple_choice
+            text: "\"Our teacher, who never shouts, suddenly raised her voice.\"\n\nWhy does the writer use the relative clause?"
+            options: ["to show that raising her voice is unusual for her", "to tell us what time it was", "to make the sentence passive"]
+            answer: "to show that raising her voice is unusual for her"
+          - id: l2-c19
+            part: explain
+            type: true_false
+            text: "\"Sam (the oldest in the class) led the line.\"\n\nIs it true? The brackets add extra information about Sam, so this is parenthesis."
+            answer: true
+          - id: l2-c20
+            part: explain
+            type: multiple_choice
+            text: "\"Mia wanted to stay; Tom didn't.\"\n\nWhich explanation uses the terms well?"
+            options: ["The writer uses ellipsis, leaving out \"want to stay\", so the sentence is short.", "The writer uses the passive to hide who stayed.", "The relative clause tells us about Tom."]
+            answer: "The writer uses ellipsis, leaving out \"want to stay\", so the sentence is short."
+            option_audio: false

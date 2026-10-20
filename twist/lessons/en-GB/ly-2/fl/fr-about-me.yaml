@@ -27,6 +27,12 @@ metadata:
   forms: [audio, picture, drawn, text]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: have, what: { de: "sagen, wie alt ich bin und was ich habe (j'ai ...)", en: "saying how old I am and what I have got (j'ai ...)" } }
+    - { id: am, what: { de: "sagen, wie es mir geht (je suis ...)", en: "saying how I am (je suis ...)" } }
+    - { id: like, what: { de: "sagen, was ich mag (j'aime ...)", en: "saying what I like (j'aime ...)" } }
+    - { id: can, what: { de: "sagen, was ich kann (je sais ...)", en: "saying what I can do (je sais ...)" } }
+    - { id: order, what: { de: die Wörter eines Satzes in die französische Reihenfolge bringen, en: putting the words of a sentence in French order } }
   misconceptions:
     - id: je-suis-age
       what: Says je suis huit ans, copying English I am eight
@@ -53,14 +59,15 @@ lessons:
           - id: l1-w1
             type: true_false
             text: "Does the answer fit the question?"
-            say: { en: "Listen to the question and the answer. Does the answer fit?", fr: "Tu as quel âge ? J'ai neuf ans." }
+            say: { en: "Listen to the question and the answer. Does the answer fit?" }
+            audio: { turns: [{ fr: "Tu as quel âge ?", speaker: female }, { fr: "J'ai neuf ans.", speaker: male }] }
             answer: true
             difficulty: easy
           - id: l1-w2
             type: audio_choice
             text: "How is the child?"
             say: { en: "Listen. How is the child?" }
-            audio: { fr: "Ça va bien, merci." }
+            audio: { fr: "Ça va bien, merci.", speaker: male }
             options: ["well", "so-so", "not well"]
             answer: "well"
             keep_order: true
@@ -122,7 +129,7 @@ lessons:
                   - "Tap the tired child."
               - id: l1-f4
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I have got a cat."
                 say: { en: "Build the sentence: I have got a cat." }
                 options: ["chat", "J'ai", "un"]
                 slot_count: 3
@@ -163,7 +170,7 @@ lessons:
                 hints: ["Dix starts with d."]
               - id: l1-s3
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I am sad."
                 say: { en: "Build the sentence: I am sad." }
                 options: ["triste", "Je", "suis"]
                 slot_count: 3
@@ -195,7 +202,7 @@ lessons:
                 option_audio: false
               - id: l1-n2
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I am nine."
                 say: { en: "Build the sentence: I am nine." }
                 options: ["neuf", "ans", "J'ai"]
                 slot_count: 3
@@ -220,12 +227,13 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
             text: "How is Jules?"
             say: { en: "Listen. How is Jules? Tap the picture." }
-            audio: { fr: "Je suis content." }
+            audio: { fr: "Je suis content.", speaker: male }
             options: [{ object: tired }, { object: sad }, { object: happy }]
             answer: happy
           - id: l1-c2
@@ -239,6 +247,30 @@ lessons:
             text: "Is this right in French? “J'ai neuf ans.”"
             say: { en: "Is this right in French?", fr: "J'ai neuf ans." }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "What has Paul got?"
+            say: { en: "Listen. What has Paul got?" }
+            audio: { fr: "J'ai un lapin et un chat.", speaker: male }
+            options: ["a rabbit and a cat", "a rabbit and a dog", "a fish and a cat"]
+            answer: "a rabbit and a cat"
+          - id: l1-c5
+            type: audio_choice
+            text: "How old is Lou?"
+            say: { en: "Listen. How old is Lou? Tap the dots." }
+            audio: { fr: "Salut ! J'ai sept ans.", speaker: female }
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 7, layout: dice }
+              - { drawn: dots, count: 9, layout: dice }
+            answer: "7"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Max is sad. What does he say?"
+            show: { object: sad }
+            options: ["Je suis triste.", "J'ai triste.", "Je suis content."]
+            answer: "Je suis triste."
+            option_audio: false
 
   - n: 2
     title: { de: "J'aime, je sais", en: "J'aime, je sais" }
@@ -318,7 +350,7 @@ lessons:
                   - "J'aime les pommes."
               - id: l2-f4
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I can sing."
                 say: { en: "Build the sentence: I can sing." }
                 options: ["chanter", "sais", "Je"]
                 slot_count: 3
@@ -357,7 +389,7 @@ lessons:
                 hints: ["J'aime means I like."]
               - id: l2-s3
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I like football."
                 say: { en: "Build the sentence: I like football." }
                 options: ["foot", "J'aime", "le"]
                 slot_count: 3
@@ -395,7 +427,7 @@ lessons:
                 option_audio: false
               - id: l2-n3
                 type: ordering
-                text: "Put the words in order."
+                text: "Build the sentence: I can read."
                 say: { en: "Build the sentence: I can read." }
                 options: ["lire", "Je", "sais"]
                 slot_count: 3
@@ -415,22 +447,26 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: have
             type: multiple_choice
             text: "You want to say: I am nine. Which starter do you need?"
             options: ["Je suis ...", "Je sais ...", "J'ai ..."]
             answer: "J'ai ..."
             option_audio: false
           - id: l2-c2
+            part: order
             type: ordering
-            text: "Put the words in order."
+            text: "Build the sentence: I have got a rabbit."
             say: { en: "Build the sentence: I have got a rabbit." }
             options: ["lapin", "J'ai", "un"]
             slot_count: 3
             answer: ["J'ai", "un", "lapin"]
             option_audio: false
           - id: l2-c3
+            part: can
             type: audio_choice
             text: "What can Camille do?"
             say: { en: "Listen. What can Camille do? Tap the picture." }
@@ -438,15 +474,136 @@ lessons:
             options: [{ object: play-football }, { object: ride-bike }, { object: play-tennis }]
             answer: play-tennis
           - id: l2-c4
+            part: like
             type: multiple_choice
             text: "Which sentence is right?"
             options: ["J'aime le chocolat.", "Je aime le chocolat."]
             answer: "J'aime le chocolat."
             option_audio: false
           - id: l2-c5
+            part: am
             type: audio_choice
             text: "How is Nathan?"
             say: { en: "Listen. How is Nathan? Tap the picture." }
             audio: { fr: "Je m'appelle Nathan. Aujourd'hui, je suis fatigué.", speaker: male }
             options: [{ object: happy }, { object: tired }, { object: sad }]
             answer: tired
+          - id: l2-c6
+            part: have
+            type: audio_choice
+            text: "How old is Léo?"
+            say: { en: "Listen. How old is Léo? Tap the dots." }
+            audio: { fr: "Salut ! Je m'appelle Léo. J'ai huit ans.", speaker: male }
+            options:
+              - { drawn: dots, count: 7, layout: dice }
+              - { drawn: dots, count: 8, layout: dice }
+              - { drawn: dots, count: 10, layout: dice }
+            answer: "8"
+          - id: l2-c7
+            part: have
+            type: multiple_choice
+            text: "Emma has got a cat. What does she say?"
+            show: { object: cat }
+            options: ["J'ai un chat.", "Je suis un chat.", "Je sais un chat."]
+            answer: "J'ai un chat."
+            option_audio: false
+          - id: l2-c8
+            part: have
+            type: true_false
+            text: "Is Hugo seven?"
+            say: { en: "Listen. Is Hugo seven?" }
+            audio: { fr: "Moi, j'ai sept ans.", speaker: male }
+            answer: true
+          - id: l2-c9
+            part: order
+            type: ordering
+            text: "Build the sentence: I am ten."
+            say: { en: "Build the sentence: I am ten." }
+            options: ["ans", "suis", "dix", "J'ai"]
+            slot_count: 3
+            answer: ["J'ai", "dix", "ans"]
+            option_audio: false
+          - id: l2-c10
+            part: am
+            type: multiple_choice
+            text: "You are sad. What do you say?"
+            show: { object: sad }
+            options: ["J'ai triste.", "Je suis triste.", "Je sais triste."]
+            answer: "Je suis triste."
+            option_audio: false
+          - id: l2-c11
+            part: am
+            type: true_false
+            text: "Is Paul happy?"
+            say: { en: "Listen. Is Paul happy?" }
+            audio: { fr: "Bonjour. Moi, je suis triste.", speaker: male }
+            answer: false
+          - id: l2-c12
+            part: am
+            type: multiple_choice
+            text: "Which sentence says how someone is?"
+            options: ["J'ai un lapin.", "Je sais lire.", "Je suis fatigué."]
+            answer: "Je suis fatigué."
+            option_audio: false
+          - id: l2-c13
+            part: order
+            type: ordering
+            text: "Build the sentence: I am happy."
+            say: { en: "Build the sentence: I am happy." }
+            options: ["content", "ai", "Je", "suis"]
+            slot_count: 3
+            answer: ["Je", "suis", "content"]
+            option_audio: false
+          - id: l2-c14
+            part: like
+            type: audio_choice
+            text: "What does Lina like?"
+            say: { en: "Listen. What does Lina like? Tap the picture." }
+            audio: { fr: "Moi, j'aime chanter.", speaker: female }
+            options: [{ object: sing }, { object: read }, { object: dance }]
+            answer: sing
+          - id: l2-c15
+            part: like
+            type: multiple_choice
+            text: "You want to say: I like dogs. What do you say?"
+            options: ["J'ai les chiens.", "J'aime les chiens.", "Je suis les chiens."]
+            answer: "J'aime les chiens."
+            option_audio: false
+          - id: l2-c16
+            part: like
+            type: true_false
+            text: "Is this right in French? “Je aime lire.”"
+            say: { en: "Read the sentence. Is it right in French?" }
+            answer: false
+          - id: l2-c17
+            part: order
+            type: ordering
+            text: "Build the sentence: I like reading."
+            say: { en: "Build the sentence: I like reading." }
+            options: ["le", "lire", "J'aime"]
+            slot_count: 2
+            answer: ["J'aime", "lire"]
+            option_audio: false
+          - id: l2-c18
+            part: can
+            type: multiple_choice
+            text: "Hugo can swim. What does he say?"
+            show: { object: swim }
+            options: ["Je suis nager.", "J'ai nager.", "Je sais nager."]
+            answer: "Je sais nager."
+            option_audio: false
+          - id: l2-c19
+            part: can
+            type: true_false
+            text: "Can Jade read?"
+            say: { en: "Listen. Can Jade read?" }
+            audio: { fr: "Je m'appelle Jade. Je sais lire.", speaker: female }
+            answer: true
+          - id: l2-c20
+            part: can
+            type: audio_choice
+            text: "What can Malik do?"
+            say: { en: "Listen. What can Malik do? Tap the picture." }
+            audio: { fr: "Je sais danser.", speaker: male }
+            options: [{ object: swim }, { object: dance }, { object: play-football }]
+            answer: dance

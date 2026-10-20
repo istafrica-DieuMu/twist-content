@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, picture, text, audio]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: name, what: { de: "Würfel, Quader und Kugel erkennen und benennen", en: "recognising and naming cubes, cuboids and spheres" } }
+    - { id: props, what: { de: "Flächen und Ecken beschreiben, rollen und stapeln", en: "describing faces and corners, rolling and stacking" } }
+    - { id: around, what: { de: die Körper in der Umwelt finden, en: finding the 3-D shapes around us } }
+    - { id: flat-solid, what: { de: einen Körper von einer flachen Form unterscheiden, en: telling a 3-D shape from a flat 2-D shape } }
   misconceptions:
     - id: flat-for-solid
       what: Names a 3-D shape by its flat face (calls a cube a square, a sphere a circle)
@@ -230,6 +235,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -252,6 +258,24 @@ lessons:
             text: "Is it true? A cuboid can roll like a ball."
             say: "A cuboid can roll like a ball. Is that true?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many flat faces does a sphere have?"
+            say: "How many flat faces does a sphere have?"
+            options: ["0", "1", "6"]
+            answer: "0"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? This shape is a sphere."
+            say: "This shape is a sphere. Is that true?"
+            show: { drawn: shape, kind: sphere, colour: purple }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which shape can you stack to build a tower?"
+            say: "Which shape can you stack to build a tower?"
+            options: ["cuboid", "sphere"]
+            answer: "cuboid"
 
   - n: 2
     title: { de: "Körper um mich herum", en: "3-D shapes around me" }
@@ -439,8 +463,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: name
             type: image_multiple_choice
             text: "Which one is the cuboid?"
             say: "Tap the cuboid."
@@ -450,18 +476,21 @@ lessons:
               - { drawn: shape, kind: cylinder, colour: purple }
             answer: "cuboid"
           - id: l2-c2
+            part: around
             type: multiple_choice
             text: "What 3-D shape is a tennis ball?"
             say: "What 3-D shape is a tennis ball?"
             options: ["sphere", "cube", "circle"]
             answer: "sphere"
           - id: l2-c3
+            part: props
             type: multiple_choice
             text: "All the faces of this shape are squares. What is it?"
             say: "All the faces of this solid shape are squares the same size. What is it?"
             options: ["a cube", "a sphere", "a square"]
             answer: "a cube"
           - id: l2-c4
+            part: flat-solid
             type: multiple_choice
             text: "Kai says the box is a rectangle. What 3-D shape is it really?"
             say: "Kai says the cardboard box is a rectangle. What 3-D shape is it really?"
@@ -469,7 +498,130 @@ lessons:
             options: ["a cuboid", "a rectangle", "a sphere"]
             answer: "a cuboid"
           - id: l2-c5
+            part: props
             type: true_false
             text: "Is it true? A sphere has a curved surface and no corners."
             say: "A sphere has a curved surface and no corners. Is that true?"
             answer: true
+          - id: l2-c6
+            part: name
+            type: multiple_choice
+            text: "What is this 3-D shape called?"
+            say: "This is a solid shape. What is it called?"
+            show: { drawn: shape, kind: cuboid, colour: red }
+            options: ["cuboid", "rectangle", "sphere"]
+            answer: "cuboid"
+          - id: l2-c7
+            part: name
+            type: image_multiple_choice
+            text: "A cube and a cuboid look alike. Which one is the cube?"
+            say: "A cube and a cuboid look alike. Which one is the cube?"
+            options:
+              - { drawn: shape, kind: cuboid, colour: yellow }
+              - { drawn: shape, kind: cube, colour: yellow }
+              - { drawn: shape, kind: sphere, colour: yellow }
+            answer: "cube"
+          - id: l2-c8
+            part: name
+            type: true_false
+            text: "Is it true? This shape is a cube."
+            say: "This shape is a cube. Is that true?"
+            show: { drawn: shape, kind: cuboid, colour: blue }
+            answer: false
+          - id: l2-c9
+            part: name
+            type: multiple_choice
+            text: "A cube is a special kind of which 3-D shape?"
+            say: "A cube is a special kind of which 3-D shape?"
+            options: ["cuboid", "sphere", "square"]
+            answer: "cuboid"
+          - id: l2-c10
+            part: props
+            type: multiple_choice
+            text: "How many flat faces does a cuboid have?"
+            say: "How many flat faces does a cuboid have?"
+            options: ["6", "4", "0"]
+            answer: "6"
+          - id: l2-c11
+            part: props
+            type: true_false
+            text: "Is it true? A cuboid has a curved surface."
+            say: "A cuboid has a curved surface. Is that true?"
+            answer: false
+          - id: l2-c12
+            part: props
+            type: multiple_choice
+            text: "Which shape has 6 square faces?"
+            say: "Which shape has six square faces?"
+            options: ["cube", "sphere", "triangle"]
+            answer: "cube"
+          - id: l2-c13
+            part: around
+            type: multiple_choice
+            text: "What 3-D shape is the beach ball?"
+            say: "Look at the beach ball. What 3-D shape is it?"
+            show: { object: beach-ball }
+            options: ["sphere", "circle", "cuboid"]
+            answer: "sphere"
+          - id: l2-c14
+            part: around
+            type: multiple_choice
+            text: "What 3-D shape is the cereal box?"
+            say: "Look at the cereal box. What 3-D shape is it?"
+            show: { object: cereal-box }
+            options: ["cuboid", "sphere", "rectangle"]
+            answer: "cuboid"
+          - id: l2-c15
+            part: around
+            type: sorting
+            text: "Sort the things: cube or sphere?"
+            say: "Is it a cube or a sphere? Sort the things."
+            bins:
+              - { id: cube, show: { text: "cube" }, say: "Cube." }
+              - { id: sphere, show: { text: "sphere" }, say: "Sphere." }
+            options:
+              - { object: dice, bin: cube }
+              - { object: beach-ball, bin: sphere }
+              - { object: orange, bin: sphere }
+              - { object: marble, bin: sphere }
+          - id: l2-c16
+            part: around
+            type: image_multiple_choice
+            text: "Which thing is a sphere?"
+            say: "Which of these things is a sphere?"
+            options:
+              - { object: dice }
+              - { object: cereal-box }
+              - { object: ball }
+            answer: "ball"
+          - id: l2-c17
+            part: flat-solid
+            type: multiple_choice
+            text: "Mo says the dice is a square. What 3-D shape is it really?"
+            say: "Mo says the dice is a square. What 3-D shape is it really?"
+            show: { object: dice }
+            options: ["a cube", "a square", "a sphere"]
+            answer: "a cube"
+          - id: l2-c18
+            part: flat-solid
+            type: true_false
+            text: "Is it true? A circle is a 3-D shape."
+            say: "A circle is a 3-D shape. Is that true?"
+            answer: false
+          - id: l2-c19
+            part: flat-solid
+            type: image_multiple_choice
+            text: "Which one is a flat 2-D shape?"
+            say: "Which one is a flat 2-D shape?"
+            options:
+              - { drawn: shape, kind: sphere, colour: blue }
+              - { drawn: shape, kind: circle, colour: blue }
+              - { drawn: shape, kind: cube, colour: blue }
+            answer: "circle"
+          - id: l2-c20
+            part: flat-solid
+            type: multiple_choice
+            text: "Which shape is flat?"
+            say: "Which of these shapes is flat?"
+            options: ["a square", "a cube", "a sphere"]
+            answer: "a square"

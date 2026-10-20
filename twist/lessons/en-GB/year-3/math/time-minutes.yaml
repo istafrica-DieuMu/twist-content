@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: [time-format]
+  parts:
+    - { id: read, what: { de: die Uhrzeit auf die Minute genau ablesen, en: reading the time to the minute } }
+    - { id: set, what: { de: die Uhrzeit auf die Minute genau einstellen, en: setting the time to the minute } }
+    - { id: to-24, what: { de: Zeiten am Nachmittag und Abend mit 13 bis 24 Uhr angeben, en: writing afternoon and evening times on the 24-hour clock } }
+    - { id: from-24, what: { de: 13 bis 24 Uhr als Zeit am Nachmittag oder Abend lesen, en: reading 24-hour times as afternoon or evening times } }
   misconceptions:
     - id: skip-small-marks
       what: Reads only to the last five minutes (6:23 as 20 past 6)
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -239,6 +245,24 @@ lessons:
             feedback:
               "7:40": "That is 7:40. Move the minute hand on 4 more small marks."
               "8:44": "That is 8:44. It is not yet 8 o'clock, so drag the hour hand to the 7."
+          - id: l1-c4
+            type: true_false
+            text: "Is it 11 minutes to 4?"
+            show: { drawn: clock, hour: 3, minute: 49 }
+            answer: true
+          - id: l1-c5
+            type: multiple_choice
+            text: "What does a digital clock show at this time?"
+            show: { drawn: clock, hour: 12, minute: 7 }
+            options: ["12:07", "12:35", "1:07"]
+            answer: "12:07"
+          - id: l1-c6
+            type: clock_hands_drag
+            text: "Show 1:33 on the clock."
+            say: "Show one thirty-three on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "1:33"
 
   - n: 2
     title: { de: "Vormittags, nachmittags und 13 bis 24 Uhr", en: "am, pm and the 24-hour clock" }
@@ -404,20 +428,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "What time is it?"
             show: { drawn: clock, hour: 11, minute: 18, roman: true }
             options: ["18 minutes past 11", "15 minutes past 11", "18 minutes to 11"]
             answer: "18 minutes past 11"
           - id: l2-c2
+            part: read
             type: multiple_choice
             text: "What time is it?"
             show: { drawn: clock, hour: 6, minute: 52 }
             options: ["8 minutes to 7", "8 minutes to 6", "52 minutes to 7"]
             answer: "8 minutes to 7"
           - id: l2-c3
+            part: set
             type: clock_hands_drag
             text: "Show 2:29 on the clock."
             say: "Show two twenty-nine on the clock. Drag the hands."
@@ -428,14 +456,119 @@ lessons:
               "2:25": "That is 2:25. Move the minute hand on 4 more small marks."
               "3:29": "That is 3:29. It is just before half past 2, so the hour hand goes on the 2."
           - id: l2-c4
+            part: to-24
             type: multiple_choice
             text: "5:10 pm on a 24-hour clock is _"
             say: "Five ten pm. What is that on a 24-hour clock?"
             options: ["17:10", "15:10", "05:10"]
             answer: "17:10"
           - id: l2-c5
+            part: to-24
             type: multiple_choice
             text: "It is the evening. What time is it on a 24-hour clock?"
             show: { drawn: clock, hour: 9, minute: 47 }
             options: ["21:47", "19:47", "09:47"]
             answer: "21:47"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "What time is it?"
+            show: { drawn: clock, hour: 4, minute: 33 }
+            options: ["27 minutes to 5", "27 minutes to 4", "33 minutes to 5"]
+            answer: "27 minutes to 5"
+          - id: l2-c7
+            part: read
+            type: text_input
+            text: "How many minutes past 7 is it?"
+            show: { drawn: clock, hour: 7, minute: 16, roman: true }
+            answer: "16"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Is it 1:29?"
+            say: "Is it one twenty-nine?"
+            show: { drawn: clock, hour: 1, minute: 31 }
+            answer: false
+          - id: l2-c9
+            part: set
+            type: clock_hands_drag
+            text: "Show 9:06 on the clock."
+            say: "Show nine oh six on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "9:06"
+          - id: l2-c10
+            part: set
+            type: clock_hands_drag
+            text: "Show 3:58 on the clock."
+            say: "Show three fifty-eight on the clock. Drag the hands."
+            show: { drawn: clock, hour: 6, minute: 0, roman: true }
+            step: 1
+            answer: "3:58"
+          - id: l2-c11
+            part: set
+            type: clock_hands_drag
+            text: "Show 21 minutes past 10 on the clock."
+            say: "Show twenty-one minutes past ten on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "10:21"
+          - id: l2-c12
+            part: set
+            type: clock_hands_drag
+            text: "Show 6 minutes to 5 on the clock."
+            say: "Show six minutes to five on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "4:54"
+          - id: l2-c13
+            part: to-24
+            type: multiple_choice
+            text: "Mia's dance class starts at twenty to seven in the evening. How is that written on a 24-hour clock?"
+            options: ["18:40", "19:40", "06:40"]
+            answer: "18:40"
+          - id: l2-c14
+            part: to-24
+            type: text_input
+            text: "It is 2:44 pm. What is that on a 24-hour clock? _:44"
+            say: "It is two forty-four pm. What is that on a 24-hour clock? Type the hour."
+            answer: "14"
+          - id: l2-c15
+            part: to-24
+            type: true_false
+            text: "Is it true? 6:05 am is 18:05 on a 24-hour clock."
+            say: "Is it true? Six oh five am is eighteen oh five on a 24-hour clock."
+            answer: false
+          - id: l2-c16
+            part: from-24
+            type: multiple_choice
+            text: "What is 16:40 on a 12-hour clock?"
+            say: "What is sixteen forty on a 12-hour clock?"
+            options: ["4:40 pm", "6:40 pm", "4:40 am"]
+            answer: "4:40 pm"
+          - id: l2-c17
+            part: from-24
+            type: clock_hands_drag
+            text: "The shop closes at 18:25. Show the time on the clock."
+            say: "The shop closes at eighteen twenty-five. Show the time on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 1
+            answer: "6:25"
+          - id: l2-c18
+            part: from-24
+            type: multiple_choice
+            text: "Which of these times is in the evening?"
+            options: ["20:10", "08:10", "10:20"]
+            answer: "20:10"
+          - id: l2-c19
+            part: from-24
+            type: true_false
+            text: "Is it true? 13:45 is quarter to two in the afternoon."
+            say: "Is it true? Thirteen forty-five is quarter to two in the afternoon."
+            answer: true
+          - id: l2-c20
+            part: from-24
+            type: text_input
+            text: "The train leaves at 22:15. What hour does a clock face show? _:15"
+            say: "The train leaves at twenty-two fifteen. What hour does a clock face show? Type the hour."
+            answer: "10"

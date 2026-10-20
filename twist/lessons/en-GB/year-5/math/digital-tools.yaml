@@ -28,6 +28,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [bar-chart, table]
   facets: []
+  parts:
+    - { id: cells, what: { de: Zellen benennen und Daten richtig eintragen, en: naming cells and entering data correctly } }
+    - { id: chart, what: { de: vom Programm ein Diagramm zeichnen lassen, en: letting the program draw a chart } }
+    - { id: check, what: { de: Tabelle und Diagramm prüfen, en: checking the table and the chart } }
   misconceptions:
     - id: row-column-swap
       what: Names a cell row first or mixes up column and row (2C or B3 for column C, row 2)
@@ -208,6 +212,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -225,6 +230,23 @@ lessons:
             type: true_false
             text: "Each cell should hold just one thing: a word or a number. Is that true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which cell is marked?"
+            show: { drawn: table, sheet: true, header: false, rows: [["", "", ""], ["", "", ""], ["", "", ""]], mark: [[0, 2]] }
+            options: ["C1", "1C", "A3"]
+            answer: "C1"
+          - id: l1-c5
+            type: text_input
+            text: "What number is in cell B3?"
+            show: { drawn: table, sheet: true, rows: [["Lunch", "Children"], ["Packed", 13], ["School", 17], ["Home", 4]] }
+            answer: "17"
+          - id: l1-c6
+            type: multiple_choice
+            text: "The tally chart says Packed 13, School 17, Home 4. Which cell has a typing mistake?"
+            show: { drawn: table, sheet: true, rows: [["Lunch", "Children"], ["Packed", 31], ["School", 17], ["Home", 4]] }
+            options: ["B2", "B3", "A2"]
+            answer: "B2"
 
   - n: 2
     title: { de: "Ein Diagramm einfügen", en: "Making a chart" }
@@ -398,34 +420,141 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cells
             type: multiple_choice
             text: "Which cell is marked?"
             show: { drawn: table, sheet: true, header: false, rows: [["", "", ""], ["", "", ""], ["", "", ""]], mark: [[1, 0]] }
             options: ["A2", "2A", "B1"]
             answer: "A2"
           - id: l2-c2
+            part: cells
             type: multiple_choice
             text: "What number is in cell B4?"
             show: { drawn: table, sheet: true, rows: [["Pet", "Votes"], ["Dog", 8], ["Cat", 5], ["Fish", 2]] }
             options: ["2", "Fish", "5"]
             answer: "2"
           - id: l2-c3
+            part: chart
             type: multiple_choice
             text: "Kim wants a bar chart of the drinks. Which cells should she select?"
             show: { drawn: table, sheet: true, rows: [["Drink", "Children"], ["Milk", 10], ["Water", 12], ["Juice", 8]] }
             options: ["A1 to B4", "A1 to A4", "A2 to A4"]
             answer: "A1 to B4"
           - id: l2-c4
+            part: check
             type: multiple_choice
             text: "Raffle tickets. The tally chart says 5A 14, 5B 17, 5C 13. Which bar shows a typing mistake?"
             show: { drawn: bar-chart, step: 10, rows: [["5A", 14], ["5B", 71], ["5C", 13]] }
             options: ["5B", "5A", "5C"]
             answer: "5B"
           - id: l2-c5
+            part: chart
             type: multiple_choice
             text: "Tom selected A1 to B3 of the drinks table. Which bar is missing from his chart?"
             show: { drawn: table, sheet: true, rows: [["Drink", "Children"], ["Milk", 10], ["Water", 12], ["Juice", 8]] }
             options: ["Juice", "Water", "Milk"]
             answer: "Juice"
+          - id: l2-c6
+            part: cells
+            type: multiple_choice
+            text: "Which cell is marked?"
+            show: { drawn: table, sheet: true, header: false, rows: [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]], mark: [[3, 2]] }
+            options: ["C4", "4C", "D3"]
+            answer: "C4"
+          - id: l2-c7
+            part: cells
+            type: text_input
+            text: "What number is in cell B3?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
+            answer: "14"
+          - id: l2-c8
+            part: cells
+            type: multiple_choice
+            text: "Which cell holds the word Choir?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
+            options: ["A4", "B4", "A3"]
+            answer: "A4"
+          - id: l2-c9
+            part: cells
+            type: true_false
+            text: "In this table, the heading Children is in cell B1. Is that true?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
+            answer: true
+          - id: l2-c10
+            part: cells
+            type: multiple_choice
+            text: "Football has 13 tally marks. In which cell do you type 13?"
+            show: { drawn: table, sheet: true, rows: [["Sport", "Children"], ["Football", "?"], ["Tennis", 6]] }
+            options: ["B2", "A2", "2B"]
+            answer: "B2"
+          - id: l2-c11
+            part: chart
+            type: multiple_choice
+            text: "Jas selected A1 to B4 of the club table. How many bars will her chart have?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11], ["Art", 7]] }
+            options: ["3", "4", "5"]
+            answer: "3"
+          - id: l2-c12
+            part: chart
+            type: multiple_choice
+            text: "Which cells hold the numbers the bars are drawn from?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11], ["Art", 7]] }
+            options: ["B2 to B5", "A2 to A5", "A1 to A5"]
+            answer: "B2 to B5"
+          - id: l2-c13
+            part: chart
+            type: image_multiple_choice
+            text: "The table says Chess 9, Drama 14, Choir 11 children. Which chart did the program draw from it?"
+            options:
+              - { drawn: bar-chart, step: 2, rows: [["Chess", 9], ["Drama", 14], ["Choir", 11]], key: correct }
+              - { drawn: bar-chart, step: 2, rows: [["Chess", 14], ["Drama", 9], ["Choir", 11]], key: swapped }
+              - { drawn: bar-chart, step: 2, rows: [["Chess", 9], ["Drama", 14]], key: missing }
+            answer: correct
+          - id: l2-c14
+            part: chart
+            type: multiple_choice
+            text: "In the club table, Dev changes B2 from 9 to 4. What happens to the chart?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
+            options: ["The chess bar gets shorter.", "The chess bar gets taller.", "The drama bar gets shorter."]
+            answer: "The chess bar gets shorter."
+          - id: l2-c15
+            part: chart
+            type: multiple_choice
+            text: "Which title suits a chart of this table?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
+            options: ["Children in each club", "Favourite fruit", "Rainy days each month"]
+            answer: "Children in each club"
+          - id: l2-c16
+            part: check
+            type: multiple_choice
+            text: "The tally chart says Chess 9, Drama 14, Choir 11. Which cell has a typing mistake?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 1]] }
+            options: ["B4", "B3", "A4"]
+            answer: "B4"
+          - id: l2-c17
+            part: check
+            type: multiple_choice
+            text: "Lunch choices. The tally chart says Pasta 16, Soup 9, Salad 7. Which bar shows a typing mistake?"
+            show: { drawn: bar-chart, step: 10, rows: [["Pasta", 61], ["Soup", 9], ["Salad", 7]] }
+            options: ["Pasta", "Soup", "Salad"]
+            answer: "Pasta"
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "The program drew the chart, so the chart must be right. Is that true?"
+            answer: false
+          - id: l2-c19
+            part: check
+            type: true_false
+            text: "The tally chart says Red 7, Blue 9, Green 3. Does the table match the tally chart?"
+            show: { drawn: table, sheet: true, rows: [["Colour", "Votes"], ["Red", 7], ["Blue", 9], ["Green", 3]] }
+            answer: true
+          - id: l2-c20
+            part: check
+            type: multiple_choice
+            text: "One bar in Zac's chart is far too tall. What should he do first?"
+            options: ["check that number in the table", "make the chart bigger", "delete the chart"]
+            answer: "check that number in the table"

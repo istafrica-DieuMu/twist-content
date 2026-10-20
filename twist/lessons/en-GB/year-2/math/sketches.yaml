@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [rechenstrich, part-whole, table]
   facets: [currency, units]
+  parts:
+    - { id: line, what: { de: eine Geschichte mit dazu oder weg am Rechenstrich lösen, en: solving a story about more or fewer on an empty number line } }
+    - { id: complement, what: { de: "ergänzen am Rechenstrich oder im Teile-Ganzes-Modell: Wie viele fehlen noch?", en: "counting up on a number line or a part-whole model: how many more?" } }
+    - { id: match, what: { de: "erkennen, welche Geschichte zu einem Rechenstrich passt", en: telling which story a number line shows } }
+    - { id: table, what: { de: eine Sachaufgabe Schritt für Schritt mit einer Tabelle lösen, en: solving a word problem step by step with a table } }
   misconceptions:
     - id: how-many-more-adds
       what: Adds the two numbers in a "how many more" story (Ali has 38, wants 60, answers 98)
@@ -52,12 +57,12 @@ lessons:
             type: multiple_choice
             text: "Sara has 24 shells. She finds 10 more. Which calculation?"
             say: "Sara has twenty-four shells. She finds ten more. Which calculation tells you how many she has now?"
-            options: ["24 + 10", "24 − 10", "10 − 24"]
+            options: ["24 + 10", "24 − 10", "34 − 10"]
             answer: "24 + 10"
             difficulty: easy
           - id: l1-w2
             type: multiple_choice
-            text: "Which answer sentence fits? 24 + 10 = 34"
+            text: "Sara has 24 shells. She finds 10 more. 24 + 10 = 34. Which answer sentence fits?"
             say: "Sara has twenty-four shells and finds ten more. Twenty-four add ten is thirty-four. Which answer sentence fits?"
             options: ["Sara has 34 shells.", "Sara has 24 shells.", "Sara finds 34 more shells."]
             answer: "Sara has 34 shells."
@@ -218,6 +223,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -237,6 +243,25 @@ lessons:
             show: { drawn: rechenstrich, start: 40, jumps: [-12] }
             options: ["40 cakes, 12 are sold", "40 cakes, 12 more are baked", "12 cakes, 40 are sold"]
             answer: "40 cakes, 12 are sold"
+          - id: l1-c4
+            type: text_input
+            text: "There are 39 cars in a car park. 40 more arrive. How many cars are there now?"
+            say: "There are thirty-nine cars in a car park. Forty more arrive. How many cars are there now?"
+            answer: "79"
+          - id: l1-c5
+            type: fill_in_blank
+            text: "70 runners. 45 have finished. How many are still running?"
+            say: "There are seventy runners in a race. Forty-five have finished. How many are still running?"
+            show: { drawn: part-whole, whole: 70, parts: [45, null] }
+            frame: "45 + _ = 70"
+            options: ["25", "35", "15"]
+            answer: ["25"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "There are 55 books. 25 are given away. Which number line fits?"
+            say: "There are fifty-five books. Twenty-five are given away. Which number line fits the story?"
+            options: ["start 55, jump back 25", "start 55, jump on 25", "start 25, jump on 55"]
+            answer: "start 55, jump back 25"
 
   - n: 2
     title: { de: Die Geschichte in der Tabelle, en: The story in a table }
@@ -415,19 +440,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: line
             type: text_input
             text: "A jar has 85 sweets. 40 are eaten. How many are left?"
             say: "A jar has eighty-five sweets. Forty are eaten. How many are left?"
             answer: "45"
           - id: l2-c2
+            part: match
             type: multiple_choice
             text: "There are 36 birds. 20 more land. Which number line fits?"
             say: "There are thirty-six birds in a tree. Twenty more land. Which number line fits the story?"
             options: ["start 36, jump on 20", "start 36, jump back 20", "start 20, jump back 36"]
             answer: "start 36, jump on 20"
           - id: l2-c3
+            part: complement
             type: multiple_choice
             text: "Poppy has 44 stickers. She wants 70. How many more does she need?"
             say: "Poppy has forty-four stickers. She wants seventy. How many more does she need?"
@@ -435,6 +464,7 @@ lessons:
             options: ["26", "114", "36"]
             answer: "26"
           - id: l2-c4
+            part: table
             type: fill_in_blank
             text: "A pen costs 5p. Fill the table."
             say: "A pen costs five pence. How much do three pens cost, and four pens?"
@@ -443,9 +473,117 @@ lessons:
             options: ["15", "20", "8", "9"]
             answer: ["15", "20"]
           - id: l2-c5
+            part: table
             type: multiple_choice
             text: "Ivy saves 10p every week. In which week has she saved 30p?"
             say: "Ivy saves ten pence every week. In which week has she saved thirty pence?"
             show: { drawn: table, rows: [[Week, Money], ["1", "10p"], ["2", "20p"], ["3", "30p"], ["4", "40p"]] }
             options: ["week 3", "week 30", "week 4"]
             answer: "week 3"
+          - id: l2-c6
+            part: line
+            type: text_input
+            text: "A farmer has 58 sheep. He buys 30 more. How many sheep does he have now?"
+            say: "A farmer has fifty-eight sheep. He buys thirty more. How many sheep does he have now?"
+            answer: "88"
+          - id: l2-c7
+            part: line
+            type: multiple_choice
+            text: "Kim has 67p. She spends 25p. How much does she have left?"
+            say: "Kim has sixty-seven pence. She spends twenty-five pence. How much does she have left?"
+            options: ["42p", "92p", "32p"]
+            answer: "42p"
+          - id: l2-c8
+            part: line
+            type: text_input
+            text: "A tree has 81 apples. 50 fall off. How many are still on the tree?"
+            say: "A tree has eighty-one apples. Fifty fall off. How many apples are still on the tree?"
+            show: { drawn: rechenstrich, start: 81, jumps: [-50] }
+            answer: "31"
+          - id: l2-c9
+            part: line
+            type: true_false
+            text: "Is it true? A class has 29 crayons. They get 40 more. Now they have 69 crayons."
+            say: "A class has twenty-nine crayons. They get forty more. Now they have sixty-nine crayons. Is it true?"
+            answer: true
+          - id: l2-c10
+            part: complement
+            type: text_input
+            text: "Raj has 47 stamps. He wants 80. How many more does he need?"
+            say: "Raj has forty-seven stamps. He wants eighty. How many more does he need?"
+            show: { drawn: rechenstrich, start: 47, jumps: [] }
+            answer: "33"
+          - id: l2-c11
+            part: complement
+            type: fill_in_blank
+            text: "90 balloons. 64 are red. The rest are blue. How many are blue?"
+            say: "There are ninety balloons. Sixty-four are red. The rest are blue. How many are blue?"
+            show: { drawn: part-whole, whole: 90, parts: [64, null] }
+            frame: "64 + _ = 90"
+            options: ["26", "36", "34"]
+            answer: ["26"]
+          - id: l2-c12
+            part: complement
+            type: multiple_choice
+            text: "A puzzle has 100 pieces. Lily has put in 75. How many pieces are still to go?"
+            say: "A puzzle has one hundred pieces. Lily has put in seventy-five. How many pieces are still to go?"
+            options: ["25", "35", "15"]
+            answer: "25"
+          - id: l2-c13
+            part: complement
+            type: true_false
+            text: "Is it true? Ali has 56p. A ball costs 80p. He needs 34p more."
+            say: "Ali has fifty-six pence. A ball costs eighty pence. He needs thirty-four pence more. Is it true?"
+            answer: false
+          - id: l2-c14
+            part: match
+            type: multiple_choice
+            text: "Which story fits this number line?"
+            say: "Which story fits this number line?"
+            show: { drawn: rechenstrich, start: 62, jumps: [-30] }
+            options: ["62 children, 30 go home", "62 children, 30 more come", "30 children, 62 go home"]
+            answer: "62 children, 30 go home"
+          - id: l2-c15
+            part: match
+            type: multiple_choice
+            text: "Which story fits this number line?"
+            say: "Which story fits this number line?"
+            show: { drawn: rechenstrich, start: 18, jumps: [50] }
+            options: ["18 fish, 50 more are put in", "18 fish, 50 are taken out", "50 fish, 18 more are put in"]
+            answer: "18 fish, 50 more are put in"
+          - id: l2-c16
+            part: match
+            type: multiple_choice
+            text: "There are 45 ducks. 30 fly away. Which number line fits?"
+            say: "There are forty-five ducks on a pond. Thirty fly away. Which number line fits the story?"
+            options: ["start 45, jump back 30", "start 45, jump on 30", "start 30, jump on 45"]
+            answer: "start 45, jump back 30"
+          - id: l2-c17
+            part: match
+            type: true_false
+            text: "Is it true? This number line shows: 70 conkers, 20 are lost."
+            say: "Look at the number line. Does it show seventy conkers, and twenty are lost? Is it true?"
+            show: { drawn: rechenstrich, start: 70, jumps: [20] }
+            answer: false
+          - id: l2-c18
+            part: table
+            type: multiple_choice
+            text: "Ola puts 4 stamps in her book every day. How many stamps are in it on day 3?"
+            say: "Ola puts four stamps in her book every day. How many stamps are in it on day three?"
+            show: { drawn: table, rows: [[Day, Stamps], ["1", "4"], ["2", "8"], ["3", "?"]] }
+            options: ["12", "16", "7"]
+            answer: "12"
+          - id: l2-c19
+            part: table
+            type: text_input
+            text: "A sunflower is 20 cm tall. It grows 5 cm every week. How tall is it after 3 weeks? Type the centimetres."
+            say: "A sunflower is twenty centimetres tall. It grows five centimetres every week. How tall is it after three weeks? Type the centimetres."
+            show: { drawn: table, rows: [[Week, Height], ["0", "20 cm"], ["1", "25 cm"], ["2", "?"], ["3", "?"]] }
+            answer: "35"
+          - id: l2-c20
+            part: table
+            type: true_false
+            text: "Ben has 40p. He spends 5p every day. Is it true? After 3 days he has 25p left."
+            say: "Ben has forty pence. He spends five pence every day. After three days he has twenty-five pence left. Is it true?"
+            show: { drawn: table, rows: [[Day, Money], ["0", "40p"], ["1", "35p"], ["2", "30p"], ["3", "?"]] }
+            answer: true

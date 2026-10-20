@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [hundred-square, number-line]
   facets: []
+  parts:
+    - { id: ones, what: { de: in Einerschritten vorwärts und rückwärts zählen, en: counting forwards and backwards in ones } }
+    - { id: tens, what: { de: von jeder Zahl aus in Zehnerschritten zählen, en: counting in tens from any number } }
+    - { id: twos-fives, what: { de: in Zweier- und Fünferschritten zählen, en: counting in twos and fives } }
+    - { id: rule, what: { de: die Regel einer Zahlenfolge finden, en: finding the rule of a sequence } }
   misconceptions:
     - id: tens-change-ones
       what: When counting in tens from a number that is not a ten, changes the ones digit (34, 40, 50) or jumps to the next ten
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -238,6 +244,25 @@ lessons:
             show: { drawn: hundred-square, highlight: [44], hide: [54] }
             options: ["54", "45", "64"]
             answer: "54"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Count back in tens."
+            say: "Count back in tens. Fill the gaps."
+            frame: "64, 54, _, _"
+            options: ["44", "34", "40", "30"]
+            answer: ["44", "34"]
+          - id: l1-c5
+            type: text_input
+            text: "Count on in ones: 88, 89, _"
+            say: "Count on in ones: eighty-eight, eighty-nine. What comes next?"
+            answer: "90"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which number is hidden, just above 72?"
+            say: "Look at the hundred square. The number just above seventy-two is hidden. Which number is it?"
+            show: { drawn: hundred-square, highlight: [72], hide: [62] }
+            options: ["62", "71", "82"]
+            answer: "62"
 
   - n: 2
     title: { de: "Zweier, Fünfer und die Regel", en: "Twos, fives and the rule" }
@@ -414,8 +439,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ones
             type: fill_in_blank
             text: "Count back in ones."
             say: "Count back in ones. Fill the gaps."
@@ -423,11 +450,13 @@ lessons:
             options: ["91", "90", "80", "88"]
             answer: ["91", "90"]
           - id: l2-c2
+            part: tens
             type: text_input
             text: "Count on in tens: 38, 48, 58, _"
             say: "Count on in tens: thirty-eight, forty-eight, fifty-eight. What comes next?"
             answer: "68"
           - id: l2-c3
+            part: twos-fives
             type: fill_in_blank
             text: "Count in fives."
             say: "Count in fives. Fill the gaps."
@@ -435,15 +464,125 @@ lessons:
             options: ["45", "50", "41", "60"]
             answer: ["45", "50"]
           - id: l2-c4
+            part: rule
             type: multiple_choice
-            text: "What is the rule? 76, 66, 56, 46"
-            say: "Seventy-six, sixty-six, fifty-six, forty-six. What is the rule?"
-            options: ["−10", "+10", "−1"]
-            answer: "−10"
+            text: "What is the rule? 50, 45, 40, 35"
+            say: "Fifty, forty-five, forty, thirty-five. What is the rule?"
+            options: ["−5", "+5", "−10"]
+            answer: "−5"
             option_audio: false
           - id: l2-c5
+            part: rule
             type: multiple_choice
             text: "Which number does not fit? 12, 14, 16, 19, 20"
-            say: "The sequence counts in twos. Which number does not fit?"
+            say: "Twelve, fourteen, sixteen, nineteen, twenty. Which number does not fit?"
             options: ["19", "16", "20"]
             answer: "19"
+          - id: l2-c6
+            part: ones
+            type: multiple_choice
+            text: "Count on in ones: 47, 48, 49, _"
+            say: "Count on in ones: forty-seven, forty-eight, forty-nine. What comes next?"
+            options: ["50", "40", "59"]
+            answer: "50"
+          - id: l2-c7
+            part: ones
+            type: text_input
+            text: "Count back in ones: 21, 20, _"
+            say: "Count back in ones: twenty-one, twenty. What comes next?"
+            answer: "19"
+          - id: l2-c8
+            part: ones
+            type: fill_in_blank
+            text: "Count on in ones."
+            say: "Count on in ones. Fill the gaps."
+            frame: "28, _, 30, _"
+            options: ["29", "31", "39", "40"]
+            answer: ["29", "31"]
+          - id: l2-c9
+            part: ones
+            type: multiple_choice
+            text: "Which number is hidden, just after 67?"
+            say: "Look at the hundred square. The number just after sixty-seven is hidden. Which number is it?"
+            show: { drawn: hundred-square, highlight: [67], hide: [68] }
+            options: ["68", "77", "66"]
+            answer: "68"
+          - id: l2-c10
+            part: tens
+            type: fill_in_blank
+            text: "Count back in tens."
+            say: "Count back in tens. Fill the gaps."
+            frame: "79, 69, _, _"
+            options: ["59", "49", "60", "50"]
+            answer: ["59", "49"]
+          - id: l2-c11
+            part: tens
+            type: multiple_choice
+            text: "Which number is hidden, just above 33?"
+            say: "Look at the hundred square. The number just above thirty-three is hidden. Which number is it?"
+            show: { drawn: hundred-square, highlight: [33], hide: [23] }
+            options: ["23", "32", "43"]
+            answer: "23"
+          - id: l2-c12
+            part: tens
+            type: point_on_line
+            text: "Count on 10 from 46. Where do you land?"
+            say: "Start at forty-six and count on ten. Where do you land?"
+            show: { drawn: number-line, from: 40, to: 60, labels: tens }
+            answer: 56
+          - id: l2-c13
+            part: tens
+            type: true_false
+            text: "Is it true? This counts on in tens: 14, 24, 30, 40"
+            say: "Fourteen, twenty-four, thirty, forty. Is it true? This counts on in tens."
+            answer: false
+          - id: l2-c14
+            part: twos-fives
+            type: fill_in_blank
+            text: "Count in twos."
+            say: "Count in twos. Fill the gaps."
+            frame: "32, 34, _, _, 40"
+            options: ["36", "38", "35", "37"]
+            answer: ["36", "38"]
+          - id: l2-c15
+            part: twos-fives
+            type: text_input
+            text: "Count in fives: 70, 75, 80, _"
+            say: "Count in fives: seventy, seventy-five, eighty. What comes next?"
+            answer: "85"
+          - id: l2-c16
+            part: twos-fives
+            type: multiple_choice
+            text: "Count back in fives: 30, 25, 20, _"
+            say: "Count back in fives: thirty, twenty-five, twenty. What comes next?"
+            options: ["15", "10", "19"]
+            answer: "15"
+          - id: l2-c17
+            part: twos-fives
+            type: true_false
+            text: "Count in twos: 40, 42, 44, _\nIs it true? The next number is 46."
+            say: "Count in twos: forty, forty-two, forty-four. Is it true? The next number is forty-six."
+            answer: true
+          - id: l2-c18
+            part: rule
+            type: multiple_choice
+            text: "What is the rule? 61, 62, 63, 64"
+            say: "Sixty-one, sixty-two, sixty-three, sixty-four. What is the rule?"
+            options: ["+1", "+10", "+2"]
+            answer: "+1"
+            option_audio: false
+          - id: l2-c19
+            part: rule
+            type: multiple_choice
+            text: "Which number does not fit? 90, 80, 70, 65, 50"
+            say: "Ninety, eighty, seventy, sixty-five, fifty. Which number does not fit?"
+            options: ["65", "70", "50"]
+            answer: "65"
+          - id: l2-c20
+            part: rule
+            type: multiple_choice
+            text: "What is the rule? 18, 16, 14, 12"
+            say: "Eighteen, sixteen, fourteen, twelve. What is the rule?"
+            options: ["−2", "+2", "−1"]
+            answer: "−2"
+            option_audio: false

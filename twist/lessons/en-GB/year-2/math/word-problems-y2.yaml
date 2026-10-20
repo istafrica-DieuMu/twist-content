@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: []
+  parts:
+    - { id: question, what: { de: "erkennen, was die Frage wissen will", en: finding what the question asks } }
+    - { id: calc, what: { de: "die passende Rechnung wählen: plus oder minus", en: "choosing the calculation: add or subtract" } }
+    - { id: solve, what: { de: eine Sachaufgabe ausrechnen, en: working out the answer to a word problem } }
+    - { id: extra, what: { de: "die Angabe finden, die man nicht braucht", en: spotting the number you do not need } }
+    - { id: answer, what: { de: den passenden Antwortsatz wählen, en: choosing the answer sentence that answers the question } }
   misconceptions:
     - id: keyword-only
       what: Picks add or subtract from one word ("more") without picturing the story
@@ -35,6 +41,9 @@ metadata:
     - id: answer-other-question
       what: Gives an answer sentence that answers a different question
       addressed: answer-sentence tasks in every stage of lesson 2 and in the skill check offer a true sentence that answers a different question, with feedback in l2-f3
+    - id: swaps-subtraction
+      what: Writes the subtraction the wrong way round, the smaller number first (12 − 35 for 35 − 12)
+      addressed: l1-f3 feedback says to start with the bigger number; the swapped subtraction is an option in l1-f1, l1-f3, l1-s1, l1-n1, l1-n3, l1-c1, l1-c4, l2-w1, l2-c1 and l2-c9
   twist_reuse: []
   status: draft
   version: 1
@@ -78,7 +87,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "There are 35 children in the hall. 12 children go out to play. How many children are in the hall now?"
+                text: "There are 35 children in the hall. 12 children go out to play. How many children are in the hall now? Which calculation fits?"
                 say: "There are thirty-five children in the hall. Twelve children go out to play. How many children are in the hall now? Which calculation fits?"
                 options: ["35 − 12", "35 + 12", "12 − 35"]
                 answer: "35 − 12"
@@ -98,7 +107,7 @@ lessons:
                   - "23."
               - id: l1-f3
                 type: multiple_choice
-                text: "Sam has 32 marbles. Ava has 57 marbles. How many more marbles has Ava got than Sam?"
+                text: "Sam has 32 marbles. Ava has 57 marbles. How many more marbles has Ava got than Sam? Which calculation fits?"
                 say: "Sam has thirty-two marbles. Ava has fifty-seven marbles. How many more marbles has Ava got than Sam? Which calculation fits?"
                 options: ["57 − 32", "57 + 32", "32 − 57"]
                 answer: "57 − 32"
@@ -111,7 +120,7 @@ lessons:
                   - "57 − 32."
               - id: l1-f4
                 type: multiple_choice
-                text: "Mum buys 20 apples and 15 pears. How many pieces of fruit does she buy altogether?"
+                text: "Mum buys 20 apples and 15 pears. How many pieces of fruit does she buy altogether? What is the question asking?"
                 say: "Mum buys twenty apples and fifteen pears. How many pieces of fruit does she buy altogether? What is the question asking?"
                 options: ["How many pieces of fruit altogether?", "How many apples does Mum buy?", "How many pears are left?"]
                 answer: "How many pieces of fruit altogether?"
@@ -133,7 +142,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "A bus has 46 people on it. At the stop, 20 people get off. How many people are on the bus now?"
+                text: "A bus has 46 people on it. At the stop, 20 people get off. How many people are on the bus now? Which calculation fits?"
                 say: "A bus has forty-six people on it. At the stop, twenty people get off. How many people are on the bus now? Which calculation fits?"
                 options: ["46 + 20", "46 − 20", "20 − 46"]
                 answer: "46 − 20"
@@ -146,14 +155,14 @@ lessons:
                 hints: ["Take away the tens."]
               - id: l1-s3
                 type: multiple_choice
-                text: "Leo scores 31 points. Mia scores 54 points. How many more points has Mia got than Leo?"
+                text: "Leo scores 31 points. Mia scores 54 points. How many more points has Mia got than Leo? Which calculation fits?"
                 say: "Leo scores thirty-one points. Mia scores fifty-four points. How many more points has Mia got than Leo? Which calculation fits?"
                 options: ["54 + 31", "31 + 54", "54 − 31"]
                 answer: "54 − 31"
                 hints: ["Are we finding a total or a difference?"]
               - id: l1-s4
                 type: multiple_choice
-                text: "There are 18 red pens and 30 blue pens in the pot. How many pens are there altogether?"
+                text: "There are 18 red pens and 30 blue pens in the pot. How many pens are there altogether? What is the question asking?"
                 say: "There are eighteen red pens and thirty blue pens in the pot. How many pens are there altogether? What is the question asking?"
                 options: ["How many red pens?", "How many pens altogether?", "How many blue pens are left?"]
                 answer: "How many pens altogether?"
@@ -169,7 +178,7 @@ lessons:
             tasks:
               - id: l1-n1
                 type: multiple_choice
-                text: "Grace has 50p. She spends 30p on a drink. How much money has she got left?"
+                text: "Grace has 50p. She spends 30p on a drink. How much money has she got left? Which calculation fits?"
                 say: "Grace has fifty pence. She spends thirty pence on a drink. How much money has she got left? Which calculation fits?"
                 options: ["50 − 30", "50 + 30", "30 − 50"]
                 answer: "50 − 30"
@@ -180,13 +189,13 @@ lessons:
                 answer: "20"
               - id: l1-n3
                 type: multiple_choice
-                text: "Oliver reads 25 pages on Monday and 20 pages on Tuesday. How many pages does he read altogether?"
+                text: "Oliver reads 25 pages on Monday and 20 pages on Tuesday. How many pages does he read altogether? Which calculation fits?"
                 say: "Oliver reads twenty-five pages on Monday and twenty pages on Tuesday. How many pages does he read altogether? Which calculation fits?"
                 options: ["25 − 20", "25 + 20", "20 − 25"]
                 answer: "25 + 20"
               - id: l1-n4
                 type: multiple_choice
-                text: "A farmer has 42 sheep. 10 sheep are in the barn. How many sheep are not in the barn?"
+                text: "A farmer has 42 sheep. 10 sheep are in the barn. How many sheep are not in the barn? What is the question asking?"
                 say: "A farmer has forty-two sheep. Ten sheep are in the barn. How many sheep are not in the barn? What is the question asking?"
                 options: ["How many sheep are in the barn?", "How many sheep are not in the barn?", "How many sheep altogether?"]
                 answer: "How many sheep are not in the barn?"
@@ -198,10 +207,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
-            text: "There are 27 cakes on a plate. The children eat 7. How many cakes are left?"
+            text: "There are 27 cakes on a plate. The children eat 7. How many cakes are left? Which calculation fits?"
             say: "There are twenty-seven cakes on a plate. The children eat seven. How many cakes are left? Which calculation fits?"
             options: ["27 + 7", "27 − 7", "7 − 27"]
             answer: "27 − 7"
@@ -212,10 +222,27 @@ lessons:
             answer: "53"
           - id: l1-c3
             type: multiple_choice
-            text: "Ruby's sunflower is 40 cm tall. Her brother's sunflower is 60 cm tall. How much taller is her brother's sunflower?"
+            text: "Ruby's sunflower is 40 cm tall. Her brother's sunflower is 60 cm tall. How much taller is her brother's sunflower? Which calculation fits?"
             say: "Ruby's sunflower is forty centimetres tall. Her brother's sunflower is sixty centimetres tall. How much taller is her brother's sunflower? Which calculation fits?"
             options: ["60 − 40", "60 + 40", "40 + 60"]
             answer: "60 − 40"
+          - id: l1-c4
+            type: multiple_choice
+            text: "There are 62 books on a shelf. Ms Patel takes 30 away. How many books are on the shelf now? Which calculation fits?"
+            say: "There are sixty-two books on a shelf. Ms Patel takes thirty away. How many books are on the shelf now? Which calculation fits?"
+            options: ["62 − 30", "62 + 30", "30 − 62"]
+            answer: "62 − 30"
+          - id: l1-c5
+            type: text_input
+            text: "Ali has 14 grapes. His dad gives him 25 more. How many grapes has he got now?"
+            say: "Ali has fourteen grapes. His dad gives him twenty-five more. How many grapes has he got now? Type the number."
+            answer: "39"
+          - id: l1-c6
+            type: multiple_choice
+            text: "Molly has 37 beads. Sara has 58 beads. How many more beads has Sara got than Molly? Which calculation fits?"
+            say: "Molly has thirty-seven beads. Sara has fifty-eight beads. How many more beads has Sara got than Molly? Which calculation fits?"
+            options: ["58 − 37", "58 + 37", "37 + 58"]
+            answer: "58 − 37"
 
   - n: 2
     title: { de: Wichtig und unwichtig, en: What you need and what you don't }
@@ -226,7 +253,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: multiple_choice
-            text: "Tom has 45 stamps. He gives 15 to his sister. How many stamps has he got left?"
+            text: "Tom has 45 stamps. He gives 15 to his sister. How many stamps has he got left? Which calculation fits?"
             say: "Tom has forty-five stamps. He gives fifteen to his sister. How many stamps has he got left? Which calculation fits?"
             options: ["45 − 15", "45 + 15", "15 − 45"]
             answer: "45 − 15"
@@ -255,7 +282,7 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "There are 29 children in Mr Khan's class. 14 of them have a packed lunch. 2 grown-ups help in the class. How many children do not have a packed lunch?"
+                text: "There are 29 children in Mr Khan's class. 14 of them have a packed lunch. 2 grown-ups help in the class. How many children do not have a packed lunch? Which number do you not need?"
                 say: "There are twenty-nine children in Mr Khan's class. Fourteen of them have a packed lunch. Two grown-ups help in the class. How many children do not have a packed lunch? Which number do you not need?"
                 options: ["2", "14", "29"]
                 answer: "2"
@@ -278,7 +305,7 @@ lessons:
                   - "15."
               - id: l2-f3
                 type: multiple_choice
-                text: "Lily picks 22 strawberries. Her dad picks 30. How many strawberries do they pick altogether? The calculation: 22 + 30 = 52."
+                text: "Lily picks 22 strawberries. Her dad picks 30. How many strawberries do they pick altogether? The calculation: 22 + 30 = 52. Which answer sentence answers the question?"
                 say: "Lily picks twenty-two strawberries. Her dad picks thirty. How many strawberries do they pick altogether? The calculation is done for you: twenty-two add thirty is fifty-two. Which answer sentence answers the question?"
                 options: ["They pick 52 strawberries altogether.", "Dad picks 30 strawberries.", "Lily picks 52 strawberries."]
                 answer: "They pick 52 strawberries altogether."
@@ -291,7 +318,7 @@ lessons:
                   - "They pick 52 strawberries altogether."
               - id: l2-f4
                 type: multiple_choice
-                text: "A shop has 68 balloons. It sells 25. The shop opens at 9 o'clock. How many balloons are left?"
+                text: "A shop has 68 balloons. It sells 25. The shop opens at 9 o'clock. How many balloons are left? Which number do you not need?"
                 say: "A shop has sixty-eight balloons. It sells twenty-five. The shop opens at nine o'clock. How many balloons are left? Which number do you not need?"
                 options: ["25", "9", "68"]
                 answer: "9"
@@ -313,7 +340,7 @@ lessons:
             tasks:
               - id: l2-s1
                 type: multiple_choice
-                text: "Ben has 17 football stickers. He is 8 years old. He gets 20 more stickers. How many stickers has he got now?"
+                text: "Ben has 17 football stickers. He is 8 years old. He gets 20 more stickers. How many stickers has he got now? Which number do you not need?"
                 say: "Ben has seventeen football stickers. He is eight years old. He gets twenty more stickers. How many stickers has he got now? Which number do you not need?"
                 options: ["17", "8", "20"]
                 answer: "8"
@@ -326,14 +353,14 @@ lessons:
                 hints: ["Use only the numbers you need."]
               - id: l2-s3
                 type: multiple_choice
-                text: "There are 48 seats on a train. 32 people sit down. How many seats are empty? The calculation: 48 − 32 = 16."
+                text: "There are 48 seats on a train. 32 people sit down. How many seats are empty? The calculation: 48 − 32 = 16. Which answer sentence answers the question?"
                 say: "There are forty-eight seats on a train. Thirty-two people sit down. How many seats are empty? The calculation is done for you: forty-eight subtract thirty-two is sixteen. Which answer sentence answers the question?"
                 options: ["32 people sit down.", "There are 16 empty seats.", "There are 16 people on the train."]
                 answer: "There are 16 empty seats."
                 hints: ["What does the question ask about?"]
               - id: l2-s4
                 type: multiple_choice
-                text: "Zara's dog is 3 years old. Zara gives her dog 40 biscuits a week and her cat 25 biscuits a week. How many biscuits does she give her pets a week?"
+                text: "Zara's dog is 3 years old. Zara gives her dog 40 biscuits a week and her cat 25 biscuits a week. How many biscuits does she give her pets a week? Which number do you not need?"
                 say: "Zara's dog is three years old. Zara gives her dog forty biscuits a week and her cat twenty-five biscuits a week. How many biscuits does she give her pets a week? Which number do you not need?"
                 options: ["40", "25", "3"]
                 answer: "3"
@@ -349,7 +376,7 @@ lessons:
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "The library has 86 books about animals. 35 are on loan. The library has 4 computers. How many animal books are on the shelves?"
+                text: "The library has 86 books about animals. 35 are on loan. The library has 4 computers. How many animal books are on the shelves? Which number do you not need?"
                 say: "The library has eighty-six books about animals. Thirty-five are on loan. The library has four computers. How many animal books are on the shelves? Which number do you not need?"
                 options: ["35", "4", "86"]
                 answer: "4"
@@ -360,13 +387,13 @@ lessons:
                 answer: "51"
               - id: l2-n3
                 type: multiple_choice
-                text: "Harry has 26 crayons. Isla has 32 crayons. How many crayons have they got altogether? The calculation: 26 + 32 = 58."
+                text: "Harry has 26 crayons. Isla has 32 crayons. How many crayons have they got altogether? The calculation: 26 + 32 = 58. Which answer sentence answers the question?"
                 say: "Harry has twenty-six crayons. Isla has thirty-two crayons. How many crayons have they got altogether? The calculation is done for you: twenty-six add thirty-two is fifty-eight. Which answer sentence answers the question?"
                 options: ["Isla has 58 crayons.", "They have got 58 crayons altogether.", "Harry has 26 crayons."]
                 answer: "They have got 58 crayons altogether."
               - id: l2-n4
                 type: multiple_choice
-                text: "A baker makes 48 rolls in the morning and 30 in the afternoon. The shop has 2 ovens. How many rolls does the baker make altogether?"
+                text: "A baker makes 48 rolls in the morning and 30 in the afternoon. The shop has 2 ovens. How many rolls does the baker make altogether? Which number do you not need?"
                 say: "A baker makes forty-eight rolls in the morning and thirty in the afternoon. The shop has two ovens. How many rolls does the baker make altogether? Which number do you not need?"
                 options: ["2", "30", "48"]
                 answer: "2"
@@ -378,27 +405,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: calc
             type: multiple_choice
-            text: "There are 64 ducks on the pond. 30 fly away. How many ducks are on the pond now?"
+            text: "There are 64 ducks on the pond. 30 fly away. How many ducks are on the pond now? Which calculation fits?"
             say: "There are sixty-four ducks on the pond. Thirty fly away. How many ducks are on the pond now? Which calculation fits?"
             options: ["64 + 30", "64 − 30", "30 − 64"]
             answer: "64 − 30"
           - id: l2-c2
+            part: solve
             type: text_input
             text: "There are 64 ducks on the pond. 30 fly away. How many ducks are on the pond now?"
             say: "Sixty-four ducks are on the pond, and thirty fly away. How many ducks are on the pond now? Type the number."
             answer: "34"
           - id: l2-c3
+            part: extra
             type: multiple_choice
-            text: "Amir has 19 shells. His sister has 6 buckets. His mum gives him 40 more shells. How many shells has Amir got now?"
+            text: "Amir has 19 shells. His sister has 6 buckets. His mum gives him 40 more shells. How many shells has Amir got now? Which number do you not need?"
             say: "Amir has nineteen shells. His sister has six buckets. His mum gives him forty more shells. How many shells has Amir got now? Which number do you not need?"
             options: ["6", "19", "40"]
             answer: "6"
           - id: l2-c4
+            part: answer
             type: multiple_choice
-            text: "Freya runs 35 metres. Kai runs 58 metres. How much further does Kai run? The calculation: 58 − 35 = 23."
+            text: "Freya runs 35 metres. Kai runs 58 metres. How much further does Kai run? The calculation: 58 − 35 = 23. Which answer sentence answers the question?"
             say: "Freya runs thirty-five metres. Kai runs fifty-eight metres. How much further does Kai run? The calculation is done for you: fifty-eight subtract thirty-five is twenty-three. Which answer sentence answers the question?"
             options: ["Kai runs 58 metres.", "They run 93 metres.", "Kai runs 23 metres further."]
             answer: "Kai runs 23 metres further."
+          - id: l2-c5
+            part: question
+            type: multiple_choice
+            text: "Kim has 43 beads. She uses 21 to make a bracelet. How many beads has she got left? What is the question asking?"
+            say: "Kim has forty-three beads. She uses twenty-one to make a bracelet. How many beads has she got left? What is the question asking?"
+            options: ["How many beads are left?", "How many beads does she use?", "How many bracelets does she make?"]
+            answer: "How many beads are left?"
+          - id: l2-c6
+            part: question
+            type: multiple_choice
+            text: "There are 52 boys and 36 girls at the school fair. How many children are at the fair altogether? What is the question asking?"
+            say: "There are fifty-two boys and thirty-six girls at the school fair. How many children are at the fair altogether? What is the question asking?"
+            options: ["How many children altogether?", "How many boys are there?", "How many more boys than girls?"]
+            answer: "How many children altogether?"
+          - id: l2-c7
+            part: question
+            type: true_false
+            text: "Dan has 75p. He buys a comic for 40p. How much money has he got left? Is it true? The question asks how much the comic costs."
+            say: "Dan has seventy-five pence. He buys a comic for forty pence. How much money has he got left? Is it true that the question asks how much the comic costs?"
+            answer: false
+          - id: l2-c8
+            part: question
+            type: multiple_choice
+            text: "A tree has 68 apples. 23 fall off. Which question can you answer with these facts?"
+            say: "A tree has sixty-eight apples. Twenty-three fall off. Which question can you answer with these facts?"
+            options: ["How many apples are still on the tree?", "How many apples will grow next year?", "How tall is the tree?"]
+            answer: "How many apples are still on the tree?"
+          - id: l2-c9
+            part: calc
+            type: multiple_choice
+            text: "A box has 57 crayons. 25 are broken. How many crayons are not broken? Which calculation fits?"
+            say: "A box has fifty-seven crayons. Twenty-five are broken. How many crayons are not broken? Which calculation fits?"
+            options: ["57 − 25", "57 + 25", "25 − 57"]
+            answer: "57 − 25"
+          - id: l2-c10
+            part: calc
+            type: multiple_choice
+            text: "Jo has 23 stickers. Max has 45 stickers. How many more stickers has Max got than Jo? Which calculation fits?"
+            say: "Jo has twenty-three stickers. Max has forty-five stickers. How many more stickers has Max got than Jo? Which calculation fits?"
+            options: ["45 − 23", "45 + 23", "23 + 45"]
+            answer: "45 − 23"
+          - id: l2-c11
+            part: calc
+            type: true_false
+            text: "Oscar has 34 toy cars. He gets 50 more. How many toy cars has he got now? Is it true? The calculation is 34 + 50."
+            say: "Oscar has thirty-four toy cars. He gets fifty more. How many toy cars has he got now? Is it true that the calculation is thirty-four add fifty?"
+            answer: true
+          - id: l2-c12
+            part: solve
+            type: text_input
+            text: "A class has 30 pencils. The teacher buys 40 more. How many pencils are there now?"
+            say: "A class has thirty pencils. The teacher buys forty more. How many pencils are there now? Type the number."
+            answer: "70"
+          - id: l2-c13
+            part: solve
+            type: text_input
+            text: "Nia has 87p. She spends 52p. How much money has she got left? Type the number of pence."
+            say: "Nia has eighty-seven pence. She spends fifty-two pence. How much money has she got left? Type the number of pence."
+            answer: "35"
+          - id: l2-c14
+            part: solve
+            type: multiple_choice
+            text: "Mrs Lee's class has 28 children. 13 walk to school. The rest come by car. How many children come by car?"
+            say: "Mrs Lee's class has twenty-eight children. Thirteen walk to school. The rest come by car. How many children come by car?"
+            options: ["15", "41", "13"]
+            answer: "15"
+          - id: l2-c15
+            part: extra
+            type: multiple_choice
+            text: "At 3 o'clock, Ivy has 45 marbles. She loses 12 on the way home. How many marbles has she got now? Which number do you not need?"
+            say: "At three o'clock, Ivy has forty-five marbles. She loses twelve on the way home. How many marbles has she got now? Which number do you not need?"
+            options: ["45", "3", "12"]
+            answer: "3"
+          - id: l2-c16
+            part: extra
+            type: multiple_choice
+            text: "A zoo has 24 lions and 31 zebras. The zoo has 5 gates. How many lions and zebras are there altogether? Which number do you not need?"
+            say: "A zoo has twenty-four lions and thirty-one zebras. The zoo has five gates. How many lions and zebras are there altogether? Which number do you not need?"
+            options: ["24", "31", "5"]
+            answer: "5"
+          - id: l2-c17
+            part: extra
+            type: true_false
+            text: "Ella has 2 brothers. She has 80p. She buys a cake for 60p. How much money has she got left? Is it true? You need the number 2."
+            say: "Ella has two brothers. She has eighty pence. She buys a cake for sixty pence. How much money has she got left? Is it true that you need the number two?"
+            answer: false
+          - id: l2-c18
+            part: answer
+            type: multiple_choice
+            text: "A farmer has 56 cows. He sells 24. How many cows has he got now? The calculation: 56 − 24 = 32. Which answer sentence answers the question?"
+            say: "A farmer has fifty-six cows. He sells twenty-four. How many cows has he got now? The calculation is done for you: fifty-six subtract twenty-four is thirty-two. Which answer sentence answers the question?"
+            options: ["The farmer has got 32 cows now.", "The farmer sells 32 cows.", "The farmer has got 56 cows."]
+            answer: "The farmer has got 32 cows now."
+          - id: l2-c19
+            part: answer
+            type: true_false
+            text: "Bella reads 41 pages. Finn reads 27 pages. How many pages do they read altogether? The calculation: 41 + 27 = 68. Is it true? 'Bella reads 68 pages.' answers the question."
+            say: "Bella reads forty-one pages. Finn reads twenty-seven pages. How many pages do they read altogether? The calculation is done for you: forty-one add twenty-seven is sixty-eight. Is it true that the sentence Bella reads sixty-eight pages answers the question?"
+            answer: false
+          - id: l2-c20
+            part: answer
+            type: multiple_choice
+            text: "There are 75 sweets in a jar. The children eat 43. How many sweets are left? The calculation: 75 − 43 = 32. Which answer sentence answers the question?"
+            say: "There are seventy-five sweets in a jar. The children eat forty-three. How many sweets are left? The calculation is done for you: seventy-five subtract forty-three is thirty-two. Which answer sentence answers the question?"
+            options: ["The children eat 43 sweets.", "There are 32 sweets left.", "The children eat 32 sweets."]
+            answer: "There are 32 sweets left."

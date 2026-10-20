@@ -23,15 +23,20 @@ metadata:
   vocabulary: { en: [sound, letter, blend, word] }
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
-  sounds: [en.y, en.z, en.kw]
+  sounds: [en.y, en.z, en.kw, en.s]
   facets: []
+  parts:
+    - { id: sound-letter, what: { de: einen Laut hören und seinen Buchstaben finden, en: hearing a sound and finding its letter or letters } }
+    - { id: sound-in-word, what: { de: "hören, ob ein Wort mit y, z oder qu anfängt", en: "hearing whether a word starts with y, z or qu" } }
+    - { id: read-words, what: { de: "Wörter mit y, z, zz und qu lesen (yes, zip, quiz, buzz)", en: "reading words with y, z, zz and qu (yes, zip, quiz, buzz)" } }
+    - { id: letter-in-word, what: { de: "y, z, zz oder qu in einem gehörten Wort ergänzen", en: "adding y, z, zz or qu to a word you hear" } }
   misconceptions:
     - id: q-alone
       what: Writes q without u, or reads qu as two separate sounds
-      addressed: lesson 1 Learn shows q and u together on one card and says they make one sound; every qu task uses the two letters together, and the lesson 2 spelling tasks offer q alone as a wrong option (l2-f2 with feedback, l2-s2, l2-n2)
+      addressed: lesson 1 Learn shows q and u together on one card and says they make one sound; every qu task uses the two letters together, and the lesson 2 spelling tasks offer q alone as a wrong option (l2-f2 with feedback, l2-s2, l2-n2), as does the skill check in l2-c8
     - id: z-s-mixup
       what: Mixes up z and s, which are made the same way except for the buzz
-      addressed: z and s share an option set in every stage of lesson 1 (l1-f1 with feedback, l1-s2, l1-s3, l1-n2, l1-n4, l1-c1); lesson 2 sets zip against sip (l2-f1, with feedback), offers s beside z at the start of zap (l2-n4) and puts snake beside zebra in the skill check (l2-c2)
+      addressed: z and s share an option set in every stage of lesson 1 (l1-f1 with feedback, l1-s2, l1-s3, l1-n2, l1-n4, l1-c1); lesson 2 sets zip against sip (l2-f1, with feedback), offers s beside z at the start of zap (l2-n4) and puts snake beside zebra in the skill check (l2-c2); the skill check also plays the s sound under a z (l2-c9) and offers s beside z in l2-c12
   twist_reuse: []
   status: draft
   version: 1
@@ -104,8 +109,9 @@ lessons:
                   - "It is the letter with two arms up and a long tail, and no dot."
               - id: l1-f4
                 type: true_false
-                text: "Does it start with this letter?"
-                say: "Zebra. Does zebra start with this letter?"
+                text: "Does the word start with this letter?"
+                say: "Listen. Does the word start with this letter?"
+                audio: { en: "Zebra." }
                 show: { drawn: letter-card, text: "z" }
                 answer: true
                 hints:
@@ -152,15 +158,17 @@ lessons:
                 hints: ["Listen again. Hiss or buzz?"]
               - id: l1-s4
                 type: true_false
-                text: "Does it start with these letters?"
-                say: "Kite. Does kite start with these letters?"
+                text: "Does the word start with these letters?"
+                say: "Listen. Does the word start with these letters?"
+                audio: { en: "Kite." }
                 show: { drawn: letter-card, text: "qu" }
                 answer: false
                 hints: ["Say kite slowly. Do your lips go round after the click?"]
               - id: l1-s5
                 type: true_false
-                text: "Does it start with this letter?"
-                say: "Jug. Does jug start with this letter?"
+                text: "Does the word start with this letter?"
+                say: "Listen. Does the word start with this letter?"
+                audio: { en: "Jug." }
                 show: { drawn: letter-card, text: "y" }
                 answer: false
                 hints: ["Say jug slowly. Does it start like yellow?"]
@@ -190,8 +198,9 @@ lessons:
                 answer: "qu"
               - id: l1-n4
                 type: true_false
-                text: "Does it start with this letter?"
-                say: "Sun. Does sun start with this letter?"
+                text: "Does the word start with this letter?"
+                say: "Listen. Does the word start with this letter?"
+                audio: { en: "Sun." }
                 show: { drawn: letter-card, text: "z" }
                 answer: false
               - id: l1-n5
@@ -204,6 +213,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -221,10 +231,32 @@ lessons:
             answer: yo-yo
           - id: l1-c3
             type: true_false
-            text: "Does it start with these letters?"
-            say: "Queen. Does queen start with these letters?"
+            text: "Does the word start with these letters?"
+            say: "Listen. Does the word start with these letters?"
+            audio: { en: "Queen." }
             show: { drawn: letter-card, text: "qu" }
             answer: true
+          - id: l1-c4
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Which letter is it? Listen."
+            audio: { sound: en.y }
+            options: ["w", "z", "y"]
+            answer: "y"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "What starts with this letter?"
+            say: "What starts with the sound of this letter? Tap the picture."
+            show: { drawn: letter-card, text: "z" }
+            options: [{ object: snake }, { object: yo-yo }, { object: zip }]
+            answer: zip
+          - id: l1-c6
+            type: true_false
+            text: "Does the word start with these letters?"
+            say: "Listen. Does the word start with these letters?"
+            audio: { en: "Cat." }
+            show: { drawn: letter-card, text: "qu" }
+            answer: false
 
   - n: 2
     title: { de: "yes, zip, quiz, buzz", en: "yes, zip, quiz, buzz" }
@@ -265,7 +297,8 @@ lessons:
               - id: l2-f2
                 type: fill_in_blank
                 text: "What is missing?"
-                say: "Quack. What is missing at the start of quack?"
+                say: "Listen. What is missing at the start?"
+                audio: { en: "Quack." }
                 frame: "_ack"
                 options: ["qu", "q", "k"]
                 answer: ["qu"]
@@ -277,8 +310,9 @@ lessons:
                   - "It is the two letters at the start of queen."
               - id: l2-f3
                 type: true_false
-                text: "Is this the word?"
-                say: "Yum. Does the card say yum?"
+                text: "Does the card say this word?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "Yum." }
                 show: { drawn: letter-card, text: "yum" }
                 answer: true
                 hints:
@@ -288,7 +322,8 @@ lessons:
               - id: l2-f4
                 type: fill_in_blank
                 text: "What is missing?"
-                say: "Fizz. What is missing at the end of fizz?"
+                say: "Listen. What is missing at the end?"
+                audio: { en: "Fizz." }
                 frame: "fi_"
                 options: ["zz", "z", "ss"]
                 answer: ["zz"]
@@ -321,22 +356,25 @@ lessons:
               - id: l2-s2
                 type: fill_in_blank
                 text: "What is missing?"
-                say: "Quick. What is missing at the start of quick?"
+                say: "Listen. What is missing at the start?"
+                audio: { en: "Quick." }
                 frame: "_ick"
                 options: ["k", "qu", "q"]
                 answer: ["qu"]
                 hints: ["Is there a click and round lips?"]
               - id: l2-s3
                 type: true_false
-                text: "Is this the word?"
-                say: "Yell. Does the card say yell?"
+                text: "Does the card say this word?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "Yell." }
                 show: { drawn: letter-card, text: "bell" }
                 answer: false
                 hints: ["Look at the first letter."]
               - id: l2-s4
                 type: fill_in_blank
                 text: "What is missing?"
-                say: "Jazz. What is missing at the end of jazz?"
+                say: "Listen. What is missing at the end?"
+                audio: { en: "Jazz." }
                 frame: "ja_"
                 options: ["ss", "zz", "z"]
                 answer: ["zz"]
@@ -362,20 +400,23 @@ lessons:
               - id: l2-n2
                 type: fill_in_blank
                 text: "What is missing?"
-                say: "Quit. What is missing at the start of quit?"
+                say: "Listen. What is missing at the start?"
+                audio: { en: "Quit." }
                 frame: "_it"
                 options: ["qu", "k", "q"]
                 answer: ["qu"]
               - id: l2-n3
                 type: true_false
-                text: "Is this the word?"
-                say: "Zip. Does the card say zip?"
+                text: "Does the card say this word?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "Zip." }
                 show: { drawn: letter-card, text: "zip" }
                 answer: true
               - id: l2-n4
                 type: fill_in_blank
                 text: "Which letter is missing?"
-                say: "Zap. Which letter is missing at the start of zap?"
+                say: "Listen. Which letter is missing at the start?"
+                audio: { en: "Zap." }
                 frame: "_ap"
                 options: ["s", "z", "y"]
                 answer: ["z"]
@@ -389,8 +430,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: sound-letter
             type: audio_choice
             text: "Which one makes this sound?"
             say: "Listen to the sound. Which one makes it?"
@@ -398,6 +441,7 @@ lessons:
             options: ["k", "w", "qu"]
             answer: "qu"
           - id: l2-c2
+            part: sound-in-word
             type: image_multiple_choice
             text: "What starts with this letter?"
             say: "Which picture starts with the sound of this letter?"
@@ -405,6 +449,7 @@ lessons:
             options: [{ object: snake }, { object: zebra }, { object: cup }]
             answer: zebra
           - id: l2-c3
+            part: read-words
             type: audio_choice
             text: "Which word do you hear?"
             say: "Which word is it? Listen."
@@ -412,9 +457,144 @@ lessons:
             options: ["yap", "zap", "map"]
             answer: "yap"
           - id: l2-c4
+            part: letter-in-word
             type: fill_in_blank
             text: "What is missing?"
-            say: "Fuzz. What is missing at the end of fuzz?"
+            say: "Listen. What is missing at the end?"
+            audio: { en: "Fuzz." }
             frame: "fu_"
-            options: ["z", "ss", "zz"]
+            options: ["s", "zz", "z"]
             answer: ["zz"]
+          - id: l2-c5
+            part: sound-letter
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Listen to the sound. Tap its letter."
+            audio: { sound: en.y }
+            options: ["j", "w", "g", "y"]
+            answer: "y"
+          - id: l2-c6
+            part: sound-in-word
+            type: image_multiple_choice
+            text: "What starts with these letters?"
+            say: "Which picture starts with the sound of these letters?"
+            show: { drawn: letter-card, text: "qu" }
+            options: [{ object: cow }, { object: queen }, { object: cat }]
+            answer: queen
+          - id: l2-c7
+            part: read-words
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Which word is it? Listen."
+            audio: { en: "quiz" }
+            options: ["quit", "fizz", "quiz"]
+            answer: "quiz"
+          - id: l2-c8
+            part: letter-in-word
+            type: fill_in_blank
+            text: "What is missing?"
+            say: "Listen. What is missing at the start?"
+            audio: { en: "Quiz." }
+            frame: "_iz"
+            options: ["k", "q", "qu"]
+            answer: ["qu"]
+          - id: l2-c9
+            part: sound-letter
+            type: true_false
+            text: "Does this letter make this sound?"
+            say: "Listen. Does this letter make this sound?"
+            audio: { sound: en.s }
+            show: { drawn: letter-card, text: "z" }
+            answer: false
+          - id: l2-c10
+            part: sound-in-word
+            type: true_false
+            text: "Does the word start with this letter?"
+            say: "Listen. Does the word start with this letter?"
+            audio: { en: "Yes." }
+            show: { drawn: letter-card, text: "y" }
+            answer: true
+          - id: l2-c11
+            part: read-words
+            type: true_false
+            text: "Does the card say this word?"
+            say: "Listen. Does the card say this word?"
+            audio: { en: "Yet." }
+            show: { drawn: letter-card, text: "yes" }
+            answer: false
+          - id: l2-c12
+            part: letter-in-word
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Listen. Which letter is missing at the start?"
+            audio: { en: "Zip." }
+            frame: "_ip"
+            options: ["l", "s", "z"]
+            answer: ["z"]
+          - id: l2-c13
+            part: sound-letter
+            type: audio_choice
+            text: "Which letter makes this sound?"
+            say: "Listen to the sound. Tap its letter."
+            audio: { sound: en.z }
+            options: ["v", "z", "y"]
+            answer: "z"
+          - id: l2-c14
+            part: sound-in-word
+            type: true_false
+            text: "Does the word start with this letter?"
+            say: "Listen. Does the word start with this letter?"
+            audio: { en: "Zoo." }
+            show: { drawn: letter-card, text: "z" }
+            answer: true
+          - id: l2-c15
+            part: read-words
+            type: image_multiple_choice
+            text: "Read the word. Tap the picture."
+            say: "Read the word. Which picture is it?"
+            show: { drawn: letter-card, text: "zip" }
+            options: [{ object: zebra }, { object: sock }, { object: zip }]
+            answer: zip
+            option_audio: false
+          - id: l2-c16
+            part: letter-in-word
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Listen. Which letter is missing at the start?"
+            audio: { en: "Yet." }
+            frame: "_et"
+            options: ["j", "y", "g"]
+            answer: ["y"]
+          - id: l2-c17
+            part: sound-letter
+            type: true_false
+            text: "Do these letters make this sound?"
+            say: "Listen. Do these letters make this sound?"
+            audio: { sound: en.kw }
+            show: { drawn: letter-card, text: "qu" }
+            answer: true
+          - id: l2-c18
+            part: sound-in-word
+            type: true_false
+            text: "Does the word start with these letters?"
+            say: "Listen. Does the word start with these letters?"
+            audio: { en: "Cup." }
+            show: { drawn: letter-card, text: "qu" }
+            answer: false
+          - id: l2-c19
+            part: read-words
+            type: highlight_in_text
+            text: "Tap every card that says the word you hear."
+            say: "Listen. Read the cards and tap every card that says this word."
+            audio: { en: "Yell." }
+            show: { drawn: letter-card, text: "yell bell yell well" }
+            spans: ["yell"]
+          - id: l2-c20
+            part: letter-in-word
+            type: fill_in_blank
+            text: "What is missing?"
+            say: "Listen. What is missing at the start and at the end?"
+            audio: { en: "Fizz." }
+            frame: "_i_"
+            options: ["zz", "v", "z", "f"]
+            answer: ["f", "zz"]

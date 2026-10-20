@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, dots, grid]
   facets: []
+  parts:
+    - { id: measure, what: { de: eine Fläche in Kästchen messen, en: measuring an area in squares } }
+    - { id: compare, what: { de: zwei Flächen durch Zählen vergleichen, en: comparing areas by counting squares } }
+    - { id: same-order, what: { de: gleich große Flächen finden und Flächen ordnen, en: finding the same area and putting areas in order } }
+    - { id: units, what: { de: nur mit gleich großen Kästchen vergleichen, en: comparing only with squares of the same size } }
   misconceptions:
     - id: longer-is-bigger
       what: Thinks the longer or taller shape is the bigger one without counting the squares
@@ -205,6 +210,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -223,6 +229,23 @@ lessons:
             text: "Is it true? The blue shape and the red shape have the same area."
             show: { drawn: grid, cols: 6, rows: 2, cells: [[0, 0, blue], [1, 0, blue], [0, 1, blue], [1, 1, blue], [3, 0, red], [4, 0, red], [5, 0, red]] }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many squares does the shape cover?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, green], [1, 0, green], [2, 0, green], [3, 0, green], [1, 1, green], [2, 1, green], [1, 2, green]] }
+            options: ["7", "6", "8"]
+            answer: "7"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? The blue shape has a bigger area than the red shape."
+            show: { drawn: grid, cols: 8, rows: 3, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [6, 0, red], [7, 0, red], [6, 1, red], [7, 1, red], [6, 2, red], [7, 2, red]] }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which shape has the smaller area?"
+            show: { drawn: grid, cols: 8, rows: 5, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [5, 0, blue], [6, 0, blue], [7, 0, blue], [0, 2, red], [1, 2, red], [2, 2, red], [0, 3, red], [1, 3, red], [2, 3, red], [0, 4, red], [1, 4, red], [2, 4, red]] }
+            options: ["the blue shape", "the red shape", "They are the same."]
+            answer: "the blue shape"
 
   - n: 2
     title: { de: "Gleich groß und gleiche Kästchen", en: "The same area and same-sized squares" }
@@ -394,20 +417,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: measure
             type: multiple_choice
             text: "How many squares does the shape cover?"
             show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [0, 2, blue], [1, 2, blue]] }
             options: ["8", "9", "6"]
             answer: "8"
           - id: l2-c2
+            part: compare
             type: multiple_choice
             text: "Which shape has the bigger area?"
             show: { drawn: grid, cols: 9, rows: 4, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [5, 0, blue], [6, 0, blue], [7, 0, blue], [8, 0, blue], [0, 2, red], [1, 2, red], [2, 2, red], [3, 2, red], [4, 2, red], [0, 3, red], [1, 3, red], [2, 3, red], [3, 3, red], [4, 3, red]] }
             options: ["the blue shape", "the red shape", "They are the same."]
             answer: "the red shape"
           - id: l2-c3
+            part: same-order
             type: image_multiple_choice
             text: "Which shape has the same area as the purple shape?"
             show: { drawn: grid, cols: 3, rows: 2, cells: [[0, 0, purple], [1, 0, purple], [0, 1, purple], [1, 1, purple]] }
@@ -417,13 +444,114 @@ lessons:
               - { drawn: grid, cols: 4, rows: 1, cells: [[0, 0, orange], [1, 0, orange], [2, 0, orange]], key: "3" }
             answer: "4"
           - id: l2-c4
+            part: units
             type: multiple_choice
             text: "Leo and Mo each cover a tray with 6 tiles. Leo's tiles are smaller than Mo's. Whose tray is smaller?"
             options: ["Leo's tray", "Mo's tray", "They are the same."]
             answer: "Leo's tray"
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Which shape has the biggest area?"
             show: { drawn: grid, cols: 11, rows: 4, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [5, 0, blue], [6, 0, blue], [8, 0, red], [9, 0, red], [8, 1, red], [9, 1, red], [8, 2, red], [9, 2, red], [0, 2, green], [1, 2, green], [2, 2, green], [3, 2, green], [0, 3, green], [1, 3, green], [2, 3, green], [3, 3, green]] }
             options: ["the blue shape", "the red shape", "the green shape"]
             answer: "the green shape"
+          - id: l2-c6
+            part: measure
+            type: multiple_choice
+            text: "How many squares does the shape cover?"
+            show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 0, orange], [1, 0, orange], [2, 0, orange], [3, 0, orange], [4, 0, orange], [0, 1, orange], [1, 1, orange], [2, 1, orange], [0, 2, orange], [1, 2, orange]] }
+            options: ["10", "9", "5"]
+            answer: "10"
+          - id: l2-c7
+            part: measure
+            type: text_input
+            text: "How many squares does the shape cover?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, purple], [1, 0, purple], [2, 0, purple], [0, 1, purple], [1, 1, purple], [2, 1, purple], [0, 2, purple], [1, 2, purple], [2, 2, purple], [0, 3, purple], [1, 3, purple], [2, 3, purple]] }
+            answer: "12"
+          - id: l2-c8
+            part: measure
+            type: true_false
+            text: "Is it true? The shape covers 7 squares."
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[1, 0, red], [0, 1, red], [1, 1, red], [2, 1, red], [1, 2, red]] }
+            answer: false
+          - id: l2-c9
+            part: measure
+            type: multiple_choice
+            text: "What is the area of the shape?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, blue], [0, 1, blue], [1, 1, blue], [0, 2, blue], [1, 2, blue], [2, 2, blue]] }
+            options: ["6 squares", "9 squares", "3 squares"]
+            answer: "6 squares"
+          - id: l2-c10
+            part: compare
+            type: multiple_choice
+            text: "Which shape has the smaller area?"
+            show: { drawn: grid, cols: 6, rows: 6, cells: [[0, 0, blue], [0, 1, blue], [0, 2, blue], [0, 3, blue], [0, 4, blue], [0, 5, blue], [2, 0, red], [3, 0, red], [4, 0, red], [5, 0, red], [2, 1, red], [3, 1, red], [4, 1, red], [5, 1, red]] }
+            options: ["the blue shape", "the red shape", "They are the same."]
+            answer: "the blue shape"
+          - id: l2-c11
+            part: compare
+            type: true_false
+            text: "Is it true? The red shape has a bigger area than the blue shape."
+            show: { drawn: grid, cols: 12, rows: 3, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [0, 2, blue], [1, 2, blue], [2, 2, blue], [4, 0, red], [5, 0, red], [6, 0, red], [7, 0, red], [8, 0, red], [9, 0, red], [10, 0, red], [11, 0, red]] }
+            answer: false
+          - id: l2-c12
+            part: compare
+            type: multiple_choice
+            text: "Which shape has the smallest area?"
+            show: { drawn: grid, cols: 11, rows: 2, cells: [[0, 0, blue], [1, 0, blue], [0, 1, blue], [1, 1, blue], [3, 0, red], [4, 0, red], [5, 0, red], [6, 0, red], [7, 0, red], [9, 0, green], [9, 1, green], [10, 1, green]] }
+            options: ["the blue shape", "the red shape", "the green shape"]
+            answer: "the green shape"
+          - id: l2-c13
+            part: same-order
+            type: image_multiple_choice
+            text: "Which shape has the same area as the blue shape?"
+            show: { drawn: grid, cols: 6, rows: 2, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [0, 1, blue], [1, 1, blue], [2, 1, blue], [3, 1, blue], [4, 1, blue]] }
+            options:
+              - { drawn: grid, cols: 10, rows: 1, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, red], [4, 0, red], [5, 0, red], [6, 0, red], [7, 0, red], [8, 0, red], [9, 0, red]], key: "10" }
+              - { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [0, 1, red], [1, 1, red], [2, 1, red], [0, 2, red], [1, 2, red], [2, 2, red]], key: "9" }
+              - { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [3, 0, red], [0, 1, red], [1, 1, red], [2, 1, red], [3, 1, red], [0, 2, red], [1, 2, red], [2, 2, red], [3, 2, red]], key: "12" }
+            answer: "10"
+          - id: l2-c14
+            part: same-order
+            type: true_false
+            text: "Is it true? The two shapes look different but have the same area."
+            show: { drawn: grid, cols: 8, rows: 3, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [1, 1, blue], [1, 2, blue], [5, 0, red], [5, 1, red], [6, 1, red], [6, 2, red], [7, 2, red]] }
+            answer: true
+          - id: l2-c15
+            part: same-order
+            type: ordering
+            text: "Put the shapes in order of area, biggest first."
+            show: { drawn: grid, cols: 12, rows: 4, cells: [[0, 0, blue], [1, 0, blue], [2, 0, blue], [3, 0, blue], [4, 0, blue], [5, 0, blue], [7, 0, red], [8, 0, red], [7, 1, red], [8, 1, red], [10, 0, green], [11, 0, green], [10, 1, green], [11, 1, green], [10, 2, green], [11, 2, green], [10, 3, green], [11, 3, green]] }
+            options: ["blue", "red", "green"]
+            slot_count: 3
+            answer: ["green", "blue", "red"]
+          - id: l2-c16
+            part: same-order
+            type: multiple_choice
+            text: "Two shapes each cover 9 squares. Which is true?"
+            options: ["They have the same area.", "The longer one has the bigger area.", "The taller one has the bigger area."]
+            answer: "They have the same area."
+          - id: l2-c17
+            part: units
+            type: multiple_choice
+            text: "Ella covers a poster with 6 big squares of paper. Sam covers the same poster with small squares. Does he need more or fewer than 6?"
+            options: ["more", "fewer", "exactly 6"]
+            answer: "more"
+          - id: l2-c18
+            part: units
+            type: true_false
+            text: "Ruby's rug is covered by 8 big tiles. Jack's rug is covered by 10 small tiles. Is it true? Jack's rug must be bigger, because 10 is more than 8."
+            answer: false
+          - id: l2-c19
+            part: units
+            type: multiple_choice
+            text: "Which way of comparing two areas is fair?"
+            options: ["Count squares of the same size on both.", "Count big squares on one and small squares on the other.", "See which shape is longer."]
+            answer: "Count squares of the same size on both."
+          - id: l2-c20
+            part: units
+            type: multiple_choice
+            text: "Nina and Omar cover their tables with tiles of the same size. Nina uses 14 tiles and Omar uses 11. Whose table is bigger?"
+            options: ["Nina's table", "Omar's table", "They are the same."]
+            answer: "Nina's table"

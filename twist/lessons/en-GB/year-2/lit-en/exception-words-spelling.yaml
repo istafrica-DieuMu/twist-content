@@ -24,6 +24,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: oor, what: { de: "Wörter mit oor schreiben (door, floor, poor)", en: "spelling the oor words (door, floor, poor)" } }
+    - { id: name-no-e, what: { de: "Wörter, in denen i oder o ohne e seinen Namen sagt (find, child, cold)", en: "spelling words where i or o says its name with no e (find, child, cold)" } }
+    - { id: ould, what: { de: "could, should und would schreiben", en: "spelling could, should and would" } }
+    - { id: ea-ay, what: { de: "Wörter, in denen ea wie ay klingt (great, break, steak)", en: "spelling words where ea says ay (great, break, steak)" } }
+    - { id: one-by-one, what: { de: "einzeln gelernte Wörter schreiben (people, busy, water, again)", en: "spelling words learnt one by one (people, busy, water, again)" } }
   misconceptions:
     - id: spell-as-it-sounds
       what: Spells a tricky word the way it sounds (dor for door, cud for could, peeple for people)
@@ -56,7 +62,7 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: fill_in_blank
-            text: "Fill the gap: fr_nd"
+            text: "Fill the gap: fr_nd\nClue: someone you like to play with."
             say: "Spell the word friend. Which letters go in the gap?"
             frame: "fr_nd"
             options: ["ie", "e", "ei"]
@@ -95,7 +101,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: fill_in_blank
-                text: "Fill the gap: d_r"
+                text: "Fill the gap: d_r\nClue: you open it to go into a room."
                 say: "Spell the word door. Which letters go in the gap?"
                 frame: "d_r"
                 options: ["oo", "o", "or"]
@@ -153,7 +159,7 @@ lessons:
                 hints: ["Does wild need an e to make the i say its name?"]
               - id: l1-s3
                 type: fill_in_blank
-                text: "Fill the gap: m_st"
+                text: "Fill the gap: m_st\nClue: Ali has more sweets than anyone. He has the ..."
                 say: "Spell the word most. Which letter goes in the gap?"
                 frame: "m_st"
                 options: ["o", "oa", "ow"]
@@ -193,7 +199,7 @@ lessons:
                 answer: "told"
               - id: l1-n2
                 type: fill_in_blank
-                text: "Fill the gap: f_nd"
+                text: "Fill the gap: f_nd\nClue: you look for something until you do this."
                 say: "Spell the word find. Which letter goes in the gap?"
                 frame: "f_nd"
                 options: ["i", "y", "igh"]
@@ -221,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -230,7 +237,7 @@ lessons:
             answer: "mind"
           - id: l1-c2
             type: fill_in_blank
-            text: "Fill the gap: fl_r"
+            text: "Fill the gap: fl_r\nClue: you walk on it inside a house."
             say: "Spell the word floor. Which letters go in the gap?"
             frame: "fl_r"
             options: ["oo", "o", "aw"]
@@ -243,6 +250,23 @@ lessons:
             options: ["old", "olde", "oald"]
             answer: "old"
             option_audio: false
+          - id: l1-c4
+            type: text_input
+            keyboard: letters
+            text: "Write the missing word.\nI can't _ my other sock."
+            say: "I can't find my other sock. Write the missing word: find."
+            answer: "find"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? This sentence is spelt right.\nI told Gran about the wilde horses."
+            say: "Read the sentence. Is it spelt right?"
+            answer: false
+          - id: l1-c6
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Both. We both like apples." }
+            options: ["boeth", "both", "bowth"]
+            answer: "both"
 
   - n: 2
     title: { de: Wörter zum Merken, en: Words to remember }
@@ -260,7 +284,7 @@ lessons:
             difficulty: easy
           - id: l2-w2
             type: fill_in_blank
-            text: "Fill the gap: p_r"
+            text: "Fill the gap: p_r\nClue: having very little money."
             say: "Spell the word poor. Which letters go in the gap?"
             frame: "p_r"
             options: ["oo", "o", "ou"]
@@ -312,7 +336,7 @@ lessons:
                   - "people"
               - id: l2-f3
                 type: fill_in_blank
-                text: "Fill the gap: gr_t"
+                text: "Fill the gap: gr_t\nClue: really good."
                 say: "Spell the word great. Which letters go in the gap?"
                 frame: "gr_t"
                 options: ["ea", "ai", "ay"]
@@ -362,7 +386,7 @@ lessons:
                 hints: ["In water, the a says or."]
               - id: l2-s3
                 type: fill_in_blank
-                text: "Fill the gap: br_k"
+                text: "Fill the gap: br_k\nClue: if you drop a cup, it might do this."
                 say: "Spell the word break. Which letters go in the gap?"
                 frame: "br_k"
                 options: ["ea", "ai", "a"]
@@ -425,8 +449,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ould
             type: fill_in_blank
             text: "Fill the gap: We _ go to the park."
             say: "We should go to the park. Choose the right spelling."
@@ -435,12 +461,14 @@ lessons:
             answer: ["should"]
             option_audio: false
           - id: l2-c2
+            part: name-no-e
             type: audio_choice
             text: "Listen. Tap the right spelling."
             audio: { en: "Wild. A fox is a wild animal." }
             options: ["wild", "wilde", "wyld"]
             answer: "wild"
           - id: l2-c3
+            part: one-by-one
             type: multiple_choice
             text: "Which word is spelt correctly?"
             say: "Read the words yourself. Which one is the right spelling of again?"
@@ -448,16 +476,125 @@ lessons:
             answer: "again"
             option_audio: false
           - id: l2-c4
+            part: ea-ay
             type: fill_in_blank
-            text: "Fill the gap: st_k"
+            text: "Fill the gap: st_k\nClue: a thick piece of meat."
             say: "Spell the word steak. Which letters go in the gap?"
             frame: "st_k"
             options: ["ea", "ai", "a"]
             answer: ["ea"]
             option_audio: false
           - id: l2-c5
+            part: oor
             type: audio_choice
             text: "Listen. Tap the right spelling."
             audio: { en: "Door. Shut the door, please." }
             options: ["door", "dor", "doar"]
             answer: "door"
+          - id: l2-c6
+            part: oor
+            type: text_input
+            keyboard: letters
+            text: "Write the missing word.\nWe sat on the _ to play a game."
+            say: "We sat on the floor to play a game. Write the missing word: floor."
+            answer: "floor"
+          - id: l2-c7
+            part: oor
+            type: true_false
+            text: "Is it true? This sentence is spelt right.\nThe poor dog was wet and muddy."
+            say: "Read the sentence. Is it spelt right?"
+            answer: true
+          - id: l2-c8
+            part: oor
+            type: highlight_in_text
+            text: "Tap the word that is spelt wrong."
+            say: "Read the sentence. One word is spelt wrong. Tap it."
+            show: { drawn: letter-card, text: "Shut the dor and sit on the floor." }
+            spans: ["dor"]
+          - id: l2-c9
+            part: name-no-e
+            type: text_input
+            keyboard: letters
+            text: "Write the missing word.\nThe ice cream was very _."
+            say: "The ice cream was very cold. Write the missing word: cold."
+            answer: "cold"
+          - id: l2-c10
+            part: name-no-e
+            type: fill_in_blank
+            text: "Fill the gaps: Be _ to the little _."
+            say: "Be kind to the little child. Choose the right spellings."
+            frame: "Be _ to the little _."
+            options: ["kinde", "kind", "child", "childe"]
+            answer: ["kind", "child"]
+            option_audio: false
+          - id: l2-c11
+            part: name-no-e
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Gold. The king has a gold crown." }
+            options: ["goled", "gold", "goald"]
+            answer: "gold"
+          - id: l2-c12
+            part: ould
+            type: text_input
+            keyboard: letters
+            text: "Write the missing word.\nI _ like a drink, please."
+            say: "I would like a drink, please. Write the missing word: would."
+            answer: "would"
+          - id: l2-c13
+            part: ould
+            type: true_false
+            text: "Is it true? This sentence is spelt right.\nI cud not reach the top shelf."
+            say: "Read the sentence. Is it spelt right?"
+            answer: false
+          - id: l2-c14
+            part: ould
+            type: multiple_choice
+            text: "Which sentence is spelt right?"
+            say: "Read the sentences yourself. Which one is spelt right?"
+            options: ["You shud brush your teeth.", "You should brush your teeth.", "You shood brush your teeth."]
+            answer: "You should brush your teeth."
+            option_audio: false
+          - id: l2-c15
+            part: ea-ay
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Break. Do not break the cup." }
+            options: ["braik", "brayk", "break"]
+            answer: "break"
+          - id: l2-c16
+            part: ea-ay
+            type: fill_in_blank
+            text: "Fill the gap: We had a _ time at the party."
+            say: "We had a great time at the party. Choose the right spelling."
+            frame: "We had a _ time at the party."
+            options: ["grayt", "great", "grait"]
+            answer: ["great"]
+            option_audio: false
+          - id: l2-c17
+            part: ea-ay
+            type: true_false
+            text: "Is it true? This sentence is spelt right.\nIt was a great day at the beach."
+            say: "Read the sentence. Is it spelt right?"
+            answer: true
+          - id: l2-c18
+            part: one-by-one
+            type: text_input
+            keyboard: letters
+            text: "Write the missing word.\nThere were lots of _ at the fair."
+            say: "There were lots of people at the fair. Write the missing word: people."
+            answer: "people"
+          - id: l2-c19
+            part: one-by-one
+            type: highlight_in_text
+            text: "Tap the word that is spelt wrong."
+            say: "Read the sentence. One word is spelt wrong. Tap it."
+            show: { drawn: letter-card, text: "The shop was very bizzy today." }
+            spans: ["bizzy"]
+          - id: l2-c20
+            part: one-by-one
+            type: audio_choice
+            text: "Listen. Tap the right spelling."
+            audio: { en: "Water. Plants need water to grow." }
+            options: ["worter", "water", "warter"]
+            answer: "water"

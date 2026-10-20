@@ -12,8 +12,10 @@ summary: >
   first) and the one-armed robot letters (r, n, m, h, b, k, p: down, back
   up and over). Lesson 2 takes the curly caterpillar letters (c, a, d, o,
   s, g, q, e, f: start at the top and curl back) and the zigzag letters
-  (z, v, w, x), and ends with the skill check. Tracing shows the stroke;
-  marking how well a letter is formed waits on stroke checking in the app.
+  (z, v, w, x), and ends with the skill check. Tracing shows the stroke.
+  The skill check marks what a screen can mark: which family a letter is
+  in, where it starts and which way it goes; writing the letters is
+  practised by tracing and copying in Practise and is not marked.
 metadata:
   year: year-1
   topic: { de: "Handschrift", en: "Handwriting" }
@@ -25,6 +27,11 @@ metadata:
   forms: [text, drawn]
   drawn: [writing-lines, letter-card]
   facets: [script]
+  parts:
+    - { id: ladder, what: { de: "die Leiter-Buchstaben (l, i, t, u, j, y)", en: "the long ladder letters (l, i, t, u, j, y)" } }
+    - { id: robot, what: { de: "die Roboter-Buchstaben (r, n, m, h, b, k, p)", en: "the one-armed robot letters (r, n, m, h, b, k, p)" } }
+    - { id: caterpillar, what: { de: "die Raupen-Buchstaben (c, a, d, o, s, g, q, e, f)", en: "the curly caterpillar letters (c, a, d, o, s, g, q, e, f)" } }
+    - { id: zigzag, what: { de: "die Zickzack-Buchstaben (z, v, w, x)", en: "the zigzag letters (z, v, w, x)" } }
   misconceptions:
     - id: start-at-bottom
       what: Starts a letter at the bottom and goes up (l, t from the line upwards)
@@ -211,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,7 +230,7 @@ lessons:
           - id: l1-c2
             type: multiple_choice
             text: "Which letter is a long ladder letter?"
-            say: "Which letter starts at the top and goes straight down?"
+            say: "Which letter is a long ladder letter?"
             options: ["l", "h", "r"]
             answer: "l"
             option_audio: false
@@ -232,6 +240,21 @@ lessons:
             say: "Write an n on your own."
             show: { drawn: writing-lines, text: "n", mode: copy }
             char: "n"
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? The letter m is a long ladder letter."
+            answer: false
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap every long ladder letter."
+            show: { drawn: letter-card, text: "t n i h u" }
+            spans: ["t", "i", "u"]
+          - id: l1-c6
+            type: multiple_choice
+            text: "Where do you start the letter n?"
+            show: { drawn: letter-card, text: "n" }
+            options: ["at the top", "at the bottom", "in the middle"]
+            answer: "at the top"
 
   - n: 2
     title: { de: "Raupe und Zickzack", en: "Caterpillars and zigzags" }
@@ -407,8 +430,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ladder
             type: multiple_choice
             text: "Which family is u in?"
             say: "Which family is u in?"
@@ -416,6 +441,7 @@ lessons:
             options: ["long ladder", "one-armed robot", "zigzag"]
             answer: "long ladder"
           - id: l2-c2
+            part: robot
             type: multiple_choice
             text: "Where do you start the letter b?"
             say: "Where do you start the letter b?"
@@ -423,13 +449,13 @@ lessons:
             options: ["at the top", "at the bottom", "in the middle"]
             answer: "at the top"
           - id: l2-c3
-            type: multiple_choice
-            text: "Which way does the curl of o go?"
-            say: "You start the letter o at the top. Which way does it curl?"
+            part: caterpillar
+            type: true_false
+            text: "Is it true? You start the letter o at the top and curl round to the right."
             show: { drawn: letter-card, text: "o" }
-            options: ["back to the left, like c", "to the right", "straight down"]
-            answer: "back to the left, like c"
+            answer: false
           - id: l2-c4
+            part: caterpillar
             type: multiple_choice
             text: "Which family is d in?"
             say: "Which family is d in?"
@@ -437,9 +463,106 @@ lessons:
             options: ["curly caterpillar", "one-armed robot", "zigzag"]
             answer: "curly caterpillar"
           - id: l2-c5
+            part: robot
             type: multiple_choice
             text: "Which letter is a one-armed robot letter?"
-            say: "Which letter goes down, back up and over?"
+            say: "Which letter is a one-armed robot letter?"
             options: ["m", "c", "v"]
             answer: "m"
             option_audio: false
+          - id: l2-c6
+            part: ladder
+            type: true_false
+            text: "Is it true? The letters j and y are in the same family."
+            answer: true
+          - id: l2-c7
+            part: ladder
+            type: true_false
+            text: "Is it true? The letter t is a zigzag letter."
+            answer: false
+          - id: l2-c8
+            part: ladder
+            type: highlight_in_text
+            text: "Tap every long ladder letter."
+            show: { drawn: letter-card, text: "l c t n y o" }
+            spans: ["l", "t", "y"]
+          - id: l2-c9
+            part: ladder
+            type: multiple_choice
+            text: "How do all the long ladder letters start?"
+            options: ["at the top, going straight down", "at the top, curling back", "at the bottom, going up"]
+            answer: "at the top, going straight down"
+          - id: l2-c10
+            part: robot
+            type: multiple_choice
+            text: "You write the first line of n. What comes next?"
+            options: ["back up the same line and over", "lift the pencil and start again", "curl round to the left"]
+            answer: "back up the same line and over"
+          - id: l2-c11
+            part: robot
+            type: true_false
+            text: "Is it true? The letters h and n start the same way."
+            answer: true
+          - id: l2-c12
+            part: robot
+            type: sorting
+            text: "Robot letter or zigzag letter?"
+            say: "Sort the letters. One-armed robot letters, or zigzag letters?"
+            option_audio: false
+            bins:
+              - { id: robot, show: { text: "one-armed robot" }, say: "One-armed robot letters." }
+              - { id: zig, show: { text: "zigzag" }, say: "Zigzag letters." }
+            options:
+              - { text: "k", bin: robot }
+              - { text: "w", bin: zig }
+              - { text: "p", bin: robot }
+              - { text: "x", bin: zig }
+          - id: l2-c13
+            part: caterpillar
+            type: multiple_choice
+            text: "Most curly caterpillar letters start like which letter?"
+            options: ["c", "l", "z"]
+            answer: "c"
+            option_audio: false
+          - id: l2-c14
+            part: caterpillar
+            type: true_false
+            text: "Is it true? The letter e is a curly caterpillar letter."
+            answer: true
+          - id: l2-c15
+            part: caterpillar
+            type: multiple_choice
+            text: "Which letter is not a curly caterpillar letter?"
+            options: ["a", "q", "n", "s"]
+            answer: "n"
+            option_audio: false
+          - id: l2-c16
+            part: zigzag
+            type: multiple_choice
+            text: "Which family is v in?"
+            show: { drawn: letter-card, text: "v" }
+            options: ["zigzag", "one-armed robot", "curly caterpillar"]
+            answer: "zigzag"
+          - id: l2-c17
+            part: zigzag
+            type: true_false
+            text: "Is it true? Zigzag letters are made of straight lines."
+            answer: true
+          - id: l2-c18
+            part: zigzag
+            type: highlight_in_text
+            text: "Tap every zigzag letter."
+            show: { drawn: letter-card, text: "w o x s z" }
+            spans: ["w", "x", "z"]
+          - id: l2-c19
+            part: zigzag
+            type: multiple_choice
+            text: "Which two letters are both zigzag letters?"
+            options: ["v and x", "v and u", "w and m"]
+            answer: "v and x"
+            option_audio: false
+          - id: l2-c20
+            part: zigzag
+            type: true_false
+            text: "Is it true? The letter w has a curl in it."
+            answer: false

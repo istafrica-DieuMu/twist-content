@@ -26,6 +26,10 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: furniture, what: { de: Möbel und Dinge im Haus benennen, en: naming furniture and things in the house } }
+    - { id: rooms, what: { de: die Zimmer benennen, en: naming the rooms } }
+    - { id: where, what: { de: "sagen, in welchem Zimmer etwas ist (est dans ...)", en: "saying which room something is in (est dans ...)" } }
   misconceptions:
     - id: chambre-any-room
       what: Takes la chambre for any room, as chamber suggests, and mixes it up with la salle de bains
@@ -109,7 +113,8 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "le canapé" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "le canapé" }
                 show: { object: sofa }
                 answer: true
                 hints:
@@ -158,7 +163,8 @@ lessons:
               - id: l1-s3
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "la lampe" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "la lampe" }
                 show: { object: clock }
                 answer: false
                 hints: ["La lampe gives light."]
@@ -201,7 +207,8 @@ lessons:
               - id: l1-n3
                 type: true_false
                 text: "Does the picture match?"
-                say: { en: "Listen. Does the picture match?", fr: "l'armoire" }
+                say: { en: "Listen. Does the picture match?" }
+                audio: { fr: "l'armoire" }
                 show: { object: fridge }
                 answer: false
               - id: l1-n4
@@ -219,6 +226,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -237,9 +245,34 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Does the picture match?"
-            say: { en: "Listen. Does the picture match?", fr: "le frigo" }
+            say: { en: "Listen. Does the picture match?" }
+            audio: { fr: "le frigo" }
             show: { object: fridge }
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            option_audio: false
+            text: "What is this in French?"
+            show: { object: oven }
+            options: ["le frigo", "le four", "la lampe"]
+            answer: "le four"
+          - id: l1-c5
+            type: true_false
+            text: "“La chaise” is the table."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: false
+          - id: l1-c6
+            type: matching
+            option_audio: false
+            text: "Match the words and the pictures."
+            say: { en: "Tap each word, then its picture." }
+            pairs:
+              - left: { text: "la lampe" }
+                right: { object: lamp }
+              - left: { text: "l'armoire" }
+                right: { object: cupboard }
+              - left: { text: "la table" }
+                right: { object: table }
 
   - n: 2
     title: { de: "Die Zimmer", en: "The rooms" }
@@ -309,7 +342,7 @@ lessons:
                   - "Le salon is the living room."
               - id: l2-f3
                 type: sorting
-                text: "Which room?"
+                text: "In the kitchen or in the bedroom? Sort the pictures."
                 say: { en: "Tap each picture to hear its word. Is it in the kitchen or in the bedroom? Sort the pictures." }
                 bins:
                   - { id: kitchen, show: { object: kitchen }, say: { fr: "la cuisine" } }
@@ -359,13 +392,13 @@ lessons:
                 type: audio_choice
                 text: "Where is the cat?"
                 say: { en: "Listen. Where is the cat?" }
-                audio: { fr: "Où est le chat ? Il est dans le jardin." }
+                audio: { turns: [{ fr: "Où est le chat ?", speaker: female }, { fr: "Il est dans le jardin.", speaker: male }] }
                 options: [{ object: garden }, { object: kitchen }, { object: bathroom }]
                 answer: garden
                 hints: ["Listen for the place after dans."]
               - id: l2-s3
                 type: sorting
-                text: "Which room?"
+                text: "In the bathroom or in the kitchen? Sort the pictures."
                 say: { en: "Tap each picture to hear its word. Is it in the bathroom or in the kitchen? Sort the pictures." }
                 bins:
                   - { id: bathroom, show: { object: bathroom }, say: { fr: "la salle de bains" } }
@@ -405,7 +438,7 @@ lessons:
                 type: audio_choice
                 text: "Where is Mum?"
                 say: { en: "Listen. Where is Mum?" }
-                audio: { fr: "Où est Maman ? Elle est dans la cuisine." }
+                audio: { turns: [{ fr: "Où est Maman ?", speaker: male }, { fr: "Elle est dans la cuisine.", speaker: female }] }
                 options: [{ object: kitchen }, { object: garden }, { object: living-room }]
                 answer: kitchen
               - id: l2-n3
@@ -429,15 +462,18 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: where
             type: audio_choice
             text: "Where is the bed?"
             say: { en: "Listen. Where is the bed?" }
-            audio: { fr: "Où est le lit ? Il est dans la chambre." }
+            audio: { turns: [{ fr: "Où est le lit ?", speaker: male }, { fr: "Il est dans la chambre.", speaker: female }] }
             options: [{ object: bedroom }, { object: bathroom }, { object: living-room }]
             answer: bedroom
           - id: l2-c2
+            part: rooms
             type: audio_choice
             text: "Tap the room you hear."
             say: { en: "Listen. Tap the room." }
@@ -445,11 +481,13 @@ lessons:
             options: [{ object: kitchen }, { object: bathroom }, { object: garden }]
             answer: kitchen
           - id: l2-c3
+            part: where
             type: true_false
             text: "La baignoire est dans la chambre.\nIs that right?"
             say: { en: "Read and listen. Is that right?", fr: "La baignoire est dans la chambre." }
             answer: false
           - id: l2-c4
+            part: where
             type: fill_in_blank
             option_audio: false
             text: "Finish the sentence."
@@ -458,8 +496,9 @@ lessons:
             options: ["la salle de bains", "le jardin", "la cuisine"]
             answer: ["la salle de bains"]
           - id: l2-c5
+            part: where
             type: sorting
-            text: "Sort the things into the rooms."
+            text: "In the bathroom or in the living room? Sort the pictures."
             say: { en: "Tap each picture to hear its word. Is it in the bathroom or in the living room?" }
             bins:
               - { id: bathroom, show: { object: bathroom }, say: { fr: "la salle de bains" } }
@@ -468,3 +507,124 @@ lessons:
               - { object: bath, say: { fr: "la baignoire" }, bin: bathroom }
               - { object: mirror, say: { fr: "le miroir" }, bin: bathroom }
               - { object: sofa, say: { fr: "le canapé" }, bin: living-room }
+          - id: l2-c6
+            part: furniture
+            type: multiple_choice
+            option_audio: false
+            text: "What is this in French?"
+            show: { object: lamp }
+            options: ["le lit", "la lampe", "la table"]
+            answer: "la lampe"
+          - id: l2-c7
+            part: furniture
+            type: matching
+            option_audio: false
+            text: "Which word goes with which picture?"
+            say: { en: "Read each word. Tap it, then its picture." }
+            pairs:
+              - left: { text: "le miroir" }
+                right: { object: mirror }
+              - left: { text: "le frigo" }
+                right: { object: fridge }
+              - left: { text: "la chaise" }
+                right: { object: chair }
+          - id: l2-c8
+            part: furniture
+            type: true_false
+            text: "“Le lit” is the bed."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: true
+          - id: l2-c9
+            part: furniture
+            type: audio_choice
+            text: "What does it mean?"
+            say: { en: "Listen. What does it mean?" }
+            audio: { fr: "le canapé" }
+            options: ["bed", "sofa", "cupboard"]
+            answer: "sofa"
+          - id: l2-c10
+            part: furniture
+            type: multiple_choice
+            option_audio: false
+            text: "Where do you keep your clothes?"
+            options: ["dans le frigo", "dans le four", "dans l'armoire"]
+            answer: "dans l'armoire"
+          - id: l2-c11
+            part: furniture
+            type: true_false
+            text: "“L'armoire” is the fridge."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: false
+          - id: l2-c12
+            part: furniture
+            type: multiple_choice
+            option_audio: false
+            text: "Which one do you sit on?"
+            options: ["la lampe", "la chaise", "le four"]
+            answer: "la chaise"
+          - id: l2-c13
+            part: rooms
+            type: audio_choice
+            text: "Which room is it?"
+            say: { en: "Listen. Which room is it?" }
+            audio: { fr: "le jardin" }
+            options: [{ object: living-room }, { object: kitchen }, { object: garden }]
+            answer: garden
+          - id: l2-c14
+            part: rooms
+            type: multiple_choice
+            option_audio: false
+            text: "What is this room in French?"
+            show: { object: bathroom }
+            options: ["la chambre", "la salle de bains", "la cuisine"]
+            answer: "la salle de bains"
+          - id: l2-c15
+            part: rooms
+            type: true_false
+            text: "“La chambre” means any room in the house."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: false
+          - id: l2-c16
+            part: rooms
+            type: matching
+            option_audio: false
+            text: "Which word goes with which room?"
+            say: { en: "Read each word. Tap it, then its room." }
+            pairs:
+              - left: { text: "la cuisine" }
+                right: { object: kitchen }
+              - left: { text: "la chambre" }
+                right: { object: bedroom }
+              - left: { text: "le salon" }
+                right: { object: living-room }
+          - id: l2-c17
+            part: rooms
+            type: audio_choice
+            text: "What does it mean?"
+            say: { en: "Listen. What does it mean?" }
+            audio: { fr: "le salon" }
+            options: ["the bedroom", "the living room", "the garden"]
+            answer: "the living room"
+          - id: l2-c18
+            part: where
+            type: audio_choice
+            text: "Where is Dad?"
+            say: { en: "Listen. Where is Dad?" }
+            audio: { turns: [{ fr: "Où est Papa ?", speaker: female }, { fr: "Il est dans la salle de bains.", speaker: male }] }
+            options: [{ object: bedroom }, { object: kitchen }, { object: bathroom }]
+            answer: bathroom
+          - id: l2-c19
+            part: where
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: The lamp is in the living room."
+            say: { en: "Build the sentence: The lamp is in the living room." }
+            options: ["le salon.", "La lampe", "est dans"]
+            slot_count: 3
+            answer: ["La lampe", "est dans", "le salon."]
+          - id: l2-c20
+            part: where
+            type: true_false
+            text: "L'armoire est dans la chambre.\nIs that right?"
+            say: { en: "Read and listen. Is that right?", fr: "L'armoire est dans la chambre." }
+            answer: true

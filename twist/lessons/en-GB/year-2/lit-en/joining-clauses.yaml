@@ -21,9 +21,14 @@ metadata:
   builds_on: [lit-en.grammar.sentences-and]
   also_practises: []
   vocabulary: { en: [conjunction, clause, join, and, but, or, because, when, if, that] }
-  forms: [text, audio]
-  drawn: []
+  forms: [text, audio, drawn]
+  drawn: [letter-card]
   facets: []
+  parts:
+    - { id: and-but-or, what: { de: "Teilsätze mit and, but und or verbinden", en: "joining clauses with and, but and or" } }
+    - { id: because, what: { de: mit because einen Grund angeben, en: giving a reason with because } }
+    - { id: when-if, what: { de: "when für eine Zeit und if für etwas, das passieren könnte", en: "when for a time and if for something that might happen" } }
+    - { id: that, what: { de: "mit that sagen, was jemand denkt, sagt oder weiß", en: "using that to say what someone thinks, says or knows" } }
   misconceptions:
     - id: and-for-everything
       what: Joins every pair of clauses with and, even where but or because fits better (I like cake and I am full)
@@ -58,7 +63,7 @@ lessons:
           - id: l1-w2
             type: ordering
             text: "Build the sentence."
-            say: "Put the words in order to make a sentence. It starts with We. First we ran, then we jumped."
+            say: "Put the words in order to make a sentence. It starts with We."
             options: ["and", "We", "ran", "jumped"]
             slot_count: 4
             answer: ["We", "ran", "and", "jumped"]
@@ -219,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -240,6 +246,27 @@ lessons:
             say: "Read the words yourself. Which one adds one more thing?"
             options: ["and", "or", "but"]
             answer: "and"
+          - id: l1-c4
+            type: matching
+            text: "Which parts belong together? Match them."
+            say: "Read the first part of each sentence yourself. Which part belongs with it? Match them."
+            pairs:
+              - { left: { text: "I wanted to go out," }, right: { text: "but it was too windy." } }
+              - { left: { text: "Shall we walk" }, right: { text: "or shall we cycle?" } }
+              - { left: { text: "Nia drew a house" }, right: { text: "and she drew a tree." } }
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap the conjunction."
+            say: "Read the sentence. Tap the conjunction that joins the two parts."
+            show: { drawn: letter-card, text: "Mia wanted to play, but she had to tidy up." }
+            spans: ["but"]
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill the gap: We had fish _ chips for tea."
+            say: "Read the sentence. Which conjunction fits the gap?"
+            frame: "We had fish _ chips for tea."
+            options: ["but", "and", "or"]
+            answer: ["and"]
 
   - n: 2
     title: { de: "because, when, if, that", en: "because, when, if, that" }
@@ -354,8 +381,8 @@ lessons:
                 hints: ["It tells you what someone thinks."]
               - id: l2-s2
                 type: fill_in_blank
-                text: "Fill the gap: We sing a song _ it is someone's birthday."
-                say: "Read the sentence. It tells you the time we sing. Which conjunction fits the gap?"
+                text: "The second part tells you when we sing.\nFill the gap: We sing a song _ it is someone's birthday."
+                say: "Read the sentence. The second part tells you when we sing. Which conjunction fits the gap?"
                 frame: "We sing a song _ it is someone's birthday."
                 options: ["when", "that", "or"]
                 answer: ["when"]
@@ -391,14 +418,14 @@ lessons:
               - id: l2-n1
                 type: fill_in_blank
                 text: "Fill the gap: The baby cried _ he was hungry."
-                say: "Read the sentence. Why did the baby cry? Which conjunction fits the gap?"
+                say: "Read the sentence. Which conjunction fits the gap?"
                 frame: "The baby cried _ he was hungry."
                 options: ["because", "if", "or"]
                 answer: ["because"]
               - id: l2-n2
                 type: fill_in_blank
                 text: "Fill the gap: _ you see Dan, say hello."
-                say: "Read the sentence. You might see Dan. Which conjunction fits the gap?"
+                say: "Read the sentence. Which conjunction fits the gap?"
                 frame: "_ you see Dan, say hello."
                 options: ["If", "That", "But"]
                 answer: ["If"]
@@ -415,8 +442,8 @@ lessons:
                 answer: true
               - id: l2-n5
                 type: ordering
-                text: "Build the second part of the sentence."
-                say: "I wore my wellies because it was muddy. Put the cards in order to finish the sentence after I wore my wellies."
+                text: "Finish the sentence: I wore my wellies ..."
+                say: "Put the cards in order to finish the sentence: I wore my wellies ..."
                 options: ["was", "because", "muddy", "it"]
                 slot_count: 4
                 answer: ["because", "it", "was", "muddy"]
@@ -424,8 +451,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: and-but-or
             type: fill_in_blank
             text: "Fill the gap: I can swim, _ I can't dive."
             say: "Read the sentence. Which conjunction fits the gap?"
@@ -433,13 +462,15 @@ lessons:
             options: ["but", "and", "or"]
             answer: ["but"]
           - id: l2-c2
+            part: when-if
             type: fill_in_blank
             text: "Fill the gap: Leo laughed _ the clown fell over."
-            say: "Read the sentence. It tells you the time Leo laughed. Which conjunction fits the gap?"
+            say: "Read the sentence. Which conjunction fits the gap?"
             frame: "Leo laughed _ the clown fell over."
             options: ["when", "that", "or"]
             answer: ["when"]
           - id: l2-c3
+            part: and-but-or
             type: fill_in_blank
             text: "Fill the gap: Do you want to read _ play a game?"
             say: "Read the sentence. Which conjunction fits the gap?"
@@ -447,16 +478,132 @@ lessons:
             options: ["or", "because", "that"]
             answer: ["or"]
           - id: l2-c4
+            part: when-if
             type: fill_in_blank
             text: "Fill the gap: _ it rains, we will stay inside."
-            say: "Read the sentence. It might rain. Which conjunction fits the gap?"
+            say: "Read the sentence. Which conjunction fits the gap?"
             frame: "_ it rains, we will stay inside."
             options: ["If", "That", "But"]
             answer: ["If"]
           - id: l2-c5
+            part: because
             type: fill_in_blank
             text: "Fill the gap: The road was wet _ it had rained."
-            say: "Read the sentence. Why was the road wet? Which conjunction fits the gap?"
+            say: "Read the sentence. Which conjunction fits the gap?"
             frame: "The road was wet _ it had rained."
             options: ["because", "if", "or"]
             answer: ["because"]
+          - id: l2-c6
+            part: and-but-or
+            type: matching
+            text: "Which parts belong together? Match them."
+            say: "Read the first part of each sentence yourself. Which part belongs with it? Match them."
+            pairs:
+              - { left: { text: "I wanted to fly my kite," }, right: { text: "but there was no wind." } }
+              - { left: { text: "We can have pasta" }, right: { text: "or we can have rice." } }
+              - { left: { text: "Mum clapped" }, right: { text: "and Dad cheered." } }
+          - id: l2-c7
+            part: and-but-or
+            type: ordering
+            text: "Finish the sentence: We went to the shop, ..."
+            say: "Put the cards in order to finish the sentence: We went to the shop, ..."
+            options: ["was", "closed.", "but", "it"]
+            slot_count: 4
+            answer: ["but", "it", "was", "closed."]
+            option_audio: false
+          - id: l2-c8
+            part: and-but-or
+            type: highlight_in_text
+            text: "Tap the conjunction."
+            say: "Read the sentence. Tap the conjunction that joins the two parts."
+            show: { drawn: letter-card, text: "We can play outside or we can read a book." }
+            spans: ["or"]
+          - id: l2-c9
+            part: because
+            type: matching
+            text: "Match each sentence start with its reason."
+            say: "Read each sentence start yourself. Match it with its reason."
+            pairs:
+              - { left: { text: "I put on sun cream" }, right: { text: "because it was hot." } }
+              - { left: { text: "The cat hid" }, right: { text: "because the dog barked." } }
+              - { left: { text: "Ben was late" }, right: { text: "because he missed the bus." } }
+          - id: l2-c10
+            part: because
+            type: true_false
+            text: "Is it true? \"We turned on the light because it was too bright.\" makes sense."
+            say: "Read the sentence. Is it true? It makes sense."
+            answer: false
+          - id: l2-c11
+            part: because
+            type: multiple_choice
+            text: "Which ending makes sense?\nThe ice cream melted because ..."
+            say: "Read them yourself. Which ending makes sense? The ice cream melted because ..."
+            options: ["it was a Tuesday.", "the sun was hot.", "I like ice cream."]
+            answer: "the sun was hot."
+            option_audio: false
+          - id: l2-c12
+            part: because
+            type: text_input
+            keyboard: letters
+            text: "Write the conjunction that gives a reason.\nWe stayed inside _ it was snowing."
+            say: "Read the sentence. Write the conjunction that gives a reason."
+            answer: "because"
+          - id: l2-c13
+            part: when-if
+            type: fill_in_blank
+            text: "Fill the gap: _ I grow up, I want to be a vet."
+            say: "Read the sentence. Which conjunction fits the gap?"
+            frame: "_ I grow up, I want to be a vet."
+            options: ["That", "When", "Or"]
+            answer: ["When"]
+          - id: l2-c14
+            part: when-if
+            type: multiple_choice
+            text: "Which conjunction is for something that might happen?"
+            say: "Read the words yourself. Which one is for something that might happen?"
+            options: ["and", "that", "if"]
+            answer: "if"
+          - id: l2-c15
+            part: when-if
+            type: true_false
+            text: "Is it true? In \"I brush my teeth when I go to bed.\", the second part tells you a time."
+            say: "Read the sentence. Is it true? The second part tells you a time."
+            answer: true
+          - id: l2-c16
+            part: that
+            type: fill_in_blank
+            text: "Fill the gap: Gran knows _ I love strawberries."
+            say: "Read the sentence. Which conjunction fits the gap?"
+            frame: "Gran knows _ I love strawberries."
+            options: ["or", "that", "but"]
+            answer: ["that"]
+          - id: l2-c17
+            part: that
+            type: highlight_in_text
+            text: "Tap the conjunction."
+            say: "Read the sentence. Tap the conjunction that joins the two parts."
+            show: { drawn: letter-card, text: "Tom said that he would help us." }
+            spans: ["that"]
+          - id: l2-c18
+            part: that
+            type: multiple_choice
+            text: "In which sentence does that join two parts?"
+            say: "Read the sentences yourself. In which one does that join two parts?"
+            options: ["That is my coat.", "I hope that you feel better.", "I like that hat."]
+            answer: "I hope that you feel better."
+            option_audio: false
+          - id: l2-c19
+            part: that
+            type: true_false
+            text: "Is it true? \"Kim said because she was eight.\" uses the right conjunction."
+            say: "Read the sentence. Is it true? It uses the right conjunction."
+            answer: false
+          - id: l2-c20
+            part: that
+            type: ordering
+            text: "Finish the sentence: I think ..."
+            say: "Put the cards in order to finish the sentence: I think ..."
+            options: ["is", "that", "best.", "it", "the"]
+            slot_count: 5
+            answer: ["that", "it", "is", "the", "best."]
+            option_audio: false

@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [rechenstrich]
   facets: []
+  parts:
+    - { id: estimate, what: { de: vorher durch Runden überschlagen, en: estimating first by rounding } }
+    - { id: add-steps, what: { de: "schrittweise addieren, Stelle für Stelle", en: "adding in steps, place by place" } }
+    - { id: subtract-steps, what: { de: schrittweise subtrahieren oder den Unterschied durch Ergänzen finden, en: subtracting in steps or counting on to find a difference } }
+    - { id: check, what: { de: das Ergebnis mit dem Überschlag prüfen und Fehler finden, en: checking an answer against the estimate and finding mistakes } }
   misconceptions:
     - id: lost-step
       what: Starts the next step from the first number instead of the last result
@@ -188,6 +193,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -204,6 +210,19 @@ lessons:
             type: text_input
             text: "3200 + 5400 = _"
             answer: "8600"
+          - id: l1-c4
+            type: multiple_choice
+            text: "Estimate: 3100 + 4800 ≈ ?"
+            options: ["8000", "7000", "9000"]
+            answer: "8000"
+          - id: l1-c5
+            type: true_false
+            text: "Does this fit the estimate? 5800 + 2100 = 9900"
+            answer: false
+          - id: l1-c6
+            type: text_input
+            text: "6200 + 2650 = _"
+            answer: "8850"
 
   - n: 2
     title: { de: "Schrittweise subtrahieren", en: "Subtract in steps" }
@@ -355,27 +374,121 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: estimate
             type: multiple_choice
             text: "Estimate: 4900 + 3800 ≈ ?"
             options: ["9000", "8000", "7000"]
             answer: "9000"
           - id: l2-c2
+            part: add-steps
             type: fill_in_blank
             text: "Add 3400 + 5270 in steps."
             frame: "3400 + 5000 = _; then + 200 = _; then + 70 = _"
             options: ["8400", "8600", "8670", "3670", "8470"]
             answer: ["8400", "8600", "8670"]
           - id: l2-c3
+            part: subtract-steps
             type: text_input
             text: "8640 − 3200 = _"
             answer: "5440"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Does this fit the estimate? 9300 − 2800 = 8500"
             answer: false
           - id: l2-c5
+            part: subtract-steps
             type: text_input
             text: "Count on to find the difference: 7100 − 6800 = _"
             answer: "300"
+          - id: l2-c6
+            part: estimate
+            type: multiple_choice
+            text: "Estimate: 6400 + 1800 ≈ ?"
+            options: ["8000", "9000", "7000"]
+            answer: "8000"
+          - id: l2-c7
+            part: estimate
+            type: multiple_choice
+            text: "Estimate: 8700 − 4400 ≈ ?"
+            options: ["5000", "4000", "13,000"]
+            answer: "5000"
+          - id: l2-c8
+            part: estimate
+            type: text_input
+            text: "Round to the nearest thousand and estimate: 23,800 + 41,200 ≈ _"
+            say: "Round to the nearest thousand and estimate. Twenty-three thousand eight hundred add forty-one thousand two hundred."
+            answer: "65000"
+          - id: l2-c9
+            part: estimate
+            type: true_false
+            text: "Is this a good estimate? 5900 + 3100 ≈ 6000 + 3000 = 9000"
+            answer: true
+          - id: l2-c10
+            part: add-steps
+            type: fill_in_blank
+            text: "Add 2700 + 6140 in steps."
+            frame: "2700 + 6000 = _; then + 100 = _; then + 40 = _"
+            options: ["8700", "8800", "8840", "2840", "8740"]
+            answer: ["8700", "8800", "8840"]
+          - id: l2-c11
+            part: add-steps
+            type: text_input
+            text: "4200 + 3750 = _"
+            answer: "7950"
+          - id: l2-c12
+            part: add-steps
+            type: text_input
+            text: "21,300 + 46,500 = _"
+            say: "Twenty-one thousand three hundred add forty-six thousand five hundred."
+            answer: "67800"
+          - id: l2-c13
+            part: add-steps
+            type: multiple_choice
+            text: "Which steps add 5300 + 2460 correctly?"
+            options: ["5300 + 2000, then + 400, then + 60", "5300 + 2000, then + 46", "5000 + 2000, then + 460"]
+            answer: "5300 + 2000, then + 400, then + 60"
+          - id: l2-c14
+            part: subtract-steps
+            type: fill_in_blank
+            text: "Subtract 7860 − 2500 in steps."
+            frame: "7860 − 2000 = _; then − 500 = _"
+            options: ["5860", "5360", "5460", "7360"]
+            answer: ["5860", "5360"]
+          - id: l2-c15
+            part: subtract-steps
+            type: text_input
+            text: "Count on to find the difference: 6050 − 5800 = _"
+            answer: "250"
+          - id: l2-c16
+            part: subtract-steps
+            type: multiple_choice
+            text: "A school has £36,400. It spends £12,300 on a new playground. How much money is left?"
+            say: "A school has thirty-six thousand four hundred pounds. It spends twelve thousand three hundred pounds on a new playground. How much money is left?"
+            options: ["£24,100", "£48,700", "£24,700"]
+            answer: "£24,100"
+          - id: l2-c17
+            part: check
+            type: true_false
+            text: "Does this fit the estimate? 4700 + 3200 = 7900"
+            answer: true
+          - id: l2-c18
+            part: check
+            type: multiple_choice
+            text: "Is there a mistake? Mia subtracts 7450 − 3200.\n7450 − 3000 = 4450\n7450 − 200 = 7250"
+            options: ["Yes, the second step should start from 4450.", "Yes, 7450 − 3000 is not 4450.", "No, the answer is 7250."]
+            answer: "Yes, the second step should start from 4450."
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "Ali works out 8200 − 2900 and gets 6300. Which estimate shows that his answer is too big?"
+            options: ["8000 − 3000 = 5000", "8000 − 2000 = 6000", "9000 − 3000 = 6000"]
+            answer: "8000 − 3000 = 5000"
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Is there a mistake? Leo adds 3500 + 4280.\n3500 + 4000 = 7500\n7500 + 200 = 7700\n7700 + 80 = 7780"
+            answer: false

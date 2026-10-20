@@ -22,6 +22,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [number-line]
   facets: [operation-signs, currency]
+  parts:
+    - { id: number-line, what: { de: Zahlen bis 1 000 000 am Zahlenstrahl finden und ablesen, en: finding and reading numbers to 1 000 000 on a number line } }
+    - { id: compare, what: { de: Zahlen bis 1 000 000 vergleichen und ordnen, en: comparing and ordering numbers to 1 000 000 } }
+    - { id: round, what: { de: "auf Hunderter, Tausender, Zehntausender und Hunderttausender runden", en: "rounding to the nearest 100, 1000, 10,000 and 100,000" } }
+    - { id: sensible, what: { de: Zahlen aus dem Alltag sinnvoll runden, en: rounding real-life numbers sensibly } }
   misconceptions:
     - id: length-first
       what: Compares by the first digit even when the numbers have different numbers of digits (99,999 > 100,000)
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -236,6 +242,23 @@ lessons:
             text: "Which is the smallest?"
             options: ["88,800", "88,080", "880,800"]
             answer: "88,080"
+          - id: l1-c4
+            type: point_on_line
+            text: "Tap 200,000 on the number line."
+            say: "Tap two hundred thousand on the number line."
+            show: { drawn: number-line, from: 0, to: 1000000, step: 100000, labels: ends }
+            answer: 200000
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 708,000 < 780,000"
+            say: "Is it true? Seven hundred and eight thousand is less than seven hundred and eighty thousand."
+            answer: true
+          - id: l1-c6
+            type: ordering
+            text: "Put the numbers in descending order, greatest first."
+            options: ["45,000", "405,000", "54,000", "450,000"]
+            slot_count: 4
+            answer: ["450,000", "405,000", "54,000", "45,000"]
 
   - n: 2
     title: { de: Sinnvoll runden, en: Rounding sensibly }
@@ -399,8 +422,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: compare
             type: fill_in_blank
             text: "Which sign goes in the gap?"
             frame: "90,099 _ 90,909"
@@ -408,22 +433,127 @@ lessons:
             answer: ["<"]
             option_audio: false
           - id: l2-c2
+            part: compare
             type: ordering
             text: "Put the numbers in descending order, greatest first."
             options: ["606,060", "660,600", "66,060", "600,666"]
             slot_count: 4
             answer: ["660,600", "606,060", "600,666", "66,060"]
           - id: l2-c3
+            part: round
             type: multiple_choice
             text: "Round 237,500 to the nearest 10,000."
             options: ["230,000", "240,000", "238,000"]
             answer: "240,000"
           - id: l2-c4
+            part: round
             type: text_input
             text: "Round 550,001 to the nearest 100,000."
             answer: "600000"
           - id: l2-c5
+            part: sensible
             type: multiple_choice
             text: "A house costs £249,500. Which is the most sensible rounding?"
             options: ["about £250,000", "about £200,000", "about £249,500"]
             answer: "about £250,000"
+          - id: l2-c6
+            part: number-line
+            type: point_on_line
+            text: "Tap 700,000 on the number line."
+            say: "Tap seven hundred thousand on the number line."
+            show: { drawn: number-line, from: 0, to: 1000000, step: 100000, labels: ends }
+            answer: 700000
+          - id: l2-c7
+            part: number-line
+            type: multiple_choice
+            text: "Where is the arrow pointing?"
+            show: { drawn: number-line, from: 0, to: 100000, step: 10000, labels: ends, mark: 40000 }
+            options: ["4000", "40,000", "400,000"]
+            answer: "40,000"
+          - id: l2-c8
+            part: number-line
+            type: point_on_line
+            text: "Tap 360,000 on the number line."
+            say: "Tap three hundred and sixty thousand on the number line."
+            show: { drawn: number-line, from: 300000, to: 400000, step: 10000, labels: ends }
+            answer: 360000
+          - id: l2-c9
+            part: number-line
+            type: multiple_choice
+            text: "Where is the arrow pointing?"
+            show: { drawn: number-line, from: 500000, to: 600000, step: 10000, labels: ends, mark: 530000 }
+            options: ["530,000", "503,000", "53,000"]
+            answer: "530,000"
+          - id: l2-c10
+            part: number-line
+            type: true_false
+            text: "Is it true? The arrow points to 900,000."
+            say: "Is it true? The arrow points to nine hundred thousand."
+            show: { drawn: number-line, from: 0, to: 1000000, step: 100000, labels: ends, mark: 900000 }
+            answer: true
+          - id: l2-c11
+            part: compare
+            type: fill_in_blank
+            text: "Which sign goes in the gap?"
+            frame: "476,302 _ 476,230"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l2-c12
+            part: compare
+            type: multiple_choice
+            text: "Three cities have 245,800, 254,080 and 245,080 people. Which is the smallest population?"
+            say: "Three cities have two hundred and forty-five thousand, eight hundred, two hundred and fifty-four thousand and eighty, and two hundred and forty-five thousand and eighty people. Which is the smallest population?"
+            options: ["245,800", "254,080", "245,080"]
+            answer: "245,080"
+          - id: l2-c13
+            part: compare
+            type: true_false
+            text: "Is it true? 89,999 > 100,000"
+            say: "Is it true? Eighty-nine thousand, nine hundred and ninety-nine is greater than one hundred thousand."
+            answer: false
+          - id: l2-c14
+            part: round
+            type: text_input
+            text: "Round 483,612 to the nearest 10,000."
+            say: "Round four hundred and eighty-three thousand, six hundred and twelve to the nearest ten thousand."
+            answer: "480000"
+          - id: l2-c15
+            part: round
+            type: multiple_choice
+            text: "Which number rounds to 300,000 to the nearest 100,000?"
+            say: "Which number rounds to three hundred thousand to the nearest hundred thousand?"
+            options: ["349,999", "350,000", "249,999"]
+            answer: "349,999"
+          - id: l2-c16
+            part: round
+            type: true_false
+            text: "Is it true? 615,370 rounded to the nearest 100 is 615,300."
+            say: "Is it true? Six hundred and fifteen thousand, three hundred and seventy rounded to the nearest hundred is six hundred and fifteen thousand, three hundred."
+            answer: false
+          - id: l2-c17
+            part: sensible
+            type: multiple_choice
+            text: "A race has 41,276 runners. The newspaper says about 40,000 runners. To which place did it round?"
+            say: "A race has forty-one thousand, two hundred and seventy-six runners. The newspaper says about forty thousand runners. To which place did it round?"
+            options: ["the nearest 10,000", "the nearest 1000", "the nearest 100"]
+            answer: "the nearest 10,000"
+          - id: l2-c18
+            part: sensible
+            type: multiple_choice
+            text: "A bike costs £348.99. Which is the most sensible rounding?"
+            options: ["about £350", "about £300,000", "about £3"]
+            answer: "about £350"
+          - id: l2-c19
+            part: sensible
+            type: true_false
+            text: "A stadium holds 60,318 people. Is it sensible to say it holds about 100,000 people?"
+            say: "A stadium holds sixty thousand, three hundred and eighteen people. Is it sensible to say it holds about one hundred thousand people?"
+            answer: false
+          - id: l2-c20
+            part: sensible
+            type: multiple_choice
+            text: "A town has 18,456 people. Which rounding is closest to the real number?"
+            say: "A town has eighteen thousand, four hundred and fifty-six people. Which rounding is closest to the real number?"
+            options: ["about 18,000", "about 20,000", "about 10,000"]
+            answer: "about 18,000"

@@ -28,6 +28,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [colour-swatch]
   facets: []
+  parts:
+    - { id: judge, what: { de: "sich prüfen und einschätzen, ob man es kann: ohne Hilfe und mehrmals", en: "checking yourself and judging whether you can do it: without help, several times" } }
+    - { id: say-can, what: { de: "auf Französisch sagen, was man schon kann und was man noch lernt", en: saying in French what you can do and what you are still learning } }
+    - { id: goal, what: { de: ein passendes nächstes Ziel wählen, en: choosing a good next goal } }
+    - { id: practise, what: { de: "planen, wie man übt und sich wieder prüft", en: planning how to practise and check again } }
   misconceptions:
     - id: once-is-enough
       what: Counts a skill as done after one success, or after doing it with help
@@ -99,6 +104,7 @@ lessons:
                 difficulty: easy
               - id: l1-f2
                 type: audio_choice
+                text: "Listen and tap the colour."
                 say: { en: "Check yourself. Do you know the colours? Listen and tap the colour." }
                 audio: { fr: "Violet." }
                 options:
@@ -147,6 +153,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
+                text: "Listen and tap the number."
                 say: { en: "Check yourself. Do you know the numbers? Listen and tap the number." }
                 audio: { fr: "Dix-sept." }
                 options: ["17", "7", "70"]
@@ -155,7 +162,7 @@ lessons:
               - id: l1-s2
                 type: fill_in_blank
                 option_audio: false
-                text: "Which word is missing?"
+                text: "You can count to ten. Which word is missing?"
                 say: { en: "You can count to ten. Which word is missing?" }
                 frame: "Je _ compter jusqu'à dix."
                 options: ["sais", "suis", "ai"]
@@ -171,6 +178,7 @@ lessons:
                 hints: ["It is fine to say you are still learning."]
               - id: l1-s4
                 type: audio_choice
+                text: "Listen and tap the day."
                 say: { en: "Check yourself. Do you know the days? Listen and tap the day." }
                 audio: { fr: "Mercredi." }
                 options: ["Wednesday", "Monday", "Friday"]
@@ -186,6 +194,7 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
+                text: "Listen and tap the colour."
                 say: { en: "Check yourself. Listen and tap the colour." }
                 audio: { fr: "Marron." }
                 options:
@@ -209,6 +218,7 @@ lessons:
                 answer: true
               - id: l1-n4
                 type: audio_choice
+                text: "Listen and tap the number."
                 say: { en: "Check yourself. Listen and tap the number." }
                 audio: { fr: "Quatorze." }
                 options: ["14", "4", "40"]
@@ -220,6 +230,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -230,6 +241,7 @@ lessons:
             answer: "I'm still learning"
           - id: l1-c2
             type: audio_choice
+            text: "Listen and tap the colour."
             say: { en: "Check yourself. Listen and tap the colour." }
             audio: { fr: "Jaune." }
             options:
@@ -242,6 +254,24 @@ lessons:
             text: "Sam got the numbers right once, with help from his friend. He can say the numbers."
             say: { en: "Is this true?" }
             answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "Listen and tap the day."
+            say: { en: "Check yourself. Listen and tap the day." }
+            audio: { fr: "Vendredi." }
+            options: ["Friday", "Tuesday", "Thursday"]
+            answer: "Friday"
+          - id: l1-c5
+            type: true_false
+            text: "Je sais means I'm still learning."
+            say: { en: "Je sais means I'm still learning. Is this true?" }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "What is the best way to check whether you know the numbers?"
+            say: { en: "What is the best way to check whether you know the numbers in French?" }
+            options: ["Say them with no help, a few times.", "Read them off the list.", "Ask a friend to say them."]
+            answer: "Say them with no help, a few times."
 
   - n: 2
     title: { de: Mein nächstes Ziel, en: My next goal }
@@ -317,7 +347,7 @@ lessons:
               - id: l2-f4
                 type: fill_in_blank
                 option_audio: false
-                text: "Which word is missing?"
+                text: "Emma writes down her next goal. Which word is missing?"
                 say: { en: "Emma writes down her next goal. Which word is missing?" }
                 frame: "Mon prochain _ : savoir dire les mois."
                 options: ["objectif", "objet", "oiseau"]
@@ -403,7 +433,7 @@ lessons:
               - id: l2-n5
                 type: fill_in_blank
                 option_audio: false
-                text: "Which word is missing?"
+                text: "Jade writes what she is still learning. Which word is missing?"
                 say: { en: "Jade writes what she is still learning. Which word is missing?" }
                 frame: "J'apprends _ les jours de la semaine."
                 options: ["encore", "sais", "aime"]
@@ -411,26 +441,32 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: goal
             type: multiple_choice
             text: "Sam can say the days of the week in French. What is a good next goal?"
             say: { en: "Sam can say the days of the week in French. What is a good next goal?" }
             options: ["Say what he does each day: le lundi, je nage.", "Learn the word lundi.", "Speak French perfectly by tomorrow."]
             answer: "Say what he does each day: le lundi, je nage."
           - id: l2-c2
-            type: audio_choice
-            say: { en: "Check yourself. Listen and tap the number." }
+            part: judge
+            type: text_input
+            keyboard: digits
+            text: "Check yourself. Listen and write the number."
+            say: { en: "Check yourself. Listen and write the number." }
             audio: { fr: "Douze." }
-            options: ["12", "2", "20"]
             answer: "12"
           - id: l2-c3
+            part: judge
             type: multiple_choice
             text: "Ava says the colours right once, with her teacher's help. What is true?"
             say: { en: "Ava says the colours right once, with her teacher's help. What is true?" }
             options: ["She is still practising.", "She can really say the colours.", "She will never learn them."]
             answer: "She is still practising."
           - id: l2-c4
+            part: say-can
             type: multiple_choice
             option_audio: false
             text: "Zoé finds the numbers over 20 hard. What can she honestly say?"
@@ -438,6 +474,7 @@ lessons:
             options: ["J'apprends encore les nombres.", "Je sais dire les nombres.", "I can't learn French."]
             answer: "J'apprends encore les nombres."
           - id: l2-c5
+            part: say-can
             type: matching
             option_audio: false
             text: "Match each French sentence to its meaning."
@@ -446,3 +483,129 @@ lessons:
               - { left: { text: "Mon prochain objectif" }, right: { text: "My next goal" } }
               - { left: { text: "J'apprends encore" }, right: { text: "I'm still learning" } }
               - { left: { text: "Je sais" }, right: { text: "I can" } }
+          - id: l2-c6
+            part: judge
+            type: true_false
+            text: "Ruby says the days of the week in French on Monday, Tuesday and Wednesday, each time with no help. Can she say the days?"
+            say: { en: "Ruby says the days of the week in French on Monday, Tuesday and Wednesday, each time with no help. Can she say the days?" }
+            answer: true
+          - id: l2-c7
+            part: judge
+            type: sorting
+            text: "Can you do it yet? Sort the cards."
+            say: { en: "Can you do it, or are you still learning it? Sort the cards." }
+            option_audio: false
+            bins:
+              - { id: can, show: { text: "I can do it." } }
+              - { id: still, show: { text: "I'm still learning it." } }
+            options:
+              - { text: "It works three times without help.", bin: can }
+              - { text: "It only works when my friend whispers the answer.", bin: still }
+              - { text: "It worked once, then not again.", bin: still }
+              - { text: "It works every day, with no help.", bin: can }
+          - id: l2-c8
+            part: judge
+            type: multiple_choice
+            text: "Theo covers the French words on his cards and says them with no help. What is he doing?"
+            say: { en: "Theo covers the French words on his cards and says them with no help. What is he doing?" }
+            options: ["checking himself", "copying the answers", "choosing a new goal"]
+            answer: "checking himself"
+          - id: l2-c9
+            part: say-can
+            type: audio_choice
+            text: "What is Lucie still learning?"
+            say: { en: "Listen. What is Lucie still learning?" }
+            audio: { fr: "Je sais compter jusqu'à vingt. J'apprends encore les mois.", speaker: female }
+            options: ["the months", "the numbers to 20", "the colours"]
+            answer: "the months"
+          - id: l2-c10
+            part: say-can
+            type: fill_in_blank
+            option_audio: false
+            text: "You can count to 20, but you are still learning the months. Finish the sentence."
+            say: { en: "You can count to twenty, but you are still learning the months. Finish the sentence." }
+            frame: "Je _ compter jusqu'à 20, mais j'apprends _ les mois."
+            options: ["sais", "encore", "suis", "aime"]
+            answer: ["sais", "encore"]
+          - id: l2-c11
+            part: say-can
+            type: ordering
+            option_audio: false
+            text: "Build the sentence: I'm still learning the colours."
+            say: { en: "Build the sentence: I'm still learning the colours." }
+            options: ["encore", "Je sais", "les couleurs.", "J'apprends"]
+            slot_count: 3
+            answer: ["J'apprends", "encore", "les couleurs."]
+          - id: l2-c12
+            part: goal
+            type: true_false
+            text: "Inès can count to 20 in French. Her next goal: count to 1,000 by Friday. Is that a good next goal?"
+            say: { en: "Inès can count to twenty in French. Her next goal: count to one thousand by Friday. Is that a good next goal?" }
+            answer: false
+          - id: l2-c13
+            part: goal
+            type: sorting
+            text: "Max can say the colours in French. Sort the goals for him."
+            say: { en: "Max can say the colours in French. Is each goal too easy, a good next step or too hard for him? Sort the goals." }
+            option_audio: false
+            bins:
+              - { id: easy, show: { text: "too easy" } }
+              - { id: good, show: { text: "a good next step" } }
+              - { id: hard, show: { text: "too hard" } }
+            options:
+              - { text: "learn the words red and blue", bin: easy }
+              - { text: "say the colours of things in his bedroom: mon lit est bleu", bin: good }
+              - { text: "write a story of ten pages in French", bin: hard }
+          - id: l2-c14
+            part: goal
+            type: multiple_choice
+            text: "Ella says bonjour every day. Why is learning to say bonjour not a good next goal for her?"
+            say: { en: "Ella says bonjour every day. Why is learning to say bonjour not a good next goal for her?" }
+            options: ["It is too easy.", "It is too hard.", "It is just right."]
+            answer: "It is too easy."
+            keep_order: true
+          - id: l2-c15
+            part: goal
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence is a next goal?"
+            say: { en: "Read the sentences. Which one is a next goal?" }
+            options: ["Mon prochain objectif : savoir dire l'heure.", "Je sais dire les couleurs.", "J'apprends encore les jours."]
+            answer: "Mon prochain objectif : savoir dire l'heure."
+          - id: l2-c16
+            part: practise
+            type: multiple_choice
+            text: "Omar wants to learn ten new food words in French. Which plan is best?"
+            say: { en: "Omar wants to learn ten new food words in French. Which plan is best?" }
+            options: ["Five words with picture cards on Monday, five on Tuesday, then a check on Friday.", "All ten words once, on Sunday evening.", "No practice: he waits for the test."]
+            answer: "Five words with picture cards on Monday, five on Tuesday, then a check on Friday."
+          - id: l2-c17
+            part: practise
+            type: ordering
+            text: "Put Léa's plan in order."
+            say: { en: "Put the steps of Léa's plan in the right order." }
+            option_audio: false
+            options: ["She checks herself with no help.", "It works! She chooses a new goal.", "She chooses a goal: the months.", "She says the months aloud every day."]
+            slot_count: 4
+            answer: ["She chooses a goal: the months.", "She says the months aloud every day.", "She checks herself with no help.", "It works! She chooses a new goal."]
+          - id: l2-c18
+            part: practise
+            type: true_false
+            text: "Zara wants to know if she can say the numbers. She checks herself straight away, before she practises. Is that the best time to check?"
+            say: { en: "Zara wants to know if she can say the numbers. She checks herself straight away, before she practises. Is that the best time to check?" }
+            answer: false
+          - id: l2-c19
+            part: practise
+            type: multiple_choice
+            text: "After her check, Mia still mixes up mardi and mercredi. What does she do next?"
+            say: { en: "After her check, Mia still mixes up mardi and mercredi. What does she do next?" }
+            options: ["She practises mardi and mercredi a bit more.", "She says: je sais dire les jours.", "She stops learning the days."]
+            answer: "She practises mardi and mercredi a bit more."
+          - id: l2-c20
+            part: practise
+            type: audio_choice
+            text: "How does Hugo practise for his goal?"
+            say: { en: "Listen. How does Hugo practise for his goal?" }
+            audio: { fr: "Mon prochain objectif : savoir dire les mois. Je dis les mois tous les jours.", speaker: male }
+            options: ["He says the months every day.", "He reads a book.", "He counts to 100."]
+            answer: "He says the months every day."

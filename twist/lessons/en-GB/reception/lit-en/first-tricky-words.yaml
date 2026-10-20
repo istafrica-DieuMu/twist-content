@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: first-words, what: { de: "the, I, to, go, no lesen", en: "reading the, I, to, go and no" } }
+    - { id: e-words, what: { de: "he, she, we, me, be lesen und auseinanderhalten", en: "reading and telling apart he, she, we, me and be" } }
+    - { id: later-words, what: { de: "was, my, you, they, all, are lesen", en: "reading was, my, you, they, all and are" } }
+    - { id: in-sentence, what: { de: ein Merkwort in einem Satz finden, en: finding a tricky word in a sentence } }
   misconceptions:
     - id: sound-out-tricky
       what: Sounds out a tricky word letter by letter (t-h-e, w-a-s with a short a)
@@ -88,7 +93,8 @@ lessons:
               - id: l1-f3
                 type: highlight_in_text
                 text: "Find the word."
-                say: "Listen. Tap the word to in the sentence."
+                say: "Listen. Find this word in the sentence and tap it."
+                audio: { en: "to" }
                 show: { drawn: letter-card, text: "I go to bed." }
                 spans: ["to"]
                 hints:
@@ -139,7 +145,8 @@ lessons:
               - id: l1-s3
                 type: highlight_in_text
                 text: "Find the word."
-                say: "Listen. Tap the word I in the sentence."
+                say: "Listen. Find this word in the sentence and tap it."
+                audio: { en: "I" }
                 show: { drawn: letter-card, text: "Can I sit on the log?" }
                 spans: ["I"]
                 hints: ["It is just one letter."]
@@ -179,7 +186,8 @@ lessons:
               - id: l1-n3
                 type: highlight_in_text
                 text: "Find the word."
-                say: "Listen. Tap the word the in the sentence."
+                say: "Listen. Find this word in the sentence and tap it."
+                audio: { en: "the" }
                 show: { drawn: letter-card, text: "A cat sat on the mat." }
                 spans: ["the"]
               - id: l1-n4
@@ -199,6 +207,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -217,9 +226,31 @@ lessons:
           - id: l1-c3
             type: highlight_in_text
             text: "Find the word."
-            say: "Listen. Tap the word no in the sentence."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "no" }
             show: { drawn: letter-card, text: "It is no fun." }
             spans: ["no"]
+          - id: l1-c4
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "to" }
+            options: ["top", "go", "to"]
+            answer: "to"
+          - id: l1-c5
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen. Does the card say this word?"
+            audio: { en: "me" }
+            show: { drawn: letter-card, text: "he" }
+            answer: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "he" }
+            show: { drawn: letter-card, text: "He is on the mat." }
+            spans: ["He"]
 
   - n: 2
     title: { de: "was, my, you, they", en: "was, my, you, they" }
@@ -272,7 +303,8 @@ lessons:
               - id: l2-f3
                 type: highlight_in_text
                 text: "Find the word."
-                say: "Listen. Tap the word are in the sentence."
+                say: "Listen. Find this word in the sentence and tap it."
+                audio: { en: "are" }
                 show: { drawn: letter-card, text: "We are in the van." }
                 spans: ["are"]
                 hints:
@@ -282,7 +314,8 @@ lessons:
               - id: l2-f4
                 type: true_false
                 text: "Is this the word?"
-                say: "Listen. Does the card say they?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "they" }
                 show: { drawn: letter-card, text: "they" }
                 answer: true
                 hints:
@@ -322,14 +355,16 @@ lessons:
               - id: l2-s3
                 type: highlight_in_text
                 text: "Find the word."
-                say: "Listen. Tap the word was in the sentence."
+                say: "Listen. Find this word in the sentence and tap it."
+                audio: { en: "was" }
                 show: { drawn: letter-card, text: "The bus was red." }
                 spans: ["was"]
                 hints: ["Look for a tricky word that starts with the round-lips sound."]
               - id: l2-s4
                 type: true_false
                 text: "Is this the word?"
-                say: "Listen. Does the card say you?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "you" }
                 show: { drawn: letter-card, text: "my" }
                 answer: false
                 hints: ["Look at the first letter."]
@@ -361,13 +396,15 @@ lessons:
               - id: l2-n3
                 type: highlight_in_text
                 text: "Find the word."
-                say: "Listen. Tap the word they in the sentence."
+                say: "Listen. Find this word in the sentence and tap it."
+                audio: { en: "they" }
                 show: { drawn: letter-card, text: "Can they sit in the sun?" }
                 spans: ["they"]
               - id: l2-n4
                 type: true_false
                 text: "Is this the word?"
-                say: "Listen. Does the card say all?"
+                say: "Listen. Does the card say this word?"
+                audio: { en: "all" }
                 show: { drawn: letter-card, text: "all" }
                 answer: true
               - id: l2-n5
@@ -380,8 +417,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: later-words
             type: audio_choice
             text: "Tap the word you hear."
             say: "Which word is it? Listen."
@@ -389,6 +428,7 @@ lessons:
             options: ["she", "they", "the"]
             answer: "they"
           - id: l2-c2
+            part: e-words
             type: audio_choice
             text: "Tap the word you hear."
             say: "Which word is it? Listen."
@@ -396,15 +436,146 @@ lessons:
             options: ["the", "she", "he"]
             answer: "he"
           - id: l2-c3
+            part: in-sentence
             type: highlight_in_text
             text: "Find the word."
-            say: "Listen. Tap the word my in the sentence."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "my" }
             show: { drawn: letter-card, text: "We sit on my bed." }
             spans: ["my"]
           - id: l2-c4
+            part: later-words
             type: audio_choice
             text: "Tap the word you hear."
             say: "Which word is it? Listen."
             audio: { en: "are" }
             options: ["are", "all", "at"]
             answer: "are"
+          - id: l2-c5
+            part: first-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "go" }
+            options: ["dog", "go", "no"]
+            answer: "go"
+          - id: l2-c6
+            part: e-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "be" }
+            options: ["he", "bed", "be"]
+            answer: "be"
+          - id: l2-c7
+            part: later-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "you" }
+            options: ["they", "yet", "you"]
+            answer: "you"
+          - id: l2-c8
+            part: in-sentence
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "was" }
+            show: { drawn: letter-card, text: "The dog was on my bed." }
+            spans: ["was"]
+          - id: l2-c9
+            part: first-words
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen. Does the card say this word?"
+            audio: { en: "to" }
+            show: { drawn: letter-card, text: "no" }
+            answer: false
+          - id: l2-c10
+            part: e-words
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen. Does the card say this word?"
+            audio: { en: "she" }
+            show: { drawn: letter-card, text: "she" }
+            answer: true
+          - id: l2-c11
+            part: later-words
+            type: true_false
+            text: "Is this the word?"
+            say: "Listen. Does the card say this word?"
+            audio: { en: "saw" }
+            show: { drawn: letter-card, text: "was" }
+            answer: false
+          - id: l2-c12
+            part: in-sentence
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "you" }
+            show: { drawn: letter-card, text: "You can sit on the rug." }
+            spans: ["You"]
+          - id: l2-c13
+            part: first-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "I" }
+            options: ["it", "I", "in"]
+            answer: "I"
+          - id: l2-c14
+            part: e-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "me" }
+            options: ["me", "met", "we"]
+            answer: "me"
+          - id: l2-c15
+            part: later-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "all" }
+            options: ["at", "tall", "all"]
+            answer: "all"
+          - id: l2-c16
+            part: in-sentence
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "all" }
+            show: { drawn: letter-card, text: "We all got wet." }
+            spans: ["all"]
+          - id: l2-c17
+            part: first-words
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "go" }
+            show: { drawn: letter-card, text: "Dad can go in the van." }
+            spans: ["go"]
+          - id: l2-c18
+            part: e-words
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "we" }
+            show: { drawn: letter-card, text: "Can we sit on the mat?" }
+            spans: ["we"]
+          - id: l2-c19
+            part: in-sentence
+            type: highlight_in_text
+            text: "Find the word."
+            say: "Listen. Find this word in the sentence and tap it."
+            audio: { en: "she" }
+            show: { drawn: letter-card, text: "She has a big bag." }
+            spans: ["She"]
+          - id: l2-c20
+            part: first-words
+            type: audio_choice
+            text: "Tap the word you hear."
+            say: "Which word is it? Listen."
+            audio: { en: "no" }
+            options: ["on", "not", "no"]
+            answer: "no"

@@ -27,6 +27,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [hundred-field, place-value-chart]
   facets: [number-format]
+  parts:
+    - { id: meaning, what: { de: Prozent als von Hundert verstehen, en: per cent as out of 100 } }
+    - { id: fraction, what: { de: Prozent als Bruch mit dem Nenner 100, en: percentages as fractions over 100 } }
+    - { id: decimal, what: { de: Prozent als Dezimalzahl und zurück, en: percentages as decimals and back } }
+    - { id: rest, what: { de: den Rest zum Ganzen finden, en: finding the rest of the whole } }
+    - { id: compare, what: { de: verschieden geschriebene Anteile vergleichen, en: comparing amounts written in different ways } }
   misconceptions:
     - id: one-digit-percent-as-tenths
       what: Writes a one-digit percentage as tenths (7% = 0.7) or reads 0.4 as 4%
@@ -199,6 +205,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -215,6 +222,22 @@ lessons:
             type: true_false
             text: "25% = 25/100. Is that true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Write 13/100 as a percentage."
+            options: ["13%", "1.3%", "87%"]
+            answer: "13%"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Write 2% as a decimal."
+            options: ["0.02", "0.2", "2.0"]
+            answer: "0.02"
+          - id: l1-c6
+            type: multiple_choice
+            text: "What percentage of the hundred square is filled?"
+            show: { drawn: hundred-field, filled: 90 }
+            options: ["90%", "10%", "9%"]
+            answer: "90%"
 
   - n: 2
     title: { de: "Drei Schreibweisen", en: "Three ways to write it" }
@@ -374,31 +397,133 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: meaning
             type: multiple_choice
             text: "What percentage of the hundred square is filled?"
             show: { drawn: hundred-field, filled: 56 }
             options: ["56%", "44%", "5.6%"]
             answer: "56%"
           - id: l2-c2
+            part: fraction
             type: fill_in_blank
             text: "Write 19% as a fraction."
             frame: "19% = _"
             options: ["19/100", "19/10", "1/9"]
             answer: ["19/100"]
           - id: l2-c3
+            part: decimal
             type: multiple_choice
             text: "Write 4% as a decimal."
             options: ["0.04", "0.4", "4.0"]
             answer: "0.04"
           - id: l2-c4
+            part: rest
             type: multiple_choice
             text: "A water tank is 70% full. What percentage is empty?"
             options: ["30%", "70%", "40%"]
             answer: "30%"
           - id: l2-c5
+            part: compare
             type: multiple_choice
             text: "Which is the smallest?"
             options: ["0.2", "15%", "31/100"]
             answer: "15%"
+          - id: l2-c6
+            part: meaning
+            type: multiple_choice
+            text: "What percentage of the hundred square is filled?"
+            show: { drawn: hundred-field, filled: 9 }
+            options: ["9%", "90%", "91%"]
+            answer: "9%"
+          - id: l2-c7
+            part: meaning
+            type: image_multiple_choice
+            text: "Which hundred square shows 23%?"
+            say: "Which hundred square shows twenty-three per cent?"
+            options:
+              - { drawn: hundred-field, filled: 32 }
+              - { drawn: hundred-field, filled: 23 }
+              - { drawn: hundred-field, filled: 77 }
+            answer: "23"
+          - id: l2-c8
+            part: meaning
+            type: true_false
+            text: "A test has 100 marks. Leo scores 100%. Is it true that he got every mark?"
+            answer: true
+          - id: l2-c9
+            part: fraction
+            type: text_input
+            text: "3/100 = _%"
+            say: "Three hundredths is how many per cent?"
+            answer: "3"
+          - id: l2-c10
+            part: fraction
+            type: multiple_choice
+            text: "Write 70% as a fraction."
+            options: ["70/100", "7/100", "70/10"]
+            answer: "70/100"
+          - id: l2-c11
+            part: fraction
+            type: true_false
+            text: "Is it true? 44% = 44/10"
+            say: "Is it true? Forty-four per cent is forty-four tenths."
+            answer: false
+          - id: l2-c12
+            part: decimal
+            type: text_input
+            keyboard: decimal
+            text: "Write 6% as a decimal."
+            answer: "0.06"
+          - id: l2-c13
+            part: decimal
+            type: multiple_choice
+            text: "0.27 = _"
+            say: "Zero point two seven is how many per cent?"
+            options: ["27%", "2.7%", "270%"]
+            answer: "27%"
+          - id: l2-c14
+            part: decimal
+            type: fill_in_blank
+            text: "Write 0.3 in two other ways."
+            frame: "0.3 = _/100 = _%"
+            options: ["3", "30"]
+            answer: ["30", "30"]
+          - id: l2-c15
+            part: rest
+            type: text_input
+            text: "54% of the seats on a bus are taken. What percentage of the seats are free? Type the number."
+            answer: "46"
+          - id: l2-c16
+            part: rest
+            type: multiple_choice
+            text: "What percentage of the hundred square is not filled?"
+            show: { drawn: hundred-field, filled: 81 }
+            options: ["19%", "81%", "29%"]
+            answer: "19%"
+          - id: l2-c17
+            part: rest
+            type: true_false
+            text: "A battery is at 100%. A video uses 45% of it. Is it true that 65% is left?"
+            answer: false
+          - id: l2-c18
+            part: compare
+            type: ordering
+            text: "Put these in order, smallest first."
+            options: ["0.4", "12%", "7/100", "0.35"]
+            slot_count: 4
+            answer: ["7/100", "12%", "0.35", "0.4"]
+          - id: l2-c19
+            part: compare
+            type: multiple_choice
+            text: "Which is the largest?"
+            options: ["0.09", "8%", "1/100"]
+            answer: "0.09"
+          - id: l2-c20
+            part: compare
+            type: true_false
+            text: "Is it true? 0.5 > 49%"
+            say: "Is it true? Zero point five is greater than forty-nine per cent."
+            answer: true

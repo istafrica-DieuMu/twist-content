@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [hundred-field, place-value-chart, number-line]
   facets: [number-format, currency]
+  parts:
+    - { id: read, what: { de: "Hundertstel am Hunderterfeld, in der Stellentafel und am Zahlenstrahl ablesen", en: "reading hundredths on a hundred field, a place value chart and a number line" } }
+    - { id: write, what: { de: Zehntel und Hundertstel als Dezimalzahl schreiben, en: writing tenths and hundredths as decimals } }
+    - { id: count, what: { de: in Hundertsteln vorwärts und rückwärts zählen, en: counting on and back in hundredths } }
+    - { id: money, what: { de: Pence als Pfund schreiben, en: writing pence as pounds } }
   misconceptions:
     - id: hundredths-as-tenths
       what: Writes 7 hundredths as 0.7, missing the zero in the tenths place
@@ -213,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -232,6 +238,23 @@ lessons:
             frame: "0.36 = _ tenths and _ hundredths"
             options: ["3", "6", "36"]
             answer: ["3", "6"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "What number is in the chart?"
+            show: { drawn: place-value-chart, columns: [ones, tenths, hundredths], values: [0, 2, 0] }
+            options: ["0.2", "0.02", "2.0"]
+            answer: "0.2"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 0.08 = 8/10"
+            say: "Is it true? Zero point zero eight is eight tenths."
+            answer: false
+          - id: l1-c6
+            type: text_input
+            text: "Write 25/100 as a decimal."
+            say: "Write twenty-five hundredths as a decimal."
+            keyboard: decimal
+            answer: "0.25"
 
   - n: 2
     title: { de: In Hundertsteln zählen, en: Count in hundredths }
@@ -392,33 +415,141 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "The whole field is 1. What decimal is filled?"
             show: { drawn: hundred-field, filled: 57 }
             options: ["0.57", "5.7", "0.75"]
             answer: "0.57"
           - id: l2-c2
+            part: write
             type: text_input
             text: "Write 4/100 as a decimal."
             say: "Write four hundredths as a decimal."
             keyboard: decimal
             answer: "0.04"
           - id: l2-c3
+            part: read
             type: multiple_choice
             text: "What number does the arrow point to?"
             show: { drawn: number-line, from: 0.1, to: 0.2, step: 0.01, labels: ends, mark: 0.18 }
             options: ["0.18", "0.81", "1.8"]
             answer: "0.18"
           - id: l2-c4
+            part: write
             type: fill_in_blank
             text: "Split 0.63 into tenths and hundredths."
             frame: "0.63 = _ tenths and _ hundredths"
             options: ["3", "6", "63"]
             answer: ["6", "3"]
           - id: l2-c5
+            part: count
             type: multiple_choice
             text: "Count on in hundredths: 0.47, 0.48, 0.49, _"
             options: ["0.5", "0.410", "0.59"]
             answer: "0.5"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "What number is in the chart?"
+            show: { drawn: place-value-chart, columns: [ones, tenths, hundredths], values: [0, 9, 1] }
+            options: ["0.91", "0.19", "9.1"]
+            answer: "0.91"
+          - id: l2-c7
+            part: read
+            type: true_false
+            text: "The whole field is 1. Is it true? 0.07 is filled."
+            say: "The whole field is one. Is it true? Zero point zero seven is filled."
+            show: { drawn: hundred-field, filled: 70 }
+            answer: false
+          - id: l2-c8
+            part: read
+            type: multiple_choice
+            text: "What number does the arrow point to?"
+            show: { drawn: number-line, from: 0.5, to: 0.6, step: 0.01, labels: ends, mark: 0.55 }
+            options: ["0.55", "0.5", "5.5"]
+            answer: "0.55"
+          - id: l2-c9
+            part: write
+            type: text_input
+            text: "Write 81/100 as a decimal."
+            say: "Write eighty-one hundredths as a decimal."
+            keyboard: decimal
+            answer: "0.81"
+          - id: l2-c10
+            part: write
+            type: fill_in_blank
+            text: "Write 0.5 as hundredths."
+            say: "Write zero point five as hundredths."
+            frame: "0.5 = _/100"
+            options: ["5", "50", "500"]
+            answer: ["50"]
+          - id: l2-c11
+            part: write
+            type: true_false
+            text: "Is it true? 0.10 is the same as 0.1."
+            say: "Is it true? Zero point one zero is the same as zero point one."
+            answer: true
+          - id: l2-c12
+            part: count
+            type: fill_in_blank
+            text: "Count back in hundredths."
+            frame: "0.62, 0.61, _ , _"
+            options: ["0.6", "0.59", "0.69", "0.51"]
+            answer: ["0.6", "0.59"]
+          - id: l2-c13
+            part: count
+            type: multiple_choice
+            text: "Which number is one hundredth less than 0.8?"
+            options: ["0.79", "0.7", "0.81"]
+            answer: "0.79"
+          - id: l2-c14
+            part: count
+            type: ordering
+            text: "Put the numbers in order, counting on in hundredths."
+            options: ["0.1", "0.09", "0.11", "0.08"]
+            slot_count: 4
+            answer: ["0.08", "0.09", "0.1", "0.11"]
+          - id: l2-c15
+            part: count
+            type: true_false
+            text: "Is it true? Counting on in hundredths, 0.510 comes after 0.59."
+            say: "Is it true? Counting on in hundredths, zero point five one zero comes after zero point five nine."
+            answer: false
+          - id: l2-c16
+            part: money
+            type: text_input
+            text: "Write 72p in pounds. Type the pounds."
+            say: "Write seventy-two pence in pounds. Type the pounds."
+            keyboard: decimal
+            answer: "0.72"
+          - id: l2-c17
+            part: money
+            type: true_false
+            text: "Is it true? £0.30 is 30p."
+            say: "Is it true? Zero point three zero pounds is thirty pence."
+            answer: true
+          - id: l2-c18
+            part: money
+            type: multiple_choice
+            text: "Ella has £0.08. How many pence is that?"
+            options: ["8p", "80p", "800p"]
+            answer: "8p"
+          - id: l2-c19
+            part: money
+            type: matching
+            text: "Match each amount in pence with the same amount in pounds."
+            option_audio: false
+            pairs:
+              - { left: { text: "3p" }, right: { text: "£0.03" } }
+              - { left: { text: "30p" }, right: { text: "£0.30" } }
+              - { left: { text: "33p" }, right: { text: "£0.33" } }
+          - id: l2-c20
+            part: money
+            type: multiple_choice
+            text: "A pencil costs 45p and a rubber costs 9p. How much do they cost together, in pounds?"
+            options: ["£0.54", "£0.45", "£5.40"]
+            answer: "£0.54"

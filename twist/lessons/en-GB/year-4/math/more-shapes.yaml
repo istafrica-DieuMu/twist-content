@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: polygons, what: { de: "Fünfeck, Sechseck und Achteck erkennen und benennen", en: "naming pentagons, hexagons and octagons" } }
+    - { id: sides-vertices, what: { de: Seiten und Ecken zählen, en: counting sides and vertices } }
+    - { id: quadrilaterals, what: { de: Vierecke erkennen und benennen, en: recognising and naming quadrilaterals } }
+    - { id: parallel, what: { de: parallele Seiten und rechte Winkel, en: parallel sides and right angles } }
   misconceptions:
     - id: name-by-look
       what: Names a shape by how round it looks (calls an octagon a circle) instead of counting sides, or thinks sides and vertices can differ in number
@@ -209,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -226,6 +232,25 @@ lessons:
             text: "An octagon has 8 sides."
             say: "Is it true? An octagon has eight sides."
             answer: true
+          - id: l1-c4
+            type: image_multiple_choice
+            text: "Which shape has 5 sides?"
+            options:
+              - { drawn: shape, kind: pentagon, colour: green }
+              - { drawn: shape, kind: hexagon, colour: green }
+              - { drawn: shape, kind: square, colour: green }
+            answer: pentagon
+            option_audio: false
+          - id: l1-c5
+            type: text_input
+            text: "How many vertices do two hexagons have altogether?"
+            answer: "12"
+          - id: l1-c6
+            type: true_false
+            text: "This shape has 6 vertices."
+            say: "Is it true? This shape has six vertices."
+            show: { drawn: shape, kind: octagon, colour: yellow }
+            answer: false
 
   - n: 2
     title: { de: "Vierecke und das Parallelogramm", en: "Quadrilaterals and the parallelogram" }
@@ -409,31 +434,37 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sides-vertices
             type: multiple_choice
             text: "How many sides does this shape have?"
             show: { drawn: shape, kind: hexagon, colour: orange }
             options: ["6", "5", "8"]
             answer: "6"
           - id: l2-c2
+            part: polygons
             type: multiple_choice
             text: "A shape looks almost round, but it has 8 vertices. What is it called?"
             options: ["octagon", "circle", "hexagon"]
             answer: "octagon"
           - id: l2-c3
+            part: quadrilaterals
             type: multiple_choice
             text: "A quadrilateral leans over. Both pairs of opposite sides are parallel. What is it called?"
             show: { drawn: shape, kind: parallelogram, colour: green }
             options: ["parallelogram", "trapezium", "hexagon"]
             answer: "parallelogram"
           - id: l2-c4
+            part: parallel
             type: multiple_choice
             text: "How many pairs of parallel sides does a trapezium have?"
             show: { drawn: shape, kind: trapezoid, colour: purple }
             options: ["1", "2", "4"]
             answer: "1"
           - id: l2-c5
+            part: quadrilaterals
             type: image_multiple_choice
             text: "Which quadrilateral has 4 equal sides?"
             options:
@@ -442,3 +473,109 @@ lessons:
               - { drawn: shape, kind: parallelogram, colour: purple }
             answer: square
             option_audio: false
+          - id: l2-c6
+            part: polygons
+            type: image_multiple_choice
+            text: "Which shape is an octagon?"
+            options:
+              - { drawn: shape, kind: octagon, colour: blue }
+              - { drawn: shape, kind: hexagon, colour: blue }
+              - { drawn: shape, kind: circle, colour: blue }
+            answer: octagon
+            option_audio: false
+          - id: l2-c7
+            part: polygons
+            type: true_false
+            text: "This shape is a pentagon."
+            say: "Is it true? This shape is a pentagon."
+            show: { drawn: shape, kind: pentagon, colour: purple }
+            answer: true
+          - id: l2-c8
+            part: polygons
+            type: multiple_choice
+            text: "What do we call any flat shape with straight sides?"
+            options: ["polygon", "circle", "vertex"]
+            answer: "polygon"
+          - id: l2-c9
+            part: polygons
+            type: matching
+            text: "Match each name to its number of vertices."
+            pairs:
+              - { left: { text: "pentagon" }, right: { text: "5 vertices" } }
+              - { left: { text: "hexagon" }, right: { text: "6 vertices" } }
+              - { left: { text: "octagon" }, right: { text: "8 vertices" } }
+          - id: l2-c10
+            part: sides-vertices
+            type: text_input
+            text: "How many more vertices does an octagon have than a pentagon?"
+            answer: "3"
+          - id: l2-c11
+            part: sides-vertices
+            type: true_false
+            text: "A triangle and a square have 8 vertices altogether."
+            say: "Is it true? A triangle and a square have eight vertices altogether."
+            answer: false
+          - id: l2-c12
+            part: sides-vertices
+            type: text_input
+            text: "How many vertices does this shape have?"
+            show: { drawn: shape, kind: octagon, colour: green }
+            answer: "8"
+          - id: l2-c13
+            part: sides-vertices
+            type: multiple_choice
+            text: "A polygon has 7 vertices. How many sides does it have?"
+            options: ["7", "6", "14"]
+            answer: "7"
+          - id: l2-c14
+            part: quadrilaterals
+            type: true_false
+            text: "This shape is a quadrilateral."
+            say: "Is it true? This shape is a quadrilateral."
+            show: { drawn: shape, kind: trapezoid, colour: orange }
+            answer: true
+          - id: l2-c15
+            part: quadrilaterals
+            type: multiple_choice
+            text: "A quadrilateral has 4 right angles. Its opposite sides are the same length, but its 4 sides are not all equal. What is it?"
+            options: ["rectangle", "square", "trapezium"]
+            answer: "rectangle"
+          - id: l2-c16
+            part: quadrilaterals
+            type: image_multiple_choice
+            text: "Which shape is not a quadrilateral?"
+            options:
+              - { drawn: shape, kind: trapezoid, colour: yellow }
+              - { drawn: shape, kind: parallelogram, colour: yellow }
+              - { drawn: shape, kind: pentagon, colour: yellow }
+            answer: pentagon
+            option_audio: false
+          - id: l2-c17
+            part: parallel
+            type: true_false
+            text: "The opposite sides of a parallelogram are parallel."
+            say: "Is it true? The opposite sides of a parallelogram are parallel."
+            show: { drawn: shape, kind: parallelogram, colour: red }
+            answer: true
+          - id: l2-c18
+            part: parallel
+            type: multiple_choice
+            text: "Which shape has 4 right angles?"
+            options: ["rectangle", "parallelogram", "trapezium"]
+            answer: "rectangle"
+          - id: l2-c19
+            part: parallel
+            type: image_multiple_choice
+            text: "Which shape has no parallel sides?"
+            options:
+              - { drawn: shape, kind: triangle, colour: green }
+              - { drawn: shape, kind: rectangle, colour: green }
+              - { drawn: shape, kind: parallelogram, colour: green }
+            answer: triangle
+            option_audio: false
+          - id: l2-c20
+            part: parallel
+            type: multiple_choice
+            text: "Which sentence about a rectangle is true?"
+            options: ["It has 2 pairs of parallel sides.", "It has 1 pair of parallel sides.", "It has no right angles."]
+            answer: "It has 2 pairs of parallel sides."

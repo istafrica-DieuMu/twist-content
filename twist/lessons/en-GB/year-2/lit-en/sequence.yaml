@@ -22,9 +22,14 @@ metadata:
   builds_on: [lit-en.comprehension.retell]
   also_practises: [lit-en.comprehension.questions]
   vocabulary: { en: [first, next, then, after that, finally, beginning, middle, end, because, so, event] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [letter-card]
   facets: []
+  parts:
+    - { id: order, what: { de: die Ereignisse einer Geschichte ordnen, en: putting the events of a story in order } }
+    - { id: before-after, what: { de: "sagen, was direkt davor oder danach passiert", en: saying what happens just before or after an event } }
+    - { id: time-words, what: { de: "Zeitwörter nutzen (first, next, then, finally)", en: "using time words (first, next, then, finally)" } }
+    - { id: linked, what: { de: "sagen, wie Ereignisse zusammenhängen (because, so)", en: "saying how events are linked (because, so)" } }
   misconceptions:
     - id: order-of-telling
       what: Orders events by what was said last or what stands out most, not by when it happened
@@ -217,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: ordering
@@ -233,9 +239,29 @@ lessons:
             answer: "finally"
           - id: l1-c3
             type: true_false
-            text: "Ella planted a seed. She watered it every day. A green shoot came up.\n\nElla watered the seed before the shoot came up."
+            text: "Max fed his goldfish. Then he cleaned the tank. After that, he put in fresh water.\n\nMax fed his goldfish before he cleaned the tank."
             say: "Read it. Is it true?"
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Ruby packed her bucket and spade. Mum drove them to the beach. Ruby built a tall sandcastle. Then a big wave knocked it down.\n\nWhat happened just after Ruby built the sandcastle?"
+            options: ["Mum drove them to the beach.", "A big wave knocked it down.", "Ruby packed her bucket and spade."]
+            answer: "A big wave knocked it down."
+            option_audio: false
+          - id: l1-c5
+            type: ordering
+            text: "Omar found a lost puppy in the park. He read the name on its collar. He rang the number. Soon the owner came to take the puppy home.\n\nPut the events in order."
+            options: ["He rang the number.", "The owner came for the puppy.", "Omar found a lost puppy.", "He read the name on its collar."]
+            slot_count: 4
+            answer: ["Omar found a lost puppy.", "He read the name on its collar.", "He rang the number.", "The owner came for the puppy."]
+            option_audio: false
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Fill in the time word."
+            say: "Fill in the time word so the steps are in order."
+            frame: "Tom put on his coat and boots. _, he went out into the snow."
+            options: ["First", "After that", "Once upon a time"]
+            answer: ["After that"]
 
   - n: 2
     title: { de: "Wie hängt das zusammen?", en: "How are the events linked?" }
@@ -415,8 +441,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: order
             type: ordering
             text: "Dev lost his library book. He looked under his bed, but it was not there. Then he looked in his schoolbag. The book was at the bottom!\n\nPut the events in order."
             say: "Listen. Dev lost his library book. He looked under his bed, but it was not there. Then he looked in his schoolbag. The book was at the bottom! Now put the events in order."
@@ -425,12 +453,14 @@ lessons:
             answer: ["Dev lost his library book.", "He looked under his bed.", "He looked in his schoolbag.", "He found the book."]
             option_audio: false
           - id: l2-c2
+            part: before-after
             type: multiple_choice
             text: "Dev lost his library book. He looked under his bed, but it was not there. Then he looked in his schoolbag. The book was at the bottom!\n\nWhat did Dev do just before he found the book?"
             options: ["He looked in his schoolbag.", "He looked under his bed.", "He went to the library."]
             answer: "He looked in his schoolbag."
             option_audio: false
           - id: l2-c3
+            part: linked
             type: fill_in_blank
             text: "Link the events."
             say: "Choose the word that links the two events."
@@ -438,15 +468,127 @@ lessons:
             options: ["because", "so", "and"]
             answer: ["because"]
           - id: l2-c4
+            part: linked
             type: multiple_choice
             text: "The puppy chewed Dad's slipper. Dad found a hole in it.\n\nWhy was there a hole in the slipper?"
             options: ["because the puppy chewed it", "because Dad wore it out", "because it was old"]
             answer: "because the puppy chewed it"
             option_audio: false
           - id: l2-c5
+            part: time-words
             type: fill_in_blank
             text: "Fill in the time word."
             say: "Fill in the time word so the steps are in order."
             frame: "_, Kim put on her socks. Then she put on her shoes."
             options: ["First", "Finally", "After that"]
             answer: ["First"]
+          - id: l2-c6
+            part: order
+            type: ordering
+            text: "Hetty the hen laid an egg in the straw. She sat on it for many days. One morning, the egg began to crack. Out came a fluffy yellow chick!\n\nPut the events in order."
+            options: ["The egg began to crack.", "Hetty laid an egg.", "A chick came out.", "She sat on it for many days."]
+            slot_count: 4
+            answer: ["Hetty laid an egg.", "She sat on it for many days.", "The egg began to crack.", "A chick came out."]
+            option_audio: false
+          - id: l2-c7
+            part: order
+            type: ordering
+            text: "Gran planted some potatoes in spring. All summer, the plants grew tall and green. In autumn, Gran dug them up. That evening, we had potatoes for tea.\n\nPut the events in order."
+            options: ["We had potatoes for tea.", "Gran dug up the potatoes.", "Gran planted some potatoes.", "The plants grew tall and green."]
+            slot_count: 4
+            answer: ["Gran planted some potatoes.", "The plants grew tall and green.", "Gran dug up the potatoes.", "We had potatoes for tea."]
+            option_audio: false
+          - id: l2-c8
+            part: order
+            type: ordering
+            text: "The class went on a nature walk. First they found a snail on a leaf. Then they spotted a robin. At the end of the walk, they saw a squirrel run up a tree.\n\nPut the events in order."
+            options: ["They saw a squirrel.", "They spotted a robin.", "They found a snail."]
+            slot_count: 3
+            answer: ["They found a snail.", "They spotted a robin.", "They saw a squirrel."]
+            option_audio: false
+            difficulty: easy
+          - id: l2-c9
+            part: order
+            type: ordering
+            text: "Priya's balloon slipped out of her hand. It floated up over the trees. Dad bought her a new one, and she tied it to her wrist.\n\nPut the events in order."
+            options: ["She tied the new one to her wrist.", "It floated over the trees.", "Dad bought her a new balloon.", "Priya's balloon slipped away."]
+            slot_count: 4
+            answer: ["Priya's balloon slipped away.", "It floated over the trees.", "Dad bought her a new balloon.", "She tied the new one to her wrist."]
+            option_audio: false
+          - id: l2-c10
+            part: before-after
+            type: multiple_choice
+            text: "Jack fed the ducks at the pond. A swan swam over. Jack threw it some bread too. Then it started to rain, so they went home.\n\nWhat happened just before Jack threw bread to the swan?"
+            options: ["It started to rain.", "A swan swam over.", "They went home."]
+            answer: "A swan swam over."
+            option_audio: false
+          - id: l2-c11
+            part: before-after
+            type: true_false
+            text: "Holly made a card for Mum. She drew a flower on the front. Then she wrote Happy Birthday inside. She hid it under her pillow.\n\nHolly hid the card before she drew the flower."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c12
+            part: before-after
+            type: multiple_choice
+            text: "The bus stopped at the zoo. The children got off and saw the penguins. After lunch, they watched the lions being fed.\n\nWhat did the children do after lunch?"
+            options: ["They saw the penguins.", "They got off the bus.", "They watched the lions being fed."]
+            answer: "They watched the lions being fed."
+            option_audio: false
+          - id: l2-c13
+            part: before-after
+            type: true_false
+            text: "Noah's sandwich fell on the floor. The dog gobbled it up. Noah had to eat an apple instead.\n\nThe dog ate the sandwich after it fell on the floor."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c14
+            part: time-words
+            type: fill_in_blank
+            text: "Fill in the time word."
+            say: "Fill in the time word so the steps are in order."
+            frame: "First, we dug a hole. _, we put the tree in. Finally, we watered it."
+            options: ["Finally", "Next", "First"]
+            answer: ["Next"]
+          - id: l2-c15
+            part: time-words
+            type: highlight_in_text
+            text: "Tap the two time words."
+            say: "Read the sentence yourself. Tap the two time words."
+            show: { drawn: letter-card, text: "First we fed the cat and then we fed the dog." }
+            spans: ["First", "then"]
+          - id: l2-c16
+            part: time-words
+            type: fill_in_blank
+            text: "Fill in the time words."
+            say: "Fill in the time words so the steps are in order."
+            frame: "_, Zak put on his goggles. _, he jumped into the pool. Finally, he swam a whole length."
+            options: ["Then", "Finally", "First"]
+            answer: ["First", "Then"]
+          - id: l2-c17
+            part: time-words
+            type: multiple_choice
+            text: "Mo wrote: \"Finally, I woke up. First, I had breakfast.\"\nWhat is wrong?"
+            options: ["It needs a question mark.", "The time words are in the wrong order.", "Nothing is wrong."]
+            answer: "The time words are in the wrong order."
+            option_audio: false
+          - id: l2-c18
+            part: linked
+            type: fill_in_blank
+            text: "Link the events."
+            say: "Choose the word that links the two events."
+            frame: "The ice was slippery, _ Lucy fell over."
+            options: ["because", "until", "so"]
+            answer: ["so"]
+          - id: l2-c19
+            part: linked
+            type: multiple_choice
+            text: "Kofi forgot to shut the gate. The sheep got out of the field. The farmer had to chase them down the lane.\n\nWhy did the farmer chase the sheep?"
+            options: ["because it was dinner time", "because the sheep got out", "because Kofi shut the gate"]
+            answer: "because the sheep got out"
+            option_audio: false
+          - id: l2-c20
+            part: linked
+            type: true_false
+            text: "Mum's phone ran out of battery, so she could not ring Grandpa.\n\nMum could not ring Grandpa because her phone ran out of battery."
+            say: "Read it. Is it true?"
+            answer: true

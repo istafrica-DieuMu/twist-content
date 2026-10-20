@@ -26,6 +26,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [grid]
   facets: []
+  parts:
+    - { id: place, what: { de: "zeigen, wo das Spiegelbild eines Kästchens liegt", en: showing where the reflection of a square goes } }
+    - { id: complete, what: { de: "Figuren an einer senkrechten oder waagerechten Achse ergänzen", en: completing a shape in a vertical or horizontal mirror line } }
+    - { id: check, what: { de: "prüfen, ob eine Figur symmetrisch ist, und den Fehler finden", en: "checking whether a shape is symmetrical and finding the mistake" } }
   misconceptions:
     - id: copies-not-mirrors
       what: Copies the half across instead of reflecting it, so the square next to the line ends up at the far edge
@@ -228,6 +232,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -249,6 +254,23 @@ lessons:
               - { drawn: grid, cols: 8, rows: 2, axis: 4, cells: [[2, 0, green], [3, 0, green], [3, 1, green], [5, 0, green], [4, 0, green], [4, 1, green]], key: reflected }
               - { drawn: grid, cols: 8, rows: 2, axis: 4, cells: [[2, 0, green], [3, 0, green], [3, 1, green], [6, 0, green], [7, 0, green], [7, 1, green]], key: copied }
             answer: reflected
+          - id: l1-c4
+            type: multiple_choice
+            text: "Where does the reflection of the blue square go?"
+            show: { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[2, 1, blue]], labels: [[3, 1, A], [5, 1, B], [4, 1, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l1-c5
+            type: multiple_choice
+            text: "How many more squares must you colour to complete the symmetrical shape?"
+            show: { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, red], [1, 0, red], [2, 0, red], [1, 1, red], [3, 0, red]] }
+            options: ["3", "4", "5"]
+            answer: "3"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? The pattern is symmetrical about the mirror line."
+            show: { drawn: grid, cols: 8, rows: 2, axis: 4, cells: [[0, 1, green], [3, 0, green], [4, 0, green], [4, 1, green]] }
+            answer: false
 
   - n: 2
     title: { de: "Waagerecht spiegeln und Figuren ergänzen", en: "Horizontal lines and outlines" }
@@ -431,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: complete
             type: image_multiple_choice
             text: "Which picture completes the symmetrical shape?"
             show: { drawn: grid, cols: 8, rows: 3, axis: 4, cells: [[3, 0, red], [2, 1, red], [1, 2, red], [3, 2, red]] }
@@ -442,17 +466,20 @@ lessons:
               - { drawn: grid, cols: 8, rows: 3, axis: 4, cells: [[3, 0, red], [2, 1, red], [1, 2, red], [3, 2, red], [4, 2, red], [5, 1, red], [6, 0, red], [4, 0, red]], key: upside-down }
             answer: reflected
           - id: l2-c2
+            part: place
             type: multiple_choice
             text: "Where does the reflection of the green square go?"
             show: { drawn: grid, cols: 4, rows: 6, axis_row: 3, cells: [[3, 0, green]], labels: [[3, 3, A], [3, 4, B], [3, 5, C]] }
             options: ["A", "B", "C"]
             answer: "C"
           - id: l2-c3
+            part: check
             type: true_false
             text: "Is it true? The pattern is symmetrical about the mirror line."
             show: { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 1, blue], [1, 0, blue], [4, 0, blue], [4, 1, blue]] }
             answer: false
           - id: l2-c4
+            part: complete
             type: image_multiple_choice
             text: "Which picture completes the symmetrical shape?"
             show: { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 3, 0], [3, 0, 3, 1], [3, 1, 1, 1], [1, 1, 1, 3], [1, 3, 4, 3]] }
@@ -462,8 +489,123 @@ lessons:
               - { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 3, 0], [3, 0, 3, 1], [3, 1, 1, 1], [1, 1, 1, 3], [1, 3, 4, 3], [7, 0, 6, 0], [6, 0, 6, 1], [6, 1, 4, 1], [4, 1, 4, 3], [4, 3, 7, 3]], key: copied }
             answer: reflected
           - id: l2-c5
+            part: check
             type: multiple_choice
             text: "One square on the right is in the wrong place. Which one?"
             show: { drawn: grid, cols: 8, rows: 2, axis: 4, cells: [[0, 0, blue], [2, 1, blue], [3, 0, blue], [7, 0, blue], [6, 1, blue], [4, 0, blue]], labels: [[7, 0, A], [6, 1, B], [4, 0, C]] }
             options: ["A", "B", "C"]
             answer: "B"
+          - id: l2-c6
+            part: place
+            type: multiple_choice
+            text: "Where does the reflection of the red square go?"
+            show: { drawn: grid, cols: 8, rows: 2, axis: 4, cells: [[2, 1, red]], labels: [[5, 1, A], [6, 1, B], [4, 1, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l2-c7
+            part: place
+            type: multiple_choice
+            text: "Where does the reflection of the blue square go?"
+            show: { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[4, 0, blue]], labels: [[4, 2, A], [4, 3, B], [1, 3, C]] }
+            options: ["A", "B", "C"]
+            answer: "B"
+          - id: l2-c8
+            part: place
+            type: multiple_choice
+            text: "Where does the reflection of the red square go?"
+            show: { drawn: grid, cols: 10, rows: 2, axis: 5, cells: [[1, 0, red]], labels: [[8, 0, A], [6, 0, B], [9, 0, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l2-c9
+            part: place
+            type: multiple_choice
+            text: "Where does the reflection of the blue square go?"
+            show: { drawn: grid, cols: 4, rows: 6, axis_row: 3, cells: [[2, 1, blue]], labels: [[2, 4, A], [2, 5, B], [2, 3, C]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l2-c10
+            part: place
+            type: multiple_choice
+            text: "Where does the reflection of the green square go?"
+            show: { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[0, 2, green]], labels: [[5, 2, B], [3, 2, C], [4, 2, A]] }
+            options: ["A", "B", "C"]
+            answer: "B"
+          - id: l2-c11
+            part: complete
+            type: image_multiple_choice
+            text: "Which picture completes the symmetrical shape?"
+            show: { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 2, blue]] }
+            options:
+              - { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 2, blue], [5, 0, blue], [3, 1, blue], [4, 1, blue], [5, 2, blue]], key: copied }
+              - { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 2, blue], [3, 0, blue], [5, 1, blue], [4, 1, blue], [4, 2, blue]], key: one-off }
+              - { drawn: grid, cols: 6, rows: 3, axis: 3, cells: [[2, 0, blue], [0, 1, blue], [1, 1, blue], [2, 2, blue], [3, 0, blue], [5, 1, blue], [4, 1, blue], [3, 2, blue]], key: reflected }
+            answer: reflected
+          - id: l2-c12
+            part: complete
+            type: image_multiple_choice
+            text: "Which picture completes the symmetrical shape?"
+            show: { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[0, 1, red], [1, 1, red], [1, 0, red], [4, 0, red]] }
+            options:
+              - { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[0, 1, red], [1, 1, red], [1, 0, red], [4, 0, red], [0, 2, red], [1, 2, red], [1, 3, red], [4, 3, red]], key: reflected }
+              - { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[0, 1, red], [1, 1, red], [1, 0, red], [4, 0, red], [0, 3, red], [1, 3, red], [1, 2, red], [4, 2, red]], key: moved-down }
+              - { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[0, 1, red], [1, 1, red], [1, 0, red], [4, 0, red], [5, 2, red], [4, 2, red], [4, 3, red], [1, 3, red]], key: turned }
+            answer: reflected
+          - id: l2-c13
+            part: complete
+            type: image_multiple_choice
+            text: "Which picture completes the symmetrical shape?"
+            show: { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 2, 0], [2, 0, 2, 2], [2, 2, 1, 3], [1, 3, 4, 3]] }
+            options:
+              - { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 2, 0], [2, 0, 2, 2], [2, 2, 1, 3], [1, 3, 4, 3], [8, 0, 6, 0], [6, 0, 6, 2], [6, 2, 5, 3], [5, 3, 8, 3]], key: copied }
+              - { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 2, 0], [2, 0, 2, 2], [2, 2, 1, 3], [1, 3, 4, 3], [4, 0, 6, 0], [6, 0, 6, 2], [6, 2, 7, 3], [7, 3, 4, 3]], key: reflected }
+              - { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 2, 0], [2, 0, 2, 2], [2, 2, 1, 3], [1, 3, 4, 3], [4, 0, 6, 0], [6, 0, 6, 2], [6, 2, 5, 3], [5, 3, 4, 3]], key: inward }
+            answer: reflected
+          - id: l2-c14
+            part: complete
+            type: image_multiple_choice
+            text: "Which picture completes the symmetrical shape?"
+            show: { drawn: grid, cols: 8, rows: 4, axis_row: 2, cells: [[3, 1, red], [4, 1, blue], [2, 0, blue], [5, 0, red]] }
+            options:
+              - { drawn: grid, cols: 8, rows: 4, axis_row: 2, cells: [[3, 1, red], [4, 1, blue], [2, 0, blue], [5, 0, red], [3, 2, blue], [4, 2, red], [2, 3, red], [5, 3, blue]], key: colours }
+              - { drawn: grid, cols: 8, rows: 4, axis_row: 2, cells: [[3, 1, red], [4, 1, blue], [2, 0, blue], [5, 0, red], [3, 3, red], [4, 3, blue], [2, 2, blue], [5, 2, red]], key: moved-down }
+              - { drawn: grid, cols: 8, rows: 4, axis_row: 2, cells: [[3, 1, red], [4, 1, blue], [2, 0, blue], [5, 0, red], [3, 2, red], [4, 2, blue], [2, 3, blue], [5, 3, red]], key: reflected }
+            answer: reflected
+          - id: l2-c15
+            part: complete
+            type: multiple_choice
+            text: "How many more squares must you colour to complete the symmetrical shape?"
+            show: { drawn: grid, cols: 8, rows: 3, axis: 4, cells: [[0, 0, green], [1, 0, green], [2, 1, green], [3, 1, green], [3, 2, green], [4, 1, green], [4, 2, green]] }
+            options: ["3", "5", "7"]
+            answer: "3"
+          - id: l2-c16
+            part: check
+            type: true_false
+            text: "Is it true? The pattern is symmetrical about the mirror line."
+            show: { drawn: grid, cols: 6, rows: 2, axis: 3, cells: [[0, 0, red], [2, 1, blue], [3, 1, blue], [5, 0, red]] }
+            answer: true
+          - id: l2-c17
+            part: check
+            type: true_false
+            text: "Is it true? The pattern is symmetrical about the mirror line."
+            show: { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[1, 0, green], [3, 1, green], [3, 2, green], [1, 2, green]] }
+            answer: false
+          - id: l2-c18
+            part: check
+            type: multiple_choice
+            text: "One square on the right is in the wrong place. Which one?"
+            show: { drawn: grid, cols: 8, rows: 3, axis: 4, cells: [[1, 0, blue], [3, 1, blue], [2, 2, blue], [6, 0, blue], [4, 1, blue], [6, 2, blue]], labels: [[6, 0, A], [4, 1, B], [6, 2, C]] }
+            options: ["A", "B", "C"]
+            answer: "C"
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "One square below the line is in the wrong place. Which one?"
+            show: { drawn: grid, cols: 6, rows: 4, axis_row: 2, cells: [[0, 1, red], [3, 0, red], [5, 1, red], [0, 2, red], [3, 2, red], [5, 2, red]], labels: [[0, 2, A], [3, 2, B], [5, 2, C]] }
+            options: ["A", "B", "C"]
+            answer: "B"
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Is it true? The shape is symmetrical about the mirror line."
+            show: { drawn: grid, cols: 8, rows: 4, axis: 4, lines: [[4, 0, 1, 2], [1, 2, 4, 3], [4, 0, 7, 2], [7, 2, 4, 3]] }
+            answer: true

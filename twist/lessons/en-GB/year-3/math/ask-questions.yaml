@@ -22,6 +22,11 @@ metadata:
   forms: [text, audio]
   drawn: []
   facets: [currency]
+  parts:
+    - { id: fit, what: { de: eine passende Frage zu einer Sachsituation finden, en: finding a question that fits a situation } }
+    - { id: calc, what: { de: eine Frage mit einer Rechnung beantworten, en: answering a question with a calculation } }
+    - { id: answerable, what: { de: "erkennen, ob sich eine Frage beantworten lässt", en: telling whether a question can be answered } }
+    - { id: missing, what: { de: die fehlende Angabe finden, en: finding the missing fact } }
   misconceptions:
     - id: any-question-works
       what: Thinks every question about the story can be answered, even when a fact is missing (How old is the bus driver?)
@@ -184,6 +189,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -199,6 +205,22 @@ lessons:
             type: true_false
             text: "Max has 30 crayons. Ruby has 22. Does this question ask for something new: How many crayons has Max got?"
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Jess has 45p. A comic costs 80p. Which question fits?"
+            options: ["How much more money does Jess need?", "What is the comic called?", "Which shop sells the comic?"]
+            answer: "How much more money does Jess need?"
+          - id: l1-c5
+            type: matching
+            text: "There are 62 cars and 27 vans in the car park. Match each question to its calculation."
+            pairs:
+              - { left: { text: "How many vehicles altogether?" }, right: { text: "62 + 27" } }
+              - { left: { text: "How many more cars than vans?" }, right: { text: "62 − 27" } }
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "A class has 30 children. 12 are away today. Does this question fit: How many children are at school today?"
+            answer: true
 
   - n: 2
     title: { de: "Kann ich das beantworten?", en: "Can I answer it?" }
@@ -365,13 +387,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: fit
             type: multiple_choice
             text: "The school hall has 150 chairs. 95 people come to the play. Which question can you answer?"
             options: ["How many chairs are empty?", "How long is the play?", "How many people liked the play?"]
             answer: "How many chairs are empty?"
           - id: l2-c2
+            part: answerable
             type: sorting
             text: "A library has 300 books. 120 are on loan. Which questions can you answer?"
             bins:
@@ -384,11 +409,13 @@ lessons:
               - { text: "Who borrowed the most books?", bin: no }
             option_audio: false
           - id: l2-c3
+            part: missing
             type: multiple_choice
             text: "Erin buys 5 pencils. How much does she pay? Which fact is missing?"
             options: ["the price of one pencil", "how many pencils she buys", "the colour of the pencils"]
             answer: "the price of one pencil"
           - id: l2-c4
+            part: calc
             type: matching
             text: "A tree has 70 red apples and 45 green apples. Match each question to its calculation."
             pairs:
@@ -396,6 +423,102 @@ lessons:
               - { left: { text: "How many more red than green?" }, right: { text: "70 − 45" } }
             option_audio: false
           - id: l2-c5
+            part: answerable
             type: true_false
             text: "Noah has 40 stamps. He gets some more for his birthday. Can you answer: How many stamps has he got now?"
+            answer: false
+          - id: l2-c6
+            part: fit
+            type: multiple_choice
+            text: "A garden centre has 240 plants. It sells 115 on Saturday. Which question fits?"
+            options: ["How many plants are left?", "What colour are the flowers?", "How tall is the tallest plant?"]
+            answer: "How many plants are left?"
+          - id: l2-c7
+            part: fit
+            type: multiple_choice
+            text: "Lucy has 58 beads. Kai has 34 beads. Which question asks for something new?"
+            options: ["How many more beads has Lucy got than Kai?", "How many beads has Kai got?", "How many beads has Lucy got?"]
+            answer: "How many more beads has Lucy got than Kai?"
+          - id: l2-c8
+            part: fit
+            type: true_false
+            text: "A farmer picks 360 apples and 145 pears. Does this question fit: How much fruit does the farmer pick altogether?"
+            answer: true
+          - id: l2-c9
+            part: fit
+            type: true_false
+            text: "There are 32 children in the class. 17 have school dinners. Does this question ask for something new: How many children are in the class?"
+            answer: false
+          - id: l2-c10
+            part: calc
+            type: multiple_choice
+            text: "A train has 215 seats. 180 people get on. How many seats are empty? Which calculation fits?"
+            options: ["215 − 180", "215 + 180", "180 − 215"]
+            answer: "215 − 180"
+          - id: l2-c11
+            part: calc
+            type: matching
+            text: "Sophie scores 64 points. Jack scores 48 points. Match each question to its calculation."
+            pairs:
+              - { left: { text: "How many points altogether?" }, right: { text: "64 + 48" } }
+              - { left: { text: "How many more points has Sophie got?" }, right: { text: "64 − 48" } }
+              - { left: { text: "How many more points does Jack need to reach 100?" }, right: { text: "100 − 48" } }
+            option_audio: false
+          - id: l2-c12
+            part: calc
+            type: text_input
+            text: "A cake shop makes 85 cupcakes and sells 47 of them. How many cupcakes are left?"
+            answer: "38"
+          - id: l2-c13
+            part: calc
+            type: multiple_choice
+            text: "A box holds 6 eggs. Mum buys 4 boxes. How many eggs does she buy? Which calculation fits?"
+            options: ["4 × 6", "6 + 4", "6 − 4"]
+            answer: "4 × 6"
+          - id: l2-c14
+            part: answerable
+            type: multiple_choice
+            text: "A school buys 250 new books. 130 of them are for the infants. Which question can you answer?"
+            options: ["How many books are not for the infants?", "How much did the books cost?", "Which book is the longest?"]
+            answer: "How many books are not for the infants?"
+          - id: l2-c15
+            part: answerable
+            type: true_false
+            text: "Mr Khan sells 120 newspapers on Monday and 95 on Tuesday. Can you answer: How many does he sell on Wednesday?"
+            answer: false
+          - id: l2-c16
+            part: answerable
+            type: sorting
+            text: "A café sells 75 sandwiches and 40 bowls of soup on Friday. Which questions can you answer?"
+            bins:
+              - { id: yes, show: { text: "I can answer it" }, say: "I can answer it" }
+              - { id: no, show: { text: "I can't answer it" }, say: "I can't answer it" }
+            options:
+              - { text: "How many more sandwiches than soups were sold?", bin: yes }
+              - { text: "How much does a bowl of soup cost?", bin: no }
+              - { text: "How many sandwiches and soups were sold altogether?", bin: yes }
+              - { text: "How many sandwiches were sold on Saturday?", bin: no }
+            option_audio: false
+          - id: l2-c17
+            part: missing
+            type: multiple_choice
+            text: "Grace saves £4 every week. How much has she saved? Which fact is missing?"
+            options: ["how many weeks she has saved for", "how much she saves each week", "what she wants to buy"]
+            answer: "how many weeks she has saved for"
+          - id: l2-c18
+            part: missing
+            type: multiple_choice
+            text: "A rope is 500 cm long. Dan cuts a piece off. How long is the rope now? Which fact is missing?"
+            options: ["the length of the piece Dan cuts off", "how long the rope was", "what the rope is for"]
+            answer: "the length of the piece Dan cuts off"
+          - id: l2-c19
+            part: missing
+            type: multiple_choice
+            text: "Year 3 has two classes. Class 3A has 29 children. Which extra fact lets you answer: How many children are in Year 3?"
+            options: ["how many children are in Class 3B", "how many girls are in Class 3A", "how old the children are"]
+            answer: "how many children are in Class 3B"
+          - id: l2-c20
+            part: missing
+            type: true_false
+            text: "A pack has 8 pens. Ravi buys 3 packs. How many pens does he buy? Is a fact missing?"
             answer: false

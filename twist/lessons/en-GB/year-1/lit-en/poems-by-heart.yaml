@@ -13,8 +13,9 @@ summary: >
   learns a new short poem, "The Snail", and "Humpty Dumpty", and practises
   saying them with expression (slow for a slow snail, a big voice for a
   great fall); it ends with the skill check. Reciting is practised with
-  speaking tasks; the skill check asks what the child remembers, since
-  speaking is not marked.
+  the speak tasks in Practise and is not marked; the skill check marks
+  what a screen can mark: the words and the order of the lines the child
+  remembers, and how a poem should sound.
 metadata:
   year: year-1
   topic: { de: "Geschichten und Gedichte", en: "Stories and poems" }
@@ -26,6 +27,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: twinkle, what: { de: "Twinkle, Twinkle, Little Star auswendig können", en: "knowing Twinkle, Twinkle, Little Star by heart" } }
+    - { id: snail, what: { de: The Snail auswendig können, en: knowing The Snail by heart } }
+    - { id: humpty, what: { de: Humpty Dumpty auswendig können, en: knowing Humpty Dumpty by heart } }
+    - { id: expression, what: { de: "wissen, wie man ein Gedicht mit Ausdruck spricht", en: knowing how to say a poem with expression } }
   misconceptions:
     - id: rhyme-as-guess
       what: Fills a forgotten word with any word that makes sense, not one that rhymes (little star, how I wonder what you see)
@@ -209,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -231,6 +238,23 @@ lessons:
             frame: "Like a diamond in the _."
             options: ["sky", "sea", "tree"]
             answer: ["sky"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "In the rhyme, which word rhymes with star?"
+            options: ["are", "sky", "high"]
+            answer: "are"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? In the rhyme, the star is like a diamond."
+            answer: true
+          - id: l1-c6
+            type: fill_in_blank
+            text: "_, twinkle, little star,"
+            say: "Which word is missing at the start of the rhyme?"
+            frame: "_, twinkle, little star,"
+            options: ["Twinkle", "Sparkle", "Shine"]
+            answer: ["Twinkle"]
 
   - n: 2
     title: { de: "Neue Gedichte, mit Ausdruck", en: "New poems, with expression" }
@@ -398,8 +422,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: snail
             type: fill_in_blank
             text: "A little snail went up the _,"
             say: "A little snail went up the ... Which word comes next?"
@@ -407,6 +433,7 @@ lessons:
             options: ["wall", "tree", "hill"]
             answer: ["wall"]
           - id: l2-c2
+            part: twinkle
             type: fill_in_blank
             text: "Twinkle, twinkle, little star,\nHow I _ what you are!"
             say: "Twinkle, twinkle, little star, how I ... what you are! Which word is missing?"
@@ -414,6 +441,7 @@ lessons:
             options: ["wonder", "know", "see"]
             answer: ["wonder"]
           - id: l2-c3
+            part: humpty
             type: ordering
             text: "Put the lines in order."
             say: "Put the lines of Humpty Dumpty in order."
@@ -422,6 +450,7 @@ lessons:
             answer: ["Humpty Dumpty sat on a wall,", "Humpty Dumpty had a great fall.", "All the king's horses and all the king's men", "Couldn't put Humpty together again."]
             option_audio: false
           - id: l2-c4
+            part: snail
             type: multiple_choice
             text: "Which line comes next?\n\nHe left a trail of silver light,"
             say: "In The Snail, which line comes after He left a trail of silver light?"
@@ -429,7 +458,104 @@ lessons:
             answer: "And reached the top by Monday night."
             option_audio: false
           - id: l2-c5
+            part: expression
             type: multiple_choice
             text: "How should you say \"great fall\" in Humpty Dumpty?"
             options: ["with a big, dramatic voice", "in a whisper", "slowly and gently, like a snail"]
             answer: "with a big, dramatic voice"
+          - id: l2-c6
+            part: twinkle
+            type: fill_in_blank
+            text: "Up above the world so high,\nLike a _ in the sky."
+            say: "Up above the world so high, like a ... in the sky. Which word is missing?"
+            frame: "Like a _ in the sky."
+            options: ["diamond", "rainbow", "kite"]
+            answer: ["diamond"]
+          - id: l2-c7
+            part: twinkle
+            type: multiple_choice
+            text: "Which line comes just before this one?\n\nLike a diamond in the sky."
+            say: "In Twinkle, Twinkle, Little Star, which line comes just before Like a diamond in the sky?"
+            options: ["Up above the world so high,", "How I wonder what you are!", "Twinkle, twinkle, little star,"]
+            answer: "Up above the world so high,"
+            option_audio: false
+          - id: l2-c8
+            part: twinkle
+            type: true_false
+            text: "Is it true? \"Twinkle, Twinkle, Little Star\" starts with the line \"Up above the world so high\"."
+            answer: false
+          - id: l2-c9
+            part: twinkle
+            type: highlight_in_text
+            text: "One word is wrong. Tap it."
+            say: "Read the lines. One word is wrong. Tap it."
+            show: { drawn: letter-card, text: "Twinkle, twinkle, little moon, How I wonder what you are!" }
+            spans: ["moon"]
+          - id: l2-c10
+            part: snail
+            type: fill_in_blank
+            text: "He left a trail of _ light,"
+            say: "He left a trail of ... light. Which word is missing?"
+            frame: "He left a trail of _ light,"
+            options: ["silver", "golden", "yellow"]
+            answer: ["silver"]
+          - id: l2-c11
+            part: snail
+            type: true_false
+            text: "Is it true? In \"The Snail\", the snail hurried up the wall."
+            answer: false
+          - id: l2-c12
+            part: snail
+            type: multiple_choice
+            text: "In \"The Snail\", when did the snail reach the top?"
+            options: ["by Monday night", "by Sunday lunch", "in the morning"]
+            answer: "by Monday night"
+          - id: l2-c13
+            part: humpty
+            type: fill_in_blank
+            text: "All the king's horses and all the king's _"
+            say: "All the king's horses and all the king's ... Which word comes next?"
+            frame: "All the king's horses and all the king's _"
+            options: ["men", "cows", "friends"]
+            answer: ["men"]
+          - id: l2-c14
+            part: humpty
+            type: multiple_choice
+            text: "Which line comes next?\n\nHumpty Dumpty sat on a wall,"
+            say: "Which line comes after Humpty Dumpty sat on a wall?"
+            options: ["Humpty Dumpty had a great fall.", "All the king's horses and all the king's men", "Couldn't put Humpty together again."]
+            answer: "Humpty Dumpty had a great fall."
+            option_audio: false
+          - id: l2-c15
+            part: humpty
+            type: true_false
+            text: "Is it true? In the rhyme, the king's horses and men put Humpty together again."
+            answer: false
+          - id: l2-c16
+            part: humpty
+            type: multiple_choice
+            text: "In \"Humpty Dumpty\", where did Humpty sit?"
+            options: ["on a wall", "on a horse", "on a chair"]
+            answer: "on a wall"
+          - id: l2-c17
+            part: expression
+            type: multiple_choice
+            text: "A poem is about a big, noisy dragon. How should you say it?"
+            options: ["in a big, loud voice", "in a tiny whisper", "slowly and sleepily"]
+            answer: "in a big, loud voice"
+          - id: l2-c18
+            part: expression
+            type: true_false
+            text: "Is it true? Your voice should match what the poem is about."
+            answer: true
+          - id: l2-c19
+            part: expression
+            type: multiple_choice
+            text: "A poem is about a tiny mouse creeping past a sleeping cat. How should you say it?"
+            options: ["quietly", "in a big, loud voice", "very fast and cross"]
+            answer: "quietly"
+          - id: l2-c20
+            part: expression
+            type: true_false
+            text: "Is it true? You say \"The Snail\" slowly, because the snail does not hurry."
+            answer: true

@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: spot, what: { de: "merken, wenn ein Satz keinen Sinn ergibt", en: noticing when a sentence does not make sense } }
+    - { id: fix, what: { de: "das Wort wählen, das Sinn ergibt", en: choosing the word that makes sense } }
+    - { id: go-back, what: { de: zurückgehen und das falsche Wort finden, en: going back to find the word read wrong } }
+    - { id: letters, what: { de: "prüfen, ob das Wort auch zu den Buchstaben passt", en: checking that the word also matches the letters } }
   misconceptions:
     - id: reads-on
       what: Keeps reading when a sentence makes no sense instead of stopping to fix it
@@ -208,6 +213,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -228,6 +234,25 @@ lessons:
             text: "Does it make sense? \"The rabbit ate a carrot.\""
             say: "Read the sentence. Does it make sense?"
             answer: true
+          - id: l1-c4
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. Tap the word that does not make sense."
+            show: { drawn: letter-card, text: "I put my socks on my ears." }
+            spans: ["ears"]
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Which word makes sense?"
+            say: "Read the sentence. Which word makes sense in the gap?"
+            frame: "We sat on the sand at the _."
+            options: ["peach", "beach", "bean"]
+            answer: ["beach"]
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which sentence makes sense?"
+            options: ["The car has big legs.", "The big has a car.", "The car has big wheels."]
+            answer: "The car has big wheels."
 
   - n: 2
     title: { de: "Zurückgehen und verbessern", en: "Go back and fix it" }
@@ -394,14 +419,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spot
             type: highlight_in_text
             text: "Tap the word that does not make sense."
             say: "Read the sentence. Tap the word that does not make sense."
             show: { drawn: letter-card, text: "The pig sleeps in a cup." }
             spans: ["cup"]
           - id: l2-c2
+            part: fix
             type: fill_in_blank
             text: "Which word makes sense?"
             say: "Read the sentence. Which word makes sense in the gap?"
@@ -410,11 +438,13 @@ lessons:
             answer: ["grass"]
             option_audio: false
           - id: l2-c3
+            part: spot
             type: true_false
             text: "Does it make sense? \"The sun swims in the sky.\""
             say: "Read the sentence. Does it make sense?"
             answer: false
           - id: l2-c4
+            part: go-back
             type: multiple_choice
             text: "The book says: The bat hung in the tree.\nPip read: The bat hung in the three.\n\nWhich word should Pip go back to?"
             say: "Look at what the book says, and what Pip read. Which word should Pip go back to?"
@@ -422,8 +452,115 @@ lessons:
             answer: "three"
             option_audio: false
           - id: l2-c5
+            part: letters
             type: multiple_choice
             text: "The book says: Mum has a red hat.\nPip read: Mum has a red cap.\n\nWhat is wrong?"
             say: "Look at what the book says, and what Pip read. What is wrong?"
             options: ["It makes sense, but the letters do not match.", "It does not make sense.", "Nothing. Pip read it right."]
             answer: "It makes sense, but the letters do not match."
+          - id: l2-c6
+            part: spot
+            type: highlight_in_text
+            text: "Tap the word that does not make sense."
+            say: "Read the sentence. Tap the word that does not make sense."
+            show: { drawn: letter-card, text: "My cat likes to drink milk from a bell." }
+            spans: ["bell"]
+          - id: l2-c7
+            part: spot
+            type: true_false
+            text: "Does it make sense? \"The baby sleeps in a pram.\""
+            say: "Read the sentence. Does it make sense?"
+            answer: true
+          - id: l2-c8
+            part: spot
+            type: multiple_choice
+            text: "Which sentence makes sense?"
+            options: ["The woods ran into the fox.", "The fox ran into the woods.", "The fox ran into a cup."]
+            answer: "The fox ran into the woods."
+          - id: l2-c9
+            part: fix
+            type: fill_in_blank
+            text: "Which word makes sense?"
+            say: "Read the sentence. Which word makes sense in the gap?"
+            frame: "The dog wags its _."
+            options: ["tall", "tail", "tap"]
+            answer: ["tail"]
+            option_audio: false
+          - id: l2-c10
+            part: fix
+            type: fill_in_blank
+            text: "The book says: The fish has a long fin.\nPip read: The fish has a long fan.\n\nFix it: The fish has a long _."
+            say: "Look at what the book says, and what Pip read. Help Pip fix the sentence."
+            frame: "The fish has a long _."
+            options: ["fan", "fun", "fin"]
+            answer: ["fin"]
+            option_audio: false
+          - id: l2-c11
+            part: fix
+            type: fill_in_blank
+            text: "Which word makes sense?"
+            say: "Read the sentence. Which word makes sense in the gap?"
+            frame: "Put the milk in the _ to keep it cold."
+            options: ["bridge", "fridge", "fudge"]
+            answer: ["fridge"]
+            option_audio: false
+          - id: l2-c12
+            part: fix
+            type: true_false
+            text: "The book says: The goat ate the grass.\nPip read: The goat ate the glass.\n\nIs it true? Pip should change glass to grass."
+            say: "Look at what the book says, and what Pip read. Is it true? Pip should change glass to grass."
+            answer: true
+          - id: l2-c13
+            part: go-back
+            type: multiple_choice
+            text: "The book says: The man fed the ducks.\nPip read: The man fed the docks.\n\nWhich word should Pip go back to?"
+            say: "Look at what the book says, and what Pip read. Which word should Pip go back to?"
+            options: ["man", "docks", "fed"]
+            answer: "docks"
+            option_audio: false
+          - id: l2-c14
+            part: go-back
+            type: highlight_in_text
+            text: "Pip read this. Tap the word Pip should go back to."
+            say: "Read what Pip read. Tap the word Pip should go back to."
+            show: { drawn: letter-card, text: "Dad told me a story and then turned off the lamb." }
+            spans: ["lamb"]
+          - id: l2-c15
+            part: go-back
+            type: multiple_choice
+            text: "A sentence does not make sense. What should you do?"
+            options: ["Read on to the end of the book.", "Stop and go back to the start of the sentence.", "Close the book."]
+            answer: "Stop and go back to the start of the sentence."
+          - id: l2-c16
+            part: go-back
+            type: true_false
+            text: "Is it true? When a sentence does not make sense, a good reader keeps going and does not stop."
+            answer: false
+          - id: l2-c17
+            part: letters
+            type: true_false
+            text: "The book says: We went to the shop.\nPip read: We went to the park.\n\nIs it true? It makes sense, but Pip read a word wrong."
+            say: "Look at what the book says, and what Pip read. Is it true? It makes sense, but Pip read a word wrong."
+            answer: true
+          - id: l2-c18
+            part: letters
+            type: multiple_choice
+            text: "The book says: Tom has a pet rabbit.\nPip read: Tom has a pet rat.\n\nHow can Pip tell that rat is wrong?"
+            say: "Look at what the book says, and what Pip read. How can Pip tell that rat is wrong?"
+            options: ["It does not make sense.", "The letters do not match.", "Rats cannot be pets."]
+            answer: "The letters do not match."
+          - id: l2-c19
+            part: letters
+            type: multiple_choice
+            text: "The book says: Gran sat on the sofa.\n\nWhich reader read it right?"
+            say: "Look at what the book says. Which reader read it right?"
+            options: ["Bea read: Gran sat on the seat.", "Ali read: Gran sat on the soap.", "Cal read: Gran sat on the sofa."]
+            answer: "Cal read: Gran sat on the sofa."
+            option_audio: false
+          - id: l2-c20
+            part: letters
+            type: highlight_in_text
+            text: "The book says: The cow ate hay.\nPip read the sentence on the card. Tap the word Pip read wrong."
+            say: "Look at what the book says, and what Pip read. Tap the word Pip read wrong."
+            show: { drawn: letter-card, text: "The cow ate grass." }
+            spans: ["grass"]

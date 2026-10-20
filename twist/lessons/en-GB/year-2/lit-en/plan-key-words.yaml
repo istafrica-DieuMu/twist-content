@@ -12,8 +12,10 @@ summary: >
   den, hungry) and sorts ideas into a beginning, middle and end; lesson 2
   adds new vocabulary from a topic (burrow, nocturnal, hibernate) to a
   plan, matches notes to what they will become in the writing, and ends
-  with the skill check. Writing the plan itself waits for a free-writing
-  task type.
+  with the skill check. The skill check marks what a screen can mark:
+  choosing key words, ordering a plan, new topic words and turning notes
+  into sentences. Writing the plan itself is left to Practise and waits
+  for a free-writing task type.
 metadata:
   year: year-2
   topic: { de: Texte schreiben, en: Writing }
@@ -25,6 +27,11 @@ metadata:
   forms: [text, audio, picture, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: key-words, what: { de: "Stichwörter wählen, die die Idee tragen", en: "choosing the key words that carry an idea" } }
+    - { id: plan-order, what: { de: "einen Plan ordnen: Anfang, Mitte, Schluss", en: "putting a plan in order: beginning, middle and end" } }
+    - { id: new-words, what: { de: "neue Wörter aus einem Thema in den Plan nehmen", en: "putting new words from a topic into a plan" } }
+    - { id: plan-to-writing, what: { de: "Notizen, die zum Thema passen, und Sätze daraus", en: "notes that fit the topic, and the sentences they become" } }
   misconceptions:
     - id: plan-full-sentences
       what: Writes the whole story in the plan instead of short notes
@@ -57,8 +64,8 @@ lessons:
             difficulty: easy
           - id: l1-w2
             type: ordering
-            text: "Build the sentence you said."
-            say: "You said: The dog ran home. Put the words in order."
+            text: "Build the sentence."
+            say: "Put the words in order to make a sentence."
             options: ["ran", "The", "home.", "dog"]
             slot_count: 4
             answer: ["The", "dog", "ran", "home."]
@@ -109,7 +116,7 @@ lessons:
                   - "dragon, cave, scared"
               - id: l1-f3
                 type: sorting
-                text: "Key word or not?"
+                text: "Words from a story about a bear: key word or not?"
                 say: "Read each word from a story about a bear. Is it a key word for the plan?"
                 option_audio: false
                 bins:
@@ -126,7 +133,7 @@ lessons:
                   - "bear and honey are key words; the and and are not needed."
               - id: l1-f4
                 type: ordering
-                text: "Put the plan in order."
+                text: "Put the plan in order: beginning, middle, end."
                 say: "Here are plan notes for a story. Put them in order: beginning, middle, end."
                 options: ["lost in the woods", "home safe", "Ella walks dog"]
                 slot_count: 3
@@ -159,7 +166,7 @@ lessons:
                 hints: ["Who is it, what is he like, and where does he go?"]
               - id: l1-s2
                 type: ordering
-                text: "Put the plan in order."
+                text: "Put the plan in order: beginning, middle, end."
                 say: "Put the plan notes in order: beginning, middle, end."
                 options: ["eats it all", "Mum bakes cake", "cat jumps on table"]
                 slot_count: 3
@@ -199,7 +206,7 @@ lessons:
                 spans: ["sleepy", "owl", "tree"]
               - id: l1-n2
                 type: ordering
-                text: "Put the plan in order."
+                text: "Put the plan in order: beginning, middle, end."
                 say: "Put the plan notes in order: beginning, middle, end."
                 options: ["finds it under bed", "Jay loses teddy", "looks everywhere"]
                 slot_count: 3
@@ -227,6 +234,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -236,7 +244,7 @@ lessons:
             spans: ["funny", "clown", "pool"]
           - id: l1-c2
             type: ordering
-            text: "Put the plan in order."
+            text: "Put the plan in order: beginning, middle, end."
             say: "Put the plan notes in order: beginning, middle, end."
             options: ["flies to the moon", "lands back home", "Zak builds rocket"]
             slot_count: 3
@@ -249,6 +257,31 @@ lessons:
             options: ["a giant", "up a hill", "at night"]
             answer: "a giant"
             option_audio: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "Which is a good plan note?"
+            say: "Read them yourself. Which one is a good note for a plan?"
+            options: ["Jack climbed up the beanstalk and he found a giant with lots of gold.", "up the and", "Jack, beanstalk, giant's gold"]
+            answer: "Jack, beanstalk, giant's gold"
+            option_audio: false
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? Who? Where? What happens? These questions help you find ideas for a plan."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l1-c6
+            type: sorting
+            text: "Words from a story about space: which ones go in the plan?"
+            say: "Read each word yourself. It is from a story about space. Is it a key word for the plan, or not needed?"
+            option_audio: false
+            bins:
+              - { id: key, show: { text: "key word" }, say: "Key word." }
+              - { id: not, show: { text: "not needed" }, say: "Not needed." }
+            options:
+              - { text: "rocket", bin: key }
+              - { text: "to", bin: not }
+              - { text: "moon", bin: key }
+              - { text: "a", bin: not }
 
   - n: 2
     title: { de: Neue Wörter in den Plan, en: New words in the plan }
@@ -398,7 +431,7 @@ lessons:
                 hints: ["Did it happen at the seaside?"]
               - id: l2-s5
                 type: highlight_in_text
-                text: "Tap the new topic word."
+                text: "A plan note for a topic about spiders. Tap the new topic word."
                 say: "Read the plan note. Tap the new word you learnt in the topic about spiders."
                 show: { drawn: letter-card, text: "spider spins web traps prey" }
                 spans: ["prey"]
@@ -448,14 +481,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: key-words
             type: highlight_in_text
             text: "Tap the key words for who, what it is like and where."
             say: "Here is a sentence for a story. Tap three key words for your plan: who it is, what it is like, and where it is."
             show: { drawn: letter-card, text: "The grumpy troll lived under the bridge" }
             spans: ["grumpy", "troll", "bridge"]
           - id: l2-c2
+            part: key-words
             type: multiple_choice
             text: "Which is a good plan note?"
             say: "Read them yourself. Which one is a good note for a plan?"
@@ -463,14 +499,16 @@ lessons:
             answer: "witch, broom, lost hat"
             option_audio: false
           - id: l2-c3
+            part: plan-order
             type: ordering
-            text: "Put the plan in order."
+            text: "Put the plan in order: beginning, middle, end."
             say: "Put the plan notes in order: beginning, middle, end."
             options: ["tooth falls out", "Mia's wobbly tooth", "tooth fairy comes"]
             slot_count: 3
             answer: ["Mia's wobbly tooth", "tooth falls out", "tooth fairy comes"]
             option_audio: false
           - id: l2-c4
+            part: new-words
             type: multiple_choice
             text: "A plan about bats. Bats sleep in the day and fly at night. Which new word fits?"
             say: "You are planning a fact page about bats. Bats sleep in the day and fly at night. Which new word should go in the plan?"
@@ -478,9 +516,136 @@ lessons:
             answer: "nocturnal"
             option_audio: false
           - id: l2-c5
+            part: plan-to-writing
             type: multiple_choice
             text: "Plan note: \"squirrel, nuts, winter\"\nWhich sentence uses the plan?"
             say: "Read the plan note. Which sentence uses all its key words?"
             options: ["The squirrel hides nuts for the winter.", "Squirrels have big tails.", "Winter is cold."]
             answer: "The squirrel hides nuts for the winter."
+            option_audio: false
+          - id: l2-c6
+            part: key-words
+            type: sorting
+            text: "Words from a story about a pirate: which ones go in the plan?"
+            say: "Read each word yourself. It is from a story about a pirate. Is it a key word for the plan, or not needed?"
+            option_audio: false
+            bins:
+              - { id: key, show: { text: "key word" }, say: "Key word." }
+              - { id: not, show: { text: "not needed" }, say: "Not needed." }
+            options:
+              - { text: "of", bin: not }
+              - { text: "pirate", bin: key }
+              - { text: "the", bin: not }
+              - { text: "treasure", bin: key }
+          - id: l2-c7
+            part: key-words
+            type: true_false
+            text: "Is it true? \"the, and, was\" are good key words for a plan."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c8
+            part: key-words
+            type: highlight_in_text
+            text: "Tap the key words for who and where."
+            say: "Here is a sentence for a story. Tap two key words for your plan: who it is and where it is."
+            show: { drawn: letter-card, text: "A shy dragon hid in a dark cave" }
+            spans: ["dragon", "cave"]
+          - id: l2-c9
+            part: plan-order
+            type: ordering
+            text: "Put the plan in order: beginning, middle, end."
+            say: "Put the plan notes in order: beginning, middle, end."
+            options: ["wins the race", "falls over, gets up", "Leo trains every day"]
+            slot_count: 3
+            answer: ["Leo trains every day", "falls over, gets up", "wins the race"]
+            option_audio: false
+          - id: l2-c10
+            part: plan-order
+            type: matching
+            text: "Which planning question does each note answer? Match them."
+            say: "Read each note yourself. Which planning question does it answer? Match them."
+            pairs:
+              - { left: { text: "Who?" }, right: { text: "a lost puppy" } }
+              - { left: { text: "Where?" }, right: { text: "at the market" } }
+              - { left: { text: "How does it end?" }, right: { text: "back with its owner" } }
+          - id: l2-c11
+            part: plan-order
+            type: multiple_choice
+            text: "Which note belongs in the \"End\" box?"
+            say: "Read them yourself. Which note belongs at the end of the plan?"
+            options: ["Once there was a girl", "home and happy", "a dark forest"]
+            answer: "home and happy"
+            option_audio: false
+          - id: l2-c12
+            part: plan-order
+            type: true_false
+            text: "Is it true? A story plan has a beginning, a middle and an end."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c13
+            part: new-words
+            type: matching
+            text: "What does each new word mean? Match them."
+            say: "Read each new word yourself. What does it mean? Match them."
+            pairs:
+              - { left: { text: "habitat" }, right: { text: "where an animal lives" } }
+              - { left: { text: "nocturnal" }, right: { text: "awake at night" } }
+              - { left: { text: "predator" }, right: { text: "an animal that hunts others" } }
+          - id: l2-c14
+            part: new-words
+            type: multiple_choice
+            text: "A plan about owls. Owls hunt mice. Which new word tells you what mice are to an owl?"
+            say: "You are planning a fact page about owls. Owls hunt mice. Which new word tells you what mice are to an owl?"
+            options: ["predator", "prey", "habitat"]
+            answer: "prey"
+            option_audio: false
+          - id: l2-c15
+            part: new-words
+            type: true_false
+            text: "Is it true? Nocturnal means sleeping all winter."
+            say: "Read it. Is it true?"
+            answer: false
+          - id: l2-c16
+            part: new-words
+            type: highlight_in_text
+            text: "A plan note for a topic about tortoises. Tap the new topic word."
+            say: "Read the plan note. Tap the new word you learnt in the topic about tortoises."
+            show: { drawn: letter-card, text: "tortoise hibernates in box" }
+            spans: ["hibernates"]
+          - id: l2-c17
+            part: plan-to-writing
+            type: multiple_choice
+            text: "Which plan note goes with this sentence?\nThe puppy dug a hole in the garden."
+            say: "Read the sentence. Which plan note goes with it?"
+            options: ["kitten, sleeps, bed", "puppy, dug hole, garden", "the, a, in"]
+            answer: "puppy, dug hole, garden"
+            option_audio: false
+          - id: l2-c18
+            part: plan-to-writing
+            type: sorting
+            text: "Which notes go in a plan about penguins?"
+            say: "You are planning a fact page about penguins. Which notes belong in it?"
+            option_audio: false
+            bins:
+              - { id: yes, show: { text: "in the plan" }, say: "In the plan." }
+              - { id: no, show: { text: "not about penguins" }, say: "Not about penguins." }
+            options:
+              - { text: "my football boots", bin: no }
+              - { text: "swim fast", bin: yes }
+              - { text: "a red bus", bin: no }
+              - { text: "live where it is icy", bin: yes }
+          - id: l2-c19
+            part: plan-to-writing
+            type: true_false
+            text: "Is it true? When you write, the notes in your plan become sentences."
+            say: "Read it. Is it true?"
+            answer: true
+          - id: l2-c20
+            part: plan-to-writing
+            type: fill_in_blank
+            text: "Plan note: \"Gran, roses, garden\"\nFill the gaps to turn the note into a sentence."
+            say: "Read the plan note. Fill the gaps to turn it into a sentence."
+            frame: "_ grows _ in her _."
+            options: ["garden", "Gran", "roses", "the"]
+            answer: ["Gran", "roses", "garden"]
             option_audio: false

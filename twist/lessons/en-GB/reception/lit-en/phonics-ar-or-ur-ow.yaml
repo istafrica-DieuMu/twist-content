@@ -11,7 +11,10 @@ summary: >
   and ur (fur), three sounds that are easy to mix up; lesson 2 takes ow
   (cow) and oi (coin), mixes all five and ends with the skill check. The
   voice says every word; the child picks the digraph for a sound, fills a
-  gap or reads a word and finds its picture.
+  gap or reads a word and finds its picture. Writing the digraphs in
+  words is practised in Practise (the missing letters) and in
+  segment-spell; the skill check marks hearing each sound and reading
+  words with it.
 metadata:
   year: reception
   topic: { de: "Laute und Buchstaben", en: "Phonics" }
@@ -24,6 +27,11 @@ metadata:
   drawn: [letter-card]
   sounds: [en.ar, en.or, en.ur, en.ow, en.oi]
   facets: []
+  parts:
+    - { id: ar, what: { de: "den Laut von ar kennen und Wörter damit lesen", en: "knowing the sound of ar and reading words with it" } }
+    - { id: or, what: { de: "den Laut von or kennen und Wörter damit lesen", en: "knowing the sound of or and reading words with it" } }
+    - { id: ur, what: { de: "den Laut von ur kennen und Wörter damit lesen", en: "knowing the sound of ur and reading words with it" } }
+    - { id: ow-oi, what: { de: "ow und oi kennen und unterscheiden (cow, coin)", en: "knowing ow and oi and telling them apart (cow, coin)" } }
   misconceptions:
     - id: vowel-then-r
       what: Sounds ar, or and ur letter by letter (c ... a ... r for car) or writes only the vowel (cat for cart)
@@ -109,7 +117,8 @@ lessons:
               - id: l1-f4
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Fur. Which letters are missing at the end of fur?"
+                say: "Which letters are missing at the end of this word? Listen."
+                audio: { en: "Fur." }
                 frame: "f_"
                 options: ["u", "ur", "or"]
                 answer: ["ur"]
@@ -184,7 +193,8 @@ lessons:
               - id: l1-n2
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Burn. Which letters are missing in the middle of burn?"
+                say: "Which letters are missing in the middle of this word? Listen."
+                audio: { en: "Burn." }
                 frame: "b_n"
                 options: ["ar", "u", "ur"]
                 answer: ["ur"]
@@ -211,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -229,10 +240,32 @@ lessons:
           - id: l1-c3
             type: fill_in_blank
             text: "Which letters are missing?"
-            say: "Curl. Which letters are missing in the middle of curl?"
+            say: "Which letters are missing in the middle of this word? Listen."
+            audio: { en: "Curl." }
             frame: "c_l"
             options: ["or", "ur", "u"]
             answer: ["ur"]
+          - id: l1-c4
+            type: true_false
+            text: "Does horn have ur in the middle?"
+            say: "Horn. Does horn have this sound in the middle? Listen."
+            audio: { sound: en.ur }
+            show: { object: horn }
+            answer: false
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "ur" }
+            options: [{ object: chair }, { object: church }, { object: cheese }]
+            answer: church
+          - id: l1-c6
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Barn." }
+            options: ["born", "barn", "burn"]
+            answer: "barn"
 
   - n: 2
     title: { de: "ow und oi", en: "ow and oi" }
@@ -323,7 +356,8 @@ lessons:
               - id: l2-f4
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Town. Which letters are missing in the middle of town?"
+                say: "Which letters are missing in the middle of this word? Listen."
+                audio: { en: "Town." }
                 frame: "t_n"
                 options: ["o", "ow", "oi"]
                 answer: ["ow"]
@@ -356,7 +390,8 @@ lessons:
               - id: l2-s2
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Join. Which letters are missing in the middle of join?"
+                say: "Which letters are missing in the middle of this word? Listen."
+                audio: { en: "Join." }
                 frame: "j_n"
                 options: ["ow", "o", "oi"]
                 answer: ["oi"]
@@ -426,8 +461,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: ar
             type: audio_choice
             text: "Which letters make the middle sound?"
             say: "Listen. Tap the letters for the middle sound."
@@ -435,6 +472,7 @@ lessons:
             options: ["ur", "ar", "or"]
             answer: "ar"
           - id: l2-c2
+            part: ow-oi
             type: image_multiple_choice
             text: "Which word has this sound?"
             say: "Which picture has the sound of these letters?"
@@ -442,24 +480,147 @@ lessons:
             options: [{ object: cup }, { object: owl }, { object: cat }]
             answer: owl
           - id: l2-c3
-            type: fill_in_blank
-            text: "Which letters are missing?"
-            say: "Boil. Which letters are missing in the middle of boil?"
-            frame: "b_l"
-            options: ["ow", "or", "oi"]
-            answer: ["oi"]
+            part: ow-oi
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Boil." }
+            options: ["burn", "boil", "bark"]
+            answer: "boil"
           - id: l2-c4
-            type: fill_in_blank
-            text: "Which letters are missing?"
-            say: "Church. Which letters are missing in the middle of church?"
+            part: ur
+            type: true_false
+            text: "Does church have ur in the middle?"
+            say: "Church. Does church have this sound in the middle? Listen."
+            audio: { sound: en.ur }
             show: { object: church }
-            frame: "ch_ch"
-            options: ["ar", "ur", "or"]
-            answer: ["ur"]
+            answer: true
           - id: l2-c5
+            part: or
             type: image_multiple_choice
             text: "Read the word. Tap its picture."
             say: "Read the word on the card. Then tap its picture."
             show: { drawn: letter-card, text: "horn" }
             options: [{ object: hen }, { object: heart }, { object: horn }]
             answer: horn
+            option_audio: false
+          - id: l2-c6
+            part: ar
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "shark" }
+            options: [{ object: ship }, { object: shark }, { object: sheep }]
+            answer: shark
+            option_audio: false
+          - id: l2-c7
+            part: or
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.or }
+            options: ["ur", "or", "o"]
+            answer: "or"
+          - id: l2-c8
+            part: ur
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ur }
+            options: ["ur", "ow", "u"]
+            answer: "ur"
+          - id: l2-c9
+            part: ow-oi
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "point" }
+            options: [{ object: paint }, { object: pencil }, { object: point }]
+            answer: point
+            option_audio: false
+          - id: l2-c10
+            part: ar
+            type: true_false
+            text: "park"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: park }
+            answer: true
+          - id: l2-c11
+            part: or
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "or" }
+            options: [{ object: house }, { object: horse }, { object: hat }]
+            answer: horse
+          - id: l2-c12
+            part: ur
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "ur" }
+            options: [{ object: pear }, { object: pig }, { object: purse }]
+            answer: purse
+          - id: l2-c13
+            part: ow-oi
+            type: true_false
+            text: "Does crown have oi in the middle?"
+            say: "Crown. Does crown have this sound in the middle? Listen."
+            audio: { sound: en.oi }
+            show: { object: crown }
+            answer: false
+          - id: l2-c14
+            part: ar
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ar }
+            options: ["ar", "or", "a"]
+            answer: "ar"
+          - id: l2-c15
+            part: or
+            type: true_false
+            text: "corn"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: car }
+            answer: false
+          - id: l2-c16
+            part: ur
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Hurt." }
+            options: ["hut", "hot", "hurt"]
+            answer: "hurt"
+          - id: l2-c17
+            part: ow-oi
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.oi }
+            options: ["oi", "oa", "ow"]
+            answer: "oi"
+          - id: l2-c18
+            part: ar
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Farm." }
+            options: ["form", "farm", "fun"]
+            answer: "farm"
+          - id: l2-c19
+            part: or
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Fort." }
+            options: ["fort", "fur", "fat"]
+            answer: "fort"
+          - id: l2-c20
+            part: ur
+            type: true_false
+            text: "Does fork have ur in the middle?"
+            say: "Fork. Does fork have this sound in the middle? Listen."
+            audio: { sound: en.ur }
+            show: { object: fork }
+            answer: false

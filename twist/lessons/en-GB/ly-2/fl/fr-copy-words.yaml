@@ -26,6 +26,10 @@ metadata:
   forms: [picture, text, drawn]
   drawn: [word-card]
   facets: []
+  parts:
+    - { id: copy, what: { de: "ein Wort genau abschreiben, mit Akzenten und allen Buchstaben", en: "copying a word exactly, with its accents and every letter" } }
+    - { id: label, what: { de: ein Bild mit einem Wort aus einer Wortliste beschriften, en: labelling a picture with a word from a word list } }
+    - { id: check, what: { de: eine Abschrift Buchstabe für Buchstabe prüfen, en: checking a copy letter by letter } }
   misconceptions:
     - id: drops-accents
       what: Leaves out accents and the cedilla (ecole, elephant, garcon), as English has none
@@ -211,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -229,6 +234,23 @@ lessons:
             type: true_false
             text: "Card: l'école\nCopy: l'ecole\nIs the copy right?"
             answer: false
+          - id: l1-c4
+            type: text_input
+            keyboard: letters
+            text: "Copy the word."
+            show: { drawn: word-card, text: "le lit" }
+            answer: "le lit"
+          - id: l1-c5
+            type: multiple_choice
+            option_audio: false
+            text: "Which word is copied correctly?"
+            show: { drawn: word-card, text: "la règle" }
+            options: ["la regle", "la règle", "la régle"]
+            answer: "la règle"
+          - id: l1-c6
+            type: true_false
+            text: "Card: la trousse\nCopy: la trousse\nIs the copy right?"
+            answer: true
 
   - n: 2
     title: { de: "Bilder beschriften", en: "Labelling pictures" }
@@ -405,20 +427,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: copy
             type: text_input
             keyboard: letters
             text: "Copy the word."
             show: { drawn: word-card, text: "la chaise" }
             answer: "la chaise"
           - id: l2-c2
+            part: label
             type: text_input
             keyboard: letters
             text: "Label the picture.\nWord list: le poisson, la pomme, le zèbre"
             show: { object: fish }
             answer: "le poisson"
           - id: l2-c3
+            part: label
             type: multiple_choice
             option_audio: false
             text: "Which label is right?\nWord list: le hérisson, la gomme, le stylo"
@@ -426,12 +452,125 @@ lessons:
             options: ["le hérisson", "le herisson", "le hérison"]
             answer: "le hérisson"
           - id: l2-c4
+            part: check
             type: true_false
             text: "Card: le garçon\nCopy: le garcon\nIs the copy right?"
             answer: false
           - id: l2-c5
+            part: label
             type: text_input
             keyboard: letters
             text: "Label the picture.\nWord list: la fraise, le hérisson, la gomme"
             show: { object: strawberry }
             answer: "la fraise"
+          - id: l2-c6
+            part: copy
+            type: text_input
+            keyboard: letters
+            text: "Copy the word."
+            show: { drawn: word-card, text: "la règle" }
+            answer: "la règle"
+          - id: l2-c7
+            part: copy
+            type: text_input
+            keyboard: letters
+            text: "Copy the word."
+            show: { drawn: word-card, text: "le papillon" }
+            answer: "le papillon"
+          - id: l2-c8
+            part: copy
+            type: multiple_choice
+            option_audio: false
+            text: "Which word is copied correctly?"
+            show: { drawn: word-card, text: "la baleine" }
+            options: ["la balene", "la baleine", "la baleinne"]
+            answer: "la baleine"
+          - id: l2-c9
+            part: copy
+            type: fill_in_blank
+            option_audio: false
+            text: "Fill in the missing letters."
+            show: { drawn: word-card, text: "la girafe" }
+            frame: "la gira_"
+            options: ["ffe", "fe", "phe"]
+            answer: ["fe"]
+          - id: l2-c10
+            part: copy
+            type: text_input
+            keyboard: letters
+            text: "Copy the word."
+            show: { drawn: word-card, text: "le zèbre" }
+            answer: "le zèbre"
+          - id: l2-c11
+            part: copy
+            type: fill_in_blank
+            option_audio: false
+            text: "Fill in the missing letter."
+            show: { drawn: word-card, text: "le hérisson" }
+            frame: "le h_risson"
+            options: ["è", "e", "é"]
+            answer: ["é"]
+          - id: l2-c12
+            part: label
+            type: text_input
+            keyboard: letters
+            text: "Label the picture.\nWord list: la baleine, le chat, la règle"
+            show: { object: cat }
+            answer: "le chat"
+          - id: l2-c13
+            part: label
+            type: multiple_choice
+            option_audio: false
+            text: "Which label is right?\nWord list: la girafe, le lit, la gomme"
+            show: { object: bed }
+            options: ["le li", "le lit", "le lie"]
+            answer: "le lit"
+          - id: l2-c14
+            part: label
+            type: text_input
+            keyboard: letters
+            text: "Label the picture.\nWord list: le ballon, la trousse, le papillon"
+            show: { object: pencil-case }
+            answer: "la trousse"
+          - id: l2-c15
+            part: label
+            type: matching
+            option_audio: false
+            text: "Which label goes with which picture?"
+            say: { en: "Read each label. Tap it, then the picture it names." }
+            pairs:
+              - left: { text: "la baleine" }
+                right: { object: whale }
+              - left: { text: "le hérisson" }
+                right: { object: hedgehog }
+              - left: { text: "la pomme" }
+                right: { object: apple }
+          - id: l2-c16
+            part: check
+            type: true_false
+            text: "Card: la gomme\nCopy: la gome\nIs the copy right?"
+            answer: false
+          - id: l2-c17
+            part: check
+            type: true_false
+            text: "Card: le crayon\nCopy: le crayon\nIs the copy right?"
+            answer: true
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Label: la girafe\nWord list: la girafe, le zèbre, le lapin\nIs the label right?"
+            show: { object: giraffe }
+            answer: true
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            option_audio: false
+            text: "Which copy has a mistake?"
+            show: { drawn: word-card, text: "l'éléphant" }
+            options: ["l'éléphant", "l'élephant"]
+            answer: "l'élephant"
+          - id: l2-c20
+            part: check
+            type: true_false
+            text: "Card: le hérisson\nCopy: le hérrisson\nIs the copy right?"
+            answer: false

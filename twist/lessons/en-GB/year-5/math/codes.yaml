@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table]
   facets: []
+  parts:
+    - { id: decode, what: { de: mit dem Zahlencode entschlüsseln, en: decoding with the number code } }
+    - { id: encode, what: { de: mit dem Zahlencode verschlüsseln, en: encoding with the number code } }
+    - { id: rule, what: { de: Codes und Zahlenschlösser mit einer Rechenregel lösen, en: solving codes and number locks with a calculation rule } }
+    - { id: invent, what: { de: "beurteilen, ob ein erfundener Code funktioniert", en: judging whether an invented code works } }
   misconceptions:
     - id: digits-as-letters
       what: Reads a two-digit number as two letters (12 as A and B instead of L)
@@ -199,6 +204,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -216,6 +222,26 @@ lessons:
             type: true_false
             text: "In the code, 26 stands for Z."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "Decode: 16 9 7"
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            options: ["PIG", "PIE", "BIG"]
+            answer: "PIG"
+            option_audio: false
+          - id: l1-c5
+            type: fill_in_blank
+            text: "Encode the word OWL."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            frame: "O = _, W = _, L = _"
+            options: ["15", "23", "12", "22", "13"]
+            answer: ["15", "23", "12"]
+          - id: l1-c6
+            type: text_input
+            text: "Decode: 10 1 13. Type the word in small letters."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            keyboard: letters
+            answer: "jam"
 
   - n: 2
     title: { de: "Codes mit Regel", en: "Codes with a rule" }
@@ -373,30 +399,136 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: rule
             type: text_input
             text: "Rule: add 2 to every number. Decode: 8 17 26. Type the word in small letters."
             show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
             keyboard: letters
             answer: "fox"
           - id: l2-c2
+            part: rule
             type: multiple_choice
             text: "Rule: double every number. How do you encode BED?"
             show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
             options: ["4 10 8", "2 5 4", "3 6 5"]
             answer: "4 10 8"
           - id: l2-c3
+            part: rule
             type: multiple_choice
             text: "Rule: take 1 from every number. Decode: 15 4 13"
             show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
             options: ["PEN", "NCL", "ODM"]
             answer: "PEN"
           - id: l2-c4
+            part: invent
             type: true_false
             text: "Sam's code: A = 26, B = 25, C = 24, and so on, down to Z = 1. Every letter has its own number, so the code works."
             answer: true
           - id: l2-c5
+            part: rule
             type: text_input
             text: "Number lock: the code has 3 digits. Each digit is 3 less than the one before. The first digit is 9. What is the code?"
             answer: "963"
+          - id: l2-c6
+            part: decode
+            type: multiple_choice
+            text: "Decode: 2 9 18 4"
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            options: ["BIRD", "BIND", "BARD"]
+            answer: "BIRD"
+          - id: l2-c7
+            part: decode
+            type: text_input
+            text: "Decode: 6 18 15 7. Type the word in small letters."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            keyboard: letters
+            answer: "frog"
+          - id: l2-c8
+            part: decode
+            type: true_false
+            text: "13 15 15 14 spells MOON."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            answer: true
+          - id: l2-c9
+            part: decode
+            type: multiple_choice
+            text: "Decode: 11 9 20 5"
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            options: ["KITE", "KISE", "KIDE"]
+            answer: "KITE"
+          - id: l2-c10
+            part: decode
+            type: text_input
+            text: "Decode: 19 8 9 16. Type the word in small letters."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            keyboard: letters
+            answer: "ship"
+          - id: l2-c11
+            part: encode
+            type: fill_in_blank
+            text: "Encode the word LION."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            frame: "L = _, I = _, O = _, N = _"
+            options: ["12", "9", "15", "14", "13"]
+            answer: ["12", "9", "15", "14"]
+          - id: l2-c12
+            part: encode
+            type: multiple_choice
+            text: "Encode the word DUCK."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            options: ["4 21 3 11", "4 21 3 12", "4 20 3 11"]
+            answer: "4 21 3 11"
+          - id: l2-c13
+            part: encode
+            type: true_false
+            text: "Ava writes BOAT as 2 15 1 19. Is she right?"
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            answer: false
+          - id: l2-c14
+            part: encode
+            type: fill_in_blank
+            text: "Encode the word YES."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            frame: "Y = _, E = _, S = _"
+            options: ["25", "5", "19", "24", "18"]
+            answer: ["25", "5", "19"]
+          - id: l2-c15
+            part: encode
+            type: multiple_choice
+            text: "Which numbers spell MAP?"
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            options: ["13 1 16", "13 1 15", "12 1 16"]
+            answer: "13 1 16"
+          - id: l2-c16
+            part: rule
+            type: text_input
+            text: "Rule: add 4 to every number. Decode: 12 9 18. Type the word in small letters."
+            show: { drawn: table, header: false, rows: [["A 1", "B 2", "C 3", "D 4", "E 5", "F 6", "G 7"], ["H 8", "I 9", "J 10", "K 11", "L 12", "M 13", "N 14"], ["O 15", "P 16", "Q 17", "R 18", "S 19", "T 20", "U 21"], ["V 22", "W 23", "X 24", "Y 25", "Z 26", "", ""]] }
+            keyboard: letters
+            answer: "hen"
+          - id: l2-c17
+            part: invent
+            type: multiple_choice
+            text: "Children invent codes. Which code does not work?"
+            options: ["A = 2, B = 2, C = 4, D = 4, and so on", "A = 3, B = 6, C = 9, and so on", "A = 10, B = 11, C = 12, and so on"]
+            answer: "A = 2, B = 2, C = 4, D = 4, and so on"
+          - id: l2-c18
+            part: invent
+            type: true_false
+            text: "Leo invents a code: every vowel is 1 and every other letter is 2. It is a good code."
+            answer: false
+          - id: l2-c19
+            part: rule
+            type: multiple_choice
+            text: "Zara's code is A = 2, B = 4, C = 6, and so on. Which number does Z get?"
+            options: ["52", "26", "28"]
+            answer: "52"
+          - id: l2-c20
+            part: invent
+            type: multiple_choice
+            text: "Ravi uses the key A = 1 to Z = 26, but swaps two letters: A = 2 and B = 1. Does his code still work?"
+            options: ["Yes, every letter still has its own number.", "No, two letters now share a number."]
+            answer: "Yes, every letter still has its own number."

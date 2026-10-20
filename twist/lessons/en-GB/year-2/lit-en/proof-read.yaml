@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: punctuation, what: { de: "fehlende Großbuchstaben und Satzschlusszeichen finden", en: "finding missing capital letters and end marks" } }
+    - { id: spelling, what: { de: falsch geschriebene Wörter finden, en: finding words that are spelt wrong } }
+    - { id: grammar, what: { de: "fehlende Wörter, falsche Zeitform und Nicht-Standardenglisch finden", en: "finding missing words, the wrong tense and non-Standard English" } }
+    - { id: correct, what: { de: "die richtige Verbesserung wählen, ohne einen neuen Fehler", en: "choosing the right correction, with no new mistake" } }
   misconceptions:
     - id: read-too-fast
       what: Reads the piece quickly as they meant it and misses mistakes
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: highlight_in_text
@@ -232,6 +238,24 @@ lessons:
             options: ["?", ".", ","]
             answer: ["?"]
             option_audio: false
+          - id: l1-c4
+            type: true_false
+            text: "Is there a mistake? \"Grandad said it was time for bed.\""
+            say: "Read it slowly yourself. Is there a mistake?"
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "Sami wrote: \"We went to the park on tuesday.\"\nWhich is the right correction?"
+            say: "Read Sami's sentence. Which one puts the mistake right?"
+            options: ["we went to the park on Tuesday.", "We went to the park on Tuesday.", "We went to the Park on tuesday."]
+            answer: "We went to the park on Tuesday."
+            option_audio: false
+          - id: l1-c6
+            type: highlight_in_text
+            text: "Tap the word that is spelt wrong."
+            say: "Read the sentence slowly. One word is spelt wrong. Tap it."
+            show: { drawn: letter-card, text: "Wen can we go home?" }
+            spans: ["Wen"]
 
   - n: 2
     title: { de: Grammatik prüfen, en: Checking the grammar }
@@ -401,26 +425,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: punctuation
             type: highlight_in_text
             text: "Tap the word that needs a capital letter."
             say: "Read the sentence slowly. One word should start with a capital letter. Tap it."
             show: { drawn: letter-card, text: "My teacher is called mr Patel." }
             spans: ["mr"]
           - id: l2-c2
+            part: spelling
             type: highlight_in_text
             text: "Tap the word that is spelt wrong."
             say: "Read the sentence slowly. One word is spelt wrong. Tap it."
             show: { drawn: letter-card, text: "We cood see the sea." }
             spans: ["cood"]
           - id: l2-c3
+            part: grammar
             type: highlight_in_text
             text: "Tap the verb in the wrong tense."
             say: "This already happened. One verb is not in the past. Tap it."
             show: { drawn: letter-card, text: "On Friday we went to the park and fly a kite." }
             spans: ["fly"]
           - id: l2-c4
+            part: correct
             type: multiple_choice
             text: "Ben wrote: \"They was at the pool.\"\nWhich is the right correction?"
             say: "Read Ben's sentence. Which one puts the mistake right?"
@@ -428,6 +457,118 @@ lessons:
             answer: "They were at the pool."
             option_audio: false
           - id: l2-c5
+            part: punctuation
             type: true_false
             text: "Is there a mistake? \"Where is the park\""
+            say: "Read it slowly yourself. Is there a mistake?"
             answer: true
+          - id: l2-c6
+            part: punctuation
+            type: fill_in_blank
+            text: "Fill the gap: What a huge wave that was_"
+            say: "Which mark should end this sentence?"
+            frame: "What a huge wave that was_"
+            options: [".", "?", "!"]
+            answer: ["!"]
+            option_audio: false
+          - id: l2-c7
+            part: punctuation
+            type: highlight_in_text
+            text: "Tap the word that needs a capital letter."
+            say: "Read the sentence slowly. One word should start with a capital letter. Tap it."
+            show: { drawn: letter-card, text: "Mum and i made pancakes." }
+            spans: ["i"]
+          - id: l2-c8
+            part: punctuation
+            type: highlight_in_text
+            text: "Here are two sentences. Tap the word that needs a capital letter."
+            say: "Read the two sentences slowly. One word should start with a capital letter. Tap it."
+            show: { drawn: letter-card, text: "We got wet. then the sun came out." }
+            spans: ["then"]
+          - id: l2-c9
+            part: spelling
+            type: highlight_in_text
+            text: "Tap the word that is spelt wrong."
+            say: "Read the sentence slowly. One word is spelt wrong. Tap it."
+            show: { drawn: letter-card, text: "Thank you for the beutiful flowers." }
+            spans: ["beutiful"]
+          - id: l2-c10
+            part: spelling
+            type: true_false
+            text: "Is a word spelt wrong? \"Who left the door open?\""
+            say: "Read it slowly yourself. Is a word spelt wrong?"
+            answer: false
+          - id: l2-c11
+            part: spelling
+            type: multiple_choice
+            text: "Jack wrote: \"I have menny pens in my bag.\"\nWhich word is spelt wrong?"
+            say: "Read Jack's sentence. Which word is spelt wrong?"
+            options: ["have", "menny", "pens"]
+            answer: "menny"
+            option_audio: false
+          - id: l2-c12
+            part: spelling
+            type: highlight_in_text
+            text: "Tap the two words that are spelt wrong."
+            say: "Read the sentence slowly. Two words are spelt wrong. Tap them both."
+            show: { drawn: letter-card, text: "We went owt to play on the gras." }
+            spans: ["owt", "gras"]
+            difficulty: stretch
+          - id: l2-c13
+            part: grammar
+            type: multiple_choice
+            text: "Ella wrote: \"We to the beach on Saturday.\"\nWhat is missing?"
+            say: "Read Ella's sentence. A word is missing. Which word?"
+            options: ["the", "a full stop", "went"]
+            answer: "went"
+          - id: l2-c14
+            part: grammar
+            type: highlight_in_text
+            text: "Tap the word that is not Standard English."
+            say: "Read the sentence slowly. One word is not Standard English. Tap it."
+            show: { drawn: letter-card, text: "Yesterday I seen a big dog." }
+            spans: ["seen"]
+          - id: l2-c15
+            part: grammar
+            type: true_false
+            text: "Is there a mistake? \"Last summer we go to the seaside.\""
+            say: "Read it slowly yourself. Is there a mistake?"
+            answer: true
+          - id: l2-c16
+            part: grammar
+            type: highlight_in_text
+            text: "This already happened. Tap the verb in the wrong tense."
+            say: "This already happened. One verb is not in the past. Tap it."
+            show: { drawn: letter-card, text: "Last Saturday Mia jumps in the puddles and got wet." }
+            spans: ["jumps"]
+          - id: l2-c17
+            part: correct
+            type: multiple_choice
+            text: "Ruby wrote: \"I like reading becos it is fun.\"\nWhich is the right correction?"
+            say: "Read Ruby's sentence. Which one puts the mistake right?"
+            options: ["I like reading becuase it is fun.", "i like reading because it is fun.", "I like reading because it is fun."]
+            answer: "I like reading because it is fun."
+            option_audio: false
+          - id: l2-c18
+            part: correct
+            type: multiple_choice
+            text: "Sam wrote: \"Where is my hat.\"\nWhich is the right correction?"
+            say: "Read Sam's sentence. Which one puts the mistake right?"
+            options: ["Where is my hat?", "where is my hat?", "Where is my hat!"]
+            answer: "Where is my hat?"
+            option_audio: false
+          - id: l2-c19
+            part: correct
+            type: multiple_choice
+            text: "Ali wrote: \"Yesterday I eat an apple.\"\nWhich is the right correction?"
+            say: "Read Ali's sentence. Which one puts the mistake right?"
+            options: ["Yesterday I eated an apple.", "Yesterday I ate an apple.", "Yesterday i ate an apple."]
+            answer: "Yesterday I ate an apple."
+            option_audio: false
+          - id: l2-c20
+            part: correct
+            type: true_false
+            text: "Lily wrote: \"we was happy.\"\nShe changed it to: \"We was happy.\"\nIs it right now?"
+            say: "Read what Lily wrote and how she changed it. Is it right now?"
+            answer: false
+            difficulty: stretch

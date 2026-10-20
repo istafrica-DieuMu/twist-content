@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [fraction]
   facets: [operation-signs]
+  parts:
+    - { id: proper, what: { de: einen echten Bruch mit einer ganzen Zahl malnehmen, en: multiplying a proper fraction by a whole number } }
+    - { id: to-mixed, what: { de: ein Ergebnis größer als 1 als gemischte Zahl schreiben, en: writing an answer greater than 1 as a mixed number } }
+    - { id: mixed-numbers, what: { de: "eine gemischte Zahl mit einer ganzen Zahl malnehmen, Teil für Teil oder als unechten Bruch", en: "multiplying a mixed number by a whole number, part by part or as an improper fraction" } }
+    - { id: in-context, what: { de: Sachaufgaben mit Brüchen mal ganzen Zahlen, en: word problems with fractions times whole numbers } }
   misconceptions:
     - id: multiplies-denominator
       what: Multiplies the denominator too (2/7 × 3 = 6/21)
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -229,6 +235,23 @@ lessons:
             say: "Three quarters times two."
             options: ["1 2/4", "6/8", "1 1/4"]
             answer: "1 2/4"
+            option_audio: false
+          - id: l1-c4
+            type: text_input
+            text: "1/12 × 7 = _/12"
+            say: "One twelfth times seven is how many twelfths?"
+            answer: "7"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 3/5 × 2 = 6/10"
+            say: "Is it true? Three fifths times two is six tenths."
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "4/6 × 2 = _"
+            say: "Four sixths times two."
+            options: ["1 2/6", "8/12", "1 4/6"]
+            answer: "1 2/6"
             option_audio: false
 
   - n: 2
@@ -402,8 +425,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: proper
             type: multiple_choice
             text: "3/11 × 3 = _"
             say: "Three elevenths times three."
@@ -411,11 +436,13 @@ lessons:
             answer: "9/11"
             option_audio: false
           - id: l2-c2
+            part: proper
             type: text_input
             text: "7/10 × 3 = _/10"
             say: "Seven tenths times three is how many tenths?"
             answer: "21"
           - id: l2-c3
+            part: to-mixed
             type: multiple_choice
             text: "5/6 × 4 = _"
             say: "Five sixths times four."
@@ -423,6 +450,7 @@ lessons:
             answer: "3 2/6"
             option_audio: false
           - id: l2-c4
+            part: mixed-numbers
             type: multiple_choice
             text: "1 3/5 × 2 = _"
             say: "One and three fifths times two."
@@ -430,7 +458,115 @@ lessons:
             answer: "3 1/5"
             option_audio: false
           - id: l2-c5
+            part: mixed-numbers
             type: text_input
             text: "2 1/4 × 4 = _"
             say: "Two and one quarter times four."
             answer: "9"
+          - id: l2-c6
+            part: proper
+            type: text_input
+            text: "4/11 × 2 = _/11"
+            say: "Four elevenths times two is how many elevenths?"
+            answer: "8"
+          - id: l2-c7
+            part: proper
+            type: true_false
+            text: "Is it true? 2/9 × 4 = 8/36"
+            say: "Is it true? Two ninths times four is eight thirty-sixths."
+            answer: false
+          - id: l2-c8
+            part: proper
+            type: multiple_choice
+            text: "Which multiplication is the same as 2/9 + 2/9 + 2/9 + 2/9 + 2/9?"
+            say: "Which multiplication is the same as two ninths plus two ninths plus two ninths plus two ninths plus two ninths?"
+            options: ["2/9 × 5", "2/9 × 2", "2/45 × 5"]
+            answer: "2/9 × 5"
+            option_audio: false
+          - id: l2-c9
+            part: to-mixed
+            type: text_input
+            keyboard: fraction
+            text: "3/8 × 5 = _\nWrite the answer as a mixed number."
+            say: "Three eighths times five. Write the answer as a mixed number."
+            answer: "1 7/8"
+          - id: l2-c10
+            part: to-mixed
+            type: multiple_choice
+            text: "2/3 × 4 = _"
+            say: "Two thirds times four."
+            options: ["2 2/3", "8/12", "1 2/3"]
+            answer: "2 2/3"
+            option_audio: false
+          - id: l2-c11
+            part: to-mixed
+            type: true_false
+            text: "Is it true? 5/9 × 3 = 1 6/9"
+            say: "Is it true? Five ninths times three is one and six ninths."
+            answer: true
+          - id: l2-c12
+            part: to-mixed
+            type: multiple_choice
+            text: "Which calculation has an answer greater than 1?"
+            say: "Which calculation has an answer greater than one?"
+            options: ["3/10 × 4", "2/9 × 4", "1/6 × 5"]
+            answer: "3/10 × 4"
+            option_audio: false
+          - id: l2-c13
+            part: mixed-numbers
+            type: fill_in_blank
+            text: "Work out 2 1/6 × 4."
+            say: "Work out two and one sixth times four."
+            frame: "2 × 4 = _, 1/6 × 4 = _/6, so 2 1/6 × 4 = _"
+            options: ["4", "8", "2 4/6", "8 4/6"]
+            answer: ["8", "4", "8 4/6"]
+          - id: l2-c14
+            part: mixed-numbers
+            type: text_input
+            keyboard: fraction
+            text: "4 1/5 × 2 = _"
+            say: "Four and one fifth times two."
+            answer: "8 2/5"
+          - id: l2-c15
+            part: mixed-numbers
+            type: multiple_choice
+            text: "1 3/8 × 3 = _"
+            say: "One and three eighths times three."
+            options: ["4 1/8", "3 3/8", "3 9/24"]
+            answer: "4 1/8"
+            option_audio: false
+          - id: l2-c16
+            part: in-context
+            type: multiple_choice
+            text: "A ribbon is 3/8 m long. Kim needs 3 ribbons. How much ribbon does she need?"
+            say: "A ribbon is three eighths of a metre long. Kim needs three ribbons. How much ribbon does she need?"
+            options: ["1 1/8 m", "9/24 m", "1 3/8 m"]
+            answer: "1 1/8 m"
+            option_audio: false
+          - id: l2-c17
+            part: in-context
+            type: text_input
+            text: "A jug holds 1 1/2 litres. How many litres do 6 jugs hold?"
+            say: "A jug holds one and a half litres. How many litres do six jugs hold?"
+            answer: "9"
+          - id: l2-c18
+            part: in-context
+            type: true_false
+            text: "Each cake needs 2/3 of a cup of sugar. Ana bakes 3 cakes. Is it true that she needs 2 cups of sugar?"
+            say: "Each cake needs two thirds of a cup of sugar. Ana bakes three cakes. Is it true that she needs two cups of sugar?"
+            answer: true
+          - id: l2-c19
+            part: in-context
+            type: multiple_choice
+            text: "A snail crawls 1 1/4 m every minute. How far does it crawl in 5 minutes?"
+            say: "A snail crawls one and a quarter metres every minute. How far does it crawl in five minutes?"
+            options: ["6 1/4 m", "5 1/4 m", "5 5/20 m"]
+            answer: "6 1/4 m"
+            option_audio: false
+          - id: l2-c20
+            part: in-context
+            type: text_input
+            keyboard: fraction
+            text: "Four friends each drink 2/5 of a litre of juice. How many litres do they drink altogether? Write the answer as a mixed number."
+            say: "Four friends each drink two fifths of a litre of juice. How many litres do they drink altogether? Write the answer as a mixed number."
+            answer: "1 3/5"

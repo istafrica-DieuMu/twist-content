@@ -22,6 +22,10 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [zwanzigerfeld, equation, rechenstrich, number-line]
   facets: []
+  parts:
+    - { id: make-ten, what: { de: bis zur 10 ergänzen und die zweite Zahl passend zerlegen, en: making ten and splitting the second number to fit } }
+    - { id: sums, what: { de: Plusaufgaben über die 10 rechnen, en: adding across ten } }
+    - { id: stories, what: { de: Rechengeschichten mit Zehnerübergang, en: number stories that cross ten } }
   misconceptions:
     - id: count-all
       what: Counts every counter from one
@@ -107,7 +111,7 @@ lessons:
                   - "12."
               - id: l1-f3
                 type: multiple_choice
-                text: "How many move up?"
+                text: "6 + 7. How many move up to make ten?"
                 say: "Six add seven. How many counters do you move up to make ten?"
                 show: { drawn: zwanzigerfeld, filled: [6, 7] }
                 options: ["4", "3", "7"]
@@ -148,7 +152,7 @@ lessons:
                 hints: ["Make ten first."]
               - id: l1-s2
                 type: multiple_choice
-                text: "How many move up?"
+                text: "7 + 6. How many move up to make ten?"
                 say: "Seven add six. How many counters do you move up to make ten?"
                 show: { drawn: zwanzigerfeld, filled: [7, 6] }
                 options: ["3", "6", "4"]
@@ -189,7 +193,7 @@ lessons:
                 answer: "15"
               - id: l1-n3
                 type: multiple_choice
-                text: "How many move up?"
+                text: "5 + 7. How many move up to make ten?"
                 say: "Five add seven. How many do you move up to make ten?"
                 show: { drawn: zwanzigerfeld, filled: [5, 7] }
                 options: ["5", "7", "2"]
@@ -207,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -223,6 +228,25 @@ lessons:
             type: true_false
             text: "Is it true? 6 + 8 = 14"
             say: "Six add eight is fourteen. Is that true?"
+            answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "9 + 8. How many move up to make ten?"
+            say: "Nine add eight. How many counters do you move up to make ten?"
+            show: { drawn: zwanzigerfeld, filled: [9, 8] }
+            options: ["1", "8", "2"]
+            answer: "1"
+          - id: l1-c5
+            type: multiple_choice
+            text: "7 + 8 = _"
+            say: "Seven add eight."
+            show: { drawn: zwanzigerfeld, filled: [7, 8] }
+            options: ["15", "10", "16"]
+            answer: "15"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 3 + 8 = 11"
+            say: "Three add eight is eleven. Is that true?"
             answer: true
 
   - n: 2
@@ -277,7 +301,7 @@ lessons:
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
-                text: "Which hop comes first?"
+                text: "7 + 5. Which hop takes you to ten?"
                 say: "Seven add five. Which hop takes you exactly to ten?"
                 show: { drawn: rechenstrich, start: 7, jumps: [] }
                 options: ["3", "5", "2"]
@@ -331,7 +355,7 @@ lessons:
                 hints: ["How many does eight need to make ten?"]
               - id: l2-s2
                 type: multiple_choice
-                text: "Which hop comes first?"
+                text: "6 + 8. Which hop takes you to ten?"
                 say: "Six add eight. Which hop takes you exactly to ten?"
                 show: { drawn: rechenstrich, start: 6, jumps: [] }
                 options: ["4", "8", "2"]
@@ -375,7 +399,7 @@ lessons:
                 answer: "17"
               - id: l2-n3
                 type: multiple_choice
-                text: "Which hop comes first?"
+                text: "5 + 8. Which hop takes you to ten?"
                 say: "Five add eight. Which hop takes you exactly to ten?"
                 show: { drawn: rechenstrich, start: 5, jumps: [] }
                 options: ["5", "8", "3"]
@@ -394,13 +418,16 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: sums
             type: text_input
             text: "8 + 8 = _"
             say: "Eight add eight."
             answer: "16"
           - id: l2-c2
+            part: make-ten
             type: fill_in_blank
             text: "Split the 9 to make ten."
             say: "Eight add nine. Split the nine so the first part makes ten."
@@ -408,19 +435,131 @@ lessons:
             options: ["1", "2", "6", "7"]
             answer: ["2", "7"]
           - id: l2-c3
+            part: sums
             type: multiple_choice
             text: "5 + 9 = _"
             say: "Five add nine."
             options: ["14", "10", "15"]
             answer: "14"
           - id: l2-c4
+            part: sums
             type: true_false
             text: "Is it true? 9 + 9 = 17"
             say: "Nine add nine is seventeen. Is that true?"
             answer: false
           - id: l2-c5
+            part: sums
             type: point_on_line
             text: "Where do you land? 4 + 7"
             say: "Four add seven. Start at four. Where do you land?"
             show: { drawn: number-line, from: 0, to: 20, labels: tens }
             answer: 11
+          - id: l2-c6
+            part: make-ten
+            type: fill_in_blank
+            text: "Split the 5 to make ten."
+            say: "Seven add five. Split the five so the first part makes ten."
+            frame: "7 + 5 = 7 + _ + _"
+            options: ["2", "3", "4", "5"]
+            answer: ["3", "2"]
+          - id: l2-c7
+            part: make-ten
+            type: drag_and_drop_count
+            text: "6 + 9. Move counters up to make ten."
+            say: "Six add nine. Move counters up until the top frame makes ten."
+            show: { drawn: zwanzigerfeld, filled: [6, 9] }
+            total_items: 9
+            answer: 4
+          - id: l2-c8
+            part: make-ten
+            type: multiple_choice
+            text: "4 + 9. Which hop takes you to ten?"
+            say: "Four add nine. Which hop takes you exactly to ten?"
+            show: { drawn: rechenstrich, start: 4, jumps: [] }
+            options: ["6", "9", "5"]
+            answer: "6"
+          - id: l2-c9
+            part: make-ten
+            type: true_false
+            text: "Is it a good way? 6 + 8 = 6 + 2 + 6"
+            say: "Six add eight, split as six add two add six. Is that a good way to make ten?"
+            answer: false
+          - id: l2-c10
+            part: make-ten
+            type: true_false
+            text: "Is it a good way? 5 + 8 = 5 + 5 + 3"
+            say: "Five add eight, split as five add five add three. Is that a good way to make ten?"
+            answer: true
+          - id: l2-c11
+            part: make-ten
+            type: fill_in_blank
+            text: "Split the 8 to make ten."
+            say: "Four add eight. Split the eight so the first part makes ten."
+            frame: "4 + 8 = 4 + _ + _"
+            options: ["2", "4", "6", "8"]
+            answer: ["6", "2"]
+          - id: l2-c12
+            part: sums
+            type: text_input
+            text: "2 + 9 = _"
+            say: "Two add nine."
+            answer: "11"
+          - id: l2-c13
+            part: sums
+            type: multiple_choice
+            text: "5 + 6 = _"
+            say: "Five add six."
+            show: { drawn: zwanzigerfeld, filled: [5, 6] }
+            options: ["11", "10", "12"]
+            answer: "11"
+          - id: l2-c14
+            part: sums
+            type: true_false
+            text: "Is it true? 4 + 8 = 13"
+            say: "Four add eight is thirteen. Is that true?"
+            answer: false
+          - id: l2-c15
+            part: stories
+            type: text_input
+            text: "Mia has 9 stickers. Her friend gives her 2 more. How many stickers does Mia have now?"
+            say: "Mia has nine stickers. Her friend gives her two more. How many stickers does Mia have now?"
+            show: { object: sticker, groups: [9, 2] }
+            answer: "11"
+          - id: l2-c16
+            part: stories
+            type: multiple_choice
+            text: "There are 6 ducks on the pond. 7 more ducks swim over. How many ducks are there now?"
+            say: "There are six ducks on the pond. Seven more ducks swim over. How many ducks are there now?"
+            show: { object: duck, groups: [6, 7] }
+            options: ["12", "13", "14"]
+            answer: "13"
+          - id: l2-c17
+            part: stories
+            type: multiple_choice
+            text: "Which number sentence fits? 8 children play in the park. 6 more children come."
+            say: "Which number sentence fits? Eight children play in the park. Six more children come."
+            show: { object: child, groups: [8, 6] }
+            options: ["8 + 6", "8 − 6", "6 + 6"]
+            answer: "8 + 6"
+          - id: l2-c18
+            part: stories
+            type: text_input
+            text: "Sam has 5 apples in his bag. He picks 7 more. How many apples does he have now?"
+            say: "Sam has five apples in his bag. He picks seven more. How many apples does he have now?"
+            show: { object: apple, groups: [5, 7] }
+            answer: "12"
+          - id: l2-c19
+            part: stories
+            type: multiple_choice
+            text: "4 birds sit on a fence. 9 more birds land. How many birds are there now?"
+            say: "Four birds sit on a fence. Nine more birds land. How many birds are there now?"
+            show: { object: bird, groups: [4, 9] }
+            options: ["12", "13", "14"]
+            answer: "13"
+          - id: l2-c20
+            part: stories
+            type: text_input
+            text: "Leo has 3 marbles. He wins 9 more. How many marbles does he have now?"
+            say: "Leo has three marbles. He wins nine more. How many marbles does he have now?"
+            show: { object: marble, groups: [3, 9] }
+            answer: "12"

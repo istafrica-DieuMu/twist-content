@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [table, bar-chart, line-graph]
   facets: [currency]
+  parts:
+    - { id: table, what: { de: "Sachaufgaben mit Preislisten und Tabellen lösen", en: solving problems with price lists and tables } }
+    - { id: chart, what: { de: Sachaufgaben mit Säulen- und Liniendiagrammen lösen, en: solving problems with bar charts and line graphs } }
+    - { id: facts, what: { de: "die Angaben auswählen, die die Frage braucht", en: picking out the facts the question needs } }
+    - { id: ways, what: { de: Lösungswege vergleichen, en: comparing ways of solving } }
   misconceptions:
     - id: uses-every-number
       what: Uses every number in the table, also the ones the question does not need
@@ -194,6 +199,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -211,6 +217,22 @@ lessons:
             text: "Café: sandwich £3.20, juice £1.40, apple 60p. How much do 2 apples cost? Which fact do you not need?"
             options: ["the sandwich price", "the apple price", "that there are 2 apples"]
             answer: "the sandwich price"
+          - id: l1-c4
+            type: text_input
+            text: "What do 1 adult and 4 children pay with single tickets, in pounds?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£12"], ["Child (3 to 15)", "£7"], ["Under 3", "free"], ["Family (2 adults, 2 children)", "£32"]] }
+            answer: "40"
+          - id: l1-c5
+            type: true_false
+            text: "Class 5B's group fits in a minibus with 30 seats."
+            show: { drawn: table, rows: [["Class", "Children", "Adults"], ["5A", "29", "2"], ["5B", "28", "3"], ["5C", "27", "5"]] }
+            answer: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "Swimming pool prices. Gran and 2 children go swimming. What do they pay?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£4.50"], ["Child", "£2.50"], ["Family (2 adults, 3 children)", "£14"]] }
+            options: ["£9.50", "£14", "£7"]
+            answer: "£9.50"
 
   - n: 2
     title: { de: "Diagramme und zwei Lösungswege", en: "Charts and two ways" }
@@ -373,25 +395,30 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: table
             type: multiple_choice
             text: "3 adults and 2 children visit the wildlife park. Which is cheapest?"
             show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£12"], ["Child (3 to 15)", "£7"], ["Under 3", "free"], ["Family (2 adults, 2 children)", "£32"]] }
             options: ["a family ticket and 1 adult ticket: £44", "all single tickets: £50", "two family tickets: £64"]
             answer: "a family ticket and 1 adult ticket: £44"
           - id: l2-c2
+            part: chart
             type: text_input
             text: "Cakes cost 50p each. How much did the stall make on Monday and Wednesday together, in pence?"
             show: { drawn: bar-chart, rows: [["Monday", 45], ["Tuesday", 30], ["Wednesday", 60], ["Thursday", 35]], step: 10 }
             answer: "5250"
           - id: l2-c3
+            part: chart
             type: multiple_choice
             text: "What was the temperature in the greenhouse at 10 am, and how much did it rise by 2 pm?"
             show: { drawn: line-graph, rows: [["8 am", 12], ["10 am", 18], ["12 noon", 24], ["2 pm", 27], ["4 pm", 21]], step: 5, ylabel: "°C" }
             options: ["18 °C, then 9 °C warmer", "18 °C, then 27 °C warmer", "12 °C, then 15 °C warmer"]
             answer: "18 °C, then 9 °C warmer"
           - id: l2-c4
+            part: ways
             type: multiple_choice
             text: "How many books did Year 5 and Year 6 borrow?\nMo: 65 + 50 = 115\nIzzy: 60 + 50 + 5 = 115"
             show: { drawn: bar-chart, rows: [["Year 3", 40], ["Year 4", 55], ["Year 5", 65], ["Year 6", 50]], step: 10 }
@@ -399,8 +426,109 @@ lessons:
             answer: "both"
             keep_order: true
           - id: l2-c5
+            part: facts
             type: multiple_choice
             text: "Classes 5B and 5C travel together on one coach of 53 seats. Which fact do you not need to decide whether they fit?"
             show: { drawn: table, rows: [["Class", "Children", "Adults"], ["5A", "29", "2"], ["5B", "28", "3"], ["5C", "27", "5"]] }
             options: ["the 5A row", "the 5C adults", "the coach has 53 seats"]
             answer: "the 5A row"
+          - id: l2-c6
+            part: table
+            type: text_input
+            text: "What do 2 adults and 4 children pay with single tickets, in pounds?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£12"], ["Child (3 to 15)", "£7"], ["Under 3", "free"], ["Family (2 adults, 2 children)", "£32"]] }
+            answer: "52"
+          - id: l2-c7
+            part: table
+            type: multiple_choice
+            text: "Swimming pool prices. What do 3 adults and 1 child pay?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£4.50"], ["Child", "£2.50"], ["Family (2 adults, 3 children)", "£14"]] }
+            options: ["£16", "£14", "£7"]
+            answer: "£16"
+          - id: l2-c8
+            part: table
+            type: true_false
+            text: "Classes 5A and 5C travel together. Is it true that they need more than 60 seats?"
+            show: { drawn: table, rows: [["Class", "Children", "Adults"], ["5A", "29", "2"], ["5B", "28", "3"], ["5C", "27", "5"]] }
+            answer: true
+          - id: l2-c9
+            part: table
+            type: text_input
+            text: "Swimming pool prices. Mum and 3 children go swimming with single tickets. What do they pay, in pence?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£4.50"], ["Child", "£2.50"], ["Family (2 adults, 3 children)", "£14"]] }
+            answer: "1200"
+          - id: l2-c10
+            part: chart
+            type: multiple_choice
+            text: "Books borrowed from the library. How many more books did Year 4 and Year 6 borrow together than Year 5?"
+            show: { drawn: bar-chart, rows: [["Year 3", 40], ["Year 4", 55], ["Year 5", 65], ["Year 6", 50]], step: 10 }
+            options: ["40", "105", "15"]
+            answer: "40"
+          - id: l2-c11
+            part: chart
+            type: text_input
+            text: "The line graph shows the temperature in a greenhouse. By how many degrees did it fall from 2 pm to 4 pm?"
+            show: { drawn: line-graph, rows: [["8 am", 12], ["10 am", 18], ["12 noon", 24], ["2 pm", 27], ["4 pm", 21]], step: 5, ylabel: "°C" }
+            answer: "6"
+          - id: l2-c12
+            part: chart
+            type: multiple_choice
+            text: "Bottles collected for recycling. The school gets 5p for each bottle. How much money did weeks 1 and 3 make?"
+            show: { drawn: bar-chart, rows: [["Week 1", 120], ["Week 2", 90], ["Week 3", 150], ["Week 4", 100]], step: 20 }
+            options: ["£13.50", "£135", "£1.35"]
+            answer: "£13.50"
+          - id: l2-c13
+            part: facts
+            type: multiple_choice
+            text: "Swimming pool prices. How much do 2 child tickets cost? Which fact do you not need?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£4.50"], ["Child", "£2.50"], ["Family (2 adults, 3 children)", "£14"]] }
+            options: ["the family price", "the child price", "that there are 2 children"]
+            answer: "the family price"
+          - id: l2-c14
+            part: facts
+            type: multiple_choice
+            text: "Books borrowed from the library. Each book Year 3 borrowed earns one sticker. How many stickers does Year 3 get? Which bars do you need?"
+            show: { drawn: bar-chart, rows: [["Year 3", 40], ["Year 4", 55], ["Year 5", 65], ["Year 6", 50]], step: 10 }
+            options: ["only the Year 3 bar", "all four bars", "the Year 3 and Year 4 bars"]
+            answer: "only the Year 3 bar"
+          - id: l2-c15
+            part: facts
+            type: true_false
+            text: "To find how many children from 5B go on the trip, you need the Adults column."
+            show: { drawn: table, rows: [["Class", "Children", "Adults"], ["5A", "29", "2"], ["5B", "28", "3"], ["5C", "27", "5"]] }
+            answer: false
+          - id: l2-c16
+            part: facts
+            type: text_input
+            text: "A book costs £8 and weighs 400 g. Amir buys 4 books. How much does he pay, in pounds?"
+            answer: "32"
+          - id: l2-c17
+            part: ways
+            type: multiple_choice
+            text: "How many books did Year 3 and Year 6 borrow?\nAnna: 40 + 50 = 90\nJoe: 40 + 55 = 95"
+            show: { drawn: bar-chart, rows: [["Year 3", 40], ["Year 4", 55], ["Year 5", 65], ["Year 6", 50]], step: 10 }
+            options: ["both", "only Anna", "only Joe"]
+            answer: "only Anna"
+            keep_order: true
+          - id: l2-c18
+            part: ways
+            type: multiple_choice
+            text: "Bottles collected for recycling. How many bottles were collected in weeks 2 and 4?\nSami: 90 + 100 = 190\nLily: 100 + 100 − 10 = 190"
+            show: { drawn: bar-chart, rows: [["Week 1", 120], ["Week 2", 90], ["Week 3", 150], ["Week 4", 100]], step: 20 }
+            options: ["both", "only Sami", "only Lily"]
+            answer: "both"
+            keep_order: true
+          - id: l2-c19
+            part: ways
+            type: multiple_choice
+            text: "Swimming pool prices. 2 adults and 3 children go swimming.\nEva: 2 × £4.50 + 3 × £2.50 = £16.50\nRaj: one family ticket, £14\nWhich way is cheaper?"
+            show: { drawn: table, rows: [["Ticket", "Price"], ["Adult", "£4.50"], ["Child", "£2.50"], ["Family (2 adults, 3 children)", "£14"]] }
+            options: ["Raj's way, by £2.50", "Eva's way, by £2.50", "They cost the same."]
+            answer: "Raj's way, by £2.50"
+            keep_order: true
+          - id: l2-c20
+            part: ways
+            type: true_false
+            text: "How many cakes were sold on Tuesday and Thursday? Ella works it out as 30 + 30 + 5 = 65. Is her way right?"
+            show: { drawn: bar-chart, rows: [["Monday", 45], ["Tuesday", 30], ["Wednesday", 60], ["Thursday", 35]], step: 10 }
+            answer: true

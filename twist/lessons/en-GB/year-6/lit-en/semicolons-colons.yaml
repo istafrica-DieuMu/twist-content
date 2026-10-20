@@ -26,9 +26,14 @@ metadata:
   builds_on: [lit-en.grammar.parenthesis]
   also_practises: []
   vocabulary: { en: [semicolon, colon, dash, independent clause, main clause, list, comma splice, explain] }
-  forms: [text, audio]
-  drawn: []
+  forms: [text, audio, drawn]
+  drawn: [letter-card]
   facets: []
+  parts:
+    - { id: semicolon, what: { de: Semikolon zwischen zwei Hauptsätzen statt eines Kommas, en: a semicolon between two independent clauses instead of a comma } }
+    - { id: colon, what: { de: Doppelpunkt vor einer Liste oder einer Erklärung, en: a colon before a list or an explanation } }
+    - { id: list-semicolons, what: { de: Semikolons in einer Liste mit längeren Teilen, en: semicolons in a list of longer items } }
+    - { id: dash, what: { de: Gedankenstrich zwischen zwei Hauptsätzen, en: a dash between two independent clauses } }
   misconceptions:
     - id: comma-splice
       what: Joins two independent clauses with only a comma (It was late, we went home)
@@ -209,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -226,6 +232,31 @@ lessons:
             text: "Which sentence is punctuated correctly?"
             options: ["The door creaked; someone was coming.", "The door creaked, someone was coming.", "The door creaked; slowly."]
             answer: "The door creaked; someone was coming."
+            option_audio: false
+          - id: l1-c4
+            type: highlight_in_text
+            text: "This sentence is a comma splice. Tap the word whose comma should be a semicolon."
+            show: { drawn: letter-card, text: "The baby woke, she cried for milk." }
+            spans: ["woke"]
+          - id: l1-c5
+            type: sorting
+            text: "Sort the sentences: is the semicolon right or wrong?"
+            say: "Is the semicolon in each sentence right or wrong?"
+            option_audio: false
+            bins:
+              - { id: right, show: { text: "right" }, say: "Right." }
+              - { id: wrong, show: { text: "wrong" }, say: "Wrong." }
+            options:
+              - { text: "The tide came in; the sandcastle was washed away.", bin: right }
+              - { text: "We swam; in the sea.", bin: wrong }
+              - { text: "The film ended; everyone clapped.", bin: right }
+              - { text: "Because it rained; we stayed in.", bin: wrong }
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Choose the punctuation."
+            frame: "Owen loves rugby _ his brother prefers chess."
+            options: [";", ":", ","]
+            answer: [";"]
             option_audio: false
 
   - n: 2
@@ -413,26 +444,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: semicolon
             type: multiple_choice
             text: "Fix the comma splice.\n\n\"The bell rang, the lesson ended.\""
             options: ["The bell rang; the lesson ended.", "The bell, rang the lesson ended.", "The bell rang: the, lesson ended."]
             answer: "The bell rang; the lesson ended."
             option_audio: false
           - id: l2-c2
+            part: list-semicolons
             type: multiple_choice
             text: "Which list is punctuated correctly?"
             options: ["The menu had three dishes: soup, served hot; pasta, with cheese; and salad, with nuts.", "The menu had three dishes: soup, served hot, pasta, with cheese, and salad, with nuts.", "The menu had three dishes: soup; served hot, pasta; with cheese, and salad; with nuts."]
             answer: "The menu had three dishes: soup, served hot; pasta, with cheese; and salad, with nuts."
             option_audio: false
           - id: l2-c3
+            part: colon
             type: multiple_choice
             text: "Which sentence uses a colon correctly?"
             options: ["The shop sells three fruits: apples, pears and plums.", "The shop sells: apples, pears and plums.", "The shop: sells apples, pears and plums."]
             answer: "The shop sells three fruits: apples, pears and plums."
             option_audio: false
           - id: l2-c4
+            part: colon
             type: fill_in_blank
             text: "Choose the punctuation."
             frame: "She could not sleep _ the storm was too loud."
@@ -440,8 +476,105 @@ lessons:
             answer: [":"]
             option_audio: false
           - id: l2-c5
+            part: dash
             type: multiple_choice
             text: "Which sentence uses a dash to join two clauses?"
             options: ["We reached the top - the view was amazing.", "We - reached the top the view.", "We reached - the top."]
             answer: "We reached the top - the view was amazing."
             option_audio: false
+          - id: l2-c6
+            part: semicolon
+            type: fill_in_blank
+            text: "Choose the punctuation."
+            frame: "The road was icy _ the bus crawled along."
+            options: [";", ","]
+            answer: [";"]
+            option_audio: false
+          - id: l2-c7
+            part: semicolon
+            type: true_false
+            text: "Is it true? This semicolon is used correctly:\n\"Mum went to work; even though she felt ill.\""
+            answer: false
+          - id: l2-c8
+            part: semicolon
+            type: multiple_choice
+            text: "Which sentence is a comma splice?"
+            options: ["The cake was burnt, nobody ate it.", "The cake was burnt, so nobody ate it.", "The cake was burnt; nobody ate it."]
+            answer: "The cake was burnt, nobody ate it."
+            option_audio: false
+          - id: l2-c9
+            part: semicolon
+            type: multiple_choice
+            text: "\"The swimmers were tired; _\"\n\nWhich ending makes a correct sentence?"
+            options: ["they had swum twenty lengths.", "after twenty lengths.", "because of all the lengths."]
+            answer: "they had swum twenty lengths."
+            option_audio: false
+          - id: l2-c10
+            part: colon
+            type: multiple_choice
+            text: "Where should the colon go?"
+            options: ["The club has one rule: be kind.", "The club: has one rule be kind.", "The club has: one rule be kind."]
+            answer: "The club has one rule: be kind."
+            option_audio: false
+          - id: l2-c11
+            part: colon
+            type: multiple_choice
+            text: "In which sentence does the colon introduce an explanation, not a list?"
+            options: ["Tom was soaked: he had fallen in the pond.", "Tom needed three things: soap, a towel and dry socks.", "Tom packed two bags: a rucksack and a sports bag."]
+            answer: "Tom was soaked: he had fallen in the pond."
+            option_audio: false
+          - id: l2-c12
+            part: colon
+            type: true_false
+            text: "Is it true? This colon is used correctly:\n\"For the picnic we need: sandwiches, crisps and juice.\""
+            answer: false
+          - id: l2-c13
+            part: list-semicolons
+            type: fill_in_blank
+            text: "Choose the punctuation."
+            frame: "By the river we saw a heron, a tall grey bird _ two otters, playing in the water; and a kingfisher, as bright as a jewel."
+            options: [";", ",", ":"]
+            answer: [";"]
+            option_audio: false
+          - id: l2-c14
+            part: list-semicolons
+            type: multiple_choice
+            text: "\"The prizes went to Ali, for art; Beth, for music; and Cal, for sport.\"\n\nWhy does this list use semicolons?"
+            options: ["The items have commas inside them.", "The items are very short.", "Every list needs semicolons."]
+            answer: "The items have commas inside them."
+          - id: l2-c15
+            part: list-semicolons
+            type: true_false
+            text: "Is it true? This list is punctuated correctly:\n\"I have three cousins: Ben, who is ten; Ava, who is seven; and Max, who is two.\""
+            answer: true
+          - id: l2-c16
+            part: list-semicolons
+            type: multiple_choice
+            text: "Which list needs semicolons between its items?"
+            options: ["Jo, my cousin, Sam, my friend, and Lee, my neighbour", "apples, pears and plums", "red, blue and green"]
+            answer: "Jo, my cousin, Sam, my friend, and Lee, my neighbour"
+            option_audio: false
+          - id: l2-c17
+            part: dash
+            type: true_false
+            text: "Is it true? A dash is more formal than a semicolon."
+            answer: false
+          - id: l2-c18
+            part: dash
+            type: multiple_choice
+            text: "\"The lights went out - the storm had cut the power.\"\n\nWhich punctuation could replace the dash and keep the sentence correct?"
+            options: ["a colon", "a comma", "no punctuation at all"]
+            answer: "a colon"
+          - id: l2-c19
+            part: dash
+            type: multiple_choice
+            text: "Which sentence uses a dash for a dramatic pause between two clauses?"
+            options: ["I turned the key slowly - the door swung open.", "I bought bread, milk - and eggs.", "My - sister is ten years old."]
+            answer: "I turned the key slowly - the door swung open."
+            option_audio: false
+          - id: l2-c20
+            part: dash
+            type: highlight_in_text
+            text: "This sentence needs a dash between its two clauses. Tap the word just before the dash."
+            show: { drawn: letter-card, text: "We searched everywhere the ring had vanished." }
+            spans: ["everywhere"]

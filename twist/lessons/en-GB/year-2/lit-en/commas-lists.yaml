@@ -23,6 +23,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: single-items, what: { de: "Kommas zwischen einzelne Dinge einer Aufzählung setzen", en: "putting commas between single things in a list" } }
+    - { id: no-comma-and, what: { de: "kein Komma vor and: and verbindet die letzten zwei Dinge", en: "no comma before and: and joins the last two things" } }
+    - { id: longer-items, what: { de: "Kommas bei längeren Dingen setzen (a red hat, a warm scarf)", en: "commas between longer things (a red hat, a warm scarf)" } }
+    - { id: in-sentence, what: { de: "eine Aufzählung im Satz mit Großbuchstaben und Punkt", en: "a list in a sentence with a capital letter and a full stop" } }
   misconceptions:
     - id: comma-before-and
       what: Puts a comma before the and that joins the last two items (cats, dogs, and rabbits)
@@ -222,6 +227,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: fill_in_blank
@@ -241,6 +247,32 @@ lessons:
             say: "One comma is missing from this list. Tap the word that needs a comma after it."
             show: { drawn: letter-card, text: "spoons forks, knives and cups" }
             spans: ["spoons"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many commas does this list need?\nants bees wasps and flies"
+            say: "Read the list yourself. How many commas does it need?"
+            options: ["1", "2", "3"]
+            answer: "2"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which list is written correctly?"
+            say: "Read the lists yourself. Which one has the commas in the right places?"
+            options: ["boats, trains, and planes", "boats, trains and planes", "boats and, trains and planes"]
+            answer: "boats, trains and planes"
+            option_audio: false
+          - id: l1-c6
+            type: sorting
+            text: "Is each list right or wrong? Sort them."
+            say: "Read each list yourself. Is it punctuated right or wrong? Sort them."
+            option_audio: false
+            bins:
+              - { id: right, show: { text: "right" }, say: "Right." }
+              - { id: wrong, show: { text: "wrong" }, say: "Wrong." }
+            options:
+              - { text: "hens ducks, and geese", bin: wrong }
+              - { text: "Jo, Max and Fin", bin: right }
+              - { text: "hens, ducks and geese", bin: right }
+              - { text: "Jo, Max, and Fin", bin: wrong }
 
   - n: 2
     title: { de: Längere Aufzählungen in Sätzen, en: Longer lists in sentences }
@@ -418,8 +450,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: in-sentence
             type: fill_in_blank
             text: "Fill the gaps: Our class has a hamster_ two fish_ a frog and a stick insect."
             say: "Which mark goes in each gap?"
@@ -428,10 +462,12 @@ lessons:
             answer: [",", ","]
             option_audio: false
           - id: l2-c2
+            part: no-comma-and
             type: true_false
             text: "Is it true? \"We played tag, football, and catch.\" is written correctly."
             answer: false
           - id: l2-c3
+            part: longer-items
             type: multiple_choice
             text: "Which sentence is written correctly?"
             say: "Read the sentences yourself. Which one has the commas in the right places?"
@@ -439,15 +475,128 @@ lessons:
             answer: "Dad bought a green tent, a small stove and two torches."
             option_audio: false
           - id: l2-c4
+            part: in-sentence
             type: highlight_in_text
             text: "Tap the word that needs a comma after it."
             say: "One comma is missing. Tap the word that needs a comma after it."
             show: { drawn: letter-card, text: "I can hop, skip jump and run." }
             spans: ["skip"]
           - id: l2-c5
+            part: single-items
             type: multiple_choice
             text: "Which list uses commas the right way?"
             say: "Read the lists yourself. Which one is right?"
             options: ["shells, stones, sand and seaweed", "shells and stones and sand and seaweed", "shells, stones, sand, and, seaweed"]
             answer: "shells, stones, sand and seaweed"
+            option_audio: false
+          - id: l2-c6
+            part: single-items
+            type: fill_in_blank
+            text: "Fill the gaps: crayons_ paints_ glue _ paper"
+            say: "Which mark or word goes in each gap in this list?"
+            frame: "crayons_ paints_ glue _ paper"
+            options: [",", "and", "."]
+            answer: [",", ",", "and"]
+            option_audio: false
+          - id: l2-c7
+            part: single-items
+            type: highlight_in_text
+            text: "Tap every word that needs a comma after it."
+            say: "Two commas are missing from this list. Tap every word that needs a comma after it."
+            show: { drawn: letter-card, text: "rice beans peas and corn" }
+            spans: ["rice", "beans"]
+          - id: l2-c8
+            part: single-items
+            type: multiple_choice
+            text: "How many commas does this list need?\nmilk bread butter cheese and eggs"
+            say: "Read the list yourself. How many commas does it need?"
+            options: ["2", "3", "4"]
+            answer: "3"
+          - id: l2-c9
+            part: single-items
+            type: true_false
+            text: "Is it true? This list needs one more comma.\nTom, Ella Sam and Priya"
+            say: "Read the list. Is it true? It needs one more comma."
+            answer: true
+          - id: l2-c10
+            part: no-comma-and
+            type: highlight_in_text
+            text: "Tap the word that should not have a comma after it."
+            say: "One comma in this list is wrong. Tap the word that should not have a comma after it."
+            show: { drawn: letter-card, text: "red, green, blue, and pink" }
+            spans: ["blue"]
+          - id: l2-c11
+            part: no-comma-and
+            type: multiple_choice
+            text: "Where does the word and go in a list?"
+            options: ["before the last thing", "after the first thing", "between every thing"]
+            answer: "before the last thing"
+          - id: l2-c12
+            part: no-comma-and
+            type: fill_in_blank
+            text: "Fill the gap to finish the list: owls, bats _ moths"
+            say: "Which word or mark goes in the gap to finish the list?"
+            frame: "owls, bats _ moths"
+            options: [",", "and", "."]
+            answer: ["and"]
+            option_audio: false
+          - id: l2-c13
+            part: no-comma-and
+            type: true_false
+            text: "Is it true? In a list, you put a comma just before the word and."
+            say: "Is it true? In a list, you put a comma just before the word and."
+            answer: false
+          - id: l2-c14
+            part: longer-items
+            type: highlight_in_text
+            text: "Tap every word that needs a comma after it."
+            say: "Two commas are missing. Tap every word that needs a comma after it."
+            show: { drawn: letter-card, text: "Gran knitted a long scarf a woolly hat a pair of socks and a jumper." }
+            spans: ["scarf", "hat"]
+          - id: l2-c15
+            part: longer-items
+            type: true_false
+            text: "Is it true? This sentence needs a comma after red.\nI ate a cheese sandwich, a red apple and a yoghurt."
+            say: "Read the sentence. Is it true? It needs a comma after red."
+            answer: false
+          - id: l2-c16
+            part: longer-items
+            type: fill_in_blank
+            text: "Fill the gaps: We took a big rug_ a basket of food _ a ball_"
+            say: "Which mark or word goes in each gap?"
+            frame: "We took a big rug_ a basket of food _ a ball_"
+            options: [",", "and", "."]
+            answer: [",", "and", "."]
+            option_audio: false
+          - id: l2-c17
+            part: longer-items
+            type: ordering
+            text: "Put the cards in order to make the sentence."
+            say: "Put the cards in order to make the sentence."
+            options: ["and a party hat.", "a chocolate cake", "Ella got a pink balloon,"]
+            slot_count: 3
+            answer: ["Ella got a pink balloon,", "a chocolate cake", "and a party hat."]
+            option_audio: false
+          - id: l2-c18
+            part: in-sentence
+            type: multiple_choice
+            text: "Which sentence is written correctly?"
+            say: "Read the sentences yourself. Which one starts and ends the right way, with the commas in the right places?"
+            options: ["at the farm we fed goats, hens and lambs.", "At the farm we fed goats, hens and lambs.", "At the farm we fed goats, hens and lambs"]
+            answer: "At the farm we fed goats, hens and lambs."
+            option_audio: false
+          - id: l2-c19
+            part: in-sentence
+            type: true_false
+            text: "Is it true? This sentence is written correctly.\nMy best friends are Zoe, Ravi and Kim."
+            say: "Read the sentence. Is it true? It is written correctly."
+            answer: true
+          - id: l2-c20
+            part: in-sentence
+            type: fill_in_blank
+            text: "Fill the gaps: _he park has swings, a slide and a sandpit_"
+            say: "Which letter goes at the start, and which mark goes at the end?"
+            frame: "_he park has swings, a slide and a sandpit_"
+            options: ["T", "t", ".", ","]
+            answer: ["T", "."]
             option_audio: false

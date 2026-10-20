@@ -24,6 +24,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [fraction]
   facets: []
+  parts:
+    - { id: simplify, what: { de: Brüche vollständig kürzen, en: simplifying fractions to their simplest form } }
+    - { id: common, what: { de: Brüche gleichnamig machen, en: putting fractions over a common denominator } }
+    - { id: compare, what: { de: echte Brüche vergleichen und ordnen, en: comparing and ordering proper fractions } }
+    - { id: greater-than-one, what: { de: Brüche größer als 1 und gemischte Zahlen vergleichen, en: comparing fractions greater than 1 and mixed numbers } }
   misconceptions:
     - id: not-simplest
       what: Stops after one step and leaves a fraction that can still be simplified (12/18 as 6/9)
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -222,6 +228,21 @@ lessons:
             type: true_false
             text: "Is it true? 21/28 in its simplest form is 3/4."
             answer: true
+          - id: l1-c4
+            type: text_input
+            text: "Write 12/20 in its simplest form."
+            keyboard: fraction
+            answer: "3/5"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Write 16/24 in its simplest form."
+            options: ["2/3", "8/12", "4/6"]
+            answer: "2/3"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? 7/9 can be simplified."
+            answer: false
 
   - n: 2
     title: { de: Gleichnamig machen und vergleichen, en: Common denominators }
@@ -395,19 +416,23 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: simplify
             type: text_input
             text: "Write 18/30 in its simplest form."
             keyboard: fraction
             answer: "3/5"
           - id: l2-c2
+            part: common
             type: fill_in_blank
             text: "Write 4/5 and 2/3 with the denominator 15."
             frame: "4/5 = _/15, 2/3 = _/15"
             options: ["8", "10", "12", "13"]
             answer: ["12", "10"]
           - id: l2-c3
+            part: compare
             type: multiple_choice
             text: "Which is bigger, 5/8 or 3/5?"
             options: ["5/8", "3/5", "they are the same"]
@@ -415,6 +440,7 @@ lessons:
             option_audio: false
             keep_order: true
           - id: l2-c4
+            part: greater-than-one
             type: multiple_choice
             text: "Which is greater, 13/5 or 2 1/2?"
             options: ["13/5", "2 1/2", "they are the same"]
@@ -422,9 +448,108 @@ lessons:
             option_audio: false
             keep_order: true
           - id: l2-c5
+            part: greater-than-one
             type: ordering
             text: "Put the numbers in order, smallest first."
             options: ["5/4", "1 1/3", "7/6"]
             slot_count: 3
             answer: ["7/6", "5/4", "1 1/3"]
+            option_audio: false
+          - id: l2-c6
+            part: simplify
+            type: multiple_choice
+            text: "Write 14/35 in its simplest form."
+            options: ["2/5", "2/35", "7/5"]
+            answer: "2/5"
+            option_audio: false
+          - id: l2-c7
+            part: simplify
+            type: true_false
+            text: "Is it true? 30/45 in its simplest form is 6/9."
+            answer: false
+          - id: l2-c8
+            part: simplify
+            type: multiple_choice
+            text: "What is the highest common factor of 20 and 30?"
+            options: ["10", "5", "60"]
+            answer: "10"
+          - id: l2-c9
+            part: simplify
+            type: multiple_choice
+            text: "Which fraction is in its simplest form?"
+            options: ["9/15", "8/14", "7/12"]
+            answer: "7/12"
+            option_audio: false
+          - id: l2-c10
+            part: common
+            type: multiple_choice
+            text: "What is the lowest common denominator of 1/6 and 1/9?"
+            options: ["18", "15", "54"]
+            answer: "18"
+          - id: l2-c11
+            part: common
+            type: fill_in_blank
+            text: "Write 3/4 and 5/6 with the denominator 12."
+            frame: "3/4 = _/12, 5/6 = _/12"
+            options: ["8", "9", "10", "11"]
+            answer: ["9", "10"]
+          - id: l2-c12
+            part: common
+            type: true_false
+            text: "Is it true? 2/5 = 6/15"
+            answer: true
+          - id: l2-c13
+            part: common
+            type: text_input
+            text: "1/3 = _/24"
+            say: "One third is how many twenty-fourths?"
+            answer: "8"
+          - id: l2-c14
+            part: compare
+            type: multiple_choice
+            text: "Which is bigger, 4/7 or 1/2?"
+            options: ["4/7", "1/2", "they are the same"]
+            answer: "4/7"
+            option_audio: false
+            keep_order: true
+          - id: l2-c15
+            part: compare
+            type: ordering
+            text: "Put the fractions in order, smallest first."
+            options: ["3/10", "2/5", "1/4"]
+            slot_count: 3
+            answer: ["1/4", "3/10", "2/5"]
+            option_audio: false
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Is it true? 7/10 is bigger than 3/4."
+            answer: false
+          - id: l2-c17
+            part: compare
+            type: multiple_choice
+            text: "Sam ran 5/6 of a mile. Ella ran 4/5 of a mile. Who ran further?"
+            options: ["Sam", "Ella", "they ran the same"]
+            answer: "Sam"
+            keep_order: true
+          - id: l2-c18
+            part: greater-than-one
+            type: multiple_choice
+            text: "Which is greater, 2 3/4 or 2 5/6?"
+            options: ["2 3/4", "2 5/6", "they are the same"]
+            answer: "2 5/6"
+            option_audio: false
+            keep_order: true
+          - id: l2-c19
+            part: greater-than-one
+            type: true_false
+            text: "Is it true? 10/3 is more than 3 1/4."
+            answer: true
+          - id: l2-c20
+            part: greater-than-one
+            type: ordering
+            text: "Put the numbers in order, smallest first."
+            options: ["11/8", "1 1/2", "5/4"]
+            slot_count: 3
+            answer: ["5/4", "11/8", "1 1/2"]
             option_audio: false

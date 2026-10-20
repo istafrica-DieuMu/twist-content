@@ -26,6 +26,11 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: have, what: { de: "auf „Tu as ... ?“ mit Ja oder Nein antworten", en: "answering Tu as ... ? with yes or no" } }
+    - { id: what, what: { de: "sagen, was etwas ist und welche Farbe es hat", en: saying what something is and what colour it is } }
+    - { id: where-many, what: { de: "auf „Où ... ?“ und „Combien de ... ?“ antworten", en: "answering Où ... ? and Combien de ... ?" } }
+    - { id: ask, what: { de: "die Frage wählen, die zu dem passt, was ich wissen will", en: choosing the question that fits what you want to know } }
   misconceptions:
     - id: pas-un
       what: Keeps un or une after pas (je n'ai pas un chien) instead of de
@@ -85,7 +90,7 @@ lessons:
             tasks:
               - id: l1-f1
                 type: audio_choice
-                text: "You have not got a pet."
+                text: "You have not got a pet. Which answer fits the question?"
                 say: { en: "You have not got a pet. Listen to the question. Which answer fits?" }
                 audio: { fr: "Tu as un animal ?" }
                 options: ["Non, je n'ai pas d'animal.", "Non, je n'ai pas un animal.", "Oui, j'ai un chien."]
@@ -147,7 +152,7 @@ lessons:
             tasks:
               - id: l1-s1
                 type: audio_choice
-                text: "You have not got a dog."
+                text: "You have not got a dog. Which answer fits the question?"
                 say: { en: "You have not got a dog. Listen to the question. Which answer fits?" }
                 audio: { fr: "Tu as un chien ?" }
                 options: ["Non, je n'ai pas de chien.", "Non, je n'ai pas un chien.", "Oui, j'aime les chiens."]
@@ -190,7 +195,7 @@ lessons:
             tasks:
               - id: l1-n1
                 type: audio_choice
-                text: "You have got a bike."
+                text: "You have got a bike. Which answer fits the question?"
                 say: { en: "You have got a bike. Listen to the question. Which answer fits?" }
                 audio: { fr: "Tu as un vélo ?" }
                 options: ["Oui, j'ai un vélo.", "Oui, j'aime le vélo.", "C'est un vélo."]
@@ -228,10 +233,11 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
-            text: "You have not got a fish."
+            text: "You have not got a fish. Which answer fits the question?"
             say: { en: "You have not got a fish. Listen to the question. Which answer fits?" }
             audio: { fr: "Tu as un poisson ?" }
             options: ["Non, je n'ai pas de poisson.", "Non, je n'ai pas un poisson.", "Oui, j'ai un poisson."]
@@ -252,6 +258,26 @@ lessons:
             audio: { fr: "Qu'est-ce que c'est ?" }
             options: ["C'est une gomme.", "C'est rose.", "J'ai une gomme."]
             answer: "C'est une gomme."
+          - id: l1-c4
+            type: audio_choice
+            text: "What has Nina got?"
+            say: { en: "Listen. What has Nina got?" }
+            audio: { turns: [{ fr: "Nina, tu as un animal ?", speaker: male }, { fr: "Oui, j'ai un lapin.", speaker: female }] }
+            options: [{ object: dog }, { object: rabbit }, { object: cat }]
+            answer: rabbit
+          - id: l1-c5
+            type: true_false
+            text: "Look at the picture. Does the answer fit the question?"
+            say: { en: "Look at the picture. Listen. Does the answer fit the question?" }
+            show: { object: pencil }
+            audio: { turns: [{ fr: "Qu'est-ce que c'est ?", speaker: female }, { fr: "C'est un crayon.", speaker: male }] }
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            option_audio: false
+            text: "You have not got a pencil case. Which answer is right?\n“Tu as une trousse ?”"
+            options: ["Non, je n'ai pas une trousse.", "Non, je n'ai pas de trousse.", "Non, je n'ai pas la trousse."]
+            answer: "Non, je n'ai pas de trousse."
 
   - n: 2
     title: { de: "Wo ist ...? Wie viele?", en: "Where is ...? How many?" }
@@ -262,7 +288,7 @@ lessons:
         tasks:
           - id: l2-w1
             type: audio_choice
-            text: "You have got a cat."
+            text: "You have got a cat. Which answer fits the question?"
             say: { en: "You have got a cat. Listen to the question. Which answer fits?" }
             audio: { fr: "Tu as un animal ?" }
             options: ["Oui, j'ai un chat.", "Non, je n'ai pas de chat.", "C'est un chat."]
@@ -313,7 +339,7 @@ lessons:
                 type: audio_choice
                 text: "Where is the dog?"
                 say: { en: "Listen. Where is the dog?" }
-                audio: { fr: "Où est le chien ? Il est dans le parc." }
+                audio: { turns: [{ fr: "Où est le chien ?", speaker: female }, { fr: "Il est dans le parc.", speaker: male }] }
                 options: [{ object: park }, { object: kitchen }, { object: school }]
                 answer: park
                 hints:
@@ -382,7 +408,7 @@ lessons:
               - id: l2-s3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the answer: There are five apples."
                 say: { en: "Build the answer: There are five apples." }
                 options: ["pommes.", "Il y a", "cinq"]
                 slot_count: 3
@@ -408,7 +434,7 @@ lessons:
                 type: audio_choice
                 text: "Where is Mum?"
                 say: { en: "Listen. Where is Mum?" }
-                audio: { fr: "Où est Maman ? Elle est dans le jardin." }
+                audio: { turns: [{ fr: "Où est Maman ?", speaker: male }, { fr: "Elle est dans le jardin.", speaker: female }] }
                 options: [{ object: garden }, { object: kitchen }, { object: school }]
                 answer: garden
               - id: l2-n2
@@ -422,7 +448,7 @@ lessons:
               - id: l2-n3
                 type: ordering
                 option_audio: false
-                text: "Put the words in order."
+                text: "Build the question: Where is the rabbit?"
                 say: { en: "Build the question: Where is the rabbit?" }
                 options: ["le lapin ?", "Où", "est"]
                 slot_count: 3
@@ -441,15 +467,18 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: have
             type: audio_choice
-            text: "You have not got a rabbit."
+            text: "You have not got a rabbit. Which answer fits the question?"
             say: { en: "You have not got a rabbit. Listen to the question. Which answer fits?" }
             audio: { fr: "Tu as un lapin ?" }
             options: ["Non, je n'ai pas de lapin.", "Non, je n'ai pas un lapin.", "Oui, j'ai un lapin."]
             answer: "Non, je n'ai pas de lapin."
           - id: l2-c2
+            part: where-many
             type: audio_choice
             text: "Count the flowers. Which answer fits the question?"
             say: { en: "Count the flowers. Listen to the question. Which answer fits?" }
@@ -458,19 +487,22 @@ lessons:
             options: ["Il y a deux fleurs.", "Elle est dans le jardin.", "C'est une fleur."]
             answer: "Il y a deux fleurs."
           - id: l2-c3
+            part: ask
             type: multiple_choice
             option_audio: false
             text: "Which question goes with this answer?\n“Oui, j'ai un chien.”"
             options: ["Tu as un chien ?", "Où est le chien ?", "Combien de chiens ?"]
             answer: "Tu as un chien ?"
           - id: l2-c4
+            part: where-many
             type: audio_choice
             text: "Where is the cat?"
             say: { en: "Listen. Where is the cat?" }
-            audio: { fr: "Où est le chat ? Il est dans la cuisine." }
+            audio: { turns: [{ fr: "Où est le chat ?", speaker: male }, { fr: "Il est dans la cuisine.", speaker: female }] }
             options: [{ object: kitchen }, { object: garden }, { object: park }]
             answer: kitchen
           - id: l2-c5
+            part: what
             type: audio_choice
             text: "Look at the picture. Which answer fits the question?"
             say: { en: "Look at the picture. Listen to the question. Which answer fits?" }
@@ -478,3 +510,128 @@ lessons:
             audio: { fr: "C'est de quelle couleur ?" }
             options: ["C'est rose.", "C'est un tee-shirt.", "C'est rouge."]
             answer: "C'est rose."
+          - id: l2-c6
+            part: have
+            type: true_false
+            text: "Has Inès got a dog?"
+            say: { en: "Listen. Has Inès got a dog?" }
+            audio: { turns: [{ fr: "Inès, tu as un chien ?", speaker: male }, { fr: "Non, je n'ai pas de chien. J'ai un chat.", speaker: female }] }
+            answer: false
+          - id: l2-c7
+            part: have
+            type: multiple_choice
+            option_audio: false
+            text: "Tom has not got a pet. What does he answer?\n“Tu as un animal ?”"
+            options: ["Non, je n'ai pas de animal.", "Non, je n'ai pas d'animal.", "Non, je n'ai pas un animal."]
+            answer: "Non, je n'ai pas d'animal."
+          - id: l2-c8
+            part: have
+            type: audio_choice
+            text: "What has Lucas got?"
+            say: { en: "Listen. What has Lucas got?" }
+            audio: { turns: [{ fr: "Lucas, tu as un animal ?", speaker: female }, { fr: "Oui, j'ai un poisson.", speaker: male }] }
+            options: [{ object: cat }, { object: rabbit }, { object: fish }]
+            answer: fish
+          - id: l2-c9
+            part: have
+            type: ordering
+            option_audio: false
+            text: "Build the answer: No, I have not got a dog."
+            say: { en: "Build the answer: No, I have not got a dog." }
+            options: ["pas un chien.", "Non,", "pas de chien.", "je n'ai"]
+            slot_count: 3
+            answer: ["Non,", "je n'ai", "pas de chien."]
+          - id: l2-c10
+            part: what
+            type: audio_choice
+            text: "What is it?"
+            say: { en: "Listen. What is it? Tap the picture." }
+            audio: { turns: [{ fr: "Qu'est-ce que c'est ?", speaker: female }, { fr: "C'est un cartable.", speaker: male }] }
+            options: [{ object: pencil-case }, { object: book }, { object: schoolbag }]
+            answer: schoolbag
+          - id: l2-c11
+            part: what
+            type: true_false
+            text: "Look at the picture. Does the answer fit the question?"
+            say: { en: "Look at the picture. Listen. Does the answer fit the question?" }
+            show: { object: crayon, colour: red }
+            audio: { turns: [{ fr: "C'est de quelle couleur ?", speaker: female }, { fr: "C'est rouge.", speaker: male }] }
+            answer: true
+          - id: l2-c12
+            part: what
+            type: multiple_choice
+            option_audio: false
+            text: "Look at the picture. Your friend asks: “C'est de quelle couleur ?” Which answer fits?"
+            show: { object: balloon, colour: orange }
+            options: ["C'est un ballon.", "C'est orange.", "Oui, j'ai un ballon."]
+            answer: "C'est orange."
+          - id: l2-c13
+            part: what
+            type: multiple_choice
+            option_audio: false
+            text: "Look at the picture. Which answer fits?\n“Qu'est-ce que c'est ?”"
+            show: { object: ruler }
+            options: ["C'est un règle.", "C'est rouge.", "C'est une règle."]
+            answer: "C'est une règle."
+          - id: l2-c14
+            part: where-many
+            type: audio_choice
+            text: "Where is the rabbit?"
+            say: { en: "Listen. Where is the rabbit?" }
+            audio: { turns: [{ fr: "Où est le lapin ?", speaker: female }, { fr: "Il est dans le jardin.", speaker: male }] }
+            options: [{ object: park }, { object: school }, { object: garden }]
+            answer: garden
+          - id: l2-c15
+            part: where-many
+            type: audio_choice
+            text: "How many apples are there?"
+            say: { en: "Listen. How many apples are there? Tap the picture." }
+            audio: { turns: [{ fr: "Combien de pommes ?", speaker: male }, { fr: "Il y a six pommes.", speaker: female }] }
+            options:
+              - { object: apple, count: 4, layout: row }
+              - { object: apple, count: 6, layout: row }
+              - { object: apple, count: 5, layout: row }
+            answer: "6"
+          - id: l2-c16
+            part: where-many
+            type: multiple_choice
+            option_audio: false
+            text: "Which answer fits the question?\n“Où est la souris ?”"
+            options: ["Il y a une souris.", "C'est une souris.", "Elle est dans la maison."]
+            answer: "Elle est dans la maison."
+          - id: l2-c17
+            part: ask
+            type: matching
+            option_audio: false
+            text: "Which answer goes with which question?"
+            say: { en: "Tap each question, then its answer." }
+            pairs:
+              - left: { text: "Tu as un crayon ?" }
+                right: { text: "Oui, j'ai un crayon." }
+              - left: { text: "Qu'est-ce que c'est ?" }
+                right: { text: "C'est une gomme." }
+              - left: { text: "Combien de livres ?" }
+                right: { text: "Il y a deux livres." }
+          - id: l2-c18
+            part: ask
+            type: ordering
+            option_audio: false
+            text: "Build the question: How many dogs?"
+            say: { en: "Build the question: How many dogs?" }
+            options: ["chiens ?", "Combien", "de"]
+            slot_count: 3
+            answer: ["Combien", "de", "chiens ?"]
+          - id: l2-c19
+            part: ask
+            type: multiple_choice
+            option_audio: false
+            text: "You want to know where Grandpa is. What do you ask?"
+            options: ["Tu as un papi ?", "Où est Papi ?", "Qu'est-ce que c'est ?"]
+            answer: "Où est Papi ?"
+          - id: l2-c20
+            part: ask
+            type: multiple_choice
+            option_audio: false
+            text: "You want to know if your friend has got a pet. What do you ask?"
+            options: ["Où est l'animal ?", "C'est un animal.", "Tu as un animal ?"]
+            answer: "Tu as un animal ?"

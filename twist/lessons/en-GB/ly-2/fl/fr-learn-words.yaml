@@ -27,6 +27,11 @@ metadata:
   forms: [picture, text, audio, drawn]
   drawn: [word-card, table]
   facets: []
+  parts:
+    - { id: cards, what: { de: Bildkarten mit le oder la nutzen, en: using picture cards with le or la } }
+    - { id: remember, what: { de: "Wörter behalten: laut sagen, bewegen, wiederholen", en: "keeping words: saying them aloud, moving and saying them again" } }
+    - { id: word-book, what: { de: ein Wörterheft führen und Wörter nach Themen ordnen, en: keeping a word book and sorting words by topic } }
+    - { id: dictionary, what: { de: ein Wort im Bildwörterbuch nach Thema und ABC finden, en: finding a word in a picture dictionary by topic and by ABC } }
   misconceptions:
     - id: look-once
       what: Thinks looking at a word once is enough to keep it
@@ -225,6 +230,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -244,6 +250,23 @@ lessons:
             options: ["la lune", "lune", "the lune"]
             answer: "la lune"
             option_audio: false
+          - id: l1-c4
+            type: image_multiple_choice
+            option_audio: false
+            text: "Read the card. Which picture matches?"
+            show: { drawn: word-card, text: "le soleil" }
+            options: [{ object: moon }, { object: sun }, { object: star }]
+            answer: sun
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which movement fits “Tapez dans vos mains !”?"
+            options: ["You jump.", "You clap your hands.", "You sit down."]
+            answer: "You clap your hands."
+          - id: l1-c6
+            type: true_false
+            text: "A card with only “nuage” on the back, with no le or la, is the best card."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: false
 
   - n: 2
     title: { de: "Wörterheft und Bildwörterbuch", en: "Word book and picture dictionary" }
@@ -430,8 +453,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: cards
             type: image_multiple_choice
             option_audio: false
             text: "Read the card. Which picture matches?"
@@ -439,16 +464,19 @@ lessons:
             options: [{ object: cow }, { object: horse }, { object: sheep }]
             answer: cow
           - id: l2-c2
+            part: remember
             type: multiple_choice
             text: "Which way helps you keep new words best?"
             options: ["Say them aloud again tomorrow.", "Look at the list once.", "Learn the whole book in one go."]
             answer: "Say them aloud again tomorrow."
           - id: l2-c3
+            part: dictionary
             type: multiple_choice
             text: "In which topic do you find “la jupe”?"
             options: ["clothes", "food", "animals"]
             answer: "clothes"
           - id: l2-c4
+            part: dictionary
             type: ordering
             option_audio: false
             text: "Put the words in ABC order."
@@ -456,7 +484,116 @@ lessons:
             slot_count: 3
             answer: ["l'arbre", "la maison", "le poisson"]
           - id: l2-c5
+            part: cards
             type: multiple_choice
             text: "Which picture card helps you most with a new word?"
             options: ["the picture on the front, le chien on the back", "only chien on the back", "the picture alone, with no word"]
             answer: "the picture on the front, le chien on the back"
+          - id: l2-c6
+            part: cards
+            type: true_false
+            text: "Léo writes only “soleil” on the back of his card, with no le or la. Is that the best card?"
+            say: { en: "Read about Léo's card. Is that the best card?" }
+            answer: false
+          - id: l2-c7
+            part: cards
+            type: matching
+            option_audio: false
+            text: "Which card goes with which picture?"
+            say: { en: "Tap a card, then its picture." }
+            pairs:
+              - { left: { text: "l'abeille" }, right: { object: bee } }
+              - { left: { text: "le serpent" }, right: { object: snake } }
+              - { left: { text: "le coquillage" }, right: { object: shell } }
+          - id: l2-c8
+            part: cards
+            type: multiple_choice
+            text: "What goes on the front of a picture card?"
+            options: ["the English word", "the picture", "nothing"]
+            answer: "the picture"
+          - id: l2-c9
+            part: remember
+            type: multiple_choice
+            text: "Inès jumps each time she says her new word. Which word is she learning?"
+            options: ["nager", "sauter", "Tapez dans vos mains !"]
+            answer: "sauter"
+            option_audio: false
+          - id: l2-c10
+            part: remember
+            type: true_false
+            text: "You learn five new words today and say them again tomorrow. That helps you remember them."
+            say: { en: "Read the sentences. Is that true?" }
+            answer: true
+          - id: l2-c11
+            part: remember
+            type: multiple_choice
+            text: "Sam has twenty new words to learn. What is the best plan?"
+            options: ["all twenty tonight, then never again", "a few words each day, and say them again", "look at them once"]
+            answer: "a few words each day, and say them again"
+          - id: l2-c12
+            part: remember
+            type: true_false
+            text: "Looking at a new word once is enough to remember it."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: false
+          - id: l2-c13
+            part: word-book
+            type: true_false
+            text: "This is a line from Max's word book. Is it right?"
+            say: { en: "This is a line from Max's word book. Is it right?" }
+            show: { drawn: table, rows: [[français, English], [la lune, sun]] }
+            answer: false
+          - id: l2-c14
+            part: word-book
+            type: sorting
+            option_audio: false
+            text: "Animals or clothes? Sort the words."
+            bins:
+              - { id: animals, show: { text: "animals" } }
+              - { id: clothes, show: { text: "clothes" } }
+            options:
+              - { text: "le canard", bin: animals }
+              - { text: "la robe", bin: clothes }
+              - { text: "le serpent", bin: animals }
+              - { text: "la jupe", bin: clothes }
+          - id: l2-c15
+            part: word-book
+            type: true_false
+            text: "In a word book, the French goes on the left and the English on the right."
+            say: { en: "Read the sentence. Is it true?" }
+            answer: true
+          - id: l2-c16
+            part: word-book
+            type: multiple_choice
+            text: "Tom tests himself with his word book. What does he do?"
+            options: ["He reads both sides once.", "He covers one side and says the words.", "He tears out the page."]
+            answer: "He covers one side and says the words."
+          - id: l2-c17
+            part: word-book
+            type: matching
+            option_audio: false
+            text: "Which English word goes with each French word?"
+            pairs:
+              - { left: { text: "le soleil" }, right: { text: "sun" } }
+              - { left: { text: "la tasse" }, right: { text: "cup" } }
+              - { left: { text: "le nuage" }, right: { text: "cloud" } }
+          - id: l2-c18
+            part: dictionary
+            type: true_false
+            text: "Léa looks for “la tasse” under t in the ABC list. Is that right?"
+            say: { en: "Read about Léa. Is that right?" }
+            answer: true
+          - id: l2-c19
+            part: dictionary
+            type: multiple_choice
+            text: "Which topic page of the picture dictionary has le canard, la vache and le chat?"
+            options: ["food", "clothes", "animals"]
+            answer: "animals"
+          - id: l2-c20
+            part: dictionary
+            type: ordering
+            option_audio: false
+            text: "Put the words in ABC order."
+            options: ["la robe", "le nuage", "la jupe"]
+            slot_count: 3
+            answer: ["la jupe", "le nuage", "la robe"]

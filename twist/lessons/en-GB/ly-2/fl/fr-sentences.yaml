@@ -26,6 +26,10 @@ metadata:
   forms: [picture, text, drawn]
   drawn: [word-card]
   facets: []
+  parts:
+    - { id: to-picture, what: { de: einen Satz lesen und das passende Bild finden, en: reading a sentence and finding its picture } }
+    - { id: to-sentence, what: { de: zu einem Bild den passenden Satz finden, en: finding the sentence for a picture } }
+    - { id: negative, what: { de: Sätze mit ne ... pas verstehen, en: understanding sentences with ne ... pas } }
   misconceptions:
     - id: one-word
       what: Reads one familiar word and picks the picture for it (a red car for J'ai un ballon rouge)
@@ -85,7 +89,7 @@ lessons:
               - id: l1-f1
                 type: image_multiple_choice
                 option_audio: false
-                text: "J'ai un ballon rouge."
+                text: "J'ai un ballon rouge.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options:
                   - { object: ball, colour: red, key: ball-red }
@@ -102,7 +106,7 @@ lessons:
               - id: l1-f2
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il y a trois chiens."
+                text: "Il y a trois chiens.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options:
                   - { object: dog, count: 3, layout: row, key: dogs-3 }
@@ -116,7 +120,7 @@ lessons:
               - id: l1-f3
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il neige."
+                text: "Il neige.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options: [{ object: snow }, { object: rain }, { object: sun }]
                 answer: snow
@@ -155,7 +159,7 @@ lessons:
               - id: l1-s1
                 type: image_multiple_choice
                 option_audio: false
-                text: "C'est une voiture bleue."
+                text: "C'est une voiture bleue.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options:
                   - { object: car, colour: blue, key: car-blue }
@@ -166,7 +170,7 @@ lessons:
               - id: l1-s2
                 type: image_multiple_choice
                 option_audio: false
-                text: "Je suis triste."
+                text: "Je suis triste.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options: [{ object: sad }, { object: happy }, { object: angry }]
                 answer: sad
@@ -180,7 +184,7 @@ lessons:
               - id: l1-s4
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il y a du soleil."
+                text: "Il y a du soleil.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options: [{ object: sun }, { object: wind }, { object: snow }]
                 answer: sun
@@ -204,7 +208,7 @@ lessons:
               - id: l1-n1
                 type: image_multiple_choice
                 option_audio: false
-                text: "J'ai une robe jaune."
+                text: "J'ai une robe jaune.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options:
                   - { object: dress, colour: yellow, key: dress-yellow }
@@ -214,7 +218,7 @@ lessons:
               - id: l1-n2
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il y a cinq poissons."
+                text: "Il y a cinq poissons.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options:
                   - { object: fish, count: 5, layout: row, key: fish-5 }
@@ -229,7 +233,7 @@ lessons:
               - id: l1-n4
                 type: image_multiple_choice
                 option_audio: false
-                text: "Je suis content."
+                text: "Je suis content.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options: [{ object: happy }, { object: sad }, { object: tired }]
                 answer: happy
@@ -241,11 +245,12 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
             option_audio: false
-            text: "C'est une robe rouge."
+            text: "C'est une robe rouge.\n\nWhich picture matches?"
             say: { en: "Read the sentence. Which picture matches?" }
             options:
               - { object: dress, colour: red, key: dress-red }
@@ -255,7 +260,7 @@ lessons:
           - id: l1-c2
             type: image_multiple_choice
             option_audio: false
-            text: "Il y a deux chats."
+            text: "Il y a deux chats.\n\nWhich picture matches?"
             say: { en: "Read the sentence. Which picture matches?" }
             options:
               - { object: cat, count: 2, layout: row, key: cats-2 }
@@ -267,6 +272,28 @@ lessons:
             text: "Je suis triste.\nDoes the sentence match the picture?"
             show: { object: happy }
             answer: false
+          - id: l1-c4
+            type: image_multiple_choice
+            option_audio: false
+            text: "Il y a du vent.\n\nWhich picture matches?"
+            say: { en: "Read the sentence. Which picture matches?" }
+            options: [{ object: sun }, { object: wind }, { object: rain }]
+            answer: wind
+          - id: l1-c5
+            type: true_false
+            text: "Il y a quatre chiens.\nDoes the sentence match the picture?"
+            show: { object: dog, count: 4, layout: row }
+            answer: true
+          - id: l1-c6
+            type: image_multiple_choice
+            option_audio: false
+            text: "C'est une jupe bleue.\n\nWhich picture matches?"
+            say: { en: "Read the sentence. Which picture matches?" }
+            options:
+              - { object: dress, colour: blue, key: dress-blue }
+              - { object: skirt, colour: red, key: skirt-red }
+              - { object: skirt, colour: blue, key: skirt-blue }
+            answer: skirt-blue
 
   - n: 2
     title: { de: "Vom Bild zum Satz, ne ... pas", en: "From picture to sentence, ne ... pas" }
@@ -278,7 +305,7 @@ lessons:
           - id: l2-w1
             type: image_multiple_choice
             option_audio: false
-            text: "Il pleut."
+            text: "Il pleut.\n\nWhich picture matches?"
             say: { en: "Read the sentence. Which picture matches?" }
             options: [{ object: rain }, { object: snow }, { object: sun }]
             answer: rain
@@ -286,7 +313,7 @@ lessons:
           - id: l2-w2
             type: image_multiple_choice
             option_audio: false
-            text: "J'ai un ballon bleu."
+            text: "J'ai un ballon bleu.\n\nWhich picture matches?"
             say: { en: "Read the sentence. Which picture matches?" }
             options:
               - { object: ball, colour: blue, key: ball-blue }
@@ -332,7 +359,7 @@ lessons:
               - id: l2-f2
                 type: image_multiple_choice
                 option_audio: false
-                text: "Je ne suis pas content."
+                text: "Je ne suis pas content.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options: [{ object: happy }, { object: sad }]
                 answer: sad
@@ -365,7 +392,7 @@ lessons:
               - id: l2-f5
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il ne neige pas. Il pleut."
+                text: "Il ne neige pas. Il pleut.\n\nWhich picture matches?"
                 say: { en: "Read the sentences. Which picture matches?" }
                 options: [{ object: rain }, { object: snow }, { object: sun }]
                 answer: rain
@@ -387,7 +414,7 @@ lessons:
               - id: l2-s2
                 type: image_multiple_choice
                 option_audio: false
-                text: "Je n'ai pas de ballon. J'ai une voiture."
+                text: "Je n'ai pas de ballon. J'ai une voiture.\n\nWhich picture matches?"
                 say: { en: "Read the sentences. Which picture matches?" }
                 options: [{ object: car }, { object: ball }, { object: bike }]
                 answer: car
@@ -409,7 +436,7 @@ lessons:
               - id: l2-s5
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il y a du soleil. Il ne pleut pas."
+                text: "Il y a du soleil. Il ne pleut pas.\n\nWhich picture matches?"
                 say: { en: "Read the sentences. Which picture matches?" }
                 options: [{ object: sun }, { object: rain }, { object: snow }]
                 answer: sun
@@ -427,7 +454,7 @@ lessons:
               - id: l2-n2
                 type: image_multiple_choice
                 option_audio: false
-                text: "Je ne suis pas triste."
+                text: "Je ne suis pas triste.\n\nWhich picture matches?"
                 say: { en: "Read the sentence. Which picture matches?" }
                 options: [{ object: happy }, { object: sad }]
                 answer: happy
@@ -446,18 +473,20 @@ lessons:
               - id: l2-n5
                 type: image_multiple_choice
                 option_audio: false
-                text: "Il ne neige pas. Il y a du vent."
+                text: "Il ne neige pas. Il y a du vent.\n\nWhich picture matches?"
                 say: { en: "Read the sentences. Which picture matches?" }
                 options: [{ object: wind }, { object: snow }, { object: rain }]
                 answer: wind
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: to-picture
             type: image_multiple_choice
             option_audio: false
-            text: "J'ai un ballon jaune."
+            text: "J'ai un ballon jaune.\n\nWhich picture matches?"
             say: { en: "Read the sentence. Which picture matches?" }
             options:
               - { object: ball, colour: yellow, key: ball-yellow }
@@ -465,13 +494,15 @@ lessons:
               - { object: car, colour: yellow, key: car-yellow }
             answer: ball-yellow
           - id: l2-c2
+            part: negative
             type: image_multiple_choice
             option_audio: false
-            text: "Il ne pleut pas. Il neige."
+            text: "Il ne pleut pas. Il neige.\n\nWhich picture matches?"
             say: { en: "Read the sentences. Which picture matches?" }
             options: [{ object: snow }, { object: rain }, { object: sun }]
             answer: snow
           - id: l2-c3
+            part: to-sentence
             type: multiple_choice
             option_audio: false
             text: "Which sentence matches the picture?"
@@ -479,14 +510,139 @@ lessons:
             options: ["Il y a deux chiens.", "Il y a deux chats.", "Il y a trois chiens."]
             answer: "Il y a deux chiens."
           - id: l2-c4
+            part: to-picture
             type: true_false
             text: "Il y a du vent.\nDoes the sentence match the picture?"
             show: { object: snow }
             answer: false
           - id: l2-c5
+            part: to-sentence
             type: multiple_choice
             option_audio: false
             text: "Which sentence matches the picture?"
             show: { object: car, colour: yellow }
             options: ["C'est une voiture jaune.", "C'est un ballon jaune.", "Ce n'est pas une voiture."]
             answer: "C'est une voiture jaune."
+          - id: l2-c6
+            part: to-picture
+            type: image_multiple_choice
+            option_audio: false
+            text: "Il y a quatre canards.\n\nWhich picture matches?"
+            say: { en: "Read the sentence. Which picture matches?" }
+            options:
+              - { object: duck, count: 3, layout: row, key: ducks-3 }
+              - { object: fish, count: 4, layout: row, key: fish-4 }
+              - { object: duck, count: 4, layout: row, key: ducks-4 }
+            answer: ducks-4
+          - id: l2-c7
+            part: to-picture
+            type: image_multiple_choice
+            option_audio: false
+            text: "Je suis fatigué.\n\nWhich picture matches?"
+            say: { en: "Read the sentence. Which picture matches?" }
+            options: [{ object: happy }, { object: tired }, { object: sad }]
+            answer: tired
+          - id: l2-c8
+            part: to-picture
+            type: image_multiple_choice
+            option_audio: false
+            text: "J'ai une jupe verte.\n\nWhich picture matches?"
+            say: { en: "Read the sentence. Which picture matches?" }
+            options:
+              - { object: dress, colour: green, key: dress-green }
+              - { object: skirt, colour: green, key: skirt-green }
+              - { object: skirt, colour: yellow, key: skirt-yellow }
+            answer: skirt-green
+          - id: l2-c9
+            part: to-picture
+            type: true_false
+            text: "Il y a du soleil.\nDoes the sentence match the picture?"
+            show: { object: sun }
+            answer: true
+          - id: l2-c10
+            part: to-picture
+            type: image_multiple_choice
+            option_audio: false
+            text: "Il y a deux pommes.\n\nWhich picture matches?"
+            say: { en: "Read the sentence. Which picture matches?" }
+            options:
+              - { object: pear, count: 2, layout: row, key: pears-2 }
+              - { object: apple, count: 2, layout: row, key: apples-2 }
+              - { object: apple, count: 3, layout: row, key: apples-3 }
+            answer: apples-2
+          - id: l2-c11
+            part: to-sentence
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence matches the picture?"
+            show: { object: rain }
+            options: ["Il neige.", "Il ne pleut pas.", "Il pleut."]
+            answer: "Il pleut."
+          - id: l2-c12
+            part: to-sentence
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence matches the picture?"
+            show: { object: sad }
+            options: ["Je suis content.", "Je suis triste.", "Je ne suis pas triste."]
+            answer: "Je suis triste."
+          - id: l2-c13
+            part: to-sentence
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence matches the picture?"
+            show: { object: fish, count: 3, layout: row }
+            options: ["Il y a trois canards.", "Il y a cinq poissons.", "Il y a trois poissons."]
+            answer: "Il y a trois poissons."
+          - id: l2-c14
+            part: to-sentence
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence matches the picture?"
+            show: { object: skirt, colour: red }
+            options: ["C'est une robe rouge.", "C'est une jupe rouge.", "C'est une jupe jaune."]
+            answer: "C'est une jupe rouge."
+          - id: l2-c15
+            part: to-sentence
+            type: multiple_choice
+            option_audio: false
+            text: "Which sentence matches the picture?"
+            show: { object: dress, colour: yellow }
+            options: ["C'est une robe verte.", "C'est une robe jaune.", "C'est une jupe jaune."]
+            answer: "C'est une robe jaune."
+          - id: l2-c16
+            part: negative
+            type: image_multiple_choice
+            option_audio: false
+            text: "Je ne suis pas fatigué. Je suis content.\n\nWhich picture matches?"
+            say: { en: "Read the sentences. Which picture matches?" }
+            options: [{ object: tired }, { object: sad }, { object: happy }]
+            answer: happy
+          - id: l2-c17
+            part: negative
+            type: true_false
+            text: "Je ne suis pas content.\nDoes the sentence match the picture?"
+            show: { object: happy }
+            answer: false
+          - id: l2-c18
+            part: negative
+            type: image_multiple_choice
+            option_audio: false
+            text: "Je n'ai pas de chien. J'ai un chat.\n\nWhich picture matches?"
+            say: { en: "Read the sentences. Which picture matches?" }
+            options: [{ object: dog }, { object: cat }, { object: fish }]
+            answer: cat
+          - id: l2-c19
+            part: negative
+            type: multiple_choice
+            option_audio: false
+            text: "Which one matches the picture?"
+            show: { object: tired }
+            options: ["Je suis content.", "Je ne suis pas fatigué.", "Je ne suis pas content. Je suis fatigué."]
+            answer: "Je ne suis pas content. Je suis fatigué."
+          - id: l2-c20
+            part: negative
+            type: true_false
+            text: "Il ne pleut pas. Il y a du vent.\nDo the sentences match the picture?"
+            show: { object: wind }
+            answer: true

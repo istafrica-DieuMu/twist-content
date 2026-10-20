@@ -25,6 +25,12 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [ruler]
   facets: [units]
+  parts:
+    - { id: read, what: { de: Längen in cm und mm am Lineal ablesen, en: reading lengths in centimetres and millimetres on a ruler } }
+    - { id: cm-mm, what: { de: zwischen cm und mm umrechnen, en: converting between cm and mm } }
+    - { id: m-cm, what: { de: zwischen m und cm umrechnen, en: converting between m and cm } }
+    - { id: compare, what: { de: Längen in verschiedenen Einheiten vergleichen, en: comparing lengths in different units } }
+    - { id: unit, what: { de: eine passende Einheit wählen, en: choosing a sensible unit } }
   misconceptions:
     - id: cm-mm-joined
       what: Swaps the cm and mm digits (3 cm 7 mm read as 7 cm 3 mm or 37 cm), or thinks 1 cm = 100 mm
@@ -194,6 +200,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -210,6 +217,21 @@ lessons:
             text: "Which unit fits? A 1p coin is about 20 _ across."
             options: ["mm", "cm", "m"]
             answer: "mm"
+          - id: l1-c4
+            type: text_input
+            text: "How many millimetres long is the strip?"
+            show: { drawn: ruler, to: 10, length: 1.9 }
+            answer: "19"
+          - id: l1-c5
+            type: true_false
+            text: "Is it true? 7 cm 1 mm = 71 mm"
+            say: "Seven centimetres and one millimetre is seventy-one millimetres. Is that true?"
+            answer: true
+          - id: l1-c6
+            type: multiple_choice
+            text: "Which of these is about 1 cm wide?"
+            options: ["a child's fingernail", "a book", "a table"]
+            answer: "a child's fingernail"
 
   - n: 2
     title: { de: Zentimeter und Meter, en: Centimetres and metres }
@@ -366,30 +388,130 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "How many millimetres long is the strip?"
             show: { drawn: ruler, to: 10, length: 7.3 }
             options: ["73", "37", "703"]
             answer: "73"
           - id: l2-c2
+            part: cm-mm
             type: text_input
             text: "9 cm = _ mm"
             answer: "90"
           - id: l2-c3
+            part: m-cm
             type: multiple_choice
             text: "5 m = _ cm"
             options: ["500", "50", "5000"]
             answer: "500"
           - id: l2-c4
+            part: m-cm
             type: multiple_choice
             text: "2 m 30 cm = _ cm"
             options: ["230", "203", "2030"]
             answer: "230"
           - id: l2-c5
+            part: unit
             type: multiple_choice
             text: "Which unit fits? A paper clip is about 3 _ long."
             show: { object: paper-clip }
             options: ["mm", "cm", "m"]
             answer: "cm"
+          - id: l2-c6
+            part: read
+            type: multiple_choice
+            text: "How long is the strip?"
+            show: { drawn: ruler, to: 10, length: 2.8 }
+            options: ["2 cm 8 mm", "8 cm 2 mm", "3 cm"]
+            answer: "2 cm 8 mm"
+          - id: l2-c7
+            part: read
+            type: text_input
+            text: "How many millimetres long is the strip?"
+            show: { drawn: ruler, to: 10, length: 9.1 }
+            answer: "91"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Is it true? The strip is 6 cm 3 mm long."
+            show: { drawn: ruler, to: 10, length: 3.6 }
+            answer: false
+          - id: l2-c9
+            part: cm-mm
+            type: fill_in_blank
+            text: "Fill the gap."
+            frame: "7 cm 8 mm = _ mm"
+            options: ["15", "78", "87", "708"]
+            answer: ["78"]
+          - id: l2-c10
+            part: cm-mm
+            type: text_input
+            text: "50 mm = _ cm"
+            answer: "5"
+          - id: l2-c11
+            part: cm-mm
+            type: true_false
+            text: "Is it true? 26 mm = 2 cm 6 mm"
+            say: "Twenty-six millimetres is two centimetres and six millimetres. Is that true?"
+            answer: true
+          - id: l2-c12
+            part: m-cm
+            type: true_false
+            text: "Is it true? 3 m 70 cm = 370 cm"
+            say: "Three metres seventy centimetres is three hundred and seventy centimetres. Is that true?"
+            answer: true
+          - id: l2-c13
+            part: m-cm
+            type: multiple_choice
+            text: "108 cm = _"
+            options: ["1 m 8 cm", "10 m 8 cm", "1 m 80 cm"]
+            answer: "1 m 8 cm"
+          - id: l2-c14
+            part: compare
+            type: ordering
+            text: "Put the lengths in order, shortest first."
+            options: ["5 cm", "55 mm", "6 cm", "42 mm"]
+            slot_count: 4
+            answer: ["42 mm", "5 cm", "55 mm", "6 cm"]
+          - id: l2-c15
+            part: compare
+            type: multiple_choice
+            text: "Which is the longest?"
+            options: ["1 m 2 cm", "112 cm", "1 m 20 cm"]
+            answer: "1 m 20 cm"
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Is it true? 30 mm is shorter than 4 cm."
+            say: "Thirty millimetres is shorter than four centimetres. Is that true?"
+            answer: true
+          - id: l2-c17
+            part: compare
+            type: fill_in_blank
+            text: "Which sign fits?"
+            frame: "9 cm _ 89 mm"
+            options: ["<", ">", "="]
+            answer: [">"]
+            option_audio: false
+          - id: l2-c18
+            part: unit
+            type: multiple_choice
+            text: "Which unit fits? A teaspoon is about 13 _ long."
+            options: ["mm", "cm", "m"]
+            answer: "cm"
+          - id: l2-c19
+            part: unit
+            type: multiple_choice
+            text: "About how tall is a giraffe?"
+            options: ["about 5 m", "about 5 cm", "about 5 mm"]
+            answer: "about 5 m"
+          - id: l2-c20
+            part: unit
+            type: multiple_choice
+            text: "Which is best measured in metres?"
+            options: ["the length of a swimming pool", "the length of a crayon", "the width of a button"]
+            answer: "the length of a swimming pool"

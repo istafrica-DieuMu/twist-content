@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [grid, table]
   facets: []
+  parts:
+    - { id: find, what: { de: ein Feld mit Koordinaten wie A3 finden, en: finding the square for a grid reference like A3 } }
+    - { id: give-ref, what: { de: die Koordinaten eines Ortes angeben, en: giving the grid reference of a place } }
+    - { id: follow, what: { de: einem Weg auf dem Plan folgen, en: following a route on a plan } }
+    - { id: describe, what: { de: einen Weg auf dem Plan beschreiben, en: describing a route on a plan } }
   misconceptions:
     - id: number-first
       what: Writes the number first (2B) or swaps column and row (looks for A3 in column C, row 1)
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -230,6 +236,24 @@ lessons:
             say: "Is it true? The church is in square C3."
             show: { drawn: table, sheet: true, header: false, rows: [["", "farm", "", "mill"], ["wood", "", "lake", ""], ["", "", "", "church"], ["camp", "", "bridge", ""]] }
             answer: false
+          - id: l1-c4
+            type: multiple_choice
+            text: "What is in square C2?"
+            show: { drawn: table, sheet: true, header: false, rows: [["", "farm", "", "mill"], ["wood", "", "lake", ""], ["", "", "", "church"], ["camp", "", "bridge", ""]] }
+            options: ["lake", "farm", "church"]
+            answer: "lake"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which square is the farm in?"
+            show: { drawn: table, sheet: true, header: false, rows: [["", "farm", "", "mill"], ["wood", "", "lake", ""], ["", "", "", "church"], ["camp", "", "bridge", ""]] }
+            options: ["B1", "1B", "B2"]
+            answer: "B1"
+          - id: l1-c6
+            type: true_false
+            text: "The wood and the camp are both in column A."
+            say: "Is it true? The wood and the camp are both in column A."
+            show: { drawn: table, sheet: true, header: false, rows: [["", "farm", "", "mill"], ["wood", "", "lake", ""], ["", "", "", "church"], ["camp", "", "bridge", ""]] }
+            answer: true
 
   - n: 2
     title: { de: Wege auf dem Plan, en: Routes on a plan }
@@ -403,34 +427,148 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: find
             type: multiple_choice
             text: "What is in square E2?"
             show: { drawn: table, sheet: true, header: false, rows: [["home", "farm", "", "park", "zoo"], ["", "", "shop", "", "café"], ["school", "pond", "", "hall", "pool"], ["", "bridge", "mill", "library", ""]] }
             options: ["café", "zoo", "pool"]
             answer: "café"
           - id: l2-c2
+            part: give-ref
             type: multiple_choice
             text: "Which square is the mill in?"
             show: { drawn: table, sheet: true, header: false, rows: [["home", "farm", "", "park", "zoo"], ["", "", "shop", "", "café"], ["school", "pond", "", "hall", "pool"], ["", "bridge", "mill", "library", ""]] }
             options: ["C4", "4C", "D4"]
             answer: "C4"
           - id: l2-c3
+            part: follow
             type: multiple_choice
             text: "Start at the zoo (E1). Go 2 squares down. Where are you?"
             show: { drawn: table, sheet: true, header: false, rows: [["home", "farm", "", "park", "zoo"], ["", "", "shop", "", "café"], ["school", "pond", "", "hall", "pool"], ["", "bridge", "mill", "library", ""]] }
             options: ["pool", "café", "hall"]
             answer: "pool"
           - id: l2-c4
+            part: describe
             type: multiple_choice
             text: "How do you get from the school (A3) to the hall (D3)?"
             show: { drawn: table, sheet: true, header: false, rows: [["home", "farm", "", "park", "zoo"], ["", "", "shop", "", "café"], ["school", "pond", "", "hall", "pool"], ["", "bridge", "mill", "library", ""]] }
             options: ["3 squares right", "3 squares left", "4 squares right"]
             answer: "3 squares right"
           - id: l2-c5
+            part: follow
             type: multiple_choice
             text: "Start at the hall (D3). Go 1 square up, then 1 square left. Where are you?"
             show: { drawn: table, sheet: true, header: false, rows: [["home", "farm", "", "park", "zoo"], ["", "", "shop", "", "café"], ["school", "pond", "", "hall", "pool"], ["", "bridge", "mill", "library", ""]] }
             options: ["shop", "mill", "park"]
             answer: "shop"
+          - id: l2-c6
+            part: find
+            type: multiple_choice
+            text: "Plan of a zoo. What is in square C3?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["zebras", "lions", "lake"]
+            answer: "zebras"
+          - id: l2-c7
+            part: find
+            type: true_false
+            text: "Plan of a zoo. Is it true? Square D3 is empty."
+            say: "Is it true? Square D3 is empty."
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            answer: true
+          - id: l2-c8
+            part: find
+            type: multiple_choice
+            text: "Plan of a zoo. What is in square E3?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["monkeys", "café", "exit"]
+            answer: "monkeys"
+          - id: l2-c9
+            part: find
+            type: multiple_choice
+            text: "Plan of a zoo. Which two places are in column C?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["lions and zebras", "lions and café", "zebras and lake"]
+            answer: "lions and zebras"
+          - id: l2-c10
+            part: give-ref
+            type: multiple_choice
+            text: "Plan of a zoo. Which square are the penguins in?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["B2", "2B", "C2"]
+            answer: "B2"
+          - id: l2-c11
+            part: give-ref
+            type: fill_in_blank
+            text: "Plan of a zoo. Write the grid reference of the shop."
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            frame: "_ _"
+            options: ["2", "4", "B", "D"]
+            answer: ["D", "2"]
+            option_audio: false
+          - id: l2-c12
+            part: give-ref
+            type: true_false
+            text: "Plan of a zoo. The exit is in square 4E."
+            say: "Is it true? The grid reference of the exit is four E."
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            answer: false
+          - id: l2-c13
+            part: give-ref
+            type: multiple_choice
+            text: "Plan of a zoo. Which square is the café in?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["E1", "E2", "1E"]
+            answer: "E1"
+          - id: l2-c14
+            part: follow
+            type: multiple_choice
+            text: "Plan of a zoo. Start at the gate (A1). Go 1 square down, then 1 square right. Where are you?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["penguins", "lions", "toilets"]
+            answer: "penguins"
+          - id: l2-c15
+            part: follow
+            type: multiple_choice
+            text: "Plan of a zoo. Start at the lake (B4). Go 1 square up, then 1 square right. Which square are you in?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["C3", "A3", "C4"]
+            answer: "C3"
+          - id: l2-c16
+            part: describe
+            type: multiple_choice
+            text: "Plan of a zoo. How do you get from the lions (C1) to the zebras (C3)?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["2 squares down", "2 squares up", "3 squares down"]
+            answer: "2 squares down"
+          - id: l2-c17
+            part: describe
+            type: ordering
+            text: "Plan of a zoo. Start at the gate (A1). Go 1 square down, then 2 squares right. Put the squares you step on in order."
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["C2", "B1", "A2", "B2"]
+            slot_count: 3
+            answer: ["A2", "B2", "C2"]
+          - id: l2-c18
+            part: describe
+            type: multiple_choice
+            text: "Plan of a zoo. How do you get from the toilets (A3) to the lake (B4)?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["1 square down, then 1 square right", "1 square up, then 1 square right", "1 square down, then 1 square left"]
+            answer: "1 square down, then 1 square right"
+          - id: l2-c19
+            part: describe
+            type: true_false
+            text: "Plan of a zoo. Is it true? From the toilets (A3) to the monkeys (E3) is 4 squares right."
+            say: "Is it true? From the toilets in A3 to the monkeys in E3 is four squares right."
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            answer: true
+          - id: l2-c20
+            part: follow
+            type: multiple_choice
+            text: "Plan of a zoo. Start at the shop (D2). Go 2 squares down. Where are you?"
+            show: { drawn: table, sheet: true, header: false, rows: [["gate", "", "lions", "", "café"], ["", "penguins", "", "shop", ""], ["toilets", "", "zebras", "", "monkeys"], ["", "lake", "", "picnic area", "exit"]] }
+            options: ["picnic area", "exit", "zebras"]
+            answer: "picnic area"

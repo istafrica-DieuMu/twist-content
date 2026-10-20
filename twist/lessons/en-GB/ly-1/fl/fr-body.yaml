@@ -25,6 +25,10 @@ metadata:
   forms: [audio, picture]
   drawn: []
   facets: []
+  parts:
+    - { id: head, what: { de: Teile des Kopfes verstehen, en: understanding the parts of the head } }
+    - { id: limbs, what: { de: "Arm, Hand, Bein und Fuß verstehen", en: "understanding arm, hand, leg and foot" } }
+    - { id: instructions, what: { de: auf touche und lève mit dem richtigen Körperteil reagieren, en: acting on touche and lève with the right part of the body } }
   misconceptions:
     - id: yeux-oeil
       what: Expects les yeux to sound like un œil, so does not recognise eyes in the plural
@@ -220,6 +224,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -241,6 +246,26 @@ lessons:
             audio: { fr: "Touche ton nez !" }
             options: [{ object: eye }, { object: mouth }, { object: nose }]
             answer: nose
+          - id: l1-c4
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear second."
+            say: { en: "Listen. You hear two words. Tap the one you hear second." }
+            audio: { turns: [{ fr: "L'oreille." }, { fr: "La tête." }] }
+            options: [{ object: ear }, { object: nose }, { object: head }]
+            answer: head
+          - id: l1-c5
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "Un œil." }
+            show: { object: eye }
+            answer: true
+          - id: l1-c6
+            type: audio_choice
+            text: "What do you touch?"
+            say: { en: "Listen. What do you touch? Tap the picture." }
+            audio: { fr: "Touche ton œil !" }
+            options: [{ object: ear }, { object: eye }, { object: mouth }]
+            answer: eye
 
   - n: 2
     title: { de: "La main, le pied", en: "La main, le pied" }
@@ -414,8 +439,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: head
             type: audio_choice
             text: "Tap the picture."
             say: { en: "Listen. Tap the picture." }
@@ -423,6 +450,7 @@ lessons:
             options: [{ object: eye }, { object: mouth }, { object: ear }]
             answer: ear
           - id: l2-c2
+            part: instructions
             type: audio_choice
             text: "What do you touch?"
             say: { en: "Listen. What do you touch? Tap the picture." }
@@ -430,12 +458,14 @@ lessons:
             options: [{ object: foot }, { object: hand }, { object: nose }]
             answer: hand
           - id: l2-c3
+            part: head
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "La tête." }
             show: { object: head }
             answer: true
           - id: l2-c4
+            part: instructions
             type: audio_choice
             text: "What do you raise?"
             say: { en: "Listen. What do you raise? Tap the picture." }
@@ -443,8 +473,124 @@ lessons:
             options: [{ object: arm }, { object: foot }, { object: leg }]
             answer: foot
           - id: l2-c5
+            part: head
             type: true_false
             text: "Does the picture match?"
             say: { en: "Listen. Does the picture match?", fr: "Les yeux." }
             show: { object: mouth }
             answer: false
+          - id: l2-c6
+            part: head
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "L'oreille." }
+            show: { object: ear }
+            answer: true
+          - id: l2-c7
+            part: head
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear second."
+            say: { en: "Listen. You hear two words. Tap the one you hear second." }
+            audio: { turns: [{ fr: "Le nez." }, { fr: "La bouche." }] }
+            options: [{ object: nose }, { object: eye }, { object: mouth }]
+            answer: mouth
+          - id: l2-c8
+            part: head
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "Un œil." }
+            show: { object: nose }
+            answer: false
+          - id: l2-c9
+            part: head
+            type: audio_choice
+            text: "You hear two words. Which picture is not one of them? Tap it."
+            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
+            audio: { turns: [{ fr: "La tête." }, { fr: "Les yeux." }] }
+            options: [{ object: head }, { object: ear }, { object: eye }]
+            answer: ear
+          - id: l2-c10
+            part: limbs
+            type: audio_choice
+            text: "Tap the picture."
+            say: { en: "Listen. Tap the picture." }
+            audio: { fr: "La jambe." }
+            options: [{ object: foot }, { object: leg }, { object: arm }]
+            answer: leg
+          - id: l2-c11
+            part: limbs
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "La jambe." }
+            show: { object: foot }
+            answer: false
+          - id: l2-c12
+            part: limbs
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "Le pied." }
+            show: { object: foot }
+            answer: true
+          - id: l2-c13
+            part: limbs
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear first."
+            say: { en: "Listen. You hear two words. Tap the one you hear first." }
+            audio: { turns: [{ fr: "Le bras." }, { fr: "La jambe." }] }
+            options: [{ object: leg }, { object: arm }, { object: hand }]
+            answer: arm
+          - id: l2-c14
+            part: limbs
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear second."
+            say: { en: "Listen. You hear two words. Tap the one you hear second." }
+            audio: { turns: [{ fr: "Le pied." }, { fr: "La main." }] }
+            options: [{ object: foot }, { object: hand }, { object: leg }]
+            answer: hand
+          - id: l2-c15
+            part: limbs
+            type: true_false
+            text: "Does the picture match?"
+            say: { en: "Listen. Does the picture match?", fr: "La main." }
+            show: { object: arm }
+            answer: false
+          - id: l2-c16
+            part: limbs
+            type: audio_choice
+            text: "You hear two words. Which picture is not one of them? Tap it."
+            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
+            audio: { turns: [{ fr: "La jambe." }, { fr: "Le bras." }] }
+            options: [{ object: leg }, { object: foot }, { object: arm }]
+            answer: foot
+          - id: l2-c17
+            part: instructions
+            type: audio_choice
+            text: "What do you touch?"
+            say: { en: "Listen. What do you touch? Tap the picture." }
+            audio: { fr: "Touche ton bras !" }
+            options: [{ object: hand }, { object: arm }, { object: leg }]
+            answer: arm
+          - id: l2-c18
+            part: instructions
+            type: audio_choice
+            text: "What do you raise?"
+            say: { en: "Listen. What do you raise? Tap the picture." }
+            audio: { fr: "Lève la jambe !" }
+            options: [{ object: arm }, { object: head }, { object: leg }]
+            answer: leg
+          - id: l2-c19
+            part: instructions
+            type: true_false
+            text: "You hear an instruction. Is this the part you touch?"
+            say: { en: "Listen. Is this the part you touch?" }
+            audio: { fr: "Touche ta bouche !" }
+            show: { object: mouth }
+            answer: true
+          - id: l2-c20
+            part: instructions
+            type: audio_choice
+            text: "You hear two instructions. What do you touch second? Tap the picture."
+            say: { en: "Listen. You hear two instructions. What do you touch second? Tap the picture." }
+            audio: { fr: "Touche ton nez ! Touche ta bouche !" }
+            options: [{ object: nose }, { object: mouth }, { object: ear }]
+            answer: mouth

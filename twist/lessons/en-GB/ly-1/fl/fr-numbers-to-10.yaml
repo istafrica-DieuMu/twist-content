@@ -25,6 +25,11 @@ metadata:
   forms: [audio, picture, drawn]
   drawn: [dots]
   facets: []
+  parts:
+    - { id: to-five, what: { de: die Zahlen un bis cinq verstehen, en: understanding the numbers un to cinq } }
+    - { id: six-ten, what: { de: die Zahlen six bis dix verstehen, en: understanding the numbers six to dix } }
+    - { id: count-on, what: { de: in der richtigen Reihenfolge zählen, en: counting in order } }
+    - { id: how-many, what: { de: Anzahlen von Dingen verstehen, en: understanding how many things there are } }
   misconceptions:
     - id: six-dix
       what: Mixes up six and dix, which sound almost the same
@@ -233,6 +238,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -255,6 +261,36 @@ lessons:
             say: { en: "Listen. Do the dots match?", fr: "Cinq." }
             show: { drawn: dots, count: 4, layout: dice }
             answer: false
+          - id: l1-c4
+            type: audio_choice
+            text: "You hear two numbers. Tap the bigger one."
+            say: { en: "Listen. You hear two numbers. Tap the bigger one." }
+            audio: { turns: [{ fr: "Trois." }, { fr: "Un." }] }
+            options:
+              - { drawn: dots, count: 1, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            answer: "3"
+          - id: l1-c5
+            type: audio_choice
+            text: "Listen to the count. One number is missing. Which one?"
+            say: { en: "Listen to the count. One number is missing. Which one?" }
+            audio: { fr: "Un ... trois, quatre." }
+            options:
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            answer: "2"
+          - id: l1-c6
+            type: audio_choice
+            text: "Tap the right picture."
+            say: { en: "Listen. Tap the right picture." }
+            audio: { fr: "Quatre pommes." }
+            options:
+              - { object: apple, count: 3 }
+              - { object: apple, count: 5 }
+              - { object: apple, count: 4 }
+            answer: "4"
 
   - n: 2
     title: { de: "Six bis dix", en: "Six to dix" }
@@ -442,8 +478,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: to-five
             type: audio_choice
             text: "Tap the right dots."
             say: { en: "Listen. Tap the right dots." }
@@ -454,17 +492,20 @@ lessons:
               - { drawn: dots, count: 5, layout: dice }
             answer: "4"
           - id: l2-c2
+            part: six-ten
             type: text_input
             text: "Write the number you hear."
             say: { en: "Listen and write the number.", fr: "Huit." }
             answer: "8"
           - id: l2-c3
+            part: six-ten
             type: true_false
             text: "Do the dots match?"
             say: { en: "Listen. Do the dots match?", fr: "Neuf." }
             show: { drawn: dots, count: 6, layout: dice }
             answer: false
           - id: l2-c4
+            part: how-many
             type: audio_choice
             text: "How many?"
             say: { en: "Listen. How many? Tap the right picture." }
@@ -475,6 +516,7 @@ lessons:
               - { object: fish, count: 8 }
             answer: "10"
           - id: l2-c5
+            part: count-on
             type: audio_choice
             text: "What comes next?"
             say: { en: "Listen to the count. Which number comes next?" }
@@ -484,3 +526,140 @@ lessons:
               - { drawn: dots, count: 10, layout: dice }
               - { drawn: dots, count: 9, layout: dice }
             answer: "9"
+          - id: l2-c6
+            part: to-five
+            type: audio_choice
+            text: "You hear two numbers. Tap the bigger one."
+            say: { en: "Listen. You hear two numbers. Tap the bigger one." }
+            audio: { turns: [{ fr: "Deux." }, { fr: "Cinq." }] }
+            options:
+              - { drawn: dots, count: 2, layout: dice }
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+            answer: "5"
+          - id: l2-c7
+            part: to-five
+            type: true_false
+            text: "Do the dots match?"
+            say: { en: "Listen. Do the dots match?", fr: "Trois." }
+            show: { drawn: dots, count: 3, layout: dice }
+            answer: true
+          - id: l2-c8
+            part: to-five
+            type: text_input
+            text: "Write the number you hear."
+            say: { en: "Listen and write the number.", fr: "Un." }
+            answer: "1"
+          - id: l2-c9
+            part: to-five
+            type: audio_choice
+            text: "You hear two numbers. Tap the smaller one."
+            say: { en: "Listen. You hear two numbers. Tap the smaller one." }
+            audio: { turns: [{ fr: "Quatre." }, { fr: "Trois." }] }
+            options:
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+              - { drawn: dots, count: 3, layout: dice }
+            answer: "3"
+          - id: l2-c10
+            part: six-ten
+            type: audio_choice
+            text: "Tap the right dots."
+            say: { en: "Listen. Tap the right dots." }
+            audio: { fr: "Sept." }
+            options:
+              - { drawn: dots, count: 8, layout: dice }
+              - { drawn: dots, count: 7, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+            answer: "7"
+          - id: l2-c11
+            part: six-ten
+            type: true_false
+            text: "Do the dots match?"
+            say: { en: "Listen. Do the dots match?", fr: "Dix." }
+            show: { drawn: dots, count: 10, layout: five-structure }
+            answer: true
+          - id: l2-c12
+            part: six-ten
+            type: audio_choice
+            text: "You hear two numbers. Tap the bigger one."
+            say: { en: "Listen. You hear two numbers. Tap the bigger one." }
+            audio: { turns: [{ fr: "Dix." }, { fr: "Six." }] }
+            options:
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 8, layout: dice }
+              - { drawn: dots, count: 10, layout: dice }
+            answer: "10"
+          - id: l2-c13
+            part: count-on
+            type: audio_choice
+            text: "What comes next?"
+            say: { en: "Listen to the count. Which number comes next?" }
+            audio: { fr: "Trois, quatre, cinq ..." }
+            options:
+              - { drawn: dots, count: 4, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 8, layout: dice }
+            answer: "6"
+          - id: l2-c14
+            part: count-on
+            type: audio_choice
+            text: "Listen to the count. One number is missing. Which one?"
+            say: { en: "Listen to the count. One number is missing. Which one?" }
+            audio: { fr: "Un, deux ... quatre, cinq." }
+            options:
+              - { drawn: dots, count: 3, layout: dice }
+              - { drawn: dots, count: 6, layout: dice }
+              - { drawn: dots, count: 5, layout: dice }
+            answer: "3"
+          - id: l2-c15
+            part: count-on
+            type: text_input
+            text: "Listen to the count. Write the number that comes next."
+            say: { en: "Listen to the count. Write the number that comes next.", fr: "Sept, huit, neuf ..." }
+            answer: "10"
+          - id: l2-c16
+            part: count-on
+            type: audio_choice
+            text: "Listen to the count. One number is missing. Which one?"
+            say: { en: "Listen to the count. One number is missing. Which one?" }
+            audio: { fr: "Six, sept ... neuf, dix." }
+            options:
+              - { drawn: dots, count: 7, layout: dice }
+              - { drawn: dots, count: 9, layout: dice }
+              - { drawn: dots, count: 8, layout: dice }
+            answer: "8"
+          - id: l2-c17
+            part: how-many
+            type: true_false
+            text: "Léa asks how many cats there are. Is Hugo's answer right?"
+            say: { en: "Léa asks how many cats there are. Listen. Is Hugo's answer right?" }
+            audio: { turns: [{ fr: "Combien de chats ?", speaker: female }, { fr: "Sept chats.", speaker: male }] }
+            show: { object: cat, count: 7 }
+            answer: true
+          - id: l2-c18
+            part: how-many
+            type: true_false
+            text: "Hugo asks how many apples there are. Is Léa's answer right?"
+            say: { en: "Hugo asks how many apples there are. Listen. Is Léa's answer right?" }
+            audio: { turns: [{ fr: "Combien de pommes ?", speaker: male }, { fr: "Huit pommes.", speaker: female }] }
+            show: { object: apple, count: 9 }
+            answer: false
+          - id: l2-c19
+            part: how-many
+            type: audio_choice
+            text: "Léa counts her eggs. Tap the right picture."
+            say: { en: "Listen. Léa counts her eggs. Tap the right picture." }
+            audio: { fr: "Un, deux, trois. Trois œufs !", speaker: female }
+            options:
+              - { object: egg, count: 2 }
+              - { object: egg, count: 3 }
+              - { object: egg, count: 4 }
+            answer: "3"
+          - id: l2-c20
+            part: how-many
+            type: text_input
+            text: "Hugo counts his balls. How many has he got? Write the number."
+            say: { en: "Listen. Hugo counts his balls. How many has he got? Write the number." }
+            audio: { fr: "Un, deux, trois, quatre, cinq, six. Six ballons !", speaker: male }
+            answer: "6"

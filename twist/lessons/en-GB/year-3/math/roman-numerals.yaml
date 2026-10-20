@@ -26,6 +26,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [clock]
   facets: []
+  parts:
+    - { id: read, what: { de: römische Zahlen bis 100 lesen, en: reading Roman numerals to 100 } }
+    - { id: write, what: { de: Zahlen bis 100 mit römischen Zahlzeichen schreiben, en: writing numbers to 100 in Roman numerals } }
+    - { id: clock, what: { de: römische Zahlen auf dem Zifferblatt lesen, en: reading Roman numerals on a clock face } }
+    - { id: place-value, what: { de: römische Zahlen mit unserem Stellenwertsystem vergleichen, en: comparing Roman numerals with our place value } }
   misconceptions:
     - id: always-add
       what: Adds every letter, also one on the left (IV = 6, IX = 11, XL = 60)
@@ -209,6 +214,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -227,6 +233,23 @@ lessons:
             text: "XIII = ?"
             say: "Type the number for this Roman numeral."
             answer: "13"
+          - id: l1-c4
+            type: multiple_choice
+            text: "XVIII = ?"
+            say: "What number is this Roman numeral?"
+            options: ["18", "13", "22"]
+            answer: "18"
+          - id: l1-c5
+            type: multiple_choice
+            text: "Which Roman numeral is 11?"
+            options: ["IX", "XI", "IIX"]
+            answer: "XI"
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? XIV = 16"
+            say: "Is it true? Read the Roman numeral and check the number."
+            answer: false
 
   - n: 2
     title: { de: "L, C und das Zifferblatt", en: "L, C and the clock face" }
@@ -397,33 +420,138 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: read
             type: multiple_choice
             text: "XVI = ?"
             say: "What number is this Roman numeral?"
             options: ["16", "14", "61"]
             answer: "16"
           - id: l2-c2
+            part: write
             type: multiple_choice
             text: "Which Roman numeral is 19?"
             options: ["XIX", "XVIIII", "IXX"]
             answer: "XIX"
             option_audio: false
           - id: l2-c3
+            part: read
             type: multiple_choice
             text: "LXXV = ?"
             say: "What number is this Roman numeral?"
             options: ["75", "65", "85"]
             answer: "75"
           - id: l2-c4
+            part: write
             type: multiple_choice
             text: "Which Roman numeral is 40?"
             options: ["XL", "XXXX", "LX"]
             answer: "XL"
             option_audio: false
           - id: l2-c5
+            part: place-value
             type: multiple_choice
             text: "How are Roman numerals different from our numbers?"
             options: ["They have no zero.", "They use a zero like ours.", "A letter on the left is worth ten times more, like our digits."]
             answer: "They have no zero."
+          - id: l2-c6
+            part: read
+            type: text_input
+            text: "XXVI = ?"
+            say: "Type the number for this Roman numeral."
+            answer: "26"
+          - id: l2-c7
+            part: read
+            type: multiple_choice
+            text: "XCV = ?"
+            say: "What number is this Roman numeral?"
+            options: ["95", "105", "85"]
+            answer: "95"
+          - id: l2-c8
+            part: read
+            type: true_false
+            text: "Is it true? LX = 40"
+            say: "Is it true? Read the Roman numeral and check the number."
+            answer: false
+          - id: l2-c9
+            part: write
+            type: multiple_choice
+            text: "Which Roman numeral is 60?"
+            options: ["XL", "LX", "XXXXXX"]
+            answer: "LX"
+            option_audio: false
+          - id: l2-c10
+            part: write
+            type: multiple_choice
+            text: "Which Roman numeral is 85?"
+            options: ["LXXXV", "LXXXXV", "XVL"]
+            answer: "LXXXV"
+            option_audio: false
+          - id: l2-c11
+            part: write
+            type: true_false
+            text: "Is it true? 44 = XLIV"
+            say: "Is it true? Read the Roman numeral and check the number."
+            answer: true
+          - id: l2-c12
+            part: clock
+            type: multiple_choice
+            text: "This clock has Roman numerals. What time is it?"
+            say: "This clock has Roman numerals. Look where the hands point. What time is it?"
+            show: { drawn: clock, hour: 7, minute: 0, roman: true }
+            options: ["6 o'clock", "7 o'clock", "8 o'clock"]
+            answer: "7 o'clock"
+          - id: l2-c13
+            part: clock
+            type: multiple_choice
+            text: "This clock has Roman numerals. What time is it?"
+            say: "This clock has Roman numerals. Look where the hands point. What time is it?"
+            show: { drawn: clock, hour: 11, minute: 0, roman: true }
+            options: ["9 o'clock", "11 o'clock", "12 o'clock"]
+            answer: "11 o'clock"
+          - id: l2-c14
+            part: clock
+            type: multiple_choice
+            text: "On a clock with Roman numerals, which numeral is on the left?"
+            options: ["XI", "III", "IX"]
+            answer: "IX"
+            option_audio: false
+          - id: l2-c15
+            part: clock
+            type: true_false
+            text: "This clock has Roman numerals. Is it true? It shows 2 o'clock."
+            show: { drawn: clock, hour: 2, minute: 0, roman: true }
+            answer: true
+          - id: l2-c16
+            part: clock
+            type: true_false
+            text: "This clock has Roman numerals. Is it true? It shows 7 o'clock."
+            show: { drawn: clock, hour: 5, minute: 0, roman: true }
+            answer: false
+          - id: l2-c17
+            part: place-value
+            type: true_false
+            text: "Is it true? In our number 22, both 2s are worth the same."
+            answer: false
+          - id: l2-c18
+            part: place-value
+            type: multiple_choice
+            text: "In our number 55, the first 5 is worth 50. In LV, what is the V worth?"
+            say: "In our number fifty-five, the first five is worth fifty. Now read the Roman numeral. What is its last letter worth?"
+            options: ["5", "50", "500"]
+            answer: "5"
+          - id: l2-c19
+            part: place-value
+            type: true_false
+            text: "Is it true? An X is worth 10 wherever it stands in a Roman numeral."
+            say: "Is it true? The Roman letter for ten is worth ten wherever it stands in a Roman numeral."
+            answer: true
+          - id: l2-c20
+            part: place-value
+            type: multiple_choice
+            text: "Our number 50 has a zero in the ones. How do the Romans write 50?"
+            options: ["VO", "L", "XXXXX"]
+            answer: "L"
+            option_audio: false

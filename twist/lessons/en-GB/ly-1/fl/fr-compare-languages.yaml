@@ -27,6 +27,10 @@ metadata:
   forms: [audio, picture, text]
   drawn: []
   facets: []
+  parts:
+    - { id: sound-alike, what: { de: "hören, ob ein französisches Wort wie das englische klingt", en: hearing whether a French word sounds like the English one } }
+    - { id: spelling, what: { de: kleine Unterschiede in der Schreibung erkennen, en: spotting small spelling differences } }
+    - { id: false-friends, what: { de: falsche Freunde erkennen, en: spotting false friends } }
   misconceptions:
     - id: all-alike
       what: Expects every French word to be like the English one, and guesses from English when it is not
@@ -230,6 +234,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -250,6 +255,27 @@ lessons:
             say: { en: "Listen. Does the French word sound like the English word?", fr: "La main." }
             show: { object: hand }
             answer: false
+          - id: l1-c4
+            type: true_false
+            text: "Does the French word sound like the English word?"
+            say: { en: "Listen. Does the French word sound like the English word?", fr: "La tomate." }
+            show: { object: tomato }
+            answer: true
+          - id: l1-c5
+            type: audio_choice
+            text: "Listen for a word you know. What is the zebra eating?"
+            say: { en: "Listen for a word you know. What is the zebra eating?" }
+            audio: { fr: "Le zèbre mange une pizza." }
+            options: [{ object: tomato }, { object: cake }, { object: pizza }]
+            answer: pizza
+          - id: l1-c6
+            type: audio_choice
+            text: "You hear two words. Which one sounds like English?"
+            say: { en: "Listen. You hear two words. Which one sounds like English?" }
+            audio: { turns: [{ fr: "Le serpent." }, { fr: "La pomme." }] }
+            options: ["the first", "the second"]
+            answer: "the first"
+            keep_order: true
 
   - n: 2
     title: { de: "Fast gleich geschrieben", en: "Spelt nearly the same" }
@@ -441,26 +467,31 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: spelling
             type: multiple_choice
             text: "Which is the French word for tomato?"
             options: ["tomato", "tomat", "tomate"]
             answer: "tomate"
             option_audio: false
           - id: l2-c2
+            part: false-friends
             type: multiple_choice
             text: "What does “un crayon” mean?"
             say: { en: "What does un crayon mean?" }
             options: ["a crayon", "a pencil", "a pen"]
             answer: "a pencil"
           - id: l2-c3
+            part: sound-alike
             type: true_false
             text: "Does the French word sound like the English word?"
             say: { en: "Listen. Does the French word sound like the English word?", fr: "Le zèbre." }
             show: { object: zebra }
             answer: true
           - id: l2-c4
+            part: sound-alike
             type: audio_choice
             text: "Tap the picture."
             say: { en: "Listen. Tap the picture." }
@@ -468,7 +499,130 @@ lessons:
             options: [{ object: zebra }, { object: horse }, { object: giraffe }]
             answer: giraffe
           - id: l2-c5
+            part: false-friends
             type: true_false
             text: "“Le pain” means pain."
             say: { en: "Is it true? Le pain means pain." }
             answer: false
+          - id: l2-c6
+            part: sound-alike
+            type: true_false
+            text: "Does the French word sound like the English word?"
+            say: { en: "Listen. Does the French word sound like the English word?", fr: "Le clown." }
+            show: { object: clown }
+            answer: true
+          - id: l2-c7
+            part: sound-alike
+            type: true_false
+            text: "Does the French word sound like the English word for the picture?"
+            say: { en: "Listen. Does the French word sound like the English word for the picture?", fr: "Le pain." }
+            show: { object: bread }
+            answer: false
+          - id: l2-c8
+            part: sound-alike
+            type: audio_choice
+            text: "Listen for a word you know. What is the zebra eating?"
+            say: { en: "Listen for a word you know. What is the zebra eating?" }
+            audio: { fr: "Le zèbre mange une tomate." }
+            options: [{ object: apple }, { object: tomato }, { object: bread }]
+            answer: tomato
+          - id: l2-c9
+            part: sound-alike
+            type: audio_choice
+            text: "Tap the picture."
+            say: { en: "Listen. Tap the picture." }
+            audio: { fr: "La pizza." }
+            options: [{ object: cake }, { object: bread }, { object: pizza }]
+            answer: pizza
+          - id: l2-c10
+            part: sound-alike
+            type: audio_choice
+            text: "You hear two words. Which one sounds like English?"
+            say: { en: "Listen. You hear two words. Which one sounds like English?" }
+            audio: { turns: [{ fr: "La maison." }, { fr: "Le taxi." }] }
+            options: ["the first", "the second"]
+            answer: "the second"
+            keep_order: true
+          - id: l2-c11
+            part: spelling
+            type: text_input
+            text: "Write the French word. English: zebra. French: ?"
+            say: { en: "Write the French word for zebra." }
+            keyboard: letters
+            answer: "zèbre"
+          - id: l2-c12
+            part: spelling
+            type: multiple_choice
+            text: "Which French word is spelt just like the English word?"
+            say: { en: "Which French word is spelt just like the English word?" }
+            options: ["la tomate", "le taxi", "la girafe"]
+            answer: "le taxi"
+            option_audio: false
+          - id: l2-c13
+            part: spelling
+            type: true_false
+            text: "“Girafe” and “giraffe” are spelt the same."
+            say: { en: "Is it true? The French word and the English word are spelt the same." }
+            answer: false
+          - id: l2-c14
+            part: spelling
+            type: true_false
+            text: "“Le parc” is spelt just like the English word park."
+            say: { en: "Is it true? Le parc is spelt just like the English word park." }
+            answer: false
+          - id: l2-c15
+            part: spelling
+            type: sorting
+            text: "Spelt the same as in English, or spelt differently?"
+            say: { en: "Is each French word spelt the same as the English word, or differently? Sort the words." }
+            bins:
+              - { id: same, show: { text: "spelt the same" }, say: { en: "Spelt the same." } }
+              - { id: different, show: { text: "spelt differently" }, say: { en: "Spelt differently." } }
+            options:
+              - { text: "le taxi", bin: same }
+              - { text: "la girafe", bin: different }
+              - { text: "la pizza", bin: same }
+              - { text: "la lampe", bin: different }
+            option_audio: false
+          - id: l2-c16
+            part: spelling
+            type: multiple_choice
+            text: "Which French word is spelt differently from the English word?"
+            options: ["le clown", "le train", "la lampe"]
+            answer: "la lampe"
+            option_audio: false
+          - id: l2-c17
+            part: false-friends
+            type: true_false
+            text: "“La main” means a hand."
+            say: { en: "Is it true? La main means a hand." }
+            answer: true
+          - id: l2-c18
+            part: false-friends
+            type: multiple_choice
+            text: "A shop in France has a sign that says “Pain”. What can you buy there?"
+            say: { en: "A shop in France has a sign that says pain. What can you buy there?" }
+            options: ["bread", "pencils", "medicine"]
+            answer: "bread"
+          - id: l2-c19
+            part: false-friends
+            type: audio_choice
+            text: "Tap the picture."
+            say: { en: "Listen. Tap the picture." }
+            audio: { fr: "La main." }
+            options: [{ object: foot }, { object: hand }, { object: dad }]
+            answer: hand
+          - id: l2-c20
+            part: false-friends
+            type: sorting
+            text: "Does each word mean what it looks like in English? Sort the words."
+            say: { en: "Does each French word mean what it looks like in English? Put it with same meaning or false friend." }
+            bins:
+              - { id: same, show: { text: "same meaning" }, say: { en: "Same meaning." } }
+              - { id: false-friend, show: { text: "false friend" }, say: { en: "False friend." } }
+            options:
+              - { text: "un crayon", bin: false-friend }
+              - { text: "le zèbre", bin: same }
+              - { text: "le pain", bin: false-friend }
+              - { text: "la pizza", bin: same }
+            option_audio: false

@@ -13,7 +13,8 @@ summary: >
   2 finds the squashed words in a sentence and ends with the skill check.
   The sentences use words the child can read. Copying runs as tracing
   with any ink accepted, so whether the child's own writing has its
-  spaces is not marked yet.
+  spaces is not marked yet: the skill check marks seeing where the
+  spaces go, and Practise covers writing them.
 metadata:
   year: reception
   topic: { de: "Grammatik und Zeichensetzung", en: "Grammar and punctuation" }
@@ -25,6 +26,11 @@ metadata:
   forms: [text, drawn, audio]
   drawn: [letter-card, writing-lines]
   facets: [script]
+  parts:
+    - { id: spot-spaces, what: { de: "erkennen, ob nach jedem Wort ein Abstand ist", en: telling whether there is a space after every word } }
+    - { id: squashed, what: { de: zusammengequetschte Wörter finden, en: finding words that are squashed together } }
+    - { id: count-words, what: { de: "Wörter zählen, die Abstände zeigen, wo ein Wort endet", en: "counting the words, using the spaces to see where each word ends" } }
+    - { id: build, what: { de: einen Satz aus Wortkarten legen, en: building a sentence from word cards } }
   misconceptions:
     - id: words-run-together
       what: Writes the words of a sentence with no gaps (Icanhop), so nobody can read it
@@ -215,6 +221,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,6 +243,27 @@ lessons:
             show: { drawn: letter-card, text: "We can hop." }
             options: ["2", "3", "4"]
             answer: "3"
+          - id: l1-c4
+            type: true_false
+            text: "This sentence has finger spaces."
+            say: "Does this sentence have finger spaces?"
+            show: { drawn: letter-card, text: "Wegotwet." }
+            answer: false
+          - id: l1-c5
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order to make a sentence."
+            options: ["a", "I", "bug.", "see"]
+            slot_count: 4
+            answer: ["I", "see", "a", "bug."]
+            option_audio: false
+          - id: l1-c6
+            type: multiple_choice
+            text: "How many words?"
+            say: "How many words does this sentence have?"
+            show: { drawn: letter-card, text: "Mum is in bed." }
+            options: ["2", "3", "4"]
+            answer: "4"
 
   - n: 2
     title: { de: "Zusammengequetschte Wörter", en: "Squashed words" }
@@ -414,8 +442,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: spot-spaces
             type: multiple_choice
             text: "Which one has finger spaces?"
             say: "Which sentence has a space after each word?"
@@ -423,12 +453,14 @@ lessons:
             answer: "It is a pig."
             option_audio: false
           - id: l2-c2
+            part: squashed
             type: highlight_in_text
             text: "Tap the squashed words."
             say: "Two words are squashed together. Tap them."
             show: { drawn: letter-card, text: "We sat onthe mat." }
             spans: ["onthe"]
           - id: l2-c3
+            part: count-words
             type: multiple_choice
             text: "How many words?"
             say: "How many words does this sentence have?"
@@ -436,16 +468,136 @@ lessons:
             options: ["5", "6", "7"]
             answer: "6"
           - id: l2-c4
+            part: spot-spaces
             type: true_false
             text: "This sentence has all its finger spaces."
             say: "Does this sentence have all its finger spaces?"
             show: { drawn: letter-card, text: "Ican run." }
             answer: false
           - id: l2-c5
+            part: build
             type: ordering
             text: "Put the words in order."
             say: "Put the word cards in order to make a sentence."
             options: ["hat.", "has", "a", "Tom"]
             slot_count: 4
             answer: ["Tom", "has", "a", "hat."]
+            option_audio: false
+          - id: l2-c6
+            part: spot-spaces
+            type: multiple_choice
+            text: "Which one has finger spaces?"
+            say: "Which sentence has a space after each word?"
+            options: ["We hidin the den.", "We hid in the den.", "Wehid in theden."]
+            answer: "We hid in the den."
+            option_audio: false
+          - id: l2-c7
+            part: squashed
+            type: highlight_in_text
+            text: "Tap the squashed words."
+            say: "Two words are squashed together. Tap them."
+            show: { drawn: letter-card, text: "The catsat on a box." }
+            spans: ["catsat"]
+          - id: l2-c8
+            part: count-words
+            type: multiple_choice
+            text: "How many words?"
+            say: "How many words does this sentence have?"
+            show: { drawn: letter-card, text: "I am on the bus." }
+            options: ["3", "4", "5"]
+            answer: "5"
+          - id: l2-c9
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order to make a sentence."
+            options: ["rug.", "on", "I", "the", "sit"]
+            slot_count: 5
+            answer: ["I", "sit", "on", "the", "rug."]
+            option_audio: false
+          - id: l2-c10
+            part: spot-spaces
+            type: true_false
+            text: "This sentence has all its finger spaces."
+            say: "Does this sentence have all its finger spaces?"
+            show: { drawn: letter-card, text: "We can see the sun." }
+            answer: true
+          - id: l2-c11
+            part: squashed
+            type: highlight_in_text
+            text: "Tap the squashed words."
+            say: "Two words are squashed together. Tap them."
+            show: { drawn: letter-card, text: "Ben fed hisdog." }
+            spans: ["hisdog"]
+          - id: l2-c12
+            part: count-words
+            type: multiple_choice
+            text: "How many words?"
+            say: "How many words does this sentence have?"
+            show: { drawn: letter-card, text: "Mum and Dad sat." }
+            options: ["4", "5", "6"]
+            answer: "4"
+          - id: l2-c13
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order to make a sentence."
+            options: ["big", "is", "bun.", "It", "a"]
+            slot_count: 5
+            answer: ["It", "is", "a", "big", "bun."]
+            option_audio: false
+          - id: l2-c14
+            part: spot-spaces
+            type: true_false
+            text: "This sentence has all its finger spaces."
+            say: "Does this sentence have all its finger spaces?"
+            show: { drawn: letter-card, text: "The dogis wet." }
+            answer: false
+          - id: l2-c15
+            part: squashed
+            type: highlight_in_text
+            text: "Tap the squashed words."
+            say: "Two words are squashed together. Tap them."
+            show: { drawn: letter-card, text: "I hada nap in bed." }
+            spans: ["hada"]
+          - id: l2-c16
+            part: count-words
+            type: multiple_choice
+            text: "How many words?"
+            say: "How many words does this sentence have?"
+            show: { drawn: letter-card, text: "It is hot." }
+            options: ["3", "4", "5"]
+            answer: "3"
+          - id: l2-c17
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order to make a sentence."
+            options: ["ran", "off.", "A", "fox"]
+            slot_count: 4
+            answer: ["A", "fox", "ran", "off."]
+            option_audio: false
+          - id: l2-c18
+            part: squashed
+            type: highlight_in_text
+            text: "Tap the squashed words."
+            say: "Two words are squashed together. Tap them."
+            show: { drawn: letter-card, text: "Tim fell inthe mud." }
+            spans: ["inthe"]
+          - id: l2-c19
+            part: count-words
+            type: multiple_choice
+            text: "How many words?"
+            say: "How many words does this sentence have?"
+            show: { drawn: letter-card, text: "The pig and the hen ran." }
+            options: ["6", "7", "8"]
+            answer: "6"
+          - id: l2-c20
+            part: build
+            type: ordering
+            text: "Put the words in order."
+            say: "Put the word cards in order to make a sentence."
+            options: ["Mum.", "hug", "I"]
+            slot_count: 3
+            answer: ["I", "hug", "Mum."]
             option_audio: false

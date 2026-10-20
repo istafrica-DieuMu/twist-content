@@ -26,6 +26,10 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape, grid]
   facets: []
+  parts:
+    - { id: build, what: { de: Formen aus Teilen zusammensetzen, en: putting pieces together to make a shape } }
+    - { id: split, what: { de: Formen in Teile zerlegen, en: splitting a shape into pieces } }
+    - { id: copy, what: { de: ein Bild genau nachlegen, en: copying a picture exactly from a model } }
   misconceptions:
     - id: two-squares-make-square
       what: Thinks two squares pushed together make a bigger square
@@ -254,6 +258,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -274,6 +279,28 @@ lessons:
             show: { drawn: grid, cols: 4, rows: 2, halves: [[1, 0, br, red], [2, 0, bl, blue]], cells: [[1, 1, yellow], [2, 1, green]] }
             options: ["2", "1", "4"]
             answer: "2"
+          - id: l1-c4
+            type: multiple_choice
+            text: "How many small squares fill this rectangle?"
+            say: "How many small square tiles do you need to fill this rectangle?"
+            show: { drawn: grid, cols: 7, rows: 1, lines: [[1, 0, 6, 0], [6, 0, 6, 1], [6, 1, 1, 1], [1, 1, 1, 0]] }
+            options: ["5", "4", "6"]
+            answer: "5"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Which picture is made of 2 squares?"
+            say: "Which picture is made of two squares?"
+            options:
+              - { drawn: grid, cols: 3, rows: 1, halves: [[1, 0, tl, green], [1, 0, br, yellow]], key: triangles }
+              - { drawn: grid, cols: 4, rows: 1, cells: [[1, 0, green], [2, 0, yellow]], key: squares }
+              - { drawn: grid, cols: 4, rows: 1, halves: [[1, 0, br, green]], cells: [[2, 0, yellow]], key: mixed }
+            answer: squares
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? This shape is made of 3 squares."
+            say: "Is it true? This shape is made of three squares."
+            show: { drawn: grid, cols: 6, rows: 1, cells: [[1, 0, red], [2, 0, blue], [3, 0, red], [4, 0, blue]] }
+            answer: false
 
   - n: 2
     title: { de: "Zerlegen und nachlegen", en: "Splitting and copying shapes" }
@@ -375,7 +402,7 @@ lessons:
                   - "Yes, 4 triangles."
               - id: l2-f5
                 type: multiple_choice
-                text: "Maya copies the house. Which piece is still missing?"
+                text: "Left: the model. Right: Maya's copy of the house. Which piece is still missing?"
                 say: "On the left is the model. On the right, Maya copies the house. Which piece is still missing?"
                 show: { drawn: grid, cols: 5, rows: 2, halves: [[0, 0, br, red], [1, 0, bl, blue], [3, 0, br, red], [4, 0, bl, blue]], cells: [[0, 1, yellow], [1, 1, green], [3, 1, yellow]] }
                 options: ["a green square", "a blue triangle", "a yellow square"]
@@ -420,7 +447,7 @@ lessons:
                 hints: ["Check the triangle first, then the colours underneath."]
               - id: l2-s4
                 type: true_false
-                text: "Is it true? Leo has copied the model exactly."
+                text: "Left: the model. Right: Leo's copy. Is it true? Leo has copied the model exactly."
                 say: "On the left is the model. On the right is Leo's copy. Is it true? Leo has copied the model exactly."
                 show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, red], [1, 0, yellow], [0, 1, blue], [3, 0, red], [4, 0, yellow], [3, 1, blue]] }
                 answer: true
@@ -463,7 +490,7 @@ lessons:
                 answer: "where one tile is"
               - id: l2-n4
                 type: true_false
-                text: "Is it true? Hana gets 3 squares."
+                text: "Hana cuts the rectangle along the lines. Is it true? She gets 3 squares."
                 say: "Hana cuts the rectangle along the thick lines. Is it true? She gets three squares."
                 show: { drawn: grid, cols: 4, rows: 1, dots: true, lines: [[0, 0, 4, 0], [4, 0, 4, 1], [4, 1, 0, 1], [0, 1, 0, 0], [1, 0, 1, 1], [2, 0, 2, 1], [3, 0, 3, 1]] }
                 answer: false
@@ -476,8 +503,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: build
             type: multiple_choice
             text: "Which pieces make this square?"
             say: "Which pieces make this square?"
@@ -485,6 +514,7 @@ lessons:
             options: ["2 triangles", "2 rectangles", "4 triangles"]
             answer: "2 triangles"
           - id: l2-c2
+            part: build
             type: image_multiple_choice
             text: "Four squares in a row. What shape do you get?"
             say: "You push four squares together in a row. What shape do you get?"
@@ -496,6 +526,7 @@ lessons:
             answer: rectangle
             option_audio: false
           - id: l2-c3
+            part: split
             type: multiple_choice
             text: "Ruby cuts a square once, straight down the middle. What pieces does she get?"
             say: "Ruby cuts a square once, straight down the middle. What pieces does she get?"
@@ -503,6 +534,7 @@ lessons:
             options: ["2 rectangles", "2 triangles", "2 circles"]
             answer: "2 rectangles"
           - id: l2-c4
+            part: copy
             type: image_multiple_choice
             text: "Which picture is an exact copy of the model?"
             say: "Here is the model. Which picture is an exact copy?"
@@ -513,6 +545,7 @@ lessons:
               - { drawn: grid, cols: 3, rows: 2, cells: [[0, 0, green], [1, 0, red], [2, 0, green], [1, 1, blue]], key: same }
             answer: same
           - id: l2-c5
+            part: build
             type: fill_in_blank
             text: "The tower: how many triangles and how many squares?"
             say: "Count the tiles in the tower. How many triangles and how many squares are there?"
@@ -521,3 +554,129 @@ lessons:
             options: ["1", "2", "3", "4"]
             answer: ["2", "4"]
             option_audio: false
+          - id: l2-c6
+            part: build
+            type: true_false
+            text: "Is it true? These two triangles make a square."
+            say: "Is it true? These two triangles make a square."
+            show: { drawn: grid, cols: 3, rows: 1, halves: [[1, 0, tr, green], [1, 0, bl, red]] }
+            answer: true
+          - id: l2-c7
+            part: build
+            type: multiple_choice
+            text: "How many small squares fill this rectangle?"
+            say: "How many small square tiles do you need to fill this rectangle?"
+            show: { drawn: grid, cols: 6, rows: 2, lines: [[1, 0, 5, 0], [5, 0, 5, 2], [5, 2, 1, 2], [1, 2, 1, 0]] }
+            options: ["8", "4", "6"]
+            answer: "8"
+          - id: l2-c8
+            part: build
+            type: matching
+            text: "Which pieces make each shape? Match them."
+            say: "Which pieces is each shape made from? Match them."
+            pairs:
+              - { left: { drawn: grid, cols: 4, rows: 1, cells: [[1, 0, red], [2, 0, blue]] }, right: { text: "2 squares" } }
+              - { left: { drawn: grid, cols: 3, rows: 1, halves: [[1, 0, tr, red], [1, 0, bl, blue]] }, right: { text: "2 triangles" } }
+              - { left: { drawn: grid, cols: 4, rows: 1, cells: [[1, 0, red]], halves: [[2, 0, bl, blue]] }, right: { text: "1 square and 1 triangle" } }
+          - id: l2-c9
+            part: build
+            type: fill_in_blank
+            text: "The train: how many triangles and how many squares?"
+            say: "Count the tiles in the train. How many triangles and how many squares are there?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 1, red], [1, 1, red], [2, 1, blue], [3, 1, blue], [3, 0, yellow]], halves: [[4, 1, tl, green], [4, 0, bl, green]] }
+            frame: "_ triangles and _ squares"
+            options: ["2", "3", "4", "5"]
+            answer: ["2", "5"]
+            option_audio: false
+          - id: l2-c10
+            part: split
+            type: multiple_choice
+            text: "You cut the rectangle from corner to corner. What pieces do you get?"
+            say: "You cut the rectangle from one corner to the opposite corner. What pieces do you get?"
+            show: { drawn: grid, cols: 4, rows: 2, dots: true, lines: [[0, 0, 4, 0], [4, 0, 4, 2], [4, 2, 0, 2], [0, 2, 0, 0], [0, 0, 4, 2]] }
+            options: ["2 triangles", "2 squares", "4 triangles"]
+            answer: "2 triangles"
+          - id: l2-c11
+            part: split
+            type: multiple_choice
+            text: "You cut the big square along the lines. How many small squares do you get?"
+            say: "You cut the big square along the thick lines. How many small squares do you get?"
+            show: { drawn: grid, cols: 3, rows: 3, dots: true, lines: [[0, 0, 3, 0], [3, 0, 3, 3], [3, 3, 0, 3], [0, 3, 0, 0], [1, 0, 1, 3], [2, 0, 2, 3], [0, 1, 3, 1], [0, 2, 3, 2]] }
+            options: ["9", "4", "6"]
+            answer: "9"
+          - id: l2-c12
+            part: split
+            type: true_false
+            text: "Is it true? The two cuts give 4 small squares."
+            say: "Is it true? The two cuts through the middle give four small squares."
+            show: { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [1, 0, 1, 2], [0, 1, 2, 1]] }
+            answer: true
+          - id: l2-c13
+            part: split
+            type: image_multiple_choice
+            text: "Which cut makes 2 triangles?"
+            say: "Which cut splits the square into two triangles?"
+            options:
+              - { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [2, 0, 0, 2]], key: diagonal }
+              - { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [1, 0, 1, 2]], key: middle }
+              - { drawn: grid, cols: 2, rows: 2, dots: true, lines: [[0, 0, 2, 0], [2, 0, 2, 2], [2, 2, 0, 2], [0, 2, 0, 0], [0, 1, 2, 1]], key: across }
+            answer: diagonal
+          - id: l2-c14
+            part: split
+            type: true_false
+            text: "Is it true? A tangram is a square cut into 7 pieces."
+            say: "Is it true? A tangram is a square cut into seven pieces."
+            answer: true
+          - id: l2-c15
+            part: split
+            type: multiple_choice
+            text: "Sam cuts the long rectangle along the line. What pieces does he get?"
+            say: "Sam cuts the long rectangle along the thick line. What pieces does he get?"
+            show: { drawn: grid, cols: 4, rows: 1, dots: true, lines: [[0, 0, 4, 0], [4, 0, 4, 1], [4, 1, 0, 1], [0, 1, 0, 0], [2, 0, 2, 1]] }
+            options: ["2 rectangles", "2 squares", "2 triangles"]
+            answer: "2 rectangles"
+          - id: l2-c16
+            part: copy
+            type: image_multiple_choice
+            text: "Which picture is an exact copy of the model?"
+            say: "Here is the model. Which picture is an exact copy?"
+            show: { drawn: grid, cols: 2, rows: 2, halves: [[0, 0, tr, red], [1, 1, bl, blue]], cells: [[1, 0, yellow]] }
+            options:
+              - { drawn: grid, cols: 2, rows: 2, halves: [[0, 0, tr, blue], [1, 1, bl, red]], cells: [[1, 0, yellow]], key: colours }
+              - { drawn: grid, cols: 2, rows: 2, halves: [[0, 0, tl, red], [1, 1, bl, blue]], cells: [[1, 0, yellow]], key: turned }
+              - { drawn: grid, cols: 2, rows: 2, halves: [[0, 0, tr, red], [1, 1, bl, blue]], cells: [[1, 0, yellow]], key: same }
+            answer: same
+          - id: l2-c17
+            part: copy
+            type: image_multiple_choice
+            text: "Which picture is an exact copy of the model?"
+            say: "Here is the model. Which picture is an exact copy?"
+            show: { drawn: grid, cols: 3, rows: 2, halves: [[1, 0, bl, orange]], cells: [[0, 1, purple], [1, 1, green], [2, 1, purple]] }
+            options:
+              - { drawn: grid, cols: 3, rows: 2, halves: [[1, 0, bl, orange]], cells: [[0, 1, purple], [1, 1, green], [2, 1, purple]], key: same }
+              - { drawn: grid, cols: 3, rows: 2, halves: [[1, 0, br, orange]], cells: [[0, 1, purple], [1, 1, green], [2, 1, purple]], key: turned }
+              - { drawn: grid, cols: 3, rows: 2, halves: [[0, 0, bl, orange]], cells: [[0, 1, purple], [1, 1, green], [2, 1, purple]], key: moved }
+            answer: same
+          - id: l2-c18
+            part: copy
+            type: true_false
+            text: "Left: the model. Right: Mia's copy. Is it true? Mia has copied the model exactly."
+            say: "On the left is the model. On the right is Mia's copy. Is it true? Mia has copied the model exactly."
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, green], [1, 0, blue], [1, 1, red], [3, 0, green], [4, 0, red], [4, 1, blue]] }
+            answer: false
+          - id: l2-c19
+            part: copy
+            type: multiple_choice
+            text: "Left: the model. Right: Jay's copy. Which piece is still missing?"
+            say: "On the left is the model. On the right, Jay is copying it. Which piece is still missing?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, blue], [1, 0, yellow], [0, 1, red], [1, 1, green], [3, 0, blue], [4, 0, yellow], [4, 1, green]] }
+            options: ["a red square", "a blue square", "a red triangle"]
+            answer: "a red square"
+          - id: l2-c20
+            part: copy
+            type: multiple_choice
+            text: "Left: the model. Right: Noor's copy. What is different?"
+            say: "On the left is the model. On the right is Noor's copy. What is different in Noor's copy?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[0, 0, red], [1, 0, blue], [0, 1, yellow], [3, 0, red], [4, 0, green], [3, 1, yellow]] }
+            options: ["one colour", "where one tile is", "nothing"]
+            answer: "one colour"

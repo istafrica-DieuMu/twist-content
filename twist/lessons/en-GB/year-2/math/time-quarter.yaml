@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: [time-format]
+  parts:
+    - { id: past, what: { de: Viertel nach ablesen, en: reading quarter past } }
+    - { id: to, what: { de: Viertel vor ablesen, en: reading quarter to } }
+    - { id: digital, what: { de: Viertelstunden der Digitalzeit zuordnen, en: matching quarter hours to digital times } }
+    - { id: set, what: { de: die Zeiger auf eine Viertelstunde stellen, en: setting the hands to a quarter hour } }
   misconceptions:
     - id: quarter-to-wrong-hour
       what: Names the hour just gone for quarter to (2:45 read as quarter to two)
@@ -234,6 +239,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -258,6 +264,26 @@ lessons:
             answer: "9:45"
             feedback:
               "10:45": "That is quarter to 11. Quarter to 10 comes before 10 o'clock: the hour hand is nearly at the 10."
+          - id: l1-c4
+            type: true_false
+            text: "Is it true? This clock shows quarter past 8."
+            say: "This clock shows quarter past eight. Is that true?"
+            show: { drawn: clock, hour: 8, minute: 45 }
+            answer: false
+          - id: l1-c5
+            type: multiple_choice
+            text: "What time is it?"
+            say: "What time does the clock show?"
+            show: { drawn: clock, hour: 6, minute: 15 }
+            options: ["quarter past 6", "quarter to 6", "half past 6"]
+            answer: "quarter past 6"
+          - id: l1-c6
+            type: clock_hands_drag
+            text: "Show quarter to 1 on the clock."
+            say: "Show quarter to one on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "12:45"
 
   - n: 2
     title: { de: Alle Viertelstunden, en: Every quarter hour }
@@ -438,15 +464,17 @@ lessons:
                 answer: "quarter to 8"
               - id: l2-n5
                 type: true_false
-                text: "The bus comes at quarter past 3. The clock shows this. Is the bus due now?"
+                text: "The bus comes at quarter past 3. The clock shows the time now. Is the bus due now?"
                 say: "The bus comes at quarter past three. The clock shows the time now. Is the bus due now?"
                 show: { drawn: clock, hour: 2, minute: 45 }
                 answer: false
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: past
             type: multiple_choice
             text: "What time is it?"
             say: "What time does the clock show?"
@@ -454,6 +482,7 @@ lessons:
             options: ["quarter past 10", "quarter to 10", "quarter past 3"]
             answer: "quarter past 10"
           - id: l2-c2
+            part: set
             type: clock_hands_drag
             text: "Show quarter to 7 on the clock."
             say: "Show quarter to seven on the clock. Drag the hands."
@@ -464,6 +493,7 @@ lessons:
               "7:45": "That is quarter to 8. Quarter to 7 comes before 7 o'clock: the hour hand is nearly at the 7."
               "7:15": "That is quarter past 7. For quarter to, the minute hand points at the 9."
           - id: l2-c3
+            part: to
             type: multiple_choice
             text: "What time is it?"
             say: "What time does the clock show?"
@@ -471,13 +501,128 @@ lessons:
             options: ["quarter to 6", "quarter to 5", "half past 5"]
             answer: "quarter to 6"
           - id: l2-c4
+            part: digital
             type: multiple_choice
             text: "Which digital time is quarter past 11?"
             say: "Which digital time is quarter past eleven?"
             options: ["11:15", "11:45", "10:45"]
             answer: "11:15"
           - id: l2-c5
+            part: digital
             type: true_false
             text: "Is it true? 1:45 is quarter to 2."
             say: "One forty-five is quarter to two. Is that true?"
             answer: true
+          - id: l2-c6
+            part: past
+            type: multiple_choice
+            text: "What time is it?"
+            say: "What time does the clock show?"
+            show: { drawn: clock, hour: 9, minute: 15 }
+            options: ["quarter past 9", "quarter to 9", "half past 9"]
+            answer: "quarter past 9"
+          - id: l2-c7
+            part: past
+            type: true_false
+            text: "Is it true? This clock shows quarter past 1."
+            say: "This clock shows quarter past one. Is that true?"
+            show: { drawn: clock, hour: 1, minute: 15 }
+            answer: true
+          - id: l2-c8
+            part: past
+            type: true_false
+            text: "Is it true? This clock shows quarter past 6."
+            say: "This clock shows quarter past six. Is that true?"
+            show: { drawn: clock, hour: 6, minute: 45 }
+            answer: false
+          - id: l2-c9
+            part: past
+            type: multiple_choice
+            text: "What time is it?"
+            say: "What time does the clock show?"
+            show: { drawn: clock, hour: 8, minute: 15 }
+            options: ["quarter past 8", "quarter past 3", "8 o'clock"]
+            answer: "quarter past 8"
+          - id: l2-c10
+            part: to
+            type: multiple_choice
+            text: "What time is it?"
+            say: "What time does the clock show?"
+            show: { drawn: clock, hour: 10, minute: 45 }
+            options: ["quarter to 11", "quarter to 10", "quarter past 11"]
+            answer: "quarter to 11"
+          - id: l2-c11
+            part: to
+            type: true_false
+            text: "Is it true? This clock shows quarter to 2."
+            say: "This clock shows quarter to two. Is that true?"
+            show: { drawn: clock, hour: 2, minute: 45 }
+            answer: false
+          - id: l2-c12
+            part: to
+            type: true_false
+            text: "Is it true? This clock shows quarter to 12."
+            say: "This clock shows quarter to twelve. Is that true?"
+            show: { drawn: clock, hour: 11, minute: 45 }
+            answer: true
+          - id: l2-c13
+            part: to
+            type: multiple_choice
+            text: "At quarter to 5, where is the hour hand?"
+            say: "At quarter to five, where is the hour hand?"
+            options: ["nearly at the 5", "just past the 5", "at the 12"]
+            answer: "nearly at the 5"
+          - id: l2-c14
+            part: digital
+            type: multiple_choice
+            text: "Which digital time is quarter to 3?"
+            say: "Which digital time is quarter to three?"
+            options: ["2:45", "3:45", "3:15"]
+            answer: "2:45"
+          - id: l2-c15
+            part: digital
+            type: matching
+            text: "Match each clock to its digital time."
+            say: "Match each clock to its digital time."
+            pairs:
+              - { left: { drawn: clock, hour: 10, minute: 15 }, right: { text: "10:15" } }
+              - { left: { drawn: clock, hour: 9, minute: 45 }, right: { text: "9:45" } }
+              - { left: { drawn: clock, hour: 10, minute: 30 }, right: { text: "10:30" } }
+          - id: l2-c16
+            part: digital
+            type: true_false
+            text: "Is it true? 9:45 is quarter past 9."
+            say: "Nine forty-five is quarter past nine. Is that true?"
+            answer: false
+          - id: l2-c17
+            part: set
+            type: clock_hands_drag
+            text: "Show quarter past 5 on the clock."
+            say: "Show quarter past five on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "5:15"
+          - id: l2-c18
+            part: set
+            type: clock_hands_drag
+            text: "Show quarter to 12 on the clock."
+            say: "Show quarter to twelve on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "11:45"
+          - id: l2-c19
+            part: set
+            type: clock_hands_drag
+            text: "Show 7:15 on the clock."
+            say: "Show seven fifteen on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "7:15"
+          - id: l2-c20
+            part: set
+            type: clock_hands_drag
+            text: "Football starts at quarter past 2. Show the time on the clock."
+            say: "Football starts at quarter past two. Show the time on the clock. Drag the hands."
+            show: { drawn: clock, hour: 12, minute: 0 }
+            step: 15
+            answer: "2:15"

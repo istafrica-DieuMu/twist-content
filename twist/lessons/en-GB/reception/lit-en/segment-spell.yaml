@@ -27,13 +27,18 @@ metadata:
   drawn: [dots, letter-card]
   sounds: [en.s, en.k, en.a, en.t]
   facets: []
+  parts:
+    - { id: count-sounds, what: { de: die Laute in einem Wort zählen, en: counting the sounds in a word } }
+    - { id: missing-sound, what: { de: "den Buchstaben für einen fehlenden Laut wählen (am Anfang, in der Mitte, am Ende)", en: "choosing the letter for a missing sound (first, middle or last)" } }
+    - { id: whole-word, what: { de: ein ganzes Wort aus Buchstaben legen oder tippen, en: building or typing a whole word } }
+    - { id: two-letters, what: { de: "einen Laut mit zwei Buchstaben schreiben (sh, ck, ng, ll)", en: "writing a sound with two letters (sh, ck, ng, ll)" } }
   misconceptions:
     - id: misses-middle-vowel
       what: Writes only the consonants it hears clearly and leaves out the vowel (dg for dog)
       addressed: Learn in lesson 1 stretches every sound; the middle sound is the gap in l1-f4, l1-s2, l1-n2, l1-n5, l1-c2, l2-w2, l2-n5 and the skill check task l2-c3; every ordering task needs all the letters
     - id: letters-not-sounds
       what: Counts letters instead of sounds, or writes a two-letter sound with one letter (duk for duck, fis for fish)
-      addressed: Learn in lesson 2 puts sh, ck and ng on one sound button; l2-f2 (with feedback), l2-s2, l2-n2 and l2-c2 count sounds in words with a digraph; c, k and n are distractors in l2-f3, l2-f5 and l2-n4
+      addressed: Learn in lesson 2 puts sh, ck and ng on one sound button; l2-f2 (with feedback), l2-s2, l2-n2, l2-c2 and l2-c14 count sounds in words with a digraph; l2-c17 sets sak and sac beside sack; c, k and n are distractors in l2-f3, l2-f5 and l2-n4
     - id: sounds-out-of-order
       what: Has the right letters but in the wrong order, or turns b and d round (deb for bed)
       addressed: ordering and typing tasks in every stage (l1-f2, l1-s1, l1-n1, l1-n4 typed, l1-c1, l2-f1, l2-f4, l2-s1, l2-s4, l2-n1, l2-n3, l2-c1, l2-c4, l2-c5 typed); b and d share the options in l1-f3 and l1-f5 (with feedback)
@@ -247,6 +252,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: ordering
@@ -275,6 +281,33 @@ lessons:
               - { drawn: dots, count: 2, layout: row }
               - { drawn: dots, count: 3, layout: row }
             answer: "2"
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Box. What is the first sound in box? Tap its letter."
+            show: { object: box }
+            frame: "_ox"
+            options: ["d", "f", "b"]
+            answer: ["b"]
+          - id: l1-c5
+            type: ordering
+            text: "Spell the word."
+            say: "Map. Put the letters in order to spell map."
+            show: { object: map }
+            options: ["p", "a", "m"]
+            slot_count: 3
+            answer: ["m", "a", "p"]
+            option_audio: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Bed. How many sounds can you hear?"
+            show: { object: bed }
+            options:
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "3"
 
   - n: 2
     title: { de: "fish, duck, lamp", en: "fish, duck, lamp" }
@@ -490,8 +523,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: whole-word
             type: ordering
             text: "Spell the word."
             say: "Cup. Put the letters in order to spell cup."
@@ -501,6 +536,7 @@ lessons:
             answer: ["c", "u", "p"]
             option_audio: false
           - id: l2-c2
+            part: count-sounds
             type: image_multiple_choice
             text: "How many sounds?"
             say: "Sock. How many sounds can you hear?"
@@ -511,14 +547,16 @@ lessons:
               - { drawn: dots, count: 4, layout: row }
             answer: "3"
           - id: l2-c3
+            part: missing-sound
             type: fill_in_blank
             text: "Which letter is missing?"
             say: "Bus. Which sound is missing in the middle?"
             show: { object: bus }
             frame: "b_s"
-            options: ["a", "o", "u"]
+            options: ["a", "e", "u"]
             answer: ["u"]
           - id: l2-c4
+            part: two-letters
             type: ordering
             text: "Spell the word."
             say: "Shell. Put the cards in order to spell shell."
@@ -528,9 +566,146 @@ lessons:
             answer: ["sh", "e", "ll"]
             option_audio: false
           - id: l2-c5
+            part: whole-word
             type: text_input
             keyboard: letters
             text: "Write the word."
-            say: "Hen. Say the sounds. Write the word hen."
+            say: "Hen. Write the word hen."
             show: { object: hen }
             answer: "hen"
+          - id: l2-c6
+            part: count-sounds
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Milk. How many sounds can you hear?"
+            show: { object: milk }
+            options:
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 2, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+            answer: "4"
+          - id: l2-c7
+            part: missing-sound
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Van. What is the first sound in van? Tap its letter."
+            show: { object: van }
+            frame: "_an"
+            options: ["f", "w", "v"]
+            answer: ["v"]
+          - id: l2-c8
+            part: whole-word
+            type: ordering
+            text: "Spell the word."
+            say: "Web. Put the letters in order to spell web."
+            show: { object: web }
+            options: ["b", "w", "e"]
+            slot_count: 3
+            answer: ["w", "e", "b"]
+            option_audio: false
+          - id: l2-c9
+            part: two-letters
+            type: fill_in_blank
+            text: "What is missing?"
+            say: "Dish. What spells the last sound in dish?"
+            show: { object: dish }
+            frame: "di_"
+            options: ["s", "ch", "sh"]
+            answer: ["sh"]
+          - id: l2-c10
+            part: count-sounds
+            type: image_multiple_choice
+            text: "How many sounds?"
+            say: "Frog. How many sounds can you hear?"
+            show: { object: frog }
+            options:
+              - { drawn: dots, count: 3, layout: row }
+              - { drawn: dots, count: 4, layout: row }
+              - { drawn: dots, count: 5, layout: row }
+            answer: "4"
+          - id: l2-c11
+            part: missing-sound
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Pen. What is the last sound in pen? Tap its letter."
+            show: { object: pen }
+            frame: "pe_"
+            options: ["m", "d", "n"]
+            answer: ["n"]
+          - id: l2-c12
+            part: whole-word
+            type: text_input
+            keyboard: letters
+            text: "Write the word."
+            say: "Zip. Write the word zip."
+            show: { object: zip }
+            answer: "zip"
+          - id: l2-c13
+            part: two-letters
+            type: ordering
+            text: "Spell the word."
+            say: "Shed. Put the cards in order to spell shed."
+            show: { object: shed }
+            options: ["d", "sh", "e"]
+            slot_count: 3
+            answer: ["sh", "e", "d"]
+            option_audio: false
+          - id: l2-c14
+            part: count-sounds
+            type: true_false
+            text: "Does this word have 3 sounds?"
+            say: "Ring. Does ring have three sounds?"
+            show: { object: ring }
+            answer: true
+          - id: l2-c15
+            part: missing-sound
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Map. Which sound is missing in the middle?"
+            show: { object: map }
+            frame: "m_p"
+            options: ["u", "a", "o"]
+            answer: ["a"]
+          - id: l2-c16
+            part: whole-word
+            type: ordering
+            text: "Spell the word."
+            say: "Crab. Put the letters in order to spell crab."
+            show: { object: crab }
+            options: ["b", "r", "a", "c"]
+            slot_count: 4
+            answer: ["c", "r", "a", "b"]
+            option_audio: false
+          - id: l2-c17
+            part: two-letters
+            type: multiple_choice
+            text: "Which spelling is right?"
+            say: "Sack. Which spelling is right?"
+            show: { object: sack }
+            options: ["sak", "sack", "sac"]
+            answer: "sack"
+            option_audio: false
+          - id: l2-c18
+            part: count-sounds
+            type: true_false
+            text: "Does this word have 3 sounds?"
+            say: "Hand. Does hand have three sounds?"
+            show: { object: hand }
+            answer: false
+          - id: l2-c19
+            part: missing-sound
+            type: fill_in_blank
+            text: "Which letter is missing?"
+            say: "Jug. Which sound is missing in the middle?"
+            show: { object: jug }
+            frame: "j_g"
+            options: ["i", "u", "a"]
+            answer: ["u"]
+          - id: l2-c20
+            part: whole-word
+            type: text_input
+            keyboard: letters
+            text: "Write the word."
+            say: "Fox. Write the word fox."
+            show: { object: fox }
+            answer: "fox"

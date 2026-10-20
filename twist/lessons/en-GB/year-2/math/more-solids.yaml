@@ -24,6 +24,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [shape]
   facets: []
+  parts:
+    - { id: name, what: { de: "Pyramide, Zylinder und Kegel erkennen", en: "recognising pyramids, cylinders and cones" } }
+    - { id: faces, what: { de: die ebenen Formen auf den Flächen eines Körpers, en: the 2-D shapes on the faces of a 3-D shape } }
+    - { id: count, what: { de: "Ecken, Kanten und Flächen zählen", en: "counting faces, edges and vertices" } }
+    - { id: sort, what: { de: Körper nach ihren Eigenschaften sortieren, en: sorting 3-D shapes by their properties } }
   misconceptions:
     - id: cone-pyramid-mixed
       what: Mixes up the cone and the pyramid because both have a point, or the cone and the cylinder because both are round
@@ -211,6 +216,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: image_multiple_choice
@@ -232,6 +238,26 @@ lessons:
             text: "A cone has a point at the top."
             say: "Is it true? A cone has a point at the top."
             answer: true
+          - id: l1-c4
+            type: multiple_choice
+            text: "What shape is a glue stick?"
+            options: ["cylinder", "cone", "cube"]
+            answer: "cylinder"
+          - id: l1-c5
+            type: true_false
+            text: "This pyramid has a circle face at the bottom."
+            say: "Is it true? This pyramid has a circle face at the bottom."
+            show: { drawn: shape, kind: pyramid, colour: orange }
+            answer: false
+          - id: l1-c6
+            type: image_multiple_choice
+            text: "Which shape has a square face and four triangle faces?"
+            options:
+              - { drawn: shape, kind: cube, colour: blue }
+              - { drawn: shape, kind: pyramid, colour: blue }
+              - { drawn: shape, kind: cone, colour: blue }
+            answer: pyramid
+            option_audio: false
 
   - n: 2
     title: { de: "Ecken, Kanten, Flächen", en: "Faces, edges and vertices" }
@@ -397,8 +423,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: faces
             type: image_multiple_choice
             text: "Which shape has triangle faces?"
             options:
@@ -408,16 +436,19 @@ lessons:
             answer: pyramid
             option_audio: false
           - id: l2-c2
+            part: count
             type: multiple_choice
             text: "How many vertices does a pyramid have?"
             options: ["5", "4", "8"]
             answer: "5"
           - id: l2-c3
+            part: count
             type: true_false
             text: "A cone has 2 edges."
             say: "Is it true? A cone has two edges."
             answer: false
           - id: l2-c4
+            part: faces
             type: image_multiple_choice
             text: "Which shape has two circle faces?"
             options:
@@ -427,7 +458,116 @@ lessons:
             answer: cylinder
             option_audio: false
           - id: l2-c5
+            part: sort
             type: multiple_choice
             text: "Which shape has 6 faces, but not all of them are squares?"
             options: ["cuboid", "cube", "pyramid"]
             answer: "cuboid"
+          - id: l2-c6
+            part: name
+            type: true_false
+            text: "This is a cone."
+            say: "Is it true? This is a cone."
+            show: { drawn: shape, kind: pyramid, colour: purple }
+            answer: false
+          - id: l2-c7
+            part: name
+            type: matching
+            text: "Match each shape to a thing with that shape."
+            say: "Match each shape to a thing with that shape."
+            pairs:
+              - { left: { drawn: shape, kind: cylinder, colour: green }, right: { text: "a toilet roll" } }
+              - { left: { drawn: shape, kind: cone, colour: green }, right: { text: "a party hat" } }
+              - { left: { drawn: shape, kind: sphere, colour: green }, right: { text: "a football" } }
+          - id: l2-c8
+            part: name
+            type: multiple_choice
+            text: "What shape is a drinking straw?"
+            options: ["cylinder", "cone", "cuboid"]
+            answer: "cylinder"
+          - id: l2-c9
+            part: name
+            type: multiple_choice
+            text: "Ali's shape has a square face at the bottom and four triangle faces that meet at a point. What shape is it?"
+            options: ["pyramid", "cone", "cube"]
+            answer: "pyramid"
+          - id: l2-c10
+            part: faces
+            type: multiple_choice
+            text: "What 2-D shape is the flat face of a cone?"
+            show: { drawn: shape, kind: cone, colour: blue }
+            options: ["circle", "triangle", "square"]
+            answer: "circle"
+          - id: l2-c11
+            part: faces
+            type: true_false
+            text: "All the faces of a pyramid are triangles."
+            say: "Is it true? All the faces of a pyramid are triangles."
+            show: { drawn: shape, kind: pyramid, colour: green }
+            answer: false
+          - id: l2-c12
+            part: faces
+            type: multiple_choice
+            text: "What 2-D shape is the bottom face of this pyramid?"
+            show: { drawn: shape, kind: pyramid, colour: red }
+            options: ["square", "triangle", "circle"]
+            answer: "square"
+          - id: l2-c13
+            part: count
+            type: multiple_choice
+            text: "How many edges does a cuboid have?"
+            show: { drawn: shape, kind: cuboid, colour: orange }
+            options: ["12", "6", "8"]
+            answer: "12"
+          - id: l2-c14
+            part: count
+            type: text_input
+            text: "How many vertices does a cuboid have?"
+            show: { drawn: shape, kind: cuboid, colour: blue }
+            answer: "8"
+          - id: l2-c15
+            part: count
+            type: multiple_choice
+            text: "How many vertices does a sphere have?"
+            show: { drawn: shape, kind: sphere, colour: red }
+            options: ["0", "1", "2"]
+            answer: "0"
+          - id: l2-c16
+            part: count
+            type: true_false
+            text: "A cylinder has 2 edges."
+            say: "Is it true? A cylinder has two edges."
+            show: { drawn: shape, kind: cylinder, colour: orange }
+            answer: true
+          - id: l2-c17
+            part: sort
+            type: sorting
+            text: "Does the shape have vertices?"
+            say: "Does the shape have vertices? Sort the shapes."
+            bins:
+              - { id: has, show: { text: "has vertices" }, say: "Has vertices." }
+              - { id: none, show: { text: "no vertices" }, say: "No vertices." }
+            options:
+              - { text: "cube", bin: has }
+              - { text: "sphere", bin: none }
+              - { text: "pyramid", bin: has }
+              - { text: "cylinder", bin: none }
+              - { text: "cuboid", bin: has }
+          - id: l2-c18
+            part: sort
+            type: multiple_choice
+            text: "Which shape can roll and has no edges?"
+            options: ["sphere", "cylinder", "cube"]
+            answer: "sphere"
+          - id: l2-c19
+            part: sort
+            type: multiple_choice
+            text: "Which shape has a curved surface and only one flat face?"
+            options: ["cone", "cylinder", "pyramid"]
+            answer: "cone"
+          - id: l2-c20
+            part: sort
+            type: true_false
+            text: "A cube, a cuboid and a pyramid have only flat faces."
+            say: "Is it true? A cube, a cuboid and a pyramid have only flat faces."
+            answer: true

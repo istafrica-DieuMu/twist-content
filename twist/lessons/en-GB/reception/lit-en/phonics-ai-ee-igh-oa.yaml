@@ -12,7 +12,9 @@ summary: >
   and oo with its long sound (moon) and its short sound (book), mixes all
   of them and ends with the skill check. The voice says every word; the
   child picks the letters for a sound, fills a gap or reads a word and
-  finds its picture.
+  finds its picture. Writing the graphemes in words is practised in
+  Practise (the missing letters) and in segment-spell; the skill check
+  marks hearing each sound and reading words with it.
 metadata:
   year: reception
   topic: { de: "Laute und Buchstaben", en: "Phonics" }
@@ -25,6 +27,11 @@ metadata:
   drawn: [letter-card]
   sounds: [en.ai, en.ee, en.igh, en.oa, "en.oo:", en.oo]
   facets: []
+  parts:
+    - { id: ai, what: { de: "den Laut von ai kennen und Wörter damit lesen", en: "knowing the sound of ai and reading words with it" } }
+    - { id: ee, what: { de: "den Laut von ee kennen und Wörter damit lesen", en: "knowing the sound of ee and reading words with it" } }
+    - { id: igh, what: { de: "den Laut von igh kennen und Wörter damit lesen", en: "knowing the sound of igh and reading words with it" } }
+    - { id: oa-oo, what: { de: "oa und die beiden Laute von oo lesen (boat, moon, book)", en: "reading oa and both sounds of oo (boat, moon, book)" } }
   misconceptions:
     - id: vowel-letter-by-letter
       what: Sounds each vowel letter on its own (ai as a ... i, oa as o ... a) or writes one vowel for the long sound (ran for rain)
@@ -110,7 +117,8 @@ lessons:
               - id: l1-f4
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Night. Which letters are missing in the middle of night?"
+                say: "Which letters are missing in the middle of this word? Listen."
+                audio: { en: "Night." }
                 frame: "n_t"
                 options: ["i", "igh", "ai"]
                 answer: ["igh"]
@@ -192,7 +200,8 @@ lessons:
               - id: l1-n3
                 type: fill_in_blank
                 text: "Which letters are missing?"
-                say: "Seed. Which letters are missing in the middle of seed?"
+                say: "Which letters are missing in the middle of this word? Listen."
+                audio: { en: "Seed." }
                 frame: "s_d"
                 options: ["ee", "e", "igh"]
                 answer: ["ee"]
@@ -213,6 +222,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: audio_choice
@@ -236,6 +246,28 @@ lessons:
             frame: "l_t"
             options: ["igh", "i", "ai"]
             answer: ["igh"]
+          - id: l1-c4
+            type: audio_choice
+            text: "Which letters make the last sound?"
+            say: "Listen. Tap the letters for the last sound."
+            audio: { en: "High." }
+            options: ["i", "igh", "ee"]
+            answer: "igh"
+          - id: l1-c5
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "train" }
+            options: [{ object: tree }, { object: teddy }, { object: train }]
+            answer: train
+            option_audio: false
+          - id: l1-c6
+            type: true_false
+            text: "Does queen have ee in the middle?"
+            say: "Queen. Does queen have this sound in the middle? Listen."
+            audio: { sound: en.ee }
+            show: { object: queen }
+            answer: true
 
   - n: 2
     title: { de: "oa und oo", en: "oa and oo" }
@@ -429,8 +461,10 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 4
         tasks:
           - id: l2-c1
+            part: ee
             type: audio_choice
             text: "Which letters make the middle sound?"
             say: "Listen. Tap the letters for the middle sound."
@@ -438,6 +472,7 @@ lessons:
             options: ["ai", "ee", "oa"]
             answer: "ee"
           - id: l2-c2
+            part: oa-oo
             type: image_multiple_choice
             text: "Which word has this sound?"
             say: "Which picture has the sound of these letters?"
@@ -445,23 +480,148 @@ lessons:
             options: [{ object: goat }, { object: cat }, { object: cup }]
             answer: goat
           - id: l2-c3
-            type: fill_in_blank
-            text: "Which letters finish the word?"
-            say: "High. Which letters are missing at the end of high?"
-            frame: "h_"
-            options: ["i", "igh", "ee"]
-            answer: ["igh"]
+            part: igh
+            type: multiple_choice
+            text: "Which word goes with the picture?"
+            say: "Look at the picture. Which word goes with it? Read the words."
+            show: { object: light-bulb }
+            options: ["lit", "light", "lot"]
+            answer: "light"
+            option_audio: false
           - id: l2-c4
+            part: ai
             type: image_multiple_choice
             text: "Read the word. Tap its picture."
             say: "Read the word on the card. Then tap its picture."
             show: { drawn: letter-card, text: "snail" }
             options: [{ object: snake }, { object: sun }, { object: snail }]
             answer: snail
+            option_audio: false
           - id: l2-c5
+            part: oa-oo
             type: audio_choice
             text: "Which word do you hear?"
             say: "Listen. Tap the word you hear."
             audio: { en: "Book." }
             options: ["back", "book", "boat"]
             answer: "book"
+          - id: l2-c6
+            part: ai
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.ai }
+            options: ["ai", "a", "ee"]
+            answer: "ai"
+          - id: l2-c7
+            part: ee
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "sheep" }
+            options: [{ object: ship }, { object: sheep }, { object: shell }]
+            answer: sheep
+            option_audio: false
+          - id: l2-c8
+            part: igh
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: en.igh }
+            options: ["ai", "igh", "i"]
+            answer: "igh"
+          - id: l2-c9
+            part: oa-oo
+            type: audio_choice
+            text: "Which letters make this sound?"
+            say: "Listen to the sound. Tap its letters."
+            audio: { sound: "en.oo:" }
+            options: ["oo", "ee", "oa"]
+            answer: "oo"
+          - id: l2-c10
+            part: ai
+            type: true_false
+            text: "rain"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: rain }
+            answer: true
+          - id: l2-c11
+            part: ee
+            type: true_false
+            text: "Does tree end with ee?"
+            say: "Tree. Does tree end with this sound? Listen."
+            audio: { sound: en.ee }
+            show: { object: tree }
+            answer: true
+          - id: l2-c12
+            part: igh
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Right." }
+            options: ["rat", "right", "rot"]
+            answer: "right"
+          - id: l2-c13
+            part: oa-oo
+            type: true_false
+            text: "boat"
+            say: "Read the word at the top. Does it match the picture?"
+            show: { object: goat }
+            answer: false
+          - id: l2-c14
+            part: ai
+            type: true_false
+            text: "Does moon have ai in the middle?"
+            say: "Moon. Does moon have this sound in the middle? Listen."
+            audio: { sound: en.ai }
+            show: { object: moon }
+            answer: false
+          - id: l2-c15
+            part: ee
+            type: audio_choice
+            text: "Which word do you hear?"
+            say: "Listen. Tap the word you hear."
+            audio: { en: "Feet." }
+            options: ["fat", "feet", "fit"]
+            answer: "feet"
+          - id: l2-c16
+            part: igh
+            type: audio_choice
+            text: "Which letters make the middle sound?"
+            say: "Listen. Tap the letters for the middle sound."
+            audio: { en: "Tight." }
+            options: ["igh", "ee", "i"]
+            answer: "igh"
+          - id: l2-c17
+            part: oa-oo
+            type: image_multiple_choice
+            text: "Read the word. Tap its picture."
+            say: "Read the word on the card. Which picture is it?"
+            show: { drawn: letter-card, text: "foot" }
+            options: [{ object: fox }, { object: foot }, { object: fish }]
+            answer: foot
+            option_audio: false
+          - id: l2-c18
+            part: ai
+            type: audio_choice
+            text: "Which letters make the middle sound?"
+            say: "Listen. Tap the letters for the middle sound."
+            audio: { en: "Nail." }
+            options: ["oa", "ai", "igh"]
+            answer: "ai"
+          - id: l2-c19
+            part: ee
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "ee" }
+            options: [{ object: chair }, { object: cheese }, { object: cat }]
+            answer: cheese
+          - id: l2-c20
+            part: igh
+            type: image_multiple_choice
+            text: "Which word has this sound?"
+            say: "Which picture has the sound of these letters?"
+            show: { drawn: letter-card, text: "igh" }
+            options: [{ object: kitchen }, { object: cake }, { object: kite }]
+            answer: kite

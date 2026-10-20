@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: one-carry, what: { de: mit einem Übertrag schriftlich addieren, en: column addition with one exchange } }
+    - { id: two-carries, what: { de: mit zwei Überträgen schriftlich addieren, en: column addition with two exchanges } }
+    - { id: meaning, what: { de: "sagen, was man hinschreibt und was der Übertrag bedeutet", en: saying what to write and what the carried digit means } }
+    - { id: check, what: { de: Rechnungen prüfen und Fehler finden, en: checking calculations and finding mistakes } }
   misconceptions:
     - id: writes-both-digits
       what: Writes the whole column total in the answer (13 in the ones column)
@@ -206,6 +211,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -222,9 +228,23 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column, and look for a carried digit. Is this calculation right?"
             show: { drawn: written-calc, rows: ["615", "278"], op: "+", result: "893" }
             answer: true
+          - id: l1-c4
+            type: text_input
+            text: "Add in columns."
+            say: "Add two hundred and fifty-four and three hundred and nineteen in columns."
+            show: { drawn: written-calc, rows: ["254", "319"], op: "+" }
+            answer: "573"
+          - id: l1-c5
+            type: text_input
+            text: "A farmer picks 326 apples on Monday and 248 apples on Tuesday. How many apples does she pick altogether?"
+            answer: "574"
+          - id: l1-c6
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["437", "156"], op: "+", result: "583" }
+            answer: false
 
   - n: 2
     title: { de: Zehner tauschen und zweimal tauschen, en: Exchanging tens and exchanging twice }
@@ -386,39 +406,154 @@ lessons:
                 answer: "606"
               - id: l2-n5
                 type: text_input
-                text: "A plane flies 485 km on Monday and 368 km on Tuesday. How far does it fly in the two days?"
+                text: "A plane carries 485 passengers on Monday and 368 passengers on Tuesday. How many passengers is that in the two days?"
                 answer: "853"
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: one-carry
             type: text_input
             text: "Add in columns."
             say: "Add two hundred and forty-eight and three hundred and fifteen in columns."
             show: { drawn: written-calc, rows: ["248", "315"], op: "+" }
             answer: "563"
           - id: l2-c2
+            part: one-carry
             type: text_input
             text: "Add in columns."
             say: "Add three hundred and seventy-four and five hundred and ninety-two in columns."
             show: { drawn: written-calc, rows: ["374", "592"], op: "+" }
             answer: "966"
           - id: l2-c3
+            part: two-carries
             type: text_input
             text: "Add in columns."
             say: "Add five hundred and ninety-six and two hundred and eighty-seven in columns."
             show: { drawn: written-calc, rows: ["596", "287"], op: "+" }
             answer: "883"
           - id: l2-c4
+            part: meaning
             type: multiple_choice
             text: "What does the small 1 in the hundreds column stand for?"
             show: { drawn: written-calc, rows: ["453", "281"], op: "+", carry: "1  ", result: "734" }
             options: ["1 hundred, made from 10 tens", "1 ten", "1 one"]
             answer: "1 hundred, made from 10 tens"
           - id: l2-c5
+            part: check
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column, and look for a carried digit. Is this calculation right?"
             show: { drawn: written-calc, rows: ["168", "455"], op: "+", result: "513" }
             answer: false
+          - id: l2-c6
+            part: one-carry
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add five hundred and twenty-seven and three hundred and forty-six in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["527", "346"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["3", "7", "8", "13"]
+            answer: ["3", "7", "8"]
+          - id: l2-c7
+            part: one-carry
+            type: text_input
+            text: "A school library has 436 storybooks and 258 information books. How many books is that altogether?"
+            say: "A school library has four hundred and thirty-six storybooks and two hundred and fifty-eight information books. How many books is that altogether?"
+            answer: "694"
+          - id: l2-c8
+            part: one-carry
+            type: multiple_choice
+            text: "Which answer is right?"
+            say: "Two hundred and sixty-three add four hundred and ninety-one. Which answer is right?"
+            show: { drawn: written-calc, rows: ["263", "491"], op: "+" }
+            options: ["754", "654", "6154"]
+            answer: "754"
+          - id: l2-c9
+            part: two-carries
+            type: text_input
+            text: "Add in columns."
+            say: "Add two hundred and eighty-nine and five hundred and forty-six in columns."
+            show: { drawn: written-calc, rows: ["289", "546"], op: "+" }
+            answer: "835"
+          - id: l2-c10
+            part: two-carries
+            type: text_input
+            text: "Add in columns."
+            say: "Add one hundred and fifty-seven and three hundred and eighty-six in columns."
+            show: { drawn: written-calc, rows: ["157", "386"], op: "+" }
+            answer: "543"
+          - id: l2-c11
+            part: two-carries
+            type: fill_in_blank
+            text: "Add in columns. Write the digit for each column."
+            say: "Add six hundred and forty-nine and two hundred and seventy-four in columns. Write the digit for the ones, the tens and the hundreds."
+            show: { drawn: written-calc, rows: ["649", "274"], op: "+", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["3", "2", "9", "8"]
+            answer: ["3", "2", "9"]
+          - id: l2-c12
+            part: two-carries
+            type: text_input
+            text: "A swimming pool has 378 visitors on Saturday and 465 visitors on Sunday. How many visitors is that over the weekend?"
+            say: "A swimming pool has three hundred and seventy-eight visitors on Saturday and four hundred and sixty-five visitors on Sunday. How many visitors is that over the weekend?"
+            answer: "843"
+          - id: l2-c13
+            part: meaning
+            type: multiple_choice
+            text: "Ones: 8 + 9 = 17. What do you write, and what do you carry?"
+            say: "Ones: eight add nine is seventeen. What do you write, and what do you carry?"
+            show: { drawn: written-calc, rows: ["238", "149"], op: "+" }
+            options: ["Write 7, carry 1 ten.", "Write 17.", "Write 1, carry 7."]
+            answer: "Write 7, carry 1 ten."
+          - id: l2-c14
+            part: meaning
+            type: true_false
+            text: "Is it true? The small 1 in the tens column stands for 10 ones."
+            say: "The small one in the tens column stands for ten ones. Is it true?"
+            show: { drawn: written-calc, rows: ["426", "158"], op: "+", carry: " 1 ", result: "584" }
+            answer: true
+          - id: l2-c15
+            part: meaning
+            type: true_false
+            text: "Tens: 6 + 8 = 14. Is it true? You write 14 in the tens column."
+            say: "Tens: six add eight is fourteen. You write fourteen in the tens column. Is it true?"
+            show: { drawn: written-calc, rows: ["361", "285"], op: "+", result: "__6" }
+            answer: false
+          - id: l2-c16
+            part: meaning
+            type: multiple_choice
+            text: "How much is the small 1 in the tens column worth?"
+            show: { drawn: written-calc, rows: ["645", "128"], op: "+", carry: " 1 ", result: "773" }
+            options: ["10", "1", "100"]
+            answer: "10"
+          - id: l2-c17
+            part: check
+            type: multiple_choice
+            text: "Where is the mistake?"
+            say: "Three hundred and fifty-six add four hundred and eighteen is seven hundred and sixty-four. Where is the mistake?"
+            show: { drawn: written-calc, rows: ["356", "418"], op: "+", result: "764" }
+            options: ["The carried 1 is missing in the tens.", "The ones are wrong.", "The hundreds are wrong."]
+            answer: "The carried 1 is missing in the tens."
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["267", "455"], op: "+", result: "722" }
+            answer: true
+          - id: l2-c19
+            part: check
+            type: multiple_choice
+            text: "Where is the mistake?"
+            say: "Four hundred and seventy-five add three hundred and sixty-eight is seven hundred and forty-three. Where is the mistake?"
+            show: { drawn: written-calc, rows: ["475", "368"], op: "+", result: "743" }
+            options: ["The carried 1 is missing in the hundreds.", "The ones are wrong.", "The tens are wrong."]
+            answer: "The carried 1 is missing in the hundreds."
+          - id: l2-c20
+            part: check
+            type: text_input
+            text: "Ella works out 293 + 548 and gets 731. What is the right answer?"
+            say: "Ella works out two hundred and ninety-three add five hundred and forty-eight and gets seven hundred and thirty-one. What is the right answer?"
+            show: { drawn: written-calc, rows: ["293", "548"], op: "+", result: "731" }
+            answer: "841"

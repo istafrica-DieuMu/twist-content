@@ -25,6 +25,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [clock]
   facets: []
+  parts:
+    - { id: past, what: { de: Uhrzeiten nach der vollen Stunde auf fünf Minuten genau ablesen, en: reading times past the hour to five minutes } }
+    - { id: to, what: { de: Uhrzeiten vor der vollen Stunde auf fünf Minuten genau ablesen, en: reading times to the hour to five minutes } }
+    - { id: set, what: { de: die Zeiger auf fünf Minuten genau stellen, en: setting the hands to five minutes } }
+    - { id: units, what: { de: "wissen, dass eine Stunde 60 Minuten und ein Tag 24 Stunden hat", en: knowing that an hour has 60 minutes and a day 24 hours } }
   misconceptions:
     - id: number-is-minutes
       what: Reads the number the minute hand points to as the minutes (on the 4 it is 4 minutes)
@@ -225,6 +230,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -236,7 +242,7 @@ lessons:
             type: clock_hands_drag
             text: "Show 10 past 2 on the clock."
             say: "Show ten past two on the clock. Drag the hands."
-            show: { drawn: clock, hour: 12, minute: 0 }
+            show: { drawn: clock, hour: 9, minute: 0 }
             step: 5
             answer: "2:10"
             feedback:
@@ -248,6 +254,25 @@ lessons:
             show: { drawn: clock, hour: 7, minute: 5 }
             options: ["5", "1", "10"]
             answer: "5"
+          - id: l1-c4
+            type: multiple_choice
+            text: "What time is it?"
+            show: { drawn: clock, hour: 12, minute: 10 }
+            options: ["10 past 12", "2 past 12", "10 past 1"]
+            answer: "10 past 12"
+          - id: l1-c5
+            type: true_false
+            text: "Is it 25 past 3?"
+            say: "Look at the clock. Is it twenty-five past three?"
+            show: { drawn: clock, hour: 3, minute: 20 }
+            answer: false
+          - id: l1-c6
+            type: clock_hands_drag
+            text: "Show 5 past 6 on the clock."
+            say: "Show five past six on the clock. Drag the hands."
+            show: { drawn: clock, hour: 9, minute: 0 }
+            step: 5
+            answer: "6:05"
 
   - n: 2
     title: { de: Minuten bis zur vollen Stunde, en: Minutes to the hour }
@@ -423,36 +448,150 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: past
             type: multiple_choice
             text: "What time is it?"
             show: { drawn: clock, hour: 1, minute: 20 }
             options: ["20 past 1", "4 past 1", "20 to 1"]
             answer: "20 past 1"
           - id: l2-c2
+            part: to
             type: multiple_choice
             text: "What time is it?"
             show: { drawn: clock, hour: 7, minute: 35 }
             options: ["25 to 8", "25 to 7", "25 past 8"]
             answer: "25 to 8"
           - id: l2-c3
+            part: to
             type: multiple_choice
             text: "10 to 12. What does the digital clock show?"
             say: "Ten to twelve. What does the digital clock show?"
             options: ["11:50", "12:10", "12:50"]
             answer: "11:50"
           - id: l2-c4
+            part: set
             type: clock_hands_drag
             text: "Show 5 to 3 on the clock."
             say: "Show five to three on the clock. Drag the hands."
-            show: { drawn: clock, hour: 12, minute: 0 }
+            show: { drawn: clock, hour: 9, minute: 0 }
             step: 5
             answer: "2:55"
             feedback:
               "3:05": "That is 5 past 3. Five to three is before three o'clock: the minute hand points to the 11."
               "3:55": "That is 5 to 4. Drag the hour hand to the 2. It sits nearly at the 3."
           - id: l2-c5
+            part: units
             type: text_input
             text: "How many hours are there in a whole day?"
             answer: "24"
+          - id: l2-c6
+            part: past
+            type: multiple_choice
+            text: "What time is it?"
+            show: { drawn: clock, hour: 4, minute: 5 }
+            options: ["5 past 4", "1 past 4", "5 to 4"]
+            answer: "5 past 4"
+          - id: l2-c7
+            part: past
+            type: true_false
+            text: "Is it 25 past 10?"
+            say: "Look at the clock. Is it twenty-five past ten?"
+            show: { drawn: clock, hour: 10, minute: 25 }
+            answer: true
+          - id: l2-c8
+            part: past
+            type: multiple_choice
+            text: "20 past 6. What does the digital clock show?"
+            say: "Twenty past six. What does the digital clock show?"
+            options: ["6:20", "6:04", "4:06"]
+            answer: "6:20"
+          - id: l2-c9
+            part: past
+            type: multiple_choice
+            text: "How many minutes past the hour?"
+            say: "How many minutes past the hour is it?"
+            show: { drawn: clock, hour: 2, minute: 10 }
+            options: ["10", "2", "20"]
+            answer: "10"
+          - id: l2-c10
+            part: to
+            type: multiple_choice
+            text: "What time is it?"
+            show: { drawn: clock, hour: 3, minute: 40 }
+            options: ["20 to 4", "20 to 3", "8 past 3"]
+            answer: "20 to 4"
+          - id: l2-c11
+            part: to
+            type: true_false
+            text: "Is it 10 to 2?"
+            say: "Look at the clock. Is it ten to two?"
+            show: { drawn: clock, hour: 2, minute: 50 }
+            answer: false
+          - id: l2-c12
+            part: to
+            type: multiple_choice
+            text: "25 to 10. What does the digital clock show?"
+            say: "Twenty-five to ten. What does the digital clock show?"
+            options: ["9:35", "10:25", "10:35"]
+            answer: "9:35"
+          - id: l2-c13
+            part: set
+            type: clock_hands_drag
+            text: "Show 25 past 8 on the clock."
+            say: "Show twenty-five past eight on the clock. Drag the hands."
+            show: { drawn: clock, hour: 9, minute: 0 }
+            step: 5
+            answer: "8:25"
+          - id: l2-c14
+            part: set
+            type: clock_hands_drag
+            text: "Show 25 to 7 on the clock."
+            say: "Show twenty-five to seven on the clock. Drag the hands."
+            show: { drawn: clock, hour: 9, minute: 0 }
+            step: 5
+            answer: "6:35"
+          - id: l2-c15
+            part: set
+            type: clock_hands_drag
+            text: "Show 5 past 11 on the clock."
+            say: "Show five past eleven on the clock. Drag the hands."
+            show: { drawn: clock, hour: 9, minute: 0 }
+            step: 5
+            answer: "11:05"
+          - id: l2-c16
+            part: set
+            type: clock_hands_drag
+            text: "Show 10 to 6 on the clock."
+            say: "Show ten to six on the clock. Drag the hands."
+            show: { drawn: clock, hour: 9, minute: 0 }
+            step: 5
+            answer: "5:50"
+          - id: l2-c17
+            part: units
+            type: true_false
+            text: "There are 24 hours in a day."
+            say: "There are twenty-four hours in a whole day. Is that true?"
+            answer: true
+          - id: l2-c18
+            part: units
+            type: multiple_choice
+            text: "The minute hand goes all the way round once. How long is that?"
+            say: "The minute hand goes all the way round the clock once. How long is that?"
+            options: ["1 hour", "1 minute", "1 day"]
+            answer: "1 hour"
+          - id: l2-c19
+            part: units
+            type: multiple_choice
+            text: "How many minutes is it from 4 o'clock to 5 o'clock?"
+            say: "How many minutes is it from four o'clock to five o'clock?"
+            options: ["60", "100", "12"]
+            answer: "60"
+          - id: l2-c20
+            part: units
+            type: true_false
+            text: "An hour has 100 minutes."
+            say: "An hour has one hundred minutes. Is that true?"
+            answer: false

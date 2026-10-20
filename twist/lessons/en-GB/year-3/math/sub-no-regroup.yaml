@@ -23,6 +23,11 @@ metadata:
   forms: [drawn, text, audio]
   drawn: [written-calc]
   facets: []
+  parts:
+    - { id: three-digit, what: { de: dreistellige Zahlen schriftlich subtrahieren, en: column subtraction of three-digit numbers } }
+    - { id: shorter, what: { de: kürzere Zahlen stellengerecht untereinander schreiben und abziehen, en: lining up and taking away a shorter number } }
+    - { id: columns, what: { de: Stelle für Stelle von den Einern an rechnen, en: working column by column from the ones } }
+    - { id: inverse, what: { de: mit der Umkehraufgabe die Probe machen, en: checking with the inverse addition } }
   misconceptions:
     - id: start-left
       what: Starts subtracting from the hundreds instead of the ones
@@ -210,6 +215,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -226,9 +232,26 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
+            say: "Is this calculation right?"
             show: { drawn: written-calc, rows: ["689", "357"], op: "-", result: "332" }
             answer: true
+          - id: l1-c4
+            type: fill_in_blank
+            text: "Subtract in columns. Start with the ones."
+            show: { drawn: written-calc, rows: ["587", "352"], op: "-", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["5", "3", "2", "4"]
+            answer: ["5", "3", "2"]
+          - id: l1-c5
+            type: text_input
+            text: "A farm has 476 sheep. 154 of them are in the top field. How many sheep are in the other fields?"
+            answer: "322"
+          - id: l1-c6
+            type: multiple_choice
+            text: "You work out 749 − 316 in columns. What is the ones digit of the answer?"
+            show: { drawn: written-calc, rows: ["749", "316"], op: "-" }
+            options: ["3", "15", "5"]
+            answer: "3"
 
   - n: 2
     title: { de: Kürzere Zahlen und Probe, en: Shorter numbers and checking }
@@ -386,32 +409,143 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: three-digit
             type: text_input
             text: "Subtract in columns."
             say: "Subtract four hundred and twenty-five from nine hundred and sixty-eight in columns."
             show: { drawn: written-calc, rows: ["968", "425"], op: "-" }
             answer: "543"
           - id: l2-c2
+            part: shorter
             type: text_input
             text: "Subtract in columns."
             say: "Subtract sixty-two from seven hundred and ninety-four in columns."
             show: { drawn: written-calc, rows: ["794", "62"], op: "-" }
             answer: "732"
           - id: l2-c3
+            part: inverse
             type: multiple_choice
             text: "Which addition checks 875 − 413 = 462?"
             options: ["462 + 413 = 875", "875 + 413 = 1288", "462 − 413 = 49"]
             answer: "462 + 413 = 875"
           - id: l2-c4
+            part: shorter
             type: multiple_choice
             text: "You work out 548 − 36 in columns. Which digit of 548 is above the 3?"
             options: ["4", "5", "8"]
             answer: "4"
           - id: l2-c5
+            part: shorter
             type: true_false
             text: "Is this calculation right?"
-            say: "Check each column. Is this calculation right?"
+            say: "Is this calculation right?"
             show: { drawn: written-calc, rows: ["739", "25"], op: "-", result: "489" }
             answer: false
+          - id: l2-c6
+            part: three-digit
+            type: text_input
+            text: "Subtract in columns."
+            say: "Subtract three hundred and sixteen from eight hundred and fifty-seven in columns."
+            show: { drawn: written-calc, rows: ["857", "316"], op: "-" }
+            answer: "541"
+          - id: l2-c7
+            part: three-digit
+            type: text_input
+            text: "A library has 698 books. 345 of them are out on loan. How many books are on the shelves?"
+            answer: "353"
+          - id: l2-c8
+            part: three-digit
+            type: true_false
+            text: "Is this calculation right?"
+            say: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["947", "623"], op: "-", result: "324" }
+            answer: true
+          - id: l2-c9
+            part: three-digit
+            type: multiple_choice
+            text: "794 − 263 = _"
+            say: "Seven hundred and ninety-four subtract two hundred and sixty-three."
+            show: { drawn: written-calc, rows: ["794", "263"], op: "-" }
+            options: ["531", "1057", "541"]
+            answer: "531"
+          - id: l2-c10
+            part: shorter
+            type: text_input
+            text: "Subtract in columns."
+            say: "Subtract seventy-one from three hundred and eighty-six in columns."
+            show: { drawn: written-calc, rows: ["386", "71"], op: "-" }
+            answer: "315"
+          - id: l2-c11
+            part: shorter
+            type: true_false
+            text: "Is this calculation right?"
+            say: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["657", "43"], op: "-", result: "614" }
+            answer: true
+          - id: l2-c12
+            part: columns
+            type: fill_in_blank
+            text: "Subtract in columns. Start with the ones."
+            show: { drawn: written-calc, rows: ["769", "528"], op: "-", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["1", "4", "2", "3"]
+            answer: ["1", "4", "2"]
+          - id: l2-c13
+            part: columns
+            type: multiple_choice
+            text: "You work out 873 − 451 in columns. What is the hundreds digit of the answer?"
+            show: { drawn: written-calc, rows: ["873", "451"], op: "-" }
+            options: ["4", "12", "3"]
+            answer: "4"
+          - id: l2-c14
+            part: columns
+            type: multiple_choice
+            text: "You work out 476 − 235 in columns. Which column do you start with?"
+            show: { drawn: written-calc, rows: ["476", "235"], op: "-" }
+            options: ["the ones", "the tens", "the hundreds"]
+            answer: "the ones"
+            keep_order: true
+          - id: l2-c15
+            part: columns
+            type: fill_in_blank
+            text: "Subtract in columns. Start with the ones."
+            show: { drawn: written-calc, rows: ["896", "274"], op: "-", result: "___" }
+            frame: "O: _  T: _  H: _"
+            options: ["2", "6", "3", "4"]
+            answer: ["2", "2", "6"]
+          - id: l2-c16
+            part: columns
+            type: true_false
+            text: "Is this calculation right?"
+            say: "Is this calculation right?"
+            show: { drawn: written-calc, rows: ["583", "142"], op: "-", result: "451" }
+            answer: false
+          - id: l2-c17
+            part: inverse
+            type: true_false
+            text: "584 − 132 = 442. Check with 442 + 132. Is the answer right?"
+            say: "Five hundred and eighty-four subtract one hundred and thirty-two equals four hundred and forty-two. Check with four hundred and forty-two add one hundred and thirty-two. Is the answer right?"
+            answer: false
+          - id: l2-c18
+            part: inverse
+            type: fill_in_blank
+            text: "Check 978 − 546 = 432 with the inverse."
+            say: "Check nine hundred and seventy-eight subtract five hundred and forty-six equals four hundred and thirty-two with the inverse."
+            frame: "432 + _ = _"
+            options: ["546", "978", "432", "1410"]
+            answer: ["546", "978"]
+          - id: l2-c19
+            part: inverse
+            type: multiple_choice
+            text: "Ben works out 695 − 372 = 323. Which addition checks his answer?"
+            options: ["323 + 372", "695 + 372", "695 + 323"]
+            answer: "323 + 372"
+          - id: l2-c20
+            part: inverse
+            type: multiple_choice
+            text: "Ella checks a subtraction with 512 + 231 = 743. Which subtraction did she check?"
+            options: ["743 − 231 = 512", "512 − 231 = 281", "743 + 231 = 974"]
+            answer: "743 − 231 = 512"

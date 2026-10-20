@@ -23,6 +23,11 @@ metadata:
   forms: [text, picture, audio, drawn]
   drawn: [letter-card]
   facets: []
+  parts:
+    - { id: ing-ed, what: { de: "-ing und -ed an ein Verb hängen", en: "adding -ing and -ed to a doing word" } }
+    - { id: er-est, what: { de: "-er und -est an ein Adjektiv hängen", en: "adding -er and -est to a describing word" } }
+    - { id: un, what: { de: "un- vorne anfügen, um das Gegenteil zu bilden", en: "adding un- at the start to make the opposite" } }
+    - { id: root, what: { de: das Stammwort und den angefügten Teil erkennen, en: seeing the root word and the part added to it } }
   misconceptions:
     - id: ed-as-heard
       what: Spells the -ed ending as it sounds (jumpt, helpt, playd)
@@ -223,6 +228,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: multiple_choice
@@ -244,6 +250,26 @@ lessons:
             frame: "Yesterday I kick_ the ball."
             options: ["ing", "ed", "s"]
             answer: ["ed"]
+            option_audio: false
+          - id: l1-c4
+            type: text_input
+            keyboard: letters
+            text: "jump + ing = ?\nWrite the word."
+            say: "Add i n g to jump. Write the word."
+            answer: "jumping"
+          - id: l1-c5
+            type: highlight_in_text
+            text: "Tap every word that ends in -ing."
+            say: "Read the words yourself. Tap every word that ends in i n g."
+            show: { drawn: letter-card, text: "singing kicked looking helped" }
+            spans: ["singing", "looking"]
+          - id: l1-c6
+            type: fill_in_blank
+            text: "Now I am help_ Mum. Yesterday I help_ Dad."
+            say: "Now I am helping Mum. Yesterday I helped Dad. Which endings go in the gaps?"
+            frame: "Now I am help_ Mum. Yesterday I help_ Dad."
+            options: ["ing", "ed", "s"]
+            answer: ["ing", "ed"]
             option_audio: false
 
   - n: 2
@@ -421,20 +447,24 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: ing-ed
             type: text_input
             keyboard: letters
             text: "rest + ing = ?\nWrite the word."
             say: "Add i n g to rest. Write the word."
             answer: "resting"
           - id: l2-c2
+            part: ing-ed
             type: audio_choice
             text: "Which spelling is right?"
             audio: { en: "Picked." }
             options: ["picked", "pickt", "pikd"]
             answer: "picked"
           - id: l2-c3
+            part: un
             type: fill_in_blank
             text: "Please do not be _kind to the cat."
             say: "Which part goes at the start?"
@@ -444,6 +474,7 @@ lessons:
             answer: ["un"]
             option_audio: false
           - id: l2-c4
+            part: er-est
             type: fill_in_blank
             text: "Of all my friends, Raj is the old_."
             say: "Of all my friends, Raj is the oldest. Which ending?"
@@ -452,9 +483,130 @@ lessons:
             answer: ["est"]
             option_audio: false
           - id: l2-c5
+            part: er-est
             type: multiple_choice
             text: "high + er"
             say: "Add e r to high. Which spelling is right?"
             options: ["higher", "hier", "highr"]
             answer: "higher"
             option_audio: false
+          - id: l2-c6
+            part: ing-ed
+            type: text_input
+            keyboard: letters
+            text: "fix + ed = ?\nYesterday I ____ my bike."
+            say: "Add e d to fix. Yesterday I fixed my bike. Write the word."
+            show: { object: bike }
+            answer: "fixed"
+          - id: l2-c7
+            part: er-est
+            type: multiple_choice
+            text: "Ben is 6. Kim is 7.\nKim is ___ than Ben."
+            say: "Ben is six. Kim is seven. Which word fits the gap?"
+            options: ["older", "oldest", "olding"]
+            answer: "older"
+            option_audio: false
+          - id: l2-c8
+            part: un
+            type: multiple_choice
+            text: "What does unwell mean?"
+            options: ["not well", "very well", "well again"]
+            answer: "not well"
+          - id: l2-c9
+            part: root
+            type: multiple_choice
+            text: "What is the root word of unpacked?"
+            options: ["pack", "unpack", "packed"]
+            answer: "pack"
+            option_audio: false
+          - id: l2-c10
+            part: ing-ed
+            type: multiple_choice
+            text: "Which word tells you it already happened?"
+            options: ["walked", "walking", "walks"]
+            answer: "walked"
+            option_audio: false
+          - id: l2-c11
+            part: er-est
+            type: highlight_in_text
+            text: "Tap the word you use to compare two things."
+            say: "Read the words yourself. Tap the word you use to compare two things."
+            show: { drawn: letter-card, text: "soft softer softest" }
+            spans: ["softer"]
+          - id: l2-c12
+            part: un
+            type: matching
+            text: "Match each meaning to its word."
+            say: "Tap a meaning, then tap the word that means the same."
+            pairs:
+              - left: { text: "not safe" }
+                right: { text: "unsafe" }
+              - left: { text: "not tidy" }
+                right: { text: "untidy" }
+              - left: { text: "not lucky" }
+                right: { text: "unlucky" }
+          - id: l2-c13
+            part: root
+            type: multiple_choice
+            text: "Which word has the root word help in it?"
+            options: ["helped", "hello", "held"]
+            answer: "helped"
+            option_audio: false
+          - id: l2-c14
+            part: ing-ed
+            type: audio_choice
+            text: "Which spelling is right?"
+            audio: { en: "Rested." }
+            options: ["rested", "restid", "restd"]
+            answer: "rested"
+          - id: l2-c15
+            part: er-est
+            type: fill_in_blank
+            text: "My bag is light.\n\nWhich endings go in the gaps?"
+            say: "My bag is light. Your bag is lighter than mine. Tom's bag is the lightest of all. Which endings go in the gaps?"
+            frame: "Your bag is light_ than mine. Tom's bag is the light_ of all."
+            options: ["er", "est"]
+            answer: ["er", "est"]
+            option_audio: false
+          - id: l2-c16
+            part: un
+            type: true_false
+            text: "Is it true? \"unzip\" means open the zip."
+            answer: true
+          - id: l2-c17
+            part: root
+            type: true_false
+            text: "Is it true? The root word of kindest is kin."
+            say: "Is it true? The root word of kindest is k i n."
+            answer: false
+          - id: l2-c18
+            part: root
+            type: sorting
+            text: "Which part was added? Put each word in its box."
+            say: "Read each word yourself. Which part was added to the root word? Put it in the right box."
+            option_audio: false
+            bins:
+              - { id: ing, show: { text: "-ing" }, say: "i n g" }
+              - { id: ed, show: { text: "-ed" }, say: "e d" }
+              - { id: er, show: { text: "-er" }, say: "e r" }
+            options:
+              - { text: "looking", bin: ing }
+              - { text: "looked", bin: ed }
+              - { text: "louder", bin: er }
+              - { text: "playing", bin: ing }
+          - id: l2-c19
+            part: root
+            type: fill_in_blank
+            text: "Build the word unlocked."
+            say: "Build the word unlocked. Which parts go in the gaps?"
+            frame: "_ + lock + _"
+            options: ["un", "ed", "ing", "er"]
+            answer: ["un", "ed"]
+            option_audio: false
+          - id: l2-c20
+            part: un
+            type: audio_choice
+            text: "Which spelling is right?"
+            audio: { en: "Unwrap." }
+            options: ["unwrap", "onwrap", "unrap"]
+            answer: "unwrap"

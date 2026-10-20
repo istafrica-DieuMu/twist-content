@@ -25,6 +25,11 @@ metadata:
   forms: [text, audio, drawn]
   drawn: [coins]
   facets: [currency]
+  parts:
+    - { id: count-pence, what: { de: Münzen bis 20p zählen, en: counting coins up to 20p } }
+    - { id: count-pounds, what: { de: Scheine und Münzen bis 20 Pfund zählen, en: counting notes and coins up to £20 } }
+    - { id: make, what: { de: einen Betrag mit Münzen oder Scheinen legen, en: making an amount with coins or notes } }
+    - { id: more, what: { de: "herausfinden, wer mehr Geld hat", en: finding out who has more money } }
   misconceptions:
     - id: counts-coins
       what: Counts the coins instead of their value (four 2p coins are 4p)
@@ -213,6 +218,7 @@ lessons:
 
       - activity: check
         size: quick
+        draw: 3
         tasks:
           - id: l1-c1
             type: text_input
@@ -233,6 +239,25 @@ lessons:
             say: "Count the money. How many pence is this?"
             show: { drawn: coins, values: [10, 2, 2, 2] }
             answer: "16"
+          - id: l1-c4
+            type: text_input
+            text: "How many pence is this?"
+            say: "Count the money. How many pence is this?"
+            show: { drawn: coins, values: [5, 5, 1] }
+            answer: "11"
+          - id: l1-c5
+            type: multiple_choice
+            text: "How much money is this?"
+            say: "How much money is this?"
+            show: { drawn: coins, values: [2, 2, 2, 2, 2, 2, 2] }
+            options: ["14p", "7p", "12p"]
+            answer: "14p"
+          - id: l1-c6
+            type: true_false
+            text: "Is it true? This is 17p."
+            say: "Is it true? This is seventeen pence."
+            show: { drawn: coins, values: [10, 5, 1, 1] }
+            answer: true
 
   - n: 2
     title: { de: "Beträge legen, auch in Pfund", en: "Making amounts, in pence and pounds" }
@@ -416,14 +441,17 @@ lessons:
 
       - activity: check
         size: skill
+        draw: 5
         tasks:
           - id: l2-c1
+            part: count-pounds
             type: text_input
             text: "How many pounds is this?"
             say: "Count the money. How many pounds is this?"
             show: { drawn: coins, values: [1000, 200, 100] }
             answer: "13"
           - id: l2-c2
+            part: make
             type: image_multiple_choice
             text: "Which coins make 18p?"
             say: "Tap the coins that make eighteen pence."
@@ -433,6 +461,7 @@ lessons:
               - { drawn: coins, values: [5, 5, 5, 2] }
             answer: "18"
           - id: l2-c3
+            part: make
             type: fill_in_blank
             text: "What is missing?"
             say: "Sixteen pence is ten pence and five pence and how much more?"
@@ -440,14 +469,128 @@ lessons:
             options: ["1p", "2p", "5p"]
             answer: ["1p"]
           - id: l2-c4
+            part: more
             type: multiple_choice
             text: "Jay has £10 + £10.\nRuby has £5 + £5 + £5 + £2.\nWho has more money?"
             say: "Jay has two ten pound notes. Ruby has three five pound notes and a two pound coin. Who has more money?"
             options: ["Jay", "Ruby"]
             answer: "Jay"
           - id: l2-c5
+            part: count-pence
             type: true_false
             text: "Is it true? This is 5p."
             say: "Is it true? This is five pence."
             show: { drawn: coins, values: [2, 2, 2, 2, 2] }
             answer: false
+          - id: l2-c6
+            part: count-pence
+            type: text_input
+            text: "How many pence is this?"
+            say: "Count the money. How many pence is this?"
+            show: { drawn: coins, values: [10, 2, 2, 2, 1] }
+            answer: "17"
+          - id: l2-c7
+            part: count-pence
+            type: multiple_choice
+            text: "How much money is this?"
+            say: "How much money is this?"
+            show: { drawn: coins, values: [5, 5, 2, 2, 2] }
+            options: ["16p", "5p", "15p"]
+            answer: "16p"
+          - id: l2-c8
+            part: count-pence
+            type: true_false
+            text: "Is it true? This is 14p."
+            say: "Is it true? This is fourteen pence."
+            show: { drawn: coins, values: [10, 2, 1, 1] }
+            answer: true
+          - id: l2-c9
+            part: count-pence
+            type: multiple_choice
+            text: "How much money is this?"
+            say: "How much money is this?"
+            show: { drawn: coins, values: [10, 5, 1, 1, 1] }
+            options: ["18p", "5p", "17p"]
+            answer: "18p"
+          - id: l2-c10
+            part: count-pounds
+            type: text_input
+            text: "How many pounds is this?"
+            say: "Count the money. How many pounds is this?"
+            show: { drawn: coins, values: [1000, 500, 200, 200] }
+            answer: "19"
+          - id: l2-c11
+            part: count-pounds
+            type: multiple_choice
+            text: "How much money is this?"
+            say: "How much money is this?"
+            show: { drawn: coins, values: [500, 500, 200, 100] }
+            options: ["£13", "£4", "£12"]
+            answer: "£13"
+          - id: l2-c12
+            part: count-pounds
+            type: true_false
+            text: "Is it true? This is £18."
+            say: "Is it true? This is eighteen pounds."
+            show: { drawn: coins, values: [1000, 500, 200, 100] }
+            answer: true
+          - id: l2-c13
+            part: count-pounds
+            type: multiple_choice
+            text: "How much money is this?"
+            say: "How much money is this?"
+            show: { drawn: coins, values: [500, 200, 200, 200, 100] }
+            options: ["£12", "£5", "£11"]
+            answer: "£12"
+          - id: l2-c14
+            part: make
+            type: image_multiple_choice
+            text: "A lolly costs 7p. Which coins make 7p?"
+            say: "A lolly costs seven pence. Which coins make seven pence?"
+            options:
+              - { drawn: coins, values: [5, 1] }
+              - { drawn: coins, values: [2, 2, 2] }
+              - { drawn: coins, values: [5, 2] }
+            answer: "7"
+          - id: l2-c15
+            part: make
+            type: fill_in_blank
+            text: "What is missing?"
+            say: "Twelve pounds is five pounds and five pounds and how much more?"
+            frame: "£12 = £5 + £5 + _"
+            options: ["£2", "£1", "£5"]
+            answer: ["£2"]
+          - id: l2-c16
+            part: make
+            type: multiple_choice
+            text: "How can you make 16p?"
+            say: "Ruby wants to pay sixteen pence. Which coins make sixteen pence?"
+            options: ["10p + 5p + 1p", "10p + 2p + 2p", "5p + 5p + 5p"]
+            answer: "10p + 5p + 1p"
+          - id: l2-c17
+            part: more
+            type: multiple_choice
+            text: "Mo has £10 + £5.\nAva has £5 + £2 + £2 + £2 + £2.\nWho has more money?"
+            say: "Mo has a ten pound note and a five pound note. Ava has a five pound note and four two pound coins. Who has more money?"
+            options: ["Mo", "Ava"]
+            answer: "Mo"
+          - id: l2-c18
+            part: more
+            type: multiple_choice
+            text: "Kim has 10p + 5p.\nLeo has 2p + 2p + 2p + 2p + 2p.\nWho has more money?"
+            say: "Kim has a ten pence coin and a five pence coin. Leo has five two pence coins. Who has more money?"
+            options: ["Kim", "Leo"]
+            answer: "Kim"
+          - id: l2-c19
+            part: more
+            type: true_false
+            text: "Ali has 2p + 2p + 2p + 2p + 2p.\nBea has 20p.\nIs it true? Ali has more money."
+            say: "Ali has five two pence coins. Bea has one twenty pence coin. Is it true? Ali has more money."
+            answer: false
+          - id: l2-c20
+            part: more
+            type: multiple_choice
+            text: "Zac has £10 + £10.\nMay has £5 + £5 + £5 + £5.\nWho has more money?"
+            say: "Zac has two ten pound notes. May has four five pound notes. Who has more money?"
+            options: ["Zac", "May", "They have the same."]
+            answer: "They have the same."
