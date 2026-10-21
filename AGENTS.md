@@ -56,7 +56,8 @@ git repo kept separate from schoolido-learning.
   and the research write-ups. rnd/AGENTS.md has its rules.
 - **twist/serve.mjs**: serves pages/ and assets/ (the player with its
   Practice, Drawings and Task types tabs) behind basic auth from a clone;
-  README.md, "Serve the player on a server"; the host's runbook is
+  docker-compose.player.yml runs it in Docker (login in .env.player, not in
+  git); README.md, "Serve the player on a server"; the host's runbook is
   twist/pages/hosting/index.html (written by hand, published as a claude.ai
   artifact).
 - README.md: the quick reference. Keep the root to these, plus config files.
