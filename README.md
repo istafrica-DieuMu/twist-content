@@ -123,6 +123,13 @@ are all in the repo.
    It listens on 127.0.0.1 only; `HOST=0.0.0.0` opens it to the network
    (only behind a firewall that keeps the port closed to the outside).
 
+   Or in Docker, with the login in `.env.player` (`TWIST_USER`, `TWIST_PASS`,
+   optional `PLAYER_PORT`, default 4410; not in git):
+
+   ```
+   docker compose -p twist-player -f docker-compose.player.yml --env-file .env.player up -d
+   ```
+
    `/` opens the player. Only `twist/pages/` and `twist/assets/` are
    served; lesson files and the rest of the repo are not.
 
