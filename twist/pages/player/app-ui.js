@@ -7,7 +7,7 @@
    child is the child of every tab: Study follows its course, and a lesson
    finished from the app moves its skill on (finishLesson). Inlined after
    practice-ui.js. */
-const APP = { tab: null, home: null, subj: null, year: null, topic: null, q: "", fromApp: false };
+const APP = { tab: null, home: null, subj: null, year: null, topic: null, q: "", fromApp: false, units: false };
 const ATXT = {
   de: { badges: "Abzeichen", dayPlayed: "Gespielt", dayToday: "Heute, noch offen", dayMissed: "Nicht gespielt", lightFirst: "Mach heute eine Lektion oder Übung, dann brennt die erste Flamme.", upNext: "Als Nächstes", thisWeek: "Diese Woche", days: ["Mo", "Di", "Mi", "Do", "Fr"], gold: "Gold!", earned: "Verdient", earnedIn: (y) => `Verdient, ${y}`, ofN: (a, b) => `${a} von ${b}`, noBadges: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", almost: "Fast geschafft", allBadges: (n) => `Alle weiteren Abzeichen (${n})`, how: { pathfinder: "Deinen ersten Einstufungstest machen", summit: "Den Test am Schuljahresende bestehen", legend: "Jede Fähigkeit eines Fachs können", "comeback-kid": "Eine Fähigkeit zurückholen", "like-clockwork": "4 Wochen alle Wiederholungen pünktlich", "time-traveller": "Etwas aus einer späteren Klasse lernen" }, hi: "Hallo!", startHere: "Fang hier an", minShort: (m) => `${m} Min.`, helloName: (n) => `Hallo, ${n}!`, todayPlan: "Dein Plan für heute", planLeft: (a, b) => `${a} von ${b} für heute geschafft`, planDone: "Für heute alles geschafft", unitOf: (k, n, y) => `Einheit ${k} von ${n}, ${y}`, lessonDone: "Lektion geschafft", lessonsToday: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"} heute`, practiceDone: "Üben geschafft", sessionsToday: (n) => `${n} ${n === 1 ? "Übungsrunde" : "Übungsrunden"} heute`, winTitle: "Super, dein Plan für heute ist fertig!", winStreak: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge. Komm morgen wieder!`, winSub: "Komm morgen wieder!", wantMore: "Lust auf mehr?", unitsOf: (a, b) => `${a}/${b} Einheiten`, newDot: "neu", start: "Start", study: "Lernen", practice: "Üben", me: "Ich", hello: "Hallo! Schön, dass du da bist.", next: "Weiter lernen", goOn: "Mach weiter, wo du aufgehört hast", nextUnit: (x) => `Als Nächstes in ${x}`, nextYear: (y) => `Weiter mit ${y}`, more: "Andere Fächer", newSubj: "Probier ein neues Fach", fresh: "Neu für dich", lessonOf: (k, n) => `Lektion ${k} von ${n}`, mins: (m) => `etwa ${m} Minuten`, go: "Los geht's", allDone: "Alles geschafft!", allDoneSub: "Im Üben-Tab hältst du es frisch.", doneOf: (a, b) => `${a} von ${b} geschafft`, lessons: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"}`, finish: "Fertig", today: "Heute üben", allTopics: "Alle Themen", search: (s, y) => `Suchen in ${s}, ${y}`, nothing: "Nichts gefunden.", year: "Klasse", yourYear: "deine Klasse", sets: (n) => `${n} ${n === 1 ? "Einheit" : "Einheiten"}`,
     meTitle: "Mein Fortschritt", stars: "Sterne", streak: "Tage in Folge", sessions: "Übungsrunden", bee: "Fleißiges Bienchen", beeTo: (a, b) => `${a} von ${b} Übungsrunden`, beeMax: "Alle Stufen geschafft!", notYet: "Noch nicht verdient", level: (n) => `Stufe ${n} von 6`, streakTitle: "Serie", streakNow: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge`, streakBest: (n) => `Bester Lauf: ${n}`, streakTo: (n, name) => `Noch ${n} ${n === 1 ? "Schultag" : "Schultage"} bis ${name}`, streakNote: "Wochenenden zählen nicht und brechen nichts.", records: "Drill-Rekorde", perMin: (n) => `${n} pro Minute`, noRecords: "Noch kein Drill gespielt. Probier einen im Üben-Tab!", subjects: "Deine Fächer", ofStars: (a, b) => `${a} von ${b} Sternen` },
@@ -61,10 +61,11 @@ function appTabs(active) {
 }
 const inPractice = () => document.body.classList.contains("practice");
 // Switch the app to a tab. Study needs the lesson view; the others the practice view.
-function appTab(t) {
+// Study opens on the track; { keep: true } goes back to the unit list if that was open.
+function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
-  if (t === "study") { if (inPractice()) setView("lessons"); APP.home = "study"; APP.fromApp = false; return renderStudy(); }
+  if (t === "study") { if (!keep) APP.units = false; if (inPractice()) setView("lessons"); APP.home = "study"; APP.fromApp = false; return APP.units ? renderStudy() : renderTrack(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
   if (t === "start") renderHomeTab(); else if (t === "me") renderMe(); else if (t === "settings") renderSettings(); else renderPracticeHome();
@@ -207,7 +208,146 @@ function renderHomeTab() {
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
 }
 
-/* ---------- Study ---------- */
+/* ---------- Study: the track ---------- */
+// As in ist-schoolido (app/(tabs)/lesson-path.tsx): one stone per lesson of the
+// course, in one column, joined by arcs that bulge left and right; a line where
+// a unit starts; the mascot on the current stone; islands in the open space.
+// The card on top names the unit at the reading line and opens the unit list.
+// Tapping a stone opens its card with the title, the minutes and Start.
+const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" } };
+const TRACK = {
+  math: { route: "#018641", grad: ["#0BBE81", "#145E39"], soft: "#E2F0EA", islands: 4 },
+  german: { route: "#E87729", grad: ["#E8A527", "#BC4113"], soft: "#F8EAE0", islands: 4 },
+  english: { route: "#408AF4", grad: ["#32ACF5", "#0D42AC"], soft: "#E3EEF7", islands: 5 },
+  // French has no art of its own: the English art turned to its purple.
+  french: { route: "#8f73ff", grad: ["#9b7bff", "#4b2fb0"], soft: "#ece6fb", islands: 5, files: "english" },
+};
+const TR = { pad: 70, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
+const ISLAND_DY = [0, -24, 0, -24, -24];
+const ARCH_PATH = "M8.15 22.9C8.15 22.9 47.71 2.35 47.71 2.35C50.42 0.94 53.65 0.62 56.58 1.47C195.73 41.95 199.88 146.33 57.21 211.78C53.93 213.28 50.06 213.2 46.85 211.56C46.85 211.56 3.18 189.23 3.18 189.23C-0.16 187.52 0.48 182.49 4.11 181.54C118.03 151.67 147.82 64.21 8.95 28.61C6.25 27.92 5.68 24.19 8.15 22.9Z";
+const TKTXT = {
+  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", again: "Nochmal spielen", locked: "Noch gesperrt", min: (m) => `${m} Min.`, subject: "Fach wählen" },
+  en: { units: "All units", back: "Back", start: "Start lesson", again: "Play again", locked: "Locked", min: (m) => `${m} min`, subject: "Choose a subject" },
+};
+const TK = () => TKTXT[PL()];
+const LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>';
+const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+const trackArt = (subj) => { const a = TRACK_ART[subj]; return (typeof a === "string" ? a : a?.[PR.child.curriculum]) ?? "math"; };
+// The course as a row of lessons, each with its unit and state: done, current (the first not done) or locked.
+function trackLessons(subj, year) {
+  const out = [];
+  for (const s of courseSets(subj, year)) s.lessons.forEach((l, i) => out.push({ s, l, unitStart: i === 0, done: i < lessonsDone(s) }));
+  const cur = out.findIndex((x) => !x.done);
+  out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : "locked");
+  return out;
+}
+function renderTrack() {
+  const T = AT(), K = TK(), lg = PL(), scr = $("#screen"), c = PR.child, subs = appSubjects();
+  if (!subs.includes(APP.subj)) APP.subj = subs[0];
+  const year = yearsOf(APP.subj).includes(APP.year) ? APP.year : childYearFor(APP.subj);
+  const art = trackArt(APP.subj), look = TRACK[art], files = look.files ?? art, colour = colourOf(APP.subj);
+  const rows = trackLessons(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
+  const s = streak(c), stars = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
+  const top = (i) => TR.pad + i * TR.step, mid = (i) => top(i) + TR.decor / 2;
+  const at = (x) => `calc(50% + ${x}px)`;
+  const arcs = rows.map((r, i) => {
+    if (!i) return "";
+    const even = i % 2 === 0, y = top(i) - TR.step / 2 + TR.decor / 2 - TR.arcH / 2;
+    const left = even ? -TR.stone / 2 + 48 - TR.arcW : TR.stone / 2 - 48;
+    const island = `study/${files}-path-${((i - 1) % look.islands) + 1}.png`, ih = TR.islandW * 0.73;
+    return `<svg class="tr-arc" viewBox="0 0 163.59 213.85" preserveAspectRatio="none" style="top:${y}px;left:${at(left)};width:${TR.arcW}px;height:${TR.arcH}px;transform:scaleX(${even ? -1 : 1}) rotate(-1deg)" aria-hidden="true"><path d="${ARCH_PATH}" fill="${look.route}" fill-opacity="${rows[i - 1].done ? 1 : 0.08}"/></svg>
+      <img class="tr-island" src="${island}" alt="" style="top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px">`;
+  }).join("");
+  const lines = rows.map((r, i) => r.unitStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
+  const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(r.l.title[lg] ?? r.l.title.de)}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
+  const mascot = rows.length ? `<img class="tr-mascot" data-i="${cur}" src="${A}mascot/start-2.png" alt="" style="top:${mid(cur) - TR.mascot * 1.05}px;left:${at(TR.decor / 2 - TR.mascot * 1.2)};width:${TR.mascot}px">` : "";
+  scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
+  scr.innerHTML = `<div class="status"></div>
+    <header class="tr-stats">
+      <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${files}.svg" alt="" class="${art}">${CHEVRON}</button>
+      <button class="tr-rewards" data-rewards aria-label="${esc(RW().title)}"><span class="tr-stat"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</span>
+        <span class="tr-stat"><i>★</i>${stars}</span>
+        <span class="tr-stat"><img src="${A}badges/legend.svg" alt="">${myBadges().filter((b) => b.earned).length}</span></button>
+    </header>
+    <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
+      <button class="tr-card"><i><img src="study/${files}.svg" alt="" class="${art}"></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
+      <div class="tr-path ${art}" style="height:${top(rows.length) + 80}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip" hidden></div></div>
+    </div><div class="tr-fade" aria-hidden="true"></div>`;
+  scr.appendChild(appTabs("study"));
+  wireHeader(scr);
+  $("[data-rewards]", scr).onclick = () => rewardsSheet();
+  const page = $(".tr-page", scr), tip = $(".tr-tip", scr), card = $(".tr-card", scr), path = $(".tr-path", scr);
+  // The track's own jumps (opening, bringing a card into view) leave the top card alone.
+  let quiet = 0; const jump = (fn) => { quiet = Date.now() + 700; fn(); };
+  // The card: the unit and lesson at the reading line under it, or the stone last tapped.
+  const setCard = (i) => { const r = rows[i]; if (!r) return; $("#trUnit").textContent = r.s.title[lg] ?? r.s.title.de; $("#trLesson").textContent = r.l.title[lg] ?? r.l.title.de; };
+  const openTip = (i) => {
+    const r = rows[i]; if (!r) return;
+    setCard(i);
+    const label = r.state === "current" ? K.start : r.state === "done" ? K.again : K.locked;
+    tip.innerHTML = `<b>${keepSuffix(r.l.title[lg] ?? r.l.title.de)}</b><em>${esc(K.min(r.s.minutes ?? 10))}</em>
+      <button${r.state === "locked" ? " disabled" : ""}>${r.state === "locked" ? LOCK : ""}${esc(label)}${r.state === "current" ? ARROW : ""}</button>`;
+    // Above the stone (above the mascot on the current one); below it when there's no room.
+    const above = i > 0, y = above ? (r.state === "current" ? mid(i) - TR.mascot * 1.05 - 6 : top(i) + 24) : top(i) + TR.decor - 22;
+    tip.className = "tr-tip " + (above ? "up" : "down"); tip.style.top = y + "px"; tip.hidden = false; tip.dataset.i = i;
+    $("button", tip).onclick = () => startLesson(r.s.id, r.l.n);
+    const box = tip.getBoundingClientRect(), view = page.getBoundingClientRect(), hidden = above ? box.top < view.top + card.offsetHeight + 16 : box.bottom > view.bottom - 60;
+    if (hidden) jump(() => page.scrollBy({ top: above ? box.top - view.top - card.offsetHeight - 24 : box.bottom - view.bottom + 80, behavior: "smooth" }));
+  };
+  scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = () => (tip.dataset.i === b.dataset.i && !tip.hidden ? (tip.hidden = true) : openTip(+b.dataset.i)));
+  card.onclick = () => { APP.units = true; APP.year = year; renderStudy(); };
+  $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
+  // As the child scrolls, the card names the unit and lesson of the stone at the reading line, 24 px under it.
+  page.onscroll = () => {
+    if (Date.now() < quiet) return;
+    const line = card.getBoundingClientRect().bottom + 24 - path.getBoundingClientRect().top;
+    setCard(Math.max(0, Math.min(rows.length - 1, Math.round((line - TR.pad - TR.decor / 2) / TR.step))));
+  };
+  // Open on the current stone, its card open.
+  jump(() => page.scrollTop = Math.max(0, mid(cur) - page.clientHeight * 0.55));
+  setCard(cur); if (rows.length) openTip(cur);
+}
+// The subject menu under the pill: each subject with its icon.
+function subjectMenu(pill) {
+  const m = document.createElement("div"); m.className = "tr-menu"; m.setAttribute("role", "menu");
+  m.innerHTML = appSubjects().map((x) => { const a = trackArt(x), f = TRACK[a].files ?? a; return `<button role="menuitem" data-s="${x}"${x === APP.subj ? ' aria-current="true"' : ""}><img src="study/${f}.svg" alt="" class="${a}">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`; }).join("");
+  const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
+  const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
+  m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  $("#screen").appendChild(m); document.addEventListener("pointerdown", away, true);
+}
+
+/* ---------- Rewards: the popup from the stats on the track ---------- */
+// The streak, the stars and the badges: the newest badges earned and the ones on their way.
+const RWTXT = {
+  de: { title: "Deine Belohnungen", recent: "Zuletzt verdient", next: "Als Nächstes", none: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", all: "Alle Abzeichen ansehen", close: "Schließen" },
+  en: { title: "Your rewards", recent: "Earned lately", next: "Up next", none: "None yet. The first comes with your first skill at I can do it.", all: "See all badges", close: "Close" },
+};
+const RW = () => RWTXT[PL()];
+function rewardsSheet() {
+  const T = AT(), R = RW(), c = PR.child, scr = $("#screen"), all = myBadges(), s = streak(c);
+  const seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
+  const stars = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
+  const scrim = document.createElement("div"); scrim.className = "rw-scrim";
+  const m = document.createElement("div"); m.className = "sheet menu-sheet pr-sheet rw-sheet"; m.setAttribute("role", "dialog"); m.setAttribute("aria-label", R.title);
+  m.innerHTML = `<div class="pr-sheet-top"><h3 class="pr-sheet-h">${esc(R.title)}</h3><button class="pr-x" aria-label="${esc(R.close)}">${ICON.close}</button></div>
+    <div class="rw-stats">
+      <div class="rw-flame${s.current ? " on" : ""}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b><small>${esc(T.streak)}</small></div>
+      <div class="rw-star"><i>★</i><b>${stars}</b><small>${esc(T.stars)}</small></div>
+      <div><img src="${A}badges/legend.svg" alt=""><b>${got.length}</b><small>${esc(T.badges)}</small></div>
+    </div>
+    <h4 class="hm-step">${esc(R.recent)}</h4>
+    ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(R.none)}</p>`}
+    <h4 class="hm-step">${esc(R.next)}</h4>
+    <div class="bd-grid">${nextBadges(all).map(badgeTile).join("")}</div>
+    <div class="pr-sheet-foot"><button class="btn rw-all">${esc(R.all)}</button></div>`;
+  const close = () => { m.remove(); scrim.remove(); };
+  scrim.onclick = close; $(".pr-x", m).onclick = close;
+  $(".rw-all", m).onclick = () => { close(); appTab("me"); $("#me-badges")?.scrollIntoView({ block: "start" }); };
+  scr.append(scrim, m); $(".pr-x", m).focus();
+}
+
+/* ---------- Study: the unit list ---------- */
 // All the structured content: pick a subject, a year and a topic (or search),
 // then a unit and its lessons; a lesson opens in the lesson player.
 function renderStudy() {
@@ -226,6 +366,7 @@ function renderStudy() {
   scr.style.setProperty("--subj", colour); scr.style.setProperty("--top", `color-mix(in srgb, ${colour} 10%, var(--card))`);
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page st-page">
     <header class="st-band" style="--c:${colour}">
+      <div class="st-head"><button class="st-back" aria-label="${esc(TK().back)}">${CHEVRON}</button><h2>${esc(TK().units)}</h2></div>
       <div class="ln-subj" role="tablist">${subs.map((x) => `<button role="tab" data-s="${x}" aria-selected="${x === APP.subj}" style="--c:${colourOf(x)}">${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</button>`).join("")}</div>
       <div class="st-row"><label class="st-year"><span>${esc(T.year)}</span><select id="stYear">${years.map((y) => `<option value="${esc(y)}"${y === APP.year ? " selected" : ""}>${esc(yearName(y))}${y === mine ? ` (${esc(T.yourYear)})` : ""}</option>`).join("")}</select></label>
         <span class="st-count">${esc(T.doneOf(done, sets.length))}</span></div>
@@ -236,6 +377,7 @@ function renderStudy() {
     <div id="stList">${shown.map((tp) => `<section class="ln-topic"><h3 class="pr-h">${esc(tp.name)}<small>${esc(T.doneOf(tp.sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, tp.sets.length))}</small></h3>${tp.sets.map((s) => studySetRow(s, s === next && !q)).join("")}</section>`).join("") || `<p class="pr-empty">${esc(T.nothing)}</p>`}</div>
   </div>`;
   scr.appendChild(appTabs("study"));
+  $(".st-back", scr).onclick = () => { APP.units = false; renderTrack(); };
   scr.querySelectorAll(".ln-subj button").forEach((b) => b.onclick = () => { APP.subj = b.dataset.s; APP.year = null; APP.topic = null; APP.q = ""; renderStudy(); });
   $("#stYear").onchange = (e) => { APP.year = e.target.value; APP.topic = null; renderStudy(); };
   scr.querySelectorAll(".st-topics button").forEach((b) => b.onclick = () => { APP.topic = b.dataset.t || null; renderStudy(); });
@@ -267,7 +409,7 @@ function appLessonDone(checkSteps, pass) {
   finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check });
   saveChild();
 }
-const openStudy = () => appTab("study");
+const openStudy = () => appTab("study", { keep: true });
 
 const BADGE_NAME = {
   "number-navigator": ["Zahlenkompass", "Number Navigator"], "calculation-ace": ["Rechenass", "Calculation Ace"], "shape-shifter": ["Formenprofi", "Shape Shifter"],
@@ -281,7 +423,21 @@ const BADGE_NAME = {
 };
 const badgeName = (id) => BADGE_NAME[id]?.[PL() === "de" ? 0 : 1] ?? streakName(id);
 // The child's badges for its year (a foreign language by its learning year).
-const myBadges = () => badges(PR.child, Object.fromEntries(appSubjects().map((x) => [x, courseSets(x).map((s) => s.skill)])));
+// Each badge is stamped the first time the app sees it earned, so the newest can come first.
+function myBadges() {
+  const c = PR.child, all = badges(c, Object.fromEntries(appSubjects().map((x) => [x, courseSets(x).map((s) => s.skill)])));
+  const got = (c.badgeSeen ??= {}); let n = Object.keys(got).length, changed = false;
+  for (const b of all) if (b.earned && !(b.id in got)) { got[b.id] = { day: c.today, n: n++ }; changed = true; }
+  if (changed) saveChild();
+  return all;
+}
+// The badges on their way: the closest first, one streak badge at a time; with none started, the first few to earn.
+function nextBadges(all, max = 3) {
+  const streakNext = all.find((b) => b.kind === "streak" && !b.earned)?.id;
+  const open = all.filter((b) => !b.earned && b.need && (b.kind !== "streak" || b.id === streakNext));
+  const close = open.filter((b) => b.have > 0).sort((x, y) => y.have / y.need - x.have / x.need);
+  return (close.length ? close : open.sort((x, y) => x.need - y.need)).slice(0, max);
+}
 function badgeTile(b) {
   const T = AT(), part = b.need ? Math.min(1, b.have / b.need) : 0;
   const line = b.earned ? (b.gold ? T.gold : b.level ? T.level(b.level) : b.kind === "strand" ? T.earnedIn(yearName(childYearFor(b.subj))) : T.earned)
@@ -302,8 +458,7 @@ function weekStrip(c) {
 function renderMe() {
   const T = AT(), c = appChild(), scr = $("#screen");
   const s = streak(c), all = myBadges(), got = all.filter((b) => b.earned);
-  const nextStreak1 = all.find((b) => b.kind === "streak" && !b.earned)?.id;
-  const close = all.filter((b) => !b.earned && b.need && b.have > 0 && (b.kind !== "streak" || b.id === nextStreak1)).sort((x, y) => y.have / y.need - x.have / x.need).slice(0, 3);
+  const close = nextBadges(all).filter((b) => b.have > 0);
   const rest = all.filter((b) => !b.earned && !close.includes(b));
   const ks = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)), stars = ks.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
   const recs = Object.entries(c.drills ?? {}).filter(([k, d]) => d.best && PR.index.bySkill[k]).sort((a, b) => b[1].best - a[1].best);
