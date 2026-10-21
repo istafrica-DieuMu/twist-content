@@ -15,6 +15,12 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const T = join(HERE, "..", "..");
 const YAML = createRequire(join(T, "package.json"))("yaml");
 const read = (p) => YAML.parse(readFileSync(join(T, p), "utf8"));
+// Where each skill sits in its year (curricula/<curriculum>.yaml, placement), so the app's Learn tab follows the course.
+const PLACE = {};
+for (const cur of ["de-DE", "en-GB"]) for (const [y, ks] of Object.entries(read(`curricula/${cur}.yaml`).placement ?? {})) (ks ?? []).forEach((k, i) => { PLACE[`${cur}|${y}|${k}`] = i; });
+// The foreign-language learning year that goes with each school year (curricula learning_years).
+const LEARNING_YEARS = {};
+for (const cur of ["de-DE", "en-GB"]) for (const [ly, v] of Object.entries(read(`curricula/${cur}.yaml`).learning_years ?? {})) for (const g of v?.grades ?? []) (LEARNING_YEARS[cur] ??= {})[g] = ly;
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 
 // Must match READ_MATHS in narration.py.
@@ -174,7 +180,8 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
   }
   sets.push({ file: rel, id: d.id, skill: d.skill, can_do: skillCanDo.get(d.skill) ?? null, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
     no_reading: !!d.metadata?.no_reading, year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons,
-    curriculum: d.curriculum, topic: d.metadata?.topic ?? null, builds_on: d.metadata?.builds_on ?? [], ages: d.metadata?.ages ?? [] });
+    curriculum: d.curriculum, topic: d.metadata?.topic ?? null, builds_on: d.metadata?.builds_on ?? [], ages: d.metadata?.ages ?? [],
+    order: PLACE[`${d.curriculum}|${d.metadata?.year}|${d.skill}`] ?? 9999 });
 }
 
 const phrases = {};
@@ -191,11 +198,24 @@ const draft = process.argv.includes("--draft") ? process.argv[process.argv.index
 if (problems.length && !draft) { console.error(problems.join("\n")); process.exit(1); }
 if (problems.length) console.error(`${problems.length} lines not narrated yet (draft)`);
 const drills = {};
-for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) { const b = YAML.parse(readFileSync(p, "utf8")); drills[b.skill] = b; }
-const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
+// A drill word that a drill speaks gets its recorded clip when there is one; the player
+// falls back to the browser's voice. Must match the drill words in narration.py.
+const drillClip = (b, it) => {
+  const dom = b.skill.split(".")[0], lang = it.lang ?? { "lit-de": "de", "lit-en": "en" }[dom];
+  if (it.word == null || !lang || !(b.formats ?? []).some((f) => f === "say" || f === "listen")) return null;
+  CUR = { de: "de-DE", fr: "en-GB" }[lang] ?? (dom === "lit-en" ? "en-GB" : "de-DE");
+  const t = spoken(String(it.word), lang), id = lineId(lang, t), f = `narration/${voiceFor("practise")}/${id}.mp3`;
+  return lines[id] && existsSync(join(T, "assets", f)) ? f : null;
+};
+for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
+  const b = YAML.parse(readFileSync(p, "utf8"));
+  for (const it of b.items ?? []) { const c = drillClip(b, it); if (c) it._clip = c; }
+  drills[b.skill] = b;
+}
+const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
 const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");
-const ui = readFileSync(join(HERE, "practice-ui.js"), "utf8");
-const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => readFileSync(join(HERE, "practice.css"), "utf8")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
+const ui = readFileSync(join(HERE, "practice-ui.js"), "utf8") + "\n" + readFileSync(join(HERE, "app-ui.js"), "utf8");
+const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => readFileSync(join(HERE, "practice.css"), "utf8") + "\n" + readFileSync(join(HERE, "app.css"), "utf8")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
 writeFileSync(draft ?? join(HERE, "index.html"), html);
 if (draft) { writeFileSync(draft, html.replace('"assets":"../../assets/"', `"assets":${JSON.stringify("file://" + join(HERE, "../../assets") + "/")}`)); }
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);

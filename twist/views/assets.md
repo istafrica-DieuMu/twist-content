@@ -396,11 +396,11 @@ Each voice has its own copy, in assets/narration/<voice>/sounds/. Status `test` 
 
 ## Voices (4 in the pilot)
 
-One voice speaks every line, sound and phrase. 122648 lines in assets/narration/lines.yaml plus 59 sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: `gemini-sulafat`.
+One voice speaks every line, sound and phrase. 122950 lines in assets/narration/lines.yaml plus 59 sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: `gemini-sulafat`.
 
 | voice | model | clips | passed the check | minutes | MB | note |
 |---|---|---|---|---|---|---|
-| `gemini-sulafat` | google/gemini-3.8-flash-tts, Sulafat | 44959 | 44125 | 3416.3 | 1198.4 | female, warm; teaches and practises |
-| `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 18561 | 18248 | 1225.0 | 431.1 | male; speaks the Checks |
-| `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 47660 | 46515 | 4427.2 | 1547.0 | female, warm; teaches and practises in en-GB |
-| `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 13401 | 13084 | 931.4 | 327.4 | male; speaks the Checks in en-GB |
+| `gemini-sulafat` | google/gemini-3.8-flash-tts, Sulafat | 45095 | 44235 | 3418.0 | 1199.1 | female, warm; teaches and practises |
+| `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 18662 | 18331 | 1226.3 | 431.6 | male; speaks the Checks |
+| `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 47935 | 46786 | 4432.7 | 1549.1 | female, warm; teaches and practises in en-GB |
+| `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 18997 | 18525 | 1447.4 | 507.7 | male; speaks the Checks in en-GB |

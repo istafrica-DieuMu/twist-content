@@ -1,0 +1,513 @@
+/* ---------- The app: tab bar, Learn, Me, and the Practice home around them ---------- */
+/* A home screen scrolls between the status bar and the tab bar. */
+.pr-home.app-page { flex: 1; min-height: 0; height: auto; padding-bottom: 28px; }
+.app-tabs { flex: none; display: grid; grid-template-columns: repeat(3, 1fr); padding: 6px 10px 20px; border-top: 1px solid var(--edge-c); background: var(--card); }
+.app-tabs button { display: grid; justify-items: center; gap: 2px; padding: 6px 0; border: 0; background: none; color: #8d86a0; font: 700 12px "Red Hat Text", sans-serif; cursor: pointer; border-radius: 14px; }
+.app-tabs svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.app-tabs svg .fill { fill: currentColor; }
+.app-tabs [aria-current="page"] { color: var(--link); }
+.app-tabs [aria-current="page"] svg { fill: var(--tint); }
+.app-tabs button:focus-visible { outline: 3px solid #6849dd; outline-offset: -3px; }
+
+/* The greeting row: the flame shows the streak and opens Me. */
+.app-flame { display: flex; align-items: center; gap: 2px; padding: 4px 10px 4px 4px; border: 2px solid var(--edge); border-radius: 999px; background: var(--card); font: 800 16px "Red Hat Display", sans-serif; color: #b9b2c4; cursor: pointer; }
+.app-flame img { width: 28px; height: 28px; filter: grayscale(1); opacity: .5; }
+.app-flame.on { color: var(--flame); border-color: #ffd8bf; background: color-mix(in srgb, #ff8a3d 12%, var(--card)); }
+.app-flame.on img { filter: none; opacity: 1; }
+
+/* The Busy Bee strip, on the Practice home and the end screen. */
+.pr-bee { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center; padding: 8px 14px 8px 8px; border: 2px solid #f6e3a6; border-radius: 16px; background: var(--hint-soft); text-align: left; font: inherit; color: var(--ink, #2b0f45); cursor: pointer; }
+.pr-bee img { width: 36px; height: 36px; }
+.pr-bee span { display: grid; gap: 4px; }
+.pr-bee small { font-size: 12.5px; font-weight: 600; color: var(--hint-ink); }
+.pr-bee.end { width: 100%; cursor: default; }
+.pr-bee.up { border-color: #f5b400; box-shadow: 0 0 0 4px #fff2c2; }
+.pr-bee.up small { color:var(--plum); font-weight: 800; }
+
+/* Search: the first question on the home, with example requests under it. */
+.pr-asker { display: grid; gap: 8px; }
+.pr-ex { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px; }
+.pr-ex::-webkit-scrollbar { display: none; }
+.pr-ex[hidden] { display: none; }
+.pr-ex button { flex: none; padding: 6px 12px; border: 1.5px dashed #c9bdf2; border-radius: 999px; background: var(--tint); color: var(--link); font: 600 13px "Red Hat Text", sans-serif; cursor: pointer; }
+#prFound, #prMain { display: flex; flex-direction: column; gap: 12px; }
+#prFound[hidden], #prMain[hidden] { display: none; }
+.pr-got { display: grid; gap: 8px; padding: 14px; border-radius: 20px; background: var(--tint); border: 2px solid #d9cffa; }
+.pr-got .pr-kind { font: 700 12px "Red Hat Text", sans-serif; color: var(--link); text-transform: uppercase; letter-spacing: .04em; }
+.pr-got-chips, .pr-sum { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.pr-got-chips span, .pr-sum span { padding: 4px 10px; border-radius: 999px; background: var(--card); font: 700 13px "Red Hat Text", sans-serif; color:var(--plum); }
+.pr-got .btn { margin: 0; }
+
+/* Suggestions: the hero says what is in it; the small cards their size. */
+#prMain .pr-hero { margin-top: 4px; }
+.pr-mini small { font-size: 12.5px; color: var(--soft); font-weight: 600; align-self: end; }
+.pr-mini { min-height: 140px; }
+
+/* Choose my own: a card in the flow, not a button floating over it. */
+.pr-own { display: grid; grid-template-columns: 44px 1fr 22px; gap: 12px; align-items: center; padding: 12px 14px 12px 12px; border: 2px dashed #c9bdf2; border-radius: 20px; background: var(--sunk); text-align: left; font: inherit; color: var(--ink); cursor: pointer; }
+.pr-own-i { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: #6849dd; color: #fff; font: 800 26px/1 "Red Hat Display", sans-serif; }
+.pr-own b { display: block; font: 800 17px "Red Hat Display", sans-serif; }
+.pr-own small { font-size: 13px; color: var(--soft); }
+.pr-own:active { transform: translateY(2px); }
+
+/* The Choose my own sheet. */
+.pr-sheet-top { display: flex; align-items: center; justify-content: space-between; }
+.pr-x { width: 40px; height: 40px; border: 0; border-radius: 12px; background: var(--sunk); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.pr-x svg { width: 22px; height: 22px; }
+.pr-morebtn { border-style: dashed !important; color: var(--link) !important; }
+.pr-kinds { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pr-kinds button { display: grid; gap: 2px; text-align: left; padding: 10px 12px; border: 2px solid var(--edge-c); border-radius: 16px; background: var(--card); color:var(--plum); font: inherit; cursor: pointer; }
+.pr-kinds b { font: 800 15px "Red Hat Display", sans-serif; }
+.pr-kinds small { font-size: 12.5px; color:var(--soft-c); line-height: 1.3; }
+.pr-kinds [aria-pressed="true"] { border-color: #6849dd; background: var(--tint); box-shadow: inset 0 0 0 1px #6849dd; }
+.pr-kinds button:disabled { opacity: .4; cursor: default; }
+.pr-sum { padding-bottom: 2px; }
+/* The sheet's footer is solid, so the summary never sits over the choices. */
+.pr-sheet .pr-sheet-foot { background: var(--card); margin: 0 -20px; padding: 10px 20px 22px; border-top: 1px solid var(--edge-c); box-shadow: 0 -8px 16px -12px rgba(0, 0, 0, .25); }
+.pr-sum span { background: var(--tint); }
+
+/* Subject page: the topic says if it has a drill; Review the whole topic comes first. */
+.pr-dchip { font-style: normal; font-weight: 700; color: var(--c, #6849dd); }
+.pr-topic .pr-review { margin: 4px 14px 10px; width: calc(100% - 28px); border-style: solid; background: color-mix(in srgb, var(--c, #6849dd) 10%, var(--card)); }
+
+/* ---------- Learn ---------- */
+.ln-subj { display: flex; gap: 6px; padding: 4px; border-radius: 16px; background: var(--sunk); }
+.ln-subj button { flex: 1; padding: 9px 6px; border: 0; border-radius: 12px; background: none; font: 800 14px "Red Hat Display", sans-serif; color:var(--soft-c); cursor: pointer; }
+.ln-subj [aria-selected="true"] { background: var(--c); color: #fff; box-shadow: 0 3px 0 rgba(0, 0, 0, .15); }
+.ln-next { margin-top: 0; }
+div.ln-next { cursor: default; }
+.ln-count { margin: -6px 0 0; font-size: 13px; color: var(--soft); font-weight: 600; }
+.ln-topic { display: grid; gap: 8px; }
+.ln-set { border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 18px; background: var(--card); overflow: hidden; }
+.ln-set > summary { list-style: none; display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; cursor: pointer; }
+.ln-set > summary::-webkit-details-marker { display: none; }
+.ln-set[open] { border-color: var(--subj); }
+.ln-t { display: grid; gap: 2px; }
+.ln-t b { font: 800 15px/1.2 "Red Hat Display", sans-serif; }
+.ln-t small { font-size: 12.5px; color: var(--soft); }
+.ln-ring { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; font: 800 12px "Red Hat Display", sans-serif; color: var(--subj);
+  background: radial-gradient(closest-side, var(--card) 76%, transparent 78% 100%), conic-gradient(var(--subj) calc(var(--p) * 1%), var(--edge-c) 0); }
+.ln-set.done .ln-ring { background: var(--subj); color: #fff; font-size: 18px; }
+.ln-lessons { list-style: none; margin: 0; padding: 0 12px 12px; display: grid; gap: 6px; }
+.ln-lessons button { width: 100%; display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; border: 0; border-radius: 12px; background: var(--sunk); text-align: left; font: 600 14px "Red Hat Text", sans-serif; color:var(--plum); cursor: pointer; }
+.ln-n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--card); font: 800 14px "Red Hat Display", sans-serif; color: #8d86a0; }
+.ln-lessons .done .ln-n { background: var(--subj); color: #fff; }
+.ln-lessons .now { background: color-mix(in srgb, var(--subj) 12%, var(--card)); box-shadow: inset 0 0 0 2px var(--subj); }
+.ln-lessons .now .ln-n { background: var(--subj); color: #fff; }
+.ln-lessons em { font: 800 13px "Red Hat Display", sans-serif; font-style: normal; color: var(--subj); }
+
+/* ---------- Me ---------- */
+.me-band { margin: 0 -18px; padding: 10px 18px 18px; display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center; background: #6849dd; color: #fff; border-radius: 0 0 26px 26px; }
+.me-band img { width: 84px; height: 84px; object-fit: contain; }
+.me-band h2 { margin: 0; font: 800 24px "Red Hat Display", sans-serif; }
+.me-band small { opacity: .85; }
+.me-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.me-tiles > * { display: grid; justify-items: center; gap: 2px; padding: 12px 6px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 18px; background: var(--card); font: inherit; color: var(--ink); cursor: pointer; }
+.me-tiles b { font: 800 26px "Red Hat Display", sans-serif; }
+.me-tiles span { font-size: 12px; color: var(--soft); font-weight: 600; text-align: center; }
+.me-card { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; padding: 14px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; }
+.me-card > div { display: grid; gap: 5px; }
+.me-card b { font: 800 16px "Red Hat Display", sans-serif; }
+.me-card small { font-size: 13px; color: var(--soft); }
+.me-badge { width: 64px; height: 64px; }
+.me-badge.locked, .me-shelf .locked img { filter: grayscale(1); opacity: .35; }
+.me-streak { grid-template-columns: 1fr; }
+.me-shelf { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+.me-shelf span { display: grid; justify-items: center; gap: 1px; }
+.me-shelf img { width: 100%; max-width: 38px; }
+.me-shelf small { font-size: 10.5px; font-weight: 700; }
+.me-note { font-size: 12px !important; }
+.me-subj { display: grid; gap: 8px; }
+.me-subj > div { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; padding: 10px 14px; border: 2px solid var(--edge); border-radius: 16px; }
+.me-subj b { font: 800 15px "Red Hat Display", sans-serif; }
+.me-subj small { font-size: 12.5px; color: var(--soft); }
+.me-subj .pr-bar { grid-column: 1 / -1; }
+.me-recs { display: grid; gap: 8px; }
+.me-recs button { display: flex; justify-content: space-between; gap: 10px; padding: 12px 14px; border: 2px solid var(--edge); border-left: 6px solid var(--c); border-radius: 14px; background: var(--card); font: 600 14px "Red Hat Text", sans-serif; color: var(--ink); text-align: left; cursor: pointer; }
+.me-recs b { font: 800 14px "Red Hat Display", sans-serif; color: var(--c); white-space: nowrap; }
+
+/* A heard drill word: hear it again, and colours to pick. */
+.pr-hear { align-self: center; width: 84px; height: 84px; margin: 6px 0 4px; border: 0; border-radius: 50%; background: var(--tint); color: var(--link); display: grid; place-items: center; cursor: pointer; box-shadow: 0 5px 0 #d9cffa; }
+.pr-hear svg { width: 42px; height: 42px; }
+.pr-hear:active { transform: translateY(3px); box-shadow: 0 2px 0 #d9cffa; }
+.pr-swatch { display: block; width: 64px; height: 64px; border-radius: 50%; border: 3px solid rgba(0, 0, 0, .12); margin: auto; }
+
+/* ---------- four tabs: a little tighter so four fit ---------- */
+.app-tabs { grid-template-columns: repeat(4, 1fr); padding: 6px 8px 20px; }
+.app-tabs button { font: 700 10.5px "Red Hat Display", sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+.app-tabs [aria-current="page"] { background: #f4ecff; box-shadow: inset 0 0 0 2px #7d49dd; color: var(--plum); }
+.app-tabs [aria-current="page"] svg { stroke: #6849dd; fill: var(--tint); }
+
+/* ---------- Start ---------- */
+.st-today { grid-template-columns: 52px 1fr 22px; border-style: solid; border-color: var(--edge); border-bottom-width: 5px; background: var(--card); }
+.st-today img { width: 52px; height: 52px; object-fit: contain; border-radius: 14px; background: color-mix(in srgb, var(--c) 12%, var(--card)); }
+.st-today span { display: grid; gap: 1px; }
+.st-today small:first-child { font-weight: 700; color: var(--c); }
+.pr-mini b + small { font-weight: 600; }
+
+/* ---------- Study ---------- */
+.st-band { margin: 0 -18px; padding: 4px 18px 14px; display: grid; gap: 10px; background: color-mix(in srgb, var(--c) 10%, var(--card)); border-bottom: 2px solid color-mix(in srgb, var(--c) 25%, var(--card)); border-radius: 0 0 24px 24px; }
+.st-band .ln-subj { background: var(--card); }
+.st-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.st-year { display: flex; align-items: center; gap: 8px; font: 700 13px "Red Hat Text", sans-serif; color: var(--soft); }
+.st-year select { font: 800 15px "Red Hat Display", sans-serif; color: var(--ink); padding: 7px 30px 7px 12px; border: 2px solid var(--edge); border-radius: 12px; background: var(--card); appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #8d86a0 50%), linear-gradient(135deg, #8d86a0 50%, transparent 50%); background-position: right 14px center, right 9px center; background-size: 5px 5px; background-repeat: no-repeat; }
+.st-count { font: 700 13px "Red Hat Text", sans-serif; color: var(--c); }
+.st-topics { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px 2px; }
+.st-topics::-webkit-scrollbar { display: none; }
+.st-topics button { flex: none; padding: 8px 14px; border: 2px solid var(--edge); border-radius: 12px; background: var(--card); font: 700 14px "Red Hat Text", sans-serif; color: var(--ink); cursor: pointer; }
+.st-topics [aria-pressed="true"] { background: var(--subj); border-color: var(--subj); color: #fff; }
+.ln-topic .pr-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.ln-topic .pr-h small { font: 600 12.5px "Red Hat Text", sans-serif; color: var(--soft); }
+.ln-can { margin: -2px 12px 10px; font-size: 13px; line-height: 1.4; color: var(--soft); }
+#stList { display: flex; flex-direction: column; gap: 14px; }
+
+/* ---------- Drills ---------- */
+.pr-hrow { display: flex; align-items: center; justify-content: space-between; }
+.pr-link { display: inline-flex; align-items: center; gap: 2px; border: 0; background: none; font: 700 13px "Red Hat Text", sans-serif; color: var(--link); cursor: pointer; }
+.pr-link .chev { width: 16px; height: 16px; color: var(--link); }
+.dr-row { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px 4px; }
+.dr-row::-webkit-scrollbar { display: none; }
+.dr-row .dr-card { flex: none; width: 150px; }
+.dr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dr-card { display: grid; gap: 6px; align-content: start; text-align: left; padding: 12px; min-height: 104px; border: 2px solid var(--edge); border-bottom-width: 5px; border-top: 6px solid var(--c); border-radius: 18px; background: var(--card); font: inherit; color: var(--ink); cursor: pointer; }
+.dr-card b { font: 800 14px/1.2 "Red Hat Display", sans-serif; }
+.dr-card small { font-size: 12.5px; color: var(--soft); font-weight: 600; }
+.dr-bar { display: flex; height: 7px; border-radius: 99px; background: var(--edge-c); overflow: hidden; margin-top: auto; }
+.dr-bar .known { background: var(--good, #2e9e48); } .dr-bar .slow { background: #f6b400; } .dr-bar .miss { background: var(--bad, #d4483f); }
+.dr-card:active { transform: translateY(3px); border-bottom-width: 2px; }
+
+/* Me: subjects open Study. */
+.me-subj > button { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; padding: 10px 14px; border: 2px solid var(--edge); border-radius: 16px; background: var(--card); font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+
+/* The status bar takes the colour of the band under it (Me, a subject page, Study). */
+.screen > .status { background: var(--top, transparent); transition: background .2s; }
+.pr-home.app-page > .me-band, .pr-home.app-page > .st-band { margin-top: -8px; }
+
+/* Side panel: a skill's line on top, its controls under it. */
+.tm-ctl { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+
+/* ---------- motion: light, quick, and none with reduced motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* A screen settles in: a short fade and rise, its parts one after another. */
+  .pr-home.app-page { animation: app-in 260ms cubic-bezier(.2, .8, .2, 1) both; }
+  .pr-home.app-page > * { animation: app-rise 340ms cubic-bezier(.2, .8, .2, 1) both; }
+  .pr-home.app-page > :nth-child(2) { animation-delay: 30ms; } .pr-home.app-page > :nth-child(3) { animation-delay: 60ms; }
+  .pr-home.app-page > :nth-child(4) { animation-delay: 90ms; } .pr-home.app-page > :nth-child(5) { animation-delay: 120ms; }
+  .pr-home.app-page > :nth-child(n + 6) { animation-delay: 150ms; }
+  #prMain > *, #stList > *, .dr-row > *, .dr-grid > *, .pr-pair > *, #prTopics > *, .me-tiles > * { animation: app-rise 320ms cubic-bezier(.2, .8, .2, 1) both; }
+  #prMain > :nth-child(2), #stList > :nth-child(2), .dr-row > :nth-child(2), .dr-grid > :nth-child(2), .pr-pair > :nth-child(2), #prTopics > :nth-child(2), .me-tiles > :nth-child(2) { animation-delay: 50ms; }
+  #prMain > :nth-child(3), #stList > :nth-child(3), .dr-row > :nth-child(3), .dr-grid > :nth-child(3), #prTopics > :nth-child(3), .me-tiles > :nth-child(3) { animation-delay: 100ms; }
+  #prMain > :nth-child(n + 4), #stList > :nth-child(n + 4), .dr-row > :nth-child(n + 4), .dr-grid > :nth-child(n + 4), #prTopics > :nth-child(n + 4) { animation-delay: 140ms; }
+  /* The mascot on a hero card arrives with a little bounce. */
+  .pr-hero .pr-art { animation: app-pop 520ms cubic-bezier(.3, 1.6, .5, 1) 120ms both; }
+  /* Tabs: the pill grows into place; the icon lifts. */
+  .app-tabs button { transition: background .2s, color .2s, box-shadow .2s, transform .12s; }
+  .app-tabs [aria-current="page"] { animation: app-pill 260ms cubic-bezier(.2, .8, .2, 1); }
+  .app-tabs [aria-current="page"] svg { animation: app-lift 360ms cubic-bezier(.3, 1.6, .5, 1); }
+  /* Anything tapped presses down a little. */
+  .pr-hero, .pr-mini, .pr-own, .pr-subj, .dr-card, .ln-lessons button, .st-topics button, .ln-subj button, .pr-chips button, .pr-kinds button, .me-tiles > button, .me-recs button, .me-subj > button, .pr-ex button, .dm-c, .app-flame, .pr-bee { transition: transform .12s, box-shadow .12s, background .2s, border-color .2s, color .2s; }
+  .pr-hero:active, .pr-mini:active, .pr-own:active, .dr-card:active, .ln-lessons button:active, .st-topics button:active, .pr-chips button:active, .pr-kinds button:active, .me-tiles > button:active, .me-recs button:active, .me-subj > button:active, .pr-ex button:active, .dm-c:active, .app-flame:active, .pr-bee:active { transform: scale(.97); }
+  /* A unit or topic opens smoothly. */
+  .ln-set[open] > :not(summary), .pr-topic[open] > :not(summary) { animation: app-open 240ms cubic-bezier(.2, .8, .2, 1) both; }
+  .ln-set > summary, .pr-topic > summary { transition: background .2s; }
+  /* Bars fill up from empty. */
+  .pr-bar > i, .dr-bar > i { animation: app-fill 700ms cubic-bezier(.2, .8, .2, 1) 150ms both; transform-origin: left; }
+  .ln-ring { animation: app-pop 420ms cubic-bezier(.3, 1.6, .5, 1) both; }
+  /* Sheets slide up from the bottom; the Understood card pops in. */
+  .pr-sheet { animation: app-sheet 300ms cubic-bezier(.2, .8, .2, 1) both; }
+  .pr-got { animation: app-pop 300ms cubic-bezier(.3, 1.4, .5, 1) both; }
+  .pr-hear { animation: app-pulse 1.6s ease-in-out 700ms 2; }
+  .me-shelf span:not(.locked) img { animation: app-pop 500ms cubic-bezier(.3, 1.6, .5, 1) both; }
+  .app-flame.on img { animation: app-flicker 2.4s ease-in-out infinite; }
+}
+@keyframes app-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes app-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes app-pop { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: none; } }
+@keyframes app-pill { from { box-shadow: inset 0 0 0 0 #7d49dd; background: transparent; } }
+@keyframes app-lift { 40% { transform: translateY(-3px) scale(1.08); } }
+@keyframes app-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes app-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes app-sheet { from { transform: translateY(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+@keyframes app-pulse { 50% { transform: scale(1.08); box-shadow: 0 5px 0 #d9cffa, 0 0 0 10px rgba(104, 73, 221, .12); } }
+@keyframes app-flicker { 50% { transform: scale(1.08) rotate(-3deg); } }
+
+/* A scrolling row inside the page's column must keep its height. */
+.pr-home.app-page > *, #prMain > *, #prFound > * { flex-shrink: 0; }
+
+/* ---------- Start: today's plan ---------- */
+.hm { gap: 16px; }
+.hm-top { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+.hm-top h2 { margin: 0; font: 800 24px/1.15 "Red Hat Display", sans-serif; letter-spacing: -.01em; }
+.hm-top small { display: block; margin-top: 2px; font-size: 13.5px; font-weight: 600; color: var(--soft); }
+/* The goal ring: fills with today's plan, the streak in the middle; opens Me. */
+.hm-goal { position: relative; display: grid; place-items: center; width: 64px; height: 64px; padding: 0; border: 0; background: none; cursor: pointer; }
+.hm-goal svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); fill: none; stroke-width: 5; }
+.hm-goal circle { stroke: var(--tint); }
+.hm-goal circle.v { stroke: #f08c00; stroke-linecap: round; stroke-dasharray: var(--p) 100; transition: stroke-dasharray .6s cubic-bezier(.2, .8, .2, 1); }
+.hm-goal.full circle.v { stroke: #2f9e44; }
+.hm-goal.zero circle.v { visibility: hidden; }
+.hm-lesson .pr-go { white-space: nowrap; }
+.hm-lesson .pr-go small { margin-left: 8px; padding-left: 8px; border-left: 2px solid color-mix(in srgb, var(--c) 25%, var(--card)); font: 700 13px "Red Hat Text", sans-serif; }
+.hm-goal img { width: 26px; height: 26px; margin-top: -8px; }
+.hm-goal b { position: absolute; bottom: 9px; font: 800 13px "Red Hat Display", sans-serif; color: var(--flame); }
+.hm-goal:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; border-radius: 50%; }
+/* The plan: steps on a line, each ticked when done. */
+.hm-plan, .hm-more { display: grid; gap: 8px; }
+.hm-plan .pr-h, .hm-more .pr-h, .hm > section > .pr-h { margin: 0 0 2px; }
+.hm-step { margin: 4px 0 0; font: 700 13px "Red Hat Text", sans-serif; color: var(--soft); text-transform: uppercase; letter-spacing: .04em; }
+.hm-done { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: center; padding: 10px 14px 10px 10px; border-radius: 18px; background: var(--good-soft); }
+.hm-done i { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #2f9e44; }
+.hm-done svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.hm-done b { display: block; font: 800 16px "Red Hat Display", sans-serif; color: var(--good-ink); }
+.hm-done small { font-size: 13px; color: var(--good-ink); font-weight: 600; }
+/* The lesson card: where it sits in the unit, then the lesson. */
+.hm-lesson { padding-right: 112px; }
+.hm-lesson .pr-reason { text-wrap: balance; }
+.nb { white-space: nowrap; }
+.hm-dots { display: flex; align-items: center; gap: 5px; margin: 4px 0 2px; }
+.hm-dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .35); }
+.hm-dots i.on { background: var(--card); }
+.hm-dots i.now { background: transparent; box-shadow: inset 0 0 0 2px #fff; }
+.hm-dots small { margin-left: 4px; font: 700 12.5px "Red Hat Text", sans-serif; opacity: .9; }
+.hm-practice { margin: 0; }
+.hm-ico { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: color-mix(in srgb, var(--c) 14%, var(--card)); color: var(--c); }
+.hm-ico svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.2; }
+/* Plan done: a well done, then more if the child wants it. */
+.hm-win { display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center; padding: 12px 16px 12px 8px; border-radius: 24px; background: linear-gradient(135deg, #fff4d6, #ffe8cc); }
+.hm-win img { width: 84px; height: 92px; object-fit: contain; }
+.hm-win b { display: block; font: 800 19px/1.2 "Red Hat Display", sans-serif; color:var(--plum); }
+.hm-win small { font-size: 13.5px; font-weight: 600; color: var(--warm-ink); }
+/* The subjects: a ring each, filling with the units done this year. */
+.hm-subj { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; }
+.hm-subj button { display: grid; justify-items: center; gap: 4px; padding: 12px 6px 10px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); font: inherit; color: var(--ink); cursor: pointer; }
+.hm-subj b { font: 800 14px "Red Hat Display", sans-serif; }
+.hm-subj small { font-size: 12px; font-weight: 600; color: var(--soft); }
+.hm-ring { position: relative; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; font: 800 15px "Red Hat Display", sans-serif; font-style: normal; color: var(--c);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 10%, var(--card)) 78%, transparent 80%), conic-gradient(var(--c) calc(var(--p) * 1%), var(--tint) 0); }
+.hm-ring em { position: absolute; top: -4px; right: -10px; padding: 1px 6px; border-radius: 999px; background: #e8590c; color: #fff; font: 800 10px "Red Hat Text", sans-serif; font-style: normal; text-transform: uppercase; }
+.hm-subj button:active { transform: translateY(3px); border-bottom-width: 2px; }
+.hm-subj button:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .hm-done i { animation: app-pop 420ms cubic-bezier(.3, 1.6, .5, 1) both; }
+  .hm-win img { animation: app-pop 560ms cubic-bezier(.3, 1.6, .5, 1) 80ms both; }
+  .hm-goal circle.v { animation: hm-fill 900ms cubic-bezier(.2, .8, .2, 1) 150ms both; }
+  .hm-subj > * { animation: app-rise 320ms cubic-bezier(.2, .8, .2, 1) both; }
+  .hm-subj > :nth-child(2) { animation-delay: 50ms; } .hm-subj > :nth-child(3) { animation-delay: 100ms; }
+}
+@keyframes hm-fill { from { stroke-dasharray: 0 100; } }
+
+/* ---------- Study: up next, topic progress, the units as a path ---------- */
+.st-next { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 10px 14px 10px 10px; border: 0; border-radius: 18px; background: var(--subj); color: #fff; text-align: left; font: inherit; cursor: pointer; box-shadow: inset 0 -5px 0 rgba(0, 0, 0, .18); }
+.st-next-i { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--card); color: var(--subj); }
+.st-next-i svg { width: 22px; height: 22px; fill: currentColor; margin-left: 3px; }
+.st-next small { display: block; font: 700 12px "Red Hat Text", sans-serif; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.st-next b { display: block; font: 800 16px/1.2 "Red Hat Display", sans-serif; }
+.st-next em { font: 700 12.5px "Red Hat Text", sans-serif; font-style: normal; opacity: .85; white-space: nowrap; }
+.st-next:active { transform: translateY(3px); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .18); }
+.st-topics button small { margin-left: 6px; font-size: 12px; font-weight: 700; opacity: .7; }
+.st-topics button.done:not([aria-pressed="true"]) { color: var(--subj); border-color: color-mix(in srgb, var(--subj) 35%, var(--card)); }
+/* A line runs ring to ring through a topic's units, filled where they're done. */
+.ln-topic { position: relative; }
+.ln-set { position: relative; overflow: visible; }
+.ln-set:not(:last-child)::after { content: ""; position: absolute; left: 33px; top: calc(100% + 3px); width: 4px; height: 6px; border-radius: 2px; background: var(--edge-c); }
+.ln-set.done:not(:last-child)::after { background: var(--subj); }
+.ln-set > summary { border-radius: 16px; }
+.ln-set.done > summary { padding-top: 6px; padding-bottom: 6px; }
+.ln-set.done .ln-ring { width: 36px; height: 36px; margin: 0 4px; font-size: 15px; }
+.ln-set.done .ln-t b { font-size: 14px; }
+.ln-set.now { border-color: var(--subj); box-shadow: 0 0 0 4px color-mix(in srgb, var(--subj) 14%, transparent); }
+
+/* ---------- Practise: a plain page head ---------- */
+.pg-top h2 { margin: 0; font: 800 26px/1.15 "Red Hat Display", sans-serif; letter-spacing: -.01em; }
+.pg-top small { display: block; margin-top: 2px; font-size: 14px; font-weight: 600; color: var(--soft); }
+.hm-ico.sm { width: 40px; height: 40px; border-radius: 12px; }
+.hm-ico.sm svg { width: 22px; height: 22px; }
+.hm-ico svg path, .hm-ico svg rect { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+#prList { display: grid; gap: 8px; }
+
+/* ---------- Me: the week, the badges ---------- */
+.me-week { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.me-week span { display: grid; justify-items: center; gap: 4px; }
+.me-week i { display: grid; place-items: center; width: 100%; max-width: 48px; aspect-ratio: 1; border-radius: 14px; background: var(--sunk); }
+.me-week .on i { background: color-mix(in srgb, #ff8a3d 14%, var(--card)); box-shadow: inset 0 0 0 2px #ffc9a3; }
+.me-week .now i { outline: 3px solid #6849dd; outline-offset: 2px; }
+.me-week .later i { background: var(--sunk); box-shadow: inset 0 0 0 2px var(--sunk); }
+.me-week img { width: 60%; }
+.me-week img.wait { filter: grayscale(1); opacity: .3; }
+.me-week .now:not(.on) i { background: var(--tint); }
+.me-week .miss b { width: 8px; height: 8px; border-radius: 50%; background: #cfc9dc; }
+.me-hint { display: block; padding: 8px 12px; border-radius: 12px; background: var(--tint); color: var(--link) !important; font-weight: 700; }
+.me-week small { font: 700 12px "Red Hat Text", sans-serif; color: var(--soft); }
+.me-bds { display: grid; gap: 10px; }
+.me-bds .pr-h, .ln-topic .pr-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.me-bds .pr-h small { font: 600 12.5px "Red Hat Text", sans-serif; color: var(--soft); }
+.me-bds .hm-step { margin: 4px 0 0; }
+.bd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.bd { display: grid; justify-items: center; align-content: start; gap: 3px; padding: 10px 6px; border: 2px solid var(--edge); border-radius: 18px; background: var(--card); text-align: center; }
+.bd img { width: 56px; height: 56px; }
+.bd b { font: 800 12.5px/1.2 "Red Hat Display", sans-serif; }
+.bd small { font-size: 11.5px; font-weight: 600; color: var(--soft); line-height: 1.25; }
+.bd .pr-bar { width: 80%; margin-top: 2px; --c: #6849dd; }
+.bd.locked img { filter: grayscale(1); opacity: .4; }
+.bd.locked b { color: var(--soft); }
+.bd-all > summary { list-style: none; display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border: 2px solid var(--edge); border-radius: 16px; font: 700 14px "Red Hat Text", sans-serif; cursor: pointer; }
+.bd-all > summary::-webkit-details-marker { display: none; }
+.bd-all > summary .chev { width: 18px; height: 18px; color: var(--soft); transition: transform .2s; }
+.bd-all[open] > summary .chev { transform: rotate(90deg); }
+.bd-all .bd-grid { margin-top: 8px; }
+@media (prefers-reduced-motion: no-preference) {
+  .bd:not(.locked) img { animation: app-pop 480ms cubic-bezier(.3, 1.6, .5, 1) both; }
+  .me-week .on img { animation: app-pop 420ms cubic-bezier(.3, 1.6, .5, 1) both; }
+  .bd-all[open] .bd-grid { animation: app-open 240ms cubic-bezier(.2, .8, .2, 1) both; }
+}
+
+/* ---------- Fun: every tab has its colour, a band of doodles and the mascot ---------- */
+/* The band at the top of Start, Practise, Me and Settings: the tab's colour with
+   stars, rings and squiggles drawn on it. The one loud thing on each tab. */
+.fun-band { position: relative; color: #fff; background-color: var(--room);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' opacity='.22'%3E%3Cpath d='M22 18l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z'/%3E%3Ccircle cx='150' cy='22' r='7'/%3E%3Cpath d='M92 96c6-8 12 8 18 0s12 8 18 0'/%3E%3Cpath d='M60 56v12M54 62h12'/%3E%3Ccircle cx='30' cy='92' r='3' fill='white'/%3E%3Cpath d='M160 78l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z'/%3E%3Ccircle cx='112' cy='44' r='2.5' fill='white'/%3E%3C/svg%3E"),
+    radial-gradient(120% 90% at 100% 0%, rgba(255, 255, 255, .22), transparent 60%);
+  background-size: 180px 120px, 100% 100%; }
+.fun-band h2, .fun-band small { color: #fff; }
+
+/* Start: hello, the child's picture, and the goal ring on the band. */
+.hm-top.fun-band { margin: -8px -18px 0; padding: 8px 18px 24px; grid-template-columns: auto 1fr auto; border-radius: 0 0 30px 30px; }
+.hm-top.fun-band small { color: rgba(255, 255, 255, .9); }
+.hm-av { padding: 0; border: 0; background: none; border-radius: 50%; cursor: pointer; }
+.hm-av:focus-visible, .me-gear:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.hm-top.fun-band .hm-goal { background: rgba(0, 0, 0, .14); border-radius: 50%; }
+.hm-top.fun-band .hm-goal circle { stroke: rgba(255, 255, 255, .3); }
+.hm-top.fun-band .hm-goal circle.v { stroke: #ffe066; }
+.hm-top.fun-band .hm-goal.full circle.v { stroke: #b2f2bb; }
+.hm-top.fun-band .hm-goal b { color: #fff; }
+.hm-top.fun-band .hm-goal:focus-visible { outline-color: #fff; }
+
+/* Practise: the green band with the mascot stepping out of it. */
+.pg-top.fun-band { margin: -8px -18px 0; padding: 10px 18px 18px; display: grid; grid-template-columns: 1fr 92px; align-items: end; border-radius: 0 0 30px 30px; }
+.pg-top.fun-band small { color: rgba(255, 255, 255, .9); }
+.pg-top.fun-band img { width: 92px; height: 92px; object-fit: contain; margin: -10px 0 -30px; }
+
+/* Me: the picture, and the gear to Settings. */
+.me-band.fun-band { grid-template-columns: auto 1fr 44px; padding-bottom: 22px; border-radius: 0 0 30px 30px; }
+.me-gear { width: 44px; height: 44px; align-self: start; border: 0; border-radius: 14px; background: rgba(255, 255, 255, .2); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.me-gear svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.me-gear:active { transform: scale(.94); }
+
+/* The child's picture: a mascot on a colour, cropped to its head, or a photo. */
+.av { display: block; flex: none; width: 52px; height: 52px; border-radius: 50%; overflow: hidden; background: var(--av, #6849dd); box-shadow: 0 0 0 3px rgba(255, 255, 255, .9); }
+.av img { display: block; width: 100%; height: 150%; object-fit: cover; object-position: 50% 0; transform: translateY(6%) scale(1.1); }
+.av.photo img { height: 100%; transform: none; }
+.av.lg { width: 76px; height: 76px; }
+.av.xl { width: 108px; height: 108px; box-shadow: 0 0 0 5px var(--card), 0 8px 20px -6px rgba(0, 0, 0, .35); }
+
+/* The tab bar: the tab you're on lights up in its own colour. */
+.app-tabs [aria-current="page"] { background: color-mix(in srgb, var(--tc) 14%, var(--card)); box-shadow: inset 0 0 0 2px var(--tc); color: var(--tc); }
+.app-tabs [aria-current="page"] svg { stroke: var(--tc); fill: color-mix(in srgb, var(--tc) 22%, var(--card)); }
+.screen[data-look] .app-tabs [aria-current="page"] span { filter: brightness(1.15); }
+
+/* Subjects on Start: each chip a little of its own colour. */
+.hm-subj button { background: color-mix(in srgb, var(--c) 7%, var(--card)); border-color: color-mix(in srgb, var(--c) 28%, var(--edge-c)); }
+
+/* ---------- Settings ---------- */
+.set-page { gap: 14px; }
+.set-page .pr-band { margin-top: -8px; padding-bottom: 54px; border-radius: 0 0 30px 30px; }
+.set-me { display: grid; justify-items: center; gap: 12px; margin-top: -58px; position: relative; z-index: 3; }
+.set-name { display: grid; gap: 4px; width: 100%; }
+.set-name label { font: 700 13px "Red Hat Text", sans-serif; color: var(--soft); }
+.set-name span { display: grid; grid-template-columns: 1fr 52px; gap: 8px; }
+.set-name input { min-width: 0; padding: 12px 14px; border: 2px solid var(--edge); border-radius: 16px; background: var(--card); color: var(--ink); font: 800 20px "Red Hat Display", sans-serif; }
+.set-name input:focus { outline: none; border-color: #6849dd; box-shadow: 0 0 0 4px color-mix(in srgb, #6849dd 18%, transparent); }
+.set-name button { border: 0; border-radius: 16px; background: #f5b400; color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .15); }
+.set-name button svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 2.2; }
+.set-name button svg .fill { fill: currentColor; stroke: none; }
+.set-name button:active svg { animation: set-roll 420ms cubic-bezier(.3, 1.4, .5, 1); }
+.set-card { display: grid; gap: 10px; padding: 14px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 22px; background: var(--card); }
+.set-card h3 { margin: 0; font: 800 17px "Red Hat Display", sans-serif; }
+.set-note { margin-top: -4px; font-size: 12.5px; font-weight: 600; color: var(--soft); }
+.set-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+.set-row b { font: 800 15px "Red Hat Display", sans-serif; }
+.set-row select { font: 800 15px "Red Hat Display", sans-serif; color: var(--ink); padding: 8px 30px 8px 12px; border: 2px solid var(--edge); border-radius: 12px; background: var(--card); appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #8d86a0 50%), linear-gradient(135deg, #8d86a0 50%, transparent 50%); background-position: right 14px center, right 9px center; background-size: 5px 5px; background-repeat: no-repeat; }
+/* Pictures: mascots on the chosen colour, and a photo. */
+.set-avs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.set-avs > * { position: relative; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; overflow: hidden; background: var(--av); cursor: pointer; }
+.set-avs button img { width: 100%; height: 150%; object-fit: cover; object-position: 50% 0; transform: translateY(6%) scale(1.1); }
+.set-avs [aria-checked="true"], .set-photo.on { box-shadow: 0 0 0 3px var(--card), 0 0 0 6px var(--plum); }
+.set-photo { display: grid; place-items: center; align-content: center; gap: 0; background: var(--sunk); border: 2px dashed var(--edge-c); color: var(--soft); font: 700 10.5px "Red Hat Text", sans-serif; }
+.set-photo svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.set-photo.on { border: 0; }
+.set-photo.on img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.set-photo.on span { display: none; }
+.set-photo input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.set-photo:focus-within { outline: 3px solid #6849dd; outline-offset: 2px; }
+.set-bgs { display: flex; gap: 10px; flex-wrap: wrap; }
+.set-bgs[hidden] { display: none; }
+.set-bgs button { width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: var(--av); cursor: pointer; }
+.set-bgs [aria-checked="true"] { box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--av); transform: scale(1.08); }
+/* Curriculum: two big choices. */
+.set-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 16px; background: var(--sunk); }
+.set-seg button { padding: 10px 6px; border: 0; border-radius: 12px; background: none; font: 800 15px "Red Hat Display", sans-serif; color: var(--soft); cursor: pointer; }
+.set-seg [aria-checked="true"] { background: #6849dd; color: #fff; box-shadow: 0 3px 0 rgba(0, 0, 0, .15); }
+/* The look: a tiny phone for each. */
+.set-looks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.set-looks button { display: grid; justify-items: center; gap: 6px; padding: 10px 6px 8px; border: 2px solid var(--edge); border-radius: 18px; background: var(--card); color: var(--ink); cursor: pointer; }
+.set-looks b { font: 800 14px "Red Hat Display", sans-serif; }
+.set-looks [aria-checked="true"] { border-color: #6849dd; box-shadow: inset 0 0 0 1px #6849dd; background: var(--tint); }
+.set-mini { display: grid; gap: 4px; align-content: start; width: 44px; height: 70px; padding: 14px 6px 6px; border-radius: 10px; border: 2px solid #1d1426; font-style: normal; }
+.set-mini i { display: block; height: 8px; border-radius: 3px; }
+.set-mini.light { background: #fff; } .set-mini.light i { background: #e9e2fb; } .set-mini.light i:first-child { background: #f0640a; }
+.set-mini.dark { background: #16111f; } .set-mini.dark i { background: #2f2549; } .set-mini.dark i:first-child { background: #8f73ff; }
+.set-mini.night { background: #1a130f; } .set-mini.night i { background: #33261f; } .set-mini.night i:first-child { background: #d9822b; }
+/* Switches. */
+.set-sw { position: relative; cursor: pointer; }
+.set-sw span { display: grid; gap: 1px; }
+.set-sw small { font-size: 12.5px; color: var(--soft); }
+.set-sw input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.set-sw i { flex: none; position: relative; width: 52px; height: 30px; border-radius: 99px; background: var(--edge-c); transition: background .2s; }
+.set-sw i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, .2); transition: transform .2s cubic-bezier(.3, 1.4, .5, 1); }
+.set-sw input:checked + i { background: #2b8a3e; }
+.set-sw input:checked + i::after { transform: translateX(22px); }
+.set-sw input:focus-visible + i { outline: 3px solid #6849dd; outline-offset: 2px; }
+/* Handwriting: the child's name in each script. */
+.set-scripts { display: grid; gap: 8px; }
+.set-scripts button { display: grid; gap: 2px; padding: 10px 14px; border: 2px solid var(--edge); border-radius: 16px; background: var(--card); color: var(--ink); text-align: left; cursor: pointer; }
+.set-scripts span { font-size: 22px; line-height: 1.6; }
+.set-scripts small { font: 600 12px "Red Hat Text", sans-serif; color: var(--soft); }
+.set-scripts [aria-checked="true"] { border-color: #6849dd; background: var(--tint); }
+/* Start again: asks twice. */
+.set-fresh button { justify-self: start; padding: 10px 16px; border: 2px solid var(--bad); border-radius: 14px; background: none; color: var(--bad); font: 800 14px "Red Hat Display", sans-serif; cursor: pointer; }
+.set-fresh button.sure { background: var(--bad); color: #fff; }
+.set-page button:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .fun-band .av, .pg-top.fun-band img { animation: app-pop 520ms cubic-bezier(.3, 1.6, .5, 1) 80ms both; }
+  .set-me .av { animation: app-pop 480ms cubic-bezier(.3, 1.6, .5, 1) both; }
+  .set-avs > *, .set-bgs button, .set-looks button, .set-seg button, .set-scripts button { transition: transform .12s, box-shadow .2s, background .2s; }
+  .set-avs > :active, .set-bgs button:active, .set-looks button:active, .set-scripts button:active { transform: scale(.94); }
+}
+@keyframes set-roll { 50% { transform: rotate(180deg) scale(.85); } to { transform: rotate(360deg); } }
+
+/* ---------- Text colours that follow the look (light, dark, night) ---------- */
+.screen { --link: #6849dd; --hint-ink: #8a6a00; --good-ink: #1b5e2a; --warm-ink: #8a4b00; --flame: #e8590c; }
+.screen[data-look="dark"], .screen[data-look="night"] { --link: #b9a6ff; --hint-ink: #f2c94c; --good-ink: #b2f2bb; --warm-ink: #ffc078; --flame: #ff922b; }
+/* Text in a subject's colour, on a dark card: the colour lightened so it reads. */
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.hm-ring, .pr-mini .pr-kind, .pr-skill-t small, .pr-drill, .pr-end h2, .pr-dchip, .me-recs b, .st-today small:first-child, .st-count) { color: color-mix(in srgb, var(--c) 50%, #fff); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.ln-lessons em, .st-topics button.done:not([aria-pressed="true"]), .ltext .ar, .goal .gl, .apath li.now, .hlv span.done) { color: color-mix(in srgb, var(--subj) 50%, #fff); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-ico { color: color-mix(in srgb, var(--c) 60%, #fff); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .app-tabs [aria-current="page"] { color: color-mix(in srgb, var(--tc) 50%, #fff); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .app-tabs [aria-current="page"] svg { stroke: color-mix(in srgb, var(--tc) 50%, #fff); }
+/* The lesson screen's light-only colours: feedback, answers, blanks, the score. */
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .sheet.ok { background: #1f3d22; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .sheet.ok .msg { color: #8ce99a; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.sheet.bad .msg, .sheet .line) { color: var(--text); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .opt.good { background: var(--good-soft); border-color: #5cba41; color: #8ce99a; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.opt.bad, .card.bad, .opt.sel) { color: #c3b4ff; border-color: #947dec; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.gap, .gap.filled, .slots .gap.filled, .blank) { color: #c3b4ff; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .score { background: var(--hint-soft); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .score .sc { color: #ffd166; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .score .sb span { color: var(--text); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .soundchart .sc.mark { background: var(--tint); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .st-next-i { background: #fff; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .btn.light { color: #c3b4ff; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .opt.dim { opacity: .7; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .pr-stars i:not(.on) { color: color-mix(in srgb, var(--soft-c) 55%, var(--card)); }

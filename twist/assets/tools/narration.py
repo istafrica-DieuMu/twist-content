@@ -320,7 +320,20 @@ def gather(cfg):
                     # colour swatch saying "Yellow." when tapped).
                     for lg, v in tappable(t, objects, lang, d.get("target_language")):
                         add(lg, v, "option", w, a["activity"])
+    # Drill words a drill speaks (`say`, `listen`): in the curriculum that
+    # teaches them, as practice. Must match drillClip() in player/build.mjs.
     MIXED = None
+    for p in sorted((TWIST / "drills").rglob("*.yaml")):
+        b = yaml.safe_load(p.read_text())
+        if not {"say", "listen"} & set(b.get("formats") or []):
+            continue
+        dom = b["skill"].split(".")[0]
+        for it in b.get("items", []):
+            lang = it.get("lang") or {"lit-de": "de", "lit-en": "en"}.get(dom)
+            if "word" not in it or not lang:
+                continue
+            CUR = {"de": "de-DE", "fr": "en-GB"}.get(lang) or ("en-GB" if dom == "lit-en" else "de-DE")
+            add(lang, str(it["word"]), "drill", f"drills/{p.relative_to(TWIST / 'drills').with_suffix('')}/{it['word']}", "practise")
     for lang, groups in yaml.safe_load((ASSETS / "phrases.yaml").read_text()).items():
         CUR = curriculum_for_language(cfg, lang)
         for g, items in groups.items():
