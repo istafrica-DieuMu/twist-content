@@ -9,10 +9,10 @@
    practice-ui.js. */
 const APP = { tab: null, home: null, subj: null, year: null, topic: null, q: "", fromApp: false, units: false };
 const ATXT = {
-  de: { badges: "Abzeichen", dayPlayed: "Gespielt", dayToday: "Heute, noch offen", dayMissed: "Nicht gespielt", lightFirst: "Mach heute eine Lektion oder Übung, dann brennt die erste Flamme.", upNext: "Als Nächstes", thisWeek: "Diese Woche", days: ["Mo", "Di", "Mi", "Do", "Fr"], gold: "Gold!", earned: "Verdient", earnedIn: (y) => `Verdient, ${y}`, ofN: (a, b) => `${a} von ${b}`, noBadges: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", almost: "Fast geschafft", allBadges: (n) => `Alle weiteren Abzeichen (${n})`, how: { pathfinder: "Deinen ersten Einstufungstest machen", summit: "Den Test am Schuljahresende bestehen", legend: "Jede Fähigkeit eines Fachs können", "comeback-kid": "Eine Fähigkeit zurückholen", "like-clockwork": "4 Wochen alle Wiederholungen pünktlich", "time-traveller": "Etwas aus einer späteren Klasse lernen" }, hi: "Hallo!", startHere: "Fang hier an", minShort: (m) => `${m} Min.`, helloName: (n) => `Hallo, ${n}!`, todayPlan: "Dein Plan für heute", planLeft: (a, b) => `${a} von ${b} für heute geschafft`, planDone: "Für heute alles geschafft", unitOf: (k, n, y) => `Einheit ${k} von ${n}, ${y}`, lessonDone: "Lektion geschafft", lessonsToday: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"} heute`, practiceDone: "Üben geschafft", sessionsToday: (n) => `${n} ${n === 1 ? "Übungsrunde" : "Übungsrunden"} heute`, winTitle: "Super, dein Plan für heute ist fertig!", winStreak: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge. Komm morgen wieder!`, winSub: "Komm morgen wieder!", wantMore: "Lust auf mehr?", unitsOf: (a, b) => `${a}/${b} Einheiten`, newDot: "neu", start: "Start", study: "Lernen", practice: "Üben", me: "Ich", hello: "Hallo! Schön, dass du da bist.", next: "Weiter lernen", goOn: "Mach weiter, wo du aufgehört hast", nextUnit: (x) => `Als Nächstes in ${x}`, nextYear: (y) => `Weiter mit ${y}`, more: "Andere Fächer", newSubj: "Probier ein neues Fach", fresh: "Neu für dich", lessonOf: (k, n) => `Lektion ${k} von ${n}`, mins: (m) => `etwa ${m} Minuten`, go: "Los geht's", allDone: "Alles geschafft!", allDoneSub: "Im Üben-Tab hältst du es frisch.", doneOf: (a, b) => `${a} von ${b} geschafft`, lessons: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"}`, finish: "Fertig", today: "Heute üben", allTopics: "Alle Themen", search: (s, y) => `Suchen in ${s}, ${y}`, nothing: "Nichts gefunden.", year: "Klasse", yourYear: "deine Klasse", sets: (n) => `${n} ${n === 1 ? "Einheit" : "Einheiten"}`,
-    meTitle: "Mein Fortschritt", stars: "Sterne", streak: "Tage in Folge", sessions: "Übungsrunden", bee: "Fleißiges Bienchen", beeTo: (a, b) => `${a} von ${b} Übungsrunden`, beeMax: "Alle Stufen geschafft!", notYet: "Noch nicht verdient", level: (n) => `Stufe ${n} von 6`, streakTitle: "Serie", streakNow: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge`, streakBest: (n) => `Bester Lauf: ${n}`, streakTo: (n, name) => `Noch ${n} ${n === 1 ? "Schultag" : "Schultage"} bis ${name}`, streakNote: "Wochenenden zählen nicht und brechen nichts.", records: "Drill-Rekorde", perMin: (n) => `${n} pro Minute`, noRecords: "Noch kein Drill gespielt. Probier einen im Üben-Tab!", subjects: "Deine Fächer", ofStars: (a, b) => `${a} von ${b} Sternen` },
-  en: { badges: "Badges", dayPlayed: "Played", dayToday: "Today, still to do", dayMissed: "Not played", lightFirst: "Do a lesson or some practice today to light the first flame.", upNext: "Up next", thisWeek: "This week", days: ["M", "T", "W", "T", "F"], gold: "Gold!", earned: "Earned", earnedIn: (y) => `Earned, ${y}`, ofN: (a, b) => `${a} of ${b}`, noBadges: "None yet. The first comes with your first skill at I can do it.", almost: "Almost there", allBadges: (n) => `All the other badges (${n})`, how: { pathfinder: "Finish your first placement check", summit: "Pass the end-of-year check", legend: "Every skill of a subject", "comeback-kid": "Bring a skill back after a refresh", "like-clockwork": "Every recap on time for 4 weeks", "time-traveller": "Learn something from a later year" }, hi: "Hi!", startHere: "Start here", minShort: (m) => `${m} min`, helloName: (n) => `Hi, ${n}!`, todayPlan: "Your plan for today", planLeft: (a, b) => `${a} of ${b} done today`, planDone: "All done for today", unitOf: (k, n, y) => `Unit ${k} of ${n}, ${y}`, lessonDone: "Lesson done", lessonsToday: (n) => `${n} ${n === 1 ? "lesson" : "lessons"} today`, practiceDone: "Practice done", sessionsToday: (n) => `${n} ${n === 1 ? "session" : "sessions"} today`, winTitle: "Great work, today's plan is done!", winStreak: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row. See you tomorrow!`, winSub: "See you tomorrow!", wantMore: "Want more?", unitsOf: (a, b) => `${a}/${b} units`, newDot: "new", start: "Home", study: "Study", practice: "Practise", me: "Me", hello: "Hi! Great to see you.", next: "Keep learning", goOn: "Pick up where you left off", nextUnit: (x) => `Next in ${x}`, nextYear: (y) => `On to ${y}`, more: "Other subjects", newSubj: "Try a new subject", fresh: "New for you", lessonOf: (k, n) => `Lesson ${k} of ${n}`, mins: (m) => `about ${m} minutes`, go: "Start", allDone: "All done!", allDoneSub: "Keep it fresh in the Practise tab.", doneOf: (a, b) => `${a} of ${b} done`, lessons: (n) => `${n} ${n === 1 ? "lesson" : "lessons"}`, finish: "Done", today: "Practise today", allTopics: "All topics", search: (s, y) => `Search ${s}, ${y}`, nothing: "Nothing found.", year: "Year", yourYear: "your year", sets: (n) => `${n} ${n === 1 ? "unit" : "units"}`,
-    meTitle: "My progress", stars: "Stars", streak: "Days in a row", sessions: "Sessions", bee: "Busy Bee", beeTo: (a, b) => `${a} of ${b} practice sessions`, beeMax: "Every level done!", notYet: "Not earned yet", level: (n) => `Level ${n} of 6`, streakTitle: "Streak", streakNow: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row`, streakBest: (n) => `Best run: ${n}`, streakTo: (n, name) => `${n} more school ${n === 1 ? "day" : "days"} to ${name}`, streakNote: "Weekends never count and never break it.", records: "Drill records", perMin: (n) => `${n} a minute`, noRecords: "No drill played yet. Try one in the Practise tab!", subjects: "Your subjects", ofStars: (a, b) => `${a} of ${b} stars` },
+  de: { badges: "Abzeichen", dayPlayed: "Gespielt", dayToday: "Heute, noch offen", dayMissed: "Nicht gespielt", lightFirst: "Mach heute eine Lektion oder Übung, dann brennt die erste Flamme.", upNext: "Als Nächstes", thisWeek: "Diese Woche", days: ["Mo", "Di", "Mi", "Do", "Fr"], gold: "Gold!", earned: "Verdient", earnedIn: (y) => `Verdient, ${y}`, ofN: (a, b) => `${a} von ${b}`, noBadges: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", almost: "Fast geschafft", allBadges: (n) => `Alle weiteren Abzeichen (${n})`, how: { pathfinder: "Deinen ersten Einstufungstest machen", summit: "Den Test am Schuljahresende bestehen", legend: "Jede Fähigkeit eines Fachs können", "comeback-kid": "Eine Fähigkeit zurückholen", "like-clockwork": "4 Wochen alle Wiederholungen pünktlich", "time-traveller": "Etwas aus einer späteren Klasse lernen" }, hi: "Hallo!", startHere: "Fang hier an", minShort: (m) => `${m} Min.`, helloName: (n) => `Hallo, ${n}!`, todayPlan: "Dein Plan für heute", planLeft: (a, b) => `${a} von ${b} für heute geschafft`, planDone: "Für heute alles geschafft", unitOf: (k, n) => `Einheit ${k} von ${n}`, lessonDone: "Lektion geschafft", lessonsToday: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"} heute`, practiceDone: "Üben geschafft", sessionsToday: (n) => `${n} ${n === 1 ? "Übungsrunde" : "Übungsrunden"} heute`, winTitle: "Super, dein Plan für heute ist fertig!", winStreak: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge. Komm morgen wieder!`, winSub: "Komm morgen wieder!", wantMore: "Lust auf mehr?", unitsOf: (a, b) => `${a}/${b} Einheiten`, newDot: "neu", start: "Start", study: "Lernen", practice: "Üben", me: "Ich", hello: "Hallo! Schön, dass du da bist.", next: "Weiter lernen", goOn: "Mach weiter, wo du aufgehört hast", nextUnit: (x) => `Als Nächstes in ${x}`, nextYear: (y) => `Weiter mit ${y}`, more: "Andere Fächer", newSubj: "Probier ein neues Fach", fresh: "Neu für dich", lessonOf: (k, n) => `Lektion ${k} von ${n}`, mins: (m) => `etwa ${m} Minuten`, go: "Los geht's", allDone: "Alles geschafft!", allDoneSub: "Im Üben-Tab hältst du es frisch.", doneOf: (a, b) => `${a} von ${b} geschafft`, lessons: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"}`, finish: "Fertig", today: "Heute üben", allTopics: "Alle Themen", search: (s, y) => `Suchen in ${s}, ${y}`, nothing: "Nichts gefunden.", year: "Klasse", yourYear: "deine Klasse", sets: (n) => `${n} ${n === 1 ? "Einheit" : "Einheiten"}`,
+    meTitle: "Mein Fortschritt", stars: "Sterne", streak: "Tage in Folge", sessions: "Übungsrunden", bee: "Fleißiges Bienchen", beeTo: (a, b) => `${a} von ${b} Übungsrunden`, beeMax: "Alle Stufen geschafft!", notYet: "Noch nicht verdient", level: (n) => `Stufe ${n} von 6`, streakTitle: "Serie", streakNow: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge`, streakBest: (n) => `Bester Lauf: ${n}`, streakTo: (n, name) => `Noch ${n} ${n === 1 ? "Schultag" : "Schultage"} bis ${name}`, streakNote: "Wochenenden zählen nicht und brechen nichts.", records: "Sprint-Rekorde", perMin: (n) => `${n} pro Minute`, noRecords: "Noch keinen Sprint gespielt. Probier einen im Üben-Tab!", subjects: "Deine Fächer", ofStars: (a, b) => `${a} von ${b} Sternen` },
+  en: { badges: "Badges", dayPlayed: "Played", dayToday: "Today, still to do", dayMissed: "Not played", lightFirst: "Do a lesson or some practice today to light the first flame.", upNext: "Up next", thisWeek: "This week", days: ["M", "T", "W", "T", "F"], gold: "Gold!", earned: "Earned", earnedIn: (y) => `Earned, ${y}`, ofN: (a, b) => `${a} of ${b}`, noBadges: "None yet. The first comes with your first skill at I can do it.", almost: "Almost there", allBadges: (n) => `All the other badges (${n})`, how: { pathfinder: "Finish your first placement check", summit: "Pass the end-of-year check", legend: "Every skill of a subject", "comeback-kid": "Bring a skill back after a refresh", "like-clockwork": "Every recap on time for 4 weeks", "time-traveller": "Learn something from a later year" }, hi: "Hi!", startHere: "Start here", minShort: (m) => `${m} min`, helloName: (n) => `Hi, ${n}!`, todayPlan: "Your plan for today", planLeft: (a, b) => `${a} of ${b} done today`, planDone: "All done for today", unitOf: (k, n) => `Unit ${k} of ${n}`, lessonDone: "Lesson done", lessonsToday: (n) => `${n} ${n === 1 ? "lesson" : "lessons"} today`, practiceDone: "Practice done", sessionsToday: (n) => `${n} ${n === 1 ? "session" : "sessions"} today`, winTitle: "Great work, today's plan is done!", winStreak: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row. See you tomorrow!`, winSub: "See you tomorrow!", wantMore: "Want more?", unitsOf: (a, b) => `${a}/${b} units`, newDot: "new", start: "Home", study: "Study", practice: "Practise", me: "Me", hello: "Hi! Great to see you.", next: "Keep learning", goOn: "Pick up where you left off", nextUnit: (x) => `Next in ${x}`, nextYear: (y) => `On to ${y}`, more: "Other subjects", newSubj: "Try a new subject", fresh: "New for you", lessonOf: (k, n) => `Lesson ${k} of ${n}`, mins: (m) => `about ${m} minutes`, go: "Start", allDone: "All done!", allDoneSub: "Keep it fresh in the Practise tab.", doneOf: (a, b) => `${a} of ${b} done`, lessons: (n) => `${n} ${n === 1 ? "lesson" : "lessons"}`, finish: "Done", today: "Practise today", allTopics: "All topics", search: (s, y) => `Search ${s}, ${y}`, nothing: "Nothing found.", year: "Year", yourYear: "your year", sets: (n) => `${n} ${n === 1 ? "unit" : "units"}`,
+    meTitle: "My progress", stars: "Stars", streak: "Days in a row", sessions: "Sessions", bee: "Busy Bee", beeTo: (a, b) => `${a} of ${b} practice sessions`, beeMax: "Every level done!", notYet: "Not earned yet", level: (n) => `Level ${n} of 6`, streakTitle: "Streak", streakNow: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row`, streakBest: (n) => `Best run: ${n}`, streakTo: (n, name) => `${n} more school ${n === 1 ? "day" : "days"} to ${name}`, streakNote: "Weekends never count and never break it.", records: "Sprint records", perMin: (n) => `${n} a minute`, noRecords: "No sprint played yet. Try one in the Practise tab!", subjects: "Your subjects", ofStars: (a, b) => `${a} of ${b} stars` },
 };
 const AT = () => ATXT[PL()];
 const STREAK_NAME = { spark: ["Funke", "Spark"], flame: ["Flamme", "Flame"], campfire: ["Lagerfeuer", "Campfire"], torch: ["Fackel", "Torch"], comet: ["Komet", "Comet"], volcano: ["Vulkan", "Volcano"], sun: ["Sonne", "Sun"], supernova: ["Supernova", "Supernova"] };
@@ -24,8 +24,9 @@ const TAB_ICON = {
   me: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c.8-3.8 3.9-6 7.5-6s6.7 2.2 7.5 6"/></svg>',
 };
 const TABS = ["start", "study", "practice", "me"];
-// Each tab has its own colour: its band, the status bar over it and its pill in the tab bar.
-const ROOM = { start: "#d9480f", study: "#1971c2", practice: "#2b8a3e", me: "#6849dd" };
+// The tabs share one colour, the brand's, so the subjects' colours are the only
+// colour that means something on a screen. Their tops are neutral (.fun-band).
+const BRAND = "#6849dd", ROOM = { start: BRAND, study: BRAND, practice: BRAND, me: BRAND };
 
 // A child with no name yet gets a German first name, kept with the child.
 const CHILD_NAMES = ["Mia", "Emma", "Hannah", "Lina", "Leni", "Clara", "Emilia", "Frieda", "Ida", "Lotta", "Mila", "Marie", "Greta", "Paula", "Romy", "Noah", "Ben", "Leon", "Finn", "Paul", "Elias", "Felix", "Jonas", "Emil", "Theo", "Anton", "Karl", "Mats", "Henri", "Oskar"];
@@ -65,7 +66,7 @@ const inPractice = () => document.body.classList.contains("practice");
 function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
-  if (t === "study") { if (!keep) APP.units = false; if (inPractice()) setView("lessons"); APP.home = "study"; APP.fromApp = false; return APP.units ? renderStudy() : renderTrack(); }
+  if (t === "study") { if (!keep) APP.units = false; if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.home = "study"; APP.fromApp = false; return APP.units ? renderStudy() : renderTrack(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
   if (t === "start") renderHomeTab(); else if (t === "me") renderMe(); else if (t === "settings") renderSettings(); else renderPracticeHome();
@@ -75,12 +76,12 @@ function appTab(t, { keep = false } = {}) {
 function appHeader(title) {
   const s = streak(PR.child);
   return `<header class="pr-top"><img class="pr-me" src="${A}mascot/start-1.png" alt=""><h2>${esc(title)}</h2>
-    <button class="app-flame${s.current ? " on" : ""}" data-me aria-label="${esc(AT().streakNow(s.current))}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button></header>`;
+    <button class="app-flame${s.current ? " on" : ""}" data-rw="streak" aria-label="${esc(AT().streakNow(s.current))}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button></header>`;
 }
-function wireHeader(scr) { scr.querySelectorAll("[data-me]").forEach((b) => b.onclick = () => appTab("me")); scr.querySelectorAll("[data-settings]").forEach((b) => b.onclick = () => appTab("settings")); }
+function wireHeader(scr) { scr.querySelectorAll("[data-me]").forEach((b) => b.onclick = () => appTab("me")); scr.querySelectorAll("[data-rw]").forEach((b) => b.onclick = () => rewardsPopover(b, b.dataset.rw)); scr.querySelectorAll("[data-settings]").forEach((b) => b.onclick = () => appTab("settings")); }
 const beeStrip = () => {
   const L = PT(), bee = busyBee(PR.child.sessions), pct = bee.next ? (100 * (PR.child.sessions - bee.from)) / (bee.next - bee.from) : 100;
-  return `<button class="pr-bee" data-me><img src="${A}badges/busy-bee.svg" alt=""><span><i class="pr-bar" style="--c:#f5b400"><i style="width:${pct}%"></i></i><small>${esc(bee.next ? L.beeBar(PR.child.sessions, bee.next) : AT().beeMax)}</small></span></button>`;
+  return `<button class="pr-bee" data-rw="badges"><img src="${A}badges/busy-bee.svg" alt=""><span><i class="pr-bar" style="--c:#f5b400"><i style="width:${pct}%"></i></i><small>${esc(bee.next ? L.beeBar(PR.child.sessions, bee.next) : AT().beeMax)}</small></span></button>`;
 };
 
 /* ---------- the course ---------- */
@@ -161,7 +162,7 @@ function lessonStep(plan) {
   const course = courseSets(plan.subj, s.year), k = course.indexOf(s) + 1;
   const dots = s.lessons.map((_, i) => `<i class="${i < done ? "on" : i === done ? "now" : ""}"></i>`).join("");
   return `<button class="pr-hero ln-next hm-lesson" style="--c:${col}" data-start="${esc(s.id)}" data-n="${l.n}">
-      <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, course.length, yearName(s.year)))}</span>
+      <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, course.length))}</span>
       <span class="hm-dots" aria-label="${esc(T.lessonOf(l.n, s.lessons.length))}">${dots}<small>${esc(T.lessonOf(l.n, s.lessons.length))}</small></span>
       <b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
       <span class="pr-go">${esc(T.go)}<small>${esc(T.minShort(s.minutes ?? 10))}</small></span>
@@ -189,15 +190,16 @@ function renderHomeTab() {
   else if (practiceCard) steps.push(`<p class="hm-step">${esc(T.today)}</p>${practiceCard}`);
   const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceCard ? practiceCard : ""].filter(Boolean);
   const pct = (100 * got) / goal;
-  scr.style.setProperty("--subj", "#6849dd"); scr.style.setProperty("--top", ROOM.start);
+  scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
     <header class="hm-top fun-band" style="--room:${ROOM.start}">
       <button class="hm-av" data-settings aria-label="${esc(ST().title)}">${avatar(c)}</button>
       <div><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2><small>${esc(all ? T.planDone : T.planLeft(got, goal))}</small></div>
-      <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-me style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b></button>
+      <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-rw="streak" style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b></button>
     </header>
-    ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small></div></section>` : ""}
-    <section class="hm-plan${all ? " all" : ""}"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>
+    ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
+      <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
+    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
     ${bee.next && bee.next - c.sessions <= 3 ? beeStrip() : ""}
@@ -209,11 +211,13 @@ function renderHomeTab() {
 }
 
 /* ---------- Study: the track ---------- */
-// As in ist-schoolido (app/(tabs)/lesson-path.tsx): one stone per lesson of the
-// course, in one column, joined by arcs that bulge left and right; a line where
-// a unit starts; the mascot on the current stone; islands in the open space.
-// The card on top names the unit at the reading line and opens the unit list.
-// Tapping a stone opens its card with the title, the minutes and Start.
+// As in ist-schoolido (app/(tabs)/lesson-path.tsx), with a stone per skill (a
+// lesson set) of the course: one column, arcs that bulge left and right and fill
+// as skills are done, a line where a topic starts, the mascot on the current
+// skill and islands in the open space. The card on top names the topic and the
+// skill in focus and opens the unit list. The skill in focus has its popover
+// open under it the whole time: as the track scrolls, the popover moves to the
+// skill at the focus line and shows its lessons, each to start from there.
 const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" } };
 const TRACK = {
   math: { route: "#018641", grad: ["#0BBE81", "#145E39"], soft: "#E2F0EA", islands: 4 },
@@ -222,23 +226,27 @@ const TRACK = {
   // French has no art of its own: the English art turned to its purple.
   french: { route: "#8f73ff", grad: ["#9b7bff", "#4b2fb0"], soft: "#ece6fb", islands: 5, files: "english" },
 };
-const TR = { pad: 70, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
+const TR = { pad: 140, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
 const ISLAND_DY = [0, -24, 0, -24, -24];
 const ARCH_PATH = "M8.15 22.9C8.15 22.9 47.71 2.35 47.71 2.35C50.42 0.94 53.65 0.62 56.58 1.47C195.73 41.95 199.88 146.33 57.21 211.78C53.93 213.28 50.06 213.2 46.85 211.56C46.85 211.56 3.18 189.23 3.18 189.23C-0.16 187.52 0.48 182.49 4.11 181.54C118.03 151.67 147.82 64.21 8.95 28.61C6.25 27.92 5.68 24.19 8.15 22.9Z";
 const TKTXT = {
-  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", again: "Nochmal spielen", locked: "Noch gesperrt", min: (m) => `${m} Min.`, subject: "Fach wählen" },
-  en: { units: "All units", back: "Back", start: "Start lesson", again: "Play again", locked: "Locked", min: (m) => `${m} min`, subject: "Choose a subject" },
+  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", goOn: "Weiter lernen", again: "Nochmal spielen", locked: "Noch gesperrt", min: (m) => `${m} Min.`, lessonOf: (k, n) => `Lektion ${k} von ${n}`, allDone: (n) => `${n} von ${n} Lektionen geschafft`, notYet: (n) => `${n} Lektionen`, showAll: (n) => `Alle ${n} Lektionen`, showLess: "Weniger zeigen", subject: "Fach wählen" },
+  en: { units: "All units", back: "Back", start: "Start lesson", goOn: "Keep going", again: "Play again", locked: "Locked", min: (m) => `${m} min`, lessonOf: (k, n) => `Lesson ${k} of ${n}`, allDone: (n) => `All ${n} lessons done`, notYet: (n) => `${n} lessons`, showAll: (n) => `All ${n} lessons`, showLess: "Show less", subject: "Choose a subject" },
 };
 const TK = () => TKTXT[PL()];
 const LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>';
 const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
 const trackArt = (subj) => { const a = TRACK_ART[subj]; return (typeof a === "string" ? a : a?.[PR.child.curriculum]) ?? "math"; };
-// The course as a row of lessons, each with its unit and state: done, current (the first not done) or locked.
-function trackLessons(subj, year) {
-  const out = [];
-  for (const s of courseSets(subj, year)) s.lessons.forEach((l, i) => out.push({ s, l, unitStart: i === 0, done: i < lessonsDone(s) }));
+// The course as a row of skills, each with its state: done (every lesson),
+// current (the first not done), started (some lessons, further on) or locked.
+function trackSkills(subj, year) {
+  const lg = PL(), out = [];
+  for (const s of courseSets(subj, year)) {
+    const topic = s.topic?.[lg] ?? s.topic?.en ?? "";
+    out.push({ s, topic, topicStart: !out.length || out.at(-1).topic !== topic, done: lessonsDone(s) >= s.lessons.length, some: lessonsDone(s) > 0 });
+  }
   const cur = out.findIndex((x) => !x.done);
-  out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : "locked");
+  out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : x.some ? "started" : "locked");
   return out;
 }
 function renderTrack() {
@@ -246,8 +254,8 @@ function renderTrack() {
   if (!subs.includes(APP.subj)) APP.subj = subs[0];
   const year = yearsOf(APP.subj).includes(APP.year) ? APP.year : childYearFor(APP.subj);
   const art = trackArt(APP.subj), look = TRACK[art], files = look.files ?? art, colour = colourOf(APP.subj);
-  const rows = trackLessons(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
-  const s = streak(c), stars = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
+  const rows = trackSkills(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
+  const s = streak(c), stars = allStars(c);
   const top = (i) => TR.pad + i * TR.step, mid = (i) => top(i) + TR.decor / 2;
   const at = (x) => `calc(50% + ${x}px)`;
   const arcs = rows.map((r, i) => {
@@ -258,54 +266,67 @@ function renderTrack() {
     return `<svg class="tr-arc" viewBox="0 0 163.59 213.85" preserveAspectRatio="none" style="top:${y}px;left:${at(left)};width:${TR.arcW}px;height:${TR.arcH}px;transform:scaleX(${even ? -1 : 1}) rotate(-1deg)" aria-hidden="true"><path d="${ARCH_PATH}" fill="${look.route}" fill-opacity="${rows[i - 1].done ? 1 : 0.08}"/></svg>
       <img class="tr-island" src="${island}" alt="" style="top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px">`;
   }).join("");
-  const lines = rows.map((r, i) => r.unitStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
-  const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(r.l.title[lg] ?? r.l.title.de)}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
+  const lines = rows.map((r, i) => r.topicStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
+  const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(r.s.title[lg] ?? r.s.title.de)}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
   const mascot = rows.length ? `<img class="tr-mascot" data-i="${cur}" src="${A}mascot/start-2.png" alt="" style="top:${mid(cur) - TR.mascot * 1.05}px;left:${at(TR.decor / 2 - TR.mascot * 1.2)};width:${TR.mascot}px">` : "";
   scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div>
     <header class="tr-stats">
       <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${files}.svg" alt="" class="${art}">${CHEVRON}</button>
-      <button class="tr-rewards" data-rewards aria-label="${esc(RW().title)}"><span class="tr-stat"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</span>
-        <span class="tr-stat"><i>★</i>${stars}</span>
-        <span class="tr-stat"><img src="${A}badges/legend.svg" alt="">${myBadges().filter((b) => b.earned).length}</span></button>
+      <button class="tr-stat" data-rw="streak" aria-label="${esc(RW().tabs.streak)}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button>
+      <button class="tr-stat" data-rw="stars" aria-label="${esc(RW().tabs.stars)}"><i>★</i>${stars}</button>
+      <button class="tr-stat" data-rw="badges" aria-label="${esc(RW().tabs.badges)}"><img src="${A}badges/legend.svg" alt="">${myBadges().filter((b) => b.earned).length}</button>
     </header>
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
       <button class="tr-card"><i><img src="study/${files}.svg" alt="" class="${art}"></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
-      <div class="tr-path ${art}" style="height:${top(rows.length) + 80}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip" hidden></div></div>
+      <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip down" aria-live="polite" hidden></div></div>
     </div><div class="tr-fade" aria-hidden="true"></div>`;
   scr.appendChild(appTabs("study"));
   wireHeader(scr);
-  $("[data-rewards]", scr).onclick = () => rewardsSheet();
   const page = $(".tr-page", scr), tip = $(".tr-tip", scr), card = $(".tr-card", scr), path = $(".tr-path", scr);
-  // The track's own jumps (opening, bringing a card into view) leave the top card alone.
-  let quiet = 0; const jump = (fn) => { quiet = Date.now() + 700; fn(); };
-  // The card: the unit and lesson at the reading line under it, or the stone last tapped.
-  const setCard = (i) => { const r = rows[i]; if (!r) return; $("#trUnit").textContent = r.s.title[lg] ?? r.s.title.de; $("#trLesson").textContent = r.l.title[lg] ?? r.l.title.de; };
-  const openTip = (i) => {
-    const r = rows[i]; if (!r) return;
-    setCard(i);
-    const label = r.state === "current" ? K.start : r.state === "done" ? K.again : K.locked;
-    tip.innerHTML = `<b>${keepSuffix(r.l.title[lg] ?? r.l.title.de)}</b><em>${esc(K.min(r.s.minutes ?? 10))}</em>
-      <button${r.state === "locked" ? " disabled" : ""}>${r.state === "locked" ? LOCK : ""}${esc(label)}${r.state === "current" ? ARROW : ""}</button>`;
-    // Above the stone (above the mascot on the current one); below it when there's no room.
-    const above = i > 0, y = above ? (r.state === "current" ? mid(i) - TR.mascot * 1.05 - 6 : top(i) + 24) : top(i) + TR.decor - 22;
-    tip.className = "tr-tip " + (above ? "up" : "down"); tip.style.top = y + "px"; tip.hidden = false; tip.dataset.i = i;
-    $("button", tip).onclick = () => startLesson(r.s.id, r.l.n);
-    const box = tip.getBoundingClientRect(), view = page.getBoundingClientRect(), hidden = above ? box.top < view.top + card.offsetHeight + 16 : box.bottom > view.bottom - 60;
-    if (hidden) jump(() => page.scrollBy({ top: above ? box.top - view.top - card.offsetHeight - 24 : box.bottom - view.bottom + 80, behavior: "smooth" }));
+  let focus = -1, open = false, all = false;
+  // The skill in focus: the card names it, and its popover sits under its stone.
+  // The popover shows where the child is in the skill (a meter and the next
+  // lesson); the whole list of lessons is one tap away. Tapping away or on the
+  // stone closes it; scrolling to another skill or tapping a stone opens it.
+  const close = () => { open = false; tip.hidden = true; scr.querySelectorAll(".tr-stone.focus").forEach((b) => b.classList.remove("focus")); };
+  const show = (i, force) => {
+    const r = rows[i]; if (!r || (i === focus && open && !force)) return;
+    if (i !== focus) all = false;
+    focus = i; open = true; tip.hidden = false;
+    $("#trUnit").textContent = r.topic || (r.s.title[lg] ?? r.s.title.de); $("#trLesson").textContent = r.s.title[lg] ?? r.s.title.de;
+    scr.querySelectorAll(".tr-stone").forEach((b) => b.classList.toggle("focus", +b.dataset.i === i));
+    const done = lessonsDone(r.s), n = r.s.lessons.length, next = r.s.lessons[Math.min(done, n - 1)], locked = r.state === "locked", finished = r.state === "done";
+    const label = locked ? K.locked : finished ? K.again : done ? K.goOn : K.start;
+    const row = (l, k) => `<li><button data-n="${l.n}" class="${k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
+    const shown = all ? r.s.lessons.map(row) : finished ? [] : [row(next, Math.min(done, n - 1))];
+    tip.innerHTML = `<b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>
+      <span class="tr-meter" aria-label="${esc(finished ? K.allDone(n) : K.lessonOf(Math.min(done + 1, n), n))}">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
+      <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span>
+      ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
+      ${n > 1 ? `<button class="tr-more" aria-expanded="${all}">${esc(all ? K.showLess : K.showAll(n))}${CHEVRON}</button>` : ""}
+      <button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>`;
+    $(".tr-more", tip)?.addEventListener("click", (e) => { e.stopPropagation(); all = !all; show(i, true); });
+    tip.style.top = `${top(i) + TR.decor - 20}px`;
+    tip.querySelectorAll("[data-n]").forEach((b) => b.onclick = () => startLesson(r.s.id, +b.dataset.n));
+    $(".tr-go", tip).onclick = () => startLesson(r.s.id, r.state === "done" ? r.s.lessons[0].n : next.n);
   };
-  scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = () => (tip.dataset.i === b.dataset.i && !tip.hidden ? (tip.hidden = true) : openTip(+b.dataset.i)));
+  // The focus line: a third of the way down the track's window.
+  const focusY = () => page.getBoundingClientRect().top + page.clientHeight * 0.3 - path.getBoundingClientRect().top;
+  const scrollTo = (i, behavior) => page.scrollTo({ top: Math.max(0, page.scrollTop + mid(i) - focusY()), behavior });
+  // Scrolling moves the focus; a closed popover opens again on the next skill, not on the same one.
+  page.onscroll = () => { const i = Math.max(0, Math.min(rows.length - 1, Math.round((focusY() - TR.pad - TR.decor / 2) / TR.step))); if (i !== focus) show(i); };
+  scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = (e) => {
+    e.stopPropagation(); const i = +b.dataset.i;
+    if (i === focus && open) return close();
+    show(i, true); scrollTo(i, "smooth");
+  });
+  tip.onclick = (e) => e.stopPropagation();
+  scr.addEventListener("click", (e) => { if (open && !e.target.closest(".tr-stone, .tr-mascot")) close(); });
   card.onclick = () => { APP.units = true; APP.year = year; renderStudy(); };
   $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
-  // As the child scrolls, the card names the unit and lesson of the stone at the reading line, 24 px under it.
-  page.onscroll = () => {
-    if (Date.now() < quiet) return;
-    const line = card.getBoundingClientRect().bottom + 24 - path.getBoundingClientRect().top;
-    setCard(Math.max(0, Math.min(rows.length - 1, Math.round((line - TR.pad - TR.decor / 2) / TR.step))));
-  };
-  // Open on the current stone, its card open.
-  jump(() => page.scrollTop = Math.max(0, mid(cur) - page.clientHeight * 0.55));
-  setCard(cur); if (rows.length) openTip(cur);
+  // Open on the current skill.
+  scrollTo(cur); show(cur);
 }
 // The subject menu under the pill: each subject with its icon.
 function subjectMenu(pill) {
@@ -317,34 +338,56 @@ function subjectMenu(pill) {
   $("#screen").appendChild(m); document.addEventListener("pointerdown", away, true);
 }
 
-/* ---------- Rewards: the popup from the stats on the track ---------- */
-// The streak, the stars and the badges: the newest badges earned and the ones on their way.
+/* ---------- Rewards: a popover from the streak, stars and badges ---------- */
+// It hangs from what was tapped, its tail pointing there, with a tab each for
+// the streak (this week and the next streak badge), the stars (by subject) and
+// the badges (the newest, the ones on their way, then all the rest), so the
+// child never has to leave the screen it is on.
 const RWTXT = {
-  de: { title: "Deine Belohnungen", recent: "Zuletzt verdient", next: "Als Nächstes", none: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", all: "Alle Abzeichen ansehen", close: "Schließen" },
-  en: { title: "Your rewards", recent: "Earned lately", next: "Up next", none: "None yet. The first comes with your first skill at I can do it.", all: "See all badges", close: "Close" },
+  de: { title: "Deine Belohnungen", tabs: { streak: "Serie", stars: "Sterne", badges: "Abzeichen" }, recent: "Zuletzt verdient", next: "Als Nächstes", none: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", rest: (n) => `Alle weiteren (${n})`, close: "Schließen", starsHow: "Sterne bekommst du für jede Fähigkeit: üben, können, behalten.", streakBig: (n) => n === 1 ? "Schultag in Folge" : "Schultage in Folge" },
+  en: { title: "Your rewards", tabs: { streak: "Streak", stars: "Stars", badges: "Badges" }, recent: "Earned lately", next: "Up next", none: "None yet. The first comes with your first skill at I can do it.", rest: (n) => `All the others (${n})`, close: "Close", starsHow: "You get stars for every skill: practise it, can do it, remember it.", streakBig: (n) => n === 1 ? "school day in a row" : "school days in a row" },
 };
 const RW = () => RWTXT[PL()];
-function rewardsSheet() {
+const allStars = (c) => appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
+function rewardsPopover(anchor, tab = "badges") {
+  document.querySelector(".rw-pop")?.dispatchEvent(new Event("close"));
   const T = AT(), R = RW(), c = PR.child, scr = $("#screen"), all = myBadges(), s = streak(c);
   const seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
-  const stars = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
+  const next = nextBadges(all), rest = all.filter((b) => !b.earned && !next.includes(b));
+  const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
+  const panels = {
+    streak: `<div class="rw-hero rw-flame${s.current ? " on" : ""}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><span><b>${s.current}</b><small>${esc(R.streakBig(s.current))} · ${esc(T.streakBest(s.best))}</small></span></div>
+      ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small>`,
+    stars: `<div class="rw-hero rw-star"><i>★</i><span><b>${allStars(c)}</b><small>${esc(R.starsHow)}</small></span></div>
+      <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<div style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></div>`; }).join("")}</div>`,
+    badges: `<h4 class="hm-step">${esc(R.recent)}</h4>
+      ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(R.none)}</p>`}
+      <h4 class="hm-step">${esc(R.next)}</h4><div class="bd-grid">${next.map(badgeTile).join("")}</div>
+      <details class="bd-all"><summary>${esc(R.rest(got.length > 3 ? rest.length + got.length - 3 : rest.length))}${CHEVRON}</summary><div class="bd-grid">${[...got.slice(3), ...rest].map(badgeTile).join("")}</div></details>`,
+  };
+  const count = { streak: s.current, stars: allStars(c), badges: got.length };
+  const icon = { streak: `<img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">`, stars: "<i>★</i>", badges: `<img src="${A}badges/legend.svg" alt="">` };
   const scrim = document.createElement("div"); scrim.className = "rw-scrim";
-  const m = document.createElement("div"); m.className = "sheet menu-sheet pr-sheet rw-sheet"; m.setAttribute("role", "dialog"); m.setAttribute("aria-label", R.title);
-  m.innerHTML = `<div class="pr-sheet-top"><h3 class="pr-sheet-h">${esc(R.title)}</h3><button class="pr-x" aria-label="${esc(R.close)}">${ICON.close}</button></div>
-    <div class="rw-stats">
-      <div class="rw-flame${s.current ? " on" : ""}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b><small>${esc(T.streak)}</small></div>
-      <div class="rw-star"><i>★</i><b>${stars}</b><small>${esc(T.stars)}</small></div>
-      <div><img src="${A}badges/legend.svg" alt=""><b>${got.length}</b><small>${esc(T.badges)}</small></div>
-    </div>
-    <h4 class="hm-step">${esc(R.recent)}</h4>
-    ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(R.none)}</p>`}
-    <h4 class="hm-step">${esc(R.next)}</h4>
-    <div class="bd-grid">${nextBadges(all).map(badgeTile).join("")}</div>
-    <div class="pr-sheet-foot"><button class="btn rw-all">${esc(R.all)}</button></div>`;
-  const close = () => { m.remove(); scrim.remove(); };
-  scrim.onclick = close; $(".pr-x", m).onclick = close;
-  $(".rw-all", m).onclick = () => { close(); appTab("me"); $("#me-badges")?.scrollIntoView({ block: "start" }); };
-  scr.append(scrim, m); $(".pr-x", m).focus();
+  const m = document.createElement("div"); m.className = "rw-pop"; m.setAttribute("role", "dialog"); m.setAttribute("aria-label", R.title);
+  m.innerHTML = `<div class="rw-tabs" role="tablist">${Object.keys(panels).map((k) => `<button role="tab" data-k="${k}" aria-selected="${k === tab}">${icon[k]}<b>${count[k]}</b><small>${esc(R.tabs[k])}</small></button>`).join("")}
+      <button class="rw-x" aria-label="${esc(R.close)}">${ICON.close}</button></div>
+    <div class="rw-body"></div>`;
+  const body = $(".rw-body", m);
+  const show = (k) => { tab = k; m.querySelectorAll("[data-k]").forEach((b) => b.setAttribute("aria-selected", b.dataset.k === k)); body.innerHTML = panels[k]; body.scrollTop = 0; aim(); };
+  // The tail points at what was tapped, or at the tab when that isn't on screen.
+  const aim = () => {
+    const box = scr.getBoundingClientRect(), from = anchor?.isConnected ? anchor.getBoundingClientRect() : null;
+    const top = from ? from.bottom - box.top + 10 : 100;
+    m.style.top = `${top}px`; m.style.maxHeight = `${box.height - top - 96}px`;
+    const x = from ? from.left + from.width / 2 - box.left : box.width / 2;
+    m.style.setProperty("--tail", `${Math.max(28, Math.min(box.width - 28, x)) - 12}px`);
+  };
+  const close = () => { m.remove(); scrim.remove(); document.removeEventListener("keydown", esc_); };
+  const esc_ = (e) => { if (e.key === "Escape") close(); };
+  m.addEventListener("close", close);
+  scrim.onclick = close; $(".rw-x", m).onclick = close; document.addEventListener("keydown", esc_);
+  m.querySelectorAll("[data-k]").forEach((b) => b.onclick = () => show(b.dataset.k));
+  scr.append(scrim, m); show(tab); $(`[data-k="${tab}"]`, m).focus();
 }
 
 /* ---------- Study: the unit list ---------- */
@@ -463,7 +506,7 @@ function renderMe() {
   const ks = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)), stars = ks.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
   const recs = Object.entries(c.drills ?? {}).filter(([k, d]) => d.best && PR.index.bySkill[k]).sort((a, b) => b[1].best - a[1].best);
   const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
-  scr.style.setProperty("--subj", "#6849dd"); scr.style.setProperty("--top", "#6849dd");
+  scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
     <header class="me-band fun-band" style="--room:${ROOM.me}">${avatar(c, "lg")}<div><h2>${esc(c.name ?? T.meTitle)}</h2><small>${esc(yearName(c.year))} · ${esc(ST().cur[c.curriculum])}</small></div>
       <button class="me-gear" data-settings aria-label="${esc(ST().title)}">${GEAR}</button></header>
@@ -498,8 +541,8 @@ const GEAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.6a3.4 3
 const DICE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.4" class="fill"/><circle cx="15.5" cy="15.5" r="1.4" class="fill"/><circle cx="12" cy="12" r="1.4" class="fill"/></svg>';
 const CAMERA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>';
 const STXT = {
-  de: { title: "Einstellungen", profile: "Ich", name: "Name", newName: "Neuer Name", picture: "Bild", photo: "Foto", colour: "Farbe", learn: "Lernen", curriculum: "Lehrplan", cur: { "de-DE": "Deutschland", "en-GB": "England" }, curNote: "Jeder Lehrplan behält seinen eigenen Fortschritt.", year: "Klasse", look: "Aussehen", looks: { light: "Hell", dark: "Dunkel", night: "Nacht" }, lookNote: { light: "Hell und bunt", dark: "Schont die Augen im Dunkeln", night: "Dunkel und warm, für den Abend" }, sound: "Ton und Spielen", autoAudio: "Aufgaben vorlesen", autoAudioSub: "Jede Frage wird gleich vorgelesen", autoNext: "Automatisch weiter", autoNextSub: "Nach einer richtigen Antwort nach 3 Sekunden", script: "Schreibschrift", scriptSub: "So sehen die Schreiblinien aus", scripts: { sas: "Schulausgangsschrift", la: "Lateinische Ausgangsschrift", va: "Vereinfachte Ausgangsschrift", grund: "Grundschrift" }, fresh: "Neu anfangen", freshSub: "Sterne, Abzeichen und Serie in diesem Lehrplan auf null", freshBtn: "Alles zurücksetzen", sure: "Wirklich? Tippe nochmal", back: "Zurück" },
-  en: { title: "Settings", profile: "Me", name: "Name", newName: "New name", picture: "Picture", photo: "Photo", colour: "Colour", learn: "Learning", curriculum: "Curriculum", cur: { "de-DE": "Germany", "en-GB": "England" }, curNote: "Each curriculum keeps its own progress.", year: "Year", look: "Look", looks: { light: "Light", dark: "Dark", night: "Night" }, lookNote: { light: "Bright and colourful", dark: "Easy on the eyes in the dark", night: "Dark and warm, for the evening" }, sound: "Sound and play", autoAudio: "Read tasks aloud", autoAudioSub: "Every question is read out straight away", autoNext: "Move on by itself", autoNextSub: "3 seconds after a right answer", script: "Handwriting", scriptSub: "How the writing lines look", scripts: { sas: "Schulausgangsschrift", la: "Lateinische Ausgangsschrift", va: "Vereinfachte Ausgangsschrift", grund: "Grundschrift" }, fresh: "Start again", freshSub: "Stars, badges and streak in this curriculum back to zero", freshBtn: "Reset everything", sure: "Sure? Tap again", back: "Back" },
+  de: { title: "Einstellungen", profile: "Ich", name: "Name", newName: "Neuer Name", picture: "Bild", photo: "Foto", colour: "Farbe", learn: "Lernen", curriculum: "Lehrplan", cur: { "de-DE": "Deutschland", "en-GB": "England" }, curNote: "Jeder Lehrplan behält seinen eigenen Fortschritt.", year: "Klasse", look: "Aussehen", looks: { light: "Hell", dark: "Dunkel", night: "Nacht" }, lookNote: { light: "Hell und bunt", dark: "Schont die Augen im Dunkeln", night: "Dunkel und warm, für den Abend" }, sound: "Ton und Spielen", autoAudio: "Aufgaben vorlesen", autoAudioSub: "Jede Frage wird gleich vorgelesen", autoNext: "Automatisch weiter", autoNextSub: "Nach einer richtigen Antwort nach 3 Sekunden", script: "Schreibschrift", scriptSub: "So sehen die Schreiblinien aus", scripts: { sas: "Schulausgangsschrift", la: "Lateinische Ausgangsschrift", va: "Vereinfachte Ausgangsschrift", grund: "Grundschrift" }, back: "Zurück" },
+  en: { title: "Settings", profile: "Me", name: "Name", newName: "New name", picture: "Picture", photo: "Photo", colour: "Colour", learn: "Learning", curriculum: "Curriculum", cur: { "de-DE": "Germany", "en-GB": "England" }, curNote: "Each curriculum keeps its own progress.", year: "Year", look: "Look", looks: { light: "Light", dark: "Dark", night: "Night" }, lookNote: { light: "Bright and colourful", dark: "Easy on the eyes in the dark", night: "Dark and warm, for the evening" }, sound: "Sound and play", autoAudio: "Read tasks aloud", autoAudioSub: "Every question is read out straight away", autoNext: "Move on by itself", autoNextSub: "3 seconds after a right answer", script: "Handwriting", scriptSub: "How the writing lines look", scripts: { sas: "Schulausgangsschrift", la: "Lateinische Ausgangsschrift", va: "Vereinfachte Ausgangsschrift", grund: "Grundschrift" }, back: "Back" },
 };
 const ST = () => STXT[PL()];
 // Move the child to another curriculum: this one's progress is put away, the other's comes back.
@@ -520,7 +563,7 @@ function readPhoto(file, done) {
 function renderSettings() {
   const S = ST(), c = appChild(), scr = $("#screen"), a = c.avatar ?? {}, look = getLook();
   const sw = (id, on, label, sub) => `<label class="set-row set-sw"><span><b>${esc(label)}</b><small>${esc(sub)}</small></span><input type="checkbox" role="switch" id="${id}"${on ? " checked" : ""}><i aria-hidden="true"></i></label>`;
-  scr.style.setProperty("--subj", ROOM.me); scr.style.setProperty("--top", ROOM.me);
+  scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home pr-page app-page set-page">
     <header class="pr-band fun-band" style="--c:${ROOM.me};--room:${ROOM.me}"><button class="pr-back" aria-label="${esc(S.back)}">${CHEVRON}</button><h2>${esc(S.title)}</h2></header>
     <section class="set-me">${avatar(c, "xl")}
@@ -542,7 +585,6 @@ function renderSettings() {
       ${sw("setNext", $("#autonext")?.checked ?? true, S.autoNext, S.autoNextSub)}</section>
     ${c.curriculum === "de-DE" ? `<section class="set-card"><h3>${esc(S.script)}</h3><small class="set-note">${esc(S.scriptSub)}</small>
       <div class="set-scripts" role="radiogroup" aria-label="${esc(S.script)}">${Object.keys(SCRIPTS).map((k) => `<button role="radio" data-script="${k}" aria-checked="${k === SCRIPT}"><span style="font-family:'${SCRIPTS[k]}'">Hallo ${esc(c.name ?? "Mia")}</span><small>${esc(S.scripts[k])}</small></button>`).join("")}</div></section>` : ""}
-    <section class="set-card set-fresh"><h3>${esc(S.fresh)}</h3><small class="set-note">${esc(S.freshSub)}</small><button id="setReset">${esc(S.freshBtn)}</button></section>
   </div>`;
   scr.appendChild(appTabs("me"));
   const save = () => { saveChild(); renderSettings(); renderPracticeSide(); };
@@ -563,11 +605,46 @@ function renderSettings() {
     SCRIPT = b.dataset.script; try { localStorage.setItem("twist-script", SCRIPT); } catch {}
     document.querySelectorAll("input[name=script]").forEach((r) => r.checked = r.value === SCRIPT); renderSettings();
   });
-  const reset = $("#setReset", scr);
-  reset.onclick = () => {
-    if (!reset.classList.contains("sure")) { reset.classList.add("sure"); reset.textContent = S.sure; return; }
-    snap(); PR.child = { ...newChild({ curriculum: c.curriculum, year: c.year, band: c.band }), name: c.name, avatar: c.avatar, stash: c.stash }; save();
-  };
+}
+// Demo data, to show the app with a child that has been using it for five weeks:
+// about a third of each course done (the skills remembered, can do or practised),
+// the next skill started, school days played with one missed, 47 practice
+// sessions, two drill records. Today is still to play, so Start has a plan.
+function loadDemo() {
+  snap();
+  const was = PR.child, c = (PR.child = { ...newChild({ curriculum: was.curriculum, year: was.year, band: was.band }), name: was.name, avatar: was.avatar, stash: was.stash });
+  c.today = 32;
+  for (let d = 1; d < c.today; d++) if (d % 7 < 5 && d !== 15) markActive(c, d);
+  const STATE = ["remembered", "can_do", "can_do", "practised"];
+  let last = null;
+  for (const x of appSubjects()) {
+    const sets = courseSets(x), n = Math.max(3, Math.round(sets.length / 3));
+    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, st.skill, STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`); });
+    const nx = sets[n];
+    if (nx) { c.lessons[nx.id] = 1; setState(c, nx.skill, "learning"); logEvent(c, `lesson 1 of ${nx.id} finished`); last ??= { setId: nx.id, n: 1, day: c.today - 1 }; }
+  }
+  // The lessons were played over the past weeks, the newest on the last day played.
+  const days = c.active; c.log.forEach((e, i) => e.day = days[Math.min(days.length - 1, Math.floor((i * days.length) / c.log.length))]);
+  // A few practice sessions this week, as the app logs them.
+  [["mixed session: 9 of 10 right", 1], ["drill session: 18 a minute", 2], ["catch-up session: 8 of 10 right", 3]].forEach(([text, back]) => c.log.push({ day: days.at(-back), text }));
+  c.last = last;
+  c.sessions = 47;
+  drillsForYear().slice(0, 2).forEach((k, i) => c.drills[k] = { best: [18, 24][i], weak: {} });
+  PR.index = indexContent(D.sets, D.drills, c.curriculum);
+}
+// The preview's Settings menu (top right) loads demo data or resets, and redraws the screen the app is on.
+function demoAction(fn) {
+  appChild(); fn(); saveChild(); PR.on = false; PR.session = null;
+  if (document.body.classList.contains("parents")) return renderParents();
+  if (inPractice()) refreshPractice(); else appTab(APP.tab === "study" || !APP.tab ? "study" : APP.tab, { keep: true });
+}
+document.getElementById("demoLoad")?.addEventListener("click", () => demoAction(loadDemo));
+document.getElementById("demoReset")?.addEventListener("click", () => demoAction(resetChild));
+// Back to zero in this curriculum; the name, picture and the other curricula stay.
+function resetChild() {
+  snap();
+  const was = PR.child;
+  PR.child = { ...newChild({ curriculum: was.curriculum, year: was.year, band: was.band }), name: was.name, avatar: was.avatar, stash: was.stash };
 }
 
 /* ---------- Drills: every bank of the child's curriculum, by subject ---------- */

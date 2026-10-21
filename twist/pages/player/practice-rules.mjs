@@ -383,7 +383,8 @@ function lookAlikes(w, words, rng) {
 
 export function drillTask(it, format, bank, lang, curriculum, rng) {
   const L = DRILL_TXT[lang] ?? DRILL_TXT.en;
-  const base = { id: `drill-${it.q ?? it.word}`, hints: [], _prompt: [], _target: null, _hints: [], _feedback: {} };
+  // _phrase names the instruction's recording in phrases.yaml (drill_*), in the language of `lang`.
+  const base = { id: `drill-${it.q ?? it.word}`, hints: [], _prompt: [], _target: null, _hints: [], _feedback: {}, _lang: lang };
   if (it.q != null) {
     const text = `${signs(String(it.q), curriculum)} = _`, a = String(it.a);
     if (format === "choose") {
@@ -395,24 +396,24 @@ export function drillTask(it, format, bank, lang, curriculum, rng) {
   }
   // Words in reading and language banks have no example sentence; only a spelling task needs one.
   const w = String(it.word), gap = it.sentence ? it.sentence.replace(new RegExp(`(^|[^\\p{L}])${w}(?=[^\\p{L}]|$)`, "giu"), `$1___`) : w;
-  if (format === "say" || format === "type") return { ...base, type: "text_input", text: `${L.write}\n${gap}`, answer: w, keyboard: "letters", _sayWord: w, _sayLang: it.lang ?? lang, _clip: it._clip ?? null };
+  if (format === "say" || format === "type") return { ...base, _phrase: "drill_write", type: "text_input", text: `${L.write}\n${gap}`, answer: w, keyboard: "letters", _sayWord: w, _sayLang: it.lang ?? lang, _clip: it._clip ?? null };
   const others = lookAlikes(w, bank.items.filter((x) => x.word && (x.lang ?? it.lang) === it.lang).map((x) => String(x.word)), rng).slice(0, 2);
   const options = shuffle([w, ...others], rng);
-  if (format === "flash") return { ...base, type: "multiple_choice", text: L.read, options, answer: w, _flashWord: w };
+  if (format === "flash") return { ...base, _phrase: "drill_read", type: "multiple_choice", text: L.read, options, answer: w, _flashWord: w };
   // A word in the language being learnt is heard only: the child shows they
   // understood it by picking its colour or its digit, never by reading it.
   const say = { _sayWord: w, _sayLang: it.lang ?? lang, _clip: it._clip ?? null };
   const same = bank.items.filter((x) => (x.lang ?? it.lang) === it.lang && x.word !== w);
   if (format === "listen" && it.colour) {
     const opts = shuffle([it.colour, ...shuffle([...new Set(same.map((x) => x.colour).filter((c) => c && c !== it.colour))], rng).slice(0, 2)], rng);
-    return { ...base, ...say, type: "multiple_choice", text: L.colour, options: opts, answer: it.colour, _swatches: true };
+    return { ...base, ...say, _phrase: "drill_colour", type: "multiple_choice", text: L.colour, options: opts, answer: it.colour, _swatches: true };
   }
   if (format === "listen" && it.digit != null) {
     const d = it.digit, near = [...new Set(same.map((x) => x.digit).filter((x) => x != null && x !== d))].sort((a, b) => Math.abs(a - d) - Math.abs(b - d));
     const opts = shuffle([String(d), ...shuffle(near.slice(0, 4), rng).slice(0, 2).map(String)], rng);
-    return { ...base, ...say, type: "multiple_choice", text: L.number, options: opts, answer: String(d) };
+    return { ...base, ...say, _phrase: "drill_number", type: "multiple_choice", text: L.number, options: opts, answer: String(d) };
   }
-  return { ...base, ...say, type: "multiple_choice", text: L.hear, options, answer: w };
+  return { ...base, ...say, _phrase: "drill_hear", type: "multiple_choice", text: L.hear, options, answer: w };
 }
 
 // ---------- scoring ----------

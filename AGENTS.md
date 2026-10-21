@@ -28,7 +28,10 @@ git repo kept separate from schoolido-learning.
       player/practice.css, and the tabs around them player/app-ui.js and
       player/app.css. Study opens on the track of the app (stones,
       arcs, islands); player/study/ holds that art, copied from
-      ist-schoolido's assets/images/study. Every drawing is in player/drawn.js, which the
+      ist-schoolido's assets/images/study. The Parents view
+      (player/parents-ui.js, parents.css) shows the same pretend child as
+      a parent would see it: the week, subjects, suggestions, rewards.
+      Every drawing is in player/drawn.js, which the
       build inlines and the app can use as it is. `node twist/pages/player/build.mjs`; it
       plays audio from twist/assets/narration/<voice>/, which is in git
       (about 3 GB); after a content change, narrate the new lines with

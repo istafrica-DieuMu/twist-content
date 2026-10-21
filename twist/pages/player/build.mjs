@@ -88,7 +88,17 @@ function clip(lang, text, activity, phrase, where, speaker) {
 }
 const sayClips = (say, lang, activity, where) =>
   (say && typeof say === "object" ? Object.entries(say) : [[lang, say]]).map(([lg, v]) => clip(lg, v, activity, null, where)).filter(Boolean);
-const soundClip = (id, activity) => `narration/${voiceFor(activity)}/sounds/${id.replace(":", "-long")}.mp3`;
+// A sound is made by the voices of its language (narration.py): an English
+// sound in a German-curriculum lesson comes from that role's English voice.
+// A sound with no file stops the build, as a line with no clip does.
+const soundClip = (id, activity) => {
+  const lang = id.split(".")[0], own = (vcfg(CUR).language ?? "de") === lang, was = CUR;
+  if (!own) CUR = curForLang(lang) ?? CUR;
+  const f = `narration/${voiceFor(activity)}/sounds/${id.replace(":", "-long")}.mp3`;
+  CUR = was;
+  if (!existsSync(join(T, "assets", f))) problems.push(`${activity}: no sound clip ${f} (run twist/assets/tools/narration.py --voice <voice>)`);
+  return f;
+};
 
 // Must match option_texts() in narration.py: a speaker on an option only
 // when hearing it does not give the answer away.
@@ -214,8 +224,8 @@ for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
 }
 const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
 const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");
-const ui = readFileSync(join(HERE, "practice-ui.js"), "utf8") + "\n" + readFileSync(join(HERE, "app-ui.js"), "utf8");
-const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => readFileSync(join(HERE, "practice.css"), "utf8") + "\n" + readFileSync(join(HERE, "app.css"), "utf8")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
+const ui = ["practice-ui.js", "app-ui.js", "parents-ui.js"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n");
+const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => ["practice.css", "app.css", "parents.css"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
 writeFileSync(draft ?? join(HERE, "index.html"), html);
 if (draft) { writeFileSync(draft, html.replace('"assets":"../../assets/"', `"assets":${JSON.stringify("file://" + join(HERE, "../../assets") + "/")}`)); }
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);
