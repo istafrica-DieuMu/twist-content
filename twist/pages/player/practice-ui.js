@@ -354,7 +354,7 @@ function practiceFrame(step) {
     <div class="stepb"><span class="st">${esc(L.kinds[PR.session.kind] ?? L.title)}</span></div>
     <button class="ib x" aria-label="Close">${ICON.close}</button></div>
     ${PR.session.kind === "drill" ? `<div class="pbar"><i style="width:${pct}%"></i></div>` : pbar(PR.items.map((_, i) => i), (i) => PR.res[i]?.outcome ?? results[i])}`;
-  $(".x", scr).onclick = () => endSession(true);
+  $(".x", scr).onclick = () => leaveSheet(scr, true, () => endSession(true));
   const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
   const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
   return { body, foot };

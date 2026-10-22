@@ -197,7 +197,9 @@ svg text{font-family:Andika,sans-serif}
 /* ---------- the app's look (ist-schoolido: QuizHeader, OptionCard, Button, FeedbackBanner) ---------- */
 .screen{background:var(--screen-bg);color:var(--text);font-family:"Red Hat Text",system-ui,sans-serif}
 .status{height:48px}
-.hdr{display:flex;align-items:center;gap:8px;padding:0 16px 12px;min-height:50px;border-bottom:1px solid var(--edge-c);flex:none}
+.hdr{display:flex;align-items:center;gap:8px;padding:0 16px 10px;min-height:50px;flex:none}
+.hdr + .pbar{margin:0 20px 10px}
+.hdr .x svg{width:22px;height:22px}
 .ib{width:40px;height:40px;border:0;background:none;cursor:pointer;display:grid;place-items:center;border-radius:10px;flex:none}
 .ib:hover{background:#f4f2fb}
 .stepb{flex:1;min-width:0;display:flex;align-items:center;gap:8px;justify-content:center;font:500 16px/24px "Red Hat Text",sans-serif;color:var(--text)}
@@ -274,6 +276,12 @@ svg text{font-family:Andika,sans-serif}
 @keyframes lm-up{from{transform:translateY(105%)}}@keyframes lm-down{to{transform:translateY(105%)}}@keyframes lm-fade{from{opacity:0}}
 @media (prefers-reduced-motion:reduce){.lm-sheet,.lm-scrim{animation:none!important}}
 .lm-sheet>*:not(.lm-list){flex:none}
+.lv-sheet{position:absolute;left:8px;right:8px;bottom:8px;z-index:21;display:grid;gap:12px;padding:28px 28px 32px;border-radius:32px;background:var(--card);box-shadow:0 -6px 24px rgba(22,12,34,.18);animation:lm-up .3s cubic-bezier(.2,.8,.2,1) both}
+.lv-sheet.out{animation:lm-down .2s ease both}
+.lv-sheet h3{margin:0 0 4px;text-align:center;font:700 24px/1.25 "Red Hat Display",sans-serif;color:var(--text);text-wrap:balance}
+.lv-sheet .btn{width:100%}
+.lv-sheet .lv-pause{background:var(--card);color:var(--text);border:1.5px solid #d3d3d3;box-shadow:none}
+@media (prefers-reduced-motion:reduce){.lv-sheet{animation:none!important}}
 .lm-grip{align-self:center;width:40px;height:5px;border-radius:3px;background:#d3d3d3;margin-bottom:12px}
 .lm-sheet h3{margin:0;font:700 24px/1.25 "Red Hat Display",sans-serif;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .lm-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -297,6 +305,7 @@ svg text{font-family:Andika,sans-serif}
 .lm-ring{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--sc) 45%,transparent)}
 .lm-dot{position:relative;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--sc);color:#fff;font:700 14px/1 "Red Hat Display",sans-serif}
 .lm-dot i{position:absolute;top:1px;left:2px;width:4px;height:4px;border-radius:50%;background:#fff}
+.lm-dot svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .lm-step.later .lm-ring{background:color-mix(in srgb,var(--sc) 15%,transparent)}.lm-step.later .lm-dot{background:color-mix(in srgb,var(--sc) 32%,transparent)}.lm-step.later .lm-dot b{opacity:.85}
 .lm-line{flex:1;width:3px;min-height:24px;background:color-mix(in srgb,var(--sc) 20%,transparent)}
 .lm-step.later .lm-line{background:color-mix(in srgb,var(--sc) 6%,transparent)}
@@ -352,7 +361,9 @@ svg text{font-family:Andika,sans-serif}
 .bubbleq::before{left:-9px;border-right-color:var(--edge-c)}
 .bubbleq::after{content:"";position:absolute;left:-7px;top:50%;margin-top:-7px;border:7px solid transparent;border-left:0;border-right-color:var(--sunk)}
 .bubbleq .t{font:500 17px/1.4 "Red Hat Text",sans-serif;color:var(--text)}
-.bubbleq .t.short{font:700 28px/1.2 "Red Hat Display",sans-serif}
+.bubbleq .t.short{font:700 30px/1.25 "Red Hat Display",sans-serif;letter-spacing:-.01em}
+/* The question takes the whole bubble, so a short sum and its blank stay on one line ("36 + 8 = ?"). */
+.bubbleq .t{flex:1;min-width:0}
 .bubbleq .spk,.sheet .line .spk{border:0;background:none;width:34px;height:34px}
 .bubbleq .spk svg{width:28px;height:28px}
 .opt{color:var(--text-soft);transition:transform .08s,opacity .08s}
@@ -721,8 +732,8 @@ function frameUI(step) {
     <div class="stepb">${step.a ? actPath(step, true) : `<span class="st">${title}</span>`}</div>
     <button class="ib x" aria-label="Close">${ICON.close}</button></div>
     ${pbar(steps.flatMap((s, i) => s.kind === "task" || s.kind === "learn" ? [i] : []), (i) => results[i])}`;
-  // A lesson closes back to the Study tab, as in the app.
-  $(".x", scr).onclick = () => openStudy();
+  // A lesson closes back to the Study tab, as in the app, after asking (leaveSheet); the end screen just closes.
+  $(".x", scr).onclick = () => step.kind === "end" ? openStudy() : leaveSheet(scr, false, openStudy);
   $(".menu", scr).onclick = () => lessonMenu(scr);
   const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
   const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
@@ -746,6 +757,23 @@ const ACT_DO = {
 };
 const MENU = { de: { done: (a, n) => `${a} von ${n} geschafft`, first: (n) => `${n} beim ersten Versuch`, settings: "Lektionseinstellungen", soundOn: "Ton an", soundOff: "Ton aus", journey: "Dein Lernweg", min: (m) => `${m} MIN`, tasks: (n) => `${n} AUFGABEN`, screens: (n) => `${n} ${n === 1 ? "Erklärung" : "Erklärungen"}`, count: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"}` },
   en: { done: (a, n) => `${a} of ${n} done`, first: (n) => `${n} right first time`, settings: "Lesson settings", soundOn: "Sound on", soundOff: "Sound off", journey: "Learning journey", min: (m) => `${m} MIN`, tasks: (n) => `${n} TASKS`, screens: (n) => `${n} ${n === 1 ? "screen" : "screens"}`, count: (n) => `${n} ${n === 1 ? "task" : "tasks"}` } };
+// Before a lesson or a practice session closes, as the app's LeaveQuizBottomSheet:
+// one question, Continue learning first, Pause second.
+const LEAVE = { de: { lesson: "Möchtest du die Lektion wirklich unterbrechen?", practice: "Möchtest du das Üben wirklich unterbrechen?", stay: "Weiterlernen", pauseLesson: "Lektion pausieren", pausePractice: "Üben pausieren" },
+  en: { lesson: "Are you sure you want to pause the lesson?", practice: "Are you sure you want to pause the practice?", stay: "Continue learning", pauseLesson: "Pause lesson", pausePractice: "Pause practice" } };
+function leaveSheet(scr, practice, onLeave) {
+  if (scr.querySelector(".lv-sheet")) return;
+  const L = LEAVE[lang()] ?? LEAVE.en;
+  const scrim = document.createElement("div"); scrim.className = "lm-scrim";
+  const m = document.createElement("div"); m.className = "lv-sheet"; m.setAttribute("role", "alertdialog"); m.setAttribute("aria-labelledby", "lvT");
+  m.innerHTML = `<h3 id="lvT">${esc(practice ? L.practice : L.lesson)}</h3><button class="btn go">${esc(L.stay)}</button><button class="btn lv-pause">${esc(practice ? L.pausePractice : L.pauseLesson)}</button>`;
+  scr.append(scrim, m);
+  const close = (then) => { document.removeEventListener("keydown", key); m.classList.add("out"); scrim.classList.add("out"); setTimeout(() => { m.remove(); scrim.remove(); then?.(); }, 200); };
+  const key = (e) => { if (e.key === "Escape") close(); };
+  document.addEventListener("keydown", key);
+  scrim.onclick = () => close(); $(".go", m).onclick = () => close(); $(".lv-pause", m).onclick = () => close(onLeave);
+  $(".go", m).focus({ preventScroll: true });
+}
 function lessonMenu(scr) {
   if (scr.querySelector(".lm-sheet")) return;
   const M = MENU[lang()] ?? MENU.en, col = SUBJ_COLOUR[subjOf(set)] ?? "#6849dd";
@@ -767,7 +795,7 @@ function lessonMenu(scr) {
     const curStage = steps[at]?.a === a ? steps[at].stage : null;
     const mods = stages.map((x) => { const first = items.find(([s]) => s.stage === x)[1], ms = x === curStage ? "now" : st === "done" || (curStage && stages.indexOf(x) < stages.indexOf(curStage)) ? "done" : "later";
       return `<button class="lm-mod ${ms}" data-go="${first}"><i></i><span>${esc(STAGE[x] ?? x)}</span>${ms === "now" ? `<b>${pct}%</b>` : ""}</button>`; }).join("");
-    return `<div class="lm-step ${st}${st === "now" ? " open" : ""}"><div class="lm-ind"><span class="lm-ring"><span class="lm-dot">${st === "done" ? '<svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : `<b>${i + 1}</b>`}${st !== "later" ? "<i></i>" : ""}</span></span><span class="lm-line"></span></div>
+    return `<div class="lm-step ${st}${st === "now" ? " open" : ""}"><div class="lm-ind"><span class="lm-ring"><span class="lm-dot">${st === "done" ? '<svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : actIcon(a.activity)}${st !== "later" ? "<i></i>" : ""}</span></span><span class="lm-line"></span></div>
       <div class="lm-body"><button class="lm-head" aria-expanded="${st === "now"}"><span><span class="lm-name">${esc(name)}</span><small>${esc(sub)}</small></span><svg class="lm-chev" viewBox="0 0 24 24" width="20" height="20"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="lm-mods">${prog}${mods}${st === "now" ? "" : `<button class="lm-mod lm-jump" data-go="${items[0]?.[1] ?? 0}"><i></i><span>${esc(UI.start)}</span></button>`}</div></div></div>`;
   };
   const scrim = document.createElement("div"); scrim.className = "lm-scrim";
@@ -1121,6 +1149,12 @@ function shrinkToFit(body, vis) {
   };
   if (vis && vis.innerHTML.trim()) scale(vis, 0.4, 64);
   const q = body.querySelector(".bubbleq .t");
+  // A short question (a sum) keeps to one line: smaller, down to 22 px, before it may wrap.
+  if (q?.classList.contains("short")) {
+    q.style.whiteSpace = "nowrap";
+    for (let fs = parseFloat(getComputedStyle(q).fontSize); q.scrollWidth > q.clientWidth + 1 && fs > 22; ) { fs -= 1; q.style.fontSize = `${fs}px`; }
+    if (q.scrollWidth > q.clientWidth + 1) q.style.whiteSpace = "";
+  }
   for (let fs = q ? parseFloat(getComputedStyle(q).fontSize) : 0; q && over() > 2 && fs > 15; ) { fs -= 1; q.style.fontSize = `${fs}px`; q.style.lineHeight = "1.25"; }
   const area = [...body.children].filter((c) => c.matches(".opts, .cards, .pairs, .bins, .chips, .tf, .pad, .frame, .mic, .saycard")).sort((x, y) => y.getBoundingClientRect().height - x.getBoundingClientRect().height)[0];
   scale(area, 0.5);
