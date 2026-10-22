@@ -44,6 +44,7 @@ const colourOf = (subj) => SUBJ_COLOUR[`${PR.child.curriculum}.${subj}`] ?? "#68
 const poseSrc = (card) => `${A}mascot/${setOfSkill(card.skills[0])?.pose ?? KIND_POSE[card.kind]}.png`;
 function sizeOf(card) {
   const b = BANDS[PR.child.band];
+  if (card.paused) return PAUSE_TXT[PL()].left(card.paused.done, card.paused.total);
   if (card.kind === "drill") return PT().drillSize(2);
   const n = card.kind === "recaps" ? Math.min(card.skills.length, Math.floor(b.tasks / b.recapTasks)) * b.recapTasks : b.tasks;
   return PT().size(n, Math.max(2, Math.round(n * 0.4)));
@@ -51,7 +52,7 @@ function sizeOf(card) {
 // A recap's size with how many topics it covers ("12 tasks from 4 topics, about 5 minutes").
 function sizeLine(card) {
   const L = PT(), b = BANDS[PR.child.band];
-  if (card.kind !== "recaps") return sizeOf(card);
+  if (card.kind !== "recaps" || card.paused) return sizeOf(card);
   const ks = card.skills.slice(0, Math.floor(b.tasks / b.recapTasks)), t = new Set(ks.map((k) => setOfSkill(k)?.topic?.[PL()])).size, n = ks.length * b.recapTasks;
   return `${L.tasksFrom(n, t)}, ${L.size(n, Math.max(2, Math.round(n * 0.4))).split(", ")[1]}`;
 }
@@ -61,7 +62,7 @@ const LENS = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="
 function renderPracticeHome() {
   appChild();
   const L = PT(), lg = PL(), scr = $("#screen");
-  const cards = suggestions(PR.child, PR.index), [hero, ...rest] = cards;
+  const cards = mySuggestions(), [hero, ...rest] = cards;
   const bee = busyBee(PR.child.sessions);
   scr.style.setProperty("--subj", "#6849dd"); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
@@ -79,7 +80,7 @@ function renderPracticeHome() {
     </div></div>`;
   scr.appendChild(appTabs("practice"));
   wireHeader(scr);
-  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
   const q = $("#prQ");
   q.oninput = () => showFound(q.value);
   $("#prEx").querySelectorAll("button").forEach((b) => b.onclick = () => { q.value = b.textContent; showFound(q.value); });
@@ -90,9 +91,9 @@ function renderPracticeHome() {
   function card(c, big) {
     const i = cards.indexOf(c), col = colourOf(subjOfSkill(c.skills[0])), sub = cardSub(c);
         // A recap card names the skills this session plays; the rest stay due for the next one.
-    const b_ = BANDS[PR.child.band], title = c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
-    return big ? `<button class="pr-hero" data-card="${i}" style="--c:${col}"><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
-        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><span class="pr-go">${esc(L.start)}</span><img class="pr-art" src="${poseSrc(c)}" alt=""></button>`
+    const b_ = BANDS[PR.child.band], title = c.paused ? c.reason[lg] : c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
+    return big ? `<button class="pr-hero" data-card="${i}" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
+        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><span class="pr-go">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</span><img class="pr-art" src="${poseSrc(c)}" alt=""></button>`
       : `<button class="pr-mini" data-card="${i}" style="--c:${col}"><i class="hm-ico sm">${KIND_ICON[c.kind] ?? KIND_ICON.skill}</i><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b>${esc(c.kind === "drill" ? sub : c.reason[lg])}</b><small>${esc(c.kind === "drill" ? L.minsShort(2) : sizeOf(c).split(",")[0])}</small></button>`;
   }
 }
@@ -231,7 +232,13 @@ function startSession({ kind, skills = [], minutes = null, topics = [], tricky =
   const all = [...new Set([...skills, ...fromTopics])];
   const session = buildSession({ kind, child: PR.child, index: PR.index, skills: all, minutes, tricky, focus, rng: Math.random });
   if (!session.items.length) { renderPracticeHome(); return; }
-  PR.last = { tricky, focus }; PR.session = session; PR.items = session.items; PR.res = []; PR.on = true; PR.home = false; PR.t0 = Date.now(); PR.applied = false;
+  PR.last = { tricky, focus };
+  // A new session takes the place of a paused one on the same skills.
+  if (PR.child.paused && PR.child.paused.skills.join() === session.skills.join()) PR.child.paused = null;
+  playSession(session);
+}
+function playSession(session) {
+  PR.session = session; PR.items = session.items; PR.res = []; PR.on = true; PR.home = false; PR.t0 = Date.now(); PR.applied = false;
   steps = PR.items.map((it) => ({ kind: "task", a: { activity: "practise" }, t: it.task, stage: it.mode, item: it })).concat([{ kind: "end" }]);
   results = steps.map(() => null);
   at = 0; practiceIntro();
@@ -354,12 +361,45 @@ function practiceFrame(step) {
     <div class="stepb"><span class="st">${esc(L.kinds[PR.session.kind] ?? L.title)}</span></div>
     <button class="ib x" aria-label="Close">${ICON.close}</button></div>
     ${PR.session.kind === "drill" ? `<div class="pbar"><i style="width:${pct}%"></i></div>` : pbar(PR.items.map((_, i) => i), (i) => PR.res[i]?.outcome ?? results[i])}`;
-  $(".x", scr).onclick = () => leaveSheet(scr, true, () => endSession(true));
+  $(".x", scr).onclick = () => leaveSheet(scr, true, pauseSession);
   const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
   const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
   return { body, foot };
 }
 
+// Paused (Pause practice in the leave sheet): the tasks still to do are kept for
+// the child (child.paused) and offered first on Start and Practice, until they
+// are finished, a new session on the same skills starts, or a week has passed.
+const PAUSE_TXT = {
+  de: { reason: "Mach weiter, wo du aufgehört hast", kind: (k) => `Pausiert · ${k}`, go: "Weiter", left: (a, n) => `${a} von ${n} geschafft, ${n - a} übrig` },
+  en: { reason: "Carry on where you stopped", kind: (k) => `Paused · ${k}`, go: "Carry on", left: (a, n) => `${a} of ${n} done, ${n - a} to go` },
+};
+function pauseSession() {
+  const s = PR.session, c = PR.child, left = PR.items.filter((_, i) => !PR.res[i]), done = PR.items.length - left.length;
+  // A drill runs against the clock, so it starts again whole; other sessions keep their own tasks.
+  if (left.length && done) c.paused = { kind: s.kind, skills: s.skills, mode: s.mode, minutes: s.minutes, seconds: s.seconds, day: c.today, done, total: PR.items.length,
+    items: s.kind === "drill" ? [] : left.map(({ task, ...it }) => it) };
+  endSession(true);
+}
+// The paused session's tasks, found again by their keys (a task met twice ends in #again).
+function pausedItems(p) {
+  return p.items.map((it) => { const base = it.key.replace(/#again$/, ""), pools = PR.index.bySkill[it.skill]?.pools; const e = pools && Object.values(pools).flat().find((x) => x?.key === base); return e ? { ...it, task: e.task } : null; }).filter(Boolean);
+}
+function resumeSession() {
+  const p = PR.child.paused; PR.child.paused = null; saveChild();
+  if (!p) return;
+  const items = pausedItems(p);
+  appTab("practice");
+  if (p.kind === "drill" || !items.length) return startSession({ kind: p.kind, skills: p.skills, minutes: p.minutes });
+  PR.last = {}; playSession({ kind: p.kind, skills: p.skills, mode: p.mode, items, seconds: p.seconds, minutes: p.minutes });
+}
+// The suggestions, with a paused session first while it is less than a week old.
+function mySuggestions() {
+  const c = PR.child, p = c.paused, list = suggestions(c, PR.index);
+  if (!p) return list;
+  if (c.today - p.day > 7 || !p.skills.every((k) => PR.index.bySkill[k])) { c.paused = null; saveChild(); return list; }
+  return [{ kind: p.kind, skills: p.skills, paused: p, reason: { de: PAUSE_TXT.de.reason, en: PAUSE_TXT.en.reason } }, ...list];
+}
 function endSession(early) {
   stopAudio();
   const answered = PR.items.map((_, i) => PR.res[i]).filter(Boolean).length;

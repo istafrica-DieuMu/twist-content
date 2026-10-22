@@ -158,6 +158,25 @@ function subjChip(x) {
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
   return `<button data-subj="${esc(x)}" style="--c:${colourOf(x)};--p:${sets.length ? (100 * done) / sets.length : 0}"><i class="hm-ring">${esc(g)}${fresh ? `<em>${esc(AT().newDot)}</em>` : ""}</i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><small>${esc(AT().unitsOf(done, sets.length))}</small></button>`;
 }
+// Next in each subject: a row of cards that slides sideways, one per subject with a
+// lesson to do (the plan's subject left out while its card is above), so it holds
+// three subjects today and more later. Dots under it show where the row is.
+const ROW_TXT = { de: { head: "Als Nächstes in deinen Fächern" }, en: { head: "Next in your subjects" } };
+function subjectRow(skip) {
+  const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
+    const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
+    const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
+    return `<button class="hm-card" data-start="${esc(s.id)}" data-n="${l.n}" style="--c:${colourOf(subj)}">
+      <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, sets.length))}</span><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b><small>${esc(s.title[lg] ?? s.title.de)}</small>
+      <span class="hm-card-go">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></span><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`;
+  }).filter(Boolean);
+  if (!cards.length) return "";
+  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3><div class="hm-cards">${cards.join("")}</div>${cards.length > 1 ? `<div class="hm-dots-row" aria-hidden="true">${cards.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div>` : ""}</section>`;
+}
+function wireRow(scr) {
+  const row = scr.querySelector(".hm-cards"), dots = scr.querySelectorAll(".hm-dots-row i"); if (!row || !dots.length) return;
+  row.onscroll = () => { const w = row.firstElementChild.getBoundingClientRect().width + 12, i = Math.round(row.scrollLeft / w); dots.forEach((d, j) => d.classList.toggle("on", j === Math.min(i, dots.length - 1))); };
+}
 // The lesson step: the next lesson as the big card, with where it sits (unit dots, unit k of n).
 function lessonStep(plan) {
   const T = AT(), lg = PL(), s = nextIn(plan.sets);
@@ -179,14 +198,14 @@ const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4
 function renderHomeTab() {
   const T = AT(), L = PT(), scr = $("#screen"), c = PR.child, subs = appSubjects();
   const plan = homePlan(); APP.subj = plan.subj;
-  const sug = suggestions(c, PR.index)[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
+  const sug = mySuggestions()[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
   const lesson = nextIn(plan.sets) ? lessonStep(plan) : "";
   const goal = [lesson || did.lessons, sug || did.practice].filter(Boolean).length || 1;
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
+  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
@@ -206,13 +225,13 @@ function renderHomeTab() {
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
     : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
+    ${subjectRow(lesson && !all ? plan.subj : null)}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
-    ${bee.next && bee.next - c.sessions <= 3 ? beeStrip() : ""}
   </div>`;
   scr.appendChild(appTabs("start"));
-  wireHeader(scr); wireStarts(scr);
+  wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
-  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { if (sug.paused) return resumeSession(); appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
 }
 
 /* ---------- Study: the track ---------- */

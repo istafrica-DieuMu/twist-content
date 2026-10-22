@@ -1437,6 +1437,23 @@ div.ln-next { cursor: default; }
 .tr-stone.open { opacity: .75; }
 :is(.screen[data-look="dark"], .screen[data-look="night"]) .app-tabs img { opacity: .8; }
 
+/* Next in each subject (subjectRow): cards that slide sideways and snap, the next one peeking in. */
+.hm-row { margin-inline: -16px; }
+.hm-row > .pr-h { padding-inline: 16px; }
+.hm-cards { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 16px 8px; scroll-padding-inline: 16px; scrollbar-width: none; }
+.hm-cards::-webkit-scrollbar { display: none; }
+.hm-card { position: relative; scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; min-height: 168px; padding: 14px 112px 14px 16px; border: 0; border-radius: 22px; background: var(--c); color: #fff; text-align: left; cursor: pointer; overflow: hidden; box-shadow: 0 5px 0 color-mix(in srgb, var(--c) 70%, #000); margin-bottom: 5px; }
+.hm-card .pr-kind { font: 700 12.5px "Red Hat Text", sans-serif; opacity: .85; }
+.hm-card b { font: 800 19px/1.15 "Red Hat Display", sans-serif; text-wrap: balance; }
+.hm-card small { font-size: 13px; line-height: 1.3; opacity: .9; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hm-card-go { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 14px; background: #fff; color: var(--c); font: 800 14px "Red Hat Display", sans-serif; }
+.hm-card-go i { font: 700 12px "Red Hat Text", sans-serif; font-style: normal; padding-left: 8px; border-left: 2px solid color-mix(in srgb, var(--c) 25%, #fff); }
+.hm-card img { position: absolute; right: 0; bottom: 8px; width: 104px; height: calc(100% - 40px); object-fit: contain; object-position: bottom; pointer-events: none; }
+.hm-card:focus-visible { outline: 3px solid #6849dd; outline-offset: 3px; }
+.hm-dots-row { display: flex; justify-content: center; gap: 6px; margin-top: 2px; }
+.hm-dots-row i { width: 6px; height: 6px; border-radius: 3px; background: var(--edge-c); transition: width .2s, background .2s; }
+.hm-dots-row i.on { width: 16px; background: #6849dd; }
+
 /* ---------- Parents (parents-ui.js) ----------
    For a grown-up: calm and plain, the app's typefaces, the brand's purple for
    the few accents and the subjects' colours only where they mean a subject.
@@ -2350,6 +2367,7 @@ const colourOf = (subj) => SUBJ_COLOUR[`${PR.child.curriculum}.${subj}`] ?? "#68
 const poseSrc = (card) => `${A}mascot/${setOfSkill(card.skills[0])?.pose ?? KIND_POSE[card.kind]}.png`;
 function sizeOf(card) {
   const b = BANDS[PR.child.band];
+  if (card.paused) return PAUSE_TXT[PL()].left(card.paused.done, card.paused.total);
   if (card.kind === "drill") return PT().drillSize(2);
   const n = card.kind === "recaps" ? Math.min(card.skills.length, Math.floor(b.tasks / b.recapTasks)) * b.recapTasks : b.tasks;
   return PT().size(n, Math.max(2, Math.round(n * 0.4)));
@@ -2357,7 +2375,7 @@ function sizeOf(card) {
 // A recap's size with how many topics it covers ("12 tasks from 4 topics, about 5 minutes").
 function sizeLine(card) {
   const L = PT(), b = BANDS[PR.child.band];
-  if (card.kind !== "recaps") return sizeOf(card);
+  if (card.kind !== "recaps" || card.paused) return sizeOf(card);
   const ks = card.skills.slice(0, Math.floor(b.tasks / b.recapTasks)), t = new Set(ks.map((k) => setOfSkill(k)?.topic?.[PL()])).size, n = ks.length * b.recapTasks;
   return `${L.tasksFrom(n, t)}, ${L.size(n, Math.max(2, Math.round(n * 0.4))).split(", ")[1]}`;
 }
@@ -2367,7 +2385,7 @@ const LENS = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="
 function renderPracticeHome() {
   appChild();
   const L = PT(), lg = PL(), scr = $("#screen");
-  const cards = suggestions(PR.child, PR.index), [hero, ...rest] = cards;
+  const cards = mySuggestions(), [hero, ...rest] = cards;
   const bee = busyBee(PR.child.sessions);
   scr.style.setProperty("--subj", "#6849dd"); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
@@ -2385,7 +2403,7 @@ function renderPracticeHome() {
     </div></div>`;
   scr.appendChild(appTabs("practice"));
   wireHeader(scr);
-  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
   const q = $("#prQ");
   q.oninput = () => showFound(q.value);
   $("#prEx").querySelectorAll("button").forEach((b) => b.onclick = () => { q.value = b.textContent; showFound(q.value); });
@@ -2396,9 +2414,9 @@ function renderPracticeHome() {
   function card(c, big) {
     const i = cards.indexOf(c), col = colourOf(subjOfSkill(c.skills[0])), sub = cardSub(c);
         // A recap card names the skills this session plays; the rest stay due for the next one.
-    const b_ = BANDS[PR.child.band], title = c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
-    return big ? `<button class="pr-hero" data-card="${i}" style="--c:${col}"><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
-        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><span class="pr-go">${esc(L.start)}</span><img class="pr-art" src="${poseSrc(c)}" alt=""></button>`
+    const b_ = BANDS[PR.child.band], title = c.paused ? c.reason[lg] : c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
+    return big ? `<button class="pr-hero" data-card="${i}" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
+        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><span class="pr-go">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</span><img class="pr-art" src="${poseSrc(c)}" alt=""></button>`
       : `<button class="pr-mini" data-card="${i}" style="--c:${col}"><i class="hm-ico sm">${KIND_ICON[c.kind] ?? KIND_ICON.skill}</i><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b>${esc(c.kind === "drill" ? sub : c.reason[lg])}</b><small>${esc(c.kind === "drill" ? L.minsShort(2) : sizeOf(c).split(",")[0])}</small></button>`;
   }
 }
@@ -2537,7 +2555,13 @@ function startSession({ kind, skills = [], minutes = null, topics = [], tricky =
   const all = [...new Set([...skills, ...fromTopics])];
   const session = buildSession({ kind, child: PR.child, index: PR.index, skills: all, minutes, tricky, focus, rng: Math.random });
   if (!session.items.length) { renderPracticeHome(); return; }
-  PR.last = { tricky, focus }; PR.session = session; PR.items = session.items; PR.res = []; PR.on = true; PR.home = false; PR.t0 = Date.now(); PR.applied = false;
+  PR.last = { tricky, focus };
+  // A new session takes the place of a paused one on the same skills.
+  if (PR.child.paused && PR.child.paused.skills.join() === session.skills.join()) PR.child.paused = null;
+  playSession(session);
+}
+function playSession(session) {
+  PR.session = session; PR.items = session.items; PR.res = []; PR.on = true; PR.home = false; PR.t0 = Date.now(); PR.applied = false;
   steps = PR.items.map((it) => ({ kind: "task", a: { activity: "practise" }, t: it.task, stage: it.mode, item: it })).concat([{ kind: "end" }]);
   results = steps.map(() => null);
   at = 0; practiceIntro();
@@ -2660,12 +2684,45 @@ function practiceFrame(step) {
     <div class="stepb"><span class="st">${esc(L.kinds[PR.session.kind] ?? L.title)}</span></div>
     <button class="ib x" aria-label="Close">${ICON.close}</button></div>
     ${PR.session.kind === "drill" ? `<div class="pbar"><i style="width:${pct}%"></i></div>` : pbar(PR.items.map((_, i) => i), (i) => PR.res[i]?.outcome ?? results[i])}`;
-  $(".x", scr).onclick = () => leaveSheet(scr, true, () => endSession(true));
+  $(".x", scr).onclick = () => leaveSheet(scr, true, pauseSession);
   const body = document.createElement("div"); body.className = "body"; scr.appendChild(body);
   const foot = document.createElement("div"); foot.className = "foot"; scr.appendChild(foot);
   return { body, foot };
 }
 
+// Paused (Pause practice in the leave sheet): the tasks still to do are kept for
+// the child (child.paused) and offered first on Start and Practice, until they
+// are finished, a new session on the same skills starts, or a week has passed.
+const PAUSE_TXT = {
+  de: { reason: "Mach weiter, wo du aufgehört hast", kind: (k) => `Pausiert · ${k}`, go: "Weiter", left: (a, n) => `${a} von ${n} geschafft, ${n - a} übrig` },
+  en: { reason: "Carry on where you stopped", kind: (k) => `Paused · ${k}`, go: "Carry on", left: (a, n) => `${a} of ${n} done, ${n - a} to go` },
+};
+function pauseSession() {
+  const s = PR.session, c = PR.child, left = PR.items.filter((_, i) => !PR.res[i]), done = PR.items.length - left.length;
+  // A drill runs against the clock, so it starts again whole; other sessions keep their own tasks.
+  if (left.length && done) c.paused = { kind: s.kind, skills: s.skills, mode: s.mode, minutes: s.minutes, seconds: s.seconds, day: c.today, done, total: PR.items.length,
+    items: s.kind === "drill" ? [] : left.map(({ task, ...it }) => it) };
+  endSession(true);
+}
+// The paused session's tasks, found again by their keys (a task met twice ends in #again).
+function pausedItems(p) {
+  return p.items.map((it) => { const base = it.key.replace(/#again$/, ""), pools = PR.index.bySkill[it.skill]?.pools; const e = pools && Object.values(pools).flat().find((x) => x?.key === base); return e ? { ...it, task: e.task } : null; }).filter(Boolean);
+}
+function resumeSession() {
+  const p = PR.child.paused; PR.child.paused = null; saveChild();
+  if (!p) return;
+  const items = pausedItems(p);
+  appTab("practice");
+  if (p.kind === "drill" || !items.length) return startSession({ kind: p.kind, skills: p.skills, minutes: p.minutes });
+  PR.last = {}; playSession({ kind: p.kind, skills: p.skills, mode: p.mode, items, seconds: p.seconds, minutes: p.minutes });
+}
+// The suggestions, with a paused session first while it is less than a week old.
+function mySuggestions() {
+  const c = PR.child, p = c.paused, list = suggestions(c, PR.index);
+  if (!p) return list;
+  if (c.today - p.day > 7 || !p.skills.every((k) => PR.index.bySkill[k])) { c.paused = null; saveChild(); return list; }
+  return [{ kind: p.kind, skills: p.skills, paused: p, reason: { de: PAUSE_TXT.de.reason, en: PAUSE_TXT.en.reason } }, ...list];
+}
 function endSession(early) {
   stopAudio();
   const answered = PR.items.map((_, i) => PR.res[i]).filter(Boolean).length;
@@ -3055,6 +3112,25 @@ function subjChip(x) {
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
   return `<button data-subj="${esc(x)}" style="--c:${colourOf(x)};--p:${sets.length ? (100 * done) / sets.length : 0}"><i class="hm-ring">${esc(g)}${fresh ? `<em>${esc(AT().newDot)}</em>` : ""}</i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><small>${esc(AT().unitsOf(done, sets.length))}</small></button>`;
 }
+// Next in each subject: a row of cards that slides sideways, one per subject with a
+// lesson to do (the plan's subject left out while its card is above), so it holds
+// three subjects today and more later. Dots under it show where the row is.
+const ROW_TXT = { de: { head: "Als Nächstes in deinen Fächern" }, en: { head: "Next in your subjects" } };
+function subjectRow(skip) {
+  const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
+    const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
+    const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
+    return `<button class="hm-card" data-start="${esc(s.id)}" data-n="${l.n}" style="--c:${colourOf(subj)}">
+      <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, sets.length))}</span><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b><small>${esc(s.title[lg] ?? s.title.de)}</small>
+      <span class="hm-card-go">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></span><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`;
+  }).filter(Boolean);
+  if (!cards.length) return "";
+  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3><div class="hm-cards">${cards.join("")}</div>${cards.length > 1 ? `<div class="hm-dots-row" aria-hidden="true">${cards.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div>` : ""}</section>`;
+}
+function wireRow(scr) {
+  const row = scr.querySelector(".hm-cards"), dots = scr.querySelectorAll(".hm-dots-row i"); if (!row || !dots.length) return;
+  row.onscroll = () => { const w = row.firstElementChild.getBoundingClientRect().width + 12, i = Math.round(row.scrollLeft / w); dots.forEach((d, j) => d.classList.toggle("on", j === Math.min(i, dots.length - 1))); };
+}
 // The lesson step: the next lesson as the big card, with where it sits (unit dots, unit k of n).
 function lessonStep(plan) {
   const T = AT(), lg = PL(), s = nextIn(plan.sets);
@@ -3076,14 +3152,14 @@ const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4
 function renderHomeTab() {
   const T = AT(), L = PT(), scr = $("#screen"), c = PR.child, subs = appSubjects();
   const plan = homePlan(); APP.subj = plan.subj;
-  const sug = suggestions(c, PR.index)[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
+  const sug = mySuggestions()[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
   const lesson = nextIn(plan.sets) ? lessonStep(plan) : "";
   const goal = [lesson || did.lessons, sug || did.practice].filter(Boolean).length || 1;
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
+  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
@@ -3103,13 +3179,13 @@ function renderHomeTab() {
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
     : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
+    ${subjectRow(lesson && !all ? plan.subj : null)}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
-    ${bee.next && bee.next - c.sessions <= 3 ? beeStrip() : ""}
   </div>`;
   scr.appendChild(appTabs("start"));
-  wireHeader(scr); wireStarts(scr);
+  wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
-  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { if (sug.paused) return resumeSession(); appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
 }
 
 /* ---------- Study: the track ---------- */
