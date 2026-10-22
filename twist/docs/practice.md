@@ -406,6 +406,13 @@ The kinds as the child sees them:
 
 ### Playing a session
 
+- An intro screen comes first: the kind as a chip, the skill's name (or
+  the kind's, for several skills), the size ("14 tasks, about 6 minutes")
+  and a Goal card made from the session itself: its kind, the skills'
+  names, and in a drill the minutes and the child's record ("Practise
+  numbers in order to 10 again, with hints to help you."). It changes
+  with every session, so it is shown and not spoken. Start begins the
+  first task and the drill clock.
 - Tasks play on the lesson task screens, with the kind's name in the
   header and a progress bar (by tasks; by time in a drill).
 - No hints, except in `catch` mode: the first hint once, after a wrong

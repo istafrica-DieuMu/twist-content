@@ -5,7 +5,7 @@
 const PR = { on: false, home: false, child: null, index: null, session: null, items: [], res: [], shownAt: 0, saved: null };
 const PTXT = {
   de: { hello: "Hallo! Was üben wir heute?", helloSub: "Was üben wir heute?", subjectsPractice: "Ein Fach üben", doneTitle: "Übungsrunden geschafft", size: (n, m) => `${n} Aufgaben, etwa ${m} Minuten`, drillSize: (m) => `${m} Minuten, so schnell du kannst`, subjects: "Deine Fächer", stars: (a, b) => `${a} von ${b} Sternen`, practise: "Üben", back: "Zurück", allYears: "Alle Klassen", myYear: "Nur meine Klasse", skillsN: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, reviewTopic: "Ganzes Thema wiederholen", noneHere: "Hier gibt es in deiner Klasse nichts. Tippe auf Alle Klassen.", found: (n) => `${n} gefunden`, noHits: "Nichts gefunden. Versuch ein anderes Wort.", gSubject: "Fach", gTopic: "Thema", gTime: "Wie lange?", gKind: "Wie?", understood: (ws) => `Verstanden: ${ws.join(", ")}`, title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Sprint", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Sprint", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, rightOf: (r, n) => `${r} von ${n} richtig!`, done: "Fertig", askPh: "z. B. „10 Minuten Einmaleins“", examples: ["10 Minuten Einmaleins mit 7", "Plus und Minus wiederholen", "Wörter schnell lesen"], understoodT: "Verstanden", startThis: "Das üben", skillsFound: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, own: "Selbst aussuchen", ownSub: "Fach, Thema und Zeit wählen", moreTopics: (n) => `+ ${n} mehr`, fewer: "Weniger", kindDesc: { mixed: "Aufgaben aus allen gewählten Themen", drill: "Schnelle Aufgaben gegen die Uhr", review: "Ohne Tipps, wie eine kleine Probe", "catch-up": "Mit Tipps, Schritt für Schritt" }, tasksFrom: (n, t) => `${n} Aufgaben aus ${t} ${t === 1 ? "Thema" : "Themen"}`, minsShort: (m) => `${m} Min`, beeBar: (a, b) => `${a} von ${b} bis zum Fleißigen Bienchen`, beeUp: "Neues Abzeichen: Fleißiges Bienchen!", whole: "Alles", drills: "Sprints", drillsSub: "Schnell rechnen und lesen, gegen die Uhr", allDrills: "Alle Sprints", notTried: "Noch nicht gespielt", hearAgain: "Nochmal hören", colourN: "Farbe", recapNow: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} auffrischen`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
-  en: { hello: "Hi! What shall we practise today?", helloSub: "What shall we practise today?", subjectsPractice: "Practise a subject", doneTitle: "Practice sessions finished", size: (n, m) => `${n} tasks, about ${m} minutes`, drillSize: (m) => `${m} minutes, as fast as you can`, subjects: "Your subjects", stars: (a, b) => `${a} of ${b} stars`, practise: "Practise", back: "Back", allYears: "All years", myYear: "Just my year", skillsN: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, reviewTopic: "Review the whole topic", noneHere: "Nothing here for your year. Tap All years.", found: (n) => `${n} found`, noHits: "Nothing found. Try another word.", gSubject: "Subject", gTopic: "Topic", gTime: "How long?", gKind: "How?", understood: (ws) => `Understood: ${ws.join(", ")}`, title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Sprint", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Sprint", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, rightOf: (r, n) => `${r} of ${n} right!`, done: "Done", askPh: "e.g. “10 minutes of times tables”", examples: ["10 minutes of the 7 times table", "Review adding and subtracting", "Read words quickly"], understoodT: "Understood", startThis: "Practise this", skillsFound: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, own: "Choose my own", ownSub: "Pick a subject, topic and time", moreTopics: (n) => `+ ${n} more`, fewer: "Fewer", kindDesc: { mixed: "Tasks from every topic you picked", drill: "Quick tasks against the clock", review: "No hints, like a little test", "catch-up": "With hints, step by step" }, tasksFrom: (n, t) => `${n} tasks from ${t} ${t === 1 ? "topic" : "topics"}`, minsShort: (m) => `${m} min`, beeBar: (a, b) => `${a} of ${b} to the Busy Bee`, beeUp: "New badge: Busy Bee!", whole: "Everything", drills: "Sprints", drillsSub: "Quick maths and reading, against the clock", allDrills: "All sprints", notTried: "Not played yet", hearAgain: "Hear it again", colourN: "Colour", recapNow: (n) => `Refresh ${n} ${n === 1 ? "skill" : "skills"}`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
+  en: { hello: "Hi! What shall we practise today?", helloSub: "What shall we practise today?", subjectsPractice: "Practise a subject", doneTitle: "Practice sessions finished", size: (n, m) => `${n} tasks, about ${m} minutes`, drillSize: (m) => `${m} minutes, as fast as you can`, subjects: "Your subjects", stars: (a, b) => `${a} of ${b} stars`, practise: "Practise", back: "Back", allYears: "All years", myYear: "Just my year", skillsN: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, reviewTopic: "Review the whole topic", noneHere: "Nothing here for your year. Tap All years.", found: (n) => `${n} found`, noHits: "Nothing found. Try another word.", gSubject: "Subject", gTopic: "Topic", gTime: "How long?", gKind: "How?", understood: (ws) => `Understood: ${ws.join(", ")}`, title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, rightOf: (r, n) => `${r} of ${n} right!`, done: "Done", askPh: "e.g. “10 minutes of times tables”", examples: ["10 minutes of the 7 times table", "Review adding and subtracting", "Read words quickly"], understoodT: "Understood", startThis: "Practise this", skillsFound: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, own: "Choose my own", ownSub: "Pick a subject, topic and time", moreTopics: (n) => `+ ${n} more`, fewer: "Fewer", kindDesc: { mixed: "Tasks from every topic you picked", drill: "Quick tasks against the clock", review: "No hints, like a little test", "catch-up": "With hints, step by step" }, tasksFrom: (n, t) => `${n} tasks from ${t} ${t === 1 ? "topic" : "topics"}`, minsShort: (m) => `${m} min`, beeBar: (a, b) => `${a} of ${b} to the Busy Bee`, beeUp: "New badge: Busy Bee!", whole: "Everything", drills: "Drills", drillsSub: "Quick maths and reading, against the clock", allDrills: "All drills", notTried: "Not played yet", hearAgain: "Hear it again", colourN: "Colour", recapNow: (n) => `Refresh ${n} ${n === 1 ? "skill" : "skills"}`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
 };
 const PL = () => (PR.child?.curriculum === "en-GB" ? "en" : "de");
 const PT = () => PTXT[PL()];
@@ -234,7 +234,37 @@ function startSession({ kind, skills = [], minutes = null, topics = [], tricky =
   PR.last = { tricky, focus }; PR.session = session; PR.items = session.items; PR.res = []; PR.on = true; PR.home = false; PR.t0 = Date.now(); PR.applied = false;
   steps = PR.items.map((it) => ({ kind: "task", a: { activity: "practise" }, t: it.task, stage: it.mode, item: it })).concat([{ kind: "end" }]);
   results = steps.map(() => null);
-  at = 0; showPracticeStep(0);
+  at = 0; practiceIntro();
+}
+
+// Before the first task: what this session is for, built from the session
+// itself (its kind, skills, size), so it is shown and not spoken.
+const GOAL_TXT = {
+  de: { goal: "Ziel", and: "und", more: (n) => `${n} weitere`,
+    recaps: (s) => `Zeig, dass du noch weißt, wie es geht: ${s}.`, "catch-up": (s) => `Üb ${s} noch einmal, mit Tipps, die dir helfen.`,
+    review: (s) => `Zeig, was du kannst, ganz ohne Tipps: ${s}.`, mixed: (s) => `Üb alles bunt gemischt: ${s}.`, skill: (s) => `Üb ${s}, bis es ganz leicht geht.`,
+    drill: (s, m, best) => `Schaff so viele wie du kannst in ${m} ${m === 1 ? "Minute" : "Minuten"}: ${s}.${best ? ` Dein Rekord sind ${best} pro Minute.` : ""}` },
+  en: { goal: "Goal", and: "and", more: (n) => `${n} more`,
+    recaps: (s) => `Show you still remember how to do it: ${s}.`, "catch-up": (s) => `Practise ${s} again, with hints to help you.`,
+    review: (s) => `Show what you know, with no hints: ${s}.`, mixed: (s) => `Practise everything mixed up: ${s}.`, skill: (s) => `Practise ${s} until it feels easy.`,
+    drill: (s, m, best) => `Do as many as you can in ${m} ${m === 1 ? "minute" : "minutes"}: ${s}.${best ? ` Your record is ${best} a minute.` : ""}` },
+};
+function practiceIntro() {
+  const L = PT(), G = GOAL_TXT[PL()], lg = PL(), ses = PR.session;
+  set = setOfSkill(ses.skills[0]) ?? D.sets[0];
+  const names = [...new Set(ses.skills.map((k) => { const t = setOfSkill(k)?.title; return t?.[lg] ?? t?.de ?? canDoOf(k); }))];
+  // Inside an English sentence a title starts small ("Practise numbers in order to 10"); German keeps its capitals.
+  const inline = names.map((n) => lg === "en" && /^[A-Z][a-z]/.test(n) ? n[0].toLowerCase() + n.slice(1) : n);
+  const list = inline.length <= 2 ? inline.join(` ${G.and} `) : `${inline.slice(0, 2).join(", ")} ${G.and} ${G.more(inline.length - 2)}`;
+  const best = ses.kind === "drill" ? PR.child.drills[ses.skills[0]]?.best : null;
+  const text = (G[ses.kind] ?? G.mixed)(list, ses.minutes ?? 2, best);
+  const size = ses.kind === "drill" ? L.drillSize(ses.minutes ?? 2) : L.size(ses.items.length, ses.minutes ?? Math.max(3, Math.round(ses.items.length / 2.5)));
+  const { body, foot } = practiceFrame({});
+  body.innerHTML = `<div class="center start pr-intro">${mascotPose("start")}<span class="subj-chip"><b></b>${esc(L.kinds[ses.kind] ?? L.title)}</span>
+    <h2 class="a-lesson">${esc(names.length === 1 ? names[0] : L.kinds[ses.kind] ?? L.title)}</h2><small class="pr-size">${esc(size)}</small>
+    <div class="goal"><span class="gl">${esc(G.goal)}</span>${esc(text)}</div></div>`;
+  nextBtn(foot, L.start, () => { PR.t0 = Date.now(); showPracticeStep(0); });
+  renderPracticeSide();
 }
 
 // Practice owns navigation: record the outcome and time of the step being left,
@@ -278,8 +308,9 @@ function showPracticeStep(i) {
   if (t._sayWord) {
     const hear = document.createElement("button"); hear.className = "pr-hear"; hear.innerHTML = SPK; hear.setAttribute("aria-label", PT().hearAgain);
     hear.onclick = () => sayDrill(t, 0); $("#screen .body")?.prepend(hear);
-    // The instruction first, then the word: the screen has started the instruction; the word follows when it ends.
-    if (auto() && t._prompt.length) onQueueEnd = () => { if (steps[at] === step) sayDrill(t, 150); };
+    // The instruction first, then the word: the screen has started the instruction; the word follows
+    // when it ends, after a moment to get ready to listen.
+    if (auto() && t._prompt.length) onQueueEnd = () => { if (steps[at] === step) sayDrill(t, 800); };
     else sayDrill(t);
   }
   if (t._swatches) $("#screen .opts")?.querySelectorAll(".opt").forEach((b, i) => {
@@ -378,12 +409,17 @@ function whyBox(it) {
 }
 // School years only: a language's learning years follow from the school year.
 const YEAR_OF = (cur) => { const ly = new Set(Object.values(D.learningYears?.[cur] ?? {})); return [...new Set(D.sets.filter((s) => s.id.startsWith(cur + ".") && !ly.has(s.year)).map((s) => s.year))]; };
+// The right panel: the open screen's controls (side-ui.js), then the parts of
+// the pretend child that matter there (SIDE_PARTS).
 function renderPracticeSide() {
   const el = $("#practiceSide"), c = PR.child; if (!el || !c) return;
+  const ctx = sideCtx(), P = SIDE_PARTS[ctx] ?? {}, op = (k) => P[k] ? " open" : "";
+  el.hidden = false;
+  document.body.classList.toggle("on-track", ctx === "study"); document.body.classList.toggle("in-lesson", ctx === "lesson");
   const step = PR.on ? steps[at] : null, it = step?.item;
   const skills = PR.index.sets.filter((s) => s.year === c.year).map((s) => s.skill);
   const opt = (v, cur, label = v) => `<option value="${esc(v)}"${v === cur ? " selected" : ""}>${esc(label)}</option>`;
-  el.innerHTML = `<details open><summary><b>Pretend child</b></summary>
+  el.innerHTML = sideTop(ctx) + ("child" in P ? `<details${op("child")}><summary><b>Pretend child</b></summary>
     <div class="pr-grid">
       <label for="pcName">Name</label><input id="pcName" value="${esc(c.name ?? "")}" placeholder="for the greeting" autocomplete="off">
       <label for="pcCur">Curriculum</label><select id="pcCur">${opt("de-DE", c.curriculum)}${opt("en-GB", c.curriculum)}</select>
@@ -391,12 +427,14 @@ function renderPracticeSide() {
       <label for="pcBand">Age band</label><select id="pcBand">${["4-5", "6-7", "8-10"].map((b) => opt(b, c.band)).join("")}</select>
       <span>Sessions finished</span><b>${c.sessions}</b>
     </div>
-    <p><button class="nbtn" id="pcDemo" title="Progress in every subject, a streak, badges and drill records">Load demo data</button> <button class="nbtn" id="pcReset" title="Back to zero in this curriculum; name and picture stay">Reset to zero</button></p></details>
-    <details open><summary><b>Time machine</b>: day ${c.today}</summary>${timeMachine(c)}</details>
-    <details><summary><b>Search</b></summary><p class="tm-l">Words match a skill's "I can" line, topic and set title, filler words left out. A whole request ("10 Minuten Einmaleins mit 7") is read by <code>parseRequest</code>, a keyword parser, into subject, topics, skills, minutes and kind, and shows as the Understood card. Later a language model can return the same filters; the card and its Start button stay as they are.</p></details>
-    <details ${it ? "open" : ""}><summary><b>Why this task</b></summary>${it ? whyBox(it) : `<p class="pr-why empty">Start a session to see why each task was picked.</p>`}</details>
-    <details open><summary><b>Skills in ${esc(yearName(c.year))}</b> (${skills.length})</summary><div class="pr-grid" id="pcSkills"></div></details>`;
+    <p><button class="nbtn" id="pcDemo" title="Progress in every subject, a streak, badges and drill records">Load demo data</button> <button class="nbtn" id="pcReset" title="Back to zero in this curriculum; name and picture stay">Reset to zero</button></p></details>` : "")
+    + ("time" in P ? `<details${op("time")}><summary><b>Time machine</b>: day ${c.today}</summary>${timeMachine(c)}</details>` : "")
+    + ("search" in P ? `<details${op("search")}><summary><b>Search</b></summary><p class="tm-l">Words match a skill's "I can" line, topic and set title, filler words left out. A whole request ("10 Minuten Einmaleins mit 7") is read by <code>parseRequest</code>, a keyword parser, into subject, topics, skills, minutes and kind, and shows as the Understood card. Later a language model can return the same filters; the card and its Start button stay as they are.</p></details>` : "")
+    + ("why" in P ? `<details ${it ? "open" : ""}><summary><b>Why this task</b></summary>${it ? whyBox(it) : `<p class="pr-why empty">Start a session to see why each task was picked.</p>`}</details>` : "")
+    + ("skills" in P ? `<details${op("skills")}><summary><b>Skills in ${esc(yearName(c.year))}</b> (${skills.length})</summary><div class="pr-grid" id="pcSkills"></div></details>` : "");
+  sideWire(ctx, el);
   const grid = $("#pcSkills");
+  if (grid) 
   skills.forEach((k, i) => {
     const s = c.states[k]?.state ?? "not_started", n = nextRecap(c, k);
     const row = document.createElement("div"); row.style.cssText = "grid-column:1/-1;display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;border-top:1px solid #eee;padding-top:4px";
@@ -410,10 +448,15 @@ function renderPracticeSide() {
     row.querySelector("[data-up]").onclick = () => { snap(); skills.slice(0, i).forEach((x) => setState(c, x, "can_do")); logEvent(c, `every skill before ${k} set to can_do`); saveChild(); refreshPractice(); };
     grid.appendChild(row);
   });
+  if ("child" in P) {
   $("#pcCur").onchange = (e) => { switchCurriculum(e.target.value); saveChild(); refreshPractice(); };
   $("#pcYear").onchange = (e) => { c.year = e.target.value; const s = D.sets.find((x) => x.year === c.year && x.id.startsWith(c.curriculum + ".")); c.band = ageBand(s?.ages); saveChild(); refreshPractice(); };
   $("#pcName").onchange = (e) => { c.name = e.target.value.trim().slice(0, 20) || undefined; saveChild(); refreshPractice(); };
   $("#pcBand").onchange = (e) => { c.band = e.target.value; saveChild(); refreshPractice(); };
+  $("#pcReset").onclick = () => { resetChild(); saveChild(); refreshPractice(); };
+  $("#pcDemo").onclick = () => { loadDemo(); saveChild(); refreshPractice(); };
+  }
+  if (!("time" in P)) return;
   const toDay = (d) => { if (d == null || d === c.today) return; snap(); c.today = d; saveChild(); refreshPractice(); };
   $("#tmDay").onclick = () => toDay(c.today + 1);
   $("#tmWeek").onclick = () => toDay(c.today + 7);
@@ -421,8 +464,6 @@ function renderPracticeSide() {
   $("#tmBack").onclick = () => { const h = PR.history?.pop(); if (!h) return; PR.child = JSON.parse(h); saveChild(); PR.on = false; PR.session = null; refreshPractice(); };
   el.querySelectorAll(".tm-cal button").forEach((b) => b.onclick = () => toDay(+b.dataset.day));
   el.querySelectorAll("[data-auto]").forEach((b) => b.onclick = () => autoPlay(b.dataset.auto));
-  $("#pcReset").onclick = () => { resetChild(); saveChild(); refreshPractice(); };
-  $("#pcDemo").onclick = () => { loadDemo(); saveChild(); refreshPractice(); };
 }
 // Move the pretend child through time: days, the next recap, a calendar of
 // what falls due, a whole session answered for it, and what happened so far.
@@ -504,6 +545,9 @@ function renderDrillMap(k, sel = new Set()) {
 function refreshPractice() {
   PR.index = indexContent(D.sets, D.drills, PR.child.curriculum);
   // Redraw the tab the app is on (Start and Me follow the child too).
+  const ctx = sideCtx();
+  if (ctx === "study") { APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
+  if (ctx === "lesson") return renderPracticeSide();
   if (!PR.on) (APP.tab === "start" ? renderHomeTab() : APP.tab === "me" ? renderMe() : APP.tab === "settings" ? renderSettings() : renderPracticeHome());
   renderPracticeSide();
 }

@@ -51,6 +51,7 @@ metadata:
 lessons:
   - n: 1
     title: { de: ..., en: ... }
+    goal: { de: "...", en: "..." }    # shown under Goal on the start screen; a child's words, from the skill's can_do, never copied
     new_content: true                 # true: something new, so a Learn comes before Practise
     activities:
       - activity: warm-up             # warm-up, learn, practise, check

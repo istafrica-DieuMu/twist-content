@@ -53,7 +53,7 @@ const PATXT = {
     cell: (d, l, s) => `${d}: ${l} ${l === 1 ? "lesson" : "lessons"}, ${s} ${s === 1 ? "practice session" : "practice sessions"}`,
     lately: "Lately", today: "Today", yesterday: "Yesterday", nothing: "Nothing yet. It shows here as soon as there's learning.",
     eLesson: (n, t) => `Finished lesson ${n} of “${t}”`, eCheck: (ok) => ok ? "check passed" : "check not passed yet",
-    eSession: { mixed: "Mixed practice", drill: "Sprint", review: "Review", "catch-up": "Catch-up session", skill: "Skill practice", recaps: "Refresh" },
+    eSession: { mixed: "Mixed practice", drill: "Drill", review: "Review", "catch-up": "Catch-up session", skill: "Skill practice", recaps: "Refresh" },
     eSecure: (t) => `Now secure: ${t}`, eKept: (t) => `Remembers: ${t}`, left: "left early",
   },
 };

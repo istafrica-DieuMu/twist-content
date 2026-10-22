@@ -394,13 +394,15 @@ Each voice has its own copy, in assets/narration/<voice>/sounds/. Status `test` 
 | `en.ure` | English /ure/ as in sure | 1 | needed |
 | `en.er` | English /er/ as at the end of hammer | 1 | needed |
 
-## Voices (4 in the pilot)
+## Voices (6 in the pilot)
 
-One voice speaks every line, sound and phrase. 122950 lines in assets/narration/lines.yaml plus 59 sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: `gemini-sulafat`.
+One voice speaks every line, sound and phrase. 124847 lines in assets/narration/lines.yaml plus 59 sounds, made by assets/tools/narration.py and checked by a listening model. Chosen: `gemini-sulafat`.
 
 | voice | model | clips | passed the check | minutes | MB | note |
 |---|---|---|---|---|---|---|
-| `gemini-sulafat` | google/gemini-3.8-flash-tts, Sulafat | 45095 | 44235 | 3418.0 | 1199.1 | female, warm; teaches and practises |
-| `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 18662 | 18331 | 1226.3 | 431.6 | male; speaks the Checks |
-| `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 47935 | 46786 | 4432.7 | 1549.1 | female, warm; teaches and practises in en-GB |
-| `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 18997 | 18525 | 1447.4 | 507.7 | male; speaks the Checks in en-GB |
+| `gemini-sulafat` | google/gemini-3.8-flash-tts, Sulafat | 45868 | 45420 | 3551.7 | 1245.4 | female, warm; teaches and practises |
+| `gemini-puck` | google/gemini-3.8-flash-tts, Puck | 18660 | 18529 | 1225.3 | 431.3 | male; speaks the Checks |
+| `gemini-sulafat-en` | google/gemini-3.8-flash-tts, Sulafat | 47340 | 46891 | 4502.7 | 1572.8 | female, warm; teaches and practises in en-GB |
+| `gemini-puck-en` | google/gemini-3.8-flash-tts, Puck | 18231 | 18108 | 1409.8 | 494.4 | male; speaks the Checks in en-GB |
+| `gemini-sulafat-fr` | google/gemini-3.8-flash-tts, Sulafat | 1302 | 1299 | 75.5 | 26.7 | female, warm; French words and lines in en-GB French lessons |
+| `gemini-puck-fr` | google/gemini-3.8-flash-tts, Puck | 765 | 765 | 33.5 | 11.9 | male; French words and lines in the Checks of en-GB French lessons |

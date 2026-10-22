@@ -1,0 +1,102 @@
+/* ---------- The app's animations (anim-ui.js) ---------- */
+.an-over { position: absolute; inset: 0; z-index: 40; display: grid; place-items: center; border-radius: inherit; }
+.an-over canvas { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .an-over { animation: app-in 220ms ease both; }
+  .an-over.out { animation: an-out 300ms ease both; }
+}
+@keyframes an-out { to { opacity: 0; } }
+
+/* The splash: the app's purple, the mascot waving, the name at the bottom. */
+.an-splash { background: linear-gradient(#AA52F2, #7531E9); cursor: pointer; }
+.an-splash canvas { width: 75%; height: 50%; }
+.an-splash div { position: absolute; left: 0; right: 0; bottom: 10%; display: grid; justify-items: center; gap: 2px; color: #fff; }
+.an-splash b { font: 800 52px/1 "Red Hat Display", sans-serif; letter-spacing: -.01em; }
+.an-splash small { font: 700 12px "Red Hat Text", sans-serif; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+
+/* Loading: the books in the middle of the page. */
+.an-loading { background: var(--screen-bg); }
+.an-loading canvas { width: 160px; height: 160px; }
+
+/* After a lesson: one screen each, the animation, a line, Continue. */
+.an-cele { grid-template-rows: 1fr auto auto auto; gap: 10px; padding: 70px 24px 34px; background: var(--screen-bg); color: var(--plum); text-align: center; }
+.an-cele .an-stage { position: relative; display: grid; place-items: center; width: 100%; height: 100%; min-height: 0; }
+.an-cele.points canvas { width: 130%; height: 130%; margin-top: -14%; }
+.an-cele.streak canvas { width: 237px; height: 237px; }
+.an-cele h2 { margin: 0; font: 800 28px/1.15 "Red Hat Display", sans-serif; }
+.an-cele p { margin: 0; min-height: 1.4em; font-size: 16px; font-weight: 600; color: var(--soft-c); }
+.an-cele .btn { width: 100%; margin-top: 10px; }
+.an-cele.badge .an-stage { width: 220px; height: 220px; align-self: center; justify-self: center; }
+.an-cele.badge .an-glow { position: absolute; inset: -20%; }
+.an-cele.badge .an-badge { position: absolute; inset: 0; z-index: 1; }
+.an-cele.badge img { position: relative; z-index: 2; width: 46%; }
+@media (prefers-reduced-motion: no-preference) {
+  .an-cele h2, .an-cele p { animation: an-up 450ms cubic-bezier(.2, .8, .2, 1) 900ms both; }
+  .an-cele.badge img { animation: app-pop 600ms cubic-bezier(.3, 1.6, .5, 1) 700ms both; }
+}
+@keyframes an-up { from { opacity: 0; transform: translateY(30px); } }
+
+/* The skate on the Study track: the app's 393 × 592 frame. */
+.tr-skate { position: absolute; z-index: 6; width: 393px; height: 592px; transform-origin: 0 0; opacity: 0; transition: opacity .25s; pointer-events: none; }
+.tr-skate canvas { pointer-events: auto; }
+.tr-skate.inverted canvas { transform: scaleX(-1); }
+.tr-skate.ready { opacity: 1; }
+.tr-skate canvas { width: 100%; height: 100%; }
+.under-skate { visibility: hidden; }
+.an-cele .an-stage { pointer-events: none; }
+/* Lesson finished: the mascot in the glow, confetti over the whole screen. */
+.an-cele.finished .an-stage { width: 230px; height: 260px; align-self: center; justify-self: center; }
+.an-cele.finished .an-glow { position: absolute; inset: -20%; }
+.an-cele.finished .an-stage img { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; }
+.an-cele .an-fall { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.an-cele .an-fall svg { width: 100% !important; height: 100% !important; }
+
+/* Badges in the grids: earned ones float and catch the light; any opens its sheet. */
+.bd { font: inherit; color: inherit; cursor: pointer; }
+.bd:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
+.bd-art { position: relative; display: block; width: 56px; height: 56px; }
+.bd-art img { display: block; }
+.bd:not(.locked) .bd-art::after { content: ""; position: absolute; inset: 0; pointer-events: none; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, .8) 50%, transparent 62%) no-repeat; background-size: 300% 100%; background-position: 150% 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .bd:not(.locked) .bd-art { animation: bd-float 3.4s ease-in-out var(--d, 0s) infinite; }
+  .bd:not(.locked) .bd-art::after { animation: bd-shine 5s ease-in-out var(--d, 0s) infinite; }
+  .bd.gold .bd-art::after { animation-duration: 3s; }
+  .bd:active .bd-art { transform: scale(.92); }
+}
+@keyframes bd-float { 50% { transform: translateY(-3px) rotate(-3deg); } }
+@keyframes bd-shine { 0%, 55% { background-position: 150% 0; } 85%, 100% { background-position: -50% 0; } }
+
+/* The sheet: up from the bottom of the phone over a scrim. */
+.bs-scrim { z-index: 50; background: rgba(22, 12, 34, .45); display: block; }
+.bs-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 51; display: grid; justify-items: center; gap: 6px; padding: 10px 24px 30px; border-radius: 28px 28px 0 0; background: var(--card); color: var(--plum); text-align: center; box-shadow: 0 -10px 30px rgba(22, 12, 34, .2); }
+.bs-grip { width: 40px; height: 5px; border-radius: 3px; background: var(--edge-c); }
+.bs-stage { position: relative; display: grid; place-items: center; width: 170px; height: 170px; margin: 18px 0 6px; padding: 0; border: 0; background: none; cursor: pointer; }
+.bs-stage .an-glow { position: absolute; inset: -30%; pointer-events: none; }
+.bs-stage .an-badge { position: absolute; inset: 0; pointer-events: none; }
+.bs-stage img { position: relative; z-index: 1; width: 62%; }
+.bs-sheet.locked .bs-stage img { filter: grayscale(1); opacity: .45; }
+.bs-date { font: 800 13px/18px "Red Hat Display", sans-serif; letter-spacing: .12em; color: #d99a00; }
+.bs-date small { font: 700 12px "Red Hat Text", sans-serif; letter-spacing: 0; color: var(--soft-c); text-transform: none; }
+.bs-sheet.locked .bs-date { color: var(--soft-c); }
+.bs-kind { font: 700 12.5px "Red Hat Text", sans-serif; color: var(--soft-c); }
+.bs-sheet h2 { margin: 0; font: 800 28px/1.15 "Red Hat Display", sans-serif; color: #d99a00; }
+.bs-sheet.locked h2 { color: var(--plum); }
+.bs-what { margin: 0; max-width: 30ch; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.bs-prog { display: grid; gap: 4px; width: 80%; margin-top: 4px; }
+.bs-prog .pr-bar { --c: #f5b400; }
+.bs-prog small { font: 700 12.5px "Red Hat Text", sans-serif; color: var(--soft-c); }
+.bs-extra { margin: 2px 0 0; font-size: 13px; font-weight: 700; color: #b07c00; }
+.bs-sheet .btn { width: 100%; margin-top: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .bs-sheet { animation: bs-up 320ms cubic-bezier(.2, .8, .2, 1) both; }
+  .bs-sheet.out { animation: bs-down 240ms ease both; }
+  .bs-sheet:not(.locked) .bs-stage img { animation: bs-in 900ms cubic-bezier(.3, 1.4, .5, 1) 150ms both, bd-float 3.4s ease-in-out 1.1s infinite; }
+  .bs-stage img.spin { animation: bs-spin 700ms cubic-bezier(.3, 1.2, .5, 1) both !important; }
+  .bs-sheet.locked .bs-stage img.spin { animation: bs-shake 450ms ease both !important; }
+}
+@keyframes bs-up { from { transform: translateY(100%); } }
+@keyframes bs-down { to { transform: translateY(100%); } }
+@keyframes bs-in { from { opacity: 0; transform: scale(.3) rotateY(-540deg); } 70% { transform: scale(1.12) rotateY(0); } to { opacity: 1; transform: none; } }
+@keyframes bs-spin { from { transform: rotateY(0) scale(1); } 50% { transform: rotateY(180deg) scale(1.15); } to { transform: rotateY(360deg) scale(1); } }
+@keyframes bs-shake { 20%, 60% { transform: rotate(-8deg); } 40%, 80% { transform: rotate(8deg); } }

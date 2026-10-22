@@ -36,7 +36,10 @@ OUT = ASSETS / "narration"
 SL = TWIST.parents[1] / "schoolido-learning"
 LISTEN_MODEL = "google/gemini-3.8-flash"
 MAX_SOUND = 1.5
-READ_MATHS = {"de": [(" = ?", " gleich wie viel?"), (" < ", " ist kleiner als "), (" > ", " ist größer als "), (" + ", " plus "), (" − ", " minus "), (" = ", " gleich "), ("_", "wie viel"), (" → ", ", dann ")],
+# A lesson's goal is spoken after this, in one clip; build.mjs (GOAL_INTRO) says the same.
+GOAL_INTRO = {"de": "Das ist heute dein Ziel.", "en": "Here's your goal for today.", "fr": "Voici ton objectif pour aujourd'hui."}
+LONE_SIGN = {"de": {"+": "plus", "−": "minus"}, "en": {"+": "plus", "−": "minus"}}
+READ_MATHS = {"de": [(" · ", " mal "), (" = ?", " gleich wie viel?"), (" < ", " ist kleiner als "), (" > ", " ist größer als "), (" + ", " plus "), (" − ", " minus "), (" = ", " gleich "), ("_", "wie viel"), (" → ", ", dann ")],
               "en": [(" = ?", " equals what?"), (" < ", " is less than "), (" > ", " is greater than "), (" + ", " plus "), (" − ", " minus "), (" = ", " equals "), ("_", "what"), (" → ", ", then ")]}
 
 
@@ -63,6 +66,8 @@ def key():
 
 def spoken(text, lang):
     t = str(text).strip()
+    # A sign on its own (an answer option, + or −) is said as its word. Must match spoken() in player/build.mjs.
+    t = LONE_SIGN.get(lang, {}).get(t, t)
     for a, b in READ_MATHS.get(lang, []):
         t = t.replace(a, b)
     if lang == "en":
@@ -246,15 +251,19 @@ def curriculum_for_language(cfg, lang):
     return None
 
 
-def voice_for(cfg, curriculum, activity=None, phrase=None, speaker=None):
+def voice_for(cfg, curriculum, activity=None, phrase=None, speaker=None, lang=None):
     """The voice for one use of a line: the `speakers` voice for a character
     (audio `speaker: male|female`), else `assign`, else `chosen`, per
-    curriculum. Must match voiceFor() in player/build.mjs."""
+    curriculum; a line in a language with its own voices (`language_voices`)
+    goes to that language's voice in the same role. Must match voiceFor() in
+    player/build.mjs."""
     c = voice_cfg(cfg, curriculum)
     if speaker:
-        return c["speakers"][speaker]
-    a = c.get("assign") or {}
-    return a.get(f"phrases.{phrase}") if phrase and f"phrases.{phrase}" in a else a.get(activity, c["chosen"])
+        v = c["speakers"][speaker]
+    else:
+        a = c.get("assign") or {}
+        v = a.get(f"phrases.{phrase}") if phrase and f"phrases.{phrase}" in a else a.get(activity, c["chosen"])
+    return ((cfg.get("language_voices") or {}).get(lang) or {}).get(v, v)
 
 
 def gather(cfg):
@@ -267,7 +276,7 @@ def gather(cfg):
             return
         t = spoken(text, lang)
         lid = hashlib.sha1(f"{lang}|{t}".encode()).hexdigest()[:10]
-        v = voice_for(cfg, CUR, activity, phrase, speaker)
+        v = voice_for(cfg, CUR, activity, phrase, speaker, lang)
         e = lines.setdefault(lid, {"lang": lang, "text": t, "kind": kind, "voices": [], "used": []})
         if MIXED and lang != MIXED:
             e["mixed"] = True  # a home-language line in a lesson that teaches MIXED
@@ -288,6 +297,8 @@ def gather(cfg):
         CUR = d["curriculum"]
         for l in d["lessons"]:
             add(lang, l["title"].get(lang), "title", f"{rel}#{l['n']}")
+            if (l.get("goal") or {}).get(lang):
+                add(lang, f"{GOAL_INTRO[lang]} {l['goal'][lang]}", "goal", f"{rel}#{l['n']} goal")
             for a in l["activities"]:
                 for i, s in enumerate(a.get("screens", [])):
                     say = s.get("say") or s.get("text")

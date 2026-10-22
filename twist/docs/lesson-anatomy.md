@@ -92,6 +92,19 @@ three stages; they came out at 18 to 24 tasks.)
 - Each lesson builds on the one before: a new part of the skill, the same
   skill with less help, or a new way of showing it.
 - The last lesson of a skill ends with the skill check (see Mastery).
+- Each lesson has a `goal` (de and en), shown under "Goal" on its start
+  screen: what this lesson is for, in a child's words. It comes from the
+  skill's `can_do` line but is rewritten, never copied: one or two short
+  sentences, words a child of that age knows, spoken to the child ("Push
+  the sounds together"), with one real example from the lesson. It names
+  only this lesson's part of the skill. The app shows the goal as written;
+  nothing builds it from `can_do`, and a lesson without one shows no goal.
+  It is also spoken as the start screen opens, in one clip after a fixed
+  intro ("Das ist heute dein Ziel." / "Here's your goal for today.", in
+  build.mjs and narration.py as GOAL_INTRO), so it must read well aloud: a
+  full sentence, no brackets, slashes, symbols or abbreviations, no
+  letter-by-letter spellings (a voice says letter names), words like
+  "times" and "3 quarters" in place of × and 3/4.
 
 ## Activities
 

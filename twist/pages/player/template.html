@@ -208,6 +208,10 @@ svg text{font-family:Andika,sans-serif}
 .badge-n::before{content:"";position:absolute;top:6px;left:7px;width:4px;height:4px;border-radius:50%;background:var(--card);z-index:1}
 .pbar{height:8px;border-radius:8px;background:var(--edge-c);margin:8px 20px 0;overflow:hidden;flex:none}
 .pbar i{display:block;height:100%;background:#6849dd;border-radius:8px;transition:width .35s}
+.pbar.line{display:flex;gap:0}
+.pbar.line i{flex:1;min-width:0;display:flex;background:none;border-radius:0}
+.pbar.line b{flex:1;min-width:0}.pbar.line b.seen{background:color-mix(in srgb,var(--subj) 40%,var(--edge-c))}.pbar.line b.ok{background:var(--good)}.pbar.line b.bad{background:var(--bad)}
+@media (prefers-reduced-motion:no-preference){.pbar.line b{animation:pb-in .3s ease both}}@keyframes pb-in{from{opacity:0}}
 .pbar.seg{display:flex;gap:2px;background:none;border-radius:0}
 .pbar.seg i{flex:1;min-width:0;background:var(--edge-c);border-radius:4px;transition:background .3s}
 .pbar.seg i.seen{background:color-mix(in srgb,var(--subj) 40%,var(--edge-c))}.pbar.seg i.ok{background:var(--good)}.pbar.seg i.bad{background:var(--bad)}
@@ -263,9 +267,52 @@ svg text{font-family:Andika,sans-serif}
 .sheet .line.hint{background:var(--card);border-radius:14px;padding:8px 10px}
 .sheet.ok .btn{background:#69be4f}
 .sheet.ok .btn.go{background:linear-gradient(to right,#46972e var(--p,0%),#69be4f var(--p,0%))}
-.menu-sheet{background:var(--card);border-top:1px solid var(--edge-c)}
-.menu-sheet .mrow{display:flex;align-items:center;gap:12px;border:2px solid var(--edge-c);border-radius:14px;background:var(--card);padding:10px 12px;font:600 16px "Red Hat Text",sans-serif;color:var(--text);cursor:pointer;text-align:left}
-.menu-sheet .mrow span:nth-child(2){flex:1}.menu-sheet .mrow small{color:#8a8a8a}
+/* lesson menu: the app's LessonMenuBottomSheet (badges, sound, learning journey) */
+.lm-scrim{position:absolute;inset:0;z-index:20;background:rgba(22,12,34,.4);animation:lm-fade .2s both}
+.lm-sheet{position:absolute;left:8px;right:8px;bottom:8px;z-index:21;max-height:82%;display:flex;flex-direction:column;gap:0;padding:8px 24px 18px;border-radius:32px;background:var(--card);color:var(--text);box-shadow:0 -6px 24px rgba(22,12,34,.18);animation:lm-up .3s cubic-bezier(.2,.8,.2,1) both}
+.lm-sheet.out{animation:lm-down .22s ease both}.lm-scrim.out{animation:lm-fade .22s reverse both}
+@keyframes lm-up{from{transform:translateY(105%)}}@keyframes lm-down{to{transform:translateY(105%)}}@keyframes lm-fade{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){.lm-sheet,.lm-scrim{animation:none!important}}
+.lm-sheet>*:not(.lm-list){flex:none}
+.lm-grip{align-self:center;width:40px;height:5px;border-radius:3px;background:#d3d3d3;margin-bottom:12px}
+.lm-sheet h3{margin:0;font:700 24px/1.25 "Red Hat Display",sans-serif;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lm-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.lm-badges span{padding:6px 12px;border-radius:8px;font:800 12px/16px "Red Hat Display",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.b-cyan{background:#5CEFFF;color:#1D2D37}.b-purple{background:#BAA8FF;color:#221E30}.b-green{background:#9EFFA1;color:#1C361D}
+.lm-goal{margin-top:14px;max-width:none}
+.lm-sheet h4{margin:18px 0 0;font:700 18px/1.4 "Red Hat Display",sans-serif;color:var(--text)}
+.lm-sound{display:flex;align-items:center;gap:8px;margin-top:10px;font:500 18px/1.4 "Red Hat Text",sans-serif;cursor:pointer}
+.lm-sound span{flex:1}.lm-sound input{position:absolute;opacity:0;pointer-events:none}
+.lm-sound .x{display:none}.lm-sheet.muted .lm-sound .x{display:inline}.lm-sheet.muted .lm-sound .w{display:none}
+.lm-switch{position:relative;width:51px;height:31px;border-radius:16px;background:#888;transition:background .2s;flex:none}
+.lm-switch::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .2s}
+.lm-sound input:checked+.lm-switch{background:var(--sc)}.lm-sound input:checked+.lm-switch::after{transform:translateX(20px)}
+.lm-sound input:focus-visible+.lm-switch{outline:3px solid #6849dd;outline-offset:2px}
+.lm-list{margin-top:16px;overflow-y:auto;min-height:0;-webkit-mask:linear-gradient(#000 calc(100% - 28px),transparent);mask:linear-gradient(#000 calc(100% - 28px),transparent);padding-bottom:20px}
+.lm-step{display:flex;align-items:stretch}
+.lm-prog{display:grid;gap:6px}.lm-prog .pbar{margin:0;height:8px;border-radius:8px;background:var(--edge-c);overflow:hidden}.lm-prog small{font:500 13px "Red Hat Text",sans-serif;color:#767676}
+.lm-jump{color:var(--sc)!important;font-weight:600!important}.lm-jump i{background:var(--sc)!important}
+.lm-ind{display:flex;flex-direction:column;align-items:center;margin-right:24px}
+.lm-ring{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--sc) 45%,transparent)}
+.lm-dot{position:relative;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--sc);color:#fff;font:700 14px/1 "Red Hat Display",sans-serif}
+.lm-dot i{position:absolute;top:1px;left:2px;width:4px;height:4px;border-radius:50%;background:#fff}
+.lm-step.later .lm-ring{background:color-mix(in srgb,var(--sc) 15%,transparent)}.lm-step.later .lm-dot{background:color-mix(in srgb,var(--sc) 32%,transparent)}.lm-step.later .lm-dot b{opacity:.85}
+.lm-line{flex:1;width:3px;min-height:24px;background:color-mix(in srgb,var(--sc) 20%,transparent)}
+.lm-step.later .lm-line{background:color-mix(in srgb,var(--sc) 6%,transparent)}
+.lm-step:last-child .lm-line{visibility:hidden}
+.lm-body{flex:1;min-width:0;padding-bottom:24px}.lm-step:last-child .lm-body{padding-bottom:0}
+.lm-head{display:flex;align-items:flex-start;width:100%;padding:0;border:0;background:none;text-align:left;color:inherit;cursor:pointer}
+.lm-head>span{flex:1;display:grid;margin-top:2px}
+.lm-name{font:500 18px/1.4 "Red Hat Text",sans-serif;color:var(--text)}
+.lm-head small{font:500 13px "Red Hat Text",sans-serif;color:#767676}
+.lm-step.now .lm-name{font-weight:600;color:var(--sc)}.lm-step.later .lm-name{color:#767676}
+.lm-chev{margin-top:4px;color:var(--text);transition:transform .2s}.lm-step.now .lm-chev{color:var(--sc)}.lm-step.later .lm-chev{color:#767676}
+.lm-step.open .lm-chev{transform:rotate(180deg)}
+.lm-mods{display:none;gap:14px;padding-top:14px}.lm-step.open .lm-mods{display:grid}
+.lm-mod{display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;text-align:left;cursor:pointer;font:500 17px/1.4 "Red Hat Text",sans-serif;color:var(--text)}
+.lm-mod i{width:6px;height:6px;border-radius:50%;background:#d3d3d3;flex:none}.lm-mod.now i,.lm-mod.done i{background:var(--sc)}
+.lm-mod span{flex:1}.lm-mod.later{color:#767676}.lm-mod.now{font-weight:600;color:var(--sc)}.lm-mod b{font:700 16px "Red Hat Text",sans-serif;color:var(--sc)}
+.lm-head:focus-visible,.lm-mod:focus-visible{outline:3px solid #6849dd;outline-offset:3px;border-radius:8px}
 .center h2{font:800 28px/1.2 "Red Hat Display",sans-serif;color:var(--text)}
 .center p{color:var(--text-soft)}
 .stars{color:#f6b400}
@@ -381,7 +428,17 @@ svg text{font-family:Andika,sans-serif}
 @media (min-width:1500px){
   .drawer,.drawer[hidden]{display:flex;top:86px;left:20px;width:440px;height:calc(100vh - 106px);max-height:none;box-shadow:none}
   .wrap{padding-left:480px}
+  body.list-closed .drawer{display:none!important}
+  body.list-closed .wrap{padding-left:0}
+  body:not(.list-closed) .listbtn{display:none}
 }
+@media (max-width:1499px){body:not(.practice):not(.parents) .listbtn{display:none}}
+.pickhead{display:flex;align-items:baseline;gap:8px}
+.pickhead b{font:700 15px "Red Hat Display",sans-serif}
+.pickhead span{flex:1;font-size:12px;color:var(--muted)}
+.xbtn{align-self:center;display:grid;place-items:center;width:30px;height:30px;padding:0;border:1px solid var(--line);border-radius:10px;background:none;color:var(--ink);cursor:pointer}
+.xbtn:hover{border-color:#6849dd}
+body.types .listbtn,body.drawn .listbtn{display:none!important}
 /* Learn text card */
 .ltext{align-self:stretch;background:var(--sunk);border:1px solid var(--edge-c);border-radius:16px;padding:16px 18px;font-family:"Red Hat Text",sans-serif;font-weight:500;line-height:1.35;color:var(--text);display:flex;flex-direction:column;gap:8px;text-align:left}
 .ltext b{font-weight:700;color:var(--text)}
@@ -397,6 +454,7 @@ svg text{font-family:Andika,sans-serif}
 .ldots i.done{background:color-mix(in srgb,var(--subj) 45%,var(--card))}
 .ldots i.now{background:var(--subj);box-shadow:0 0 0 3px color-mix(in srgb,var(--subj) 25%,transparent)}
 .goal{margin-top:6px;max-width:300px;background:var(--sunk);border:1px solid var(--edge-c);border-radius:14px;padding:10px 14px;font:500 15px/1.4 "Red Hat Text",sans-serif;color:var(--text-soft);text-align:left}
+button.goal{display:block;width:100%;text-align:left;cursor:pointer;font-family:inherit}button.goal:focus-visible{outline:3px solid #6849dd;outline-offset:2px}
 .goal .gl{display:block;font:700 11px "Red Hat Display",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--subj);margin-bottom:2px}
 /* ordering: square drop slots, as the app's NumberOrdering */
 .slots .gap{border:2px dashed var(--edge-c);border-radius:12px;background:var(--sunk);font:700 30px "Red Hat Display",sans-serif;color:var(--text-soft)}
@@ -449,10 +507,14 @@ svg text{font-family:Andika,sans-serif}
 .it.gone::after{content:"";position:absolute;left:4%;right:4%;top:46%;height:9%;min-height:4px;background:#E53935;border-radius:4px;transform:rotate(-35deg)}
 /*__PRACTICE_CSS__*/
 </style>
+<!-- The app's animations: Rive (study card, splash, streak, points, loading books) and Lottie (confetti, reward glow, badge). -->
+<script src="https://cdn.jsdelivr.net/npm/@rive-app/canvas@2.44.0/rive.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.13.0/build/player/lottie.min.js"></script>
 </head>
 <body>
 <header class="topbar">
   <div class="brand"><span class="logo" aria-hidden="true">T</span><div><b>Twist Preview</b><small>Built <span id="built"></span> · <code>node twist/pages/player/build.mjs</code></small></div></div>
+  <button class="tbtn listbtn" id="openList" type="button" title="Show the lesson list"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Lessons</button>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
   <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="What a parent sees: the pretend child's progress, suggestions and rewards">Parents</button></div>
@@ -462,6 +524,7 @@ svg text{font-family:Andika,sans-serif}
       <div class="pl" style="margin-top:0">Demo data</div>
       <p class="pn">Show the app with a child five weeks in: progress in every subject, a streak, stars, badges and drill records. Reset to zero starts the curriculum again; the name and picture stay.</p>
       <div class="tg"><button class="nbtn" id="demoLoad" type="button">Load demo data</button><button class="nbtn" id="demoReset" type="button">Reset to zero</button></div>
+      <div class="tg"><button class="nbtn" id="replaySplash" type="button">Show the splash screen</button></div>
       <div class="pl">Sound and play</div>
       <label class="tg"><input type="checkbox" id="auto" checked> Play audio automatically</label>
       <label class="tg"><input type="checkbox" id="autonext" checked> Next after a right answer (3 s)</label>
@@ -480,6 +543,7 @@ svg text{font-family:Andika,sans-serif}
 </header>
 <div class="drawer" id="drawer" hidden>
   <div class="pick">
+    <div class="pickhead"><b>Lessons</b><span>Pick one to play it in the phone</span><button class="xbtn" id="closeList" type="button" aria-label="Close the lesson list" title="Close the lesson list"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button></div>
     <input id="q" type="search" placeholder="Search: Einmaleins, phonics, clothes …" autocomplete="off" aria-label="Search lessons">
     <div class="frow" id="f-cur" role="group" aria-label="Curriculum"></div>
     <div class="frow" id="f-sub" role="group" aria-label="Subject"></div>
@@ -518,13 +582,13 @@ const TXT = {
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
-    speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Mein Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
+    speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
     introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:", fillGap: "Was fehlt?", planBack: "hinten", planFront: "vorne", listen: "Anhören", pause: "Pause", resume: "Weiter hören" },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
-    speakNote: "Tap the microphone and speak.", goal: "My goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
+    speakNote: "Tap the microphone and speak.", goal: "Goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
     introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:", fillGap: "What is missing?", planBack: "back", planFront: "front", listen: "Listen", pause: "Pause", resume: "Play on" },
 };
 const UI = new Proxy({}, { get: (_, k) => (TXT[typeof set !== "undefined" && set ? set.language : "de"] ?? TXT.de)[k] });
@@ -627,8 +691,12 @@ const doneCount = () => steps.slice(0, at).filter((s) => s.kind === "task" || s.
 // subject's colour, a task right first time green, and a task with any wrong
 // answer turns red as soon as it happens.
 const PBAR_CLS = { first: "ok", second: "bad", helped: "bad", shown: "bad", wrong: "bad" };
-const pbar = (idx, outcome) => `<div class="pbar seg">${idx.map((i) => `<i data-i="${i}" class="${i < at ? PBAR_CLS[outcome(i) ?? (steps[i]?.missed ? "wrong" : "")] ?? "seen" : ""}"></i>`).join("")}</div>`;
-const markPbar = (i, kind) => document.querySelector(`#screen .pbar [data-i="${i}"]`)?.setAttribute("class", PBAR_CLS[kind] ?? "seen");
+// One continuous line: each step a stretch of it, and every try on a step its own
+// part of that stretch, red for a miss and green for the right answer (wrong, wrong, right).
+const pbarCell = (i, kind) => { const t = steps[i]?.tries; return t?.length ? t.map((c) => `<b class="${c}"></b>`).join("") : kind ? `<b class="${PBAR_CLS[kind] ?? "seen"}"></b>` : ""; };
+const pbar = (idx, outcome) => `<div class="pbar line">${idx.map((i) => `<i data-i="${i}">${pbarCell(i, i < at || steps[i]?.tries?.length ? outcome(i) ?? "seen" : null)}</i>`).join("")}</div>`;
+const markPbar = (i, kind) => { const c = document.querySelector(`#screen .pbar [data-i="${i}"]`); if (c) c.innerHTML = pbarCell(i, kind); };
+const addTry = (i, ok) => (steps[i].tries ??= []).push(ok ? "ok" : "bad");
 
 function frameUI(step) {
   if (PR.on) return practiceFrame(step);
@@ -650,17 +718,71 @@ function frameUI(step) {
   return { body, foot };
 }
 // The lesson menu sheet: every activity of the lesson, tap one to jump there.
+// The lesson menu, as the app's LessonMenuBottomSheet: the set's name, badges
+// (minutes, which lesson, tasks), the goal, the sound switch, and the learning
+// journey: the lesson's activities on a line, done ones ticked, the current one
+// in the subject's colour and open, with its stages and how far along it is.
+// What each activity does, from its mode in the lesson file, as a step title a child understands.
+const ACT_DO = {
+  de: { "warm-up": { "last-lesson": "Weißt du noch vom letzten Mal?", "earlier-skills": "Mit Bekanntem aufwärmen" },
+    learn: { demonstration: "Schau, wie es geht", "worked-examples": "Beispiele Schritt für Schritt", "model-text": "Ein Beispiel lesen", "new-sound": "Einen neuen Laut kennenlernen", "new-word": "Neue Wörter kennenlernen", "do-it-with-me": "Mach mit" },
+    practise: { plain: "Erst mit Hilfe, dann allein", "in-context": "Aufgaben aus dem Alltag" },
+    check: { quick: "Kurzer Check", skill: "Zeig, was du kannst", timed: "Gegen die Uhr" } },
+  en: { "warm-up": { "last-lesson": "Remember last time?", "earlier-skills": "Warm up with what you know" },
+    learn: { demonstration: "Watch how it works", "worked-examples": "Examples, step by step", "model-text": "Read an example", "new-sound": "Meet a new sound", "new-word": "Meet new words", "do-it-with-me": "Do it with me" },
+    practise: { plain: "With help, then on your own", "in-context": "Tasks from everyday life" },
+    check: { quick: "Quick check", skill: "Show what you know", timed: "Against the clock" } },
+};
+const MENU = { de: { done: (a, n) => `${a} von ${n} geschafft`, first: (n) => `${n} beim ersten Versuch`, settings: "Lektionseinstellungen", soundOn: "Ton an", soundOff: "Ton aus", journey: "Dein Lernweg", min: (m) => `${m} MIN`, tasks: (n) => `${n} AUFGABEN`, screens: (n) => `${n} ${n === 1 ? "Erklärung" : "Erklärungen"}`, count: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"}` },
+  en: { done: (a, n) => `${a} of ${n} done`, first: (n) => `${n} right first time`, settings: "Lesson settings", soundOn: "Sound on", soundOff: "Sound off", journey: "Learning journey", min: (m) => `${m} MIN`, tasks: (n) => `${n} TASKS`, screens: (n) => `${n} ${n === 1 ? "screen" : "screens"}`, count: (n) => `${n} ${n === 1 ? "task" : "tasks"}` } };
 function lessonMenu(scr) {
-  const m = document.createElement("div"); m.className = "sheet menu-sheet";
-  m.innerHTML = `<div class="msg">${escH(lesson.title[lang()] ?? lesson.title.de)}</div>`;
-  lesson.activities.forEach((a, i) => {
-    const first = steps.findIndex((s) => s.a === a), b = document.createElement("button"); b.className = "mrow";
-    const tasks = steps.filter((s) => s.a === a && (s.kind === "task" || s.kind === "learn")).length;
-    b.innerHTML = `<span class="badge-n"><b>${i + 1}</b></span><span>${esc(actName(a))}</span><small>${tasks}</small>`;
-    b.onclick = () => go(first); m.appendChild(b);
-  });
-  const c = document.createElement("button"); c.className = "btn light"; c.textContent = UI.close; c.onclick = () => m.remove(); m.appendChild(c);
-  scr.appendChild(m);
+  if (scr.querySelector(".lm-sheet")) return;
+  const M = MENU[lang()] ?? MENU.en, col = SUBJ_COLOUR[subjOf(set)] ?? "#6849dd";
+  const acts = lesson.activities, cur = Math.max(0, acts.indexOf(steps[at]?.a));
+  const of = (a) => steps.map((s, i) => [s, i]).filter(([s]) => s.a === a);
+  const shown = (a) => of(a).filter(([s]) => s.kind === "task" || s.kind === "learn");
+  const tasks = steps.filter((s) => s.kind === "task").length, k = lesson.n;
+  const goal = lesson.goal?.[lang()];
+  const STAGE = { full: UI.stFull, some: UI.stSome, none: UI.stNone };
+  const row = (a, i) => {
+    const st = i < cur || (i === cur && at === steps.length - 1) ? "done" : i === cur ? "now" : "later";
+    const items = shown(a), stages = a.activity === "practise" ? [...new Set(items.map(([s]) => s.stage).filter(Boolean))] : [];
+    const inAct = of(a), pct = st === "now" && inAct.length ? Math.round(100 * Math.max(0, inAct.findIndex(([, j]) => j === at)) / inAct.length) : 0;
+    const sub = `${actName(a)} · ${a.activity === "learn" ? M.screens(items.length) : M.count(items.length)}`;
+    const name = ACT_DO[lang()]?.[a.activity]?.[a.mode ?? a.from ?? a.setting ?? a.size] ?? actName(a);
+    // Opened: the activity's own stretch of the progress line, every try in it, and a count.
+    const idx = items.map(([, j]) => j), seen = idx.filter((j) => j < at || steps[j].tries?.length).length, first = idx.filter((j) => results[j] === "first").length;
+    const prog = `<div class="lm-prog"><div class="pbar line">${idx.map((j) => `<i>${pbarCell(j, j < at || steps[j].tries?.length ? results[j] ?? "seen" : null)}</i>`).join("")}</div><small>${esc(M.done(seen, idx.length))}${first ? ` · ${esc(M.first(first))}` : ""}</small></div>`;
+    const curStage = steps[at]?.a === a ? steps[at].stage : null;
+    const mods = stages.map((x) => { const first = items.find(([s]) => s.stage === x)[1], ms = x === curStage ? "now" : st === "done" || (curStage && stages.indexOf(x) < stages.indexOf(curStage)) ? "done" : "later";
+      return `<button class="lm-mod ${ms}" data-go="${first}"><i></i><span>${esc(STAGE[x] ?? x)}</span>${ms === "now" ? `<b>${pct}%</b>` : ""}</button>`; }).join("");
+    return `<div class="lm-step ${st}${st === "now" ? " open" : ""}"><div class="lm-ind"><span class="lm-ring"><span class="lm-dot">${st === "done" ? '<svg viewBox="0 0 24 24" width="13" height="13"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : `<b>${i + 1}</b>`}${st !== "later" ? "<i></i>" : ""}</span></span><span class="lm-line"></span></div>
+      <div class="lm-body"><button class="lm-head" aria-expanded="${st === "now"}"><span><span class="lm-name">${esc(name)}</span><small>${esc(sub)}</small></span><svg class="lm-chev" viewBox="0 0 24 24" width="20" height="20"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="lm-mods">${prog}${mods}${st === "now" ? "" : `<button class="lm-mod lm-jump" data-go="${items[0]?.[1] ?? 0}"><i></i><span>${esc(UI.start)}</span></button>`}</div></div></div>`;
+  };
+  const scrim = document.createElement("div"); scrim.className = "lm-scrim";
+  const m = document.createElement("div"); m.className = "lm-sheet"; m.style.setProperty("--sc", col);
+  m.setAttribute("role", "dialog"); m.setAttribute("aria-label", set.title[lang()] ?? set.title.de);
+  m.innerHTML = `<i class="lm-grip"></i>
+    <h3>${escH(set.title[lang()] ?? set.title.de)}</h3>
+    <div class="lm-badges"><span class="b-cyan">${esc(M.min(set.minutes ?? 10))}</span><span class="b-purple">${esc(UI.lessonOf(k, set.lessons.length).toUpperCase())}</span><span class="b-green">${esc(M.tasks(tasks))}</span></div>
+    ${goal ? `<button class="goal lm-goal" type="button"><span class="gl">${esc(UI.goal)}</span>${escH(goal)}</button>` : ""}
+    <h4>${esc(M.settings)}</h4>
+    <label class="lm-sound"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path class="x" d="M17 10l4 4M21 10l-4 4"/></svg><span></span><input type="checkbox" role="switch"><i class="lm-switch"></i></label>
+    <h4>${esc(M.journey)}</h4>
+    <div class="lm-list">${acts.map(row).join("")}</div>`;
+  scr.append(scrim, m);
+  const close = () => { m.classList.add("out"); scrim.classList.add("out"); setTimeout(() => { m.remove(); scrim.remove(); }, 220); document.removeEventListener("keydown", esc_); };
+  const esc_ = (e) => { if (e.key === "Escape") close(); };
+  document.addEventListener("keydown", esc_); scrim.onclick = close;
+  // Sound: the narration switch (Settings, Narration), as the app's narrationEnabled.
+  const sw = $(".lm-sound input", m), lbl = $(".lm-sound span", m), set_ = () => { lbl.textContent = sw.checked ? M.soundOn : M.soundOff; m.classList.toggle("muted", !sw.checked); };
+  sw.checked = $("#auto").checked; set_();
+  sw.onchange = () => { const a = $("#auto"); a.checked = sw.checked; a.dispatchEvent(new Event("change")); if (!sw.checked) stopAudio(); set_(); };
+  if (goal && lesson._goal) $(".lm-goal", m).onclick = (e) => play([lesson._goal], null, e.currentTarget);
+  // Every row opens and closes; in the preview a stage, or Start on another activity, jumps there.
+  m.querySelectorAll(".lm-head").forEach((h) => h.onclick = () => { const st = h.closest(".lm-step"); st.classList.toggle("open"); h.setAttribute("aria-expanded", st.classList.contains("open")); });
+  m.querySelectorAll(".lm-mod").forEach((b) => b.onclick = () => { close(); go(+b.dataset.go); });
+  m.querySelector(".lm-step.now")?.scrollIntoView({ block: "nearest" });
 }
 // Subject colours from the app (constants/subjects.ts): maths green, English blue, German orange.
 const SUBJ_COLOUR = { "de-DE.math": "#0E8654", "en-GB.math": "#0E8654", "de-DE.lit-de": "#C44D00", "en-GB.lit-en": "#1971C0", "de-DE.fl": "#1971C0", "en-GB.fl": "#6849dd" };
@@ -733,12 +855,16 @@ function renderStart() {
   // The lesson starts with the mascot in its topic's pose (a clock for time, a beret for French).
   const pose = set.pose ? `<img class="mascot-pose" src="${A}mascot/${set.pose}.png" alt="">` : mascotPose("start");
   // What a child needs here: what today is about, where it sits in the skill (dots,
-  // not "Lesson 2"), and the goal in the skill's own words ("I can ...").
+  // not "Lesson 2"), and the lesson's goal as the lesson file writes it (goal).
   const subj = SUBJ[subjOf(set)] ?? "", n = set.lessons.length, k = set.lessons.indexOf(lesson);
   const dots = n > 1 ? `<div class="ldots" aria-label="${esc(UI.lessonOf(k + 1, n))}">${set.lessons.map((_, i) => `<i class="${i < k ? "done" : i === k ? "now" : ""}"></i>`).join("")}</div>` : "";
-  const goal = set.can_do?.[lang()] ? `<div class="goal"><span class="gl">${esc(UI.goal)}</span>${escH(set.can_do[lang()])}</div>` : "";
+  const aim = lesson.goal?.[lang()];
+  const goal = aim ? `<button class="goal" type="button"><span class="gl">${esc(UI.goal)}</span>${escH(aim)}</button>` : "";
   body.innerHTML = `<div class="center start">${pose}<span class="subj-chip"><b></b>${esc(subj)}</span><h2 class="a-lesson">${escH(lesson.title[lang()] ?? lesson.title.de)}</h2>${dots}${goal}</div>`;
   fitHead(body.querySelector(".a-lesson"));
+  // The goal is spoken as the screen opens ("Here's your goal for today. ..."), and again on a tap.
+  const g = body.querySelector(".goal");
+  if (g && lesson._goal) { g.onclick = () => play([lesson._goal], null, g); if ($("#auto").checked) play([lesson._goal], null, g); }
   nextBtn(foot, UI.start, () => { play(lesson._title); go(1); });
 }
 // Learn text: one short line stays big; several lines sit on a card, sized to
@@ -797,8 +923,9 @@ function renderEnd() {
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
     ${pass === null ? "" : pass ? `<span class="badge">${UI.canDo}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
   if (p) play(p.src);
-  // Started from the app: the pretend child finished this lesson.
-  if (APP.fromApp) appLessonDone(checkSteps, pass);
+  // Started from the app: the pretend child finished this lesson, and the app celebrates it.
+  if (APP.fromApp && !steps._recorded) { const before = beforeLesson(); appLessonDone(checkSteps, pass); afterLesson(before, checkSteps); }
+  else if (APP.fromApp) appLessonDone(checkSteps, pass);
   const nextL = set.lessons.find((l) => l.n === lesson.n + 1);
   if (nextL) nextBtn(foot, UI.nextLesson, () => pickLesson(nextL.n));
   nextBtn(foot, AT().finish, () => openStudy()).classList.toggle("light", !!nextL);
@@ -852,7 +979,7 @@ function renderTask(step) {
     const x = document.createElement("div"); x.textContent = text; b.appendChild(x); s.appendChild(b);
   };
   const finish = (kind) => {
-    st.over = true; results[at] = kind; markPbar(at, kind);
+    st.over = true; results[at] = kind; addTry(at, ["first", "second", "helped"].includes(kind)); markPbar(at, kind); sfx(["first", "second", "helped"].includes(kind) ? "answer-correct" : "answer-wrong");
     const good = ["first", "second", "helped"].includes(kind), s = openSheet(good ? "ok" : "bad");
     if (!good && kind === "wrong") bubble("fb", UI.shownAnswer);
     const b = document.createElement("button"); b.className = "btn" + (good ? " go" : ""); b.textContent = UI.next; b.onclick = () => go(at + 1); s.appendChild(b);
@@ -867,7 +994,7 @@ function renderTask(step) {
       if (p) { bubble("ok", p.text); play(p.src); }
       return finish(st.misses ? (st.helped ? "helped" : "second") : "first");
     }
-    st.misses++; closeSheet(); steps[at].missed = true; markPbar(at, "wrong");
+    st.misses++; closeSheet(); steps[at].missed = true; addTry(at, false); markPbar(at, "wrong"); if (!st.revealed && mode !== "check") sfx("try-again");
     if (mode === "check") { st.revealed = true; reveal(false); return finish("wrong"); }
     const fbText = t.feedback?.[String(key)], fbSrc = t._feedback?.[String(key)];
     const queue = [];
@@ -1311,6 +1438,7 @@ const TYPES = {
 
 /* ---------- side panel ---------- */
 function sidebar() {
+  renderPracticeSide();
   const ul = $("#steps"); ul.innerHTML = ""; let last = null;
   steps.forEach((s, i) => {
     const grp = s.a ? actName(s.a) + (s.kind === "task" && s.a.activity === "practise" ? ` · ${{ full: "full hints", some: "one hint", none: "no hints" }[s.stage]}` : "") : null;
@@ -1422,8 +1550,8 @@ function renderPicker() {
     const row = document.createElement("div"); row.className = "rset"; row.dataset.i = i;
     const hit = searching && s._hit != null ? s.lessons.find((l) => l.n === s._hit) : null;
     row.innerHTML = `<div class="rt">${esc(tOf(s, s.title))}${searching ? `<small class="rsub">${esc(g)}${hit ? ` · Lesson ${hit.n}: ${esc(tOf(s, hit.title))}` : ""}</small>` : ""}</div><div class="rl"></div>`;
-    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn" + (hit && hit.n === l.n ? " hit" : ""); b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { set = D.sets[i]; pickLesson(l.n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
-    row.querySelector(".rt").onclick = () => { set = D.sets[i]; pickLesson(hit?.n ?? s.lessons[0].n, F.type); if (!docked()) toggle($("#openPick"), $("#drawer"), false); };
+    s.lessons.forEach((l) => { const b = document.createElement("button"); b.className = "lbtn" + (hit && hit.n === l.n ? " hit" : ""); b.textContent = l.n; b.title = tOf(s, l.title); b.dataset.n = l.n; b.onclick = () => { openFromList(i, l.n); if (!docked()) toggle($("#openPick"), $("#drawer"), false); }; row.querySelector(".rl").appendChild(b); });
+    row.querySelector(".rt").onclick = () => { openFromList(i, hit?.n ?? s.lessons[0].n); if (!docked()) toggle($("#openPick"), $("#drawer"), false); };
     R.appendChild(row);
   }
   if (!list.length) R.innerHTML = `<p class="empty">No lesson set matches${filtered ? " with these filters" : ""}. ${hidden ? "Show all searches every year and subject." : "Clear a filter or the search."}</p>`;
@@ -1479,7 +1607,7 @@ const PARTS = [
   ["start", ".stepb .st", "Set title", "The record's title: what the lessons of this skill are about."],
   ["start", ".subj-chip", "Subject", "The subject, in its colour."],
   ["start", ".ldots", "Lesson dots", "One dot per lesson of the set: done, today, still to come."],
-  ["start", ".goal", "Goal", "The skill's can_do sentence (competencies/), the I can statement."],
+  ["start", ".goal", "Goal", "The lesson's goal, written in the lesson file (goal) in a child's words. No goal, no card."],
   ["start", ".a-lesson", "Lesson title", "lessons[n].title"],
   ["intro", ".mascot-pose", "Activity pose", "assets/mascot.yaml poses (warmup, learn, practise), rotated by lesson."],
   ["intro", ".a-act", "Activity name", "Warm up, Learn, Practise, Show what you know."],
@@ -1507,7 +1635,7 @@ const PARTS = [
   ["end", "h2.done", "Lesson finished", "The finish title, in gold."],
   ["end", ".a-phrase", "Spoken line", "phrases.yaml lesson_done."],
   ["end", ".score", "Score card", "Per cent right first time in the Check."],
-  ["menu", ".menu-sheet", "Lesson menu", "Every activity of the lesson; tap one to jump there."],
+  ["menu", ".lm-sheet", "Lesson menu", "As the app's LessonMenuBottomSheet: the set's name, badges (minutes, which lesson, tasks), the goal, the sound switch and the learning journey (activities, done ones ticked, the current one open with its stages and how far along it is)."],
 ];
 let LABELS = (() => { try { return localStorage.getItem("twist-labels") === "1"; } catch { return false; } })();
 function drawLabels() {
@@ -1550,7 +1678,7 @@ function anatomy() {
 $("#openAnat").onclick = () => { anatomy(); $("#anat").hidden = false; toggle($("#openSet"), $("#setPop"), false); };
 $("#anat").onclick = (e) => { if (e.target.id === "anat") $("#anat").hidden = true; };
 // The phone scales to the window: as big as the height allows, up to 1.4 times, never below 0.75.
-const sizePhone = () => { const z = innerWidth <= 820 ? 1 : Math.max(0.75, Math.min(1.4, (innerHeight - 110) / 844, (innerWidth - 400 - (innerWidth >= 1500 ? 480 : 0)) / 420)); document.documentElement.style.setProperty("--pz", z.toFixed(3)); };
+const sizePhone = () => { const z = innerWidth <= 820 ? 1 : Math.max(0.75, Math.min(1.4, (innerHeight - 110) / 844, (innerWidth - 400 - (innerWidth >= 1500 && !document.body.classList.contains("list-closed") ? 480 : 0)) / 420)); document.documentElement.style.setProperty("--pz", z.toFixed(3)); };
 sizePhone(); window.addEventListener("resize", sizePhone);
 // The lesson drawer and the settings pop-over open from the top bar and close on Escape or a click outside.
 const toggle = (btn, panel, open) => { const o = open ?? panel.hidden; panel.hidden = !o; btn.setAttribute("aria-expanded", o); if (o && panel.id === "drawer") setTimeout(() => { $("#q").focus(); panel.querySelector(".rset.on")?.scrollIntoView({ block: "center" }); }); };
@@ -1560,7 +1688,7 @@ const docked = () => matchMedia("(min-width:1500px)").matches;
 document.addEventListener("click", (e) => {
   // A filter chip re-renders itself on click, so its target is no longer in the page: not an outside click.
   if (!e.target.isConnected) return;
-  if (!docked() && !$("#drawer").hidden && !e.target.closest("#drawer,#openPick")) toggle($("#openPick"), $("#drawer"), false);
+  if (!docked() && !$("#drawer").hidden && !e.target.closest("#drawer,#openPick,#openList")) toggle($("#openPick"), $("#drawer"), false);
   if (!$("#setPop").hidden && !e.target.closest("#setPop,#openSet")) toggle($("#openSet"), $("#setPop"), false);
 });
 // Re-render on resize, so the layout pass fits the new screen size.
@@ -1583,7 +1711,7 @@ document.addEventListener("keydown", (e) => { if (e.target.closest("input,select
 let pos = [0, 1]; try { pos = JSON.parse(localStorage.getItem("twist-pos")) || pos; } catch (e) {}
 set = D.sets[pos[0]] ?? D.sets[0]; renderPicker(); pickSet(D.sets.indexOf(set), pos[1]);
 // The page opens as the app, on its Start tab; a link to a task type opens that lesson instead.
-if (!new URLSearchParams(location.hash.slice(1)).get("type") && location.hash !== "#types") appTab("start");
+if (!new URLSearchParams(location.hash.slice(1)).get("type") && location.hash !== "#types") { appTab("start"); splash(); }
 // Opened from the task types page (index.html#type=<type>): filter the list to
 // that type and open the first lesson that uses it, at its first such task.
 // One site: Lessons and Task types are two views of this page. The types page

@@ -179,6 +179,7 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
       if (!l.title?.de || !l.title?.en) err(`${file}: ${lw} title needs de and en`);
       const extra = Object.keys(l.title ?? {}).filter((k) => !["de", "en", "fr"].includes(k));
       if (extra.length) err(`${file}: ${lw} title has unexpected keys (${extra.join(", ")}); quote titles that contain commas`);
+      if (l.goal && (!l.goal.de || !l.goal.en)) err(`${file}: ${lw} goal needs de and en`);
       if (typeof l.new_content !== "boolean") err(`${file}: ${lw} needs new_content: true or false`);
       if (i === 0 && l.new_content === false) warn(`${file}: lesson 1 has no new content`);
       const acts = l.activities ?? [];

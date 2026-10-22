@@ -28,9 +28,19 @@ git repo kept separate from schoolido-learning.
       player/practice.css, and the tabs around them player/app-ui.js and
       player/app.css. Study opens on the track of the app (stones,
       arcs, islands); player/study/ holds that art, copied from
-      ist-schoolido's assets/images/study. The Parents view
+      ist-schoolido's assets/images/study (french.svg is drawn here in the
+      same style); player/tabs/ holds the app's tab icons
+      (assets/images/tabs). The app's animations (Rive and
+      Lottie) and sound effects are in player/anim/, copied from
+      ist-schoolido's develop (assets/animations, assets/images/lotties,
+      assets/audio) and played by player/anim-ui.js where the app plays
+      them: splash, lesson loading, the Study skate, the celebrations
+      after a lesson. The Parents view
       (player/parents-ui.js, parents.css) shows the same pretend child as
       a parent would see it: the week, subjects, suggestions, rewards.
+      The right panel follows the open screen (player/side-ui.js): each
+      tab and the lesson player get their own controls; a lesson picked in
+      the left list plays in the phone.
       Every drawing is in player/drawn.js, which the
       build inlines and the app can use as it is. `node twist/pages/player/build.mjs`; it
       plays audio from twist/assets/narration/<voice>/, which is in git

@@ -12,17 +12,14 @@ const ATXT = {
   de: { badges: "Abzeichen", dayPlayed: "Gespielt", dayToday: "Heute, noch offen", dayMissed: "Nicht gespielt", lightFirst: "Mach heute eine Lektion oder Übung, dann brennt die erste Flamme.", upNext: "Als Nächstes", thisWeek: "Diese Woche", days: ["Mo", "Di", "Mi", "Do", "Fr"], gold: "Gold!", earned: "Verdient", earnedIn: (y) => `Verdient, ${y}`, ofN: (a, b) => `${a} von ${b}`, noBadges: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", almost: "Fast geschafft", allBadges: (n) => `Alle weiteren Abzeichen (${n})`, how: { pathfinder: "Deinen ersten Einstufungstest machen", summit: "Den Test am Schuljahresende bestehen", legend: "Jede Fähigkeit eines Fachs können", "comeback-kid": "Eine Fähigkeit zurückholen", "like-clockwork": "4 Wochen alle Wiederholungen pünktlich", "time-traveller": "Etwas aus einer späteren Klasse lernen" }, hi: "Hallo!", startHere: "Fang hier an", minShort: (m) => `${m} Min.`, helloName: (n) => `Hallo, ${n}!`, todayPlan: "Dein Plan für heute", planLeft: (a, b) => `${a} von ${b} für heute geschafft`, planDone: "Für heute alles geschafft", unitOf: (k, n) => `Einheit ${k} von ${n}`, lessonDone: "Lektion geschafft", lessonsToday: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"} heute`, practiceDone: "Üben geschafft", sessionsToday: (n) => `${n} ${n === 1 ? "Übungsrunde" : "Übungsrunden"} heute`, winTitle: "Super, dein Plan für heute ist fertig!", winStreak: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge. Komm morgen wieder!`, winSub: "Komm morgen wieder!", wantMore: "Lust auf mehr?", unitsOf: (a, b) => `${a}/${b} Einheiten`, newDot: "neu", start: "Start", study: "Lernen", practice: "Üben", me: "Ich", hello: "Hallo! Schön, dass du da bist.", next: "Weiter lernen", goOn: "Mach weiter, wo du aufgehört hast", nextUnit: (x) => `Als Nächstes in ${x}`, nextYear: (y) => `Weiter mit ${y}`, more: "Andere Fächer", newSubj: "Probier ein neues Fach", fresh: "Neu für dich", lessonOf: (k, n) => `Lektion ${k} von ${n}`, mins: (m) => `etwa ${m} Minuten`, go: "Los geht's", allDone: "Alles geschafft!", allDoneSub: "Im Üben-Tab hältst du es frisch.", doneOf: (a, b) => `${a} von ${b} geschafft`, lessons: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"}`, finish: "Fertig", today: "Heute üben", allTopics: "Alle Themen", search: (s, y) => `Suchen in ${s}, ${y}`, nothing: "Nichts gefunden.", year: "Klasse", yourYear: "deine Klasse", sets: (n) => `${n} ${n === 1 ? "Einheit" : "Einheiten"}`,
     meTitle: "Mein Fortschritt", stars: "Sterne", streak: "Tage in Folge", sessions: "Übungsrunden", bee: "Fleißiges Bienchen", beeTo: (a, b) => `${a} von ${b} Übungsrunden`, beeMax: "Alle Stufen geschafft!", notYet: "Noch nicht verdient", level: (n) => `Stufe ${n} von 6`, streakTitle: "Serie", streakNow: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge`, streakBest: (n) => `Bester Lauf: ${n}`, streakTo: (n, name) => `Noch ${n} ${n === 1 ? "Schultag" : "Schultage"} bis ${name}`, streakNote: "Wochenenden zählen nicht und brechen nichts.", records: "Sprint-Rekorde", perMin: (n) => `${n} pro Minute`, noRecords: "Noch keinen Sprint gespielt. Probier einen im Üben-Tab!", subjects: "Deine Fächer", ofStars: (a, b) => `${a} von ${b} Sternen` },
   en: { badges: "Badges", dayPlayed: "Played", dayToday: "Today, still to do", dayMissed: "Not played", lightFirst: "Do a lesson or some practice today to light the first flame.", upNext: "Up next", thisWeek: "This week", days: ["M", "T", "W", "T", "F"], gold: "Gold!", earned: "Earned", earnedIn: (y) => `Earned, ${y}`, ofN: (a, b) => `${a} of ${b}`, noBadges: "None yet. The first comes with your first skill at I can do it.", almost: "Almost there", allBadges: (n) => `All the other badges (${n})`, how: { pathfinder: "Finish your first placement check", summit: "Pass the end-of-year check", legend: "Every skill of a subject", "comeback-kid": "Bring a skill back after a refresh", "like-clockwork": "Every recap on time for 4 weeks", "time-traveller": "Learn something from a later year" }, hi: "Hi!", startHere: "Start here", minShort: (m) => `${m} min`, helloName: (n) => `Hi, ${n}!`, todayPlan: "Your plan for today", planLeft: (a, b) => `${a} of ${b} done today`, planDone: "All done for today", unitOf: (k, n) => `Unit ${k} of ${n}`, lessonDone: "Lesson done", lessonsToday: (n) => `${n} ${n === 1 ? "lesson" : "lessons"} today`, practiceDone: "Practice done", sessionsToday: (n) => `${n} ${n === 1 ? "session" : "sessions"} today`, winTitle: "Great work, today's plan is done!", winStreak: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row. See you tomorrow!`, winSub: "See you tomorrow!", wantMore: "Want more?", unitsOf: (a, b) => `${a}/${b} units`, newDot: "new", start: "Home", study: "Study", practice: "Practise", me: "Me", hello: "Hi! Great to see you.", next: "Keep learning", goOn: "Pick up where you left off", nextUnit: (x) => `Next in ${x}`, nextYear: (y) => `On to ${y}`, more: "Other subjects", newSubj: "Try a new subject", fresh: "New for you", lessonOf: (k, n) => `Lesson ${k} of ${n}`, mins: (m) => `about ${m} minutes`, go: "Start", allDone: "All done!", allDoneSub: "Keep it fresh in the Practise tab.", doneOf: (a, b) => `${a} of ${b} done`, lessons: (n) => `${n} ${n === 1 ? "lesson" : "lessons"}`, finish: "Done", today: "Practise today", allTopics: "All topics", search: (s, y) => `Search ${s}, ${y}`, nothing: "Nothing found.", year: "Year", yourYear: "your year", sets: (n) => `${n} ${n === 1 ? "unit" : "units"}`,
-    meTitle: "My progress", stars: "Stars", streak: "Days in a row", sessions: "Sessions", bee: "Busy Bee", beeTo: (a, b) => `${a} of ${b} practice sessions`, beeMax: "Every level done!", notYet: "Not earned yet", level: (n) => `Level ${n} of 6`, streakTitle: "Streak", streakNow: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row`, streakBest: (n) => `Best run: ${n}`, streakTo: (n, name) => `${n} more school ${n === 1 ? "day" : "days"} to ${name}`, streakNote: "Weekends never count and never break it.", records: "Sprint records", perMin: (n) => `${n} a minute`, noRecords: "No sprint played yet. Try one in the Practise tab!", subjects: "Your subjects", ofStars: (a, b) => `${a} of ${b} stars` },
+    meTitle: "My progress", stars: "Stars", streak: "Days in a row", sessions: "Sessions", bee: "Busy Bee", beeTo: (a, b) => `${a} of ${b} practice sessions`, beeMax: "Every level done!", notYet: "Not earned yet", level: (n) => `Level ${n} of 6`, streakTitle: "Streak", streakNow: (n) => `${n} school ${n === 1 ? "day" : "days"} in a row`, streakBest: (n) => `Best run: ${n}`, streakTo: (n, name) => `${n} more school ${n === 1 ? "day" : "days"} to ${name}`, streakNote: "Weekends never count and never break it.", records: "Drill records", perMin: (n) => `${n} a minute`, noRecords: "No drill played yet. Try one in the Practise tab!", subjects: "Your subjects", ofStars: (a, b) => `${a} of ${b} stars` },
 };
 const AT = () => ATXT[PL()];
 const STREAK_NAME = { spark: ["Funke", "Spark"], flame: ["Flamme", "Flame"], campfire: ["Lagerfeuer", "Campfire"], torch: ["Fackel", "Torch"], comet: ["Komet", "Comet"], volcano: ["Vulkan", "Volcano"], sun: ["Sonne", "Sun"], supernova: ["Supernova", "Supernova"] };
 const streakName = (id) => STREAK_NAME[id]?.[PL() === "de" ? 0 : 1] ?? id;
-const TAB_ICON = {
-  start: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/></svg>',
-  study: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5A1.5 1.5 0 0 1 4 17.5zM20 5.5c0-.8-.7-1.5-1.5-1.5H13v15h5.5c.8 0 1.5-.7 1.5-1.5z"/></svg>',
-  practice: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" class="fill"/></svg>',
-  me: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c.8-3.8 3.9-6 7.5-6s6.7 2.2 7.5 6"/></svg>',
-};
+// The app's tab icons (ist-schoolido develop, assets/images/tabs): coloured when open, grey otherwise.
+const TAB_ICON = { start: "home.svg", study: "study.svg", practice: "practice.svg", me: "profile.png" };
+const tabIcon = (t, on) => `<img src="tabs/${on ? TAB_ICON[t] : TAB_ICON[t].replace(".", "-gray.")}" alt="" class="tab-${t}">`;
 const TABS = ["start", "study", "practice", "me"];
 // The tabs share one colour, the brand's, so the subjects' colours are the only
 // colour that means something on a screen. Their tops are neutral (.fun-band).
@@ -56,7 +53,7 @@ function appChild() {
 }
 function appTabs(active) {
   const T = AT(), nav = document.createElement("nav"); nav.className = "app-tabs"; nav.setAttribute("aria-label", "Twist");
-  nav.innerHTML = TABS.map((t) => `<button data-t="${t}" style="--tc:${ROOM[t]}"${t === active ? ' aria-current="page"' : ""}>${TAB_ICON[t]}<span>${esc(T[t])}</span></button>`).join("");
+  nav.innerHTML = TABS.map((t) => `<button data-t="${t}" style="--tc:${ROOM[t]}"${t === active ? ' aria-current="page"' : ""}>${tabIcon(t, t === active)}<span>${esc(T[t])}</span></button>`).join("");
   nav.querySelectorAll("button").forEach((b) => b.onclick = () => appTab(b.dataset.t));
   return nav;
 }
@@ -66,9 +63,10 @@ const inPractice = () => document.body.classList.contains("practice");
 function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
-  if (t === "study") { if (!keep) APP.units = false; if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.home = "study"; APP.fromApp = false; return APP.units ? renderStudy() : renderTrack(); }
+  if (t === "study") { if (!keep) APP.units = false; if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.home = "study"; APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
+  if (t === "settings") APP.editPic = false;
   if (t === "start") renderHomeTab(); else if (t === "me") renderMe(); else if (t === "settings") renderSettings(); else renderPracticeHome();
   renderPracticeSide();
 }
@@ -98,10 +96,14 @@ function courseSets(subj, year = childYearFor(subj)) {
 const lessonsDone = (s) => PR.child.lessons?.[s.id] ?? 0;
 const nextIn = (sets) => sets.find((s) => lessonsDone(s) < s.lessons.length);
 const appSubjects = () => PR.index.subjects.filter((x) => yearsOf(x).length);
+// A lesson opens after the books have played a moment, as in the app (QuizLoadingScreen).
 function startLesson(setId, n) {
-  if (inPractice()) setView("lessons");
-  APP.home = null; APP.fromApp = true;
-  pickSet(D.sets.findIndex((s) => s.id === setId), n);
+  stopAudio();
+  loadingBooks(1400, () => {
+    if (inPractice()) setView("lessons");
+    APP.home = null; APP.fromApp = true;
+    pickSet(D.sets.findIndex((s) => s.id === setId), n);
+  });
 }
 // The next lesson of a subject as a card: big on Start and Study, small for the other subjects.
 function nextCard(subj, big, sets = courseSets(subj)) {
@@ -184,8 +186,9 @@ function renderHomeTab() {
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
   const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
   const steps = [];
-  if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons)));
-  else if (lesson) steps.push(`<p class="hm-step">${esc(head)}</p>${lesson}`);
+  // The way back into the course is always there; a lesson done today shows as a tick beside its label.
+  if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
+  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons)));
   if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice)));
   else if (practiceCard) steps.push(`<p class="hm-step">${esc(T.today)}</p>${practiceCard}`);
   const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceCard ? practiceCard : ""].filter(Boolean);
@@ -226,27 +229,31 @@ const TRACK = {
   // French has no art of its own: the English art turned to its purple.
   french: { route: "#8f73ff", grad: ["#9b7bff", "#4b2fb0"], soft: "#ece6fb", islands: 5, files: "english" },
 };
-const TR = { pad: 140, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
+// pad: room above the first stone for its popover or the study card.
+const TR = { pad: 380, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
 const ISLAND_DY = [0, -24, 0, -24, -24];
 const ARCH_PATH = "M8.15 22.9C8.15 22.9 47.71 2.35 47.71 2.35C50.42 0.94 53.65 0.62 56.58 1.47C195.73 41.95 199.88 146.33 57.21 211.78C53.93 213.28 50.06 213.2 46.85 211.56C46.85 211.56 3.18 189.23 3.18 189.23C-0.16 187.52 0.48 182.49 4.11 181.54C118.03 151.67 147.82 64.21 8.95 28.61C6.25 27.92 5.68 24.19 8.15 22.9Z";
 const TKTXT = {
-  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", goOn: "Weiter lernen", again: "Nochmal spielen", locked: "Noch gesperrt", min: (m) => `${m} Min.`, lessonOf: (k, n) => `Lektion ${k} von ${n}`, allDone: (n) => `${n} von ${n} Lektionen geschafft`, notYet: (n) => `${n} Lektionen`, showAll: (n) => `Alle ${n} Lektionen`, showLess: "Weniger zeigen", subject: "Fach wählen" },
-  en: { units: "All units", back: "Back", start: "Start lesson", goOn: "Keep going", again: "Play again", locked: "Locked", min: (m) => `${m} min`, lessonOf: (k, n) => `Lesson ${k} of ${n}`, allDone: (n) => `All ${n} lessons done`, notYet: (n) => `${n} lessons`, showAll: (n) => `All ${n} lessons`, showLess: "Show less", subject: "Choose a subject" },
+  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", goOn: "Weiter lernen", again: "Nochmal spielen", locked: "Noch gesperrt", min: (m) => `${m} Min.`, lessonOf: (k, n) => `Lektion ${k} von ${n}`, allDone: (n) => `${n} von ${n} Lektionen geschafft`, notYet: (n) => `${n} Lektionen`, showAll: (n) => n === 1 ? "Lektion zeigen" : `Die ${n} Lektionen zeigen`, showLess: "Weniger zeigen", subject: "Fach wählen" },
+  en: { units: "All units", back: "Back", start: "Start lesson", goOn: "Keep going", again: "Play again", locked: "Locked", min: (m) => `${m} min`, lessonOf: (k, n) => `Lesson ${k} of ${n}`, allDone: (n) => `All ${n} lessons done`, notYet: (n) => `${n} lessons`, showAll: (n) => n === 1 ? "Show the lesson" : `Show the ${n} lessons`, showLess: "Show less", subject: "Choose a subject" },
 };
 const TK = () => TKTXT[PL()];
 const LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>';
+const LIST = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.5" cy="6.5" r="1.3" class="f"/><circle cx="4.5" cy="12" r="1.3" class="f"/><circle cx="4.5" cy="17.5" r="1.3" class="f"/></svg>';
 const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
 const trackArt = (subj) => { const a = TRACK_ART[subj]; return (typeof a === "string" ? a : a?.[PR.child.curriculum]) ?? "math"; };
 // The course as a row of skills, each with its state: done (every lesson),
-// current (the first not done), started (some lessons, further on) or locked.
+// current (the first not done), started (some lessons, further on), open (the
+// one before has a lesson done) or locked.
 function trackSkills(subj, year) {
   const lg = PL(), out = [];
   for (const s of courseSets(subj, year)) {
     const topic = s.topic?.[lg] ?? s.topic?.en ?? "";
     out.push({ s, topic, topicStart: !out.length || out.at(-1).topic !== topic, done: lessonsDone(s) >= s.lessons.length, some: lessonsDone(s) > 0 });
   }
+  // A skill opens once the one before it has a lesson done; the current one is the first not done.
   const cur = out.findIndex((x) => !x.done);
-  out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : x.some ? "started" : "locked");
+  out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : x.some ? "started" : i && (out[i - 1].some || out[i - 1].done) ? "open" : "locked");
   return out;
 }
 function renderTrack() {
@@ -272,24 +279,24 @@ function renderTrack() {
   scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div>
     <header class="tr-stats">
-      <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${files}.svg" alt="" class="${art}">${CHEVRON}</button>
+      <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${art}.svg" alt="">${CHEVRON}</button>
       <button class="tr-stat" data-rw="streak" aria-label="${esc(RW().tabs.streak)}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button>
       <button class="tr-stat" data-rw="stars" aria-label="${esc(RW().tabs.stars)}"><i>★</i>${stars}</button>
       <button class="tr-stat" data-rw="badges" aria-label="${esc(RW().tabs.badges)}"><img src="${A}badges/legend.svg" alt="">${myBadges().filter((b) => b.earned).length}</button>
     </header>
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
-      <button class="tr-card"><i><img src="study/${files}.svg" alt="" class="${art}"></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
-      <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip down" aria-live="polite" hidden></div></div>
+      <button class="tr-card"><i><img src="study/${art}.svg" alt=""></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
+      <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip up" aria-live="polite" hidden></div></div>
     </div><div class="tr-fade" aria-hidden="true"></div>`;
   scr.appendChild(appTabs("study"));
   wireHeader(scr);
   const page = $(".tr-page", scr), tip = $(".tr-tip", scr), card = $(".tr-card", scr), path = $(".tr-path", scr);
-  let focus = -1, open = false, all = false;
+  let focus = -1, open = false, all = false, skate = null;
   // The skill in focus: the card names it, and its popover sits under its stone.
   // The popover shows where the child is in the skill (a meter and the next
   // lesson); the whole list of lessons is one tap away. Tapping away or on the
   // stone closes it; scrolling to another skill or tapping a stone opens it.
-  const close = () => { open = false; tip.hidden = true; scr.querySelectorAll(".tr-stone.focus").forEach((b) => b.classList.remove("focus")); };
+  const close = () => { open = false; tip.hidden = true; skate?.hide(true); scr.querySelectorAll(".tr-stone.focus").forEach((b) => b.classList.remove("focus")); };
   const show = (i, force) => {
     const r = rows[i]; if (!r || (i === focus && open && !force)) return;
     if (i !== focus) all = false;
@@ -299,39 +306,57 @@ function renderTrack() {
     const done = lessonsDone(r.s), n = r.s.lessons.length, next = r.s.lessons[Math.min(done, n - 1)], locked = r.state === "locked", finished = r.state === "done";
     const label = locked ? K.locked : finished ? K.again : done ? K.goOn : K.start;
     const row = (l, k) => `<li><button data-n="${l.n}" class="${k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
-    const shown = all ? r.s.lessons.map(row) : finished ? [] : [row(next, Math.min(done, n - 1))];
+    // The lessons stay folded away until the child opens them.
+    const shown = all ? r.s.lessons.map(row) : [];
+    // One line for where the child is; the lessons open from the list button beside Start.
     tip.innerHTML = `<b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>
-      <span class="tr-meter" aria-label="${esc(finished ? K.allDone(n) : K.lessonOf(Math.min(done + 1, n), n))}">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
-      <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span>
+      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
+        <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
       ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
-      ${n > 1 ? `<button class="tr-more" aria-expanded="${all}">${esc(all ? K.showLess : K.showAll(n))}${CHEVRON}</button>` : ""}
-      <button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>`;
+      <span class="tr-actions"><button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>
+        <button class="tr-more" aria-expanded="${all}" aria-label="${esc(all ? K.showLess : K.showAll(n))}" title="${esc(all ? K.showLess : K.showAll(n))}">${LIST}</button></span>`;
     $(".tr-more", tip)?.addEventListener("click", (e) => { e.stopPropagation(); all = !all; show(i, true); });
-    tip.style.top = `${top(i) + TR.decor - 20}px`;
+    // Above its stone, where the app's study card also stands; above the mascot when it stands there.
+    tip.style.top = `${top(i) + (TR.decor - TR.stoneH) / 2 + 4 - (i === cur && !skate ? TR.mascot * 0.95 : 0)}px`;
     tip.querySelectorAll("[data-n]").forEach((b) => b.onclick = () => startLesson(r.s.id, +b.dataset.n));
     $(".tr-go", tip).onclick = () => startLesson(r.s.id, r.state === "done" ? r.s.lessons[0].n : next.n);
+    // On the current skill the app's study card does the popover's job.
+    const onSkate = !!skate && i === cur;
+    if (onSkate) tip.hidden = true;
+    skate?.hide(!onSkate);
   };
-  // The focus line: a third of the way down the track's window.
-  const focusY = () => page.getBoundingClientRect().top + page.clientHeight * 0.3 - path.getBoundingClientRect().top;
-  const scrollTo = (i, behavior) => page.scrollTo({ top: Math.max(0, page.scrollTop + mid(i) - focusY()), behavior });
+  // The app's skate and study card on the current skill (anim-ui.js).
+  APP.skate = skate = trackSkate({ path, rows, cur, top, art,
+    onStart: () => { const r = rows[cur], d = lessonsDone(r.s); startLesson(r.s.id, r.s.lessons[Math.min(d, r.s.lessons.length - 1)].n); },
+    onNext: (i) => { show(i, true); scrollTo(i, "smooth"); } });
+  // The focus line: 60% down the track's window, so the study card above the current skill clears the top card.
+  const focusY = () => page.getBoundingClientRect().top + page.clientHeight * 0.6 - path.getBoundingClientRect().top;
+  const scrollTo = (i, behavior, lower = 0) => page.scrollTo({ top: Math.max(0, page.scrollTop + mid(i) - focusY() - lower), behavior });
   // Scrolling moves the focus; a closed popover opens again on the next skill, not on the same one.
-  page.onscroll = () => { const i = Math.max(0, Math.min(rows.length - 1, Math.round((focusY() - TR.pad - TR.decor / 2) / TR.step))); if (i !== focus) show(i); };
+  // The track's own opening scroll is not the child's: it leaves the focus on the current skill.
+  let quiet = 0;
+  page.onscroll = () => { if (Date.now() < quiet) return; const i = Math.max(0, Math.min(rows.length - 1, Math.round((focusY() - TR.pad - TR.decor / 2) / TR.step))); if (i !== focus) show(i); };
   scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = (e) => {
     e.stopPropagation(); const i = +b.dataset.i;
     if (i === focus && open) return close();
     show(i, true); scrollTo(i, "smooth");
   });
   tip.onclick = (e) => e.stopPropagation();
-  scr.addEventListener("click", (e) => { if (open && !e.target.closest(".tr-stone, .tr-mascot")) close(); });
+  // A tap anywhere else closes it. One listener per track: the last one's goes, and this one starts
+  // after the tap that opened the track, which is still on its way up the page.
+  APP.trackTaps?.abort(); APP.trackTaps = new AbortController();
+  const { signal } = APP.trackTaps;
+  setTimeout(() => scr.addEventListener("click", (e) => { if (open && !e.target.closest(".tr-stone, .tr-mascot, .tr-skate")) close(); }, { signal }));
   card.onclick = () => { APP.units = true; APP.year = year; renderStudy(); };
   $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
-  // Open on the current skill.
-  scrollTo(cur); show(cur);
+  // Open on the current skill, a little lower when the study card stands above it.
+  quiet = Date.now() + 500;
+  scrollTo(cur, "auto", skate ? page.clientHeight * 0.15 : 0); show(cur);
 }
 // The subject menu under the pill: each subject with its icon.
 function subjectMenu(pill) {
   const m = document.createElement("div"); m.className = "tr-menu"; m.setAttribute("role", "menu");
-  m.innerHTML = appSubjects().map((x) => { const a = trackArt(x), f = TRACK[a].files ?? a; return `<button role="menuitem" data-s="${x}"${x === APP.subj ? ' aria-current="true"' : ""}><img src="study/${f}.svg" alt="" class="${a}">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`; }).join("");
+  m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}"${x === APP.subj ? ' aria-current="true"' : ""}><img src="study/${a}.svg" alt="">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`; }).join("");
   const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
   const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
   m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
@@ -450,6 +475,8 @@ function appLessonDone(checkSteps, pass) {
   steps._recorded = true;
   const check = pass == null ? null : { pass, keys: checkSteps.map(([s]) => taskKey(set.id, lesson.n, s.t.id)) };
   finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check });
+  // A skill finished: Study's track skates on to the next one (anim-ui.js, trackSkate).
+  if (lessonsDone(set) >= set.lessons.length) APP.skillDone = true;
   saveChild();
 }
 const openStudy = () => appTab("study", { keep: true });
@@ -485,7 +512,9 @@ function badgeTile(b) {
   const T = AT(), part = b.need ? Math.min(1, b.have / b.need) : 0;
   const line = b.earned ? (b.gold ? T.gold : b.level ? T.level(b.level) : b.kind === "strand" ? T.earnedIn(yearName(childYearFor(b.subj))) : T.earned)
     : b.need ? T.ofN(b.have, b.need) : T.how[b.id] ?? "";
-  return `<div class="bd${b.earned ? "" : " locked"}" style="--p:${100 * part}"><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt=""><b>${esc(badgeName(b.id))}</b><small>${esc(line)}</small>${!b.earned && b.need ? `<i class="pr-bar"><i style="width:${100 * part}%"></i></i>` : ""}</div>`;
+  const src = `${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg`;
+  // Earned badges float and catch the light, each at its own moment (anim.css); a tap opens the badge (anim-ui.js).
+  return `<button class="bd${b.earned ? "" : " locked"}${b.gold ? " gold" : ""}" data-bd="${b.id}" style="--p:${100 * part};--m:url('${src}');--d:${(badgeTile.n = ((badgeTile.n ?? 0) + 1) % 7) * 0.7}s"><span class="bd-art"><img src="${src}" alt=""></span><b>${esc(badgeName(b.id))}</b><small>${esc(line)}</small>${!b.earned && b.need ? `<i class="pr-bar"><i style="width:${100 * part}%"></i></i>` : ""}</button>`;
 }
 // The school week the pretend day is in, Monday to Friday, the days played lit.
 function weekStrip(c) {
@@ -538,6 +567,7 @@ function renderMe() {
 // look, sound and handwriting, and a fresh start. A curriculum keeps its own
 // progress: switching away and back brings it back (child.stash).
 const GEAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8z"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.5A7.5 7.5 0 0 0 7 6.5l-2.4-1-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 2.6 1.5l.4 2.5h4l.4-2.5a7.5 7.5 0 0 0 2.6-1.5l2.4 1 2-3.4z"/></svg>';
+const PENCIL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4.5L16 4.5a2.1 2.1 0 0 1 3 3L8 18.5z"/><path d="M14 6.5l3 3"/></svg>';
 const DICE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.4" class="fill"/><circle cx="15.5" cy="15.5" r="1.4" class="fill"/><circle cx="12" cy="12" r="1.4" class="fill"/></svg>';
 const CAMERA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></svg>';
 const STXT = {
@@ -545,6 +575,21 @@ const STXT = {
   en: { title: "Settings", profile: "Me", name: "Name", newName: "New name", picture: "Picture", photo: "Photo", colour: "Colour", learn: "Learning", curriculum: "Curriculum", cur: { "de-DE": "Germany", "en-GB": "England" }, curNote: "Each curriculum keeps its own progress.", year: "Year", look: "Look", looks: { light: "Light", dark: "Dark", night: "Night" }, lookNote: { light: "Bright and colourful", dark: "Easy on the eyes in the dark", night: "Dark and warm, for the evening" }, sound: "Sound and play", autoAudio: "Read tasks aloud", autoAudioSub: "Every question is read out straight away", autoNext: "Move on by itself", autoNextSub: "3 seconds after a right answer", script: "Handwriting", scriptSub: "How the writing lines look", scripts: { sas: "Schulausgangsschrift", la: "Lateinische Ausgangsschrift", va: "Vereinfachte Ausgangsschrift", grund: "Grundschrift" }, back: "Back" },
 };
 const ST = () => STXT[PL()];
+// The app's own settings rows (app/settings.tsx, entry.settings): sound and feel, notifications, account, storage.
+const STXT2 = {
+  de: { feel: "Töne & Vibration", narration: "Vorlesen", narrationSub: "Liest Fragen und Anleitungen laut vor", sfx: "Soundeffekte", sfxSub: "Spielt Töne beim Tippen, bei Antworten und Belohnungen", vibrate: "Vibration", vibrateSub: "Ein kurzes Brummen beim Tippen und Antworten",
+    notify: "Mitteilungen", remind: "Erinnerungen zum Üben", remindSub: "Ein kleiner Anstupser pro Tag, damit du dranbleibst",
+    account: "Konto", avatar: "Avatar ändern", avatarSub: "Wähle ein neues Bild für dieses Profil", logout: "Abmelden", logoutSub: "Meldet dieses Gerät ab", logoutSure: "Abmelden? Danach musst du den QR-Code noch mal scannen. Tippe nochmal.",
+    storage: "Speicher", clear: "Downloads löschen", clearSub: "Schafft Platz – Lektionen laden beim Öffnen neu", clearSure: "Downloads löschen? Deine Punkte, Abzeichen und dein Fortschritt bleiben. Tippe nochmal.", cleared: "Gelöscht. Lektionen laden beim Öffnen neu.",
+    version: (v) => `Version ${v}` },
+  en: { feel: "Sound & feel", narration: "Narration", narrationSub: "Reads questions and instructions aloud", sfx: "Sound effects", sfxSub: "Plays sounds for taps, answers and rewards", vibrate: "Vibration", vibrateSub: "A small buzz when tapping and answering",
+    notify: "Notifications", remind: "Practice reminders", remindSub: "A daily nudge to keep practising",
+    account: "Account", avatar: "Change avatar", avatarSub: "Pick a new picture for this profile", logout: "Log out", logoutSub: "Signs out of this device", logoutSure: "Log out? You'll need to scan the QR code again to get back in. Tap again.",
+    storage: "Storage", clear: "Clear downloaded content", clearSub: "Frees up space — lessons download again when opened", clearSure: "Clear downloaded content? Your XP, badges and progress stay. Tap again.", cleared: "Cleared. Lessons will download again when you open them.",
+    version: (v) => `Version ${v}` },
+};
+const pref = (k, def) => { try { const v = localStorage.getItem(k); return v == null ? def : v === "1"; } catch { return def; } };
+const setPref = (k, on) => { try { localStorage.setItem(k, on ? "1" : "0"); } catch {} };
 // Move the child to another curriculum: this one's progress is put away, the other's comes back.
 function switchCurriculum(cur) {
   const c = PR.child; if (cur === c.curriculum) return;
@@ -562,13 +607,15 @@ function readPhoto(file, done) {
 }
 function renderSettings() {
   const S = ST(), c = appChild(), scr = $("#screen"), a = c.avatar ?? {}, look = getLook();
+  const S2 = STXT2[PL()];
+  const link = (id, label, sub, cls = "") => `<button class="set-row set-link ${cls}" id="${id}"><span><b>${esc(label)}</b><small>${esc(sub)}</small></span>${cls ? "" : CHEVRON}</button>`;
   const sw = (id, on, label, sub) => `<label class="set-row set-sw"><span><b>${esc(label)}</b><small>${esc(sub)}</small></span><input type="checkbox" role="switch" id="${id}"${on ? " checked" : ""}><i aria-hidden="true"></i></label>`;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home pr-page app-page set-page">
     <header class="pr-band fun-band" style="--c:${ROOM.me};--room:${ROOM.me}"><button class="pr-back" aria-label="${esc(S.back)}">${CHEVRON}</button><h2>${esc(S.title)}</h2></header>
-    <section class="set-me">${avatar(c, "xl")}
+    <section class="set-me"><button class="set-avbtn" aria-expanded="${!!APP.editPic}" aria-controls="setPics" aria-label="${esc(STXT2[PL()].avatar)}">${avatar(c, "xl")}<i>${PENCIL}</i></button>
       <div class="set-name"><label for="setName">${esc(S.name)}</label><span><input id="setName" value="${esc(c.name ?? "")}" maxlength="20" autocomplete="off"><button id="setDice" aria-label="${esc(S.newName)}" title="${esc(S.newName)}">${DICE}</button></span></div></section>
-    <section class="set-card"><h3>${esc(S.picture)}</h3>
+    <section class="set-card" id="setPics"${APP.editPic ? "" : " hidden"}><h3>${esc(S.picture)}</h3>
       <div class="set-avs" role="radiogroup" aria-label="${esc(S.picture)}">${AV_POSES.map((p) => `<button role="radio" aria-checked="${!a.photo && (a.pose ?? "start-1") === p}" data-pose="${p}" style="--av:${esc(a.bg ?? AV_BG[0])}"><img src="${A}mascot/${p}.png" alt=""></button>`).join("")}
         <label class="set-photo${a.photo ? " on" : ""}">${a.photo ? `<img src="${esc(a.photo)}" alt="">` : CAMERA}<span>${esc(S.photo)}</span><input type="file" accept="image/*" id="setPhoto" title="${esc(S.photo)}" aria-label="${esc(S.photo)}"></label></div>
       <div class="set-bgs" role="radiogroup" aria-label="${esc(S.colour)}"${a.photo ? " hidden" : ""}>${AV_BG.map((b) => `<button role="radio" aria-checked="${(a.bg ?? AV_BG[0]) === b}" data-bg="${b}" style="--av:${b}" aria-label="${esc(S.colour)} ${b}"></button>`).join("")}</div></section>
@@ -580,11 +627,18 @@ function renderSettings() {
     <section class="set-card"><h3>${esc(S.look)}</h3>
       <div class="set-looks" role="radiogroup" aria-label="${esc(S.look)}">${LOOKS.map((l) => `<button role="radio" data-look="${l}" aria-checked="${l === look}"><i class="set-mini ${l}"><i></i><i></i><i></i></i><b>${esc(S.looks[l])}</b></button>`).join("")}</div>
       <small class="set-note">${esc(S.lookNote[look])}</small></section>
-    <section class="set-card"><h3>${esc(S.sound)}</h3>
-      ${sw("setAuto", $("#auto")?.checked ?? true, S.autoAudio, S.autoAudioSub)}
+    <section class="set-card"><h3>${esc(S2.feel)}</h3>
+      ${sw("setAuto", $("#auto")?.checked ?? true, S2.narration, S2.narrationSub)}
+      ${sw("setSfx", pref("twist-sfx", true), S2.sfx, S2.sfxSub)}
+      ${sw("setBuzz", pref("twist-vibrate", true), S2.vibrate, S2.vibrateSub)}
       ${sw("setNext", $("#autonext")?.checked ?? true, S.autoNext, S.autoNextSub)}</section>
+    <section class="set-card"><h3>${esc(S2.notify)}</h3>${sw("setRemind", pref("twist-reminders", false), S2.remind, S2.remindSub)}</section>
+    <section class="set-card"><h3>${esc(S2.account)}</h3>
+      ${link("setLogout", S2.logout, S2.logoutSub, "bad")}</section>
+    <section class="set-card"><h3>${esc(S2.storage)}</h3>${link("setClear", S2.clear, S2.clearSub)}</section>
     ${c.curriculum === "de-DE" ? `<section class="set-card"><h3>${esc(S.script)}</h3><small class="set-note">${esc(S.scriptSub)}</small>
       <div class="set-scripts" role="radiogroup" aria-label="${esc(S.script)}">${Object.keys(SCRIPTS).map((k) => `<button role="radio" data-script="${k}" aria-checked="${k === SCRIPT}"><span style="font-family:'${SCRIPTS[k]}'">Hallo ${esc(c.name ?? "Mia")}</span><small>${esc(S.scripts[k])}</small></button>`).join("")}</div></section>` : ""}
+    <footer class="set-foot"><span class="av" style="--av:#6849dd"><img src="${A}mascot/start-1.png" alt=""></span><b>Twist</b><small>${esc(S2.version(D.built))}</small></footer>
   </div>`;
   scr.appendChild(appTabs("me"));
   const save = () => { saveChild(); renderSettings(); renderPracticeSide(); };
@@ -600,6 +654,15 @@ function renderSettings() {
   scr.querySelectorAll("[data-look]").forEach((b) => b.onclick = () => { setLook(b.dataset.look); renderSettings(); });
   const mirror = (id, to) => $("#" + id, scr).onchange = (e) => { const t = $("#" + to); if (t) { t.checked = e.target.checked; t.dispatchEvent(new Event("change")); } };
   mirror("setAuto", "auto"); mirror("setNext", "autonext");
+  $("#setSfx", scr).onchange = (e) => { setPref("twist-sfx", e.target.checked); sfx("option-picked"); };
+  $("#setBuzz", scr).onchange = (e) => { setPref("twist-vibrate", e.target.checked); buzz(30); };
+  $("#setRemind", scr).onchange = (e) => setPref("twist-reminders", e.target.checked);
+  // The pictures open from the pencil on the picture at the top, and stay open while one is chosen.
+  $(".set-avbtn", scr).onclick = (e) => { APP.editPic = !APP.editPic; e.currentTarget.setAttribute("aria-expanded", APP.editPic); $("#setPics", scr).hidden = !APP.editPic; };
+  // Two taps for the ones that can't be undone; in the preview, logging out shows the app opening again.
+  const twice = (id, sure, done) => { const b = $("#" + id, scr), small = $("small", b); b.onclick = () => { if (!b.classList.contains("sure")) { b.classList.add("sure"); small.textContent = sure; return; } done(b, small); }; };
+  twice("setLogout", S2.logoutSure, () => splash(() => appTab("start")));
+  twice("setClear", S2.clearSure, (b, small) => { b.classList.remove("sure"); small.textContent = S2.cleared; b.onclick = null; });
   scr.querySelectorAll("[data-script]").forEach((b) => b.onclick = () => {
     // The same choice as the player's Settings: the lesson draws its writing lines in it next time.
     SCRIPT = b.dataset.script; try { localStorage.setItem("twist-script", SCRIPT); } catch {}

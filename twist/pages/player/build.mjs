@@ -25,7 +25,7 @@ const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return
 
 // Must match READ_MATHS in narration.py.
 const READ_MATHS = {
-  de: [[" = ?", " gleich wie viel?"], [" < ", " ist kleiner als "], [" > ", " ist größer als "], [" + ", " plus "], [" − ", " minus "], [" = ", " gleich "], ["_", "wie viel"], [" → ", ", dann "]],
+  de: [[" · ", " mal "], [" = ?", " gleich wie viel?"], [" < ", " ist kleiner als "], [" > ", " ist größer als "], [" + ", " plus "], [" − ", " minus "], [" = ", " gleich "], ["_", "wie viel"], [" → ", ", dann "]],
   en: [[" = ?", " equals what?"], [" < ", " is less than "], [" > ", " is greater than "], [" + ", " plus "], [" − ", " minus "], [" = ", " equals "], ["_", "what"], [" → ", ", then "]],
 };
 // German numbers are spoken as words; must match say_numbers_de() in narration.py.
@@ -60,7 +60,11 @@ const saySymbolsEn = (t) => VULGAR_EN.reduce((s, [a, b]) => s.split(a).join(b), 
   .split(" × ").join(" times ").split(" ÷ ").join(" divided by ")
   .replace(/(\d) : (\d)/g, "$1 to $2").replace(/(\d) r (\d)/g, "$1 remainder $2")
   .replace(/−(?=\d)/g, "negative ");
-const spoken = (text, lang) => { let t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), String(text).trim());
+// A sign on its own (an answer option, + or −) is said as its word. Must match spoken() in narration.py.
+const LONE_SIGN = { "+": "plus", "−": "minus" };
+// A lesson's goal is spoken after this, in one clip; narration.py (GOAL_INTRO) says the same.
+const GOAL_INTRO = { de: "Das ist heute dein Ziel.", en: "Here's your goal for today.", fr: "Voici ton objectif pour aujourd'hui." };
+const spoken = (text, lang) => { const s = String(text).trim(); let t = (READ_MATHS[lang] ?? []).reduce((t, [a, b]) => t.split(a).join(b), ["de", "en"].includes(lang) ? LONE_SIGN[s] ?? s : s);
   if (lang === "en") t = saySymbolsEn(t);
   if (lang === "de") t = sayNumbersDe(sayMoneyDe(VULGAR_DE.reduce((s, [a, b]) => s.split(a).join(b), t))).replace(/\beins (Euro|Cent)\b/g, "ein $1");
   return t; };
@@ -72,7 +76,8 @@ const lines = existsSync(join(T, "assets/narration/lines.yaml")) ? read("assets/
 // match voice_for() in narration.py.
 let CUR = null;
 const vcfg = (cur) => voices.curricula?.[cur] ?? voices;
-const voiceFor = (activity, phrase, speaker) => { const c = vcfg(CUR), a = c.assign ?? {}; return speaker ? c.speakers[speaker] : (phrase && a[`phrases.${phrase}`]) || a[activity] || c.chosen; };
+// A line in a language with its own voices (language_voices) goes to that language's voice in the same role.
+const voiceFor = (activity, phrase, speaker, lang) => { const c = vcfg(CUR), a = c.assign ?? {}, v = speaker ? c.speakers[speaker] : (phrase && a[`phrases.${phrase}`]) || a[activity] || c.chosen; return voices.language_voices?.[lang]?.[v] ?? v; };
 const curForLang = (lang) => Object.entries(voices.curricula ?? {}).find(([, c]) => c.language === lang)?.[0] ?? null;
 const problems = [];
 let clips = 0, missingFiles = 0;
@@ -81,7 +86,7 @@ function clip(lang, text, activity, phrase, where, speaker) {
   if (!text) return null;
   const t = spoken(text, lang), id = lineId(lang, t);
   if (!lines[id]) problems.push(`${where}: no narration line for "${t}" (run twist/assets/tools/narration.py --list and a voice)`);
-  const f = `narration/${voiceFor(activity, phrase, speaker)}/${id}.mp3`;
+  const f = `narration/${voiceFor(activity, phrase, speaker, lang)}/${id}.mp3`;
   clips++;
   if (!existsSync(join(T, "assets", f))) missingFiles++;
   return f;
@@ -142,6 +147,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
   CUR = d.curriculum;
   for (const l of d.lessons) {
     l._title = clip(lang, l.title[lang], null, null, `${rel} lesson ${l.n}`);
+    l._goal = l.goal?.[lang] ? clip(lang, `${GOAL_INTRO[lang]} ${l.goal[lang]}`, null, null, `${rel} lesson ${l.n} goal`) : null;
     for (const a of l.activities) {
       for (const s of a.screens ?? []) {
         s._audio = sayClips(s.say ?? s.text, lang, "learn", `${rel} lesson ${l.n} learn`);
@@ -214,7 +220,7 @@ const drillClip = (b, it) => {
   const dom = b.skill.split(".")[0], lang = it.lang ?? { "lit-de": "de", "lit-en": "en" }[dom];
   if (it.word == null || !lang || !(b.formats ?? []).some((f) => f === "say" || f === "listen")) return null;
   CUR = { de: "de-DE", fr: "en-GB" }[lang] ?? (dom === "lit-en" ? "en-GB" : "de-DE");
-  const t = spoken(String(it.word), lang), id = lineId(lang, t), f = `narration/${voiceFor("practise")}/${id}.mp3`;
+  const t = spoken(String(it.word), lang), id = lineId(lang, t), f = `narration/${voiceFor("practise", null, null, lang)}/${id}.mp3`;
   return lines[id] && existsSync(join(T, "assets", f)) ? f : null;
 };
 for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
@@ -224,8 +230,8 @@ for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
 }
 const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
 const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");
-const ui = ["practice-ui.js", "app-ui.js", "parents-ui.js"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n");
-const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => ["practice.css", "app.css", "parents.css"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
+const ui = ["practice-ui.js", "app-ui.js", "parents-ui.js", "anim-ui.js", "side-ui.js"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n");
+const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => ["practice.css", "app.css", "parents.css", "anim.css"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
 writeFileSync(draft ?? join(HERE, "index.html"), html);
 if (draft) { writeFileSync(draft, html.replace('"assets":"../../assets/"', `"assets":${JSON.stringify("file://" + join(HERE, "../../assets") + "/")}`)); }
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);

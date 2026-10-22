@@ -5,6 +5,9 @@
 .app-tabs button { display: grid; justify-items: center; gap: 2px; padding: 6px 0; border: 0; background: none; color: #8d86a0; font: 700 12px "Red Hat Text", sans-serif; cursor: pointer; border-radius: 14px; }
 .app-tabs svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
 .app-tabs svg .fill { fill: currentColor; }
+.app-tabs img { width: 26px; height: 26px; object-fit: contain; opacity: .5; }
+.app-tabs img.tab-start { width: 30px; height: 30px; margin-top: -2px; margin-bottom: -2px; }
+.app-tabs [aria-current="page"] img { opacity: 1; }
 .app-tabs [aria-current="page"] { color: var(--link); }
 .app-tabs [aria-current="page"] svg { fill: var(--tint); }
 .app-tabs button:focus-visible { outline: 3px solid #6849dd; outline-offset: -3px; }
@@ -204,7 +207,7 @@ div.ln-next { cursor: default; }
   /* Tabs: the pill grows into place; the icon lifts. */
   .app-tabs button { transition: background .2s, color .2s, box-shadow .2s, transform .12s; }
   .app-tabs [aria-current="page"] { animation: app-pill 260ms cubic-bezier(.2, .8, .2, 1); }
-  .app-tabs [aria-current="page"] svg { animation: app-lift 360ms cubic-bezier(.3, 1.6, .5, 1); }
+  .app-tabs [aria-current="page"] :is(svg, img) { animation: app-lift 360ms cubic-bezier(.3, 1.6, .5, 1); }
   /* Anything tapped presses down a little. */
   .pr-hero, .pr-mini, .pr-own, .pr-subj, .dr-card, .ln-lessons button, .st-topics button, .ln-subj button, .pr-chips button, .pr-kinds button, .me-tiles > button, .me-recs button, .me-subj > button, .pr-ex button, .dm-c, .app-flame, .pr-bee { transition: transform .12s, box-shadow .12s, background .2s, border-color .2s, color .2s; }
   .pr-hero:active, .pr-mini:active, .pr-own:active, .dr-card:active, .ln-lessons button:active, .st-topics button:active, .pr-chips button:active, .pr-kinds button:active, .me-tiles > button:active, .me-recs button:active, .me-subj > button:active, .pr-ex button:active, .dm-c:active, .app-flame:active, .pr-bee:active { transform: scale(.97); }
@@ -516,7 +519,7 @@ div.ln-next { cursor: default; }
 .tr-stat { display: flex; align-items: center; gap: 4px; padding: 6px 8px; border-radius: 12px; font: 800 15px "Red Hat Display", sans-serif; color: var(--plum); cursor: pointer; }
 .tr-stat img { width: 24px; height: 24px; }
 .tr-stat i { font-style: normal; font-size: 20px; color: #f5b400; line-height: 1; }
-.french { filter: hue-rotate(38deg) saturate(1.1); }
+.tr-path.french :is(.tr-stone img, .tr-island, .tr-skate canvas) { filter: hue-rotate(38deg) saturate(1.1); }
 .tr-menu { position: absolute; top: 108px; left: 16px; z-index: 30; display: grid; gap: 4px; min-width: 200px; padding: 6px; border-radius: 16px; background: var(--card); border: 2px solid var(--edge-c); box-shadow: 0 12px 30px -8px rgba(43, 15, 69, .35); }
 .tr-menu button { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0; border-radius: 12px; background: none; font: 800 15px "Red Hat Display", sans-serif; color: var(--plum); text-align: left; cursor: pointer; }
 .tr-menu button img { width: 30px; height: 26px; }
@@ -541,7 +544,7 @@ div.ln-next { cursor: default; }
 .tr-stone:focus-visible { outline: 3px solid var(--route); outline-offset: 4px; border-radius: 16px; }
 .tr-mascot { position: absolute; cursor: pointer; z-index: 2; }
 /* The lesson card over a stone: the subject's gradient, title, minutes and the button. */
-.tr-tip { position: absolute; left: 50%; z-index: 5; width: min(300px, 86%); display: grid; gap: 10px; justify-items: start; padding: 16px 22px 20px; border-radius: 14px; color: #fff; background: linear-gradient(var(--g1), var(--g2)); box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
+.tr-tip { position: absolute; left: 50%; z-index: 7; width: min(300px, 86%); display: grid; gap: 10px; justify-items: start; padding: 16px 22px 20px; border-radius: 14px; color: #fff; background: linear-gradient(var(--g1), var(--g2)); box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
 .tr-tip[hidden] { display: none; }
 .tr-tip.up { transform: translate(-50%, -100%); }
 .tr-tip.down { transform: translateX(-50%); }
@@ -674,3 +677,42 @@ div.ln-next { cursor: default; }
 /* A long badge name ("Elefantengedächtnis") hyphenates instead of widening its column. */
 .bd { min-width: 0; }
 .bd b { overflow-wrap: anywhere; hyphens: auto; }
+
+/* The track's popover, short: the meter and where the child is on one line; the lessons open from a list button beside Start. */
+.tr-tip { gap: 8px; padding: 13px 14px 14px; }
+.tr-tip > b { font-size: 16.5px; line-height: 22px; }
+.tr-row { display: flex; align-items: center; gap: 10px; justify-self: stretch; }
+.tr-row .tr-meter { flex: 1; min-width: 40px; }
+.tr-row .tr-meta { flex: none; margin: 0; font-size: 12.5px; }
+.tr-actions { display: grid; grid-template-columns: 1fr 46px; gap: 8px; justify-self: stretch; margin-top: 2px; }
+.tr-tip .tr-actions .tr-go { margin: 0; padding: 11px; font-size: 13.5px; }
+.tr-tip .tr-actions .tr-more { justify-self: stretch; display: grid; place-items: center; padding: 0; border-radius: 12px; background: rgba(255, 255, 255, .2); color: #fff; text-decoration: none; }
+.tr-tip .tr-actions .tr-more svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+.tr-tip .tr-actions .tr-more svg .f { fill: currentColor; stroke: none; }
+.tr-tip .tr-actions .tr-more[aria-expanded="true"] { background: #fff; color: var(--g2); }
+
+/* Settings: the app's link rows (avatar, log out, downloads) and the footer. */
+.set-link { width: 100%; padding: 8px 0; border: 0; border-top: 1px solid var(--edge-c); background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.set-card > .set-link:first-of-type { border-top: 0; padding-top: 0; }
+.set-link span { display: grid; gap: 1px; }
+.set-link small { font-size: 12.5px; color: var(--soft); }
+.set-link .chev { width: 18px; height: 18px; color: var(--soft); flex: none; }
+.set-link.bad b { color: var(--bad); }
+.set-link.sure small { color: var(--bad); font-weight: 700; }
+.set-foot { display: grid; justify-items: center; gap: 2px; padding: 10px 0 6px; color: var(--soft); }
+.set-foot .av { width: 44px; height: 44px; box-shadow: none; margin-bottom: 4px; }
+.set-foot b { font: 800 16px "Red Hat Display", sans-serif; color: var(--plum); }
+.set-foot small { font-size: 12.5px; font-weight: 600; }
+/* Start: the lesson card's label, with a tick when a lesson is already done today. */
+.hm-step:has(.hm-tick) { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.hm-tick { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px 3px 6px; border-radius: 99px; background: var(--good-soft); color: var(--good-ink); font: 700 12.5px "Red Hat Text", sans-serif; font-style: normal; }
+.hm-tick svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+/* Settings: the picture at the top, a pencil on it opens the pictures. */
+.set-avbtn { position: relative; padding: 0; border: 0; background: none; border-radius: 50%; cursor: pointer; }
+.set-avbtn i { position: absolute; right: -2px; bottom: 2px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #6849dd; color: #fff; box-shadow: 0 0 0 4px var(--card); }
+.set-avbtn i svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.set-avbtn[aria-expanded="true"] i { background: var(--plum); }
+.set-avbtn:focus-visible { outline: 3px solid #6849dd; outline-offset: 4px; }
+#setPics[hidden] { display: none; }
+.tr-stone.open { opacity: .75; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .app-tabs img { opacity: .8; }

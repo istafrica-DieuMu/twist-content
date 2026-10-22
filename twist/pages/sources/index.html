@@ -130,7 +130,7 @@ file    = narration/&lt;voice&gt;/&lt;line-id&gt;.mp3</code></pre>
 <tr><td>Subject</td><td>Mathe, Deutsch, Englisch, Maths, English, French, in the subject's colour</td><td><code>subjectId</code>; name from <code>Subject.name</code>; colour <span class="tag t-add">add</span> to <code>config.colours</code> by subject</td><td>The set id's second part (<code>de-DE.<b>math</b>.table-7</code>). Colours today in the player: maths <code>#0E8654</code>, Deutsch <code>#C44D00</code>, English and Englisch <code>#1971C0</code>, French <code>#6849dd</code></td><td><span class="tag t-in">in v2</span></td></tr>
 <tr><td>Lesson title</td><td>Big, under the subject</td><td><code>lesson.title</code>, spoken <code>lesson.titleAudio</code></td><td>Lesson <code>title[lang]</code>; clip of that title in the lesson voice</td><td><span class="tag t-in">in v2</span></td></tr>
 <tr><td>Lesson dots</td><td>One dot per lesson of the set: done, today, to come</td><td><code>lessonNumber</code>, <code>lessonCount</code></td><td>Position in the set's <code>lessons[]</code>; done comes from progress</td><td><span class="tag t-calc">app works it out</span></td></tr>
-<tr><td>Goal (Mein Ziel / My goal)</td><td>The "I can" sentence</td><td><code>lesson.canDo</code></td><td>The skill's <code>can_do[lang]</code> in <code>competencies/&lt;domain&gt;/*.yaml</code>, found by the set's <code>skill</code> id. <b>Not</b> the set's <code>summary</code>, which no screen shows</td><td><span class="tag t-in">in v2</span></td></tr>
+<tr><td>Goal (Ziel / Goal)</td><td>What this lesson is for, in a child's words</td><td><code>lesson.goal</code></td><td>The lesson's own <code>lessons[].goal[lang]</code> in the lesson file, written by hand from the skill's <code>can_do</code> but never copied or built from it. <b>Not</b> the set's <code>summary</code>, which no screen shows</td><td><span class="tag t-add">add to v2</span></td></tr>
 <tr><td>Main button</td><td>Los geht's / Start</td><td>App strings</td><td>UI text in the lesson's <code>language</code>, not the device's</td><td><span class="tag t-calc">app</span></td></tr>
 </table></div>
 
@@ -209,7 +209,7 @@ file    = narration/&lt;voice&gt;/&lt;line-id&gt;.mp3</code></pre>
 <p>These keys are in every lesson file but drive no text on screen. Some steer what the backend picks; the rest are for authors and the build.</p>
 <div class="tw"><table>
 <tr><th>Key</th><th>Used for</th><th>Who needs it</th></tr>
-<tr><td><code>summary</code></td><td>What the set teaches, lesson by lesson, for authors and reviewers. The goal on screen comes from the skill's <code>can_do</code></td><td>Nobody at runtime</td></tr>
+<tr><td><code>summary</code></td><td>What the set teaches, lesson by lesson, for authors and reviewers. The goal on screen is each lesson's own <code>goal</code></td><td>Nobody at runtime</td></tr>
 <tr><td><code>metadata.parts</code>, a check's <code>draw</code>, a task's <code>part</code></td><td>Which 5 of a 20-task pool an attempt shows (<code>drawCheck</code>, one task of every part)</td><td>Backend</td></tr>
 <tr><td><code>metadata.builds_on</code>, <code>also_practises</code></td><td>Warm-up recaps and practice sessions pick earlier skills</td><td>Backend</td></tr>
 <tr><td><code>metadata.ages</code></td><td>Age band: recap gaps, skill-check pass mark, draw 4 or 5</td><td>Backend</td></tr>
@@ -235,7 +235,7 @@ file    = narration/&lt;voice&gt;/&lt;line-id&gt;.mp3</code></pre>
 <h3>What today's app does with these fields</h3>
 <p>From ist-schoolido (read on 19 Oct 2026). These are the places where the current app would lose something a Twist screen needs.</p>
 <ul>
-<li><b>The goal is never shown.</b> The module's learning objective is read into <code>module_metadata.description</code> and no screen uses it; Twist shows <code>canDo</code> on every lesson start.</li>
+<li><b>The goal is never shown.</b> The module's learning objective is read into <code>module_metadata.description</code> and no screen uses it; Twist shows each lesson's <code>goal</code> on its start screen.</li>
 <li><b>Hint audio never plays</b> and <b>feedback audio is dropped</b> in the adapter; every Twist hint and feedback line has a clip.</li>
 <li><b>UI text is hard-coded English</b> ("ANSWER", "CONTINUE", "TRY AGAIN", "HINT n OF m") with no localisation; Twist lessons run in German or English by the lesson's <code>language</code>.</li>
 <li><b>Mascots are bundled</b> in the app (<code>assets/images/states/</code>); Twist has 21 screen poses and 24 topic poses.</li>
