@@ -280,8 +280,9 @@ svg text{font-family:Andika,sans-serif}
 .lm-badges span{padding:6px 12px;border-radius:8px;font:800 12px/16px "Red Hat Display",sans-serif;letter-spacing:.06em;text-transform:uppercase}
 .b-cyan{background:#5CEFFF;color:#1D2D37}.b-purple{background:#BAA8FF;color:#221E30}.b-green{background:#9EFFA1;color:#1C361D}
 .lm-goal{margin-top:16px;max-width:none}
-.lm-sheet h4{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--edge-c);font:700 18px/1.4 "Red Hat Display",sans-serif;color:var(--text)}
-.lm-sound{display:flex;align-items:center;gap:10px;margin-top:16px;font:500 17px/1.4 "Red Hat Text",sans-serif;cursor:pointer}
+.lm-sheet h4{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--edge-c);font:700 15px/1.4 "Red Hat Display",sans-serif;color:var(--text)}
+.lm-sheet h4.lm-set{margin-top:18px;padding-top:0;border-top:0}
+.lm-sound{display:flex;align-items:center;gap:10px;margin-top:8px;font:500 17px/1.4 "Red Hat Text",sans-serif;cursor:pointer}
 .lm-sound span{flex:1}.lm-sound input{position:absolute;opacity:0;pointer-events:none}
 .lm-sound .x{display:none}.lm-sheet.muted .lm-sound .x{display:inline}.lm-sheet.muted .lm-sound .w{display:none}
 .lm-switch{position:relative;width:51px;height:31px;border-radius:16px;background:#888;transition:background .2s;flex:none}
@@ -475,6 +476,14 @@ button.goal{display:block;width:100%;text-align:left;cursor:pointer;font-family:
 .apath li.sep.done{background:var(--subj)}
 .apath li{flex:none;white-space:nowrap}
 .apath li.now b{display:inline-block;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;font-size:13px;line-height:34px}
+.apath.mini{margin:0;gap:3px;min-width:0}
+.apath.mini li{height:28px;border-radius:14px;flex-wrap:nowrap}
+.apath.mini li span{width:28px;height:28px;border-width:2px}
+.apath.mini li svg{width:15px;height:15px}
+.apath.mini li.now{padding-right:10px;gap:6px;min-width:0;flex:0 1 auto}
+.apath.mini li.now b{display:grid;line-height:1.1;font-size:13px;max-width:118px}
+.apath.mini li.now b small{font:600 10.5px "Red Hat Text",sans-serif;opacity:.8;overflow:hidden;text-overflow:ellipsis}
+.apath.mini li.sep{width:8px;height:2px;align-self:center}
 .stagebox{position:relative;width:230px;height:230px;display:grid;place-items:center;margin-top:auto}
 .stagebox .disc{position:absolute;inset:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--subj) 22%,var(--card)),color-mix(in srgb,var(--subj) 40%,var(--card)));animation:discIn .5s cubic-bezier(.2,.9,.3,1.3) both}
 .stagebox img.mascot-pose{position:relative;width:200px;height:200px;animation:poseIn .6s .12s cubic-bezier(.3,1.5,.5,1) both}
@@ -580,13 +589,13 @@ const NAMES = { de: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Ü
 const TXT = {
   de: { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde",
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
-    score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
+    checkShort: "Check", score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
     counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
     speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
     introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:", fillGap: "Was fehlt?", planBack: "hinten", planFront: "vorne", listen: "Anhören", pause: "Pause", resume: "Weiter hören" },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
-    score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
+    checkShort: "Check", score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
     counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
     speakNote: "Tap the microphone and speak.", goal: "Goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
     introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:", fillGap: "What is missing?", planBack: "back", planFront: "front", listen: "Listen", pause: "Pause", resume: "Play on" },
@@ -618,7 +627,9 @@ function play(srcs, done, btn) {
   };
   next();
 }
-function stopAudio() { qToken++; player.pause(); queue = []; setOwner(null); }
+// Stops everything the lesson says: the clip queue, a word read by the browser's
+// own voice (drills), and a speak task's own recording. Leaving a lesson calls it.
+function stopAudio() { qToken++; player.pause(); queue = []; setOwner(null); try { speechSynthesis.cancel(); } catch {} stopAudio.extra?.(); }
 const auto = () => document.getElementById("auto").checked;
 const autoNext = () => document.getElementById("autonext").checked;
 // A speaker button. A pausable one (Learn, the question, feedback lines)
@@ -707,7 +718,7 @@ function frameUI(step) {
   const title = step.a ? escH(actName(step.a)) + `<span class="sub">${esc(sub)}</span>` : step.kind === "start" ? escH(set.title[lang()] ?? set.title.de) : escH(lesson.title[lang()] ?? lesson.title.de);
   scr.style.setProperty("--subj", SUBJ_COLOUR[subjOf(set)] ?? "#6849dd"); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="hdr"><button class="ib menu" aria-label="Lesson menu">${ICON.list}</button>
-    <div class="stepb">${n ? `<span class="badge-n"><b>${n}</b></span>` : ""}<span class="st">${title}</span></div>
+    <div class="stepb">${step.a ? actPath(step, true) : `<span class="st">${title}</span>`}</div>
     <button class="ib x" aria-label="Close">${ICON.close}</button></div>
     ${pbar(steps.flatMap((s, i) => s.kind === "task" || s.kind === "learn" ? [i] : []), (i) => results[i])}`;
   // A lesson closes back to the Study tab, as in the app.
@@ -766,7 +777,8 @@ function lessonMenu(scr) {
     <h3>${escH(set.title[lang()] ?? set.title.de)}</h3>
     <div class="lm-badges"><span class="b-cyan">${esc(M.min(set.minutes ?? 10))}</span><span class="b-purple">${esc(UI.lessonOf(k, set.lessons.length).toUpperCase())}</span><span class="b-green">${esc(M.tasks(tasks))}</span></div>
     ${goal ? `<button class="goal lm-goal" type="button"><span class="gl">${esc(UI.goal)}</span>${escH(goal)}</button>` : ""}
-    <label class="lm-sound" aria-label="${esc(M.settings)}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path class="x" d="M17 10l4 4M21 10l-4 4"/></svg><span></span><input type="checkbox" role="switch"><i class="lm-switch"></i></label>
+    <h4 class="lm-set">${esc(M.settings)}</h4>
+    <label class="lm-sound"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path class="x" d="M17 10l4 4M21 10l-4 4"/></svg><span></span><input type="checkbox" role="switch"><i class="lm-switch"></i></label>
     <h4>${esc(M.journey)}</h4>
     <div class="lm-list">${acts.map(row).join("")}</div>`;
   scr.append(scrim, m);
@@ -786,7 +798,8 @@ function lessonMenu(scr) {
 // Subject colours from the app (constants/subjects.ts): maths green, English blue, German orange.
 const SUBJ_COLOUR = { "de-DE.math": "#0E8654", "en-GB.math": "#0E8654", "de-DE.lit-de": "#C44D00", "en-GB.lit-en": "#1971C0", "de-DE.fl": "#1971C0", "en-GB.fl": "#6849dd" };
 const ICON = {
-  list: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="#303030"/><circle cx="3.5" cy="12" r="1" fill="#303030"/><circle cx="3.5" cy="18" r="1" fill="#303030"/></svg>',
+  // The lesson menu: a winding path from a start dot to a flag, the learning journey.
+  list: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.2" fill="currentColor"/><path d="M7.5 5h8a3.5 3.5 0 0 1 0 7h-8a3.5 3.5 0 0 0 0 7h7.5" stroke-dasharray="0.01 3.4"/><path d="M18.5 15.5V22M18.5 15.5h3.7l-1.2 1.6 1.2 1.6h-3.7"/></svg>',
   close: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   check: '<svg viewBox="0 0 24 24" width="30" height="30"><circle cx="12" cy="12" r="11" fill="#46972e"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   cross: '<svg viewBox="0 0 24 24" width="30" height="30"><circle cx="12" cy="12" r="11" fill="#524682"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
@@ -826,9 +839,12 @@ const ACT_ICON = {
   check: '<path d="M12 3l2.6 5.6 6 .6-4.5 4 1.3 6L12 16.2 6.6 19.2l1.3-6-4.5-4 6-.6z"/>',
 };
 const actIcon = (a) => `<svg viewBox="0 0 24 24" aria-hidden="true">${ACT_ICON[a] ?? ""}</svg>`;
-function actPath(step) {
+// The lesson's activities as a path: done ones ticked, the current one a pill with
+// its name, the rest waiting. It sits in the header.
+function actPath(step, mini) {
   const acts = lesson.activities, cur = acts.indexOf(step.a);
-  return `<ol class="apath" aria-label="${esc(lesson.title[lang()] ?? "")}">${acts.map((a, i) => `${i ? `<li class="sep${i <= cur ? " done" : ""}" aria-hidden="true"></li>` : ""}<li class="${i < cur ? "done" : i === cur ? "now" : ""}"><span>${i < cur ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : actIcon(a.activity)}</span>${i === cur ? `<b>${esc(actName(a))}</b>` : ""}</li>`).join("")}</ol>`;
+  const stage = step.a?.activity === "practise" ? { full: UI.stFull, some: UI.stSome, none: UI.stNone }[step.a.stages[step.si ?? 0]?.support] : "";
+  return `<ol class="apath${mini ? " mini" : ""}" aria-label="${esc(actName(step.a))}${stage ? `, ${esc(stage)}` : ""}">${acts.map((a, i) => `${i ? `<li class="sep${i <= cur ? " done" : ""}" aria-hidden="true"></li>` : ""}<li class="${i < cur ? "done" : i === cur ? "now" : ""}"><span>${i < cur ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : actIcon(a.activity)}</span>${i === cur ? `<b>${esc(mini && a.activity === "check" ? UI.checkShort : actName(a))}</b>` : ""}</li>`).join("")}</ol>`;
 }
 function helpLevels(a, now) {
   const labels = { full: UI.stFull, some: UI.stSome, none: UI.stNone };
@@ -836,7 +852,7 @@ function helpLevels(a, now) {
 }
 function actScreen(step, { pose, title, phrase: ph, card }) {
   const { body, foot } = frameUI(step);
-  body.innerHTML = `<div class="actin">${actPath(step)}<div class="stagebox"><div class="disc"></div><div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div>${pose}</div>
+  body.innerHTML = `<div class="actin"><div class="stagebox"><div class="disc"></div><div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div>${pose}</div>
     <h2 class="a-act">${escH(title)}</h2>${ph ? `<p class="a-phrase">${escH(ph)}</p>` : ""}${card ? `<div class="nextcard">${card}</div>` : ""}</div>`;
   fitHead(body.querySelector(".a-act"));
   nextBtn(foot);
@@ -1323,7 +1339,7 @@ const TYPES = {
     const n = document.createElement("div"); n.className = "note big"; n.textContent = UI.speakNote; body.appendChild(n);
     const row = document.createElement("div"); row.className = "speakrow"; body.appendChild(row);
     let rec = null, url = null;
-    const mine = new Audio();
+    const mine = new Audio(); stopAudio.extra = () => mine.pause();
     const compare = () => {
       foot.innerHTML = ""; row.innerHTML = ""; mic.hidden = true;
       const chip = (label, onPlay) => { const c = document.createElement("button"); c.className = "spkchip"; c.innerHTML = SPK + `<span>${esc(label)}</span>`; c.onclick = onPlay; row.appendChild(c); return c; };
@@ -1598,7 +1614,7 @@ const SCREENS = [
 const PARTS = [
   ["*", ".hdr .menu", "Lesson menu button", "Opens the lesson menu: every activity of the lesson."],
   ["*", ".badge-n", "Activity badge", "The activity's number in the lesson (1 to 4), in the subject colour."],
-  ["*", ".stepb .st", "Activity title", "The activity's name, with the Practise stage (with help, less help, on your own)."],
+  ["*", ".stepb .apath", "Activity path", "The lesson's activities: done ones ticked, the current one named (with the Practise stage), the rest waiting."],
   ["*", ".hdr .x", "Close", "Leaves the lesson (here: back to the start)."],
   ["*", ".pbar", "Progress bar", "A segment per Learn screen and task; a task turns green when right first time, red as soon as it is answered wrong."],
   ["*", ".foot .btn", "Main button", "Continue, Check, Try again; the label follows the screen."],

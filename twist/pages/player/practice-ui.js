@@ -331,9 +331,10 @@ function showPracticeStep(i) {
 // Say a drill word a moment after its screen settles: its recorded clip when
 // there is one, else the browser's clearest voice for its language, a little slower.
 function sayDrill(t, delay = 600) {
-  const step = steps[at];
+  // The word comes a moment later; not if the child has moved on or left meanwhile (stopAudio).
+  const step = steps[at], tok = qToken;
   setTimeout(() => {
-    if (steps[at] !== step) return;
+    if (steps[at] !== step || tok !== qToken || !PR.on) return;
     if (t._clip) return play(t._clip);
     if (!("speechSynthesis" in window)) return;
     const tl = t._sayLang ?? set.target_language ?? set.language, code = { de: "de-DE", en: "en-GB", fr: "fr-FR" }[tl] ?? tl;
@@ -360,6 +361,7 @@ function practiceFrame(step) {
 }
 
 function endSession(early) {
+  stopAudio();
   const answered = PR.items.map((_, i) => PR.res[i]).filter(Boolean).length;
   if (answered && !PR.applied) applySession(PR.child, { ...PR.session, items: PR.items.slice(0, PR.res.length) }, PR.res, false);
   saveChild();

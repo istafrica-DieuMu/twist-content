@@ -63,7 +63,8 @@ const inPractice = () => document.body.classList.contains("practice");
 function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
-  if (t === "study") { if (!keep) APP.units = false; if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.home = "study"; APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
+  // Study is marked open before the view changes, so the lesson view coming back draws (and says) nothing.
+  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
   if (t === "settings") APP.editPic = false;
@@ -100,7 +101,8 @@ const appSubjects = () => PR.index.subjects.filter((x) => yearsOf(x).length);
 function startLesson(setId, n) {
   stopAudio();
   loadingBooks(1400, () => {
-    if (inPractice()) setView("lessons");
+    // Held as Study while the view changes, so the last lesson does not flash up (or speak) first.
+    APP.home = "study"; if (inPractice()) setView("lessons");
     APP.home = null; APP.fromApp = true;
     pickSet(D.sets.findIndex((s) => s.id === setId), n);
   });
