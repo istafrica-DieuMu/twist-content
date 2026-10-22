@@ -70,6 +70,11 @@ body.types .drawer,body.types .wrap,body.types .pickbtn,body.types .now,body.dra
 .steps li{padding:5px 8px;border-radius:8px;cursor:pointer;display:flex;gap:6px}
 .steps li:hover{background:var(--accent-soft);color:var(--plum)}
 .steps li.on{background:#6849dd;color:#fff}
+/* The whole panel scrolls, so an open file box never squeezes the steps. */
+.side{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.side>*{flex-shrink:0}
+.side .steps{flex:none;overflow:visible}
+body .side #practiceSide{overflow:visible;flex:none}
 .steps .grp{font-weight:700;margin-top:8px;cursor:default;background:none!important;color:var(--muted)!important}
 .recd{border-top:1px solid var(--line);margin-top:8px;padding-top:8px}
 .recd summary{font-size:12px;color:var(--muted);cursor:pointer;padding:0 8px}
@@ -1498,9 +1503,9 @@ function sidebar() {
   });
   const s = steps[at], rec = s.t ?? s.s ?? (s.kind === "start" ? { lesson: lesson.n, title: lesson.title, activities: lesson.activities.map((a) => a.activity) } : s.st ? { stage: s.st.support, setting: s.st.setting } : { kind: s.kind });
   $("#rec").textContent = JSON.stringify(rec, (k, v) => k.startsWith("_") && k !== "_audio" ? undefined : v, 2);
-  // Keep the current step in view inside the desktop panel; never scroll the page.
-  const li = ul.querySelector(".on");
-  if (li) ul.scrollTop = Math.max(0, li.offsetTop - ul.offsetTop - ul.clientHeight / 2);
+  // Keep the current step in view inside the panel, only when it is out of sight; never scroll the page.
+  const li = ul.querySelector(".on"), side = ul.closest(".side");
+  if (li && side) { const top = li.getBoundingClientRect().top - side.getBoundingClientRect().top; if (top < 40 || top > side.clientHeight - 40) side.scrollTop += top - side.clientHeight / 2; }
 }
 function pickSet(i, n) {
   set = D.sets[i];
