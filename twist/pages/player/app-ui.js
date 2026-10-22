@@ -166,9 +166,9 @@ function subjectRow(skip) {
   const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
     const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
     const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
-    return `<button class="hm-card" data-start="${esc(s.id)}" data-n="${l.n}" style="--c:${colourOf(subj)}">
+    return `<div class="hm-card" role="group" style="--c:${colourOf(subj)}">
       <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, sets.length))}</span><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b><small>${esc(s.title[lg] ?? s.title.de)}</small>
-      <span class="hm-card-go">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></span><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`;
+      <button class="hm-card-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></button><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
   }).filter(Boolean);
   if (!cards.length) return "";
   return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3>${cards.length > 1 ? deckOf(cards) : cards.join("")}</section>`;
@@ -188,7 +188,8 @@ function deck(el, offset = 0) {
   const slides = [...el.children], n = slides.length, segs = [...el.nextElementSibling?.children ?? []];
   if (n < 2) return;
   const h = Math.max(...slides.map((s) => s.offsetHeight));
-  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 20}px`;
+  // Room under the front card only for the cards that peek out (10 px each, two at most).
+  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 10 * Math.min(2, n - 1)}px`;
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches, EASE = "transform .42s cubic-bezier(.22,.8,.25,1), opacity .3s";
   let i = 0, x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
   const W = () => el.clientWidth || 300;
@@ -230,8 +231,16 @@ function deck(el, offset = 0) {
   };
   el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
   el.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-  let cool = false;
-  el.addEventListener("wheel", (e) => { if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 10) return; e.preventDefault(); if (cool) return; cool = true; setTimeout(() => (cool = false), 650); turn(e.deltaX > 0 ? 1 : -1); }, { passive: false });
+  // A sideways trackpad scroll comes as many small steps: they add up, and the first
+  // real swipe turns the page at once (skipping the timer, which starts again).
+  let cool = false, sum = 0, quiet = null;
+  el.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); clearTimeout(quiet); quiet = setTimeout(() => (sum = 0), 200);
+    if (cool) return; sum += e.deltaX;
+    if (Math.abs(sum) < 28) return;
+    cool = true; setTimeout(() => (cool = false), 550); turn(sum > 0 ? 1 : -1); sum = 0;
+  }, { passive: false });
   el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
   segs.forEach((g, j) => g.onclick = () => go(j));
   // By itself: the front segment fills over 6 seconds, then the page turns; held, it waits.
@@ -239,6 +248,8 @@ function deck(el, offset = 0) {
   el.addEventListener("pointerenter", () => hold(true)); el.addEventListener("pointerleave", () => { if (x0 == null) hold(false); });
   el.addEventListener("focusin", () => hold(true)); el.addEventListener("focusout", () => hold(false));
   if (still) return;
+  // As the screen opens, the front card nudges aside a little and settles, so the deck looks like it moves.
+  setTimeout(() => { if (!el.isConnected || busy || x0 != null) return; place(-0.07); setTimeout(() => el.isConnected && x0 == null && !busy && place(0), 260); }, 650 + offset / 6);
   segs.forEach((g) => g.addEventListener("animationend", () => { if (el.isConnected && g.classList.contains("on") && !held) turn(1); }));
   // Two decks on one screen take turns: the second starts half a turn later.
   if (offset) { segs[0].classList.remove("run"); setTimeout(() => mark(), offset); }
@@ -250,12 +261,12 @@ function lessonStep(plan) {
   const done = lessonsDone(s), l = s.lessons[done], col = colourOf(plan.subj), name = SUBJ_NAME[PR.child.curriculum][plan.subj] ?? plan.subj;
   const course = courseSets(plan.subj, s.year), k = course.indexOf(s) + 1;
   const dots = s.lessons.map((_, i) => `<i class="${i < done ? "on" : i === done ? "now" : ""}"></i>`).join("");
-  return `<button class="pr-hero ln-next hm-lesson" style="--c:${col}" data-start="${esc(s.id)}" data-n="${l.n}">
+  return `<div class="pr-hero ln-next hm-lesson" role="group" style="--c:${col}">
       <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, course.length))}</span>
       <span class="hm-dots" aria-label="${esc(T.lessonOf(l.n, s.lessons.length))}">${dots}<small>${esc(T.lessonOf(l.n, s.lessons.length))}</small></span>
       <b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
-      <span class="pr-go">${esc(T.go)}<small>${esc(T.minShort(s.minutes ?? 10))}</small></span>
-      <img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`;
+      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}<small>${esc(T.minShort(s.minutes ?? 10))}</small></button>
+      <img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
 }
 const PRACTICE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>';
 const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
@@ -271,7 +282,7 @@ function renderHomeTab() {
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}<img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></button>` : "";
+  const practiceCard = sug ? `<div class="pr-own st-today hm-practice" role="group" style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small><button class="hm-pr-go" data-sug>${esc(sug.paused ? PAUSE_TXT[PL()].go : L.start)}</button></span><img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></div>` : "";
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
@@ -297,6 +308,8 @@ function renderHomeTab() {
   scr.appendChild(appTabs("start"));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
+  // A tap on a card away from its button wiggles the button: that is what starts it.
+  scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-card-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { if (sug.paused) return resumeSession(); appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
 }
 

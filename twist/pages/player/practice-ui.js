@@ -92,8 +92,8 @@ function renderPracticeHome() {
     const i = cards.indexOf(c), col = colourOf(subjOfSkill(c.skills[0])), sub = cardSub(c);
         // A recap card names the skills this session plays; the rest stay due for the next one.
     const b_ = BANDS[PR.child.band], title = c.paused ? c.reason[lg] : c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
-    return big ? `<button class="pr-hero" data-card="${i}" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
-        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><span class="pr-go">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</span><img class="pr-art" src="${poseSrc(c)}" alt=""></button>`
+    return big ? `<div class="pr-hero" role="group" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
+        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><button class="pr-go" data-card="${i}">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</button><img class="pr-art" src="${poseSrc(c)}" alt=""></div>`
       : `<button class="pr-mini" data-card="${i}" style="--c:${col}"><i class="hm-ico sm">${KIND_ICON[c.kind] ?? KIND_ICON.skill}</i><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b>${esc(c.kind === "drill" ? sub : c.reason[lg])}</b><small>${esc(c.kind === "drill" ? L.minsShort(2) : sizeOf(c).split(",")[0])}</small></button>`;
   }
 }

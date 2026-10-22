@@ -737,8 +737,8 @@ div.ln-next { cursor: default; }
 .dk-slide > button, .dk-slide > .pr-hero { flex: 1; margin-top: 0; }
 .dk-slide > .hm-step { margin: 0 0 8px; font-size: 13.5px; }
 /* The bar: a segment per card; the front one fills while it waits (the deck's timer). */
-.dk-bar { display: flex; justify-content: center; gap: 6px; margin-top: 2px; }
-.dk-bar button { width: 22px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; align-items: center; }
+.dk-bar { display: flex; justify-content: center; gap: 6px; margin-top: 4px; }
+.dk-bar button { width: 22px; height: 10px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; align-items: center; }
 .dk-bar b { display: block; height: 4px; border-radius: 2px; background: var(--edge-c); overflow: hidden; position: relative; }
 .dk-bar .on { width: 36px; }
 .dk-bar .on b::after { content: ""; position: absolute; inset: 0; border-radius: 2px; background: #6849dd; transform-origin: 0 50%; }
@@ -761,3 +761,13 @@ div.ln-next { cursor: default; }
 .hm-card-go i { font: 700 12px "Red Hat Text", sans-serif; font-style: normal; padding-left: 8px; border-left: 2px solid color-mix(in srgb, var(--c) 25%, #fff); }
 .hm-card img { position: absolute; right: 0; bottom: 8px; width: 104px; height: calc(100% - 40px); object-fit: contain; object-position: bottom; pointer-events: none; }
 .hm-card:focus-visible { outline: 3px solid #6849dd; outline-offset: 3px; }
+
+/* Cards are panels: only Start (or Carry on) starts; a tap elsewhere wiggles it. */
+div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
+.pr-go, .hm-card-go, .hm-pr-go { border: 0; cursor: pointer; font-family: inherit; }
+.pr-go:active, .hm-card-go:active, .hm-pr-go:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, .22); }
+.pr-go:focus-visible, .hm-card-go:focus-visible, .hm-pr-go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.hm-pr-go { justify-self: start; margin-top: 8px; padding: 8px 16px; border-radius: 12px; background: var(--c); color: #fff; font: 800 14px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, var(--c) 70%, #000); }
+.hm-practice > span { display: grid; justify-items: start; }
+@media (prefers-reduced-motion: no-preference) { .nudge { animation: go-nudge .45s cubic-bezier(.3, 1.6, .5, 1); } }
+@keyframes go-nudge { 30% { transform: scale(1.08) rotate(-2deg); } 60% { transform: scale(.98) rotate(1.5deg); } }
