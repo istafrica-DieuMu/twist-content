@@ -1465,13 +1465,13 @@ div.ln-next { cursor: default; }
 .dk-bar .on b { background: #6849dd; }
 .dk-bar button:focus-visible { outline: 2px solid #6849dd; outline-offset: 2px; border-radius: 4px; }
 /* The timer on the front card: a line across its top that fills; held, it stops and the card dips. */
-.dk-timer { position: absolute; left: 20px; right: 20px; top: 8px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .3s; z-index: 2; }
+.dk-timer { position: absolute; left: 20px; right: 20px; top: 8px; height: 2px; border-radius: 1px; background: rgba(255, 255, 255, .12); overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .3s; z-index: 2; }
 .front .dk-timer { opacity: 1; }
-.dk-timer b { display: block; height: 100%; border-radius: 2px; background: #fff; transform-origin: 0 50%; transform: scaleX(0); }
+.dk-timer b { display: block; height: 100%; border-radius: 1px; background: rgba(255, 255, 255, .4); transform-origin: 0 50%; transform: scaleX(0); }
 .dk-timer.run b { animation: dk-fill 6s linear forwards; }
 .deck.held .dk-timer b { animation-play-state: paused; }
-.hm-practice .dk-timer { background: color-mix(in srgb, var(--c) 15%, transparent); }
-.hm-practice .dk-timer b { background: var(--c); }
+.hm-practice .dk-timer { background: color-mix(in srgb, var(--c) 7%, transparent); }
+.hm-practice .dk-timer b { background: color-mix(in srgb, var(--c) 30%, transparent); }
 .dk-slide > * { transition: transform .25s cubic-bezier(.2, .8, .2, 1); }
 .deck.held .dk-slide.front > :last-child { transform: scale(.975); }
 @keyframes dk-fill { to { transform: scaleX(1); } }
@@ -3181,13 +3181,12 @@ function subjectRow(skip) {
 // a thin line across the top of the front card fills meanwhile, and pressing and
 // holding the card stops it (as in stories), with the card dipping a little. Not
 // with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
-// The bar under it has a segment per card; a tap on one goes there.
+// No bar under it: the faint line on the card and the cards peeking out say enough.
 const DECK_MS = 6000;
-const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>
-  <div class="dk-bar">${items.map((_, i) => `<button type="button" aria-label="${i + 1} / ${items.length}"><b></b></button>`).join("")}</div>`;
+const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
 function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
 function deck(el, offset = 0) {
-  const slides = [...el.children], n = slides.length, segs = [...el.nextElementSibling?.children ?? []];
+  const slides = [...el.children], n = slides.length, segs = el.nextElementSibling?.matches(".dk-bar") ? [...el.nextElementSibling.children] : [];
   if (n < 2) return;
   const h = Math.max(...slides.map((s) => s.offsetHeight));
   // Room under the front card only for the cards that peek out (10 px each, two at most).

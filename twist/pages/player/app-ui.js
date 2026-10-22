@@ -180,13 +180,12 @@ function subjectRow(skip) {
 // a thin line across the top of the front card fills meanwhile, and pressing and
 // holding the card stops it (as in stories), with the card dipping a little. Not
 // with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
-// The bar under it has a segment per card; a tap on one goes there.
+// No bar under it: the faint line on the card and the cards peeking out say enough.
 const DECK_MS = 6000;
-const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>
-  <div class="dk-bar">${items.map((_, i) => `<button type="button" aria-label="${i + 1} / ${items.length}"><b></b></button>`).join("")}</div>`;
+const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
 function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
 function deck(el, offset = 0) {
-  const slides = [...el.children], n = slides.length, segs = [...el.nextElementSibling?.children ?? []];
+  const slides = [...el.children], n = slides.length, segs = el.nextElementSibling?.matches(".dk-bar") ? [...el.nextElementSibling.children] : [];
   if (n < 2) return;
   const h = Math.max(...slides.map((s) => s.offsetHeight));
   // Room under the front card only for the cards that peek out (10 px each, two at most).
