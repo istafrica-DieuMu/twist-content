@@ -130,6 +130,13 @@ are all in the repo.
    docker compose -p twist-player -f docker-compose.player.yml --env-file .env.player up -d
    ```
 
+   The `Makefile` wraps it: `make help` lists `player-up`, `player-down`,
+   `player-restart`, `player-logs`, `player-ps`, `player-check` and
+   `player-deploy` (pull `main`, restart only when needed, check). It uses
+   `docker-compose`; elsewhere add `COMPOSE="docker compose"`. On every push
+   to `main`, `.github/workflows/deploy-player.yml` runs `make player-deploy`
+   on the dev server.
+
    `/` opens the player. Only `twist/pages/` and `twist/assets/` are
    served; lesson files and the rest of the repo are not.
 
