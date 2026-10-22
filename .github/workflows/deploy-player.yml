@@ -1,0 +1,31 @@
+name: Deploy player (new.dev.twist-learning.com)
+
+# Every push to main (a merged PR or a direct commit) is pulled into the
+# server's checkout; `make player-deploy` restarts only when needed and checks
+# the site (Makefile, docker-compose.player.yml).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# One deploy at a time; a newer push waits for the running one.
+concurrency:
+  group: deploy-player
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to the dev server
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Pull and check on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          command_timeout: 25m
+          script: |
+            cd ~/b2c-deployment/twist-content
+            make player-deploy

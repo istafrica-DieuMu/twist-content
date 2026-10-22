@@ -70,7 +70,9 @@ git repo kept separate from schoolido-learning.
 - **twist/serve.mjs**: serves pages/ and assets/ (the player with its
   Practice, Drawings and Task types tabs) behind basic auth from a clone;
   docker-compose.player.yml runs it in Docker (login in .env.player, not in
-  git); README.md, "Serve the player on a server"; the host's runbook is
+  git), the Makefile wraps it (`make help`), and every push to main deploys
+  it to new.dev.twist-learning.com (.github/workflows/deploy-player.yml,
+  `make player-deploy`); README.md, "Serve the player on a server"; the host's runbook is
   twist/pages/hosting/index.html (written by hand, published as a claude.ai
   artifact).
 - README.md: the quick reference. Keep the root to these, plus config files.
