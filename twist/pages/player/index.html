@@ -958,7 +958,10 @@ div.ln-next { cursor: default; }
 .pr-home.app-page > *, #prMain > *, #prFound > * { flex-shrink: 0; }
 
 /* ---------- Start: today's plan ---------- */
-.hm { gap: 22px; }
+.hm { gap: 26px; }
+/* Each section: its heading, then 10 px, then what it holds. */
+.hm > section > .pr-h { margin: 0 0 10px; }
+.hm > section { display: flex; flex-direction: column; }
 .hm-top { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
 .hm-top h2 { margin: 0; font: 800 24px/1.15 "Red Hat Display", sans-serif; letter-spacing: -.01em; }
 .hm-top small { display: block; margin-top: 2px; font-size: 13.5px; font-weight: 600; color: var(--soft); }
@@ -1442,22 +1445,41 @@ div.ln-next { cursor: default; }
 .tr-stone.open { opacity: .75; }
 :is(.screen[data-look="dark"], .screen[data-look="night"]) .app-tabs img { opacity: .8; }
 
-/* Next in each subject (subjectRow): cards that slide sideways and snap, the next one peeking in. */
-.hm-row { margin-inline: -16px; }
-.hm-row > .pr-h { padding-inline: 16px; }
-.hm-cards { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 2px 16px 8px; scroll-padding-inline: 16px; scrollbar-width: none; }
-.hm-cards::-webkit-scrollbar { display: none; }
-.hm-card { position: relative; scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; min-height: 168px; padding: 14px 112px 14px 16px; border: 0; border-radius: 22px; background: var(--c); color: #fff; text-align: left; cursor: pointer; overflow: hidden; box-shadow: 0 5px 0 color-mix(in srgb, var(--c) 70%, #000); margin-bottom: 5px; }
+/* Next in each subject (subjectRow) and the plan: decks turned like pages (deck() in app-ui.js). */
+.hm-row > .pr-h { padding-inline: 0; }
+.deck { position: relative; touch-action: pan-y; outline: none; }
+.deck:focus-visible { outline: 3px solid #6849dd; outline-offset: 4px; border-radius: 26px; }
+.dk-slide { position: absolute; inset: 0 0 auto 0; display: flex; flex-direction: column; transform-origin: 50% 100%; background: var(--screen-bg); border-radius: 26px; user-select: none; -webkit-user-select: none; will-change: transform; }
+.deck.held .dk-slide.front { cursor: grabbing; }
+.dk-slide img { -webkit-user-drag: none; }
+.dk-slide:not(.front) > * { filter: saturate(.9) brightness(.97); }
+.dk-slide > button, .dk-slide > .pr-hero { flex: 1; margin-top: 0; }
+.dk-slide > .hm-step { margin: 0 0 8px; font-size: 13.5px; }
+/* The bar: a segment per card; the front one fills while it waits (the deck's timer). */
+.dk-bar { display: flex; justify-content: center; gap: 6px; margin-top: 2px; }
+.dk-bar button { width: 22px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; align-items: center; }
+.dk-bar b { display: block; height: 4px; border-radius: 2px; background: var(--edge-c); overflow: hidden; position: relative; }
+.dk-bar .on { width: 36px; }
+.dk-bar .on b::after { content: ""; position: absolute; inset: 0; border-radius: 2px; background: #6849dd; transform-origin: 0 50%; }
+.dk-bar .run b::after { animation: dk-fill 6s linear both; }
+.dk-bar.paused .run b::after { animation-play-state: paused; }
+.dk-bar button { transition: width .3s cubic-bezier(.2, .8, .2, 1); }
+.dk-bar button:focus-visible { outline: 2px solid #6849dd; outline-offset: 2px; border-radius: 4px; }
+@keyframes dk-fill { from { transform: scaleX(0); } }
+/* The practice card in the plan's deck: as tall as the lesson card, its words in the middle, the mascot practising on the right. */
+.dk-slide > .hm-practice { position: relative; align-items: center; padding-right: 104px; overflow: hidden; }
+.hm-practice .hm-pr-art { display: none; }
+.dk-slide > .hm-practice .hm-pr-art { display: block; position: absolute; right: 8px; bottom: 8px; width: 92px; height: 74%; padding: 0; background: none; border-radius: 0; object-fit: contain; object-position: bottom; pointer-events: none; }
+.dk-slide > .hm-practice > .chev { display: none; }
+@media (prefers-reduced-motion: reduce) { .dk-slide { transition: none !important; } }
+.hm-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; min-height: 168px; padding: 14px 112px 14px 16px; border: 0; border-radius: 22px; background: var(--c); color: #fff; text-align: left; cursor: pointer; overflow: hidden; box-shadow: 0 5px 0 color-mix(in srgb, var(--c) 70%, #000); margin-bottom: 5px; }
 .hm-card .pr-kind { font: 700 12.5px "Red Hat Text", sans-serif; opacity: .85; }
 .hm-card b { font: 800 19px/1.15 "Red Hat Display", sans-serif; text-wrap: balance; }
 .hm-card small { font-size: 13px; line-height: 1.3; opacity: .9; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.hm-card-go { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 14px; background: #fff; color: var(--c); font: 800 14px "Red Hat Display", sans-serif; }
+.hm-card-go { margin-top: auto; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 14px; background: #fff; color: var(--c); font: 800 14px "Red Hat Display", sans-serif; }
 .hm-card-go i { font: 700 12px "Red Hat Text", sans-serif; font-style: normal; padding-left: 8px; border-left: 2px solid color-mix(in srgb, var(--c) 25%, #fff); }
 .hm-card img { position: absolute; right: 0; bottom: 8px; width: 104px; height: calc(100% - 40px); object-fit: contain; object-position: bottom; pointer-events: none; }
 .hm-card:focus-visible { outline: 3px solid #6849dd; outline-offset: 3px; }
-.hm-dots-row { display: flex; justify-content: center; gap: 6px; margin-top: 2px; }
-.hm-dots-row i { width: 6px; height: 6px; border-radius: 3px; background: var(--edge-c); transition: width .2s, background .2s; }
-.hm-dots-row i.on { width: 16px; background: #6849dd; }
 
 /* ---------- Parents (parents-ui.js) ----------
    For a grown-up: calm and plain, the app's typefaces, the brand's purple for
@@ -3130,11 +3152,77 @@ function subjectRow(skip) {
       <span class="hm-card-go">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></span><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`;
   }).filter(Boolean);
   if (!cards.length) return "";
-  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3><div class="hm-cards">${cards.join("")}</div>${cards.length > 1 ? `<div class="hm-dots-row" aria-hidden="true">${cards.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div>` : ""}</section>`;
+  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3>${cards.length > 1 ? deckOf(cards) : cards.join("")}</section>`;
 }
-function wireRow(scr) {
-  const row = scr.querySelector(".hm-cards"), dots = scr.querySelectorAll(".hm-dots-row i"); if (!row || !dots.length) return;
-  row.onscroll = () => { const w = row.firstElementChild.getBoundingClientRect().width + 12, i = Math.round(row.scrollLeft / w); dots.forEach((d, j) => d.classList.toggle("on", j === Math.min(i, dots.length - 1))); };
+// A deck: the cards in a stack that never ends, turned like pages. The front card
+// follows a finger (or the mouse) sideways and the one under it rises into place;
+// pulled the other way, the card before comes back over the top from the left. A
+// card that is passed slides under the stack. It turns by itself every 6 seconds
+// (not with reduced motion, and not while a finger or the pointer is on it); a
+// sideways trackpad scroll or the arrow keys turn it too. The bar under it has a
+// segment per card, the front one filling while it waits; a tap on one goes there.
+const DECK_MS = 6000;
+const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>
+  <div class="dk-bar">${items.map((_, i) => `<button type="button" aria-label="${i + 1} / ${items.length}"><b></b></button>`).join("")}</div>`;
+function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
+function deck(el, offset = 0) {
+  const slides = [...el.children], n = slides.length, segs = [...el.nextElementSibling?.children ?? []];
+  if (n < 2) return;
+  const h = Math.max(...slides.map((s) => s.offsetHeight));
+  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 20}px`;
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches, EASE = "transform .42s cubic-bezier(.22,.8,.25,1), opacity .3s";
+  let i = 0, x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
+  const W = () => el.clientWidth || 300;
+  // p is how far a turn has gone: -1 forward (the front card out to the left), +1 back.
+  const place = (p = 0, ease = true) => slides.forEach((s, j) => {
+    const k = (j - i + n) % n, back = p > 0 && k === n - 1;
+    let tx = 0, rot = 0, d = k;
+    if (k === 0) { tx = Math.min(0, p) * W() * 1.08; rot = Math.min(0, p) * 7; d = Math.max(0, p); }
+    else if (back) { tx = (p - 1) * W() * 1.08; rot = (p - 1) * 7; d = 0; }
+    else d = p < 0 ? k + p : k + p;
+    const z = back ? n + 1 : n - k;
+    s.style.transition = ease ? EASE : "none";
+    s.style.transform = `translate(${tx}px, ${Math.max(0, d) * 10}px) rotate(${rot}deg) scale(${1 - Math.max(0, d) * 0.05})`;
+    s.style.opacity = d > 2.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
+    s.classList.toggle("front", k === 0); s.inert = k !== 0;
+  });
+  const mark = () => segs.forEach((g, j) => { g.classList.toggle("on", j === i); g.classList.remove("run"); if (j === i && !still) { void g.offsetWidth; g.classList.add("run"); } });
+  const turn = (d) => {
+    if (busy) return; busy = true;
+    place(d > 0 ? -1 : 1);
+    setTimeout(() => { i = (i + d + n) % n; place(0); mark(); busy = false; }, 380);
+  };
+  const go = (j) => { if (j === i || busy) return; const d = (j - i + n) % n; d === 1 ? turn(1) : d === n - 1 ? turn(-1) : (i = j, place(0), mark()); };
+  place(0, false); mark();
+  // By hand: drag or swipe the front card; a quarter of the width, or a quick flick, turns it.
+  let t0 = 0;
+  el.addEventListener("pointerdown", (e) => { if (busy) return; x0 = e.clientX; y0 = e.clientY; dx = 0; moved = false; t0 = performance.now(); held = true; el.classList.add("held"); });
+  el.addEventListener("pointermove", (e) => {
+    if (x0 == null) return; dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.setPointerCapture?.(e.pointerId); }
+    if (moved) place(Math.max(-1, Math.min(1, dx / W())), false);
+  });
+  const up = () => {
+    if (x0 == null) return; x0 = null; held = el.matches(":hover"); el.classList.remove("held");
+    if (!moved) return;
+    const fast = Math.abs(dx) / Math.max(1, performance.now() - t0) > 0.6;
+    if (Math.abs(dx) > W() / 4 || (fast && Math.abs(dx) > 30)) { busy = true; place(dx < 0 ? -1 : 1); setTimeout(() => { i = (i + (dx < 0 ? 1 : -1) + n) % n; place(0); mark(); busy = false; }, 380); }
+    else place(0);
+  };
+  el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
+  el.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  let cool = false;
+  el.addEventListener("wheel", (e) => { if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 10) return; e.preventDefault(); if (cool) return; cool = true; setTimeout(() => (cool = false), 650); turn(e.deltaX > 0 ? 1 : -1); }, { passive: false });
+  el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
+  segs.forEach((g, j) => g.onclick = () => go(j));
+  // By itself: the front segment fills over 6 seconds, then the page turns; held, it waits.
+  const hold = (on) => { held = on; el.nextElementSibling?.classList.toggle("paused", on); };
+  el.addEventListener("pointerenter", () => hold(true)); el.addEventListener("pointerleave", () => { if (x0 == null) hold(false); });
+  el.addEventListener("focusin", () => hold(true)); el.addEventListener("focusout", () => hold(false));
+  if (still) return;
+  segs.forEach((g) => g.addEventListener("animationend", () => { if (el.isConnected && g.classList.contains("on") && !held) turn(1); }));
+  // Two decks on one screen take turns: the second starts half a turn later.
+  if (offset) { segs[0].classList.remove("run"); setTimeout(() => mark(), offset); }
 }
 // The lesson step: the next lesson as the big card, with where it sits (unit dots, unit k of n).
 function lessonStep(plan) {
@@ -3164,7 +3252,7 @@ function renderHomeTab() {
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
+  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}<img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></button>` : "";
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
@@ -3182,7 +3270,7 @@ function renderHomeTab() {
     </header>
     ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
-    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
+    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.length > 1 ? deckOf(steps) : steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
     ${subjectRow(lesson && !all ? plan.subj : null)}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
@@ -3921,8 +4009,22 @@ function renderParents() {
 const ANIM = "anim/";
 const SFX_ON = () => { try { return localStorage.getItem("twist-sfx") !== "0"; } catch { return true; } };
 const sfxPlayer = new Audio();
-// A sound effect, when Sound effects is on (Settings).
-function sfx(name) { if (!SFX_ON()) return; sfxPlayer.src = `${ANIM}sfx/${name}.mp3`; sfxPlayer.play().catch(() => {}); }
+// The app's volumes (lib/feedback/sounds.ts): a tap is quiet, the rest full.
+const SFX_VOL = { "option-picked": 0.35, "card-lands": 0.6, "piece-locked": 0.8, "try-again": 0.8 };
+const sfxPlayers = {};
+// A sound effect, when Sound effects is on (Settings); each has its own player, so a tap never cuts off a cheer.
+function sfx(name) {
+  if (!SFX_ON()) return;
+  const a = (sfxPlayers[name] ??= Object.assign(new Audio(`${ANIM}sfx/${name}.mp3`), { volume: SFX_VOL[name] ?? 1 }));
+  a.currentTime = 0; a.play().catch(() => {});
+}
+// The app's cues while a task is open (lib/feedback/cues.ts): a tap on a choice,
+// a tile or a point is option-picked; a card dropped into a slot or a bin lands.
+document.getElementById("screen")?.addEventListener("click", (e) => {
+  const t = e.target.closest?.(".opt, .tf button, .card.tap, .chips button, .pad button, .cards > *, .pairs > * > *, rect[data-v], circle[data-x], .gap, .slot, .bin");
+  if (!t || t.disabled || !document.querySelector("#screen .hdr") || e.target.closest(".foot, .hdr, .sheet, .lm-sheet, .lv-sheet, .bubbleq")) return;
+  if (t.matches(".gap, .slot, .bin") || t.closest(".bin")) { sfx("card-lands"); buzz(15); } else { sfx("option-picked"); buzz(8); }
+}, true);
 const VIBRATE_ON = () => { try { return localStorage.getItem("twist-vibrate") !== "0"; } catch { return true; } };
 const buzz = (ms = 12) => { if (VIBRATE_ON()) navigator.vibrate?.(ms); };
 

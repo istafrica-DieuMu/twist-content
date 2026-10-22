@@ -171,11 +171,77 @@ function subjectRow(skip) {
       <span class="hm-card-go">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></span><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`;
   }).filter(Boolean);
   if (!cards.length) return "";
-  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3><div class="hm-cards">${cards.join("")}</div>${cards.length > 1 ? `<div class="hm-dots-row" aria-hidden="true">${cards.map((_, i) => `<i${i ? "" : ' class="on"'}></i>`).join("")}</div>` : ""}</section>`;
+  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3>${cards.length > 1 ? deckOf(cards) : cards.join("")}</section>`;
 }
-function wireRow(scr) {
-  const row = scr.querySelector(".hm-cards"), dots = scr.querySelectorAll(".hm-dots-row i"); if (!row || !dots.length) return;
-  row.onscroll = () => { const w = row.firstElementChild.getBoundingClientRect().width + 12, i = Math.round(row.scrollLeft / w); dots.forEach((d, j) => d.classList.toggle("on", j === Math.min(i, dots.length - 1))); };
+// A deck: the cards in a stack that never ends, turned like pages. The front card
+// follows a finger (or the mouse) sideways and the one under it rises into place;
+// pulled the other way, the card before comes back over the top from the left. A
+// card that is passed slides under the stack. It turns by itself every 6 seconds
+// (not with reduced motion, and not while a finger or the pointer is on it); a
+// sideways trackpad scroll or the arrow keys turn it too. The bar under it has a
+// segment per card, the front one filling while it waits; a tap on one goes there.
+const DECK_MS = 6000;
+const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>
+  <div class="dk-bar">${items.map((_, i) => `<button type="button" aria-label="${i + 1} / ${items.length}"><b></b></button>`).join("")}</div>`;
+function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
+function deck(el, offset = 0) {
+  const slides = [...el.children], n = slides.length, segs = [...el.nextElementSibling?.children ?? []];
+  if (n < 2) return;
+  const h = Math.max(...slides.map((s) => s.offsetHeight));
+  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 20}px`;
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches, EASE = "transform .42s cubic-bezier(.22,.8,.25,1), opacity .3s";
+  let i = 0, x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
+  const W = () => el.clientWidth || 300;
+  // p is how far a turn has gone: -1 forward (the front card out to the left), +1 back.
+  const place = (p = 0, ease = true) => slides.forEach((s, j) => {
+    const k = (j - i + n) % n, back = p > 0 && k === n - 1;
+    let tx = 0, rot = 0, d = k;
+    if (k === 0) { tx = Math.min(0, p) * W() * 1.08; rot = Math.min(0, p) * 7; d = Math.max(0, p); }
+    else if (back) { tx = (p - 1) * W() * 1.08; rot = (p - 1) * 7; d = 0; }
+    else d = p < 0 ? k + p : k + p;
+    const z = back ? n + 1 : n - k;
+    s.style.transition = ease ? EASE : "none";
+    s.style.transform = `translate(${tx}px, ${Math.max(0, d) * 10}px) rotate(${rot}deg) scale(${1 - Math.max(0, d) * 0.05})`;
+    s.style.opacity = d > 2.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
+    s.classList.toggle("front", k === 0); s.inert = k !== 0;
+  });
+  const mark = () => segs.forEach((g, j) => { g.classList.toggle("on", j === i); g.classList.remove("run"); if (j === i && !still) { void g.offsetWidth; g.classList.add("run"); } });
+  const turn = (d) => {
+    if (busy) return; busy = true;
+    place(d > 0 ? -1 : 1);
+    setTimeout(() => { i = (i + d + n) % n; place(0); mark(); busy = false; }, 380);
+  };
+  const go = (j) => { if (j === i || busy) return; const d = (j - i + n) % n; d === 1 ? turn(1) : d === n - 1 ? turn(-1) : (i = j, place(0), mark()); };
+  place(0, false); mark();
+  // By hand: drag or swipe the front card; a quarter of the width, or a quick flick, turns it.
+  let t0 = 0;
+  el.addEventListener("pointerdown", (e) => { if (busy) return; x0 = e.clientX; y0 = e.clientY; dx = 0; moved = false; t0 = performance.now(); held = true; el.classList.add("held"); });
+  el.addEventListener("pointermove", (e) => {
+    if (x0 == null) return; dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.setPointerCapture?.(e.pointerId); }
+    if (moved) place(Math.max(-1, Math.min(1, dx / W())), false);
+  });
+  const up = () => {
+    if (x0 == null) return; x0 = null; held = el.matches(":hover"); el.classList.remove("held");
+    if (!moved) return;
+    const fast = Math.abs(dx) / Math.max(1, performance.now() - t0) > 0.6;
+    if (Math.abs(dx) > W() / 4 || (fast && Math.abs(dx) > 30)) { busy = true; place(dx < 0 ? -1 : 1); setTimeout(() => { i = (i + (dx < 0 ? 1 : -1) + n) % n; place(0); mark(); busy = false; }, 380); }
+    else place(0);
+  };
+  el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
+  el.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  let cool = false;
+  el.addEventListener("wheel", (e) => { if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 10) return; e.preventDefault(); if (cool) return; cool = true; setTimeout(() => (cool = false), 650); turn(e.deltaX > 0 ? 1 : -1); }, { passive: false });
+  el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
+  segs.forEach((g, j) => g.onclick = () => go(j));
+  // By itself: the front segment fills over 6 seconds, then the page turns; held, it waits.
+  const hold = (on) => { held = on; el.nextElementSibling?.classList.toggle("paused", on); };
+  el.addEventListener("pointerenter", () => hold(true)); el.addEventListener("pointerleave", () => { if (x0 == null) hold(false); });
+  el.addEventListener("focusin", () => hold(true)); el.addEventListener("focusout", () => hold(false));
+  if (still) return;
+  segs.forEach((g) => g.addEventListener("animationend", () => { if (el.isConnected && g.classList.contains("on") && !held) turn(1); }));
+  // Two decks on one screen take turns: the second starts half a turn later.
+  if (offset) { segs[0].classList.remove("run"); setTimeout(() => mark(), offset); }
 }
 // The lesson step: the next lesson as the big card, with where it sits (unit dots, unit k of n).
 function lessonStep(plan) {
@@ -205,7 +271,7 @@ function renderHomeTab() {
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}</button>` : "";
+  const practiceCard = sug ? `<button class="pr-own st-today hm-practice" data-sug style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small></span>${CHEVRON}<img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></button>` : "";
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
@@ -223,7 +289,7 @@ function renderHomeTab() {
     </header>
     ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
-    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
+    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.length > 1 ? deckOf(steps) : steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
     ${subjectRow(lesson && !all ? plan.subj : null)}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>

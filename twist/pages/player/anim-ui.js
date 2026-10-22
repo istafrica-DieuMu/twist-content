@@ -8,8 +8,22 @@
 const ANIM = "anim/";
 const SFX_ON = () => { try { return localStorage.getItem("twist-sfx") !== "0"; } catch { return true; } };
 const sfxPlayer = new Audio();
-// A sound effect, when Sound effects is on (Settings).
-function sfx(name) { if (!SFX_ON()) return; sfxPlayer.src = `${ANIM}sfx/${name}.mp3`; sfxPlayer.play().catch(() => {}); }
+// The app's volumes (lib/feedback/sounds.ts): a tap is quiet, the rest full.
+const SFX_VOL = { "option-picked": 0.35, "card-lands": 0.6, "piece-locked": 0.8, "try-again": 0.8 };
+const sfxPlayers = {};
+// A sound effect, when Sound effects is on (Settings); each has its own player, so a tap never cuts off a cheer.
+function sfx(name) {
+  if (!SFX_ON()) return;
+  const a = (sfxPlayers[name] ??= Object.assign(new Audio(`${ANIM}sfx/${name}.mp3`), { volume: SFX_VOL[name] ?? 1 }));
+  a.currentTime = 0; a.play().catch(() => {});
+}
+// The app's cues while a task is open (lib/feedback/cues.ts): a tap on a choice,
+// a tile or a point is option-picked; a card dropped into a slot or a bin lands.
+document.getElementById("screen")?.addEventListener("click", (e) => {
+  const t = e.target.closest?.(".opt, .tf button, .card.tap, .chips button, .pad button, .cards > *, .pairs > * > *, rect[data-v], circle[data-x], .gap, .slot, .bin");
+  if (!t || t.disabled || !document.querySelector("#screen .hdr") || e.target.closest(".foot, .hdr, .sheet, .lm-sheet, .lv-sheet, .bubbleq")) return;
+  if (t.matches(".gap, .slot, .bin") || t.closest(".bin")) { sfx("card-lands"); buzz(15); } else { sfx("option-picked"); buzz(8); }
+}, true);
 const VIBRATE_ON = () => { try { return localStorage.getItem("twist-vibrate") !== "0"; } catch { return true; } };
 const buzz = (ms = 12) => { if (VIBRATE_ON()) navigator.vibrate?.(ms); };
 
