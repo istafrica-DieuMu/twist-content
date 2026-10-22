@@ -734,19 +734,30 @@ div.ln-next { cursor: default; }
 .deck.held .dk-slide.front { cursor: grabbing; }
 .dk-slide img { -webkit-user-drag: none; }
 .dk-slide:not(.front) > * { filter: saturate(.9) brightness(.97); }
-.dk-slide > button, .dk-slide > .pr-hero { flex: 1; margin-top: 0; }
+.dk-slide > :last-child { flex: 1; margin-top: 0; }
+.dk-slide > .hm-practice .hm-ico { display: none; }
+.dk-slide > .hm-practice { display: flex; align-items: center; padding: 26px 104px 18px 18px; }
+.dk-slide > .hm-practice > span { flex: 1; min-width: 0; }
 .dk-slide > .hm-step { margin: 0 0 8px; font-size: 13.5px; }
-/* The bar: a segment per card; the front one fills while it waits (the deck's timer). */
+/* The bar: a segment per card, the front one longer. */
 .dk-bar { display: flex; justify-content: center; gap: 6px; margin-top: 4px; }
-.dk-bar button { width: 22px; height: 10px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; align-items: center; }
-.dk-bar b { display: block; height: 4px; border-radius: 2px; background: var(--edge-c); overflow: hidden; position: relative; }
-.dk-bar .on { width: 36px; }
-.dk-bar .on b::after { content: ""; position: absolute; inset: 0; border-radius: 2px; background: #6849dd; transform-origin: 0 50%; }
-.dk-bar .run b::after { animation: dk-fill 6s linear both; }
-.dk-bar.paused .run b::after { animation-play-state: paused; }
-.dk-bar button { transition: width .3s cubic-bezier(.2, .8, .2, 1); }
+.dk-bar button { width: 14px; height: 10px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; align-items: center; transition: width .3s cubic-bezier(.2, .8, .2, 1); }
+.dk-bar b { display: block; height: 4px; border-radius: 2px; background: var(--edge-c); transition: background .3s; }
+.dk-bar .on { width: 28px; }
+.dk-bar .on b { background: #6849dd; }
 .dk-bar button:focus-visible { outline: 2px solid #6849dd; outline-offset: 2px; border-radius: 4px; }
-@keyframes dk-fill { from { transform: scaleX(0); } }
+/* The timer on the front card: a line across its top that fills; held, it stops and the card dips. */
+.dk-timer { position: absolute; left: 20px; right: 20px; top: 8px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .3s; z-index: 2; }
+.front .dk-timer { opacity: 1; }
+.dk-timer b { display: block; height: 100%; border-radius: 2px; background: #fff; transform-origin: 0 50%; transform: scaleX(0); }
+.dk-timer.run b { animation: dk-fill 6s linear forwards; }
+.deck.held .dk-timer b { animation-play-state: paused; }
+.hm-practice .dk-timer { background: color-mix(in srgb, var(--c) 15%, transparent); }
+.hm-practice .dk-timer b { background: var(--c); }
+.dk-slide > * { transition: transform .25s cubic-bezier(.2, .8, .2, 1); }
+.deck.held .dk-slide.front > :last-child { transform: scale(.975); }
+@keyframes dk-fill { to { transform: scaleX(1); } }
+
 /* The practice card in the plan's deck: as tall as the lesson card, its words in the middle, the mascot practising on the right. */
 .dk-slide > .hm-practice { position: relative; align-items: center; padding-right: 104px; overflow: hidden; }
 .hm-practice .hm-pr-art { display: none; }

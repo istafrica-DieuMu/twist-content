@@ -176,10 +176,11 @@ function subjectRow(skip) {
 // A deck: the cards in a stack that never ends, turned like pages. The front card
 // follows a finger (or the mouse) sideways and the one under it rises into place;
 // pulled the other way, the card before comes back over the top from the left. A
-// card that is passed slides under the stack. It turns by itself every 6 seconds
-// (not with reduced motion, and not while a finger or the pointer is on it); a
-// sideways trackpad scroll or the arrow keys turn it too. The bar under it has a
-// segment per card, the front one filling while it waits; a tap on one goes there.
+// card that is passed slides under the stack. It turns by itself every 6 seconds:
+// a thin line across the top of the front card fills meanwhile, and pressing and
+// holding the card stops it (as in stories), with the card dipping a little. Not
+// with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
+// The bar under it has a segment per card; a tap on one goes there.
 const DECK_MS = 6000;
 const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>
   <div class="dk-bar">${items.map((_, i) => `<button type="button" aria-label="${i + 1} / ${items.length}"><b></b></button>`).join("")}</div>`;
@@ -206,7 +207,9 @@ function deck(el, offset = 0) {
     s.style.opacity = d > 2.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
     s.classList.toggle("front", k === 0); s.inert = k !== 0;
   });
-  const mark = () => segs.forEach((g, j) => { g.classList.toggle("on", j === i); g.classList.remove("run"); if (j === i && !still) { void g.offsetWidth; g.classList.add("run"); } });
+  // The timer: a line on top of each card; only the front one runs.
+  const timers = slides.map((s) => { const card = s.lastElementChild; card.insertAdjacentHTML("beforeend", '<i class="dk-timer" aria-hidden="true"><b></b></i>'); return card.lastElementChild; });
+  const mark = () => { segs.forEach((g, j) => g.classList.toggle("on", j === i)); timers.forEach((t, j) => { t.classList.remove("run"); if (j === i && !still) { void t.offsetWidth; t.classList.add("run"); } }); };
   const turn = (d) => {
     if (busy) return; busy = true;
     place(d > 0 ? -1 : 1);
@@ -216,14 +219,14 @@ function deck(el, offset = 0) {
   place(0, false); mark();
   // By hand: drag or swipe the front card; a quarter of the width, or a quick flick, turns it.
   let t0 = 0;
-  el.addEventListener("pointerdown", (e) => { if (busy) return; x0 = e.clientX; y0 = e.clientY; dx = 0; moved = false; t0 = performance.now(); held = true; el.classList.add("held"); });
+  el.addEventListener("pointerdown", (e) => { if (busy) return; x0 = e.clientX; y0 = e.clientY; dx = 0; moved = false; t0 = performance.now(); });
   el.addEventListener("pointermove", (e) => {
     if (x0 == null) return; dx = e.clientX - x0;
     if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.setPointerCapture?.(e.pointerId); }
     if (moved) place(Math.max(-1, Math.min(1, dx / W())), false);
   });
   const up = () => {
-    if (x0 == null) return; x0 = null; held = el.matches(":hover"); el.classList.remove("held");
+    if (x0 == null) return; x0 = null;
     if (!moved) return;
     const fast = Math.abs(dx) / Math.max(1, performance.now() - t0) > 0.6;
     if (Math.abs(dx) > W() / 4 || (fast && Math.abs(dx) > 30)) { busy = true; place(dx < 0 ? -1 : 1); setTimeout(() => { i = (i + (dx < 0 ? 1 : -1) + n) % n; place(0); mark(); busy = false; }, 380); }
@@ -243,16 +246,31 @@ function deck(el, offset = 0) {
   }, { passive: false });
   el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
   segs.forEach((g, j) => g.onclick = () => go(j));
-  // By itself: the front segment fills over 6 seconds, then the page turns; held, it waits.
-  const hold = (on) => { held = on; el.nextElementSibling?.classList.toggle("paused", on); };
-  el.addEventListener("pointerenter", () => hold(true)); el.addEventListener("pointerleave", () => { if (x0 == null) hold(false); });
-  el.addEventListener("focusin", () => hold(true)); el.addEventListener("focusout", () => hold(false));
+  // By itself: the front card's line fills over 6 seconds, then the page turns. Pressing
+  // (and holding) the card stops it, as does keyboard focus inside the deck.
+  const hold = (on) => { held = on; el.classList.toggle("held", on); };
+  el.addEventListener("pointerdown", () => hold(true)); window.addEventListener("pointerup", () => el.isConnected && hold(el.contains(document.activeElement) && document.activeElement.matches(":focus-visible")));
+  el.addEventListener("focusin", (e) => e.target.matches(":focus-visible") && hold(true)); el.addEventListener("focusout", () => hold(false));
   if (still) return;
   // As the screen opens, the front card nudges aside a little and settles, so the deck looks like it moves.
   setTimeout(() => { if (!el.isConnected || busy || x0 != null) return; place(-0.07); setTimeout(() => el.isConnected && x0 == null && !busy && place(0), 260); }, 650 + offset / 6);
-  segs.forEach((g) => g.addEventListener("animationend", () => { if (el.isConnected && g.classList.contains("on") && !held) turn(1); }));
+  timers.forEach((t, j) => t.addEventListener("animationend", () => { if (el.isConnected && j === i && !held) turn(1); }));
   // Two decks on one screen take turns: the second starts half a turn later.
-  if (offset) { segs[0].classList.remove("run"); setTimeout(() => mark(), offset); }
+  if (offset) { timers[0].classList.remove("run"); setTimeout(() => mark(), offset); }
+}
+// The line under the greeting says what today asks for, not the count the ring shows:
+// halfway, one to go; nothing yet, the streak to keep, or how long today's plan takes.
+const GREET = {
+  de: { half: "Eins geschafft, eins fehlt noch!", keep: (n) => `Halte deine Serie: ${n} ${n === 1 ? "Tag" : "Tage"}`, mins: (m) => `Heute etwa ${m} Minuten` },
+  en: { half: "One done, one to go!", keep: (n) => `Keep your ${n}-day streak!`, mins: (m) => `About ${m} minutes today` },
+};
+function greetLine(got, goal, streakNow, plan, sug, did) {
+  const G = GREET[PL()];
+  if (got > 0) return G.half;
+  if (streakNow > 0) return G.keep(streakNow);
+  const s = !did.lessons && nextIn(plan.sets), b = BANDS[PR.child.band];
+  const m = (s ? s.minutes ?? 10 : 0) + (sug && !did.practice ? (sug.kind === "drill" ? 2 : Math.max(2, Math.round(b.tasks * 0.4))) : 0);
+  return m ? G.mins(m) : AT().planLeft(got, goal);
 }
 // The lesson step: the next lesson as the big card, with where it sits (unit dots, unit k of n).
 function lessonStep(plan) {
@@ -295,7 +313,7 @@ function renderHomeTab() {
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
     <header class="hm-top fun-band" style="--room:${ROOM.start}">
       <button class="hm-av" data-settings aria-label="${esc(ST().title)}">${avatar(c)}</button>
-      <div><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2><small>${esc(all ? T.planDone : T.planLeft(got, goal))}</small></div>
+      <div><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2><small>${esc(all ? T.planDone : greetLine(got, goal, s.current, plan, sug, did))}</small></div>
       <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-rw="streak" style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b></button>
     </header>
     ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
