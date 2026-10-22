@@ -176,12 +176,12 @@ function subjectRow(skip) {
 // A deck: the cards in a stack that never ends, turned like pages. The front card
 // follows a finger (or the mouse) sideways and the one under it rises into place;
 // pulled the other way, the card before comes back over the top from the left. A
-// card that is passed slides under the stack. It turns by itself every 6 seconds:
-// a thin line across the top of the front card fills meanwhile, and pressing and
+// card that is passed slides under the stack. It turns by itself every 10 seconds:
+// a faint line along the bottom of the front card fills meanwhile, and pressing and
 // holding the card stops it (as in stories), with the card dipping a little. Not
 // with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
 // No bar under it: the faint line on the card and the cards peeking out say enough.
-const DECK_MS = 6000;
+const DECK_MS = 10000;
 const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
 function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
 function deck(el, offset = 0) {
@@ -245,7 +245,7 @@ function deck(el, offset = 0) {
   }, { passive: false });
   el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
   segs.forEach((g, j) => g.onclick = () => go(j));
-  // By itself: the front card's line fills over 6 seconds, then the page turns. Pressing
+  // By itself: the front card's line fills over 10 seconds, then the page turns. Pressing
   // (and holding) the card stops it, as does keyboard focus inside the deck.
   const hold = (on) => { held = on; el.classList.toggle("held", on); };
   el.addEventListener("pointerdown", () => hold(true)); window.addEventListener("pointerup", () => el.isConnected && hold(el.contains(document.activeElement) && document.activeElement.matches(":focus-visible")));
