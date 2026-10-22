@@ -276,21 +276,21 @@ svg text{font-family:Andika,sans-serif}
 .lm-sheet>*:not(.lm-list){flex:none}
 .lm-grip{align-self:center;width:40px;height:5px;border-radius:3px;background:#d3d3d3;margin-bottom:12px}
 .lm-sheet h3{margin:0;font:700 24px/1.25 "Red Hat Display",sans-serif;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.lm-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.lm-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .lm-badges span{padding:6px 12px;border-radius:8px;font:800 12px/16px "Red Hat Display",sans-serif;letter-spacing:.06em;text-transform:uppercase}
 .b-cyan{background:#5CEFFF;color:#1D2D37}.b-purple{background:#BAA8FF;color:#221E30}.b-green{background:#9EFFA1;color:#1C361D}
-.lm-goal{margin-top:14px;max-width:none}
-.lm-sheet h4{margin:18px 0 0;font:700 18px/1.4 "Red Hat Display",sans-serif;color:var(--text)}
-.lm-sound{display:flex;align-items:center;gap:8px;margin-top:10px;font:500 18px/1.4 "Red Hat Text",sans-serif;cursor:pointer}
+.lm-goal{margin-top:16px;max-width:none}
+.lm-sheet h4{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--edge-c);font:700 18px/1.4 "Red Hat Display",sans-serif;color:var(--text)}
+.lm-sound{display:flex;align-items:center;gap:10px;margin-top:16px;font:500 17px/1.4 "Red Hat Text",sans-serif;cursor:pointer}
 .lm-sound span{flex:1}.lm-sound input{position:absolute;opacity:0;pointer-events:none}
 .lm-sound .x{display:none}.lm-sheet.muted .lm-sound .x{display:inline}.lm-sheet.muted .lm-sound .w{display:none}
 .lm-switch{position:relative;width:51px;height:31px;border-radius:16px;background:#888;transition:background .2s;flex:none}
 .lm-switch::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .2s}
 .lm-sound input:checked+.lm-switch{background:var(--sc)}.lm-sound input:checked+.lm-switch::after{transform:translateX(20px)}
 .lm-sound input:focus-visible+.lm-switch{outline:3px solid #6849dd;outline-offset:2px}
-.lm-list{margin-top:16px;overflow-y:auto;min-height:0;-webkit-mask:linear-gradient(#000 calc(100% - 28px),transparent);mask:linear-gradient(#000 calc(100% - 28px),transparent);padding-bottom:20px}
+.lm-list{margin-top:14px;overflow-y:auto;min-height:0;-webkit-mask:linear-gradient(#000 calc(100% - 28px),transparent);mask:linear-gradient(#000 calc(100% - 28px),transparent);padding-bottom:20px}
 .lm-step{display:flex;align-items:stretch}
-.lm-prog{display:grid;gap:6px}.lm-prog .pbar{margin:0;height:8px;border-radius:8px;background:var(--edge-c);overflow:hidden}.lm-prog small{font:500 13px "Red Hat Text",sans-serif;color:#767676}
+.lm-prog{display:grid;gap:4px}.lm-prog .pbar{margin:0;height:8px;border-radius:8px;background:var(--edge-c);overflow:hidden}.lm-prog small{font:500 13px "Red Hat Text",sans-serif;color:#767676}
 .lm-jump{color:var(--sc)!important;font-weight:600!important}.lm-jump i{background:var(--sc)!important}
 .lm-ind{display:flex;flex-direction:column;align-items:center;margin-right:24px}
 .lm-ring{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:color-mix(in srgb,var(--sc) 45%,transparent)}
@@ -308,7 +308,7 @@ svg text{font-family:Andika,sans-serif}
 .lm-step.now .lm-name{font-weight:600;color:var(--sc)}.lm-step.later .lm-name{color:#767676}
 .lm-chev{margin-top:4px;color:var(--text);transition:transform .2s}.lm-step.now .lm-chev{color:var(--sc)}.lm-step.later .lm-chev{color:#767676}
 .lm-step.open .lm-chev{transform:rotate(180deg)}
-.lm-mods{display:none;gap:14px;padding-top:14px}.lm-step.open .lm-mods{display:grid}
+.lm-mods{display:none;gap:12px;padding-top:10px}.lm-step.open .lm-mods{display:grid}
 .lm-mod{display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;text-align:left;cursor:pointer;font:500 17px/1.4 "Red Hat Text",sans-serif;color:var(--text)}
 .lm-mod i{width:6px;height:6px;border-radius:50%;background:#d3d3d3;flex:none}.lm-mod.now i,.lm-mod.done i{background:var(--sc)}
 .lm-mod span{flex:1}.lm-mod.later{color:#767676}.lm-mod.now{font-weight:600;color:var(--sc)}.lm-mod b{font:700 16px "Red Hat Text",sans-serif;color:var(--sc)}
@@ -766,8 +766,7 @@ function lessonMenu(scr) {
     <h3>${escH(set.title[lang()] ?? set.title.de)}</h3>
     <div class="lm-badges"><span class="b-cyan">${esc(M.min(set.minutes ?? 10))}</span><span class="b-purple">${esc(UI.lessonOf(k, set.lessons.length).toUpperCase())}</span><span class="b-green">${esc(M.tasks(tasks))}</span></div>
     ${goal ? `<button class="goal lm-goal" type="button"><span class="gl">${esc(UI.goal)}</span>${escH(goal)}</button>` : ""}
-    <h4>${esc(M.settings)}</h4>
-    <label class="lm-sound"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path class="x" d="M17 10l4 4M21 10l-4 4"/></svg><span></span><input type="checkbox" role="switch"><i class="lm-switch"></i></label>
+    <label class="lm-sound" aria-label="${esc(M.settings)}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path class="x" d="M17 10l4 4M21 10l-4 4"/></svg><span></span><input type="checkbox" role="switch"><i class="lm-switch"></i></label>
     <h4>${esc(M.journey)}</h4>
     <div class="lm-list">${acts.map(row).join("")}</div>`;
   scr.append(scrim, m);
