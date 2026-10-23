@@ -2,7 +2,9 @@
 // behind a real HTTP server, and the backend store against a fake IST-B2C API.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createServer } from "node:http";
+import { createServer, request } from "node:http";
+import { spawn } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { mkdtempSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -56,13 +58,6 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.equal((await admin.call("POST", "users", { email: "short@ist.com", name: "Sh", role: "tester", password: "short" })).status, 400);
 
   const tomS = await srv.as("tom@ist.com", "long-enough-1"), annS = await srv.as("ann@ist.com", "long-enough-1"), rev = await srv.as("rev@ist.com", "long-enough-1");
-  // Drawings and Task types: not for testers, for everyone above.
-  const page = async (who, path) => (await fetch(srv.base + path, { headers: { Cookie: who.cookie } })).status;
-  assert.equal(await page(tomS, "/pages/drawings/index.html"), 403);
-  assert.equal(await page(tomS, "/pages/types/"), 403);
-  for (const sneaky of ["/pages/%74ypes/", "/pages/./types/index.html", "/pages//drawings/", "/pages/player/../types/", "/pages/Types/", "/pages/types"]) assert.equal(await page(tomS, sneaky), 403, sneaky);
-  assert.equal(await page(tomS, "/pages/player/"), 200, "the app itself is open to testers");
-  for (const who of [mgr, rev, admin]) { assert.equal(await page(who, "/pages/types/"), 200); assert.equal(await page(who, "/pages/drawings/index.html"), 200); }
   assert.equal((await tomS.call("GET", "me")).body.can.tools, false);
   assert.equal((await rev.call("GET", "me")).body.can.tools, true);
   const post = async (who, body) => (await who.call("POST", "feedback", { screen: SCREEN, pin: { x: 0.5, y: 0.4 }, target: { label: "Button: Weiter" }, body })).body.feedback;
@@ -234,3 +229,23 @@ test("backend store: tokens, roles and the feedback contract", async (t) => {
   const unreachable = apiStore("http://127.0.0.1:9");
   assert.equal((await unreachable.signIn("a@b.c", "x")).fail, "unreachable");
 });
+
+test("serve.mjs keeps Drawings and Task types from testers, however the address is written", async (t) => {
+  const port = 20000 + Math.floor(Math.random() * 20000), base = `http://127.0.0.1:${port}`;
+  const child = spawn(process.execPath, [fileURLToPath(new URL("../serve.mjs", import.meta.url))], { env: { ...process.env, PORT: String(port), TWIST_DATA: mkdtempSync(join(tmpdir(), "twist-fb-")), TWIST_USER: "admin@ist.com", TWIST_PASS: "admin-pass-123", TWIST_API_URL: "" }, stdio: "pipe" });
+  t.after(() => child.kill());
+  await new Promise((r) => child.stdout.on("data", (d) => String(d).includes("Twist player on") && r()));
+  const cookieOf = async (login, password) => (await fetch(base + "/auth/sign-in", { method: "POST", redirect: "manual", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ login, password }) })).headers.get("set-cookie").split(";")[0];
+  const admin = await cookieOf("admin@ist.com", "admin-pass-123");
+  await fetch(base + "/api/users", { method: "POST", headers: { Cookie: admin, "X-Twist": "1", "Content-Type": "application/json" }, body: JSON.stringify({ email: "t@ist.com", name: "Tess", role: "tester", password: "long-enough-1" }) });
+  const tester = await cookieOf("t@ist.com", "long-enough-1");
+  // The request line exactly as written: fetch would drop a "#" and resolve "..", a client need not.
+  const raw = (path, cookie) => new Promise((ok, bad) => { const r = request({ host: "127.0.0.1", port, path, headers: { Cookie: cookie } }, (res) => { res.resume(); ok(res.statusCode); }); r.on("error", bad); r.end(); });
+  const sneaky = ["/pages/types/", "/pages/types/index.html", "/pages/drawings/index.html", "/pages/%74ypes/", "/pages/./types/index.html", "/pages//drawings/", "/pages/player/../types/", "/pages/x#/../types/index.html", "/pages/x%23/../types/index.html", "/pages/types"];
+  for (const p of sneaky) assert.notEqual(await raw(p, tester), 200, p);
+  assert.equal(await raw("/pages/types/index.html", tester), 403);
+  assert.equal(await raw("/pages/player/", tester), 200, "the app itself is open to testers");
+  assert.equal(await raw("/pages/types/index.html", admin), 200);
+  assert.equal(await raw("/pages/x#/../types/index.html", admin), 200, "the same address reaches the page for the team");
+});
+

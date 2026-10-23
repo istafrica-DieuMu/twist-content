@@ -21,9 +21,10 @@
 import { createServer } from "node:http";
 import { createReadStream, statSync, readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
-import { join, normalize, extname, dirname, sep } from "node:path";
+import { join, normalize, extname, dirname, sep, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createApi } from "./server/api.mjs";
+import { can, TOOL_DIRS } from "./server/roles.mjs";
 import { fileStore } from "./server/store-file.mjs";
 import { apiStore } from "./server/store-api.mjs";
 
@@ -61,6 +62,10 @@ const server = createServer(async (req, res) => {
   // A folder without its slash: redirect so relative links (../../assets/) resolve.
   const file = fileFor(path);
   if (!file) { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
+  // Drawings and Task types are the team's tools: checked on the file that would be sent, so no way of
+  // writing the address reaches them (lower case too, for file systems that ignore case).
+  const rel = relative(ROOT, file).split(sep).join("/").toLowerCase();
+  if (!can(req.session.user).tools && TOOL_DIRS.some((d) => rel === d || rel.startsWith(d + "/"))) { res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" }); return res.end("Drawings and Task types are for the content team, not testers.\n"); }
   let st;
   try { st = statSync(file); } catch { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
   // The target is built from the file's own path under ROOT, never from the

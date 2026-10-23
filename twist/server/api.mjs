@@ -7,21 +7,13 @@
 // Changes need the X-Twist header, which another site cannot send without a
 // CORS preflight this server never answers, so a form elsewhere cannot post here.
 import { randomBytes, createHash } from "node:crypto";
-import { posix } from "node:path";
-import { ROLES, ROLE_NAME, TOOL_PAGES, can, canSee, canResolve, canEdit, canDelete, manages, grantable, managesAnyone } from "./roles.mjs";
+import { ROLES, ROLE_NAME, can, canSee, canResolve, canEdit, canDelete, manages, grantable, managesAnyone } from "./roles.mjs";
 import { StoreError } from "./store-file.mjs";
 
 export const COOKIE = "twist_session";
 const IDLE_MS = 12 * 3600_000, MAX_MS = 7 * 24 * 3600_000;
 const MIN_PASSWORD = 10;
 const LIMIT = { body: 4000, reply: 2000, label: 200, field: 120 };
-
-// A tool page however the address is written: decoded and normalised as serve.mjs reads it ("/pages/%74ypes/",
-// "/pages/./types/"), and in any case, for file systems that ignore it.
-function isToolPage(path) {
-  let p; try { p = posix.normalize("/" + decodeURIComponent(path).replace(/\\/g, "/")).toLowerCase(); } catch { return true; }
-  return TOOL_PAGES.some((t) => p.startsWith(t) || p + "/" === t);
-}
 
 class Bad extends Error { constructor(status, message) { super(message); this.status = status; } }
 
@@ -291,9 +283,6 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
         setCookie(req, res, "", 0); res.writeHead(303, { Location: "/sign-in" }); res.end(); return true;
       }
       if (!path.startsWith("/api/")) {
-        if (s && !can(s.user).tools && isToolPage(path)) {
-          res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" }); res.end("Drawings and Task types are for the content team, not testers.\n"); return true;
-        }
         if (s) { req.session = s; return false; }
         if (/\.html?$|\/$/.test(path) && req.method === "GET") { res.writeHead(302, { Location: `/sign-in?next=${encodeURIComponent(path + url.search)}` }); res.end(); return true; }
         res.writeHead(401, { "Content-Type": "text/plain" }); res.end("Sign in to open Twist Preview.\n"); return true;

@@ -17,8 +17,9 @@ const CAN = {
   admin: { comment: true, tools: true, seeAll: true, resolveAll: true, manageAll: true },
 };
 export const can = (user) => ({ comment: false, tools: false, seeTeam: false, resolveTeam: false, manageTeam: false, seeAll: false, resolveAll: false, manageAll: false, ...(CAN[user?.role] ?? {}) });
-// Pages only the team's tools role may open.
-export const TOOL_PAGES = ["/pages/drawings/", "/pages/types/"];
+// Folders under twist/ that only the team's tools role may open. serve.mjs checks the file it is about to
+// send against these, so however the address is written, what counts is the file it reaches.
+export const TOOL_DIRS = ["pages/drawings", "pages/types"];
 
 // Somebody in the user's team: an account they added. Managers look after the testers they add.
 const inTeam = (user, authorId, accounts) => accounts.some((a) => a.id === authorId && a.createdBy === user.id);
