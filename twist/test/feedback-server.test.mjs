@@ -40,6 +40,11 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.equal(anon.status, 302);
   assert.match(anon.headers.get("location"), /^\/sign-in\?next=/);
   assert.equal((await fetch(srv.base + "/healthz")).status, 200);
+  for (const p of ["/auth/sign-in", "/auth/sign-out"]) {
+    const r = await fetch(srv.base + p, { redirect: "manual" });
+    assert.equal(r.status, 303, `${p} opened directly`);
+    assert.equal(r.headers.get("location"), "/sign-in");
+  }
 
   const wrong = await srv.as("admin@ist.com", "nope");
   assert.equal(wrong.cookie, undefined);
@@ -226,6 +231,10 @@ test("backend store: tokens, roles and the feedback contract", async (t) => {
   const srv = await start(store); t.after(srv.close);
   const rita = await srv.as("rita@ist.com", "pw-123456789");
   assert.equal((await rita.call("GET", "feedback")).body.feedback[0].can.resolve, true);
+  // The address may carry /api/v1, as the dashboard writes it.
+  for (const suffix of ["/api/v1", "/api/v1/", "/api"]) {
+    assert.equal((await apiStore(`http://127.0.0.1:${fake.address().port}${suffix}`).signIn("rita@ist.com", "pw-123456789")).user.role, "reviewer", suffix);
+  }
   const unreachable = apiStore("http://127.0.0.1:9");
   assert.equal((await unreachable.signIn("a@b.c", "x")).fail, "unreachable");
 });

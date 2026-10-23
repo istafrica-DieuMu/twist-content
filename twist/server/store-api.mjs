@@ -17,7 +17,8 @@ const accountFrom = (r) => ({ id: String(r.id), email: r.email ?? "", name: r.fu
 const feedbackFrom = (f) => ({ ...f, id: String(f.id), status: String(f.status ?? "OPEN").toLowerCase(), author: f.author && { ...f.author, id: String(f.author.id) }, resolvedBy: f.resolvedBy && { ...f.resolvedBy, id: String(f.resolvedBy.id) }, replies: (f.replies ?? []).map((r) => ({ ...r, id: String(r.id), author: r.author && { ...r.author, id: String(r.author.id) } })) });
 
 export function apiStore(baseUrl, { fetch: f = fetch } = {}) {
-  const root = baseUrl.replace(/\/+$/, "");
+  // The API's base address. Written with or without "/api/v1" (as the dashboard's settings have it); the paths below add it.
+  const root = baseUrl.trim().replace(/\/+$/, "").replace(/\/api(\/v1)?$/, "");
 
   async function send(method, path, { token, body } = {}) {
     let res;
