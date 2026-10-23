@@ -90,16 +90,20 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.deepEqual((await mgr.call("GET", "users")).body.users.map((u) => u.email), ["tom@ist.com"]);
   assert.equal((await mgr.call("POST", `users/${ann.id}/password`, { password: "another-pass-1" })).status, 404);
   assert.equal((await mgr.call("POST", `users/${tom.id}/password`, { password: "another-pass-1" })).status, 200);
+  assert.equal((await tomS.call("GET", "me")).status, 401, "a reset signs the person out");
   assert.equal((await srv.as("tom@ist.com", "long-enough-1")).cookie, undefined);
   const tom2 = await srv.as("tom@ist.com", "another-pass-1");
   assert.ok(tom2.cookie);
-  assert.equal((await tomS.call("GET", "users")).status, 403, "a tester manages nobody");
+  assert.equal((await tom2.call("GET", "users")).status, 403, "a tester manages nobody");
   await mgr.call("PATCH", `users/${tom.id}`, { active: false });
   assert.equal((await tom2.call("GET", "me")).status, 401, "switching an account off ends its sessions");
 
   // Own password.
   assert.equal((await annS.call("POST", "me/password", { current: "wrong", next: "brand-new-pass" })).status, 403);
+  const annOther = await srv.as("ann@ist.com", "long-enough-1");
   assert.equal((await annS.call("POST", "me/password", { current: "long-enough-1", next: "brand-new-pass" })).status, 200);
+  assert.equal((await annS.call("GET", "me")).status, 200, "the session that changed it stays");
+  assert.equal((await annOther.call("GET", "me")).status, 401, "her other sessions end");
   assert.ok((await srv.as("ann@ist.com", "brand-new-pass")).cookie);
 
   // Sign-out ends the session.
@@ -128,7 +132,8 @@ test("the file store keeps its files to itself", () => {
 test("sign-in is throttled after ten wrong passwords", async (t) => {
   const store = fileStore(mkdtempSync(join(tmpdir(), "twist-fb-")), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
   const srv = await start(store); t.after(srv.close);
-  for (let i = 0; i < 10; i++) await srv.as("admin@ist.com", "wrong");
+  // Sent all at once: each is counted before its password is checked.
+  await Promise.all(Array.from({ length: 30 }, () => srv.as("admin@ist.com", "wrong")));
   assert.equal((await srv.as("admin@ist.com", "admin-pass-123")).cookie, undefined);
 });
 

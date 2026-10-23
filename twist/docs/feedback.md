@@ -59,7 +59,8 @@ passwords, switches accounts off and deletes them. A row with comments
 links to them. Everyone changes their own password from the account menu
 in the top bar. Passwords need at least 10 characters.
 
-Switching an account off, or deleting it, ends its sessions at once.
+Switching an account off, deleting it or resetting its password ends its
+sessions at once. Changing your own password ends your other sessions.
 
 ## Where accounts and feedback are kept
 
@@ -82,7 +83,8 @@ Switching an account off, or deleting it, ends its sessions at once.
   everyone out. Sessions end after 12 idle hours or 7 days.
 - Every change needs the `X-Twist: 1` header, which another site cannot send
   without a CORS preflight this server never answers.
-- Ten wrong passwords from one address lock sign-in there for 15 minutes.
+- Sign-in allows ten wrong passwords per address and ten per account in 15
+  minutes; each try is counted before its password is checked.
 - Everything under `pages/` and `assets/` needs a session; `/healthz` and the
   sign-in page do not.
 

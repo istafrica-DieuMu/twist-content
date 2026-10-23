@@ -19,7 +19,9 @@ class Bad extends Error { constructor(status, message) { super(message); this.st
 
 export function createApi(store, { secureCookies = false, now = () => Date.now() } = {}) {
   const sessions = new Map();
-  const failures = new Map(); // ip -> { n, until }
+  const failures = new Map(); // "ip:<address>" or "login:<email>" -> { n, until }
+  // Ends every session of an account but the one given: after a password change or reset.
+  const endSessions = (userId, keep) => { for (const [k, x] of sessions) if (x.user.id === userId && k !== keep) sessions.delete(k); };
   setInterval(() => { const t = now(); for (const [k, s] of sessions) if (t - s.seen > IDLE_MS || t - s.created > MAX_MS) sessions.delete(k); }, 600_000).unref();
 
   const cookieOf = (req) => Object.fromEntries((req.headers.cookie ?? "").split(";").map((c) => c.trim().split("=")).filter((p) => p.length === 2))[COOKIE];
@@ -89,15 +91,21 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     const origin = req.headers.origin;
     const hostOf = (o) => { try { return new URL(o).host; } catch { return null; } };
     if (origin && hostOf(origin) !== req.headers.host) return signInPage(res, { error: "Sign in from this site's own page.", next });
-    const fl = failures.get(ip);
-    if (fl && fl.n >= 10 && fl.until > now()) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
+    // Each try is counted before the password is checked, so tries sent at once cannot all slip under the limit:
+    // ten per address and ten per account in fifteen minutes.
+    const keys = [`ip:${ip}`, `login:${login.toLowerCase()}`], t0 = now();
+    const counts = keys.map((k) => { const f = failures.get(k); return f && f.until > t0 ? f : { n: 0, until: t0 + 15 * 60_000 }; });
+    if (counts.some((c) => c.n >= 10)) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
+    keys.forEach((k, i) => failures.set(k, { n: counts[i].n + 1, until: counts[i].until }));
     const r = await store.signIn(login, password);
     if (!r.user) {
-      if (r.fail === "credentials" || r.fail === "inactive") failures.set(ip, { n: (fl && fl.until > now() ? fl.n : 0) + 1, until: now() + 15 * 60_000 });
       const msg = { credentials: "That email and password do not match an account.", inactive: "This account is switched off. Ask your manager.", role: `Your account (${r.backendRole}) has no Twist Preview role. Ask an admin for one.`, unreachable: "The sign-in service cannot be reached just now. This is not a password problem; try again in a minute." }[r.fail];
       return signInPage(res, { error: msg, next, login });
     }
-    failures.delete(ip);
+    // A right password clears the account's count and takes back this try from the address's;
+    // the address keeps its wrong tries, so signing in to one account cannot hide guesses at others.
+    failures.delete(keys[1]);
+    const fa = failures.get(keys[0]); if (fa) fa.n = Math.max(0, fa.n - 1);
     const id = randomBytes(32).toString("base64url"), t = now();
     sessions.set(id, { id, user: r.user, tokens: r.tokens, created: t, seen: t });
     setCookie(req, res, id, MAX_MS / 1000);
@@ -186,6 +194,7 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     if (parts.length === 2 && parts[1] === "password" && req.method === "POST") {
       const b = await readJson(req);
       await store.setPassword(s, target.id, password(b.password));
+      endSessions(target.id);
       return json(res, 200, { ok: true });
     }
     if (parts.length === 1 && req.method === "DELETE") { await store.deleteAccount(s, target.id); return json(res, 200, { ok: true }); }
@@ -217,7 +226,7 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
       if (parts[0] === "me" && parts[1] === "password" && req.method === "POST") {
         const b = await readJson(req), next = String(b.next ?? "");
         if (next.length < MIN_PASSWORD) throw new Bad(400, `A password needs at least ${MIN_PASSWORD} characters.`);
-        await store.changeOwnPassword(s, String(b.current ?? ""), next); json(res, 200, { ok: true }); return true;
+        await store.changeOwnPassword(s, String(b.current ?? ""), next); endSessions(s.user.id, s.id); json(res, 200, { ok: true }); return true;
       }
       if (parts[0] === "feedback") { await feedbackRoute(req, res, s, url, parts.slice(1)); return true; }
       if (parts[0] === "users") { await usersRoute(req, res, s, parts.slice(1)); return true; }
