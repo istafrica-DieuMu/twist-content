@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createApi } from "../server/api.mjs";
@@ -105,6 +105,24 @@ test("file store: who sees, resolves and manages what", async (t) => {
   // Sign-out ends the session.
   await fetch(srv.base + "/auth/sign-out", { method: "POST", redirect: "manual", headers: { Cookie: admin.cookie } });
   assert.equal((await admin.call("GET", "me")).status, 401);
+});
+
+test("sign-in only sends people to a path on this site", async (t) => {
+  const store = fileStore(mkdtempSync(join(tmpdir(), "twist-fb-")), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
+  const srv = await start(store); t.after(srv.close);
+  const to = async (next) => (await fetch(srv.base + "/auth/sign-in", { method: "POST", redirect: "manual", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ login: "admin@ist.com", password: "admin-pass-123", next }) })).headers.get("location");
+  for (const bad of ["//evil.org", "/\\evil.org", "/\t/evil.org", "/\n/evil.org", "https://evil.org", "evil.org"]) assert.equal(await to(bad), "/pages/player/", bad);
+  // Whatever comes back resolves on this site.
+  for (const odd of ["/%2F/evil.org/..//evil.org", "/.//evil.org", "/a/../../evil.org"]) assert.equal(new URL(await to(odd), srv.base).origin, srv.base, odd);
+  assert.equal(await to("/pages/player/#fb=abc"), "/pages/player/#fb=abc");
+  assert.equal(await to("/pages/types/?x=1"), "/pages/types/?x=1");
+});
+
+test("the file store keeps its files to itself", () => {
+  const dir = mkdtempSync(join(tmpdir(), "twist-fb-"));
+  fileStore(join(dir, "data"), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
+  assert.equal(statSync(join(dir, "data")).mode & 0o777, 0o700);
+  assert.equal(statSync(join(dir, "data", "accounts.json")).mode & 0o777, 0o600);
 });
 
 test("sign-in is throttled after ten wrong passwords", async (t) => {

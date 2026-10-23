@@ -53,7 +53,13 @@ export function createApi(store, { secureCookies = false, now = () => Date.now()
     return new URLSearchParams(Buffer.concat(parts).toString("utf8"));
   }
   const str = (v, max, name, min = 0) => { const s = String(v ?? "").trim(); if (s.length < min) throw new Bad(400, `${name} is missing.`); if (s.length > max) throw new Bad(400, `${name} is longer than ${max} characters.`); return s; };
-  const safeNext = (n) => typeof n === "string" && n.startsWith("/") && !n.startsWith("//") && !n.startsWith("/\\") ? n : "/pages/player/";
+  // Where to go after signing in: a path on this site only. Browsers drop tabs and newlines and read
+  // a backslash as a slash, so "/\t/evil.org" would leave the site; resolve it and keep only the path.
+  const safeNext = (n) => {
+    const home = "/pages/player/";
+    if (typeof n !== "string" || !n.startsWith("/") || /[\x00-\x1f\\]/.test(n)) return home;
+    try { const u = new URL(n, "http://x"); return u.origin === "http://x" && !u.pathname.startsWith("//") ? u.pathname + u.search + u.hash : home; } catch { return home; }
+  };
 
   /* ---------- the sign-in page ---------- */
   function signInPage(res, { error = "", next = "/pages/player/", login = "" } = {}) {

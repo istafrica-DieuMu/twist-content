@@ -3,7 +3,7 @@
 // backend has the feedback endpoints: twist/docs/feedback-backend.md).
 // Passwords are scrypt hashes. Writes go to a temporary file first and are
 // renamed into place, one at a time, so a crash never leaves half a file.
-import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, chmodSync } from "node:fs";
 import { join } from "node:path";
 import { randomBytes, scryptSync, timingSafeEqual, randomUUID } from "node:crypto";
 import { ROLES } from "./roles.mjs";
@@ -27,11 +27,13 @@ const now = () => new Date().toISOString();
 const pub = ({ hash, ...a }) => a;
 
 export function fileStore(dir, { seedLogin, seedPassword } = {}) {
-  mkdirSync(dir, { recursive: true });
+  // Password hashes: readable by this server's user only.
+  mkdirSync(dir, { recursive: true, mode: 0o700 });
   const files = { accounts: join(dir, "accounts.json"), feedback: join(dir, "feedback.json") };
   const load = (f) => existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : [];
   const db = { accounts: load(files.accounts), feedback: load(files.feedback) };
-  const save = (k) => { const tmp = `${files[k]}.${process.pid}.tmp`; writeFileSync(tmp, JSON.stringify(db[k], null, 1)); renameSync(tmp, files[k]); };
+  for (const f of Object.values(files)) if (existsSync(f)) chmodSync(f, 0o600);
+  const save = (k) => { const tmp = `${files[k]}.${process.pid}.tmp`; writeFileSync(tmp, JSON.stringify(db[k], null, 1), { mode: 0o600 }); renameSync(tmp, files[k]); };
   // The first admin comes from TWIST_USER and TWIST_PASS, the login the player had before accounts.
   if (!db.accounts.length && seedLogin && seedPassword) {
     db.accounts.push({ id: randomUUID(), email: seedLogin, name: seedLogin.split("@")[0], role: "admin", active: true, createdBy: null, createdAt: now(), hash: hashPassword(seedPassword) });
