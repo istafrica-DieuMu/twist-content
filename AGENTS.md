@@ -55,6 +55,14 @@ git repo kept separate from schoolido-learning.
       twist/docs/task-types.md. A copy is published as a claude.ai artifact.
     - rewards/: stars and badges, built from twist/docs/rewards.md by
       `node twist/pages/rewards/build.mjs`; never edit index.html by hand.
+    - navbar/: the app's bottom navigation bar (Figma node 9786:6789) with a
+      micro-interaction per tab: Home's door opens, Study's page turns,
+      Practice's cap hops and its tassel swings, Profile tilts hello; the
+      highlight slides to the active tab. The Home, Study and Practice icons
+      are drawn here in navbar/icons/ with their moving parts as named
+      groups; assets/ keeps the Figma exports as reference (Profile uses
+      assets/profile.png). `python3 twist/pages/navbar/build.py` writes
+      index.html from index.template.html; never edit index.html by hand.
     - sources/: where every text, picture and sound on a lesson screen comes
       from (the player's label, the v2 field, the record key or asset file,
       the S3 key), written by hand; a copy is published as a claude.ai
