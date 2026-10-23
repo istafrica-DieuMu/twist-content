@@ -56,6 +56,15 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.equal((await admin.call("POST", "users", { email: "short@ist.com", name: "Sh", role: "tester", password: "short" })).status, 400);
 
   const tomS = await srv.as("tom@ist.com", "long-enough-1"), annS = await srv.as("ann@ist.com", "long-enough-1"), rev = await srv.as("rev@ist.com", "long-enough-1");
+  // Drawings and Task types: not for testers, for everyone above.
+  const page = async (who, path) => (await fetch(srv.base + path, { headers: { Cookie: who.cookie } })).status;
+  assert.equal(await page(tomS, "/pages/drawings/index.html"), 403);
+  assert.equal(await page(tomS, "/pages/types/"), 403);
+  for (const sneaky of ["/pages/%74ypes/", "/pages/./types/index.html", "/pages//drawings/", "/pages/player/../types/", "/pages/Types/", "/pages/types"]) assert.equal(await page(tomS, sneaky), 403, sneaky);
+  assert.equal(await page(tomS, "/pages/player/"), 200, "the app itself is open to testers");
+  for (const who of [mgr, rev, admin]) { assert.equal(await page(who, "/pages/types/"), 200); assert.equal(await page(who, "/pages/drawings/index.html"), 200); }
+  assert.equal((await tomS.call("GET", "me")).body.can.tools, false);
+  assert.equal((await rev.call("GET", "me")).body.can.tools, true);
   const post = async (who, body) => (await who.call("POST", "feedback", { screen: SCREEN, pin: { x: 0.5, y: 0.4 }, target: { label: "Button: Weiter" }, body })).body.feedback;
   const fTom = await post(tomS, "Tom's comment"), fAnn = await post(annS, "Ann's comment");
   assert.equal(fTom.status, "open");

@@ -26,6 +26,8 @@ function fbkToast(msg, bad = false) {
 const fbkAgo = (iso) => { const s = (Date.now() - Date.parse(iso)) / 1000; if (!(s >= 0)) return ""; if (s < 60) return "just now"; if (s < 3600) return `${Math.floor(s / 60)} min ago`; if (s < 86400) return `${Math.floor(s / 3600)} h ago`; if (s < 7 * 86400) return `${Math.floor(s / 86400)} d ago`; return new Date(iso).toLocaleDateString(); };
 const fbkCan = () => FBK.me?.can ?? {};
 const fbkSeesOthers = () => fbkCan().seeAll || fbkCan().seeTeam;
+// Drawings and Task types: everyone above tester, and everyone when the page runs without serve.mjs.
+const fbkTools = () => !FBK.me || !!fbkCan().tools;
 
 /* ---------- which screen is open ---------- */
 const FBK_STEP = { start: "Start", intro: "Activity starts", stage: "Stage change", checkIntro: "Check starts", end: "End" };
@@ -381,6 +383,11 @@ async function fbkInit() {
   try { const r = await fetch("/api/me", { credentials: "same-origin" }); if (!r.ok) return; FBK.me = await r.json(); } catch { return; }
   document.body.classList.add("fbk-on");
   $("#fbkBar").hidden = false; $("#vFeedback").hidden = false; $("#vUsers").hidden = !FBK.me.can.manageUsers;
+  if (!fbkTools()) {
+    $("#vDrawn").hidden = true; $("#vTypes").hidden = true; document.body.classList.add("fbk-notools");
+    // Opened on a tool page (a #types link) before the role was known: back to the app.
+    if (["types", "drawn"].some((c) => document.body.classList.contains(c))) appTab("start");
+  }
   $("#fbkComment").onclick = () => fbkPinMode();
   $("#fbkInbox").onclick = () => { toggle($("#fbkInbox"), $("#fbkMenu")); fbkRenderBar(); };
   $("#fbkMe").onclick = () => toggle($("#fbkMe"), $("#fbkMePop"));

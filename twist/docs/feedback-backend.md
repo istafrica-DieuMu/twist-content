@@ -74,7 +74,7 @@ Add three values to `AdminRole`. Admin stays `SUPER_ADMIN`.
 
 | Role | Who | Can |
 |---|---|---|
-| `TWIST_TESTER` | Teachers, parents, anyone trying the app | Use the whole preview, leave feedback, see and edit only their own feedback |
+| `TWIST_TESTER` | Teachers, parents, anyone trying the app | Use the app and the Parents view (not the team's Drawings and Task types pages), leave feedback, see and edit only their own feedback |
 | `TWIST_MANAGER` | Someone who brings in testers | Everything a tester can, plus add testers, set and reset their passwords, switch them off, see and resolve their testers' feedback |
 | `TWIST_REVIEWER` | The content team | Use the preview, see every comment, reply, resolve and reopen, delete any comment |
 | `SUPER_ADMIN` | Product owners | Everything, including every account and every role |

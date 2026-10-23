@@ -6,16 +6,19 @@
 //             and sees and resolves the feedback of the testers they added
 //   reviewer  sees every comment, jumps to its screen, resolves and reopens
 //   admin     everything: every comment, every account and role
+// Everyone above tester also gets the team's tools: the Drawings and Task types pages.
 export const ROLES = ["tester", "manager", "reviewer", "admin"];
 export const ROLE_NAME = { tester: "Tester", manager: "Manager", reviewer: "Reviewer", admin: "Admin" };
 
 const CAN = {
   tester: { comment: true },
-  manager: { comment: true, seeTeam: true, resolveTeam: true, manageTeam: true },
-  reviewer: { comment: true, seeAll: true, resolveAll: true },
-  admin: { comment: true, seeAll: true, resolveAll: true, manageAll: true },
+  manager: { comment: true, tools: true, seeTeam: true, resolveTeam: true, manageTeam: true },
+  reviewer: { comment: true, tools: true, seeAll: true, resolveAll: true },
+  admin: { comment: true, tools: true, seeAll: true, resolveAll: true, manageAll: true },
 };
-export const can = (user) => ({ comment: false, seeTeam: false, resolveTeam: false, manageTeam: false, seeAll: false, resolveAll: false, manageAll: false, ...(CAN[user?.role] ?? {}) });
+export const can = (user) => ({ comment: false, tools: false, seeTeam: false, resolveTeam: false, manageTeam: false, seeAll: false, resolveAll: false, manageAll: false, ...(CAN[user?.role] ?? {}) });
+// Pages only the team's tools role may open.
+export const TOOL_PAGES = ["/pages/drawings/", "/pages/types/"];
 
 // Somebody in the user's team: an account they added. Managers look after the testers they add.
 const inTeam = (user, authorId, accounts) => accounts.some((a) => a.id === authorId && a.createdBy === user.id);

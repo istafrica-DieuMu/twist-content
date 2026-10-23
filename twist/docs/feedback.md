@@ -9,10 +9,14 @@ Parents view. Reviewers see every comment and open its screen from the list.
 
 | Role | Can |
 |---|---|
-| Tester | Use the whole preview. Leave feedback. See, edit and delete their own comments while open, and read replies to them. Never sees anyone else's. |
+| Tester | Use the app and the Parents view (not Drawings or Task types). Leave feedback. See, edit and delete their own comments while open, and read replies to them. Never sees anyone else's. |
 | Manager | What a tester can, plus: add testers, set and reset their passwords, switch them off, delete them; see, reply to and resolve their testers' comments. |
-| Reviewer | Use the preview; see every comment; reply, resolve, reopen and delete any. |
+| Reviewer | Use the whole preview; see every comment; reply, resolve, reopen and delete any. |
 | Admin | Everything, including every account and every role. |
+
+Everyone above tester also gets the team's tools, Drawings and Task types. For
+a tester those tabs are gone and the server refuses the pages themselves, so
+typing the address does not get round it.
 
 The rules are one table in `twist/server/roles.mjs`. The server checks every
 request against it; the page only hides what would fail.

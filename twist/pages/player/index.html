@@ -1740,6 +1740,8 @@ body.parents .drawer, body.parents .wrap, body.parents .pickbtn, body.parents .n
 .fbk-anchor { position: relative; }
 .fbk-who { max-width: 14ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .views button[hidden] { display: none; }
+/* A tester's lesson panel: task type chips stay as labels, not links to Task types. */
+body.fbk-notools a[data-type] { pointer-events: none; text-decoration: none; color: inherit; }
 #fbkMePop .fbk-form, .fbk-form { display: flex; flex-direction: column; gap: 6px; }
 .fbk-form input, .fbk-compose textarea, .fbk-card textarea, .fbk-page input, .fbk-page select {
   font: 13px system-ui, sans-serif; padding: 8px 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--page); color: var(--ink); }
@@ -4583,6 +4585,8 @@ function fbkToast(msg, bad = false) {
 const fbkAgo = (iso) => { const s = (Date.now() - Date.parse(iso)) / 1000; if (!(s >= 0)) return ""; if (s < 60) return "just now"; if (s < 3600) return `${Math.floor(s / 60)} min ago`; if (s < 86400) return `${Math.floor(s / 3600)} h ago`; if (s < 7 * 86400) return `${Math.floor(s / 86400)} d ago`; return new Date(iso).toLocaleDateString(); };
 const fbkCan = () => FBK.me?.can ?? {};
 const fbkSeesOthers = () => fbkCan().seeAll || fbkCan().seeTeam;
+// Drawings and Task types: everyone above tester, and everyone when the page runs without serve.mjs.
+const fbkTools = () => !FBK.me || !!fbkCan().tools;
 
 /* ---------- which screen is open ---------- */
 const FBK_STEP = { start: "Start", intro: "Activity starts", stage: "Stage change", checkIntro: "Check starts", end: "End" };
@@ -4938,6 +4942,11 @@ async function fbkInit() {
   try { const r = await fetch("/api/me", { credentials: "same-origin" }); if (!r.ok) return; FBK.me = await r.json(); } catch { return; }
   document.body.classList.add("fbk-on");
   $("#fbkBar").hidden = false; $("#vFeedback").hidden = false; $("#vUsers").hidden = !FBK.me.can.manageUsers;
+  if (!fbkTools()) {
+    $("#vDrawn").hidden = true; $("#vTypes").hidden = true; document.body.classList.add("fbk-notools");
+    // Opened on a tool page (a #types link) before the role was known: back to the app.
+    if (["types", "drawn"].some((c) => document.body.classList.contains(c))) appTab("start");
+  }
   $("#fbkComment").onclick = () => fbkPinMode();
   $("#fbkInbox").onclick = () => { toggle($("#fbkInbox"), $("#fbkMenu")); fbkRenderBar(); };
   $("#fbkMe").onclick = () => toggle($("#fbkMe"), $("#fbkMePop"));
@@ -6767,6 +6776,8 @@ if (!new URLSearchParams(location.hash.slice(1)).get("type") && location.hash !=
 // runs in a frame and asks for a type with postMessage; the lesson panel's
 // type chips open that type's section there.
 function setView(v, anchor) {
+  // Drawings and Task types are the team's tools; a tester's page stays on the app (feedback-ui.js).
+  if ((v === "types" || v === "drawn") && !fbkTools()) v = "lessons";
   const types = v === "types", practice = v === "practice", drawnV = v === "drawn", parentsV = v === "parents", fr = $("#typesView"), dr = $("#drawnView");
   document.body.classList.toggle("types", types); document.body.classList.toggle("drawn", drawnV); document.body.classList.toggle("practice", practice); document.body.classList.toggle("parents", parentsV); fr.hidden = !types; dr.hidden = !drawnV; $("#parentsView").hidden = !parentsV;
   $("#vApp").setAttribute("aria-selected", v === "lessons" || practice); $("#vTypes").setAttribute("aria-selected", types); $("#vDrawn").setAttribute("aria-selected", drawnV); $("#vParents").setAttribute("aria-selected", parentsV);

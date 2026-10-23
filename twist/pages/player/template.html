@@ -1782,6 +1782,8 @@ if (!new URLSearchParams(location.hash.slice(1)).get("type") && location.hash !=
 // runs in a frame and asks for a type with postMessage; the lesson panel's
 // type chips open that type's section there.
 function setView(v, anchor) {
+  // Drawings and Task types are the team's tools; a tester's page stays on the app (feedback-ui.js).
+  if ((v === "types" || v === "drawn") && !fbkTools()) v = "lessons";
   const types = v === "types", practice = v === "practice", drawnV = v === "drawn", parentsV = v === "parents", fr = $("#typesView"), dr = $("#drawnView");
   document.body.classList.toggle("types", types); document.body.classList.toggle("drawn", drawnV); document.body.classList.toggle("practice", practice); document.body.classList.toggle("parents", parentsV); fr.hidden = !types; dr.hidden = !drawnV; $("#parentsView").hidden = !parentsV;
   $("#vApp").setAttribute("aria-selected", v === "lessons" || practice); $("#vTypes").setAttribute("aria-selected", types); $("#vDrawn").setAttribute("aria-selected", drawnV); $("#vParents").setAttribute("aria-selected", parentsV);
