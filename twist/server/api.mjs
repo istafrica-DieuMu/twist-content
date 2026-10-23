@@ -290,6 +290,8 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
       if (path === "/healthz") { res.writeHead(200, { "Content-Type": "text/plain" }); res.end("ok\n"); return true; }
       if (path === "/sign-in" && req.method === "GET") { signInPage(res, { next: safeNext(url.searchParams.get("next")), error: url.searchParams.get("error") ?? "" }); return true; }
       if (path === "/auth/sign-in" && req.method === "POST") { await signIn(req, res); return true; }
+      // The form's own address, opened directly or refreshed after a wrong password: show the form.
+      if ((path === "/auth/sign-in" || path === "/auth/sign-out") && req.method === "GET") { res.writeHead(303, { Location: "/sign-in" }); res.end(); return true; }
       const s = await signedIn(req);
       if (path === "/auth/sign-out" && req.method === "POST") {
         if (s) { sessions.delete(s.id); await store.signOut(s); }

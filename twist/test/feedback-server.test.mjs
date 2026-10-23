@@ -40,6 +40,11 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.equal(anon.status, 302);
   assert.match(anon.headers.get("location"), /^\/sign-in\?next=/);
   assert.equal((await fetch(srv.base + "/healthz")).status, 200);
+  for (const p of ["/auth/sign-in", "/auth/sign-out"]) {
+    const r = await fetch(srv.base + p, { redirect: "manual" });
+    assert.equal(r.status, 303, `${p} opened directly`);
+    assert.equal(r.headers.get("location"), "/sign-in");
+  }
 
   const wrong = await srv.as("admin@ist.com", "nope");
   assert.equal(wrong.cookie, undefined);
