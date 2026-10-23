@@ -231,6 +231,10 @@ test("backend store: tokens, roles and the feedback contract", async (t) => {
   const srv = await start(store); t.after(srv.close);
   const rita = await srv.as("rita@ist.com", "pw-123456789");
   assert.equal((await rita.call("GET", "feedback")).body.feedback[0].can.resolve, true);
+  // The address may carry /api/v1, as the dashboard writes it.
+  for (const suffix of ["/api/v1", "/api/v1/", "/api"]) {
+    assert.equal((await apiStore(`http://127.0.0.1:${fake.address().port}${suffix}`).signIn("rita@ist.com", "pw-123456789")).user.role, "reviewer", suffix);
+  }
   const unreachable = apiStore("http://127.0.0.1:9");
   assert.equal((await unreachable.signIn("a@b.c", "x")).fail, "unreachable");
 });
