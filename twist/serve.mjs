@@ -19,7 +19,7 @@
 // gzipped once and kept in memory until the file changes (the player page
 // is about 30 MB, 4 MB gzipped). Put it behind HTTPS (a reverse proxy).
 import { createServer } from "node:http";
-import { createReadStream, statSync, readFileSync } from "node:fs";
+import { createReadStream, statSync, readFileSync, realpathSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { join, normalize, extname, dirname, sep, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -29,6 +29,7 @@ import { fileStore } from "./server/store-file.mjs";
 import { apiStore } from "./server/store-api.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
+const REAL_ROOT = realpathSync(ROOT);
 const PORT = +(process.env.PORT ?? 8080);
 // Only the reverse proxy on this machine reaches it, unless HOST says otherwise (HOST=0.0.0.0).
 const HOST = process.env.HOST ?? "127.0.0.1";
@@ -64,7 +65,10 @@ const server = createServer(async (req, res) => {
   if (!file) { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
   // Drawings and Task types are the team's tools: checked on the file that would be sent, so no way of
   // writing the address reaches them (lower case too, for file systems that ignore case).
-  const rel = relative(ROOT, file).split(sep).join("/").toLowerCase();
+  // The real path, so a symlink (none today) cannot lead into them under another name.
+  let real; try { real = realpathSync(file); } catch { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
+  if (!real.startsWith(REAL_ROOT + sep)) { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
+  const rel = relative(REAL_ROOT, real).split(sep).join("/").toLowerCase();
   if (!can(req.session.user).tools && TOOL_DIRS.some((d) => rel === d || rel.startsWith(d + "/"))) { res.writeHead(403, { "Content-Type": "text/plain; charset=utf-8" }); return res.end("Drawings and Task types are for the content team, not testers.\n"); }
   let st;
   try { st = statSync(file); } catch { res.writeHead(404, { "Content-Type": "text/plain" }); return res.end("Not found\n"); }
