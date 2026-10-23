@@ -68,9 +68,12 @@ git repo kept separate from schoolido-learning.
   official-gb/), the catalogue, crosswalk, research site, readiness review
   and the research write-ups. rnd/AGENTS.md has its rules.
 - **twist/serve.mjs**: serves pages/ and assets/ (the player with its
-  Practice, Drawings and Task types tabs) behind basic auth from a clone;
-  docker-compose.player.yml runs it in Docker (login in .env.player, not in
-  git), the Makefile wraps it (`make help`), and every push to main deploys
+  Practice, Drawings and Task types tabs) from a clone to people signed in
+  with their own account; twist/server/ holds sign-in, roles, and feedback
+  pinned to app screens (twist/docs/feedback.md; the backend's part in
+  twist/docs/feedback-backend.md; the player's side is
+  pages/player/feedback-ui.js). docker-compose.player.yml runs it in Docker
+  (settings in .env.player, accounts in .twist-data/, neither in git), the Makefile wraps it (`make help`), and every push to main deploys
   it to new.dev.twist-learning.com (.github/workflows/deploy-player.yml,
   `make player-deploy`); README.md, "Serve the player on a server"; the host's runbook is
   twist/pages/hosting/index.html (written by hand, published as a claude.ai

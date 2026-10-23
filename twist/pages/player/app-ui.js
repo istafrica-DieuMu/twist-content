@@ -64,7 +64,7 @@ function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
   // Study is marked open before the view changes, so the lesson view coming back draws (and says) nothing.
-  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
+  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn", "fbv", "usv"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
   if (t === "settings") APP.editPic = false;

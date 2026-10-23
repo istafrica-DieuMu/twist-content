@@ -1,40 +1,42 @@
 // Serves the lesson player, Practice, Drawings and Task types from a clone of
-// this repo, behind HTTP basic auth. No dependencies; Node 18 or later.
+// this repo, to people signed in with their own account. No dependencies;
+// Node 18 or later.
 //
-//   TWIST_USER=… TWIST_PASS=… node twist/serve.mjs          # port 8080
-//   PORT=3000 TWIST_USER=… TWIST_PASS=… node twist/serve.mjs
-//   HOST=0.0.0.0 …   listens on every interface (default: 127.0.0.1 only)
+//   node twist/serve.mjs                       # port 8080, accounts in .twist-data/
+//   TWIST_USER=you@ist.com TWIST_PASS=… node twist/serve.mjs
+//                                              # the first admin, made when there are no accounts yet
+//   TWIST_API_URL=https://… node twist/serve.mjs
+//                                              # accounts and feedback on the IST-B2C backend
+//   PORT=3000 HOST=0.0.0.0 …                   # port; every interface (default: 127.0.0.1 only)
+//   TWIST_DATA=/data                           # where the file store keeps accounts.json and feedback.json
+//   COOKIE_SECURE=1                            # mark the session cookie Secure (also when the proxy says https)
 //
+// Sign-in, sessions, feedback and accounts are in server/ (twist/docs/feedback.md).
 // Only pages/ and assets/ are served; / opens the player. Audio answers
 // Range requests (phones need them to play and seek), and HTML and JS are
 // gzipped once and kept in memory until the file changes (the player page
-// is about 25 MB, 4 MB gzipped). Put it behind HTTPS (a reverse proxy):
-// basic auth sends the password with every request.
+// is about 30 MB, 4 MB gzipped). Put it behind HTTPS (a reverse proxy).
 import { createServer } from "node:http";
 import { createReadStream, statSync, readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
-import { timingSafeEqual } from "node:crypto";
 import { join, normalize, extname, dirname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createApi } from "./server/api.mjs";
+import { fileStore } from "./server/store-file.mjs";
+import { apiStore } from "./server/store-api.mjs";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PORT = +(process.env.PORT ?? 8080);
 // Only the reverse proxy on this machine reaches it, unless HOST says otherwise (HOST=0.0.0.0).
 const HOST = process.env.HOST ?? "127.0.0.1";
-const USER = process.env.TWIST_USER, PASS = process.env.TWIST_PASS;
-if (!USER || !PASS) { console.error("Set TWIST_USER and TWIST_PASS: the player is served behind basic auth."); process.exit(1); }
-const EXPECTED = Buffer.from(`${USER}:${PASS}`);
+const API_URL = process.env.TWIST_API_URL?.trim();
+const DATA = process.env.TWIST_DATA ?? join(ROOT, "..", ".twist-data");
+const store = API_URL ? apiStore(API_URL) : fileStore(DATA, { seedLogin: process.env.TWIST_USER, seedPassword: process.env.TWIST_PASS });
+const api = createApi(store, { secureCookies: process.env.COOKIE_SECURE === "1" });
 const SERVED = ["pages", "assets"];
 const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mjs": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp3": "audio/mpeg", ".wav": "audio/wav", ".ogg": "audio/ogg", ".woff2": "font/woff2", ".yaml": "text/plain; charset=utf-8", ".md": "text/plain; charset=utf-8" };
 const ZIP = new Set([".html", ".js", ".mjs", ".css", ".json", ".svg", ".yaml", ".md"]);
 const zipped = new Map(); // path -> { mtime, body }
-
-function authorised(req) {
-  const h = req.headers.authorization ?? "";
-  if (!h.startsWith("Basic ")) return false;
-  const got = Buffer.from(Buffer.from(h.slice(6), "base64").toString("utf8"));
-  return got.length === EXPECTED.length && timingSafeEqual(got, EXPECTED);
-}
 
 // The file for a URL path, or null when it is outside pages/ and assets/.
 function fileFor(urlPath) {
@@ -48,8 +50,9 @@ function fileFor(urlPath) {
   return file;
 }
 
-const server = createServer((req, res) => {
-  if (!authorised(req)) { res.writeHead(401, { "WWW-Authenticate": 'Basic realm="Twist", charset="UTF-8"', "Content-Type": "text/plain" }); return res.end("Sign in to open the Twist lesson player.\n"); }
+const server = createServer(async (req, res) => {
+  // Sign-in, sign-out, /api and the health check; anything else needs a session.
+  if (await api.handle(req, res)) return;
   if (req.method !== "GET" && req.method !== "HEAD") { res.writeHead(405, { Allow: "GET, HEAD" }); return res.end(); }
   const path = req.url.split("?")[0];
   if (path === "/" || path === "") { res.writeHead(302, { Location: "/pages/player/" }); return res.end(); }
@@ -90,4 +93,4 @@ const server = createServer((req, res) => {
   if (req.method === "HEAD") return res.end();
   createReadStream(file).pipe(res);
 });
-server.listen(PORT, HOST, () => console.log(`Twist player on http://${HOST}:${PORT}/ (basic auth as ${USER})`));
+server.listen(PORT, HOST, () => console.log(`Twist player on http://${HOST}:${PORT}/ (accounts: ${API_URL ? `backend ${API_URL}` : `file store in ${DATA}`})`));

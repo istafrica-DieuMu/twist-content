@@ -1,18 +1,23 @@
 # Twist lesson player in Docker: twist/serve.mjs on node:22, serving this checkout's
-# twist/pages/ and twist/assets/ (mounted read-only) behind basic auth.
+# twist/pages/ and twist/assets/ (mounted read-only) to people signed in with
+# their own account (twist/docs/feedback.md).
 # Only published on 127.0.0.1: the host nginx in front adds HTTPS
 # (twist/pages/hosting/index.html).
 #
-# The login lives in .env.player next to this file (not in git):
-#   TWIST_USER=twist
+# Settings live in .env.player next to this file (not in git):
+#   TWIST_USER=you@ist.com    # the first admin, made while there are no accounts yet
 #   TWIST_PASS=a-long-random-password
+#   TWIST_API_URL=            # empty: accounts and feedback in .twist-data/ here;
+#                             # set: on the IST-B2C backend (twist/docs/feedback-backend.md)
 #   PLAYER_PORT=4410          # host port, default 4410
 #
 #   docker compose -p twist-player -f docker-compose.player.yml --env-file .env.player up -d
 #   docker compose -p twist-player -f docker-compose.player.yml --env-file .env.player logs -f
 #
 # Content updates are a git pull in this checkout; files are read on every request,
-# so a restart is only needed when twist/serve.mjs itself changes.
+# so a restart is only needed when twist/serve.mjs or twist/server/ changes.
+# Accounts and feedback (file store) are in ./.twist-data, the one writable mount;
+# back it up. Sessions are kept in memory, so a restart signs everyone out.
 
 services:
   player:
@@ -27,10 +32,14 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 8080
-      TWIST_USER: ${TWIST_USER:?set TWIST_USER in .env.player}
-      TWIST_PASS: ${TWIST_PASS:?set TWIST_PASS in .env.player}
+      TWIST_USER: ${TWIST_USER:-}
+      TWIST_PASS: ${TWIST_PASS:-}
+      TWIST_API_URL: ${TWIST_API_URL:-}
+      TWIST_DATA: /data
+      COOKIE_SECURE: "1"
     volumes:
       - ./twist:/app/twist:ro
+      - ./.twist-data:/data
     read_only: true
     cap_drop: [ALL]
     security_opt:
@@ -41,8 +50,7 @@ services:
           memory: 512m
           cpus: 0.5
     healthcheck:
-      # Without a login the server answers 401: it is up and checking passwords.
-      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/').then(r => process.exit(r.status === 401 ? 0 : 1), () => process.exit(1))"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/healthz').then(r => process.exit(r.status === 200 ? 0 : 1), () => process.exit(1))"]
       interval: 30s
       timeout: 10s
       retries: 3

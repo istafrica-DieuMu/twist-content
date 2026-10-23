@@ -230,8 +230,8 @@ for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
 }
 const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
 const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");
-const ui = ["practice-ui.js", "app-ui.js", "parents-ui.js", "anim-ui.js", "side-ui.js"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n");
-const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => ["practice.css", "app.css", "parents.css", "anim.css"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
+const ui = ["practice-ui.js", "app-ui.js", "parents-ui.js", "anim-ui.js", "side-ui.js", "feedback-ui.js"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n");
+const html = readFileSync(join(HERE, "template.html"), "utf8").replace("__DATA__", () => JSON.stringify(data).replace(/</g, "\\u003c")).replace("/*__PRACTICE__*/", () => rules + "\n" + ui).replace("/*__PRACTICE_CSS__*/", () => ["practice.css", "app.css", "parents.css", "anim.css", "feedback.css"].map((f) => readFileSync(join(HERE, f), "utf8")).join("\n")).replace("/*__DRAWN__*/", () => readFileSync(join(HERE, "drawn.js"), "utf8"));
 writeFileSync(draft ?? join(HERE, "index.html"), html);
 if (draft) { writeFileSync(draft, html.replace('"assets":"../../assets/"', `"assets":${JSON.stringify("file://" + join(HERE, "../../assets") + "/")}`)); }
 console.log(`player/index.html: ${sets.length} lesson sets, ${sets.reduce((n, s) => n + s.lessons.length, 0)} lessons, ${clips} spoken lines (${missingFiles} audio files missing locally)`);
