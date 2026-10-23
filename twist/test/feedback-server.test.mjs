@@ -100,6 +100,12 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.deepEqual(area.pin, { x: 0.1, y: 0.2 });
   assert.equal((await tomS.call("POST", "feedback", { screen: SCREEN, area: { x: 0.8, y: 0.2, w: 0.5, h: 0.3 }, body: "x" })).status, 400);
   assert.equal((await tomS.call("POST", "feedback", { screen: SCREEN, area: { x: 0.1, y: 0.2, w: 0, h: 0.3 }, body: "x" })).status, 400);
+  // An anchor: the part the pin was dropped on, kept in the screen; only a tag:nth-of-type chain is taken as its place.
+  const anchor = { path: "div:nth-of-type(1)>section:nth-of-type(2)>button:nth-of-type(1)", text: "Review: Animals and nature", x: 0.25, y: 0.5 };
+  const pinned = (await tomS.call("POST", "feedback", { screen: { ...SCREEN, anchor }, pin: { x: 0.3, y: 0.6 }, body: "This card" })).body.feedback;
+  assert.deepEqual(pinned.screen.anchor, anchor);
+  assert.equal((await tomS.call("POST", "feedback", { screen: { ...SCREEN, anchor: { ...anchor, path: "img[src=x]" } }, pin: { x: 0.3, y: 0.6 }, body: "x" })).status, 400);
+  assert.equal((await tomS.call("POST", "feedback", { screen: { ...SCREEN, anchor: { ...anchor, x: 1.5 } }, pin: { x: 0.3, y: 0.6 }, body: "x" })).status, 400);
 
   // Accounts: a manager resets their tester's password and switches them off; not Ann.
   assert.deepEqual((await mgr.call("GET", "users")).body.users.map((u) => u.email), ["tom@ist.com"]);

@@ -54,7 +54,7 @@ function fbkSurface() {
 function fbkLayer() {
   const sf = fbkSurface(); if (!sf) return null;
   let layer = $("#fbkLayer");
-  if (!layer) { layer = document.createElement("div"); layer.id = "fbkLayer"; layer.onpointerdown = fbkLayerDown; }
+  if (!layer) { layer = document.createElement("div"); layer.id = "fbkLayer"; layer.onpointerdown = fbkLayerDown; layer.addEventListener("wheel", fbkWheel, { passive: false }); }
   if (layer.parentNode !== sf.host) sf.host.appendChild(layer);
   // Over the surface exactly: the phone's screen sits inside its frame's padding.
   const e = sf.el, inPhone = sf.host !== sf.el;
@@ -72,22 +72,122 @@ function fbkRenderPins() {
   const writing = [...layer.querySelectorAll(".ghost")];
   layer.replaceChildren(...writing, ...(FBK.showPins || FBK.flash ? here : []).flatMap((f) => {
     const p = document.createElement("button");
-    p.className = `fbk-pin ${f.status}${f.id === FBK.flash ? " flash" : ""}`; p.type = "button";
-    p.style.left = f.pin.x * 100 + "%"; p.style.top = f.pin.y * 100 + "%";
+    p.className = `fbk-pin ${f.status}${f.id === FBK.flash ? " flash" : ""}`; p.type = "button"; p._f = f;
     p.textContent = String(here.indexOf(f) + 1); p.dataset.id = f.id;
     p.title = `${f.author?.name ?? ""}: ${f.body}`; p.setAttribute("aria-label", `Comment by ${f.author?.name ?? "someone"}: ${f.body}`);
     p.onclick = (e) => { e.stopPropagation(); fbkCard(f, p); };
     if (!f.area) return [p];
     // An area comment: its box, with the number on its top-left corner; the pin lights the box up.
-    const box = fbkBox(f.area, `fbk-area ${f.status}${f.id === FBK.flash ? " flash" : ""}`);
+    const box = fbkBox(f.area, `fbk-area ${f.status}${f.id === FBK.flash ? " flash" : ""}`); box._f = f;
     p.classList.add("on-area");
     p.onpointerenter = () => box.classList.add("hot"); p.onpointerleave = () => box.classList.remove("hot");
     return [box, p];
   }));
-  if (FBK.flash) { const p = layer.querySelector(".flash"); if (p) { const f = FBK.list.find((x) => x.id === FBK.flash); setTimeout(() => f && p.isConnected && fbkCard(f, p), 250); } FBK.flash = null; }
+  fbkPlace(layer);
+  if (FBK.flash) {
+    const p = layer.querySelector(".fbk-pin.flash"), f = p?._f;
+    // Opened from a link: the part it is on scrolls into view first.
+    if (f) { fbkFind(f.screen.anchor)?.scrollIntoView({ block: "center", inline: "center" }); fbkPlace(layer); if (p.style.visibility === "hidden") fbkToast("The part this comment is on is not on the screen now."); else setTimeout(() => p.isConnected && fbkCard(f, p), 250); }
+    FBK.flash = null;
+  }
+  // Cards on the app's tabs slide in after a render: place the pins again once they have landed.
+  clearTimeout(fbkRenderPins._t); fbkRenderPins._t = setTimeout(() => fbkPlace(), 450);
 }
-let fbkRaf = 0;
+let fbkRaf = 0, fbkPlaceRaf = 0;
 const fbkSoon = () => { cancelAnimationFrame(fbkRaf); fbkRaf = requestAnimationFrame(fbkRenderPins); };
+const fbkPlaceSoon = () => { cancelAnimationFrame(fbkPlaceRaf); fbkPlaceRaf = requestAnimationFrame(() => fbkPlace()); };
+
+/* ---------- anchors: a pin stays on the part it was dropped on ----------
+   The app's screens scroll inside the phone, and the cards on Start and
+   Practice change with the child. So a comment keeps the part of the screen
+   it was dropped on (screen.anchor: its place in the screen, its text, and
+   the pin or box as fractions of that part), and its pin follows that part
+   as it scrolls. When the part is not on the screen, neither is the pin.
+   Comments from before anchors sit on the screen's frame as before. */
+const fbkRoot = () => fbkSurface()?.el;
+const fbkText = (el) => (el.getAttribute("aria-label") || el.getAttribute("alt") || el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+const fbkScrolls = (el) => { const cs = getComputedStyle(el); return /auto|scroll/.test(cs.overflowY + cs.overflowX) && (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1); };
+// A part's box in screen pixels; a scrolling part's box is its whole content, which moves as it scrolls.
+function fbkRectOf(el) {
+  const b = el.getBoundingClientRect();
+  if (!fbkScrolls(el)) return { left: b.left, top: b.top, width: b.width, height: b.height };
+  const k = b.width / (el.offsetWidth || 1);
+  return { left: b.left - el.scrollLeft * k, top: b.top - el.scrollTop * k, width: el.scrollWidth * k, height: el.scrollHeight * k };
+}
+// Its place in the screen, the way querySelector finds it again: div:nth-of-type(2)>button:nth-of-type(1).
+function fbkPath(el, root) {
+  const p = [];
+  for (let e = el; e && e !== root; e = e.parentElement) p.unshift(`${e.tagName.toLowerCase()}:nth-of-type(${[...e.parentElement.children].filter((c) => c.tagName === e.tagName).indexOf(e) + 1})`);
+  return p.join(">");
+}
+// The part again: at its place if its text still matches, else the first part of its kind with that text.
+function fbkFind(a) {
+  const root = fbkRoot(); if (!a || !root) return null;
+  let el = null; try { el = a.path ? root.querySelector(":scope>" + a.path) : null; } catch {}
+  if (el && fbkText(el) === a.text) return el;
+  if (!a.text) return el;
+  const kind = a.path?.split(">").pop().replace(/:nth-of-type\(\d+\)$/, "");
+  return [...root.querySelectorAll(kind || "*")].find((e) => fbkText(e) === a.text) ?? null;
+}
+// The anchor of a pin at a point, or of a box: the part under the point, or the smallest part holding the whole box.
+function fbkAnchorAt(r, layer) {
+  const root = fbkRoot(); if (!root) return null;
+  const cx = r.w ? r.x + r.w / 2 : r.x, cy = r.h ? r.y + r.h / 2 : r.y;
+  layer.style.pointerEvents = "none"; let el = document.elementFromPoint(cx, cy); layer.style.pointerEvents = "";
+  if (!el || el === root || !root.contains(el)) return null;
+  if (!r.w) el = el.closest(FBK_PART) ?? el;
+  const holds = (b) => b.left <= r.x + 1 && b.top <= r.y + 1 && b.left + b.width >= r.x + (r.w ?? 0) - 1 && b.top + b.height >= r.y + (r.h ?? 0) - 1;
+  while (el && el !== root && !holds(fbkRectOf(el))) el = el.parentElement;
+  if (!el || el === root) return null;
+  const b = fbkRectOf(el), fx = (v) => Math.min(1, Math.max(0, v)), x = fx((r.x - b.left) / b.width), y = fx((r.y - b.top) / b.height);
+  const path = fbkPath(el, root); if (path.length > 400 || path.split(">").length > 40) return null;
+  return { path, text: fbkText(el), x, y, ...(r.w ? { w: fx(r.w / b.width), h: fx(r.h / b.height) } : {}) };
+}
+// Puts every pin and box on its part; hides those whose part is gone or scrolled out of sight.
+function fbkPlace(layer = $("#fbkLayer")) {
+  const root = fbkRoot(); if (!layer?.isConnected || !root) return;
+  const L = layer.getBoundingClientRect(), k = layer.offsetWidth / (L.width || 1);
+  for (const m of layer.children) {
+    const f = m._f; if (!f) continue;
+    const a = f.screen?.anchor, el = a && fbkFind(a), isBox = m.classList.contains("fbk-area");
+    let x, y, w = 0, h = 0, clip = { l: 0, t: 0, r: layer.offsetWidth, b: layer.offsetHeight };
+    if (a && !el) { m.style.visibility = "hidden"; continue; }
+    if (el) {
+      const b = fbkRectOf(el);
+      x = (b.left - L.left + a.x * b.width) * k; y = (b.top - L.top + a.y * b.height) * k;
+      if (f.area) { w = (a.w ?? 0) * b.width * k; h = (a.h ?? 0) * b.height * k; }
+      // Only the part of it left in view by each scrolling part around it.
+      for (let e = el.parentElement; e && root.contains(e); e = e.parentElement) {
+        if (e !== root && !fbkScrolls(e)) continue;
+        const s = e.getBoundingClientRect();
+        clip = { l: Math.max(clip.l, (s.left - L.left) * k), t: Math.max(clip.t, (s.top - L.top) * k), r: Math.min(clip.r, (s.right - L.left) * k), b: Math.min(clip.b, (s.bottom - L.top) * k) };
+      }
+    } else {
+      const p = f.area ?? f.pin;
+      x = p.x * layer.offsetWidth; y = p.y * layer.offsetHeight;
+      if (f.area) { w = f.area.w * layer.offsetWidth; h = f.area.h * layer.offsetHeight; }
+    }
+    // A box shows the piece of it in view, its number on that piece's corner.
+    const l = Math.max(x, clip.l), t = Math.max(y, clip.t), r = Math.min(x + w, clip.r), bt = Math.min(y + h, clip.b);
+    const shown = f.area ? r > l && bt > t : x >= clip.l && x <= clip.r && y >= clip.t && y <= clip.b;
+    m.style.visibility = shown ? "" : "hidden";
+    if (isBox) Object.assign(m.style, { left: l + "px", top: t + "px", width: Math.max(0, r - l) + "px", height: Math.max(0, bt - t) + "px" });
+    else Object.assign(m.style, f.area ? { left: l + "px", top: t + "px" } : { left: x + "px", top: y + "px" });
+  }
+}
+// In Comment mode the layer covers the screen; the wheel still scrolls the part under it.
+function fbkWheel(e) {
+  if (!FBK.pinning) return;
+  const layer = e.currentTarget, root = fbkRoot();
+  layer.style.pointerEvents = "none"; let el = document.elementFromPoint(e.clientX, e.clientY); layer.style.pointerEvents = "";
+  for (; el && root?.contains(el); el = el.parentElement) {
+    if (!fbkScrolls(el)) continue;
+    const down = e.deltaY > 0, right = e.deltaX > 0;
+    const canY = e.deltaY && (down ? el.scrollTop + el.clientHeight < el.scrollHeight - 1 : el.scrollTop > 0);
+    const canX = e.deltaX && (right ? el.scrollLeft + el.clientWidth < el.scrollWidth - 1 : el.scrollLeft > 0);
+    if (canY || canX) { e.preventDefault(); el.scrollBy(canX ? e.deltaX : 0, canY ? e.deltaY : 0); return; }
+  }
+}
 
 /* ---------- dropping a pin ---------- */
 function fbkPinMode(on = !FBK.pinning) {
@@ -152,11 +252,13 @@ function fbkLayerDown(e) {
 }
 // Writing the comment for a pin or an area just placed.
 function fbkCompose(layer, { pin, area }, screenRect) {
-  const screen = fbkScreen(), target = fbkTarget(screenRect, layer);
+  const target = fbkTarget(screenRect, layer), anchor = fbkAnchorAt(screenRect, layer);
+  const screen = { ...fbkScreen(), ...(anchor ? { anchor } : {}) };
   fbkPinMode(false);
-  const marks = [];
-  if (area) { const b = fbkBox(area, "fbk-area open ghost"); layer.appendChild(b); marks.push(b); }
-  const ghost = document.createElement("span"); ghost.className = `fbk-pin open ghost${area ? " on-area" : ""}`; ghost.style.left = pin.x * 100 + "%"; ghost.style.top = pin.y * 100 + "%"; layer.appendChild(ghost); marks.push(ghost);
+  const marks = [], draft = { pin, area, screen };
+  if (area) { const b = fbkBox(area, "fbk-area open ghost"); b._f = draft; layer.appendChild(b); marks.push(b); }
+  const ghost = document.createElement("span"); ghost.className = `fbk-pin open ghost${area ? " on-area" : ""}`; ghost._f = draft; layer.appendChild(ghost); marks.push(ghost);
+  fbkPlace(layer);
   const pop = fbkPop(area ? marks[0] : ghost, `<form class="fbk-compose"><div class="fbk-where"><b>${esc(screen.label)}</b>${target ? `<small>${esc(target.label)}</small>` : ""}</div>
     <textarea name="body" rows="4" maxlength="4000" required placeholder="${area ? "What is wrong or could be better in this area?" : "What is wrong or could be better here?"}"></textarea>
     <div class="fbk-row"><small>${fbkSeesOthers() ? "Everyone who reviews feedback sees this." : "Reviewers see this; other testers do not."}</small><span><button type="button" class="nbtn" data-x>Cancel</button><button class="nbtn fbk-go">Save</button></span></div></form>`, () => marks.forEach((m) => m.remove()));
@@ -404,6 +506,8 @@ async function fbkInit() {
   new MutationObserver(fbkSoon).observe($("#parentsView"), { childList: true });
   new MutationObserver(fbkSoon).observe(document.body, { attributes: true, attributeFilter: ["class"] });
   window.addEventListener("resize", fbkSoon);
+  // Pins ride along when a part of the screen scrolls (scroll does not bubble, so listen on the way down).
+  document.addEventListener("scroll", fbkPlaceSoon, { capture: true, passive: true });
   window.addEventListener("hashchange", fbkOpenHash);
   await fbkLoad(); fbkOpenHash();
   // Others' new comments arrive while the page is open.

@@ -193,6 +193,20 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     for (const k of ["set", "setTitle", "curriculum", "language", "stepKind", "task", "taskType", "tab", "subj", "build"]) if (v[k] != null && v[k] !== "") out[k] = str(v[k], LIMIT.field, k);
     for (const k of ["lesson", "step"]) if (v[k] != null) { const n = Number(v[k]); if (!Number.isInteger(n) || n < 0 || n > 10000) throw new Bad(400, `${k} is not a number.`); out[k] = n; }
     if (v.kind === "lesson" && (!out.set || out.lesson == null)) throw new Bad(400, "A lesson screen needs its set and lesson.");
+    const anchor = anchorOf(v.anchor); if (anchor) out.anchor = anchor;
+    return out;
+  }
+  // The part of the screen a pin was dropped on: its place as a chain of tag:nth-of-type steps, its text, and the
+  // pin (and box) as fractions of that part. Only that shape, so the page never runs a selector it was not built to.
+  function anchorOf(v) {
+    if (v == null) return null;
+    const path = String(v.path ?? "");
+    if (path.length > 400 || !/^[a-z][a-z0-9-]*:nth-of-type\(\d{1,4}\)(>[a-z][a-z0-9-]*:nth-of-type\(\d{1,4}\)){0,39}$/.test(path)) throw new Bad(400, "The pin's place on the screen is not readable.");
+    const r = (n) => Math.round(n * 10000) / 10000, out = { path, text: str(v.text ?? "", LIMIT.field, "The pinned part's text") };
+    for (const k of ["x", "y", "w", "h"]) {
+      if (v[k] == null) { if (k === "x" || k === "y") throw new Bad(400, "The pin's place on the screen is not readable."); continue; }
+      const n = Number(v[k]); if (!(n >= 0 && n <= 1)) throw new Bad(400, "The pin is off the part it is on."); out[k] = r(n);
+    }
     return out;
   }
   function pinOf(v) {

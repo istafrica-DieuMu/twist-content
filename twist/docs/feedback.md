@@ -35,6 +35,15 @@ keeps:
   so a pin or a box sits in the same place at every phone size. An area's
   number sits on its top-left corner, and pointing at the number lights the
   box up.
+- **The part it was dropped on** (`screen.anchor`): the card, button or
+  picture under the pin, or the smallest part holding the whole box, found
+  again by its place in the screen and its text, with the pin or box as
+  fractions of that part. The app's screens scroll inside the phone and the
+  cards on Start and Practice change with the child, so the pin follows its
+  part as it scrolls, and does not show when that part is not on the screen
+  (another child's suggestions, a card that is gone). Comments from before
+  anchors sit on the screen's frame. In Comment mode the wheel still scrolls
+  the screen.
 - **What is under the pin**, in words: `Option card: sieben`,
   `Button: Weiter`, `Picture: apple`; for an area, the parts inside it:
   `Area: Option card: Mäuse, Option card: Meuse`. If the screen changes

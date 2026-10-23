@@ -192,6 +192,12 @@ return it unchanged. The preview validates it. It looks like this:
 `kind` is `lesson`, `app` (a tab: Start, Practice, Me, Settings), `study` or
 `parents`. Please cap `screen` at 2 KB.
 
+`screen` may also hold `anchor`, the part of the screen the pin was dropped
+on, so the pin follows it when the screen scrolls:
+`{ "path": "div:nth-of-type(1)>button:nth-of-type(2)", "text": "Review: Animals and nature", "x": 0.25, "y": 0.5 }`
+(plus `w` and `h` for a box). The preview checks it; the backend stores it
+with the rest of `screen`.
+
 A comment points at a spot or at a box. For a box, `area` holds its left,
 top, width and height as fractions of the screen; it must stay inside the
 screen (`x + w` and `y + h` at most 1), and `w` and `h` at least 0.005. For a
