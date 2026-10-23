@@ -9,7 +9,9 @@
 //                                              # accounts and feedback on the IST-B2C backend
 //   PORT=3000 HOST=0.0.0.0 …                   # port; every interface (default: 127.0.0.1 only)
 //   TWIST_DATA=/data                           # where the file store keeps accounts.json and feedback.json
-//   COOKIE_SECURE=1                            # mark the session cookie Secure (also when the proxy says https)
+//   COOKIE_SECURE=1                            # mark the session cookie Secure
+//   TRUST_PROXY=1                              # behind our reverse proxy: read the client's address from
+//                                              # X-Forwarded-For (sign-in limits) and https from X-Forwarded-Proto
 //
 // Sign-in, sessions, feedback and accounts are in server/ (twist/docs/feedback.md).
 // Only pages/ and assets/ are served; / opens the player. Audio answers
@@ -32,7 +34,7 @@ const HOST = process.env.HOST ?? "127.0.0.1";
 const API_URL = process.env.TWIST_API_URL?.trim();
 const DATA = process.env.TWIST_DATA ?? join(ROOT, "..", ".twist-data");
 const store = API_URL ? apiStore(API_URL) : fileStore(DATA, { seedLogin: process.env.TWIST_USER, seedPassword: process.env.TWIST_PASS });
-const api = createApi(store, { secureCookies: process.env.COOKIE_SECURE === "1" });
+const api = createApi(store, { secureCookies: process.env.COOKIE_SECURE === "1", trustProxy: process.env.TRUST_PROXY === "1" });
 const SERVED = ["pages", "assets"];
 const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mjs": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".webp": "image/webp", ".mp3": "audio/mpeg", ".wav": "audio/wav", ".ogg": "audio/ogg", ".woff2": "font/woff2", ".yaml": "text/plain; charset=utf-8", ".md": "text/plain; charset=utf-8" };
 const ZIP = new Set([".html", ".js", ".mjs", ".css", ".json", ".svg", ".yaml", ".md"]);

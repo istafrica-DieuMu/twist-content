@@ -84,9 +84,12 @@ sessions at once. Changing your own password ends your other sessions.
 - Every change needs the `X-Twist: 1` header, which another site cannot send
   without a CORS preflight this server never answers.
 - An address gets ten sign-in tries in 15 minutes, each counted before its
-  password is checked. An account is never locked, so nobody can lock its
-  owner out; after ten wrong passwords for it, each answer waits a second
-  longer, up to ten seconds.
+  password is checked (IPv6 per /64; behind the proxy, `TRUST_PROXY=1`
+  reads the address from `X-Forwarded-For`). An account is not locked by a
+  count, so nobody can lock its owner out: after ten wrong passwords for it,
+  its checks queue one at a time, a second apart and more as wrong tries
+  grow (up to ten). Only a queue over a minute long, which takes a flood
+  from many addresses, turns a try away, for that minute.
 - Everything under `pages/` and `assets/` needs a session; `/healthz` and the
   sign-in page do not.
 

@@ -6,14 +6,14 @@ import { createServer } from "node:http";
 import { mkdtempSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { createApi } from "../server/api.mjs";
+import { createApi, clientAddress } from "../server/api.mjs";
 import { fileStore } from "../server/store-file.mjs";
 import { apiStore } from "../server/store-api.mjs";
 
 const SCREEN = { kind: "lesson", label: "Das ABC · lesson 1 · Learn screen 2", set: "de-DE.lit-de.alphabet", lesson: 1, step: 3, stepKind: "learn" };
 
-async function start(store) {
-  const api = createApi(store);
+async function start(store, opts = {}) {
+  const api = createApi(store, opts);
   const server = createServer(async (req, res) => { if (!(await api.handle(req, res))) { res.writeHead(200); res.end("file"); } });
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
   const base = `http://127.0.0.1:${server.address().port}`;
@@ -139,12 +139,27 @@ test("sign-in is throttled after ten wrong passwords", async (t) => {
 
 test("wrong passwords from elsewhere slow an account down but never lock its owner out", async (t) => {
   const store = fileStore(mkdtempSync(join(tmpdir(), "twist-fb-")), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
-  const srv = await start(store); t.after(srv.close);
-  // Twelve wrong tries, each from its own address (as the proxy reports it).
-  for (let i = 0; i < 12; i++) await fetch(srv.base + "/auth/sign-in", { method: "POST", redirect: "manual", headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Forwarded-For": `10.0.0.${i}` }, body: new URLSearchParams({ login: "admin@ist.com", password: "wrong" }) });
-  const t0 = Date.now(), ok = await srv.as("admin@ist.com", "admin-pass-123");
-  assert.ok(ok.cookie, "the owner still gets in");
-  assert.ok(Date.now() - t0 >= 2900, "after a wait");
+  const srv = await start(store, { trustProxy: true }); t.after(srv.close);
+  const from = (ip, password) => fetch(srv.base + "/auth/sign-in", { method: "POST", redirect: "manual", headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Forwarded-For": ip }, body: new URLSearchParams({ login: "admin@ist.com", password }) });
+  // Ten wrong tries, each from its own address: none of the addresses is shut, the account is now watched.
+  for (let i = 0; i < 10; i++) await from(`10.0.0.${i}`, "wrong");
+  // Three more sent at once wait their turn: a second, then two more, so they cannot be checked side by side.
+  const t0 = Date.now();
+  await Promise.all([11, 12, 13].map((i) => from(`10.0.0.${i}`, "wrong")));
+  assert.ok(Date.now() - t0 >= 2900, `three at once took ${Date.now() - t0} ms`);
+  const ok = await from("10.0.1.1", "admin-pass-123");
+  assert.equal(ok.status, 303, "the owner still gets in");
+  assert.ok(ok.headers.get("set-cookie"));
+});
+
+test("the client's address: the proxy's header only when trusted, IPv6 per /64", () => {
+  const req = (remote, xff) => ({ socket: { remoteAddress: remote }, headers: xff ? { "x-forwarded-for": xff } : {} });
+  assert.equal(clientAddress(req("127.0.0.1", "6.6.6.6, 1.2.3.4"), false), "127.0.0.1", "a client cannot pick its address");
+  assert.equal(clientAddress(req("127.0.0.1", "6.6.6.6, 1.2.3.4"), true), "1.2.3.4", "the proxy's entry is the last");
+  assert.equal(clientAddress(req("::ffff:10.1.2.3"), false), "10.1.2.3");
+  assert.equal(clientAddress(req("2001:db8:aa:bb:1:2:3:4"), false), "2001:db8:aa:bb::/64");
+  assert.equal(clientAddress(req("2001:db8:aa:bb::9"), false), "2001:db8:aa:bb::/64");
+  assert.equal(clientAddress(req("2001:db8::1"), false), "2001:db8:0:0::/64");
 });
 
 test("backend store: tokens, roles and the feedback contract", async (t) => {

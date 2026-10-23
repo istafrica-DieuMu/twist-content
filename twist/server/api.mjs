@@ -17,26 +17,49 @@ const LIMIT = { body: 4000, reply: 2000, label: 200, field: 120 };
 
 class Bad extends Error { constructor(status, message) { super(message); this.status = status; } }
 
-export function createApi(store, { secureCookies = false, now = () => Date.now() } = {}) {
+// Wrong sign-in tries, counted in fifteen-minute windows. A full table takes no new keys and never drops a
+// counter that is still counting, so an attacker cannot push out the counts that hold them back.
+const WINDOW_MS = 15 * 60_000, MAX_KEYS = 20_000;
+function tally() {
+  const m = new Map();
+  return {
+    // The count with this try added, or Infinity when the table is full and the key is new.
+    add(key, t) {
+      const f = m.get(key);
+      if (f && f.until > t) { f.n++; return f.n; }
+      if (!f && m.size >= MAX_KEYS) return Infinity;
+      m.set(key, { n: 1, until: t + WINDOW_MS, nextAt: 0 }); return 1;
+    },
+    get: (key, t) => { const f = m.get(key); return f && f.until > t ? f : null; },
+    delete: (key) => m.delete(key),
+    sweep(t) { for (const [k, f] of m) if (f.until <= t && f.nextAt <= t) m.delete(k); },
+  };
+}
+// The address a try comes from. Behind our proxy (TRUST_PROXY) it is the last X-Forwarded-For entry, the one
+// the proxy added; without one that header is the client's own and is ignored. IPv6 counts per /64, which
+// one machine can fill with addresses.
+export function clientAddress(req, trustProxy) {
+  let a = (trustProxy && req.headers["x-forwarded-for"]?.split(",").at(-1).trim()) || req.socket.remoteAddress || "?";
+  a = a.replace(/^::ffff:(?=\d+\.)/, "");
+  if (!a.includes(":")) return a;
+  const [head, tail = ""] = a.split("::"), h = head ? head.split(":") : [], tl = tail ? tail.split(":") : [];
+  const full = a.includes("::") ? [...h, ...Array(8 - h.length - tl.length).fill("0"), ...tl] : h;
+  return full.slice(0, 4).map((g) => g.toLowerCase().replace(/^0+(?=.)/, "")).join(":") + "::/64";
+}
+
+export function createApi(store, { secureCookies = false, trustProxy = false, now = () => Date.now() } = {}) {
   const sessions = new Map();
-  const failures = new Map(); // "ip:<address>" or "login:<email>" -> { n, until }
+  const byAddress = tally(), byAccount = tally();
   // Ends every session of an account but the one given: after a password change or reset.
   const endSessions = (userId, keep) => { for (const [k, x] of sessions) if (x.user.id === userId && k !== keep) sessions.delete(k); };
   setInterval(() => {
     const t = now();
     for (const [k, s] of sessions) if (t - s.seen > IDLE_MS || t - s.created > MAX_MS) sessions.delete(k);
-    for (const [k, f] of failures) if (f.until <= t) failures.delete(k);
+    byAddress.sweep(t); byAccount.sweep(t);
   }, 600_000).unref();
-  // Counts wrong passwords; the oldest entries go first once there are too many to keep.
-  const countFailure = (key, t) => {
-    const f = failures.get(key), next = f && f.until > t ? { n: f.n + 1, until: f.until } : { n: 1, until: t + 15 * 60_000 };
-    failures.delete(key); failures.set(key, next);
-    while (failures.size > 10_000) failures.delete(failures.keys().next().value);
-    return next.n;
-  };
 
   const cookieOf = (req) => Object.fromEntries((req.headers.cookie ?? "").split(";").map((c) => c.trim().split("=")).filter((p) => p.length === 2))[COOKIE];
-  const secure = (req) => secureCookies || req.headers["x-forwarded-proto"] === "https";
+  const secure = (req) => secureCookies || (trustProxy && req.headers["x-forwarded-proto"] === "https");
   const setCookie = (req, res, value, maxAge) => res.setHeader("Set-Cookie", `${COOKIE}=${value}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure(req) ? "; Secure" : ""}`);
 
   function sessionOf(req) {
@@ -96,28 +119,34 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
   }
 
   async function signIn(req, res) {
-    // The last X-Forwarded-For entry is the one the proxy on this machine added; earlier ones come from the client.
-    const ip = req.headers["x-forwarded-for"]?.split(",").at(-1).trim() || req.socket.remoteAddress || "?";
+    const ip = clientAddress(req, trustProxy);
     const f = await readForm(req), login = (f.get("login") ?? "").trim(), password = f.get("password") ?? "", next = safeNext(f.get("next"));
     const origin = req.headers.origin;
     const hostOf = (o) => { try { return new URL(o).host; } catch { return null; } };
     if (origin && hostOf(origin) !== req.headers.host) return signInPage(res, { error: "Sign in from this site's own page.", next });
     // An address gets ten tries in fifteen minutes. Each is counted before the password is checked, so
     // tries sent at once cannot all slip under the limit; a right password gives its try back.
-    const ipKey = `ip:${ip}`, loginKey = `login:${login.toLowerCase().slice(0, 255)}`, t0 = now();
-    if (countFailure(ipKey, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
-    // An account is never locked, which would let anyone lock its owner out; after ten wrong passwords from
-    // anywhere, each answer for it waits a second more, up to ten, so guessing gets slow and the owner still gets in.
-    const wrong = failures.get(loginKey), slow = wrong && wrong.until > t0 && wrong.n >= 10 ? Math.min(10, wrong.n - 9) * 1000 : 0;
-    if (slow) await new Promise((r) => setTimeout(r, slow));
+    const loginKey = login.toLowerCase().slice(0, 255), t0 = now();
+    if (byAddress.add(ip, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
+    // An account is not locked by a count, which would let anyone lock its owner out. After ten wrong passwords
+    // for it from anywhere, its checks queue up one at a time, a second apart and more as the count grows (up to
+    // ten), so guesses sent at once are spread out too. Only a queue over a minute long, which takes a flood
+    // from many addresses, turns a try away, for that minute.
+    const acct = byAccount.get(loginKey, t0);
+    if (acct && acct.n >= 10) {
+      const at = Math.max(t0, acct.nextAt), wait = at - t0;
+      if (wait > 60_000) return signInPage(res, { error: "This account has had many wrong passwords just now. Try again in a minute.", next, login });
+      acct.nextAt = at + Math.min(10, acct.n - 9) * 1000;
+      if (wait) await new Promise((r) => setTimeout(r, wait));
+    }
     const r = await store.signIn(login, password);
     if (!r.user) {
-      if (r.fail === "credentials") countFailure(loginKey, now());
+      if (r.fail === "credentials") byAccount.add(loginKey, now());
       const msg = { credentials: "That email and password do not match an account.", inactive: "This account is switched off. Ask your manager.", role: `Your account (${r.backendRole}) has no Twist Preview role. Ask an admin for one.`, unreachable: "The sign-in service cannot be reached just now. This is not a password problem; try again in a minute." }[r.fail];
       return signInPage(res, { error: msg, next, login });
     }
-    failures.delete(loginKey);
-    const fa = failures.get(ipKey); if (fa) fa.n = Math.max(0, fa.n - 1);
+    byAccount.delete(loginKey);
+    const fa = byAddress.get(ip, now()); if (fa) fa.n = Math.max(0, fa.n - 1);
     const id = randomBytes(32).toString("base64url"), t = now();
     sessions.set(id, { id, user: r.user, tokens: r.tokens, created: t, seen: t });
     setCookie(req, res, id, MAX_MS / 1000);

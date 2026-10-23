@@ -37,6 +37,8 @@ services:
       TWIST_API_URL: ${TWIST_API_URL:-}
       TWIST_DATA: /data
       COOKIE_SECURE: "1"
+      # The host's nginx is the only way in: read the client's address from its X-Forwarded-For.
+      TRUST_PROXY: "1"
     volumes:
       - ./twist:/app/twist:ro
       - ./.twist-data:/data

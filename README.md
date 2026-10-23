@@ -151,7 +151,9 @@ are all in the repo.
 3. **Put HTTPS in front.** The session cookie and the sign-in form must not
    travel in clear text, so serve it through a reverse proxy with a
    certificate (Caddy: `twist.example.org { reverse_proxy localhost:8080 }`)
-   and set `COOKIE_SECURE=1` (the Docker setup does).
+   and set `COOKIE_SECURE=1` and `TRUST_PROXY=1` (the Docker setup does). Set
+   `TRUST_PROXY` only behind a proxy: it makes the sign-in limits read the
+   client's address from `X-Forwarded-For`.
 
 4. **Keep it running** with systemd or a process manager, with the
    variables in its environment, not in the repo. Back up `.twist-data/`.
