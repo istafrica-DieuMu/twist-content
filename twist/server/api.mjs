@@ -6,7 +6,7 @@
 // person, and their backend tokens in backend mode) stays in this process.
 // Changes need the X-Twist header, which another site cannot send without a
 // CORS preflight this server never answers, so a form elsewhere cannot post here.
-import { randomBytes } from "node:crypto";
+import { randomBytes, createHash } from "node:crypto";
 import { ROLES, ROLE_NAME, can, canSee, canResolve, canEdit, canDelete, manages, grantable, managesAnyone } from "./roles.mjs";
 import { StoreError } from "./store-file.mjs";
 
@@ -19,7 +19,7 @@ class Bad extends Error { constructor(status, message) { super(message); this.st
 
 // Wrong sign-in tries, counted in fifteen-minute windows. A full table never drops a counter that is still
 // counting, so an attacker cannot push out the counts that hold them back; a new key then shares the counter
-// of its overflow key (a wider network, or one for every new account), which still counts and slows.
+// of its overflow key (a wider network, or one of 4,096 for new accounts), which still counts and slows.
 const WINDOW_MS = 15 * 60_000;
 function tally(MAX_KEYS = 20_000) {
   const m = new Map();
@@ -140,16 +140,19 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     const t0 = now();
     // Overflow: an IPv4 address shares its /16's counter, an IPv6 /64 its /32's; new accounts share one.
     const ipKey = byAddress.keyFor(ip, t0, ip.includes(":") ? ip.split(":").slice(0, 2).join(":") : ip.split(".").slice(0, 2).join("."));
-    const loginKey = byAccount.keyFor(login.toLowerCase().slice(0, 255), t0, "accounts");
+    const lk = login.toLowerCase().slice(0, 255);
+    const loginKey = byAccount.keyFor(lk, t0, `accounts-${createHash("sha256").update(lk).digest().readUInt16BE(0) % 4096}`);
     if (byAddress.add(ipKey, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
     // An account is not locked by a count, which would let anyone lock its owner out. After ten wrong passwords
     // for it from anywhere, its checks queue up one at a time, a second apart and more as the count grows (up to
     // ten), so guesses sent at once are spread out too. Only a queue over a minute long, which takes a flood
     // from many addresses, turns a try away, for that minute.
-    const acct = byAccount.get(loginKey, t0);
+    // A counter shared by several accounts (when the table is full) only ever slows, by at most ten seconds,
+    // and never turns a try away, so nobody is refused for someone else's wrong passwords.
+    const acct = byAccount.get(loginKey, t0), shared = loginKey.startsWith("overflow:");
     if (acct && acct.n >= 10) {
-      const at = Math.max(t0, acct.nextAt), wait = at - t0;
-      if (wait > 60_000) return signInPage(res, { error: "This account has had many wrong passwords just now. Try again in a minute.", next, login });
+      const at = shared ? Math.min(Math.max(t0, acct.nextAt), t0 + 10_000) : Math.max(t0, acct.nextAt), wait = at - t0;
+      if (!shared && wait > 60_000) return signInPage(res, { error: "This account has had many wrong passwords just now. Try again in a minute.", next, login });
       acct.nextAt = at + Math.min(10, acct.n - 9) * 1000;
       if (wait) await new Promise((r) => setTimeout(r, wait));
     }
