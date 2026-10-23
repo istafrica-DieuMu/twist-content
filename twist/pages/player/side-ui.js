@@ -41,6 +41,7 @@ function sideTop(ctx) {
       <div class="sx-row"><span>Subject</span><span class="sx-seg">${appSubjects().map((x) => `<button class="nbtn" data-subj="${x}" aria-pressed="${x === APP.subj}">${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</button>`).join("")}</span></div>
       <p class="sx-note">${s ? `Current skill: <b>${esc(s.title[PL()] ?? s.title.de)}</b>, ${d} of ${s.lessons.length} lessons done.` : "Every skill of this year is done."}</p>
       <div class="sx-btns">${s ? `<button class="nbtn" id="sxLesson">Do one lesson</button><button class="nbtn" id="sxSkill">Finish the skill and skate on</button><button class="nbtn" id="sxOpen">Open the lesson</button>` : ""}<button class="nbtn" id="sxSkate">Play the skate again</button><button class="nbtn" id="sxUnits">${APP.units ? "Show the track" : "Show the unit list"}</button></div>
+      <div class="sx-row"><span>Stones</span><span class="sx-seg"><button class="nbtn" data-stones="lesson" aria-pressed="${stonesPerLesson()}">One per lesson</button><button class="nbtn" data-stones="skill" aria-pressed="${!stonesPerLesson()}">One per skill</button></span></div>
       ${sideLook()}</div>`;
   }
   if (ctx === "me") {
@@ -80,7 +81,8 @@ function sideWire(ctx, el) {
   if (ctx === "study") {
     const s = nextIn(courseSets(APP.subj));
     el.querySelectorAll("[data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; appTab("study"); });
-    on("#sxLesson", () => { const n = lessonsDone(s) + 1; finishLesson(c, { setId: s.id, skill: s.skill, n }); if (n >= s.lessons.length) APP.skillDone = true; saveChild(); appTab("study"); });
+    on("#sxLesson", () => { const n = lessonsDone(s) + 1; finishLesson(c, { setId: s.id, skill: s.skill, n }); if (stonesPerLesson() || n >= s.lessons.length) APP.skillDone = true; saveChild(); appTab("study"); });
+    el.querySelectorAll("[data-stones]").forEach((b) => b.onclick = () => { try { localStorage.setItem(STONES_KEY, b.dataset.stones); } catch {} APP.units = false; appTab("study"); });
     on("#sxSkill", () => { finishLesson(c, { setId: s.id, skill: s.skill, n: s.lessons.length, check: { pass: true, keys: [] } }); APP.skillDone = true; saveChild(); appTab("study"); });
     on("#sxOpen", () => startLesson(s.id, s.lessons[Math.min(lessonsDone(s), s.lessons.length - 1)].n));
     on("#sxSkate", () => { APP.skillDone = true; appTab("study"); });

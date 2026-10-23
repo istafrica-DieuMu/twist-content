@@ -81,20 +81,13 @@
 
 /* The greeting: the mascot and a speech bubble, as on the app's Home (SpeechBubble, bordered, tail left).
    The button still opens Settings, as in Dodo's version. */
-.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band { background: #fff; padding: 6px 18px 4px; gap: 8px; align-items: center; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band { grid-template-columns: auto 1fr; background: #fff; padding: 6px 18px 4px; gap: 8px; align-items: center; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-top .hm-av { width: 84px; height: 84px; padding: 0; border: 0; border-radius: 0; background: url("twist-ui/maskot.svg") center / contain no-repeat; transform: rotate(2.3deg); box-shadow: none; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-top .hm-av > * { visibility: hidden; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-top > div { position: relative; align-self: center; margin-left: 10px; padding: 12px 14px 12px 16px; border: 1px solid #dfdfdf; border-radius: 16px; background: #faf9ff; box-shadow: 0 2px 8px rgba(0, 0, 0, .05); }
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-top > div::before { content: ""; position: absolute; left: -9px; top: 50%; width: 16px; height: 16px; margin-top: -8px; background: #faf9ff; border-left: 1px solid #dfdfdf; border-bottom: 1px solid #dfdfdf; border-bottom-left-radius: 4px; transform: rotate(45deg); }
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band h2 { font: 700 18px/24px "Red Hat Display", sans-serif; letter-spacing: 0; color: #6849dd; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band small { margin-top: 2px; font: 500 15px/21px "Red Hat Text", sans-serif; color: #303030; }
-/* The streak: the app's flame (home/fire.svg) and its orange number. */
-.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal { width: 60px; height: 60px; }
-.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal circle { stroke: #f3f3f3; }
-.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal circle.v { stroke: #fa7d3d; }
-.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal img { content: url("twist-ui/fire.svg"); width: 24px; height: 24px; }
-.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal b { color: #fa7d3d; font: 800 13px "Red Hat Display", sans-serif; }
-
 .screen:not([data-look="dark"]):not([data-look="night"]) .hm-step { font: 600 14px/20px "Red Hat Text", sans-serif; color: #767676; }
 
 /* Today's lesson: the app's main subject card (SubjectCard.tsx): banner, then the text centred, then the button. */
@@ -253,3 +246,107 @@
 .screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .me-subj > * { padding: 12px 16px; border-radius: 12px; background: #fff; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .me-subj b { font: 700 15px/22px "Red Hat Display", sans-serif; color: #303030; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .me-recs button { border-left: 4px solid var(--c); border-radius: 12px; font: 600 14px/20px "Red Hat Text", sans-serif; color: #303030; }
+
+/* ---------- 6. Study: the lesson list (Figma: B2C App Exploration, study screen math, 9760:2114 / 9760:2361) ---------- */
+/* Per subject: the open unit's tint, edge, text and progress track (math is the design's own values). */
+.stf-page { --stf-tint: color-mix(in srgb, var(--c) 4%, #fff); --stf-edge: color-mix(in srgb, var(--c) 88%, #000); --stf-ink: color-mix(in srgb, var(--c) 70%, #000); --stf-track: color-mix(in srgb, var(--c) 28%, #fff); }
+.stf-page[data-subj="math"] { --stf-tint: #f6fffc; --stf-edge: #0c774a; --stf-ink: #075f3a; --stf-track: #b8e4d2; }
+.stf-page[data-subj="lit-en"] { --stf-ink: #0d42ac; --stf-track: #bad4ec; }
+.stf-page[data-subj="lit-de"] { --stf-ink: #bc4113; --stf-track: #edcab3; }
+
+.pr-home.stf-page { display: block; padding: 28px 16px 120px; }
+.stf-title { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 28px; }
+.stf-back { position: absolute; left: 0; top: 50%; width: 28px; height: 28px; margin-top: -14px; padding: 0; border: 0; background: url("twist-ui/study-back.svg") center / 28px 28px no-repeat; transform: rotate(180deg); cursor: pointer; }
+.stf-back:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; border-radius: 6px; }
+.stf-title img { width: 30px; height: 26px; object-fit: contain; }
+.stf-title h2 { margin: 0; font: 700 16px/normal "Red Hat Display", sans-serif; color: #303030; }
+
+.stf-grade { position: relative; display: block; margin-top: 24px; }
+.stf-grade select { -webkit-appearance: none; appearance: none; width: 100%; height: 45px; padding: 0 44px 0 18px; border: 1px solid #d0d0d0; border-radius: 6px; background: #fff; font: 500 16px/1.15 "Red Hat Display", sans-serif; color: #393939; cursor: pointer; }
+.stf-grade select:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
+.stf-grade::after { content: ""; position: absolute; right: 26px; top: 50%; width: 6.55px; height: 11.87px; margin-top: -5.9px; background: url("twist-ui/study-chev-grade.svg") center / contain no-repeat; transform: rotate(90deg); pointer-events: none; }
+
+.stf-h { margin: 34px 0 17px; text-align: center; font: 700 16px/normal "Red Hat Display", sans-serif; color: #303030; }
+.stf-list { display: flex; flex-direction: column; gap: 16px; }
+
+/* A unit, folded: white, 1 px #d0d0d0, radius 6, 45 high, SemiBold 16. */
+button.stf-unit { display: block; width: 100%; height: 45px; padding: 0 18px; border: 1px solid #d0d0d0; border-radius: 6px; background: #fff; text-align: left; font: 600 16px/normal "Red Hat Display", sans-serif; color: #303030; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+button.stf-unit:active { background: #fafafa; }
+button.stf-unit:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
+
+/* The open unit: the subject's tint, a 1 px edge with a 4 px foot, radius 4. */
+.stf-unit.open { display: flex; flex-direction: column; padding: 18px 0 22px; border: 1px solid var(--stf-edge); border-bottom-width: 4px; border-radius: 4px; background: var(--stf-tint); }
+.stf-head { position: relative; display: grid; gap: 15px; padding: 0 48px 0 22px; border: 0; background: none; text-align: left; cursor: pointer; }
+.stf-head b { font: 700 16px/normal "Red Hat Display", sans-serif; color: var(--stf-ink); }
+.stf-bar { display: block; width: 100%; height: 8px; border-radius: 10px; background: linear-gradient(90deg, var(--c) var(--p), var(--stf-track) var(--p)); }
+.stf-chev { position: absolute; right: 23px; top: 7px; width: 11.27px; height: 6.76px; background: var(--c); -webkit-mask: url("twist-ui/study-chev-open.svg") center / 6.76px 11.27px no-repeat; mask: url("twist-ui/study-chev-open.svg") center / 6.76px 11.27px no-repeat; transform: rotate(-90deg); }
+.stf-head:focus-visible { outline: 3px solid #6849dd; outline-offset: 4px; border-radius: 4px; }
+.stf-lessons { margin: 40px 32px 0; padding: 21px 0 0 24px; border-top: 1px solid color-mix(in srgb, #6849dd 22%, #fff); display: grid; gap: 8px; font: 600 16px/normal "Red Hat Display", sans-serif; color: var(--stf-ink); }
+.stf-lessons li::marker { font-weight: 600; }
+.stf-lessons button { padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.stf-lessons button:hover { text-decoration: underline; }
+.stf-lessons button:focus-visible { outline: 2px solid #6849dd; outline-offset: 2px; border-radius: 3px; }
+.stf-go { align-self: center; width: 84.96%; height: 52px; margin-top: 31px; border: 0; border-radius: 13px; background: var(--c); color: #fffeff; font: 800 14px/normal "Red Hat Display", sans-serif; letter-spacing: 1.68px; text-transform: uppercase; cursor: pointer; }
+.stf-go:active { transform: scale(.98); opacity: .9; }
+.stf-go:focus-visible { outline: 3px solid #303030; outline-offset: 3px; }
+
+/* The top bar of the Study screens, as in the design: white, a 1 px #d0d0d0 line under it, the
+   subject pill round on the subject's tint, the stats spread across. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .tr-stats { justify-content: space-between; padding: 8px 16px; border-bottom: 1px solid #d0d0d0; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .tr-pill { margin-right: 0; padding: 6px 10px 6px 14px; border: 1px solid #d0d0d0; border-radius: 999px; background: color-mix(in srgb, var(--subj) 12%, #fff); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .tr-stat { font: 800 14px "Red Hat Display", sans-serif; color: #303030; }
+
+/* ---------- 7. The streak and badges cards (Figma: header pop-ups, streak 9576:12999, badges 9576:14526) ---------- */
+/* A white card 16 from the sides and the foot, radius 30, rising over the dimmed screen. */
+.screen .rw-scrim { z-index: 40; background: rgba(48, 48, 48, .35); animation: rw-fade .2s ease-out; }
+.screen .rw-pop { left: 16px; right: 16px; top: auto; bottom: 16px; z-index: 41; max-height: none; overflow: visible; align-items: center; gap: 32px; padding: 32px 24px; border: 0; border-radius: 30px; background: #fff; color: #303030; box-shadow: 0 10px 40px rgba(0, 0, 0, .12); outline: none; animation: rw-up .3s cubic-bezier(.2, .8, .2, 1); }
+.screen .rw-pop::before { content: none; }
+.screen .rw-pop.out { animation: rw-down .18s ease-in forwards; }
+.screen .rw-scrim.out { opacity: 0; transition: opacity .18s; }
+@keyframes rw-fade { from { opacity: 0; } }
+@keyframes rw-up { from { transform: translateY(40px); opacity: 0; } }
+@keyframes rw-down { to { transform: translateY(40px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .screen .rw-pop, .screen .rw-scrim, .screen .rw-pop.out { animation: none; } }
+
+/* The count: the illustration, the number in Display Black 46, the word under it. */
+.rw-hero { display: flex; flex-direction: column; align-items: center; }
+.rw-hero > span { display: flex; align-items: center; gap: 8px; margin-bottom: -7px; }
+.rw-hero b { font: 900 46px/normal "Red Hat Display", sans-serif; color: #4f4f4f; }
+.rw-hero small { font: 600 20px/normal "Red Hat Display", sans-serif; color: #6c6868; }
+.rw-fire { width: 35px; height: 37.92px; }
+.rw-gem { width: 34.27px; height: 34.27px; transform: rotate(5.11deg); }
+
+/* The school week: a 44 circle a day, orange with a tick when played, #d9d9d9 when not. */
+.rw-week { display: flex; justify-content: space-between; width: 100%; }
+.rw-day { display: grid; justify-items: center; gap: 9px; }
+.rw-day i { display: grid; place-items: center; width: 43.85px; height: 43.85px; border-radius: 50%; background: #d9d9d9; }
+.rw-day.on i { background: #f67b00; }
+.rw-day i img { width: 31px; height: 31px; }
+.rw-day small { font: 500 14px/normal "Red Hat Display", sans-serif; color: #303030; }
+.rw-day.on small { font-weight: 700; color: #f67b00; }
+
+/* The grey box: radius 15, #f0f0f0. */
+.rw-box { width: 100%; max-width: 308px; border-radius: 15px; background: #f0f0f0; }
+.rw-best { display: flex; flex-direction: column; gap: 5px; padding: 15px; text-align: center; }
+.rw-best small { font: 600 16px/normal "Red Hat Display", sans-serif; color: #8a8989; }
+.rw-best b { font: 700 16px/normal "Red Hat Display", sans-serif; color: #303030; }
+
+/* Three badges in the box: 70 each, the name in Display Bold 12 uppercase; the next one to earn grey. */
+.rw-bds { display: flex; justify-content: center; align-items: flex-start; gap: 22px; min-height: 146px; padding: 18px 14px 20px; }
+.rw-bd { display: grid; justify-items: center; gap: 6px; width: 78px; padding: 0; border: 0; background: none; cursor: pointer; }
+.rw-bd img { width: 70px; height: 70px; object-fit: cover; }
+.rw-bd small { font: 700 12px/normal "Red Hat Display", sans-serif; color: #5a5a5a; text-align: center; text-transform: uppercase; }
+.rw-bd.locked img { opacity: .4; filter: grayscale(1); }
+.rw-bd.locked small { color: #747474; opacity: .7; }
+.rw-bd:active img { transform: scale(.94); }
+.rw-bd:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; border-radius: 8px; }
+.rw-all { display: inline-flex; align-items: center; gap: 4px; margin-top: -8px; padding: 0; border: 0; background: none; font: 600 16px/normal "Red Hat Display", sans-serif; color: #575757; cursor: pointer; }
+.rw-all img { width: 24px; height: 24px; }
+.rw-all:focus-visible { outline: 3px solid #6849dd; outline-offset: 3px; border-radius: 6px; }
+
+/* The top bar's two stats, the design's icons and colours. */
+.tr-stats .tr-stat img { object-fit: contain; }
+.tr-stats .tr-streak img { width: 20px; height: 22px; }
+.tr-stats .tr-badges img { width: 20px; height: 20px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .tr-stats .tr-streak { color: #de7f20; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .tr-stats .tr-badges { color: #6f57cc; }

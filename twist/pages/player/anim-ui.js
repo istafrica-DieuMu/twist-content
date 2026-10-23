@@ -136,7 +136,8 @@ const beforeLesson = () => ({ streak: streak(PR.child).current, badges: myBadges
 const RIVE_THEME = { math: 2, english: 3, german: 4, french: 3 };
 function trackSkate({ path, rows, cur, top, art, onStart, onNext }) {
   if (!window.rive || !rows[cur] || rows[cur].state === "locked") return null;
-  const key = `twist-track-${PR.child.curriculum}-${APP.subj}`;
+  // Where it last stood, per subject; a stone per lesson keeps its own place (the rows differ).
+  const key = `twist-track-${PR.child.curriculum}-${APP.subj}${rows[0]?.l ? "-lessons" : ""}`;
   let last = null; try { last = JSON.parse(localStorage.getItem(key)); } catch {}
   try { localStorage.setItem(key, JSON.stringify(cur)); } catch {}
   // It skates when the child has moved on since the track was last open, or has just finished a skill.
@@ -158,7 +159,8 @@ function trackSkate({ path, rows, cur, top, art, onStart, onNext }) {
   stones.forEach((i) => path.querySelector(`.tr-stone[data-i="${i}"]`)?.classList.add("under-skate"));
   arcs.forEach((i) => path.querySelectorAll(".tr-arc")[i - 1]?.classList.add("under-skate"));
   path.querySelector(".tr-mascot")?.classList.add("under-skate");
-  const r = rows[cur], lg = PL(), done = lessonsDone(r.s), title = r.s.title[lg] ?? r.s.title.de;
+  // A lesson stone names its lesson and starts it; a skill stone names the skill and goes on where it stopped.
+  const r = rows[cur], lg = PL(), done = !r.l && lessonsDone(r.s), title = r.l ? r.l.title[lg] ?? r.l.title.de : r.s.title[lg] ?? r.s.title.de;
   const label = lg === "de" ? (done ? "WEITERLERNEN" : "LEKTION STARTEN") : done ? "CONTINUE LESSON" : "START LESSON";
   let vmi = null;
   const rv = riveOn($("canvas", f), "study_screen_animation.riv", { stateMachine: mode, artboard: "Study screen animation",

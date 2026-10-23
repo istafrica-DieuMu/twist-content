@@ -307,13 +307,11 @@ function renderHomeTab() {
   if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice)));
   else if (practiceCard) steps.push(`<p class="hm-step">${esc(T.today)}</p>${practiceCard}`);
   const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceCard ? practiceCard : ""].filter(Boolean);
-  const pct = (100 * got) / goal;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
     <header class="hm-top fun-band" style="--room:${ROOM.start}">
       <button class="hm-av" data-settings aria-label="${esc(ST().title)}">${avatar(c)}</button>
       <div><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2><small>${esc(all ? T.planDone : greetLine(got, goal, s.current, plan, sug, did))}</small></div>
-      <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-rw="streak" style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b></button>
     </header>
     ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
@@ -373,13 +371,28 @@ function trackSkills(subj, year) {
   out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : x.some ? "started" : i && (out[i - 1].some || out[i - 1].done) ? "open" : "locked");
   return out;
 }
+// One stone per lesson (the default) or per skill (Dodo's first version); the side panel switches it.
+const STONES_KEY = "twist-stones";
+const stonesPerLesson = () => { try { return localStorage.getItem(STONES_KEY) !== "skill"; } catch { return true; } };
+// The course as a row of lessons: each skill's lessons in order, with the skill's state behind
+// them. Done, current (the first not done), open (the next lesson of a skill that is open) or locked.
+function trackLessons(subj, year) {
+  const out = [];
+  for (const sk of trackSkills(subj, year)) {
+    const d = lessonsDone(sk.s);
+    sk.s.lessons.forEach((l, k) => out.push({ s: sk.s, l, k, topic: sk.topic, topicStart: sk.topicStart && !k, done: k < d, skillState: sk.state }));
+  }
+  const cur = out.findIndex((x) => !x.done);
+  out.forEach((x, i) => x.state = x.done ? "done" : i === cur ? "current" : x.k === lessonsDone(x.s) && ["current", "started", "open"].includes(x.skillState) ? "open" : "locked");
+  return out;
+}
 function renderTrack() {
   const T = AT(), K = TK(), lg = PL(), scr = $("#screen"), c = PR.child, subs = appSubjects();
   if (!subs.includes(APP.subj)) APP.subj = subs[0];
   const year = yearsOf(APP.subj).includes(APP.year) ? APP.year : childYearFor(APP.subj);
   const art = trackArt(APP.subj), look = TRACK[art], files = look.files ?? art, colour = colourOf(APP.subj);
-  const rows = trackSkills(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
-  const s = streak(c), stars = allStars(c);
+  const perLesson = stonesPerLesson(), rows = perLesson ? trackLessons(APP.subj, year) : trackSkills(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
+  const rowTitle = (r) => r.l ? r.l.title[lg] ?? r.l.title.de : r.s.title[lg] ?? r.s.title.de;
   const top = (i) => TR.pad + i * TR.step, mid = (i) => top(i) + TR.decor / 2;
   const at = (x) => `calc(50% + ${x}px)`;
   const arcs = rows.map((r, i) => {
@@ -391,16 +404,11 @@ function renderTrack() {
       <img class="tr-island" src="${island}" alt="" style="top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px">`;
   }).join("");
   const lines = rows.map((r, i) => r.topicStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
-  const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(r.s.title[lg] ?? r.s.title.de)}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
+  const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(rowTitle(r))}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
   const mascot = rows.length ? `<img class="tr-mascot" data-i="${cur}" src="${A}mascot/start-2.png" alt="" style="top:${mid(cur) - TR.mascot * 1.05}px;left:${at(TR.decor / 2 - TR.mascot * 1.2)};width:${TR.mascot}px">` : "";
   scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div>
-    <header class="tr-stats">
-      <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${art}.svg" alt="">${CHEVRON}</button>
-      <button class="tr-stat" data-rw="streak" aria-label="${esc(RW().tabs.streak)}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button>
-      <button class="tr-stat" data-rw="stars" aria-label="${esc(RW().tabs.stars)}"><i>★</i>${stars}</button>
-      <button class="tr-stat" data-rw="badges" aria-label="${esc(RW().tabs.badges)}"><img src="${A}badges/legend.svg" alt="">${myBadges().filter((b) => b.earned).length}</button>
-    </header>
+    ${trackStats(art)}
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
       <button class="tr-card"><i><img src="study/${art}.svg" alt=""></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
       <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip up" aria-live="polite" hidden></div></div>
@@ -418,25 +426,28 @@ function renderTrack() {
     const r = rows[i]; if (!r || (i === focus && open && !force)) return;
     if (i !== focus) all = false;
     focus = i; open = true; tip.hidden = false;
-    $("#trUnit").textContent = r.topic || (r.s.title[lg] ?? r.s.title.de); $("#trLesson").textContent = r.s.title[lg] ?? r.s.title.de;
+    // The card names where the child is: with a stone per lesson, the skill and the lesson in it.
+    if (r.l) { $("#trUnit").textContent = r.s.title[lg] ?? r.s.title.de; $("#trLesson").textContent = K.lessonOf(r.k + 1, r.s.lessons.length); }
+    else { $("#trUnit").textContent = r.topic || (r.s.title[lg] ?? r.s.title.de); $("#trLesson").textContent = r.s.title[lg] ?? r.s.title.de; }
     scr.querySelectorAll(".tr-stone").forEach((b) => b.classList.toggle("focus", +b.dataset.i === i));
     const done = lessonsDone(r.s), n = r.s.lessons.length, next = r.s.lessons[Math.min(done, n - 1)], locked = r.state === "locked", finished = r.state === "done";
-    const label = locked ? K.locked : finished ? K.again : done ? K.goOn : K.start;
+    // A lesson stone shows that lesson; a skill stone the lesson the child is up to.
+    const at = r.l ? r.k : done, label = locked ? K.locked : finished ? K.again : done && !r.l ? K.goOn : K.start;
     const row = (l, k) => `<li><button data-n="${l.n}" class="${k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
     // The lessons stay folded away until the child opens them.
     const shown = all ? r.s.lessons.map(row) : [];
     // One line for where the child is; the lessons open from the list button beside Start.
-    tip.innerHTML = `<b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>
-      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
-        <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
+    tip.innerHTML = `<b>${keepSuffix(rowTitle(r))}</b>
+      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === at && !locked ? "now" : ""}"></i>`).join("")}</span>
+        <span class="tr-meta">${esc(r.l ? K.lessonOf(at + 1, n) : finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
       ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
       <span class="tr-actions"><button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>
-        <button class="tr-more" aria-expanded="${all}" aria-label="${esc(all ? K.showLess : K.showAll(n))}" title="${esc(all ? K.showLess : K.showAll(n))}">${LIST}</button></span>`;
+        ${r.l ? "" : `<button class="tr-more" aria-expanded="${all}" aria-label="${esc(all ? K.showLess : K.showAll(n))}" title="${esc(all ? K.showLess : K.showAll(n))}">${LIST}</button>`}</span>`;
     $(".tr-more", tip)?.addEventListener("click", (e) => { e.stopPropagation(); all = !all; show(i, true); });
     // Above its stone, where the app's study card also stands; above the mascot when it stands there.
     tip.style.top = `${top(i) + (TR.decor - TR.stoneH) / 2 + 4 - (i === cur && !skate ? TR.mascot * 0.95 : 0)}px`;
     tip.querySelectorAll("[data-n]").forEach((b) => b.onclick = () => startLesson(r.s.id, +b.dataset.n));
-    $(".tr-go", tip).onclick = () => startLesson(r.s.id, r.state === "done" ? r.s.lessons[0].n : next.n);
+    $(".tr-go", tip).onclick = () => startLesson(r.s.id, r.l ? r.l.n : r.state === "done" ? r.s.lessons[0].n : next.n);
     // On the current skill the app's study card does the popover's job.
     const onSkate = !!skate && i === cur;
     if (onSkate) tip.hidden = true;
@@ -444,7 +455,7 @@ function renderTrack() {
   };
   // The app's skate and study card on the current skill (anim-ui.js).
   APP.skate = skate = trackSkate({ path, rows, cur, top, art,
-    onStart: () => { const r = rows[cur], d = lessonsDone(r.s); startLesson(r.s.id, r.s.lessons[Math.min(d, r.s.lessons.length - 1)].n); },
+    onStart: () => { const r = rows[cur], d = lessonsDone(r.s); startLesson(r.s.id, r.l ? r.l.n : r.s.lessons[Math.min(d, r.s.lessons.length - 1)].n); },
     onNext: (i) => { show(i, true); scrollTo(i, "smooth"); } });
   // The focus line: 60% down the track's window, so the study card above the current skill clears the top card.
   const focusY = () => page.getBoundingClientRect().top + page.clientHeight * 0.6 - path.getBoundingClientRect().top;
@@ -464,7 +475,8 @@ function renderTrack() {
   APP.trackTaps?.abort(); APP.trackTaps = new AbortController();
   const { signal } = APP.trackTaps;
   setTimeout(() => scr.addEventListener("click", (e) => { if (open && !e.target.closest(".tr-stone, .tr-mascot, .tr-skate")) close(); }, { signal }));
-  card.onclick = () => { APP.units = true; APP.year = year; renderStudy(); };
+  // The card opens the lesson list on the skill in focus.
+  card.onclick = () => { APP.units = true; APP.year = year; APP.openSet = rows[focus]?.s.id ?? null; renderStudy(); };
   $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
   // Open on the current skill, a little lower when the study card stands above it.
   quiet = Date.now() + 500;
@@ -476,7 +488,7 @@ function subjectMenu(pill) {
   m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}"${x === APP.subj ? ' aria-current="true"' : ""}><img src="study/${a}.svg" alt="">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`; }).join("");
   const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
   const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
-  m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; APP.openSet = null; APP.units ? renderStudy() : renderTrack(); });
   $("#screen").appendChild(m); document.addEventListener("pointerdown", away, true);
 }
 
@@ -486,104 +498,100 @@ function subjectMenu(pill) {
 // the badges (the newest, the ones on their way, then all the rest), so the
 // child never has to leave the screen it is on.
 const RWTXT = {
-  de: { title: "Deine Belohnungen", tabs: { streak: "Serie", stars: "Sterne", badges: "Abzeichen" }, recent: "Zuletzt verdient", next: "Als Nächstes", none: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", rest: (n) => `Alle weiteren (${n})`, close: "Schließen", starsHow: "Sterne bekommst du für jede Fähigkeit: üben, können, behalten.", streakBig: (n) => n === 1 ? "Schultag in Folge" : "Schultage in Folge" },
-  en: { title: "Your rewards", tabs: { streak: "Streak", stars: "Stars", badges: "Badges" }, recent: "Earned lately", next: "Up next", none: "None yet. The first comes with your first skill at I can do it.", rest: (n) => `All the others (${n})`, close: "Close", starsHow: "You get stars for every skill: practise it, can do it, remember it.", streakBig: (n) => n === 1 ? "school day in a row" : "school days in a row" },
+  de: { title: "Deine Belohnungen", tabs: { streak: "Serie", stars: "Sterne", badges: "Abzeichen" }, recent: "Zuletzt verdient", next: "Als Nächstes", none: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", rest: (n) => `Alle weiteren (${n})`, close: "Schließen", starsHow: "Sterne bekommst du für jede Fähigkeit: üben, können, behalten.", streakBig: (n) => n === 1 ? "Schultag in Folge" : "Schultage in Folge", dayStreak: (n) => n === 1 ? "Tag in Folge" : "Tage in Folge", longest: "Längste Serie", days: (n) => n === 1 ? "1 Tag" : `${n} Tage`, badgesWord: (n) => n === 1 ? "Abzeichen" : "Abzeichen", allBadges: "Alle Abzeichen" },
+  en: { title: "Your rewards", tabs: { streak: "Streak", stars: "Stars", badges: "Badges" }, recent: "Earned lately", next: "Up next", none: "None yet. The first comes with your first skill at I can do it.", rest: (n) => `All the others (${n})`, close: "Close", starsHow: "You get stars for every skill: practise it, can do it, remember it.", streakBig: (n) => n === 1 ? "school day in a row" : "school days in a row", dayStreak: () => "day streak", longest: "Longest streak", days: (n) => n === 1 ? "1 day" : `${n} days`, badgesWord: (n) => n === 1 ? "badge" : "badges", allBadges: "All badges" },
 };
 const RW = () => RWTXT[PL()];
 const allStars = (c) => appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
-function rewardsPopover(anchor, tab = "badges") {
+// The streak and the badges, each as a card that rises from the bottom over the dimmed screen,
+// as in the B2C App Exploration design in Figma (header pop-ups: streak 9576:12999, badges 9576:14526).
+// Streak: the days in a row, the school week ticked off, the longest run. Badges: how many, the two
+// newest and the next one to earn, and the way to all of them. A tap outside closes it.
+const RW_ART = "twist-ui/";
+function rewardsPopover(anchor, kind = "badges") {
   document.querySelector(".rw-pop")?.dispatchEvent(new Event("close"));
-  const T = AT(), R = RW(), c = PR.child, scr = $("#screen"), all = myBadges(), s = streak(c);
-  const seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
-  const next = nextBadges(all), rest = all.filter((b) => !b.earned && !next.includes(b));
-  const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
-  const panels = {
-    streak: `<div class="rw-hero rw-flame${s.current ? " on" : ""}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><span><b>${s.current}</b><small>${esc(R.streakBig(s.current))} · ${esc(T.streakBest(s.best))}</small></span></div>
-      ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small>`,
-    stars: `<div class="rw-hero rw-star"><i>★</i><span><b>${allStars(c)}</b><small>${esc(R.starsHow)}</small></span></div>
-      <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<div style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></div>`; }).join("")}</div>`,
-    badges: `<h4 class="hm-step">${esc(R.recent)}</h4>
-      ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(R.none)}</p>`}
-      <h4 class="hm-step">${esc(R.next)}</h4><div class="bd-grid">${next.map(badgeTile).join("")}</div>
-      <details class="bd-all"><summary>${esc(R.rest(got.length > 3 ? rest.length + got.length - 3 : rest.length))}${CHEVRON}</summary><div class="bd-grid">${[...got.slice(3), ...rest].map(badgeTile).join("")}</div></details>`,
-  };
-  const count = { streak: s.current, stars: allStars(c), badges: got.length };
-  const icon = { streak: `<img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">`, stars: "<i>★</i>", badges: `<img src="${A}badges/legend.svg" alt="">` };
+  const T = AT(), R = RW(), c = PR.child, scr = $("#screen"), s = streak(c);
+  let body;
+  if (kind === "streak") {
+    const mon = c.today - (((c.today % 7) + 7) % 7), act = new Set(c.active ?? []);
+    const days = T.days.map((d, i) => { const on = act.has(mon + i); return `<span class="rw-day${on ? " on" : ""}${mon + i === c.today ? " today" : ""}" title="${esc(on ? T.dayPlayed : mon + i === c.today ? T.dayToday : mon + i < c.today ? T.dayMissed : "")}"><i>${on ? `<img src="${RW_ART}rw-check.svg" alt="">` : ""}</i><small>${esc(d)}</small></span>`; }).join("");
+    body = `<div class="rw-hero"><span><img class="rw-fire" src="${RW_ART}rw-fire.svg" alt=""><b>${s.current}</b></span><small>${esc(R.dayStreak(s.current))}</small></div>
+      <div class="rw-week">${days}</div>
+      <div class="rw-box rw-best"><small>${esc(R.longest)}</small><b>${esc(R.days(s.best))}</b></div>`;
+  } else {
+    const all = myBadges(), seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
+    const show = got.slice(0, 2); show.push(...nextBadges(all, 3 - show.length));
+    body = `<div class="rw-hero"><span><img class="rw-gem" src="${RW_ART}rw-gem.svg" alt=""><b>${got.length}</b></span><small>${esc(R.badgesWord(got.length))}</small></div>
+      <div class="rw-box rw-bds">${show.map((b) => `<button class="rw-bd${b.earned ? "" : " locked"}" data-bd="${esc(b.id)}"><img src="${RW_ART}rw-badge.png" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>
+      <button class="rw-all">${esc(R.allBadges)}<img src="${RW_ART}rw-chevron.svg" alt=""></button>`;
+  }
   const scrim = document.createElement("div"); scrim.className = "rw-scrim";
-  const m = document.createElement("div"); m.className = "rw-pop"; m.setAttribute("role", "dialog"); m.setAttribute("aria-label", R.title);
-  m.innerHTML = `<div class="rw-tabs" role="tablist">${Object.keys(panels).map((k) => `<button role="tab" data-k="${k}" aria-selected="${k === tab}">${icon[k]}<b>${count[k]}</b><small>${esc(R.tabs[k])}</small></button>`).join("")}
-      <button class="rw-x" aria-label="${esc(R.close)}">${ICON.close}</button></div>
-    <div class="rw-body"></div>`;
-  const body = $(".rw-body", m);
-  const show = (k) => { tab = k; m.querySelectorAll("[data-k]").forEach((b) => b.setAttribute("aria-selected", b.dataset.k === k)); body.innerHTML = panels[k]; body.scrollTop = 0; aim(); };
-  // The tail points at what was tapped, or at the tab when that isn't on screen.
-  const aim = () => {
-    const box = scr.getBoundingClientRect(), from = anchor?.isConnected ? anchor.getBoundingClientRect() : null;
-    const top = from ? from.bottom - box.top + 10 : 100;
-    m.style.top = `${top}px`; m.style.maxHeight = `${box.height - top - 96}px`;
-    const x = from ? from.left + from.width / 2 - box.left : box.width / 2;
-    m.style.setProperty("--tail", `${Math.max(28, Math.min(box.width - 28, x)) - 12}px`);
-  };
-  const close = () => { m.remove(); scrim.remove(); document.removeEventListener("keydown", esc_); };
+  const m = document.createElement("div"); m.className = `rw-pop rw-${kind}`; m.setAttribute("role", "dialog"); m.setAttribute("aria-label", R.tabs[kind] ?? R.title); m.tabIndex = -1;
+  m.innerHTML = body;
+  const close = () => { m.classList.add("out"); scrim.classList.add("out"); setTimeout(() => { m.remove(); scrim.remove(); }, 180); document.removeEventListener("keydown", esc_); };
   const esc_ = (e) => { if (e.key === "Escape") close(); };
   m.addEventListener("close", close);
-  scrim.onclick = close; $(".rw-x", m).onclick = close; document.addEventListener("keydown", esc_);
-  m.querySelectorAll("[data-k]").forEach((b) => b.onclick = () => show(b.dataset.k));
-  scr.append(scrim, m); show(tab); $(`[data-k="${tab}"]`, m).focus();
+  scrim.onclick = close; document.addEventListener("keydown", esc_);
+  m.querySelectorAll("[data-bd]").forEach((b) => b.onclick = () => { const x = myBadges().find((y) => y.id === b.dataset.bd); if (x) badgeSheet(x); });
+  const all = $(".rw-all", m); if (all) all.onclick = () => { close(); appTab("me"); setTimeout(() => $(".me-bds")?.scrollIntoView({ block: "start", behavior: "smooth" }), 60); };
+  scr.append(scrim, m); m.focus();
 }
 
 /* ---------- Study: the unit list ---------- */
-// All the structured content: pick a subject, a year and a topic (or search),
-// then a unit and its lessons; a lesson opens in the lesson player.
+// The lesson list, as in the B2C App Exploration design in Figma (study screen, "math" frames):
+// the subject, the year, then every unit of the year as a quiet row. One unit is open at a
+// time, the next one to do to start with: its progress, its lessons numbered, and To lesson.
+// The subject and the stats sit in the track's top bar.
+const STF = {
+  de: { lessons: "Lektionen", go: "Zur Lektion", again: "Nochmal spielen" },
+  en: { lessons: "Lessons", go: "To lesson", again: "Play again" },
+};
+function trackStats(art) {
+  const K = TK(), s = streak(PR.child);
+  // Only the streak and the badges, as in the design; the stars stay on the lessons.
+  return `<header class="tr-stats">
+      <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${art}.svg" alt="">${CHEVRON}</button>
+      <button class="tr-stat tr-streak" data-rw="streak" aria-label="${esc(RW().tabs.streak)}"><img src="${RW_ART}rw-fire.svg" alt="">${s.current}</button>
+      <button class="tr-stat tr-badges" data-rw="badges" aria-label="${esc(RW().tabs.badges)}"><img src="${RW_ART}rw-gem.svg" alt="">${myBadges().filter((b) => b.earned).length}</button>
+    </header>`;
+}
 function renderStudy() {
-  const T = AT(), lg = PL(), scr = $("#screen"), c = PR.child, subs = appSubjects();
+  const T = AT(), F = STF[PL()], lg = PL(), scr = $("#screen"), c = PR.child, subs = appSubjects();
   if (!subs.includes(APP.subj)) APP.subj = subs[0];
   const years = yearsOf(APP.subj), mine = childYearFor(APP.subj);
   if (!years.includes(APP.year)) APP.year = mine;
-  const sets = courseSets(APP.subj, APP.year), colour = colourOf(APP.subj);
-  const topics = [];
-  for (const s of sets) { const name = s.topic?.[lg] ?? s.topic?.en ?? ""; if (topics.at(-1)?.name !== name) topics.push({ name, sets: [] }); topics.at(-1).sets.push(s); }
-  const q = APP.q.trim().toLowerCase();
-  const hit = (s) => !q || [s.title?.de, s.title?.en, s.topic?.de, s.topic?.en, s.can_do?.[lg], ...s.lessons.map((l) => l.title[lg])].join(" ").toLowerCase().includes(q);
-  const shown = topics.filter((tp) => !APP.topic || tp.name === APP.topic).map((tp) => ({ ...tp, sets: tp.sets.filter(hit) })).filter((tp) => tp.sets.length);
-  const next = nextIn(sets), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length;
+  const sets = courseSets(APP.subj, APP.year), colour = colourOf(APP.subj), art = trackArt(APP.subj);
+  const next = nextIn(sets);
+  if (APP.openSet !== "" && !sets.some((s) => s.id === APP.openSet)) APP.openSet = (next ?? sets[0])?.id ?? null;
   const subjName = SUBJ_NAME[c.curriculum][APP.subj] ?? APP.subj;
-  scr.style.setProperty("--subj", colour); scr.style.setProperty("--top", `color-mix(in srgb, ${colour} 10%, var(--card))`);
-  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page st-page">
-    <header class="st-band" style="--c:${colour}">
-      <div class="st-head"><button class="st-back" aria-label="${esc(TK().back)}">${CHEVRON}</button><h2>${esc(TK().units)}</h2></div>
-      <div class="ln-subj" role="tablist">${subs.map((x) => `<button role="tab" data-s="${x}" aria-selected="${x === APP.subj}" style="--c:${colourOf(x)}">${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</button>`).join("")}</div>
-      <div class="st-row"><label class="st-year"><span>${esc(T.year)}</span><select id="stYear">${years.map((y) => `<option value="${esc(y)}"${y === APP.year ? " selected" : ""}>${esc(yearName(y))}${y === mine ? ` (${esc(T.yourYear)})` : ""}</option>`).join("")}</select></label>
-        <span class="st-count">${esc(T.doneOf(done, sets.length))}</span></div>
-    </header>
-    <label class="pr-search">${LENS}<input id="stQ" type="search" value="${esc(APP.q)}" placeholder="${esc(T.search(subjName, yearName(APP.year)))}" autocomplete="off"></label>
-    <div class="st-topics">${[{ name: null }, ...topics].map((tp) => { const d = tp.sets?.filter((x) => lessonsDone(x) >= x.lessons.length).length, all = !!tp.sets && d === tp.sets.length; return `<button data-t="${esc(tp.name ?? "")}" aria-pressed="${(APP.topic ?? null) === tp.name}"${all ? ' class="done"' : ""}>${all ? "✓ " : ""}${esc(tp.name ?? T.allTopics)}${tp.sets && !all && d ? `<small>${d}/${tp.sets.length}</small>` : ""}</button>`; }).join("")}</div>
-    ${!q && !APP.topic && next ? upNext(next) : ""}
-    <div id="stList">${shown.map((tp) => `<section class="ln-topic"><h3 class="pr-h">${esc(tp.name)}<small>${esc(T.doneOf(tp.sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, tp.sets.length))}</small></h3>${tp.sets.map((s) => studySetRow(s, s === next && !q)).join("")}</section>`).join("") || `<p class="pr-empty">${esc(T.nothing)}</p>`}</div>
-  </div>`;
+  const unit = (s) => {
+    const done = lessonsDone(s), n = s.lessons.length, title = esc(s.title[lg] ?? s.title.de);
+    if (s.id !== APP.openSet) return `<button class="stf-unit" data-open="${esc(s.id)}" aria-expanded="false">${title}</button>`;
+    const l = s.lessons[done >= n ? 0 : done];
+    return `<div class="stf-unit open" style="--p:${(100 * done) / n}%">
+      <button class="stf-head" data-open="" aria-expanded="true"><b>${title}</b><i class="stf-bar" role="img" aria-label="${esc(TK().lessonOf(Math.min(done + 1, n), n))}"></i><span class="stf-chev" aria-hidden="true"></span></button>
+      <ol class="stf-lessons">${s.lessons.map((x, k) => `<li class="${k < done ? "done" : ""}"><button data-start="${esc(s.id)}" data-n="${x.n}">${esc(x.title[lg] ?? x.title.de)}</button></li>`).join("")}</ol>
+      <button class="stf-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(done >= n ? F.again : F.go)}</button>
+    </div>`;
+  };
+  scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
+  scr.innerHTML = `<div class="status"></div>${trackStats(art)}
+    <div class="pr-home app-page stf-page" data-subj="${esc(APP.subj)}" style="--c:${colour}">
+      <div class="stf-title"><button class="stf-back" aria-label="${esc(TK().back)}"></button><img src="study/${art}.svg" alt=""><h2>${esc(subjName)}</h2></div>
+      <label class="stf-grade"><select id="stYear" aria-label="${esc(T.year)}">${years.map((y) => `<option value="${esc(y)}"${y === APP.year ? " selected" : ""}>${esc(yearName(y))}${y === mine ? ` (${esc(T.yourYear)})` : ""}</option>`).join("")}</select></label>
+      <h3 class="stf-h">${esc(F.lessons)}</h3>
+      <div class="stf-list">${sets.map(unit).join("") || `<p class="pr-empty">${esc(T.nothing)}</p>`}</div>
+    </div>`;
   scr.appendChild(appTabs("study"));
-  $(".st-back", scr).onclick = () => { APP.units = false; renderTrack(); };
-  scr.querySelectorAll(".ln-subj button").forEach((b) => b.onclick = () => { APP.subj = b.dataset.s; APP.year = null; APP.topic = null; APP.q = ""; renderStudy(); });
-  $("#stYear").onchange = (e) => { APP.year = e.target.value; APP.topic = null; renderStudy(); };
-  scr.querySelectorAll(".st-topics button").forEach((b) => b.onclick = () => { APP.topic = b.dataset.t || null; renderStudy(); });
-  const qi = $("#stQ"); qi.oninput = () => { APP.q = qi.value; const pos = qi.selectionStart; renderStudy(); const n = $("#stQ"); n.focus(); n.setSelectionRange(pos, pos); };
+  wireHeader(scr);
+  $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
+  $(".stf-back", scr).onclick = () => { APP.units = false; renderTrack(); };
+  $("#stYear").onchange = (e) => { APP.year = e.target.value; APP.openSet = null; renderStudy(); };
+  // One unit open at a time: a tap opens it, a tap on the open one's head folds it.
+  scr.querySelectorAll("[data-open]").forEach((b) => b.onclick = () => { APP.openSet = b.dataset.open; const y = $(".stf-page", scr).scrollTop; renderStudy(); $(".stf-page").scrollTop = y; });
   wireStarts(scr);
-  scr.querySelector(".st-topics [aria-pressed=true]")?.scrollIntoView({ inline: "center", block: "nearest" });
-}
-// Study's way back in: one row with the next lesson of the course; the unit below is open on it.
-function upNext(s) {
-  const T = AT(), lg = PL(), done = lessonsDone(s), l = s.lessons[done];
-  return `<button class="st-next" data-start="${esc(s.id)}" data-n="${l.n}"><span class="st-next-i">${PLAY}</span><span><small>${esc(T.upNext)} · ${esc(s.title[lg] ?? s.title.de)}</small><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b></span><em>${esc(T.minShort(s.minutes ?? 10))}</em></button>`;
-}
-const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
-// A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
-function studySetRow(s, open) {
-  const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length;
-  const stars = STARS[PR.child.states[s.skill]?.state ?? "not_started"], started = done > 0 || stars > 0;
-  return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
-      ${started ? `<span class="pr-stars" aria-label="${stars} / 3">${[1, 2, 3].map((i) => `<i class="${i <= stars ? "on" : ""}">★</i>`).join("")}</span>` : "<span></span>"}</summary>
-    ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
-    <ol class="ln-lessons">${s.lessons.map((l, i) => `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`).join("")}</ol></details>`;
+  if (APP.openSet && !APP.studyKeep) $(".stf-unit.open", scr)?.scrollIntoView({ block: "center" });
+  APP.studyKeep = false;
 }
 // Called by the lesson end screen when the lesson was started from the app.
 function appLessonDone(checkSteps, pass) {
@@ -592,8 +600,8 @@ function appLessonDone(checkSteps, pass) {
   steps._recorded = true;
   const check = pass == null ? null : { pass, keys: checkSteps.map(([s]) => taskKey(set.id, lesson.n, s.t.id)) };
   finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check });
-  // A skill finished: Study's track skates on to the next one (anim-ui.js, trackSkate).
-  if (lessonsDone(set) >= set.lessons.length) APP.skillDone = true;
+  // A stone finished (each lesson, or the skill with a stone per skill): Study's track skates on (anim-ui.js, trackSkate).
+  if (stonesPerLesson() || lessonsDone(set) >= set.lessons.length) APP.skillDone = true;
   saveChild();
 }
 const openStudy = () => appTab("study", { keep: true });
