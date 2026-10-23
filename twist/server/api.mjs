@@ -17,22 +17,33 @@ const LIMIT = { body: 4000, reply: 2000, label: 200, field: 120 };
 
 class Bad extends Error { constructor(status, message) { super(message); this.status = status; } }
 
-// Wrong sign-in tries, counted in fifteen-minute windows. A full table takes no new keys and never drops a
-// counter that is still counting, so an attacker cannot push out the counts that hold them back.
-const WINDOW_MS = 15 * 60_000, MAX_KEYS = 20_000;
-function tally() {
+// Wrong sign-in tries, counted in fifteen-minute windows. A full table never drops a counter that is still
+// counting, so an attacker cannot push out the counts that hold them back; a new key then shares the counter
+// of its overflow key (a wider network, or one for every new account), which still counts and slows.
+const WINDOW_MS = 15 * 60_000;
+function tally(MAX_KEYS = 20_000) {
   const m = new Map();
+  const sweep = (t) => { for (const [k, f] of m) if (f.until <= t && f.nextAt <= t) m.delete(k); };
+  // The key a try is counted under: its own, or its overflow key when the table is full even after a sweep.
+  const keyFor = (key, t, overflow) => {
+    if (m.has(key) || m.size < MAX_KEYS) return key;
+    sweep(t);
+    if (m.has(key) || m.size < MAX_KEYS) return key;
+    // Overflow keys get half as much room again; past that, everything new shares one counter.
+    const o = `overflow:${overflow}`;
+    return m.has(o) || m.size < MAX_KEYS * 1.5 ? o : "overflow:*";
+  };
   return {
-    // The count with this try added, or Infinity when the table is full and the key is new.
+    keyFor,
+    // The count with this try added.
     add(key, t) {
       const f = m.get(key);
       if (f && f.until > t) { f.n++; return f.n; }
-      if (!f && m.size >= MAX_KEYS) return Infinity;
-      m.set(key, { n: 1, until: t + WINDOW_MS, nextAt: 0 }); return 1;
+      m.set(key, { n: 1, until: t + WINDOW_MS, nextAt: f?.nextAt ?? 0 }); return 1;
     },
     get: (key, t) => { const f = m.get(key); return f && f.until > t ? f : null; },
     delete: (key) => m.delete(key),
-    sweep(t) { for (const [k, f] of m) if (f.until <= t && f.nextAt <= t) m.delete(k); },
+    sweep,
   };
 }
 // The address a try comes from. Behind our proxy (TRUST_PROXY) it is the last X-Forwarded-For entry, the one
@@ -47,9 +58,9 @@ export function clientAddress(req, trustProxy) {
   return full.slice(0, 4).map((g) => g.toLowerCase().replace(/^0+(?=.)/, "")).join(":") + "::/64";
 }
 
-export function createApi(store, { secureCookies = false, trustProxy = false, now = () => Date.now() } = {}) {
+export function createApi(store, { secureCookies = false, trustProxy = false, now = () => Date.now(), maxKeys } = {}) {
   const sessions = new Map();
-  const byAddress = tally(), byAccount = tally();
+  const byAddress = tally(maxKeys), byAccount = tally(maxKeys);
   // Ends every session of an account but the one given: after a password change or reset.
   const endSessions = (userId, keep) => { for (const [k, x] of sessions) if (x.user.id === userId && k !== keep) sessions.delete(k); };
   setInterval(() => {
@@ -126,8 +137,11 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     if (origin && hostOf(origin) !== req.headers.host) return signInPage(res, { error: "Sign in from this site's own page.", next });
     // An address gets ten tries in fifteen minutes. Each is counted before the password is checked, so
     // tries sent at once cannot all slip under the limit; a right password gives its try back.
-    const loginKey = login.toLowerCase().slice(0, 255), t0 = now();
-    if (byAddress.add(ip, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
+    const t0 = now();
+    // Overflow: an IPv4 address shares its /16's counter, an IPv6 /64 its /32's; new accounts share one.
+    const ipKey = byAddress.keyFor(ip, t0, ip.includes(":") ? ip.split(":").slice(0, 2).join(":") : ip.split(".").slice(0, 2).join("."));
+    const loginKey = byAccount.keyFor(login.toLowerCase().slice(0, 255), t0, "accounts");
+    if (byAddress.add(ipKey, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
     // An account is not locked by a count, which would let anyone lock its owner out. After ten wrong passwords
     // for it from anywhere, its checks queue up one at a time, a second apart and more as the count grows (up to
     // ten), so guesses sent at once are spread out too. Only a queue over a minute long, which takes a flood
@@ -145,8 +159,8 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
       const msg = { credentials: "That email and password do not match an account.", inactive: "This account is switched off. Ask your manager.", role: `Your account (${r.backendRole}) has no Twist Preview role. Ask an admin for one.`, unreachable: "The sign-in service cannot be reached just now. This is not a password problem; try again in a minute." }[r.fail];
       return signInPage(res, { error: msg, next, login });
     }
-    byAccount.delete(loginKey);
-    const fa = byAddress.get(ip, now()); if (fa) fa.n = Math.max(0, fa.n - 1);
+    if (!loginKey.startsWith("overflow:")) byAccount.delete(loginKey);
+    const fa = byAddress.get(ipKey, now()); if (fa) fa.n = Math.max(0, fa.n - 1);
     const id = randomBytes(32).toString("base64url"), t = now();
     sessions.set(id, { id, user: r.user, tokens: r.tokens, created: t, seen: t });
     setCookie(req, res, id, MAX_MS / 1000);
