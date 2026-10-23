@@ -141,6 +141,7 @@ One table for comments, one for replies.
 | `body` | text, up to 4000 characters | What they wrote |
 | `screen` | jsonb | Which screen, see below |
 | `pin_x`, `pin_y` | numeric, 0 to 1 | Where on the screen, as a fraction of its width and height |
+| `area_x`, `area_y`, `area_w`, `area_h` | numeric, 0 to 1, nullable | A selected box instead of a point, in the same fractions; the pin is then its top-left corner |
 | `target_label` | varchar(200), nullable | The part under the pin in words, like `Option card: sieben` |
 | `resolved_by_id` | bigint, nullable | |
 | `resolved_at` | timestamp, nullable | |
@@ -174,13 +175,18 @@ return it unchanged. The preview validates it. It looks like this:
 `kind` is `lesson`, `app` (a tab: Start, Practice, Me, Settings), `study` or
 `parents`. Please cap `screen` at 2 KB.
 
+A comment points at a spot or at a box. For a box, `area` holds its left,
+top, width and height as fractions of the screen; it must stay inside the
+screen (`x + w` and `y + h` at most 1), and `w` and `h` at least 0.005. For a
+spot, `area` is null.
+
 **Endpoints**, all under `/api/v1/admin/twist/feedback`:
 
 | Method and path | Body | Answer |
 |---|---|---|
 | `GET /?page=0&size=200` | | A page of comments this person may see, newest first, with their replies |
 | `GET /{id}` | | One comment, or 404 if they may not see it |
-| `POST /` | `{ screen, pin: { x, y }, target: { label } or null, body }` | The new comment |
+| `POST /` | `{ screen, pin: { x, y }, area: { x, y, w, h } or null, target: { label } or null, body }` | The new comment |
 | `PATCH /{id}` | `{ body }` or `{ status: "OPEN" or "RESOLVED" }` | The changed comment |
 | `DELETE /{id}` | | 200 |
 | `POST /{id}/replies` | `{ body }` | The whole comment, with the new reply |
@@ -194,6 +200,7 @@ A comment in every answer looks like this:
   "body": "The picture on this card is cut off at the bottom.",
   "screen": { "kind": "lesson", "label": "…", "set": "…", "lesson": 1, "step": 3 },
   "pin": { "x": 0.5, "y": 0.55 },
+  "area": null,
   "target": { "label": "Option card: sieben" },
   "author": { "id": 9, "name": "Tess Tester", "email": "tess@example.com" },
   "resolvedBy": null,

@@ -1746,10 +1746,17 @@ body.parents .drawer, body.parents .wrap, body.parents .pickbtn, body.parents .n
 
 /* The layer over the screen: it lets clicks through to the app, except on pins, until Comment is pressed. */
 #fbkLayer { position: absolute; z-index: 6; pointer-events: none; overflow: hidden; }
-#fbkLayer.pinning { pointer-events: auto; cursor: crosshair; background: rgba(104, 73, 221, .07); box-shadow: inset 0 0 0 3px #6849dd; }
+#fbkLayer.pinning { pointer-events: auto; cursor: crosshair; touch-action: none; user-select: none; background: rgba(104, 73, 221, .07); box-shadow: inset 0 0 0 3px #6849dd; }
 .fbk-pin { position: absolute; transform: translate(-50%, -50%); pointer-events: auto; width: 26px; height: 26px; padding: 0; border: 2px solid #fff;
   border-radius: 50%; background: #6849dd; color: #fff; font: 700 12px/1 system-ui, sans-serif; cursor: pointer;
   box-shadow: 0 0 0 1px rgba(43, 15, 69, .35), 0 3px 8px rgba(43, 15, 69, .4); display: grid; place-items: center; }
+/* An area comment: a box on the screen, its number on the top-left corner. */
+.fbk-area { position: absolute; box-sizing: border-box; border: 2px solid #6849dd; border-radius: 8px; background: rgba(104, 73, 221, .08); pointer-events: none; transition: background .15s; }
+.fbk-area.resolved { border-color: #2e8b57; background: rgba(46, 139, 87, .06); }
+.fbk-area.drawing, .fbk-area.ghost { border-style: dashed; background: rgba(104, 73, 221, .14); }
+.fbk-area.hot { background: rgba(104, 73, 221, .22); }
+.fbk-area.flash { animation: fbk-flash 1s ease-in-out 3; }
+.fbk-pin.on-area { transform: translate(-35%, -35%); }
 .fbk-pin.resolved { background: #2e8b57; opacity: .8; }
 .fbk-pin.ghost { opacity: .7; }
 .fbk-pin.flash { animation: fbk-flash 1s ease-in-out 3; }
@@ -1848,7 +1855,7 @@ body.fbv .drawer, body.fbv .wrap, body.fbv .pickbtn, body.fbv .now, body.usv .dr
   <div class="now" id="now"></div>
   <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="What a parent sees: the pretend child's progress, suggestions and rewards">Parents</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
   <div class="fbk-bar" id="fbkBar" hidden>
-    <button class="tbtn" id="fbkComment" type="button" aria-pressed="false" title="Leave a comment on a point of this screen (c)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Comment</button>
+    <button class="tbtn" id="fbkComment" type="button" aria-pressed="false" title="Leave a comment on a point or an area of this screen (c)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Comment</button>
     <div class="fbk-anchor"><button class="tbtn" id="fbkInbox" type="button" aria-expanded="false" aria-controls="fbkMenu" title="Open feedback"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 13l2-8h12l2 8v6H4zM4 13h5l1 2h4l1-2h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="fbk-badge" id="fbkCount" hidden></span></button>
       <div class="pop" id="fbkMenu" hidden></div></div>
     <div class="fbk-anchor"><button class="tbtn" id="fbkMe" type="button" aria-expanded="false" aria-controls="fbkMePop"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="fbk-who"></span></button>
@@ -1893,7 +1900,7 @@ body.fbv .drawer, body.fbv .wrap, body.fbv .pickbtn, body.fbv .now, body.usv .dr
 <div class="parentsview" id="parentsView" hidden></div>
 <div class="fbview" id="feedbackView" hidden></div>
 <div class="fbview" id="usersView" hidden></div>
-<div id="fbkHint" hidden>Click the point on the screen your comment is about. Esc cancels.</div>
+<div id="fbkHint" hidden>Click the point your comment is about, or drag to select an area. Esc cancels.</div>
 <div class="anat" id="anat" hidden role="dialog" aria-label="Screen anatomy"><div class="anat-in" id="anatBody"></div></div>
 <div class="wrap">
   <div class="phone"><div class="screen" id="screen"></div></div>
@@ -4551,9 +4558,9 @@ document.getElementById("openList").onclick = () => setList(true);
 /* ---------- Feedback: comments pinned to a point on an app screen ----------
    Served by twist/serve.mjs, the page asks /api/me who is signed in; opened
    as a file or anywhere without that server, none of this shows. Comment
-   (or the c key) drops a pin on the phone: the comment keeps the screen (the
-   lesson, its step and task id, or the app tab), the point as a fraction of
-   the screen, and the part under the pin. Pins show on their screen to whoever
+   (or the c key) drops a pin on the phone, or a box when dragged: the comment
+   keeps the screen (the lesson, its step and task id, or the app tab), the
+   point or the box as fractions of the screen, and the part under the pin. Pins show on their screen to whoever
    may see them; reviewers get every comment in the top bar's Feedback menu
    and on the Feedback view, filtered by status, and open its screen from
    there. Managers and admins get the Users view. Rules: twist/docs/feedback.md.
@@ -4602,7 +4609,7 @@ function fbkSurface() {
 function fbkLayer() {
   const sf = fbkSurface(); if (!sf) return null;
   let layer = $("#fbkLayer");
-  if (!layer) { layer = document.createElement("div"); layer.id = "fbkLayer"; layer.onclick = fbkLayerClick; }
+  if (!layer) { layer = document.createElement("div"); layer.id = "fbkLayer"; layer.onpointerdown = fbkLayerDown; }
   if (layer.parentNode !== sf.host) sf.host.appendChild(layer);
   // Over the surface exactly: the phone's screen sits inside its frame's padding.
   const e = sf.el, inPhone = sf.host !== sf.el;
@@ -4616,14 +4623,21 @@ function fbkRenderPins() {
   if (!layer) { $("#fbkLayer")?.replaceChildren(); return; }
   layer.classList.toggle("pinning", FBK.pinning);
   const key = fbkKey(sc), here = FBK.list.filter((f) => fbkKey(f.screen) === key && (FBK.showResolved || f.status === "open" || f.id === FBK.flash));
-  layer.replaceChildren(...(FBK.showPins || FBK.flash ? here : []).map((f) => {
+  // The pin or box of a comment being written stays while the pins are drawn again around it.
+  const writing = [...layer.querySelectorAll(".ghost")];
+  layer.replaceChildren(...writing, ...(FBK.showPins || FBK.flash ? here : []).flatMap((f) => {
     const p = document.createElement("button");
     p.className = `fbk-pin ${f.status}${f.id === FBK.flash ? " flash" : ""}`; p.type = "button";
     p.style.left = f.pin.x * 100 + "%"; p.style.top = f.pin.y * 100 + "%";
     p.textContent = String(here.indexOf(f) + 1); p.dataset.id = f.id;
     p.title = `${f.author?.name ?? ""}: ${f.body}`; p.setAttribute("aria-label", `Comment by ${f.author?.name ?? "someone"}: ${f.body}`);
     p.onclick = (e) => { e.stopPropagation(); fbkCard(f, p); };
-    return p;
+    if (!f.area) return [p];
+    // An area comment: its box, with the number on its top-left corner; the pin lights the box up.
+    const box = fbkBox(f.area, `fbk-area ${f.status}${f.id === FBK.flash ? " flash" : ""}`);
+    p.classList.add("on-area");
+    p.onpointerenter = () => box.classList.add("hot"); p.onpointerleave = () => box.classList.remove("hot");
+    return [box, p];
   }));
   if (FBK.flash) { const p = layer.querySelector(".flash"); if (p) { const f = FBK.list.find((x) => x.id === FBK.flash); setTimeout(() => f && p.isConnected && fbkCard(f, p), 250); } FBK.flash = null; }
 }
@@ -4637,31 +4651,76 @@ function fbkPinMode(on = !FBK.pinning) {
   $("#fbkComment")?.setAttribute("aria-pressed", on);
   $("#fbkHint").hidden = !on; fbkClosePop(); fbkRenderPins();
 }
-// The part of the screen under the pin, in words: "Button: Weiter", "Picture: apple".
-function fbkTarget(x, y, layer) {
-  layer.style.pointerEvents = "none"; const el = document.elementFromPoint(x, y); layer.style.pointerEvents = "";
-  if (!el?.closest("#screen, #parentsView")) return null;
-  const pick = el.closest("button, [role=button], .opt, img, svg, h1, h2, h3, p, li, label") ?? el;
+const fbkBox = (a, cls) => { const b = document.createElement("div"); b.className = cls; Object.assign(b.style, { left: a.x * 100 + "%", top: a.y * 100 + "%", width: a.w * 100 + "%", height: a.h * 100 + "%" }); return b; };
+// A part of the screen in words: "Button: Weiter", "Picture: apple".
+const FBK_PART = "button, [role=button], .opt, img, svg, h1, h2, h3, p, li, label";
+function fbkDescribe(el) {
+  const pick = el.closest(FBK_PART) ?? el;
   const kind = pick.tagName === "IMG" ? "Picture" : pick.tagName === "svg" || pick.tagName === "SVG" ? "Drawing" : pick.matches("button, [role=button], .opt") ? (pick.matches(".opt") ? "Option card" : "Button") : /^H\d$/.test(pick.tagName) ? "Heading" : "Text";
   const text = (pick.getAttribute("aria-label") || pick.getAttribute("alt") || pick.textContent || "").replace(/\s+/g, " ").trim();
-  return { label: text ? `${kind}: ${text.length > 80 ? text.slice(0, 79) + "…" : text}` : kind };
+  return text ? `${kind}: ${text.length > 40 ? text.slice(0, 39) + "…" : text}` : kind;
 }
-function fbkLayerClick(e) {
-  if (!FBK.pinning) return;
-  const layer = e.currentTarget, r = layer.getBoundingClientRect();
-  const pin = { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
-  const screen = fbkScreen(), target = fbkTarget(e.clientX, e.clientY, layer);
+// What the comment is about: the part under a pin, or the parts whose middle lies in an area (at most four).
+function fbkTarget(r, layer) {
+  const surface = fbkSurface()?.el; if (!surface) return null;
+  if (!r.w) {
+    layer.style.pointerEvents = "none"; const el = document.elementFromPoint(r.x, r.y); layer.style.pointerEvents = "";
+    return el?.closest("#screen, #parentsView") ? { label: fbkDescribe(el) } : null;
+  }
+  const inside = [...surface.querySelectorAll(FBK_PART)].filter((el) => {
+    const b = el.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+    return b.width && cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h;
+  });
+  // The outermost parts only: an option card, not also the text inside it.
+  const outer = inside.filter((el) => !inside.some((o) => o !== el && o.contains(el)));
+  const names = [...new Set(outer.map(fbkDescribe))];
+  return { label: names.length ? `Area: ${names.slice(0, 4).join(", ")}${names.length > 4 ? ` and ${names.length - 4} more` : ""}` : "Area" };
+}
+// In Comment mode a press starts a pin; dragging past a few pixels makes it an area instead.
+function fbkLayerDown(e) {
+  if (!FBK.pinning || e.button !== 0) return;
+  e.preventDefault();
+  const layer = e.currentTarget, r = layer.getBoundingClientRect(), x0 = e.clientX, y0 = e.clientY;
+  const frac = (cx, cy) => ({ x: Math.min(1, Math.max(0, (cx - r.left) / r.width)), y: Math.min(1, Math.max(0, (cy - r.top) / r.height)) });
+  let box = null, last = e;
+  layer.setPointerCapture(e.pointerId);
+  const rectOf = (ev) => { const a = frac(x0, y0), b = frac(ev.clientX, ev.clientY); return { x: Math.min(a.x, b.x), y: Math.min(a.y, b.y), w: Math.abs(a.x - b.x), h: Math.abs(a.y - b.y) }; };
+  layer.onpointermove = (ev) => {
+    last = ev;
+    if (!box && Math.hypot(ev.clientX - x0, ev.clientY - y0) < 6) return;
+    if (!box) { box = fbkBox(rectOf(ev), "fbk-area open drawing"); layer.appendChild(box); }
+    const a = rectOf(ev); Object.assign(box.style, { left: a.x * 100 + "%", top: a.y * 100 + "%", width: a.w * 100 + "%", height: a.h * 100 + "%" });
+  };
+  layer.onpointerup = layer.onpointercancel = (ev) => {
+    layer.onpointermove = layer.onpointerup = layer.onpointercancel = null;
+    box?.remove();
+    if (ev.type === "pointercancel") return;
+    const area = box ? rectOf(last) : null;
+    // A box too thin to mean anything is a pin after all.
+    if (area && (area.w < 0.02 || area.h < 0.02)) return fbkCompose(layer, { pin: frac(x0, y0), area: null }, { x: x0, y: y0 });
+    if (area) {
+      const rx = Math.min(x0, last.clientX), ry = Math.min(y0, last.clientY);
+      return fbkCompose(layer, { pin: { x: area.x, y: area.y }, area }, { x: rx, y: ry, w: Math.abs(last.clientX - x0), h: Math.abs(last.clientY - y0) });
+    }
+    fbkCompose(layer, { pin: frac(x0, y0), area: null }, { x: x0, y: y0 });
+  };
+}
+// Writing the comment for a pin or an area just placed.
+function fbkCompose(layer, { pin, area }, screenRect) {
+  const screen = fbkScreen(), target = fbkTarget(screenRect, layer);
   fbkPinMode(false);
-  const ghost = document.createElement("span"); ghost.className = "fbk-pin open ghost"; ghost.style.left = pin.x * 100 + "%"; ghost.style.top = pin.y * 100 + "%"; layer.appendChild(ghost);
-  const pop = fbkPop(ghost, `<form class="fbk-compose"><div class="fbk-where"><b>${esc(screen.label)}</b>${target ? `<small>${esc(target.label)}</small>` : ""}</div>
-    <textarea name="body" rows="4" maxlength="4000" required placeholder="What is wrong or could be better here?"></textarea>
-    <div class="fbk-row"><small>${fbkSeesOthers() ? "Everyone who reviews feedback sees this." : "Reviewers see this; other testers do not."}</small><span><button type="button" class="nbtn" data-x>Cancel</button><button class="nbtn fbk-go">Save</button></span></div></form>`, () => ghost.remove());
+  const marks = [];
+  if (area) { const b = fbkBox(area, "fbk-area open ghost"); layer.appendChild(b); marks.push(b); }
+  const ghost = document.createElement("span"); ghost.className = `fbk-pin open ghost${area ? " on-area" : ""}`; ghost.style.left = pin.x * 100 + "%"; ghost.style.top = pin.y * 100 + "%"; layer.appendChild(ghost); marks.push(ghost);
+  const pop = fbkPop(area ? marks[0] : ghost, `<form class="fbk-compose"><div class="fbk-where"><b>${esc(screen.label)}</b>${target ? `<small>${esc(target.label)}</small>` : ""}</div>
+    <textarea name="body" rows="4" maxlength="4000" required placeholder="${area ? "What is wrong or could be better in this area?" : "What is wrong or could be better here?"}"></textarea>
+    <div class="fbk-row"><small>${fbkSeesOthers() ? "Everyone who reviews feedback sees this." : "Reviewers see this; other testers do not."}</small><span><button type="button" class="nbtn" data-x>Cancel</button><button class="nbtn fbk-go">Save</button></span></div></form>`, () => marks.forEach((m) => m.remove()));
   const form = $("form", pop), ta = $("textarea", pop); ta.focus();
   ta.onkeydown = (k) => { if (k.key === "Enter" && (k.metaKey || k.ctrlKey)) form.requestSubmit(); };
   $("[data-x]", pop).onclick = fbkClosePop;
   form.onsubmit = async (ev) => {
     ev.preventDefault(); const btn = $(".fbk-go", pop); btn.disabled = true;
-    try { const { feedback } = await fbkApi("POST", "feedback", { screen, pin, target, body: ta.value }); FBK.list.unshift(feedback); fbkClosePop(); fbkRefreshAll(); fbkToast("Comment saved."); }
+    try { const { feedback } = await fbkApi("POST", "feedback", { screen, pin, area, target, body: ta.value }); FBK.list.unshift(feedback); fbkClosePop(); fbkRefreshAll(); fbkToast("Comment saved."); }
     catch (err) { btn.disabled = false; fbkToast(err.message, true); }
   };
 }

@@ -20,17 +20,21 @@ request against it; the page only hides what would fail.
 ## Leaving a comment
 
 Press **Comment** in the top bar, or `c`, then click the point the comment is
-about. The comment keeps:
+about, or drag to select an area (two answer cards, a whole row). The comment
+keeps:
 
 - **The screen.** For a lesson: the lesson set's id, the lesson number, the
   step and, on a task, its task id; for the app, the tab; for Study, the
   subject and whether the track or the unit list was open. A label in words
   goes with it (`Das ABC · lesson 1 · Learn screen 2`) and the build date.
-- **The point**, as a fraction of the screen's width and height, so a pin sits
-  in the same place at every phone size.
+- **The point or the area**, as fractions of the screen's width and height,
+  so a pin or a box sits in the same place at every phone size. An area's
+  number sits on its top-left corner, and pointing at the number lights the
+  box up.
 - **What is under the pin**, in words: `Option card: sieben`,
-  `Button: Weiter`, `Picture: apple`. If the screen changes later, this still
-  says what the comment was about.
+  `Button: Weiter`, `Picture: apple`; for an area, the parts inside it:
+  `Area: Option card: Mäuse, Option card: Meuse`. If the screen changes
+  later, this still says what the comment was about.
 
 Comments show as numbered pins on their screen to whoever may see them. A pin
 opens the comment: its thread, a reply box, and Resolve, Edit, Copy link and

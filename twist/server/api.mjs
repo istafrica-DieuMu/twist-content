@@ -187,6 +187,14 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     if (!(x >= 0 && x <= 1 && y >= 0 && y <= 1)) throw new Bad(400, "The pin is off the screen.");
     return { x: Math.round(x * 10000) / 10000, y: Math.round(y * 10000) / 10000 };
   }
+  // An area: a box on the screen in the same fractions as a pin, at least a little wide and tall, inside the screen.
+  function areaOf(v) {
+    if (v == null) return null;
+    const [x, y, w, h] = ["x", "y", "w", "h"].map((k) => Number(v?.[k]));
+    if (![x, y, w, h].every((n) => Number.isFinite(n) && n >= 0 && n <= 1) || w < 0.005 || h < 0.005 || x + w > 1.0001 || y + h > 1.0001) throw new Bad(400, "The area is off the screen.");
+    const r = (n) => Math.round(n * 10000) / 10000;
+    return { x: r(x), y: r(y), w: r(w), h: r(h) };
+  }
   const targetOf = (v) => v && typeof v === "object" && v.label ? { label: str(v.label, LIMIT.label, "The target") } : null;
   const withCan = (u, f, accounts) => ({ ...f, can: { resolve: canResolve(u, f, accounts), edit: canEdit(u, f), delete: canDelete(u, f) } });
   // Whose accounts decide team membership: a manager's own, read once per request.
@@ -203,7 +211,9 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     }
     if (parts.length === 0 && req.method === "POST") {
       const b = await readJson(req);
-      const f = await store.createFeedback(s, { screen: screenOf(b.screen), pin: pinOf(b.pin), target: targetOf(b.target), body: str(b.body, LIMIT.body, "The comment", 1) });
+      // An area comment's pin is the area's top-left corner, where its number shows.
+      const area = areaOf(b.area), pin = area ? { x: area.x, y: area.y } : pinOf(b.pin);
+      const f = await store.createFeedback(s, { screen: screenOf(b.screen), pin, area, target: targetOf(b.target), body: str(b.body, LIMIT.body, "The comment", 1) });
       return json(res, 201, { feedback: withCan(u, f, []) });
     }
     const id = parts[0], accounts = await teamOf(s);

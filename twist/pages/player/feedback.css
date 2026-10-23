@@ -17,10 +17,17 @@
 
 /* The layer over the screen: it lets clicks through to the app, except on pins, until Comment is pressed. */
 #fbkLayer { position: absolute; z-index: 6; pointer-events: none; overflow: hidden; }
-#fbkLayer.pinning { pointer-events: auto; cursor: crosshair; background: rgba(104, 73, 221, .07); box-shadow: inset 0 0 0 3px #6849dd; }
+#fbkLayer.pinning { pointer-events: auto; cursor: crosshair; touch-action: none; user-select: none; background: rgba(104, 73, 221, .07); box-shadow: inset 0 0 0 3px #6849dd; }
 .fbk-pin { position: absolute; transform: translate(-50%, -50%); pointer-events: auto; width: 26px; height: 26px; padding: 0; border: 2px solid #fff;
   border-radius: 50%; background: #6849dd; color: #fff; font: 700 12px/1 system-ui, sans-serif; cursor: pointer;
   box-shadow: 0 0 0 1px rgba(43, 15, 69, .35), 0 3px 8px rgba(43, 15, 69, .4); display: grid; place-items: center; }
+/* An area comment: a box on the screen, its number on the top-left corner. */
+.fbk-area { position: absolute; box-sizing: border-box; border: 2px solid #6849dd; border-radius: 8px; background: rgba(104, 73, 221, .08); pointer-events: none; transition: background .15s; }
+.fbk-area.resolved { border-color: #2e8b57; background: rgba(46, 139, 87, .06); }
+.fbk-area.drawing, .fbk-area.ghost { border-style: dashed; background: rgba(104, 73, 221, .14); }
+.fbk-area.hot { background: rgba(104, 73, 221, .22); }
+.fbk-area.flash { animation: fbk-flash 1s ease-in-out 3; }
+.fbk-pin.on-area { transform: translate(-35%, -35%); }
 .fbk-pin.resolved { background: #2e8b57; opacity: .8; }
 .fbk-pin.ghost { opacity: .7; }
 .fbk-pin.flash { animation: fbk-flash 1s ease-in-out 3; }

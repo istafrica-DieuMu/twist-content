@@ -85,6 +85,12 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.equal((await tomS.call("POST", "feedback", { screen: SCREEN, pin: { x: 0, y: 0 }, body: "x" }, {})).status, 403);
   assert.equal((await tomS.call("POST", "feedback", { screen: { kind: "nope", label: "x" }, pin: { x: 0, y: 0 }, body: "x" })).status, 400);
   assert.equal((await tomS.call("POST", "feedback", { screen: SCREEN, pin: { x: 2, y: 0 }, body: "x" })).status, 400);
+  // An area: kept as a box, its pin at the top-left corner; one that leaves the screen is refused.
+  const area = (await tomS.call("POST", "feedback", { screen: SCREEN, area: { x: 0.1, y: 0.2, w: 0.5, h: 0.3 }, body: "These two cards" })).body.feedback;
+  assert.deepEqual(area.area, { x: 0.1, y: 0.2, w: 0.5, h: 0.3 });
+  assert.deepEqual(area.pin, { x: 0.1, y: 0.2 });
+  assert.equal((await tomS.call("POST", "feedback", { screen: SCREEN, area: { x: 0.8, y: 0.2, w: 0.5, h: 0.3 }, body: "x" })).status, 400);
+  assert.equal((await tomS.call("POST", "feedback", { screen: SCREEN, area: { x: 0.1, y: 0.2, w: 0, h: 0.3 }, body: "x" })).status, 400);
 
   // Accounts: a manager resets their tester's password and switches them off; not Ann.
   assert.deepEqual((await mgr.call("GET", "users")).body.users.map((u) => u.email), ["tom@ist.com"]);
