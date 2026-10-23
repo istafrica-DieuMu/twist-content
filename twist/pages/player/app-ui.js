@@ -166,7 +166,7 @@ function subjectRow(skip) {
   const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
     const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
     const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
-    return `<div class="hm-card" role="group" style="--c:${colourOf(subj)}">
+    return `<div class="hm-card" role="group" data-subj="${esc(subj)}" style="--c:${colourOf(subj)}">
       <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, sets.length))}</span><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b><small>${esc(s.title[lg] ?? s.title.de)}</small>
       <button class="hm-card-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></button><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
   }).filter(Boolean);
@@ -278,7 +278,7 @@ function lessonStep(plan) {
   const done = lessonsDone(s), l = s.lessons[done], col = colourOf(plan.subj), name = SUBJ_NAME[PR.child.curriculum][plan.subj] ?? plan.subj;
   const course = courseSets(plan.subj, s.year), k = course.indexOf(s) + 1;
   const dots = s.lessons.map((_, i) => `<i class="${i < done ? "on" : i === done ? "now" : ""}"></i>`).join("");
-  return `<div class="pr-hero ln-next hm-lesson" role="group" style="--c:${col}">
+  return `<div class="pr-hero ln-next hm-lesson" role="group" data-subj="${esc(plan.subj)}" style="--c:${col}">
       <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, course.length))}</span>
       <span class="hm-dots" aria-label="${esc(T.lessonOf(l.n, s.lessons.length))}">${dots}<small>${esc(T.lessonOf(l.n, s.lessons.length))}</small></span>
       <b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
@@ -299,7 +299,7 @@ function renderHomeTab() {
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<div class="pr-own st-today hm-practice" role="group" style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small><button class="hm-pr-go" data-sug>${esc(sug.paused ? PAUSE_TXT[PL()].go : L.start)}</button></span><img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></div>` : "";
+  const practiceCard = sug ? `<div class="pr-own st-today hm-practice" role="group" data-subj="${esc(subjOfSkill(sug.skills[0]))}" style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small><button class="hm-pr-go" data-sug>${esc(sug.paused ? PAUSE_TXT[PL()].go : L.start)}</button></span><img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></div>` : "";
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);

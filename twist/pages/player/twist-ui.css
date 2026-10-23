@@ -1,0 +1,255 @@
+/* ---------- Twist UI polish ----------
+   Loaded last: restyles Dodo's prototype screens to the design of the Twist app
+   (twist-mobile-develop: constants/colors.ts, spacing.ts, fonts.ts, shadows.ts,
+   components/ui and components/subject). Only looks change here; the screens'
+   markup and behaviour stay in app-ui.js and practice-ui.js. Light look only: the
+   dark and night looks keep their own colours. The lesson player is not touched. */
+
+/* ---------- 1. Tokens (the app's values) ---------- */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home {
+  --plum: #303030;          /* Colors.textDark */
+  --ink: #303030;
+  --soft: #767676;          /* Colors.textGray: textMuted #858585 is too faint for small text */
+  --soft-c: #767676;
+  --edge: #d3d3d3;          /* Colors.gray300, the card border */
+  --edge-c: #d3d3d3;
+  --tint: #f4ebff;          /* Colors.primaryLightBg */
+  --sunk: #f6f5fa;          /* Colors.iconTileBg */
+  --card: #ffffff;
+  --link: #6849dd;          /* Colors.primary */
+  --flame: #fa7d3d;         /* Colors.orange, the streak */
+  --tw-radius: 12px;        /* BorderRadius.md */
+  --tw-border: 1px solid #d3d3d3;
+}
+/* Per subject: banner art and gradients from constants/subjects.ts. */
+.pr-home [data-subj="math"] { --tw-banner: url("twist-ui/mathematics-banner.png"); --tw-g1: #d1fbe8; --tw-g2: #ebfff6; --tw-pr: url("twist-ui/math-practice.png"); --tw-pg1: #d1fbe8; --tw-pg2: #ebfff6; --tw-e: #b8efd0; }
+.pr-home [data-subj="lit-en"] { --tw-banner: url("twist-ui/english-banner.png"); --tw-g1: #ffe9ae; --tw-g2: #fff6df; --tw-pr: url("twist-ui/english-practice.png"); --tw-pg1: #aee0ff; --tw-pg2: #def2ff; --tw-e: #3daeff; }
+.pr-home [data-subj="lit-de"] { --tw-banner: url("twist-ui/german-banner.png"); --tw-g1: #beffff; --tw-g2: #edffff; --tw-pr: url("twist-ui/german-practice.png"); --tw-pg1: #ffe0aa; --tw-pg2: #ffeed1; --tw-e: #ffb027; }
+/* The foreign language has no banner in the app: its gradient, with Dodo's mascot kept on it. */
+.pr-home [data-subj="fl"] { --tw-g1: #e6defe; --tw-g2: #f6f3ff; --tw-pg1: #e6defe; --tw-pg2: #f6f3ff; --tw-e: #b5a2ff; }
+
+/* ---------- 2. Shared components ---------- */
+/* Section titles: Display 700, 16/24, textDark. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-h { font: 700 16px/24px "Red Hat Display", sans-serif; color: #303030; letter-spacing: 0; }
+
+/* Cards: white, 1 px gray300, radius 12. The chunky 5 px bottom edge goes. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.pr-mini, .pr-subj, .pr-topic, .hm-subj button, .hm-win, .hm-done, .st-today, .me-tiles > *, .me-card, .ln-set, .pr-kinds button, .dr-card, .me-recs button, .me-subj > *) {
+  border: var(--tw-border); border-radius: var(--tw-radius); box-shadow: none;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.pr-mini, .pr-subj, .hm-subj button, .me-tiles > button, .pr-kinds button, .dr-card, .me-recs button, .me-subj > button):active { transform: scale(.98); opacity: .9; border-bottom-width: 1px; }
+
+/* Primary buttons: Button.tsx. 52 high, radius 12, Display 800 14 uppercase, letter-spacing 1.68. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.pr-go, .hm-card-go, .hm-pr-go) {
+  display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 52px; margin-top: 16px; padding: 8px 16px;
+  border: 0; border-radius: 12px; background: var(--c, #6849dd); color: #fffeff; box-shadow: none;
+  font: 800 14px/18px "Red Hat Display", sans-serif; letter-spacing: 1.68px; text-transform: uppercase; white-space: nowrap;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.pr-go, .hm-card-go, .hm-pr-go) :is(small, i) {
+  margin: 0; padding: 0 0 0 10px; border-left: 1px solid rgba(255, 255, 255, .45); font: 700 12px/18px "Red Hat Text", sans-serif; font-style: normal; letter-spacing: 0; text-transform: none; opacity: .95;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.pr-go, .hm-card-go, .hm-pr-go):active { transform: scale(.98); opacity: .9; box-shadow: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.pr-go, .hm-card-go, .hm-pr-go):focus-visible { outline: 3px solid #303030; outline-offset: 3px; }
+
+/* Bottom tab bar: (tabs)/_layout.tsx. White, a 1 px #D0D0D0 top line, 77×62 items, radius 16,
+   active #F4ECFF with a 2 px #7D49DD ring, labels Display 700 10 uppercase. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .app-tabs { padding: 10px 12px 22px; gap: 4px; border-top: 1px solid #d0d0d0; background: #fff; box-shadow: 0 -4px 10px rgba(0, 0, 0, .05); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .app-tabs button { height: 62px; align-content: center; gap: 2px; border-radius: 16px; color: rgba(29, 29, 29, .5); font: 700 10px/14px "Red Hat Display", sans-serif; letter-spacing: 1.44px; text-transform: uppercase; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .app-tabs img { width: 35px; height: 35px; opacity: .5; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .app-tabs img.tab-start { width: 30px; height: 30px; margin: 2px 0 3px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .app-tabs [aria-current="page"] { background: #f4ecff; box-shadow: inset 0 0 0 2px #7d49dd; color: #282828; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .app-tabs [aria-current="page"] img { opacity: 1; }
+
+/* Card banners: SubjectCardBanner.tsx. 118 high, a top-to-bottom gradient, the art at the bottom. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.hm-lesson, .hm-card, .hm-practice)::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: var(--tw-bh, 118px); pointer-events: none;
+  background: var(--tw-banner, none) center bottom / cover no-repeat, linear-gradient(180deg, var(--tw-g1, #ece6fb), var(--tw-g2, #f7f4ff));
+}
+/* The practice banner: its gradient, a soft ellipse, the art standing in the middle. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice::before {
+  background: var(--tw-pr, none) center bottom / auto 90% no-repeat,
+    radial-gradient(ellipse 33.7% 73.3% at 50% 60.6%, color-mix(in srgb, var(--tw-e, #b5a2ff) 40%, transparent) 99%, transparent 100%),
+    linear-gradient(180deg, var(--tw-pg1, #ece6fb), var(--tw-pg2, #f7f4ff));
+}
+
+/* Deck slides and their timer, on white cards now. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dk-slide { border-radius: var(--tw-radius); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dk-timer { left: 12px; right: 12px; bottom: 6px; height: 3px; background: rgba(0, 0, 0, .06); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dk-timer b { background: color-mix(in srgb, var(--c, #6849dd) 55%, transparent); }
+
+/* ---------- 3. Start (Home) ---------- */
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm { gap: 24px; }
+
+/* The greeting: the mascot and a speech bubble, as on the app's Home (SpeechBubble, bordered, tail left).
+   The button still opens Settings, as in Dodo's version. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band { background: #fff; padding: 6px 18px 4px; gap: 8px; align-items: center; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top .hm-av { width: 84px; height: 84px; padding: 0; border: 0; border-radius: 0; background: url("twist-ui/maskot.svg") center / contain no-repeat; transform: rotate(2.3deg); box-shadow: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top .hm-av > * { visibility: hidden; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top > div { position: relative; align-self: center; margin-left: 10px; padding: 12px 14px 12px 16px; border: 1px solid #dfdfdf; border-radius: 16px; background: #faf9ff; box-shadow: 0 2px 8px rgba(0, 0, 0, .05); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top > div::before { content: ""; position: absolute; left: -9px; top: 50%; width: 16px; height: 16px; margin-top: -8px; background: #faf9ff; border-left: 1px solid #dfdfdf; border-bottom: 1px solid #dfdfdf; border-bottom-left-radius: 4px; transform: rotate(45deg); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band h2 { font: 700 18px/24px "Red Hat Display", sans-serif; letter-spacing: 0; color: #6849dd; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-top.fun-band small { margin-top: 2px; font: 500 15px/21px "Red Hat Text", sans-serif; color: #303030; }
+/* The streak: the app's flame (home/fire.svg) and its orange number. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal { width: 60px; height: 60px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal circle { stroke: #f3f3f3; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal circle.v { stroke: #fa7d3d; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal img { content: url("twist-ui/fire.svg"); width: 24px; height: 24px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-goal b { color: #fa7d3d; font: 800 13px "Red Hat Display", sans-serif; }
+
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-step { font: 600 14px/20px "Red Hat Text", sans-serif; color: #767676; }
+
+/* Today's lesson: the app's main subject card (SubjectCard.tsx): banner, then the text centred, then the button. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson {
+  display: flex; flex-direction: column; align-items: center; min-height: 0; margin-top: 0; padding: 132px 20px 20px; text-align: center;
+  border: var(--tw-border); border-radius: var(--tw-radius); background: #fff; color: #303030; box-shadow: none; overflow: hidden;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson > :is(.pr-reason, .pr-sub, .pr-go) { max-width: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson .pr-kind { font: 600 13px/18px "Red Hat Text", sans-serif; color: #767676; opacity: 1; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson .pr-reason { margin-top: 4px; font: 700 20px/26px "Red Hat Display", sans-serif; color: #303030; letter-spacing: 0; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson .pr-sub { margin: 2px 0 0; font: 700 14px/20px "Red Hat Display", sans-serif; color: var(--c); opacity: 1; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson .pr-go { margin-top: 18px; }
+/* Lesson dots: done in the subject colour, the current one ringed, the rest gray300. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-dots { justify-content: center; margin: 6px 0 2px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-dots i { width: 8px; height: 8px; background: #d3d3d3; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-dots i.on { background: var(--c); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-dots i.now { background: #fff; box-shadow: inset 0 0 0 2px var(--c); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-dots small { color: #767676; opacity: 1; font: 600 12.5px "Red Hat Text", sans-serif; }
+
+/* Next in your subjects: the same card, with the compact banner (78). */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-card {
+  --tw-bh: 78px; align-items: center; gap: 2px; min-height: 0; padding: 90px 20px 20px; text-align: center;
+  border: var(--tw-border); border-radius: var(--tw-radius); background: #fff; color: #303030; box-shadow: none;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-card .pr-kind { font: 600 13px/18px "Red Hat Text", sans-serif; color: #767676; opacity: 1; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-card b { font: 700 18px/24px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-card small { font: 700 14px/20px "Red Hat Display", sans-serif; color: var(--c); opacity: 1; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-card .hm-card-go { margin-top: 16px; }
+
+/* Dodo's mascot poses stay where the app has no banner art (the foreign language). */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home :is(.hm-lesson, .hm-card):not([data-subj="fl"]) > img { display: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-lesson[data-subj="fl"] .pr-art { top: 8px; bottom: auto; right: 50%; width: 110px; height: 108px; transform: translateX(50%); filter: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-card[data-subj="fl"] > img { top: 6px; bottom: auto; right: 50%; width: 72px; height: 70px; transform: translateX(50%); }
+
+/* Today's practice: the app's practice card (SubjectPracticeCard.tsx). */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice,
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dk-slide > .hm-practice {
+  position: relative; display: block; padding: 132px 20px 20px; text-align: center; overflow: hidden;
+  border: var(--tw-border); border-radius: var(--tw-radius); background: #fff; box-shadow: none;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice :is(.hm-ico, .hm-pr-art) { display: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice > span { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice small:first-child { font: 600 13px/18px "Red Hat Text", sans-serif; color: #767676; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice b { font: 700 18px/24px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-practice b + small { font: 700 14px/20px "Red Hat Display", sans-serif; color: var(--c); }
+
+/* Subjects: the app's subject picker items. A tinted icon box ringed in the subject colour, then the name. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-subj { gap: 10px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-subj button { padding: 14px 6px 12px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-subj b { font: 700 14px/20px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-subj small { font: 600 12px/16px "Red Hat Text", sans-serif; color: #767676; }
+
+/* Done rows and the well-done card. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-done b, .screen:not([data-look="dark"]):not([data-look="night"]) .hm-win b { font-family: "Red Hat Display", sans-serif; font-weight: 700; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .hm-done i { background: #46972e; } /* Colors.success */
+
+/* ---------- 4. Practice ---------- */
+/* The header card of the app's Practice tab: primaryLightBg, the bottom corners rounded 20,
+   the search box inside it (white, 1 px #a2a2a2, radius 12, 49 high). */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pg-top.fun-band { background: #f4ebff; padding: 8px 18px 6px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pg-top h2 { font: 700 24px/32px "Red Hat Display", sans-serif; letter-spacing: 0; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pg-top small { font: 600 14px/20px "Red Hat Text", sans-serif; color: #767676; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pg-top + .pr-asker { margin: -16px -18px 0; padding: 4px 18px 18px; border-radius: 0 0 20px 20px; background: #f4ebff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-search { min-height: 49px; padding: 0 16px; border: 1px solid #a2a2a2; border-radius: 12px; background: #fff; color: #858585; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-search svg { width: 22px; height: 22px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-search input { font: 500 16px/24px "Red Hat Text", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-search input::placeholder { color: #858585; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-search:focus-within { border-color: #6849dd; box-shadow: 0 0 0 1px #6849dd; }
+/* Example requests: the app's Chip (padding 8/16, radius 12, Text 500). White on the lilac header. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-ex { gap: 8px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-ex button { padding: 8px 14px; border: 0; border-radius: 12px; background: #fff; color: #303030; font: 500 14px/20px "Red Hat Text", sans-serif; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-ex button:active { opacity: .8; }
+
+/* The suggestion: a white card, its tinted band holding Dodo's practice mascot, the text under it. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next) {
+  display: flex; flex-direction: column; align-items: flex-start; margin-top: 0; padding: 112px 20px 20px;
+  border: var(--tw-border); border-radius: var(--tw-radius); background: #fff; color: #303030; box-shadow: none; overflow: hidden;
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next)::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 96px; pointer-events: none;
+  background: radial-gradient(ellipse 36% 80% at 78% 70%, color-mix(in srgb, var(--c) 18%, transparent) 99%, transparent 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--c) 16%, #fff), color-mix(in srgb, var(--c) 5%, #fff));
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next) .pr-art { top: 6px; right: 16px; bottom: auto; width: 96px; height: 88px; filter: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next) .pr-kind { font: 600 13px/18px "Red Hat Text", sans-serif; color: var(--c); opacity: 1; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next) .pr-reason { font: 700 20px/26px "Red Hat Display", sans-serif; letter-spacing: 0; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next) .pr-sub { font: 500 14px/20px "Red Hat Text", sans-serif; color: #525252; opacity: 1; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-hero:not(.hm-lesson):not(.ln-next) .pr-size { font: 600 13px/18px "Red Hat Text", sans-serif; color: #767676; opacity: 1; }
+
+/* Small suggestions, drills, Choose my own: flat white cards. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-mini { padding: 14px; gap: 4px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-mini b { font: 700 15px/20px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-mini .pr-kind { font: 600 12.5px/18px "Red Hat Text", sans-serif; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .hm-ico { border-radius: 10px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dr-card { border-top: 4px solid var(--c); padding: 12px 14px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dr-card b { font: 700 14px/20px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .dr-bar { height: 8px; background: #f3f3f3; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-link { font: 700 13px/18px "Red Hat Display", sans-serif; letter-spacing: .3px; }
+/* Choose my own: the app's active ListCard (1 px primary border), the plus in a primary tile. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-own:not(.st-today) { min-height: 71px; padding: 12px 16px 12px 12px; border: 1px solid #6849dd; border-radius: 12px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-own-i { border-radius: 10px; font: 700 26px/1 "Red Hat Display", sans-serif; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-own b { font: 700 16px/24px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-own small { font: 500 14px/20px "Red Hat Text", sans-serif; color: #767676; }
+
+/* Progress bars: ProgressBar.tsx. Rounded, track #f3f3f3; the Busy Bee on the gold variant. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-bar { height: 8px; background: #f3f3f3; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-bee { border: 1px solid #ffe29d; border-radius: 12px; background: #fff3d7; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-bee .pr-bar { height: 11px; background: #ffe29d; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-bee .pr-bar > i { background: #f2af0f; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .pr-bee small { font: 600 13px/18px "Red Hat Text", sans-serif; color: #303030; }
+
+/* ---------- 5. Me ---------- */
+/* The profile header (profile.tsx + ArcBackground): an oval of primaryLightBg behind the top,
+   the avatar centred in a #cec0e3 ring, the name under it, the gear top right in primary. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-band.fun-band {
+  position: relative; grid-template-columns: 1fr; justify-items: center; gap: 8px; padding: 14px 18px 8px; text-align: center;
+  background: radial-gradient(ellipse 85% 72% at 50% 0, #f4ebff 99.5%, transparent 100%);
+}
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-band .av.lg { width: 99px; height: 99px; padding: 5px; background: #cec0e3; box-shadow: none; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-band .av.lg img { border-radius: 50%; background: var(--av, #6849dd); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-band h2 { font: 700 24px/36px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-band small { display: block; font: 600 16px/24px "Red Hat Text", sans-serif; color: #767676; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-gear { position: absolute; top: 10px; right: 14px; width: 40px; height: 40px; background: transparent; color: #6849dd; }
+
+/* Quick stats: the app's StatCard (white, 1 px gray300, radius 16), an icon over the number. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles { gap: 10px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .me-tiles > * { padding: 12px 6px; border-radius: 16px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles > ::before { content: ""; width: 28px; height: 28px; background: center / contain no-repeat; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles > :nth-child(1)::before { background: #f2af0f; clip-path: polygon(50% 4%, 62% 37%, 97% 38%, 69% 59%, 79% 93%, 50% 73%, 21% 93%, 31% 59%, 3% 38%, 38% 37%); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles > :nth-child(2)::before { background-image: url("twist-ui/fire.svg"); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles > :nth-child(3)::before { background-image: url("twist-ui/stone.svg"); }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles b { font: 700 22px/28px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-tiles span { font: 600 12.5px/16px "Red Hat Text", sans-serif; color: #767676; }
+
+/* This week: the app's StreakWeekCard. Days as circles: done in streak orange, today ringed in primary. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .me-card { border-radius: 16px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-card b { font: 700 16px/24px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-card small { font: 500 13.5px/19px "Red Hat Text", sans-serif; color: #767676; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-week i { max-width: 44px; border-radius: 50%; background: #f0f0f0; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-week .on i { background: #fff3e6; box-shadow: inset 0 0 0 2px #f67b00; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-week .now i { outline: 0; box-shadow: inset 0 0 0 2px #6849dd; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-week .on img { content: url("twist-ui/fire.svg"); width: 58%; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-week small { font: 700 11px/14px "Red Hat Display", sans-serif; letter-spacing: 1px; color: #767676; }
+
+/* Badges: the app's badge grid. No card around each one: the art, then the name in Display 700 12. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd-grid { gap: 16px 8px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .bd { padding: 4px 2px; border: 0; background: transparent; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd-art { width: 72px; height: 72px; margin-bottom: 4px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd img { width: 72px; height: 72px; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd b { font: 700 12px/18px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd small { font: 600 11px/15px "Red Hat Text", sans-serif; color: #767676; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd.locked { opacity: .8; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .bd .pr-bar { height: 6px; }
+
+/* Subjects and drill records: flat rows. */
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .me-subj > * { padding: 12px 16px; border-radius: 12px; background: #fff; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .me-subj b { font: 700 15px/22px "Red Hat Display", sans-serif; color: #303030; }
+.screen:not([data-look="dark"]):not([data-look="night"]) .pr-home .me-recs button { border-left: 4px solid var(--c); border-radius: 12px; font: 600 14px/20px "Red Hat Text", sans-serif; color: #303030; }
