@@ -78,7 +78,11 @@ export function apiStore(baseUrl, { fetch: f = fetch } = {}) {
       return accountFrom(await as(session, "GET", `/api/v1/admin/settings/admins/${encodeURIComponent(id)}`));
     },
     async setPassword(session, id, password) { await as(session, "POST", `/api/v1/admin/settings/admins/${encodeURIComponent(id)}/password`, { password }); },
-    async changeOwnPassword(session, current, next) { await as(session, "POST", "/api/v1/admin/auth/password", { currentPassword: current, newPassword: next }); },
+    // The backend ends every other session and answers with a fresh pair for this one.
+    async changeOwnPassword(session, current, next) {
+      const d = await as(session, "POST", "/api/v1/admin/auth/password", { currentPassword: current, newPassword: next });
+      if (d?.accessToken && d?.refreshToken) session.tokens = tokens(d);
+    },
     async deleteAccount(session, id) { await as(session, "DELETE", `/api/v1/admin/settings/admins/${encodeURIComponent(id)}`); },
 
     // The backend returns only what this person may see; the server filters again with the same rules.

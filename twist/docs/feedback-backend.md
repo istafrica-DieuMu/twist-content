@@ -43,7 +43,7 @@ on their behalf. So:
 ### 1. Delete the old content review data
 
 The old review app in schoolido-learning is retired. Please delete all rows in
-these tables (the Review module, `com.ist.b2c.Review`), on dev, staging and
+these 11 tables (the Review module, `com.ist.b2c.Review`), on dev, staging and
 production:
 
 | Table | What it held |
@@ -54,6 +54,7 @@ production:
 | `entity_review_decision` | Leads' decisions where reviewers disagreed |
 | `entity_review_prompt_override` | Proposed prompt edits |
 | `entity_review_setting` | Review settings |
+| `entity_review_assignment` | Who held which scope of content (V53) |
 | `entity_regen_job` | Regeneration jobs |
 | `entity_regen_candidate` | Regenerated candidates |
 | `entity_regen_worker` | Regeneration workers |
@@ -103,6 +104,13 @@ A manager needs a narrow slice of it:
 
 Nobody may change their own role or switch their own account off.
 
+**A fence around the Twist roles.** Testers are outside teachers and parents
+holding an admin token. Some admin controllers have no role check of their
+own (`ControllerStudentEnrollmentAdmin`, for one), so any admin token reaches
+them. The token filter should refuse the three Twist roles everywhere except
+`/api/v1/admin/auth/**`, `/api/v1/admin/twist/feedback/**` and
+`/api/v1/admin/settings/admins/**`, whatever a controller says.
+
 ### 4. Passwords
 
 Two endpoints, neither exists today:
@@ -124,8 +132,17 @@ so a reset also signs them out everywhere. Record it in the audit log
 ```
 POST /api/v1/admin/auth/password
 { "currentPassword": "…", "newPassword": "…" }
-→ 200, or 403 when currentPassword is wrong
+→ 200 with a fresh token pair, or 403 when currentPassword is wrong
 ```
+
+Admin tokens are stateless JWTs, so "end their sessions" needs a token
+version on the account: tokens carry the version they were issued under, and
+a password set or changed, a switch-off or a role change moves it on. Refresh
+refuses an older version for every role; for the three Twist roles the token
+filter also reads the account on each request, so their access ends at once.
+A wrong current password counts as a failed sign-in.
+
+This is built in IST-B2C, branch `feat/twist-preview-feedback`.
 
 ### 5. Feedback
 
