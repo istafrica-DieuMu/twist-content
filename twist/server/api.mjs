@@ -6,7 +6,7 @@
 // person, and their backend tokens in backend mode) stays in this process.
 // Changes need the X-Twist header, which another site cannot send without a
 // CORS preflight this server never answers, so a form elsewhere cannot post here.
-import { randomBytes, createHash } from "node:crypto";
+import { randomBytes, createHmac } from "node:crypto";
 import { ROLES, ROLE_NAME, can, canSee, canResolve, canEdit, canDelete, manages, grantable, managesAnyone } from "./roles.mjs";
 import { StoreError } from "./store-file.mjs";
 
@@ -19,8 +19,24 @@ class Bad extends Error { constructor(status, message) { super(message); this.st
 
 // Wrong sign-in tries, counted in fifteen-minute windows. A full table never drops a counter that is still
 // counting, so an attacker cannot push out the counts that hold them back; a new key then shares the counter
-// of its overflow key (a wider network, or one of 4,096 for new accounts), which still counts and slows.
+// of its overflow key (a wider network), which still counts and limits.
 const WINDOW_MS = 15 * 60_000;
+// Wrong passwords per account, in a fixed table of counters picked by a keyed hash of the login. Every account
+// always has a counter of its own with the full limit, the table never grows and never drops a counter, and
+// without the key (random, made at start) nobody can choose logins that land on someone else's counter.
+// Two real accounts sharing one by chance is about one in 65,536 per pair.
+function accountCounters(size = 1 << 16) {
+  const key = randomBytes(32), n = new Uint32Array(size), until = new Float64Array(size), nextAt = new Float64Array(size);
+  const live = (i, t) => until[i] > t || nextAt[i] > t;
+  return {
+    slot: (login) => createHmac("sha256", key).update(login).digest().readUInt32BE(0) % size,
+    count: (i, t) => (until[i] > t ? n[i] : 0),
+    nextAt: (i) => nextAt[i],
+    setNextAt: (i, v) => { nextAt[i] = v; },
+    add(i, t) { if (until[i] <= t) { n[i] = 0; until[i] = t + WINDOW_MS; if (!live(i, t)) nextAt[i] = 0; } n[i]++; },
+    clear(i) { n[i] = 0; until[i] = 0; nextAt[i] = 0; },
+  };
+}
 function tally(MAX_KEYS = 20_000) {
   const m = new Map();
   const sweep = (t) => { for (const [k, f] of m) if (f.until <= t && f.nextAt <= t) m.delete(k); };
@@ -60,13 +76,13 @@ export function clientAddress(req, trustProxy) {
 
 export function createApi(store, { secureCookies = false, trustProxy = false, now = () => Date.now(), maxKeys } = {}) {
   const sessions = new Map();
-  const byAddress = tally(maxKeys), byAccount = tally(maxKeys);
+  const byAddress = tally(maxKeys), byAccount = accountCounters();
   // Ends every session of an account but the one given: after a password change or reset.
   const endSessions = (userId, keep) => { for (const [k, x] of sessions) if (x.user.id === userId && k !== keep) sessions.delete(k); };
   setInterval(() => {
     const t = now();
     for (const [k, s] of sessions) if (t - s.seen > IDLE_MS || t - s.created > MAX_MS) sessions.delete(k);
-    byAddress.sweep(t); byAccount.sweep(t);
+    byAddress.sweep(t);
   }, 600_000).unref();
 
   const cookieOf = (req) => Object.fromEntries((req.headers.cookie ?? "").split(";").map((c) => c.trim().split("=")).filter((p) => p.length === 2))[COOKIE];
@@ -138,31 +154,28 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     // An address gets ten tries in fifteen minutes. Each is counted before the password is checked, so
     // tries sent at once cannot all slip under the limit; a right password gives its try back.
     const t0 = now();
-    // Overflow: an IPv4 address shares its /16's counter, an IPv6 /64 its /32's; new accounts share one.
+    // Overflow: when the address table is full, an IPv4 address shares its /16's counter, an IPv6 /64 its /32's.
     const ipKey = byAddress.keyFor(ip, t0, ip.includes(":") ? ip.split(":").slice(0, 2).join(":") : ip.split(".").slice(0, 2).join("."));
-    const lk = login.toLowerCase().slice(0, 255);
-    const loginKey = byAccount.keyFor(lk, t0, `accounts-${createHash("sha256").update(lk).digest().readUInt16BE(0) % 4096}`);
+    const acct = byAccount.slot(login.toLowerCase().slice(0, 255));
     if (byAddress.add(ipKey, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
     // An account is not locked by a count, which would let anyone lock its owner out. After ten wrong passwords
     // for it from anywhere, its checks queue up one at a time, a second apart and more as the count grows (up to
     // ten), so guesses sent at once are spread out too. Only a queue over a minute long, which takes a flood
     // from many addresses, turns a try away, for that minute.
-    // A counter shared by several accounts (when the table is full) only ever slows, by at most ten seconds,
-    // and never turns a try away, so nobody is refused for someone else's wrong passwords.
-    const acct = byAccount.get(loginKey, t0), shared = loginKey.startsWith("overflow:");
-    if (acct && acct.n >= 10) {
-      const at = shared ? Math.min(Math.max(t0, acct.nextAt), t0 + 10_000) : Math.max(t0, acct.nextAt), wait = at - t0;
-      if (!shared && wait > 60_000) return signInPage(res, { error: "This account has had many wrong passwords just now. Try again in a minute.", next, login });
-      acct.nextAt = at + Math.min(10, acct.n - 9) * 1000;
+    const wrong = byAccount.count(acct, t0);
+    if (wrong >= 10) {
+      const at = Math.max(t0, byAccount.nextAt(acct)), wait = at - t0;
+      if (wait > 60_000) return signInPage(res, { error: "This account has had many wrong passwords just now. Try again in a minute.", next, login });
+      byAccount.setNextAt(acct, at + Math.min(10, wrong - 9) * 1000);
       if (wait) await new Promise((r) => setTimeout(r, wait));
     }
     const r = await store.signIn(login, password);
     if (!r.user) {
-      if (r.fail === "credentials") byAccount.add(loginKey, now());
+      if (r.fail === "credentials") byAccount.add(acct, now());
       const msg = { credentials: "That email and password do not match an account.", inactive: "This account is switched off. Ask your manager.", role: `Your account (${r.backendRole}) has no Twist Preview role. Ask an admin for one.`, unreachable: "The sign-in service cannot be reached just now. This is not a password problem; try again in a minute." }[r.fail];
       return signInPage(res, { error: msg, next, login });
     }
-    if (!loginKey.startsWith("overflow:")) byAccount.delete(loginKey);
+    byAccount.clear(acct);
     const fa = byAddress.get(ipKey, now()); if (fa) fa.n = Math.max(0, fa.n - 1);
     const id = randomBytes(32).toString("base64url"), t = now();
     sessions.set(id, { id, user: r.user, tokens: r.tokens, created: t, seen: t });

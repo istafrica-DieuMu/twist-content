@@ -162,7 +162,7 @@ test("wrong passwords from elsewhere slow an account down but never lock its own
   assert.ok(ok.headers.get("set-cookie"));
 });
 
-test("a full table of tries shares counters instead of turning everyone away or letting anyone through", async (t) => {
+test("a full address table shares counters, and every account keeps a counter of its own", async (t) => {
   const store = fileStore(mkdtempSync(join(tmpdir(), "twist-fb-")), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
   const srv = await start(store, { trustProxy: true, maxKeys: 2 }); t.after(srv.close);
   const from = (ip, login, password) => fetch(srv.base + "/auth/sign-in", { method: "POST", redirect: "manual", headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Forwarded-For": ip }, body: new URLSearchParams({ login, password }) });
@@ -170,7 +170,7 @@ test("a full table of tries shares counters instead of turning everyone away or 
   await from("10.0.0.1", "a@x.org", "wrong"); await from("10.0.0.2", "b@x.org", "wrong");
   // A new address still signs in: it counts under 10.9's counter.
   assert.equal((await from("10.9.0.1", "admin@ist.com", "admin-pass-123")).status, 303);
-  // A new account is still counted (under the shared counter for new accounts), so it is slowed after ten.
+  // A new account is counted on its own counter however many logins came before, so it is queued after ten.
   // (From the two addresses already in the table, five each, so the address limit is not what stops them.)
   for (let i = 0; i < 10; i++) await from(`10.0.0.${1 + (i % 2)}`, "victim@x.org", "wrong");
   const t0 = Date.now();
