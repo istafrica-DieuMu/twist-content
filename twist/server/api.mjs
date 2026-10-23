@@ -22,7 +22,18 @@ export function createApi(store, { secureCookies = false, now = () => Date.now()
   const failures = new Map(); // "ip:<address>" or "login:<email>" -> { n, until }
   // Ends every session of an account but the one given: after a password change or reset.
   const endSessions = (userId, keep) => { for (const [k, x] of sessions) if (x.user.id === userId && k !== keep) sessions.delete(k); };
-  setInterval(() => { const t = now(); for (const [k, s] of sessions) if (t - s.seen > IDLE_MS || t - s.created > MAX_MS) sessions.delete(k); }, 600_000).unref();
+  setInterval(() => {
+    const t = now();
+    for (const [k, s] of sessions) if (t - s.seen > IDLE_MS || t - s.created > MAX_MS) sessions.delete(k);
+    for (const [k, f] of failures) if (f.until <= t) failures.delete(k);
+  }, 600_000).unref();
+  // Counts wrong passwords; the oldest entries go first once there are too many to keep.
+  const countFailure = (key, t) => {
+    const f = failures.get(key), next = f && f.until > t ? { n: f.n + 1, until: f.until } : { n: 1, until: t + 15 * 60_000 };
+    failures.delete(key); failures.set(key, next);
+    while (failures.size > 10_000) failures.delete(failures.keys().next().value);
+    return next.n;
+  };
 
   const cookieOf = (req) => Object.fromEntries((req.headers.cookie ?? "").split(";").map((c) => c.trim().split("=")).filter((p) => p.length === 2))[COOKIE];
   const secure = (req) => secureCookies || req.headers["x-forwarded-proto"] === "https";
@@ -91,21 +102,22 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     const origin = req.headers.origin;
     const hostOf = (o) => { try { return new URL(o).host; } catch { return null; } };
     if (origin && hostOf(origin) !== req.headers.host) return signInPage(res, { error: "Sign in from this site's own page.", next });
-    // Each try is counted before the password is checked, so tries sent at once cannot all slip under the limit:
-    // ten per address and ten per account in fifteen minutes.
-    const keys = [`ip:${ip}`, `login:${login.toLowerCase()}`], t0 = now();
-    const counts = keys.map((k) => { const f = failures.get(k); return f && f.until > t0 ? f : { n: 0, until: t0 + 15 * 60_000 }; });
-    if (counts.some((c) => c.n >= 10)) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
-    keys.forEach((k, i) => failures.set(k, { n: counts[i].n + 1, until: counts[i].until }));
+    // An address gets ten tries in fifteen minutes. Each is counted before the password is checked, so
+    // tries sent at once cannot all slip under the limit; a right password gives its try back.
+    const ipKey = `ip:${ip}`, loginKey = `login:${login.toLowerCase().slice(0, 255)}`, t0 = now();
+    if (countFailure(ipKey, t0) > 10) return signInPage(res, { error: "Too many tries. Wait fifteen minutes and try again.", next, login });
+    // An account is never locked, which would let anyone lock its owner out; after ten wrong passwords from
+    // anywhere, each answer for it waits a second more, up to ten, so guessing gets slow and the owner still gets in.
+    const wrong = failures.get(loginKey), slow = wrong && wrong.until > t0 && wrong.n >= 10 ? Math.min(10, wrong.n - 9) * 1000 : 0;
+    if (slow) await new Promise((r) => setTimeout(r, slow));
     const r = await store.signIn(login, password);
     if (!r.user) {
+      if (r.fail === "credentials") countFailure(loginKey, now());
       const msg = { credentials: "That email and password do not match an account.", inactive: "This account is switched off. Ask your manager.", role: `Your account (${r.backendRole}) has no Twist Preview role. Ask an admin for one.`, unreachable: "The sign-in service cannot be reached just now. This is not a password problem; try again in a minute." }[r.fail];
       return signInPage(res, { error: msg, next, login });
     }
-    // A right password clears the account's count and takes back this try from the address's;
-    // the address keeps its wrong tries, so signing in to one account cannot hide guesses at others.
-    failures.delete(keys[1]);
-    const fa = failures.get(keys[0]); if (fa) fa.n = Math.max(0, fa.n - 1);
+    failures.delete(loginKey);
+    const fa = failures.get(ipKey); if (fa) fa.n = Math.max(0, fa.n - 1);
     const id = randomBytes(32).toString("base64url"), t = now();
     sessions.set(id, { id, user: r.user, tokens: r.tokens, created: t, seen: t });
     setCookie(req, res, id, MAX_MS / 1000);

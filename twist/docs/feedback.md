@@ -83,8 +83,10 @@ sessions at once. Changing your own password ends your other sessions.
   everyone out. Sessions end after 12 idle hours or 7 days.
 - Every change needs the `X-Twist: 1` header, which another site cannot send
   without a CORS preflight this server never answers.
-- Sign-in allows ten wrong passwords per address and ten per account in 15
-  minutes; each try is counted before its password is checked.
+- An address gets ten sign-in tries in 15 minutes, each counted before its
+  password is checked. An account is never locked, so nobody can lock its
+  owner out; after ten wrong passwords for it, each answer waits a second
+  longer, up to ten seconds.
 - Everything under `pages/` and `assets/` needs a session; `/healthz` and the
   sign-in page do not.
 

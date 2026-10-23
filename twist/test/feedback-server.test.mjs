@@ -132,9 +132,19 @@ test("the file store keeps its files to itself", () => {
 test("sign-in is throttled after ten wrong passwords", async (t) => {
   const store = fileStore(mkdtempSync(join(tmpdir(), "twist-fb-")), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
   const srv = await start(store); t.after(srv.close);
-  // Sent all at once: each is counted before its password is checked.
-  await Promise.all(Array.from({ length: 30 }, () => srv.as("admin@ist.com", "wrong")));
-  assert.equal((await srv.as("admin@ist.com", "admin-pass-123")).cookie, undefined);
+  // Sent all at once from one address: each is counted before its password is checked.
+  await Promise.all(Array.from({ length: 30 }, () => srv.as("nobody@ist.com", "wrong")));
+  assert.equal((await srv.as("admin@ist.com", "admin-pass-123")).cookie, undefined, "the address is shut for a while");
+});
+
+test("wrong passwords from elsewhere slow an account down but never lock its owner out", async (t) => {
+  const store = fileStore(mkdtempSync(join(tmpdir(), "twist-fb-")), { seedLogin: "admin@ist.com", seedPassword: "admin-pass-123" });
+  const srv = await start(store); t.after(srv.close);
+  // Twelve wrong tries, each from its own address (as the proxy reports it).
+  for (let i = 0; i < 12; i++) await fetch(srv.base + "/auth/sign-in", { method: "POST", redirect: "manual", headers: { "Content-Type": "application/x-www-form-urlencoded", "X-Forwarded-For": `10.0.0.${i}` }, body: new URLSearchParams({ login: "admin@ist.com", password: "wrong" }) });
+  const t0 = Date.now(), ok = await srv.as("admin@ist.com", "admin-pass-123");
+  assert.ok(ok.cookie, "the owner still gets in");
+  assert.ok(Date.now() - t0 >= 2900, "after a wait");
 });
 
 test("backend store: tokens, roles and the feedback contract", async (t) => {
