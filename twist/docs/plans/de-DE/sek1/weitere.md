@@ -1,4 +1,4 @@
-# Informatik, Musik, Kunst, Ethik (Klasse 5 to 10)
+# Informatik (computer science), Musik (music), Kunst (art), Ethik (ethics), Klasse 5 to 10
 
 Started 2026-10-24. Follows the conventions in README.md (this folder) and
 continues the Grundschule plans ../musik.md, ../kunst.md, ../ethik.md and
@@ -8,15 +8,15 @@ the technology and media skills in ../sachunterricht.md.
 
 | Subject | Domain | Frameworks | Klassen | Skills | Lessons (estimate) |
 |---|---|---|---|---|---|
-| Informatik | `computing` (new) | GI Bildungsstandards Sek I (2025); NRW KLP Informatik 5/6 (2021) and WP Informatik (2023); Bayern Natur und Technik 6/7, Informatik 9/10 (NTG) | 5 to 10 | 74 (+1 E) | 165 |
+| Informatik | `computing` (new) | GI Bildungsstandards Sek I (2025); NRW KLP Informatik 5/6 (2021) and WP Informatik (2023); Bayern Natur und Technik (science and technology) 6/7, Informatik 9/10 (NTG) | 5 to 10 | 74 (+1 E) | 165 |
 | Musik | `music` | NRW KLP Musik G9 (2019); Bayern LehrplanPLUS Gymnasium Musik 5 to 10 | 5 to 10 | 65 (+1 E) | 130 |
 | Kunst | `art` | NRW KLP Kunst G9 (2019); Bayern LehrplanPLUS Gymnasium Kunst 5 to 10 | 5 to 10 | 66 | 130 |
 | Ethik | `ethics` | NRW KLP Praktische Philosophie Sek I (2024); Bayern LehrplanPLUS Gymnasium Ethik 5 to 10; KMK report on Ethik (2008, as amended 2020) | 5 to 10 (start differs by Land) | 70 | 140 |
 | Total | | | | 275 (+2 E) | 565 |
 
 There are no KMK Bildungsstandards for any of the four subjects, so the
-ESA, MSA and G marks cannot come from a KMK document as they do for Mathe
-or Deutsch. They are read from the Länder curricula and, for Informatik,
+ESA, MSA and G marks cannot come from a KMK document as they do for Mathe (maths)
+or Deutsch (German). They are read from the Länder curricula and, for Informatik,
 from the GI standards:
 
 - **ESA**: taught at every school type (NRW: the non-italic Informatik
@@ -260,7 +260,7 @@ year and NRW for the content.
 | 8 | `political-music` | Musik mit politischer Botschaft erkennen und deuten | MSA (NRW 7 to 10) |
 | 8 | `music-other-cultures` | Musik einer außereuropäischen Kultur nach Tonvorrat, Rhythmus und Instrumenten beschreiben | ESA (NRW 7 to 10; Bayern Mu8) |
 | 8 | `digital-audio` | Klang digital aufnehmen und bearbeiten (Sample, Loop, Effekt) | MSA (NRW 7 to 10 digitale Werkzeuge); check |
-| 8 | `sound-waves` | erklären, wie Schall entsteht und warum Instrumente verschieden klingen (Obertöne) | E: Bayern asks only at MuG; Physik teaches Schall; link, do not reteach |
+| 8 | `sound-waves` | erklären, wie Schall entsteht und warum Instrumente verschieden klingen (Obertöne) | E: Bayern asks only at MuG; Physik (physics) teaches Schall; link, do not reteach |
 | 9 | `viennese-classic` | Merkmale der Wiener Klassik beschreiben (Kontrast, Ausgewogenheit) | MSA (NRW 7 to 10; Bayern Mu9) |
 | 9 | `sonata-form` | Exposition, Durchführung und Reprise in der Sonatenhauptsatzform verfolgen | G (NRW 7 to 10 Formtypen; Bayern Mu9) |
 | 9 | `symphony` | den Aufbau einer Sinfonie beschreiben | MSA (NRW Sinfonie; Bayern Mu9) |
@@ -391,7 +391,7 @@ Counts: 12, 11, 11, 11, 10, 11 = 66. About 130 lessons.
 
 ### Where and when Ethik is taught
 
-Ethik (or its Land equivalent) replaces Religion for children who do not
+Ethik (or its Land equivalent) replaces Religion (religious education) for children who do not
 take it, except in Berlin and Brandenburg, where it is compulsory for all.
 The start Klasse in Sek I differs (KMK report, kmk/text/2008_02_22-Situation-Ethik-Unterricht.txt):
 
@@ -405,8 +405,8 @@ The start Klasse in Sek I differs (KMK report, kmk/text/2008_02_22-Situation-Eth
 | Hamburg | Philosophie | Stadtteilschule, Gymnasium; start Klasse not given, check | 1449 |
 | Hessen | Ethik | all school types after Grundschule | 1576 |
 | Mecklenburg-Vorpommern | Philosophieren mit Kindern | Klasse 1 to 10 | 121, 1844 |
-| Niedersachsen | Werte und Normen | Schuljahrgang 5 | 1982 |
-| NRW | Praktische Philosophie | Klasse 5 (new KLP from 2025/26) | 2268; nrw/text/klp_si_pp_2024_10_02.txt:80-95 |
+| Niedersachsen | Werte und Normen (values and norms) | Schuljahrgang 5 | 1982 |
+| NRW | Praktische Philosophie (practical philosophy) | Klasse 5 (new KLP from 2025/26) | 2268; nrw/text/klp_si_pp_2024_10_02.txt:80-95 |
 | Rheinland-Pfalz | Ethik | all school types | 2422 |
 | Saarland | Ethik | Klasse 5 | 2745 |
 | Sachsen | Ethik | all school types | 2912 |
@@ -511,7 +511,7 @@ The domain `ethics` continues. Progressions:
 | 10 | `extremism` | Gefahren von religiösem und politischem Extremismus erkennen | MSA (Bayern Eth10 LB2; NRW 7 to 10 IF2); check wording |
 | 10 | `business-ethics` | wirtschaftliches Handeln nach Gerechtigkeit beurteilen (Fair Trade, homo oeconomicus) | MSA (Bayern Eth10 LB3) |
 | 10 | `media-ethics` | die Verantwortung von Medienmachern und Nutzern beurteilen (Pressekodex, Inszenierung) | MSA (Bayern Eth10 LB4) |
-| 10 | `law-justice` | das Verhältnis von Recht, Gerechtigkeit und Rechtsstaat erklären | MSA (NRW 7 to 10 IF4); see Politik |
+| 10 | `law-justice` | das Verhältnis von Recht, Gerechtigkeit und Rechtsstaat erklären | MSA (NRW 7 to 10 IF4); see Politik (politics) |
 | 10 | `utopia-dystopia` | Utopien und Dystopien vergleichen und ihre Funktion erklären | MSA (NRW 7 to 10 IF5) |
 | 10 | `good-life` | Vorstellungen vom gelingenden Leben vergleichen (Glück, Eudaimonie) | MSA (NRW 7 to 10 IF6) |
 
@@ -538,13 +538,13 @@ the reasons that fit" task (../fun.md).
 | perspective, proportion, golden ratio, floor plans | Mathe (Geometrie) | Kunst skills link to them |
 | world religions, sacred buildings | Ethik, Kunst, Geschichte | `ethics.beliefs` owns belief; `art` `sacred-buildings` owns form |
 | consumption, work, economy | Wirtschaft (gesellschaft.md) | Ethik judges, Wirtschaft explains |
-| animals, environment | Biologie | Ethik judges, Biologie explains |
+| animals, environment | Biologie (biology) | Ethik judges, Biologie explains |
 
 Grundschule end state each subject builds on: Musik `note-names`,
 `eighth-notes`, `time-signatures`, `rondo-canon`, `orchestra`,
 `composers`; Kunst `colour-wheel`, `art-times-cultures`, `camera-view`,
 `art-mood`; Ethik `dilemmas`, `big-questions`, `media-habits`,
-`justice-sharing`; Sachunterricht `algorithms`, `code-encoding`,
+`justice-sharing`; Sachunterricht (general studies) `algorithms`, `code-encoding`,
 `computer-parts`, `media-reality`.
 
 ## Out of scope
@@ -558,7 +558,7 @@ To add to ../omitted.md with these reasons (not done in this pass):
 | Bayern's object view of documents in NT6 (Punktnotation, Klassendiagramm for text and graphics) | later | one Land's didactic route; objects come in `objects-classes` (Klasse 10) |
 | Real hardware (microcontrollers, robots) | out (in class) | Twist simulates sensors and actuators in `sensors-actuators` |
 | A full programming environment | out | Twist uses a small in-app editor with a Python subset; bigger programs belong in class |
-| Medienbildung and Informatik "as subjects: out" in ../omitted.md | change | true for Grundschule only; from Klasse 5 Informatik is a subject in most Länder and gets the `computing` domain |
+| Medienbildung (media education) and Informatik "as subjects: out" in ../omitted.md | change | true for Grundschule only; from Klasse 5 Informatik is a subject in most Länder and gets the `computing` domain |
 | Singing, playing, dancing, staging, conducting, composing for performance (NRW Produktion; Bayern LB 1 and 3) | out | done together in class, as in Grundschule |
 | Bayern MuG-only items (Generalbass, harmonising with voice-leading rules, conducting, chamber music forms) | out | one school profile in one Land |
 | Painting, drawing, printing, modelling, model building, fashion design, photography and film projects, exhibitions | out | done with real material, as in Grundschule |

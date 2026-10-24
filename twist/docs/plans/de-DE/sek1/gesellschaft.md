@@ -1,4 +1,4 @@
-# Gesellschaft: Erdkunde, Geschichte, Politik und Wirtschaft (Klasse 5 to 10)
+# Gesellschaft (social subjects): Erdkunde (geography), Geschichte (history), Politik (politics) und Wirtschaft (economics), Klasse 5 to 10
 
 Started 2026-10-24. Follows the conventions in README.md. Builds on
 ../sachunterricht.md (`world.space`, `world.time`, `world.society`) and
@@ -10,7 +10,7 @@ Started 2026-10-24. Follows the conventions in README.md. Builds on
 |---|---|---|---|---|---|---|
 | `geography` | Erdkunde / Geographie | DGfG Bildungsstandards Geographie für den Mittleren Schulabschluss (10th ed. 2020) | NRW KLP G9 Erdkunde (2019), Bayern LehrplanPLUS Gymnasium Geographie 5, 7, 10; NRW Hauptschule Gesellschaftslehre (2022) for ESA | 5 to 10 | 92 | about 190 |
 | `history` | Geschichte | none adopted (VGD draft not captured) | NRW KLP G9 Geschichte (2019), Bayern LehrplanPLUS Gymnasium Geschichte 6 to 10; NRW Hauptschule Gesellschaftslehre | 6 to 10 | 104 | about 215 |
-| `civics` | Politik / Sozialkunde, Wirtschaft (Politik-Wirtschaft, Wirtschaft-Politik, Wirtschaft und Recht) | none adopted (GPJE draft not captured); Beutelsbacher Konsens for neutrality | NRW KLP G9 Wirtschaft-Politik (2019), Bayern PuG 8 and 9 (SWG), PuG 10 (ISB Rahmenplan), Wirtschaft und Recht 8 and 9 (WWG); NRW Hauptschule Gesellschaftslehre | 6 to 10 | 75 | about 155 |
+| `civics` | Politik / Sozialkunde, Wirtschaft (Politik-Wirtschaft, Wirtschaft-Politik, Wirtschaft und Recht) | none adopted (GPJE draft not captured); Beutelsbacher Konsens for neutrality | NRW KLP G9 Wirtschaft-Politik (2019), Bayern PuG 8 and 9 (SWG), PuG 10 (ISB Rahmenplan), Wirtschaft und Recht (economics and law) 8 and 9 (WWG); NRW Hauptschule Gesellschaftslehre | 6 to 10 | 75 | about 155 |
 | | | | | | **271** | **about 560** |
 
 KMK has no Bildungsstandards for any of these subjects, so the ESA and MSA
@@ -66,7 +66,7 @@ marks below are judgments, explained under "Levels".
   Jahrhundert (jgs9:30), 10 Deutschland, Europa und die Welt bis zur
   Gegenwart (jgs10:30). No page for Jgst 5.
 
-**Politik / Sozialkunde and Wirtschaft**
+**Politik / Sozialkunde (civics) and Wirtschaft**
 
 - NRW G9 Kernlehrplan Wirtschaft-Politik (nrw/text/g9_wipo_klp_3429_2019_06_23.txt):
   Erprobungsstufe with Inhaltsfelder 1 Wirtschaftliches Handeln in der
@@ -80,7 +80,7 @@ marks below are judgments, explained under "Levels".
   10 Globalisierte Strukturen und Prozesse in der Wirtschaft, 11
   Globalisierte Strukturen und Prozesse in der Politik (lines 415 to 560,
   920 to 1190).
-- Bayern: Politik und Gesellschaft 8 and 9 (by/text/lehrplanplus-gym-pug-jgs8.txt:39-49,
+- Bayern: Politik und Gesellschaft (politics and society) 8 and 9 (by/text/lehrplanplus-gym-pug-jgs8.txt:39-49,
   jgs9:39-42) and Wirtschaft und Recht 8 and 9
   (by/text/lehrplanplus-gym-wirtschaft-und-recht-jgs8.txt:39-50, jgs9:39-42)
   are branch plans (SWG and WWG; header line 30 of each file). For all
@@ -323,7 +323,7 @@ NRW IF1, IF2, IF3a; Bayern G6.
 | 6 | `history.ancient.roman-republic` | die Römische Republik und ihre Gesellschaft erklären (Patrizier, Plebejer, Senat) | ESA; NRW IF2, BY 6 LB5 |
 | 6 | `history.ancient.augustus` | den Übergang von der Republik zum Kaiserreich unter Augustus erklären | MSA; BY 6 LB5 |
 | 6 | `history.ancient.roman-daily-life` | Alltag und Familie im Römischen Reich beschreiben | ESA; NRW IF2, BY 6 LB7 |
-| 6 | `history.ancient.romans-germanic` | Römer und Germanen am Limes und die Romanisierung beschreiben | ESA; NRW IF2, BY 7 LB4; Sachunterricht dropped `romans`, so this is the first Romans skill |
+| 6 | `history.ancient.romans-germanic` | Römer und Germanen am Limes und die Romanisierung beschreiben | ESA; NRW IF2, BY 7 LB4; Sachunterricht (general studies) dropped `romans`, so this is the first Romans skill |
 | 6 | `history.ancient.judaism-christianity` | jüdisches Leben und die Ausbreitung des Christentums im Römischen Reich beschreiben | MSA; BY 6 LB5 |
 | 6 | `history.ancient.fall-of-rome` | das Ende des Weströmischen Reiches und die Völkerwanderung erklären | MSA; BY 6 LB6 |
 | 6 | `history.ancient.rise-of-islam` | die Entstehung und Ausbreitung des Islam beschreiben | MSA; BY 6 LB6 |
@@ -563,9 +563,9 @@ Count: 14 + 12 + 16 + 18 + 15 = 75.
 | maps, scale, compass, Germany map, continents | `world.space` (Klasse 3 and 4) | prerequisites; Klasse 5 starts with a short check, no reteaching |
 | timeline, sources, Stone Age, Middle Ages, divided Germany | `world.time` | prerequisites; `hunters-gatherers` and `knights-castles` go deeper (society, economy) |
 | children's rights, democracy, municipality, EU, media, money | `world.society` | prerequisites per row above |
-| Treibhauseffekt, Atmosphäre, Energie | Physik and Chemie (naturwissenschaften.md) | geography teaches the spatial side (zones, effects, action); the radiation physics stays in Physik; link both ways |
-| plate tectonics, rocks | possibly NaWi 5/6 (naturwissenschaften.md) | geography owns it; check with that doc |
-| Ernährung, Landwirtschaft | Biologie | geography owns farming as land use; Biologie owns nutrition |
+| Treibhauseffekt, Atmosphäre, Energie | Physik (physics) and Chemie (naturwissenschaften.md) | geography teaches the spatial side (zones, effects, action); the radiation physics stays in Physik; link both ways |
+| plate tectonics, rocks | possibly NaWi (combined science) 5/6 (naturwissenschaften.md) | geography owns it; check with that doc |
+| Ernährung, Landwirtschaft | Biologie (biology) | geography owns farming as land use; Biologie owns nutrition |
 | scale, percentages, diagrams, coordinates, Zinsen | Mathe (mathe.md) | `scale-distance` needs ratio; `inflation-interest` and `wages` need percent; place after the Mathe skill |
 | Sachtexte, Karikaturen, Erörterung | Deutsch (deutsch.md) | reading skills are prerequisites; `history.method.caricature` and `civics.democracy.political-judgement` reuse the argument structure from Deutsch |
 | human rights, values, religions | Ethik (weitere.md) | Ethik owns the ethical reasoning; `history.contemporary.human-rights-history` and `civics.world.human-rights` own facts and institutions |

@@ -1,9 +1,9 @@
-# Naturwissenschaften (Biologie, Chemie, Physik)
+# Naturwissenschaften (sciences): Biologie (biology), Chemie (chemistry), Physik (physics)
 
 Sekundarstufe I, Klasse 5 to 10. Drafted 2026-10-24 against the KMK
 Bildungsstandards for the MSA (2024), the NRW Kernlehrpläne for the G9
 Gymnasium (2019) and the Realschule (2011), and Bayern LehrplanPLUS
-Gymnasium (Natur und Technik 5 to 7; Biologie, Physik and Chemie (NTG) 8
+Gymnasium (Natur und Technik (science and technology) 5 to 7; Biologie, Physik and Chemie (NTG) 8
 to 10). Conventions as in README.md in this folder.
 
 ## Summary
@@ -37,7 +37,7 @@ Aspekte":
 | Physik | Erhaltung und Gleichgewichte; Modelle und Vorhersagen; Experimente und Verfahren; Ursache und Wirkung | Energie; Elektrizitätslehre; Mechanik; Elektromagnetische Strahlung; Ionisierende Strahlung |
 
 KMK has no Bildungsstandards for the sciences at ESA level (the 2003/2004
-ESA standards cover Deutsch, Mathe and the first foreign language only).
+ESA standards cover Deutsch (German), Mathe (maths) and the first foreign language only).
 
 **NRW G9 (2019).** Biologie and Physik are taught from Klasse 5 or 6
 (Erprobungsstufe), Chemie from Klasse 7. Schools may teach the three
@@ -59,7 +59,7 @@ Energie; Physik Energie, Struktur der Materie, Wechselwirkung, System.
 | Jgst. | Subject | Lernbereiche |
 |---|---|---|
 | 5 | Natur und Technik | Schwerpunkt Naturwissenschaftliches Arbeiten (about 42 h: methods; Licht, Luft, Wasser, Boden, Stoffe, Teilchenmodell, Energie); Schwerpunkt Biologie (Biologie als Wissenschaft, Der Mensch als Lebewesen, Samenpflanzen, Ökosystem Grünland) |
-| 6 | Natur und Technik | Schwerpunkt Biologie (Samenpflanzen; Biodiversität bei Wirbeltieren; Verwandtschaft der Wirbeltiere und Evolution; Ökosystem Gewässer); Schwerpunkt Informatik |
+| 6 | Natur und Technik | Schwerpunkt Biologie (Samenpflanzen; Biodiversität bei Wirbeltieren; Verwandtschaft der Wirbeltiere und Evolution; Ökosystem Gewässer); Schwerpunkt Informatik (computer science) |
 | 7 | Natur und Technik | Physik in Natur und Technik entdecken (Magnete, Dichte; Optische Phänomene; Elektrische Stromkreise); Schwerpunkt Informatik |
 | 8 | Biologie | Informationsaufnahme und Reaktion beim Menschen; Fortpflanzung und Individualentwicklung; Verhalten; Suchtgefahren; Ökosysteme unter dem Einfluss des Menschen |
 | 8 | Physik | Elektrischer Strom; Optik; Mechanik (Dynamik, Kräfte) |
@@ -94,7 +94,7 @@ at the latest:
 | `chemistry` | `chemistry.inquiry` (Arbeiten im Labor), `chemistry.substances` (Stoffe und Stoffgruppen), `chemistry.particles` (Teilchen, Atome, Bindungen), `chemistry.reactions` (Reaktionen und Energie) | KMK Basiskonzepte; the energy concept sits in reactions |
 | `physics` | `physics.inquiry` (Messen und Modelle), `physics.energy` (Energie und Wärme), `physics.electricity` (Elektrizität und Magnetismus), `physics.mechanics` (Mechanik, Druck, Schall), `physics.light` (Licht, Strahlung, Klima, Himmel), `physics.nuclear` (Ionisierende Strahlung) | KMK content areas; heat joins energy, sound joins mechanics |
 
-**Klasse 5 and 6 combined subjects.** NaWi, Natur und Technik and BNT do
+**Klasse 5 and 6 combined subjects.** NaWi (combined science), Natur und Technik and BNT do
 not get a domain. Their skills are the same `biology` and `physics` skills
 (and the few chemistry ideas Bayern teaches propädeutisch in NT 5, which
 Twist places in `chemistry` Klasse 7 with a note). de-DE shows Biologie
@@ -268,7 +268,7 @@ Stufe 2, commonly first (check against school plans).
 | 10 | `biology.diversity.classification` | Lebewesen im natürlichen System ordnen (Reich, Stamm, Klasse, Art) | MSA |
 | 10 | `biology.diversity.human-evolution` | die Entwicklung des Menschen an Fossilfunden beschreiben | MSA |
 | 10 | `biology.ecology.climate-change-life` | Folgen des Klimawandels für Lebewesen und Ökosysteme erklären | MSA |
-| 10 | `biology.ecology.human-population` | das Wachstum der Weltbevölkerung und seine Folgen für Ernährung und Natur beschreiben | G; one Land (Bayern); overlaps Erdkunde |
+| 10 | `biology.ecology.human-population` | das Wachstum der Weltbevölkerung und seine Folgen für Ernährung und Natur beschreiben | G; one Land (Bayern); overlaps Erdkunde (geography) |
 
 Count: 19 + 17 + 17 + 15 + 17 + 17 = 102.
 
@@ -499,7 +499,7 @@ Count: 11 + 17 + 13 + 17 + 15 + 17 = 90.
 
 ## Overlaps and prerequisites
 
-### With `world` (Sachunterricht, Klasse 4 end state)
+### With `world` (Sachunterricht (general studies), Klasse 4 end state)
 
 | `world` skill | Becomes prerequisite of |
 |---|---|
@@ -604,7 +604,7 @@ To record in ../omitted.md with these reasons:
   Präsentieren", NT 6 project): class work.
 - **Ethical debates as open discussion** (gene technology, prenatal
   diagnostics, nuclear power). Twist keeps the Bewertungskompetenz as
-  choose-and-justify tasks with criteria (fun.md, Ethik style), not as an
+  choose-and-justify tasks with criteria (fun.md, Ethik (ethics) style), not as an
   open debate.
 
 ## Task types and drawn components
@@ -640,7 +640,7 @@ plant with parts, circuit, water cycle, timeline.
 | plot points to a graph | extend `point_on_grid` to several points and a line | `tables-graphs`, `motion-graphs`, `resistance-ohm` |
 | energy flow (Sankey) diagram | drawing with adjustable widths | `flow-diagrams`, `efficiency` |
 | electromagnetic spectrum strip | drawing | `em-spectrum`, `infrared-uv` |
-| wave and oscilloscope picture | drawing (check if the Musik `soundChart` fits) | `pitch-loudness` |
+| wave and oscilloscope picture | drawing (check if the Musik (music) `soundChart` fits) | `pitch-loudness` |
 | simulation with sliders | new activity: change one variable, watch the result, then predict | inquiry skills, enzymes, gases, climate models |
 
 New task types to add to docs/task-types.md before first use:
@@ -666,7 +666,7 @@ real data, more choice, more challenge. Hooks:
 | Element collection | Collect the elements as cards with one surprising use each; fill the periodic table over Klasse 8 to 10 | `element-symbols`, `periodic-table`, `element-families` |
 | Personal best | Timed rounds (symbols, formulas, organs) where the child beats their own score, never other children | drill-style skills in every Klasse |
 | Decide | A choice with criteria: where to put a wind farm, whether to vaccinate a pet, which battery for an e-bike; the child weighs reasons (Bewertungskompetenz) | `power-plants`, `vaccination`, `batteries`, `human-impact`, `genetic-engineering` |
-| Sport and body | Physics and biology in sport: muscle energy, reaction time, skateboard forces, a sprinter's speed graph | `cell-energy`, `reflexes`, `force-effects`, `motion-graphs` |
+| Sport (PE) and body | Physics and biology in sport: muscle energy, reaction time, skateboard forces, a sprinter's speed graph | `cell-energy`, `reflexes`, `force-effects`, `motion-graphs` |
 
 Mascot topic poses (assets/mascot.yaml `topics`): magnifying glass for
 Biologie, safety goggles for Chemie, a space helmet or headlamp for

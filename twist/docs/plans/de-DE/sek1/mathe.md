@@ -1,4 +1,4 @@
-# Mathe, Klasse 5 to 10
+# Mathe (maths), Klasse 5 to 10
 
 Draft, 2026-10-24. Continues the Grundschule course (../mathe.md) to the
 end of Sekundarstufe I. Follows the conventions in README.md: one
@@ -405,14 +405,14 @@ hundredths are covered by de-DE money and length notation in Klasse 3 and
 
 | Subject | Uses from Mathe | Order to respect |
 |---|---|---|
-| Physik | proportional relations, rearranging formulas, line graphs, scientific notation | `algebra.rearrange-formulas` (8) before physics formulas; Physik in 7 uses `proportion.proportional` |
-| Chemie | rule of three, percent concentration, powers of ten | `percentages-ratio.base-value` (7) before mass percent |
-| Biologie | percent, charts, probability in genetics (Mendel) | `probability.tree-two-stage` (8) before Mendel's rules |
-| Erdkunde | scale, climate charts, population growth | `proportion.scale` (5); Erdkunde shows population growth before `growth.exponential-function` (10), so it uses tables and graphs, not the function |
-| Wirtschaft, Politik | interest, credit, percent in the news, statistics | `percentages-ratio.compound-interest` (8), `statistics.media-claims` (9) |
-| Informatik | binary numbers, algorithms, spreadsheets | Heron and Monte Carlo are algorithms written in a spreadsheet; the Informatik doc can link them |
-| Musik | frequency, periodic sine curves | optional link from `trigonometry.sine-function` |
-| Kunst | symmetry, perspective, oblique drawings | `solids.oblique-drawing` |
+| Physik (physics) | proportional relations, rearranging formulas, line graphs, scientific notation | `algebra.rearrange-formulas` (8) before physics formulas; Physik in 7 uses `proportion.proportional` |
+| Chemie (chemistry) | rule of three, percent concentration, powers of ten | `percentages-ratio.base-value` (7) before mass percent |
+| Biologie (biology) | percent, charts, probability in genetics (Mendel) | `probability.tree-two-stage` (8) before Mendel's rules |
+| Erdkunde (geography) | scale, climate charts, population growth | `proportion.scale` (5); Erdkunde shows population growth before `growth.exponential-function` (10), so it uses tables and graphs, not the function |
+| Wirtschaft (economics), Politik (politics) | interest, credit, percent in the news, statistics | `percentages-ratio.compound-interest` (8), `statistics.media-claims` (9) |
+| Informatik (computer science) | binary numbers, algorithms, spreadsheets | Heron and Monte Carlo are algorithms written in a spreadsheet; the Informatik doc can link them |
+| Musik (music) | frequency, periodic sine curves | optional link from `trigonometry.sine-function` |
+| Kunst (art) | symmetry, perspective, oblique drawings | `solids.oblique-drawing` |
 
 Each overlap is a prerequisite link, not a second lesson.
 
@@ -508,7 +508,7 @@ can skip the story in a lesson they repeat.
 | Diagramme, die lügen | Real-looking charts with a cut axis, a 3D pie or a misleading average; the child names the trick | statistics |
 | Bestzeit | Timed rounds of mental arithmetic, squares, powers of ten, sign rules; the child plays against their own last time, never against others | arithmetic, integers, roots |
 | Escape room | Three to five tasks in a row unlock a door; each answer is a digit of the code | end of each topic family |
-| Geschichte der Mathematik | One short true story per big idea: Thales measuring a pyramid by its shadow, Eratosthenes measuring the Earth, Gauss adding 1 to 100, the proof that √2 is irrational | Thales, similarity, sequences, roots |
+| Geschichte der Mathematik (history of maths) | One short true story per big idea: Thales measuring a pyramid by its shadow, Eratosthenes measuring the Earth, Gauss adding 1 to 100, the proof that √2 is irrational | Thales, similarity, sequences, roots |
 | Simulation | Run the goat problem or the birthday problem 1000 times and see the surprise come true | probability |
 | Probier's aus | Measure π with a string and a can, roll a die 60 times, time a bouncing ball; predict first, report back, never counts | circles, probability, quadratic models |
 | Design it | Make a fair game, plan a garden with a fixed fence length, fit a ramp with a set slope | probability, quadratic models, trigonometry |

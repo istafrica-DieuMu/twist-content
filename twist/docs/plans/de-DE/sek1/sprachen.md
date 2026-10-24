@@ -1,4 +1,4 @@
-# Sprachen: Englisch and the second foreign language (Sek I)
+# Sprachen (languages): Englisch (English) and the second foreign language (Sek I)
 
 Started 2026-10-24. Follows README.md in this folder. Englisch continues
 the Grundschule plan (../englisch.md) from Lernjahr 3 to Lernjahr 8. The
@@ -8,7 +8,7 @@ second foreign language is planned at outline level.
 
 | | Englisch (first foreign language) | Second foreign language |
 |---|---|---|
-| Domain | `fl`, continued; new progressions below | `fl` for Französisch and Spanisch; a new domain `latin` for Latein |
+| Domain | `fl`, continued; new progressions below | `fl` for Französisch (French) and Spanisch (Spanish); a new domain `latin` for Latein (Latin) |
 | Frameworks | KMK Bildungsstandards erste Fremdsprache ESA/MSA (2023); NRW Kernlehrplan Englisch Gymnasium G9 (2019) and Realschule (2022); Bayern LehrplanPLUS Gymnasium Englisch Jgst. 5 to 10 | NRW Kernlehrpläne G9 Französisch, Spanisch, Latein (2019); Bayern LehrplanPLUS Gymnasium Französisch and Latein (2. Fremdsprache, Jgst. 6), Spanisch (3. Fremdsprache, Jgst. 8) |
 | Placement | by learning year: Lernjahr 3 to 8 = Klasse 5 to 10 for a child who started in Klasse 3 | by learning year: Lernjahr 1 to 4 (NRW, start Klasse 7) or 1 to 5 (Bayern, start Klasse 6) |
 | CEFR targets | ESA: A2. MSA: B1. Gymnasium end of Klasse 10: B1+ (NRW) | A2 after the first Stufe, B1 at the end of Sek I (NRW Französisch, Spanisch); Latein: Kleines Latinum, no CEFR level |
@@ -441,10 +441,10 @@ with original texts (Caesar, Ovid, Phaedrus are in the public domain).
 |---|---|---|
 | Grundschule English | `fl` Stufe 0, Lernjahr 1 and 2 | hard prerequisites for Lernjahr 3: `fl.grammar.he-she-it` before `grammar-en.simple-present`, `fl.grammar.now-and-routine` before `grammar-en.present-progressive`, `fl.culture-strategies.mediate` before `mediation.signs-menus` |
 | grammar terms (Nomen, Verb, Zeitform, Aktiv/Passiv, Relativsatz) | `lit-de` Grundschule and Sek I (deutsch.md in this folder) | soft prerequisites; Englisch lessons use the German term next to the English one |
-| text types (Bericht, Kommentar, Charakterisierung, Inhaltsangabe) | Sek I Deutsch | `fl.writing` and `fl.texts` reuse the German method; the lesson adds only the English conventions |
-| countries, history (Romans, colonisation, independence, Civil Rights, Cold War) | Erdkunde and Geschichte (gesellschaft.md) | `culture-en` teaches the English-language view and vocabulary; facts link to the history skills as soft prerequisites |
+| text types (Bericht, Kommentar, Charakterisierung, Inhaltsangabe) | Sek I Deutsch (German) | `fl.writing` and `fl.texts` reuse the German method; the lesson adds only the English conventions |
+| countries, history (Romans, colonisation, independence, Civil Rights, Cold War) | Erdkunde (geography) and Geschichte (gesellschaft.md) | `culture-en` teaches the English-language view and vocabulary; facts link to the history skills as soft prerequisites |
 | statistics and charts | `math` | `reading.statistics` only adds the English phrases |
-| media literacy, online sources, AI tools | Informatik, Deutsch | `reading.online-sources` and `culture-strategies.translation-tools` stay language-specific |
+| media literacy, online sources, AI tools | Informatik (computer science), Deutsch | `reading.online-sources` and `culture-strategies.translation-tools` stay language-specific |
 | job applications | Deutsch, Wirtschaft (Berufsorientierung) | `writing.cv-application` covers English formats only |
 
 ## Out of scope for an app

@@ -1,4 +1,4 @@
-# Deutsch als Zweitsprache (DaZ)
+# Deutsch als Zweitsprache (DaZ, German as a second language)
 
 Priority 2. A support track for children who are learning German as a
 second language, at any Klasse from 1 to 4. Not a graded subject.
@@ -25,7 +25,7 @@ later DaZ domain): DaZ needs no domain of its own.
 
 ## Learning years
 
-DaZ placement works like Englisch: by learning year, not by Klasse.
+DaZ placement works like Englisch (English): by learning year, not by Klasse.
 
 | Learning year | Level | Content |
 |---|---|---|

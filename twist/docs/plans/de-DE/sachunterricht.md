@@ -1,4 +1,4 @@
-# Sachunterricht
+# Sachunterricht (general studies)
 
 Priority 1. One combined subject for Klasse 1 to 4, as in every German
 Grundschule. Checked 2026-10-24 against NRW, Bayern, Baden-Württemberg and
@@ -178,7 +178,7 @@ skills that need attention:
 | 3 | `map-symbols` | Kartenzeichen und Legende lesen | |
 | 3 | `map-grid` | Orte mit dem Planquadrat finden | |
 | 3 | `scale` | mit dem Maßstab einfach messen | |
-| 4 | `germany-map` | Deutschland und seine Länder auf der Karte finden | E: the curricula ask for one's own Land in Germany; Germany-wide content cannot pick one Land, and Erdkunde in Klasse 5 starts from the whole map |
+| 4 | `germany-map` | Deutschland und seine Länder auf der Karte finden | E: the curricula ask for one's own Land in Germany; Germany-wide content cannot pick one Land, and Erdkunde (geography) in Klasse 5 starts from the whole map |
 | 4 | `germany-landscapes` | Küste, Tiefland, Mittelgebirge und Alpen zuordnen | curricula ask generically (Gebirge, Gewässer); Germany is the example |
 | 4 | `rivers-mountains` | große Flüsse und Gebirge Deutschlands nennen | as above |
 | 4 | `continents-oceans` | Kontinente und Ozeane benennen | check |
@@ -222,7 +222,7 @@ skills that need attention:
 Count: 19 + 12 + 38 + 22 + 10 + 11 = 112 skills. Cut by the check:
 `romans` (no curriculum names the Romans).
 
-## Overlaps with Mathe and Deutsch
+## Overlaps with Mathe (maths) and Deutsch (German)
 
 | Sachunterricht | Already in | Plan |
 |---|---|---|

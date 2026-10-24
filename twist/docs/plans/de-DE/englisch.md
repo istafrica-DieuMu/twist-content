@@ -1,4 +1,4 @@
-# Englisch
+# Englisch (English)
 
 Done: every placed skill has a lesson set, all narrated; review passes are
 listed in views/tracking.md. Full skill list: views/curriculum-de-DE.md.
@@ -17,7 +17,7 @@ listed in views/tracking.md. Full skill list: views/curriculum-de-DE.md.
 
 Checked 2026-10-24: most Länder start Englisch in Klasse 3. Hamburg and
 Brandenburg start in Klasse 1; NRW (from 2021/22) and Rheinland-Pfalz moved
-to Klasse 3; the Saarland teaches Französisch first and Englisch from
+to Klasse 3; the Saarland teaches Französisch (French) first and Englisch from
 Klasse 5. Stufe 0 serves early starters and families who want an early
 start; Lernjahr 1 and 2 usually fall in Klasse 3 and 4.
 
@@ -47,4 +47,4 @@ culture-strategies.
 
 ## Links to the new subjects
 
-DaZ reuses the `fl` skills with German as the target language (daz.md).
+DaZ (German as a second language) reuses the `fl` skills with German as the target language (daz.md).

@@ -16,7 +16,7 @@ review checks them like any other authoring check.
    not a task.
 3. **One small story per lesson set.** A situation the child is inside:
    helping a friend find the way, getting a bike ready for the test,
-   travelling back to a Roman camp. Same rule as story lessons in Deutsch:
+   travelling back to a Roman camp. Same rule as story lessons in Deutsch (German):
    scenarios, names and stories are written for Twist.
 4. **Real things look real.** Animals, plants, birds, trees, tools and
    places are photos or detailed pictures, not icons. Sounds are real
@@ -31,11 +31,11 @@ review checks them like any other authoring check.
 8. **The mascot joins in.** Each new topic family gets a start pose
    (assets/mascot.yaml `topics`): explorer hat for nature, helmet for
    traffic, map for Raum, knight's helmet for history, headphones for
-   Musik, paint brush for Kunst.
+   Musik (music), paint brush for Kunst (art).
 
 ## Hooks per subject
 
-### Sachunterricht
+### Sachunterricht (general studies)
 
 | Hook | What it is | Used in |
 |---|---|---|
@@ -48,7 +48,7 @@ review checks them like any other authoring check.
 | Detective | Real or made up? Find the clue in a photo, an advert or a message | `media-reality`, `fact-fiction`, `advertising`, `internet-safety` |
 | Code the mascot | Give the mascot a sequence of moves to reach the goal | `algorithms` |
 
-### DaZ
+### DaZ (German as a second language)
 
 Songs and chants for the first words, a picture dictionary the child
 builds as they go, everyday scenes (breakfast, playground, shop) where the
@@ -66,7 +66,7 @@ A colour lab (mix two paints, see the result), find the detail in a famous
 painting, spot what changed between two versions of a picture, sort
 paintings by mood.
 
-### Ethik
+### Ethik (ethics)
 
 Choose-your-path stories: the child decides what a character does next and
 sees what follows. Several answers can be fine; the task asks for the

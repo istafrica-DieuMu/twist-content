@@ -1,4 +1,4 @@
-# Mathe
+# Mathe (maths)
 
 Done: every placed skill has a lesson set, all narrated; review passes are
 listed in views/tracking.md. This doc records what exists so the strategy
@@ -58,4 +58,4 @@ From PLAN.md Phase 3:
 ## Overlaps with the new subjects
 
 Clock, calendar, money, scale and plans are taught here and used by
-Sachunterricht as prerequisites (sachunterricht.md, Overlaps).
+Sachunterricht (general studies) as prerequisites (sachunterricht.md, Overlaps).

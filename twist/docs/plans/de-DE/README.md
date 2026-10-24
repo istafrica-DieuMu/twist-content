@@ -1,7 +1,7 @@
 # de-DE content strategy
 
 Started 2026-10-24 on branch `experiment/de-DE-content-strategy`. Plans the
-de-DE subjects after Mathe, Deutsch and Englisch, in enough detail to start
+de-DE subjects after Mathe (maths), Deutsch (German) and Englisch (English), in enough detail to start
 authoring from. Nothing here is placed in curricula/de-DE.yaml yet.
 
 ## Files
@@ -10,7 +10,7 @@ authoring from. Nothing here is placed in curricula/de-DE.yaml yet.
 |---|---|
 | README.md | years, scope, decisions, order, phases, authoring steps |
 | sachunterricht.md | Priority 1: areas, topics per Klasse, draft skills |
-| daz.md | Priority 2: Deutsch als Zweitsprache |
+| daz.md | Priority 2: Deutsch als Zweitsprache (German as a second language) |
 | musik.md | Priority 3 |
 | kunst.md | Priority 4 |
 | ethik.md | Priority 5 |
@@ -19,6 +19,35 @@ authoring from. Nothing here is placed in curricula/de-DE.yaml yet.
 | mathe.md, deutsch.md, englisch.md | the content Twist already has: topics per Klasse, counts, open work |
 | omitted.md | everything de-DE deliberately leaves out, with reasons |
 | sek1/ | Sekundarstufe I, Klasse 5 to 10: conventions (school types, ESA, MSA, Gymnasium) and one doc per subject group |
+
+## Subject names
+
+The docs use the German subject names, as schools and parents do. Each doc
+gives the English name at its first mention; this is the full list.
+
+| German | English | Stage |
+|---|---|---|
+| Mathe (Mathematik) | maths | 1 to 10 |
+| Deutsch | German (home language) | 1 to 10 |
+| Deutsch als Zweitsprache (DaZ) | German as a second language | 1 to 4 |
+| Englisch | English (first foreign language) | 1 to 10 |
+| Französisch, Latein, Spanisch | French, Latin, Spanish (second foreign language) | 6 or 7 to 10 |
+| Sachunterricht; in Bayern Heimat- und Sachunterricht (HSU) | general studies (science, geography, history and society in one subject); local and general studies | 1 to 4 |
+| Naturwissenschaften (NaWi); Natur und Technik | sciences; combined science; science and technology | 5 to 10 |
+| Biologie, Chemie, Physik | biology, chemistry, physics | 5 to 10 |
+| Erdkunde (Geographie) | geography | 5 to 10 |
+| Geschichte | history | 6 to 10 (in Grundschule: Sachunterricht, Zeit und Wandel) |
+| Politik, Sozialkunde, Politik und Gesellschaft | politics, civics, politics and society | 6 to 10 |
+| Wirtschaft; Wirtschaft-Politik; Wirtschaft und Recht | economics; economics and politics; economics and law | 7 to 10 |
+| Gesellschaftslehre | social studies (combined) | 5 to 10, some school types |
+| Informatik | computer science | 5 to 10 |
+| Medienbildung | media education (inside other subjects) | 1 to 10 |
+| Musik | music | 1 to 10 |
+| Kunst | art | 1 to 10 |
+| Ethik; Praktische Philosophie (NRW); Werte und Normen (Niedersachsen) | ethics; practical philosophy; values and norms | 1 to 10, start differs by Land |
+| Religion | religious education (not planned) | |
+| Sport | PE (not planned) | |
+| Werken, Textiles Gestalten | crafts, textile design (not planned) | |
 
 ## Scope
 
@@ -68,7 +97,7 @@ different grades.
 - **Stufe 0** ("level 0") is optional oral Englisch for children who start
   in Klasse 1 or 2. Only Hamburg and Brandenburg start there today; NRW
   (from 2021/22) and Rheinland-Pfalz moved to Klasse 3, and the Saarland
-  starts with Französisch. Stufe 0 also suits families who want an early
+  starts with Französisch (French). Stufe 0 also suits families who want an early
   start. The name comes from the benchmark course; the English
   label is "Starter". Year and subject names are to be standardized later.
 - **Lernjahr 1 and 2** are the first and second year of Englisch, mostly
@@ -90,12 +119,12 @@ alongside this work.
 
 | # | Decision | Date |
 |---|---|---|
-| 1 | Order: Sachunterricht, DaZ, Musik, Kunst, Ethik | 2026-10-24 |
+| 1 | Order: Sachunterricht (general studies), DaZ (German as a second language), Musik (music), Kunst (art), Ethik (ethics) | 2026-10-24 |
 | 2 | Sachunterricht is one combined subject, as in every Grundschule: one domain, one progression per area | 2026-10-24 |
 | 3 | No content per Land; Germany-wide only | 2026-10-24 |
 | 4 | ~~Klasse 1 to 4 only~~ Replaced: Sekundarstufe I (Klasse 5 to 10) is planned too, in sek1/, with subjects split as schools split them | 2026-10-24 |
 | 5 | Vorschule (age 5 to 6) stays a later option | 2026-10-24 |
-| 6 | Not planned: Sport, Werken, Textiles Gestalten, Religion. Medienbildung is a topic of Sachunterricht | 2026-10-24 |
+| 6 | Not planned: Sport (PE), Werken (crafts), Textiles Gestalten (textile design), Religion (religious education). Medienbildung (media education) is a topic of Sachunterricht | 2026-10-24 |
 | 7 | Sex education is left out of Sachunterricht; `my-boundaries` (saying no, who helps) stays | 2026-10-24 |
 
 Open:
@@ -103,10 +132,10 @@ Open:
 - Sekundarstufe I (details in the sek1/ docs): a text keyboard for typed
   German answers (`text_input` is a number pad today); whether free texts
   get automatic feedback and whether parents see them; whether
-  `puberty-hormones` is the right boundary in Biologie; how one displayed
-  subject (NaWi, Natur und Technik) spans two domains; add `lernjahr-3` to
+  `puberty-hormones` is the right boundary in Biologie (biology); how one displayed
+  subject (NaWi, combined science; Natur und Technik, science and technology) spans two domains; add `lernjahr-3` to
   `lernjahr-8` to curricula/de-DE.yaml; order of second languages
-  (proposed Französisch, Latein, Spanisch).
+  (proposed Französisch, Latein (Latin), Spanisch (Spanish)).
 - Life and death in Ethik (Grundschule and Sek I).
 - The domain id for Sachunterricht (proposed `world`, see
   sachunterricht.md).

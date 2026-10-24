@@ -1,4 +1,4 @@
-# Deutsch, Klasse 5 to 10
+# Deutsch (German), Klasse 5 to 10
 
 Drafted 2026-10-24. Continues the Grundschule Deutsch course (../deutsch.md,
 174 skills in Klasse 1 to 4) to the end of Sekundarstufe I. Follows the
@@ -227,7 +227,7 @@ Count: 47.
 | 7 | `narrative.conflict-plot` | Konflikt und Wendepunkt einer Erzählung herausarbeiten und als Spannungskurve zeichnen | ESA |
 | 7 | `narrative.character-relations` | Figurenbeziehungen als Figurenkonstellation darstellen | ESA |
 | 7 | `narrative.novel-themes` | in einem Jugendbuch Themen und Motive herausarbeiten und mit meinem Leben vergleichen | ESA |
-| 7 | `narrative.middle-ages` | Heldenepos und Ritterdichtung in einer Nacherzählung kennenlernen | E: Bayern Gymnasium and Realschule 7 only; supports Geschichte, which teaches the Mittelalter around Klasse 7 in all Länder |
+| 7 | `narrative.middle-ages` | Heldenepos und Ritterdichtung in einer Nacherzählung kennenlernen | E: Bayern Gymnasium and Realschule 7 only; supports Geschichte (history), which teaches the Mittelalter around Klasse 7 in all Länder |
 | 7 | `poetry.ballad-analysis` | eine Ballade untersuchen: Handlung, Figuren, Spannung, Strophen | ESA; extends `texts-media.ballads` |
 | 7 | `poetry.metaphor` | Metapher, Vergleich und Personifikation unterscheiden und ihre Wirkung beschreiben | ESA |
 | 7 | `poetry.speaker` | den Sprecher eines Gedichts (lyrisches Ich) vom Autor unterscheiden | ESA |
@@ -460,14 +460,14 @@ Death years are from memory; confirm each when the text is chosen.
 |---|---|---|
 | Grundschule Klasse 4 end state | `nouns.cases`, `verbs.perfect`, `verbs.future`, `sentences.objects`, `sentences.place-time`, `sentences.conjunctions`, `spelling.das-dass`, `writing.report`, `writing.opinion`, `texts-media.ballads` | hard prerequisites of the Klasse 5 and 6 skills that extend them; Klasse 5 opens each topic with a short check, and a failed check sends the child to the Grundschule skill |
 | Englisch (sprachen.md) | Passiv, reported speech, if-clauses, word classes | same Klasse order where possible (German Passiv in 6, English passive in 7 or 8); a German skill never relies on the English one |
-| Latein and other second languages | Latin grammar terms (Bayern uses them from Klasse 5), Fremdwörter from Latin and Greek | `word-classes.overview` teaches the Latin names; no Latin needed |
+| Latein (Latin) and other second languages | Latin grammar terms (Bayern uses them from Klasse 5), Fremdwörter from Latin and Greek | `word-classes.overview` teaches the Latin names; no Latin needed |
 | Geschichte (gesellschaft.md) | Mittelalter (7), Aufklärung and French Revolution (8 to 10), sources and source criticism | `narrative.middle-ages` and `literary-history.enlightenment` link to the history skills; `texts-media.fake-news` shares cases with source work in Geschichte |
-| Politik/Sozialkunde | media, opinion formation, debate | `texts-media.opinion-formation`, `speaking.debate` are the Deutsch side; Politik owns the institutions |
+| Politik/Sozialkunde | media, opinion formation, debate | `texts-media.opinion-formation`, `speaking.debate` are the Deutsch side; Politik (politics) owns the institutions |
 | Informatik (weitere.md) | algorithms, data protection, copyright | `texts-media.algorithms` explains the effect on reading; how algorithms work stays in Informatik |
 | Ethik (weitere.md) | argument, discrimination, values in literature | `argument.*` is the writing technique; Ethik uses it |
-| Musik | ballads, song lyrics, rhythm | `poetry.metre` can reuse the rhythm tap task from Musik |
-| Kunst | Bildbeschreibung, comic and film images | `writing.object-description` and `texts-media.graphic-novel` share pictures with Kunst |
-| Mathe | diagrams, statistics | `nonfiction.charts`, `nonfiction.data-cartoons` read diagrams that Mathe has taught; no new maths |
+| Musik (music) | ballads, song lyrics, rhythm | `poetry.metre` can reuse the rhythm tap task from Musik |
+| Kunst (art) | Bildbeschreibung, comic and film images | `writing.object-description` and `texts-media.graphic-novel` share pictures with Kunst |
+| Mathe (maths) | diagrams, statistics | `nonfiction.charts`, `nonfiction.data-cartoons` read diagrams that Mathe has taught; no new maths |
 | All subjects | Fachbegriffe, Referat, Protokoll, Zitieren | taught once in Deutsch; other subjects link to them |
 
 ## Out of scope for an app
@@ -524,7 +524,7 @@ New drawings for pages/player/drawn.js:
 | message thread and social post | `language-use.conceptual-orality`, `texts-media.public-internet`, `texts-media.fake-news` |
 | newspaper page (print and online) | `nonfiction.journalism`, `texts-media.newspaper-structure` |
 | shot sizes set (Totale to Detail) and camera angles | `texts-media.camera-basics`, `texts-media.film-analysis` (pictures, generated) |
-| epoch timeline | `literary-history.epochs-overview` (reuses the Sachunterricht timeline) |
+| epoch timeline | `literary-history.epochs-overview` (reuses the Sachunterricht (general studies) timeline) |
 
 ## Fun
 

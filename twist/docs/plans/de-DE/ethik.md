@@ -1,13 +1,13 @@
-# Ethik
+# Ethik (ethics)
 
-Priority 5. Taught instead of Religion; the name differs by Land (NRW:
-Praktische Philosophie). Twist does Ethik only: it fits every family, while
+Priority 5. Taught instead of Religion (religious education); the name differs by Land (NRW:
+Praktische Philosophie (practical philosophy)). Twist does Ethik only: it fits every family, while
 Religion is split by denomination.
 
 Not every Land teaches it in Grundschule (KMK report on Ethik, as amended
 2020). From Klasse 1: Bayern, Sachsen, Sachsen-Anhalt, Thüringen,
 Rheinland-Pfalz; Mecklenburg-Vorpommern (Philosophieren mit Kindern),
-Schleswig-Holstein (some schools), Niedersachsen (Werte und Normen, since
+Schleswig-Holstein (some schools), Niedersachsen (Werte und Normen, values and norms, since
 2022), Hessen (being phased in). NRW teaches Praktische Philosophie from
 Klasse 1 for children not in Religion, rising year by year from the
 children who started school on 1 August 2022; how far it has reached is

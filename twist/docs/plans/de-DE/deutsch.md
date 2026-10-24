@@ -1,4 +1,4 @@
-# Deutsch
+# Deutsch (German)
 
 Done: every placed skill has a lesson set, all narrated; review passes are
 listed in views/tracking.md. Full skill list: views/curriculum-de-DE.md.
@@ -43,10 +43,10 @@ omitted.md and, with reasons, in curricula/de-DE.yaml `out_of_scope`.
 | G7 | Timed Blitzlesen check |
 | G12 to G14 | Check pools, quick checks, drill banks (Merkwörter) |
 | PLAN.md open decision 1 | Handwriting: all four scripts as options, or the one the reference Länder share |
-| Fun pass | Review against fun.md, as for Mathe |
+| Fun pass | Review against fun.md, as for Mathe (maths) |
 
 ## Links to the new subjects
 
-DaZ reuses the Klasse 1 letter skills for children new to the Latin script
-(daz.md). Sachunterricht information texts can feed the reading-text bank
+DaZ (German as a second language) reuses the Klasse 1 letter skills for children new to the Latin script
+(daz.md). Sachunterricht (general studies) information texts can feed the reading-text bank
 (PLAN.md G3).

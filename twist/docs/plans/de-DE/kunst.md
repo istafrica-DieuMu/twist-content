@@ -1,4 +1,4 @@
-# Kunst
+# Kunst (art)
 
 Priority 4. Graded, no weight in the transfer. Most of the subject is making
 art with real material; Twist covers seeing, knowing and choosing.
@@ -13,7 +13,7 @@ art with real material; Twist covers seeing, knowing and choosing.
 | Plastizieren und Montieren | Erfahrungswelten |
 | Agieren und Inszenieren | Fantasiewelten |
 | Fotografieren und Filmen | |
-| Textiles Gestalten | |
+| Textiles Gestalten (textile design) | |
 
 ## Structure
 

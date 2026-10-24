@@ -13,10 +13,10 @@ Status: **out** (decided), **later** (not now, may come back), **open**
 
 | What | Status | Reason | Decided |
 |---|---|---|---|
-| Sport | out | taught with the body, in a gym or on a field | 2026-10-24 |
-| Werken, Textiles Gestalten | out | taught with real tools and material | 2026-10-24 |
-| Religion | out | split by denomination and different in every Land; Ethik covers values for every family. Applies to Sekundarstufe I too | 2026-10-24 |
-| Medienbildung, Informatik as Grundschule subjects | out | the Länder teach them inside Sachunterricht; Twist does the same (`world.society`, `world.technology`). From Klasse 5 Informatik is its own subject (`computing`, sek1/weitere.md) | 2026-10-24 |
+| Sport (PE) | out | taught with the body, in a gym or on a field | 2026-10-24 |
+| Werken (crafts), Textiles Gestalten (textile design) | out | taught with real tools and material | 2026-10-24 |
+| Religion (religious education) | out | split by denomination and different in every Land; Ethik (ethics) covers values for every family. Applies to Sekundarstufe I too | 2026-10-24 |
+| Medienbildung (media education), Informatik (computer science) as Grundschule subjects | out | the Länder teach them inside Sachunterricht (general studies); Twist does the same (`world.society`, `world.technology`). From Klasse 5 Informatik is its own subject (`computing`, sek1/weitere.md) | 2026-10-24 |
 | Vorschule (age 5 to 6) | later | not a school year in most Länder; would be the German counterpart of Reception | 2026-10-24 |
 
 ## Years and regions
@@ -40,7 +40,7 @@ Status: **out** (decided), **later** (not now, may come back), **open**
 | Group work and class discussions | out | need other children | 2026-10-24 |
 | The Romans | out | cut after the check: no curriculum names them | 2026-10-24 |
 
-### Deutsch
+### Deutsch (German)
 
 Ten KMK Deutsch standards need other children or a real place (in
 curricula/de-DE.yaml since phase 1):
@@ -60,24 +60,24 @@ curricula/de-DE.yaml since phase 1):
 
 Free writing is taught but not marked automatically (lesson-anatomy.md).
 
-### Mathe
+### Mathe (maths)
 
 Nothing in the KMK standards is out of scope. Enrichment beyond them is
 listed in mathe.md.
 
-### Englisch
+### Englisch (English)
 
 No KMK Fremdsprachen standard is marked out of scope. Group work in class
 is replaced by dialogues with characters and speaking tasks.
 
-### Musik
+### Musik (music)
 
 | What | Status | Reason | Decided |
 |---|---|---|---|
 | Singing and playing together, dancing, scenes, performing (NRW "Musik machen", "umsetzen und darstellen"; Bayern "Sprechen – Singen – Musizieren", "Bewegung – Tanz – Szene") | out | done together in class | 2026-10-24 |
 | Peter und der Wolf outside the EU | later | public domain in the EU since 2024, still protected in the US to about 2031 | 2026-10-24 |
 
-### Kunst
+### Kunst (art)
 
 | What | Status | Reason | Decided |
 |---|---|---|---|
@@ -93,7 +93,7 @@ is replaced by dialogues with characters and speaking tasks.
 | Courage, happiness as skills | out | cut after the check: neither curriculum asks for them | 2026-10-24 |
 | Class discussions, philosophising together, role play | out | need other children | 2026-10-24 |
 
-### DaZ
+### DaZ (German as a second language)
 
 | What | Status | Reason | Decided |
 |---|---|---|---|
@@ -149,7 +149,7 @@ overview. Decided 2026-10-24 unless marked open.
 | Sex education beyond the biology of puberty (contraception, pregnancy, abortion, orientation, STIs, abuse prevention) | out | follows the Grundschule decision; `puberty-hormones` stays as hormone biology, boundary to confirm (open) |
 | Ethical debates as open discussion (gene technology, prenatal diagnostics, nuclear power) | out | taught as choose-and-justify tasks with criteria |
 
-### Erdkunde, Geschichte, Politik, Wirtschaft
+### Erdkunde (geography), Geschichte (history), Politik (politics), Wirtschaft (economics)
 
 | What | Status | Reason |
 |---|---|---|
