@@ -38,3 +38,32 @@ is one, checked against two or three Länder for order and scope.
 
 The names and editions above are from memory; confirm each on the issuer's
 site when fetching.
+
+## Sekundarstufe I (captured 2026-10-24)
+
+Line references for each claim are in the sek1/ subject docs.
+
+| Issuer | Documents | For |
+|---|---|---|
+| KMK | Bildungsstandards ESA/MSA Deutsch, Mathe (2022), erste Fremdsprache (2023); Biologie, Chemie, Physik MSA (2024); Bildung in der digitalen Welt (2016); Situation des Ethikunterrichts (2008, as amended 2020); Abitur standards fortgeführte Fremdsprache (2012, not used) | all subjects |
+| GI | Bildungsstandards Informatik Sekundarstufe I (2025) | Informatik |
+| DGfG | Bildungsstandards Geographie (2020) | Erdkunde |
+| bpb | Beutelsbacher Konsens | Politik, the neutrality rules |
+| NRW, Gymnasium G9 (2019) | Kernlehrpläne Deutsch, Mathe, Englisch, Französisch, Spanisch, Latein, Biologie, Chemie, Physik, Erdkunde, Geschichte, Wirtschaft-Politik, Kunst, Musik; Informatik WP (2023); G9 fact sheet | all subjects |
+| NRW, other | Informatik Klasse 5 and 6 (2021); Praktische Philosophie Sek I (2024, and the 2008 plan it replaces); Realschule Mathe, Englisch, Biologie, Chemie, Physik, Erdkunde, Politik; Hauptschule Gesellschaftslehre | all subjects |
+| Bayern, Gymnasium | LehrplanPLUS Jgst 5 to 10: Deutsch, Mathematik, Englisch, Musik, Kunst, Ethik; Natur und Technik 5 to 7; Biologie, Physik, Chemie (NTG) 8 to 10; Geschichte 6 to 10; Geographie 5, 7, 10; Politik und Gesellschaft 8, 9 and the ISB Rahmenplan for 10; Wirtschaft und Recht 8, 9; Informatik 9, 10; Französisch and Latein (2nd language, Jgst 6), Spanisch (3rd language, Jgst 8) | all subjects |
+| Bayern, Realschule | LehrplanPLUS Deutsch 5 to 10 | Deutsch |
+
+Four Bayern Englisch captures (`lehrplanplus-gym-englisch-jgs6` to `jgs9`)
+hold the site's start page after a redirect; the real pages are the
+`-1fs-` files. Kept under the keep rule.
+
+## Sekundarstufe I, still to fetch
+
+| Issuer | Document | For |
+|---|---|---|
+| Bayern | Realschule and Mittelschule plans (Mathe from 7, Englisch, sciences, Gesellschaft); Chemie outside the NTG; Geographie 6, 8, 9; PuG and Wirtschaft und Recht 10; 2nd language Jgst 7 to 10 | ESA and "later in RS" marks |
+| NRW | Hauptschule Mathe, Deutsch, Englisch, Wirtschaft; Realschule Deutsch and Geschichte; APO-SI (Stufe to Klasse) | ESA marks, placement |
+| BW, Berlin/Brandenburg | Sek I plans for every subject (BW BNT returned an error) | second Land check |
+| KMK | recommendations on democracy education and remembrance culture; SWK recommendation on Informatik | Politik, Geschichte, Informatik |
+| Destatis | pupils by foreign language | choice of the second language |

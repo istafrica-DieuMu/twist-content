@@ -4,7 +4,8 @@ Official German curriculum documents: KMK Bildungsstandards and the Länder
 Lehrpläne. The repo-wide rules in ../AGENTS.md apply, the keep rule above
 all.
 
-- One subfolder per issuer: kmk/, nrw/, by/, bw/, bebb/. Each holds raw/
+- One subfolder per issuer: kmk/, nrw/, by/, bw/, bebb/, and the subject
+  associations and agencies gdsu/, gi/, dgfg/, bpb/. Each holds raw/
   (the documents as downloaded) and text/ (pdftotext -layout output).
 - Every download is appended to fetch-log.jsonl with URL, file, size and
   sha256. Never refetch over a saved file; a new version gets a new name.

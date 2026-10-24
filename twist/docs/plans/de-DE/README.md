@@ -18,12 +18,14 @@ authoring from. Nothing here is placed in curricula/de-DE.yaml yet.
 | fun.md | rules and hooks that make the lessons fun, and what they need built |
 | mathe.md, deutsch.md, englisch.md | the content Twist already has: topics per Klasse, counts, open work |
 | omitted.md | everything de-DE deliberately leaves out, with reasons |
+| sek1/ | Sekundarstufe I, Klasse 5 to 10: conventions (school types, ESA, MSA, Gymnasium) and one doc per subject group |
 
 ## Scope
 
 Germany-wide content for Klasse 1 to 4, the Grundschule every child goes
-through before the transfer to secondary school (Übertritt) after Klasse 4.
-No content per Land: where the Länder differ, Twist follows the common
+through before the transfer to secondary school (Übertritt) after Klasse 4,
+and from 2026-10-24 also Sekundarstufe I, Klasse 5 to 10 (sek1/). No
+content per Land: where the Länder differ, Twist follows the common
 ground, the way the KMK standards do for Mathe and Deutsch.
 
 Background for the scope (checked 2026-10-24; sources marked secondary
@@ -34,8 +36,7 @@ need an official page before anything family-facing):
   Leistungs- und Begabungsklassen taking children from Klasse 5);
   Mecklenburg-Vorpommern has a schulartunabhängige Orientierungsstufe in
   Klasse 5 and 6 (Deutsches Schulportal, secondary). Those are the only
-  places where Klasse 5 and 6 come before the transfer, so they are out of
-  scope.
+  places where Klasse 5 and 6 come before the transfer.
 - Bayern: the Übertrittszeugnis averages Deutsch, Mathe and HSU; up to 2.33
   for Gymnasium, 2.66 for Realschule (BaySchO §6). A child with another
   first language who did not attend a German school from Klasse 1 can
@@ -92,13 +93,21 @@ alongside this work.
 | 1 | Order: Sachunterricht, DaZ, Musik, Kunst, Ethik | 2026-10-24 |
 | 2 | Sachunterricht is one combined subject, as in every Grundschule: one domain, one progression per area | 2026-10-24 |
 | 3 | No content per Land; Germany-wide only | 2026-10-24 |
-| 4 | Klasse 1 to 4 only; Klasse 5 and 6 out of scope | 2026-10-24 (follows from 3) |
+| 4 | ~~Klasse 1 to 4 only~~ Replaced: Sekundarstufe I (Klasse 5 to 10) is planned too, in sek1/, with subjects split as schools split them | 2026-10-24 |
 | 5 | Vorschule (age 5 to 6) stays a later option | 2026-10-24 |
 | 6 | Not planned: Sport, Werken, Textiles Gestalten, Religion. Medienbildung is a topic of Sachunterricht | 2026-10-24 |
 | 7 | Sex education is left out of Sachunterricht; `my-boundaries` (saying no, who helps) stays | 2026-10-24 |
 
 Open:
 
+- Sekundarstufe I (details in the sek1/ docs): a text keyboard for typed
+  German answers (`text_input` is a number pad today); whether free texts
+  get automatic feedback and whether parents see them; whether
+  `puberty-hormones` is the right boundary in Biologie; how one displayed
+  subject (NaWi, Natur und Technik) spans two domains; add `lernjahr-3` to
+  `lernjahr-8` to curricula/de-DE.yaml; order of second languages
+  (proposed Französisch, Latein, Spanisch).
+- Life and death in Ethik (Grundschule and Sek I).
 - The domain id for Sachunterricht (proposed `world`, see
   sachunterricht.md).
 
@@ -114,7 +123,8 @@ Open:
 | 5 | Sachunterricht in full: skill ids, standards, out of scope, components, assets | Draft skills checked against four curricula, 2026-10-24; teacher review and framework record next |
 | 6 | DaZ, Musik, Kunst, Ethik at the same depth | Musik, Kunst, Ethik checked against NRW and Bayern, 2026-10-24; DaZ skill placement open |
 | 7 | Standardize year and subject names | Later |
-| 8 | Review, commit, decide on merging | Not started |
+| 8 | Review, commit, decide on merging | Grundschule docs committed 2026-10-24 |
+| 9 | Sekundarstufe I plans (sek1/) | Drafted and checked against KMK, NRW and Bayern, 2026-10-24; omissions and sources merged |
 
 ## Authoring steps for each subject
 
