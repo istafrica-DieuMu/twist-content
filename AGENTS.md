@@ -60,6 +60,10 @@ git repo kept separate from schoolido-learning.
       the S3 key), written by hand; a copy is published as a claude.ai
       artifact. Update it when a screen, a record key or an asset path
       changes.
+    - review/: every lesson of a curriculum as printable pages for a
+      teacher review, one PDF per year and subject plus one combined:
+      `node twist/pages/review/build.mjs [de-DE]` (needs Google Chrome and
+      pdfunite); output in review/out/, not in git.
     - handoff/: the handoff to the backend, mobile app and parent dashboard
       teams (IST-B2C/backend, ist-schoolido, IST-B2C/Parent-dashboard),
       written by hand; a copy is published as a claude.ai artifact. Update it
