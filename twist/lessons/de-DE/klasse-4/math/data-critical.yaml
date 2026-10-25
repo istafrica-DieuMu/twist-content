@@ -38,7 +38,7 @@ metadata:
       addressed: lesson 1 Learn puts a cut chart next to the honest one; l1-f2 (with feedback), l1-f4, l1-s4, l1-n5, l2-w1 and l2-c1 ask whether twice as long is twice as much
     - id: ignores-scale-steps
       what: Reads a Skala without checking that its steps are equal or that it has numbers at all
-      addressed: lesson 2 Learn shows a Skala 0, 10, 20, 50, 100; l2-f1 (with feedback), l2-f2, l2-s1, l2-s2, l2-n1 and l2-c3 ask what is wrong with the Skala
+      addressed: lesson 2 Learn shows a Skala 0, 10, 20, 50, 100; l2-f1 (with feedback), l2-f2, l2-s2, l2-n1 and l2-c3 ask what is wrong with the Skala, l2-s1 asks how big an uneven step is
     - id: trusts-any-survey
       what: Accepts a claim about everyone from a survey of three people or of the wrong group
       addressed: lesson 2 Learn compares 3 children asked with a whole school; l2-f4 (with feedback), l2-f5, l2-s4, l2-s5, l2-n4, l2-n5 and l2-c4 ask whether the claim holds
@@ -78,8 +78,10 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Was glaubst du? Kann ein Diagramm mit lauter richtigen Zahlen trotzdem schwindeln?"
+            say: "Was glaubst du: Kann ein Diagramm mit lauter richtigen Zahlen trotzdem schwindeln?"
           - text: "Altpapier in kg\n4a: 98\n4b: 94"
-            say: "Die vier a hat achtundneunzig Kilogramm Altpapier gesammelt, die vier b vierundneunzig. In diesem Säulendiagramm beginnt die Skala bei null. Die Säulen sind fast gleich hoch. So ist es auch: Der Unterschied ist klein."
+            say: "Ja, das kann es! Schau genau hin. Die vier a hat achtundneunzig Kilogramm Altpapier gesammelt, die vier b vierundneunzig. In diesem Säulendiagramm beginnt die Skala bei null. Die Säulen sind fast gleich hoch. So ist es auch: Der Unterschied ist klein."
             show: { drawn: bar-chart, step: 10, rows: [["4a", 98], ["4b", 94]] }
           - text: "Altpapier in kg\nDie Skala beginnt bei 90."
             say: "Jetzt dieselben Zahlen noch einmal. Aber hier beginnt die Skala nicht bei null, sondern bei neunzig. Die Säulen zeigen nur den Teil über neunzig. Jetzt sieht die Säule der vier a doppelt so lang aus wie die der vier b."
@@ -199,6 +201,8 @@ lessons:
                 show: { drawn: bar-chart, from: 200, step: 10, rows: [["Samstag", 250], ["Sonntag", 210]] }
                 options: ["Die Skala beginnt bei 200, nicht bei 0.", "Es gibt nur zwei Säulen.", "Die Säulen sind bunt."]
                 answer: "Die Skala beginnt bei 200, nicht bei 0."
+                feedback:
+                  "Die Säulen sind bunt.": "Bunte Säulen schwindeln nicht, Farbe ist erlaubt! Schau, wo die Skala beginnt: bei 200."
                 hints: ["Wo beginnt die Skala bei einem ehrlichen Säulendiagramm?"]
               - id: l1-s5
                 type: image_multiple_choice
@@ -340,6 +344,8 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Was glaubst du? An einer Skala steht 0, 10, 20, 50, 100. Fällt dir etwas auf?"
+            say: "An einer Skala steht: null, zehn, zwanzig, fünfzig, hundert. Was glaubst du: Fällt dir etwas auf?"
           - text: "Skala: 0, 10, 20, 50, 100"
             say: "Schau dir die Schritte der Skala an. Von null bis zwanzig geht es in Zehnerschritten. Dann kommt fünfzig und dann hundert. Die Linien stehen gleich weit auseinander, aber die Zahlen springen plötzlich viel weiter. So sehen große Zahlen kleiner aus, als sie sind. Bei einer ehrlichen Skala sind alle Schritte gleich groß."
           - text: "Skala ohne Zahlen"
@@ -348,6 +354,8 @@ lessons:
             say: "In einem Bilddiagramm muss jedes Bild gleich groß sein. Wenn ein Bild riesig gemalt ist, sieht es nach viel mehr aus, auch wenn es nur für ein Kind steht."
           - text: "3 Kinder gefragt: 2 mögen Spinat.\nAlso mögen die meisten Kinder Spinat?"
             say: "Achte auch darauf, wer befragt wurde. Drei Kinder sind viel zu wenige, um etwas über alle Kinder zu sagen. Und wer nur im Fußballverein fragt, findet natürlich viele Fußballfans."
+          - text: "Wusstest du? Vor 90 Jahren fragte eine Zeitschrift in den USA mehr als 2 Millionen Menschen, wer Präsident wird. Sie lag trotzdem falsch."
+            say: "Wusstest du? Vor neunzig Jahren fragte eine Zeitschrift in den USA mehr als zwei Millionen Menschen, wer Präsident wird. Sie lag trotzdem falsch! Ihre Adressen kamen vor allem aus Telefonbüchern und Autolisten. Damals hatten aber längst nicht alle ein Telefon oder ein Auto. Die Befragten waren nicht wie alle Wähler."
 
       - activity: practise
         setting: in-context
@@ -421,12 +429,11 @@ lessons:
           - support: some
             tasks:
               - id: l2-s1
-                type: multiple_choice
-                text: "Skala: 0, 100, 200, 500, 1000\nWas ist falsch an dieser Skala?"
-                say: "Die Skala geht so: null, hundert, zweihundert, fünfhundert, tausend. Was ist daran falsch?"
-                options: ["Die Schritte sind nicht gleich groß.", "Sie geht bis 1000.", "Sie hat zu wenige Zahlen."]
-                answer: "Die Schritte sind nicht gleich groß."
-                hints: ["Rechne die Schritte aus: 100, 100, dann?"]
+                type: text_input
+                text: "Skala: 0, 100, 200, 500, 1000\nVon 0 bis 200 geht es in Schritten von 100. Wie groß ist der Schritt von 200 bis 500?"
+                say: "Die Skala geht so: null, hundert, zweihundert, fünfhundert, tausend. Von null bis zweihundert geht es in Hunderterschritten. Wie groß ist der Schritt von zweihundert bis fünfhundert?"
+                answer: "300"
+                hints: ["Rechne 500 − 200."]
               - id: l2-s2
                 type: multiple_choice
                 text: "Welche Skala ist ehrlich?"
