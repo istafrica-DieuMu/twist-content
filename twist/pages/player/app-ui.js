@@ -633,8 +633,8 @@ function starsOf3(k, cls = "") {
 // and a button to play it again. The skill check covers every lesson, so the parts it found
 // tricky are named once, on the unit, under its "I can" line.
 const WEAK_TXT = {
-  de: { score: (r, t) => `${r} von ${t} gleich richtig`, check: "Abschlusstest noch nicht geschafft", tricky: "Knifflig", again: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
-  en: { score: (r, t) => `${r} of ${t} right first time`, check: "Skill check not passed yet", tricky: "Tricky", again: "Try again", lesson: (t) => `Try again: ${t}` },
+  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Spiel es nochmal, dann gibt es den nächsten Stern.", again: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
+  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! Play it again to win your next star.", again: "Try again", lesson: (t) => `Try again: ${t}` },
 };
 // A lesson not mastered: its last check had a miss. A skill left at one star (practised) with all
 // its lessons done failed its skill check, in the last lesson, even when no score was kept.
@@ -644,20 +644,21 @@ const weakOf = (s, n) => {
   const last = s.lessons.at(-1)?.n;
   return n === last && PR.child.states[s.skill]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
 };
-const weakText = (w, W) => w.total ? W.score(w.right, w.total) : W.check;
+// For the child: the score as dots, filled for each one right ("3 of 5" read out), or "Not quite yet".
+const weakText = (w, W) => w.total ? `<span class="ln-dots" role="img" aria-label="${esc(W.score(w.right, w.total))}">${Array.from({ length: w.total }, (_, i) => `<i class="${i < w.right ? "on" : ""}"></i>`).join("")}</span>` : esc(W.check);
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
   const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length, W = WEAK_TXT[lg];
-  const tricky = s.lessons.flatMap((l) => weakOf(s, l.n)?.missed ?? []).map((id) => s.parts?.find((p) => p.id === id)?.what?.[lg]).filter(Boolean);
+  const anyWeak = s.lessons.some((l, i) => i < done && weakOf(s, l.n));
   const lessonRow = (l, i) => {
     const weak = i < done && weakOf(s, l.n);
     if (!weak) return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`;
-    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${esc(weakText(weak, W))}</small></span><em>${esc(W.again)}</em></button></li>`;
+    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${weakText(weak, W)}</small></span><em>${esc(W.again)}</em></button></li>`;
   };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
       ${starsOf3(s.skill)}</summary>
     ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
-    ${tricky.length ? `<p class="ln-tricky"><b>${esc(W.tricky)}:</b> ${esc(tricky.join("; "))}</p>` : ""}
+    ${anyWeak ? `<p class="ln-nudge"><img src="${A}mascot/practise-2.png" alt=""><span>${esc(W.nudge)}</span></p>` : ""}
     <ol class="ln-lessons">${s.lessons.map(lessonRow).join("")}</ol></details>`;
 }
 // Called by the lesson end screen when the lesson was started from the app.
