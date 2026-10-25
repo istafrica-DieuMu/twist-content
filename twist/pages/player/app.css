@@ -979,3 +979,93 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .pr-hero.hm-resume > .hm-where { justify-self: stretch; padding-right: 40px; }
 .pr-hero.hm-resume > .hm-where { padding-right: 18px; }
 .hm-plan h3.hm-step:first-child { margin-top: -8px; }
+
+/* Choose my own, focused: the page dims behind it and the sheet covers most of the screen. The
+   mascot asks at the top; big picture cards; one big button at the bottom in every step. */
+.mk-scrim { position: absolute; inset: 0; z-index: 25; background: rgba(27, 12, 48, .55); animation: app-fade .2s ease-out both; }
+.mk-sheet { z-index: 26; top: 5%; display: flex; flex-direction: column; gap: 0; max-height: none; padding: 14px 18px 0; overflow: hidden; color: var(--plum); }
+.mk-head { display: grid; grid-template-columns: 44px 1fr 44px; align-items: start; gap: 8px; }
+.mk-head > i { width: 44px; }
+.mk-head .pr-x { justify-self: end; }
+.mk-ask { display: flex; align-items: center; gap: 10px; }
+.mk-ask img { width: 64px; height: 72px; object-fit: contain; flex: none; }
+.mk-ask p { position: relative; margin: 0; padding: 10px 14px; border-radius: 18px; background: var(--tint); font: 800 18px/1.25 "Red Hat Display", sans-serif; color: var(--plum); }
+.mk-ask p::before { content: ""; position: absolute; left: -7px; top: 50%; width: 14px; height: 14px; margin-top: -7px; transform: rotate(45deg); border-radius: 3px; background: var(--tint); }
+.mk-body { flex: 1; min-height: 0; overflow-y: auto; display: grid; align-content: start; gap: 12px; padding: 16px 2px 12px; }
+.mk-big, .mk-subjs { display: grid; gap: 14px; }
+.mk-big button, .mk-subjs button { display: flex; align-items: center; gap: 16px; min-height: 104px; padding: 12px 18px 12px 12px; border: 2px solid var(--edge-c); border-bottom-width: 5px; border-radius: 24px; background: var(--card); color: var(--plum); text-align: left; font: inherit; cursor: pointer; }
+.mk-big img { width: 84px; height: 84px; object-fit: contain; flex: none; }
+.mk-big span { display: grid; gap: 2px; }
+.mk-big b { font: 800 26px "Red Hat Display", sans-serif; }
+.mk-big small { font-size: 15px; color: var(--soft-c); }
+.mk-big [aria-pressed="true"] { border-color: #6849dd; background: var(--tint); box-shadow: inset 0 0 0 2px #6849dd; }
+.mk-subjs button { --m: color-mix(in oklab, var(--c) 82%, #6d6f86); border-color: var(--m); background: color-mix(in srgb, var(--c) 8%, var(--card)); }
+.mk-subjs img { width: 72px; height: 50px; object-fit: contain; flex: none; padding: 12px; box-sizing: content-box; border-radius: 16px; background: var(--card); }
+.mk-subjs b { font: 800 26px "Red Hat Display", sans-serif; color: var(--m); }
+.mk-subjs [aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--m); }
+.mk-big button:active, .mk-subjs button:active { transform: translateY(3px); border-bottom-width: 2px; }
+.mk-foot { margin: 0 -18px; padding: 12px 18px 24px; border-top: 1px solid var(--edge-c); background: var(--card); }
+.mk-foot .mk-go { width: 100%; min-height: 58px; margin: 0; font-size: 19px; }
+.mk-foot .mk-go:disabled { opacity: .5; }
+#screen:has(.mk-scrim) .pr-own-fab { display: none; }
+@keyframes app-fade { from { opacity: 0; } }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .mk-subjs button { --m: color-mix(in oklab, var(--c) 55%, #fff); background: color-mix(in srgb, var(--c) 16%, var(--card)); }
+.mk-body { grid-auto-rows: max-content; }
+/* Older bands: text first and compact; the question a plain heading, no mascot. */
+.mk-dense .mk-ask p { padding: 0; background: none; font-size: 20px; }
+.mk-dense .mk-ask p::before { display: none; }
+.mk-dense .mk-big button { min-height: 0; padding: 12px 16px; gap: 12px; }
+.mk-dense .mk-big img { width: 40px; height: 40px; }
+.mk-dense .mk-big b { font-size: 18px; }
+.mk-dense .mk-big small { font-size: 14px; }
+
+/* Settings in the app's language: a bold heading per section above its card (as on Start,
+   Practice and Me), 20px cards with the 5px bottom edge, rows split by thin lines, 44px rows. */
+.set-h { margin: 8px 0 -4px; }
+.set-card { gap: 0; padding: 4px 16px; border-radius: 20px; }
+.set-card > * { padding: 12px 0; }
+.set-card > * + * { border-top: 1px solid var(--edge-c); }
+.set-card > .set-seg, .set-card > .set-note, .set-card > .set-looks, .set-card > .set-scripts, .set-card > .set-row:has(+ .set-seg) { border-top: 0; }
+.set-card > .set-note { padding-top: 0; }
+.set-card > .set-link:first-of-type { padding-top: 12px; }
+.set-row, .set-link { min-height: 44px; }
+.set-sw input:checked + i { background: #6849dd; }
+#setPics h3 { padding-bottom: 0; font: 800 17px "Red Hat Display", sans-serif; }
+
+/* Me, the child's room: one number to a card, in the app's card family. */
+.me-hero { display: grid; grid-template-columns: auto 1fr 44px; align-items: center; gap: 14px; }
+.me-hero h2 { margin: 0; font: 800 26px "Red Hat Display", sans-serif; }
+.me-hero small { display: flex; align-items: center; gap: 5px; font: 600 14px "Red Hat Text", sans-serif; color: var(--soft); }
+.me-hero small img { width: 18px; height: 18px; }
+.me-av { position: relative; padding: 0; border: 0; background: none; cursor: pointer; }
+.me-av > i { position: absolute; right: -2px; bottom: -2px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #6849dd; color: #fff; border: 3px solid var(--card); }
+.me-av > i svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.me-next { display: grid; grid-template-columns: 84px 1fr; gap: 16px; align-items: center; width: 100%; padding: 18px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--ink); text-align: left; font: inherit; cursor: pointer; }
+.me-next img { width: 84px; height: 84px; object-fit: contain; }
+.me-next span { display: grid; gap: 6px; }
+.me-next b { font: 800 19px "Red Hat Display", sans-serif; }
+.me-next small { font-size: 14px; line-height: 1.35; color: var(--soft); }
+.me-next em { font: 700 13px "Red Hat Text", sans-serif; font-style: normal; color: #6849dd; }
+.me-shelf { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px 4px; }
+.me-shelf::-webkit-scrollbar { display: none; }
+.me-bd { flex: none; display: grid; justify-items: center; gap: 6px; width: 104px; padding: 12px 8px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--ink); font: inherit; cursor: pointer; }
+.me-bd img { width: 60px; height: 60px; object-fit: contain; }
+.me-bd small { font: 700 12.5px/1.2 "Red Hat Text", sans-serif; text-align: center; }
+#meAll.open .chev { transform: rotate(90deg); }
+.me-stars { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; padding: 16px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); }
+.me-total { display: grid; justify-items: center; padding: 0 8px; }
+.me-total b { font: 800 40px "Red Hat Display", sans-serif; color: var(--ink); line-height: 1; }
+.me-total span { font: 700 13px "Red Hat Text", sans-serif; color: #c28903; }
+.me-chips { display: grid; gap: 8px; }
+.me-chips button { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 8px 14px; border: 2px solid color-mix(in srgb, var(--c) 40%, var(--card)); border-radius: 14px; background: color-mix(in srgb, var(--c) 8%, var(--card)); color: var(--ink); font: inherit; cursor: pointer; }
+.me-chips b { font: 800 16px "Red Hat Display", sans-serif; color: #c28903; order: 2; }
+.me-chips small { font: 700 14px "Red Hat Text", sans-serif; }
+/* Older bands: the same room, denser. */
+.me-dense .me-hero h2 { font-size: 22px; }
+.me-dense .me-next { grid-template-columns: 56px 1fr; padding: 14px; }
+.me-dense .me-next img { width: 56px; height: 56px; }
+.me-dense .me-bd { width: 88px; }
+.me-dense .me-bd img { width: 44px; height: 44px; }
+.me-dense .me-total b { font-size: 32px; }
+.me-hero small { flex-wrap: wrap; gap: 2px 12px; }
+.me-hero small span { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }

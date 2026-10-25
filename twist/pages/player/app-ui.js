@@ -681,45 +681,41 @@ function weekStrip(c) {
   return `<div class="me-week">${T.days.map((d, i) => { const day = mon + i; return `<span class="${act.has(day) ? "on" : day < c.today ? "miss" : ""}${day === c.today ? " now" : ""}${day > c.today ? " later" : ""}" title="${esc(act.has(day) ? T.dayPlayed : day === c.today ? T.dayToday : day < c.today ? T.dayMissed : "")}"><i>${cell(day)}</i><small>${esc(d)}</small></span>`; }).join("")}</div>${none && c.today % 7 < 5 ? `<small class="me-hint">${esc(T.lightFirst)}</small>` : ""}`;
 }
 /* ---------- Me ---------- */
-// Me's own words: the stars by subject (Start's subjects show units, so the name differs) and what a record is.
-const ME2 = { de: { stars: "Sterne pro Fach", records: "Deine schnellsten Sprints: richtige Aufgaben pro Minute." }, en: { stars: "Stars by subject", records: "Your fastest drills: right answers a minute." } };
-// The child's own page: this week and the streak, the subjects, the badges (the
-// newest, the closest, and all the rest folded away) and the best drill records.
+// The child's own room, calm, one number to a card: who I am (picture, name, year and streak),
+// this week, my next badge, my badges on a shelf, my stars. Records live with the sprints on
+// Practice; settings behind the gear. Older bands get the same sections, denser and plainer.
+const ME2 = {
+  de: { week: "Diese Woche", next: "Dein nächstes Abzeichen", got: "Deine Abzeichen", all: "Alle", stars: "Deine Sterne", starsAll: "Sterne", still: (n) => `Noch ${n}`, streak: (n) => `${n} ${n === 1 ? "Tag" : "Tage"} in Folge`, none: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", change: "Bild ändern" },
+  en: { week: "This week", next: "Your next badge", got: "Your badges", all: "All", stars: "Your stars", starsAll: "Stars", still: (n) => `${n} to go`, streak: (n) => `${n}-day streak`, none: "None yet. The first comes with your first skill at I can do it.", change: "Change picture" },
+};
 function renderMe() {
-  const T = AT(), c = appChild(), scr = $("#screen");
+  const T = AT(), M = ME2[PL()], c = appChild(), scr = $("#screen"), lg = PL(), dense = bandUI().dense;
   const s = streak(c), all = myBadges(), seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
-  const close = nextBadges(all).filter((b) => b.have > 0);
-  const rest = all.filter((b) => !b.earned && !close.includes(b));
-  // Me shows the three newest badges and the three closest; every other one, earned or not, is under "all".
-  const more = [...got.slice(3), ...close.slice(3), ...rest];
-  const ks = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)), stars = ks.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
-  const recs = Object.entries(c.drills ?? {}).filter(([k, d]) => d.best && PR.index.bySkill[k]).sort((a, b) => b[1].best - a[1].best);
+  const nb = nextBadges(all, 1)[0], what = nb ? (BADGE_WHAT[nb.id]?.[lg === "de" ? 0 : 1] ?? T.how[nb.id] ?? "") : "";
+  const subs = appSubjects(), starsOf = (x) => courseSets(x).reduce((n, st) => n + STARS[c.states[st.skill]?.state ?? "not_started"], 0), stars = subs.reduce((n, x) => n + starsOf(x), 0);
   const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
-  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
-    <header class="me-band fun-band" style="--room:${ROOM.me}">${avatar(c, "lg")}<div><h2>${esc(c.name ?? T.meTitle)}</h2><small>${esc(yearName(c.year))} · ${esc(ST().cur[c.curriculum])}</small></div>
+  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page me${dense ? " me-dense" : ""}">
+    <header class="me-hero fun-band" style="--room:${ROOM.me}"><button class="me-av" data-pic aria-label="${esc(M.change)}">${avatar(c, dense ? "" : "lg")}<i>${PENCIL}</i></button>
+      <div><h2>${esc(c.name ?? T.meTitle)}</h2><small><span>${esc(yearName(c.year))}</span><span><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${esc(M.streak(s.current))}</span></small></div>
       <button class="me-gear" data-settings aria-label="${esc(ST().title)}">${GEAR}</button></header>
-    <div class="me-tiles">
-      <button data-scroll="me-stars"><b>${stars}</b><span>★ ${esc(T.stars)}</span></button>
-      <button data-scroll="me-week"><b>${s.current}</b><span>${esc(T.streak)}</span></button>
-      <button data-scroll="me-badges"><b>${got.length}</b><span>${esc(T.badges)}</span></button>
-    </div>
-    <section class="me-card me-streak" id="me-week"><div><b>${esc(T.thisWeek)}</b><small>${esc(T.streakNow(s.current))} · ${esc(T.streakBest(s.best))}</small></div>
-      ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
-    <section id="me-stars"><h3 class="pr-h">${esc(ME2[PL()].stars)}</h3><p class="me-how">${esc(RW().starsHow)}</p>
-    <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<button data-subj="${x}" style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></button>`; }).join("")}</div></section>
-    <section id="me-badges" class="me-bds"><h3 class="pr-h">${esc(T.badges)}<small>${esc(T.ofN(got.length, all.length))}</small></h3>
-      ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(T.noBadges)}</p>`}
-      ${close.length ? `<h4 class="hm-step">${esc(T.almost)}</h4><div class="bd-grid">${close.slice(0, 3).map(badgeTile).join("")}</div>` : ""}
-      <details class="bd-all"><summary>${esc(T.allBadges(more.length))}${CHEVRON}</summary><div class="bd-grid">${more.map(badgeTile).join("")}</div></details></section>
-    <h3 class="pr-h">${esc(T.records)}</h3>${recs.length ? `<p class="me-how">${esc(ME2[PL()].records)}</p>` : ""}
-    ${recs.length ? `<div class="me-recs">${recs.slice(0, 3).map(([k, d]) => `<button data-drill="${esc(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span>${esc(setOfSkill(k)?.title[PL()] ?? k)}</span><b>${esc(T.perMin(d.best))}</b></button>`).join("")}</div>` : `<p class="pr-empty">${esc(T.noRecords)}</p>`}
+    <h3 class="pr-h">${esc(M.week)}</h3>
+    <section class="me-card me-streak" id="me-week">${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
+    ${nb ? `<h3 class="pr-h">${esc(M.next)}</h3>
+    <button class="me-next" data-bd="${nb.id}"><img src="${A}badges/${nb.id}.svg" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
+      <i class="pr-bar" style="--c:#6849dd"><i style="width:${(100 * nb.have) / nb.need}%"></i></i><em>${esc(M.still(nb.need - nb.have))}</em></span></button>` : ""}
+    <h3 class="pr-h pr-hrow">${esc(M.got)}${all.length ? `<button class="pr-link" id="meAll">${esc(M.all)} (${all.length}) ${CHEVRON}</button>` : ""}</h3>
+    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
+    <div id="meAllList" hidden><div class="bd-grid">${all.map(badgeTile).join("")}</div></div>
+    <h3 class="pr-h">${esc(M.stars)}</h3>
+    <section class="me-stars"><div class="me-total"><b>${stars}</b><span>★ ${esc(M.starsAll)}</span></div>
+      <div class="me-chips">${subs.map((x) => `<button data-subj="${x}" style="--c:${colourOf(x)}"><b>★ ${starsOf(x)}</b><small>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</small></button>`).join("")}</div></section>
   </div>`;
   scr.appendChild(appTabs("me"));
-  wireHeader(scr);
-  scr.querySelectorAll("[data-scroll]").forEach((b) => b.onclick = () => $("#" + b.dataset.scroll, scr).scrollIntoView({ behavior: "smooth", block: "start" }));
+  wireHeader(scr); scrollFades(scr);
+  $("[data-pic]", scr).onclick = () => { appTab("settings"); APP.editPic = true; renderSettings(); };
+  $("#meAll", scr)?.addEventListener("click", (e) => { const l = $("#meAllList", scr); l.hidden = !l.hidden; e.currentTarget.classList.toggle("open", !l.hidden); });
   scr.querySelectorAll("[data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
-  scr.querySelectorAll("[data-drill]").forEach((b) => b.onclick = () => { appTab("practice"); renderDrillMap(b.dataset.drill); });
 }
 
 /* ---------- Settings: opened from the gear on Me, or the picture on Start ---------- */
@@ -779,24 +775,24 @@ function renderSettings() {
       <div class="set-avs" role="radiogroup" aria-label="${esc(S.picture)}">${AV_POSES.map((p) => `<button role="radio" aria-checked="${!a.photo && (a.pose ?? "start-1") === p}" data-pose="${p}" style="--av:${esc(a.bg ?? AV_BG[0])}"><img src="${A}mascot/${p}.png" alt=""></button>`).join("")}
         <label class="set-photo${a.photo ? " on" : ""}">${a.photo ? `<img src="${esc(a.photo)}" alt="">` : CAMERA}<span>${esc(S.photo)}</span><input type="file" accept="image/*" id="setPhoto" title="${esc(S.photo)}" aria-label="${esc(S.photo)}"></label></div>
       <div class="set-bgs" role="radiogroup" aria-label="${esc(S.colour)}"${a.photo ? " hidden" : ""}>${AV_BG.map((b) => `<button role="radio" aria-checked="${(a.bg ?? AV_BG[0]) === b}" data-bg="${b}" style="--av:${b}" aria-label="${esc(S.colour)} ${b}"></button>`).join("")}</div></section>
-    <section class="set-card"><h3>${esc(S.learn)}</h3>
+    <h3 class="pr-h set-h">${esc(S.learn)}</h3><section class="set-card">
       <div class="set-row"><b>${esc(S.curriculum)}</b></div>
       <div class="set-seg" role="radiogroup" aria-label="${esc(S.curriculum)}">${["de-DE", "en-GB"].map((k) => `<button role="radio" data-cur="${k}" aria-checked="${k === c.curriculum}">${esc(S.cur[k])}</button>`).join("")}</div>
       <small class="set-note">${esc(S.curNote)}</small>
       <label class="set-row"><b>${esc(S.year)}</b><select id="setYear">${YEAR_OF(c.curriculum).map((y) => `<option value="${esc(y)}"${y === c.year ? " selected" : ""}>${esc(yearName(y))}</option>`).join("")}</select></label></section>
-    <section class="set-card"><h3>${esc(S.look)}</h3>
+    <h3 class="pr-h set-h">${esc(S.look)}</h3><section class="set-card">
       <div class="set-looks" role="radiogroup" aria-label="${esc(S.look)}">${LOOKS.map((l) => `<button role="radio" data-look="${l}" aria-checked="${l === look}"><i class="set-mini ${l}"><i></i><i></i><i></i></i><b>${esc(S.looks[l])}</b></button>`).join("")}</div>
       <small class="set-note">${esc(S.lookNote[look])}</small></section>
-    <section class="set-card"><h3>${esc(S2.feel)}</h3>
+    <h3 class="pr-h set-h">${esc(S2.feel)}</h3><section class="set-card">
       ${sw("setAuto", $("#auto")?.checked ?? true, S2.narration, S2.narrationSub)}
       ${sw("setSfx", pref("twist-sfx", true), S2.sfx, S2.sfxSub)}
       ${sw("setBuzz", pref("twist-vibrate", true), S2.vibrate, S2.vibrateSub)}
-      ${sw("setNext", $("#autonext")?.checked ?? true, S.autoNext, S.autoNextSub)}</section>
-    <section class="set-card"><h3>${esc(S2.notify)}</h3>${sw("setRemind", pref("twist-reminders", false), S2.remind, S2.remindSub)}</section>
-    <section class="set-card"><h3>${esc(S2.account)}</h3>
+      ${sw("setNext", $("#autonext")?.checked ?? true, S.autoNext, S.autoNextSub)}
+      ${sw("setRemind", pref("twist-reminders", false), S2.remind, S2.remindSub)}</section>
+    <h3 class="pr-h set-h">${esc(S2.account)}</h3><section class="set-card">
+      ${link("setClear", S2.clear, S2.clearSub)}
       ${link("setLogout", S2.logout, S2.logoutSub, "bad")}</section>
-    <section class="set-card"><h3>${esc(S2.storage)}</h3>${link("setClear", S2.clear, S2.clearSub)}</section>
-    ${c.curriculum === "de-DE" ? `<section class="set-card"><h3>${esc(S.script)}</h3><small class="set-note">${esc(S.scriptSub)}</small>
+    ${c.curriculum === "de-DE" ? `<h3 class="pr-h set-h">${esc(S.script)}</h3><section class="set-card"><small class="set-note">${esc(S.scriptSub)}</small>
       <div class="set-scripts" role="radiogroup" aria-label="${esc(S.script)}">${Object.keys(SCRIPTS).map((k) => `<button role="radio" data-script="${k}" aria-checked="${k === SCRIPT}"><span style="font-family:'${SCRIPTS[k]}'">Hallo ${esc(c.name ?? "Mia")}</span><small>${esc(S.scripts[k])}</small></button>`).join("")}</div></section>` : ""}
     <footer class="set-foot"><span class="av" style="--av:#6849dd"><img src="${A}mascot/start-1.png" alt=""></span><b>Twist</b><small>${esc(S2.version(D.built))}</small></footer>
   </div>`;
