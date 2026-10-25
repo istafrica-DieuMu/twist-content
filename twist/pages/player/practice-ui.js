@@ -550,12 +550,12 @@ function refreshPractice() {
 // its picture, and the app picks the skills; from 8 the search, topic words and the skills, with
 // one big button at the bottom. All existing session kinds of practice-rules.mjs.
 const MKTXT = {
-  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "2 Minuten gegen die Uhr"], surprise: ["Wundertüte!", "Twist sucht 3 Sachen aus, die du kannst"], again: ["Frag mich ab!", "Was du gelernt hast, ohne Tipps"] },
-    older: { how: "Wie willst du üben?", types: { race: ["Auf Zeit", "Ein Sprint gegen die Uhr"], surprise: ["Zufall", "Drei Fähigkeiten, die du schon kannst"], again: ["Wiederholen", "Ohne Tipps, wie ein kurzer Test"] } },
-    find: "Suchen: Uhr, Plus, Nomen …", ideas: "Vorschläge", hits: (n) => `${n} gefunden`, none: "Nichts gefunden. Probier ein anderes Wort.", all: "Alle", later: "Nach deiner ersten Lektion", go: "Los geht's", back: "Zurück", close: "Schließen" },
-  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "2 minutes against the clock"], surprise: ["Surprise!", "Twist picks 3 things you know"], again: ["Quiz me!", "What you've learnt, no hints"] },
-    older: { how: "How do you want to practise?", types: { race: ["Timed", "A sprint against the clock"], surprise: ["Random", "Three skills you already know"], again: ["Review", "No hints, like a short test"] } },
-    find: "Search: clock, plus, nouns …", ideas: "Ideas for you", hits: (n) => `${n} found`, none: "Nothing found. Try another word.", all: "All", later: "After your first lesson", go: "Let's go", back: "Back", close: "Close" },
+  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "2 Minuten gegen die Uhr"], surprise: ["Wundertüte!", "Twist sucht 3 Sachen aus, die du kannst"], again: ["Frag mich ab!", "Was du gelernt hast, ohne Tipps"], mine: ["Selbst aussuchen", "Du wählst, was du übst"] },
+    older: { how: "Wie willst du üben?", types: { race: ["Auf Zeit", "Ein Sprint gegen die Uhr"], surprise: ["Zufall", "Drei Fähigkeiten, die du schon kannst"], again: ["Wiederholen", "Ohne Tipps, wie ein kurzer Test"], mine: ["Eigene Auswahl", "Wähle die Fähigkeiten selbst, mit Tipps"] } },
+    find: "Suchen: Uhr, Plus, Nomen …", ideas: "Vorschläge", hits: (n) => `${n} gefunden`, none: "Nichts gefunden. Probier ein anderes Wort.", all: "Alle", tapYours: "Tippe an, was du üben willst", later: "Nach deiner ersten Lektion", go: "Los geht's", back: "Zurück", close: "Schließen" },
+  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "2 minutes against the clock"], surprise: ["Surprise!", "Twist picks 3 things you know"], again: ["Quiz me!", "What you've learnt, no hints"], mine: ["Pick my own", "You choose what to practise"] },
+    older: { how: "How do you want to practise?", types: { race: ["Timed", "A sprint against the clock"], surprise: ["Random", "Three skills you already know"], again: ["Review", "No hints, like a short test"], mine: ["Custom", "Pick the skills yourself, with hints"] } },
+    find: "Search: clock, plus, nouns …", ideas: "Ideas for you", hits: (n) => `${n} found`, none: "Nothing found. Try another word.", all: "All", tapYours: "Tap the ones you want", later: "After your first lesson", go: "Let's go", back: "Back", close: "Close" },
 };
 // How the app presents itself to the child's age band, in one place. The youngest pick by
 // picture; 8-10 get pictures with short text and the search; the Sekundarstufe I bands (11-13,
@@ -569,7 +569,7 @@ const BAND_UI = {
   "14-16": { pick: "skill", mascot: false, dense: true, words: "older" },
 };
 const bandUI = () => BAND_UI[PR.child?.band] ?? BAND_UI["8-10"];
-const MK_PIC = { race: "mascot/topic-time.png", surprise: "objects/present.png", again: "mascot/learn-2.png" };
+const MK_PIC = { race: "mascot/topic-time.png", surprise: "objects/present.png", again: "mascot/learn-2.png", mine: "mascot/practise-3.png" };
 // The words a skill can be found by: its "I can" line, topic, unit title and subject.
 const skillHay = (k) => { const s_ = setOfSkill(k), tp = s_?.topic ?? {}; return [canDoOf(k), tp.de, tp.en, s_?.title?.de, s_?.title?.en, SUBJ_NAME[PR.child.curriculum][subjOfSkill(k)]].join(" ").toLowerCase(); };
 const learnt = (k) => !["not_started", "learning", undefined].includes(PR.child.states[k]?.state);
@@ -601,6 +601,7 @@ function openMakeSheet() {
     if (type === "race") return PR.index.drills[skills[0]] && skills.length === 1 ? startSession({ kind: "drill", skills, minutes: 2 }) : startSession({ kind: "mixed", skills, minutes: S.minutes ?? 5 });
     // A review has no hints, so only for skills learnt; something found but not learnt yet is practised with them.
     if (type === "again") return startSession({ kind: skills.every(learnt) ? "review" : "mixed", skills, minutes: S.minutes ?? 10 });
+    if (type === "mine") return startSession({ kind: "mixed", skills, minutes: S.minutes ?? 10 });
     return startSession({ kind: "mixed", skills: rand(known, 3), minutes: 10 });
   };
   // Without a search, the ideas: what the type can play from this year first. With one, every year.
@@ -616,27 +617,30 @@ function openMakeSheet() {
     const named = f.skills ?? (f.topics ? PR.index.topics.filter((t) => f.topics.includes(t.key)).flatMap((t) => t.skills) : null);
     return pool().filter((k) => (!named || named.includes(k)) && (!f.subject || subjOfSkill(k) === f.subject) && (S.fsubj === "all" || subjOfSkill(k) === S.fsubj) && ws.every((w) => skillHay(k).includes(w)));
   };
+  // Up to 7 a subject is picked by its picture and the app picks the skills, except in Pick my
+  // own: there every child taps the skills, the youngest with pictures and no search.
   const draw = () => {
-    const q = S.step === 1 ? K.how : young ? K.whatSubj : K.what;
+    const bySubj = young && S.type !== "mine";
+    const q = S.step === 1 ? K.how : bySubj ? K.whatSubj : K.what;
     let body = "";
     if (S.step === 1) body = `<div class="mk-big">${Object.entries(K.types).map(([t, [name, sub]]) => `<button data-t="${t}" aria-pressed="${S.type === t}"${can(t) ? "" : " disabled"}><img src="${A}${MK_PIC[t]}" alt=""><span><b>${esc(name)}</b><small>${esc(can(t) ? sub : K.later)}</small></span></button>`).join("")}</div>`;
-    else if (young) body = `<div class="mk-subjs">${PR.index.subjects.filter((x) => skillsFor(S.type, x).length).map((x) => `<button data-s="${x}" aria-pressed="${S.subj === x}" style="--c:${colourOf(x)}"><img src="study/${trackArt(x)}.svg" alt=""><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`).join("")}</div>`;
+    else if (bySubj) body = `<div class="mk-subjs">${PR.index.subjects.filter((x) => skillsFor(S.type, x).length).map((x) => `<button data-s="${x}" aria-pressed="${S.subj === x}" style="--c:${colourOf(x)}"><img src="study/${trackArt(x)}.svg" alt=""><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`).join("")}</div>`;
     else {
       const list = shown();
-      body = `<label class="pr-search mk-find">${LENS}<input type="search" value="${esc(S.q)}" placeholder="${esc(K.find)}" autocomplete="off" enterkeyhint="search"></label>
-        <div class="mk-words scroll-fade">${words().map((w) => `<button aria-pressed="${S.q === w}">${esc(w)}</button>`).join("")}</div>
+      body = `${young ? "" : `<label class="pr-search mk-find">${LENS}<input type="search" value="${esc(S.q)}" placeholder="${esc(K.find)}" autocomplete="off" enterkeyhint="search"></label>
+        <div class="mk-words scroll-fade">${words().map((w) => `<button aria-pressed="${S.q === w}">${esc(w)}</button>`).join("")}</div>`}
         <div class="mk-subj"><button data-fs="all" aria-pressed="${S.fsubj === "all"}">${esc(K.all)}</button>${PR.index.subjects.filter((x) => pool().some((k) => subjOfSkill(k) === x)).map((x) => `<button data-fs="${x}" aria-pressed="${S.fsubj === x}" style="--c:${colourOf(x)}">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`).join("")}</div>
-        <p class="mk-count">${esc(S.q || S.fsubj !== "all" ? K.hits(list.length) : K.ideas)}</p>
-        <div class="mk-list">${list.slice(0, 40).map((k) => `<button data-k="${esc(k)}" aria-pressed="${S.picked.includes(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span><b>${esc(setOfSkill(k)?.title?.[lg] ?? canDoOf(k))}</b><small>${esc(setOfSkill(k)?.topic?.[lg] ?? "")}</small></span>${starsOf3(k)}</button>`).join("") || `<p class="pr-empty">${esc(K.none)}</p>`}</div>`;
+        <p class="mk-count">${esc(S.q || S.fsubj !== "all" ? K.hits(list.length) : S.type === "mine" ? K.tapYours : K.ideas)}</p>
+        <div class="mk-list${young ? " mk-pics" : ""}">${list.slice(0, 40).map((k) => `<button data-k="${esc(k)}" aria-pressed="${S.picked.includes(k)}" style="--c:${colourOf(subjOfSkill(k))}">${young ? `<img src="${A}mascot/${setOfSkill(k)?.pose ?? "practise-2"}.png" alt="">` : ""}<span><b>${esc(setOfSkill(k)?.title?.[lg] ?? canDoOf(k))}</b><small>${esc(setOfSkill(k)?.topic?.[lg] ?? "")}</small></span>${starsOf3(k)}</button>`).join("") || `<p class="pr-empty">${esc(K.none)}</p>`}</div>`;
     }
-    const ready = S.step === 2 && (young ? !!S.subj : S.picked.length > 0);
+    const ready = S.step === 2 && (bySubj ? !!S.subj : S.picked.length > 0);
     m.classList.toggle("mk-s1", S.step === 1);
     m.innerHTML = `<div class="mk-head">${S.step === 2 ? `<button class="mk-back" aria-label="${esc(K.back)}">${CHEVRON}</button>` : "<i></i>"}
         <span class="mk-dots" aria-hidden="true"><i class="on"></i><i${S.step === 2 ? ' class="on"' : ""}></i></span>
         <button class="pr-x" aria-label="${esc(K.close)}">${ICON.close}</button></div>
       <div class="mk-ask">${U.mascot ? `<img src="${A}mascot/practise-1.png" alt="">` : ""}<p>${esc(q)}</p></div>
       <div class="mk-body">${body}</div>
-      ${S.step === 2 ? `<div class="mk-foot"><button class="btn mk-go"${ready ? "" : " disabled"}>${esc(K.go)}</button></div>` : ""}`;
+      ${S.step === 2 ? `<div class="mk-foot"><button class="btn mk-go"${ready ? "" : " disabled"}>${esc(K.go)}${!bySubj && S.picked.length > 1 ? ` (${S.picked.length})` : ""}</button></div>` : ""}`;
     $(".pr-x", m).onclick = close;
     $(".mk-back", m)?.addEventListener("click", () => { S.step = 1; S.type = null; draw(); });
     m.querySelectorAll("[data-t]").forEach((b) => b.onclick = () => {
@@ -646,14 +650,14 @@ function openMakeSheet() {
       setTimeout(() => { if (!m.isConnected) return; if (t === "surprise") return start("surprise");
         S.step = 2; const sug = mySuggestions()[0], ok = PR.index.subjects.filter((x) => skillsFor(t, x).length);
         S.subj = sug && ok.includes(subjOfSkill(sug.skills[0])) ? subjOfSkill(sug.skills[0]) : ok[0];
-        S.picked = young ? [] : [pool().find((k) => sug?.skills.includes(k)) ?? pool()[0]].filter(Boolean); draw(); }, 180);
+        S.picked = young || t === "mine" ? [] : [pool().find((k) => sug?.skills.includes(k)) ?? pool()[0]].filter(Boolean); draw(); }, 180);
     });
     m.querySelectorAll("[data-s]").forEach((b) => b.onclick = () => { S.subj = b.dataset.s; draw(); });
     const qi = $(".mk-find input", m); if (qi) qi.oninput = () => { S.q = qi.value; const pos = qi.selectionStart; draw(); const n = $(".mk-find input", m); n.focus(); n.setSelectionRange(pos, pos); };
     m.querySelectorAll(".mk-words button").forEach((b) => b.onclick = () => { S.q = S.q === b.textContent ? "" : b.textContent; draw(); });
     m.querySelectorAll("[data-fs]").forEach((b) => b.onclick = () => { S.fsubj = b.dataset.fs; draw(); });
     m.querySelectorAll("[data-k]").forEach((b) => b.onclick = () => { const k = b.dataset.k; S.picked = S.type === "race" ? [k] : S.picked.includes(k) ? S.picked.filter((x) => x !== k) : [...S.picked, k]; draw(); });
-    $(".mk-go", m)?.addEventListener("click", () => start(S.type, young ? skillsFor(S.type, S.subj) : S.picked));
+    $(".mk-go", m)?.addEventListener("click", () => start(S.type, bySubj ? skillsFor(S.type, S.subj) : S.picked));
     scrollFades(m);
   };
   scrim.onclick = close;

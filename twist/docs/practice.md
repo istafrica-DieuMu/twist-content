@@ -394,12 +394,15 @@ From the top:
      a 5-minute `mixed` round of learnt skills), Wundertüte! / Surprise!
      (`mixed` on three random learnt skills; it starts at once) and
      Frag mich ab! / Quiz me! (`review`, no hints, on
-     learnt skills). A card with
+     learnt skills) and Selbst aussuchen / Pick my own (`mixed`, with
+     hints, on the learnt skills the child taps: the youngest see them as
+     picture cards with no search, from 8 with the search). A card with
      nothing to play is greyed out: "Nach deiner ersten Lektion" / "After
      your first lesson". Older bands get plainer names (Auf Zeit / Timed,
      Zufall / Random, Wiederholen / Review). No new session kinds.
    - **What:** up to 7, a subject by its picture (only subjects with
-     something for that type), and the app picks the skills. From 8, the
+     something for that type), and the app picks the skills; in Pick my
+     own the child taps the skills. From 8, the
      one search ("Suchen: Uhr, Plus, Nomen …"), topic words as chips, a
      subject filter, and the skills as cards with their short title, topic
      and stars; the suggestion is chosen already, so "Los geht's" starts at
