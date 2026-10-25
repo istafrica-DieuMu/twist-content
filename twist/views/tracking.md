@@ -10,9 +10,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30270 / 30270) |
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27985 / 27985) |
-| de-DE | Sachunterricht | 0% (0 / 112) | 0% (0 / 44) | 0 | – (0 / 0) |
+| de-DE | Sachunterricht | 4% (4 / 112) | 0% (0 / 44) | 8 | – (0 / 0) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8094 / 8094) |
-| **de-DE** | **all** | **80% (435 / 547)** | **79% (161 / 205)** | **909** | **100% (66350 / 66350)** |
+| **de-DE** | **all** | **80% (439 / 547)** | **79% (161 / 205)** | **917** | **100% (66350 / 66350)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38129 / 38130) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22136 / 22136) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8121 / 8121) |
@@ -42,14 +42,14 @@ Per voice:
 
 ## de-DE
 
-435 of 547 placed skills drafted (80%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $158; 0 clips still to make.
+439 of 547 placed skills drafted (80%): 439 lesson sets, 917 lessons, 27696 tasks. Narration so far about $158; 0 clips still to make.
 
 | year | Mathe | Deutsch | Sachunterricht | Englisch | all |
 |---|---|---|---|---|---|
-| klasse-1 | 41 / 41 | 51 / 51 | 0 / 19 |  | 92 / 111 |
-| klasse-2 | 63 / 63 | 46 / 46 | 0 / 30 |  | 109 / 139 |
-| klasse-3 | 51 / 51 | 42 / 42 | 0 / 27 |  | 93 / 120 |
-| klasse-4 | 48 / 48 | 35 / 35 | 0 / 36 |  | 83 / 119 |
+| klasse-1 | 41 / 41 | 51 / 51 | 1 / 19 |  | 93 / 111 |
+| klasse-2 | 63 / 63 | 46 / 46 | 1 / 30 |  | 110 / 139 |
+| klasse-3 | 51 / 51 | 42 / 42 | 1 / 27 |  | 94 / 120 |
+| klasse-4 | 48 / 48 | 35 / 35 | 1 / 36 |  | 84 / 119 |
 | stufe-0 |  |  |  | 14 / 14 | 14 / 14 |
 | lernjahr-1 |  |  |  | 28 / 28 | 28 / 28 |
 | lernjahr-2 |  |  |  | 16 / 16 | 16 / 16 |
@@ -90,7 +90,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Sachunterricht | Ich und die anderen | 0 / 3 |  |  |
 | klasse-1 | Sachunterricht | Mein Körper | 0 / 2 |  |  |
 | klasse-1 | Sachunterricht | Sauber und gesund | 0 / 2 |  |  |
-| klasse-1 | Sachunterricht | Natur um mich | 0 / 2 |  |  |
+| klasse-1 | Sachunterricht | Natur um mich | 1 / 2 started | 2 |  |
 | klasse-1 | Sachunterricht | Jahreszeiten und Wetter | 0 / 2 |  |  |
 | klasse-1 | Sachunterricht | Wo ist was? | 0 / 1 |  |  |
 | klasse-1 | Sachunterricht | Sicher unterwegs | 0 / 3 |  |  |
@@ -135,7 +135,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Sachunterricht | Gesund leben | 0 / 2 |  |  |
 | klasse-2 | Sachunterricht | Mein Körper gehört mir | 0 / 1 |  |  |
 | klasse-2 | Sachunterricht | Tiere und Pflanzen | 0 / 4 |  |  |
-| klasse-2 | Sachunterricht | Vom Hof auf den Tisch | 0 / 2 |  |  |
+| klasse-2 | Sachunterricht | Vom Hof auf den Tisch | 1 / 2 started | 2 |  |
 | klasse-2 | Sachunterricht | Stoffe und Naturphänomene | 0 / 5 |  |  |
 | klasse-2 | Sachunterricht | Umwelt schützen | 0 / 1 |  |  |
 | klasse-2 | Sachunterricht | Pläne und Orte | 0 / 3 |  |  |
@@ -178,7 +178,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Texte gestalten | 2 / 2 done | 4 | $0.96 |
 | klasse-3 | Sachunterricht | Rechte und Vielfalt | 0 / 3 |  |  |
 | klasse-3 | Sachunterricht | Im Inneren des Körpers | 0 / 3 |  |  |
-| klasse-3 | Sachunterricht | Tiere und Pflanzen | 0 / 4 |  |  |
+| klasse-3 | Sachunterricht | Tiere und Pflanzen | 1 / 4 started | 2 |  |
 | klasse-3 | Sachunterricht | Der Wald | 0 / 2 |  |  |
 | klasse-3 | Sachunterricht | Wasser | 0 / 4 |  |  |
 | klasse-3 | Sachunterricht | Karten lesen | 0 / 4 |  |  |
@@ -211,7 +211,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.47 |
 | klasse-4 | Deutsch | Gespräche führen | 1 / 1 done | 2 | $0.43 |
 | klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $3.00 |
-| klasse-4 | Sachunterricht | Mitbestimmen | 0 / 3 |  |  |
+| klasse-4 | Sachunterricht | Mitbestimmen | 1 / 3 started | 2 |  |
 | klasse-4 | Sachunterricht | Sicher mit Medien | 0 / 4 |  |  |
 | klasse-4 | Sachunterricht | Helfen im Notfall | 0 / 1 |  |  |
 | klasse-4 | Sachunterricht | Gesund bleiben | 0 / 1 |  |  |
@@ -530,7 +530,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 918 of 918 skill checks and 974 of 974 quick checks done; 30 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 922 of 922 skill checks and 978 of 978 quick checks done; 30 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
@@ -545,6 +545,10 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 | de-DE math klasse-2 | 63 | 63 | 64 of 64 |
 | de-DE math klasse-3 | 51 | 51 | 51 of 51 |
 | de-DE math klasse-4 | 48 | 48 | 53 of 53 |
+| de-DE world klasse-1 | 1 | 1 | 1 of 1 |
+| de-DE world klasse-2 | 1 | 1 | 1 of 1 |
+| de-DE world klasse-3 | 1 | 1 | 1 of 1 |
+| de-DE world klasse-4 | 1 | 1 | 1 of 1 |
 | en-GB fl ly-1 | 14 | 14 | 14 of 14 |
 | en-GB fl ly-2 | 28 | 28 | 28 of 28 |
 | en-GB fl ly-3 | 11 | 11 | 12 of 12 |
@@ -568,7 +572,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 112 | $0.36 | $41 |
+| de-DE | 108 | $0.36 | $39 |
 | en-GB | 0 | $0.37 | $0.00 |
 
 Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.23 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

@@ -147,7 +147,7 @@ const beforeLesson = () => ({ streak: streak(PR.child).current, badges: myBadges
 // skates there from the skill before when the child has moved on since the
 // track was last open; else it waits there (idle), or on the last (final).
 // It stands in for the stones and route it draws itself, and the mascot.
-const RIVE_THEME = { math: 2, english: 3, german: 4, french: 3 };
+const RIVE_THEME = { math: 2, english: 3, german: 4, french: 3, world: 2 };
 function trackSkate({ path, rows, cur, top, art, onStart, onNext }) {
   if (!window.rive || !rows[cur] || rows[cur].state === "locked") return null;
   const key = `twist-track-${PR.child.curriculum}-${APP.subj}`;
