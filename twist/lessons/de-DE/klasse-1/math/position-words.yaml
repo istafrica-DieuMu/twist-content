@@ -50,8 +50,11 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wo fängst du beim Lesen an?"
+            say: "Hier stehen drei Formen in einer Reihe. Was glaubst du: Auf welcher Seite fängst du beim Lesen an? Zeig mit dem Finger."
+            show: { drawn: shape, row: [square, circle, triangle], colours: [blue, red, yellow] }
           - text: "links · rechts"
-            say: "Beim Lesen fängst du links an und gehst nach rechts. Ganz links ist hier das Quadrat. Ganz rechts ist das Dreieck."
+            say: "Links! Beim Lesen fängst du links an und gehst nach rechts. Ganz links ist hier das Quadrat. Ganz rechts ist das Dreieck."
             show: { drawn: shape, row: [square, circle, triangle], colours: [blue, red, yellow] }
           - text: "zwischen"
             say: "Der Kreis ist zwischen dem Quadrat und dem Dreieck. Zwischen heißt: auf der einen Seite das eine, auf der anderen Seite das andere."
@@ -59,6 +62,8 @@ lessons:
           - text: "neben"
             say: "Das Quadrat ist neben dem Kreis. Neben heißt: direkt daneben, links oder rechts."
             show: { drawn: shape, row: [square, circle, triangle], colours: [blue, red, yellow] }
+          - text: "Wusstest du? Ungefähr 1 von 10 Menschen schreibt mit der linken Hand."
+            say: "Wusstest du? Die meisten Menschen schreiben mit der rechten Hand. Aber ungefähr einer von zehn schreibt mit links. Mit welcher Hand schreibst du?"
 
       - activity: practise
         setting: plain
@@ -84,8 +89,10 @@ lessons:
                 text: "Was ist ganz rechts?"
                 say: "Welche Form ist ganz rechts?"
                 show: { drawn: shape, row: [circle, triangle, square], colours: [blue, blue, blue] }
-                options: ["das Quadrat", "der Kreis", "das Dreieck"]
+                options: ["das Quadrat", "der Kreis", "das Dreieck", "der Pinguin"]
                 answer: "das Quadrat"
+                feedback:
+                  "der Pinguin": "Ein Pinguin? Den siehst du hier nirgends! Schau auf die letzte Form."
                 hints:
                   - "Rechts ist dort, wo du beim Lesen aufhörst."
                   - "Schau auf die letzte Form."
@@ -126,12 +133,16 @@ lessons:
           - support: some
             tasks:
               - id: l1-s1
-                type: multiple_choice
-                text: "Was ist ganz links?"
-                say: "Welche Form ist ganz links?"
+                type: image_multiple_choice
+                text: "Was ist ganz links? Tipp auf die Form."
+                say: "Welche Form ist ganz links? Tipp sie unten an."
                 show: { drawn: shape, row: [rectangle, circle, triangle], colours: [yellow, blue, red] }
-                options: ["das Rechteck", "das Dreieck", "der Kreis"]
-                answer: "das Rechteck"
+                options:
+                  - { drawn: shape, kind: triangle, colour: red }
+                  - { drawn: shape, kind: rectangle, colour: yellow }
+                  - { drawn: shape, kind: circle, colour: blue }
+                answer: rectangle
+                option_audio: false
                 hints: ["Links fängst du beim Lesen an."]
               - id: l1-s2
                 type: multiple_choice
@@ -168,12 +179,16 @@ lessons:
           - support: none
             tasks:
               - id: l1-n1
-                type: multiple_choice
-                text: "Was ist ganz links?"
-                say: "Welche Form ist ganz links?"
+                type: image_multiple_choice
+                text: "Was ist ganz links? Tipp auf die Form."
+                say: "Welche Form ist ganz links? Tipp sie unten an."
                 show: { drawn: shape, row: [circle, square, rectangle], colours: [purple, purple, purple] }
-                options: ["der Kreis", "das Rechteck", "das Quadrat"]
-                answer: "der Kreis"
+                options:
+                  - { drawn: shape, kind: rectangle, colour: purple }
+                  - { drawn: shape, kind: square, colour: purple }
+                  - { drawn: shape, kind: circle, colour: purple }
+                answer: circle
+                option_audio: false
               - id: l1-n2
                 type: multiple_choice
                 text: "Was ist ganz rechts?"
@@ -277,8 +292,11 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wo ist oben?"
+            say: "Hier liegen drei Formen übereinander, wie ein Turm. Was glaubst du: Welche Form ist ganz oben?"
+            show: { drawn: shape, column: [circle, triangle, rectangle], colours: [red, yellow, blue] }
           - text: "oben · unten"
-            say: "Hier liegen Formen übereinander. Ganz oben ist der Kreis. Ganz unten ist das Rechteck. Das Dreieck ist in der Mitte."
+            say: "Der Kreis! Ganz oben ist der Kreis. Ganz unten ist das Rechteck. Das Dreieck ist in der Mitte."
             show: { drawn: shape, column: [circle, triangle, rectangle], colours: [red, yellow, blue] }
           - text: "auf · unter · über"
             say: "Die Tasse steht auf dem Tisch. Die Katze schläft unter dem Tisch. Die Lampe hängt über dem Tisch. Über und unter sind Gegenteile."
@@ -346,12 +364,16 @@ lessons:
           - support: some
             tasks:
               - id: l2-s1
-                type: multiple_choice
-                text: "Was ist ganz oben?"
-                say: "Welche Form ist ganz oben?"
+                type: image_multiple_choice
+                text: "Was ist ganz oben? Tipp auf die Form."
+                say: "Welche Form ist ganz oben im Turm? Tipp sie unten an."
                 show: { drawn: shape, column: [square, rectangle, triangle], colours: [purple, orange, green] }
-                options: ["das Quadrat", "das Dreieck", "das Rechteck"]
-                answer: "das Quadrat"
+                options:
+                  - { drawn: shape, kind: triangle, colour: green }
+                  - { drawn: shape, kind: rectangle, colour: orange }
+                  - { drawn: shape, kind: square, colour: purple }
+                answer: square
+                option_audio: false
                 hints: ["Oben ist zum Himmel hin."]
               - id: l2-s2
                 type: multiple_choice
@@ -367,6 +389,8 @@ lessons:
                 say: "Die Katze sitzt auf dem Stuhl. Wo ist dann der Stuhl?"
                 options: ["unter der Katze", "auf der Katze", "hinter der Katze"]
                 answer: "unter der Katze"
+                feedback:
+                  "auf der Katze": "Ein Stuhl auf der Katze? Die arme Katze! Die Katze sitzt oben, der Stuhl ist ..."
                 hints: ["Die Katze ist oben. Der Stuhl ist ..."]
               - id: l2-s4
                 type: true_false
@@ -385,12 +409,16 @@ lessons:
           - support: none
             tasks:
               - id: l2-n1
-                type: multiple_choice
-                text: "Was ist ganz unten?"
-                say: "Welche Form ist ganz unten?"
+                type: image_multiple_choice
+                text: "Was ist ganz unten? Tipp auf die Form."
+                say: "Welche Form ist ganz unten im Turm? Tipp sie unten an."
                 show: { drawn: shape, column: [rectangle, circle, triangle], colours: [green, green, green] }
-                options: ["das Dreieck", "das Rechteck", "der Kreis"]
-                answer: "das Dreieck"
+                options:
+                  - { drawn: shape, kind: circle, colour: green }
+                  - { drawn: shape, kind: triangle, colour: green }
+                  - { drawn: shape, kind: rectangle, colour: green }
+                answer: triangle
+                option_audio: false
               - id: l2-n2
                 type: multiple_choice
                 text: "Was ist in der Mitte?"

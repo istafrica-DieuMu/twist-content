@@ -8,10 +8,10 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (29500 / 29500) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27342 / 27342) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (29707 / 29707) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27533 / 27533) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (7879 / 7879) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (64720 / 64720)** |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (65118 / 65118)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (37659 / 37659) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (21781 / 21781) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8121 / 8121) |
@@ -22,9 +22,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 132741 clips, 182.4 h | about $222 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 132741 clips | about $105 | estimated the same way |
-| **Total** | | | **about $335** | |
+| Narration | google/gemini-3.8-flash-tts | 133139 clips, 183.7 h | about $223 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 133139 clips | about $106 | estimated the same way |
+| **Total** | | | **about $337** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -32,16 +32,16 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 18642 | 18512 (99%) | 0 | 1225 min | $40 |
+| gemini-puck | 18644 | 18513 (99%) | 0 | 1225 min | $40 |
 | gemini-puck-en | 18187 | 18064 (99%) | 0 | 1409 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
-| gemini-sulafat | 46201 | 45762 (99%) | 0 | 3620 min | $110 |
+| gemini-sulafat | 46597 | 46149 (99%) | 0 | 3695 min | $112 |
 | gemini-sulafat-en | 47644 | 47200 (99%) | 0 | 4581 min | $130 |
 | gemini-sulafat-fr | 1302 | 1299 (100%) | 0 | 76 min | $2.53 |
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $150; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $151; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -58,37 +58,37 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
 | klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $2.13 |
-| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.65 |
-| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.11 |
-| klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.55 |
-| klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.47 |
-| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.21 |
-| klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $1.37 |
-| klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.46 |
-| klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $1.13 |
-| klasse-1 | Deutsch | Buchstaben | 12 / 12 done | 50 | $5.08 |
-| klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 | $0.26 |
-| klasse-1 | Deutsch | Silben lesen | 4 / 4 done | 8 | $0.74 |
-| klasse-1 | Deutsch | Erste Wörter schreiben | 3 / 3 done | 6 | $0.73 |
-| klasse-1 | Deutsch | Blitzlesen | 2 / 2 done | 4 | $0.42 |
-| klasse-1 | Deutsch | Erste Wörter lesen | 2 / 2 done | 4 | $0.32 |
-| klasse-1 | Deutsch | Nomen | 3 / 3 done | 6 | $0.94 |
-| klasse-1 | Deutsch | Erste Sätze lesen | 2 / 2 done | 4 | $0.38 |
-| klasse-1 | Deutsch | Erste Sätze schreiben | 3 / 3 done | 6 | $0.80 |
-| klasse-1 | Deutsch | Das ABC | 1 / 1 done | 2 | $0.26 |
-| klasse-1 | Deutsch | Erste Texte lesen | 1 / 1 done | 2 | $0.31 |
-| klasse-1 | Deutsch | Texte verstehen | 2 / 2 done | 4 | $0.46 |
-| klasse-1 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 | $0.22 |
-| klasse-1 | Deutsch | Sprechen und Zuhören | 3 / 3 done | 6 | $1.29 |
-| klasse-1 | Deutsch | Erzählen | 1 / 1 done | 2 | $0.55 |
-| klasse-1 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 | $0.51 |
-| klasse-1 | Deutsch | Bildzeichen und Diagramme | 2 / 2 done | 4 | $0.69 |
-| klasse-1 | Deutsch | Sprache untersuchen | 1 / 1 done | 2 | $0.38 |
-| klasse-1 | Deutsch | Texte schreiben | 1 / 1 done | 2 | $0.22 |
-| klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.27 |
+| klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.77 |
+| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.21 |
+| klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.72 |
+| klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.52 |
+| klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.33 |
+| klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $1.47 |
+| klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.52 |
+| klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $1.15 |
+| klasse-1 | Deutsch | Buchstaben | 12 / 12 done | 50 | $5.36 |
+| klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 | $0.28 |
+| klasse-1 | Deutsch | Silben lesen | 4 / 4 done | 8 | $0.81 |
+| klasse-1 | Deutsch | Erste Wörter schreiben | 3 / 3 done | 6 | $0.78 |
+| klasse-1 | Deutsch | Blitzlesen | 2 / 2 done | 4 | $0.44 |
+| klasse-1 | Deutsch | Erste Wörter lesen | 2 / 2 done | 4 | $0.36 |
+| klasse-1 | Deutsch | Nomen | 3 / 3 done | 6 | $0.99 |
+| klasse-1 | Deutsch | Erste Sätze lesen | 2 / 2 done | 4 | $0.41 |
+| klasse-1 | Deutsch | Erste Sätze schreiben | 3 / 3 done | 6 | $0.86 |
+| klasse-1 | Deutsch | Das ABC | 1 / 1 done | 2 | $0.28 |
+| klasse-1 | Deutsch | Erste Texte lesen | 1 / 1 done | 2 | $0.33 |
+| klasse-1 | Deutsch | Texte verstehen | 2 / 2 done | 4 | $0.49 |
+| klasse-1 | Deutsch | Groß- und Kleinschreibung | 1 / 1 done | 2 | $0.24 |
+| klasse-1 | Deutsch | Sprechen und Zuhören | 3 / 3 done | 6 | $1.35 |
+| klasse-1 | Deutsch | Erzählen | 1 / 1 done | 2 | $0.57 |
+| klasse-1 | Deutsch | Geschichten und Gedichte | 1 / 1 done | 2 | $0.53 |
+| klasse-1 | Deutsch | Bildzeichen und Diagramme | 2 / 2 done | 4 | $0.72 |
+| klasse-1 | Deutsch | Sprache untersuchen | 1 / 1 done | 2 | $0.40 |
+| klasse-1 | Deutsch | Texte schreiben | 1 / 1 done | 2 | $0.23 |
+| klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.28 |
 | klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $3.01 |
-| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.71 |
-| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $4.12 |
+| klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.94 |
+| klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $4.15 |
 | klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.36 |
 | klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $4.52 |
 | klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.95 |
@@ -523,7 +523,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 0 | $0.34 | $0.00 |
+| de-DE | 0 | $0.35 | $0.00 |
 | en-GB | 0 | $0.37 | $0.00 |
 
 Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.23 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

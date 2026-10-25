@@ -19,7 +19,7 @@ metadata:
   builds_on: [math.add-sub-to-20.add-meaning]
   also_practises: [math.add-sub-to-20.add-meaning]
   vocabulary: { de: [minus, weg, wegnehmen, bleiben, übrig, Minusaufgabe] }
-  forms: [drawn, text, audio]
+  forms: [drawn, picture, text, audio]
   drawn: [ten-frame]
   facets: []
   parts:
@@ -67,8 +67,8 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - text: "5"
-            say: "Auf dem Teller liegen fünf Kekse."
+          - text: "Wie viele bleiben übrig?"
+            say: "Auf dem Teller liegen fünf Kekse. Gleich werden zwei gegessen. Was glaubst du: Wie viele Kekse bleiben übrig?"
             show: { drawn: ten-frame, filled: 5 }
           - text: "5 − 2"
             say: "Zwei Kekse werden gegessen. Sie sind weg. Wegnehmen heißt: minus. Fünf minus zwei."
@@ -76,6 +76,8 @@ lessons:
           - text: "5 − 2 = 3"
             say: "Drei Kekse bleiben übrig. Fünf minus zwei gleich drei. Die erste Zahl sagt, wie viele am Anfang da waren."
             show: { drawn: ten-frame, filled: 5, cross: 2 }
+          - text: "Wusstest du? Ein Hai verliert in seinem Leben Tausende Zähne."
+            say: "Wusstest du? Ein Hai verliert in seinem Leben Tausende Zähne. Ist ein Zahn weg, rückt einfach ein neuer nach."
 
       - activity: practise
         setting: plain
@@ -163,11 +165,14 @@ lessons:
                 hints: ["Zuerst neun."]
               - id: l1-s2
                 type: multiple_choice
-                text: "Wie viele bleiben übrig?"
-                show: { drawn: ten-frame, filled: 5, cross: 2 }
+                text: "Im Schälchen liegen 5 Erdbeeren. Der Hund schnappt sich 2. Wie viele bleiben übrig?"
+                say: "Im Schälchen liegen fünf Erdbeeren. Der Hund schnappt sich zwei. Wie viele Erdbeeren bleiben übrig?"
+                show: { object: strawberry, count: 5, gone: 2 }
                 options: ["2", "3", "4"]
                 answer: "3"
-                hints: ["Ohne Kreuz zählen."]
+                feedback:
+                  "2": "Zwei hat der freche Hund im Maul. Wie viele liegen noch im Schälchen?"
+                hints: ["Zähl nur die Erdbeeren, die noch da sind."]
               - id: l1-s3
                 type: multiple_choice
                 text: "Im Korb liegen 6 Äpfel. Mama nimmt 1 heraus.\nWelche Aufgabe passt?"
@@ -312,10 +317,13 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Plus oder minus?"
+            say: "Auf dem Tisch liegen sechs Äpfel. Vier werden gegessen. Was glaubst du: Ist das plus oder minus?"
+            show: { object: apple, count: 6, gone: 4 }
           - text: "dazu → plus"
             say: "Kommt etwas dazu, wird es mehr: plus. Zum Beispiel: Zwei Kinder kommen dazu."
           - text: "weg → minus"
-            say: "Geht etwas weg, wird es weniger: minus. Zum Beispiel: Zwei Kinder gehen weg."
+            say: "Geht etwas weg, wird es weniger: minus. Zum Beispiel: Zwei Kinder gehen weg. Und die Äpfel? Gegessen ist weg, also minus!"
           - text: "6 − 4 = 2"
             say: "Eine Geschichte zu sechs minus vier: Sechs Äpfel liegen auf dem Tisch. Vier werden gegessen. Zwei bleiben übrig."
             show: { drawn: ten-frame, filled: 6, cross: 4 }
@@ -547,6 +555,13 @@ lessons:
             show: { object: apple, groups: [4, 3] }
             options: ["plus", "minus"]
             answer: "plus"
+          - id: l2-c16
+            part: plus-or-minus
+            type: true_false
+            text: "8 Kinder sind auf dem Spielplatz. 2 kommen dazu. Passt 8 − 2?"
+            say: "Acht Kinder sind auf dem Spielplatz. Zwei kommen dazu. Passt acht minus zwei?"
+            show: { object: child, groups: [8, 2] }
+            answer: false
           - id: l2-c9
             part: story-for-sum
             type: multiple_choice
@@ -586,6 +601,13 @@ lessons:
             say: "Welche Geschichte passt zu zehn minus vier?"
             options: ["In der Tüte sind 10 Bonbons, Lea isst 4.", "In der Tüte sind 10 Bonbons, Lea legt 4 dazu.", "In der Tüte sind 4 Bonbons, Lea isst 10."]
             answer: "In der Tüte sind 10 Bonbons, Lea isst 4."
+          - id: l2-c18
+            part: story-for-sum
+            type: true_false
+            text: "7 Schiffe sind im Hafen, 5 fahren hinaus. Passt die Geschichte zu 7 − 5?"
+            say: "Sieben Schiffe sind im Hafen. Fünf fahren hinaus. Passt die Geschichte zu sieben minus fünf?"
+            show: { object: ship, count: 7, gone: 5 }
+            answer: true
           - id: l2-c14
             part: picture
             type: multiple_choice
@@ -602,12 +624,12 @@ lessons:
             show: { object: balloon, count: 7, gone: 3 }
             options: ["4", "3", "10"]
             answer: "4"
-          - id: l2-c16
-            part: plus-or-minus
+          - id: l2-c19
+            part: story
             type: true_false
-            text: "8 Kinder sind auf dem Spielplatz. 2 kommen dazu. Passt 8 − 2?"
-            say: "Acht Kinder sind auf dem Spielplatz. Zwei kommen dazu. Passt acht minus zwei?"
-            show: { object: child, groups: [8, 2] }
+            text: "7 Kinder sitzen auf der Bank. 4 stehen auf und gehen. Es sitzen noch 2. Stimmt das?"
+            say: "Sieben Kinder sitzen auf der Bank. Vier stehen auf und gehen. Es sitzen noch zwei. Stimmt das?"
+            show: { object: child, count: 7, gone: 4 }
             answer: false
           - id: l2-c17
             part: story-for-sum
@@ -616,20 +638,6 @@ lessons:
             say: "Welche Geschichte passt zu vier minus eins?"
             options: ["4 Hasen sitzen auf der Wiese, 1 hoppelt weg.", "4 Hasen sitzen auf der Wiese, 1 hoppelt dazu.", "1 Hase sitzt auf der Wiese, 4 hoppeln weg."]
             answer: "4 Hasen sitzen auf der Wiese, 1 hoppelt weg."
-          - id: l2-c18
-            part: story-for-sum
-            type: true_false
-            text: "7 Schiffe sind im Hafen, 5 fahren hinaus. Passt die Geschichte zu 7 − 5?"
-            say: "Sieben Schiffe sind im Hafen. Fünf fahren hinaus. Passt die Geschichte zu sieben minus fünf?"
-            show: { object: ship, count: 7, gone: 5 }
-            answer: true
-          - id: l2-c19
-            part: story
-            type: true_false
-            text: "7 Kinder sitzen auf der Bank. 4 stehen auf und gehen. Es sitzen noch 2. Stimmt das?"
-            say: "Sieben Kinder sitzen auf der Bank. Vier stehen auf und gehen. Es sitzen noch zwei. Stimmt das?"
-            show: { object: child, count: 7, gone: 4 }
-            answer: false
           - id: l2-c20
             part: plus-or-minus
             type: multiple_choice

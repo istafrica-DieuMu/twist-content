@@ -156,7 +156,7 @@ Children fill the gaps in words and build words from syllables and letters. Less
 | 1. Was fehlt? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Wörter bauen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 39, ordering 21. Builds on: `lit-de.spelling.write-by-sound`. Misconceptions addressed: 2.
+Task types: fill_in_blank 31, ordering 20, audio_choice 3, true_false 3, multiple_choice 2, image_multiple_choice 1. Builds on: `lit-de.spelling.write-by-sound`. Misconceptions addressed: 2.
 
 ## Die passende Überschrift (The right heading)
 
@@ -574,7 +574,7 @@ Taking information from simple tables, plans and charts. Lesson 1 reads short ta
 | 1. Tabellen und Pläne | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Diagramme lesen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, true_false 15, image_multiple_choice 8. Builds on: `lit-de.texts-media.pictograms`, `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, true_false 15, image_multiple_choice 10. Builds on: `lit-de.texts-media.pictograms`, `lit-de.decoding.first-texts`. Misconceptions addressed: 2.
 
 ## Die Anlauttabelle (The sound chart)
 
@@ -757,7 +757,7 @@ Children add a one-digit number that crosses ten by filling up to ten first and 
 | 2. Zerlegen und weiterrechnen | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
 | 3. Rechengeschichten | no | 22 | warm-up, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 51, drag_and_drop_count 4, fill_in_blank 12, point_on_line 5, true_false 3, text_input 14. Builds on: `math.add-sub-to-20.missing-addend`, `math.numbers-to-20.partition-to-10`, `math.add-sub-to-20.analog-to-20`. Misconceptions addressed: 5.
+Task types: multiple_choice 46, drag_and_drop_count 4, text_input 17, true_false 5, fill_in_blank 12, point_on_line 5. Builds on: `math.add-sub-to-20.missing-addend`, `math.numbers-to-20.partition-to-10`, `math.add-sub-to-20.analog-to-20`. Misconceptions addressed: 5.
 
 ## Was bedeutet plus? (What does plus mean?)
 
@@ -1052,7 +1052,7 @@ Zahlenmauern (each stone is the two stones under it added together) and Rechenke
 | 1. Zahlenmauern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Rechenketten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 2, fill_in_blank 39, true_false 12, multiple_choice 7. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
+Task types: text_input 4, fill_in_blank 37, true_false 12, multiple_choice 7. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
 
 ## Zahlen ordnen bis 10 (Ordering numbers to 10)
 
@@ -1123,7 +1123,7 @@ Lesson 1 finds things in a row by links, rechts, neben and zwischen; lesson 2 us
 | 1. Links, rechts, zwischen | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Oben, unten, vor, hinter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 42, true_false 16. Builds on: . Misconceptions addressed: 2.
+Task types: multiple_choice 38, true_false 16, image_multiple_choice 4. Builds on: . Misconceptions addressed: 2.
 
 ## Sachaufgaben: Frage, Rechnung, Antwort (Word problems: question, calculation, answer)
 
@@ -1250,7 +1250,7 @@ Lesson 1 folds in the mind: a figure is symmetrisch when both halves fit exactly
 | 1. Passt es beim Falten? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Die Symmetrieachse | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, true_false 25. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 32, true_false 27, image_multiple_choice 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
 
 ## Strichlisten (Tally charts)
 
@@ -1264,7 +1264,7 @@ Lesson 1 reads a Strichliste: four strokes and the fifth across make a bundle of
 | 1. Striche zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Eine Umfrage in der Klasse | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, text_input 1, true_false 12, image_multiple_choice 10. Builds on: `math.data.sort-classify`, `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, text_input 3, true_false 12, image_multiple_choice 10. Builds on: `math.data.sort-classify`, `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 2.
 
 ## Die Zahlen von 11 bis 20 (The numbers 11 to 20)
 
@@ -2205,7 +2205,7 @@ Naming and comparing Rechenwege. Lesson 1 names the way a calculation is worked 
 | 1. Welcher Rechenweg ist das? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Welcher Weg passt? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 4, multiple_choice 41, fill_in_blank 8, true_false 7. Builds on: `math.add-sub-to-100.clever`. Misconceptions addressed: 3.
+Task types: text_input 4, multiple_choice 36, true_false 12, fill_in_blank 8. Builds on: `math.add-sub-to-100.clever`. Misconceptions addressed: 3.
 
 ## Alle Geteiltaufgaben (All the division facts)
 

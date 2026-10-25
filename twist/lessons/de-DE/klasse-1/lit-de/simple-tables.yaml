@@ -71,12 +71,15 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - text: "Klassendienste"
-            say: "Das ist eine Tabelle. Hier steht, wer in der Klasse welchen Dienst hat. Ganz oben steht, was in jeder Spalte zu finden ist: der Dienst und das Kind. Jede Zeile gehört zu einem Dienst."
+          - text: "Klassendienste\nWer gießt die Blumen?"
+            say: "Das ist eine Tabelle. Hier steht, wer in der Klasse welchen Dienst hat. Was glaubst du: Wer gießt die Blumen?"
             show: { drawn: table, rows: [[Dienst, Kind], [Tafel, Ben], [Blumen, Lea], [Tür, Can]] }
           - text: "Klassendienste"
-            say: "Wer gießt die Blumen? Such zuerst die Zeile mit dem Wort Blumen. Dann lies in dieser Zeile weiter: Lea. Lea gießt die Blumen."
+            say: "Such zuerst die Zeile mit dem Wort Blumen. Dann lies in dieser Zeile weiter: Lea. Lea gießt die Blumen."
             show: { drawn: table, rows: [[Dienst, Kind], [Tafel, Ben], [Blumen, Lea], [Tür, Can]], mark: [[2, 0], [2, 1]] }
+          - text: "Klassendienste"
+            say: "Ganz oben steht, was in jeder Spalte zu finden ist: der Dienst und das Kind. Jede Zeile gehört zu einem Dienst. Darum findest du alles so schnell."
+            show: { drawn: table, rows: [[Dienst, Kind], [Tafel, Ben], [Blumen, Lea], [Tür, Can]] }
           - text: "Stundenplan"
             say: "Ein Stundenplan ist auch eine Tabelle. Jeder Tag hat eine Spalte. Hast du am Dienstag Sport? Such oben den Dienstag und lies nach unten: Mathe, Kunst, Deutsch. Kein Sport. Sport ist am Montag."
             show: { drawn: table, rows: [[Stunde, Montag, Dienstag], ["1.", Deutsch, Mathe], ["2.", Mathe, Kunst], ["3.", Sport, Deutsch]], mark: [[0, 2], [1, 2], [2, 2], [3, 2]] }
@@ -148,6 +151,13 @@ lessons:
 
           - support: some
             tasks:
+              - id: l1-s4
+                type: true_false
+                text: "Sitzplan\n\nFinn und Lotta sitzen an einem Tisch."
+                say: "Lies den Sitzplan. Stimmt das? Finn und Lotta sitzen an einem Tisch."
+                show: { drawn: table, rows: [[Tisch 1, Tisch 2, Tisch 3], [Ali, Tom, Finn], [Nele, Sara, Lotta]] }
+                answer: true
+                hints: ["Such den Namen Finn. Wer steht noch in dieser Spalte?"]
               - id: l1-s1
                 type: multiple_choice
                 text: "Geburtstage\n\nWer hat im Mai Geburtstag?"
@@ -172,13 +182,6 @@ lessons:
                 options: ["am Mittwoch", "am Dienstag", "am Montag"]
                 answer: "am Mittwoch"
                 hints: ["Such das Wort Kunst. Welcher Tag steht oben in dieser Spalte?"]
-              - id: l1-s4
-                type: true_false
-                text: "Sitzplan\n\nFinn und Lotta sitzen an einem Tisch."
-                say: "Lies den Sitzplan. Stimmt das? Finn und Lotta sitzen an einem Tisch."
-                show: { drawn: table, rows: [[Tisch 1, Tisch 2, Tisch 3], [Ali, Tom, Finn], [Nele, Sara, Lotta]] }
-                answer: true
-                hints: ["Such den Namen Finn. Wer steht noch in dieser Spalte?"]
               - id: l1-s5
                 type: image_multiple_choice
                 text: "Pausenplan\n\nWas holst du am Montag aus der Spielkiste?"
@@ -205,12 +208,12 @@ lessons:
                 options: ["Tafel", "Müll", "Tür"]
                 answer: "Tafel"
               - id: l1-n3
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Mittagessen\n\nWas gibt es am Mittwoch?"
-                say: "Lies den Plan. Was gibt es am Mittwoch zu essen?"
+                say: "Lies den Plan. Was gibt es am Mittwoch zu essen? Tippe auf das Bild."
                 show: { drawn: table, rows: [[Tag, Essen], [Montag, Nudeln], [Dienstag, Suppe], [Mittwoch, Pizza], [Donnerstag, Fisch]] }
-                options: ["Pizza", "Suppe", "Fisch"]
-                answer: "Pizza"
+                options: [{ object: pasta }, { object: pizza }, { object: fish }]
+                answer: pizza
               - id: l1-n4
                 type: true_false
                 text: "Mittagessen\n\nAm Montag gibt es Fisch."
@@ -299,8 +302,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Welches Tier mögen die meisten?"
+            say: "Die Klasse 1b hat gefragt: Welches Tier magst du am liebsten? Zur Wahl stehen Hund, Katze und Hase. Was glaubst du: Welches Tier haben die meisten Kinder gewählt?"
+            show: { objects: [dog, cat, rabbit] }
           - text: "Unsere Lieblingstiere"
-            say: "Die Klasse 1b hat gefragt: Welches Tier magst du am liebsten? Das Diagramm zeigt die Antworten. Jede Säule gehört zu einem Tier. Unten steht der Name, an der Seite stehen die Zahlen."
+            say: "Die meisten haben den Hund gewählt. Das siehst du hier: Das Diagramm zeigt die Antworten. Jede Säule gehört zu einem Tier. Unten steht der Name, an der Seite stehen die Zahlen."
             show: { drawn: bar-chart, rows: [["Hund", 6], ["Katze", 4], ["Hase", 2]] }
           - text: "Unsere Lieblingstiere\nWie viele Kinder mögen Katzen?"
             say: "Wie viele Kinder mögen Katzen am liebsten? Such unten das Wort Katze. Geh an der Säule nach oben bis zum Ende. Schau, welche Zahl daneben steht: vier."
@@ -308,6 +314,8 @@ lessons:
           - text: "höchste Säule: am meisten\nniedrigste Säule: am wenigsten"
             say: "Die höchste Säule zeigt, was die meisten Kinder mögen: den Hund. Die niedrigste Säule zeigt, was die wenigsten Kinder mögen: den Hasen."
             show: { drawn: bar-chart, rows: [["Hund", 6], ["Katze", 4], ["Hase", 2]] }
+          - text: "Wusstest du? Das erste Säulendiagramm ist über 200 Jahre alt."
+            say: "Wusstest du? Das erste Säulendiagramm hat ein Mann aus Schottland gezeichnet, vor über zweihundert Jahren. Er hieß William Playfair. Heute siehst du solche Diagramme überall: in der Zeitung, im Fernsehen und jetzt auch hier."
 
       - activity: practise
         setting: in-context
@@ -383,12 +391,12 @@ lessons:
                 answer: "2"
                 hints: ["Such unten das Wort Regen."]
               - id: l2-s2
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Unsere Haustiere\nWelches Tier haben am wenigsten Kinder?"
-                say: "Lies das Diagramm. Welches Tier haben am wenigsten Kinder zu Hause?"
+                say: "Lies das Diagramm. Welches Tier haben am wenigsten Kinder zu Hause? Tippe auf das Bild."
                 show: { drawn: bar-chart, rows: [["Katze", 6], ["Hund", 4], ["Fisch", 1]] }
-                options: ["Fisch", "Katze", "Hund"]
-                answer: "Fisch"
+                options: [{ object: fish }, { object: cat }, { object: dog }]
+                answer: fish
                 hints: ["Am wenigsten: die niedrigste Säule."]
               - id: l2-s3
                 type: true_false
@@ -416,6 +424,12 @@ lessons:
 
           - support: none
             tasks:
+              - id: l2-n3
+                type: true_false
+                text: "Das Wetter in dieser Woche\nAn 3 Tagen war es wolkig."
+                say: "Lies das Diagramm. Stimmt das? An drei Tagen war es wolkig."
+                show: { drawn: bar-chart, rows: [["Sonne", 4], ["Regen", 2], ["Wolken", 1]] }
+                answer: false
               - id: l2-n1
                 type: multiple_choice
                 text: "Unsere Spiele in der Pause\nWie viele Kinder spielen Fangen?"
@@ -430,12 +444,6 @@ lessons:
                 show: { drawn: bar-chart, rows: [["Fußball", 7], ["Fangen", 6], ["Seilspringen", 3]] }
                 options: ["Seilspringen", "Fußball", "Fangen"]
                 answer: "Seilspringen"
-              - id: l2-n3
-                type: true_false
-                text: "Das Wetter in dieser Woche\nAn 3 Tagen war es wolkig."
-                say: "Lies das Diagramm. Stimmt das? An drei Tagen war es wolkig."
-                show: { drawn: bar-chart, rows: [["Sonne", 4], ["Regen", 2], ["Wolken", 1]] }
-                answer: false
               - id: l2-n4
                 type: image_multiple_choice
                 text: "Unsere Haustiere\nWelches Tier haben 6 Kinder?"

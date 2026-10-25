@@ -69,12 +69,17 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wo steht die Frage?"
+            say: "Hör gut zu: Lena hat acht Sticker. Sie bekommt fünf dazu. Wie viele Sticker hat sie jetzt? Was glaubst du: Steht die Frage am Anfang oder am Ende?"
+            show: { object: sticker, groups: [8, 5] }
           - text: "Frage · Rechnung · Antwort"
             say: "Eine Sachaufgabe löst du in drei Schritten. Zuerst: Wie heißt die Frage? Dann: Welche Rechnung passt? Zum Schluss schreibst du einen Antwortsatz."
           - text: "Lena hat 8 Sticker. Sie bekommt 5 dazu. Wie viele Sticker hat sie jetzt?"
             say: "Lena hat acht Sticker. Sie bekommt fünf dazu. Wie viele Sticker hat sie jetzt? Die Frage steht am Ende: Wie viele Sticker hat sie jetzt?"
           - text: "R: 8 + 5 = 13 | A: Lena hat jetzt 13 Sticker."
             say: "Die Rechnung: acht plus fünf ist dreizehn. Die Antwort: Lena hat jetzt dreizehn Sticker."
+          - text: "Wusstest du? Schon vor mehr als 3500 Jahren hat in Ägypten jemand Rechengeschichten aufgeschrieben."
+            say: "Wusstest du? Schon vor mehr als dreitausendfünfhundert Jahren hat in Ägypten jemand Rechengeschichten aufgeschrieben, zum Beispiel über Brote, die geteilt werden."
 
       - activity: practise
         setting: in-context
@@ -295,9 +300,9 @@ lessons:
         mode: worked-examples
         screens:
           - text: "Tim ist 7 Jahre alt. Er hat 12 Bälle. Er verschenkt 4. Wie viele Bälle hat er noch?"
-            say: "Tim ist sieben Jahre alt. Er hat zwölf Bälle. Er verschenkt vier. Wie viele Bälle hat er noch? Hier stehen drei Zahlen, aber du brauchst nur zwei."
+            say: "Tim ist sieben Jahre alt. Er hat zwölf Bälle. Er verschenkt vier. Wie viele Bälle hat er noch? Hier stehen drei Zahlen. Was glaubst du: Brauchst du alle drei?"
           - text: "7 Jahre: unwichtig | 12 − 4 = 8"
-            say: "Wie alt Tim ist, hilft bei der Frage nicht. Das ist unwichtig. Wichtig sind die Bälle: zwölf minus vier ist acht."
+            say: "Nein, du brauchst nur zwei. Wie alt Tim ist, hilft bei der Frage nicht. Das ist unwichtig. Wichtig sind die Bälle: zwölf minus vier ist acht."
           - text: "A: Tim hat noch 8 Bälle."
             say: "Der Antwortsatz nimmt die Wörter der Frage auf: Wie viele Bälle hat er noch? Tim hat noch acht Bälle."
 
@@ -336,8 +341,10 @@ lessons:
                 type: multiple_choice
                 text: "Wie viele Bücher hat Lea jetzt?\nWelcher Antwortsatz passt?"
                 say: "Wie viele Bücher hat Lea jetzt? Welcher Antwortsatz passt?"
-                options: ["Lea hat jetzt 14 Bücher.", "Lea wohnt im 3. Stock.", "Lea leiht sich 5 Bücher."]
+                options: ["Lea hat jetzt 14 Bücher.", "Lea wohnt im 3. Stock.", "Lea leiht sich 5 Bücher.", "Lea isst 14 Bücher zum Frühstück."]
                 answer: "Lea hat jetzt 14 Bücher."
+                feedback:
+                  "Lea isst 14 Bücher zum Frühstück.": "Bücher zum Frühstück? Lieber nicht! Gefragt ist, wie viele Bücher Lea jetzt hat."
                 hints:
                   - "Der Antwortsatz beantwortet die Frage."
                   - "Gefragt ist, wie viele Bücher sie jetzt hat."
@@ -494,6 +501,15 @@ lessons:
             show: { object: bird, groups: [9, 7] }
             options: ["Wie viele Vögel sitzen jetzt auf dem Ast?", "Wie viele kommen dazu?", "Wo ist der Ast?"]
             answer: "Wie viele Vögel sitzen jetzt auf dem Ast?"
+          - id: l2-c10
+            part: calc
+            type: fill_in_blank
+            text: "Nina hat 12 Muscheln. Sie verliert 3. Wie viele Muscheln hat sie noch?\nSchreib die Rechnung."
+            say: "Nina hat zwölf Muscheln. Sie verliert drei. Wie viele Muscheln hat sie noch? Schreib die Rechnung."
+            show: { object: shell, count: 12, gone: 3 }
+            frame: "_ _ _ = _"
+            options: ["12", "3", "9", "15", "+", "−"]
+            answer: ["12", "−", "3", "9"]
           - id: l2-c7
             part: question
             type: multiple_choice
@@ -518,15 +534,13 @@ lessons:
             show: { object: cow, count: 16, gone: 9 }
             options: ["Wie viele Kühe bleiben im Stall?", "Wie viele gehen auf die Weide?", "Wo ist die Weide?"]
             answer: "Wie viele Kühe bleiben im Stall?"
-          - id: l2-c10
+          - id: l2-c12
             part: calc
-            type: fill_in_blank
-            text: "Nina hat 12 Muscheln. Sie verliert 3. Wie viele Muscheln hat sie noch?\nSchreib die Rechnung."
-            say: "Nina hat zwölf Muscheln. Sie verliert drei. Wie viele Muscheln hat sie noch? Schreib die Rechnung."
-            show: { object: shell, count: 12, gone: 3 }
-            frame: "_ _ _ = _"
-            options: ["12", "3", "9", "15", "+", "−"]
-            answer: ["12", "−", "3", "9"]
+            type: text_input
+            text: "Lina hat 19 Sticker. Sie verschenkt 7. Wie viele Sticker hat sie noch?"
+            say: "Lina hat neunzehn Sticker. Sie verschenkt sieben. Wie viele Sticker hat sie noch?"
+            show: { object: sticker, count: 19, gone: 7 }
+            answer: "12"
           - id: l2-c11
             part: calc
             type: multiple_choice
@@ -535,13 +549,6 @@ lessons:
             show: { object: child, groups: [8, 6] }
             options: ["8 + 6", "8 − 6", "6 + 6"]
             answer: "8 + 6"
-          - id: l2-c12
-            part: calc
-            type: text_input
-            text: "Lina hat 19 Sticker. Sie verschenkt 7. Wie viele Sticker hat sie noch?"
-            say: "Lina hat neunzehn Sticker. Sie verschenkt sieben. Wie viele Sticker hat sie noch?"
-            show: { object: sticker, count: 19, gone: 7 }
-            answer: "12"
           - id: l2-c13
             part: answer
             type: multiple_choice
@@ -550,6 +557,15 @@ lessons:
             show: { object: marble, count: 14, gone: 5 }
             options: ["Im Glas sind noch 9 Murmeln.", "Ali nimmt 5 Murmeln.", "Im Glas sind noch 19 Murmeln."]
             answer: "Im Glas sind noch 9 Murmeln."
+          - id: l2-c19
+            part: facts
+            type: fill_in_blank
+            text: "Felix hat 3 Schwestern. Er hat 13 Murmeln und gewinnt 5 dazu. Wie viele Murmeln hat er jetzt?\nSchreib die Rechnung."
+            say: "Felix hat drei Schwestern. Er hat dreizehn Murmeln und gewinnt fünf dazu. Wie viele Murmeln hat er jetzt? Schreib die Rechnung."
+            show: { object: marble, groups: [13, 5] }
+            frame: "13 _ _ = _"
+            options: ["13", "5", "3", "18", "+", "−"]
+            answer: ["+", "5", "18"]
           - id: l2-c14
             part: answer
             type: multiple_choice
@@ -566,6 +582,13 @@ lessons:
             show: { object: apple, count: 18, gone: 9 }
             options: ["Es fallen 9 Äpfel herunter.", "Am Baum hängen noch 9 Birnen.", "Am Baum hängen noch 9 Äpfel."]
             answer: "Am Baum hängen noch 9 Äpfel."
+          - id: l2-c20
+            part: facts
+            type: text_input
+            text: "Pia ist 8 Jahre alt. Sie hat 12 Blumen gemalt und malt noch 4. Wie viele Blumen hat sie jetzt gemalt?"
+            say: "Pia ist acht Jahre alt. Sie hat zwölf Blumen gemalt und malt noch vier. Wie viele Blumen hat sie jetzt gemalt?"
+            show: { object: flower, groups: [12, 4] }
+            answer: "16"
           - id: l2-c16
             part: answer
             type: multiple_choice
@@ -590,19 +613,3 @@ lessons:
             show: { object: chair, count: 20, gone: 13 }
             options: ["Der Film dauert 1 Stunde.", "Das Kino hat 20 Plätze.", "13 Plätze sind besetzt."]
             answer: "Der Film dauert 1 Stunde."
-          - id: l2-c19
-            part: facts
-            type: fill_in_blank
-            text: "Felix hat 3 Schwestern. Er hat 13 Murmeln und gewinnt 5 dazu. Wie viele Murmeln hat er jetzt?\nSchreib die Rechnung."
-            say: "Felix hat drei Schwestern. Er hat dreizehn Murmeln und gewinnt fünf dazu. Wie viele Murmeln hat er jetzt? Schreib die Rechnung."
-            show: { object: marble, groups: [13, 5] }
-            frame: "13 _ _ = _"
-            options: ["13", "5", "3", "18", "+", "−"]
-            answer: ["+", "5", "18"]
-          - id: l2-c20
-            part: facts
-            type: text_input
-            text: "Pia ist 8 Jahre alt. Sie hat 12 Blumen gemalt und malt noch 4. Wie viele Blumen hat sie jetzt gemalt?"
-            say: "Pia ist acht Jahre alt. Sie hat zwölf Blumen gemalt und malt noch vier. Wie viele Blumen hat sie jetzt gemalt?"
-            show: { object: flower, groups: [12, 4] }
-            answer: "16"
