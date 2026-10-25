@@ -246,6 +246,11 @@ time from showing the task to the answer.
   and no record.
 - **Sessions.** A session counts as finished when every task in it is
   answered, and a drill when its time runs out.
+- **Lesson checks.** Each lesson's check is kept, the latest try
+  (`child.scores[setId][n]`: right first time, of how many, and on a skill
+  check the parts with a miss). Study's unit list marks a lesson with a
+  miss in amber with its score and "Try again", and names the skill
+  check's tricky parts once on the unit.
 
 ### Suggestions
 

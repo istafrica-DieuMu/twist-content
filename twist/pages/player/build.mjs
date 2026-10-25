@@ -195,7 +195,7 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
     d.lessons = DASH(d.lessons);
   }
   sets.push({ file: rel, id: d.id, skill: d.skill, can_do: skillCanDo.get(d.skill) ?? null, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
-    no_reading: !!d.metadata?.no_reading, year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons,
+    no_reading: !!d.metadata?.no_reading, parts: d.metadata?.parts ?? [], year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons,
     curriculum: d.curriculum, topic: d.metadata?.topic ?? null, builds_on: d.metadata?.builds_on ?? [], ages: d.metadata?.ages ?? [],
     order: PLACE[`${d.curriculum}|${d.metadata?.year}|${d.skill}`] ?? 9999 });
 }

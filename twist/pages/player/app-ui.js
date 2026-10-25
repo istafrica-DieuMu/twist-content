@@ -405,7 +405,10 @@ function renderTrack() {
   const art = trackArt(APP.subj), look = TRACK[art], files = look.files ?? art, colour = colourOf(APP.subj);
   const rows = trackSkills(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
   const s = streak(c), stars = allStars(c);
-  const top = (i) => TR.pad + i * TR.step, mid = (i) => top(i) + TR.decor / 2;
+  // Room above the first stone for the study card when it stands there; once the mascot has
+  // moved down the track, less, so the top of the track is not an empty field.
+  const pad = cur === 0 ? TR.pad : cur === 1 ? TR.pad - 80 : TR.pad - 170;
+  const top = (i) => pad + i * TR.step, mid = (i) => top(i) + TR.decor / 2;
   const at = (x) => `calc(50% + ${x}px)`;
   const arcs = rows.map((r, i) => {
     if (!i) return "";
@@ -479,7 +482,7 @@ function renderTrack() {
   // Scrolling moves the focus; a closed popover opens again on the next skill, not on the same one.
   // The track's own opening scroll is not the child's: it leaves the focus on the current skill.
   let quiet = 0;
-  page.onscroll = () => { if (Date.now() < quiet) return; const i = Math.max(0, Math.min(rows.length - 1, Math.round((focusY() - TR.pad - TR.decor / 2) / TR.step))); if (i !== focus) show(i); };
+  page.onscroll = () => { if (Date.now() < quiet) return; const i = Math.max(0, Math.min(rows.length - 1, Math.round((focusY() - pad - TR.decor / 2) / TR.step))); if (i !== focus) show(i); };
   scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = (e) => {
     e.stopPropagation(); const i = +b.dataset.i;
     if (i === focus && open) return close();
@@ -618,13 +621,28 @@ function starsOf3(k, cls = "") {
   const st = PR.child.states[k]?.state ?? "not_started", n = STARS[st];
   return `<span class="pr-stars ${cls}" aria-label="${n} / 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}">★</i>`).join("")}${st === "needs_refresh" ? '<em title="refresh">↻</em>' : ""}</span>`;
 }
+// A lesson whose last check had a miss is not mastered yet: an amber mark, how its check went
+// and a button to play it again. The skill check covers every lesson, so the parts it found
+// tricky are named once, on the unit, under its "I can" line.
+const WEAK_TXT = {
+  de: { score: (r, t) => `${r} von ${t} gleich richtig`, tricky: "Knifflig", again: "Nochmal" },
+  en: { score: (r, t) => `${r} of ${t} right first time`, tricky: "Tricky", again: "Try again" },
+};
+const weakOf = (s, n) => { const sc = PR.child.scores?.[s.id]?.[n]; return sc && sc.right < sc.total ? sc : null; };
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
-  const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length;
+  const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length, W = WEAK_TXT[lg];
+  const tricky = s.lessons.flatMap((l) => weakOf(s, l.n)?.missed ?? []).map((id) => s.parts?.find((p) => p.id === id)?.what?.[lg]).filter(Boolean);
+  const lessonRow = (l, i) => {
+    const weak = i < done && weakOf(s, l.n);
+    if (!weak) return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`;
+    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${esc(W.score(weak.right, weak.total))}</small></span><em>${esc(W.again)}</em></button></li>`;
+  };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
       ${starsOf3(s.skill)}</summary>
     ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
-    <ol class="ln-lessons">${s.lessons.map((l, i) => `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`).join("")}</ol></details>`;
+    ${tricky.length ? `<p class="ln-tricky"><b>${esc(W.tricky)}:</b> ${esc(tricky.join("; "))}</p>` : ""}
+    <ol class="ln-lessons">${s.lessons.map(lessonRow).join("")}</ol></details>`;
 }
 // Called by the lesson end screen when the lesson was started from the app.
 function appLessonDone(checkSteps, pass) {
@@ -633,7 +651,9 @@ function appLessonDone(checkSteps, pass) {
   steps._recorded = true;
   if (c.resume?.setId === set.id) delete c.resume;
   const check = pass == null ? null : { pass, keys: checkSteps.map(([s]) => taskKey(set.id, lesson.n, s.t.id)) };
-  finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check });
+  const missed = [...new Set(checkSteps.filter(([s, r]) => r !== "first" && s.t.part).map(([s]) => s.t.part))];
+  const score = checkSteps.length ? { right: checkSteps.filter(([, r]) => r === "first").length, total: checkSteps.length, missed } : null;
+  finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check, score });
   // A skill finished: Study's track skates on to the next one (anim-ui.js, trackSkate).
   if (lessonsDone(set) >= set.lessons.length) APP.skillDone = true;
   saveChild();

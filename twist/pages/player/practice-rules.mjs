@@ -100,8 +100,11 @@ export function badges(child, yearSkills) {
   return out;
 }
 
-export function finishLesson(child, { setId, skill, n, check = null }) {
+export function finishLesson(child, { setId, skill, n, check = null, score = null }) {
   (child.lessons ??= {})[setId] = Math.max(child.lessons[setId] ?? 0, n);
+  // How the lesson's check went, the latest try: right first time of how many, and on a skill
+  // check the parts with a miss. Study shows a lesson with a miss as not mastered yet.
+  if (score) ((child.scores ??= {})[setId] ??= {})[n] = { right: score.right, total: score.total, missed: score.missed ?? [], day: child.today };
   child.last = { setId, n, day: child.today };
   const was = child.states[skill]?.state ?? "not_started";
   if (check) {
