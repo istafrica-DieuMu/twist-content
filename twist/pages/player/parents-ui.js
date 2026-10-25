@@ -11,7 +11,7 @@ const PATXT = {
     week: (n) => `${n}s Woche`, sub: (y, cur) => `${y} · ${cur}`, updated: "Stand heute",
     played: (n, a, b) => `${n} hat an ${a} von ${b} Schultagen gelernt`, none: (n) => `${n} hat diese Woche noch nicht gelernt`,
     mins: (m) => `, etwa ${m} Minuten`, needsN: (k) => k === 1 ? "Eine Sache braucht etwas Hilfe." : `${k} Sachen brauchen etwas Hilfe.`, allGood: "Gerade braucht nichts besondere Hilfe.",
-    kDays: "Schultage gelernt", kMins: "Minuten diese Woche", kSecure: "Fähigkeiten sicher", ofN: (b) => `von ${b}`, about: "etwa",
+    kDays: "Schultage gelernt", kMins: "Minuten diese Woche", kSecure: (n) => `Fähigkeiten, die ${n} kann`, ofN: (b) => `von ${b}`, about: "etwa",
     noticed: "Was uns aufgefallen ist", noticedSub: "Mit Beleg, das Wichtigste zuerst. Schicken Sie die passende Übung direkt in die App.",
     fCheck: (r, t) => `${r} von ${t} im Abschlusstest`, fCheckNo: "Abschlusstest noch nicht geschafft", fTricky: (p) => `Knifflig: ${p}`,
     fRefresh: "War schon sicher, jetzt wackelt es", fSlow: (n, xs) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} noch langsam oder falsch: ${xs}`,
@@ -32,7 +32,7 @@ const PATXT = {
     week: (n) => `${n}'s week`, sub: (y, cur) => `${y} · ${cur}`, updated: "As of today",
     played: (n, a, b) => `${n} learnt on ${a} of ${b} school days`, none: (n) => `${n} hasn't played yet this week`,
     mins: (m) => `, about ${m} minutes`, needsN: (k) => k === 1 ? "One thing needs a hand." : `${k} things need a hand.`, allGood: "Nothing needs extra help right now.",
-    kDays: "School days played", kMins: "Minutes this week", kSecure: "Skills secure", ofN: (b) => `of ${b}`, about: "about",
+    kDays: "School days played", kMins: "Minutes this week", kSecure: (n) => `Skills ${n} can do`, ofN: (b) => `of ${b}`, about: "about",
     noticed: "What we noticed", noticedSub: "With the evidence, most useful first. Send the right practice straight to the app.",
     fCheck: (r, t) => `${r} of ${t} on the skill check`, fCheckNo: "Skill check not passed yet", fTricky: (p) => `Tricky: ${p}`,
     fRefresh: "Was secure, now slipping", fSlow: (n, xs) => `${n} ${n === 1 ? "fact" : "facts"} still slow or wrong: ${xs}`,
@@ -138,7 +138,7 @@ function renderParents() {
     <section class="pa-kpis">
       <div><b>${played}<small> ${esc(P.ofN(5))}</small></b><span>${esc(P.kDays)}</span><span class="pa-dots">${Array.from({ length: 5 }, (_, i) => `<i class="${act.has(mon + i) ? "on" : mon + i > c.today ? "later" : ""}"></i>`).join("")}</span></div>
       <div><b><small>${esc(P.about)} </small>${minutes}</b><span>${esc(P.kMins)}</span></div>
-      <div><b>${secure}<small> ${esc(P.ofN(skills))}</small></b><span>${esc(P.kSecure)}</span></div>
+      <div><b>${secure}<small> ${esc(P.ofN(skills))}</small></b><span>${esc(P.kSecure(c.name))}</span></div>
     </section>
     <div class="pa-grid">
       <div class="pa-main">

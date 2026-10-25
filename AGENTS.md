@@ -67,6 +67,9 @@ git repo kept separate from schoolido-learning.
       teacher review, one PDF per year and subject plus one combined:
       `node twist/pages/review/build.mjs [de-DE]` (needs Google Chrome and
       pdfunite); output in review/out/, not in git.
+    - parents-lab/: ideas for the parent dashboard, one plate per
+      component with the parent's question it answers and the data it
+      needs, drawn with a pretend child; written by hand.
     - handoff/: the handoff to the backend, mobile app and parent dashboard
       teams (IST-B2C/backend, ist-schoolido, IST-B2C/Parent-dashboard),
       written by hand; a copy is published as a claude.ai artifact. Update it
