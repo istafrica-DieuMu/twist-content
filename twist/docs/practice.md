@@ -386,10 +386,12 @@ From the top:
    page, bottom right above the tab bar: wide with its label at the top of
    the page, a circle once scrolled, hidden while a sheet is open. It opens
    a builder in two steps:
-   - **How:** three large picture cards, each in its own colour; a tap
-     goes straight on, and the sheet says nothing aloud. Schnell! / Race!
+   - **How:** three solid colour tiles in a sheet only as tall as they
+     are, Race across the top and the other two side by side, each picture
+     standing over the tile's top edge; a tap goes straight on, and the
+     sheet says nothing aloud. Schnell! / Race!
      (a sprint the child has played or whose skill they have begun, else
-     a 5-minute `mixed` round of learnt skills), Überraschung / Surprise!
+     a 5-minute `mixed` round of learnt skills), Wundertüte! / Surprise!
      (`mixed` on three random learnt skills; it starts at once) and
      Frag mich ab! / Quiz me! (`review`, no hints, on
      learnt skills). A card with

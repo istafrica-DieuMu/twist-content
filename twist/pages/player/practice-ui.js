@@ -545,15 +545,15 @@ function refreshPractice() {
 // Choose my own, for children of 6 to 8 first: the page dims and the sheet covers most of the
 // screen; the mascot asks and the child answers with big picture cards. Step 1, how (a tap goes on):
 // Schnell! (a race against the clock: a sprint where the subject has a drill bank, else a short
-// mixed round), Überraschung (three skills the child has learnt, at random; it starts at once)
+// mixed round), Wundertüte (three skills the child has learnt, at random; it starts at once)
 // or Frag mich ab! / Quiz me! (a review, without hints, of something learnt). Step 2, what: up to 7 a subject by
 // its picture, and the app picks the skills; from 8 the search, topic words and the skills, with
 // one big button at the bottom. All existing session kinds of practice-rules.mjs.
 const MKTXT = {
-  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "Gegen die Uhr"], surprise: ["Überraschung", "Ich suche etwas aus"], again: ["Frag mich ab!", "Was du gelernt hast, ohne Tipps"] },
+  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "2 Minuten gegen die Uhr"], surprise: ["Wundertüte!", "Twist sucht 3 Sachen aus, die du kannst"], again: ["Frag mich ab!", "Was du gelernt hast, ohne Tipps"] },
     older: { how: "Wie willst du üben?", types: { race: ["Auf Zeit", "Ein Sprint gegen die Uhr"], surprise: ["Zufall", "Drei Fähigkeiten, die du schon kannst"], again: ["Wiederholen", "Ohne Tipps, wie ein kurzer Test"] } },
     find: "Suchen: Uhr, Plus, Nomen …", ideas: "Vorschläge", hits: (n) => `${n} gefunden`, none: "Nichts gefunden. Probier ein anderes Wort.", all: "Alle", later: "Nach deiner ersten Lektion", go: "Los geht's", back: "Zurück", close: "Schließen" },
-  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "Against the clock"], surprise: ["Surprise!", "I pick something"], again: ["Quiz me!", "What you've learnt, no hints"] },
+  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "2 minutes against the clock"], surprise: ["Surprise!", "Twist picks 3 things you know"], again: ["Quiz me!", "What you've learnt, no hints"] },
     older: { how: "How do you want to practise?", types: { race: ["Timed", "A sprint against the clock"], surprise: ["Random", "Three skills you already know"], again: ["Review", "No hints, like a short test"] } },
     find: "Search: clock, plus, nouns …", ideas: "Ideas for you", hits: (n) => `${n} found`, none: "Nothing found. Try another word.", all: "All", later: "After your first lesson", go: "Let's go", back: "Back", close: "Close" },
 };
@@ -619,7 +619,7 @@ function openMakeSheet() {
   const draw = () => {
     const q = S.step === 1 ? K.how : young ? K.whatSubj : K.what;
     let body = "";
-    if (S.step === 1) body = `<div class="mk-big">${Object.entries(K.types).map(([t, [name, sub]]) => `<button data-t="${t}" aria-pressed="${S.type === t}"${can(t) ? "" : " disabled"}><img src="${A}${MK_PIC[t]}" alt=""><span><b>${esc(name)}</b><small>${esc(can(t) ? sub : K.later)}</small></span>${CHEVRON}</button>`).join("")}</div>`;
+    if (S.step === 1) body = `<div class="mk-big">${Object.entries(K.types).map(([t, [name, sub]]) => `<button data-t="${t}" aria-pressed="${S.type === t}"${can(t) ? "" : " disabled"}><img src="${A}${MK_PIC[t]}" alt=""><span><b>${esc(name)}</b><small>${esc(can(t) ? sub : K.later)}</small></span></button>`).join("")}</div>`;
     else if (young) body = `<div class="mk-subjs">${PR.index.subjects.filter((x) => skillsFor(S.type, x).length).map((x) => `<button data-s="${x}" aria-pressed="${S.subj === x}" style="--c:${colourOf(x)}"><img src="study/${trackArt(x)}.svg" alt=""><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`).join("")}</div>`;
     else {
       const list = shown();
@@ -630,6 +630,7 @@ function openMakeSheet() {
         <div class="mk-list">${list.slice(0, 40).map((k) => `<button data-k="${esc(k)}" aria-pressed="${S.picked.includes(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span><b>${esc(setOfSkill(k)?.title?.[lg] ?? canDoOf(k))}</b><small>${esc(setOfSkill(k)?.topic?.[lg] ?? "")}</small></span>${starsOf3(k)}</button>`).join("") || `<p class="pr-empty">${esc(K.none)}</p>`}</div>`;
     }
     const ready = S.step === 2 && (young ? !!S.subj : S.picked.length > 0);
+    m.classList.toggle("mk-s1", S.step === 1);
     m.innerHTML = `<div class="mk-head">${S.step === 2 ? `<button class="mk-back" aria-label="${esc(K.back)}">${CHEVRON}</button>` : "<i></i>"}
         <span class="mk-dots" aria-hidden="true"><i class="on"></i><i${S.step === 2 ? ' class="on"' : ""}></i></span>
         <button class="pr-x" aria-label="${esc(K.close)}">${ICON.close}</button></div>
