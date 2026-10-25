@@ -633,8 +633,8 @@ function starsOf3(k, cls = "") {
 // and a button to play it again. The skill check covers every lesson, so the parts it found
 // tricky are named once, on the unit, under its "I can" line.
 const WEAK_TXT = {
-  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Noch ein Versuch.", again: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
-  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! One more go.", again: "Try again", lesson: (t) => `Try again: ${t}` },
+  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Noch ein Versuch.", again: "Nochmal", redo: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
+  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! One more go.", again: "Try again", redo: "Redo", lesson: (t) => `Try again: ${t}` },
 };
 // A lesson not mastered: its last check had a miss. A skill left at one star (practised) with all
 // its lessons done failed its skill check, in the last lesson, even when no score was kept.
@@ -645,20 +645,20 @@ const weakOf = (s, n) => {
   return n === last && PR.child.states[s.skill]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
 };
 // For the child: the score as dots, filled for each one right ("3 of 5" read out), or "Not quite yet".
-const weakText = (w, W) => w.total ? `<span class="ln-dots" role="img" aria-label="${esc(W.score(w.right, w.total))}">${Array.from({ length: w.total }, (_, i) => `<i class="${i < w.right ? "on" : ""}"></i>`).join("")}</span>` : esc(W.check);
+// For the child: how it went as one circle per question, a tick for each right ("3 of 5" read out).
+const weakText = (w, W) => w.total ? `<span class="ln-dots" role="img" aria-label="${esc(W.score(w.right, w.total))}">${Array.from({ length: w.total }, (_, i) => `<i class="${i < w.right ? "on" : ""}">${i < w.right ? "✓" : ""}</i>`).join("")}</span>` : esc(W.check);
+const REDO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
   const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length, W = WEAK_TXT[lg];
-  const anyWeak = s.lessons.some((l, i) => i < done && weakOf(s, l.n));
   const lessonRow = (l, i) => {
     const weak = i < done && weakOf(s, l.n);
     if (!weak) return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`;
-    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${weakText(weak, W)}</small></span><em>${esc(W.again)}</em></button></li>`;
+    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><img class="ln-mascot" src="${A}mascot/practise-2.png" alt=""><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span>${weakText(weak, W)}</span><em class="ln-redo">${REDO}${esc(W.redo)}</em></button></li>`;
   };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
       ${starsOf3(s.skill)}</summary>
     ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
-    ${anyWeak ? `<p class="ln-nudge"><img src="${A}mascot/practise-2.png" alt=""><span>${esc(W.nudge)}</span></p>` : ""}
     <ol class="ln-lessons">${s.lessons.map(lessonRow).join("")}</ol></details>`;
 }
 // Called by the lesson end screen when the lesson was started from the app.

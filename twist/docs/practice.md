@@ -248,10 +248,10 @@ time from showing the task to the answer.
   answered, and a drill when its time runs out.
 - **Lesson checks.** Each lesson's check is kept, the latest try
   (`child.scores[setId][n]`: right first time, of how many, and on a skill
-  check the parts with a miss). Study's unit list marks a lesson with a
-  miss in amber with its score as dots and "Try again", and the unit
-  says, in the child's words, "Almost! One more go." The tricky parts are for grown-ups and show only in the
-  Parents view. A skill left at one star
+  check the parts with a miss). Study's unit list shows a lesson with a
+  miss with the mascot, a circle per question of its check (a tick for
+  each right) and a Redo button; nothing else is written. The tricky
+  parts are for grown-ups and show only in the Parents view. A skill left at one star
   (`practised`) with every lesson done failed its skill check, so its last
   lesson is marked even without a kept score ("Not quite yet"). The track's popover marks the same lesson in its meter and offers
   "Try again: <lesson>".
