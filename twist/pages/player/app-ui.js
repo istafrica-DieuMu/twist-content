@@ -458,13 +458,15 @@ function renderTrack() {
     scr.querySelectorAll(".tr-stone").forEach((b) => b.classList.toggle("focus", +b.dataset.i === i));
     const done = lessonsDone(r.s), n = r.s.lessons.length, next = r.s.lessons[Math.min(done, n - 1)], locked = r.state === "locked", finished = r.state === "done";
     const label = locked ? K.locked : finished ? K.again : done ? K.goOn : K.start;
-    const row = (l, k) => `<li><button data-n="${l.n}" class="${k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
+    const W = WEAK_TXT[lg], weakAt = (l, k) => k < done && weakOf(r.s, l.n), firstWeak = r.s.lessons.find((l, k) => weakAt(l, k));
+    const row = (l, k) => `<li><button data-n="${l.n}" class="${weakAt(l, k) ? "weak" : k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${weakAt(l, k) ? "!" : k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
     // The lessons stay folded away until the child opens them.
     const shown = all ? r.s.lessons.map(row) : [];
     // One line for where the child is; the lessons open from the list button beside Start.
     tip.innerHTML = `<span class="tr-tt"><b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>${starsOf3(r.s.skill, "tr-tip-st")}</span>
-      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
+      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((l, k) => `<i class="${weakAt(l, k) ? "weak" : k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
         <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
+      ${firstWeak && !shown.length ? `<button class="tr-weak" data-n="${firstWeak.n}"><i>!</i><span>${esc(W.lesson(firstWeak.title[lg] ?? firstWeak.title.de))}</span></button>` : ""}
       ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
       <span class="tr-actions"><button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>
         <button class="tr-more" aria-expanded="${all}" aria-label="${esc(all ? K.showLess : K.showAll(n))}" title="${esc(all ? K.showLess : K.showAll(n))}">${LIST}</button></span>`;
@@ -631,10 +633,18 @@ function starsOf3(k, cls = "") {
 // and a button to play it again. The skill check covers every lesson, so the parts it found
 // tricky are named once, on the unit, under its "I can" line.
 const WEAK_TXT = {
-  de: { score: (r, t) => `${r} von ${t} gleich richtig`, tricky: "Knifflig", again: "Nochmal" },
-  en: { score: (r, t) => `${r} of ${t} right first time`, tricky: "Tricky", again: "Try again" },
+  de: { score: (r, t) => `${r} von ${t} gleich richtig`, check: "Abschlusstest noch nicht geschafft", tricky: "Knifflig", again: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
+  en: { score: (r, t) => `${r} of ${t} right first time`, check: "Skill check not passed yet", tricky: "Tricky", again: "Try again", lesson: (t) => `Try again: ${t}` },
 };
-const weakOf = (s, n) => { const sc = PR.child.scores?.[s.id]?.[n]; return sc && sc.right < sc.total ? sc : null; };
+// A lesson not mastered: its last check had a miss. A skill left at one star (practised) with all
+// its lessons done failed its skill check, in the last lesson, even when no score was kept.
+const weakOf = (s, n) => {
+  const sc = PR.child.scores?.[s.id]?.[n];
+  if (sc) return sc.right < sc.total ? sc : null;
+  const last = s.lessons.at(-1)?.n;
+  return n === last && PR.child.states[s.skill]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
+};
+const weakText = (w, W) => w.total ? W.score(w.right, w.total) : W.check;
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
   const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length, W = WEAK_TXT[lg];
@@ -642,7 +652,7 @@ function studySetRow(s, open) {
   const lessonRow = (l, i) => {
     const weak = i < done && weakOf(s, l.n);
     if (!weak) return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`;
-    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${esc(W.score(weak.right, weak.total))}</small></span><em>${esc(W.again)}</em></button></li>`;
+    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${esc(weakText(weak, W))}</small></span><em>${esc(W.again)}</em></button></li>`;
   };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
       ${starsOf3(s.skill)}</summary>
@@ -867,7 +877,9 @@ function loadDemo() {
   let last = null;
   for (const x of appSubjects()) {
     const sets = courseSets(x), n = Math.max(3, Math.round(sets.length / 3));
-    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, st.skill, STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`); });
+    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, st.skill, STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`);
+      // A skill left at one star: its skill check had misses on the first parts.
+      if (STATE[i % STATE.length] === "practised") ((c.scores ??= {})[st.id] = {})[st.lessons.length] = { right: 3, total: 5, missed: (st.parts ?? []).slice(0, 2).map((p) => p.id), day: c.today - 1 }; });
     const nx = sets[n];
     if (nx) { c.lessons[nx.id] = 1; setState(c, nx.skill, "learning"); logEvent(c, `lesson 1 of ${nx.id} finished`); last ??= { setId: nx.id, n: 1, day: c.today - 1 }; }
   }
