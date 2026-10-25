@@ -860,6 +860,12 @@ function go(i) {
   stopAudio();
   at = Math.max(0, Math.min(steps.length - 1, i));
   const step = steps[at];
+  // Started from the app: where the child is in the lesson, so Start can show it and pick it up again.
+  if (APP.fromApp && PR.child && step.kind !== "end" && !steps._recorded) {
+    const same = step.a ? steps.filter((x) => x.kind === "task" && x.a === step.a) : [];
+    PR.child.resume = { setId: set.id, n: lesson.n, at, of: steps.length, act: step.a?.activity ?? null, k: step.kind === "task" ? same.indexOf(step) + 1 : 0, tasks: same.length };
+    saveChild();
+  }
   ({ start: renderStart, intro: renderIntro, learn: renderLearn, stage: renderStage, checkIntro: renderCheckIntro, task: renderTask, end: renderEnd })[step.kind](step);
   sidebar(); drawLabels();
 }

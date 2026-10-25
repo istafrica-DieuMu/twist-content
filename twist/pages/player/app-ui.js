@@ -105,6 +105,9 @@ function startLesson(setId, n) {
     APP.home = "study"; if (inPractice()) setView("lessons");
     APP.home = null; APP.fromApp = true;
     pickSet(D.sets.findIndex((s) => s.id === setId), n);
+    // A lesson left part way picks up at the step where the child stopped.
+    const r = PR.child.resume;
+    if (r && r.setId === setId && r.n === lesson.n && r.at > 0 && r.at < steps.length - 1) go(r.at);
   });
 }
 // The next lesson of a subject as a card: big on Start and Study, small for the other subjects.
@@ -165,6 +168,106 @@ function subjChip(x) {
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
   return `<button data-subj="${esc(x)}" style="--c:${colourOf(x)};--p:${sets.length ? (100 * done) / sets.length : 0}"><i class="hm-ring">${esc(g)}${fresh ? `<em>${esc(AT().newDot)}</em>` : ""}</i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><small>${esc(AT().unitsOf(done, sets.length))}</small></button>`;
 }
+// Next in each subject: a row of cards that slides sideways, one per subject with a
+// lesson to do (the plan's subject left out while its card is above), so it holds
+// three subjects today and more later. Dots under it show where the row is.
+const ROW_TXT = { de: { head: "Als Nächstes in deinen Fächern" }, en: { head: "Next in your subjects" } };
+function subjectRow(skip) {
+  const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
+    const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
+    const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
+    // The app's lesson card: the soft subject fill, name and minutes, the title, the unit, a white button.
+    return `<div class="pr-hero hm-card" role="group" style="--c:${colourOf(subj)}">
+      <span class="pr-kind">${esc(name)}<i class="pr-dur">${esc(T.minShort(s.minutes ?? 10))}</i></span><b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)} · ${esc(T.unitOf(k, sets.length))}</span>
+      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}</button><img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
+  }).filter(Boolean);
+  if (!cards.length) return "";
+  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3>${cards.length > 1 ? deckOf(cards) : cards.join("")}</section>`;
+}
+// A deck: the cards in a stack that never ends, turned like pages. The front card
+// follows a finger (or the mouse) sideways and the one under it rises into place;
+// pulled the other way, the card before comes back over the top from the left. A
+// card that is passed slides under the stack. It turns by itself every 10 seconds:
+// a faint line along the bottom of the front card fills meanwhile, and pressing and
+// holding the card stops it (as in stories), with the card dipping a little. Not
+// with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
+// No bar under it: the faint line on the card and the cards peeking out say enough.
+const DECK_MS = 10000;
+const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
+function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
+function deck(el, offset = 0) {
+  const slides = [...el.children], n = slides.length, segs = el.nextElementSibling?.matches(".dk-bar") ? [...el.nextElementSibling.children] : [];
+  if (n < 2) return;
+  const h = Math.max(...slides.map((s) => s.offsetHeight));
+  // Room under the front card only for the cards that peek out (10 px each, two at most).
+  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 10 * Math.min(2, n - 1)}px`;
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches, EASE = "transform .42s cubic-bezier(.22,.8,.25,1), opacity .3s";
+  let i = 0, x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
+  const W = () => el.clientWidth || 300;
+  // p is how far a turn has gone: -1 forward (the front card out to the left), +1 back.
+  const place = (p = 0, ease = true) => slides.forEach((s, j) => {
+    const k = (j - i + n) % n, back = p > 0 && k === n - 1;
+    let tx = 0, rot = 0, d = k;
+    if (k === 0) { tx = Math.min(0, p) * W() * 1.08; rot = Math.min(0, p) * 7; d = Math.max(0, p); }
+    else if (back) { tx = (p - 1) * W() * 1.08; rot = (p - 1) * 7; d = 0; }
+    else d = p < 0 ? k + p : k + p;
+    const z = back ? n + 1 : n - k;
+    s.style.transition = ease ? EASE : "none";
+    s.style.transform = `translate(${tx}px, ${Math.max(0, d) * 10}px) rotate(${rot}deg) scale(${1 - Math.max(0, d) * 0.05})`;
+    s.style.opacity = d > 2.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
+    s.classList.toggle("front", k === 0); s.inert = k !== 0;
+  });
+  // The timer: a line on top of each card; only the front one runs.
+  const timers = slides.map((s) => { const card = s.lastElementChild; card.insertAdjacentHTML("beforeend", '<i class="dk-timer" aria-hidden="true"><b></b></i>'); return card.lastElementChild; });
+  const mark = () => { segs.forEach((g, j) => g.classList.toggle("on", j === i)); timers.forEach((t, j) => { t.classList.remove("run"); if (j === i && !still) { void t.offsetWidth; t.classList.add("run"); } }); };
+  const turn = (d) => {
+    if (busy) return; busy = true;
+    place(d > 0 ? -1 : 1);
+    setTimeout(() => { i = (i + d + n) % n; place(0); mark(); busy = false; }, 380);
+  };
+  const go = (j) => { if (j === i || busy) return; const d = (j - i + n) % n; d === 1 ? turn(1) : d === n - 1 ? turn(-1) : (i = j, place(0), mark()); };
+  place(0, false); mark();
+  // By hand: drag or swipe the front card; a quarter of the width, or a quick flick, turns it.
+  let t0 = 0;
+  el.addEventListener("pointerdown", (e) => { if (busy) return; x0 = e.clientX; y0 = e.clientY; dx = 0; moved = false; t0 = performance.now(); });
+  el.addEventListener("pointermove", (e) => {
+    if (x0 == null) return; dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.setPointerCapture?.(e.pointerId); }
+    if (moved) place(Math.max(-1, Math.min(1, dx / W())), false);
+  });
+  const up = () => {
+    if (x0 == null) return; x0 = null;
+    if (!moved) return;
+    const fast = Math.abs(dx) / Math.max(1, performance.now() - t0) > 0.6;
+    if (Math.abs(dx) > W() / 4 || (fast && Math.abs(dx) > 30)) { busy = true; place(dx < 0 ? -1 : 1); setTimeout(() => { i = (i + (dx < 0 ? 1 : -1) + n) % n; place(0); mark(); busy = false; }, 380); }
+    else place(0);
+  };
+  el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
+  el.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  // A sideways trackpad scroll comes as many small steps: they add up, and the first
+  // real swipe turns the page at once (skipping the timer, which starts again).
+  let cool = false, sum = 0, quiet = null;
+  el.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); clearTimeout(quiet); quiet = setTimeout(() => (sum = 0), 200);
+    if (cool) return; sum += e.deltaX;
+    if (Math.abs(sum) < 28) return;
+    cool = true; setTimeout(() => (cool = false), 550); turn(sum > 0 ? 1 : -1); sum = 0;
+  }, { passive: false });
+  el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
+  segs.forEach((g, j) => g.onclick = () => go(j));
+  // By itself: the front card's line fills over 10 seconds, then the page turns. Pressing
+  // (and holding) the card stops it, as does keyboard focus inside the deck.
+  const hold = (on) => { held = on; el.classList.toggle("held", on); };
+  el.addEventListener("pointerdown", () => hold(true)); window.addEventListener("pointerup", () => el.isConnected && hold(el.contains(document.activeElement) && document.activeElement.matches(":focus-visible")));
+  el.addEventListener("focusin", (e) => e.target.matches(":focus-visible") && hold(true)); el.addEventListener("focusout", () => hold(false));
+  if (still) return;
+  // As the screen opens, the front card nudges aside a little and settles, so the deck looks like it moves.
+  setTimeout(() => { if (!el.isConnected || busy || x0 != null) return; place(-0.07); setTimeout(() => el.isConnected && x0 == null && !busy && place(0), 260); }, 650 + offset / 6);
+  timers.forEach((t, j) => t.addEventListener("animationend", () => { if (el.isConnected && j === i && !held) turn(1); }));
+  // Two decks on one screen take turns: the second starts half a turn later.
+  if (offset) { timers[0].classList.remove("run"); setTimeout(() => mark(), offset); }
+}
 // The line under the greeting says what today asks for, not the count the ring shows:
 // halfway, one to go; nothing yet, the streak to keep, or how long today's plan takes.
 const GREET = {
@@ -184,15 +287,21 @@ function lessonStep(plan) {
   const T = AT(), lg = PL(), s = nextIn(plan.sets);
   if (!s) return "";
   const done = lessonsDone(s), l = s.lessons[done], col = colourOf(plan.subj), name = SUBJ_NAME[PR.child.curriculum][plan.subj] ?? plan.subj;
-  const course = courseSets(plan.subj, s.year), k = course.indexOf(s) + 1;
-  const dots = s.lessons.map((_, i) => `<i class="${i < done ? "on" : i === done ? "now" : ""}"></i>`).join("");
-  return `<div class="pr-hero ln-next hm-lesson" role="group" style="--c:${col}">
+  // Where the child stopped: the step inside this lesson when it was left part way, else the lesson.
+  const r = PR.child.resume, inside = r && r.setId === s.id && r.n === l.n ? r : null, R = WHERE_TXT[lg];
+  const where = [T.lessonOf(done + 1, s.lessons.length), inside?.act ? R.acts[inside.act] + (inside.k ? `, ${R.task(inside.k, inside.tasks)}` : "") : ""].filter(Boolean).join(" · ");
+  const p = inside ? (100 * inside.at) / Math.max(1, inside.of - 1) : (100 * done) / s.lessons.length;
+  return `<div class="pr-hero ln-next hm-lesson hm-resume" role="group" style="--c:${col}">
       <span class="pr-kind">${esc(name)}<i class="pr-dur">${esc(T.minShort(s.minutes ?? 10))}</i></span>
       <b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
-      <span class="hm-dots" aria-label="${esc(T.lessonOf(l.n, s.lessons.length))}">${dots}<small>${esc(T.unitOf(k, course.length))}</small></span>
-      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}</button>
+      <span class="hm-where"><small>${esc(where)}</small><i class="hm-pbar" aria-hidden="true"><i style="width:${p}%"></i></i></span>
+      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(inside ? R.goOn : T.go)}</button>
       <img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
 }
+const WHERE_TXT = {
+  de: { acts: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Üben", check: "Zeig, was du kannst" }, task: (k, n) => `Aufgabe ${k} von ${n}`, goOn: "Weitermachen" },
+  en: { acts: { "warm-up": "Warm-up", learn: "Learn", practise: "Practise", check: "Show what you know" }, task: (k, n) => `question ${k} of ${n}`, goOn: "Carry on" },
+};
 // The object that stands for a subject on a practice card (the app's cup, croissant and number blocks).
 const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" } };
 const subjObject = (x) => { const o = SUBJ_OBJECT[x]; return (typeof o === "string" ? o : o?.[PR.child.curriculum]) ?? "book"; };
@@ -216,7 +325,8 @@ function renderHomeTab() {
   // or a recap's topics; the line under it says why and how long.
   const pTitle = (x) => { const lg = PL(); if (x.kind === "recaps") return cardSub(x); if (x.kind === "review") return PR.index.topics.find((t) => t.key === x.topic)?.name[lg] ?? cardSub(x); return setOfSkill(x.skills[0])?.title[lg] ?? cardSub(x); };
   const pCard = (x, i) => { const subj = subjOfSkill(x.skills[0]); return `<button class="hm-practice" data-sug="${i}" style="--c:${colourOf(subj)}"><span><b>${esc(pTitle(x))}</b><small>${esc(x.reason[PL()].includes(pTitle(x)) ? L.kinds[x.kind] ?? "" : x.reason[PL()])} · ${esc(sizeOf(x).split(", ").pop())}</small></span><img src="${A}objects/${subjObject(subj)}.png" alt=""></button>`; };
-  const practiceCard = sugs.map(pCard).join("");
+  // Two suggestions make a deck, as the lessons of the other subjects do.
+  const practiceCard = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<h3 class="pr-h hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</h3>${lesson}`);
@@ -236,13 +346,14 @@ function renderHomeTab() {
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
     : `<section class="hm-plan">${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
+    ${subjectRow(lesson && !all ? plan.subj : null)}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
   </div>`;
   scr.appendChild(appTabs("start"));
-  wireHeader(scr); wireStarts(scr);
+  wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
-  scr.querySelectorAll(".hm-lesson").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
+  scr.querySelectorAll(".hm-lesson, .hm-card").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); startSession({ kind: x.kind, skills: x.skills, minutes: x.kind === "drill" ? 2 : null }); });
 }
 
@@ -521,6 +632,7 @@ function appLessonDone(checkSteps, pass) {
   const c = appChild();
   if (set.curriculum !== c.curriculum || steps._recorded) return;
   steps._recorded = true;
+  if (c.resume?.setId === set.id) delete c.resume;
   const check = pass == null ? null : { pass, keys: checkSteps.map(([s]) => taskKey(set.id, lesson.n, s.t.id)) };
   finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check });
   // A skill finished: Study's track skates on to the next one (anim-ui.js, trackSkate).
