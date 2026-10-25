@@ -476,6 +476,13 @@ button.goal{display:block;width:100%;text-align:left;cursor:pointer;font-family:
 /* ordering: square drop slots, as the app's NumberOrdering */
 .slots .gap{border:2px dashed var(--edge-c);border-radius:12px;background:var(--sunk);font:700 30px "Red Hat Display",sans-serif;color:var(--text-soft)}
 .slots .gap.filled{border:2px solid #947dec;border-bottom-width:5px;background:var(--tint);color:#6849dd}
+/* Ordering sentences: numbered rows, one under the other, in the cards' text size. */
+.slots.rows{flex-direction:column;align-items:stretch}
+.slots.rows .gap{display:grid;grid-template-columns:30px 1fr;align-items:center;gap:10px;min-height:52px;height:auto;padding:8px 12px;font:700 17px/1.3 "Red Hat Text",sans-serif;text-align:left}
+.slots.rows .gap i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--card);font:800 15px "Red Hat Display",sans-serif;font-style:normal;color:var(--text-soft)}
+.slots.rows .gap.filled i{background:#6849dd;color:#fff}
+.slots .gap.hot{border-color:#6849dd;background:var(--tint)}
+.drag-ghost{transform:rotate(-2deg);box-shadow:0 10px 24px rgba(42,15,74,.25)}
 .coins{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}.tally{border-collapse:collapse;margin:0 auto;font:700 16px "Red Hat Text",sans-serif;color:var(--plum)}.tally td{border:2px solid var(--edge-c);padding:4px 10px;text-align:left}
 
 /* Activity screens */
@@ -5451,13 +5458,13 @@ const TXT = {
   de: { start: "Los geht's", next: "Weiter", check: "Prüfen", done: "Fertig", yes: "Ja", no: "Nein", said: "Ich habe es gesagt", again: "Nochmal", lessons: "Zur Übersicht", nextLesson: "Nächste Stunde",
     lesson: "Stunde", less: "Jetzt mit weniger Hilfe", alone: "Jetzt ganz allein", checkTitle: "Zeig, was du kannst", checkInfo: (n) => `${n} Aufgaben, ohne Tipps. Es zählt der erste Versuch.`,
     checkShort: "Check", score: (r, n, skill) => `${r} von ${n} im ${skill ? "Abschluss-Check" : "Check"} beim ersten Versuch richtig`, canDo: "Kann ich!", practised: "Noch üben", doneTitle: "Geschafft!",
-    counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
+    counters: "Tippe unten auf ein Plättchen, um es nach oben zu schieben.", order: "Tippe die Karten der Reihe nach an oder zieh sie in die Felder.", hands: "Zieh die Zeiger an die richtige Stelle.", gridTap: "Tippe auf den Punkt im Gitter.", trace: "Fahre die Linie mit dem Finger nach. Beginne beim grünen Punkt.", copy: "Schreib es rechts daneben.",
     speakNote: "Tippe auf das Mikrofon und sprich.", goal: "Ziel", lessonOf: (k, n) => `Stunde ${k} von ${n}`, nextIn: "Weiter in", finished: "Stunde geschafft!", percent: (p) => `${p} % richtig`, stFull: "mit Hilfe", stSome: "weniger Hilfe", stNone: "allein", close: "Schließen", notQuite: "Nicht ganz.", tryAgain: "Nochmal versuchen", rightShort: "Richtig!", shownAnswer: "Die richtige Antwort ist grün markiert.", answerBtn: "Prüfen", speakNow: "Jetzt du", listening: "Ich höre zu …", you: "Du", model: "So klingt es", same: "Klingt gleich", speakCompare: "Hör dich und das Vorbild an. Klingt es gleich?", speakListen: "Hör das Vorbild an. Hast du es auch so gesagt?", seeAgain: "Nochmal sehen", tip: "Tipp: ",
     introWarm: (n) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} zum Aufwärmen`, introLearn: (n) => `${n} ${n === 1 ? "kurze Erklärung" : "kurze Erklärungen"}`, introPractise: (n) => `${n} Aufgaben: erst mit Hilfe, dann allein`, introCheck: "Ohne Tipps. Es zählt der erste Versuch.", stageNow: "Jetzt:", fillGap: "Was fehlt?", planBack: "hinten", planFront: "vorne", listen: "Anhören", pause: "Pause", resume: "Weiter hören" },
   en: { start: "Let's go", next: "Next", check: "Check", done: "Done", yes: "Yes", no: "No", said: "I said it", again: "Again", lessons: "All lessons", nextLesson: "Next lesson",
     lesson: "Lesson", less: "Now with less help", alone: "Now on your own", checkTitle: "Show what you know", checkInfo: (n) => `${n} questions, no hints. Your first try counts.`,
     checkShort: "Check", score: (r, n, skill) => `${r} of ${n} right first time in the ${skill ? "skill check" : "check"}`, canDo: "I can do it!", practised: "Keep practising", doneTitle: "Well done!",
-    counters: "Tap a counter at the bottom to move it up.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
+    counters: "Tap a counter at the bottom to move it up.", order: "Tap the cards in order, or drag them into the boxes.", hands: "Drag the hands to the right place.", gridTap: "Tap the point on the grid.", trace: "Trace the line with your finger. Start at the green dot.", copy: "Write it next to it.",
     speakNote: "Tap the microphone and speak.", goal: "Goal", lessonOf: (k, n) => `Lesson ${k} of ${n}`, nextIn: "Next question in", finished: "Lesson finished!", percent: (p) => `${p} % correct answers`, stFull: "with help", stSome: "less help", stNone: "on your own", close: "Close", notQuite: "Not quite.", tryAgain: "Try again", rightShort: "Correct!", shownAnswer: "The right answer is marked in green.", answerBtn: "Check", speakNow: "Your turn", listening: "Listening …", you: "You", model: "How it sounds", same: "Sounds the same", speakCompare: "Listen to yourself and the model. Do they sound the same?", speakListen: "Listen to the model. Did you say it like that?", seeAgain: "See it again", tip: "Hint: ",
     introWarm: (n) => `${n} warm-up ${n === 1 ? "question" : "questions"}`, introLearn: (n) => `${n} short ${n === 1 ? "explanation" : "explanations"}`, introPractise: (n) => `${n} questions: with help at first, then on your own`, introCheck: "No hints. Your first try counts.", stageNow: "Now:", fillGap: "What is missing?", planBack: "back", planFront: "front", listen: "Listen", pause: "Pause", resume: "Play on" },
 };
@@ -6969,15 +6976,40 @@ const TYPES = {
     choice({ t, body, foot, vis: { set innerHTML(v) {} }, answer, st });
   },
   ordering({ t, body, foot, vis, answer, st }) {
-    // Tap cards in order to fill the slots; tap a filled slot to empty it.
-    // A picture or chart to order by stands above the cards.
+    // Tap cards in order to fill the slots, or drag a card onto a slot; tap a filled slot to
+    // empty it. Sentences go into numbered rows, one under the other; pictures and numbers into
+    // boxes side by side. A picture or chart to order by stands above the cards.
     if (t.show) vis.innerHTML = show(t.show);
-    const slots = Array(t.slot_count).fill(null);
+    const slots = Array(t.slot_count).fill(null), text = t.options.every((o) => typeof o === "string" && o.length > 8);
+    const n = document.createElement("div"); n.className = "note"; n.textContent = UI.order; body.appendChild(n);
     const row = document.createElement("div"); row.className = "chips"; row.style.marginTop = "0"; body.appendChild(row);
-    const sl = document.createElement("div"); sl.className = "frame slots"; sl.style.gap = "10px"; body.appendChild(sl);
-    const cards = t.options.map((o, i) => { const b = optEl(o, t, i); b.onclick = () => { if (st.over || slots.includes(i)) return; const k = slots.indexOf(null); if (k >= 0) { slots[k] = i; draw(); } }; row.appendChild(b); return b; });
+    const sl = document.createElement("div"); sl.className = "frame slots" + (text ? " rows" : ""); sl.style.gap = text ? "8px" : "10px"; body.appendChild(sl);
+    const put = (i, k = slots.indexOf(null)) => { if (st.over || k < 0) return; const was = slots.indexOf(i); if (was >= 0) slots[was] = null; slots[k] = i; draw(); };
+    const cards = t.options.map((o, i) => {
+      const b = optEl(o, t, i); row.appendChild(b);
+      b.onclick = () => { if (b._dragged) { b._dragged = false; return; } if (!slots.includes(i)) put(i); };
+      // Dragging: the card follows the finger; let go over a slot to place it there.
+      b.onpointerdown = (e) => {
+        if (st.over || slots.includes(i) || e.button > 0 || e.target.closest(".spk")) return;
+        const x0 = e.clientX, y0 = e.clientY; let ghost = null;
+        const move = (ev) => {
+          if (!ghost && Math.hypot(ev.clientX - x0, ev.clientY - y0) < 8) return;
+          if (!ghost) { ghost = b.cloneNode(true); ghost.className += " drag-ghost"; Object.assign(ghost.style, { position: "fixed", zIndex: 60, pointerEvents: "none", width: b.offsetWidth + "px", opacity: ".9" }); document.body.appendChild(ghost); b._dragged = true; }
+          ghost.style.left = ev.clientX - b.offsetWidth / 2 + "px"; ghost.style.top = ev.clientY - 24 + "px";
+          sl.querySelectorAll(".gap").forEach((g) => { const r = g.getBoundingClientRect(); g.classList.toggle("hot", ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom); });
+        };
+        const up = (ev) => {
+          removeEventListener("pointermove", move); removeEventListener("pointerup", up); removeEventListener("pointercancel", up);
+          if (!ghost) return; ghost.remove();
+          const k = [...sl.querySelectorAll(".gap")].findIndex((g) => { const r = g.getBoundingClientRect(); return ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom; });
+          if (k >= 0) put(i, k); else draw();
+        };
+        addEventListener("pointermove", move); addEventListener("pointerup", up); addEventListener("pointercancel", up);
+      };
+      return b;
+    });
     const draw = () => {
-      sl.innerHTML = ""; slots.forEach((ci, k) => { const g = document.createElement("span"); g.className = "gap" + (ci != null ? " filled" : ""); g.style.minWidth = "62px"; g.style.height = "72px"; g.innerHTML = ci == null ? "" : (typeof t.options[ci] === "string" ? esc(t.options[ci]) : show(t.options[ci], { small: true })); g.onclick = () => { if (!st.over && ci != null) { slots[k] = null; draw(); } }; sl.appendChild(g); });
+      sl.innerHTML = ""; slots.forEach((ci, k) => { const g = document.createElement("span"); g.className = "gap" + (ci != null ? " filled" : ""); if (!text) { g.style.minWidth = "62px"; g.style.height = "72px"; } g.innerHTML = text ? `<i>${k + 1}</i><span>${ci == null ? "" : esc(t.options[ci])}</span>` : ci == null ? "" : (typeof t.options[ci] === "string" ? esc(t.options[ci]) : show(t.options[ci], { small: true })); g.onclick = () => { if (!st.over && ci != null) { slots[k] = null; draw(); } }; sl.appendChild(g); });
       cards.forEach((b, i) => b.classList.toggle("dim", slots.includes(i)));
       btn.disabled = slots.includes(null);
     };
