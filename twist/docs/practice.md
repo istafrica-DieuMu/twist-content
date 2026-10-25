@@ -359,32 +359,33 @@ From the top:
 2. **Busy Bee strip**, at the bottom and only three sessions or fewer
    from the next level ("7 von 10 bis zum Fleißigen Bienchen" / "7 of 10
    to the Busy Bee"); opens Me.
-3. **Search, the first question.** "Was möchtest du üben?" with example
-   requests under it as chips ("10 Minuten Einmaleins mit 7"). Words match
-   the skills' "I can" lines, topics and set titles, filler words left out.
-   A whole request it understands shows first as an "Verstanden" /
-   "Understood" card (subject, topic or skill, minutes, kind) with "Das
-   üben" / "Practise this". Today `parseRequest` reads it with keywords; a
-   language model can later return the same filters.
-4. **Suggested for you.** The first suggestion as a large card in the
+3. **Suggested for you.** The first suggestion as a large card in the
    subject's colour, with the topic's mascot, the kind ("Weißt du es
    noch?" / "Do you remember?"), what it plays ("4 Sachen auffrischen" /
    "Refresh 4 skills", the topics, "12 Aufgaben aus 2 Themen, etwa 5
-   Minuten") and a start button. The other suggestions as two smaller cards
-   with an icon for their kind (no mascot: one mascot a screen) and their
-   size; a drill card names its set.
-5. **Selbst aussuchen / Choose my own**, a card in the flow (not a button
-   over it). Its sheet: a close ✕; subject; topic ("Alles" / "Everything"
-   and six topics, "+ n mehr" for the rest); time (5, 10 or 15 minutes; a
-   drill at most 5); kind as four cards, each with a line ("Ohne Tipps, wie
-   eine kleine Probe" / "No hints, like a little test"; a drill only when
-   the choice has a drill bank); and a footer with the choices summed up
-   above the one Start button.
-6. **Drills.** The banks of the child's year as a row of cards (record or
+   Minuten") and a start button. The page starts here; there is no search
+   on it (2026-10-25).
+4. **Selbst aussuchen / Choose my own**, a floating "+" button over the
+   page, bottom right above the tab bar: wide with its label at the top of
+   the page, a circle once scrolled, hidden while a sheet is open. It opens
+   a builder in two steps:
+   - **How:** four large cards: Sprint (against the clock, the `drill`
+     kind), Blitzrunde / Quickfire (`mixed`, 5 minutes), Überrasch mich /
+     Surprise me (`mixed` on three random skills the child has learnt; it
+     starts at once) and Wiederholen / Review (no hints, like a little
+     test). "Mit Tipps" / "With hints" under More options plays
+     `catch-up`. No new session kinds.
+   - **What:** the one search ("Suchen: Uhr, Plus, Nomen …"), topic words
+     as chips, a subject filter, and the skills as cards with their short
+     title, topic and stars; the suggestion is chosen already, so "Los
+     geht's" starts at once. A typed request ("10 Minuten Einmaleins") is
+     read here by `parseRequest`, as described under Typed requests. Length
+     sits under "Mehr Optionen" / "More options".
+5. **Drills.** The banks of the child's year as a row of cards (record or
    "Noch nicht gespielt", and a bar of known, slow and missed items), and
    "Alle Drills" / "All drills": every bank of the curriculum by subject.
    A card opens its drill map.
-7. **Ein Fach üben / Practise a subject.** The same rings as on Start
+6. **Ein Fach üben / Practise a subject.** The same rings as on Start
    (units done this year, "new" until started). A subject opens a page in its
    colour with the topics of the child's year, each with a ring for its
    stars and "Drill" when it has one; "Alle Klassen" / "All years" shows
