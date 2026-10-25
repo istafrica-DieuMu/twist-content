@@ -140,7 +140,9 @@ function homePlan() {
 // What the child did today, read from its log: lessons finished, practice sessions finished.
 function today(c) {
   const t = (c.log ?? []).filter((e) => e.day === c.today);
-  return { lessons: t.filter((e) => /^lesson \d+ of \S+ finished/.test(e.text)).length, practice: t.filter((e) => /^\S+ session:/.test(e.text)).length };
+  // Right answers in today's practice, from the log's "12 of 14 right".
+  const right = t.reduce((n, e) => n + (+(/^\S+ session[^:]*: (\d+) of \d+ right/.exec(e.text)?.[1] ?? 0)), 0);
+  return { lessons: t.filter((e) => /^lesson \d+ of \S+ finished/.test(e.text)).length, practice: t.filter((e) => /^\S+ session:/.test(e.text)).length, right };
 }
 // A row that scrolls sideways fades out at the edge it can still scroll to, so a cut chip reads as "more".
 function scrollFades(scr) {
@@ -316,7 +318,10 @@ function renderHomeTab() {
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
-  const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
+  // Something done today: a card of its own in the done green, the mascot cheering, what was done,
+  // and a way to do more (Practice, or Study for lessons).
+  const DONE_TXT = { de: { right: (n) => `${n} richtig`, more: "Noch mehr üben", lessons: "Weiterlernen" }, en: { right: (n) => `${n} right`, more: "Practise more", lessons: "Keep learning" } }[PL()];
+  const doneRow = (text, sub, go) => `<div class="hm-done"><span><i>${TICK}</i><b>${esc(text)}</b></span><small>${esc(sub)}</small>${go ? `<button class="hm-done-go" data-done="${go}">${esc(go === "practice" ? DONE_TXT.more : DONE_TXT.lessons)}</button>` : ""}<img src="${A}mascot/end-${go === "practice" ? 1 : 3}.png" alt=""></div>`;
   // At most two practice suggestions, one under the other: the first with the mascot.
   // As the app's Recommended practice: a light card in the subject's colour, the whole card a button,
   // its title, what it is in a line or two, and the subject's object on the right.
@@ -328,8 +333,8 @@ function renderHomeTab() {
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<h3 class="pr-h hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</h3>${lesson}`);
-  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons)));
-  if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice)));
+  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
+  if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice"));
   else if (practiceHtml) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceHtml}`);
   const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
   const pct = (100 * got) / goal;
@@ -348,6 +353,7 @@ function renderHomeTab() {
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
   </div>`;
   scr.appendChild(appTabs("start"));
+  scr.querySelectorAll("[data-done]").forEach((b) => b.onclick = () => appTab(b.dataset.done));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
