@@ -2329,7 +2329,7 @@ Finding the way on the Hundertertafel: one step right is one more, one row down 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
 | 1. Nachbarn auf der Tafel | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
-| 2. Wege und Muster | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
+| 2. Wege und Muster | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
 Task types: text_input 8, fill_in_blank 10, multiple_choice 37, true_false 9. Builds on: `math.numbers-to-100.read-write`. Misconceptions addressed: 2.
 
@@ -2496,10 +2496,10 @@ Reading and marking numbers on the Zahlenstrahl when only the tens are labelled.
 
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
-| 1. Zehner und Striche | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
+| 1. Zehner und Striche | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Wohin zeigt der Pfeil? | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, point_on_line 34, true_false 6, fill_in_blank 6. Builds on: `math.numbers-to-100.read-write`. Misconceptions addressed: 2.
+Task types: multiple_choice 18, point_on_line 30, true_false 10, fill_in_blank 6. Builds on: `math.numbers-to-100.read-write`. Misconceptions addressed: 2.
 
 ## Zahlenmuster und schöne Päckchen (Number patterns and calculation patterns)
 
@@ -2525,7 +2525,7 @@ Riddles that combine clues about tens, ones and neighbours. Lesson 1 solves ridd
 | Lesson | New | Tasks | Activities |
 |---|---|---|---|
 | 1. Zwei Hinweise | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
-| 2. Drei Hinweise | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
+| 2. Drei Hinweise | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
 Task types: fill_in_blank 1, multiple_choice 43, text_input 13, true_false 7. Builds on: `math.numbers-to-100.order-compare`. Misconceptions addressed: 2.
 
@@ -3619,7 +3619,7 @@ The first lesson of Klasse 3 opens the Tausenderraum: ten tens make a hundred, a
 | 1. Zehn Zehner sind ein Hunderter | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
 | 2. Hunderter, Zehner und Einer | yes | 25 | warm-up, learn, practise (6 full, 6 some, 6 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 32, true_false 9, image_multiple_choice 9, text_input 11, fill_in_blank 5. Builds on: `math.numbers-to-100.place-value`. Misconceptions addressed: 3.
+Task types: multiple_choice 31, true_false 9, image_multiple_choice 9, text_input 11, fill_in_blank 6. Builds on: `math.numbers-to-100.place-value`. Misconceptions addressed: 3.
 
 ## Millimeter und Kilometer (Millimetres and kilometres)
 
@@ -3843,7 +3843,7 @@ Zooming in on the Zahlenstrahl: 0 to 1000 in hundreds, one hundred in tens, one 
 | 1. Hunderter und Zehner finden | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
 | 2. Pfeile lesen | yes | 25 | warm-up, learn, practise (6 full, 6 some, 6 none), check (skill, 5 of 20) |
 
-Task types: point_on_line 34, multiple_choice 21, fill_in_blank 6, true_false 5. Builds on: `math.numbers-to-1000.read-write`. Misconceptions addressed: 2.
+Task types: point_on_line 27, multiple_choice 23, true_false 10, fill_in_blank 6. Builds on: `math.numbers-to-1000.read-write`. Misconceptions addressed: 2.
 
 ## Zahlenrätsel bis 1000 (Number riddles to 1000)
 
@@ -3969,7 +3969,7 @@ Rounding finds the nearest ten or hundred, using the Nachbarzehner and Nachbarhu
 | 1. Auf Zehner runden | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
 | 2. Auf Hunderter runden | yes | 25 | warm-up, learn, practise (6 full, 6 some, 6 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 6, multiple_choice 33, text_input 16, true_false 11. Builds on: `math.numbers-to-1000.order-compare`. Misconceptions addressed: 3.
+Task types: fill_in_blank 7, multiple_choice 32, text_input 16, true_false 11. Builds on: `math.numbers-to-1000.order-compare`. Misconceptions addressed: 3.
 
 ## Halbschriftlich teilen (Dividing in steps)
 
@@ -4025,7 +4025,7 @@ Counting in steps (2, 5, 10, 20, 25, 30, 50, 100 and 200) from any start, across
 | 1. In großen Schritten zählen | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none), check (quick, 3 of 6) |
 | 2. Regeln finden und erklären | yes | 25 | warm-up, learn, practise (6 full, 6 some, 6 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 42, fill_in_blank 17, ordering 2, true_false 5. Builds on: `math.numbers-to-1000.order-compare`. Misconceptions addressed: 2.
+Task types: multiple_choice 41, fill_in_blank 18, ordering 2, true_false 5. Builds on: `math.numbers-to-1000.order-compare`. Misconceptions addressed: 2.
 
 ## Schriftlich subtrahieren ohne Entbündeln (Column subtraction without exchanging)
 
@@ -5613,7 +5613,7 @@ Lernjahr 1 starts by listening to short, slow conversations on familiar topics: 
 | 1. Worum geht es? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Genau hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 53, true_false 11. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
+Task types: audio_choice 52, true_false 12. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
 
 ## So spricht man, so schreibt man (Sounds and spellings)
 

@@ -52,8 +52,10 @@ lessons:
       - activity: learn
         mode: do-it-with-me
         screens:
-          - say: "Wir klatschen Wörter. Ball. Einmal klatschen: Ball. Ball hat eine Silbe."
-            show: { object: ball }
+          - say: "Hier sind ein riesiger Bär und eine winzige Mücke. Was glaubst du: Welches Tier hat das längere Wort?"
+            show: { objects: [bear, mosquito] }
+          - say: "Wir klatschen die Wörter. Bär. Einmal klatschen: Bär. Mü ... cke. Zweimal klatschen. Die kleine Mücke hat das längere Wort! Bär hat eine Silbe, Mücke hat zwei."
+            show: { objects: [bear, mosquito] }
           - say: "Hase. Klatsch mit: Ha ... se. Zweimal geklatscht. Hase hat zwei Silben."
             show: { object: rabbit }
           - say: "Banane. Klatsch mit: Ba ... na ... ne. Dreimal geklatscht. Banane hat drei Silben."
@@ -291,6 +293,12 @@ lessons:
               - { drawn: dots, count: 2, layout: row }
               - { drawn: dots, count: 3, layout: row }
             answer: "2"
+          - id: l1-c6
+            type: true_false
+            text: "Klatschst du zweimal?"
+            say: "Gabel. Klatschst du bei Gabel zweimal?"
+            show: { object: fork }
+            answer: true
           - id: l1-c4
             type: image_multiple_choice
             text: "Wie oft klatschst du?"
@@ -311,12 +319,6 @@ lessons:
               - { drawn: dots, count: 2, layout: row }
               - { drawn: dots, count: 3, layout: row }
             answer: "1"
-          - id: l1-c6
-            type: true_false
-            text: "Klatschst du zweimal?"
-            say: "Gabel. Klatschst du bei Gabel zweimal?"
-            show: { object: fork }
-            answer: true
 
   - n: 2
     title: { de: Silben sortieren, en: Sorting by syllables }
@@ -350,10 +352,13 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - say: "Jetzt sortieren wir. Ein Punkt bedeutet einmal klatschen, zwei Punkte zweimal, drei Punkte dreimal. Schuh klatschst du einmal. Also gehört der Schuh zu einem Punkt."
-            show: { object: shoe }
-          - say: "Elefant: E ... le ... fant. Dreimal. Also gehört der Elefant zu den drei Punkten."
+          - say: "Jetzt sortieren wir. Ein Punkt bedeutet einmal klatschen, zwei Punkte zweimal, drei Punkte dreimal. Was glaubst du: Wohin gehört der Elefant?"
             show: { object: elephant }
+          - say: "Elefant: E ... le ... fant. Dreimal. Also gehört der Elefant zu den drei Punkten. Und der Schuh? Schuh klatschst du einmal. Er gehört zu einem Punkt."
+            show: { objects: [elephant, shoe] }
+          - text: "Wusstest du? Marienkäfer klatschst du fünfmal."
+            say: "Wusstest du? Der Marienkäfer ist winzig, aber sein Wort ist lang. Klatsch mit: Ma ... ri ... en ... kä ... fer. Fünfmal!"
+            show: { object: ladybird }
 
       - activity: practise
         setting: plain
@@ -601,13 +606,6 @@ lessons:
               - { object: nose, bin: "2" }
               - { object: mouse, bin: "1" }
               - { object: jug, bin: "2" }
-          - id: l2-c5
-            part: three
-            type: true_false
-            text: "Klatschst du dreimal?"
-            say: "Giraffe. Klatschst du bei Giraffe dreimal?"
-            show: { object: giraffe }
-            answer: true
           - id: l2-c6
             part: one
             type: image_multiple_choice
@@ -626,6 +624,13 @@ lessons:
             say: "Welches Wort klatschst du nur einmal?"
             options: [{ object: spider }, { object: horse }, { object: tortoise }]
             answer: horse
+          - id: l2-c5
+            part: three
+            type: true_false
+            text: "Klatschst du dreimal?"
+            say: "Giraffe. Klatschst du bei Giraffe dreimal?"
+            show: { object: giraffe }
+            answer: true
           - id: l2-c8
             part: one
             type: image_multiple_choice
@@ -644,6 +649,21 @@ lessons:
             say: "Welches Wort klatschst du nur einmal?"
             options: [{ object: candle }, { object: jumper }, { object: bed }]
             answer: bed
+          - id: l2-c17
+            part: mixed
+            type: sorting
+            text: "Einmal, zweimal oder dreimal?"
+            say: "Klatsch jedes Wort. Einmal, zweimal oder dreimal? Bring jedes Bild zu den passenden Punkten."
+            bins:
+              - { id: "1", show: { drawn: dots, count: 1, layout: row }, say: { de: "Einmal klatschen." } }
+              - { id: "2", show: { drawn: dots, count: 2, layout: row }, say: { de: "Zweimal klatschen." } }
+              - { id: "3", show: { drawn: dots, count: 3, layout: row }, say: { de: "Dreimal klatschen." } }
+            options:
+              - { object: strawberry, bin: "3" }
+              - { object: star, bin: "1" }
+              - { object: duck, bin: "2" }
+              - { object: bear, bin: "1" }
+              - { object: jumper, bin: "3" }
           - id: l2-c10
             part: two
             type: image_multiple_choice
@@ -662,13 +682,18 @@ lessons:
             say: "Welches Wort klatschst du zweimal?"
             options: [{ object: train }, { object: strawberry }, { object: crown }]
             answer: crown
-          - id: l2-c12
-            part: two
-            type: true_false
-            text: "Klatschst du einmal?"
-            say: "Biene. Klatschst du bei Biene einmal?"
-            show: { object: bee }
-            answer: false
+          - id: l2-c18
+            part: mixed
+            type: matching
+            text: "Wie oft klatschst du? Verbinde jedes Bild mit seinen Punkten."
+            say: "Klatsch jedes Wort mit. Verbinde dann jedes Bild mit seinen Klatschpunkten."
+            pairs:
+              - left: { object: ruler }
+                right: { drawn: dots, count: 3, layout: row }
+              - left: { object: tooth }
+                right: { drawn: dots, count: 1, layout: row }
+              - left: { object: witch }
+                right: { drawn: dots, count: 2, layout: row }
           - id: l2-c13
             part: two
             type: image_multiple_choice
@@ -687,6 +712,13 @@ lessons:
               - { drawn: dots, count: 2, layout: row }
               - { drawn: dots, count: 3, layout: row }
             answer: "3"
+          - id: l2-c12
+            part: two
+            type: true_false
+            text: "Klatschst du einmal?"
+            say: "Biene. Klatschst du bei Biene einmal?"
+            show: { object: bee }
+            answer: false
           - id: l2-c15
             part: three
             type: image_multiple_choice
@@ -705,33 +737,6 @@ lessons:
               - { drawn: dots, count: 2, layout: row }
               - { drawn: dots, count: 3, layout: row }
             answer: "3"
-          - id: l2-c17
-            part: mixed
-            type: sorting
-            text: "Einmal, zweimal oder dreimal?"
-            say: "Klatsch jedes Wort. Einmal, zweimal oder dreimal? Bring jedes Bild zu den passenden Punkten."
-            bins:
-              - { id: "1", show: { drawn: dots, count: 1, layout: row }, say: { de: "Einmal klatschen." } }
-              - { id: "2", show: { drawn: dots, count: 2, layout: row }, say: { de: "Zweimal klatschen." } }
-              - { id: "3", show: { drawn: dots, count: 3, layout: row }, say: { de: "Dreimal klatschen." } }
-            options:
-              - { object: strawberry, bin: "3" }
-              - { object: star, bin: "1" }
-              - { object: duck, bin: "2" }
-              - { object: bear, bin: "1" }
-              - { object: jumper, bin: "3" }
-          - id: l2-c18
-            part: mixed
-            type: matching
-            text: "Wie oft klatschst du? Verbinde jedes Bild mit seinen Punkten."
-            say: "Klatsch jedes Wort mit. Verbinde dann jedes Bild mit seinen Klatschpunkten."
-            pairs:
-              - left: { object: ruler }
-                right: { drawn: dots, count: 3, layout: row }
-              - left: { object: tooth }
-                right: { drawn: dots, count: 1, layout: row }
-              - left: { object: witch }
-                right: { drawn: dots, count: 2, layout: row }
           - id: l2-c19
             part: mixed
             type: sorting

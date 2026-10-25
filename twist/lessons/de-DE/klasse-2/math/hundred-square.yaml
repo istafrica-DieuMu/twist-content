@@ -68,14 +68,16 @@ lessons:
         mode: demonstration
         screens:
           - text: "1 bis 100"
-            say: "Das ist die Hundertertafel. Jede Zeile hat zehn Zahlen. Oben links steht eins, unten rechts steht hundert."
+            say: "Das ist die Hundertertafel. Jede Zeile hat zehn Zahlen. Was glaubst du: Wie viele Zeilen hat sie?"
             show: { drawn: hundred-square }
           - text: "34 → 35"
-            say: "Ein Schritt nach rechts ist eins mehr. Rechts neben vierunddreißig steht fünfunddreißig."
+            say: "Sie hat zehn Zeilen. Oben links steht eins, unten rechts steht hundert. Ein Schritt nach rechts ist eins mehr. Rechts neben vierunddreißig steht fünfunddreißig."
             show: { drawn: hundred-square, highlight: [34, 35] }
           - text: "34 → 44"
             say: "Eine Zeile tiefer ist zehn mehr. Unter vierunddreißig steht vierundvierzig. Die Einer bleiben gleich, die Zehner werden eins mehr."
             show: { drawn: hundred-square, highlight: [34, 44] }
+          - text: "Wusstest du? Ein Schachbrett hat 8 Zeilen mit je 8 Feldern. Das sind 64 Felder."
+            say: "Wusstest du? Auch ein Schachbrett hat Zeilen und Spalten: acht Zeilen mit je acht Feldern. Das sind vierundsechzig Felder. Die Hundertertafel hat hundert."
 
       - activity: practise
         setting: plain
@@ -317,8 +319,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - text: "3, 13, 23, 33"
-            say: "Schau dir eine Spalte an: drei, dreizehn, dreiundzwanzig, dreiunddreißig. Alle enden mit drei. In einer Spalte bleiben die Einer gleich."
+          - text: "3, 13, 23, 33, ?"
+            say: "Schau dir eine Spalte an: drei, dreizehn, dreiundzwanzig, dreiunddreißig. Was glaubst du: Welche Zahl kommt darunter?"
+            show: { drawn: hundred-square, highlight: [3, 13, 23, 33], hide: [43] }
+          - text: "3, 13, 23, 33, 43"
+            say: "Es ist dreiundvierzig. Alle Zahlen in dieser Spalte enden mit drei. In einer Spalte bleiben die Einer gleich."
             show: { drawn: hundred-square, highlight: [3, 13, 23, 33, 43, 53, 63, 73, 83, 93] }
           - text: "22 → 2 Zeilen nach unten → 42"
             say: "Ein Weg: Fang bei zweiundzwanzig an und geh zwei Zeilen nach unten. Das sind zweimal zehn mehr. Wir kommen bei zweiundvierzig an."
@@ -368,6 +373,16 @@ lessons:
                   - "Womit enden alle gelben Zahlen?"
                   - "Alle enden mit 7."
                   - "47 endet auch mit 7."
+              - id: l2-f5
+                type: true_false
+                text: "Stimmt das? 9, 19, 29, 39 stehen in einer Spalte."
+                say: "Neun, neunzehn, neunundzwanzig, neununddreißig. Stehen die in einer Spalte untereinander?"
+                show: { drawn: hundred-square, highlight: [9, 19, 29, 39] }
+                answer: true
+                hints:
+                  - "Womit enden die Zahlen?"
+                  - "Alle enden mit 9. Jede ist zehn mehr als die davor."
+                  - "Ja, sie stehen untereinander."
               - id: l2-f4
                 type: multiple_choice
                 text: "Start 68, 1 Zeile nach oben. Wo bist du?"
@@ -379,16 +394,6 @@ lessons:
                   - "Nach oben ist zehn weniger."
                   - "Die Einer bleiben 8."
                   - "Du bist bei 58."
-              - id: l2-f5
-                type: true_false
-                text: "Stimmt das? 9, 19, 29, 39 stehen in einer Spalte."
-                say: "Neun, neunzehn, neunundzwanzig, neununddreißig. Stehen die in einer Spalte untereinander?"
-                show: { drawn: hundred-square, highlight: [9, 19, 29, 39] }
-                answer: true
-                hints:
-                  - "Womit enden die Zahlen?"
-                  - "Alle enden mit 9. Jede ist zehn mehr als die davor."
-                  - "Ja, sie stehen untereinander."
               - id: l2-f6
                 type: text_input
                 text: "Start 33, 1 Zeile nach unten, dann 2 Schritte nach rechts. Wo bist du?"
@@ -450,38 +455,39 @@ lessons:
                 hints: ["Nach oben ist zehn weniger."]
 
           - support: none
+            setting: in-context
             tasks:
               - id: l2-n1
                 type: multiple_choice
-                text: "Start 42, 4 Zeilen nach unten. Wo bist du?"
-                say: "Fang bei zweiundvierzig an. Geh vier Zeilen nach unten. Wo bist du?"
+                text: "Fritz der Frosch sitzt auf 42. Er hüpft 4 Zeilen nach unten. Wo landet er?"
+                say: "Fritz der Frosch sitzt auf zweiundvierzig. Er hüpft vier Zeilen nach unten. Wo landet er?"
                 show: { drawn: hundred-square, highlight: [42] }
                 options: ["46", "82", "72"]
                 answer: "82"
               - id: l2-n2
                 type: multiple_choice
-                text: "Welche Zahl gehört in diese Spalte?"
-                say: "Die gelben Zahlen sind eine Spalte. Welche Zahl gehört auch dazu?"
+                text: "Fritz hüpft nur in der gelben Spalte. Auf welcher Zahl kann er auch landen?"
+                say: "Fritz hüpft nur in der gelben Spalte. Auf welcher Zahl kann er auch landen?"
                 show: { drawn: hundred-square, highlight: [5, 15, 25, 35] }
                 options: ["36", "45", "50"]
                 answer: "45"
               - id: l2-n3
                 type: text_input
-                text: "Start 18, 3 Zeilen nach unten, dann 1 Schritt nach links. Wo bist du?"
-                say: "Fang bei achtzehn an. Drei Zeilen nach unten, dann einen Schritt nach links. Wo bist du?"
+                text: "Fritz sitzt auf 18. Er hüpft 3 Zeilen nach unten, dann 1 Feld nach links. Wo landet er?"
+                say: "Fritz sitzt auf achtzehn. Er hüpft drei Zeilen nach unten, dann ein Feld nach links. Wo landet er?"
                 show: { drawn: hundred-square, highlight: [18] }
                 answer: "47"
               - id: l2-n4
                 type: multiple_choice
-                text: "Start 64, 3 Schritte nach rechts. Wo bist du?"
-                say: "Fang bei vierundsechzig an. Geh drei Schritte nach rechts. Wo bist du?"
+                text: "Fritz sitzt auf 64. Er hüpft 3 Felder nach rechts. Wo landet er?"
+                say: "Fritz sitzt auf vierundsechzig. Er hüpft drei Felder nach rechts. Wo landet er?"
                 show: { drawn: hundred-square, highlight: [64] }
                 options: ["94", "67", "61"]
                 answer: "67"
               - id: l2-n5
                 type: text_input
-                text: "Start 99, 5 Zeilen nach oben. Wo bist du?"
-                say: "Fang bei neunundneunzig an. Geh fünf Zeilen nach oben. Wo bist du?"
+                text: "Zum Schluss sitzt Fritz auf 99. Er macht 5 Riesensprünge, jeden 1 Zeile nach oben. Wo landet er?"
+                say: "Zum Schluss sitzt Fritz auf neunundneunzig. Er macht fünf Riesensprünge, jeden eine Zeile nach oben. Wo landet er?"
                 show: { drawn: hundred-square, highlight: [99] }
                 answer: "49"
 

@@ -20,7 +20,7 @@ metadata:
   builds_on: [math.numbers-to-1000.read-write]
   also_practises: [math.numbers-to-100.number-line]
   vocabulary: { de: [Zahlenstrahl, Strich, Schritt, Ausschnitt, Pfeil, zwischen] }
-  forms: [drawn, text, audio]
+  forms: [picture, drawn, text, audio]
   drawn: [number-line]
   facets: []
   parts:
@@ -67,15 +67,21 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - text: "0 bis 1000"
-            say: "Der Zahlenstrahl bis tausend. Ein Schritt ist hier hundert: null, hundert, zweihundert, bis tausend."
+          - text: "Was glaubst du? Wo liegt 500: am Anfang, in der Mitte oder am Ende?"
+            say: "Hier ist der Zahlenstrahl von null bis tausend. Was glaubst du: Wo liegt fünfhundert? Am Anfang, in der Mitte oder am Ende?"
             show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends }
+          - text: "0 bis 1000"
+            say: "Genau in der Mitte! Ein Schritt ist hier hundert: null, hundert, zweihundert, bis tausend. Fünfhundert ist der fünfte Strich."
+            show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 500 }
           - text: "300 bis 400"
             say: "Jetzt ein Ausschnitt: von dreihundert bis vierhundert. Hier ist ein Schritt zehn: dreihundertzehn, dreihundertzwanzig, und so weiter."
             show: { drawn: number-line, from: 300, to: 400, step: 10, labels: ends }
           - text: "370"
             say: "Wo ist dreihundertsiebzig? Fang beim ersten Strich an, bei dreihundert, und geh sieben Zehnerschritte weiter."
             show: { drawn: number-line, from: 300, to: 400, step: 10, labels: ends, mark: 370 }
+          - text: "Wusstest du? Der Eiffelturm in Paris ist etwa 330 Meter hoch. Das liegt zwischen 300 und 400."
+            say: "Wusstest du? Der Eiffelturm in Paris ist etwa dreihundertdreißig Meter hoch. Auf dem Zahlenstrahl liegt das zwischen dreihundert und vierhundert, drei Zehnerschritte nach dreihundert."
+            show: { object: eiffel-tower }
 
       - activity: practise
         setting: plain
@@ -102,14 +108,15 @@ lessons:
                   - "Fang bei 200 an: 210, 220, ..."
                   - "Vier Schritte nach 200."
               - id: l1-f3
-                type: point_on_line
-                text: "Wo ist 900?"
-                show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends }
-                answer: 900
+                type: true_false
+                text: "Stimmt das? Der Pfeil zeigt auf 900."
+                say: "Der Pfeil zeigt auf neunhundert. Stimmt das?"
+                show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 900 }
+                answer: true
                 hints:
                   - "900 ist nah an 1000."
-                  - "Ein Schritt zurück von 1000."
-                  - "Der Strich vor 1000."
+                  - "900 ist ein Schritt zurück von 1000."
+                  - "Der Pfeil steht auf dem Strich vor 1000. Ja, das ist 900."
               - id: l1-f4
                 type: point_on_line
                 text: "Wo ist 550?"
@@ -120,17 +127,23 @@ lessons:
                   - "Zähl fünf Zehnerschritte von 500 aus."
                   - "Tipp auf die Mitte."
               - id: l1-f5
-                type: point_on_line
-                text: "Wo ist 780?"
+                type: multiple_choice
+                text: "Ein Frosch hüpft in Zehnerschritten von 700 bis 780. Wie oft hüpft er?"
+                say: "Ein Frosch hüpft am Zahlenstrahl in Zehnerschritten von siebenhundert bis siebenhundertachtzig. Wie oft hüpft er?"
                 show: { drawn: number-line, from: 700, to: 800, step: 10, labels: ends }
-                answer: 780
+                options: ["8", "78", "80", "Quak!"]
+                answer: "8"
+                feedback:
+                  "Quak!": "Der Frosch sagt „Quak!“, aber du zählst seine Sprünge: 710, 720, ..."
+                  "80": "80 ist der Weg. Jeder Sprung ist 10 lang. Zähl die Sprünge."
                 hints:
-                  - "780 ist nah an 800."
-                  - "Zwei Schritte zurück von 800."
-                  - "790, dann 780."
+                  - "Zähl in Zehnern von 700 aus."
+                  - "710, 720, 730, ... bis 780."
+                  - "Es sind 8 Sprünge."
               - id: l1-f6
                 type: point_on_line
-                text: "Wo ist 130?"
+                text: "Eine Schnecke ist schon 130 Zentimeter gekrochen. Wo ist sie? Tipp auf 130."
+                say: "Eine Schnecke ist schon hundertdreißig Zentimeter gekrochen. Wo ist sie? Tipp auf hundertdreißig."
                 show: { drawn: number-line, from: 100, to: 200, step: 10, labels: ends }
                 answer: 130
                 hints:
@@ -153,11 +166,12 @@ lessons:
                 answer: 460
                 hints: ["Die Mitte ist 450."]
               - id: l1-s3
-                type: point_on_line
-                text: "Wo ist 820?"
-                show: { drawn: number-line, from: 800, to: 900, step: 10, labels: ends }
-                answer: 820
-                hints: ["Fang bei 800 an."]
+                type: true_false
+                text: "Stimmt das? Der Pfeil zeigt auf 820."
+                say: "Der Pfeil zeigt auf achthundertzwanzig. Stimmt das?"
+                show: { drawn: number-line, from: 800, to: 900, step: 10, labels: ends, mark: 840 }
+                answer: false
+                hints: ["Fang bei 800 an und zähl die Zehnerschritte bis zum Pfeil."]
               - id: l1-s4
                 type: point_on_line
                 text: "Wo ist 690?"
@@ -190,23 +204,27 @@ lessons:
                 show: { drawn: number-line, from: 900, to: 1000, step: 10, labels: ends }
                 answer: 970
               - id: l1-n3
-                type: point_on_line
-                text: "Wo ist 410?"
-                show: { drawn: number-line, from: 400, to: 500, step: 10, labels: ends }
-                answer: 410
+                type: true_false
+                text: "Stimmt das? Der Pfeil zeigt auf 410."
+                say: "Der Pfeil zeigt auf vierhundertzehn. Stimmt das?"
+                show: { drawn: number-line, from: 400, to: 500, step: 10, labels: ends, mark: 410 }
+                answer: true
               - id: l1-n4
                 type: point_on_line
                 text: "Wo ist 700?"
                 show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends }
                 answer: 700
               - id: l1-n5
-                type: point_on_line
-                text: "Wo ist 260?"
+                type: multiple_choice
+                text: "Wie viele Zehnerschritte sind es von 200 bis 260?"
+                say: "Wie viele Zehnerschritte sind es von zweihundert bis zweihundertsechzig?"
                 show: { drawn: number-line, from: 200, to: 300, step: 10, labels: ends }
-                answer: 260
+                options: ["6", "26", "60"]
+                answer: "6"
               - id: l1-n6
                 type: point_on_line
-                text: "Wo ist 580?"
+                text: "Tom läuft zum Bäcker. Er ist schon 580 Meter gegangen. Wo ist er? Tipp auf 580."
+                say: "Tom läuft zum Bäcker. Er ist schon fünfhundertachtzig Meter gegangen. Wo ist er? Tipp auf fünfhundertachtzig."
                 show: { drawn: number-line, from: 500, to: 600, step: 10, labels: ends }
                 answer: 580
 
@@ -225,10 +243,11 @@ lessons:
             show: { drawn: number-line, from: 600, to: 700, step: 10, labels: ends }
             answer: 630
           - id: l1-c3
-            type: point_on_line
-            text: "Wo ist 170?"
-            show: { drawn: number-line, from: 100, to: 200, step: 10, labels: ends }
-            answer: 170
+            type: true_false
+            text: "Stimmt das? Der Pfeil zeigt auf 170."
+            say: "Der Pfeil zeigt auf hundertsiebzig. Stimmt das?"
+            show: { drawn: number-line, from: 100, to: 200, step: 10, labels: ends, mark: 190 }
+            answer: false
           - id: l1-c4
             type: point_on_line
             text: "Wo ist 920?"
@@ -271,11 +290,14 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Was glaubst du? Auf welche Zahl zeigt der Pfeil?"
+            say: "Der Strahl geht von fünfhundert bis sechshundert. Was glaubst du: Auf welche Zahl zeigt der Pfeil? Rate mal."
+            show: { drawn: number-line, from: 500, to: 600, step: 10, labels: ends, mark: 540 }
           - text: "Wie groß ist ein Schritt?"
             say: "Bevor du einen Pfeil liest, frag: Wie groß ist ein Schritt? Hier geht der Strahl von fünfhundert bis sechshundert in zehn Schritten. Ein Schritt ist zehn."
             show: { drawn: number-line, from: 500, to: 600, step: 10, labels: ends, mark: 540 }
           - text: "540"
-            say: "Von fünfhundert vier Schritte: fünfhundertzehn, fünfhundertzwanzig, fünfhundertdreißig, fünfhundertvierzig."
+            say: "Von fünfhundert vier Schritte: fünfhundertzehn, fünfhundertzwanzig, fünfhundertdreißig, fünfhundertvierzig. Der Pfeil zeigt auf fünfhundertvierzig."
             show: { drawn: number-line, from: 500, to: 600, step: 10, labels: ends, mark: 540 }
           - text: "543"
             say: "Ganz nah heran: von fünfhundertvierzig bis fünfhundertfünfzig. Jetzt ist ein Schritt eins. Der Pfeil zeigt auf fünfhundertdreiundvierzig."
@@ -489,10 +511,11 @@ lessons:
             answer: 890
           - id: l2-c8
             part: find
-            type: point_on_line
-            text: "Wo ist 736?"
-            show: { drawn: number-line, from: 730, to: 740, labels: ends }
-            answer: 736
+            type: true_false
+            text: "Stimmt das? Der Pfeil zeigt auf 736."
+            say: "Der Pfeil zeigt auf siebenhundertsechsunddreißig. Stimmt das?"
+            show: { drawn: number-line, from: 730, to: 740, labels: ends, mark: 734 }
+            answer: false
           - id: l2-c9
             part: find
             type: point_on_line

@@ -35,8 +35,8 @@ Per voice:
 | gemini-puck | 18645 | 18515 (99%) | 0 | 1225 min | $40 |
 | gemini-puck-en | 18187 | 18064 (99%) | 0 | 1409 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
-| gemini-sulafat | 46062 | 45611 (99%) | 0 | 3590 min | $109 |
-| gemini-sulafat-en | 47577 | 47126 (99%) | 0 | 4567 min | $130 |
+| gemini-sulafat | 46062 | 45624 (99%) | 0 | 3590 min | $109 |
+| gemini-sulafat-en | 47577 | 47133 (99%) | 0 | 4567 min | $130 |
 | gemini-sulafat-fr | 1302 | 1299 (100%) | 0 | 76 min | $2.53 |
 
 ## de-DE
@@ -59,14 +59,14 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 |---|---|---|---|---|---|
 | klasse-1 | Mathe | Zahlen bis 10 | 7 / 7 done | 17 | $2.01 |
 | klasse-1 | Mathe | Rechnen bis 10 | 8 / 8 done | 16 | $2.65 |
-| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.12 |
+| klasse-1 | Mathe | Zahlen bis 20 | 5 / 5 done | 10 | $1.11 |
 | klasse-1 | Mathe | Rechnen bis 20 | 8 / 8 done | 17 | $2.55 |
 | klasse-1 | Mathe | Zehnerzahlen bis 100 | 2 / 2 done | 4 | $0.47 |
 | klasse-1 | Mathe | Größen | 4 / 4 done | 9 | $1.21 |
 | klasse-1 | Mathe | Geometrie | 5 / 5 done | 10 | $1.37 |
 | klasse-1 | Mathe | Daten | 2 / 2 done | 4 | $0.46 |
 | klasse-1 | Deutsch | Laute hören | 4 / 4 done | 8 | $1.09 |
-| klasse-1 | Deutsch | Buchstaben | 12 / 12 done | 50 | $5.10 |
+| klasse-1 | Deutsch | Buchstaben | 12 / 12 done | 50 | $5.08 |
 | klasse-1 | Deutsch | Schreiben lernen | 1 / 1 done | 2 | $0.26 |
 | klasse-1 | Deutsch | Silben lesen | 4 / 4 done | 8 | $0.74 |
 | klasse-1 | Deutsch | Erste Wörter schreiben | 3 / 3 done | 6 | $0.73 |
@@ -90,7 +90,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.71 |
 | klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $4.12 |
 | klasse-2 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.36 |
-| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $4.53 |
+| klasse-2 | Mathe | Größen | 12 / 12 done | 24 | $4.52 |
 | klasse-2 | Mathe | Geometrie | 7 / 7 done | 14 | $1.95 |
 | klasse-2 | Mathe | Daten und Wahrscheinlichkeit | 4 / 4 done | 8 | $1.46 |
 | klasse-2 | Deutsch | Nomen | 1 / 1 done | 3 | $0.43 |
@@ -122,7 +122,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $2.81 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.82 |
 | klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $5.40 |
-| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $4.92 |
+| klasse-3 | Mathe | Größen | 12 / 12 done | 24 | $4.91 |
 | klasse-3 | Mathe | Geometrie | 7 / 7 done | 14 | $2.27 |
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.46 |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.49 |
@@ -158,7 +158,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $2.48 |
 | klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.60 |
 | klasse-4 | Mathe | Größen | 8 / 8 done | 16 | $3.88 |
-| klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $4.16 |
+| klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $4.15 |
 | klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.65 |
 | klasse-4 | Mathe | Erweiterung | 4 / 4 done | 8 | $1.35 |
 | klasse-4 | Deutsch | Die vier Fälle | 1 / 1 done | 3 | $0.42 |
@@ -356,7 +356,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-4 | Maths | Division | 3 / 3 done | 6 | $1.19 |
 | year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.52 |
 | year-4 | Maths | Adding and subtracting to 1000 | 1 / 1 done | 2 | $0.48 |
-| year-4 | Maths | Multiplying and dividing | 2 / 2 done | 4 | $0.76 |
+| year-4 | Maths | Multiplying and dividing | 2 / 2 done | 4 | $0.75 |
 | year-4 | Maths | Informal multiplication and division | 2 / 2 done | 4 | $0.99 |
 | year-4 | Maths | Relationships | 2 / 2 done | 4 | $0.79 |
 | year-4 | Maths | Mass | 1 / 1 done | 2 | $0.42 |
@@ -425,7 +425,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-6 | Maths | Algebra | 4 / 4 done | 8 | $2.29 |
 | year-6 | Maths | Percentages | 1 / 1 done | 2 | $0.41 |
 | year-6 | Maths | Coordinates | 1 / 1 done | 2 | $0.63 |
-| year-6 | Maths | Ratio | 3 / 3 done | 6 | $1.46 |
+| year-6 | Maths | Ratio | 3 / 3 done | 6 | $1.45 |
 | year-6 | Maths | Angles | 1 / 1 done | 2 | $0.53 |
 | year-6 | Maths | Area and perimeter | 2 / 2 done | 4 | $1.11 |
 | year-6 | Maths | Volume | 1 / 1 done | 2 | $0.56 |
@@ -454,7 +454,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | ly-2 | French | Listening | 3 / 3 done | 6 | $1.20 |
 | ly-2 | French | Language patterns | 4 / 4 done | 8 | $1.20 |
 | ly-2 | French | Speaking | 4 / 4 done | 8 | $1.21 |
-| ly-2 | French | Reading | 3 / 3 done | 6 | $0.72 |
+| ly-2 | French | Reading | 3 / 3 done | 6 | $0.71 |
 | ly-2 | French | Writing | 2 / 2 done | 4 | $0.56 |
 | ly-2 | French | Numbers | 1 / 1 done | 2 | $0.30 |
 | ly-2 | French | Clothes | 1 / 1 done | 2 | $0.27 |
@@ -465,7 +465,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | ly-2 | French | Calendar | 1 / 1 done | 2 | $0.31 |
 | ly-2 | French | Weather | 1 / 1 done | 2 | $0.26 |
 | ly-2 | French | Where the language is spoken | 1 / 1 done | 2 | $0.38 |
-| ly-2 | French | Learning strategies | 2 / 2 done | 4 | $0.69 |
+| ly-2 | French | Learning strategies | 2 / 2 done | 4 | $0.68 |
 | ly-2 | French | Mediation | 1 / 1 done | 2 | $0.42 |
 | ly-3 | French | Hobbies and sport | 1 / 1 done | 2 | $0.24 |
 | ly-3 | French | Numbers | 1 / 1 done | 3 | $0.40 |

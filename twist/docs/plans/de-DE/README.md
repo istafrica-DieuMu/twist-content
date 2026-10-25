@@ -154,6 +154,9 @@ Open:
 | 7 | Standardize year and subject names | Later |
 | 8 | Review, commit, decide on merging | Grundschule docs committed 2026-10-24 |
 | 9 | Sekundarstufe I plans (sek1/) | Drafted and checked against KMK, NRW and Bayern, 2026-10-24; omissions and sources merged |
+| 10 | Fun pilot on the first topic of every built Grundschule subject and year (../2026-10-25-fun-pilot.md) | In progress, 2026-10-25 |
+| 11 | Author the remaining Grundschule subjects: Sachunterricht, DaZ, Musik, Kunst, Ethik | Next, after the pilot |
+| 12 | Review PDF as a school book: unworked exercises to solve on paper, answers in a separate key, layout like a German Arbeitsheft | Later, after all Grundschule subjects are authored |
 
 ## Authoring steps for each subject
 

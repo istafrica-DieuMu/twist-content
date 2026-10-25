@@ -19,7 +19,7 @@ metadata:
   builds_on: [math.numbers-to-100.place-value]
   also_practises: [math.numbers-to-100.bundle-tens]
   vocabulary: { de: [Hunderter, Hunderterplatte, Zehnerstange, Einerwürfel, bündeln, tausend] }
-  forms: [drawn, text, audio]
+  forms: [picture, drawn, text, audio]
   drawn: [base-ten]
   facets: []
   parts:
@@ -70,8 +70,11 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Was glaubst du? Wie viele Zehnerstangen passen in eine Hunderterplatte?"
+            say: "Schau dir die große Platte an. Was glaubst du: Wie viele Zehnerstangen passen da hinein? Rate mal."
+            show: { drawn: base-ten, hundreds: 1, tens: 0, ones: 0 }
           - text: "10 Zehner"
-            say: "Zehn Einerwürfel sind eine Zehnerstange. Jetzt legen wir zehn Zehnerstangen nebeneinander: zehn, zwanzig, dreißig, bis hundert."
+            say: "Wir probieren es aus. Zehn Einerwürfel sind eine Zehnerstange. Jetzt legen wir zehn Zehnerstangen nebeneinander: zehn, zwanzig, dreißig, bis hundert. Es sind zehn Stangen."
             show: { drawn: base-ten, tens: 10, ones: 0 }
           - text: "1 Hunderter = 100"
             say: "Zehn Zehner bündeln wir zu einer Hunderterplatte. Eine Platte ist hundert."
@@ -82,6 +85,8 @@ lessons:
           - text: "10 Hunderter = 1000"
             say: "Zehn Hunderterplatten sind tausend."
             show: { drawn: base-ten, hundreds: 10, tens: 0, ones: 0 }
+          - text: "Wusstest du? Ein Tausendfüßer hat fast nie 1000 Beine. Erst 2021 haben Forscher einen gefunden, der mehr als 1000 Beine hat."
+            say: "Wusstest du? Ein Tausendfüßer hat fast nie tausend Beine. Die meisten haben viel weniger. Erst im Jahr 2021 haben Forscher in Australien einen gefunden, der wirklich mehr als tausend Beine hat."
 
       - activity: practise
         setting: plain
@@ -105,8 +110,10 @@ lessons:
               - id: l1-f2
                 type: multiple_choice
                 text: "Wie viele Zehner sind ein Hunderter?"
-                options: ["10", "100", "1"]
+                options: ["10", "100", "1", "eine Million"]
                 answer: "10"
+                feedback:
+                  "eine Million": "Eine Million Zehner wären ein Turm bis über die Wolken! Zähl: zehn, zwanzig, ... hundert."
                 hints:
                   - "Zehn, zwanzig, ... Wie oft bis hundert?"
                   - "Zähl die Zehnerstangen in einer Platte."
@@ -187,9 +194,11 @@ lessons:
                 hints: ["Zehn Zehner sind hundert."]
               - id: l1-s6
                 type: text_input
-                text: "Wie viel sind 7 Hunderter?"
+                text: "In jeder Kiste sind 100 Murmeln. Wie viele Murmeln sind es zusammen?"
+                say: "In jeder Kiste sind hundert Murmeln. Wie viele Murmeln sind es zusammen?"
+                show: { object: box, count: 7, layout: row }
                 answer: "700"
-                hints: ["Zähl in Hundertern."]
+                hints: ["Jede Kiste ist ein Hunderter. Zähl in Hundertern."]
 
           - support: none
             tasks:
@@ -295,11 +304,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - text: "2 H, 3 Z, 5 E"
-            say: "Zwei Hunderterplatten, drei Zehnerstangen und fünf Einerwürfel. Wir zählen zuerst die Hunderter, dann die Zehner, dann die Einer."
+          - text: "Was glaubst du? Welche Zahl ist das?"
+            say: "Zwei Hunderterplatten, drei Zehnerstangen und fünf Einerwürfel. Was glaubst du: Welche Zahl ist das? Rate mal."
             show: { drawn: base-ten, hundreds: 2, tens: 3, ones: 5 }
           - text: "200 + 30 + 5 = 235"
-            say: "Zweihundert, zweihundertzehn, zweihundertzwanzig, zweihundertdreißig, und fünf Einer: zweihundertfünfunddreißig."
+            say: "Wir zählen zuerst die Hunderter, dann die Zehner, dann die Einer. Zweihundert, zweihundertzehn, zweihundertzwanzig, zweihundertdreißig, und fünf Einer: zweihundertfünfunddreißig."
             show: { drawn: base-ten, hundreds: 2, tens: 3, ones: 5 }
           - text: "305"
             say: "Hier gibt es keine Zehnerstangen: drei Hunderter und fünf Einer. Das ist dreihundertfünf. Bei den Zehnern schreiben wir eine Null."
@@ -449,7 +458,9 @@ lessons:
                 answer: "160"
               - id: l2-n5
                 type: text_input
-                text: "300 + 5 = _"
+                text: "Mia hat 3 Kisten mit je 100 Murmeln und noch 5 einzelne Murmeln. Wie viele Murmeln hat sie?"
+                say: "Mia hat drei Kisten mit je hundert Murmeln und noch fünf einzelne Murmeln. Wie viele Murmeln hat sie?"
+                show: { object: box, count: 3, layout: row }
                 answer: "305"
               - id: l2-n6
                 type: true_false
@@ -530,11 +541,12 @@ lessons:
             answer: "600"
           - id: l2-c11
             part: hundreds
-            type: multiple_choice
+            type: fill_in_blank
             text: "1000, 900, 800, _"
             say: "Zähl rückwärts in Hundertern: tausend, neunhundert, achthundert. Was kommt dann?"
+            frame: "1000, 900, 800, _"
             options: ["700", "790", "799"]
-            answer: "700"
+            answer: ["700"]
           - id: l2-c12
             part: hundreds
             type: multiple_choice
