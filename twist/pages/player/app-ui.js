@@ -295,6 +295,15 @@ const subjObject = (x) => { const o = SUBJ_OBJECT[x]; return (typeof o === "stri
 const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 // Start: today's plan (a lesson, then practice), ticked off as the child does it,
 // then the subjects. With the plan done, a well done and the way to more.
+// A practice suggestion as the app's Recommended practice card, on Start and on Practice: a
+// light card in the subject's colour, its title what is practised (the lesson set, the topic, or
+// a recap's topics), the line under it why and how long, the subject's object, and one button
+// (start) across the bottom; the card itself starts nothing. attr wires the button.
+function practiceTitle(x) { const lg = PL(); if (x.kind === "recaps") return cardSub(x); if (x.kind === "review") return PR.index.topics.find((t) => t.key === x.topic)?.name[lg] ?? cardSub(x); return setOfSkill(x.skills[0])?.title[lg] ?? cardSub(x); }
+function practiceCard(x, attr) {
+  const L = PT(), subj = subjOfSkill(x.skills[0]), t = practiceTitle(x), why = x.paused ? PAUSE_TXT[PL()].kind(L.kinds[x.kind] ?? "") : x.reason[PL()].includes(t) ? L.kinds[x.kind] ?? "" : x.reason[PL()];
+  return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><b>${esc(t)}</b><small>${esc(why)} · ${esc(sizeOf(x).split(", ").pop())}</small></span><button class="hm-pr-go" ${attr}>${esc(x.paused ? PAUSE_TXT[PL()].go : L.practise)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`;
+}
 function renderHomeTab() {
   const T = AT(), L = PT(), scr = $("#screen"), c = PR.child, subs = appSubjects();
   const plan = homePlan(); APP.subj = plan.subj;
@@ -310,8 +319,7 @@ function renderHomeTab() {
   // its title, what it is in a line or two, and the subject's object on the right.
   // The title is what is practised, short, as the app's "Tricky spellings": the lesson set, the topic,
   // or a recap's topics; the line under it says why and how long.
-  const pTitle = (x) => { const lg = PL(); if (x.kind === "recaps") return cardSub(x); if (x.kind === "review") return PR.index.topics.find((t) => t.key === x.topic)?.name[lg] ?? cardSub(x); return setOfSkill(x.skills[0])?.title[lg] ?? cardSub(x); };
-  const pCard = (x, i) => { const subj = subjOfSkill(x.skills[0]); return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><b>${esc(pTitle(x))}</b><small>${esc(x.reason[PL()].includes(pTitle(x)) ? L.kinds[x.kind] ?? "" : x.reason[PL()])} · ${esc(sizeOf(x).split(", ").pop())}</small></span><button class="hm-pr-go" data-sug="${i}">${esc(L.practise)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`; };
+  const pCard = (x, i) => practiceCard(x, `data-sug="${i}"`);
   // Two suggestions make a deck, as the lessons of the other subjects do.
   const practiceCard = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
   const steps = [];

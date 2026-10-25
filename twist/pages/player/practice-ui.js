@@ -85,13 +85,9 @@ function renderPracticeHome() {
   $("#prAllDr")?.addEventListener("click", () => renderDrills());
   scr.querySelectorAll(".dr-row [data-drill]").forEach((b) => b.onclick = () => renderDrillMap(b.dataset.drill));
   renderSubjects();
-  function card(c) {
-    const i = cards.indexOf(c), col = colourOf(subjOfSkill(c.skills[0])), sub = cardSub(c);
-        // A recap card names the skills this session plays; the rest stay due for the next one.
-    const b_ = BANDS[PR.child.band], title = c.paused ? c.reason[lg] : c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
-    return `<div class="pr-hero" role="group" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
-        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><button class="pr-go" data-card="${i}">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</button><img class="pr-art" src="${poseSrc(c)}" alt=""></div>`;
-  }
+  // The same card as Start's practice suggestions (practiceCard in app-ui.js).
+  function card(c) { return practiceCard(c, `data-card="${cards.indexOf(c)}"`); }
+
 }
 // What a card holds, in a line: the topics of a recap, the drill's set, the skill.
 function cardSub(c) {
