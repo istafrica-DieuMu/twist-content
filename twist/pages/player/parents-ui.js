@@ -9,15 +9,15 @@
 const PATXT = {
   de: {
     week: (n) => `${n}s Woche`, sub: (y, cur) => `${y} · ${cur}`, updated: "Stand heute",
-    played: (n, a, b) => `${n} hat an ${a} von ${b} Schultagen gelernt`, none: (n) => `${n} hat diese Woche noch nicht gelernt`,
-    mins: (m) => `, etwa ${m} Minuten`, needsN: (k) => k === 1 ? "Eine Sache braucht etwas Hilfe." : `${k} Sachen brauchen etwas Hilfe.`, allGood: "Gerade braucht nichts besondere Hilfe.",
+    played: (n, a) => `${n} hat diese Woche an ${a} ${a === 1 ? "Tag" : "Tagen"} gelernt`, none: (n) => `${n} hat diese Woche noch nicht gelernt`,
+    mins: (m) => `, ${m} Minuten insgesamt`, needsN: (k) => k === 1 ? "Eine Sache braucht etwas Hilfe." : `${k} Sachen brauchen etwas Hilfe.`, allGood: "Gerade braucht nichts besondere Hilfe.",
     kDays: (n) => `Tage, an denen ${n} gelernt hat`, kMins: "Lernzeit diese Woche", min: "Min.", kSecure: (n) => `Fähigkeiten, die ${n} kann`, ofN: (b) => `von ${b}`, about: "etwa",
     noticed: "Was uns aufgefallen ist", noticedSub: "Mit Beleg, das Wichtigste zuerst. Schicken Sie die passende Übung direkt in die App.",
     fCheck: (r, t) => `${r} von ${t} im Abschlusstest`, fCheckNo: "Abschlusstest noch nicht geschafft", fTricky: (p) => `Knifflig: ${p}`,
     fRefresh: "War schon sicher, jetzt wackelt es", fSlow: (n, xs) => `${n} ${n === 1 ? "Aufgabe" : "Aufgaben"} noch langsam oder falsch: ${xs}`,
     fRecapT: (n) => `${n} ${n === 1 ? "Fähigkeit" : "Fähigkeiten"} zum Auffrischen`, fRecapW: "Gelernt und sicher, jetzt Zeit für eine kurze Wiederholung, damit es bleibt.",
     fLeft: (n) => `${n} Übungsrunden diese Woche vorzeitig beendet`, fLeftW: "Vielleicht waren sie zu lang. Kürzere Runden helfen.",
-    send: (n) => `An ${n} schicken`, sent: "Geschickt", noFindings: "Nichts Auffälliges. Alles, was geübt wurde, sitzt.",
+    send: (n) => `An ${n} schicken`, more: (k) => `${k} weitere zeigen`, less: "Weniger zeigen", sent: "Geschickt", noFindings: "Nichts Auffälliges. Alles, was geübt wurde, sitzt.",
     sendWhat: { "catch-up": "Übung mit Tipps, 10 Minuten", drill: "Sprint, 2 Minuten", recaps: "Kurze Wiederholung, 5 Minuten", mixed: "Gemischte Übung, 5 Minuten" },
     subjects: "Fächer", vGood: "Läuft gut", vHelp: "Braucht etwas Hilfe", vNew: "Noch nicht begonnen", vDone: "Jahr geschafft",
     units: (a, b) => `${a} von ${b} Einheiten`, now: "Gerade dran:",
@@ -30,15 +30,15 @@ const PATXT = {
   },
   en: {
     week: (n) => `${n}'s week`, sub: (y, cur) => `${y} · ${cur}`, updated: "As of today",
-    played: (n, a, b) => `${n} learnt on ${a} of ${b} school days`, none: (n) => `${n} hasn't played yet this week`,
-    mins: (m) => `, about ${m} minutes`, needsN: (k) => k === 1 ? "One thing needs a hand." : `${k} things need a hand.`, allGood: "Nothing needs extra help right now.",
+    played: (n, a) => `${n} learnt on ${a} ${a === 1 ? "day" : "days"} this week`, none: (n) => `${n} hasn't played yet this week`,
+    mins: (m) => `, ${m} minutes in all`, needsN: (k) => k === 1 ? "One thing needs a hand." : `${k} things need a hand.`, allGood: "Nothing needs extra help right now.",
     kDays: (n) => `Days ${n} learnt this week`, kMins: "Learning time this week", min: "min", kSecure: (n) => `Skills ${n} can do`, ofN: (b) => `of ${b}`, about: "about",
     noticed: "What we noticed", noticedSub: "With the evidence, most useful first. Send the right practice straight to the app.",
     fCheck: (r, t) => `${r} of ${t} on the skill check`, fCheckNo: "Skill check not passed yet", fTricky: (p) => `Tricky: ${p}`,
     fRefresh: "Was secure, now slipping", fSlow: (n, xs) => `${n} ${n === 1 ? "fact" : "facts"} still slow or wrong: ${xs}`,
     fRecapT: (n) => `${n} ${n === 1 ? "skill" : "skills"} due a refresh`, fRecapW: "Learnt and secure; a short review now makes it stick.",
     fLeft: (n) => `${n} practice sessions left early this week`, fLeftW: "They may have been too long. Shorter sessions help.",
-    send: (n) => `Send to ${n}`, sent: "Sent", noFindings: "Nothing stands out. Everything practised has stuck.",
+    send: (n) => `Send to ${n}`, more: (k) => `Show ${k} more`, less: "Show fewer", sent: "Sent", noFindings: "Nothing stands out. Everything practised has stuck.",
     sendWhat: { "catch-up": "Practice with hints, 10 minutes", drill: "Drill, 2 minutes", recaps: "Short review, 5 minutes", mixed: "Mixed practice, 5 minutes" },
     subjects: "Subjects", vGood: "Going well", vHelp: "Needs a hand", vNew: "Not started", vDone: "Year done",
     units: (a, b) => `${a} of ${b} units`, now: "Working on:",
@@ -85,7 +85,7 @@ function renderParents() {
     const st = c.states[s.skill]?.state; if (!st || !offered(subjOfSkill(s.skill))) continue;
     const last = s.lessons.at(-1)?.n, sc = c.scores?.[s.id]?.[last], tricky = (sc?.missed ?? []).map((id) => s.parts?.find((p) => p.id === id)?.what?.[lg]).filter(Boolean);
     if (st === "practised" && (lessonsDone(s) >= s.lessons.length))
-      F.push({ sev: 3, subj: subjOfSkill(s.skill), title: s.title[lg] ?? s.title.de, ev: [sc ? P.fCheck(sc.right, sc.total) : P.fCheckNo, tricky.length ? P.fTricky(tricky.join("; ")) : ""].filter(Boolean), send: { kind: "catch-up", skills: [s.skill], minutes: 10 } });
+      F.push({ sev: 3, subj: subjOfSkill(s.skill), title: s.title[lg] ?? s.title.de, score: sc, ev: [sc ? P.fCheck(sc.right, sc.total) : P.fCheckNo], chips: tricky, send: { kind: "catch-up", skills: [s.skill], minutes: 10 } });
     else if (st === "needs_refresh") F.push({ sev: 2, subj: subjOfSkill(s.skill), title: s.title[lg] ?? s.title.de, ev: [P.fRefresh], send: { kind: "catch-up", skills: [s.skill], minutes: 10 } });
   }
   for (const [k, d] of Object.entries(c.drills ?? {})) {
@@ -123,9 +123,13 @@ function renderParents() {
   if (s.current >= 3) praise.push({ colour: null, text: P.pStreak(s.current) });
   const sent = [...(c.assigned ?? [])].reverse().slice(0, 6);
   const bar = (r) => STATE_ORDER.filter((k) => r.counts[k]).map((k) => `<i style="flex:${r.counts[k]};background:${k === "not_started" ? "var(--pa-empty)" : `color-mix(in srgb, ${r.colour} ${STATE_MIX[k]}%, var(--panel))`}" data-tip="${esc(`${r.name}: ${STATE_NAME[lg][k]}, ${r.counts[k]}`)}" tabindex="0" aria-label="${esc(`${STATE_NAME[lg][k]}: ${r.counts[k]}`)}"></i>`).join("");
+  // A finding: the subject's picture, the skill, how the check went as dots, what was tricky as
+  // chips, and Send. The first three show; the rest open on request.
   const finding = (f, i) => { const was = f.send && sentFor(f.send.skills);
-    return `<li class="pa-find sev${f.sev}"${f.subj ? ` style="--c:${colourOf(f.subj)}"` : ""}>
-      <div><b>${f.subj ? `<i></i>` : ""}${esc(f.title)}</b>${f.ev.map((t) => `<p>${esc(t)}</p>`).join("")}</div>
+    const dots = f.score ? `<span class="pa-dots-s" aria-hidden="true">${Array.from({ length: f.score.total }, (_, k) => `<i class="${k < f.score.right ? "on" : ""}"></i>`).join("")}</span>` : "";
+    return `<li class="pa-find sev${f.sev}${i >= 3 ? " extra" : ""}"${f.subj ? ` style="--c:${colourOf(f.subj)}"` : ""}>
+      <span class="pa-ic">${f.subj ? `<img src="study/${trackArt(f.subj)}.svg" alt="">` : "↻"}</span>
+      <div><b>${esc(f.title)}</b><p class="pa-ev">${dots}${esc(f.ev[0])}</p>${f.ev.slice(1).map((t) => `<p>${esc(t)}</p>`).join("")}${f.chips?.length ? `<span class="pa-chips">${f.chips.map((t) => `<span>${esc(t)}</span>`).join("")}</span>` : ""}</div>
       ${f.send ? `<div class="pa-send"><button data-send="${i}"${was ? " disabled" : ""}>${was ? `✓ ${esc(P.sent)}` : esc(P.send(c.name))}</button><small>${esc(P.sendWhat[f.send.kind] ?? "")}</small></div>` : ""}</li>`; };
 
   el.innerHTML = `<div class="pa">
@@ -144,7 +148,7 @@ function renderParents() {
       <div class="pa-main">
         <section class="pa-card">
           <h2>${esc(P.noticed)}</h2><p class="pa-lead">${esc(P.noticedSub)}</p>
-          ${findings.length ? `<ol class="pa-finds">${findings.map(finding).join("")}</ol>` : `<p class="pa-empty">${esc(P.noFindings)}</p>`}
+          ${findings.length ? `<ol class="pa-finds">${findings.map(finding).join("")}</ol>${findings.length > 3 ? `<button class="pa-more" aria-expanded="false">${esc(P.more(findings.length - 3))}</button>` : ""}` : `<p class="pa-empty">${esc(P.noFindings)}</p>`}
         </section>
         <section class="pa-card">
           <h2>${esc(P.subjects)}</h2>
@@ -176,6 +180,7 @@ function renderParents() {
       </aside>
     </div>
   </div><div class="pa-tip" role="tooltip" hidden></div>`;
+  $(".pa-more", el)?.addEventListener("click", (e) => { const b = e.currentTarget, open = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", open); el.querySelector(".pa-finds").classList.toggle("all", open); b.textContent = open ? P.less : P.more(findings.length - 3); });
   el.querySelectorAll("[data-send]").forEach((b) => b.onclick = () => { sendPractice(c, findings[+b.dataset.send]); renderParents(); });
   // One tooltip for the skill bars.
   const tip = $(".pa-tip", el);
