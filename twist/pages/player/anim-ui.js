@@ -13,7 +13,7 @@ const SFX_VOL = { "option-picked": 0.35, "card-lands": 0.6, "piece-locked": 0.8,
 const sfxPlayers = {};
 // A sound effect, when Sound effects is on (Settings); each has its own player, so a tap never cuts off a cheer.
 function sfx(name) {
-  if (!SFX_ON()) return;
+  if (!SFX_ON() || document.body.classList.contains("parents")) return;
   const a = (sfxPlayers[name] ??= Object.assign(new Audio(`${ANIM}sfx/${name}.mp3`), { volume: SFX_VOL[name] ?? 1 }));
   a.currentTime = 0; a.play().catch(() => {});
 }

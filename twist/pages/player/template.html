@@ -645,6 +645,8 @@ function play(srcs, done, btn) {
   setOwner(btn ?? null);
   const next = () => {
     if (tok !== qToken) return;
+    // The Parents view is for a grown-up reading: nothing the app says behind it is heard.
+    if (document.body.classList.contains("parents")) { queue = []; return; }
     if (!queue.length) { document.querySelectorAll(".spk.playing").forEach((b) => b.classList.remove("playing")); setOwner(null); if (onQueueEnd) onQueueEnd(); return; }
     player.src = A + queue.shift();
     player.onended = () => setTimeout(next, 250);
