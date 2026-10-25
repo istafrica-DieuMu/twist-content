@@ -321,14 +321,14 @@ function renderHomeTab() {
   // or a recap's topics; the line under it says why and how long.
   const pCard = (x, i) => practiceCard(x, `data-sug="${i}"`);
   // Two suggestions make a deck, as the lessons of the other subjects do.
-  const practiceCard = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
+  const practiceHtml = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<h3 class="pr-h hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</h3>${lesson}`);
   else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons)));
   if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice)));
-  else if (practiceCard) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceCard}`);
-  const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceCard ? practiceCard : ""].filter(Boolean);
+  else if (practiceHtml) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceHtml}`);
+  const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
   const pct = (100 * got) / goal;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
