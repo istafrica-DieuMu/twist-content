@@ -110,18 +110,21 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - text: "8 + 5"
-            say: "Wir rechnen 8 plus 5. In der oberen Reihe liegen 8 Plättchen, in der unteren 5."
+          - text: "8 + 5: mehr als 10?"
+            say: "Wir rechnen 8 plus 5. In der oberen Reihe liegen 8 Plättchen, in der unteren 5. Was glaubst du: Sind das zusammen mehr als 10?"
             show: { drawn: zwanzigerfeld, filled: [8, 5] }
           - text: "8 + 2 = 10"
-            say: "Zuerst machen wir die erste Reihe voll. Bis zur 10 fehlen 2. Wir schieben 2 Plättchen nach oben."
+            say: "Wir finden es heraus. Zuerst machen wir die erste Reihe voll. Bis zur 10 fehlen 2. Wir schieben 2 Plättchen nach oben."
             show: { drawn: zwanzigerfeld, filled: [8, 5], move: 2 }
           - text: "10 + 3 = 13"
-            say: "Jetzt ist oben die 10 voll. Unten liegen noch 3. 10 und 3 sind 13. Also ist 8 plus 5 gleich 13."
+            say: "Jetzt ist oben die 10 voll. Unten liegen noch 3. 10 und 3 sind 13. Also ist 8 plus 5 gleich 13, mehr als 10."
             show: { drawn: zwanzigerfeld, filled: [10, 3] }
           - text: "9 + 4 = 13"
             say: "Noch einmal: 9 plus 4. Bis zur 10 fehlt 1. Von der 4 bleiben 3. 10 und 3 sind 13."
             show: { drawn: zwanzigerfeld, filled: [9, 4], move: 1 }
+          - text: "Wusstest du? Eine Fußballmannschaft hat 11 Spieler auf dem Platz."
+            say: "Wusstest du? Eine Fußballmannschaft hat elf Spieler auf dem Platz. Das ist eine volle Zehn und noch einer."
+            show: { object: ball, count: 1 }
 
       - activity: practise
         setting: plain
@@ -180,14 +183,10 @@ lessons:
                   - "8 und 2 sind 10. Von der 6 bleiben 4."
                   - "10 + 4 = ?"
               - id: l1-f5
-                type: multiple_choice
+                type: text_input
                 text: "6 + 5 = _"
                 show: { drawn: zwanzigerfeld, filled: [6, 5] }
-                options: ["10", "11", "12"]
                 answer: "11"
-                feedback:
-                  "10": "Die 10 ist voll, aber von der 5 ist noch 1 übrig."
-                  "12": "Oben fehlen 4. Von der 5 bleibt dann nur 1."
                 hints:
                   - "Oben liegen 6. Wie viele Felder sind noch frei?"
                   - "6 und 4 sind 10. Von der 5 bleibt 1."
@@ -264,17 +263,16 @@ lessons:
                 options: ["13", "14", "15"]
                 answer: "14"
               - id: l1-n3
-                type: multiple_choice
+                type: text_input
                 text: "8 + 5 = _"
                 show: { drawn: zwanzigerfeld, filled: [8, 5] }
-                options: ["12", "13", "14"]
                 answer: "13"
               - id: l1-n4
-                type: multiple_choice
-                text: "6 + 7 = _"
+                type: true_false
+                text: "Stimmt das? 6 + 7 = 13"
+                say: "Sechs plus sieben ist dreizehn. Stimmt das?"
                 show: { drawn: zwanzigerfeld, filled: [6, 7] }
-                options: ["12", "13", "14"]
-                answer: "13"
+                answer: true
               - id: l1-n5
                 type: multiple_choice
                 text: "5 + 6 = _"
@@ -350,8 +348,10 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "8 + 5 = 8 + _ + _"
+            say: "Acht plus fünf. Die 5 soll so in zwei Teile, dass die 10 genau voll wird. Was glaubst du: Welche zwei Teile passen?"
           - text: "8 + 5 = 8 + 2 + 3"
-            say: "Wir zerlegen die 5 in 2 und 3. Die 2 macht die 10 voll, die 3 kommt danach."
+            say: "2 und 3 passen! Wir zerlegen die 5 in 2 und 3. Die 2 macht die 10 voll, die 3 kommt danach."
             show: { drawn: equation, text: "8 + 5 = _", split: "5 = 2 + 3" }
           - text: "8 → 10 → 13"
             say: "Auf dem Rechenstrich springen wir von 8 mit 2 bis zur 10 und dann mit 3 bis zur 13."
@@ -609,10 +609,9 @@ lessons:
                   - "Er bekommt welche dazu. Also rechnest du plus."
                   - "Er hat 7 und bekommt 6."
               - id: l3-f4
-                type: multiple_choice
+                type: text_input
                 text: "Ben hat 6 Äpfel im Korb. Er pflückt noch 6. Wie viele Äpfel hat er jetzt?"
                 show: { object: apple, groups: [6, 6] }
-                options: ["11", "12", "13"]
                 answer: "12"
                 hints:
                   - "Welche Zahlen kommen in der Geschichte vor?"
@@ -659,11 +658,13 @@ lessons:
                 answer: "12"
                 hints: ["7 und 3 sind 10."]
               - id: l3-s5
-                type: multiple_choice
-                text: "Ein Hase frisst am Morgen 8 Möhren und am Abend 4. Wie viele Möhren frisst er an diesem Tag?"
+                type: true_false
+                text: "Ein Hase frisst am Morgen 8 Möhren und am Abend 4. Stimmt das? Er frisst an diesem Tag 12 Möhren."
+                say: "Ein Hase frisst am Morgen acht Möhren und am Abend vier. Er frisst an diesem Tag zwölf Möhren. Stimmt das?"
                 show: { object: carrot, groups: [8, 4] }
-                options: ["11", "12", "13"]
-                answer: "12"
+                answer: true
+                feedback:
+                  "false": "Doch! Der Hase hat einen Riesenhunger: 8 und 4 sind 12 Möhren."
                 hints: ["Morgen und Abend zusammen: 8 + 4."]
 
           - support: none

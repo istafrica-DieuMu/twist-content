@@ -31,7 +31,7 @@ metadata:
   misconceptions:
     - id: first-letter-guess
       what: Reads the first letter and guesses (bus as bed)
-      addressed: in lesson 1 most picture options share the card's first sound (l1-f1, l1-f2, l1-f3, l1-f5, l1-s1, l1-s2, l1-s5, l1-n1, l1-n2, l1-n3, l1-n5, l1-c1, l1-c2), so only reading the whole word works, with feedback in l1-f1; l1-s4 and l1-c3 set a word against a picture that starts the same (big and bed, hat and hand); the checks do the same in l1-c4, l1-c6, l2-c5, l2-c9 and l2-c17 (pen among pear and pizza, bus among bike and bin, map among monkey and milk, pig among puppy and pencil, sun against a sock)
+      addressed: in lesson 1 most picture options share the card's first sound (l1-f1, l1-f2, l1-f3, l1-f5, l1-s1, l1-s5, l1-n1, l1-n3, l1-n5, l1-c1, l1-c2), so only reading the whole word works, with feedback in l1-f1; l1-s2, l1-s4 and l1-c3 set a word against a picture that starts the same (cup and cake, big and bed, hat and hand); the checks do the same in l1-c4, l1-c6, l2-c5, l2-c9 and l2-c17 (pen among pear and pizza, bus among bike and bin, map among monkey and milk, pig among puppy and pencil, sun against a sock)
     - id: middle-vowel
       what: Reads the sounds at the ends but not the vowel in the middle (cut as cat)
       addressed: lesson 2 sets words that differ only in the vowel side by side in every stage, with feedback in l2-f1; the skill check's middle-sound part (l2-c2, l2-c4, l2-c6, l2-c10, l2-c14) tests it in every draw
@@ -52,11 +52,17 @@ lessons:
         mode: demonstration
         screens:
           - text: "p i g"
-            say: "Let's read a word. Point to each letter and say its sound. Then push the sounds together, faster and faster. Pig!"
+            say: "Here is a word on a card. What do you think: which animal is hiding in it? Have a guess, then let's read it."
+            show: { drawn: letter-card, text: "p i g" }
+          - text: "p i g"
+            say: "Let's read the word. Point to each letter and say its sound. Then push the sounds together, faster and faster. Pig!"
             show: { drawn: letter-card, text: "p i g" }
           - text: "pig"
             say: "When the letters sit close together, it is still the same word. Say the sounds, then blend: pig."
             show: { drawn: letter-card, text: "pig" }
+          - text: "Did you know?"
+            say: "Did you know? Pigs love to roll in mud. A pig can hardly sweat, so on a hot day a muddy bath helps it keep cool."
+            show: { object: pig }
           - text: "ten"
             say: "One more. Say the sounds and blend them. Ten."
             show: { drawn: letter-card, text: "ten" }
@@ -98,6 +104,8 @@ lessons:
                 show: { drawn: letter-card, text: "sun" }
                 options: [{ object: sun }, { object: sock }, { object: snail }]
                 answer: sun
+                feedback:
+                  sock: "A sock in the sky? Read on past the hiss. The middle sound is the one at the start of up."
                 hints:
                   - "All three start with a hiss. Read the rest of the word."
                   - "The middle sound is the one at the start of up."
@@ -135,13 +143,12 @@ lessons:
                 answer: dog
                 hints: ["Read the middle and the end, not just the start."]
               - id: l1-s2
-                type: image_multiple_choice
-                text: "Read the word. Tap the picture."
-                say: "Read the word on the card. Then tap its picture."
-                show: { drawn: letter-card, text: "cup" }
-                options: [{ object: cat }, { object: cake }, { object: cup }]
-                answer: cup
-                hints: ["Say all three sounds."]
+                type: true_false
+                text: "cup"
+                say: "Read the word at the top. Does it match the picture?"
+                show: { object: cake }
+                answer: false
+                hints: ["Say all three sounds. Is the last sound a pop of your lips?"]
               - id: l1-s3
                 type: image_multiple_choice
                 text: "Read the word. Tap the picture."
@@ -149,6 +156,8 @@ lessons:
                 show: { drawn: letter-card, text: "van" }
                 options: [{ object: van }, { object: car }, { object: bus }]
                 answer: van
+                feedback:
+                  bus: "Beep beep! The bus is a big one. Read the first sound again: your top teeth buzz on your lip."
                 hints: ["Say each sound, then blend."]
               - id: l1-s4
                 type: true_false
@@ -176,12 +185,11 @@ lessons:
                 options: [{ object: book }, { object: box }, { object: boat }]
                 answer: box
               - id: l1-n2
-                type: image_multiple_choice
-                text: "Read the word. Tap the picture."
-                say: "Read the word on the card. Then tap its picture."
-                show: { drawn: letter-card, text: "jug" }
-                options: [{ object: jump }, { object: juice }, { object: jug }]
-                answer: jug
+                type: true_false
+                text: "jug"
+                say: "Read the word at the top. Does it match the picture?"
+                show: { object: jug }
+                answer: true
               - id: l1-n3
                 type: image_multiple_choice
                 text: "Read the word. Tap the picture."
@@ -259,7 +267,10 @@ lessons:
         mode: worked-examples
         screens:
           - text: "cat · cot · cut"
-            say: "These three words look nearly the same. Only the middle letter changes, so read every sound. Cat. Cot. Cut."
+            say: "Look at these three words. What do you think: are they all the same word? Look very closely at the middle."
+            show: { drawn: letter-card, text: "cat cot cut" }
+          - text: "cat · cot · cut"
+            say: "They are three different words! They look nearly the same, but the middle letter changes, so read every sound. Cat. Cot. Cut."
             show: { drawn: letter-card, text: "cat cot cut" }
           - text: "n e ck → neck"
             say: "Some words end with two letters that make one sound. In neck, the last two letters make the click. Neck."
@@ -352,6 +363,8 @@ lessons:
                 show: { drawn: letter-card, text: "duck" }
                 options: [{ object: dog }, { object: dad }, { object: duck }]
                 answer: duck
+                feedback:
+                  dad: "Dad does not say quack! Read to the end of the word: it ends with a click."
                 hints: ["Read to the end of the word."]
               - id: l2-s3
                 type: audio_choice

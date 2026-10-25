@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parents Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600;700;800;900&family=Red+Hat+Text:wght@400;500;600;700&display=swap">
+<style>
+/* A specimen sheet for the parent dashboard. Each component stands on its own plate, as it would
+   in the product, with the parent's question above it and the data it needs below. The look is
+   Twist's, grown up: Red Hat, the mascot and object art, Twist purple for actions, the subjects'
+   colours only where they mean a subject, green for done and amber for needs a hand. One loud
+   thing per component; everything else quiet. */
+:root {
+  --page: #f5f2fa; --plate: #ece6f6; --panel: #ffffff; --ink: #22123a; --muted: #6c6384; --line: #e7e1f0; --sunk: #f3eff9;
+  --brand: #6849dd; --brand-2: #8b6cf3; --brand-soft: #ede8fd; --good: #1f9159; --good-soft: #e0f4e9; --warn: #c27100; --warn-soft: #fdf0db; --bad: #d64545;
+  --math: #2e9b6a; --math-soft: #e3f4ec; --eng: #2c7bd6; --eng-soft: #e4effb; --de: #d06a2c;
+  --shadow: 0 1px 0 rgba(34, 18, 58, .04), 0 10px 28px -12px rgba(66, 36, 140, .22);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --page: #130f1e; --plate: #1b1529; --panel: #241c37; --ink: #f0ebfa; --muted: #a99fc2; --line: #342a4b; --sunk: #2c2342;
+  --brand: #9b86ff; --brand-2: #b6a6ff; --brand-soft: #2e2656; --good: #5fd39a; --good-soft: #173528; --warn: #f2b65a; --warn-soft: #3b2c13; --bad: #ff8a80;
+  --math: #5cc897; --math-soft: #17332a; --eng: #6aa9f0; --eng-soft: #182a40; --de: #ee9a64;
+  --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 12px 30px -14px rgba(0, 0, 0, .6); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --page: #130f1e; --plate: #1b1529; --panel: #241c37; --ink: #f0ebfa; --muted: #a99fc2; --line: #342a4b; --sunk: #2c2342;
+  --brand: #9b86ff; --brand-2: #b6a6ff; --brand-soft: #2e2656; --good: #5fd39a; --good-soft: #173528; --warn: #f2b65a; --warn-soft: #3b2c13; --bad: #ff8a80;
+  --math: #5cc897; --math-soft: #17332a; --eng: #6aa9f0; --eng-soft: #182a40; --de: #ee9a64;
+  --shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 12px 30px -14px rgba(0, 0, 0, .6); color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 "Red Hat Text", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, b, .num { font-family: "Red Hat Display", system-ui, sans-serif; }
+img { display: block; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px 96px; }
+
+/* Header: the brief in one line, the pretend child, and the components to jump to. */
+.top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; padding: 56px 0 28px; }
+.top h1 { margin: 0; font-size: clamp(34px, 5.4vw, 58px); font-weight: 900; letter-spacing: -.03em; line-height: .98; }
+.top p { max-width: 58ch; margin: 18px 0 0; color: var(--muted); font-size: 17px; text-wrap: pretty; }
+.who { display: flex; align-items: center; gap: 14px; padding: 12px 18px 12px 12px; border-radius: 22px; background: var(--panel); box-shadow: var(--shadow); }
+.who .av { width: 56px; height: 56px; }
+.who b { display: block; font-size: 17px; }
+.who small { color: var(--muted); font-weight: 600; }
+.toc { position: sticky; top: 0; z-index: 5; display: flex; gap: 6px; margin: 0 -24px; padding: 12px 24px; overflow-x: auto; background: color-mix(in srgb, var(--page) 88%, transparent); backdrop-filter: blur(10px); scrollbar-width: none; }
+.toc a { flex: none; padding: 7px 13px; border-radius: 99px; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 700; }
+.toc a:hover { background: var(--panel); color: var(--ink); }
+:is(a, button, input):focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+h2.group { display: flex; align-items: baseline; gap: 14px; margin: 56px 0 18px; font-size: 26px; font-weight: 900; letter-spacing: -.02em; }
+h2.group small { font: 600 15px "Red Hat Text", sans-serif; color: var(--muted); letter-spacing: 0; }
+.plates { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 540px), 1fr)); gap: 22px; }
+.plate { display: grid; grid-template-rows: auto 1fr auto; border-radius: 28px; background: var(--plate); scroll-margin-top: 70px; overflow: hidden; }
+.plate > header { padding: 20px 24px 0; }
+.plate > header h3 { margin: 0; font-size: 18px; font-weight: 800; }
+.plate > header p { margin: 2px 0 0; color: var(--muted); font-size: 14.5px; font-weight: 500; }
+.stage { padding: 18px 24px 22px; display: grid; align-content: center; }
+.plate > footer { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 12px 24px 16px; color: var(--muted); font-size: 12.5px; }
+.plate > footer span { padding: 3px 9px; border-radius: 99px; background: color-mix(in srgb, var(--panel) 70%, transparent); font-weight: 600; }
+.plate > footer em { font-style: normal; font-weight: 800; color: var(--good); }
+
+/* Shared parts. */
+.card { position: relative; padding: 20px 22px; border-radius: 22px; background: var(--panel); box-shadow: var(--shadow); }
+.muted { color: var(--muted); }
+.av { display: grid; place-items: end center; width: 44px; height: 44px; border-radius: 50%; background: var(--av, #ffc94d); overflow: hidden; flex: none; }
+.av img { width: 92%; height: 92%; object-fit: contain; object-position: bottom; }
+.subj { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--soft); flex: none; }
+.subj img { width: 28px; height: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 9px 18px; border: 0; border-radius: 99px; background: var(--brand); color: #fff; font: 800 14px "Red Hat Display", sans-serif; cursor: pointer; white-space: nowrap; box-shadow: 0 3px 0 color-mix(in srgb, var(--brand) 60%, #000); transition: transform .12s, box-shadow .12s; }
+.btn:active { transform: translateY(3px); box-shadow: none; }
+.btn.ghost { background: var(--brand-soft); color: var(--brand); box-shadow: none; }
+.btn.done { background: var(--good-soft); color: var(--good); box-shadow: none; }
+.pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 99px; font: 700 12px "Red Hat Text"; }
+.pill.good { background: var(--good-soft); color: var(--good); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.plain { background: var(--sunk); color: var(--muted); }
+.dots { display: inline-flex; gap: 4px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--warn-soft); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warn) 30%, transparent); }
+.dots i.on { background: var(--warn); box-shadow: none; }
+
+/* Weekly digest: a notification, then the message. */
+.digest { display: grid; gap: 12px; }
+.push { display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 18px; background: color-mix(in srgb, var(--panel) 75%, transparent); backdrop-filter: blur(6px); box-shadow: var(--shadow); }
+.push .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--brand); display: grid; place-items: center; color: #fff; font: 900 18px "Red Hat Display"; }
+.push b { font-size: 14px; display: block; }
+.push span { font-size: 13px; color: var(--muted); }
+.push time { font-size: 12px; color: var(--muted); align-self: start; }
+.mail { padding: 0; overflow: hidden; }
+.mail .band { display: grid; grid-template-columns: 1fr 96px; align-items: end; padding: 20px 22px 0; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; }
+.mail .band h4 { margin: 0 0 18px; font-size: 22px; font-weight: 900; line-height: 1.15; letter-spacing: -.01em; }
+.mail .band img { width: 96px; height: 96px; object-fit: contain; margin-bottom: -6px; }
+.mail .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+.mail .stats div { padding: 12px 16px; border-right: 1px solid var(--line); }
+.mail .stats div:last-child { border-right: 0; }
+.mail .stats b { font-size: 22px; font-weight: 900; display: block; line-height: 1.1; }
+.mail .stats small { color: var(--muted); font-size: 12px; font-weight: 600; }
+.mail ul { margin: 0; padding: 14px 22px 4px; list-style: none; display: grid; gap: 10px; }
+.mail li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; font-size: 14.5px; }
+.mail li i { width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; font-style: normal; font-size: 15px; }
+.mail .foot { padding: 12px 22px 20px; }
+
+/* Pace through the year. */
+.pace .row { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; }
+.pace .row + .row { margin-top: 22px; }
+.pace .lab { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-weight: 800; font-family: "Red Hat Display"; }
+.pace .track { position: relative; height: 12px; margin: 10px 0 6px; border-radius: 99px; background: var(--sunk); }
+.pace .fill { position: absolute; inset: 0 auto 0 0; border-radius: 99px; background: var(--c); }
+.pace .now { position: absolute; top: -6px; bottom: -6px; width: 3px; border-radius: 2px; background: var(--ink); transform: translateX(-50%); }
+.pace small { color: var(--muted); font-size: 13px; }
+.pace .key { display: flex; gap: 8px; align-items: center; margin-top: 16px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.pace .key i { width: 3px; height: 14px; border-radius: 2px; background: var(--ink); }
+
+/* Accuracy trend. */
+.trend { display: grid; gap: 4px; }
+.trend .r { display: grid; grid-template-columns: 44px 1fr 70px; gap: 14px; align-items: center; padding: 10px 0; }
+.trend .r + .r { border-top: 1px solid var(--line); }
+.trend svg { width: 100%; height: 52px; overflow: visible; }
+.trend .v { text-align: right; }
+.trend .v b { font-size: 22px; font-weight: 900; line-height: 1; }
+.trend .v small { display: block; font-weight: 700; font-size: 12px; color: var(--good); }
+.trend .v small.down { color: var(--warn); }
+
+/* Skill map. */
+.smap { display: grid; gap: 14px; }
+.smap .t { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; }
+.smap .t span:first-child { font-weight: 700; font-size: 13.5px; }
+.smap .cells { display: flex; flex-wrap: wrap; gap: 5px; }
+.smap .cells i { width: 22px; height: 22px; border-radius: 7px; background: color-mix(in srgb, var(--c) var(--m), var(--panel)); }
+.smap .cells i.n { background: var(--sunk); }
+.smap .cells i.w { background: var(--warn); box-shadow: 0 0 0 3px var(--warn-soft); }
+.smap h4 { margin: 4px 0 -4px; font-size: 13px; color: var(--muted); font-weight: 800; display: flex; gap: 8px; align-items: center; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: 12px; font-weight: 600; padding-top: 10px; border-top: 1px solid var(--line); }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.legend i { width: 12px; height: 12px; border-radius: 4px; }
+
+/* Finding with Send. */
+.find { display: grid; gap: 14px; }
+.find .head { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; }
+.find h4 { margin: 0; font-size: 18px; font-weight: 800; line-height: 1.2; }
+.find .score { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 700; color: var(--warn); margin-top: 4px; }
+.find .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.find .chips span { padding: 6px 11px; border-radius: 12px; background: var(--warn-soft); font-size: 13px; font-weight: 600; }
+.find .act { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.find .act small { color: var(--muted); font-size: 13px; }
+
+/* Common mistakes. */
+.mist { display: grid; gap: 10px; }
+.mist .row { display: grid; grid-template-columns: 112px 1fr auto; gap: 16px; align-items: center; padding: 14px 16px; border-radius: 18px; background: var(--panel); box-shadow: var(--shadow); }
+.mist .ans { display: grid; gap: 2px; text-align: center; padding: 8px 6px; border-radius: 12px; background: var(--sunk); }
+.mist .ans s { font: 900 18px "Red Hat Display"; color: var(--bad); text-decoration-thickness: 2.5px; }
+.mist .ans b { font-size: 18px; font-weight: 900; color: var(--good); }
+.mist .q { margin: 0; font-weight: 700; font-size: 14.5px; }
+.mist .why { margin: 2px 0 0; font-size: 13.5px; color: var(--muted); }
+.mist .n { font: 900 15px "Red Hat Display"; color: var(--muted); }
+
+/* Ask your child. */
+.talk { display: grid; gap: 12px; }
+.talk .m { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: end; }
+.talk .m .av { width: 40px; height: 40px; --av: var(--brand-soft); }
+.bubble { padding: 13px 16px; border-radius: 20px 20px 20px 6px; background: var(--panel); box-shadow: var(--shadow); }
+.bubble b { display: block; font-size: 16px; line-height: 1.3; }
+.bubble small { color: var(--muted); font-weight: 600; font-size: 12.5px; }
+
+/* Try at home. */
+.home { padding: 0; overflow: hidden; display: grid; grid-template-columns: 140px 1fr; }
+.home .art { display: grid; place-items: center; background: var(--good-soft); }
+.home .art img { width: 96px; height: 96px; object-fit: contain; }
+.home .txt { padding: 18px 20px; }
+.home h4 { margin: 0; font-size: 18px; font-weight: 800; }
+.home .for { margin: 2px 0 10px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.home ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 8px; font-size: 14px; }
+.home li { display: grid; grid-template-columns: 24px 1fr; gap: 8px; counter-increment: s; }
+.home li::before { content: counter(s); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--good); color: #fff; font: 800 12px "Red Hat Display"; }
+
+/* Sent practice. */
+.sent { display: grid; }
+.sent .s { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; }
+.sent .s + .s { border-top: 1px solid var(--line); }
+.sent .s b { font-size: 15px; }
+.sent .s small { display: block; color: var(--muted); font-size: 13px; }
+
+/* Read-aloud. */
+.rec { display: grid; gap: 10px; }
+.rec .r { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; padding: 12px 16px 12px 12px; border-radius: 18px; background: var(--panel); box-shadow: var(--shadow); }
+.play { width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.play svg { width: 16px; height: 16px; margin-left: 3px; }
+.rec q { display: block; font: 700 15px "Red Hat Display"; quotes: "“" "”"; }
+.wave { display: flex; align-items: center; gap: 3px; height: 22px; margin: 6px 0 2px; }
+.wave i { width: 3px; border-radius: 2px; background: var(--brand); opacity: .35; }
+.rec small { color: var(--muted); font-size: 12.5px; }
+
+/* Weekly goal. */
+.goal { display: grid; grid-template-columns: 140px 1fr; gap: 22px; align-items: center; }
+.ring { position: relative; width: 140px; height: 140px; }
+.ring svg { width: 140px; height: 140px; transform: rotate(-90deg); }
+.ring .c { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+.ring .c b { font-size: 36px; font-weight: 900; line-height: 1; }
+.ring .c small { display: block; color: var(--muted); font-size: 12.5px; font-weight: 600; }
+.goal label { display: block; font: 800 14px "Red Hat Display"; margin-bottom: 8px; }
+.seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 14px; background: var(--sunk); }
+.seg + label { margin-top: 16px; }
+.seg button { min-width: 44px; min-height: 36px; padding: 0 12px; border: 0; border-radius: 10px; background: none; color: var(--muted); font: 700 14px "Red Hat Text"; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 4px rgba(34, 18, 58, .18); }
+
+/* Reward deal. */
+.deal { display: grid; grid-template-columns: 84px 1fr; gap: 18px; align-items: center; }
+.deal .badge { width: 84px; height: 84px; }
+.deal h4 { margin: 0; font-size: 18px; font-weight: 800; }
+.deal .prize { display: flex; align-items: center; gap: 8px; margin: 4px 0 10px; color: var(--muted); font-weight: 600; font-size: 14px; }
+.deal .prize img { width: 26px; height: 26px; }
+.deal .days { display: flex; gap: 5px; }
+.deal .days i { flex: 1; height: 10px; border-radius: 99px; background: var(--sunk); }
+.deal .days i.on { background: linear-gradient(90deg, #ff9a3c, #ff5e3a); }
+
+/* When they learn. */
+.when { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.when h4 { margin: 0 0 10px; font-size: 13px; color: var(--muted); font-weight: 800; }
+.bars { display: flex; align-items: end; gap: 6px; height: 96px; }
+.bars i { flex: 1; border-radius: 8px 8px 4px 4px; background: var(--brand); height: var(--h); }
+.bars i.lo { background: var(--brand-soft); }
+.ticks { display: flex; gap: 6px; margin-top: 6px; }
+.ticks span { flex: 1; text-align: center; font-size: 11.5px; color: var(--muted); font-weight: 700; }
+.when-note { grid-column: 1 / -1; margin: 0; padding-top: 14px; border-top: 1px solid var(--line); font-weight: 600; }
+
+/* Notifications. */
+.notes label { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 13px 0; cursor: pointer; }
+.notes label + label { border-top: 1px solid var(--line); }
+.notes b { font-size: 15px; }
+.notes small { display: block; color: var(--muted); font-size: 13px; }
+.sw { position: relative; width: 48px; height: 28px; }
+.sw input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.sw i { position: absolute; inset: 0; border-radius: 99px; background: var(--line); transition: background .2s; pointer-events: none; }
+.sw i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .2s; }
+.sw input:checked + i { background: var(--brand); }
+.sw input:checked + i::after { transform: translateX(20px); }
+.sw input:focus-visible + i { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+/* Coming up. */
+.next .w { display: grid; grid-template-columns: 84px 1fr; gap: 14px; padding: 12px 0; }
+.next .w + .w { border-top: 1px solid var(--line); }
+.next .w > span { font: 800 13px "Red Hat Display"; color: var(--muted); padding-top: 9px; }
+.next .w ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.next .w li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center; font-weight: 700; }
+.next .w li .subj { width: 36px; height: 36px; border-radius: 11px; }
+.next .w li .subj img { width: 22px; height: 22px; }
+
+/* Report for school. */
+.report { display: grid; grid-template-columns: 118px 1fr; gap: 20px; align-items: center; }
+.sheet { position: relative; width: 118px; height: 152px; border-radius: 10px; background: #fff; padding: 12px 11px; display: grid; gap: 6px; align-content: start; box-shadow: 0 2px 0 rgba(34, 18, 58, .06), 0 14px 26px -10px rgba(66, 36, 140, .35); transform: rotate(-3deg); }
+.sheet i { display: block; height: 5px; border-radius: 3px; background: #e7e1f0; }
+.sheet i.h { height: 9px; width: 64%; background: #6849dd; }
+.sheet i.g { width: 40%; background: #2e9b6a; }
+.sheet i.a { width: 30%; background: #c27100; }
+.report h4 { margin: 0; font-size: 18px; font-weight: 800; }
+.report p { margin: 4px 0 14px; color: var(--muted); font-size: 14px; }
+
+/* Two children. */
+.kids { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.kid { display: grid; gap: 10px; padding: 18px; border-radius: 22px; background: var(--panel); box-shadow: var(--shadow); }
+.kid .top2 { display: flex; align-items: center; gap: 12px; }
+.kid .av { width: 52px; height: 52px; }
+.kid b { font-size: 16px; display: block; }
+.kid small { color: var(--muted); font-weight: 600; }
+.kid .week { display: flex; gap: 4px; }
+.kid .week i { flex: 1; height: 8px; border-radius: 99px; background: var(--sunk); }
+.kid .week i.on { background: var(--brand); }
+
+/* ---------- Round two ---------- */
+/* Times tables grid. */
+.tt { display: grid; grid-template-columns: 22px repeat(10, 1fr); gap: 3px; }
+.tt span { font: 800 11px "Red Hat Display"; color: var(--muted); display: grid; place-items: center; }
+.tt i { aspect-ratio: 1; border-radius: 5px; background: var(--sunk); }
+.tt i.k { background: var(--good); } .tt i.s { background: color-mix(in srgb, var(--warn) 55%, var(--panel)); } .tt i.m { background: var(--bad); }
+/* Sound chart. */
+.snd { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; }
+.snd span { display: grid; place-items: center; height: 44px; border-radius: 12px; font: 800 17px "Red Hat Display"; background: var(--sunk); color: var(--muted); }
+.snd span.k { background: var(--eng-soft); color: var(--eng); }
+.snd span.w { background: var(--warn-soft); color: var(--warn); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--warn) 45%, transparent); }
+/* Spelling. */
+.spell { display: grid; gap: 10px; }
+.spell .w { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--panel); box-shadow: var(--shadow); }
+.spell .tiles { display: flex; gap: 3px; }
+.spell .tiles b { display: grid; place-items: center; width: 26px; height: 32px; border-radius: 7px; background: var(--sunk); font-size: 16px; }
+.spell .tiles b.x { background: var(--warn-soft); color: var(--warn); box-shadow: inset 0 -3px 0 var(--warn); }
+.spell small { color: var(--muted); font-size: 12.5px; display: block; margin-top: 4px; }
+/* Memory. */
+.mem { display: grid; gap: 12px; }
+.mem .r { display: grid; grid-template-columns: 1fr 120px; gap: 14px; align-items: center; }
+.mem .r b { font-size: 14.5px; } .mem .r small { display: block; color: var(--muted); font-size: 12.5px; }
+.battery { position: relative; height: 18px; border-radius: 6px; box-shadow: inset 0 0 0 2px var(--line); padding: 3px; }
+.battery::after { content: ""; position: absolute; right: -5px; top: 5px; width: 3px; height: 8px; border-radius: 0 2px 2px 0; background: var(--line); }
+.battery i { display: block; height: 100%; width: var(--f); border-radius: 3px; background: var(--c); }
+/* Independence and persistence. */
+.meters { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.meter { padding: 16px; border-radius: 18px; background: var(--panel); box-shadow: var(--shadow); }
+.meter b.big { display: block; font-size: 30px; font-weight: 900; line-height: 1; }
+.meter small { color: var(--muted); font-size: 13px; font-weight: 600; }
+.meter .spark { display: flex; align-items: end; gap: 4px; height: 40px; margin-top: 12px; }
+.meter .spark i { flex: 1; border-radius: 4px 4px 2px 2px; background: var(--brand); height: var(--h); opacity: var(--o, 1); }
+/* Growth moment. */
+.growth { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: center; }
+.growth .side { padding: 16px; border-radius: 18px; background: var(--panel); box-shadow: var(--shadow); text-align: center; }
+.growth .side small { display: block; color: var(--muted); font-weight: 700; font-size: 12px; margin-bottom: 8px; }
+.growth .arrow { font: 900 24px "Red Hat Display"; color: var(--good); text-align: center; }
+.growth .side .dots i { width: 14px; height: 14px; }
+.growth .side .dots i.on.g { background: var(--good); }
+.growth p { grid-column: 1 / -1; margin: 6px 0 0; text-align: center; font-weight: 700; }
+/* Week story. */
+.story { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.story .d { display: grid; gap: 6px; align-content: start; justify-items: center; padding: 12px 6px; border-radius: 18px; background: var(--panel); box-shadow: var(--shadow); text-align: center; min-height: 150px; }
+.story .d > b { font-size: 13px; }
+.story .d img { width: 44px; height: 44px; object-fit: contain; }
+.story .d small { font-size: 11.5px; color: var(--muted); font-weight: 600; line-height: 1.3; }
+.story .d.off { background: none; box-shadow: inset 0 0 0 2px dashed var(--line); box-shadow: none; border: 2px dashed var(--line); }
+/* Test prep. */
+.prep .ask { display: flex; gap: 8px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--sunk); font-weight: 700; }
+.prep .ask small { margin-left: auto; color: var(--muted); font-weight: 600; }
+.prep ol { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.prep li { display: grid; grid-template-columns: 54px 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--panel); box-shadow: var(--shadow); }
+.prep li > span:first-child { font: 800 13px "Red Hat Display"; color: var(--brand); }
+.prep li small { display: block; color: var(--muted); font-size: 12.5px; }
+/* Together. */
+.together { padding: 0; overflow: hidden; }
+.together .top3 { display: grid; grid-template-columns: 1fr 110px; align-items: end; padding: 18px 20px 0; background: linear-gradient(135deg, var(--math), color-mix(in srgb, var(--math) 60%, #0a3)); color: #fff; }
+.together .top3 h4 { margin: 0 0 16px; font-size: 20px; font-weight: 900; }
+.together .top3 img { width: 110px; height: 100px; object-fit: contain; margin-bottom: -4px; }
+.together ul { margin: 0; padding: 14px 20px 18px; list-style: none; display: grid; gap: 10px; font-size: 14px; }
+.together li b { display: block; font-size: 13px; color: var(--muted); }
+/* Message to the child. */
+.msg { display: grid; grid-template-columns: 1fr 150px; gap: 16px; align-items: center; }
+.stickers { display: flex; gap: 8px; margin: 10px 0 12px; }
+.stickers button { width: 48px; height: 48px; border: 0; border-radius: 14px; background: var(--sunk); cursor: pointer; display: grid; place-items: center; }
+.stickers button[aria-pressed="true"] { background: var(--brand-soft); box-shadow: inset 0 0 0 2px var(--brand); }
+.stickers img { width: 34px; height: 34px; }
+.msg textarea { width: 100%; min-height: 56px; padding: 10px 12px; border: 0; border-radius: 12px; background: var(--sunk); color: var(--ink); font: 600 14px "Red Hat Text"; resize: none; }
+.mini-phone { width: 150px; height: 220px; border-radius: 26px; padding: 8px; background: #1b1230; box-shadow: var(--shadow); }
+.mini-phone .scr { height: 100%; border-radius: 20px; background: #fff; padding: 12px 10px; display: grid; align-content: start; gap: 8px; }
+.mini-phone .note { padding: 10px; border-radius: 14px; background: #ede8fd; color: #22123a; text-align: center; }
+.mini-phone .note img { width: 44px; height: 44px; margin: 0 auto 4px; }
+.mini-phone .note b { font-size: 12px; display: block; } .mini-phone .note small { font-size: 10.5px; color: #6c6384; }
+/* Certificate. */
+.cert { position: relative; padding: 22px; border-radius: 18px; background: linear-gradient(160deg, #fff8e6, #fff); color: #3a2400; text-align: center; box-shadow: var(--shadow); outline: 2px solid #f1c96a; outline-offset: -10px; }
+.cert img { width: 64px; height: 64px; margin: 0 auto 6px; }
+.cert small { display: block; font-weight: 700; letter-spacing: .02em; color: #9a6a00; }
+.cert h4 { margin: 4px 0; font-size: 24px; font-weight: 900; color: #22123a; }
+.cert p { margin: 0 0 12px; font-weight: 600; }
+/* Limits. */
+.limits .row2 { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; }
+.limits .row2 + .row2 { border-top: 1px solid var(--line); }
+.limits img { width: 40px; height: 40px; object-fit: contain; }
+.limits b { font-size: 15px; } .limits small { display: block; color: var(--muted); font-size: 13px; }
+.limits .val { font: 800 15px "Red Hat Display"; padding: 6px 12px; border-radius: 10px; background: var(--sunk); }
+/* Widget. */
+.widgets { display: flex; gap: 14px; justify-content: center; padding: 18px; border-radius: 22px; background: linear-gradient(160deg, #5a3fd0, #c45ca4); }
+.wg { width: 150px; height: 150px; border-radius: 26px; padding: 14px; background: rgba(255, 255, 255, .92); color: #22123a; display: grid; align-content: space-between; box-shadow: 0 8px 20px rgba(0, 0, 0, .2); }
+.wg .h { display: flex; align-items: center; gap: 6px; font: 800 12px "Red Hat Display"; }
+.wg .h img { width: 22px; height: 22px; }
+.wg b.big { font-size: 34px; font-weight: 900; line-height: 1; }
+.wg small { display: block; font-size: 11.5px; font-weight: 700; color: #6c6384; }
+.wg b { display: block; }
+.wg .wk { display: flex; gap: 3px; } .wg .wk i { flex: 1; height: 8px; border-radius: 4px; background: #e7e1f0; } .wg .wk i.on { background: #6849dd; }
+.wg.wide { width: 220px; }
+/* Coach. */
+.coach { display: grid; gap: 10px; }
+.coach .q { justify-self: end; max-width: 85%; padding: 10px 14px; border-radius: 18px 18px 6px 18px; background: var(--brand); color: #fff; font-weight: 600; font-size: 14px; }
+.coach .a { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: end; }
+.coach .a .av { width: 36px; height: 36px; --av: var(--brand-soft); }
+.coach .a div { padding: 12px 14px; border-radius: 18px 18px 18px 6px; background: var(--panel); box-shadow: var(--shadow); font-size: 14px; }
+.coach .a div p { margin: 0 0 8px; }
+.coach .sug { display: flex; flex-wrap: wrap; gap: 6px; }
+.coach .sug span { padding: 6px 11px; border-radius: 99px; background: var(--panel); box-shadow: inset 0 0 0 1.5px var(--line); font-size: 12.5px; font-weight: 700; }
+/* Word bank. */
+.words { display: flex; flex-wrap: wrap; gap: 8px; }
+.words span { display: inline-grid; gap: 0; padding: 8px 12px; border-radius: 14px; background: var(--panel); box-shadow: var(--shadow); }
+.words b { font-size: 15px; } .words small { font-size: 12px; color: var(--muted); }
+.words span.new { box-shadow: inset 0 0 0 2px var(--brand), var(--shadow); }
+/* Reading speed. */
+.wpm { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; }
+.wpm .big { font-size: 40px; font-weight: 900; line-height: 1; }
+.wpm .bars { height: 80px; }
+.wpm .bars i { background: var(--eng); }
+
+@media (max-width: 640px) {
+  .top { grid-template-columns: 1fr; padding-top: 36px; }
+  .when, .kids, .goal { grid-template-columns: 1fr; }
+  .smap .t { grid-template-columns: 1fr; gap: 6px; }
+  .home { grid-template-columns: 1fr; } .home .art { padding: 16px; }
+  .mist .row { grid-template-columns: 90px 1fr; } .mist .n { display: none; }
+  .report { grid-template-columns: 1fr; }
+  .meters, .growth, .msg { grid-template-columns: 1fr; } .growth .arrow { transform: rotate(90deg); }
+  .story { grid-template-columns: repeat(5, minmax(96px, 1fr)); overflow-x: auto; }
+  .wpm { grid-template-columns: 1fr; } .widgets { flex-wrap: wrap; } .mini-phone { justify-self: center; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Parents Lab</h1>
+      <p>Ideas for the parents dashboard: what a parent sees and does in Twist, drawn with a pretend child. Each component answers one question a parent has; under it are the data and content it needs. </p>
+    </div>
+    <div class="who"><span class="av" style="--av:#ffc94d"><img src="../../assets/mascot/start-1.png" alt=""></span><div><b>Henri</b><small>Year 2 · England</small></div></div>
+  </header>
+  <nav class="toc" aria-label="Components">
+    <a href="#digest">Weekly digest</a><a href="#pace">Pace through the year</a><a href="#trend">Accuracy trend</a><a href="#map">Skill map</a><a href="#finding">Finding</a><a href="#mistakes">Common mistakes</a><a href="#talk">Ask your child</a><a href="#athome">Try at home</a><a href="#sent">Sent practice</a><a href="#voice">Read-aloud</a><a href="#goal">Weekly goal</a><a href="#deal">Reward deal</a><a href="#when">When they learn</a><a href="#notify">Notifications</a><a href="#upnext">Coming up</a><a href="#report">Report for school</a><a href="#kids">Two children</a><a href="#tables">Times tables</a><a href="#sounds">Sound chart</a><a href="#spelling">Spelling</a><a href="#speed">Reading speed</a><a href="#memory">Memory</a><a href="#vocab">Word bank</a><a href="#habits">Independence</a><a href="#growth">Growth moment</a><a href="#story">Day by day</a><a href="#coach">Ask Twist</a><a href="#prep">Test coming up</a><a href="#coplay">Do it together</a><a href="#message">A note</a><a href="#cert">Certificate</a><a href="#limits">Time and bedtime</a><a href="#widget">Widget</a>
+  </nav>
+
+  <h2 class="group">Is my child OK? <small>A glance, once a week</small></h2>
+  <div class="plates">
+    <section class="plate" id="digest">
+      <header><h3>Weekly digest</h3><p>How did the week go, without opening the app?</p></header>
+      <div class="stage digest">
+        <div class="push"><span class="ic">T</span><div><b>Henri's week: 4 days, 1 thing to help with</b><span>Maths is going well. Reading needs a hand.</span></div><time>Fri 17:00</time></div>
+        <div class="card mail">
+          <div class="band"><h4>Henri learnt on 4 days this week</h4><img src="../../assets/mascot/end-1.png" alt=""></div>
+          <div class="stats"><div><b>4 of 5</b><small>days</small></div><div><b>78 min</b><small>learning time</small></div><div><b>+2</b><small>new skills</small></div></div>
+          <ul>
+            <li><i style="background:var(--good-soft)">⭐</i><span><b>Praise:</b> Henri can now add two-digit numbers.</span></li>
+            <li><i style="background:var(--warn-soft)">🔎</i><span><b>Help with:</b> reading look-alike words such as was and saw.</span></li>
+            <li><i style="background:var(--brand-soft)">📅</i><span><b>Next week:</b> money, and adjectives.</span></li>
+          </ul>
+          <div class="foot"><button class="btn">Send reading practice</button></div>
+        </div>
+      </div>
+      <footer><span>The week's lessons and practice</span><span>Skills learnt this week</span><span>The top finding</span><span>Email or push, on a day the parent picks</span></footer>
+    </section>
+
+    <section class="plate" id="pace">
+      <header><h3>Pace through the year</h3><p>Is Henri where the school year expects?</p></header>
+      <div class="stage"><div class="card pace">
+        <div class="row" style="--c:var(--math)"><span class="subj" style="--soft:var(--math-soft)"><img src="../player/study/math.svg" alt=""></span><div>
+          <div class="lab"><span>Maths</span><span class="pill good">Ahead</span></div>
+          <div class="track"><div class="fill" style="width:52%"></div><span class="now" style="left:40%"></span></div>
+          <small>26 of 51 units</small></div></div>
+        <div class="row" style="--c:var(--eng)"><span class="subj" style="--soft:var(--eng-soft)"><img src="../player/study/english.svg" alt=""></span><div>
+          <div class="lab"><span>English</span><span class="pill warn">2 units behind</span></div>
+          <div class="track"><div class="fill" style="width:34%"></div><span class="now" style="left:40%"></span></div>
+          <small>10 of 29 units</small></div></div>
+        <div class="key"><i></i>Where the school year is today: 40% through</div>
+      </div></div>
+      <footer><span>Units done per subject</span><span>The year's units in the curriculum</span><span>School term dates</span><span>Says ahead or behind only past 2 units</span></footer>
+    </section>
+
+    <section class="plate" id="trend">
+      <header><h3>Accuracy trend</h3><p>Is it getting easier or harder?</p></header>
+      <div class="stage"><div class="card trend">
+        <div class="r"><span class="subj" style="--soft:var(--math-soft)"><img src="../player/study/math.svg" alt=""></span>
+          <svg viewBox="0 0 200 52" preserveAspectRatio="none" aria-label="Maths, right first time, from 68 to 84 percent over 8 weeks"><defs><linearGradient id="gm" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--math)" stop-opacity=".28"/><stop offset="1" stop-color="var(--math)" stop-opacity="0"/></linearGradient></defs><path d="M0,34 L28,31 57,36 85,26 114,23 142,20 171,14 200,11 L200,52 L0,52Z" fill="url(#gm)"/><polyline fill="none" stroke="var(--math)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" points="0,34 28,31 57,36 85,26 114,23 142,20 171,14 200,11"/></svg>
+          <span class="v"><b>84%</b><small>▲ 16</small></span></div>
+        <div class="r"><span class="subj" style="--soft:var(--eng-soft)"><img src="../player/study/english.svg" alt=""></span>
+          <svg viewBox="0 0 200 52" preserveAspectRatio="none" aria-label="English, right first time, from 80 to 71 percent over 8 weeks"><defs><linearGradient id="ge" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--eng)" stop-opacity=".28"/><stop offset="1" stop-color="var(--eng)" stop-opacity="0"/></linearGradient></defs><path d="M0,14 L28,17 57,12 85,20 114,21 142,27 171,25 200,30 L200,52 L0,52Z" fill="url(#ge)"/><polyline fill="none" stroke="var(--eng)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" points="0,14 28,17 57,12 85,20 114,21 142,27 171,25 200,30"/></svg>
+          <span class="v"><b>71%</b><small class="down">▼ 9</small></span></div>
+        <small class="muted">Right first time, the last 8 weeks. The dip in English came with the new spelling rules.</small>
+      </div></div>
+      <footer><span>Every answer with its outcome and day</span><span>What was new each week, to explain a dip</span></footer>
+    </section>
+
+    <section class="plate" id="map">
+      <header><h3>Skill map</h3><p>What can Henri do, topic by topic?</p></header>
+      <div class="stage"><div class="card smap">
+        <h4><span class="subj" style="--soft:var(--math-soft);width:24px;height:24px;border-radius:7px"><img src="../player/study/math.svg" alt="" style="width:16px;height:16px"></span>Maths</h4>
+        <div class="t" style="--c:var(--math)"><span>Numbers to 100</span><span class="cells"><i style="--m:100%"></i><i style="--m:100%"></i><i style="--m:62%"></i><i style="--m:62%"></i><i class="w"></i><i class="n"></i></span></div>
+        <div class="t" style="--c:var(--math)"><span>Adding and taking away</span><span class="cells"><i style="--m:100%"></i><i style="--m:62%"></i><i style="--m:62%"></i><i style="--m:30%"></i><i class="n"></i><i class="n"></i><i class="n"></i></span></div>
+        <h4><span class="subj" style="--soft:var(--eng-soft);width:24px;height:24px;border-radius:7px"><img src="../player/study/english.svg" alt="" style="width:16px;height:16px"></span>English</h4>
+        <div class="t" style="--c:var(--eng)"><span>Reading words</span><span class="cells"><i style="--m:100%"></i><i style="--m:62%"></i><i style="--m:62%"></i><i class="w"></i></span></div>
+        <div class="t" style="--c:var(--eng)"><span>Grammar</span><span class="cells"><i style="--m:62%"></i><i style="--m:30%"></i><i class="n"></i><i class="n"></i><i class="n"></i></span></div>
+        <div class="legend"><span><i style="background:var(--math)"></i>Remembers it</span><span><i style="background:color-mix(in srgb,var(--math) 62%,var(--panel))"></i>Can do it</span><span><i style="background:color-mix(in srgb,var(--math) 30%,var(--panel))"></i>Learning</span><span><i style="background:var(--warn)"></i>Needs a hand</span><span><i style="background:var(--sunk)"></i>Not yet</span><small style="flex-basis:100%">Each subject in its own colour, stronger when better known.</small></div>
+      </div></div>
+      <footer><span>Skill states by topic</span><span>A square opens its skill: lessons, check score, tricky parts</span></footer>
+    </section>
+  </div>
+
+  <h2 class="group">What can I do about it? <small>One thing at a time</small></h2>
+  <div class="plates">
+    <section class="plate" id="finding">
+      <header><h3>Finding with Send practice</h3><p>What exactly is hard, and what helps?</p></header>
+      <div class="stage"><div class="card find">
+        <div class="head"><span class="subj" style="--soft:var(--eng-soft)"><img src="../player/study/english.svg" alt=""></span><div><h4>Reading familiar words at a glance</h4><div class="score"><span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>3 of 5 on the skill check, Tuesday</div></div></div>
+        <div class="chips"><span>Telling look-alike words apart: was and saw</span><span>Reading the whole word, not guessing from its start</span></div>
+        <div class="act"><button class="btn" onclick="this.className='btn done';this.textContent='✓ Sent to Henri'">Send to Henri</button><small>Practice with hints, 10 minutes. It shows first in Henri's app.</small></div>
+      </div></div>
+      <footer><span>Skill check score and missed parts</span><span>Backend: deliver to the child's app</span></footer>
+    </section>
+
+    <section class="plate" id="mistakes">
+      <header><h3>Common mistakes</h3><p>What does Henri actually get wrong?</p></header>
+      <div class="stage mist">
+        <div class="row"><div class="ans"><s>18</s><b>28</b></div><div><p class="q">Double 14</p><p class="why">Doubles only the ones. Double the tens too: 20 + 8.</p></div><span class="n">3×</span></div>
+        <div class="row"><div class="ans"><s>saw</s><b>was</b></div><div><p class="q">Read the word</p><p class="why">Reads look-alike words backwards. Point to the first letter.</p></div><span class="n">4×</span></div>
+        <div class="row"><div class="ans"><s>3:00</s><b>12:15</b></div><div><p class="q">Quarter past 12 on the clock</p><p class="why">Swaps the hands. The long hand shows the minutes.</p></div><span class="n">2×</span></div>
+      </div>
+      <footer><span>Wrong answers, grouped by the lesson's known misconceptions</span><span>Only repeated ones</span><span>The lesson's own explanation</span></footer>
+    </section>
+
+    <section class="plate" id="talk">
+      <header><h3>Ask your child</h3><p>What can we talk about at dinner?</p></header>
+      <div class="stage talk">
+        <div class="m"><span class="av"><img src="../../assets/mascot/learn-1.png" alt=""></span><div class="bubble"><b>“What's double 23? How did you work it out?”</b><small>From this week's lesson Doubling</small></div></div>
+        <div class="m"><span class="av"><img src="../../assets/mascot/topic-grammar.png" alt=""></span><div class="bubble"><b>“Can you find an adjective on the cereal box?”</b><small>From Adjectives and adverbs</small></div></div>
+        <div class="m"><span class="av"><img src="../../assets/mascot/topic-reading.png" alt=""></span><div class="bubble"><b>“Did you know hippopotamus means river horse?”</b><small>The fun fact from Word meanings</small></div></div>
+      </div>
+      <footer><span>This week's lessons</span><span>Their opening questions and Did you know? facts</span></footer>
+    </section>
+
+    <section class="plate" id="athome">
+      <header><h3>Try at home</h3><p>Something to do away from the screen.</p></header>
+      <div class="stage"><div class="card home">
+        <div class="art"><img src="../../assets/objects/purse.png" alt=""></div>
+        <div class="txt"><h4>Halving with coins</h4><p class="for">For: halving numbers with an odd number of tens</p>
+          <ol><li>Put 50p in 10p coins on the table.</li><li>Share them between two plates. One is left over.</li><li>Swap it for two 5p coins. Now each plate has 25p.</li></ol></div>
+      </div></div>
+      <footer><span>A new hand-written field per skill part</span><span>Shown beside the finding it answers</span></footer>
+    </section>
+
+    <section class="plate" id="sent">
+      <header><h3>Sent practice</h3><p>Did it help?</p></header>
+      <div class="stage"><div class="card sent">
+        <div class="s"><span class="subj" style="--soft:var(--math-soft)"><img src="../player/study/math.svg" alt=""></span><div><b>Doubling and halving to 100</b><small>Sent Monday, done Tuesday</small></div><span class="pill good">✓ 9 of 10</span></div>
+        <div class="s"><span class="subj" style="--soft:var(--math-soft)"><img src="../player/study/math.svg" alt=""></span><div><b>7 times table drill</b><small>Sent Monday, done Wednesday</small></div><span class="pill good">✓ 22 a minute</span></div>
+        <div class="s"><span class="subj" style="--soft:var(--eng-soft)"><img src="../player/study/english.svg" alt=""></span><div><b>Reading familiar words at a glance</b><small>Sent today</small></div><span class="pill plain">Waiting</span></div>
+      </div></div>
+      <footer><span>What was sent, and its result</span></footer>
+    </section>
+
+    <section class="plate" id="voice">
+      <header><h3>Read-aloud recordings</h3><p>How does Henri sound reading aloud?</p></header>
+      <div class="stage rec">
+        <div class="r"><button class="play" aria-label="Play recording"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="currentColor"/></svg></button><div><q>The cat sat on the mat.</q><span class="wave" aria-hidden="true"><i style="height:8px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:22px"></i><i style="height:10px"></i><i style="height:18px"></i><i style="height:6px"></i><i style="height:14px"></i><i style="height:20px"></i><i style="height:9px"></i><i style="height:15px"></i><i style="height:7px"></i><i style="height:12px"></i><i style="height:5px"></i></span><small>Reading sentences, Wednesday · 0:06</small></div></div>
+        <div class="r"><button class="play" aria-label="Play recording"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z" fill="currentColor"/></svg></button><div><q>I can see a red bus.</q><span class="wave" aria-hidden="true"><i style="height:12px"></i><i style="height:20px"></i><i style="height:8px"></i><i style="height:14px"></i><i style="height:18px"></i><i style="height:9px"></i><i style="height:16px"></i><i style="height:6px"></i><i style="height:11px"></i><i style="height:4px"></i></span><small>Speaking, Monday · 0:04</small></div></div>
+      </div>
+      <footer><span>Recordings from speaking tasks</span><span>Only with the parent's consent, kept 30 days</span><span>A data protection decision first</span></footer>
+    </section>
+  </div>
+
+  <h2 class="group">Setting it up together <small>The parent decides, the child sees it</small></h2>
+  <div class="plates">
+    <section class="plate" id="goal">
+      <header><h3>Weekly goal</h3><p>How much is enough?</p></header>
+      <div class="stage"><div class="card goal">
+        <div class="ring"><svg viewBox="0 0 140 140" aria-hidden="true"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="var(--brand)"/><stop offset="1" stop-color="var(--brand-2)"/></linearGradient></defs><circle cx="70" cy="70" r="58" fill="none" stroke="var(--sunk)" stroke-width="14"/><circle cx="70" cy="70" r="58" fill="none" stroke="url(#gg)" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="80 100"/></svg><div class="c"><div><b>4</b><small>of 5 days</small></div></div></div>
+        <div><label>Days a week</label><div class="seg" role="group" aria-label="Days a week"><button aria-pressed="false">3</button><button aria-pressed="false">4</button><button aria-pressed="true">5</button></div>
+          <label>Minutes a day</label><div class="seg" role="group" aria-label="Minutes a day"><button aria-pressed="false">10</button><button aria-pressed="true">15</button><button aria-pressed="false">20</button></div></div>
+      </div></div>
+      <footer><span>A goal the parent sets</span><span>The child's Home ring and streak follow it</span></footer>
+    </section>
+
+    <section class="plate" id="deal">
+      <header><h3>Reward deal</h3><p>Can I add a real-world reward?</p></header>
+      <div class="stage"><div class="card deal">
+        <img class="badge" src="../../assets/badges/flame.svg" alt="">
+        <div><h4>10 days in a row</h4><p class="prize"><img src="../../assets/objects/park.png" alt="">A trip to the park</p>
+          <div class="days" aria-label="7 of 10 days"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+          <small class="muted">7 of 10 days · Henri sees this on the Me page</small></div>
+      </div></div>
+      <footer><span>The parent's own promise on a badge or streak</span><span>The app never sells or suggests a reward</span></footer>
+    </section>
+
+    <section class="plate" id="when">
+      <header><h3>When they learn</h3><p>Is the routine working?</p></header>
+      <div class="stage"><div class="card when">
+        <div><h4>By day</h4><div class="bars"><i style="--h:80%"></i><i style="--h:65%"></i><i class="lo" style="--h:20%"></i><i style="--h:90%"></i><i style="--h:55%"></i><i class="lo" style="--h:10%"></i><i class="lo" style="--h:6%"></i></div><div class="ticks"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div></div>
+        <div><h4>By time</h4><div class="bars"><i class="lo" style="--h:10%"></i><i class="lo" style="--h:25%"></i><i style="--h:95%"></i><i style="--h:60%"></i><i class="lo" style="--h:15%"></i></div><div class="ticks"><span>7</span><span>12</span><span>16</span><span>18</span><span>20</span></div></div>
+        <p class="when-note">Most learning happens straight after school. Wednesdays are quiet.</p>
+      </div></div>
+      <footer><span>Session start times, the last 4 weeks</span><span>One plain sentence</span></footer>
+    </section>
+
+    <section class="plate" id="notify">
+      <header><h3>Notifications</h3><p>What do I want to hear about?</p></header>
+      <div class="stage"><div class="card notes">
+        <label><span><b>Weekly digest</b><small>Friday at 17:00</small></span><span class="sw"><input type="checkbox" checked><i></i></span></label>
+        <label><span><b>When Henri needs a hand</b><small>A skill check not passed twice</small></span><span class="sw"><input type="checkbox" checked><i></i></span></label>
+        <label><span><b>Badges and records</b><small>As they happen</small></span><span class="sw"><input type="checkbox"><i></i></span></label>
+        <label><span><b>No learning for 3 days</b><small>A gentle nudge, at most once a week</small></span><span class="sw"><input type="checkbox"><i></i></span></label>
+      </div></div>
+      <footer><span>Settings per parent</span><span>The backend's notification service</span><span>Default: the digest only</span></footer>
+    </section>
+
+    <section class="plate" id="upnext">
+      <header><h3>Coming up</h3><p>What's next, so I can prepare?</p></header>
+      <div class="stage"><div class="card next">
+        <div class="w"><span>This week</span><ul><li><span class="subj" style="--soft:var(--math-soft)"><img src="../player/study/math.svg" alt=""></span>Money: pounds and pence</li><li><span class="subj" style="--soft:var(--eng-soft)"><img src="../player/study/english.svg" alt=""></span>Adjectives and adverbs</li></ul></div>
+        <div class="w"><span>Next week</span><ul><li><span class="subj" style="--soft:var(--math-soft)"><img src="../player/study/math.svg" alt=""></span>Telling the time to 5 minutes</li><li><span class="subj" style="--soft:var(--eng-soft)"><img src="../player/study/english.svg" alt=""></span>Writing about real events</li></ul></div>
+      </div></div>
+      <footer><span>The next units in order</span><span>The child's pace</span><span>A good place for Try at home</span></footer>
+    </section>
+
+    <section class="plate" id="report">
+      <header><h3>Report for school</h3><p>Can I show the teacher?</p></header>
+      <div class="stage"><div class="card report">
+        <div class="sheet" aria-hidden="true"><i class="h"></i><i></i><i style="width:80%"></i><i class="g"></i><i></i><i style="width:60%"></i><i class="a"></i><i></i><i style="width:70%"></i><i></i></div>
+        <div><h4>Henri, autumn term</h4><p>One page: what Henri can do by topic, what needs a hand, time spent, with the curriculum's standards named.</p><button class="btn ghost">Download PDF</button></div>
+      </div></div>
+      <footer><span>Skill states mapped to the standards</span><span>The review PDF's pipeline</span></footer>
+    </section>
+
+    <section class="plate" id="kids">
+      <header><h3>Two children</h3><p>How are both of them doing?</p></header>
+      <div class="stage kids">
+        <div class="kid"><div class="top2"><span class="av" style="--av:#ffc94d"><img src="../../assets/mascot/start-1.png" alt=""></span><div><b>Henri</b><small>Year 2 · England</small></div></div><span class="week" aria-label="4 of 5 days"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="pill warn" style="justify-self:start">1 thing to help with</span></div>
+        <div class="kid"><div class="top2"><span class="av" style="--av:#a8e0c6"><img src="../../assets/mascot/start-3.png" alt=""></span><div><b>Mia</b><small>Klasse 3 · Germany</small></div></div><span class="week" aria-label="3 of 5 days"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i></span><span class="pill good" style="justify-self:start">All going well</span></div>
+      </div>
+      <footer><span>One parent account, several children</span><span>Children on different curricula</span><span>The landing page</span></footer>
+    </section>
+  </div>
+
+  <h2 class="group" id="round2">Seeing inside a subject <small>For the parent who wants detail</small></h2>
+  <div class="plates">
+    <section class="plate" id="tables">
+      <header><h3>Times tables grid</h3><p>Which facts are fast, slow or still wrong?</p></header>
+      <div class="stage"><div class="card">
+        <div class="tt" role="img" aria-label="Times tables 1 to 10: most of 2, 5 and 10 known, 7 and 8 mostly slow or wrong">
+          <span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+          <span>2</span><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i>
+          <span>3</span><i class="k"></i><i class="k"></i><i class="k"></i><i class="s"></i><i class="k"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="k"></i><i class="k"></i>
+          <span>4</span><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="s"></i><i class="s"></i><i class="m"></i><i class="s"></i><i class="k"></i>
+          <span>5</span><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i><i class="k"></i>
+          <span>6</span><i class="k"></i><i class="k"></i><i class="s"></i><i class="s"></i><i class="k"></i><i class="m"></i><i class="m"></i><i class="s"></i><i class="s"></i><i class="k"></i>
+          <span>7</span><i class="k"></i><i class="k"></i><i class="s"></i><i class="s"></i><i class="k"></i><i class="m"></i><i class="m"></i><i class="m"></i><i></i><i class="k"></i>
+          <span>8</span><i class="k"></i><i class="k"></i><i class="s"></i><i class="m"></i><i class="k"></i><i class="s"></i><i class="m"></i><i></i><i></i><i class="k"></i>
+        </div>
+        <div class="legend" style="margin-top:12px"><span><i style="background:var(--good)"></i>Knows it</span><span><i style="background:color-mix(in srgb,var(--warn) 55%,var(--panel))"></i>Slow</span><span><i style="background:var(--bad)"></i>Still wrong</span><span><i style="background:var(--sunk)"></i>Not met yet</span></div>
+      </div></div>
+      <footer><span>Drill items: right, slow or missed, per fact</span><span>Tap a row: send that table as a drill</span></footer>
+    </section>
+
+    <section class="plate" id="sounds">
+      <header><h3>Sound chart</h3><p>Which letter sounds can Henri read?</p></header>
+      <div class="stage"><div class="card">
+        <div class="snd"><span class="k">ai</span><span class="k">ee</span><span class="k">igh</span><span class="k">oa</span><span class="k">oo</span><span class="k">ar</span><span class="k">or</span><span class="w">ur</span><span class="k">ow</span><span class="w">oi</span><span class="k">ear</span><span class="w">air</span><span>ure</span><span class="k">er</span><span class="w">ay</span><span class="k">ou</span><span>ie</span><span>ea</span><span>oy</span><span>ir</span></div>
+        <div class="legend" style="margin-top:12px"><span><i style="background:var(--eng)"></i>Reads it</span><span><i style="background:var(--warn)"></i>Mixes it up</span><span><i style="background:var(--sunk)"></i>Not taught yet</span></div>
+      </div></div>
+      <footer><span>The phonics lessons' graphemes</span><span>Right and wrong answers per grapheme</span><span>Tap a sound: hear it said</span></footer>
+    </section>
+
+    <section class="plate" id="spelling">
+      <header><h3>Words still tricky to spell</h3><p>Which spellings should we practise?</p></header>
+      <div class="stage spell">
+        <div class="w"><div><span class="tiles"><b>b</b><b>e</b><b>c</b><b>a</b><b class="x">u</b><b>s</b><b>e</b></span><small>Wrote “becos” twice</small></div><span class="pill warn">2 of 4</span></div>
+        <div class="w"><div><span class="tiles"><b>s</b><b>a</b><b class="x">i</b><b>d</b></span><small>Wrote “sed”</small></div><span class="pill warn">1 of 3</span></div>
+        <div class="w"><div><span class="tiles"><b>w</b><b class="x">h</b><b>e</b><b>r</b><b>e</b></span><small>Wrote “were” for where</small></div><span class="pill warn">3 of 5</span></div>
+      </div>
+      <footer><span>Typed answers in spelling tasks</span><span>The letter where it went wrong</span><span>Send as a spelling drill</span></footer>
+    </section>
+
+    <section class="plate" id="speed">
+      <header><h3>Reading speed</h3><p>Is reading getting more fluent?</p></header>
+      <div class="stage"><div class="card wpm">
+        <div><b class="big">42</b><small class="muted" style="display:block;font-weight:700">words a minute, read aloud</small><span class="pill good" style="margin-top:10px">+9 since September</span></div>
+        <div class="bars" style="width:220px"><i style="--h:40%"></i><i style="--h:45%"></i><i style="--h:44%"></i><i style="--h:55%"></i><i style="--h:60%"></i><i style="--h:68%"></i><i style="--h:75%"></i><i style="--h:82%"></i></div>
+      </div></div>
+      <footer><span>Timed reading tasks</span><span>About 90 words a minute by the end of Year 2 (The Reading Framework, DfE)</span></footer>
+    </section>
+
+    <section class="plate" id="memory">
+      <header><h3>Memory</h3><p>Will Henri still know it next month?</p></header>
+      <div class="stage"><div class="card mem">
+        <div class="r"><div><b>Number bonds to 10</b><small>Refreshed 3 times · next in 3 weeks</small></div><span class="battery" style="--c:var(--good)"><i style="--f:92%"></i></span></div>
+        <div class="r"><div><b>Telling the time to the hour</b><small>Refresh due in 2 days</small></div><span class="battery" style="--c:var(--warn)"><i style="--f:38%"></i></span></div>
+        <div class="r"><div><b>Days of the week</b><small>Refresh missed · send one</small></div><span class="battery" style="--c:var(--bad)"><i style="--f:14%"></i></span></div>
+      </div></div>
+      <footer><span>The recap schedule per skill</span><span>Recaps passed and missed</span></footer>
+    </section>
+
+    <section class="plate" id="vocab">
+      <header><h3>Word bank</h3><p>Which French words does Henri know?</p></header>
+      <div class="stage"><div class="card">
+        <div class="words"><span class="new"><b>le chat</b><small>the cat</small></span><span><b>bonjour</b><small>hello</small></span><span><b>rouge</b><small>red</small></span><span class="new"><b>la pomme</b><small>the apple</small></span><span><b>un, deux, trois</b><small>one, two, three</small></span><span><b>merci</b><small>thank you</small></span><span><b>le chien</b><small>the dog</small></span><span class="new"><b>bleu</b><small>blue</small></span></div>
+        <p class="muted" style="margin:12px 0 0;font-size:13px">38 words · 3 new this week (outlined) · tap one to hear it</p>
+      </div></div>
+      <footer><span>Vocabulary of the language lessons</span><span>Narration clips for each word</span></footer>
+    </section>
+  </div>
+
+  <h2 class="group">How Henri learns <small>Habits, not just scores</small></h2>
+  <div class="plates">
+    <section class="plate" id="habits">
+      <header><h3>Independence and grit</h3><p>Does Henri need fewer hints, and keep going?</p></header>
+      <div class="stage meters">
+        <div class="meter"><b class="big">1 in 6</b><small>tasks with a hint, down from 1 in 3</small><div class="spark"><i style="--h:90%"></i><i style="--h:80%"></i><i style="--h:70%"></i><i style="--h:62%"></i><i style="--h:50%"></i><i style="--h:44%"></i></div></div>
+        <div class="meter"><b class="big">9 of 10</b><small>times Henri tried again after a mistake</small><div class="spark"><i style="--h:60%"></i><i style="--h:70%"></i><i style="--h:65%"></i><i style="--h:80%"></i><i style="--h:85%"></i><i style="--h:90%"></i></div></div>
+      </div>
+      <footer><span>Hints opened per task</span><span>Second tries after a miss</span><span>Shown as praise, never as a grade</span></footer>
+    </section>
+
+    <section class="plate" id="growth">
+      <header><h3>Growth moment</h3><p>Show me it worked.</p></header>
+      <div class="stage growth">
+        <div class="side"><small>2 October</small><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><b style="display:block;margin-top:8px">2 of 5</b></div>
+        <span class="arrow">→</span>
+        <div class="side"><small>Today</small><span class="dots"><i class="on g"></i><i class="on g"></i><i class="on g"></i><i class="on g"></i><i class="on g"></i></span><b style="display:block;margin-top:8px">5 of 5</b></div>
+        <p>Doubling and halving: from 2 of 5 to all right in three weeks.</p>
+      </div>
+      <footer><span>First and latest check per skill</span><span>Shown when a skill goes from not passed to passed</span></footer>
+    </section>
+
+    <section class="plate" id="story" style="grid-column:1/-1">
+      <header><h3>Henri's week, day by day</h3><p>What happened each day?</p></header>
+      <div class="stage story">
+        <div class="d"><b>Mon</b><img src="../../assets/mascot/topic-add.png" alt=""><small>Adding two-digit numbers<br>12 min</small></div>
+        <div class="d"><b>Tue</b><img src="../../assets/mascot/topic-reading.png" alt=""><small>Reading at a glance, check 3 of 5<br>15 min</small></div>
+        <div class="d off"><b>Wed</b><small style="margin-top:20px">No learning</small></div>
+        <div class="d"><b>Thu</b><img src="../../assets/mascot/topic-numbers.png" alt=""><small>7 times table drill, new record 22<br>8 min</small></div>
+        <div class="d"><b>Fri</b><img src="../../assets/mascot/topic-grammar.png" alt=""><small>Adjectives, lesson 1<br>11 min</small></div>
+      </div>
+      <footer><span>The week's log</span><span>The topic mascot of each lesson</span></footer>
+    </section>
+
+    <section class="plate" id="coach">
+      <header><h3>Ask Twist</h3><p>A question about my child, answered from the data.</p></header>
+      <div class="stage coach">
+        <span class="q">Why is Henri stuck on doubling?</span>
+        <div class="a"><span class="av"><img src="../../assets/mascot/learn-2.png" alt=""></span><div><p>Henri doubles the ones but forgets the tens: 3 of the 4 misses were like “double 14 is 18”. Lesson 2 shows doubling tens and ones apart.</p><div class="sug"><span>Send lesson 2</span><span>Try at home: coins</span><span>Ask something else</span></div></div></div>
+      </div>
+      <footer><span>Answers only from this child's data and the lessons</span><span>A language model, behind the backend</span><span>No answers about other children</span></footer>
+    </section>
+
+    <section class="plate" id="prep">
+      <header><h3>Test coming up</h3><p>School has a test on Friday. Can Twist help?</p></header>
+      <div class="stage"><div class="card prep">
+        <div class="ask">📝 Fractions test<small>Friday</small></div>
+        <ol>
+          <li><span>Tue</span><div><b>Halves and quarters</b><small>Practice with hints, 10 min</small></div><span class="pill good">Done</span></li>
+          <li><span>Wed</span><div><b>Thirds</b><small>Lesson 1, 12 min</small></div><span class="pill plain">Today</span></li>
+          <li><span>Thu</span><div><b>Mixed review, no hints</b><small>10 min</small></div><span class="pill plain">Planned</span></li>
+        </ol>
+      </div></div>
+      <footer><span>A topic and a date the parent enters</span><span>Matched to skills in the curriculum</span><span>A plan sent to the child day by day</span></footer>
+    </section>
+  </div>
+
+  <h2 class="group">Together, and peace of mind <small>Small things that keep a family going</small></h2>
+  <div class="plates">
+    <section class="plate" id="coplay">
+      <header><h3>Do it together</h3><p>I have 10 minutes. How do I help?</p></header>
+      <div class="stage"><div class="card together">
+        <div class="top3"><h4>Doubling, lesson 2<br><small style="font:600 13px 'Red Hat Text';opacity:.9">Sit with Henri for 12 minutes</small></h4><img src="../../assets/mascot/topic-add.png" alt=""></div>
+        <ul><li><b>Before</b>Ask: “What's double 3? And double 30?”</li><li><b>While Henri plays</b>Let Henri answer first. If stuck, point to the tens.</li><li><b>After</b>Find something in twos at home: socks, shoes, gloves.</li></ul>
+      </div></div>
+      <footer><span>A short guide per lesson, written by hand</span><span>Opens the lesson on the child's device</span></footer>
+    </section>
+
+    <section class="plate" id="message">
+      <header><h3>A note for Henri</h3><p>Can I cheer Henri on from work?</p></header>
+      <div class="stage"><div class="card msg">
+        <div><b>Pick a sticker</b><div class="stickers" role="group" aria-label="Stickers"><button aria-pressed="true"><img src="../../assets/objects/star.png" alt="Star"></button><button aria-pressed="false"><img src="../../assets/objects/heart.png" alt="Heart"></button><button aria-pressed="false"><img src="../../assets/objects/crown.png" alt="Crown"></button><button aria-pressed="false"><img src="../../assets/objects/clap.png" alt="Clapping"></button></div>
+          <textarea aria-label="Message">Well done on the 7 times table!</textarea><button class="btn" style="margin-top:10px">Send note</button></div>
+        <div class="mini-phone" aria-hidden="true"><div class="scr"><div class="note"><img src="../../assets/objects/star.png" alt=""><b>From Mum</b><small>Well done on the 7 times table!</small></div></div></div>
+      </div></div>
+      <footer><span>A sticker and a short note</span><span>Shown on the child's Home next time</span><span>No free chat</span></footer>
+    </section>
+
+    <section class="plate" id="cert">
+      <header><h3>Certificate</h3><p>Something for the fridge.</p></header>
+      <div class="stage"><div class="cert">
+        <img src="../../assets/badges/legend.svg" alt="">
+        <small>TWIST CERTIFICATE</small>
+        <h4>Henri</h4>
+        <p>can add and subtract within 100</p>
+        <button class="btn ghost">Print or share</button>
+      </div></div>
+      <footer><span>A badge or a finished topic</span><span>A printable page, same pipeline as the review PDF</span></footer>
+    </section>
+
+    <section class="plate" id="limits">
+      <header><h3>Time and bedtime</h3><p>Can I keep it healthy?</p></header>
+      <div class="stage"><div class="card limits">
+        <div class="row2"><img src="../../assets/objects/sun.png" alt=""><div><b>Daily limit</b><small>Twist says “Well done, see you tomorrow”</small></div><span class="val">30 min</span></div>
+        <div class="row2"><img src="../../assets/objects/moon.png" alt=""><div><b>Bedtime</b><small>No new lessons after this time</small></div><span class="val">19:30</span></div>
+        <div class="row2"><img src="../../assets/objects/teddy.png" alt=""><div><b>Weekends</b><small>Learning is optional; the streak waits</small></div><span class="val">Off</span></div>
+      </div></div>
+      <footer><span>Settings per child</span><span>The app ends a session kindly, never mid-question</span></footer>
+    </section>
+
+    <section class="plate" id="widget">
+      <header><h3>Home-screen widget</h3><p>Today at a glance on my phone.</p></header>
+      <div class="stage"><div class="widgets">
+        <div class="wg"><span class="h"><img src="../../assets/badges/flame.svg" alt="">Twist</span><div><b class="big">12</b><small>days in a row</small></div><span class="wk"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="wg wide"><span class="h"><img src="../../assets/mascot/end-1.png" alt="">Henri today</span><div><b style="font-size:16px">Lesson done ✓</b><small>Practice still to do · 1 thing to help with</small></div><span class="wk"><i class="on"></i><i></i></span></div>
+      </div></div>
+      <footer><span>Today's plan and the streak</span><span>iOS and Android widgets</span></footer>
+    </section>
+  </div>
+</div>
+<script>
+// The goal's segments behave like the real control.
+document.querySelectorAll(".seg, .stickers").forEach((g) => g.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; g.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b)); }));
+</script>
+</body>
+</html>

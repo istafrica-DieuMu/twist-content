@@ -19,7 +19,7 @@ metadata:
   builds_on: [math.written-add-sub.sub-regroup, math.add-sub-to-1000.estimate]
   also_practises: [math.written-add-sub.add-carry, math.add-sub-to-1000.estimate]
   vocabulary: { de: [Überschlag, runden, Umkehraufgabe, Probe, Übertrag, Fehler] }
-  forms: [drawn, text, audio]
+  forms: [drawn, text, audio, picture]
   drawn: [written-calc]
   facets: []
   parts:
@@ -69,11 +69,14 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Lina rechnet 386 + 247 = 523. Kann das stimmen?"
+            say: "Lina rechnet dreihundertsechsundachtzig plus zweihundertsiebenundvierzig und bekommt fünfhundertdreiundzwanzig heraus. Was glaubst du: Kann das stimmen? Du musst nicht genau rechnen."
+            show: { drawn: written-calc, rows: ["386", "247"], op: "+", result: "523" }
           - text: "Überschlag: 400 + 200 = 600"
-            say: "Mit einem Überschlag prüfst du, ob dein Ergebnis stimmen kann. Du rundest auf Hunderter: Dreihundertsechsundachtzig wird vierhundert, zweihundertsiebenundvierzig wird zweihundert. Das Ergebnis muss ungefähr sechshundert sein."
+            say: "Finde es mit einem Überschlag heraus! Mit einem Überschlag prüfst du, ob dein Ergebnis stimmen kann. Du rundest auf Hunderter: Dreihundertsechsundachtzig wird vierhundert, zweihundertsiebenundvierzig wird zweihundert. Das Ergebnis muss ungefähr sechshundert sein."
             show: { drawn: written-calc, rows: ["386", "247"], op: "+", carry: "11 ", result: "633" }
           - text: "523 ist zu weit weg von 600."
-            say: "Steht hier fünfhundertdreiundzwanzig, ist das zu weit weg von sechshundert. Dann rechnest du noch einmal."
+            say: "Linas fünfhundertdreiundzwanzig ist zu weit weg von sechshundert. Das kann nicht stimmen! Dann rechnest du noch einmal."
             show: { drawn: written-calc, rows: ["386", "247"], op: "+", result: "523" }
           - text: "Große Fehler fallen beim Überschlag auf."
             say: "Der Überschlag sagt dir nicht das genaue Ergebnis. Aber große Fehler fallen dir damit auf."
@@ -110,6 +113,8 @@ lessons:
                 say: "Fünfhundertachtunddreißig plus dreihundertsiebenundsechzig. Welches Ergebnis kann stimmen?"
                 options: ["905", "605", "1205"]
                 answer: "905"
+                feedback:
+                  "1205": "Über tausend? Da ist das Ergebnis aber weit davongaloppiert! Der Überschlag ist fünfhundert plus vierhundert, also ungefähr neunhundert."
                 hints:
                   - "Mach zuerst einen Überschlag."
                   - "Fünfhundert plus vierhundert ist neunhundert."
@@ -120,6 +125,8 @@ lessons:
                 say: "Siebenhundertfünfunddreißig minus zweihundertachtzehn ist neunhundertdreiundfünfzig. Passt das zum Überschlag?"
                 show: { drawn: written-calc, rows: ["735", "218"], op: "-", result: "953" }
                 answer: false
+                feedback:
+                  "true": "Beim Minusrechnen wird das Ergebnis größer als die erste Zahl? Das wäre Zauberei! Siebenhundert minus zweihundert sind ungefähr fünfhundert."
                 hints:
                   - "Mach einen Überschlag: siebenhundert minus zweihundert."
                   - "Das sind fünfhundert. Neunhundertdreiundfünfzig ist viel zu groß."
@@ -152,8 +159,8 @@ lessons:
                 hints: ["Der Überschlag ist dreihundert plus dreihundert."]
               - id: l1-s3
                 type: multiple_choice
-                text: "Welches Ergebnis kann zu 812 − 395 stimmen?"
-                say: "Achthundertzwölf minus dreihundertfünfundneunzig. Welches Ergebnis kann stimmen?"
+                text: "Im Kino sind 812 Plätze. 395 sind besetzt. Wie viele sind frei? Welches Ergebnis kann stimmen?"
+                say: "Im Kino sind achthundertzwölf Plätze. Dreihundertfünfundneunzig sind besetzt. Wie viele Plätze sind frei? Welches Ergebnis kann stimmen?"
                 options: ["417", "217", "617"]
                 answer: "417"
                 hints: ["Achthundert minus vierhundert."]
@@ -187,8 +194,9 @@ lessons:
                 answer: true
               - id: l1-n3
                 type: multiple_choice
-                text: "Welches Ergebnis kann zu 396 + 407 stimmen?"
-                say: "Dreihundertsechsundneunzig plus vierhundertsieben. Welches Ergebnis kann stimmen?"
+                text: "Ein Zug hat 396 Fahrgäste. Am Bahnhof steigen 407 dazu. Welches Ergebnis kann stimmen?"
+                say: "Ein Zug hat dreihundertsechsundneunzig Fahrgäste. Am Bahnhof steigen vierhundertsieben dazu. Wie viele sind es jetzt? Welches Ergebnis kann stimmen?"
+                show: { object: train, count: 1 }
                 options: ["803", "603", "1003"]
                 answer: "803"
               - id: l1-n4
@@ -269,14 +277,18 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "735 − 218 = 517. Wie prüfst du das genau?"
+            say: "Siebenhundertfünfunddreißig minus zweihundertachtzehn ist fünfhundertsiebzehn. Der Überschlag passt. Was glaubst du: Wie kannst du prüfen, ob es ganz genau stimmt? Noch einmal das Gleiche rechnen, oder andersherum?"
           - text: "735 − 218 = 517\nProbe: 517 + 218 = 735"
-            say: "Genauer prüfst du mit der Umkehraufgabe, der Probe. Hast du minus gerechnet, rechnest du jetzt plus: fünfhundertsiebzehn plus zweihundertachtzehn. Kommt die erste Zahl heraus, stimmt dein Ergebnis."
+            say: "Andersherum! Genauer prüfst du mit der Umkehraufgabe, der Probe. Hast du minus gerechnet, rechnest du jetzt plus: fünfhundertsiebzehn plus zweihundertachtzehn. Kommt die erste Zahl heraus, stimmt dein Ergebnis."
             show: { drawn: written-calc, rows: ["517", "218"], op: "+", carry: " 1 ", result: "735" }
           - text: "Fehler: Übertrag vergessen"
             say: "Ein typischer Fehler: Der Übertrag wurde vergessen. Sechs plus sieben ist dreizehn. Die Eins muss als Übertrag zu den Zehnern."
             show: { drawn: written-calc, rows: ["386", "247"], op: "+", result: "523" }
           - text: "456 + 32 = 776"
             say: "Ein anderer Fehler: Die Zahlen stehen nicht richtig untereinander. Hier wurde die Zweiunddreißig unter die Hunderter und Zehner geschrieben. Richtig ist vierhundertachtundachtzig."
+          - text: "Wusstest du? 1999 ging eine Raumsonde am Mars verloren. Ein Team hatte in Metern gerechnet, das andere in amerikanischen Maßen."
+            say: "Wusstest du? Im Jahr neunzehnhundertneunundneunzig ist eine Raumsonde der NASA am Mars verloren gegangen. Ein Team hatte mit Metern und Kilogramm gerechnet, das andere mit amerikanischen Maßen. Niemand hat es rechtzeitig geprüft. Darum lohnt sich die Probe immer, auch für Raketenforscher!"
 
       - activity: practise
         setting: plain
@@ -313,6 +325,8 @@ lessons:
                 show: { drawn: written-calc, rows: ["458", "276"], op: "+", result: "624" }
                 options: ["Der Übertrag wurde vergessen.", "Die Stellen sind verrutscht.", "Es wurde minus gerechnet."]
                 answer: "Der Übertrag wurde vergessen."
+                feedback:
+                  "Es wurde minus gerechnet.": "Mit minus wäre das Ergebnis kleiner als 458. 624 ist größer, also wurde plus gerechnet. Schau auf die Einer: acht plus sechs."
                 hints:
                   - "Rechne die Einer: acht plus sechs."
                   - "Das ist vierzehn. Wo ist die Eins geblieben?"
@@ -361,8 +375,9 @@ lessons:
                 hints: ["Unter welcher Stelle stand die Eins von einundvierzig?"]
               - id: l2-s4
                 type: text_input
-                text: "Probe für 704 − 358 = 346: 346 + 358 = _"
-                say: "Rechne die Probe für siebenhundertvier minus dreihundertachtundfünfzig gleich dreihundertsechsundvierzig. Dreihundertsechsundvierzig plus dreihundertachtundfünfzig ist …"
+                text: "Tom hat 704 Murmeln und verschenkt 358. Er rechnet: Es bleiben 346. Probe: 346 + 358 = _"
+                say: "Tom hat siebenhundertvier Murmeln und verschenkt dreihundertachtundfünfzig. Er rechnet: Es bleiben dreihundertsechsundvierzig. Rechne die Probe. Dreihundertsechsundvierzig plus dreihundertachtundfünfzig ist …"
+                show: { object: marble, count: 1 }
                 answer: "704"
                 hints: ["Rechne schriftlich mit den Überträgen."]
               - id: l2-s5
@@ -404,6 +419,8 @@ lessons:
                 text: "Ist 512 + 37 = 882 richtig gerechnet?"
                 say: "Fünfhundertzwölf plus siebenunddreißig ist achthundertzweiundachtzig. Ist das richtig gerechnet?"
                 answer: false
+                feedback:
+                  "true": "Für siebenunddreißig wächst die Zahl um fast dreihundert? So schnell wächst nicht mal Bambus! Hier sind die Stellen verrutscht."
 
       - activity: check
         size: skill

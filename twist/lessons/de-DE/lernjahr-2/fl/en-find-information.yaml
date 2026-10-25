@@ -77,12 +77,17 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Was glaubst du: Musst du die ganze Speisekarte lesen, um den Preis für das Sandwich zu finden?"
+            show: { drawn: table, rows: [["Café Menu", "Price"], ["pizza", "£3"], ["sandwich", "£2"], ["ice cream", "£1"]] }
+            say: { de: "Das ist eine Speisekarte aus einem Café in England. Du willst wissen, was das Sandwich kostet. Was glaubst du: Musst du dafür alles lesen?" }
           - text: "Was kostet das Sandwich?"
             show: { drawn: table, rows: [["Café Menu", "Price"], ["pizza", "£3"], ["sandwich", "£2"], ["ice cream", "£1"]] }
-            say: { de: "Das ist eine Speisekarte aus einem Café. Du musst nicht alles lesen. Überleg zuerst: Was suche ich? Hier den Preis für „sandwich“." }
+            say: { de: "Nein, du musst nicht alles lesen. Überleg zuerst: Was suche ich? Hier den Preis für „sandwich“." }
           - text: "sandwich → £2"
             show: { drawn: table, rows: [["Café Menu", "Price"], ["pizza", "£3"], ["sandwich", "£2"], ["ice cream", "£1"]], mark: [[2, 0], [2, 1]] }
             say: { de: "Such „sandwich“ in der linken Spalte. Fahr mit dem Finger in derselben Zeile nach rechts. Da steht der Preis: zwei Pfund." }
+          - text: "Wusstest du? Das Sandwich ist nach einem Engländer benannt, dem Earl of Sandwich."
+            say: { de: "Wusstest du? Das Sandwich hat seinen Namen von einem Engländer, dem Earl of Sandwich. Er lebte vor über zweihundertfünfzig Jahren. Und Sandwich ist eigentlich der Name einer kleinen Stadt in England.", en: "Sandwich." }
           - text: "Was hat die Klasse am Dienstag um 10 Uhr?"
             show: { drawn: table, rows: [["", "Monday", "Tuesday"], ["9:00", "Maths", "English"], ["10:00", "Art", "Music"]], mark: [[2, 2]] }
             say: { de: "Ein Stundenplan funktioniert genauso. Oben stehen die Tage, links die Uhrzeiten. „Tuesday“ ist Dienstag. Wo sich die Spalte und die Zeile mit zehn Uhr treffen, steht „Music“, also Musik." }
@@ -143,13 +148,13 @@ lessons:
                   - "Fahr von „Art“ nach oben zum Tag."
                   - "Über „Art“ steht „Thursday“, Donnerstag."
               - id: l1-f5
-                type: multiple_choice
+                type: image_multiple_choice
                 option_audio: false
                 text: "Was ist am billigsten?"
-                show: { drawn: table, rows: [["Café Menu", "Price"], ["pizza", "£4"], ["sandwich", "£3"], ["apple", "50p"]] }
+                show: { drawn: table, rows: [["Café Menu", "Price"], ["pizza", "£4"], ["cake", "£3"], ["apple", "50p"]] }
                 say: { de: "Lies die Speisekarte. Was ist am billigsten?" }
-                options: ["apple", "sandwich", "pizza"]
-                answer: "apple"
+                options: [{ object: pizza }, { object: cake }, { object: apple }]
+                answer: apple
                 hints:
                   - "Schau nur auf die Preise."
                   - "50p sind 50 Pence, weniger als ein Pfund."
@@ -207,14 +212,12 @@ lessons:
                 answer: "pancakes"
                 hints: ["Such diesmal zuerst den Preis, dann fahr nach links."]
               - id: l1-s5
-                type: multiple_choice
-                option_audio: false
-                text: "Wann hat die Klasse Sport?"
+                type: true_false
+                text: "Hat die Klasse am Donnerstag um 9:00 Sport?"
                 show: { drawn: table, rows: [["", "Wednesday", "Thursday"], ["9:00", "English", "PE"], ["10:00", "Maths", "Art"]] }
-                say: { de: "Lies den Stundenplan. Wann hat die Klasse Sport?" }
-                options: ["Thursday, 9:00", "Wednesday, 9:00", "Thursday, 10:00"]
-                answer: "Thursday, 9:00"
-                hints: ["Sport heißt „PE“. Such es, dann lies Tag und Uhrzeit."]
+                say: { de: "Lies den Stundenplan. Hat die Klasse am Donnerstag um neun Uhr Sport?" }
+                answer: true
+                hints: ["Sport heißt „PE“. Such die Spalte „Thursday“ und die Zeile 9:00."]
               - id: l1-s6
                 type: multiple_choice
                 option_audio: false
@@ -347,8 +350,11 @@ lessons:
       - activity: learn
         mode: model-text
         screens:
+          - text: "Come to my party!\n\nWas glaubst du: Was muss auf einer Einladung stehen?"
+            say: { de: "Lucy lädt dich zu ihrer Party ein. Was glaubst du: Was muss auf so einer Einladung unbedingt stehen, damit du hinkommst?" }
+            show: { object: balloon }
           - text: "Come to my party!\nWhen: Saturday, 3 o'clock\nWhere: 12 Park Road\nBring: your swimming things\nFrom: Lucy"
-            say: { de: "Das ist eine Einladung. Sie hat Stichwörter wie ein Steckbrief. „When“ heißt wann, „Where“ heißt wo, „Bring“ heißt mitbringen." }
+            say: { de: "Wann, wo und was du mitbringst! Das ist eine Einladung. Sie hat Stichwörter wie ein Steckbrief. „When“ heißt wann, „Where“ heißt wo, „Bring“ heißt mitbringen." }
           - text: "When: Saturday, 3 o'clock\n= Samstag, um 3 Uhr nachmittags"
             say: { de: "Bei „When“ stehen zwei Dinge: der Tag, „Saturday“, und die Uhrzeit, „3 o'clock“. Pass auf: Wenn jemand fragt, um wie viel Uhr, suchst du die Zahl mit „o'clock“, nicht den Tag." }
           - text: "SCHOOL FUN DAY\nFriday 14th June\n10 o'clock to 2 o'clock\nGames, music and cakes!\nTickets: £1"
@@ -448,22 +454,6 @@ lessons:
                 options: ["bei Emma zu Hause", "in der Schule", "im Park"]
                 answer: "bei Emma zu Hause"
                 hints: ["Such „Where“."]
-              - id: l2-s3
-                type: multiple_choice
-                option_audio: false
-                text: "SUMMER CONCERT\nWednesday 2nd July\n6 o'clock\nin the school hall\nSongs by Class 4!\n\nWo ist das Konzert?"
-                say: { de: "Lies das Plakat. Wo ist das Konzert?" }
-                options: ["in der Aula", "im Park", "in Klasse 4"]
-                answer: "in der Aula"
-                feedback:
-                  "in Klasse 4": "Klasse 4 singt die Lieder. Der Ort steht in der Zeile mit „in the ...“."
-                hints: ["„School hall“ ist die Aula der Schule."]
-              - id: l2-s4
-                type: true_false
-                text: "SUMMER CONCERT\nWednesday 2nd July\n6 o'clock\nin the school hall\nSongs by Class 4!\n\nIst das Konzert am Mittwoch?"
-                say: { de: "Lies das Plakat noch einmal. Ist das Konzert am Mittwoch?" }
-                answer: true
-                hints: ["„Wednesday“ heißt Mittwoch."]
               - id: l2-s5
                 type: image_multiple_choice
                 option_audio: false
@@ -480,6 +470,22 @@ lessons:
                 options: ["um 4 Uhr", "um 3 Uhr", "am Samstag"]
                 answer: "um 4 Uhr"
                 hints: ["Such die Zahl vor „o'clock“."]
+              - id: l2-s3
+                type: multiple_choice
+                option_audio: false
+                text: "SUMMER CONCERT\nWednesday 2nd July\n6 o'clock\nin the school hall\nSongs by Class 4!\n\nWo ist das Konzert?"
+                say: { de: "Lies das Plakat. Wo ist das Konzert?" }
+                options: ["in der Aula", "im Park", "in Klasse 4"]
+                answer: "in der Aula"
+                feedback:
+                  "in Klasse 4": "Klasse 4 singt die Lieder. Der Ort steht in der Zeile mit „in the ...“."
+                hints: ["„School hall“ ist die Aula der Schule."]
+              - id: l2-s4
+                type: true_false
+                text: "SUMMER CONCERT\nWednesday 2nd July\n6 o'clock\nin the school hall\nSongs by Class 4!\n\nIst das Konzert am Mittwoch?"
+                say: { de: "Lies das Plakat noch einmal. Ist das Konzert am Mittwoch?" }
+                answer: true
+                hints: ["„Wednesday“ heißt Mittwoch."]
 
           - support: none
             tasks:

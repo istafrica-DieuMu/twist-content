@@ -13,8 +13,7 @@ summary: >
   counted too; lesson 2 counts Würfelgebäude from a Bauplan written as
   numbers, compares Rauminhalte (Turm und Reihe aus 6 Würfeln sind gleich
   groß), finds the cubes missing to complete a Quader, and ends with the
-  skill check. Counting cubes from an oblique drawing of a building waits
-  for a cube-building drawn component.
+  skill check. Learn shows the buildings with the cubes drawing.
 metadata:
   year: klasse-4
   topic: { de: Rauminhalt, en: Volume }
@@ -23,8 +22,8 @@ metadata:
   builds_on: [math.solids.cube-buildings, math.mult-div.arrays]
   also_practises: [math.mult-div.arrays]
   vocabulary: { de: [Rauminhalt, Einheitswürfel, Quader, Schicht, Würfelgebäude, Bauplan, vergleichen] }
-  forms: [text, audio, drawn]
-  drawn: [dots, shape]
+  forms: [text, audio, picture, drawn]
+  drawn: [dots, shape, cubes]
   facets: []
   parts:
     - { id: layers, what: { de: den Rauminhalt eines Quaders Schicht für Schicht bestimmen, en: finding the volume of a cuboid layer by layer } }
@@ -73,15 +72,21 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Was glaubst du? In eine Kiste passen 3 Reihen mit je 4 Würfeln, und darauf noch einmal so viele. Sind das mehr als 20 Würfel?"
+            say: "In eine Kiste passen drei Reihen mit je vier Würfeln. Darauf passt noch einmal genauso eine Schicht. Was glaubst du: Sind das mehr als zwanzig Würfel?"
+            show: { object: box }
           - text: "Rauminhalt: Wie viele Würfel sind es?"
-            say: "Der Rauminhalt sagt, wie viel Platz ein Körper einnimmt. Wir messen ihn mit lauter gleich großen kleinen Würfeln, den Einheitswürfeln. Dann zählen wir, wie viele es sind."
+            say: "Finden wir es heraus! Der Rauminhalt sagt, wie viel Platz ein Körper einnimmt. Wir messen ihn mit lauter gleich großen kleinen Würfeln, den Einheitswürfeln. Dann zählen wir, wie viele es sind."
             show: { drawn: shape, kind: cube, colour: orange }
           - text: "Eine Schicht: 3 · 4 = 12 Würfel"
             say: "Lege eine Schicht Würfel: drei Reihen mit je vier Würfeln. Jeder Punkt ist hier ein Würfel, von oben gesehen. Drei mal vier sind zwölf Würfel."
             show: { drawn: dots, array: [3, 4] }
           - text: "Zwei Schichten: 2 · 12 = 24 Würfel"
-            say: "Legst du eine zweite Schicht darauf, ist der Quader zwei Würfel hoch. Zwei mal zwölf sind vierundzwanzig Würfel. Die Würfel innen siehst du nicht, aber sie zählen mit."
+            say: "Legst du eine zweite Schicht darauf, ist der Quader zwei Würfel hoch. Zwei mal zwölf sind vierundzwanzig Würfel. Ja, das sind mehr als zwanzig! Die Würfel innen siehst du nicht, aber sie zählen mit."
             show: { drawn: shape, kind: cuboid, colour: blue }
+          - text: "Wusstest du? In einen Würfel, der 10 cm lang, 10 cm breit und 10 cm hoch ist, passt genau 1 Liter Wasser."
+            say: "Wusstest du? In einen Würfel, der zehn Zentimeter lang, breit und hoch ist, passt genau ein Liter Wasser, so viel wie in eine Milchtüte. Er hat zehn Schichten mit je hundert kleinen Zentimeterwürfeln. Das sind tausend kleine Würfel!"
+            show: { object: milk }
 
       - activity: practise
         setting: plain
@@ -89,11 +94,10 @@ lessons:
           - support: full
             tasks:
               - id: l1-f1
-                type: multiple_choice
+                type: text_input
                 text: "Das ist eine Schicht Würfel von oben. Wie viele Würfel sind es?"
-                say: "Das ist eine Schicht Würfel, von oben gesehen. Wie viele Würfel sind es?"
+                say: "Das ist eine Schicht Würfel, von oben gesehen. Wie viele Würfel sind es? Tippe die Zahl ein."
                 show: { drawn: dots, array: [2, 3] }
-                options: ["6", "5", "9"]
                 answer: "6"
                 hints:
                   - "Zähl die Reihen und die Würfel in jeder Reihe."
@@ -285,8 +289,12 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Was glaubst du? Auf dem Bauplan stehen 3, 2, 1 und 2. Hat das Gebäude 4 Würfel oder mehr?"
+            say: "Ein Bauplan zeigt ein Würfelgebäude von oben. Auf den vier Feldern stehen die Zahlen drei, zwei, eins und zwei. Was glaubst du: Hat das Gebäude vier Würfel oder mehr?"
+            show: { drawn: cubes, plan: [[3, 2], [1, 2]], mode: plan }
           - text: "Bauplan 3, 2, 1, 2: 3 + 2 + 1 + 2 = 8 Würfel"
-            say: "Ein Würfelgebäude muss kein Quader sein. Der Bauplan zeigt es von oben. Auf jedem Feld steht, wie viele Würfel dort übereinander stehen. Bei den Zahlen drei, zwei, eins und zwei sind es drei plus zwei plus eins plus zwei, also acht Würfel."
+            show: { drawn: cubes, plan: [[3, 2], [1, 2]], mode: building }
+            say: "Mehr! Ein Würfelgebäude muss kein Quader sein. Der Bauplan zeigt es von oben. Auf jedem Feld steht, wie viele Würfel dort übereinander stehen. Bei den Zahlen drei, zwei, eins und zwei sind es drei plus zwei plus eins plus zwei, also acht Würfel."
           - text: "Gleich viele Würfel: gleicher Rauminhalt"
             say: "Zwei Gebäude können ganz verschieden aussehen und trotzdem gleich viele Würfel haben. Dann ist ihr Rauminhalt gleich. Ein hoher Turm aus sechs Würfeln ist so groß wie eine flache Reihe aus sechs Würfeln."
           - text: "Es fehlen 12 − 7 = 5 Würfel."
@@ -336,6 +344,8 @@ lessons:
                 say: "Ein Gebäude hat neun Würfel. Du willst daraus einen Quader aus zwölf Würfeln bauen. Wie viele Würfel fehlen?"
                 options: ["3", "21", "9"]
                 answer: "3"
+                feedback:
+                  "21": "21 Würfel? Dann hättest du einen Berg Würfel übrig! 21 ist 12 + 9. Du brauchst nur, was fehlt: 12 − 9."
                 hints:
                   - "Wie viele Würfel brauchst du, wie viele hast du?"
                   - "12 − 9 = ?"

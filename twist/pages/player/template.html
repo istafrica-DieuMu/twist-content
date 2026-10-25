@@ -542,7 +542,7 @@ button.goal{display:block;width:100%;text-align:left;cursor:pointer;font-family:
   <button class="tbtn listbtn" id="openList" type="button" title="Show the lesson list"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Lessons</button>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
-  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="What a parent sees: the pretend child's progress, suggestions and rewards">Parents</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
+  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="Ideas for the parents dashboard, each with the question it answers and the data it needs">Parents Lab</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
   <div class="fbk-bar" id="fbkBar" hidden>
     <button class="tbtn" id="fbkComment" type="button" aria-pressed="false" title="Leave a comment on a point or an area of this screen (c)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Comment</button>
     <div class="fbk-anchor"><button class="tbtn" id="fbkInbox" type="button" aria-expanded="false" aria-controls="fbkMenu" title="Open feedback"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 13l2-8h12l2 8v6H4zM4 13h5l1 2h4l1-2h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="fbk-badge" id="fbkCount" hidden></span></button>
@@ -645,6 +645,8 @@ function play(srcs, done, btn) {
   setOwner(btn ?? null);
   const next = () => {
     if (tok !== qToken) return;
+    // The Parents view is for a grown-up reading: nothing the app says behind it is heard.
+    if (document.body.classList.contains("parents")) { queue = []; return; }
     if (!queue.length) { document.querySelectorAll(".spk.playing").forEach((b) => b.classList.remove("playing")); setOwner(null); if (onQueueEnd) onQueueEnd(); return; }
     player.src = A + queue.shift();
     player.onended = () => setTimeout(next, 250);
@@ -860,6 +862,12 @@ function go(i) {
   stopAudio();
   at = Math.max(0, Math.min(steps.length - 1, i));
   const step = steps[at];
+  // Started from the app: where the child is in the lesson, so Start can show it and pick it up again.
+  if (APP.fromApp && PR.child && step.kind !== "end" && !steps._recorded) {
+    const same = step.a ? steps.filter((x) => x.kind === "task" && x.a === step.a) : [];
+    PR.child.resume = { setId: set.id, n: lesson.n, at, of: steps.length, act: step.a?.activity ?? null, k: step.kind === "task" ? same.indexOf(step) + 1 : 0, tasks: same.length };
+    saveChild();
+  }
   ({ start: renderStart, intro: renderIntro, learn: renderLearn, stage: renderStage, checkIntro: renderCheckIntro, task: renderTask, end: renderEnd })[step.kind](step);
   sidebar(); drawLabels();
 }
@@ -976,14 +984,18 @@ function renderEnd() {
   const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
   const p = phrase("lesson_done");
   const pct = checkSteps.length ? Math.round((100 * right) / checkSteps.length) : null;
+  // Started from the app: the pretend child finished this lesson (its stars before and after
+  // count), and the app celebrates it. Without the app the stars are the check's alone.
+  const fresh = APP.fromApp && !steps._recorded, had = fresh ? starsOfSkill() : 0, before = fresh ? beforeLesson() : null;
+  if (APP.fromApp) appLessonDone(checkSteps, pass);
+  const now = APP.fromApp ? starsOfSkill() : pass ? 2 : 1, C = CTXT[PL()];
   body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(UI.finished)}</h2><p class="a-phrase">${esc(p?.text ?? UI.doneTitle)}</p>
+    ${pass === null ? "" : `<div class="ck-end${pass ? "" : " no"}">${checkStars(pass, fresh ? had : now, now)}<b>${esc(pass ? C.checkPass : C.checkNo)}</b><small>${esc(pass ? C.checkPassSub : C.checkNoSub)}</small></div>`}
     ${pct == null ? "" : `<div class="score"><div class="sc">${esc(UI.percent(pct))}<div class="sb"><i style="width:${pct}%"></i><span>${right} / ${checkSteps.length}</span></div></div><span class="dart" aria-hidden="true">🎯</span></div>`}
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
-    ${pass === null ? "" : pass ? `<span class="badge">${UI.canDo}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
+</div>`;
   if (p) play(p.src);
-  // Started from the app: the pretend child finished this lesson, and the app celebrates it.
-  if (APP.fromApp && !steps._recorded) { const before = beforeLesson(); appLessonDone(checkSteps, pass); afterLesson(before, checkSteps); }
-  else if (APP.fromApp) appLessonDone(checkSteps, pass);
+  if (fresh) afterLesson(before, checkSteps, pass, had, now);
   const nextL = set.lessons.find((l) => l.n === lesson.n + 1);
   if (nextL) nextBtn(foot, UI.nextLesson, () => pickLesson(nextL.n));
   nextBtn(foot, AT().finish, () => openStudy()).classList.toggle("light", !!nextL);
@@ -1016,10 +1028,20 @@ function renderTask(step) {
   // The app's prompt: the mascot with a speech bubble that holds the question and its speaker.
   const bq = document.createElement("div"); bq.className = "bubbleq"; while (pr.firstChild) bq.appendChild(pr.firstChild);
   const qt = bq.querySelector(".t"); if (!qt?.textContent.trim()) bq.classList.add("only"); else if (qt.textContent.trim().length <= 14) qt.classList.add("short");
-  pr.innerHTML = `<img class="mascot" src="mascot.png" alt="">`; pr.appendChild(bq);
+  // Through the assets base, so a copy of the page written elsewhere (a draft) still finds it.
+  pr.innerHTML = `<img class="mascot" src="${A}../pages/player/mascot.png" alt="">`; pr.appendChild(bq);
   const vis = document.createElement("div"); vis.className = "visual"; body.appendChild(vis);
   const msg = document.createElement("div"); msg.className = "msgs"; msg.style.display = "flex"; msg.style.flexDirection = "column"; msg.style.gap = "8px";
-  if (auto()) play(promptAudio, null, bq.querySelector(".spk"));
+  // A word to listen for (the target) waits until the child is ready: the instruction, a pause,
+  // the word, and in a listening task the word once more, so a word missed at its start is heard whole.
+  const target = [t._target].flat().filter(Boolean);
+  if (auto() && !target.length) play(promptAudio, null, bq.querySelector(".spk"));
+  else if (auto()) {
+    const after = (ms, f) => { const tk = qToken; setTimeout(() => { if (tk === qToken) f(); }, ms); };
+    const word = (again) => play(target, again ? () => after(1000, () => play(target)) : null);
+    if (t._prompt.length) play(t._prompt, () => after(700, () => word(t.type === "audio_choice")), bq.querySelector(".spk"));
+    else word(t.type === "audio_choice");
+  }
 
   // Feedback slides up from the bottom, as in the app: green when right, lilac when not.
   const scr = $("#screen"); let sheet = null;
@@ -1330,22 +1352,27 @@ const TYPES = {
     const btn = nextBtn(foot, UI.check, () => { const ok = pick[0] === t.answer[0] && pick[1] === t.answer[1]; answer(ok, pick.join(","), () => { pick = [...t.answer]; draw(); }); if (!ok && !st.over) setTimeout(() => { pick = null; draw(); btn.disabled = true; }, 900); });
     btn.disabled = true; draw();
   },
-  // Drag the hands to a time; answer "h:mm". The minute hand snaps to `step`
-  // minutes (5 if left out), the hour hand to whole hours and sits between
-  // hours as the minutes go on, as on a real clock.
+  // Drag the hands to a time; answer "h:mm". The time is kept in minutes on a 12-hour face, so
+  // the hands turn together as on a real clock: the minute hand dragged past 12 moves the hour
+  // on, the hour hand dragged turns the minutes too. A hand is grabbed where the finger lands
+  // (the nearer hand) and turns by as much as the finger turns around the centre, smoothly;
+  // on letting go the minutes snap to `step` (5 if left out).
   clock_hands_drag({ t, body, foot, vis, answer, st }) {
-    const step = t.step ?? 5; let h = t.show?.hour ?? 12, m = t.show?.minute ?? 0, which = null, moved = false;
+    const step = t.step ?? 5, start = ((t.show?.hour ?? 12) % 12) * 60 + (t.show?.minute ?? 0);
+    let T = start, which = null, last = 0, moved = false;
+    const hm = () => { const s_ = ((Math.round(T) % 720) + 720) % 720; return [Math.floor(s_ / 60) || 12, s_ % 60]; };
     const n = document.createElement("div"); n.className = "note"; n.textContent = UI.hands; body.appendChild(n);
-    const draw = () => { vis.innerHTML = clock({ ...(t.show ?? {}), hour: h, minute: m, digital: false, _drag: true }); };
+    const draw = () => { const s_ = ((T % 720) + 720) % 720; vis.innerHTML = clock({ ...(t.show ?? {}), hour: Math.floor(s_ / 60) || 12, minute: s_ % 60, digital: false, _drag: true, _active: which }); };
     const frac = (e) => { const b = vis.querySelector("svg").getBoundingClientRect(), x = e.clientX - b.left - b.width / 2, y = e.clientY - b.top - b.height / 2; return ((Math.atan2(y, x) + Math.PI / 2) / (2 * Math.PI) + 1) % 1; };
     const near = (a, b) => Math.min(Math.abs(a - b), 1 - Math.abs(a - b));
-    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; const f = frac(e); which = near(f, m / 60) <= near(f, ((h % 12) + m / 60) / 12) ? "m" : "h"; vis.setPointerCapture(e.pointerId); vis.onpointermove(e); };
-    vis.onpointermove = (e) => { if (!which) return; const f = frac(e);
-      if (which === "m") m = (Math.round((f * 60) / step) * step) % 60; else { const x = Math.round(f * 12 - m / 60); h = ((x % 12) + 12) % 12 || 12; }
-      moved = true; btn.disabled = false; draw(); };
-    vis.onpointerup = vis.onpointercancel = () => { which = null; };
+    const turn = (f) => { let d = f - last; if (d > 0.5) d -= 1; if (d < -0.5) d += 1; last = f; return d; };
+    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; e.preventDefault();
+      const f = frac(e), s_ = ((T % 720) + 720) % 720; which = near(f, (s_ % 60) / 60) <= near(f, s_ / 720) ? "m" : "h"; last = f;
+      vis.setPointerCapture(e.pointerId); draw(); };
+    vis.onpointermove = (e) => { if (!which) return; const d = turn(frac(e)); T += which === "m" ? d * 60 : d * 720; moved = true; btn.disabled = false; draw(); };
+    vis.onpointerup = vis.onpointercancel = () => { if (!which) return; which = null; T = Math.round(T / step) * step; draw(); };
     const [ah, am] = String(t.answer).split(":").map(Number);
-    const btn = nextBtn(foot, UI.check, () => { const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { h = ah % 12 || 12; m = am; draw(); }); if (!ok && !st.over) setTimeout(() => { h = t.show?.hour ?? 12; m = t.show?.minute ?? 0; draw(); }, 900); });
+    const btn = nextBtn(foot, UI.check, () => { const [h, m] = hm(); const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { T = (ah % 12) * 60 + am; draw(); }); if (!ok && !st.over) setTimeout(() => { T = start; draw(); }, 900); });
     btn.disabled = !moved; draw();
   },
   highlight_in_text({ t, body, foot, vis, answer, st }) {

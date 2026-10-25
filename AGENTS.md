@@ -35,9 +35,8 @@ git repo kept separate from schoolido-learning.
       ist-schoolido's develop (assets/animations, assets/images/lotties,
       assets/audio) and played by player/anim-ui.js where the app plays
       them: splash, lesson loading, the Study skate, the celebrations
-      after a lesson. The Parents view
-      (player/parents-ui.js, parents.css) shows the same pretend child as
-      a parent would see it: the week, subjects, suggestions, rewards.
+      after a lesson. The Parents Lab tab shows pages/parents-lab, the ideas for the
+      parents dashboard (player/parents-ui.js, parents.css).
       The right panel follows the open screen (player/side-ui.js): each
       tab and the lesson player get their own controls; a lesson picked in
       the left list plays in the phone.
@@ -60,6 +59,14 @@ git repo kept separate from schoolido-learning.
       the S3 key), written by hand; a copy is published as a claude.ai
       artifact. Update it when a screen, a record key or an asset path
       changes.
+    - review/: every lesson of a curriculum as printable pages for a
+      teacher review, one PDF per year and subject plus one combined:
+      `node twist/pages/review/build.mjs [de-DE]` (needs Google Chrome and
+      pdfunite); output in review/out/, not in git.
+    - parents-lab/: the Parents Lab, ideas for the parents dashboard
+      (the player's Parents Lab tab), one plate per
+      component with the parent's question it answers and the data it
+      needs, drawn with a pretend child; written by hand.
     - handoff/: the handoff to the backend, mobile app and parent dashboard
       teams (IST-B2C/backend, ist-schoolido, IST-B2C/Parent-dashboard),
       written by hand; a copy is published as a claude.ai artifact. Update it

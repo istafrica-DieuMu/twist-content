@@ -22,7 +22,7 @@ metadata:
   also_practises: [math.numbers-to-20.count-to-10]
   vocabulary: { en: [part, whole, make, number bond, part-whole model] }
   no_reading: true
-  forms: [drawn, audio]
+  forms: [drawn, picture, audio]
   drawn: [dots, ten-frame, part-whole]
   facets: []
   parts:
@@ -52,7 +52,9 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - say: "Here are five counters. Some are red and some are blue. Two red and three blue. Two and three make five."
+          - say: "Here are five counters. Next, we'll colour two red and three blue. What do you think: will there be more, fewer, or still five? Have a guess."
+            show: { drawn: dots, count: 5, layout: row }
+          - say: "Two red and three blue. Still five! None came and none went away. Two and three make five."
             show: { drawn: dots, count: 5, layout: row, colour_split: [2, 3] }
           - say: "This is a part-whole model. The whole, five, is at the top. The two parts, two and three, are underneath."
             show: { drawn: part-whole, whole: 5, parts: [2, 3] }
@@ -126,12 +128,12 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "How many are red?"
-                say: "There are five counters. One is blue. How many are red?"
-                show: { drawn: dots, count: 5, layout: row, colour_split: [4, 1] }
+                text: "5 ducks. 1 is on the grass. How many are on the pond?"
+                say: "There are five ducks. One is on the grass. How many ducks are on the pond?"
+                show: { object: duck, groups: [4, 1] }
                 options: ["3", "4", "5"]
                 answer: "4"
-                hints: ["Count only the red counters."]
+                hints: ["Five ducks in all. One is on the grass. Count the rest."]
               - id: l1-s2
                 type: multiple_choice
                 text: "What is the missing part?"
@@ -257,12 +259,14 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - say: "A full ten frame has ten counters. Here, seven are red and three are blue. Seven and three make ten."
+          - say: "A full ten frame has ten counters. Seven are red. What do you think: how many are blue? Have a guess."
             show: { drawn: ten-frame, filled: 10, colour_split: [7, 3] }
-          - say: "In the part-whole model, ten is the whole. Seven and three are the parts."
+          - say: "Three are blue. Seven and three make ten. In the part-whole model, ten is the whole. Seven and three are the parts."
             show: { drawn: part-whole, whole: 10, parts: [7, 3] }
           - say: "Five and five make ten too: one full row of red, one full row of blue."
             show: { drawn: ten-frame, filled: 10, colour_split: [5, 5] }
+          - text: "Did you know?"
+            say: "Did you know? A crab has ten legs, if you count its two big claws. Five on one side and five on the other. Five and five make ten!"
 
       - activity: practise
         setting: plain
@@ -307,8 +311,10 @@ lessons:
                 text: "How many more to make 10?"
                 say: "There are seven counters in the ten frame. How many more do you need to make ten?"
                 show: { drawn: ten-frame, filled: 7, colour_split: [5, 2] }
-                options: ["2", "3", "4"]
+                options: ["2", "3", "4", "a hundred"]
                 answer: "3"
+                feedback:
+                  "a hundred": "A hundred? The ten frame would burst! Count the empty spaces."
                 hints:
                   - "Count the empty spaces."
                   - "Each empty space needs one more counter."
@@ -448,12 +454,11 @@ lessons:
             answer: "4"
           - id: l2-c6
             part: part-whole
-            type: multiple_choice
-            text: "The whole is 4. One part is 1. What is the other part?"
-            say: "The whole is four. One part is one. What is the other part?"
-            show: { drawn: part-whole, whole: 4, parts: [1, null] }
-            options: ["2", "3", "4"]
-            answer: "3"
+            type: true_false
+            text: "The whole is 4. The parts are 1 and 2. Is that right?"
+            say: "The whole is four. The parts are one and two. Is that right?"
+            show: { drawn: part-whole, whole: 4, parts: [1, 2] }
+            answer: false
           - id: l2-c7
             part: bonds-10
             type: multiple_choice

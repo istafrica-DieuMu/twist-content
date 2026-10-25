@@ -65,19 +65,25 @@ lessons:
             type: multiple_choice
             text: "Du schaust von oben auf einen Würfel. Was siehst du?"
             say: "Du schaust genau von oben auf einen Würfel. Welche Form siehst du?"
-            options: ["ein Quadrat", "einen Kreis", "ein Dreieck"]
+            options: ["ein Quadrat", "einen Kreis", "ein Dreieck", "einen Pfannkuchen"]
             answer: "ein Quadrat"
             difficulty: easy
 
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Was glaubst du?\nDu drehst das b eine halbe Drehung. Welcher Buchstabe entsteht?"
+            say: "Was glaubst du: Du drehst die Karte mit dem b eine halbe Drehung, bis oben unten ist. Welcher Buchstabe entsteht? Stell es dir im Kopf vor."
+            show: { drawn: letter-card, text: "b" }
           - text: "halbe Drehung: Aus b wird q."
             say: "Stell dir vor, du drehst die Karte mit dem b eine halbe Drehung, bis oben unten ist. Der Strich war links und geht jetzt rechts nach unten. Der Bauch war unten und ist jetzt oben. Aus dem b wird ein q."
             show: { drawn: letter-card, text: "b" }
           - text: "spiegeln: Aus b wird d."
             say: "Hältst du das b an einen Spiegel, der daneben steht, siehst du sein Spiegelbild. Der Bauch bleibt unten, zeigt aber zur anderen Seite. Aus dem b wird ein d. Drehen und Spiegeln sind also nicht dasselbe."
             show: { drawn: letter-card, text: "b d" }
+          - text: "Wusstest du? Auf vielen Krankenwagen steht vorne ein Wort in Spiegelschrift. Im Rückspiegel können Autofahrer es richtig lesen."
+            say: "Wusstest du? Auf vielen Krankenwagen steht vorne ein Wort in Spiegelschrift. Für dich sieht es verkehrt aus. Aber wer vor dem Krankenwagen fährt, sieht es im Rückspiegel richtig herum und macht schnell Platz."
+            show: { object: ambulance }
           - text: "Vierteldrehung: Das Rechteck steht hochkant."
             say: "Bei einer Vierteldrehung dreht sich eine Figur so weit wie der große Uhrzeiger von zwölf bis drei. Ein liegendes Rechteck steht danach hochkant. Ein Quadrat sieht danach genauso aus wie vorher."
             show: { drawn: shape, kind: rectangle, colour: green }
@@ -102,12 +108,13 @@ lessons:
                   - "Der Strich geht jetzt links nach unten, der Bauch ist oben rechts."
                   - "p."
               - id: l1-f2
-                type: multiple_choice
+                type: fill_in_blank
                 text: "Du spiegelst das b an einem Spiegel daneben. Welcher Buchstabe entsteht?"
                 say: "Du hältst das b an einen Spiegel, der daneben steht. Welchen Buchstaben siehst du im Spiegel?"
                 show: { drawn: letter-card, text: "b" }
+                frame: "Spiegelbild von b: _"
                 options: ["d", "p", "q"]
-                answer: "d"
+                answer: ["d"]
                 option_audio: false
                 hints:
                   - "Beim Spiegeln bleibt oben oben."
@@ -160,12 +167,13 @@ lessons:
                 option_audio: false
                 hints: ["Der Bauch ist danach unten, der Strich geht nach oben."]
               - id: l1-s2
-                type: multiple_choice
+                type: fill_in_blank
                 text: "Du drehst das n eine halbe Drehung. Welcher Buchstabe entsteht?"
                 say: "Du drehst das n eine halbe Drehung. Welcher Buchstabe entsteht?"
                 show: { drawn: letter-card, text: "n" }
+                frame: "n gedreht: _"
                 options: ["u", "n", "m"]
-                answer: "u"
+                answer: ["u"]
                 option_audio: false
                 hints: ["Der Bogen ist oben. Wo ist er danach?"]
               - id: l1-s3
@@ -206,12 +214,13 @@ lessons:
                 answer: "b"
                 option_audio: false
               - id: l1-n2
-                type: multiple_choice
+                type: fill_in_blank
                 text: "Du drehst das M eine halbe Drehung. Welcher Buchstabe entsteht?"
                 say: "Du drehst das große M eine halbe Drehung. Welcher Buchstabe entsteht?"
                 show: { drawn: letter-card, text: "M" }
+                frame: "M gedreht: _"
                 options: ["W", "M", "N"]
-                answer: "W"
+                answer: ["W"]
                 option_audio: false
               - id: l1-n3
                 type: multiple_choice
@@ -317,6 +326,9 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Was glaubst du?\nOben liegt die 1. Welche Zahl liegt unten?"
+            say: "Was glaubst du: Auf dem Spielwürfel liegt die Eins oben. Welche Zahl liegt ganz unten, auf dem Tisch?"
+            show: { drawn: dots, count: 1, layout: dice }
           - text: "Gegenüber ergeben die Augen zusammen 7."
             say: "Auf einem Spielwürfel ergeben die Augen auf zwei gegenüberliegenden Seiten immer sieben. Liegt die Eins oben, liegt die Sechs unten. Gegenüber der Zwei ist die Fünf, gegenüber der Drei die Vier."
             show: { drawn: dots, count: 1, layout: dice }
@@ -375,10 +387,9 @@ lessons:
                   - "Die Seite, die vorn war, kommt nach oben."
                   - "2."
               - id: l2-f5
-                type: multiple_choice
+                type: text_input
                 text: "Oben liegt die 4. Du kippst den Würfel zweimal nach vorn. Welche Zahl ist oben?"
                 say: "Auf dem Würfel liegt die Vier oben. Du kippst ihn zweimal hintereinander nach vorn. Welche Zahl ist jetzt oben?"
-                options: ["3", "4", "1"]
                 answer: "3"
                 hints:
                   - "Nach zweimal Kippen in dieselbe Richtung liegt der Würfel auf dem Kopf."
@@ -427,11 +438,10 @@ lessons:
           - support: none
             tasks:
               - id: l2-n1
-                type: multiple_choice
+                type: text_input
                 text: "Oben liegt die 6. Welche Zahl liegt unten?"
                 say: "Auf dem Würfel liegt die Sechs oben. Welche Zahl liegt unten?"
                 show: { drawn: dots, count: 6, layout: dice }
-                options: ["1", "6", "2"]
                 answer: "1"
               - id: l2-n2
                 type: multiple_choice

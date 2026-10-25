@@ -242,13 +242,28 @@ time from showing the task to the answer.
   gets one weaker; an item right and fast every time gets one stronger.
   Weaker items come first in the next drill of that bank. The rate is
   first-try right answers a minute; above the best it is a new record.
+  A drill paused or left early keeps its item results but sets no rate
+  and no record.
 - **Sessions.** A session counts as finished when every task in it is
   answered, and a drill when its time runs out.
+- **Lesson checks.** Each lesson's check is kept, the latest try
+  (`child.scores[setId][n]`: right first time, of how many, and on a skill
+  check the parts with a miss). Study's unit list shows a lesson with a
+  miss with the mascot, a circle per question of its check (a tick for
+  each right) and a Redo button; nothing else is written. The tricky
+  parts are for grown-ups (the parents dashboard). A skill left at one star
+  (`practised`) with every lesson done failed its skill check, so its last
+  lesson is marked even without a kept score ("Not quite yet"). The track's popover marks the same lesson in its meter and offers
+  "Try again: <lesson>".
 
 ### Suggestions
 
 Up to 3 cards (`suggestions`), each with a kind, its skills and a reason
-in both languages, in this order:
+in both languages, in this order. Before them, in the player
+(`mySuggestions`): practice a parent sent (`child.assigned`: kind, skills, minutes, the
+day sent; the parents dashboard's Send, see pages/parents-lab), the
+newest still waiting, "Von deinen Eltern" / "From your grown-up";
+finishing it records the day and score. Then:
 
 1. Recaps due, if any: "4 skills to remember" / "4 Sachen zum Wiederholen".
 2. Catch-up: a skill at `needs_refresh` first, else one at `practised`.
@@ -256,7 +271,10 @@ in both languages, in this order:
    "You found this tricky yesterday", "… 3 days ago", "… last week", "… a
    while ago" / "Das war gestern noch schwer", "… vor 3 Tagen …", "…
    letzte Woche …", "… vor einer Weile …". Otherwise "Let's practise this
-   again"; at `practised`, "Nearly there: practise it once more".
+   again"; at `practised`, "Nearly there: practise it once more". A
+   catch-up practised to the end with at least 4 in 5 answers right first
+   time rests until the next day (`goodDay`), so the same card does not
+   come back straight after.
 3. Drill: a bank the child has started, else one whose skill is under way,
    with the record if there is one ("Beat your record: 18 a minute").
 4. With fewer than 3 cards: a review of the topic of the last skill
@@ -359,32 +377,59 @@ From the top:
 2. **Busy Bee strip**, at the bottom and only three sessions or fewer
    from the next level ("7 von 10 bis zum Fleißigen Bienchen" / "7 of 10
    to the Busy Bee"); opens Me.
-3. **Search, the first question.** "Was möchtest du üben?" with example
-   requests under it as chips ("10 Minuten Einmaleins mit 7"). Words match
-   the skills' "I can" lines, topics and set titles, filler words left out.
-   A whole request it understands shows first as an "Verstanden" /
-   "Understood" card (subject, topic or skill, minutes, kind) with "Das
-   üben" / "Practise this". Today `parseRequest` reads it with keywords; a
-   language model can later return the same filters.
-4. **Suggested for you.** The first suggestion as a large card in the
+3. **Suggested for you.** The first suggestion as a large card in the
    subject's colour, with the topic's mascot, the kind ("Weißt du es
    noch?" / "Do you remember?"), what it plays ("4 Sachen auffrischen" /
    "Refresh 4 skills", the topics, "12 Aufgaben aus 2 Themen, etwa 5
-   Minuten") and a start button. The other suggestions as two smaller cards
-   with an icon for their kind (no mascot: one mascot a screen) and their
-   size; a drill card names its set.
-5. **Selbst aussuchen / Choose my own**, a card in the flow (not a button
-   over it). Its sheet: a close ✕; subject; topic ("Alles" / "Everything"
-   and six topics, "+ n mehr" for the rest); time (5, 10 or 15 minutes; a
-   drill at most 5); kind as four cards, each with a line ("Ohne Tipps, wie
-   eine kleine Probe" / "No hints, like a little test"; a drill only when
-   the choice has a drill bank); and a footer with the choices summed up
-   above the one Start button.
-6. **Drills.** The banks of the child's year as a row of cards (record or
+   Minuten") and a start button. Suggestions come from what the child has
+   taken: recaps, catch-up, a sprint the child has played or whose skill
+   they have begun, and a review of a topic they have begun. A child who
+   has taken nothing yet gets no suggestion; Start points to the first
+   lesson. A foreign language appears only from the year its curriculum
+   gives it a learning year (French from Year 3).
+   There is no search on the page; the builder's step 2 holds the one
+   search, and it looks through every year, so an older skill can be
+   found again.
+4. **Selbst aussuchen / Choose my own**, a floating "+" button over the
+   page, bottom right above the tab bar: wide with its label at the top of
+   the page, a circle once scrolled, hidden while a sheet is open. It opens
+   a builder in two steps:
+   - **How:** three solid colour tiles in a sheet only as tall as they
+     are, Race across the top and the other two side by side, each picture
+     standing over the tile's top edge; a tap goes straight on, and the
+     sheet says nothing aloud. Schnell! / Race!
+     (a sprint the child has played or whose skill they have begun, else
+     a 5-minute `mixed` round of learnt skills), Wundertüte! / Surprise!
+     (`mixed` on three random learnt skills; it starts at once) and
+     Frag mich ab! / Quiz me! (`review`, no hints, on
+     learnt skills) and Selbst aussuchen / Pick my own (`mixed`, with
+     hints, on the skills the child taps). Its step 2 has the search,
+     subject chips, then "Noch üben" / "Needs practice" (skills at
+     `practised` or `needs_refresh`, or with a lesson check that had a
+     miss) above "Kannst du schon" / "You know these"; a search shows hits
+     from every year. Under the list: the time (5, 10 or 15 minutes; a
+     typed length wins) and a Hints switch (off plays `review` when every
+     picked skill is learnt). The youngest see the topic's mascot on each
+     card. A card with
+     nothing to play is greyed out: "Nach deiner ersten Lektion" / "After
+     your first lesson". Older bands get plainer names (Auf Zeit / Timed,
+     Zufall / Random, Wiederholen / Review). No new session kinds.
+   - **What:** up to 7, a subject by its picture (only subjects with
+     something for that type), and the app picks the skills; in Pick my
+     own the child taps the skills. From 8, the
+     one search ("Suchen: Uhr, Plus, Nomen …"), topic words as chips, a
+     subject filter, and the skills as cards with their short title, topic
+     and stars; the suggestion is chosen already, so "Los geht's" starts at
+     once. Without a search the cards are what the type can play, this
+     year first; a search looks through every year. A typed request ("10
+     Minuten Einmaleins mit 7") is read by `parseRequest`, as described
+     under Typed requests, and its minutes set the length. Again on a
+     skill not learnt yet plays it as `mixed`, with hints.
+5. **Drills.** The banks of the child's year as a row of cards (record or
    "Noch nicht gespielt", and a bar of known, slow and missed items), and
    "Alle Drills" / "All drills": every bank of the curriculum by subject.
    A card opens its drill map.
-7. **Ein Fach üben / Practise a subject.** The same rings as on Start
+6. **Ein Fach üben / Practise a subject.** The same rings as on Start
    (units done this year, "new" until started). A subject opens a page in its
    colour with the topics of the child's year, each with a ring for its
    stars and "Drill" when it has one; "Alle Klassen" / "All years" shows

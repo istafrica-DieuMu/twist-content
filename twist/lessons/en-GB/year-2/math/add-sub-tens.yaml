@@ -20,8 +20,8 @@ metadata:
   also_practises: [math.numbers-to-20.partition-to-10]
   vocabulary: { en: [tens, add, subtract, total, difference, related fact] }
   forms: [drawn, text, audio]
-  drawn: [base-ten]
-  facets: []
+  drawn: [base-ten, coins]
+  facets: [currency]
   parts:
     - { id: add, what: { de: Zehnerzahlen mit dem Einspluseins addieren, en: adding multiples of ten with a fact to 10 } }
     - { id: subtract, what: { de: Zehnerzahlen mit dem Einsminuseins subtrahieren, en: subtracting multiples of ten with a fact to 10 } }
@@ -67,8 +67,8 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
-          - text: "20 + 50"
-            say: "Twenty add fifty. That is two tens and five tens."
+          - text: "20 + 50 = ?"
+            say: "Twenty add fifty. That is two tens and five tens. What do you think the total is? Have a guess."
             show: { drawn: base-ten, tens: 2, ones: 0 }
           - text: "2 + 5 = 7 · 20 + 50 = 70"
             say: "Two tens and five tens make seven tens. Seven tens are seventy. Two add five is seven, so twenty add fifty is seventy. Two add five is a related fact."
@@ -76,6 +76,8 @@ lessons:
           - text: "60 + 40 = 100"
             say: "Six tens and four tens make ten tens. Ten tens are one hundred."
             show: { drawn: base-ten, tens: 10, ones: 0 }
+          - text: "Did you know? In cricket, when a batter scores 100 runs, it is called a century."
+            say: "Did you know? In cricket, when one batter scores one hundred runs, it is called a century. The crowd claps and cheers, and the batter lifts the bat high in the air!"
 
       - activity: practise
         setting: plain
@@ -109,9 +111,9 @@ lessons:
                   - "7 and 70."
               - id: l1-f3
                 type: text_input
-                text: "50 + 30 = _"
-                say: "Fifty add thirty. Type the total."
-                show: { drawn: base-ten, tens: 5, ones: 0 }
+                text: "Jas has 50p. Gran gives her 30p more. 50 + 30 = _"
+                say: "Jas has fifty pence in ten pence coins. Gran gives her thirty pence more. How much has she got now? Fifty add thirty. Type the total."
+                show: { drawn: coins, values: [10, 10, 10, 10, 10] }
                 answer: "80"
                 hints:
                   - "Five tens and three tens."
@@ -273,9 +275,12 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - text: "70 − 40 = 30"
-            say: "Seventy subtract forty. Seven tens take away four tens leaves three tens. Seven subtract four is three, so seventy subtract forty is thirty. Seven subtract four is the related fact."
+          - text: "70 − 40 = ?"
+            say: "Seventy subtract forty. Seven tens take away four tens. What do you think is left? Have a guess."
             show: { drawn: base-ten, tens: 7, ones: 0 }
+          - text: "70 − 40 = 30"
+            say: "Three tens are left: thirty. Seven subtract four is three, so seventy subtract forty is thirty. Seven subtract four is the related fact."
+            show: { drawn: base-ten, tens: 3, ones: 0 }
           - text: "100 − 30 = 70"
             say: "One hundred is ten tens. Ten tens take away three tens leaves seven tens: seventy."
           - text: "60 + _ = 100"
@@ -313,8 +318,9 @@ lessons:
                   - "6 and 60."
               - id: l2-f3
                 type: text_input
-                text: "100 − 80 = _"
-                say: "One hundred subtract eighty. Type the difference."
+                text: "Zoe's book has 100 pages. She has read 80. How many pages are left? 100 − 80 = _"
+                say: "Zoe's book has one hundred pages. She has read eighty. How many pages are left? One hundred subtract eighty."
+                show: { object: book }
                 answer: "20"
                 hints:
                   - "One hundred is ten tens."
@@ -349,8 +355,10 @@ lessons:
                 type: multiple_choice
                 text: "80 − 50 = ?"
                 say: "Eighty subtract fifty. What is the difference?"
-                options: ["3", "30", "130"]
+                options: ["3", "30", "130", "8050"]
                 answer: "30"
+                feedback:
+                  "8050": "Whoa, that's just 80 and 50 stuck together! Take five tens away from eight tens."
                 hints: ["How many tens are left?"]
               - id: l2-s2
                 type: fill_in_blank

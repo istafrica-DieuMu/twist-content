@@ -1,0 +1,284 @@
+# Sachunterricht (general studies)
+
+Priority 1. One combined subject for Klasse 1 to 4, as in every German
+Grundschule. Checked 2026-10-24 against NRW, Bayern, Baden-Württemberg and
+Berlin/Brandenburg (sources.md).
+
+## Structure
+
+KMK has no Bildungsstandards for Sachunterricht. The national reference is
+the GDSU Perspektivrahmen Sachunterricht (2013), a book; only its table of
+contents is captured. It has five perspectives (social, natural science,
+geography, history, technology), four themes across them (Mobilität,
+nachhaltige Entwicklung, Gesundheit, Medien) and six ways of thinking and
+working. NRW, Bayern and BW say they build on it.
+
+The Länder arrange the content differently:
+
+| Curriculum | Arrangement | Bands |
+|---|---|---|
+| NRW (2021) | six Bereiche, below | end of Klasse 2, end of Klasse 4 |
+| Bayern (LehrplanPLUS HSU) | six Lernbereiche, five named as in NRW; the sixth is "Technik und Kultur", without digital content | 1/2, 3/4 |
+| BW (Bildungsplan 2016) | five areas plus experiments | 1/2, 3/4 |
+| Berlin/Brandenburg (Teil C) | eight Themenfelder (Erde, Kind, Markt, Rad, Tier, Wasser, Wohnen, Zeit) | not split by band per topic |
+
+Twist takes the six NRW/Bayern areas as its six progressions:
+
+| Area | NRW Schwerpunkte | GDSU perspective |
+|---|---|---|
+| Demokratie und Gesellschaft | Zusammenleben in der Klasse, Schule und Gesellschaft; Leben in der Medien- und Konsumgesellschaft; Leben in Vielfalt | social |
+| Körper und Gesundheit | Körper und gesunde Lebensführung; Körper und Entwicklung | natural science, social |
+| Natur und Umwelt | Tiere, Pflanzen, Lebensräume; Stoffe, ihre Umwandlung und Stoffkreisläufe; Energie und Ressourcen | natural science |
+| Raum und Mobilität | Orientierung in Räumen; Räume nutzen und schützen; Mobilität im Raum | geography |
+| Technik, digitale Technologien und Arbeit | Bauen und Konstruieren; technische und digitale Entwicklungen; Arbeit und Beruf | technology |
+| Zeit und Wandel | Orientierung in der Zeit; früher, heute und morgen; Fakten und Fiktion | history |
+
+Twist places each skill in one Klasse inside its band (1/2 or 3/4), in a
+typical teaching order.
+
+## Domain
+
+A domain is the internal id of one part of the skill library: the folder
+twist/competencies/<domain>/ and the first part of every skill id. Today's
+domains are `math`, `lit-de`, `lit-en` and `fl`. Children and parents never
+see it; each curriculum names the subject in its `subjects` list, so de-DE
+shows "Sachunterricht" (`subjects: { world: Sachunterricht }`) and en-GB
+could later show "Science" for the same skills.
+
+Proposed id `world`: the subject is about the world around the child, and
+the word fits every market. Six progressions:
+
+| Progression | Area |
+|---|---|
+| `world.society` | Demokratie und Gesellschaft |
+| `world.body` | Körper und Gesundheit |
+| `world.nature` | Natur und Umwelt |
+| `world.space` | Raum und Mobilität |
+| `world.technology` | Technik, digitale Technologien und Arbeit |
+| `world.time` | Zeit und Wandel |
+
+Ids carry no grade (twist/AGENTS.md). England teaches the same ground as
+science, geography, history, computing and PSHE; writing skills without
+German-only content in the id or "I can" line lets en-GB place them later.
+German specifics (Bundesländer, German history) are their own skills.
+
+## Topics and draft skills
+
+Draft skill slugs in teaching order, with the Klasse they are expected in.
+Each becomes one lesson set (2 lessons on average). The note column marks
+skills that need attention:
+
+- **one Land**: only one of the four curricula asks for it. Kept because it
+  is common in German Grundschule workbooks or needed for Klasse 5; a
+  teacher should confirm.
+- **E**: no curriculum asks for it; placed as `enrichment` with the reason
+  given.
+- **check**: the verification did not cover it; confirm the source when
+  writing the framework record.
+- **new** or **moved**: changed by the 2026-10-24 check.
+
+### world.society (Demokratie und Gesellschaft)
+
+| Klasse | Skill | Ich kann … | Note |
+|---|---|---|---|
+| 1 | `feelings-needs` | meine Gefühle und die anderer benennen | |
+| 1 | `class-rules` | Regeln in der Klasse verstehen und begründen | |
+| 1 | `families` | verschiedene Familien beschreiben | |
+| 2 | `friendship-conflict` | Streit fair lösen | |
+| 2 | `class-council` | erklären, wie die Klasse gemeinsam entscheidet (Klassenrat) | |
+| 2 | `needs-wants` | Bedürfnisse und Wünsche unterscheiden | |
+| 2 | `media-types` | Medien unterscheiden und wofür man sie nutzt | moved from 3 |
+| 2 | `pocket-money` | Taschengeld einteilen | new, split from `money-shopping` |
+| 3 | `advertising` | Werbung erkennen und wie sie wirkt | split from `money-shopping`; NRW puts it in 1/2, Bayern and BW in 3/4 |
+| 3 | `children-rights` | Kinderrechte nennen und erklären | |
+| 3 | `living-diversity` | Lebensweisen vergleichen, Vorurteile und Rollenbilder erkennen | adds gender stereotypes (NRW, Bayern) |
+| 3 | `migration-home` | erklären, warum Menschen umziehen und was Heimat ist | new (Bayern, BW) |
+| 4 | `democracy-vote` | demokratische Entscheidungen erklären (Wahl, Mehrheit) | |
+| 4 | `municipality` | sagen, was die Gemeinde für uns tut | |
+| 4 | `germany-eu` | Deutschland als Land in der EU beschreiben | check |
+| 4 | `media-reality` | prüfen, ob etwas in den Medien stimmt | |
+| 4 | `cyberbullying` | (Cyber-)Mobbing erkennen und wissen, wer hilft | |
+| 4 | `internet-safety` | mich sicher im Internet verhalten | |
+| 4 | `code-encoding` | Codieren und Verschlüsseln unterscheiden | one Land (NRW); moved from technology, where NRW does not file it |
+
+### world.body (Körper und Gesundheit)
+
+| Klasse | Skill | Ich kann … | Note |
+|---|---|---|---|
+| 1 | `body-parts` | Körperteile benennen | |
+| 1 | `senses` | die fünf Sinne und ihre Organe nennen | |
+| 1 | `hygiene` | erklären, warum ich mich wasche und Zähne putze | |
+| 1 | `teeth` | Milchzähne, Zahnwechsel und Zahnpflege erklären | |
+| 2 | `healthy-eating` | gesunde Ernährung erklären (Ernährungspyramide) | |
+| 2 | `exercise-rest` | Bewegung und Schlaf als gesund erklären | |
+| 2 | `my-boundaries` | Nein sagen und meine Grenzen schützen | |
+| 3 | `skeleton-muscles` | Skelett und Muskeln beschreiben | |
+| 3 | `digestion` | den Weg der Nahrung beschreiben | |
+| 3 | `heart-lungs` | Herz, Blutkreislauf und Atmung erklären | |
+| 4 | `first-aid` | erste Hilfe leisten und den Notruf wählen | check |
+| 4 | `addiction-prevention` | erklären, warum Rauchen, Alkohol und zu viel Bildschirm schaden | |
+
+### world.nature (Natur und Umwelt)
+
+| Klasse | Skill | Ich kann … | Note |
+|---|---|---|---|
+| 1 | `living-nonliving` | Lebewesen und Dinge unterscheiden | |
+| 1 | `seasons` | die Jahreszeiten und ihre Merkmale nennen | |
+| 1 | `weather` | Wetter beobachten und beschreiben | |
+| 1 | `pets` | Haustiere und ihre Pflege beschreiben | |
+| 2 | `plant-parts` | Teile einer Pflanze benennen | |
+| 2 | `plant-growth` | beschreiben, was eine Pflanze zum Wachsen braucht | |
+| 2 | `seed-dispersal` | erklären, wie Samen reisen (Löwenzahn, Ahorn) | new (Bayern, BW) |
+| 2 | `farm-animals` | Nutztiere und ihre Produkte zuordnen | |
+| 2 | `food-origin` | sagen, woher Lebensmittel kommen, regional und saisonal | new (Bayern, BW, Berlin/Brandenburg) |
+| 2 | `meadow` | die Wiese als Lebensraum beschreiben | moved from 3 |
+| 2 | `materials-sort` | Stoffe nach Eigenschaften ordnen | |
+| 2 | `light-shadow` | erklären, wie ein Schatten entsteht | |
+| 2 | `sound` | erklären, wie Töne entstehen | |
+| 2 | `magnets` | magnetische und nicht magnetische Stoffe unterscheiden | moved from 3 |
+| 2 | `air` | zeigen, dass Luft Raum braucht und Kraft hat | moved from 3 |
+| 2 | `waste-recycling` | Müll trennen und vermeiden | moved from 4 |
+| 3 | `life-cycles` | Lebenszyklen beschreiben (Frosch, Schmetterling) | moved from 2 |
+| 3 | `animal-classes` | Tiere in Klassen ordnen (Säugetiere, Vögel …) | one Land (Berlin/Brandenburg) |
+| 3 | `adaptation` | erklären, wie Tiere und Pflanzen an ihren Lebensraum angepasst sind | new (all four) |
+| 3 | `native-birds` | heimische Vögel erkennen | |
+| 3 | `trees` | Laub- und Nadelbäume unterscheiden | |
+| 3 | `forest` | den Wald als Lebensraum beschreiben | |
+| 3 | `water-states` | fest, flüssig, gasförmig beim Wasser erklären | |
+| 3 | `dissolving` | vorhersagen, was sich in Wasser löst | new (all four) |
+| 3 | `water-cycle` | den Wasserkreislauf beschreiben | |
+| 3 | `float-sink` | vorhersagen, was schwimmt und was sinkt | |
+| 4 | `food-chains` | Nahrungsketten bilden | |
+| 4 | `pond` | Tiere und Pflanzen am Teich nennen | |
+| 4 | `drinking-water` | den Weg von Trinkwasser und Abwasser beschreiben | new (Bayern, BW, Berlin/Brandenburg) |
+| 4 | `nature-protection` | erklären, wie Menschen Lebensräume verändern und schützen | new (all four) |
+| 4 | `fire` | erklären, was ein Feuer braucht und wie man löscht | check |
+| 4 | `electric-circuit` | einen einfachen Stromkreis erklären | |
+| 4 | `conductors` | Leiter und Nichtleiter unterscheiden | |
+| 4 | `electricity-safety` | Gefahren durch Strom kennen | |
+| 4 | `energy-sources` | erneuerbare und endliche Energiequellen unterscheiden | new (NRW, Bayern, BW) |
+| 4 | `energy-saving` | Energie und Wasser im Alltag sparen | |
+| 4 | `climate` | Klimawandel einfach erklären und was ich tun kann | one Land (Berlin/Brandenburg) |
+| 4 | `solar-system` | Sonne, Erde, Mond und die Planeten beschreiben | one Land (Berlin/Brandenburg) |
+
+### world.space (Raum und Mobilität)
+
+| Klasse | Skill | Ich kann … | Note |
+|---|---|---|---|
+| 1 | `left-right-position` | Lagen beschreiben (links, rechts, vor, hinter) | |
+| 1 | `way-to-school` | meinen Schulweg sicher gehen | |
+| 1 | `see-be-seen` | mich im Verkehr sichtbar machen (helle Kleidung, Reflektoren) | new (all four) |
+| 1 | `traffic-light-crossing` | an Ampel und Zebrastreifen richtig queren | |
+| 2 | `bird-view` | Dinge von oben sehen und zeichnen | |
+| 2 | `room-plan` | einen einfachen Plan lesen | |
+| 2 | `town-country` | Stadt und Land vergleichen | moved from 3 |
+| 2 | `public-transport` | mit Bus und Bahn sicher fahren | |
+| 2 | `traffic-signs-basic` | wichtige Verkehrszeichen erkennen | |
+| 3 | `compass` | Himmelsrichtungen bestimmen | |
+| 3 | `map-symbols` | Kartenzeichen und Legende lesen | |
+| 3 | `map-grid` | Orte mit dem Planquadrat finden | |
+| 3 | `scale` | mit dem Maßstab einfach messen | |
+| 4 | `germany-map` | Deutschland und seine Länder auf der Karte finden | E: the curricula ask for one's own Land in Germany; Germany-wide content cannot pick one Land, and Erdkunde (geography) in Klasse 5 starts from the whole map |
+| 4 | `germany-landscapes` | Küste, Tiefland, Mittelgebirge und Alpen zuordnen | curricula ask generically (Gebirge, Gewässer); Germany is the example |
+| 4 | `rivers-mountains` | große Flüsse und Gebirge Deutschlands nennen | as above |
+| 4 | `continents-oceans` | Kontinente und Ozeane benennen | check |
+| 4 | `transport-compare` | Verkehrsmittel nach Umwelt und Gesundheit vergleichen | new (all four) |
+| 4 | `bike-parts` | ein verkehrssicheres Fahrrad beschreiben | |
+| 4 | `right-of-way` | Vorfahrtsregeln anwenden (rechts vor links, Schilder) | |
+| 4 | `turning-left` | sicher links abbiegen | |
+| 4 | `cycling-test` | die Fragen der Fahrradprüfung beantworten | |
+
+### world.technology (Technik, digitale Technologien und Arbeit)
+
+| Klasse | Skill | Ich kann … | Note |
+|---|---|---|---|
+| 1 | `tools-household` | Werkzeuge und Geräte im Alltag benennen | |
+| 2 | `stable-building` | erklären, warum ein Bauwerk stabil steht | |
+| 2 | `jobs` | Berufe und ihre Werkzeuge zuordnen | |
+| 3 | `lever-wheel` | Hebel, Rolle und Rad als Kraftsparer erklären | |
+| 3 | `bridges` | Brückenformen und ihre Stabilität vergleichen | |
+| 3 | `vehicles` | Fahrzeuge und ihren Antrieb vergleichen | |
+| 3 | `computer-parts` | Teile eines Computers benennen | check |
+| 4 | `algorithms` | eine Folge von Befehlen schreiben (programmieren) | one Land (NRW) |
+| 4 | `inventions` | Erfindungen und ihre Folgen beschreiben | |
+| 4 | `work-change` | erklären, wie Maschinen die Arbeit verändern | |
+
+### world.time (Zeit und Wandel)
+
+| Klasse | Skill | Ich kann … | Note |
+|---|---|---|---|
+| 1 | `day-week` | Tagesablauf und Wochentage ordnen | |
+| 1 | `months-year` | Monate und den Jahreskreis ordnen | |
+| 1 | `festivals-year` | Feste im Jahr zuordnen | |
+| 2 | `my-life-story` | meine Lebensgeschichte auf einer Zeitleiste zeigen | |
+| 2 | `then-now` | Leben früher und heute vergleichen (Großeltern) | |
+| 3 | `timeline` | Ereignisse auf einer Zeitleiste ordnen (Jahrzehnt, Jahrhundert) | |
+| 3 | `sources` | Quellen unterscheiden (Foto, Brief, Gegenstand, Zeitzeuge) | |
+| 3 | `stone-age` | das Leben in der Steinzeit beschreiben | check |
+| 4 | `middle-ages` | Ritter, Burgen und Leben im Mittelalter beschreiben | check |
+| 4 | `divided-germany` | Teilung und Wiedervereinigung Deutschlands erklären | one Land (Berlin/Brandenburg, as Berlin history) |
+| 4 | `fact-fiction` | Sage, Film und Quelle unterscheiden | starts in 1/2 in NRW and Bayern; Klasse 4 is the 3/4 version |
+
+Count: 19 + 12 + 38 + 22 + 10 + 11 = 112 skills. Cut by the check:
+`romans` (no curriculum names the Romans).
+
+## Overlaps with Mathe (maths) and Deutsch (German)
+
+| Sachunterricht | Already in | Plan |
+|---|---|---|
+| clock, calendar | `math` time skills | `world.time` uses them as prerequisites, no reteaching |
+| pocket money | `math` money skills | `pocket-money` adds planning and choosing only |
+| map scale, plan | `math` geometry and measures | prerequisite links |
+| reading information texts, diagrams | `lit-de` | Sachunterricht texts can feed the reading bank (PLAN.md G3) |
+
+## Out of scope for an app
+
+To record with a reason in curricula/de-DE.yaml once the framework is in:
+
+- Experiments and building models with real material (all four ask for
+  both). Twist teaches the idea and the prediction, and offers safe
+  experiments at home (fun.md, Probier's aus); the class experiment stays
+  in class.
+- Field trips, local and regional history, interviews with Zeitzeugen,
+  visits to memorials.
+- The practical part of the Fahrradprüfung.
+- Sex education: the puberty, conception and contraception items of NRW's
+  "Körper und Entwicklung". The rest of that Schwerpunkt (body parts,
+  senses, boundaries, circulation, digestion) is in `world.body`. Decided
+  2026-10-24.
+- Group work and class discussions.
+
+## Task types and drawn components
+
+Existing types cover most of it (pick, sort, order, match, label a
+picture). New drawings to add to pages/player/drawn.js:
+
+| Drawing | For |
+|---|---|
+| map of Germany with Länder | `germany-map`, `germany-landscapes`, `rivers-mountains` |
+| world map, continents | `continents-oceans` |
+| compass rose | `compass` |
+| map with grid and legend | `map-symbols`, `map-grid`, `scale` |
+| timeline | `my-life-story`, `timeline`, history skills |
+| circuit (battery, bulb, switch, wire) | `electric-circuit`, `conductors` |
+| life cycle wheel | `life-cycles` |
+| body outline with organs | `body-parts`, `digestion`, `heart-lungs` |
+| plant with parts | `plant-parts`, `seed-dispersal` |
+| water cycle | `water-cycle` |
+| water pipes from source to sewage plant | `drinking-water` |
+| junction with traffic | `right-of-way`, `turning-left` |
+| traffic signs set | `traffic-signs-basic`, `right-of-way` |
+| block code editor | `algorithms` (likely a new task type) |
+
+## Assets
+
+Mostly pictures: animals, plants, birds, trees, food, tools, jobs, historical
+scenes. Estimate 700 to 900 pictures; at about $0.02 each (tracking.md)
+under $20. Sounds: bird calls for `native-birds` (licensed recordings, not
+generated).
+
+## Size and benchmark
+
+About 112 skills and 230 lessons. The benchmark course covers 126 lessons
+across Klasse 1 to 6; Twist wrote more lessons than the benchmark for Mathe
+and about as many for Deutsch.

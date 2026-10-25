@@ -19,7 +19,7 @@ metadata:
   builds_on: [math.add-sub-to-20.sub-meaning]
   also_practises: [math.add-sub-to-20.add-to-10]
   vocabulary: { de: [minus, gleich, rückwärts zählen, wegnehmen, übrig] }
-  forms: [drawn, text, audio]
+  forms: [drawn, picture, text, audio]
   drawn: [ten-frame, number-line]
   facets: []
   parts:
@@ -68,7 +68,10 @@ lessons:
         mode: demonstration
         screens:
           - text: "5 − 2 = ?"
-            say: "Fünf minus zwei. Im Zehnerfeld streichen wir zwei Punkte weg. Drei bleiben."
+            say: "Fünf minus zwei. Was glaubst du: Wie viele Punkte bleiben übrig?"
+            show: { drawn: ten-frame, filled: 5 }
+          - text: "5 − 2"
+            say: "Im Zehnerfeld streichen wir zwei Punkte weg. Drei bleiben."
             show: { drawn: ten-frame, filled: 5, cross: 2 }
           - text: "5 … 4, 3"
             say: "Oder auf dem Zahlenstrahl: Fang bei fünf an, zwei Schritte zurück. Vier, drei."
@@ -170,9 +173,13 @@ lessons:
                 hints: ["Bei einer Minusaufgabe wird es weniger."]
               - id: l1-s5
                 type: multiple_choice
-                text: "5 − 5 = ?"
+                text: "Lisa hat 5 Ballons. Alle 5 platzen. 5 − 5 = ?"
+                say: "Lisa hat fünf Ballons. Peng! Alle fünf platzen. Fünf minus fünf, wie viele bleiben?"
+                show: { object: balloon, count: 5, gone: 5 }
                 options: ["0", "1", "5"]
                 answer: "0"
+                feedback:
+                  "5": "Peng, peng, peng, peng, peng! Alle fünf sind geplatzt. Da bleibt kein einziger übrig."
                 hints: ["Alle sind weg."]
               - id: l1-s6
                 type: text_input
@@ -271,13 +278,16 @@ lessons:
         mode: worked-examples
         screens:
           - text: "8 − 5 = ?"
-            say: "Acht minus fünf. In der oberen Reihe sind fünf Punkte. Wir nehmen die ganze Reihe auf einmal weg."
-            show: { drawn: ten-frame, filled: 8, cross: 5, cross_from: start }
+            say: "Acht minus fünf. In der oberen Reihe sind fünf Punkte. Was glaubst du: Müssen wir fünfmal einzeln zurückzählen?"
+            show: { drawn: ten-frame, filled: 8 }
           - text: "8 − 5 = 3"
-            say: "Unten bleiben drei. Acht minus fünf gleich drei. Die Kraft der Fünf hilft auch beim Wegnehmen."
+            say: "Nein! Wir nehmen die ganze obere Reihe auf einmal weg. Unten bleiben drei. Acht minus fünf gleich drei. Die Kraft der Fünf hilft auch beim Wegnehmen."
+            show: { drawn: ten-frame, filled: 8, cross: 5, cross_from: start }
           - text: "9 − 2: 8, 7"
             say: "Nimmst du nur wenig weg, zählst du einfach zurück: neun minus zwei, acht, sieben."
             show: { drawn: number-line, from: 0, to: 10, labels: all, jumps: [[9, -1], [8, -1]] }
+          - text: "Wusstest du? Eichhörnchen finden nicht alle Nüsse wieder, die sie verstecken."
+            say: "Wusstest du? Eichhörnchen verstecken im Herbst Nüsse und finden nicht alle wieder. Aus manchen vergessenen Nüssen wachsen sogar neue Bäume."
 
       - activity: practise
         setting: plain
@@ -389,7 +399,9 @@ lessons:
                 answer: "3"
               - id: l2-n2
                 type: text_input
-                text: "10 − 4 = _"
+                text: "Auf dem Ast sitzen 10 Vögel. 4 fliegen weg. 10 − 4 = _"
+                say: "Auf dem Ast sitzen zehn Vögel. Vier fliegen weg. Zehn minus vier?"
+                show: { object: bird, count: 10, gone: 4 }
                 answer: "6"
               - id: l2-n3
                 type: point_on_line

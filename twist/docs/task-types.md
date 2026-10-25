@@ -486,9 +486,11 @@ Interactions:
 ## `clock_hands_drag`
 
 A clock face with round grips on both hands. The child drags a hand and
-taps Check; the hand nearest the finger moves. The minute hand snaps to
-`step` minutes, the hour hand to whole hours, and the hour hand sits
-between hours as the minutes go on, as on a real clock.
+taps Check. The hand nearest where the finger lands is grabbed (its grip
+grows) and turns smoothly with the finger around the centre, without
+jumping to it. The hands turn together as on a real clock: dragging the
+minute hand past 12 moves the hour on, dragging the hour hand turns the
+minutes. On letting go the minutes snap to `step`.
 
 Fields: `show: { drawn: clock, hour, minute, roman }` (the start, 12:00 if
 left out; never the answer), `answer` ("3:30", a 12-hour time),

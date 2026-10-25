@@ -71,15 +71,19 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wie viele Münzen?"
+            say: "Was glaubst du: Wie viele verschiedene Münzen gibt es beim Euro? Rate eine Zahl, dann zählen wir."
           - text: "1 ct · 2 ct · 5 ct · 10 ct · 20 ct · 50 ct"
-            say: "Das sind die Cent-Münzen. Ein Cent, zwei Cent und fünf Cent sind kupferrot. Zehn Cent, zwanzig Cent und fünfzig Cent sind golden."
+            say: "Das sind die Cent-Münzen, sechs Stück. Ein Cent, zwei Cent und fünf Cent sind kupferrot. Zehn Cent, zwanzig Cent und fünfzig Cent sind golden."
             show: { drawn: coins, values: [1, 2, 5, 10, 20, 50] }
           - text: "1 € · 2 €"
-            say: "Das sind die Euro-Münzen. Sie haben zwei Farben. Ein Euro ist innen silbern, zwei Euro sind innen golden."
+            say: "Das sind die Euro-Münzen. Sie haben zwei Farben. Ein Euro ist innen silbern, zwei Euro sind innen golden. Sechs Cent-Münzen und zwei Euro-Münzen: Es gibt acht verschiedene Münzen."
             show: { drawn: coins, values: [100, 200] }
           - text: "1 ct oder 1 €?"
             say: "Auf jeder Münze steht, wie viel sie wert ist. Lies die Zahl und das Wort: Cent oder Euro. Die Größe sagt es dir nicht. Ein Euro ist viel mehr wert als ein Cent."
             show: { drawn: coins, values: [1, 100] }
+          - text: "Wusstest du? Auf den deutschen 1-, 2- und 5-Cent-Münzen ist ein Eichenzweig."
+            say: "Wusstest du? Jedes Euro-Land hat für seine Münzen ein eigenes Bild auf der Rückseite. Auf den deutschen Ein-, Zwei- und Fünf-Cent-Münzen ist ein Eichenzweig. Schau mal in deinem Portemonnaie nach!"
 
       - activity: practise
         setting: plain
@@ -214,8 +218,10 @@ lessons:
                 text: "Wie viel ist diese Münze wert?"
                 say: "Wie viel ist diese Münze wert?"
                 show: { drawn: coins, values: [100] }
-                options: ["1 €", "1 ct", "10 ct"]
+                options: ["1 €", "1 ct", "10 ct", "1 Bonbon"]
                 answer: "1 €"
+                feedback:
+                  "1 Bonbon": "Vielleicht kaufst du damit Bonbons! Aber auf der Münze steht, wie viel sie wert ist: 1 Euro."
               - id: l1-n3
                 type: true_false
                 text: "Das ist eine 5-Cent-Münze."
@@ -224,8 +230,8 @@ lessons:
                 answer: true
               - id: l1-n4
                 type: image_multiple_choice
-                text: "Welche Münze ist am wenigsten wert?"
-                say: "Welche Münze ist am wenigsten wert?"
+                text: "Im Sparschwein sind drei Münzen. Welche ist am wenigsten wert?"
+                say: "Im Sparschwein sind drei Münzen. Welche Münze ist am wenigsten wert?"
                 options:
                   - { drawn: coins, values: [10] }
                   - { drawn: coins, values: [1] }
@@ -327,8 +333,10 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Gibt es einen 1-Euro-Schein?"
+            say: "Es gibt auch Geld aus Papier, die Geldscheine. Was glaubst du: Gibt es einen Ein-Euro-Schein?"
           - text: "5 € · 10 € · 20 €"
-            say: "Das sind Geldscheine. Der Fünf-Euro-Schein ist grau, der Zehn-Euro-Schein ist rot und der Zwanzig-Euro-Schein ist blau."
+            say: "Nein! Für einen Euro gibt es nur die Münze. Der kleinste Schein ist fünf Euro. Das sind Geldscheine. Der Fünf-Euro-Schein ist grau, der Zehn-Euro-Schein ist rot und der Zwanzig-Euro-Schein ist blau."
             show: { drawn: coins, values: [500, 1000, 2000] }
           - text: "50 € · 100 €"
             say: "Es gibt auch Scheine, die noch mehr wert sind. Zum Beispiel fünfzig Euro und hundert Euro."
@@ -567,6 +575,17 @@ lessons:
             say: "Stimmt das? Das ist eine Fünfzig-Cent-Münze."
             show: { drawn: coins, values: [5] }
             answer: false
+          - id: l2-c17
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [200] }
+              - { drawn: coins, values: [1000] }
+              - { drawn: coins, values: [5] }
+            slot_count: 3
+            answer: ["5", "200", "1000"]
           - id: l2-c8
             part: coins
             type: image_multiple_choice
@@ -595,6 +614,17 @@ lessons:
             show: { drawn: coins, values: [2000] }
             options: ["20 €", "2 €", "20 ct"]
             answer: "20 €"
+          - id: l2-c18
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [10] }
+              - { drawn: coins, values: [2000] }
+              - { drawn: coins, values: [1] }
+            slot_count: 3
+            answer: ["1", "10", "2000"]
           - id: l2-c11
             part: notes
             type: true_false
@@ -621,6 +651,18 @@ lessons:
               - { drawn: coins, values: [20] }
               - { drawn: coins, values: [100] }
             answer: "100"
+          - id: l2-c19
+            part: order
+            type: ordering
+            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
+            say: "Ordne alle vier nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
+            options:
+              - { drawn: coins, values: [100] }
+              - { drawn: coins, values: [5000] }
+              - { drawn: coins, values: [2] }
+              - { drawn: coins, values: [500] }
+            slot_count: 4
+            answer: ["2", "100", "500", "5000"]
           - id: l2-c14
             part: compare
             type: multiple_choice
@@ -638,47 +680,6 @@ lessons:
               - { drawn: coins, values: [200] }
               - { drawn: coins, values: [2] }
             answer: "2"
-          - id: l2-c16
-            part: compare
-            type: true_false
-            text: "Die 50-Cent-Münze ist mehr wert als die 1-Euro-Münze."
-            say: "Stimmt das? Die Fünfzig-Cent-Münze ist mehr wert als die Ein-Euro-Münze."
-            show: { drawn: coins, values: [50, 100] }
-            answer: false
-          - id: l2-c17
-            part: order
-            type: ordering
-            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
-            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
-            options:
-              - { drawn: coins, values: [200] }
-              - { drawn: coins, values: [1000] }
-              - { drawn: coins, values: [5] }
-            slot_count: 3
-            answer: ["5", "200", "1000"]
-          - id: l2-c18
-            part: order
-            type: ordering
-            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
-            say: "Ordne nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
-            options:
-              - { drawn: coins, values: [10] }
-              - { drawn: coins, values: [2000] }
-              - { drawn: coins, values: [1] }
-            slot_count: 3
-            answer: ["1", "10", "2000"]
-          - id: l2-c19
-            part: order
-            type: ordering
-            text: "Ordne nach dem Wert. Fang mit dem kleinsten Wert an."
-            say: "Ordne alle vier nach dem Wert. Fang mit dem an, was am wenigsten wert ist."
-            options:
-              - { drawn: coins, values: [100] }
-              - { drawn: coins, values: [5000] }
-              - { drawn: coins, values: [2] }
-              - { drawn: coins, values: [500] }
-            slot_count: 4
-            answer: ["2", "100", "500", "5000"]
           - id: l2-c20
             part: order
             type: ordering
@@ -690,3 +691,10 @@ lessons:
               - { drawn: coins, values: [100] }
             slot_count: 3
             answer: ["20", "100", "10000"]
+          - id: l2-c16
+            part: compare
+            type: true_false
+            text: "Die 50-Cent-Münze ist mehr wert als die 1-Euro-Münze."
+            say: "Stimmt das? Die Fünfzig-Cent-Münze ist mehr wert als die Ein-Euro-Münze."
+            show: { drawn: coins, values: [50, 100] }
+            answer: false

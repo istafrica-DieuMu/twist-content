@@ -528,10 +528,6 @@ div.ln-next { cursor: default; }
 .tr-stat img { width: 24px; height: 24px; }
 .tr-stat i { font-style: normal; font-size: 20px; color: #f5b400; line-height: 1; }
 .tr-path.french :is(.tr-stone img, .tr-island, .tr-skate canvas) { filter: hue-rotate(38deg) saturate(1.1); }
-.tr-menu { position: absolute; top: 108px; left: 16px; z-index: 30; display: grid; gap: 4px; min-width: 200px; padding: 6px; border-radius: 16px; background: var(--card); border: 2px solid var(--edge-c); box-shadow: 0 12px 30px -8px rgba(43, 15, 69, .35); }
-.tr-menu button { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0; border-radius: 12px; background: none; font: 800 15px "Red Hat Display", sans-serif; color: var(--plum); text-align: left; cursor: pointer; }
-.tr-menu button img { width: 30px; height: 26px; }
-.tr-menu [aria-current="true"] { background: var(--tint); }
 /* The page: the floating card stays on top while the track scrolls under it. */
 .tr-page.pr-home { gap: 0; padding: 0 0 40px; }
 .tr-card { position: sticky; top: 10px; z-index: 10; align-self: center; display: grid; grid-template-columns: 40px 1fr 18px; gap: 10px; align-items: center; width: 88%; padding: 8px 14px 8px 10px; border: 0; border-radius: 20px; background: var(--card); box-shadow: 0 4px 13px rgba(56, 43, 103, .13); text-align: left; cursor: pointer; }
@@ -781,3 +777,432 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .hm-practice > span { display: grid; justify-items: start; }
 @media (prefers-reduced-motion: no-preference) { .nudge { animation: go-nudge .45s cubic-bezier(.3, 1.6, .5, 1); } }
 @keyframes go-nudge { 30% { transform: scale(1.08) rotate(-2deg); } 60% { transform: scale(.98) rotate(1.5deg); } }
+
+/* Stars on the Study track: under every stone, empty for skills not taken yet. */
+.tr-st { position: absolute; left: 50%; z-index: 3; transform: translateX(-50%); padding: 1px 8px 2px; border-radius: 999px; background: var(--card); box-shadow: 0 1px 3px rgba(43, 15, 69, .15); line-height: 1; }
+.tr-st .pr-stars { font-size: 15px; letter-spacing: 1px; }
+.tr-st.locked { opacity: .55; }
+.tr-tt { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; width: 100%; }
+.tr-tip .tr-tip-st { flex: none; font-size: 16px; color: rgba(255, 255, 255, .45); }
+.tr-tip .tr-tip-st i.on { color: #ffd34d; }
+
+/* The subject picker under the stats row, as the app's: one row, icon over name. */
+.tr-menu { position: absolute; top: 100px; left: 0; right: 0; z-index: 30; display: flex; justify-content: flex-start; gap: 24px; padding: 14px 20px 0; background: var(--card); border-bottom: 1px solid var(--edge-c); box-shadow: 0 10px 22px -10px rgba(43, 15, 69, .3); animation: app-pop .2s ease-out both; }
+.tr-menu button { position: relative; display: grid; justify-items: center; gap: 6px; padding: 0 0 14px; border: 0; background: none; font: 600 15px "Red Hat Text", sans-serif; color: var(--plum); cursor: pointer; }
+.tr-menu i { display: grid; place-items: center; width: 61px; height: 39px; border-radius: 10px; border: 1.5px solid transparent; }
+.tr-menu img { width: 33px; height: 23px; opacity: .5; filter: grayscale(1); }
+.tr-menu [aria-current="true"] i { background: color-mix(in srgb, var(--c) 14%, var(--card)); border-color: var(--c); }
+.tr-menu [aria-current="true"] img { opacity: 1; filter: none; }
+.tr-menu [aria-current="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; border-radius: 2px; background: var(--c); }
+.tr-menu button:focus-visible { outline: 3px solid var(--c); outline-offset: 2px; border-radius: 10px; }
+
+/* Study's unit list: back, title and search; the subjects as in the app's picker; the
+   years as chips; progress as a line. Rows that scroll sideways fade at their edges. */
+.st-head { grid-template-columns: 40px 1fr 40px; }
+.st-find { width: 40px; height: 40px; border: 0; border-radius: 12px; background: var(--card); color: var(--plum); display: grid; place-items: center; cursor: pointer; }
+.st-find svg { width: 20px; height: 20px; }
+.st-find[aria-expanded="true"] { background: var(--subj); color: #fff; }
+.st-subjs { display: flex; justify-content: flex-start; gap: 20px; padding: 10px 14px 0; border-radius: 16px; background: var(--card); }
+.st-subjs button { position: relative; display: grid; justify-items: center; gap: 4px; padding: 0 4px 10px; border: 0; background: none; font: 600 14px "Red Hat Text", sans-serif; color: var(--soft-c); cursor: pointer; }
+.st-subjs i { display: grid; place-items: center; width: 54px; height: 34px; border-radius: 10px; border: 1.5px solid transparent; }
+.st-subjs img { width: 30px; height: 21px; opacity: .5; filter: grayscale(1); }
+.st-subjs [aria-selected="true"] { color: var(--plum); }
+.st-subjs [aria-selected="true"] i { background: color-mix(in srgb, var(--c) 14%, var(--card)); border-color: var(--c); }
+.st-subjs [aria-selected="true"] img { opacity: 1; filter: none; }
+.st-subjs [aria-selected="true"]::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: 0; height: 4px; border-radius: 2px; background: var(--c); }
+.st-years { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px; }
+.st-years::-webkit-scrollbar { display: none; }
+.st-years button { flex: none; position: relative; padding: 7px 14px; border: 2px solid var(--edge); border-radius: 999px; background: var(--card); font: 700 14px "Red Hat Text", sans-serif; color: var(--ink); white-space: nowrap; cursor: pointer; }
+.st-years [aria-selected="true"] { background: var(--c); border-color: var(--c); color: #fff; }
+.st-mine { position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; border-radius: 50%; background: #f5b400; border: 2px solid var(--card); }
+.st-prog { display: grid; gap: 5px; font: 700 13px "Red Hat Text", sans-serif; color: var(--c); }
+.st-prog .pr-bar { --c: var(--subj); }
+.st-topics button { white-space: nowrap; }
+.scroll-fade { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 0, #000 100%, transparent 100%); }
+.scroll-fade.more-r { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 64px), transparent); }
+.scroll-fade.more-l { -webkit-mask-image: linear-gradient(90deg, transparent, #000 64px); mask-image: linear-gradient(90deg, transparent, #000 64px); }
+.scroll-fade.more-l.more-r { -webkit-mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); }
+
+/* Practice: the example requests only while the search field is in use; sprints two
+   side by side; Choose my own as a floating button over the page, above the tabs. */
+.pr-asker:not(:focus-within) .pr-ex { display: none; }
+.dr-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pr-own-fab { position: absolute; right: 16px; bottom: 96px; z-index: 20; display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px 0 14px; border: 0; border-radius: 28px; background: #6849dd; color: #fff; font: 800 16px "Red Hat Display", sans-serif; white-space: nowrap; box-shadow: 0 8px 20px -6px rgba(104, 73, 221, .65), 0 3px 0 #4b2fb0; cursor: pointer; }
+.pr-own-fab-i { display: grid; place-items: center; width: 28px; height: 28px; font: 800 30px/1 "Red Hat Display", sans-serif; }
+.pr-own-fab b { display: inline; font: inherit; }
+.pr-own-fab.mini { width: 56px; padding: 0; justify-content: center; }
+.pr-own-fab.mini b { display: none; }
+/* Room under the page for the button, and none while the Choose my own sheet is open. */
+#screen:has(.pr-own-fab) .app-page { padding-bottom: 168px; }
+#screen:has(.sheet, .an-over, .rw-pop, .bs-sheet) .pr-own-fab { display: none; }
+.pr-own-fab:active { transform: translateY(2px); box-shadow: 0 5px 14px -6px rgba(104, 73, 221, .65), 0 1px 0 #4b2fb0; }
+.pr-own-fab:focus-visible { outline: 3px solid #f5b400; outline-offset: 3px; }
+
+/* Choose my own: step 1 four big type cards; step 2 search, topic words, subjects and the skills as cards. */
+.mk-sheet { display: grid; gap: 12px; max-height: 88%; overflow-y: auto; }
+.mk-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-bottom: 8px; }
+.mk-types button { display: grid; justify-items: start; gap: 4px; min-height: 132px; padding: 14px; border: 2px solid var(--edge-c); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--plum); text-align: left; cursor: pointer; }
+.mk-types i { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--tint); color: #6849dd; }
+.mk-types i svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mk-types i svg .fill { fill: currentColor; stroke: none; }
+.mk-types b { font: 800 18px "Red Hat Display", sans-serif; }
+.mk-types small { font-size: 13px; color: var(--soft-c); line-height: 1.3; }
+.mk-types button:active { transform: translateY(3px); border-bottom-width: 2px; }
+.mk-types button:disabled { opacity: .45; cursor: default; }
+.mk-back { width: 36px; height: 36px; border: 0; border-radius: 12px; background: var(--sunk); color: var(--plum); display: grid; place-items: center; cursor: pointer; }
+.mk-back .chev { width: 20px; height: 20px; transform: rotate(180deg); }
+.mk-words, .mk-subj { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.mk-words::-webkit-scrollbar, .mk-subj::-webkit-scrollbar { display: none; }
+.mk-words button, .mk-subj button { flex: none; padding: 7px 14px; border: 2px solid var(--edge-c); border-radius: 999px; background: var(--card); font: 700 14px "Red Hat Text", sans-serif; color: var(--plum); white-space: nowrap; cursor: pointer; }
+.mk-words [aria-pressed="true"] { background: #6849dd; border-color: #6849dd; color: #fff; }
+.mk-subj [aria-pressed="true"] { background: var(--c, #6849dd); border-color: var(--c, #6849dd); color: #fff; }
+.mk-count { margin: 0; font: 700 13px "Red Hat Text", sans-serif; color: var(--soft-c); }
+.mk-list { display: grid; gap: 8px; }
+.mk-list button { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border: 2px solid var(--edge-c); border-left: 6px solid var(--c); border-radius: 16px; background: var(--card); color: var(--plum); text-align: left; cursor: pointer; }
+.mk-list button > span:first-child { display: grid; gap: 2px; min-width: 0; }
+.mk-list small { font: 700 12px "Red Hat Text", sans-serif; color: var(--c); }
+.mk-list b { font: 700 15px/1.3 "Red Hat Text", sans-serif; }
+.mk-list [aria-pressed="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 10%, var(--card)); box-shadow: 0 0 0 2px var(--c) inset; }
+.mk-more summary { cursor: pointer; font: 700 14px "Red Hat Text", sans-serif; color: var(--link, #6849dd); }
+.mk-more .pr-group { margin-top: 10px; }
+.mk-list .pr-stars { flex: none; }
+.mk-sheet .pr-search { border-color: var(--edge-c); color: var(--soft-c); }
+.mk-sheet .pr-search input { color: var(--plum); }
+.mk-list b { font: 800 16px/1.25 "Red Hat Display", sans-serif; }
+.mk-list small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Lesson end: a smaller mascot, so the check's stars and result show without scrolling. */
+.center:has(> h2.done) > .mascot-pose { width: auto; height: 110px; max-height: 110px; }
+
+/* Cards as the app draws them (ist-schoolido Home, constants/subjects.ts), with the
+   saturation down. The lesson card and Practice's big suggestion: the subject colour
+   softened with white, white text, the mascot top right, a full-width white button. */
+.pr-hero { --fill: color-mix(in srgb, var(--c) 78%, #fff); display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 8px; padding: 22px 20px 20px; border: 0; border-radius: 24px; background: var(--fill); color: #fff; box-shadow: 0 10px 24px -14px color-mix(in srgb, var(--c) 70%, transparent); text-shadow: 0 1px 1px rgba(0, 0, 0, .12); }
+.pr-hero > :not(.pr-go):not(.pr-art) { max-width: calc(100% - 112px); }
+.pr-hero .pr-kind { display: flex; align-items: center; gap: 8px; font: 600 16px "Red Hat Text", sans-serif; opacity: 1; }
+.pr-dur { padding: 3px 10px; border-radius: 999px; background: rgba(255, 255, 255, .2); font: 600 13px "Red Hat Text", sans-serif; font-style: normal; }
+.pr-hero .pr-reason { font: 800 26px/1.12 "Red Hat Display", sans-serif; }
+.pr-hero .pr-sub, .pr-hero .pr-size { color: rgba(255, 255, 255, .85); opacity: 1; }
+.pr-hero .pr-art { top: 14px; right: 10px; bottom: auto; width: 104px; height: 118px; object-position: top; filter: none; }
+.pr-hero .pr-go, .hm-lesson > .pr-go { align-self: stretch; max-width: none; margin-top: 16px; padding: 14px; border-radius: 16px; background: #fff; color: var(--c); font: 800 17px "Red Hat Display", sans-serif; text-align: center; text-shadow: none; box-shadow: 0 4px 0 rgba(0, 0, 0, .12); }
+.hm-lesson { min-height: 0; padding-right: 20px; padding-bottom: 20px; }
+.hm-lesson > .pr-reason, .hm-lesson > .pr-sub { max-width: calc(100% - 112px); }
+.hm-lesson > .pr-sub { margin-bottom: 4px; }
+.hm-lesson .pr-art { right: 10px; top: 14px; bottom: auto; width: 104px; height: 118px; }
+.hm-dots small { font-weight: 600; }
+/* Practice suggestions: a light tint, a border in the muted subject colour, thicker at the
+   bottom (the app's 3D card), the title in that colour, plum text, the subject's object. */
+.hm-practice { --muted: color-mix(in oklab, var(--c) 82%, #6d6f86); display: grid; grid-template-columns: 1fr 96px; gap: 14px; align-items: center; width: 100%; margin: 0 0 20px; padding: 26px 22px 26px 26px; border: 3px solid var(--muted); border-bottom-width: 8px; border-radius: 24px; background: color-mix(in srgb, var(--c) 9%, #fff); color: var(--plum); text-align: left; font: inherit; cursor: pointer; }
+.hm-practice span { display: grid; gap: 6px; }
+.hm-practice b { font: 800 22px/1.15 "Red Hat Display", sans-serif; color: var(--muted); }
+.hm-practice small { font: 400 16px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.hm-practice img { width: 96px; height: 96px; object-fit: contain; }
+.hm-practice:active { transform: translateY(4px); border-bottom-width: 4px; margin-bottom: 24px; }
+.hm-practice:focus-visible { outline: 3px solid var(--muted); outline-offset: 3px; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice { background: color-mix(in srgb, var(--c) 16%, var(--card)); color: var(--ink); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice small { color: var(--ink); }
+/* Home: one bold heading per section, as the app's "Next in your subjects" and "Recommended practice". */
+.hm-plan h3.hm-step { margin: 20px 0 12px; font: 800 21px/1.2 "Red Hat Display", sans-serif; color: var(--plum); letter-spacing: -0.01em; }
+.hm-plan h3.hm-step:first-child { margin-top: 4px; }
+.hm-plan h3.hm-step .hm-tick { font: 600 13px "Red Hat Text", sans-serif; }
+/* The practice card's title is a short name, one or two lines. */
+.hm-practice b { font-size: 21px; line-height: 1.2; }
+.hm-practice small { display: block; margin-top: 6px; font-size: 15px; line-height: 1.35; }
+
+/* Start: the resume card, compact (the app's lesson progress card): name and minutes, the
+   lesson, where the child stopped with a thin bar, a pill button, a small mascot. */
+/* The decks again, in the new cards: each card opaque and the same height; nothing shows through. */
+.pr-hero.hm-card { min-height: 0; margin: 0; padding: 22px 20px 20px; }
+.pr-hero.hm-card .pr-art { top: 14px; right: 10px; bottom: auto; width: 96px; height: 108px; }
+.dk-slide { background: var(--card); border-radius: 24px; }
+.dk-slide > .pr-hero, .dk-slide > .hm-practice { margin: 0; }
+.dk-slide > .hm-practice { display: grid; grid-template-columns: 1fr 96px; padding: 26px 22px 26px 26px; overflow: visible; }
+.dk-slide:not(.front) > * { filter: none; }
+.hm-practice .dk-timer { left: 26px; right: 26px; bottom: 4px; }
+.pr-hero .dk-timer { background: rgba(255, 255, 255, .18); }
+
+/* Only buttons start things: a practice card holds its own "Üben" button; the card itself does nothing. */
+.hm-practice { grid-template-columns: 1fr 96px; grid-template-areas: "t i" "b i"; row-gap: 14px; cursor: default; }
+.hm-practice > span { grid-area: t; }
+.hm-practice > img { grid-area: i; }
+.hm-practice > .hm-pr-go { grid-area: b; justify-self: start; margin: 0; min-height: 44px; padding: 10px 22px; border-radius: 999px; background: var(--muted); color: #fff; font: 800 16px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, var(--muted) 70%, #000); }
+.hm-practice:active { transform: none; border-bottom-width: 8px; margin-bottom: 20px; }
+.dk-slide > .hm-practice { grid-template-columns: 1fr 96px; }
+.st-next { cursor: default; }
+.st-next-i { border: 0; padding: 0; cursor: pointer; }
+.st-next-i:active { transform: translateY(2px); }
+/* Choose my own: back, title and close on one row with room between them; the title centred, one line where it fits. */
+.mk-sheet .pr-sheet-top { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 10px; }
+.mk-sheet .pr-sheet-top .mk-back { grid-column: 1; width: 44px; height: 44px; }
+.mk-sheet .pr-sheet-top .pr-sheet-h { grid-column: 2; margin: 0; text-align: center; font-size: 19px; line-height: 1.2; text-wrap: balance; }
+.mk-sheet .pr-sheet-top .pr-x { grid-column: 3; justify-self: end; }
+.me-how { margin: -6px 0 2px; font-size: 13.5px; line-height: 1.35; color: var(--soft); }
+#me-stars { display: grid; gap: 10px; }
+.me-tiles button, .me-tiles > div { min-height: 64px; }
+/* Tap targets of at least 44px. */
+.st-back, .st-find, .pr-x, .me-gear { min-width: 44px; min-height: 44px; }
+/* Dark and night: the practice card's title lighter, its button in the full subject colour. */
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice { --muted: color-mix(in oklab, var(--c) 55%, #fff); border-color: color-mix(in srgb, var(--c) 70%, var(--card)); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice > .hm-pr-go { background: var(--c); box-shadow: 0 3px 0 color-mix(in srgb, var(--c) 60%, #000); }
+/* Buttons across the bottom of the card, under the text and the picture, as on the app's cards. */
+.hm-practice > span { grid-column: 1; grid-row: 1; }
+.hm-practice > img { grid-column: 2; grid-row: 1; }
+.hm-practice > .hm-pr-go { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; margin-top: 4px; padding: 13px; border-radius: 14px; font-size: 16px; text-align: center; }
+
+/* One card family on Practice and Me, as on Start: 20px corners, a 2px border with a 5px
+   bottom edge; cards of a subject tinted in it, with the muted subject colour for edges and titles. */
+.dr-card, .me-recs button { --m: color-mix(in oklab, var(--c) 82%, #6d6f86); border: 2px solid var(--m); border-bottom-width: 5px; border-radius: 20px; background: color-mix(in srgb, var(--c) 8%, var(--card)); }
+.dr-card { min-height: 0; padding: 14px; gap: 8px; }
+.dr-card b { font-size: 15px; color: var(--m); }
+.me-recs button { align-items: center; min-height: 52px; padding: 12px 16px; color: var(--ink); }
+.me-recs b { color: var(--m); }
+.hm-subj button, .me-tiles > *, .me-subj > button, .me-card, .bd-all > summary, .pr-bee { border-radius: 20px; border-width: 2px; border-bottom-width: 5px; }
+.me-subj > button { padding: 12px 16px; gap: 6px 8px; }
+.pr-bee { padding: 10px 14px 10px 10px; }
+.me-tiles { gap: 10px; }
+.bd-grid { gap: 10px; }
+.me-bds, #me-stars, .me-recs { display: grid; gap: 10px; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.dr-card, .me-recs button) { --m: color-mix(in oklab, var(--c) 55%, #fff); background: color-mix(in srgb, var(--c) 16%, var(--card)); }
+/* Resume card ("Mach weiter, wo du aufgehört hast"), a two-column grid: on the left the subject,
+   title, set and, at the bottom, where the child stopped with its bar; on the right the mascot,
+   and under it the button, level with the progress line. Nothing is positioned by hand. */
+.pr-hero.hm-resume { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 16px; row-gap: 0; align-items: start; min-height: 0; padding: 20px 20px 18px 22px; }
+.pr-hero.hm-resume > .pr-kind { grid-column: 1; grid-row: 1; max-width: none; margin: 0 0 8px; white-space: nowrap; }
+.pr-hero.hm-resume > .pr-reason { grid-column: 1; grid-row: 2; max-width: none; margin: 0 0 2px; font-size: 22px; line-height: 1.15; }
+.pr-hero.hm-resume > .pr-sub { grid-column: 1; grid-row: 3; max-width: none; margin: 0; font-size: 15px; }
+.pr-hero.hm-resume .pr-art { position: static; grid-column: 2; grid-row: 1 / 4; justify-self: center; width: 84px; height: 84px; object-fit: contain; }
+.pr-hero.hm-resume > .hm-where { grid-column: 1; grid-row: 4; align-self: end; display: grid; gap: 6px; max-width: none; margin: 16px 0 0; padding: 0; }
+.pr-hero.hm-resume > .pr-go { position: static; grid-column: 2; grid-row: 4; align-self: end; justify-self: end; margin: 16px 0 0; padding: 11px 22px; border-radius: 999px; font-size: 15px; }
+.hm-where small { font: 600 13px/1.3 "Red Hat Text", sans-serif; color: rgba(255, 255, 255, .92); }
+.hm-pbar { display: block; width: 100%; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .3); overflow: hidden; }
+.hm-pbar i { display: block; height: 100%; border-radius: 3px; background: #fff; }
+.pr-hero.hm-resume { grid-template-columns: minmax(0, 1fr) 92px; }
+.pr-hero.hm-resume > .hm-where { justify-self: stretch; padding-right: 40px; }
+.pr-hero.hm-resume > .hm-where { padding-right: 18px; }
+.hm-plan h3.hm-step:first-child { margin-top: -8px; }
+
+/* Choose my own, focused: the page dims behind it and the sheet covers most of the screen. The
+   mascot asks at the top; big picture cards; one big button at the bottom in every step. */
+.mk-scrim { position: absolute; inset: 0; z-index: 25; background: rgba(27, 12, 48, .55); animation: app-fade .2s ease-out both; }
+.mk-sheet { z-index: 26; top: 5%; display: flex; flex-direction: column; gap: 0; max-height: none; padding: 14px 18px 0; overflow: hidden; color: var(--plum); }
+.mk-head { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 8px; }
+.mk-dots { display: flex; justify-content: center; gap: 6px; }
+.mk-dots i { width: 22px; height: 6px; border-radius: 3px; background: var(--sunk); }
+.mk-dots i.on { background: #6849dd; }
+.mk-head > i { width: 44px; }
+.mk-head .pr-x { justify-self: end; }
+.mk-ask { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.mk-ask img { width: 64px; height: 72px; object-fit: contain; flex: none; }
+.mk-ask p { position: relative; flex: 1; margin: 0; padding: 12px 16px; border-radius: 18px; background: var(--tint); font: 800 18px/1.25 "Red Hat Display", sans-serif; color: var(--plum); }
+.mk-ask p::before { content: ""; position: absolute; left: -7px; top: 50%; width: 14px; height: 14px; margin-top: -7px; transform: rotate(45deg); border-radius: 3px; background: var(--tint); }
+.mk-body { flex: 1; min-height: 0; overflow-y: auto; display: grid; align-content: start; gap: 12px; padding: 16px 2px 12px; }
+.mk-big, .mk-subjs { display: grid; gap: 14px; }
+.mk-big button, .mk-subjs button { display: flex; align-items: center; gap: 16px; min-height: 104px; padding: 12px 18px 12px 12px; border: 2px solid var(--edge-c); border-bottom-width: 5px; border-radius: 24px; background: var(--card); color: var(--plum); text-align: left; font: inherit; cursor: pointer; }
+.mk-big button { --c: #6849dd; border-color: color-mix(in srgb, var(--c) 35%, var(--edge-c)); background: color-mix(in srgb, var(--c) 7%, var(--card)); }
+.mk-big [data-t="race"] { --c: #f08a24; }
+.mk-big [data-t="surprise"] { --c: #2fa66a; }
+.mk-big img { width: 76px; height: 76px; object-fit: contain; flex: none; }
+.mk-big { grid-template-columns: minmax(0, 1fr); }
+.mk-big span { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.mk-big .chev { width: 22px; height: 22px; flex: none; color: var(--c); }
+.mk-big b { font: 800 24px "Red Hat Display", sans-serif; }
+.mk-big small { font-size: 15px; color: var(--soft-c); }
+.mk-big [aria-pressed="true"] { border-color: var(--c); box-shadow: inset 0 0 0 2px var(--c); }
+.mk-big b { color: color-mix(in srgb, var(--c) 70%, var(--plum)); }
+.mk-subjs button { --m: color-mix(in oklab, var(--c) 82%, #6d6f86); border-color: var(--m); background: color-mix(in srgb, var(--c) 8%, var(--card)); }
+.mk-subjs img { width: 72px; height: 50px; object-fit: contain; flex: none; padding: 12px; box-sizing: content-box; border-radius: 16px; background: var(--card); }
+.mk-subjs b { font: 800 26px "Red Hat Display", sans-serif; color: var(--m); }
+.mk-subjs [aria-pressed="true"] { box-shadow: inset 0 0 0 3px var(--m); }
+.mk-big button:active, .mk-subjs button:active { transform: translateY(3px); border-bottom-width: 2px; }
+.mk-foot { margin: 0 -18px; padding: 12px 18px 24px; border-top: 1px solid var(--edge-c); background: var(--card); }
+.mk-foot .mk-go { width: 100%; min-height: 58px; margin: 0; font-size: 19px; }
+.mk-foot .mk-go:disabled { opacity: .5; }
+#screen:has(.mk-scrim) .pr-own-fab { display: none; }
+@keyframes app-fade { from { opacity: 0; } }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .mk-subjs button { --m: color-mix(in oklab, var(--c) 55%, #fff); background: color-mix(in srgb, var(--c) 16%, var(--card)); }
+.mk-body { grid-auto-rows: max-content; }
+/* Older bands: text first and compact; the question a plain heading, no mascot. */
+.mk-dense .mk-ask p { padding: 0; background: none; font-size: 20px; }
+.mk-dense .mk-ask p::before { display: none; }
+.mk-dense .mk-big button { min-height: 0; padding: 12px 16px; gap: 12px; }
+.mk-dense .mk-big img { width: 40px; height: 40px; }
+.mk-dense .mk-big b { font-size: 18px; }
+.mk-dense .mk-big small { font-size: 14px; }
+
+/* Settings in the app's language: a bold heading per section above its card (as on Start,
+   Practice and Me), 20px cards with the 5px bottom edge, rows split by thin lines, 44px rows. */
+.set-h { margin: 8px 0 -4px; }
+.set-card { gap: 0; padding: 4px 16px; border-radius: 20px; }
+.set-card > * { padding: 12px 0; }
+.set-card > * + * { border-top: 1px solid var(--edge-c); }
+.set-card > .set-seg, .set-card > .set-note, .set-card > .set-looks, .set-card > .set-scripts, .set-card > .set-row:has(+ .set-seg) { border-top: 0; }
+.set-card > .set-note { padding-top: 0; }
+.set-card > .set-link:first-of-type { padding-top: 12px; }
+.set-row, .set-link { min-height: 44px; }
+.set-sw input:checked + i { background: #6849dd; }
+#setPics h3 { padding-bottom: 0; font: 800 17px "Red Hat Display", sans-serif; }
+
+/* Me, the child's room: one number to a card, in the app's card family. */
+.me-hero { display: grid; grid-template-columns: auto 1fr 44px; align-items: center; gap: 14px; }
+.me-hero h2 { margin: 0; font: 800 26px "Red Hat Display", sans-serif; }
+.me-hero small { display: flex; align-items: center; gap: 5px; font: 600 14px "Red Hat Text", sans-serif; color: var(--soft); }
+.me-hero small img { width: 18px; height: 18px; }
+.me-av { position: relative; padding: 0; border: 0; background: none; cursor: pointer; }
+.me-av > i { position: absolute; right: -2px; bottom: -2px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #6849dd; color: #fff; border: 3px solid var(--card); }
+.me-av > i svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.me-next { display: grid; grid-template-columns: 84px 1fr; gap: 16px; align-items: center; width: 100%; padding: 18px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--ink); text-align: left; font: inherit; cursor: pointer; }
+.me-next img { width: 84px; height: 84px; object-fit: contain; }
+.me-next span { display: grid; gap: 6px; }
+.me-next b { font: 800 19px "Red Hat Display", sans-serif; }
+.me-next small { font-size: 14px; line-height: 1.35; color: var(--soft); }
+.me-next em { font: 700 13px "Red Hat Text", sans-serif; font-style: normal; color: #6849dd; }
+.me-shelf { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px 4px; }
+.me-shelf::-webkit-scrollbar { display: none; }
+.me-bd { flex: none; display: grid; justify-items: center; gap: 6px; width: 104px; padding: 12px 8px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--ink); font: inherit; cursor: pointer; }
+.me-bd img { width: 60px; height: 60px; object-fit: contain; }
+.me-bd small { font: 700 12.5px/1.2 "Red Hat Text", sans-serif; text-align: center; }
+#meAll.open .chev { transform: rotate(90deg); }
+.me-stars { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; padding: 16px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); }
+.me-total { display: grid; justify-items: center; padding: 0 8px; }
+.me-total b { font: 800 40px "Red Hat Display", sans-serif; color: var(--ink); line-height: 1; }
+.me-total span { font: 700 13px "Red Hat Text", sans-serif; color: #c28903; }
+.me-chips { display: grid; gap: 8px; }
+.me-chips button { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 8px 14px; border: 2px solid color-mix(in srgb, var(--c) 40%, var(--card)); border-radius: 14px; background: color-mix(in srgb, var(--c) 8%, var(--card)); color: var(--ink); font: inherit; cursor: pointer; }
+.me-chips b { font: 800 16px "Red Hat Display", sans-serif; color: #c28903; order: 2; }
+.me-chips small { font: 700 14px "Red Hat Text", sans-serif; }
+/* Older bands: the same room, denser. */
+.me-dense .me-hero h2 { font-size: 22px; }
+.me-dense .me-next { grid-template-columns: 56px 1fr; padding: 14px; }
+.me-dense .me-next img { width: 56px; height: 56px; }
+.me-dense .me-bd { width: 88px; }
+.me-dense .me-bd img { width: 44px; height: 44px; }
+.me-dense .me-total b { font-size: 32px; }
+.me-hero small { flex-wrap: wrap; gap: 2px 12px; }
+.me-hero small span { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+/* A lesson not mastered yet: amber mark, how its check went, what was tricky, Try again. */
+.ln-lessons .weak { --w: #e08a00; background: color-mix(in srgb, var(--w) 9%, var(--card)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--w) 45%, transparent); }
+.ln-lessons .weak .ln-n { background: var(--w); color: #fff; font-weight: 800; }
+.ln-lessons .weak .ln-w { display: grid; gap: 2px; min-width: 0; }
+.ln-lessons .weak small { font: 600 12px/1.3 "Red Hat Text", sans-serif; color: var(--soft-c); }
+.ln-tricky { margin: 0 14px 10px; padding: 8px 12px; border-radius: 12px; background: color-mix(in srgb, #e08a00 9%, var(--card)); font: 600 13px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.ln-tricky b { color: color-mix(in srgb, #e08a00 80%, var(--plum)); }
+.ln-lessons .weak em { color: color-mix(in srgb, var(--w) 80%, var(--plum)); }
+/* Home: the resume card and the first practice card both fit on the first screen. */
+.hm-practice, .dk-slide > .hm-practice { grid-template-columns: 1fr 76px; padding: 18px 18px 18px 20px; row-gap: 12px; }
+.hm-practice > img { width: 76px; height: 76px; }
+.hm-practice b { font-size: 19px; line-height: 1.2; }
+.hm-practice small { margin-top: 4px; font-size: 14px; }
+.hm-practice > .hm-pr-go { min-height: 0; padding: 10px; }
+.hm-plan h3.hm-step { margin: 16px 0 10px; }
+/* Choose my own, step 1: the sheet as tall as its choices. Race across the top, Surprise and
+   Quiz me side by side; each a solid colour with a darker edge below, like the app's buttons,
+   and its picture standing out over the top edge. */
+.mk-sheet.mk-s1 { top: auto; bottom: 0; padding-bottom: 26px; }
+.mk-s1 .mk-ask { margin-top: 4px; }
+.mk-s1 .mk-ask img { width: 76px; height: 84px; }
+.mk-s1 .mk-ask p { font-size: 20px; }
+.mk-s1 .mk-body { overflow: visible; padding: 30px 0 0; }
+.mk-s1 .mk-big { grid-template-columns: 1fr 1fr; gap: 26px 12px; }
+.mk-s1 .mk-big button { --edge: color-mix(in srgb, var(--c) 70%, #2a0f4a); position: relative; display: grid; align-content: end; justify-items: start; gap: 4px; min-height: 150px; padding: 16px; border: 0; border-bottom: 6px solid var(--edge); border-radius: 22px; background: var(--c); color: #fff; box-shadow: none; }
+.mk-s1 .mk-big [data-t="race"] { grid-column: 1 / -1; min-height: 112px; padding-right: 130px; }
+.mk-s1 .mk-big img { position: absolute; top: -26px; right: 10px; width: 92px; height: 92px; filter: drop-shadow(0 4px 0 rgba(42, 15, 74, .18)); }
+.mk-s1 .mk-big [data-t="race"] img { top: -18px; right: 18px; width: 110px; height: 110px; }
+.mk-s1 .mk-big span { flex: none; }
+.mk-s1 .mk-big b { font: 800 24px/1.1 "Red Hat Display", sans-serif; color: #fff; }
+.mk-s1 .mk-big small { font: 600 14px/1.3 "Red Hat Text", sans-serif; color: rgba(255, 255, 255, .9); }
+.mk-s1 .mk-big button:active { transform: translateY(4px); border-bottom-width: 2px; margin-top: 4px; }
+.mk-s1 .mk-big button:focus-visible { outline: 3px solid var(--c); outline-offset: 3px; }
+.mk-s1 .mk-big button:disabled { --c: #c9c4d6; --edge: #aaa3bd; cursor: default; }
+.mk-s1 .mk-big button:disabled img { filter: grayscale(1); opacity: .6; }
+.mk-s1 .mk-big [data-t="race"] { --c: #f07f1f; }
+.mk-s1 .mk-big [data-t="surprise"] { --c: #23a065; }
+.mk-s1 .mk-big [data-t="again"] { --c: #6a49e0; }
+.mk-dense.mk-s1 .mk-big button { min-height: 96px; }
+.mk-dense.mk-s1 .mk-big img { display: none; }
+.mk-s1 .mk-big button:not([data-t="race"]) { min-height: 0; padding-top: 74px; }
+.mk-s1 .mk-big button:not([data-t="race"]) b { font-size: 22px; }
+.mk-s1 .mk-big button:disabled { --c: var(--sunk); --edge: color-mix(in srgb, var(--sunk) 80%, #6d6f86); }
+.mk-s1 .mk-big button:disabled :is(b, small) { color: var(--soft-c); }
+/* Pick my own: the fourth tile, across the bottom like Race. */
+.mk-s1 .mk-big [data-t="mine"] { --c: #e0457b; grid-column: 1 / -1; min-height: 104px; padding-top: 16px; padding-right: 130px; }
+.mk-s1 .mk-big [data-t="mine"] img { top: -18px; right: 18px; width: 104px; height: 104px; }
+.mk-s1 .mk-big [data-t="mine"] b { font-size: 24px; }
+/* Its skill cards for the youngest: the topic's mascot, the title, the stars; a tick when picked. */
+.mk-pics button { justify-content: flex-start; gap: 12px; padding: 10px 14px 10px 10px; min-height: 76px; }
+.mk-pics button > img { width: 56px; height: 56px; object-fit: contain; flex: none; }
+.mk-pics button > span:first-of-type { flex: 1; }
+.mk-pics b { font-size: 17px; }
+.mk-s1 .mk-big button[data-t="mine"] { min-height: 104px; padding-top: 16px; }
+.mk-pics button > span:not(.pr-stars) { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.mk-pics button { min-width: 0; }
+/* Pick my own: section headings, then the time and hints above Let's go. */
+.mk-sec { margin: 6px 0 -4px; font: 800 15px "Red Hat Display", sans-serif; color: var(--plum); }
+.mk-opts { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.mk-len { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: var(--sunk); }
+.mk-len button { min-height: 38px; padding: 0 12px; border: 0; border-radius: 10px; background: none; font: 700 14px "Red Hat Text", sans-serif; color: var(--soft-c); cursor: pointer; }
+.mk-len [aria-checked="true"] { background: var(--card); color: var(--plum); box-shadow: 0 1px 3px rgba(42, 15, 74, .15); }
+.mk-hints { display: flex; align-items: center; gap: 8px; min-height: 44px; font: 700 14px "Red Hat Text", sans-serif; color: var(--plum); cursor: pointer; }
+.mk-hints input { position: absolute; opacity: 0; }
+.mk-hints i { position: relative; width: 40px; height: 24px; border-radius: 12px; background: var(--edge-c); transition: background .2s; }
+.mk-hints i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .2s; }
+.mk-hints input:checked + i { background: #6849dd; }
+.mk-hints input:checked + i::after { transform: translateX(16px); }
+.mk-hints input:focus-visible + i { outline: 3px solid #6849dd; outline-offset: 2px; }
+/* Done today: a card like the others, in the done green, the mascot cheering on the right. */
+.hm-done { --g: #2fa66a; position: relative; display: grid; grid-template-columns: 1fr; gap: 6px; justify-items: start; margin: 16px 0 0; padding: 18px 110px 18px 20px; border: 3px solid color-mix(in srgb, var(--g) 70%, var(--card)); border-bottom-width: 8px; border-radius: 26px; background: color-mix(in srgb, var(--g) 12%, var(--card)); }
+.hm-done > span { display: flex; align-items: center; gap: 10px; }
+.hm-done i { width: 30px; height: 30px; background: var(--g); }
+.hm-done b { font: 800 21px/1.15 "Red Hat Display", sans-serif; color: color-mix(in srgb, var(--g) 75%, var(--plum)); }
+.hm-done small { font: 600 15px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.hm-done > img { position: absolute; right: 10px; bottom: 10px; width: 92px; height: 92px; object-fit: contain; }
+.hm-done-go { margin-top: 8px; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 999px; background: var(--g); color: #fff; font: 800 15px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, var(--g) 65%, #000); cursor: pointer; }
+.hm-done-go:active { transform: translateY(3px); box-shadow: 0 0 0 transparent; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-done { background: color-mix(in srgb, var(--g) 18%, var(--card)); border-color: color-mix(in srgb, var(--g) 55%, var(--card)); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-done b { color: color-mix(in srgb, var(--g) 55%, #fff); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-done small { color: var(--ink); }
+/* Track popover: the lesson not mastered, in amber; a button to play it again. */
+.tr-meter i.weak { background: #ffb547; }
+.tr-ls .weak i { background: #ffb547; color: #3a2300; font-weight: 800; }
+.tr-weak { display: flex; align-items: center; gap: 10px; width: 100%; margin: 2px 0 10px; padding: 9px 12px; border: 0; border-radius: 12px; background: rgba(255, 181, 71, .22); color: #fff; font: 700 14px/1.25 "Red Hat Text", sans-serif; text-align: left; cursor: pointer; }
+.tr-weak i { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: #ffb547; color: #3a2300; font: 800 14px "Red Hat Display", sans-serif; font-style: normal; }
+.tr-tip button.tr-weak { display: flex; justify-content: flex-start; min-height: 0; padding: 9px 12px; border: 0; border-radius: 12px; background: rgba(255, 181, 71, .24); box-shadow: none; color: #fff; font: 700 14px/1.25 "Red Hat Text", sans-serif; letter-spacing: 0; text-transform: none; }
+/* For the child: a nudge with the mascot instead of what was tricky, the score as dots. */
+.ln-nudge { display: flex; align-items: center; gap: 10px; margin: 0 14px 10px; padding: 8px 12px 8px 8px; border-radius: 14px; background: color-mix(in srgb, #e08a00 10%, var(--card)); font: 700 14px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.ln-nudge img { width: 40px; height: 40px; object-fit: contain; flex: none; }
+.ln-dots { display: inline-flex; gap: 4px; margin-top: 3px; }
+.ln-dots i { width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, #e08a00 25%, var(--card)); }
+.ln-dots i.on { background: #e08a00; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .ln-lessons .weak em { color: #ffb547; }
+/* A lesson to redo: the mascot, the title, a circle per question (ticks for right), Redo. */
+.ln-lessons .weak { grid-template-columns: 44px 1fr auto; padding: 10px 10px 10px 8px; }
+.ln-lessons .weak .ln-mascot { width: 44px; height: 48px; object-fit: contain; }
+.ln-lessons .weak .ln-w > span:first-child { font-weight: 700; line-height: 1.25; }
+.ln-dots { gap: 5px; margin-top: 6px; }
+.ln-dots i { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: color-mix(in srgb, #e08a00 14%, var(--card)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, #e08a00 35%, transparent); color: #fff; font: 800 11px/1 "Red Hat Display", sans-serif; font-style: normal; }
+.ln-dots i.on { background: #2fa66a; box-shadow: none; }
+.ln-lessons .weak em.ln-redo { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 999px; background: #e08a00; color: #fff; font: 800 14px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, #e08a00 65%, #000); }
+.ln-redo svg { width: 16px; height: 16px; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .ln-lessons .weak em.ln-redo { color: #fff; }
+/* Settings, calmer sizes: a smaller heading, avatar and fields, so a section fits at a glance. */
+.set-page .pr-band h2 { font-size: 24px; }
+.set-me { gap: 10px; }
+.set-me .av.xl { width: 84px; height: 84px; box-shadow: 0 0 0 4px var(--card), 0 6px 14px -6px rgba(0, 0, 0, .35); }
+.set-avbtn i { width: 30px; height: 30px; right: -4px; bottom: 0; }
+.set-avbtn i svg { width: 15px; height: 15px; }
+.set-name span { grid-template-columns: 1fr 44px; }
+.set-name input { padding: 9px 12px; border-radius: 14px; font-size: 17px; }
+.set-name button { border-radius: 14px; }
+.set-name button svg { width: 22px; height: 22px; }
+.set-page .set-h { font-size: 17px; margin: 6px 0 -6px; }
+.set-card { border-bottom-width: 4px; }
+.set-card h3 { font-size: 15px; }
+.set-seg button { padding: 8px 6px; font-size: 14px; }
+.set-row b, .set-row select { font-size: 14px; }
+.set-looks button { gap: 4px; padding: 8px 4px 6px; border-radius: 14px; }
+.set-mini { width: 32px; height: 48px; padding: 9px 4px 4px; border-radius: 8px; gap: 3px; }
+.set-mini i { height: 5px; border-radius: 2px; }
+.set-looks b { font-size: 13px; }
+/* Practice, calmer: drill cards white with the subject only in their title and bar, and room at
+   the bottom so the Choose my own button never covers the last card. */
+.pr-home:not(.hm):not(.pr-page) .dr-card { background: var(--card); border-color: var(--edge-c); border-bottom-width: 4px; }
+.pr-home:not(.hm):not(.pr-page) { padding-bottom: 110px; }
+.pr-home:not(.hm):not(.pr-page) .pr-h { margin-top: 22px; }

@@ -53,11 +53,10 @@ lessons:
         from: earlier-skills
         tasks:
           - id: l1-w1
-            type: multiple_choice
-            text: "Was ist schwerer?"
-            say: "Was ist schwerer: ein Kürbis oder eine Kirsche?"
-            options: ["ein Kürbis", "eine Kirsche"]
-            answer: "ein Kürbis"
+            type: true_false
+            text: "Ein Kürbis ist schwerer als eine Kirsche."
+            say: "Stimmt das? Ein Kürbis ist schwerer als eine Kirsche."
+            answer: true
             difficulty: easy
           - id: l1-w2
             type: multiple_choice
@@ -71,8 +70,11 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wie viele Büroklammern sind so schwer wie eine Packung Mehl?"
+            say: "Eine Büroklammer ist ganz leicht. Was glaubst du: Wie viele Büroklammern sind so schwer wie eine Packung Mehl? Zehn, hundert oder tausend?"
+            show: { object: paper-clip }
           - text: "1 kg = 1000 g"
-            say: "Gewichte misst man in Gramm und Kilogramm. Ein Gramm ist sehr leicht, etwa so schwer wie eine Büroklammer. Ein Kilogramm ist so schwer wie eine Packung Mehl. Ein Kilogramm hat tausend Gramm."
+            say: "Ungefähr tausend! Gewichte misst man in Gramm und Kilogramm. Ein Gramm ist sehr leicht, etwa so schwer wie eine Büroklammer. Ein Kilogramm ist so schwer wie eine Packung Mehl. Ein Kilogramm hat tausend Gramm."
           - text: "Die Waage zeigt 300 g."
             say: "Das ist die Skala einer Küchenwaage von null bis tausend Gramm. Von Strich zu Strich sind es hundert Gramm. Der längere Strich in der Mitte ist bei fünfhundert. Der Pfeil zeigt auf den dritten Strich nach der Null: dreihundert Gramm."
             show: { drawn: number-line, from: 0, to: 1000, step: 100, labels: ends, mark: 300 }
@@ -175,6 +177,8 @@ lessons:
                 show: { drawn: number-line, from: 0, to: 10, labels: all, mark: 7 }
                 options: ["7 kg", "7 g", "70 kg"]
                 answer: "7 kg"
+                feedback:
+                  "70 kg": "Siebzig Kilogramm? Dann wäre das Paket so schwer wie ein Erwachsener! Der Pfeil zeigt auf die 7."
                 hints: ["Auf dieser Skala stehen Kilogramm."]
 
           - support: none
@@ -206,6 +210,7 @@ lessons:
                 type: text_input
                 text: "Papa kauft 1 kg Äpfel und 500 g Kirschen. Wie viel Gramm sind das zusammen?"
                 say: "Papa kauft ein Kilogramm Äpfel und fünfhundert Gramm Kirschen. Wie viel Gramm sind das zusammen?"
+                show: { object: apple, count: 5 }
                 answer: "1500"
 
       - activity: check
@@ -276,13 +281,19 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Diese Waage hat viel mehr Striche. Wie viel zeigt sie?"
+            say: "Diese Waage geht nur bis fünfhundert Gramm und hat viel mehr Striche. Was glaubst du: Wie viel Gramm zeigt der Pfeil?"
+            show: { drawn: number-line, from: 0, to: 500, step: 10, labels: ends, mark: 350 }
           - text: "Diese Waage zeigt 350 g."
-            say: "Diese Waage geht nur bis fünfhundert Gramm und hat viel mehr Striche. Die langen Striche sind hundert, zweihundert, dreihundert und vierhundert Gramm. Der mittlere Strich liegt genau dazwischen, bei fünfzig Gramm mehr. Der Pfeil steht am mittleren Strich nach dreihundert: dreihundertfünfzig Gramm."
+            say: "So liest du sie ab: Die langen Striche sind hundert, zweihundert, dreihundert und vierhundert Gramm. Der mittlere Strich liegt genau dazwischen, bei fünfzig Gramm mehr. Der Pfeil steht am mittleren Strich nach dreihundert: dreihundertfünfzig Gramm."
             show: { drawn: number-line, from: 0, to: 500, step: 10, labels: ends, mark: 350 }
           - text: "700 g + _ = 1 kg\n700 g + 300 g = 1000 g = 1 kg"
             say: "Im Glas sind siebenhundert Gramm Mehl. Wie viel fehlt bis zu einem Kilogramm? Ergänze bis tausend Gramm: Es fehlen dreihundert Gramm."
           - text: "1 kg 200 g + 500 g\n= 1200 g + 500 g = 1700 g"
             say: "Ein Brot wiegt ein Kilogramm und zweihundert Gramm, ein Käse fünfhundert Gramm. Schreib beides in Gramm, dann rechne: tausendzweihundert plus fünfhundert sind tausendsiebenhundert Gramm."
+          - text: "Wusstest du? 1 Liter Wasser wiegt ungefähr 1 kg."
+            say: "Wusstest du? Ein Liter Wasser wiegt ungefähr ein Kilogramm. Eine große Flasche mit einem Liter Wasser ist also fast so schwer wie eine Packung Mehl. Probier es aus: Halte beides in den Händen!"
+            show: { object: bottle }
 
       - activity: practise
         setting: in-context
@@ -315,6 +326,7 @@ lessons:
                 type: multiple_choice
                 text: "Ein Brot wiegt 750 g, ein Kuchen 500 g. Wie schwer sind beide zusammen?"
                 say: "Ein Brot wiegt siebenhundertfünfzig Gramm, ein Kuchen fünfhundert Gramm. Wie schwer sind beide zusammen?"
+                show: { object: cake }
                 options: ["1250 g", "1205 g", "1150 g"]
                 answer: "1250 g"
                 hints:
@@ -497,6 +509,7 @@ lessons:
             type: text_input
             text: "Der Hund wiegt 8 kg 500 g. Wie viel Gramm sind das?"
             say: "Der Hund wiegt acht Kilogramm und fünfhundert Gramm. Wie viel Gramm sind das?"
+            show: { object: dog }
             answer: "8500"
           - id: l2-c13
             part: calc
@@ -516,6 +529,7 @@ lessons:
             type: text_input
             text: "Ein Käse wiegt 300 g, eine Wurst 450 g. Wie viel Gramm wiegen beide zusammen?"
             say: "Ein Käse wiegt dreihundert Gramm, eine Wurst vierhundertfünfzig Gramm. Wie viel Gramm wiegen beide zusammen?"
+            show: { object: cheese }
             answer: "750"
           - id: l2-c16
             part: calc
