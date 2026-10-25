@@ -1865,130 +1865,72 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .mk-hints input:checked + i { background: #6849dd; }
 .mk-hints input:checked + i::after { transform: translateX(16px); }
 .mk-hints input:focus-visible + i { outline: 3px solid #6849dd; outline-offset: 2px; }
+/* Done today: a card like the others, in the done green, the mascot cheering on the right. */
+.hm-done { --g: #2fa66a; position: relative; display: grid; grid-template-columns: 1fr; gap: 6px; justify-items: start; margin: 16px 0 0; padding: 18px 110px 18px 20px; border: 3px solid color-mix(in srgb, var(--g) 70%, var(--card)); border-bottom-width: 8px; border-radius: 26px; background: color-mix(in srgb, var(--g) 12%, var(--card)); }
+.hm-done > span { display: flex; align-items: center; gap: 10px; }
+.hm-done i { width: 30px; height: 30px; background: var(--g); }
+.hm-done b { font: 800 21px/1.15 "Red Hat Display", sans-serif; color: color-mix(in srgb, var(--g) 75%, var(--plum)); }
+.hm-done small { font: 600 15px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.hm-done > img { position: absolute; right: 10px; bottom: 10px; width: 92px; height: 92px; object-fit: contain; }
+.hm-done-go { margin-top: 8px; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 999px; background: var(--g); color: #fff; font: 800 15px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, var(--g) 65%, #000); cursor: pointer; }
+.hm-done-go:active { transform: translateY(3px); box-shadow: 0 0 0 transparent; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-done { background: color-mix(in srgb, var(--g) 18%, var(--card)); border-color: color-mix(in srgb, var(--g) 55%, var(--card)); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-done b { color: color-mix(in srgb, var(--g) 55%, #fff); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-done small { color: var(--ink); }
+/* Track popover: the lesson not mastered, in amber; a button to play it again. */
+.tr-meter i.weak { background: #ffb547; }
+.tr-ls .weak i { background: #ffb547; color: #3a2300; font-weight: 800; }
+.tr-weak { display: flex; align-items: center; gap: 10px; width: 100%; margin: 2px 0 10px; padding: 9px 12px; border: 0; border-radius: 12px; background: rgba(255, 181, 71, .22); color: #fff; font: 700 14px/1.25 "Red Hat Text", sans-serif; text-align: left; cursor: pointer; }
+.tr-weak i { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: #ffb547; color: #3a2300; font: 800 14px "Red Hat Display", sans-serif; font-style: normal; }
+.tr-tip button.tr-weak { display: flex; justify-content: flex-start; min-height: 0; padding: 9px 12px; border: 0; border-radius: 12px; background: rgba(255, 181, 71, .24); box-shadow: none; color: #fff; font: 700 14px/1.25 "Red Hat Text", sans-serif; letter-spacing: 0; text-transform: none; }
+/* For the child: a nudge with the mascot instead of what was tricky, the score as dots. */
+.ln-nudge { display: flex; align-items: center; gap: 10px; margin: 0 14px 10px; padding: 8px 12px 8px 8px; border-radius: 14px; background: color-mix(in srgb, #e08a00 10%, var(--card)); font: 700 14px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.ln-nudge img { width: 40px; height: 40px; object-fit: contain; flex: none; }
+.ln-dots { display: inline-flex; gap: 4px; margin-top: 3px; }
+.ln-dots i { width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, #e08a00 25%, var(--card)); }
+.ln-dots i.on { background: #e08a00; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .ln-lessons .weak em { color: #ffb547; }
+/* A lesson to redo: the mascot, the title, a circle per question (ticks for right), Redo. */
+.ln-lessons .weak { grid-template-columns: 44px 1fr auto; padding: 10px 10px 10px 8px; }
+.ln-lessons .weak .ln-mascot { width: 44px; height: 48px; object-fit: contain; }
+.ln-lessons .weak .ln-w > span:first-child { font-weight: 700; line-height: 1.25; }
+.ln-dots { gap: 5px; margin-top: 6px; }
+.ln-dots i { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: color-mix(in srgb, #e08a00 14%, var(--card)); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, #e08a00 35%, transparent); color: #fff; font: 800 11px/1 "Red Hat Display", sans-serif; font-style: normal; }
+.ln-dots i.on { background: #2fa66a; box-shadow: none; }
+.ln-lessons .weak em.ln-redo { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 999px; background: #e08a00; color: #fff; font: 800 14px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, #e08a00 65%, #000); }
+.ln-redo svg { width: 16px; height: 16px; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .ln-lessons .weak em.ln-redo { color: #fff; }
+/* Settings, calmer sizes: a smaller heading, avatar and fields, so a section fits at a glance. */
+.set-page .pr-band h2 { font-size: 24px; }
+.set-me { gap: 10px; }
+.set-me .av.xl { width: 84px; height: 84px; box-shadow: 0 0 0 4px var(--card), 0 6px 14px -6px rgba(0, 0, 0, .35); }
+.set-avbtn i { width: 30px; height: 30px; right: -4px; bottom: 0; }
+.set-avbtn i svg { width: 15px; height: 15px; }
+.set-name span { grid-template-columns: 1fr 44px; }
+.set-name input { padding: 9px 12px; border-radius: 14px; font-size: 17px; }
+.set-name button { border-radius: 14px; }
+.set-name button svg { width: 22px; height: 22px; }
+.set-page .set-h { font-size: 17px; margin: 6px 0 -6px; }
+.set-card { border-bottom-width: 4px; }
+.set-card h3 { font-size: 15px; }
+.set-seg button { padding: 8px 6px; font-size: 14px; }
+.set-row b, .set-row select { font-size: 14px; }
+.set-looks button { gap: 4px; padding: 8px 4px 6px; border-radius: 14px; }
+.set-mini { width: 32px; height: 48px; padding: 9px 4px 4px; border-radius: 8px; gap: 3px; }
+.set-mini i { height: 5px; border-radius: 2px; }
+.set-looks b { font-size: 13px; }
+/* Practice, calmer: drill cards white with the subject only in their title and bar, and room at
+   the bottom so the Choose my own button never covers the last card. */
+.pr-home:not(.hm):not(.pr-page) .dr-card { background: var(--card); border-color: var(--edge-c); border-bottom-width: 4px; }
+.pr-home:not(.hm):not(.pr-page) { padding-bottom: 110px; }
+.pr-home:not(.hm):not(.pr-page) .pr-h { margin-top: 22px; }
 
-/* ---------- Parents (parents-ui.js) ----------
-   For a grown-up: calm and plain, the app's typefaces, the brand's purple for
-   the few accents and the subjects' colours only where they mean a subject.
-   One loud thing: the week in a sentence at the top. Themed with the page
-   (light and dark). */
-.parentsview { position: fixed; left: 0; right: 0; bottom: 0; top: var(--tb, 64px); z-index: 15; overflow-y: auto; background: var(--page); color: var(--ink); --pa-empty: var(--line); --pa-accent: #6849dd; }
+/* ---------- Parents Lab (parents-ui.js) ----------
+   pages/parents-lab in a frame under the top bar. */
+.parentsview { position: fixed; left: 0; right: 0; bottom: 0; top: var(--tb, 64px); z-index: 15; background: var(--page); }
 .parentsview[hidden] { display: none; }
 body.parents .drawer, body.parents .wrap, body.parents .pickbtn, body.parents .now { display: none !important; }
-.pa { max-width: 1120px; margin: 0 auto; padding: 36px 32px 64px; font: 15px/1.5 "Red Hat Text", system-ui, sans-serif; }
-.pa h1, .pa h2, .pa h3, .pa b { font-family: "Red Hat Display", sans-serif; }
-
-/* Who, and this week in a sentence. */
-.pa-head { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; }
-.pa-head .av { width: 64px; height: 64px; box-shadow: 0 0 0 3px var(--panel), 0 4px 12px rgba(43, 15, 69, .18); }
-.pa-head h1 { margin: 0; font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
-.pa-head p { margin: 4px 0 0; color: var(--muted); font-weight: 600; }
-.pa-updated { align-self: start; padding: 6px 12px; border-radius: 99px; background: var(--panel); border: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 600; }
-.pa-summary { max-width: 46ch; margin: 28px 0 28px; font: 600 25px/1.4 "Red Hat Display", sans-serif; letter-spacing: -.01em; text-wrap: pretty; }
-
-/* Four numbers. */
-.pa-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-.pa-kpis > div { display: grid; align-content: start; gap: 4px; padding: 18px 20px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); }
-.pa-kpis b { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
-.pa-kpis b small { font: 600 15px "Red Hat Text", sans-serif; color: var(--muted); letter-spacing: 0; }
-.pa-kpis span { color: var(--muted); font-size: 14px; font-weight: 600; }
-.pa-dots { display: flex; gap: 5px; margin-top: 6px; }
-.pa-dots i { width: 14px; height: 14px; border-radius: 4px; background: var(--pa-empty); }
-.pa-dots i.on { background: var(--pa-accent); }
-.pa-dots i.later { background: none; box-shadow: inset 0 0 0 1.5px var(--line); }
-
-/* The two columns. */
-.pa-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: 24px; align-items: start; }
-.pa-main, .pa-side { display: grid; gap: 24px; }
-.pa-card { padding: 22px 24px 24px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
-.pa-card h2 { margin: 0 0 14px; font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
-.pa-card h3 { margin: 20px 0 10px; font-size: 14px; font-weight: 700; color: var(--muted); }
-.pa-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: -4px 0 16px; color: var(--muted); font-size: 13px; font-weight: 600; }
-.pa-legend span { display: inline-flex; align-items: center; gap: 6px; }
-.pa-legend i { width: 12px; height: 12px; border-radius: 4px; }
-.pa-empty { margin: 0; color: var(--muted); }
-
-/* Subjects: where the child is, and how its skills stand. */
-.pa-subj { padding: 16px 0; border-top: 1px solid var(--line); }
-.pa-subj:last-child { padding-bottom: 0; }
-.pa-subj-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; }
-.pa-subj-top b { display: inline-flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 800; }
-.pa-subj-top b i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
-.pa-subj-top span { color: var(--muted); font-size: 14px; font-weight: 600; }
-/* The skills bar: a segment per state, 2 px of surface between them. */
-.pa-stack { display: flex; gap: 2px; height: 14px; }
-.pa-stack i { min-width: 4px; border-radius: 4px; cursor: default; }
-.pa-stack i:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-.pa-subj p { margin: 10px 0 0; font-size: 14px; }
-.pa-subj p span { color: var(--muted); font-weight: 600; margin-right: 4px; }
-.pa-subj p small { margin-left: 6px; color: var(--muted); font-size: 13px; }
-
-/* The last four weeks, a school week to a row. */
-.pa-cal { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-width: 300px; }
-.pa-cal small { text-align: center; color: var(--muted); font-size: 12px; font-weight: 700; }
-.pa-day { aspect-ratio: 1.5; border-radius: 6px; background: var(--pa-empty); }
-.pa-day.on { background: var(--pa-accent); }
-.pa-day.later { background: none; box-shadow: inset 0 0 0 1.5px var(--line); }
-.pa-day.today { box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--ink); }
-.pa-day:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-.pa-legend .pa-sw { width: 14px; height: 10px; border-radius: 3px; }
-.pa-sw.on { background: var(--pa-accent); } .pa-sw.off { background: var(--pa-empty); } .pa-sw.today { box-shadow: inset 0 0 0 2px var(--ink); }
-.pa-cal + .pa-legend { margin: 14px 0 0; }
-
-/* What happened lately. */
-.pa-feed { list-style: none; margin: 0; padding: 0; display: grid; }
-.pa-feed li { display: grid; grid-template-columns: 92px 10px 1fr; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
-.pa-feed li:first-child { border-top: 0; padding-top: 0; }
-.pa-feed time { color: var(--muted); font-size: 13px; font-weight: 600; }
-.pa-feed i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); align-self: center; }
-
-/* Suggestions: what to do and why, and a way into the app. */
-.pa-rec { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); --c: var(--pa-accent); }
-.pa-rec:first-of-type { border-top: 0; padding-top: 0; }
-.pa-rec > svg { width: 40px; height: 40px; padding: 9px; border-radius: 12px; background: color-mix(in srgb, var(--c) 12%, var(--panel)); stroke: var(--c); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.pa-rec > svg .f { fill: var(--c); stroke: none; }
-.pa-rec b { display: block; font-size: 15.5px; font-weight: 800; line-height: 1.3; }
-.pa-rec p { margin: 3px 0 10px; color: var(--muted); font-size: 14px; }
-.pa-rec button { padding: 7px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--page); color: var(--ink); font: 700 13px "Red Hat Text", sans-serif; cursor: pointer; }
-.pa-rec button:hover { border-color: var(--pa-accent); color: var(--pa-accent); }
-.pa-rec button:focus-visible { outline: 2px solid var(--pa-accent); outline-offset: 2px; }
-.pa-rec:first-of-type button { border-color: var(--pa-accent); background: var(--pa-accent); color: #fff; }
-
-/* Rewards. */
-.pa-rw { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.pa-rw > div { display: grid; justify-items: center; gap: 2px; padding: 14px 6px 12px; border-radius: 16px; background: var(--page); text-align: center; }
-.pa-rw img { width: 34px; height: 34px; }
-.pa-rw > div > i { font-style: normal; font-size: 30px; line-height: 34px; color: #f5b400; }
-.pa-rw b { font-size: 24px; font-weight: 800; line-height: 1.1; }
-.pa-rw span { color: var(--muted); font-size: 12.5px; font-weight: 600; }
-.pa-rw small { color: var(--muted); font-size: 11.5px; }
-.pa-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.pa-badges span { display: grid; justify-items: center; gap: 4px; font: 700 12.5px/1.25 "Red Hat Display", sans-serif; text-align: center; }
-.pa-badges img { width: 52px; height: 52px; }
-.pa-next { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; padding: 6px 0; }
-.pa-next img { width: 40px; height: 40px; filter: grayscale(1); opacity: .55; }
-.pa-next b { font-size: 14px; font-weight: 700; }
-.pa-next small { color: var(--muted); font-size: 12.5px; }
-.pa-bar { display: block; height: 6px; margin: 5px 0 3px; border-radius: 99px; background: var(--pa-empty); overflow: hidden; }
-.pa-bar i { display: block; height: 100%; border-radius: 99px; background: var(--pa-accent); }
-
-/* The tooltip for the calendar and the skills bars. */
-.pa-tip { position: fixed; z-index: 40; max-width: 260px; padding: 6px 10px; border-radius: 8px; background: var(--ink); color: var(--page); font: 600 13px/1.35 "Red Hat Text", sans-serif; pointer-events: none; box-shadow: 0 6px 18px rgba(0, 0, 0, .2); }
-.pa-tip[hidden] { display: none; }
-
-/* Narrow: one column. */
-@media (max-width: 900px) {
-  .pa { padding: 24px 16px 48px; }
-  .pa-grid { grid-template-columns: 1fr; }
-  .pa-kpis { grid-template-columns: repeat(2, 1fr); }
-  .pa-summary { font-size: 21px; }
-  .pa-head { grid-template-columns: auto 1fr; }
-  .pa-updated { display: none; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .pa > * { animation: pa-in 360ms cubic-bezier(.2, .8, .2, 1) both; }
-  .pa > :nth-child(2) { animation-delay: 40ms; } .pa > :nth-child(3) { animation-delay: 80ms; } .pa > :nth-child(4) { animation-delay: 120ms; }
-}
-@keyframes pa-in { from { opacity: 0; transform: translateY(8px); } }
+.pa-lab { display: block; width: 100%; height: 100%; border: 0; }
 
 /* ---------- The app's animations (anim-ui.js) ---------- */
 .an-over { position: absolute; inset: 0; z-index: 40; display: grid; place-items: center; border-radius: inherit; }
@@ -2239,7 +2181,7 @@ body.fbv .drawer, body.fbv .wrap, body.fbv .pickbtn, body.fbv .now, body.usv .dr
   <button class="tbtn listbtn" id="openList" type="button" title="Show the lesson list"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Lessons</button>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
-  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="What a parent sees: the pretend child's progress, suggestions and rewards">Parents</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
+  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="Ideas for the parents dashboard, each with the question it answers and the data it needs">Parents Lab</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
   <div class="fbk-bar" id="fbkBar" hidden>
     <button class="tbtn" id="fbkComment" type="button" aria-pressed="false" title="Leave a comment on a point or an area of this screen (c)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Comment</button>
     <div class="fbk-anchor"><button class="tbtn" id="fbkInbox" type="button" aria-expanded="false" aria-controls="fbkMenu" title="Open feedback"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 13l2-8h12l2 8v6H4zM4 13h5l1 2h4l1-2h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="fbk-badge" id="fbkCount" hidden></span></button>
@@ -2943,6 +2885,8 @@ function sizeOf(card) {
   // A sprint runs against the clock and starts again whole, so its card gives the time, not tasks.
   if (card.paused) return card.paused.kind === "drill" ? PAUSE_TXT[PL()].again(card.paused.minutes ?? 2) : PAUSE_TXT[PL()].left(card.paused.done, card.paused.total);
   if (card.kind === "drill") return PT().drillSize(2);
+  // A length chosen (practice a parent sent) sizes the session (buildSession, tasksForMinutes).
+  if (card.minutes) return PT().size(tasksForMinutes(card.minutes), card.minutes);
   const n = card.kind === "recaps" ? Math.min(card.skills.length, Math.floor(b.tasks / b.recapTasks)) * b.recapTasks : b.tasks;
   return PT().size(n, Math.max(2, Math.round(n * 0.4)));
 }
@@ -2977,7 +2921,7 @@ function renderPracticeHome() {
   scr.append(fab, appTabs("practice"));
   const pg = $(".app-page", scr); pg.addEventListener("scroll", () => fab.classList.toggle("mini", pg.scrollTop > 40), { passive: true });
   wireHeader(scr);
-  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); PR.assignedId = c.assigned ?? null; startSession({ kind: c.kind, skills: c.skills, minutes: c.minutes ?? (c.kind === "drill" ? 2 : null) }); });
   $("#prOwn").onclick = () => openMakeSheet();
   $("#prAllDr")?.addEventListener("click", () => renderDrills());
   scr.querySelectorAll(".dr-two [data-drill]").forEach((b) => b.onclick = () => renderDrillMap(b.dataset.drill));
@@ -3237,9 +3181,12 @@ function resumeSession() {
   if (p.kind === "drill" || !items.length) return startSession({ kind: p.kind, skills: p.skills, minutes: p.minutes });
   PR.last = {}; playSession({ kind: p.kind, skills: p.skills, mode: p.mode, items, seconds: p.seconds, minutes: p.minutes });
 }
-// The suggestions, with a paused session first while it is less than a week old.
+// The suggestions, with a paused session first while it is less than a week old, and before it
+// what a parent sent from the Parents view (parents-ui.js), the newest waiting one.
+const SENT_TXT = { de: "Von deinen Eltern", en: "From your grown-up" };
 function mySuggestions() {
-  const c = PR.child, p = c.paused, list = suggestions(c, PR.index);
+  const c = PR.child, p = c.paused, sent = [...(c.assigned ?? [])].reverse().find((a) => !a.done && a.skills.every((k) => PR.index.bySkill[k]));
+  const list = [...(sent ? [{ kind: sent.kind, skills: sent.skills, minutes: sent.minutes, assigned: sent.id, reason: { de: SENT_TXT.de, en: SENT_TXT.en } }] : []), ...suggestions(c, PR.index)].slice(0, 3);
   if (!p) return list;
   if (c.today - p.day > 7 || !p.skills.every((k) => PR.index.bySkill[k])) { c.paused = null; saveChild(); return list; }
   return [{ kind: p.kind, skills: p.skills, paused: p, reason: { de: PAUSE_TXT.de.reason, en: PAUSE_TXT.en.reason } }, ...list];
@@ -3258,7 +3205,11 @@ function practiceEnd() {
   const L = PT(), lg = PL(), items = PR.items, session = { ...PR.session, items };
   const res = items.map((_, i) => PR.res[i]);
   const sc = scoreSession(session, res);
-  const out = applySession(PR.child, session, res, true); PR.applied = true; saveChild();
+  const out = applySession(PR.child, session, res, true); PR.applied = true;
+  // Practice a parent sent: done, with its score, for the Parents view.
+  const sentA = PR.assignedId && PR.child.assigned?.find((a) => a.id === PR.assignedId);
+  if (sentA) { sentA.done = { day: PR.child.today, right: sc.right, total: sc.total }; PR.assignedId = null; }
+  saveChild();
   const { body, foot } = practiceFrame({});
   const better = Object.entries(sc.perSkill).filter(([, p]) => p.right).map(([k]) => canDoOf(k));
   const big = session.kind === "drill" ? (out.record ? L.record(sc.perMinute) : L.perMin(sc.perMinute ?? 0)) : L.rightOf(sc.right, sc.total);
@@ -3724,7 +3675,9 @@ function homePlan() {
 // What the child did today, read from its log: lessons finished, practice sessions finished.
 function today(c) {
   const t = (c.log ?? []).filter((e) => e.day === c.today);
-  return { lessons: t.filter((e) => /^lesson \d+ of \S+ finished/.test(e.text)).length, practice: t.filter((e) => /^\S+ session:/.test(e.text)).length };
+  // Right answers in today's practice, from the log's "12 of 14 right".
+  const right = t.reduce((n, e) => n + (+(/^\S+ session[^:]*: (\d+) of \d+ right/.exec(e.text)?.[1] ?? 0)), 0);
+  return { lessons: t.filter((e) => /^lesson \d+ of \S+ finished/.test(e.text)).length, practice: t.filter((e) => /^\S+ session:/.test(e.text)).length, right };
 }
 // A row that scrolls sideways fades out at the edge it can still scroll to, so a cut chip reads as "more".
 function scrollFades(scr) {
@@ -3900,7 +3853,10 @@ function renderHomeTab() {
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
-  const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
+  // Something done today: a card of its own in the done green, the mascot cheering, what was done,
+  // and a way to do more (Practice, or Study for lessons).
+  const DONE_TXT = { de: { right: (n) => `${n} richtig`, more: "Noch mehr üben", lessons: "Weiterlernen" }, en: { right: (n) => `${n} right`, more: "Practise more", lessons: "Keep learning" } }[PL()];
+  const doneRow = (text, sub, go) => `<div class="hm-done"><span><i>${TICK}</i><b>${esc(text)}</b></span><small>${esc(sub)}</small>${go ? `<button class="hm-done-go" data-done="${go}">${esc(go === "practice" ? DONE_TXT.more : DONE_TXT.lessons)}</button>` : ""}<img src="${A}mascot/end-${go === "practice" ? 1 : 3}.png" alt=""></div>`;
   // At most two practice suggestions, one under the other: the first with the mascot.
   // As the app's Recommended practice: a light card in the subject's colour, the whole card a button,
   // its title, what it is in a line or two, and the subject's object on the right.
@@ -3912,8 +3868,8 @@ function renderHomeTab() {
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<h3 class="pr-h hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</h3>${lesson}`);
-  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons)));
-  if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice)));
+  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
+  if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice"));
   else if (practiceHtml) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceHtml}`);
   const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
   const pct = (100 * got) / goal;
@@ -3932,11 +3888,12 @@ function renderHomeTab() {
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
   </div>`;
   scr.appendChild(appTabs("start"));
+  scr.querySelectorAll("[data-done]").forEach((b) => b.onclick = () => appTab(b.dataset.done));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
   scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
-  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); startSession({ kind: x.kind, skills: x.skills, minutes: x.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
 }
 
 /* ---------- Study: the track ---------- */
@@ -4036,13 +3993,15 @@ function renderTrack() {
     scr.querySelectorAll(".tr-stone").forEach((b) => b.classList.toggle("focus", +b.dataset.i === i));
     const done = lessonsDone(r.s), n = r.s.lessons.length, next = r.s.lessons[Math.min(done, n - 1)], locked = r.state === "locked", finished = r.state === "done";
     const label = locked ? K.locked : finished ? K.again : done ? K.goOn : K.start;
-    const row = (l, k) => `<li><button data-n="${l.n}" class="${k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
+    const W = WEAK_TXT[lg], weakAt = (l, k) => k < done && weakOf(r.s, l.n), firstWeak = r.s.lessons.find((l, k) => weakAt(l, k));
+    const row = (l, k) => `<li><button data-n="${l.n}" class="${weakAt(l, k) ? "weak" : k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${weakAt(l, k) ? "!" : k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
     // The lessons stay folded away until the child opens them.
     const shown = all ? r.s.lessons.map(row) : [];
     // One line for where the child is; the lessons open from the list button beside Start.
     tip.innerHTML = `<span class="tr-tt"><b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>${starsOf3(r.s.skill, "tr-tip-st")}</span>
-      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
+      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((l, k) => `<i class="${weakAt(l, k) ? "weak" : k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
         <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
+      ${firstWeak && !shown.length ? `<button class="tr-weak" data-n="${firstWeak.n}"><i>!</i><span>${esc(W.lesson(firstWeak.title[lg] ?? firstWeak.title.de))}</span></button>` : ""}
       ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
       <span class="tr-actions"><button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>
         <button class="tr-more" aria-expanded="${all}" aria-label="${esc(all ? K.showLess : K.showAll(n))}" title="${esc(all ? K.showLess : K.showAll(n))}">${LIST}</button></span>`;
@@ -4209,23 +4168,32 @@ function starsOf3(k, cls = "") {
 // and a button to play it again. The skill check covers every lesson, so the parts it found
 // tricky are named once, on the unit, under its "I can" line.
 const WEAK_TXT = {
-  de: { score: (r, t) => `${r} von ${t} gleich richtig`, tricky: "Knifflig", again: "Nochmal" },
-  en: { score: (r, t) => `${r} of ${t} right first time`, tricky: "Tricky", again: "Try again" },
+  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Noch ein Versuch.", again: "Nochmal", redo: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
+  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! One more go.", again: "Try again", redo: "Redo", lesson: (t) => `Try again: ${t}` },
 };
-const weakOf = (s, n) => { const sc = PR.child.scores?.[s.id]?.[n]; return sc && sc.right < sc.total ? sc : null; };
+// A lesson not mastered: its last check had a miss. A skill left at one star (practised) with all
+// its lessons done failed its skill check, in the last lesson, even when no score was kept.
+const weakOf = (s, n) => {
+  const sc = PR.child.scores?.[s.id]?.[n];
+  if (sc) return sc.right < sc.total ? sc : null;
+  const last = s.lessons.at(-1)?.n;
+  return n === last && PR.child.states[s.skill]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
+};
+// For the child: the score as dots, filled for each one right ("3 of 5" read out), or "Not quite yet".
+// For the child: how it went as one circle per question, a tick for each right ("3 of 5" read out).
+const weakText = (w, W) => w.total ? `<span class="ln-dots" role="img" aria-label="${esc(W.score(w.right, w.total))}">${Array.from({ length: w.total }, (_, i) => `<i class="${i < w.right ? "on" : ""}">${i < w.right ? "✓" : ""}</i>`).join("")}</span>` : esc(W.check);
+const REDO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
   const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length, W = WEAK_TXT[lg];
-  const tricky = s.lessons.flatMap((l) => weakOf(s, l.n)?.missed ?? []).map((id) => s.parts?.find((p) => p.id === id)?.what?.[lg]).filter(Boolean);
   const lessonRow = (l, i) => {
     const weak = i < done && weakOf(s, l.n);
     if (!weak) return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`;
-    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">!</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${esc(W.score(weak.right, weak.total))}</small></span><em>${esc(W.again)}</em></button></li>`;
+    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><img class="ln-mascot" src="${A}mascot/practise-2.png" alt=""><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span>${weakText(weak, W)}</span><em class="ln-redo">${REDO}${esc(W.redo)}</em></button></li>`;
   };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
       ${starsOf3(s.skill)}</summary>
     ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
-    ${tricky.length ? `<p class="ln-tricky"><b>${esc(W.tricky)}:</b> ${esc(tricky.join("; "))}</p>` : ""}
     <ol class="ln-lessons">${s.lessons.map(lessonRow).join("")}</ol></details>`;
 }
 // Called by the lesson end screen when the lesson was started from the app.
@@ -4445,7 +4413,9 @@ function loadDemo() {
   let last = null;
   for (const x of appSubjects()) {
     const sets = courseSets(x), n = Math.max(3, Math.round(sets.length / 3));
-    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, st.skill, STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`); });
+    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, st.skill, STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`);
+      // A skill left at one star: its skill check had misses on the first parts.
+      if (STATE[i % STATE.length] === "practised") ((c.scores ??= {})[st.id] = {})[st.lessons.length] = { right: 3, total: 5, missed: (st.parts ?? []).slice(0, 2).map((p) => p.id), day: c.today - 1 }; });
     const nx = sets[n];
     if (nx) { c.lessons[nx.id] = 1; setState(c, nx.skill, "learning"); logEvent(c, `lesson 1 of ${nx.id} finished`); last ??= { setId: nx.id, n: 1, day: c.today - 1 }; }
   }
@@ -4499,200 +4469,15 @@ function renderDrills() {
   scr.appendChild(appTabs("practice"));
 }
 
-/* ---------- Parents: the child's progress for a parent ----------
-   A view of its own beside App, Drawings and Task types. It reads the same
-   pretend child as the app (PR.child), so demo data, lessons played and the
-   time machine show here at once. Top to bottom: who and this week in a
-   sentence, four numbers, the subjects (where the child is, how its skills
-   stand), suggestions with a way into the app, rewards, the last four weeks
-   and what happened lately. Inlined after app-ui.js. */
-const PATXT = {
-  de: {
-    and: " und ", week: (n) => `${n}s Woche`, sub: (y, cur) => `${y} · ${cur}`, updated: "Stand heute",
-    played: (a, b) => `hat an ${a} von ${b} Schultagen dieser Woche gelernt`, none: "hat diese Woche noch nicht gelernt",
-    did: (l, s) => [l && `${l} ${l === 1 ? "Lektion" : "Lektionen"} geschafft`, s && `${s} ${s === 1 ? "Übungsrunde" : "Übungsrunden"} gespielt`].filter(Boolean).join(" und "),
-    strong: (x) => `${x} läuft gut.`, needs: (x) => `In ${x} lohnt sich ein bisschen Üben.`,
-    kDays: "Schultage gespielt", kLessons: "Lektionen diese Woche", kSessions: "Übungsrunden diese Woche", kSecure: "Fähigkeiten sicher",
-    ofN: (a, b) => `von ${b}`, subjects: "Fächer", unit: (k, n) => `Einheit ${k} von ${n}`, now: "Gerade dran", allDone: "Alles für dieses Jahr geschafft",
-    states: { remembered: "Behält es", can_do: "Kann es", practising: "Übt noch", learning: "Lernt gerade", not_started: "Noch nicht begonnen" },
-    skillsN: (n) => `${n} Fähigkeiten`, units: (a, b) => `${a} von ${b} Einheiten`,
-    recs: "Vorschläge für diese Woche", open: "In der App öffnen",
-    rRecapT: (n) => `${n} ${n === 1 ? "Fähigkeit" : "Fähigkeiten"} zum Auffrischen`, rRecapW: "Kurz wiederholen, damit es bleibt. Etwa 5 Minuten.",
-    rWeakT: (x) => `Gemeinsam üben: ${x}`, rWeakW: "Geübt, aber noch nicht sicher. Eine Runde mit Tipps hilft.",
-    rRefreshW: "War schon sicher und braucht eine Auffrischung.",
-    rNextT: (s) => `${s} voranbringen`, rNextW: (l) => `Als Nächstes: „${l}“. Hier ist am meisten zu tun.`,
-    rTodayT: "Heute noch nicht gelernt", rTodayW: (n) => n ? `Eine Lektion hält die Serie von ${n} Tagen.` : "Eine Lektion heute startet eine neue Serie.",
-    rStreakT: (name) => `Auf dem Weg zum Abzeichen ${name}`, rStreakW: (n) => `Noch ${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge.`,
-    rewards: "Belohnungen", streak: "Tage in Folge", best: (n) => `Bester Lauf: ${n}`, stars: "Sterne", badges: "Abzeichen", recent: "Zuletzt verdient", next: "Als Nächstes", noBadge: "Noch keins.",
-    month: "Die letzten vier Wochen", playedL: "Gespielt", missedL: "Nicht gespielt", todayL: "Heute", openL: "noch offen",
-    days: ["Mo", "Di", "Mi", "Do", "Fr"], dayFull: ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
-    cell: (d, l, s) => `${d}: ${l} ${l === 1 ? "Lektion" : "Lektionen"}, ${s} ${s === 1 ? "Übungsrunde" : "Übungsrunden"}`,
-    lately: "Zuletzt", today: "Heute", yesterday: "Gestern", nothing: "Noch nichts. Sobald gelernt wird, steht es hier.",
-    eLesson: (n, t) => `Lektion ${n} von „${t}“ geschafft`, eCheck: (ok) => ok ? "Test bestanden" : "Test noch nicht bestanden",
-    eSession: { mixed: "Gemischte Übungsrunde", drill: "Sprint", review: "Wiederholung", "catch-up": "Nachhol-Runde", skill: "Gezielt geübt", recaps: "Auffrischung" },
-    eSecure: (t) => `Jetzt sicher: ${t}`, eKept: (t) => `Behält es: ${t}`, left: "vorzeitig beendet",
-  },
-  en: {
-    and: " and ", week: (n) => `${n}'s week`, sub: (y, cur) => `${y} · ${cur}`, updated: "As of today",
-    played: (a, b) => `learnt on ${a} of ${b} school days this week`, none: "hasn't played yet this week",
-    did: (l, s) => [l && `finished ${l} ${l === 1 ? "lesson" : "lessons"}`, s && `played ${s} practice ${s === 1 ? "session" : "sessions"}`].filter(Boolean).join(" and "),
-    strong: (x) => `${x} is going well.`, needs: (x) => `${x} would benefit from a little practice.`,
-    kDays: "School days played", kLessons: "Lessons this week", kSessions: "Practice sessions this week", kSecure: "Skills secure",
-    ofN: (a, b) => `of ${b}`, subjects: "Subjects", unit: (k, n) => `Unit ${k} of ${n}`, now: "Working on", allDone: "Everything for this year done",
-    states: { remembered: "Remembers it", can_do: "Can do it", practising: "Still practising", learning: "Learning now", not_started: "Not started" },
-    skillsN: (n) => `${n} skills`, units: (a, b) => `${a} of ${b} units`,
-    recs: "Suggestions for this week", open: "Open in the app",
-    rRecapT: (n) => `${n} ${n === 1 ? "skill" : "skills"} to refresh`, rRecapW: "A short review so it sticks. About 5 minutes.",
-    rWeakT: (x) => `Practise together: ${x}`, rWeakW: "Practised but not secure yet. A session with hints helps.",
-    rRefreshW: "Was secure and needs a refresh.",
-    rNextT: (s) => `Move ${s} along`, rNextW: (l) => `Next up: “${l}”. This is where there's most to do.`,
-    rTodayT: "Not played yet today", rTodayW: (n) => n ? `One lesson keeps the ${n}-day streak going.` : "One lesson today starts a new streak.",
-    rStreakT: (name) => `On the way to the ${name} badge`, rStreakW: (n) => `${n} more school ${n === 1 ? "day" : "days"} in a row.`,
-    rewards: "Rewards", streak: "Days in a row", best: (n) => `Best run: ${n}`, stars: "Stars", badges: "Badges", recent: "Earned lately", next: "Up next", noBadge: "None yet.",
-    month: "The last four weeks", playedL: "Played", missedL: "Not played", todayL: "Today", openL: "still to play",
-    days: ["Mon", "Tue", "Wed", "Thu", "Fri"], dayFull: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    cell: (d, l, s) => `${d}: ${l} ${l === 1 ? "lesson" : "lessons"}, ${s} ${s === 1 ? "practice session" : "practice sessions"}`,
-    lately: "Lately", today: "Today", yesterday: "Yesterday", nothing: "Nothing yet. It shows here as soon as there's learning.",
-    eLesson: (n, t) => `Finished lesson ${n} of “${t}”`, eCheck: (ok) => ok ? "check passed" : "check not passed yet",
-    eSession: { mixed: "Mixed practice", drill: "Drill", review: "Review", "catch-up": "Catch-up session", skill: "Skill practice", recaps: "Refresh" },
-    eSecure: (t) => `Now secure: ${t}`, eKept: (t) => `Remembers: ${t}`, left: "left early",
-  },
-};
-const PA = () => PATXT[PL()];
-const CUR_NAME = { "de-DE": ["Deutschland", "Germany"], "en-GB": ["England", "England"] };
-const STATE_ORDER = ["remembered", "can_do", "practising", "learning", "not_started"];
-const bucket = (s) => (s === "practised" || s === "needs_refresh" ? "practising" : s ?? "not_started");
-// A subject's step for a skill state: the subject's colour, lighter as the skill is less far along.
-const STATE_MIX = { remembered: 100, can_do: 72, practising: 46, learning: 26 };
-const dayName = (d) => PA().dayFull[((d % 7) + 7) % 7];
-
+/* ---------- Parents Lab: ideas for the parents dashboard ----------
+   The Parents Lab tab shows pages/parents-lab (each component with the
+   parent's question it answers and the data it needs) in a frame, as the
+   Drawings and Task types tabs show theirs. Practice a parent sends reaches
+   the child through child.assigned (practice-ui.js, mySuggestions).
+   Inlined after app-ui.js. */
 function renderParents() {
-  const el = $("#parentsView"), c = appChild(), P = PA(), lg = PL(), T = AT(), subs = appSubjects();
-  const mon = c.today - (((c.today % 7) + 7) % 7), act = new Set(c.active ?? []);
-  const weekDays = Array.from({ length: 5 }, (_, i) => mon + i).filter((d) => d <= c.today);
-  const log = c.log ?? [], lessonRe = /^lesson (\d+) of (\S+) finished/, sessionRe = /^(\S+) session(, left early)?:/;
-  const on = (d) => ({ l: log.filter((e) => e.day === d && lessonRe.test(e.text)).length, s: log.filter((e) => e.day === d && sessionRe.test(e.text)).length });
-  const week = weekDays.reduce((a, d) => { const x = on(d); return { l: a.l + x.l, s: a.s + x.s }; }, { l: 0, s: 0 });
-  const played = weekDays.filter((d) => act.has(d)).length;
-  // The subjects: units done in the child's year, the skill states, the next lesson.
-  const subj = subs.map((x) => {
-    const sets = courseSets(x), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, next = nextIn(sets);
-    const counts = Object.fromEntries(STATE_ORDER.map((k) => [k, 0]));
-    for (const s of sets) counts[bucket(c.states[s.skill]?.state)]++;
-    const secure = counts.remembered + counts.can_do, tried = sets.length - counts.not_started;
-    return { x, name: SUBJ_NAME[c.curriculum][x] ?? x, colour: colourOf(x), sets, done, next, counts, secure, ratio: sets.length ? done / sets.length : 1, struggle: tried ? counts.practising / tried : 0 };
-  });
-  const secure = subj.reduce((n, s) => n + s.secure, 0), skills = subj.reduce((n, s) => n + s.sets.length, 0);
-  const best = [...subj].sort((a, b) => b.ratio - a.ratio)[0], weakest = [...subj].filter((s) => s.next).sort((a, b) => a.ratio - b.ratio)[0];
-  const struggling = [...subj].sort((a, b) => b.struggle - a.struggle).find((s) => s.struggle > 0.25);
-  const summary = `${c.name} ${played ? P.played(played, weekDays.length) : P.none}${played && (week.l || week.s) ? (week.l && week.s ? ", " : P.and) + P.did(week.l, week.s) : ""}. ${best && best.done ? P.strong(best.name) + " " : ""}${struggling && struggling !== best ? P.needs(struggling.name) : ""}`;
-
-  // Suggestions, most useful first, each opening the app on it.
-  const recs = [];
-  const due = recapsDue(c).filter((k) => PR.index.bySkill[k]);
-  if (due.length) recs.push({ icon: "recap", t: P.rRecapT(due.length), w: P.rRecapW, go: () => startSession({ kind: "recaps", skills: due }) });
-  const weak = Object.entries(c.states).filter(([k, s]) => PR.index.bySkill[k] && (s.state === "needs_refresh" || s.state === "practised")).sort(([, a]) => (a.state === "needs_refresh" ? -1 : 1))[0];
-  if (weak) recs.push({ icon: "together", t: P.rWeakT(setOfSkill(weak[0])?.title[lg] ?? canDoOf(weak[0])), w: weak[1].state === "needs_refresh" ? P.rRefreshW : P.rWeakW, go: () => startSession({ kind: "catch-up", skills: [weak[0]] }) });
-  if (!act.has(c.today) && c.today % 7 < 5) { const s = streak(c); recs.push({ icon: "today", t: P.rTodayT, w: P.rTodayW(s.current), go: null, tab: "start" }); }
-  if (weakest?.next) { const l = weakest.next.lessons[lessonsDone(weakest.next)]; recs.push({ icon: "next", colour: weakest.colour, t: P.rNextT(weakest.name), w: P.rNextW(l.title[lg] ?? l.title.de), lesson: [weakest.next.id, l.n] }); }
-  const s = streak(c);
-  if (s.next && recs.length < 4) recs.push({ icon: "streak", t: P.rStreakT(streakName(s.next[1])), w: P.rStreakW(s.next[0] - s.current), go: null, tab: "me" });
-
-  // Rewards.
-  const all = myBadges(), seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
-  const coming = nextBadges(all, 2);
-  // Four school weeks, Monday to Friday, ending with this one.
-  const weeks = Array.from({ length: 4 }, (_, w) => mon - (3 - w) * 7);
-  const cell = (d) => {
-    const x = on(d), label = `${dayName(d)}${d === c.today ? ` (${P.todayL})` : ""}`, tip = d > c.today ? label : act.has(d) ? P.cell(label, x.l, x.s) : `${label}: ${d === c.today ? P.openL : P.missedL}`;
-    return `<i class="pa-day${act.has(d) ? " on" : d < c.today ? " off" : d > c.today ? " later" : ""}${d === c.today ? " today" : ""}" data-tip="${esc(tip)}" tabindex="0" aria-label="${esc(tip)}"></i>`;
-  };
-  // What happened lately, newest first, in words.
-  const lately = [];
-  for (const e of [...log].reverse()) {
-    if (lately.length >= 8) break;
-    let m, text = null, colour = null;
-    if ((m = lessonRe.exec(e.text))) { const st = D.sets.find((x) => x.id === m[2]); if (!st) continue; colour = colourOf(subjOf(st).split(".").pop()); text = P.eLesson(m[1], st.title[lg] ?? st.title.de) + (/skill check passed/.test(e.text) ? `, ${P.eCheck(true)}` : /skill check not passed/.test(e.text) ? `, ${P.eCheck(false)}` : ""); }
-    else if ((m = sessionRe.exec(e.text))) text = (P.eSession[m[1]] ?? m[1]) + (m[2] ? `, ${P.left}` : "");
-    else if ((m = /^(\S+): \S+ → (can_do|remembered)$/.exec(e.text)) && PR.index.bySkill[m[1]]) { text = (m[2] === "remembered" ? P.eKept : P.eSecure)(setOfSkill(m[1])?.title[lg] ?? canDoOf(m[1])); colour = colourOf(subjOfSkill(m[1])); }
-    if (text) lately.push({ day: e.day, text, colour });
-  }
-  const when = (d) => d === c.today ? P.today : d === c.today - 1 ? P.yesterday : dayName(d);
-  const ICON = {
-    recap: '<path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/>',
-    together: '<circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19c.6-3 2.6-5 5-5s4.4 2 5 5M13.5 19c.4-2.2 1.6-3.6 3-3.6s2.6 1.4 3 3.6"/>',
-    today: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/><circle cx="12" cy="15" r="1.5" class="f"/>',
-    next: '<path d="M5 12h14M13 6l6 6-6 6"/>',
-    streak: '<path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"/>',
-  };
-  const bar = (r) => STATE_ORDER.filter((k) => r.counts[k]).map((k) => `<i style="flex:${r.counts[k]};background:${k === "not_started" ? "var(--pa-empty)" : `color-mix(in srgb, ${r.colour} ${STATE_MIX[k]}%, var(--panel))`}" data-tip="${esc(`${r.name}: ${P.states[k]}, ${r.counts[k]}`)}" tabindex="0" aria-label="${esc(`${P.states[k]}: ${r.counts[k]}`)}"></i>`).join("");
-
-  el.innerHTML = `<div class="pa">
-    <header class="pa-head">
-      ${avatar(c, "lg")}
-      <div><h1>${esc(P.week(c.name))}</h1><p>${esc(P.sub(yearName(c.year), CUR_NAME[c.curriculum][lg === "de" ? 0 : 1]))}</p></div>
-      <span class="pa-updated">${esc(P.updated)}</span>
-    </header>
-    <p class="pa-summary">${esc(summary)}</p>
-    <section class="pa-kpis">
-      <div><b>${played}<small> ${esc(P.ofN(played, 5))}</small></b><span>${esc(P.kDays)}</span><span class="pa-dots">${Array.from({ length: 5 }, (_, i) => `<i class="${act.has(mon + i) ? "on" : mon + i > c.today ? "later" : ""}"></i>`).join("")}</span></div>
-      <div><b>${week.l}</b><span>${esc(P.kLessons)}</span></div>
-      <div><b>${week.s}</b><span>${esc(P.kSessions)}</span></div>
-      <div><b>${secure}<small> ${esc(P.ofN(secure, skills))}</small></b><span>${esc(P.kSecure)}</span></div>
-    </section>
-    <div class="pa-grid">
-      <div class="pa-main">
-        <section class="pa-card">
-          <h2>${esc(P.subjects)}</h2>
-          <div class="pa-legend">${STATE_ORDER.map((k, i) => `<span><i style="background:${k === "not_started" ? "var(--pa-empty)" : `color-mix(in srgb, var(--ink) ${[85, 62, 40, 22][i]}%, var(--panel))`}"></i>${esc(P.states[k])}</span>`).join("")}</div>
-          ${subj.map((r) => `<div class="pa-subj" style="--c:${r.colour}">
-            <div class="pa-subj-top"><b><i></i>${esc(r.name)}</b><span>${esc(P.units(r.done, r.sets.length))}</span></div>
-            <div class="pa-stack" role="img" aria-label="${esc(`${r.name}: ${STATE_ORDER.map((k) => `${P.states[k]} ${r.counts[k]}`).join(", ")}`)}">${bar(r)}</div>
-            <p>${r.next ? `<span>${esc(P.now)}</span> ${esc(r.next.title[lg] ?? r.next.title.de)} <small>${esc(P.unit(r.sets.indexOf(r.next) + 1, r.sets.length))}</small>` : esc(P.allDone)}</p>
-          </div>`).join("")}
-        </section>
-        <section class="pa-card">
-          <h2>${esc(P.month)}</h2>
-          <div class="pa-cal">${P.days.map((d) => `<small>${esc(d)}</small>`).join("")}
-            ${weeks.map((m) => Array.from({ length: 5 }, (_, i) => cell(m + i)).join("")).join("")}</div>
-          <div class="pa-legend"><span><i class="pa-sw on"></i>${esc(P.playedL)}</span><span><i class="pa-sw off"></i>${esc(P.missedL)}</span><span><i class="pa-sw today"></i>${esc(P.todayL)}</span></div>
-        </section>
-        <section class="pa-card">
-          <h2>${esc(P.lately)}</h2>
-          ${lately.length ? `<ol class="pa-feed">${lately.map((e) => `<li><time>${esc(when(e.day))}</time><i style="--c:${e.colour ?? "var(--muted)"}"></i><span>${esc(e.text)}</span></li>`).join("")}</ol>` : `<p class="pa-empty">${esc(P.nothing)}</p>`}
-        </section>
-      </div>
-      <aside class="pa-side">
-        <section class="pa-card pa-recs">
-          <h2>${esc(P.recs)}</h2>
-          ${recs.slice(0, 4).map((r, i) => `<div class="pa-rec"${r.colour ? ` style="--c:${r.colour}"` : ""}><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[r.icon]}</svg><div><b>${esc(r.t)}</b><p>${esc(r.w)}</p><button data-rec="${i}">${esc(P.open)}</button></div></div>`).join("")}
-        </section>
-        <section class="pa-card pa-rewards">
-          <h2>${esc(P.rewards)}</h2>
-          <div class="pa-rw">
-            <div><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b><span>${esc(P.streak)}</span><small>${esc(P.best(s.best))}</small></div>
-            <div><i>★</i><b>${allStars(c)}</b><span>${esc(P.stars)}</span></div>
-            <div><img src="${A}badges/legend.svg" alt=""><b>${got.length}</b><span>${esc(P.badges)}</span></div>
-          </div>
-          <h3>${esc(P.recent)}</h3>
-          ${got.length ? `<div class="pa-badges">${got.slice(0, 3).map((b) => `<span><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt="">${esc(badgeName(b.id))}</span>`).join("")}</div>` : `<p class="pa-empty">${esc(P.noBadge)}</p>`}
-          <h3>${esc(P.next)}</h3>
-          ${coming.map((b) => `<div class="pa-next"><img src="${A}badges/${b.id}.svg" alt=""><div><b>${esc(badgeName(b.id))}</b><i class="pa-bar"><i style="width:${b.need ? (100 * b.have) / b.need : 0}%"></i></i><small>${esc(T.ofN(b.have ?? 0, b.need ?? 1))}</small></div></div>`).join("")}
-        </section>
-      </aside>
-    </div>
-  </div><div class="pa-tip" role="tooltip" hidden></div>`;
-  // Each suggestion opens the app on it.
-  el.querySelectorAll("[data-rec]").forEach((b) => b.onclick = () => {
-    const r = recs[+b.dataset.rec];
-    if (r.lesson) { setView("lessons"); appTab("study"); startLesson(...r.lesson); return; }
-    setView("practice"); appTab(r.tab ?? "practice"); r.go?.();
-  });
-  // One tooltip for every mark: the calendar's days and the skill bars.
-  const tip = $(".pa-tip", el);
-  const show = (t) => { const r = t.getBoundingClientRect(); tip.textContent = t.dataset.tip; tip.hidden = false; const w = tip.offsetWidth; tip.style.left = `${Math.min(innerWidth - w - 8, Math.max(8, r.left + r.width / 2 - w / 2))}px`; tip.style.top = `${r.top - tip.offsetHeight - 8}px`; };
-  el.querySelectorAll("[data-tip]").forEach((t) => { t.onmouseenter = t.onfocus = () => show(t); t.onmouseleave = t.onblur = () => (tip.hidden = true); });
-  el.onscroll = () => (tip.hidden = true);
+  const el = $("#parentsView");
+  if (!el.querySelector("iframe")) el.innerHTML = `<iframe class="pa-lab" src="../parents-lab/index.html" title="Parents Lab"></iframe>`;
 }
 
 /* ---------- The app's animations and sounds (ist-schoolido, develop) ----------
@@ -4710,7 +4495,7 @@ const SFX_VOL = { "option-picked": 0.35, "card-lands": 0.6, "piece-locked": 0.8,
 const sfxPlayers = {};
 // A sound effect, when Sound effects is on (Settings); each has its own player, so a tap never cuts off a cheer.
 function sfx(name) {
-  if (!SFX_ON()) return;
+  if (!SFX_ON() || document.body.classList.contains("parents")) return;
   const a = (sfxPlayers[name] ??= Object.assign(new Audio(`${ANIM}sfx/${name}.mp3`), { volume: SFX_VOL[name] ?? 1 }));
   a.currentTime = 0; a.play().catch(() => {});
 }
@@ -5648,6 +5433,8 @@ function play(srcs, done, btn) {
   setOwner(btn ?? null);
   const next = () => {
     if (tok !== qToken) return;
+    // The Parents view is for a grown-up reading: nothing the app says behind it is heard.
+    if (document.body.classList.contains("parents")) { queue = []; return; }
     if (!queue.length) { document.querySelectorAll(".spk.playing").forEach((b) => b.classList.remove("playing")); setOwner(null); if (onQueueEnd) onQueueEnd(); return; }
     player.src = A + queue.shift();
     player.onended = () => setTimeout(next, 250);
@@ -5920,10 +5707,11 @@ function clock(o) {
   for (let i = 0; i < 60; i++) if (i % 5) s += `<circle cx="${c + 74 * Math.cos(ang(i / 60))}" cy="${c + 74 * Math.sin(ang(i / 60))}" r="1.6" fill="#2b0f45"/>`;
   const m = o.minute ?? 0, h = ((o.hour ?? 12) % 12) + m / 60;
   // clock_hands_drag: round grips on the hand ends show they can be moved.
-  const grip = (f, len, col) => o._drag ? `<circle cx="${c + len * Math.cos(ang(f))}" cy="${c + len * Math.sin(ang(f))}" r="7" fill="${col}" stroke="#fff" stroke-width="2"/>` : "";
-  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + grip(h / 12, 34, "#2b0f45") + grip(m / 60, 50, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
+  // The hand being dragged (_active "h" or "m") shows a bigger grip.
+  const grip = (f, len, col, k) => o._drag ? `<circle cx="${c + len * Math.cos(ang(f))}" cy="${c + len * Math.sin(ang(f))}" r="${o._active === k ? 11 : 7}" fill="${col}" stroke="#fff" stroke-width="2"/>` : "";
+  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + grip(h / 12, 34, "#2b0f45", "h") + grip(m / 60, 50, "#8e3bd1", "m") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
   const dig = o.digital ? `<div style="font:700 26px Andika,sans-serif;text-align:center">${esc(String(o.hour))}:${String(m).padStart(2, "0")}</div>` : "";
-  return `<div><svg viewBox="0 0 180 180" width="${o._drag ? 220 : 160}" height="${o._drag ? 220 : 160}" ${o._drag ? 'style="touch-action:none;cursor:grab"' : ""}>${s}</svg>${dig}</div>`;
+  return `<div><svg viewBox="0 0 180 180" width="${o._drag ? 220 : 160}" height="${o._drag ? 220 : 160}" ${o._drag ? `style="touch-action:none;cursor:${o._active ? "grabbing" : "grab"}"` : ""}>${s}</svg>${dig}</div>`;
 }
 function numberWall(rows) {
   const n = rows[0].length, w = 66, h = 44, W = n * w + 8, H = rows.length * h + 8;
@@ -6982,22 +6770,27 @@ const TYPES = {
     const btn = nextBtn(foot, UI.check, () => { const ok = pick[0] === t.answer[0] && pick[1] === t.answer[1]; answer(ok, pick.join(","), () => { pick = [...t.answer]; draw(); }); if (!ok && !st.over) setTimeout(() => { pick = null; draw(); btn.disabled = true; }, 900); });
     btn.disabled = true; draw();
   },
-  // Drag the hands to a time; answer "h:mm". The minute hand snaps to `step`
-  // minutes (5 if left out), the hour hand to whole hours and sits between
-  // hours as the minutes go on, as on a real clock.
+  // Drag the hands to a time; answer "h:mm". The time is kept in minutes on a 12-hour face, so
+  // the hands turn together as on a real clock: the minute hand dragged past 12 moves the hour
+  // on, the hour hand dragged turns the minutes too. A hand is grabbed where the finger lands
+  // (the nearer hand) and turns by as much as the finger turns around the centre, smoothly;
+  // on letting go the minutes snap to `step` (5 if left out).
   clock_hands_drag({ t, body, foot, vis, answer, st }) {
-    const step = t.step ?? 5; let h = t.show?.hour ?? 12, m = t.show?.minute ?? 0, which = null, moved = false;
+    const step = t.step ?? 5, start = ((t.show?.hour ?? 12) % 12) * 60 + (t.show?.minute ?? 0);
+    let T = start, which = null, last = 0, moved = false;
+    const hm = () => { const s_ = ((Math.round(T) % 720) + 720) % 720; return [Math.floor(s_ / 60) || 12, s_ % 60]; };
     const n = document.createElement("div"); n.className = "note"; n.textContent = UI.hands; body.appendChild(n);
-    const draw = () => { vis.innerHTML = clock({ ...(t.show ?? {}), hour: h, minute: m, digital: false, _drag: true }); };
+    const draw = () => { const s_ = ((T % 720) + 720) % 720; vis.innerHTML = clock({ ...(t.show ?? {}), hour: Math.floor(s_ / 60) || 12, minute: s_ % 60, digital: false, _drag: true, _active: which }); };
     const frac = (e) => { const b = vis.querySelector("svg").getBoundingClientRect(), x = e.clientX - b.left - b.width / 2, y = e.clientY - b.top - b.height / 2; return ((Math.atan2(y, x) + Math.PI / 2) / (2 * Math.PI) + 1) % 1; };
     const near = (a, b) => Math.min(Math.abs(a - b), 1 - Math.abs(a - b));
-    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; const f = frac(e); which = near(f, m / 60) <= near(f, ((h % 12) + m / 60) / 12) ? "m" : "h"; vis.setPointerCapture(e.pointerId); vis.onpointermove(e); };
-    vis.onpointermove = (e) => { if (!which) return; const f = frac(e);
-      if (which === "m") m = (Math.round((f * 60) / step) * step) % 60; else { const x = Math.round(f * 12 - m / 60); h = ((x % 12) + 12) % 12 || 12; }
-      moved = true; btn.disabled = false; draw(); };
-    vis.onpointerup = vis.onpointercancel = () => { which = null; };
+    const turn = (f) => { let d = f - last; if (d > 0.5) d -= 1; if (d < -0.5) d += 1; last = f; return d; };
+    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; e.preventDefault();
+      const f = frac(e), s_ = ((T % 720) + 720) % 720; which = near(f, (s_ % 60) / 60) <= near(f, s_ / 720) ? "m" : "h"; last = f;
+      vis.setPointerCapture(e.pointerId); draw(); };
+    vis.onpointermove = (e) => { if (!which) return; const d = turn(frac(e)); T += which === "m" ? d * 60 : d * 720; moved = true; btn.disabled = false; draw(); };
+    vis.onpointerup = vis.onpointercancel = () => { if (!which) return; which = null; T = Math.round(T / step) * step; draw(); };
     const [ah, am] = String(t.answer).split(":").map(Number);
-    const btn = nextBtn(foot, UI.check, () => { const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { h = ah % 12 || 12; m = am; draw(); }); if (!ok && !st.over) setTimeout(() => { h = t.show?.hour ?? 12; m = t.show?.minute ?? 0; draw(); }, 900); });
+    const btn = nextBtn(foot, UI.check, () => { const [h, m] = hm(); const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { T = (ah % 12) * 60 + am; draw(); }); if (!ok && !st.over) setTimeout(() => { T = start; draw(); }, 900); });
     btn.disabled = !moved; draw();
   },
   highlight_in_text({ t, body, foot, vis, answer, st }) {
