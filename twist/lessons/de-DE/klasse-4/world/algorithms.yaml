@@ -1,0 +1,623 @@
+# Lesson set: Sachunterricht, Klasse 4. Hand-authored draft.
+id: de-DE.world.algorithms
+skill: world.technology.algorithms
+curriculum: de-DE
+language: de
+title:
+  de: Programmieren mit Befehlen
+  en: Programming with commands
+summary: >
+  A first program, without a computer language. The story: in the
+  Computer-AG Lina and Ben program Flitz, a small floor robot that drives
+  across a squared mat (drawn as a grid: S is where Flitz starts, Z the
+  goal, brown squares are boxes). Flitz cannot think; it does exactly what
+  each command says, one after the other. Lesson 1 teaches commands of the
+  form "3 nach rechts", a program as a sequence of commands, why the order
+  matters and why a command must be exact; the child orders command cards,
+  follows a program with a finger and says where Flitz lands. Lesson 2
+  widens it to algorithms in everyday life (a recipe, planting a flower),
+  devices that run on programs, and finding and fixing a mistake in a
+  program (test, find the wrong command, change it, test again). It ends
+  with the skill check. Commands use absolute directions (rechts, links,
+  oben, unten) on the drawn grid; a block-code editor and a moving robot
+  are not built yet, so the child works with ordering cards.
+metadata:
+  year: klasse-4
+  topic: { de: Technik verändert die Welt, en: Technology changes the world }
+  ages: [8-10]
+  lesson_minutes: 14
+  builds_on: [world.technology.computer-parts]
+  also_practises: []
+  vocabulary: { de: [Befehl, Programm, programmieren, Reihenfolge, Roboter, Algorithmus, Anleitung, Fehler, testen, genau, ausführen] }
+  forms: [text, audio, drawn, picture]
+  drawn: [grid]
+  facets: []
+  parts:
+    - { id: sequence, what: { de: "eine Folge von Befehlen bauen, mit der Flitz das Ziel erreicht", en: "building a sequence of commands that gets Flitz to the goal" } }
+    - { id: trace, what: { de: "ein Programm Befehl für Befehl verfolgen und sagen, wo Flitz ankommt", en: "following a program command by command and saying where Flitz ends up" } }
+    - { id: debug, what: { de: "einen Fehler im Programm finden und verbessern", en: "finding and fixing a mistake in a program" } }
+    - { id: concept, what: { de: "erklären, was Befehl, Programm und Algorithmus bedeuten und warum Befehle genau sein müssen", en: "explaining what a command, a program and an algorithm are and why commands must be exact" } }
+  misconceptions:
+    - id: robot-thinks
+      what: Thinks the robot or computer knows the goal by itself, or notices and corrects a wrong command
+      addressed: "lesson 1 opens with the guess whether Flitz finds the way alone; l1-f5, l2-f3, l2-n3 and l2-c19 test it"
+    - id: order-irrelevant
+      what: Thinks the same commands in any order give the same result
+      addressed: "lesson 1 Learn shows Flitz bumping into a box when the two commands swap; l1-f2, l1-n4, l2-c13 ask for the order"
+    - id: vague-command
+      what: Thinks a command like "fahr ein bisschen weiter" is enough for a robot
+      addressed: "lesson 1 Learn sets exact commands against vague ones; l1-f5, l2-f4, l2-c18 sort them"
+  twist_reuse: []
+  status: draft
+  version: 1
+  authored: 2026-10-25
+
+lessons:
+  - n: 1
+    title: { de: "Befehle für Flitz", en: "Commands for Flitz" }
+    goal:
+      de: "Schreib Flitz Befehle, damit er zum Ziel fährt. Zum Beispiel: drei nach oben, dann drei nach rechts."
+      en: "Write commands for Flitz so that he drives to the goal. For example: three up, then three to the right."
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: earlier-skills
+        tasks:
+          - id: l1-w1
+            type: multiple_choice
+            text: "Mit welchem Gerät gibst du etwas in den Computer ein?"
+            options: ["mit der Tastatur", "mit dem Bildschirm", "mit dem Lautsprecher"]
+            answer: "mit der Tastatur"
+            difficulty: easy
+          - id: l1-w2
+            type: true_false
+            text: "Der Prozessor im Computer verarbeitet, was du eingibst. Stimmt das?"
+            answer: true
+            difficulty: easy
+
+      - activity: learn
+        mode: worked-examples
+        screens:
+          - text: "Das ist Flitz, ein kleiner Roboter. Er steht auf S und soll zum Ziel Z.\n\nFindet Flitz den Weg allein?"
+            say: "In der Computer-AG haben Lina und Ben einen kleinen Roboter. Er heißt Flitz und fährt über eine Matte mit Kästchen. Flitz steht auf dem S und soll zum Ziel, dem Z. Was glaubst du: Findet Flitz den Weg ganz allein?"
+            show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 1, yellow], [4, 1, green]], labels: [[0, 1, "S"], [4, 1, "Z"]] }
+          - text: "Nein! Flitz macht nur, was man ihm sagt.\n\nBefehl: 4 nach rechts"
+            say: "Nein! Flitz kann nicht denken. Er macht nur, was man ihm sagt. So eine Anweisung heißt Befehl. Der Befehl heißt hier: vier nach rechts. Dann fährt Flitz vier Kästchen nach rechts und steht genau auf dem Ziel."
+            show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 1, yellow], [4, 1, green]], labels: [[0, 1, "S"], [4, 1, "Z"]] }
+          - text: "Ein Befehl sagt: wie viele Kästchen und in welche Richtung.\nRichtungen: nach rechts, nach links, nach oben, nach unten"
+            say: "Jeder Befehl sagt zwei Dinge: wie viele Kästchen Flitz fährt und in welche Richtung. Die Richtungen sind: nach rechts, nach links, nach oben und nach unten. Oben heißt: zum oberen Rand der Matte."
+          - text: "Programm:\n1. 3 nach oben\n2. 3 nach rechts"
+            say: "Hier stehen Kisten im Weg, die braunen Kästchen. Flitz braucht zwei Befehle. Zuerst drei nach oben, dann drei nach rechts. Mehrere Befehle hintereinander nennt man ein Programm. Wer ein Programm schreibt, programmiert."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow], [3, 0, green], [1, 3, brown], [2, 3, brown]], labels: [[0, 3, "S"], [3, 0, "Z"]] }
+          - text: "Die Reihenfolge ist wichtig!\n3 nach rechts zuerst: Flitz fährt gegen die Kiste."
+            say: "Flitz führt die Befehle genau der Reihe nach aus. Was passiert, wenn Ben die Befehle tauscht und zuerst drei nach rechts schreibt? Bums! Flitz fährt gegen die Kiste. Die gleichen Befehle in einer anderen Reihenfolge ergeben einen anderen Weg."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow], [3, 0, green], [1, 3, brown], [2, 3, brown]], labels: [[0, 3, "S"], [3, 0, "Z"]] }
+          - text: "Genau: „2 nach unten“\nUngenau: „Fahr ein bisschen runter“"
+            say: "Befehle müssen genau sein. Zwei nach unten kann Flitz ausführen. Mit fahr ein bisschen runter kann er nichts anfangen. Wie viel ist ein bisschen? Das weiß ein Roboter nicht."
+
+      - activity: practise
+        setting: in-context
+        stages:
+          - support: full
+            tasks:
+              - id: l1-f1
+                type: multiple_choice
+                text: "Welcher Befehl bringt Flitz von S zum Ziel Z?"
+                show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 0, yellow], [3, 0, green]], labels: [[0, 0, "S"], [3, 0, "Z"]] }
+                options: ["3 nach rechts", "4 nach rechts", "3 nach unten"]
+                answer: "3 nach rechts"
+                hints:
+                  - "Schau, in welche Richtung das Ziel liegt."
+                  - "Zähl die Kästchen von S bis Z. Das S selbst zählst du nicht mit."
+                  - "Das Ziel liegt 3 Kästchen weiter rechts."
+                difficulty: easy
+              - id: l1-f2
+                type: ordering
+                text: "Bring die Befehle in die richtige Reihenfolge. Flitz darf nicht gegen die Kiste fahren."
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow], [2, 3, green], [1, 0, brown]], labels: [[0, 0, "S"], [2, 3, "Z"]] }
+                options: ["2 nach rechts", "3 nach unten"]
+                slot_count: 2
+                answer: ["3 nach unten", "2 nach rechts"]
+                hints:
+                  - "Probier beide Reihenfolgen mit dem Finger aus."
+                  - "Rechts neben dem S steht eine Kiste. Also kann Flitz nicht zuerst nach rechts."
+                  - "Zuerst 3 nach unten, dann 2 nach rechts."
+              - id: l1-f3
+                type: true_false
+                text: "Lina schreibt: 2 nach oben, dann 4 nach rechts.\n\nKommt Flitz damit ans Ziel?"
+                show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 3, yellow], [4, 1, green]], labels: [[0, 3, "S"], [4, 1, "Z"]] }
+                answer: true
+                hints:
+                  - "Fahr mit dem Finger mit, Befehl für Befehl."
+                  - "Nach 2 nach oben steht Flitz in der Reihe des Ziels."
+                  - "Ja, nach 4 nach rechts steht er auf Z."
+              - id: l1-f4
+                type: multiple_choice
+                text: "Programm: 3 nach rechts, dann 2 nach oben.\n\nWo kommt Flitz an: A, B oder C?"
+                show: { drawn: grid, cols: 5, rows: 5, cells: [[0, 4, yellow]], labels: [[0, 4, "S"], [3, 2, "A"], [2, 3, "B"], [2, 1, "C"]] }
+                options: ["A", "B", "C"]
+                answer: "A"
+                feedback:
+                  C: "Bei C wäre Flitz 2 nach rechts und 3 nach oben gefahren. Lies die Zahlen noch einmal genau."
+                hints:
+                  - "Mach zuerst den ersten Befehl, dann den zweiten."
+                  - "Nach 3 nach rechts steht Flitz unten in der vierten Spalte."
+                  - "Von dort 2 nach oben: Flitz steht auf A."
+              - id: l1-f5
+                type: sorting
+                text: "Kann Flitz diesen Befehl genau ausführen? Sortiere."
+                bins:
+                  - { id: yes, show: { text: "genauer Befehl" }, say: "genauer Befehl" }
+                  - { id: no, show: { text: "ungenauer Befehl" }, say: "ungenauer Befehl" }
+                options:
+                  - { text: "2 nach rechts", bin: yes }
+                  - { text: "1 nach unten", bin: yes }
+                  - { text: "Fahr irgendwohin!", bin: no }
+                  - { text: "Fahr ein bisschen nach oben.", bin: no }
+                hints:
+                  - "Ein genauer Befehl sagt, wie viele Kästchen und in welche Richtung."
+                  - "Bei „ein bisschen“ und „irgendwohin“ fehlt eine Zahl oder eine Richtung."
+                  - "Die Befehle mit Zahl und Richtung sind genau, die anderen nicht."
+              - id: l1-f6
+                type: fill_in_blank
+                text: "Welche Zahlen fehlen, damit Flitz ans Ziel kommt?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow], [3, 2, green]], labels: [[0, 0, "S"], [3, 2, "Z"]] }
+                frame: "_ nach rechts, dann _ nach unten"
+                options: ["1", "2", "3", "4"]
+                answer: ["3", "2"]
+                hints:
+                  - "Zähl zuerst die Kästchen nach rechts, dann die nach unten."
+                  - "Fahr mit dem Finger nach rechts, bis du über dem Z bist."
+                  - "3 nach rechts, dann 2 nach unten."
+
+          - support: some
+            tasks:
+              - id: l1-s1
+                type: ordering
+                text: "Bring die drei Befehle in die richtige Reihenfolge, um die Kisten herum."
+                show: { drawn: grid, cols: 5, rows: 5, cells: [[0, 4, yellow], [4, 0, green], [1, 4, brown], [0, 2, brown]], labels: [[0, 4, "S"], [4, 0, "Z"]] }
+                options: ["4 nach rechts", "3 nach oben", "1 nach oben"]
+                slot_count: 3
+                answer: ["1 nach oben", "4 nach rechts", "3 nach oben"]
+                hints: ["Rechts neben dem S und zwei Kästchen über dem S stehen Kisten. Welcher Befehl passt als erster?"]
+              - id: l1-s2
+                type: true_false
+                text: "Ben schreibt: 3 nach rechts, dann 1 nach unten.\n\nKommt Flitz damit ans Ziel?"
+                show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, yellow], [2, 1, green]], labels: [[0, 0, "S"], [2, 1, "Z"]] }
+                answer: false
+                hints: ["Fahr mit dem Finger mit. Wie viele Kästchen nach rechts liegt das Ziel wirklich?"]
+              - id: l1-s3
+                type: multiple_choice
+                text: "Was ist ein Programm?"
+                options: ["mehrere Befehle, die der Reihe nach ausgeführt werden", "ein Teil vom Bildschirm", "ein Roboter, der selbst denken kann"]
+                answer: "mehrere Befehle, die der Reihe nach ausgeführt werden"
+                hints: ["Lina und Ben schreiben für Flitz ein Programm aus mehreren Befehlen."]
+              - id: l1-s4
+                type: text_input
+                text: "Flitz braucht nur einen Befehl. Wie viele Kästchen muss er nach rechts fahren?"
+                show: { drawn: grid, cols: 6, rows: 2, cells: [[0, 0, yellow], [5, 0, green]], labels: [[0, 0, "S"], [5, 0, "Z"]] }
+                answer: "5"
+                hints: ["Zähl die Kästchen nach dem S bis zum Z, das Z zählt mit."]
+              - id: l1-s5
+                type: matching
+                text: "Was bedeutet das Wort? Verbinde."
+                pairs:
+                  - { left: { text: "Befehl" }, right: { text: "eine genaue Anweisung" } }
+                  - { left: { text: "Programm" }, right: { text: "eine Folge von Befehlen" } }
+                  - { left: { text: "Reihenfolge" }, right: { text: "was zuerst kommt und was danach" } }
+                  - { left: { text: "programmieren" }, right: { text: "ein Programm schreiben" } }
+                hints: ["Ein Programm besteht aus mehreren Befehlen."]
+
+          - support: none
+            tasks:
+              - id: l1-n1
+                type: ordering
+                text: "Bring die Befehle in die richtige Reihenfolge, um die Kisten herum."
+                show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 0, yellow], [4, 3, green], [1, 0, brown], [2, 1, brown], [2, 3, brown]], labels: [[0, 0, "S"], [4, 3, "Z"]] }
+                options: ["4 nach rechts", "1 nach unten", "2 nach unten"]
+                slot_count: 3
+                answer: ["2 nach unten", "4 nach rechts", "1 nach unten"]
+              - id: l1-n2
+                type: multiple_choice
+                text: "Programm: 2 nach unten, 3 nach rechts, 1 nach oben.\n\nWo kommt Flitz an: A, B oder C?"
+                show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 0, yellow]], labels: [[0, 0, "S"], [3, 1, "A"], [3, 3, "B"], [1, 3, "C"]] }
+                options: ["A", "B", "C"]
+                answer: "A"
+                feedback:
+                  B: "Bei B wäre Flitz am Ende nach unten gefahren. Der letzte Befehl heißt aber 1 nach oben."
+              - id: l1-n3
+                type: true_false
+                text: "Ben schreibt: 1 nach unten, 3 nach rechts, 1 nach oben.\n\nKommt Flitz an den Kisten vorbei ans Ziel?"
+                show: { drawn: grid, cols: 4, rows: 2, cells: [[0, 0, yellow], [3, 0, green], [1, 0, brown], [2, 0, brown]], labels: [[0, 0, "S"], [3, 0, "Z"]] }
+                answer: true
+              - id: l1-n4
+                type: multiple_choice
+                text: "Lina schreibt: 3 nach oben, dann 2 nach rechts. Flitz fährt gegen die Kiste.\n\nWas muss Lina ändern?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow], [2, 0, green], [0, 1, brown]], labels: [[0, 3, "S"], [2, 0, "Z"]] }
+                options: ["Sie muss die Reihenfolge der Befehle tauschen.", "Sie muss Flitz neue Batterien geben.", "Sie muss gar nichts ändern."]
+                answer: "Sie muss die Reihenfolge der Befehle tauschen."
+                feedback:
+                  "Sie muss Flitz neue Batterien geben.": "Mit frischen Batterien fährt Flitz nur schneller gegen die Kiste! Der Fehler steckt in der Reihenfolge."
+              - id: l1-n5
+                type: fill_in_blank
+                text: "Welche Zahlen fehlen, damit Flitz ans Ziel kommt?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 3, yellow], [0, 1, green]], labels: [[3, 3, "S"], [0, 1, "Z"]] }
+                frame: "_ nach links, dann _ nach oben"
+                options: ["1", "2", "3", "4"]
+                answer: ["3", "2"]
+
+      - activity: check
+        size: quick
+        draw: 3
+        tasks:
+          - id: l1-c1
+            type: multiple_choice
+            text: "Welcher Befehl bringt Flitz von S zum Ziel Z?"
+            show: { drawn: grid, cols: 3, rows: 5, cells: [[1, 4, yellow], [1, 0, green]], labels: [[1, 4, "S"], [1, 0, "Z"]] }
+            options: ["4 nach oben", "5 nach oben", "4 nach unten"]
+            answer: "4 nach oben"
+          - id: l1-c2
+            type: true_false
+            text: "Mia schreibt: 1 nach unten, dann 2 nach rechts.\n\nKommt Flitz damit ans Ziel?"
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, yellow], [3, 1, green]], labels: [[0, 0, "S"], [3, 1, "Z"]] }
+            answer: false
+          - id: l1-c3
+            type: ordering
+            text: "Bring die Befehle in die richtige Reihenfolge. Flitz darf nicht gegen die Kiste fahren."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 3, yellow], [0, 0, green], [2, 3, brown]], labels: [[3, 3, "S"], [0, 0, "Z"]] }
+            options: ["3 nach links", "3 nach oben"]
+            slot_count: 2
+            answer: ["3 nach oben", "3 nach links"]
+          - id: l1-c4
+            type: multiple_choice
+            text: "Warum muss ein Befehl für Flitz genau sein?"
+            options: ["Weil Flitz nur genau das macht, was der Befehl sagt.", "Weil Flitz sonst müde wird.", "Weil genaue Befehle bunter aussehen."]
+            answer: "Weil Flitz nur genau das macht, was der Befehl sagt."
+          - id: l1-c5
+            type: multiple_choice
+            text: "Programm: 2 nach oben, dann 3 nach rechts.\n\nWo kommt Flitz an: A, B oder C?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow]], labels: [[0, 3, "S"], [3, 1, "A"], [1, 3, "B"], [3, 0, "C"]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l1-c6
+            type: text_input
+            text: "Flitz braucht nur einen Befehl. Wie viele Kästchen muss er nach links fahren?"
+            show: { drawn: grid, cols: 5, rows: 2, cells: [[4, 1, yellow], [0, 1, green]], labels: [[4, 1, "S"], [0, 1, "Z"]] }
+            answer: "4"
+
+  - n: 2
+    title: { de: "Anleitungen und Fehler", en: "Instructions and mistakes" }
+    goal:
+      de: "Finde heraus, was ein Algorithmus ist, und such Fehler in Programmen. Wenn Flitz nicht ankommt, verbesserst du den falschen Befehl."
+      en: "Find out what an algorithm is, and look for mistakes in programs. When Flitz does not arrive, you fix the wrong command."
+    new_content: true
+    activities:
+      - activity: warm-up
+        from: last-lesson
+        tasks:
+          - id: l2-w1
+            type: ordering
+            text: "Bring die Befehle in die richtige Reihenfolge. Flitz darf nicht gegen die Kiste fahren."
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 2, yellow], [3, 0, green], [1, 2, brown]], labels: [[0, 2, "S"], [3, 0, "Z"]] }
+            options: ["3 nach rechts", "2 nach oben"]
+            slot_count: 2
+            answer: ["2 nach oben", "3 nach rechts"]
+            difficulty: easy
+          - id: l2-w2
+            type: true_false
+            text: "Flitz führt die Befehle eines Programms der Reihe nach aus. Stimmt das?"
+            answer: true
+            difficulty: easy
+
+      - activity: learn
+        mode: worked-examples
+        screens:
+          - text: "Lina backt mit Papa einen Kuchen. Im Rezept steht Schritt für Schritt, was zu tun ist.\n\nIst ein Rezept auch so etwas wie ein Programm?"
+            say: "Lina backt mit Papa einen Kuchen. Im Rezept steht genau, was sie nacheinander tun müssen: Butter und Zucker rühren, Eier dazu, Mehl dazu, in den Ofen. Was glaubst du: Ist ein Rezept auch so etwas wie ein Programm?"
+            show: { object: cake }
+          - text: "Ja! Eine genaue Anleitung, Schritt für Schritt, heißt Algorithmus.\nEin Programm ist ein Algorithmus für einen Computer oder Roboter."
+            say: "Ja! Eine genaue Anleitung, die Schritt für Schritt sagt, was zu tun ist, heißt Algorithmus. Ein Rezept ist ein Algorithmus für Menschen. Ein Programm ist ein Algorithmus für einen Computer oder einen Roboter wie Flitz. Auch hier ist die Reihenfolge wichtig: Den Kuchen erst backen und dann die Eier dazugeben, das klappt nicht."
+          - text: "Viele Geräte arbeiten mit einem Programm: der Computer, die Waschmaschine, die Ampel.\nEin Hammer oder ein Löffel braucht kein Programm."
+            say: "Viele Geräte arbeiten mit einem Programm. Der Computer, die Waschmaschine und die Ampel. Die Ampel schaltet nach ihrem Programm von Rot auf Gelb und auf Grün. Ein Hammer oder ein Löffel braucht kein Programm. Den bewegst du selbst."
+            show: { object: traffic-light }
+          - text: "Ben schreibt: 2 nach unten, 1 nach rechts.\nFlitz bleibt ein Kästchen zu früh stehen."
+            say: "Ben testet sein Programm: zwei nach unten, dann eins nach rechts. Aber Flitz bleibt ein Kästchen vor dem Ziel stehen. Im Programm steckt ein Fehler."
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, yellow], [2, 2, green]], labels: [[0, 0, "S"], [2, 2, "Z"]] }
+          - text: "1. testen\n2. den falschen Befehl finden\n3. den Befehl ändern: 2 nach rechts\n4. noch einmal testen"
+            say: "So findet Ben den Fehler. Er testet das Programm und fährt mit dem Finger Befehl für Befehl mit. Der erste Befehl stimmt. Der zweite ist falsch: Flitz muss zwei nach rechts fahren, nicht eins. Ben ändert den Befehl und testet noch einmal. Jetzt kommt Flitz an! Fehler finden und verbessern gehört beim Programmieren immer dazu."
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, yellow], [2, 2, green]], labels: [[0, 0, "S"], [2, 2, "Z"]] }
+          - text: "Wusstest du? Das Wort Algorithmus kommt vom Namen eines Gelehrten, der vor mehr als 1000 Jahren in Bagdad lebte."
+            say: "Wusstest du? Das Wort Algorithmus kommt vom Namen eines Gelehrten, der vor mehr als tausend Jahren in Bagdad lebte. Er hieß al-Chwarizmi und schrieb Bücher darüber, wie man Schritt für Schritt rechnet."
+
+      - activity: practise
+        setting: in-context
+        stages:
+          - support: full
+            tasks:
+              - id: l2-f1
+                type: ordering
+                text: "Ben pflanzt eine Blume. Bring die Schritte in die richtige Reihenfolge."
+                options: ["Das Loch mit Erde zuschütten.", "Ein Loch graben.", "Die Blume gießen.", "Die Blume ins Loch setzen."]
+                slot_count: 4
+                answer: ["Ein Loch graben.", "Die Blume ins Loch setzen.", "Das Loch mit Erde zuschütten.", "Die Blume gießen."]
+                option_audio: false
+                hints:
+                  - "Eine Anleitung geht Schritt für Schritt. Was muss es geben, bevor die Blume hinein kann?"
+                  - "Erst das Loch, dann die Blume hinein. Zuschütten kann man erst, wenn die Blume drin ist."
+                  - "Graben, Blume hineinsetzen, zuschütten, gießen."
+                difficulty: easy
+              - id: l2-f2
+                type: multiple_choice
+                text: "Lina schreibt: 2 nach rechts, 2 nach unten, 1 nach links. Flitz kommt nicht ans Ziel.\n\nWo ist der Fehler?"
+                show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, yellow], [3, 2, green]], labels: [[0, 0, "S"], [3, 2, "Z"]] }
+                options: ["2 nach rechts", "2 nach unten", "1 nach links"]
+                answer: "1 nach links"
+                hints:
+                  - "Fahr mit dem Finger mit und prüf nach jedem Befehl, ob Flitz noch richtig ist."
+                  - "Nach 2 nach rechts und 2 nach unten steht Flitz links neben dem Ziel."
+                  - "Der letzte Befehl muss 1 nach rechts heißen, nicht 1 nach links."
+              - id: l2-f3
+                type: true_false
+                text: "Ein Roboter merkt selbst, wenn ein Befehl falsch ist, und fährt trotzdem richtig. Stimmt das?"
+                answer: false
+                hints:
+                  - "Denk daran, was Flitz bei einem falschen Befehl macht."
+                  - "Flitz kann nicht denken. Er macht genau, was im Programm steht."
+                  - "Nein, den Fehler muss der Mensch finden."
+              - id: l2-f4
+                type: sorting
+                text: "Ist das eine genaue Anleitung? Sortiere."
+                bins:
+                  - { id: exact, show: { text: "genau" }, say: "genau" }
+                  - { id: vague, show: { text: "ungenau" }, say: "ungenau" }
+                options:
+                  - { text: "Gib 200 Gramm Mehl in die Schüssel.", bin: exact }
+                  - { text: "Fahr 3 Kästchen nach oben.", bin: exact }
+                  - { text: "Nimm etwas Mehl.", bin: vague }
+                  - { text: "Fahr ein Stück weiter.", bin: vague }
+                hints:
+                  - "Eine genaue Anleitung sagt genau, wie viel oder wie weit."
+                  - "Wie viel ist „etwas“? Wie weit ist „ein Stück“?"
+                  - "200 Gramm und 3 Kästchen sind genau. Etwas und ein Stück sind ungenau."
+              - id: l2-f5
+                type: multiple_choice
+                text: "Flitz kommt nicht am Ziel an. Was macht Lina zuerst?"
+                options: ["Sie fährt das Programm Befehl für Befehl mit dem Finger nach.", "Sie schimpft mit Flitz.", "Sie löscht alles und gibt auf."]
+                answer: "Sie fährt das Programm Befehl für Befehl mit dem Finger nach."
+                feedback:
+                  "Sie schimpft mit Flitz.": "Flitz hört gar nicht zu! Er hat ja genau gemacht, was im Programm stand."
+                hints:
+                  - "Zuerst muss Lina herausfinden, wo der Fehler steckt."
+                  - "Beim Testen geht man das Programm Schritt für Schritt durch."
+                  - "Sie fährt das Programm mit dem Finger nach."
+              - id: l2-f6
+                type: ordering
+                text: "Bring drei Befehle in die richtige Reihenfolge. Ein Befehl gehört nicht dazu."
+                show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 3, yellow], [4, 0, green], [2, 3, brown], [0, 1, brown]], labels: [[0, 3, "S"], [4, 0, "Z"]] }
+                options: ["3 nach rechts", "2 nach links", "3 nach oben", "1 nach rechts"]
+                slot_count: 3
+                answer: ["1 nach rechts", "3 nach oben", "3 nach rechts"]
+                hints:
+                  - "Das Ziel liegt rechts oben. Brauchst du dann einen Befehl nach links?"
+                  - "Probier den kurzen Befehl nach rechts zuerst. Dann ist der Weg nach oben frei."
+                  - "1 nach rechts, 3 nach oben, 3 nach rechts."
+
+          - support: some
+            tasks:
+              - id: l2-s1
+                type: multiple_choice
+                text: "Ben schreibt: 2 nach rechts, 2 nach oben, 3 nach rechts. Flitz fährt über den Rand.\n\nWo ist der Fehler?"
+                show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 2, yellow], [4, 0, green], [1, 1, brown]], labels: [[0, 2, "S"], [4, 0, "Z"]] }
+                options: ["2 nach rechts", "2 nach oben", "3 nach rechts"]
+                answer: "3 nach rechts"
+                hints: ["Fahr mit dem Finger mit. Nach welchem Befehl ist Flitz nicht mehr auf dem richtigen Weg?"]
+              - id: l2-s2
+                type: ordering
+                text: "Mia macht ein Käsebrot. Bring die Schritte in die richtige Reihenfolge."
+                options: ["Käse auf das Brot legen.", "Eine Scheibe Brot nehmen.", "Butter auf das Brot streichen."]
+                slot_count: 3
+                answer: ["Eine Scheibe Brot nehmen.", "Butter auf das Brot streichen.", "Käse auf das Brot legen."]
+                option_audio: false
+                hints: ["Die Butter kommt unter den Käse."]
+              - id: l2-s3
+                type: true_false
+                text: "Bei einem Programm ist die Reihenfolge der Befehle wichtig. Stimmt das?"
+                answer: true
+                hints: ["Denk an Flitz und die Kiste: Was passiert, wenn man die Befehle tauscht?"]
+              - id: l2-s4
+                type: multiple_choice
+                text: "Was ist ein Algorithmus?"
+                options: ["eine genaue Anleitung, Schritt für Schritt", "ein Gerät mit Bildschirm", "ein anderes Wort für Rechnen"]
+                answer: "eine genaue Anleitung, Schritt für Schritt"
+                hints: ["Ein Rezept ist ein Algorithmus für Menschen."]
+              - id: l2-s5
+                type: fill_in_blank
+                text: "Lina verbessert ihr Programm. Welche Zahl fehlt?"
+                show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow], [3, 3, green]], labels: [[0, 0, "S"], [3, 3, "Z"]] }
+                frame: "3 nach unten, dann _ nach rechts"
+                options: ["1", "2", "3", "4"]
+                answer: ["3"]
+                hints: ["Nach 3 nach unten steht Flitz in der untersten Reihe. Zähl von dort bis zum Z."]
+
+          - support: none
+            tasks:
+              - id: l2-n1
+                type: ordering
+                text: "Bring die vier Befehle in die richtige Reihenfolge, um die Kisten herum."
+                show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 0, yellow], [3, 1, green], [2, 0, brown], [2, 1, brown], [0, 1, brown]], labels: [[0, 0, "S"], [3, 1, "Z"]] }
+                options: ["2 nach rechts", "1 nach oben", "1 nach rechts", "2 nach unten"]
+                slot_count: 4
+                answer: ["1 nach rechts", "2 nach unten", "2 nach rechts", "1 nach oben"]
+              - id: l2-n2
+                type: multiple_choice
+                text: "Ben schreibt: 1 nach oben, 4 nach rechts, 2 nach unten. Flitz fährt über den Rand.\n\nWo ist der Fehler?"
+                show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 3, yellow], [4, 1, green]], labels: [[0, 3, "S"], [4, 1, "Z"]] }
+                options: ["1 nach oben", "4 nach rechts", "2 nach unten"]
+                answer: "2 nach unten"
+              - id: l2-n3
+                type: true_false
+                text: "Ein Roboter kann einen ungenauen Befehl wie „Fahr ein bisschen weiter“ genau ausführen. Stimmt das?"
+                answer: false
+              - id: l2-n4
+                type: text_input
+                text: "Ben schreibt zuerst: 3 nach rechts. Wie viele Kästchen muss Flitz danach nach oben fahren?"
+                show: { drawn: grid, cols: 4, rows: 5, cells: [[0, 4, yellow], [3, 0, green]], labels: [[0, 4, "S"], [3, 0, "Z"]] }
+                answer: "4"
+              - id: l2-n5
+                type: sorting
+                text: "Arbeitet das Gerät mit einem Programm? Sortiere."
+                bins:
+                  - { id: prog, show: { text: "mit Programm" }, say: "mit Programm" }
+                  - { id: none, show: { text: "ohne Programm" }, say: "ohne Programm" }
+                options:
+                  - { text: "Waschmaschine", bin: prog }
+                  - { text: "Ampel", bin: prog }
+                  - { text: "Computer", bin: prog }
+                  - { text: "Hammer", bin: none }
+                  - { text: "Schaufel", bin: none }
+
+      - activity: check
+        size: skill
+        draw: 5
+        tasks:
+          - id: l2-c1
+            part: sequence
+            type: ordering
+            text: "Bring die Befehle in die richtige Reihenfolge. Flitz darf nicht gegen die Kiste fahren."
+            show: { drawn: grid, cols: 4, rows: 3, cells: [[0, 0, yellow], [3, 2, green], [0, 1, brown]], labels: [[0, 0, "S"], [3, 2, "Z"]] }
+            options: ["2 nach unten", "3 nach rechts"]
+            slot_count: 2
+            answer: ["3 nach rechts", "2 nach unten"]
+          - id: l2-c2
+            part: sequence
+            type: ordering
+            text: "Bring die drei Befehle in die richtige Reihenfolge, um die Kisten herum."
+            show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 1, yellow], [4, 1, green], [1, 1, brown], [2, 1, brown], [3, 1, brown]], labels: [[0, 1, "S"], [4, 1, "Z"]] }
+            options: ["2 nach oben", "4 nach rechts", "2 nach unten"]
+            slot_count: 3
+            answer: ["2 nach unten", "4 nach rechts", "2 nach oben"]
+          - id: l2-c3
+            part: sequence
+            type: multiple_choice
+            text: "Welches Programm bringt Flitz ans Ziel?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow], [2, 3, green], [1, 0, brown]], labels: [[0, 0, "S"], [2, 3, "Z"]] }
+            options: ["3 nach unten, 2 nach rechts", "2 nach rechts, 3 nach unten", "3 nach unten, 3 nach rechts"]
+            answer: "3 nach unten, 2 nach rechts"
+          - id: l2-c4
+            part: sequence
+            type: fill_in_blank
+            text: "Welche Zahlen fehlen, damit Flitz ans Ziel kommt?"
+            show: { drawn: grid, cols: 5, rows: 3, cells: [[4, 2, yellow], [0, 0, green]], labels: [[4, 2, "S"], [0, 0, "Z"]] }
+            frame: "_ nach links, dann _ nach oben"
+            options: ["1", "2", "3", "4"]
+            answer: ["4", "2"]
+          - id: l2-c5
+            part: sequence
+            type: text_input
+            text: "Flitz braucht nur einen Befehl. Wie viele Kästchen muss er nach unten fahren?"
+            show: { drawn: grid, cols: 2, rows: 6, cells: [[1, 0, yellow], [1, 5, green]], labels: [[1, 0, "S"], [1, 5, "Z"]] }
+            answer: "5"
+          - id: l2-c6
+            part: sequence
+            type: ordering
+            text: "Bring drei Befehle in die richtige Reihenfolge. Ein Befehl gehört nicht dazu."
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 3, yellow], [3, 3, green], [1, 3, brown], [2, 3, brown], [1, 2, brown], [2, 2, brown]], labels: [[0, 3, "S"], [3, 3, "Z"]] }
+            options: ["2 nach unten", "1 nach links", "3 nach rechts", "2 nach oben"]
+            slot_count: 3
+            answer: ["2 nach oben", "3 nach rechts", "2 nach unten"]
+          - id: l2-c7
+            part: trace
+            type: multiple_choice
+            text: "Programm: 4 nach rechts, 3 nach unten, 2 nach links.\n\nWo kommt Flitz an: A, B oder C?"
+            show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 0, yellow]], labels: [[0, 0, "S"], [2, 3, "A"], [2, 0, "B"], [4, 3, "C"]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l2-c8
+            part: trace
+            type: true_false
+            text: "Mia schreibt: 3 nach oben, dann 3 nach links.\n\nKommt Flitz damit ans Ziel?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[3, 3, yellow], [0, 0, green]], labels: [[3, 3, "S"], [0, 0, "Z"]] }
+            answer: true
+          - id: l2-c9
+            part: trace
+            type: true_false
+            text: "Ben schreibt: 2 nach unten, dann 4 nach rechts.\n\nKommt Flitz damit ans Ziel, ohne gegen eine Kiste zu fahren?"
+            show: { drawn: grid, cols: 5, rows: 3, cells: [[0, 0, yellow], [4, 2, green], [2, 2, brown]], labels: [[0, 0, "S"], [4, 2, "Z"]] }
+            answer: false
+          - id: l2-c10
+            part: trace
+            type: multiple_choice
+            text: "Programm: 1 nach rechts, dann 2 nach unten.\n\nWo kommt Flitz an: A, B oder C?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 0, yellow]], labels: [[0, 0, "S"], [1, 2, "A"], [2, 1, "B"], [0, 2, "C"]] }
+            options: ["A", "B", "C"]
+            answer: "A"
+          - id: l2-c11
+            part: trace
+            type: text_input
+            text: "Programm: 3 nach rechts, 2 nach unten, 4 nach links.\n\nWie viele Kästchen fährt Flitz insgesamt?"
+            answer: "9"
+          - id: l2-c12
+            part: debug
+            type: multiple_choice
+            text: "Lina schreibt: 1 nach rechts, 3 nach unten, 1 nach rechts. Flitz bleibt zu früh stehen.\n\nWo ist der Fehler?"
+            show: { drawn: grid, cols: 4, rows: 4, cells: [[0, 0, yellow], [3, 3, green], [2, 0, brown]], labels: [[0, 0, "S"], [3, 3, "Z"]] }
+            options: ["der erste Befehl", "der zweite Befehl", "der dritte Befehl"]
+            answer: "der dritte Befehl"
+            keep_order: true
+          - id: l2-c13
+            part: debug
+            type: multiple_choice
+            text: "Ben schreibt: 2 nach rechts, dann 2 nach oben. Flitz fährt gegen die Kiste.\n\nWas muss Ben ändern?"
+            show: { drawn: grid, cols: 3, rows: 3, cells: [[0, 2, yellow], [2, 0, green], [1, 2, brown]], labels: [[0, 2, "S"], [2, 0, "Z"]] }
+            options: ["die Reihenfolge der Befehle", "die Farbe der Kiste", "nichts, das Programm stimmt"]
+            answer: "die Reihenfolge der Befehle"
+          - id: l2-c14
+            part: debug
+            type: fill_in_blank
+            text: "Mia schreibt: 4 nach rechts, 2 nach oben. Flitz bleibt zu früh stehen. Verbessere den zweiten Befehl."
+            show: { drawn: grid, cols: 5, rows: 4, cells: [[0, 3, yellow], [4, 0, green]], labels: [[0, 3, "S"], [4, 0, "Z"]] }
+            frame: "4 nach rechts, dann _ nach oben"
+            options: ["1", "2", "3", "4"]
+            answer: ["3"]
+          - id: l2-c15
+            part: debug
+            type: true_false
+            text: "Wenn ein Programm nicht klappt, sucht man den falschen Befehl, ändert ihn und testet noch einmal. Stimmt das?"
+            answer: true
+          - id: l2-c16
+            part: debug
+            type: ordering
+            text: "Flitz kommt nicht an. Wie geht Lina vor? Bring die Schritte in die richtige Reihenfolge."
+            options: ["Den Befehl ändern.", "Noch einmal testen.", "Das Programm testen.", "Den falschen Befehl finden."]
+            slot_count: 4
+            answer: ["Das Programm testen.", "Den falschen Befehl finden.", "Den Befehl ändern.", "Noch einmal testen."]
+            option_audio: false
+          - id: l2-c17
+            part: concept
+            type: multiple_choice
+            text: "Was ist ein Programm für einen Roboter?"
+            options: ["Befehle, die er der Reihe nach ausführt", "ein Kabel, das ihn mit Strom versorgt", "ein Bild auf seinem Bildschirm"]
+            answer: "Befehle, die er der Reihe nach ausführt"
+          - id: l2-c18
+            part: concept
+            type: sorting
+            text: "Kann Flitz das genau ausführen? Sortiere."
+            bins:
+              - { id: yes, show: { text: "ja" }, say: "ja" }
+              - { id: no, show: { text: "nein" }, say: "nein" }
+            options:
+              - { text: "4 nach links", bin: yes }
+              - { text: "1 nach unten", bin: yes }
+              - { text: "Fahr einfach zum Ziel!", bin: no }
+              - { text: "Fahr schnell irgendwo hin.", bin: no }
+          - id: l2-c19
+            part: concept
+            type: true_false
+            text: "Ein Roboter weiß auch ohne Befehle, wo sein Ziel ist. Stimmt das?"
+            answer: false
+          - id: l2-c20
+            part: concept
+            type: multiple_choice
+            text: "Was davon ist ein Algorithmus?"
+            options: ["ein Rezept, das genau sagt, was nacheinander zu tun ist", "ein Foto von einem Kuchen", "der Wunsch: „Ich hätte gern Kuchen.“"]
+            answer: "ein Rezept, das genau sagt, was nacheinander zu tun ist"
