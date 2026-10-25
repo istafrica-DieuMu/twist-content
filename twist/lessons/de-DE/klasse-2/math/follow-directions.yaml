@@ -72,12 +72,18 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wie zeigst du einem Freund den Weg zum Schatz, ohne zu sprechen?"
+            say: "Du hast einen Schatz versteckt. Dein Freund soll ihn finden, aber du darfst nichts sagen. Was glaubst du: Wie kannst du ihm den Weg zeigen?"
+            show: { object: map, count: 1 }
           - text: "↑ nach oben\n↓ nach unten\n← nach links\n→ nach rechts"
-            say: "Pfeile zeigen dir den Weg. Dieser Pfeil zeigt nach oben, dieser nach unten, dieser nach links und dieser nach rechts."
+            say: "Mit Pfeilen! Pfeile zeigen dir den Weg. Dieser Pfeil zeigt nach oben, dieser nach unten, dieser nach links und dieser nach rechts."
           - text: "A B C\nD E F\nG H I\nStart: E · Weg: →"
             say: "Das ist ein Gitter mit neun Feldern. Du stehst auf E. Der Pfeil nach rechts heißt: ein Feld nach rechts. Jetzt stehst du auf F."
           - text: "A B C\nD E F\nG H I\nStart: G · Weg: ↑ ↑ →"
             say: "Jetzt gehst du von G los. Nach oben: D. Noch einmal nach oben: A. Dann nach rechts: B. Du kommst bei B an."
+          - text: "Wusstest du? Bienen zeigen sich den Weg zu den Blumen mit einem Tanz."
+            say: "Wusstest du? Hat eine Biene Blumen gefunden, fliegt sie zurück zum Bienenstock und tanzt. Der Tanz zeigt den anderen Bienen, in welche Richtung sie fliegen müssen und wie weit. Er heißt Schwänzeltanz."
+            show: { object: bee, count: 1 }
 
       - activity: practise
         setting: plain
@@ -86,8 +92,9 @@ lessons:
             tasks:
               - id: l1-f1
                 type: multiple_choice
-                text: "Wo kommst du an?\nA B C\nD E F\nG H I\nStart: E · Weg: ↑"
-                say: "Du stehst auf E. Geh ein Feld nach oben. Wo kommst du an?"
+                text: "Wo kommt der Hase an?\nA B C\nD E F\nG H I\nStart: E · Weg: ↑"
+                say: "Der Hase sitzt auf E. Er hüpft ein Feld nach oben. Wo kommt er an?"
+                show: { object: rabbit, count: 1 }
                 options: ["B", "H", "D"]
                 answer: "B"
                 hints:
@@ -156,10 +163,13 @@ lessons:
                 hints: ["Links ist die Seite, an der du beim Lesen anfängst."]
               - id: l1-s3
                 type: multiple_choice
-                text: "Wo kommst du an?\nA B C\nD E F\nG H I\nStart: C · Weg: ↓ ↓ ←"
-                say: "Du stehst auf C. Geh zwei Felder nach unten und dann ein Feld nach links. Wo kommst du an?"
+                text: "Wo findet der Hund seinen Knochen?\nA B C\nD E F\nG H I\nStart: C · Weg: ↓ ↓ ←"
+                say: "Der Hund steht auf C. Er schnuppert zwei Felder nach unten und dann ein Feld nach links. Dort liegt sein Knochen. Wo ist das?"
+                show: { object: dog, count: 1 }
                 options: ["H", "G", "E"]
                 answer: "H"
+                feedback:
+                  "G": "Da ist der Hund zu weit gelaufen und hat den Knochen verpasst! Nach links geht es nur ein Feld."
                 hints: ["Von C nach unten: F, I. Dann nach links."]
               - id: l1-s4
                 type: true_false
@@ -192,8 +202,9 @@ lessons:
                 answer: "B"
               - id: l1-n3
                 type: multiple_choice
-                text: "Wo kommst du an?\nA B C\nD E F\nG H I\nStart: G · Weg: → ↑ →"
-                say: "Du stehst auf G. Nach rechts, nach oben, nach rechts. Wo kommst du an?"
+                text: "Wo landet der Marienkäfer?\nA B C\nD E F\nG H I\nStart: G · Weg: → ↑ →"
+                say: "Der Marienkäfer krabbelt von G los. Nach rechts, nach oben, nach rechts. Wo landet er?"
+                show: { object: ladybird, count: 1 }
                 options: ["F", "E", "I"]
                 answer: "F"
               - id: l1-n4
@@ -280,8 +291,10 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "A B C D\nE F G H\nI J K L\nM N O P\nVon F nach L: Wie viele Schritte?"
+            say: "Ein neues Gitter mit sechzehn Feldern. Du willst von F nach L. Was glaubst du: Wie viele Schritte brauchst du mindestens?"
           - text: "A B C D\nE F G H\nI J K L\nM N O P\nStart: F · 2 nach rechts, 1 nach unten"
-            say: "Einen Weg kann man auch mit Worten beschreiben. Von F zwei Felder nach rechts: G, H. Dann ein Feld nach unten: L."
+            say: "Drei Schritte! Einen Weg kann man auch mit Worten beschreiben. Von F zwei Felder nach rechts: G, H. Dann ein Feld nach unten: L."
           - text: "Von F nach L: → → ↓"
             say: "Mit Pfeilen schreibst du denselben Weg so: rechts, rechts, unten."
           - text: "Zurück von L nach F: ↑ ← ←"
@@ -315,6 +328,15 @@ lessons:
                   - "Zuerst nach oben, dann nach links."
                   - "Von P nach oben: L, H. Dann eins nach links."
                   - "G."
+              - id: l2-f5
+                type: true_false
+                text: "A B C D\nE F G H\nI J K L\nM N O P\nStart: M · Weg: ↑ ↑ → →\nDu kommst bei G an."
+                say: "Du stehst auf M. Zweimal nach oben, dann zweimal nach rechts. Stimmt das: Du kommst bei G an?"
+                answer: true
+                hints:
+                  - "Geh Pfeil für Pfeil."
+                  - "Von M nach oben: I, E. Dann nach rechts: F, ..."
+                  - "Ja, du kommst bei G an."
               - id: l2-f3
                 type: multiple_choice
                 text: "Welche Beschreibung passt zum Weg von E nach K?\nA B C D\nE F G H\nI J K L\nM N O P"
@@ -340,15 +362,6 @@ lessons:
                   - "Der letzte Pfeil kommt zuerst, und er dreht sich um."
                   - "Aus ↑ wird ↓, aus ← wird →."
                   - "↓ → →."
-              - id: l2-f5
-                type: true_false
-                text: "A B C D\nE F G H\nI J K L\nM N O P\nStart: M · Weg: ↑ ↑ → →\nDu kommst bei G an."
-                say: "Du stehst auf M. Zweimal nach oben, dann zweimal nach rechts. Stimmt das: Du kommst bei G an?"
-                answer: true
-                hints:
-                  - "Geh Pfeil für Pfeil."
-                  - "Von M nach oben: I, E. Dann nach rechts: F, ..."
-                  - "Ja, du kommst bei G an."
 
           - support: some
             tasks:

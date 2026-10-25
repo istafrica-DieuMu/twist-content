@@ -20,9 +20,9 @@ metadata:
   builds_on: [math.money.amounts-to-20, math.numbers-to-100.place-value]
   also_practises: [math.add-sub-to-100.tens-to-two-digit, math.numbers-to-100.place-value]
   vocabulary: { de: [Schein, Münze, Euro, Betrag, wenigsten] }
-  forms: [text, audio]
-  drawn: []
-  facets: []
+  forms: [text, audio, drawn]
+  drawn: [coins]
+  facets: [currency]
   parts:
     - { id: add-up, what: { de: Scheine und Münzen zu einem Betrag zusammenzählen, en: adding up notes and coins to an amount } }
     - { id: ways, what: { de: einen Betrag auf verschiedene Arten legen, en: making an amount in different ways } }
@@ -66,12 +66,19 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Gibt es einen 1-€-Schein?"
+            say: "Was glaubst du: Gibt es einen Geldschein für einen Euro?"
           - text: "Scheine: 5 €, 10 €, 20 €, 50 €, 100 € · Münzen: 1 €, 2 €"
-            say: "Es gibt Scheine für fünf, zehn, zwanzig, fünfzig und hundert Euro. Für einen und zwei Euro gibt es Münzen."
+            show: { drawn: coins, values: [10000, 5000, 2000, 1000, 500, 200, 100] }
+            say: "Nein, für einen Euro gibt es nur eine Münze. Es gibt Scheine für fünf, zehn, zwanzig, fünfzig und hundert Euro. Für einen und zwei Euro gibt es Münzen."
           - text: "50 € + 20 € + 5 € = 75 €"
+            show: { drawn: coins, values: [5000, 2000, 500] }
             say: "Lena hat einen Fünfziger, einen Zwanziger und einen Fünfer. Fang mit dem größten Schein an: fünfzig, siebzig, fünfundsiebzig. Zusammen sind es fünfundsiebzig Euro."
           - text: "20 € + 20 € + 2 € + 1 € = 43 €"
             say: "Bei gleichen Scheinen zählst du weiter: zwanzig, vierzig. Dann die Münzen: zweiundvierzig, dreiundvierzig."
+          - text: "Wusstest du? Je mehr ein Euro-Schein wert ist, desto länger ist er. Der 5-€-Schein ist der kürzeste."
+            show: { drawn: coins, values: [500, 1000, 2000] }
+            say: "Wusstest du? Je mehr ein Euro-Schein wert ist, desto länger ist er. Der Fünf-Euro-Schein ist der kürzeste. So können auch Menschen, die nicht gut sehen, die Scheine mit den Fingern unterscheiden."
 
       - activity: practise
         setting: plain
@@ -82,6 +89,7 @@ lessons:
                 type: text_input
                 text: "20 € + 10 € + 5 € = _ €"
                 say: "Ein Zwanziger, ein Zehner und ein Fünfer. Wie viel Geld ist das?"
+                show: { drawn: coins, values: [2000, 1000, 500] }
                 answer: "35"
                 hints:
                   - "Fang mit dem größten Schein an."
@@ -143,11 +151,14 @@ lessons:
                 say: "Mia hat vier Scheine: zwanzig, zwanzig, fünf und fünf Euro. Wie viel Geld hat sie?"
                 options: ["50 €", "4 €", "45 €"]
                 answer: "50 €"
+                feedback:
+                  "4 €": "Vier Euro für vier Scheine? Dann wäre jeder Schein nur so viel wert wie eine Münze! Zähle ihren Wert zusammen."
                 hints: ["Zähle den Wert der Scheine."]
               - id: l1-s3
                 type: text_input
                 text: "20 € + 20 € + 20 € + 1 € = _ €"
                 say: "Drei Zwanziger und eine Ein-Euro-Münze. Wie viel Geld ist das?"
+                show: { drawn: coins, values: [2000, 2000, 2000, 100] }
                 answer: "61"
                 hints: ["Zwanzig, vierzig, sechzig."]
               - id: l1-s4
@@ -175,6 +186,7 @@ lessons:
                 type: multiple_choice
                 text: "Ben hat 5 Münzen: 2 €, 2 €, 2 €, 1 € und 1 €. Wie viel Geld hat er?"
                 say: "Ben hat fünf Münzen: drei Zwei-Euro-Münzen und zwei Ein-Euro-Münzen. Wie viel Geld hat er?"
+                show: { drawn: coins, values: [200, 200, 200, 100, 100] }
                 options: ["8 €", "5 €", "7 €"]
                 answer: "8 €"
               - id: l1-n3
@@ -257,8 +269,10 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "40 €: nur eine Art?"
+            say: "Vierzig Euro. Was glaubst du: Kannst du vierzig Euro nur auf eine Art mit Scheinen legen, oder auf mehrere?"
           - text: "40 € = 20 € + 20 € = 10 € + 10 € + 20 € = 5 € + 5 € + 10 € + 20 €"
-            say: "Vierzig Euro kannst du auf verschiedene Arten legen: mit zwei Zwanzigern, mit zwei Zehnern und einem Zwanziger, oder mit zwei Fünfern, einem Zehner und einem Zwanziger."
+            say: "Auf mehrere! Vierzig Euro kannst du auf verschiedene Arten legen: mit zwei Zwanzigern, mit zwei Zehnern und einem Zwanziger, oder mit zwei Fünfern, einem Zehner und einem Zwanziger."
           - text: "40 € = 20 € + 20 €"
             say: "Mit den wenigsten Scheinen geht es so: zwei Zwanziger. Fang immer mit dem größten Schein an, der passt."
           - text: "45 € > 40 €"

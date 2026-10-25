@@ -2065,7 +2065,7 @@ Lesson 1 sorts what can happen into sicher, möglich and unmöglich with Glücks
 | 1. Sicher, möglich oder unmöglich | yes | 21 | learn, practise (6 full, 6 some, 6 none in context), check (quick, 3 of 6) |
 | 2. Wahrscheinlich oder unwahrscheinlich | yes | 25 | warm-up, learn, practise (6 full, 6 some, 6 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 41, image_multiple_choice 11, sorting 3, true_false 5, ordering 2, matching 2. Builds on: . Misconceptions addressed: 2.
+Task types: multiple_choice 37, true_false 9, image_multiple_choice 11, sorting 3, ordering 2, matching 2. Builds on: . Misconceptions addressed: 2.
 
 ## Rechnungen prüfen (Checking calculations)
 
@@ -2107,7 +2107,7 @@ Lesson 1 combines clothes and food systematically: take one T-Shirt and go throu
 | 1. Kleidung kombinieren | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Zahlen legen und Spiele zählen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 44, sorting 1, fill_in_blank 4, true_false 11. Builds on: `math.data.sort-classify`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, sorting 1, fill_in_blank 4, true_false 11, text_input 4. Builds on: `math.data.sort-classify`. Misconceptions addressed: 2.
 
 ## Flächen vergleichen (Comparing areas)
 
@@ -2121,7 +2121,7 @@ Lesson 1 measures a Fläche by the Kästchen that cover it and compares two Flä
 | 1. Kästchen zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Figuren auf Kästchenpapier | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, multiple_choice 45, true_false 14. Builds on: `math.shapes.basic-shapes`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 1, multiple_choice 41, true_false 14, text_input 4. Builds on: `math.shapes.basic-shapes`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 2.
 
 ## Wo passt mehr hinein? (Which holds more?)
 
@@ -2429,7 +2429,7 @@ Lesson 1 adds up prices (ein Ball für 8 € und ein Buch für 6 € kosten 14 �
 | 1. Was kostet alles zusammen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Rückgeld | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 33, true_false 13, multiple_choice 14. Builds on: `math.money.amounts-to-100`, `math.add-sub-to-100.complement`. Misconceptions addressed: 2.
+Task types: text_input 32, multiple_choice 15, true_false 13. Builds on: `math.money.amounts-to-100`, `math.add-sub-to-100.complement`. Misconceptions addressed: 2.
 
 ## Geldbeträge bis 100 € (Amounts up to 100 euros)
 
@@ -2485,7 +2485,7 @@ Lesson 1 solves stories with two plus or minus steps and says what each step mea
 | 1. Zwei Schritte mit Plus und Minus | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Mal, geteilt und noch ein Schritt | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 15, multiple_choice 35, true_false 10. Builds on: `math.word-problems.sketches`, `math.mult-div.div-inverse`. Misconceptions addressed: 2.
+Task types: text_input 16, multiple_choice 34, true_false 10. Builds on: `math.word-problems.sketches`, `math.mult-div.div-inverse`. Misconceptions addressed: 2.
 
 ## Der Zahlenstrahl bis 100 (The number line to 100)
 
@@ -2583,7 +2583,7 @@ Lesson 1 reads Bilddiagramme where a picture stands for one child or for two (a 
 | 1. Bilddiagramme | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Säulendiagramme | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 42, image_multiple_choice 7, true_false 11. Builds on: `math.data.tally`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, image_multiple_choice 7, true_false 11, text_input 2. Builds on: `math.data.tally`. Misconceptions addressed: 2.
 
 ## Die Stellentafel (The place-value chart)
 
@@ -2611,7 +2611,7 @@ Lesson 1 reads a table with two columns (Eissorte und Kinder, Bücher in den Fer
 | 1. Eine Tabelle lesen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Zeilen und Spalten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 48, true_false 12. Builds on: `math.data.tally`. Misconceptions addressed: 2.
+Task types: multiple_choice 45, true_false 12, text_input 3. Builds on: `math.data.tally`. Misconceptions addressed: 2.
 
 ## Zahlen lesen und schreiben (Reading and writing numbers)
 
@@ -2681,7 +2681,7 @@ Lesson 1 draws a story on the Rechenstrich: dazu, weg and ergänzen (Wie viele f
 | 1. Geschichten am Rechenstrich | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Tabellen helfen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, text_input 5, point_on_line 5, true_false 11, fill_in_blank 4. Builds on: `math.word-problems.question-calc-answer`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, text_input 5, point_on_line 5, true_false 11, fill_in_blank 5. Builds on: `math.word-problems.question-calc-answer`. Misconceptions addressed: 2.
 
 ## Würfel, Quader und Kugel (Cube, cuboid and sphere)
 
@@ -2695,7 +2695,7 @@ Lesson 1 tells the three Körper apart and names them, in drawings and in things
 | 1. Körper erkennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Flächen, Ecken und Kanten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, image_multiple_choice 13, true_false 13, matching 3, sorting 2, fill_in_blank 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 27, image_multiple_choice 13, true_false 13, matching 3, text_input 1, sorting 2, fill_in_blank 1. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 2.
 
 ## Quadratzahlen (Square numbers)
 

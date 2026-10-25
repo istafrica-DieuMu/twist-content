@@ -71,6 +71,9 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Wie viele Punkte? Musst du jeden zählen?"
+            say: "Was glaubst du: Wie viele Punkte sind das? Und musst du jeden einzelnen Punkt zählen?"
+            show: { drawn: dots, array: [3, 4] }
           - text: "3 · 4"
             say: "Das ist ein Punktefeld. Es hat drei Reihen. In jeder Reihe sind vier Punkte. Dazu sagen wir: drei mal vier."
             show: { drawn: dots, array: [3, 4] }
@@ -79,6 +82,9 @@ lessons:
             show: { drawn: dots, array: [3, 4] }
           - text: "Reihen mal Punkte in jeder Reihe"
             say: "Wir lesen ein Punktefeld hier immer so: zuerst die Reihen, von oben nach unten, dann die Punkte in einer Reihe."
+          - text: "Wusstest du? Die Tasten 1 bis 9 am Handy sind ein Feld: 3 Reihen mit je 3. Auf dem Taschenrechner steht die 7 oben links, am Handy die 1."
+            say: "Wusstest du? Die Zifferntasten eins bis neun am Handy sind ein Feld: drei Reihen mit je drei Tasten, drei mal drei. Auf dem Taschenrechner ist das Feld andersherum: Da steht die Sieben oben links, am Handy die Eins. Schau mal nach!"
+            show: { drawn: dots, array: [3, 3] }
 
       - activity: practise
         setting: plain
@@ -290,11 +296,15 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Ein Eierkarton: 2 Reihen mit je 5 Eiern. Wie viele Eier?"
+            say: "Ein Eierkarton hat zwei Reihen mit je fünf Eiern. Was glaubst du: Wie viele Eier passen hinein?"
+            show: { drawn: dots, array: [2, 5] }
           - text: "2 · 5 = 10"
-            say: "Ein Eierkarton hat zwei Reihen mit je fünf Eiern. Das ist ein Punktefeld: zwei mal fünf. Zehn Eier."
+            say: "Der Eierkarton ist ein Punktefeld: zwei mal fünf. Zehn Eier passen hinein."
             show: { drawn: dots, array: [2, 5] }
           - text: "3 Kartons mit je 6 Eiern: 3 · 6"
             say: "Drei Kartons mit je sechs Eiern: Die Zahl der Kartons kommt zuerst, die Eier in einem Karton danach. Drei mal sechs."
+            show: { object: egg, groups: [6, 6, 6] }
           - text: "3 · 6 = 18, nicht 3 + 6"
             say: "Es sind drei Sechser, also achtzehn. Drei plus sechs wären nur neun."
 
@@ -320,6 +330,7 @@ lessons:
                 type: text_input
                 text: "3 Packungen mit je 4 Saftpäckchen. Wie viele Saftpäckchen sind das?"
                 say: "Drei Packungen mit je vier Saftpäckchen. Wie viele Saftpäckchen sind das?"
+                show: { object: juice, count: 1 }
                 answer: "12"
                 hints:
                   - "Drei mal vier."
@@ -340,7 +351,10 @@ lessons:
                 type: true_false
                 text: "2 Hände mit je 5 Fingern. Passt 2 · 10?"
                 say: "Zwei Hände mit je fünf Fingern. Passt zwei mal zehn?"
+                show: { object: hand, count: 2, layout: row }
                 answer: false
+                feedback:
+                  "true": "Zehn Finger an einer Hand? Damit könntest du sehr schnell Klavier spielen! Eine Hand hat fünf Finger, also 2 · 5."
                 hints:
                   - "Wie viele Finger hat eine Hand?"
                   - "Fünf."
@@ -363,6 +377,7 @@ lessons:
                 type: multiple_choice
                 text: "Im Bus gibt es 5 Reihen mit je 4 Sitzen. Welche Malaufgabe passt?"
                 say: "Im Bus gibt es fünf Reihen mit je vier Sitzen. Welche Malaufgabe passt?"
+                show: { object: bus, count: 1 }
                 options: ["5 · 4", "5 + 4", "4 · 4"]
                 answer: "5 · 4"
                 hints: ["Wie viele Reihen, wie viele in jeder?"]
@@ -370,6 +385,7 @@ lessons:
                 type: text_input
                 text: "4 Fahrräder mit je 2 Rädern. Wie viele Räder sind das?"
                 say: "Vier Fahrräder mit je zwei Rädern. Wie viele Räder sind das?"
+                show: { object: bike, count: 4, layout: row }
                 answer: "8"
                 hints: ["Zähl in Zweierschritten."]
               - id: l2-s3
@@ -407,6 +423,7 @@ lessons:
                 type: text_input
                 text: "5 Hunde mit je 4 Beinen. Wie viele Beine sind das?"
                 say: "Fünf Hunde mit je vier Beinen. Wie viele Beine sind das?"
+                show: { object: dog, count: 5, layout: row }
                 answer: "20"
               - id: l2-n3
                 type: fill_in_blank
@@ -549,13 +566,6 @@ lessons:
             say: "Welches Feld zeigt drei mal drei?"
             options: [{ drawn: dots, array: [3, 3] }, { drawn: dots, array: [2, 3] }, { drawn: dots, array: [3, 4] }]
             answer: "3x3"
-          - id: l2-c17
-            part: show
-            type: image_multiple_choice
-            text: "Welches Feld hat 16 Punkte?"
-            say: "Welches Feld hat sechzehn Punkte?"
-            options: [{ drawn: dots, array: [3, 5] }, { drawn: dots, array: [4, 4] }, { drawn: dots, array: [2, 6] }]
-            answer: "4x4"
           - id: l2-c18
             part: stories
             type: multiple_choice
@@ -563,6 +573,13 @@ lessons:
             say: "Im Garten wachsen drei Reihen mit je sieben Salatköpfen. Welche Malaufgabe passt?"
             options: ["3 · 7", "3 + 7", "7 · 7"]
             answer: "3 · 7"
+          - id: l2-c17
+            part: show
+            type: image_multiple_choice
+            text: "Welches Feld hat 16 Punkte?"
+            say: "Welches Feld hat sechzehn Punkte?"
+            options: [{ drawn: dots, array: [3, 5] }, { drawn: dots, array: [4, 4] }, { drawn: dots, array: [2, 6] }]
+            answer: "4x4"
           - id: l2-c19
             part: stories
             type: text_input
