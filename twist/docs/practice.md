@@ -395,8 +395,14 @@ From the top:
      (`mixed` on three random learnt skills; it starts at once) and
      Frag mich ab! / Quiz me! (`review`, no hints, on
      learnt skills) and Selbst aussuchen / Pick my own (`mixed`, with
-     hints, on the learnt skills the child taps: the youngest see them as
-     picture cards with no search, from 8 with the search). A card with
+     hints, on the skills the child taps). Its step 2 has the search,
+     subject chips, then "Noch üben" / "Needs practice" (skills at
+     `practised` or `needs_refresh`, or with a lesson check that had a
+     miss) above "Kannst du schon" / "You know these"; a search shows hits
+     from every year. Under the list: the time (5, 10 or 15 minutes; a
+     typed length wins) and a Hints switch (off plays `review` when every
+     picked skill is learnt). The youngest see the topic's mascot on each
+     card. A card with
      nothing to play is greyed out: "Nach deiner ersten Lektion" / "After
      your first lesson". Older bands get plainer names (Auf Zeit / Timed,
      Zufall / Random, Wiederholen / Review). No new session kinds.
