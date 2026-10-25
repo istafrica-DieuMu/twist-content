@@ -2989,7 +2989,7 @@ Choosing the spelling strategy that fits the tricky part of a word. Lesson 1 mat
 | 1. Vier Strategien | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Finden, wählen, schreiben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 21, multiple_choice 31, true_false 8. Builds on: `lit-de.spelling-strategies.lengthen-double`, `lit-de.spelling-strategies.derive-ae-aeu`, `lit-de.spelling-strategies.memory-words`. Misconceptions addressed: 2.
+Task types: fill_in_blank 18, multiple_choice 30, true_false 12. Builds on: `lit-de.spelling-strategies.lengthen-double`, `lit-de.spelling-strategies.derive-ae-aeu`, `lit-de.spelling-strategies.memory-words`. Misconceptions addressed: 2.
 
 ## ck und tz (ck and tz)
 
@@ -3059,7 +3059,7 @@ Finding a word in the Wörterbuch quickly. Lesson 1 finds the part of the book (
 | 1. Schnell finden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Die Grundform suchen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: ordering 2, multiple_choice 39, true_false 13, sorting 2, text_input 2, matching 2. Builds on: `lit-de.letters.alphabet-order`, `lit-de.verbs.base-form`. Misconceptions addressed: 2.
+Task types: ordering 2, multiple_choice 37, true_false 14, text_input 3, sorting 2, matching 2. Builds on: `lit-de.letters.alphabet-order`, `lit-de.verbs.base-form`. Misconceptions addressed: 2.
 
 ## Digitale Texte lesen (Reading digital texts)
 
@@ -3073,7 +3073,7 @@ Finding your way in a children's website. Lesson 1 reads a page from a made-up a
 | 1. Links folgen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Text, Bild und Ton | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, true_false 12, sorting 6, ordering 1, fill_in_blank 1. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
+Task types: multiple_choice 38, true_false 14, sorting 6, ordering 1, fill_in_blank 1. Builds on: `lit-de.comprehension.find-information`. Misconceptions addressed: 2.
 
 ## Doppelte Mitlaute (Double consonants)
 
@@ -3227,7 +3227,7 @@ Reading a practised text aloud with expression and at a good pace. Lesson 1 choo
 | 1. Mit der Stimme malen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Einen Text vorbereiten | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, speak 6, true_false 10, ordering 4. Builds on: `lit-de.fluency.punctuation-reading`. Misconceptions addressed: 2.
+Task types: multiple_choice 39, sorting 1, speak 6, true_false 10, ordering 4. Builds on: `lit-de.fluency.punctuation-reading`. Misconceptions addressed: 2.
 
 ## Sich aufnehmen und besser sprechen (Recording yourself and speaking better)
 
@@ -3353,7 +3353,7 @@ Splitting a word at the end of a line. Lesson 1 splits by syllables, keeps ch an
 | 1. Nach Silben trennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Doppelte Mitlaute, ck und tz | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 43, fill_in_blank 1, true_false 16. Builds on: `lit-de.spelling.ck-tz`. Misconceptions addressed: 2.
+Task types: multiple_choice 39, fill_in_blank 1, true_false 16, highlight_in_text 4. Builds on: `lit-de.spelling.ck-tz`. Misconceptions addressed: 2.
 
 ## Texte übersichtlich gestalten (Laying out a text clearly)
 
@@ -3507,7 +3507,7 @@ Lesson 1 finds the Flächeninhalt of figures on Karopapier by counting the Käst
 | 1. Kästchen zählen und zerlegen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Rechtecke mit Malaufgaben | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 31, true_false 8, text_input 18, image_multiple_choice 3. Builds on: `math.area-volume.compare-area`, `math.mult-div.arrays`. Misconceptions addressed: 4.
+Task types: multiple_choice 30, text_input 19, true_false 8, image_multiple_choice 3. Builds on: `math.area-volume.compare-area`, `math.mult-div.arrays`. Misconceptions addressed: 4.
 
 ## Über Zehner und Hunderter rechnen (Adding and subtracting across tens and hundreds)
 
@@ -3549,7 +3549,7 @@ Lesson 1 compares chances by counting: the fields of a Glücksrad, the numbers o
 | 1. Welche Chance ist größer? | yes | 23 | warm-up, learn, practise (6 full, 6 some, 6 none in context), check (quick, 3 of 6) |
 | 2. Vermuten und ausprobieren | yes | 25 | warm-up, learn, practise (6 full in context, 6 some in context, 6 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 38, true_false 17, image_multiple_choice 11. Builds on: `math.chance.certain-possible-impossible`, `math.data.tally`. Misconceptions addressed: 4.
+Task types: multiple_choice 36, text_input 1, true_false 18, image_multiple_choice 11. Builds on: `math.chance.certain-possible-impossible`, `math.data.tally`. Misconceptions addressed: 4.
 
 ## Malaufgaben zerlegen (Splitting multiplications)
 
@@ -3647,7 +3647,7 @@ Lesson 1 tells a Linie (gerade oder krumm), a Strecke (gerade, mit zwei Endpunkt
 | 1. Linien, Strecken und Geraden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Strecken genau messen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 12, sorting 2, text_input 9, ordering 1. Builds on: `math.shapes.draw-freehand-ruler`, `math.length.cm-m`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, image_multiple_choice 1, true_false 12, sorting 2, text_input 9, ordering 1. Builds on: `math.shapes.draw-freehand-ruler`, `math.length.cm-m`. Misconceptions addressed: 2.
 
 ## Gewichte vergleichen (Comparing mass)
 
@@ -3661,7 +3661,7 @@ Lesson 1 compares two things by weight with a Balkenwaage told in words (die sch
 | 1. Schwerer oder leichter? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Nach dem Gewicht ordnen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 34, true_false 15, ordering 6, text_input 5. Builds on: `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
+Task types: multiple_choice 32, true_false 17, ordering 6, text_input 5. Builds on: `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
 
 ## Gewichte schätzen (Estimating mass)
 
@@ -3675,7 +3675,7 @@ Lesson 1 learns benchmarks to compare with (eine Büroklammer etwa 1 g, eine Pac
 | 1. Mit Stützpunkten schätzen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Die Tonne | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 11, multiple_choice 36, true_false 13. Builds on: `math.mass-capacity.g-kg`. Misconceptions addressed: 2.
+Task types: text_input 12, multiple_choice 35, true_false 13. Builds on: `math.mass-capacity.g-kg`. Misconceptions addressed: 2.
 
 ## Gramm und Kilogramm (Grams and kilograms)
 
@@ -3689,7 +3689,7 @@ Lesson 1 learns 1 kg = 1000 g, reads a kitchen scale from 0 to 1000 g in steps o
 | 1. 1 Kilogramm hat 1000 Gramm | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Waagen ablesen und rechnen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 31, text_input 18, true_false 10, ordering 1. Builds on: `math.mass-capacity.compare-mass`, `math.numbers-to-100.number-line`. Misconceptions addressed: 2.
+Task types: true_false 11, multiple_choice 30, text_input 18, ordering 1. Builds on: `math.mass-capacity.compare-mass`, `math.numbers-to-100.number-line`. Misconceptions addressed: 2.
 
 ## Mit Geldbeträgen rechnen (Calculating with money)
 
@@ -3703,7 +3703,7 @@ Lesson 1 adds and subtracts amounts with a Komma, Euro to Euro and Cent to Cent,
 | 1. Beträge zusammenrechnen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Abziehen und vervielfachen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 11, multiple_choice 37, true_false 12. Builds on: `math.money.decimal-notation`, `math.add-sub-to-1000.semi-written`. Misconceptions addressed: 2.
+Task types: text_input 12, multiple_choice 36, true_false 12. Builds on: `math.money.decimal-notation`, `math.add-sub-to-1000.semi-written`. Misconceptions addressed: 2.
 
 ## Geldbeträge mit Komma (Money with a decimal comma)
 
@@ -3731,7 +3731,7 @@ Lesson 1 solves shopping stories in steps: what is asked, what is given, the cal
 | 1. Einkaufen in Schritten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Was ist günstiger? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 41, true_false 12, text_input 7. Builds on: `math.money.calculate`, `math.word-problems.multi-step`. Misconceptions addressed: 2.
+Task types: true_false 14, multiple_choice 38, text_input 8. Builds on: `math.money.calculate`, `math.word-problems.multi-step`. Misconceptions addressed: 2.
 
 ## Sechseck, Achteck, Parallelogramm (Hexagons, octagons and parallelograms)
 
@@ -3759,7 +3759,7 @@ Lesson 1 names the Zylinder, the Kegel and the Pyramide by their surfaces (zwei 
 | 1. Neue Körper | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Ecken, Kanten, Flächen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 34, image_multiple_choice 7, true_false 12, matching 2, sorting 3, text_input 2. Builds on: `math.solids.cube-cuboid-sphere`, `math.shapes.properties`. Misconceptions addressed: 2.
+Task types: multiple_choice 32, image_multiple_choice 8, true_false 12, matching 2, sorting 3, text_input 3. Builds on: `math.solids.cube-cuboid-sphere`, `math.shapes.properties`. Misconceptions addressed: 2.
 
 ## Überschlagen beim Malnehmen und Teilen (Estimating products and quotients)
 
@@ -3829,7 +3829,7 @@ Lesson 1 shows that a Würfelnetz is six Quadrate that fold into a Würfel, tell
 | 1. Was ist ein Würfelnetz? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Was liegt gegenüber? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 18, image_multiple_choice 6. Builds on: `math.solids.more-solids`, `math.solids.cube-cuboid-sphere`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, true_false 18, image_multiple_choice 6, text_input 2. Builds on: `math.solids.more-solids`, `math.solids.cube-cuboid-sphere`. Misconceptions addressed: 2.
 
 ## Der Zahlenstrahl bis 1000 (The number line to 1000)
 
@@ -3913,7 +3913,7 @@ Lesson 1 plans a class survey: a clear question that fits what you want to know,
 | 1. Eine Umfrage planen | yes | 23 | warm-up, learn, practise (6 full in context, 6 some in context, 6 none in context), check (quick, 3 of 6) |
 | 2. Auswerten und vorstellen | yes | 25 | warm-up, learn, practise (6 full in context, 6 some in context, 6 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, ordering 3, true_false 13, fill_in_blank 5, image_multiple_choice 4, text_input 1. Builds on: `math.data.pictograms-bar-charts`, `math.data.read-tables`. Misconceptions addressed: 4.
+Task types: multiple_choice 38, text_input 2, sorting 1, ordering 3, true_false 13, fill_in_blank 5, image_multiple_choice 4. Builds on: `math.data.pictograms-bar-charts`, `math.data.read-tables`. Misconceptions addressed: 4.
 
 ## Pläne und Karten (Plans and maps)
 
@@ -3927,7 +3927,7 @@ Lesson 1 finds squares on a grid plan with the letter of the column and the numb
 | 1. Felder finden | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Wege auf dem Plan | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 45, true_false 12, text_input 3. Builds on: `math.space.follow-directions`. Misconceptions addressed: 2.
+Task types: multiple_choice 42, true_false 15, text_input 3. Builds on: `math.space.follow-directions`. Misconceptions addressed: 2.
 
 ## Diagramme mit großen Zahlen lesen (Reading charts with larger numbers)
 
@@ -3941,7 +3941,7 @@ Lesson 1 reads Säulendiagramme whose Skala goes in fives, tens, twenties, fifti
 | 1. Skalen lesen | yes | 23 | warm-up, learn, practise (6 full in context, 6 some in context, 6 none in context), check (quick, 3 of 6) |
 | 2. Vergleichen und Schlüsse ziehen | yes | 25 | warm-up, learn, practise (6 full in context, 6 some in context, 6 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 45, true_false 10, text_input 7, ordering 4. Builds on: `math.data.pictograms-bar-charts`, `math.numbers-to-1000.number-line`. Misconceptions addressed: 3.
+Task types: multiple_choice 40, text_input 10, true_false 12, ordering 4. Builds on: `math.data.pictograms-bar-charts`, `math.numbers-to-1000.number-line`. Misconceptions addressed: 3.
 
 ## Zahlen bis 1000 lesen und schreiben (Reading and writing numbers to 1000)
 
@@ -4067,7 +4067,7 @@ Lesson 1 tells a Zeitpunkt (um 8:15) from a Zeitspanne (45 Minuten) and works ou
 | 1. Wie lange dauert es? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Wann endet es? | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: text_input 14, multiple_choice 34, true_false 12. Builds on: `math.time.five-minutes`, `math.add-sub-to-100.complement`. Misconceptions addressed: 2.
+Task types: text_input 16, multiple_choice 32, true_false 12. Builds on: `math.time.five-minutes`, `math.add-sub-to-100.complement`. Misconceptions addressed: 2.
 
 ## Minutengenau und 13 bis 24 Uhr (Time to the minute, and the 24-hour clock)
 

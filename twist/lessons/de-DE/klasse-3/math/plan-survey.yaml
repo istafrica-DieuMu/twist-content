@@ -70,19 +70,20 @@ lessons:
             answer: "Kiwi"
             difficulty: easy
           - id: l1-w2
-            type: multiple_choice
+            type: text_input
             text: "Wie viele Kinder kommen mit dem Fahrrad?"
             say: "In der Tabelle steht, wie die Kinder zur Schule kommen. Wie viele Kinder kommen mit dem Fahrrad?"
             show: { drawn: table, rows: [[Schulweg, Kinder], [Bus, "5"], [Fahrrad, "4"], [zu Fuß, "9"]] }
-            options: ["4", "5", "9"]
             answer: "4"
             difficulty: easy
 
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Welches Pausenspiel mag die Klasse am liebsten?"
+            say: "Was glaubst du: Wie findest du heraus, welches Pausenspiel die Kinder deiner Klasse am liebsten mögen?"
           - text: "Was wollen wir wissen?\nWelches Pausenspiel mögen die Kinder der 3b am liebsten?"
-            say: "Die Klasse drei b will eine Umfrage machen. Zuerst überlegt sie: Was wollen wir wissen? Welches Pausenspiel mögen die Kinder der Klasse am liebsten?"
+            say: "Mit einer Umfrage! Die Klasse drei b will eine Umfrage machen. Zuerst überlegt sie: Was wollen wir wissen? Welches Pausenspiel mögen die Kinder der Klasse am liebsten?"
           - text: "Was spielst du in der Pause am liebsten?\nFangen, Fußball, Seilspringen, Klettern, etwas anderes"
             say: "Dann kommt eine klare Frage mit Antworten zum Auswählen. So kann man die Antworten gut zählen. Mit „etwas anderes“ findet jedes Kind eine passende Antwort."
           - text: "Alle 24 Kinder der 3b\njedes Kind genau einmal"
@@ -110,21 +111,29 @@ lessons:
                   - "Die Frage mit zu Fuß, Rad, Bus und Auto."
                 difficulty: easy
               - id: l1-f2
-                type: multiple_choice
-                text: "Mit welcher Frage kannst du die Antworten gut zählen?"
-                say: "Ihr wollt wissen, was die Kinder am liebsten trinken. Mit welcher Frage könnt ihr die Antworten gut zählen?"
-                options: ["Was trinkst du am liebsten: Wasser, Saft, Milch oder etwas anderes?", "Erzähl mal, was du so trinkst.", "Was hast du gestern alles getrunken?"]
-                answer: "Was trinkst du am liebsten: Wasser, Saft, Milch oder etwas anderes?"
+                type: sorting
+                text: "Kannst du die Antworten gut zählen?"
+                say: "Ihr wollt wissen, was die Kinder am liebsten trinken. Bei welchen Fragen könnt ihr die Antworten gut zählen? Sortiere die Fragen."
+                bins:
+                  - { id: gut, show: { text: "gut zu zählen" }, say: "gut zu zählen" }
+                  - { id: schwer, show: { text: "schwer zu zählen" }, say: "schwer zu zählen" }
+                options:
+                  - { text: "Was trinkst du am liebsten: Wasser, Saft, Milch oder etwas anderes?", bin: gut }
+                  - { text: "Trinkst du gern Milch: ja oder nein?", bin: gut }
+                  - { text: "Erzähl mal, was du so trinkst.", bin: schwer }
+                  - { text: "Was hast du gestern alles getrunken?", bin: schwer }
                 hints:
                   - "Gut zählen kannst du, wenn es feste Antworten gibt."
                   - "Bei „Erzähl mal“ bekommst du lauter verschiedene Antworten."
-                  - "Die Frage mit Wasser, Saft, Milch oder etwas anderes."
+                  - "Gut zu zählen sind die Frage mit Wasser, Saft und Milch und die Frage mit ja oder nein."
               - id: l1-f3
                 type: multiple_choice
                 text: "Welches Haustier hast du?\nHund, Katze, Hase\nWelche Antwort fehlt?"
                 say: "Die Frage heißt: Welches Haustier hast du? Hund, Katze oder Hase. Welche Antwort fehlt, damit jedes Kind antworten kann?"
-                options: ["kein Haustier oder ein anderes", "großer Hund", "schwarze Katze"]
+                options: ["kein Haustier oder ein anderes", "großer Hund", "schwarze Katze", "Dinosaurier"]
                 answer: "kein Haustier oder ein anderes"
+                feedback:
+                  "Dinosaurier": "Ein Dino als Haustier wäre toll, aber den hat leider niemand! Die Antwort muss für jedes Kind passen, auch ohne Haustier."
                 hints:
                   - "Denk an ein Kind mit einem Wellensittich."
                   - "Und an ein Kind ohne Haustier."
@@ -309,8 +318,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Welches Spiel mögen die meisten?"
+            say: "Das ist die Strichliste der Klasse drei b. Was glaubst du: Welches Pausenspiel mögen die meisten Kinder?"
+            show: { drawn: bar-chart, tally: true, rows: [["Fangen", 7], ["Fußball", 9], ["Seilspringen", 5], ["Klettern", 3]] }
           - text: "Fangen: 7\nFußball: 9\nSeilspringen: 5\nKlettern: 3"
-            say: "Die Klasse drei b hat ihre Strichliste ausgezählt. Jetzt schreibt sie die Zahlen in eine Tabelle."
+            say: "Fußball, mit neun Strichen! Die Klasse drei b hat ihre Strichliste ausgezählt. Jetzt schreibt sie die Zahlen in eine Tabelle."
             show: { drawn: bar-chart, tally: true, rows: [["Fangen", 7], ["Fußball", 9], ["Seilspringen", 5], ["Klettern", 3]] }
           - text: "7 + 9 + 5 + 3 = 24\nIn der Klasse sind 24 Kinder."
             say: "Dann rechnet sie alles zusammen: sieben plus neun plus fünf plus drei ist vierundzwanzig. In der Klasse sind vierundzwanzig Kinder. Es passt. Jedes Kind wurde genau einmal gezählt."
@@ -319,6 +331,8 @@ lessons:
             show: { drawn: bar-chart, rows: [["Fangen", 7], ["Fußball", 9], ["Seil", 5], ["Klettern", 3]] }
           - text: "Am liebsten spielen die Kinder Fußball: 9 von 24 Kindern."
             say: "Zum Schluss sagst du das Ergebnis in einem Satz. Schreib nur, was die Zahlen zeigen. Neun von vierundzwanzig Kindern spielen am liebsten Fußball. Das sind die meisten, aber nicht alle."
+          - text: "Wusstest du? Nach einer Bundestagswahl zählen Hunderttausende Helfer die Stimmzettel von Hand aus."
+            say: "Wusstest du? Nach einer Bundestagswahl zählen in ganz Deutschland Hunderttausende Helfer die Stimmzettel von Hand aus. Genau wie bei deiner Umfrage prüfen sie am Ende, ob alles zusammenpasst."
 
       - activity: practise
         setting: in-context

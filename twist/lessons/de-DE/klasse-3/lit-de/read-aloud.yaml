@@ -73,6 +73,8 @@ lessons:
         mode: demonstration
         screens:
           - text: "„Juhu, wir haben gewonnen!“, rief Ella."
+            say: "Lies den Satz leise. Was glaubst du: Wie fühlt sich Ella? Und wie klingt dann ihre Stimme?"
+          - text: "„Juhu, wir haben gewonnen!“, rief Ella."
             say: "Beim Vorlesen zeigt deine Stimme, wie sich jemand fühlt. Ella freut sich. Darum klingt es fröhlich: Juhu, wir haben gewonnen!"
           - text: "„Psst, das Baby schläft“, flüsterte Papa."
             say: "Das Wort flüsterte sagt dir, wie du lesen sollst: ganz leise. Psst, das Baby schläft."
@@ -98,21 +100,29 @@ lessons:
                   - "Traurig und leise."
                 difficulty: easy
               - id: l1-f2
-                type: multiple_choice
-                text: "Welches Wort sagt dir, dass du laut lesen sollst?"
-                say: "Lies die Wörter. Welches Wort sagt dir, dass du laut lesen sollst?"
-                options: ["brüllte", "flüsterte", "murmelte"]
-                answer: "brüllte"
+                type: sorting
+                text: "Liest du laut oder leise? Sortiere die Wörter."
+                say: "Lies die Wörter. Sagt das Wort dir, dass du laut oder leise lesen sollst? Sortiere."
+                bins:
+                  - { id: loud, show: { text: "laut" }, say: "laut" }
+                  - { id: quiet, show: { text: "leise" }, say: "leise" }
+                options:
+                  - { text: "brüllte", bin: loud }
+                  - { text: "rief", bin: loud }
+                  - { text: "flüsterte", bin: quiet }
+                  - { text: "murmelte", bin: quiet }
                 hints:
                   - "Stell dir vor, wie die Leute sprechen."
                   - "Wer flüstert oder murmelt, ist leise."
-                  - "brüllte."
+                  - "Laut: brüllte, rief. Leise: flüsterte, murmelte."
               - id: l1-f3
                 type: multiple_choice
                 text: "„Wer ist da im Dunkeln?“, fragte Tim mit zitternder Stimme. Wie liest du Tims Frage?"
                 say: "Lies den Satz leise. Wie liest du Tims Frage?"
                 options: ["ängstlich und leise", "fröhlich und laut", "gelangweilt"]
                 answer: "ängstlich und leise"
+                feedback:
+                  "gelangweilt": "Wer gähnt schon, wenn es im Dunkeln raschelt? Tims Stimme zittert. Er hat Angst."
                 hints:
                   - "Wo ist Tim? Wie spricht er?"
                   - "Mit zitternder Stimme spricht man, wenn man Angst hat."
@@ -272,12 +282,16 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Gleich laut vorlesen oder zuerst üben?"
+            say: "Du sollst morgen deiner Klasse eine Geschichte vorlesen. Was glaubst du: Liest du sie gleich laut vor, oder übst du zuerst?"
           - text: "1. leise lesen | 2. schwierige Wörter üben | 3. Pausen und Betonung markieren | 4. laut üben"
             say: "Gutes Vorlesen beginnt mit Üben. Lies den Text zuerst leise. Übe schwierige Wörter. Markiere Pausen und wichtige Wörter. Dann lies ihn ein paarmal laut."
           - text: "nicht zu schnell | nicht zu langsam"
             say: "Lies so schnell, dass es nicht langweilig wird, und so langsam, dass alle mitkommen. An spannenden Stellen darfst du langsamer werden."
           - text: "Plötzlich ... knackte es im Gebüsch."
             say: "Vor einer spannenden Stelle machst du eine kleine Pause. Plötzlich, Pause, knackte es im Gebüsch. Schau zwischendurch kurz zu deinen Zuhörern."
+          - text: "Wusstest du? Jedes Jahr im November gibt es in Deutschland einen Vorlesetag."
+            say: "Wusstest du? Jedes Jahr im November ist in Deutschland der Bundesweite Vorlesetag. An diesem Tag lesen überall Menschen anderen vor, in Schulen, in Kindergärten und in Büchereien."
 
       - activity: practise
         setting: in-context
@@ -452,6 +466,12 @@ lessons:
             say: "Lies den Satz leise. Wie liest du, was Felix sagt?"
             options: ["genervt und brummig", "begeistert und fröhlich", "flüsternd und ängstlich"]
             answer: "genervt und brummig"
+          - id: l2-c11
+            part: pace
+            type: true_false
+            text: "Gut vorlesen heißt: so schnell lesen, wie du kannst. Stimmt das?"
+            say: "Gut vorlesen heißt: so schnell lesen, wie du kannst. Stimmt das?"
+            answer: false
           - id: l2-c7
             part: stress
             type: multiple_choice
@@ -466,6 +486,12 @@ lessons:
             say: "Emil liest ohne Punkt und Komma, alles in einem Atemzug. Was soll er ändern?"
             options: ["an den Satzzeichen Pausen machen", "lauter lesen", "schneller lesen"]
             answer: "an den Satzzeichen Pausen machen"
+          - id: l2-c12
+            part: expression
+            type: true_false
+            text: "„Ich habe den ersten Preis gewonnen!“, rief Sara stolz. Liest du Saras Satz traurig?"
+            say: "Lies den Satz leise. Liest du Saras Satz traurig?"
+            answer: false
           - id: l2-c9
             part: expression
             type: multiple_choice
@@ -480,24 +506,6 @@ lessons:
             say: "Lies den Text leise. Wo machst du eine kleine Pause, damit es spannend wird?"
             options: ["nach „Mit einem Mal“", "nach „krochen“", "nach „Augen“"]
             answer: "nach „Mit einem Mal“"
-          - id: l2-c11
-            part: pace
-            type: true_false
-            text: "Gut vorlesen heißt: so schnell lesen, wie du kannst. Stimmt das?"
-            say: "Gut vorlesen heißt: so schnell lesen, wie du kannst. Stimmt das?"
-            answer: false
-          - id: l2-c12
-            part: expression
-            type: true_false
-            text: "„Ich habe den ersten Preis gewonnen!“, rief Sara stolz. Liest du Saras Satz traurig?"
-            say: "Lies den Satz leise. Liest du Saras Satz traurig?"
-            answer: false
-          - id: l2-c13
-            part: stress
-            type: true_false
-            text: "„Das ist mein Fahrrad, nicht deins!“ Betonst du das Wort mein am stärksten?"
-            say: "Lies den Satz leise. Betonst du das Wort mein am stärksten?"
-            answer: true
           - id: l2-c14
             part: pace
             type: ordering
@@ -521,6 +529,12 @@ lessons:
             say: "Lies den Satz leise. Welches Wort betonst du am stärksten?"
             options: ["zehn", "Bonbons", "gegessen"]
             answer: "zehn"
+          - id: l2-c13
+            part: stress
+            type: true_false
+            text: "„Das ist mein Fahrrad, nicht deins!“ Betonst du das Wort mein am stärksten?"
+            say: "Lies den Satz leise. Betonst du das Wort mein am stärksten?"
+            answer: true
           - id: l2-c17
             part: pace
             type: multiple_choice
@@ -535,6 +549,12 @@ lessons:
             say: "Lies den Text leise. Wie liest du diese Stelle?"
             options: ["leise und traurig", "laut und lustig", "schnell und wütend"]
             answer: "leise und traurig"
+          - id: l2-c20
+            part: expression
+            type: true_false
+            text: "„Hör sofort auf damit!“, rief Mama wütend. Liest du Mamas Satz laut und streng?"
+            say: "Lies den Satz leise. Liest du Mamas Satz laut und streng?"
+            answer: true
           - id: l2-c19
             part: stress
             type: multiple_choice
@@ -543,9 +563,3 @@ lessons:
             options: ["Ich lese etwas langsamer und mache vor der Überraschung eine kleine Pause.", "Ich lese die Stelle besonders schnell, damit sie bald vorbei ist.", "Ich lese alles gleich laut und ohne Pause."]
             answer: "Ich lese etwas langsamer und mache vor der Überraschung eine kleine Pause."
             option_audio: false
-          - id: l2-c20
-            part: expression
-            type: true_false
-            text: "„Hör sofort auf damit!“, rief Mama wütend. Liest du Mamas Satz laut und streng?"
-            say: "Lies den Satz leise. Liest du Mamas Satz laut und streng?"
-            answer: true

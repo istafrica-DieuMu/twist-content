@@ -20,7 +20,7 @@ metadata:
   builds_on: [math.solids.cube-cuboid-sphere, math.shapes.properties]
   also_practises: [math.solids.cube-cuboid-sphere]
   vocabulary: { de: [Zylinder, Kegel, Pyramide, Würfel, Quader, Kugel, Ecke, Kante, Fläche, Spitze, rollen] }
-  forms: [text, audio, drawn]
+  forms: [picture, text, audio, drawn]
   drawn: [shape]
   facets: []
   parts:
@@ -69,14 +69,20 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Was haben eine Dose und eine Kerze gemeinsam?"
+            say: "Denk an eine Dose und an diese Kerze. Was glaubst du: Was haben die beiden gemeinsam?"
+            show: { object: candle }
           - text: "der Zylinder"
-            say: "Das ist ein Zylinder. Oben und unten hat er eine Kreisfläche. Dazwischen ist er rund. Eine Dose hat die Form eines Zylinders."
+            say: "Sie haben die gleiche Form! Das ist ein Zylinder. Oben und unten hat er eine Kreisfläche. Dazwischen ist er rund. Eine Dose und eine Kerze haben die Form eines Zylinders."
             show: { drawn: shape, kind: cylinder, colour: green }
           - text: "der Kegel"
             say: "Das ist ein Kegel. Unten hat er eine Kreisfläche, oben eine Spitze. Eine Eiswaffel hat die Form eines Kegels."
             show: { drawn: shape, kind: cone, colour: orange }
           - text: "die Pyramide"
             say: "Das ist eine Pyramide. Unten hat sie ein Quadrat. Die Seiten sind Dreiecke, die oben in einer Spitze zusammenkommen. Die alten Pyramiden in Ägypten haben diese Form."
+            show: { drawn: shape, kind: pyramid, colour: yellow }
+          - text: "Wusstest du? Die große Pyramide in Ägypten war mehr als 3000 Jahre lang das höchste Bauwerk der Welt."
+            say: "Wusstest du? Die große Pyramide in Ägypten war mehr als dreitausend Jahre lang das höchste Bauwerk der Welt. Kein Mensch hat in dieser Zeit etwas Höheres gebaut."
             show: { drawn: shape, kind: pyramid, colour: yellow }
 
       - activity: practise
@@ -114,6 +120,7 @@ lessons:
                 type: multiple_choice
                 text: "Eine Kerze ist überall gleich dick und oben und unten flach. Welche Form hat sie?"
                 say: "Eine Kerze ist überall gleich dick und oben und unten flach. Welche Form hat sie?"
+                show: { object: candle }
                 options: ["Zylinder", "Kegel", "Quader"]
                 answer: "Zylinder"
                 feedback:
@@ -161,8 +168,10 @@ lessons:
                 type: multiple_choice
                 text: "Welche Form hat ein Leitkegel auf der Straße?"
                 say: "Welche Form hat ein Leitkegel auf der Straße?"
-                options: ["Kegel", "Würfel", "Zylinder"]
+                options: ["Kegel", "Würfel", "Zylinder", "Kegelrobbe"]
                 answer: "Kegel"
+                feedback:
+                  "Kegelrobbe": "Eine Kegelrobbe ist ein Tier im Meer, keine Form! Der Leitkegel hat unten einen Kreis und oben eine Spitze."
                 hints: ["Der Name sagt es dir."]
               - id: l1-s3
                 type: true_false
@@ -219,6 +228,7 @@ lessons:
                 type: true_false
                 text: "Eine Eiswaffel hat die Form eines Zylinders."
                 say: "Stimmt das? Eine Eiswaffel hat die Form eines Zylinders."
+                show: { object: ice-cream }
                 answer: false
               - id: l1-n5
                 type: multiple_choice
@@ -286,12 +296,15 @@ lessons:
         from: last-lesson
         tasks:
           - id: l2-w1
-            type: multiple_choice
-            text: "Wie heißt dieser Körper?"
-            say: "Wie heißt dieser Körper?"
-            show: { drawn: shape, kind: cone, colour: yellow }
-            options: ["Kegel", "Zylinder", "Pyramide"]
-            answer: "Kegel"
+            type: image_multiple_choice
+            text: "Wo ist der Kegel?"
+            say: "Wo ist der Kegel?"
+            options:
+              - { drawn: shape, kind: cone, colour: yellow }
+              - { drawn: shape, kind: cylinder, colour: yellow }
+              - { drawn: shape, kind: pyramid, colour: yellow }
+            answer: cone
+            option_audio: false
             difficulty: easy
           - id: l2-w2
             type: multiple_choice
@@ -304,8 +317,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Wie viele Ecken hat ein Würfel?"
+            say: "Nimm einen Würfel in die Hand oder stell ihn dir vor. Was glaubst du: Wie viele Ecken hat er?"
+            show: { drawn: shape, kind: cube, colour: red }
           - text: "Würfel: 6 Flächen, 12 Kanten, 8 Ecken"
-            say: "Körper haben Flächen, Kanten und Ecken. Die Flächen sind die Außenseiten des Körpers. Wo zwei Flächen zusammenstoßen, ist eine Kante. Wo Kanten zusammenkommen, ist eine Ecke. Ein Würfel hat sechs Flächen, zwölf Kanten und acht Ecken."
+            say: "Acht Ecken! Körper haben Flächen, Kanten und Ecken. Die Flächen sind die Außenseiten des Körpers. Wo zwei Flächen zusammenstoßen, ist eine Kante. Wo Kanten zusammenkommen, ist eine Ecke. Ein Würfel hat sechs Flächen, zwölf Kanten und acht Ecken."
             show: { drawn: shape, kind: cube, colour: red }
           - text: "Pyramide: 5 Flächen, 8 Kanten, 5 Ecken"
             say: "Die Pyramide hat unten ein Quadrat und an den Seiten vier Dreiecke, zusammen fünf Flächen. Unten hat sie vier Kanten, zur Spitze hin noch einmal vier, zusammen acht. Dazu kommen vier Ecken unten und die Spitze oben: fünf Ecken."
@@ -425,10 +441,9 @@ lessons:
           - support: none
             tasks:
               - id: l2-n1
-                type: multiple_choice
+                type: text_input
                 text: "Wie viele Kanten hat ein Würfel?"
                 say: "Wie viele Kanten hat ein Würfel?"
-                options: ["12", "8", "6"]
                 answer: "12"
               - id: l2-n2
                 type: multiple_choice
