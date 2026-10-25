@@ -67,7 +67,6 @@ function renderPracticeHome() {
   scr.style.setProperty("--subj", "#6849dd"); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
     <header class="pg-top fun-band" style="--room:${ROOM.practice}"><div><h2>${esc(AT().practice)}</h2><small>${esc(L.helloSub)}</small></div><img src="${A}mascot/practise-1.png" alt=""></header>
-    <button class="pr-search pr-find-open" id="prFind" type="button">${LENS}<span>${esc(L.search)}</span></button>
     <div id="prMain">
       ${hero ? `<h3 class="pr-h">${esc(L.suggested)}</h3>${card(hero, true)}` : ""}
       <div id="prList"></div>
@@ -83,8 +82,6 @@ function renderPracticeHome() {
   wireHeader(scr);
   scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
   $("#prOwn").onclick = () => openMakeSheet();
-  // The search opens the builder's own search, so there is one search with one behaviour.
-  $("#prFind").onclick = () => openMakeSheet({ search: true });
   $("#prAllDr")?.addEventListener("click", () => renderDrills());
   scr.querySelectorAll(".dr-row [data-drill]").forEach((b) => b.onclick = () => renderDrillMap(b.dataset.drill));
   renderSubjects();
@@ -576,8 +573,6 @@ function openMakeSheet(pre = {}) {
   // A search looks through every year, so a child can find an older skill to practise again.
   const allKs = [...new Set(PR.index.sets.map((x) => x.skill))];
   const pool = () => S.type === "drill" ? drills : S.q.trim() ? allKs : yearKs;
-  // Opened from the search on Practice: straight to "what", ready to type.
-  if (pre.search) { S.type = "quick"; S.step = 2; }
   // Topic words to tap: the first real word of each topic of the child's year, at most twelve.
   const words = () => { const seen = new Set(); for (const k of pool()) { const t = setOfSkill(k)?.topic?.[lg] ?? ""; const w = t.split(/\s+/).find((x) => x.length > 2 && !STOP.has(x.toLowerCase()) && !/^\d/.test(x)); if (w && seen.size < 12) seen.add(w); } return [...seen]; };
   const shown = () => {
@@ -635,5 +630,4 @@ function openMakeSheet(pre = {}) {
     $(".pr-x", m).onclick = close;
   };
   draw(); scr.appendChild(m);
-  if (pre.search) $(".mk-find input", m)?.focus();
 }
