@@ -386,7 +386,8 @@ From the top:
      (a sprint the child has played or whose skill they have begun, else
      a 5-minute `mixed` round of learnt skills), Überraschung / Surprise!
      (`mixed` on three random learnt skills; it starts at once) and
-     Nochmal / Again (`review`, no hints, on learnt skills). A card with
+     Frag mich ab! / Quiz me! (`review`, no hints, on
+     learnt skills). A card with
      nothing to play is greyed out: "Nach deiner ersten Lektion" / "After
      your first lesson". Older bands get plainer names (Auf Zeit / Timed,
      Zufall / Random, Wiederholen / Review). No new session kinds.

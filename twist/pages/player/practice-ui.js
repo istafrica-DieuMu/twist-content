@@ -546,14 +546,14 @@ function refreshPractice() {
 // screen; the mascot asks and the child answers with big picture cards. Step 1, how (a tap goes on):
 // Schnell! (a race against the clock: a sprint where the subject has a drill bank, else a short
 // mixed round), Überraschung (three skills the child has learnt, at random; it starts at once)
-// or Nochmal (a review, without hints, of something learnt). Step 2, what: up to 7 a subject by
+// or Frag mich ab! / Quiz me! (a review, without hints, of something learnt). Step 2, what: up to 7 a subject by
 // its picture, and the app picks the skills; from 8 the search, topic words and the skills, with
 // one big button at the bottom. All existing session kinds of practice-rules.mjs.
 const MKTXT = {
-  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "Gegen die Uhr"], surprise: ["Überraschung", "Ich suche etwas aus"], again: ["Nochmal", "Etwas, das du schon kannst"] },
+  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "Gegen die Uhr"], surprise: ["Überraschung", "Ich suche etwas aus"], again: ["Frag mich ab!", "Was du gelernt hast, ohne Tipps"] },
     older: { how: "Wie willst du üben?", types: { race: ["Auf Zeit", "Ein Sprint gegen die Uhr"], surprise: ["Zufall", "Drei Fähigkeiten, die du schon kannst"], again: ["Wiederholen", "Ohne Tipps, wie ein kurzer Test"] } },
     find: "Suchen: Uhr, Plus, Nomen …", ideas: "Vorschläge", hits: (n) => `${n} gefunden`, none: "Nichts gefunden. Probier ein anderes Wort.", all: "Alle", later: "Nach deiner ersten Lektion", go: "Los geht's", back: "Zurück", close: "Schließen" },
-  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "Against the clock"], surprise: ["Surprise!", "I pick something"], again: ["Again", "Something you can do"] },
+  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "Against the clock"], surprise: ["Surprise!", "I pick something"], again: ["Quiz me!", "What you've learnt, no hints"] },
     older: { how: "How do you want to practise?", types: { race: ["Timed", "A sprint against the clock"], surprise: ["Random", "Three skills you already know"], again: ["Review", "No hints, like a short test"] } },
     find: "Search: clock, plus, nouns …", ideas: "Ideas for you", hits: (n) => `${n} found`, none: "Nothing found. Try another word.", all: "All", later: "After your first lesson", go: "Let's go", back: "Back", close: "Close" },
 };
