@@ -976,14 +976,18 @@ function renderEnd() {
   const pass = skill ? right >= (checkSteps.length >= 5 ? 4 : checkSteps.length - 1) : null;
   const p = phrase("lesson_done");
   const pct = checkSteps.length ? Math.round((100 * right) / checkSteps.length) : null;
+  // Started from the app: the pretend child finished this lesson (its stars before and after
+  // count), and the app celebrates it. Without the app the stars are the check's alone.
+  const fresh = APP.fromApp && !steps._recorded, had = fresh ? starsOfSkill() : 0, before = fresh ? beforeLesson() : null;
+  if (APP.fromApp) appLessonDone(checkSteps, pass);
+  const now = APP.fromApp ? starsOfSkill() : pass ? 2 : 1, C = CTXT[PL()];
   body.innerHTML = `<div class="center">${mascotPose("end")}<h2 class="done">${esc(UI.finished)}</h2><p class="a-phrase">${esc(p?.text ?? UI.doneTitle)}</p>
+    ${pass === null ? "" : `<div class="ck-end${pass ? "" : " no"}">${checkStars(pass, fresh ? had : now, now)}<b>${esc(pass ? C.checkPass : C.checkNo)}</b><small>${esc(pass ? C.checkPassSub : C.checkNoSub)}</small></div>`}
     ${pct == null ? "" : `<div class="score"><div class="sc">${esc(UI.percent(pct))}<div class="sb"><i style="width:${pct}%"></i><span>${right} / ${checkSteps.length}</span></div></div><span class="dart" aria-hidden="true">🎯</span></div>`}
     <p>${checkSteps.length ? UI.score(right, checkSteps.length, skill) : ""}</p>
-    ${pass === null ? "" : pass ? `<span class="badge">${UI.canDo}</span>` : `<span class="badge no">${UI.practised}</span>`}</div>`;
+</div>`;
   if (p) play(p.src);
-  // Started from the app: the pretend child finished this lesson, and the app celebrates it.
-  if (APP.fromApp && !steps._recorded) { const before = beforeLesson(); appLessonDone(checkSteps, pass); afterLesson(before, checkSteps); }
-  else if (APP.fromApp) appLessonDone(checkSteps, pass);
+  if (fresh) afterLesson(before, checkSteps, pass, had, now);
   const nextL = set.lessons.find((l) => l.n === lesson.n + 1);
   if (nextL) nextBtn(foot, UI.nextLesson, () => pickLesson(nextL.n));
   nextBtn(foot, AT().finish, () => openStudy()).classList.toggle("light", !!nextL);

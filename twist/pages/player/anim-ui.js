@@ -72,9 +72,16 @@ function loadingBooks(ms, then) {
 
 /* ---------- After a lesson: points, streak, badge, then the end screen's confetti ---------- */
 const CTXT = {
-  de: { finished: "Lektion geschafft!", points: "Punkte verdient!", streak: (n) => `${n} ${n === 1 ? "Tag" : "Tage"} in Folge!`, streakSub: "Komm morgen wieder, dann wächst die Flamme.", badge: "Neues Abzeichen!", go: "Weiter" },
-  en: { finished: "Lesson finished!", points: "Points earned!", streak: (n) => `${n}-day streak!`, streakSub: "Come back tomorrow and the flame grows.", badge: "New badge!", go: "Continue" },
+  de: { checkPass: "Prüfung geschafft!", checkPassSub: "Dein zweiter Stern: Das kannst du jetzt.", checkNo: "Noch nicht geschafft, probier es bald wieder", checkNoSub: "Du übst die Fähigkeit weiter. Die Prüfung kommt bald wieder, dann holst du dir den zweiten Stern.", finished: "Lektion geschafft!", points: "Punkte verdient!", streak: (n) => `${n} ${n === 1 ? "Tag" : "Tage"} in Folge!`, streakSub: "Komm morgen wieder, dann wächst die Flamme.", badge: "Neues Abzeichen!", go: "Weiter" },
+  en: { checkPass: "Check passed!", checkPassSub: "Your second star: you can do it now.", checkNo: "Not yet, try again soon", checkNoSub: "You keep practising this skill. The check comes back soon, and then you can win the second star.", finished: "Lesson finished!", points: "Points earned!", streak: (n) => `${n}-day streak!`, streakSub: "Come back tomorrow and the flame grows.", badge: "New badge!", go: "Continue" },
 };
+// The skill check's result as the skill's three stars: the ones it had, the ones it
+// just won filling in (the second star is the check's), and on a not yet the second
+// star waiting. Used by the celebration and by the lesson's end screen.
+function checkStars(pass, from, to) {
+  return `<span class="ck-stars${pass ? " pass" : ""}" aria-label="${to} / 3">${[1, 2, 3].map((i) => `<i class="${i <= to ? "on" : ""}${i > from && i <= to ? " new" : ""}${!pass && i === 2 && to < 2 ? " want" : ""}">★</i>`).join("")}</span>`;
+}
+const starsOfSkill = () => STARS[PR.child?.states?.[set.skill]?.state ?? "not_started"];
 // The screens one after another; each moves on by itself after a while, or with Continue.
 function celebrate(screens, then) {
   const C = CTXT[PL()];
@@ -91,6 +98,11 @@ function celebrate(screens, then) {
       stage.innerHTML = `<canvas aria-hidden="true"></canvas>`;
       clean.push(riveOn($("canvas", stage), "streak.riv", { stateMachine: "State Machine 1", set: (vm) => { const p = vm.number("streak"); if (p) p.value = s.streak; } }));
       $("h2", o).textContent = C.streak(s.streak); $("p", o).textContent = C.streakSub; sfx("streak-earned");
+    } else if (s.kind === "check") {
+      stage.innerHTML = `<div class="an-glow"></div>${checkStars(s.pass, s.from, s.to)}`;
+      if (s.pass) clean.push(lottieIn($(".an-glow", stage), "Reward-light-bg.json", true));
+      $("h2", o).textContent = s.pass ? C.checkPass : C.checkNo; $("p", o).textContent = s.pass ? C.checkPassSub : C.checkNoSub;
+      sfx(s.pass ? "module-complete" : "xp-earned");
     } else if (s.kind === "finished") {
       // The app's Lesson finished: the glow turning behind the mascot, confetti falling once.
       stage.innerHTML = `<div class="an-glow"></div><img src="${A}mascot/end-2.png" alt="">`;
@@ -113,12 +125,14 @@ function celebrate(screens, then) {
 // Called by the end screen: what the lesson earned, before and after it counted. The
 // screens play in the app's order (points, streak, badges, lesson finished) and then
 // Study opens by itself, where the track skates on when a skill was finished.
-function afterLesson(before, checkSteps) {
+function afterLesson(before, checkSteps, pass = null, from = 0, to = 0) {
   const c = PR.child, after = streak(c), got = myBadges().filter((b) => b.earned).map((b) => b.id);
   const tasks = steps.map((s, i) => [s, results[i]]).filter(([s]) => s.kind === "task");
   const points = tasks.reduce((n, [, r]) => n + (r === "first" ? 10 : r === "second" || r === "helped" ? 5 : 0), 0);
   const screens = [];
   if (points) screens.push({ kind: "points", points });
+  // The skill check (the step that gives the second star): passed or not yet, right after the points.
+  if (pass !== null) screens.push({ kind: "check", pass, from, to });
   if (after.current > before.streak) screens.push({ kind: "streak", streak: after.current });
   got.filter((id) => !before.badges.includes(id)).slice(0, 2).forEach((id) => screens.push({ kind: "badge", id }));
   const p = phrase("lesson_done");

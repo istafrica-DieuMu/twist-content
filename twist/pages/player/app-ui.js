@@ -7,7 +7,7 @@
    child is the child of every tab: Study follows its course, and a lesson
    finished from the app moves its skill on (finishLesson). Inlined after
    practice-ui.js. */
-const APP = { tab: null, home: null, subj: null, year: null, topic: null, q: "", fromApp: false, units: false };
+const APP = { tab: null, home: null, subj: null, year: null, topic: null, q: "", find: false, fromApp: false, units: false };
 const ATXT = {
   de: { badges: "Abzeichen", dayPlayed: "Gespielt", dayToday: "Heute, noch offen", dayMissed: "Nicht gespielt", lightFirst: "Mach heute eine Lektion oder Übung, dann brennt die erste Flamme.", upNext: "Als Nächstes", thisWeek: "Diese Woche", days: ["Mo", "Di", "Mi", "Do", "Fr"], gold: "Gold!", earned: "Verdient", earnedIn: (y) => `Verdient, ${y}`, ofN: (a, b) => `${a} von ${b}`, noBadges: "Noch keins. Das erste kommt mit deiner ersten Fähigkeit auf „Kann ich“.", almost: "Fast geschafft", allBadges: (n) => `Alle weiteren Abzeichen (${n})`, how: { pathfinder: "Deinen ersten Einstufungstest machen", summit: "Den Test am Schuljahresende bestehen", legend: "Jede Fähigkeit eines Fachs können", "comeback-kid": "Eine Fähigkeit zurückholen", "like-clockwork": "4 Wochen alle Wiederholungen pünktlich", "time-traveller": "Etwas aus einer späteren Klasse lernen" }, hi: "Hallo!", startHere: "Fang hier an", minShort: (m) => `${m} Min.`, helloName: (n) => `Hallo, ${n}!`, todayPlan: "Dein Plan für heute", planLeft: (a, b) => `${a} von ${b} für heute geschafft`, planDone: "Für heute alles geschafft", unitOf: (k, n) => `Einheit ${k} von ${n}`, lessonDone: "Lektion geschafft", lessonsToday: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"} heute`, practiceDone: "Üben geschafft", sessionsToday: (n) => `${n} ${n === 1 ? "Übungsrunde" : "Übungsrunden"} heute`, winTitle: "Super, dein Plan für heute ist fertig!", winStreak: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge. Komm morgen wieder!`, winSub: "Komm morgen wieder!", wantMore: "Lust auf mehr?", unitsOf: (a, b) => `${a}/${b} Einheiten`, newDot: "neu", start: "Start", study: "Lernen", practice: "Üben", me: "Ich", hello: "Hallo! Schön, dass du da bist.", next: "Weiter lernen", goOn: "Mach weiter, wo du aufgehört hast", nextUnit: (x) => `Als Nächstes in ${x}`, nextYear: (y) => `Weiter mit ${y}`, more: "Andere Fächer", newSubj: "Probier ein neues Fach", fresh: "Neu für dich", lessonOf: (k, n) => `Lektion ${k} von ${n}`, mins: (m) => `etwa ${m} Minuten`, go: "Los geht's", allDone: "Alles geschafft!", allDoneSub: "Im Üben-Tab hältst du es frisch.", doneOf: (a, b) => `${a} von ${b} geschafft`, lessons: (n) => `${n} ${n === 1 ? "Lektion" : "Lektionen"}`, finish: "Fertig", today: "Heute üben", allTopics: "Alle Themen", search: (s, y) => `Suchen in ${s}, ${y}`, nothing: "Nichts gefunden.", year: "Klasse", yourYear: "deine Klasse", sets: (n) => `${n} ${n === 1 ? "Einheit" : "Einheiten"}`,
     meTitle: "Mein Fortschritt", stars: "Sterne", streak: "Tage in Folge", sessions: "Übungsrunden", bee: "Fleißiges Bienchen", beeTo: (a, b) => `${a} von ${b} Übungsrunden`, beeMax: "Alle Stufen geschafft!", notYet: "Noch nicht verdient", level: (n) => `Stufe ${n} von 6`, streakTitle: "Serie", streakNow: (n) => `${n} ${n === 1 ? "Schultag" : "Schultage"} in Folge`, streakBest: (n) => `Bester Lauf: ${n}`, streakTo: (n, name) => `Noch ${n} ${n === 1 ? "Schultag" : "Schultage"} bis ${name}`, streakNote: "Wochenenden zählen nicht und brechen nichts.", records: "Sprint-Rekorde", perMin: (n) => `${n} pro Minute`, noRecords: "Noch keinen Sprint gespielt. Probier einen im Üben-Tab!", subjects: "Deine Fächer", ofStars: (a, b) => `${a} von ${b} Sternen` },
@@ -149,6 +149,13 @@ function today(c) {
   const t = (c.log ?? []).filter((e) => e.day === c.today);
   return { lessons: t.filter((e) => /^lesson \d+ of \S+ finished/.test(e.text)).length, practice: t.filter((e) => /^\S+ session:/.test(e.text)).length };
 }
+// A row that scrolls sideways fades out at the edge it can still scroll to, so a cut chip reads as "more".
+function scrollFades(scr) {
+  scr.querySelectorAll(".scroll-fade").forEach((r) => {
+    const mark = () => { r.classList.toggle("more-l", r.scrollLeft > 4); r.classList.toggle("more-r", r.scrollLeft + r.clientWidth < r.scrollWidth - 4); };
+    r.addEventListener("scroll", mark, { passive: true }); mark();
+  });
+}
 // A title on one line where it can: a suffix like "-tion" never breaks off its hyphen.
 const keepSuffix = (t) => esc(t).replace(/(^|\s)(-[\p{L}]+)/gu, '$1<span class="nb">$2</span>');
 // A subject's mark: a short glyph in a ring that fills with the units done in the child's year.
@@ -157,105 +164,6 @@ function subjChip(x) {
   const sets = courseSets(x), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, fresh = !sets.some(lessonsDone);
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
   return `<button data-subj="${esc(x)}" style="--c:${colourOf(x)};--p:${sets.length ? (100 * done) / sets.length : 0}"><i class="hm-ring">${esc(g)}${fresh ? `<em>${esc(AT().newDot)}</em>` : ""}</i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><small>${esc(AT().unitsOf(done, sets.length))}</small></button>`;
-}
-// Next in each subject: a row of cards that slides sideways, one per subject with a
-// lesson to do (the plan's subject left out while its card is above), so it holds
-// three subjects today and more later. Dots under it show where the row is.
-const ROW_TXT = { de: { head: "Als Nächstes in deinen Fächern" }, en: { head: "Next in your subjects" } };
-function subjectRow(skip) {
-  const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
-    const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
-    const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
-    return `<div class="hm-card" role="group" style="--c:${colourOf(subj)}">
-      <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, sets.length))}</span><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b><small>${esc(s.title[lg] ?? s.title.de)}</small>
-      <button class="hm-card-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}<i>${esc(T.minShort(s.minutes ?? 10))}</i></button><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
-  }).filter(Boolean);
-  if (!cards.length) return "";
-  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3>${cards.length > 1 ? deckOf(cards) : cards.join("")}</section>`;
-}
-// A deck: the cards in a stack that never ends, turned like pages. The front card
-// follows a finger (or the mouse) sideways and the one under it rises into place;
-// pulled the other way, the card before comes back over the top from the left. A
-// card that is passed slides under the stack. It turns by itself every 10 seconds:
-// a faint line along the bottom of the front card fills meanwhile, and pressing and
-// holding the card stops it (as in stories), with the card dipping a little. Not
-// with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
-// No bar under it: the faint line on the card and the cards peeking out say enough.
-const DECK_MS = 10000;
-const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
-function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
-function deck(el, offset = 0) {
-  const slides = [...el.children], n = slides.length, segs = el.nextElementSibling?.matches(".dk-bar") ? [...el.nextElementSibling.children] : [];
-  if (n < 2) return;
-  const h = Math.max(...slides.map((s) => s.offsetHeight));
-  // Room under the front card only for the cards that peek out (10 px each, two at most).
-  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 10 * Math.min(2, n - 1)}px`;
-  const still = matchMedia("(prefers-reduced-motion: reduce)").matches, EASE = "transform .42s cubic-bezier(.22,.8,.25,1), opacity .3s";
-  let i = 0, x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
-  const W = () => el.clientWidth || 300;
-  // p is how far a turn has gone: -1 forward (the front card out to the left), +1 back.
-  const place = (p = 0, ease = true) => slides.forEach((s, j) => {
-    const k = (j - i + n) % n, back = p > 0 && k === n - 1;
-    let tx = 0, rot = 0, d = k;
-    if (k === 0) { tx = Math.min(0, p) * W() * 1.08; rot = Math.min(0, p) * 7; d = Math.max(0, p); }
-    else if (back) { tx = (p - 1) * W() * 1.08; rot = (p - 1) * 7; d = 0; }
-    else d = p < 0 ? k + p : k + p;
-    const z = back ? n + 1 : n - k;
-    s.style.transition = ease ? EASE : "none";
-    s.style.transform = `translate(${tx}px, ${Math.max(0, d) * 10}px) rotate(${rot}deg) scale(${1 - Math.max(0, d) * 0.05})`;
-    s.style.opacity = d > 2.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
-    s.classList.toggle("front", k === 0); s.inert = k !== 0;
-  });
-  // The timer: a line on top of each card; only the front one runs.
-  const timers = slides.map((s) => { const card = s.lastElementChild; card.insertAdjacentHTML("beforeend", '<i class="dk-timer" aria-hidden="true"><b></b></i>'); return card.lastElementChild; });
-  const mark = () => { segs.forEach((g, j) => g.classList.toggle("on", j === i)); timers.forEach((t, j) => { t.classList.remove("run"); if (j === i && !still) { void t.offsetWidth; t.classList.add("run"); } }); };
-  const turn = (d) => {
-    if (busy) return; busy = true;
-    place(d > 0 ? -1 : 1);
-    setTimeout(() => { i = (i + d + n) % n; place(0); mark(); busy = false; }, 380);
-  };
-  const go = (j) => { if (j === i || busy) return; const d = (j - i + n) % n; d === 1 ? turn(1) : d === n - 1 ? turn(-1) : (i = j, place(0), mark()); };
-  place(0, false); mark();
-  // By hand: drag or swipe the front card; a quarter of the width, or a quick flick, turns it.
-  let t0 = 0;
-  el.addEventListener("pointerdown", (e) => { if (busy) return; x0 = e.clientX; y0 = e.clientY; dx = 0; moved = false; t0 = performance.now(); });
-  el.addEventListener("pointermove", (e) => {
-    if (x0 == null) return; dx = e.clientX - x0;
-    if (!moved && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.clientY - y0)) { moved = true; el.setPointerCapture?.(e.pointerId); }
-    if (moved) place(Math.max(-1, Math.min(1, dx / W())), false);
-  });
-  const up = () => {
-    if (x0 == null) return; x0 = null;
-    if (!moved) return;
-    const fast = Math.abs(dx) / Math.max(1, performance.now() - t0) > 0.6;
-    if (Math.abs(dx) > W() / 4 || (fast && Math.abs(dx) > 30)) { busy = true; place(dx < 0 ? -1 : 1); setTimeout(() => { i = (i + (dx < 0 ? 1 : -1) + n) % n; place(0); mark(); busy = false; }, 380); }
-    else place(0);
-  };
-  el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
-  el.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-  // A sideways trackpad scroll comes as many small steps: they add up, and the first
-  // real swipe turns the page at once (skipping the timer, which starts again).
-  let cool = false, sum = 0, quiet = null;
-  el.addEventListener("wheel", (e) => {
-    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-    e.preventDefault(); clearTimeout(quiet); quiet = setTimeout(() => (sum = 0), 200);
-    if (cool) return; sum += e.deltaX;
-    if (Math.abs(sum) < 28) return;
-    cool = true; setTimeout(() => (cool = false), 550); turn(sum > 0 ? 1 : -1); sum = 0;
-  }, { passive: false });
-  el.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") turn(1); if (e.key === "ArrowLeft") turn(-1); });
-  segs.forEach((g, j) => g.onclick = () => go(j));
-  // By itself: the front card's line fills over 10 seconds, then the page turns. Pressing
-  // (and holding) the card stops it, as does keyboard focus inside the deck.
-  const hold = (on) => { held = on; el.classList.toggle("held", on); };
-  el.addEventListener("pointerdown", () => hold(true)); window.addEventListener("pointerup", () => el.isConnected && hold(el.contains(document.activeElement) && document.activeElement.matches(":focus-visible")));
-  el.addEventListener("focusin", (e) => e.target.matches(":focus-visible") && hold(true)); el.addEventListener("focusout", () => hold(false));
-  if (still) return;
-  // As the screen opens, the front card nudges aside a little and settles, so the deck looks like it moves.
-  setTimeout(() => { if (!el.isConnected || busy || x0 != null) return; place(-0.07); setTimeout(() => el.isConnected && x0 == null && !busy && place(0), 260); }, 650 + offset / 6);
-  timers.forEach((t, j) => t.addEventListener("animationend", () => { if (el.isConnected && j === i && !held) turn(1); }));
-  // Two decks on one screen take turns: the second starts half a turn later.
-  if (offset) { timers[0].classList.remove("run"); setTimeout(() => mark(), offset); }
 }
 // The line under the greeting says what today asks for, not the count the ring shows:
 // halfway, one to go; nothing yet, the streak to keep, or how long today's plan takes.
@@ -292,14 +200,16 @@ const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4
 function renderHomeTab() {
   const T = AT(), L = PT(), scr = $("#screen"), c = PR.child, subs = appSubjects();
   const plan = homePlan(); APP.subj = plan.subj;
-  const sug = mySuggestions()[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
+  const sugs = mySuggestions().slice(0, 2), sug = sugs[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
   const lesson = nextIn(plan.sets) ? lessonStep(plan) : "";
   const goal = [lesson || did.lessons, sug || did.practice].filter(Boolean).length || 1;
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
   const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
-  const practiceCard = sug ? `<div class="pr-own st-today hm-practice" role="group" style="--c:${colourOf(subjOfSkill(sug.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(sug.paused ? PAUSE_TXT[PL()].kind(L.kinds[sug.kind] ?? "") : L.kinds[sug.kind] ?? "")}</small><b>${esc(sug.reason[PL()])}</b><small>${esc(sizeOf(sug))}</small><button class="hm-pr-go" data-sug>${esc(sug.paused ? PAUSE_TXT[PL()].go : L.start)}</button></span><img class="hm-pr-art" src="${A}mascot/practise-1.png" alt=""></div>` : "";
+  // At most two practice suggestions, one under the other: the first with the mascot.
+  const pCard = (x, i) => `<div class="pr-own st-today hm-practice" role="group" style="--c:${colourOf(subjOfSkill(x.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(x.paused ? PAUSE_TXT[PL()].kind(L.kinds[x.kind] ?? "") : L.kinds[x.kind] ?? "")}</small><b>${esc(x.reason[PL()])}</b><small>${esc(sizeOf(x))}</small><button class="hm-pr-go" data-sug="${i}">${esc(x.paused ? PAUSE_TXT[PL()].go : L.start)}</button></span>${i ? "" : `<img class="hm-pr-art" src="${A}mascot/practise-1.png" alt="">`}</div>`;
+  const practiceCard = sugs.map(pCard).join("");
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
   if (lesson) steps.push(`<p class="hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</p>${lesson}`);
@@ -317,17 +227,16 @@ function renderHomeTab() {
     </header>
     ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
-    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.length > 1 ? deckOf(steps) : steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
+    : `<section class="hm-plan"><h3 class="pr-h">${esc(T.todayPlan)}</h3>${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
-    ${subjectRow(lesson && !all ? plan.subj : null)}
     <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
   </div>`;
   scr.appendChild(appTabs("start"));
-  wireHeader(scr); wireStarts(scr); wireRow(scr);
+  wireHeader(scr); wireStarts(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
-  scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-card-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
-  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { if (sug.paused) return resumeSession(); appTab("practice"); startSession({ kind: sug.kind, skills: sug.skills, minutes: sug.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll(".hm-lesson, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
+  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); startSession({ kind: x.kind, skills: x.skills, minutes: x.kind === "drill" ? 2 : null }); });
 }
 
 /* ---------- Study: the track ---------- */
@@ -392,6 +301,8 @@ function renderTrack() {
   }).join("");
   const lines = rows.map((r, i) => r.topicStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
   const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(r.s.title[lg] ?? r.s.title.de)}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
+  // Each skill's stars under its stone; they stay when the skate's card stands on the stone.
+  const starRow = rows.map((r, i) => `<span class="tr-st ${r.state}" style="top:${top(i) + (TR.decor + TR.stoneH) / 2 + 2}px">${starsOf3(r.s.skill)}</span>`).join("");
   const mascot = rows.length ? `<img class="tr-mascot" data-i="${cur}" src="${A}mascot/start-2.png" alt="" style="top:${mid(cur) - TR.mascot * 1.05}px;left:${at(TR.decor / 2 - TR.mascot * 1.2)};width:${TR.mascot}px">` : "";
   scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div>
@@ -403,7 +314,7 @@ function renderTrack() {
     </header>
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
       <button class="tr-card"><i><img src="study/${art}.svg" alt=""></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
-      <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip up" aria-live="polite" hidden></div></div>
+      <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${starRow}${mascot}<div class="tr-tip up" aria-live="polite" hidden></div></div>
     </div><div class="tr-fade" aria-hidden="true"></div>`;
   scr.appendChild(appTabs("study"));
   wireHeader(scr);
@@ -426,7 +337,7 @@ function renderTrack() {
     // The lessons stay folded away until the child opens them.
     const shown = all ? r.s.lessons.map(row) : [];
     // One line for where the child is; the lessons open from the list button beside Start.
-    tip.innerHTML = `<b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>
+    tip.innerHTML = `<span class="tr-tt"><b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>${starsOf3(r.s.skill, "tr-tip-st")}</span>
       <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
         <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
       ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
@@ -473,7 +384,9 @@ function renderTrack() {
 // The subject menu under the pill: each subject with its icon.
 function subjectMenu(pill) {
   const m = document.createElement("div"); m.className = "tr-menu"; m.setAttribute("role", "menu");
-  m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}"${x === APP.subj ? ' aria-current="true"' : ""}><img src="study/${a}.svg" alt="">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`; }).join("");
+  // As the app's StatsBar picker: one row across the screen, an icon over each name; the
+  // subject on show in its colour with a bar under it, the others faded.
+  m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}" style="--c:${colourOf(x)}"${x === APP.subj ? ' aria-current="true"' : ""}><i><img src="study/${a}.svg" alt=""></i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`; }).join("");
   const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
   const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
   m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
@@ -548,27 +461,33 @@ function renderStudy() {
   const shown = topics.filter((tp) => !APP.topic || tp.name === APP.topic).map((tp) => ({ ...tp, sets: tp.sets.filter(hit) })).filter((tp) => tp.sets.length);
   const next = nextIn(sets), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length;
   const subjName = SUBJ_NAME[c.curriculum][APP.subj] ?? APP.subj;
+  // Search sits behind the lens until the child opens it (or has typed something).
+  const finding = !!(APP.find || APP.q);
   scr.style.setProperty("--subj", colour); scr.style.setProperty("--top", `color-mix(in srgb, ${colour} 10%, var(--card))`);
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page st-page">
     <header class="st-band" style="--c:${colour}">
-      <div class="st-head"><button class="st-back" aria-label="${esc(TK().back)}">${CHEVRON}</button><h2>${esc(TK().units)}</h2></div>
-      <div class="ln-subj" role="tablist">${subs.map((x) => `<button role="tab" data-s="${x}" aria-selected="${x === APP.subj}" style="--c:${colourOf(x)}">${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</button>`).join("")}</div>
-      <div class="st-row"><label class="st-year"><span>${esc(T.year)}</span><select id="stYear">${years.map((y) => `<option value="${esc(y)}"${y === APP.year ? " selected" : ""}>${esc(yearName(y))}${y === mine ? ` (${esc(T.yourYear)})` : ""}</option>`).join("")}</select></label>
-        <span class="st-count">${esc(T.doneOf(done, sets.length))}</span></div>
+      <div class="st-head"><button class="st-back" aria-label="${esc(TK().back)}">${CHEVRON}</button><h2>${esc(TK().units)}</h2>
+        <button class="st-find" aria-label="${esc(T.search(subjName, yearName(APP.year)))}" aria-expanded="${finding}">${LENS}</button></div>
+      <div class="st-subjs" role="tablist">${subs.map((x) => `<button role="tab" data-s="${x}" aria-selected="${x === APP.subj}" style="--c:${colourOf(x)}"><i><img src="study/${trackArt(x)}.svg" alt=""></i><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b></button>`).join("")}</div>
+      ${years.length > 1 ? `<div class="st-years scroll-fade" role="tablist" aria-label="${esc(T.year)}">${years.map((y) => `<button role="tab" data-y="${esc(y)}" aria-selected="${y === APP.year}"${y === mine ? ` title="${esc(T.yourYear)}"` : ""}>${esc(yearName(y))}${y === mine ? '<i class="st-mine" aria-hidden="true"></i>' : ""}</button>`).join("")}</div>` : ""}
+      <div class="st-prog"><span>${esc(T.doneOf(done, sets.length))}</span><i class="pr-bar"><i style="width:${sets.length ? (100 * done) / sets.length : 0}%"></i></i></div>
     </header>
-    <label class="pr-search">${LENS}<input id="stQ" type="search" value="${esc(APP.q)}" placeholder="${esc(T.search(subjName, yearName(APP.year)))}" autocomplete="off"></label>
-    <div class="st-topics">${[{ name: null }, ...topics].map((tp) => { const d = tp.sets?.filter((x) => lessonsDone(x) >= x.lessons.length).length, all = !!tp.sets && d === tp.sets.length; return `<button data-t="${esc(tp.name ?? "")}" aria-pressed="${(APP.topic ?? null) === tp.name}"${all ? ' class="done"' : ""}>${all ? "✓ " : ""}${esc(tp.name ?? T.allTopics)}${tp.sets && !all && d ? `<small>${d}/${tp.sets.length}</small>` : ""}</button>`; }).join("")}</div>
+    ${finding ? `<label class="pr-search">${LENS}<input id="stQ" type="search" value="${esc(APP.q)}" placeholder="${esc(T.search(subjName, yearName(APP.year)))}" autocomplete="off"></label>` : ""}
+    <div class="st-topics scroll-fade">${[{ name: null }, ...topics].map((tp) => { const d = tp.sets?.filter((x) => lessonsDone(x) >= x.lessons.length).length, all = !!tp.sets && d === tp.sets.length; return `<button data-t="${esc(tp.name ?? "")}" aria-pressed="${(APP.topic ?? null) === tp.name}"${all ? ' class="done"' : ""}>${all ? "✓ " : ""}${esc(tp.name ?? T.allTopics)}${tp.sets && !all && d ? `<small>${d}/${tp.sets.length}</small>` : ""}</button>`; }).join("")}</div>
     ${!q && !APP.topic && next ? upNext(next) : ""}
     <div id="stList">${shown.map((tp) => `<section class="ln-topic"><h3 class="pr-h">${esc(tp.name)}<small>${esc(T.doneOf(tp.sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, tp.sets.length))}</small></h3>${tp.sets.map((s) => studySetRow(s, s === next && !q)).join("")}</section>`).join("") || `<p class="pr-empty">${esc(T.nothing)}</p>`}</div>
   </div>`;
   scr.appendChild(appTabs("study"));
   $(".st-back", scr).onclick = () => { APP.units = false; renderTrack(); };
-  scr.querySelectorAll(".ln-subj button").forEach((b) => b.onclick = () => { APP.subj = b.dataset.s; APP.year = null; APP.topic = null; APP.q = ""; renderStudy(); });
-  $("#stYear").onchange = (e) => { APP.year = e.target.value; APP.topic = null; renderStudy(); };
+  scr.querySelectorAll(".st-subjs button").forEach((b) => b.onclick = () => { APP.subj = b.dataset.s; APP.year = null; APP.topic = null; APP.q = ""; renderStudy(); });
+  scr.querySelectorAll(".st-years button").forEach((b) => b.onclick = () => { APP.year = b.dataset.y; APP.topic = null; renderStudy(); });
+  $(".st-find", scr).onclick = () => { APP.find = !finding; if (!APP.find) APP.q = ""; renderStudy(); if (APP.find) $("#stQ")?.focus(); };
   scr.querySelectorAll(".st-topics button").forEach((b) => b.onclick = () => { APP.topic = b.dataset.t || null; renderStudy(); });
-  const qi = $("#stQ"); qi.oninput = () => { APP.q = qi.value; const pos = qi.selectionStart; renderStudy(); const n = $("#stQ"); n.focus(); n.setSelectionRange(pos, pos); };
+  const qi = $("#stQ"); if (qi) qi.oninput = () => { APP.q = qi.value; const pos = qi.selectionStart; renderStudy(); const n = $("#stQ"); n.focus(); n.setSelectionRange(pos, pos); };
   wireStarts(scr);
   scr.querySelector(".st-topics [aria-pressed=true]")?.scrollIntoView({ inline: "center", block: "nearest" });
+  scr.querySelector(".st-years [aria-selected=true]")?.scrollIntoView({ inline: "center", block: "nearest" });
+  scrollFades(scr);
 }
 // Study's way back in: one row with the next lesson of the course; the unit below is open on it.
 function upNext(s) {
@@ -576,12 +495,17 @@ function upNext(s) {
   return `<button class="st-next" data-start="${esc(s.id)}" data-n="${l.n}"><span class="st-next-i">${PLAY}</span><span><small>${esc(T.upNext)} · ${esc(s.title[lg] ?? s.title.de)}</small><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b></span><em>${esc(T.minShort(s.minutes ?? 10))}</em></button>`;
 }
 const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
+// A skill's stars, the same everywhere: 0 to 3 filled by its state (docs/rewards.md),
+// the rest empty, so a skill not taken yet shows three empty stars; a refresh mark when due.
+function starsOf3(k, cls = "") {
+  const st = PR.child.states[k]?.state ?? "not_started", n = STARS[st];
+  return `<span class="pr-stars ${cls}" aria-label="${n} / 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}">★</i>`).join("")}${st === "needs_refresh" ? '<em title="refresh">↻</em>' : ""}</span>`;
+}
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
   const T = AT(), lg = PL(), done = lessonsDone(s), n = s.lessons.length;
-  const stars = STARS[PR.child.states[s.skill]?.state ?? "not_started"], started = done > 0 || stars > 0;
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
-      ${started ? `<span class="pr-stars" aria-label="${stars} / 3">${[1, 2, 3].map((i) => `<i class="${i <= stars ? "on" : ""}">★</i>`).join("")}</span>` : "<span></span>"}</summary>
+      ${starsOf3(s.skill)}</summary>
     ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
     <ol class="ln-lessons">${s.lessons.map((l, i) => `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`).join("")}</ol></details>`;
 }
@@ -642,13 +566,15 @@ function weekStrip(c) {
   return `<div class="me-week">${T.days.map((d, i) => { const day = mon + i; return `<span class="${act.has(day) ? "on" : day < c.today ? "miss" : ""}${day === c.today ? " now" : ""}${day > c.today ? " later" : ""}" title="${esc(act.has(day) ? T.dayPlayed : day === c.today ? T.dayToday : day < c.today ? T.dayMissed : "")}"><i>${cell(day)}</i><small>${esc(d)}</small></span>`; }).join("")}</div>${none && c.today % 7 < 5 ? `<small class="me-hint">${esc(T.lightFirst)}</small>` : ""}`;
 }
 /* ---------- Me ---------- */
-// The child's own page: this week and the streak, the badges (earned, close,
-// and the rest), the subjects and the drill records.
+// The child's own page: this week and the streak, the subjects, the badges (the
+// newest, the closest, and all the rest folded away) and the best drill records.
 function renderMe() {
   const T = AT(), c = appChild(), scr = $("#screen");
-  const s = streak(c), all = myBadges(), got = all.filter((b) => b.earned);
+  const s = streak(c), all = myBadges(), seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
   const close = nextBadges(all).filter((b) => b.have > 0);
   const rest = all.filter((b) => !b.earned && !close.includes(b));
+  // Me shows the three newest badges and the three closest; every other one, earned or not, is under "all".
+  const more = [...got.slice(3), ...close.slice(3), ...rest];
   const ks = appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)), stars = ks.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
   const recs = Object.entries(c.drills ?? {}).filter(([k, d]) => d.best && PR.index.bySkill[k]).sort((a, b) => b[1].best - a[1].best);
   const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
@@ -663,14 +589,14 @@ function renderMe() {
     </div>
     <section class="me-card me-streak" id="me-week"><div><b>${esc(T.thisWeek)}</b><small>${esc(T.streakNow(s.current))} · ${esc(T.streakBest(s.best))}</small></div>
       ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
-    <section id="me-badges" class="me-bds"><h3 class="pr-h">${esc(T.badges)}<small>${esc(T.ofN(got.length, all.length))}</small></h3>
-      ${got.length ? `<div class="bd-grid">${got.map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(T.noBadges)}</p>`}
-      ${close.length ? `<h4 class="hm-step">${esc(T.almost)}</h4><div class="bd-grid">${close.map(badgeTile).join("")}</div>` : ""}
-      <details class="bd-all"><summary>${esc(T.allBadges(rest.length))}${CHEVRON}</summary><div class="bd-grid">${rest.map(badgeTile).join("")}</div></details></section>
     <h3 class="pr-h">${esc(T.subjects)}</h3>
     <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<button data-subj="${x}" style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></button>`; }).join("")}</div>
+    <section id="me-badges" class="me-bds"><h3 class="pr-h">${esc(T.badges)}<small>${esc(T.ofN(got.length, all.length))}</small></h3>
+      ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(T.noBadges)}</p>`}
+      ${close.length ? `<h4 class="hm-step">${esc(T.almost)}</h4><div class="bd-grid">${close.slice(0, 3).map(badgeTile).join("")}</div>` : ""}
+      <details class="bd-all"><summary>${esc(T.allBadges(more.length))}${CHEVRON}</summary><div class="bd-grid">${more.map(badgeTile).join("")}</div></details></section>
     <h3 class="pr-h">${esc(T.records)}</h3>
-    ${recs.length ? `<div class="me-recs">${recs.map(([k, d]) => `<button data-drill="${esc(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span>${esc(setOfSkill(k)?.title[PL()] ?? k)}</span><b>${esc(T.perMin(d.best))}</b></button>`).join("")}</div>` : `<p class="pr-empty">${esc(T.noRecords)}</p>`}
+    ${recs.length ? `<div class="me-recs">${recs.slice(0, 3).map(([k, d]) => `<button data-drill="${esc(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span>${esc(setOfSkill(k)?.title[PL()] ?? k)}</span><b>${esc(T.perMin(d.best))}</b></button>`).join("")}</div>` : `<p class="pr-empty">${esc(T.noRecords)}</p>`}
   </div>`;
   scr.appendChild(appTabs("me"));
   wireHeader(scr);
