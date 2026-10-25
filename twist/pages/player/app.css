@@ -910,15 +910,6 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 
 /* Start: the resume card, compact (the app's lesson progress card): name and minutes, the
    lesson, where the child stopped with a thin bar, a pill button, a small mascot. */
-.hm-resume { padding: 16px 16px 16px 18px; gap: 2px; }
-.hm-resume .pr-reason { font-size: 21px; }
-.hm-resume .pr-art { top: 12px; right: 10px; width: 76px; height: 86px; }
-.hm-resume > .pr-reason, .hm-resume > .pr-sub, .hm-resume > .pr-kind { max-width: calc(100% - 84px); }
-.hm-where { display: grid; gap: 6px; width: 100%; max-width: none !important; margin-top: 8px; }
-.hm-where small { font: 600 13px "Red Hat Text", sans-serif; color: rgba(255, 255, 255, .92); }
-.hm-pbar { display: block; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .3); overflow: hidden; }
-.hm-pbar i { display: block; height: 100%; border-radius: 3px; background: #fff; }
-.hm-resume > .pr-go { align-self: flex-start; margin-top: 12px; padding: 10px 22px; border-radius: 999px; font-size: 15px; }
 /* The decks again, in the new cards: each card opaque and the same height; nothing shows through. */
 .pr-hero.hm-card { min-height: 0; margin: 0; padding: 22px 20px 20px; }
 .pr-hero.hm-card .pr-art { top: 14px; right: 10px; bottom: auto; width: 96px; height: 108px; }
@@ -953,17 +944,9 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 :is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice { --muted: color-mix(in oklab, var(--c) 55%, #fff); border-color: color-mix(in srgb, var(--c) 70%, var(--card)); }
 :is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice > .hm-pr-go { background: var(--c); box-shadow: 0 3px 0 color-mix(in srgb, var(--c) 60%, #000); }
 /* Buttons across the bottom of the card, under the text and the picture, as on the app's cards. */
-.hm-resume > .pr-go { align-self: stretch; text-align: center; margin-top: 12px; padding: 12px; border-radius: 14px; font-size: 16px; }
 .hm-practice > span { grid-column: 1; grid-row: 1; }
 .hm-practice > img { grid-column: 2; grid-row: 1; }
 .hm-practice > .hm-pr-go { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; margin-top: 4px; padding: 13px; border-radius: 14px; font-size: 16px; text-align: center; }
-/* The lesson's progress on one line with its label: a short bar after "Lektion 1 von 2". */
-.hm-where { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
-.hm-where small { flex: 0 1 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hm-where .hm-pbar { flex: 0 0 72px; height: 5px; }
-.hm-resume > .pr-go { margin-top: 10px; }
-/* The resume card's button: a compact pill, not across the card. */
-.hm-resume > .pr-go { align-self: flex-start; padding: 10px 26px; border-radius: 999px; font-size: 15px; }
 
 /* One card family on Practice and Me, as on Start: 20px corners, a 2px border with a 5px
    bottom edge; cards of a subject tinted in it, with the muted subject colour for edges and titles. */
@@ -979,16 +962,21 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .bd-grid { gap: 10px; }
 .me-bds, #me-stars, .me-recs { display: grid; gap: 10px; }
 :is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.dr-card, .me-recs button) { --m: color-mix(in oklab, var(--c) 55%, #fff); background: color-mix(in srgb, var(--c) 16%, var(--card)); }
-/* Resume card: the mascot and the button stand in a column on the right, the button under the
    mascot; the text and the progress line take the left, so the card needs no row for the button. */
-.hm-resume { position: relative; min-height: 148px; padding: 16px 132px 16px 18px; }
-.hm-resume > .pr-reason, .hm-resume > .pr-sub, .hm-resume > .pr-kind, .hm-resume > .hm-where { max-width: none; }
-.hm-resume .pr-art { top: 10px; right: 26px; width: 80px; height: 70px; object-fit: contain; }
-.hm-resume > .pr-go { position: absolute; right: 14px; bottom: 16px; margin: 0; padding: 10px 20px; }
-.hm-where .hm-pbar { flex: 0 0 64px; }
-.hm-resume { padding: 16px 18px 18px; min-height: 0; }
-.hm-resume > .pr-kind, .hm-resume > .pr-reason, .hm-resume > .pr-sub { max-width: calc(100% - 96px); }
-.hm-resume > .hm-where { max-width: calc(100% - 128px); margin-top: 10px; }
-.hm-resume .pr-art { top: 12px; right: 22px; width: 76px; height: 72px; }
-.hm-resume > .pr-go { right: 16px; bottom: 14px; padding: 9px 18px; }
-.hm-resume .pr-kind { white-space: nowrap; }
+/* Resume card ("Mach weiter, wo du aufgehört hast"): text on the left; on the right the mascot
+   with the button under it; the lesson's progress as a short bar beside its label. */
+.pr-hero.hm-resume { position: relative; min-height: 190px; padding: 22px 22px 22px 24px; gap: 0; }
+.pr-hero.hm-resume > :is(.pr-kind, .pr-reason, .pr-sub) { max-width: calc(100% - 100px); }
+.pr-hero.hm-resume > .pr-kind { margin-bottom: 10px; white-space: nowrap; }
+.pr-hero.hm-resume > .pr-reason { font-size: 23px; line-height: 1.15; margin-bottom: 6px; }
+.pr-hero.hm-resume > .pr-sub { font-size: 15px; }
+.pr-hero.hm-resume .pr-art { top: 18px; right: 22px; width: 88px; height: 88px; }
+.pr-hero.hm-resume > .pr-go { position: absolute; right: 20px; bottom: 20px; margin: 0; padding: 12px 24px; border-radius: 999px; font-size: 16px; }
+.pr-hero.hm-resume > .hm-where { display: flex; align-items: center; gap: 10px; width: auto; max-width: calc(100% - 168px); margin-top: auto; padding-top: 18px; }
+.hm-where small { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 600 13px "Red Hat Text", sans-serif; color: rgba(255, 255, 255, .92); }
+.hm-pbar { display: block; flex: 0 0 64px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .3); overflow: hidden; }
+.hm-pbar i { display: block; height: 100%; border-radius: 3px; background: #fff; }
+.pr-hero.hm-resume { min-height: 214px; }
+.pr-hero.hm-resume > .pr-go { top: 118px; bottom: auto; }
+.pr-hero.hm-resume > .hm-where { max-width: none; padding-top: 16px; }
+.pr-hero.hm-resume > .hm-where .hm-pbar { flex: 0 0 96px; }
