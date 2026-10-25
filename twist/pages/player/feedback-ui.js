@@ -35,7 +35,7 @@ function fbkScreen() {
   const b = document.body.classList;
   if (["types", "drawn", "fbv", "usv"].some((c) => b.contains(c))) return null;
   const build = $("#built")?.textContent || undefined;
-  if (b.contains("parents")) return { kind: "parents", label: "Parents view", build };
+  if (b.contains("parents")) return { kind: "parents", label: "Parents Lab", build };
   if (b.contains("practice")) { const tab = APP.tab ?? "start"; return { kind: "app", tab: PR.on ? "practice-session" : tab, label: PR.on ? "App · a practice session" : `App · ${SIDE_NAME[tab] ?? tab}`, build }; }
   if (APP.home === "study") return { kind: "study", subj: APP.subj ?? undefined, tab: APP.units ? "units" : "track", label: `Study ${APP.units ? "unit list" : "track"} · ${SUBJ_NAME[PR.child.curriculum]?.[APP.subj] ?? APP.subj ?? ""}`, build };
   const s = steps?.[at]; if (!set || !lesson || !s) return null;
@@ -44,10 +44,25 @@ function fbkScreen() {
 }
 // Two comments are on the same screen when these match; a lesson step is known by its task id, which survives reordering.
 const fbkKey = (sc) => !sc ? "" : sc.kind === "lesson" ? `L|${sc.set}|${sc.lesson}|${sc.task ?? `${sc.stepKind}${sc.step}`}` : sc.kind === "app" ? `A|${sc.tab}` : sc.kind === "study" ? `S|${sc.subj}|${sc.tab}` : "P";
-// Where pins sit: the phone's screen, or the Parents page.
+// Where pins sit: the phone's screen, or the Parents Lab. The Lab is a page in a frame (same
+// origin): its document is the root the pins anchor in, and its parts' boxes are moved by the
+// frame's place on the page (fbkOff, fbkElAt).
 function fbkSurface() {
-  if (document.body.classList.contains("parents")) { const el = $("#parentsView > *"); return el ? { el, host: el } : null; }
+  if (document.body.classList.contains("parents")) {
+    const el = $("#parentsView iframe"), doc = el?.contentDocument;
+    if (!doc?.body?.firstElementChild) return null;
+    // Pins ride along when the Lab scrolls or reflows: its scroll does not reach this page.
+    if (!doc._fbk) { doc._fbk = true; doc.addEventListener("scroll", fbkPlaceSoon, { capture: true, passive: true }); el.contentWindow.addEventListener("resize", fbkSoon); }
+    return { el, host: $("#parentsView"), doc, root: doc.body };
+  }
   return { el: $("#screen"), host: $(".phone") };
+}
+const fbkOff = (el) => { if (!el || el.ownerDocument === document) return { x: 0, y: 0 }; const f = $("#parentsView iframe")?.getBoundingClientRect(); return { x: f?.left ?? 0, y: f?.top ?? 0 }; };
+// The part at a point on this page, inside the Lab's frame when that is the surface.
+function fbkElAt(x, y, layer) {
+  const sf = fbkSurface();
+  if (sf?.doc) { const f = sf.el.getBoundingClientRect(); return sf.doc.elementFromPoint(x - f.left, y - f.top); }
+  layer.style.pointerEvents = "none"; const el = document.elementFromPoint(x, y); layer.style.pointerEvents = ""; return el;
 }
 
 /* ---------- pins on the open screen ---------- */
@@ -104,15 +119,15 @@ const fbkPlaceSoon = () => { cancelAnimationFrame(fbkPlaceRaf); fbkPlaceRaf = re
    the pin or box as fractions of that part), and its pin follows that part
    as it scrolls. When the part is not on the screen, neither is the pin.
    Comments from before anchors sit on the screen's frame as before. */
-const fbkRoot = () => fbkSurface()?.el;
+const fbkRoot = () => { const sf = fbkSurface(); return sf?.root ?? sf?.el; };
 const fbkText = (el) => (el.getAttribute("aria-label") || el.getAttribute("alt") || el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
-const fbkScrolls = (el) => { const cs = getComputedStyle(el); return /auto|scroll/.test(cs.overflowY + cs.overflowX) && (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1); };
+const fbkScrolls = (el) => { const cs = el.ownerDocument.defaultView.getComputedStyle(el); return /auto|scroll/.test(cs.overflowY + cs.overflowX) && (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1); };
 // A part's box in screen pixels; a scrolling part's box is its whole content, which moves as it scrolls.
 function fbkRectOf(el) {
-  const b = el.getBoundingClientRect();
-  if (!fbkScrolls(el)) return { left: b.left, top: b.top, width: b.width, height: b.height };
+  const b = el.getBoundingClientRect(), o = fbkOff(el);
+  if (!fbkScrolls(el)) return { left: b.left + o.x, top: b.top + o.y, width: b.width, height: b.height };
   const k = b.width / (el.offsetWidth || 1);
-  return { left: b.left - el.scrollLeft * k, top: b.top - el.scrollTop * k, width: el.scrollWidth * k, height: el.scrollHeight * k };
+  return { left: b.left + o.x - el.scrollLeft * k, top: b.top + o.y - el.scrollTop * k, width: el.scrollWidth * k, height: el.scrollHeight * k };
 }
 // Its place in the screen, the way querySelector finds it again: div:nth-of-type(2)>button:nth-of-type(1).
 function fbkPath(el, root) {
@@ -133,7 +148,7 @@ function fbkFind(a) {
 function fbkAnchorAt(r, layer) {
   const root = fbkRoot(); if (!root) return null;
   const cx = r.w ? r.x + r.w / 2 : r.x, cy = r.h ? r.y + r.h / 2 : r.y;
-  layer.style.pointerEvents = "none"; let el = document.elementFromPoint(cx, cy); layer.style.pointerEvents = "";
+  let el = fbkElAt(cx, cy, layer);
   if (!el || el === root || !root.contains(el)) return null;
   if (!r.w) el = el.closest(FBK_PART) ?? el;
   const holds = (b) => b.left <= r.x + 1 && b.top <= r.y + 1 && b.left + b.width >= r.x + (r.w ?? 0) - 1 && b.top + b.height >= r.y + (r.h ?? 0) - 1;
@@ -159,7 +174,7 @@ function fbkPlace(layer = $("#fbkLayer")) {
       // Only the part of it left in view by each scrolling part around it.
       for (let e = el.parentElement; e && root.contains(e); e = e.parentElement) {
         if (e !== root && !fbkScrolls(e)) continue;
-        const s = e.getBoundingClientRect();
+        const s0 = e.getBoundingClientRect(), o = fbkOff(e), s = { left: s0.left + o.x, top: s0.top + o.y, right: s0.right + o.x, bottom: s0.bottom + o.y };
         clip = { l: Math.max(clip.l, (s.left - L.left) * k), t: Math.max(clip.t, (s.top - L.top) * k), r: Math.min(clip.r, (s.right - L.left) * k), b: Math.min(clip.b, (s.bottom - L.top) * k) };
       }
     } else {
@@ -179,7 +194,9 @@ function fbkPlace(layer = $("#fbkLayer")) {
 function fbkWheel(e) {
   if (!FBK.pinning) return;
   const layer = e.currentTarget, root = fbkRoot();
-  layer.style.pointerEvents = "none"; let el = document.elementFromPoint(e.clientX, e.clientY); layer.style.pointerEvents = "";
+  let el = fbkElAt(e.clientX, e.clientY, layer);
+  // The Lab scrolls as a whole page: the wheel scrolls its window.
+  if (el && el.ownerDocument !== document) { e.preventDefault(); el.ownerDocument.defaultView.scrollBy(e.deltaX, e.deltaY); return; }
   for (; el && root?.contains(el); el = el.parentElement) {
     if (!fbkScrolls(el)) continue;
     const down = e.deltaY > 0, right = e.deltaX > 0;
@@ -207,13 +224,13 @@ function fbkDescribe(el) {
 }
 // What the comment is about: the part under a pin, or the parts whose middle lies in an area (at most four).
 function fbkTarget(r, layer) {
-  const surface = fbkSurface()?.el; if (!surface) return null;
+  const surface = fbkRoot(); if (!surface) return null;
   if (!r.w) {
-    layer.style.pointerEvents = "none"; const el = document.elementFromPoint(r.x, r.y); layer.style.pointerEvents = "";
-    return el?.closest("#screen, #parentsView") ? { label: fbkDescribe(el) } : null;
+    const el = fbkElAt(r.x, r.y, layer);
+    return el && (el.ownerDocument !== document || el.closest("#screen, #parentsView")) ? { label: fbkDescribe(el) } : null;
   }
   const inside = [...surface.querySelectorAll(FBK_PART)].filter((el) => {
-    const b = el.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+    const b = fbkRectOf(el), cx = b.left + b.width / 2, cy = b.top + b.height / 2;
     return b.width && cx >= r.x && cx <= r.x + r.w && cy >= r.y && cy <= r.y + r.h;
   });
   // The outermost parts only: an option card, not also the text inside it.

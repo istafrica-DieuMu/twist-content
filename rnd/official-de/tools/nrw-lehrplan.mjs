@@ -1,6 +1,8 @@
 // Extracts the Kompetenzerwartungen from an NRW Lehrplan Primarstufe text
 // (pdftotext -layout output) into a reference framework file in official-de/frameworks/.
-//   node official-de/tools/nrw-lehrplan.mjs mathe   (from the rnd root)
+//   node official-de/tools/nrw-lehrplan.mjs mathe            (from the rnd root)
+//   node official-de/tools/nrw-lehrplan.mjs sachunterricht   (writes twist/frameworks/de/: KMK has no
+//   standards for Sachunterricht, so the NRW Lehrplan is the de-DE framework for the subject)
 // NRW prints two columns: end of the Schuleingangsphase (Klasse 2) on the
 // left, end of Klasse 4 on the right. A statement spanning both columns is
 // expected by the end of Klasse 2 and deepened in Klassen 3 and 4 (Lehrplan
@@ -28,6 +30,27 @@ const DOCS = {
       "Daten, Häufigkeiten, Wahrscheinlichkeiten": ["Daten, Häufigkeiten, Wahrscheinlichkeiten", "dhw", "content"],
     },
   },
+  sachunterricht: {
+    id: "nrw-sachunterricht-2021",
+    text: "official-de/nrw/text/ps_lp_sammelband_2025_03_18_0.txt",
+    title: "Lehrplan für die Primarstufe in Nordrhein-Westfalen, Fach Sachunterricht (2021), im Sammelband vom 18.03.2025",
+    url: "https://lehrplannavigator.nrw.de/system/files/media/document/file/ps_lp_sammelband_2025_03_18_0.pdf",
+    domain: "world",
+    // The Sammelband holds every subject: start at the Sachunterricht part.
+    after: /^Der Sachunterricht leistet einen zentralen Beitrag/,
+    from: "2.2 Kompetenzerwartungen",
+    to: /^\f?3\s+Leistungen fördern und bewerten$/,
+    bullet: /^\s*•\s*/,
+    out: "../../twist/frameworks/de",
+    areas: {
+      "Demokratie und Gesellschaft": ["Demokratie und Gesellschaft", "dg", "content"],
+      "Körper und Gesundheit": ["Körper und Gesundheit", "kg", "content"],
+      "Natur und Umwelt": ["Natur und Umwelt", "nu", "content"],
+      "Raum und Mobilität": ["Raum und Mobilität", "rm", "content"],
+      "Technik, digitale Technologie und Arbeit": ["Technik, digitale Technologie und Arbeit", "tda", "content"],
+      "Zeit und Wandel": ["Zeit und Wandel", "zw", "content"],
+    },
+  },
 };
 
 const key = process.argv[2];
@@ -35,7 +58,8 @@ const doc = DOCS[key];
 if (!doc) { console.error(`usage: nrw-lehrplan.mjs <${Object.keys(DOCS).join("|")}>`); process.exit(1); }
 
 const all = readFileSync(join(ROOT, doc.text), "utf8").split("\n");
-const start = all.findIndex((l) => l.trim() === doc.from);
+const after = doc.after ? all.findIndex((l) => doc.after.test(l.trim())) : 0;
+const start = all.findIndex((l, i) => i >= after && l.trim() === doc.from);
 let end = all.findIndex((l, i) => i > start && doc.to.test(l.trim()));
 if (end < 0) end = all.length;
 
@@ -49,8 +73,8 @@ const pageOf = [];
 }
 
 const slug = (s) => s.toLowerCase().replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-const BULLET = /^\s*\uF0B7\s*/;
-const tidy = (parts) => parts.join("\n").replace(/(\p{L})-\n(\p{Ll})/gu, "$1$2").replace(/\s*\n\s*/g, " ").replace(/\s+/g, " ").replace(/\s+,/g, ",").replace(/,(?=\S)/g, ", ").trim().replace(/[,.]$/, "");
+const BULLET = doc.bullet ?? /^\s*\uF0B7\s*/;
+const tidy = (parts) => parts.join("\n").replace(/(\p{L})-\n(\p{Ll})/gu, "$1$2").replace(/\s*\n\s*/g, " ").replace(/\s+/g, " ").replace(/\s+,/g, ",").replace(/,(?=\S)/g, ", ").replace(/- \)/g, "-)").trim().replace(/[,.]$/, "");
 
 const objectives = [];
 const counters = {};
@@ -156,8 +180,9 @@ for (const o of objectives) {
   if (o.pair) out += `    pair: ${o.pair}\n`;
   out += `    page: ${o.page}\n    text: ${q(o.text)}\n`;
 }
-writeFileSync(join(ROOT, `official-de/frameworks/${doc.id}.yaml`), out);
+const outFile = join(ROOT, doc.out ? `official-de/${doc.out}/${doc.id}.yaml` : `official-de/frameworks/${doc.id}.yaml`);
+writeFileSync(outFile, out);
 const by = {};
 for (const o of objectives) { const g = `${o.area} / ${o.band}${o.spans ? " (spans)" : ""}`; by[g] = (by[g] ?? 0) + 1; }
-console.log(`official-de/frameworks/${doc.id}.yaml: ${objectives.length} objectives`);
+console.log(`${outFile}: ${objectives.length} objectives`);
 console.table(by);

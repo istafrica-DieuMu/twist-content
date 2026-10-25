@@ -225,7 +225,7 @@ export function pools(set) {
 }
 
 // Maths first, then the home language, then the foreign language.
-const SUBJECT_ORDER = ["math", "lit-de", "lit-en", "fl"];
+const SUBJECT_ORDER = ["math", "lit-de", "lit-en", "world", "fl"];
 export function indexContent(sets, drills, curriculum) {
   const mine = sets.filter((s) => s.id.startsWith(curriculum + "."));
   const bySkill = {}, topics = new Map();

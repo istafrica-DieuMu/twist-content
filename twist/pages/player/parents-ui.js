@@ -6,5 +6,8 @@
    Inlined after app-ui.js. */
 function renderParents() {
   const el = $("#parentsView");
-  if (!el.querySelector("iframe")) el.innerHTML = `<iframe class="pa-lab" src="../parents-lab/index.html" title="Parents Lab"></iframe>`;
+  if (el.querySelector("iframe")) return;
+  el.innerHTML = `<iframe class="pa-lab" src="../parents-lab/index.html" title="Parents Lab"></iframe>`;
+  // Feedback pins (feedback-ui.js) anchor in the Lab's page once it has loaded.
+  $("iframe", el).addEventListener("load", () => typeof fbkSoon === "function" && fbkSoon());
 }

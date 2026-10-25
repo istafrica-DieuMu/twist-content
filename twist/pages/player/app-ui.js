@@ -154,7 +154,7 @@ function scrollFades(scr) {
 // A title on one line where it can: a suffix like "-tion" never breaks off its hyphen.
 const keepSuffix = (t) => esc(t).replace(/(^|\s)(-[\p{L}]+)/gu, '$1<span class="nb">$2</span>');
 // A subject's mark: a short glyph in a ring that fills with the units done in the child's year.
-const SUBJ_GLYPH = { math: "1+2", "lit-en": "Aa", "lit-de": "Aa", fl: { "en-GB": "Fr", "de-DE": "En" } };
+const SUBJ_GLYPH = { math: "1+2", "lit-en": "Aa", "lit-de": "Aa", fl: { "en-GB": "Fr", "de-DE": "En" }, world: "🌱" };
 function subjChip(x) {
   const sets = courseSets(x), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, fresh = !sets.some(lessonsDone);
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
@@ -295,7 +295,7 @@ const WHERE_TXT = {
   en: { acts: { "warm-up": "Warm-up", learn: "Learn", practise: "Practise", check: "Show what you know" }, task: (k, n) => `question ${k} of ${n}`, goOn: "Carry on" },
 };
 // The object that stands for a subject on a practice card (the app's cup, croissant and number blocks).
-const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" } };
+const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" }, world: "tree" };
 const subjObject = (x) => { const o = SUBJ_OBJECT[x]; return (typeof o === "string" ? o : o?.[PR.child.curriculum]) ?? "book"; };
 const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 // Start: today's plan (a lesson, then practice), ticked off as the child does it,
@@ -369,13 +369,15 @@ function renderHomeTab() {
 // skill in focus and opens the unit list. The skill in focus has its popover
 // open under it the whole time: as the track scrolls, the popover moves to the
 // skill at the focus line and shows its lessons, each to start from there.
-const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" } };
+const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" }, world: "world" };
 const TRACK = {
   math: { route: "#018641", grad: ["#0BBE81", "#145E39"], soft: "#E2F0EA", islands: 4 },
   german: { route: "#E87729", grad: ["#E8A527", "#BC4113"], soft: "#F8EAE0", islands: 4 },
   english: { route: "#408AF4", grad: ["#32ACF5", "#0D42AC"], soft: "#E3EEF7", islands: 5 },
   // French has no art of its own: the English art turned to its purple.
   french: { route: "#8f73ff", grad: ["#9b7bff", "#4b2fb0"], soft: "#ece6fb", islands: 5, files: "english" },
+  // Sachunterricht has no art of its own yet: the maths art turned to its teal.
+  world: { route: "#0B8A8F", grad: ["#19B5B0", "#0A5E66"], soft: "#E0F2F1", islands: 4, files: "math" },
 };
 // pad: room above the first stone for its popover or the study card.
 const TR = { pad: 380, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
@@ -704,11 +706,18 @@ function nextBadges(all, max = 3) {
   const close = open.filter((b) => b.have > 0).sort((x, y) => y.have / y.need - x.have / x.need);
   return (close.length ? close : open.sort((x, y) => x.need - y.need)).slice(0, max);
 }
+// Badge art: the animated set from badge-motion-twist (player/badges/<name>/: artwork, still,
+// intro video with its sound, idle loop) where a badge has one; else the drawn badge.
+const MOTION = { "lift-off": "rocket", pathfinder: "compass", "number-navigator": "abacus", "shape-shifter": "shapes", "measure-master": "measure", "data-detective": "insight",
+  "code-cracker": "code-cracker", bookworm: "bookworm", wordsmith: "wordsmith", "grammar-guardian": "grammar-guardian", "golden-mic": "golden-mic", chatterbox: "chatterbox",
+  "pen-pal": "pen-pal", globetrotter: "globetrotter", "spelling-wizard": "spelling-wizard", "elephant-memory": "memory-keeper" };
+const badgeArt = (id, gold = false) => MOTION[id] ? `badges/${MOTION[id]}/${MOTION[id]}-badge.svg` : `${A}badges/${id}${gold ? ".gold" : ""}.svg`;
+const badgeVideo = (id, kind) => MOTION[id] && `badges/${MOTION[id]}/${MOTION[id]}-badge-${kind}.mp4`;
 function badgeTile(b) {
   const T = AT(), part = b.need ? Math.min(1, b.have / b.need) : 0;
   const line = b.earned ? (b.gold ? T.gold : b.level ? T.level(b.level) : b.kind === "strand" ? T.earnedIn(yearName(childYearFor(b.subj))) : T.earned)
     : b.need ? T.ofN(b.have, b.need) : T.how[b.id] ?? "";
-  const src = `${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg`;
+  const src = badgeArt(b.id, b.gold);
   // Earned badges float and catch the light, each at its own moment (anim.css); a tap opens the badge (anim-ui.js).
   return `<button class="bd${b.earned ? "" : " locked"}${b.gold ? " gold" : ""}" data-bd="${b.id}" style="--p:${100 * part};--m:url('${src}');--d:${(badgeTile.n = ((badgeTile.n ?? 0) + 1) % 7) * 0.7}s"><span class="bd-art"><img src="${src}" alt=""></span><b>${esc(badgeName(b.id))}</b><small>${esc(line)}</small>${!b.earned && b.need ? `<i class="pr-bar"><i style="width:${100 * part}%"></i></i>` : ""}</button>`;
 }
@@ -742,10 +751,10 @@ function renderMe() {
     <h3 class="pr-h">${esc(M.week)}</h3>
     <section class="me-card me-streak" id="me-week">${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
     ${nb ? `<h3 class="pr-h">${esc(M.next)}</h3>
-    <button class="me-next" data-bd="${nb.id}"><img src="${A}badges/${nb.id}.svg" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
+    <button class="me-next" data-bd="${nb.id}"><img src="${badgeArt(nb.id)}" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
       <i class="pr-bar" style="--c:#6849dd"><i style="width:${(100 * nb.have) / nb.need}%"></i></i><em>${esc(M.still(nb.need - nb.have))}</em></span></button>` : ""}
     <h3 class="pr-h pr-hrow">${esc(M.got)}${all.length ? `<button class="pr-link" id="meAll">${esc(M.all)} (${all.length}) ${CHEVRON}</button>` : ""}</h3>
-    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
+    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${badgeArt(b.id, b.gold)}" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
     <div id="meAllList" hidden><div class="bd-grid">${all.map(badgeTile).join("")}</div></div>
     <h3 class="pr-h">${esc(M.stars)}</h3>
     <section class="me-stars"><div class="me-total"><b>${stars}</b><span>★ ${esc(M.starsAll)}</span></div>

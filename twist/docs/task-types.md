@@ -640,9 +640,13 @@ Interactions:
 
 ## `ordering`
 
-Number or picture cards above, empty slots below. The child taps cards in
-order to fill the slots from the left; tapping a filled slot empties it.
-Prüfen checks the whole order; wrong cards go back.
+Number, word or picture cards above, empty slots below, with a line that
+says how ("Tippe die Karten der Reihe nach an oder zieh sie in die
+Felder."). The child taps cards in order to fill the slots from the first,
+or drags a card onto any slot; tapping a filled slot empties it. Sentences
+go into numbered rows, one under the other, in the cards' text size;
+numbers and pictures into boxes side by side. Prüfen checks the whole
+order; wrong cards go back.
 
 Fields: `options` (strings or bank pictures; may include extra cards that
 do not belong), `slot_count`, `answer` (the cards in slot order). Twist
