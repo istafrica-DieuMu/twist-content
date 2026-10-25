@@ -37,7 +37,10 @@ git repo kept separate from schoolido-learning.
       them: splash, lesson loading, the Study skate, the celebrations
       after a lesson. The Parents view
       (player/parents-ui.js, parents.css) shows the same pretend child as
-      a parent would see it: the week, subjects, suggestions, rewards.
+      a parent would see it, silent: the week, what we noticed with its
+      evidence and a button that sends that practice to the child's app
+      (it shows first on Home and Practice, and reports back when done),
+      the subjects with a verdict, what to praise, rewards.
       The right panel follows the open screen (player/side-ui.js): each
       tab and the lesson player get their own controls; a lesson picked in
       the left list plays in the phone.

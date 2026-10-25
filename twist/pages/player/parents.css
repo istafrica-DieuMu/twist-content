@@ -121,3 +121,32 @@ body.parents .drawer, body.parents .wrap, body.parents .pickbtn, body.parents .n
   .pa > :nth-child(2) { animation-delay: 40ms; } .pa > :nth-child(3) { animation-delay: 80ms; } .pa > :nth-child(4) { animation-delay: 120ms; }
 }
 @keyframes pa-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* Findings: what we noticed, the evidence, and Send to the child. */
+.pa-lead { margin: -8px 0 14px; color: var(--muted); font-size: 14px; }
+.pa-finds { list-style: none; margin: 0; padding: 0; display: grid; }
+.pa-find { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; padding: 14px 0; border-top: 1px solid var(--line); }
+.pa-find b { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; }
+.pa-find b i { width: 10px; height: 10px; border-radius: 50%; background: var(--c, var(--muted)); flex: none; }
+.pa-find p { margin: 3px 0 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.pa-find.sev3 p:first-of-type { color: var(--ink); font-weight: 600; }
+.pa-send { display: grid; justify-items: end; gap: 4px; }
+.pa-send button { min-height: 40px; padding: 8px 16px; border: 0; border-radius: 999px; background: var(--pa-accent); color: #fff; font: 800 14px "Red Hat Display", sans-serif; cursor: pointer; white-space: nowrap; }
+.pa-send button:disabled { background: var(--pa-empty); color: var(--muted); cursor: default; }
+.pa-send small { color: var(--muted); font-size: 12px; text-align: right; }
+/* The verdict beside a subject's name. */
+.pa-subj-top { align-items: center; }
+.pa-subj-top > span { margin-left: auto; }
+.pa-verdict { padding: 3px 10px; border-radius: 99px; font: 700 12px "Red Hat Text", sans-serif; font-style: normal; background: var(--pa-empty); color: var(--muted); }
+.pa-verdict.vGood, .pa-verdict.vDone { background: color-mix(in srgb, #2fa66a 16%, var(--panel)); color: color-mix(in srgb, #2fa66a 70%, var(--ink)); }
+.pa-verdict.vHelp { background: color-mix(in srgb, #e08a00 16%, var(--panel)); color: color-mix(in srgb, #e08a00 70%, var(--ink)); }
+/* Praise and sent practice. */
+.pa-praise, .pa-sent { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.pa-praise li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; font-weight: 600; }
+.pa-praise li i { color: var(--c, #f5b400); font-style: normal; }
+.pa-sent li { display: grid; gap: 2px; padding-left: 12px; border-left: 3px solid var(--pa-empty); }
+.pa-sent li.done { border-left-color: #2fa66a; }
+.pa-sent b { font-size: 15px; }
+.pa-sent small { color: var(--muted); font-size: 13px; }
+.pa-kpis { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 720px) { .pa-find { grid-template-columns: 1fr; } .pa-send { justify-items: start; } .pa-send small { text-align: left; } }

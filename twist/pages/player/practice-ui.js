@@ -47,6 +47,8 @@ function sizeOf(card) {
   // A sprint runs against the clock and starts again whole, so its card gives the time, not tasks.
   if (card.paused) return card.paused.kind === "drill" ? PAUSE_TXT[PL()].again(card.paused.minutes ?? 2) : PAUSE_TXT[PL()].left(card.paused.done, card.paused.total);
   if (card.kind === "drill") return PT().drillSize(2);
+  // A length chosen (practice a parent sent) sizes the session (buildSession, tasksForMinutes).
+  if (card.minutes) return PT().size(tasksForMinutes(card.minutes), card.minutes);
   const n = card.kind === "recaps" ? Math.min(card.skills.length, Math.floor(b.tasks / b.recapTasks)) * b.recapTasks : b.tasks;
   return PT().size(n, Math.max(2, Math.round(n * 0.4)));
 }
@@ -81,7 +83,7 @@ function renderPracticeHome() {
   scr.append(fab, appTabs("practice"));
   const pg = $(".app-page", scr); pg.addEventListener("scroll", () => fab.classList.toggle("mini", pg.scrollTop > 40), { passive: true });
   wireHeader(scr);
-  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); startSession({ kind: c.kind, skills: c.skills, minutes: c.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); PR.assignedId = c.assigned ?? null; startSession({ kind: c.kind, skills: c.skills, minutes: c.minutes ?? (c.kind === "drill" ? 2 : null) }); });
   $("#prOwn").onclick = () => openMakeSheet();
   $("#prAllDr")?.addEventListener("click", () => renderDrills());
   scr.querySelectorAll(".dr-two [data-drill]").forEach((b) => b.onclick = () => renderDrillMap(b.dataset.drill));
@@ -341,9 +343,12 @@ function resumeSession() {
   if (p.kind === "drill" || !items.length) return startSession({ kind: p.kind, skills: p.skills, minutes: p.minutes });
   PR.last = {}; playSession({ kind: p.kind, skills: p.skills, mode: p.mode, items, seconds: p.seconds, minutes: p.minutes });
 }
-// The suggestions, with a paused session first while it is less than a week old.
+// The suggestions, with a paused session first while it is less than a week old, and before it
+// what a parent sent from the Parents view (parents-ui.js), the newest waiting one.
+const SENT_TXT = { de: "Von deinen Eltern", en: "From your grown-up" };
 function mySuggestions() {
-  const c = PR.child, p = c.paused, list = suggestions(c, PR.index);
+  const c = PR.child, p = c.paused, sent = [...(c.assigned ?? [])].reverse().find((a) => !a.done && a.skills.every((k) => PR.index.bySkill[k]));
+  const list = [...(sent ? [{ kind: sent.kind, skills: sent.skills, minutes: sent.minutes, assigned: sent.id, reason: { de: SENT_TXT.de, en: SENT_TXT.en } }] : []), ...suggestions(c, PR.index)].slice(0, 3);
   if (!p) return list;
   if (c.today - p.day > 7 || !p.skills.every((k) => PR.index.bySkill[k])) { c.paused = null; saveChild(); return list; }
   return [{ kind: p.kind, skills: p.skills, paused: p, reason: { de: PAUSE_TXT.de.reason, en: PAUSE_TXT.en.reason } }, ...list];
@@ -362,7 +367,11 @@ function practiceEnd() {
   const L = PT(), lg = PL(), items = PR.items, session = { ...PR.session, items };
   const res = items.map((_, i) => PR.res[i]);
   const sc = scoreSession(session, res);
-  const out = applySession(PR.child, session, res, true); PR.applied = true; saveChild();
+  const out = applySession(PR.child, session, res, true); PR.applied = true;
+  // Practice a parent sent: done, with its score, for the Parents view.
+  const sentA = PR.assignedId && PR.child.assigned?.find((a) => a.id === PR.assignedId);
+  if (sentA) { sentA.done = { day: PR.child.today, right: sc.right, total: sc.total }; PR.assignedId = null; }
+  saveChild();
   const { body, foot } = practiceFrame({});
   const better = Object.entries(sc.perSkill).filter(([, p]) => p.right).map(([k]) => canDoOf(k));
   const big = session.kind === "drill" ? (out.record ? L.record(sc.perMinute) : L.perMin(sc.perMinute ?? 0)) : L.rightOf(sc.right, sc.total);

@@ -358,7 +358,7 @@ function renderHomeTab() {
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
   scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
-  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); startSession({ kind: x.kind, skills: x.skills, minutes: x.kind === "drill" ? 2 : null }); });
+  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
 }
 
 /* ---------- Study: the track ---------- */

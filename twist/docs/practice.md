@@ -259,7 +259,11 @@ time from showing the task to the answer.
 ### Suggestions
 
 Up to 3 cards (`suggestions`), each with a kind, its skills and a reason
-in both languages, in this order:
+in both languages, in this order. Before them, in the player
+(`mySuggestions`): practice a parent sent from the Parents view
+(`child.assigned`: kind, skills, minutes, the day sent), the newest still
+waiting, "Von deinen Eltern" / "From your grown-up"; finishing it records
+the day and score for the Parents view. Then:
 
 1. Recaps due, if any: "4 skills to remember" / "4 Sachen zum Wiederholen".
 2. Catch-up: a skill at `needs_refresh` first, else one at `practised`.
