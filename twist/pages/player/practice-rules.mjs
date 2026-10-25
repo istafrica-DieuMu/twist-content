@@ -464,9 +464,17 @@ export function applySession(child, session, results, finished = true) {
       s.n++; if (r.outcome === "first") s.ok++;
       s.last = r.outcome !== "first" ? "miss" : r.ms > limit ? "slow" : "known"; s.day = child.today;
     });
+    // A rate counts only for a sprint played to the end: a few seconds before a pause say nothing.
     const rate = scoreSession(session, results).perMinute ?? 0;
-    (d.rates ??= []).push(rate); if (d.rates.length > 10) d.rates.shift();
-    if (rate > d.best) { d.best = rate; out.record = true; }
+    if (finished) { (d.rates ??= []).push(rate); if (d.rates.length > 10) d.rates.shift(); }
+    if (finished && rate > d.best) { d.best = rate; out.record = true; }
+  }
+  // A skill still to catch up on, practised to the end with most answers right first time, rests
+  // for the day: the suggestion does not come back until tomorrow.
+  if (session.kind !== "drill" && session.kind !== "recaps") for (const k of session.skills) {
+    const mine = session.items.map((it, i) => [it, results[i]]).filter(([it]) => it.skill === k && !it.again);
+    if (!mine.length || mine.some(([, r]) => !r) || !["practised", "needs_refresh"].includes(child.states[k]?.state)) continue;
+    if (mine.filter(([, r]) => r.outcome === "first").length >= 0.8 * mine.length) child.states[k].goodDay = child.today;
   }
   if (finished && session.items.length && (session.kind === "drill" || session.items.every((_, i) => results[i]))) { child.sessions++; markActive(child); }
   child.lastSkill = session.skills.at(-1) ?? child.lastSkill;
@@ -525,21 +533,21 @@ export function suggestions(child, index) {
   const cards = [], has = (k) => !!index.bySkill[k];
   const due = recapsDue(child).filter(has);
   if (due.length) cards.push({ kind: "recaps", skills: due, reason: { de: `${due.length} ${due.length === 1 ? "Sache" : "Sachen"} zum Wiederholen`, en: `${due.length} ${due.length === 1 ? "skill" : "skills"} to remember` } });
-  const weak = Object.entries(child.states).filter(([k, s]) => has(k) && (s.state === "needs_refresh" || s.state === "practised"))
+  const weak = Object.entries(child.states).filter(([k, s]) => has(k) && (s.state === "needs_refresh" || s.state === "practised") && s.goodDay !== child.today)
     .sort(([, a], [, b]) => (a.state === "needs_refresh" ? 0 : 1) - (b.state === "needs_refresh" ? 0 : 1));
   if (weak.length) { const [k] = weak[0]; cards.push({ kind: "catch-up", skills: [k], reason: catchUpReason(child, k) }); }
   // Sprints and reviews come from what the child has taken (a lesson begun or a sprint played),
-  // so a child is not offered colours before the colours lesson. Only a child who has taken
-  // nothing yet gets the first topic, so the list is never empty.
+  // so a child is not offered colours before the colours lesson. A child who has taken nothing
+  // yet gets no card: there is nothing to review, and Start points to the first lesson.
   const TAKEN = ["learning", "practised", "can_do", "remembered", "needs_refresh"];
   const taken = (k) => has(k) && (TAKEN.includes(child.states[k]?.state) || !!child.drills[k]);
   const drillSkills = Object.keys(index.drills);
   const started = drillSkills.find((k) => child.drills[k]) ?? drillSkills.find(taken);
   if (started) cards.push({ kind: "drill", skills: [started], reason: child.drills[started]?.best ? { de: `Schlag deinen Rekord: ${child.drills[started].best} pro Minute`, en: `Beat your record: ${child.drills[started].best} a minute` } : { de: "Schnell rechnen und lesen", en: "Quick-fire practice" } });
   if (cards.length < 3) {
-    const k = child.lastSkill && taken(child.lastSkill) ? child.lastSkill : Object.keys(child.states).find(taken) ?? (cards.length ? null : index.sets[0]?.skill);
+    const k = child.lastSkill && taken(child.lastSkill) ? child.lastSkill : Object.keys(child.states).find(taken);
     const topic = k && index.topics.find((t) => t.skills.includes(k));
-    if (topic) cards.push({ kind: "review", skills: topic.skills.filter((x) => taken(x)).length ? topic.skills.filter((x) => taken(x)) : topic.skills, topic: topic.key, reason: { de: `Wiederholen: ${topic.name.de}`, en: `Review: ${topic.name.en}` } });
+    if (topic) cards.push({ kind: "review", skills: topic.skills.filter((x) => taken(x)), topic: topic.key, reason: { de: `Wiederholen: ${topic.name.de}`, en: `Review: ${topic.name.en}` } });
   }
   return cards.slice(0, 3);
 }

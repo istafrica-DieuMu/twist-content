@@ -96,7 +96,10 @@ function courseSets(subj, year = childYearFor(subj)) {
 }
 const lessonsDone = (s) => PR.child.lessons?.[s.id] ?? 0;
 const nextIn = (sets) => sets.find((s) => lessonsDone(s) < s.lessons.length);
-const appSubjects = () => PR.index.subjects.filter((x) => yearsOf(x).length);
+// A foreign language starts in the year its curriculum gives it a learning year (French in Year 3,
+// Englisch Stufe 0 in Klasse 1); before that it is not offered.
+const offered = (x) => x !== "fl" || !D.learningYears?.[PR.child.curriculum] || !!D.learningYears[PR.child.curriculum][PR.child.year];
+const appSubjects = () => PR.index.subjects.filter((x) => yearsOf(x).length && offered(x));
 // A lesson opens after the books have played a moment, as in the app (QuizLoadingScreen).
 function startLesson(setId, n) {
   stopAudio();
@@ -873,9 +876,10 @@ function drillCard(k) {
   return `<button class="dr-card" data-drill="${esc(k)}" style="--c:${colourOf(subjOfSkill(k))}"><b>${esc(setOfSkill(k)?.title[lg] ?? k)}</b>
     <small>${esc(d?.best ? AT().perMin(d.best) : PT().notTried)}</small><span class="dr-bar">${bar}</span></button>`;
 }
-// The banks of the child's year (a foreign language by its learning year); every bank if none.
+// The banks of the child's year (a foreign language by its learning year); if none, every bank
+// of the subjects the child has.
 function drillsForYear() {
-  const ks = Object.keys(PR.index.drills), y = (k) => setOfSkill(k)?.year;
+  const ks = Object.keys(PR.index.drills).filter((k) => offered(subjOfSkill(k))), y = (k) => setOfSkill(k)?.year;
   const mine = ks.filter((k) => y(k) === PR.child.year || y(k) === D.learningYears?.[PR.child.curriculum]?.[PR.child.year]);
   return mine.length ? mine : ks;
 }

@@ -51,10 +51,9 @@ test("missed and slow drill items become weak, and a new best is recorded", () =
   assert.ok(c.drills["math.mult-div.table-3-6-9"].best > 0);
 });
 
-test("suggestions: recaps first, then catch-up, then a drill; never empty", () => {
+test("suggestions: recaps first, then catch-up, then a drill; none for a child who has taken nothing", () => {
   const c = newChild({ curriculum: "de-DE", year: "klasse-2", band: "6-7" });
-  const empty = suggestions(c, index);
-  assert.ok(empty.length >= 1);
+  assert.deepEqual(suggestions(c, index), []);
   setState(c, "math.mult-div.table-7", "can_do"); setState(c, "lit-de.fluency.sight-words-easy", "needs_refresh"); c.today = 2;
   c.drills["math.mult-div.table-3-6-9"] = { best: 12 };
   const k = suggestions(c, index).map((x) => x.kind);
@@ -70,6 +69,20 @@ test("suggestions: sprints and reviews only from skills the child has taken", ()
     if (s.kind === "drill") assert.ok(taken(s.skills[0]), `drill on an untaken skill: ${s.skills[0]}`);
     if (s.kind === "review") assert.ok(s.skills.every(taken), "review with untaken skills");
   }
+});
+
+test("suggestions: a catch-up done well rests for the day; a paused sprint sets no record", () => {
+  const c = newChild({ curriculum: "de-DE", year: "klasse-2", band: "6-7" }), k = "math.mult-div.table-7";
+  setState(c, k, "practised");
+  assert.equal(suggestions(c, index)[0].kind, "catch-up");
+  const items = [0, 1, 2, 3, 4].map(() => ({ skill: k }));
+  applySession(c, { kind: "catch-up", skills: [k], items }, items.map(() => ({ outcome: "first", ms: 2000 })), true);
+  assert.ok(!suggestions(c, index).some((x) => x.kind === "catch-up"));
+  c.today++;
+  assert.equal(suggestions(c, index)[0].kind, "catch-up");
+  const d = "math.mult-div.table-3-6-9", drill = [{ skill: d, drill: { q: "3x3" } }];
+  applySession(c, { kind: "drill", skills: [d], items: drill }, [{ outcome: "first", ms: 1500 }], false);
+  assert.equal(c.drills[d].best, 0);
 });
 
 test("typed requests become filters", () => {

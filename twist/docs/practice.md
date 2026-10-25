@@ -242,6 +242,8 @@ time from showing the task to the answer.
   gets one weaker; an item right and fast every time gets one stronger.
   Weaker items come first in the next drill of that bank. The rate is
   first-try right answers a minute; above the best it is a new record.
+  A drill paused or left early keeps its item results but sets no rate
+  and no record.
 - **Sessions.** A session counts as finished when every task in it is
   answered, and a drill when its time runs out.
 
@@ -256,7 +258,10 @@ in both languages, in this order:
    "You found this tricky yesterday", "… 3 days ago", "… last week", "… a
    while ago" / "Das war gestern noch schwer", "… vor 3 Tagen …", "…
    letzte Woche …", "… vor einer Weile …". Otherwise "Let's practise this
-   again"; at `practised`, "Nearly there: practise it once more".
+   again"; at `practised`, "Nearly there: practise it once more". A
+   catch-up practised to the end with at least 4 in 5 answers right first
+   time rests until the next day (`goodDay`), so the same card does not
+   come back straight after.
 3. Drill: a bank the child has started, else one whose skill is under way,
    with the record if there is one ("Beat your record: 18 a minute").
 4. With fewer than 3 cards: a review of the topic of the last skill
@@ -365,8 +370,10 @@ From the top:
    "Refresh 4 skills", the topics, "12 Aufgaben aus 2 Themen, etwa 5
    Minuten") and a start button. Suggestions come from what the child has
    taken: recaps, catch-up, a sprint the child has played or whose skill
-   they have begun, and a review of a topic they have begun. Only a child
-   who has taken nothing yet is offered the first topic.
+   they have begun, and a review of a topic they have begun. A child who
+   has taken nothing yet gets no suggestion; Start points to the first
+   lesson. A foreign language appears only from the year its curriculum
+   gives it a learning year (French from Year 3).
    There is no search on the page; the builder's step 2 holds the one
    search, and it looks through every year, so an older skill can be
    found again.
@@ -374,18 +381,25 @@ From the top:
    page, bottom right above the tab bar: wide with its label at the top of
    the page, a circle once scrolled, hidden while a sheet is open. It opens
    a builder in two steps:
-   - **How:** four large cards: Sprint (against the clock, the `drill`
-     kind), Blitzrunde / Quickfire (`mixed`, 5 minutes), Überrasch mich /
-     Surprise me (`mixed` on three random skills the child has learnt; it
-     starts at once) and Wiederholen / Review (no hints, like a little
-     test). "Mit Tipps" / "With hints" under More options plays
-     `catch-up`. No new session kinds.
-   - **What:** the one search ("Suchen: Uhr, Plus, Nomen …"), topic words
-     as chips, a subject filter, and the skills as cards with their short
-     title, topic and stars; the suggestion is chosen already, so "Los
-     geht's" starts at once. A typed request ("10 Minuten Einmaleins") is
-     read here by `parseRequest`, as described under Typed requests. Length
-     sits under "Mehr Optionen" / "More options".
+   - **How:** three large picture cards, each in its own colour; a tap
+     goes straight on, and the sheet says nothing aloud. Schnell! / Race!
+     (a sprint the child has played or whose skill they have begun, else
+     a 5-minute `mixed` round of learnt skills), Überraschung / Surprise!
+     (`mixed` on three random learnt skills; it starts at once) and
+     Nochmal / Again (`review`, no hints, on learnt skills). A card with
+     nothing to play is greyed out: "Nach deiner ersten Lektion" / "After
+     your first lesson". Older bands get plainer names (Auf Zeit / Timed,
+     Zufall / Random, Wiederholen / Review). No new session kinds.
+   - **What:** up to 7, a subject by its picture (only subjects with
+     something for that type), and the app picks the skills. From 8, the
+     one search ("Suchen: Uhr, Plus, Nomen …"), topic words as chips, a
+     subject filter, and the skills as cards with their short title, topic
+     and stars; the suggestion is chosen already, so "Los geht's" starts at
+     once. Without a search the cards are what the type can play, this
+     year first; a search looks through every year. A typed request ("10
+     Minuten Einmaleins mit 7") is read by `parseRequest`, as described
+     under Typed requests, and its minutes set the length. Again on a
+     skill not learnt yet plays it as `mixed`, with hints.
 5. **Drills.** The banks of the child's year as a row of cards (record or
    "Noch nicht gespielt", and a bar of known, slow and missed items), and
    "Alle Drills" / "All drills": every bank of the curriculum by subject.
