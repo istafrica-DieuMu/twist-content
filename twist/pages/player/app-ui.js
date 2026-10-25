@@ -633,8 +633,8 @@ function starsOf3(k, cls = "") {
 // and a button to play it again. The skill check covers every lesson, so the parts it found
 // tricky are named once, on the unit, under its "I can" line.
 const WEAK_TXT = {
-  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Spiel es nochmal, dann gibt es den nächsten Stern.", again: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
-  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! Play it again to win your next star.", again: "Try again", lesson: (t) => `Try again: ${t}` },
+  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Noch ein Versuch.", again: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
+  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! One more go.", again: "Try again", lesson: (t) => `Try again: ${t}` },
 };
 // A lesson not mastered: its last check had a miss. A skill left at one star (practised) with all
 // its lessons done failed its skill check, in the last lesson, even when no score was kept.

@@ -250,8 +250,7 @@ time from showing the task to the answer.
   (`child.scores[setId][n]`: right first time, of how many, and on a skill
   check the parts with a miss). Study's unit list marks a lesson with a
   miss in amber with its score as dots and "Try again", and the unit
-  says, in the child's words, "Almost! Play it again to win your next
-  star." The tricky parts are for grown-ups and show only in the
+  says, in the child's words, "Almost! One more go." The tricky parts are for grown-ups and show only in the
   Parents view. A skill left at one star
   (`practised`) with every lesson done failed its skill check, so its last
   lesson is marked even without a kept score ("Not quite yet"). The track's popover marks the same lesson in its meter and offers
