@@ -872,3 +872,31 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .mk-list small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Lesson end: a smaller mascot, so the check's stars and result show without scrolling. */
 .center:has(> h2.done) > .mascot-pose { width: auto; height: 110px; max-height: 110px; }
+
+/* Cards as the app draws them (ist-schoolido Home, constants/subjects.ts), with the
+   saturation down. The lesson card and Practice's big suggestion: the subject colour
+   softened with white, white text, the mascot top right, a full-width white button. */
+.pr-hero { --fill: color-mix(in srgb, var(--c) 78%, #fff); display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 8px; padding: 22px 20px 20px; border: 0; border-radius: 24px; background: var(--fill); color: #fff; box-shadow: 0 10px 24px -14px color-mix(in srgb, var(--c) 70%, transparent); text-shadow: 0 1px 1px rgba(0, 0, 0, .12); }
+.pr-hero > :not(.pr-go):not(.pr-art) { max-width: calc(100% - 112px); }
+.pr-hero .pr-kind { display: flex; align-items: center; gap: 8px; font: 600 16px "Red Hat Text", sans-serif; opacity: 1; }
+.pr-dur { padding: 3px 10px; border-radius: 999px; background: rgba(255, 255, 255, .2); font: 600 13px "Red Hat Text", sans-serif; font-style: normal; }
+.pr-hero .pr-reason { font: 800 26px/1.12 "Red Hat Display", sans-serif; }
+.pr-hero .pr-sub, .pr-hero .pr-size { color: rgba(255, 255, 255, .85); opacity: 1; }
+.pr-hero .pr-art { top: 14px; right: 10px; bottom: auto; width: 104px; height: 118px; object-position: top; filter: none; }
+.pr-hero .pr-go, .hm-lesson > .pr-go { align-self: stretch; max-width: none; margin-top: 16px; padding: 14px; border-radius: 16px; background: #fff; color: var(--c); font: 800 17px "Red Hat Display", sans-serif; text-align: center; text-shadow: none; box-shadow: 0 4px 0 rgba(0, 0, 0, .12); }
+.hm-lesson { min-height: 0; padding-right: 20px; padding-bottom: 20px; }
+.hm-lesson > .pr-reason, .hm-lesson > .pr-sub { max-width: calc(100% - 112px); }
+.hm-lesson > .pr-sub { margin-bottom: 4px; }
+.hm-lesson .pr-art { right: 10px; top: 14px; bottom: auto; width: 104px; height: 118px; }
+.hm-dots small { font-weight: 600; }
+/* Practice suggestions: a light tint, a border in the muted subject colour, thicker at the
+   bottom (the app's 3D card), the title in that colour, plum text, the subject's object. */
+.hm-practice { --muted: color-mix(in oklab, var(--c) 82%, #6d6f86); display: grid; grid-template-columns: 1fr 96px; gap: 14px; align-items: center; width: 100%; margin: 0 0 20px; padding: 26px 22px 26px 26px; border: 3px solid var(--muted); border-bottom-width: 8px; border-radius: 24px; background: color-mix(in srgb, var(--c) 9%, #fff); color: var(--plum); text-align: left; font: inherit; cursor: pointer; }
+.hm-practice span { display: grid; gap: 6px; }
+.hm-practice b { font: 800 22px/1.15 "Red Hat Display", sans-serif; color: var(--muted); }
+.hm-practice small { font: 400 16px/1.35 "Red Hat Text", sans-serif; color: var(--plum); }
+.hm-practice img { width: 96px; height: 96px; object-fit: contain; }
+.hm-practice:active { transform: translateY(4px); border-bottom-width: 4px; margin-bottom: 24px; }
+.hm-practice:focus-visible { outline: 3px solid var(--muted); outline-offset: 3px; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice { background: color-mix(in srgb, var(--c) 16%, var(--card)); color: var(--ink); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice small { color: var(--ink); }

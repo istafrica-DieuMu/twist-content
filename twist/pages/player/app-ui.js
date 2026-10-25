@@ -187,13 +187,15 @@ function lessonStep(plan) {
   const course = courseSets(plan.subj, s.year), k = course.indexOf(s) + 1;
   const dots = s.lessons.map((_, i) => `<i class="${i < done ? "on" : i === done ? "now" : ""}"></i>`).join("");
   return `<div class="pr-hero ln-next hm-lesson" role="group" style="--c:${col}">
-      <span class="pr-kind">${esc(name)} · ${esc(T.unitOf(k, course.length))}</span>
-      <span class="hm-dots" aria-label="${esc(T.lessonOf(l.n, s.lessons.length))}">${dots}<small>${esc(T.lessonOf(l.n, s.lessons.length))}</small></span>
+      <span class="pr-kind">${esc(name)}<i class="pr-dur">${esc(T.minShort(s.minutes ?? 10))}</i></span>
       <b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
-      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}<small>${esc(T.minShort(s.minutes ?? 10))}</small></button>
+      <span class="hm-dots" aria-label="${esc(T.lessonOf(l.n, s.lessons.length))}">${dots}<small>${esc(T.unitOf(k, course.length))}</small></span>
+      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}</button>
       <img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
 }
-const PRACTICE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>';
+// The object that stands for a subject on a practice card (the app's cup, croissant and number blocks).
+const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" } };
+const subjObject = (x) => { const o = SUBJ_OBJECT[x]; return (typeof o === "string" ? o : o?.[PR.child.curriculum]) ?? "book"; };
 const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 // Start: today's plan (a lesson, then practice), ticked off as the child does it,
 // then the subjects. With the plan done, a well done and the way to more.
@@ -208,7 +210,9 @@ function renderHomeTab() {
   const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   const doneRow = (text, sub) => `<div class="hm-done"><i>${TICK}</i><span><b>${esc(text)}</b><small>${esc(sub)}</small></span></div>`;
   // At most two practice suggestions, one under the other: the first with the mascot.
-  const pCard = (x, i) => `<div class="pr-own st-today hm-practice" role="group" style="--c:${colourOf(subjOfSkill(x.skills[0]))}"><i class="hm-ico">${PRACTICE_ICON}</i><span><small>${esc(x.paused ? PAUSE_TXT[PL()].kind(L.kinds[x.kind] ?? "") : L.kinds[x.kind] ?? "")}</small><b>${esc(x.reason[PL()])}</b><small>${esc(sizeOf(x))}</small><button class="hm-pr-go" data-sug="${i}">${esc(x.paused ? PAUSE_TXT[PL()].go : L.start)}</button></span>${i ? "" : `<img class="hm-pr-art" src="${A}mascot/practise-1.png" alt="">`}</div>`;
+  // As the app's Recommended practice: a light card in the subject's colour, the whole card a button,
+  // its title, what it is in a line or two, and the subject's object on the right.
+  const pCard = (x, i) => { const subj = subjOfSkill(x.skills[0]); return `<button class="hm-practice" data-sug="${i}" style="--c:${colourOf(subj)}"><span><b>${esc(x.reason[PL()])}</b><small>${esc(x.paused ? PAUSE_TXT[PL()].kind(L.kinds[x.kind] ?? "") : L.kinds[x.kind] ?? "")} · ${esc(sizeOf(x))}</small></span><img src="${A}objects/${subjObject(subj)}.png" alt=""></button>`; };
   const practiceCard = sugs.map(pCard).join("");
   const steps = [];
   // The way back into the course is always there; a lesson done today shows as a tick beside its label.
@@ -235,7 +239,7 @@ function renderHomeTab() {
   wireHeader(scr); wireStarts(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
-  scr.querySelectorAll(".hm-lesson, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
+  scr.querySelectorAll(".hm-lesson").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); startSession({ kind: x.kind, skills: x.skills, minutes: x.kind === "drill" ? 2 : null }); });
 }
 
