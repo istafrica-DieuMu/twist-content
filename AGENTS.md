@@ -35,7 +35,10 @@ git repo kept separate from schoolido-learning.
       ist-schoolido's develop (assets/animations, assets/images/lotties,
       assets/audio) and played by player/anim-ui.js where the app plays
       them: splash, lesson loading, the Study skate, the celebrations
-      after a lesson. The Parents Lab tab shows pages/parents-lab, the ideas for the
+      after a lesson. player/badges/ holds the animated badges from
+      badge-motion-twist.netlify.app (artwork, still, intro video with
+      sound, idle loop), shown for the 16 badges they match (MOTION in
+      app-ui.js); the rest stay as drawn in assets/badges. The Parents Lab tab shows pages/parents-lab, the ideas for the
       parents dashboard (player/parents-ui.js, parents.css).
       The right panel follows the open screen (player/side-ui.js): each
       tab and the lesson player get their own controls; a lesson picked in

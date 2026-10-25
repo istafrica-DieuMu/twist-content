@@ -2054,6 +2054,11 @@ body.parents .drawer, body.parents .wrap, body.parents .pickbtn, body.parents .n
 .ck-end small { font-size: 14px; color: var(--soft); }
 .ck-end.no { background: var(--hint-soft, #fff3d7); }
 
+/* Animated badges (player/badges/): the video has its own dark stage, so it sits in a rounded tile. */
+.bs-stage.motion { width: 210px; height: 210px; margin: 14px 0 4px; }
+.bm-vid { width: 100%; height: 100%; object-fit: cover; border-radius: 32px; background: #120c24; box-shadow: 0 12px 28px -10px rgba(22, 12, 34, .5); }
+.an-cele.badge .bm-vid { position: relative; z-index: 1; width: 240px; height: 240px; }
+
 /* ---------- Feedback (feedback-ui.js) ----------
    Pins on the phone, the composer and a comment's card, the top bar's
    Feedback menu and account, and the Feedback and Users views. Themed with
@@ -4242,11 +4247,18 @@ function nextBadges(all, max = 3) {
   const close = open.filter((b) => b.have > 0).sort((x, y) => y.have / y.need - x.have / x.need);
   return (close.length ? close : open.sort((x, y) => x.need - y.need)).slice(0, max);
 }
+// Badge art: the animated set from badge-motion-twist (player/badges/<name>/: artwork, still,
+// intro video with its sound, idle loop) where a badge has one; else the drawn badge.
+const MOTION = { "lift-off": "rocket", pathfinder: "compass", "number-navigator": "abacus", "shape-shifter": "shapes", "measure-master": "measure", "data-detective": "insight",
+  "code-cracker": "code-cracker", bookworm: "bookworm", wordsmith: "wordsmith", "grammar-guardian": "grammar-guardian", "golden-mic": "golden-mic", chatterbox: "chatterbox",
+  "pen-pal": "pen-pal", globetrotter: "globetrotter", "spelling-wizard": "spelling-wizard", "elephant-memory": "memory-keeper" };
+const badgeArt = (id, gold = false) => MOTION[id] ? `badges/${MOTION[id]}/${MOTION[id]}-badge.svg` : `${A}badges/${id}${gold ? ".gold" : ""}.svg`;
+const badgeVideo = (id, kind) => MOTION[id] && `badges/${MOTION[id]}/${MOTION[id]}-badge-${kind}.mp4`;
 function badgeTile(b) {
   const T = AT(), part = b.need ? Math.min(1, b.have / b.need) : 0;
   const line = b.earned ? (b.gold ? T.gold : b.level ? T.level(b.level) : b.kind === "strand" ? T.earnedIn(yearName(childYearFor(b.subj))) : T.earned)
     : b.need ? T.ofN(b.have, b.need) : T.how[b.id] ?? "";
-  const src = `${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg`;
+  const src = badgeArt(b.id, b.gold);
   // Earned badges float and catch the light, each at its own moment (anim.css); a tap opens the badge (anim-ui.js).
   return `<button class="bd${b.earned ? "" : " locked"}${b.gold ? " gold" : ""}" data-bd="${b.id}" style="--p:${100 * part};--m:url('${src}');--d:${(badgeTile.n = ((badgeTile.n ?? 0) + 1) % 7) * 0.7}s"><span class="bd-art"><img src="${src}" alt=""></span><b>${esc(badgeName(b.id))}</b><small>${esc(line)}</small>${!b.earned && b.need ? `<i class="pr-bar"><i style="width:${100 * part}%"></i></i>` : ""}</button>`;
 }
@@ -4280,10 +4292,10 @@ function renderMe() {
     <h3 class="pr-h">${esc(M.week)}</h3>
     <section class="me-card me-streak" id="me-week">${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
     ${nb ? `<h3 class="pr-h">${esc(M.next)}</h3>
-    <button class="me-next" data-bd="${nb.id}"><img src="${A}badges/${nb.id}.svg" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
+    <button class="me-next" data-bd="${nb.id}"><img src="${badgeArt(nb.id)}" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
       <i class="pr-bar" style="--c:#6849dd"><i style="width:${(100 * nb.have) / nb.need}%"></i></i><em>${esc(M.still(nb.need - nb.have))}</em></span></button>` : ""}
     <h3 class="pr-h pr-hrow">${esc(M.got)}${all.length ? `<button class="pr-link" id="meAll">${esc(M.all)} (${all.length}) ${CHEVRON}</button>` : ""}</h3>
-    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
+    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${badgeArt(b.id, b.gold)}" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
     <div id="meAllList" hidden><div class="bd-grid">${all.map(badgeTile).join("")}</div></div>
     <h3 class="pr-h">${esc(M.stars)}</h3>
     <section class="me-stars"><div class="me-total"><b>${stars}</b><span>★ ${esc(M.starsAll)}</span></div>
@@ -4598,9 +4610,12 @@ function celebrate(screens, then) {
       const c = document.createElement("div"); c.className = "an-fall"; o.appendChild(c); clean.push(lottieIn(c, "Confetti.json", false));
       $("h2", o).textContent = C.finished; $("p", o).textContent = s.phrase ?? ""; if (s.src) play(s.src); else sfx("module-complete");
     } else if (s.kind === "badge") {
-      stage.innerHTML = `<div class="an-glow"></div><div class="an-badge"></div><img src="${A}badges/${s.id}.svg" alt="">`;
-      clean.push(lottieIn($(".an-glow", stage), "Reward-light-bg.json", true), lottieIn($(".an-badge", stage), "badge.json", false));
-      $("h2", o).textContent = C.badge; $("p", o).textContent = badgeName(s.id); sfx("module-complete");
+      // A badge with its own animation plays its intro, with its sound, then loops quietly.
+      const intro = badgeVideo(s.id, "intro");
+      stage.innerHTML = intro ? `<div class="an-glow"></div>${badgeMotion(s.id)}` : `<div class="an-glow"></div><div class="an-badge"></div><img src="${badgeArt(s.id)}" alt="">`;
+      clean.push(lottieIn($(".an-glow", stage), "Reward-light-bg.json", true), intro ? null : lottieIn($(".an-badge", stage), "badge.json", false));
+      if (intro) wireMotion(stage); else sfx("module-complete");
+      $("h2", o).textContent = C.badge; $("p", o).textContent = badgeName(s.id);
     }
     buzz(20);
     let gone = false;
@@ -4727,6 +4742,14 @@ function badgeDate(day) {
   const d = new Date(Date.now() - (PR.child.today - day) * 864e5);
   return d.toLocaleDateString(PL() === "de" ? "de-DE" : "en-GB", { day: "numeric", month: "short", year: "numeric" }).toUpperCase();
 }
+// The animated badge: the intro (its own sound, when sound effects are on), then the idle loop.
+const badgeMotion = (id) => `<video class="bm-vid" playsinline preload="auto" poster="badges/${MOTION[id]}/${MOTION[id]}-badge.png" src="${badgeVideo(id, "intro")}" data-loop="${badgeVideo(id, "idle-loop")}" data-intro="${badgeVideo(id, "intro")}"></video>`;
+function wireMotion(stage) {
+  const v = $(".bm-vid", stage); if (!v) return;
+  v.loop = false; v.src = v.dataset.intro; v.muted = !SFX_ON() || document.body.classList.contains("parents");
+  v.onended = () => { v.onended = null; v.src = v.dataset.loop; v.loop = true; v.muted = true; v.play().catch(() => {}); };
+  v.currentTime = 0; v.play().catch(() => { v.muted = true; v.play().catch(() => {}); });
+}
 function badgeSheet(b) {
   const B = BTXT[PL()], lg = PL() === "de" ? 0 : 1, seen = PR.child.badgeSeen?.[b.id];
   const what = b.kind === "streak" ? B.days(b.need) : BADGE_WHAT[b.id]?.[lg] ?? "";
@@ -4740,7 +4763,7 @@ function badgeSheet(b) {
   o.className = "bs-sheet" + (b.earned ? "" : " locked") + (b.gold ? " gold" : "");
   o.setAttribute("role", "dialog"); o.setAttribute("aria-label", badgeName(b.id));
   o.innerHTML = `<i class="bs-grip"></i>
-    <button class="bs-stage" aria-label="${esc(badgeName(b.id))}"><div class="an-glow"></div><div class="an-badge"></div><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt=""></button>
+    <button class="bs-stage${b.earned && MOTION[b.id] ? " motion" : ""}" aria-label="${esc(badgeName(b.id))}">${b.earned && MOTION[b.id] ? badgeMotion(b.id) : `<div class="an-glow"></div><div class="an-badge"></div><img src="${badgeArt(b.id, b.gold)}" alt="">`}</button>
     <span class="bs-date">${esc(date)}<small>${esc(ago)}</small></span>
     <small class="bs-kind">${esc(kind)}${b.level ? ` · ${esc(B.level(b.level))}` : ""}</small>
     <h2>${esc(badgeName(b.id))}</h2>
@@ -4749,10 +4772,11 @@ function badgeSheet(b) {
     ${extra ? `<p class="bs-extra">${esc(extra)}</p>` : ""}
     <button class="btn go">${esc(b.earned ? B.ok : B.close)}</button>`;
   $("#screen").appendChild(o);
-  const clean = b.earned ? [lottieIn($(".an-glow", o), "Reward-light-bg.json", true), lottieIn($(".an-badge", o), "badge.json", false)] : [];
-  if (b.earned) { sfx("xp-earned"); buzz(15); }
-  const stage = $(".bs-stage", o), img = $("img", stage);
-  stage.onclick = () => { img.classList.remove("spin"); void img.offsetWidth; img.classList.add("spin"); buzz(10); sfx(b.earned ? "option-picked" : "piece-locked"); };
+  const motion = b.earned && MOTION[b.id], stage = $(".bs-stage", o), img = $("img", stage);
+  const clean = b.earned && !motion ? [lottieIn($(".an-glow", o), "Reward-light-bg.json", true), lottieIn($(".an-badge", o), "badge.json", false)] : [];
+  if (b.earned) { if (motion) wireMotion(stage); else sfx("xp-earned"); buzz(15); }
+  // A tap: an animated badge plays its intro again; a drawn one spins.
+  stage.onclick = () => { buzz(10); if (motion) return wireMotion(stage); img.classList.remove("spin"); void img.offsetWidth; img.classList.add("spin"); sfx(b.earned ? "option-picked" : "piece-locked"); };
   let gone = false;
   const close = () => { if (gone) return; gone = true; document.removeEventListener("keydown", key); o.classList.add("out"); scrim.classList.add("out"); setTimeout(() => { clean.forEach((x) => x?.destroy?.()); o.remove(); scrim.remove(); }, 260); };
   const key = (e) => { if (e.key === "Escape") close(); };

@@ -706,11 +706,18 @@ function nextBadges(all, max = 3) {
   const close = open.filter((b) => b.have > 0).sort((x, y) => y.have / y.need - x.have / x.need);
   return (close.length ? close : open.sort((x, y) => x.need - y.need)).slice(0, max);
 }
+// Badge art: the animated set from badge-motion-twist (player/badges/<name>/: artwork, still,
+// intro video with its sound, idle loop) where a badge has one; else the drawn badge.
+const MOTION = { "lift-off": "rocket", pathfinder: "compass", "number-navigator": "abacus", "shape-shifter": "shapes", "measure-master": "measure", "data-detective": "insight",
+  "code-cracker": "code-cracker", bookworm: "bookworm", wordsmith: "wordsmith", "grammar-guardian": "grammar-guardian", "golden-mic": "golden-mic", chatterbox: "chatterbox",
+  "pen-pal": "pen-pal", globetrotter: "globetrotter", "spelling-wizard": "spelling-wizard", "elephant-memory": "memory-keeper" };
+const badgeArt = (id, gold = false) => MOTION[id] ? `badges/${MOTION[id]}/${MOTION[id]}-badge.svg` : `${A}badges/${id}${gold ? ".gold" : ""}.svg`;
+const badgeVideo = (id, kind) => MOTION[id] && `badges/${MOTION[id]}/${MOTION[id]}-badge-${kind}.mp4`;
 function badgeTile(b) {
   const T = AT(), part = b.need ? Math.min(1, b.have / b.need) : 0;
   const line = b.earned ? (b.gold ? T.gold : b.level ? T.level(b.level) : b.kind === "strand" ? T.earnedIn(yearName(childYearFor(b.subj))) : T.earned)
     : b.need ? T.ofN(b.have, b.need) : T.how[b.id] ?? "";
-  const src = `${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg`;
+  const src = badgeArt(b.id, b.gold);
   // Earned badges float and catch the light, each at its own moment (anim.css); a tap opens the badge (anim-ui.js).
   return `<button class="bd${b.earned ? "" : " locked"}${b.gold ? " gold" : ""}" data-bd="${b.id}" style="--p:${100 * part};--m:url('${src}');--d:${(badgeTile.n = ((badgeTile.n ?? 0) + 1) % 7) * 0.7}s"><span class="bd-art"><img src="${src}" alt=""></span><b>${esc(badgeName(b.id))}</b><small>${esc(line)}</small>${!b.earned && b.need ? `<i class="pr-bar"><i style="width:${100 * part}%"></i></i>` : ""}</button>`;
 }
@@ -744,10 +751,10 @@ function renderMe() {
     <h3 class="pr-h">${esc(M.week)}</h3>
     <section class="me-card me-streak" id="me-week">${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
     ${nb ? `<h3 class="pr-h">${esc(M.next)}</h3>
-    <button class="me-next" data-bd="${nb.id}"><img src="${A}badges/${nb.id}.svg" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
+    <button class="me-next" data-bd="${nb.id}"><img src="${badgeArt(nb.id)}" alt=""><span><b>${esc(badgeName(nb.id))}</b><small>${esc(what)}</small>
       <i class="pr-bar" style="--c:#6849dd"><i style="width:${(100 * nb.have) / nb.need}%"></i></i><em>${esc(M.still(nb.need - nb.have))}</em></span></button>` : ""}
     <h3 class="pr-h pr-hrow">${esc(M.got)}${all.length ? `<button class="pr-link" id="meAll">${esc(M.all)} (${all.length}) ${CHEVRON}</button>` : ""}</h3>
-    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${A}badges/${b.id}${b.gold ? ".gold" : ""}.svg" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
+    ${got.length ? `<div class="me-shelf scroll-fade">${got.map((b) => `<button class="me-bd" data-bd="${b.id}"><img src="${badgeArt(b.id, b.gold)}" alt=""><small>${esc(badgeName(b.id))}</small></button>`).join("")}</div>` : `<p class="pr-empty">${esc(M.none)}</p>`}
     <div id="meAllList" hidden><div class="bd-grid">${all.map(badgeTile).join("")}</div></div>
     <h3 class="pr-h">${esc(M.stars)}</h3>
     <section class="me-stars"><div class="me-total"><b>${stars}</b><span>★ ${esc(M.starsAll)}</span></div>
