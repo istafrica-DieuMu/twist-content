@@ -72,8 +72,11 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Where is 100? Guess!"
+            say: "This is a hundred square, with the numbers from one to one hundred. Where do you think one hundred is: at the top left, or at the bottom right? Have a guess."
+            show: { drawn: hundred-square, hide: [100] }
           - text: "1 to 100"
-            say: "This is a hundred square. Each row has ten numbers. One is at the top left and one hundred is at the bottom right."
+            say: "At the bottom right! Each row has ten numbers. One is at the top left and one hundred is at the bottom right."
             show: { drawn: hundred-square }
           - text: "34 → 35"
             say: "One step to the right is one more. To the right of thirty-four is thirty-five."
@@ -81,6 +84,8 @@ lessons:
           - text: "34 → 44"
             say: "One row down is ten more. Below thirty-four is forty-four. The ones stay the same and the tens go up by one."
             show: { drawn: hundred-square, highlight: [34, 44] }
+          - text: "Did you know? In the Netherlands, draughts is played on a board of 10 by 10 squares."
+            say: "Did you know? In the Netherlands, people play draughts on a board of ten rows of ten squares. That's one hundred squares, just like a hundred square!"
 
       - activity: practise
         setting: plain
@@ -326,8 +331,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "3, 13, 23, 33, _ ? Guess!"
+            say: "Three, thirteen, twenty-three, thirty-three. What do you think comes next in this column? Have a guess."
+            show: { drawn: hundred-square, highlight: [3, 13, 23, 33] }
           - text: "3, 13, 23, 33"
-            say: "Look at one column: three, thirteen, twenty-three, thirty-three. They all end in three. Down a column, the ones stay the same."
+            say: "Forty-three! Look at one column: three, thirteen, twenty-three, thirty-three. They all end in three. Down a column, the ones stay the same."
             show: { drawn: hundred-square, highlight: [3, 13, 23, 33, 43, 53, 63, 73, 83, 93] }
           - text: "22 → 2 rows down → 42"
             say: "A move: start at twenty-two and go two rows down. That is ten more and ten more again. We land on forty-two."
@@ -343,12 +351,13 @@ lessons:
             tasks:
               - id: l2-f1
                 type: multiple_choice
-                text: "Start at 14, go 2 rows down. Where are you?"
-                say: "Start at fourteen. Go two rows down. Where are you?"
+                text: "A frog sits on 14. It hops 2 rows down. Where does it land?"
+                say: "A frog sits on fourteen. It hops two rows down. Where does it land?"
                 show: { drawn: hundred-square, highlight: [14] }
-                options: ["16", "34", "24"]
+                options: ["16", "34", "24", "In the pond"]
                 answer: "34"
                 feedback:
+                  "In the pond": "Splash! Not this time. Each row down is ten more: 24, then 34."
                   "16": "Two steps to the right would be 16. Each row down is ten more."
                 hints:
                   - "One row down is ten more."
@@ -380,11 +389,10 @@ lessons:
                   - "One row down is 53, then one step right."
                   - "43 + 11 = 54."
               - id: l2-f4
-                type: multiple_choice
+                type: text_input
                 text: "Start at 68, go 1 row up. Where are you?"
                 say: "Start at sixty-eight. Go one row up. Where are you?"
                 show: { drawn: hundred-square, highlight: [68] }
-                options: ["58", "67", "78"]
                 answer: "58"
                 hints:
                   - "Up is ten less."
@@ -629,6 +637,13 @@ lessons:
             show: { drawn: hundred-square, highlight: [61, 62, 63, 64, 65] }
             options: ["one more each step", "ten more each step", "they stay the same"]
             answer: "one more each step"
+          - id: l2-c19
+            part: add-9-11
+            type: text_input
+            text: "39 + 11 = _"
+            say: "Thirty-nine add eleven."
+            show: { drawn: hundred-square, highlight: [39] }
+            answer: "50"
           - id: l2-c18
             part: add-9-11
             type: multiple_choice
@@ -637,13 +652,6 @@ lessons:
             show: { drawn: hundred-square, highlight: [64] }
             options: ["73", "75", "63"]
             answer: "73"
-          - id: l2-c19
-            part: add-9-11
-            type: text_input
-            text: "39 + 11 = _"
-            say: "Thirty-nine add eleven."
-            show: { drawn: hundred-square, highlight: [39] }
-            answer: "50"
           - id: l2-c20
             part: add-9-11
             type: true_false

@@ -12,19 +12,19 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27985 / 27985) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8094 / 8094) |
 | **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (66350 / 66350)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (37872 / 37873) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22027 / 22027) |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38129 / 38130) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22136 / 22136) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8121 / 8121) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (68020 / 68021)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (68386 / 68387)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 134830 clips, 189.9 h | about $230 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 134830 clips | about $107 | estimated the same way |
-| **Total** | | | **about $346** | |
+| Narration | google/gemini-3.8-flash-tts | 135196 clips, 191.2 h | about $232 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 135196 clips | about $108 | estimated the same way |
+| **Total** | | | **about $348** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -33,10 +33,10 @@ Per voice:
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
 | gemini-puck | 18650 | 18519 (99%) | 0 | 1226 min | $40 |
-| gemini-puck-en | 18187 | 18064 (99%) | 0 | 1409 min | $43 |
+| gemini-puck-en | 18186 | 18063 (99%) | 0 | 1409 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
 | gemini-sulafat | 47823 | 47352 (99%) | 0 | 3966 min | $118 |
-| gemini-sulafat-en | 48103 | 47654 (99%) | 1 | 4683 min | $133 |
+| gemini-sulafat-en | 48470 | 48018 (99%) | 1 | 4764 min | $135 |
 | gemini-sulafat-fr | 1302 | 1299 (100%) | 0 | 76 min | $2.53 |
 
 ## de-DE
@@ -221,7 +221,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $179; 1 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $181; 1 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -288,44 +288,44 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.60 |
 | year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.91 |
 | year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.65 |
-| year-2 | Maths | Word problems | 2 / 2 done | 4 | $1.10 |
+| year-2 | Maths | Word problems | 2 / 2 done | 4 | $1.11 |
 | year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.31 |
-| year-2 | Maths | Money | 4 / 4 done | 8 | $1.36 |
-| year-2 | Maths | Shapes | 2 / 2 done | 4 | $0.74 |
+| year-2 | Maths | Money | 4 / 4 done | 8 | $1.41 |
+| year-2 | Maths | Shapes | 2 / 2 done | 4 | $0.77 |
 | year-2 | Maths | Patterns | 1 / 1 done | 2 | $0.40 |
 | year-2 | Maths | Symmetry | 1 / 1 done | 2 | $0.30 |
-| year-2 | Maths | Data | 4 / 4 done | 8 | $1.39 |
-| year-2 | Maths | Adding and subtracting to 100 | 10 / 10 done | 21 | $3.84 |
-| year-2 | Maths | Multiplication | 2 / 2 done | 4 | $0.65 |
-| year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.49 |
-| year-2 | Maths | Division | 1 / 1 done | 2 | $0.41 |
-| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.83 |
-| year-2 | Maths | Length | 1 / 1 done | 2 | $0.35 |
-| year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.56 |
-| year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.45 |
-| year-2 | Maths | Mass | 1 / 1 done | 2 | $0.35 |
-| year-2 | Maths | 3D shapes | 1 / 1 done | 2 | $0.30 |
-| year-2 | Maths | Capacity | 1 / 1 done | 2 | $0.39 |
-| year-2 | Maths | Fractions | 3 / 3 done | 7 | $1.09 |
-| year-2 | English | Reading words | 4 / 4 done | 8 | $0.81 |
-| year-2 | English | Stories and poems | 1 / 1 done | 2 | $0.28 |
-| year-2 | English | Handwriting | 2 / 2 done | 4 | $0.52 |
-| year-2 | English | Information texts | 1 / 1 done | 2 | $0.33 |
-| year-2 | English | Grammar and punctuation | 7 / 7 done | 15 | $1.83 |
-| year-2 | English | Writing | 6 / 6 done | 12 | $1.73 |
-| year-2 | English | Understanding stories | 2 / 2 done | 4 | $0.84 |
-| year-2 | English | Spelling | 5 / 5 done | 10 | $1.40 |
-| year-2 | English | Speaking and listening | 1 / 1 done | 2 | $0.36 |
-| year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.32 |
-| year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $3.20 |
-| year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.58 |
-| year-3 | Maths | Times tables | 4 / 4 done | 8 | $1.12 |
-| year-3 | Maths | Word problems | 3 / 3 done | 6 | $1.76 |
-| year-3 | Maths | Patterns | 1 / 1 done | 2 | $0.50 |
-| year-3 | Maths | Length | 2 / 2 done | 4 | $0.91 |
-| year-3 | Maths | Shapes | 1 / 1 done | 2 | $0.35 |
-| year-3 | Maths | 3D shapes | 1 / 1 done | 2 | $0.26 |
-| year-3 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.69 |
+| year-2 | Maths | Data | 4 / 4 done | 8 | $1.45 |
+| year-2 | Maths | Adding and subtracting to 100 | 10 / 10 done | 21 | $4.09 |
+| year-2 | Maths | Multiplication | 2 / 2 done | 4 | $0.69 |
+| year-2 | Maths | Times tables | 2 / 2 done | 4 | $0.55 |
+| year-2 | Maths | Division | 1 / 1 done | 2 | $0.43 |
+| year-2 | Maths | Telling the time | 2 / 2 done | 4 | $0.88 |
+| year-2 | Maths | Length | 1 / 1 done | 2 | $0.38 |
+| year-2 | Maths | Position and direction | 1 / 1 done | 3 | $0.59 |
+| year-2 | Maths | Time and duration | 1 / 1 done | 2 | $0.47 |
+| year-2 | Maths | Mass | 1 / 1 done | 2 | $0.37 |
+| year-2 | Maths | 3D shapes | 1 / 1 done | 2 | $0.32 |
+| year-2 | Maths | Capacity | 1 / 1 done | 2 | $0.41 |
+| year-2 | Maths | Fractions | 3 / 3 done | 7 | $1.15 |
+| year-2 | English | Reading words | 4 / 4 done | 8 | $0.90 |
+| year-2 | English | Stories and poems | 1 / 1 done | 2 | $0.30 |
+| year-2 | English | Handwriting | 2 / 2 done | 4 | $0.55 |
+| year-2 | English | Information texts | 1 / 1 done | 2 | $0.35 |
+| year-2 | English | Grammar and punctuation | 7 / 7 done | 15 | $1.98 |
+| year-2 | English | Writing | 6 / 6 done | 12 | $1.86 |
+| year-2 | English | Understanding stories | 2 / 2 done | 4 | $0.87 |
+| year-2 | English | Spelling | 5 / 5 done | 10 | $1.51 |
+| year-2 | English | Speaking and listening | 1 / 1 done | 2 | $0.38 |
+| year-2 | Maths | Temperature | 1 / 1 done | 2 | $0.33 |
+| year-3 | Maths | Numbers to 1000 | 8 / 8 done | 16 | $3.41 |
+| year-3 | Maths | Numbers to 100 | 2 / 2 done | 4 | $0.61 |
+| year-3 | Maths | Times tables | 4 / 4 done | 8 | $1.22 |
+| year-3 | Maths | Word problems | 3 / 3 done | 6 | $1.81 |
+| year-3 | Maths | Patterns | 1 / 1 done | 2 | $0.52 |
+| year-3 | Maths | Length | 2 / 2 done | 4 | $0.92 |
+| year-3 | Maths | Shapes | 1 / 1 done | 2 | $0.37 |
+| year-3 | Maths | 3D shapes | 1 / 1 done | 2 | $0.28 |
+| year-3 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.71 |
 | year-3 | Maths | Combinations | 1 / 1 done | 2 | $0.51 |
 | year-3 | Maths | Chance | 1 / 1 done | 2 | $0.31 |
 | year-3 | Maths | Adding and subtracting to 1000 | 5 / 5 done | 10 | $2.58 |
@@ -351,7 +351,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-3 | English | Writing | 5 / 5 done | 10 | $1.88 |
 | year-3 | English | Grammar and punctuation | 5 / 5 done | 10 | $1.59 |
 | year-3 | English | Information texts | 1 / 1 done | 2 | $0.38 |
-| year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.25 |
+| year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.26 |
 | year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.97 |
 | year-4 | Maths | Division | 3 / 3 done | 6 | $1.19 |
 | year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.52 |
