@@ -97,6 +97,19 @@ is needed.
    (step 2). Making every clip from nothing would take several hours and
    about $180 on OpenRouter (see twist/views/tracking.md).
 
+### Dev mode: changes show at once
+
+```
+cd twist && npm run dev        # http://localhost:8765/pages/player/draft.html
+```
+
+Serves the player over http (so the animations play) and reloads the open
+page by itself. A change to the player's code (js, css, template) shows in
+under a second; a change to lessons, assets, curricula or drills runs the
+full build first (a few minutes). Lines not narrated yet play without
+audio. It writes `draft.html`, never `index.html`; run the build in step 2
+before committing.
+
 ## Serve the player on a server
 
 The full runbook for the host (deploy key, systemd, Caddy or nginx, checks,

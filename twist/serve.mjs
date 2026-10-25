@@ -80,7 +80,7 @@ const server = createServer(async (req, res) => {
   }
   const ext = extname(file).toLowerCase(), type = TYPES[ext] ?? "application/octet-stream";
   const etag = `"${st.size.toString(36)}-${st.mtimeMs.toString(36)}"`;
-  const headers = { "Content-Type": type, ETag: etag, "Last-Modified": st.mtime.toUTCString(), "Cache-Control": ext === ".html" ? "no-cache" : "private, max-age=86400", "Accept-Ranges": "bytes", "X-Content-Type-Options": "nosniff" };
+  const headers = { "Content-Type": type, ETag: etag, "Last-Modified": st.mtime.toUTCString(), "Cache-Control": "no-cache", "Accept-Ranges": "bytes", "X-Content-Type-Options": "nosniff" };
   if (req.headers["if-none-match"] === etag) { res.writeHead(304, headers); return res.end(); }
   // Gzip text once per version of the file.
   if (ZIP.has(ext) && /\bgzip\b/.test(req.headers["accept-encoding"] ?? "")) {
