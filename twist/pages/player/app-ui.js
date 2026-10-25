@@ -110,19 +110,6 @@ function startLesson(setId, n) {
     if (r && r.setId === setId && r.n === lesson.n && r.at > 0 && r.at < steps.length - 1) go(r.at);
   });
 }
-// The next lesson of a subject as a card: big on Start and Study, small for the other subjects.
-function nextCard(subj, big, sets = courseSets(subj)) {
-  const T = AT(), lg = PL(), s = nextIn(sets), col = colourOf(subj), name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
-  if (!s) return big && sets.length ? `<div class="pr-hero ln-next" style="--c:${col}"><span class="pr-kind">${esc(name)}</span><b class="pr-reason">${esc(T.allDone)}</b><span class="pr-sub">${esc(T.allDoneSub)}</span><img class="pr-art" src="${A}mascot/end-1.png" alt=""></div>` : "";
-  const fresh = !sets.some(lessonsDone);
-  const l = s.lessons[lessonsDone(s)];
-  return big ? `<button class="pr-hero ln-next" style="--c:${col}" data-start="${esc(s.id)}" data-n="${l.n}">
-      <span class="pr-kind">${esc(name)} · ${esc(T.lessonOf(l.n, s.lessons.length))}</span>
-      <b class="pr-reason">${esc(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
-      <span class="pr-size">${esc(T.mins(s.minutes ?? 10))}</span><span class="pr-go">${esc(T.go)}</span>
-      <img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></button>`
-    : `<button class="pr-mini" data-start="${esc(s.id)}" data-n="${l.n}" style="--c:${col}"><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""><span class="pr-kind">${esc(name)}</span><b>${esc(l.title[lg] ?? l.title.de)}</b><small>${esc(fresh ? T.fresh : T.lessonOf(l.n, s.lessons.length))}</small></button>`;
-}
 const wireStarts = (scr) => scr.querySelectorAll("[data-start]").forEach((b) => b.onclick = (e) => { e.preventDefault(); startLesson(b.dataset.start, +b.dataset.n); });
 
 /* ---------- Start ---------- */
@@ -324,7 +311,7 @@ function renderHomeTab() {
   // The title is what is practised, short, as the app's "Tricky spellings": the lesson set, the topic,
   // or a recap's topics; the line under it says why and how long.
   const pTitle = (x) => { const lg = PL(); if (x.kind === "recaps") return cardSub(x); if (x.kind === "review") return PR.index.topics.find((t) => t.key === x.topic)?.name[lg] ?? cardSub(x); return setOfSkill(x.skills[0])?.title[lg] ?? cardSub(x); };
-  const pCard = (x, i) => { const subj = subjOfSkill(x.skills[0]); return `<button class="hm-practice" data-sug="${i}" style="--c:${colourOf(subj)}"><span><b>${esc(pTitle(x))}</b><small>${esc(x.reason[PL()].includes(pTitle(x)) ? L.kinds[x.kind] ?? "" : x.reason[PL()])} · ${esc(sizeOf(x).split(", ").pop())}</small></span><img src="${A}objects/${subjObject(subj)}.png" alt=""></button>`; };
+  const pCard = (x, i) => { const subj = subjOfSkill(x.skills[0]); return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><b>${esc(pTitle(x))}</b><small>${esc(x.reason[PL()].includes(pTitle(x)) ? L.kinds[x.kind] ?? "" : x.reason[PL()])} · ${esc(sizeOf(x).split(", ").pop())}</small></span><button class="hm-pr-go" data-sug="${i}">${esc(L.practise)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`; };
   // Two suggestions make a deck, as the lessons of the other subjects do.
   const practiceCard = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
   const steps = [];
@@ -353,7 +340,7 @@ function renderHomeTab() {
   wireHeader(scr); wireStarts(scr); wireRow(scr);
   scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
-  scr.querySelectorAll(".hm-lesson, .hm-card").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
+  scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); startSession({ kind: x.kind, skills: x.skills, minutes: x.kind === "drill" ? 2 : null }); });
 }
 
@@ -610,7 +597,8 @@ function renderStudy() {
 // Study's way back in: one row with the next lesson of the course; the unit below is open on it.
 function upNext(s) {
   const T = AT(), lg = PL(), done = lessonsDone(s), l = s.lessons[done];
-  return `<button class="st-next" data-start="${esc(s.id)}" data-n="${l.n}"><span class="st-next-i">${PLAY}</span><span><small>${esc(T.upNext)} · ${esc(s.title[lg] ?? s.title.de)}</small><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b></span><em>${esc(T.minShort(s.minutes ?? 10))}</em></button>`;
+  // Only the play button starts the lesson; the row around it says which one.
+  return `<div class="st-next"><button class="st-next-i" data-start="${esc(s.id)}" data-n="${l.n}" aria-label="${esc(T.go)}: ${esc(l.title[lg] ?? l.title.de)}">${PLAY}</button><span><small>${esc(T.upNext)} · ${esc(s.title[lg] ?? s.title.de)}</small><b>${keepSuffix(l.title[lg] ?? l.title.de)}</b></span><em>${esc(T.minShort(s.minutes ?? 10))}</em></div>`;
 }
 const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 // A skill's stars, the same everywhere: 0 to 3 filled by its state (docs/rewards.md),
@@ -685,6 +673,8 @@ function weekStrip(c) {
   return `<div class="me-week">${T.days.map((d, i) => { const day = mon + i; return `<span class="${act.has(day) ? "on" : day < c.today ? "miss" : ""}${day === c.today ? " now" : ""}${day > c.today ? " later" : ""}" title="${esc(act.has(day) ? T.dayPlayed : day === c.today ? T.dayToday : day < c.today ? T.dayMissed : "")}"><i>${cell(day)}</i><small>${esc(d)}</small></span>`; }).join("")}</div>${none && c.today % 7 < 5 ? `<small class="me-hint">${esc(T.lightFirst)}</small>` : ""}`;
 }
 /* ---------- Me ---------- */
+// Me's own words: the stars by subject (Start's subjects show units, so the name differs) and what a record is.
+const ME2 = { de: { stars: "Sterne pro Fach", records: "Deine schnellsten Sprints: richtige Aufgaben pro Minute." }, en: { stars: "Stars by subject", records: "Your fastest drills: right answers a minute." } };
 // The child's own page: this week and the streak, the subjects, the badges (the
 // newest, the closest, and all the rest folded away) and the best drill records.
 function renderMe() {
@@ -702,19 +692,19 @@ function renderMe() {
     <header class="me-band fun-band" style="--room:${ROOM.me}">${avatar(c, "lg")}<div><h2>${esc(c.name ?? T.meTitle)}</h2><small>${esc(yearName(c.year))} · ${esc(ST().cur[c.curriculum])}</small></div>
       <button class="me-gear" data-settings aria-label="${esc(ST().title)}">${GEAR}</button></header>
     <div class="me-tiles">
-      <div><b>${stars}</b><span>★ ${esc(T.stars)}</span></div>
+      <button data-scroll="me-stars"><b>${stars}</b><span>★ ${esc(T.stars)}</span></button>
       <button data-scroll="me-week"><b>${s.current}</b><span>${esc(T.streak)}</span></button>
       <button data-scroll="me-badges"><b>${got.length}</b><span>${esc(T.badges)}</span></button>
     </div>
     <section class="me-card me-streak" id="me-week"><div><b>${esc(T.thisWeek)}</b><small>${esc(T.streakNow(s.current))} · ${esc(T.streakBest(s.best))}</small></div>
       ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
-    <h3 class="pr-h">${esc(T.subjects)}</h3>
-    <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<button data-subj="${x}" style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></button>`; }).join("")}</div>
+    <section id="me-stars"><h3 class="pr-h">${esc(ME2[PL()].stars)}</h3><p class="me-how">${esc(RW().starsHow)}</p>
+    <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<button data-subj="${x}" style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></button>`; }).join("")}</div></section>
     <section id="me-badges" class="me-bds"><h3 class="pr-h">${esc(T.badges)}<small>${esc(T.ofN(got.length, all.length))}</small></h3>
       ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(T.noBadges)}</p>`}
       ${close.length ? `<h4 class="hm-step">${esc(T.almost)}</h4><div class="bd-grid">${close.slice(0, 3).map(badgeTile).join("")}</div>` : ""}
       <details class="bd-all"><summary>${esc(T.allBadges(more.length))}${CHEVRON}</summary><div class="bd-grid">${more.map(badgeTile).join("")}</div></details></section>
-    <h3 class="pr-h">${esc(T.records)}</h3>
+    <h3 class="pr-h">${esc(T.records)}</h3>${recs.length ? `<p class="me-how">${esc(ME2[PL()].records)}</p>` : ""}
     ${recs.length ? `<div class="me-recs">${recs.slice(0, 3).map(([k, d]) => `<button data-drill="${esc(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span>${esc(setOfSkill(k)?.title[PL()] ?? k)}</span><b>${esc(T.perMin(d.best))}</b></button>`).join("")}</div>` : `<p class="pr-empty">${esc(T.noRecords)}</p>`}
   </div>`;
   scr.appendChild(appTabs("me"));

@@ -928,3 +928,27 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .dk-slide:not(.front) > * { filter: none; }
 .hm-practice .dk-timer { left: 26px; right: 26px; bottom: 4px; }
 .pr-hero .dk-timer { background: rgba(255, 255, 255, .18); }
+
+/* Only buttons start things: a practice card holds its own "Üben" button; the card itself does nothing. */
+.hm-practice { grid-template-columns: 1fr 96px; grid-template-areas: "t i" "b i"; row-gap: 14px; cursor: default; }
+.hm-practice > span { grid-area: t; }
+.hm-practice > img { grid-area: i; }
+.hm-practice > .hm-pr-go { grid-area: b; justify-self: start; margin: 0; min-height: 44px; padding: 10px 22px; border-radius: 999px; background: var(--muted); color: #fff; font: 800 16px "Red Hat Display", sans-serif; box-shadow: 0 3px 0 color-mix(in srgb, var(--muted) 70%, #000); }
+.hm-practice:active { transform: none; border-bottom-width: 8px; margin-bottom: 20px; }
+.dk-slide > .hm-practice { grid-template-columns: 1fr 96px; }
+.st-next { cursor: default; }
+.st-next-i { border: 0; padding: 0; cursor: pointer; }
+.st-next-i:active { transform: translateY(2px); }
+/* Choose my own: back, title and close on one row with room between them; the title centred, one line where it fits. */
+.mk-sheet .pr-sheet-top { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 10px; }
+.mk-sheet .pr-sheet-top .mk-back { grid-column: 1; width: 44px; height: 44px; }
+.mk-sheet .pr-sheet-top .pr-sheet-h { grid-column: 2; margin: 0; text-align: center; font-size: 19px; line-height: 1.2; text-wrap: balance; }
+.mk-sheet .pr-sheet-top .pr-x { grid-column: 3; justify-self: end; }
+.me-how { margin: -6px 0 2px; font-size: 13.5px; line-height: 1.35; color: var(--soft); }
+#me-stars { display: grid; gap: 10px; }
+.me-tiles button, .me-tiles > div { min-height: 64px; }
+/* Tap targets of at least 44px. */
+.st-back, .st-find, .pr-x, .me-gear { min-width: 44px; min-height: 44px; }
+/* Dark and night: the practice card's title lighter, its button in the full subject colour. */
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice { --muted: color-mix(in oklab, var(--c) 55%, #fff); border-color: color-mix(in srgb, var(--c) 70%, var(--card)); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .hm-practice > .hm-pr-go { background: var(--c); box-shadow: 0 3px 0 color-mix(in srgb, var(--c) 60%, #000); }

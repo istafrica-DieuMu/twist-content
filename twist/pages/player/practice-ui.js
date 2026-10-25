@@ -68,7 +68,7 @@ function renderPracticeHome() {
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
     <header class="pg-top fun-band" style="--room:${ROOM.practice}"><div><h2>${esc(AT().practice)}</h2><small>${esc(L.helloSub)}</small></div><img src="${A}mascot/practise-1.png" alt=""></header>
     <div id="prMain">
-      ${hero ? `<h3 class="pr-h">${esc(L.suggested)}</h3>${card(hero, true)}` : ""}
+      ${hero ? `<h3 class="pr-h">${esc(L.suggested)}</h3>${card(hero)}` : ""}
       <div id="prList"></div>
       ${Object.keys(PR.index.drills).length ? `<h3 class="pr-h pr-hrow">${esc(L.drills)}<button class="pr-link" id="prAllDr">${esc(L.allDrills)} ${CHEVRON}</button></h3><div class="dr-two">${drillsForYear().slice(0, 2).map(drillCard).join("")}</div>` : ""}
       ${bee.next && bee.next - PR.child.sessions <= 3 ? beeStrip() : ""}
@@ -85,13 +85,12 @@ function renderPracticeHome() {
   $("#prAllDr")?.addEventListener("click", () => renderDrills());
   scr.querySelectorAll(".dr-row [data-drill]").forEach((b) => b.onclick = () => renderDrillMap(b.dataset.drill));
   renderSubjects();
-  function card(c, big) {
+  function card(c) {
     const i = cards.indexOf(c), col = colourOf(subjOfSkill(c.skills[0])), sub = cardSub(c);
         // A recap card names the skills this session plays; the rest stay due for the next one.
     const b_ = BANDS[PR.child.band], title = c.paused ? c.reason[lg] : c.kind === "recaps" ? L.recapNow(Math.min(c.skills.length, Math.floor(b_.tasks / b_.recapTasks))) : c.reason[lg];
-    return big ? `<div class="pr-hero" role="group" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
-        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><button class="pr-go" data-card="${i}">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</button><img class="pr-art" src="${poseSrc(c)}" alt=""></div>`
-      : `<button class="pr-mini" data-card="${i}" style="--c:${col}"><i class="hm-ico sm">${KIND_ICON[c.kind] ?? KIND_ICON.skill}</i><span class="pr-kind">${esc(L.kinds[c.kind] ?? "")}</span><b>${esc(c.kind === "drill" ? sub : c.reason[lg])}</b><small>${esc(c.kind === "drill" ? L.minsShort(2) : sizeOf(c).split(",")[0])}</small></button>`;
+    return `<div class="pr-hero" role="group" style="--c:${col}"><span class="pr-kind">${esc(c.paused ? PAUSE_TXT[lg].kind(L.kinds[c.kind] ?? "") : L.kinds[c.kind] ?? "")}</span><b class="pr-reason">${esc(title)}</b>
+        <span class="pr-sub">${esc(sub)}</span><span class="pr-size">${esc(sizeLine(c))}</span><button class="pr-go" data-card="${i}">${esc(c.paused ? PAUSE_TXT[lg].go : L.start)}</button><img class="pr-art" src="${poseSrc(c)}" alt=""></div>`;
   }
 }
 // What a card holds, in a line: the topics of a recap, the drill's set, the skill.
