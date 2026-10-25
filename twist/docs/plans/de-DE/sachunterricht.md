@@ -244,6 +244,16 @@ Count: 19 + 12 + 38 + 22 + 10 + 11 = 112 skills. Cut by the check:
 | map scale, plan | `math` geometry and measures | prerequisite links |
 | reading information texts, diagrams | `lit-de` | Sachunterricht texts can feed the reading bank (PLAN.md G3) |
 
+## Visuals: never explicit
+
+Decided 2026-10-25 with the confirmations above (NRW as the framework,
+sexual orientation and gender identity out of scope with sex education,
+`my-boundaries` on NRW's prevention standard). No picture, drawing or text
+in any Sachunterricht lesson is explicit: bodies are drawn clothed or as a
+simple outline, organs inside an outline, no genitals or nudity;
+`my-boundaries` teaches with situations and feelings, never with images of
+touch or undress. The same holds for every subject and year.
+
 ## Out of scope for an app
 
 To record with a reason in curricula/de-DE.yaml once the framework is in:

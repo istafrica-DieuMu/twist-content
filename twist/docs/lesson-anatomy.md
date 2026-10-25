@@ -343,6 +343,11 @@ Written after the full de-DE review of 2026-10-14, which fixed about 220
 lesson sets for the same few mistakes. Each lesson set meets these before
 it counts as drafted.
 
+- No explicit visuals, in any subject: bodies clothed or as a simple
+  outline, organs inside an outline, no genitals or nudity; body
+  boundaries are taught with situations and feelings, not images of touch
+  or undress (decided 2026-10-25).
+
 The build warns on these (lessons-check.mjs):
 
 - Lesson 1's warm-up comes from earlier skills, never from the last
