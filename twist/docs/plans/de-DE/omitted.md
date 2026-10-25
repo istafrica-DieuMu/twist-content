@@ -97,7 +97,7 @@ is replaced by dialogues with characters and speaking tasks.
 
 | What | Status | Reason | Decided |
 |---|---|---|---|
-| Instructions in the child's home language | open | biggest help to a beginner, large audio cost | |
+| Instructions in the child's home language (Arabic, Turkish, Ukrainian, Russian) | later | decided 2026-10-25: DaZ instructions are in English for now | 2026-10-25 |
 
 ## Sekundarstufe I (Klasse 5 to 10)
 

@@ -51,9 +51,9 @@ Rahmenplan DaZ (2006) built on Bayern's.
 
 - How the app shows DaZ: as a fourth subject, or as a mode that changes
   instructions and voice speed across Deutsch.
-- Instructions in the home language (Arabic, Turkish, Ukrainian, Russian)
-  for the first lessons: a large audio cost, but the biggest help to a
-  beginner.
+- Instructions in the home language: decided 2026-10-25, English for now
+  (the support language besides German); Arabic, Turkish, Ukrainian and
+  Russian later.
 
 ## Size
 
