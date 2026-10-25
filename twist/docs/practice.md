@@ -363,8 +363,14 @@ From the top:
    subject's colour, with the topic's mascot, the kind ("Weißt du es
    noch?" / "Do you remember?"), what it plays ("4 Sachen auffrischen" /
    "Refresh 4 skills", the topics, "12 Aufgaben aus 2 Themen, etwa 5
-   Minuten") and a start button. The page starts here; there is no search
-   on it (2026-10-25).
+   Minuten") and a start button. Suggestions come from what the child has
+   taken: recaps, catch-up, a sprint the child has played or whose skill
+   they have begun, and a review of a topic they have begun. Only a child
+   who has taken nothing yet is offered the first topic.
+   Above it, a search field ("Suchen: Einmaleins, Plus, Wörter …"); a tap
+   opens the builder's search (below) ready to type, so there is one
+   search with one behaviour. A search looks through every year, so an
+   older skill can be found again.
 4. **Selbst aussuchen / Choose my own**, a floating "+" button over the
    page, bottom right above the tab bar: wide with its label at the top of
    the page, a circle once scrolled, hidden while a sheet is open. It opens

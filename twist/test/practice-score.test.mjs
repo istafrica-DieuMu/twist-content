@@ -56,9 +56,20 @@ test("suggestions: recaps first, then catch-up, then a drill; never empty", () =
   const empty = suggestions(c, index);
   assert.ok(empty.length >= 1);
   setState(c, "math.mult-div.table-7", "can_do"); setState(c, "lit-de.fluency.sight-words-easy", "needs_refresh"); c.today = 2;
+  c.drills["math.mult-div.table-3-6-9"] = { best: 12 };
   const k = suggestions(c, index).map((x) => x.kind);
   assert.deepEqual(k.slice(0, 3), ["recaps", "catch-up", "drill"]);
   assert.ok(suggestions(c, index).every((x) => x.reason.de && x.reason.en));
+});
+
+test("suggestions: sprints and reviews only from skills the child has taken", () => {
+  const c = newChild({ curriculum: "de-DE", year: "klasse-2", band: "6-7" });
+  setState(c, "math.mult-div.table-7", "can_do"); c.lastSkill = "math.mult-div.table-7";
+  const taken = (k) => !!c.states[k] || !!c.drills[k];
+  for (const s of suggestions(c, index)) {
+    if (s.kind === "drill") assert.ok(taken(s.skills[0]), `drill on an untaken skill: ${s.skills[0]}`);
+    if (s.kind === "review") assert.ok(s.skills.every(taken), "review with untaken skills");
+  }
 });
 
 test("typed requests become filters", () => {
