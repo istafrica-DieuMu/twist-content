@@ -1350,22 +1350,27 @@ const TYPES = {
     const btn = nextBtn(foot, UI.check, () => { const ok = pick[0] === t.answer[0] && pick[1] === t.answer[1]; answer(ok, pick.join(","), () => { pick = [...t.answer]; draw(); }); if (!ok && !st.over) setTimeout(() => { pick = null; draw(); btn.disabled = true; }, 900); });
     btn.disabled = true; draw();
   },
-  // Drag the hands to a time; answer "h:mm". The minute hand snaps to `step`
-  // minutes (5 if left out), the hour hand to whole hours and sits between
-  // hours as the minutes go on, as on a real clock.
+  // Drag the hands to a time; answer "h:mm". The time is kept in minutes on a 12-hour face, so
+  // the hands turn together as on a real clock: the minute hand dragged past 12 moves the hour
+  // on, the hour hand dragged turns the minutes too. A hand is grabbed where the finger lands
+  // (the nearer hand) and turns by as much as the finger turns around the centre, smoothly;
+  // on letting go the minutes snap to `step` (5 if left out).
   clock_hands_drag({ t, body, foot, vis, answer, st }) {
-    const step = t.step ?? 5; let h = t.show?.hour ?? 12, m = t.show?.minute ?? 0, which = null, moved = false;
+    const step = t.step ?? 5, start = ((t.show?.hour ?? 12) % 12) * 60 + (t.show?.minute ?? 0);
+    let T = start, which = null, last = 0, moved = false;
+    const hm = () => { const s_ = ((Math.round(T) % 720) + 720) % 720; return [Math.floor(s_ / 60) || 12, s_ % 60]; };
     const n = document.createElement("div"); n.className = "note"; n.textContent = UI.hands; body.appendChild(n);
-    const draw = () => { vis.innerHTML = clock({ ...(t.show ?? {}), hour: h, minute: m, digital: false, _drag: true }); };
+    const draw = () => { const s_ = ((T % 720) + 720) % 720; vis.innerHTML = clock({ ...(t.show ?? {}), hour: Math.floor(s_ / 60) || 12, minute: s_ % 60, digital: false, _drag: true, _active: which }); };
     const frac = (e) => { const b = vis.querySelector("svg").getBoundingClientRect(), x = e.clientX - b.left - b.width / 2, y = e.clientY - b.top - b.height / 2; return ((Math.atan2(y, x) + Math.PI / 2) / (2 * Math.PI) + 1) % 1; };
     const near = (a, b) => Math.min(Math.abs(a - b), 1 - Math.abs(a - b));
-    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; const f = frac(e); which = near(f, m / 60) <= near(f, ((h % 12) + m / 60) / 12) ? "m" : "h"; vis.setPointerCapture(e.pointerId); vis.onpointermove(e); };
-    vis.onpointermove = (e) => { if (!which) return; const f = frac(e);
-      if (which === "m") m = (Math.round((f * 60) / step) * step) % 60; else { const x = Math.round(f * 12 - m / 60); h = ((x % 12) + 12) % 12 || 12; }
-      moved = true; btn.disabled = false; draw(); };
-    vis.onpointerup = vis.onpointercancel = () => { which = null; };
+    const turn = (f) => { let d = f - last; if (d > 0.5) d -= 1; if (d < -0.5) d += 1; last = f; return d; };
+    vis.onpointerdown = (e) => { if (st.over || !vis.querySelector("svg")) return; e.preventDefault();
+      const f = frac(e), s_ = ((T % 720) + 720) % 720; which = near(f, (s_ % 60) / 60) <= near(f, s_ / 720) ? "m" : "h"; last = f;
+      vis.setPointerCapture(e.pointerId); draw(); };
+    vis.onpointermove = (e) => { if (!which) return; const d = turn(frac(e)); T += which === "m" ? d * 60 : d * 720; moved = true; btn.disabled = false; draw(); };
+    vis.onpointerup = vis.onpointercancel = () => { if (!which) return; which = null; T = Math.round(T / step) * step; draw(); };
     const [ah, am] = String(t.answer).split(":").map(Number);
-    const btn = nextBtn(foot, UI.check, () => { const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { h = ah % 12 || 12; m = am; draw(); }); if (!ok && !st.over) setTimeout(() => { h = t.show?.hour ?? 12; m = t.show?.minute ?? 0; draw(); }, 900); });
+    const btn = nextBtn(foot, UI.check, () => { const [h, m] = hm(); const ok = h % 12 === ah % 12 && m === am; answer(ok, `${h}:${String(m).padStart(2, "0")}`, () => { T = (ah % 12) * 60 + am; draw(); }); if (!ok && !st.over) setTimeout(() => { T = start; draw(); }, 900); });
     btn.disabled = !moved; draw();
   },
   highlight_in_text({ t, body, foot, vis, answer, st }) {

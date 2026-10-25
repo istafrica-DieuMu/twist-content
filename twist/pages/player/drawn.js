@@ -232,10 +232,11 @@ function clock(o) {
   for (let i = 0; i < 60; i++) if (i % 5) s += `<circle cx="${c + 74 * Math.cos(ang(i / 60))}" cy="${c + 74 * Math.sin(ang(i / 60))}" r="1.6" fill="#2b0f45"/>`;
   const m = o.minute ?? 0, h = ((o.hour ?? 12) % 12) + m / 60;
   // clock_hands_drag: round grips on the hand ends show they can be moved.
-  const grip = (f, len, col) => o._drag ? `<circle cx="${c + len * Math.cos(ang(f))}" cy="${c + len * Math.sin(ang(f))}" r="7" fill="${col}" stroke="#fff" stroke-width="2"/>` : "";
-  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + grip(h / 12, 34, "#2b0f45") + grip(m / 60, 50, "#8e3bd1") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
+  // The hand being dragged (_active "h" or "m") shows a bigger grip.
+  const grip = (f, len, col, k) => o._drag ? `<circle cx="${c + len * Math.cos(ang(f))}" cy="${c + len * Math.sin(ang(f))}" r="${o._active === k ? 11 : 7}" fill="${col}" stroke="#fff" stroke-width="2"/>` : "";
+  s += hand(h / 12, 34, 8, "#2b0f45") + hand(m / 60, 50, 5, "#8e3bd1") + grip(h / 12, 34, "#2b0f45", "h") + grip(m / 60, 50, "#8e3bd1", "m") + `<circle cx="${c}" cy="${c}" r="6" fill="#2b0f45"/>`;
   const dig = o.digital ? `<div style="font:700 26px Andika,sans-serif;text-align:center">${esc(String(o.hour))}:${String(m).padStart(2, "0")}</div>` : "";
-  return `<div><svg viewBox="0 0 180 180" width="${o._drag ? 220 : 160}" height="${o._drag ? 220 : 160}" ${o._drag ? 'style="touch-action:none;cursor:grab"' : ""}>${s}</svg>${dig}</div>`;
+  return `<div><svg viewBox="0 0 180 180" width="${o._drag ? 220 : 160}" height="${o._drag ? 220 : 160}" ${o._drag ? `style="touch-action:none;cursor:${o._active ? "grabbing" : "grab"}"` : ""}>${s}</svg>${dig}</div>`;
 }
 function numberWall(rows) {
   const n = rows[0].length, w = 66, h = 44, W = n * w + 8, H = rows.length * h + 8;
