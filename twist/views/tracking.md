@@ -10,8 +10,9 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30270 / 30270) |
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27985 / 27985) |
+| de-DE | Sachunterricht | 0% (0 / 112) | 0% (0 / 44) | 0 | – (0 / 0) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8094 / 8094) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (66350 / 66350)** |
+| **de-DE** | **all** | **80% (435 / 547)** | **79% (161 / 205)** | **909** | **100% (66350 / 66350)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38129 / 38130) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22136 / 22136) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8121 / 8121) |
@@ -41,17 +42,17 @@ Per voice:
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $158; 0 clips still to make.
+435 of 547 placed skills drafted (80%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $158; 0 clips still to make.
 
-| year | Mathe | Deutsch | Englisch | all |
-|---|---|---|---|---|
-| klasse-1 | 41 / 41 | 51 / 51 |  | 92 / 92 |
-| klasse-2 | 63 / 63 | 46 / 46 |  | 109 / 109 |
-| klasse-3 | 51 / 51 | 42 / 42 |  | 93 / 93 |
-| klasse-4 | 48 / 48 | 35 / 35 |  | 83 / 83 |
-| stufe-0 |  |  | 14 / 14 | 14 / 14 |
-| lernjahr-1 |  |  | 28 / 28 | 28 / 28 |
-| lernjahr-2 |  |  | 16 / 16 | 16 / 16 |
+| year | Mathe | Deutsch | Sachunterricht | Englisch | all |
+|---|---|---|---|---|---|
+| klasse-1 | 41 / 41 | 51 / 51 | 0 / 19 |  | 92 / 111 |
+| klasse-2 | 63 / 63 | 46 / 46 | 0 / 30 |  | 109 / 139 |
+| klasse-3 | 51 / 51 | 42 / 42 | 0 / 27 |  | 93 / 120 |
+| klasse-4 | 48 / 48 | 35 / 35 | 0 / 36 |  | 83 / 119 |
+| stufe-0 |  |  |  | 14 / 14 | 14 / 14 |
+| lernjahr-1 |  |  |  | 28 / 28 | 28 / 28 |
+| lernjahr-2 |  |  |  | 16 / 16 | 16 / 16 |
 
 Topics, in placement order. A topic is done when every skill in it has a lesson set.
 
@@ -86,6 +87,15 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-1 | Deutsch | Sprache untersuchen | 1 / 1 done | 2 | $0.40 |
 | klasse-1 | Deutsch | Texte schreiben | 1 / 1 done | 2 | $0.23 |
 | klasse-1 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.28 |
+| klasse-1 | Sachunterricht | Ich und die anderen | 0 / 3 |  |  |
+| klasse-1 | Sachunterricht | Mein Körper | 0 / 2 |  |  |
+| klasse-1 | Sachunterricht | Sauber und gesund | 0 / 2 |  |  |
+| klasse-1 | Sachunterricht | Natur um mich | 0 / 2 |  |  |
+| klasse-1 | Sachunterricht | Jahreszeiten und Wetter | 0 / 2 |  |  |
+| klasse-1 | Sachunterricht | Wo ist was? | 0 / 1 |  |  |
+| klasse-1 | Sachunterricht | Sicher unterwegs | 0 / 3 |  |  |
+| klasse-1 | Sachunterricht | Werkzeuge und Geräte | 0 / 1 |  |  |
+| klasse-1 | Sachunterricht | Mein Jahr | 0 / 3 |  |  |
 | klasse-2 | Mathe | Zahlen bis 100 | 10 / 10 done | 20 | $3.01 |
 | klasse-2 | Mathe | Plus und Minus bis 100 | 10 / 10 done | 21 | $3.94 |
 | klasse-2 | Mathe | Malaufgaben und Einmaleins | 15 / 15 done | 30 | $4.46 |
@@ -119,6 +129,19 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Texte überarbeiten | 1 / 1 done | 2 | $0.43 |
 | klasse-2 | Deutsch | Sprechen und Zuhören | 2 / 2 done | 4 | $1.13 |
 | klasse-2 | Deutsch | Schreibschrift | 3 / 3 done | 6 | $1.05 |
+| klasse-2 | Sachunterricht | Gemeinsam in der Klasse | 0 / 2 |  |  |
+| klasse-2 | Sachunterricht | Wünschen und Kaufen | 0 / 3 |  |  |
+| klasse-2 | Sachunterricht | Medien | 0 / 1 |  |  |
+| klasse-2 | Sachunterricht | Gesund leben | 0 / 2 |  |  |
+| klasse-2 | Sachunterricht | Mein Körper gehört mir | 0 / 1 |  |  |
+| klasse-2 | Sachunterricht | Tiere und Pflanzen | 0 / 4 |  |  |
+| klasse-2 | Sachunterricht | Vom Hof auf den Tisch | 0 / 2 |  |  |
+| klasse-2 | Sachunterricht | Stoffe und Naturphänomene | 0 / 5 |  |  |
+| klasse-2 | Sachunterricht | Umwelt schützen | 0 / 1 |  |  |
+| klasse-2 | Sachunterricht | Pläne und Orte | 0 / 3 |  |  |
+| klasse-2 | Sachunterricht | Sicher unterwegs | 0 / 2 |  |  |
+| klasse-2 | Sachunterricht | Bauen und Berufe | 0 / 2 |  |  |
+| klasse-2 | Sachunterricht | Früher und heute | 0 / 2 |  |  |
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $3.01 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.99 |
 | klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $5.88 |
@@ -153,6 +176,14 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Sprechen und Zuhören | 1 / 1 done | 2 | $0.34 |
 | klasse-3 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.36 |
 | klasse-3 | Deutsch | Texte gestalten | 2 / 2 done | 4 | $0.96 |
+| klasse-3 | Sachunterricht | Rechte und Vielfalt | 0 / 3 |  |  |
+| klasse-3 | Sachunterricht | Im Inneren des Körpers | 0 / 3 |  |  |
+| klasse-3 | Sachunterricht | Tiere und Pflanzen | 0 / 4 |  |  |
+| klasse-3 | Sachunterricht | Der Wald | 0 / 2 |  |  |
+| klasse-3 | Sachunterricht | Wasser | 0 / 4 |  |  |
+| klasse-3 | Sachunterricht | Karten lesen | 0 / 4 |  |  |
+| klasse-3 | Sachunterricht | Wie Technik funktioniert | 0 / 4 |  |  |
+| klasse-3 | Sachunterricht | Geschichte entdecken | 0 / 3 |  |  |
 | klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.90 |
 | klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $2.42 |
 | klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $2.65 |
@@ -180,6 +211,20 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.47 |
 | klasse-4 | Deutsch | Gespräche führen | 1 / 1 done | 2 | $0.43 |
 | klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $3.00 |
+| klasse-4 | Sachunterricht | Mitbestimmen | 0 / 3 |  |  |
+| klasse-4 | Sachunterricht | Sicher mit Medien | 0 / 4 |  |  |
+| klasse-4 | Sachunterricht | Helfen im Notfall | 0 / 1 |  |  |
+| klasse-4 | Sachunterricht | Gesund bleiben | 0 / 1 |  |  |
+| klasse-4 | Sachunterricht | Lebensräume | 0 / 3 |  |  |
+| klasse-4 | Sachunterricht | Wasser | 0 / 1 |  |  |
+| klasse-4 | Sachunterricht | Feuer und Strom | 0 / 4 |  |  |
+| klasse-4 | Sachunterricht | Energie und Klima | 0 / 3 |  |  |
+| klasse-4 | Sachunterricht | Erde und Weltall | 0 / 1 |  |  |
+| klasse-4 | Sachunterricht | Deutschland und die Welt | 0 / 4 |  |  |
+| klasse-4 | Sachunterricht | Verkehr und Umwelt | 0 / 1 |  |  |
+| klasse-4 | Sachunterricht | Mit dem Fahrrad unterwegs | 0 / 4 |  |  |
+| klasse-4 | Sachunterricht | Technik verändert die Welt | 0 / 3 |  |  |
+| klasse-4 | Sachunterricht | Leben in anderen Zeiten | 0 / 3 |  |  |
 | stufe-0 | Englisch | Hören | 3 / 3 done | 6 | $0.67 |
 | stufe-0 | Englisch | Hallo | 1 / 1 done | 2 | $0.26 |
 | stufe-0 | Englisch | Farben | 1 / 1 done | 2 | $0.18 |
@@ -523,7 +568,7 @@ The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md):
 
 | curriculum | skills without lessons | narration per lesson set | narration to finish, about |
 |---|---|---|---|
-| de-DE | 0 | $0.36 | $0.00 |
+| de-DE | 112 | $0.36 | $41 |
 | en-GB | 0 | $0.37 | $0.00 |
 
 Pictures: 277 of 277 bank objects drawn, about $0.02 each, so new pictures cost about $0.23 per ten. The projection assumes later lesson sets need as much narration as the ones so far, counting clips not yet made at the average clip cost.

@@ -149,7 +149,7 @@ Open:
 | 2 | Decisions 1 to 6 | Done |
 | 3 | Split into this folder | Done |
 | 4 | Fetch the missing documents (sources.md) | Done for Sachunterricht, Musik, Kunst, Ethik (Bayern), 2026-10-24; DaZ and second checks open |
-| 5 | Sachunterricht in full: skill ids, standards, out of scope, components, assets | Draft skills checked against four curricula, 2026-10-24; teacher review and framework record next |
+| 5 | Sachunterricht in full: skill ids, standards, out of scope, components, assets | Framework record (NRW, 98 standards), skill library (112 skills) and placement done, 2026-10-25; teacher review, components and lessons next |
 | 6 | DaZ, Musik, Kunst, Ethik at the same depth | Musik, Kunst, Ethik checked against NRW and Bayern, 2026-10-24; DaZ skill placement open |
 | 7 | Standardize year and subject names | Later |
 | 8 | Review, commit, decide on merging | Grundschule docs committed 2026-10-24 |
