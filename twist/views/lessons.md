@@ -7407,7 +7407,7 @@ Before phonics, children tune their ears. They hear whether two words rhyme (cat
 | 1. Reimt sich das? | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Reimwörter finden | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: true_false 20, image_multiple_choice 30, matching 6. Builds on: . Misconceptions addressed: 2.
+Task types: true_false 20, image_multiple_choice 29, matching 6, audio_choice 1. Builds on: . Misconceptions addressed: 2.
 
 ## Wörter lautierend schreiben (Spelling by sounds)
 
@@ -7603,7 +7603,7 @@ Children split numbers into two parts and see that the parts make the whole agai
 | 1. Die Teile der 5 | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Die Teile der 10 | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: multiple_choice 41, true_false 13, image_multiple_choice 2. Builds on: `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, true_false 14, image_multiple_choice 2. Builds on: `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 2.
 
 ## Anzahlen auf einen Blick (Seeing amounts at a glance)
 

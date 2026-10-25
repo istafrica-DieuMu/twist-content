@@ -12,18 +12,18 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27342 / 27342) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (7879 / 7879) |
 | **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (64720 / 64720)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (37615 / 37615) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (21765 / 21765) |
-| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8113 / 8113) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (67493 / 67493)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (37659 / 37659) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (21781 / 21781) |
+| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8121 / 8121) |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (67561 / 67561)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 132674 clips, 182.2 h | about $221 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 132674 clips | about $105 | estimated the same way |
+| Narration | google/gemini-3.8-flash-tts | 132741 clips, 182.4 h | about $222 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 132741 clips | about $105 | estimated the same way |
 | **Total** | | | **about $335** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
@@ -36,7 +36,7 @@ Per voice:
 | gemini-puck-en | 18187 | 18064 (99%) | 0 | 1409 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
 | gemini-sulafat | 46201 | 45762 (99%) | 0 | 3620 min | $110 |
-| gemini-sulafat-en | 47577 | 47133 (99%) | 0 | 4567 min | $130 |
+| gemini-sulafat-en | 47644 | 47200 (99%) | 0 | 4581 min | $130 |
 | gemini-sulafat-fr | 1302 | 1299 (100%) | 0 | 76 min | $2.53 |
 
 ## de-DE
@@ -221,7 +221,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $176; 0 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $177; 0 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -241,11 +241,11 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
-| reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.33 |
+| reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.42 |
 | reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.76 |
 | reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.78 |
 | reception | Maths | Division | 1 / 1 done | 2 | $0.32 |
-| reception | English | Hearing sounds | 4 / 4 done | 8 | $0.94 |
+| reception | English | Hearing sounds | 4 / 4 done | 8 | $1.02 |
 | reception | English | Phonics | 12 / 12 done | 24 | $2.51 |
 | reception | English | Reading words | 3 / 3 done | 6 | $0.46 |
 | reception | English | Understanding stories | 2 / 2 done | 4 | $1.01 |
@@ -285,12 +285,12 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-1 | English | Handwriting | 2 / 2 done | 5 | $0.70 |
 | year-1 | English | Speaking and listening | 2 / 2 done | 4 | $0.86 |
 | year-1 | English | Words in texts | 1 / 1 done | 2 | $0.41 |
-| year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.50 |
+| year-2 | Maths | Numbers to 100 | 5 / 5 done | 10 | $1.60 |
 | year-2 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.87 |
 | year-2 | Maths | Adding and subtracting to 20 | 2 / 2 done | 4 | $0.60 |
 | year-2 | Maths | Word problems | 2 / 2 done | 4 | $1.08 |
 | year-2 | Maths | Adding and subtracting tens | 1 / 1 done | 2 | $0.28 |
-| year-2 | Maths | Money | 4 / 4 done | 8 | $1.33 |
+| year-2 | Maths | Money | 4 / 4 done | 8 | $1.32 |
 | year-2 | Maths | Shapes | 2 / 2 done | 4 | $0.72 |
 | year-2 | Maths | Patterns | 1 / 1 done | 2 | $0.37 |
 | year-2 | Maths | Symmetry | 1 / 1 done | 2 | $0.28 |
@@ -441,7 +441,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-6 | Maths | Calculating with fractions | 2 / 2 done | 4 | $0.78 |
 | year-6 | English | Spelling | 2 / 2 done | 4 | $0.82 |
 | year-6 | English | Writing | 5 / 5 done | 10 | $1.99 |
-| ly-1 | French | Listening | 3 / 3 done | 6 | $0.68 |
+| ly-1 | French | Listening | 3 / 3 done | 6 | $0.72 |
 | ly-1 | French | Hello | 1 / 1 done | 2 | $0.31 |
 | ly-1 | French | Colours | 1 / 1 done | 2 | $0.27 |
 | ly-1 | French | Numbers | 1 / 1 done | 2 | $0.28 |

@@ -53,7 +53,9 @@ lessons:
       - activity: learn
         mode: new-word
         screens:
-          - say: { en: "Some French words sound almost like English ones. In English we say lion. In French:", fr: "le lion. Le lion." }
+          - say: { en: "Here is a French word. Listen. What do you think: is it a lion or a banana?", fr: "le lion. Le lion." }
+            show: { objects: [lion, banana] }
+          - say: { en: "A lion! Some French words sound almost like English ones. In English we say lion. In French:", fr: "le lion. Le lion." }
             show: { object: lion }
           - say: { en: "Elephant in French:", fr: "l'éléphant. L'éléphant." }
             show: { object: elephant }
@@ -78,6 +80,8 @@ lessons:
                 audio: { fr: "la girafe" }
                 options: [{ object: giraffe }, { object: elephant }, { object: lion }]
                 answer: giraffe
+                feedback:
+                  elephant: "That animal has a long trunk, not a long neck. Listen again: la girafe."
                 hints:
                   - "Listen again: la girafe."
                   - "It sounds like an English animal with a long neck."
@@ -298,9 +302,9 @@ lessons:
       - activity: learn
         mode: new-word
         screens:
-          - say: { en: "More words you almost know. Bus:", fr: "le bus. Le bus." }
-            show: { object: bus }
-          - say: { en: "Table:", fr: "la table. La table." }
+          - say: { en: "More words you almost know. Listen. What do you think: is it a bus or a table?", fr: "le bus. Le bus." }
+            show: { objects: [bus, table] }
+          - say: { en: "It's a bus! And this is table:", fr: "la table. La table." }
             show: { object: table }
           - say: { en: "Telephone:", fr: "le téléphone. Le téléphone." }
             show: { object: telephone }
@@ -308,6 +312,9 @@ lessons:
             show: { object: carrot }
           - say: { en: "When you hear Montrez and then a word, point to the picture. For example:", fr: "Montrez le bus !" }
             show: { object: point }
+          - text: "Did you know? In 1066, French speakers from Normandy took over England."
+            say: { en: "Did you know? In 1066, nearly a thousand years ago, William the Conqueror came from Normandy in France and became King of England. He and his lords spoke French. That is one reason why so many English words sound like French ones." }
+            show: { object: crown }
 
       - activity: practise
         setting: plain
@@ -333,6 +340,8 @@ lessons:
                 audio: { fr: "Montrez la carotte !" }
                 options: [{ object: rose }, { object: carrot }, { object: orange }]
                 answer: carrot
+                feedback:
+                  orange: "An orange is orange, just like a carrot! But carotte sounds like carrot."
                 hints:
                   - "Listen again: Montrez la carotte !"
                   - "Carotte sounds nearly like carrot."
@@ -495,6 +504,13 @@ lessons:
             audio: { fr: "Montrez la banane !" }
             options: [{ object: carrot }, { object: rose }, { object: banana }]
             answer: banana
+          - id: l2-c8
+            part: animals
+            type: true_false
+            text: "Is this the animal you hear?"
+            say: { en: "Listen. Is this the animal you hear?", fr: "le crocodile" }
+            show: { object: giraffe }
+            answer: false
           - id: l2-c4
             part: food-plants
             type: audio_choice
@@ -519,29 +535,6 @@ lessons:
             audio: { turns: [{ fr: "le bus" }, { fr: "la girafe" }] }
             options: [{ object: bus }, { object: giraffe }, { object: lion }]
             answer: giraffe
-          - id: l2-c7
-            part: animals
-            type: audio_choice
-            text: "You hear two words. Which picture is not one of them? Tap it."
-            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
-            audio: { turns: [{ fr: "le lion" }, { fr: "l'éléphant" }] }
-            options: [{ object: lion }, { object: elephant }, { object: crocodile }]
-            answer: crocodile
-          - id: l2-c8
-            part: animals
-            type: true_false
-            text: "Is this the animal you hear?"
-            say: { en: "Listen. Is this the animal you hear?", fr: "le crocodile" }
-            show: { object: giraffe }
-            answer: false
-          - id: l2-c9
-            part: animals
-            type: audio_choice
-            text: "You hear two words. Tap the one you hear first."
-            say: { en: "Listen. You hear two words. Tap the one you hear first." }
-            audio: { turns: [{ fr: "le crocodile" }, { fr: "la banane" }] }
-            options: [{ object: banana }, { object: crocodile }, { object: carrot }]
-            answer: crocodile
           - id: l2-c10
             part: animals
             type: true_false
@@ -550,14 +543,22 @@ lessons:
             audio: { turns: [{ fr: "le lion" }, { fr: "la rose" }] }
             show: { object: lion }
             answer: true
-          - id: l2-c11
+          - id: l2-c7
             part: animals
-            type: true_false
-            text: "You hear two words. Is the picture one of them?"
-            say: { en: "Listen. You hear two words. Is the picture one of them?" }
-            audio: { turns: [{ fr: "la girafe" }, { fr: "la table" }] }
-            show: { object: elephant }
-            answer: false
+            type: audio_choice
+            text: "You hear two words. Which picture is not one of them? Tap it."
+            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
+            audio: { turns: [{ fr: "le lion" }, { fr: "l'éléphant" }] }
+            options: [{ object: lion }, { object: elephant }, { object: crocodile }]
+            answer: crocodile
+          - id: l2-c9
+            part: animals
+            type: audio_choice
+            text: "You hear two words. Tap the one you hear first."
+            say: { en: "Listen. You hear two words. Tap the one you hear first." }
+            audio: { turns: [{ fr: "le crocodile" }, { fr: "la banane" }] }
+            options: [{ object: banana }, { object: crocodile }, { object: carrot }]
+            answer: crocodile
           - id: l2-c12
             part: food-plants
             type: audio_choice
@@ -566,6 +567,14 @@ lessons:
             audio: { fr: "Montrez l'orange !" }
             options: [{ object: carrot }, { object: orange }, { object: banana }]
             answer: orange
+          - id: l2-c11
+            part: animals
+            type: true_false
+            text: "You hear two words. Is the picture one of them?"
+            say: { en: "Listen. You hear two words. Is the picture one of them?" }
+            audio: { turns: [{ fr: "la girafe" }, { fr: "la table" }] }
+            show: { object: elephant }
+            answer: false
           - id: l2-c13
             part: food-plants
             type: audio_choice
@@ -573,6 +582,14 @@ lessons:
             say: { en: "Listen. You hear two words. Tap the one you hear second." }
             audio: { turns: [{ fr: "le téléphone" }, { fr: "la carotte" }] }
             options: [{ object: telephone }, { object: carrot }, { object: rose }]
+            answer: carrot
+          - id: l2-c15
+            part: food-plants
+            type: audio_choice
+            text: "You hear two words. Which picture is not one of them? Tap it."
+            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
+            audio: { turns: [{ fr: "la rose" }, { fr: "l'orange" }] }
+            options: [{ object: rose }, { object: orange }, { object: carrot }]
             answer: carrot
           - id: l2-c14
             part: food-plants
@@ -582,14 +599,6 @@ lessons:
             audio: { turns: [{ fr: "la banane" }, { fr: "le bus" }] }
             show: { object: orange }
             answer: false
-          - id: l2-c15
-            part: food-plants
-            type: audio_choice
-            text: "You hear two words. Which picture is not one of them? Tap it."
-            say: { en: "Listen. You hear two words. Which picture is not one of them? Tap it." }
-            audio: { turns: [{ fr: "la rose" }, { fr: "l'orange" }] }
-            options: [{ object: rose }, { object: orange }, { object: carrot }]
-            answer: carrot
           - id: l2-c16
             part: things
             type: audio_choice
