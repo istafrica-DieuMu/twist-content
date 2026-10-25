@@ -70,7 +70,10 @@ lessons:
         mode: demonstration
         screens:
           - text: "13 − 5 = ?"
-            say: "Thirteen subtract five. From thirteen, three hops back take you exactly to ten."
+            say: "Thirteen subtract five. Five hops back from thirteen go past ten. Where do you think you land? Have a guess."
+            show: { drawn: equation, text: "13 − 5 = _" }
+          - text: "13 − 5"
+            say: "Here is a trick. From thirteen, three hops back take you exactly to ten."
             show: { drawn: equation, text: "13 − 5 = _", split: "5 = 3 + 2" }
           - text: "13 − 3 = 10"
             say: "So split the five into three and two. First take away three. That makes ten."
@@ -137,8 +140,8 @@ lessons:
                   - "15 − 7 = 15 − 5 − 2."
               - id: l1-f5
                 type: text_input
-                text: "16 − 8 = _"
-                say: "Sixteen subtract eight."
+                text: "16 children are in the pool. 8 get out.\n16 − 8 = _"
+                say: "Sixteen children are in the pool. Eight get out. Sixteen subtract eight. How many children are still in the pool?"
                 answer: "8"
                 hints:
                   - "Six back to ten."
@@ -282,14 +285,19 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "16 − 9: how many back to ten?"
+            say: "Sixteen subtract nine. How many hops back do you take first, to land exactly on ten? Have a guess."
+            show: { drawn: rechenstrich, start: 16, jumps: [], back: true }
           - text: "16 − 9 = 16 − 6 − 3 = 7"
-            say: "Sixteen subtract nine: six back to ten, then three more. Seven."
+            say: "Six hops! Sixteen subtract nine: six back to ten, then three more. Seven."
             show: { drawn: rechenstrich, start: 16, jumps: [-6, -3] }
           - text: "11 − 5 = 11 − 1 − 4 = 6"
             say: "Eleven subtract five: one back to ten, then four more. Six."
             show: { drawn: rechenstrich, start: 11, jumps: [-1, -4] }
           - text: "check: 6 + 5 = 11"
             say: "Check by adding. Six add five is eleven, so the answer is right."
+          - text: "Did you know? A dozen is 12. A baker's dozen is 13!"
+            say: "Did you know? A dozen means twelve, like a box of twelve eggs. But a baker's dozen is thirteen: a dozen and one extra. Thirteen subtract one is twelve!"
 
       - activity: practise
         setting: plain
@@ -362,10 +370,12 @@ lessons:
                 hints: ["Nine is three and six."]
               - id: l2-s2
                 type: multiple_choice
-                text: "12 − 7 = ?"
-                say: "Twelve subtract seven."
-                options: ["5", "15", "6"]
+                text: "Dad tosses 12 pancakes. 7 land on the floor! How many land in the pan?\n12 − 7 = ?"
+                say: "Dad tosses twelve pancakes. Seven land on the floor! How many land in the pan? Twelve subtract seven."
+                options: ["5", "15", "6", "The dog eats them."]
                 answer: "5"
+                feedback:
+                  "The dog eats them.": "Woof! Maybe the ones on the floor. How many pancakes land in the pan?"
                 hints: ["Back to ten first."]
               - id: l2-s3
                 type: true_false
@@ -410,8 +420,8 @@ lessons:
                 answer: true
               - id: l2-n4
                 type: text_input
-                text: "15 − 9 = _"
-                say: "Fifteen subtract nine."
+                text: "15 sheep are in the field. 9 go into the barn.\n15 − 9 = _"
+                say: "Fifteen sheep are in the field. Nine go into the barn. Fifteen subtract nine. How many sheep are still in the field?"
                 answer: "6"
               - id: l2-n5
                 type: text_input
@@ -494,6 +504,14 @@ lessons:
             frame: "11 − 1 = _ · 10 − 2 = _"
             options: ["10", "8", "9", "2"]
             answer: ["10", "8"]
+          - id: l2-c13
+            part: steps
+            type: multiple_choice
+            text: "12 − 5 = ?\nLook at the two hops."
+            say: "Twelve subtract five. Look at the two hops. What is the answer?"
+            show: { drawn: rechenstrich, start: 12, jumps: [-2, -3] }
+            options: ["7", "8", "10"]
+            answer: "7"
           - id: l2-c11
             part: steps
             type: fill_in_blank
@@ -510,14 +528,6 @@ lessons:
             frame: "15 − 5 = _ · 10 − _ = _"
             options: ["10", "4", "6", "5"]
             answer: ["10", "4", "6"]
-          - id: l2-c13
-            part: steps
-            type: multiple_choice
-            text: "12 − 5 = ?\nLook at the two hops."
-            say: "Twelve subtract five. Look at the two hops. What is the answer?"
-            show: { drawn: rechenstrich, start: 12, jumps: [-2, -3] }
-            options: ["7", "8", "10"]
-            answer: "7"
           - id: l2-c14
             part: solve
             type: text_input

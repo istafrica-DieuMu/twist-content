@@ -7815,7 +7815,7 @@ The words we use to talk about writing. Lesson 1 tells a letter from a word and 
 | 1. Buchstabe, Wort, Satz | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Einzahl, Mehrzahl, Satzzeichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 7, multiple_choice 32, true_false 11, fill_in_blank 5, matching 2, sorting 3. Builds on: `lit-en.grammar.capitals-names`. Misconceptions addressed: 4.
+Task types: highlight_in_text 7, multiple_choice 31, true_false 11, text_input 1, fill_in_blank 5, matching 2, sorting 3. Builds on: `lit-en.grammar.capitals-names`. Misconceptions addressed: 4.
 
 ## Buchstabenfamilien in der Handschrift (Letter families)
 
@@ -7871,7 +7871,7 @@ Short stories read aloud, each a few sentences long. Lesson 1 links a character'
 | 1. Gefühle wie meine | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Was ich weiß, hilft mir | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 1, multiple_choice 34, image_multiple_choice 10, true_false 12, speak 3. Builds on: `lit-en.comprehension.retell`. Misconceptions addressed: 2.
+Task types: ordering 1, multiple_choice 33, image_multiple_choice 11, true_false 12, speak 3. Builds on: `lit-en.comprehension.retell`. Misconceptions addressed: 2.
 
 ## Mehrzahl mit -s und -es (Adding -s and -es)
 
@@ -8054,7 +8054,7 @@ Five traditional tales, told in short Twist retellings and read aloud: The Three
 | 2. Die kleine rote Henne und der Lebkuchenmann | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 3. Goldlöckchen und was Märchen besonders macht | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 15, multiple_choice 49, true_false 18, matching 1. Builds on: `lit-en.comprehension.retell`. Misconceptions addressed: 3.
+Task types: ordering 15, multiple_choice 48, true_false 19, matching 1. Builds on: `lit-en.comprehension.retell`. Misconceptions addressed: 3.
 
 ## un-, -ing, -ed, -er und -est anhängen (Adding un-, -ing, -ed, -er and -est)
 
@@ -8138,7 +8138,7 @@ Lesson 1 reads a month page (October 2026, drawn as a table with the days of the
 | 1. Das Datum lesen und schreiben | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Tage und Wochen dazwischen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 42, fill_in_blank 6, true_false 8, text_input 4. Builds on: `math.time.sequence-of-day`, `math.numbers-to-20.order-to-20`. Misconceptions addressed: 3.
+Task types: multiple_choice 38, text_input 6, fill_in_blank 6, true_false 10. Builds on: `math.time.sequence-of-day`, `math.numbers-to-20.order-to-20`. Misconceptions addressed: 3.
 
 ## Rauminhalte vergleichen (Comparing capacity)
 
@@ -8152,7 +8152,7 @@ Lesson 1 says which container holds more or less (a jug and a cup, a bath and a 
 | 1. Voll, halb voll, leer | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Mit Bechern vergleichen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 38, true_false 16, ordering 5, image_multiple_choice 1. Builds on: `math.numbers-to-20.compare-to-10`. Misconceptions addressed: 3.
+Task types: multiple_choice 35, true_false 18, image_multiple_choice 2, ordering 5. Builds on: `math.numbers-to-20.compare-to-10`. Misconceptions addressed: 3.
 
 ## Zahlen bis 20 vergleichen (Comparing numbers to 20)
 
@@ -8194,7 +8194,7 @@ Comparing calculations and numbers with <, > and =, and seeing that different ca
 | 1. Aufgabe und Zahl vergleichen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zwei Aufgaben vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: fill_in_blank 39, text_input 3, true_false 13, multiple_choice 5. Builds on: `math.add-sub-to-20.add-bridge-10`, `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
+Task types: fill_in_blank 37, text_input 3, true_false 13, multiple_choice 7. Builds on: `math.add-sub-to-20.add-bridge-10`, `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 2.
 
 ## Das kleine Einspluseins (Number facts to 20)
 
@@ -8236,7 +8236,7 @@ Lesson 1 measures strips with a ruler in centimetres, first from 0 and then from
 | 1. Mit dem Lineal messen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Meter und Zentimeter | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: true_false 10, multiple_choice 40, text_input 7, ordering 3. Builds on: `math.length.non-standard`, `math.numbers-to-100.number-line`. Misconceptions addressed: 3.
+Task types: true_false 11, multiple_choice 36, text_input 9, ordering 3, image_multiple_choice 1. Builds on: `math.length.non-standard`, `math.numbers-to-100.number-line`. Misconceptions addressed: 3.
 
 ## Längen vergleichen (Comparing lengths)
 
@@ -8250,7 +8250,7 @@ Lesson 1 compares two things directly (longer, shorter, the same length) and lea
 | 1. Länger, kürzer, gleich lang | yes | 18 | learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Höhen und Reihenfolgen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 38, true_false 14, ordering 6. Builds on: . Misconceptions addressed: 3.
+Task types: multiple_choice 36, true_false 15, image_multiple_choice 1, ordering 6. Builds on: . Misconceptions addressed: 3.
 
 ## Messen mit Körpermaßen und Gegenständen (Measuring with hand spans and objects)
 
@@ -8264,7 +8264,7 @@ Lesson 1 measures by counting units laid end to end (the table is 6 pencils long
 | 1. Mit Gegenständen messen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Spannen, Schritte und gleiche Maße | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 32, tap_to_count 12, true_false 14, ordering 2. Builds on: `math.length.compare`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 3.
+Task types: multiple_choice 30, tap_to_count 12, true_false 15, ordering 2, image_multiple_choice 1. Builds on: `math.length.compare`, `math.numbers-to-20.count-to-10`. Misconceptions addressed: 3.
 
 ## Gewichte vergleichen (Comparing mass)
 
@@ -8278,7 +8278,7 @@ Lesson 1 compares two things by how heavy they are (heavier, lighter, as heavy a
 | 1. Schwerer und leichter | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Mit der Balkenwaage | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 41, true_false 13, ordering 6. Builds on: `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 3.
+Task types: multiple_choice 40, true_false 13, image_multiple_choice 1, ordering 6. Builds on: `math.numbers-to-20.compare-to-20`. Misconceptions addressed: 3.
 
 ## Münzen und Scheine (Coins and notes)
 
@@ -8362,7 +8362,7 @@ Lesson 1 reads and writes two-digit numbers in numerals: the tens digit first, t
 | 1. Zehner und Einer | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zahlwörter | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 32, text_input 15, fill_in_blank 5, matching 4, image_multiple_choice 1, true_false 3. Builds on: `math.numbers-to-100.tens`. Misconceptions addressed: 4.
+Task types: multiple_choice 31, text_input 16, fill_in_blank 5, matching 4, image_multiple_choice 1, true_false 3. Builds on: `math.numbers-to-100.tens`. Misconceptions addressed: 4.
 
 ## Tagesablauf, Wochentage und Monate (My day, the days and the months)
 
@@ -8405,7 +8405,7 @@ Lesson 1 names cubes, cuboids and spheres by their faces (a cube has six square 
 | 1. Würfel, Quader, Kugel | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Körper um mich herum | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 38, image_multiple_choice 9, true_false 10, sorting 3. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 3.
+Task types: multiple_choice 37, image_multiple_choice 9, true_false 11, sorting 3. Builds on: `math.shapes.basic-shapes`. Misconceptions addressed: 3.
 
 ## Minus mit Zehnerübergang (Subtracting back through ten)
 
@@ -8433,7 +8433,7 @@ Subtraction is taking away: some are eaten, fly off or go home. Lesson 1 finds t
 | 1. Weg ist weg | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Plus oder minus? | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, text_input 2, fill_in_blank 10, true_false 12. Builds on: `math.add-sub-to-20.add-meaning`. Misconceptions addressed: 2.
+Task types: multiple_choice 39, text_input 3, fill_in_blank 10, true_false 12. Builds on: `math.add-sub-to-20.add-meaning`. Misconceptions addressed: 2.
 
 ## Minusaufgaben bis 10 (Subtracting to 10)
 
@@ -8475,7 +8475,7 @@ Lesson 1 makes whole, half and quarter turns clockwise, with the long hand of a 
 | 1. Ganze, halbe und Vierteldrehungen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Dreiviertel und gegen den Uhrzeigersinn | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 42, fill_in_blank 1, image_multiple_choice 6, true_false 11. Builds on: `math.space.position-words`. Misconceptions addressed: 3.
+Task types: multiple_choice 41, fill_in_blank 1, image_multiple_choice 6, true_false 12. Builds on: `math.space.position-words`. Misconceptions addressed: 3.
 
 ## Die Ziffern 0 bis 10 (Numerals 0 to 10)
 
@@ -9320,7 +9320,7 @@ Number walls (each brick is the two bricks under it added together) and number c
 | 1. Zahlenmauern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Rechenketten | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 2, fill_in_blank 39, true_false 12, multiple_choice 7. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
+Task types: text_input 3, fill_in_blank 37, true_false 12, multiple_choice 8. Builds on: `math.add-sub-to-20.inverse`. Misconceptions addressed: 2.
 
 ## Einer mit Zehnerübergang (Adding and subtracting ones across a ten)
 
@@ -9530,7 +9530,7 @@ Lesson 1 reads tally marks: four marks and a fifth across them make a group of f
 | 1. Striche zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Eine Umfrage in der Klasse | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, true_false 10, image_multiple_choice 13, text_input 4. Builds on: `math.data.sort-classify`, `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 3.
+Task types: multiple_choice 31, true_false 10, image_multiple_choice 13, text_input 6. Builds on: `math.data.sort-classify`, `math.numbers-to-20.subitize-to-10`. Misconceptions addressed: 3.
 
 ## Temperatur ablesen und vergleichen (Reading and comparing temperature)
 

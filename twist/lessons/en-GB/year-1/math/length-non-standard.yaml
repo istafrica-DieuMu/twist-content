@@ -35,7 +35,7 @@ metadata:
       addressed: lesson 1 Learn lays pencils end to end with no gaps; l1-f3 (with feedback), l1-s3 and l1-n3 ask whether a measurement with gaps or overlaps is fair
     - id: bigger-unit-bigger-number
       what: Thinks a bigger unit gives a bigger number (a path is more steps than hand spans)
-      addressed: lesson 2 Learn measures one table in hand spans and in pencils; l2-f2 (with feedback), l2-s2, l2-n2 and l2-c3 ask which unit gives more
+      addressed: lesson 2 Learn measures one table in hand spans and in crayons; l2-f2 (with feedback), l2-s2, l2-n2 and l2-c3 ask which unit gives more
     - id: units-not-compared
       what: Compares two counts made with different units (8 spans is longer than 5 steps)
       addressed: lesson 2 Learn shows Dad's and Ava's hand spans giving different numbers; l2-f4 (with feedback), l2-s4 and l2-n4 ask why the answers differ or whether they can be compared
@@ -74,8 +74,11 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "How many pencils long is the table?"
+            say: "We want to lay pencils end to end along a table. How many pencils do you think it takes to reach from one end to the other? Have a guess."
+            show: { object: table }
           - text: "The table is 6 pencils long."
-            say: "We can measure the table with pencils. Lay them end to end along the table, from one end to the other. Count them: the table is six pencils long."
+            say: "Let's find out. We can measure the table with pencils. Lay them end to end along the table, from one end to the other. Count them: the table is six pencils long."
             show: { object: pencil, count: 6, layout: row }
           - text: "No gaps. No overlaps."
             say: "The pencils must touch, with no gaps between them. They must not go on top of each other either. And start right at the end of the table."
@@ -194,6 +197,7 @@ lessons:
                 type: multiple_choice
                 text: "The snake is 10 cubes long. The worm is 4 cubes long. Which is longer?"
                 say: "The toy snake is ten cubes long. The toy worm is four cubes long. Which is longer?"
+                show: { objects: [snake, worm] }
                 options: ["the snake", "the worm", "the same length"]
                 answer: "the snake"
               - id: l1-n3
@@ -287,14 +291,20 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
-          - text: "A hand span"
-            say: "We can measure with our bodies too. A hand span is from the tip of your thumb to the tip of your little finger, with your hand stretched out. A step is one walking step, heel to toe."
+          - text: "What is a hand span?"
+            say: "We can measure with our bodies too. What do you think a hand span is? Have a guess, and stretch out your hand."
             show: { object: hand }
-          - text: "The table: 5 hand spans, or 8 pencils"
-            say: "Sam measures the table. It is five hand spans long, or eight pencils long. A hand span is bigger than a pencil, so it takes fewer of them. A bigger unit gives a smaller number."
+          - text: "A hand span"
+            say: "A hand span is from the tip of your thumb to the tip of your little finger, with your hand stretched out. A step is one walking step, heel to toe."
+            show: { object: hand }
+          - text: "The table: 5 hand spans, or 8 crayons"
+            say: "Sam measures the table. It is five hand spans long, or eight crayons long. A hand span is bigger than a crayon, so it takes fewer of them. A bigger unit gives a smaller number."
           - text: "Dad: 4 spans. Ava: 7 spans."
             say: "Dad and Ava measure the same table with their hand spans. Dad gets four. Ava gets seven, because her hand is smaller. They measured the same table, but got different numbers. That is why we need units that are the same for everyone, like the centimetres on a ruler."
             show: { objects: [dad, child] }
+          - text: "Did you know? Long ago in Egypt, people measured with a cubit: from the elbow to the tip of the middle finger."
+            say: "Did you know? Long ago in Egypt, people measured with a cubit. A cubit is the length from your elbow to the tip of your middle finger. Arms are different sizes, so the builders kept cubit sticks that were the same for everyone. They used cubits to build the pyramids!"
+            show: { object: arm }
 
       - activity: practise
         setting: in-context
@@ -302,15 +312,16 @@ lessons:
           - support: full
             tasks:
               - id: l2-f1
-                type: multiple_choice
-                text: "Which is best for measuring the length of the classroom?"
-                say: "Which is best for measuring the length of the classroom?"
-                options: ["steps", "paper clips", "cubes"]
-                answer: "steps"
+                type: true_false
+                text: "Is it true? Cubes are best for measuring the length of the classroom."
+                say: "Cubes are best for measuring the length of the classroom. Is that true?"
+                answer: false
+                feedback:
+                  "true": "Cubes all the way across the classroom? You would need a mountain of them! Steps are better for a long room."
                 hints:
                   - "The classroom is long."
                   - "Small things would take a very long time to lay out."
-                  - "Steps."
+                  - "No. Steps are better for a long room."
                 difficulty: easy
               - id: l2-f2
                 type: multiple_choice
@@ -326,13 +337,13 @@ lessons:
                   - "The number of shoes is bigger."
               - id: l2-f3
                 type: multiple_choice
-                text: "The desk is 4 hand spans long. A pencil is shorter than a hand span. About how many pencils long might the desk be?"
-                say: "The desk is four hand spans long. A pencil is shorter than a hand span. About how many pencils long might the desk be?"
+                text: "The desk is 4 hand spans long. A crayon is shorter than a hand span. About how many crayons long might the desk be?"
+                say: "The desk is four hand spans long. A crayon is shorter than a hand span. About how many crayons long might the desk be?"
                 options: ["6", "4", "2"]
                 answer: "6"
                 hints:
-                  - "A pencil is shorter than a hand span."
-                  - "So it takes more pencils than hand spans."
+                  - "A crayon is shorter than a hand span."
+                  - "So it takes more crayons than hand spans."
                   - "More than 4: 6."
               - id: l2-f4
                 type: multiple_choice
@@ -386,11 +397,14 @@ lessons:
                 answer: "Leo's hand is smaller."
                 hints: ["Who needs more spans?"]
               - id: l2-s5
-                type: multiple_choice
-                text: "Which unit is the same for everyone?"
-                say: "Which unit is the same for everyone?"
-                options: ["a centimetre on a ruler", "a hand span", "a step"]
-                answer: "a centimetre on a ruler"
+                type: image_multiple_choice
+                text: "Which is the same for everyone: a ruler, a hand span or a step?"
+                say: "Which is the same for everyone: the centimetres on a ruler, a hand span or a step? Tap it."
+                options:
+                  - { object: ruler }
+                  - { object: hand }
+                  - { object: foot }
+                answer: "ruler"
                 hints: ["Hands and steps are different sizes for different people."]
 
           - support: none
