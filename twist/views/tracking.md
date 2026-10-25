@@ -9,22 +9,22 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30270 / 30270) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27984 / 27984) |
-| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (7932 / 7932) |
-| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (66186 / 66186)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (37659 / 37659) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (21781 / 21781) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27985 / 27985) |
+| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8094 / 8094) |
+| **de-DE** | **all** | **100% (435 / 435)** | **100% (161 / 161)** | **909** | **100% (66350 / 66350)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (37687 / 37688) |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (21878 / 21878) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8121 / 8121) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (67561 / 67561)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (67686 / 67687)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 134207 clips, 187.7 h | about $228 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 134207 clips | about $107 | estimated the same way |
-| **Total** | | | **about $343** | |
+| Narration | google/gemini-3.8-flash-tts | 134496 clips, 188.6 h | about $229 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 134496 clips | about $107 | estimated the same way |
+| **Total** | | | **about $344** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -35,13 +35,13 @@ Per voice:
 | gemini-puck | 18650 | 18519 (99%) | 0 | 1226 min | $40 |
 | gemini-puck-en | 18187 | 18064 (99%) | 0 | 1409 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
-| gemini-sulafat | 47659 | 47191 (99%) | 0 | 3937 min | $117 |
-| gemini-sulafat-en | 47644 | 47200 (99%) | 0 | 4581 min | $130 |
+| gemini-sulafat | 47823 | 47352 (99%) | 0 | 3966 min | $118 |
+| gemini-sulafat-en | 47769 | 47324 (99%) | 1 | 4607 min | $131 |
 | gemini-sulafat-fr | 1302 | 1299 (100%) | 0 | 76 min | $2.53 |
 
 ## de-DE
 
-435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $157; 0 clips still to make.
+435 of 435 placed skills drafted (100%): 435 lesson sets, 909 lessons, 27450 tasks. Narration so far about $158; 0 clips still to make.
 
 | year | Mathe | Deutsch | Englisch | all |
 |---|---|---|---|---|
@@ -190,38 +190,38 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | stufe-0 | Englisch | Schule | 1 / 1 done | 2 | $0.19 |
 | stufe-0 | Englisch | Tiere und Natur | 1 / 1 done | 2 | $0.18 |
 | stufe-0 | Englisch | Sprachen vergleichen | 1 / 1 done | 2 | $0.29 |
-| lernjahr-1 | Englisch | Hören | 3 / 3 done | 6 | $1.18 |
-| lernjahr-1 | Englisch | Sprachmuster | 4 / 4 done | 8 | $1.09 |
-| lernjahr-1 | Englisch | Sprechen | 4 / 4 done | 8 | $1.17 |
-| lernjahr-1 | Englisch | Lesen | 3 / 3 done | 6 | $0.57 |
-| lernjahr-1 | Englisch | Schreiben | 2 / 2 done | 4 | $0.44 |
-| lernjahr-1 | Englisch | Zahlen | 1 / 1 done | 2 | $0.23 |
-| lernjahr-1 | Englisch | Kleidung | 1 / 1 done | 2 | $0.23 |
-| lernjahr-1 | Englisch | Zu Hause | 1 / 1 done | 2 | $0.21 |
-| lernjahr-1 | Englisch | In der Stadt | 1 / 1 done | 2 | $0.27 |
-| lernjahr-1 | Englisch | Gefühle | 1 / 1 done | 2 | $0.22 |
-| lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.23 |
-| lernjahr-1 | Englisch | Kalender | 1 / 1 done | 2 | $0.34 |
-| lernjahr-1 | Englisch | Wetter | 1 / 1 done | 2 | $0.23 |
-| lernjahr-1 | Englisch | Die Welt der Sprache | 1 / 1 done | 2 | $0.44 |
-| lernjahr-1 | Englisch | Lernstrategien | 2 / 2 done | 4 | $1.00 |
-| lernjahr-1 | Englisch | Sprachmittlung | 1 / 1 done | 2 | $0.48 |
+| lernjahr-1 | Englisch | Hören | 3 / 3 done | 6 | $1.22 |
+| lernjahr-1 | Englisch | Sprachmuster | 4 / 4 done | 8 | $1.16 |
+| lernjahr-1 | Englisch | Sprechen | 4 / 4 done | 8 | $1.24 |
+| lernjahr-1 | Englisch | Lesen | 3 / 3 done | 6 | $0.63 |
+| lernjahr-1 | Englisch | Schreiben | 2 / 2 done | 4 | $0.48 |
+| lernjahr-1 | Englisch | Zahlen | 1 / 1 done | 2 | $0.25 |
+| lernjahr-1 | Englisch | Kleidung | 1 / 1 done | 2 | $0.24 |
+| lernjahr-1 | Englisch | Zu Hause | 1 / 1 done | 2 | $0.22 |
+| lernjahr-1 | Englisch | In der Stadt | 1 / 1 done | 2 | $0.29 |
+| lernjahr-1 | Englisch | Gefühle | 1 / 1 done | 2 | $0.24 |
+| lernjahr-1 | Englisch | Essen und Trinken | 1 / 1 done | 2 | $0.25 |
+| lernjahr-1 | Englisch | Kalender | 1 / 1 done | 2 | $0.36 |
+| lernjahr-1 | Englisch | Wetter | 1 / 1 done | 2 | $0.25 |
+| lernjahr-1 | Englisch | Die Welt der Sprache | 1 / 1 done | 2 | $0.46 |
+| lernjahr-1 | Englisch | Lernstrategien | 2 / 2 done | 4 | $1.01 |
+| lernjahr-1 | Englisch | Sprachmittlung | 1 / 1 done | 2 | $0.50 |
 | lernjahr-2 | Englisch | Hobbys und Sport | 1 / 1 done | 2 | $0.25 |
-| lernjahr-2 | Englisch | Zahlen | 1 / 1 done | 2 | $0.29 |
-| lernjahr-2 | Englisch | Uhrzeit | 1 / 1 done | 2 | $0.22 |
-| lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.48 |
-| lernjahr-2 | Englisch | Berufe | 1 / 1 done | 2 | $0.25 |
-| lernjahr-2 | Englisch | Feste | 1 / 1 done | 2 | $0.41 |
-| lernjahr-2 | Englisch | Hören | 1 / 1 done | 2 | $0.50 |
-| lernjahr-2 | Englisch | Lesen | 2 / 2 done | 4 | $0.59 |
-| lernjahr-2 | Englisch | Schreiben | 2 / 2 done | 4 | $0.65 |
-| lernjahr-2 | Englisch | Sprechen | 2 / 2 done | 4 | $0.83 |
-| lernjahr-2 | Englisch | Die Welt der Sprache | 1 / 1 done | 2 | $0.54 |
-| lernjahr-2 | Englisch | Lernstrategien | 1 / 1 done | 2 | $0.50 |
+| lernjahr-2 | Englisch | Zahlen | 1 / 1 done | 2 | $0.31 |
+| lernjahr-2 | Englisch | Uhrzeit | 1 / 1 done | 2 | $0.23 |
+| lernjahr-2 | Englisch | Sprachmuster | 2 / 2 done | 4 | $0.51 |
+| lernjahr-2 | Englisch | Berufe | 1 / 1 done | 2 | $0.27 |
+| lernjahr-2 | Englisch | Feste | 1 / 1 done | 2 | $0.42 |
+| lernjahr-2 | Englisch | Hören | 1 / 1 done | 2 | $0.51 |
+| lernjahr-2 | Englisch | Lesen | 2 / 2 done | 4 | $0.62 |
+| lernjahr-2 | Englisch | Schreiben | 2 / 2 done | 4 | $0.69 |
+| lernjahr-2 | Englisch | Sprechen | 2 / 2 done | 4 | $0.86 |
+| lernjahr-2 | Englisch | Die Welt der Sprache | 1 / 1 done | 2 | $0.55 |
+| lernjahr-2 | Englisch | Lernstrategien | 1 / 1 done | 2 | $0.52 |
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $177; 0 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $177; 1 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -242,19 +242,19 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year | subject | topic | skills drafted | lessons | narration |
 |---|---|---|---|---|---|
 | reception | Maths | Numbers to 10 | 6 / 6 done | 12 | $1.42 |
-| reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.76 |
-| reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.78 |
-| reception | Maths | Division | 1 / 1 done | 2 | $0.32 |
+| reception | Maths | Adding and subtracting to 10 | 3 / 3 done | 6 | $0.81 |
+| reception | Maths | Numbers to 20 | 4 / 4 done | 8 | $0.85 |
+| reception | Maths | Division | 1 / 1 done | 2 | $0.34 |
 | reception | English | Hearing sounds | 4 / 4 done | 8 | $1.02 |
-| reception | English | Phonics | 12 / 12 done | 24 | $2.51 |
-| reception | English | Reading words | 3 / 3 done | 6 | $0.46 |
-| reception | English | Understanding stories | 2 / 2 done | 4 | $1.01 |
-| reception | English | Spelling | 1 / 1 done | 2 | $0.31 |
-| reception | English | Stories and poems | 2 / 2 done | 4 | $0.88 |
-| reception | English | Handwriting | 2 / 2 done | 4 | $0.58 |
-| reception | English | Grammar and punctuation | 1 / 1 done | 2 | $0.17 |
-| reception | English | Writing | 1 / 1 done | 2 | $0.20 |
-| reception | English | Speaking and listening | 4 / 4 done | 8 | $1.57 |
+| reception | English | Phonics | 12 / 12 done | 24 | $2.70 |
+| reception | English | Reading words | 3 / 3 done | 6 | $0.51 |
+| reception | English | Understanding stories | 2 / 2 done | 4 | $1.06 |
+| reception | English | Spelling | 1 / 1 done | 2 | $0.34 |
+| reception | English | Stories and poems | 2 / 2 done | 4 | $0.91 |
+| reception | English | Handwriting | 2 / 2 done | 4 | $0.64 |
+| reception | English | Grammar and punctuation | 1 / 1 done | 2 | $0.19 |
+| reception | English | Writing | 1 / 1 done | 2 | $0.22 |
+| reception | English | Speaking and listening | 4 / 4 done | 8 | $1.61 |
 | year-1 | Maths | Numbers to 10 | 1 / 1 done | 3 | $0.32 |
 | year-1 | Maths | Adding and subtracting to 10 | 2 / 2 done | 4 | $0.65 |
 | year-1 | Maths | Word problems | 1 / 1 done | 2 | $0.51 |

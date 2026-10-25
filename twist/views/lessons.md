@@ -5417,7 +5417,7 @@ Picking one detail out of a short recording. Lesson 1 listens for numbers (an ag
 | 1. Zahlen und Farben heraushören | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Namen und Uhrzeiten heraushören | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 48, true_false 12. Builds on: `fl.listening.short-dialogues`, `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
+Task types: audio_choice 47, true_false 13. Builds on: `fl.listening.short-dialogues`, `fl.themes.numbers-to-20`. Misconceptions addressed: 2.
 
 ## Gefühle auf Englisch (Feelings in English)
 
@@ -5459,7 +5459,7 @@ Working out what an unknown English word means instead of giving up. Lesson 1 br
 | 1. Bilder und ähnliche Wörter | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Der Satz und die Hände helfen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: audio_choice 3, multiple_choice 49, matching 5, true_false 7. Builds on: `fl.listening.short-dialogues`. Misconceptions addressed: 3.
+Task types: audio_choice 4, multiple_choice 42, matching 5, true_false 10, image_multiple_choice 3. Builds on: `fl.listening.short-dialogues`. Misconceptions addressed: 3.
 
 ## Zu Hause (At home)
 
@@ -5515,7 +5515,7 @@ Sprachmittlung: telling someone in German what a short English sign or sentence 
 | 1. Was steht auf dem Schild? | yes | 22 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Kurze Sätze weitersagen | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 6, multiple_choice 34, matching 2, true_false 11, audio_choice 11. Builds on: `fl.reading.sentences`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 6, multiple_choice 33, true_false 12, matching 2, audio_choice 11. Builds on: `fl.reading.sentences`. Misconceptions addressed: 3.
 
 ## Zahlen bis 20 auf Englisch (Numbers to 20 in English)
 
@@ -5753,7 +5753,7 @@ Finding one piece of information in an everyday English text without reading eve
 | 1. Speisekarten und Stundenpläne | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Einladungen und Plakate | yes | 24 | warm-up, learn, practise (6 full in context, 6 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 48, true_false 13, image_multiple_choice 3. Builds on: `fl.reading.short-texts`. Misconceptions addressed: 3.
+Task types: multiple_choice 46, true_false 14, image_multiple_choice 4. Builds on: `fl.reading.short-texts`. Misconceptions addressed: 3.
 
 ## Über andere sprechen (Talking about others)
 
@@ -5935,7 +5935,7 @@ Short clips and cartoons on familiar topics: a dog in the park, baking a cake, t
 | 1. Worum geht es im Clip? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Genau hinschauen und hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 45, true_false 11, ordering 8. Builds on: `fl.listening.stories`. Misconceptions addressed: 3.
+Task types: audio_choice 43, true_false 13, ordering 8. Builds on: `fl.listening.stories`. Misconceptions addressed: 3.
 
 ## Tiere und Natur auf Englisch (Animals and nature in English)
 
@@ -7029,7 +7029,7 @@ Reading three-letter words by saying each sound and blending them. Lesson 1 read
 | 1. Lesen und finden | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Genau hinsehen | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: image_multiple_choice 26, true_false 14, audio_choice 16. Builds on: `lit-en.phonics.s-a-t-p`. Misconceptions addressed: 2.
+Task types: image_multiple_choice 24, true_false 16, audio_choice 16. Builds on: `lit-en.phonics.s-a-t-p`. Misconceptions addressed: 2.
 
 ## Erklären, warum etwas passiert (Explaining why)
 
@@ -7085,7 +7085,7 @@ Tricky words that do not follow the sounds taught so far and are learned by sigh
 | 1. the, I, to, go, he, she | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. was, my, you, they | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: audio_choice 34, highlight_in_text 15, true_false 7. Builds on: `lit-en.word-reading.blend-cvc`. Misconceptions addressed: 2.
+Task types: audio_choice 32, highlight_in_text 15, true_false 9. Builds on: `lit-en.word-reading.blend-cvc`. Misconceptions addressed: 2.
 
 ## Anweisungen mit mehreren Schritten folgen (Following instructions with several steps)
 
@@ -7449,7 +7449,7 @@ The first adding: more things come along, or two groups are put together. EYFS c
 | 1. Es kommen noch mehr | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zusammen | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: multiple_choice 36, image_multiple_choice 6, true_false 14. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, image_multiple_choice 8, true_false 14. Builds on: `math.numbers-to-20.partition-to-10`. Misconceptions addressed: 2.
 
 ## Plusaufgaben bis 10 (Adding to 10)
 
@@ -7547,7 +7547,7 @@ Odd and even numbers within 10 (the Early Learning Goal): even numbers make pair
 | 1. Paare bilden | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Gerade oder ungerade? | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: true_false 21, image_multiple_choice 21, multiple_choice 14. Builds on: `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
+Task types: true_false 22, image_multiple_choice 21, multiple_choice 13. Builds on: `math.numbers-to-20.double-halve-to-20`. Misconceptions addressed: 2.
 
 ## Ergänzen bis 10 (How many more?)
 
@@ -7561,7 +7561,7 @@ How many more are needed to make a number? Lesson 1 fills a ten frame up to a nu
 | 1. Wie viele fehlen? | yes | 18 | learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zehnerfreunde | yes | 19 | learn, practise (5 full, 5 some, 5 none), check (skill, 4 of 20) |
 
-Task types: multiple_choice 42, true_false 14. Builds on: `math.add-sub-to-20.add-to-10`. Misconceptions addressed: 2.
+Task types: multiple_choice 41, true_false 15. Builds on: `math.add-sub-to-20.add-to-10`. Misconceptions addressed: 2.
 
 ## Zahlen ordnen bis 10 (Numbers in order to 10)
 

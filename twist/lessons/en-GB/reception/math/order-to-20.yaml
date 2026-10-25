@@ -20,7 +20,7 @@ metadata:
   also_practises: [math.numbers-to-20.teens]
   vocabulary: { en: [after, before, next, count on, count back, number line] }
   no_reading: true
-  forms: [drawn, audio]
+  forms: [drawn, picture, audio]
   drawn: [number-line]
   facets: []
   parts:
@@ -51,12 +51,17 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - say: "Eight, nine, ten ... What number do you think comes after ten? Have a guess."
+            show: { drawn: number-line, from: 0, to: 20, labels: all, jumps: [[8, 1], [9, 1]] }
           - say: "Let's count on the number line: eight, nine, ten, eleven, twelve. After ten comes eleven."
             show: { drawn: number-line, from: 0, to: 20, labels: all, jumps: [[8, 1], [9, 1], [10, 1], [11, 1]] }
           - say: "The number after is one more. After fourteen comes fifteen."
             show: { drawn: number-line, from: 0, to: 20, labels: all, jumps: [[14, 1]] }
           - say: "The number before is one less. Before fourteen comes thirteen."
             show: { drawn: number-line, from: 0, to: 20, labels: all, jumps: [[14, -1]] }
+          - text: "Did you know?"
+            say: "Did you know? Long ago, shepherds in the north of England counted their sheep with special words: yan, tan, tethera. They counted up to twenty, then started again."
+            show: { object: sheep, count: 1, layout: row }
 
       - activity: practise
         setting: plain
@@ -121,10 +126,13 @@ lessons:
             tasks:
               - id: l1-s1
                 type: multiple_choice
-                text: "What comes after 15?"
-                say: "What number comes after fifteen?"
+                text: "Mia is on page 15. What page comes next?"
+                say: "Mia is reading a book. She is on page fifteen. What page comes next?"
+                show: { object: book-open, count: 1, layout: row }
                 options: ["16", "14", "51"]
                 answer: "16"
+                feedback:
+                  "51": "Fifty-one? That's a giant jump through the book! After fifteen comes sixteen."
                 hints: ["After means one more."]
               - id: l1-s2
                 type: multiple_choice
@@ -237,6 +245,8 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - say: "Let's count back: thirteen, twelve, eleven ... Which number do you think is easy to forget? Have a guess."
+            show: { drawn: number-line, from: 0, to: 20, labels: all }
           - say: "Counting back crosses ten too: thirteen, twelve, eleven, ten, nine. Don't forget ten!"
             show: { drawn: number-line, from: 0, to: 20, labels: all, jumps: [[13, -1], [12, -1], [11, -1], [10, -1]] }
           - say: "To put numbers in order, start with the smallest. Eleven, twelve, thirteen, fourteen: each one is one more."
@@ -292,8 +302,9 @@ lessons:
                   - "Twenty, nineteen, eighteen, seventeen."
               - id: l2-f5
                 type: multiple_choice
-                text: "What is missing? 15, 16, _, 18"
-                say: "Fifteen, sixteen, then a gap, then eighteen. Which number goes in the gap?"
+                text: "A page is missing! 15, 16, _, 18"
+                say: "Oh no, a page is missing from the book! Fifteen, sixteen, then a gap, then eighteen. Which page is missing?"
+                show: { object: book-open, count: 1, layout: row }
                 options: ["17", "19", "14"]
                 answer: "17"
                 hints:
