@@ -1016,10 +1016,20 @@ function renderTask(step) {
   // The app's prompt: the mascot with a speech bubble that holds the question and its speaker.
   const bq = document.createElement("div"); bq.className = "bubbleq"; while (pr.firstChild) bq.appendChild(pr.firstChild);
   const qt = bq.querySelector(".t"); if (!qt?.textContent.trim()) bq.classList.add("only"); else if (qt.textContent.trim().length <= 14) qt.classList.add("short");
-  pr.innerHTML = `<img class="mascot" src="mascot.png" alt="">`; pr.appendChild(bq);
+  // Through the assets base, so a copy of the page written elsewhere (a draft) still finds it.
+  pr.innerHTML = `<img class="mascot" src="${A}../pages/player/mascot.png" alt="">`; pr.appendChild(bq);
   const vis = document.createElement("div"); vis.className = "visual"; body.appendChild(vis);
   const msg = document.createElement("div"); msg.className = "msgs"; msg.style.display = "flex"; msg.style.flexDirection = "column"; msg.style.gap = "8px";
-  if (auto()) play(promptAudio, null, bq.querySelector(".spk"));
+  // A word to listen for (the target) waits until the child is ready: the instruction, a pause,
+  // the word, and in a listening task the word once more, so a word missed at its start is heard whole.
+  const target = [t._target].flat().filter(Boolean);
+  if (auto() && !target.length) play(promptAudio, null, bq.querySelector(".spk"));
+  else if (auto()) {
+    const after = (ms, f) => { const tk = qToken; setTimeout(() => { if (tk === qToken) f(); }, ms); };
+    const word = (again) => play(target, again ? () => after(1000, () => play(target)) : null);
+    if (t._prompt.length) play(t._prompt, () => after(700, () => word(t.type === "audio_choice")), bq.querySelector(".spk"));
+    else word(t.type === "audio_choice");
+  }
 
   // Feedback slides up from the bottom, as in the app: green when right, lilac when not.
   const scr = $("#screen"); let sheet = null;

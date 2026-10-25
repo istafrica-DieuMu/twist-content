@@ -314,10 +314,10 @@ function showPracticeStep(i) {
   // A heard drill word: a big speaker to hear it again, colour swatches for a colour.
   if (t._sayWord) {
     const hear = document.createElement("button"); hear.className = "pr-hear"; hear.innerHTML = SPK; hear.setAttribute("aria-label", PT().hearAgain);
-    hear.onclick = () => sayDrill(t, 0); $("#screen .body")?.prepend(hear);
+    hear.onclick = () => sayDrill(t, 0, 1); $("#screen .body")?.prepend(hear);
     // The instruction first, then the word: the screen has started the instruction; the word follows
-    // when it ends, after a moment to get ready to listen.
-    if (auto() && t._prompt.length) onQueueEnd = () => { if (steps[at] === step) sayDrill(t, 800); };
+    // when it ends, after a moment to get ready to listen, and comes twice.
+    if (auto() && t._prompt.length) onQueueEnd = () => { if (steps[at] === step) sayDrill(t, 1000); };
     else sayDrill(t);
   }
   if (t._swatches) $("#screen .opts")?.querySelectorAll(".opt").forEach((b, i) => {
@@ -336,20 +336,27 @@ function showPracticeStep(i) {
 }
 
 // Say a drill word a moment after its screen settles: its recorded clip when
-// there is one, else the browser's clearest voice for its language, a little slower.
-function sayDrill(t, delay = 600) {
+// there is one, else the browser's clearest voice for its language, slower.
+// It comes twice, with a pause between, so a child who missed the start hears
+// it whole; the speaker button says it once more.
+const DRILL_AGAIN = 1200;
+function sayDrill(t, delay = 600, times = 2) {
   // The word comes a moment later; not if the child has moved on or left meanwhile (stopAudio).
-  const step = steps[at], tok = qToken;
-  setTimeout(() => {
-    if (steps[at] !== step || tok !== qToken || !PR.on) return;
-    if (t._clip) return play(t._clip);
+  const step = steps[at];
+  let tok = qToken;
+  const still = () => steps[at] === step && tok === qToken && PR.on;
+  const once = (left) => {
+    if (!still()) return;
+    const again = () => { if (left > 1 && still()) setTimeout(() => once(left - 1), DRILL_AGAIN); };
+    if (t._clip) { play(t._clip, again); tok = qToken; return; }
     if (!("speechSynthesis" in window)) return;
     const tl = t._sayLang ?? set.target_language ?? set.language, code = { de: "de-DE", en: "en-GB", fr: "fr-FR" }[tl] ?? tl;
     const vs = speechSynthesis.getVoices().filter((v) => v.lang.replace("_", "-").toLowerCase().startsWith(code.slice(0, 2).toLowerCase()));
-    const u = new SpeechSynthesisUtterance(t._sayWord); u.lang = code; u.rate = 0.85;
+    const u = new SpeechSynthesisUtterance(t._sayWord); u.lang = code; u.rate = 0.75; u.onend = again;
     u.voice = vs.find((v) => /premium|enhanced|natural|google/i.test(v.name)) ?? vs.find((v) => v.lang.replace("_", "-") === code) ?? vs[0] ?? null;
     speechSynthesis.cancel(); speechSynthesis.speak(u);
-  }, delay);
+  };
+  setTimeout(() => once(times), delay);
 }
 
 function practiceFrame(step) {
