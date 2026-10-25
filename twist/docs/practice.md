@@ -251,7 +251,7 @@ time from showing the task to the answer.
   check the parts with a miss). Study's unit list shows a lesson with a
   miss with the mascot, a circle per question of its check (a tick for
   each right) and a Redo button; nothing else is written. The tricky
-  parts are for grown-ups and show only in the Parents view. A skill left at one star
+  parts are for grown-ups (the parents dashboard). A skill left at one star
   (`practised`) with every lesson done failed its skill check, so its last
   lesson is marked even without a kept score ("Not quite yet"). The track's popover marks the same lesson in its meter and offers
   "Try again: <lesson>".
@@ -260,10 +260,10 @@ time from showing the task to the answer.
 
 Up to 3 cards (`suggestions`), each with a kind, its skills and a reason
 in both languages, in this order. Before them, in the player
-(`mySuggestions`): practice a parent sent from the Parents view
-(`child.assigned`: kind, skills, minutes, the day sent), the newest still
-waiting, "Von deinen Eltern" / "From your grown-up"; finishing it records
-the day and score for the Parents view. Then:
+(`mySuggestions`): practice a parent sent (`child.assigned`: kind, skills, minutes, the
+day sent; the parents dashboard's Send, see pages/parents-lab), the
+newest still waiting, "Von deinen Eltern" / "From your grown-up";
+finishing it records the day and score. Then:
 
 1. Recaps due, if any: "4 skills to remember" / "4 Sachen zum Wiederholen".
 2. Catch-up: a skill at `needs_refresh` first, else one at `practised`.
