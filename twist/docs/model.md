@@ -142,10 +142,47 @@ EYFS and the National Curriculum). It lists:
   learning year usually falls in.
 - `out_of_scope`: framework standards the app does not teach, each with a
   reason (classroom-only activities such as scenic play or a library visit).
+- `tracks`: subjects of their own beside the school subjects, each with its
+  own placement (below).
 
 The build checks placement against each standard's band (end of a Klasse,
 end of Reception, end of a Year). A learning year is compared through
 the last grade it usually falls in, so French year 4 counts as Year 6.
+
+### Tracks
+
+A track is a subject that places skills a second time, by its own learning
+years, for children who take it whatever their school year. The first is
+DaZ (Deutsch als Zweitsprache, German as a second language) in de-DE: it
+places the language-neutral `fl` skills with German as the target
+language, and the Klasse 1 letter skills for children new to the Latin
+script.
+
+```yaml
+tracks:
+  daz:
+    subject: { de: DaZ, en: German as a second language }
+    language: en          # instructions
+    target_language: de   # what is learnt
+    note: what the steps follow, since no framework applies
+    placement:
+      daz-start: [fl.themes.hello, ...]
+      daz-letters: [lit-de.letters.l-o-a-m, ...]
+```
+
+- A track's years are learning years in years/<market>.yaml marked
+  `track: <key>`; only that track places skills in them.
+- A track's placement is its own: a skill can be placed in the main
+  `placement` and in a track. Within the track, a skill is placed once and
+  after its hard prerequisites (soft ones may be missing). There are no
+  framework checks for a track; its `note` says what it follows.
+- A track's lesson set has `track: <key>`, an id `<curriculum>.<key>.<name>`,
+  the track's `language` and `target_language`, and lives in
+  `lessons/<curriculum>/<year>/<key>/` (de-DE.daz.de-hello in
+  lessons/de-DE/daz-start/daz/de-hello.yaml).
+- The views show a track as an extra subject. In the player it is a subject
+  of its own; a child's states and practice keep its skills apart from the
+  main subject's (`daz:fl.themes.hello` is not `fl.themes.hello`).
 
 Placement says what is expected by when. It never limits what a child may
 work on: a learner's proficiency, per progression, decides where they
@@ -158,7 +195,8 @@ of one skill in one curriculum live in one file,
 `lessons/<curriculum>/<year>/<domain>/<slug>.yaml`, written in that
 curriculum's language. The year folder is where curricula/<curriculum>.yaml
 places the skill; the build refuses a file in any other folder, so moving a
-skill to another year means moving its file. The record format is in [../lessons/README.md](../lessons/README.md);
+skill to another year means moving its file. A track's set (DaZ) lives in
+`lessons/<curriculum>/<year>/<track>/` (Tracks, above). The record format is in [../lessons/README.md](../lessons/README.md);
 how lessons are built and the mastery rule are in
 [lesson-anatomy.md](lesson-anatomy.md). Pictures, drawn components
 and sounds come from the asset bank ([../assets/](../assets/)).

@@ -11,8 +11,8 @@ const PL = () => (PR.child?.curriculum === "en-GB" ? "en" : "de");
 const PT = () => PTXT[PL()];
 const STARS = { not_started: 0, learning: 0, practised: 1, can_do: 2, remembered: 3, needs_refresh: 2 };
 const starsOf = (k) => { const s = PR.child.states[k]?.state ?? "not_started", n = STARS[s]; return "★".repeat(n) + "☆".repeat(3 - n) + (s === "needs_refresh" ? " ↻" : ""); };
-const canDoOf = (k) => { const c = D.skills[k]?.can_do; return c ? c[PL()] ?? c.en ?? c.de : k; };
-const SUBJ_NAME = { "de-DE": { math: "Mathe", "lit-de": "Deutsch", fl: "Englisch", world: "Sachunterricht" }, "en-GB": { math: "Maths", "lit-en": "English", fl: "French" } };
+const canDoOf = (k) => { const c = D.skills[skillOfKey(k)]?.can_do; return c ? c[PL()] ?? c.en ?? c.de : k; };
+const SUBJ_NAME = { "de-DE": { math: "Mathe", "lit-de": "Deutsch", fl: "Englisch", world: "Sachunterricht", daz: "DaZ" }, "en-GB": { math: "Maths", "lit-en": "English", fl: "French" } };
 
 function loadChild() {
   // A saved child from an older build, or a broken one, starts fresh.
@@ -25,7 +25,7 @@ function snap() { (PR.history ??= []).push(JSON.stringify(PR.child)); if (PR.his
 
 function openPractice() {
   PR.child ??= loadChild();
-  PR.index = indexContent(D.sets, D.drills, PR.child.curriculum);
+  PR.index = indexFor(PR.child);
   PR.saved ??= { set, lesson, steps, results, at };
   APP.home = null; PR.home = true; PR.on = false; $("#practiceSide").hidden = false;
   renderPracticeHome(); renderPracticeSide();
@@ -103,7 +103,7 @@ function cardSub(c) {
 
 // Stars earned out of stars possible, for a list of skills.
 const starCount = (skills) => skills.reduce((n, k) => n + STARS[PR.child.states[k]?.state ?? "not_started"], 0);
-const yearSkills = (subj) => { if (!offered(subj)) return []; const mine = PR.index.sets.filter((s) => s.id.split(".")[1] === subj && s.year === childYearFor(subj)); return (mine.length ? mine : PR.index.sets.filter((s) => s.id.split(".")[1] === subj)).map((s) => s.skill); };
+const yearSkills = (subj) => { if (!offered(subj)) return []; const mine = PR.index.sets.filter((s) => s.id.split(".")[1] === subj && s.year === childYearFor(subj)); return (mine.length ? mine : PR.index.sets.filter((s) => s.id.split(".")[1] === subj)).map(stateKey); };
 
 // The subjects as on Start: a ring each; a tap opens that subject's practice by topic.
 function renderSubjects() {
@@ -407,7 +407,10 @@ function whyBox(it) {
   return `<dl class="pr-why">${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>`;
 }
 // School years only: a language's learning years follow from the school year.
-const YEAR_OF = (cur) => { const ly = new Set(Object.values(D.learningYears?.[cur] ?? {})); return [...new Set(D.sets.filter((s) => s.id.startsWith(cur + ".") && !ly.has(s.year)).map((s) => s.year))]; };
+// A track's years (DaZ) are not school years either: the DaZ level sets them.
+const YEAR_OF = (cur) => { const ly = new Set(Object.values(D.learningYears?.[cur] ?? {})); return [...new Set(D.sets.filter((s) => s.id.startsWith(cur + ".") && !s.track && !ly.has(s.year)).map((s) => s.year))]; };
+// The practice index for a child: its curriculum, and its tracks (DaZ) if it has any.
+const indexFor = (c) => indexContent(D.sets, D.drills, c.curriculum, c.tracks ?? {});
 // The right panel: the open screen's controls (side-ui.js), then the parts of
 // the pretend child that matter there (SIDE_PARTS).
 function renderPracticeSide() {
@@ -416,13 +419,14 @@ function renderPracticeSide() {
   el.hidden = false;
   document.body.classList.toggle("on-track", ctx === "study"); document.body.classList.toggle("in-lesson", ctx === "lesson");
   const step = PR.on ? steps[at] : null, it = step?.item;
-  const skills = PR.index.sets.filter((s) => s.year === c.year).map((s) => s.skill);
+  const skills = PR.index.sets.filter((s) => s.year === c.year || (s.track && s.year === c.tracks?.[s.track])).map(stateKey);
   const opt = (v, cur, label = v) => `<option value="${esc(v)}"${v === cur ? " selected" : ""}>${esc(label)}</option>`;
   el.innerHTML = sideTop(ctx) + ("child" in P ? `<details${op("child")}><summary><b>Pretend child</b></summary>
     <div class="pr-grid">
       <label for="pcName">Name</label><input id="pcName" value="${esc(c.name ?? "")}" placeholder="for the greeting" autocomplete="off">
       <label for="pcCur">Curriculum</label><select id="pcCur">${opt("de-DE", c.curriculum)}${opt("en-GB", c.curriculum)}</select>
       <label for="pcYear">Year</label><select id="pcYear">${YEAR_OF(c.curriculum).map((y) => opt(y, c.year, yearName(y))).join("")}</select>
+${Object.entries(D.tracks?.[c.curriculum] ?? {}).map(([k, tr]) => `<label for="pcTrack-${k}">${esc(tr.subject.de)} level</label><select id="pcTrack-${k}" data-track="${k}"><option value="">none</option>${tr.years.map((y) => opt(y.id, c.tracks?.[k] ?? "", y.label.de)).join("")}</select>`).join("")}
       <label for="pcBand">Age band</label><select id="pcBand">${["4-5", "6-7", "8-10"].map((b) => opt(b, c.band)).join("")}</select>
       <span>Sessions finished</span><b>${c.sessions}</b>
     </div>
@@ -450,6 +454,8 @@ function renderPracticeSide() {
   if ("child" in P) {
   $("#pcCur").onchange = (e) => { switchCurriculum(e.target.value); saveChild(); refreshPractice(); };
   $("#pcYear").onchange = (e) => { c.year = e.target.value; const s = D.sets.find((x) => x.year === c.year && x.id.startsWith(c.curriculum + ".")); c.band = ageBand(s?.ages); saveChild(); refreshPractice(); };
+  // A track level (DaZ): none leaves the child as it was; a level adds the subject to Study and practice.
+  el.querySelectorAll("[data-track]").forEach((x) => x.onchange = () => { const t = { ...(c.tracks ?? {}) }; if (x.value) t[x.dataset.track] = x.value; else delete t[x.dataset.track]; if (Object.keys(t).length) c.tracks = t; else delete c.tracks; saveChild(); refreshPractice(); });
   $("#pcName").onchange = (e) => { c.name = e.target.value.trim().slice(0, 20) || undefined; saveChild(); refreshPractice(); };
   $("#pcBand").onchange = (e) => { c.band = e.target.value; saveChild(); refreshPractice(); };
   $("#pcReset").onclick = () => { resetChild(); saveChild(); refreshPractice(); };
@@ -542,7 +548,7 @@ function renderDrillMap(k, sel = new Set()) {
   scr.querySelectorAll("[data-go]").forEach((b) => b.onclick = () => startSession({ kind: "drill", skills: [k], minutes: 2, tricky: b.dataset.go === "tricky", focus: b.dataset.go === "focus" ? [...sel] : null }));
 }
 function refreshPractice() {
-  PR.index = indexContent(D.sets, D.drills, PR.child.curriculum);
+  PR.index = indexFor(PR.child);
   // Redraw the tab the app is on (Start and Me follow the child too).
   const ctx = sideCtx();
   if (ctx === "study") { APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
@@ -588,7 +594,7 @@ function openMakeSheet() {
   const m = document.createElement("div"); m.className = `sheet menu-sheet pr-sheet mk-sheet${U.dense ? " mk-dense" : ""}`; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true");
   // This year's skills first; the search reaches every year of the subjects the child has.
   const yearKs = PR.index.subjects.flatMap((x) => yearSkills(x)), drills = drillsForYear();
-  const allKs = [...new Set([...yearKs, ...PR.index.sets.filter((s_) => offered(s_.id.split(".")[1])).map((s_) => s_.skill)])];
+  const allKs = [...new Set([...yearKs, ...PR.index.sets.filter((s_) => offered(s_.id.split(".")[1])).map(stateKey)])];
   const allDrills = allKs.filter((k) => PR.index.drills[k]);
   // A sprint the child can race: one played before or on a skill begun, this year's first.
   const raceable = [...new Set([...drills, ...allDrills])].filter((k) => PR.child.drills[k] || (PR.child.states[k]?.state ?? "not_started") !== "not_started");

@@ -9,23 +9,23 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30142 / 30142) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27602 / 27602) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27597 / 27597) |
 | de-DE | Sachunterricht | 100% (112 / 112) | 100% (44 / 44) | 224 | 100% (24349 / 24349) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8074 / 8074) |
-| **de-DE** | **all** | **100% (547 / 547)** | **100% (205 / 205)** | **1133** | **100% (90166 / 90166)** |
+| **de-DE** | **all** | **100% (547 / 547)** | **100% (205 / 205)** | **1133** | **100% (90161 / 90161)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38571 / 38571) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22322 / 22322) |
-| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8383 / 8383) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (69275 / 69275)** |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22321 / 22321) |
+| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8379 / 8379) |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (69271 / 69271)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 846 files (837 priced) | $20 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 160062 clips, 224.8 h | about $272 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 160062 clips | about $127 | estimated the same way |
-| **Total** | | | **about $419** | |
+| Narration | google/gemini-3.8-flash-tts | 160338 clips, 225.1 h | about $273 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 160338 clips | about $127 | estimated the same way |
+| **Total** | | | **about $420** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -33,16 +33,16 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 25594 | 25394 (99%) | 0 | 1578 min | $53 |
-| gemini-puck-en | 18191 | 18068 (99%) | 0 | 1410 min | $43 |
+| gemini-puck | 25624 | 25424 (99%) | 0 | 1578 min | $53 |
+| gemini-puck-en | 18226 | 18102 (99%) | 0 | 1412 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
-| gemini-sulafat | 64774 | 64163 (99%) | 0 | 5382 min | $160 |
-| gemini-sulafat-en | 49374 | 48915 (99%) | 0 | 5009 min | $140 |
+| gemini-sulafat | 64811 | 64200 (99%) | 0 | 5383 min | $160 |
+| gemini-sulafat-en | 49548 | 49079 (99%) | 0 | 5023 min | $141 |
 | gemini-sulafat-fr | 1364 | 1360 (100%) | 0 | 78 min | $2.64 |
 
 ## de-DE
 
-547 of 547 placed skills drafted (100%): 547 lesson sets, 1133 lessons, 34380 tasks. Narration so far about $212; 0 clips still to make.
+547 of 547 placed skills drafted (100%): 547 lesson sets, 1133 lessons, 34380 tasks. Narration so far about $213; 0 clips still to make.
 
 | year | Mathe | Deutsch | Sachunterricht | Englisch | all |
 |---|---|---|---|---|---|
@@ -107,7 +107,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.40 |
 | klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $1.14 |
 | klasse-2 | Deutsch | Adjektive | 3 / 3 done | 6 | $0.90 |
-| klasse-2 | Deutsch | Satzarten | 2 / 2 done | 4 | $0.52 |
+| klasse-2 | Deutsch | Satzarten | 2 / 2 done | 4 | $0.51 |
 | klasse-2 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.37 |
 | klasse-2 | Deutsch | Laute und Buchstaben | 1 / 1 done | 2 | $0.27 |
 | klasse-2 | Deutsch | Kurze und lange Selbstlaute | 1 / 1 done | 2 | $0.30 |
@@ -210,7 +210,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Berichten | 2 / 2 done | 4 | $0.80 |
 | klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.46 |
 | klasse-4 | Deutsch | Gespräche führen | 1 / 1 done | 2 | $0.43 |
-| klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $2.99 |
+| klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $2.98 |
 | klasse-4 | Sachunterricht | Mitbestimmen | 3 / 3 done | 6 | $1.66 |
 | klasse-4 | Sachunterricht | Sicher mit Medien | 4 / 4 done | 8 | $2.40 |
 | klasse-4 | Sachunterricht | Helfen im Notfall | 1 / 1 done | 2 | $0.55 |
@@ -487,7 +487,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-6 | English | Spelling | 2 / 2 done | 4 | $0.86 |
 | year-6 | English | Writing | 5 / 5 done | 10 | $2.10 |
 | ly-1 | French | Listening | 3 / 3 done | 6 | $0.74 |
-| ly-1 | French | Hello | 1 / 1 done | 2 | $0.33 |
+| ly-1 | French | Hello | 1 / 1 done | 2 | $0.32 |
 | ly-1 | French | Colours | 1 / 1 done | 2 | $0.29 |
 | ly-1 | French | Numbers | 1 / 1 done | 2 | $0.30 |
 | ly-1 | French | Speaking | 3 / 3 done | 6 | $0.82 |
@@ -530,10 +530,12 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 1030 of 1030 skill checks and 1086 of 1086 quick checks done; 30 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 1032 of 1032 skill checks and 1089 of 1089 quick checks done; 30 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
+| de-DE daz daz-letters | 1 | 1 | 2 of 2 |
+| de-DE daz daz-start | 1 | 1 | 1 of 1 |
 | de-DE fl lernjahr-1 | 28 | 28 | 28 of 28 |
 | de-DE fl lernjahr-2 | 16 | 16 | 16 of 16 |
 | de-DE fl stufe-0 | 14 | 14 | 14 of 14 |

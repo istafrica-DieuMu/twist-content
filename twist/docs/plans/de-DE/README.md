@@ -127,6 +127,9 @@ alongside this work.
 | 5 | Vorschule (age 5 to 6) stays a later option | 2026-10-24 |
 | 6 | Not planned: Sport (PE), Werken (crafts), Textiles Gestalten (textile design), Religion (religious education). Medienbildung (media education) is a topic of Sachunterricht | 2026-10-24 |
 | 7 | Sex education is left out of Sachunterricht; `my-boundaries` (saying no, who helps) stays | 2026-10-24 |
+| 8 | DaZ is its own subject, separate from Deutsch: a track in curricula/de-DE.yaml with its own years (DaZ Start, DaZ Buchstaben, DaZ 1, DaZ 2) and placement (daz.md) | 2026-10-26 |
+| 9 | DaZ adds three language-neutral `fl` skills: the past, joining sentences, task language in other subjects | 2026-10-26 |
+| 10 | The letters track for children new to the Latin script ships with the first DaZ release | 2026-10-26 |
 
 Open:
 
@@ -154,7 +157,7 @@ Open:
 | 8 | Review, commit, decide on merging | Grundschule docs committed 2026-10-24 |
 | 9 | Sekundarstufe I plans (sek1/) | Drafted and checked against KMK, NRW and Bayern, 2026-10-24; omissions and sources merged |
 | 10 | Fun pilot on the first topic of every built Grundschule subject and year (../2026-10-25-fun-pilot.md) | Done, 2026-10-26, and widened to every lesson set in de-DE and en-GB (84 batches) |
-| 11 | Author the remaining Grundschule subjects: Sachunterricht, DaZ, Musik, Kunst, Ethik | Sachunterricht done 2026-10-26; DaZ, Musik, Kunst, Ethik next |
+| 11 | Author the remaining Grundschule subjects: Sachunterricht, DaZ, Musik, Kunst, Ethik | Sachunterricht done 2026-10-26; DaZ placed and in progress (89 sets); Musik, Kunst, Ethik next |
 | 12 | Review PDF as a school book: unworked exercises to solve on paper, answers in a separate key, layout like a German Arbeitsheft | Later, after all Grundschule subjects are authored |
 
 ## Authoring steps for each subject

@@ -80,8 +80,8 @@ function sideWire(ctx, el) {
   if (ctx === "study") {
     const s = nextIn(courseSets(APP.subj));
     el.querySelectorAll("[data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; appTab("study"); });
-    on("#sxLesson", () => { const n = lessonsDone(s) + 1; finishLesson(c, { setId: s.id, skill: s.skill, n }); if (n >= s.lessons.length) APP.skillDone = true; saveChild(); appTab("study"); });
-    on("#sxSkill", () => { finishLesson(c, { setId: s.id, skill: s.skill, n: s.lessons.length, check: { pass: true, keys: [] } }); APP.skillDone = true; saveChild(); appTab("study"); });
+    on("#sxLesson", () => { const n = lessonsDone(s) + 1; finishLesson(c, { setId: s.id, skill: stateKey(s), n }); if (n >= s.lessons.length) APP.skillDone = true; saveChild(); appTab("study"); });
+    on("#sxSkill", () => { finishLesson(c, { setId: s.id, skill: stateKey(s), n: s.lessons.length, check: { pass: true, keys: [] } }); APP.skillDone = true; saveChild(); appTab("study"); });
     on("#sxOpen", () => startLesson(s.id, s.lessons[Math.min(lessonsDone(s), s.lessons.length - 1)].n));
     on("#sxSkate", () => { APP.skillDone = true; appTab("study"); });
     on("#sxUnits", () => { APP.units = !APP.units; appTab("study", { keep: true }); });

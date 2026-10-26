@@ -18,6 +18,15 @@ const read = (p) => YAML.parse(readFileSync(join(T, p), "utf8"));
 // Where each skill sits in its year (curricula/<curriculum>.yaml, placement), so the app's Learn tab follows the course.
 const PLACE = {};
 for (const cur of ["de-DE", "en-GB"]) for (const [y, ks] of Object.entries(read(`curricula/${cur}.yaml`).placement ?? {})) (ks ?? []).forEach((k, i) => { PLACE[`${cur}|${y}|${k}`] = i; });
+// Tracks (DaZ): a subject of its own with its own learning years (curricula tracks:), by track.
+const TRACKS = {};
+for (const cur of ["de-DE", "en-GB"]) {
+  const labels = Object.fromEntries((read(`years/${cur}.yaml`).learning_years ?? []).map((y) => [y.id, y.label]));
+  for (const [k, tr] of Object.entries(read(`curricula/${cur}.yaml`).tracks ?? {})) {
+    (TRACKS[cur] ??= {})[k] = { subject: tr.subject, years: Object.keys(tr.placement ?? {}).map((y) => ({ id: y, label: labels[y] ?? { de: y, en: y } })) };
+    for (const [y, ks] of Object.entries(tr.placement ?? {})) (ks ?? []).forEach((sk, i) => { PLACE[`${cur}|${y}|${sk}`] = i; });
+  }
+}
 // The foreign-language learning year that goes with each school year (curricula learning_years).
 const LEARNING_YEARS = {};
 for (const cur of ["de-DE", "en-GB"]) for (const [ly, v] of Object.entries(read(`curricula/${cur}.yaml`).learning_years ?? {})) for (const g of v?.grades ?? []) (LEARNING_YEARS[cur] ??= {})[g] = ly;
@@ -99,7 +108,8 @@ const sayClips = (say, lang, activity, where) =>
 const soundClip = (id, activity) => {
   const lang = id.split(".")[0], own = (vcfg(CUR).language ?? "de") === lang, was = CUR;
   if (!own) CUR = curForLang(lang) ?? CUR;
-  const f = `narration/${voiceFor(activity)}/sounds/${id.replace(":", "-long")}.mp3`;
+  // A German sound in a DaZ set (English voices) goes to that role's German voice (language_voices).
+  const f = `narration/${voiceFor(activity, null, null, own ? null : lang)}/sounds/${id.replace(":", "-long")}.mp3`;
   CUR = was;
   if (!existsSync(join(T, "assets", f))) problems.push(`${activity}: no sound clip ${f} (run twist/assets/tools/narration.py --voice <voice>)`);
   return f;
@@ -144,7 +154,8 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
   const d = YAML.parse(readFileSync(p, "utf8"));
   const rel = relative(join(T, "lessons"), p);
   const lang = d.language;
-  CUR = d.curriculum;
+  // A track's set (DaZ) has its own voices (voices.yaml curricula "de-DE.daz"). Must match narration.py.
+  CUR = d.track ? `${d.curriculum}.${d.track}` : d.curriculum;
   for (const l of d.lessons) {
     l._title = clip(lang, l.title[lang], null, null, `${rel} lesson ${l.n}`);
     l._goal = l.goal?.[lang] ? clip(lang, `${GOAL_INTRO[lang]} ${l.goal[lang]}`, null, null, `${rel} lesson ${l.n} goal`) : null;
@@ -194,7 +205,9 @@ for (const p of walk(join(T, "lessons")).filter((f) => f.endsWith(".yaml")).sort
     const DASH = (v) => typeof v === "string" ? v.replace(/ - /g, " \u2013 ") : Array.isArray(v) ? v.map(DASH) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, k === "say" || k === "audio" || k.startsWith("_") ? x : DASH(x)])) : v;
     d.lessons = DASH(d.lessons);
   }
-  sets.push({ file: rel, id: d.id, skill: d.skill, can_do: skillCanDo.get(d.skill) ?? null, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
+  // `key`: what the child's states and practice are kept by. A track's set has its own
+  // (daz:fl.themes.hello), so DaZ and Englisch never share a skill's stars.
+  sets.push({ file: rel, id: d.id, skill: d.skill, track: d.track ?? null, key: d.track ? `${d.track}:${d.skill}` : d.skill, can_do: skillCanDo.get(d.skill) ?? null, pose: poseFor(d), title: d.title, language: lang, target_language: d.target_language ?? null, summary: d.summary,
     no_reading: !!d.metadata?.no_reading, parts: d.metadata?.parts ?? [], year: d.metadata?.year, minutes: d.metadata?.lesson_minutes, lessons: d.lessons,
     curriculum: d.curriculum, topic: d.metadata?.topic ?? null, builds_on: d.metadata?.builds_on ?? [], ages: d.metadata?.ages ?? [],
     order: PLACE[`${d.curriculum}|${d.metadata?.year}|${d.skill}`] ?? 9999 });
@@ -228,7 +241,7 @@ for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
   for (const it of b.items ?? []) { const c = drillClip(b, it); if (c) it._clip = c; }
   drills[b.skill] = b;
 }
-const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
+const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, tracks: TRACKS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
 // --data-out <file> also writes the data, so dev.mjs can rebuild the page from it alone.
 if (process.argv.includes("--data-out")) writeFileSync(process.argv[process.argv.indexOf("--data-out") + 1], JSON.stringify(data));
 const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");

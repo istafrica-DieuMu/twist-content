@@ -164,7 +164,8 @@ def say_numbers_de(t):
 SEQ = []  # (where, line id, voice) in the order the lessons say them
 MIXED = None  # target language of the lesson being gathered
 LANG_NAME = {"de": "German", "en": "English", "fr": "French"}  # what the listening check expects
-CUR = None  # its curriculum
+CUR = None  # its curriculum, or "<curriculum>.<track>" for a track's set (DaZ)
+MIXED_IN = {}  # line id -> target languages of the lessons it is a home-language line in
 
 def speak_model(t, tl):
     """What a speak task's model says: the target-language say, else expected_text as a sentence."""
@@ -280,6 +281,7 @@ def gather(cfg):
         e = lines.setdefault(lid, {"lang": lang, "text": t, "kind": kind, "voices": [], "used": []})
         if MIXED and lang != MIXED:
             e["mixed"] = True  # a home-language line in a lesson that teaches MIXED
+            MIXED_IN.setdefault(lid, set()).add(MIXED)
         e["used"].append(where)
         if v not in e["voices"]:
             e["voices"].append(v)
@@ -294,7 +296,8 @@ def gather(cfg):
             continue
         lang, rel = d["language"], p.relative_to(TWIST / "lessons").with_suffix("")
         MIXED = d.get("target_language")
-        CUR = d["curriculum"]
+        # A track's set has its own voices. Must match player/build.mjs.
+        CUR = f"{d['curriculum']}.{d['track']}" if d.get("track") else d["curriculum"]
         for l in d["lessons"]:
             add(lang, l["title"].get(lang), "title", f"{rel}#{l['n']}")
             if (l.get("goal") or {}).get(lang):
@@ -445,7 +448,9 @@ def run_voice(k, cfg, v, lines, sounds, check, jobs, redo=()):
             if e["lang"] != vlang:  # a target-language line: that language's note
                 note = cfg["en_note"] if e["lang"] == "en" else cfg["target_notes"][e["lang"]]
             elif e.get("mixed"):  # a home-language line in a foreign-language lesson
-                note = (cfg.get("mixed_notes") or {}).get(e["lang"], cfg["mixed_note"])
+                # A note for the one language taught around it ("en.de" in DaZ), else the language's own.
+                mn, tl = cfg.get("mixed_notes") or {}, MIXED_IN.get(iid, set())
+                note = (len(tl) == 1 and mn.get(f"{e['lang']}.{next(iter(tl))}")) or mn.get(e["lang"], cfg["mixed_note"])
             else:
                 note = ""
             direction = brief + (" " + note if note else "")

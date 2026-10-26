@@ -861,7 +861,7 @@ function lessonMenu(scr) {
   m.querySelector(".lm-step.now")?.scrollIntoView({ block: "nearest" });
 }
 // Subject colours from the app (constants/subjects.ts): maths green, English blue, German orange.
-const SUBJ_COLOUR = { "de-DE.math": "#0E8654", "en-GB.math": "#0E8654", "de-DE.lit-de": "#C44D00", "en-GB.lit-en": "#1971C0", "de-DE.fl": "#1971C0", "en-GB.fl": "#6849dd", "de-DE.world": "#0B8A8F" };
+const SUBJ_COLOUR = { "de-DE.math": "#0E8654", "en-GB.math": "#0E8654", "de-DE.lit-de": "#C44D00", "en-GB.lit-en": "#1971C0", "de-DE.fl": "#1971C0", "en-GB.fl": "#6849dd", "de-DE.world": "#0B8A8F", "de-DE.daz": "#C2255C" };
 const ICON = {
   // The lesson menu: a winding path from a start dot to a flag, the learning journey.
   list: '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.2" fill="currentColor"/><path d="M7.5 5h8a3.5 3.5 0 0 1 0 7h-8a3.5 3.5 0 0 0 0 7h7.5" stroke-dasharray="0.01 3.4"/><path d="M18.5 15.5V22M18.5 15.5h3.7l-1.2 1.6 1.2 1.6h-3.7"/></svg>',
@@ -1610,9 +1610,11 @@ function pickLesson(n, type) {
 }
 
 /* ---------- lesson picker: search, filters, a list grouped by year ---------- */
-const YEARS = ["reception", "year-1", "year-2", "year-3", "year-4", "year-5", "year-6", "ly-1", "ly-2", "ly-3", "ly-4", "klasse-1", "klasse-2", "klasse-3", "klasse-4", "stufe-0", "lernjahr-1", "lernjahr-2"];
-const yearName = (y) => !y ? "No year" : y === "reception" ? "Reception" : y.replace(/^ly-/, "French year ").replace(/^year-/, "Year ").replace(/^klasse-/, "Klasse ").replace(/^stufe-/, "Englisch Stufe ").replace(/^lernjahr-/, "Englisch Lernjahr ");
-const SUBJ = { "de-DE.math": "Mathe", "de-DE.lit-de": "Deutsch", "de-DE.fl": "Englisch", "en-GB.math": "Maths", "en-GB.lit-en": "English", "en-GB.fl": "French" };
+const YEARS = ["reception", "year-1", "year-2", "year-3", "year-4", "year-5", "year-6", "ly-1", "ly-2", "ly-3", "ly-4", "klasse-1", "klasse-2", "klasse-3", "klasse-4", "stufe-0", "lernjahr-1", "lernjahr-2", "daz-start", "daz-letters", "daz-1", "daz-2"];
+// A track's learning year (DaZ) by its label in years/ (data.tracks).
+const TRACK_YEAR = Object.fromEntries(Object.values(D.tracks ?? {}).flatMap((ts) => Object.values(ts).flatMap((t) => t.years.map((y) => [y.id, y.label.de]))));
+const yearName = (y) => !y ? "No year" : TRACK_YEAR[y] ?? (y === "reception" ? "Reception" : y.replace(/^ly-/, "French year ").replace(/^year-/, "Year ").replace(/^klasse-/, "Klasse ").replace(/^stufe-/, "Englisch Stufe ").replace(/^lernjahr-/, "Englisch Lernjahr "));
+const SUBJ = { "de-DE.math": "Mathe", "de-DE.lit-de": "Deutsch", "de-DE.fl": "Englisch", "en-GB.math": "Maths", "en-GB.lit-en": "English", "en-GB.fl": "French", "de-DE.daz": "DaZ" };
 const subjOf = (s) => s.id.split(".").slice(0, 2).join(".");
 const typesOf = (s) => s._types ??= new Set(s.lessons.flatMap((l) => l.activities.flatMap((a) => [...(a.tasks ?? []), ...(a.stages ?? []).flatMap((st) => st.tasks)].map((t) => t.type))));
 const titleOf = (x) => x[set?.language] ?? x.de ?? x.en ?? Object.values(x)[0];

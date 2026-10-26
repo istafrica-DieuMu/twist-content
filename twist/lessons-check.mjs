@@ -88,6 +88,19 @@ export function checkLessons({ T, steps, profiles, err, warn }) {
     if (!skill) err(`${file}: unknown skill ${d.skill}`);
     const cur = profiles.find((pr) => pr.curriculum === d.curriculum);
     if (!cur) err(`${file}: unknown curriculum ${d.curriculum}`);
+    else if (skill && d.track !== undefined) {
+      // A track's set (DaZ): id <curriculum>.<track>.<name>, placed in the
+      // track, in lessons/<curriculum>/<stage>/<track>/<file>.
+      const tr = cur.tracks?.[d.track];
+      const placed = cur.trackRows.find((r) => r.track === d.track && r.id === d.skill);
+      if (!tr) err(`${file}: unknown track ${d.track} in ${d.curriculum}`);
+      else if (!placed) err(`${file}: ${d.skill} is not placed in ${d.curriculum} tracks.${d.track}`);
+      else if (md.year !== placed.stage) err(`${file}: metadata.year is ${md.year} but tracks.${d.track} places the skill in ${placed.stage}`);
+      if (d.id.split(".").slice(0, 2).join(".") !== `${d.curriculum}.${d.track}`) err(`${file}: a ${d.track} set's id starts with ${d.curriculum}.${d.track}.`);
+      if (tr && (d.language !== tr.language || d.target_language !== tr.target_language)) err(`${file}: tracks.${d.track} sets have language ${tr.language} and target_language ${tr.target_language}`);
+      const want = `lessons/${d.curriculum}/${placed?.stage}/${d.track}/`;
+      if (placed && !file.startsWith(want)) err(`${file}: belongs in ${want}, where curricula/${d.curriculum}.yaml places ${d.skill} in tracks.${d.track}; move the file`);
+    }
     else if (skill) {
       const placed = cur.rows.find((r) => r.id === d.skill);
       if (!placed) err(`${file}: ${d.skill} is not placed in ${d.curriculum}`);
