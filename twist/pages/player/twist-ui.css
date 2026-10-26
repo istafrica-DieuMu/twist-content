@@ -261,10 +261,24 @@
 .stf-title img { width: 30px; height: 26px; object-fit: contain; }
 .stf-title h2 { margin: 0; font: 700 16px/normal "Red Hat Display", sans-serif; color: #303030; }
 
-.stf-grade { position: relative; display: block; margin-top: 24px; }
-.stf-grade select { -webkit-appearance: none; appearance: none; width: 100%; height: 45px; padding: 0 44px 0 18px; border: 1px solid #d0d0d0; border-radius: 6px; background: #fff; font: 500 16px/1.15 "Red Hat Display", sans-serif; color: #393939; cursor: pointer; }
-.stf-grade select:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
-.stf-grade::after { content: ""; position: absolute; right: 26px; top: 50%; width: 6.55px; height: 11.87px; margin-top: -5.9px; background: url("twist-ui/study-chev-grade.svg") center / contain no-repeat; transform: rotate(90deg); pointer-events: none; }
+.stf-grade { position: relative; margin-top: 24px; }
+/* The year: closed, the design's field (45 high, 1 px #d0d0d0, radius 6, Medium 16). */
+.stf-grade-btn { display: flex; align-items: center; gap: 8px; width: 100%; height: 45px; padding: 0 44px 0 18px; border: 1px solid #d0d0d0; border-radius: 6px; background: #fff; text-align: left; font: 500 16px/1.15 "Red Hat Display", sans-serif; color: #393939; cursor: pointer; }
+.stf-grade-btn:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px; }
+.stf-grade-btn[aria-expanded="true"] { border-color: var(--c); }
+.stf-grade::after { content: ""; position: absolute; right: 26px; top: 22.5px; width: 6.55px; height: 11.87px; margin-top: -5.9px; background: url("twist-ui/study-chev-grade.svg") center / contain no-repeat; transform: rotate(90deg); transition: transform .15s; pointer-events: none; }
+.stf-grade:has([aria-expanded="true"])::after { transform: rotate(-90deg); }
+/* Your year, as a small tag in the subject's colours. */
+.stf-grade small { padding: 2px 8px; border-radius: 999px; background: var(--stf-tint); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, #fff); font: 700 12px/16px "Red Hat Display", sans-serif; color: var(--stf-ink); }
+/* Open: the years in a white list under the field, the chosen one in the subject's tint with a tick. */
+.stf-grade-list { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20; margin: 0; padding: 6px; list-style: none; max-height: 320px; overflow-y: auto; border: 1px solid #d0d0d0; border-radius: 12px; background: #fff; box-shadow: 0 10px 28px rgba(0, 0, 0, .12); animation: stf-drop .14s ease-out; }
+.stf-grade-list[hidden] { display: none; }
+@keyframes stf-drop { from { opacity: 0; transform: translateY(-4px); } }
+.stf-grade-list button { position: relative; display: flex; align-items: center; gap: 8px; width: 100%; height: 44px; padding: 0 40px 0 12px; border: 0; border-radius: 8px; background: none; text-align: left; font: 500 16px/normal "Red Hat Display", sans-serif; color: #393939; cursor: pointer; }
+.stf-grade-list button:hover, .stf-grade-list button:focus-visible { background: #f6f5fa; outline: none; }
+.stf-grade-list [aria-selected="true"] { background: var(--stf-tint); color: var(--stf-ink); font-weight: 700; }
+.stf-grade-list [aria-selected="true"]::after { content: ""; position: absolute; right: 12px; top: 50%; width: 18px; height: 18px; margin-top: -9px; background: var(--c); -webkit-mask: url("twist-ui/rw-check.svg") center / 100% no-repeat; mask: url("twist-ui/rw-check.svg") center / 100% no-repeat; }
+@media (prefers-reduced-motion: reduce) { .stf-grade-list { animation: none; } .stf-grade::after { transition: none; } }
 
 .stf-h { margin: 34px 0 17px; text-align: center; font: 700 16px/normal "Red Hat Display", sans-serif; color: #303030; }
 .stf-list { display: flex; flex-direction: column; gap: 16px; }

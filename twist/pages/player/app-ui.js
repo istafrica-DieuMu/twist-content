@@ -578,7 +578,8 @@ function renderStudy() {
   scr.innerHTML = `<div class="status"></div>${trackStats(art)}
     <div class="pr-home app-page stf-page" data-subj="${esc(APP.subj)}" style="--c:${colour}">
       <div class="stf-title"><button class="stf-back" aria-label="${esc(TK().back)}"></button><img src="study/${art}.svg" alt=""><h2>${esc(subjName)}</h2></div>
-      <label class="stf-grade"><select id="stYear" aria-label="${esc(T.year)}">${years.map((y) => `<option value="${esc(y)}"${y === APP.year ? " selected" : ""}>${esc(yearName(y))}${y === mine ? ` (${esc(T.yourYear)})` : ""}</option>`).join("")}</select></label>
+      <div class="stf-grade"><button class="stf-grade-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="${esc(T.year)}: ${esc(yearName(APP.year))}">${esc(yearName(APP.year))}${APP.year === mine ? `<small>${esc(T.yourYear)}</small>` : ""}</button>
+        <ul class="stf-grade-list" role="listbox" aria-label="${esc(T.year)}" hidden>${years.map((y) => `<li><button role="option" data-year="${esc(y)}" aria-selected="${y === APP.year}">${esc(yearName(y))}${y === mine ? `<small>${esc(T.yourYear)}</small>` : ""}</button></li>`).join("")}</ul></div>
       <h3 class="stf-h">${esc(F.lessons)}</h3>
       <div class="stf-list">${sets.map(unit).join("") || `<p class="pr-empty">${esc(T.nothing)}</p>`}</div>
     </div>`;
@@ -586,7 +587,19 @@ function renderStudy() {
   wireHeader(scr);
   $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
   $(".stf-back", scr).onclick = () => { APP.units = false; renderTrack(); };
-  $("#stYear").onchange = (e) => { APP.year = e.target.value; APP.openSet = null; renderStudy(); };
+  // The year: the app's own list, not the system's, so it looks the same on every phone.
+  const gBtn = $(".stf-grade-btn", scr), gList = $(".stf-grade-list", scr);
+  const fold = (open) => { gList.hidden = !open; gBtn.setAttribute("aria-expanded", open); if (open) gList.querySelector('[aria-selected="true"]')?.focus(); };
+  gBtn.onclick = (e) => { e.stopPropagation(); fold(gList.hidden); };
+  gList.querySelectorAll("[data-year]").forEach((b) => b.onclick = () => { APP.year = b.dataset.year; APP.openSet = null; renderStudy(); });
+  gList.onkeydown = (e) => {
+    const opts = [...gList.querySelectorAll("[data-year]")], i = opts.indexOf(document.activeElement);
+    if (e.key === "Escape") { e.preventDefault(); fold(false); gBtn.focus(); }
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); opts[Math.max(0, Math.min(opts.length - 1, i + (e.key === "ArrowDown" ? 1 : -1)))]?.focus(); }
+  };
+  // A tap anywhere else folds it; one listener per list drawn, the last one's goes.
+  APP.gradeTaps?.abort(); APP.gradeTaps = new AbortController();
+  scr.addEventListener("click", (e) => { if (!gList.hidden && !e.target.closest(".stf-grade")) fold(false); }, { signal: APP.gradeTaps.signal });
   // One unit open at a time: a tap opens it, a tap on the open one's head folds it.
   scr.querySelectorAll("[data-open]").forEach((b) => b.onclick = () => { APP.openSet = b.dataset.open; const y = $(".stf-page", scr).scrollTop; renderStudy(); $(".stf-page").scrollTop = y; });
   wireStarts(scr);
