@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navigation Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --nav-bg: #fff;
+    --nav-border: #d0d0d0;
+    --label: #1d1d1d;
+    --active-bg: #f4ecff;
+    --active-border: #7d49dd;
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: flex-end; justify-content: center; background: #f2f2f2; }
+
+  .nav { position: relative; width: 100%; max-width: 393px; box-sizing: border-box; background: var(--nav-bg);
+    border-top: 1px solid var(--nav-border); padding: 14px 16px; display: flex; justify-content: space-between; }
+
+  .tab { all: unset; position: relative; cursor: pointer; width: 62px; height: 63px; box-sizing: border-box; border-radius: 17px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    -webkit-tap-highlight-color: transparent; }
+  .tab:focus-visible { outline: 2px solid var(--active-border); outline-offset: 2px; }
+
+  /* one highlight shared by all tabs; it slides to the active tab (iOS-style) */
+  .indicator { position: absolute; left: 0; top: 0; width: 62px; height: 63px; box-sizing: border-box; border-radius: 17px;
+    background: var(--active-bg); border: 1.5px solid var(--active-border); pointer-events: none;
+    transition: transform .5s cubic-bezier(.32, .72, 0, 1); }
+  .indicator.no-anim { transition: none; }
+
+  .slot { height: 31px; display: flex; align-items: flex-end; justify-content: center; }
+  .icon { display: block; overflow: visible; }
+  .avatar { width: 31px; height: 31px; object-fit: cover; display: block; }
+  .label { font: 600 10px/normal "Red Hat Display", system-ui, sans-serif; color: var(--label); white-space: nowrap; }
+
+  /* inactive = grayscale + 50% (Figma "Grayscale filter" saturation layer) */
+  .tab:not([aria-selected="true"]) .slot { filter: grayscale(1); opacity: .5; }
+  .tab:not([aria-selected="true"]) .label { opacity: .5; }
+  .tab .slot, .tab .label { transition: filter .3s, opacity .3s; }
+
+  /* ---- micro-interactions: each plays once when its tab is tapped ---- */
+  .icon g { transform-box: view-box; }
+
+  /* Home, Study, Practice: the whole icon hops */
+  .play .icon-home, .play .icon-study, .play .icon-practice { animation: hop .55s var(--ease-spring); }
+  @keyframes hop { 0%, 100% { transform: none; } 40% { transform: translateY(-3px) rotate(-6deg); } }
+
+  /* Home: the door swings open on its left hinge, showing the dark doorway, then closes */
+  .door { transform-origin: 24px 43.5px; }
+  .play .door { animation: door-open .7s var(--ease-out); }
+  @keyframes door-open { 0%, 100% { transform: scaleX(1); } 35%, 60% { transform: scaleX(.12); } }
+
+  /* Study: a lighter sheet lifts off the right page and turns over the spine (x=32) */
+  .sheet { transform-origin: 32px 28px; opacity: 0; }
+  .play .sheet { animation: page-turn .7s .12s var(--ease-out) backwards; }
+  @keyframes page-turn {
+    0% { transform: scaleX(1); opacity: 1; filter: none; }
+    45% { transform: scaleX(.05) skewY(-8deg); filter: brightness(.75); }
+    80% { transform: scaleX(-1); opacity: 1; filter: none; }
+    100% { transform: scaleX(-1); opacity: 0; }
+  }
+
+  /* Practice: the tassel swings from the board edge while the cap hops */
+  .tassel { transform-origin: 53px 19.6px; }
+  .play .tassel { animation: tassel-swing .8s ease-out; }
+  @keyframes tassel-swing { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(22deg); } 50% { transform: rotate(-14deg); } 75% { transform: rotate(6deg); } }
+
+  /* Profile: small hello tilt */
+  .avatar { transform-origin: 50% 90%; }
+  .play .avatar { animation: hello .6s var(--ease-out); }
+  @keyframes hello { 0%, 100% { transform: none; } 30% { transform: rotate(-10deg) scale(1.06); } 65% { transform: rotate(6deg); } }
+
+  @media (prefers-reduced-motion: reduce) { .play * { animation: none !important; } .indicator { transition: none; } }
+</style>
+</head>
+<body>
+<nav class="nav" role="tablist" aria-label="Main">
+  <span class="indicator no-anim" aria-hidden="true"></span>
+  <button class="tab" role="tab" aria-selected="true"><span class="slot"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-home" width="31" height="29" viewBox="0 0 62 58" fill="none" aria-hidden="true">
+  <!-- walls -->
+  <path d="M12 25 V47 Q12 54 19 54 H43 Q50 54 50 47 V25 L31 10 Z" fill="#BB72F2" stroke="#6C2EB7" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M15 46 Q15 51 20 51 H42 Q47 51 47 46" stroke="#9A4FD8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M17 30 V39" stroke="#D8A0FB" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- dark doorway, revealed when the door swings open -->
+  <rect class="doorway" x="24" y="33" width="14" height="21" rx="4" fill="#4A1D86" stroke="#6C2EB7" stroke-width="2.5"/>
+  <!-- door: hinged on its left edge (x=24) -->
+  <g class="door">
+    <rect x="24" y="33" width="14" height="21" rx="4" fill="#984BDB" stroke="#6C2EB7" stroke-width="2.5"/>
+    <path d="M27.5 37 V42" stroke="#B16AEB" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="34.2" cy="44.5" r="1.7" fill="#D8A0FB"/>
+  </g>
+  <!-- roof -->
+  <path d="M6.5 27 L31 7 L55.5 27" stroke="#6C2EB7" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6.5 27 L31 7 L55.5 27" stroke="#AB5FE9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10.5 22.5 L27.5 9" stroke="#D8A0FB" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M43.5 15.5 L46.5 18" stroke="#D8A0FB" stroke-width="2.4" stroke-linecap="round"/>
+</svg></span><span class="label">Home</span></button>
+  <button class="tab" role="tab" aria-selected="false"><span class="slot"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-study" width="32" height="27" viewBox="0 0 64 54" fill="none" aria-hidden="true">
+  <!-- cover -->
+  <path d="M3 14 V45 Q3 48.5 6.5 48 Q20 46 28 48.5 Q32 51.5 36 48.5 Q44 46 57.5 48 Q61 48.5 61 45 V14 Z" fill="#AE6EE6" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- left page -->
+  <path d="M32 11 Q22 4 9 5.5 Q6.5 5.8 6.5 8.5 V40 Q6.5 43 9.3 42.8 Q22 41.5 32 47 Z" fill="#D29DF6" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M12 15 Q20 13.5 27 16.5 M12 21.5 Q20 20 27 23 M12 28 Q20 26.5 27 29.5 M12 34.5 Q20 33 27 36" stroke="#AE6EE6" stroke-width="2" stroke-linecap="round"/>
+  <path d="M11 9 Q16 8.1 20 8.5" stroke="#ECCBFD" stroke-width="2" stroke-linecap="round"/>
+  <!-- right page (the page underneath the sheet) -->
+  <path d="M32 11 Q42 4 55 5.5 Q57.5 5.8 57.5 8.5 V40 Q57.5 43 54.7 42.8 Q42 41.5 32 47 Z" fill="#D29DF6" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M52 15 Q44 13.5 37 16.5 M52 21.5 Q44 20 37 23 M52 28 Q44 26.5 37 29.5 M52 34.5 Q44 33 37 36" stroke="#AE6EE6" stroke-width="2" stroke-linecap="round"/>
+  <!-- the sheet that turns: hinged on the spine (x=32), lighter so it reads while it moves -->
+  <g class="sheet">
+    <path d="M32 11 Q42 4 55 5.5 Q57.5 5.8 57.5 8.5 V40 Q57.5 43 54.7 42.8 Q42 41.5 32 47 Z" fill="#ECCBFD" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M52 15 Q44 13.5 37 16.5 M52 21.5 Q44 20 37 23 M52 28 Q44 26.5 37 29.5" stroke="#C084F0" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- spine -->
+  <path d="M32 11 V47" stroke="#612EAD" stroke-width="2.5" stroke-linecap="round"/>
+</svg></span><span class="label">Study</span></button>
+  <button class="tab" role="tab" aria-selected="false"><span class="slot"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-practice" width="32" height="28" viewBox="0 0 64 56" fill="none" aria-hidden="true">
+  <!-- cap base -->
+  <path d="M14 20 V39 Q14 48 32 49 Q50 48 50 39 V20 Z" fill="#A559DA" stroke="#6830A9" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M17.5 41 Q21 45.5 32 46 Q43 45.5 46.5 41" stroke="#8C46C6" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M18 30 V36" stroke="#C27FEE" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- board -->
+  <path d="M32 3 L61 16 L32 29 L3 16 Z" fill="#D193F2" stroke="#6830A9" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M10 16 L30 7" stroke="#EBCBFD" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- cord across the board to its right edge -->
+  <path d="M32 16 Q44 17 53 19.6" stroke="#8C46C6" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="16" r="2.4" fill="#A559DA" stroke="#6830A9" stroke-width="1.8"/>
+  <!-- tassel: hangs from the board edge at (53,19.6) -->
+  <g class="tassel">
+    <path d="M53 19.6 V35" stroke="#8C46C6" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M50.3 35 H55.7 L57.5 44.5 Q53 46.7 48.5 44.5 Z" fill="#A559DA" stroke="#6830A9" stroke-width="1.8" stroke-linejoin="round"/>
+    <path d="M52 37.5 L51.3 42.5" stroke="#D193F2" stroke-width="1.4" stroke-linecap="round"/>
+    <circle cx="53" cy="35" r="2" fill="#D193F2" stroke="#6830A9" stroke-width="1.6"/>
+  </g>
+</svg></span><span class="label">Practice</span></button>
+  <button class="tab" role="tab" aria-selected="false"><span class="slot"><img class="avatar" src="assets/profile.png" alt=""></span><span class="label">Profile</span></button>
+</nav>
+<script>
+  const tabs = [...document.querySelectorAll('.tab')];
+  const indicator = document.querySelector('.indicator');
+  const moveIndicator = () => {
+    const active = tabs.find(t => t.getAttribute('aria-selected') === 'true');
+    const a = active.getBoundingClientRect(), n = indicator.offsetParent.getBoundingClientRect();
+    indicator.style.transform = `translate(${a.left - n.left - indicator.offsetParent.clientLeft}px, ${a.top - n.top - indicator.offsetParent.clientTop}px)`;
+  };
+  moveIndicator();
+  requestAnimationFrame(() => indicator.classList.remove('no-anim'));
+  addEventListener('resize', () => {
+    indicator.classList.add('no-anim');
+    moveIndicator();
+    requestAnimationFrame(() => indicator.classList.remove('no-anim'));
+  });
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', t === tab));
+    moveIndicator();
+    tab.classList.remove('play');
+    void tab.offsetWidth; // restart the animation on repeat taps
+    tab.classList.add('play');
+  }));
+  tabs.forEach(tab => tab.addEventListener('animationend', () => {
+    if (!tab.getAnimations({ subtree: true }).some(a => a.playState === 'running')) tab.classList.remove('play');
+  }));
+</script>
+</body>
+</html>

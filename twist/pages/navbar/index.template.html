@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navigation Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --nav-bg: #fff;
+    --nav-border: #d0d0d0;
+    --label: #1d1d1d;
+    --active-bg: #f4ecff;
+    --active-border: #7d49dd;
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: flex-end; justify-content: center; background: #f2f2f2; }
+
+  .nav { position: relative; width: 100%; max-width: 393px; box-sizing: border-box; background: var(--nav-bg);
+    border-top: 1px solid var(--nav-border); padding: 14px 16px; display: flex; justify-content: space-between; }
+
+  .tab { all: unset; position: relative; cursor: pointer; width: 62px; height: 63px; box-sizing: border-box; border-radius: 17px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    -webkit-tap-highlight-color: transparent; }
+  .tab:focus-visible { outline: 2px solid var(--active-border); outline-offset: 2px; }
+
+  /* one highlight shared by all tabs; it slides to the active tab (iOS-style) */
+  .indicator { position: absolute; left: 0; top: 0; width: 62px; height: 63px; box-sizing: border-box; border-radius: 17px;
+    background: var(--active-bg); border: 1.5px solid var(--active-border); pointer-events: none;
+    transition: transform .5s cubic-bezier(.32, .72, 0, 1); }
+  .indicator.no-anim { transition: none; }
+
+  .slot { height: 31px; display: flex; align-items: flex-end; justify-content: center; }
+  .icon { display: block; overflow: visible; }
+  .avatar { width: 31px; height: 31px; object-fit: cover; display: block; }
+  .label { font: 600 10px/normal "Red Hat Display", system-ui, sans-serif; color: var(--label); white-space: nowrap; }
+
+  /* inactive = grayscale + 50% (Figma "Grayscale filter" saturation layer) */
+  .tab:not([aria-selected="true"]) .slot { filter: grayscale(1); opacity: .5; }
+  .tab:not([aria-selected="true"]) .label { opacity: .5; }
+  .tab .slot, .tab .label { transition: filter .3s, opacity .3s; }
+
+  /* ---- micro-interactions: each plays once when its tab is tapped ---- */
+  .icon g { transform-box: view-box; }
+
+  /* Home, Study, Practice: the whole icon hops */
+  .play .icon-home, .play .icon-study, .play .icon-practice { animation: hop .55s var(--ease-spring); }
+  @keyframes hop { 0%, 100% { transform: none; } 40% { transform: translateY(-3px) rotate(-6deg); } }
+
+  /* Home: the door swings open on its left hinge, showing the dark doorway, then closes */
+  .door { transform-origin: 24px 43.5px; }
+  .play .door { animation: door-open .7s var(--ease-out); }
+  @keyframes door-open { 0%, 100% { transform: scaleX(1); } 35%, 60% { transform: scaleX(.12); } }
+
+  /* Study: a lighter sheet lifts off the right page and turns over the spine (x=32) */
+  .sheet { transform-origin: 32px 28px; opacity: 0; }
+  .play .sheet { animation: page-turn .7s .12s var(--ease-out) backwards; }
+  @keyframes page-turn {
+    0% { transform: scaleX(1); opacity: 1; filter: none; }
+    45% { transform: scaleX(.05) skewY(-8deg); filter: brightness(.75); }
+    80% { transform: scaleX(-1); opacity: 1; filter: none; }
+    100% { transform: scaleX(-1); opacity: 0; }
+  }
+
+  /* Practice: the tassel swings from the board edge while the cap hops */
+  .tassel { transform-origin: 53px 19.6px; }
+  .play .tassel { animation: tassel-swing .8s ease-out; }
+  @keyframes tassel-swing { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(22deg); } 50% { transform: rotate(-14deg); } 75% { transform: rotate(6deg); } }
+
+  /* Profile: small hello tilt */
+  .avatar { transform-origin: 50% 90%; }
+  .play .avatar { animation: hello .6s var(--ease-out); }
+  @keyframes hello { 0%, 100% { transform: none; } 30% { transform: rotate(-10deg) scale(1.06); } 65% { transform: rotate(6deg); } }
+
+  @media (prefers-reduced-motion: reduce) { .play * { animation: none !important; } .indicator { transition: none; } }
+</style>
+</head>
+<body>
+<nav class="nav" role="tablist" aria-label="Main">
+  <span class="indicator no-anim" aria-hidden="true"></span>
+  <button class="tab" role="tab" aria-selected="true"><span class="slot">{{home}}</span><span class="label">Home</span></button>
+  <button class="tab" role="tab" aria-selected="false"><span class="slot">{{study}}</span><span class="label">Study</span></button>
+  <button class="tab" role="tab" aria-selected="false"><span class="slot">{{practice}}</span><span class="label">Practice</span></button>
+  <button class="tab" role="tab" aria-selected="false"><span class="slot"><img class="avatar" src="assets/profile.png" alt=""></span><span class="label">Profile</span></button>
+</nav>
+<script>
+  const tabs = [...document.querySelectorAll('.tab')];
+  const indicator = document.querySelector('.indicator');
+  const moveIndicator = () => {
+    const active = tabs.find(t => t.getAttribute('aria-selected') === 'true');
+    const a = active.getBoundingClientRect(), n = indicator.offsetParent.getBoundingClientRect();
+    indicator.style.transform = `translate(${a.left - n.left - indicator.offsetParent.clientLeft}px, ${a.top - n.top - indicator.offsetParent.clientTop}px)`;
+  };
+  moveIndicator();
+  requestAnimationFrame(() => indicator.classList.remove('no-anim'));
+  addEventListener('resize', () => {
+    indicator.classList.add('no-anim');
+    moveIndicator();
+    requestAnimationFrame(() => indicator.classList.remove('no-anim'));
+  });
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', t === tab));
+    moveIndicator();
+    tab.classList.remove('play');
+    void tab.offsetWidth; // restart the animation on repeat taps
+    tab.classList.add('play');
+  }));
+  tabs.forEach(tab => tab.addEventListener('animationend', () => {
+    if (!tab.getAnimations({ subtree: true }).some(a => a.playState === 'running')) tab.classList.remove('play');
+  }));
+</script>
+</body>
+</html>

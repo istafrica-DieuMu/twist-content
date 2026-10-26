@@ -41,7 +41,7 @@ td:first-child{font-weight:600;min-width:140px}
 
 <div class="page">
 <h1>Twist Player Hosting</h1>
-<p class="lede">How to run the Twist lesson player on our server: the lessons, Practice, Drawings and Task types, behind a password, with every picture and narration clip. It is a Node script and a folder of files; there is no database and no build step.</p>
+<p class="lede">How to run the Twist lesson player on our server: the lessons, Practice, Drawings and Task types, for people signed in with their own account, with every picture and narration clip, and feedback pinned to app screens. It is a Node script and a folder of files; there is no database and no build step. Accounts and feedback are two JSON files on the server until the IST-B2C backend holds them.</p>
 
 <div class="facts">
 <div><b>Needs</b>Linux, Node 22 or newer, git</div>
@@ -64,13 +64,17 @@ sudo cat /opt/twist/.ssh/id_ed25519.pub     # send this to the repo owner</code>
 <div class="cmd"><pre><code>sudo -u twist git clone --depth 1 git@github.com:istafrica-DieuMu/twist-content.git /opt/twist/twist-content
 node --version     # must say v22 or newer</code></pre><button type="button">Copy</button></div></li>
 
-<li><h3>Choose the login</h3>
-<p>One user name and password for everyone; share them through the password manager, never in chat or email. The file stays outside the repo and readable only by root.</p>
+<li><h3>Choose the first admin</h3>
+<p>Everyone signs in with their own account. <code>TWIST_USER</code> and <code>TWIST_PASS</code> make the first admin, once, while there are no accounts; that admin adds everyone else on the player's Users tab and can hand out the manager role, so managers add their own testers. Keep the password in the password manager, never in chat or email. The file stays outside the repo and readable only by root. Accounts and feedback are kept in <code>TWIST_DATA</code>; back that folder up. With <code>TWIST_API_URL</code> set they live on the IST-B2C backend instead (twist/docs/feedback-backend.md).</p>
 <div class="cmd"><pre><code>sudo tee /etc/twist-player.env &gt;/dev/null &lt;&lt;'EOF'
-TWIST_USER=twist
+TWIST_USER=you@ist.com
 TWIST_PASS=change-me-to-a-long-random-password
+TWIST_DATA=/opt/twist/data
+COOKIE_SECURE=1
+TRUST_PROXY=1
 PORT=8080
 EOF
+sudo -u twist mkdir -p /opt/twist/data
 sudo chmod 600 /etc/twist-player.env</code></pre><button type="button">Copy</button></div></li>
 
 <li><h3>Run it as a service</h3>
@@ -99,7 +103,7 @@ sudo systemctl status twist-player      # "Twist player on http://127.0.0.1:8080
 <p>If <code>node</code> is not in <code>/usr/bin</code>, put the path from <code>which node</code> in <code>ExecStart</code>.</p></li>
 
 <li><h3>Put HTTPS in front</h3>
-<p>Basic auth sends the password with every request, so the site must only be reachable over HTTPS. With Caddy, which gets the certificate by itself (replace the domain with ours, pointed at this server):</p>
+<p>The sign-in form and the session cookie must never travel in clear text, so the site must only be reachable over HTTPS. With Caddy, which gets the certificate by itself (replace the domain with ours, pointed at this server):</p>
 <div class="cmd"><pre><code># /etc/caddy/Caddyfile
 twist.example.org {
     reverse_proxy 127.0.0.1:8080
@@ -113,22 +117,23 @@ twist.example.org {
     location / {
         proxy_pass http://127.0.0.1:8080;
         proxy_set_header Host $host;
-        proxy_set_header Authorization $http_authorization;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_http_version 1.1;
     }
 }
 server { listen 80; server_name twist.example.org; return 301 https://$host$request_uri; }</code></pre><button type="button">Copy</button></div></li>
 
 <li><h3>Check it</h3>
-<div class="cmd"><pre><code>curl -s -o /dev/null -w "%{http_code}\n" https://twist.example.org/                       # 401: asks for the login
-curl -s -o /dev/null -w "%{http_code}\n" -u 'twist:PASSWORD' https://twist.example.org/pages/player/   # 200
+<div class="cmd"><pre><code>curl -s -o /dev/null -w "%{http_code}\n" https://twist.example.org/healthz                # 200
+curl -s -o /dev/null -w "%{http_code}\n" https://twist.example.org/pages/player/          # 302: to the sign-in page
 # from another machine: the app port must not answer
 curl -s -o /dev/null -w "%{http_code}\n" --connect-timeout 3 http://SERVER-IP:8080/          # 000 (no connection)</code></pre><button type="button">Copy</button></div>
-<p>Then open the site in a browser, sign in, choose a lesson and press the speaker: the voice should play. On an iPhone, check one lesson with sound too.</p></li>
+<p>Then open the site in a browser, sign in as the first admin, choose a lesson and press the speaker: the voice should play. On an iPhone, check one lesson with sound too. On the Users tab, add the people who will test.</p></li>
 </ol>
 
 <h2>Update it</h2>
-<p>The R&amp;D team pushes new lessons and audio to <code>main</code>. The built player is in the repo, so updating is a pull and a restart; run it when they ask, or nightly from cron.</p>
+<p>The R&amp;D team pushes new lessons and audio to <code>main</code>. The built player is in the repo, so updating is a pull and a restart; run it when they ask, or nightly from cron. A restart signs everyone out (sessions are kept in memory); accounts and feedback stay.</p>
 <div class="cmd"><pre><code>cd /opt/twist/twist-content
 sudo -u twist git fetch --depth 1 origin main
 sudo -u twist git reset --hard origin/main
@@ -141,16 +146,18 @@ sudo systemctl restart twist-player</code></pre><button type="button">Copy</butt
 <h2>If something goes wrong</h2>
 <div class="tw"><table>
 <tr><th>What you see</th><th>What to do</th></tr>
-<tr><td>The service stops at once</td><td><code>journalctl -u twist-player</code>. "Set TWIST_USER and TWIST_PASS" means the env file is missing or not readable by systemd.</td></tr>
-<tr><td>The login box keeps coming back</td><td>Wrong user or password, or the proxy drops the <code>Authorization</code> header (see the nginx block).</td></tr>
+<tr><td>The service stops at once</td><td><code>journalctl -u twist-player</code>. A permission error on <code>accounts.json</code> means <code>TWIST_DATA</code> is not writable by the <code>twist</code> user.</td></tr>
+<tr><td>Nobody can sign in, there is no account yet</td><td><code>TWIST_USER</code> and <code>TWIST_PASS</code> were not in the env file the first time it started. Add them and restart: the first admin is made while there are no accounts.</td></tr>
+<tr><td>Signing in goes back to the sign-in page</td><td>The session cookie is Secure and the site is opened over plain HTTP. Use HTTPS, or leave out <code>COOKIE_SECURE</code> on a laptop.</td></tr>
+<tr><td>Someone forgot their password</td><td>Their manager, or an admin, sets a new one on the Users tab.</td></tr>
 <tr><td>502 from the proxy</td><td>The service is not running, or listens on another port than the proxy uses: compare <code>PORT</code> with the proxy line.</td></tr>
-<tr><td>No sound, or no sound on iPhone only</td><td>The proxy must pass <code>Range</code> requests through (Caddy and nginx do by default). Check one clip: <code>curl -I -u 'twist:PASSWORD' -H "Range: bytes=0-99" https://…/assets/narration/gemini-sulafat/&lt;any file&gt;.mp3</code> gives 206.</td></tr>
+<tr><td>No sound, or no sound on iPhone only</td><td>The proxy must pass <code>Range</code> requests through (Caddy and nginx do by default). Check one clip: in the browser's network panel, a clip's request answers 206.</td></tr>
 <tr><td>The page takes long the first time</td><td>Normal: 4.6 MB for the player, then pictures and clips as lessons are opened. After that the browser caches them.</td></tr>
 <tr><td><code>git fetch</code> is refused</td><td>The deploy key was removed or the repo moved; ask the repo owner.</td></tr>
 <tr><td>Disk filling up</td><td>Each update replaces files in place; the shallow clone stays near 3.5 GB. <code>git gc --prune=now</code> clears old objects.</td></tr>
 </table></div>
 
-<div class="warn"><p><b>Keep these three:</b> HTTPS only, a long password kept in the password manager, and port 8080 never opened in the firewall.</p></div>
+<div class="warn"><p><b>Keep these four:</b> HTTPS only, the first admin's password kept in the password manager, port 8080 never opened in the firewall, and a backup of <code>TWIST_DATA</code>.</p></div>
 </div>
 
 <script>

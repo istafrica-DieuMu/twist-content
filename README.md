@@ -103,7 +103,9 @@ The full runbook for the host (deploy key, systemd, Caddy or nginx, checks,
 updates, troubleshooting) is `twist/pages/hosting/index.html`. In short:
 
 `twist/serve.mjs` serves the player with its Practice, Drawings and Task
-types tabs from a clone, behind basic auth. It needs only Node 22 or newer;
+types tabs from a clone, to people signed in with their own account, who
+can pin feedback to any app screen (`twist/docs/feedback.md`). It needs only
+Node 22 or newer;
 no npm install, no build: the built player, the pictures and the narration
 are all in the repo.
 
@@ -113,18 +115,24 @@ are all in the repo.
    git clone --depth 1 git@github.com:istafrica-DieuMu/twist-content.git
    ```
 
-2. **Run** with a user and password of your choice:
+2. **Run.** `TWIST_USER` and `TWIST_PASS` make the first admin while there
+   are no accounts yet; that admin adds everyone else on the Users tab:
 
    ```
    cd twist-content
-   TWIST_USER=twist TWIST_PASS='a long password' PORT=8080 node twist/serve.mjs
+   TWIST_USER=you@ist.com TWIST_PASS='a long password' PORT=8080 node twist/serve.mjs
    ```
+
+   Accounts and feedback are kept in `.twist-data/` (`TWIST_DATA` moves it;
+   not in git). With `TWIST_API_URL` set they live on the IST-B2C backend
+   instead, once it has the endpoints in `twist/docs/feedback-backend.md`.
 
    It listens on 127.0.0.1 only; `HOST=0.0.0.0` opens it to the network
    (only behind a firewall that keeps the port closed to the outside).
 
-   Or in Docker, with the login in `.env.player` (`TWIST_USER`, `TWIST_PASS`,
-   optional `PLAYER_PORT`, default 4410; not in git):
+   Or in Docker, with the settings in `.env.player` (`TWIST_USER`,
+   `TWIST_PASS`, optional `TWIST_API_URL` and `PLAYER_PORT`, default 4410;
+   not in git); `.twist-data/` next to it is mounted for the accounts:
 
    ```
    docker compose -p twist-player -f docker-compose.player.yml --env-file .env.player up -d
@@ -140,12 +148,16 @@ are all in the repo.
    `/` opens the player. Only `twist/pages/` and `twist/assets/` are
    served; lesson files and the rest of the repo are not.
 
-3. **Put HTTPS in front.** Basic auth sends the password with every
-   request, so serve it through a reverse proxy with a certificate (Caddy:
-   `twist.example.org { reverse_proxy localhost:8080 }`).
+3. **Put HTTPS in front.** The session cookie and the sign-in form must not
+   travel in clear text, so serve it through a reverse proxy with a
+   certificate (Caddy: `twist.example.org { reverse_proxy localhost:8080 }`)
+   and set `COOKIE_SECURE=1` and `TRUST_PROXY=1` (the Docker setup does). Set
+   `TRUST_PROXY` only behind a proxy: it makes the sign-in limits read the
+   client's address from `X-Forwarded-For`.
 
-4. **Keep it running** with systemd or a process manager, with the two
-   variables in its environment, not in the repo.
+4. **Keep it running** with systemd or a process manager, with the
+   variables in its environment, not in the repo. Back up `.twist-data/`.
+   Sessions live in memory: a restart signs everyone out.
 
 5. **Update:** `git pull` (or a fresh shallow clone) and restart. The built
    player is committed, so there is nothing to build on the server.
