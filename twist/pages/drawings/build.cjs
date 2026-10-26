@@ -219,7 +219,10 @@ function sourceFor(id) {
     ["Shapes, space and position", ["shape", "grid", "cubes", "angle", "circle", "coordinates", "fraction"]],
     ["Data and chance", ["bar-chart", "table", "line-graph", "pie-chart", "spinner"]],
     ["Letters, words and colour", ["letter-card", "word-card", "syllable-arcs", "writing-lines", "sound-chart", "colour-swatch"]],
+    ["World and nature", ["germany-map", "world-map", "junction", "circuit", "water-cycle", "timeline"]],
   ];
+  const unplaced = rows.map((r) => r.c.id).filter((id) => !GROUPS.some(([, ids]) => ids.includes(id)));
+  if (unplaced.length) throw new Error(`drawn.yaml components in no section of the page (GROUPS): ${unplaced.join(", ")}`);
   const byId = Object.fromEntries(rows.map((r) => [r.c.id, r]));
   const where = (u) => `${esc(u.file.replace(/\.yaml$/, ""))} · ${u.kind === "learn" ? `lesson ${u.n}, Learn screen ${u.i + 1}` : `${u.id}${u.kind === "option" ? " (an option)" : ""}`}`;
   const card = (r) => {
