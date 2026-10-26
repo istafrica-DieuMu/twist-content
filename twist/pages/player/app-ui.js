@@ -48,7 +48,7 @@ function appChild() {
   // A child saved with a learning year (French year 1) gets the school year it belongs to.
   const toGrade = Object.entries(D.learningYears?.[PR.child.curriculum] ?? {}).find(([, ly]) => ly === PR.child.year);
   if (toGrade) PR.child.year = toGrade[0];
-  if (!PR.index || PR.index.curriculum !== PR.child.curriculum) PR.index = indexContent(D.sets, D.drills, PR.child.curriculum);
+  if (!PR.index || PR.index.curriculum !== PR.child.curriculum || PR.index.tracks !== JSON.stringify(PR.child.tracks ?? {})) PR.index = indexFor(PR.child);
   return PR.child;
 }
 function appTabs(active) {
@@ -64,7 +64,7 @@ function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
   // Study is marked open before the view changes, so the lesson view coming back draws (and says) nothing.
-  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn", "fbv", "usv"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
+  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn", "sources", "fbv", "usv"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
   if (t === "settings") APP.editPic = false;
@@ -89,7 +89,9 @@ function yearsOf(subj) {
   const c = PR.child;
   return [...new Set(D.sets.filter((s) => s.curriculum === c.curriculum && subjOf(s).endsWith("." + subj)).map((s) => s.year))].sort((a, b) => YEARS.indexOf(a) - YEARS.indexOf(b));
 }
-const childYearFor = (subj) => { const y = subj === "fl" ? D.learningYears?.[PR.child.curriculum]?.[PR.child.year] : PR.child.year; return yearsOf(subj).includes(y) ? y : yearsOf(subj)[0]; };
+// A track (DaZ) is at the level the child has in it (pretend child, DaZ level), whatever the school year.
+const isTrack = (subj) => !!D.tracks?.[PR.child.curriculum]?.[subj];
+const childYearFor = (subj) => { const y = isTrack(subj) ? PR.child.tracks?.[subj] : subj === "fl" ? D.learningYears?.[PR.child.curriculum]?.[PR.child.year] : PR.child.year; return yearsOf(subj).includes(y) ? y : yearsOf(subj)[0]; };
 function courseSets(subj, year = childYearFor(subj)) {
   const c = PR.child;
   return D.sets.filter((s) => s.curriculum === c.curriculum && s.year === year && subjOf(s).endsWith("." + subj)).sort((a, b) => a.order - b.order);
@@ -98,7 +100,8 @@ const lessonsDone = (s) => PR.child.lessons?.[s.id] ?? 0;
 const nextIn = (sets) => sets.find((s) => lessonsDone(s) < s.lessons.length);
 // A foreign language starts in the year its curriculum gives it a learning year (French in Year 3,
 // Englisch Stufe 0 in Klasse 1); before that it is not offered.
-const offered = (x) => x !== "fl" || !D.learningYears?.[PR.child.curriculum] || !!D.learningYears[PR.child.curriculum][PR.child.year];
+// A track (DaZ) only for a child who has it.
+const offered = (x) => isTrack(x) ? !!PR.child.tracks?.[x] : x !== "fl" || !D.learningYears?.[PR.child.curriculum] || !!D.learningYears[PR.child.curriculum][PR.child.year];
 const appSubjects = () => PR.index.subjects.filter((x) => yearsOf(x).length && offered(x));
 // A lesson opens after the books have played a moment, as in the app (QuizLoadingScreen).
 function startLesson(setId, n) {
@@ -154,7 +157,7 @@ function scrollFades(scr) {
 // A title on one line where it can: a suffix like "-tion" never breaks off its hyphen.
 const keepSuffix = (t) => esc(t).replace(/(^|\s)(-[\p{L}]+)/gu, '$1<span class="nb">$2</span>');
 // A subject's mark: a short glyph in a ring that fills with the units done in the child's year.
-const SUBJ_GLYPH = { math: "1+2", "lit-en": "Aa", "lit-de": "Aa", fl: { "en-GB": "Fr", "de-DE": "En" }, world: "🌱" };
+const SUBJ_GLYPH = { math: "1+2", "lit-en": "Aa", "lit-de": "Aa", fl: { "en-GB": "Fr", "de-DE": "En" }, world: "🌱", daz: "De" };
 function subjChip(x) {
   const sets = courseSets(x), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, fresh = !sets.some(lessonsDone);
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
@@ -295,7 +298,7 @@ const WHERE_TXT = {
   en: { acts: { "warm-up": "Warm-up", learn: "Learn", practise: "Practise", check: "Show what you know" }, task: (k, n) => `question ${k} of ${n}`, goOn: "Carry on" },
 };
 // The object that stands for a subject on a practice card (the app's cup, croissant and number blocks).
-const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" }, world: "tree" };
+const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" }, world: "tree", daz: "schoolbag" };
 const subjObject = (x) => { const o = SUBJ_OBJECT[x]; return (typeof o === "string" ? o : o?.[PR.child.curriculum]) ?? "book"; };
 const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 // Start: today's plan (a lesson, then practice), ticked off as the child does it,
@@ -310,14 +313,12 @@ function practiceCard(x, attr) {
   return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><b>${esc(t)}</b><small>${esc(why)} · ${esc(sizeOf(x).split(", ").pop())}</small></span><button class="hm-pr-go" ${attr}>${esc(x.paused ? PAUSE_TXT[PL()].go : L.practise)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`;
 }
 function renderHomeTab() {
-  const T = AT(), L = PT(), scr = $("#screen"), c = PR.child, subs = appSubjects();
+  const T = AT(), L = PT(), scr = $("#screen"), c = PR.child;
   const plan = homePlan(); APP.subj = plan.subj;
   const sugs = mySuggestions().slice(0, 2), sug = sugs[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
   const lesson = nextIn(plan.sets) ? lessonStep(plan) : "";
   const goal = [lesson || did.lessons, sug || did.practice].filter(Boolean).length || 1;
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
-  const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
-  const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   // Something done today: a card of its own in the done green, the mascot cheering, what was done,
   // and a way to do more (Practice, or Study for lessons).
   const DONE_TXT = { de: { right: (n) => `${n} richtig`, more: "Noch mehr üben", lessons: "Weiterlernen" }, en: { right: (n) => `${n} right`, more: "Practise more", lessons: "Keep learning" } }[PL()];
@@ -331,12 +332,11 @@ function renderHomeTab() {
   // Two suggestions make a deck, as the lessons of the other subjects do.
   const practiceHtml = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
   const steps = [];
-  // The way back into the course is always there; a lesson done today shows as a tick beside its label.
-  if (lesson) steps.push(`<h3 class="pr-h hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</h3>${lesson}`);
-  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
+  // The next lessons are in the subject row below; a lesson done today shows as its own row.
+  if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
   if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice"));
   else if (practiceHtml) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceHtml}`);
-  const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
+  const more = [did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
   const pct = (100 * got) / goal;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
@@ -349,13 +349,11 @@ function renderHomeTab() {
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
     : `<section class="hm-plan">${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
-    ${subjectRow(lesson && !all ? plan.subj : null)}
-    <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
+    ${subjectRow(null)}
   </div>`;
   scr.appendChild(appTabs("start"));
   scr.querySelectorAll("[data-done]").forEach((b) => b.onclick = () => appTab(b.dataset.done));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
-  scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
   scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
@@ -369,7 +367,7 @@ function renderHomeTab() {
 // skill in focus and opens the unit list. The skill in focus has its popover
 // open under it the whole time: as the track scrolls, the popover moves to the
 // skill at the focus line and shows its lessons, each to start from there.
-const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" }, world: "world" };
+const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" }, world: "world", daz: "daz" };
 const TRACK = {
   math: { route: "#018641", grad: ["#0BBE81", "#145E39"], soft: "#E2F0EA", islands: 4 },
   german: { route: "#E87729", grad: ["#E8A527", "#BC4113"], soft: "#F8EAE0", islands: 4 },
@@ -378,6 +376,8 @@ const TRACK = {
   french: { route: "#8f73ff", grad: ["#9b7bff", "#4b2fb0"], soft: "#ece6fb", islands: 5, files: "english" },
   // Sachunterricht has no art of its own yet: the maths art turned to its teal.
   world: { route: "#0B8A8F", grad: ["#19B5B0", "#0A5E66"], soft: "#E0F2F1", islands: 4, files: "math" },
+  // DaZ has no art of its own yet: the German art turned to its raspberry.
+  daz: { route: "#C2255C", grad: ["#E64980", "#A61E4D"], soft: "#FBE7EF", islands: 4, files: "german" },
 };
 // pad: room above the first stone for its popover or the study card.
 const TR = { pad: 380, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
@@ -429,7 +429,7 @@ function renderTrack() {
   const lines = rows.map((r, i) => r.topicStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
   const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(r.s.title[lg] ?? r.s.title.de)}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
   // Each skill's stars under its stone; they stay when the skate's card stands on the stone.
-  const starRow = rows.map((r, i) => `<span class="tr-st ${r.state}" style="top:${top(i) + (TR.decor + TR.stoneH) / 2 + 2}px">${starsOf3(r.s.skill)}</span>`).join("");
+  const starRow = rows.map((r, i) => `<span class="tr-st ${r.state}" style="top:${top(i) + (TR.decor + TR.stoneH) / 2 + 2}px">${starsOf3(stateKey(r.s))}</span>`).join("");
   const mascot = rows.length ? `<img class="tr-mascot" data-i="${cur}" src="${A}mascot/start-2.png" alt="" style="top:${mid(cur) - TR.mascot * 1.05}px;left:${at(TR.decor / 2 - TR.mascot * 1.2)};width:${TR.mascot}px">` : "";
   scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div>
@@ -465,7 +465,7 @@ function renderTrack() {
     // The lessons stay folded away until the child opens them.
     const shown = all ? r.s.lessons.map(row) : [];
     // One line for where the child is; the lessons open from the list button beside Start.
-    tip.innerHTML = `<span class="tr-tt"><b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>${starsOf3(r.s.skill, "tr-tip-st")}</span>
+    tip.innerHTML = `<span class="tr-tt"><b>${keepSuffix(r.s.title[lg] ?? r.s.title.de)}</b>${starsOf3(stateKey(r.s), "tr-tip-st")}</span>
       <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((l, k) => `<i class="${weakAt(l, k) ? "weak" : k < done ? "on" : k === done && !locked ? "now" : ""}"></i>`).join("")}</span>
         <span class="tr-meta">${esc(finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
       ${firstWeak && !shown.length ? `<button class="tr-weak" data-n="${firstWeak.n}"><i>!</i><span>${esc(W.lesson(firstWeak.title[lg] ?? firstWeak.title.de))}</span></button>` : ""}
@@ -518,8 +518,16 @@ function subjectMenu(pill) {
   m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}" style="--c:${colourOf(x)}"${x === APP.subj ? ' aria-current="true"' : ""}><i><img src="study/${a}.svg" alt=""></i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`; }).join("");
   const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
   const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
-  m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  m.querySelectorAll("button").forEach((b) => b.onclick = (e) => { if (moved) return e.preventDefault(); close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  // The row slides left and right when the subjects don't fit: a swipe on a phone, and here a
+  // mouse drag too. A drag that moved is not a tap on the subject it ends on.
+  let drag = null, moved = false;
+  m.onpointerdown = (e) => { if (e.pointerType !== "mouse") return; drag = { x: e.clientX, left: m.scrollLeft }; moved = false; };
+  m.onpointermove = (e) => { if (!drag) return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 5 && !moved) { moved = true; m.classList.add("drag"); m.setPointerCapture(e.pointerId); } if (moved) m.scrollLeft = drag.left - dx; };
+  m.onpointerup = m.onpointercancel = () => { drag = null; m.classList.remove("drag"); setTimeout(() => moved = false); };
+  m.ondragstart = (e) => e.preventDefault(); // the icons are images: the browser would drag them instead
   $("#screen").appendChild(m); document.addEventListener("pointerdown", away, true);
+  m.querySelector('[aria-current="true"]')?.scrollIntoView({ inline: "nearest", block: "nearest" });
 }
 
 /* ---------- Rewards: a popover from the streak, stars and badges ---------- */
@@ -532,7 +540,7 @@ const RWTXT = {
   en: { title: "Your rewards", tabs: { streak: "Streak", stars: "Stars", badges: "Badges" }, recent: "Earned lately", next: "Up next", none: "None yet. The first comes with your first skill at I can do it.", rest: (n) => `All the others (${n})`, close: "Close", starsHow: "You get stars for every skill: practise it, can do it, remember it.", streakBig: (n) => n === 1 ? "school day in a row" : "school days in a row" },
 };
 const RW = () => RWTXT[PL()];
-const allStars = (c) => appSubjects().flatMap((x) => courseSets(x).map((st) => st.skill)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
+const allStars = (c) => appSubjects().flatMap((x) => courseSets(x).map(stateKey)).reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0);
 function rewardsPopover(anchor, tab = "badges") {
   document.querySelector(".rw-pop")?.dispatchEvent(new Event("close"));
   const T = AT(), R = RW(), c = PR.child, scr = $("#screen"), all = myBadges(), s = streak(c);
@@ -543,7 +551,7 @@ function rewardsPopover(anchor, tab = "badges") {
     streak: `<div class="rw-hero rw-flame${s.current ? " on" : ""}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><span><b>${s.current}</b><small>${esc(R.streakBig(s.current))} · ${esc(T.streakBest(s.best))}</small></span></div>
       ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small>`,
     stars: `<div class="rw-hero rw-star"><i>★</i><span><b>${allStars(c)}</b><small>${esc(R.starsHow)}</small></span></div>
-      <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map((st) => st.skill), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<div style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></div>`; }).join("")}</div>`,
+      <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map(stateKey), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<div style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></div>`; }).join("")}</div>`,
     badges: `<h4 class="hm-step">${esc(R.recent)}</h4>
       ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(R.none)}</p>`}
       <h4 class="hm-step">${esc(R.next)}</h4><div class="bd-grid">${next.map(badgeTile).join("")}</div>
@@ -644,7 +652,7 @@ const weakOf = (s, n) => {
   const sc = PR.child.scores?.[s.id]?.[n];
   if (sc) return sc.right < sc.total ? sc : null;
   const last = s.lessons.at(-1)?.n;
-  return n === last && PR.child.states[s.skill]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
+  return n === last && PR.child.states[stateKey(s)]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
 };
 // For the child: the score as dots, filled for each one right ("3 of 5" read out), or "Not quite yet".
 // For the child: how it went as one circle per question, a tick for each right ("3 of 5" read out).
@@ -659,7 +667,7 @@ function studySetRow(s, open) {
     return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><img class="ln-mascot" src="${A}mascot/practise-2.png" alt=""><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span>${weakText(weak, W)}</span><em class="ln-redo">${REDO}${esc(W.redo)}</em></button></li>`;
   };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
-      ${starsOf3(s.skill)}</summary>
+      ${starsOf3(stateKey(s))}</summary>
     ${s.can_do?.[lg] ? `<p class="ln-can">${esc(s.can_do[lg])}</p>` : ""}
     <ol class="ln-lessons">${s.lessons.map(lessonRow).join("")}</ol></details>`;
 }
@@ -672,7 +680,7 @@ function appLessonDone(checkSteps, pass) {
   const check = pass == null ? null : { pass, keys: checkSteps.map(([s]) => taskKey(set.id, lesson.n, s.t.id)) };
   const missed = [...new Set(checkSteps.filter(([s, r]) => r !== "first" && s.t.part).map(([s]) => s.t.part))];
   const score = checkSteps.length ? { right: checkSteps.filter(([, r]) => r === "first").length, total: checkSteps.length, missed } : null;
-  finishLesson(c, { setId: set.id, skill: set.skill, n: lesson.n, check, score });
+  finishLesson(c, { setId: set.id, skill: stateKey(set), n: lesson.n, check, score });
   // A skill finished: Study's track skates on to the next one (anim-ui.js, trackSkate).
   if (lessonsDone(set) >= set.lessons.length) APP.skillDone = true;
   saveChild();
@@ -693,7 +701,7 @@ const badgeName = (id) => BADGE_NAME[id]?.[PL() === "de" ? 0 : 1] ?? streakName(
 // The child's badges for its year (a foreign language by its learning year).
 // Each badge is stamped the first time the app sees it earned, so the newest can come first.
 function myBadges() {
-  const c = PR.child, all = badges(c, Object.fromEntries(appSubjects().map((x) => [x, courseSets(x).map((s) => s.skill)])));
+  const c = PR.child, all = badges(c, Object.fromEntries(appSubjects().map((x) => [x, courseSets(x).map(stateKey)])));
   const got = (c.badgeSeen ??= {}); let n = Object.keys(got).length, changed = false;
   for (const b of all) if (b.earned && !(b.id in got)) { got[b.id] = { day: c.today, n: n++ }; changed = true; }
   if (changed) saveChild();
@@ -741,7 +749,7 @@ function renderMe() {
   const T = AT(), M = ME2[PL()], c = appChild(), scr = $("#screen"), lg = PL(), dense = bandUI().dense;
   const s = streak(c), all = myBadges(), seen = c.badgeSeen ?? {}, got = all.filter((b) => b.earned).sort((x, y) => (seen[y.id]?.n ?? 0) - (seen[x.id]?.n ?? 0));
   const nb = nextBadges(all, 1)[0], what = nb ? (BADGE_WHAT[nb.id]?.[lg === "de" ? 0 : 1] ?? T.how[nb.id] ?? "") : "";
-  const subs = appSubjects(), starsOf = (x) => courseSets(x).reduce((n, st) => n + STARS[c.states[st.skill]?.state ?? "not_started"], 0), stars = subs.reduce((n, x) => n + starsOf(x), 0);
+  const subs = appSubjects(), starsOf = (x) => courseSets(x).reduce((n, st) => n + STARS[c.states[stateKey(st)]?.state ?? "not_started"], 0), stars = subs.reduce((n, x) => n + starsOf(x), 0);
   const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page me${dense ? " me-dense" : ""}">
@@ -802,7 +810,7 @@ function switchCurriculum(cur) {
   const y = YEAR_OF(cur)[0], s = D.sets.find((x) => x.year === y && x.id.startsWith(cur + "."));
   PR.child = { ...(stash[cur] ?? newChild({ curriculum: cur, year: y, band: ageBand(s?.ages) })), name, avatar: av, stash: { ...stash, [c.curriculum]: keep } };
   delete PR.child.stash[cur];
-  PR.on = false; PR.session = null; PR.index = indexContent(D.sets, D.drills, cur);
+  PR.on = false; PR.session = null; PR.index = indexFor(PR.child);
 }
 // A photo, cropped to a square and made small enough to keep with the child.
 function readPhoto(file, done) {
@@ -880,18 +888,18 @@ function renderSettings() {
 // sessions, two drill records. Today is still to play, so Start has a plan.
 function loadDemo() {
   snap();
-  const was = PR.child, c = (PR.child = { ...newChild({ curriculum: was.curriculum, year: was.year, band: was.band }), name: was.name, avatar: was.avatar, stash: was.stash });
+  const was = PR.child, c = (PR.child = { ...newChild({ curriculum: was.curriculum, year: was.year, band: was.band }), name: was.name, avatar: was.avatar, stash: was.stash, tracks: was.tracks });
   c.today = 32;
   for (let d = 1; d < c.today; d++) if (d % 7 < 5 && d !== 15) markActive(c, d);
   const STATE = ["remembered", "can_do", "can_do", "practised"];
   let last = null;
   for (const x of appSubjects()) {
     const sets = courseSets(x), n = Math.max(3, Math.round(sets.length / 3));
-    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, st.skill, STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`);
+    sets.slice(0, n).forEach((st, i) => { c.lessons[st.id] = st.lessons.length; setState(c, stateKey(st), STATE[i % STATE.length]); logEvent(c, `lesson ${st.lessons.length} of ${st.id} finished`);
       // A skill left at one star: its skill check had misses on the first parts.
       if (STATE[i % STATE.length] === "practised") ((c.scores ??= {})[st.id] = {})[st.lessons.length] = { right: 3, total: 5, missed: (st.parts ?? []).slice(0, 2).map((p) => p.id), day: c.today - 1 }; });
     const nx = sets[n];
-    if (nx) { c.lessons[nx.id] = 1; setState(c, nx.skill, "learning"); logEvent(c, `lesson 1 of ${nx.id} finished`); last ??= { setId: nx.id, n: 1, day: c.today - 1 }; }
+    if (nx) { c.lessons[nx.id] = 1; setState(c, stateKey(nx), "learning"); logEvent(c, `lesson 1 of ${nx.id} finished`); last ??= { setId: nx.id, n: 1, day: c.today - 1 }; }
   }
   // The lessons were played over the past weeks, the newest on the last day played.
   const days = c.active; c.log.forEach((e, i) => e.day = days[Math.min(days.length - 1, Math.floor((i * days.length) / c.log.length))]);
@@ -900,7 +908,7 @@ function loadDemo() {
   c.last = last;
   c.sessions = 47;
   drillsForYear().slice(0, 2).forEach((k, i) => c.drills[k] = { best: [18, 24][i], weak: {} });
-  PR.index = indexContent(D.sets, D.drills, c.curriculum);
+  PR.index = indexFor(c);
 }
 // The preview's Settings menu (top right) loads demo data or resets, and redraws the screen the app is on.
 function demoAction(fn) {
@@ -914,7 +922,7 @@ document.getElementById("demoReset")?.addEventListener("click", () => demoAction
 function resetChild() {
   snap();
   const was = PR.child;
-  PR.child = { ...newChild({ curriculum: was.curriculum, year: was.year, band: was.band }), name: was.name, avatar: was.avatar, stash: was.stash };
+  PR.child = { ...newChild({ curriculum: was.curriculum, year: was.year, band: was.band }), name: was.name, avatar: was.avatar, stash: was.stash, tracks: was.tracks };
 }
 
 /* ---------- Drills: every bank of the child's curriculum, by subject ---------- */

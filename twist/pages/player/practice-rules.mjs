@@ -224,24 +224,31 @@ export function pools(set) {
   return p;
 }
 
-// Maths first, then the home language, then the foreign language.
-const SUBJECT_ORDER = ["math", "lit-de", "lit-en", "world", "fl"];
-export function indexContent(sets, drills, curriculum) {
-  const mine = sets.filter((s) => s.id.startsWith(curriculum + "."));
+// Maths first, then the home language (and DaZ, German as a second language), then the foreign language.
+const SUBJECT_ORDER = ["math", "lit-de", "lit-en", "daz", "world", "fl"];
+// What a child's states and practice keep a set's skill by: the skill, or for a
+// track's set (DaZ) "<track>:<skill>", so DaZ and Englisch never share one.
+export const stateKey = (s) => (s.track ? `${s.track}:${s.skill}` : s.skill);
+// The skill id behind a key (daz:fl.themes.hello is fl.themes.hello).
+export const skillOfKey = (k) => String(k).replace(/^[a-z-]+:/, "");
+// `tracks`: the child's tracks and level in each ({ daz: "daz-start" }); a track's
+// sets are in the index only for a child who has it.
+export function indexContent(sets, drills, curriculum, tracks = {}) {
+  const mine = sets.filter((s) => s.id.startsWith(curriculum + ".") && (!s.track || tracks?.[s.track]));
   const bySkill = {}, topics = new Map();
   for (const s of mine) {
-    bySkill[s.skill] = { set: s, pools: pools(s) };
+    bySkill[stateKey(s)] = { set: s, pools: pools(s) };
     const subject = s.id.split(".")[1], name = s.topic ?? { de: "", en: "" };
     const key = `${subject}|${name.en ?? name.de}`;
     if (!topics.has(key)) topics.set(key, { key, subject, name, skills: [] });
-    topics.get(key).skills.push(s.skill);
+    topics.get(key).skills.push(stateKey(s));
   }
   // A foreign-language bank holds the words of every language taught; keep the one this curriculum teaches.
   const myDrills = Object.fromEntries(Object.entries(drills).filter(([k]) => bySkill[k]).map(([k, b]) => {
     const tl = bySkill[k].set.target_language;
     return [k, tl && b.items.some((it) => it.lang) ? { ...b, items: b.items.filter((it) => !it.lang || it.lang === tl) } : b];
   }));
-  return { curriculum, sets: mine, bySkill, drills: myDrills, topics: [...topics.values()], subjects: [...new Set(mine.map((s) => s.id.split(".")[1]))].sort((a, b) => SUBJECT_ORDER.indexOf(a) - SUBJECT_ORDER.indexOf(b)) };
+  return { curriculum, tracks: JSON.stringify(tracks ?? {}), sets: mine, bySkill, drills: myDrills, topics: [...topics.values()], subjects: [...new Set(mine.map((s) => s.id.split(".")[1]))].sort((a, b) => SUBJECT_ORDER.indexOf(a) - SUBJECT_ORDER.indexOf(b)) };
 }
 
 // ---------- picking ----------
@@ -557,7 +564,7 @@ export function suggestions(child, index) {
 
 // ---------- typed requests ----------
 
-const SUBJECT_WORDS = { math: ["mathe", "maths", "math", "rechnen"], "lit-de": ["deutsch"], "lit-en": ["english"], fl: ["englisch", "french", "französisch"] };
+const SUBJECT_WORDS = { math: ["mathe", "maths", "math", "rechnen"], daz: ["daz", "zweitsprache", "second language"], "lit-de": ["deutsch"], "lit-en": ["english"], fl: ["englisch", "french", "französisch"] };
 // Walked in this order, so "Blitzlesen wiederholen" is a review, not a drill.
 const KIND_WORDS = {
   review: ["wiederholen", "wiederholung", "review", "revise"],

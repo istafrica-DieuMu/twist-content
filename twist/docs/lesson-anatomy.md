@@ -120,7 +120,8 @@ from more activity names.
 | **Check** | Show what you know | Zeig, was du kannst | Short, no help, counts toward mastery |
 
 Every activity opens with an intro screen: the mascot, the activity's name
-and one spoken line ("Wir wärmen uns auf.", phrases.yaml). The lesson start,
+and one spoken line ("Wir wärmen uns auf.", phrases.yaml, about ten per
+group, dealt so none repeats before the group is used up). The lesson start,
 each change of practise stage and the lesson end are static screens with the
 mascot too. Each of these seven screen kinds has three mascot poses
 (assets/mascot.yaml, files in assets/mascot/: start, warmup, learn,

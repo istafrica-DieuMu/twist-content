@@ -33,7 +33,7 @@ const fbkTools = () => !FBK.me || !!fbkCan().tools;
 const FBK_STEP = { start: "Start", intro: "Activity starts", stage: "Stage change", checkIntro: "Check starts", end: "End" };
 function fbkScreen() {
   const b = document.body.classList;
-  if (["types", "drawn", "fbv", "usv"].some((c) => b.contains(c))) return null;
+  if (["types", "drawn", "sources", "fbv", "usv"].some((c) => b.contains(c))) return null;
   const build = $("#built")?.textContent || undefined;
   if (b.contains("parents")) return { kind: "parents", label: "Parents Lab", build };
   if (b.contains("practice")) { const tab = APP.tab ?? "start"; return { kind: "app", tab: PR.on ? "practice-session" : tab, label: PR.on ? "App · a practice session" : `App · ${SIDE_NAME[tab] ?? tab}`, build }; }
@@ -503,9 +503,9 @@ async function fbkInit() {
   document.body.classList.add("fbk-on");
   $("#fbkBar").hidden = false; $("#vFeedback").hidden = false; $("#vUsers").hidden = !FBK.me.can.manageUsers;
   if (!fbkTools()) {
-    $("#vDrawn").hidden = true; $("#vTypes").hidden = true; document.body.classList.add("fbk-notools");
+    $("#vDrawn").hidden = true; $("#vTypes").hidden = true; $("#vSources").hidden = true; document.body.classList.add("fbk-notools");
     // Opened on a tool page (a #types link) before the role was known: back to the app.
-    if (["types", "drawn"].some((c) => document.body.classList.contains(c))) appTab("start");
+    if (["types", "drawn", "sources"].some((c) => document.body.classList.contains(c))) appTab("start");
   }
   $("#fbkComment").onclick = () => fbkPinMode();
   $("#fbkInbox").onclick = () => { toggle($("#fbkInbox"), $("#fbkMenu")); fbkRenderBar(); };

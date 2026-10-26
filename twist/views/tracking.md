@@ -9,23 +9,23 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
 | de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30142 / 30142) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27602 / 27602) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27597 / 27597) |
 | de-DE | Sachunterricht | 100% (112 / 112) | 100% (44 / 44) | 224 | 100% (24349 / 24349) |
 | de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8074 / 8074) |
-| **de-DE** | **all** | **100% (547 / 547)** | **100% (205 / 205)** | **1133** | **100% (90166 / 90166)** |
+| **de-DE** | **all** | **100% (547 / 547)** | **100% (205 / 205)** | **1133** | **100% (90161 / 90161)** |
 | en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38571 / 38571) |
-| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22322 / 22322) |
-| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8383 / 8383) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (69275 / 69275)** |
+| en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22321 / 22321) |
+| en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8379 / 8379) |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (69271 / 69271)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 846 files (837 priced) | $20 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 160062 clips, 224.8 h | about $272 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 160062 clips | about $127 | estimated the same way |
-| **Total** | | | **about $419** | |
+| Narration | google/gemini-3.8-flash-tts | 160338 clips, 225.1 h | about $273 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 160338 clips | about $127 | estimated the same way |
+| **Total** | | | **about $420** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -33,16 +33,16 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 25594 | 25394 (99%) | 0 | 1578 min | $53 |
-| gemini-puck-en | 18191 | 18068 (99%) | 0 | 1410 min | $43 |
+| gemini-puck | 25624 | 25424 (99%) | 0 | 1578 min | $53 |
+| gemini-puck-en | 18226 | 18102 (99%) | 0 | 1412 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
-| gemini-sulafat | 64774 | 64163 (99%) | 0 | 5382 min | $160 |
-| gemini-sulafat-en | 49374 | 48915 (99%) | 0 | 5009 min | $140 |
+| gemini-sulafat | 64811 | 64200 (99%) | 0 | 5383 min | $160 |
+| gemini-sulafat-en | 49548 | 49079 (99%) | 0 | 5023 min | $141 |
 | gemini-sulafat-fr | 1364 | 1360 (100%) | 0 | 78 min | $2.64 |
 
 ## de-DE
 
-547 of 547 placed skills drafted (100%): 547 lesson sets, 1133 lessons, 34380 tasks. Narration so far about $212; 0 clips still to make.
+547 of 547 placed skills drafted (100%): 547 lesson sets, 1133 lessons, 34380 tasks. Narration so far about $213; 0 clips still to make.
 
 | year | Mathe | Deutsch | Sachunterricht | Englisch | all |
 |---|---|---|---|---|---|
@@ -107,7 +107,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Deutsch | Pronomen | 1 / 1 done | 2 | $0.40 |
 | klasse-2 | Deutsch | Verben | 4 / 4 done | 8 | $1.14 |
 | klasse-2 | Deutsch | Adjektive | 3 / 3 done | 6 | $0.90 |
-| klasse-2 | Deutsch | Satzarten | 2 / 2 done | 4 | $0.52 |
+| klasse-2 | Deutsch | Satzarten | 2 / 2 done | 4 | $0.51 |
 | klasse-2 | Deutsch | Wortschatz | 1 / 1 done | 2 | $0.37 |
 | klasse-2 | Deutsch | Laute und Buchstaben | 1 / 1 done | 2 | $0.27 |
 | klasse-2 | Deutsch | Kurze und lange Selbstlaute | 1 / 1 done | 2 | $0.30 |
@@ -210,7 +210,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Berichten | 2 / 2 done | 4 | $0.80 |
 | klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.46 |
 | klasse-4 | Deutsch | Gespräche führen | 1 / 1 done | 2 | $0.43 |
-| klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $2.99 |
+| klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $2.98 |
 | klasse-4 | Sachunterricht | Mitbestimmen | 3 / 3 done | 6 | $1.66 |
 | klasse-4 | Sachunterricht | Sicher mit Medien | 4 / 4 done | 8 | $2.40 |
 | klasse-4 | Sachunterricht | Helfen im Notfall | 1 / 1 done | 2 | $0.55 |
@@ -487,7 +487,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-6 | English | Spelling | 2 / 2 done | 4 | $0.86 |
 | year-6 | English | Writing | 5 / 5 done | 10 | $2.10 |
 | ly-1 | French | Listening | 3 / 3 done | 6 | $0.74 |
-| ly-1 | French | Hello | 1 / 1 done | 2 | $0.33 |
+| ly-1 | French | Hello | 1 / 1 done | 2 | $0.32 |
 | ly-1 | French | Colours | 1 / 1 done | 2 | $0.29 |
 | ly-1 | French | Numbers | 1 / 1 done | 2 | $0.30 |
 | ly-1 | French | Speaking | 3 / 3 done | 6 | $0.82 |
@@ -530,10 +530,12 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## Practice content
 
-The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 1030 of 1030 skill checks and 1086 of 1086 quick checks done; 30 drill banks.
+The authoring queue for check pools (docs/plans/2026-10-18-practice-content.md): a batch is done when every set has a skill check of 20 with parts and every quick check holds 6. 1032 of 1032 skill checks and 1089 of 1089 quick checks done; 30 drill banks.
 
 | batch | sets | skill checks done | quick checks done |
 |---|---|---|---|
+| de-DE daz daz-letters | 1 | 1 | 2 of 2 |
+| de-DE daz daz-start | 1 | 1 | 1 of 1 |
 | de-DE fl lernjahr-1 | 28 | 28 | 28 of 28 |
 | de-DE fl lernjahr-2 | 16 | 16 | 16 of 16 |
 | de-DE fl stufe-0 | 14 | 14 | 14 of 14 |
@@ -598,6 +600,8 @@ From reviews.yaml: each pass over the lessons, what it read and where its fixes 
 | 2026-10-19 | Integration pass (Learn examples in frames and drawings, screens that fit) | 225 | the 225 sets with check pools; the Learn-example rule now also reads a check's frame and its drawn component (base-ten, ten-frame, dots, clock and the other worked-example drawings), which found 18 checks in 12 finished sets; a screen audit of every pool task in the player | 18 checks changed and narrated in both German voices; no Learn-example warning left in finished sets (38 remain in sets still waiting for pools). In the player, a screen that does not fit scales the picture first (to 40%, at least 64px tall), then the question text, then the answer area (to half); drawn options such as clocks and cube towers scale into their square tiles. The audit shows no flags in the 225 sets (before, 17 screens 7 to 21px too tall) | see git log, "Integration pass" |
 | 2026-10-20 | de-DE Deutsch and Englisch check pools, drill banks | 229 | every remaining de-DE set (Deutsch Klasse 1 to 4, 172 sets; Englisch Stufe 0, Lernjahr 1 and 2, 57 sets) and 14 drill banks (4 Deutsch, 10 maths); 19 chunks and 3 bank chunks, one author and one reviewer reading as a native teacher each | every de-DE set has check pools (232 of 232 with the pilots); 20 drill banks with 1103 items in all; about 270 reviewer fixes; 101 questions for a decision in docs/plans/2026-10-18-practice-questions.md; build clean for every de-DE file and bank | see git log, "de-DE Deutsch and Englisch check pools" |
 | 2026-10-20 | en-GB maths, English and French check pools, drill banks | 464 | every remaining en-GB set (maths Years 1 to 6, 245 sets; English Reception to Year 6, 158 sets; French LY1 to LY4, 61 sets) and 10 drill banks (6 English, 4 foreign-language in a new item format); 37 chunks and 2 bank chunks, one author and one reviewer reading as a native teacher each | every set has check pools (918 of 918); 30 drill banks with 1630 items; about 460 reviewer fixes; 196 questions for a decision in docs/plans/2026-10-18-practice-questions.md; build clean. The foreign-language banks pair a word with a picture or digit and its German and English meaning, checked by drills-check.mjs; a bank may be named strand.slug.yaml when two skills share a slug | see git log, "en-GB maths, English and French check pools" |
+| 2026-10-26 | Fun pass, every lesson set in de-DE and en-GB | 918 | all 918 sets that existed before Sachunterricht (de-DE 435, en-GB 483), after the pilot of 2026-10-25; 84 batches of about 10, run as waves of 8 agents, one agent per batch | 1,082 "Did you know?" facts; about 30 factual or wording fixes found on the way; 15 repeated facts swapped; structure check against the last commit clean for every wave; build clean; narrated | see git log, "Fun pass, wave" |
+| 2026-10-26 | Sachunterricht Klasse 1 to 4, written and illustrated | 112 | 112 new de-DE sets on the NRW Lehrplan Sachunterricht (2021), one agent per set, then four picture agents (one per Klasse) and two agents moving lessons to the new drawn components | 112 skills and 112 sets; 466 new pictures (4 redrawn after the contact sheets), 8 topic mascots, 6 drawn components (germany-map, world-map, junction, circuit, water-cycle, timeline) used in 18 sets; build clean; narrated; a teacher review is still open | see git log, "Sachunterricht" |
 
 Open points (12):
 

@@ -81,7 +81,7 @@ const CTXT = {
 function checkStars(pass, from, to) {
   return `<span class="ck-stars${pass ? " pass" : ""}" aria-label="${to} / 3">${[1, 2, 3].map((i) => `<i class="${i <= to ? "on" : ""}${i > from && i <= to ? " new" : ""}${!pass && i === 2 && to < 2 ? " want" : ""}">★</i>`).join("")}</span>`;
 }
-const starsOfSkill = () => STARS[PR.child?.states?.[set.skill]?.state ?? "not_started"];
+const starsOfSkill = () => STARS[PR.child?.states?.[stateKey(set)]?.state ?? "not_started"];
 // The screens one after another; each moves on by itself after a while, or with Continue.
 function celebrate(screens, then) {
   const C = CTXT[PL()];

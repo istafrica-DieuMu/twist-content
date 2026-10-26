@@ -13,28 +13,41 @@ average up to 3.33 instead of 2.33 (BaySchO §6).
 
 ## Structure
 
-No new domain. DaZ reuses two that exist:
+DaZ is a subject of its own, separate from Deutsch (decided 2026-10-26). It
+needs no new domain: it is a **track** in curricula/de-DE.yaml (`tracks.daz`)
+with its own learning years and its own placement, so a skill can be placed
+in Englisch or Deutsch and again in DaZ.
 
 | Part | Domain | What it takes |
 |---|---|---|
-| Speaking, listening, words, sentences | `fl` | `fl` skills are language-neutral can-do lines with lessons per target language. DaZ is `fl` with German as the target: new lessons, no new skills |
-| Letters and reading for children new to the Latin script | `lit-de` | the existing letter and sound skills from Klasse 1, with instructions a beginner can follow (pictures, audio, few words) |
+| Speaking, listening, words, sentences | `fl` | `fl` skills are language-neutral can-do lines with lessons per target language. DaZ places all 64 of them with German as the target |
+| Letters and reading for children new to the Latin script | `lit-de` | 25 Klasse 1 letter and sound skills, with instructions a beginner can follow (pictures, audio, few words) |
 
-This answers PLAN.md open point 2 (keep first-language German content for a
-later DaZ domain): DaZ needs no domain of its own.
+Lesson sets: `lessons/de-DE/<daz year>/daz/<file>.yaml`, id `de-DE.daz.<name>`,
+`track: daz`, `language: en` (instructions), `target_language: de`.
 
-## Learning years
+## Learning years and placement
 
-DaZ placement works like Englisch (English): by learning year, not by Klasse.
+By learning year, not by Klasse: a child starts at DaZ Start whatever the
+Klasse. Decided 2026-10-26.
 
-| Learning year | Level | Content |
-|---|---|---|
-| DaZ Start | Pre-A1 | greetings, name, age, colours, numbers to 20, body, family, school things, classroom phrases (Ich habe eine Frage, Wie heißt das?) |
-| DaZ 1 | A1 | food, clothes, home, feelings, hobbies, weather, days and times; der, die, das; ein, eine; plurals; I have, I can, I like |
-| DaZ 2 | A2 | past events (Perfekt), where things are (Präpositionen), describing (Adjektive), asking and answering in school subjects |
+| Learning year | Level | Skills | What it is for |
+|---|---|---|---|
+| DaZ Start (`daz-start`) | Pre-A1 | 16 | The first weeks at school: classroom phrases, greetings, school things, colours, numbers to 20, body, family, feelings, "Ich bin, ich habe, ich möchte" |
+| DaZ Buchstaben (`daz-letters`) | | 25 | Only for children new to the Latin script: the Klasse 1 letter course, L O A M to the alphabet and first sentences. One question when DaZ starts decides it |
+| DaZ 1 (`daz-1`) | A1 | 27 | Everyday German and the grammar German needs early: der, die, das, gender and verb endings, questions, prepositions; food, clothes, home, town, time, numbers to 100 |
+| DaZ 2 (`daz-2`) | A2 | 21 | Joining in at school: task language in other subjects, daily routine, describing, joining sentences, the past, short texts, presenting, festivals, mediating for the family |
 
-Which `fl` skills go in which DaZ year is the next step; the Englisch
-placement in curricula/de-DE.yaml is the model.
+Against the Englisch order: feelings, numbers to 20 and guessing from
+context come earlier (a DaZ child is surrounded by German from day one);
+gender, verb endings, time and numbers to 100 move to DaZ 1 (A1 basics in
+German, and Mathe needs them); mediating moves to DaZ 2.
+
+Three new `fl` skills, language-neutral like the others and marked
+enrichment (no KMK standard): `fl.grammar.past` (the Perfekt),
+`fl.grammar.connect` (und, aber, dann, weil, with the verb at the end after
+weil) and `fl.listening.school-language` (kreise ein, ordne zu, vergleiche,
+mehr, weniger).
 
 ## Frameworks
 
@@ -49,14 +62,14 @@ Rahmenplan DaZ (2006) built on Bayern's.
 
 ## Open
 
-- How the app shows DaZ: as a fourth subject, or as a mode that changes
-  instructions and voice speed across Deutsch.
+- Decided 2026-10-26: the app shows DaZ as its own subject, not as a mode
+  of Deutsch.
 - Instructions in the home language: decided 2026-10-25, English for now
   (the support language besides German); Arabic, Turkish, Ukrainian and
   Russian later.
 
 ## Size
 
-About 60 lesson sets on existing `fl` skills, plus beginner versions of
-about 30 `lit-de` letter lessons. The benchmark has a letters course of 47
+89 lesson sets: 64 on `fl` skills and 25 beginner versions of the
+Klasse 1 letter lessons. The benchmark has a letters course of 47
 lessons and A1 and A2 courses of 87 and 39 lessons.

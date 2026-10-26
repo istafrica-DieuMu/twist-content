@@ -26,6 +26,12 @@ target_notes:
 # Home-language lines in a foreign-language lesson, by the line's language
 # (German lines in English lessons get mixed_note below).
 mixed_notes:
+  # English lines in DaZ lessons (target German), by "<line language>.<target>".
+  en.de: >
+    This English line comes from a lesson for a child learning German and
+    may contain German words or short German phrases (Hallo, Tschüss, Lama):
+    say those in clear standard German, and every English word in British
+    English.
   en: >
     This English line comes from a French lesson and may contain French
     words or short French phrases (Écoutez, la banane): say those in clear
@@ -56,11 +62,23 @@ curricula:
       check: gemini-puck-en
       phrases.check_start: gemini-puck-en
     speakers: { male: gemini-puck-en, female: gemini-sulafat-en }
+  # DaZ (curricula/de-DE.yaml tracks.daz): instructions in English by the
+  # en-GB voices; the German the child learns goes to the German voices
+  # through language_voices below.
+  de-DE.daz:
+    language: en
+    chosen: gemini-sulafat-en
+    assign:
+      check: gemini-puck-en
+      phrases.check_start: gemini-puck-en
+    speakers: { male: gemini-puck-en, female: gemini-sulafat-en }
 # A line in a language with its own voices goes to that language's voice in
 # the same role: French in en-GB French lessons is said by native French
 # voices, not the English ones with a note.
 language_voices:
   fr: { gemini-sulafat-en: gemini-sulafat-fr, gemini-puck-en: gemini-puck-fr }
+  # German in DaZ lessons, whose instructions are English.
+  de: { gemini-sulafat-en: gemini-sulafat, gemini-puck-en: gemini-puck }
 candidates:
   - { id: gemini-sulafat, model: google/gemini-3.8-flash-tts, voice: Sulafat, note: "female, warm; teaches and practises" }
   - id: gemini-puck

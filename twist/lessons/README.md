@@ -24,6 +24,7 @@ Model lessons (de-DE, drafts):
 id: de-DE.math.add-bridge-10          # <curriculum>.<domain>.<slug>; never contains a year
 skill: math.add-sub-to-20.add-bridge-10
 curriculum: de-DE
+track: daz                            # a track's set only (id de-DE.daz.<slug>; docs/model.md, Tracks)
 language: de                          # language of the instructions
 target_language: en                   # foreign-language lessons only
 title: { de: "...", en: "..." }       # quote titles that contain commas or question marks
