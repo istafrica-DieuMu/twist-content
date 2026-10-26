@@ -789,8 +789,11 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .tr-tip .tr-tip-st i.on { color: #ffd34d; }
 
 /* The subject picker under the stats row, as the app's: one row, icon over name. */
-.tr-menu { position: absolute; top: 100px; left: 0; right: 0; z-index: 30; display: flex; justify-content: flex-start; gap: 24px; padding: 14px 20px 0; background: var(--card); border-bottom: 1px solid var(--edge-c); box-shadow: 0 10px 22px -10px rgba(43, 15, 69, .3); animation: app-pop .2s ease-out both; }
-.tr-menu button { position: relative; display: grid; justify-items: center; gap: 6px; padding: 0 0 14px; border: 0; background: none; font: 600 15px "Red Hat Text", sans-serif; color: var(--plum); cursor: pointer; }
+.tr-menu { position: absolute; top: 100px; left: 0; right: 0; z-index: 30; display: flex; justify-content: flex-start; gap: 24px; padding: 14px 20px 0; background: var(--card); border-bottom: 1px solid var(--edge-c); box-shadow: 0 10px 22px -10px rgba(43, 15, 69, .3); animation: app-pop .2s ease-out both; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding: 0 20px; scrollbar-width: none; }
+.tr-menu::-webkit-scrollbar { display: none; }
+.tr-menu::after { content: ""; flex: none; width: 1px; }
+.tr-menu.drag { cursor: grabbing; scroll-snap-type: none; }
+.tr-menu button { flex: none; scroll-snap-align: start; position: relative; display: grid; justify-items: center; gap: 6px; padding: 0 0 14px; border: 0; background: none; font: 600 15px "Red Hat Text", sans-serif; color: var(--plum); cursor: pointer; }
 .tr-menu i { display: grid; place-items: center; width: 61px; height: 39px; border-radius: 10px; border: 1.5px solid transparent; }
 .tr-menu img { width: 33px; height: 23px; opacity: .5; filter: grayscale(1); }
 .tr-menu [aria-current="true"] i { background: color-mix(in srgb, var(--c) 14%, var(--card)); border-color: var(--c); }

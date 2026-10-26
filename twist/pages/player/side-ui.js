@@ -99,7 +99,7 @@ function sideWire(ctx, el) {
 // From any view, a lesson picked in the list plays in the phone's lesson player.
 function openFromList(i, n) {
   stopAudio();
-  if (["practice", "parents", "types", "drawn"].some((v) => document.body.classList.contains(v))) setView("lessons");
+  if (["practice", "parents", "types", "drawn", "sources"].some((v) => document.body.classList.contains(v))) setView("lessons");
   APP.fromApp = false; APP.units = false;
   pickSet(i, n);
 }

@@ -45,7 +45,7 @@ html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.4 system-
 .views button[aria-selected="true"]{background:#6849dd;color:#fff}
 .typesview{position:fixed;left:0;right:0;bottom:0;top:var(--tb,64px);width:100%;height:calc(100vh - var(--tb,64px));border:0;z-index:15;background:var(--page)}
 .typesview[hidden]{display:none}
-body.types .drawer,body.types .wrap,body.types .pickbtn,body.types .now,body.drawn .drawer,body.drawn .wrap,body.drawn .pickbtn,body.drawn .now{display:none!important}
+body.types .drawer,body.types .wrap,body.types .pickbtn,body.types .now,body.drawn .drawer,body.drawn .wrap,body.drawn .pickbtn,body.drawn .now,body.sources .drawer,body.sources .wrap,body.sources .pickbtn,body.sources .now{display:none!important}
 .tbtn{display:flex;align-items:center;gap:6px;font:600 13px system-ui,sans-serif;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
 .pop[hidden]{display:none}
 .pop{position:absolute;right:0;top:calc(100% + 8px);width:300px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:8px;z-index:30}
@@ -455,7 +455,7 @@ svg text{font-family:Andika,sans-serif}
 .pickhead span{flex:1;font-size:12px;color:var(--muted)}
 .xbtn{align-self:center;display:grid;place-items:center;width:30px;height:30px;padding:0;border:1px solid var(--line);border-radius:10px;background:none;color:var(--ink);cursor:pointer}
 .xbtn:hover{border-color:#6849dd}
-body.types .listbtn,body.drawn .listbtn{display:none!important}
+body.types .listbtn,body.drawn .listbtn,body.sources .listbtn{display:none!important}
 /* Learn text card */
 .ltext{align-self:stretch;background:var(--sunk);border:1px solid var(--edge-c);border-radius:16px;padding:16px 18px;font-family:"Red Hat Text",sans-serif;font-weight:500;line-height:1.35;color:var(--text);display:flex;flex-direction:column;gap:8px;text-align:left}
 .ltext b{font-weight:700;color:var(--text)}
@@ -549,7 +549,7 @@ button.goal{display:block;width:100%;text-align:left;cursor:pointer;font-family:
   <button class="tbtn listbtn" id="openList" type="button" title="Show the lesson list"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Lessons</button>
   <button class="pickbtn" id="openPick" aria-expanded="false" aria-controls="drawer"><span class="pk"><small id="pickSub"></small><b id="pickLabel"></b></span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="now" id="now"></div>
-  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vParents" aria-selected="false" title="Ideas for the parents dashboard, each with the question it answers and the data it needs">Parents Lab</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
+  <div class="views" role="tablist" aria-label="View"><button role="tab" id="vApp" aria-selected="true" title="The Twist app: Start, Study, Practice and Me">App</button><button role="tab" id="vDrawn" aria-selected="false">Drawings</button><button role="tab" id="vTypes" aria-selected="false">Task types</button><button role="tab" id="vSources" aria-selected="false" title="Where every text, picture and sound on a lesson screen comes from">Sources</button><button role="tab" id="vParents" aria-selected="false" title="Ideas for the parents dashboard, each with the question it answers and the data it needs">Parents Lab</button><button role="tab" id="vFeedback" aria-selected="false" hidden title="Comments left on app screens">Feedback<span class="fbk-n"></span></button><button role="tab" id="vUsers" aria-selected="false" hidden title="Accounts: add people, reset passwords">Users</button></div>
   <div class="fbk-bar" id="fbkBar" hidden>
     <button class="tbtn" id="fbkComment" type="button" aria-pressed="false" title="Leave a comment on a point or an area of this screen (c)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Comment</button>
     <div class="fbk-anchor"><button class="tbtn" id="fbkInbox" type="button" aria-expanded="false" aria-controls="fbkMenu" title="Open feedback"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 13l2-8h12l2 8v6H4zM4 13h5l1 2h4l1-2h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="fbk-badge" id="fbkCount" hidden></span></button>
@@ -593,6 +593,7 @@ button.goal{display:block;width:100%;text-align:left;cursor:pointer;font-family:
 </div>
 <iframe class="typesview" id="typesView" hidden title="Task types"></iframe>
 <iframe class="typesview" id="drawnView" hidden title="Drawings"></iframe>
+<iframe class="typesview" id="sourcesView" hidden title="Screen sources"></iframe>
 <div class="parentsview" id="parentsView" hidden></div>
 <div class="fbview" id="feedbackView" hidden></div>
 <div class="fbview" id="usersView" hidden></div>
@@ -1857,23 +1858,27 @@ if (!new URLSearchParams(location.hash.slice(1)).get("type") && location.hash !=
 // type chips open that type's section there.
 function setView(v, anchor) {
   // Drawings and Task types are the team's tools; a tester's page stays on the app (feedback-ui.js).
-  if ((v === "types" || v === "drawn") && !fbkTools()) v = "lessons";
-  const types = v === "types", practice = v === "practice", drawnV = v === "drawn", parentsV = v === "parents", fr = $("#typesView"), dr = $("#drawnView");
-  document.body.classList.toggle("types", types); document.body.classList.toggle("drawn", drawnV); document.body.classList.toggle("practice", practice); document.body.classList.toggle("parents", parentsV); fr.hidden = !types; dr.hidden = !drawnV; $("#parentsView").hidden = !parentsV;
-  $("#vApp").setAttribute("aria-selected", v === "lessons" || practice); $("#vTypes").setAttribute("aria-selected", types); $("#vDrawn").setAttribute("aria-selected", drawnV); $("#vParents").setAttribute("aria-selected", parentsV);
+  if ((v === "types" || v === "drawn" || v === "sources") && !fbkTools()) v = "lessons";
+  const types = v === "types", practice = v === "practice", drawnV = v === "drawn", sourcesV = v === "sources", parentsV = v === "parents", fr = $("#typesView"), dr = $("#drawnView"), so = $("#sourcesView");
+  document.body.classList.toggle("types", types); document.body.classList.toggle("drawn", drawnV); document.body.classList.toggle("sources", sourcesV); document.body.classList.toggle("practice", practice); document.body.classList.toggle("parents", parentsV); fr.hidden = !types; dr.hidden = !drawnV; so.hidden = !sourcesV; $("#parentsView").hidden = !parentsV;
+  $("#vApp").setAttribute("aria-selected", v === "lessons" || practice); $("#vTypes").setAttribute("aria-selected", types); $("#vDrawn").setAttribute("aria-selected", drawnV); $("#vSources").setAttribute("aria-selected", sourcesV); $("#vParents").setAttribute("aria-selected", parentsV);
   if (parentsV) { stopAudio(); renderParents(); }
   document.documentElement.style.setProperty("--tb", $(".topbar").offsetHeight + "px");
   if (types) { const url = "../types/index.html" + (anchor ? "#" + anchor : ""); if (!fr.src || anchor) fr.src = url; stopAudio(); }
   // Drawings: every drawn component with a real example (pages/drawings, written by pages/sources/drawn.cjs).
-  if (drawnV) { const url = "../drawings/index.html" + (anchor ? "#" + anchor : ""); if (!dr.src || anchor) dr.src = url; stopAudio(); }
+  // ?v= makes each opening of the player load the pages as they are now, not a cached copy.
+  if (drawnV) { const url = `../drawings/index.html?v=${window.PAGE_LOAD ??= Date.now()}` + (anchor ? "#" + anchor : ""); if (!dr.src || anchor) dr.src = url; stopAudio(); }
+  // Sources: where every text, picture and sound on a lesson screen comes from (pages/sources, written by hand).
+  if (sourcesV) { const url = `../sources/index.html?v=${window.PAGE_LOAD ??= Date.now()}` + (anchor ? "#" + anchor : ""); if (!so.src || anchor) so.src = url; stopAudio(); }
   if (practice) openPractice(); else if (PR.on || PR.home) closePractice();
   fbkSetView(v);
 }
 // One App view: the phone's tabs move between the lesson view (Study) and the practice view (Start, Practice, Me).
-$("#vApp").onclick = () => { if (["types", "drawn", "parents", "fbv", "usv"].some((c) => document.body.classList.contains(c))) appTab(APP.tab ?? "start"); };
+$("#vApp").onclick = () => { if (["types", "drawn", "sources", "parents", "fbv", "usv"].some((c) => document.body.classList.contains(c))) appTab(APP.tab ?? "start"); };
 $("#vParents").onclick = () => setView("parents");
 $("#vTypes").onclick = () => setView("types");
 $("#vDrawn").onclick = () => setView("drawn");
+$("#vSources").onclick = () => setView("sources");
 document.addEventListener("click", (e) => { const a = e.target.closest("a[data-type]"); if (a) { e.preventDefault(); setView("types", a.dataset.type); } });
 window.addEventListener("message", (e) => { const m = e.data || {}; if (m.twist === "openType" && m.type) { setView("lessons"); openType(m.type); } if (m.twist === "lessons") setView("lessons"); });
 function openType(want) {

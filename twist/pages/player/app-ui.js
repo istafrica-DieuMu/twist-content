@@ -64,7 +64,7 @@ function appTab(t, { keep = false } = {}) {
   stopAudio(); appChild();
   APP.tab = t;
   // Study is marked open before the view changes, so the lesson view coming back draws (and says) nothing.
-  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn", "fbv", "usv"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
+  if (t === "study") { if (!keep) APP.units = false; APP.home = "study"; if (["practice", "parents", "types", "drawn", "sources", "fbv", "usv"].some((v) => document.body.classList.contains(v))) setView("lessons"); APP.fromApp = false; APP.units ? renderStudy() : renderTrack(); return renderPracticeSide(); }
   if (!inPractice()) setView("practice");
   APP.home = null; PR.on = false; PR.session = null; PR.home = true;
   if (t === "settings") APP.editPic = false;
@@ -518,8 +518,16 @@ function subjectMenu(pill) {
   m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}" style="--c:${colourOf(x)}"${x === APP.subj ? ' aria-current="true"' : ""}><i><img src="study/${a}.svg" alt=""></i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`; }).join("");
   const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
   const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
-  m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  m.querySelectorAll("button").forEach((b) => b.onclick = (e) => { if (moved) return e.preventDefault(); close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  // The row slides left and right when the subjects don't fit: a swipe on a phone, and here a
+  // mouse drag too. A drag that moved is not a tap on the subject it ends on.
+  let drag = null, moved = false;
+  m.onpointerdown = (e) => { if (e.pointerType !== "mouse") return; drag = { x: e.clientX, left: m.scrollLeft }; moved = false; };
+  m.onpointermove = (e) => { if (!drag) return; const dx = e.clientX - drag.x; if (Math.abs(dx) > 5 && !moved) { moved = true; m.classList.add("drag"); m.setPointerCapture(e.pointerId); } if (moved) m.scrollLeft = drag.left - dx; };
+  m.onpointerup = m.onpointercancel = () => { drag = null; m.classList.remove("drag"); setTimeout(() => moved = false); };
+  m.ondragstart = (e) => e.preventDefault(); // the icons are images: the browser would drag them instead
   $("#screen").appendChild(m); document.addEventListener("pointerdown", away, true);
+  m.querySelector('[aria-current="true"]')?.scrollIntoView({ inline: "nearest", block: "nearest" });
 }
 
 /* ---------- Rewards: a popover from the streak, stars and badges ---------- */
