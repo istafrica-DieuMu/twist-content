@@ -3880,14 +3880,12 @@ function practiceCard(x, attr) {
   return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><b>${esc(t)}</b><small>${esc(why)} · ${esc(sizeOf(x).split(", ").pop())}</small></span><button class="hm-pr-go" ${attr}>${esc(x.paused ? PAUSE_TXT[PL()].go : L.practise)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`;
 }
 function renderHomeTab() {
-  const T = AT(), L = PT(), scr = $("#screen"), c = PR.child, subs = appSubjects();
+  const T = AT(), L = PT(), scr = $("#screen"), c = PR.child;
   const plan = homePlan(); APP.subj = plan.subj;
   const sugs = mySuggestions().slice(0, 2), sug = sugs[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
   const lesson = nextIn(plan.sets) ? lessonStep(plan) : "";
   const goal = [lesson || did.lessons, sug || did.practice].filter(Boolean).length || 1;
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
-  const subjName = SUBJ_NAME[c.curriculum][plan.subj] ?? plan.subj;
-  const head = { continue: T.goOn, nextUnit: T.nextUnit(subjName), nextYear: T.nextYear(yearName(plan.year ?? "")), next: c.last || lastLesson(c) ? T.next : T.startHere, done: T.allDone }[plan.head];
   // Something done today: a card of its own in the done green, the mascot cheering, what was done,
   // and a way to do more (Practice, or Study for lessons).
   const DONE_TXT = { de: { right: (n) => `${n} richtig`, more: "Noch mehr üben", lessons: "Weiterlernen" }, en: { right: (n) => `${n} right`, more: "Practise more", lessons: "Keep learning" } }[PL()];
@@ -3901,12 +3899,11 @@ function renderHomeTab() {
   // Two suggestions make a deck, as the lessons of the other subjects do.
   const practiceHtml = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
   const steps = [];
-  // The way back into the course is always there; a lesson done today shows as a tick beside its label.
-  if (lesson) steps.push(`<h3 class="pr-h hm-step">${esc(head)}${did.lessons ? `<em class="hm-tick">${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}</h3>${lesson}`);
-  else if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
+  // The next lessons are in the subject row below; a lesson done today shows as its own row.
+  if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
   if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice"));
   else if (practiceHtml) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceHtml}`);
-  const more = [did.lessons && lesson ? `<p class="hm-step">${esc(head)}</p>${lesson}` : "", did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
+  const more = [did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
   const pct = (100 * got) / goal;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
@@ -3919,13 +3916,11 @@ function renderHomeTab() {
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
     : `<section class="hm-plan">${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
     ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
-    ${subjectRow(lesson && !all ? plan.subj : null)}
-    <section><h3 class="pr-h">${esc(T.subjects)}</h3><div class="hm-subj">${subs.map(subjChip).join("")}</div></section>
+    ${subjectRow(null)}
   </div>`;
   scr.appendChild(appTabs("start"));
   scr.querySelectorAll("[data-done]").forEach((b) => b.onclick = () => appTab(b.dataset.done));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
-  scr.querySelectorAll(".hm-subj [data-subj]").forEach((b) => b.onclick = () => { APP.subj = b.dataset.subj; APP.year = null; APP.topic = null; APP.q = ""; appTab("study"); });
   // A tap on a card away from its button wiggles the button: that is what starts it.
   scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
