@@ -8,24 +8,24 @@ Skills drafted: placed skills with a lesson set. Topics done: topics where every
 
 | curriculum | subject | skills drafted | topics done | lessons | narration made |
 |---|---|---|---|---|---|
-| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30133 / 30143) |
-| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27573 / 27604) |
-| de-DE | Sachunterricht | 100% (112 / 112) | 100% (44 / 44) | 224 | 31% (7591 / 24334) |
-| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8071 / 8075) |
-| **de-DE** | **all** | **100% (547 / 547)** | **100% (205 / 205)** | **1133** | **81% (73368 / 90156)** |
-| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38150 / 38256) |
+| de-DE | Mathe | 100% (203 / 203) | 100% (29 / 29) | 417 | 100% (30143 / 30143) |
+| de-DE | Deutsch | 100% (174 / 174) | 100% (94 / 94) | 376 | 100% (27604 / 27604) |
+| de-DE | Sachunterricht | 100% (112 / 112) | 100% (44 / 44) | 224 | 86% (20963 / 24334) |
+| de-DE | Englisch | 100% (58 / 58) | 100% (38 / 38) | 116 | 100% (8075 / 8075) |
+| **de-DE** | **all** | **100% (547 / 547)** | **100% (205 / 205)** | **1133** | **96% (86785 / 90156)** |
+| en-GB | Maths | 100% (259 / 259) | 100% (139 / 139) | 527 | 100% (38255 / 38256) |
 | en-GB | English | 100% (163 / 163) | 100% (61 / 61) | 332 | 100% (22177 / 22177) |
 | en-GB | French | 100% (61 / 61) | 100% (41 / 41) | 124 | 100% (8122 / 8122) |
-| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (68448 / 68554)** |
+| **en-GB** | **all** | **100% (483 / 483)** | **100% (241 / 241)** | **983** | **100% (68553 / 68554)** |
 
 ## OpenRouter cost
 
 | part | model | made | cost | how it is known |
 |---|---|---|---|---|
 | Pictures | openai/gpt-image-2.5-sunburst | 371 files (362 priced) | $8.46 | logged per picture by pictures.py |
-| Narration | google/gemini-3.8-flash-tts | 142273 clips, 199.5 h | about $242 | estimated from clip length, text and tries |
-| Listening check | google/gemini-3.8-flash | 142273 clips | about $113 | estimated the same way |
-| **Total** | | | **about $363** | |
+| Narration | google/gemini-3.8-flash-tts | 155796 clips, 216.3 h | about $262 | estimated from clip length, text and tries |
+| Listening check | google/gemini-3.8-flash | 155796 clips | about $124 | estimated the same way |
+| **Total** | | | **about $394** | |
 
 The logs keep only the latest version of each picture and clip, so remakes, voice pilots and failed runs are not in these figures; they are a lower bound. The key itself had spent $400 in total on 2026-10-14 ($0.21 that day, $77 that week; no limit). The key is shared with schoolido-learning authoring, so not all of that is Twist.
 
@@ -33,16 +33,16 @@ Per voice:
 
 | voice | clips | passed the check | missing | audio | cost |
 |---|---|---|---|---|---|
-| gemini-puck | 20875 | 20730 (99%) | 4718 | 1330 min | $44 |
+| gemini-puck | 25593 | 25394 (99%) | 0 | 1576 min | $53 |
 | gemini-puck-en | 18183 | 18060 (99%) | 0 | 1409 min | $43 |
 | gemini-puck-fr | 765 | 765 (100%) | 0 | 33 min | $1.29 |
-| gemini-sulafat | 52613 | 52122 (99%) | 12071 | 4336 min | $129 |
-| gemini-sulafat-en | 48535 | 48083 (99%) | 106 | 4783 min | $135 |
+| gemini-sulafat | 61313 | 60729 (99%) | 3371 | 5074 min | $151 |
+| gemini-sulafat-en | 48640 | 48188 (99%) | 1 | 4811 min | $136 |
 | gemini-sulafat-fr | 1302 | 1299 (100%) | 0 | 76 min | $2.53 |
 
 ## de-DE
 
-547 of 547 placed skills drafted (100%): 547 lesson sets, 1133 lessons, 34380 tasks. Narration so far about $173; 16788 clips still to make.
+547 of 547 placed skills drafted (100%): 547 lesson sets, 1133 lessons, 34380 tasks. Narration so far about $204; 3371 clips still to make.
 
 | year | Mathe | Deutsch | Sachunterricht | Englisch | all |
 |---|---|---|---|---|---|
@@ -132,16 +132,16 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-2 | Sachunterricht | Gemeinsam in der Klasse | 2 / 2 done | 4 | $0.99 |
 | klasse-2 | Sachunterricht | Wünschen und Kaufen | 3 / 3 done | 6 | $1.45 |
 | klasse-2 | Sachunterricht | Medien | 1 / 1 done | 2 | $0.42 |
-| klasse-2 | Sachunterricht | Gesund leben | 2 / 2 done | 4 | $0.84 |
+| klasse-2 | Sachunterricht | Gesund leben | 2 / 2 done | 4 | $0.85 |
 | klasse-2 | Sachunterricht | Mein Körper gehört mir | 1 / 1 done | 2 | $0.51 |
-| klasse-2 | Sachunterricht | Tiere und Pflanzen | 4 / 4 done | 8 | $1.33 |
+| klasse-2 | Sachunterricht | Tiere und Pflanzen | 4 / 4 done | 8 | $1.70 |
 | klasse-2 | Sachunterricht | Vom Hof auf den Tisch | 2 / 2 done | 4 | $0.77 |
-| klasse-2 | Sachunterricht | Stoffe und Naturphänomene | 5 / 5 done | 10 | $0.49 |
-| klasse-2 | Sachunterricht | Umwelt schützen | 1 / 1 done | 2 | $0.01 |
-| klasse-2 | Sachunterricht | Pläne und Orte | 3 / 3 done | 6 | $0.13 |
-| klasse-2 | Sachunterricht | Sicher unterwegs | 2 / 2 done | 4 | $0.04 |
-| klasse-2 | Sachunterricht | Bauen und Berufe | 2 / 2 done | 4 | $0.11 |
-| klasse-2 | Sachunterricht | Früher und heute | 2 / 2 done | 4 | $0.02 |
+| klasse-2 | Sachunterricht | Stoffe und Naturphänomene | 5 / 5 done | 10 | $2.14 |
+| klasse-2 | Sachunterricht | Umwelt schützen | 1 / 1 done | 2 | $0.47 |
+| klasse-2 | Sachunterricht | Pläne und Orte | 3 / 3 done | 6 | $1.23 |
+| klasse-2 | Sachunterricht | Sicher unterwegs | 2 / 2 done | 4 | $0.92 |
+| klasse-2 | Sachunterricht | Bauen und Berufe | 2 / 2 done | 4 | $0.85 |
+| klasse-2 | Sachunterricht | Früher und heute | 2 / 2 done | 4 | $0.95 |
 | klasse-3 | Mathe | Zahlen bis 1000 | 8 / 8 done | 16 | $3.01 |
 | klasse-3 | Mathe | Rechnen bis 1000 | 6 / 6 done | 12 | $2.99 |
 | klasse-3 | Mathe | Schriftlich rechnen | 15 / 15 done | 30 | $5.88 |
@@ -150,7 +150,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.52 |
 | klasse-3 | Deutsch | Nomen | 2 / 2 done | 4 | $0.52 |
 | klasse-3 | Deutsch | Zeitformen | 2 / 2 done | 4 | $0.84 |
-| klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $1.52 |
+| klasse-3 | Deutsch | Adjektive | 4 / 4 done | 8 | $1.53 |
 | klasse-3 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.65 |
 | klasse-3 | Deutsch | Wörtliche Rede | 2 / 2 done | 4 | $0.35 |
 | klasse-3 | Deutsch | Kurze und lange Selbstlaute | 3 / 3 done | 6 | $0.89 |
@@ -164,7 +164,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Blitzlesen | 1 / 1 done | 2 | $0.25 |
 | klasse-3 | Deutsch | Flüssig lesen | 1 / 1 done | 2 | $0.31 |
 | klasse-3 | Deutsch | Vorlesen | 1 / 1 done | 2 | $0.42 |
-| klasse-3 | Deutsch | Texte verstehen | 2 / 2 done | 4 | $0.78 |
+| klasse-3 | Deutsch | Texte verstehen | 2 / 2 done | 4 | $0.79 |
 | klasse-3 | Deutsch | Märchen | 1 / 1 done | 2 | $0.39 |
 | klasse-3 | Deutsch | Geschichten und Gedichte | 2 / 2 done | 4 | $0.77 |
 | klasse-3 | Deutsch | Medien | 1 / 1 done | 2 | $0.42 |
@@ -176,26 +176,26 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-3 | Deutsch | Sprechen und Zuhören | 1 / 1 done | 2 | $0.34 |
 | klasse-3 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.36 |
 | klasse-3 | Deutsch | Texte gestalten | 2 / 2 done | 4 | $0.96 |
-| klasse-3 | Sachunterricht | Rechte und Vielfalt | 3 / 3 done | 6 | $0.03 |
-| klasse-3 | Sachunterricht | Im Inneren des Körpers | 3 / 3 done | 6 | $0.03 |
-| klasse-3 | Sachunterricht | Tiere und Pflanzen | 4 / 4 done | 8 | $0.52 |
-| klasse-3 | Sachunterricht | Der Wald | 2 / 2 done | 4 | $0.02 |
-| klasse-3 | Sachunterricht | Wasser | 4 / 4 done | 8 | $0.03 |
-| klasse-3 | Sachunterricht | Karten lesen | 4 / 4 done | 8 | $0.08 |
-| klasse-3 | Sachunterricht | Wie Technik funktioniert | 4 / 4 done | 8 | $0.04 |
-| klasse-3 | Sachunterricht | Geschichte entdecken | 3 / 3 done | 6 | $0.02 |
+| klasse-3 | Sachunterricht | Rechte und Vielfalt | 3 / 3 done | 6 | $1.79 |
+| klasse-3 | Sachunterricht | Im Inneren des Körpers | 3 / 3 done | 6 | $1.52 |
+| klasse-3 | Sachunterricht | Tiere und Pflanzen | 4 / 4 done | 8 | $2.06 |
+| klasse-3 | Sachunterricht | Der Wald | 2 / 2 done | 4 | $1.04 |
+| klasse-3 | Sachunterricht | Wasser | 4 / 4 done | 8 | $2.08 |
+| klasse-3 | Sachunterricht | Karten lesen | 4 / 4 done | 8 | $2.55 |
+| klasse-3 | Sachunterricht | Wie Technik funktioniert | 4 / 4 done | 8 | $2.24 |
+| klasse-3 | Sachunterricht | Geschichte entdecken | 3 / 3 done | 6 | $1.74 |
 | klasse-4 | Mathe | Große Zahlen | 5 / 5 done | 15 | $2.90 |
 | klasse-4 | Mathe | Rechnen mit großen Zahlen | 6 / 6 done | 12 | $2.41 |
 | klasse-4 | Mathe | Schriftlich malnehmen und teilen | 6 / 6 done | 12 | $2.65 |
 | klasse-4 | Mathe | Sachaufgaben | 5 / 5 done | 10 | $2.71 |
 | klasse-4 | Mathe | Größen | 8 / 8 done | 16 | $4.04 |
 | klasse-4 | Mathe | Geometrie | 11 / 11 done | 22 | $4.36 |
-| klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.68 |
+| klasse-4 | Mathe | Daten und Wahrscheinlichkeit | 3 / 3 done | 6 | $1.69 |
 | klasse-4 | Mathe | Erweiterung | 4 / 4 done | 8 | $1.43 |
 | klasse-4 | Deutsch | Die vier Fälle | 1 / 1 done | 3 | $0.44 |
 | klasse-4 | Deutsch | Zeitformen | 3 / 3 done | 6 | $1.07 |
 | klasse-4 | Deutsch | Verben | 2 / 2 done | 4 | $0.89 |
-| klasse-4 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.72 |
+| klasse-4 | Deutsch | Satzglieder | 2 / 2 done | 4 | $0.73 |
 | klasse-4 | Deutsch | Sätze verbinden | 1 / 1 done | 2 | $0.29 |
 | klasse-4 | Deutsch | Zeichensetzung | 1 / 1 done | 2 | $0.17 |
 | klasse-4 | Deutsch | Besondere Laute | 2 / 2 done | 4 | $0.49 |
@@ -210,21 +210,21 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | klasse-4 | Deutsch | Berichten | 2 / 2 done | 4 | $0.80 |
 | klasse-4 | Deutsch | Vor anderen sprechen | 1 / 1 done | 2 | $0.46 |
 | klasse-4 | Deutsch | Gespräche führen | 1 / 1 done | 2 | $0.43 |
-| klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $2.98 |
-| klasse-4 | Sachunterricht | Mitbestimmen | 3 / 3 done | 6 | $0.61 |
-| klasse-4 | Sachunterricht | Sicher mit Medien | 4 / 4 done | 8 | $0.03 |
-| klasse-4 | Sachunterricht | Helfen im Notfall | 1 / 1 done | 2 | $0.00 |
-| klasse-4 | Sachunterricht | Gesund bleiben | 1 / 1 done | 2 | $0.01 |
-| klasse-4 | Sachunterricht | Lebensräume | 3 / 3 done | 6 | $0.02 |
-| klasse-4 | Sachunterricht | Wasser | 1 / 1 done | 2 | $0.01 |
-| klasse-4 | Sachunterricht | Feuer und Strom | 4 / 4 done | 8 | $0.03 |
-| klasse-4 | Sachunterricht | Energie und Klima | 3 / 3 done | 6 | $0.03 |
-| klasse-4 | Sachunterricht | Erde und Weltall | 1 / 1 done | 2 | $0.01 |
-| klasse-4 | Sachunterricht | Deutschland und die Welt | 4 / 4 done | 8 | $0.02 |
-| klasse-4 | Sachunterricht | Verkehr und Umwelt | 1 / 1 done | 2 | $0.01 |
-| klasse-4 | Sachunterricht | Mit dem Fahrrad unterwegs | 4 / 4 done | 8 | $0.03 |
-| klasse-4 | Sachunterricht | Technik verändert die Welt | 3 / 3 done | 6 | $0.02 |
-| klasse-4 | Sachunterricht | Leben in anderen Zeiten | 3 / 3 done | 6 | $0.02 |
+| klasse-4 | Deutsch | Sprache untersuchen | 6 / 6 done | 12 | $2.99 |
+| klasse-4 | Sachunterricht | Mitbestimmen | 3 / 3 done | 6 | $0.87 |
+| klasse-4 | Sachunterricht | Sicher mit Medien | 4 / 4 done | 8 | $1.49 |
+| klasse-4 | Sachunterricht | Helfen im Notfall | 1 / 1 done | 2 | $0.13 |
+| klasse-4 | Sachunterricht | Gesund bleiben | 1 / 1 done | 2 | $0.55 |
+| klasse-4 | Sachunterricht | Lebensräume | 3 / 3 done | 6 | $0.40 |
+| klasse-4 | Sachunterricht | Wasser | 1 / 1 done | 2 | $0.48 |
+| klasse-4 | Sachunterricht | Feuer und Strom | 4 / 4 done | 8 | $1.74 |
+| klasse-4 | Sachunterricht | Energie und Klima | 3 / 3 done | 6 | $1.22 |
+| klasse-4 | Sachunterricht | Erde und Weltall | 1 / 1 done | 2 | $0.12 |
+| klasse-4 | Sachunterricht | Deutschland und die Welt | 4 / 4 done | 8 | $0.83 |
+| klasse-4 | Sachunterricht | Verkehr und Umwelt | 1 / 1 done | 2 | $0.16 |
+| klasse-4 | Sachunterricht | Mit dem Fahrrad unterwegs | 4 / 4 done | 8 | $1.34 |
+| klasse-4 | Sachunterricht | Technik verändert die Welt | 3 / 3 done | 6 | $0.85 |
+| klasse-4 | Sachunterricht | Leben in anderen Zeiten | 3 / 3 done | 6 | $0.94 |
 | stufe-0 | Englisch | Hören | 3 / 3 done | 6 | $0.67 |
 | stufe-0 | Englisch | Hallo | 1 / 1 done | 2 | $0.26 |
 | stufe-0 | Englisch | Farben | 1 / 1 done | 2 | $0.18 |
@@ -266,7 +266,7 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 
 ## en-GB
 
-483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $181; 106 clips still to make.
+483 of 483 placed skills drafted (100%): 483 lesson sets, 983 lessons, 29449 tasks. Narration so far about $182; 1 clips still to make.
 
 | year | Maths | English | French | all |
 |---|---|---|---|---|
@@ -373,8 +373,8 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-3 | Maths | Area and perimeter | 2 / 2 done | 4 | $0.73 |
 | year-3 | Maths | Combinations | 1 / 1 done | 2 | $0.52 |
 | year-3 | Maths | Chance | 1 / 1 done | 2 | $0.33 |
-| year-3 | Maths | Adding and subtracting to 1000 | 5 / 5 done | 10 | $2.62 |
-| year-3 | Maths | Column methods | 6 / 6 done | 12 | $2.91 |
+| year-3 | Maths | Adding and subtracting to 1000 | 5 / 5 done | 10 | $2.64 |
+| year-3 | Maths | Column methods | 6 / 6 done | 12 | $2.94 |
 | year-3 | Maths | Multiplying and dividing | 1 / 1 done | 2 | $0.40 |
 | year-3 | Maths | Informal multiplication and division | 1 / 1 done | 2 | $0.54 |
 | year-3 | Maths | Calculating with money | 2 / 2 done | 4 | $0.74 |
@@ -396,25 +396,25 @@ Topics, in placement order. A topic is done when every skill in it has a lesson 
 | year-3 | English | Writing | 5 / 5 done | 10 | $1.93 |
 | year-3 | English | Grammar and punctuation | 5 / 5 done | 10 | $1.66 |
 | year-3 | English | Information texts | 1 / 1 done | 2 | $0.39 |
-| year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.23 |
-| year-4 | Maths | Times tables | 3 / 3 done | 6 | $0.96 |
-| year-4 | Maths | Division | 3 / 3 done | 6 | $1.18 |
-| year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.52 |
+| year-4 | Maths | Numbers to 10 000 | 2 / 2 done | 6 | $1.31 |
+| year-4 | Maths | Times tables | 3 / 3 done | 6 | $1.02 |
+| year-4 | Maths | Division | 3 / 3 done | 6 | $1.23 |
+| year-4 | Maths | Symmetry | 2 / 2 done | 4 | $0.56 |
 | year-4 | Maths | Adding and subtracting to 1000 | 1 / 1 done | 2 | $0.48 |
-| year-4 | Maths | Multiplying and dividing | 2 / 2 done | 4 | $0.74 |
-| year-4 | Maths | Informal multiplication and division | 2 / 2 done | 4 | $0.97 |
-| year-4 | Maths | Relationships | 2 / 2 done | 4 | $0.79 |
+| year-4 | Maths | Multiplying and dividing | 2 / 2 done | 4 | $0.78 |
+| year-4 | Maths | Informal multiplication and division | 2 / 2 done | 4 | $1.01 |
+| year-4 | Maths | Relationships | 2 / 2 done | 4 | $0.81 |
 | year-4 | Maths | Mass | 1 / 1 done | 2 | $0.42 |
 | year-4 | Maths | Geometry | 2 / 2 done | 5 | $0.76 |
 | year-4 | Maths | Position and direction | 2 / 2 done | 4 | $0.75 |
 | year-4 | Maths | Area and perimeter | 1 / 1 done | 2 | $0.30 |
 | year-4 | Maths | Data | 2 / 2 done | 4 | $0.94 |
-| year-4 | Maths | Chance | 1 / 1 done | 2 | $0.47 |
-| year-4 | Maths | Numbers to 1 000 000 | 1 / 1 done | 2 | $0.57 |
-| year-4 | Maths | Calculating with large numbers | 1 / 1 done | 2 | $0.51 |
-| year-4 | Maths | Written multiplication | 1 / 1 done | 2 | $0.49 |
-| year-4 | Maths | Length | 1 / 1 done | 2 | $0.53 |
-| year-4 | Maths | Coordinates | 2 / 2 done | 4 | $1.02 |
+| year-4 | Maths | Chance | 1 / 1 done | 2 | $0.51 |
+| year-4 | Maths | Numbers to 1 000 000 | 1 / 1 done | 2 | $0.59 |
+| year-4 | Maths | Calculating with large numbers | 1 / 1 done | 2 | $0.57 |
+| year-4 | Maths | Written multiplication | 1 / 1 done | 2 | $0.54 |
+| year-4 | Maths | Length | 1 / 1 done | 2 | $0.57 |
+| year-4 | Maths | Coordinates | 2 / 2 done | 4 | $1.06 |
 | year-4 | Maths | Decimals | 4 / 4 done | 8 | $1.66 |
 | year-4 | Maths | Angles | 1 / 1 done | 2 | $0.26 |
 | year-4 | Maths | Negative numbers | 1 / 1 done | 2 | $0.31 |

@@ -72,8 +72,11 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "A border on a wall: what do you think comes next?"
+            say: "Here is a border on a wall: circle, triangle, triangle, circle, triangle, triangle. What do you think comes next? Have a guess."
+            show: { drawn: shape, row: [circle, triangle, triangle, circle, triangle, triangle, "?"], colours: orange }
           - text: "A frieze pattern: one unit repeats along a strip."
-            say: "A frieze pattern is a strip, like a border on a wall, where the same unit repeats again and again. Here the repeating unit is circle, triangle, triangle. To continue the pattern, find the whole unit first, not just the last shape."
+            say: "A frieze pattern is a strip, like a border on a wall, where the same unit repeats again and again. Here the repeating unit is circle, triangle, triangle. To continue the pattern, find the whole unit first, not just the last shape. A new unit starts next, with a circle."
             show: { drawn: shape, row: [circle, triangle, triangle, circle, triangle, triangle], colours: orange }
           - text: "b b b b\nThe b is slid along."
             say: "In this frieze the letter b is slid along the strip. It is not turned or flipped, just moved along. We say it is translated."
@@ -101,21 +104,21 @@ lessons:
                   - "Next is a square."
                 difficulty: easy
               - id: l1-f2
-                type: multiple_choice
-                text: "What comes next? b d b d b ?"
+                type: fill_in_blank
+                text: "What comes next?"
                 show: { drawn: letter-card, text: "b d b d b ?" }
+                frame: "b d b d b _"
                 options: ["d", "b", "p"]
-                answer: "d"
+                answer: ["d"]
                 hints:
                   - "The letters take turns."
                   - "After every b comes a d."
                   - "Next is d."
               - id: l1-f3
-                type: multiple_choice
-                text: "How does the pattern repeat?"
+                type: true_false
+                text: "In this pattern, the p is slid along. Is that true?"
                 show: { drawn: letter-card, text: "p p p p" }
-                options: ["The p is slid along.", "The p is reflected.", "The p is turned."]
-                answer: "The p is slid along."
+                answer: true
                 hints:
                   - "Do the letters look different from each other?"
                   - "Every p looks exactly the same."
@@ -146,11 +149,12 @@ lessons:
           - support: some
             tasks:
               - id: l1-s1
-                type: multiple_choice
-                text: "What comes next? d b d b d ?"
+                type: fill_in_blank
+                text: "What comes next?"
                 show: { drawn: letter-card, text: "d b d b d ?" }
+                frame: "d b d b d _"
                 options: ["b", "d", "q"]
-                answer: "b"
+                answer: ["b"]
                 hints: ["After every d comes a b."]
               - id: l1-s2
                 type: multiple_choice
@@ -174,27 +178,30 @@ lessons:
                 answer: "hexagon, circle"
                 hints: ["Find the smallest part that repeats."]
               - id: l1-s5
-                type: multiple_choice
-                text: "How does the pattern repeat?"
+                type: true_false
+                text: "In this pattern, the q is reflected. Is that true?"
                 show: { drawn: letter-card, text: "q q q q" }
-                options: ["The q is slid along.", "The q is reflected.", "The q is turned."]
-                answer: "The q is slid along."
+                answer: false
                 hints: ["Does any q look different?"]
 
           - support: none
             tasks:
               - id: l1-n1
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "What comes next?"
                 show: { drawn: shape, row: [pentagon, pentagon, circle, pentagon, pentagon, circle, "?"], colours: orange }
-                options: ["pentagon", "circle", "square"]
-                answer: "pentagon"
+                options:
+                  - { drawn: shape, kind: pentagon, colour: orange }
+                  - { drawn: shape, kind: circle, colour: orange }
+                  - { drawn: shape, kind: square, colour: orange }
+                answer: pentagon
               - id: l1-n2
-                type: multiple_choice
-                text: "What comes next? q p q p q ?"
+                type: fill_in_blank
+                text: "What comes next?"
                 show: { drawn: letter-card, text: "q p q p q ?" }
+                frame: "q p q p q _"
                 options: ["p", "q", "b"]
-                answer: "p"
+                answer: ["p"]
               - id: l1-n3
                 type: multiple_choice
                 text: "How does the pattern repeat?"
@@ -280,6 +287,9 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Could you tile a floor with circles, with no gaps? What do you think?"
+            say: "Could you cover a whole floor with round tiles, with no gaps between them? What do you think? Have a guess."
+            show: { drawn: shape, kind: circle, colour: red }
           - text: "A tessellation: shapes cover a surface with no gaps and no overlaps."
             say: "When shapes fit together to cover a whole surface, with no gaps between them and none lying on top of another, they make a tessellation. Tiles on a bathroom wall are a tessellation of squares."
             show: { drawn: shape, kind: square, colour: blue }
@@ -287,11 +297,13 @@ lessons:
             say: "Some shapes tessellate on their own. Squares, rectangles, triangles and regular hexagons all do. Bees build their honeycomb from hexagons."
             show: { drawn: shape, kind: hexagon, colour: yellow }
           - text: "Circles and pentagons leave gaps.\nOctagons need small squares to fill the gaps."
-            say: "Circles do not tessellate. However you push them together, there are gaps between them. Regular pentagons leave gaps too. Some shapes tessellate only with a second shape: octagons fit together with small squares in the gaps."
+            say: "So the answer is no: circles do not tessellate. However you push them together, there are gaps between them. Regular pentagons leave gaps too. Some shapes tessellate only with a second shape: octagons fit together with small squares in the gaps."
             show: { drawn: shape, kind: circle, colour: red }
           - text: "At each point the corners make a whole turn, 360°.\n4 squares, 3 hexagons or 6 triangles meet at a point."
             say: "Look at a point where tiles meet. Their corners fill a whole turn, three hundred and sixty degrees. Four squares meet at a point, because four right angles make a whole turn. Three hexagons meet at a point, and six equilateral triangles."
             show: { drawn: shape, kind: triangle, colour: green }
+          - text: "Did you know? The artist M. C. Escher made tessellations of lizards, birds and fish."
+            say: "Did you know? An artist from the Netherlands called M. C. Escher made tessellations out of animals. His lizards, birds and fish fit together with no gaps and no overlaps, like tiles!"
 
       - activity: practise
         setting: plain
@@ -354,17 +366,17 @@ lessons:
 
           - support: some
             tasks:
+              - id: l2-s2
+                type: true_false
+                text: "Regular pentagons tessellate on their own. Is that true?"
+                answer: false
+                hints: ["Three pentagon corners leave a gap, and four would overlap."]
               - id: l2-s1
                 type: multiple_choice
                 text: "In a honeycomb, how many hexagons meet at one point?"
                 options: ["3", "4", "6"]
                 answer: "3"
                 hints: ["Three hexagon corners make a whole turn."]
-              - id: l2-s2
-                type: true_false
-                text: "Regular pentagons tessellate on their own. Is that true?"
-                answer: false
-                hints: ["Three pentagon corners leave a gap, and four would overlap."]
               - id: l2-s3
                 type: image_multiple_choice
                 text: "Which shape tessellates on its own?"

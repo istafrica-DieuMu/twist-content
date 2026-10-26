@@ -35,7 +35,7 @@ metadata:
       addressed: lesson 1 Learn plans both steps; l1-f2, l1-s2 and l1-n2 offer the first-step result, with feedback in l1-f2
     - id: offer-always-cheaper
       what: Thinks the bigger pack or the offer is always cheaper
-      addressed: lesson 2 Learn works out the price for the same number of items and says an offer is not always cheaper; l2-f4, l2-s3 and l2-n3 have an offer that is not cheaper, with feedback in l2-f4
+      addressed: lesson 2 Learn works out the price for the same number of items and says an offer is not always cheaper; l2-f4, l2-s3 and l2-n3 have an offer that is not cheaper, and l2-f4's first hint says so
     - id: pence-pounds
       what: Mixes pounds and pence when adding (£1.20 + 45p = £1.65 written as £46.20 or £1.245)
       addressed: lesson 1 Learn writes every price in pounds before adding; l1-f1 has feedback on the mixed-up total, l1-s1 asks again
@@ -63,24 +63,27 @@ lessons:
             answer: "£4.20"
             difficulty: easy
           - id: l1-w2
-            type: multiple_choice
-            text: "£10 − £4.20 = _"
-            say: "Ten pounds subtract four pounds twenty."
-            options: ["£5.80", "£6.80", "£6.20"]
-            answer: "£5.80"
+            type: text_input
+            text: "£10 − £4.20 = _\nWrite the answer in pence."
+            say: "Ten pounds subtract four pounds twenty. Write the answer in pence."
+            answer: "580"
             difficulty: easy
 
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "A sandwich for £2.35, a drink for 85p, paid with £5. More or less than £2 change? Guess!"
+            say: "Lily buys a sandwich for two pounds thirty-five and a drink for eighty-five pence. She pays with a five pound note. Do you think she gets more or less than two pounds change? Have a guess."
           - text: "Lily buys a sandwich for £2.35 and a drink for 85p. She pays with a £5 note.\nHow much change does she get?"
-            say: "Read the problem twice. What is the question? How much change Lily gets. What do you know? Two prices, and that she pays with five pounds."
+            say: "Let's work it out. Read the problem twice. What is the question? How much change Lily gets. What do you know? Two prices, and that she pays with five pounds."
           - text: "85p = £0.85\nStep 1: £2.35 + £0.85 = £3.20\nStep 2: £5.00 − £3.20 = £1.80"
             say: "Write every price in pounds, so eighty-five pence is nought point eight five pounds. Step one, find the total: three pounds twenty. Step two, find the change: five pounds subtract three pounds twenty is one pound eighty."
           - text: "Answer: Lily gets £1.80 change."
-            say: "Finish with an answer sentence. Check it answers the question. The total was only halfway there."
+            say: "Finish with an answer sentence. Check it answers the question. The total was only halfway there. One pound eighty: a little less than two pounds. Was your guess right?"
           - text: "4 pencils at 65p each\n4 × 65p = 260p = £2.60"
             say: "Each means the price of one. Four pencils at sixty-five pence each cost four times sixty-five pence, which is two hundred and sixty pence, or two pounds sixty."
+          - text: "Did you know? The world's first cash machine opened in 1967, at a bank in Enfield, London."
+            say: "Did you know? The world's very first cash machine opened in nineteen sixty-seven, outside a bank in Enfield, in London. Before that, people had to queue inside the bank to get their money out!"
 
       - activity: practise
         setting: in-context
@@ -102,9 +105,10 @@ lessons:
               - id: l1-f2
                 type: multiple_choice
                 text: "Sam buys a football for £6.50 and a pump for £2.30. He pays with a £10 note. How much change does he get?"
-                options: ["£1.20", "£8.80", "£3.50"]
+                options: ["£1.20", "£8.80", "£3.50", "£100, it's his lucky day"]
                 answer: "£1.20"
                 feedback:
+                  "£100, it's his lucky day": "Nice try! Change is always less than the note you pay with."
                   "£8.80": "That is the total. The question asks for the change, so there is a second step."
                 hints:
                   - "There are two steps: the total, then the change."
@@ -252,6 +256,8 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Notebooks: 95p each, or 3 for £2.70. Which is cheaper for 3? Guess!"
+            say: "Notebooks cost ninety-five pence each, or three for two pounds seventy. If you want three, which do you think is cheaper? Have a guess."
           - text: "Notebooks: 95p each, or 3 for £2.70"
             say: "To compare prices, find the cost of the same number of things. Three notebooks at ninety-five pence each cost two pounds eighty-five."
           - text: "3 × 95p = £2.85\n£2.70 is less than £2.85\nYou save 15p."
@@ -296,16 +302,13 @@ lessons:
                   - "You pay for 2 pairs at £2."
                   - "2 × £2 = £4."
               - id: l2-f4
-                type: multiple_choice
-                text: "Pens cost 45p each, or a pack of 5 for £2.40. Which is cheaper for 5 pens?"
-                options: ["5 single pens", "the pack of 5", "they cost the same"]
-                answer: "5 single pens"
-                feedback:
-                  "the pack of 5": "A pack is not always cheaper. Work out 5 × 45p and compare."
+                type: true_false
+                text: "Pens cost 45p each, or a pack of 5 for £2.40. Is it true? The pack is cheaper for 5 pens."
+                answer: false
                 hints:
-                  - "Find the cost of 5 single pens."
+                  - "A pack is not always cheaper. Find the cost of 5 single pens."
                   - "5 × 45p = 225p = £2.25."
-                  - "£2.25 is less than £2.40, so single pens are cheaper."
+                  - "No. £2.25 is less than £2.40, so single pens are cheaper."
               - id: l2-f5
                 type: multiple_choice
                 text: "Shop A: trainers £34.99. Shop B: the same trainers £40, half price today. Where are they cheaper?"

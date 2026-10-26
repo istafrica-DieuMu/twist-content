@@ -74,9 +74,14 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Every box in a spreadsheet has a name made of a letter and a number.\nWhat do you think the yellow box is called?"
+            say: "This is a spreadsheet. Every box in it has a name made of a letter and a number. Look at the letters along the top and the numbers down the side. What do you think the yellow box is called? Have a guess."
+            show: { drawn: table, sheet: true, header: false, rows: [["", "", ""], ["", "", ""], ["", "", ""]], mark: [[1, 2]] }
           - text: "Columns: A, B, C\nRows: 1, 2, 3\nC2 = column C, row 2"
             say: "A spreadsheet is a table on a computer. The columns go down and are named with letters. The rows go across and are numbered. Each box is a cell. A cell is named with its column letter first, then its row number. The yellow cell is C2: column C, row 2."
             show: { drawn: table, sheet: true, header: false, rows: [["", "", ""], ["", "", ""], ["", "", ""]], mark: [[1, 2]] }
+          - text: "Did you know? After column Z come AA, AB, AC ... In Microsoft Excel the last column is XFD. That is column number 16,384!"
+            say: "Did you know? When a spreadsheet runs out of letters after column Z, it carries on with two letters: AA, AB, AC, and so on. In Microsoft Excel the very last column is called X F D. That is column number sixteen thousand, three hundred and eighty-four!"
           - text: "A survey in a spreadsheet"
             say: "Here is a survey of favourite fruit. The headings go in row 1. The answers go down column A and the numbers down column B. Each cell holds just one thing: a word or a number."
             show: { drawn: table, sheet: true, rows: [["Fruit", "Children"], ["Apple", 9], ["Banana", 6], ["Grapes", 4]] }
@@ -106,10 +111,9 @@ lessons:
                   - "B3."
                 difficulty: easy
               - id: l1-f2
-                type: multiple_choice
-                text: "What is in cell B3?"
+                type: text_input
+                text: "What number is in cell B3?"
                 show: { drawn: table, sheet: true, rows: [["Fruit", "Children"], ["Apple", 9], ["Banana", 6], ["Grapes", 4]] }
-                options: ["6", "9", "Banana"]
                 answer: "6"
                 hints:
                   - "Go down column B to row 3."
@@ -137,15 +141,14 @@ lessons:
                   - "Apple is already in column A."
                   - "9."
               - id: l1-f5
-                type: multiple_choice
-                text: "The tally chart says Apple 9, Banana 6, Grapes 4. Which cell has a typing mistake?"
+                type: true_false
+                text: "The tally chart says Apple 9, Banana 6, Grapes 4. Cell B4 has a typing mistake. Is that true?"
                 show: { drawn: table, sheet: true, rows: [["Fruit", "Children"], ["Apple", 9], ["Banana", 6], ["Grapes", 40]] }
-                options: ["B4", "B2", "A4"]
-                answer: "B4"
+                answer: true
                 hints:
                   - "Check each number against the tally chart."
-                  - "Grapes should be 4."
-                  - "B4 says 40, so B4 has the mistake."
+                  - "Grapes should be 4. What does B4 say?"
+                  - "Yes. B4 says 40, so B4 has the mistake."
 
           - support: some
             tasks:
@@ -279,6 +282,9 @@ lessons:
       - activity: learn
         mode: worked-examples
         screens:
+          - text: "Can the computer turn this table into a bar chart by itself?"
+            say: "Here is the fruit survey in a spreadsheet. Do you think the computer can draw a bar chart of it by itself? And what do you think you have to do first? Have a guess."
+            show: { drawn: table, sheet: true, rows: [["Fruit", "Children"], ["Apple", 9], ["Banana", 6], ["Grapes", 4]] }
           - text: "Select the data: A1 to B4"
             say: "To make a chart, first select the cells with the data. Drag from A1 to B4, so the headings, the answers and the numbers are all selected."
             show: { drawn: table, sheet: true, rows: [["Fruit", "Children"], ["Apple", 9], ["Banana", 6], ["Grapes", 4]], mark: [[0, 0], [0, 1], [1, 0], [1, 1], [2, 0], [2, 1], [3, 0], [3, 1]] }
@@ -335,15 +341,14 @@ lessons:
                   - "Dog must be the tallest bar, and there must be a bar for Fish."
                   - "Pick the chart with Dog 8, Cat 5 and Fish 2."
               - id: l2-f4
-                type: multiple_choice
-                text: "In the pet table, Mo changes B3 from 5 to 9. What happens to the chart?"
+                type: true_false
+                text: "In the pet table, Mo changes B3 from 5 to 9. The cat bar in the chart gets taller. Is that true?"
                 show: { drawn: table, sheet: true, rows: [["Pet", "Votes"], ["Dog", 8], ["Cat", 5], ["Fish", 2]] }
-                options: ["The cat bar gets taller.", "Nothing changes.", "The dog bar gets taller."]
-                answer: "The cat bar gets taller."
+                answer: true
                 hints:
                   - "Which pet is in row 3?"
-                  - "Row 3 is Cat."
-                  - "The cat bar grows from 5 to 9."
+                  - "Row 3 is Cat. The chart changes when the table changes."
+                  - "Yes. The cat bar grows from 5 to 9."
               - id: l2-f5
                 type: multiple_choice
                 text: "Books read. The tally chart says Mon 12, Tue 15, Wed 9. Which bar shows a typing mistake?"
@@ -379,11 +384,10 @@ lessons:
                 answer: false
                 hints: ["What happened to the 51 for Tuesday?"]
               - id: l2-s4
-                type: multiple_choice
-                text: "What should a chart have, so people know what it shows?"
-                options: ["a title", "lots of colours", "no numbers"]
-                answer: "a title"
-                hints: ["It tells you what the chart is about."]
+                type: true_false
+                text: "A chart should have a title, so people know what it shows. Is that true?"
+                answer: true
+                hints: ["Think of the chart called Favourite fruit."]
               - id: l2-s5
                 type: multiple_choice
                 text: "Ice creams sold. The tally chart says Mon 6, Tue 8, Wed 7. Which bar shows a typing mistake?"
@@ -437,10 +441,9 @@ lessons:
             answer: "A2"
           - id: l2-c2
             part: cells
-            type: multiple_choice
+            type: text_input
             text: "What number is in cell B4?"
             show: { drawn: table, sheet: true, rows: [["Pet", "Votes"], ["Dog", 8], ["Cat", 5], ["Fish", 2]] }
-            options: ["2", "Fish", "5"]
             answer: "2"
           - id: l2-c3
             part: chart
@@ -456,6 +459,11 @@ lessons:
             show: { drawn: bar-chart, step: 10, rows: [["5A", 14], ["5B", 71], ["5C", 13]] }
             options: ["5B", "5A", "5C"]
             answer: "5B"
+          - id: l2-c18
+            part: check
+            type: true_false
+            text: "The program drew the chart, so the chart must be right. Is that true?"
+            answer: false
           - id: l2-c5
             part: chart
             type: multiple_choice
@@ -483,12 +491,6 @@ lessons:
             show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
             options: ["A4", "B4", "A3"]
             answer: "A4"
-          - id: l2-c9
-            part: cells
-            type: true_false
-            text: "In this table, the heading Children is in cell B1. Is that true?"
-            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
-            answer: true
           - id: l2-c10
             part: cells
             type: multiple_choice
@@ -496,6 +498,12 @@ lessons:
             show: { drawn: table, sheet: true, rows: [["Sport", "Children"], ["Football", "?"], ["Tennis", 6]] }
             options: ["B2", "A2", "2B"]
             answer: "B2"
+          - id: l2-c9
+            part: cells
+            type: true_false
+            text: "In this table, the heading Children is in cell B1. Is that true?"
+            show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
+            answer: true
           - id: l2-c11
             part: chart
             type: multiple_choice
@@ -533,6 +541,12 @@ lessons:
             show: { drawn: table, sheet: true, rows: [["Club", "Children"], ["Chess", 9], ["Drama", 14], ["Choir", 11]] }
             options: ["Children in each club", "Favourite fruit", "Rainy days each month"]
             answer: "Children in each club"
+          - id: l2-c19
+            part: check
+            type: true_false
+            text: "The tally chart says Red 7, Blue 9, Green 3. Does the table match the tally chart?"
+            show: { drawn: table, sheet: true, rows: [["Colour", "Votes"], ["Red", 7], ["Blue", 9], ["Green", 3]] }
+            answer: true
           - id: l2-c16
             part: check
             type: multiple_choice
@@ -547,17 +561,6 @@ lessons:
             show: { drawn: bar-chart, step: 10, rows: [["Pasta", 61], ["Soup", 9], ["Salad", 7]] }
             options: ["Pasta", "Soup", "Salad"]
             answer: "Pasta"
-          - id: l2-c18
-            part: check
-            type: true_false
-            text: "The program drew the chart, so the chart must be right. Is that true?"
-            answer: false
-          - id: l2-c19
-            part: check
-            type: true_false
-            text: "The tally chart says Red 7, Blue 9, Green 3. Does the table match the tally chart?"
-            show: { drawn: table, sheet: true, rows: [["Colour", "Votes"], ["Red", 7], ["Blue", 9], ["Green", 3]] }
-            answer: true
           - id: l2-c20
             part: check
             type: multiple_choice

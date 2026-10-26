@@ -12205,7 +12205,7 @@ A dictionary lists words in alphabetical order by the first letter, then the sec
 | 1. Zweiter und dritter Buchstabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Leitwörter und andere Schreibungen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, ordering 11, true_false 12. Builds on: `lit-en.spelling.alphabet-names`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, ordering 11, true_false 15. Builds on: `lit-en.spelling.alphabet-names`. Misconceptions addressed: 3.
 
 ## Wörtliche Rede vollständig zeichensetzen (Punctuating direct speech fully)
 
@@ -12233,7 +12233,7 @@ Good writers reread their own work and a partner's, say what works, and suggest 
 | 1. Bessere Wörter | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Bessere Grammatik | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 12, multiple_choice 43, true_false 5. Builds on: `lit-en.composition.proof-read`. Misconceptions addressed: 3.
+Task types: highlight_in_text 12, multiple_choice 39, fill_in_blank 3, true_false 6. Builds on: `lit-en.composition.proof-read`. Misconceptions addressed: 3.
 
 ## Erweiterte Nominalgruppen (Expanded noun phrases)
 
@@ -12275,7 +12275,7 @@ Writers choose words, order and layout on purpose. Lesson 1 looks at language: w
 | 1. Wörter mit Wirkung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Aufbau und Gestaltung | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 44, highlight_in_text 7, matching 3, ordering 2, true_false 4. Builds on: `lit-en.comprehension.words-in-context`. Misconceptions addressed: 2.
+Task types: multiple_choice 43, highlight_in_text 7, fill_in_blank 1, matching 3, ordering 2, true_false 4. Builds on: `lit-en.comprehension.words-in-context`. Misconceptions addressed: 2.
 
 ## Hauptgedanken finden und zusammenfassen (Main ideas and summaries)
 
@@ -12303,7 +12303,7 @@ A performer shows what a text means with tone (how the voice sounds), volume (ho
 | 1. Ein Gedicht vortragen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Eine Szene spielen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, highlight_in_text 10, true_false 7, speak 6. Builds on: `lit-en.texts.poems-by-heart`. Misconceptions addressed: 3.
+Task types: multiple_choice 36, highlight_in_text 10, true_false 8, speak 6. Builds on: `lit-en.texts.poems-by-heart`. Misconceptions addressed: 3.
 
 ## Plural-s oder Besitz-s? (Plural s or possessive s?)
 
@@ -12345,7 +12345,7 @@ A pronoun (he, she, it, they) stands in for a noun so writing does not repeat it
 | 1. Pronomen oder Nomen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Begleiter und Possessivpronomen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, highlight_in_text 12, true_false 5, sorting 3. Builds on: `lit-en.grammar.word-classes`. Misconceptions addressed: 3.
+Task types: multiple_choice 37, highlight_in_text 12, fill_in_blank 3, true_false 5, sorting 3. Builds on: `lit-en.grammar.word-classes`. Misconceptions addressed: 3.
 
 ## Deutlich in Standardenglisch sprechen (Speaking clearly in Standard English)
 
@@ -12472,7 +12472,7 @@ Sorting 2D shapes by their properties, drawn on squared paper so the sides can b
 | 2. Vierecke benennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 3. Regelmäßig oder unregelmäßig | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 10, true_false 17, multiple_choice 53, matching 2, sorting 1. Builds on: `math.shapes.more-shapes`, `math.angles.right-angles`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 11, true_false 21, multiple_choice 48, matching 2, sorting 1. Builds on: `math.shapes.more-shapes`, `math.angles.right-angles`. Misconceptions addressed: 4.
 
 ## Chancen vergleichen (Comparing chances)
 
@@ -12724,7 +12724,7 @@ Counting back through zero and reading negative numbers. Lesson 1 counts back pa
 | 1. Über die Null zurückzählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Temperaturen unter null | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 31, fill_in_blank 8, point_on_line 7, true_false 8, ordering 4, image_multiple_choice 2. Builds on: `math.numbers-to-1000.number-line`. Misconceptions addressed: 3.
+Task types: multiple_choice 30, fill_in_blank 8, point_on_line 8, true_false 8, ordering 4, image_multiple_choice 2. Builds on: `math.numbers-to-1000.number-line`. Misconceptions addressed: 3.
 
 ## Zahlen bis 10 000 (Numbers to 10,000)
 
@@ -13034,7 +13034,7 @@ Children name figurative language and explain what it does to the reader. Lesson
 | 1. Vergleich oder Metapher | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Wie die Sprache wirkt | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, highlight_in_text 6, sorting 4, true_false 13. Builds on: `lit-en.comprehension.language-structure`. Misconceptions addressed: 3.
+Task types: multiple_choice 36, highlight_in_text 7, sorting 4, true_false 13. Builds on: `lit-en.comprehension.language-structure`. Misconceptions addressed: 3.
 
 ## Flüssig und zügig schreiben (Writing fluently and at speed)
 
@@ -13245,7 +13245,7 @@ The area of a rectangle is length × width, in square centimetres (cm²) or squa
 | 1. Länge mal Breite | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Flächen schätzen und vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, fill_in_blank 2, text_input 18, true_false 7. Builds on: `math.area-volume.area-unit-squares`, `math.length.calculate`. Misconceptions addressed: 4.
+Task types: multiple_choice 32, fill_in_blank 2, text_input 19, true_false 7. Builds on: `math.area-volume.area-unit-squares`, `math.length.calculate`. Misconceptions addressed: 4.
 
 ## Mit Rauminhalten rechnen (Calculating with capacity)
 
@@ -13329,7 +13329,7 @@ Lesson 1 looks at bar charts whose scale does not start at 0 (the scale starts a
 | 1. Wo beginnt die Skala? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Weitere Tricks | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, true_false 16, image_multiple_choice 2, text_input 2. Builds on: `math.data.read-charts`. Misconceptions addressed: 3.
+Task types: multiple_choice 39, true_false 16, image_multiple_choice 2, text_input 3. Builds on: `math.data.read-charts`. Misconceptions addressed: 3.
 
 ## Mit Dezimalzahlen rechnen (Calculating with decimals)
 
@@ -13358,7 +13358,7 @@ Lesson 1 enters survey data in a spreadsheet: columns have letters, rows have nu
 | 1. Daten in die Tabelle | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Ein Diagramm einfügen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 45, true_false 9, text_input 3, image_multiple_choice 3. Builds on: `math.data.plan-survey`. Misconceptions addressed: 3.
+Task types: multiple_choice 40, true_false 12, text_input 5, image_multiple_choice 3. Builds on: `math.data.plan-survey`. Misconceptions addressed: 3.
 
 ## Überschlag oder genau? (Estimate or exact?)
 
@@ -13386,7 +13386,7 @@ Lesson 1 calls a game fair when every player has the same number of ways to win,
 | 1. Gewinnmöglichkeiten zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zwei Münzen und zwei Würfel | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 17, text_input 6, image_multiple_choice 1. Builds on: `math.chance.compare-chances`, `math.chance.combinations`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, true_false 17, text_input 8, image_multiple_choice 1. Builds on: `math.chance.compare-chances`, `math.chance.combinations`. Misconceptions addressed: 2.
 
 ## Brüche bei Größen (Fractions of measures)
 
@@ -13428,7 +13428,7 @@ Lesson 1 copies shapes on squared paper by counting squares from a corner, count
 | 1. Figuren übertragen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Punktraster, doppelt und halb so groß | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 12, multiple_choice 32, image_multiple_choice 12, text_input 4. Builds on: `math.shapes.parallel-perpendicular`. Misconceptions addressed: 3.
+Task types: true_false 12, multiple_choice 31, image_multiple_choice 12, text_input 5. Builds on: `math.shapes.parallel-perpendicular`. Misconceptions addressed: 3.
 
 ## Imperiale Einheiten (Imperial units)
 
@@ -13456,7 +13456,7 @@ Mental addition and subtraction with large numbers that match a known fact. Less
 | 1. Mit Tausendern rechnen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Mit Zehntausendern und Hunderttausendern | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 29, multiple_choice 16, fill_in_blank 6, true_false 9. Builds on: `math.large-numbers.to-million`, `math.add-sub-to-1000.hundreds`. Misconceptions addressed: 3.
+Task types: text_input 28, multiple_choice 17, fill_in_blank 6, true_false 9. Builds on: `math.large-numbers.to-million`, `math.add-sub-to-1000.hundreds`. Misconceptions addressed: 3.
 
 ## Große Zahlen im Kopf multiplizieren und dividieren (Multiplying and dividing mentally with multiples of 10, 100 and 1000)
 
@@ -13498,7 +13498,7 @@ Lesson 1 changes both lengths into one unit before calculating (1.35 m + 90 cm =
 | 1. Erst in eine Einheit | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. In Schritten rechnen und prüfen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 39, fill_in_blank 3, true_false 13, text_input 5. Builds on: `math.length.notation`, `math.word-problems.multi-step`. Misconceptions addressed: 2.
+Task types: multiple_choice 38, fill_in_blank 3, true_false 13, text_input 6. Builds on: `math.length.notation`, `math.word-problems.multi-step`. Misconceptions addressed: 2.
 
 ## Mit Gewichten rechnen (Calculating with mass)
 
@@ -13526,7 +13526,7 @@ Angles in degrees: estimate first, then measure with a protractor, reading the s
 | 1. Schätzen und mit dem Winkelmesser messen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Überstumpfe Winkel und Winkel zeichnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 39, true_false 8, image_multiple_choice 3, text_input 7, fill_in_blank 2, ordering 1. Builds on: `math.angles.acute-obtuse`, `math.shapes.parallel-perpendicular`. Misconceptions addressed: 4.
+Task types: multiple_choice 38, true_false 8, text_input 8, image_multiple_choice 3, fill_in_blank 2, ordering 1. Builds on: `math.angles.acute-obtuse`, `math.shapes.parallel-perpendicular`. Misconceptions addressed: 4.
 
 ## Kopfgeometrie: drehen und kippen (Turning and tipping in your head)
 
@@ -13540,7 +13540,7 @@ Lesson 1 turns letters, numbers and shapes in the head (a half turn makes b into
 | 1. Drehen und spiegeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Den Würfel kippen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 44, true_false 14, text_input 2. Builds on: `math.space.views`, `math.solids.nets`. Misconceptions addressed: 2.
+Task types: multiple_choice 41, true_false 15, text_input 4. Builds on: `math.space.views`, `math.solids.nets`. Misconceptions addressed: 2.
 
 ## Gemischte Zahlen und unechte Brüche (Mixed numbers and improper fractions)
 
@@ -13554,7 +13554,7 @@ Improper fractions (the numerator bigger than the denominator) and mixed numbers
 | 1. Vom unechten Bruch zur gemischten Zahl | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Von der gemischten Zahl zum unechten Bruch | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, text_input 16, fill_in_blank 3, true_false 8. Builds on: `math.fractions.equivalent-families`. Misconceptions addressed: 4.
+Task types: multiple_choice 32, text_input 17, fill_in_blank 3, true_false 8. Builds on: `math.fractions.equivalent-families`. Misconceptions addressed: 4.
 
 ## Sachaufgaben mit Geld (Money problems)
 
@@ -13568,7 +13568,7 @@ Lesson 1 solves shopping problems in steps: what is asked, what you know, each c
 | 1. Einkaufen in Schritten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Preise und Angebote vergleichen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, true_false 12, fill_in_blank 2, text_input 11. Builds on: `math.money.calculate`, `math.word-problems.multi-step`. Misconceptions addressed: 3.
+Task types: multiple_choice 33, text_input 12, true_false 13, fill_in_blank 2. Builds on: `math.money.calculate`, `math.word-problems.multi-step`. Misconceptions addressed: 3.
 
 ## Halbschriftlich multiplizieren und dividieren (Grid method and dividing in chunks)
 
@@ -13610,7 +13610,7 @@ Lesson 1 shows that a net of a cube is six squares that fold into a cube, tells 
 | 1. Was ist ein Würfelnetz? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Was liegt gegenüber? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 20, image_multiple_choice 4. Builds on: `math.solids.more-solids`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, true_false 20, image_multiple_choice 4, text_input 2. Builds on: `math.solids.more-solids`. Misconceptions addressed: 2.
 
 ## Zahlen bis 1 000 000 (Numbers to 1,000,000)
 
@@ -13624,7 +13624,7 @@ Year 5 opens with numbers to a million. Digits are grouped in threes with a comm
 | 1. Die Stellentafel bis 1 000 000 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Lesen, schreiben und in Zehnerpotenzen zählen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 34, fill_in_blank 9, true_false 7, text_input 14. Builds on: `math.large-numbers.to-10000`. Misconceptions addressed: 3.
+Task types: multiple_choice 33, text_input 15, fill_in_blank 9, true_false 7. Builds on: `math.large-numbers.to-10000`. Misconceptions addressed: 3.
 
 ## Punkt vor Strich und Klammern (Order of operations)
 
@@ -13722,7 +13722,7 @@ Roman numerals with D (500) and M (1000), read in parts like place value: hundre
 | 1. D und M | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Jahreszahlen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, fill_in_blank 2, text_input 15, true_false 8. Builds on: `math.large-numbers.roman-numerals`, `math.numbers-to-1000.place-value`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, fill_in_blank 2, text_input 16, true_false 8. Builds on: `math.large-numbers.roman-numerals`, `math.numbers-to-1000.place-value`. Misconceptions addressed: 3.
 
 ## Vergrößern, verkleinern, Maßstab (Scaling and plans)
 
@@ -13736,7 +13736,7 @@ Lesson 1 enlarges and reduces rectangles and squares on squared paper by multipl
 | 1. Vergrößern und verkleinern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Maßstab auf Plänen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, text_input 10, image_multiple_choice 4, true_false 10. Builds on: `math.shapes.grid-drawing`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, text_input 11, image_multiple_choice 4, true_false 10. Builds on: `math.shapes.grid-drawing`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
 
 ## Quadrat- und Kubikzahlen (Square and cube numbers)
 
@@ -13764,7 +13764,7 @@ Lesson 1 finds symmetry in nature and in things people make (a butterfly, a fir 
 | 1. Symmetrie in Natur und Spiegelbild | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Symmetrie in Wörtern, Mustern und Kunst | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 18, multiple_choice 28, image_multiple_choice 14. Builds on: `math.symmetry.identify`. Misconceptions addressed: 2.
+Task types: true_false 19, multiple_choice 27, image_multiple_choice 14. Builds on: `math.symmetry.identify`. Misconceptions addressed: 2.
 
 ## Bandornamente und Parkette (Frieze patterns and tessellations)
 
@@ -13778,7 +13778,7 @@ Lesson 1 continues frieze patterns from their repeating unit, with shapes and wi
 | 1. Bandornamente fortsetzen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Parkette | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 46, true_false 9, image_multiple_choice 5. Builds on: `math.patterns.repeating`, `math.shapes.more-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, fill_in_blank 3, true_false 11, image_multiple_choice 6. Builds on: `math.patterns.repeating`, `math.shapes.more-shapes`. Misconceptions addressed: 2.
 
 ## Tausendstel (Thousandths)
 
@@ -13792,7 +13792,7 @@ Thousandths as a hundredth split into ten equal parts, written as fractions over
 | 1. Tausendstel in der Stellentafel | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zehntel, Hundertstel und Tausendstel | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, fill_in_blank 5, text_input 11, true_false 7, image_multiple_choice 2. Builds on: `math.decimals.compare-round`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, fill_in_blank 5, text_input 12, true_false 7, image_multiple_choice 2. Builds on: `math.decimals.compare-round`. Misconceptions addressed: 3.
 
 ## Fahrpläne lesen (Timetables)
 
@@ -13820,7 +13820,7 @@ Lesson 1 measures the volume of a cuboid in unit cubes, layer by layer (one laye
 | 1. Quader in Schichten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Würfelgebäude vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, true_false 9, text_input 13, image_multiple_choice 3. Builds on: `math.solids.cube-buildings`, `math.mult-div.arrays`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, true_false 9, text_input 14, image_multiple_choice 3. Builds on: `math.solids.cube-buildings`, `math.mult-div.arrays`. Misconceptions addressed: 3.
 
 ## Schriftlich durch einstellige Zahlen teilen (Short division)
 
