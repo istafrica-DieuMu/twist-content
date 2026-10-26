@@ -65,12 +65,17 @@ from their age. These are three separate fields, never one.
 - Model lessons done (2026-10-13): one set per subject, Practise in three
   stages, pictures, voice (Sulafat teaches, Puck checks) and the player.
 - Now: phase 2, every de-DE lesson. See "Phase 2: de-DE lessons" below.
+- 2026-10-26: Sachunterricht added for de-DE (domain `world`, framework
+  nrw-sachunterricht-2021 with 98 standards, 112 skills, 112 lesson sets,
+  Klasse 1 to 4); every older set (918) has had the fun pass; two curricula
+  now share 69 progressions and 773 skills. The de-DE order from here is in
+  docs/plans/de-DE/README.md: DaZ, Musik, Kunst, Ethik, then the review PDF.
 
 ## Scope
 
 | Market | Frameworks | Subjects in phase 1 | Stages |
 |---|---|---|---|
-| Germany (de-DE) | KMK Bildungsstandards as the base; Lehrpläne of NRW, Bayern, Baden-Württemberg, Berlin/Brandenburg | Mathe, Deutsch, Englisch | Klasse 1 to 4; Englisch as Stufe 0 (oral), Lernjahr 1, Lernjahr 2 |
+| Germany (de-DE) | KMK Bildungsstandards as the base; Lehrpläne of NRW, Bayern, Baden-Württemberg, Berlin/Brandenburg | Mathe, Deutsch, Englisch, Sachunterricht (2026-10-26) | Klasse 1 to 4; Englisch as Stufe 0 (oral), Lernjahr 1, Lernjahr 2 |
 | England (en-GB) | EYFS for Reception; National Curriculum in England for Years 1 to 6 | Maths, English (with phonics and early literacy in Reception), French | Reception, Year 1 to 6; French by learning year |
 | Later | Austria (Lehrplan Volksschule), Switzerland (Lehrplan 21) | | |
 

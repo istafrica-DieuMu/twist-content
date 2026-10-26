@@ -75,6 +75,13 @@ Klasse 2; `tools-household` adds which devices need electricity and
 `then-now` adds true and made-up stories, to cover NRW's Klasse 2
 standards; `first-aid` and `solar-system` are enrichment.
 
+2026-10-26: all 112 lesson sets written (Klasse 1: 19, 2: 30, 3: 27, 4: 36),
+with 8 topic mascots, 466 new pictures in assets/objects.yaml and six new
+drawn components (germany-map, world-map, junction, circuit, water-cycle,
+timeline) in place of the stand-ins; built clean and narrated. Open: a
+teacher review, and a "years ago" mode for the timeline (stone-age counts
+"vor etwa 10.000 Jahren" and stays on text).
+
 ## Topics and draft skills
 
 Draft skill slugs in teaching order, with the Klasse they are expected in.

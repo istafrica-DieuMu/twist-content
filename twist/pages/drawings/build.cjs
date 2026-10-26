@@ -168,6 +168,10 @@ function sourceFor(id) {
   // Draws one use on its real screen and returns the element to photograph.
   const render = (u) => p.evaluate(async ({ si, n, kind, task, i, oi }) => {
     window.play = () => {};
+    // The player opens on the app's home; a lesson draws only in the lesson view with no app or practice home open.
+    if (typeof setView === "function" && !document.body.classList.contains("lessons")) setView("lessons");
+    if (typeof APP !== "undefined") APP.home = null;
+    if (typeof PR !== "undefined") { PR.home = false; PR.on = false; }
     const set = D.sets[si]; pickSet(si, n); const l = set.lessons.find((x) => x.n === n);
     let st;
     if (kind === "learn") { const a = l.activities.find((a) => a.screens); st = { kind: "learn", a, s: a.screens[i], i }; }
@@ -235,7 +239,7 @@ ${source}</div></article>`;
   };
   const total = rows.reduce((a, r) => a + r.n, 0), html = rows.filter((r) => r.kind === "HTML").map((r) => r.c.id);
   const page = `<h1>Drawings</h1>
-<p class="lede">The 37 drawn components a Twist lesson screen can show, each with real examples from the lessons drawn by the lesson player, its data, and its source. The lessons use them ${total.toLocaleString("en-GB")} times.</p>
+<p class="lede">The ${rows.length} drawn components a Twist lesson screen can show, each with real examples from the lessons drawn by the lesson player, its data, and its source. The lessons use them ${total.toLocaleString("en-GB")} times.</p>
 
 <h2 id="code">Use our drawing code</h2>
 <p>Every drawing is a plain JavaScript function of the record's <code>show</code> data, in one file: <a href="../player/drawn.js"><code>twist/pages/player/drawn.js</code></a>. The lesson player inlines that same file, so what you see on these cards is what the file draws. The app can take the file as it is.</p>
