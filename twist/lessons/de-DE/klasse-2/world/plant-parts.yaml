@@ -83,10 +83,10 @@ lessons:
         screens:
           - text: "Was ist unter der Erde?"
             say: "Paul hilft Oma Rosi im Garten. Oma gräbt eine Blume aus, weil sie an einem anderen Platz wachsen soll. Was glaubst du: Was kommt unter der Erde zum Vorschein?"
-            show: { object: flower }
+            show: { object: plant-with-roots }
           - text: "Unter der Erde ist die Wurzel."
             say: "Die Wurzel! Sie steckt in der Erde und sieht aus wie viele dünne Fäden. Paul staunt: So viel von der Pflanze war versteckt."
-            show: { object: flower }
+            show: { object: plant-with-roots }
           - text: "Der Stängel trägt Blätter und Blüte."
             say: "Über der Erde wächst der Stängel. Er ist lang und dünn. An ihm sitzen die Blätter, und ganz oben trägt er die Blüte. Beim Baum ist der Stängel dick und hart. Er heißt dort Stamm."
             show: { objects: [flower, tree] }
@@ -98,7 +98,7 @@ lessons:
             show: { objects: [rose, bee] }
           - text: "Von unten nach oben: Wurzel, Stängel, Blätter, Blüte"
             say: "Von unten nach oben hat die Pflanze also eine Wurzel, einen Stängel, Blätter und eine Blüte."
-            show: { object: flower }
+            show: { object: plant-with-roots }
           - text: "Wusstest du? Die Möhre ist eine Wurzel."
             say: "Wusstest du? Die Möhre, die du isst, ist eine Wurzel. Sie wächst unter der Erde. Oben schauen nur die grünen Blätter heraus."
             show: { object: carrot }
@@ -112,6 +112,7 @@ lessons:
                 type: multiple_choice
                 text: "Welcher Teil der Pflanze steckt in der Erde?"
                 say: "Welcher Teil der Pflanze steckt in der Erde?"
+                show: { object: plant-with-roots }
                 options: ["die Wurzel", "die Blüte", "das Blatt"]
                 answer: "die Wurzel"
                 feedback:
@@ -157,9 +158,9 @@ lessons:
                 text: "Was passt zu welchem Teil?"
                 say: "Verbinde jeden Teil der Pflanze mit dem passenden Satz."
                 pairs:
-                  - { left: { text: "Wurzel" }, right: { text: "steckt in der Erde" } }
-                  - { left: { text: "Stängel" }, right: { text: "ist lang und trägt die Blüte" } }
-                  - { left: { text: "Blüte" }, right: { text: "ist oft bunt" } }
+                  - { left: { object: root }, right: { text: "steckt in der Erde" } }
+                  - { left: { object: plant-stem }, right: { text: "ist lang und trägt die Blüte" } }
+                  - { left: { object: blossom }, right: { text: "ist oft bunt" } }
                 hints:
                   - "Fang mit dem Teil an, der ganz unten ist."
                   - "Die Wurzel ist unten. Der Stängel ist in der Mitte."
@@ -197,8 +198,8 @@ lessons:
                   - { id: ueber, show: { text: "über der Erde" }, say: "über der Erde" }
                   - { id: unter, show: { text: "unter der Erde" }, say: "unter der Erde" }
                 options:
-                  - { text: "Blüte", bin: ueber }
-                  - { text: "Wurzel", bin: unter }
+                  - { object: blossom, bin: ueber }
+                  - { object: root, bin: unter }
                   - { object: carrot, bin: unter }
                   - { object: leaf, bin: ueber }
                 hints: ["Die Möhre ist eine Wurzel."]
@@ -340,7 +341,7 @@ lessons:
             show: { objects: [tree, apple] }
           - text: "Wusstest du? Eine Sonnenblume hat Hunderte Blüten."
             say: "Wusstest du? Die große Blüte einer Sonnenblume ist eigentlich ganz viele kleine Blüten. In der Mitte stehen Hunderte winzige Blüten dicht nebeneinander. Aus jeder kann ein Sonnenblumenkern werden."
-            show: { object: flower }
+            show: { object: sunflower }
 
       - activity: practise
         setting: plain
@@ -363,9 +364,9 @@ lessons:
                 text: "Wer macht was?"
                 say: "Verbinde jeden Teil der Pflanze mit dem, was er tut."
                 pairs:
-                  - { left: { text: "Wurzel" }, right: { text: "nimmt Wasser auf" } }
-                  - { left: { text: "Blätter" }, right: { text: "fangen Sonnenlicht ein" } }
-                  - { left: { text: "Blüte" }, right: { text: "lockt Bienen an" } }
+                  - { left: { object: root }, right: { text: "nimmt Wasser auf" } }
+                  - { left: { object: leaf, say: "Blätter" }, right: { text: "fangen Sonnenlicht ein" } }
+                  - { left: { object: blossom }, right: { text: "lockt Bienen an" } }
                 hints:
                   - "Fang mit dem Teil an, der in der Erde steckt."
                   - "In der Erde ist das Wasser. Die Bienen suchen den bunten Teil."
@@ -441,8 +442,8 @@ lessons:
                 text: "Wurzel oder Blüte?"
                 say: "Sortiere. Was macht die Wurzel, was macht die Blüte?"
                 bins:
-                  - { id: wurzel, show: { text: "Wurzel" }, say: "Wurzel" }
-                  - { id: bluete, show: { text: "Blüte" }, say: "Blüte" }
+                  - { id: wurzel, show: { object: root }, say: "Wurzel" }
+                  - { id: bluete, show: { object: blossom }, say: "Blüte" }
                 options:
                   - { text: "hält die Pflanze fest", bin: wurzel }
                   - { text: "lockt Bienen an", bin: bluete }
@@ -457,6 +458,7 @@ lessons:
                 type: multiple_choice
                 text: "Pauls Blume am Fenster neigt sich zur Scheibe. Warum?"
                 say: "Pauls Blume am Fenster neigt sich zur Scheibe. Warum?"
+                show: { object: potted-plant }
                 options: ["Die Blätter wollen Licht.", "Die Blume will hinausschauen.", "Die Wurzel ist müde."]
                 answer: "Die Blätter wollen Licht."
               - id: l2-n2
@@ -475,12 +477,14 @@ lessons:
                 type: multiple_choice
                 text: "Pauls Blume lässt die Blätter hängen. Die Erde im Topf ist ganz trocken. Was hilft?"
                 say: "Pauls Blume lässt die Blätter hängen. Die Erde im Topf ist ganz trocken. Was hilft?"
+                show: { object: potted-plant }
                 options: ["die Erde gießen", "die Blüte abschneiden", "der Blume Musik vorspielen"]
                 answer: "die Erde gießen"
               - id: l2-n5
                 type: fill_in_blank
                 text: "Paul schneidet einen Apfel auf."
                 say: "Paul schneidet einen Apfel auf. Setz die passenden Wörter ein."
+                show: { object: apple-half }
                 frame: "Innen findet er die _. Daraus kann ein neuer _ wachsen."
                 options: ["Kerne", "Apfelbaum", "Wurzeln"]
                 answer: ["Kerne", "Apfelbaum"]
@@ -598,6 +602,7 @@ lessons:
             type: multiple_choice
             text: "Paul stellt eine Pflanze in den dunklen Keller. Was fehlt nun den Blättern?"
             say: "Paul stellt eine Pflanze in den dunklen Keller. Was fehlt nun den Blättern?"
+            show: { object: potted-plant }
             options: ["Licht", "Erde", "Wind"]
             answer: "Licht"
           - id: l2-c16
@@ -633,5 +638,6 @@ lessons:
             type: multiple_choice
             text: "Was sind beim Apfel die Samen?"
             say: "Was sind beim Apfel die Samen?"
+            show: { object: apple-half }
             options: ["die Kerne", "die Schale", "der Stiel"]
             answer: "die Kerne"

@@ -93,7 +93,7 @@ lessons:
             show: { objects: [bread, oven] }
           - text: "Die Ärztin hört mit dem Stethoskop ab."
             say: "In der Praxis arbeitet Ärztin Doktor Aydin. Mit dem Stethoskop hört sie, wie dein Herz schlägt und wie du atmest. Ärztinnen und Ärzte arbeiten in einer Praxis oder im Krankenhaus. Im Krankenhaus arbeitet auch Krankenpfleger Herr Weber."
-            show: { object: doctor }
+            show: { objects: [doctor, stethoscope] }
           - text: "Jeder Beruf hat Werkzeuge und einen Arbeitsort."
             say: "Jeder Beruf hat seine Werkzeuge und seinen Arbeitsort. Der Lehrer arbeitet in der Schule mit Tafel und Kreide. Die Köchin arbeitet in der Küche mit Kochlöffel und Messer. Und die Busfahrerin? Ihr Arbeitsort ist der Bus."
             show: { objects: [school, kitchen] }
@@ -123,6 +123,7 @@ lessons:
                 type: multiple_choice
                 text: "Wo backt Bäcker Tim das Brot?"
                 say: "Wo backt Bäcker Tim das Brot?"
+                show: { object: baker }
                 options: ["im Ofen", "im Kühlschrank", "in der Badewanne"]
                 answer: "im Ofen"
                 feedback:
@@ -182,6 +183,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Bäcker Tim fängt sehr früh am Morgen an zu arbeiten."
                 say: "Stimmt das? Bäcker Tim fängt sehr früh am Morgen an zu arbeiten."
+                show: { object: baker }
                 answer: true
                 hints: ["Das Brot soll zum Frühstück fertig sein."]
               - id: l1-s3
@@ -234,12 +236,13 @@ lessons:
                 options:
                   - { object: fire-engine, bin: feuerwehr }
                   - { object: chalk, bin: schule }
-                  - { text: "Helm und Schlauch", bin: feuerwehr }
+                  - { object: fire-helmet, bin: feuerwehr }
                   - { object: ruler, bin: schule }
               - id: l1-n4
                 type: true_false
                 text: "Malik sagt: „Der Bus ist der Arbeitsort der Busfahrerin.“ Stimmt das?"
                 say: "Malik sagt: Der Bus ist der Arbeitsort der Busfahrerin. Stimmt das?"
+                show: { object: bus-driver }
                 answer: true
               - id: l1-n5
                 type: fill_in_blank
@@ -263,6 +266,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Die Ärztin hört mit dem Stethoskop dein Herz ab."
             say: "Stimmt das? Die Ärztin hört mit dem Stethoskop dein Herz ab."
+            show: { object: stethoscope }
             answer: true
           - id: l1-c3
             type: multiple_choice
@@ -280,6 +284,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Der Bäcker backt das Brot im Kühlschrank."
             say: "Stimmt das? Der Bäcker backt das Brot im Kühlschrank."
+            show: { object: baker }
             answer: false
           - id: l1-c6
             type: fill_in_blank
@@ -318,7 +323,7 @@ lessons:
         screens:
           - text: "Kann Lina Tischlerin werden und Malik Krankenpfleger?"
             say: "Zurück in der Klasse erzählen die Kinder, was sie einmal werden wollen. Lina sagt: Ich werde Tischlerin und baue Tische aus Holz. Malik sagt: Ich werde Krankenpfleger wie Herr Weber. Was glaubst du: Geht das?"
-            show: { object: saw }
+            show: { objects: [carpenter, nurse] }
           - text: "Jeden Beruf können alle lernen."
             say: "Ja! Jeden Beruf können Frauen und Männer lernen, Mädchen und Jungen. Es gibt Tischlerinnen und Tischler, Krankenpflegerinnen und Krankenpfleger. Wichtig ist, was dir Spaß macht und was du gut kannst."
             show: { object: child }
@@ -327,10 +332,10 @@ lessons:
             show: { objects: [hospital, kitchen] }
           - text: "Der Scanner an der Kasse liest den Strichcode."
             say: "Bei vielen Berufen helfen Geräte mit einem kleinen Computer. Der Kassierer im Supermarkt hält die Milch an den Scanner. Der Scanner liest den Strichcode, und die Kasse zeigt sofort den Preis. Auch die Ärztin schreibt am Computer auf, was dir fehlt."
-            show: { object: supermarket }
+            show: { object: barcode-scanner }
           - text: "Die Paketbotin scannt jedes Paket."
             say: "Mit dem Lieferwagen bringt die Paketbotin Pakete zu den Menschen nach Hause. Jedes Paket scannt sie mit einem kleinen Gerät. So kann man im Internet sehen, wo das Paket gerade ist."
-            show: { object: van }
+            show: { objects: [delivery-driver, parcel] }
           - text: "Mehr über einen Beruf: fragen, lesen, suchen"
             say: "Willst du mehr über einen Beruf wissen? Frag Menschen, die ihn haben. Lies in einem Sachbuch. Oder such mit einem Erwachsenen auf einer Kinderseite im Internet."
             show: { object: book-open }
@@ -348,10 +353,10 @@ lessons:
                   - { id: gesundheit, show: { text: "Gesundheit" }, say: "Gesundheit" }
                   - { id: essen, show: { text: "Essen" }, say: "Essen" }
                 options:
-                  - { text: "Ärztin", bin: gesundheit }
-                  - { text: "Bäcker", bin: essen }
-                  - { text: "Krankenpfleger", bin: gesundheit }
-                  - { text: "Köchin", bin: essen }
+                  - { object: doctor, say: "die Ärztin", bin: gesundheit }
+                  - { object: baker, say: "der Bäcker", bin: essen }
+                  - { object: nurse, say: "der Krankenpfleger", bin: gesundheit }
+                  - { object: cook, say: "die Köchin", bin: essen }
                 hints:
                   - "Frag dich bei jedem Beruf: Macht er Menschen gesund oder macht er Essen?"
                   - "Ärztin und Krankenpfleger arbeiten im Krankenhaus."
@@ -361,6 +366,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Nur Männer können Tischler werden."
                 say: "Stimmt das? Nur Männer können Tischler werden."
+                show: { object: carpenter }
                 answer: false
                 hints:
                   - "Was will Lina werden?"
@@ -370,6 +376,7 @@ lessons:
                 type: multiple_choice
                 text: "Was macht der Scanner an der Kasse?"
                 say: "Was macht der Scanner an der Kasse?"
+                show: { object: barcode-scanner }
                 options: ["Er liest den Strichcode, und die Kasse zeigt den Preis.", "Er backt Brot.", "Er löscht Feuer."]
                 answer: "Er liest den Strichcode, und die Kasse zeigt den Preis."
                 hints:
@@ -381,10 +388,10 @@ lessons:
                 text: "Welcher Beruf gehört zu welchem Arbeitsfeld?"
                 say: "Verbinde jedes Arbeitsfeld mit einem Beruf."
                 pairs:
-                  - { left: { text: "Gesundheit" }, right: { text: "Krankenpflegerin" } }
-                  - { left: { text: "Essen" }, right: { text: "Koch" } }
-                  - { left: { text: "Bauen" }, right: { text: "Tischlerin" } }
-                  - { left: { text: "Sicherheit" }, right: { text: "Feuerwehrmann" } }
+                  - { left: { text: "Gesundheit" }, right: { object: nurse, say: "die Krankenpflegerin" } }
+                  - { left: { text: "Essen" }, right: { object: cook, say: "der Koch" } }
+                  - { left: { text: "Bauen" }, right: { object: carpenter, say: "die Tischlerin" } }
+                  - { left: { text: "Sicherheit" }, right: { object: firefighter, say: "der Feuerwehrmann" } }
                 hints:
                   - "Fang mit dem Arbeitsfeld an, das du am besten kennst."
                   - "Wer sägt Holz? Wer löscht Feuer?"
@@ -413,6 +420,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Eine Frau kann Feuerwehrfrau werden und ein Mann Krankenpfleger."
                 say: "Stimmt das? Eine Frau kann Feuerwehrfrau werden und ein Mann Krankenpfleger."
+                show: { objects: [firefighter, nurse] }
                 answer: true
                 hints: ["Denk an Jana und an Herrn Weber."]
               - id: l2-s3
@@ -434,6 +442,7 @@ lessons:
                 type: ordering
                 text: "Wie kommt der Preis auf die Kasse?"
                 say: "Wie kommt der Preis auf die Kasse? Leg die Karten in die richtige Reihenfolge."
+                show: { object: barcode-scanner }
                 options: ["Die Kasse zeigt den Preis.", "Der Kassierer hält die Milch an den Scanner.", "Der Scanner liest den Strichcode."]
                 slot_count: 3
                 answer: ["Der Kassierer hält die Milch an den Scanner.", "Der Scanner liest den Strichcode.", "Die Kasse zeigt den Preis."]
@@ -452,6 +461,7 @@ lessons:
                 type: true_false
                 text: "Ein Kind sagt: „Krankenpfleger ist nur ein Beruf für Frauen.“ Stimmt das?"
                 say: "Ein Kind sagt: Krankenpfleger ist nur ein Beruf für Frauen. Stimmt das?"
+                show: { object: nurse }
                 answer: false
               - id: l2-n3
                 type: sorting
@@ -462,11 +472,11 @@ lessons:
                   - { id: essen, show: { text: "Essen" }, say: "Essen" }
                   - { id: sicherheit, show: { text: "Sicherheit" }, say: "Sicherheit" }
                 options:
-                  - { text: "Polizistin", bin: sicherheit }
-                  - { text: "Bäckerin", bin: essen }
-                  - { text: "Arzt", bin: gesundheit }
-                  - { text: "Feuerwehrmann", bin: sicherheit }
-                  - { text: "Koch", bin: essen }
+                  - { object: police-officer, say: "die Polizistin", bin: sicherheit }
+                  - { object: baker, say: "die Bäckerin", bin: essen }
+                  - { object: doctor, say: "der Arzt", bin: gesundheit }
+                  - { object: firefighter, say: "der Feuerwehrmann", bin: sicherheit }
+                  - { object: cook, say: "der Koch", bin: essen }
               - id: l2-n4
                 type: image_multiple_choice
                 text: "Lina wartet auf ein Paket. Womit bringt es die Paketbotin?"
@@ -504,6 +514,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Der Scanner an der Kasse liest den Strichcode."
             say: "Stimmt das? Der Scanner an der Kasse liest den Strichcode."
+            show: { object: barcode-scanner }
             answer: true
           - id: l2-c4
             part: tools
@@ -533,9 +544,9 @@ lessons:
             text: "Welcher Arbeitsort gehört zu welchem Beruf?"
             say: "Welcher Arbeitsort gehört zu welchem Beruf? Verbinde."
             pairs:
-              - { left: { text: "Lehrerin" }, right: { object: school } }
-              - { left: { text: "Arzt" }, right: { object: hospital } }
-              - { left: { text: "Kassierer" }, right: { object: supermarket } }
+              - { left: { object: teacher, say: "die Lehrerin" }, right: { object: school } }
+              - { left: { object: doctor, say: "der Arzt" }, right: { object: hospital } }
+              - { left: { object: cashier, say: "der Kassierer" }, right: { object: supermarket } }
           - id: l2-c8
             part: places
             type: true_false
@@ -566,10 +577,10 @@ lessons:
               - { id: essen, show: { text: "Essen" }, say: "Essen" }
               - { id: sicherheit, show: { text: "Sicherheit" }, say: "Sicherheit" }
             options:
-              - { text: "Bäckerin", bin: essen }
-              - { text: "Polizist", bin: sicherheit }
-              - { text: "Koch", bin: essen }
-              - { text: "Feuerwehrfrau", bin: sicherheit }
+              - { object: baker, say: "die Bäckerin", bin: essen }
+              - { object: police-officer, say: "der Polizist", bin: sicherheit }
+              - { object: cook, say: "der Koch", bin: essen }
+              - { object: firefighter, say: "die Feuerwehrfrau", bin: sicherheit }
           - id: l2-c12
             part: fields
             type: multiple_choice
@@ -582,6 +593,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Die Tischlerin gehört zum Arbeitsfeld Bauen."
             say: "Stimmt das? Die Tischlerin gehört zum Arbeitsfeld Bauen."
+            show: { object: carpenter }
             answer: true
           - id: l2-c14
             part: fields
@@ -596,9 +608,9 @@ lessons:
             text: "Welcher Beruf passt zum Arbeitsfeld?"
             say: "Verbinde jedes Arbeitsfeld mit einem Beruf."
             pairs:
-              - { left: { text: "Gesundheit" }, right: { text: "Ärztin" } }
-              - { left: { text: "Essen" }, right: { text: "Bäcker" } }
-              - { left: { text: "Bauen" }, right: { text: "Tischler" } }
+              - { left: { text: "Gesundheit" }, right: { object: doctor, say: "die Ärztin" } }
+              - { left: { text: "Essen" }, right: { object: baker, say: "der Bäcker" } }
+              - { left: { text: "Bauen" }, right: { object: carpenter, say: "der Tischler" } }
           - id: l2-c16
             part: open
             type: true_false
@@ -610,6 +622,7 @@ lessons:
             type: multiple_choice
             text: "Paula will Feuerwehrfrau werden. Was stimmt?"
             say: "Paula will Feuerwehrfrau werden. Was stimmt?"
+            show: { object: firefighter }
             options: ["Das kann sie werden.", "Das dürfen nur Männer.", "Das dürfen nur Menschen mit Brille."]
             answer: "Das kann sie werden."
           - id: l2-c18
@@ -617,6 +630,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Krankenpfleger können nur Frauen werden."
             say: "Stimmt das? Krankenpfleger können nur Frauen werden."
+            show: { object: nurse }
             answer: false
           - id: l2-c19
             part: open

@@ -1475,7 +1475,7 @@ Ben wishes for a pet. Lesson 1 starts with the hedgehog in his garden: a Wildtie
 | 1. Welches Tier ist ein Haustier? | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Ben passt auf Minka auf | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 14, true_false 16, sorting 8, matching 5, multiple_choice 13, fill_in_blank 5, ordering 1. Builds on: `world.nature.living-nonliving`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 15, true_false 16, sorting 8, matching 5, multiple_choice 12, fill_in_blank 5, ordering 1. Builds on: `world.nature.living-nonliving`. Misconceptions addressed: 4.
 
 ## Die vier Jahreszeiten (The four seasons)
 
@@ -1489,7 +1489,7 @@ Ella watches the apple tree in her garden through one year. Lesson 1 names the f
 | 1. Frühling, Sommer, Herbst und Winter | yes | 19 | learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Die Natur im Jahr | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: ordering 7, image_multiple_choice 10, true_false 12, sorting 6, multiple_choice 17, fill_in_blank 8. Builds on: . Misconceptions addressed: 3.
+Task types: ordering 7, image_multiple_choice 11, true_false 12, sorting 6, multiple_choice 16, fill_in_blank 8. Builds on: . Misconceptions addressed: 3.
 
 ## Gut zu sehen! (Easy to see!)
 
@@ -1545,7 +1545,7 @@ Lea spends a Saturday with Opa Karl in his workshop and kitchen. Lesson 1 names 
 | 1. Wofür ist das? | yes | 19 | learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Mit Strom und ohne Strom | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: matching 5, image_multiple_choice 13, true_false 14, multiple_choice 13, fill_in_blank 10, sorting 5. Builds on: . Misconceptions addressed: 4.
+Task types: matching 5, image_multiple_choice 15, true_false 14, multiple_choice 11, fill_in_blank 10, sorting 5. Builds on: . Misconceptions addressed: 4.
 
 ## Sicher über die Straße (Safely across the road)
 
@@ -1587,7 +1587,7 @@ Mia is the class Wetterkind this week: every morning she looks out of the window
 | 1. Wie ist das Wetter? | yes | 21 | warm-up, learn, practise (6 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Was ziehe ich an? | yes | 23 | warm-up, learn, practise (6 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 10, true_false 15, image_multiple_choice 17, matching 5, sorting 6, fill_in_blank 8, ordering 1. Builds on: `world.nature.seasons`. Misconceptions addressed: 3.
+Task types: multiple_choice 8, true_false 15, image_multiple_choice 19, matching 5, sorting 6, fill_in_blank 8, ordering 1. Builds on: `world.nature.seasons`. Misconceptions addressed: 3.
 
 ## Adjektive vor dem Nomen (Adjectives before the noun)
 
@@ -3345,7 +3345,7 @@ Task types: image_multiple_choice 8, multiple_choice 20, sorting 8, true_false 1
 
 `de-DE.world.my-life-story` teaches `world.time.my-life-story` in de-DE, klasse-2. Ages 6-7, about 11 minutes a lesson. Status: draft, version 1.
 
-Jule's class makes timelines of their lives. Lesson 1 orders events from long ago to today on a line, with what is longest ago on the left and today on the right, and reads a timeline marked in years of age (born, first steps at 1, Kindergarten at 3, school at 6). Every life story is different: Malik moved house at 4, Ben got a sister at 5, Pia came to her family at 2. Lesson 2 shows that every year takes the same space on the line, links age and year (born 2019, three years old in 2022) and how to find out about your early years: ask people who knew you then, look at photos or things from back then, or draw a picture when there is no photo. No task assumes the child's own family, photos or Kindergarten; the events belong to story children. It ends with the skill check. The timeline is shown with the number line until a timeline drawing exists.
+Jule's class makes timelines of their lives. Lesson 1 orders events from long ago to today on a line, with what is longest ago on the left and today on the right, and reads a timeline marked in years of age (born, first steps at 1, Kindergarten at 3, school at 6). Every life story is different: Malik moved house at 4, Ben got a sister at 5, Pia came to her family at 2. Lesson 2 shows that every year takes the same space on the line, links age and year (born 2019, three years old in 2022) and how to find out about your early years: ask people who knew you then, look at photos or things from back then, or draw a picture when there is no photo. No task assumes the child's own family, photos or Kindergarten; the events belong to story children. It ends with the skill check. Jule's events stand on the timeline component; tasks that point at an age with an arrow use the number line, so the events are not shown with it.
 
 
 | Lesson | New | Tasks | Activities |
@@ -4851,7 +4851,7 @@ Animals and plants are adapted to their habitat: their bodies and their behaviou
 | 1. Was hilft dir, hier zu leben? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Durch den Winter und durch die Wüste | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 9, multiple_choice 24, sorting 6, true_false 17, matching 8. Builds on: `world.nature.meadow`, `world.nature.animal-classes`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 10, multiple_choice 23, sorting 6, true_false 17, matching 8. Builds on: `world.nature.meadow`, `world.nature.animal-classes`. Misconceptions addressed: 3.
 
 ## Die fünf Tierklassen (The five animal classes)
 
@@ -4879,7 +4879,7 @@ Bridges come in a few forms, and each is strong for its own reason. The story: C
 | 1. Die Balkenbrücke | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Bogen, Dreiecke und Seile | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, true_false 20, sorting 3, fill_in_blank 6, matching 4, image_multiple_choice 2. Builds on: `world.technology.stable-building`. Misconceptions addressed: 3.
+Task types: multiple_choice 27, true_false 20, sorting 3, fill_in_blank 6, matching 4, image_multiple_choice 4. Builds on: `world.technology.stable-building`. Misconceptions addressed: 3.
 
 ## Kinderrechte (Children's rights)
 
@@ -4921,7 +4921,7 @@ Every computer works by input, processing and output (EVA: Eingabe, Verarbeitung
 | 1. Eingabe, Verarbeitung, Ausgabe | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Speicher und EVA überall | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 2, true_false 18, multiple_choice 25, sorting 8, matching 4, ordering 2, fill_in_blank 5. Builds on: `world.technology.tools-household`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 11, true_false 18, sorting 8, matching 4, ordering 2, multiple_choice 16, fill_in_blank 5. Builds on: `world.technology.tools-household`. Misconceptions addressed: 3.
 
 ## Die Reise des Essens (The journey of food)
 
@@ -4949,7 +4949,7 @@ Sugar, salt, Brausepulver and honey dissolve in water: you no longer see them, t
 | 1. Wohin verschwindet der Zucker? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Schneller lösen, Salz zurückholen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, true_false 18, sorting 9, image_multiple_choice 5, matching 5, ordering 2. Builds on: `world.nature.materials-sort`, `world.nature.water-states`. Misconceptions addressed: 4.
+Task types: multiple_choice 19, true_false 18, sorting 9, image_multiple_choice 11, matching 5, ordering 2. Builds on: `world.nature.materials-sort`, `world.nature.water-states`. Misconceptions addressed: 4.
 
 ## Schwimmt es oder sinkt es? (Does it float or sink?)
 
@@ -4963,7 +4963,7 @@ Whether a thing floats is not a question of big or small: a big apple floats, a 
 | 1. Groß, klein, schwimmt, sinkt | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Ein Schiff aus Metall? | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 22, image_multiple_choice 13, sorting 9, true_false 17, matching 3. Builds on: `world.nature.materials-sort`. Misconceptions addressed: 4.
+Task types: multiple_choice 21, image_multiple_choice 14, sorting 9, true_false 17, matching 3. Builds on: `world.nature.materials-sort`. Misconceptions addressed: 4.
 
 ## Der Wald als Lebensraum (The forest as a habitat)
 
@@ -4977,7 +4977,7 @@ The forest is built in five layers, from the root layer up to the tree crowns, a
 | 1. Ein Haus mit fünf Stockwerken | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Den Wald verstehen und schützen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, image_multiple_choice 8, ordering 4, true_false 17, sorting 5, matching 5. Builds on: `world.nature.trees`, `world.nature.adaptation`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 9, ordering 4, multiple_choice 24, true_false 17, sorting 5, matching 5. Builds on: `world.nature.trees`, `world.nature.adaptation`. Misconceptions addressed: 3.
 
 ## Herz und Lunge (Heart and lungs)
 
@@ -5005,7 +5005,7 @@ Lever, pulley and wheel let us move heavy things with less effort. The story: Em
 | 1. Der Hebel | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Rolle und Rad | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, image_multiple_choice 4, sorting 5, true_false 16, fill_in_blank 6, matching 5. Builds on: `world.technology.tools-household`. Misconceptions addressed: 3.
+Task types: multiple_choice 24, image_multiple_choice 8, sorting 5, true_false 16, fill_in_blank 6, matching 5. Builds on: `world.technology.tools-household`. Misconceptions addressed: 3.
 
 ## Lebenszyklen (Life cycles)
 
@@ -5019,7 +5019,7 @@ A life cycle is a circle: the adult lays eggs and it starts again. The butterfly
 | 1. Vom Ei zum Schmetterling | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Vom Laich zum Frosch | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: true_false 19, multiple_choice 24, ordering 8, matching 4, image_multiple_choice 4, sorting 4, fill_in_blank 1. Builds on: `world.nature.living-nonliving`, `world.nature.plant-growth`. Misconceptions addressed: 4.
+Task types: true_false 19, multiple_choice 22, ordering 8, matching 4, image_multiple_choice 6, sorting 4, fill_in_blank 1. Builds on: `world.nature.living-nonliving`, `world.nature.plant-growth`. Misconceptions addressed: 4.
 
 ## Leben in Vielfalt (Living with diversity)
 
@@ -5081,7 +5081,7 @@ Task types: multiple_choice 27, true_false 19, sorting 5, image_multiple_choice 
 
 `de-DE.world.native-birds` teaches `world.nature.native-birds` in de-DE, klasse-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-Common birds in Germany, recognised by how they look, and how they get through the winter. The story: Emil and his Oma Ruth watch the bird feeder from the kitchen window and keep a bird list. Lesson 1 tells apart Amsel, Kohlmeise, Blaumeise, Rotkehlchen, Spatz, Buntspecht and Elster by colour, beak, size and tail. Lesson 2 sorts migrants (Storch, Schwalbe, Kuckuck) from birds that stay (Meisen, Spatz, Buntspecht, Elster), and shows how the birds that stay keep warm and what to feed them; it ends with the skill check. There are no bird-call recordings yet, so the set has no listening tasks, and no pictures of the single species, so the birds are named on text cards and described in words.
+Common birds in Germany, recognised by how they look, and how they get through the winter. The story: Emil and his Oma Ruth watch the bird feeder from the kitchen window and keep a bird list. Lesson 1 tells apart Amsel, Kohlmeise, Blaumeise, Rotkehlchen, Spatz, Buntspecht and Elster by colour, beak, size and tail. Lesson 2 sorts migrants (Storch, Schwalbe, Kuckuck) from birds that stay (Meisen, Spatz, Buntspecht, Elster), and shows how the birds that stay keep warm and what to feed them; it ends with the skill check. There are no bird-call recordings yet, so the set has no listening tasks. Each species has its own picture; Emil's written list stays on text cards.
 
 
 | Lesson | New | Tasks | Activities |
@@ -5089,7 +5089,7 @@ Common birds in Germany, recognised by how they look, and how they get through t
 | 1. Wer sitzt am Futterhaus? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Wer bleibt im Winter? | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 28, true_false 19, matching 7, fill_in_blank 5, sorting 5. Builds on: `world.nature.animal-classes`, `world.nature.adaptation`. Misconceptions addressed: 3.
+Task types: multiple_choice 16, true_false 19, image_multiple_choice 12, matching 7, fill_in_blank 5, sorting 5. Builds on: `world.nature.animal-classes`, `world.nature.adaptation`. Misconceptions addressed: 3.
 
 ## Mit dem Maßstab messen (Measuring with the scale)
 
@@ -5131,7 +5131,7 @@ Emil and his Oma Ruth find an old box in the attic. Lesson 1 says what a source 
 | 1. Vier Arten von Quellen | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Was verrät eine Quelle? | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, true_false 21, sorting 6, matching 7. Builds on: `world.time.then-now`. Misconceptions addressed: 4.
+Task types: multiple_choice 25, true_false 21, sorting 6, matching 7, image_multiple_choice 5. Builds on: `world.time.then-now`. Misconceptions addressed: 4.
 
 ## Zeitreise in die Steinzeit (Time travel to the Stone Age)
 
@@ -5145,13 +5145,13 @@ A time trip with a guide child from each part of the Stone Age. Lesson 1 visits 
 | 1. Bei Tuk, dem Jäger | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Bei Ena im Dorf | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, true_false 20, sorting 7, matching 3, image_multiple_choice 2, ordering 3. Builds on: `world.time.timeline`. Misconceptions addressed: 4.
+Task types: multiple_choice 26, true_false 20, sorting 7, matching 3, image_multiple_choice 5, ordering 3. Builds on: `world.time.timeline`. Misconceptions addressed: 4.
 
 ## Die große Zeitleiste (The big timeline)
 
 `de-DE.world.timeline` teaches `world.time.timeline` in de-DE, klasse-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-The big timeline in the town museum has fallen off the wall, and Lina and her Opa help hang the cards back up. Lesson 1 orders events by their year (the smaller year was earlier and goes further left), with events whose dates are certain: the first German railway (1835), the Kölner Dom finished (1880), the first car by Carl Benz (1886) and the first powered flight (1903); it names a Jahrzehnt (10 years), a Jahrhundert (100 years) and a Jahrtausend (1000 years) and finds decades on a timeline. Lesson 2 says how long ago something was (more than a century, a few decades, thousands of years), counts decades between two years and shows that every decade takes the same space. It ends with the skill check. No task names the current year; every "how long ago" claim stays true for decades. The timeline is the number line until a timeline drawing exists.
+The big timeline in the town museum has fallen off the wall, and Lina and her Opa help hang the cards back up. Lesson 1 orders events by their year (the smaller year was earlier and goes further left), with events whose dates are certain: the first German railway (1835), the Kölner Dom finished (1880), the first car by Carl Benz (1886) and the first powered flight (1903); it names a Jahrzehnt (10 years), a Jahrhundert (100 years) and a Jahrtausend (1000 years) and finds decades on a timeline. Lesson 2 says how long ago something was (more than a century, a few decades, thousands of years), counts decades between two years and shows that every decade takes the same space. It ends with the skill check. No task names the current year; every "how long ago" claim stays true for decades. Events are drawn on the timeline component; tapping a year (point_on_line) and reading a marked year stay on the number line.
 
 
 | Lesson | New | Tasks | Activities |
@@ -5173,7 +5173,7 @@ Trees as found in Germany. Broadleaf trees have broad, flat leaves and are mostl
 | 1. Blätter oder Nadeln? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Blatt und Frucht | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 29, true_false 18, image_multiple_choice 4, sorting 7, matching 5, fill_in_blank 1. Builds on: `world.nature.plant-parts`. Misconceptions addressed: 3.
+Task types: multiple_choice 19, true_false 18, image_multiple_choice 14, sorting 7, matching 5, fill_in_blank 1. Builds on: `world.nature.plant-parts`. Misconceptions addressed: 3.
 
 ## Was bewegt Fahrzeuge? (What makes vehicles move?)
 
@@ -5187,13 +5187,13 @@ Vehicles are moved by muscle power, wind, an engine that burns petrol or diesel,
 | 1. Muskeln, Wind, Motor, Strom | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (quick, 3 of 6) |
 | 2. Antriebe vergleichen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 25, true_false 17, image_multiple_choice 6, sorting 5, ordering 2, matching 4, fill_in_blank 5. Builds on: `world.technology.lever-wheel`. Misconceptions addressed: 3.
+Task types: multiple_choice 23, true_false 17, image_multiple_choice 8, sorting 5, ordering 2, matching 4, fill_in_blank 5. Builds on: `world.technology.lever-wheel`. Misconceptions addressed: 3.
 
 ## Der Wasserkreislauf (The water cycle)
 
 `de-DE.world.water-cycle` teaches `world.nature.water-cycle` in de-DE, klasse-3. Ages 8-10, about 12 minutes a lesson. Status: draft, version 1.
 
-The sun warms the water of seas, lakes, rivers and plants; it evaporates and rises as invisible water vapour. High up it is cold, the vapour condenses into tiny droplets, and many droplets make a cloud. The droplets grow and fall as Niederschlag (rain, snow, hail); the water soaks into the ground or runs off into streams and rivers and back to the sea. The cycle has no start and no end, and no water is lost. The story: Tropfi, a drop from the North Sea, travels up into a cloud over a mountain and finds the way home. Lesson 1 follows the way up; lesson 2 the way down and the whole cycle, puts it in order and ends with the skill check.
+The sun warms the water of seas, lakes, rivers and plants; it evaporates and rises as invisible water vapour. High up it is cold, the vapour condenses into tiny droplets, and many droplets make a cloud. The droplets grow and fall as Niederschlag (rain, snow, hail); the water soaks into the ground or runs off into streams and rivers and back to the sea. The cycle has no start and no end, and no water is lost. The story: Tropfi, a drop from the North Sea, travels up into a cloud over a mountain and finds the way home. Lesson 1 follows the way up; lesson 2 the way down and the whole cycle, puts it in order and ends with the skill check. The water-cycle component shows each step on the Learn screens; where a task asks for a step's name, that name shows as ?.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6459,7 +6459,7 @@ Task types: multiple_choice 30, true_false 15, matching 4, fill_in_blank 7, text
 
 `de-DE.world.conductors` teaches `world.nature.conductors` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Lina and her friend Can become material testers with Opa Theo's test circuit: a battery, a bulb and a gap between two wires. Lesson 1 opens with a paper clip in the gap (the bulb lights) and then a rubber (it stays dark). Metals such as iron, copper and aluminium conduct; wood, plastic, rubber, glass, paper and cloth do not and are called Nichtleiter or Isolatoren. Colour, shine and shape say nothing; the material decides. The child predicts each test before seeing it. Lesson 2 cuts open an old cable: copper wires inside, a plastic sleeve outside, so the current stays in the cable; plugs have metal pins and a plastic grip. Tap water and the human body barely show in the bulb test, but both carry the strong current from the socket, so wet hands and broken cables are dangerous. It ends with the skill check. The test with real material stays in class or at home with an adult and a battery.
+Lina and her friend Can become material testers with Opa Theo's test circuit: a battery, a bulb and a gap between two wires. Lesson 1 opens with a paper clip in the gap (the bulb lights) and then a rubber (it stays dark). Metals such as iron, copper and aluminium conduct; wood, plastic, rubber, glass, paper and cloth do not and are called Nichtleiter or Isolatoren. Colour, shine and shape say nothing; the material decides. The child predicts each test before seeing it. Lesson 2 cuts open an old cable: copper wires inside, a plastic sleeve outside, so the current stays in the cable; plugs have metal pins and a plastic grip. Tap water and the human body barely show in the bulb test, but both carry the strong current from the socket, so wet hands and broken cables are dangerous. It ends with the skill check. The test circuit is drawn with the thing in its gap; where the child predicts, the bulb shows a question mark. The test with real material stays in class or at home with an adult and a battery.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6473,7 +6473,7 @@ Task types: multiple_choice 27, true_false 16, image_multiple_choice 7, sorting 
 
 `de-DE.world.continents-oceans` teaches `world.space.continents-oceans` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Kapitänin Frieda sails around the world and sends Jonas photos from every continent. Lesson 1 opens with the guess whether the Earth has more land or more water, then names the seven continents on a simple world map drawn on squared paper (green land, blue sea, white ice, numbers for the continents): Europe with Germany in it, Africa to the south, Asia to the east and the largest, North and South America across the Atlantic, Australia the smallest, Antarctica under ice in the far south, and no continent at the North Pole. A continent is not a country, except Australia, which is both. Lesson 2 names the three big oceans, Pacific (the largest, seen on both edges of the map), Atlantic and Indian Ocean, and where each lies; all oceans join, so Frieda can sail from Germany to Australia. It ends with the skill check. The squared paper map stands in until a world map is drawn.
+Kapitänin Frieda sails around the world and sends Jonas photos from every continent. Lesson 1 opens with the guess whether the Earth has more land or more water, then names the seven continents on the drawn world map (numbers for the continents, by their names in Learn): Europe with Germany in it, Africa to the south, Asia to the east and the largest, North and South America across the Atlantic, Australia the smallest, Antarctica under ice in the far south, and no continent at the North Pole. A continent is not a country, except Australia, which is both. Lesson 2 names the three big oceans, Pacific (the largest, seen on both edges of the map), Atlantic and Indian Ocean, and where each lies; all oceans join, so Frieda can sail from Germany to Australia. It ends with the skill check. The oceans carry letters on the map (A, I, P) as the continents carry numbers.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6543,7 +6543,7 @@ Task types: multiple_choice 26, true_false 16, ordering 5, sorting 6, fill_in_bl
 
 `de-DE.world.drinking-water` teaches `world.nature.drinking-water` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Where tap water comes from and where waste water goes. The story: Lina brushes her teeth and wonders where the water comes from; her class visits the Wasserwerk with Frau Brandt and later the Kläranlage. Lesson 1 opens with the guess where tap water comes from, then follows it: most drinking water in Germany is Grundwasser (rain soaks into the ground and is cleaned by sand and stone; some comes from Talsperren, lakes and rivers); a Brunnen pumps it up, the Wasserwerk filters and tests it, pipes under the street bring it to the tap. Clean water keeps us healthy; tap water in Germany is tested often and can be drunk. Each person uses about 125 litres a day, only a few of them for drinking. Lesson 2 follows the waste water: from toilet, shower and sink through the Kanal to the Kläranlage, where a Rechen catches large things, sand sinks, tiny living things (Bakterien) eat the dirt and the cleaned water flows into a river; what must not go down the toilet (Feuchttücher, food, fat, medicines); the whole way in order. It ends with the skill check. Real visits stay in class. There are no pictures of tap, pipe, Wasserwerk or Kläranlage yet, so these are text cards.
+Where tap water comes from and where waste water goes. The story: Lina brushes her teeth and wonders where the water comes from; her class visits the Wasserwerk with Frau Brandt and later the Kläranlage. Lesson 1 opens with the guess where tap water comes from, then follows it: most drinking water in Germany is Grundwasser (rain soaks into the ground and is cleaned by sand and stone; some comes from Talsperren, lakes and rivers); a Brunnen pumps it up, the Wasserwerk filters and tests it, pipes under the street bring it to the tap. Clean water keeps us healthy; tap water in Germany is tested often and can be drunk. Each person uses about 125 litres a day, only a few of them for drinking. Lesson 2 follows the waste water: from toilet, shower and sink through the Kanal to the Kläranlage, where a Rechen catches large things, sand sinks, tiny living things (Bakterien) eat the dirt and the cleaned water flows into a river; what must not go down the toilet (Feuchttücher, food, fat, medicines); the whole way in order. It ends with the skill check. Real visits stay in class. Tap, pipe, Wasserwerk and Kläranlage are pictures from the bank.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6557,7 +6557,7 @@ Task types: multiple_choice 24, true_false 13, ordering 9, matching 5, image_mul
 
 `de-DE.world.electric-circuit` teaches `world.nature.electric-circuit` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Lina and Opa Theo build a reading light for Lina's blanket den from a flat battery, wires and a small bulb. Every task is predict, then see: the child says whether the bulb lights before finding out. Lesson 1 opens with one wire from the battery to the bulb, which stays dark: the current needs a closed loop from one pole of the battery through the bulb and back to the other pole (Pluspol, Minuspol). A gap anywhere opens the circuit; two wires on the same pole do not light it either. Experiments only ever with a battery, never with the socket. Lesson 2 adds the switch, which opens and closes the circuit like a small bridge, looks inside a torch, and finds faults (switch off, loose wire, flat battery, burnt-out bulb); two switches one after the other light the bulb only when both are on. It ends with the skill check. No circuit is drawn: assets/drawn.yaml has no circuit component yet, so each set-up is described in words. The direction of the current is left out on purpose, since schools teach it differently.
+Lina and Opa Theo build a reading light for Lina's blanket den from a flat battery, wires and a small bulb. Every task is predict, then see: the child says whether the bulb lights before finding out. Lesson 1 opens with one wire from the battery to the bulb, which stays dark: the current needs a closed loop from one pole of the battery through the bulb and back to the other pole (Pluspol, Minuspol). A gap anywhere opens the circuit; two wires on the same pole do not light it either. Experiments only ever with a battery, never with the socket. Lesson 2 adds the switch, which opens and closes the circuit like a small bridge, looks inside a torch, and finds faults (switch off, loose wire, flat battery, burnt-out bulb); two switches one after the other light the bulb only when both are on. It ends with the skill check. The circuit component draws the closed loop, the open switch and the cut wire; where the child predicts, its bulb shows a question mark. Set-ups it cannot draw (one wire, both wires on one pole, a flat battery, two switches) stay in words. The direction of the current is left out on purpose, since schools teach it differently.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6655,7 +6655,7 @@ Task types: multiple_choice 22, true_false 19, ordering 5, image_multiple_choice
 
 `de-DE.world.food-chains` teaches `world.nature.food-chains` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Food chains and food webs. The story: Mira and Jonas from the 4a hang a Wildkamera at the edge of the forest and watch who eats whom. Lesson 1 builds food chains: every chain starts with a plant, which makes its own food with sunlight; the arrow means "wird gefressen von" and points to the eater (Gras, Feldhase, Fuchs; Körner, Maus, Eule; Blatt, Raupe, Meise, Sperber); animals are Pflanzenfresser, Fleischfresser or Allesfresser. Lesson 2 joins chains into a Nahrungsnetz, because most animals eat more than one thing, and shows that animals and plants depend on each other: when one link goes missing, others go hungry or become too many (no ladybirds, many aphids); at the start of a chain there are many living things, at the end few. It ends with the skill check. Fox and hedgehog are never sorted as pure meat eaters, as both also eat fruit. Feldhase, Reh, Meise, Sperber, Blattlaus, Raupe, Wildschwein and Krill have no pictures yet, so they are text cards.
+Food chains and food webs. The story: Mira and Jonas from the 4a hang a Wildkamera at the edge of the forest and watch who eats whom. Lesson 1 builds food chains: every chain starts with a plant, which makes its own food with sunlight; the arrow means "wird gefressen von" and points to the eater (Gras, Feldhase, Fuchs; Körner, Maus, Eule; Blatt, Raupe, Meise, Sperber); animals are Pflanzenfresser, Fleischfresser or Allesfresser. Lesson 2 joins chains into a Nahrungsnetz, because most animals eat more than one thing, and shows that animals and plants depend on each other: when one link goes missing, others go hungry or become too many (no ladybirds, many aphids); at the start of a chain there are many living things, at the end few. It ends with the skill check. Fox and hedgehog are never sorted as pure meat eaters, as both also eat fruit. Feldhase, Reh, Meise, Sperber, Blattlaus, Raupe, Wildschwein and Krill are pictures from the bank.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6683,7 +6683,7 @@ Task types: multiple_choice 24, true_false 17, matching 4, ordering 5, sorting 5
 
 `de-DE.world.germany-landscapes` teaches `world.space.germany-landscapes` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Kemal and his sister Defne travel with their father across Germany, from the North Sea down to the Alps. Lesson 1 finds that the land rises from north to south and names the four big landscapes in that order: Küste (beach, dunes, dykes, Ebbe und Flut), Tiefland (flat, below 200 m, fields, meadows and heath), Mittelgebirge (rounded hills up to about 1500 m with much forest, such as the Harz and the Schwarzwald) and Alpen (the highest, rocky peaks, snow on the summits, only in Bayern); on a map green is low and brown is high. A schematic north-to-south strip stands in for a map. Lesson 2 sorts Kemal's four souvenirs, sets the North Sea (Watt, tides twice a day) against the Baltic (hardly any tide, chalk cliffs on Rügen), places the landscapes in Länder and towns (coast in Schleswig-Holstein, Niedersachsen and Mecklenburg-Vorpommern, Berlin and Hamburg in the Tiefland, the Lüneburger Heide, the Alps only in Bayern) and says how people use each. It ends with the skill check. The Alpenvorland is named once and not tested.
+Kemal and his sister Defne travel with their father across Germany, from the North Sea down to the Alps. Lesson 1 finds that the land rises from north to south and names the four big landscapes in that order: Küste (beach, dunes, dykes, Ebbe und Flut), Tiefland (flat, below 200 m, fields, meadows and heath), Mittelgebirge (rounded hills up to about 1500 m with much forest, such as the Harz and the Schwarzwald) and Alpen (the highest, rocky peaks, snow on the summits, only in Bayern); on a map green is low and brown is high, shown on the drawn map of Germany with its landscape bands. Lesson 2 sorts Kemal's four souvenirs, sets the North Sea (Watt, tides twice a day) against the Baltic (hardly any tide, chalk cliffs on Rügen), places the landscapes in Länder and towns (coast in Schleswig-Holstein, Niedersachsen and Mecklenburg-Vorpommern, Berlin and Hamburg in the Tiefland, the Lüneburger Heide, the Alps only in Bayern) and says how people use each. It ends with the skill check. The Alpenvorland is named once and not tested.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6697,7 +6697,7 @@ Task types: multiple_choice 25, true_false 15, ordering 4, image_multiple_choice
 
 `de-DE.world.germany-map` teaches `world.space.germany-map` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Nele's Oma Gerda drives a lorry and wants to deliver to every Land of Germany in one year, sending Nele a postcard from each. Lesson 1 finds the 16 Länder by where they lie: Schleswig-Holstein right in the north between the North Sea and the Baltic, Mecklenburg-Vorpommern also on the Baltic, Bayern right in the south and the largest, Nordrhein-Westfalen right in the west, Sachsen right in the east, Bremen the smallest; the three city states Berlin (inside Brandenburg), Hamburg and Bremen (inside Niedersachsen); and the child's own Land, which the child asks about at home. Lesson 2 delivers to all 16 Land capitals, two tables of eight, Berlin as the capital of Germany, and Germany's nine neighbours by direction. It ends with the skill check. There is no map of Germany yet, so position is taught in words and tables; the drag-the-Länder puzzle waits for that drawing. Every name and story is written for Twist.
+Nele's Oma Gerda drives a lorry and wants to deliver to every Land of Germany in one year, sending Nele a postcard from each. Lesson 1 finds the 16 Länder by where they lie: Schleswig-Holstein right in the north between the North Sea and the Baltic, Mecklenburg-Vorpommern also on the Baltic, Bayern right in the south and the largest, Nordrhein-Westfalen right in the west, Sachsen right in the east, Bremen the smallest; the three city states Berlin (inside Brandenburg), Hamburg and Bremen (inside Niedersachsen); and the child's own Land, which the child asks about at home. Lesson 2 delivers to all 16 Land capitals, two tables of eight, Berlin as the capital of Germany, and Germany's nine neighbours by direction. It ends with the skill check. The Learn screens show the drawn map of Germany with the Länder named, highlighted, with capitals or with the neighbours; the tasks stay in words and tables, and the drag-the-Länder puzzle waits for a drag task on the map. Every name and story is written for Twist.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6781,7 +6781,7 @@ Task types: multiple_choice 23, true_false 14, sorting 7, image_multiple_choice 
 
 `de-DE.world.nature-protection` teaches `world.nature.nature-protection` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-How people change habitats and how we can protect animals and plants. The story: Hanna and her grandmother Rosi are nature detectives in their small town. Lesson 1 opens with the guess what happens to the animals when a meadow becomes a car park, then shows how people change habitats: building covers the ground, roads cut through the way of toads to their pond, hedges are cut and meadows mown often, poisons kill insects and so leave birds hungry, litter traps and harms animals, bright lights at night confuse insects. People can also make new habitats. Lesson 2 shows what protects them: the Krötenzaun with its buckets, rules in many Naturschutzgebiete (stay on the paths, dogs on the lead, pick nothing, take litter home), the Rote Liste, and what a child can do at home (Nistkasten, Insektenhotel, wild flowers, a pile of leaves for the hedgehog, a gap in the fence, lights off); and why it matters for people too (bees pollinate fruit). It ends with the skill check. No real parties, campaigns or organisations. Kröte, Biber, Hecke, Nistkasten and Insektenhotel have no pictures yet, so they are text cards.
+How people change habitats and how we can protect animals and plants. The story: Hanna and her grandmother Rosi are nature detectives in their small town. Lesson 1 opens with the guess what happens to the animals when a meadow becomes a car park, then shows how people change habitats: building covers the ground, roads cut through the way of toads to their pond, hedges are cut and meadows mown often, poisons kill insects and so leave birds hungry, litter traps and harms animals, bright lights at night confuse insects. People can also make new habitats. Lesson 2 shows what protects them: the Krötenzaun with its buckets, rules in many Naturschutzgebiete (stay on the paths, dogs on the lead, pick nothing, take litter home), the Rote Liste, and what a child can do at home (Nistkasten, Insektenhotel, wild flowers, a pile of leaves for the hedgehog, a gap in the fence, lights off); and why it matters for people too (bees pollinate fruit). It ends with the skill check. No real parties, campaigns or organisations. Kröte, Biber, Hecke, Nistkasten and Insektenhotel are pictures from the bank.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6795,7 +6795,7 @@ Task types: multiple_choice 24, true_false 14, sorting 9, ordering 4, image_mult
 
 `de-DE.world.pond` teaches `world.nature.pond` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-The pond as a habitat. The story: Ida and her uncle Malte explore the school pond with a Kescher and a Becherlupe. Lesson 1 opens with the guess how many animals live in a quiet pond, then goes round its three places: am Ufer (Schilf, Frosch, Graureiher), auf dem Wasser (Seerose, Ente, Wasserläufer) and unter Wasser (Wasserpflanzen, Fische, Kaulquappen, Teichschnecken, Libellenlarven). Lesson 2 asks how the animals live there: breathing with gills or fetching air at the surface (Gelbrandkäfer, Mückenlarve), the dragonfly larva that lives in the water and leaves its skin on a reed stem, a pond food chain (Algen, Mückenlarve, Libellenlarve, Fisch, Graureiher) and winter under the ice, with the rule to step on ice only where it is officially open. It ends with the skill check. Schilf, Seerose, Libelle, Wasserläufer, Graureiher, Gelbrandkäfer, Kaulquappe, Mückenlarve and Algen have no pictures yet, so they are text cards.
+The pond as a habitat. The story: Ida and her uncle Malte explore the school pond with a Kescher and a Becherlupe. Lesson 1 opens with the guess how many animals live in a quiet pond, then goes round its three places: am Ufer (Schilf, Frosch, Graureiher), auf dem Wasser (Seerose, Ente, Wasserläufer) and unter Wasser (Wasserpflanzen, Fische, Kaulquappen, Teichschnecken, Libellenlarven). Lesson 2 asks how the animals live there: breathing with gills or fetching air at the surface (Gelbrandkäfer, Mückenlarve), the dragonfly larva that lives in the water and leaves its skin on a reed stem, a pond food chain (Algen, Mückenlarve, Libellenlarve, Fisch, Graureiher) and winter under the ice, with the rule to step on ice only where it is officially open. It ends with the skill check. Schilf, Seerose, Libelle, Wasserläufer, Graureiher, Gelbrandkäfer, Kaulquappe, Mückenlarve and Algen are pictures from the bank.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6809,7 +6809,7 @@ Task types: ordering 6, multiple_choice 21, image_multiple_choice 5, sorting 9, 
 
 `de-DE.world.right-of-way` teaches `world.space.right-of-way` in de-DE, klasse-4. Ages 8-10, about 15 minutes a lesson. Status: draft, version 1.
 
-Lina practises for the Radfahrausbildung with her Opa in the streets round her house; the child is the cyclist on a junction drawn from above (green is grass, white is road, "Du" always comes from the bottom, letters are the others, everyone goes straight on). Lesson 1 is rechts vor links (StVO § 8) at crossroads and T-junctions with no sign and no lights, for cars and bikes alike, with two and three road users; coming out of a driveway or over a lowered kerb you let everyone go first (§ 10); having right of way never means going regardless: eye contact, and if in doubt, wait. Lesson 2 is the signs: Vorfahrtstraße (yellow diamond, right of way at every junction until it ends), Vorfahrt an der nächsten Kreuzung (red-bordered triangle with a thick black upright stroke and a thin crossbar, at the next junction only), Vorfahrt gewähren (triangle on its point: let everyone on the other road go, from left and right) and Stopp (stop completely, even when nobody comes); a working traffic light goes before signs, signs before rechts vor links, and a police officer's signals before everything. It ends with the skill check.
+Lina practises for the Radfahrausbildung with her Opa in the streets round her house; the child is the cyclist on a junction drawn from above (green is grass, grey is road, "Du" always comes from the bottom, letters are the others, arrows show that everyone goes straight on). Lesson 1 is rechts vor links (StVO § 8) at crossroads and T-junctions with no sign and no lights, for cars and bikes alike, with two and three road users; coming out of a driveway or over a lowered kerb you let everyone go first (§ 10); having right of way never means going regardless: eye contact, and if in doubt, wait. Lesson 2 is the signs: Vorfahrtstraße (yellow diamond, right of way at every junction until it ends), Vorfahrt an der nächsten Kreuzung (red-bordered triangle with a thick black upright stroke and a thin crossbar, at the next junction only), Vorfahrt gewähren (triangle on its point: let everyone on the other road go, from left and right) and Stopp (stop completely, even when nobody comes); a working traffic light goes before signs, signs before rechts vor links, and a police officer's signals before everything. It ends with the skill check.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6823,7 +6823,7 @@ Task types: multiple_choice 29, true_false 17, sorting 6, ordering 6, matching 4
 
 `de-DE.world.rivers-mountains` teaches `world.space.rivers-mountains` in de-DE, klasse-4. Ages 8-10, about 14 minutes a lesson. Status: draft, version 1.
 
-Lotta's Opa Ben steered a cargo ship on Germany's rivers for many years and now goes hiking in the mountains. Lesson 1 follows his trips: a river runs from its Quelle to its Mündung, small rivers flow into big ones (the Main into the Rhein); the Rhein comes from the Alps in Switzerland, flows through the Bodensee and north past Mainz, Bonn, Köln and Düsseldorf into the North Sea, and is the river with the longest stretch in Germany; the Elbe comes from the Czech Republic and flows past Dresden, Magdeburg and Hamburg into the North Sea; the Donau starts in the Schwarzwald and flows east past Ulm, Regensburg and Passau into the Black Sea; the Weser flows past Bremen. Lesson 2 climbs: a range is a group of mountains; the Zugspitze (2962 m) in the Alps in Bayern on the border with Austria, the Feldberg (1493 m) in the Schwarzwald, the Brocken (1141 m) in the Harz, and the Erzgebirge in Sachsen; many rivers start in mountains. It ends with the skill check. A table stands in for the map until the map of Germany is drawn.
+Lotta's Opa Ben steered a cargo ship on Germany's rivers for many years and now goes hiking in the mountains. Lesson 1 follows his trips: a river runs from its Quelle to its Mündung, small rivers flow into big ones (the Main into the Rhein); the Rhein comes from the Alps in Switzerland, flows through the Bodensee and north past Mainz, Bonn, Köln and Düsseldorf into the North Sea, and is the river with the longest stretch in Germany; the Elbe comes from the Czech Republic and flows past Dresden, Magdeburg and Hamburg into the North Sea; the Donau starts in the Schwarzwald and flows east past Ulm, Regensburg and Passau into the Black Sea; the Weser flows past Bremen. Lesson 2 climbs: a range is a group of mountains; the Zugspitze (2962 m) in the Alps in Bayern on the border with Austria, the Feldberg (1493 m) in the Schwarzwald, the Brocken (1141 m) in the Harz, and the Erzgebirge in Sachsen; many rivers start in mountains. It ends with the skill check. The Learn screens show each river and the Zugspitze on the drawn map of Germany; a table sums up the rivers and one the ranges.
 
 
 | Lesson | New | Tasks | Activities |
@@ -6865,7 +6865,7 @@ Task types: multiple_choice 22, true_false 15, image_multiple_choice 5, sorting 
 
 `de-DE.world.turning-left` teaches `world.space.turning-left` in de-DE, klasse-4. Ages 8-10, about 15 minutes a lesson. Status: draft, version 1.
 
-Mira cycles to her friend Ayşe, and the way turns left. Lesson 1 is direct turning left as the Radfahrausbildung teaches it, following StVO § 9: look back over the left shoulder (Schulterblick), give the hand signal (left arm out; right arm for turning right), move to the middle of the road on your own side (einordnen), let oncoming traffic go (whoever goes straight on or turns right goes first, and people crossing the road you turn into), look over the left shoulder once more, then turn with both hands on the handlebar. Lesson 2 is indirect turning left, which StVO § 9 allows on a bike and which is often safer for children at big or busy junctions: ride straight across on the right, stop at the right edge on the far side, turn the bike to the new direction, look both ways (or wait for green), then ride straight across; or get off and push the bike across at a pedestrian light or zebra crossing as a pedestrian; and when to choose which. It ends with the skill check. The junction is drawn from above as in right-of-way ("Du" comes from the bottom).
+Mira cycles to her friend Ayşe, and the way turns left. Lesson 1 is direct turning left as the Radfahrausbildung teaches it, following StVO § 9: look back over the left shoulder (Schulterblick), give the hand signal (left arm out; right arm for turning right), move to the middle of the road on your own side (einordnen), let oncoming traffic go (whoever goes straight on or turns right goes first, and people crossing the road you turn into), look over the left shoulder once more, then turn with both hands on the handlebar. Lesson 2 is indirect turning left, which StVO § 9 allows on a bike and which is often safer for children at big or busy junctions: ride straight across on the right, stop at the right edge on the far side, turn the bike to the new direction, look both ways (or wait for green), then ride straight across; or get off and push the bike across at a pedestrian light or zebra crossing as a pedestrian; and when to choose which. It ends with the skill check. The junction is drawn from above as in right-of-way ("Du" comes from the bottom, arrows show where everyone goes).
 
 
 | Lesson | New | Tasks | Activities |
@@ -8091,7 +8091,7 @@ Mediation: telling someone in English what a short French sign or sentence means
 | 1. Schilder erklären | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Sätze weitersagen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 1, multiple_choice 37, matching 2, true_false 10, audio_choice 10. Builds on: `fl.reading.sentences`. Misconceptions addressed: 3.
+Task types: image_multiple_choice 1, multiple_choice 35, true_false 12, matching 2, audio_choice 10. Builds on: `fl.reading.sentences`. Misconceptions addressed: 3.
 
 ## Zahlen bis 20 (Französisch) (Numbers to 20 in French)
 
@@ -8189,7 +8189,7 @@ French learning year 2 starts by listening to short, slow conversations on famil
 | 1. Worum geht es? | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Genau hinhören | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: audio_choice 53, true_false 11. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
+Task types: audio_choice 51, true_false 13. Builds on: `fl.listening.familiar-words`. Misconceptions addressed: 2.
 
 ## Laute und Schreibweisen (Französisch) (French sounds and spellings)
 
@@ -8456,7 +8456,7 @@ Using a bilingual French and English dictionary to find the meaning of a new wor
 | 1. Das richtige Wort finden | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Einen Eintrag lesen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: ordering 7, multiple_choice 38, true_false 10, sorting 2, matching 2, text_input 1. Builds on: `fl.culture-strategies.learn-words`, `fl.reading.sentences`. Misconceptions addressed: 4.
+Task types: ordering 7, multiple_choice 35, true_false 11, fill_in_blank 2, sorting 2, matching 2, text_input 1. Builds on: `fl.culture-strategies.learn-words`, `fl.reading.sentences`. Misconceptions addressed: 4.
 
 ## Genus und häufige Verben (Französisch) (Gender and key verbs in French)
 
@@ -12205,7 +12205,7 @@ A dictionary lists words in alphabetical order by the first letter, then the sec
 | 1. Zweiter und dritter Buchstabe | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Leitwörter und andere Schreibungen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, ordering 11, true_false 12. Builds on: `lit-en.spelling.alphabet-names`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, ordering 11, true_false 15. Builds on: `lit-en.spelling.alphabet-names`. Misconceptions addressed: 3.
 
 ## Wörtliche Rede vollständig zeichensetzen (Punctuating direct speech fully)
 
@@ -12233,7 +12233,7 @@ Good writers reread their own work and a partner's, say what works, and suggest 
 | 1. Bessere Wörter | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Bessere Grammatik | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: highlight_in_text 12, multiple_choice 43, true_false 5. Builds on: `lit-en.composition.proof-read`. Misconceptions addressed: 3.
+Task types: highlight_in_text 12, multiple_choice 39, fill_in_blank 3, true_false 6. Builds on: `lit-en.composition.proof-read`. Misconceptions addressed: 3.
 
 ## Erweiterte Nominalgruppen (Expanded noun phrases)
 
@@ -12275,7 +12275,7 @@ Writers choose words, order and layout on purpose. Lesson 1 looks at language: w
 | 1. Wörter mit Wirkung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Aufbau und Gestaltung | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 44, highlight_in_text 7, matching 3, ordering 2, true_false 4. Builds on: `lit-en.comprehension.words-in-context`. Misconceptions addressed: 2.
+Task types: multiple_choice 43, highlight_in_text 7, fill_in_blank 1, matching 3, ordering 2, true_false 4. Builds on: `lit-en.comprehension.words-in-context`. Misconceptions addressed: 2.
 
 ## Hauptgedanken finden und zusammenfassen (Main ideas and summaries)
 
@@ -12303,7 +12303,7 @@ A performer shows what a text means with tone (how the voice sounds), volume (ho
 | 1. Ein Gedicht vortragen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Eine Szene spielen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, highlight_in_text 10, true_false 7, speak 6. Builds on: `lit-en.texts.poems-by-heart`. Misconceptions addressed: 3.
+Task types: multiple_choice 36, highlight_in_text 10, true_false 8, speak 6. Builds on: `lit-en.texts.poems-by-heart`. Misconceptions addressed: 3.
 
 ## Plural-s oder Besitz-s? (Plural s or possessive s?)
 
@@ -12345,7 +12345,7 @@ A pronoun (he, she, it, they) stands in for a noun so writing does not repeat it
 | 1. Pronomen oder Nomen? | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Begleiter und Possessivpronomen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, highlight_in_text 12, true_false 5, sorting 3. Builds on: `lit-en.grammar.word-classes`. Misconceptions addressed: 3.
+Task types: multiple_choice 37, highlight_in_text 12, fill_in_blank 3, true_false 5, sorting 3. Builds on: `lit-en.grammar.word-classes`. Misconceptions addressed: 3.
 
 ## Deutlich in Standardenglisch sprechen (Speaking clearly in Standard English)
 
@@ -12472,7 +12472,7 @@ Sorting 2D shapes by their properties, drawn on squared paper so the sides can b
 | 2. Vierecke benennen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 3. Regelmäßig oder unregelmäßig | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: image_multiple_choice 10, true_false 17, multiple_choice 53, matching 2, sorting 1. Builds on: `math.shapes.more-shapes`, `math.angles.right-angles`. Misconceptions addressed: 4.
+Task types: image_multiple_choice 11, true_false 21, multiple_choice 48, matching 2, sorting 1. Builds on: `math.shapes.more-shapes`, `math.angles.right-angles`. Misconceptions addressed: 4.
 
 ## Chancen vergleichen (Comparing chances)
 
@@ -12724,7 +12724,7 @@ Counting back through zero and reading negative numbers. Lesson 1 counts back pa
 | 1. Über die Null zurückzählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Temperaturen unter null | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 31, fill_in_blank 8, point_on_line 7, true_false 8, ordering 4, image_multiple_choice 2. Builds on: `math.numbers-to-1000.number-line`. Misconceptions addressed: 3.
+Task types: multiple_choice 30, fill_in_blank 8, point_on_line 8, true_false 8, ordering 4, image_multiple_choice 2. Builds on: `math.numbers-to-1000.number-line`. Misconceptions addressed: 3.
 
 ## Zahlen bis 10 000 (Numbers to 10,000)
 
@@ -12992,7 +12992,7 @@ Children learn the choices writers make to bring a story to life. Lesson 1 takes
 | 1. Schauplatz und Stimmung | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Figuren und Dialoge | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, highlight_in_text 4, sorting 7, true_false 8, fill_in_blank 1. Builds on: `lit-en.composition.setting-character-plot`, `lit-en.grammar.direct-speech-full`. Misconceptions addressed: 3.
+Task types: multiple_choice 39, highlight_in_text 4, sorting 7, true_false 9, fill_in_blank 1. Builds on: `lit-en.composition.setting-character-plot`, `lit-en.grammar.direct-speech-full`. Misconceptions addressed: 3.
 
 ## Zuhörer fesseln und mitnehmen (Keeping your listener with you)
 
@@ -13034,7 +13034,7 @@ Children name figurative language and explain what it does to the reader. Lesson
 | 1. Vergleich oder Metapher | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Wie die Sprache wirkt | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 37, highlight_in_text 6, sorting 4, true_false 13. Builds on: `lit-en.comprehension.language-structure`. Misconceptions addressed: 3.
+Task types: multiple_choice 36, highlight_in_text 7, sorting 4, true_false 13. Builds on: `lit-en.comprehension.language-structure`. Misconceptions addressed: 3.
 
 ## Flüssig und zügig schreiben (Writing fluently and at speed)
 
@@ -13132,7 +13132,7 @@ Relative clauses from Appendix 2 of the National Curriculum for Year 5. Lesson 1
 | 1. Das richtige Relativpronomen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Relativsätze finden und bilden | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 18, fill_in_blank 24, matching 1, true_false 9, highlight_in_text 5, ordering 3. Builds on: `lit-en.grammar.conjunctions-y2`. Misconceptions addressed: 3.
+Task types: multiple_choice 20, fill_in_blank 22, matching 1, true_false 9, highlight_in_text 5, ordering 3. Builds on: `lit-en.grammar.conjunctions-y2`. Misconceptions addressed: 3.
 
 ## Ideen sammeln und recherchieren (Gathering and developing ideas)
 
@@ -13146,7 +13146,7 @@ Children note ideas for a piece of writing from reading and research, then devel
 | 1. Notizen machen | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Ideen ordnen und ausbauen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, highlight_in_text 4, true_false 11, sorting 9, ordering 1. Builds on: `lit-en.composition.plan-key-words`, `lit-en.comprehension.retrieve`. Misconceptions addressed: 3.
+Task types: multiple_choice 33, highlight_in_text 4, true_false 13, sorting 9, ordering 1. Builds on: `lit-en.composition.plan-key-words`, `lit-en.comprehension.retrieve`. Misconceptions addressed: 3.
 
 ## Informationen finden und darstellen (Finding and presenting information)
 
@@ -13245,7 +13245,7 @@ The area of a rectangle is length × width, in square centimetres (cm²) or squa
 | 1. Länge mal Breite | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Flächen schätzen und vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, fill_in_blank 2, text_input 18, true_false 7. Builds on: `math.area-volume.area-unit-squares`, `math.length.calculate`. Misconceptions addressed: 4.
+Task types: multiple_choice 32, fill_in_blank 2, text_input 19, true_false 7. Builds on: `math.area-volume.area-unit-squares`, `math.length.calculate`. Misconceptions addressed: 4.
 
 ## Mit Rauminhalten rechnen (Calculating with capacity)
 
@@ -13329,7 +13329,7 @@ Lesson 1 looks at bar charts whose scale does not start at 0 (the scale starts a
 | 1. Wo beginnt die Skala? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Weitere Tricks | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, true_false 16, image_multiple_choice 2, text_input 2. Builds on: `math.data.read-charts`. Misconceptions addressed: 3.
+Task types: multiple_choice 39, true_false 16, image_multiple_choice 2, text_input 3. Builds on: `math.data.read-charts`. Misconceptions addressed: 3.
 
 ## Mit Dezimalzahlen rechnen (Calculating with decimals)
 
@@ -13358,7 +13358,7 @@ Lesson 1 enters survey data in a spreadsheet: columns have letters, rows have nu
 | 1. Daten in die Tabelle | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Ein Diagramm einfügen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 45, true_false 9, text_input 3, image_multiple_choice 3. Builds on: `math.data.plan-survey`. Misconceptions addressed: 3.
+Task types: multiple_choice 40, true_false 12, text_input 5, image_multiple_choice 3. Builds on: `math.data.plan-survey`. Misconceptions addressed: 3.
 
 ## Überschlag oder genau? (Estimate or exact?)
 
@@ -13386,7 +13386,7 @@ Lesson 1 calls a game fair when every player has the same number of ways to win,
 | 1. Gewinnmöglichkeiten zählen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zwei Münzen und zwei Würfel | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 17, text_input 6, image_multiple_choice 1. Builds on: `math.chance.compare-chances`, `math.chance.combinations`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, true_false 17, text_input 8, image_multiple_choice 1. Builds on: `math.chance.compare-chances`, `math.chance.combinations`. Misconceptions addressed: 2.
 
 ## Brüche bei Größen (Fractions of measures)
 
@@ -13428,7 +13428,7 @@ Lesson 1 copies shapes on squared paper by counting squares from a corner, count
 | 1. Figuren übertragen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Punktraster, doppelt und halb so groß | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 12, multiple_choice 32, image_multiple_choice 12, text_input 4. Builds on: `math.shapes.parallel-perpendicular`. Misconceptions addressed: 3.
+Task types: true_false 12, multiple_choice 31, image_multiple_choice 12, text_input 5. Builds on: `math.shapes.parallel-perpendicular`. Misconceptions addressed: 3.
 
 ## Imperiale Einheiten (Imperial units)
 
@@ -13456,7 +13456,7 @@ Mental addition and subtraction with large numbers that match a known fact. Less
 | 1. Mit Tausendern rechnen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Mit Zehntausendern und Hunderttausendern | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: text_input 29, multiple_choice 16, fill_in_blank 6, true_false 9. Builds on: `math.large-numbers.to-million`, `math.add-sub-to-1000.hundreds`. Misconceptions addressed: 3.
+Task types: text_input 28, multiple_choice 17, fill_in_blank 6, true_false 9. Builds on: `math.large-numbers.to-million`, `math.add-sub-to-1000.hundreds`. Misconceptions addressed: 3.
 
 ## Große Zahlen im Kopf multiplizieren und dividieren (Multiplying and dividing mentally with multiples of 10, 100 and 1000)
 
@@ -13498,7 +13498,7 @@ Lesson 1 changes both lengths into one unit before calculating (1.35 m + 90 cm =
 | 1. Erst in eine Einheit | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. In Schritten rechnen und prüfen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 39, fill_in_blank 3, true_false 13, text_input 5. Builds on: `math.length.notation`, `math.word-problems.multi-step`. Misconceptions addressed: 2.
+Task types: multiple_choice 38, fill_in_blank 3, true_false 13, text_input 6. Builds on: `math.length.notation`, `math.word-problems.multi-step`. Misconceptions addressed: 2.
 
 ## Mit Gewichten rechnen (Calculating with mass)
 
@@ -13526,7 +13526,7 @@ Angles in degrees: estimate first, then measure with a protractor, reading the s
 | 1. Schätzen und mit dem Winkelmesser messen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Überstumpfe Winkel und Winkel zeichnen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 39, true_false 8, image_multiple_choice 3, text_input 7, fill_in_blank 2, ordering 1. Builds on: `math.angles.acute-obtuse`, `math.shapes.parallel-perpendicular`. Misconceptions addressed: 4.
+Task types: multiple_choice 38, true_false 8, text_input 8, image_multiple_choice 3, fill_in_blank 2, ordering 1. Builds on: `math.angles.acute-obtuse`, `math.shapes.parallel-perpendicular`. Misconceptions addressed: 4.
 
 ## Kopfgeometrie: drehen und kippen (Turning and tipping in your head)
 
@@ -13540,7 +13540,7 @@ Lesson 1 turns letters, numbers and shapes in the head (a half turn makes b into
 | 1. Drehen und spiegeln | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Den Würfel kippen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 44, true_false 14, text_input 2. Builds on: `math.space.views`, `math.solids.nets`. Misconceptions addressed: 2.
+Task types: multiple_choice 41, true_false 15, text_input 4. Builds on: `math.space.views`, `math.solids.nets`. Misconceptions addressed: 2.
 
 ## Gemischte Zahlen und unechte Brüche (Mixed numbers and improper fractions)
 
@@ -13554,7 +13554,7 @@ Improper fractions (the numerator bigger than the denominator) and mixed numbers
 | 1. Vom unechten Bruch zur gemischten Zahl | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Von der gemischten Zahl zum unechten Bruch | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 33, text_input 16, fill_in_blank 3, true_false 8. Builds on: `math.fractions.equivalent-families`. Misconceptions addressed: 4.
+Task types: multiple_choice 32, text_input 17, fill_in_blank 3, true_false 8. Builds on: `math.fractions.equivalent-families`. Misconceptions addressed: 4.
 
 ## Sachaufgaben mit Geld (Money problems)
 
@@ -13568,7 +13568,7 @@ Lesson 1 solves shopping problems in steps: what is asked, what you know, each c
 | 1. Einkaufen in Schritten | yes | 20 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (quick, 3 of 6) |
 | 2. Preise und Angebote vergleichen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, true_false 12, fill_in_blank 2, text_input 11. Builds on: `math.money.calculate`, `math.word-problems.multi-step`. Misconceptions addressed: 3.
+Task types: multiple_choice 33, text_input 12, true_false 13, fill_in_blank 2. Builds on: `math.money.calculate`, `math.word-problems.multi-step`. Misconceptions addressed: 3.
 
 ## Halbschriftlich multiplizieren und dividieren (Grid method and dividing in chunks)
 
@@ -13610,7 +13610,7 @@ Lesson 1 shows that a net of a cube is six squares that fold into a cube, tells 
 | 1. Was ist ein Würfelnetz? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Was liegt gegenüber? | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, true_false 20, image_multiple_choice 4. Builds on: `math.solids.more-solids`. Misconceptions addressed: 2.
+Task types: multiple_choice 34, true_false 20, image_multiple_choice 4, text_input 2. Builds on: `math.solids.more-solids`. Misconceptions addressed: 2.
 
 ## Zahlen bis 1 000 000 (Numbers to 1,000,000)
 
@@ -13624,7 +13624,7 @@ Year 5 opens with numbers to a million. Digits are grouped in threes with a comm
 | 1. Die Stellentafel bis 1 000 000 | yes | 22 | warm-up, learn, practise (6 full, 6 some, 5 none), check (quick, 3 of 6) |
 | 2. Lesen, schreiben und in Zehnerpotenzen zählen | yes | 24 | warm-up, learn, practise (6 full, 6 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 34, fill_in_blank 9, true_false 7, text_input 14. Builds on: `math.large-numbers.to-10000`. Misconceptions addressed: 3.
+Task types: multiple_choice 33, text_input 15, fill_in_blank 9, true_false 7. Builds on: `math.large-numbers.to-10000`. Misconceptions addressed: 3.
 
 ## Punkt vor Strich und Klammern (Order of operations)
 
@@ -13722,7 +13722,7 @@ Roman numerals with D (500) and M (1000), read in parts like place value: hundre
 | 1. D und M | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Jahreszahlen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, fill_in_blank 2, text_input 15, true_false 8. Builds on: `math.large-numbers.roman-numerals`, `math.numbers-to-1000.place-value`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, fill_in_blank 2, text_input 16, true_false 8. Builds on: `math.large-numbers.roman-numerals`, `math.numbers-to-1000.place-value`. Misconceptions addressed: 3.
 
 ## Vergrößern, verkleinern, Maßstab (Scaling and plans)
 
@@ -13736,7 +13736,7 @@ Lesson 1 enlarges and reduces rectangles and squares on squared paper by multipl
 | 1. Vergrößern und verkleinern | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Maßstab auf Plänen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 36, text_input 10, image_multiple_choice 4, true_false 10. Builds on: `math.shapes.grid-drawing`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
+Task types: multiple_choice 35, text_input 11, image_multiple_choice 4, true_false 10. Builds on: `math.shapes.grid-drawing`, `math.mult-div.all-tables`. Misconceptions addressed: 2.
 
 ## Quadrat- und Kubikzahlen (Square and cube numbers)
 
@@ -13764,7 +13764,7 @@ Lesson 1 finds symmetry in nature and in things people make (a butterfly, a fir 
 | 1. Symmetrie in Natur und Spiegelbild | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Symmetrie in Wörtern, Mustern und Kunst | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: true_false 18, multiple_choice 28, image_multiple_choice 14. Builds on: `math.symmetry.identify`. Misconceptions addressed: 2.
+Task types: true_false 19, multiple_choice 27, image_multiple_choice 14. Builds on: `math.symmetry.identify`. Misconceptions addressed: 2.
 
 ## Bandornamente und Parkette (Frieze patterns and tessellations)
 
@@ -13778,7 +13778,7 @@ Lesson 1 continues frieze patterns from their repeating unit, with shapes and wi
 | 1. Bandornamente fortsetzen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Parkette | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 46, true_false 9, image_multiple_choice 5. Builds on: `math.patterns.repeating`, `math.shapes.more-shapes`. Misconceptions addressed: 2.
+Task types: multiple_choice 40, fill_in_blank 3, true_false 11, image_multiple_choice 6. Builds on: `math.patterns.repeating`, `math.shapes.more-shapes`. Misconceptions addressed: 2.
 
 ## Tausendstel (Thousandths)
 
@@ -13792,7 +13792,7 @@ Thousandths as a hundredth split into ten equal parts, written as fractions over
 | 1. Tausendstel in der Stellentafel | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Zehntel, Hundertstel und Tausendstel | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, fill_in_blank 5, text_input 11, true_false 7, image_multiple_choice 2. Builds on: `math.decimals.compare-round`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, fill_in_blank 5, text_input 12, true_false 7, image_multiple_choice 2. Builds on: `math.decimals.compare-round`. Misconceptions addressed: 3.
 
 ## Fahrpläne lesen (Timetables)
 
@@ -13820,7 +13820,7 @@ Lesson 1 measures the volume of a cuboid in unit cubes, layer by layer (one laye
 | 1. Quader in Schichten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Würfelgebäude vergleichen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 35, true_false 9, text_input 13, image_multiple_choice 3. Builds on: `math.solids.cube-buildings`, `math.mult-div.arrays`. Misconceptions addressed: 3.
+Task types: multiple_choice 34, true_false 9, text_input 14, image_multiple_choice 3. Builds on: `math.solids.cube-buildings`, `math.mult-div.arrays`. Misconceptions addressed: 3.
 
 ## Schriftlich durch einstellige Zahlen teilen (Short division)
 
@@ -13890,7 +13890,7 @@ Bullet points follow one pattern all the way down: a colon after the lead-in, th
 | 1. Aufzählungspunkte einheitlich setzen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Bindestriche gegen Missverständnisse | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 43, true_false 13, matching 2, sorting 1, highlight_in_text 1. Builds on: `lit-en.grammar.semicolons-colons`. Misconceptions addressed: 3.
+Task types: multiple_choice 41, true_false 13, matching 2, highlight_in_text 3, sorting 1. Builds on: `lit-en.grammar.semicolons-colons`. Misconceptions addressed: 3.
 
 ## Gedanken verknüpfen (Linking ideas (cohesion))
 
@@ -14030,7 +14030,7 @@ Layout devices guide the reader: headings and sub-headings say what a section is
 | 1. Welche Mittel gibt es? | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Das passende Mittel wählen | yes | 22 | warm-up, learn, practise (5 full in context, 5 some in context, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 45, true_false 8, matching 5, fill_in_blank 2. Builds on: `lit-en.composition.headings`. Misconceptions addressed: 3.
+Task types: multiple_choice 44, true_false 9, matching 5, fill_in_blank 2. Builds on: `lit-en.composition.headings`. Misconceptions addressed: 3.
 
 ## Ein Buch empfehlen (Recommending a book)
 
@@ -14128,7 +14128,7 @@ Adding and subtracting fractions with different denominators and mixed numbers. 
 | 1. Gleichnamig machen | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Gemischte Zahlen | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none in context), check (skill, 5 of 20) |
 
-Task types: multiple_choice 40, fill_in_blank 4, true_false 10, text_input 6. Builds on: `math.fractions.simplify`, `math.fractions.add-sub-related`. Misconceptions addressed: 4.
+Task types: multiple_choice 37, fill_in_blank 4, text_input 9, true_false 10. Builds on: `math.fractions.simplify`, `math.fractions.add-sub-related`. Misconceptions addressed: 4.
 
 ## Gleicher Flächeninhalt, anderer Umfang (Area and perimeter together)
 
@@ -14240,7 +14240,7 @@ The coordinate grid with negative numbers. Lesson 1 reads and finds points in al
 | 1. Punkte in allen Quadranten | yes | 20 | warm-up, learn, practise (5 full, 5 some, 5 none), check (quick, 3 of 6) |
 | 2. Verschieben und spiegeln | yes | 22 | warm-up, learn, practise (5 full, 5 some, 5 none), check (skill, 5 of 20) |
 
-Task types: multiple_choice 30, point_on_grid 14, fill_in_blank 8, true_false 8. Builds on: `math.coordinates.reflect-translate`, `math.large-numbers.negative-numbers`. Misconceptions addressed: 3.
+Task types: multiple_choice 29, point_on_grid 15, fill_in_blank 8, true_false 8. Builds on: `math.coordinates.reflect-translate`, `math.large-numbers.negative-numbers`. Misconceptions addressed: 3.
 
 ## Bruch als Division (Fractions as division)
 

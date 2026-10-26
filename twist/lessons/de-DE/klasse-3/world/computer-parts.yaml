@@ -80,12 +80,16 @@ lessons:
         screens:
           - text: "Was glaubst du: Welcher Teil des Computers rechnet?"
             say: "Oma Rosi hat einen Computer geschenkt bekommen. Ihre Enkelin Lina zeigt ihr, wie er funktioniert. Oma tippt auf der Tastatur, und auf dem Bildschirm erscheinen Buchstaben. „Ist der Bildschirm der Computer?“, fragt Oma. Was glaubst du: Welcher Teil rechnet? Die Tastatur, der Bildschirm oder ein Teil, den man gar nicht sieht?"
+            show: { object: computer }
           - text: "Ein Teil im Inneren: der Prozessor."
             say: "Gerechnet wird in einem kleinen Bauteil im Inneren, dem Prozessor. Er verarbeitet alles, was in den Computer hineinkommt, nach genauen Anweisungen. Das heißt Verarbeitung. Der Prozessor ist klein, aber er schafft in jeder Sekunde Milliarden Rechenschritte."
+            show: { object: processor }
           - text: "Eingabe: Etwas kommt hinein."
             say: "Mit der Tastatur tippt Oma Buchstaben ein. Mit der Computermaus zeigt und klickt sie. Ins Mikrofon kann sie sprechen, und die Kamera nimmt ihr Bild auf. Diese Teile heißen Eingabegeräte. Durch sie kommen Daten in den Computer hinein."
+            show: { object: keyboard }
           - text: "Ausgabe: Das Ergebnis kommt heraus."
             say: "Der Bildschirm zeigt Bilder und Text. Die Lautsprecher spielen Töne und Musik, und der Drucker druckt auf Papier. Das sind Ausgabegeräte. Durch sie kommt das Ergebnis heraus, damit wir es sehen oder hören."
+            show: { object: computer-screen }
           - text: "Eingabe, Verarbeitung, Ausgabe: EVA"
             say: "Lina erklärt es Oma an einem Beispiel. Oma drückt die Taste A. Das ist die Eingabe. Der Prozessor erkennt, welche Taste es war. Das ist die Verarbeitung. Auf dem Bildschirm erscheint ein A. Das ist die Ausgabe. Eingabe, Verarbeitung, Ausgabe, kurz EVA. So arbeitet jeder Computer."
           - text: "Wusstest du? Einer der ersten Computer füllte einen ganzen Saal."
@@ -98,10 +102,13 @@ lessons:
           - support: full
             tasks:
               - id: l1-f1
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Womit tippt Oma Buchstaben ein?"
-                options: ["mit der Tastatur", "mit dem Bildschirm", "mit dem Drucker"]
-                answer: "mit der Tastatur"
+                options:
+                  - { object: keyboard }
+                  - { object: computer-screen }
+                  - { object: printer }
+                answer: keyboard
                 hints:
                   - "Das Teil hat viele Tasten."
                   - "Der Bildschirm und der Drucker zeigen etwas, sie nehmen nichts auf."
@@ -115,12 +122,12 @@ lessons:
                   - { id: input, show: { text: "Eingabe" }, say: "Eingabe" }
                   - { id: output, show: { text: "Ausgabe" }, say: "Ausgabe" }
                 options:
-                  - { text: "Tastatur", bin: input }
-                  - { text: "Bildschirm", bin: output }
-                  - { text: "Mikrofon", bin: input }
-                  - { text: "Lautsprecher", bin: output }
-                  - { text: "Computermaus", bin: input }
-                  - { text: "Drucker", bin: output }
+                  - { object: keyboard, bin: input }
+                  - { object: computer-screen, bin: output }
+                  - { object: microphone, bin: input }
+                  - { object: loudspeaker, bin: output }
+                  - { object: computer-mouse, bin: input }
+                  - { object: printer, bin: output }
                 hints:
                   - "Frag bei jedem Teil: Kommt etwas hinein oder heraus?"
                   - "Ins Mikrofon sprichst du hinein. Aus dem Lautsprecher kommt ein Ton heraus."
@@ -128,6 +135,7 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Stimmt das? Der Bildschirm ist das Teil, das rechnet."
+                show: { object: computer-screen }
                 answer: false
                 feedback:
                   "true": "Der Bildschirm zeigt nur das Ergebnis. Gerechnet wird im Prozessor im Inneren."
@@ -158,10 +166,13 @@ lessons:
                   - "Zuerst kommt etwas hinein."
                   - "Taste drücken, Prozessor erkennt, Bildschirm zeigt."
               - id: l1-f6
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Welches Teil ist ein Ausgabegerät?"
-                options: ["der Lautsprecher", "die Tastatur", "das Mikrofon"]
-                answer: "der Lautsprecher"
+                options:
+                  - { object: loudspeaker }
+                  - { object: keyboard }
+                  - { object: microphone }
+                answer: loudspeaker
                 hints:
                   - "Aus einem Ausgabegerät kommt etwas heraus."
                   - "In die Tastatur und ins Mikrofon gibst du etwas hinein."
@@ -178,6 +189,7 @@ lessons:
               - id: l1-s2
                 type: true_false
                 text: "Stimmt das? Ein Mikrofon ist ein Eingabegerät."
+                show: { object: microphone }
                 answer: true
                 hints: ["Sprichst du in das Mikrofon hinein, oder kommt etwas heraus?"]
               - id: l1-s3
@@ -189,17 +201,20 @@ lessons:
                   - { id: process, show: { text: "Verarbeitung" }, say: "Verarbeitung" }
                   - { id: output, show: { text: "Ausgabe" }, say: "Ausgabe" }
                 options:
-                  - { text: "Kamera", bin: input }
-                  - { text: "Prozessor", bin: process }
-                  - { text: "Lautsprecher", bin: output }
-                  - { text: "Tastatur", bin: input }
-                  - { text: "Bildschirm", bin: output }
+                  - { object: camera, bin: input }
+                  - { object: processor, bin: process }
+                  - { object: loudspeaker, bin: output }
+                  - { object: keyboard, bin: input }
+                  - { object: computer-screen, bin: output }
                 hints: ["Nur ein Teil rechnet. Die anderen bringen etwas hinein oder heraus."]
               - id: l1-s4
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Oma will ihren Brief auf Papier haben. Welches Gerät braucht sie?"
-                options: ["den Drucker", "die Kamera", "das Mikrofon"]
-                answer: "den Drucker"
+                options:
+                  - { object: printer }
+                  - { object: camera }
+                  - { object: microphone }
+                answer: printer
                 hints: ["Welches Gerät bringt etwas auf Papier heraus?"]
               - id: l1-s5
                 type: fill_in_blank
@@ -212,6 +227,7 @@ lessons:
               - id: l1-s6
                 type: true_false
                 text: "Stimmt das? Lautsprecher bringen Töne in den Computer hinein."
+                show: { object: loudspeaker }
                 answer: false
                 feedback:
                   "true": "Aus dem Lautsprecher kommen Töne heraus. Hinein kommen sie durch das Mikrofon."
@@ -233,6 +249,7 @@ lessons:
               - id: l1-n3
                 type: true_false
                 text: "Oma fragt: „Muss ich die Computermaus füttern?“ Lina lacht: „Nein, die Computermaus ist ein Eingabegerät.“ Stimmt, was Lina sagt?"
+                show: { object: computer-mouse }
                 answer: true
               - id: l1-n4
                 type: sorting
@@ -259,22 +276,28 @@ lessons:
         draw: 3
         tasks:
           - id: l1-c1
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welches Teil ist ein Eingabegerät?"
-            options: ["die Tastatur", "der Bildschirm", "der Drucker"]
-            answer: "die Tastatur"
+            options:
+              - { object: keyboard }
+              - { object: computer-screen }
+              - { object: printer }
+            answer: keyboard
           - id: l1-c2
             type: true_false
             text: "Stimmt das? Der Drucker ist ein Ausgabegerät."
+            show: { object: printer }
             answer: true
           - id: l1-c3
             type: multiple_choice
             text: "Was macht der Prozessor?"
+            show: { object: processor }
             options: ["Er verarbeitet und rechnet.", "Er druckt Bilder.", "Er nimmt Töne auf."]
             answer: "Er verarbeitet und rechnet."
           - id: l1-c4
             type: true_false
             text: "Stimmt das? Die Kamera ist ein Ausgabegerät."
+            show: { object: camera }
             answer: false
           - id: l1-c5
             type: multiple_choice
@@ -284,6 +307,7 @@ lessons:
           - id: l1-c6
             type: multiple_choice
             text: "Was kommt aus dem Lautsprecher heraus?"
+            show: { object: loudspeaker }
             options: ["Töne", "Bilder auf Papier", "Buchstaben von der Tastatur"]
             answer: "Töne"
 
@@ -306,6 +330,7 @@ lessons:
           - id: l2-w2
             type: true_false
             text: "Stimmt das? Der Bildschirm zeigt das Ergebnis. Er ist ein Ausgabegerät."
+            show: { object: computer-screen }
             answer: true
             difficulty: easy
 
@@ -320,6 +345,7 @@ lessons:
             show: { object: cat }
           - text: "EVA im Taschenrechner: 3 + 4 = 7"
             say: "Nicht nur der große Computer arbeitet nach EVA. Beim Taschenrechner tippst du drei plus vier ein. Das ist die Eingabe. Ein kleiner Chip rechnet. Das ist die Verarbeitung. Die Anzeige zeigt sieben. Das ist die Ausgabe."
+            show: { object: calculator }
           - text: "Das Handy ist auch ein Computer."
             say: "Auch ein Handy ist ein Computer. Sein Bildschirm ist etwas Besonderes: ein Touchscreen. Du tippst darauf, das ist Eingabe. Und er zeigt dir Bilder, das ist Ausgabe. Der Touchscreen ist beides zugleich."
             show: { object: mobile-phone }
@@ -354,12 +380,12 @@ lessons:
                   - { id: output, show: { text: "Ausgabe" }, say: "Ausgabe" }
                   - { id: storage, show: { text: "Speicher" }, say: "Speicher" }
                 options:
-                  - { text: "Tastatur", bin: input }
-                  - { text: "Prozessor", bin: process }
-                  - { text: "Drucker", bin: output }
-                  - { text: "USB-Stick", bin: storage }
-                  - { text: "Mikrofon", bin: input }
-                  - { text: "Festplatte", bin: storage }
+                  - { object: keyboard, bin: input }
+                  - { object: processor, bin: process }
+                  - { object: printer, bin: output }
+                  - { object: usb-stick, bin: storage }
+                  - { object: microphone, bin: input }
+                  - { object: hard-drive, bin: storage }
                 hints:
                   - "Frag: Kommt es hinein, wird gerechnet, kommt es heraus, oder bleibt es aufbewahrt?"
                   - "Auf dem USB-Stick und der Festplatte bleiben Fotos und Texte."
@@ -367,6 +393,7 @@ lessons:
               - id: l2-f3
                 type: true_false
                 text: "Stimmt das? Ein Touchscreen ist Eingabe und Ausgabe zugleich."
+                show: { object: mobile-phone }
                 answer: true
                 hints:
                   - "Was machst du mit dem Bildschirm eines Handys?"
@@ -384,10 +411,13 @@ lessons:
                   - "Mit den Tasten gibst du die Aufgabe ein."
                   - "Tasten: Eingabe. Chip: Verarbeitung. Anzeige: Ausgabe."
               - id: l2-f5
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Welches Teil ist ein Speicher?"
-                options: ["der USB-Stick", "der Lautsprecher", "die Kamera"]
-                answer: "der USB-Stick"
+                options:
+                  - { object: usb-stick }
+                  - { object: loudspeaker }
+                  - { object: camera }
+                answer: usb-stick
                 hints:
                   - "Ein Speicher bewahrt Fotos und Texte auf."
                   - "Den Stick kannst du mitnehmen, und die Fotos bleiben darauf."
@@ -409,6 +439,7 @@ lessons:
               - id: l2-s1
                 type: multiple_choice
                 text: "An der Supermarktkasse liest ein Scanner den Strichcode. Was ist das?"
+                show: { object: barcode-scanner }
                 options: ["Eingabe", "Ausgabe", "Speicher"]
                 answer: "Eingabe"
                 hints: ["Kommt der Strichcode in die Kasse hinein, oder kommt etwas heraus?"]
@@ -451,6 +482,7 @@ lessons:
               - id: l2-s6
                 type: true_false
                 text: "Stimmt das? Auch ein Taschenrechner arbeitet nach dem EVA-Prinzip."
+                show: { object: calculator }
                 answer: true
                 hints: ["Tasten, Chip, Anzeige: Was ist was?"]
 
@@ -466,12 +498,13 @@ lessons:
                 type: matching
                 text: "Wie kommen die Daten hinein? Verbinde."
                 pairs:
-                  - { left: { text: "Taschenrechner" }, right: { text: "die Tasten" } }
-                  - { left: { text: "Handy" }, right: { text: "der Touchscreen" } }
-                  - { left: { text: "Supermarktkasse" }, right: { text: "der Scanner" } }
+                  - { left: { object: calculator }, right: { text: "die Tasten" } }
+                  - { left: { object: mobile-phone }, right: { text: "der Touchscreen" } }
+                  - { left: { object: checkout }, right: { text: "der Scanner" } }
               - id: l2-n3
                 type: true_false
                 text: "Lina sagt: „Die Festplatte spielt Musik laut ab.“ Stimmt das?"
+                show: { object: hard-drive }
                 answer: false
               - id: l2-n4
                 type: sorting
@@ -507,31 +540,39 @@ lessons:
               - { id: input, show: { text: "Eingabe" }, say: "Eingabe" }
               - { id: output, show: { text: "Ausgabe" }, say: "Ausgabe" }
             options:
-              - { text: "Kamera", bin: input }
-              - { text: "Drucker", bin: output }
-              - { text: "Tastatur", bin: input }
-              - { text: "Lautsprecher", bin: output }
+              - { object: camera, bin: input }
+              - { object: printer, bin: output }
+              - { object: keyboard, bin: input }
+              - { object: loudspeaker, bin: output }
           - id: l2-c2
             part: io
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Was davon ist ein Ausgabegerät?"
-            options: ["der Bildschirm", "das Mikrofon", "die Computermaus"]
-            answer: "der Bildschirm"
+            options:
+              - { object: computer-screen }
+              - { object: microphone }
+              - { object: computer-mouse }
+            answer: computer-screen
           - id: l2-c3
             part: io
             type: true_false
             text: "Stimmt das? Durch das Mikrofon kommen Töne in den Computer hinein."
+            show: { object: microphone }
             answer: true
           - id: l2-c4
             part: io
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Womit zeigst und klickst du auf dem Bildschirm?"
-            options: ["mit der Computermaus", "mit dem Lautsprecher", "mit dem Drucker"]
-            answer: "mit der Computermaus"
+            options:
+              - { object: computer-mouse }
+              - { object: loudspeaker }
+              - { object: printer }
+            answer: computer-mouse
           - id: l2-c5
             part: io
             type: true_false
             text: "Stimmt das? Der Drucker ist ein Eingabegerät."
+            show: { object: printer }
             answer: false
           - id: l2-c6
             part: process
@@ -544,6 +585,7 @@ lessons:
             type: ordering
             text: "Du rechnest 2 + 5 mit dem Taschenrechner. Ordne."
             say: "Du rechnest zwei plus fünf mit dem Taschenrechner. Leg die Karten in die richtige Reihenfolge."
+            show: { object: calculator }
             options: ["Die Anzeige zeigt 7.", "Du tippst 2 + 5 ein.", "Der Chip rechnet."]
             slot_count: 3
             answer: ["Du tippst 2 + 5 ein.", "Der Chip rechnet.", "Die Anzeige zeigt 7."]
@@ -576,13 +618,17 @@ lessons:
             part: storage
             type: true_false
             text: "Stimmt das? Ein USB-Stick ist ein Speicher."
+            show: { object: usb-stick }
             answer: true
           - id: l2-c13
             part: storage
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Was ist kein Speicher?"
-            options: ["der Lautsprecher", "der USB-Stick", "die Festplatte"]
-            answer: "der Lautsprecher"
+            options:
+              - { object: loudspeaker }
+              - { object: usb-stick }
+              - { object: hard-drive }
+            answer: loudspeaker
           - id: l2-c14
             part: storage
             type: fill_in_blank
@@ -601,19 +647,23 @@ lessons:
             type: matching
             text: "Wie kommt das Ergebnis heraus? Verbinde."
             pairs:
-              - { left: { text: "Taschenrechner" }, right: { text: "die Anzeige" } }
-              - { left: { text: "Supermarktkasse" }, right: { text: "der Kassenbon" } }
-              - { left: { text: "Computer" }, right: { text: "der Lautsprecher" } }
+              - { left: { object: calculator }, right: { text: "die Anzeige" } }
+              - { left: { object: checkout }, right: { text: "der Kassenbon" } }
+              - { left: { object: computer }, right: { text: "der Lautsprecher" } }
           - id: l2-c17
             part: devices
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welches Gerät ist ein kleiner Computer?"
-            options: ["das Handy", "der Löffel", "der Eimer"]
-            answer: "das Handy"
+            options:
+              - { object: mobile-phone }
+              - { object: spoon }
+              - { object: bucket }
+            answer: mobile-phone
           - id: l2-c18
             part: devices
             type: true_false
             text: "Stimmt das? Der Touchscreen am Handy ist nur ein Ausgabegerät."
+            show: { object: mobile-phone }
             answer: false
           - id: l2-c19
             part: devices

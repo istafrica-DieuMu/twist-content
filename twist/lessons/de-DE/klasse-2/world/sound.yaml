@@ -74,6 +74,7 @@ lessons:
             type: multiple_choice
             text: "Eine Fahrradklingel klingelt. Welcher Sinn hilft dir?"
             say: "Eine Fahrradklingel klingelt. Welcher Sinn hilft dir?"
+            show: { object: bicycle-bell }
             options: ["hören", "riechen", "schmecken"]
             answer: "hören"
             feedback:
@@ -91,7 +92,7 @@ lessons:
             show: { object: play-guitar }
           - text: "Auch Trommel und Glocke schwingen."
             say: "Noahs Freundin Ela schlägt auf die Trommel. Das Fell der Trommel schwingt. Und wenn der Klöppel an die Glocke schlägt, schwingt die Glocke. Legst du die Hand auf eine klingende Glocke, kribbelt es an den Fingern."
-            show: { object: bell }
+            show: { objects: [drum, bell] }
           - text: "Deine Stimme schwingt im Hals."
             say: "Leg die Hand vorne an deinen Hals und summe. Spürst du das Kribbeln? In deinem Hals schwingen die Stimmbänder. So entsteht deine Stimme, wenn du sprichst oder singst."
             show: { object: sing }
@@ -143,7 +144,7 @@ lessons:
                 say: "Verbinde jedes Bild mit dem, was dabei schwingt."
                 pairs:
                   - { left: { object: play-guitar }, right: { text: "die Saite" } }
-                  - { left: { text: "Trommel" }, right: { text: "das Fell" } }
+                  - { left: { object: drum }, right: { text: "das Fell" } }
                   - { left: { object: sing }, right: { text: "die Stimmbänder" } }
                 hints:
                   - "Fang mit der Gitarre an."
@@ -153,6 +154,7 @@ lessons:
                 type: multiple_choice
                 text: "Wie kommt der Ton von der Gitarre in dein Ohr?"
                 say: "Wie kommt der Ton von der Gitarre in dein Ohr?"
+                show: { object: play-guitar }
                 options: ["Er wandert durch die Luft.", "Er fliegt als kleiner Ball.", "Er kommt durch ein Kabel."]
                 answer: "Er wandert durch die Luft."
                 hints:
@@ -219,6 +221,7 @@ lessons:
                 type: multiple_choice
                 text: "Ela schlägt auf die Trommel. Was schwingt?"
                 say: "Ela schlägt auf die Trommel. Was schwingt?"
+                show: { object: drum }
                 options: ["das Fell der Trommel", "Elas Haare", "der Boden unter dem Hof"]
                 answer: "das Fell der Trommel"
               - id: l1-n4
@@ -293,6 +296,7 @@ lessons:
             type: multiple_choice
             text: "Was macht die Gitarrensaite, wenn sie klingt?"
             say: "Was macht die Gitarrensaite, wenn sie klingt?"
+            show: { object: play-guitar }
             options: ["Sie schwingt.", "Sie schläft.", "Sie wird bunt."]
             answer: "Sie schwingt."
             difficulty: easy
@@ -309,6 +313,7 @@ lessons:
         screens:
           - text: "Wann klingt die Trommel lauter?"
             say: "Ela übt für das Fest. Einmal tippt sie ganz sanft auf die Trommel, einmal schlägt sie ganz fest. Was glaubst du: Wann klingt die Trommel lauter?"
+            show: { object: drum }
           - text: "Fest schlagen: laut. Sanft tippen: leise."
             say: "Wenn Ela fest schlägt, schwingt das Fell stark. Der Ton ist laut. Wenn sie sanft tippt, schwingt es nur ein bisschen. Der Ton ist leise. Laut sind auch die Sirene vom Feuerwehrauto und ein Feuerwerk. Leise ist das Ticken einer Uhr oder ein Flüstern."
             show: { objects: [fire-engine, clock] }
@@ -338,7 +343,7 @@ lessons:
                   - { object: fire-engine, bin: laut }
                   - { object: clock, bin: leise }
                   - { object: fireworks, bin: laut }
-                  - { text: "Flüstern", bin: leise }
+                  - { object: whisper, bin: leise }
                 hints:
                   - "Bei welchem Ton musst du dir vielleicht die Ohren zuhalten?"
                   - "Die Sirene und das Feuerwerk hört man von weit weg."
@@ -348,6 +353,7 @@ lessons:
                 type: multiple_choice
                 text: "Ela schlägt ganz fest auf die Trommel. Wie klingt der Ton?"
                 say: "Ela schlägt ganz fest auf die Trommel. Wie klingt der Ton?"
+                show: { object: drum }
                 options: ["laut", "leise", "gar nicht"]
                 answer: "laut"
                 hints:
@@ -378,8 +384,8 @@ lessons:
                 text: "Wie klingt die Glocke?"
                 say: "Verbinde jede Glocke mit ihrem Ton."
                 pairs:
-                  - { left: { text: "kleine Glocke" }, right: { text: "hoch" } }
-                  - { left: { text: "große Kirchenglocke" }, right: { text: "tief" } }
+                  - { left: { object: bell, say: "kleine Glocke" }, right: { text: "hoch" } }
+                  - { left: { object: church-bell, say: "große Kirchenglocke" }, right: { text: "tief" } }
                 hints:
                   - "Was klingt hoch: etwas Kleines oder etwas Großes?"
                   - "Klein und kurz klingt hoch."
@@ -411,6 +417,7 @@ lessons:
                 type: multiple_choice
                 text: "Onkel Tom drückt die Saite auf, und nur ein kurzes Stück schwingt. Wie wird der Ton?"
                 say: "Onkel Tom drückt die Saite auf, und nur ein kurzes Stück schwingt. Wie wird der Ton?"
+                show: { object: play-guitar }
                 options: ["höher", "tiefer", "lauter"]
                 answer: "höher"
                 hints: ["Klein und kurz klingt hoch."]
@@ -425,6 +432,7 @@ lessons:
                 type: fill_in_blank
                 text: "Wie klingt die Trommel?"
                 say: "Setz die passenden Wörter ein."
+                show: { object: drum }
                 frame: "Ela schlägt fest: Der Ton ist _. Ela tippt sanft: Der Ton ist _."
                 options: ["laut", "leise", "hoch"]
                 answer: ["laut", "leise"]
@@ -437,6 +445,7 @@ lessons:
                 type: multiple_choice
                 text: "Das Baby von nebenan schläft. Wie soll Ela jetzt auf die Trommel schlagen?"
                 say: "Das Baby von nebenan schläft. Wie soll Ela jetzt auf die Trommel schlagen?"
+                show: { object: drum }
                 options: ["ganz sanft, damit es leise ist", "ganz fest, damit es laut ist", "mit beiden Füßen"]
                 answer: "ganz sanft, damit es leise ist"
               - id: l2-n2
@@ -487,6 +496,7 @@ lessons:
             type: multiple_choice
             text: "Woher kommt der Ton einer Gitarre?"
             say: "Woher kommt der Ton einer Gitarre?"
+            show: { object: play-guitar }
             options: ["Die Saiten schwingen.", "Die Gitarre ist schwer.", "Die Gitarre steht im Hof."]
             answer: "Die Saiten schwingen."
           - id: l2-c2
@@ -502,8 +512,8 @@ lessons:
             say: "Verbinde jedes Ding mit dem, was schwingt."
             pairs:
               - { left: { object: bell }, right: { text: "die Glocke" } }
-              - { left: { text: "Trommel" }, right: { text: "das Fell" } }
-              - { left: { text: "deine Stimme" }, right: { text: "die Stimmbänder" } }
+              - { left: { object: drum }, right: { text: "das Fell" } }
+              - { left: { object: sing, say: "deine Stimme" }, right: { text: "die Stimmbänder" } }
           - id: l2-c4
             part: vibrate
             type: image_multiple_choice
@@ -570,14 +580,15 @@ lessons:
               - { id: leise, show: { text: "leise" }, say: "leise" }
             options:
               - { object: fireworks, bin: laut }
-              - { text: "eine tickende Uhr", bin: leise }
+              - { object: clock, say: "eine tickende Uhr", bin: leise }
               - { object: ambulance, bin: laut }
-              - { text: "Flüstern", bin: leise }
+              - { object: whisper, bin: leise }
           - id: l2-c13
             part: loud-quiet
             type: multiple_choice
             text: "Ela tippt ganz sanft auf die Trommel. Wie ist der Ton?"
             say: "Ela tippt ganz sanft auf die Trommel. Wie ist der Ton?"
+            show: { object: drum }
             options: ["leise", "laut", "hoch wie ein Vogel"]
             answer: "leise"
           - id: l2-c14
@@ -585,6 +596,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Schwingt das Trommelfell stark, ist der Ton laut."
             say: "Stimmt das? Schwingt das Trommelfell stark, ist der Ton laut."
+            show: { object: drum }
             answer: true
           - id: l2-c15
             part: loud-quiet
@@ -606,6 +618,7 @@ lessons:
             type: multiple_choice
             text: "Wie klingt eine große Kirchenglocke?"
             say: "Wie klingt eine große Kirchenglocke?"
+            show: { object: church-bell }
             options: ["tief", "hoch", "gar nicht"]
             answer: "tief"
           - id: l2-c18
@@ -626,6 +639,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Eine kleine Glocke klingt höher als eine große."
             say: "Stimmt das? Eine kleine Glocke klingt höher als eine große."
+            show: { objects: [bell, church-bell] }
             answer: true
           - id: l2-c20
             part: high-low

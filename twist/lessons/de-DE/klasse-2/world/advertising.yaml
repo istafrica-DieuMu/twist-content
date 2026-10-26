@@ -84,11 +84,13 @@ lessons:
         screens:
           - text: "Was glaubst du: Wozu ist dieser kurze Film da?"
             say: "Nele schaut mit ihrem Bruder Mats einen Film auf dem Tablet. Plötzlich kommt ein kurzer Film dazwischen. Ein Roboter fliegt durch ein Kinderzimmer, Kinder lachen und jubeln, und eine Stimme ruft: Robo Blitz! Jetzt im Laden! Was glaubst du: Wozu ist dieser kurze Film da?"
+            show: { object: tablet }
           - text: "Das war Werbung. Sie will, dass du etwas kaufst."
             say: "Das war Werbung. Eine Firma bezahlt dafür, dass ihr Roboter gezeigt wird. Sie will, dass viele Kinder den Roboter haben wollen und ihn kaufen. Nele ruft sofort: Den will ich haben!"
+            show: { object: toy-robot }
           - text: "Werbung gibt es fast überall."
             say: "Werbung gibt es im Fernsehen und im Radio, im Internet und in Spielen auf dem Handy. Es gibt sie auf großen Plakaten an der Straße, in Zeitschriften und in Prospekten im Briefkasten. Auch eine bunte Packung im Supermarkt macht Werbung für das, was drin ist."
-            show: { object: cereal-box }
+            show: { objects: [billboard, cereal-box] }
           - text: "Daran erkennst du Werbung."
             say: "Werbung zeigt eine Sache ganz groß und sagt ihren Namen oft. Alle Menschen darin sind fröhlich. Oft gibt es ein Lied, das man sich leicht merkt. Und oft steht das Wort Werbung oder Anzeige dabei. In Deutschland muss Werbung als Werbung zu erkennen sein."
             show: { object: happy }
@@ -121,11 +123,11 @@ lessons:
                   - { id: werbung, show: { text: "Werbung" }, say: "Werbung" }
                   - { id: keine, show: { text: "keine Werbung" }, say: "keine Werbung" }
                 options:
-                  - { text: "ein Plakat für Limonade", bin: werbung }
-                  - { text: "ein Bilderbuch über Igel", bin: keine }
+                  - { object: billboard, say: "ein Plakat für Limonade", bin: werbung }
+                  - { object: book, say: "ein Bilderbuch über Igel", bin: keine }
                   - { text: "ein Film: Robo Blitz, jetzt im Laden!", bin: werbung }
-                  - { text: "ein Brief von Oma", bin: keine }
-                  - { text: "ein Prospekt mit Spielzeug und Preisen", bin: werbung }
+                  - { object: letter, say: "ein Brief von Oma", bin: keine }
+                  - { object: leaflet, say: "ein Prospekt mit Spielzeug und Preisen", bin: werbung }
                 hints:
                   - "Frag bei jeder Karte: Will mir hier jemand etwas verkaufen?"
                   - "Oma will dir mit ihrem Brief nichts verkaufen."
@@ -169,6 +171,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Werbung gibt es nur im Fernsehen."
                 say: "Stimmt das? Werbung gibt es nur im Fernsehen."
+                show: { object: television }
                 answer: false
                 feedback:
                   "true": "Werbung gibt es auch im Radio, im Internet, auf Plakaten, in Prospekten und auf Packungen."
@@ -178,14 +181,15 @@ lessons:
                 text: "Wo findest du diese Werbung?"
                 say: "Wo findest du diese Werbung? Verbinde."
                 pairs:
-                  - { left: { text: "ein großes Plakat" }, right: { text: "an der Straße" } }
-                  - { left: { text: "ein Prospekt" }, right: { text: "im Briefkasten" } }
-                  - { left: { text: "ein Werbefilm" }, right: { text: "im Fernsehen oder im Internet" } }
+                  - { left: { object: billboard, say: "ein großes Plakat" }, right: { text: "an der Straße" } }
+                  - { left: { object: leaflet, say: "ein Prospekt" }, right: { text: "im Briefkasten" } }
+                  - { left: { object: television, say: "ein Werbefilm" }, right: { text: "im Fernsehen oder im Internet" } }
                 hints: ["Ein Film braucht einen Bildschirm."]
               - id: l1-s3
                 type: multiple_choice
                 text: "Wer bezahlt die Werbung für Robo Blitz?"
                 say: "Wer bezahlt die Werbung für Robo Blitz?"
+                show: { object: toy-robot }
                 options: ["die Firma, die den Roboter verkauft", "Nele", "Neles Schule"]
                 answer: "die Firma, die den Roboter verkauft"
                 hints: ["Wer möchte, dass viele Kinder den Roboter kaufen?"]
@@ -211,6 +215,7 @@ lessons:
                 type: multiple_choice
                 text: "Mats spielt ein Spiel auf dem Handy. Plötzlich kommt ein Film über ein anderes Spiel: „Jetzt laden!“ Was ist das?"
                 say: "Mats spielt ein Spiel auf dem Handy. Plötzlich kommt ein Film über ein anderes Spiel, und eine Stimme ruft: Jetzt laden! Was ist das?"
+                show: { object: mobile-phone }
                 options: ["Werbung", "eine Nachricht von Oma", "ein Fehler im Handy"]
                 answer: "Werbung"
               - id: l1-n2
@@ -221,14 +226,15 @@ lessons:
                   - { id: werbung, show: { text: "Werbung" }, say: "Werbung" }
                   - { id: keine, show: { text: "keine Werbung" }, say: "keine Werbung" }
                 options:
-                  - { text: "ein Prospekt vom Supermarkt", bin: werbung }
-                  - { text: "eine Postkarte von Tante Lia", bin: keine }
+                  - { object: leaflet, say: "ein Prospekt vom Supermarkt", bin: werbung }
+                  - { object: postcard, say: "eine Postkarte von Tante Lia", bin: keine }
                   - { text: "ein Zettel: Pizza, heute billiger!", bin: werbung }
-                  - { text: "die Einladung zu Ellas Geburtstag", bin: keine }
+                  - { object: invitation, say: "die Einladung zu Ellas Geburtstag", bin: keine }
               - id: l1-n3
                 type: true_false
                 text: "Nele sagt: „Im Radio gibt es keine Werbung. Da sieht man ja nichts.“ Stimmt das?"
                 say: "Nele sagt: Im Radio gibt es keine Werbung. Da sieht man ja nichts. Stimmt das?"
+                show: { object: radio }
                 answer: false
                 feedback:
                   "true": "Werbung kann man auch hören. Im Radio kommt sie zwischen den Liedern."
@@ -243,6 +249,7 @@ lessons:
                 type: multiple_choice
                 text: "Ole hört Radio. Zwischen zwei Liedern ruft eine fröhliche Stimme: „Komm in den Spielzeugladen am Markt!“ Was ist das?"
                 say: "Ole hört Radio. Zwischen zwei Liedern ruft eine fröhliche Stimme: Komm in den Spielzeugladen am Markt! Was ist das?"
+                show: { object: radio }
                 options: ["Werbung", "ein Lied", "der Wetterbericht"]
                 answer: "Werbung"
 
@@ -260,6 +267,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Ein Prospekt mit Preisen ist Werbung."
             say: "Stimmt das? Ein Prospekt mit Preisen ist Werbung."
+            show: { object: leaflet }
             answer: true
           - id: l1-c3
             type: sorting
@@ -269,14 +277,15 @@ lessons:
               - { id: werbung, show: { text: "Werbung" }, say: "Werbung" }
               - { id: keine, show: { text: "keine Werbung" }, say: "keine Werbung" }
             options:
-              - { text: "ein Plakat für Saft", bin: werbung }
-              - { text: "ein Brief von Opa", bin: keine }
+              - { object: billboard, say: "ein Plakat für Saft", bin: werbung }
+              - { object: letter, say: "ein Brief von Opa", bin: keine }
               - { text: "ein Werbefilm im Internet", bin: werbung }
-              - { text: "ein Sachbuch über Wale", bin: keine }
+              - { object: book, say: "ein Sachbuch über Wale", bin: keine }
           - id: l1-c4
             type: true_false
             text: "Stimmt das? Werbung gibt es nur auf Plakaten."
             say: "Stimmt das? Werbung gibt es nur auf Plakaten."
+            show: { object: billboard }
             answer: false
           - id: l1-c5
             type: image_multiple_choice
@@ -320,8 +329,10 @@ lessons:
         screens:
           - text: "Was glaubst du: Fliegt Robo Blitz bei Nele auch durchs Zimmer?"
             say: "Nele hat sich Robo Blitz zum Geburtstag gewünscht, und sie hat ihn bekommen! Im Werbefilm ist er durch das Kinderzimmer geflogen. Was glaubst du: Fliegt Robo Blitz bei Nele auch durchs Zimmer?"
+            show: { object: toy-robot }
           - text: "Nein. Robo Blitz kann nur rollen und blinken."
             say: "Nein. Robo Blitz kann nur rollen und blinken. Im Werbefilm sah es nur so aus, als ob er fliegt. Werbung zeigt eine Sache oft schöner und besser, als sie ist. Das ist ihr erster Trick."
+            show: { object: toy-robot }
           - text: "Fröhliche Menschen und Musik"
             say: "Werbung hat noch mehr Tricks, damit wir eine Sache haben wollen. In der Werbung lachen alle, und es läuft fröhliche Musik. Wir sollen denken: Mit dieser Sache bin ich auch so glücklich."
             show: { object: happy }
@@ -422,6 +433,7 @@ lessons:
                 type: multiple_choice
                 text: "Auf einer Müslipackung ist eine Figur aus einem Kinderfilm. Warum?"
                 say: "Auf einer Müslipackung ist eine Figur aus einem Kinderfilm. Warum?"
+                show: { object: cereal-box }
                 options: ["Kinder sollen das Müsli wegen der Figur wollen.", "Die Figur hat das Müsli gekocht.", "Damit das Müsli gesünder ist."]
                 answer: "Kinder sollen das Müsli wegen der Figur wollen."
                 hints: ["Wen mögen Kinder, und was sollen sie dann kaufen?"]
@@ -453,6 +465,7 @@ lessons:
                 type: true_false
                 text: "Nele sagt: „Die Werbung hat Robo Blitz besser gezeigt, als er ist.“ Stimmt das?"
                 say: "Robo Blitz fliegt nicht, wie im Werbefilm. Nele sagt: Die Werbung hat Robo Blitz besser gezeigt, als er ist. Stimmt das?"
+                show: { object: toy-robot }
                 answer: true
               - id: l2-n3
                 type: sorting
@@ -470,12 +483,14 @@ lessons:
                 type: multiple_choice
                 text: "In einem Video packt ein Kind Spielzeug aus. Oben steht „Werbung“. Was heißt das?"
                 say: "In einem Video packt ein Kind Spielzeug aus. Oben steht: Werbung. Was heißt das?"
+                show: { object: tablet }
                 options: ["Jemand bezahlt dafür, dass das Spielzeug gezeigt wird.", "Das Kind hat das Spielzeug selbst gebaut.", "Das Spielzeug ist umsonst."]
                 answer: "Jemand bezahlt dafür, dass das Spielzeug gezeigt wird."
               - id: l2-n5
                 type: multiple_choice
                 text: "Nele hat 4 € Taschengeld. Im Prospekt sieht sie Glitzersticker für 4 €. Was ist eine kluge Frage?"
                 say: "Nele hat 4 Euro Taschengeld. Im Prospekt sieht sie Glitzersticker für 4 Euro. Was ist eine kluge Frage?"
+                show: { object: leaflet }
                 options: ["Will ich die Sticker morgen auch noch?", "Wie schnell kann ich alles ausgeben?", "Welche Farbe hat der Prospekt?"]
                 answer: "Will ich die Sticker morgen auch noch?"
 
@@ -488,6 +503,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Auch im Radio gibt es Werbung."
             say: "Stimmt das? Auch im Radio gibt es Werbung."
+            show: { object: radio }
             answer: true
           - id: l2-c2
             part: recognise
@@ -498,10 +514,10 @@ lessons:
               - { id: werbung, show: { text: "Werbung" }, say: "Werbung" }
               - { id: keine, show: { text: "keine Werbung" }, say: "keine Werbung" }
             options:
-              - { text: "ein Plakat für Turnschuhe", bin: werbung }
-              - { text: "ein Märchenbuch", bin: keine }
+              - { object: billboard, say: "ein Plakat für Turnschuhe", bin: werbung }
+              - { object: book, say: "ein Märchenbuch", bin: keine }
               - { text: "ein Film: Neue Kekse, jetzt im Laden!", bin: werbung }
-              - { text: "ein Foto von deiner Familie", bin: keine }
+              - { object: family-photo, say: "ein Foto von deiner Familie", bin: keine }
           - id: l2-c3
             part: recognise
             type: multiple_choice
@@ -521,6 +537,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Eine Postkarte von Oma ist Werbung."
             say: "Stimmt das? Eine Postkarte von Oma ist Werbung."
+            show: { object: postcard }
             answer: false
           - id: l2-c6
             part: purpose
@@ -548,6 +565,7 @@ lessons:
             type: multiple_choice
             text: "Wer bezahlt ein Werbeplakat für Turnschuhe?"
             say: "Wer bezahlt ein Werbeplakat für Turnschuhe?"
+            show: { object: billboard }
             options: ["die Firma, die die Turnschuhe verkauft", "die Kinder, die es sehen", "der Briefträger"]
             answer: "die Firma, die die Turnschuhe verkauft"
           - id: l2-c10
@@ -577,6 +595,7 @@ lessons:
             type: multiple_choice
             text: "Warum liegt ein Sticker zum Sammeln in der Packung?"
             say: "Warum liegt ein Sticker zum Sammeln in der Packung?"
+            show: { object: sticker }
             options: ["Damit Kinder die Packung wegen des Stickers wollen.", "Weil Sticker gesund sind.", "Weil die Packung sonst leer wäre."]
             answer: "Damit Kinder die Packung wegen des Stickers wollen."
           - id: l2-c14

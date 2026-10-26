@@ -86,6 +86,7 @@ lessons:
             show: { object: grandpa }
           - text: "Oft einen ganzen Tag! Man nannte ihn den Waschtag.\nHeute wäscht die Waschmaschine allein."
             say: "Oft einen ganzen Tag! Man nannte ihn den Waschtag. Das Wasser wurde heiß gemacht, und jedes Stück wurde mit der Hand auf einem Waschbrett geschrubbt. Das war schwere Arbeit. Heute wäscht die Waschmaschine die Wäsche allein, und die Menschen haben Zeit für anderes."
+            show: { object: washing-machine }
           - text: "Auf dem Bauernhof\nfrüher: Pferd und Pflug, Sense und Dreschflegel, viele Helfer\nheute: Traktor und Mähdrescher"
             say: "Auch auf dem Bauernhof von Opa Hans war früher viel Handarbeit. Ein Pferd zog den Pflug über den Acker. Das Getreide mähten viele Helfer mit der Sense, dann schlugen sie die Körner mit dem Dreschflegel heraus. Heute zieht ein Traktor den Pflug. Und ein Mähdrescher mäht das Getreide und drischt es gleich aus. Eine Person fährt ihn und schafft ein großes Feld."
             show: { object: wheat }
@@ -97,6 +98,7 @@ lessons:
             show: { object: car }
           - text: "Roboter in der Fabrik: schwere, gefährliche oder immer gleiche Arbeit, zum Beispiel schweißen und lackieren.\nMenschen programmieren sie und passen auf."
             say: "Heute arbeiten in vielen Fabriken auch Roboter. Sie machen Arbeit, die schwer, gefährlich oder immer gleich ist, zum Beispiel Teile zusammenschweißen oder lackieren. Menschen programmieren die Roboter, passen auf sie auf und reparieren sie."
+            show: { object: factory-robot }
           - text: "Gut: weniger schwere Arbeit, mehr Waren, billigere Waren\nSchwierig: am Fließband immer der gleiche Handgriff, manche verlieren ihre Arbeit, Maschinen brauchen Energie"
             say: "Was bedeutet das für die Menschen? Gut ist: Die Arbeit ist weniger schwer, es gibt mehr Waren, und sie werden billiger. Schwierig ist: Am Fließband macht man oft den ganzen Tag den gleichen Handgriff. Manche Menschen verlieren ihre Arbeit, weil eine Maschine sie macht. Und alle Maschinen brauchen Energie, zum Beispiel Strom oder Diesel. Das ist nicht gut für die Umwelt."
 
@@ -109,9 +111,9 @@ lessons:
                 type: matching
                 text: "Früher mit der Hand, heute mit der Maschine. Verbinde."
                 pairs:
-                  - { left: { text: "Wäsche auf dem Waschbrett schrubben" }, right: { text: "Waschmaschine" } }
-                  - { left: { text: "Getreide mit der Sense mähen" }, right: { text: "Mähdrescher" } }
-                  - { left: { text: "mit dem Pferd den Acker pflügen" }, right: { text: "Traktor" } }
+                  - { left: { text: "Wäsche auf dem Waschbrett schrubben" }, right: { object: washing-machine } }
+                  - { left: { text: "Getreide mit der Sense mähen" }, right: { object: combine-harvester } }
+                  - { left: { text: "mit dem Pferd den Acker pflügen" }, right: { object: tractor } }
                 hints:
                   - "Frag dich: Welche Maschine macht heute diese Arbeit?"
                   - "Wäsche gehört zur Waschmaschine. Getreide mäht der Mähdrescher."
@@ -120,6 +122,7 @@ lessons:
               - id: l1-f2
                 type: multiple_choice
                 text: "Was macht ein Mähdrescher?"
+                show: { object: combine-harvester }
                 options: ["Er mäht das Getreide und drischt die Körner aus.", "Er melkt die Kühe.", "Er backt Brot."]
                 answer: "Er mäht das Getreide und drischt die Körner aus."
                 feedback:
@@ -165,6 +168,7 @@ lessons:
               - id: l1-f6
                 type: multiple_choice
                 text: "Warum schweißen in der Autofabrik oft Roboter?"
+                show: { object: factory-robot }
                 options: ["Weil die Arbeit schwer, gefährlich und immer gleich ist.", "Weil Roboter gern Auto fahren.", "Weil Menschen das nicht lernen können."]
                 answer: "Weil die Arbeit schwer, gefährlich und immer gleich ist."
                 hints:
@@ -183,6 +187,7 @@ lessons:
               - id: l1-s2
                 type: true_false
                 text: "Die Waschmaschine spart den Menschen viel Zeit. Stimmt das?"
+                show: { object: washing-machine }
                 answer: true
                 hints: ["Denk an den Waschtag von früher."]
               - id: l1-s3
@@ -202,9 +207,9 @@ lessons:
                 type: matching
                 text: "Was macht die Maschine? Verbinde."
                 pairs:
-                  - { left: { text: "Waschmaschine" }, right: { text: "wäscht die Wäsche" } }
-                  - { left: { text: "Traktor" }, right: { text: "zieht den Pflug" } }
-                  - { left: { text: "Roboter in der Fabrik" }, right: { text: "schweißt Teile, Menschen programmieren ihn" } }
+                  - { left: { object: washing-machine }, right: { text: "wäscht die Wäsche" } }
+                  - { left: { object: tractor }, right: { text: "zieht den Pflug" } }
+                  - { left: { object: factory-robot }, right: { text: "schweißt Teile, Menschen programmieren ihn" } }
                 hints: ["Der Traktor macht heute die Arbeit, die früher das Pferd gemacht hat."]
 
           - support: none
@@ -280,6 +285,7 @@ lessons:
           - id: l1-c6
             type: true_false
             text: "Roboter in der Fabrik machen oft schwere oder gefährliche Arbeit. Stimmt das?"
+            show: { object: factory-robot }
             answer: true
 
   - n: 2
@@ -311,17 +317,20 @@ lessons:
             say: "Emils Mama arbeitet einen Teil der Zeit im Büro der Fahrradfabrik. Sie schreibt viele Nachrichten an Firmen in anderen Städten. Was glaubst du: Wie hat man früher im Büro eine Nachricht in eine andere Stadt geschickt, und wie lange hat das gedauert?"
           - text: "Früher: ein Brief mit der Post, meistens einen Tag oder länger.\nHeute: eine E-Mail, in wenigen Sekunden."
             say: "Früher schrieb man einen Brief und schickte ihn mit der Post. Er kam meistens erst am nächsten Tag an oder noch später. Heute schreibt Emils Mama eine E-Mail am Computer. Die ist in wenigen Sekunden da, und man braucht kein Papier."
+            show: { object: letter }
           - text: "Computer helfen bei vielen Berufen:\nKasse: Der Scanner liest den Strichcode.\nStall: Ein Melkroboter melkt die Kühe.\nÄrztin: Röntgenbilder am Bildschirm\nArchitekt: Häuser am Computer zeichnen"
             say: "Computer helfen in vielen Berufen. An der Kasse tippte man früher jeden Preis mit der Hand ein. Heute liest ein Scanner den Strichcode, und der Computer findet den Preis. In manchen Ställen melkt ein Melkroboter die Kühe. Die Kuh geht selbst hinein, wenn sie gemolken werden möchte. Eine Ärztin schaut sich Röntgenbilder am Bildschirm an. Und ein Architekt zeichnet Häuser am Computer."
             show: { object: supermarket }
           - text: "Berufe, die es kaum noch gibt: Telefonistin, Laternenanzünder\nNeue Berufe: Programmiererin, Technikerin für Windräder"
             say: "Manche Berufe gibt es heute kaum noch. Früher zündete der Laternenanzünder jeden Abend die Gaslaternen in der Straße an. Heute gehen die Straßenlampen von selbst an. Früher verband eine Telefonistin jedes Telefongespräch mit der Hand. Heute macht das ein Computer. Dafür sind neue Berufe entstanden, zum Beispiel die Programmiererin, die Programme schreibt, oder die Technikerin, die Windräder repariert."
+            show: { object: street-lamp }
           - text: "Wenn sich Maschinen und Computer ändern, lernen die Menschen bei der Arbeit Neues dazu."
             say: "Emils Mama hat gerade gelernt, mit einem neuen Programm zu arbeiten. Wenn sich Maschinen und Computer ändern, lernen die Menschen bei der Arbeit immer wieder Neues dazu, auch als Erwachsene."
           - text: "Gut: schneller, weniger Papier, manchmal von zu Hause arbeiten\nSchwierig: lange am Bildschirm sitzen, immer erreichbar sein, Computer brauchen Strom"
             say: "Was bedeutet das für die Menschen? Gut ist: Vieles geht schneller, man braucht weniger Papier, und manche können von zu Hause aus arbeiten und sparen den Weg. Schwierig ist: Viele sitzen lange vor dem Bildschirm. Manche sind immer erreichbar, auch am Abend. Und Computer brauchen Strom."
           - text: "Wusstest du? Früher steckten Frauen in der Telefonzentrale jedes Gespräch mit der Hand um. Man nannte sie das Fräulein vom Amt."
             say: "Wusstest du? Früher konnte man nicht einfach eine Nummer wählen. Man sagte einer Frau in der Telefonzentrale, mit wem man sprechen wollte. Sie verband das Gespräch mit der Hand, indem sie ein Kabel in die richtige Buchse steckte. Man nannte sie das Fräulein vom Amt."
+            show: { object: telephone }
 
       - activity: practise
         setting: in-context
@@ -399,6 +408,7 @@ lessons:
               - id: l2-s1
                 type: multiple_choice
                 text: "Was macht der Scanner an der Kasse?"
+                show: { object: barcode-scanner }
                 options: ["Er liest den Strichcode, und der Computer findet den Preis.", "Er packt die Einkäufe ein.", "Er zählt das Geld im Portemonnaie."]
                 answer: "Er liest den Strichcode, und der Computer findet den Preis."
                 hints: ["Der Scanner piept, wenn er die schwarzen Striche auf der Ware gelesen hat."]
@@ -473,9 +483,9 @@ lessons:
             type: matching
             text: "Welche Maschine macht diese Arbeit heute? Verbinde."
             pairs:
-              - { left: { text: "das Waschbrett" }, right: { text: "die Waschmaschine" } }
-              - { left: { text: "die Sense und der Dreschflegel" }, right: { text: "der Mähdrescher" } }
-              - { left: { text: "das Pferd vor dem Pflug" }, right: { text: "der Traktor" } }
+              - { left: { object: washboard }, right: { object: washing-machine } }
+              - { left: { text: "die Sense und der Dreschflegel" }, right: { object: combine-harvester } }
+              - { left: { text: "das Pferd vor dem Pflug" }, right: { object: tractor } }
           - id: l2-c2
             part: then-now
             type: multiple_choice
@@ -486,6 +496,7 @@ lessons:
             part: then-now
             type: true_false
             text: "Ein Mähdrescher melkt die Kühe. Stimmt das?"
+            show: { object: combine-harvester }
             answer: false
           - id: l2-c4
             part: then-now
@@ -514,6 +525,7 @@ lessons:
             part: then-now
             type: multiple_choice
             text: "Was macht ein Melkroboter?"
+            show: { object: milking-robot }
             options: ["Er melkt die Kühe.", "Er füttert die Hühner.", "Er mäht die Wiese."]
             answer: "Er melkt die Kühe."
           - id: l2-c8
@@ -552,6 +564,7 @@ lessons:
             part: organisation
             type: true_false
             text: "Roboter in der Fabrik arbeiten ganz ohne Menschen. Niemand muss sie programmieren. Stimmt das?"
+            show: { object: factory-robot }
             answer: false
           - id: l2-c14
             part: effects
@@ -569,6 +582,7 @@ lessons:
             part: effects
             type: multiple_choice
             text: "Warum gibt es den Beruf Laternenanzünder kaum noch?"
+            show: { object: street-lamp }
             options: ["Weil die Straßenlampen heute von selbst angehen.", "Weil es keine Straßen mehr gibt.", "Weil Laternen verboten sind."]
             answer: "Weil die Straßenlampen heute von selbst angehen."
           - id: l2-c16

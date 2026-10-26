@@ -19,8 +19,8 @@ summary: >
   Mückenlarve, Libellenlarve, Fisch, Graureiher) and winter under the
   ice, with the rule to step on ice only where it is officially open. It
   ends with the skill check. Schilf, Seerose, Libelle, Wasserläufer,
-  Graureiher, Gelbrandkäfer, Kaulquappe, Mückenlarve and Algen have no
-  pictures yet, so they are text cards.
+  Graureiher, Gelbrandkäfer, Kaulquappe, Mückenlarve and Algen are
+  pictures from the bank.
 metadata:
   year: klasse-4
   topic: { de: Lebensräume, en: Habitats }
@@ -65,9 +65,9 @@ lessons:
           - id: l1-w1
             type: ordering
             text: "Wie wird aus dem Laich ein Frosch? Bring es in die richtige Reihenfolge."
-            options: ["Kaulquappe mit Beinen", "Froschlaich", "junger Frosch", "Kaulquappe"]
+            options: [{ object: tadpole-legs }, { object: frogspawn }, { object: frog }, { object: tadpole }]
             slot_count: 4
-            answer: ["Froschlaich", "Kaulquappe", "Kaulquappe mit Beinen", "junger Frosch"]
+            answer: [frogspawn, tadpole, tadpole-legs, frog]
             option_audio: false
             difficulty: easy
           - id: l1-w2
@@ -121,8 +121,8 @@ lessons:
                   - { id: on, show: { text: "auf dem Wasser" }, say: "auf dem Wasser" }
                   - { id: under, show: { text: "unter Wasser" }, say: "unter Wasser" }
                 options:
-                  - { text: "Schilf", bin: bank }
-                  - { text: "Seerose", bin: on }
+                  - { object: reed, bin: bank }
+                  - { object: water-lily, bin: on }
                   - { object: duck, bin: on }
                   - { object: fish, bin: under }
                 hints:
@@ -132,6 +132,7 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Die Seerose hat keine Wurzeln. Sie treibt einfach auf dem Wasser. Stimmt das?"
+                show: { object: water-lily }
                 answer: false
                 hints:
                   - "Denk an den langen Stiel der Seerose."
@@ -150,9 +151,9 @@ lessons:
                 type: matching
                 text: "Was tut das Tier am Teich? Verbinde."
                 pairs:
-                  - { left: { text: "Graureiher" }, right: { text: "steht im flachen Wasser und fängt Fische" } }
+                  - { left: { object: grey-heron }, right: { text: "steht im flachen Wasser und fängt Fische" } }
                   - { left: { object: duck }, right: { text: "paddelt auf dem Wasser" } }
-                  - { left: { text: "Libellenlarve" }, right: { text: "krabbelt unter Wasser" } }
+                  - { left: { object: dragonfly-larva }, right: { text: "krabbelt unter Wasser" } }
                 hints:
                   - "Jedes Tier lebt an einem anderen Ort am Teich."
                   - "Der Graureiher ist ein großer Vogel mit langen Beinen."
@@ -216,10 +217,10 @@ lessons:
                   - { id: on, show: { text: "auf dem Wasser" }, say: "auf dem Wasser" }
                   - { id: under, show: { text: "unter Wasser" }, say: "unter Wasser" }
                 options:
-                  - { text: "Graureiher", bin: bank }
-                  - { text: "Wasserläufer", bin: on }
-                  - { text: "Kaulquappe", bin: under }
-                  - { text: "Teichschnecke", bin: under }
+                  - { object: grey-heron, bin: bank }
+                  - { object: pond-skater, bin: on }
+                  - { object: tadpole, bin: under }
+                  - { object: pond-snail, bin: under }
               - id: l1-n2
                 type: multiple_choice
                 text: "Ida hat Tiere in der Becherlupe angeschaut. Was macht sie danach?"
@@ -228,6 +229,7 @@ lessons:
               - id: l1-n3
                 type: true_false
                 text: "Der Graureiher schwimmt mitten im Teich und taucht nach Fischen. Stimmt das?"
+                show: { object: grey-heron }
                 answer: false
               - id: l1-n4
                 type: image_multiple_choice
@@ -238,9 +240,9 @@ lessons:
                 type: matching
                 text: "Welche Pflanze ist gemeint? Verbinde."
                 pairs:
-                  - { left: { text: "Schilf" }, right: { text: "wächst hoch am Ufer" } }
-                  - { left: { text: "Seerose" }, right: { text: "hat runde Blätter, die auf dem Wasser schwimmen" } }
-                  - { left: { text: "Wasserpflanzen" }, right: { text: "wachsen ganz unter Wasser" } }
+                  - { left: { object: reed }, right: { text: "wächst hoch am Ufer" } }
+                  - { left: { object: water-lily }, right: { text: "hat runde Blätter, die auf dem Wasser schwimmen" } }
+                  - { left: { object: water-plant }, right: { text: "wachsen ganz unter Wasser" } }
 
       - activity: check
         size: quick
@@ -263,6 +265,7 @@ lessons:
           - id: l1-c4
             type: multiple_choice
             text: "Wo wächst das Schilf?"
+            show: { object: reed }
             options: ["am Ufer", "mitten auf dem Wasser", "auf Bäumen"]
             answer: "am Ufer"
           - id: l1-c5
@@ -273,7 +276,7 @@ lessons:
               - { id: no, show: { text: "nicht am Teich" }, say: "nicht am Teich" }
             options:
               - { object: duck, bin: yes }
-              - { text: "Seerose", bin: yes }
+              - { object: water-lily, bin: yes }
               - { object: lion, bin: no }
               - { object: elephant, bin: no }
           - id: l1-c6
@@ -299,13 +302,14 @@ lessons:
               - { id: on, show: { text: "auf dem Wasser" }, say: "auf dem Wasser" }
               - { id: under, show: { text: "unter Wasser" }, say: "unter Wasser" }
             options:
-              - { text: "Schilf", bin: bank }
-              - { text: "Wasserläufer", bin: on }
+              - { object: reed, bin: bank }
+              - { object: pond-skater, bin: on }
               - { object: fish, bin: under }
             difficulty: easy
           - id: l2-w2
             type: true_false
             text: "Die Wurzeln der Seerose stecken im Boden des Teichs. Stimmt das?"
+            show: { object: water-lily }
             answer: true
             difficulty: easy
 
@@ -314,6 +318,7 @@ lessons:
         screens:
           - text: "Im Kescher zappelt ein großer Käfer mit gelbem Rand. Er lebt unter Wasser, hat aber keine Kiemen.\n\nWas glaubst du: Wie atmet er?"
             say: "Im Kescher zappelt ein großer dunkler Käfer mit einem gelben Rand. Onkel Malte sagt: Das ist ein Gelbrandkäfer. Er lebt unter Wasser, aber er hat keine Kiemen wie ein Fisch. Was glaubst du: Wie atmet er?"
+            show: { object: diving-beetle }
           - text: "Er schwimmt nach oben und nimmt Luft unter seinen Flügeln mit."
             say: "Der Gelbrandkäfer schwimmt immer wieder nach oben an die Wasseroberfläche. Dort holt er Luft und nimmt sie unter seinen Flügeln mit nach unten. So hat er unter Wasser einen Luftvorrat. Auch die Mückenlarve holt sich Luft von oben. Sie hängt unter der Wasseroberfläche und atmet durch ein kleines Rohr."
             show: { object: mosquito }
@@ -322,6 +327,7 @@ lessons:
             show: { object: fish }
           - text: "Die Libellenlarve lebt im Wasser. Dann klettert sie am Schilf hoch, und eine Libelle schlüpft."
             say: "Erinnerst du dich an die Libellenlarve? Sie lebt oft ein Jahr oder länger unter Wasser und jagt dort kleine Tiere. Eines Tages klettert sie an einem Schilfhalm aus dem Wasser. Ihre Haut platzt auf, und heraus kommt eine Libelle. Die leere Haut bleibt am Halm hängen."
+            show: { object: dragonfly-larva }
           - text: "Algen → Mückenlarve → Libellenlarve → Fisch → Graureiher"
             say: "Auch im Teich gibt es Nahrungsketten. Winzige Algen werden von Mückenlarven gefressen. Die Mückenlarven werden von Libellenlarven gefressen, die Libellenlarven von Fischen, und die Fische vom Graureiher."
           - text: "Im Winter friert der Teich oben zu. Darunter bleibt Wasser.\n\nGeh nur auf Eis, das offiziell freigegeben ist!"
@@ -338,6 +344,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "Wie bekommt der Gelbrandkäfer unter Wasser Luft?"
+                show: { object: diving-beetle }
                 options: ["Er holt Luft an der Oberfläche und nimmt sie unter den Flügeln mit.", "Er atmet mit Kiemen wie ein Fisch.", "Er braucht keine Luft."]
                 answer: "Er holt Luft an der Oberfläche und nimmt sie unter den Flügeln mit."
                 hints:
@@ -353,9 +360,9 @@ lessons:
                   - { id: air, show: { text: "holt Luft von oben" }, say: "holt Luft von oben" }
                 options:
                   - { object: fish, bin: gills }
-                  - { text: "Kaulquappe", bin: gills }
-                  - { text: "Gelbrandkäfer", bin: air }
-                  - { text: "Mückenlarve", bin: air }
+                  - { object: tadpole, bin: gills }
+                  - { object: diving-beetle, bin: air }
+                  - { object: mosquito-larva, bin: air }
                 hints:
                   - "Nur manche Tiere im Teich haben Kiemen."
                   - "Fische und Kaulquappen haben Kiemen. Käfer und Mückenlarven nicht."
@@ -363,6 +370,7 @@ lessons:
               - id: l2-f3
                 type: ordering
                 text: "Wie wird aus der Libellenlarve eine Libelle? Bring es in die richtige Reihenfolge."
+                show: { object: dragonfly-larva }
                 options: ["Die Haut platzt auf, und die Libelle schlüpft.", "Die Larve lebt unter Wasser und jagt.", "Die Larve klettert am Schilf aus dem Wasser."]
                 slot_count: 3
                 answer: ["Die Larve lebt unter Wasser und jagt.", "Die Larve klettert am Schilf aus dem Wasser.", "Die Haut platzt auf, und die Libelle schlüpft."]
@@ -405,13 +413,14 @@ lessons:
               - id: l2-s1
                 type: ordering
                 text: "Bau die Nahrungskette im Teich."
-                options: [{ text: "Graureiher" }, { text: "Libellenlarve" }, { object: fish }]
+                options: [{ object: grey-heron }, { object: dragonfly-larva }, { object: fish }]
                 slot_count: 3
-                answer: ["Libellenlarve", fish, "Graureiher"]
+                answer: [dragonfly-larva, fish, grey-heron]
                 hints: ["Der größte Jäger kommt ans Ende."]
               - id: l2-s2
                 type: multiple_choice
                 text: "Wie atmet die Mückenlarve?"
+                show: { object: mosquito-larva }
                 options: ["Sie hängt unter der Oberfläche und atmet durch ein kleines Rohr.", "Sie hat Kiemen wie ein Fisch.", "Sie fliegt zum Atmen aus dem Wasser."]
                 answer: "Sie hängt unter der Oberfläche und atmet durch ein kleines Rohr."
                 hints: ["Sie holt sich die Luft von oben, so wie der Gelbrandkäfer."]
@@ -432,7 +441,7 @@ lessons:
                 pairs:
                   - { left: { object: fish }, right: { text: "ruht am Grund unter dem Eis" } }
                   - { left: { object: frog }, right: { text: "überwintert im Schlamm oder unter Laub" } }
-                  - { left: { text: "Wasserspinne" }, right: { text: "wohnt in einer Luftblase unter Wasser" } }
+                  - { left: { object: water-spider }, right: { text: "wohnt in einer Luftblase unter Wasser" } }
                 hints: ["Die Wasserspinne lebt das ganze Jahr in ihrer Glocke aus Luft."]
 
           - support: none
@@ -444,16 +453,16 @@ lessons:
                   - { id: gills, show: { text: "mit Kiemen im Wasser" }, say: "mit Kiemen im Wasser" }
                   - { id: air, show: { text: "atmet Luft" }, say: "atmet Luft" }
                 options:
-                  - { text: "Kaulquappe", bin: gills }
+                  - { object: tadpole, bin: gills }
                   - { object: fish, bin: gills }
                   - { object: frog, bin: air }
                   - { object: duck, bin: air }
               - id: l2-n2
                 type: ordering
                 text: "Bau die Nahrungskette im Teich mit vier Gliedern."
-                options: ["Libellenlarve", "Fisch", "Algen", "Mückenlarve"]
+                options: [{ object: dragonfly-larva }, { object: fish }, { object: algae }, { object: mosquito-larva }]
                 slot_count: 4
-                answer: ["Algen", "Mückenlarve", "Libellenlarve", "Fisch"]
+                answer: [algae, mosquito-larva, dragonfly-larva, fish]
               - id: l2-n3
                 type: true_false
                 text: "Wenn das Eis auf dem Teich dick aussieht, darf man immer darauf gehen. Stimmt das?"
@@ -461,11 +470,13 @@ lessons:
               - id: l2-n4
                 type: multiple_choice
                 text: "Wo lebt eine Libelle, bevor sie fliegen kann?"
+                show: { object: dragonfly }
                 options: ["als Larve unter Wasser", "als Raupe auf einem Blatt", "in einem Vogelnest"]
                 answer: "als Larve unter Wasser"
               - id: l2-n5
                 type: multiple_choice
                 text: "Warum kann der Gelbrandkäfer lange unter Wasser bleiben?"
+                show: { object: diving-beetle }
                 options: ["Er hat einen Luftvorrat unter den Flügeln.", "Er schläft unter Wasser.", "Er trinkt das Wasser aus."]
                 answer: "Er hat einen Luftvorrat unter den Flügeln."
 
@@ -482,9 +493,9 @@ lessons:
               - { id: on, show: { text: "auf dem Wasser" }, say: "auf dem Wasser" }
               - { id: under, show: { text: "unter Wasser" }, say: "unter Wasser" }
             options:
-              - { text: "Schilf", bin: bank }
+              - { object: reed, bin: bank }
               - { object: duck, bin: on }
-              - { text: "Libellenlarve", bin: under }
+              - { object: dragonfly-larva, bin: under }
               - { object: fish, bin: under }
           - id: l2-c2
             part: where
@@ -502,11 +513,13 @@ lessons:
             part: where
             type: true_false
             text: "Der Wasserläufer läuft auf dem Wasser, ohne einzusinken. Stimmt das?"
+            show: { object: pond-skater }
             answer: true
           - id: l2-c5
             part: where
             type: multiple_choice
             text: "Ein großer grauer Vogel steht ganz still im flachen Wasser am Ufer. Was macht er?"
+            show: { object: grey-heron }
             options: ["Er wartet auf Fische und Frösche.", "Er schläft im Stehen ein.", "Er baut ein Nest im Wasser."]
             answer: "Er wartet auf Fische und Frösche."
           - id: l2-c6
@@ -514,9 +527,9 @@ lessons:
             type: matching
             text: "Wo lebt das? Verbinde."
             pairs:
-              - { left: { text: "Teichschnecke" }, right: { text: "unter Wasser" } }
-              - { left: { text: "Seerose" }, right: { text: "auf dem Wasser" } }
-              - { left: { text: "Schilf" }, right: { text: "am Ufer" } }
+              - { left: { object: pond-snail }, right: { text: "unter Wasser" } }
+              - { left: { object: water-lily }, right: { text: "auf dem Wasser" } }
+              - { left: { object: reed }, right: { text: "am Ufer" } }
           - id: l2-c7
             part: where
             type: true_false
@@ -561,10 +574,10 @@ lessons:
               - { id: gills, show: { text: "mit Kiemen" }, say: "mit Kiemen" }
               - { id: air, show: { text: "holt Luft von oben" }, say: "holt Luft von oben" }
             options:
-              - { text: "Kaulquappe", bin: gills }
+              - { object: tadpole, bin: gills }
               - { object: fish, bin: gills }
-              - { text: "Mückenlarve", bin: air }
-              - { text: "Wasserspinne", bin: air }
+              - { object: mosquito-larva, bin: air }
+              - { object: water-spider, bin: air }
           - id: l2-c14
             part: living
             type: true_false
@@ -574,9 +587,9 @@ lessons:
             part: pond-food
             type: ordering
             text: "Bau die Nahrungskette im Teich."
-            options: [{ object: fish }, { text: "Mückenlarve" }, { text: "Algen" }]
+            options: [{ object: fish }, { object: mosquito-larva }, { object: algae }]
             slot_count: 3
-            answer: ["Algen", "Mückenlarve", fish]
+            answer: [algae, mosquito-larva, fish]
           - id: l2-c16
             part: pond-food
             type: multiple_choice
@@ -601,6 +614,7 @@ lessons:
             part: pond-food
             type: multiple_choice
             text: "Was frisst die Libellenlarve?"
+            show: { object: dragonfly-larva }
             options: ["kleine Tiere wie Mückenlarven", "Seerosenblätter", "Graureiher"]
             answer: "kleine Tiere wie Mückenlarven"
           - id: l2-c20

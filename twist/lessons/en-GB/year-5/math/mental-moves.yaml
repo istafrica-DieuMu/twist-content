@@ -71,6 +71,9 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "Turn this card upside down.\nWhich letter do you think you will see?"
+            say: "Here is a card with the letter b. Imagine turning the card upside down. Which letter do you think you will see? Make a guess before we turn it."
+            show: { drawn: letter-card, text: "b" }
           - text: "A half turn: b becomes q."
             say: "Imagine the letter b on a card. Give the card a half turn, so it is upside down, like the minute hand going from twelve to six. Now the b looks like a q."
             show: { drawn: letter-card, text: "b q" }
@@ -80,6 +83,8 @@ lessons:
           - text: "16 after a half turn: 91"
             say: "With a number, the digits turn and swap places too. Turn sixteen upside down. The six becomes a nine and moves to the front, so you read ninety-one."
             show: { drawn: letter-card, text: "16" }
+          - text: "Did you know? Type 0.7734 on a calculator and give it a half turn. It says hELLO!"
+            say: "Did you know? Type the number nought point seven seven three four on a calculator, then turn the calculator upside down. The digits turn into letters, and the screen says hello!"
           - text: "A quarter turn: a lying rectangle stands up."
             say: "A quarter turn is like the minute hand going from twelve to three. A rectangle lying on its long side stands up on its short side after a quarter turn."
             show: { drawn: shape, kind: rectangle, colour: green }
@@ -127,14 +132,14 @@ lessons:
                   - "The 6 becomes a 9 and goes to the front. The 1 stays a 1."
                   - "91."
               - id: l1-f4
-                type: multiple_choice
-                text: "Which word looks exactly the same after a half turn?"
-                options: ["SOS", "BOB", "DAD"]
-                answer: "SOS"
+                type: true_false
+                text: "The word SOS looks exactly the same after a half turn. Is that true?"
+                show: { drawn: letter-card, text: "SOS" }
+                answer: true
                 hints:
-                  - "Turn each word upside down in your head."
-                  - "S and O look the same upside down. B and D do not."
-                  - "SOS."
+                  - "Turn the word upside down in your head."
+                  - "S and O both look the same upside down."
+                  - "Yes, that is true."
               - id: l1-f5
                 type: multiple_choice
                 text: "A rectangle lies on its long side. You give it a quarter turn. What happens?"
@@ -165,10 +170,9 @@ lessons:
                 option_audio: false
                 hints: ["Left and right swap, up and down stay."]
               - id: l1-s3
-                type: multiple_choice
+                type: text_input
                 text: "You give the card a half turn. What number do you read?"
                 show: { drawn: letter-card, text: "68" }
-                options: ["89", "86", "98"]
                 answer: "89"
                 hints: ["The digits swap places and each turns upside down. What does 6 become?"]
               - id: l1-s4
@@ -193,6 +197,10 @@ lessons:
                 options: ["b", "p", "d"]
                 answer: "b"
                 option_audio: false
+              - id: l1-n4
+                type: true_false
+                text: "In a mirror at its side, b looks like q. Is that true?"
+                answer: false
               - id: l1-n2
                 type: multiple_choice
                 text: "You hold the card up to a mirror at its side. Which letter do you see?"
@@ -207,10 +215,6 @@ lessons:
                 options: ["SWIMS", "SMIWS", "SWIWS"]
                 answer: "SWIMS"
                 option_audio: false
-              - id: l1-n4
-                type: true_false
-                text: "In a mirror at its side, b looks like q. Is that true?"
-                answer: false
               - id: l1-n5
                 type: multiple_choice
                 text: "How far is a quarter turn?"
@@ -284,6 +288,9 @@ lessons:
       - activity: learn
         mode: demonstration
         screens:
+          - text: "The 1 is on top of this dice.\nWhich number do you think is underneath?"
+            say: "Here is a dice with the one on top. Which number do you think is hiding underneath, on the bottom face? Have a guess."
+            show: { drawn: dots, count: 1, layout: dice }
           - text: "Opposite faces add up to 7."
             say: "On a dice, the dots on two opposite faces always add up to seven. If the one is on top, the six is underneath. The two is opposite the five, and the three is opposite the four."
             show: { drawn: dots, count: 1, layout: dice }
@@ -305,6 +312,8 @@ lessons:
                 show: { drawn: dots, count: 3, layout: dice }
                 options: ["4", "3", "6"]
                 answer: "4"
+                feedback:
+                  "3": "A dice with 3 on top and 3 underneath would be a very strange dice! Opposite faces add up to 7."
                 hints:
                   - "Opposite faces add up to 7."
                   - "3 + _ = 7"
@@ -355,10 +364,9 @@ lessons:
           - support: some
             tasks:
               - id: l2-s1
-                type: multiple_choice
+                type: text_input
                 text: "The 5 is on top. Which number is underneath?"
                 show: { drawn: dots, count: 5, layout: dice }
-                options: ["2", "5", "1"]
                 answer: "2"
                 hints: ["5 + _ = 7"]
               - id: l2-s2
@@ -449,6 +457,12 @@ lessons:
             text: "The 1 is on top and the 5 is on the right. You tip the dice to the right. Which number is on top now?"
             options: ["2", "5", "6"]
             answer: "2"
+          - id: l2-c8
+            part: turn
+            type: true_false
+            text: "After a half turn, the word NOON still reads NOON. Is that true?"
+            show: { drawn: letter-card, text: "NOON" }
+            answer: true
           - id: l2-c6
             part: turn
             type: multiple_choice
@@ -462,11 +476,10 @@ lessons:
             text: "Which number looks exactly the same after a half turn?"
             options: ["69", "16", "68"]
             answer: "69"
-          - id: l2-c8
-            part: turn
+          - id: l2-c11
+            part: turn-or-reflect
             type: true_false
-            text: "After a half turn, the word NOON still reads NOON. Is that true?"
-            show: { drawn: letter-card, text: "NOON" }
+            text: "However you turn a card with p on it, flat on the table, it never shows q. Is that true?"
             answer: true
           - id: l2-c9
             part: turn
@@ -481,11 +494,6 @@ lessons:
             text: "Which move makes b look like d?"
             options: ["a reflection in a mirror at its side", "a half turn", "a quarter turn"]
             answer: "a reflection in a mirror at its side"
-          - id: l2-c11
-            part: turn-or-reflect
-            type: true_false
-            text: "However you turn a card with p on it, flat on the table, it never shows q. Is that true?"
-            answer: true
           - id: l2-c12
             part: turn-or-reflect
             type: multiple_choice

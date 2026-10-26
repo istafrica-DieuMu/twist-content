@@ -69,13 +69,13 @@ lessons:
             show: { objects: [book, telephone] }
           - text: "Manche Medien liest man: Buch, Zeitung, Brief."
             say: "Am Morgen liest Papa die Zeitung. Finn liest einen Brief von Oma. Buch, Zeitung und Brief liest man mit den Augen."
-            show: { objects: [book-open, eye] }
+            show: { objects: [newspaper, letter] }
           - text: "Manche Medien hört man: Radio, Hörbuch."
             say: "Im Auto hört Mama Radio. Abends hört Finn ein Hörbuch zum Einschlafen. Radio und Hörbuch hört man mit den Ohren."
-            show: { object: ear }
+            show: { objects: [radio, audiobook] }
           - text: "Manche Medien sieht und hört man zugleich: Fernseher, Computer, Tablet, Handy."
             say: "Beim Fernsehen sieht und hört man zugleich, zum Beispiel einen Film. Auch am Computer, am Tablet und am Handy kann man sehen und hören."
-            show: { object: mobile-phone }
+            show: { objects: [television, tablet] }
           - text: "Wusstest du? Früher hat man Bücher mit der Hand abgeschrieben."
             say: "Wusstest du? Früher haben Menschen in Europa Bücher meistens mit der Hand abgeschrieben. Vor mehr als 550 Jahren baute Johannes Gutenberg in Mainz eine Druckmaschine. Damit konnte man viele Bücher viel schneller herstellen."
             show: { object: book-open }
@@ -106,10 +106,10 @@ lessons:
                   - { id: lesen, show: { object: eye }, say: "lesen" }
                   - { id: hoeren, show: { object: ear }, say: "hören" }
                 options:
-                  - { text: "Zeitung", bin: lesen }
-                  - { text: "Radio", bin: hoeren }
-                  - { text: "Brief", bin: lesen }
-                  - { text: "Hörbuch", bin: hoeren }
+                  - { object: newspaper, bin: lesen }
+                  - { object: radio, bin: hoeren }
+                  - { object: letter, bin: lesen }
+                  - { object: audiobook, bin: hoeren }
                 hints:
                   - "Frag dich bei jeder Karte: Brauche ich die Augen oder die Ohren?"
                   - "In einem Hörbuch steckt schon das Wort hören."
@@ -137,6 +137,7 @@ lessons:
                 type: fill_in_blank
                 text: "Zeitung und Radio"
                 say: "Setz die passenden Wörter ein."
+                show: { objects: [newspaper, radio] }
                 frame: "Die Zeitung _ man. Das Radio _ man."
                 options: ["liest", "hört", "isst"]
                 answer: ["liest", "hört"]
@@ -158,6 +159,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Ein Brief ist ein Medium."
                 say: "Stimmt das? Ein Brief ist ein Medium."
+                show: { object: letter }
                 answer: true
                 hints: ["Ein Brief bringt dir eine Nachricht."]
               - id: l1-s3
@@ -184,6 +186,7 @@ lessons:
                 type: fill_in_blank
                 text: "Augen und Ohren"
                 say: "Setz die passenden Wörter ein."
+                show: { objects: [audiobook, book] }
                 frame: "Ein Hörbuch hört man mit den _. Ein Buch liest man mit den _."
                 options: ["Ohren", "Augen", "Füßen"]
                 answer: ["Ohren", "Augen"]
@@ -207,10 +210,10 @@ lessons:
                   - { id: hoeren, show: { text: "gehört" }, say: "gehört" }
                   - { id: beides, show: { text: "gesehen und gehört" }, say: "gesehen und gehört" }
                 options:
-                  - { text: "der Brief von Oma", bin: lesen }
-                  - { text: "das Radio im Auto", bin: hoeren }
-                  - { text: "der Film am Abend", bin: beides }
-                  - { text: "das Hörbuch zum Einschlafen", bin: hoeren }
+                  - { object: letter, say: "der Brief von Oma", bin: lesen }
+                  - { object: radio, say: "das Radio im Auto", bin: hoeren }
+                  - { object: television, say: "der Film am Abend", bin: beides }
+                  - { object: audiobook, say: "das Hörbuch zum Einschlafen", bin: hoeren }
               - id: l1-n3
                 type: true_false
                 text: "Oma ruft an, und Finn spricht mit ihr. Ist das Telefon ein Medium?"
@@ -266,10 +269,10 @@ lessons:
               - { id: hoeren, show: { object: ear }, say: "hören" }
               - { id: lesen, show: { object: eye }, say: "lesen" }
             options:
-              - { text: "Hörspiel", bin: hoeren }
-              - { text: "Buch", bin: lesen }
-              - { text: "Radio", bin: hoeren }
-              - { text: "Brief", bin: lesen }
+              - { object: audiobook, say: "Hörspiel", bin: hoeren }
+              - { object: book, bin: lesen }
+              - { object: radio, bin: hoeren }
+              - { object: letter, bin: lesen }
           - id: l1-c6
             type: multiple_choice
             text: "Wobei sieht und hört man zugleich?"
@@ -298,6 +301,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Eine Zeitung ist kein Medium."
             say: "Stimmt das? Eine Zeitung ist kein Medium."
+            show: { object: newspaper }
             answer: false
             difficulty: easy
 
@@ -315,7 +319,7 @@ lessons:
             show: { object: book-open }
           - text: "Mit Medien bleiben wir in Kontakt: Telefon, Brief, Nachricht."
             say: "Finn ruft Oma an und erzählt ihr vom Igel. Mit dem Telefon, mit einem Brief oder mit einer Nachricht auf dem Handy bleiben wir mit anderen in Kontakt."
-            show: { object: telephone }
+            show: { objects: [telephone, letter] }
           - text: "Ein Handy kann vieles."
             say: "Manche Medien können vieles. Mit einem Handy kann man telefonieren, Nachrichten schreiben, Fotos machen, Musik hören und spielen."
             show: { object: mobile-phone }
@@ -337,9 +341,9 @@ lessons:
                   - { id: spass, show: { text: "Spaß haben" }, say: "Spaß haben" }
                   - { id: kontakt, show: { text: "in Kontakt bleiben" }, say: "in Kontakt bleiben" }
                 options:
-                  - { text: "der Wetterbericht", bin: info }
+                  - { object: weather-report, say: "der Wetterbericht", bin: info }
                   - { text: "ein lustiger Film", bin: spass }
-                  - { text: "ein Anruf bei Oma", bin: kontakt }
+                  - { object: telephone, say: "ein Anruf bei Oma", bin: kontakt }
                   - { text: "ein Sachbuch über Vögel", bin: info }
                 hints:
                   - "Frag dich bei jeder Karte: Erfahre ich etwas Neues, lache ich, oder spreche ich mit jemandem?"
@@ -374,7 +378,7 @@ lessons:
                 pairs:
                   - { left: { text: "Ich will Oma etwas erzählen." }, right: { object: telephone } }
                   - { left: { text: "Ich will etwas über Igel lernen." }, right: { object: book } }
-                  - { left: { text: "Ich will im Auto Musik hören." }, right: { text: "Radio" } }
+                  - { left: { text: "Ich will im Auto Musik hören." }, right: { object: radio } }
                 hints:
                   - "Fang mit der Aufgabe an, die du am leichtesten findest."
                   - "Mit Oma spricht man. Etwas Neues steht im Sachbuch."
@@ -491,6 +495,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Die Zeitung ist ein Medium."
             say: "Stimmt das? Die Zeitung ist ein Medium."
+            show: { object: newspaper }
             answer: true
           - id: l2-c3
             part: name
@@ -501,10 +506,10 @@ lessons:
               - { id: augen, show: { object: eye }, say: "mit den Augen" }
               - { id: ohren, show: { object: ear }, say: "mit den Ohren" }
             options:
-              - { text: "Brief", bin: augen }
-              - { text: "Radio", bin: ohren }
-              - { text: "Buch", bin: augen }
-              - { text: "Hörbuch", bin: ohren }
+              - { object: letter, bin: augen }
+              - { object: radio, bin: ohren }
+              - { object: book, bin: augen }
+              - { object: audiobook, bin: ohren }
           - id: l2-c4
             part: name
             type: multiple_choice
@@ -523,6 +528,7 @@ lessons:
             type: fill_in_blank
             text: "Radio und Zeitung"
             say: "Setz die passenden Wörter ein."
+            show: { objects: [radio, newspaper] }
             frame: "Das _ hört man. Die _ liest man."
             options: ["Radio", "Zeitung", "Fahrrad"]
             answer: ["Radio", "Zeitung"]
@@ -538,6 +544,7 @@ lessons:
             type: multiple_choice
             text: "Wofür nutzt man den Wetterbericht?"
             say: "Wofür nutzt man den Wetterbericht?"
+            show: { object: weather-report }
             options: ["um sich zu informieren", "um Oma anzurufen", "um ein Bild zu malen"]
             answer: "um sich zu informieren"
           - id: l2-c9
@@ -554,12 +561,13 @@ lessons:
             pairs:
               - { left: { text: "Zeichentrickfilm" }, right: { text: "Spaß haben" } }
               - { left: { text: "Nachrichten" }, right: { text: "sich informieren" } }
-              - { left: { text: "Telefon" }, right: { text: "in Kontakt bleiben" } }
+              - { left: { object: telephone }, right: { text: "in Kontakt bleiben" } }
           - id: l2-c11
             part: use
             type: multiple_choice
             text: "Wozu schreibt man einen Brief?"
             say: "Wozu schreibt man einen Brief?"
+            show: { object: letter }
             options: ["um jemandem etwas mitzuteilen", "um Musik zu hören", "um zu schlafen"]
             answer: "um jemandem etwas mitzuteilen"
           - id: l2-c12
@@ -573,7 +581,7 @@ lessons:
             options:
               - { text: "ein Sachbuch über Wale", bin: info }
               - { text: "ein Hörspiel über Drachen", bin: spass }
-              - { text: "der Wetterbericht", bin: info }
+              - { object: weather-report, say: "der Wetterbericht", bin: info }
               - { text: "ein Märchenfilm", bin: spass }
           - id: l2-c13
             part: use
@@ -614,6 +622,7 @@ lessons:
             type: multiple_choice
             text: "Finn hat lange am Tablet gespielt. Was ist jetzt gut?"
             say: "Finn hat lange am Tablet gespielt. Was ist jetzt gut?"
+            show: { object: tablet }
             options: ["eine Pause machen und draußen spielen", "gleich noch ein Spiel anfangen", "bis zum Abend weiterspielen"]
             answer: "eine Pause machen und draußen spielen"
           - id: l2-c19
@@ -622,8 +631,8 @@ lessons:
             text: "Welches Medium passt zu der Aufgabe?"
             say: "Verbinde jede Aufgabe mit dem passenden Medium."
             pairs:
-              - { left: { text: "Ich will wissen, ob es morgen schneit." }, right: { text: "Wetterbericht" } }
-              - { left: { text: "Ich will mir vor dem Einschlafen eine Geschichte anhören." }, right: { text: "Hörbuch" } }
+              - { left: { text: "Ich will wissen, ob es morgen schneit." }, right: { object: weather-report } }
+              - { left: { text: "Ich will mir vor dem Einschlafen eine Geschichte anhören." }, right: { object: audiobook } }
               - { left: { text: "Ich will Oma zum Geburtstag gratulieren." }, right: { object: telephone } }
           - id: l2-c20
             part: choose

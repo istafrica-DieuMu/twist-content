@@ -61,10 +61,13 @@ lessons:
         from: earlier-skills
         tasks:
           - id: l1-w1
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welcher Baum ist ein Nadelbaum?"
-            options: ["die Fichte", "die Buche", "die Eiche"]
-            answer: "die Fichte"
+            options:
+              - { object: spruce }
+              - { object: beech }
+              - { object: oak }
+            answer: spruce
             difficulty: easy
           - id: l1-w2
             type: image_multiple_choice
@@ -89,6 +92,7 @@ lessons:
             show: { object: worm }
           - text: "In der Mitte: Krautschicht und Strauchschicht"
             say: "In der Krautschicht wachsen Farne, Gräser und Blumen. Darüber kommt die Strauchschicht mit Sträuchern wie Haselnuss und Brombeere und mit jungen Bäumen. Hier finden Rehe Futter und ein Versteck."
+            show: { object: fern }
           - text: "Ganz oben: die Baumschicht mit den Baumkronen"
             say: "Ganz oben sind die Kronen der Bäume. Hier baut das Eichhörnchen sein Nest, und im Herbst versteckt es Nüsse für den Winter. Der Specht zimmert eine Höhle in den Stamm. Die Eule schläft am Tag oft in einer Baumhöhle, und viele Vögel bauen hier ihre Nester."
             show: { object: owl }
@@ -129,6 +133,7 @@ lessons:
               - id: l1-f3
                 type: multiple_choice
                 text: "Wo baut das Eichhörnchen sein Nest?"
+                show: { object: squirrel }
                 options: ["in der Baumschicht", "in der Wurzelschicht", "in der Moosschicht"]
                 answer: "in der Baumschicht"
                 hints:
@@ -138,6 +143,7 @@ lessons:
               - id: l1-f4
                 type: true_false
                 text: "Stimmt das? Farne und Blumen wachsen in der Krautschicht."
+                show: { object: fern }
                 answer: true
                 hints:
                   - "Was wächst über dem Moos, aber unter den Sträuchern?"
@@ -154,9 +160,9 @@ lessons:
                   - { object: worm, bin: low }
                   - { object: owl, bin: high }
                   - { object: snail, bin: low }
-                  - { text: "Specht", bin: high }
+                  - { object: woodpecker, bin: high }
                   - { object: ant, bin: low }
-                  - { text: "Eichhörnchen", bin: high }
+                  - { object: squirrel, bin: high }
                 hints:
                   - "Wer kriecht, wer klettert oder fliegt?"
                   - "Wurm, Schnecke und Ameise sind am Boden."
@@ -164,6 +170,7 @@ lessons:
               - id: l1-f6
                 type: multiple_choice
                 text: "Warum blüht das Buschwindröschen schon im März?"
+                show: { object: wood-anemone }
                 options: ["Dann ist es am Waldboden noch hell.", "Dann ist es im Wald am wärmsten.", "Dann schlafen alle Tiere."]
                 answer: "Dann ist es am Waldboden noch hell."
                 hints:
@@ -177,10 +184,10 @@ lessons:
                 type: matching
                 text: "Verbinde jedes Lebewesen mit seinem Stockwerk."
                 pairs:
-                  - { left: { text: "Haselnuss" }, right: { text: "Strauchschicht" } }
-                  - { left: { text: "Moos" }, right: { text: "Moosschicht" } }
-                  - { left: { text: "Maulwurf" }, right: { text: "Wurzelschicht" } }
-                  - { left: { text: "Specht" }, right: { text: "Baumschicht" } }
+                  - { left: { object: hazelnut }, right: { text: "Strauchschicht" } }
+                  - { left: { object: moss }, right: { text: "Moosschicht" } }
+                  - { left: { object: mole }, right: { text: "Wurzelschicht" } }
+                  - { left: { object: woodpecker }, right: { text: "Baumschicht" } }
                 hints: ["Die Haselnuss ist ein Strauch."]
               - id: l1-s2
                 type: true_false
@@ -214,6 +221,7 @@ lessons:
               - id: l1-s6
                 type: true_false
                 text: "Stimmt das? Die Eule schläft am Tag oft in einer Baumhöhle."
+                show: { object: owl }
                 answer: true
                 hints: ["Wann jagt die Eule, und wann ruht sie?"]
 
@@ -223,6 +231,7 @@ lessons:
               - id: l1-n1
                 type: multiple_choice
                 text: "Mila kniet am Waldboden zwischen Moos und Pilzen. Eine Schnecke kriecht vorbei. In welchem Stockwerk ist Mila?"
+                show: { object: snail }
                 options: ["in der Moosschicht", "in der Baumschicht", "in der Strauchschicht"]
                 answer: "in der Moosschicht"
               - id: l1-n2
@@ -236,11 +245,11 @@ lessons:
                   - { id: shrub, show: { text: "Strauchschicht" }, say: "Strauchschicht" }
                   - { id: tree, show: { text: "Baumschicht" }, say: "Baumschicht" }
                 options:
-                  - { text: "Regenwurm", bin: root }
-                  - { text: "Pilz", bin: moss }
-                  - { text: "Farn", bin: herb }
-                  - { text: "Brombeere", bin: shrub }
-                  - { text: "Specht", bin: tree }
+                  - { object: worm, bin: root }
+                  - { object: mushroom, bin: moss }
+                  - { object: fern, bin: herb }
+                  - { object: blackberry, bin: shrub }
+                  - { object: woodpecker, bin: tree }
               - id: l1-n3
                 type: true_false
                 text: "Frau Kaya fragt: „Ist es am Waldboden im Sommer heller als im Frühling?“ Ben sagt Ja. Hat er recht?"
@@ -281,14 +290,15 @@ lessons:
           - id: l1-c3
             type: true_false
             text: "Stimmt das? Der Specht baut seine Höhle in der Wurzelschicht."
+            show: { object: woodpecker }
             answer: false
           - id: l1-c4
             type: matching
             text: "Wer wohnt wo? Verbinde."
             pairs:
               - { left: { object: worm }, right: { text: "Wurzelschicht" } }
-              - { left: { text: "Farn" }, right: { text: "Krautschicht" } }
-              - { left: { text: "Eichhörnchen" }, right: { text: "Baumschicht" } }
+              - { left: { object: fern }, right: { text: "Krautschicht" } }
+              - { left: { object: squirrel }, right: { text: "Baumschicht" } }
           - id: l1-c5
             type: multiple_choice
             text: "In welchem Stockwerk wachsen Sträucher und junge Bäume?"
@@ -318,6 +328,7 @@ lessons:
           - id: l2-w2
             type: true_false
             text: "Stimmt das? Das Eichhörnchen wohnt in der Baumschicht."
+            show: { object: squirrel }
             answer: true
             difficulty: easy
 
@@ -332,6 +343,7 @@ lessons:
             show: { object: worm }
           - text: "Wusstest du? Pilze sind keine Pflanzen."
             say: "Wusstest du? Pilze sind weder Pflanzen noch Tiere. Sie sind eine eigene Gruppe von Lebewesen. Was wir im Wald sehen, ist nur ein kleiner Teil des Pilzes. Der größte Teil wächst als feines Geflecht unsichtbar im Boden."
+            show: { object: mushroom }
           - text: "Der Wald ist wichtig für Tiere und Menschen."
             say: "Bäume machen Sauerstoff, den wir zum Atmen brauchen. Sie halten Staub aus der Luft fest. Der Waldboden speichert Regenwasser wie ein Schwamm. Wir bekommen Holz aus dem Wald, und viele Tiere finden hier Futter und ein Zuhause."
             show: { object: tree }
@@ -339,6 +351,7 @@ lessons:
             say: "Frau Kaya erklärt die Waldregeln. Mach im Wald nie ein Feuer, denn der Wald kann brennen. Nimm deinen Müll wieder mit, denn Tiere können sich daran verletzen, und Plastik verrottet nicht wie Laub. Sei leise, damit die Tiere nicht erschrecken. Reiß keine Pflanzen aus, und bleib auf den Wegen."
           - text: "Pilze nie selbst essen. Ein Rehkitz nie anfassen."
             say: "Manche Pilze sind sehr giftig. Iss nie einen Pilz, den du im Wald findest. Im Frühling liegen junge Rehe, die Kitze, oft allein im Versteck. Sie sind nicht verlassen, die Mutter kommt zum Säugen zurück. Fass ein Kitz nicht an und geh leise weiter."
+            show: { object: fawn }
 
       - activity: practise
         setting: plain
@@ -348,6 +361,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "Was wird aus dem Laub, das im Herbst auf den Waldboden fällt?"
+                show: { object: leaf }
                 options: ["neue Erde, der Humus", "Müll, den jemand wegbringen muss", "Schnee"]
                 answer: "neue Erde, der Humus"
                 hints:
@@ -370,6 +384,7 @@ lessons:
               - id: l2-f3
                 type: true_false
                 text: "Stimmt das? Pilze sind Pflanzen."
+                show: { object: mushroom }
                 answer: false
                 feedback:
                   "true": "Pilze sind weder Pflanzen noch Tiere. Sie sind eine eigene Gruppe von Lebewesen."
@@ -409,8 +424,8 @@ lessons:
                 text: "Wer macht was im Wald? Verbinde."
                 pairs:
                   - { left: { object: worm }, right: { text: "frisst Laub und macht Erde" } }
-                  - { left: { text: "Specht" }, right: { text: "zimmert Höhlen in Stämme" } }
-                  - { left: { text: "Eichhörnchen" }, right: { text: "versteckt Nüsse für den Winter" } }
+                  - { left: { object: woodpecker }, right: { text: "zimmert Höhlen in Stämme" } }
+                  - { left: { object: squirrel }, right: { text: "versteckt Nüsse für den Winter" } }
                 hints:
                   - "Wer wohnt in der Erde, wer klopft, wer sammelt?"
                   - "Der Specht klopft mit dem Schnabel ins Holz."
@@ -440,6 +455,7 @@ lessons:
               - id: l2-s4
                 type: multiple_choice
                 text: "Wo wächst der größte Teil eines Pilzes?"
+                show: { object: mushroom }
                 options: ["unsichtbar im Boden", "oben im Hut", "in den Baumkronen"]
                 answer: "unsichtbar im Boden"
                 hints: ["Was wir sehen, ist nur ein kleiner Teil."]
@@ -466,6 +482,7 @@ lessons:
               - id: l2-n1
                 type: multiple_choice
                 text: "Ben findet unter einem Strauch ein Rehkitz, ganz allein. Was ist richtig?"
+                show: { object: fawn }
                 options: ["Nicht anfassen und leise weitergehen.", "Es streicheln und trösten.", "Es mit nach Hause nehmen."]
                 answer: "Nicht anfassen und leise weitergehen."
                 feedback:
@@ -483,6 +500,7 @@ lessons:
               - id: l2-n4
                 type: multiple_choice
                 text: "Mila findet einen schönen Pilz. Er sieht lecker aus. Was macht sie?"
+                show: { object: mushroom }
                 options: ["Sie lässt ihn stehen und isst ihn nicht.", "Sie probiert ein kleines Stück.", "Sie nimmt ihn für die Pizza mit."]
                 answer: "Sie lässt ihn stehen und isst ihn nicht."
               - id: l2-n5
@@ -539,10 +557,10 @@ lessons:
             type: matching
             text: "Welches Lebewesen gehört in welches Stockwerk?"
             pairs:
-              - { left: { text: "Maulwurf" }, right: { text: "Wurzelschicht" } }
-              - { left: { text: "Pilz" }, right: { text: "Moosschicht" } }
-              - { left: { text: "Brombeere" }, right: { text: "Strauchschicht" } }
-              - { left: { text: "Specht" }, right: { text: "Baumschicht" } }
+              - { left: { object: mole }, right: { text: "Wurzelschicht" } }
+              - { left: { object: mushroom }, right: { text: "Moosschicht" } }
+              - { left: { object: blackberry }, right: { text: "Strauchschicht" } }
+              - { left: { object: woodpecker }, right: { text: "Baumschicht" } }
           - id: l2-c8
             part: living
             type: sorting
@@ -552,19 +570,21 @@ lessons:
               - { id: high, show: { text: "oben" }, say: "oben" }
             options:
               - { object: ant, bin: low }
-              - { text: "Eichhörnchen", bin: high }
+              - { object: squirrel, bin: high }
               - { object: snail, bin: low }
-              - { text: "Specht", bin: high }
+              - { object: woodpecker, bin: high }
           - id: l2-c9
             part: living
             type: multiple_choice
             text: "Wo gräbt der Fuchs seinen Bau?"
+            show: { object: fox }
             options: ["unter der Erde", "in einer Baumkrone", "im Moos"]
             answer: "unter der Erde"
           - id: l2-c10
             part: living
             type: true_false
             text: "Stimmt das? Farne wachsen in der Baumschicht."
+            show: { object: fern }
             answer: false
           - id: l2-c11
             part: cycle
@@ -576,6 +596,7 @@ lessons:
             part: cycle
             type: true_false
             text: "Stimmt das? Pilze sind weder Pflanzen noch Tiere."
+            show: { object: mushroom }
             answer: true
           - id: l2-c13
             part: cycle
@@ -587,11 +608,13 @@ lessons:
             part: cycle
             type: true_false
             text: "Stimmt das? Der größte Teil eines Pilzes ist sein Hut."
+            show: { object: mushroom }
             answer: false
           - id: l2-c15
             part: cycle
             type: multiple_choice
             text: "Was frisst der Regenwurm im Wald?"
+            show: { object: worm }
             options: ["Laub", "Mäuse", "Nüsse"]
             answer: "Laub"
           - id: l2-c16
@@ -604,6 +627,7 @@ lessons:
             part: protect
             type: true_false
             text: "Stimmt das? Ein Rehkitz, das allein liegt, soll man nicht anfassen."
+            show: { object: fawn }
             answer: true
           - id: l2-c18
             part: protect

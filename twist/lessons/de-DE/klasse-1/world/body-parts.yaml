@@ -72,6 +72,7 @@ lessons:
             show: { object: head }
           - text: "Der Rumpf"
             say: "Unter dem Hals kommt der Rumpf. Vorne am Rumpf ist der Bauch. Hinten am Rumpf ist der Rücken."
+            show: { objects: [tummy, back] }
           - text: "Arme und Beine"
             say: "Am Rumpf sind die Arme und die Beine. Jeder Arm endet in einer Hand mit Fingern, jedes Bein in einem Fuß. Arme und Beine mit Händen und Füßen heißen zusammen Gliedmaßen."
             show: { objects: [arm, leg] }
@@ -119,6 +120,7 @@ lessons:
                 type: true_false
                 text: "Der Bauch ist am Kopf.\n\nStimmt das?"
                 say: "Der Bauch ist am Kopf. Stimmt das?"
+                show: { object: tummy }
                 answer: false
                 hints:
                   - "Fass dir an den Bauch. Wo ist er?"
@@ -185,17 +187,18 @@ lessons:
                   - { id: rumpf, show: { text: "Rumpf" }, say: "Rumpf" }
                   - { id: glied, show: { text: "Gliedmaßen" }, say: "Gliedmaßen" }
                 options:
-                  - { text: "Bauch", bin: rumpf }
-                  - { text: "Nase", bin: kopf }
-                  - { text: "Bein", bin: glied }
-                  - { text: "Rücken", bin: rumpf }
-                  - { text: "Mund", bin: kopf }
-                  - { text: "Hand", bin: glied }
+                  - { object: tummy, bin: rumpf }
+                  - { object: nose, bin: kopf }
+                  - { object: leg, bin: glied }
+                  - { object: back, bin: rumpf }
+                  - { object: mouth, bin: kopf }
+                  - { object: hand, bin: glied }
                 hints: ["Gliedmaßen sind Arme und Beine mit Händen und Füßen. Bauch und Rücken gehören zum Rumpf."]
               - id: l1-s4
                 type: true_false
                 text: "Der Ellenbogen ist in der Mitte vom Arm.\n\nStimmt das?"
                 say: "Der Ellenbogen ist in der Mitte vom Arm. Stimmt das?"
+                show: { object: arm }
                 answer: true
                 hints: ["Beug deinen Arm. Wo knickt er?"]
               - id: l1-s5
@@ -219,6 +222,7 @@ lessons:
                 type: true_false
                 text: "Arme und Beine heißen zusammen Gliedmaßen.\n\nStimmt das?"
                 say: "Arme und Beine heißen zusammen Gliedmaßen. Stimmt das?"
+                show: { objects: [arm, leg] }
                 answer: true
               - id: l1-n3
                 type: sorting
@@ -235,12 +239,14 @@ lessons:
               - id: l1-n4
                 type: multiple_choice
                 text: "Was trägt den Kopf?"
+                show: { object: head }
                 options: ["der Hals", "der Fuß", "das Knie"]
                 answer: "der Hals"
               - id: l1-n5
                 type: true_false
                 text: "Das Knie ist in der Mitte vom Arm.\n\nStimmt das?"
                 say: "Das Knie ist in der Mitte vom Arm. Stimmt das?"
+                show: { object: knee }
                 answer: false
 
       - activity: check
@@ -258,6 +264,7 @@ lessons:
             type: true_false
             text: "Der Bauch ist vorne am Rumpf.\n\nStimmt das?"
             say: "Der Bauch ist vorne am Rumpf. Stimmt das?"
+            show: { object: tummy }
             answer: true
           - id: l1-c3
             type: sorting
@@ -268,12 +275,13 @@ lessons:
               - { id: rumpf, show: { text: "Rumpf" }, say: "Rumpf" }
               - { id: glied, show: { text: "Gliedmaßen" }, say: "Gliedmaßen" }
             options:
-              - { text: "Auge", bin: kopf }
-              - { text: "Rücken", bin: rumpf }
-              - { text: "Fuß", bin: glied }
+              - { object: eye, bin: kopf }
+              - { object: back, bin: rumpf }
+              - { object: foot, bin: glied }
           - id: l1-c4
             type: multiple_choice
             text: "Wie heißen Arme und Beine zusammen?"
+            show: { objects: [arm, leg] }
             options: ["Gliedmaßen", "Gesicht", "Rumpf"]
             answer: "Gliedmaßen"
           - id: l1-c5
@@ -287,6 +295,7 @@ lessons:
             type: true_false
             text: "Die Nase ist am Fuß.\n\nStimmt das?"
             say: "Die Nase ist am Fuß. Stimmt das?"
+            show: { object: nose }
             answer: false
 
   - n: 2
@@ -310,6 +319,7 @@ lessons:
             type: true_false
             text: "Der Rücken ist hinten am Rumpf.\n\nStimmt das?"
             say: "Der Rücken ist hinten am Rumpf. Stimmt das?"
+            show: { object: back }
             answer: true
             difficulty: easy
 
@@ -324,7 +334,7 @@ lessons:
             show: { objects: [nose, eye, ear] }
           - text: "Mund, Zunge und Zähne"
             say: "Mit dem Mund isst, trinkst und sprichst du. Im Mund ist die Zunge. Mit ihr schmeckst du, ob etwas süß oder sauer ist. Mit den Zähnen beißt und kaust du."
-            show: { objects: [mouth, tooth] }
+            show: { objects: [mouth, tongue, tooth] }
           - text: "Mit den Händen greifst du."
             say: "Mit den Händen kannst du greifen, malen, schreiben, klatschen und winken. Deine Finger sind dabei sehr geschickt."
             show: { object: hand }
@@ -372,6 +382,7 @@ lessons:
                 type: true_false
                 text: "Mit den Ohren kannst du sehen.\n\nStimmt das?"
                 say: "Mit den Ohren kannst du sehen. Stimmt das?"
+                show: { object: ear }
                 answer: false
                 hints:
                   - "Halte dir die Augen zu. Kannst du jetzt noch sehen?"
@@ -380,6 +391,7 @@ lessons:
               - id: l2-f4
                 type: multiple_choice
                 text: "Wofür sind die Beine da?"
+                show: { object: leg }
                 options: ["zum Laufen und Springen", "zum Riechen", "zum Hören"]
                 answer: "zum Laufen und Springen"
                 feedback:
@@ -428,6 +440,7 @@ lessons:
                 type: true_false
                 text: "Mit den Zähnen kaust du dein Brot.\n\nStimmt das?"
                 say: "Mit den Zähnen kaust du dein Brot. Stimmt das?"
+                show: { object: tooth }
                 answer: true
                 hints: ["Was machst du mit dem Brot im Mund?"]
               - id: l2-s3
@@ -453,6 +466,7 @@ lessons:
               - id: l2-s5
                 type: multiple_choice
                 text: "Ole springt hoch. Was beugt er dabei?"
+                show: { object: jump }
                 options: ["die Knie", "die Ohren", "die Nase"]
                 answer: "die Knie"
                 hints: ["Spring einmal hoch. Was knickt vorher an deinen Beinen ein?"]
@@ -481,6 +495,7 @@ lessons:
                 type: true_false
                 text: "Mit den Händen kannst du schreiben und winken.\n\nStimmt das?"
                 say: "Mit den Händen kannst du schreiben und winken. Stimmt das?"
+                show: { object: hand }
                 answer: true
               - id: l2-n4
                 type: multiple_choice
@@ -491,6 +506,7 @@ lessons:
                 type: true_false
                 text: "Die Nase ist zum Laufen da.\n\nStimmt das?"
                 say: "Die Nase ist zum Laufen da. Stimmt das?"
+                show: { object: nose }
                 answer: false
 
       - activity: check
@@ -517,6 +533,7 @@ lessons:
             part: name
             type: multiple_choice
             text: "Wie heißt die Stelle in der Mitte vom Bein?"
+            show: { object: leg }
             options: ["das Knie", "der Ellenbogen", "der Hals"]
             answer: "das Knie"
           - id: l2-c4
@@ -549,10 +566,10 @@ lessons:
               - { id: rumpf, show: { text: "Rumpf" }, say: "Rumpf" }
               - { id: glied, show: { text: "Gliedmaßen" }, say: "Gliedmaßen" }
             options:
-              - { text: "Ohr", bin: kopf }
-              - { text: "Bauch", bin: rumpf }
-              - { text: "Knie", bin: glied }
-              - { text: "Nase", bin: kopf }
+              - { object: ear, bin: kopf }
+              - { object: tummy, bin: rumpf }
+              - { object: knee, bin: glied }
+              - { object: nose, bin: kopf }
           - id: l2-c8
             part: groups
             type: image_multiple_choice
@@ -565,11 +582,13 @@ lessons:
             type: true_false
             text: "Der Rücken gehört zum Kopf.\n\nStimmt das?"
             say: "Der Rücken gehört zum Kopf. Stimmt das?"
+            show: { object: back }
             answer: false
           - id: l2-c10
             part: groups
             type: multiple_choice
             text: "Wo ist der Mund?"
+            show: { object: mouth }
             options: ["am Kopf", "am Bein", "am Rücken"]
             answer: "am Kopf"
           - id: l2-c11
@@ -589,6 +608,7 @@ lessons:
             type: true_false
             text: "Hände und Füße gehören zu den Gliedmaßen.\n\nStimmt das?"
             say: "Hände und Füße gehören zu den Gliedmaßen. Stimmt das?"
+            show: { objects: [hand, foot] }
             answer: true
           - id: l2-c13
             part: groups
@@ -621,11 +641,13 @@ lessons:
             type: true_false
             text: "Mit den Augen kannst du riechen.\n\nStimmt das?"
             say: "Mit den Augen kannst du riechen. Stimmt das?"
+            show: { object: eye }
             answer: false
           - id: l2-c17
             part: use
             type: multiple_choice
             text: "Wofür sind die Ohren da?"
+            show: { object: ear }
             options: ["zum Hören", "zum Greifen", "zum Laufen"]
             answer: "zum Hören"
           - id: l2-c18
@@ -648,4 +670,5 @@ lessons:
             type: true_false
             text: "Mit der Zunge schmeckst du, ob etwas süß ist.\n\nStimmt das?"
             say: "Mit der Zunge schmeckst du, ob etwas süß ist. Stimmt das?"
+            show: { object: tongue }
             answer: true

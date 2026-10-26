@@ -79,7 +79,7 @@ lessons:
         screens:
           - text: "Ist die Flasche wirklich leer?"
             say: "Nele und ihr großer Bruder Ben bereiten Neles Geburtstag vor. Ben trinkt seine Wasserflasche aus und sagt: Jetzt ist sie leer. Was glaubst du: Ist wirklich gar nichts mehr in der Flasche?"
-            show: { text: "leere Flasche" }
+            show: { object: empty-bottle }
           - text: "In der leeren Flasche ist Luft."
             say: "In der Flasche ist Luft! Luft ist überall um uns herum. Sie ist auch in Flaschen, Gläsern und Kisten, die leer aussehen. Sehen kann man Luft nicht. Aber man kann sie spüren. Puste dir einmal auf die Hand!"
             show: { object: hand }
@@ -102,6 +102,7 @@ lessons:
                 type: multiple_choice
                 text: "Was ist in einer leeren Flasche?"
                 say: "Was ist in einer leeren Flasche?"
+                show: { object: empty-bottle }
                 options: ["Luft", "gar nichts", "Saft"]
                 answer: "Luft"
                 feedback:
@@ -168,6 +169,7 @@ lessons:
                 type: multiple_choice
                 text: "Ben kippt die leere Flasche unter Wasser. Was steigt auf?"
                 say: "Ben kippt die leere Flasche unter Wasser. Was steigt auf?"
+                show: { object: empty-bottle }
                 options: ["Luftblasen", "kleine Steine", "Saft"]
                 answer: "Luftblasen"
                 hints: ["Was war vorher in der Flasche?"]
@@ -263,6 +265,7 @@ lessons:
             type: multiple_choice
             text: "Ben kippt eine leere Flasche unter Wasser. Was passiert?"
             say: "Ben kippt eine leere Flasche unter Wasser. Was passiert?"
+            show: { object: empty-bottle }
             options: ["Luftblasen steigen auf.", "Die Flasche wird heiß.", "Gar nichts."]
             answer: "Luftblasen steigen auf."
           - id: l1-c6
@@ -287,6 +290,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Eine leere Flasche ist voll Luft."
             say: "Stimmt das? Eine leere Flasche ist voll Luft."
+            show: { object: empty-bottle }
             answer: true
             difficulty: easy
           - id: l2-w2
@@ -314,7 +318,7 @@ lessons:
             show: { object: balloon }
           - text: "Menschen nutzen die Luft."
             say: "Menschen nutzen die Luft. Ein Windrad macht aus Wind Strom. Ein Fallschirm bremst mit Luft, damit man langsam landet. Und mit einer Luftpumpe pumpt Ben Luft in seine Fahrradreifen. Die Luft im Reifen trägt ihn und sein Fahrrad."
-            show: { object: bike }
+            show: { objects: [wind-turbine, parachute] }
           - text: "Wusstest du? Die Luft in den Reifen trägt ein ganzes Auto."
             say: "Wusstest du? Auch in Autoreifen ist Luft. Sie ist darin ganz fest zusammengedrückt. So kann die Luft ein ganzes schweres Auto tragen!"
             show: { object: car }
@@ -358,7 +362,7 @@ lessons:
                   - { object: kite, bin: wind }
                   - { object: boat, bin: wind }
                   - { object: bike, bin: ohne }
-                  - { text: "Windrad", bin: wind }
+                  - { object: wind-turbine, bin: wind }
                   - { object: car, bin: ohne }
                 hints:
                   - "Frag bei jedem Ding: Wer schiebt es an?"
@@ -380,6 +384,7 @@ lessons:
                 type: fill_in_blank
                 text: "Was zeigt das Segelboot?"
                 say: "Der Wind schiebt das Segelboot. Setz das passende Wort ein."
+                show: { object: boat }
                 frame: "Bewegte Luft hat _."
                 options: ["Kraft", "Farbe", "Hunger"]
                 answer: ["Kraft"]
@@ -401,14 +406,15 @@ lessons:
                 text: "Wie nutzen Menschen die Luft?"
                 say: "Verbinde. Wie nutzen Menschen die Luft?"
                 pairs:
-                  - { left: { text: "Windrad" }, right: { text: "macht Strom" } }
-                  - { left: { text: "Fallschirm" }, right: { text: "bremst beim Fallen" } }
-                  - { left: { text: "Luftpumpe" }, right: { text: "füllt Reifen mit Luft" } }
+                  - { left: { object: wind-turbine }, right: { text: "macht Strom" } }
+                  - { left: { object: parachute }, right: { text: "bremst beim Fallen" } }
+                  - { left: { object: bicycle-pump }, right: { text: "füllt Reifen mit Luft" } }
                 hints: ["Fang mit dem Windrad an. Was macht es aus dem Wind?"]
               - id: l2-s3
                 type: multiple_choice
                 text: "Was kann bei einem Sturm passieren?"
                 say: "Was kann bei einem Sturm passieren?"
+                show: { object: wind }
                 options: ["Der Wind bricht Äste ab.", "Die Luft verschwindet.", "Die Bäume werden blau."]
                 answer: "Der Wind bricht Äste ab."
                 hints: ["Ein Sturm ist ein sehr starker Wind."]
@@ -424,6 +430,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Ein Windrad dreht sich, wenn der Wind weht."
                 say: "Stimmt das? Ein Windrad dreht sich, wenn der Wind weht."
+                show: { object: wind-turbine }
                 answer: true
                 hints: ["Wer schiebt die Flügel des Windrads an?"]
 
@@ -434,6 +441,7 @@ lessons:
                 type: multiple_choice
                 text: "Plötzlich ist es auf dem Feld ganz windstill. Was passiert mit dem Drachen?"
                 say: "Plötzlich ist es auf dem Feld ganz windstill. Was passiert mit dem Drachen?"
+                show: { object: kite }
                 options: ["Er sinkt nach unten.", "Er fliegt noch höher.", "Er fliegt allein nach Hause."]
                 answer: "Er sinkt nach unten."
               - id: l2-n2
@@ -452,6 +460,7 @@ lessons:
                 type: fill_in_blank
                 text: "Ben pumpt zu Hause sein Fahrrad auf."
                 say: "Ben pumpt zu Hause sein Fahrrad auf. Setz die passenden Wörter ein."
+                show: { object: bicycle-pump }
                 frame: "In meine Reifen kommt _. Sie trägt mich und mein _."
                 options: ["Luft", "Fahrrad", "Wasser"]
                 answer: ["Luft", "Fahrrad"]
@@ -505,6 +514,7 @@ lessons:
             type: true_false
             text: "Stimmt das? In einer Flasche ohne Saft ist gar nichts drin."
             say: "Stimmt das? In einer Flasche ohne Saft ist gar nichts drin."
+            show: { object: empty-bottle }
             answer: false
           - id: l2-c6
             part: space
@@ -524,6 +534,7 @@ lessons:
             type: multiple_choice
             text: "Ben kippt einen umgedrehten Becher unter Wasser. Was siehst du?"
             say: "Ben kippt einen umgedrehten Becher unter Wasser. Was siehst du?"
+            show: { object: cup }
             options: ["Luftblasen steigen auf.", "Der Becher wird bunt.", "Das Wasser wird warm."]
             answer: "Luftblasen steigen auf."
           - id: l2-c9
@@ -531,6 +542,7 @@ lessons:
             type: ordering
             text: "Was passiert mit dem Wasserball?"
             say: "Was passiert mit dem Wasserball? Leg die Karten in die richtige Reihenfolge."
+            show: { object: beach-ball }
             options: ["Der Ball wird rund und dick.", "Ben öffnet den Stöpsel, die Luft geht heraus.", "Ben pustet Luft in den Ball.", "Der Ball wird wieder flach."]
             slot_count: 4
             answer: ["Ben pustet Luft in den Ball.", "Der Ball wird rund und dick.", "Ben öffnet den Stöpsel, die Luft geht heraus.", "Der Ball wird wieder flach."]
@@ -589,14 +601,15 @@ lessons:
             text: "Wobei hilft die Luft?"
             say: "Verbinde. Wobei hilft die Luft?"
             pairs:
-              - { left: { text: "Windrad" }, right: { text: "macht aus Wind Strom" } }
-              - { left: { text: "Fallschirm" }, right: { text: "bremst mit Luft" } }
+              - { left: { object: wind-turbine }, right: { text: "macht aus Wind Strom" } }
+              - { left: { object: parachute }, right: { text: "bremst mit Luft" } }
               - { left: { object: boat }, right: { text: "fährt mit Wind" } }
           - id: l2-c17
             part: uses
             type: multiple_choice
             text: "Wozu pumpt Ben Luft in seine Fahrradreifen?"
             say: "Wozu pumpt Ben Luft in seine Fahrradreifen?"
+            show: { object: bicycle-pump }
             options: ["Damit die Reifen ihn tragen.", "Damit das Fahrrad bunt wird.", "Damit das Fahrrad schläft."]
             answer: "Damit die Reifen ihn tragen."
           - id: l2-c18
@@ -604,6 +617,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Ein Windrad macht aus Wind Strom."
             say: "Stimmt das? Ein Windrad macht aus Wind Strom."
+            show: { object: wind-turbine }
             answer: true
           - id: l2-c19
             part: uses
@@ -617,5 +631,6 @@ lessons:
             type: multiple_choice
             text: "Warum landet man mit einem Fallschirm langsam?"
             say: "Warum landet man mit einem Fallschirm langsam?"
+            show: { object: parachute }
             options: ["Die Luft bremst den Fallschirm.", "Der Fallschirm ist aus Eisen.", "Unten liegt ein Kissen."]
             answer: "Die Luft bremst den Fallschirm."

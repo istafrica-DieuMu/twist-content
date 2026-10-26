@@ -92,16 +92,16 @@ lessons:
             show: { object: banana }
           - text: "Biomüll: Reste von Obst und Gemüse"
             say: "In den Biomüll! Dort kommen Reste von Obst und Gemüse, Eierschalen und Kaffeesatz. In vielen Orten ist die Biotonne braun. Aus dem Bioabfall wird später neue Erde, der Kompost."
-            show: { objects: [banana, egg] }
+            show: { objects: [bio-bin, banana] }
           - text: "Altpapier: Papier und Pappe"
             say: "Die leere Müslipackung ist aus Pappe. Sie kommt ins Altpapier, in vielen Orten in die blaue Tonne. Auch Zeitungen, Kartons und alte Hefte gehören dazu. Aus altem Papier macht man neues Papier. Benutzte Taschentücher sind schmutzig, sie gehören nicht ins Altpapier."
-            show: { object: cereal-box }
+            show: { objects: [paper-bin, cereal-box] }
           - text: "Gelber Sack: Verpackungen aus Kunststoff und Metall"
             say: "Der leere Joghurtbecher ist aus Kunststoff. Er kommt in den Gelben Sack oder in die Gelbe Tonne. Dort sammelt man Verpackungen aus Kunststoff und Metall, zum Beispiel Plastikschalen und Konservendosen. Auch leere Milchtüten kommen hinein."
-            show: { text: "Gelber Sack" }
+            show: { object: yellow-bag }
           - text: "Restmüll: was übrig bleibt"
             say: "In den Restmüll kommt, was man nicht wiederverwerten kann, zum Beispiel Windeln und Staubsaugerbeutel. Die Restmülltonne ist meist grau oder schwarz. Wie genau getrennt wird, ist von Ort zu Ort ein bisschen verschieden. Frag zu Hause nach, wie es bei euch ist!"
-            show: { object: bin }
+            show: { object: residual-bin }
           - text: "Wusstest du? Aus alten Plastikflaschen kann man Pullover machen."
             say: "Wusstest du? Aus alten Plastikflaschen kann man feine Fäden machen. Daraus wird Stoff, zum Beispiel für weiche Fleece-Pullover. Vielleicht trägst du gerade alte Flaschen!"
             show: { object: jumper }
@@ -127,12 +127,12 @@ lessons:
                 text: "Biomüll oder Altpapier?"
                 say: "Sortiere. Was kommt in den Biomüll, was ins Altpapier?"
                 bins:
-                  - { id: bio, show: { text: "Biomüll" }, say: "Biomüll" }
-                  - { id: papier, show: { text: "Altpapier" }, say: "Altpapier" }
+                  - { id: bio, show: { object: bio-bin }, say: "Biomüll" }
+                  - { id: papier, show: { object: paper-bin }, say: "Altpapier" }
                 options:
-                  - { text: "Apfelrest", bin: bio }
+                  - { object: apple-core, bin: bio }
                   - { object: cereal-box, bin: papier }
-                  - { text: "Eierschalen", bin: bio }
+                  - { object: eggshells, bin: bio }
                   - { object: box, bin: papier }
                 hints:
                   - "Frag dich: Ist es ein Essensrest oder ist es aus Papier?"
@@ -142,6 +142,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Der leere Joghurtbecher kommt in den Gelben Sack."
                 say: "Stimmt das? Der leere Joghurtbecher kommt in den Gelben Sack."
+                show: { object: yoghurt-pot }
                 answer: true
                 hints:
                   - "Woraus ist ein Joghurtbecher?"
@@ -151,6 +152,7 @@ lessons:
                 type: multiple_choice
                 text: "Wohin kommt die alte Zeitung?"
                 say: "Wohin kommt die alte Zeitung?"
+                show: { object: newspaper }
                 options: ["ins Altpapier", "in den Biomüll", "in den Gelben Sack"]
                 answer: "ins Altpapier"
                 feedback:
@@ -166,7 +168,7 @@ lessons:
                 pairs:
                   - { left: { object: banana, say: "Bananenschale" }, right: { text: "Biomüll" } }
                   - { left: { object: cereal-box, say: "leere Müslipackung" }, right: { text: "Altpapier" } }
-                  - { left: { text: "Joghurtbecher" }, right: { text: "Gelber Sack" } }
+                  - { left: { object: yoghurt-pot }, right: { text: "Gelber Sack" } }
                 hints:
                   - "Fang mit dem Rest vom Essen an."
                   - "Die Müslipackung ist aus Pappe, der Becher aus Kunststoff."
@@ -178,6 +180,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Ein benutztes Taschentuch kommt ins Altpapier."
                 say: "Stimmt das? Ein benutztes Taschentuch kommt ins Altpapier."
+                show: { object: tissue }
                 answer: false
                 hints: ["Ist ein benutztes Taschentuch sauber?"]
               - id: l1-s2
@@ -185,14 +188,14 @@ lessons:
                 text: "In welche Tonne kommt es?"
                 say: "Sortiere. In welche Tonne kommt es?"
                 bins:
-                  - { id: gelb, show: { text: "Gelber Sack" }, say: "Gelber Sack" }
-                  - { id: papier, show: { text: "Altpapier" }, say: "Altpapier" }
-                  - { id: bio, show: { text: "Biomüll" }, say: "Biomüll" }
+                  - { id: gelb, show: { object: yellow-bag }, say: "Gelber Sack" }
+                  - { id: papier, show: { object: paper-bin }, say: "Altpapier" }
+                  - { id: bio, show: { object: bio-bin }, say: "Biomüll" }
                 options:
-                  - { text: "Konservendose", bin: gelb }
+                  - { object: tin-can, bin: gelb }
                   - { object: box, bin: papier }
-                  - { text: "Kartoffelschalen", bin: bio }
-                  - { text: "Milchtüte", bin: gelb }
+                  - { object: potato-peel, bin: bio }
+                  - { object: milk-carton, bin: gelb }
                 hints: ["Verpackungen aus Kunststoff und Metall und Milchtüten kommen in den Gelben Sack."]
               - id: l1-s3
                 type: image_multiple_choice
@@ -213,6 +216,7 @@ lessons:
                 type: multiple_choice
                 text: "Wohin kommt ein voller Staubsaugerbeutel?"
                 say: "Wohin kommt ein voller Staubsaugerbeutel?"
+                show: { object: vacuum-bag }
                 options: ["in den Restmüll", "ins Altpapier", "in den Biomüll"]
                 answer: "in den Restmüll"
                 hints: ["Daraus kann man nichts Neues machen. Wohin kommt so ein Müll?"]
@@ -225,20 +229,20 @@ lessons:
                 text: "Aylin räumt den Frühstückstisch ab. Wohin kommt der Müll?"
                 say: "Aylin räumt den Frühstückstisch ab. Sortiere. Wohin kommt der Müll?"
                 bins:
-                  - { id: bio, show: { text: "Biomüll" }, say: "Biomüll" }
-                  - { id: papier, show: { text: "Altpapier" }, say: "Altpapier" }
-                  - { id: gelb, show: { text: "Gelber Sack" }, say: "Gelber Sack" }
-                  - { id: rest, show: { text: "Restmüll" }, say: "Restmüll" }
+                  - { id: bio, show: { object: bio-bin }, say: "Biomüll" }
+                  - { id: papier, show: { object: paper-bin }, say: "Altpapier" }
+                  - { id: gelb, show: { object: yellow-bag }, say: "Gelber Sack" }
+                  - { id: rest, show: { object: residual-bin }, say: "Restmüll" }
                 options:
-                  - { text: "Kaffeesatz", bin: bio }
+                  - { object: coffee-grounds, bin: bio }
                   - { object: cereal-box, bin: papier }
-                  - { text: "Joghurtbecher", bin: gelb }
-                  - { text: "Windel vom kleinen Bruder", bin: rest }
+                  - { object: yoghurt-pot, bin: gelb }
+                  - { object: nappy, say: "Windel vom kleinen Bruder", bin: rest }
               - id: l1-n2
                 type: true_false
                 text: "Aylin will die Eierschalen in den Gelben Sack werfen. Stimmt das so?"
                 say: "Aylin will die Eierschalen in den Gelben Sack werfen. Stimmt das so?"
-                show: { object: egg }
+                show: { object: eggshells }
                 answer: false
               - id: l1-n3
                 type: multiple_choice
@@ -258,6 +262,7 @@ lessons:
                 type: ordering
                 text: "Was passiert mit Aylins alter Zeitung?"
                 say: "Was passiert mit Aylins alter Zeitung? Leg die Karten in die richtige Reihenfolge."
+                show: { object: newspaper }
                 options: ["In einer Fabrik wird daraus neues Papier.", "Aylin wirft die Zeitung ins Altpapier.", "Ein Müllauto holt das Altpapier ab."]
                 slot_count: 3
                 answer: ["Aylin wirft die Zeitung ins Altpapier.", "Ein Müllauto holt das Altpapier ab.", "In einer Fabrik wird daraus neues Papier."]
@@ -281,25 +286,27 @@ lessons:
             type: multiple_choice
             text: "Wohin kommt eine leere Konservendose?"
             say: "Wohin kommt eine leere Konservendose?"
+            show: { object: tin-can }
             options: ["in den Gelben Sack", "in den Biomüll", "ins Altpapier"]
             answer: "in den Gelben Sack"
           - id: l1-c4
             type: true_false
             text: "Stimmt das? Eierschalen kommen ins Altpapier."
             say: "Stimmt das? Eierschalen kommen ins Altpapier."
+            show: { object: eggshells }
             answer: false
           - id: l1-c5
             type: sorting
             text: "Biomüll oder Gelber Sack?"
             say: "Sortiere. Was kommt in den Biomüll, was in den Gelben Sack?"
             bins:
-              - { id: bio, show: { text: "Biomüll" }, say: "Biomüll" }
-              - { id: gelb, show: { text: "Gelber Sack" }, say: "Gelber Sack" }
+              - { id: bio, show: { object: bio-bin }, say: "Biomüll" }
+              - { id: gelb, show: { object: yellow-bag }, say: "Gelber Sack" }
             options:
-              - { text: "Bananenschale", bin: bio }
-              - { text: "Joghurtbecher", bin: gelb }
-              - { text: "Apfelrest", bin: bio }
-              - { text: "Milchtüte", bin: gelb }
+              - { object: banana-peel, bin: bio }
+              - { object: yoghurt-pot, bin: gelb }
+              - { object: apple-core, bin: bio }
+              - { object: milk-carton, bin: gelb }
           - id: l1-c6
             type: fill_in_blank
             text: "Was wird aus Altpapier?"
@@ -330,6 +337,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Der Joghurtbecher kommt ins Altpapier."
             say: "Stimmt das? Der Joghurtbecher kommt ins Altpapier."
+            show: { object: yoghurt-pot }
             answer: false
             difficulty: easy
 
@@ -344,13 +352,13 @@ lessons:
             show: { object: bottle }
           - text: "Altglas: nach Farben sortiert"
             say: "Leere Gläser ohne Pfand, wie das Marmeladenglas, bringen sie zum Altglascontainer. Dort sortiert man nach Farben: Weißglas, das ist durchsichtiges Glas, Braunglas und Grünglas. Blaues oder rotes Glas kommt zum Grünglas. Den Deckel schraubt Aylin vorher ab, er kommt in den Gelben Sack. Aus dem alten Glas schmilzt man neues Glas."
-            show: { text: "Weißglas, Braunglas, Grünglas" }
+            show: { object: bottle-bank }
           - text: "Weniger Müll ist noch besser."
             say: "Noch besser als Müll trennen ist: weniger Müll machen. Aylin nimmt einen Stoffbeutel mit statt einer Plastiktüte. In der Schule hat sie eine Brotdose und eine Trinkflasche, die sie immer wieder benutzt. Kaputte Dinge kann man oft reparieren. Und Spielzeug, mit dem Aylin nicht mehr spielt, verschenkt sie an ihren Cousin."
-            show: { object: schoolbag }
+            show: { objects: [cloth-bag, water-bottle] }
           - text: "Müll gehört nicht in die Natur, Batterien nicht in den Hausmüll."
             say: "Auf dem Heimweg liegt eine leere Dose im Park. Müll gehört nie in die Natur. Er verschwindet nicht von allein, und Tiere können sich daran verletzen. Und leere Batterien kommen nie in den Hausmüll. Man bringt sie zu einer Sammelbox, die gibt es in vielen Läden."
-            show: { object: park }
+            show: { objects: [park, battery] }
 
       - activity: practise
         setting: plain
@@ -361,6 +369,7 @@ lessons:
                 type: multiple_choice
                 text: "Wohin bringt Papa die leeren Pfandflaschen?"
                 say: "Wohin bringt Papa die leeren Pfandflaschen?"
+                show: { object: deposit-bottle }
                 options: ["zurück in den Laden", "in den Biomüll", "in den Wald"]
                 answer: "zurück in den Laden"
                 feedback:
@@ -391,6 +400,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Den Deckel vom Marmeladenglas wirft man mit in den Altglascontainer."
                 say: "Stimmt das? Den Deckel vom Marmeladenglas wirft man mit in den Altglascontainer."
+                show: { object: jam-jar }
                 answer: false
                 hints:
                   - "Woraus ist der Deckel?"
@@ -410,6 +420,7 @@ lessons:
                 type: fill_in_blank
                 text: "Was bekommt man für eine Pfandflasche?"
                 say: "Setz das passende Wort ein."
+                show: { object: deposit-bottle }
                 frame: "Für eine Pfandflasche bekommt man im Laden _ zurück."
                 options: ["Geld", "Bonbons", "Müll"]
                 answer: ["Geld"]
@@ -424,6 +435,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Leere Batterien kommen in den Restmüll."
                 say: "Stimmt das? Leere Batterien kommen in den Restmüll."
+                show: { object: battery }
                 answer: false
                 hints: ["Wohin bringt man Batterien, damit sie nicht im Hausmüll landen?"]
               - id: l2-s2
@@ -431,9 +443,9 @@ lessons:
                 text: "Wohin bringt Aylin das?"
                 say: "Verbinde. Wohin bringt Aylin das?"
                 pairs:
-                  - { left: { text: "Pfandflasche" }, right: { text: "zum Pfandautomaten" } }
-                  - { left: { text: "Marmeladenglas" }, right: { text: "zum Altglascontainer" } }
-                  - { left: { text: "leere Batterie" }, right: { text: "zur Sammelbox für Batterien" } }
+                  - { left: { object: deposit-bottle }, right: { text: "zum Pfandautomaten" } }
+                  - { left: { object: jam-jar }, right: { text: "zum Altglascontainer" } }
+                  - { left: { object: battery, say: "leere Batterie" }, right: { text: "zur Sammelbox für Batterien" } }
                 hints: ["Fang mit der Flasche mit Pfandzeichen an."]
               - id: l2-s3
                 type: multiple_choice
@@ -451,10 +463,10 @@ lessons:
                   - { id: weniger, show: { text: "weniger Müll" }, say: "weniger Müll" }
                   - { id: mehr, show: { text: "mehr Müll" }, say: "mehr Müll" }
                 options:
-                  - { text: "Stoffbeutel", bin: weniger }
-                  - { text: "jeden Tag eine neue Plastiktüte", bin: mehr }
-                  - { text: "Brotdose", bin: weniger }
-                  - { text: "jedes Brot in neue Folie", bin: mehr }
+                  - { object: cloth-bag, bin: weniger }
+                  - { object: plastic-bag, say: "jeden Tag eine neue Plastiktüte", bin: mehr }
+                  - { object: lunchbox, bin: weniger }
+                  - { object: wrapped-sandwich, say: "jedes Brot in neue Folie", bin: mehr }
                 hints: ["Was benutzt man immer wieder?"]
               - id: l2-s5
                 type: true_false
@@ -470,23 +482,27 @@ lessons:
                 type: multiple_choice
                 text: "Am Pfandautomaten gibt Papa 4 Plastikflaschen zurück. Für jede bekommt er 25 Cent. Wie viel Geld bekommt er?"
                 say: "Am Pfandautomaten gibt Papa vier Plastikflaschen zurück. Für jede bekommt er fünfundzwanzig Cent. Wie viel Geld bekommt er?"
+                show: { object: deposit-bottle }
                 options: ["1 €", "25 Cent", "4 €"]
                 answer: "1 €"
               - id: l2-n2
                 type: multiple_choice
                 text: "Im Park liegt eine leere Dose. Was ist richtig?"
                 say: "Im Park liegt eine leere Dose. Was ist richtig?"
+                show: { object: deposit-can }
                 options: ["Aylin bringt sie zum Mülleimer.", "Sie lässt sie liegen, die Dose verschwindet von allein.", "Sie kickt sie ins Gebüsch."]
                 answer: "Aylin bringt sie zum Mülleimer."
               - id: l2-n3
                 type: true_false
                 text: "Aylin sagt: „Den Deckel schraube ich ab. Das Glas kommt in den Altglascontainer.“ Stimmt das?"
                 say: "Aylin sagt: Den Deckel schraube ich ab. Das Glas kommt in den Altglascontainer. Stimmt das?"
+                show: { object: jam-jar }
                 answer: true
               - id: l2-n4
                 type: ordering
                 text: "Das Marmeladenglas ist leer. Was macht Aylin der Reihe nach?"
                 say: "Das Marmeladenglas ist leer. Leg die Karten in die richtige Reihenfolge."
+                show: { object: jam-jar }
                 options: ["Sie bringt das Glas zum Container für Weißglas.", "Sie isst die letzte Marmelade auf.", "Sie schraubt den Deckel ab."]
                 slot_count: 3
                 answer: ["Sie isst die letzte Marmelade auf.", "Sie schraubt den Deckel ab.", "Sie bringt das Glas zum Container für Weißglas."]
@@ -496,13 +512,13 @@ lessons:
                 say: "Zu Hause sortiert Aylin. Wohin kommt es?"
                 bins:
                   - { id: pfand, show: { text: "zurück in den Laden" }, say: "zurück in den Laden" }
-                  - { id: glas, show: { text: "Altglas" }, say: "Altglas" }
-                  - { id: gelb, show: { text: "Gelber Sack" }, say: "Gelber Sack" }
+                  - { id: glas, show: { object: bottle-bank }, say: "Altglas" }
+                  - { id: gelb, show: { object: yellow-bag }, say: "Gelber Sack" }
                 options:
-                  - { text: "Plastikflasche mit Pfandzeichen", bin: pfand }
-                  - { text: "Gurkenglas", bin: glas }
-                  - { text: "Dose mit Pfandzeichen", bin: pfand }
-                  - { text: "Deckel vom Gurkenglas", bin: gelb }
+                  - { object: deposit-bottle, say: "Plastikflasche mit Pfandzeichen", bin: pfand }
+                  - { object: pickle-jar, bin: glas }
+                  - { object: deposit-can, say: "Dose mit Pfandzeichen", bin: pfand }
+                  - { object: jar-lid, say: "Deckel vom Gurkenglas", bin: gelb }
               - id: l2-n6
                 type: fill_in_blank
                 text: "Aylin packt ihre Schultasche, ohne Müll zu machen."
@@ -521,20 +537,21 @@ lessons:
             text: "In welche Tonne kommt der Müll?"
             say: "Sortiere. In welche Tonne kommt der Müll?"
             bins:
-              - { id: bio, show: { text: "Biomüll" }, say: "Biomüll" }
-              - { id: papier, show: { text: "Altpapier" }, say: "Altpapier" }
-              - { id: gelb, show: { text: "Gelber Sack" }, say: "Gelber Sack" }
-              - { id: rest, show: { text: "Restmüll" }, say: "Restmüll" }
+              - { id: bio, show: { object: bio-bin }, say: "Biomüll" }
+              - { id: papier, show: { object: paper-bin }, say: "Altpapier" }
+              - { id: gelb, show: { object: yellow-bag }, say: "Gelber Sack" }
+              - { id: rest, show: { object: residual-bin }, say: "Restmüll" }
             options:
-              - { text: "Orangenschale", bin: bio }
-              - { text: "alter Schuhkarton", bin: papier }
-              - { text: "leere Konservendose", bin: gelb }
-              - { text: "Staubsaugerbeutel", bin: rest }
+              - { object: orange-peel, bin: bio }
+              - { object: shoebox, say: "alter Schuhkarton", bin: papier }
+              - { object: tin-can, say: "leere Konservendose", bin: gelb }
+              - { object: vacuum-bag, bin: rest }
           - id: l2-c2
             part: sort
             type: multiple_choice
             text: "Wohin kommt ein leerer Joghurtbecher?"
             say: "Wohin kommt ein leerer Joghurtbecher?"
+            show: { object: yoghurt-pot }
             options: ["in den Gelben Sack", "ins Altpapier", "in den Biomüll"]
             answer: "in den Gelben Sack"
           - id: l2-c3
@@ -542,6 +559,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Kartoffelschalen kommen in den Biomüll."
             say: "Stimmt das? Kartoffelschalen kommen in den Biomüll."
+            show: { object: potato-peel }
             answer: true
           - id: l2-c4
             part: sort
@@ -555,12 +573,14 @@ lessons:
             type: true_false
             text: "Stimmt das? Die leere Milchtüte kommt ins Altpapier."
             say: "Stimmt das? Die leere Milchtüte kommt ins Altpapier."
+            show: { object: milk-carton }
             answer: false
           - id: l2-c6
             part: glass-pfand
             type: multiple_choice
             text: "Was macht man mit einer Flasche mit Pfandzeichen?"
             say: "Was macht man mit einer Flasche mit Pfandzeichen?"
+            show: { object: deposit-bottle }
             options: ["zurück in den Laden bringen", "in den Restmüll werfen", "im Garten vergraben"]
             answer: "zurück in den Laden bringen"
           - id: l2-c7
@@ -595,6 +615,7 @@ lessons:
             type: multiple_choice
             text: "Wohin kommt der Metalldeckel vom Marmeladenglas?"
             say: "Wohin kommt der Metalldeckel vom Marmeladenglas?"
+            show: { object: jam-jar }
             options: ["in den Gelben Sack", "in den Altglascontainer", "in den Biomüll"]
             answer: "in den Gelben Sack"
           - id: l2-c11
@@ -615,6 +636,7 @@ lessons:
             type: ordering
             text: "Was passiert mit dem alten Glas?"
             say: "Was passiert mit dem alten Glas? Leg die Karten in die richtige Reihenfolge."
+            show: { object: bottle-bank }
             options: ["Aus dem Glas werden neue Flaschen.", "Aylin bringt das Glas zum Container.", "Das Glas wird eingeschmolzen."]
             slot_count: 3
             answer: ["Aylin bringt das Glas zum Container.", "Das Glas wird eingeschmolzen.", "Aus dem Glas werden neue Flaschen."]
@@ -623,6 +645,7 @@ lessons:
             type: multiple_choice
             text: "Was kann aus alten Plastikflaschen werden?"
             say: "Was kann aus alten Plastikflaschen werden?"
+            show: { object: bottle }
             options: ["Stoff für einen Pullover", "Bananen", "Trinkwasser"]
             answer: "Stoff für einen Pullover"
           - id: l2-c15
@@ -647,8 +670,8 @@ lessons:
               - { id: weniger, show: { text: "weniger Müll" }, say: "weniger Müll" }
               - { id: mehr, show: { text: "mehr Müll" }, say: "mehr Müll" }
             options:
-              - { text: "Trinkflasche zum Auffüllen", bin: weniger }
-              - { text: "jeden Tag ein Saftpäckchen", bin: mehr }
+              - { object: water-bottle, say: "Trinkflasche zum Auffüllen", bin: weniger }
+              - { object: juice-carton, say: "jeden Tag ein Saftpäckchen", bin: mehr }
               - { text: "altes Spielzeug verschenken", bin: weniger }
               - { text: "einen wackeligen Stuhl wegwerfen statt reparieren", bin: mehr }
           - id: l2-c18

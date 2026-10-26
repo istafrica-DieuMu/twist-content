@@ -64,10 +64,10 @@ lessons:
             show: { object: train }
           - text: "Auf dem Land: Felder, Wiesen und Bauernhöfe"
             say: "Felder, Wiesen und Bauernhöfe! Im Dorf stehen nur wenige Häuser, oft mit einem großen Garten. Auf den Wiesen grasen Kühe und Schafe, und auf den Feldern wächst zum Beispiel Weizen. Die Bäuerin und der Bauer arbeiten auf dem Hof."
-            show: { objects: [cow, wheat] }
+            show: { objects: [farm, cow] }
           - text: "In der Stadt: viele Menschen und hohe Häuser"
             say: "In Lottas Stadt wohnen viele Menschen dicht beieinander. Die Häuser sind hoch. Manche sind Hochhäuser mit vielen Wohnungen. Es gibt viele Geschäfte, ein Kino, einen Bahnhof und ein Krankenhaus. Im Krankenhaus arbeiten Ärztinnen und Ärzte."
-            show: { objects: [station, hospital] }
+            show: { objects: [tower-block, station] }
           - text: "Viel Verkehr in der Stadt, wenig auf dem Land"
             say: "In der Stadt fahren viele Autos und Busse, oft auch Straßenbahnen. An vielen Kreuzungen stehen Ampeln. Auf dem Land ist weniger Verkehr. Der Bus kommt nicht so oft, darum fahren viele Menschen mit dem Auto."
             show: { objects: [bus, traffic-light] }
@@ -113,7 +113,7 @@ lessons:
                 options:
                   - { object: hospital, bin: stadt }
                   - { object: wheat, bin: land }
-                  - { text: "Hochhaus", bin: stadt }
+                  - { object: tower-block, bin: stadt }
                   - { object: cow, bin: land }
                 hints:
                   - "Wo gibt es Felder und Wiesen, wo viele hohe Häuser?"
@@ -164,14 +164,15 @@ lessons:
                 text: "Wer arbeitet wo?"
                 say: "Verbinde jeden Menschen mit dem Ort, wo er arbeitet."
                 pairs:
-                  - { left: { object: farmer }, right: { text: "auf dem Bauernhof" } }
-                  - { left: { object: doctor }, right: { text: "im Krankenhaus" } }
-                  - { left: { object: teacher }, right: { text: "in der Schule" } }
+                  - { left: { object: farmer }, right: { object: farm, say: "auf dem Bauernhof" } }
+                  - { left: { object: doctor }, right: { object: hospital, say: "im Krankenhaus" } }
+                  - { left: { object: teacher }, right: { object: school, say: "in der Schule" } }
                 hints: ["Wer kümmert sich um Kühe, wer um Kranke, wer um Schulkinder?"]
               - id: l1-s4
                 type: multiple_choice
                 text: "Was ist typisch für ein Dorf?"
                 say: "Was ist typisch für ein Dorf?"
+                show: { object: village }
                 options: ["wenige Häuser und viele Felder", "viele Hochhäuser", "eine U-Bahn"]
                 answer: "wenige Häuser und viele Felder"
                 hints: ["Im Dorf stehen nur wenige Häuser."]
@@ -184,9 +185,9 @@ lessons:
                   - { id: land, show: { text: "typisch Land" }, say: "typisch Land" }
                 options:
                   - { text: "viel Verkehr", bin: stadt }
-                  - { text: "Bauernhof", bin: land }
-                  - { text: "Straßenbahn", bin: stadt }
-                  - { text: "Weide mit Schafen", bin: land }
+                  - { object: farm, bin: land }
+                  - { object: tram, bin: stadt }
+                  - { object: sheep, say: "Weide mit Schafen", bin: land }
                 hints: ["Wo fahren viele Autos, Busse und Bahnen?"]
 
           - support: none
@@ -263,6 +264,7 @@ lessons:
             type: true_false
             text: "In einem Dorf stehen viele Hochhäuser."
             say: "In einem Dorf stehen viele Hochhäuser. Stimmt das?"
+            show: { object: village }
             answer: false
           - id: l1-c5
             type: image_multiple_choice
@@ -299,6 +301,7 @@ lessons:
             type: true_false
             text: "In der Stadt sind die Häuser oft hoch."
             say: "In der Stadt sind die Häuser oft hoch. Stimmt das?"
+            show: { object: tower-block }
             answer: true
             difficulty: easy
 
@@ -467,6 +470,7 @@ lessons:
                 type: multiple_choice
                 text: "Finns Oma muss ins Krankenhaus. Wohin fährt sie?"
                 say: "Finns Oma muss ins Krankenhaus. Wohin fährt sie?"
+                show: { object: hospital }
                 options: ["in die Stadt", "aufs Feld", "in den Wald"]
                 answer: "in die Stadt"
               - id: l2-n5
@@ -513,6 +517,7 @@ lessons:
             type: true_false
             text: "In der Stadt gibt es oft Hochhäuser mit vielen Wohnungen."
             say: "In der Stadt gibt es oft Hochhäuser mit vielen Wohnungen. Stimmt das?"
+            show: { object: tower-block }
             answer: true
           - id: l2-c6
             part: town
@@ -540,6 +545,7 @@ lessons:
             type: true_false
             text: "In einem Dorf stehen meistens nur wenige Häuser."
             say: "In einem Dorf stehen meistens nur wenige Häuser. Stimmt das?"
+            show: { object: village }
             answer: true
           - id: l2-c10
             part: country
@@ -585,10 +591,10 @@ lessons:
               - { id: stadt, show: { text: "typisch Stadt" }, say: "typisch Stadt" }
               - { id: land, show: { text: "typisch Land" }, say: "typisch Land" }
             options:
-              - { text: "Kühe auf der Weide", bin: land }
-              - { text: "Straßenbahn", bin: stadt }
-              - { text: "Hochhaus", bin: stadt }
-              - { text: "Weizenfeld", bin: land }
+              - { object: cow, say: "Kühe auf der Weide", bin: land }
+              - { object: tram, bin: stadt }
+              - { object: tower-block, bin: stadt }
+              - { object: wheat, say: "Weizenfeld", bin: land }
           - id: l2-c16
             part: compare
             type: multiple_choice

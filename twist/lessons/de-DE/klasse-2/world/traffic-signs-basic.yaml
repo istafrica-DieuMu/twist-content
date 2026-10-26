@@ -92,22 +92,22 @@ lessons:
             show: { object: sign-cycle-path }
           - text: "Gehweg: Hier gehst du zu Fuß."
             say: "Auf dem nächsten runden blauen Schild gehen ein Erwachsener und ein Kind an der Hand. Das Schild heißt Gehweg. Dieser Weg ist für Menschen, die zu Fuß gehen."
-            show: { text: "Gehweg" }
+            show: { object: sign-footpath }
           - text: "Gemeinsamer Geh- und Radweg"
             say: "Auf diesem runden blauen Schild sind oben ein Erwachsener mit Kind und unten ein Fahrrad, mit einem Strich dazwischen. Es heißt gemeinsamer Geh- und Radweg. Hier gehen Fußgänger, und Radfahrer fahren auf demselben Weg. Alle passen aufeinander auf."
-            show: { text: "gemeinsamer Geh- und Radweg" }
+            show: { object: sign-shared-path }
           - text: "Fußgängerüberweg: Hier ist ein Zebrastreifen."
             say: "Dieses Schild ist eckig und blau. Darin ist ein weißes Dreieck, und in dem Dreieck geht ein Mensch über einen Zebrastreifen. Das Schild heißt Fußgängerüberweg. Es zeigt: Hier ist ein Zebrastreifen."
-            show: { text: "Fußgängerüberweg" }
+            show: { object: sign-pedestrian-crossing }
           - text: "Haltestelle: Hier hält der Bus."
             say: "Das runde gelbe Schild mit dem grünen H heißt Haltestelle. Hier halten Busse oder Straßenbahnen."
             show: { object: sign-bus-stop }
           - text: "Verkehrsberuhigter Bereich"
             say: "Auf diesem eckigen blauen Schild spielt ein Kind mit einem Ball. Daneben sind ein Haus, ein Erwachsener und ein Auto. Das Schild heißt verkehrsberuhigter Bereich, viele sagen Spielstraße dazu. Hier dürfen Kinder auf der Straße spielen. Autos fahren nur Schrittgeschwindigkeit, also so langsam, wie ein Mensch geht. Trotzdem passt Nele auf, denn Autos können kommen."
-            show: { text: "verkehrsberuhigter Bereich" }
+            show: { object: sign-play-street }
           - text: "Wusstest du? Es gibt ein Verkehrsschild mit einem springenden Hirsch."
             say: "Wusstest du? Es gibt ein Verkehrsschild mit einem springenden Hirsch. Es warnt die Autofahrer: Hier laufen oft Rehe und Hirsche über die Straße."
-            show: { text: "Achtung, Wildwechsel!" }
+            show: { object: sign-deer-crossing }
 
       - activity: practise
         setting: plain
@@ -139,11 +139,12 @@ lessons:
               - id: l1-f3
                 type: matching
                 text: "Wie sieht das Schild aus? Verbinde."
+                option_audio: false
                 say: "Wie sieht das Schild aus? Verbinde jedes Schild mit seinem Namen."
                 pairs:
-                  - { left: { text: "blauer Kreis, darin ein Erwachsener mit Kind" }, right: { text: "Gehweg" } }
-                  - { left: { text: "blaues Viereck, darin ein Mensch auf einem Zebrastreifen" }, right: { text: "Fußgängerüberweg" } }
-                  - { left: { text: "gelber Kreis mit grünem H" }, right: { text: "Haltestelle" } }
+                  - { left: { object: sign-footpath }, right: { text: "Gehweg" } }
+                  - { left: { object: sign-pedestrian-crossing }, right: { text: "Fußgängerüberweg" } }
+                  - { left: { object: sign-bus-stop }, right: { text: "Haltestelle" } }
                 hints:
                   - "Was zeigt das Bild auf dem Schild?"
                   - "Auf dem Gehweg gehen Menschen. Ein H steht für Haltestelle."
@@ -184,7 +185,7 @@ lessons:
                 type: true_false
                 text: "Im verkehrsberuhigten Bereich fahren Autos nur Schrittgeschwindigkeit."
                 say: "Im verkehrsberuhigten Bereich fahren Autos nur Schrittgeschwindigkeit. Stimmt das?"
-                show: { text: "verkehrsberuhigter Bereich" }
+                show: { object: sign-play-street }
                 answer: true
                 hints: ["Dort spielen Kinder auf der Straße. Wie schnell dürfen Autos da fahren?"]
               - id: l1-s3
@@ -195,15 +196,16 @@ lessons:
                   - { id: ja, show: { text: "zu Fuß: ja" }, say: "Hier darf Nele zu Fuß gehen." }
                   - { id: nein, show: { text: "zu Fuß: nein" }, say: "Hier geht Nele nicht zu Fuß." }
                 options:
-                  - { text: "Gehweg", bin: ja }
+                  - { object: sign-footpath, bin: ja }
                   - { object: sign-cycle-path, bin: nein }
-                  - { text: "gemeinsamer Geh- und Radweg", bin: ja }
-                  - { text: "Fußgängerüberweg", bin: ja }
+                  - { object: sign-shared-path, bin: ja }
+                  - { object: sign-pedestrian-crossing, bin: ja }
                 hints: ["Nur ein Weg hier ist allein für Fahrräder."]
               - id: l1-s4
                 type: multiple_choice
                 text: "Ein blauer Kreis: oben ein Erwachsener mit Kind, unten ein Fahrrad, ein Strich dazwischen. Was heißt das?"
                 say: "Ein runder blauer Kreis: oben ein Erwachsener mit Kind, unten ein Fahrrad, ein Strich dazwischen. Was heißt das?"
+                show: { object: sign-shared-path }
                 options: ["Fußgänger und Radfahrer teilen sich den Weg.", "Hier dürfen nur Fahrräder fahren.", "Hier ist eine Haltestelle."]
                 answer: "Fußgänger und Radfahrer teilen sich den Weg."
                 hints: ["Auf dem Schild sind Menschen und ein Fahrrad zusammen."]
@@ -230,12 +232,13 @@ lessons:
                 type: true_false
                 text: "Nele sieht das Schild Fußgängerüberweg. Sie sagt: „Hier ist ein Zebrastreifen.“ Stimmt das?"
                 say: "Nele sieht das Schild Fußgängerüberweg. Sie sagt: Hier ist ein Zebrastreifen. Stimmt das?"
-                show: { text: "Fußgängerüberweg" }
+                show: { object: sign-pedestrian-crossing }
                 answer: true
               - id: l1-n3
                 type: multiple_choice
                 text: "Im verkehrsberuhigten Bereich rollt Neles Ball weg. Ein Auto kommt langsam. Was macht Nele?"
                 say: "Im verkehrsberuhigten Bereich rollt Neles Ball weg. Ein Auto kommt langsam angefahren. Was macht Nele?"
+                show: { object: sign-play-street }
                 options: ["Sie wartet, bis das Auto vorbei ist.", "Sie rennt sofort hinter dem Ball her.", "Sie legt sich auf die Straße."]
                 answer: "Sie wartet, bis das Auto vorbei ist."
               - id: l1-n4
@@ -245,7 +248,7 @@ lessons:
                 pairs:
                   - { left: { text: "Hier wartet Nele auf den Bus." }, right: { object: sign-bus-stop } }
                   - { left: { text: "Hier fährt Opa mit dem Fahrrad." }, right: { object: sign-cycle-path } }
-                  - { left: { text: "Hier geht Nele über die Straße." }, right: { text: "Fußgängerüberweg" } }
+                  - { left: { text: "Hier geht Nele über die Straße." }, right: { object: sign-pedestrian-crossing } }
               - id: l1-n5
                 type: fill_in_blank
                 text: "Opa erklärt den gemeinsamen Geh- und Radweg."
@@ -330,10 +333,10 @@ lessons:
             show: { drawn: shape, row: [triangle, circle, square, octagon], colours: [white, blue, blue, red] }
           - text: "Dreieck mit rotem Rand: Achtung, Gefahr!"
             say: "Ein Dreieck mit rotem Rand und der Spitze nach oben warnt: Achtung, Gefahr! Das Schild Kinder zeigt zwei laufende Kinder. Es warnt die Autofahrer: Hier können Kinder auf die Straße laufen."
-            show: { text: "Achtung, Kinder!" }
+            show: { object: sign-children }
           - text: "Kreis mit rotem Rand: Das ist verboten."
             say: "Ein runder Kreis mit rotem Rand verbietet etwas. Ist darin ein Fußgänger, heißt das Schild Verbot für Fußgänger: Hier darfst du nicht zu Fuß gehen. Ist der Kreis innen ganz weiß und leer, heißt das: Verbot für Fahrzeuge aller Art. Dort darf kein Fahrzeug fahren."
-            show: { text: "Verbot" }
+            show: { objects: [sign-no-pedestrians, sign-no-vehicles] }
           - text: "Blauer Kreis: So musst du es machen."
             say: "Ein runder blauer Kreis sagt dir, was du tun musst oder für wen ein Weg ist. Radweg und Gehweg sind solche Schilder."
             show: { object: sign-cycle-path }
@@ -342,7 +345,7 @@ lessons:
             show: { drawn: shape, kind: square, colour: blue }
           - text: "Stoppschild und Vorfahrt gewähren"
             say: "Zwei Schilder haben eine ganz eigene Form. Das Stoppschild ist ein rotes Achteck mit dem Wort Stopp. Wer mit dem Auto oder dem Fahrrad kommt, muss hier ganz anhalten und die anderen vorlassen. Das Schild Vorfahrt gewähren ist ein Dreieck, das auf der Spitze steht. Auch hier lässt man die anderen vor, muss aber nicht immer anhalten."
-            show: { drawn: shape, kind: octagon, colour: red }
+            show: { objects: [sign-stop, sign-give-way] }
           - text: "Wusstest du? Das Stoppschild ist das einzige Schild mit acht Ecken."
             say: "Wusstest du? Das Stoppschild ist das einzige Verkehrsschild mit acht Ecken. Darum erkennt man es sogar von hinten, oder wenn Schnee darauf liegt."
             show: { drawn: shape, kind: octagon, colour: red }
@@ -387,8 +390,8 @@ lessons:
                 options:
                   - { text: "runder Kreis mit rotem Rand", bin: verbietet }
                   - { text: "Dreieck mit rotem Rand", bin: warnt }
-                  - { text: "Verbot für Fußgänger", bin: verbietet }
-                  - { text: "Achtung, Kinder!", bin: warnt }
+                  - { object: sign-no-pedestrians, bin: verbietet }
+                  - { object: sign-children, bin: warnt }
                 hints:
                   - "Achte auf die Form: Dreieck oder Kreis?"
                   - "Dreiecke warnen, Kreise mit rotem Rand verbieten."
@@ -422,6 +425,7 @@ lessons:
                 type: multiple_choice
                 text: "Opa kommt mit dem Fahrrad an ein Stoppschild. Was muss er tun?"
                 say: "Opa kommt mit dem Fahrrad an ein Stoppschild. Was muss er tun?"
+                show: { object: sign-stop }
                 options: ["ganz anhalten und die anderen vorlassen", "schneller fahren", "klingeln und weiterfahren"]
                 answer: "ganz anhalten und die anderen vorlassen"
                 hints: ["Stopp heißt: Halt!"]
@@ -429,7 +433,7 @@ lessons:
                 type: true_false
                 text: "Das Schild Kinder warnt die Autofahrer."
                 say: "Das Schild Kinder warnt die Autofahrer. Stimmt das?"
-                show: { text: "Achtung, Kinder!" }
+                show: { object: sign-children }
                 answer: true
                 hints: ["Es ist ein Dreieck mit rotem Rand."]
               - id: l2-s3
@@ -466,12 +470,14 @@ lessons:
                 type: multiple_choice
                 text: "Nele sieht einen Kreis mit rotem Rand. Darin ist ein Fußgänger. Was machen Nele und Opa?"
                 say: "Nele sieht ein rundes Schild mit rotem Rand. Darin ist ein Fußgänger. Was machen Nele und Opa?"
+                show: { object: sign-no-pedestrians }
                 options: ["Sie gehen hier nicht zu Fuß weiter.", "Sie gehen genau hier entlang.", "Sie spielen hier Fußball."]
                 answer: "Sie gehen hier nicht zu Fuß weiter."
               - id: l2-n2
                 type: true_false
                 text: "Opa fährt Rad und kommt an ein Stoppschild. Er darf langsam weiterrollen, ohne anzuhalten."
                 say: "Opa fährt Rad und kommt an ein Stoppschild. Er darf langsam weiterrollen, ohne anzuhalten. Stimmt das?"
+                show: { object: sign-stop }
                 answer: false
               - id: l2-n3
                 type: sorting
@@ -482,10 +488,10 @@ lessons:
                   - { id: verbot, show: { text: "verbietet" }, say: "verbietet" }
                   - { id: hinweis, show: { text: "Hinweis" }, say: "gibt einen Hinweis" }
                 options:
-                  - { text: "Achtung, Kinder!", bin: warnt }
-                  - { text: "Verbot für Fußgänger", bin: verbot }
-                  - { text: "Fußgängerüberweg", bin: hinweis }
-                  - { text: "verkehrsberuhigter Bereich", bin: hinweis }
+                  - { object: sign-children, bin: warnt }
+                  - { object: sign-no-pedestrians, bin: verbot }
+                  - { object: sign-pedestrian-crossing, bin: hinweis }
+                  - { object: sign-play-street, bin: hinweis }
               - id: l2-n4
                 type: multiple_choice
                 text: "Nele sieht einen weißen Kreis mit rotem Rand, innen leer. Wer darf hier nicht fahren?"
@@ -576,9 +582,9 @@ lessons:
             text: "Was bedeutet das Schild? Verbinde."
             say: "Was bedeutet das Schild? Verbinde jeden Namen mit seiner Bedeutung."
             pairs:
-              - { left: { text: "Haltestelle" }, right: { text: "Hier hält der Bus." } }
-              - { left: { text: "Fußgängerüberweg" }, right: { text: "Hier ist ein Zebrastreifen." } }
-              - { left: { text: "verkehrsberuhigter Bereich" }, right: { text: "Hier dürfen Kinder spielen." } }
+              - { left: { object: sign-bus-stop }, right: { text: "Hier hält der Bus." } }
+              - { left: { object: sign-pedestrian-crossing }, right: { text: "Hier ist ein Zebrastreifen." } }
+              - { left: { object: sign-play-street }, right: { text: "Hier dürfen Kinder spielen." } }
           - id: l2-c11
             part: shapes
             type: multiple_choice
@@ -613,9 +619,9 @@ lessons:
               - { id: verbot, show: { text: "verbietet" }, say: "verbietet" }
               - { id: weg, show: { text: "zeigt einen Weg" }, say: "zeigt einen Weg" }
             options:
-              - { text: "Achtung, Kinder!", bin: warnt }
-              - { text: "Verbot für Fußgänger", bin: verbot }
-              - { text: "Gehweg", bin: weg }
+              - { object: sign-children, bin: warnt }
+              - { object: sign-no-pedestrians, bin: verbot }
+              - { object: sign-footpath, bin: weg }
               - { object: sign-cycle-path, bin: weg }
           - id: l2-c15
             part: shapes
@@ -641,6 +647,7 @@ lessons:
             type: true_false
             text: "Am Stoppschild müssen Autos und Fahrräder ganz anhalten."
             say: "Am Stoppschild müssen Autos und Fahrräder ganz anhalten. Stimmt das?"
+            show: { object: sign-stop }
             answer: true
           - id: l2-c18
             part: stop
@@ -654,6 +661,7 @@ lessons:
             type: multiple_choice
             text: "Ein Dreieck steht auf der Spitze. Was muss ein Radfahrer hier tun?"
             say: "Ein Dreieck mit rotem Rand steht auf der Spitze. Was muss ein Radfahrer hier tun?"
+            show: { object: sign-give-way }
             options: ["die anderen vorfahren lassen", "schneller fahren", "auf den Gehweg fahren"]
             answer: "die anderen vorfahren lassen"
           - id: l2-c20

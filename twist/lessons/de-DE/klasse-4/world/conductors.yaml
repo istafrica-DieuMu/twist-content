@@ -18,8 +18,9 @@ summary: >
   so the current stays in the cable; plugs have metal pins and a plastic
   grip. Tap water and the human body barely show in the bulb test, but
   both carry the strong current from the socket, so wet hands and broken
-  cables are dangerous. It ends with the skill check. The test with real
-  material stays in class or at home with an adult and a battery.
+  cables are dangerous. It ends with the skill check. The test circuit
+  is drawn with the thing in its gap; where the child predicts, the bulb
+  shows a question mark. The test with real material stays in class or at home with an adult and a battery.
 metadata:
   year: klasse-4
   topic: { de: Feuer und Strom, en: Fire and electricity }
@@ -28,8 +29,8 @@ metadata:
   builds_on: [world.nature.electric-circuit, world.nature.materials-sort]
   also_practises: [world.nature.electric-circuit]
   vocabulary: { de: [Leiter, Nichtleiter, Isolator, leiten, Metall, Eisen, Kupfer, Aluminium, Alufolie, Kunststoff, Gummi, Holz, Glas, Lücke, Prüfstrecke, Hülle, Draht, Stecker, Graphit] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [circuit]
   facets: []
   parts:
     - { id: predict, what: { de: "vorhersagen, ob ein Ding oder ein Stoff den Strom leitet", en: "predicting whether a thing or a material conducts" } }
@@ -79,19 +80,20 @@ lessons:
         screens:
           - text: "Im Stromkreis ist eine Lücke. Lina legt eine Büroklammer hinein.\n\nWas glaubst du: Leuchtet das Lämpchen?"
             say: "Opa Theo hat einen Prüf-Stromkreis gebaut: eine Batterie, ein Lämpchen und zwischen zwei Kabeln eine Lücke. Lina und ihr Freund Can sind heute Stofftester. Lina legt eine Büroklammer in die Lücke, so dass sie beide Kabel berührt. Was glaubst du: Leuchtet das Lämpchen?"
-            show: { object: paper-clip }
+            show: { drawn: circuit, switch: false, gap: { label: Büroklammer, object: paper-clip, conductor: true }, bulb: "?" }
           - text: "Ja! Die Büroklammer schließt die Lücke. Sie leitet den Strom."
             say: "Das Lämpchen leuchtet! Die Büroklammer ist aus Metall. Sie schließt die Lücke, und der Strom fließt durch sie hindurch. Ein Stoff, der den Strom durchlässt, heißt Leiter."
-            show: { object: paper-clip }
+            show: { drawn: circuit, switch: false, gap: { label: Büroklammer, object: paper-clip, conductor: true } }
           - text: "Can legt einen Radiergummi in die Lücke. Das Lämpchen bleibt dunkel."
             say: "Jetzt ist Can dran. Er legt einen Radiergummi in die Lücke. Das Lämpchen bleibt dunkel. Der Radiergummi lässt den Strom nicht durch. Er ist ein Nichtleiter. Ein anderes Wort dafür ist Isolator."
-            show: { object: rubber }
+            show: { drawn: circuit, switch: false, gap: { label: Radiergummi, object: rubber, conductor: false } }
           - text: "Leiter: Metalle wie Eisen, Kupfer und Aluminium.\nNichtleiter: Holz, Kunststoff, Gummi, Glas, Papier und Stoff."
             say: "Die beiden testen weiter. Alles aus Metall leitet: Eisen, Kupfer, Aluminium, auch Alufolie, ein Schlüssel oder eine Münze. Holz, Kunststoff, Gummi, Glas, Papier und Stoff leiten nicht. Auch ein Stein lässt das Lämpchen dunkel."
           - text: "So prüfst du: Ding in die Lücke legen. Leuchtet das Lämpchen, ist es ein Leiter."
             say: "So gehen Stofftester vor: Erst sagen sie vorher, was passiert. Dann legen sie das Ding in die Lücke. Leuchtet das Lämpchen, ist es ein Leiter. Bleibt es dunkel, ist es ein Nichtleiter. Die Farbe, ob etwas glänzt oder ob es rund ist, sagt dir nichts. Es kommt nur auf den Stoff an."
           - text: "Wusstest du? Die Mine eines Bleistifts leitet Strom, obwohl sie nicht aus Metall ist."
             say: "Wusstest du? Die Mine eines Bleistifts leitet Strom, obwohl sie nicht aus Metall ist. Sie ist aus Graphit, einer besonderen Form von Kohlenstoff. Das Holz um die Mine herum leitet aber nicht."
+            show: { object: pencil }
 
       - activity: practise
         setting: in-context
@@ -130,6 +132,7 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Can legt einen Holzlöffel in die Lücke.\n\nLeuchtet das Lämpchen?"
+                show: { drawn: circuit, switch: false, gap: { label: Holzlöffel, conductor: false }, bulb: "?" }
                 answer: false
                 hints:
                   - "Woraus ist ein Holzlöffel?"
@@ -173,12 +176,12 @@ lessons:
                   - { id: yes, show: { text: "Leiter" }, say: "Leiter" }
                   - { id: no, show: { text: "Nichtleiter" }, say: "Nichtleiter" }
                 options:
-                  - { text: "Alufolie", bin: yes }
-                  - { text: "ein Schlüssel", bin: yes }
+                  - { object: tin-foil, bin: yes }
+                  - { object: key, bin: yes }
                   - { text: "eine Münze", bin: yes }
                   - { text: "ein Holzlineal", bin: no }
                   - { text: "ein Plastikbecher", bin: no }
-                  - { text: "ein Gummiband", bin: no }
+                  - { object: rubber-band, bin: no }
                 hints: ["Alufolie, Schlüssel und Münzen sind aus Metall."]
               - id: l1-s2
                 type: true_false
@@ -188,6 +191,7 @@ lessons:
               - id: l1-s3
                 type: multiple_choice
                 text: "Can legt einen Holzstab in die Lücke. Was passiert?"
+                show: { drawn: circuit, switch: false, gap: { label: Holzstab, conductor: false }, bulb: "?" }
                 options: ["Das Lämpchen bleibt dunkel.", "Das Lämpchen leuchtet hell.", "Der Holzstab wird zu Metall."]
                 answer: "Das Lämpchen bleibt dunkel."
                 hints: ["Holz ist hart, aber ist es ein Leiter?"]
@@ -222,6 +226,7 @@ lessons:
               - id: l1-n2
                 type: true_false
                 text: "Lina legt ihren Ring aus Gold in die Lücke.\n\nLeuchtet das Lämpchen?"
+                show: { drawn: circuit, switch: false, gap: { label: Goldring, object: ring, conductor: true }, bulb: "?" }
                 answer: true
               - id: l1-n3
                 type: multiple_choice
@@ -270,6 +275,7 @@ lessons:
           - id: l1-c6
             type: multiple_choice
             text: "Ein Gummiband liegt in der Lücke. Was macht das Lämpchen?"
+            show: { drawn: circuit, switch: false, gap: { label: Gummiband, conductor: false }, bulb: "?" }
             options: ["Es bleibt dunkel.", "Es leuchtet.", "Es blinkt."]
             answer: "Es bleibt dunkel."
 
@@ -300,10 +306,13 @@ lessons:
         screens:
           - text: "Opa Theo schneidet ein altes Kabel auf.\n\nWas glaubst du: Was steckt darin?"
             say: "Opa Theo hat ein altes, abgeschnittenes Kabel. Es hängt an keiner Steckdose mehr. Er schneidet es vorsichtig auf. Was glaubst du: Was steckt darin?"
+            show: { object: cable }
           - text: "Innen sind Drähte aus Kupfer. Außen ist eine Hülle aus Kunststoff."
             say: "Innen glänzen dünne Drähte aus Kupfer. Kupfer ist ein Metall und leitet den Strom sehr gut. Außen ist eine Hülle aus Kunststoff. Sie ist ein Nichtleiter. So bleibt der Strom im Kabel, und wer das Kabel anfasst, bekommt keinen Schlag."
+            show: { object: cable }
           - text: "Am Stecker leiten die Stifte aus Metall. Der Griff ist aus Kunststoff."
             say: "Auch ein Stecker hat beides. Die Stifte aus Metall leiten den Strom in die Steckdose. Der Griff ist aus Kunststoff, damit du den Stecker sicher anfassen kannst. Elektrikerinnen und Elektriker haben Werkzeug mit einem Griff aus Kunststoff aus demselben Grund."
+            show: { object: plug }
           - text: "Auch Wasser und dein Körper leiten den Strom aus der Steckdose."
             say: "Legt man Leitungswasser in die Lücke, leuchtet das Lämpchen kaum oder gar nicht. Dafür ist die Batterie zu schwach. Den starken Strom aus der Steckdose leitet Leitungswasser aber, und dein Körper auch. Darum fasst du Stecker und Elektrogeräte nie mit nassen Händen an."
             show: { object: water }
@@ -407,10 +416,10 @@ lessons:
                   - { id: yes, show: { text: "Leiter" }, say: "Leiter" }
                   - { id: no, show: { text: "Nichtleiter" }, say: "Nichtleiter" }
                 options:
-                  - { text: "ein Nagel", bin: yes }
-                  - { text: "eine Schraube aus Metall", bin: yes }
-                  - { text: "ein Gummistiefel", bin: no }
-                  - { text: "ein Holzbrett", bin: no }
+                  - { object: nail, bin: yes }
+                  - { object: screw, bin: yes }
+                  - { object: wellies, bin: no }
+                  - { object: plank, bin: no }
                 hints: ["Nagel und Schraube sind aus Metall."]
               - id: l2-s5
                 type: multiple_choice
@@ -437,11 +446,11 @@ lessons:
                   - { id: yes, show: { text: "Leiter" }, say: "Leiter" }
                   - { id: no, show: { text: "Nichtleiter" }, say: "Nichtleiter" }
                 options:
-                  - { text: "ein Kupferdraht", bin: yes }
-                  - { text: "ein Schlüsselbund", bin: yes }
+                  - { object: copper-wire, bin: yes }
+                  - { object: key, bin: yes }
                   - { text: "eine Kabelhülle", bin: no }
-                  - { text: "ein Besenstiel aus Holz", bin: no }
-                  - { text: "ein Gummihandschuh", bin: no }
+                  - { object: broom, bin: no }
+                  - { object: rubber-glove, bin: no }
               - id: l2-n4
                 type: multiple_choice
                 text: "Warum fasst du ein Elektrogerät nie mit nassen Händen an?"
@@ -522,6 +531,7 @@ lessons:
             part: test
             type: multiple_choice
             text: "Lina legt ein Stück Alufolie in die Lücke. Was passiert?"
+            show: { drawn: circuit, switch: false, gap: { label: Alufolie, conductor: true }, bulb: "?" }
             options: ["Das Lämpchen leuchtet.", "Das Lämpchen bleibt dunkel.", "Die Batterie geht kaputt."]
             answer: "Das Lämpchen leuchtet."
           - id: l2-c11
@@ -541,6 +551,7 @@ lessons:
             part: test
             type: true_false
             text: "Can testet ein Holzlineal. Das Lämpchen bleibt dunkel. Stimmt das?"
+            show: { drawn: circuit, switch: false, gap: { label: Holzlineal, conductor: false }, bulb: "?" }
             answer: true
           - id: l2-c14
             part: insulation

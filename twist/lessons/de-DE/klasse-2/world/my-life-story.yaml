@@ -18,8 +18,9 @@ summary: >
   look at photos or things from back then, or draw a picture when there
   is no photo. No task assumes the child's own family, photos or
   Kindergarten; the events belong to story children. It ends with the
-  skill check. The timeline is shown with the number line until a
-  timeline drawing exists.
+  skill check. Jule's events stand on the timeline component; tasks
+  that point at an age with an arrow use the number line, so the events
+  are not shown with it.
 metadata:
   year: klasse-2
   topic: { de: Früher und heute, en: Then and now }
@@ -29,7 +30,7 @@ metadata:
   also_practises: []
   vocabulary: { de: [Zeitleiste, Lebensgeschichte, früher, heute, Jahr, Jahreszahl, Alter, Geburt, Erinnerung] }
   forms: [text, audio, picture, drawn]
-  drawn: [number-line]
+  drawn: [number-line, timeline]
   sounds: []
   facets: []
   parts:
@@ -93,7 +94,7 @@ lessons:
             show: { drawn: number-line, from: 0, to: 7, labels: all }
           - text: "Geburt, 1 Jahr: erste Schritte, 3 Jahre: Kindergarten, 6 Jahre: Schule"
             say: "Bei der Null klebt Jule ihre Geburt hin. Mit 1 Jahr hat sie ihre ersten Schritte gemacht. Mit 3 Jahren kam sie in den Kindergarten. Mit 6 Jahren kam sie in die Schule. Heute ist sie 7 Jahre alt."
-            show: { drawn: number-line, from: 0, to: 7, labels: all, mark: 6 }
+            show: { drawn: timeline, from: 0, to: 7, step: 1, years: false, events: [[0, "Geburt"], [1, "erste Schritte"], [3, "Kindergarten"], [6, "Schule"], [7, "heute"]], highlight: 6 }
           - text: "Jede Lebensgeschichte ist anders."
             say: "Jede Zeitleiste sieht anders aus, denn jedes Kind erlebt andere Dinge. Malik ist mit 4 Jahren in eine neue Stadt gezogen. Ben hat mit 5 Jahren eine kleine Schwester bekommen. Pia ist mit 2 Jahren in ihre Familie gekommen. Alles, was für dich wichtig ist, darf auf deine Zeitleiste."
             show: { object: child }
@@ -310,10 +311,10 @@ lessons:
             show: { object: ruler }
           - text: "Auf der Zeitleiste ist jedes Jahr gleich lang."
             say: "Nicht ganz! Auf einer Zeitleiste ist jedes Jahr gleich lang, wie die Abstände auf einem Lineal. Von der Geburt bis zum Schulanfang mit 6 Jahren sind es 6 gleich lange Stücke. Vom Schulanfang bis heute, mit 7 Jahren, ist es nur ein Stück."
-            show: { drawn: number-line, from: 0, to: 8, labels: all }
+            show: { drawn: timeline, from: 0, to: 7, step: 1, years: false, events: [[0, "Geburt"], [6, "Schulanfang"], [7, "heute"]] }
           - text: "2019: geboren. 2020: 1 Jahr alt. 2022: 3 Jahre alt."
             say: "Jule wurde im Jahr 2019 geboren. Ein Jahr später, 2020, war sie 1 Jahr alt. 2022 war sie 3 Jahre alt. Mit jedem Jahr wird die Jahreszahl um eins größer, und Jule wird ein Jahr älter."
-            show: { drawn: number-line, from: 2019, to: 2026, labels: all }
+            show: { drawn: timeline, from: 2019, to: 2026, step: 1, events: [[2019, "geboren"], [2020, "1 Jahr alt"], [2022, "3 Jahre alt"]] }
           - text: "Woher weißt du, was früher war?"
             say: "Woher weiß Jule, wann sie ihre ersten Schritte gemacht hat? Sie war ja noch so klein! Sie kann Menschen fragen, die sie damals kannten. Sie kann Fotos anschauen oder Dinge von damals, zum Beispiel ihre ersten kleinen Schuhe."
             show: { object: shoe }
@@ -370,8 +371,8 @@ lessons:
                 options:
                   - { text: "ein Foto von damals", bin: hilft }
                   - { text: "jemanden fragen, der sie damals kannte", bin: hilft }
-                  - { text: "der Wetterbericht von heute", bin: nicht }
-                  - { text: "ihre ersten kleinen Schuhe", bin: hilft }
+                  - { object: weather-report, say: "der Wetterbericht von heute", bin: nicht }
+                  - { object: shoe, say: "ihre ersten kleinen Schuhe", bin: hilft }
                 hints:
                   - "Frag dich: Erzählt mir das etwas über früher?"
                   - "Der Wetterbericht ist von heute."

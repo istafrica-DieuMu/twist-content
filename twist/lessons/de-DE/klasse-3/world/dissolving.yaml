@@ -86,6 +86,7 @@ lessons:
             show: { object: water }
           - text: "Salz, Brausepulver und Honig lösen sich auch."
             say: "Auch Salz löst sich in Wasser. Darum schmeckt das Nudelwasser salzig, obwohl du kein Salz mehr siehst. Brausepulver und Honig lösen sich auch. Aber Vorsicht: Probier bei einem Versuch nur dann etwas, wenn ein Erwachsener sagt, dass es Essen ist."
+            show: { object: salt }
           - text: "Sand und Öl lösen sich nicht."
             say: "Tim hat Sand in der Hosentasche, und ein bisschen fällt in ein Glas Wasser. Lea rührt. Der Sand wirbelt herum und sinkt dann auf den Boden. Er löst sich nicht. Auch Öl löst sich nicht. Es schwimmt als Schicht oben auf dem Wasser, auch wenn du lange rührst."
             show: { object: sandcastle }
@@ -102,6 +103,7 @@ lessons:
               - id: l1-f1
                 type: multiple_choice
                 text: "Lea rührt Salz in Wasser. Nach einer Weile siehst du kein Salz mehr. Was ist passiert?"
+                show: { object: salt }
                 options: ["Das Salz hat sich gelöst.", "Das Salz ist geschmolzen.", "Das Salz ist ganz weg."]
                 answer: "Das Salz hat sich gelöst."
                 feedback:
@@ -121,11 +123,11 @@ lessons:
                   - { id: undis, show: { text: "löst sich nicht" }, say: "löst sich nicht" }
                 options:
                   - { object: bag-of-sugar, bin: dis }
-                  - { text: "Salz", bin: dis }
-                  - { text: "Sand", bin: undis }
-                  - { text: "Öl", bin: undis }
+                  - { object: salt, bin: dis }
+                  - { object: sand, bin: undis }
+                  - { object: oil, bin: undis }
                   - { object: stone, bin: undis }
-                  - { text: "Brausepulver", bin: dis }
+                  - { object: fizzy-powder, bin: dis }
                 hints:
                   - "Was siehst du nach dem Rühren nicht mehr?"
                   - "Sand und Steine sinken nach unten, Öl schwimmt oben."
@@ -133,6 +135,7 @@ lessons:
               - id: l1-f3
                 type: true_false
                 text: "Stimmt das? Zuckerwasser schmeckt süß, obwohl du den Zucker nicht mehr siehst."
+                show: { object: bag-of-sugar }
                 answer: true
                 hints:
                   - "Ist der Zucker noch im Wasser?"
@@ -153,6 +156,7 @@ lessons:
               - id: l1-f5
                 type: multiple_choice
                 text: "Tim rührt Öl in Wasser. Was siehst du nach einer Weile?"
+                show: { object: oil }
                 options: ["Das Öl schwimmt als Schicht oben.", "Das Öl ist nicht mehr zu sehen.", "Das Wasser wird süß."]
                 answer: "Das Öl schwimmt als Schicht oben."
                 hints:
@@ -163,9 +167,9 @@ lessons:
                 type: matching
                 text: "Was passiert im Wasser? Verbinde."
                 pairs:
-                  - { left: { text: "Zucker" }, right: { text: "löst sich, das Wasser bleibt klar" } }
-                  - { left: { text: "Sand" }, right: { text: "sinkt auf den Boden" } }
-                  - { left: { text: "Öl" }, right: { text: "schwimmt oben" } }
+                  - { left: { object: bag-of-sugar }, right: { text: "löst sich, das Wasser bleibt klar" } }
+                  - { left: { object: sand }, right: { text: "sinkt auf den Boden" } }
+                  - { left: { object: oil }, right: { text: "schwimmt oben" } }
                 hints:
                   - "Nur einer der drei Stoffe löst sich."
                   - "Was schwer und körnig ist, sinkt nach unten."
@@ -176,15 +180,19 @@ lessons:
               - id: l1-s1
                 type: true_false
                 text: "Stimmt das? Wenn sich Zucker im Wasser löst, ist er weg."
+                show: { object: bag-of-sugar }
                 answer: false
                 feedback:
                   "true": "Der Zucker ist noch da. Das Wasser schmeckt ja süß."
                 hints: ["Wie schmeckt das Wasser?"]
               - id: l1-s2
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Was löst sich nicht in Wasser?"
-                options: ["Sand", "Salz", "Zucker"]
-                answer: "Sand"
+                options:
+                  - { object: sand }
+                  - { object: salt }
+                  - { object: bag-of-sugar }
+                answer: sand
                 hints: ["Was liegt nach dem Rühren unten im Glas?"]
               - id: l1-s3
                 type: sorting
@@ -195,21 +203,23 @@ lessons:
                   - { id: bottom, show: { text: "sinkt auf den Boden" }, say: "sinkt auf den Boden" }
                   - { id: top, show: { text: "schwimmt oben" }, say: "schwimmt oben" }
                 options:
-                  - { text: "Salz", bin: dissolve }
-                  - { text: "Sand", bin: bottom }
-                  - { text: "Öl", bin: top }
-                  - { text: "Kieselsteine", bin: bottom }
-                  - { text: "Brausepulver", bin: dissolve }
+                  - { object: salt, bin: dissolve }
+                  - { object: sand, bin: bottom }
+                  - { object: oil, bin: top }
+                  - { object: stone, bin: bottom }
+                  - { object: fizzy-powder, bin: dissolve }
                 hints: ["Was löst sich nicht, liegt unten oder schwimmt oben."]
               - id: l1-s4
                 type: multiple_choice
                 text: "Woran erkennst du, dass sich Salz im Wasser gelöst hat?"
+                show: { object: salt }
                 options: ["Du siehst es nicht mehr, aber das Wasser schmeckt salzig.", "Das Wasser wird bunt.", "Das Salz liegt unten im Glas."]
                 answer: "Du siehst es nicht mehr, aber das Wasser schmeckt salzig."
                 hints: ["Gelöst heißt: nicht mehr zu sehen, aber noch da."]
               - id: l1-s5
                 type: true_false
                 text: "Stimmt das? Öl löst sich in Wasser, wenn du nur lange genug rührst."
+                show: { object: oil }
                 answer: false
                 feedback:
                   "true": "Rühr, so lange du willst: Das Öl schwimmt danach wieder oben."
@@ -220,7 +230,7 @@ lessons:
                 pairs:
                   - { left: { object: bag-of-sugar }, right: { text: "löst sich" } }
                   - { left: { object: stone }, right: { text: "sinkt auf den Boden" } }
-                  - { left: { text: "Öl" }, right: { text: "schwimmt oben" } }
+                  - { left: { object: oil }, right: { text: "schwimmt oben" } }
                 hints: ["Nur der Zucker verschwindet aus dem Blick."]
 
           - support: none
@@ -233,11 +243,11 @@ lessons:
                   - { id: dis, show: { text: "löst sich" }, say: "löst sich" }
                   - { id: undis, show: { text: "löst sich nicht" }, say: "löst sich nicht" }
                 options:
-                  - { text: "Traubenzucker", bin: dis }
-                  - { text: "Salz", bin: dis }
+                  - { object: glucose, bin: dis }
+                  - { object: salt, bin: dis }
                   - { object: marble, bin: undis }
-                  - { text: "Reis", bin: undis }
-                  - { text: "Sand", bin: undis }
+                  - { object: rice, bin: undis }
+                  - { object: sand, bin: undis }
               - id: l1-n2
                 type: multiple_choice
                 text: "Tim sagt: „Der Zucker ist im Wasser geschmolzen.“ Was sagst du ihm?"
@@ -246,6 +256,7 @@ lessons:
               - id: l1-n3
                 type: true_false
                 text: "Stimmt das? Sand sinkt im Wasser auf den Boden und bleibt Sand."
+                show: { object: sand }
                 answer: true
               - id: l1-n4
                 type: image_multiple_choice
@@ -266,13 +277,17 @@ lessons:
         draw: 3
         tasks:
           - id: l1-c1
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Was löst sich in Wasser?"
-            options: ["Salz", "Sand", "Kieselsteine"]
-            answer: "Salz"
+            options:
+              - { object: salt }
+              - { object: sand }
+              - { object: stone }
+            answer: salt
           - id: l1-c2
             type: true_false
             text: "Stimmt das? Öl schwimmt oben auf dem Wasser."
+            show: { object: oil }
             answer: true
           - id: l1-c3
             type: sorting
@@ -281,10 +296,10 @@ lessons:
               - { id: dis, show: { text: "löst sich" }, say: "löst sich" }
               - { id: undis, show: { text: "löst sich nicht" }, say: "löst sich nicht" }
             options:
-              - { text: "Zucker", bin: dis }
-              - { text: "Sand", bin: undis }
-              - { text: "Salz", bin: dis }
-              - { text: "Öl", bin: undis }
+              - { object: bag-of-sugar, bin: dis }
+              - { object: sand, bin: undis }
+              - { object: salt, bin: dis }
+              - { object: oil, bin: undis }
           - id: l1-c4
             type: multiple_choice
             text: "Das Zuckerwasser ist klar. Wo ist der Zucker?"
@@ -293,14 +308,15 @@ lessons:
           - id: l1-c5
             type: true_false
             text: "Stimmt das? Sand löst sich in Wasser."
+            show: { object: sand }
             answer: false
           - id: l1-c6
             type: matching
             text: "Was passiert mit dem Stoff im Wasser? Verbinde."
             pairs:
-              - { left: { text: "Salz" }, right: { text: "löst sich" } }
-              - { left: { text: "Sand" }, right: { text: "sinkt auf den Boden" } }
-              - { left: { text: "Öl" }, right: { text: "schwimmt oben" } }
+              - { left: { object: salt }, right: { text: "löst sich" } }
+              - { left: { object: sand }, right: { text: "sinkt auf den Boden" } }
+              - { left: { object: oil }, right: { text: "schwimmt oben" } }
 
   - n: 2
     title: { de: "Schneller lösen, Salz zurückholen", en: "Dissolving faster, getting the salt back" }
@@ -313,10 +329,13 @@ lessons:
         from: last-lesson
         tasks:
           - id: l2-w1
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Was schwimmt als Schicht oben auf dem Wasser?"
-            options: ["Öl", "Zucker", "Salz"]
-            answer: "Öl"
+            options:
+              - { object: oil }
+              - { object: bag-of-sugar }
+              - { object: salt }
+            answer: oil
             difficulty: easy
           - id: l2-w2
             type: true_false
@@ -353,6 +372,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "In welchem Tee löst sich ein Löffel Zucker am schnellsten?"
+                show: { object: cup }
                 options: ["in warmem Tee", "in kaltem Eistee", "in Tee mit Eiswürfeln"]
                 answer: "in warmem Tee"
                 hints:
@@ -362,6 +382,7 @@ lessons:
               - id: l2-f2
                 type: true_false
                 text: "Stimmt das? Wenn du rührst, löst sich Zucker schneller."
+                show: { object: spoon }
                 answer: true
                 hints:
                   - "Was macht Lea mit dem Löffel?"
@@ -381,6 +402,7 @@ lessons:
               - id: l2-f4
                 type: multiple_choice
                 text: "Tim schüttet sehr viel Zucker in ein Glas Wasser. Was passiert?"
+                show: { object: bag-of-sugar }
                 options: ["Ein Teil löst sich, der Rest bleibt unten liegen.", "Aller Zucker löst sich, egal wie viel.", "Das Wasser wird zu Zucker."]
                 answer: "Ein Teil löst sich, der Rest bleibt unten liegen."
                 feedback:
@@ -397,11 +419,11 @@ lessons:
                   - { id: stays, show: { text: "bleibt im Filter" }, say: "bleibt im Filter" }
                   - { id: through, show: { text: "läuft durch" }, say: "läuft durch" }
                 options:
-                  - { text: "Sand", bin: stays }
+                  - { object: sand, bin: stays }
                   - { text: "gelöstes Salz", bin: through }
-                  - { text: "Kieselsteine", bin: stays }
+                  - { object: stone, bin: stays }
                   - { text: "gelöster Zucker", bin: through }
-                  - { text: "Reis", bin: stays }
+                  - { object: rice, bin: stays }
                 hints:
                   - "Was hat sich gelöst, was nicht?"
                   - "Gelöste Stoffe sind in winzige Teilchen zerfallen. Sie passen durch den Filter."
@@ -432,17 +454,21 @@ lessons:
               - id: l2-s2
                 type: true_false
                 text: "Stimmt das? Mit einem Kaffeefilter holst du gelöstes Salz aus dem Wasser."
+                show: { object: coffee-filter }
                 answer: false
                 feedback:
                   "true": "Gelöstes Salz läuft durch den Filter. Das Wasser schmeckt danach immer noch salzig."
                 hints: ["Was passiert, als Lea ihr Salzwasser durch den Filter gießt?"]
               - id: l2-s3
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Was löst sich in Wasser am schnellsten?"
-                options: ["ein Löffel feiner Zucker", "ein ganzes Zuckerstück", "ein Kieselstein"]
-                answer: "ein Löffel feiner Zucker"
+                options:
+                  - { object: bag-of-sugar }
+                  - { object: sugar-cube }
+                  - { object: stone }
+                answer: bag-of-sugar
                 feedback:
-                  "ein Kieselstein": "Auf den Kieselstein kannst du lange warten. Er löst sich gar nicht!"
+                  stone: "Auf den Kieselstein kannst du lange warten. Er löst sich gar nicht!"
                 hints: ["Kleine Körnchen lösen sich schneller als ein großes Stück."]
               - id: l2-s4
                 type: sorting
@@ -452,14 +478,15 @@ lessons:
                   - { id: dis, show: { text: "löst sich" }, say: "löst sich" }
                   - { id: undis, show: { text: "löst sich nicht" }, say: "löst sich nicht" }
                 options:
-                  - { text: "Honig", bin: dis }
+                  - { object: honey, bin: dis }
                   - { object: marble, bin: undis }
-                  - { text: "Traubenzucker", bin: dis }
-                  - { text: "Öl", bin: undis }
+                  - { object: glucose, bin: dis }
+                  - { object: oil, bin: undis }
                 hints: ["Was ist nach dem Rühren nicht mehr zu sehen?"]
               - id: l2-s5
                 type: multiple_choice
                 text: "Lea hat Salzwasser in der Sonne stehen lassen. Jetzt ist das Wasser weg, und weiße Körnchen liegen in der Schale. Was ist das?"
+                show: { object: dish }
                 options: ["das Salz aus dem Wasser", "Eis", "Sand vom Spielplatz"]
                 answer: "das Salz aus dem Wasser"
                 hints: ["Das Wasser ist verdunstet. Was verdunstet nicht?"]
@@ -487,11 +514,11 @@ lessons:
                   - { id: bottom, show: { text: "sinkt auf den Boden" }, say: "sinkt auf den Boden" }
                   - { id: top, show: { text: "schwimmt oben" }, say: "schwimmt oben" }
                 options:
-                  - { text: "Traubenzucker", bin: dissolve }
+                  - { object: glucose, bin: dissolve }
                   - { object: marble, bin: bottom }
-                  - { text: "Öl", bin: top }
-                  - { text: "Honig", bin: dissolve }
-                  - { text: "Reis", bin: bottom }
+                  - { object: oil, bin: top }
+                  - { object: honey, bin: dissolve }
+                  - { object: rice, bin: bottom }
               - id: l2-n3
                 type: true_false
                 text: "Tim sagt: „Am Meer lässt man Meerwasser in der Sonne verdunsten. Dann bleibt Salz übrig.“ Stimmt das?"
@@ -499,6 +526,7 @@ lessons:
               - id: l2-n4
                 type: multiple_choice
                 text: "Tims Eimer Wasser ist voller Sand und Kieselsteine. Wie bekommt er das Wasser sauberer?"
+                show: { object: bucket }
                 options: ["Er gießt es durch einen Filter.", "Er rührt kräftig um.", "Er gibt Zucker dazu."]
                 answer: "Er gießt es durch einen Filter."
               - id: l2-n5
@@ -516,10 +544,13 @@ lessons:
         tasks:
           - id: l2-c1
             part: predict
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welcher Stoff löst sich in Wasser?"
-            options: ["Zucker", "Kieselsteine", "Öl"]
-            answer: "Zucker"
+            options:
+              - { object: bag-of-sugar }
+              - { object: stone }
+              - { object: oil }
+            answer: bag-of-sugar
           - id: l2-c2
             part: predict
             type: sorting
@@ -528,25 +559,30 @@ lessons:
               - { id: dis, show: { text: "löst sich" }, say: "löst sich" }
               - { id: undis, show: { text: "löst sich nicht" }, say: "löst sich nicht" }
             options:
-              - { text: "Salz", bin: dis }
-              - { text: "Reis", bin: undis }
-              - { text: "Brausepulver", bin: dis }
-              - { text: "Sand", bin: undis }
+              - { object: salt, bin: dis }
+              - { object: rice, bin: undis }
+              - { object: fizzy-powder, bin: dis }
+              - { object: sand, bin: undis }
           - id: l2-c3
             part: predict
             type: true_false
             text: "Stimmt das? Brausepulver löst sich in Wasser."
+            show: { object: fizzy-powder }
             answer: true
           - id: l2-c4
             part: predict
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welcher Stoff löst sich nicht, auch wenn du lange rührst?"
-            options: ["Öl", "Salz", "Honig"]
-            answer: "Öl"
+            options:
+              - { object: oil }
+              - { object: salt }
+              - { object: honey }
+            answer: oil
           - id: l2-c5
             part: predict
             type: true_false
             text: "Stimmt das? Reis löst sich in Wasser."
+            show: { object: rice }
             answer: false
           - id: l2-c6
             part: predict
@@ -567,6 +603,7 @@ lessons:
             part: signs
             type: multiple_choice
             text: "Woran erkennst du, dass sich Zucker im Tee gelöst hat?"
+            show: { object: cup }
             options: ["Du siehst ihn nicht mehr, aber der Tee schmeckt süß.", "Der Zucker liegt unten in der Tasse.", "Der Tee wird grün."]
             answer: "Du siehst ihn nicht mehr, aber der Tee schmeckt süß."
           - id: l2-c9
@@ -579,9 +616,9 @@ lessons:
             type: matching
             text: "Was siehst du danach im Glas? Verbinde."
             pairs:
-              - { left: { text: "Zucker" }, right: { text: "nichts mehr, das Wasser ist klar" } }
-              - { left: { text: "Kieselsteine" }, right: { text: "sie liegen unten" } }
-              - { left: { text: "Öl" }, right: { text: "eine Schicht oben" } }
+              - { left: { object: bag-of-sugar }, right: { text: "nichts mehr, das Wasser ist klar" } }
+              - { left: { object: stone }, right: { text: "sie liegen unten" } }
+              - { left: { object: oil }, right: { text: "eine Schicht oben" } }
           - id: l2-c11
             part: signs
             type: multiple_choice
@@ -592,6 +629,7 @@ lessons:
             part: signs
             type: true_false
             text: "Stimmt das? Sand wirbelt beim Rühren herum und sinkt dann auf den Boden."
+            show: { object: sand }
             answer: true
           - id: l2-c13
             part: signs
@@ -609,6 +647,7 @@ lessons:
             part: faster-back
             type: true_false
             text: "Stimmt das? Lässt du Salzwasser verdunsten, bleibt das Salz übrig."
+            show: { object: dish }
             answer: true
           - id: l2-c16
             part: faster-back
@@ -620,6 +659,7 @@ lessons:
             part: faster-back
             type: true_false
             text: "Stimmt das? Ein ganzes Zuckerstück löst sich schneller als feiner Zucker."
+            show: { object: sugar-cube }
             answer: false
           - id: l2-c18
             part: faster-back
@@ -643,7 +683,7 @@ lessons:
               - { id: filter, show: { text: "mit einem Filter" }, say: "mit einem Filter" }
               - { id: evap, show: { text: "Wasser verdunsten lassen" }, say: "Wasser verdunsten lassen" }
             options:
-              - { text: "Sand", bin: filter }
+              - { object: sand, bin: filter }
               - { text: "gelöstes Salz", bin: evap }
-              - { text: "Kieselsteine", bin: filter }
+              - { object: stone, bin: filter }
               - { text: "gelöster Zucker", bin: evap }

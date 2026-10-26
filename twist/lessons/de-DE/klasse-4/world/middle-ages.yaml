@@ -35,7 +35,7 @@ metadata:
   also_practises: [world.time.timeline]
   vocabulary: { de: [Mittelalter, König, Kaiser, Fürst, Ritter, Knappe, Page, Ritterschlag, Rüstung, Burg, Bergfried, Graben, Zugbrücke, Bauer, Ernte, Dorf, Stadt, Stadtmauer, Markt, Handwerker, Zunft, Lehrling, Geselle, Meister, Kloster, Mönch, Nonne, Brunnen] }
   forms: [text, audio, picture, drawn]
-  drawn: [number-line]
+  drawn: [number-line, timeline]
   facets: []
   parts:
     - { id: rulers, what: { de: "sagen, wer im Mittelalter herrschte und wie Bauern, Ritter und König zueinander standen", en: "saying who ruled in the Middle Ages and how farmers, knights and the king stood to each other" } }
@@ -94,13 +94,14 @@ lessons:
             say: "Nur wenige! Auf der Burg wohnte der Burgherr, ein Ritter, mit seiner Familie. Dazu kamen Knechte, Mägde und Wachen. Die allermeisten Menschen aber waren Bauern. Sie lebten in Dörfern und arbeiteten auf den Feldern."
             show: { object: farmer }
           - text: "Das Mittelalter dauerte ungefähr 1000 Jahre: von ungefähr 500 bis ungefähr 1500."
-            say: "Das Mittelalter dauerte ungefähr tausend Jahre, von ungefähr fünfhundert bis ungefähr fünfzehnhundert. Auf der Zeitleiste liegt es zwischen den beiden mittleren Strichen. Die Steinzeit war viel, viel früher."
-            show: { drawn: number-line, from: 0, to: 2000, step: 100, labels: tens }
+            say: "Das Mittelalter dauerte ungefähr tausend Jahre, von ungefähr fünfhundert bis ungefähr fünfzehnhundert. Auf der Zeitleiste ist es der farbige Streifen von fünfhundert bis fünfzehnhundert. Die Steinzeit war viel, viel früher."
+            show: { drawn: timeline, from: 0, to: 2000, step: 500, eras: [[500, 1500, "Mittelalter"]] }
           - text: "Ganz oben: der König.\nDarunter: Fürsten und Ritter.\nUnten: die Bauern."
             say: "Wer bestimmte damals? Ganz oben stand der König. Manche Könige wurden auch zum Kaiser gekrönt. Der König gab Land an Fürsten und Ritter. Die Bauern bearbeiteten dieses Land und mussten einen Teil ihrer Ernte abgeben. Das Volk durfte nicht wählen. Wer als Bauernkind geboren wurde, blieb meistens sein Leben lang Bauer oder Bäuerin."
             show: { object: crown }
           - text: "Eine Burg hat dicke Mauern, einen hohen Turm, den Bergfried, und oft einen Graben mit einer Zugbrücke."
             say: "Viele Burgen stehen auf einem Berg. Von dort sieht man Feinde schon von Weitem. Dicke Mauern schützen die Burg. Der höchste Turm heißt Bergfried. Oft liegt ein tiefer Graben um die Burg, und darüber führt eine Zugbrücke, die man hochziehen kann. Gemütlich war es nicht: Im Winter war es kalt und dunkel, denn es gab nur offene Feuer und kleine Fenster."
+            show: { object: castle }
           - text: "Page mit ungefähr 7 Jahren\nKnappe mit ungefähr 14 Jahren\nRitter mit ungefähr 21 Jahren"
             say: "Konrad ist acht und schon Page. Mit ungefähr sieben Jahren kam er auf die Burg. Er lernt reiten und gutes Benehmen. Mit ungefähr vierzehn Jahren wird er Knappe. Dann hilft er einem Ritter, pflegt sein Pferd und seine Rüstung und übt mit Schwert und Lanze. Mit ungefähr einundzwanzig Jahren kann er beim Ritterschlag zum Ritter gemacht werden. Ein Ritter kämpfte zu Pferd. Pferd, Rüstung und Waffen waren sehr teuer. Darum konnten nur reiche Familien ihre Söhne zu Rittern machen."
             show: { object: horse }
@@ -109,8 +110,10 @@ lessons:
             show: { object: hen }
           - text: "Und die Drachen? Drachen gab es nie. Sie kommen nur in Sagen und Märchen vor."
             say: "In Filmen kämpfen Ritter oft gegen Drachen. Drachen gab es aber nie, auch nicht im Mittelalter. Sie kommen nur in Sagen und Märchen vor."
+            show: { object: dragon }
           - text: "Wusstest du? Kartoffeln gab es im Mittelalter in Europa noch nicht."
             say: "Wusstest du? Kartoffeln gab es im Mittelalter in Europa noch nicht. Sie kamen erst später aus Amerika zu uns. Lene hat also nie Pommes gegessen!"
+            show: { object: potato }
 
       - activity: practise
         setting: in-context
@@ -120,6 +123,7 @@ lessons:
               - id: l1-f1
                 type: multiple_choice
                 text: "Konrad zeigt dir seine Burg. Wer wohnt dort?"
+                show: { object: castle }
                 options: ["der Burgherr mit seiner Familie, Knechte, Mägde und Wachen", "fast alle Menschen aus dem ganzen Land", "nur die Bauern mit ihren Kühen"]
                 answer: "der Burgherr mit seiner Familie, Knechte, Mägde und Wachen"
                 hints:
@@ -134,7 +138,7 @@ lessons:
                   - { id: burg, show: { text: "auf der Burg" }, say: "auf der Burg" }
                   - { id: dorf, show: { text: "im Dorf" }, say: "im Dorf" }
                 options:
-                  - { text: "der Ritter", bin: burg }
+                  - { object: knight, bin: burg }
                   - { text: "die Wachen am Tor", bin: burg }
                   - { text: "die Bauernfamilie", bin: dorf }
                   - { text: "der Hirte mit den Schafen", bin: dorf }
@@ -174,6 +178,7 @@ lessons:
               - id: l1-f6
                 type: multiple_choice
                 text: "Warum stehen viele Burgen auf einem Berg?"
+                show: { object: castle }
                 options: ["Damit man Feinde früh sieht und sich gut schützen kann.", "Damit die Ritter näher an den Wolken wohnen.", "Weil die Bauern im Tal keine Burg wollten."]
                 answer: "Damit man Feinde früh sieht und sich gut schützen kann."
                 hints:
@@ -187,9 +192,9 @@ lessons:
                 type: matching
                 text: "Was ist was an der Burg? Verbinde."
                 pairs:
-                  - { left: { text: "Bergfried" }, right: { text: "der höchste Turm" } }
-                  - { left: { text: "Graben" }, right: { text: "tief und rund um die Burg" } }
-                  - { left: { text: "Zugbrücke" }, right: { text: "kann man hochziehen" } }
+                  - { left: { object: castle-keep }, right: { text: "der höchste Turm" } }
+                  - { left: { object: moat }, right: { text: "tief und rund um die Burg" } }
+                  - { left: { object: drawbridge }, right: { text: "kann man hochziehen" } }
                 hints: ["Über den Graben führt die Zugbrücke. Der Bergfried ragt hoch auf."]
               - id: l1-s2
                 type: multiple_choice
@@ -249,6 +254,7 @@ lessons:
               - id: l1-n5
                 type: multiple_choice
                 text: "Ein Mann erzählt: „Auf unserer Burg hat mein Urgroßvater einen echten Drachen gesehen.“\n\nWas stimmt?"
+                show: { object: dragon }
                 options: ["Drachen gab es nie. Sie kommen nur in Sagen und Märchen vor.", "Im Mittelalter gab es Drachen, heute nicht mehr.", "Drachen lebten nur in Burggräben."]
                 answer: "Drachen gab es nie. Sie kommen nur in Sagen und Märchen vor."
                 feedback:
@@ -286,6 +292,7 @@ lessons:
           - id: l1-c6
             type: multiple_choice
             text: "Warum hat eine Burg oft einen Graben?"
+            show: { object: castle }
             options: ["Damit Feinde schwer an die Mauer kommen.", "Damit die Ritter darin baden können.", "Damit die Kühe dort trinken."]
             answer: "Damit Feinde schwer an die Mauer kommen."
 
@@ -319,6 +326,7 @@ lessons:
             show: { object: church }
           - text: "Die Stadtmauer schützt die Stadt. Nachts werden die Stadttore geschlossen."
             say: "Die Mauer schützt die Stadt vor Feinden und Dieben. Hinein kommt man nur durch die Stadttore, und nachts werden sie geschlossen. Wer in der Stadt wohnt, ist ein Bürger oder eine Bürgerin."
+            show: { object: town-gate }
           - text: "Auf dem Markt verkaufen Bauern und Handwerker ihre Waren."
             say: "Mitten in der Stadt liegt der Marktplatz mit der Kirche und dem Rathaus. Bauern aus den Dörfern bringen Eier, Gemüse und Getreide. Handwerker stellen Dinge her und verkaufen sie: Der Bäcker backt Brot, der Schuster macht Schuhe, der Weber webt Stoff, und der Schmied schmiedet Hufeisen und Werkzeug aus Eisen. Gretes Vater ist Schmied."
             show: { object: bread }
@@ -332,10 +340,12 @@ lessons:
             show: { object: book }
           - text: "Um 1450 druckt Johannes Gutenberg in Mainz Bücher mit beweglichen Buchstaben."
             say: "Um vierzehnhundertfünfzig druckt Johannes Gutenberg in Mainz Bücher mit beweglichen Buchstaben aus Metall. So kann man ein Buch viel schneller herstellen als mit der Hand. Bücher werden billiger, und mehr Menschen lernen lesen."
+            show: { object: printing-press }
           - text: "Heute haben viele Städte noch Kirchen, Marktplätze und Reste der Stadtmauer aus dem Mittelalter."
             say: "Vieles aus Gretes Zeit kannst du heute noch sehen: alte Kirchen, Marktplätze, Stadttore und Reste der Stadtmauer. Ritter, Zünfte und Stadttore, die nachts schließen, gibt es aber nicht mehr."
           - text: "Wusstest du? Gelehrte im Mittelalter wussten schon, dass die Erde eine Kugel ist."
             say: "Wusstest du? Manche Leute glauben heute, im Mittelalter hätten alle gedacht, die Erde sei eine Scheibe. Das stimmt nicht. Gelehrte im Mittelalter wussten schon, dass die Erde eine Kugel ist. Das hatten Gelehrte im alten Griechenland schon lange vorher herausgefunden."
+            show: { object: globe }
 
       - activity: practise
         setting: in-context
@@ -356,8 +366,8 @@ lessons:
                 type: matching
                 text: "Wer macht was? Verbinde."
                 pairs:
-                  - { left: { text: "Bäcker" }, right: { text: "Brot" } }
-                  - { left: { text: "Schuster" }, right: { text: "Schuhe" } }
+                  - { left: { text: "Bäcker" }, right: { object: bread } }
+                  - { left: { text: "Schuster" }, right: { object: shoe } }
                   - { left: { text: "Weber" }, right: { text: "Stoff" } }
                   - { left: { text: "Schmied" }, right: { text: "Hufeisen und Werkzeug aus Eisen" } }
                 hints:
@@ -420,6 +430,7 @@ lessons:
               - id: l2-s2
                 type: true_false
                 text: "Mit Gutenbergs Erfindung konnte man Bücher schneller herstellen. Stimmt das?"
+                show: { object: printing-press }
                 answer: true
                 hints: ["Vorher wurde jedes Buch mit der Hand abgeschrieben."]
               - id: l2-s3
@@ -436,9 +447,9 @@ lessons:
                   - { id: yes, show: { text: "gab es schon" }, say: "gab es schon" }
                   - { id: no, show: { text: "gab es noch nicht" }, say: "gab es noch nicht" }
                 options:
-                  - { text: "Brunnen", bin: yes }
-                  - { text: "Kerzen", bin: yes }
-                  - { text: "Kartoffeln in Europa", bin: no }
+                  - { object: well, bin: yes }
+                  - { object: candle, bin: yes }
+                  - { object: potato, bin: no }
                   - { text: "Strom", bin: no }
                 hints: ["Denk an Gretes Brunnen, an Lenes Essen und an das Licht am Abend."]
               - id: l2-s5
@@ -459,6 +470,7 @@ lessons:
               - id: l2-n2
                 type: true_false
                 text: "Im Mittelalter dachten alle Gelehrten, die Erde sei eine Scheibe. Stimmt das?"
+                show: { object: globe }
                 answer: false
               - id: l2-n3
                 type: multiple_choice
@@ -469,8 +481,8 @@ lessons:
                 type: matching
                 text: "Wer lebte wo? Verbinde."
                 pairs:
-                  - { left: { text: "Ritter" }, right: { text: "Burg" } }
-                  - { left: { text: "Mönch" }, right: { text: "Kloster" } }
+                  - { left: { text: "Ritter" }, right: { object: castle } }
+                  - { left: { text: "Mönch" }, right: { object: monastery } }
                   - { left: { text: "Bauer" }, right: { text: "Dorf" } }
                   - { left: { text: "Schuster" }, right: { text: "Stadt" } }
               - id: l2-n5
@@ -535,6 +547,7 @@ lessons:
             part: castle-knight
             type: true_false
             text: "Auf einer Burg war es im Winter warm und hell. Stimmt das?"
+            show: { object: castle }
             answer: false
           - id: l2-c9
             part: castle-knight
@@ -601,6 +614,7 @@ lessons:
             part: then-now
             type: true_false
             text: "Die Menschen in Europa aßen schon im Mittelalter Kartoffeln. Stimmt das?"
+            show: { object: potato }
             answer: false
           - id: l2-c19
             part: then-now

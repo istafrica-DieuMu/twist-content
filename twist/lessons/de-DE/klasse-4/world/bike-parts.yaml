@@ -86,6 +86,7 @@ lessons:
             show: { object: bike }
           - text: "Zwei Bremsen, die unabhängig voneinander bremsen"
             say: "Zuerst die Bremsen. Ein verkehrssicheres Fahrrad hat zwei Bremsen, die unabhängig voneinander bremsen. Meistens ist eine für das Vorderrad und eine für das Hinterrad. Geht eine kaputt, kannst du mit der anderen noch anhalten. Eine Rücktrittbremse allein reicht also nicht."
+            show: { object: brake }
           - text: "Eine Klingel, die hell klingt. Eine Hupe ist am Fahrrad nicht erlaubt."
             say: "Dann die Klingel. Mit ihr warnst du andere, zum Beispiel einen Fußgänger, der dich nicht kommen sieht. Sie muss hell klingen. Eine Hupe ist am Fahrrad nicht erlaubt."
             show: { object: bell }
@@ -95,6 +96,7 @@ lessons:
             say: "An den Pedalen sind gelbe Rückstrahler, nach vorne und nach hinten. An jedem Rad sind zwei gelbe Rückstrahler in den Speichen. Statt der Speichenrückstrahler können die Reifen auch weiße Streifen haben, die im Licht aufleuchten. So sieht man dich auch von der Seite."
           - text: "Schön, aber keine Pflicht: Ständer, Korb, Gepäckträger"
             say: "Und der Fahrradständer, der Korb oder der Gepäckträger? Die sind praktisch, aber keine Pflicht. Ein Fahrrad ohne Korb ist trotzdem verkehrssicher."
+            show: { object: bike-basket }
           - text: "Wusstest du? Im Gesetz heißt die Fahrradklingel „helltönende Glocke“."
             say: "Wusstest du? Im Gesetz für Fahrzeuge heißt die Fahrradklingel nicht Klingel, sondern helltönende Glocke. Das steht dort wirklich so."
             show: { object: bell }
@@ -123,10 +125,10 @@ lessons:
                   - { id: must, show: { text: "muss dran" }, say: "muss dran" }
                   - { id: extra, show: { text: "keine Pflicht" }, say: "keine Pflicht" }
                 options:
-                  - { text: "Klingel", bin: must }
+                  - { object: bell, bin: must }
                   - { text: "zwei Bremsen", bin: must }
-                  - { text: "Korb", bin: extra }
-                  - { text: "Fahrradständer", bin: extra }
+                  - { object: bike-basket, bin: extra }
+                  - { object: kickstand, bin: extra }
                 hints:
                   - "Frag dich: Hilft es beim Anhalten, beim Warnen oder beim Gesehenwerden?"
                   - "Bremsen und Klingel sind Pflicht. Ständer und Korb sind nur praktisch."
@@ -216,10 +218,10 @@ lessons:
                   - { id: must, show: { text: "Pflicht" }, say: "Pflicht" }
                   - { id: extra, show: { text: "keine Pflicht" }, say: "keine Pflicht" }
                 options:
-                  - { text: "Rücklicht", bin: must }
+                  - { object: rear-light, bin: must }
                   - { text: "Rückstrahler an den Pedalen", bin: must }
-                  - { text: "Gepäckträger", bin: extra }
-                  - { text: "Korb", bin: extra }
+                  - { object: luggage-rack, bin: extra }
+                  - { object: bike-basket, bin: extra }
               - id: l1-n2
                 type: multiple_choice
                 text: "Am Hinterrad von Oles Rad fehlen die gelben Rückstrahler, und der Reifen hat keinen weißen Streifen. Was ist das Problem?"
@@ -307,15 +309,19 @@ lessons:
             say: "Noch nicht ganz! Alle Teile müssen auch funktionieren. Eine Bremse, die nicht bremst, hilft dir nicht. Darum macht Ole vor der Fahrt den Fahrrad-Check."
           - text: "Bremsen: Rad schieben, jede Bremse ziehen. Das Rad bleibt stehen."
             say: "Zuerst die Bremsen. Ole schiebt das Rad und zieht erst die eine, dann die andere Bremse. Jedes Mal muss das Rad sofort stehen bleiben."
+            show: { object: brake }
           - text: "Licht: Leuchtet es vorne weiß und hinten rot?\nKlingel: Klingt sie hell?"
             say: "Dann schaltet er das Licht an. Leuchtet es vorne weiß und hinten rot? Und er drückt die Klingel. Klingt sie hell?"
             show: { object: bell }
           - text: "Reifen: genug Luft?\nKette: läuft sie?\nLenker und Sattel: fest?"
             say: "Jetzt drückt er auf die Reifen. Ist genug Luft drin? Er schaut, ob die Kette richtig läuft. Und er prüft, ob Lenker und Sattel fest sind und nicht wackeln."
+            show: { object: tyre }
           - text: "Der Sattel ist richtig hoch, wenn du im Sitzen mit den Fußspitzen auf den Boden kommst."
             say: "Auch die Höhe vom Sattel muss stimmen. Setz dich auf den Sattel. Kommst du mit den Fußspitzen auf den Boden? Dann passt er. So kannst du schnell einen Fuß absetzen, wenn du anhältst."
+            show: { object: saddle }
           - text: "Der Helm sitzt gerade und bedeckt die Stirn. Der Kinnriemen ist zu, ein Finger passt darunter."
             say: "Zum Schluss der Helm. Er ist kein Teil des Fahrrads, aber er schützt deinen Kopf, wenn du stürzt. Er sitzt gerade auf dem Kopf und bedeckt die Stirn. Der Kinnriemen ist geschlossen, und zwischen Riemen und Kinn passt ein Finger."
+            show: { object: helmet }
           - text: "Ist etwas kaputt? Erst reparieren, dann fahren."
             say: "Und wenn beim Check etwas kaputt ist? Dann fährt Ole nicht los. Erst wird es repariert, dann wird gefahren."
 
@@ -328,9 +334,9 @@ lessons:
                 type: matching
                 text: "Wozu ist das Teil da? Verbinde."
                 pairs:
-                  - { left: { text: "Bremsen" }, right: { text: "anhalten" } }
-                  - { left: { text: "Klingel" }, right: { text: "andere warnen" } }
-                  - { left: { text: "Licht" }, right: { text: "im Dunkeln sehen und gesehen werden" } }
+                  - { left: { object: brake }, right: { text: "anhalten" } }
+                  - { left: { object: bell }, right: { text: "andere warnen" } }
+                  - { left: { object: headlight }, right: { text: "im Dunkeln sehen und gesehen werden" } }
                   - { left: { text: "Rückstrahler" }, right: { text: "im Licht der Autos aufleuchten" } }
                 hints:
                   - "Fang mit dem leichtesten Teil an, den Bremsen."
@@ -351,6 +357,7 @@ lessons:
               - id: l2-f3
                 type: true_false
                 text: "Der Helm schützt deinen Kopf, wenn du stürzt. Stimmt das?"
+                show: { object: helmet }
                 answer: true
                 hints:
                   - "Wofür trägst du den Helm?"
@@ -385,6 +392,7 @@ lessons:
               - id: l2-f6
                 type: multiple_choice
                 text: "Wann hat der Sattel die richtige Höhe?"
+                show: { object: saddle }
                 options: ["wenn du im Sitzen mit den Fußspitzen auf den Boden kommst", "wenn deine Füße nicht mehr an die Pedale kommen", "wenn deine Knie an den Lenker stoßen"]
                 answer: "wenn du im Sitzen mit den Fußspitzen auf den Boden kommst"
                 hints:
@@ -397,6 +405,7 @@ lessons:
               - id: l2-s1
                 type: true_false
                 text: "Der Kinnriemen am Helm darf offen bleiben. Stimmt das?"
+                show: { object: helmet }
                 answer: false
                 hints: ["Ein offener Helm kann beim Sturz vom Kopf rutschen."]
               - id: l2-s2
@@ -421,13 +430,14 @@ lessons:
                 type: matching
                 text: "Wie prüfst du es? Verbinde."
                 pairs:
-                  - { left: { text: "Bremse" }, right: { text: "ziehen: Das Rad bleibt stehen." } }
-                  - { left: { text: "Reifen" }, right: { text: "drücken: Ist genug Luft drin?" } }
-                  - { left: { text: "Klingel" }, right: { text: "ausprobieren: Klingt sie hell?" } }
+                  - { left: { object: brake }, right: { text: "ziehen: Das Rad bleibt stehen." } }
+                  - { left: { object: tyre }, right: { text: "drücken: Ist genug Luft drin?" } }
+                  - { left: { object: bell }, right: { text: "ausprobieren: Klingt sie hell?" } }
                 hints: ["Bremsen zieht man, Reifen drückt man."]
               - id: l2-s5
                 type: multiple_choice
                 text: "Wie sitzt der Helm richtig?"
+                show: { object: helmet }
                 options: ["gerade auf dem Kopf, er bedeckt die Stirn", "weit hinten im Nacken", "schief über einem Ohr"]
                 answer: "gerade auf dem Kopf, er bedeckt die Stirn"
                 hints: ["Der Helm soll auch deine Stirn schützen."]
@@ -453,15 +463,16 @@ lessons:
               - id: l2-n3
                 type: true_false
                 text: "Ole sitzt auf dem Sattel und kommt mit den Fußspitzen auf den Boden. Der Sattel hat die richtige Höhe. Stimmt das?"
+                show: { object: saddle }
                 answer: true
               - id: l2-n4
                 type: matching
                 text: "Wofür ist das gut? Verbinde."
                 pairs:
-                  - { left: { text: "Scheinwerfer" }, right: { text: "Du siehst den Weg im Dunkeln." } }
-                  - { left: { text: "Rücklicht" }, right: { text: "Die Autos hinter dir sehen dich." } }
-                  - { left: { text: "Klingel" }, right: { text: "Fußgänger hören dich." } }
-                  - { left: { text: "Bremsen" }, right: { text: "Du hältst rechtzeitig an." } }
+                  - { left: { object: headlight }, right: { text: "Du siehst den Weg im Dunkeln." } }
+                  - { left: { object: rear-light }, right: { text: "Die Autos hinter dir sehen dich." } }
+                  - { left: { object: bell }, right: { text: "Fußgänger hören dich." } }
+                  - { left: { object: brake }, right: { text: "Du hältst rechtzeitig an." } }
               - id: l2-n5
                 type: multiple_choice
                 text: "Was macht Ole vor der Fahrt?"
@@ -480,10 +491,10 @@ lessons:
               - { id: must, show: { text: "Pflicht" }, say: "Pflicht" }
               - { id: extra, show: { text: "keine Pflicht" }, say: "keine Pflicht" }
             options:
-              - { text: "Klingel", bin: must }
-              - { text: "Scheinwerfer", bin: must }
-              - { text: "Gepäckträger", bin: extra }
-              - { text: "Fahrradständer", bin: extra }
+              - { object: bell, bin: must }
+              - { object: headlight, bin: must }
+              - { object: luggage-rack, bin: extra }
+              - { object: kickstand, bin: extra }
           - id: l2-c2
             part: equipment
             type: multiple_choice
@@ -578,13 +589,14 @@ lessons:
             type: matching
             text: "Was macht dieses Teil? Verbinde."
             pairs:
-              - { left: { text: "Klingel" }, right: { text: "Sie warnt andere." } }
-              - { left: { text: "Bremsen" }, right: { text: "Sie halten das Rad sicher an." } }
+              - { left: { object: bell }, right: { text: "Sie warnt andere." } }
+              - { left: { object: brake }, right: { text: "Sie halten das Rad sicher an." } }
               - { left: { text: "Rückstrahler" }, right: { text: "Sie leuchten im Licht auf." } }
           - id: l2-c17
             part: bike-check
             type: true_false
             text: "Zwischen Kinnriemen und Kinn passt ein Finger. So sitzt der Riemen richtig. Stimmt das?"
+            show: { object: helmet }
             answer: true
           - id: l2-c18
             part: bike-check
@@ -608,6 +620,7 @@ lessons:
             part: bike-check
             type: multiple_choice
             text: "Ole sitzt auf dem Sattel, und seine Füße hängen in der Luft. Was stimmt?"
+            show: { object: saddle }
             options: ["Der Sattel ist zu hoch.", "Der Sattel ist zu tief.", "Der Sattel ist genau richtig."]
             answer: "Der Sattel ist zu hoch."
             keep_order: true
