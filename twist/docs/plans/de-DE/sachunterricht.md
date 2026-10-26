@@ -305,3 +305,32 @@ generated).
 About 112 skills and 230 lessons. The benchmark course covers 126 lessons
 across Klasse 1 to 6; Twist wrote more lessons than the benchmark for Mathe
 and about as many for Deutsch.
+
+## Brief for each lesson agent
+
+Lessons are written in waves of 8 agents, about four lesson sets each,
+grouped by Klasse (2026-10-25). Each agent:
+
+1. Reads twist/AGENTS.md, the root AGENTS.md, docs/lesson-anatomy.md (all,
+   above all Activities, Check pools and Authoring checks, including no
+   explicit visuals), docs/task-types.md, docs/plans/de-DE/fun.md, the fun
+   rules in docs/plans/2026-10-25-fun-pilot.md, and this file (out of
+   scope: real experiments stay in class; Twist teaches the idea and the
+   prediction).
+2. Reads the model set of its Klasse in lessons/de-DE/klasse-N/world/
+   (Klasse 1 living-nonliving, 2 farm-animals, 3 animal-classes, 4
+   democracy-vote) and follows its structure, length and tone.
+3. For each skill: the record in competencies/world/ and its NRW codes in
+   frameworks/de/nrw-sachunterricht-2021.yaml; writes
+   lessons/de-DE/klasse-N/world/<slug>.yaml by hand, in German, two
+   lessons on average, ending with the skill check; `builds_on` and the
+   warm-up from the skill's prerequisites.
+4. Uses only pictures in assets/objects.yaml and drawn components in
+   assets/drawn.yaml and the documented task types; where a picture or
+   drawing is missing, a text card, and the missing ones listed in the
+   report.
+5. Facts must be certain; no real parties, politicians or brands; safety
+   advice (traffic, first aid, internet) as German schools teach it.
+6. Runs `node twist/build.mjs` until its files have no error or warning;
+   no commits, no narration. Reports in under 150 words: sets written,
+   facts used, missing pictures, anything a teacher should check.
