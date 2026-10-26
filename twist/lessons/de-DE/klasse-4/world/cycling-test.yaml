@@ -32,8 +32,8 @@ metadata:
   builds_on: [world.space.bike-parts, world.space.right-of-way, world.space.turning-left]
   also_practises: [world.space.bike-parts, world.space.right-of-way, world.space.turning-left]
   vocabulary: { de: [Fahrradprüfung, verkehrssicher, Bremse, Klingel, Licht, Reflektor, Helm, Gehweg, Radweg, Fahrbahn, Handzeichen, Vorfahrt, Vorfahrtstraße, Vorfahrt gewähren, Stoppschild, einordnen, Gegenverkehr, umschauen, toter Winkel, Abstand, Zebrastreifen] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [junction]
   facets: []
   parts:
     - { id: bike, what: { de: "sagen, was ein verkehrssicheres Fahrrad braucht, und warum ein Helm schützt", en: "saying what a roadworthy bike needs and why a helmet protects" } }
@@ -93,6 +93,7 @@ lessons:
             show: { object: bike }
           - text: "Ein Helm ist keine Pflicht. Er schützt aber deinen Kopf. Trag ihn bei jeder Fahrt."
             say: "Und der Helm? In Deutschland ist er keine Pflicht. Aber bei einem Sturz schützt er deinen Kopf. Darum trägst du ihn bei jeder Fahrt, auch auf kurzen Wegen."
+            show: { object: helmet }
           - text: "Bis 8 Jahre: auf dem Gehweg fahren\nBis 10 Jahre: Gehweg erlaubt\nAb 10 Jahren: Radweg oder Straße, immer rechts\nÜber die Straße: absteigen und schieben"
             say: "Wo darfst du fahren? Kinder bis acht Jahre müssen auf dem Gehweg fahren, oder auf einem Radweg, der von der Straße getrennt ist. Kinder bis zehn Jahre dürfen noch auf dem Gehweg fahren. Ab dem zehnten Geburtstag fährst du auf dem Radweg oder auf der Straße, immer am rechten Rand. Auf dem Gehweg passt du auf die Fußgänger auf. Und wenn du vom Gehweg über die Straße willst, steigst du ab und schiebst."
           - text: "Rundes blaues Schild mit weißem Fahrrad: Hier ist ein Radweg. Du musst ihn benutzen."
@@ -180,6 +181,7 @@ lessons:
               - id: l1-s1
                 type: multiple_choice
                 text: "Ein Helm ist keine Pflicht. Warum trägt Aylin trotzdem immer einen?"
+                show: { object: helmet }
                 options: ["Er schützt ihren Kopf, wenn sie stürzt.", "Damit sie schneller fährt.", "Weil die Polizei sonst ihr Fahrrad mitnimmt."]
                 answer: "Er schützt ihren Kopf, wenn sie stürzt."
                 hints: ["Denk daran, was bei einem Sturz passieren kann."]
@@ -316,13 +318,15 @@ lessons:
         screens:
           - text: "Die Ampel zeigt Grün. Am Mast hängt auch ein Schild: Vorfahrt gewähren.\n\nWas gilt für Aylin?"
             say: "Aylin kommt mit dem Fahrrad an eine Kreuzung. Die Ampel zeigt Grün. Am Mast hängt aber auch ein Schild: Vorfahrt gewähren. Was glaubst du: Was gilt für Aylin, die Ampel oder das Schild?"
-            show: { object: traffic-light-green }
+            show: { drawn: junction, lights: { south: green }, signs: { south: give-way }, users: [{ kind: bike, arm: south, go: straight, label: "Aylin" }] }
           - text: "Was gilt zuerst?\n1. Polizei\n2. Ampel\n3. Verkehrsschilder\n4. rechts vor links"
             say: "Die Ampel gilt! Es gibt eine feste Reihenfolge. Am wichtigsten ist, was eine Polizistin oder ein Polizist mit der Hand zeigt. Danach kommt die Ampel. Dann die Verkehrsschilder. Und wo es nichts davon gibt, gilt rechts vor links. Das Schild ist für die Zeit da, in der die Ampel aus ist."
           - text: "gelbe Raute: Vorfahrtstraße, du hast Vorfahrt\nDreieck mit der Spitze nach unten: Vorfahrt gewähren\nrotes Achteck: Stopp, immer anhalten und Vorfahrt gewähren"
             say: "Drei Schilder musst du für die Prüfung kennen. Die gelbe Raute mit weißem Rand zeigt die Vorfahrtstraße: Du hast Vorfahrt. Das weiße Dreieck mit rotem Rand und der Spitze nach unten heißt: Vorfahrt gewähren. Du lässt die anderen zuerst fahren. Das rote Achteck ist das Stoppschild. Dort hältst du immer an, schaust und lässt die anderen fahren."
+            show: { object: sign-priority-road }
           - text: "Links abbiegen:\n1. nach hinten umschauen\n2. Handzeichen links\n3. zur Mitte einordnen\n4. Gegenverkehr vorbeilassen\n5. noch einmal umschauen und abbiegen"
             say: "Links abbiegen ist die schwerste Aufgabe. Zuerst schaust du über die linke Schulter nach hinten. Dann gibst du mit dem linken Arm ein Handzeichen. Du ordnest dich zur Straßenmitte ein. Den Gegenverkehr lässt du vorbei. Dann schaust du noch einmal nach hinten und biegst ab. Ist dir das zu gefährlich, steigst du ab und schiebst das Fahrrad wie ein Fußgänger hinüber."
+            show: { drawn: junction, users: [{ kind: you, arm: south, go: left }, { kind: car, arm: north, go: straight }] }
           - text: "Losfahren vom Rand und an parkenden Autos vorbei: nach hinten umschauen, Handzeichen links.\nAn parkenden Autos: etwa 1 Meter Abstand."
             say: "Auch beim Losfahren vom Straßenrand schaust du nach hinten und gibst ein Handzeichen nach links. Erst wenn alles frei ist, fährst du los. An einem parkenden Auto fährst du genauso vorbei, mit etwa einem Meter Abstand. Denn plötzlich kann eine Autotür aufgehen."
             show: { object: car }
@@ -331,6 +335,7 @@ lessons:
             show: { object: lorry }
           - text: "Zebrastreifen: Vorrang haben Fußgänger.\nWer mit dem Fahrrad fährt, hat dort keinen Vorrang. Wer schiebt, ist Fußgänger."
             say: "Und am Zebrastreifen? Dort haben die Fußgänger Vorrang. Wer mit dem Fahrrad darüberfährt, hat keinen Vorrang. Steigst du ab und schiebst, bist du ein Fußgänger, und die Autos müssen dich hinüberlassen."
+            show: { object: zebra-crossing }
           - text: "Wusstest du? In den Niederlanden gibt es mehr Fahrräder als Menschen."
             say: "Wusstest du? In den Niederlanden, unserem Nachbarland, gibt es mehr Fahrräder als Menschen. Viele Kinder fahren dort jeden Tag mit dem Rad zur Schule."
 
@@ -364,9 +369,9 @@ lessons:
                 type: matching
                 text: "Welches Schild bedeutet was? Verbinde."
                 pairs:
-                  - { left: { text: "gelbe Raute" }, right: { text: "Ich habe Vorfahrt." } }
-                  - { left: { text: "rotes Achteck" }, right: { text: "Immer anhalten, dann die anderen fahren lassen." } }
-                  - { left: { text: "Dreieck mit der Spitze nach unten" }, right: { text: "Vorfahrt gewähren." } }
+                  - { left: { object: sign-priority-road }, right: { text: "Ich habe Vorfahrt." } }
+                  - { left: { object: sign-stop }, right: { text: "Immer anhalten, dann die anderen fahren lassen." } }
+                  - { left: { object: sign-give-way }, right: { text: "Vorfahrt gewähren." } }
                 hints:
                   - "Ein Schild sagt, dass du Vorfahrt hast. Zwei sagen, dass du warten musst."
                   - "Beim Stoppschild hältst du immer an, auch wenn die Straße frei ist."
@@ -374,6 +379,7 @@ lessons:
               - id: l2-f4
                 type: true_false
                 text: "An der Kreuzung gibt es keine Ampel und keine Schilder. Von rechts kommt ein Auto.\n\nDarf das Auto zuerst fahren?"
+                show: { drawn: junction, users: [{ kind: you, arm: south, go: straight }, { kind: car, arm: east, go: straight }] }
                 answer: true
                 hints:
                   - "Wenn nichts geregelt ist, gilt eine einfache Regel."
@@ -415,6 +421,7 @@ lessons:
               - id: l2-s2
                 type: multiple_choice
                 text: "Jonas fährt auf einer Straße mit gelber Raute. Von rechts kommt ein Radfahrer. Wer darf zuerst fahren?"
+                show: { drawn: junction, signs: { south: priority-road }, users: [{ kind: bike, arm: south, go: straight, label: "Jonas" }, { kind: bike, arm: east, go: straight }] }
                 options: ["Jonas", "der Radfahrer von rechts"]
                 answer: "Jonas"
                 hints: ["Die gelbe Raute zeigt die Vorfahrtstraße. Schilder gehen vor rechts vor links."]
@@ -426,6 +433,7 @@ lessons:
               - id: l2-s4
                 type: multiple_choice
                 text: "Mila kommt an ein Stoppschild. Was macht sie?"
+                show: { object: sign-stop }
                 options: ["anhalten, schauen und die anderen fahren lassen", "nur ein bisschen langsamer fahren", "klingeln und weiterfahren"]
                 answer: "anhalten, schauen und die anderen fahren lassen"
                 hints: ["Am Stoppschild hältst du immer an, auch wenn die Straße frei aussieht."]
@@ -514,6 +522,7 @@ lessons:
             part: bike
             type: multiple_choice
             text: "Wann setzt du deinen Fahrradhelm auf?"
+            show: { object: helmet }
             options: ["bei jeder Fahrt, auch auf kurzen Wegen", "nur bei Regen", "nur bei der Fahrradprüfung"]
             answer: "bei jeder Fahrt, auch auf kurzen Wegen"
           - id: l2-c7
@@ -537,6 +546,7 @@ lessons:
             part: rules
             type: multiple_choice
             text: "Kreuzung ohne Ampel und ohne Schilder. Du fährst geradeaus, von rechts kommt ein Auto. Was machst du?"
+            show: { drawn: junction, users: [{ kind: you, arm: south, go: straight }, { kind: car, arm: east, go: straight }] }
             options: ["Ich lasse das Auto zuerst fahren.", "Ich fahre zuerst, weil ich schneller bin.", "Ich klingle, damit das Auto wartet."]
             answer: "Ich lasse das Auto zuerst fahren."
           - id: l2-c11
@@ -569,6 +579,7 @@ lessons:
             part: moves
             type: multiple_choice
             text: "Ein Lastwagen hält an der Ampel und will rechts abbiegen. Wo wartest du mit dem Fahrrad?"
+            show: { object: lorry }
             options: ["hinter dem Lastwagen", "rechts neben dem Lastwagen", "vor dem Lastwagen auf der Straße"]
             answer: "hinter dem Lastwagen"
           - id: l2-c16

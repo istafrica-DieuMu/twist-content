@@ -75,6 +75,7 @@ lessons:
             type: multiple_choice
             text: "Welcher Teil der Blume ist oft bunt und duftet?"
             say: "Welcher Teil der Blume ist oft bunt und duftet?"
+            show: { object: flower }
             options: ["die Blüte", "die Wurzel", "der Stängel"]
             answer: "die Blüte"
             difficulty: easy
@@ -96,7 +97,7 @@ lessons:
             show: { objects: [ant, worm] }
           - text: "Die Wiese ist ein Lebensraum."
             say: "Opa Karl erklärt: Die Wiese ist ein Lebensraum. Ein Lebensraum ist ein Ort, an dem Tiere und Pflanzen alles finden, was sie brauchen: Futter, Wasser und ein Versteck. Ein Fisch findet das im Wasser, eine Biene auf der Wiese."
-            show: { objects: [bee, fish] }
+            show: { object: meadow }
           - text: "Wusstest du? Eine Biene hat fünf Augen."
             say: "Wusstest du? Eine Biene hat fünf Augen. Zwei große Augen sitzen an den Seiten vom Kopf. Und oben auf dem Kopf hat sie noch drei ganz kleine Augen."
             show: { object: bee }
@@ -128,9 +129,9 @@ lessons:
                   - { id: tier, show: { text: "Tier" }, say: "Tier" }
                 options:
                   - { object: ladybird, bin: tier }
-                  - { text: "Löwenzahn", bin: pflanze }
+                  - { object: dandelion, bin: pflanze }
                   - { object: snail, bin: tier }
-                  - { text: "Klee", bin: pflanze }
+                  - { object: clover, bin: pflanze }
                 hints:
                   - "Was kann sich von allein bewegen? Was hat Wurzeln?"
                   - "Löwenzahn und Klee wachsen mit Wurzeln in der Erde."
@@ -172,9 +173,9 @@ lessons:
                 text: "Wo lebt das Tier?"
                 say: "Verbinde jedes Tier mit seinem Lebensraum."
                 pairs:
-                  - { left: { object: ladybird }, right: { text: "Wiese" } }
-                  - { left: { object: fish }, right: { text: "Teich" } }
-                  - { left: { object: whale }, right: { text: "Meer" } }
+                  - { left: { object: ladybird }, right: { object: meadow } }
+                  - { left: { object: fish }, right: { object: pond } }
+                  - { left: { object: whale }, right: { object: sea } }
                 hints: ["Der Wal ist das größte Tier hier. Er braucht viel Platz im Wasser."]
               - id: l1-s2
                 type: multiple_choice
@@ -236,6 +237,7 @@ lessons:
                 type: fill_in_blank
                 text: "Lena schreibt in ihr Wiesenheft."
                 say: "Lena schreibt in ihr Wiesenheft. Setz die passenden Wörter ein."
+                show: { objects: [dandelion, grasshopper] }
                 frame: "Der Löwenzahn ist eine _. Der Grashüpfer ist ein _."
                 options: ["Pflanze", "Tier", "Stein"]
                 answer: ["Pflanze", "Tier"]
@@ -308,6 +310,7 @@ lessons:
             type: true_false
             text: "Stimmt das? Löwenzahn und Gänseblümchen wachsen auf der Wiese."
             say: "Stimmt das? Löwenzahn und Gänseblümchen wachsen auf der Wiese."
+            show: { objects: [dandelion, daisy] }
             answer: true
             difficulty: easy
 
@@ -319,7 +322,7 @@ lessons:
             show: { object: worm }
           - text: "Unter der Erde: Regenwurm und Maulwurf"
             say: "Unter der Erde! Der Regenwurm gräbt Gänge und frisst welke Blätter. Auch der Maulwurf wohnt unter der Erde. Er frisst keine Wurzeln, sondern Regenwürmer und Käferlarven. Seine Erdhaufen siehst du oben auf der Wiese."
-            show: { object: worm }
+            show: { objects: [worm, mole] }
           - text: "Am Boden: Schnecke, Ameise, Feldmaus"
             say: "Am Boden zwischen den Halmen kriechen Schnecken. Sie fressen Blätter. Ameisen laufen hin und her. Die Feldmaus knabbert Samen und Gras. Und der Feldhase frisst Gras und Kräuter."
             show: { objects: [snail, mouse] }
@@ -331,7 +334,7 @@ lessons:
             show: { objects: [bee, flower] }
           - text: "Nicht alles auf einmal mähen"
             say: "Opa Karl mäht die Wiese nie ganz auf einmal. Er lässt immer einen Streifen mit Blumen stehen. So finden die Bienen und Schmetterlinge weiter Futter und ein Versteck."
-            show: { object: flower }
+            show: { object: lawnmower }
 
       - activity: practise
         setting: plain
@@ -348,7 +351,7 @@ lessons:
                 options:
                   - { object: worm, bin: erde }
                   - { object: bee, bin: bluete }
-                  - { text: "Maulwurf", bin: erde }
+                  - { object: mole, bin: erde }
                   - { object: butterfly, bin: bluete }
                 hints:
                   - "Wer kann fliegen? Wer gräbt Gänge?"
@@ -359,6 +362,7 @@ lessons:
                 type: multiple_choice
                 text: "Was trinkt die Biene aus der Blüte?"
                 say: "Was trinkt die Biene aus der Blüte?"
+                show: { object: bee }
                 options: ["Nektar", "Milch", "Regenwasser aus der Pfütze"]
                 answer: "Nektar"
                 hints:
@@ -370,9 +374,9 @@ lessons:
                 text: "Wer frisst was?"
                 say: "Verbinde jedes Tier mit seinem Futter."
                 pairs:
-                  - { left: { object: ladybird }, right: { text: "Blattläuse" } }
+                  - { left: { object: ladybird }, right: { object: aphids } }
                   - { left: { object: spider }, right: { object: fly } }
-                  - { left: { object: rabbit }, right: { text: "Gras und Kräuter" } }
+                  - { left: { object: rabbit }, right: { object: grass, say: "Gras und Kräuter" } }
                 hints:
                   - "Fang mit dem Tier an, das ein Netz baut."
                   - "Die Spinne fängt Fliegen. Der Marienkäfer frisst ganz kleine Tiere an den Stängeln."
@@ -381,6 +385,7 @@ lessons:
                 type: true_false
                 text: "Stimmt das? Der Maulwurf frisst Wurzeln und Möhren."
                 say: "Stimmt das? Der Maulwurf frisst Wurzeln und Möhren."
+                show: { object: mole }
                 answer: false
                 hints:
                   - "Der Maulwurf wohnt unter der Erde. Welches Tier wohnt dort auch?"
@@ -438,6 +443,7 @@ lessons:
                 type: multiple_choice
                 text: "Warum fliegt die Biene auf die Wiese?"
                 say: "Warum fliegt die Biene auf die Wiese?"
+                show: { object: bee }
                 options: ["Dort findet sie Futter in den Blüten.", "Dort will sie schwimmen.", "Dort gräbt sie Gänge in die Erde."]
                 answer: "Dort findet sie Futter in den Blüten."
                 hints: ["Was trinkt die Biene?"]
@@ -461,24 +467,27 @@ lessons:
                   - { id: bluete, show: { text: "auf den Blüten" }, say: "auf den Blüten" }
                 options:
                   - { object: butterfly, bin: bluete }
-                  - { text: "Maulwurf", bin: erde }
+                  - { object: mole, bin: erde }
                   - { object: snail, bin: boden }
                   - { object: worm, bin: erde }
               - id: l2-n3
                 type: multiple_choice
                 text: "Auf Opas Rosen sitzen viele Blattläuse. Welches Tier von der Wiese hilft ihm?"
                 say: "Auf Opas Rosen sitzen viele Blattläuse. Welches Tier von der Wiese hilft ihm?"
+                show: { object: aphids }
                 options: ["der Marienkäfer", "der Regenwurm", "die Schnecke"]
                 answer: "der Marienkäfer"
               - id: l2-n4
                 type: true_false
                 text: "Tim sagt: „Der Maulwurf hat Opas Möhren gefressen.“ Stimmt das?"
                 say: "Tim sagt: Der Maulwurf hat Opas Möhren gefressen. Stimmt das?"
+                show: { object: mole }
                 answer: false
               - id: l2-n5
                 type: multiple_choice
                 text: "Der Nachbar mäht seine ganze Wiese auf einmal. Was fehlt jetzt den Bienen?"
                 say: "Der Nachbar mäht seine ganze Wiese auf einmal. Was fehlt jetzt den Bienen?"
+                show: { object: lawnmower }
                 options: ["die Blüten mit ihrem Futter", "das Wasser im Meer", "der Schnee"]
                 answer: "die Blüten mit ihrem Futter"
               - id: l2-n6
@@ -509,9 +518,9 @@ lessons:
               - { id: pflanze, show: { text: "Pflanze" }, say: "Pflanze" }
               - { id: tier, show: { text: "Tier" }, say: "Tier" }
             options:
-              - { text: "Gänseblümchen", bin: pflanze }
+              - { object: daisy, bin: pflanze }
               - { object: ant, bin: tier }
-              - { text: "Gras", bin: pflanze }
+              - { object: grass, bin: pflanze }
               - { object: spider, bin: tier }
           - id: l2-c3
             part: plants
@@ -567,12 +576,14 @@ lessons:
             type: true_false
             text: "Stimmt das? Der Grashüpfer lebt auf der Wiese."
             say: "Stimmt das? Der Grashüpfer lebt auf der Wiese."
+            show: { object: grasshopper }
             answer: true
           - id: l2-c10
             part: animals
             type: multiple_choice
             text: "Warum ist die Wiese ein Lebensraum für den Schmetterling?"
             say: "Warum ist die Wiese ein Lebensraum für den Schmetterling?"
+            show: { object: butterfly }
             options: ["Er findet dort alles, was er braucht.", "Er geht dort zur Schule.", "Dort ist es immer dunkel."]
             answer: "Er findet dort alles, was er braucht."
           - id: l2-c11
@@ -587,6 +598,7 @@ lessons:
             type: multiple_choice
             text: "Wo wohnt der Maulwurf?"
             say: "Wo wohnt der Maulwurf?"
+            show: { object: mole }
             options: ["unter der Erde", "auf den Blüten", "in einem Netz"]
             answer: "unter der Erde"
           - id: l2-c13
@@ -601,7 +613,7 @@ lessons:
               - { object: snail, bin: boden }
               - { object: worm, bin: erde }
               - { object: mouse, bin: boden }
-              - { text: "Maulwurf", bin: erde }
+              - { object: mole, bin: erde }
           - id: l2-c14
             part: where
             type: true_false
@@ -630,7 +642,7 @@ lessons:
             text: "Was frisst das Tier auf der Wiese?"
             say: "Verbinde jedes Tier mit dem, was es frisst."
             pairs:
-              - { left: { object: worm }, right: { text: "welke Blätter" } }
+              - { left: { object: worm }, right: { object: dead-leaves } }
               - { left: { object: bee }, right: { text: "Nektar" } }
               - { left: { object: spider }, right: { object: mosquito } }
           - id: l2-c18
@@ -638,6 +650,7 @@ lessons:
             type: multiple_choice
             text: "Was frisst der Maulwurf?"
             say: "Was frisst der Maulwurf?"
+            show: { object: mole }
             options: ["Regenwürmer", "Möhren", "Nektar"]
             answer: "Regenwürmer"
           - id: l2-c19
@@ -652,5 +665,6 @@ lessons:
             type: multiple_choice
             text: "Warum brauchen viele Blumen die Bienen?"
             say: "Warum brauchen viele Blumen die Bienen?"
+            show: { object: bee }
             options: ["Die Bienen tragen Blütenstaub, so können die Blumen Samen machen.", "Die Bienen gießen die Blumen.", "Die Bienen fressen die Wurzeln."]
             answer: "Die Bienen tragen Blütenstaub, so können die Blumen Samen machen."

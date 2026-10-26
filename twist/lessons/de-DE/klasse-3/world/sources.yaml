@@ -89,8 +89,10 @@ lessons:
             say: "Mit Quellen! Alles, was aus einer alten Zeit übrig ist und uns von ihr erzählt, nennt man eine Quelle. In Omas Kiste liegen viele Quellen. Geschichtsforscher arbeiten genauso: Sie suchen Quellen und finden so heraus, wie es früher war."
           - text: "Bildquellen: Fotos und Gemälde"
             say: "Ganz oben liegt ein schwarz-weißes Foto von Omas Schulklasse. Fotos, Gemälde und Zeichnungen von früher sind Bildquellen. Sie zeigen, wie Menschen und Dinge damals aussahen."
+            show: { object: old-photo }
           - text: "Schriftquellen: Briefe, Tagebücher, Zeitungen"
             say: "Darunter liegt ein Brief von Omas Brieffreundin. Briefe, Tagebücher, Zeitungen und Zeugnisse von früher sind Schriftquellen. Jemand hat sie damals geschrieben."
+            show: { object: letter }
           - text: "Sachquellen: Gegenstände von früher"
             say: "Dann findet Emil Omas Jo-Jo aus Holz und ein altes Telefon. Gegenstände von früher sind Sachquellen: Spielzeug, Werkzeug, Geschirr, Kleidung, sogar ganze Häuser."
             show: { objects: [yo-yo, telephone] }
@@ -109,6 +111,7 @@ lessons:
                 type: multiple_choice
                 text: "Ein Brief von früher ist …"
                 say: "Was für eine Quelle ist ein Brief von früher?"
+                show: { object: letter }
                 options: ["eine Schriftquelle", "eine Bildquelle", "eine Sachquelle"]
                 answer: "eine Schriftquelle"
                 hints:
@@ -158,8 +161,8 @@ lessons:
                 type: matching
                 text: "Verbinde jede Quelle mit ihrer Art."
                 pairs:
-                  - { left: { text: "Foto" }, right: { text: "Bildquelle" } }
-                  - { left: { text: "Tagebuch" }, right: { text: "Schriftquelle" } }
+                  - { left: { object: old-photo }, right: { text: "Bildquelle" } }
+                  - { left: { object: diary }, right: { text: "Schriftquelle" } }
                   - { left: { text: "Spielzeug" }, right: { text: "Sachquelle" } }
                 hints:
                   - "Bild, Schrift oder Gegenstand?"
@@ -206,10 +209,13 @@ lessons:
                   - { object: marble, bin: object }
                 hints: ["Bild, Text, Gegenstand, oder erzählt jemand?"]
               - id: l1-s4
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Welche Quelle ist geschrieben?"
-                options: ["ein Tagebuch", "ein Foto", "ein Jo-Jo"]
-                answer: "ein Tagebuch"
+                options:
+                  - { object: diary }
+                  - { object: old-photo }
+                  - { object: yo-yo }
+                answer: diary
                 hints: ["In welcher Quelle stehen Wörter und Sätze?"]
               - id: l1-s5
                 type: true_false
@@ -222,8 +228,8 @@ lessons:
                 type: matching
                 text: "Welche Art von Quelle ist das? Verbinde."
                 pairs:
-                  - { left: { text: "Brief" }, right: { text: "Schriftquelle" } }
-                  - { left: { text: "Gemälde" }, right: { text: "Bildquelle" } }
+                  - { left: { object: letter }, right: { text: "Schriftquelle" } }
+                  - { left: { object: painting }, right: { text: "Bildquelle" } }
                   - { left: { object: telephone }, right: { text: "Sachquelle" } }
                   - { left: { text: "Oma erzählt" }, right: { text: "Zeitzeugin" } }
                 hints: ["Ein Telefon ist ein Gegenstand."]
@@ -233,6 +239,7 @@ lessons:
               - id: l1-n1
                 type: multiple_choice
                 text: "Emil findet Omas altes Zeugnis. Was für eine Quelle ist das?"
+                show: { object: school-report }
                 options: ["eine Schriftquelle", "eine Sachquelle", "eine Bildquelle"]
                 answer: "eine Schriftquelle"
               - id: l1-n2
@@ -253,10 +260,13 @@ lessons:
                   - { object: clock, bin: object }
                   - { text: "die Nachbarin erzählt von ihrer Kindheit", bin: witness }
               - id: l1-n4
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Welche Quelle zeigt dir, wie Omas Schulklasse aussah?"
-                options: ["das Foto", "das Jo-Jo", "das Telefon"]
-                answer: "das Foto"
+                options:
+                  - { object: old-photo }
+                  - { object: yo-yo }
+                  - { object: telephone }
+                answer: old-photo
               - id: l1-n5
                 type: multiple_choice
                 text: "Opa erzählt vom Tag, an dem er sein erstes Fahrrad bekam. Was ist er?"
@@ -271,19 +281,24 @@ lessons:
             type: multiple_choice
             text: "Ein Gemälde von früher ist …"
             say: "Was für eine Quelle ist ein Gemälde von früher?"
+            show: { object: painting }
             options: ["eine Bildquelle", "eine Schriftquelle", "eine Sachquelle"]
             answer: "eine Bildquelle"
           - id: l1-c2
             type: true_false
             text: "Stimmt das? Eine alte Zeitung ist eine Sachquelle."
+            show: { object: newspaper }
             answer: false
             feedback:
               "true": "Eine Zeitung ist geschrieben. Sie ist eine Schriftquelle."
           - id: l1-c3
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welche Quelle ist ein Gegenstand?"
-            options: ["ein alter Teddy", "ein Brief", "ein Foto"]
-            answer: "ein alter Teddy"
+            options:
+              - { object: teddy }
+              - { object: letter }
+              - { object: old-photo }
+            answer: teddy
           - id: l1-c4
             type: true_false
             text: "Stimmt das? Wer von früher erzählt, was er selbst erlebt hat, ist ein Zeitzeuge."
@@ -293,14 +308,17 @@ lessons:
             text: "Verbinde."
             say: "Verbinde jede Quelle mit ihrer Art."
             pairs:
-              - { left: { text: "Zeitung" }, right: { text: "Schriftquelle" } }
+              - { left: { object: newspaper }, right: { text: "Schriftquelle" } }
               - { left: { object: yo-yo }, right: { text: "Sachquelle" } }
-              - { left: { text: "Foto" }, right: { text: "Bildquelle" } }
+              - { left: { object: old-photo }, right: { text: "Bildquelle" } }
           - id: l1-c6
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welche Quelle ist eine Schriftquelle?"
-            options: ["ein Zeugnis", "ein Gemälde", "eine Murmel"]
-            answer: "ein Zeugnis"
+            options:
+              - { object: school-report }
+              - { object: painting }
+              - { object: marble }
+            answer: school-report
 
   - n: 2
     title: { de: "Was verrät eine Quelle?", en: "What does a source tell us?" }
@@ -316,6 +334,7 @@ lessons:
             type: multiple_choice
             text: "Ein Foto von früher ist …"
             say: "Was für eine Quelle ist ein Foto von früher?"
+            show: { object: old-photo }
             options: ["eine Bildquelle", "eine Sachquelle", "eine Schriftquelle"]
             answer: "eine Bildquelle"
             difficulty: easy
@@ -332,8 +351,10 @@ lessons:
             say: "Emil schaut das Foto von Omas Schulklasse an. Alles ist schwarz, weiß und grau. Was glaubst du: War die Welt früher schwarz-weiß?"
           - text: "Nein! Nur viele Fotos waren schwarz-weiß."
             say: "Nein. Omas Pullover war rot und der Himmel blau, so wie heute. Viele Fotos wurden damals nur mit schwarz-weißem Film gemacht. Ein Foto zeigt, wie Menschen und Dinge aussahen. Aber es zeigt nur einen einzigen Augenblick, und es verrät nicht, was die Menschen gedacht haben."
+            show: { object: old-photo }
           - text: "Ein Brief verrät, was jemand gedacht hat."
             say: "Im Brief schreibt Omas Brieffreundin, dass sie sich auf den Sommer freut und dass ihr Bruder ein Fahrrad bekommen hat. Ein Brief verrät Gedanken, Gefühle und Neuigkeiten. Aber er zeigt nur, was eine einzige Person gedacht hat."
+            show: { object: letter }
           - text: "Ein Gegenstand zeigt, woraus etwas war und wie man es benutzt hat."
             say: "Am alten Telefon sieht Emil eine runde Scheibe mit Löchern für die Zahlen. Damit hat man früher die Nummer gewählt. Ein Gegenstand zeigt, woraus etwas gemacht war und wie die Menschen es benutzt haben."
             show: { object: telephone }
@@ -354,6 +375,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "Was verrät dir ein Foto von früher?"
+                show: { object: old-photo }
                 options: ["wie Menschen und Dinge damals aussahen", "was die Menschen gedacht haben", "wie laut es damals war"]
                 answer: "wie Menschen und Dinge damals aussahen"
                 hints:
@@ -364,6 +386,7 @@ lessons:
               - id: l2-f2
                 type: true_false
                 text: "Stimmt das? Früher war die ganze Welt schwarz-weiß."
+                show: { object: old-photo }
                 answer: false
                 feedback:
                   "true": "Die Welt war bunt wie heute. Nur viele Fotos waren schwarz-weiß."
@@ -375,8 +398,8 @@ lessons:
                 type: matching
                 text: "Was verrät dir diese Quelle? Verbinde."
                 pairs:
-                  - { left: { text: "ein Foto" }, right: { text: "wie etwas aussah" } }
-                  - { left: { text: "ein Brief" }, right: { text: "was jemand gedacht hat" } }
+                  - { left: { object: old-photo }, right: { text: "wie etwas aussah" } }
+                  - { left: { object: letter }, right: { text: "was jemand gedacht hat" } }
                   - { left: { object: telephone }, right: { text: "wie man etwas benutzt hat" } }
                 hints:
                   - "Was zeigt ein Bild, was erzählt ein Text?"
@@ -436,11 +459,13 @@ lessons:
               - id: l2-s3
                 type: true_false
                 text: "Stimmt das? Ein Brief zeigt, was eine einzige Person gedacht hat."
+                show: { object: letter }
                 answer: true
                 hints: ["Wer hat den Brief geschrieben?"]
               - id: l2-s4
                 type: true_false
                 text: "Stimmt das? Ein Foto zeigt auch, was die Menschen darauf gedacht haben."
+                show: { object: old-photo }
                 answer: false
                 feedback:
                   "true": "Gedanken kann man nicht fotografieren. Das Foto zeigt nur, wie die Menschen aussahen."
@@ -481,6 +506,7 @@ lessons:
               - id: l2-n3
                 type: multiple_choice
                 text: "Auf dem Foto lachen alle Kinder. Was weiß Emil jetzt sicher?"
+                show: { object: old-photo }
                 options: ["Die Kinder haben gelacht, als das Foto gemacht wurde.", "Die Kinder waren immer fröhlich.", "Die Kinder mochten alle ihre Lehrerin."]
                 answer: "Die Kinder haben gelacht, als das Foto gemacht wurde."
                 feedback:
@@ -488,6 +514,7 @@ lessons:
               - id: l2-n4
                 type: true_false
                 text: "Emil sagt: „Am alten Telefon sehe ich, wie man früher eine Nummer gewählt hat.“ Stimmt das?"
+                show: { object: telephone }
                 answer: true
               - id: l2-n5
                 type: multiple_choice
@@ -504,6 +531,7 @@ lessons:
             type: multiple_choice
             text: "Ein Tagebuch von früher ist …"
             say: "Was für eine Quelle ist ein Tagebuch von früher?"
+            show: { object: diary }
             options: ["eine Schriftquelle", "eine Bildquelle", "eine Sachquelle"]
             answer: "eine Schriftquelle"
           - id: l2-c2
@@ -524,31 +552,37 @@ lessons:
             part: kinds
             type: true_false
             text: "Stimmt das? Ein alter Kochtopf ist eine Sachquelle."
+            show: { object: cooking-pot }
             answer: true
           - id: l2-c4
             part: kinds
             type: matching
             text: "Verbinde jede Art mit einem Beispiel."
             pairs:
-              - { left: { text: "Bildquelle" }, right: { text: "Foto" } }
-              - { left: { text: "Schriftquelle" }, right: { text: "Zeitung" } }
+              - { left: { text: "Bildquelle" }, right: { object: old-photo } }
+              - { left: { text: "Schriftquelle" }, right: { object: newspaper } }
               - { left: { text: "Sachquelle" }, right: { text: "Werkzeug" } }
           - id: l2-c5
             part: kinds
-            type: multiple_choice
+            type: image_multiple_choice
             text: "Welche Quelle ist eine Bildquelle?"
-            options: ["ein Gemälde", "ein Brief", "ein Hammer"]
-            answer: "ein Gemälde"
+            options:
+              - { object: painting }
+              - { object: letter }
+              - { object: hammer }
+            answer: painting
           - id: l2-c6
             part: tells
             type: multiple_choice
             text: "Was verrät dir ein alter Brief?"
+            show: { object: letter }
             options: ["was die Person gedacht und erlebt hat", "wie laut es damals war", "was alle Menschen damals gedacht haben"]
             answer: "was die Person gedacht und erlebt hat"
           - id: l2-c7
             part: tells
             type: true_false
             text: "Stimmt das? Ein Foto zeigt nur einen einzigen Augenblick."
+            show: { object: old-photo }
             answer: true
           - id: l2-c8
             part: tells
@@ -560,6 +594,7 @@ lessons:
             part: tells
             type: true_false
             text: "Stimmt das? Weil alte Fotos schwarz-weiß sind, gab es früher keine Farben."
+            show: { object: old-photo }
             answer: false
           - id: l2-c10
             part: tells

@@ -31,7 +31,7 @@ metadata:
   also_practises: [world.time.timeline]
   vocabulary: { de: [Erfindung, erfinden, Erfinder, Zeitleiste, Buchdruck, Laufmaschine, Telefon, Auto, Computer, Smartphone, Glühbirne, Strom, Vorteil, Nachteil, bewerten, Abgase, Umwelt] }
   forms: [text, audio, picture, drawn]
-  drawn: [table]
+  drawn: [timeline]
   facets: []
   parts:
     - { id: timeline, what: { de: "Erfindungen auf der Zeitleiste ordnen und sagen, wer sie wo erfunden hat", en: "putting inventions in order on a timeline and saying who invented them where" } }
@@ -87,11 +87,12 @@ lessons:
             show: { object: car }
           - text: "Eine Erfindung ist etwas Neues, das sich Menschen ausdenken und bauen."
             say: "Laufmaschine und Auto sind Erfindungen. Eine Erfindung ist etwas Neues, das sich Menschen ausdenken und bauen. Wer etwas erfindet, ist eine Erfinderin oder ein Erfinder."
-          - text: "Herrn Demirs Zeitleiste, von alt nach neu"
+          - text: "Herrn Demirs Zeitleiste, von alt nach neu. Nach dem Computer kam noch das Smartphone."
             say: "Herr Demir zeigt eine Zeitleiste. Um vierzehnhundertfünfzig erfand Johannes Gutenberg in Mainz den Buchdruck mit beweglichen Buchstaben aus Metall. Achtzehnhundertsiebzehn kam die Laufmaschine, achtzehnhundertsechsundsiebzig das Telefon und achtzehnhundertsechsundachtzig das Auto. Neunzehnhunderteinundvierzig baute Konrad Zuse in Berlin einen Computer, den man programmieren konnte. Das Smartphone ist die jüngste Erfindung in der Reihe."
-            show: { drawn: table, rows: [["Jahr", "Erfindung"], ["um 1450", "Buchdruck (Johannes Gutenberg, Mainz)"], ["1817", "Laufmaschine (Karl Drais, Mannheim)"], ["1876", "Telefon"], ["1886", "Auto (Carl Benz, Mannheim)"], ["1941", "Computer (Konrad Zuse, Berlin)"], ["später", "Smartphone"]] }
+            show: { drawn: timeline, from: 1400, to: 2000, step: 100, events: [[1450, "Buchdruck"], [1817, "Laufmaschine"], [1876, "Telefon"], [1886, "Auto"], [1941, "Computer"]] }
           - text: "Erfindungen bauen aufeinander auf.\nOhne das Rad gäbe es kein Fahrrad und kein Auto.\nOhne Strom gäbe es keinen Computer."
             say: "Viele Erfindungen bauen auf älteren auf. Das Rad ist schon viele tausend Jahre alt. Ohne das Rad gäbe es kein Fahrrad und kein Auto. Ohne Strom gäbe es keinen Computer und kein Smartphone."
+            show: { object: wheel }
 
       - activity: practise
         setting: in-context
@@ -122,9 +123,9 @@ lessons:
                 type: matching
                 text: "Wer hat was erfunden? Verbinde."
                 pairs:
-                  - { left: { text: "Buchdruck" }, right: { text: "Johannes Gutenberg in Mainz" } }
-                  - { left: { text: "Laufmaschine" }, right: { text: "Karl Drais in Mannheim" } }
-                  - { left: { text: "Computer" }, right: { text: "Konrad Zuse in Berlin" } }
+                  - { left: { object: printing-press }, right: { text: "Johannes Gutenberg in Mainz" } }
+                  - { left: { object: draisine }, right: { text: "Karl Drais in Mannheim" } }
+                  - { left: { object: computer }, right: { text: "Konrad Zuse in Berlin" } }
                 hints:
                   - "Zwei der Erfindungen kommen aus Mannheim und Mainz, eine aus Berlin."
                   - "Gutenberg druckte Bücher, Drais fuhr mit der Laufmaschine."
@@ -200,11 +201,13 @@ lessons:
               - id: l1-n2
                 type: multiple_choice
                 text: "In welcher Stadt erfand Johannes Gutenberg den Buchdruck?"
+                show: { object: printing-press }
                 options: ["in Mainz", "in Berlin", "in Hamburg"]
                 answer: "in Mainz"
               - id: l1-n3
                 type: true_false
                 text: "Konrad Zuse baute 1941 in Berlin einen Computer. Stimmt das?"
+                show: { object: computer }
                 answer: true
               - id: l1-n4
                 type: text_input
@@ -308,10 +311,10 @@ lessons:
                 type: matching
                 text: "Was hat die Erfindung verändert? Verbinde."
                 pairs:
-                  - { left: { text: "Buchdruck" }, right: { text: "Bücher wurden billiger, mehr Menschen lernten lesen." } }
-                  - { left: { text: "Glühbirne" }, right: { text: "Abends wird es mit einem Schalter hell." } }
-                  - { left: { text: "Telefon" }, right: { text: "Man spricht mit Menschen, die weit weg sind." } }
-                  - { left: { text: "Auto" }, right: { text: "Man fährt schnell weite Strecken." } }
+                  - { left: { object: printing-press }, right: { text: "Bücher wurden billiger, mehr Menschen lernten lesen." } }
+                  - { left: { object: light-bulb }, right: { text: "Abends wird es mit einem Schalter hell." } }
+                  - { left: { object: telephone }, right: { text: "Man spricht mit Menschen, die weit weg sind." } }
+                  - { left: { object: car }, right: { text: "Man fährt schnell weite Strecken." } }
                 hints:
                   - "Frag dich bei jeder Erfindung: Was konnte man danach, was vorher nicht ging?"
                   - "Die Glühbirne hat mit Licht zu tun, das Telefon mit Sprechen."
@@ -346,6 +349,7 @@ lessons:
               - id: l2-f4
                 type: true_false
                 text: "Mit dem Buchdruck konnte man viele Bücher schneller herstellen als mit der Hand. Stimmt das?"
+                show: { object: printing-press }
                 answer: true
                 hints:
                   - "Vorher wurde jedes Buch mit der Hand abgeschrieben."
@@ -389,6 +393,7 @@ lessons:
               - id: l2-s2
                 type: multiple_choice
                 text: "Warum konnten nach der Erfindung des Buchdrucks mehr Menschen lesen lernen?"
+                show: { object: printing-press }
                 options: ["Weil es mehr und billigere Bücher gab.", "Weil die Bücher größer wurden.", "Weil Gutenberg in jede Schule ging."]
                 answer: "Weil es mehr und billigere Bücher gab."
                 hints: ["Wer lesen lernen will, braucht Bücher. Was wurde mit dem Buchdruck anders?"]
@@ -489,9 +494,9 @@ lessons:
             type: matching
             text: "Was hat sich durch die Erfindung verändert? Verbinde."
             pairs:
-              - { left: { text: "Glühbirne" }, right: { text: "Man kann abends gut lesen und spielen." } }
-              - { left: { text: "Buchdruck" }, right: { text: "Viele Menschen können Bücher kaufen." } }
-              - { left: { text: "Auto" }, right: { text: "Man kommt schnell in eine andere Stadt." } }
+              - { left: { object: light-bulb }, right: { text: "Man kann abends gut lesen und spielen." } }
+              - { left: { object: printing-press }, right: { text: "Viele Menschen können Bücher kaufen." } }
+              - { left: { object: car }, right: { text: "Man kommt schnell in eine andere Stadt." } }
           - id: l2-c8
             part: changes
             type: multiple_choice
@@ -519,6 +524,7 @@ lessons:
             part: changes
             type: true_false
             text: "Durch den Buchdruck wurden Bücher teurer. Stimmt das?"
+            show: { object: printing-press }
             answer: false
           - id: l2-c13
             part: changes

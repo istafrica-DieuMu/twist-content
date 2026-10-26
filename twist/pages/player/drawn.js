@@ -585,6 +585,336 @@ function table(o) {
   rows.forEach((row, r) => { h += `<tr>${o.sheet ? side(r + 1) : ""}${[...Array(n)].map((_, c) => td(row[c], r, c, head && r === 0 && !o.sheet)).join("")}</tr>`; });
   return `<table style="border-collapse:collapse;font:600 15px Andika,sans-serif;color:#2b0f45;margin:0 auto">${h}</table>`;
 }
+/* ---------- maps, scenes and timelines (Sachunterricht) ---------- */
+// Text with a white halo, so it reads over lines and colours; "\n" breaks a line.
+let DRAWN_UID = 0;
+const lang = () => (set?.language === "en" ? "en" : "de");
+function halo(x, y, t, o = {}) {
+  const fs = o.size ?? 11, lines = String(t).split("\n"), y0 = y - ((lines.length - 1) * fs * 1.08) / 2;
+  return `<text x="${x.toFixed(1)}" y="${y0.toFixed(1)}" text-anchor="${o.anchor ?? "middle"}" dominant-baseline="central" font-size="${fs}" font-weight="${o.weight ?? 700}" fill="${o.fill ?? "#2b0f45"}"${o.italic ? ' font-style="italic"' : ""} stroke="${o.halo ?? "#fff"}" stroke-width="${o.haloW ?? 3}" stroke-linejoin="round" paint-order="stroke">${lines.map((l, i) => `<tspan x="${x.toFixed(1)}" dy="${i ? (fs * 1.08).toFixed(1) : 0}">${esc(l)}</tspan>`).join("")}</text>`;
+}
+
+// Germany: the 16 Länder as simplified outlines in lon/lat. Borders are chains between the points
+// where three Länder (or a Land and the frontier) meet; each Land is a ring of chains ("-" walks
+// a chain backwards), so neighbours share their border exactly.
+const DE_CHAIN = {
+  sh_coast: [[8.95, 53.9], [8.85, 54.1], [8.6, 54.3], [9.0, 54.47], [8.62, 54.72], [8.66, 54.91], [9.65, 54.82], [10.0, 54.6], [10.15, 54.38], [10.75, 54.32], [11.1, 54.35], [10.85, 54.05], [10.88, 53.96]],
+  sh_elbe: [[8.95, 53.9], [9.45, 53.72], [9.73, 53.56]],
+  sh_hh: [[9.73, 53.56], [9.95, 53.73], [10.2, 53.7], [10.33, 53.45]],
+  hh_ni: [[10.33, 53.45], [10.0, 53.4], [9.75, 53.45]],
+  hh_w: [[9.75, 53.45], [9.73, 53.56]],
+  sh_ni: [[10.33, 53.45], [10.6, 53.37]],
+  sh_mv: [[10.6, 53.37], [10.75, 53.6], [10.95, 53.8], [10.88, 53.96]],
+  mv_coast: [[10.88, 53.96], [11.4, 53.95], [12.1, 54.18], [12.5, 54.45], [13.1, 54.45], [13.4, 54.68], [13.75, 54.35], [13.8, 54.1], [14.2, 53.92], [14.2, 53.55], [14.4, 53.3]],
+  mv_bb: [[14.4, 53.3], [13.7, 53.42], [12.9, 53.2], [12.0, 53.25], [11.27, 53.12]],
+  mv_ni: [[11.27, 53.12], [10.6, 53.37]],
+  ni_bb: [[11.27, 53.12], [11.6, 53.03]],
+  bb_pl: [[14.4, 53.3], [14.15, 52.85], [14.6, 52.6], [14.55, 52.3], [14.7, 51.95], [14.73, 51.55]],
+  bb_sa: [[11.6, 53.03], [12.2, 52.85], [12.3, 52.45], [12.4, 52.05], [13.1, 51.9], [13.2, 51.6]],
+  bb_sn: [[13.2, 51.6], [13.8, 51.45], [14.3, 51.5], [14.73, 51.55]],
+  sn_out: [[14.73, 51.55], [15.0, 51.15], [14.82, 50.87], [14.4, 51.0], [14.25, 50.88], [13.9, 50.78], [13.4, 50.65], [12.95, 50.42], [12.5, 50.4], [12.1, 50.3]],
+  sn_by: [[12.1, 50.3], [11.9, 50.42]],
+  sn_th: [[11.9, 50.42], [11.95, 50.6], [12.3, 50.72], [12.65, 50.95], [12.2, 51.15]],
+  sn_sa: [[12.2, 51.15], [12.2, 51.45], [12.6, 51.65], [13.2, 51.6]],
+  sa_th: [[12.2, 51.15], [11.6, 51.25], [11.0, 51.4], [10.6, 51.6]],
+  sa_ni: [[10.6, 51.6], [10.65, 51.85], [11.05, 52.2], [10.95, 52.6], [11.3, 52.85], [11.6, 53.03]],
+  ni_th: [[10.6, 51.6], [10.35, 51.5], [10.0, 51.38]],
+  ni_he: [[10.0, 51.38], [9.7, 51.3], [9.55, 51.5], [9.45, 51.65]],
+  th_he: [[10.0, 51.38], [10.15, 51.05], [9.95, 50.65], [10.05, 50.5]],
+  th_by: [[10.05, 50.5], [10.6, 50.3], [11.2, 50.35], [11.5, 50.42], [11.9, 50.42]],
+  by_out: [[12.1, 50.3], [12.45, 50.05], [12.5, 49.75], [12.9, 49.35], [13.4, 49.05], [13.84, 48.77], [13.45, 48.55], [13.0, 48.27], [12.75, 47.95], [13.0, 47.75], [13.05, 47.5], [12.75, 47.65], [12.2, 47.62], [11.6, 47.55], [11.0, 47.4], [10.45, 47.55], [10.2, 47.28], [9.95, 47.55], [9.75, 47.58]],
+  bw_by: [[9.75, 47.58], [10.1, 47.95], [10.0, 48.42], [10.3, 48.6], [10.45, 48.95], [10.15, 49.25], [9.95, 49.5], [9.55, 49.78], [9.1, 49.55]],
+  he_by: [[9.1, 49.55], [9.05, 49.8], [8.98, 50.02], [9.2, 50.12], [9.5, 50.25], [9.75, 50.4], [10.05, 50.5]],
+  bw_out: [[9.75, 47.58], [9.2, 47.66], [8.85, 47.7], [8.6, 47.8], [8.25, 47.62], [7.6, 47.58], [7.55, 48.0], [7.75, 48.5], [8.2, 48.97]],
+  bw_rp: [[8.2, 48.97], [8.4, 49.3], [8.45, 49.58]],
+  bw_he: [[8.45, 49.58], [8.85, 49.42], [9.1, 49.55]],
+  he_rp: [[8.45, 49.58], [8.35, 49.85], [7.8, 50.05], [7.85, 50.3], [8.15, 50.55], [8.05, 50.72]],
+  he_nrw: [[8.05, 50.72], [8.2, 50.95], [8.55, 51.25], [8.95, 51.45], [9.45, 51.65]],
+  rp_out: [[8.2, 48.97], [7.6, 49.08], [7.3, 49.12]],
+  sl_out: [[7.3, 49.12], [7.05, 49.12], [6.75, 49.17], [6.37, 49.47], [6.45, 49.58]],
+  sl_rp: [[7.3, 49.12], [7.4, 49.4], [7.05, 49.62], [6.45, 49.58]],
+  rp_out2: [[6.45, 49.58], [6.5, 49.75], [6.13, 50.13], [6.4, 50.32]],
+  rp_nrw: [[6.4, 50.32], [6.9, 50.45], [7.2, 50.6], [7.6, 50.72], [8.05, 50.72]],
+  nrw_out: [[6.4, 50.32], [6.25, 50.6], [6.02, 50.75], [5.87, 51.05], [6.2, 51.4], [5.95, 51.82], [6.4, 51.85], [6.8, 51.98], [7.05, 52.25]],
+  nrw_ni: [[7.05, 52.25], [7.6, 52.35], [7.95, 52.05], [8.35, 52.2], [8.3, 52.45], [8.7, 52.52], [9.1, 52.15], [9.25, 51.88], [9.45, 51.65]],
+  ni_out: [[7.05, 52.25], [7.05, 52.6], [7.2, 53.0], [7.2, 53.35], [7.05, 53.58], [7.8, 53.72], [8.1, 53.6], [8.15, 53.45], [8.35, 53.55], [8.55, 53.55], [8.6, 53.82], [8.75, 53.87], [8.95, 53.9]],
+  ni_elbe: [[8.95, 53.9], [9.4, 53.65], [9.75, 53.45]],
+};
+// Each Land: its ring, label point, names, capital [de, en, lon, lat, label side], default colour (neighbours differ).
+const DE_LAND = {
+  "schleswig-holstein": { ring: "sh_coast -sh_mv -sh_ni -sh_hh -sh_elbe", at: [9.65, 54.2], de: "Schleswig-\nHolstein", en: "Schleswig-\nHolstein", cap: ["Kiel", "Kiel", 10.13, 54.32, 1], c: 0 },
+  hamburg: { ring: "sh_hh hh_ni hh_w", at: [10.05, 53.58], de: "Hamburg", en: "Hamburg", cap: ["Hamburg", "Hamburg", 10.0, 53.55, -1], c: 2, small: true },
+  "mecklenburg-vorpommern": { ring: "mv_coast mv_bb mv_ni sh_mv", at: [12.45, 53.68], de: "Mecklenburg-\nVorpommern", en: "Mecklenburg-\nWestern\nPomerania", cap: ["Schwerin", "Schwerin", 11.41, 53.63, 1], c: 1 },
+  niedersachsen: { ring: "ni_out ni_elbe -hh_ni sh_ni -mv_ni ni_bb -sa_ni ni_th ni_he -nrw_ni", at: [9.45, 52.55], de: "Nieder-\nsachsen", en: "Lower\nSaxony", cap: ["Hannover", "Hanover", 9.73, 52.37, -1], c: 3 },
+  bremen: { rings: [[[8.48, 53.2], [8.7, 53.15], [8.98, 53.12], [8.95, 53.0], [8.75, 53.03], [8.6, 53.12]], [[8.5, 53.6], [8.63, 53.6], [8.63, 53.5], [8.52, 53.5]]], at: [8.25, 53.2], de: "Bremen", en: "Bremen", cap: ["Bremen", "Bremen", 8.8, 53.08, -1], c: 2, small: true },
+  brandenburg: { ring: "-mv_bb bb_pl -bb_sn -bb_sa -ni_bb", at: [13.85, 51.95], de: "Branden-\nburg", en: "Branden-\nburg", cap: ["Potsdam", "Potsdam", 13.06, 52.4, -1], c: 2 },
+  berlin: { rings: [[[13.1, 52.6], [13.4, 52.68], [13.75, 52.5], [13.6, 52.35], [13.2, 52.38], [13.1, 52.5]]], at: [13.43, 52.52], de: "Berlin", en: "Berlin", cap: ["Berlin", "Berlin", 13.4, 52.52, 1], c: 3, small: true },
+  "sachsen-anhalt": { ring: "bb_sa -sn_sa sa_th sa_ni", at: [11.75, 52.05], de: "Sachsen-\nAnhalt", en: "Saxony-\nAnhalt", cap: ["Magdeburg", "Magdeburg", 11.63, 52.13, -1], c: 1 },
+  sachsen: { ring: "bb_sn sn_out sn_by sn_th sn_sa", at: [13.35, 51.15], de: "Sachsen", en: "Saxony", cap: ["Dresden", "Dresden", 13.74, 51.05, 1], c: 0 },
+  "thueringen": { ring: "-sa_th -sn_th -th_by -th_he -ni_th", at: [11.1, 50.82], de: "Thüringen", en: "Thuringia", cap: ["Erfurt", "Erfurt", 11.03, 50.98, -1], c: 2 },
+  hessen: { ring: "-ni_he th_he -he_by -bw_he he_rp he_nrw", at: [9.0, 50.65], de: "Hessen", en: "Hesse", cap: ["Wiesbaden", "Wiesbaden", 8.24, 50.08, 1], c: 1 },
+  "nordrhein-westfalen": { ring: "nrw_out nrw_ni -he_nrw -rp_nrw", at: [7.5, 51.45], de: "Nordrhein-\nWestfalen", en: "North Rhine-\nWestphalia", cap: ["Düsseldorf", "Düsseldorf", 6.78, 51.23, 1], c: 0 },
+  "rheinland-pfalz": { ring: "rp_out sl_rp rp_out2 rp_nrw -he_rp -bw_rp", at: [7.25, 50.0], de: "Rheinland-\nPfalz", en: "Rhineland-\nPalatinate", cap: ["Mainz", "Mainz", 8.27, 50.0, -1], c: 3 },
+  saarland: { ring: "sl_out -sl_rp", at: [6.92, 49.38], de: "Saarland", en: "Saarland", cap: ["Saarbrücken", "Saarbrücken", 7.0, 49.23, 1], c: 0, small: true },
+  "baden-wuerttemberg": { ring: "bw_out bw_rp bw_he -bw_by", at: [9.0, 48.45], de: "Baden-\nWürttemberg", en: "Baden-\nWürttemberg", cap: ["Stuttgart", "Stuttgart", 9.18, 48.78, 1], c: 2 },
+  bayern: { ring: "by_out bw_by he_by th_by -sn_by", at: [11.55, 48.95], de: "Bayern", en: "Bavaria", cap: ["München", "Munich", 11.58, 48.14, 1], c: 3 },
+};
+const DE_RIVERS = {
+  Rhein: { en: "Rhine", at: [6.55, 51.6], line: [[9.17, 47.66], [8.6, 47.68], [7.6, 47.57], [7.57, 48.0], [7.8, 48.58], [8.2, 48.97], [8.45, 49.5], [8.3, 50.0], [7.9, 50.0], [7.6, 50.35], [7.15, 50.7], [6.95, 50.94], [6.77, 51.23], [6.7, 51.45], [6.4, 51.7], [6.1, 51.85]] },
+  Elbe: { en: "Elbe", at: [12.0, 52.75], line: [[14.25, 50.88], [13.74, 51.05], [13.47, 51.16], [13.0, 51.56], [12.65, 51.86], [12.25, 51.86], [11.63, 52.13], [11.95, 52.6], [11.75, 53.0], [11.27, 53.12], [10.6, 53.37], [9.95, 53.54], [9.4, 53.7], [8.95, 53.9]] },
+  Donau: { en: "Danube", at: [12.7, 48.62], line: [[8.5, 47.95], [9.2, 48.08], [10.0, 48.4], [10.8, 48.7], [11.42, 48.76], [12.1, 49.02], [12.95, 48.8], [13.45, 48.57]] },
+  Weser: { en: "Weser", at: [9.55, 52.35], line: [[9.65, 51.42], [9.45, 51.65], [9.36, 52.1], [8.92, 52.29], [9.2, 52.64], [8.8, 53.08], [8.55, 53.55]] },
+  Main: { en: "Main", at: [10.35, 49.85], line: [[11.58, 49.95], [10.9, 49.9], [10.23, 50.05], [9.93, 49.8], [9.5, 49.76], [9.15, 49.97], [8.68, 50.11], [8.3, 50.0]] },
+};
+const DE_NEIGHBOURS = [["Dänemark", "Denmark", 9.6, 55.3, "middle"], ["Polen", "Poland", 15.2, 52.45, "start"], ["Tschechien", "Czechia", 13.85, 49.95, "middle"], ["Österreich", "Austria", 12.6, 47.15, "middle"], ["Schweiz", "Switzerland", 8.3, 47.3, "middle"], ["Frankreich", "France", 6.95, 48.45, "middle"], ["Luxemburg", "Luxembourg", 6.05, 49.75, "end"], ["Belgien", "Belgium", 6.05, 50.4, "end"], ["Niederlande", "Netherlands", 6.75, 52.62, "end"]];
+// Großlandschaften, south to north: everything is Mittelgebirge first, then Alpenvorland, Alpen, Tiefland and Küste on top.
+const DE_LANDSCAPE = [
+  ["Mittelgebirge", "Central Uplands", "#e2c98b", [[4, 56], [16, 56], [16, 46], [4, 46]], [9.6, 50.45]],
+  ["Alpenvorland", "Alpine Foreland", "#d6e8a8", [[7.0, 47.0], [8.7, 47.75], [9.2, 48.05], [10.0, 48.42], [11.4, 48.75], [12.1, 49.0], [13.0, 48.75], [13.5, 48.55], [14.5, 48.4], [14.5, 46], [7, 46]], [11.6, 48.25]],
+  ["Alpen", "Alps", "#b08d6a", [[9.5, 47.0], [9.7, 47.52], [10.5, 47.62], [11.5, 47.63], [12.3, 47.72], [13.1, 47.8], [14, 47.9], [14, 46], [9.5, 46]], [11.9, 47.5]],
+  ["Tiefland", "Northern Lowland", "#b9dd8f", [[4, 56], [16, 56], [16, 51.2], [14, 51.25], [13, 51.25], [12, 51.6], [11.0, 51.9], [10.5, 52.15], [9.5, 52.2], [8.5, 52.1], [7.5, 51.6], [6.6, 51.25], [5.8, 51.0], [4, 51]], [10.6, 52.55]],
+  ["Küste", "Coast", "#f7e7b4", [[4, 56], [16, 56], [16, 53.75], [13.5, 53.8], [12.0, 53.95], [11.0, 53.85], [10.3, 54.15], [9.8, 54.5], [9.4, 54.4], [9.2, 53.85], [8.6, 53.35], [7.4, 53.25], [4, 53.2]], [12.3, 54.0]],
+];
+const LAND_FILL = ["#f6dfa4", "#cfe7b4", "#f4c7c3", "#d7cdf0"];
+function germanyMap(o) {
+  const L = lang(), S = 38, nb = !!o.neighbours, labels = o.labels ?? "names", m = nb ? [66, 24, 42, 22] : [10, 10, labels === "capitals" ? 24 : 10, 10];
+  const X = (lon) => m[0] + (lon - 5.87) * 0.63 * S, Y = (lat) => m[1] + (55.06 - lat) * S;
+  const W = Math.round(m[0] + m[2] + 9.17 * 0.63 * S), H = Math.round(m[1] + m[3] + 7.79 * S);
+  const pts = (list) => list.map(([a, b]) => `${X(a).toFixed(1)},${Y(b).toFixed(1)}`).join(" ");
+  const ring = (spec) => spec.split(" ").flatMap((k, i) => { const c = k[0] === "-" ? [...DE_CHAIN[k.slice(1)]].reverse() : DE_CHAIN[k]; return i ? c.slice(1) : c; });
+  const rings = (id) => DE_LAND[id].rings ?? [ring(DE_LAND[id].ring)];
+  const hl = new Set([].concat(o.highlight ?? [])), scape = !!o.landscapes, ids = Object.keys(DE_LAND);
+  const marks = o.mark === true || labels === "capitals" ? ids : [].concat(o.mark ?? []).filter((x) => x !== false);
+  const uid = `de${++DRAWN_UID}`;
+  let s = "";
+  if (o.seas) {
+    s += `<polygon points="${pts([[4, 56], [8.35, 56], [8.55, 54.9], [8.4, 53.9], [7.6, 53.55], [7.0, 53.38], [4, 53.4]])}" fill="#cde9f8"/>`;
+    s += `<polygon points="${pts([[9.95, 56], [16, 56], [16, 53.95], [14.2, 53.85], [11.0, 53.9], [10.2, 54.3], [9.9, 54.85]])}" fill="#cde9f8"/>`;
+  }
+  // Länder: the fills, then (for landscapes) the bands clipped to Germany, then the borders on top.
+  const fill = (id) => (hl.has(id) ? "#FDD835" : scape ? "none" : hl.size ? "#f3eef8" : LAND_FILL[DE_LAND[id].c]);
+  const order = ids.filter((id) => !DE_LAND[id].small).concat(ids.filter((id) => DE_LAND[id].small));
+  if (scape) {
+    s += `<clipPath id="${uid}">${order.map((id) => rings(id).map((r) => `<polygon points="${pts(r)}"/>`).join("")).join("")}</clipPath><g clip-path="url(#${uid})">${DE_LANDSCAPE.map(([, , c, poly]) => `<polygon points="${pts(poly)}" fill="${c}"/>`).join("")}</g>`;
+  }
+  const land = (id) => rings(id).map((r) => `<polygon points="${pts(r)}" fill="${fill(id)}" stroke="#2b0f45" stroke-width="${hl.has(id) ? 2.4 : scape ? 0.9 : 1.3}" stroke-linejoin="round"/>`).join("");
+  s += order.filter((id) => !hl.has(id)).map(land).join("") + order.filter((id) => hl.has(id)).map(land).join("");
+  // The Bodensee is always drawn: it is part of the outline children know.
+  s += `<polygon points="${pts([[9.12, 47.7], [9.45, 47.66], [9.75, 47.55], [9.6, 47.5], [9.25, 47.6]])}" fill="#90caf9" stroke="#1E88E5" stroke-width="1"/>`;
+  if (o.rivers) {
+    const want = o.rivers === true ? Object.keys(DE_RIVERS) : [].concat(o.rivers);
+    for (const r of want) { const v = DE_RIVERS[r]; if (!v) continue; s += `<polyline points="${pts(v.line)}" fill="none" stroke="#1E88E5" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>`; }
+    for (const r of want) { const v = DE_RIVERS[r]; if (v && o.river_labels !== false) s += halo(X(v.at[0]), Y(v.at[1]), L === "en" ? v.en : r, { size: 10, fill: "#1565C0", italic: true }); }
+  }
+  if (o.seas) s += halo(X(7.15), Y(54.45), L === "en" ? "North\nSea" : "Nordsee", { size: 11, fill: "#1565C0", italic: true, halo: "#cde9f8" }) + halo(X(12.0), Y(54.75), L === "en" ? "Baltic Sea" : "Ostsee", { size: 11, fill: "#1565C0", italic: true, halo: "#cde9f8" });
+  if (scape) s += DE_LANDSCAPE.map(([de, en, , , at]) => halo(X(at[0]), Y(at[1]), L === "en" ? en : de, { size: 10.5, fill: "#4e342e" })).join("");
+  if (labels === "names" && !scape) for (const id of ids) { const d = DE_LAND[id]; s += halo(X(d.at[0]), Y(d.at[1]), d[L], { size: d.small ? 9 : 10 }); }
+  for (const id of marks) { const d = DE_LAND[id]; if (!d) continue; const [cde, cen, lon, lat, side] = d.cap, x = X(lon), y = Y(lat), big = id === "berlin";
+    s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big ? 4.2 : 3.2}" fill="${big ? "#E53935" : "#fff"}" stroke="#2b0f45" stroke-width="1.8"/>`;
+    if (labels === "capitals") s += halo(x + side * 6, y, L === "en" ? cen : cde, { size: 9.5, anchor: side > 0 ? "start" : "end" }); }
+  if (nb) s += DE_NEIGHBOURS.map(([de, en, lon, lat, a]) => halo(X(lon), Y(lat), L === "en" ? en : de, { size: 10.5, fill: "#6b5a86", anchor: a })).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:340px">${s}</svg>`;
+}
+
+// The world: schematic continents in lon/lat (equirectangular, Europe in the middle) and the three oceans.
+const WORLD = {
+  "north-america": { de: "Nordamerika", en: "North America", at: [-100, 47], rings: [
+    [[-168, 66], [-156, 71], [-130, 70], [-100, 70], [-85, 69], [-80, 63], [-78, 62], [-64, 60], [-56, 52], [-66, 45], [-70, 42], [-76, 35], [-81, 31], [-80, 25], [-82, 29], [-84, 30], [-90, 29], [-97, 27], [-97, 22], [-92, 18.5], [-87, 21], [-88, 16], [-83, 15], [-83, 10], [-79, 9], [-77, 8], [-80, 8], [-86, 12], [-92, 15], [-105, 20], [-112, 30], [-117, 32], [-124, 40], [-124, 48], [-130, 55], [-140, 60], [-150, 61], [-158, 58], [-165, 55], [-160, 60], [-166, 62]],
+    [[-55, 60], [-44, 60], [-20, 70], [-18, 77], [-30, 83], [-55, 82], [-70, 78], [-58, 70]],
+    [[-80, 73], [-95, 74], [-110, 76], [-120, 74], [-100, 70], [-85, 70]]] },
+  "south-america": { de: "Südamerika", en: "South America", at: [-58, -14], rings: [[[-77, 8], [-72, 12], [-62, 11], [-52, 5], [-50, 0], [-35, -5], [-35, -9], [-39, -15], [-41, -22], [-48, -26], [-53, -34], [-58, -38], [-63, -41], [-65, -47], [-68, -52], [-70, -55], [-73, -50], [-74, -40], [-71, -30], [-70, -18], [-76, -14], [-81, -6], [-80, -1], [-78, 2]]] },
+  europe: { de: "Europa", en: "Europe", at: [28, 58], rings: [
+    [[-8.9, 37], [-9, 43], [-2, 43.5], [-1.5, 46.5], [-4.5, 48.5], [-1.5, 49.7], [2, 51], [4.5, 52.8], [8, 53.6], [8.2, 55.5], [8.6, 57.1], [10.5, 57.6], [10.5, 55.4], [10.9, 54.1], [14, 54], [18.5, 54.7], [21, 55.3], [21, 57], [24, 59.4], [28, 59.5], [30, 60], [28.5, 60.5], [25, 60.2], [22.5, 60.2], [21.4, 61.5], [21.5, 63.5], [25, 65], [24.5, 65.8], [22, 65.8], [19, 63.5], [17.4, 62], [18.5, 60.2], [16.5, 57.5], [14.5, 56.2], [12.8, 55.4], [11, 58.5], [10.2, 59], [8, 58], [5.5, 58.8], [5, 61.5], [7, 63], [13, 66.5], [17, 69], [21, 70.2], [26, 71], [31, 70], [33, 69.3], [41, 66.5], [44, 68.5], [53, 68.6], [60, 69], [60, 60], [58.5, 52], [52, 51], [51, 47], [47.5, 45.5], [44, 43], [40, 43.5], [38, 44.8], [36, 45.3], [33, 44.5], [32.5, 46], [30.5, 46.5], [29.7, 45.2], [28.5, 43.5], [28, 41.6], [26, 40.6], [24, 40.8], [22.8, 40.4], [23.5, 38], [22, 36.5], [21, 37.8], [21, 39.5], [19.4, 40.6], [19.4, 42], [16, 43.5], [13.7, 45.7], [12.3, 45.3], [12.5, 44], [14, 42.5], [16, 41.7], [18.5, 40.2], [17, 39], [16.1, 38], [15.7, 40], [12.6, 41.4], [10.6, 42.9], [8.7, 44.4], [6.5, 43.1], [3.2, 43.2], [3.2, 41.9], [0.6, 40.7], [-0.3, 39.4], [0.2, 38.7], [-0.7, 37.6], [-2.1, 36.7], [-4.4, 36.7], [-5.6, 36], [-6.3, 36.8], [-7.4, 37.2]],
+    [[-5.5, 50.1], [1.5, 51], [1.7, 52.8], [0, 53.5], [-2, 55.8], [-1.8, 57.6], [-3.5, 58.6], [-5, 58.6], [-6, 57], [-5, 55], [-3, 54.5], [-4.5, 53.3], [-4.5, 52], [-5, 51.6]],
+    [[-6, 52.1], [-6, 54], [-8, 55.2], [-10, 54], [-10.3, 51.8], [-8, 51.6]],
+    [[-24, 65.5], [-22, 66.4], [-15, 66.5], [-13.5, 65], [-18, 63.4], [-22.5, 63.8]]] },
+  africa: { de: "Afrika", en: "Africa", at: [20, 6], rings: [
+    [[-17, 21], [-17, 15], [-16.5, 12], [-13, 8.5], [-8, 4.5], [-2, 5], [4.5, 6.3], [8.8, 4], [9.8, 2.5], [9, -1], [12, -5], [13.5, -11], [12, -17], [15, -27], [18.4, -34.2], [20, -34.8], [25.6, -34], [30, -31], [32.8, -26], [35.5, -24], [35.5, -21], [40.5, -15], [40, -10], [39.3, -5], [41.5, -1.5], [44, 1.5], [48, 4.5], [51.3, 11.8], [44, 10.5], [43.2, 11.7], [41.8, 14], [39.2, 15.8], [37.5, 18.5], [36, 22], [34, 27], [32.5, 29.9], [32.3, 31.2], [30, 31.5], [25, 31.8], [20, 30.8], [19, 30.3], [15.2, 32.3], [11, 33.3], [10.2, 34.5], [11, 37], [9.8, 37.3], [3, 36.8], [-2, 35.2], [-5.9, 35.8], [-9.5, 32], [-10, 29], [-13, 27.8], [-16.5, 24]],
+    [[44, -25], [47, -25], [50.3, -15.5], [49.3, -12], [48, -14], [44.3, -16.5], [43.5, -22]]] },
+  asia: { de: "Asien", en: "Asia", at: [92, 50], rings: [
+    [[60, 69], [68, 72.5], [75, 72.8], [80, 73.5], [87, 75], [100, 77], [113, 73.5], [130, 71], [140, 72.5], [160, 70], [170, 70], [180, 68.5], [180, 65], [173, 61], [163, 60], [163, 56], [156, 51], [156, 57], [150, 59.5], [142, 59], [137, 54], [141, 52], [140, 48], [135, 43.5], [130, 42.5], [129.5, 36], [126.5, 34.5], [126, 37.5], [125, 39.5], [121.5, 39], [121, 40.8], [118, 39], [119, 37], [122.5, 37], [120, 35], [121.8, 31], [121.5, 28], [119, 25], [114, 22.5], [110, 21], [108.5, 21.5], [106, 19], [108.5, 15], [109, 11.5], [106, 9.5], [105, 8.7], [103, 10.5], [100.5, 13.5], [100, 12], [99.2, 9], [100.4, 7], [103, 5], [104.2, 1.3], [101, 2.8], [98.5, 8], [98.2, 10], [98.6, 13], [97.6, 16.5], [94.2, 16], [94.5, 19.5], [92, 21], [90, 22], [87, 21.5], [86.5, 20], [80.3, 15.5], [80, 10], [77.5, 8], [76, 10], [73.5, 16], [72.8, 21], [70.5, 20.8], [68.5, 23.5], [66.5, 25.4], [61.5, 25.2], [57, 25.8], [56.5, 27], [52, 27.8], [50, 30], [48.5, 28.5], [50.5, 25.5], [51.5, 24], [54, 24.2], [56.3, 26.2], [56.4, 24.5], [59.8, 22.5], [58.5, 20.5], [55.5, 17.5], [52, 16], [48, 14], [43.5, 12.7], [42.7, 15.5], [39, 21.5], [35, 28], [34.2, 27.8], [32.5, 30], [34.2, 31.3], [35.5, 33.5], [36, 36.5], [32, 36.2], [30, 36.5], [27.5, 37], [26.3, 39], [26.5, 40.2], [29, 41.2], [36, 41.8], [41.5, 41.5], [44, 43], [47.5, 45.5], [51, 47], [52, 51], [58.5, 52], [60, 60]],
+    [[130, 31.3], [130.5, 34], [133, 35.5], [136, 36.5], [139.5, 38.5], [140, 41.2], [141.5, 40.5], [141, 38], [140.8, 35.7], [139, 34.7], [136.8, 34.3], [135, 33.5], [132, 33.2], [131.5, 31.3]],
+    [[140, 42], [141.5, 45.4], [145.5, 43.3], [143.3, 42]],
+    [[95.3, 5.6], [98, 4], [103.7, -1], [106, -5.9], [104.5, -5.9], [101, -2.5], [96, 3]],
+    [[109, 1.8], [117, 7], [119, 5], [118, 0.7], [116, -4], [110.5, -3], [109, -0.5]],
+    [[105.5, -6.6], [114.5, -7.6], [114, -8.8], [106, -7.6]],
+    [[120, 18.5], [122.3, 18.3], [124, 13], [126.5, 7], [125.5, 6], [122, 7], [121.8, 12], [120.5, 14.5], [119.8, 16.5]],
+    [[120.5, 1.2], [125, 1.5], [121.5, -0.8], [123.3, -5.4], [120.5, -5.5], [119.4, -1]]] },
+  australia: { de: "Australien", en: "Australia", at: [134, -25], rings: [
+    [[113.5, -22], [114, -26.5], [115, -34], [117.5, -35], [123.5, -33.8], [131, -31.5], [135.5, -34.8], [138, -35.5], [140.5, -38], [146.5, -39], [150, -37.5], [153.5, -28], [153, -25], [149.5, -21.5], [146, -18.5], [145.3, -15], [142.5, -10.7], [141.6, -12.8], [141.5, -17], [140, -17.5], [137, -15.8], [136.7, -12.2], [132.5, -11.3], [129.5, -14.9], [126, -14], [122.5, -17], [121, -19.5], [117, -20.7]],
+    [[145, -40.8], [148.3, -40.9], [148, -43.2], [146, -43.6]],
+    [[172.7, -34.4], [178.5, -37.7], [177, -39.6], [175, -41.6], [174.6, -39]],
+    [[172.7, -40.5], [174.3, -41.7], [171.2, -44.4], [169, -46.6], [166.5, -46], [170.5, -42.9]],
+    [[131, -1.5], [138, -1.5], [145, -4.5], [150.5, -10.5], [147, -10.2], [143, -9], [141, -9.1], [138, -8.3], [137.5, -5], [132.5, -4]]] },
+  antarctica: { de: "Antarktis", en: "Antarctica", at: [40, -73], rings: [[[-180, -78], [-150, -76], [-120, -73], [-90, -72], [-75, -70], [-62, -64], [-58, -64], [-60, -72], [-45, -78], [-30, -76], [-20, -71], [0, -70], [30, -69.5], [60, -67], [90, -66], [120, -66.5], [150, -68], [170, -71], [180, -78], [180, -90], [-180, -90]]] },
+};
+const OCEANS = { pacific: { de: "Pazifik", en: "Pacific\nOcean", at: [-140, 2] }, atlantic: { de: "Atlantik", en: "Atlantic\nOcean", at: [-36, 20] }, indian: { de: "Indischer\nOzean", en: "Indian\nOcean", at: [78, -22] } };
+function worldMap(o) {
+  const L = lang(), top = 84, bot = -80, W = 360, H = Math.round((top - bot) * 1.3);
+  // Stretched north-south a little, so the continents are easier to tell apart on a phone.
+  const X = (lon) => lon + 180, Y = (lat) => (top - lat) * 1.3;
+  const pts = (list) => list.map(([a, b]) => `${X(a).toFixed(1)},${Y(b).toFixed(1)}`).join(" ");
+  const hl = new Set([].concat(o.highlight ?? [])), names = o.names ?? {}, label = (id, d) => names[id] ?? d[L];
+  let s = `<rect width="${W}" height="${H}" rx="10" fill="#cde9f8"/>`;
+  for (const [id, d] of Object.entries(WORLD)) s += d.rings.map((r) => `<polygon points="${pts(r)}" fill="${hl.has(id) ? "#FDD835" : hl.size ? "#cfe3c4" : "#9ccc65"}" stroke="#2b0f45" stroke-width="${hl.has(id) ? 1.6 : 0.9}" stroke-linejoin="round"/>`).join("");
+  // The Caspian Sea, so the Europe-Asia border runs through water as on a school map.
+  s += `<polygon points="${pts([[47, 45], [50, 46.8], [53, 45.5], [54, 41], [53.5, 37], [50, 37], [49.5, 40.5], [47.5, 43]])}" fill="#cde9f8" stroke="#2b0f45" stroke-width="0.8"/>`;
+  if (o.labels !== false) {
+    for (const [id, d] of Object.entries(OCEANS)) s += hl.has(id) ? `<rect x="${X(d.at[0]) - 30}" y="${Y(d.at[1]) - 14}" width="60" height="28" rx="8" fill="#FDD835" stroke="#2b0f45" stroke-width="1.4"/>` + halo(X(d.at[0]), Y(d.at[1]), label(id, d), { size: 10, italic: true, fill: "#2b0f45", halo: "#FDD835" }) : halo(X(d.at[0]), Y(d.at[1]), label(id, d), { size: 10, italic: true, fill: "#1565C0", halo: "#cde9f8" });
+    for (const [id, d] of Object.entries(WORLD)) s += halo(X(d.at[0]), Y(d.at[1]), label(id, d), { size: id === "europe" ? 9.5 : 10.5 });
+  } else for (const id of hl) if (OCEANS[id]) s += `<circle cx="${X(OCEANS[id].at[0])}" cy="${Y(OCEANS[id].at[1])}" r="12" fill="#FDD835" stroke="#2b0f45" stroke-width="1.4"/>`;
+  // mark: a dot with a ring where Germany (or Europe) is, or at [lon, lat].
+  const at = o.mark === "germany" ? [10.4, 51.2] : o.mark === "europe" ? [15, 50] : Array.isArray(o.mark) ? o.mark : null;
+  if (at) s += `<circle cx="${X(at[0])}" cy="${Y(at[1])}" r="7" fill="none" stroke="#E53935" stroke-width="2"/><circle cx="${X(at[0])}" cy="${Y(at[1])}" r="2.8" fill="#E53935"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">${s}</svg>`;
+}
+
+// A crossroads from above, right-hand traffic. Everything is drawn for the arm at the bottom (south,
+// driving up) and turned for the other arms; signs, lights and letters are placed by the turned point
+// but stay upright.
+const ARM_ANGLE = { south: 0, west: 90, north: 180, east: 270 };
+function junction(o) {
+  const C = 160, R = 34, W = 320, arms = o.arms ?? ["north", "east", "south", "west"], en = lang() === "en";
+  const rot = (a, x, y) => { const r = (a * Math.PI) / 180; return [C + x * Math.cos(r) - y * Math.sin(r), C + x * Math.sin(r) + y * Math.cos(r)]; };
+  let s = `<rect width="${W}" height="${W}" rx="14" fill="#cfe8b0"/>`;
+  // Pavements, then the road, then its markings.
+  for (const a of arms) s += `<g transform="rotate(${ARM_ANGLE[a]} ${C} ${C})"><rect x="${C - R - 10}" y="${C}" width="${2 * R + 20}" height="${W - C}" fill="#e6dfd3"/></g>`;
+  s += `<rect x="${C - R - 10}" y="${C - R - 10}" width="${2 * R + 20}" height="${2 * R + 20}" rx="10" fill="#e6dfd3"/>`;
+  for (const a of arms) s += `<g transform="rotate(${ARM_ANGLE[a]} ${C} ${C})"><rect x="${C - R}" y="${C}" width="${2 * R}" height="${W - C}" fill="#8f8a99"/><line x1="${C}" y1="${C + R + 12}" x2="${C}" y2="${W}" stroke="#fff" stroke-width="2.5" stroke-dasharray="12 10"/></g>`;
+  s += `<rect x="${C - R}" y="${C - R}" width="${2 * R}" height="${2 * R}" fill="#8f8a99"/>`;
+  const signs = o.signs ?? {}, lights = o.lights === true ? { north: "green", south: "green", east: "red", west: "red" } : (o.lights ?? {});
+  // A stop line across the right lane where a sign or a light makes people wait: solid for stop and
+  // lights, dashed (shark's teeth) for give way.
+  for (const a of arms) { const sg = signs[a], li = lights[a]; if (sg !== "stop" && sg !== "give-way" && !li) continue;
+    s += `<g transform="rotate(${ARM_ANGLE[a]} ${C} ${C})"><line x1="${C + 2}" y1="${C + R + 5}" x2="${C + R}" y2="${C + R + 5}" stroke="#fff" stroke-width="4"${sg === "give-way" && !li ? ' stroke-dasharray="5 4"' : ""}/></g>`; }
+  const SIGN = {
+    "give-way": (x, y) => `<path d="M${x - 14} ${y - 11} L${x + 14} ${y - 11} L${x} ${y + 14} Z" fill="#fff" stroke="#E53935" stroke-width="4" stroke-linejoin="round"/>`,
+    stop: (x, y) => { const p = [...Array(8)].map((_, i) => { const t = ((i + 0.5) * Math.PI) / 4; return `${(x + 14 * Math.cos(t)).toFixed(1)},${(y + 14 * Math.sin(t)).toFixed(1)}`; }).join(" "); return `<polygon points="${p}" fill="#E53935" stroke="#fff" stroke-width="1.5"/><text x="${x}" y="${y + 3.2}" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">STOP</text>`; },
+    "priority-road": (x, y) => `<path d="M${x} ${y - 15} L${x + 15} ${y} L${x} ${y + 15} L${x - 15} ${y} Z" fill="#fff" stroke="#2b0f45" stroke-width="1.2"/><path d="M${x} ${y - 9} L${x + 9} ${y} L${x} ${y + 9} L${x - 9} ${y} Z" fill="#FDD835" stroke="#2b0f45" stroke-width="1"/>`,
+    priority: (x, y) => `<path d="M${x - 14} ${y + 11} L${x + 14} ${y + 11} L${x} ${y - 14} Z" fill="#fff" stroke="#E53935" stroke-width="4" stroke-linejoin="round"/><path d="M${x} ${y - 4} V${y + 8} M${x - 5} ${y + 1} H${x + 5}" stroke="#263238" stroke-width="2.4"/>`,
+  };
+  for (const a of arms) { const sg = signs[a], li = lights[a];
+    if (li) { const [x, y] = rot(ARM_ANGLE[a], R + 18, R + 22); s += `<rect x="${x - 7}" y="${y - 17}" width="14" height="34" rx="4" fill="#263238"/>${["red", "yellow", "green"].map((c, i) => `<circle cx="${x}" cy="${y - 10 + i * 10}" r="4" fill="${c === li ? { red: "#E53935", yellow: "#FDD835", green: "#43A047" }[c] : "#5b5f66"}"/>`).join("")}`; }
+    if (SIGN[sg]) { const [x, y] = rot(ARM_ANGLE[a], R + 20, li ? R + 62 : R + 26); s += `<line x1="${x}" y1="${y}" x2="${x}" y2="${y + 20}" stroke="#78909c" stroke-width="2.5"/>${SIGN[sg](x, y)}`; } }
+  // Road users: a car in the middle of the right lane, a bike at its right edge; "you" is a bike
+  // with a purple helmet. go: left / straight / right draws the way as an arrow.
+  const users = o.users ?? [];
+  const head = (x, y, dir) => { const [dx, dy] = dir; return `<path d="M${x + dx * 9} ${y + dy * 9} L${x - dy * 7} ${y + dx * 7} L${x + dy * 7} ${y - dx * 7} Z" fill="#8e3bd1"/>`; };
+  let arrows = "", bodies = "", tags = "";
+  for (const u of users) { const a = ARM_ANGLE[u.arm ?? "south"], bike = u.kind !== "car", lx = bike ? R - 9 : R / 2, D = R + 44, col = D_COL(u.colour) ?? (u.kind === "you" ? "#8e3bd1" : bike ? "#1E88E5" : "#E53935");
+    if (u.go) { const y0 = D - (bike ? 20 : 26), path = u.go === "straight" ? `M${lx} ${y0} L${lx} ${-R - 34}` : u.go === "right" ? `M${lx} ${y0} Q${lx} ${lx} ${R + 34} ${lx}` : `M${lx} ${y0} Q${lx} ${-R / 2} ${-R - 34} ${-R / 2}`;
+      const end = u.go === "straight" ? [lx, -R - 34, 0, -1] : u.go === "right" ? [R + 34, lx, 1, 0] : [-R - 34, -R / 2, -1, 0];
+      arrows += `<g transform="translate(${C} ${C}) rotate(${a})"><path d="${path}" fill="none" stroke="#8e3bd1" stroke-width="4" stroke-linecap="round" stroke-dasharray="${u.kind === "you" ? "0" : "7 5"}"/>${head(end[0], end[1], [end[2], end[3]])}</g>`; }
+    const body = bike ? `<rect x="-2" y="-19" width="4" height="12" rx="2" fill="#263238"/><rect x="-2" y="7" width="4" height="12" rx="2" fill="#263238"/><line x1="0" y1="-8" x2="0" y2="8" stroke="#263238" stroke-width="2"/><line x1="-8" y1="-9" x2="8" y2="-9" stroke="#263238" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="0" cy="0" rx="8" ry="5" fill="${u.kind === "you" ? "#ce93d8" : "#90caf9"}" stroke="#2b0f45" stroke-width="1.2"/><circle cx="0" cy="-2" r="5" fill="${col}" stroke="#2b0f45" stroke-width="1.4"/>`
+      : `<rect x="-12" y="-21" width="24" height="42" rx="7" fill="${col}" stroke="#2b0f45" stroke-width="2"/><rect x="-9" y="-12" width="18" height="8" rx="2" fill="#dff1fb" stroke="#2b0f45" stroke-width="1.2"/><rect x="-9" y="9" width="18" height="6" rx="2" fill="#dff1fb" stroke="#2b0f45" stroke-width="1.2"/><circle cx="-7" cy="-19" r="2" fill="#FDD835"/><circle cx="7" cy="-19" r="2" fill="#FDD835"/>`;
+    bodies += `<g transform="translate(${C} ${C}) rotate(${a}) translate(${lx} ${D})">${body}</g>`;
+    const tag = u.kind === "you" && u.label == null ? (en ? "You" : "Du") : u.label;
+    if (tag != null) { const [x, y] = rot(a, lx, D + (bike ? 34 : 36)), w = Math.max(20, String(tag).length * 8 + 10); tags += `<rect x="${x - w / 2}" y="${y - 10}" width="${w}" height="20" rx="10" fill="#fff" stroke="#2b0f45" stroke-width="1.6"/><text x="${x}" y="${y + 4.5}" text-anchor="middle" font-size="13" font-weight="700" fill="#2b0f45">${esc(tag)}</text>`; } }
+  return `<svg viewBox="0 0 ${W} ${W}" width="100%" style="max-width:${W}px">${s}${arrows}${bodies}${tags}</svg>`;
+}
+const D_COL = (c) => (c ? SHAPE_COL[c] ?? null : null);
+
+// A simple circuit: battery on the left, bulb on top, switch at the bottom, and an optional gap on
+// the right with a thing in it. The bulb lights when the switch is closed, no wire is broken and the
+// thing in the gap conducts; bulb: "?" draws it with a question mark instead (for "Does it light?").
+function circuit(o) {
+  const en = lang() === "en", sw = o.switch !== false, closed = o.closed !== false, gap = o.gap, broken = !!o.broken;
+  const lit = (!sw || closed) && !broken && (!gap || gap.conductor === true);
+  const l = 40, r = 270, t = 70, b = 200, wire = (d) => `<path d="${d}" fill="none" stroke="#2b0f45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  let s = "";
+  // Wires: left (through the battery), top (through the bulb), right (through the gap), bottom (through the switch).
+  s += wire(`M${l} 106 V${t} H${broken ? 82 : 146}`) + (broken ? wire(`M100 ${t} H146`) + `<path d="M82 ${t} l4 -5 l3 8 M100 ${t} l-4 5 l-3 -8" fill="none" stroke="#B87333" stroke-width="2" stroke-linecap="round"/>` : "");
+  s += wire(`M174 ${t} H${r} V${gap ? 108 : b}`) + (gap ? wire(`M${r} 154 V${b}`) : "");
+  s += wire(`M${r} ${b} H${sw ? 196 : l}`) + (sw ? wire(`M134 ${b} H${l}`) : "") + wire(`M${l} ${b} V176`);
+  // The battery, standing up: + at the top.
+  s += `<rect x="${l - 5}" y="98" width="10" height="8" rx="2" fill="#b0bec5" stroke="#2b0f45" stroke-width="2"/><rect x="${l - 15}" y="106" width="30" height="70" rx="5" fill="#263238" stroke="#2b0f45" stroke-width="2.5"/><path d="M${l - 15} 111 a5 5 0 0 1 5 -5 h20 a5 5 0 0 1 5 5 v17 h-30 z" fill="#FB8C00" stroke="#2b0f45" stroke-width="2.5"/><text x="${l}" y="123" text-anchor="middle" font-size="16" font-weight="700" fill="#2b0f45">+</text><text x="${l}" y="167" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">−</text>`;
+  // The bulb in its holder on the top wire.
+  const by = 38;
+  if (lit && o.bulb !== "?") s += [...Array(8)].map((_, i) => { const a = (i * Math.PI) / 4 - Math.PI / 2; return `<line x1="${160 + 24 * Math.cos(a)}" y1="${by + 24 * Math.sin(a)}" x2="${160 + 33 * Math.cos(a)}" y2="${by + 33 * Math.sin(a)}" stroke="#FB8C00" stroke-width="3" stroke-linecap="round"/>`; }).join("");
+  s += `<rect x="146" y="${t - 14}" width="28" height="22" rx="4" fill="#b0bec5" stroke="#2b0f45" stroke-width="2.5"/><circle cx="160" cy="${by}" r="19" fill="${o.bulb === "?" ? "#eef0f3" : lit ? "#FFF176" : "#eef3f6"}" stroke="#2b0f45" stroke-width="2.5"/>`;
+  s += o.bulb === "?" ? `<text x="160" y="${by + 8}" text-anchor="middle" font-size="22" font-weight="700" fill="#8e3bd1">?</text>` : `<path d="M154 ${t - 14} V${by + 4} l3 -6 l3 6 l3 -6 l3 6 V${t - 14}" fill="none" stroke="${lit ? "#E65100" : "#78909c"}" stroke-width="2"/>`;
+  // The switch: a lever on two contacts, flat when closed, lifted when open.
+  if (sw) { const ex = closed ? 196 : 134 + 62 * Math.cos(Math.PI / 6), ey = closed ? b : b - 62 * Math.sin(Math.PI / 6);
+    s += `<rect x="124" y="${b + 4}" width="82" height="12" rx="4" fill="#d7ccc8" stroke="#2b0f45" stroke-width="2"/><line x1="134" y1="${b}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="#2b0f45" stroke-width="5" stroke-linecap="round"/><circle cx="134" cy="${b}" r="5" fill="#B87333" stroke="#2b0f45" stroke-width="2"/><circle cx="196" cy="${b}" r="5" fill="#B87333" stroke="#2b0f45" stroke-width="2"/>`; }
+  // The gap: two clips and the thing between them, named by its label (and its picture if it has one).
+  if (gap) { const pic = gap.object && D.pics?.includes(`${gap.object}.png`), lab = gap.label ?? (gap.object ? D.objects?.[gap.object]?.[lang()] : "") ?? "", w = Math.max(64, String(lab).length * 7.4 + 16);
+    s += `<circle cx="${r}" cy="108" r="5" fill="#E53935" stroke="#2b0f45" stroke-width="2"/><circle cx="${r}" cy="154" r="5" fill="#E53935" stroke="#2b0f45" stroke-width="2"/>`;
+    s += pic ? `<image href="${A}objects/${gap.object}.png" x="${r - 22}" y="109" width="44" height="44"/>` + (lab ? halo(r, 168, lab, { size: 11, anchor: "middle" }) : "") : `<rect x="${r - w / 2}" y="117" width="${w}" height="28" rx="9" fill="#fff" stroke="#2b0f45" stroke-width="2"/><text x="${r}" y="135.5" text-anchor="middle" font-size="12" font-weight="700" fill="#2b0f45">${esc(lab || "?")}</text>`; }
+  if (o.labels) { const N = en ? ["battery", "bulb", "switch", "wire"] : ["Batterie", "Lämpchen", "Schalter", "Kabel"];
+    s += halo(l + 22, 141, N[0], { size: 11, anchor: "start" }) + halo(196, by - 4, N[1], { size: 11, anchor: "start" }) + (sw ? halo(165, b + 30, N[2], { size: 11 }) : "") + halo(222, t - 10, N[3], { size: 11 }); }
+  return `<svg viewBox="0 0 330 ${sw && o.labels ? 240 : 228}" width="100%" style="max-width:330px">${s}</svg>`;
+}
+
+// The water cycle: sun, sea, vapour rising, a cloud, rain on the hills and a river back to the sea.
+// The four steps are numbered; step highlights one, gap shows "?" in place of one name.
+const WATER_STEPS = { de: ["Verdunsten", "Kondensieren", "Niederschlag", "Abfließen"], en: ["Evaporation", "Condensation", "Precipitation", "Collection"] };
+const WATER_IDS = ["evaporation", "condensation", "precipitation", "collection"];
+function waterCycle(o) {
+  const L = lang(), step = typeof o.step === "string" ? WATER_IDS.indexOf(o.step) + 1 : o.step, gap = typeof o.gap === "string" ? WATER_IDS.indexOf(o.gap) + 1 : o.gap, labels = o.labels ?? true;
+  const ac = (n) => (n === step ? "#8e3bd1" : "#1565C0"), aw = (n) => (n === step ? 3.6 : 2.4);
+  const head = (x, y, ang, n) => `<path d="M0 0 L-9 -5 L-9 5 Z" transform="translate(${x} ${y}) rotate(${ang})" fill="${ac(n)}"/>`;
+  let s = `<rect width="330" height="250" rx="12" fill="#e3f2fd"/>`;
+  // The sun.
+  s += [...Array(8)].map((_, i) => { const a = (i * Math.PI) / 4; return `<line x1="${44 + 27 * Math.cos(a)}" y1="${44 + 27 * Math.sin(a)}" x2="${44 + 36 * Math.cos(a)}" y2="${44 + 36 * Math.sin(a)}" stroke="#FB8C00" stroke-width="3" stroke-linecap="round"/>`; }).join("") + `<circle cx="44" cy="44" r="21" fill="#FDD835" stroke="#2b0f45" stroke-width="2"/>`;
+  // Land: hills and a mountain on the right, the sea on the left.
+  s += `<path d="M150 250 L150 205 Q190 175 215 150 L262 92 L290 124 L306 108 L330 132 L330 250 Z" fill="#a1887f" stroke="#2b0f45" stroke-width="2" stroke-linejoin="round"/><path d="M248 109 L262 92 L276 108 L268 104 L262 110 L255 104 Z" fill="#fff" stroke="#2b0f45" stroke-width="1.5" stroke-linejoin="round"/>`;
+  s += `<path d="M150 250 L150 206 Q200 168 250 178 Q290 185 330 170 L330 250 Z" fill="#9ccc65" stroke="#2b0f45" stroke-width="2" stroke-linejoin="round"/>`;
+  s += `<path d="M0 196 Q10 190 20 196 T40 196 T60 196 T80 196 T100 196 T120 196 T140 196 T160 196 L172 250 L0 250 Z" fill="#64b5f6" stroke="#2b0f45" stroke-width="2"/>`;
+  // The river from the mountain down to the sea (step 4).
+  s += `<path d="M262 130 Q250 160 270 180 Q290 200 240 214 Q195 226 160 212" fill="none" stroke="#1E88E5" stroke-width="7" stroke-linecap="round"/>`;
+  s += `<path d="M262 130 Q250 160 270 180 Q290 200 240 214 Q205 223 176 216" fill="none" stroke="${ac(4)}" stroke-width="${aw(4) - 0.8}" stroke-dasharray="6 6" stroke-linecap="round" opacity=".9"/>${head(170, 214, 195, 4)}`;
+  // Vapour rising from the sea (step 1).
+  for (const x of [70, 100, 130]) s += `<path d="M${x} 186 q-7 -10 0 -20 t0 -20 t0 -20" fill="none" stroke="${ac(1)}" stroke-width="${aw(1)}" stroke-linecap="round" stroke-dasharray="${step === 1 ? 0 : "4 4"}"/>${head(x, 120, -90, 1)}`;
+  // Vapour turning into a cloud (step 2).
+  s += `<path d="M138 104 Q150 66 184 62" fill="none" stroke="${ac(2)}" stroke-width="${aw(2)}" stroke-linecap="round"/>${head(186, 62, -8, 2)}`;
+  // The cloud and its rain (step 3).
+  s += `<path d="M190 78 Q178 78 180 66 Q178 52 194 52 Q198 36 216 40 Q228 26 246 36 Q264 32 266 48 Q282 52 276 66 Q278 78 264 78 Z" fill="#fff" stroke="#2b0f45" stroke-width="2.2" stroke-linejoin="round"/>`;
+  for (const [x, y] of [[198, 88], [214, 96], [230, 86], [246, 98], [206, 112], [238, 114]]) s += `<line x1="${x}" y1="${y}" x2="${x - 4}" y2="${y + 11}" stroke="${ac(3)}" stroke-width="${aw(3) + 0.4}" stroke-linecap="round"/>`;
+  if (labels) { const N = WATER_STEPS[L], put = (n, x, y, anchor) => { const t = labels === "numbers" ? `${n}` : `${n} ${n === gap ? "?" : N[n - 1]}`, w = labels === "numbers" ? 22 : t.length * 6.6 + 14, x0 = anchor === "end" ? x - w : anchor === "start" ? x : x - w / 2;
+      return `<rect x="${x0.toFixed(1)}" y="${y - 11}" width="${w.toFixed(1)}" height="22" rx="11" fill="${n === step ? "#FDD835" : "#fff"}" stroke="#2b0f45" stroke-width="${n === step ? 2 : 1.4}"/><text x="${(x0 + w / 2).toFixed(1)}" y="${y + 4.5}" text-anchor="middle" font-size="12" font-weight="700" fill="#2b0f45">${esc(t)}</text>`; };
+    s += put(1, 100, 106, "middle") + put(2, 140, 28, "middle") + put(3, 326, 108, "end") + put(4, 236, 236, "middle"); }
+  return `<svg viewBox="0 0 330 250" width="100%" style="max-width:330px">${s}</svg>`;
+}
+
+// A timeline: a line from `from` to `to` with ticks, events above it as labelled boxes on stems
+// (stacked in rows where they would overlap), eras as coloured bands below. Years before 0 read
+// "500 v. Chr." / "500 BC"; when a line reaches before 0, later years read "n. Chr." / "AD".
+function timeline(o) {
+  const en = lang() === "en", ev = o.events ?? [], ys = ev.map((e) => e[0]), from = o.from ?? Math.min(...ys), to = o.to ?? Math.max(...ys), W = 330, pad = 22, span = to - from || 1;
+  const bc = from < 0, X = (y) => pad + ((y - from) / span) * (W - 2 * pad);
+  const fmt = (y, short) => y < 0 ? (en ? `${-y} BC` : `${-y}${short ? "\n" : " "}v. Chr.`) : bc && y > 0 ? (en ? `AD ${y}` : `${y}${short ? "\n" : " "}n. Chr.`) : String(y);
+  const step = o.step ?? [1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000].find((k) => span / k <= 6);
+  const hl = new Set([].concat(o.highlight ?? []).map(String));
+  // Event boxes: the name wrapped to lines of about 14 letters, the year under it.
+  const wrap = (t) => { const out = []; for (const w of String(t).split(" ")) { const last = out[out.length - 1]; if (last && (last + " " + w).length <= 14) out[out.length - 1] = last + " " + w; else out.push(w); } return out; };
+  const boxes = ev.map(([y, name], i) => { const lines = wrap(name ?? ""), yr = o.years === false ? null : fmt(y), w = Math.max(...lines.map((l) => l.length * 6.6), yr ? yr.length * 5.8 : 0) + 14, h = lines.length * 14 + (yr ? 13 : 0) + 8;
+    return { i, y, x: X(y), w, h, lines, yr, hi: hl.has(String(y)) || hl.has(String(name)) }; }).sort((a, b) => a.x - b.x);
+  const rows = [];
+  for (const b of boxes) { b.bx = Math.min(Math.max(b.x - b.w / 2, 2), W - 2 - b.w); let r = 0; while ((rows[r] ?? []).some((o2) => b.bx < o2.bx + o2.w + 4 && o2.bx < b.bx + b.w + 4)) r++; (rows[r] ??= []).push(b); b.row = r; }
+  const rowH = rows.map((r) => Math.max(...r.map((b) => b.h))), base = rowH.reduce((a, h) => a + h + 12, 0) + 8;
+  const lineY = base + 6, eras = o.eras ?? [], tickLab = bc && !en ? 2 : 1;
+  let s = `<line x1="${pad - 8}" y1="${lineY}" x2="${W - pad + 8}" y2="${lineY}" stroke="#2b0f45" stroke-width="3" stroke-linecap="round"/><path d="M${W - pad + 14} ${lineY} l-9 -6 v12 z" fill="#2b0f45"/>`;
+  // Ticks: every step from the first multiple at or after `from`.
+  const ticks = []; for (let t = Math.ceil(from / step) * step; t <= to; t += step) ticks.push(t);
+  const every = ticks.length > 1 && (X(ticks[1]) - X(ticks[0])) < (bc ? 44 : 34) ? 2 : 1;
+  ticks.forEach((t, k) => { s += `<line x1="${X(t)}" y1="${lineY - 6}" x2="${X(t)}" y2="${lineY + 6}" stroke="#2b0f45" stroke-width="2"/>`;
+    if (k % every === 0) s += halo(X(t), lineY + 16 + (tickLab - 1) * 6, fmt(t, true), { size: 10, weight: 600, fill: "#5b4a78" }); });
+  // Eras below the ticks.
+  const eraY = lineY + 24 + tickLab * 12, PAL = ["#d7cdf0", "#cfe7b4", "#f6dfa4", "#f4c7c3", "#cde9f8"];
+  eras.forEach(([a, b, name, colour], i) => { const x1 = X(Math.max(a, from)), x2 = X(Math.min(b, to)); s += `<rect x="${x1}" y="${eraY}" width="${x2 - x1}" height="24" rx="6" fill="${D_COL(colour) ?? PAL[i % PAL.length]}" stroke="#2b0f45" stroke-width="1.4"/>` + (!name ? "" : x2 - x1 >= String(name).length * 6.6 + 6 ? halo((x1 + x2) / 2, eraY + 12, String(name), { size: 11, haloW: 0 }) : halo(Math.min(Math.max((x1 + x2) / 2, 30), W - 30), eraY + 36 + (i % 2) * 13, String(name), { size: 10.5 }) + `<line x1="${(x1 + x2) / 2}" y1="${eraY + 24}" x2="${(x1 + x2) / 2}" y2="${eraY + 29 + (i % 2) * 13}" stroke="#2b0f45" stroke-width="1"/>`); });
+  const below = eras.some(([a, b, name]) => name && X(Math.min(b, to)) - X(Math.max(a, from)) < String(name).length * 6.6 + 6);
+  // Events: rows stacked upwards from the line.
+  for (const b of boxes) { const top = lineY - 14 - rowH.slice(0, b.row + 1).reduce((a, h) => a + h + 12, 0) + 12; b.by = top + (rowH[b.row] - b.h); }
+  for (const b of boxes) s += `<line x1="${b.x}" y1="${b.by + b.h}" x2="${b.x}" y2="${lineY}" stroke="${b.hi ? "#8e3bd1" : "#9a8bb5"}" stroke-width="${b.hi ? 2.5 : 1.6}"/>`;
+  for (const b of boxes) { const by = b.by;
+    s += `<circle cx="${b.x}" cy="${lineY}" r="${b.hi ? 6 : 4.5}" fill="${b.hi ? "#FDD835" : "#8e3bd1"}" stroke="#2b0f45" stroke-width="1.5"/>`;
+    s += `<rect x="${b.bx}" y="${by}" width="${b.w}" height="${b.h}" rx="8" fill="${b.hi ? "#FDD835" : "#fff"}" stroke="#2b0f45" stroke-width="${b.hi ? 2.2 : 1.5}"/>`;
+    b.lines.forEach((l, k) => { s += l === "?" ? `<text x="${b.bx + b.w / 2}" y="${by + 17 + k * 14}" text-anchor="middle" font-size="15" font-weight="700" fill="#8e3bd1">?</text>` : `<text x="${b.bx + b.w / 2}" y="${by + 16 + k * 14}" text-anchor="middle" font-size="12" font-weight="700" fill="#2b0f45">${esc(l)}</text>`; });
+    if (b.yr) s += `<text x="${b.bx + b.w / 2}" y="${by + 16 + b.lines.length * 14}" text-anchor="middle" font-size="10.5" font-weight="600" fill="#6b5a86">${esc(b.yr)}</text>`; }
+  const H = eras.length ? eraY + (below ? 58 : 32) : lineY + 28 + tickLab * 12;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W + 10}px">${s}</svg>`;
+}
+
 function drawn(o, ctx = {}) {
   switch (o.drawn) {
     case "table": return table(o);
@@ -624,6 +954,12 @@ function drawn(o, ctx = {}) {
     case "shape": return shape(o);
     case "bar-chart": return barChart(o);
     case "coins": return coins(o);
+    case "germany-map": return germanyMap(o);
+    case "world-map": return worldMap(o);
+    case "junction": return junction(o);
+    case "circuit": return circuit(o);
+    case "water-cycle": return waterCycle(o);
+    case "timeline": return timeline(o);
   }
   return `<div class="note">[${esc(o.drawn)}]</div>`;
 }

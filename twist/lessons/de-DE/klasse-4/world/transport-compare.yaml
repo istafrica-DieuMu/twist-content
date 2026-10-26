@@ -92,6 +92,7 @@ lessons:
             say: "Für jeden, der mitfährt, gilt auf derselben Strecke meistens: Zu Fuß und mit dem Rad entstehen keine Abgase. Bus und Bahn machen wenig. Das Auto macht viel. Und das Flugzeug macht am meisten."
           - text: "Ein Elektroauto hat keinen Auspuff. Es braucht aber Strom und genauso viel Platz."
             say: "Und das Elektroauto? Es hat keinen Auspuff, beim Fahren kommen also keine Abgase heraus. Aber es braucht Strom, und es braucht genauso viel Platz auf der Straße wie jedes andere Auto."
+            show: { object: electric-car }
 
       - activity: practise
         setting: in-context
@@ -115,10 +116,10 @@ lessons:
                   - { id: yes, show: { text: "macht Abgase" }, say: "macht Abgase" }
                   - { id: no, show: { text: "keine Abgase" }, say: "keine Abgase" }
                 options:
-                  - { text: "Fahrrad", bin: no }
-                  - { text: "Tretroller", bin: no }
-                  - { text: "Auto mit Benzin", bin: yes }
-                  - { text: "Lastwagen mit Diesel", bin: yes }
+                  - { object: bike, bin: no }
+                  - { object: kick-scooter, bin: no }
+                  - { object: car, bin: yes }
+                  - { object: lorry, bin: yes }
                 hints:
                   - "Frag dich: Hat es einen Motor, der Kraftstoff verbrennt?"
                   - "Fahrrad und Tretroller bewegst du selbst."
@@ -137,9 +138,9 @@ lessons:
               - id: l1-f4
                 type: ordering
                 text: "Ordne von wenig zu vielen Abgasen, für jeden, der mitfährt."
-                options: ["Auto", "Flugzeug", "Fahrrad", "Bahn"]
+                options: [{ object: car }, { object: plane }, { object: bike }, { object: train }]
                 slot_count: 4
-                answer: ["Fahrrad", "Bahn", "Auto", "Flugzeug"]
+                answer: [bike, train, car, plane]
                 hints:
                   - "Fang mit dem an, was gar keine Abgase macht."
                   - "Die Bahn teilt sich viele Menschen. Das Flugzeug macht am meisten."
@@ -155,6 +156,7 @@ lessons:
               - id: l1-f6
                 type: multiple_choice
                 text: "Ein Elektroauto hat keinen Auspuff. Was braucht es trotzdem?"
+                show: { object: electric-car }
                 options: ["Strom und viel Platz", "Heu und Hafer", "gar nichts"]
                 answer: "Strom und viel Platz"
                 feedback:
@@ -175,9 +177,9 @@ lessons:
                   - { id: loud, show: { text: "laut" }, say: "laut" }
                 options:
                   - { text: "zu Fuß gehen", bin: quiet }
-                  - { text: "Fahrrad fahren", bin: quiet }
-                  - { text: "Lastwagen", bin: loud }
-                  - { text: "Motorrad", bin: loud }
+                  - { object: ride-bike, bin: quiet }
+                  - { object: lorry, bin: loud }
+                  - { object: motorbike, bin: loud }
                 hints: ["Ein Motor brummt. Wer ohne Motor unterwegs ist, ist leise."]
               - id: l1-s2
                 type: multiple_choice
@@ -212,9 +214,9 @@ lessons:
               - id: l1-n1
                 type: ordering
                 text: "Ordne von wenig zu vielen Abgasen, für jeden, der mitfährt."
-                options: ["Bus", "Flugzeug", "zu Fuß", "Auto"]
+                options: [{ object: bus }, { object: plane }, "zu Fuß", { object: car }]
                 slot_count: 4
-                answer: ["zu Fuß", "Bus", "Auto", "Flugzeug"]
+                answer: ["zu Fuß", bus, car, plane]
               - id: l1-n2
                 type: multiple_choice
                 text: "Familie Demir fährt zu viert zu Oma. Oma wohnt 200 km weit weg. Womit entstehen die wenigsten Abgase?"
@@ -267,6 +269,7 @@ lessons:
           - id: l1-c5
             type: true_false
             text: "Ein Elektroauto braucht keinen Platz zum Parken. Stimmt das?"
+            show: { object: electric-car }
             answer: false
           - id: l1-c6
             type: text_input
@@ -472,9 +475,9 @@ lessons:
             part: environment
             type: ordering
             text: "Ordne von wenig zu vielen Abgasen, für jeden, der mitfährt."
-            options: ["Flugzeug", "Tretroller", "Auto", "Bus"]
+            options: [{ object: plane }, { object: kick-scooter }, { object: car }, { object: bus }]
             slot_count: 4
-            answer: ["Tretroller", "Bus", "Auto", "Flugzeug"]
+            answer: [kick-scooter, bus, car, plane]
           - id: l2-c3
             part: environment
             type: true_false
@@ -496,6 +499,7 @@ lessons:
             part: environment
             type: true_false
             text: "Ein Elektroauto hat keinen Auspuff, braucht aber Strom und Platz. Stimmt das?"
+            show: { object: electric-car }
             answer: true
           - id: l2-c7
             part: environment
@@ -505,10 +509,10 @@ lessons:
               - { id: yes, show: { text: "macht Abgase" }, say: "macht Abgase" }
               - { id: no, show: { text: "keine Abgase" }, say: "keine Abgase" }
             options:
-              - { text: "Inlineskates", bin: no }
+              - { object: inline-skates, bin: no }
               - { text: "zu Fuß gehen", bin: no }
-              - { text: "Motorrad mit Benzin", bin: yes }
-              - { text: "Bus mit Diesel", bin: yes }
+              - { object: motorbike, bin: yes }
+              - { object: bus, bin: yes }
           - id: l2-c8
             part: health
             type: multiple_choice

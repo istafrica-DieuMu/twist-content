@@ -18,9 +18,11 @@ summary: >
   adds the switch, which opens and closes the circuit like a small
   bridge, looks inside a torch, and finds faults (switch off, loose wire,
   flat battery, burnt-out bulb); two switches one after the other light
-  the bulb only when both are on. It ends with the skill check. No
-  circuit is drawn: assets/drawn.yaml has no circuit component yet, so
-  each set-up is described in words. The direction of the current is
+  the bulb only when both are on. It ends with the skill check. The
+  circuit component draws the closed loop, the open switch and the cut
+  wire; where the child predicts, its bulb shows a question mark. Set-ups
+  it cannot draw (one wire, both wires on one pole, a flat battery, two
+  switches) stay in words. The direction of the current is
   left out on purpose, since schools teach it differently.
 metadata:
   year: klasse-4
@@ -30,8 +32,8 @@ metadata:
   builds_on: []
   also_practises: []
   vocabulary: { de: [Strom, Stromkreis, Batterie, Flachbatterie, Pluspol, Minuspol, Kabel, Lämpchen, Schalter, geschlossen, offen, Lücke, Taschenlampe, Volt] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [circuit]
   facets: []
   parts:
     - { id: closed-circuit, what: { de: "erklären, dass der Strom einen geschlossenen Kreis von Pol zu Pol braucht", en: "explaining that the current needs a closed loop from pole to pole" } }
@@ -70,15 +72,19 @@ lessons:
             say: "Das Lämpchen bleibt dunkel. Opa Theo lacht: Ein Kabel reicht nicht. Der Strom braucht einen Weg zum Lämpchen und einen Weg wieder zurück zur Batterie."
           - text: "Die Batterie hat zwei Pole: den Pluspol und den Minuspol."
             say: "Schau dir die Batterie genau an. Sie hat zwei Anschlüsse, die Pole. Der eine heißt Pluspol, der andere Minuspol. Das erste Kabel führt von einem Pol zum Lämpchen. Das zweite Kabel führt vom Lämpchen zum anderen Pol."
+            show: { object: battery }
           - text: "Ein Kreis ohne Lücke: Batterie, Kabel, Lämpchen, Kabel, zurück zur Batterie. Das Lämpchen leuchtet!"
             say: "Jetzt ist der Weg ein Kreis ohne Lücke: von der Batterie durch das erste Kabel zum Lämpchen, durch das Lämpchen hindurch und durch das zweite Kabel zurück zur Batterie. Der Strom fließt im Kreis, und das Lämpchen leuchtet. Das nennt man einen Stromkreis."
-            show: { object: light-bulb }
+            show: { drawn: circuit, switch: false, labels: true }
           - text: "Geschlossener Stromkreis: Das Lämpchen leuchtet.\nOffener Stromkreis: Es bleibt dunkel."
             say: "Ist der Kreis geschlossen, leuchtet das Lämpchen. Ist irgendwo eine Lücke, ein loses Kabel oder ein durchgeschnittener Draht, ist der Stromkreis offen, und das Lämpchen bleibt dunkel. Auch wenn beide Kabel am selben Pol hängen, leuchtet es nicht. Ein Kabel muss zum Pluspol, eins zum Minuspol."
+            show: { drawn: circuit, switch: false, broken: true }
           - text: "Wusstest du? Die Einheit Volt auf jeder Batterie ist nach Alessandro Volta benannt."
             say: "Wusstest du? Auf jeder Batterie steht eine Zahl mit dem Wort Volt. Die Einheit Volt ist nach Alessandro Volta benannt. Er hat vor mehr als zweihundert Jahren die erste Batterie gebaut, aus Metallscheiben und Pappe mit Salzwasser."
+            show: { object: battery }
           - text: "Probier's aus, aber nur mit einer Batterie! Nie mit der Steckdose."
             say: "Mit einer Flachbatterie, einem Lämpchen und zwei Kabeln kannst du einen Stromkreis mit einem Erwachsenen ausprobieren. Das ist ungefährlich. Aber nie mit der Steckdose! Der Strom aus der Steckdose ist viel stärker und lebensgefährlich."
+            show: { object: battery }
 
       - activity: practise
         setting: in-context
@@ -157,6 +163,7 @@ lessons:
               - id: l1-s1
                 type: true_false
                 text: "Zwei Kabel verbinden die Batterie und das Lämpchen zu einem Kreis. Es gibt keine Lücke.\n\nLeuchtet das Lämpchen?"
+                show: { drawn: circuit, switch: false, bulb: "?" }
                 answer: true
                 hints: ["Ein Kreis ohne Lücke heißt geschlossener Stromkreis."]
               - id: l1-s2
@@ -188,11 +195,11 @@ lessons:
                   - { id: yes, show: { text: "nimmt sie" }, say: "nimmt sie" }
                   - { id: no, show: { text: "nimmt sie nicht" }, say: "nimmt sie nicht" }
                 options:
-                  - { text: "eine Flachbatterie", bin: yes }
+                  - { object: battery, bin: yes }
                   - { text: "zwei Kabel", bin: yes }
-                  - { text: "ein Lämpchen", bin: yes }
-                  - { text: "die Steckdose", bin: no }
-                  - { text: "eine Kerze", bin: no }
+                  - { object: light-bulb, bin: yes }
+                  - { object: socket, bin: no }
+                  - { object: candle, bin: no }
                 hints: ["Für Versuche gibt es Strom nur aus der Batterie. Eine Kerze braucht keinen Strom."]
               - id: l1-s6
                 type: multiple_choice
@@ -299,11 +306,13 @@ lessons:
             show: { object: lamp }
           - text: "Einen Schalter! Er öffnet und schließt den Stromkreis."
             say: "Sie braucht einen Schalter. Opa Theo baut ihn mit einem dritten Kabel in den Kreis ein. Der Schalter ist wie eine kleine Brücke aus Metall. Schaltest du ihn ein, ist die Brücke zu: Der Kreis ist geschlossen, und das Lämpchen leuchtet. Schaltest du ihn aus, ist die Brücke offen: Es gibt eine Lücke, und das Lämpchen geht aus."
+            show: { drawn: circuit, labels: true }
           - text: "Schalter an: Kreis geschlossen, Licht an.\nSchalter aus: Kreis offen, Licht aus."
             say: "Der Schalter macht keinen Strom. Er öffnet und schließt nur den Weg. Schalter an heißt: Kreis geschlossen, Licht an. Schalter aus heißt: Kreis offen, Licht aus."
-            show: { object: light-bulb }
+            show: { drawn: circuit, closed: false }
           - text: "In jeder Taschenlampe steckt ein Stromkreis: Batterien, Schalter, Lämpchen und Metallstreifen."
             say: "Opa Theo schraubt eine Taschenlampe auf. Darin stecken Batterien, ein Schalter und ein Lämpchen. Statt Kabeln führen Metallstreifen und Federn den Strom. Auch der Lichtschalter in deinem Zimmer öffnet und schließt einen Stromkreis. Dessen Leitungen liegen in der Wand, und dort ist der Strom lebensgefährlich. Die fasst du nie an."
+            show: { object: torch }
           - text: "Bleibt es dunkel? Prüfe:\nIst der Schalter an?\nSitzt jedes Kabel fest?\nIst die Batterie leer?\nIst das Lämpchen durchgebrannt?"
             say: "Bleibt eine Lampe dunkel, suchst du die Lücke im Kreis wie ein Profi. Ist der Schalter an? Sitzt jedes Kabel fest? Ist die Batterie leer? Oder ist das Lämpchen durchgebrannt? Dann ist der dünne Draht darin gerissen, und der Kreis hat eine Lücke."
           - text: "Zwei Schalter hintereinander: Das Lämpchen leuchtet nur, wenn beide an sind."
@@ -317,6 +326,7 @@ lessons:
               - id: l2-f1
                 type: true_false
                 text: "Linas Schalter ist aus. Die Batterie ist voll, alle Kabel sitzen fest.\n\nLeuchtet die Lampe?"
+                show: { drawn: circuit, closed: false, bulb: "?" }
                 answer: false
                 hints:
                   - "Was macht ein Schalter, der aus ist?"
@@ -360,9 +370,9 @@ lessons:
                 type: matching
                 text: "Was macht jedes Teil im Stromkreis? Verbinde."
                 pairs:
-                  - { left: { text: "Schalter" }, right: { text: "macht den Kreis auf und zu" } }
-                  - { left: { text: "Batterie" }, right: { text: "gibt den Strom" } }
-                  - { left: { text: "Lämpchen" }, right: { text: "leuchtet, wenn Strom fließt" } }
+                  - { left: { object: switch }, right: { text: "macht den Kreis auf und zu" } }
+                  - { left: { object: battery }, right: { text: "gibt den Strom" } }
+                  - { left: { object: light-bulb }, right: { text: "leuchtet, wenn Strom fließt" } }
                 hints:
                   - "Jedes Teil hat eine andere Aufgabe."
                   - "Der Schalter macht keinen Strom. Er öffnet und schließt den Weg."
@@ -424,6 +434,7 @@ lessons:
               - id: l2-n1
                 type: true_false
                 text: "Lina schaltet ein. Die Batterie ist voll, alle Kabel sitzen fest, das Lämpchen ist heil.\n\nLeuchtet es?"
+                show: { drawn: circuit, bulb: "?" }
                 answer: true
               - id: l2-n2
                 type: multiple_choice
@@ -501,6 +512,7 @@ lessons:
             part: predict
             type: true_false
             text: "Ein Kabel führt vom Pluspol zum Lämpchen, ein zweites vom Lämpchen zum Minuspol. Alles sitzt fest.\n\nLeuchtet das Lämpchen?"
+            show: { drawn: circuit, switch: false, bulb: "?" }
             answer: true
           - id: l2-c10
             part: predict
@@ -518,6 +530,7 @@ lessons:
             part: predict
             type: multiple_choice
             text: "Mia baut einen Kreis. Ein Kabel ist durchgeschnitten. Was passiert?"
+            show: { drawn: circuit, switch: false, broken: true, bulb: "?" }
             options: ["Das Lämpchen bleibt dunkel.", "Das Lämpchen leuchtet doppelt so hell.", "Das Lämpchen leuchtet halb so hell."]
             answer: "Das Lämpchen bleibt dunkel."
           - id: l2-c12

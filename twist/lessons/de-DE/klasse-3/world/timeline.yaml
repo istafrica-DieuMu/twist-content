@@ -18,8 +18,9 @@ summary: >
   decades, thousands of years), counts decades between two years and
   shows that every decade takes the same space. It ends with the skill
   check. No task names the current year; every "how long ago" claim stays
-  true for decades. The timeline is the number line until a timeline
-  drawing exists.
+  true for decades. Events are drawn on the timeline component; tapping
+  a year (point_on_line) and reading a marked year stay on the number
+  line.
 metadata:
   year: klasse-3
   topic: { de: Geschichte entdecken, en: Exploring history }
@@ -29,7 +30,7 @@ metadata:
   also_practises: []
   vocabulary: { de: [Zeitleiste, Jahreszahl, Jahrzehnt, Jahrhundert, Jahrtausend, früher, später, Ereignis, Museum] }
   forms: [text, audio, picture, drawn]
-  drawn: [number-line]
+  drawn: [number-line, timeline]
   sounds: []
   facets: []
   parts:
@@ -86,7 +87,7 @@ lessons:
             show: { object: train }
           - text: "Links ist früher, rechts ist später."
             say: "Auf der Zeitleiste im Museum stehen Jahreszahlen. Ganz links steht das Jahr, das am längsten her ist. Nach rechts werden die Jahreszahlen größer. Die Eisenbahn von 1835 kommt also weiter nach links als das Auto von 1886."
-            show: { drawn: number-line, from: 1800, to: 2000, step: 10, labels: tens }
+            show: { drawn: timeline, from: 1800, to: 2000, step: 50, events: [[1835, "erste Eisenbahn"], [1886, "erstes Auto"]] }
           - text: "Ein Jahrzehnt hat 10 Jahre."
             say: "Jeder kleine Strich auf dieser Zeitleiste ist 10 Jahre weiter. 10 Jahre nennt man ein Jahrzehnt. Von 1900 bis 1910 ist ein Jahrzehnt vergangen, von 1950 bis 1960 auch."
             show: { drawn: number-line, from: 1900, to: 2000, step: 10, labels: ends }
@@ -95,7 +96,7 @@ lessons:
             show: { drawn: number-line, from: 1800, to: 2000, step: 10, labels: tens }
           - text: "Wusstest du? Vom Baubeginn bis zum fertigen Kölner Dom vergingen mehr als 600 Jahre."
             say: "Wusstest du? Vom Baubeginn bis zum fertigen Kölner Dom vergingen mehr als 600 Jahre. Die Arbeiten begannen im Jahr 1248, fertig war der Dom erst 1880. Dazwischen lag die Baustelle sehr lange still. Das sind mehr als sechs Jahrhunderte."
-            show: { object: church }
+            show: { drawn: timeline, from: 1200, to: 1900, step: 100, events: [[1248, "Baubeginn"], [1880, "Dom fertig"]] }
           - text: "Der Trick: Die kleinere Jahreszahl war früher und kommt weiter nach links."
             say: "So ordnest du: Vergleiche die Jahreszahlen. Die kleinere Zahl war früher und kommt weiter nach links. Die größere Zahl war später und kommt weiter nach rechts."
 
@@ -234,6 +235,7 @@ lessons:
                 type: multiple_choice
                 text: "Zwischen der ersten Eisenbahn 1835 und dem ersten Auto 1886 liegen …"
                 say: "Zwischen der ersten Eisenbahn 1835 und dem ersten Auto 1886 liegen wie viele Jahre?"
+                show: { drawn: timeline, from: 1830, to: 1890, step: 10, events: [[1835, "erste Eisenbahn"], [1886, "erstes Auto"]] }
                 options: ["etwa 5 Jahrzehnte", "etwa 5 Jahrhunderte", "etwa 5 Jahre"]
                 answer: "etwa 5 Jahrzehnte"
                 feedback:
@@ -307,10 +309,10 @@ lessons:
             show: { object: car }
           - text: "Ja! Das ist mehr als ein Jahrhundert her."
             say: "Ja. Von 1886 bis 1986 sind schon 100 Jahre vergangen, und seitdem noch viele mehr. Das erste Auto fuhr also vor mehr als einem Jahrhundert. Je weiter links etwas auf der Zeitleiste steht, desto länger ist es her."
-            show: { drawn: number-line, from: 1800, to: 2000, step: 10, labels: tens, mark: 1886 }
+            show: { drawn: timeline, from: 1800, to: 2000, step: 50, events: [[1886, "erstes Auto"], [1986, "100 Jahre später"]], highlight: 1886 }
           - text: "In Jahrzehnten zählen"
             say: "Linas Opa ist 1955 geboren, ihre Mama 1985. Wie weit liegt das auseinander? Zähl in Jahrzehnten: 1965, 1975, 1985. Das sind 3 Jahrzehnte, also 30 Jahre."
-            show: { drawn: number-line, from: 1950, to: 2000, step: 10, labels: all }
+            show: { drawn: timeline, from: 1950, to: 2000, step: 10, events: [[1955, "Opa geboren"], [1985, "Mama geboren"]] }
           - text: "Jahrzehnte, Jahrhunderte, Jahrtausende"
             say: "Opa wurde vor einigen Jahrzehnten geboren. Das erste Auto fuhr vor mehr als einem Jahrhundert. Und die Steinzeit ist sogar mehrere Jahrtausende her. Je länger etwas her ist, desto größer ist das Wort, mit dem du es beschreibst."
           - text: "Wusstest du? 1969 standen zum ersten Mal Menschen auf dem Mond."
@@ -328,6 +330,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "Das erste Auto fuhr 1886. Wann war das?"
+                show: { object: car }
                 options: ["vor mehr als einem Jahrhundert", "vor einem Jahrzehnt", "vor einem Jahrtausend"]
                 answer: "vor mehr als einem Jahrhundert"
                 feedback:
@@ -438,6 +441,7 @@ lessons:
               - id: l2-n1
                 type: multiple_choice
                 text: "Ein Besucher im Museum sagt: „Die erste Eisenbahn in Deutschland fuhr vor ein paar Jahren.“ Was sagt Lina?"
+                show: { object: train }
                 options: ["Nein, das ist mehr als ein Jahrhundert her.", "Ja, das stimmt.", "Nein, das war in der Steinzeit."]
                 answer: "Nein, das ist mehr als ein Jahrhundert her."
                 feedback:
@@ -571,6 +575,7 @@ lessons:
             part: how-long
             type: multiple_choice
             text: "Die erste Eisenbahn in Deutschland fuhr 1835. Wie lange ist das her?"
+            show: { object: train }
             options: ["mehr als ein Jahrhundert", "weniger als ein Jahrzehnt", "mehr als ein Jahrtausend"]
             answer: "mehr als ein Jahrhundert"
           - id: l2-c17

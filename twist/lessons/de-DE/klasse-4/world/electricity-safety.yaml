@@ -32,8 +32,8 @@ metadata:
   builds_on: [world.nature.electric-circuit, world.nature.conductors]
   also_practises: [world.nature.conductors]
   vocabulary: { de: [Steckdose, Stecker, Kabel, Elektrogerät, Stromschlag, lebensgefährlich, Volt, Kindersicherung, Stromleitung, Strommast, Umspannwerk, Oberleitung, Hochspannung, Warnschild, Notruf] }
-  forms: [text, audio, picture]
-  drawn: []
+  forms: [text, audio, picture, drawn]
+  drawn: [circuit]
   facets: []
   parts:
     - { id: home, what: { de: "die Regeln für Steckdose, Stecker, Kabel und Wasser im Haus kennen und begründen", en: "knowing and explaining the rules for sockets, plugs, cables and water at home" } }
@@ -85,16 +85,19 @@ lessons:
         screens:
           - text: "Emil hat mit einer Batterie ein Lämpchen zum Leuchten gebracht. Er fragt: „Geht das auch mit der Steckdose?“\n\nWas glaubst du?"
             say: "Emil hat mit einer Flachbatterie ein Lämpchen zum Leuchten gebracht. Jetzt fragt er seine große Schwester Jule: Geht das auch mit der Steckdose? Was glaubst du?"
-            show: { object: light-bulb }
+            show: { drawn: circuit, switch: false }
           - text: "Nein! Eine Flachbatterie hat 4,5 Volt. Die Steckdose hat 230 Volt. Ihr Strom ist lebensgefährlich."
             say: "Auf keinen Fall! Eine Flachbatterie hat vier Komma fünf Volt. Die Steckdose hat zweihundertdreißig Volt, also mehr als fünfzigmal so viel. Ihr Strom kann durch deinen Körper fließen und ist lebensgefährlich. Versuche gibt es nur mit Batterien."
+            show: { object: battery }
           - text: "In die Steckdose gehört nur ein Stecker. Kleine Kinder schützt eine Kindersicherung."
             say: "Jule und Emil werden Strom-Detektive und suchen Gefahren in der Wohnung. Regel eins: In die Steckdose kommt nur ein Stecker, nie eine Haarklammer, eine Nadel oder ein Stift. Für kleine Geschwister gibt es eine Kindersicherung. Sie macht die Löcher der Steckdose zu."
+            show: { object: socket }
           - text: "Strom und Wasser vertragen sich nicht."
             say: "Regel zwei: Fass Stecker, Schalter und Elektrogeräte nur mit trockenen Händen an. Elektrogeräte wie ein Föhn, ein Radio oder ein Handy, das gerade lädt, haben neben der Badewanne und am Waschbecken nichts zu suchen. Fällt so ein Gerät ins Wasser, leitet das Wasser den Strom zu dir."
             show: { object: bath }
           - text: "Stecker am Griff herausziehen, nicht am Kabel. Kaputte Kabel nie anfassen."
             say: "Regel drei: Zieh einen Stecker immer am Griff heraus, nie am Kabel. Sonst kann das Kabel reißen. Ist ein Kabel kaputt, wird ein Gerät heiß, raucht oder riecht es verbrannt, fasst du es nicht an. Sag sofort einem Erwachsenen Bescheid."
+            show: { object: plug }
           - text: "Bekommt jemand einen Stromschlag: nicht anfassen! Erwachsene holen, 112 anrufen."
             say: "Regel vier: Hält jemand ein Gerät oder ein Kabel und bekommt einen Stromschlag, fass ihn nicht an. Der Strom kann sonst auch durch dich fließen. Hol sofort einen Erwachsenen, der den Strom ausschaltet, und ruf den Notruf an, eins, eins, zwei."
 
@@ -300,8 +303,10 @@ lessons:
             show: { object: kite }
           - text: "Nein! Drachen nur weit weg von Stromleitungen steigen lassen."
             say: "Kein guter Platz! In diesen Leitungen ist sehr viel Strom. Einen Drachen lässt du nur dort steigen, wo weit und breit keine Stromleitung ist. Verfängt er sich doch in einer Leitung, lass die Schnur los, zieh nicht daran und klettere nie hinterher. Sag einem Erwachsenen Bescheid."
+            show: { object: pylon }
           - text: "Nie auf Strommasten klettern. Nie in ein Umspannwerk."
             say: "Auf dem Weg zum Feld kommen die beiden an einem hohen Zaun vorbei. Dahinter stehen große Gestelle aus Metall mit dicken Leitungen. Das ist ein Umspannwerk. Am Zaun hängt ein gelbes Dreieck mit einem schwarzen Blitz. Dieses Schild heißt: Vorsicht, Hochspannung, Lebensgefahr! Auf Strommasten und über solche Zäune klettert man nie, auch nicht, um einen Ball zu holen."
+            show: { object: pylon }
           - text: "Die Oberleitung der Bahn hat 15 000 Volt. Der Strom kann überspringen, auch ohne dass du sie berührst."
             say: "Dann kommen sie an den Bahngleisen vorbei. Über den Gleisen hängt die Oberleitung. Sie hat fünfzehntausend Volt. Der Strom kann sogar überspringen, wenn du nur nah herankommst, ohne etwas zu berühren. Darum klettert man nie auf Waggons oder Signalmasten. Gleise sind kein Spielplatz."
             show: { object: train }
@@ -310,6 +315,7 @@ lessons:
             show: { object: bird }
           - text: "Liegt ein Kabel auf dem Boden: weit weg bleiben und Hilfe holen, 112."
             say: "Nach einem Sturm kann eine Leitung herunterhängen oder auf dem Boden liegen. Bleib weit weg, fass nichts an und stochere auch nicht mit einem Stock daran herum. Hol einen Erwachsenen oder ruf den Notruf an, eins, eins, zwei."
+            show: { object: cable }
 
       - activity: practise
         setting: in-context
@@ -337,6 +343,7 @@ lessons:
               - id: l2-f3
                 type: multiple_choice
                 text: "Was bedeutet ein gelbes Dreieck mit einem schwarzen Blitz?"
+                show: { object: sign-high-voltage }
                 options: ["Vorsicht, Hochspannung, Lebensgefahr!", "Hier gibt es oft Gewitter.", "Hier kann man Handys laden."]
                 answer: "Vorsicht, Hochspannung, Lebensgefahr!"
                 hints:
@@ -397,7 +404,7 @@ lessons:
                 text: "Was ist die Regel? Verbinde."
                 pairs:
                   - { left: { text: "Drachen steigen lassen" }, right: { text: "nur weit weg von Stromleitungen" } }
-                  - { left: { text: "gelbes Schild mit Blitz" }, right: { text: "Vorsicht, Hochspannung" } }
+                  - { left: { object: sign-high-voltage }, right: { text: "Vorsicht, Hochspannung" } }
                   - { left: { text: "Kabel auf dem Boden" }, right: { text: "weit weg bleiben, Hilfe holen" } }
                 hints: ["Bei jedem geht es darum, dem Strom nicht zu nahe zu kommen."]
               - id: l2-s4
@@ -442,6 +449,7 @@ lessons:
               - id: l2-n5
                 type: multiple_choice
                 text: "Jule sieht an einem grauen Kasten ein Schild mit einem schwarzen Blitz. Was macht sie?"
+                show: { object: sign-high-voltage }
                 options: ["Abstand halten und nichts anfassen", "den Kasten öffnen und nachsehen", "auf den Kasten klettern"]
                 answer: "Abstand halten und nichts anfassen"
 
@@ -510,6 +518,7 @@ lessons:
             part: outside
             type: multiple_choice
             text: "An einer Tür hängt ein gelbes Dreieck mit einem schwarzen Blitz. Was heißt das für dich?"
+            show: { object: sign-high-voltage }
             options: ["Lebensgefahr durch Strom, nicht hineingehen.", "Hier ist ein Spielplatz.", "Hier wohnt der Blitz."]
             answer: "Lebensgefahr durch Strom, nicht hineingehen."
           - id: l2-c11

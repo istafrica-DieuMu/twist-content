@@ -77,8 +77,10 @@ lessons:
         screens:
           - text: "Was glaubst du: Woher bekommt die Straßenbahn ihre Kraft?"
             say: "Mila und Opa Hans machen einen Ausflug an den See. Zuerst fahren sie mit der Straßenbahn. Mila sucht den Tank, aber die Straßenbahn hat keinen. Was glaubst du: Woher bekommt die Straßenbahn ihre Kraft?"
+            show: { object: tram }
           - text: "Aus der Leitung über ihr: Strom!"
             say: "Über den Schienen hängt ein Draht, die Oberleitung. Ein Bügel auf dem Dach der Straßenbahn berührt den Draht, und so fließt Strom zum Elektromotor. Der Motor dreht die Räder. Auch viele Züge fahren so, mit Strom aus der Oberleitung."
+            show: { object: tram }
           - text: "Muskelkraft: Du bist der Antrieb."
             say: "Am See leihen sich Mila und Opa ein Fahrrad und ein Ruderboot. Hier treiben deine Muskeln das Fahrzeug an. Du trittst in die Pedale oder ziehst an den Rudern. Auch eine Kutsche fährt mit Muskelkraft, mit der Kraft der Pferde. Die Energie für die Muskeln kommt aus dem Essen."
             show: { object: bike }
@@ -93,6 +95,7 @@ lessons:
             show: { object: car }
           - text: "Wusstest du? Das erste Fahrrad hatte keine Pedale."
             say: "Wusstest du? Das erste Fahrrad hatte keine Pedale. Karl Drais hat es vor mehr als 200 Jahren in Mannheim gebaut. Man stieß sich mit den Füßen vom Boden ab, wie mit einem Laufrad."
+            show: { object: balance-bike }
 
       - activity: practise
         setting: plain
@@ -115,6 +118,7 @@ lessons:
               - id: l1-f2
                 type: multiple_choice
                 text: "Was treibt ein Segelboot an?"
+                show: { object: boat }
                 options: ["der Wind", "ein Motor mit Benzin", "Strom aus der Oberleitung"]
                 answer: "der Wind"
                 hints:
@@ -135,8 +139,8 @@ lessons:
                   - { object: bike, bin: muscle }
                   - { object: boat, bin: wind }
                   - { text: "Auto mit Benzintank", bin: fuel }
-                  - { text: "Straßenbahn", bin: electric }
-                  - { text: "Ruderboot", bin: muscle }
+                  - { object: tram, bin: electric }
+                  - { object: rowing-boat, bin: muscle }
                   - { text: "Lastwagen mit Dieseltank", bin: fuel }
                 hints:
                   - "Frag bei jedem Fahrzeug: Treten, Segel, Tank oder Leitung?"
@@ -145,6 +149,7 @@ lessons:
               - id: l1-f4
                 type: true_false
                 text: "Stimmt das? Die Straßenbahn hat einen großen Benzintank."
+                show: { object: tram }
                 answer: false
                 feedback:
                   "true": "Die Straßenbahn hat keinen Tank. Sie bekommt Strom aus der Oberleitung."
@@ -167,9 +172,9 @@ lessons:
                 type: matching
                 text: "Verbinde jedes Fahrzeug mit seinem Antrieb."
                 pairs:
-                  - { left: { text: "Ruderboot" }, right: { text: "Muskelkraft" } }
+                  - { left: { object: rowing-boat }, right: { text: "Muskelkraft" } }
                   - { left: { object: boat }, right: { text: "Wind" } }
-                  - { left: { text: "Straßenbahn" }, right: { text: "Strom" } }
+                  - { left: { object: tram }, right: { text: "Strom" } }
                   - { left: { text: "Auto mit Benzintank" }, right: { text: "Motor mit Benzin" } }
                 hints:
                   - "Wer rudert, wer segelt, wer hat eine Leitung, wer einen Tank?"
@@ -181,12 +186,14 @@ lessons:
               - id: l1-s1
                 type: multiple_choice
                 text: "Was braucht ein Auto mit Benzinmotor, damit es fährt?"
+                show: { object: car }
                 options: ["Benzin im Tank", "Wind im Segel", "eine Oberleitung"]
                 answer: "Benzin im Tank"
                 hints: ["Wohin fährt Opa, wenn sein Tank leer ist?"]
               - id: l1-s2
                 type: true_false
                 text: "Stimmt das? Eine Pferdekutsche fährt mit Muskelkraft."
+                show: { object: horse-carriage }
                 answer: true
                 hints: ["Wer zieht die Kutsche?"]
               - id: l1-s3
@@ -201,6 +208,7 @@ lessons:
               - id: l1-s4
                 type: multiple_choice
                 text: "Woher holt die Straßenbahn ihren Strom?"
+                show: { object: tram }
                 options: ["aus der Oberleitung über den Schienen", "aus einem Benzintank", "vom Wind"]
                 answer: "aus der Oberleitung über den Schienen"
                 hints: ["Schau nach oben über die Schienen."]
@@ -222,12 +230,15 @@ lessons:
             setting: in-context
             tasks:
               - id: l1-n1
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Heute ist kein Wind am See. Mila will trotzdem aufs Wasser, ohne Motor. Was nimmt sie?"
-                options: ["das Ruderboot", "das Segelboot", "das Motorboot"]
-                answer: "das Ruderboot"
+                options:
+                  - { object: rowing-boat }
+                  - { object: boat }
+                  - { object: motorboat }
+                answer: rowing-boat
                 feedback:
-                  "das Segelboot": "Ohne Wind bleibt das Segelboot liegen. Mila müsste pusten!"
+                  boat: "Ohne Wind bleibt das Segelboot liegen. Mila müsste pusten!"
               - id: l1-n2
                 type: sorting
                 text: "Mila und Opa zählen die Fahrzeuge am See."
@@ -237,19 +248,21 @@ lessons:
                   - { id: wind, show: { text: "Wind" }, say: "Wind" }
                   - { id: motor, show: { text: "Motor" }, say: "Motor" }
                 options:
-                  - { text: "Tretboot", bin: muscle }
-                  - { text: "Motorboot", bin: motor }
-                  - { text: "Segelboot", bin: wind }
-                  - { text: "Fahrrad", bin: muscle }
-                  - { text: "Windsurfbrett", bin: wind }
-                  - { text: "Lastwagen", bin: motor }
+                  - { object: pedal-boat, bin: muscle }
+                  - { object: motorboat, bin: motor }
+                  - { object: boat, bin: wind }
+                  - { object: bike, bin: muscle }
+                  - { object: windsurf-board, bin: wind }
+                  - { object: lorry, bin: motor }
               - id: l1-n3
                 type: true_false
                 text: "Mila sagt: „Das Fahrrad braucht einen Tank, sonst fährt es nicht.“ Stimmt das?"
+                show: { object: bike }
                 answer: false
               - id: l1-n4
                 type: multiple_choice
                 text: "Auf dem Heimweg tankt Opa an der Tankstelle. Was für einen Antrieb hat sein Auto?"
+                show: { object: petrol-pump }
                 options: ["einen Motor mit Benzin oder Diesel", "Muskelkraft", "Wind"]
                 answer: "einen Motor mit Benzin oder Diesel"
               - id: l1-n5
@@ -267,11 +280,13 @@ lessons:
           - id: l1-c1
             type: multiple_choice
             text: "Was treibt ein Ruderboot an?"
+            show: { object: rowing-boat }
             options: ["Muskelkraft", "Wind", "Strom"]
             answer: "Muskelkraft"
           - id: l1-c2
             type: true_false
             text: "Stimmt das? Ein Segelboot braucht Benzin."
+            show: { object: boat }
             answer: false
           - id: l1-c3
             type: image_multiple_choice
@@ -284,11 +299,13 @@ lessons:
           - id: l1-c4
             type: multiple_choice
             text: "Was bringt beim Fahrrad die Kraft zum Hinterrad?"
+            show: { object: bike }
             options: ["die Kette", "die Klingel", "der Sattel"]
             answer: "die Kette"
           - id: l1-c5
             type: true_false
             text: "Stimmt das? Viele Züge fahren mit Strom aus der Oberleitung."
+            show: { object: train }
             answer: true
           - id: l1-c6
             type: multiple_choice
@@ -318,6 +335,7 @@ lessons:
           - id: l2-w2
             type: multiple_choice
             text: "Womit fährt die Straßenbahn?"
+            show: { object: tram }
             options: ["mit Strom aus der Oberleitung", "mit Benzin", "mit Muskelkraft"]
             answer: "mit Strom aus der Oberleitung"
             difficulty: easy
@@ -333,6 +351,7 @@ lessons:
             show: { object: car }
           - text: "Wusstest du? Neue Elektroautos müssen beim langsamen Fahren extra ein Geräusch machen."
             say: "Wusstest du? Neue Elektroautos müssen beim langsamen Fahren extra ein Geräusch machen, damit Menschen auf der Straße sie kommen hören. Das ist besonders für blinde Menschen wichtig. Und für dich heißt das: Bevor du über die Straße gehst, schau immer nach links und rechts. Hören allein reicht nicht."
+            show: { object: electric-car }
           - text: "Woher kommt der Strom?"
             say: "Auch Strom muss erst irgendwo gemacht werden. Kommt er aus Wind oder Sonne, entstehen dabei keine Abgase. Kommt er aus einem Kraftwerk, das Kohle verbrennt, entstehen Abgase im Kraftwerk. Darum ist es wichtig, woher der Strom kommt."
             show: { object: sun }
@@ -350,6 +369,7 @@ lessons:
               - id: l2-f1
                 type: multiple_choice
                 text: "Wo lädt man den Akku eines Elektroautos?"
+                show: { object: electric-car }
                 options: ["an einer Ladesäule", "an der Zapfsäule für Benzin", "am Segel"]
                 answer: "an einer Ladesäule"
                 hints:
@@ -360,6 +380,7 @@ lessons:
               - id: l2-f2
                 type: true_false
                 text: "Stimmt das? Aus einem Elektroauto kommen beim Fahren keine Abgase."
+                show: { object: electric-car }
                 answer: true
                 hints:
                   - "Verbrennt ein Elektromotor etwas?"
@@ -375,10 +396,10 @@ lessons:
                 options:
                   - { object: bike, bin: clean }
                   - { text: "Auto mit Benzintank", bin: exhaust }
-                  - { text: "Straßenbahn", bin: clean }
+                  - { object: tram, bin: clean }
                   - { text: "Lastwagen mit Dieseltank", bin: exhaust }
                   - { object: boat, bin: clean }
-                  - { text: "Elektroauto", bin: clean }
+                  - { object: electric-car, bin: clean }
                 hints:
                   - "Abgase entstehen, wenn etwas verbrennt."
                   - "Benzin und Diesel verbrennen. Muskeln, Wind und Strom nicht."
@@ -386,6 +407,7 @@ lessons:
               - id: l2-f4
                 type: multiple_choice
                 text: "Was ist ein Nachteil vom Segelboot?"
+                show: { object: boat }
                 options: ["Ohne Wind fährt es nicht.", "Es macht viele Abgase.", "Es braucht Benzin."]
                 answer: "Ohne Wind fährt es nicht."
                 hints:
@@ -429,6 +451,7 @@ lessons:
               - id: l2-s2
                 type: multiple_choice
                 text: "Mila hört das Elektroauto kaum. Warum?"
+                show: { object: electric-car }
                 options: ["Der Elektromotor ist leise.", "Das Auto hat keine Räder.", "Mila hat Watte in den Ohren."]
                 answer: "Der Elektromotor ist leise."
                 feedback:
@@ -437,6 +460,7 @@ lessons:
               - id: l2-s3
                 type: true_false
                 text: "Stimmt das? Strom für Elektroautos kann aus Wind und Sonne kommen."
+                show: { object: electric-car }
                 answer: true
                 hints: ["Woher kann Strom kommen?"]
               - id: l2-s4
@@ -463,6 +487,7 @@ lessons:
               - id: l2-s6
                 type: multiple_choice
                 text: "Was passiert in einem Benzinmotor?"
+                show: { object: car }
                 options: ["Er verbrennt Benzin, dabei entstehen Abgase.", "Er lädt einen Akku mit Wind.", "Er bekommt Strom aus einer Leitung."]
                 answer: "Er verbrennt Benzin, dabei entstehen Abgase."
                 hints: ["Woher kommen die Abgase?"]
@@ -478,13 +503,17 @@ lessons:
                 feedback:
                   "ein Lastwagen": "Ein Lastwagen für drei Brötchen? Da hätte der Bäcker aber gestaunt!"
               - id: l2-n2
-                type: multiple_choice
+                type: image_multiple_choice
                 text: "Familie Weber zieht um. 30 schwere Kisten müssen in eine andere Stadt. Was passt?"
-                options: ["ein Lastwagen", "ein Tretroller", "ein Segelboot"]
-                answer: "ein Lastwagen"
+                options:
+                  - { object: lorry }
+                  - { object: scooter }
+                  - { object: boat }
+                answer: lorry
               - id: l2-n3
                 type: true_false
                 text: "Opa sagt: „Ein Elektroauto macht nirgends Abgase, egal woher sein Strom kommt.“ Stimmt das?"
+                show: { object: electric-car }
                 answer: false
               - id: l2-n4
                 type: matching
@@ -492,7 +521,7 @@ lessons:
                 say: "Verbinde jeden Weg mit dem Fahrzeug, das am besten passt."
                 pairs:
                   - { left: { text: "zum Bäcker um die Ecke" }, right: { object: bike } }
-                  - { left: { text: "eine weite Reise in eine andere Stadt" }, right: { text: "Zug" } }
+                  - { left: { text: "eine weite Reise in eine andere Stadt" }, right: { object: train } }
                   - { left: { text: "viele schwere Kisten" }, right: { object: lorry } }
                   - { left: { text: "über den See, wenn der Wind weht" }, right: { object: boat } }
               - id: l2-n5
@@ -520,6 +549,7 @@ lessons:
             part: drive
             type: multiple_choice
             text: "Womit fährt eine Straßenbahn?"
+            show: { object: tram }
             options: ["mit Strom", "mit Benzin", "mit Wind"]
             answer: "mit Strom"
           - id: l2-c3
@@ -527,25 +557,28 @@ lessons:
             type: matching
             text: "Was treibt es an? Verbinde."
             pairs:
-              - { left: { text: "Tretroller" }, right: { text: "Muskelkraft" } }
-              - { left: { text: "Windsurfbrett" }, right: { text: "Wind" } }
-              - { left: { text: "Elektroauto" }, right: { text: "Strom" } }
+              - { left: { object: scooter }, right: { text: "Muskelkraft" } }
+              - { left: { object: windsurf-board }, right: { text: "Wind" } }
+              - { left: { object: electric-car }, right: { text: "Strom" } }
               - { left: { text: "Lastwagen mit Dieseltank" }, right: { text: "Motor mit Diesel" } }
           - id: l2-c4
             part: drive
             type: true_false
             text: "Stimmt das? Ein Ruderboot fährt mit Strom."
+            show: { object: rowing-boat }
             answer: false
           - id: l2-c5
             part: drive
             type: multiple_choice
             text: "Was treibt eine Pferdekutsche an?"
+            show: { object: horse-carriage }
             options: ["die Muskelkraft der Pferde", "der Wind", "Benzin"]
             answer: "die Muskelkraft der Pferde"
           - id: l2-c6
             part: energy
             type: multiple_choice
             text: "Was braucht ein Elektroauto, damit es fährt?"
+            show: { object: electric-car }
             options: ["Strom im Akku", "Benzin im Tank", "Wind im Segel"]
             answer: "Strom im Akku"
           - id: l2-c7
@@ -565,12 +598,14 @@ lessons:
             part: energy
             type: multiple_choice
             text: "Woher bekommt ein Zug unter der Oberleitung seinen Strom?"
+            show: { object: train }
             options: ["aus dem Draht über den Schienen", "aus dem Wind", "aus dem Essen"]
             answer: "aus dem Draht über den Schienen"
           - id: l2-c10
             part: energy
             type: true_false
             text: "Stimmt das? Ein Segelboot braucht einen vollen Tank."
+            show: { object: boat }
             answer: false
           - id: l2-c11
             part: compare
@@ -580,20 +615,22 @@ lessons:
               - { id: with, show: { text: "ja" }, say: "ja" }
               - { id: without, show: { text: "nein" }, say: "nein" }
             options:
-              - { text: "Fahrrad", bin: without }
+              - { object: bike, bin: without }
               - { text: "Lastwagen mit Dieseltank", bin: with }
-              - { text: "Elektroauto", bin: without }
+              - { object: electric-car, bin: without }
               - { text: "Auto mit Benzintank", bin: with }
           - id: l2-c12
             part: compare
             type: multiple_choice
             text: "Was ist ein Vorteil vom Fahrrad?"
+            show: { object: bike }
             options: ["Es macht keine Abgase und hält fit.", "Es ist schneller als jeder Zug.", "Es trägt 30 schwere Kisten."]
             answer: "Es macht keine Abgase und hält fit."
           - id: l2-c13
             part: compare
             type: true_false
             text: "Stimmt das? Ein Elektromotor ist leiser als ein Motor mit Benzin."
+            show: { object: electric-car }
             answer: true
           - id: l2-c14
             part: compare
@@ -605,6 +642,7 @@ lessons:
             part: compare
             type: multiple_choice
             text: "Warum müssen neue Elektroautos beim langsamen Fahren ein Geräusch machen?"
+            show: { object: electric-car }
             options: ["Damit Menschen sie kommen hören.", "Damit sie schneller fahren.", "Damit sich der Akku lädt."]
             answer: "Damit Menschen sie kommen hören."
           - id: l2-c16
@@ -619,6 +657,7 @@ lessons:
             part: bike
             type: multiple_choice
             text: "Was verbindet beim Fahrrad das Zahnrad an den Pedalen mit dem Hinterrad?"
+            show: { object: bike }
             options: ["die Kette", "der Lenker", "die Klingel"]
             answer: "die Kette"
           - id: l2-c18
@@ -630,10 +669,12 @@ lessons:
             part: bike
             type: multiple_choice
             text: "Das erste Fahrrad hatte keine Pedale. Wie fuhr man damit?"
+            show: { object: balance-bike }
             options: ["Man stieß sich mit den Füßen vom Boden ab.", "Ein Motor schob es.", "Der Wind blies es an."]
             answer: "Man stieß sich mit den Füßen vom Boden ab."
           - id: l2-c20
             part: bike
             type: true_false
             text: "Stimmt das? Beim Fahrrad dreht die Kette das Vorderrad."
+            show: { object: bike }
             answer: false
