@@ -1614,7 +1614,7 @@ const YEARS = ["reception", "year-1", "year-2", "year-3", "year-4", "year-5", "y
 // A track's learning year (DaZ) by its label in years/ (data.tracks).
 const TRACK_YEAR = Object.fromEntries(Object.values(D.tracks ?? {}).flatMap((ts) => Object.values(ts).flatMap((t) => t.years.map((y) => [y.id, y.label.de]))));
 const yearName = (y) => !y ? "No year" : TRACK_YEAR[y] ?? (y === "reception" ? "Reception" : y.replace(/^ly-/, "French year ").replace(/^year-/, "Year ").replace(/^klasse-/, "Klasse ").replace(/^stufe-/, "Englisch Stufe ").replace(/^lernjahr-/, "Englisch Lernjahr "));
-const SUBJ = { "de-DE.math": "Mathe", "de-DE.lit-de": "Deutsch", "de-DE.fl": "Englisch", "en-GB.math": "Maths", "en-GB.lit-en": "English", "en-GB.fl": "French", "de-DE.daz": "DaZ" };
+const SUBJ = { "de-DE.math": "Mathe", "de-DE.lit-de": "Deutsch", "de-DE.fl": "Englisch", "de-DE.world": "Sachunterricht", "en-GB.math": "Maths", "en-GB.lit-en": "English", "en-GB.fl": "French", "de-DE.daz": "DaZ" };
 const subjOf = (s) => s.id.split(".").slice(0, 2).join(".");
 const typesOf = (s) => s._types ??= new Set(s.lessons.flatMap((l) => l.activities.flatMap((a) => [...(a.tasks ?? []), ...(a.stages ?? []).flatMap((st) => st.tasks)].map((t) => t.type))));
 const titleOf = (x) => x[set?.language] ?? x.de ?? x.en ?? Object.values(x)[0];
