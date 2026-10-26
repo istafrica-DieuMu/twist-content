@@ -588,7 +588,7 @@ function table(o) {
 /* ---------- maps, scenes and timelines (Sachunterricht) ---------- */
 // Text with a white halo, so it reads over lines and colours; "\n" breaks a line.
 let DRAWN_UID = 0;
-const lang = () => (set?.language === "en" ? "en" : "de");
+const drawnLang = () => (set?.language === "en" ? "en" : "de");
 function halo(x, y, t, o = {}) {
   const fs = o.size ?? 11, lines = String(t).split("\n"), y0 = y - ((lines.length - 1) * fs * 1.08) / 2;
   return `<text x="${x.toFixed(1)}" y="${y0.toFixed(1)}" text-anchor="${o.anchor ?? "middle"}" dominant-baseline="central" font-size="${fs}" font-weight="${o.weight ?? 700}" fill="${o.fill ?? "#2b0f45"}"${o.italic ? ' font-style="italic"' : ""} stroke="${o.halo ?? "#fff"}" stroke-width="${o.haloW ?? 3}" stroke-linejoin="round" paint-order="stroke">${lines.map((l, i) => `<tspan x="${x.toFixed(1)}" dy="${i ? (fs * 1.08).toFixed(1) : 0}">${esc(l)}</tspan>`).join("")}</text>`;
@@ -677,7 +677,7 @@ const DE_LANDSCAPE = [
 ];
 const LAND_FILL = ["#f6dfa4", "#cfe7b4", "#f4c7c3", "#d7cdf0"];
 function germanyMap(o) {
-  const L = lang(), S = 38, nb = !!o.neighbours, labels = o.labels ?? "names", m = nb ? [66, 24, 42, 22] : [10, 10, labels === "capitals" ? 24 : 10, 10];
+  const L = drawnLang(), S = 38, nb = !!o.neighbours, labels = o.labels ?? "names", m = nb ? [66, 24, 42, 22] : [10, 10, labels === "capitals" ? 24 : 10, 10];
   const X = (lon) => m[0] + (lon - 5.87) * 0.63 * S, Y = (lat) => m[1] + (55.06 - lat) * S;
   const W = Math.round(m[0] + m[2] + 9.17 * 0.63 * S), H = Math.round(m[1] + m[3] + 7.79 * S);
   const pts = (list) => list.map(([a, b]) => `${X(a).toFixed(1)},${Y(b).toFixed(1)}`).join(" ");
@@ -750,7 +750,7 @@ const WORLD = {
 };
 const OCEANS = { pacific: { de: "Pazifik", en: "Pacific\nOcean", at: [-140, 2] }, atlantic: { de: "Atlantik", en: "Atlantic\nOcean", at: [-36, 20] }, indian: { de: "Indischer\nOzean", en: "Indian\nOcean", at: [78, -22] } };
 function worldMap(o) {
-  const L = lang(), top = 84, bot = -80, W = 360, H = Math.round((top - bot) * 1.3);
+  const L = drawnLang(), top = 84, bot = -80, W = 360, H = Math.round((top - bot) * 1.3);
   // Stretched north-south a little, so the continents are easier to tell apart on a phone.
   const X = (lon) => lon + 180, Y = (lat) => (top - lat) * 1.3;
   const pts = (list) => list.map(([a, b]) => `${X(a).toFixed(1)},${Y(b).toFixed(1)}`).join(" ");
@@ -774,7 +774,7 @@ function worldMap(o) {
 // but stay upright.
 const ARM_ANGLE = { south: 0, west: 90, north: 180, east: 270 };
 function junction(o) {
-  const C = 160, R = 34, W = 320, arms = o.arms ?? ["north", "east", "south", "west"], en = lang() === "en";
+  const C = 160, R = 34, W = 320, arms = o.arms ?? ["north", "east", "south", "west"], en = drawnLang() === "en";
   const rot = (a, x, y) => { const r = (a * Math.PI) / 180; return [C + x * Math.cos(r) - y * Math.sin(r), C + x * Math.sin(r) + y * Math.cos(r)]; };
   let s = `<rect width="${W}" height="${W}" rx="14" fill="#cfe8b0"/>`;
   // Pavements, then the road, then its markings.
@@ -818,7 +818,7 @@ const D_COL = (c) => (c ? SHAPE_COL[c] ?? null : null);
 // the right with a thing in it. The bulb lights when the switch is closed, no wire is broken and the
 // thing in the gap conducts; bulb: "?" draws it with a question mark instead (for "Does it light?").
 function circuit(o) {
-  const en = lang() === "en", sw = o.switch !== false, closed = o.closed !== false, gap = o.gap, broken = !!o.broken;
+  const en = drawnLang() === "en", sw = o.switch !== false, closed = o.closed !== false, gap = o.gap, broken = !!o.broken;
   const lit = (!sw || closed) && !broken && (!gap || gap.conductor === true);
   const l = 40, r = 270, t = 70, b = 200, wire = (d) => `<path d="${d}" fill="none" stroke="#2b0f45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
   let s = "";
@@ -837,7 +837,7 @@ function circuit(o) {
   if (sw) { const ex = closed ? 196 : 134 + 62 * Math.cos(Math.PI / 6), ey = closed ? b : b - 62 * Math.sin(Math.PI / 6);
     s += `<rect x="124" y="${b + 4}" width="82" height="12" rx="4" fill="#d7ccc8" stroke="#2b0f45" stroke-width="2"/><line x1="134" y1="${b}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="#2b0f45" stroke-width="5" stroke-linecap="round"/><circle cx="134" cy="${b}" r="5" fill="#B87333" stroke="#2b0f45" stroke-width="2"/><circle cx="196" cy="${b}" r="5" fill="#B87333" stroke="#2b0f45" stroke-width="2"/>`; }
   // The gap: two clips and the thing between them, named by its label (and its picture if it has one).
-  if (gap) { const pic = gap.object && D.pics?.includes(`${gap.object}.png`), lab = gap.label ?? (gap.object ? D.objects?.[gap.object]?.[lang()] : "") ?? "", w = Math.max(64, String(lab).length * 7.4 + 16);
+  if (gap) { const pic = gap.object && D.pics?.includes(`${gap.object}.png`), lab = gap.label ?? (gap.object ? D.objects?.[gap.object]?.[drawnLang()] : "") ?? "", w = Math.max(64, String(lab).length * 7.4 + 16);
     s += `<circle cx="${r}" cy="108" r="5" fill="#E53935" stroke="#2b0f45" stroke-width="2"/><circle cx="${r}" cy="154" r="5" fill="#E53935" stroke="#2b0f45" stroke-width="2"/>`;
     s += pic ? `<image href="${A}objects/${gap.object}.png" x="${r - 22}" y="109" width="44" height="44"/>` + (lab ? halo(r, 168, lab, { size: 11, anchor: "middle" }) : "") : `<rect x="${r - w / 2}" y="117" width="${w}" height="28" rx="9" fill="#fff" stroke="#2b0f45" stroke-width="2"/><text x="${r}" y="135.5" text-anchor="middle" font-size="12" font-weight="700" fill="#2b0f45">${esc(lab || "?")}</text>`; }
   if (o.labels) { const N = en ? ["battery", "bulb", "switch", "wire"] : ["Batterie", "Lämpchen", "Schalter", "Kabel"];
@@ -850,7 +850,7 @@ function circuit(o) {
 const WATER_STEPS = { de: ["Verdunsten", "Kondensieren", "Niederschlag", "Abfließen"], en: ["Evaporation", "Condensation", "Precipitation", "Collection"] };
 const WATER_IDS = ["evaporation", "condensation", "precipitation", "collection"];
 function waterCycle(o) {
-  const L = lang(), step = typeof o.step === "string" ? WATER_IDS.indexOf(o.step) + 1 : o.step, gap = typeof o.gap === "string" ? WATER_IDS.indexOf(o.gap) + 1 : o.gap, labels = o.labels ?? true;
+  const L = drawnLang(), step = typeof o.step === "string" ? WATER_IDS.indexOf(o.step) + 1 : o.step, gap = typeof o.gap === "string" ? WATER_IDS.indexOf(o.gap) + 1 : o.gap, labels = o.labels ?? true;
   const ac = (n) => (n === step ? "#8e3bd1" : "#1565C0"), aw = (n) => (n === step ? 3.6 : 2.4);
   const head = (x, y, ang, n) => `<path d="M0 0 L-9 -5 L-9 5 Z" transform="translate(${x} ${y}) rotate(${ang})" fill="${ac(n)}"/>`;
   let s = `<rect width="330" height="250" rx="12" fill="#e3f2fd"/>`;
@@ -880,7 +880,7 @@ function waterCycle(o) {
 // (stacked in rows where they would overlap), eras as coloured bands below. Years before 0 read
 // "500 v. Chr." / "500 BC"; when a line reaches before 0, later years read "n. Chr." / "AD".
 function timeline(o) {
-  const en = lang() === "en", ev = o.events ?? [], ys = ev.map((e) => e[0]), from = o.from ?? Math.min(...ys), to = o.to ?? Math.max(...ys), W = 330, pad = 22, span = to - from || 1;
+  const en = drawnLang() === "en", ev = o.events ?? [], ys = ev.map((e) => e[0]), from = o.from ?? Math.min(...ys), to = o.to ?? Math.max(...ys), W = 330, pad = 22, span = to - from || 1;
   const bc = from < 0, X = (y) => pad + ((y - from) / span) * (W - 2 * pad);
   const fmt = (y, short) => y < 0 ? (en ? `${-y} BC` : `${-y}${short ? "\n" : " "}v. Chr.`) : bc && y > 0 ? (en ? `AD ${y}` : `${y}${short ? "\n" : " "}n. Chr.`) : String(y);
   const step = o.step ?? [1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000].find((k) => span / k <= 6);
