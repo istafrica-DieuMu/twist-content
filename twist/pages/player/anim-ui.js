@@ -13,10 +13,12 @@ const SFX_VOL = { "option-picked": 0.35, "card-lands": 0.6, "piece-locked": 0.8,
 const sfxPlayers = {};
 // A sound effect, when Sound effects is on (Settings); each has its own player, so a tap never cuts off a cheer.
 function sfx(name) {
-  if (!SFX_ON() || document.body.classList.contains("parents")) return;
+  if (!SFX_ON() || appOffScreen()) return;
   const a = (sfxPlayers[name] ??= Object.assign(new Audio(`${ANIM}sfx/${name}.mp3`), { volume: SFX_VOL[name] ?? 1 }));
   a.currentTime = 0; a.play().catch(() => {});
 }
+// Every sound effect and a badge's sound, stopped (stopAudio): a badge's video goes on, silent.
+function stopSfx() { Object.values(sfxPlayers).forEach((a) => a.pause()); sfxPlayer.pause(); badgeSound.pause(); }
 // The app's cues while a task is open (lib/feedback/cues.ts): a tap on a choice,
 // a tile or a point is option-picked; a card dropped into a slot or a bin lands.
 document.getElementById("screen")?.addEventListener("click", (e) => {
@@ -110,11 +112,11 @@ function celebrate(screens, then) {
       const c = document.createElement("div"); c.className = "an-fall"; o.appendChild(c); clean.push(lottieIn(c, "Confetti.json", false));
       $("h2", o).textContent = C.finished; $("p", o).textContent = s.phrase ?? ""; if (s.src) play(s.src); else sfx("module-complete");
     } else if (s.kind === "badge") {
-      // A badge with its own animation plays its intro, with its sound, then loops quietly.
-      const intro = badgeVideo(s.id, "intro");
-      stage.innerHTML = intro ? `<div class="an-glow"></div>${badgeMotion(s.id)}` : `<div class="an-glow"></div><div class="an-badge"></div><img src="${badgeArt(s.id)}" alt="">`;
-      clean.push(lottieIn($(".an-glow", stage), "Reward-light-bg.json", true), intro ? null : lottieIn($(".an-badge", stage), "badge.json", false));
-      if (intro) wireMotion(stage); else sfx("module-complete");
+      // An animated badge (its folder) plays with its sound; a drawn one pops in to the app's badge sound.
+      const anim = BADGE_ANIM[s.id];
+      stage.innerHTML = anim ? badgeAnimImg(s.id) : `<div class="an-glow"></div><div class="an-badge"></div><img src="${badgeArt(s.id)}" alt="">`;
+      if (!anim) clean.push(lottieIn($(".an-glow", stage), "Reward-light-bg.json", true), lottieIn($(".an-badge", stage), "badge.json", false));
+      if (anim) wireAnim(stage, s.id); else sfx("module-complete");
       $("h2", o).textContent = C.badge; $("p", o).textContent = badgeName(s.id);
     }
     buzz(20);
@@ -242,13 +244,17 @@ function badgeDate(day) {
   const d = new Date(Date.now() - (PR.child.today - day) * 864e5);
   return d.toLocaleDateString(PL() === "de" ? "de-DE" : "en-GB", { day: "numeric", month: "short", year: "numeric" }).toUpperCase();
 }
-// The animated badge: the intro (its own sound, when sound effects are on), then the idle loop.
-const badgeMotion = (id) => `<video class="bm-vid" playsinline preload="auto" poster="badges/${MOTION[id]}/${MOTION[id]}-badge.png" src="${badgeVideo(id, "intro")}" data-loop="${badgeVideo(id, "idle-loop")}" data-intro="${badgeVideo(id, "intro")}"></video>`;
-function wireMotion(stage) {
-  const v = $(".bm-vid", stage); if (!v) return;
-  v.loop = false; v.src = v.dataset.intro; v.muted = !SFX_ON() || document.body.classList.contains("parents");
-  v.onended = () => { v.onended = null; v.src = v.dataset.loop; v.loop = true; v.muted = true; v.play().catch(() => {}); };
-  v.currentTime = 0; v.play().catch(() => { v.muted = true; v.play().catch(() => {}); });
+// A badge from assets/badges/<Name>/: its SVG plays the intro and then loops by itself; its
+// sound starts with the SVG (when sound effects are on). Played again, the SVG loads anew so
+// it starts from the beginning.
+const badgeSound = new Audio(); badgeSound.preload = "auto";
+let badgePlays = 0;
+const badgeAnimImg = (id) => `<img class="bm-svg" src="${A}${BADGE_ANIM[id].svg}" alt="">`;
+function wireAnim(stage, id) {
+  const img = $(".bm-svg", stage), a = BADGE_ANIM[id]; if (!img) return;
+  badgeSound.pause();
+  img.onload = () => { if (!a.wav || !SFX_ON() || appOffScreen()) return; badgeSound.src = A + a.wav; badgeSound.currentTime = 0; badgeSound.play().catch(() => {}); };
+  img.src = `${A}${a.svg}?play=${++badgePlays}`;
 }
 function badgeSheet(b) {
   const B = BTXT[PL()], lg = PL() === "de" ? 0 : 1, seen = PR.child.badgeSeen?.[b.id];
@@ -263,7 +269,7 @@ function badgeSheet(b) {
   o.className = "bs-sheet" + (b.earned ? "" : " locked") + (b.gold ? " gold" : "");
   o.setAttribute("role", "dialog"); o.setAttribute("aria-label", badgeName(b.id));
   o.innerHTML = `<i class="bs-grip"></i>
-    <button class="bs-stage${b.earned && MOTION[b.id] ? " motion" : ""}" aria-label="${esc(badgeName(b.id))}">${b.earned && MOTION[b.id] ? badgeMotion(b.id) : `<div class="an-glow"></div><div class="an-badge"></div><img src="${badgeArt(b.id, b.gold)}" alt="">`}</button>
+    <button class="bs-stage${b.earned && BADGE_ANIM[b.id] ? " anim" : ""}" aria-label="${esc(badgeName(b.id))}">${b.earned && BADGE_ANIM[b.id] ? badgeAnimImg(b.id) : `<div class="an-glow"></div><div class="an-badge"></div><img src="${badgeArt(b.id, b.gold)}" alt="">`}</button>
     <span class="bs-date">${esc(date)}<small>${esc(ago)}</small></span>
     <small class="bs-kind">${esc(kind)}${b.level ? ` · ${esc(B.level(b.level))}` : ""}</small>
     <h2>${esc(badgeName(b.id))}</h2>
@@ -272,13 +278,13 @@ function badgeSheet(b) {
     ${extra ? `<p class="bs-extra">${esc(extra)}</p>` : ""}
     <button class="btn go">${esc(b.earned ? B.ok : B.close)}</button>`;
   $("#screen").appendChild(o);
-  const motion = b.earned && MOTION[b.id], stage = $(".bs-stage", o), img = $("img", stage);
-  const clean = b.earned && !motion ? [lottieIn($(".an-glow", o), "Reward-light-bg.json", true), lottieIn($(".an-badge", o), "badge.json", false)] : [];
-  if (b.earned) { if (motion) wireMotion(stage); else sfx("xp-earned"); buzz(15); }
+  const anim = b.earned && BADGE_ANIM[b.id], stage = $(".bs-stage", o), img = $("img", stage);
+  const clean = b.earned && !anim ? [lottieIn($(".an-glow", o), "Reward-light-bg.json", true), lottieIn($(".an-badge", o), "badge.json", false)] : [];
+  if (b.earned) { if (anim) wireAnim(stage, b.id); else sfx("xp-earned"); buzz(15); }
   // A tap: an animated badge plays its intro again; a drawn one spins.
-  stage.onclick = () => { buzz(10); if (motion) return wireMotion(stage); img.classList.remove("spin"); void img.offsetWidth; img.classList.add("spin"); sfx(b.earned ? "option-picked" : "piece-locked"); };
+  stage.onclick = () => { buzz(10); if (anim) return wireAnim(stage, b.id); img.classList.remove("spin"); void img.offsetWidth; img.classList.add("spin"); sfx(b.earned ? "option-picked" : "piece-locked"); };
   let gone = false;
-  const close = () => { if (gone) return; gone = true; document.removeEventListener("keydown", key); o.classList.add("out"); scrim.classList.add("out"); setTimeout(() => { clean.forEach((x) => x?.destroy?.()); o.remove(); scrim.remove(); }, 260); };
+  const close = () => { if (gone) return; gone = true; if (anim) badgeSound.pause(); document.removeEventListener("keydown", key); o.classList.add("out"); scrim.classList.add("out"); setTimeout(() => { clean.forEach((x) => x?.destroy?.()); o.remove(); scrim.remove(); }, 260); };
   const key = (e) => { if (e.key === "Escape") close(); };
   document.addEventListener("keydown", key);
   scrim.onclick = close; $(".go", o).onclick = close; $(".go", o).focus({ preventScroll: true });

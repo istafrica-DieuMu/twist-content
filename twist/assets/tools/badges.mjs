@@ -3,8 +3,10 @@
 // own frame shape and colour; the icon in the middle is drawn by hand below.
 // Style follows the mascot: flat cartoon, bold aubergine outline, one darker
 // tone per colour, one white highlight, no text. Run
-// `node twist/assets/tools/badges.mjs`, then `node twist/pages/rewards/build.mjs`.
+// `node twist/assets/tools/badges.mjs`, then `node twist/pages/rewards/build.mjs`. A badge
+// with a folder of its own in assets/badges (badge-folders.mjs) is left out.
 import { mkdirSync, writeFileSync } from "node:fs";
+import { badgeFolders } from "./badge-folders.mjs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -325,8 +327,11 @@ const GROUPS = [
 mkdirSync(OUT, { recursive: true });
 const svg = (body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">${body.replace(/\n\s*/g, "")}</svg>\n`;
 let n = 0;
+// A badge with its own folder (an animated badge) is not drawn: its folder takes over.
+const animated = new Set(badgeFolders().found.map((f) => f.id));
 for (const [frame, colour, ids] of GROUPS) {
   for (const id of ids) {
+    if (animated.has(id)) continue;
     if (!ICONS[id]) throw new Error(`no icon for ${id}`);
     writeFileSync(join(OUT, `${id}.svg`), svg(FRAMES[frame](C[colour]) + ICONS[id]()));
     writeFileSync(join(OUT, `${id}.gold.svg`), svg(FRAMES[frame](C.gold) + ICONS[id]()));

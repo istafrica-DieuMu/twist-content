@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { badgeFolders } from "../../assets/tools/badge-folders.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const T = join(HERE, "..", "..");
@@ -55,7 +56,10 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g
 
 // The badge art from assets/badges (assets/tools/badges.mjs), inlined: the
 // earned look, and the gold look it gets when every skill behind it is at Remembers it.
+// A badge with its own folder (badge-folders.mjs) shows its still, once: it has no gold look.
+const stills = Object.fromEntries(badgeFolders().found.filter((f) => f.still).map((f) => [f.id, f.still]));
 const art = (id, gold) => {
+  if (stills[id]) return gold ? "" : `<img class="art" src="data:image/png;base64,${readFileSync(join(T, "assets/badges", stills[id])).toString("base64")}" alt="">`;
   const f = join(T, "assets/badges", `${id}${gold ? ".gold" : ""}.svg`);
   if (!existsSync(f)) throw new Error(`no badge art for ${id}: run assets/tools/badges.mjs`);
   return readFileSync(f, "utf8").trim().replace("<svg ", `<svg class="${gold ? "gold" : "art"}" aria-hidden="true" `);

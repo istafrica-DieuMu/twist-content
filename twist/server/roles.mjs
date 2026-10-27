@@ -36,6 +36,8 @@ export function canResolve(user, fb, accounts) {
 // The author edits or deletes a comment while it is open; reviewers and admins may delete any.
 export const canEdit = (user, fb) => fb.author?.id === user.id && fb.status === "open";
 export const canDelete = (user, fb) => can(user).resolveAll || canEdit(user, fb);
+// Pinning a comment anew where it belongs, when its part changed: its author, or whoever may resolve it.
+export const canMove = (user, fb, accounts) => canEdit(user, fb) || canResolve(user, fb, accounts);
 
 // The accounts a user may see and change on the Users screen.
 export function manages(user, account) {

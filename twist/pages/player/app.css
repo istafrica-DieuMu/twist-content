@@ -1248,3 +1248,170 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .pr-hero .pr-kind { display: flex; flex-wrap: wrap; align-items: center; column-gap: 8px; row-gap: 4px; }
 .pr-hero.hm-resume > .pr-kind { white-space: normal; }
 .pr-hero .pr-kind .pr-dur { white-space: nowrap; }
+
+/* Home: the next lesson as one big card (its picture on top, the minutes, the lesson, the
+   subject, where it sits, a white button), then the subjects three at a time in a row that
+   slides without end. */
+.hm-next .pr-h, .hm-subjs .pr-h, .hm-more .pr-h { margin: 22px 0 12px; }
+.hm-big { position: relative; display: grid; justify-items: start; gap: 4px; padding: 18px 20px 20px; border-radius: 28px; background: var(--c); color: #fff; box-shadow: 0 6px 0 color-mix(in srgb, var(--c) 55%, #000), 0 16px 26px -16px color-mix(in srgb, var(--c) 80%, transparent); }
+.hm-big-min { position: absolute; top: 16px; left: 16px; padding: 5px 12px; border-radius: 999px; background: rgba(0, 0, 0, .2); font: 700 14px "Red Hat Text", sans-serif; font-style: normal; }
+.hm-big-pic { justify-self: center; display: grid; place-items: center; width: 100%; height: 132px; margin-bottom: 6px; }
+.hm-big-pic img { height: 132px; width: auto; max-width: 70%; object-fit: contain; filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .12)); }
+.hm-big-t { font: 800 26px/1.15 "Red Hat Display", sans-serif; }
+.hm-big-subj { font: 800 13px "Red Hat Text", sans-serif; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+.hm-big .hm-where { display: grid; gap: 6px; width: 100%; margin-top: 10px; }
+.hm-big .pr-go, .hm-big-go { justify-self: stretch; margin-top: 16px; padding: 15px; border: 0; border-radius: 18px; background: #fff; color: var(--c); font: 800 17px "Red Hat Display", sans-serif; letter-spacing: .1em; text-transform: uppercase; text-align: center; box-shadow: 0 5px 0 rgba(0, 0, 0, .18); cursor: pointer; }
+.hm-big .pr-go:active, .hm-big-go:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0, 0, 0, .18); }
+.hm-big.done .hm-big-subj { text-transform: none; letter-spacing: 0; font-size: 15px; }
+.hm-loop { --gap: 10px; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--gap)) / 3); gap: var(--gap); margin: 0 -2px; padding: 2px 2px 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.hm-loop::-webkit-scrollbar { display: none; }
+.hm-loop > button { scroll-snap-align: start; display: grid; justify-items: center; gap: 4px; min-width: 0; padding: 12px 4px 10px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--ink); font: inherit; cursor: pointer; user-select: none; }
+.hm-loop > button b { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 800 14px "Red Hat Display", sans-serif; }
+.hm-loop > button small { font-size: 12px; font-weight: 600; color: var(--soft); white-space: nowrap; }
+.hm-loop > button[aria-current="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 10%, var(--card)); }
+.hm-loop > button:active { transform: translateY(3px); border-bottom-width: 2px; }
+.hm-loop.dragging { scroll-snap-type: none; cursor: grabbing; }
+.hm-loop.dragging > button { cursor: grabbing; }
+
+/* Practice: suggestions as a deck, the subjects as picture cards in a row, Sprints as one row,
+   and the round's button over the tabs. */
+.ps-row { display: grid; grid-auto-flow: column; grid-auto-columns: 46%; gap: 12px; margin: 0 -18px; padding: 2px 18px 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 18px; scrollbar-width: none; }
+.ps-row::-webkit-scrollbar { display: none; }
+.ps-card { --m: color-mix(in oklab, var(--c) 82%, #6d6f86); scroll-snap-align: start; display: grid; justify-items: center; align-content: start; gap: 4px; padding: 16px 12px 14px; border: 2px solid var(--edge); border-bottom-width: 6px; border-radius: 22px; background: var(--card); color: var(--ink); text-align: center; font: inherit; cursor: pointer; }
+.ps-card img { width: 72px; height: 72px; margin-bottom: 6px; object-fit: contain; }
+.ps-card small { font: 800 12px "Red Hat Text", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--m); }
+.ps-card b { font: 800 16px/1.2 "Red Hat Display", sans-serif; min-height: 2.4em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ps-bar { display: block; width: 70%; height: 6px; margin-top: 6px; border-radius: 3px; background: color-mix(in srgb, var(--c) 15%, var(--sunk, #eee)); overflow: hidden; }
+.ps-bar i { display: block; height: 100%; border-radius: 3px; background: var(--c); }
+.ps-card:active { transform: translateY(4px); border-bottom-width: 2px; }
+.pr-sprints { display: flex; align-items: center; gap: 14px; width: 100%; margin: 14px 0 0; padding: 14px 16px; border: 2px solid var(--edge); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--ink); text-align: left; font: inherit; cursor: pointer; }
+.pr-sprints > i { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 14px; background: #fff1d6; color: #e8890c; }
+.pr-sprints > i svg { width: 24px; height: 24px; fill: currentColor; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
+.pr-sprints span { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.pr-sprints b { font: 800 17px "Red Hat Display", sans-serif; }
+.pr-sprints small { font-size: 13px; color: var(--soft); }
+.pr-sprints .chev { width: 20px; height: 20px; flex: none; color: var(--soft); }
+.pr-sprints:active { transform: translateY(3px); border-bottom-width: 2px; }
+
+/* How do you want to practise: each open card is a button you can see without a hover. A
+   thick bottom edge and a light top rim make it stand up; a white round arrow in its corner
+   says "tap"; a press sinks it. They pop in one after the other, and the arrows nudge once.
+   A card not open yet lies flat and grey, with a lock instead of the arrow. */
+.mk-s1 .mk-big button { border-bottom-width: 8px; box-shadow: inset 0 2px 0 rgba(255, 255, 255, .28), 0 10px 18px -12px color-mix(in srgb, var(--c) 90%, #000); }
+.mk-s1 .mk-big button:active { transform: translateY(6px); border-bottom-width: 2px; margin-top: 6px; box-shadow: inset 0 2px 0 rgba(255, 255, 255, .28); }
+.mk-goi { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #fff; color: var(--edge, var(--c)); box-shadow: 0 3px 0 rgba(0, 0, 0, .15); font-style: normal; }
+.mk-goi svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+.mk-s1 .mk-big button > span { max-width: 100%; padding-right: 44px; }
+/* The two half-width cards: the arrow on a line of its own under the text. */
+.mk-s1 .mk-big button:is([data-t="surprise"], [data-t="again"]) { padding-bottom: 60px; }
+.mk-s1 .mk-big button:is([data-t="surprise"], [data-t="again"]) > span { padding-right: 0; }
+.mk-s1 .mk-big button:is([data-t="surprise"], [data-t="again"]) b { font-size: 21px; overflow-wrap: anywhere; hyphens: auto; }
+.mk-s1 .mk-big button:disabled { border-bottom-width: 0; box-shadow: none; background: #ebe8f1; color: #8a8499; }
+.mk-s1 .mk-big button:disabled b { color: #8a8499; }
+.mk-s1 .mk-big button:disabled small { color: #8a8499; }
+.mk-s1 .mk-big button:disabled .mk-goi { background: transparent; box-shadow: none; color: #8a8499; }
+.mk-big:not(.mk-s1 *) .mk-goi { position: static; flex: none; background: var(--c); color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+  .mk-s1 .mk-big button { animation: mk-pop .42s cubic-bezier(.3, 1.5, .5, 1) both; }
+  .mk-s1 .mk-big button:nth-child(2) { animation-delay: .07s; } .mk-s1 .mk-big button:nth-child(3) { animation-delay: .14s; } .mk-s1 .mk-big button:nth-child(4) { animation-delay: .21s; }
+  .mk-s1 .mk-big button:not(:disabled) .mk-goi { animation: mk-nudge 1.6s ease-in-out .7s 2; }
+}
+@keyframes mk-pop { from { opacity: 0; transform: translateY(14px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes mk-nudge { 0%, 60%, 100% { transform: none; } 30% { transform: translateX(4px) scale(1.08); } }
+
+/* What do you want to practise: several can be picked, so each card has a box to tick on its
+   right; a picked card fills with its subject's colour around a white tick. A race takes one:
+   a round dot instead. */
+.mk-pick { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border: 2.5px solid var(--edge-c); border-radius: 9px; background: var(--card); color: transparent; font-style: normal; transition: background .15s, border-color .15s; }
+.mk-pick.one { border-radius: 50%; }
+.mk-pick svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.mk-list [aria-pressed="true"] .mk-pick { border-color: var(--c); background: var(--c); color: #fff; }
+.mk-list [aria-pressed="true"] .mk-pick.one svg { display: none; }
+.mk-list [aria-pressed="true"] .mk-pick.one { box-shadow: inset 0 0 0 5px var(--card); }
+.mk-list button { border-bottom-width: 4px; }
+.mk-list button:active { transform: translateY(2px); }
+.mk-list .pr-stars { margin-left: auto; }
+.mk-tap { color: var(--plum); font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) { .mk-list [aria-pressed="true"] .mk-pick { animation: mk-tick .25s cubic-bezier(.3, 1.6, .5, 1); } }
+@keyframes mk-tick { from { transform: scale(.6); } to { transform: none; } }
+
+/* Twist's icons (assets/icons/): a streak not lit yet shows its flame grey. */
+.ic-flame.off { filter: grayscale(1); opacity: .5; }
+.rw-hero.rw-star img { width: 56px; height: 56px; }
+
+/* Settings, as the rest of the app: the page's top with the mascot, a colour for each section
+   (its heading's tile, its card's edge and tint, its switches and choices), and an icon on each row. */
+.set-top { grid-template-columns: 44px 1fr 84px !important; gap: 12px; }
+.set-top .pr-back { position: static; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 14px; background: var(--sunk); color: var(--plum); cursor: pointer; }
+.set-top .pr-back .chev { width: 22px; height: 22px; transform: rotate(180deg); color: var(--plum); }
+.set-me { padding: 18px 16px 16px; border: 2px solid color-mix(in srgb, #6849dd 30%, var(--edge)); border-bottom-width: 5px; border-radius: 24px; background: color-mix(in srgb, #6849dd 7%, var(--card)); }
+.set-h { display: flex; align-items: center; gap: 10px; margin: 8px 0 -2px; }
+.set-hi { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 11px; background: var(--c); color: #fff; box-shadow: 0 3px 0 color-mix(in srgb, var(--c) 60%, #000); font-style: normal; }
+.set-hi svg, .set-ri svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.set-hi svg .f, .set-ri svg .f { fill: currentColor; stroke: none; }
+.set-card[style*="--c"] { border-color: color-mix(in oklab, var(--c) 28%, var(--edge)); background: color-mix(in srgb, var(--c) 4%, var(--card)); }
+.set-ri { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 12px; background: color-mix(in srgb, var(--c, #6849dd) 13%, var(--card)); color: var(--c, #6849dd); font-style: normal; }
+.set-row { justify-content: flex-start; }
+.set-row > span, .set-row > b { flex: 1; min-width: 0; }
+.set-sw, .set-link { gap: 12px; }
+.set-sw + .set-sw { padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--c, #6849dd) 14%, var(--edge-c)); }
+.set-sw input:checked + i { background: var(--c, #2b8a3e); }
+.set-seg [aria-checked="true"] { background: var(--c, #6849dd); }
+.set-looks [aria-checked="true"], .set-scripts [aria-checked="true"] { border-color: var(--c, #6849dd); box-shadow: inset 0 0 0 1px var(--c, #6849dd); background: color-mix(in srgb, var(--c, #6849dd) 10%, var(--card)); }
+.set-looks button, .set-scripts button { border-bottom-width: 4px; }
+.set-link { border-top-color: color-mix(in srgb, var(--c, #6849dd) 14%, var(--edge-c)); }
+.set-link.bad .set-ri { background: color-mix(in srgb, var(--bad) 12%, var(--card)); color: var(--bad); }
+.set-year select { flex: none; }
+
+/* The tab bar, solid as the screens are: the icons at full strength, a 2px edge on top, and the
+   tab you're on a tinted key with the app's thicker bottom edge, as its cards and buttons have. */
+.app-tabs img { opacity: 1; }
+.app-tabs button { color: #7d7591; }
+.app-tabs { border-top: 2px solid var(--edge-c); padding: 8px 10px 20px; gap: 6px; }
+.app-tabs button { border: 2px solid transparent; border-bottom-width: 4px; border-radius: 16px; }
+.app-tabs [aria-current="page"] { border-color: color-mix(in srgb, var(--tc) 35%, var(--card)); background: color-mix(in srgb, var(--tc) 10%, var(--card)); box-shadow: none; color: var(--tc); }
+@media (prefers-reduced-motion: no-preference) {
+  .app-tabs button:active { transform: translateY(2px); border-bottom-width: 2px; }
+}
+
+
+/* A switch row's icon is an <i> too: it keeps the icon's look, not the switch's. */
+.set-sw .set-ri { width: 38px; height: 38px; border-radius: 12px; background: color-mix(in srgb, var(--c, #6849dd) 13%, var(--card)); transition: none; }
+.set-sw .set-ri::after { content: none; }
+
+/* Home fits on the screen: the big card a little smaller (its picture, its spacing), so the
+   subjects show whole above the tab bar with a little room, without scrolling. */
+.hm-next .pr-h { margin: 14px 0 10px; }
+.hm-subjs .pr-h { margin: 16px 0 10px; }
+.hm-big { padding: 14px 18px 16px; gap: 2px; }
+.hm-big-min { top: 14px; left: 14px; }
+.hm-big-pic { height: 92px; margin-bottom: 4px; }
+.hm-big-pic img { height: 92px; }
+.hm-big-t { font-size: 24px; }
+.hm-big .hm-where { margin-top: 8px; gap: 5px; }
+.hm-big .pr-go, .hm-big-go { margin-top: 12px; padding: 12px; }
+.hm-loop > button { padding: 10px 4px 8px; }
+
+/* Home, subjects first: the subjects, then the card grown to the bottom of the screen
+   (fitHomeTop), its picture taking the room. */
+.hl-top .hm-subjs .pr-h { margin-top: 10px; }
+.hl-top .hm-next .pr-h { margin-top: 8px; }
+.hl-top .hm-big { display: flex; flex-direction: column; align-items: flex-start; }
+.hl-top .hm-big-pic { flex: 1 1 0; align-self: stretch; height: auto; min-height: 92px; }
+.hl-top .hm-big-pic img { height: 100%; max-height: 220px; min-height: 0; }
+.hl-top .hm-big .pr-go, .hl-top .hm-big-go { align-self: stretch; }
+
+/* Home, the slider: each subject's next lesson as a big card, side by side, one in view, a
+   second card peeking out under it; dots under the row. */
+.hl-slides { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 14px; margin: 0 -18px; padding: 2px 18px 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 18px; scrollbar-width: none; overscroll-behavior-x: contain; }
+.hl-slides::-webkit-scrollbar { display: none; }
+.hl-slide { position: relative; scroll-snap-align: start; display: grid; }
+.hl-slide::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -12px; height: 30px; border-radius: 0 0 24px 24px; background: var(--card); border: 2px solid var(--edge); border-top: 0; z-index: 0; }
+.hl-slide > .hm-big { position: relative; z-index: 1; }
+.hl-slide .hm-big-pic { height: 140px; }
+.hl-slide .hm-big-pic img { height: 140px; }
+.hl-slide .hm-big { align-content: start; }
+.hl-slide .hm-big .pr-go, .hl-slide .hm-big-go { align-self: end; }
+.hl-dots { display: flex; justify-content: center; gap: 8px; margin: 4px 0 0; }
+.hl-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: var(--edge-c); cursor: pointer; transition: background .2s, width .2s; }
+.hl-dots button[aria-current="true"] { width: 22px; border-radius: 5px; background: var(--plum); }

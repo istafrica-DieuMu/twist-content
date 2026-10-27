@@ -10,6 +10,7 @@ import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire } from "node:module";
+import { badgeFolders } from "../../assets/tools/badge-folders.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const T = join(HERE, "..", "..");
@@ -241,7 +242,16 @@ for (const p of walk(join(T, "drills")).filter((f) => f.endsWith(".yaml"))) {
   for (const it of b.items ?? []) { const c = drillClip(b, it); if (c) it._clip = c; }
   drills[b.skill] = b;
 }
-const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", learningYears: LEARNING_YEARS, tracks: TRACKS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
+// The animated badges (assets/tools/badge-folders.mjs): the SVG, the WAV and the still of each,
+// as paths from assets/, encoded (folder names have spaces).
+const folders = badgeFolders(), badgeAnim = {};
+for (const name of folders.unknown) console.warn(`assets/badges/${name}: no badge of that name in docs/rewards.md`);
+for (const f of folders.found) {
+  const at = (file) => ["badges", f.dir, file].map(encodeURIComponent).join("/");
+  if (!f.still) console.warn(`assets/badges/${f.dir}: no still (run node twist/assets/tools/badge-stills.cjs)`);
+  badgeAnim[f.id] = { svg: at(f.svg), wav: f.wav ? at(f.wav) : null, still: f.still ? `badges/${f.still}` : null };
+}
+const data = { built: new Date().toISOString().slice(0, 10), assets: "../../assets/", badgeAnim, learningYears: LEARNING_YEARS, tracks: TRACKS, sets, phrases, objects, colours, pics, voices: { chosen: voices.chosen, assign: voices.assign }, skills: skillRecs, drills };
 // --data-out <file> also writes the data, so dev.mjs can rebuild the page from it alone.
 if (process.argv.includes("--data-out")) writeFileSync(process.argv[process.argv.indexOf("--data-out") + 1], JSON.stringify(data));
 const rules = readFileSync(join(HERE, "practice-rules.mjs"), "utf8").replace(/^export /gm, "");

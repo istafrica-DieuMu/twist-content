@@ -7,7 +7,7 @@
 // Changes need the X-Twist header, which another site cannot send without a
 // CORS preflight this server never answers, so a form elsewhere cannot post here.
 import { randomBytes, createHmac } from "node:crypto";
-import { ROLES, ROLE_NAME, can, canSee, canResolve, canEdit, canDelete, manages, grantable, managesAnyone } from "./roles.mjs";
+import { ROLES, ROLE_NAME, can, canSee, canResolve, canEdit, canDelete, canMove, manages, grantable, managesAnyone } from "./roles.mjs";
 import { StoreError } from "./store-file.mjs";
 
 export const COOKIE = "twist_session";
@@ -190,7 +190,7 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     const kinds = ["lesson", "app", "study", "parents"];
     if (!kinds.includes(v.kind)) throw new Bad(400, "Unknown kind of screen.");
     const out = { kind: v.kind, label: str(v.label, LIMIT.label, "The screen's name", 1) };
-    for (const k of ["set", "setTitle", "curriculum", "language", "stepKind", "task", "taskType", "tab", "subj", "build"]) if (v[k] != null && v[k] !== "") out[k] = str(v[k], LIMIT.field, k);
+    for (const k of ["set", "setTitle", "curriculum", "language", "stepKind", "task", "taskType", "place", "tab", "subj", "build"]) if (v[k] != null && v[k] !== "") out[k] = str(v[k], LIMIT.field, k);
     for (const k of ["lesson", "step"]) if (v[k] != null) { const n = Number(v[k]); if (!Number.isInteger(n) || n < 0 || n > 10000) throw new Bad(400, `${k} is not a number.`); out[k] = n; }
     if (v.kind === "lesson" && (!out.set || out.lesson == null)) throw new Bad(400, "A lesson screen needs its set and lesson.");
     const anchor = anchorOf(v.anchor); if (anchor) out.anchor = anchor;
@@ -223,7 +223,7 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
     return { x: r(x), y: r(y), w: r(w), h: r(h) };
   }
   const targetOf = (v) => v && typeof v === "object" && v.label ? { label: str(v.label, LIMIT.label, "The target") } : null;
-  const withCan = (u, f, accounts) => ({ ...f, can: { resolve: canResolve(u, f, accounts), edit: canEdit(u, f), delete: canDelete(u, f) } });
+  const withCan = (u, f, accounts) => ({ ...f, can: { resolve: canResolve(u, f, accounts), edit: canEdit(u, f), delete: canDelete(u, f), move: canMove(u, f, accounts) } });
   // Whose accounts decide team membership: a manager's own, read once per request.
   const teamOf = async (s) => can(s.user).seeTeam || can(s.user).resolveTeam ? store.accounts(s).catch(() => []) : [];
 
@@ -251,6 +251,12 @@ ${error ? `<p class="err" role="alert">${e(error)}</p>` : ""}<button>Sign in</bu
       const b = await readJson(req), patch = {};
       if (b.body != null) { if (!canEdit(u, f)) throw new Bad(403, "Only the author can change an open comment."); patch.body = str(b.body, LIMIT.body, "The comment", 1); }
       if (b.status != null) { if (!["open", "resolved"].includes(b.status)) throw new Bad(400, "A comment is open or resolved."); if (!canResolve(u, f, accounts)) throw new Bad(403, "Your role cannot resolve this comment."); patch.status = b.status; }
+      // Pinned anew where it belongs: the screen with its new anchor, the spot or area, and what is under it.
+      if (b.screen != null) {
+        if (!canMove(u, f, accounts)) throw new Bad(403, "Your role cannot move this comment.");
+        const area = areaOf(b.area);
+        Object.assign(patch, { screen: screenOf(b.screen), area, pin: area ? { x: area.x, y: area.y } : pinOf(b.pin), target: targetOf(b.target) });
+      }
       return json(res, 200, { feedback: withCan(u, await store.updateFeedback(s, id, patch), accounts) });
     }
     if (parts.length === 1 && req.method === "DELETE") {

@@ -5,6 +5,10 @@
 .fbk-bar { display: flex; gap: 8px; align-items: center; }
 .fbk-bar[hidden] { display: none; }
 .fbk-bar .tbtn[aria-pressed="true"] { border-color: #6849dd; background: #6849dd; color: #fff; }
+/* Pins on is the usual state, so it looks like any button; off, it fades and its eye is struck through. */
+.fbk-bar #fbkPinsBtn[aria-pressed] { border-color: var(--line); background: var(--panel); color: var(--ink); }
+#fbkPinsBtn[aria-pressed="false"] { opacity: .6; }
+#fbkPinsBtn[aria-pressed="true"] .off { display: none; }
 .fbk-bar .tbtn:disabled { opacity: .45; cursor: default; }
 .fbk-badge { min-width: 18px; padding: 1px 6px; border-radius: 99px; background: #6849dd; color: #fff; font-size: 11px; line-height: 16px; text-align: center; }
 .fbk-badge[hidden] { display: none; }
@@ -32,6 +36,16 @@ body.fbk-notools a[data-type] { pointer-events: none; text-decoration: none; col
 .fbk-pin.on-area { transform: translate(-35%, -35%); }
 .fbk-pin.resolved { background: #2e8b57; opacity: .8; }
 .fbk-pin.ghost { opacity: .7; }
+/* An area's box shows only while its comment is open, or its number is pointed at. */
+.fbk-area:not(.shown):not(.hot):not(.flash):not(.ghost):not(.drawing) { display: none; }
+/* The tray: comments whose part is not on the screen now, in the screen's top-right corner. */
+.fbk-tray { position: absolute; top: 54px; right: 8px; pointer-events: auto; min-width: 30px; height: 26px; padding: 0 8px 0 24px; border: 2px dashed #6849dd; border-radius: 13px; background: #fff; color: #6849dd; font: 700 12px/1 system-ui, sans-serif; cursor: pointer; box-shadow: 0 3px 8px rgba(43, 15, 69, .3);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 5h16v11H9l-5 4z' fill='none' stroke='%236849dd' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-size: 14px; background-position: 6px center; }
+.fbk-tray[hidden] { display: none; }
+#fbkLayer.pinning .fbk-tray { display: none; }
+.fbk-trayl { max-width: 340px; }
+.fbk-trayl li { display: grid; gap: 4px; }
+.fbk-trayl [data-repin] { justify-self: start; }
 .fbk-pin.flash { animation: fbk-flash 1s ease-in-out 3; }
 @keyframes fbk-flash { 50% { box-shadow: 0 0 0 10px rgba(104, 73, 221, .35); } }
 body.fbk-pinning #fbkHint { display: block; }
