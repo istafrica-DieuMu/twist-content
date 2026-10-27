@@ -156,13 +156,16 @@ function trackSkate({ path, rows, cur, top, art, onStart, onNext }) {
   path.appendChild(f);
   // Hidden under it: the stones it draws, the route it draws, and the static mascot.
   const stones = skating ? [anchor, anchor + 1] : [cur], arcs = skating ? [anchor + 1] : final ? [] : [cur + 1];
-  stones.forEach((i) => path.querySelector(`.tr-stone[data-i="${i}"]`)?.classList.add("under-skate"));
-  arcs.forEach((i) => path.querySelectorAll(".tr-arc")[i - 1]?.classList.add("under-skate"));
-  path.querySelector(".tr-mascot")?.classList.add("under-skate");
+  // Only once the file has loaded: if it never does, the track keeps its own stone and mascot.
+  const cover = () => {
+    stones.forEach((i) => path.querySelector(`.tr-stone[data-i="${i}"]`)?.classList.add("under-skate"));
+    arcs.forEach((i) => path.querySelectorAll(".tr-arc")[i - 1]?.classList.add("under-skate"));
+    path.querySelector(".tr-mascot")?.classList.add("under-skate");
+  };
   // A lesson stone names its lesson and starts it; a skill stone names the skill and goes on where it stopped.
   const r = rows[cur], lg = PL(), done = !r.l && lessonsDone(r.s), title = r.l ? r.l.title[lg] ?? r.l.title.de : r.s.title[lg] ?? r.s.title.de;
   const label = lg === "de" ? (done ? "WEITERLERNEN" : "LEKTION STARTEN") : done ? "CONTINUE LESSON" : "START LESSON";
-  let vmi = null;
+  let vmi = null, skate = null;
   const rv = riveOn($("canvas", f), "study_screen_animation.riv", { stateMachine: mode, artboard: "Study screen animation",
     set: (vm) => {
       vmi = vm;
@@ -172,13 +175,15 @@ function trackSkate({ path, rows, cur, top, art, onStart, onNext }) {
       vm.boolean("longButtonLabel").value = label.length > 12;
       vm.number("theme").value = RIVE_THEME[art] ?? 2;
       vm.boolean("inverted").value = inverted;
-      vm.boolean("cardHidden").value = false;
+      vm.boolean("cardHidden").value = !!skate?.hidden;
       vm.trigger("nextStoneClick")?.on(() => onNext(anchor + 1));
       if (skating) sfx("skate-roll");
     },
     onEvent: (name) => { if (name === "start_lesson_clicked" && vmi && !vmi.boolean("cardHidden").value) onStart(); },
-    onLoad: () => f.classList.add("ready") });
-  return { anchor, hide: (h) => { if (vmi) vmi.boolean("cardHidden").value = h; }, el: f, rive: rv };
+    onLoad: () => { cover(); f.classList.add("ready"); } });
+  // hide() before the file has loaded applies once it has.
+  let hidden = false;
+  return skate = { anchor, hide: (h) => { hidden = h; if (vmi) vmi.boolean("cardHidden").value = h; }, get hidden() { return hidden; }, el: f, rive: rv };
 }
 
 /* ---------- A badge, tapped: the app's achievement sheet ---------- */
@@ -264,3 +269,65 @@ document.getElementById("screen")?.addEventListener("click", (e) => {
   const t = e.target.closest?.("[data-bd]"); if (!t) return;
   const b = myBadges().find((x) => x.id === t.dataset.bd); if (b) badgeSheet(b);
 });
+
+/* ---------- The verdict: right or wrong, on the answer button ---------- */
+// The design's micro-interactions (timed frame by frame from the design videos), played on the
+// button the child answered with (Answer or Check). The
+// colour grows in from the right, a piece rides across, then the colour pulls back to the left
+// and the option shows itself again. One variant per outcome (the outcome table):
+//   right-full   right first time: "Correct!", a star with "+1", confetti (2.7 s)
+//   right-short  right after a miss or a hint: "Correct!" only (1.4 s)
+//   right-calm   right in the check: "Correct!" only (1.4 s)
+//   wrong-short  a miss with another try to come: the video's red, "!" marks and the cross (2.8 s)
+//   wrong-full   a miss that ends the task, the answer shown: the same, with the wrong sound (2.8 s)
+//   wrong-calm   wrong in the check: the cross only (1.4 s)
+// It returns how long it plays, so the lesson can wait for it; 0 with reduced motion.
+const VERDICT = {
+  "right-full": { ms: 2700, sfx: ["answer-correct", [950, "xp-earned"], [1450, "card-lands"]] },
+  "right-short": { ms: 1400, sfx: ["answer-correct"] },
+  "right-calm": { ms: 1400, sfx: ["answer-correct"] },
+  "wrong-short": { ms: 2800, sfx: ["try-again"] },
+  "wrong-full": { ms: 2800, sfx: ["answer-wrong"] },
+  "wrong-calm": { ms: 1400, sfx: ["answer-wrong"] },
+};
+const CORRECT_WORD = { de: "Richtig!", en: "Correct!", fr: "Correct !" };
+const CO_STAR = '<svg viewBox="0 0 100 100" aria-hidden="true"><path class="co-ring" d="M50 3l13 28 30 4-22 21 6 30-27-15-27 15 6-30L7 35l30-4z"/><path class="co-core" d="M50 15l10 21 23 3-17 16 4 23-20-11-20 11 4-23-17-16 23-3z"/></svg>';
+const CO_CURL = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 15c3 1 6-1 5-4s-5-1-3 2 7 3 8-2 3-6 5-6"/></svg>';
+const CO_CROSS = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 4.5l11 11M15.5 4.5l-11 11"/></svg>';
+function verdictFx(el, variant) {
+  const v = VERDICT[variant];
+  if (!el || !v || matchMedia("(prefers-reduced-motion: reduce)").matches) return 0;
+  el.querySelectorAll(".co-fx, .co-burst").forEach((x) => x.remove());
+  const right = variant.startsWith("right"), full = variant.endsWith("full"), r = (a, z) => a + Math.random() * (z - a);
+  const fx = document.createElement("span");
+  fx.className = `co-fx co-${right ? "right" : "wrong"}${full || variant === "wrong-short" ? "" : " co-short"}`; fx.setAttribute("aria-hidden", "true");
+  // Sizes follow the smaller of the height and a share of the width, so a square tile and a long pill both fit.
+  el.style.setProperty("--co-r", getComputedStyle(el).borderTopLeftRadius);
+  el.style.setProperty("--co-h", `${Math.round(Math.min(el.offsetHeight, el.offsetWidth * 0.42))}px`);
+  el.style.setProperty("--co-w", `${el.offsetWidth}px`);
+  const word = `<span class="co-wordtrack"><b class="co-word">${CORRECT_WORD[PL()] ?? CORRECT_WORD.en}</b></span>`;
+  if (right) fx.innerHTML = `<span class="co-fill"></span>${word}${full ? `<span class="co-startrack"><span class="co-star">${CO_STAR}<b>+1</b></span></span>` : ""}`;
+  else {
+    // A miss with the video's strip: the circle in a row of "!" marks, nine each side, whose bars
+    // grow left to right as the strip arrives. The check keeps the plain cross on its own.
+    const marks = Array.from({ length: 19 }, (_, k) => k - 9).filter((j) => Math.abs(j) > 1)
+      .map((j) => `<i class="co-bang" style="--j:${j};--d:${(0.4 + (j + 9) * 0.045).toFixed(3)}s"></i>`).join("");
+    fx.innerHTML = variant === "wrong-calm"
+      ? `<span class="co-fill"></span><span class="co-xtrack"><span class="co-x">${CO_CROSS}</span></span>`
+      : `<span class="co-fill"></span><span class="co-wtrack">${marks}<span class="co-x">${CO_CROSS}</span></span>`;
+  }
+  el.classList.add("co-on"); el.appendChild(fx);
+  if (variant === "right-full") {
+    // Confetti inside the button, cut by its shape as in the video: white and dark green dashes, white curls.
+    const burst = document.createElement("span"); burst.className = "co-burst"; burst.setAttribute("aria-hidden", "true");
+    burst.innerHTML = Array.from({ length: 26 }, (_, i) => {
+      const at = `--x:${r(3, 97).toFixed(1)}%;--y:${r(12, 80).toFixed(1)}%;--d:${r(1.4, 1.85).toFixed(2)}s;--dx:${r(-7, 7).toFixed(1)}px;--dy:${r(4, 12).toFixed(1)}px;--r:${Math.round(r(-90, 90))}deg;--r2:${Math.round(r(-200, 200))}deg`;
+      return i % 4 === 3 ? `<i class="co-curl" style="${at}">${CO_CURL}</i>` : `<i class="co-bit" style="${at};--k:${i % 2 ? "#1d6b2a" : "#fff"}"></i>`;
+    }).join("");
+    fx.appendChild(burst);
+  }
+  // The app's sounds on the verdict's beats.
+  v.sfx.forEach((x) => { const [ms, name] = typeof x === "string" ? [0, x] : x; setTimeout(() => fx.isConnected && sfx(name), ms); });
+  setTimeout(() => { el.querySelectorAll(".co-fx, .co-burst").forEach((x) => x.remove()); el.classList.remove("co-on"); }, v.ms + 80);
+  return v.ms;
+}

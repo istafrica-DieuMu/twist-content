@@ -364,3 +364,341 @@ button.stf-unit:focus-visible { outline: 3px solid #6849dd; outline-offset: 2px;
 .tr-stats .tr-badges img { width: 20px; height: 20px; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .tr-stats .tr-streak { color: #de7f20; }
 .screen:not([data-look="dark"]):not([data-look="night"]) .tr-stats .tr-badges { color: #6f57cc; }
+
+/* ---------- 8. The verdict: right and wrong, on the answer button (the design videos) ---------- */
+/* One timeline (2.7 s), measured on the videos' frames: the colour grows in from the right
+   (0.2–0.93 s); the piece rides across (the star from 0.95 s, the cross from 0.55 s); the colour
+   pulls back to the left from 1.73 s, faster and faster, gone at 2.53 s. Everything is cut
+   by the button's shape, as in the video: the star shows only its middle and its side points,
+   the confetti stays inside. Sizes scale with the
+   button's height (--co-h). Colours sampled from the videos. The short variants (.co-short,
+   1.4 s) keep the same moves at twice the pace and leave out the star, the confetti and the marks. */
+.co-on { position: relative; }
+.co-fx { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; border-radius: var(--co-r, 16px); animation: co-clip 2.7s linear both; }
+@keyframes co-clip {
+  0%, 7.4% { clip-path: inset(0 0 0 100% round var(--co-r, 16px)); }
+  14.8% { clip-path: inset(0 0 0 88.6% round var(--co-r, 16px)); }
+  18.5% { clip-path: inset(0 0 0 64% round var(--co-r, 16px)); }
+  22.2% { clip-path: inset(0 0 0 14.6% round var(--co-r, 16px)); }
+  29.6% { clip-path: inset(0 0 0 2.2% round var(--co-r, 16px)); }
+  34.4%, 64% { clip-path: inset(0 0 0 0 round var(--co-r, 16px)); }
+  67.8% { clip-path: inset(0 3.7% 0 0 round var(--co-r, 16px)); }
+  71.5% { clip-path: inset(0 8.4% 0 0 round var(--co-r, 16px)); }
+  75.2% { clip-path: inset(0 15.4% 0 0 round var(--co-r, 16px)); }
+  78.9% { clip-path: inset(0 27% 0 0 round var(--co-r, 16px)); }
+  82.6% { clip-path: inset(0 44% 0 0 round var(--co-r, 16px)); }
+  86.3% { clip-path: inset(0 67% 0 0 round var(--co-r, 16px)); }
+  90% { clip-path: inset(0 88.6% 0 0 round var(--co-r, 16px)); }
+  93.7%, 100% { clip-path: inset(0 100% 0 0 round var(--co-r, 16px)); }
+}
+/* The colour: lighter on top, a bright rim all round and a light line along the foot. */
+.co-fill { position: absolute; inset: 0; border-radius: inherit; }
+.co-right .co-fill { background: linear-gradient(180deg, #6ce46c 0%, #62da62 45%, #53cb53 100%); box-shadow: inset 0 0 0 calc(var(--co-h, 46px) * .05) #81f981, inset 0 2px 0 calc(var(--co-h, 46px) * .05) #91ff8f, inset 0 -2px 0 calc(var(--co-h, 46px) * .045) #6be86c; }
+.co-wrong .co-fill { background: linear-gradient(180deg, #ef5338 0%, #e54627 50%, #d93a17 100%); box-shadow: inset 0 0 0 calc(var(--co-h, 46px) * .05) #f2654a, inset 0 2px 0 calc(var(--co-h, 46px) * .045) #f49683, inset 0 -2px 0 calc(var(--co-h, 46px) * .045) #f66c52; }
+
+/* Right: "Correct!", pale mint and embossed, a third of the height, wobbling as it drifts left and off by 1.4 s. */
+.co-wordtrack { position: absolute; inset: 0; display: grid; place-items: center; animation: co-word 2.7s linear both; }
+.co-word { font: 800 min(calc(var(--co-h, 46px) * .38), calc(var(--co-w, 300px) * .17))/1 "Red Hat Display", sans-serif; letter-spacing: 0; text-transform: none; color: #cbfac3; text-shadow: 0 calc(var(--co-h, 46px) * .035) 0 #48b846, 0 0 1px #5fd05f; white-space: nowrap; animation: co-wobble .42s ease-in-out infinite alternate; }
+@keyframes co-wobble { from { transform: rotate(-3deg) translateY(1px); } to { transform: rotate(2.5deg) translateY(-1px); } }
+@keyframes co-word {
+  0%, 16.7% { transform: translateX(50%); opacity: 1; }
+  24.8% { transform: translateX(35%); }
+  30.7% { transform: translateX(12%); }
+  34% { transform: translateX(5%); }
+  37% { transform: translateX(-12%); }
+  43.3% { transform: translateX(-25%); }
+  46.3% { transform: translateX(-33%); opacity: 1; }
+  49.3% { transform: translateX(-45%); opacity: .6; }
+  52.6%, 100% { transform: translateX(-60%); opacity: 0; }
+}
+/* Right: the star with "+1", taller than the button, pale inside with a stronger green ring. */
+.co-startrack { position: absolute; inset: 0; animation: co-starmove 2.7s linear both; }
+.co-star { position: absolute; left: 0; top: 50%; width: calc(var(--co-h, 46px) * 1.95); height: calc(var(--co-h, 46px) * 1.95); display: grid; place-items: center; transform: translate(-50%, -50%); }
+.co-star svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: co-spin 2.7s linear both; }
+.co-star .co-ring { fill: #94f791; stroke: #94f791; stroke-width: 18; stroke-linejoin: round; }
+.co-star .co-core { fill: #bfffbf; stroke: #bfffbf; stroke-width: 14; stroke-linejoin: round; }
+.co-star b { position: relative; font: 900 calc(var(--co-h, 46px) * .4)/1 "Red Hat Display", sans-serif; letter-spacing: 0; text-transform: none; font-style: italic; color: #2c8a35; text-shadow: 0 1px 0 #e6ffe2; }
+@keyframes co-starmove {
+  0%, 33% { transform: translateX(130%); }
+  35.2% { transform: translateX(100%); }
+  37% { transform: translateX(90%); }
+  41.9% { transform: translateX(87%); }
+  45.6% { transform: translateX(70%); }
+  49.3% { transform: translateX(61%); }
+  53% { transform: translateX(55%); }
+  56.7% { transform: translateX(51.5%); }
+  60.4% { transform: translateX(49%); }
+  64.1% { transform: translateX(46%); }
+  67.8% { transform: translateX(41%); }
+  71.5% { transform: translateX(37%); }
+  75.2% { transform: translateX(31%); }
+  78.9% { transform: translateX(24%); }
+  82.6% { transform: translateX(15%); }
+  86.3% { transform: translateX(8%); }
+  90%, 100% { transform: translateX(3%); }
+}
+@keyframes co-spin { from { transform: rotate(-16deg); } to { transform: rotate(8deg); } }
+/* Right: confetti inside the button: white and dark green dashes, white curls, falling and
+   turning, gone by 2.6 s. */
+.co-burst { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.co-bit, .co-curl { position: absolute; left: var(--x); top: var(--y); opacity: 0; animation: co-bit .95s var(--d) cubic-bezier(.2, .7, .4, 1) both; }
+.co-bit { width: calc(var(--co-h, 46px) * .13); height: calc(var(--co-h, 46px) * .05); border-radius: 99px; background: var(--k); }
+.co-curl { width: calc(var(--co-h, 46px) * .3); height: calc(var(--co-h, 46px) * .3); }
+.co-curl svg { width: 100%; height: 100%; fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; }
+@keyframes co-bit {
+  0% { opacity: 0; transform: translate(0, -6px) rotate(var(--r)) scale(.4); }
+  16% { opacity: 1; transform: translate(0, 0) rotate(var(--r)) scale(1); }
+  78% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--r2)) scale(1); }
+}
+
+/* Wrong, as in the video (2.8 s, measured at 15 fps): the red comes in from the right like the
+   green; a strip rides in with it and slows to the middle: the pale circle with the cross, as tall
+   as the button, in a row of "!" marks spaced evenly either side. Each mark shows its dot first and
+   its bar grows up from it, left to right. The strip drifts left as the red pulls back and leaves. */
+.co-fx.co-wrong:not(.co-short) { animation: co-clip-w 2.8s linear both; }
+@keyframes co-clip-w {
+  0.0% { clip-path: inset(0 0 0 100% round var(--co-r, 16px)); }
+  9.6% { clip-path: inset(0 0 0 100% round var(--co-r, 16px)); }
+  10.7% { clip-path: inset(0 0 0 95% round var(--co-r, 16px)); }
+  13.2% { clip-path: inset(0 0 0 90% round var(--co-r, 16px)); }
+  15.4% { clip-path: inset(0 0 0 83% round var(--co-r, 16px)); }
+  17.9% { clip-path: inset(0 0 0 63% round var(--co-r, 16px)); }
+  20.4% { clip-path: inset(0 0 0 19% round var(--co-r, 16px)); }
+  22.5% { clip-path: inset(0 0 0 10% round var(--co-r, 16px)); }
+  25.0% { clip-path: inset(0 0 0 5% round var(--co-r, 16px)); }
+  27.5% { clip-path: inset(0 0 0 2.4% round var(--co-r, 16px)); }
+  29.6% { clip-path: inset(0 0 0 1% round var(--co-r, 16px)); }
+  32.1% { clip-path: inset(0 0 0 0% round var(--co-r, 16px)); }
+  66.8% { clip-path: inset(0 0% 0 0 round var(--co-r, 16px)); }
+  70.4% { clip-path: inset(0 4.4% 0 0 round var(--co-r, 16px)); }
+  72.5% { clip-path: inset(0 6.3% 0 0 round var(--co-r, 16px)); }
+  75.0% { clip-path: inset(0 12% 0 0 round var(--co-r, 16px)); }
+  77.5% { clip-path: inset(0 21% 0 0 round var(--co-r, 16px)); }
+  79.6% { clip-path: inset(0 40.5% 0 0 round var(--co-r, 16px)); }
+  82.1% { clip-path: inset(0 68% 0 0 round var(--co-r, 16px)); }
+  84.6% { clip-path: inset(0 82% 0 0 round var(--co-r, 16px)); }
+  86.8% { clip-path: inset(0 90% 0 0 round var(--co-r, 16px)); }
+  89.3% { clip-path: inset(0 94% 0 0 round var(--co-r, 16px)); }
+  91.8% { clip-path: inset(0 97% 0 0 round var(--co-r, 16px)); }
+  93.9% { clip-path: inset(0 99% 0 0 round var(--co-r, 16px)); }
+  96.4% { clip-path: inset(0 100% 0 0 round var(--co-r, 16px)); }
+  100.0% { clip-path: inset(0 100% 0 0 round var(--co-r, 16px)); }
+}
+.co-wtrack { position: absolute; inset: 0; animation: co-wmove 2.8s linear both; }
+@keyframes co-wmove {
+  0.0% { transform: translateX(100%); }
+  14.3% { transform: translateX(90%); }
+  17.9% { transform: translateX(73%); }
+  20.4% { transform: translateX(55%); }
+  22.5% { transform: translateX(44%); }
+  25.0% { transform: translateX(36%); }
+  27.5% { transform: translateX(26%); }
+  29.6% { transform: translateX(19%); }
+  32.1% { transform: translateX(15%); }
+  34.6% { transform: translateX(11%); }
+  36.8% { transform: translateX(8.5%); }
+  39.3% { transform: translateX(6%); }
+  41.8% { transform: translateX(4%); }
+  43.9% { transform: translateX(3%); }
+  46.4% { transform: translateX(2%); }
+  48.9% { transform: translateX(1%); }
+  53.6% { transform: translateX(0%); }
+  60.7% { transform: translateX(-0.2%); }
+  65.4% { transform: translateX(-2%); }
+  67.9% { transform: translateX(-3.5%); }
+  70.4% { transform: translateX(-6%); }
+  72.5% { transform: translateX(-10.5%); }
+  75.0% { transform: translateX(-19%); }
+  77.5% { transform: translateX(-38%); }
+  79.6% { transform: translateX(-46%); }
+  85.7% { transform: translateX(-50%); }
+  100.0% { transform: translateX(-50%); }
+}
+.co-bang { position: absolute; left: calc(50% + var(--j) * var(--co-h, 46px) * .367); top: calc(50% - var(--co-h, 46px) * .21); width: calc(var(--co-h, 46px) * .07); height: calc(var(--co-h, 46px) * .43); transform: translateX(-50%); }
+.co-bang::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 68%; border-radius: 99px; background: #f9bcb0; transform-origin: 50% 100%; animation: co-bar .35s var(--d) cubic-bezier(.2, .8, .3, 1) both; }
+.co-bang::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: 0; aspect-ratio: 1; border-radius: 50%; background: #f9bcb0; animation: co-dot .1s var(--d) linear both; }
+@keyframes co-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes co-dot { from { opacity: 0; } to { opacity: 1; } }
+/* The circle: pale pink with a deeper ring, the button's full height; the cross grows in it as it arrives. */
+.co-x { position: absolute; left: 0; top: 50%; width: calc(var(--co-h, 46px) * .88); height: calc(var(--co-h, 46px) * .88); border-radius: 50%; display: grid; place-items: center; background: #f9bcb0; box-shadow: 0 0 0 calc(var(--co-h, 46px) * .07) #f4806a; transform: translate(-50%, -50%); }
+.co-x svg { width: 60%; height: 60%; fill: none; stroke: #ec634b; stroke-width: 3.6; stroke-linecap: round; }
+.co-wtrack .co-x { left: 50%; }
+.co-wtrack .co-x svg { animation: co-xin 2.8s linear both; }
+@keyframes co-xin {
+  0.0% { transform: scale(0.25); }
+  25.0% { transform: scale(0.25); }
+  27.5% { transform: scale(0.6); }
+  29.6% { transform: scale(1.06); }
+  32.1% { transform: scale(1); }
+  100.0% { transform: scale(1); }
+}
+/* The calm cross (wrong in the check) rides on its own track. */
+.co-xtrack { position: absolute; inset: 0; }
+
+/* The short verdicts (1.4 s): in by 0.4 s, held, pulled back to the left by 1.3 s. */
+.co-fx.co-short { animation-name: co-clip-s; animation-duration: 1.4s; }
+.co-short .co-wordtrack { animation: co-word-s 1.4s linear both; }
+.co-short .co-xtrack { animation: co-xmove-s 1.4s linear both; }
+.co-short .co-x { animation: co-xgrow-s 1.4s linear both; }
+@keyframes co-clip-s {
+  0% { clip-path: inset(0 0 0 100% round var(--co-r, 16px)); }
+  8% { clip-path: inset(0 0 0 86% round var(--co-r, 16px)); }
+  15% { clip-path: inset(0 0 0 50% round var(--co-r, 16px)); }
+  22% { clip-path: inset(0 0 0 8% round var(--co-r, 16px)); }
+  29%, 62% { clip-path: inset(0 0 0 0 round var(--co-r, 16px)); }
+  68% { clip-path: inset(0 6% 0 0 round var(--co-r, 16px)); }
+  74% { clip-path: inset(0 20% 0 0 round var(--co-r, 16px)); }
+  80% { clip-path: inset(0 45% 0 0 round var(--co-r, 16px)); }
+  86% { clip-path: inset(0 75% 0 0 round var(--co-r, 16px)); }
+  92%, 100% { clip-path: inset(0 100% 0 0 round var(--co-r, 16px)); }
+}
+@keyframes co-word-s {
+  0%, 10% { transform: translateX(45%); }
+  22% { transform: translateX(12%); }
+  32% { transform: translateX(0); }
+  62% { transform: translateX(-6%); }
+  80% { transform: translateX(-30%); }
+  92%, 100% { transform: translateX(-60%); }
+}
+@keyframes co-xmove-s {
+  0%, 10% { transform: translateX(112%); }
+  22% { transform: translateX(70%); }
+  32% { transform: translateX(52%); }
+  62% { transform: translateX(48%); }
+  74% { transform: translateX(36%); }
+  84% { transform: translateX(14%); }
+  92%, 100% { transform: translateX(3%); }
+}
+@keyframes co-xgrow-s {
+  0%, 12% { transform: translate(-50%, -50%) scale(.35) rotate(-90deg); }
+  28% { transform: translate(-50%, -50%) scale(1.06) rotate(8deg); }
+  36%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+/* ---------- 9. Study track: one card at the bottom (as in Brilliant) ---------- */
+/* The card stands above the tab bar the whole time; the stone at the middle of the track is the one it shows. */
+.tr-dock { flex: none; position: relative; z-index: 6; padding: 0 14px 10px; margin-top: -6px; }
+.tr-dock-in { display: grid; gap: 12px; justify-items: center; padding: 14px 16px 16px; border-radius: 22px; background: #fff; text-align: center; box-shadow: 0 0 0 1px #e7e2ee, 0 10px 28px rgba(43, 15, 69, .14); }
+/* One stone is one lesson: the title on the left, the minutes or a lock on the right, then the button. */
+.tr-head { display: flex; align-items: center; gap: 12px; justify-self: stretch; text-align: left; }
+.tr-head b { flex: 1; min-width: 0; font: 800 18px/24px "Red Hat Display", sans-serif; color: #282828; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-min { flex: none; display: flex; align-items: center; font: 700 13px "Red Hat Text", sans-serif; color: #6b6280; }
+.tr-min svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.tr-dock .tr-row { justify-content: center; gap: 12px; }
+.tr-dock .tr-meter { flex: none; width: auto; gap: 5px; }
+.tr-dock .tr-meter i { flex: none; width: 22px; height: 6px; background: #e6e1ec; }
+.tr-dock .tr-meter i.on { background: var(--route); }
+.tr-dock .tr-meter i.now { background: color-mix(in srgb, var(--route) 40%, #fff); }
+.tr-dock .tr-meta { display: flex; gap: 8px; font: 700 13px "Red Hat Text", sans-serif; color: #6b6280; }
+.tr-dock .tr-meta span { padding-left: 8px; border-left: 1.5px solid #ddd6e6; }
+.tr-dock .tr-actions { grid-template-columns: 1fr; justify-self: stretch; margin: 0; }
+.tr-dock .tr-actions:has(.tr-more) { grid-template-columns: 1fr 52px; }
+/* The button: the subject's colour, pressed down a little; a lesson done is played again from a lighter one. */
+.tr-dock .tr-go { display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border: 0; border-radius: 14px; background: linear-gradient(var(--g1), var(--g2)); color: #fff; font: 800 15px "Red Hat Display", sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 0 color-mix(in srgb, var(--g2) 70%, #000); }
+.tr-dock .tr-go:active { transform: translateY(3px); box-shadow: 0 1px 0 color-mix(in srgb, var(--g2) 70%, #000); }
+.tr-dock .tr-go.done { background: var(--soft); color: var(--route); box-shadow: 0 4px 0 color-mix(in srgb, var(--route) 30%, #fff); }
+.tr-dock .tr-go:disabled { background: #eeeaf2; color: #8d86a0; box-shadow: none; cursor: default; }
+.tr-dock .tr-go svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tr-dock .tr-more { display: grid; place-items: center; height: 52px; padding: 0; border: 0; border-radius: 14px; background: var(--soft); color: var(--route); cursor: pointer; }
+.tr-dock .tr-more svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+.tr-dock .tr-more svg .f { fill: currentColor; stroke: none; }
+.tr-dock .tr-more[aria-expanded="true"] { background: var(--route); color: #fff; }
+.tr-dock .tr-ls { max-height: 168px; overflow: auto; text-align: left; }
+.tr-dock .tr-ls button { background: #f6f3f9; color: #282828; }
+.tr-dock .tr-ls i { background: #e6e1ec; color: #6b6280; }
+.tr-dock .tr-ls .done i { background: var(--route); color: #fff; }
+.tr-dock .tr-ls .now { background: var(--soft); box-shadow: inset 0 0 0 2px var(--route); }
+.tr-dock .tr-ls button:disabled { background: #f6f3f9; color: #8d86a0; }
+/* Moving to another stone: the card's words swap in (never from blank, as scrolling passes many), the card itself stays put. */
+.tr-dock-in.swap > .tr-head { animation: tr-swap .18s ease-out both; }
+@keyframes tr-swap { from { opacity: .3; transform: translateY(4px); } }
+/* Back to the child's lesson: a round button above the card, pointing up or down the track. */
+.tr-now { position: absolute; left: 22px; top: -58px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #e0dae8; border-radius: 50%; background: #fff; color: #6b6280; cursor: pointer; box-shadow: 0 4px 12px rgba(43, 15, 69, .12); }
+.tr-now[hidden] { display: none; }
+.tr-now .chev { width: 20px; height: 20px; }
+.tr-now.up .chev { transform: rotate(-90deg); }
+.tr-now.down .chev { transform: rotate(90deg); }
+.tr-stone.focus img { filter: none; }
+.tr-stone.locked.focus { opacity: .5; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .tr-dock-in { background: var(--card); box-shadow: 0 0 0 1px var(--edge-c); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .tr-head b { color: var(--text); }
+
+/* ---------- 10. Study track: the course at the top, a card per unit (as in Brilliant) ---------- */
+/* The course: its picture, name, what it covers, how much is in it and how much is done. */
+.tr-intro { display: grid; justify-items: center; gap: 6px; padding: 26px 28px 18px; text-align: center; }
+.tr-intro img { width: 84px; height: 84px; margin-bottom: 6px; }
+.tr-intro h2 { margin: 0; font: 800 24px/30px "Red Hat Display", sans-serif; color: #282828; }
+.tr-intro p { margin: 0; max-width: 300px; font: 500 15px/21px "Red Hat Text", sans-serif; color: #525252; }
+.tr-intro-n { display: flex; gap: 16px; margin-top: 4px; font: 700 13px "Red Hat Text", sans-serif; color: #303030; }
+.tr-intro-n span { display: flex; align-items: center; gap: 5px; }
+.tr-intro-n svg { width: 17px; height: 17px; fill: none; stroke: var(--route); stroke-width: 2.2; stroke-linejoin: round; }
+.tr-intro-done { display: grid; justify-items: center; gap: 6px; margin-top: 6px; font: 700 12px "Red Hat Text", sans-serif; color: #6b6280; }
+.tr-intro-done i { width: 160px; height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--route) var(--p), #e6e1ec var(--p)); }
+/* The unit card: under the course it scrolls up and sticks, naming the unit of the stone in focus. */
+.tr-page .tr-card { grid-template-columns: 1fr 18px; width: 90%; padding: 10px 14px 10px 18px; border-radius: 16px; box-shadow: 0 0 0 2px var(--route), 0 4px 0 color-mix(in srgb, var(--route) 40%, transparent), 0 8px 18px rgba(43, 15, 69, .08); background: #fff; text-align: center; }
+.tr-page .tr-card span { justify-items: center; padding-left: 18px; }
+.tr-page .tr-card small { font: 800 11px/14px "Red Hat Display", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--route); }
+.tr-page .tr-card b { color: #282828; font-size: 15px; }
+/* A unit's card on the path, between its first stone and the unit before. */
+.tr-unitpill { position: absolute; left: 50%; z-index: 1; display: grid; justify-items: center; width: min(320px, 84%); padding: 9px 16px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 2px #e3dde9, 0 4px 0 #e3dde9; transform: translate(-50%, -50%); text-align: center; }
+.tr-unitpill small { font: 800 11px/14px "Red Hat Display", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #8d86a0; }
+.tr-unitpill b { font: 800 15px/20px "Red Hat Display", sans-serif; color: #303030; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.tr-intro h2, .tr-unitpill b, .tr-page .tr-card b) { color: var(--text); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.tr-intro p, .tr-intro-n) { color: var(--text-soft); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) :is(.tr-unitpill, .tr-page .tr-card) { background: var(--card); }
+
+/* A unit's cards: the child's unit and the ones done in the subject's colour, the ones ahead grey (as Brilliant's levels). */
+.tr-page .tr-card.ahead { box-shadow: 0 0 0 2px #e3dde9, 0 4px 0 #e3dde9, 0 8px 18px rgba(43, 15, 69, .06); }
+.tr-page .tr-card.ahead small { color: #8d86a0; }
+.tr-unitpill:is(.now, .done) { box-shadow: 0 0 0 2px var(--route), 0 4px 0 color-mix(in srgb, var(--route) 40%, transparent); }
+.tr-unitpill:is(.now, .done) small { color: var(--route); }
+/* The end of the course: the next one, under a line. */
+.tr-next { position: absolute; left: 16px; right: 16px; display: grid; justify-items: center; gap: 8px; padding-top: 14px; border-top: 1px solid #e3dde9; text-align: center; }
+.tr-next small { font: 800 11px "Red Hat Display", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8d86a0; }
+.tr-next h3 { margin: 4px 0 0; font: 800 20px/26px "Red Hat Display", sans-serif; color: #282828; }
+.tr-next p { margin: 0; max-width: 300px; font: 500 14px/20px "Red Hat Text", sans-serif; color: #525252; }
+.tr-next button { justify-self: stretch; height: 48px; margin-top: 6px; border: 0; border-radius: 14px; background: #ece8f1; color: #303030; font: 800 14px "Red Hat Display", sans-serif; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .tr-next h3 { color: var(--text); }
+
+/* ---------- 11. Study track: Brilliant's spacing (measured on the recording, in points) ---------- */
+/* 22 pt from the screen's sides to every card; the course: a 92 pt picture, 32 pt to the title,
+   then the line and the counts, 48 pt to the unit card; the unit card 63 pt tall, 10 pt under the top bar. */
+.tr-intro { gap: 0; padding: 56px 22px 0; }
+.tr-intro img { width: 92px; height: 92px; margin: 0 0 30px; }
+.tr-intro h2 { font-size: 22px; line-height: 28px; }
+.tr-intro p { margin-top: 12px; max-width: 330px; font-size: 15px; line-height: 22px; }
+.tr-intro-n { margin-top: 18px; }
+.tr-intro-done { margin-top: 14px; }
+.tr-page .tr-card { width: calc(100% - 44px); min-height: 63px; margin-top: 48px; padding: 10px 16px 10px 20px; border-radius: 18px; }
+.tr-page .tr-card small { font-size: 11px; line-height: 15px; }
+.tr-page .tr-card b { font-size: 15.5px; line-height: 21px; }
+.tr-unitpill { width: calc(100% - 44px); min-height: 63px; align-content: center; padding: 10px 16px; border-radius: 18px; }
+/* The card at the bottom: 22 pt from the sides, 20 pt inside, the title 19 pt, a 48 pt pill button. */
+.tr-dock { padding: 0 22px 12px; }
+.tr-dock-in { gap: 16px; padding: 20px 16px 16px; border-radius: 28px; }
+.tr-head { padding: 0 6px; }
+.tr-head b { font-size: 19px; }
+.tr-dock .tr-go, .tr-dock .tr-more { height: 48px; border-radius: 24px; }
+/* The round arrow: 44 pt, 22 pt from the side, 23 pt above the card. */
+.tr-now { left: 22px; top: -67px; }
+/* Up next: its label over a line, 22 pt from the sides; the title, the line, a 50 pt grey pill. */
+.tr-next { left: 22px; right: 22px; gap: 0; padding-top: 0; border-top: 0; }
+.tr-next small { justify-self: stretch; padding-bottom: 8px; border-bottom: 1px solid #e3dde9; }
+.tr-next h3 { margin-top: 30px; font-size: 20px; }
+.tr-next p { margin-top: 14px; font-size: 15px; line-height: 22px; }
+.tr-next button { height: 50px; margin-top: 26px; border-radius: 25px; }
+
+/* ---------- 12. Study track: the app's own buttons (Button.tsx) in the cards ---------- */
+/* The card keeps to its width: a long title shortens with "…", never pushes the minutes or the button out. */
+.tr-dock-in { grid-template-columns: minmax(0, 1fr); justify-items: stretch; }
+.tr-head { min-width: 0; }
+/* Primary: the subject's colour, 52 high, radius 12, Display 800 14 uppercase, letter-spacing 1.68, flat;
+   secondary (a lesson done, the next course): gray200 with dark text; disabled (locked): gray300 with white text. */
+.tr-dock .tr-go, .tr-next button { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 52px; padding: 8px 16px; border: 0; border-radius: 12px; background: var(--subj, #6849dd); color: #fffeff; box-shadow: none; font: 800 14px/18px "Red Hat Display", sans-serif; letter-spacing: 1.68px; text-transform: uppercase; white-space: nowrap; }
+.tr-dock .tr-go.done, .tr-next button { background: #eaeaea; color: #303030; box-shadow: none; }
+.tr-dock .tr-go:disabled { background: #d3d3d3; color: #fff; box-shadow: none; }
+.tr-dock .tr-go:not(:disabled):active, .tr-next button:active { transform: scale(.98); opacity: .9; box-shadow: none; }
+.tr-dock .tr-go:focus-visible, .tr-next button:focus-visible { outline: 3px solid #303030; outline-offset: 3px; }
+.tr-dock .tr-more { height: 52px; border-radius: 12px; background: #eaeaea; color: #303030; }
+.tr-next button { margin-top: 26px; }

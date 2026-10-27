@@ -333,9 +333,9 @@ function renderHomeTab() {
 // lesson set) of the course: one column, arcs that bulge left and right and fill
 // as skills are done, a line where a topic starts, the mascot on the current
 // skill and islands in the open space. The card on top names the topic and the
-// skill in focus and opens the unit list. The skill in focus has its popover
-// open under it the whole time: as the track scrolls, the popover moves to the
-// skill at the focus line and shows its lessons, each to start from there.
+// skill in focus and opens the unit list. As in Brilliant, one card stands at the
+// bottom the whole time: it shows the stone that scrolls to the middle of the
+// track, with the one button its state calls for.
 const TRACK_ART = { math: "math", "lit-de": "german", "lit-en": "english", fl: { "de-DE": "english", "en-GB": "french" } };
 const TRACK = {
   math: { route: "#018641", grad: ["#0BBE81", "#145E39"], soft: "#E2F0EA", islands: 4 },
@@ -344,17 +344,20 @@ const TRACK = {
   // French has no art of its own: the English art turned to its purple.
   french: { route: "#8f73ff", grad: ["#9b7bff", "#4b2fb0"], soft: "#ece6fb", islands: 5, files: "english" },
 };
-// pad: room above the first stone for its popover or the study card.
-const TR = { pad: 380, step: 266, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 219, islandW: 124, mascot: 104 };
+// pad: room above the first stone, so it can scroll to the middle; unitGap: the room a unit's pill takes on the path.
+// Spaced as Brilliant spaces its path (measured): the step about twice the stone, ~110 above and below a unit card.
+const TR = { pad: 56, unitGap: 76, step: 210, decor: 132, stone: 107, stoneH: 74, arcW: 167.5, arcH: 173, islandW: 124, mascot: 104 };
 const ISLAND_DY = [0, -24, 0, -24, -24];
 const ARCH_PATH = "M8.15 22.9C8.15 22.9 47.71 2.35 47.71 2.35C50.42 0.94 53.65 0.62 56.58 1.47C195.73 41.95 199.88 146.33 57.21 211.78C53.93 213.28 50.06 213.2 46.85 211.56C46.85 211.56 3.18 189.23 3.18 189.23C-0.16 187.52 0.48 182.49 4.11 181.54C118.03 151.67 147.82 64.21 8.95 28.61C6.25 27.92 5.68 24.19 8.15 22.9Z";
 const TKTXT = {
-  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", goOn: "Weiter lernen", again: "Nochmal spielen", locked: "Noch gesperrt", min: (m) => `${m} Min.`, lessonOf: (k, n) => `Lektion ${k} von ${n}`, allDone: (n) => `${n} von ${n} Lektionen geschafft`, notYet: (n) => `${n} Lektionen`, showAll: (n) => n === 1 ? "Lektion zeigen" : `Die ${n} Lektionen zeigen`, showLess: "Weniger zeigen", subject: "Fach wählen" },
-  en: { units: "All units", back: "Back", start: "Start lesson", goOn: "Keep going", again: "Play again", locked: "Locked", min: (m) => `${m} min`, lessonOf: (k, n) => `Lesson ${k} of ${n}`, allDone: (n) => `All ${n} lessons done`, notYet: (n) => `${n} lessons`, showAll: (n) => n === 1 ? "Show the lesson" : `Show the ${n} lessons`, showLess: "Show less", subject: "Choose a subject" },
+  de: { units: "Alle Einheiten", back: "Zurück", start: "Lektion starten", goOn: "Weiter lernen", again: "Nochmal spielen", locked: "Noch gesperrt", first: (t) => `Erst „${t}“ schaffen`, toNow: "Zu deiner Lektion", upNext: "Als Nächstes", look: "Anschauen", unit: (k) => `Einheit ${k}`, lessons: (n) => `${n} Lektionen`, tasks: (n) => `${n} Aufgaben`, doneOf: (k, n) => `${k} von ${n} geschafft`, more: "und mehr", min: (m) => `${m} Min.`, lessonOf: (k, n) => `Lektion ${k} von ${n}`, allDone: (n) => `${n} von ${n} Lektionen geschafft`, notYet: (n) => `${n} Lektionen`, showAll: (n) => n === 1 ? "Lektion zeigen" : `Die ${n} Lektionen zeigen`, showLess: "Weniger zeigen", subject: "Fach wählen" },
+  en: { units: "All units", back: "Back", start: "Start lesson", goOn: "Keep going", again: "Play again", locked: "Locked", first: (t) => `Finish “${t}” first`, toNow: "To your lesson", upNext: "Up next", look: "Take a look", unit: (k) => `Unit ${k}`, lessons: (n) => `${n} lessons`, tasks: (n) => `${n} exercises`, doneOf: (k, n) => `${k} of ${n} done`, more: "and more", min: (m) => `${m} min`, lessonOf: (k, n) => `Lesson ${k} of ${n}`, allDone: (n) => `All ${n} lessons done`, notYet: (n) => `${n} lessons`, showAll: (n) => n === 1 ? "Show the lesson" : `Show the ${n} lessons`, showLess: "Show less", subject: "Choose a subject" },
 };
 const TK = () => TKTXT[PL()];
 const LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>';
 const LIST = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.5" cy="6.5" r="1.3" class="f"/><circle cx="4.5" cy="12" r="1.3" class="f"/><circle cx="4.5" cy="17.5" r="1.3" class="f"/></svg>';
+const LESSON_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="9" rx="8" ry="4"/><path d="M4 9v5c0 2.2 3.6 4 8 4s8-1.8 8-4V9"/></svg>';
+const PUZZLE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h3a2 2 0 1 1 4 0h3v3a2 2 0 1 1 0 4v3h-3a2 2 0 1 0-4 0H5v-3a2 2 0 1 0 0-4z"/></svg>';
 const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
 const trackArt = (subj) => { const a = TRACK_ART[subj]; return (typeof a === "string" ? a : a?.[PR.child.curriculum]) ?? "math"; };
 // The course as a row of skills, each with its state: done (every lesson),
@@ -393,94 +396,113 @@ function renderTrack() {
   const art = trackArt(APP.subj), look = TRACK[art], files = look.files ?? art, colour = colourOf(APP.subj);
   const perLesson = stonesPerLesson(), rows = perLesson ? trackLessons(APP.subj, year) : trackSkills(APP.subj, year), cur = Math.max(0, rows.findIndex((x) => x.state === "current"));
   const rowTitle = (r) => r.l ? r.l.title[lg] ?? r.l.title.de : r.s.title[lg] ?? r.s.title.de;
-  const top = (i) => TR.pad + i * TR.step, mid = (i) => top(i) + TR.decor / 2;
+  // Each unit (a topic) opens with its pill on the path, in a gap of its own.
+  const unitAt = []; rows.forEach((r, i) => unitAt.push((unitAt[i - 1] ?? 0) + (i && r.topicStart ? 1 : 0)));
+  const top = (i) => TR.pad + i * TR.step + (unitAt[Math.min(i, rows.length - 1)] ?? 0) * TR.unitGap, mid = (i) => top(i) + TR.decor / 2;
   const at = (x) => `calc(50% + ${x}px)`;
   const arcs = rows.map((r, i) => {
-    if (!i) return "";
+    if (!i || r.topicStart) return "";
     const even = i % 2 === 0, y = top(i) - TR.step / 2 + TR.decor / 2 - TR.arcH / 2;
     const left = even ? -TR.stone / 2 + 48 - TR.arcW : TR.stone / 2 - 48;
     const island = `study/${files}-path-${((i - 1) % look.islands) + 1}.png`, ih = TR.islandW * 0.73;
     return `<svg class="tr-arc" viewBox="0 0 163.59 213.85" preserveAspectRatio="none" style="top:${y}px;left:${at(left)};width:${TR.arcW}px;height:${TR.arcH}px;transform:scaleX(${even ? -1 : 1}) rotate(-1deg)" aria-hidden="true"><path d="${ARCH_PATH}" fill="${look.route}" fill-opacity="${rows[i - 1].done ? 1 : 0.08}"/></svg>
       <img class="tr-island" src="${island}" alt="" style="top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px">`;
   }).join("");
-  const lines = rows.map((r, i) => r.topicStart && i ? `<i class="tr-unit" style="top:${mid(i) - 1}px;--gap:${TR.stone / 2 + 12}px"></i>` : "").join("");
+  // A unit is done, the child's (it holds the current lesson) or ahead; its cards take the colour of the first two.
+  const unitState = [...new Set(unitAt)].map((u) => { const is = rows.map((_, i) => i).filter((i) => unitAt[i] === u); return is.includes(cur) ? "now" : is.every((i) => rows[i].state === "done") ? "done" : "ahead"; });
+  const pillY = (i) => (mid(i - 1) + mid(i)) / 2;
+  const lines = rows.map((r, i) => r.topicStart && i ? `<div class="tr-unitpill ${unitState[unitAt[i]]}" style="top:${pillY(i)}px"><small>${esc(K.unit(unitAt[i] + 1))}</small><b>${esc(r.topic)}</b></div>` : "").join("");
+  // The course at the top, as Brilliant opens a course: its picture, name, what it covers,
+  // how much is in it and how much is done. Scrolling on, the unit card sticks under it.
+  // What it covers is the units' names; a line written for the child would replace it.
+  const sets = [...new Set(rows.map((r) => r.s))], units = [...new Set(rows.map((r) => r.topic).filter(Boolean))];
+  const nLessons = sets.reduce((k, x) => k + x.lessons.length, 0), nDone = sets.reduce((k, x) => k + Math.min(lessonsDone(x), x.lessons.length), 0);
+  const tasksOf = (l) => (l.activities ?? []).reduce((k, a) => k + (a.draw ?? a.tasks?.length ?? 0) + (a.stages ?? []).reduce((m, st) => m + st.tasks.length, 0), 0);
+  const nTasks = sets.reduce((k, x) => k + x.lessons.reduce((m, l) => m + tasksOf(l), 0), 0);
+  const covers = units.slice(0, 3).map((u, k) => k && lg === "en" ? u.toLowerCase() : u).join(", ") + (units.length > 3 ? ` ${K.more}` : "");
+  // At the end of the course, the next one: the same subject's next year.
+  const ys = yearsOf(APP.subj), ny = ys[ys.indexOf(year) + 1];
+  const nextUnits = ny ? [...new Set(courseSets(APP.subj, ny).map((x) => x.topic?.[lg] ?? x.topic?.en).filter(Boolean))] : [];
+  const nextCovers = nextUnits.slice(0, 3).map((u, k) => k && lg === "en" ? u.toLowerCase() : u).join(", ") + (nextUnits.length > 3 ? ` ${K.more}` : "");
+  const upNext = ny ? `<section class="tr-next" style="top:${mid(rows.length - 1) + 110}px"><small>${esc(K.upNext)}</small><h3>${esc(SUBJ_NAME[c.curriculum][APP.subj] ?? APP.subj)} · ${esc(yearName(ny))}</h3>${nextUnits.length ? `<p>${esc(nextCovers)}.</p>` : ""}<button type="button">${esc(K.look)}</button></section>` : "";
+  const intro = `<header class="tr-intro"><img src="study/${art}.svg" alt=""><h2>${esc(SUBJ_NAME[c.curriculum][APP.subj] ?? APP.subj)} · ${esc(yearName(year))}</h2><p>${esc(covers)}.</p>
+      <span class="tr-intro-n"><span>${LESSON_ICON}${esc(K.lessons(nLessons))}</span><span>${PUZZLE_ICON}${esc(K.tasks(nTasks))}</span></span>
+      <span class="tr-intro-done"><i style="--p:${nLessons ? Math.round((100 * nDone) / nLessons) : 0}%"></i>${esc(K.doneOf(nDone, nLessons))}</span></header>`;
   const stones = rows.map((r, i) => `<button class="tr-stone ${r.state}" data-i="${i}" style="top:${top(i) + (TR.decor - TR.stoneH) / 2}px;left:${at(-TR.stone / 2)};width:${TR.stone}px" aria-label="${esc(rowTitle(r))}"><img src="study/${files}-stone-${r.state === "done" ? "done" : "active"}.png" alt=""></button>`).join("");
   const mascot = rows.length ? `<img class="tr-mascot" data-i="${cur}" src="${A}mascot/start-2.png" alt="" style="top:${mid(cur) - TR.mascot * 1.05}px;left:${at(TR.decor / 2 - TR.mascot * 1.2)};width:${TR.mascot}px">` : "";
   scr.style.setProperty("--subj", colour); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div>
     ${trackStats(art)}
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
-      <button class="tr-card"><i><img src="study/${art}.svg" alt=""></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
-      <div class="tr-path ${art}" style="height:${top(rows.length) + 420}px">${arcs}${lines}${stones}${mascot}<div class="tr-tip up" aria-live="polite" hidden></div></div>
-    </div><div class="tr-fade" aria-hidden="true"></div>`;
+      ${intro}<button class="tr-card"><span><small id="trUnitNo"></small><b id="trUnit"></b></span>${CHEVRON}</button>
+      <div class="tr-path ${art}" style="height:${top(rows.length) + (ny ? 300 : 420)}px">${arcs}${lines}${stones}${mascot}${upNext}</div>
+    </div><div class="tr-fade" aria-hidden="true"></div>
+    <div class="tr-dock" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}"><button class="tr-now" hidden></button><div class="tr-dock-in" aria-live="polite"></div></div>`;
   scr.appendChild(appTabs("study"));
   wireHeader(scr);
-  const page = $(".tr-page", scr), tip = $(".tr-tip", scr), card = $(".tr-card", scr), path = $(".tr-path", scr);
-  let focus = -1, open = false, all = false, skate = null;
-  // The skill in focus: the card names it, and its popover sits under its stone.
-  // The popover shows where the child is in the skill (a meter and the next
-  // lesson); the whole list of lessons is one tap away. Tapping away or on the
-  // stone closes it; scrolling to another skill or tapping a stone opens it.
-  const close = () => { open = false; tip.hidden = true; skate?.hide(true); scr.querySelectorAll(".tr-stone.focus").forEach((b) => b.classList.remove("focus")); };
+  const page = $(".tr-page", scr), dock = $(".tr-dock-in", scr), now = $(".tr-now", scr), card = $(".tr-card", scr), path = $(".tr-path", scr);
+  let focus = -1, all = false, skate = null;
+  // The stone in focus (the one at the middle of the track; the study animation will mark it): the card at the
+  // bottom shows it with its button: Start on the lesson the child is up to, Play again on one
+  // done, a lock and the lesson to finish first on one still locked.
   const show = (i, force) => {
-    const r = rows[i]; if (!r || (i === focus && open && !force)) return;
+    const r = rows[i]; if (!r || (i === focus && !force)) return;
     if (i !== focus) all = false;
-    focus = i; open = true; tip.hidden = false;
-    // The card names where the child is: with a stone per lesson, the skill and the lesson in it.
-    if (r.l) { $("#trUnit").textContent = r.s.title[lg] ?? r.s.title.de; $("#trLesson").textContent = K.lessonOf(r.k + 1, r.s.lessons.length); }
-    else { $("#trUnit").textContent = r.topic || (r.s.title[lg] ?? r.s.title.de); $("#trLesson").textContent = r.s.title[lg] ?? r.s.title.de; }
+    const moved = i !== focus; focus = i;
     scr.querySelectorAll(".tr-stone").forEach((b) => b.classList.toggle("focus", +b.dataset.i === i));
     const done = lessonsDone(r.s), n = r.s.lessons.length, next = r.s.lessons[Math.min(done, n - 1)], locked = r.state === "locked", finished = r.state === "done";
     // A lesson stone shows that lesson; a skill stone the lesson the child is up to.
     const at = r.l ? r.k : done, label = locked ? K.locked : finished ? K.again : done && !r.l ? K.goOn : K.start;
+    const before = rows.slice(0, i).findLast((x) => x.state !== "done" && x.state !== "locked") ?? rows[cur];
     const row = (l, k) => `<li><button data-n="${l.n}" class="${k < done ? "done" : k === done && !locked ? "now" : ""}"${locked ? " disabled" : ""}><i>${k < done ? TICK : l.n}</i><span>${esc(l.title[lg] ?? l.title.de)}</span></button></li>`;
-    // The lessons stay folded away until the child opens them.
     const shown = all ? r.s.lessons.map(row) : [];
-    // One line for where the child is; the lessons open from the list button beside Start.
-    tip.innerHTML = `<b>${keepSuffix(rowTitle(r))}</b>
-      <span class="tr-row"><span class="tr-meter" aria-hidden="true">${r.s.lessons.map((_, k) => `<i class="${k < done ? "on" : k === at && !locked ? "now" : ""}"></i>`).join("")}</span>
-        <span class="tr-meta">${esc(r.l ? K.lessonOf(at + 1, n) : finished ? K.allDone(n) : locked ? K.notYet(n) : K.lessonOf(done + 1, n))}<span>${esc(K.min(r.s.minutes ?? 10))}</span></span></span>
+    // One stone is one lesson, so the card is short: the title on the left, the minutes (or a lock) on the right, the button.
+    dock.innerHTML = `<span class="tr-head"><b>${keepSuffix(rowTitle(r))}</b><span class="tr-min">${locked ? LOCK : esc(K.min(r.s.minutes ?? 10))}</span></span>
       ${shown.length ? `<ol class="tr-ls">${shown.join("")}</ol>` : ""}
-      <span class="tr-actions"><button class="tr-go"${locked ? " disabled" : ""}>${locked ? LOCK : ""}${esc(label)}${locked ? "" : ARROW}</button>
+      <span class="tr-actions"><button class="tr-go ${r.state}"${locked ? ` disabled title="${esc(K.first(rowTitle(before)))}"` : ""}>${esc(label)}</button>
         ${r.l ? "" : `<button class="tr-more" aria-expanded="${all}" aria-label="${esc(all ? K.showLess : K.showAll(n))}" title="${esc(all ? K.showLess : K.showAll(n))}">${LIST}</button>`}</span>`;
-    $(".tr-more", tip)?.addEventListener("click", (e) => { e.stopPropagation(); all = !all; show(i, true); });
-    // Above its stone, where the app's study card also stands; above the mascot when it stands there.
-    tip.style.top = `${top(i) + (TR.decor - TR.stoneH) / 2 + 4 - (i === cur && !skate ? TR.mascot * 0.95 : 0)}px`;
-    tip.querySelectorAll("[data-n]").forEach((b) => b.onclick = () => startLesson(r.s.id, +b.dataset.n));
-    $(".tr-go", tip).onclick = () => startLesson(r.s.id, r.l ? r.l.n : r.state === "done" ? r.s.lessons[0].n : next.n);
-    // On the current skill the app's study card does the popover's job.
-    const onSkate = !!skate && i === cur;
-    if (onSkate) tip.hidden = true;
-    skate?.hide(!onSkate);
+    if (moved) { dock.classList.remove("swap"); void dock.offsetWidth; dock.classList.add("swap"); }
+    $(".tr-more", dock)?.addEventListener("click", () => { all = !all; show(i, true); });
+    dock.querySelectorAll("[data-n]").forEach((b) => b.onclick = () => startLesson(r.s.id, +b.dataset.n));
+    $(".tr-go", dock).onclick = () => startLesson(r.s.id, r.l ? r.l.n : r.state === "done" ? r.s.lessons[0].n : next.n);
+    // Away from the child's lesson, a round button above the card brings it back, pointing its way.
+    now.hidden = i === cur; now.className = `tr-now ${i < cur ? "down" : "up"}`;
   };
+  now.innerHTML = CHEVRON; now.setAttribute("aria-label", K.toNow); now.title = K.toNow;
   // The app's skate and study card on the current skill (anim-ui.js).
   APP.skate = skate = trackSkate({ path, rows, cur, top, art,
     onStart: () => { const r = rows[cur], d = lessonsDone(r.s); startLesson(r.s.id, r.l ? r.l.n : r.s.lessons[Math.min(d, r.s.lessons.length - 1)].n); },
     onNext: (i) => { show(i, true); scrollTo(i, "smooth"); } });
-  // The focus line: 60% down the track's window, so the study card above the current skill clears the top card.
-  const focusY = () => page.getBoundingClientRect().top + page.clientHeight * 0.6 - path.getBoundingClientRect().top;
+  // The skate keeps its mascot and route; its own card gives way to the card at the bottom.
+  skate?.hide(true);
+  // The focus line: the middle of the track's window.
+  const focusY = () => page.getBoundingClientRect().top + page.clientHeight * 0.5 - path.getBoundingClientRect().top;
   const scrollTo = (i, behavior, lower = 0) => page.scrollTo({ top: Math.max(0, page.scrollTop + mid(i) - focusY() - lower), behavior });
-  // Scrolling moves the focus; a closed popover opens again on the next skill, not on the same one.
-  // The track's own opening scroll is not the child's: it leaves the focus on the current skill.
+  // Scrolling moves the focus. The track's own opening scroll is not the child's: it leaves the focus on the current skill.
   let quiet = 0;
-  page.onscroll = () => { if (Date.now() < quiet) return; const i = Math.max(0, Math.min(rows.length - 1, Math.round((focusY() - TR.pad - TR.decor / 2) / TR.step))); if (i !== focus) show(i); };
-  scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = (e) => {
-    e.stopPropagation(); const i = +b.dataset.i;
-    if (i === focus && open) return close();
-    show(i, true); scrollTo(i, "smooth");
-  });
-  tip.onclick = (e) => e.stopPropagation();
-  // A tap anywhere else closes it. One listener per track: the last one's goes, and this one starts
-  // after the tap that opened the track, which is still on its way up the page.
-  APP.trackTaps?.abort(); APP.trackTaps = new AbortController();
-  const { signal } = APP.trackTaps;
-  setTimeout(() => scr.addEventListener("click", (e) => { if (open && !e.target.closest(".tr-stone, .tr-mascot, .tr-skate")) close(); }, { signal }));
+  const nearest = (y) => rows.reduce((b, _, i) => Math.abs(mid(i) - y) < Math.abs(mid(b) - y) ? i : b, 0);
+  // The unit card on top names the unit whose card has last passed under it, as Brilliant's level card does.
+  const pills = rows.map((r, i) => r.topicStart && i ? [pillY(i), unitAt[i]] : null).filter(Boolean);
+  let unitShown = -1;
+  const sticky = () => {
+    const edge = card.getBoundingClientRect().bottom - path.getBoundingClientRect().top;
+    const u = pills.filter(([y]) => y <= edge).at(-1)?.[1] ?? 0; if (u === unitShown) return; unitShown = u;
+    const i = unitAt.indexOf(u), r = rows[i];
+    $("#trUnitNo").textContent = K.unit(u + 1); $("#trUnit").textContent = r.topic || (r.s.title[lg] ?? r.s.title.de);
+    card.className = `tr-card ${unitState[u]}`;
+  };
+  page.onscroll = () => { sticky(); if (Date.now() < quiet) return; const i = nearest(focusY()); if (i !== focus) show(i); };
+  const nx = $(".tr-next button", scr); if (nx) nx.onclick = () => { APP.year = ny; renderTrack(); };
+  // Tapping a stone brings it to the middle, as scrolling there would.
+  scr.querySelectorAll(".tr-stone, .tr-mascot").forEach((b) => b.onclick = () => { const i = +b.dataset.i; show(i); scrollTo(i, "smooth"); });
+  now.onclick = () => { show(cur); scrollTo(cur, "smooth"); };
+  APP.trackTaps?.abort();
   // The card opens the lesson list on the skill in focus.
   card.onclick = () => { APP.units = true; APP.year = year; APP.openSet = rows[focus]?.s.id ?? null; renderStudy(); };
   $(".tr-pill", scr).onclick = (e) => subjectMenu(e.currentTarget);
-  // Open on the current skill, a little lower when the study card stands above it.
+  // Open on the current skill.
   quiet = Date.now() + 500;
-  scrollTo(cur, "auto", skate ? page.clientHeight * 0.15 : 0); show(cur);
+  scrollTo(cur, "auto"); show(cur); sticky();
 }
 // The subject menu under the pill: each subject with its icon.
 function subjectMenu(pill) {

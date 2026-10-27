@@ -1037,28 +1037,49 @@ function renderTask(step) {
     const x = document.createElement("div"); x.textContent = text; b.appendChild(x); s.appendChild(b);
   };
   const finish = (kind) => {
-    st.over = true; results[at] = kind; addTry(at, ["first", "second", "helped"].includes(kind)); markPbar(at, kind); sfx(["first", "second", "helped"].includes(kind) ? "answer-correct" : "answer-wrong");
+    st.over = true; results[at] = kind; addTry(at, ["first", "second", "helped"].includes(kind)); markPbar(at, kind);
     const good = ["first", "second", "helped"].includes(kind), s = openSheet(good ? "ok" : "bad");
     if (!good && kind === "wrong") bubble("fb", UI.shownAnswer);
     const b = document.createElement("button"); b.className = "btn" + (good ? " go" : ""); b.textContent = UI.next; b.onclick = () => go(at + 1); s.appendChild(b);
-    // Right answers move on by themselves after three seconds, as in the app.
-    if (good && autoNext()) { const t0 = performance.now(), me = steps[at]; const tick = (now) => { if (steps[at] !== me || !b.isConnected) return; const p = Math.min(1, (now - t0) / 3000); b.style.setProperty("--p", (p * 100).toFixed(1) + "%"); b.textContent = `${UI.nextIn} ${Math.max(1, Math.ceil(3 - p * 3))}`; if (p < 1) requestAnimationFrame(tick); else go(at + 1); }; requestAnimationFrame(tick); }
+    // Right answers move on by themselves two seconds after the sheet (the verdict has played before it).
+    if (good && autoNext()) { const me = steps[at]; setTimeout(() => { if (steps[at] === me && b.isConnected) go(at + 1); }, 2000); }
+  };
+  // The verdict (anim-ui.js) plays first and alone, on the button the child answered with
+  // (Answer or Check); the tapped option keeps its green or red. The screen takes no taps while it plays; then the sheet
+  // comes up with its voice. One variant per outcome (right first time, right after help, right in
+  // the check; a miss with another try, a miss that shows the answer, wrong in the check).
+  const verdictOn = () => (foot.contains(document.activeElement) && document.activeElement) || foot.querySelector(".btn");
+  const afterVerdict = (variant, then) => {
+    const ms = typeof verdictFx === "function" ? verdictFx(verdictOn(), variant) : 0;
+    if (!ms) { sfx(variant.startsWith("right") ? "answer-correct" : variant === "wrong-short" ? "try-again" : "answer-wrong"); return then(); }
+    const me = steps[at]; body.style.pointerEvents = foot.style.pointerEvents = "none";
+    setTimeout(() => { body.style.pointerEvents = foot.style.pointerEvents = ""; if (steps[at] === me) then(); }, ms);
   };
   // Called by each type with right/wrong, the chosen key, and how to show the answer.
   function answer(ok, key, reveal) {
-    if (st.over) return;
+    if (st.over || body.style.pointerEvents === "none") return;
     if (ok) {
-      const p = mode === "check" ? null : phrase("correct");
-      if (p) { bubble("ok", p.text); play(p.src); }
-      return finish(st.misses ? (st.helped ? "helped" : "second") : "first");
+      const kind = st.misses ? (st.helped ? "helped" : "second") : "first";
+      st.over = true; stopAudio();
+      return afterVerdict(mode === "check" ? "right-calm" : kind === "first" ? "right-full" : "right-short", () => {
+        const p = mode === "check" ? null : phrase("correct");
+        if (p) { bubble("ok", p.text); play(p.src); }
+        finish(kind);
+      });
     }
-    st.misses++; closeSheet(); steps[at].missed = true; addTry(at, false); markPbar(at, "wrong"); if (!st.revealed && mode !== "check") sfx("try-again");
+    st.misses++; closeSheet(); stopAudio(); steps[at].missed = true; addTry(at, false); markPbar(at, "wrong");
+    const hints = t.hints ?? [];
+    const canHint = (mode === "full" && st.hintShown < hints.length) || (mode === "some" && st.hintShown < 1 && hints.length) || (mode === "catch" && st.hintShown < 1 && hints.length);
+    const retry = mode !== "check" && (canHint || ((mode === "none" || mode === "catch") && st.misses < 2));
+    if (!retry) st.over = true;
+    afterVerdict(mode === "check" ? "wrong-calm" : retry ? "wrong-short" : "wrong-full", () => missed(key, reveal, canHint));
+  }
+  function missed(key, reveal, canHint) {
     if (mode === "check") { st.revealed = true; reveal(false); return finish("wrong"); }
     const fbText = t.feedback?.[String(key)], fbSrc = t._feedback?.[String(key)];
     const queue = [];
     if (fbText) { bubble("fb", fbText, fbSrc); queue.push(fbSrc); }
     const hints = t.hints ?? [];
-    const canHint = (mode === "full" && st.hintShown < hints.length) || (mode === "some" && st.hintShown < 1 && hints.length) || (mode === "catch" && st.hintShown < 1 && hints.length);
     if (canHint) {
       bubble("hint", UI.tip + hints[st.hintShown], t._hints[st.hintShown]);
       if (!fbText) { const p = phrase("hint"); if (p) queue.push(p.src); }
