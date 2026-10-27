@@ -3,7 +3,7 @@
    controls that change what is on screen, at the top; the pretend child, the
    time machine and the skills follow where they matter (renderPracticeSide in
    practice-ui.js builds the panel). Inlined after anim-ui.js. */
-const SIDE_NAME = { start: "Start", study: "Study track", practice: "Practice", me: "Me", settings: "Settings", lesson: "Lesson player" };
+const SIDE_NAME = { start: "Start", study: "Study track", practice: "Practice", me: "Me", settings: "Settings", lesson: "Lesson player", onboard: "Onboarding" };
 // The parts below the controls: listed means shown, 1 means open.
 const SIDE_PARTS = {
   start: { child: 1, time: 1 },
@@ -11,10 +11,12 @@ const SIDE_PARTS = {
   practice: { child: 1, time: 1, search: 0, why: 1, skills: 1 },
   me: { child: 1, time: 0 },
   settings: { child: 0 },
+  onboard: { child: 0 },
   lesson: {},
 };
 // Which screen the phone shows: a tab of the app, the Study track, or a lesson.
 function sideCtx() {
+  if (OB.on) return "onboard";
   if (document.body.classList.contains("practice")) return APP.tab ?? "start";
   return APP.home === "study" ? "study" : "lesson";
 }
@@ -51,9 +53,19 @@ function sideTop(ctx) {
       <div class="sx-row"><span>Open a badge</span><select id="sxBadge"><option value="">Choose …</option>${all.map((b) => `<option value="${b.id}">${esc(badgeName(b.id))}${b.earned ? " ✓" : ""}</option>`).join("")}</select></div>
       ${sideLook()}</div>`;
   }
+  if (ctx === "onboard") {
+    const name = { welcome: "Welcome", signin: "Sign in", scan: "Scanner", code: "Code", child: "The child", handoff: "Handoff", hello: "Hello", avatar: "Picture", try: "A try", first: "First lesson" };
+    return `${head}<div class="sx-box">
+      <p class="sx-note">A grown-up sets the device up (the dots), hands it over, and the child's part speaks with the browser's voice when Play audio automatically is on.</p>
+      <div class="sx-btns">${OB_STEPS.map((k) => `<button class="nbtn" data-ob="${k}" aria-pressed="${OB.step === k}">${name[k]}</button>`).join("")}</div>
+      <div class="sx-row"><span>Camera</span><span class="sx-seg"><button class="nbtn" data-cam="allow" aria-pressed="${OB.camera === "allow"}">Allowed</button><button class="nbtn" data-cam="deny" aria-pressed="${OB.camera === "deny"}">Refused</button></span></div>
+      <label class="tg"><input type="checkbox" id="sxSignedOut"${OB.signedOut ? " checked" : ""}> Coming back after a log-out</label>
+      ${sideLook()}
+      <div class="sx-btns"><button class="nbtn" id="sxObSkip">Skip to the app</button></div></div>`;
+  }
   if (ctx === "start") {
     return `${head}<div class="sx-box">
-      <div class="sx-btns"><button class="nbtn" id="sxNext">Open the next lesson</button><button class="nbtn" id="sxPlay">Play today</button><button class="nbtn" id="sxSplash">Show the splash screen</button></div>
+      <div class="sx-btns"><button class="nbtn" id="sxNext">Open the next lesson</button><button class="nbtn" id="sxPlay">Play today</button><button class="nbtn" id="sxSplash">Show the splash screen</button><button class="nbtn" id="sxOnboard">Show the onboarding</button></div>
       ${sideLook()}</div>`;
   }
   if (ctx === "settings") {
@@ -70,6 +82,14 @@ function sideWire(ctx, el) {
   const redraw = () => { saveChild(); refreshPractice(); };
   el.querySelectorAll("[data-look]").forEach((b) => b.onclick = () => { setLook(b.dataset.look); renderPracticeSide(); });
   on("#sxSplash", () => splash());
+  on("#sxOnboard", () => onboarding());
+  if (ctx === "onboard") {
+    el.querySelectorAll("[data-ob]").forEach((b) => b.onclick = () => obGo(b.dataset.ob));
+    el.querySelectorAll("[data-cam]").forEach((b) => b.onclick = () => { OB.camera = b.dataset.cam; OB.step === "scan" ? obRender() : obGo("scan"); renderPracticeSide(); });
+    const so = el.querySelector("#sxSignedOut"); if (so) so.onchange = () => { OB.signedOut = so.checked; obGo("signin"); };
+    on("#sxObSkip", () => obEnd(() => appTab("start")));
+    el.querySelectorAll("[data-look]").forEach((b) => b.onclick = () => { setLook(b.dataset.look); obRender(); renderPracticeSide(); });
+  }
   on("#sxPlay", () => { markActive(c); logEvent(c, "played today, set by hand"); redraw(); });
   if (ctx === "lesson") {
     el.querySelectorAll("[data-go]").forEach((b) => b.onclick = () => go(+b.dataset.go));

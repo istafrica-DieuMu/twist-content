@@ -1,0 +1,107 @@
+/* ---------- Onboarding (onboard-ui.js) ----------
+   The grown-up's screens: the app's purple arc with the mascot, a title, the
+   steps, and the buttons at the bottom with four dots. The child's screens: the
+   mascot speaking in the lesson's bubble, big things to tap. */
+.ob { z-index: 30; display: flex; flex-direction: column; place-items: stretch; background: var(--screen-bg); color: var(--text); font-family: "Red Hat Text", system-ui, sans-serif; text-align: center; }
+.ob .ob-body { flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 24px 12px; }
+.ob .ob-foot { display: grid; gap: 10px; padding: 8px 20px 28px; }
+.ob .btn { width: 100%; }
+.ob h2 { margin: 6px 0 0; font: 800 26px/1.2 "Red Hat Display", sans-serif; color: var(--text); text-wrap: balance; }
+.ob p { margin: 0; font-size: 16px; line-height: 1.45; color: var(--text-soft); text-wrap: pretty; }
+.ob .ob-note { font-size: 14px; color: var(--soft-c); }
+.ob .ob-small { font-size: 13px; color: var(--soft-c); }
+.ob-dots { display: flex; justify-content: center; gap: 6px; padding-top: 4px; }
+.ob-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--edge-c); transition: width .2s; }
+.ob-dots i.on { width: 22px; border-radius: 4px; background: #6849dd; }
+
+/* The grown-up's arc: as on the app's onboarding slides (Colors.primaryLightBg). */
+.ob-arc { position: relative; width: calc(100% + 48px); margin: -48px -24px 0; height: 250px; display: grid; place-items: end center; padding-bottom: 14px; background: var(--tint); border-radius: 0 0 50% 50% / 0 0 34% 34%; flex: none; }
+.ob-arc img { width: 150px; height: 150px; object-fit: contain; }
+.ob-where { margin: 4px 0 0; padding: 0; list-style: none; counter-reset: ob; display: grid; gap: 8px; width: 100%; text-align: left; }
+.ob-where li { counter-increment: ob; display: flex; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid var(--edge-c); border-radius: 12px; background: var(--card); font-size: 15px; line-height: 1.35; }
+.ob-where li::before { content: counter(ob); flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); color: #6849dd; font: 800 14px "Red Hat Display", sans-serif; }
+.ob .btn.ob-ico { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.ob .btn.ob-ico svg { width: 20px; height: 20px; fill: currentColor; }
+.ob-close { align-self: flex-start; width: 44px; height: 44px; margin: 0 0 4px -8px; padding: 10px; border: 0; border-radius: 50%; background: none; color: var(--text); cursor: pointer; }
+.ob-close svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+
+/* The scanner: a dark camera view with the frame; the preview scans on a tap. */
+.ob.is-scan { background: #111; color: #fff; }
+.ob.is-scan .ob-close { color: #fff; }
+.ob-cam { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.ob-cam p { color: #fff; font-weight: 700; }
+.ob-cam small { font-size: 12px; color: #aaa; }
+.ob-cam .ob-alt { width: auto; margin-top: 8px; padding: 8px 22px; background: transparent; color: #fff; border-color: #555; }
+.ob-frame { position: relative; width: 230px; height: 230px; border: 0; border-radius: 28px; background: radial-gradient(#2a2a2a, #1a1a1a); cursor: pointer; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .85); overflow: hidden; }
+.ob-frame i { position: absolute; left: 14px; right: 14px; top: 20%; height: 3px; border-radius: 2px; background: #9b7bff; box-shadow: 0 0 14px #9b7bff; }
+.ob-cam.got .ob-frame { box-shadow: inset 0 0 0 4px #69be4f; }
+.ob-cam.got .ob-frame i { display: none; }
+@media (prefers-reduced-motion: no-preference) { .ob-frame i { animation: ob-scanline 1.8s ease-in-out infinite alternate; } }
+@keyframes ob-scanline { to { top: 78%; } }
+.ob-cam.off { justify-content: center; }
+.ob-camoff { display: grid; gap: 10px; width: 100%; padding: 22px 18px; border-radius: 20px; background: #222; }
+.ob-camoff b { font: 800 20px "Red Hat Display", sans-serif; }
+.ob-camoff span { color: #bbb; font-size: 15px; line-height: 1.4; margin-bottom: 6px; }
+
+/* The code: six boxes over one input. */
+.ob-code { position: relative; display: block; margin-top: 10px; cursor: text; }
+.ob-code input { position: absolute; inset: 0; opacity: 0; font-size: 16px; }
+.ob-code span { display: flex; gap: 8px; }
+.ob-code i { width: 42px; height: 54px; display: grid; place-items: center; border: 2px solid var(--edge-c); border-bottom-width: 4px; border-radius: 12px; background: var(--card); font: 800 24px "Red Hat Display", sans-serif; font-style: normal; color: var(--text); }
+.ob-code input:focus + span i.at { border-color: #6849dd; }
+
+/* The child: who learns here, the class, the reminder. */
+.ob-kid { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px; border: 2px solid #947dec; border-radius: 16px; background: var(--tint); text-align: left; margin-top: 6px; }
+.ob-kid .av.xl { width: 64px; height: 64px; box-shadow: 0 0 0 3px var(--card); }
+.ob-kid span { display: grid; gap: 2px; }
+.ob-kid b { font: 800 20px "Red Hat Display", sans-serif; }
+.ob-kid small { font-size: 14px; color: var(--soft-c); }
+.ob-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 12px 14px; border: 1px solid var(--edge-c); border-radius: 12px; background: var(--card); text-align: left; font-size: 15px; }
+.ob-row select { font: 700 15px "Red Hat Text", sans-serif; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--edge-c); background: var(--card); color: var(--text); }
+.ob-sw { position: relative; cursor: pointer; }
+.ob-sw span { display: grid; gap: 2px; }
+.ob-sw small { font-size: 12.5px; color: var(--soft-c); }
+.ob-sw input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ob-sw i { flex: none; position: relative; width: 52px; height: 30px; border-radius: 99px; background: var(--edge-c); transition: background .2s; }
+.ob-sw i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0, 0, 0, .2); transition: transform .2s; }
+.ob-sw input:checked + i { background: #2b8a3e; }
+.ob-sw input:checked + i::after { transform: translateX(22px); }
+.ob-sw input:focus-visible + i { outline: 2px solid #6849dd; outline-offset: 2px; }
+
+/* The handoff: the child's picture, the mascot waving next to it. */
+.ob-hand { position: relative; margin: 40px 0 10px; }
+.ob-hand .av.xl { width: 150px; height: 150px; }
+.ob.is-handoff .ob-body { justify-content: center; }
+
+/* The child's screens: the mascot big, or speaking in the lesson's bubble. */
+.ob.kid .ob-body { padding-top: 8px; }
+.ob-big { width: 220px; height: 220px; object-fit: contain; margin-top: 30px; }
+.ob .bubbleq { text-align: left; }
+.ob-line { flex: none; width: 100%; }
+.ob-line::before { left: 50%; top: -8px; margin: 0 0 0 -8px; border: 8px solid transparent; border-top: 0; border-bottom-color: var(--sunk); }
+.ob-say { display: flex; align-items: center; gap: 8px; width: 100%; }
+.ob-say > img { width: 80px; height: 80px; object-fit: contain; flex: none; }
+.ob-me { margin: 10px 0 4px; }
+.ob-me .av.xl { width: 128px; height: 128px; }
+.ob-poses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; max-width: 280px; }
+.ob-poses button { aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; overflow: hidden; background: var(--av); cursor: pointer; }
+.ob-poses img { width: 100%; height: 150%; object-fit: cover; object-position: 50% 0; transform: translateY(6%) scale(1.1); }
+.ob-poses [aria-checked="true"] { box-shadow: 0 0 0 3px var(--card), 0 0 0 6px #6849dd; }
+.ob-bgs { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.ob-bgs button { width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: var(--av); cursor: pointer; }
+.ob-bgs [aria-checked="true"] { box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--av); }
+.ob-opts { width: 100%; margin-top: auto; grid-template-columns: repeat(3, 1fr); }
+.ob-opts .opt { display: grid; gap: 2px; min-height: 120px; }
+.ob-opts .opt small { font-size: 13px; letter-spacing: 2px; color: #6849dd; }
+.ob-opts .opt.bad { border-color: #e5484d; background: #fdeeee; color: #c62828; }
+.ob-opts .opt.bad small { color: #c62828; }
+.ob-opts .opt.ob-hint { border-color: #69be4f; }
+@media (prefers-reduced-motion: no-preference) { .ob-opts .opt.ob-hint { animation: ob-glow 1.2s ease-in-out infinite alternate; } }
+@keyframes ob-glow { to { box-shadow: 0 0 0 6px rgba(105, 190, 79, .35); } }
+.ob .sheet { text-align: left; }
+.ob .ob-foot:has(.sheet) { min-height: 150px; }
+.ob-lesson { position: relative; width: 100%; display: grid; gap: 4px; justify-items: start; margin-top: 18px; padding: 16px 16px 16px 120px; min-height: 120px; align-content: center; border: 2px solid var(--c); border-bottom-width: 5px; border-radius: 20px; background: var(--card); color: var(--text); text-align: left; cursor: pointer; }
+.ob-lesson img { position: absolute; left: 10px; bottom: 6px; width: 100px; height: 100px; object-fit: contain; }
+.ob-lesson small { font: 700 13px "Red Hat Display", sans-serif; color: var(--c); }
+.ob-lesson b { font: 800 20px/1.2 "Red Hat Display", sans-serif; }
+.ob-lesson span { font-size: 14px; color: var(--soft-c); }

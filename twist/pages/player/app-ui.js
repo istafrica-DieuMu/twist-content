@@ -932,9 +932,9 @@ function renderSettings() {
   $("#setRemind", scr).onchange = (e) => setPref("twist-reminders", e.target.checked);
   // The pictures open from the pencil on the picture at the top, and stay open while one is chosen.
   $(".set-avbtn", scr).onclick = (e) => { APP.editPic = !APP.editPic; e.currentTarget.setAttribute("aria-expanded", APP.editPic); $("#setPics", scr).hidden = !APP.editPic; };
-  // Two taps for the ones that can't be undone; in the preview, logging out shows the app opening again.
+  // Two taps for the ones that can't be undone; in the preview, logging out opens the app again at the onboarding's sign-in.
   const twice = (id, sure, done) => { const b = $("#" + id, scr), small = $("small", b); b.onclick = () => { if (!b.classList.contains("sure")) { b.classList.add("sure"); small.textContent = sure; return; } done(b, small); }; };
-  twice("setLogout", S2.logoutSure, () => splash(() => appTab("start")));
+  twice("setLogout", S2.logoutSure, () => splash(() => { appTab("start"); onboarding({ signedOut: true }); }));
   twice("setClear", S2.clearSure, (b, small) => { b.classList.remove("sure"); small.textContent = S2.cleared; b.onclick = null; });
   scr.querySelectorAll("[data-script]").forEach((b) => b.onclick = () => {
     // The same choice as the player's Settings: the lesson draws its writing lines in it next time.
