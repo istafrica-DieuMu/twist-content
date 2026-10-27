@@ -404,15 +404,122 @@ function renderTrack() {
     if (!i || r.topicStart) return "";
     const even = i % 2 === 0, y = top(i) - TR.step / 2 + TR.decor / 2 - TR.arcH / 2;
     const left = even ? -TR.stone / 2 + 48 - TR.arcW : TR.stone / 2 - 48;
-    const island = `study/${files}-path-${((i - 1) % look.islands) + 1}.png`, ih = TR.islandW * 0.73;
+    const island = islandFor(i), ih = TR.islandW * 0.705, at2 = `top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px`;
     return `<svg class="tr-arc" viewBox="0 0 163.59 213.85" preserveAspectRatio="none" style="top:${y}px;left:${at(left)};width:${TR.arcW}px;height:${TR.arcH}px;transform:scaleX(${even ? -1 : 1}) rotate(-1deg)" aria-hidden="true"><path d="${ARCH_PATH}" fill="${look.route}" fill-opacity="${rows[i - 1].done ? 1 : 0.08}"/></svg>
-      <img class="tr-island" src="${island}" alt="" style="top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px">`;
+      ${island.svg ? `<svg class="tr-island themed" viewBox="0 0 220 155" style="${at2};height:${ih}px" aria-hidden="true"><use href="${island.svg}#island"/></svg>` : `<img class="tr-island" src="${island}" alt="" style="${at2}">`}`;
   }).join("");
   // A unit is done, the child's (it holds the current lesson) or ahead; its cards take the colour of the first two.
   const unitState = [...new Set(unitAt)].map((u) => { const is = rows.map((_, i) => i).filter((i) => unitAt[i] === u); return is.includes(cur) ? "now" : is.every((i) => rows[i].state === "done") ? "done" : "ahead"; });
   const pillY = (i) => (mid(i - 1) + mid(i)) / 2;
   const lines = rows.map((r, i) => r.topicStart && i ? `<div class="tr-unitpill ${unitState[unitAt[i]]}" style="top:${pillY(i)}px"><small>${esc(K.unit(unitAt[i] + 1))}</small><b>${esc(r.topic)}</b></div>` : "").join("");
   // The course at the top, as Brilliant opens a course: its picture, name, what it covers,
+// The islands beside the path follow the unit, not the stone count: each unit's topic (in English) has a
+// theme from the island prompts (Twist Island Prompts), drawn without words and shared by every curriculum and language.
+// A theme's art is SVG in study/themes/<theme>-<k>.svg (traced from generated art, or drawn by study/themes/draw.mjs), with ISLAND_ART
+// saying how many it has; the culture themes of the language courses have one set per language
+// (<theme>-fr-<k>, <theme>-en-<k>). The track colours them with the subject's three tones. Until a theme
+// has art, its unit shows two of its subject's current islands, the same two for the same theme everywhere.
+const ISLAND_THEMES = {
+  math: {
+    "counting": ["Numbers to 10","Numbers to 20","Counting in tens"],
+    "placevalue": ["Numbers to 100","Numbers to 1000","Numbers to 10 000","Numbers to 1 000 000","Numbers to 10 000 000","Large numbers","Relationships"],
+    "negative": ["Negative numbers"],
+    "ancient": ["Roman numerals","Binary numbers"],
+    "addsub": ["Adding and subtracting to 10","Adding and subtracting to 20","Adding and subtracting to 100","Adding and subtracting to 1000","Adding and subtracting tens","Column methods"],
+    "times": ["Times tables","Multiplication","Division","Multiplying and dividing","Informal multiplication and division","Written multiplication","Written division","Calculating with large numbers"],
+    "fractions": ["Fractions","Calculating with fractions","Decimals","Percentages","Ratio"],
+    "money": ["Money","Calculating with money"],
+    "time": ["Time","Telling the time","Time and duration"],
+    "calendar": ["Calendar"],
+    "length": ["Length"],
+    "area": ["Area and perimeter"],
+    "mass": ["Mass"],
+    "capacity": ["Capacity","Volume"],
+    "temperature": ["Temperature"],
+    "datasize": ["Data sizes"],
+    "shapes": ["Shapes"],
+    "solids": ["3D shapes"],
+    "symmetry": ["Symmetry"],
+    "angles": ["Geometry","Angles","Turns"],
+    "position": ["Position and direction","Coordinates"],
+    "data": ["Data"],
+    "chance": ["Chance","Combinations"],
+    "patterns": ["Patterns","Algebra"],
+    "problems": ["Word problems"],
+  },
+  lit: {
+    "sounds": ["Hearing sounds","Phonics","Sounds and letters","Special sounds","Short and long vowels","Reading syllables","Syllables and hyphenation"],
+    "letters": ["Letters","The alphabet","Capital letters"],
+    "firstread": ["Reading first words","First sentences","First texts","Reading words","Flash reading","Words in texts"],
+    "reading": ["Understanding texts","Understanding stories","Reading carefully","Reading fluently","Reading aloud","Reading between the lines","Kinds of text","How texts work","Books","Dictionary"],
+    "stories": ["Stories and poems","Telling stories","Writing poems","Performing","Performing texts"],
+    "fairytale": ["Fairy tales, fables, legends","Fairy tales"],
+    "writing": ["Writing","Writing texts","Writing first words","Writing first sentences","Learning to write","Planning writing","Revising writing","Laying out text","Presenting writing","Reporting","Describing","Correcting mistakes"],
+    "handwriting": ["Handwriting","Joined handwriting"],
+    "spelling": ["Spelling","Spelling practice","Spelling strategies","Words to learn by heart","Word stems and families","Vocabulary"],
+    "grammar": ["Grammar and punctuation","Nouns","Verbs","Adjectives","Pronouns","Tenses","The four cases","Parts of a sentence","Kinds of sentence","Joining sentences","Exploring language"],
+    "punctuation": ["Punctuation","Direct speech"],
+    "speaking": ["Speaking and listening","Having conversations","Speaking to an audience"],
+    "media": ["Media","Information texts","Signs and charts"],
+  },
+  fl: {
+    "hello": ["Hello"],
+    "family": ["Family"],
+    "body": ["Body","My body"],
+    "colours": ["Colours"],
+    "animals": ["Animals and nature"],
+    "school": ["School"],
+    "flnumbers": ["Numbers"],
+    "food": ["Food and drink"],
+    "clothes": ["Clothes"],
+    "home": ["At home"],
+    "town": ["In town"],
+    "weather": ["Weather"],
+    "hobbies": ["Hobbies and sport"],
+    "jobs": ["Jobs"],
+    "special": ["Special days"],
+    "feelings": ["Feelings"],
+    "world": ["Where the language is spoken"],
+    "compare": ["Comparing languages"],
+    "listening": ["Listening"],
+    "flspeaking": ["Speaking","Mediation"],
+    "flreading": ["Reading"],
+    "flwriting": ["Writing"],
+    "patterns-lang": ["Language patterns","Learning strategies"],
+  },
+  world: {
+    "health": ["My body","Clean and healthy","Healthy living","Inside the body","Staying healthy"],
+    "safehelp": ["My body belongs to me","Helping in an emergency"],
+    "together": ["Me and others","Together in class","Rights and diversity","Having a say"],
+    "shopping": ["Wanting and buying"],
+    "safemedia": ["Safe with media","Media"],
+    "myyear": ["My year"],
+    "history": ["Then and now","Exploring history","Life in other times"],
+    "maps": ["Where things are","Plans and places","Reading maps","Germany and the world"],
+    "nature": ["Nature around me","Animals and plants","Habitats"],
+    "forest": ["The forest"],
+    "seasons": ["Seasons and weather"],
+    "farm": ["From farm to table"],
+    "traffic": ["Getting around safely","Out on a bike","Travel and the environment"],
+    "tools": ["Tools and machines","Building and jobs","How things work","Technology changes the world"],
+    "experiments": ["Materials and how things work"],
+    "environment": ["Caring for the environment","Energy and climate"],
+    "water": ["Water"],
+    "fire": ["Fire and electricity"],
+    "space": ["Earth and space"],
+  },
+};
+// Maths: generated on Artlist from one master island and traced to SVG (five greys, coloured per subject).
+// grammar, food, nature, traffic: hand-drawn placeholders by study/themes/draw.mjs until theirs are made.
+const ISLAND_ART = { counting: 3, placevalue: 3, negative: 3, ancient: 3, addsub: 3, times: 3, fractions: 3, money: 3, time: 3, calendar: 3, length: 3, area: 3, mass: 3, capacity: 3, temperature: 3, datasize: 3, shapes: 3, solids: 3, symmetry: 3, angles: 3, position: 3, data: 3, chance: 3, patterns: 3, problems: 3, grammar: 3, "food-fr": 3, "food-en": 3, nature: 3, traffic: 3 };
+// Themes drawn once per target language: French for the English curriculum's course, English for the German one's.
+const LANG_THEMES = ["food", "town", "special", "world"];
+// Units drawn with another subject's theme: the same idea, so the same islands.
+const ISLAND_ALIAS = {"fl":{"Time":"time","Calendar":"calendar"},"daz":{"Hello":"hello","Letters":"letters"}};
+const THEME_OF = Object.fromEntries(Object.entries(ISLAND_THEMES).map(([g, m]) => [g, Object.fromEntries(Object.entries(m).flatMap(([id, ts]) => ts.map((t) => [t, id])))]));
+const themeGroup = (subj) => ["math", "fl", "world", "daz"].includes(subj) ? subj : "lit";
+const themeOf = (subj, topic) => { const g = themeGroup(subj); return ISLAND_ALIAS[g]?.[topic] ?? THEME_OF[g]?.[topic] ?? null; };
+const themeHash = (t) => [...t].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7);
   // how much is in it and how much is done. Scrolling on, the unit card sticks under it.
   // What it covers is the units' names; a line written for the child would replace it.
   const sets = [...new Set(rows.map((r) => r.s))], units = [...new Set(rows.map((r) => r.topic).filter(Boolean))];
@@ -435,7 +542,7 @@ function renderTrack() {
     ${trackStats(art)}
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
       ${intro}<button class="tr-card"><span><small id="trUnitNo"></small><b id="trUnit"></b></span>${CHEVRON}</button>
-      <div class="tr-path ${art}" style="height:${top(rows.length) + (ny ? 300 : 420)}px">${arcs}${lines}${stones}${mascot}${upNext}</div>
+      <div class="tr-path ${art}" style="--i-ink:${look.grad[1]};--i-mid:${look.route};--i-pale:${look.soft};height:${top(rows.length) + (ny ? 300 : 420)}px">${arcs}${lines}${stones}${mascot}${upNext}</div>
     </div><div class="tr-fade" aria-hidden="true"></div>
     <div class="tr-dock" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}"><button class="tr-now" hidden></button><div class="tr-dock-in" aria-live="polite"></div></div>`;
   scr.appendChild(appTabs("study"));
@@ -465,6 +572,17 @@ function renderTrack() {
     $(".tr-more", dock)?.addEventListener("click", () => { all = !all; show(i, true); });
     dock.querySelectorAll("[data-n]").forEach((b) => b.onclick = () => startLesson(r.s.id, +b.dataset.n));
     $(".tr-go", dock).onclick = () => startLesson(r.s.id, r.l ? r.l.n : r.state === "done" ? r.s.lessons[0].n : next.n);
+  // The island beside the arc into stone i: its unit's theme art, the k-th of the unit's arcs in turn.
+  const islandFor = (i) => {
+    const r = rows[i], theme = themeOf(APP.subj, r.s.topic?.en), n = look.islands;
+    if (!theme) return `study/${files}-path-${((i - 1) % n) + 1}.png`;
+    let start = i; while (start > 0 && !rows[start].topicStart) start--;
+    const k = i - start - 1;
+    const set = LANG_THEMES.includes(theme) && APP.subj === "fl" ? `${theme}-${c.curriculum === "en-GB" ? "fr" : "en"}` : theme;
+    if (ISLAND_ART[set]) return { svg: `study/themes/${set}-${(k % ISLAND_ART[set]) + 1}.svg` };
+    const h = themeHash(theme), a = h % n, b = (a + 1 + ((h >> 5) % (n - 1))) % n;
+    return `study/${files}-path-${(k % 2 ? b : a) + 1}.png`;
+  };
     // Away from the child's lesson, a round button above the card brings it back, pointing its way.
     now.hidden = i === cur; now.className = `tr-now ${i < cur ? "down" : "up"}`;
   };
