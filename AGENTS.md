@@ -32,7 +32,9 @@ git repo kept separate from schoolido-learning.
       arcs, islands); player/study/ holds that art, copied from
       ist-schoolido's assets/images/study (french.svg is drawn here in the
       same style); player/tabs/ holds the app's tab icons
-      (assets/images/tabs). The app's animations (Rive and
+      (assets/images/tabs); Home, Study and Practice are drawn in
+      app-ui.js (TAB_ART) instead, so each plays once when its tab is
+      opened and the tab pill slides over. The app's animations (Rive and
       Lottie) and sound effects are in player/anim/, copied from
       ist-schoolido's develop (assets/animations, assets/images/lotties,
       assets/audio) and played by player/anim-ui.js where the app plays

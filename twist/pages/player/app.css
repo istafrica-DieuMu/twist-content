@@ -413,6 +413,38 @@ div.ln-next { cursor: default; }
 .app-tabs [aria-current="page"] { background: color-mix(in srgb, var(--tc) 14%, var(--card)); box-shadow: inset 0 0 0 2px var(--tc); color: var(--tc); }
 .app-tabs [aria-current="page"] svg { stroke: var(--tc); fill: color-mix(in srgb, var(--tc) 22%, var(--card)); }
 .screen[data-look] .app-tabs [aria-current="page"] span { filter: brightness(1.15); }
+/* The drawn tab icons (Home, Study, Practice) keep their own colours, grey when not open. */
+.app-tabs svg.tb-icon, .app-tabs [aria-current="page"] svg.tb-icon { width: auto; height: 26px; fill: none; stroke: none; overflow: visible; }
+.app-tabs button:not([aria-current="page"]) svg.tb-icon { filter: grayscale(1); opacity: .5; }
+.tb-icon g { transform-box: view-box; }
+.tb-door { transform-origin: 24px 43.5px; }
+.tb-sheet { transform-origin: 32px 28px; opacity: 0; }
+.tb-tassel { transform-origin: 53px 19.6px; }
+/* Switching tabs, the pill slides from the tab you left to the one you opened (as iOS does). */
+.app-tabs { position: relative; }
+.app-tabs > button { position: relative; z-index: 1; }
+.app-tabs-pill { position: absolute; left: 0; top: 0; border-radius: 14px; background: color-mix(in srgb, var(--tc) 14%, var(--card)); box-shadow: inset 0 0 0 2px var(--tc); pointer-events: none; }
+.app-tabs-pill.go { transition: transform .45s cubic-bezier(.32, .72, 0, 1); }
+.app-tabs.tb-sliding [aria-current="page"] { background: none; box-shadow: none; animation: none; }
+@media (prefers-reduced-motion: reduce) { .app-tabs-pill { display: none; } .app-tabs.tb-sliding [aria-current="page"] { background: color-mix(in srgb, var(--tc) 14%, var(--card)); box-shadow: inset 0 0 0 2px var(--tc); } }
+/* The tab you switch to plays once: Home, Study and Practice hop; the door opens, a page turns, the tassel swings; Me tilts hello. */
+@media (prefers-reduced-motion: no-preference) {
+  .app-tabs .tb-play :is(svg.tb-home, svg.tb-study, svg.tb-practice) { animation: tb-hop .55s cubic-bezier(.34, 1.56, .64, 1); }
+  .app-tabs .tb-play img.tab-me { transform-origin: 50% 90%; animation: tb-hello .6s cubic-bezier(.22, 1, .36, 1); }
+  .tb-play .tb-door { animation: tb-door .7s cubic-bezier(.22, 1, .36, 1); }
+  .tb-play .tb-sheet { animation: tb-turn .7s .12s cubic-bezier(.22, 1, .36, 1) backwards; }
+  .tb-play .tb-tassel { animation: tb-swing .8s ease-out; }
+}
+@keyframes tb-hop { 0%, 100% { transform: none; } 40% { transform: translateY(-3px) rotate(-6deg); } }
+@keyframes tb-door { 0%, 100% { transform: scaleX(1); } 35%, 60% { transform: scaleX(.12); } }
+@keyframes tb-turn {
+  0% { transform: scaleX(1); opacity: 1; filter: none; }
+  45% { transform: scaleX(.05) skewY(-8deg); filter: brightness(.75); }
+  80% { transform: scaleX(-1); opacity: 1; filter: none; }
+  100% { transform: scaleX(-1); opacity: 0; }
+}
+@keyframes tb-swing { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(22deg); } 50% { transform: rotate(-14deg); } 75% { transform: rotate(6deg); } }
+@keyframes tb-hello { 0%, 100% { transform: none; } 30% { transform: rotate(-10deg) scale(1.06); } 65% { transform: rotate(6deg); } }
 
 /* Subjects on Start: each chip a little of its own colour. */
 

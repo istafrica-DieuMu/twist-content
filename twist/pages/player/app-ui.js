@@ -17,9 +17,15 @@ const ATXT = {
 const AT = () => ATXT[PL()];
 const STREAK_NAME = { spark: ["Funke", "Spark"], flame: ["Flamme", "Flame"], campfire: ["Lagerfeuer", "Campfire"], torch: ["Fackel", "Torch"], comet: ["Komet", "Comet"], volcano: ["Vulkan", "Volcano"], sun: ["Sonne", "Sun"], supernova: ["Supernova", "Supernova"] };
 const streakName = (id) => STREAK_NAME[id]?.[PL() === "de" ? 0 : 1] ?? id;
-// The app's tab icons (ist-schoolido develop, assets/images/tabs): coloured when open, grey otherwise.
-const TAB_ICON = { start: "home.svg", study: "study.svg", practice: "practice.svg", me: "profile.png" };
-const tabIcon = (t, on) => `<img src="tabs/${on ? TAB_ICON[t] : TAB_ICON[t].replace(".", "-gray.")}" alt="" class="tab-${t}">`;
+// The Home, Study and Practice icons, drawn for the navbar (twist/pages/navbar/icons/): their moving parts are named
+// (.tb-door, .tb-sheet, .tb-tassel) so a tab animates once when you switch to it. Me keeps the app's picture.
+const TAB_ART = {
+  start: '<svg class="tb-icon tb-home" width="31" height="29" viewBox="0 0 62 58" fill="none" aria-hidden="true"><path d="M12 25 V47 Q12 54 19 54 H43 Q50 54 50 47 V25 L31 10 Z" fill="#BB72F2" stroke="#6C2EB7" stroke-width="3" stroke-linejoin="round"/><path d="M15 46 Q15 51 20 51 H42 Q47 51 47 46" stroke="#9A4FD8" stroke-width="3" stroke-linecap="round"/><path d="M17 30 V39" stroke="#D8A0FB" stroke-width="2.5" stroke-linecap="round"/><rect class="tb-doorway" x="24" y="33" width="14" height="21" rx="4" fill="#4A1D86" stroke="#6C2EB7" stroke-width="2.5"/><g class="tb-door"><rect x="24" y="33" width="14" height="21" rx="4" fill="#984BDB" stroke="#6C2EB7" stroke-width="2.5"/><path d="M27.5 37 V42" stroke="#B16AEB" stroke-width="2" stroke-linecap="round"/><circle cx="34.2" cy="44.5" r="1.7" fill="#D8A0FB"/></g><path d="M6.5 27 L31 7 L55.5 27" stroke="#6C2EB7" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 27 L31 7 L55.5 27" stroke="#AB5FE9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 22.5 L27.5 9" stroke="#D8A0FB" stroke-width="2.4" stroke-linecap="round"/><path d="M43.5 15.5 L46.5 18" stroke="#D8A0FB" stroke-width="2.4" stroke-linecap="round"/></svg>',
+  study: '<svg class="tb-icon tb-study" width="32" height="27" viewBox="0 0 64 54" fill="none" aria-hidden="true"><path d="M3 14 V45 Q3 48.5 6.5 48 Q20 46 28 48.5 Q32 51.5 36 48.5 Q44 46 57.5 48 Q61 48.5 61 45 V14 Z" fill="#AE6EE6" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 11 Q22 4 9 5.5 Q6.5 5.8 6.5 8.5 V40 Q6.5 43 9.3 42.8 Q22 41.5 32 47 Z" fill="#D29DF6" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 15 Q20 13.5 27 16.5 M12 21.5 Q20 20 27 23 M12 28 Q20 26.5 27 29.5 M12 34.5 Q20 33 27 36" stroke="#AE6EE6" stroke-width="2" stroke-linecap="round"/><path d="M11 9 Q16 8.1 20 8.5" stroke="#ECCBFD" stroke-width="2" stroke-linecap="round"/><path d="M32 11 Q42 4 55 5.5 Q57.5 5.8 57.5 8.5 V40 Q57.5 43 54.7 42.8 Q42 41.5 32 47 Z" fill="#D29DF6" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/><path d="M52 15 Q44 13.5 37 16.5 M52 21.5 Q44 20 37 23 M52 28 Q44 26.5 37 29.5 M52 34.5 Q44 33 37 36" stroke="#AE6EE6" stroke-width="2" stroke-linecap="round"/><g class="tb-sheet"><path d="M32 11 Q42 4 55 5.5 Q57.5 5.8 57.5 8.5 V40 Q57.5 43 54.7 42.8 Q42 41.5 32 47 Z" fill="#ECCBFD" stroke="#612EAD" stroke-width="2.5" stroke-linejoin="round"/><path d="M52 15 Q44 13.5 37 16.5 M52 21.5 Q44 20 37 23 M52 28 Q44 26.5 37 29.5" stroke="#C084F0" stroke-width="2" stroke-linecap="round"/></g><path d="M32 11 V47" stroke="#612EAD" stroke-width="2.5" stroke-linecap="round"/></svg>',
+  practice: '<svg class="tb-icon tb-practice" width="32" height="28" viewBox="0 0 64 56" fill="none" aria-hidden="true"><path d="M14 20 V39 Q14 48 32 49 Q50 48 50 39 V20 Z" fill="#A559DA" stroke="#6830A9" stroke-width="2.5" stroke-linejoin="round"/><path d="M17.5 41 Q21 45.5 32 46 Q43 45.5 46.5 41" stroke="#8C46C6" stroke-width="2.5" stroke-linecap="round"/><path d="M18 30 V36" stroke="#C27FEE" stroke-width="2.2" stroke-linecap="round"/><path d="M32 3 L61 16 L32 29 L3 16 Z" fill="#D193F2" stroke="#6830A9" stroke-width="3" stroke-linejoin="round"/><path d="M10 16 L30 7" stroke="#EBCBFD" stroke-width="2.4" stroke-linecap="round"/><path d="M32 16 Q44 17 53 19.6" stroke="#8C46C6" stroke-width="2.4" stroke-linecap="round"/><circle cx="32" cy="16" r="2.4" fill="#A559DA" stroke="#6830A9" stroke-width="1.8"/><g class="tb-tassel"><path d="M53 19.6 V35" stroke="#8C46C6" stroke-width="2.4" stroke-linecap="round"/><path d="M50.3 35 H55.7 L57.5 44.5 Q53 46.7 48.5 44.5 Z" fill="#A559DA" stroke="#6830A9" stroke-width="1.8" stroke-linejoin="round"/><path d="M52 37.5 L51.3 42.5" stroke="#D193F2" stroke-width="1.4" stroke-linecap="round"/><circle cx="53" cy="35" r="2" fill="#D193F2" stroke="#6830A9" stroke-width="1.6"/></g></svg>'
+};
+// Me is the app's picture (ist-schoolido develop, assets/images/tabs): coloured when open, grey otherwise. The drawn ones go grey in CSS.
+const tabIcon = (t, on) => TAB_ART[t] ?? `<img src="tabs/${on ? "profile.png" : "profile-gray.png"}" alt="" class="tab-${t}">`;
 const TABS = ["start", "study", "practice", "me"];
 // The tabs share one colour, the brand's, so the subjects' colours are the only
 // colour that means something on a screen. Their tops are neutral (.fun-band).
@@ -55,6 +61,26 @@ function appTabs(active) {
   const T = AT(), nav = document.createElement("nav"); nav.className = "app-tabs"; nav.setAttribute("aria-label", "Twist");
   nav.innerHTML = TABS.map((t) => `<button data-t="${t}" style="--tc:${ROOM[t]}"${t === active ? ' aria-current="page"' : ""}>${tabIcon(t, t === active)}<span>${esc(T[t])}</span></button>`).join("");
   nav.querySelectorAll("button").forEach((b) => b.onclick = () => appTab(b.dataset.t));
+  // A real switch (not a redraw of the same tab): the new tab's icon plays once and the pill slides over from the old one.
+  // Some switches draw the new tab twice in a row (Study to Practice changes the view, then the tab); the second keeps the switch.
+  const now = performance.now();
+  if (APP.tabShown !== active) APP.tabSwitch = { from: APP.tabShown, at: now };
+  APP.tabShown = active;
+  const from = now - (APP.tabSwitch?.at ?? -1e9) < 400 ? APP.tabSwitch.from : null;
+  if (from && from !== active && TABS.includes(from)) {
+    const on = nav.querySelector(`[data-t="${active}"]`), was = nav.querySelector(`[data-t="${from}"]`);
+    on?.classList.add("tb-play");
+    const pill = document.createElement("i"); pill.className = "app-tabs-pill"; pill.style.setProperty("--tc", ROOM[active]);
+    nav.classList.add("tb-sliding"); nav.prepend(pill);
+    requestAnimationFrame(() => {
+      if (!on || !was || !nav.isConnected) return nav.classList.remove("tb-sliding");
+      const at = (b) => `translate(${b.offsetLeft}px, ${b.offsetTop}px)`;
+      Object.assign(pill.style, { width: `${on.offsetWidth}px`, height: `${on.offsetHeight}px`, transform: at(was) });
+      pill.getBoundingClientRect();
+      pill.classList.add("go"); pill.style.transform = at(on);
+      pill.addEventListener("transitionend", () => { nav.classList.remove("tb-sliding"); pill.remove(); }, { once: true });
+    });
+  }
   return nav;
 }
 const inPractice = () => document.body.classList.contains("practice");
