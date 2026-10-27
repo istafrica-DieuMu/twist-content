@@ -45,7 +45,12 @@ keeps:
   where the text was edited (at least half its words the same). Nothing
   looser: a part may show only in some states of the screen (an answer
   checked, a hint open, a card for one child), and another part must not be
-  taken for it. Comments from before anchors sit on the screen's frame. In
+  taken for it. A pin or box on no one part, or on a whole scrolling page,
+  keeps that page as its part, known by its place alone (its words change
+  with the child), and scrolls with it. Comments from before anchors look
+  for the parts their label names and sit on them; when those are not on
+  the screen, they show as a single point (no box) on the screen's
+  scrolling content, as if dropped with the screen scrolled to the top. In
   Comment mode the wheel still scrolls the screen.
 - **What is under the pin**, in words: `Option card: sieben`,
   `Button: Weiter`, `Picture: apple`; for an area, the parts inside it:
@@ -53,7 +58,7 @@ keeps:
   later, this still says what the comment was about.
 
 Comments show as numbered pins on their screen to whoever may see them. A pin
-opens the comment: its thread, a reply box, and Resolve, Edit, Copy link and
+opens the comment, and a second click on it closes it again: its thread, a reply box, and Resolve, Edit, Copy link and
 Delete where allowed. An area comment shows only its number; its box shows
 while the comment is open or its number is pointed at, one box at a time.
 

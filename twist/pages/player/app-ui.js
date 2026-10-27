@@ -75,12 +75,12 @@ function appTab(t, { keep = false } = {}) {
 function appHeader(title) {
   const s = streak(PR.child);
   return `<header class="pr-top"><img class="pr-me" src="${A}mascot/start-1.png" alt=""><h2>${esc(title)}</h2>
-    <button class="app-flame${s.current ? " on" : ""}" data-rw="streak" aria-label="${esc(AT().streakNow(s.current))}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button></header>`;
+    <button class="app-flame${s.current ? " on" : ""}" data-rw="streak" aria-label="${esc(AT().streakNow(s.current))}">${flameImg(s.current)}${s.current}</button></header>`;
 }
 function wireHeader(scr) { scr.querySelectorAll("[data-me]").forEach((b) => b.onclick = () => appTab("me")); scr.querySelectorAll("[data-rw]").forEach((b) => b.onclick = () => rewardsPopover(b, b.dataset.rw)); scr.querySelectorAll("[data-settings]").forEach((b) => b.onclick = () => appTab("settings")); }
 const beeStrip = () => {
   const L = PT(), bee = busyBee(PR.child.sessions), pct = bee.next ? (100 * (PR.child.sessions - bee.from)) / (bee.next - bee.from) : 100;
-  return `<button class="pr-bee" data-bd="busy-bee"><img src="${A}badges/busy-bee.svg" alt=""><span><i class="pr-bar" style="--c:#f5b400"><i style="width:${pct}%"></i></i><small>${esc(bee.next ? L.beeBar(PR.child.sessions, bee.next) : AT().beeMax)}</small></span></button>`;
+  return `<button class="pr-bee" data-bd="busy-bee"><img src="${badgeArt("busy-bee")}" alt=""><span><i class="pr-bar" style="--c:#f5b400"><i style="width:${pct}%"></i></i><small>${esc(bee.next ? L.beeBar(PR.child.sessions, bee.next) : AT().beeMax)}</small></span></button>`;
 };
 
 /* ---------- the course ---------- */
@@ -163,21 +163,95 @@ function subjChip(x) {
   const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
   return `<button data-subj="${esc(x)}" style="--c:${colourOf(x)};--p:${sets.length ? (100 * done) / sets.length : 0}"><i class="hm-ring">${esc(g)}${fresh ? `<em>${esc(AT().newDot)}</em>` : ""}</i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><small>${esc(AT().unitsOf(done, sets.length))}</small></button>`;
 }
-// Next in each subject: a row of cards that slides sideways, one per subject with a
-// lesson to do (the plan's subject left out while its card is above), so it holds
-// three subjects today and more later. Dots under it show where the row is.
-const ROW_TXT = { de: { head: "Als Nächstes in deinen Fächern" }, en: { head: "Next in your subjects" } };
-function subjectRow(skip) {
-  const T = AT(), lg = PL(), cards = appSubjects().filter((x) => x !== skip).map((subj) => {
-    const sets = courseSets(subj), s = nextIn(sets); if (!s) return "";
-    const l = s.lessons[lessonsDone(s)], k = sets.indexOf(s) + 1, name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
-    // The app's lesson card: the soft subject fill, name and minutes, the title, the unit, a white button.
-    return `<div class="pr-hero hm-card" role="group" style="--c:${colourOf(subj)}">
-      <span class="pr-kind">${esc(name)}<i class="pr-dur">${esc(T.minShort(s.minutes ?? 10))}</i></span><b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)} · ${esc(T.unitOf(k, sets.length))}</span>
-      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(T.go)}</button><img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
-  }).filter(Boolean);
-  if (!cards.length) return "";
-  return `<section class="hm-row"><h3 class="pr-h">${esc(ROW_TXT[lg].head)}</h3>${cards.length > 1 ? deckOf(cards) : cards.join("")}</section>`;
+// Home: the next lesson of one subject as the big card (its picture on top, the minutes, the
+// lesson, the subject, where it sits, one white button), and under it the subjects in a row
+// that slides sideways without end, three at a time, each with the ring of its units done.
+// A tap on a subject puts its next lesson in the big card.
+const HOME_TXT = {
+  de: { next: "Deine nächste Lektion", subjects: "Deine Fächer", doneSubj: (x) => `${x}: alles geschafft!`, doneSub: "Übe es, damit es frisch bleibt.", practise: "Üben" },
+  en: { next: "Your next lesson", subjects: "Your subjects", doneSubj: (x) => `${x}: all done!`, doneSub: "Practise it to keep it fresh.", practise: "Practise" },
+};
+function homeLesson(subj, sets) {
+  const T = AT(), H = HOME_TXT[PL()], lg = PL(), s = nextIn(sets), name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
+  if (!s) return `<div class="hm-big done" role="group" style="--c:${colourOf(subj)}"><span class="hm-big-pic"><img src="${A}mascot/end-2.png" alt=""></span>
+    <b class="hm-big-t">${esc(H.doneSubj(name))}</b><small class="hm-big-subj">${esc(H.doneSub)}</small><button class="hm-big-go" data-done="practice">${esc(H.practise)}</button></div>`;
+  const done = lessonsDone(s), l = s.lessons[done];
+  // Where the child stopped: the step inside this lesson when it was left part way, else the lesson.
+  const r = PR.child.resume, inside = r && r.setId === s.id && r.n === l.n ? r : null, R = WHERE_TXT[lg];
+  const where = [T.lessonOf(done + 1, s.lessons.length), inside?.act ? R.acts[inside.act] + (inside.k ? `, ${R.task(inside.k, inside.tasks)}` : "") : ""].filter(Boolean).join(" · ");
+  const p = inside ? (100 * inside.at) / Math.max(1, inside.of - 1) : (100 * done) / s.lessons.length;
+  return `<div class="hm-big hm-lesson" role="group" style="--c:${colourOf(subj)}">
+    <i class="hm-big-min">${esc(T.minShort(s.minutes ?? 10))}</i><span class="hm-big-pic"><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></span>
+    <b class="hm-big-t">${keepSuffix(l.title[lg] ?? l.title.de)}</b><small class="hm-big-subj">${esc(name)}</small>
+    <span class="hm-where"><small>${esc(s.title[lg] ?? s.title.de)} · ${esc(where)}</small><i class="hm-pbar" aria-hidden="true"><i style="width:${p}%"></i></i></span>
+    <button class="pr-go hm-big-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(inside ? R.goOn : T.go)}</button></div>`;
+}
+// Home's layout, a choice in the player's right panel (sideLook), kept in this browser:
+//   card:   the next lesson's big card, then the subjects (the first);
+//   top:    the subjects first, then the card, the two filling the screen (fitHomeTop);
+//   slider: each subject's next lesson as a big card in a row that slides sideways, dots under
+//           it, then the subjects; a tap on a subject slides to its card.
+const HOME_LOOKS = ["card", "top", "slider"];
+let HOME_LOOK = (() => { try { const v = localStorage.getItem("twist-home"); return HOME_LOOKS.includes(v) ? v : HOME_LOOKS[0]; } catch { return HOME_LOOKS[0]; } })();
+function setHomeLook(v) { HOME_LOOK = v; try { localStorage.setItem("twist-home", v); } catch {} }
+// Subjects first: the card grows to the bottom of the screen, so the two fill it.
+function fitHomeTop(scr) {
+  const pg = $(".app-page", scr), card = $(".hm-next .hm-big", scr); if (!pg || !card) return;
+  card.style.height = "";
+  // From the layout, not the boxes on screen: the page slides in as it opens.
+  const top = (el) => { let y = 0; for (let e = el; e && e !== scr; e = e.offsetParent) y += e.offsetTop; return y; };
+  const tabs = $(".app-tabs", scr), end = tabs ? top(tabs) : top(pg) + pg.clientHeight;
+  const room = end - (top(card) - pg.scrollTop) - 16;
+  // A set height, so the picture takes what is left of it and no more.
+  if (room > card.offsetHeight) card.style.height = `${room}px`;
+}
+// The slider: one card a subject; the dots follow it, and a dot or a subject slides to its card.
+function wireHomeSlider(scr) {
+  const row = $(".hl-slides", scr); if (!row) return null;
+  const slides = [...row.children], dots = [...scr.querySelectorAll(".hl-dots button")];
+  const at = () => Math.round(row.scrollLeft / Math.max(1, slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : row.clientWidth));
+  const mark = () => { const i = Math.min(slides.length - 1, at()); dots.forEach((d, j) => d.setAttribute("aria-current", j === i)); APP.homeSubj = APP.subj = slides[i]?.dataset.subj ?? APP.homeSubj; };
+  const go = (i, smooth = true) => row.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: smooth ? "smooth" : "auto" });
+  row.addEventListener("scroll", () => { clearTimeout(row._t); row._t = setTimeout(mark, 80); }, { passive: true });
+  dots.forEach((d, j) => d.onclick = () => go(j));
+  const first = Math.max(0, slides.findIndex((x) => x.dataset.subj === APP.homeSubj));
+  go(first, false); mark();
+  return (subj) => { const i = slides.findIndex((x) => x.dataset.subj === subj); if (i >= 0) go(i); };
+}
+// The subjects three at a time; with more than three, the row is three copies of them and
+// slides without end (wireLoop). The copies at either end are only there to scroll into.
+function subjLoop(sel) {
+  const subs = appSubjects(), loop = subs.length > 3;
+  const run = (copy) => subs.map((x) => subjChip(x).replace("<button ", `<button ${copy ? 'tabindex="-1" aria-hidden="true" ' : ""}${x === sel ? 'aria-current="true" ' : ""}`)).join("");
+  return `<section class="hm-subjs"><h3 class="pr-h">${esc(HOME_TXT[PL()].subjects)}</h3>
+    <div class="hm-loop${loop ? " looping" : ""}" data-n="${subs.length}">${loop ? run(true) + run(false) + run(true) : run(false)}</div></section>`;
+}
+// The row stays in its middle copy: once a scroll comes to rest in a copy at either end, it
+// jumps back by one copy, which looks the same. A mouse drags it as a finger does; a drag
+// that moved is not a tap on the subject it ends on.
+function wireLoop(scr, onPick) {
+  const row = scr.querySelector(".hm-loop"); if (!row) return;
+  const n = +row.dataset.n, tiles = [...row.children], loop = row.classList.contains("looping");
+  const step = () => (tiles[1] ? tiles[1].offsetLeft - tiles[0].offsetLeft : 0), span = () => step() * n;
+  const home = () => { if (!loop) return 0; const s = span(), x = row.scrollLeft; if (x < s * 0.5) row.scrollLeft = x + s; else if (x >= s * 1.5) row.scrollLeft = x - s; return row.scrollLeft - x; };
+  if (loop) {
+    const i = Math.max(0, appSubjects().indexOf(row.querySelector('[aria-current="true"]:not([aria-hidden])')?.dataset.subj));
+    row.scrollLeft = APP.loopX ?? span() + Math.max(0, i - 1) * step();
+    let rest = null;
+    row.addEventListener("scroll", () => { clearTimeout(rest); rest = setTimeout(home, 140); }, { passive: true });
+  }
+  let x0 = null, left0 = 0, moved = false;
+  row.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; x0 = e.clientX; left0 = row.scrollLeft; moved = false; });
+  row.addEventListener("pointermove", (e) => {
+    if (x0 == null) return; const dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 6) { moved = true; row.classList.add("dragging"); row.setPointerCapture(e.pointerId); }
+    if (moved) { row.scrollLeft = left0 - dx; left0 += home(); }
+  });
+  const up = () => { if (x0 == null) return; x0 = null; if (!moved) return; row.classList.remove("dragging"); const w = step() || 1; row.scrollTo({ left: Math.round(row.scrollLeft / w) * w, behavior: "smooth" }); };
+  row.addEventListener("pointerup", up); row.addEventListener("pointercancel", up);
+  row.ondragstart = (e) => e.preventDefault();
+  row.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  tiles.forEach((b) => b.onclick = () => { APP.loopX = row.scrollLeft; onPick(b.dataset.subj); });
 }
 // A deck: the cards in a stack that never ends, turned like pages. The front card
 // follows a finger (or the mouse) sideways and the one under it rises into place;
@@ -277,22 +351,6 @@ function greetLine(got, goal, streakNow, plan, sug, did) {
   const m = (s ? s.minutes ?? 10 : 0) + (sug && !did.practice ? (sug.kind === "drill" ? 2 : Math.max(2, Math.round(b.tasks * 0.4))) : 0);
   return m ? G.mins(m) : AT().planLeft(got, goal);
 }
-// The lesson step: the next lesson as the big card, with where it sits (unit dots, unit k of n).
-function lessonStep(plan) {
-  const T = AT(), lg = PL(), s = nextIn(plan.sets);
-  if (!s) return "";
-  const done = lessonsDone(s), l = s.lessons[done], col = colourOf(plan.subj), name = SUBJ_NAME[PR.child.curriculum][plan.subj] ?? plan.subj;
-  // Where the child stopped: the step inside this lesson when it was left part way, else the lesson.
-  const r = PR.child.resume, inside = r && r.setId === s.id && r.n === l.n ? r : null, R = WHERE_TXT[lg];
-  const where = [T.lessonOf(done + 1, s.lessons.length), inside?.act ? R.acts[inside.act] + (inside.k ? `, ${R.task(inside.k, inside.tasks)}` : "") : ""].filter(Boolean).join(" · ");
-  const p = inside ? (100 * inside.at) / Math.max(1, inside.of - 1) : (100 * done) / s.lessons.length;
-  return `<div class="pr-hero ln-next hm-lesson hm-resume" role="group" style="--c:${col}">
-      <span class="pr-kind">${esc(name)}<i class="pr-dur">${esc(T.minShort(s.minutes ?? 10))}</i></span>
-      <b class="pr-reason">${keepSuffix(l.title[lg] ?? l.title.de)}</b><span class="pr-sub">${esc(s.title[lg] ?? s.title.de)}</span>
-      <span class="hm-where"><small>${esc(where)}</small><i class="hm-pbar" aria-hidden="true"><i style="width:${p}%"></i></i></span>
-      <button class="pr-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(inside ? R.goOn : T.go)}</button>
-      <img class="pr-art" src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></div>`;
-}
 const WHERE_TXT = {
   de: { acts: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Üben", check: "Zeig, was du kannst" }, task: (k, n) => `Aufgabe ${k} von ${n}`, goOn: "Weitermachen" },
   en: { acts: { "warm-up": "Warm-up", learn: "Learn", practise: "Practise", check: "Show what you know" }, task: (k, n) => `question ${k} of ${n}`, goOn: "Carry on" },
@@ -315,47 +373,48 @@ function practiceCard(x, attr) {
 function renderHomeTab() {
   const T = AT(), L = PT(), scr = $("#screen"), c = PR.child;
   const plan = homePlan(); APP.subj = plan.subj;
-  const sugs = mySuggestions().slice(0, 2), sug = sugs[0], did = today(c), s = streak(c), bee = busyBee(c.sessions);
-  const lesson = nextIn(plan.sets) ? lessonStep(plan) : "";
-  const goal = [lesson || did.lessons, sug || did.practice].filter(Boolean).length || 1;
+  const sugs = mySuggestions().slice(0, 2), sug = sugs[0], did = today(c), s = streak(c);
+  // The subject in the big card: the one tapped in the row, else the plan's.
+  const sel = appSubjects().includes(APP.homeSubj) ? APP.homeSubj : plan.subj, sets = sel === plan.subj ? plan.sets : courseSets(sel);
+  APP.subj = sel;
+  const goal = [nextIn(plan.sets) || did.lessons, sug || did.practice].filter(Boolean).length || 1;
   const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
   // Something done today: a card of its own in the done green, the mascot cheering, what was done,
   // and a way to do more (Practice, or Study for lessons).
   const DONE_TXT = { de: { right: (n) => `${n} richtig`, more: "Noch mehr üben", lessons: "Weiterlernen" }, en: { right: (n) => `${n} right`, more: "Practise more", lessons: "Keep learning" } }[PL()];
   const doneRow = (text, sub, go) => `<div class="hm-done"><span><i>${TICK}</i><b>${esc(text)}</b></span><small>${esc(sub)}</small>${go ? `<button class="hm-done-go" data-done="${go}">${esc(go === "practice" ? DONE_TXT.more : DONE_TXT.lessons)}</button>` : ""}<img src="${A}mascot/end-${go === "practice" ? 1 : 3}.png" alt=""></div>`;
-  // At most two practice suggestions, one under the other: the first with the mascot.
-  // As the app's Recommended practice: a light card in the subject's colour, the whole card a button,
-  // its title, what it is in a line or two, and the subject's object on the right.
-  // The title is what is practised, short, as the app's "Tricky spellings": the lesson set, the topic,
-  // or a recap's topics; the line under it says why and how long.
+  const doneRows = [did.lessons ? doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study") : "", did.practice ? doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice") : ""].join("");
+  // At most two practice suggestions, as the app's Recommended practice cards; two make a deck.
   const pCard = (x, i) => practiceCard(x, `data-sug="${i}"`);
-  // Two suggestions make a deck, as the lessons of the other subjects do.
   const practiceHtml = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
-  const steps = [];
-  // The next lessons are in the subject row below; a lesson done today shows as its own row.
-  if (did.lessons) steps.push(doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study"));
-  if (did.practice) steps.push(doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice"));
-  else if (practiceHtml) steps.push(`<h3 class="pr-h hm-step">${esc(T.today)}</h3>${practiceHtml}`);
-  const more = [did.practice && practiceHtml ? practiceHtml : ""].filter(Boolean);
   const pct = (100 * got) / goal;
+  // The slider's cards: every subject's next lesson, the plan's as the plan has it.
+  const subs = appSubjects();
+  const slider = HOME_LOOK !== "slider" ? "" : `<div class="hl-slides">${subs.map((x) => `<div class="hl-slide" data-subj="${esc(x)}">${homeLesson(x, x === plan.subj ? plan.sets : courseSets(x))}</div>`).join("")}</div>
+    ${subs.length > 1 ? `<div class="hl-dots">${subs.map((x) => `<button aria-label="${esc(SUBJ_NAME[c.curriculum][x] ?? x)}"></button>`).join("")}</div>` : ""}`;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
-  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm">
+  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm hl-${HOME_LOOK}">
     <header class="hm-top fun-band" style="--room:${ROOM.start}">
       <button class="hm-av" data-settings aria-label="${esc(ST().title)}">${avatar(c)}</button>
       <div><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2><small>${esc(all ? T.planDone : greetLine(got, goal, s.current, plan, sug, did))}</small></div>
-      <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-rw="streak" style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><b>${s.current}</b></button>
+      <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-rw="streak" style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg>${flameImg(s.current)}<b>${s.current}</b></button>
     </header>
     ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
       <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
-    : `<section class="hm-plan">${steps.join("") || doneRow(T.allDone, T.allDoneSub)}</section>`}
-    ${all && more.length ? `<section class="hm-more"><h3 class="pr-h">${esc(T.wantMore)}</h3>${more.join("")}</section>` : ""}
-    ${subjectRow(null)}
+    : doneRows ? `<section class="hm-plan">${doneRows}</section>` : ""}
+    ${HOME_LOOK === "top" ? subjLoop(sel) : ""}
+    <section class="hm-next"><h3 class="pr-h">${esc(HOME_TXT[PL()].next)}</h3>${HOME_LOOK === "slider" ? slider : homeLesson(sel, sets)}</section>
+    ${HOME_LOOK === "top" ? "" : subjLoop(sel)}
+    ${practiceHtml ? `<section class="hm-more"><h3 class="pr-h">${esc(did.practice ? T.wantMore : T.today)}</h3>${practiceHtml}</section>` : ""}
   </div>`;
   scr.appendChild(appTabs("start"));
   scr.querySelectorAll("[data-done]").forEach((b) => b.onclick = () => appTab(b.dataset.done));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
+  const slideTo = wireHomeSlider(scr);
+  wireLoop(scr, (x) => { if (slideTo) return slideTo(x); APP.homeSubj = x; renderHomeTab(); });
+  if (HOME_LOOK === "top") { fitHomeTop(scr); setTimeout(() => scr.isConnected && fitHomeTop(scr), 300); }
   // A tap on a card away from its button wiggles the button: that is what starts it.
-  scr.querySelectorAll(".hm-lesson, .hm-card, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
+  scr.querySelectorAll(".hm-lesson, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
 }
 
@@ -435,9 +494,9 @@ function renderTrack() {
   scr.innerHTML = `<div class="status"></div>
     <header class="tr-stats">
       <button class="tr-pill" aria-haspopup="true" aria-label="${esc(K.subject)}"><img src="study/${art}.svg" alt="">${CHEVRON}</button>
-      <button class="tr-stat" data-rw="streak" aria-label="${esc(RW().tabs.streak)}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${s.current}</button>
-      <button class="tr-stat" data-rw="stars" aria-label="${esc(RW().tabs.stars)}"><i>★</i>${stars}</button>
-      <button class="tr-stat" data-rw="badges" aria-label="${esc(RW().tabs.badges)}"><img src="${A}badges/legend.svg" alt="">${myBadges().filter((b) => b.earned).length}</button>
+      <button class="tr-stat" data-rw="streak" aria-label="${esc(RW().tabs.streak)}">${flameImg(s.current)}${s.current}</button>
+      <button class="tr-stat" data-rw="stars" aria-label="${esc(RW().tabs.stars)}"><img src="${iconSrc("star")}" alt="">${stars}</button>
+      <button class="tr-stat" data-rw="badges" aria-label="${esc(RW().tabs.badges)}"><img src="${iconSrc("badges")}" alt="">${myBadges().filter((b) => b.earned).length}</button>
     </header>
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
       <button class="tr-card"><i><img src="study/${art}.svg" alt=""></i><span><b id="trUnit"></b><b id="trLesson"></b></span>${CHEVRON}</button>
@@ -548,9 +607,9 @@ function rewardsPopover(anchor, tab = "badges") {
   const next = nextBadges(all), rest = all.filter((b) => !b.earned && !next.includes(b));
   const nextStreak = s.next ? T.streakTo(s.next[0] - s.current, streakName(s.next[1])) : "";
   const panels = {
-    streak: `<div class="rw-hero rw-flame${s.current ? " on" : ""}"><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt=""><span><b>${s.current}</b><small>${esc(R.streakBig(s.current))} · ${esc(T.streakBest(s.best))}</small></span></div>
+    streak: `<div class="rw-hero rw-flame${s.current ? " on" : ""}">${flameImg(s.current, true)}<span><b>${s.current}</b><small>${esc(R.streakBig(s.current))} · ${esc(T.streakBest(s.best))}</small></span></div>
       ${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small>`,
-    stars: `<div class="rw-hero rw-star"><i>★</i><span><b>${allStars(c)}</b><small>${esc(R.starsHow)}</small></span></div>
+    stars: `<div class="rw-hero rw-star"><img src="${iconSrc("star", true)}" alt=""><span><b>${allStars(c)}</b><small>${esc(R.starsHow)}</small></span></div>
       <div class="me-subj">${appSubjects().map((x) => { const sk = courseSets(x).map(stateKey), g = sk.reduce((n, k) => n + STARS[c.states[k]?.state ?? "not_started"], 0), max = sk.length * 3; return `<div style="--c:${colourOf(x)}"><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b><small>${esc(T.ofStars(g, max))}</small><i class="pr-bar"><i style="width:${max ? (100 * g) / max : 0}%"></i></i></div>`; }).join("")}</div>`,
     badges: `<h4 class="hm-step">${esc(R.recent)}</h4>
       ${got.length ? `<div class="bd-grid">${got.slice(0, 3).map(badgeTile).join("")}</div>` : `<p class="pr-empty">${esc(R.none)}</p>`}
@@ -558,7 +617,7 @@ function rewardsPopover(anchor, tab = "badges") {
       <details class="bd-all"><summary>${esc(R.rest(got.length > 3 ? rest.length + got.length - 3 : rest.length))}${CHEVRON}</summary><div class="bd-grid">${[...got.slice(3), ...rest].map(badgeTile).join("")}</div></details>`,
   };
   const count = { streak: s.current, stars: allStars(c), badges: got.length };
-  const icon = { streak: `<img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">`, stars: "<i>★</i>", badges: `<img src="${A}badges/legend.svg" alt="">` };
+  const icon = { streak: `${flameImg(s.current)}`, stars: `<img src="${iconSrc("star")}" alt="">`, badges: `<img src="${iconSrc("badges")}" alt="">` };
   const scrim = document.createElement("div"); scrim.className = "rw-scrim";
   const m = document.createElement("div"); m.className = "rw-pop"; m.setAttribute("role", "dialog"); m.setAttribute("aria-label", R.title);
   m.innerHTML = `<div class="rw-tabs" role="tablist">${Object.keys(panels).map((k) => `<button role="tab" data-k="${k}" aria-selected="${k === tab}">${icon[k]}<b>${count[k]}</b><small>${esc(R.tabs[k])}</small></button>`).join("")}
@@ -714,13 +773,15 @@ function nextBadges(all, max = 3) {
   const close = open.filter((b) => b.have > 0).sort((x, y) => y.have / y.need - x.have / x.need);
   return (close.length ? close : open.sort((x, y) => x.need - y.need)).slice(0, max);
 }
-// Badge art: the animated set from badge-motion-twist (player/badges/<name>/: artwork, still,
-// intro video with its sound, idle loop) where a badge has one; else the drawn badge.
-const MOTION = { "lift-off": "rocket", pathfinder: "compass", "number-navigator": "abacus", "shape-shifter": "shapes", "measure-master": "measure", "data-detective": "insight",
-  "code-cracker": "code-cracker", bookworm: "bookworm", wordsmith: "wordsmith", "grammar-guardian": "grammar-guardian", "golden-mic": "golden-mic", chatterbox: "chatterbox",
-  "pen-pal": "pen-pal", globetrotter: "globetrotter", "spelling-wizard": "spelling-wizard", "elephant-memory": "memory-keeper" };
-const badgeArt = (id, gold = false) => MOTION[id] ? `badges/${MOTION[id]}/${MOTION[id]}-badge.svg` : `${A}badges/${id}${gold ? ".gold" : ""}.svg`;
-const badgeVideo = (id, kind) => MOTION[id] && `badges/${MOTION[id]}/${MOTION[id]}-badge-${kind}.mp4`;
+// Badge art: the animated badges in assets/badges/<Name>/ (an SVG that plays its intro and then
+// loops, the WAV that starts with it, a still for the small places) where a badge has one; else
+// the drawn badge. More folders come later and take over from the drawn ones.
+const BADGE_ANIM = D.badgeAnim ?? {};
+// Twist's own icons (assets/icons/): the streak's flame, stars and badges. Still where they are
+// small; animated in the rewards' big rows. A streak not lit yet shows the flame grey.
+const iconSrc = (name, animated = false) => `${A}icons/${name}${animated ? "-animated" : ""}.svg`;
+const flameImg = (on, animated = false) => `<img class="ic-flame${on ? "" : " off"}" src="${iconSrc("flame", animated && on)}" alt="">`;
+const badgeArt = (id, gold = false) => BADGE_ANIM[id]?.still ? A + BADGE_ANIM[id].still : `${A}badges/${id}${gold ? ".gold" : ""}.svg`;
 function badgeTile(b) {
   const T = AT(), part = b.need ? Math.min(1, b.have / b.need) : 0;
   const line = b.earned ? (b.gold ? T.gold : b.level ? T.level(b.level) : b.kind === "strand" ? T.earnedIn(yearName(childYearFor(b.subj))) : T.earned)
@@ -733,7 +794,7 @@ function badgeTile(b) {
 function weekStrip(c) {
   const T = AT(), mon = c.today - (((c.today % 7) + 7) % 7), act = new Set(c.active ?? []);
   // Played: a flame. Today, not yet: a faint flame waiting. Missed: a dot. Still to come: empty.
-  const cell = (day) => act.has(day) ? `<img src="${A}badges/flame.svg" alt="">` : day === c.today ? `<img class="wait" src="${A}badges/flame.svg" alt="">` : day < c.today ? "<b></b>" : "";
+  const cell = (day) => act.has(day) ? `<img src="${iconSrc("flame")}" alt="">` : day === c.today ? `<img class="wait" src="${iconSrc("flame")}" alt="">` : day < c.today ? "<b></b>" : "";
   const none = !T.days.some((_, i) => act.has(mon + i));
   return `<div class="me-week">${T.days.map((d, i) => { const day = mon + i; return `<span class="${act.has(day) ? "on" : day < c.today ? "miss" : ""}${day === c.today ? " now" : ""}${day > c.today ? " later" : ""}" title="${esc(act.has(day) ? T.dayPlayed : day === c.today ? T.dayToday : day < c.today ? T.dayMissed : "")}"><i>${cell(day)}</i><small>${esc(d)}</small></span>`; }).join("")}</div>${none && c.today % 7 < 5 ? `<small class="me-hint">${esc(T.lightFirst)}</small>` : ""}`;
 }
@@ -754,7 +815,7 @@ function renderMe() {
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page me${dense ? " me-dense" : ""}">
     <header class="me-hero fun-band" style="--room:${ROOM.me}"><button class="me-av" data-pic aria-label="${esc(M.change)}">${avatar(c, dense ? "" : "lg")}<i>${PENCIL}</i></button>
-      <div><h2>${esc(c.name ?? T.meTitle)}</h2><small><span>${esc(yearName(c.year))}</span><span><img src="${A}badges/${s.current ? "flame" : "spark"}.svg" alt="">${esc(M.streak(s.current))}</span></small></div>
+      <div><h2>${esc(c.name ?? T.meTitle)}</h2><small><span>${esc(yearName(c.year))}</span><span>${flameImg(s.current)}${esc(M.streak(s.current))}</span></small></div>
       <button class="me-gear" data-settings aria-label="${esc(ST().title)}">${GEAR}</button></header>
     <h3 class="pr-h">${esc(M.week)}</h3>
     <section class="me-card me-streak" id="me-week">${weekStrip(c)}<small class="me-note">${nextStreak ? `${esc(nextStreak)}. ` : ""}${esc(T.streakNote)}</small></section>
@@ -818,38 +879,59 @@ function readPhoto(file, done) {
   img.onload = () => { const n = 160, cv = document.createElement("canvas"), s = Math.min(img.width, img.height); cv.width = cv.height = n; cv.getContext("2d").drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, n, n); URL.revokeObjectURL(url); done(cv.toDataURL("image/jpeg", 0.85)); };
   img.src = url;
 }
+// Settings' icons: one for each section and row, drawn as the app's line icons.
+const SET_ICON = Object.fromEntries(Object.entries({
+  learn: '<path d="M4 5h5a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-5a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h6z"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18M12 3c-3.5 3.5-3.5 14.5 0 18"/>',
+  year: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.4 9 2.4 12 0v-5"/>',
+  look: '<path d="M12 3a9 9 0 1 0 0 18c1.6 0 2.1-1.3 1.3-2.3-.9-1-.4-2.7 1.3-2.7H17a4 4 0 0 0 4-4c0-5-4-9-9-9z"/><circle cx="7.5" cy="11" r="1.3" class="f"/><circle cx="10.5" cy="7" r="1.3" class="f"/><circle cx="15.5" cy="8" r="1.3" class="f"/>',
+  feel: '<path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/>',
+  sfx: '<path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2.5"/><circle cx="17" cy="16" r="2.5"/>',
+  buzz: '<rect x="8" y="3.5" width="8" height="17" rx="2.5"/><path d="M4 9v6M20 9v6"/>',
+  next: '<path d="M4 12h13M12 6l6 6-6 6"/><path d="M20 5v14"/>',
+  remind: '<path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>',
+  account: '<circle cx="12" cy="8" r="4"/><path d="M4 20.5c1.4-3.8 4.6-5.5 8-5.5s6.6 1.7 8 5.5"/>',
+  clear: '<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13"/>',
+  logout: '<path d="M14 4h5v16h-5"/><path d="M10 8l-4 4 4 4M6 12h10"/>',
+  script: '<path d="M4 20l4.5-1L19 8.5 15.5 5 5 15.5z"/><path d="M13.5 7l3.5 3.5"/>',
+}).map(([k, v]) => [k, `<svg viewBox="0 0 24 24" aria-hidden="true">${v}</svg>`]));
+// Each section in a colour of its own, as the subjects have theirs.
+const SET_COLOUR = { learn: "#1f9d63", look: "#f07f1f", feel: "#2f80ed", account: "#6849dd", script: "#c2255c" };
 function renderSettings() {
   const S = ST(), c = appChild(), scr = $("#screen"), a = c.avatar ?? {}, look = getLook();
   const S2 = STXT2[PL()];
-  const link = (id, label, sub, cls = "") => `<button class="set-row set-link ${cls}" id="${id}"><span><b>${esc(label)}</b><small>${esc(sub)}</small></span>${cls ? "" : CHEVRON}</button>`;
-  const sw = (id, on, label, sub) => `<label class="set-row set-sw"><span><b>${esc(label)}</b><small>${esc(sub)}</small></span><input type="checkbox" role="switch" id="${id}"${on ? " checked" : ""}><i aria-hidden="true"></i></label>`;
+  const ico = (k) => `<i class="set-ri">${SET_ICON[k]}</i>`;
+  const head = (k, label) => `<h3 class="pr-h set-h" style="--c:${SET_COLOUR[k]}"><i class="set-hi">${SET_ICON[k]}</i>${esc(label)}</h3>`;
+  const card = (k) => `<section class="set-card" style="--c:${SET_COLOUR[k]}">`;
+  const link = (id, icon, label, sub, cls = "") => `<button class="set-row set-link ${cls}" id="${id}">${ico(icon)}<span><b>${esc(label)}</b><small>${esc(sub)}</small></span>${cls ? "" : CHEVRON}</button>`;
+  const sw = (id, icon, on, label, sub) => `<label class="set-row set-sw">${ico(icon)}<span><b>${esc(label)}</b><small>${esc(sub)}</small></span><input type="checkbox" role="switch" id="${id}"${on ? " checked" : ""}><i aria-hidden="true"></i></label>`;
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home pr-page app-page set-page">
-    <header class="pr-band fun-band" style="--c:${ROOM.me};--room:${ROOM.me}"><button class="pr-back" aria-label="${esc(S.back)}">${CHEVRON}</button><h2>${esc(S.title)}</h2></header>
+    <header class="pg-top fun-band set-top" style="--room:${ROOM.me}"><button class="pr-back" aria-label="${esc(S.back)}">${CHEVRON}</button><div><h2>${esc(S.title)}</h2><small>${esc([c.name, yearName(c.year)].filter(Boolean).join(" · "))}</small></div><img src="${A}mascot/learn-3.png" alt=""></header>
     <section class="set-me"><button class="set-avbtn" aria-expanded="${!!APP.editPic}" aria-controls="setPics" aria-label="${esc(STXT2[PL()].avatar)}">${avatar(c, "xl")}<i>${PENCIL}</i></button>
       <div class="set-name"><label for="setName">${esc(S.name)}</label><span><input id="setName" value="${esc(c.name ?? "")}" maxlength="20" autocomplete="off"><button id="setDice" aria-label="${esc(S.newName)}" title="${esc(S.newName)}">${DICE}</button></span></div></section>
     <section class="set-card" id="setPics"${APP.editPic ? "" : " hidden"}><h3>${esc(S.picture)}</h3>
       <div class="set-avs" role="radiogroup" aria-label="${esc(S.picture)}">${AV_POSES.map((p) => `<button role="radio" aria-checked="${!a.photo && (a.pose ?? "start-1") === p}" data-pose="${p}" style="--av:${esc(a.bg ?? AV_BG[0])}"><img src="${A}mascot/${p}.png" alt=""></button>`).join("")}
         <label class="set-photo${a.photo ? " on" : ""}">${a.photo ? `<img src="${esc(a.photo)}" alt="">` : CAMERA}<span>${esc(S.photo)}</span><input type="file" accept="image/*" id="setPhoto" title="${esc(S.photo)}" aria-label="${esc(S.photo)}"></label></div>
       <div class="set-bgs" role="radiogroup" aria-label="${esc(S.colour)}"${a.photo ? " hidden" : ""}>${AV_BG.map((b) => `<button role="radio" aria-checked="${(a.bg ?? AV_BG[0]) === b}" data-bg="${b}" style="--av:${b}" aria-label="${esc(S.colour)} ${b}"></button>`).join("")}</div></section>
-    <h3 class="pr-h set-h">${esc(S.learn)}</h3><section class="set-card">
-      <div class="set-row"><b>${esc(S.curriculum)}</b></div>
+    ${head("learn", S.learn)}${card("learn")}
+      <div class="set-row">${ico("globe")}<b>${esc(S.curriculum)}</b></div>
       <div class="set-seg" role="radiogroup" aria-label="${esc(S.curriculum)}">${["de-DE", "en-GB"].map((k) => `<button role="radio" data-cur="${k}" aria-checked="${k === c.curriculum}">${esc(S.cur[k])}</button>`).join("")}</div>
       <small class="set-note">${esc(S.curNote)}</small>
-      <label class="set-row"><b>${esc(S.year)}</b><select id="setYear">${YEAR_OF(c.curriculum).map((y) => `<option value="${esc(y)}"${y === c.year ? " selected" : ""}>${esc(yearName(y))}</option>`).join("")}</select></label></section>
-    <h3 class="pr-h set-h">${esc(S.look)}</h3><section class="set-card">
+      <label class="set-row set-year">${ico("year")}<b>${esc(S.year)}</b><select id="setYear">${YEAR_OF(c.curriculum).map((y) => `<option value="${esc(y)}"${y === c.year ? " selected" : ""}>${esc(yearName(y))}</option>`).join("")}</select></label></section>
+    ${head("look", S.look)}${card("look")}
       <div class="set-looks" role="radiogroup" aria-label="${esc(S.look)}">${LOOKS.map((l) => `<button role="radio" data-look="${l}" aria-checked="${l === look}"><i class="set-mini ${l}"><i></i><i></i><i></i></i><b>${esc(S.looks[l])}</b></button>`).join("")}</div>
       <small class="set-note">${esc(S.lookNote[look])}</small></section>
-    <h3 class="pr-h set-h">${esc(S2.feel)}</h3><section class="set-card">
-      ${sw("setAuto", $("#auto")?.checked ?? true, S2.narration, S2.narrationSub)}
-      ${sw("setSfx", pref("twist-sfx", true), S2.sfx, S2.sfxSub)}
-      ${sw("setBuzz", pref("twist-vibrate", true), S2.vibrate, S2.vibrateSub)}
-      ${sw("setNext", $("#autonext")?.checked ?? true, S.autoNext, S.autoNextSub)}
-      ${sw("setRemind", pref("twist-reminders", false), S2.remind, S2.remindSub)}</section>
-    <h3 class="pr-h set-h">${esc(S2.account)}</h3><section class="set-card">
-      ${link("setClear", S2.clear, S2.clearSub)}
-      ${link("setLogout", S2.logout, S2.logoutSub, "bad")}</section>
-    ${c.curriculum === "de-DE" ? `<h3 class="pr-h set-h">${esc(S.script)}</h3><section class="set-card"><small class="set-note">${esc(S.scriptSub)}</small>
+    ${head("feel", S2.feel)}${card("feel")}
+      ${sw("setAuto", "feel", $("#auto")?.checked ?? true, S2.narration, S2.narrationSub)}
+      ${sw("setSfx", "sfx", pref("twist-sfx", true), S2.sfx, S2.sfxSub)}
+      ${sw("setBuzz", "buzz", pref("twist-vibrate", true), S2.vibrate, S2.vibrateSub)}
+      ${sw("setNext", "next", $("#autonext")?.checked ?? true, S.autoNext, S.autoNextSub)}
+      ${sw("setRemind", "remind", pref("twist-reminders", false), S2.remind, S2.remindSub)}</section>
+    ${head("account", S2.account)}${card("account")}
+      ${link("setClear", "clear", S2.clear, S2.clearSub)}
+      ${link("setLogout", "logout", S2.logout, S2.logoutSub, "bad")}</section>
+    ${c.curriculum === "de-DE" ? `${head("script", S.script)}${card("script")}<small class="set-note">${esc(S.scriptSub)}</small>
       <div class="set-scripts" role="radiogroup" aria-label="${esc(S.script)}">${Object.keys(SCRIPTS).map((k) => `<button role="radio" data-script="${k}" aria-checked="${k === SCRIPT}"><span style="font-family:'${SCRIPTS[k]}'">Hallo ${esc(c.name ?? "Mia")}</span><small>${esc(S.scripts[k])}</small></button>`).join("")}</div></section>` : ""}
     <footer class="set-foot"><span class="av" style="--av:#6849dd"><img src="${A}mascot/start-1.png" alt=""></span><b>Twist</b><small>${esc(S2.version(D.built))}</small></footer>
   </div>`;

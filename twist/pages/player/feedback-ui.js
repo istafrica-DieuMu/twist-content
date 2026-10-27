@@ -106,13 +106,14 @@ function fbkRenderPins() {
   const writing = [...layer.querySelectorAll(".ghost")];
   // Comments whose part is not on the screen now gather in the tray in the screen's corner (fbkPlace).
   const tray = document.createElement("button"); tray.type = "button"; tray.className = "fbk-tray"; tray.hidden = true;
-  tray.onclick = (e) => { e.stopPropagation(); fbkTrayCard(tray); };
+  tray.onclick = (e) => { e.stopPropagation(); if ($("#fbkPop .fbk-trayl")) fbkClosePop(); else fbkTrayCard(tray); };
   layer.replaceChildren(...writing, tray, ...(FBK.showPins || FBK.flash ? here : []).flatMap((f) => {
     const p = document.createElement("button");
     p.className = `fbk-pin ${f.status}${f.id === FBK.flash ? " flash" : ""}`; p.type = "button"; p._f = f;
     p.textContent = String(here.indexOf(f) + 1); p.dataset.id = f.id;
     p.title = `${f.author?.name ?? ""}: ${f.body}`; p.setAttribute("aria-label", `Comment by ${f.author?.name ?? "someone"}: ${f.body}`);
-    p.onclick = (e) => { e.stopPropagation(); fbkCard(f, p); };
+    // A second click on its number closes its card again.
+    p.onclick = (e) => { e.stopPropagation(); if (FBK.openId === f.id && $("#fbkPop")) fbkClosePop(); else fbkCard(f, p); };
     if (!f.area) return [p];
     // An area comment: its box, with the number on its top-left corner; the pin lights the box up.
     // The box shows only while its comment is open, or its number is pointed at: one at a time.
@@ -145,7 +146,10 @@ const fbkPlaceSoon = () => { cancelAnimationFrame(fbkPlaceRaf); fbkPlaceRaf = re
    open, a card for this child), so a part that is not found is not taken
    for another: its comment waits in the tray in the screen's corner, comes
    back to its part when that shows again, and can be pinned anew there.
-   Comments from before anchors sit on the screen's frame as before. */
+   A pin or box on no one part keeps the screen's scrolling content as its
+   part, so it scrolls with the screen too. Comments from before anchors
+   find the parts their label names; else they are a point on the screen's
+   scrolling content (fbkLoose). */
 const fbkRoot = () => { const sf = fbkSurface(); return sf?.root ?? sf?.el; };
 const fbkText = (el) => (el.getAttribute("aria-label") || el.getAttribute("alt") || el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
 const fbkScrolls = (el) => { const cs = el.ownerDocument.defaultView.getComputedStyle(el); return /auto|scroll/.test(cs.overflowY + cs.overflowX) && (el.scrollHeight > el.clientHeight + 1 || el.scrollWidth > el.clientWidth + 1); };
@@ -173,7 +177,7 @@ const FBK_FOUND = new Map();
 function fbkFind(a) {
   const root = fbkRoot(); if (!a || !root) return null;
   const hit = FBK_FOUND.get(a); if (hit?.isConnected && root.contains(hit)) return hit;
-  let at = null; try { at = a.path ? root.querySelector(":scope>" + a.path) : null; } catch {}
+  let at = null; try { at = a.path ? root.querySelector(":scope>" + a.path) : a.path === "" ? root : null; } catch {}
   let el = at && (!a.text || fbkText(at) === a.text) ? at : null;
   if (!el && a.text) {
     const kind = a.path?.split(">").pop().replace(/:nth-of-type\(\d+\)$/, "");
@@ -187,14 +191,34 @@ function fbkAnchorAt(r, layer) {
   const root = fbkRoot(); if (!root) return null;
   const cx = r.w ? r.x + r.w / 2 : r.x, cy = r.h ? r.y + r.h / 2 : r.y;
   let el = fbkElAt(cx, cy, layer);
-  if (!el || el === root || !root.contains(el)) return null;
+  if (!el || !root.contains(el)) return null;
+  const at = el;
   if (!r.w) el = el.closest(FBK_PART) ?? el;
   const holds = (b) => b.left <= r.x + 1 && b.top <= r.y + 1 && b.left + b.width >= r.x + (r.w ?? 0) - 1 && b.top + b.height >= r.y + (r.h ?? 0) - 1;
   while (el && el !== root && !holds(fbkRectOf(el))) el = el.parentElement;
-  if (!el || el === root) return null;
+  // On no one part: the scrolling content it lies in, known by its place alone.
+  const loose = !el || el === root;
+  if (loose) el = fbkScroller(at);
   const b = fbkRectOf(el), fx = (v) => Math.min(1, Math.max(0, v)), x = fx((r.x - b.left) / b.width), y = fx((r.y - b.top) / b.height);
-  const path = fbkPath(el, root); if (path.length > 400 || path.split(">").length > 40) return null;
-  return { path, text: fbkText(el), x, y, ...(r.w ? { w: fx(r.w / b.width), h: fx(r.h / b.height) } : {}) };
+  const path = el === root ? "" : fbkPath(el, root); if (path.length > 400 || path.split(">").length > 40) return null;
+  // A scrolling part holds a whole screen, whose words change with the child: known by its place alone.
+  return { path, text: loose || fbkScrolls(el) ? "" : fbkText(el), x, y, ...(r.w ? { w: fx(r.w / b.width), h: fx(r.h / b.height) } : {}) };
+}
+// The scrolling part around a point of the screen, else the screen's biggest scrolling part, else the screen.
+function fbkScroller(at) {
+  const root = fbkRoot(); if (!root) return null;
+  for (let e = at; e && root.contains(e); e = e.parentElement) if (fbkScrolls(e)) return e;
+  const area = (e) => e.clientWidth * e.clientHeight;
+  return [...root.querySelectorAll("*")].filter(fbkScrolls).sort((p, q) => area(q) - area(p))[0] ?? root;
+}
+// A comment from before anchors: the parts its label names when they are on the screen, as one box.
+function fbkNamed(f) {
+  const root = fbkRoot(), label = f.target?.label; if (!root || !label || label === "Area") return null;
+  const hit = FBK_FOUND.get(f); if (hit?.every((e) => e.isConnected && root.contains(e))) return hit;
+  const names = label.replace(/^Area: /, "").replace(/ and \d+ more$/, "").split(", "), parts = [...root.querySelectorAll(FBK_PART)];
+  const els = names.map((n) => parts.find((el) => { const d = fbkDescribe(el); return d === n || (n.endsWith("…") && d.startsWith(n.slice(0, -1))); })).filter(Boolean);
+  if (!els.length) return null;
+  FBK_FOUND.set(f, els); return els;
 }
 // Puts every pin and box on its part; hides those whose part is gone or scrolled out of sight.
 function fbkPlace(layer = $("#fbkLayer")) {
@@ -202,31 +226,41 @@ function fbkPlace(layer = $("#fbkLayer")) {
   const L = layer.getBoundingClientRect(), k = layer.offsetWidth / (L.width || 1), away = [];
   for (const m of layer.children) {
     const f = m._f; if (!f) continue;
-    const a = f.screen?.anchor, el = a && fbkFind(a), isBox = m.classList.contains("fbk-area");
-    let x, y, w = 0, h = 0, clip = { l: 0, t: 0, r: layer.offsetWidth, b: layer.offsetHeight };
+    const a = f.screen?.anchor, isBox = m.classList.contains("fbk-area");
+    let el = a && fbkFind(a), x, y, w = 0, h = 0, clip = { l: 0, t: 0, r: layer.offsetWidth, b: layer.offsetHeight };
     // Its part is not on the screen now: the comment waits in the tray.
     if (a && !el) { m.style.visibility = "hidden"; if (!isBox) away.push(f); continue; }
-    if (el) {
+    // From before anchors, its parts not found: a point (no box) on the screen's scrolling content.
+    const named = !a && fbkNamed(f), loose = !a && !named;
+    if (loose && isBox) { m.style.visibility = "hidden"; continue; }
+    if (a) {
       const b = fbkRectOf(el);
       x = (b.left - L.left + a.x * b.width) * k; y = (b.top - L.top + a.y * b.height) * k;
       if (f.area) { w = (a.w ?? 0) * b.width * k; h = (a.h ?? 0) * b.height * k; }
-      // Only the part of it left in view by each scrolling part around it.
-      for (let e = el.parentElement; e && root.contains(e); e = e.parentElement) {
-        if (e !== root && !fbkScrolls(e)) continue;
-        const s0 = e.getBoundingClientRect(), o = fbkOff(e), s = { left: s0.left + o.x, top: s0.top + o.y, right: s0.right + o.x, bottom: s0.bottom + o.y };
-        clip = { l: Math.max(clip.l, (s.left - L.left) * k), t: Math.max(clip.t, (s.top - L.top) * k), r: Math.min(clip.r, (s.right - L.left) * k), b: Math.min(clip.b, (s.bottom - L.top) * k) };
-      }
+    } else if (named) {
+      // The box around the parts its label names; a pin in its middle, an area's number on its corner.
+      const rs = named.map((e) => { const r = e.getBoundingClientRect(), o = fbkOff(e); return { l: r.left + o.x, t: r.top + o.y, r: r.right + o.x, b: r.bottom + o.y }; });
+      const u = { l: Math.min(...rs.map((r) => r.l)), t: Math.min(...rs.map((r) => r.t)), r: Math.max(...rs.map((r) => r.r)), b: Math.max(...rs.map((r) => r.b)) };
+      el = named[0];
+      if (f.area) { x = (u.l - L.left) * k; y = (u.t - L.top) * k; w = (u.r - u.l) * k; h = (u.b - u.t) * k; }
+      else { x = ((u.l + u.r) / 2 - L.left) * k; y = ((u.t + u.b) / 2 - L.top) * k; }
     } else {
-      const p = f.area ?? f.pin;
-      x = p.x * layer.offsetWidth; y = p.y * layer.offsetHeight;
-      if (f.area) { w = f.area.w * layer.offsetWidth; h = f.area.h * layer.offsetHeight; }
+      // Where it was dropped on the screen, as if the screen had not been scrolled, moved by the scroll since.
+      el = fbkScroller(); const b = el.getBoundingClientRect(), s = (b.width / (el.offsetWidth || 1)) * k;
+      x = f.pin.x * layer.offsetWidth - el.scrollLeft * s; y = f.pin.y * layer.offsetHeight - el.scrollTop * s;
+    }
+    // Only the part of it left in view by each scrolling part around it, and by its own when it is one.
+    for (let e = fbkScrolls(el) ? el : el.parentElement; e && root.contains(e); e = e.parentElement) {
+      if (e !== root && !fbkScrolls(e)) continue;
+      const s0 = e.getBoundingClientRect(), o = fbkOff(e), s = { left: s0.left + o.x, top: s0.top + o.y, right: s0.right + o.x, bottom: s0.bottom + o.y };
+      clip = { l: Math.max(clip.l, (s.left - L.left) * k), t: Math.max(clip.t, (s.top - L.top) * k), r: Math.min(clip.r, (s.right - L.left) * k), b: Math.min(clip.b, (s.bottom - L.top) * k) };
     }
     // A box shows the piece of it in view, its number on that piece's corner.
     const l = Math.max(x, clip.l), t = Math.max(y, clip.t), r = Math.min(x + w, clip.r), bt = Math.min(y + h, clip.b);
-    const shown = f.area ? r > l && bt > t : x >= clip.l && x <= clip.r && y >= clip.t && y <= clip.b;
+    const shown = f.area && !loose ? r > l && bt > t : x >= clip.l && x <= clip.r && y >= clip.t && y <= clip.b;
     m.style.visibility = shown ? "" : "hidden";
     if (isBox) Object.assign(m.style, { left: l + "px", top: t + "px", width: Math.max(0, r - l) + "px", height: Math.max(0, bt - t) + "px" });
-    else Object.assign(m.style, f.area ? { left: l + "px", top: t + "px" } : { left: x + "px", top: y + "px" });
+    else Object.assign(m.style, f.area && !loose ? { left: l + "px", top: t + "px" } : { left: x + "px", top: y + "px" });
   }
   const tray = layer.querySelector(".fbk-tray"); if (!tray) return;
   tray._away = away; tray.hidden = !away.length;
@@ -367,7 +401,7 @@ function fbkPop(anchor, html, onClose) {
   p.style.left = left + "px"; p.style.top = Math.max(8, Math.min(innerHeight - h - 8, top)) + "px";
   return p;
 }
-document.addEventListener("mousedown", (e) => { const p = $("#fbkPop"); if (p && !p.contains(e.target) && !e.target.closest(".fbk-pin")) fbkClosePop(); });
+document.addEventListener("mousedown", (e) => { const p = $("#fbkPop"); if (p && !p.contains(e.target) && !e.target.closest(".fbk-pin, .fbk-tray")) fbkClosePop(); });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") { fbkClosePop(); if (FBK.pinning) fbkPinMode(false); }
   if (FBK.me && (e.key === "c" || e.key === "C") && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest("input,select,textarea,[contenteditable]")) fbkPinMode();
