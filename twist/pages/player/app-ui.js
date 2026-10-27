@@ -406,7 +406,7 @@ function renderTrack() {
     const left = even ? -TR.stone / 2 + 48 - TR.arcW : TR.stone / 2 - 48;
     const island = islandFor(i), ih = TR.islandW * 0.705, at2 = `top:${y + TR.arcH / 2 - ih / 2 + ISLAND_DY[(i - 1) % ISLAND_DY.length]}px;${even ? "right" : "left"}:4px;width:${TR.islandW}px`;
     return `<svg class="tr-arc" viewBox="0 0 163.59 213.85" preserveAspectRatio="none" style="top:${y}px;left:${at(left)};width:${TR.arcW}px;height:${TR.arcH}px;transform:scaleX(${even ? -1 : 1}) rotate(-1deg)" aria-hidden="true"><path d="${ARCH_PATH}" fill="${look.route}" fill-opacity="${rows[i - 1].done ? 1 : 0.08}"/></svg>
-      ${island.svg ? `<svg class="tr-island themed" viewBox="0 0 220 155" style="${at2};height:${ih}px" aria-hidden="true"><use href="${island.svg}#island"/></svg>` : `<img class="tr-island" src="${island}" alt="" style="${at2}">`}`;
+      <img class="tr-island" src="${island}" alt="" style="${at2}">`;
   }).join("");
   // A unit is done, the child's (it holds the current lesson) or ahead; its cards take the colour of the first two.
   const unitState = [...new Set(unitAt)].map((u) => { const is = rows.map((_, i) => i).filter((i) => unitAt[i] === u); return is.includes(cur) ? "now" : is.every((i) => rows[i].state === "done") ? "done" : "ahead"; });
@@ -415,10 +415,9 @@ function renderTrack() {
   // The course at the top, as Brilliant opens a course: its picture, name, what it covers,
 // The islands beside the path follow the unit, not the stone count: each unit's topic (in English) has a
 // theme from the island prompts (Twist Island Prompts), drawn without words and shared by every curriculum and language.
-// A theme's art is in study/themes/: <theme>-<k>.webp drawn in its subject's colours (ISLAND_WEBP), or <theme>-<k>.svg
-// in greys the track colours with the subject's three tones (drawn by study/themes/draw.mjs); ISLAND_ART says how many
-// it has. The culture themes of the language courses have one set per language (<theme>-fr-<k>, <theme>-en-<k>). Until a theme
-// has art, its unit shows two of its subject's current islands, the same two for the same theme everywhere.
+// A theme's art is study/themes/<colour>/<theme>-<k>.webp, drawn in each subject's own colours (the track's art: math, german,
+// english; French shows the English art turned purple). Each theme has three. The culture themes of the language courses
+// have one set per language (<theme>-fr-<k>, <theme>-en-<k>). A topic with no theme shows its subject's current islands.
 const ISLAND_THEMES = {
   math: {
     "counting": ["Numbers to 10","Numbers to 20","Counting in tens"],
@@ -509,11 +508,8 @@ const ISLAND_THEMES = {
     "space": ["Earth and space"],
   },
 };
-// Maths: generated from one master island, then recoloured in the subject's own colours from a colour master
-// (OpenRouter, Nano Banana 2): WebP with a transparent background, 440 x 310, in study/themes/<theme>-<k>.webp.
-// grammar, food, nature, traffic: hand-drawn SVG placeholders by study/themes/draw.mjs until theirs are made.
-const ISLAND_WEBP = new Set(["counting", "placevalue", "negative", "ancient", "addsub", "times", "fractions", "money", "time", "calendar", "length", "area", "mass", "capacity", "temperature", "datasize", "shapes", "solids", "symmetry", "angles", "position", "data", "chance", "patterns", "problems"]);
-const ISLAND_ART = { counting: 3, placevalue: 3, negative: 3, ancient: 3, addsub: 3, times: 3, fractions: 3, money: 3, time: 3, calendar: 3, length: 3, area: 3, mass: 3, capacity: 3, temperature: 3, datasize: 3, shapes: 3, solids: 3, symmetry: 3, angles: 3, position: 3, data: 3, chance: 3, patterns: 3, problems: 3, grammar: 3, "food-fr": 3, "food-en": 3, nature: 3, traffic: 3 };
+// Generated from one master island per subject colour, each island an edit of it (OpenRouter, Nano Banana 2), the Deutsch
+// ones recoloured for English: WebP with a transparent background, 440 x 310.
 // Themes drawn once per target language: French for the English curriculum's course, English for the German one's.
 const LANG_THEMES = ["food", "town", "special", "world"];
 // Units drawn with another subject's theme: the same idea, so the same islands.
@@ -521,7 +517,6 @@ const ISLAND_ALIAS = {"fl":{"Time":"time","Calendar":"calendar"},"daz":{"Hello":
 const THEME_OF = Object.fromEntries(Object.entries(ISLAND_THEMES).map(([g, m]) => [g, Object.fromEntries(Object.entries(m).flatMap(([id, ts]) => ts.map((t) => [t, id])))]));
 const themeGroup = (subj) => ["math", "fl", "world", "daz"].includes(subj) ? subj : "lit";
 const themeOf = (subj, topic) => { const g = themeGroup(subj); return ISLAND_ALIAS[g]?.[topic] ?? THEME_OF[g]?.[topic] ?? null; };
-const themeHash = (t) => [...t].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7);
   // how much is in it and how much is done. Scrolling on, the unit card sticks under it.
   // What it covers is the units' names; a line written for the child would replace it.
   const sets = [...new Set(rows.map((r) => r.s))], units = [...new Set(rows.map((r) => r.topic).filter(Boolean))];
@@ -544,7 +539,7 @@ const themeHash = (t) => [...t].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>
     ${trackStats(art)}
     <div class="pr-home app-page tr-page" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}">
       ${intro}<button class="tr-card"><span><small id="trUnitNo"></small><b id="trUnit"></b></span>${CHEVRON}</button>
-      <div class="tr-path ${art}" style="--i-ink:${look.grad[1]};--i-mid:${look.route};--i-pale:${look.soft};height:${top(rows.length) + (ny ? 300 : 420)}px">${arcs}${lines}${stones}${mascot}${upNext}</div>
+      <div class="tr-path ${art}" style="height:${top(rows.length) + (ny ? 300 : 420)}px">${arcs}${lines}${stones}${mascot}${upNext}</div>
     </div><div class="tr-fade" aria-hidden="true"></div>
     <div class="tr-dock" style="--route:${look.route};--g1:${look.grad[0]};--g2:${look.grad[1]};--soft:${look.soft}"><button class="tr-now" hidden></button><div class="tr-dock-in" aria-live="polite"></div></div>`;
   scr.appendChild(appTabs("study"));
@@ -581,10 +576,7 @@ const themeHash = (t) => [...t].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>
     let start = i; while (start > 0 && !rows[start].topicStart) start--;
     const k = i - start - 1;
     const set = LANG_THEMES.includes(theme) && APP.subj === "fl" ? `${theme}-${c.curriculum === "en-GB" ? "fr" : "en"}` : theme;
-    if (ISLAND_WEBP.has(set)) return `study/themes/${set}-${(k % ISLAND_ART[set]) + 1}.webp`;
-    if (ISLAND_ART[set]) return { svg: `study/themes/${set}-${(k % ISLAND_ART[set]) + 1}.svg` };
-    const h = themeHash(theme), a = h % n, b = (a + 1 + ((h >> 5) % (n - 1))) % n;
-    return `study/${files}-path-${(k % 2 ? b : a) + 1}.png`;
+    return `study/themes/${files}/${set}-${(k % 3) + 1}.webp`;
   };
     // Away from the child's lesson, a round button above the card brings it back, pointing its way.
     now.hidden = i === cur; now.className = `tr-now ${i < cur ? "down" : "up"}`;
