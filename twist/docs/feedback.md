@@ -40,10 +40,13 @@ keeps:
   again by its place in the screen and its text, with the pin or box as
   fractions of that part. The app's screens scroll inside the phone and the
   cards on Start and Practice change with the child, so the pin follows its
-  part as it scrolls, and does not show when that part is not on the screen
-  (another child's suggestions, a card that is gone). Comments from before
-  anchors sit on the screen's frame. In Comment mode the wheel still scrolls
-  the screen.
+  part as it scrolls. When the content or the UI changes, the pin looks for
+  its part again: by its text where the part has moved, and by its place
+  where the text was edited (at least half its words the same). Nothing
+  looser: a part may show only in some states of the screen (an answer
+  checked, a hint open, a card for one child), and another part must not be
+  taken for it. Comments from before anchors sit on the screen's frame. In
+  Comment mode the wheel still scrolls the screen.
 - **What is under the pin**, in words: `Option card: sieben`,
   `Button: Weiter`, `Picture: apple`; for an area, the parts inside it:
   `Area: Option card: Mäuse, Option card: Meuse`. If the screen changes
@@ -51,7 +54,17 @@ keeps:
 
 Comments show as numbered pins on their screen to whoever may see them. A pin
 opens the comment: its thread, a reply box, and Resolve, Edit, Copy link and
-Delete where allowed. **Copy link** gives a link (`…/pages/player/#fb=<id>`)
+Delete where allowed. An area comment shows only its number; its box shows
+while the comment is open or its number is pointed at, one box at a time.
+
+**Pins** in the top bar (or `h`) hides or shows the comments on the screen.
+It is each person's own choice, kept in their browser.
+
+A comment whose part is not on the screen now waits in the **tray**, a
+dashed count in the screen's top-right corner, instead of on the screen.
+It comes back to its part when that shows again. The tray lists them; **Pin
+again here** (for the comment's author and whoever may resolve it) asks for
+a new spot or area on this screen and saves it with the part under it. **Copy link** gives a link (`…/pages/player/#fb=<id>`)
 that opens the comment's screen with its pin.
 
 ## Finding comments
@@ -64,7 +77,9 @@ that opens the comment's screen with its pin.
   over the text, the screen, the task id and the replies. **Open the screen**
   goes there.
 
-A step is found again by its task id, so a comment still lands on its task
+A step is found again by its task id, and a step that is not a task by its
+place in its activity (`place`: `learn2` for Learn screen 3,
+`intro:fluency`, `stage:fluency:1`), so a comment still lands on its screen
 after tasks are added or moved. A lesson set that is no longer in the build
 says so instead of opening.
 

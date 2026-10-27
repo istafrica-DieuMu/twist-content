@@ -192,6 +192,12 @@ return it unchanged. The preview validates it. It looks like this:
 `kind` is `lesson`, `app` (a tab: Start, Practice, Me, Settings), `study` or
 `parents`. Please cap `screen` at 2 KB.
 
+`screen` may also hold `place`, a lesson step that is not a task known by
+its place in its activity (`learn2`, `intro:fluency`, `stage:fluency:1`,
+`start`, `end`), so its comments stay on it when tasks are added before it.
+Store it with the rest of `screen`; without it, the preview falls back to
+the step number.
+
 `screen` may also hold `anchor`, the part of the screen the pin was dropped
 on, so the pin follows it when the screen scrolls:
 `{ "path": "div:nth-of-type(1)>button:nth-of-type(2)", "text": "Review: Animals and nature", "x": 0.25, "y": 0.5 }`
@@ -210,7 +216,7 @@ spot, `area` is null.
 | `GET /?page=0&size=200` | | A page of comments this person may see, newest first, with their replies |
 | `GET /{id}` | | One comment, or 404 if they may not see it |
 | `POST /` | `{ screen, pin: { x, y }, area: { x, y, w, h } or null, target: { label } or null, body }` | The new comment |
-| `PATCH /{id}` | `{ body }` or `{ status: "OPEN" or "RESOLVED" }` | The changed comment |
+| `PATCH /{id}` | `{ body }`, `{ status: "OPEN" or "RESOLVED" }`, or `{ screen, pin, area, target }` (pinned again: replace all four; the author or whoever may resolve it) | The changed comment |
 | `DELETE /{id}` | | 200 |
 | `POST /{id}/replies` | `{ body }` | The whole comment, with the new reply |
 

@@ -102,6 +102,7 @@ export function fileStore(dir, { seedLogin, seedPassword } = {}) {
     async updateFeedback(session, id, patch) {
       const f = feedback(id), u = session.user;
       if (patch.body != null) f.body = patch.body;
+      if (patch.screen) Object.assign(f, { screen: patch.screen, pin: patch.pin, area: patch.area, target: patch.target });
       if (patch.status === "resolved" && f.status !== "resolved") Object.assign(f, { status: "resolved", resolvedBy: { id: u.id, name: u.name }, resolvedAt: now() });
       if (patch.status === "open") Object.assign(f, { status: "open", resolvedBy: null, resolvedAt: null });
       f.updatedAt = now(); save("feedback");

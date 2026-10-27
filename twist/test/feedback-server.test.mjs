@@ -106,6 +106,15 @@ test("file store: who sees, resolves and manages what", async (t) => {
   assert.deepEqual(pinned.screen.anchor, anchor);
   assert.equal((await tomS.call("POST", "feedback", { screen: { ...SCREEN, anchor: { ...anchor, path: "img[src=x]" } }, pin: { x: 0.3, y: 0.6 }, body: "x" })).status, 400);
   assert.equal((await tomS.call("POST", "feedback", { screen: { ...SCREEN, anchor: { ...anchor, x: 1.5 } }, pin: { x: 0.3, y: 0.6 }, body: "x" })).status, 400);
+  // A lesson step that is not a task keeps its place in its activity.
+  const placed = (await tomS.call("POST", "feedback", { screen: { ...SCREEN, stepKind: "learn", place: "learn2" }, pin: { x: 0.3, y: 0.6 }, body: "This screen" })).body.feedback;
+  assert.equal(placed.screen.place, "learn2");
+  // Pinned anew where it belongs: by its author or a reviewer; the anchor, spot and target change together.
+  const moved = { screen: { ...SCREEN, stepKind: "learn", place: "learn2", anchor: { ...anchor, text: "Weiter" } }, pin: { x: 0.7, y: 0.2 }, target: { label: "Button: Weiter" } };
+  const repinned = (await tomS.call("PATCH", `feedback/${placed.id}`, moved)).body.feedback;
+  assert.deepEqual([repinned.pin, repinned.screen.anchor.text, repinned.target.label, repinned.body, repinned.can.move], [{ x: 0.7, y: 0.2 }, "Weiter", "Button: Weiter", "This screen", true]);
+  assert.equal((await rev.call("PATCH", `feedback/${placed.id}`, { ...moved, pin: { x: 0.1, y: 0.1 } })).body.feedback.pin.x, 0.1, "a reviewer can pin it anew");
+  assert.equal((await tomS.call("PATCH", `feedback/${placed.id}`, { ...moved, pin: { x: 2, y: 0 } })).status, 400);
 
   // Accounts: a manager resets their tester's password and switches them off; not Ann.
   assert.deepEqual((await mgr.call("GET", "users")).body.users.map((u) => u.email), ["tom@ist.com"]);

@@ -13,10 +13,12 @@ const SFX_VOL = { "option-picked": 0.35, "card-lands": 0.6, "piece-locked": 0.8,
 const sfxPlayers = {};
 // A sound effect, when Sound effects is on (Settings); each has its own player, so a tap never cuts off a cheer.
 function sfx(name) {
-  if (!SFX_ON() || document.body.classList.contains("parents")) return;
+  if (!SFX_ON() || appOffScreen()) return;
   const a = (sfxPlayers[name] ??= Object.assign(new Audio(`${ANIM}sfx/${name}.mp3`), { volume: SFX_VOL[name] ?? 1 }));
   a.currentTime = 0; a.play().catch(() => {});
 }
+// Every sound effect and a badge's sound, stopped (stopAudio): a badge's video goes on, silent.
+function stopSfx() { Object.values(sfxPlayers).forEach((a) => a.pause()); sfxPlayer.pause(); document.querySelectorAll(".bm-vid").forEach((v) => { v.muted = true; }); }
 // The app's cues while a task is open (lib/feedback/cues.ts): a tap on a choice,
 // a tile or a point is option-picked; a card dropped into a slot or a bin lands.
 document.getElementById("screen")?.addEventListener("click", (e) => {
@@ -246,7 +248,7 @@ function badgeDate(day) {
 const badgeMotion = (id) => `<video class="bm-vid" playsinline preload="auto" poster="badges/${MOTION[id]}/${MOTION[id]}-badge.png" src="${badgeVideo(id, "intro")}" data-loop="${badgeVideo(id, "idle-loop")}" data-intro="${badgeVideo(id, "intro")}"></video>`;
 function wireMotion(stage) {
   const v = $(".bm-vid", stage); if (!v) return;
-  v.loop = false; v.src = v.dataset.intro; v.muted = !SFX_ON() || document.body.classList.contains("parents");
+  v.loop = false; v.src = v.dataset.intro; v.muted = !SFX_ON() || appOffScreen();
   v.onended = () => { v.onended = null; v.src = v.dataset.loop; v.loop = true; v.muted = true; v.play().catch(() => {}); };
   v.currentTime = 0; v.play().catch(() => { v.muted = true; v.play().catch(() => {}); });
 }

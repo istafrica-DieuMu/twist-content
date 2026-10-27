@@ -292,7 +292,7 @@ function sayDrill(t, delay = 600, times = 2) {
     if (!still()) return;
     const again = () => { if (left > 1 && still()) setTimeout(() => once(left - 1), DRILL_AGAIN); };
     if (t._clip) { play(t._clip, again); tok = qToken; return; }
-    if (!("speechSynthesis" in window)) return;
+    if (!("speechSynthesis" in window) || appOffScreen()) return;
     const tl = t._sayLang ?? set.target_language ?? set.language, code = { de: "de-DE", en: "en-GB", fr: "fr-FR" }[tl] ?? tl;
     const vs = speechSynthesis.getVoices().filter((v) => v.lang.replace("_", "-").toLowerCase().startsWith(code.slice(0, 2).toLowerCase()));
     const u = new SpeechSynthesisUtterance(t._sayWord); u.lang = code; u.rate = 0.75; u.onend = again;
