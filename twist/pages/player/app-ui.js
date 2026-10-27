@@ -415,9 +415,9 @@ function renderTrack() {
   // The course at the top, as Brilliant opens a course: its picture, name, what it covers,
 // The islands beside the path follow the unit, not the stone count: each unit's topic (in English) has a
 // theme from the island prompts (Twist Island Prompts), drawn without words and shared by every curriculum and language.
-// A theme's art is SVG in study/themes/<theme>-<k>.svg (traced from generated art, or drawn by study/themes/draw.mjs), with ISLAND_ART
-// saying how many it has; the culture themes of the language courses have one set per language
-// (<theme>-fr-<k>, <theme>-en-<k>). The track colours them with the subject's three tones. Until a theme
+// A theme's art is in study/themes/: <theme>-<k>.webp drawn in its subject's colours (ISLAND_WEBP), or <theme>-<k>.svg
+// in greys the track colours with the subject's three tones (drawn by study/themes/draw.mjs); ISLAND_ART says how many
+// it has. The culture themes of the language courses have one set per language (<theme>-fr-<k>, <theme>-en-<k>). Until a theme
 // has art, its unit shows two of its subject's current islands, the same two for the same theme everywhere.
 const ISLAND_THEMES = {
   math: {
@@ -509,8 +509,10 @@ const ISLAND_THEMES = {
     "space": ["Earth and space"],
   },
 };
-// Maths: generated on Artlist from one master island and traced to SVG (five greys, coloured per subject).
-// grammar, food, nature, traffic: hand-drawn placeholders by study/themes/draw.mjs until theirs are made.
+// Maths: generated from one master island, then recoloured in the subject's own colours from a colour master
+// (OpenRouter, Nano Banana 2): WebP with a transparent background, 440 x 310, in study/themes/<theme>-<k>.webp.
+// grammar, food, nature, traffic: hand-drawn SVG placeholders by study/themes/draw.mjs until theirs are made.
+const ISLAND_WEBP = new Set(["counting", "placevalue", "negative", "ancient", "addsub", "times", "fractions", "money", "time", "calendar", "length", "area", "mass", "capacity", "temperature", "datasize", "shapes", "solids", "symmetry", "angles", "position", "data", "chance", "patterns", "problems"]);
 const ISLAND_ART = { counting: 3, placevalue: 3, negative: 3, ancient: 3, addsub: 3, times: 3, fractions: 3, money: 3, time: 3, calendar: 3, length: 3, area: 3, mass: 3, capacity: 3, temperature: 3, datasize: 3, shapes: 3, solids: 3, symmetry: 3, angles: 3, position: 3, data: 3, chance: 3, patterns: 3, problems: 3, grammar: 3, "food-fr": 3, "food-en": 3, nature: 3, traffic: 3 };
 // Themes drawn once per target language: French for the English curriculum's course, English for the German one's.
 const LANG_THEMES = ["food", "town", "special", "world"];
@@ -579,6 +581,7 @@ const themeHash = (t) => [...t].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>
     let start = i; while (start > 0 && !rows[start].topicStart) start--;
     const k = i - start - 1;
     const set = LANG_THEMES.includes(theme) && APP.subj === "fl" ? `${theme}-${c.curriculum === "en-GB" ? "fr" : "en"}` : theme;
+    if (ISLAND_WEBP.has(set)) return `study/themes/${set}-${(k % ISLAND_ART[set]) + 1}.webp`;
     if (ISLAND_ART[set]) return { svg: `study/themes/${set}-${(k % ISLAND_ART[set]) + 1}.svg` };
     const h = themeHash(theme), a = h % n, b = (a + 1 + ((h >> 5) % (n - 1))) % n;
     return `study/${files}-path-${(k % 2 ? b : a) + 1}.png`;
