@@ -336,17 +336,21 @@ pretend child and the time machine.
     suggestions, two as a deck.
   Home has three layouts, picked in the player's right panel (Home, under
   Look; kept in the browser): Card first (the card, then the subjects,
-  the default), Subjects first (the subjects, then the card, which grows
-  so the two fill the screen), and Slider (each subject's next lesson as a
-  big card in a row that slides sideways, dots under it, then the
-  subjects; a tap on a subject slides to its card).
+  the default), Subjects first (the subjects, then the card), and Slider
+  (each subject's next lesson as a big card in a row that slides sideways,
+  dots under it, and no subject row). In each, the card grows so the first
+  screen is full down to just above the tab bar, and the practice
+  suggestions start below it, out of sight until the page scrolls.
   The Busy Bee bar shows only when the next level is three sessions away
   or less. The pretend child's year is a school year; a foreign language
   takes its learning year from it.
-- **Study.** All the structured content. At the top, the subjects (maths
-  first) and the year (the child's own marked; a foreign language by its
-  learning year), with how many units are done; search within that
-  subject and year; the topics as a row of chips to pick one ("Alle
+- **Study.** All the structured content. At the top, two compact rows:
+  back, the subject as a pill that opens the subject row, and search; then
+  the year as a pill beside the year's progress bar and how many units are
+  done. It opens on the child's own year (a foreign language by its
+  learning year); the year pill lists every year, the child's marked "Your
+  year", and on another year "Back to Year 2" takes the count's place;
+  search within that subject and year; the topics as a row of chips to pick one ("Alle
   Themen" / "All topics" first; a topic shows its units done, "3/8", or a
   tick when all are); "Als Nächstes" / "Up next", one row with the next
   lesson and its minutes; then each topic with its units in course order

@@ -1392,14 +1392,14 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .hm-big .pr-go, .hm-big-go { margin-top: 12px; padding: 12px; }
 .hm-loop > button { padding: 10px 4px 8px; }
 
-/* Home, subjects first: the subjects, then the card grown to the bottom of the screen
-   (fitHomeTop), its picture taking the room. */
+/* Home's big card grows to fill the first screen (fitHome), its picture taking the room. */
 .hl-top .hm-subjs .pr-h { margin-top: 10px; }
 .hl-top .hm-next .pr-h { margin-top: 8px; }
-.hl-top .hm-big { display: flex; flex-direction: column; align-items: flex-start; }
-.hl-top .hm-big-pic { flex: 1 1 0; align-self: stretch; height: auto; min-height: 92px; }
-.hl-top .hm-big-pic img { height: 100%; max-height: 220px; min-height: 0; }
-.hl-top .hm-big .pr-go, .hl-top .hm-big-go { align-self: stretch; }
+.hm-next .hm-big { display: flex; flex-direction: column; align-items: flex-start; }
+.hm-next .hm-big-pic { flex: 1 1 0; align-self: stretch; height: auto; min-height: 92px; }
+.hm-next .hm-big-pic img { height: 100%; max-height: 240px; min-height: 0; }
+.hm-next .hm-big .hm-where { align-self: stretch; }
+.hm-next .hm-big .pr-go, .hm-next .hm-big-go { align-self: stretch; }
 
 /* Home, the slider: each subject's next lesson as a big card, side by side, one in view, a
    second card peeking out under it; dots under the row. */
@@ -1408,10 +1408,93 @@ div.pr-hero, .hm-card, div.hm-practice { cursor: default; }
 .hl-slide { position: relative; scroll-snap-align: start; display: grid; }
 .hl-slide::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -12px; height: 30px; border-radius: 0 0 24px 24px; background: var(--card); border: 2px solid var(--edge); border-top: 0; z-index: 0; }
 .hl-slide > .hm-big { position: relative; z-index: 1; }
-.hl-slide .hm-big-pic { height: 140px; }
-.hl-slide .hm-big-pic img { height: 140px; }
+.hl-slide .hm-big-pic { min-height: 120px; }
 .hl-slide .hm-big { align-content: start; }
-.hl-slide .hm-big .pr-go, .hl-slide .hm-big-go { align-self: end; }
 .hl-dots { display: flex; justify-content: center; gap: 8px; margin: 4px 0 0; }
 .hl-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: var(--edge-c); cursor: pointer; transition: background .2s, width .2s; }
 .hl-dots button[aria-current="true"] { width: 22px; border-radius: 5px; background: var(--plum); }
+/* The practice below starts out of sight, under the tab bar: the first screen is the card and the subjects. */
+.hl-card .hm-more, .hl-top .hm-more, .hl-slider .hm-more { margin-top: 28px; }
+
+/* All units, compact: one row with back, the subject and the year as pills (each opens a menu),
+   and search; under it the year's progress as a thin bar with its count beside it, and a way back
+   to the child's own year when away from it. The topics as smaller chips. */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.st-band.st-tight { gap: 8px; padding: 2px 18px 10px; }
+.st-bar { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto 40px; gap: 8px; align-items: center; }
+.st-bar .st-back, .st-bar .st-find { width: 40px; height: 40px; min-width: 40px; min-height: 40px; }
+.st-pick { display: flex; align-items: center; gap: 6px; min-width: 0; height: 40px; padding: 0 10px; border: 2px solid color-mix(in srgb, var(--c) 30%, var(--edge-c)); border-bottom-width: 4px; border-radius: 14px; background: var(--card); color: var(--plum); font: inherit; cursor: pointer; }
+.st-pick img { flex: none; width: 28px; height: 20px; }
+.st-pick b { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 800 16px "Red Hat Display", sans-serif; }
+.st-pick .chev { flex: none; width: 14px; height: 14px; margin-left: auto; transform: rotate(90deg); color: var(--soft-c); }
+.st-pick.st-year b { font-size: 14px; }
+.st-pick.st-year.mine { background: color-mix(in srgb, var(--c) 12%, var(--card)); border-color: color-mix(in srgb, var(--c) 45%, var(--card)); }
+span.st-pick { cursor: default; }
+.st-pick:active { transform: translateY(2px); border-bottom-width: 2px; }
+.st-tight .st-prog { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+.st-tight .st-prog .pr-bar { flex: 1; height: 8px; }
+.st-tight .st-prog span { flex: none; white-space: nowrap; }
+.st-home { flex: none; padding: 3px 10px; border: 0; border-radius: 999px; background: var(--c); color: #fff; font: 800 12px "Red Hat Text", sans-serif; cursor: pointer; }
+.st-page .st-topics { margin-top: -4px; }
+.st-page .st-topics button { padding: 6px 12px; border-radius: 10px; font-size: 13px; }
+.st-page .st-next { margin-top: 2px; }
+.st-ymenu { position: absolute; z-index: 30; display: grid; min-width: 180px; padding: 6px; border: 2px solid var(--edge-c); border-bottom-width: 4px; border-radius: 16px; background: var(--card); box-shadow: 0 12px 24px -12px rgba(43, 15, 69, .35); animation: app-pop .18s ease-out both; }
+.st-ymenu button { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 0; border-radius: 10px; background: none; color: var(--plum); text-align: left; font: inherit; cursor: pointer; }
+.st-ymenu b { font: 800 15px "Red Hat Display", sans-serif; }
+.st-ymenu small { padding: 2px 8px; border-radius: 999px; background: #fff3cf; color: #9a6a00; font: 800 11px "Red Hat Text", sans-serif; }
+.st-ymenu [aria-checked="true"] { background: color-mix(in srgb, var(--subj) 12%, var(--card)); color: var(--subj); }
+/* The subject on the top row with back and search; the year opens the row under it, beside its
+   progress. A long year name shortens. */
+.st-bar { grid-template-columns: 40px minmax(0, 1fr) 40px; }
+.st-tight .st-prog .st-pick.st-year { flex: 0 1 auto; max-width: 48%; height: 34px; padding: 0 8px 0 10px; border-radius: 12px; }
+.st-tight .st-prog .st-pick.st-year b { font-size: 13.5px; }
+
+/* All units, the topics: round chips with the app's thicker bottom edge. Each has a ring that
+   fills with its units done (solid with a tick once all are); the topic the child is at is
+   tinted, edged in the subject colour and tagged "Now"; the one picked is filled. */
+.st-page .st-topics { gap: 8px; padding-bottom: 4px; }
+.st-page .st-topics button { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 13px 0 7px; border: 2px solid var(--edge); border-bottom-width: 4px; border-radius: 999px; background: var(--card); color: var(--ink); font: 700 13.5px "Red Hat Text", sans-serif; }
+.st-page .st-topics button.st-all { padding-left: 10px; }
+.st-page .st-topics .st-all svg { width: 17px; height: 17px; fill: currentColor; opacity: .75; }
+.st-tring { position: relative; flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: conic-gradient(var(--subj) calc(var(--p) * 1%), color-mix(in srgb, var(--subj) 16%, var(--card)) 0); font-style: normal; }
+.st-tring::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--card); }
+.st-topics .done .st-tring { background: var(--subj); }
+.st-topics .done .st-tring::after { content: none; }
+.st-tring svg { position: relative; width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.st-page .st-topics button.done:not([aria-pressed="true"]) { color: var(--ink); border-color: var(--edge); }
+.st-page .st-topics button.now { border-color: var(--subj); background: color-mix(in srgb, var(--subj) 10%, var(--card)); }
+.st-page .st-topics button.now .st-tring::after { background: color-mix(in srgb, var(--subj) 10%, var(--card)); }
+.st-topics .now em { padding: 2px 7px; border-radius: 999px; background: var(--subj); color: #fff; font: 800 10.5px "Red Hat Text", sans-serif; font-style: normal; letter-spacing: .04em; text-transform: uppercase; }
+.st-page .st-topics button[aria-pressed="true"] { border-color: color-mix(in srgb, var(--subj) 70%, #000); background: var(--subj); color: #fff; }
+.st-page .st-topics button[aria-pressed="true"] .st-tring { background: conic-gradient(#fff calc(var(--p) * 1%), rgba(255, 255, 255, .3) 0); }
+.st-page .st-topics button[aria-pressed="true"] .st-tring::after { background: var(--subj); }
+.st-page .st-topics button.done[aria-pressed="true"] .st-tring { background: #fff; }
+.st-page .st-topics button.done[aria-pressed="true"] .st-tring svg { stroke: var(--subj); }
+.st-page .st-topics button[aria-pressed="true"] em { background: #fff; color: var(--subj); }
+.st-page .st-topics button:active { transform: translateY(2px); border-bottom-width: 2px; }
+
+/* A unit's lessons, one kind of row: a circle (the number; a tick once done; for one to play
+   again an amber redo arrow), the title, and a short word on the right (Start, Redo). The one to
+   play again is amber, with how it went under its title. */
+.ln-lessons .weak { grid-template-columns: 30px 1fr auto; padding: 8px 10px; }
+.ln-lessons .weak .ln-n svg { width: 16px; height: 16px; }
+.ln-lessons .weak .ln-n svg path { stroke: #fff; }
+.ln-lessons .weak .ln-w > span:first-child { font-weight: 700; line-height: 1.25; }
+.ln-lessons .weak small { font: 700 12px "Red Hat Text", sans-serif; color: color-mix(in srgb, var(--w) 75%, var(--plum)); }
+.ln-lessons .weak em { color: color-mix(in srgb, var(--w) 80%, var(--plum)); }
+:is(.screen[data-look="dark"], .screen[data-look="night"]) .ln-set .ln-lessons button.weak :is(small, em) { color: #ffb547; }
+.ln-can { margin: -4px 12px 10px 66px; font-size: 13px; }
+
+/* All units' header as the list scrolls (STUDY_HEAD in app-ui.js). It sticks to the top of the
+   page with the list sliding under it; once scrolled it casts a shadow. Pinned: it stays, a little
+   smaller. Hides: it slides up out of sight while the list scrolls down, and back on the way up. */
+.st-page .st-band { position: sticky; top: -8px; z-index: 6; transition: box-shadow .2s, translate .28s cubic-bezier(.2, .8, .2, 1), padding .2s; }
+.st-page.scrolled .st-band { box-shadow: 0 12px 20px -14px rgba(43, 15, 69, .45); }
+.st-page[data-head="pinned"].scrolled .st-band { padding-top: 0; padding-bottom: 8px; gap: 6px; }
+.st-page[data-head="pinned"].scrolled .st-bar { grid-template-columns: 34px minmax(0, 1fr) 34px; }
+.st-page[data-head="pinned"].scrolled :is(.st-bar .st-back, .st-bar .st-find) { width: 34px; height: 34px; min-width: 34px; min-height: 34px; }
+.st-page[data-head="pinned"].scrolled .st-bar .st-pick { height: 34px; }
+.st-page[data-head="pinned"].scrolled .st-prog .st-pick.st-year { height: 30px; }
+/* translate, not transform: the page's opening animation holds the transform. */
+.st-page[data-head="hides"] .st-band.away { translate: 0 calc(-100% - 16px); box-shadow: none; }
+@media (prefers-reduced-motion: reduce) { .st-page .st-band { transition: none; } }
