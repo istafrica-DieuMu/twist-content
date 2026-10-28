@@ -188,22 +188,26 @@ function homeLesson(subj, sets) {
 }
 // Home's layout, a choice in the player's right panel (sideLook), kept in this browser:
 //   card:   the next lesson's big card, then the subjects (the first);
-//   top:    the subjects first, then the card, the two filling the screen (fitHomeTop);
+//   top:    the subjects first, then the card;
 //   slider: each subject's next lesson as a big card in a row that slides sideways, dots under
-//           it, then the subjects; a tap on a subject slides to its card.
+//           it; no subject row. The card fills the screen in each (fitHome).
 const HOME_LOOKS = ["card", "top", "slider"];
 let HOME_LOOK = (() => { try { const v = localStorage.getItem("twist-home"); return HOME_LOOKS.includes(v) ? v : HOME_LOOKS[0]; } catch { return HOME_LOOKS[0]; } })();
 function setHomeLook(v) { HOME_LOOK = v; try { localStorage.setItem("twist-home", v); } catch {} }
-// Subjects first: the card grows to the bottom of the screen, so the two fill it.
-function fitHomeTop(scr) {
-  const pg = $(".app-page", scr), card = $(".hm-next .hm-big", scr); if (!pg || !card) return;
-  card.style.height = "";
+// The big card grows so the first screen is full: in Card first down to the subjects, which end
+// just above the tab bar; in Subjects first and the Slider down to the tab bar (the Slider's dots
+// under it). Again whenever the page changes size, as when it first shows behind the splash.
+function fitHome(scr) {
+  const pg = $(".app-page", scr), cards = [...scr.querySelectorAll(".hm-next .hm-big")]; if (!pg || !cards.length || !pg.clientHeight) return;
+  cards.forEach((c) => c.style.height = "");
   // From the layout, not the boxes on screen: the page slides in as it opens.
   const top = (el) => { let y = 0; for (let e = el; e && e !== scr; e = e.offsetParent) y += e.offsetTop; return y; };
-  const tabs = $(".app-tabs", scr), end = tabs ? top(tabs) : top(pg) + pg.clientHeight;
-  const room = end - (top(card) - pg.scrollTop) - 16;
+  const first = cards[0], tabs = $(".app-tabs", scr), end = tabs ? top(tabs) : top(pg) + pg.clientHeight;
+  const last = HOME_LOOK === "card" ? $(".hm-loop", scr) : HOME_LOOK === "slider" ? $(".hl-dots", scr) : null;
+  const after = last ? top(last) + last.offsetHeight - (top(first) + first.offsetHeight) : 0;
+  const room = end - (top(first) - pg.scrollTop) - after - 14;
   // A set height, so the picture takes what is left of it and no more.
-  if (room > card.offsetHeight) card.style.height = `${room}px`;
+  if (room > Math.max(...cards.map((c) => c.offsetHeight))) cards.forEach((c) => c.style.height = `${room}px`);
 }
 // The slider: one card a subject; the dots follow it, and a dot or a subject slides to its card.
 function wireHomeSlider(scr) {
@@ -404,7 +408,7 @@ function renderHomeTab() {
     : doneRows ? `<section class="hm-plan">${doneRows}</section>` : ""}
     ${HOME_LOOK === "top" ? subjLoop(sel) : ""}
     <section class="hm-next"><h3 class="pr-h">${esc(HOME_TXT[PL()].next)}</h3>${HOME_LOOK === "slider" ? slider : homeLesson(sel, sets)}</section>
-    ${HOME_LOOK === "top" ? "" : subjLoop(sel)}
+    ${HOME_LOOK === "card" ? subjLoop(sel) : ""}
     ${practiceHtml ? `<section class="hm-more"><h3 class="pr-h">${esc(did.practice ? T.wantMore : T.today)}</h3>${practiceHtml}</section>` : ""}
   </div>`;
   scr.appendChild(appTabs("start"));
@@ -412,7 +416,9 @@ function renderHomeTab() {
   wireHeader(scr); wireStarts(scr); wireRow(scr);
   const slideTo = wireHomeSlider(scr);
   wireLoop(scr, (x) => { if (slideTo) return slideTo(x); APP.homeSubj = x; renderHomeTab(); });
-  if (HOME_LOOK === "top") { fitHomeTop(scr); setTimeout(() => scr.isConnected && fitHomeTop(scr), 300); }
+  fitHome(scr);
+  const pg = $(".app-page", scr), seen = new ResizeObserver(() => pg.isConnected ? fitHome(scr) : seen.disconnect());
+  seen.observe(pg);
   // A tap on a card away from its button wiggles the button: that is what starts it.
   scr.querySelectorAll(".hm-lesson, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
   scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });

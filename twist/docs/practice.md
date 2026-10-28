@@ -336,10 +336,11 @@ pretend child and the time machine.
     suggestions, two as a deck.
   Home has three layouts, picked in the player's right panel (Home, under
   Look; kept in the browser): Card first (the card, then the subjects,
-  the default), Subjects first (the subjects, then the card, which grows
-  so the two fill the screen), and Slider (each subject's next lesson as a
-  big card in a row that slides sideways, dots under it, then the
-  subjects; a tap on a subject slides to its card).
+  the default), Subjects first (the subjects, then the card), and Slider
+  (each subject's next lesson as a big card in a row that slides sideways,
+  dots under it, and no subject row). In each, the card grows so the first
+  screen is full down to just above the tab bar, and the practice
+  suggestions start below it, out of sight until the page scrolls.
   The Busy Bee bar shows only when the next level is three sessions away
   or less. The pretend child's year is a school year; a foreign language
   takes its learning year from it.
