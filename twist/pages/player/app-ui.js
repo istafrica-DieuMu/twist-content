@@ -576,14 +576,17 @@ function renderTrack() {
   scrollTo(cur, "auto", skate ? page.clientHeight * 0.15 : 0); show(cur);
 }
 // The subject menu under the pill: each subject with its icon.
-function subjectMenu(pill) {
+function subjectMenu(pill, pick = (x) => { APP.subj = x; APP.year = null; renderTrack(); }) {
   const m = document.createElement("div"); m.className = "tr-menu"; m.setAttribute("role", "menu");
+  // Under the pill it opens from (the track's sits at the top; All units' lower down).
+  const box = $("#screen").getBoundingClientRect(), at = pill.getBoundingClientRect();
+  m.style.top = `${Math.round((at.bottom - box.top) * ($("#screen").offsetHeight / (box.height || 1))) + 8}px`;
   // As the app's StatsBar picker: one row across the screen, an icon over each name; the
   // subject on show in its colour with a bar under it, the others faded.
   m.innerHTML = appSubjects().map((x) => { const a = trackArt(x); return `<button role="menuitem" data-s="${x}" style="--c:${colourOf(x)}"${x === APP.subj ? ' aria-current="true"' : ""}><i><img src="study/${a}.svg" alt=""></i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`; }).join("");
   const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
   const away = (e) => { if (!m.contains(e.target) && e.target !== pill) close(); };
-  m.querySelectorAll("button").forEach((b) => b.onclick = (e) => { if (moved) return e.preventDefault(); close(); APP.subj = b.dataset.s; APP.year = null; renderTrack(); });
+  m.querySelectorAll("button").forEach((b) => b.onclick = (e) => { if (moved) return e.preventDefault(); close(); pick(b.dataset.s); });
   // The row slides left and right when the subjects don't fit: a swipe on a phone, and here a
   // mouse drag too. A drag that moved is not a tap on the subject it ends on.
   let drag = null, moved = false;
@@ -662,34 +665,89 @@ function renderStudy() {
   const hit = (s) => !q || [s.title?.de, s.title?.en, s.topic?.de, s.topic?.en, s.can_do?.[lg], ...s.lessons.map((l) => l.title[lg])].join(" ").toLowerCase().includes(q);
   const shown = topics.filter((tp) => !APP.topic || tp.name === APP.topic).map((tp) => ({ ...tp, sets: tp.sets.filter(hit) })).filter((tp) => tp.sets.length);
   const next = nextIn(sets), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length;
+  const nowTopic = next ? next.topic?.[lg] ?? next.topic?.en ?? "" : null;
+  // One chip a topic name: a topic that comes back later in the course (two runs of Listening) is one chip, as picking it shows both.
+  const chips = [...topics.reduce((m, tp) => (m.has(tp.name) ? m.get(tp.name).sets.push(...tp.sets) : m.set(tp.name, { name: tp.name, sets: [...tp.sets] }), m), new Map()).values()];
   const subjName = SUBJ_NAME[c.curriculum][APP.subj] ?? APP.subj;
   // Search sits behind the lens until the child opens it (or has typed something).
   const finding = !!(APP.find || APP.q);
   scr.style.setProperty("--subj", colour); scr.style.setProperty("--top", `color-mix(in srgb, ${colour} 10%, var(--card))`);
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page st-page">
-    <header class="st-band" style="--c:${colour}">
-      <div class="st-head"><button class="st-back" aria-label="${esc(TK().back)}">${CHEVRON}</button><h2>${esc(TK().units)}</h2>
+    <header class="st-band st-tight" style="--c:${colour}">
+      <h2 class="vh">${esc(TK().units)}</h2>
+      <div class="st-bar"><button class="st-back" aria-label="${esc(TK().back)}">${CHEVRON}</button>
+        <button class="st-pick st-subj" aria-haspopup="true" aria-label="${esc(TK().subject)}: ${esc(subjName)}"><img src="study/${trackArt(APP.subj)}.svg" alt=""><b>${esc(subjName)}</b>${CHEVRON}</button>
         <button class="st-find" aria-label="${esc(T.search(subjName, yearName(APP.year)))}" aria-expanded="${finding}">${LENS}</button></div>
-      <div class="st-subjs" role="tablist">${subs.map((x) => `<button role="tab" data-s="${x}" aria-selected="${x === APP.subj}" style="--c:${colourOf(x)}"><i><img src="study/${trackArt(x)}.svg" alt=""></i><b>${esc(SUBJ_NAME[c.curriculum][x] ?? x)}</b></button>`).join("")}</div>
-      ${years.length > 1 ? `<div class="st-years scroll-fade" role="tablist" aria-label="${esc(T.year)}">${years.map((y) => `<button role="tab" data-y="${esc(y)}" aria-selected="${y === APP.year}"${y === mine ? ` title="${esc(T.yourYear)}"` : ""}>${esc(yearName(y))}${y === mine ? '<i class="st-mine" aria-hidden="true"></i>' : ""}</button>`).join("")}</div>` : ""}
-      <div class="st-prog"><span>${esc(T.doneOf(done, sets.length))}</span><i class="pr-bar"><i style="width:${sets.length ? (100 * done) / sets.length : 0}%"></i></i></div>
+      <div class="st-prog">${years.length > 1 ? `<button class="st-pick st-year${APP.year === mine ? " mine" : ""}" aria-haspopup="true" aria-label="${esc(T.year)}: ${esc(yearName(APP.year))}"><b>${esc(yearName(APP.year))}</b>${CHEVRON}</button>` : `<span class="st-pick st-year mine"><b>${esc(yearName(APP.year))}</b></span>`}
+        <i class="pr-bar"><i style="width:${sets.length ? (100 * done) / sets.length : 0}%"></i></i>
+        ${APP.year !== mine ? `<button class="st-home" data-y="${esc(mine)}">${esc(STUDY_TXT[lg].mine(yearName(mine)))}</button>` : `<span>${esc(T.doneOf(done, sets.length))}</span>`}</div>
     </header>
     ${finding ? `<label class="pr-search">${LENS}<input id="stQ" type="search" value="${esc(APP.q)}" placeholder="${esc(T.search(subjName, yearName(APP.year)))}" autocomplete="off"></label>` : ""}
-    <div class="st-topics scroll-fade">${[{ name: null }, ...topics].map((tp) => { const d = tp.sets?.filter((x) => lessonsDone(x) >= x.lessons.length).length, all = !!tp.sets && d === tp.sets.length; return `<button data-t="${esc(tp.name ?? "")}" aria-pressed="${(APP.topic ?? null) === tp.name}"${all ? ' class="done"' : ""}>${all ? "✓ " : ""}${esc(tp.name ?? T.allTopics)}${tp.sets && !all && d ? `<small>${d}/${tp.sets.length}</small>` : ""}</button>`; }).join("")}</div>
+    <div class="st-topics scroll-fade">${[{ name: null }, ...chips].map((tp) => topicChip(tp, nowTopic)).join("")}</div>
     ${!q && !APP.topic && next ? upNext(next) : ""}
     <div id="stList">${shown.map((tp) => `<section class="ln-topic"><h3 class="pr-h">${esc(tp.name)}<small>${esc(T.doneOf(tp.sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, tp.sets.length))}</small></h3>${tp.sets.map((s) => studySetRow(s, s === next && !q)).join("")}</section>`).join("") || `<p class="pr-empty">${esc(T.nothing)}</p>`}</div>
   </div>`;
   scr.appendChild(appTabs("study"));
   $(".st-back", scr).onclick = () => { APP.units = false; renderTrack(); };
-  scr.querySelectorAll(".st-subjs button").forEach((b) => b.onclick = () => { APP.subj = b.dataset.s; APP.year = null; APP.topic = null; APP.q = ""; renderStudy(); });
-  scr.querySelectorAll(".st-years button").forEach((b) => b.onclick = () => { APP.year = b.dataset.y; APP.topic = null; renderStudy(); });
+  $(".st-subj", scr).onclick = (e) => subjectMenu(e.currentTarget, (x) => { APP.subj = x; APP.year = null; APP.topic = null; APP.q = ""; renderStudy(); });
+  $("button.st-year", scr)?.addEventListener("click", (e) => yearMenu(e.currentTarget, years, mine));
+  $(".st-home", scr)?.addEventListener("click", () => { APP.year = mine; APP.topic = null; renderStudy(); });
   $(".st-find", scr).onclick = () => { APP.find = !finding; if (!APP.find) APP.q = ""; renderStudy(); if (APP.find) $("#stQ")?.focus(); };
   scr.querySelectorAll(".st-topics button").forEach((b) => b.onclick = () => { APP.topic = b.dataset.t || null; renderStudy(); });
   const qi = $("#stQ"); if (qi) qi.oninput = () => { APP.q = qi.value; const pos = qi.selectionStart; renderStudy(); const n = $("#stQ"); n.focus(); n.setSelectionRange(pos, pos); };
-  wireStarts(scr);
-  scr.querySelector(".st-topics [aria-pressed=true]")?.scrollIntoView({ inline: "center", block: "nearest" });
-  scr.querySelector(".st-years [aria-selected=true]")?.scrollIntoView({ inline: "center", block: "nearest" });
+  wireStarts(scr); wireStudyHead(scr);
+  // The topics open on the one picked, else on the one the child is at (Up next's).
+  const row = $(".st-topics", scr), chip = row?.querySelector(APP.topic ? "[aria-pressed=true]" : ".now");
+  if (row && chip) row.scrollLeft = chip.offsetLeft - row.offsetLeft - (row.clientWidth - chip.offsetWidth) / 2;
   scrollFades(scr);
+}
+// A topic as a chip: a ring that fills with its units done (a tick once all are), its name, and
+// for the topic the child is at a "Now" tag; "All topics" first, with a grid.
+const GRID4 = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg>';
+function topicChip(tp, nowTopic) {
+  const T = AT(), on = (APP.topic ?? null) === tp.name;
+  if (!tp.sets) return `<button class="st-all" data-t="" aria-pressed="${on}">${GRID4}<span>${esc(T.allTopics)}</span></button>`;
+  const d = tp.sets.filter((x) => lessonsDone(x) >= x.lessons.length).length, n = tp.sets.length, all = d === n, now = tp.name === nowTopic && !all;
+  return `<button data-t="${esc(tp.name)}" aria-pressed="${on}" class="${all ? "done" : ""}${now ? " now" : ""}" style="--p:${(100 * d) / n}" aria-label="${esc(tp.name)}, ${esc(T.doneOf(d, n))}">
+    <i class="st-tring" aria-hidden="true">${all ? TICK : ""}</i><span>${esc(tp.name)}</span>${now ? `<em>${esc(STUDY_TXT[PL()].now)}</em>` : ""}</button>`;
+}
+// All units' header (subject, year, progress) as the list scrolls, a choice in the player's right
+// panel (sideLook), kept in this browser, while we try them:
+//   pinned: it stays at the top, the list sliding under it; once scrolled, a shadow and a little smaller;
+//   hides:  it slides away as the list scrolls down and comes back as soon as it scrolls up.
+// The topics and Up next scroll away with the list in both.
+const STUDY_HEADS = ["pinned", "hides"];
+let STUDY_HEAD = (() => { try { const v = localStorage.getItem("twist-studyhead"); return STUDY_HEADS.includes(v) ? v : STUDY_HEADS[0]; } catch { return STUDY_HEADS[0]; } })();
+function setStudyHead(v) { STUDY_HEAD = v; try { localStorage.setItem("twist-studyhead", v); } catch {} }
+function wireStudyHead(scr) {
+  const pg = $(".st-page", scr), head = $(".st-band", scr); if (!pg || !head) return;
+  pg.dataset.head = STUDY_HEAD;
+  let last = pg.scrollTop;
+  pg.addEventListener("scroll", () => {
+    const y = pg.scrollTop;
+    // Scrolled: a little past the top to turn on, back at the top to turn off, so it doesn't flicker as the header shrinks.
+    pg.classList.toggle("scrolled", y > (pg.classList.contains("scrolled") ? 4 : 24));
+    // Hides: away once scrolled past it going down; back on any scroll up, and at the top.
+    if (STUDY_HEAD === "hides" && Math.abs(y - last) > 3) head.classList.toggle("away", y > last && y > head.offsetHeight);
+    last = y;
+  }, { passive: true });
+}
+// All units opens on the child's own year; the year pill lists every year of the subject, the
+// child's marked, and away from it a link leads back.
+const STUDY_TXT = { de: { mine: (y) => `Zurück zu ${y}`, yours: "Deine Klasse", now: "Jetzt" }, en: { mine: (y) => `Back to ${y}`, yours: "Your year", now: "Now" } };
+function yearMenu(pill, years, mine) {
+  document.querySelector(".st-ymenu")?.remove();
+  const m = document.createElement("div"); m.className = "st-ymenu"; m.setAttribute("role", "menu");
+  const box = $("#screen").getBoundingClientRect(), at = pill.getBoundingClientRect(), k = $("#screen").offsetHeight / (box.height || 1);
+  m.style.top = `${Math.round((at.bottom - box.top) * k) + 6}px`; m.style.left = `${Math.round((at.left - box.left) * k)}px`;
+  m.innerHTML = years.map((y) => `<button role="menuitemradio" aria-checked="${y === APP.year}" data-y="${esc(y)}"><b>${esc(yearName(y))}</b>${y === mine ? `<small>${esc(STUDY_TXT[PL()].yours)}</small>` : ""}</button>`).join("");
+  const close = () => { m.remove(); document.removeEventListener("pointerdown", away, true); };
+  const away = (e) => { if (!m.contains(e.target) && !pill.contains(e.target)) close(); };
+  m.querySelectorAll("button").forEach((b) => b.onclick = () => { close(); APP.year = b.dataset.y; APP.topic = null; renderStudy(); });
+  $("#screen").appendChild(m); document.addEventListener("pointerdown", away, true);
+  // Kept inside the screen: its right edge at most at the pill's.
+  const right = Math.round((at.right - box.left) * k);
+  if (m.offsetLeft + m.offsetWidth > right) m.style.left = `${Math.max(12, right - m.offsetWidth)}px`;
 }
 // Study's way back in: one row with the next lesson of the course; the unit below is open on it.
 function upNext(s) {
@@ -708,8 +766,8 @@ function starsOf3(k, cls = "") {
 // and a button to play it again. The skill check covers every lesson, so the parts it found
 // tricky are named once, on the unit, under its "I can" line.
 const WEAK_TXT = {
-  de: { score: (r, t) => `${r} von ${t}`, check: "Noch nicht ganz", nudge: "Fast! Noch ein Versuch.", again: "Nochmal", redo: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
-  en: { score: (r, t) => `${r} of ${t}`, check: "Not quite yet", nudge: "Almost! One more go.", again: "Try again", redo: "Redo", lesson: (t) => `Try again: ${t}` },
+  de: { score: (r, t) => `${r} von ${t}`, right: (r, t) => `${r} von ${t} richtig`, check: "Noch nicht ganz", nudge: "Fast! Noch ein Versuch.", again: "Nochmal", redo: "Nochmal", lesson: (t) => `Nochmal: ${t}` },
+  en: { score: (r, t) => `${r} of ${t}`, right: (r, t) => `${r} of ${t} right`, check: "Not quite yet", nudge: "Almost! One more go.", again: "Try again", redo: "Redo", lesson: (t) => `Try again: ${t}` },
 };
 // A lesson not mastered: its last check had a miss. A skill left at one star (practised) with all
 // its lessons done failed its skill check, in the last lesson, even when no score was kept.
@@ -719,9 +777,6 @@ const weakOf = (s, n) => {
   const last = s.lessons.at(-1)?.n;
   return n === last && PR.child.states[stateKey(s)]?.state === "practised" && (PR.child.lessons?.[s.id] ?? 0) >= s.lessons.length ? { missed: [] } : null;
 };
-// For the child: the score as dots, filled for each one right ("3 of 5" read out), or "Not quite yet".
-// For the child: how it went as one circle per question, a tick for each right ("3 of 5" read out).
-const weakText = (w, W) => w.total ? `<span class="ln-dots" role="img" aria-label="${esc(W.score(w.right, w.total))}">${Array.from({ length: w.total }, (_, i) => `<i class="${i < w.right ? "on" : ""}">${i < w.right ? "✓" : ""}</i>`).join("")}</span>` : esc(W.check);
 const REDO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 // A unit (lesson set): its lessons done, title and stars; open, its goal and lessons to start.
 function studySetRow(s, open) {
@@ -729,7 +784,8 @@ function studySetRow(s, open) {
   const lessonRow = (l, i) => {
     const weak = i < done && weakOf(s, l.n);
     if (!weak) return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="${i < done ? "done" : i === done ? "now" : ""}"><span class="ln-n">${i < done ? "✓" : l.n}</span><span>${esc(l.title[lg] ?? l.title.de)}</span>${i === done ? `<em>${esc(T.go)}</em>` : ""}</button></li>`;
-    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><img class="ln-mascot" src="${A}mascot/practise-2.png" alt=""><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span>${weakText(weak, W)}</span><em class="ln-redo">${REDO}${esc(W.redo)}</em></button></li>`;
+    // Not mastered: the same row as the others, amber, a redo arrow in the circle, how it went under the title.
+    return `<li><button data-start="${esc(s.id)}" data-n="${l.n}" class="weak"><span class="ln-n">${REDO}</span><span class="ln-w"><span>${esc(l.title[lg] ?? l.title.de)}</span><small>${esc(weak.total ? W.right(weak.right, weak.total) : W.check)}</small></span><em>${esc(W.redo)}</em></button></li>`;
   };
   return `<details class="ln-set${done >= n ? " done" : ""}${open ? " now" : ""}"${open ? " open" : ""}><summary><span class="ln-ring" style="--p:${(100 * done) / n}">${done >= n ? "✓" : `${done}/${n}`}</span><span class="ln-t"><b>${esc(s.title[lg] ?? s.title.de)}</b><small>${esc(T.lessons(n))}</small></span>
       ${starsOf3(stateKey(s))}</summary>
