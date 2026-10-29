@@ -104,10 +104,6 @@ function appHeader(title) {
     <button class="app-flame${s.current ? " on" : ""}" data-rw="streak" aria-label="${esc(AT().streakNow(s.current))}">${flameImg(s.current)}${s.current}</button></header>`;
 }
 function wireHeader(scr) { scr.querySelectorAll("[data-me]").forEach((b) => b.onclick = () => appTab("me")); scr.querySelectorAll("[data-rw]").forEach((b) => b.onclick = () => rewardsPopover(b, b.dataset.rw)); scr.querySelectorAll("[data-settings]").forEach((b) => b.onclick = () => appTab("settings")); }
-const beeStrip = () => {
-  const L = PT(), bee = busyBee(PR.child.sessions), pct = bee.next ? (100 * (PR.child.sessions - bee.from)) / (bee.next - bee.from) : 100;
-  return `<button class="pr-bee" data-bd="busy-bee"><img src="${badgeArt("busy-bee")}" alt=""><span><i class="pr-bar" style="--c:#f5b400"><i style="width:${pct}%"></i></i><small>${esc(bee.next ? L.beeBar(PR.child.sessions, bee.next) : AT().beeMax)}</small></span></button>`;
-};
 
 /* ---------- the course ---------- */
 // The years of a subject: school years, or learning years for a foreign language.
@@ -166,13 +162,6 @@ function homePlan() {
   if (ny && nextIn(courseSets(subj, ny))) return { subj, sets: courseSets(subj, ny), head: "nextYear", year: ny };
   return { subj, sets: course, head: "done" };
 }
-// What the child did today, read from its log: lessons finished, practice sessions finished.
-function today(c) {
-  const t = (c.log ?? []).filter((e) => e.day === c.today);
-  // Right answers in today's practice, from the log's "12 of 14 right".
-  const right = t.reduce((n, e) => n + (+(/^\S+ session[^:]*: (\d+) of \d+ right/.exec(e.text)?.[1] ?? 0)), 0);
-  return { lessons: t.filter((e) => /^lesson \d+ of \S+ finished/.test(e.text)).length, practice: t.filter((e) => /^\S+ session:/.test(e.text)).length, right };
-}
 // A row that scrolls sideways fades out at the edge it can still scroll to, so a cut chip reads as "more".
 function scrollFades(scr) {
   scr.querySelectorAll(".scroll-fade").forEach((r) => {
@@ -182,106 +171,45 @@ function scrollFades(scr) {
 }
 // A title on one line where it can: a suffix like "-tion" never breaks off its hyphen.
 const keepSuffix = (t) => esc(t).replace(/(^|\s)(-[\p{L}]+)/gu, '$1<span class="nb">$2</span>');
-// A subject's mark: a short glyph in a ring that fills with the units done in the child's year.
-const SUBJ_GLYPH = { math: "1+2", "lit-en": "Aa", "lit-de": "Aa", fl: { "en-GB": "Fr", "de-DE": "En" }, world: "🌱", daz: "De" };
-function subjChip(x) {
-  const sets = courseSets(x), done = sets.filter((s) => lessonsDone(s) >= s.lessons.length).length, fresh = !sets.some(lessonsDone);
-  const g = SUBJ_GLYPH[x]?.[PR.child.curriculum] ?? SUBJ_GLYPH[x] ?? x.slice(0, 2);
-  return `<button data-subj="${esc(x)}" style="--c:${colourOf(x)};--p:${sets.length ? (100 * done) / sets.length : 0}"><i class="hm-ring">${esc(g)}${fresh ? `<em>${esc(AT().newDot)}</em>` : ""}</i><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><small>${esc(AT().unitsOf(done, sets.length))}</small></button>`;
-}
-// Home: the next lesson of one subject as the big card (its picture on top, the minutes, the
-// lesson, the subject, where it sits, one white button), and under it the subjects in a row
-// that slides sideways without end, three at a time, each with the ring of its units done.
-// A tap on a subject puts its next lesson in the big card.
+// Home, as in the Twist Dashboard design: hello and the streak; the next lesson of each subject
+// as a big card in a deck, one card a subject, the subject Home leads with on top (a turn shows
+// the next subject, the dots under it which one); then the practice Twist suggests, in a row
+// that slides sideways.
 const HOME_TXT = {
-  de: { next: "Deine nächste Lektion", subjects: "Deine Fächer", doneSubj: (x) => `${x}: alles geschafft!`, doneSub: "Übe es, damit es frisch bleibt.", practise: "Üben" },
-  en: { next: "Your next lesson", subjects: "Your subjects", doneSubj: (x) => `${x}: all done!`, doneSub: "Practise it to keep it fresh.", practise: "Practise" },
+  de: { next: "Deine nächste Lektion", practice: "Empfohlenes Üben", doneSubj: (x) => `${x}: alles geschafft!`, doneSub: "Übe es, damit es frisch bleibt.", practise: "Üben" },
+  en: { next: "Your next lesson", practice: "Recommended practice", doneSubj: (x) => `${x}: all done!`, doneSub: "Practise it to keep it fresh.", practise: "Practise" },
 };
+// A subject's next lesson as a big card in its colour: the minutes, the subject's picture, the
+// lesson, the subject, and one white button (Carry on where the child left the lesson part way).
+// A subject with every lesson done offers practice instead.
 function homeLesson(subj, sets) {
   const T = AT(), H = HOME_TXT[PL()], lg = PL(), s = nextIn(sets), name = SUBJ_NAME[PR.child.curriculum][subj] ?? subj;
-  if (!s) return `<div class="hm-big done" role="group" style="--c:${colourOf(subj)}"><span class="hm-big-pic"><img src="${A}mascot/end-2.png" alt=""></span>
-    <b class="hm-big-t">${esc(H.doneSubj(name))}</b><small class="hm-big-subj">${esc(H.doneSub)}</small><button class="hm-big-go" data-done="practice">${esc(H.practise)}</button></div>`;
-  const done = lessonsDone(s), l = s.lessons[done];
-  // Where the child stopped: the step inside this lesson when it was left part way, else the lesson.
-  const r = PR.child.resume, inside = r && r.setId === s.id && r.n === l.n ? r : null, R = WHERE_TXT[lg];
-  const where = [T.lessonOf(done + 1, s.lessons.length), inside?.act ? R.acts[inside.act] + (inside.k ? `, ${R.task(inside.k, inside.tasks)}` : "") : ""].filter(Boolean).join(" · ");
-  const p = inside ? (100 * inside.at) / Math.max(1, inside.of - 1) : (100 * done) / s.lessons.length;
-  return `<div class="hm-big hm-lesson" role="group" style="--c:${colourOf(subj)}">
-    <i class="hm-big-min">${esc(T.minShort(s.minutes ?? 10))}</i><span class="hm-big-pic"><img src="${A}mascot/${s.pose ?? "start-2"}.png" alt=""></span>
-    <b class="hm-big-t">${keepSuffix(l.title[lg] ?? l.title.de)}</b><small class="hm-big-subj">${esc(name)}</small>
-    <span class="hm-where"><small>${esc(s.title[lg] ?? s.title.de)} · ${esc(where)}</small><i class="hm-pbar" aria-hidden="true"><i style="width:${p}%"></i></i></span>
-    <button class="pr-go hm-big-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(inside ? R.goOn : T.go)}</button></div>`;
+  const pic = (src) => `<span class="hd-pic"><img src="${src}" alt="" draggable="false"></span>`;
+  if (!s) return `<div class="hd-card done" role="group" data-subj="${esc(subj)}" style="--c:${colourOf(subj)}">${pic(`${A}mascot/end-2.png`)}
+    <b class="hd-t">${esc(H.doneSubj(name))}</b><small class="hd-sub">${esc(H.doneSub)}</small><button class="hd-go" data-done="practice">${esc(H.practise)}</button></div>`;
+  const l = s.lessons[lessonsDone(s)], r = PR.child.resume, inside = r && r.setId === s.id && r.n === l.n;
+  return `<div class="hd-card" role="group" data-subj="${esc(subj)}" style="--c:${colourOf(subj)}"><i class="hd-min">${esc(T.minShort(s.minutes ?? 10))}</i>${pic(`${A}objects/${subjObject(subj)}.png`)}
+    <b class="hd-t">${keepSuffix(l.title[lg] ?? l.title.de)}</b><small class="hd-subj">${esc(name)}</small>
+    <button class="hd-go" data-start="${esc(s.id)}" data-n="${l.n}">${esc(inside ? WHERE_TXT[lg].goOn : T.go)}</button></div>`;
 }
-// Home's layout, a choice in the player's right panel (sideLook), kept in this browser:
-//   card:   the next lesson's big card, then the subjects (the first);
-//   top:    the subjects first, then the card;
-//   slider: each subject's next lesson as a big card in a row that slides sideways, dots under
-//           it; no subject row. The card fills the screen in each (fitHome).
-const HOME_LOOKS = ["card", "top", "slider"];
-let HOME_LOOK = (() => { try { const v = localStorage.getItem("twist-home"); return HOME_LOOKS.includes(v) ? v : HOME_LOOKS[0]; } catch { return HOME_LOOKS[0]; } })();
-function setHomeLook(v) { HOME_LOOK = v; try { localStorage.setItem("twist-home", v); } catch {} }
-// The big card grows so the first screen is full: in Card first down to the subjects, which end
-// just above the tab bar; in Subjects first and the Slider down to the tab bar (the Slider's dots
-// under it). Again whenever the page changes size, as when it first shows behind the splash.
-function fitHome(scr) {
-  const pg = $(".app-page", scr), cards = [...scr.querySelectorAll(".hm-next .hm-big")]; if (!pg || !cards.length || !pg.clientHeight) return;
-  cards.forEach((c) => c.style.height = "");
-  // From the layout, not the boxes on screen: the page slides in as it opens.
-  const top = (el) => { let y = 0; for (let e = el; e && e !== scr; e = e.offsetParent) y += e.offsetTop; return y; };
-  const first = cards[0], tabs = $(".app-tabs", scr), end = tabs ? top(tabs) : top(pg) + pg.clientHeight;
-  const last = HOME_LOOK === "card" ? $(".hm-loop", scr) : HOME_LOOK === "slider" ? $(".hl-dots", scr) : null;
-  const after = last ? top(last) + last.offsetHeight - (top(first) + first.offsetHeight) : 0;
-  const room = end - (top(first) - pg.scrollTop) - after - 14;
-  // A set height, so the picture takes what is left of it and no more.
-  if (room > Math.max(...cards.map((c) => c.offsetHeight))) cards.forEach((c) => c.style.height = `${room}px`);
+// A suggestion as a tile in a sideways row: the subject's picture, the subject, what is practised.
+function practiceTile(x, attr) {
+  const subj = subjOfSkill(x.skills[0]);
+  return `<button class="hd-tile" ${attr} style="--c:${colourOf(subj)}"><img src="${A}objects/${subjObject(subj)}.png" alt="" draggable="false"><small>${esc(SUBJ_NAME[PR.child.curriculum][subj] ?? subj)}</small><b>${esc(practiceTitle(x))}</b></button>`;
 }
-// The slider: one card a subject; the dots follow it, and a dot or a subject slides to its card.
-function wireHomeSlider(scr) {
-  const row = $(".hl-slides", scr); if (!row) return null;
-  const slides = [...row.children], dots = [...scr.querySelectorAll(".hl-dots button")];
-  const at = () => Math.round(row.scrollLeft / Math.max(1, slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : row.clientWidth));
-  const mark = () => { const i = Math.min(slides.length - 1, at()); dots.forEach((d, j) => d.setAttribute("aria-current", j === i)); APP.homeSubj = APP.subj = slides[i]?.dataset.subj ?? APP.homeSubj; };
-  const go = (i, smooth = true) => row.scrollTo({ left: slides[i].offsetLeft - slides[0].offsetLeft, behavior: smooth ? "smooth" : "auto" });
-  row.addEventListener("scroll", () => { clearTimeout(row._t); row._t = setTimeout(mark, 80); }, { passive: true });
-  dots.forEach((d, j) => d.onclick = () => go(j));
-  const first = Math.max(0, slides.findIndex((x) => x.dataset.subj === APP.homeSubj));
-  go(first, false); mark();
-  return (subj) => { const i = slides.findIndex((x) => x.dataset.subj === subj); if (i >= 0) go(i); };
-}
-// The subjects three at a time; with more than three, the row is three copies of them and
-// slides without end (wireLoop). The copies at either end are only there to scroll into.
-function subjLoop(sel) {
-  const subs = appSubjects(), loop = subs.length > 3;
-  const run = (copy) => subs.map((x) => subjChip(x).replace("<button ", `<button ${copy ? 'tabindex="-1" aria-hidden="true" ' : ""}${x === sel ? 'aria-current="true" ' : ""}`)).join("");
-  return `<section class="hm-subjs"><h3 class="pr-h">${esc(HOME_TXT[PL()].subjects)}</h3>
-    <div class="hm-loop${loop ? " looping" : ""}" data-n="${subs.length}">${loop ? run(true) + run(false) + run(true) : run(false)}</div></section>`;
-}
-// The row stays in its middle copy: once a scroll comes to rest in a copy at either end, it
-// jumps back by one copy, which looks the same. A mouse drags it as a finger does; a drag
-// that moved is not a tap on the subject it ends on.
-function wireLoop(scr, onPick) {
-  const row = scr.querySelector(".hm-loop"); if (!row) return;
-  const n = +row.dataset.n, tiles = [...row.children], loop = row.classList.contains("looping");
-  const step = () => (tiles[1] ? tiles[1].offsetLeft - tiles[0].offsetLeft : 0), span = () => step() * n;
-  const home = () => { if (!loop) return 0; const s = span(), x = row.scrollLeft; if (x < s * 0.5) row.scrollLeft = x + s; else if (x >= s * 1.5) row.scrollLeft = x - s; return row.scrollLeft - x; };
-  if (loop) {
-    const i = Math.max(0, appSubjects().indexOf(row.querySelector('[aria-current="true"]:not([aria-hidden])')?.dataset.subj));
-    row.scrollLeft = APP.loopX ?? span() + Math.max(0, i - 1) * step();
-    let rest = null;
-    row.addEventListener("scroll", () => { clearTimeout(rest); rest = setTimeout(home, 140); }, { passive: true });
-  }
+// A row that slides sideways: a mouse drags it as a finger does, and a drag is not a tap.
+function dragRow(row) {
   let x0 = null, left0 = 0, moved = false;
   row.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; x0 = e.clientX; left0 = row.scrollLeft; moved = false; });
   row.addEventListener("pointermove", (e) => {
     if (x0 == null) return; const dx = e.clientX - x0;
     if (!moved && Math.abs(dx) > 6) { moved = true; row.classList.add("dragging"); row.setPointerCapture(e.pointerId); }
-    if (moved) { row.scrollLeft = left0 - dx; left0 += home(); }
+    if (moved) row.scrollLeft = left0 - dx;
   });
-  const up = () => { if (x0 == null) return; x0 = null; if (!moved) return; row.classList.remove("dragging"); const w = step() || 1; row.scrollTo({ left: Math.round(row.scrollLeft / w) * w, behavior: "smooth" }); };
+  const up = () => { if (x0 == null) return; x0 = null; row.classList.remove("dragging"); };
   row.addEventListener("pointerup", up); row.addEventListener("pointercancel", up);
   row.ondragstart = (e) => e.preventDefault();
   row.addEventListener("click", (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-  tiles.forEach((b) => b.onclick = () => { APP.loopX = row.scrollLeft; onPick(b.dataset.subj); });
 }
 // A deck: the cards in a stack that never ends, turned like pages. The front card
 // follows a finger (or the mouse) sideways and the one under it rises into place;
@@ -291,17 +219,20 @@ function wireLoop(scr, onPick) {
 // holding the card stops it (as in stories), with the card dipping a little. Not
 // with reduced motion. A sideways trackpad scroll or the arrow keys turn it too.
 // No bar under it: the faint line on the card and the cards peeking out say enough.
+// Home's deck (ghost) turns only by hand, opens on the card at start, shows one plain card
+// under the front one, and has dots under it; each turn tells the page ("turn", its index).
 const DECK_MS = 10000;
-const deckOf = (items) => `<div class="deck" tabindex="0" aria-roledescription="carousel">${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
+const deckOf = (items, { start = 0, ghost = false } = {}) => `<div class="deck${ghost ? " dk-ghost" : ""}" tabindex="0" aria-roledescription="carousel" data-start="${start}"${ghost ? ' data-ghost=""' : ""}>${items.map((x) => `<div class="dk-slide">${x}</div>`).join("")}</div>`;
 function wireRow(scr) { scr.querySelectorAll(".deck").forEach((d, j) => deck(d, j * (DECK_MS / 2))); }
 function deck(el, offset = 0) {
   const slides = [...el.children], n = slides.length, segs = el.nextElementSibling?.matches(".dk-bar") ? [...el.nextElementSibling.children] : [];
   if (n < 2) return;
+  const ghost = "ghost" in el.dataset, dy = ghost ? 20 : 10, shrink = ghost ? 0.08 : 0.05, peek = ghost ? 1 : 2;
   const h = Math.max(...slides.map((s) => s.offsetHeight));
   // Room under the front card only for the cards that peek out (10 px each, two at most).
-  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + 10 * Math.min(2, n - 1)}px`;
+  slides.forEach((s) => (s.style.height = `${h}px`)); el.style.height = `${h + dy * Math.min(peek, n - 1)}px`;
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches, EASE = "transform .42s cubic-bezier(.22,.8,.25,1), opacity .3s";
-  let i = 0, x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
+  let i = Math.min(n - 1, +el.dataset.start || 0), x0 = null, y0 = null, dx = 0, moved = false, held = false, busy = false, wait = null;
   const W = () => el.clientWidth || 300;
   // p is how far a turn has gone: -1 forward (the front card out to the left), +1 back.
   const place = (p = 0, ease = true) => slides.forEach((s, j) => {
@@ -312,13 +243,13 @@ function deck(el, offset = 0) {
     else d = p < 0 ? k + p : k + p;
     const z = back ? n + 1 : n - k;
     s.style.transition = ease ? EASE : "none";
-    s.style.transform = `translate(${tx}px, ${Math.max(0, d) * 10}px) rotate(${rot}deg) scale(${1 - Math.max(0, d) * 0.05})`;
-    s.style.opacity = d > 2.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
+    s.style.transform = `translate(${tx}px, ${Math.max(0, d) * dy}px) rotate(${rot}deg) scale(${1 - Math.max(0, d) * shrink})`;
+    s.style.opacity = d > peek + 0.2 && !(k === 0 || back) ? 0 : 1; s.style.zIndex = z;
     s.classList.toggle("front", k === 0); s.inert = k !== 0;
   });
   // The timer: a line on top of each card; only the front one runs.
-  const timers = slides.map((s) => { const card = s.lastElementChild; card.insertAdjacentHTML("beforeend", '<i class="dk-timer" aria-hidden="true"><b></b></i>'); return card.lastElementChild; });
-  const mark = () => { segs.forEach((g, j) => g.classList.toggle("on", j === i)); timers.forEach((t, j) => { t.classList.remove("run"); if (j === i && !still) { void t.offsetWidth; t.classList.add("run"); } }); };
+  const timers = ghost ? [] : slides.map((s) => { const card = s.lastElementChild; card.insertAdjacentHTML("beforeend", '<i class="dk-timer" aria-hidden="true"><b></b></i>'); return card.lastElementChild; });
+  const mark = () => { segs.forEach((g, j) => g.classList.toggle("on", j === i)); el.dispatchEvent(new CustomEvent("turn", { detail: i })); timers.forEach((t, j) => { t.classList.remove("run"); if (j === i && !still) { void t.offsetWidth; t.classList.add("run"); } }); };
   const turn = (d) => {
     if (busy) return; busy = true;
     place(d > 0 ? -1 : 1);
@@ -363,23 +294,10 @@ function deck(el, offset = 0) {
   if (still) return;
   // As the screen opens, the front card nudges aside a little and settles, so the deck looks like it moves.
   setTimeout(() => { if (!el.isConnected || busy || x0 != null) return; place(-0.07); setTimeout(() => el.isConnected && x0 == null && !busy && place(0), 260); }, 650 + offset / 6);
+  if (ghost) return;
   timers.forEach((t, j) => t.addEventListener("animationend", () => { if (el.isConnected && j === i && !held) turn(1); }));
   // Two decks on one screen take turns: the second starts half a turn later.
   if (offset) { timers[0].classList.remove("run"); setTimeout(() => mark(), offset); }
-}
-// The line under the greeting says what today asks for, not the count the ring shows:
-// halfway, one to go; nothing yet, the streak to keep, or how long today's plan takes.
-const GREET = {
-  de: { half: "Eins geschafft, eins fehlt noch!", keep: (n) => `Halte deine Serie: ${n} ${n === 1 ? "Tag" : "Tage"}`, mins: (m) => `Heute etwa ${m} Minuten` },
-  en: { half: "One done, one to go!", keep: (n) => `Keep your ${n}-day streak!`, mins: (m) => `About ${m} minutes today` },
-};
-function greetLine(got, goal, streakNow, plan, sug, did) {
-  const G = GREET[PL()];
-  if (got > 0) return G.half;
-  if (streakNow > 0) return G.keep(streakNow);
-  const s = !did.lessons && nextIn(plan.sets), b = BANDS[PR.child.band];
-  const m = (s ? s.minutes ?? 10 : 0) + (sug && !did.practice ? (sug.kind === "drill" ? 2 : Math.max(2, Math.round(b.tasks * 0.4))) : 0);
-  return m ? G.mins(m) : AT().planLeft(got, goal);
 }
 const WHERE_TXT = {
   de: { acts: { "warm-up": "Aufwärmen", learn: "Entdecken", practise: "Üben", check: "Zeig, was du kannst" }, task: (k, n) => `Aufgabe ${k} von ${n}`, goOn: "Weitermachen" },
@@ -389,65 +307,36 @@ const WHERE_TXT = {
 const SUBJ_OBJECT = { math: "dice", "lit-de": "book", "lit-en": "book", fl: { "de-DE": "cup", "en-GB": "croissant" }, world: "tree", daz: "schoolbag" };
 const subjObject = (x) => { const o = SUBJ_OBJECT[x]; return (typeof o === "string" ? o : o?.[PR.child.curriculum]) ?? "book"; };
 const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-// Start: today's plan (a lesson, then practice), ticked off as the child does it,
-// then the subjects. With the plan done, a well done and the way to more.
-// A practice suggestion as the app's Recommended practice card, on Start and on Practice: a
-// light card in the subject's colour, its title what is practised (the lesson set, the topic, or
-// a recap's topics), the line under it why and how long, the subject's object, and one button
-// (start) across the bottom; the card itself starts nothing. attr wires the button.
+// A practice suggestion as the card on Practice: a light card in the subject's colour, edged in
+// it, with the subject, what is practised (the lesson set, the topic, or a recap's topics), the
+// subject's object, and one button across the bottom; the card itself starts nothing.
 function practiceTitle(x) { const lg = PL(); if (x.kind === "recaps") return cardSub(x); if (x.kind === "review") return PR.index.topics.find((t) => t.key === x.topic)?.name[lg] ?? cardSub(x); return setOfSkill(x.skills[0])?.title[lg] ?? cardSub(x); }
 function practiceCard(x, attr) {
-  const L = PT(), subj = subjOfSkill(x.skills[0]), t = practiceTitle(x), why = x.paused ? PAUSE_TXT[PL()].kind(L.kinds[x.kind] ?? "") : x.reason[PL()].includes(t) ? L.kinds[x.kind] ?? "" : x.reason[PL()];
-  return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><b>${esc(t)}</b><small>${esc(why)} · ${esc(sizeOf(x).split(", ").pop())}</small></span><button class="hm-pr-go" ${attr}>${esc(x.paused ? PAUSE_TXT[PL()].go : L.practise)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`;
+  const subj = subjOfSkill(x.skills[0]);
+  return `<div class="hm-practice" role="group" style="--c:${colourOf(subj)}"><span><small>${esc(SUBJ_NAME[PR.child.curriculum][subj] ?? subj)}</small><b>${esc(practiceTitle(x))}</b></span><button class="hm-pr-go" ${attr}>${esc(x.paused ? PAUSE_TXT[PL()].go : PT().startPr)}</button><img src="${A}objects/${subjObject(subj)}.png" alt=""></div>`;
 }
 function renderHomeTab() {
-  const T = AT(), L = PT(), scr = $("#screen"), c = PR.child;
-  const plan = homePlan(); APP.subj = plan.subj;
-  const sugs = mySuggestions().slice(0, 2), sug = sugs[0], did = today(c), s = streak(c);
-  // The subject in the big card: the one tapped in the row, else the plan's.
-  const sel = appSubjects().includes(APP.homeSubj) ? APP.homeSubj : plan.subj, sets = sel === plan.subj ? plan.sets : courseSets(sel);
-  APP.subj = sel;
-  const goal = [nextIn(plan.sets) || did.lessons, sug || did.practice].filter(Boolean).length || 1;
-  const got = Math.min(goal, (did.lessons ? 1 : 0) + (did.practice ? 1 : 0)), all = got >= goal;
-  // Something done today: a card of its own in the done green, the mascot cheering, what was done,
-  // and a way to do more (Practice, or Study for lessons).
-  const DONE_TXT = { de: { right: (n) => `${n} richtig`, more: "Noch mehr üben", lessons: "Weiterlernen" }, en: { right: (n) => `${n} right`, more: "Practise more", lessons: "Keep learning" } }[PL()];
-  const doneRow = (text, sub, go) => `<div class="hm-done"><span><i>${TICK}</i><b>${esc(text)}</b></span><small>${esc(sub)}</small>${go ? `<button class="hm-done-go" data-done="${go}">${esc(go === "practice" ? DONE_TXT.more : DONE_TXT.lessons)}</button>` : ""}<img src="${A}mascot/end-${go === "practice" ? 1 : 3}.png" alt=""></div>`;
-  const doneRows = [did.lessons ? doneRow(T.lessonDone, T.lessonsToday(did.lessons), "study") : "", did.practice ? doneRow(T.practiceDone, T.sessionsToday(did.practice) + (did.right ? ` · ${DONE_TXT.right(did.right)}` : ""), "practice") : ""].join("");
-  // At most two practice suggestions, as the app's Recommended practice cards; two make a deck.
-  const pCard = (x, i) => practiceCard(x, `data-sug="${i}"`);
-  const practiceHtml = sugs.length > 1 ? deckOf(sugs.map(pCard)) : sugs.map(pCard).join("");
-  const pct = (100 * got) / goal;
-  // The slider's cards: every subject's next lesson, the plan's as the plan has it.
-  const subs = appSubjects();
-  const slider = HOME_LOOK !== "slider" ? "" : `<div class="hl-slides">${subs.map((x) => `<div class="hl-slide" data-subj="${esc(x)}">${homeLesson(x, x === plan.subj ? plan.sets : courseSets(x))}</div>`).join("")}</div>
-    ${subs.length > 1 ? `<div class="hl-dots">${subs.map((x) => `<button aria-label="${esc(SUBJ_NAME[c.curriculum][x] ?? x)}"></button>`).join("")}</div>` : ""}`;
+  const T = AT(), H = HOME_TXT[PL()], scr = $("#screen"), c = PR.child, s = streak(c), plan = homePlan(), subs = appSubjects();
+  // The deck opens on the subject the child last turned to, else the plan's.
+  const first = subs.includes(APP.homeSubj) ? APP.homeSubj : plan.subj; APP.subj = first;
+  const card = (x) => homeLesson(x, x === plan.subj ? plan.sets : courseSets(x));
+  const sugs = mySuggestions().slice(0, 6);
   scr.style.setProperty("--subj", BRAND); scr.style.removeProperty("--top");
-  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hm hl-${HOME_LOOK}">
-    <header class="hm-top fun-band" style="--room:${ROOM.start}">
-      <button class="hm-av" data-settings aria-label="${esc(ST().title)}">${avatar(c)}</button>
-      <div><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2><small>${esc(all ? T.planDone : greetLine(got, goal, s.current, plan, sug, did))}</small></div>
-      <button class="hm-goal${all ? " full" : got ? "" : " zero"}" data-rw="streak" style="--p:${pct}" aria-label="${esc(T.planLeft(got, goal))}, ${esc(T.streakNow(s.current))}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20"/><circle class="v" cx="24" cy="24" r="20" pathLength="100"/></svg>${flameImg(s.current)}<b>${s.current}</b></button>
-    </header>
-    ${all ? `<section class="hm-win"><img src="${A}mascot/end-2.png" alt=""><div><b>${esc(T.winTitle)}</b><small>${esc(s.current ? T.winStreak(s.current) : T.winSub)}</small>
-      <span class="hm-ticks">${did.lessons ? `<em>${TICK}${esc(T.lessonsToday(did.lessons))}</em>` : ""}${did.practice ? `<em>${TICK}${esc(T.sessionsToday(did.practice))}</em>` : ""}</span></div></section>`
-    : doneRows ? `<section class="hm-plan">${doneRows}</section>` : ""}
-    ${HOME_LOOK === "top" ? subjLoop(sel) : ""}
-    <section class="hm-next"><h3 class="pr-h">${esc(HOME_TXT[PL()].next)}</h3>${HOME_LOOK === "slider" ? slider : homeLesson(sel, sets)}</section>
-    ${HOME_LOOK === "card" ? subjLoop(sel) : ""}
-    ${practiceHtml ? `<section class="hm-more"><h3 class="pr-h">${esc(did.practice ? T.wantMore : T.today)}</h3>${practiceHtml}</section>` : ""}
+  scr.innerHTML = `<div class="status"></div><div class="pr-home app-page hd">
+    <header class="hd-top"><button class="hd-av" data-settings aria-label="${esc(ST().title)}">${avatar(c)}</button><h2>${esc(c.name ? T.helloName(c.name) : T.hi)}</h2>
+      <button class="hd-streak${s.current ? " on" : ""}" data-rw="streak" aria-label="${esc(T.streakNow(s.current))}">${flameImg(s.current)}<b>${s.current}</b></button></header>
+    <section class="hd-next"><h3 class="pr-h">${esc(H.next)}</h3>
+      ${subs.length > 1 ? `${deckOf(subs.map(card), { start: subs.indexOf(first), ghost: true })}<div class="dk-bar hd-dots">${subs.map((x) => `<button aria-label="${esc(SUBJ_NAME[c.curriculum][x] ?? x)}" style="--c:${colourOf(x)}"><b></b></button>`).join("")}</div>` : card(first)}</section>
+    ${sugs.length ? `<section class="hd-more"><h3 class="pr-h">${esc(H.practice)}</h3><div class="hd-row">${sugs.map((x, i) => practiceTile(x, `data-sug="${i}"`)).join("")}</div></section>` : ""}
   </div>`;
   scr.appendChild(appTabs("start"));
   scr.querySelectorAll("[data-done]").forEach((b) => b.onclick = () => appTab(b.dataset.done));
   wireHeader(scr); wireStarts(scr); wireRow(scr);
-  const slideTo = wireHomeSlider(scr);
-  wireLoop(scr, (x) => { if (slideTo) return slideTo(x); APP.homeSubj = x; renderHomeTab(); });
-  fitHome(scr);
-  const pg = $(".app-page", scr), seen = new ResizeObserver(() => pg.isConnected ? fitHome(scr) : seen.disconnect());
-  seen.observe(pg);
+  $(".deck", scr)?.addEventListener("turn", (e) => { APP.homeSubj = APP.subj = subs[e.detail]; });
+  const row = $(".hd-row", scr); if (row) dragRow(row);
   // A tap on a card away from its button wiggles the button: that is what starts it.
-  scr.querySelectorAll(".hm-lesson, .hm-practice").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".pr-go, .hm-pr-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
-  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug || 0]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
+  scr.querySelectorAll(".hd-card").forEach((c) => c.addEventListener("click", (e) => { if (e.target.closest("button")) return; const g = c.querySelector(".hd-go"); g?.classList.remove("nudge"); void g?.offsetWidth; g?.classList.add("nudge"); }));
+  scr.querySelectorAll("[data-sug]").forEach((b) => b.onclick = () => { const x = sugs[+b.dataset.sug]; if (x.paused) return resumeSession(); appTab("practice"); PR.assignedId = x.assigned ?? null; startSession({ kind: x.kind, skills: x.skills, minutes: x.minutes ?? (x.kind === "drill" ? 2 : null) }); });
 }
 
 /* ---------- Study: the track ---------- */
