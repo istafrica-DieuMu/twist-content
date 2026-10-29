@@ -18,12 +18,10 @@ function sideCtx() {
   if (document.body.classList.contains("practice")) return APP.tab ?? "start";
   return APP.home === "study" ? "study" : "lesson";
 }
-// The app's look, Home's layout (HOME_LOOK) and All units' header (STUDY_HEAD, both in app-ui.js), under every screen's controls.
-const HOME_NAMES = { card: "Card first", top: "Subjects first", slider: "Slider" };
+// The app's look and All units' header (STUDY_HEAD in app-ui.js), under every screen's controls.
 const HEAD_NAMES = { pinned: "Pinned", hides: "Hides on scroll" };
 const sideLook = () => `<div class="sx-row"><span>Look</span><span class="sx-seg">${LOOKS.map((v) => `<button class="nbtn" data-look="${v}" aria-pressed="${getLook() === v}">${v[0].toUpperCase() + v.slice(1)}</button>`).join("")}</span></div>
-  <div class="sx-row"><span>Study top</span><span class="sx-seg">${STUDY_HEADS.map((v) => `<button class="nbtn" data-studyhead="${v}" aria-pressed="${STUDY_HEAD === v}">${HEAD_NAMES[v]}</button>`).join("")}</span></div>
-  <div class="sx-row"><span>Home</span><span class="sx-seg">${HOME_LOOKS.map((v) => `<button class="nbtn" data-homelook="${v}" aria-pressed="${HOME_LOOK === v}">${HOME_NAMES[v]}</button>`).join("")}</span></div>`;
+  <div class="sx-row"><span>Study top</span><span class="sx-seg">${STUDY_HEADS.map((v) => `<button class="nbtn" data-studyhead="${v}" aria-pressed="${STUDY_HEAD === v}">${HEAD_NAMES[v]}</button>`).join("")}</span></div>`;
 function sideTop(ctx) {
   const c = PR.child, head = `<div class="sx-head"><small>On screen</small><b>${SIDE_NAME[ctx]}</b></div>`;
   if (ctx === "lesson") {
@@ -74,7 +72,6 @@ function sideWire(ctx, el) {
   const redraw = () => { saveChild(); refreshPractice(); };
   el.querySelectorAll("[data-look]").forEach((b) => b.onclick = () => { setLook(b.dataset.look); renderPracticeSide(); });
   el.querySelectorAll("[data-studyhead]").forEach((b) => b.onclick = () => { setStudyHead(b.dataset.studyhead); if (document.querySelector("#screen .st-page")) renderStudy(); renderPracticeSide(); });
-  el.querySelectorAll("[data-homelook]").forEach((b) => b.onclick = () => { setHomeLook(b.dataset.homelook); if (document.body.classList.contains("practice") && (APP.tab ?? "start") === "start") renderHomeTab(); renderPracticeSide(); });
   on("#sxSplash", () => splash());
   on("#sxPlay", () => { markActive(c); logEvent(c, "played today, set by hand"); redraw(); });
   if (ctx === "lesson") {

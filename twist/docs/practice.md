@@ -38,7 +38,7 @@ under the recap rules; everything else is practice only.
 | Catch-up (`catch-up`) | One skill at `practised` or `needs_refresh` | Full-help stage first, then some-help, then no-help | The first hint once, after a wrong answer |
 | Topic review (`review`) | A topic the child picks | No-help Practise tasks and check tasks of the topic's skills | None |
 | Skill practice (`skill`) | One skill the child picks | All three Practise stages, getting harder | None |
-| Mixed (`mixed`) | Skills the child picks in Make my own | All stages and checks | None |
+| Mixed (`mixed`) | Skills the child picks in Own session | All stages and checks | None |
 | Drill (`drill`) | A skill with a drill bank | The drill bank | None; an optional timer |
 
 - **Length.** 10 tasks for ages 4 to 5, 14 for 6 to 7, 16 for 8 to 10. A
@@ -315,34 +315,26 @@ with the four tabs, with the pretend child of the side panel as the child of
 every tab; Study shows the lesson tools beside it, the other tabs the
 pretend child and the time machine.
 
-- **Start.** At the top, the greeting (the child's name when the pretend
-  child has one) and a goal ring that fills as today's plan (a lesson and
-  some practice) gets done, with the streak in it; it opens Me. What was
-  done today shows as a done card ("Lesson done", "Practice done"); with
-  both done, a well done with the streak.
-  - **Your next lesson / Deine nächste Lektion.** One big card in the
-    subject's colour: its picture on top, the minutes, the lesson, the
-    subject in capitals, the unit and "Lesson 2 of 5" with a bar, and a
-    white Start button across the bottom. It follows the last lesson the
-    child finished (the next lesson of that unit, else the next unit,
-    else the next year); with no lesson yet, the first subject. A subject
-    with every lesson done shows a well done and Practise.
-  - **Your subjects / Deine Fächer.** The subjects three at a time, each
-    a ring that fills with the units done this year ("new" until
-    started), in a row that slides sideways without end (with more than
-    three subjects). A tap puts that subject's next lesson in the big
-    card. A mouse drags the row as a finger does.
-  - **Recommended practice / Für dich zum Üben.** The top practice
-    suggestions, two as a deck.
-  Home has three layouts, picked in the player's right panel (Home, under
-  Look; kept in the browser): Card first (the card, then the subjects,
-  the default), Subjects first (the subjects, then the card), and Slider
-  (each subject's next lesson as a big card in a row that slides sideways,
-  dots under it, and no subject row). In each, the card grows so the first
-  screen is full down to just above the tab bar, and the practice
-  suggestions start below it, out of sight until the page scrolls.
-  The Busy Bee bar shows only when the next level is three sessions away
-  or less. The pretend child's year is a school year; a foreign language
+- **Start.** As in the Twist Dashboard design. At the top, the child's
+  picture (it opens Settings), "Hallo, Mila!" / "Hi, Mila!" and the streak
+  in a ring, a flame over the count; it opens the rewards (streak, stars,
+  badges).
+  - **Your next lesson / Deine nächste Lektion.** A deck of big cards, one
+    a subject, each in the subject's colour: the minutes, the subject's
+    object (dice, book, croissant), the lesson, the subject in capitals,
+    and a white Start button across the bottom ("Carry on" for a lesson
+    left part way). A plain card peeks out under the front one; a swipe
+    or a drag turns to the next subject, and dots under the deck, a dot a
+    subject, show which. It opens on the subject the child last turned
+    to, else the one the last lesson was in (the next lesson of that
+    unit, else the next unit, else the next year); with no lesson yet,
+    the first subject. A subject with every lesson done shows a well done
+    and Practise.
+  - **Recommended practice / Empfohlenes Üben.** Up to six practice
+    suggestions as tiles in a row that slides sideways (a mouse drags it):
+    the subject's object, the subject, what is practised. A tile starts
+    its session.
+  The pretend child's year is a school year; a foreign language
   takes its learning year from it.
 - **Study.** All the structured content. At the top, two compact rows:
   back, the subject as a pill that opens the subject row, and search; then
@@ -384,88 +376,67 @@ pretend child and the time machine.
 
 ### The Practice tab
 
-From the top:
+As in the Twist Dashboard design, from the top:
 
-1. **Title.** "Üben" / "Practise" and "Was üben wir heute?" / "What shall
-   we practise today?". The greeting and the streak live on Start.
-2. **Busy Bee strip**, at the bottom and only three sessions or fewer
-   from the next level ("7 von 10 bis zum Fleißigen Bienchen" / "7 of 10
-   to the Busy Bee"); opens Me.
-3. **Suggested for you.** Up to three suggestions as a deck of cards
-   that turns by itself and by a swipe, each in the subject's colour,
-   with the kind ("Weißt du es
-   noch?" / "Do you remember?"), what it plays ("4 Sachen auffrischen" /
-   "Refresh 4 skills", the topics, "12 Aufgaben aus 2 Themen, etwa 5
-   Minuten") and a start button. Suggestions come from what the child has
-   taken: recaps, catch-up, a sprint the child has played or whose skill
-   they have begun, and a review of a topic they have begun. A child who
-   has taken nothing yet gets no suggestion; Start points to the first
-   lesson. A foreign language appears only from the year its curriculum
-   gives it a learning year (French from Year 3).
-   There is no search on the page; the builder's step 2 holds the one
-   search, and it looks through every year, so an older skill can be
-   found again.
-4. **Eigene Runde / Make my own**, a floating "+" button over the
-   page, bottom right above the tab bar: wide with its label at the top of
-   the page, a circle once scrolled, hidden while a sheet is open. Its
-   label names a round of the child's own making, next to the suggestions
-   "for you"; it is not the name of one of the four ways in it. It opens
-   a builder in two steps:
-   - **How:** three solid colour tiles in a sheet only as tall as they
-     are, Race across the top and the other two side by side, each picture
-     standing over the tile's top edge; a tap goes straight on, and the
-     sheet says nothing aloud. On a phone nothing hovers, so each open
-     tile looks like a button by itself: a thick bottom edge, a white
-     round arrow in its corner (on the two half-width tiles on a line
-     under the text) that nudges twice as the sheet opens, and a press
-     that sinks it; the tiles pop in one after the other. A tile not open
-     yet lies flat and grey with a lock. Schnell! / Race!
-     (a sprint the child has played or whose skill they have begun, else
-     a 5-minute `mixed` round of learnt skills), Wundertüte! / Surprise!
-     (`mixed` on three random learnt skills; it starts at once) and
-     Frag mich ab! / Quiz me! (`review`, no hints, on
-     learnt skills) and Selbst aussuchen / Pick my own (`mixed`, with
-     hints, on the skills the child taps). Its step 2 has the search,
-     subject chips, then "Noch üben" / "Needs practice" (skills at
-     `practised` or `needs_refresh`, or with a lesson check that had a
-     miss) above "Kannst du schon" / "You know these"; a search shows hits
-     from every year. Under the list: the time (5, 10 or 15 minutes; a
-     typed length wins) and a Hints switch (off plays `review` when every
-     picked skill is learnt). The youngest see the topic's mascot on each
-     card. A card with
-     nothing to play is greyed out: "Nach deiner ersten Lektion" / "After
-     your first lesson". Older bands get plainer names (Auf Zeit / Timed,
-     Zufall / Random, Wiederholen / Review). No new session kinds.
-   - **What:** up to 7, a subject by its picture (only subjects with
-     something for that type), and the app picks the skills; in Pick my
-     own the child taps the skills, as many as they like: each card has a
-     box to tick on its right, filled in the subject's colour once picked,
-     the line over the list says "Mehrere gehen auch!" / "You can pick
-     more than one!", and the button counts them ("Diese 3 üben" /
-     "Practise these 3"; "Wähle etwas aus" / "Pick something first"
-     while none is picked). A race takes one, so its cards have a round
-     dot. From 8, the
-     one search ("Suchen: Uhr, Plus, Nomen …"), topic words as chips, a
-     subject filter, and the skills as cards with their short title, topic
-     and stars; the suggestion is chosen already, so "Los geht's" starts at
-     once. Without a search the cards are what the type can play, this
-     year first; a search looks through every year. A typed request ("10
-     Minuten Einmaleins mit 7") is read by `parseRequest`, as described
-     under Typed requests, and its minutes set the length. Again on a
-     skill not learnt yet plays it as `mixed`, with hints.
-5. **Sprints.** One row, "Schnell rechnen und lesen, gegen die Uhr" /
-   "Quick maths and reading, against the clock", opening every bank of
-   the curriculum by subject; a bank opens its drill map.
-6. **Ein Fach üben / Practise a subject.** A row of cards that slides
-   sideways, two and a bit in view: the subject's object (dice, book,
-   cup, tree), its name in capitals, the topic the child is at, and a bar
-   of the units done this year. A subject opens a page in its
-   colour with the topics of the child's year, each with a ring for its
-   stars and "Drill" when it has one; "Alle Klassen" / "All years" shows
-   every year. An open topic starts with "Ganzes Thema wiederholen" /
-   "Review the whole topic", then its skills, each with stars, "Üben" /
-   "Practise" (skill practice) and, with a drill bank, "Drill" (the drill
-   map).
+1. **Title.** "Üben" / "Practice" and "Was üben wir heute?" / "What shall
+   we practise today?", with the mascot. The greeting and the streak live
+   on Start.
+2. **Suggested for you / Für dich.** Up to three suggestions as a deck of
+   cards that turns by itself and by a swipe. Each card is light in the
+   subject's colour and edged in it: the subject in capitals, what it
+   plays (the lesson set, the topic, or a recap's topics), the subject's
+   object, and "Übung starten" / "Start practice" across the bottom.
+   Suggestions come from what the child has taken: recaps, catch-up, a
+   sprint the child has played or whose skill they have begun, and a
+   review of a topic they have begun. A child who has taken nothing yet
+   gets no suggestion; Start points to the first lesson. A foreign
+   language appears only from the year its curriculum gives it a learning
+   year (French from Year 3).
+3. **Ein Fach üben / Practise a subject.** A tile a subject in a row that
+   slides sideways: its object, its name and a bar of the units done this
+   year. A tile opens Own session on that subject.
+4. **Spiele zum Üben / Practice games.** Three tiles; the app picks what
+   is practised:
+   - **Wettlauf / Race** (a clock): the sprints of the curriculum by
+     subject, each opening its drill map; where the curriculum has no
+     drill bank, a 5-minute `mixed` round of three learnt skills.
+   - **Frag mich ab / Quiz me** (a light bulb): `review`, no hints, on
+     three learnt skills at random; first How long, then go.
+   - **Wundertüte / Surprise** (a present): `mixed` on three learnt
+     skills at random, 10 minutes; it starts at once.
+   Until the child has learnt something, Quiz me and Surprise lie flat
+   and grey with "Nach deiner ersten Lektion" / "After your first lesson".
+5. **Eigene Runde / Own session**, a floating "+" button over the page,
+   bottom right above the tab bar: wide with its label at the top of the
+   page, a circle once scrolled, hidden while a sheet is open. Its flow
+   has two screens:
+   - **What.** A sheet over the dimmed page. The mascot asks "Was
+     möchtest du üben?" / "What do you want to practise?"; under it the
+     search ("Suchen: Uhr, Plus, Nomen …"), then the subjects as chips, one open at a time (the subject of the top
+     suggestion, or the tile tapped). Then the skills the child has learnt
+     in that subject, this year first: "Noch üben" / "Needs practice"
+     (skills at `practised` or `needs_refresh`, or with a lesson check
+     that had a miss) above "Kannst du schon" / "You know these". Each
+     row has a stripe in the subject's colour, the unit and its topic,
+     and the stars; a tap picks it (tinted and edged in its colour, a
+     filled tick) and another tap drops it. From the first pick on, every
+     row shows a round box to tick, so the rest read as pickable too. Skills from several subjects can be picked; a
+     chip shows how many are picked in it. "Los geht's" / "Let's go"
+     waits until something is picked. A subject with nothing learnt says
+     to do a lesson first. The search looks through every year of the
+     child's subjects, learnt or not, and shows its hits from every
+     subject ("4 found") in place of the chips. A typed request ("10
+     Minuten Einmaleins mit 7") is read by `parseRequest` (Typed
+     requests): its subject, topics or skills narrow the hits, and its
+     minutes are the length How long starts on.
+   - **How long.** A screen of its own over the app: the session's name
+     on top ("Mathe üben" / "Maths practice", or "Gemischt üben" / "Mixed
+     practice" across subjects) with a way out, the mascot, "Wie lange
+     möchtest du üben?" / "How long would you like to practise?", 5, 10
+     or 15 minutes (10 to start with, or a typed request's length) and "Los geht's" / "Let's go". It
+     plays `mixed`, with hints.
+   There is no hints switch: the games cover the timed, the random and
+   the no-hints rounds. No new session kinds.
 
 The kinds as the child sees them:
 

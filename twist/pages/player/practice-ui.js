@@ -4,8 +4,8 @@
    practice-rules.mjs, inlined above this file by build.mjs. */
 const PR = { on: false, home: false, child: null, index: null, session: null, items: [], res: [], shownAt: 0, saved: null };
 const PTXT = {
-  de: { hello: "Hallo! Was üben wir heute?", helloSub: "Was üben wir heute?", subjectsPractice: "Ein Fach üben", doneTitle: "Übungsrunden geschafft", size: (n, m) => `${n} Aufgaben, etwa ${m} Minuten`, drillSize: (m) => `${m} Minuten, so schnell du kannst`, subjects: "Deine Fächer", stars: (a, b) => `${a} von ${b} Sternen`, practise: "Üben", back: "Zurück", allYears: "Alle Klassen", myYear: "Nur meine Klasse", skillsN: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, reviewTopic: "Ganzes Thema wiederholen", noneHere: "Hier gibt es in deiner Klasse nichts. Tippe auf Alle Klassen.", found: (n) => `${n} gefunden`, noHits: "Nichts gefunden. Versuch ein anderes Wort.", gSubject: "Fach", gTopic: "Thema", gTime: "Wie lange?", gKind: "Wie?", understood: (ws) => `Verstanden: ${ws.join(", ")}`, title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Sprint", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Sprint", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, rightOf: (r, n) => `${r} von ${n} richtig!`, done: "Fertig", askPh: "z. B. „10 Minuten Einmaleins“", examples: ["10 Minuten Einmaleins mit 7", "Plus und Minus wiederholen", "Wörter schnell lesen"], understoodT: "Verstanden", startThis: "Das üben", skillsFound: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, own: "Eigene Runde", ownSub: "Wähle selbst, wie und was du übst", moreTopics: (n) => `+ ${n} mehr`, fewer: "Weniger", kindDesc: { mixed: "Aufgaben aus allen gewählten Themen", drill: "Schnelle Aufgaben gegen die Uhr", review: "Ohne Tipps, wie eine kleine Probe", "catch-up": "Mit Tipps, Schritt für Schritt" }, tasksFrom: (n, t) => `${n} Aufgaben aus ${t} ${t === 1 ? "Thema" : "Themen"}`, minsShort: (m) => `${m} Min`, beeBar: (a, b) => `${a} von ${b} bis zum Fleißigen Bienchen`, beeUp: "Neues Abzeichen: Fleißiges Bienchen!", whole: "Alles", drills: "Sprints", drillsSub: "Schnell rechnen und lesen, gegen die Uhr", allDrills: "Alle Sprints", notTried: "Noch nicht gespielt", hearAgain: "Nochmal hören", colourN: "Farbe", recapNow: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} auffrischen`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
-  en: { hello: "Hi! What shall we practise today?", helloSub: "What shall we practise today?", subjectsPractice: "Practise a subject", doneTitle: "Practice sessions finished", size: (n, m) => `${n} tasks, about ${m} minutes`, drillSize: (m) => `${m} minutes, as fast as you can`, subjects: "Your subjects", stars: (a, b) => `${a} of ${b} stars`, practise: "Practise", back: "Back", allYears: "All years", myYear: "Just my year", skillsN: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, reviewTopic: "Review the whole topic", noneHere: "Nothing here for your year. Tap All years.", found: (n) => `${n} found`, noHits: "Nothing found. Try another word.", gSubject: "Subject", gTopic: "Topic", gTime: "How long?", gKind: "How?", understood: (ws) => `Understood: ${ws.join(", ")}`, title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, rightOf: (r, n) => `${r} of ${n} right!`, done: "Done", askPh: "e.g. “10 minutes of times tables”", examples: ["10 minutes of the 7 times table", "Review adding and subtracting", "Read words quickly"], understoodT: "Understood", startThis: "Practise this", skillsFound: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, own: "Make my own", ownSub: "Choose how and what to practise", moreTopics: (n) => `+ ${n} more`, fewer: "Fewer", kindDesc: { mixed: "Tasks from every topic you picked", drill: "Quick tasks against the clock", review: "No hints, like a little test", "catch-up": "With hints, step by step" }, tasksFrom: (n, t) => `${n} tasks from ${t} ${t === 1 ? "topic" : "topics"}`, minsShort: (m) => `${m} min`, beeBar: (a, b) => `${a} of ${b} to the Busy Bee`, beeUp: "New badge: Busy Bee!", whole: "Everything", drills: "Drills", drillsSub: "Quick maths and reading, against the clock", allDrills: "All drills", notTried: "Not played yet", hearAgain: "Hear it again", colourN: "Colour", recapNow: (n) => `Refresh ${n} ${n === 1 ? "skill" : "skills"}`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
+  de: { hello: "Hallo! Was üben wir heute?", helloSub: "Was üben wir heute?", subjectsPractice: "Ein Fach üben", doneTitle: "Übungsrunden geschafft", size: (n, m) => `${n} Aufgaben, etwa ${m} Minuten`, drillSize: (m) => `${m} Minuten, so schnell du kannst`, subjects: "Deine Fächer", stars: (a, b) => `${a} von ${b} Sternen`, practise: "Üben", back: "Zurück", allYears: "Alle Klassen", myYear: "Nur meine Klasse", skillsN: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, reviewTopic: "Ganzes Thema wiederholen", noneHere: "Hier gibt es in deiner Klasse nichts. Tippe auf Alle Klassen.", found: (n) => `${n} gefunden`, noHits: "Nichts gefunden. Versuch ein anderes Wort.", gSubject: "Fach", gTopic: "Thema", gTime: "Wie lange?", gKind: "Wie?", understood: (ws) => `Verstanden: ${ws.join(", ")}`, title: "Üben", suggested: "Für dich", search: "Suchen: Einmaleins, Plus, Wörter …", browse: "Alles zum Üben", drill: "Sprint", start: "Los geht's", make: "Selbst zusammenstellen", ask: "Was möchtest du üben?", read: "Verstehen", none: "Das habe ich nicht verstanden. Wähle unten aus.", minutes: "Minuten", kinds: { mixed: "Gemischt", drill: "Sprint", review: "Wiederholen", "catch-up": "Nachholen", skill: "Gezielt üben", recaps: "Weißt du es noch?" }, right: (n) => `${n} richtig!`, rightOf: (r, n) => `${r} von ${n} richtig!`, done: "Fertig", askPh: "z. B. „10 Minuten Einmaleins“", examples: ["10 Minuten Einmaleins mit 7", "Plus und Minus wiederholen", "Wörter schnell lesen"], understoodT: "Verstanden", startThis: "Das üben", skillsFound: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} zum Üben`, own: "Eigene Runde", ownSub: "Wähle selbst, was du übst", startPr: "Übung starten", moreTopics: (n) => `+ ${n} mehr`, fewer: "Weniger", kindDesc: { mixed: "Aufgaben aus allen gewählten Themen", drill: "Schnelle Aufgaben gegen die Uhr", review: "Ohne Tipps, wie eine kleine Probe", "catch-up": "Mit Tipps, Schritt für Schritt" }, tasksFrom: (n, t) => `${n} Aufgaben aus ${t} ${t === 1 ? "Thema" : "Themen"}`, minsShort: (m) => `${m} Min`, beeBar: (a, b) => `${a} von ${b} bis zum Fleißigen Bienchen`, beeUp: "Neues Abzeichen: Fleißiges Bienchen!", whole: "Alles", drills: "Sprints", drillsSub: "Schnell rechnen und lesen, gegen die Uhr", allDrills: "Alle Sprints", notTried: "Noch nicht gespielt", hearAgain: "Nochmal hören", colourN: "Farbe", recapNow: (n) => `${n} ${n === 1 ? "Sache" : "Sachen"} auffrischen`, firstOf: (r, n) => `${r} von ${n} beim ersten Versuch richtig`, better: "Besser geworden:", perMin: (n) => `${n} pro Minute`, record: (n) => `Neuer Rekord: ${n} pro Minute!`, back: "Zurück zum Üben", again: "Nochmal" },
+  en: { hello: "Hi! What shall we practise today?", helloSub: "What shall we practise today?", subjectsPractice: "Practise a subject", doneTitle: "Practice sessions finished", size: (n, m) => `${n} tasks, about ${m} minutes`, drillSize: (m) => `${m} minutes, as fast as you can`, subjects: "Your subjects", stars: (a, b) => `${a} of ${b} stars`, practise: "Practise", back: "Back", allYears: "All years", myYear: "Just my year", skillsN: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, reviewTopic: "Review the whole topic", noneHere: "Nothing here for your year. Tap All years.", found: (n) => `${n} found`, noHits: "Nothing found. Try another word.", gSubject: "Subject", gTopic: "Topic", gTime: "How long?", gKind: "How?", understood: (ws) => `Understood: ${ws.join(", ")}`, title: "Practice", suggested: "Suggested for you", search: "Search: times tables, adding, words …", browse: "Everything to practise", drill: "Drill", start: "Start", make: "Make my own", ask: "What do you want to practise?", read: "Read it", none: "I didn't understand that. Pick below.", minutes: "minutes", kinds: { mixed: "Mixed", drill: "Drill", review: "Review", "catch-up": "Catch up", skill: "Skill practice", recaps: "Do you remember?" }, right: (n) => `${n} right!`, rightOf: (r, n) => `${r} of ${n} right!`, done: "Done", askPh: "e.g. “10 minutes of times tables”", examples: ["10 minutes of the 7 times table", "Review adding and subtracting", "Read words quickly"], understoodT: "Understood", startThis: "Practise this", skillsFound: (n) => `${n} ${n === 1 ? "thing" : "things"} to practise`, own: "Own session", ownSub: "Choose what to practise", startPr: "Start practice", moreTopics: (n) => `+ ${n} more`, fewer: "Fewer", kindDesc: { mixed: "Tasks from every topic you picked", drill: "Quick tasks against the clock", review: "No hints, like a little test", "catch-up": "With hints, step by step" }, tasksFrom: (n, t) => `${n} tasks from ${t} ${t === 1 ? "topic" : "topics"}`, minsShort: (m) => `${m} min`, beeBar: (a, b) => `${a} of ${b} to the Busy Bee`, beeUp: "New badge: Busy Bee!", whole: "Everything", drills: "Drills", drillsSub: "Quick maths and reading, against the clock", allDrills: "All drills", notTried: "Not played yet", hearAgain: "Hear it again", colourN: "Colour", recapNow: (n) => `Refresh ${n} ${n === 1 ? "skill" : "skills"}`, firstOf: (r, n) => `${r} of ${n} right first time`, better: "You got better at:", perMin: (n) => `${n} a minute`, record: (n) => `New record: ${n} a minute!`, back: "Back to practice", again: "Again" },
 };
 const PL = () => (PR.child?.curriculum === "en-GB" ? "en" : "de");
 const PT = () => PTXT[PL()];
@@ -35,8 +35,9 @@ function closePractice() {
   if (PR.saved) { ({ set, lesson, steps, results, at } = PR.saved); PR.saved = null; go(at); }
 }
 
-// The Practice home: one large suggestion in its subject's colour, two smaller
-// ones, search, and the child's subjects with their stars.
+// The Practice home, as in the Twist Dashboard design: what Twist suggests, as a deck; the
+// subjects, each opening Own session on itself; the games (Race, Quiz me, Surprise); and Own
+// session floating over the page.
 const KIND_POSE = { recaps: "learn-2", "catch-up": "practise-1", drill: "check-2", review: "learn-3", skill: "practise-3", mixed: "practise-2" };
 const setOfSkill = (k) => PR.index.bySkill[k]?.set;
 const subjOfSkill = (k) => setOfSkill(k)?.id.split(".")[1];
@@ -52,44 +53,35 @@ function sizeOf(card) {
   const n = card.kind === "recaps" ? Math.min(card.skills.length, Math.floor(b.tasks / b.recapTasks)) * b.recapTasks : b.tasks;
   return PT().size(n, Math.max(2, Math.round(n * 0.4)));
 }
-// A recap's size with how many topics it covers ("12 tasks from 4 topics, about 5 minutes").
-function sizeLine(card) {
-  const L = PT(), b = BANDS[PR.child.band];
-  if (card.kind !== "recaps" || card.paused) return sizeOf(card);
-  const ks = card.skills.slice(0, Math.floor(b.tasks / b.recapTasks)), t = new Set(ks.map((k) => setOfSkill(k)?.topic?.[PL()])).size, n = ks.length * b.recapTasks;
-  return `${L.tasksFrom(n, t)}, ${L.size(n, Math.max(2, Math.round(n * 0.4))).split(", ")[1]}`;
-}
 const CHEVRON = '<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LENS = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>';
 
 function renderPracticeHome() {
   appChild();
-  const L = PT(), lg = PL(), scr = $("#screen");
-  const cards = mySuggestions().slice(0, 3);
-  const bee = busyBee(PR.child.sessions);
+  const L = PT(), K = MKTXT[PL()], scr = $("#screen");
+  const cards = mySuggestions().slice(0, 3), can = gamesOpen();
   scr.style.setProperty("--subj", "#6849dd"); scr.style.removeProperty("--top");
   scr.innerHTML = `<div class="status"></div><div class="pr-home app-page">
     <header class="pg-top fun-band" style="--room:${ROOM.practice}"><div><h2>${esc(AT().practice)}</h2><small>${esc(L.helloSub)}</small></div><img src="${A}mascot/practise-1.png" alt=""></header>
     <div id="prMain">
       ${cards.length ? `<h3 class="pr-h">${esc(L.suggested)}</h3>${cards.length > 1 ? deckOf(cards.map(card)) : card(cards[0])}` : ""}
-      <div id="prList"></div>
-      ${Object.keys(PR.index.drills).length ? `<button class="pr-sprints" id="prAllDr"><i>${KIND_ICON.drill}</i><span><b>${esc(L.drills)}</b><small>${esc(L.drillsSub)}</small></span>${CHEVRON}</button>` : ""}
-      ${bee.next && bee.next - PR.child.sessions <= 3 ? beeStrip() : ""}
+      <h3 class="pr-h">${esc(L.subjectsPractice)}</h3><div class="ps-row">${appSubjects().map(subjCard).join("")}</div>
+      <h3 class="pr-h">${esc(K.games)}</h3><div class="ps-row">${Object.entries(K.types).map(([t, name]) => `<button class="ps-card ps-game" data-g="${t}"${can[t] ? "" : " disabled"}><img src="${A}${MK_PIC[t]}" alt="" draggable="false"><b>${esc(name)}</b>${can[t] ? "" : `<small>${esc(K.later)}</small>`}</button>`).join("")}</div>
     </div></div>`;
-  // Choose my own floats over the page, above the tabs: wide with its name at first, a round "+" once the page scrolls.
+  // Own session floats over the page, above the tabs: wide with its name at first, a round "+" once the page scrolls.
   const fab = document.createElement("button"); fab.className = "pr-own-fab"; fab.id = "prOwn";
   fab.setAttribute("aria-label", `${L.own}: ${L.ownSub}`);
   fab.innerHTML = `<span class="pr-own-fab-i" aria-hidden="true">+</span><b>${esc(L.own)}</b>`;
   scr.append(fab, appTabs("practice"));
   const pg = $(".app-page", scr); pg.addEventListener("scroll", () => fab.classList.toggle("mini", pg.scrollTop > 40), { passive: true });
   wireHeader(scr); wireRow(scr);
+  scr.querySelectorAll(".ps-row").forEach(dragRow);
   scr.querySelectorAll("[data-card]").forEach((b) => b.onclick = () => { const c = cards[+b.dataset.card]; if (c.paused) return resumeSession(); PR.assignedId = c.assigned ?? null; startSession({ kind: c.kind, skills: c.skills, minutes: c.minutes ?? (c.kind === "drill" ? 2 : null) }); });
+  scr.querySelectorAll("[data-subj]").forEach((b) => b.onclick = () => openMakeSheet(b.dataset.subj));
+  scr.querySelectorAll("[data-g]").forEach((b) => b.onclick = () => playGame(b.dataset.g));
   $("#prOwn").onclick = () => openMakeSheet();
-  $("#prAllDr")?.addEventListener("click", () => renderDrills());
-  renderSubjects();
   // The same card as Start's practice suggestions (practiceCard in app-ui.js).
   function card(c) { return practiceCard(c, `data-card="${cards.indexOf(c)}"`); }
-
 }
 // What a card holds, in a line: the topics of a recap, the drill's set, the skill.
 function cardSub(c) {
@@ -104,78 +96,13 @@ function cardSub(c) {
 const starCount = (skills) => skills.reduce((n, k) => n + STARS[PR.child.states[k]?.state ?? "not_started"], 0);
 const yearSkills = (subj) => { if (!offered(subj)) return []; const mine = PR.index.sets.filter((s) => s.id.split(".")[1] === subj && s.year === childYearFor(subj)); return (mine.length ? mine : PR.index.sets.filter((s) => s.id.split(".")[1] === subj)).map(stateKey); };
 
-// The subjects as cards in a row that slides sideways: the subject's object, its name, the topic
-// the child is at, and a bar of its units done; a tap opens that subject's practice by topic.
+// A subject as a tile in a row that slides sideways: its object, its name, and a bar of its units
+// done this year.
 function subjCard(x) {
-  const lg = PL(), sets = courseSets(x), done = sets.filter((s_) => lessonsDone(s_) >= s_.lessons.length).length, at = nextIn(sets) ?? sets.at(-1);
-  const pct = sets.length ? (100 * done) / sets.length : 0;
-  return `<button class="ps-card" data-subj="${esc(x)}" style="--c:${colourOf(x)}"><img src="${A}objects/${subjObject(x)}.png" alt=""><small>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</small><b>${esc(at?.topic?.[lg] ?? at?.title?.[lg] ?? "")}</b><i class="ps-bar" aria-label="${esc(AT().unitsOf(done, sets.length))}"><i style="width:${pct}%"></i></i></button>`;
-}
-function renderSubjects() {
-  const L = PT(), el = $("#prList");
-  el.innerHTML = `<h3 class="pr-h">${esc(L.subjectsPractice)}</h3><div class="ps-row scroll-fade">${appSubjects().map(subjCard).join("")}</div>`;
-  scrollFades(el);
-  el.querySelectorAll("[data-subj]").forEach((b) => b.onclick = () => renderSubject(b.dataset.subj));
-}
-// What kind of practice a card is, as a small icon in the subject colour.
-const KIND_ICON = {
-  recaps: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12a7 7 0 1 1-2.1-5M19 4.5V8h-3.5"/></svg>',
-  "catch-up": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M6.5 11.5L12 6l5.5 5.5"/></svg>',
-  drill: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5.5 13.5H12L11 21l7.5-10.5H12z"/></svg>',
-  review: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M7.5 5h9"/></svg>',
-  skill: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg>',
-  mixed: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3.5l9 10H20M4 17h3.5l2.5-2.8M14 9.8L16.5 7H20M17.5 4.5L20 7l-2.5 2.5M17.5 14.5L20 17l-2.5 2.5"/></svg>',
-};
-
-// A skill: its "I can" line, its stars, and what the child can start.
-function skillRow(k, withSubject = false) {
-  const L = PT(), row = document.createElement("div"); row.className = "pr-skill"; row.style.setProperty("--c", colourOf(subjOfSkill(k)));
-  const n = STARS[PR.child.states[k]?.state ?? "not_started"], refresh = PR.child.states[k]?.state === "needs_refresh";
-  row.innerHTML = `<span class="pr-skill-t">${withSubject ? `<small>${esc(SUBJ_NAME[PR.child.curriculum][subjOfSkill(k)] ?? "")}</small>` : ""}${esc(canDoOf(k))}</span>
-    <span class="pr-stars" aria-label="${n} / 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}">★</i>`).join("")}${refresh ? '<em title="refresh">↻</em>' : ""}</span>
-    <span class="pr-acts"><button class="pr-play">${esc(L.practise)}</button>${PR.index.drills[k] ? `<button class="pr-drill">${esc(L.drill)}</button>` : ""}</span>`;
-  row.querySelector(".pr-play").onclick = () => startSession({ kind: ["practised", "needs_refresh"].includes(PR.child.states[k]?.state) ? "catch-up" : "skill", skills: [k] });
-  row.querySelector(".pr-drill")?.addEventListener("click", () => renderDrillMap(k));
-  return row;
+  const sets = courseSets(x), done = sets.filter((s_) => lessonsDone(s_) >= s_.lessons.length).length, pct = sets.length ? (100 * done) / sets.length : 0;
+  return `<button class="ps-card" data-subj="${esc(x)}" style="--c:${colourOf(x)}"><img src="${A}objects/${subjObject(x)}.png" alt="" draggable="false"><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b><i class="ps-bar" aria-label="${esc(AT().unitsOf(done, sets.length))}"><i style="width:${pct}%"></i></i></button>`;
 }
 
-function ring(got, max, colour) {
-  const r = 15, c = 2 * Math.PI * r, f = max ? got / max : 0;
-  return `<svg class="pr-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="${r}" fill="none" stroke="#ececec" stroke-width="6"/>
-    <circle cx="20" cy="20" r="${r}" fill="none" stroke="${colour}" stroke-width="6" stroke-linecap="round" stroke-dasharray="${(f * c).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 20 20)"/></svg>`;
-}
-
-function renderSubject(subj, allYears = false) {
-  const L = PT(), lg = PL(), scr = $("#screen"), colour = colourOf(subj);
-  scr.style.setProperty("--top", colour);
-  const topics = PR.index.topics.filter((t) => t.subject === subj)
-    .map((t) => ({ ...t, skills: allYears ? t.skills : t.skills.filter((k) => setOfSkill(k)?.year === PR.child.year) }))
-    .filter((t) => t.skills.length);
-  scr.innerHTML = `<div class="status"></div><div class="pr-home pr-page app-page">
-    <header class="pr-band" style="--c:${colour}"><button class="pr-back" aria-label="${esc(L.back)}">${CHEVRON}</button>
-      <h2>${esc(SUBJ_NAME[PR.child.curriculum][subj] ?? subj)}</h2><small>${esc(allYears ? L.allYears : yearName(PR.child.year))}</small></header>
-    <div id="prTopics"></div>
-    <button class="pr-more">${esc(allYears ? L.myYear : L.allYears)}</button></div>`;
-  $(".pr-back", scr).onclick = () => renderPracticeHome();
-  $(".pr-more", scr).onclick = () => renderSubject(subj, !allYears);
-  const box = $("#prTopics", scr);
-  for (const t of topics) {
-    const d = document.createElement("details"); d.className = "pr-topic";
-    const got = starCount(t.skills), max = t.skills.length * 3;
-    const drills = t.skills.filter((k) => PR.index.drills[k]).length;
-    d.innerHTML = `<summary>${ring(got, max, colour)}<span><b>${esc(t.name[lg] ?? t.name.en)}</b><small>${esc(L.skillsN(t.skills.length))}${drills ? ` · <em class="pr-dchip">${esc(L.drill)}</em>` : ""}</small></span>${CHEVRON}</summary>`;
-    const review = document.createElement("button"); review.className = "pr-review"; review.textContent = L.reviewTopic;
-    review.onclick = () => startSession({ kind: "review", skills: t.skills });
-    if (t.skills.length > 1) d.appendChild(review);
-    t.skills.forEach((k) => d.appendChild(skillRow(k)));
-    box.appendChild(d);
-  }
-  if (!topics.length) box.innerHTML = `<p class="pr-empty">${esc(L.noneHere)}</p>`;
-  scr.appendChild(appTabs("practice"));
-}
-
-// Filler words a search for skills leaves out (Choose my own, step 2).
-const STOP = new Set("ich will möchte mag gerne bitte mal noch nochmal üben ueben lernen mit und oder die der das den dem ein eine einen zum zur im in von für minuten minute min i want would like to please practise practice learn some the a an of with and or for minutes minute mins my me".split(" "));
 function startSession({ kind, skills = [], minutes = null, topics = [], tricky = false, focus = null }) {
   const fromTopics = topics.flatMap((key) => PR.index.topics.find((t) => t.key === key)?.skills ?? []);
   const all = [...new Set([...skills, ...fromTopics])];
@@ -563,25 +490,22 @@ function refreshPractice() {
   renderPracticeSide();
 }
 
-// Choose my own, for children of 6 to 8 first: the page dims and the sheet covers most of the
-// screen; the mascot asks and the child answers with big picture cards. Step 1, how (a tap goes on):
-// Schnell! (a race against the clock: a sprint where the subject has a drill bank, else a short
-// mixed round), Wundertüte (three skills the child has learnt, at random; it starts at once)
-// or Frag mich ab! / Quiz me! (a review, without hints, of something learnt). Step 2, what: up to 7 a subject by
-// its picture, and the app picks the skills; from 8 the search, topic words and the skills, with
-// one big button at the bottom. All existing session kinds of practice-rules.mjs.
+// Own session and the games. Own session: a sheet over the dimmed page, where the mascot asks
+// and the child taps the skills it has learnt, one subject at a time (several, from several
+// subjects, can be picked), what needs practice first; then a screen of its own asks how long
+// (5, 10 or 15 minutes) and starts a mixed round, with hints. The games pick for the child:
+// Race (a sprint against the clock; the sprints to choose from, or a short round where the
+// subject has none), Quiz me (three things learnt, no hints; how long, then go) and Surprise
+// (three things learnt, at random; it starts at once). Until the child has learnt something,
+// the games wait.
 const MKTXT = {
-  de: { how: "Wie willst du üben?", what: "Was willst du üben?", whatSubj: "Welches Fach?", types: { race: ["Schnell!", "2 Minuten gegen die Uhr"], surprise: ["Wundertüte!", "Twist sucht 3 Sachen aus, die du kannst"], again: ["Frag mich ab!", "Was du gelernt hast, ohne Tipps"], mine: ["Selbst aussuchen", "Du wählst, was du übst"] },
-    older: { how: "Wie willst du üben?", types: { race: ["Auf Zeit", "Ein Sprint gegen die Uhr"], surprise: ["Zufall", "Drei Fähigkeiten, die du schon kannst"], again: ["Wiederholen", "Ohne Tipps, wie ein kurzer Test"], mine: ["Eigene Auswahl", "Wähle die Fähigkeiten selbst, mit Tipps"] } },
-    find: "Suchen: Uhr, Plus, Nomen …", ideas: "Vorschläge", hits: (n) => `${n} gefunden`, none: "Nichts gefunden. Probier ein anderes Wort.", all: "Alle", tapYours: "Tippe an, was du üben willst. Mehrere gehen auch!", pickFirst: "Wähle etwas aus", goN: (n) => n === 1 ? "Das üben" : `Diese ${n} üben`, weakH: "Noch üben", knowH: "Kannst du schon", time: "Zeit", mins: (n) => `${n} Min.`, hints: "Mit Tipps", later: "Nach deiner ersten Lektion", go: "Los geht's", back: "Zurück", close: "Schließen" },
-  en: { how: "How do you want to practise?", what: "What do you want to practise?", whatSubj: "Which subject?", types: { race: ["Race!", "2 minutes against the clock"], surprise: ["Surprise!", "Twist picks 3 things you know"], again: ["Quiz me!", "What you've learnt, no hints"], mine: ["Pick my own", "You choose what to practise"] },
-    older: { how: "How do you want to practise?", types: { race: ["Timed", "A sprint against the clock"], surprise: ["Random", "Three skills you already know"], again: ["Review", "No hints, like a short test"], mine: ["Custom", "Pick the skills yourself, with hints"] } },
-    find: "Search: clock, plus, nouns …", ideas: "Ideas for you", hits: (n) => `${n} found`, none: "Nothing found. Try another word.", all: "All", tapYours: "Tap what you want to practise. You can pick more than one!", pickFirst: "Pick something first", goN: (n) => n === 1 ? "Practise this" : `Practise these ${n}`, weakH: "Needs practice", knowH: "You know these", time: "Time", mins: (n) => `${n} min`, hints: "Hints", later: "After your first lesson", go: "Let's go", back: "Back", close: "Close" },
+  de: { find: "Suchen: Uhr, Plus, Nomen …", hits: (n) => `${n} gefunden`, noHits: "Nichts gefunden. Probier ein anderes Wort.", what: "Was möchtest du üben?", games: "Spiele zum Üben", types: { race: "Wettlauf", again: "Frag mich ab", surprise: "Wundertüte" }, later: "Nach deiner ersten Lektion", none: "Hier hast du noch nichts gelernt. Mach zuerst eine Lektion!", weakH: "Noch üben", knowH: "Kannst du schon", go: "Los geht's", close: "Schließen", howLong: "Wie lange möchtest du üben?", mins: (n) => `${n} Min.`, subjPractice: (x) => `${x} üben`, mixed: "Gemischt üben" },
+  en: { find: "Search: clock, plus, nouns …", hits: (n) => `${n} found`, noHits: "Nothing found. Try another word.", what: "What do you want to practise?", games: "Practice games", types: { race: "Race", again: "Quiz me", surprise: "Surprise" }, later: "After your first lesson", none: "Nothing learnt here yet. Do a lesson first!", weakH: "Needs practice", knowH: "You know these", go: "Let's go", close: "Close", howLong: "How long would you like to practise?", mins: (n) => `${n} min`, subjPractice: (x) => `${x} practice`, mixed: "Mixed practice" },
 };
 // How the app presents itself to the child's age band, in one place. The youngest pick by
-// picture; 8-10 get pictures with short text and the search; the Sekundarstufe I bands (11-13,
-// 14-16, still to come) get text first, compact cards and no mascot. A band the player does not
-// know gets the 8-10 presentation.
+// picture; 8-10 get pictures with short text; the Sekundarstufe I bands (11-13, 14-16, still to
+// come) get text first, compact cards and no mascot. A band the player does not know gets the
+// 8-10 presentation.
 const BAND_UI = {
   "4-5": { pick: "subject", mascot: true, dense: false, words: "young" },
   "6-7": { pick: "subject", mascot: true, dense: false, words: "young" },
@@ -590,120 +514,101 @@ const BAND_UI = {
   "14-16": { pick: "skill", mascot: false, dense: true, words: "older" },
 };
 const bandUI = () => BAND_UI[PR.child?.band] ?? BAND_UI["8-10"];
-const MK_PIC = { race: "mascot/topic-time.png", surprise: "objects/present.png", again: "mascot/learn-2.png", mine: "mascot/practise-3.png" };
-// The words a skill can be found by: its "I can" line, topic, unit title and subject.
+const MK_PIC = { race: "objects/clock.png", again: "objects/light-bulb.png", surprise: "objects/present.png" };
+// The words a skill can be found by: its "I can" line, topic, unit title and subject; and the
+// filler words a search leaves out.
 const skillHay = (k) => { const s_ = setOfSkill(k), tp = s_?.topic ?? {}; return [canDoOf(k), tp.de, tp.en, s_?.title?.de, s_?.title?.en, SUBJ_NAME[PR.child.curriculum][subjOfSkill(k)]].join(" ").toLowerCase(); };
+const STOP = new Set("ich will möchte mag gerne bitte mal noch nochmal üben ueben lernen mit und oder die der das den dem ein eine einen zum zur im in von für minuten minute min i want would like to please practise practice learn some the a an of with and or for minutes minute mins my me".split(" "));
 const learnt = (k) => !["not_started", "learning", undefined].includes(PR.child.states[k]?.state);
-function openMakeSheet() {
-  const U = bandUI(), K0 = MKTXT[PL()], K = U.words === "older" ? { ...K0, ...K0.older } : K0, lg = PL(), scr = $("#screen"), young = U.pick === "subject";
+// What the child has learnt, this year's first, from the subjects it has.
+function learntSkills() {
+  const yearKs = PR.index.subjects.flatMap((x) => yearSkills(x));
+  const allKs = [...new Set([...yearKs, ...PR.index.sets.filter((s_) => offered(s_.id.split(".")[1])).map(stateKey)])];
+  return allKs.filter(learnt);
+}
+const pickRandom = (xs, n) => xs.map((k) => [Math.random(), k]).sort((x, y) => x[0] - y[0]).map(([, k]) => k).slice(0, n);
+const gamesOpen = () => { const n = learntSkills().length; return { race: n > 0 || Object.keys(PR.index.drills).length > 0, again: n > 0, surprise: n > 0 }; };
+function playGame(t) {
+  const K = MKTXT[PL()], known = learntSkills();
+  if (t === "race") return Object.keys(PR.index.drills).length ? renderDrills() : startSession({ kind: "mixed", skills: pickRandom(known, 3), minutes: 5 });
+  if (t === "again") return openSetup({ title: K.types.again, kind: "review", skills: pickRandom(known, 3) });
+  startSession({ kind: "mixed", skills: pickRandom(known, 3), minutes: 10 });
+}
+// A skill needs practice when it is due a refresh, only practised, or had a wrong answer.
+const needsPractice = (k) => ["practised", "needs_refresh"].includes(PR.child.states[k]?.state) || Object.values(PR.child.scores?.[setOfSkill(k)?.id] ?? {}).some((x) => x.right < x.total);
+// The search looks through every year of the child's subjects, learnt or not (Own session plays
+// with hints). A whole request ("10 Minuten Einmaleins mit 7") is read by parseRequest: its
+// subject, topics or skills narrow the hits, its minutes are the length How long starts on, and
+// the words it did not understand must match a skill's words. If that finds nothing, every word
+// typed is matched instead.
+function openMakeSheet(subj) {
+  const K = MKTXT[PL()], U = bandUI(), lg = PL(), scr = $("#screen"), subs = appSubjects(), known = learntSkills();
+  const every = [...new Set([...known, ...PR.index.sets.filter((s_) => offered(s_.id.split(".")[1])).map(stateKey)])];
+  const sug = subjOfSkill(mySuggestions()[0]?.skills[0] ?? "");
+  const S = { subj: subs.includes(subj) ? subj : subs.includes(sug) ? sug : subs[0], picked: [], q: "", minutes: null };
   const scrim = document.createElement("div"); scrim.className = "mk-scrim";
   const m = document.createElement("div"); m.className = `sheet menu-sheet pr-sheet mk-sheet${U.dense ? " mk-dense" : ""}`; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true");
-  // This year's skills first; the search reaches every year of the subjects the child has.
-  const yearKs = PR.index.subjects.flatMap((x) => yearSkills(x)), drills = drillsForYear();
-  const allKs = [...new Set([...yearKs, ...PR.index.sets.filter((s_) => offered(s_.id.split(".")[1])).map(stateKey)])];
-  const allDrills = allKs.filter((k) => PR.index.drills[k]);
-  // A sprint the child can race: one played before or on a skill begun, this year's first.
-  const raceable = [...new Set([...drills, ...allDrills])].filter((k) => PR.child.drills[k] || (PR.child.states[k]?.state ?? "not_started") !== "not_started");
-  const known = allKs.filter(learnt);
-  const S = { step: 1, type: null, subj: null, q: "", fsubj: "all", picked: [], minutes: null, len: 10, hints: true };
   const close = () => { scrim.remove(); m.remove(); };
-  const rand = (xs, n) => xs.map((k) => [Math.random(), k]).sort((x, y) => x[0] - y[0]).map(([, k]) => k).slice(0, n);
-  const ofSubj = (ks, x) => ks.filter((k) => subjOfSkill(k) === x);
-  // What a type plays from a subject, when the app picks: only what the child has learnt, a
-  // race on a sprint they can do, else a short mixed round of learnt skills. Empty: not offered.
-  const skillsFor = (type, x) => {
-    const mine = x ? ofSubj(known, x) : known;
-    if (type === "race") { const d = x ? ofSubj(raceable, x) : raceable; return d.length ? [d[0]] : rand(mine, 3); }
-    return rand(mine, 3);
-  };
-  const can = (type) => type === "race" ? raceable.length || known.length : known.length;
-  const start = (type, skills, subj) => {
-    close();
-    if (type === "race") return PR.index.drills[skills[0]] && skills.length === 1 ? startSession({ kind: "drill", skills, minutes: 2 }) : startSession({ kind: "mixed", skills, minutes: S.minutes ?? 5 });
-    // A review has no hints, so only for skills learnt; something found but not learnt yet is practised with them.
-    if (type === "again") return startSession({ kind: skills.every(learnt) ? "review" : "mixed", skills, minutes: S.minutes ?? 10 });
-    if (type === "mine") return startSession({ kind: S.hints || !skills.every(learnt) ? "mixed" : "review", skills, minutes: S.minutes ?? S.len });
-    return startSession({ kind: "mixed", skills: rand(known, 3), minutes: 10 });
-  };
-  // Without a search, the ideas: what the type can play from this year first. With one, every year.
-  const pool = () => S.q.trim() ? (S.type === "race" ? allDrills : allKs)
-    : S.type === "race" ? raceable : [...known.filter((k) => yearKs.includes(k)), ...known.filter((k) => !yearKs.includes(k))];
-  const words = () => { const seen = new Set(); for (const k of pool()) { const t = setOfSkill(k)?.topic?.[lg] ?? ""; const w = t.split(/\s+/).find((x) => x.length > 2 && !STOP.has(x.toLowerCase()) && !/^\d/.test(x)); if (w && seen.size < 10) seen.add(w); } return [...seen]; };
-  // A whole request ("10 Minuten Einmaleins mit 7") is read by parseRequest; the words it did not
-  // understand must match a skill's "I can" line, topic, set title or subject.
-  const shown = () => {
-    const r = S.q.trim() ? parseRequest(S.q, PR.index) : { filters: {}, understood: [] }, f = r.filters, got = r.understood.join(" ").toLowerCase();
+  const name = (x) => SUBJ_NAME[PR.child.curriculum][x] ?? x;
+  const words = (q, skip = []) => q.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter((w) => w && !STOP.has(w) && !/^\d+$/.test(w) && !skip.includes(w));
+  const found = () => {
+    const r = parseRequest(S.q, PR.index), f = r.filters, got = r.understood.join(" ").toLowerCase().split(/\s+/);
     S.minutes = f.minutes ?? null;
-    const ws = S.q.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter((w) => w && !STOP.has(w) && !got.split(/\s+/).includes(w) && !/^\d+$/.test(w));
-    // Topics and subjects the child does not have (French before Year 3) are left out; if what
-    // was understood finds nothing, every typed word is matched against the skills instead.
-    const named = f.skills ?? (f.topics ? PR.index.topics.filter((t) => f.topics.includes(t.key) && offered(t.subject)).flatMap((t) => t.skills) : null);
-    const subj = f.subject && offered(f.subject) ? f.subject : null, inFilter = (k) => S.fsubj === "all" || subjOfSkill(k) === S.fsubj;
-    const hits = pool().filter((k) => (!named || named.includes(k)) && (!subj || subjOfSkill(k) === subj) && inFilter(k) && ws.every((w) => skillHay(k).includes(w)));
-    if (hits.length || !S.q.trim()) return hits;
-    const all = S.q.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter((w) => w && !STOP.has(w) && !/^\d+$/.test(w));
-    return all.length ? pool().filter((k) => inFilter(k) && all.every((w) => skillHay(k).includes(w))) : hits;
+    const named = f.skills ?? (f.topics ? PR.index.topics.filter((t) => f.topics.includes(t.key)).flatMap((t) => t.skills) : null);
+    const sj = f.subject && offered(f.subject) ? f.subject : null, ws = words(S.q, got);
+    const hits = every.filter((k) => (!named || named.includes(k)) && (!sj || subjOfSkill(k) === sj) && ws.every((w) => skillHay(k).includes(w)));
+    const all = words(S.q);
+    return hits.length || !all.length ? hits : every.filter((k) => all.every((w) => skillHay(k).includes(w)));
   };
-  // Up to 7 a subject is picked by its picture and the app picks the skills, except in Pick my
-  // own: there every child taps the skills, the youngest with pictures and no search.
+  // A skill: a stripe in its subject's colour, the unit and its topic, the stars; tinted once picked.
+  // From the first pick on, every row shows a round box to tick, so the others read as pickable too.
+  const row = (k) => `<button data-k="${esc(k)}" aria-pressed="${S.picked.includes(k)}" style="--c:${colourOf(subjOfSkill(k))}"><span><b>${esc(setOfSkill(k)?.title?.[lg] ?? canDoOf(k))}</b><small>${esc(setOfSkill(k)?.topic?.[lg] ?? "")}</small></span>${starsOf3(k)}<i class="mk-tick" aria-hidden="true">${TICK}</i></button>`;
+  const sec = (h, ks) => ks.length ? `<h4 class="mk-sec">${esc(h)}</h4><div class="mk-list">${ks.slice(0, 30).map(row).join("")}</div>` : "";
+  // The top (the question and the search) is drawn once, so typing keeps its place; the rest
+  // (subjects, skills, Let's go) again on every change. While searching, the hits come from
+  // every subject, so the subject chips step aside.
+  m.innerHTML = `<div class="mk-head"><i class="mk-grab" aria-hidden="true"></i><button class="pr-x" aria-label="${esc(K.close)}">${ICON.close}</button></div>
+    <div class="mk-ask">${U.mascot ? `<img src="${A}mascot/practise-1.png" alt="">` : ""}<p>${esc(K.what)}</p></div>
+    <label class="pr-search mk-find">${LENS}<input type="search" placeholder="${esc(K.find)}" aria-label="${esc(K.find)}" autocomplete="off" enterkeyhint="search"></label>
+    <div class="mk-live"></div>`;
+  const live = $(".mk-live", m);
   const draw = () => {
-    const bySubj = young && S.type !== "mine";
-    const q = S.step === 1 ? K.how : bySubj ? K.whatSubj : K.what;
-    let body = "", foot = "";
-    // A skill card; the youngest see the topic's mascot.
-    // A box to tick where several can be picked; a race takes one, so a round dot.
-    const card = (k) => `<button data-k="${esc(k)}" aria-pressed="${S.picked.includes(k)}" style="--c:${colourOf(subjOfSkill(k))}">${young ? `<img src="${A}mascot/${setOfSkill(k)?.pose ?? "practise-2"}.png" alt="">` : ""}<span><b>${esc(setOfSkill(k)?.title?.[lg] ?? canDoOf(k))}</b><small>${esc(setOfSkill(k)?.topic?.[lg] ?? "")}</small></span>${starsOf3(k)}<i class="mk-pick${S.type === "race" ? " one" : ""}" aria-hidden="true">${TICK}</i></button>`;
-    const subjChips = () => `<div class="mk-subj"><button data-fs="all" aria-pressed="${S.fsubj === "all"}">${esc(K.all)}</button>${PR.index.subjects.filter((x) => pool().some((k) => subjOfSkill(k) === x)).map((x) => `<button data-fs="${x}" aria-pressed="${S.fsubj === x}" style="--c:${colourOf(x)}">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`).join("")}</div>`;
-    const find = `<label class="pr-search mk-find">${LENS}<input type="search" value="${esc(S.q)}" placeholder="${esc(K.find)}" autocomplete="off" enterkeyhint="search"></label>`;
-    if (S.step === 2 && S.type === "mine") {
-      // Pick my own: the search, the subjects, then what needs practice first and what the child
-      // knows; a search shows its hits from every year. Below, the time and hints, then go.
-      const list = shown(), weak = (k) => ["practised", "needs_refresh"].includes(PR.child.states[k]?.state) || Object.values(PR.child.scores?.[setOfSkill(k)?.id] ?? {}).some((x) => x.right < x.total);
-      const sec = (h, ks) => ks.length ? `<h4 class="mk-sec">${esc(h)}</h4><div class="mk-list${young ? " mk-pics" : ""}">${ks.slice(0, 30).map(card).join("")}</div>` : "";
-      body = `${find}${subjChips()}${S.q ? "" : `<p class="mk-count mk-tap">${esc(K.tapYours)}</p>`}${S.q ? `<p class="mk-count">${esc(K.hits(list.length))}</p><div class="mk-list${young ? " mk-pics" : ""}">${list.slice(0, 40).map(card).join("") || `<p class="pr-empty">${esc(K.none)}</p>`}</div>`
-        : sec(K.weakH, list.filter(weak)) + sec(K.knowH, list.filter((k) => !weak(k))) || `<p class="pr-empty">${esc(K.none)}</p>`}`;
-      const len = S.minutes ?? S.len;
-      foot = `<div class="mk-opts"><span class="mk-len" role="radiogroup" aria-label="${esc(K.time)}">${[5, 10, 15].map((n) => `<button role="radio" data-len="${n}" aria-checked="${len === n}">${esc(K.mins(n))}</button>`).join("")}</span>
-        <label class="mk-hints"><input type="checkbox"${S.hints ? " checked" : ""}><i aria-hidden="true"></i>${esc(K.hints)}</label></div>`;
-    } else if (S.step === 1) body = `<div class="mk-big">${Object.entries(K.types).map(([t, [name, sub]]) => `<button data-t="${t}" aria-pressed="${S.type === t}"${can(t) ? "" : " disabled"}><img src="${A}${MK_PIC[t]}" alt=""><span><b>${esc(name)}</b><small>${esc(can(t) ? sub : K.later)}</small></span><i class="mk-goi" aria-hidden="true">${can(t) ? ARROW : LOCK}</i></button>`).join("")}</div>`;
-    else if (bySubj) body = `<div class="mk-subjs">${PR.index.subjects.filter((x) => skillsFor(S.type, x).length).map((x) => `<button data-s="${x}" aria-pressed="${S.subj === x}" style="--c:${colourOf(x)}"><img src="study/${trackArt(x)}.svg" alt=""><b>${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</b></button>`).join("")}</div>`;
-    else {
-      const list = shown();
-      body = `${young ? "" : `<label class="pr-search mk-find">${LENS}<input type="search" value="${esc(S.q)}" placeholder="${esc(K.find)}" autocomplete="off" enterkeyhint="search"></label>
-        <div class="mk-words scroll-fade">${words().map((w) => `<button aria-pressed="${S.q === w}">${esc(w)}</button>`).join("")}</div>`}
-        <div class="mk-subj"><button data-fs="all" aria-pressed="${S.fsubj === "all"}">${esc(K.all)}</button>${PR.index.subjects.filter((x) => pool().some((k) => subjOfSkill(k) === x)).map((x) => `<button data-fs="${x}" aria-pressed="${S.fsubj === x}" style="--c:${colourOf(x)}">${esc(SUBJ_NAME[PR.child.curriculum][x] ?? x)}</button>`).join("")}</div>
-        <p class="mk-count">${esc(S.q || S.fsubj !== "all" ? K.hits(list.length) : S.type === "mine" ? K.tapYours : K.ideas)}</p>
-        <div class="mk-list${young ? " mk-pics" : ""}">${list.slice(0, 40).map(card).join("") || `<p class="pr-empty">${esc(K.none)}</p>`}</div>`;
-    }
-    const ready = S.step === 2 && (bySubj ? !!S.subj : S.picked.length > 0);
-    m.classList.toggle("mk-s1", S.step === 1);
-    m.innerHTML = `<div class="mk-head">${S.step === 2 ? `<button class="mk-back" aria-label="${esc(K.back)}">${CHEVRON}</button>` : "<i></i>"}
-        <span class="mk-dots" aria-hidden="true"><i class="on"></i><i${S.step === 2 ? ' class="on"' : ""}></i></span>
-        <button class="pr-x" aria-label="${esc(K.close)}">${ICON.close}</button></div>
-      <div class="mk-ask">${U.mascot ? `<img src="${A}mascot/practise-1.png" alt="">` : ""}<p>${esc(q)}</p></div>
+    const y = live.querySelector(".mk-body")?.scrollTop ?? 0, q = S.q.trim();
+    const n = (x) => S.picked.filter((k) => subjOfSkill(k) === x).length;
+    const was = m.classList.contains("mk-selecting");
+    m.classList.toggle("mk-selecting", S.picked.length > 0); m.classList.toggle("mk-began", !was && S.picked.length > 0);
+    let body;
+    if (q) { const hits = found(); body = `<p class="mk-count">${esc(K.hits(hits.length))}</p>${hits.length ? `<div class="mk-list">${hits.slice(0, 40).map(row).join("")}</div>` : `<p class="pr-empty">${esc(K.noHits)}</p>`}`; }
+    else { const ks = known.filter((k) => subjOfSkill(k) === S.subj); body = sec(K.weakH, ks.filter(needsPractice)) + sec(K.knowH, ks.filter((k) => !needsPractice(k))) || `<p class="pr-empty">${esc(K.none)}</p>`; }
+    live.innerHTML = `${q ? "" : `<div class="mk-subj">${subs.map((x) => `<button data-fs="${x}" aria-pressed="${S.subj === x}" style="--c:${colourOf(x)}">${esc(name(x))}${n(x) ? `<em>${n(x)}</em>` : ""}</button>`).join("")}</div>`}
       <div class="mk-body">${body}</div>
-      ${S.step === 2 ? `<div class="mk-foot">${foot}<button class="btn mk-go"${ready ? "" : " disabled"}>${esc(bySubj || S.type === "race" ? K.go : S.picked.length ? K.goN(S.picked.length) : K.pickFirst)}</button></div>` : ""}`;
-    $(".pr-x", m).onclick = close;
-    $(".mk-back", m)?.addEventListener("click", () => { S.step = 1; S.type = null; draw(); });
-    m.querySelectorAll("[data-t]").forEach((b) => b.onclick = () => {
-      const t = b.dataset.t; S.type = t;
-      m.querySelectorAll("[data-t]").forEach((x) => x.setAttribute("aria-pressed", x === b));
-      // Surprise starts at once; the others go on to what, once the press has shown.
-      setTimeout(() => { if (!m.isConnected) return; if (t === "surprise") return start("surprise");
-        S.step = 2; const sug = mySuggestions()[0], ok = PR.index.subjects.filter((x) => skillsFor(t, x).length);
-        S.subj = sug && ok.includes(subjOfSkill(sug.skills[0])) ? subjOfSkill(sug.skills[0]) : ok[0];
-        S.picked = young || t === "mine" ? [] : [pool().find((k) => sug?.skills.includes(k)) ?? pool()[0]].filter(Boolean); draw(); }, 180);
-    });
-    m.querySelectorAll("[data-s]").forEach((b) => b.onclick = () => { S.subj = b.dataset.s; draw(); });
-    const qi = $(".mk-find input", m); if (qi) qi.oninput = () => { S.q = qi.value; const pos = qi.selectionStart; draw(); const n = $(".mk-find input", m); n.focus(); n.setSelectionRange(pos, pos); };
-    m.querySelectorAll(".mk-words button").forEach((b) => b.onclick = () => { S.q = S.q === b.textContent ? "" : b.textContent; draw(); });
-    m.querySelectorAll("[data-len]").forEach((b) => b.onclick = () => { S.len = +b.dataset.len; S.q = S.q.replace(/\d+\s*(min|minuten|minutes|mins)\b/i, "").trim(); draw(); });
-    $(".mk-hints input", m)?.addEventListener("change", (e) => { S.hints = e.target.checked; });
-    m.querySelectorAll("[data-fs]").forEach((b) => b.onclick = () => { S.fsubj = b.dataset.fs; draw(); });
-    m.querySelectorAll("[data-k]").forEach((b) => b.onclick = () => { const k = b.dataset.k; S.picked = S.type === "race" ? [k] : S.picked.includes(k) ? S.picked.filter((x) => x !== k) : [...S.picked, k]; draw(); });
-    $(".mk-go", m)?.addEventListener("click", () => start(S.type, bySubj ? skillsFor(S.type, S.subj) : S.picked));
-    scrollFades(m);
+      <div class="mk-foot"><button class="btn mk-go"${S.picked.length ? "" : " disabled"}>${esc(K.go)}</button></div>`;
+    $(".mk-body", live).scrollTop = y;
+    live.querySelectorAll("[data-fs]").forEach((b) => b.onclick = () => { S.subj = b.dataset.fs; draw(); $(".mk-body", live).scrollTop = 0; });
+    live.querySelectorAll("[data-k]").forEach((b) => b.onclick = () => { const k = b.dataset.k; S.picked = S.picked.includes(k) ? S.picked.filter((x) => x !== k) : [...S.picked, k]; draw(); });
+    $(".mk-go", live).onclick = () => {
+      const ss = [...new Set(S.picked.map(subjOfSkill))];
+      close(); openSetup({ title: ss.length === 1 ? K.subjPractice(name(ss[0])) : K.mixed, kind: "mixed", skills: S.picked, len: [5, 10, 15].includes(S.minutes) ? S.minutes : 10 });
+    };
   };
+  $(".pr-x", m).onclick = close;
+  $(".mk-find input", m).oninput = (e) => { S.q = e.target.value; draw(); $(".mk-body", live).scrollTop = 0; };
   scrim.onclick = close;
   scr.append(scrim, m); draw();
+}
+// How long: a screen over the app with the session's name and a way out on top, the mascot, the
+// question, 5, 10 or 15 minutes (10 to start with), and one big button.
+function openSetup({ title, kind, skills, len = 10 }) {
+  const K = MKTXT[PL()], scr = $("#screen"), S = { len };
+  const v = document.createElement("div"); v.className = "ps-setup"; v.setAttribute("role", "dialog"); v.setAttribute("aria-modal", "true"); v.setAttribute("aria-label", title);
+  const draw = () => {
+    v.innerHTML = `<header><b>${esc(title)}</b><button class="pr-x" aria-label="${esc(K.close)}">${ICON.close}</button></header><i class="ps-meter" aria-hidden="true"></i>
+      <div class="ps-mid">${bandUI().mascot ? `<img src="${A}mascot/practise-3.png" alt="">` : ""}<h2>${esc(K.howLong)}</h2>
+        <div class="ps-len" role="radiogroup" aria-label="${esc(K.howLong)}">${[5, 10, 15].map((n) => `<button role="radio" data-len="${n}" aria-checked="${S.len === n}">${esc(K.mins(n))}</button>`).join("")}</div></div>
+      <button class="btn ps-go">${esc(K.go)}</button>`;
+    $(".pr-x", v).onclick = () => v.remove();
+    v.querySelectorAll("[data-len]").forEach((b) => b.onclick = () => { S.len = +b.dataset.len; draw(); });
+    $(".ps-go", v).onclick = () => { v.remove(); startSession({ kind, skills, minutes: S.len }); };
+  };
+  draw(); scr.append(v); $(".ps-go", v).focus();
 }
