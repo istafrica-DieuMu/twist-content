@@ -58,7 +58,8 @@ services:
       retries: 3
       start_period: 10s
     logging:
-      driver: "json-file"
+      driver: "syslog"
       options:
-        max-size: "10m"
-        max-file: "3"
+        syslog-address: "udp://127.0.0.1:5514"
+        syslog-format: "rfc5424micro"
+        tag: "{{.Name}}"
