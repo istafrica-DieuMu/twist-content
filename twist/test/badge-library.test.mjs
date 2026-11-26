@@ -72,6 +72,32 @@ test("every badge has a name and a description in English and German, and no two
   }
 });
 
+test("every badge has a goal in English and German, unlike its description", () => {
+  for (const b of lib.badges) {
+    for (const lang of ["en", "de"]) {
+      assert.ok(b.goal?.[lang]?.trim(), `${b.id}: goal.${lang}`);
+      assert.notEqual(b.goal[lang], b.description[lang], `${b.id}: goal.${lang} repeats the description`);
+    }
+  }
+});
+
+test("each category has titled sets, and its badges are in its sets, one set after another", () => {
+  const setIds = lib.categories.flatMap((c) => (c.sets ?? []).map((s) => s.id));
+  assert.equal(new Set(setIds).size, setIds.length, "repeated set id");
+  for (const c of lib.categories) {
+    assert.ok(c.sets?.length, `${c.id}: no sets`);
+    for (const s of c.sets) {
+      assert.match(s.id, /^[a-z0-9-]+$/, `${c.id}: set id ${s.id}`);
+      assert.ok(s.name?.en?.trim() && s.name?.de?.trim(), `${c.id}: set ${s.id} name`);
+    }
+    const order = lib.badges.filter((b) => b.category === c.id).map((b) => b.set);
+    for (const set of order) assert.ok(c.sets.some((s) => s.id === set), `${c.id}: badge set ${set} is not one of its sets`);
+    const runs = order.filter((s, i) => s !== order[i - 1]);
+    assert.deepEqual(runs, c.sets.map((s) => s.id).filter((id) => order.includes(id)), `${c.id}: badges out of set order`);
+    for (const s of c.sets) assert.ok(order.includes(s.id), `${c.id}: set ${s.id} has no badges`);
+  }
+});
+
 test("every badge has its picture in assets/badge-library", () => {
   const missing = lib.badges.filter((b) => !existsSync(join(T, "assets/badge-library", `${b.id}.webp`))).map((b) => b.id);
   assert.deepEqual(missing, []);
